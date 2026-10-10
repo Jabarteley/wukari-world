@@ -59,22 +59,17 @@ test('the panel: place as the title, city under it, connection and head count, t
 
 test('alone: a short empty state with one action, no movement pad; with someone else the pad shows', async () => {
   const state = communityState()
-  const aloneState = { members: [state.members[0]!], memberCount: 1 }
-  const lone = await render('CommunityPanel', panel(aloneState))
+  const lone = await render('CommunityPanel', panel({ members: [state.members[0]!], memberCount: 1 }))
   assert.match(text(lone), /Just you/)
   assert.match(text(lone), /You are the first one here\./)
+  assert.match(lone, /class="community-invite"[^>]*>Invite a friend</)
   assert.doesNotMatch(lone, /community-movement/)
-  assert.doesNotMatch(lone, /community-invite/, 'no Invite button without a handler')
-  const store = panel(aloneState)
-  const component = ((await vite.ssrLoadModule('/src/app/features/community/CommunityPanel.vue')) as { default: Component }).default
-  const withInvite = await renderToString(createSSRApp({ render: () => h(component, { store, onInvite: () => {} }) }))
-  assert.match(withInvite, /class="community-invite"[^>]*>Invite a friend</)
   const two = await render('CommunityPanel', panel())
   assert.match(two, /community-movement/)
-  assert.doesNotMatch(two, /community-alone/)
+  assert.doesNotMatch(two, /community-alone|community-invite/)
 })
 
-test('the people row: you, someone in voice (live ring, near), someone muted; a person is a button only when a card can open', async () => {
+test('the people row: you, someone in voice (live ring, near), someone muted; everyone but you opens a card', async () => {
   const state = communityState()
   const members = [...state.members, { id: 'c', name: 'Cy', you: false, label: 'Cy', state: 'Mic muted · out of range', voice: 'muted' as const, range: 'far' as const }]
   const html = await render('CommunityPanel', panel({ members, memberCount: 3 }))
@@ -83,12 +78,9 @@ test('the people row: you, someone in voice (live ring, near), someone muted; a 
   assert.match(html, /<li class="is-muted">/)
   assert.match(text(html), /In voice · near/)
   assert.match(text(html), /Muted · far/)
-  assert.doesNotMatch(html, /<button[^>]*class="community-person"/, 'no handler: not a button')
-  const store = panel({ members, memberCount: 3 })
-  const component = ((await vite.ssrLoadModule('/src/app/features/community/CommunityPanel.vue')) as { default: Component }).default
-  const withCard = (await renderToString(createSSRApp({ render: () => h(component, { store, onPerson: () => {} }) })))
-  assert.match(withCard, /<button[^>]*class="community-person"[^>]*aria-label="Bea &lt;b&gt;, open card"/)
-  assert.doesNotMatch(withCard, /aria-label="Alex, open card"/, 'you are not a button')
+  assert.match(html, /<button[^>]*class="community-person"[^>]*aria-label="Bea &lt;b&gt;, open card"/)
+  assert.match(html, /<button[^>]*aria-label="Cy, open card"/)
+  assert.doesNotMatch(html, /aria-label="Alex, open card"/, 'you are not a button')
 })
 
 test('the movement pad: four named arrow buttons in a labelled group, disabled without a place, hidden when it cannot walk', async () => {

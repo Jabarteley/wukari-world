@@ -90,6 +90,15 @@ try {
     await snap('01-alone');
   });
 
+  await j.run('1b', 'Alone: Invite a friend opens the share sheet', [A], async (detail) => {
+    await A.click('.community-invite');
+    await sleep(1800);
+    detail['sheet'] = (await A.eval<string>(`[...document.querySelectorAll('[role="dialog"], .share-sheet, #life-dialog')].map((e) => e.innerText).join(' | ')`)).replace(/\s+/g, ' ').slice(0, 300);
+    must(String(detail['sheet']).length > 10, 'no share sheet appeared');
+    await A.press('Escape', 'Escape', 27); await sleep(600);
+    if (!(await visible(A, '#community-panel'))) await openCommunity(A);
+  });
+
   await j.run('2', 'A second player arrives: two in the room', [A], async (detail) => {
     await arrive(others[0]!);
     await A.waitFor(`document.querySelector('#community-panel')?.innerText.includes('Bola')`, 30000, 'the second player in the list');
@@ -182,6 +191,16 @@ try {
     detail['text'] = await text(A, '#community-panel');
     await snap('10-disconnected');
     await A.eval(`window.__wsBlock = false; true`);
+  });
+
+  await j.run('8b', 'A person in the row opens their card', [A], async (detail) => {
+    await A.eval(`window.__wsBlock = false; true`);
+    await A.goto(lab.base + '/'); await gameShown(A); await dismiss(A); await openCommunity(A);
+    await A.waitFor(`!!document.querySelector('.community-person[aria-label$="open card"]')`, 30000, 'a person to tap');
+    await A.click('.community-person[aria-label$="open card"]');
+    await A.waitFor(`/Add friend|Chat|Block|Report/.test(document.body.innerText)`, 15000, 'the player card');
+    detail['panelClosed'] = !(await visible(A, '#community-panel'));
+    must(detail['panelClosed'], 'the community panel stayed open over the card');
   });
 
   await j.run('9', 'At home: no room', [A], async (detail) => {

@@ -1,3 +1,9 @@
+/* the sheet around it (src/ui/shell.css places it): sized to its content, up to the screen; a phone's sheet fills the screen, above the keyboard */
+#community-panel{bottom:auto;display:flex;flex-direction:column;overflow:hidden;padding:0;background:#fff;width:min(400px,calc(100vw - 28px));max-height:calc(100dvh - 84px)}
+#community-content{display:flex;flex-direction:column;flex:1;min-height:0}
+#community-close{position:absolute;float:none;margin:0;top:10px;right:10px}
+@media(min-width:900px){#community-panel{width:740px;height:min(720px,calc(100dvh - 84px))}}
+@media(max-width:720px){#community-panel{bottom:calc(8px + var(--kb,0px));width:calc(100vw - 16px);max-height:none;height:auto}}
 /* The community panel. It sits in #community-panel (src/ui/shell.css), which gives it its place and size; the tokens are the game's own (src/ui/tokens). */
 .community{display:flex;flex-direction:column;flex:1;min-height:0;color:var(--c-ink,#17212f);font:14px/1.45 var(--font,system-ui,sans-serif);background:transparent;box-sizing:border-box}
 .community *,.community *::before,.community *::after{box-sizing:border-box}
@@ -31,15 +37,15 @@
 .community-notice .community-retry{min-height:40px}
 
 /* the body: scrolls when it must; the chat takes what is left */
-.community-content{display:flex;flex-direction:column;flex:1;min-height:0;gap:16px;padding:0 18px;overflow-y:auto;overscroll-behavior:contain}
-.community-side{display:grid;gap:16px;align-content:start;flex:none}
+.community-content{display:flex;flex-direction:column;flex:1;min-height:0;padding:0 18px;overflow-y:auto;overscroll-behavior:contain}
+.community-side{display:grid;gap:16px;align-content:start;flex:none;margin-bottom:16px}
 .community-private-note{margin:0 18px 18px!important;padding:12px;border-radius:var(--r-md,12px);background:var(--c-fill,#edf1f5);color:var(--c-ink-2,#354356);font-size:13px}
 
 /* people */
 .community-presence{display:grid;gap:8px}
 .community-members{list-style:none;display:flex;flex-wrap:wrap;align-items:flex-start;gap:2px 4px;margin:0 -6px;padding:2px 6px 4px;max-height:230px;overflow-y:auto;scrollbar-width:thin}
 .community-members li{flex:none}
-.community-person{display:grid;justify-items:center;align-content:start;align-items:start;gap:3px;width:84px;min-height:44px;padding:6px 2px;border:0;border-radius:var(--r-md,12px);background:none;color:inherit;font:inherit;text-align:center}
+.community-person{display:grid;justify-items:center;align-content:start;align-items:start;gap:3px;width:76px;min-height:44px;padding:6px 2px;border:0;border-radius:var(--r-md,12px);background:none;color:inherit;font:inherit;text-align:center}
 button.community-person{cursor:pointer}
 .community .community-members button.community-person{display:grid;min-height:44px;padding:6px 2px;border-radius:var(--r-md,12px);background:none;white-space:normal}
 .community .community-members button.community-person:hover{background:var(--c-fill,#edf1f5)}
@@ -86,7 +92,7 @@ button.community-person{cursor:pointer}
 .community-move-text p{color:var(--c-muted,#526174);font-size:13px}
 
 /* chat */
-.community-chat{display:flex;flex-direction:column;flex:1 1 0;min-height:300px;gap:8px}
+.community-chat{display:flex;flex-direction:column;flex:1 1 0;min-height:210px;gap:8px}
 .community-thread{position:relative;display:flex;flex-direction:column;flex:1;min-height:150px}
 .community-messages{display:flex;flex-direction:column;flex:1;gap:8px;min-height:0;margin:0;padding:4px 2px;list-style:none;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
 .community-messages li{align-self:flex-start;max-width:88%;padding:8px 12px;border-radius:16px 16px 16px 4px;background:var(--c-fill,#edf1f5);overflow-wrap:anywhere}
@@ -100,7 +106,7 @@ button.community-person{cursor:pointer}
 .community-messages li>button{min-height:36px;margin-top:6px;font-size:13px}
 .community-empty{position:absolute;inset:0;display:grid;place-items:center;padding:0 16px;color:var(--c-muted,#526174);font-size:13px;text-align:center;pointer-events:none}
 .community-jump{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);min-height:36px;box-shadow:var(--e-2,0 4px 14px #0003)}
-.community-compose{position:sticky;bottom:0;margin:0 -18px;padding:8px 18px calc(14px + env(safe-area-inset-bottom,0px));background:var(--c-surface,#fff);border-top:1px solid var(--c-line,#dce2e9)}
+.community-compose{position:sticky;bottom:0;flex:none;margin:0 -18px;padding:8px 18px calc(14px + env(safe-area-inset-bottom,0px));background:var(--c-surface,#fff);border-top:1px solid var(--c-line,#dce2e9)}
 .community-input-row{display:flex;align-items:flex-end;gap:8px}
 #community-panel .community-compose textarea{flex:1;min-width:0;min-height:44px;height:44px;max-height:104px;padding:10px 16px;border-radius:22px;resize:none;overflow-y:auto;line-height:1.35}
 .community-send{flex:none;width:44px;padding:0!important;border-radius:50%!important}
@@ -119,6 +125,12 @@ button.community-person{cursor:pointer}
   .community-content{padding:0 16px}
   .community-compose{margin:0 -16px;padding-left:16px;padding-right:16px}
   .community-notice{margin:0 16px 10px}
+  /* the four arrows in one row, so the chat keeps its room */
+  .community-movement{grid-template:44px/repeat(4,44px)}
+  .community-west{grid-area:1/1}.community-north{grid-area:1/2}.community-south{grid-area:1/3}.community-east{grid-area:1/4}
+  .community-movement::after{display:none}
+  .community-proximity{flex-wrap:wrap;gap:8px 12px}
+  .community-move-text{flex:1 1 120px}
 }
 @media(max-height:560px){
   .community-header{padding-top:10px;padding-bottom:6px}
@@ -127,9 +139,9 @@ button.community-person{cursor:pointer}
 }
 /* a wide screen: people and voice on the left, the chat on the right */
 @media(min-width:900px){
-  .community-content{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:stretch;gap:20px;overflow:hidden}
-  .community-side{overflow-y:auto;padding-bottom:18px}
-  .community-chat{min-height:0}
-  .community-compose{position:static;margin:0 -18px 0;padding-bottom:14px}
+  .community-content{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);grid-template-rows:minmax(0,1fr) auto;column-gap:20px;row-gap:0;overflow:hidden}
+  .community-side{grid-row:1/3;overflow-y:auto;margin-bottom:0;padding-bottom:18px}
+  .community-chat{grid-column:2;grid-row:1;min-height:0}
+  .community-compose{grid-column:2;grid-row:2;position:static;margin:0 -18px;padding-bottom:14px}
 }
 @media(prefers-reduced-motion:reduce){.community *{transition:none!important;scroll-behavior:auto!important}}

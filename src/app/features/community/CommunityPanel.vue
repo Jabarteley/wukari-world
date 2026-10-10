@@ -24,13 +24,7 @@ import type { ChatLine, MemberRow } from '../../../types/community.ts'
 import '../../../community.css'
 const LinkInterstitial = defineAsyncComponent(() => import('../trust/LinkInterstitial.vue'))
 
-const props = defineProps<{
-  store: Pick<CommunityStore, 'state' | 'controller'>
-  /** Open a person's card (the shell's own). Without it the people are not buttons. */
-  onPerson?: (id: string, name: string) => void
-  /** Open the share sheet to invite a friend. Without it the alone state offers no button. */
-  onInvite?: () => void
-}>()
+const props = defineProps<{ store: Pick<CommunityStore, 'state' | 'controller' | 'close' | 'openPerson'> }>()
 const s = computed(() => props.store.state.value)
 const control = () => props.store.controller()
 const nickname = ref('')
@@ -47,6 +41,10 @@ function send(): void {
   if (!draft.value.trim()) return
   if (control()?.sendChat(draft.value)) { draft.value = ''; void nextTick(grow) }
 }
+/** A person's card opens over the game, so the panel steps aside. */
+function openPerson(id: string, name: string): void { props.store.close(); props.store.openPerson(id, name) }
+/** The HUD's own Invite button opens the share sheet (src/app/features/growth/InviteButton.vue): this presses it. */
+function invite(): void { document.querySelector<HTMLButtonElement>('[data-invite-button]')?.click() }
 function chooseDevice(event: Event): void { control()?.selectDevice((event.target as HTMLSelectElement).value) }
 /** Enter sends, Shift+Enter makes a new line; Enter while a phone keyboard is composing a word does neither. */
 function onComposerKey(event: KeyboardEvent): void {
@@ -67,7 +65,7 @@ const place = computed(() => { const parts = (s.value?.roomText ?? '').split(' �
 const city = computed(() => { const parts = (s.value?.roomText ?? '').split(' · '); return parts.length > 1 ? parts[0] ?? '' : '' })
 const tone = computed(() => (s.value?.connection === 'Connected' ? 'good' : s.value?.canReconnect || /dis|unavail|changed/i.test(s.value?.connection ?? '') ? 'bad' : 'warn'))
 const others = computed(() => (s.value?.members ?? []).filter((member) => !member.you))
-const alone = computed(() => Boolean(s.value?.hasSession && !s.value.privateHome && others.value.length === 0))
+const alone = computed(() => Boolean(s.value?.hasSession && !s.value.privateHome && s.value.connection === 'Connected' && others.value.length === 0))
 const hereText = computed(() => { const n = s.value?.memberCount ?? 0; return n === 1 ? 'Just you' : `${n} here` })
 function caption(member: MemberRow): string {
   if (member.you) return member.voice === 'off' ? 'You' : member.voice === 'muted' ? 'You · muted' : 'You · in voice'
@@ -142,7 +140,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
       </div>
       <p class="community-status">
         <span class="community-connection" :class="`is-${tone}`" role="status"><i aria-hidden="true" />{{ s.connection }}</span>
-        <span v-if="s.hasSession && !s.privateHome" class="community-count">{{ hereText }}</span>
+        <span v-if="s.hasSession && !s.privateHome && s.memberCount > 0" class="community-count">{{ hereText }}</span>
       </p>
     </header>
 
@@ -173,7 +171,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
           </p>
           <ul class="community-members" aria-label="Room members">
             <li v-for="member in s.members" :key="member.id" :class="[`is-${member.voice}`, { 'is-you': member.you }]">
-              <component :is="!member.you && onPerson ? 'button' : 'div'" class="community-person" :type="!member.you && onPerson ? 'button' : undefined" :aria-label="!member.you && onPerson ? `${member.name}, open card` : undefined" @click="!member.you && onPerson?.(member.id, member.name)">
+              <component :is="member.you ? 'div' : 'button'" class="community-person" :type="member.you ? undefined : 'button'" :aria-label="member.you ? undefined : `${member.name}, open card`" @click="member.you || openPerson(member.id, member.name)">
                 <span class="community-avatar" aria-hidden="true" :style="{ '--hue': hueOf(member.id) }">{{ initialOf(member.name) }}
                   <svg v-if="member.voice !== 'off'" class="community-mic" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z" /><path d="M6 11a6 6 0 0 0 12 0M12 17v4" /><path v-if="member.voice === 'muted'" d="M4 4l16 16" /></svg>
                 </span>
@@ -184,7 +182,7 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
           </ul>
           <div v-if="alone" class="community-alone">
             <p>You are the first one here.</p>
-            <button v-if="onInvite" type="button" class="community-invite" @click="onInvite()">Invite a friend</button>
+            <button type="button" class="community-invite" @click="invite()">Invite a friend</button>
           </div>
           <div v-if="s.group && s.group.groups > 1" class="community-groups">
             <button v-if="!s.groupList" type="button" data-groups-open @click="control()?.listGroups()">See other groups</button>
@@ -248,7 +246,8 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
         </div>
       </div>
 
-      <div v-if="!s.privateHome" class="community-chat">
+      <template v-if="!s.privateHome">
+      <div class="community-chat">
         <h3>Room chat</h3>
         <div class="community-thread">
           <ol ref="messages" class="community-messages" aria-label="Room messages" aria-live="polite" aria-relevant="additions" @scroll.passive="onScroll">
@@ -261,15 +260,16 @@ onBeforeUnmount(() => { viewport?.removeEventListener('resize', lift); viewport?
           <p v-if="!s.chat.length" class="community-empty">No messages yet. Say hello.</p>
           <button v-if="unseen" type="button" class="community-jump" @click="toBottom">New messages ↓</button>
         </div>
-        <form class="community-compose" @submit.prevent="send">
-          <p v-if="refusalNow" class="community-refusal" role="alert">{{ s.refusal?.text }}</p>
-          <label class="community-sr-only" for="community-message">Message this room</label>
-          <div class="community-input-row">
-            <textarea id="community-message" ref="composer" v-model="draft" rows="1" maxlength="500" autocomplete="off" enterkeyhint="send" placeholder="Say hello…" :disabled="s.composeDisabled" @keydown="onComposerKey" @input="grow" />
-            <button type="submit" class="community-send" aria-label="Send" :disabled="s.composeDisabled || !draft.trim()"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></button>
-          </div>
-        </form>
       </div>
+      <form class="community-compose" @submit.prevent="send">
+        <p v-if="refusalNow" class="community-refusal" role="alert">{{ s.refusal?.text }}</p>
+        <label class="community-sr-only" for="community-message">Message this room</label>
+        <div class="community-input-row">
+          <textarea id="community-message" ref="composer" v-model="draft" rows="1" maxlength="500" autocomplete="off" enterkeyhint="send" placeholder="Say hello…" :disabled="s.composeDisabled" @keydown="onComposerKey" @input="grow" />
+          <button type="submit" class="community-send" aria-label="Send" :disabled="s.composeDisabled || !draft.trim()"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></button>
+        </div>
+      </form>
+      </template>
     </div>
 
     <LinkInterstitial v-if="linkOpened" :link="leaving?.link ?? null" :author-id="leaving?.line.authorId" :author-name="leaving?.line.author ?? ''" @close="leaving = null" />

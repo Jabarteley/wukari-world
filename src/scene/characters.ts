@@ -1600,7 +1600,7 @@ export function buildCrowdFigures(kit: Kit, people: CrowdPerson[] = [], { shadow
   const { THREE } = kit;
   const group = new THREE.Group(), figures: AvatarGroup[] = [], tags: CrowdTag[] = [];
   people.forEach((person, index) => {
-    // A regular's green dot is the name tag's (DOM); drawing it in the scene as well would cost every figure a second draw call.
+    // The marker of a person (a crown, a dot) is the name tag's, in the page; drawing it in the scene as well would put two on one head and cost every figure a second draw call.
     const kind = person.kind === 'npc' ? null : person.kind === 'self' ? 'crown' : 'player';
     const figure = buildAvatar(kit, person.look, {
       x: person.x || 0, y: person.y || 0, z: person.z || 0, ry: person.ry || 0, pose: person.pose, seat: person.seat, detail: person.detail ?? 'low',

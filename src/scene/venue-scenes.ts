@@ -617,7 +617,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     let entry = figures.get(key);
     if (!entry) {
       // The player's own figure is seen close up: the best detail characters.js offers a scene (avatar-rig.js).
-      entry = buildAvatar(kit, view.look, { pose: pose as Pose, seat, seed: view.seed, marker: 'crown', ...(view.mood ? { mood: view.mood } : {}), ...playerOptions(pose as Pose) });
+      entry = buildAvatar(kit, view.look, { pose: pose as Pose, seat, seed: view.seed, marker: null, ...(view.mood ? { mood: view.mood } : {}), ...playerOptions(pose as Pose) });
       entry.visible = false;
       avatar.add(entry);
       figures.set(key, entry);
@@ -679,7 +679,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   }
   /** One of a peer's two figures (standing, walking): both are built when the player first appears, so easing builds nothing. */
   function peerFigure(peer: Peer, pose: 'stand' | 'walk') {
-    const figure = buildAvatar(kit, peer.look, { pose, seed: peer.seed, marker: 'player' });
+    const figure = buildAvatar(kit, peer.look, { pose, seed: peer.seed, marker: null });
     figure.visible = false;
     peer.group.add(figure);
     return figure;

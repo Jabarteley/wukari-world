@@ -709,7 +709,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     if (!entry) {
       const state = lastState;
       // The player's own figure is seen close up: the best detail characters.js offers a scene (avatar-rig.js).
-      entry = buildAvatar(kit, who.look ?? state?.onboarding?.look ?? null, { pose, seed: who.seed, scale: tile * AVATAR_SCALE, marker: 'crown', ...moodOption(), ...playerOptions(pose) });
+      entry = buildAvatar(kit, who.look ?? state?.onboarding?.look ?? null, { pose, seed: who.seed, scale: tile * AVATAR_SCALE, marker: null, ...moodOption(), ...playerOptions(pose) });
       entry.visible = false;
       avatar.add(entry);
       figures.set(pose, entry);
@@ -720,7 +720,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     // The figure does what the activity says: it lies on the bed, eats at the table, cooks at the stove (figure-poses.ts); a chair seats it.
     const acting = pose === 'work' ? seatAt : null, sleeping = acting?.pose === 'lie';
     if (sleeping && !sleepingFigure) {
-      sleepingFigure = buildAvatar(kit, who.look ?? lastState?.onboarding?.look ?? null, { pose: 'stand', sleeping: true, seed: who.seed, scale: tile * AVATAR_SCALE, marker: 'crown', ...moodOption(), detail: PLAYER_DETAIL, rig: true });
+      sleepingFigure = buildAvatar(kit, who.look ?? lastState?.onboarding?.look ?? null, { pose: 'stand', sleeping: true, seed: who.seed, scale: tile * AVATAR_SCALE, marker: null, ...moodOption(), detail: PLAYER_DETAIL, rig: true });
       sleepingFigure.visible = false; avatar.add(sleepingFigure);
     }
     const sits = pose === 'sit' || acting?.at?.kind === 'seat';

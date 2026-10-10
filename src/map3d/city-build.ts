@@ -154,7 +154,7 @@ export const FABRIC_FAR = 760;
 const inBox = (x: number, z: number, [x0, z0, x1, z1]: Box4) => x >= x0 && x <= x1 && z >= z0 && z <= z1;
 
 /** A hand-rolled mesh collector for flat things the batch has no primitive for: polygons, ribbons, walls. */
-export function createRaw(THREE: Three): Raw {
+export function createRaw(THREE: Three, split = 0): Raw {
   const pos: number[] = [], nor: number[] = [], col: number[] = [], idx: number[] = [], tint = new THREE.Color(), cache = new Map<string, [number, number, number]>();
   const rgb = (colour: string) => { if (!cache.has(colour)) { tint.set(colour); cache.set(colour, [tint.r, tint.g, tint.b]); } return cache.get(colour)!; };
   const v = (x: number, y: number, z: number, nx: number, ny: number, nz: number, colour: string) => { const c = rgb(colour); pos.push(x, y, z); nor.push(nx, ny, nz); col.push(c[0], c[1], c[2]); return pos.length / 3 - 1; };
@@ -173,7 +173,19 @@ export function createRaw(THREE: Three): Raw {
       const base = pos.length / 3;
       for (const ring of rings) for (const [x, z] of ring) v(x, y, z, 0, 1, 0, colour);
       const vectors = rings.map((ring) => ring.map(([x, z]) => new THREE.Vector2(x, z)));
-      for (const [a, b, c] of THREE.ShapeUtils.triangulateShape(vectors[0]!, vectors.slice(1))) tri(base + a!, base + b!, base + c!);
+      const longest = (ia: number, ib: number, ic: number) => Math.max(Math.hypot(pos[ia * 3]! - pos[ib * 3]!, pos[ia * 3 + 2]! - pos[ib * 3 + 2]!), Math.hypot(pos[ib * 3]! - pos[ic * 3]!, pos[ib * 3 + 2]! - pos[ic * 3 + 2]!), Math.hypot(pos[ic * 3]! - pos[ia * 3]!, pos[ic * 3 + 2]! - pos[ia * 3 + 2]!));
+      // A sea or a river cut into a few huge slivers (a long shore fanned out to the far corners) is drawn badly: the rasteriser loses the thin edges and streaks of
+      // ground show through. A triangle with a side over SPLIT map units is cut in halves across its longest side until none is, so every triangle is small and fat.
+      const SPLIT = split || Infinity;
+      const cut = (ia: number, ib: number, ic: number, depth: number): void => {
+        if (depth > 12 || longest(ia, ib, ic) <= SPLIT) { tri(ia, ib, ic); return; }
+        const sides: [number, number, number][] = [[ia, ib, ic], [ib, ic, ia], [ic, ia, ib]];
+        const [p, q, r] = sides.sort((m, n) => Math.hypot(pos[n[0] * 3]! - pos[n[1] * 3]!, pos[n[0] * 3 + 2]! - pos[n[1] * 3 + 2]!) - Math.hypot(pos[m[0] * 3]! - pos[m[1] * 3]!, pos[m[0] * 3 + 2]! - pos[m[1] * 3 + 2]!))[0]!;
+        const mid = pos.length / 3;
+        v((pos[p * 3]! + pos[q * 3]!) / 2, y, (pos[p * 3 + 2]! + pos[q * 3 + 2]!) / 2, 0, 1, 0, colour);
+        cut(p, mid, r, depth + 1); cut(mid, q, r, depth + 1);
+      };
+      for (const [a, b, c] of THREE.ShapeUtils.triangulateShape(vectors[0]!, vectors.slice(1))) cut(base + a!, base + b!, base + c!, 0);
     },
     /** The vertical side of a closed polygon between two heights, facing outwards. */
     wall(polygon, y0, y1, colour) {
@@ -364,7 +376,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   // Water keeps a little light of its own, so a sea or a river is still a natural blue at dusk and at night and not black.
   const waterwayMaterial = pack.water?.length ? keep(new THREE.MeshStandardMaterial({ color: CITY_LIGHT.day.water, roughness: 0.42, metalness: 0.05, emissive: new THREE.Color(CITY_LIGHT.day.water), emissiveIntensity: 0.3 })) : null;
   if (waterwayMaterial) {
-    const waterways = createRaw(THREE);
+    const waterways = createRaw(THREE, pack.surround ? 60 : 0);
     for (const part of pack.water ?? []) waterways.shape(part.points, WATER_Y + 0.01, '#ffffff', part.holes);
     count(add(waterways.build(waterwayMaterial), 'waterways'));
   }

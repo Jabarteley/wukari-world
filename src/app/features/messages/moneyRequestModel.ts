@@ -56,3 +56,7 @@ export const refusalText = (code: string, reason?: string): string => (reason &&
 /** What a success says in a toast. */
 export const doneText = (op: RequestOp, amount: number, name: string): string =>
   op === 'pay' ? `Paid ${money(amount)} to ${name}` : op === 'decline' ? 'Request declined' : 'Request cancelled'
+
+/** Whether a request to this player can succeed: they are a friend now and neither side has blocked the other (a block ends the friendship, so the friends list says so too). */
+export const canAskFor = (partner: string | null | undefined, friends: readonly { id: string }[], blocked: readonly { id: string }[]): boolean =>
+  Boolean(partner) && friends.some((friend) => friend.id === partner) && !blocked.some((entry) => entry.id === partner)

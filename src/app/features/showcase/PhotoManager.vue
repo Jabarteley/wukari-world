@@ -4,12 +4,13 @@
 // later, make cover, and remove. The first photo is the cover. Pictures are shrunk and stripped of camera details on the device.
 import { computed, reactive, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
+import GameIcon from '../../ui/GameIcon.vue'
 import type { ShowcasePhotoView } from '../../../types/showcase.ts'
 import { SHOWCASE } from '../../../types/showcase.ts'
 import { newClientId } from '../social/useSocial.ts'
 import { CODE_WORDS, makeCover, movePhoto, photoBody, photoUrl, preparePhoto, wordsFor } from './showcaseModel.ts'
 
-const props = defineProps<{ photos: readonly ShowcasePhotoView[]; uploadsLeft: number; busy: boolean }>()
+const props = defineProps<{ photos: readonly ShowcasePhotoView[]; uploadsLeft: number; busy: boolean; /** A refused caption: the message and the text that was refused, by photo id. */ errors?: Record<string, { message: string; text: string }> }>()
 const emit = defineEmits<{ arrange: [change: { order: string[]; captions?: Record<string, string> }]; remove: [photo: string]; changed: [] }>()
 const { game } = useApp()
 interface Pending { key: number; name: string; state: 'preparing' | 'uploading' | 'failed'; reason: string }
@@ -45,6 +46,7 @@ async function add(event: Event): Promise<void> {
     }
   } finally { working.value = false }
 }
+const captionError = (id: string): string => { const found = props.errors?.[id]; return found && found.text === (captions[id] ?? '').trim() ? found.message : '' }
 const dismiss = (item: Pending): void => { pending.value = pending.value.filter((one) => one !== item) }
 const caption = (id: string): void => { emit('arrange', { order: order.value, captions: { [id]: (captions[id] ?? '').trim() } }) }
 </script>
@@ -59,12 +61,14 @@ const caption = (id: string): void => { emit('arrange', { order: order.value, ca
         </div>
         <p v-if="photo.hidden" class="pm-state">Hidden after reports</p>
         <p v-else-if="!photo.approved" class="pm-state">Waiting for review</p>
-        <label class="pm-cap">Caption (optional)<input v-model="captions[photo.id]" :maxlength="SHOWCASE.caption" autocomplete="off" :disabled="busy" @change="caption(photo.id)"></label>
+        <label class="pm-cap" :for="`se-cap-${photo.id}`">Caption (optional)</label>
+        <input :id="`se-cap-${photo.id}`" v-model="captions[photo.id]" class="pm-capin" :maxlength="SHOWCASE.caption" autocomplete="off" :disabled="busy" :aria-invalid="captionError(photo.id) ? 'true' : undefined" :aria-describedby="captionError(photo.id) ? `se-cap-e-${photo.id}` : undefined" @change="caption(photo.id)">
+        <p v-if="captionError(photo.id)" :id="`se-cap-e-${photo.id}`" class="pm-error" role="alert">{{ captionError(photo.id) }}</p>
         <div class="pm-tools">
-          <button v-if="at > 0" type="button" class="ui-button is-small" :disabled="busy" @click="emit('arrange', { order: makeCover(order, photo.id) })">Make cover</button>
-          <button type="button" class="ui-button is-small" :disabled="busy || at === 0" :aria-label="`Move photo ${at + 1} earlier`" @click="emit('arrange', { order: movePhoto(order, photo.id, -1) })">Earlier</button>
-          <button type="button" class="ui-button is-small" :disabled="busy || at === photos.length - 1" :aria-label="`Move photo ${at + 1} later`" @click="emit('arrange', { order: movePhoto(order, photo.id, 1) })">Later</button>
-          <button type="button" class="ui-button is-quiet is-small" :disabled="busy" :aria-label="`Remove photo ${at + 1}`" @click="emit('remove', photo.id)">Remove</button>
+          <button v-if="at > 0" type="button" class="pm-tool is-text" :disabled="busy" :aria-label="`Make photo ${at + 1} the cover`" @click="emit('arrange', { order: makeCover(order, photo.id) })">Cover</button>
+          <button type="button" class="pm-tool" :disabled="busy || at === 0" :aria-label="`Move photo ${at + 1} earlier`" title="Earlier" @click="emit('arrange', { order: movePhoto(order, photo.id, -1) })"><GameIcon name="back" :size="18" /></button>
+          <button type="button" class="pm-tool" :disabled="busy || at === photos.length - 1" :aria-label="`Move photo ${at + 1} later`" title="Later" @click="emit('arrange', { order: movePhoto(order, photo.id, 1) })"><GameIcon name="chevron" :size="18" /></button>
+          <button type="button" class="pm-tool" :disabled="busy" :aria-label="`Remove photo ${at + 1}`" title="Remove" @click="emit('remove', photo.id)"><GameIcon name="trash" :size="18" /></button>
         </div>
       </li>
       <li v-for="item in pending" :key="item.key" class="pm-item is-pending" :class="{ 'is-failed': item.state === 'failed' }">
@@ -98,8 +102,12 @@ const caption = (id: string): void => { emit('arrange', { order: order.value, ca
 .pm-name { color: var(--c-ink); }
 .pm-error { margin: 0; font-size: var(--t-small); color: var(--c-red-dark); overflow-wrap: anywhere; }
 .pm-bar { width: 100%; height: 8px; }
-.pm-cap { display: grid; gap: 2px; font-size: var(--t-small); }
-.pm-cap input { min-height: 36px; font: inherit; width: 100%; box-sizing: border-box; }
-.pm-tools { display: flex; flex-wrap: wrap; gap: 4px; }
-.pm-tools .ui-button { padding: 0 10px; min-width: 44px; min-height: 44px; }
+.pm-cap { font-size: var(--t-small); color: var(--c-muted); }
+.pm-capin { min-height: 40px; font: inherit; width: 100%; box-sizing: border-box; }
+.pm-capin[aria-invalid='true'] { border-color: var(--c-red); }
+.pm-tools { display: flex; gap: 4px; }
+.pm-tool { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0 8px; border: 1px solid var(--c-line); border-radius: var(--r-sm); background: #fff; color: var(--c-ink-2); font: 600 var(--t-small) var(--font); cursor: pointer; }
+.pm-tool.is-text { padding: 0 10px; }
+.pm-tool:disabled { opacity: .45; cursor: default; }
+.pm-tool:focus-visible { outline: var(--focus); outline-offset: 2px; }
 </style>

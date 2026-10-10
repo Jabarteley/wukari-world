@@ -2,7 +2,7 @@
 // Services: real people showing real skills and services, from markets across the world. Three screens in one app: browse
 // (filters, search, storefront cards), one shop's page, and "My shop" (the editor). Allworld holds no money and no contact
 // details here: prices are the seller's own, paid outside, and the chat and pay links are released only by the shop page.
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import type { ShowcaseCard, ShowcasePage } from '../../../types/showcase.ts'
 import EmptyState from '../../ui/EmptyState.vue'
@@ -10,6 +10,7 @@ import SkeletonRows from '../../ui/SkeletonRows.vue'
 import StorefrontCard from './StorefrontCard.vue'
 import ShopPage from './ShopPage.vue'
 import ShopEditor from './ShopEditor.vue'
+import { closeTopOverlay } from './overlays.ts'
 import { categoryList, directoryPath } from './showcaseModel.ts'
 
 const props = defineProps<{ params?: unknown }>()
@@ -26,6 +27,7 @@ const next = ref<string | null>(null)
 const loading = ref(false)
 const failed = ref('')
 let ticket = 0
+let loadedAt = 0
 
 // Opened from a market's "Services here": that market first, and a way to see them all.
 let seen: unknown = null
@@ -38,7 +40,7 @@ watch(() => props.params, (params) => {
 
 async function load(fresh: boolean): Promise<void> {
   const mine = ++ticket
-  loading.value = true; failed.value = ''
+  loading.value = true; failed.value = ''; loadedAt = Date.now()
   try {
     const page = await game.fetchJson<ShowcasePage>(directoryPath({ ...(scope.value === 'here' ? { city: view.value.cityId } : {}), ...(venue.value ? { venue: venue.value } : {}), category: category.value, q: query.value.trim(), ...(!fresh && next.value ? { after: next.value } : {}) }))
     if (mine !== ticket) return
@@ -48,10 +50,29 @@ async function load(fresh: boolean): Promise<void> {
     if (mine === ticket) failed.value = error instanceof Error ? error.message : 'The list could not load.'
   } finally { if (mine === ticket) loading.value = false }
 }
-onMounted(() => { void load(true) })
+// The list stays current while the app is open: it is read again when the app or the window comes back into view, when the
+// Browse tab or the list is shown again, every minute while it is on screen (a shop approved meanwhile appears), and on request.
+const FRESH_MS = 15000, POLL_MS = 60000
+const stale = (): boolean => tab.value === 'browse' && selected.value === null && !loading.value && document.visibilityState !== 'hidden'
+function refreshSoon(): void { if (stale() && Date.now() - loadedAt > FRESH_MS) void load(true) }
+let poll: ReturnType<typeof setInterval> | null = null
+onMounted(() => {
+  void load(true)
+  window.addEventListener('focus', refreshSoon); document.addEventListener('visibilitychange', refreshSoon)
+  poll = setInterval(refreshSoon, POLL_MS)
+})
+onBeforeUnmount(() => { window.removeEventListener('focus', refreshSoon); document.removeEventListener('visibilitychange', refreshSoon); if (poll) clearInterval(poll) })
+watch([tab, selected], () => { if (tab.value === 'browse' && selected.value === null && loadedAt > 0) void load(true) })
 watch([scope, category], () => { if (scope.value === 'all') venue.value = ''; void load(true) })
 /** A search or a kind is set: an empty list then means "nothing matches", not "no shops at all". */
 const filtered = computed(() => query.value.trim() !== '' || category.value !== '' || venue.value !== '' || scope.value === 'here')
+/** Escape: the photo viewer first, then the shop page back to the list; nothing left, the shell closes the app. */
+defineExpose({ keys: (action: string): boolean => {
+  if (action !== 'cancel') return false
+  if (closeTopOverlay()) return true
+  if (selected.value) { selected.value = null; return true }
+  return false
+} })
 const heading = computed(() => (venue.value ? 'Services at this market' : scope.value === 'here' ? 'Services in this city' : 'Services from around the world'))
 </script>
 
@@ -65,7 +86,7 @@ const heading = computed(() => (venue.value ? 'Services at this market' : scope.
       </div>
       <ShopEditor v-if="tab === 'mine'" :city="view.cityId" :venue="venue" />
       <template v-else>
-        <h2 class="sc-title">{{ heading }}</h2>
+        <div class="sc-head"><h2 class="sc-title">{{ heading }}</h2><button type="button" class="ui-button is-quiet is-small" :disabled="loading" aria-label="Refresh the list" @click="load(true)">{{ loading ? 'Refreshing…' : 'Refresh' }}</button></div>
         <p class="sc-lead">Real people show real skills and services here. You chat and pay them outside Allworld, with their own links. Allworld never holds your money.</p>
         <form class="sc-filters" role="search" @submit.prevent="load(true)">
           <label>Search<input v-model="query" type="search" maxlength="40" placeholder="Name, sign or service" enterkeyhint="search"></label>
@@ -98,6 +119,7 @@ const heading = computed(() => (venue.value ? 'Services at this market' : scope.
 .sc-tabs { display: flex; gap: 6px; }
 .sc-tabs button { flex: 1; min-height: 44px; border: 1px solid rgb(0 0 0 / 16%); border-radius: 10px; background: transparent; font: inherit; }
 .sc-tabs button.is-on { background: var(--c-fill, #eef1ef); font-weight: 600; }
+.sc-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-2); }
 .sc-title { margin: 0; font-size: 18px; }
 .sc-lead { margin: 0; font-size: 13px; color: var(--c-faint, #6b737c); }
 .sc-filters { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); align-items: end; }

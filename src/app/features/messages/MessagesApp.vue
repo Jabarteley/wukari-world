@@ -53,6 +53,7 @@ import MessageBubble from './MessageBubble.vue'
 import PinnedMessages from './PinnedMessages.vue'
 import { canPinMessage, createMessagePins } from './messagePins.ts'
 import { createMoneyRequests } from './moneyRequests.ts'
+import { canAskFor } from './moneyRequestModel.ts'
 import type { RequestOp } from './moneyRequestModel.ts'
 import { mergeMessages } from '../../../game/social-model.ts'
 import { isMessagePinsFrame } from './messagePinsFrame.ts'
@@ -308,6 +309,9 @@ function answerCard(item: ThreadItem, id: string, op: RequestOp): void {
   if (!isOutbox(item) && item.request) void requests.answer(id, op, item.from?.name ?? 'them', item.request.amount)
 }
 const requestForm = ref<HTMLFormElement | null>(null)
+/** Asking is offered only where it can succeed: a current friend, nobody blocked. It goes the moment a block or an unfriend arrives. */
+const canRequest = computed(() => canAskFor(partner.value, me.value?.friends ?? [], me.value?.blocked ?? []))
+watch(canRequest, (can) => { if (!can) requests.closeForm() })
 // The form is brought into view when it opens, whatever the screen's height (the options panel scrolls inside the chat).
 watch(() => requests.ask.open, (open) => { if (open) void nextTick(() => requestForm.value?.scrollIntoView?.({ block: 'nearest' })) }, { flush: 'post' })
 async function sendRequest(): Promise<void> {
@@ -460,12 +464,13 @@ defineExpose({
         </section>
 
         <GroupManage v-if="conv?.kind === 'group' && ui.manage" :conv="conv" :me="me" @left="groupLeft" @player="openCard" />
-        <section v-else-if="partner && ui.manage" class="messages-manage" aria-label="Chat options">
+        <section v-else-if="partner && ui.manage" class="messages-manage" aria-label="Chat options" @keydown.esc="ui.manage = false">
+          <div class="messages-manage-head"><b>Chat options</b><BaseButton small data-chat="options-done" aria-label="Close chat options" @click="ui.manage = false">Done</BaseButton></div>
           <span class="bubble-actions is-start">
             <BaseButton small data-chat="send-money" @click="sendMoneyTo(partner, title)">Send money</BaseButton>
-            <BaseButton small data-chat="request-money" :disabled="!connected" :reason="connected ? null : 'Reconnect to ask for money.'" @click="requests.openForm()">Request money</BaseButton>
+            <BaseButton v-if="canRequest" small data-chat="request-money" :disabled="!connected" :reason="connected ? null : 'Reconnect to ask for money.'" @click="requests.openForm()">Request money</BaseButton>
           </span>
-          <form v-if="requests.ask.open" ref="requestForm" class="messages-request" aria-label="Request money" @submit.prevent="sendRequest">
+          <form v-if="requests.ask.open && canRequest" ref="requestForm" class="messages-request" aria-label="Request money" @submit.prevent="sendRequest">
             <label for="message-request-amount">Amount to ask for (₦)</label>
             <input id="message-request-amount" v-model="requests.ask.amount" class="messages-field" name="amount" inputmode="numeric" pattern="[0-9]*" maxlength="13" required :aria-invalid="requests.ask.error ? true : undefined" aria-describedby="message-request-help">
             <label for="message-request-note">Note (optional)</label>
@@ -663,6 +668,7 @@ defineExpose({
 /* While the options are open the thread gives way (it keeps what is left), and on a short screen the composer waits, so the fields and Send stay on screen. */
 .messages-chat.is-managing .messages-thread { min-height: 0; }
 @media (max-height: 680px) { .messages-chat.is-managing .messages-foot { display: none; } }
+.messages-manage-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .messages-manage ul { display: flex; flex-wrap: wrap; gap: 2px 12px; margin: 0; padding: 0; list-style: none; }
 .messages-add { display: flex; flex-wrap: wrap; gap: 6px; }
 .messages-checks { display: grid; gap: 2px; max-height: 150px; overflow-y: auto; margin: 6px 0; }

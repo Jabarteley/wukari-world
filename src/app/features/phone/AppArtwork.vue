@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { glyph, glyphFor } from '../../../ui/phone/icons.ts'
+import { tintOf } from '../../../ui/phone/icons-more.ts'
 import { PHONE_ART, PHONE_ART_COLUMNS, PHONE_ART_X, PHONE_ART_Y } from '../../../ui/phone/appArtwork.ts'
 
 const props = defineProps<{ app: string }>()
 const atlas = new URL('../../../ui/phone/app-icons.webp', import.meta.url).href
+// An app with no picture in the atlas draws its mark from the icon set (a rounded square in its colour) instead of the settings gears.
+const drawn = computed(() => props.app !== 'person' && !PHONE_ART.includes(props.app))
+const mark = computed(() => glyph(glyphFor(props.app)))
+const tint = computed(() => tintOf({ id: props.app }))
 const style = computed(() => {
   const found = PHONE_ART.indexOf(props.app === 'person' ? 'contacts' : props.app)
   const index = found < 0 ? PHONE_ART.indexOf('settings') : found
@@ -22,5 +28,6 @@ const style = computed(() => {
 </script>
 
 <template>
-  <span class="ph-icon ph-artwork" :style="style" aria-hidden="true" />
+  <span v-if="!drawn" class="ph-icon ph-artwork" :style="style" aria-hidden="true" />
+  <span v-else class="ph-icon" :style="{ '--tint': tint }" aria-hidden="true" v-html="mark" />
 </template>

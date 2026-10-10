@@ -2,12 +2,13 @@
 // One shop: the sign, what it does, photos, services with the seller's own prices, hours, who runs it, and the two ways out:
 // Chat and Pay. Neither link is on this page. Pressing a button asks the server for it (a signed-in adult only), and the
 // answer goes to the "You are leaving Allworld" sheet, which names the site and the address before anything opens.
-import { defineAsyncComponent, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { TRUST_REPORT_REASONS, TRUST_REPORT_WORDS } from '../../../game/trust/index.ts'
 import type { OutboundLink, TrustReportReason } from '../../../game/trust/index.ts'
 import type { ShowcaseGo, ShowcaseLinkKind, ShowcaseView } from '../../../types/showcase.ts'
 import { newClientId } from '../social/useSocial.ts'
+import GameIcon from '../../ui/GameIcon.vue'
 import SkeletonRows from '../../ui/SkeletonRows.vue'
 import ShopFront from './ShopFront.vue'
 import { adultConsentBody, wordsFor } from './showcaseModel.ts'
@@ -28,6 +29,13 @@ const detail = ref('')
 // One request id per press that has not finished: pressing again after a lost answer repeats the same request.
 const ids = new Map<string, string>()
 const form = ref<HTMLElement | null>(null)
+/** One short line for the bar: a prompt with its one action, or the answer. Long refusals stay readable in the list of codes, not here. */
+const message = computed(() => (needs.value === 'account' ? 'Sign in to chat or pay.' : needs.value === 'adult' ? 'Say you are 18 or older to continue.' : note.value))
+const bar = ref<HTMLElement | null>(null)
+const barHeight = ref(64)
+let watcher: ResizeObserver | null = null
+watch(bar, (node) => { watcher?.disconnect(); if (node && typeof ResizeObserver === 'function') { watcher = new ResizeObserver(() => { barHeight.value = Math.ceil(node.getBoundingClientRect().height) }); watcher.observe(node) } })
+onBeforeUnmount(() => watcher?.disconnect())
 watch(reporting, (now) => { if (now) void nextTick(() => form.value?.scrollIntoView({ block: 'center' })) })
 
 onMounted(async () => {
@@ -69,7 +77,7 @@ async function report(): Promise<void> {
 
 <template>
   <article class="sp" aria-label="Shop">
-    <button type="button" class="ui-button is-quiet sp-back" @click="emit('back')">Back to the list</button>
+    <button type="button" class="sp-back" aria-label="Back to the list" @click="emit('back')"><GameIcon name="back" :size="18" /><span>All shops</span></button>
     <p v-if="failed" class="ui-error" role="alert">{{ failed }}</p>
     <SkeletonRows v-else-if="!shop" :rows="3" label="Loading the shop" />
     <template v-else>
@@ -86,15 +94,19 @@ async function report(): Promise<void> {
         <button class="ui-button is-block is-danger" :disabled="!reason || busy !== ''">{{ busy === 'report' ? 'Sending…' : 'Send report' }}</button>
         <button type="button" class="ui-button is-quiet is-block" @click="reporting = null">Cancel</button>
       </form>
-      <div class="sp-bar" role="group" aria-label="Contact the seller">
-        <div v-if="note || needs" class="sp-msg">
-          <p v-if="note" role="status" class="sp-status">{{ note }}</p>
-          <button v-if="needs === 'account'" type="button" class="ui-button is-small" @click="shell.open('account')">Sign in to continue</button>
-          <button v-if="needs === 'adult'" type="button" class="ui-button is-small" @click="declareAdult">I am 18 or older</button>
+      <div ref="bar" class="sp-bar" role="group" aria-label="Contact the seller">
+        <div v-if="message" class="sp-msg">
+          <p role="status" class="sp-status">{{ message }}</p>
+          <button v-if="needs === 'account'" type="button" class="ui-button is-small" @click="shell.open('account')">Sign in</button>
+          <button v-if="needs === 'adult'" type="button" class="ui-button is-small" @click="declareAdult">I am 18+</button>
         </div>
-        <button type="button" class="ui-button is-primary" :disabled="busy !== ''" :aria-busy="busy === 'chat'" @click="go('chat')">Chat with the seller</button>
-        <button v-if="shop.pay" type="button" class="ui-button" :disabled="busy !== ''" :aria-busy="busy === 'pay'" @click="go('pay')">Pay the seller</button>
+        <div class="sp-go">
+          <button type="button" class="ui-button is-primary" aria-label="Chat with the seller" :disabled="busy !== ''" :aria-busy="busy === 'chat'" @click="go('chat')">Chat</button>
+          <button v-if="shop.pay" type="button" class="ui-button" aria-label="Pay the seller" :disabled="busy !== ''" :aria-busy="busy === 'pay'" @click="go('pay')">Pay</button>
+        </div>
       </div>
+      <!-- The bar is fixed to the bottom while the page scrolls under it; this gap is its height, so nothing is ever covered. -->
+      <div class="sp-end" :style="{ height: `${barHeight}px` }" aria-hidden="true" />
     </template>
     <LinkInterstitial v-if="leaving && shop" :link="leaving" :author-id="shop.badge.id" :author-name="shop.badge.name" @close="leaving = null" />
   </article>
@@ -102,16 +114,21 @@ async function report(): Promise<void> {
 
 <style scoped>
 .sp { display: grid; gap: var(--s-3); }
-.sp-back { justify-self: start; }
+.sp-back { justify-self: start; display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 0 10px 0 4px; border: 0; background: none; color: var(--c-green-dark); font: 600 var(--t-body) var(--font); cursor: pointer; }
+.sp-back:focus-visible { outline: var(--focus); outline-offset: 2px; }
 .sp-fine { margin: 0; font-size: var(--t-small); color: var(--c-muted); }
 .sp-warn { margin: 0; padding: 8px 10px; border-radius: var(--r-sm); background: var(--c-amber-soft); color: var(--c-amber-dark); font-size: 13px; }
 .sp-status { margin: 0; font-weight: 600; }
-.sp-msg { grid-column: 1 / -1; display: grid; gap: var(--s-2); justify-items: start; }
+.sp-msg { display: flex; align-items: center; gap: var(--s-2); margin-bottom: var(--s-2); }
+.sp-msg .sp-status { flex: 1; min-width: 0; font-size: var(--t-small); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sp-msg .ui-button { flex: none; white-space: nowrap; }
 .sp-report { display: grid; gap: 8px; }
 .sp-report fieldset { display: grid; gap: 6px; border: 0; padding: 0; margin: 0; }
 .sp-report legend { font-weight: 600; margin-bottom: 4px; }
 .sp-report label { display: grid; gap: 4px; font-size: 13px; }
-/* Chat and Pay stay at the bottom of the screen while the page scrolls under them. */
-.sp-bar { position: sticky; bottom: 0; z-index: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: var(--s-2); margin: 0 calc(-1 * var(--s-3)); padding: var(--s-2) var(--s-3) calc(var(--s-2) + env(safe-area-inset-bottom, 0px)); background: rgb(255 255 255 / 96%); border-top: 1px solid var(--c-line); box-shadow: 0 -6px 16px rgb(16 24 20 / 8%); }
-.sp-bar .ui-button { white-space: normal; }
+/* Chat and Pay stay at the bottom of the screen while the page scrolls under them: solid, as wide as the cards. */
+.sp-bar { position: sticky; bottom: calc(var(--s-2) + env(safe-area-inset-bottom, 0px)); z-index: 2; padding: var(--s-2); background: #fff; border: 1px solid var(--c-line); border-radius: var(--r-md); box-shadow: var(--e-2); }
+.sp-go { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: var(--s-2); }
+.sp-go .ui-button { white-space: nowrap; }
+.sp-end { margin-top: calc(-1 * var(--s-3)); padding-bottom: calc(var(--s-2) + env(safe-area-inset-bottom, 0px)); }
 </style>

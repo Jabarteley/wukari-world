@@ -444,8 +444,11 @@ button.ui-row:hover{background:#f7f9f8}
 .ph-appbody .ui-empty{background:#fff;border-style:solid;border-color:transparent;box-shadow:var(--e-1),var(--ring)}
 
 /* ---- community panel (content from src/community.js) ------------------------------------- */
-#community-panel{box-sizing:border-box;position:fixed;z-index:35;right:14px;top:70px;bottom:14px;width:min(380px,calc(100vw - 28px));background:#f9fbf8;border-radius:22px;box-shadow:0 10px 60px #0006;overflow:auto;padding:18px;font-family:var(--font)}
-#community-close{position:sticky;float:right;top:0;margin:-8px -8px 0 0;z-index:3;display:grid;place-items:center;width:var(--tap);height:var(--tap);border:0;border-radius:50%;background:var(--c-fill);font-size:24px;line-height:1;cursor:pointer}
+#community-panel{box-sizing:border-box;position:fixed;z-index:35;right:14px;top:70px;width:min(400px,calc(100vw - 28px));max-height:calc(100vh - 84px);max-height:calc(100dvh - 84px);display:flex;flex-direction:column;background:var(--c-surface,#fff);border-radius:22px;box-shadow:0 10px 60px #0006;overflow:hidden;padding:0;font-family:var(--font)}
+#community-content{display:flex;flex-direction:column;flex:1;min-height:0}
+#community-content>section[data-community-recovery]{padding:18px 64px 18px 18px}
+#community-close{position:absolute;top:10px;right:10px;z-index:3;display:grid;place-items:center;width:var(--tap);height:var(--tap);padding:0;border:0;border-radius:50%;background:var(--c-fill);font-size:24px;line-height:1;cursor:pointer}
+@media(min-width:900px){#community-panel{width:min(740px,calc(100vw - 28px));height:min(720px,calc(100dvh - 84px))}}
 
 /* ---- name tags over the venue scene (src/venue-world.js) ---------------------------------- */
 .scene-tags{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
@@ -520,7 +523,7 @@ button.ui-row:hover{background:#f7f9f8}
   #life-dialog-content{--sheet-pad:16px}
   .sheet-head{margin:0 -16px var(--s-3);padding-left:16px}
   .sim-tabs{margin:0 -16px var(--s-2);padding:2px 16px}
-  #community-panel{top:58px;right:8px;bottom:8px;width:calc(100vw - 16px)}
+  #community-panel{top:58px;right:8px;bottom:calc(8px + var(--kb,0px));width:calc(100vw - 16px);max-height:none;height:auto}
   .map-open .awm-heading{padding-top:66px;padding-bottom:12px}.map-open .awm-heading h2{font-size:20px}.map-open .awm-heading p{display:none}.map-open .awm{padding-bottom:84px}.map-open .awm-viewport,.map-open .awm-svg{min-height:210px}
 }
 @media(max-width:360px){.life-mood{display:none}}

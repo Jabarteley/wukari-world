@@ -4,6 +4,8 @@
 // went wrong (with the two ways out) while the community code did not load or did not start.
 // Hidden while closed; the store keeps it closed at home.
 import { defineAsyncComponent } from 'vue'
+import { useApp } from '../../state/app.ts'
+import { useGrowth } from '../growth/useGrowth.ts'
 import { useCommunity } from './communityStore.ts'
 import type { CommunityStore } from './communityStore.ts'
 // The panel is drawn only once the community code has loaded (long after the first paint), so its own code is fetched with it.
@@ -11,6 +13,9 @@ const CommunityPanel = defineAsyncComponent(() => import('./CommunityPanel.vue')
 
 const props = defineProps<{ store?: CommunityStore }>()
 const store = props.store ?? useCommunity()
+// A person's card is the shell's own modal; the invite is the game's share sheet. Both are looked up when pressed, not when the panel opens.
+function openPerson(id: string, name: string): void { store.close(); useApp().shell.open('person', { player: id, name }) }
+function invite(): void { void useGrowth().share('invite', { surface: 'community' }) }
 </script>
 
 <template>
@@ -26,7 +31,7 @@ const store = props.store ?? useCommunity()
           <button type="button" class="ui-button" data-community-retry :disabled="store.recovery.value.waiting" @click="store.retry()">Try again</button>
         </p>
       </section>
-      <CommunityPanel v-else-if="store.state.value" :store="store" />
+      <CommunityPanel v-else-if="store.state.value" :store="store" :on-person="openPerson" :on-invite="invite" />
       <p v-else role="status">Community is loading…</p>
     </div>
   </aside>

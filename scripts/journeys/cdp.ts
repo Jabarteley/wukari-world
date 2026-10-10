@@ -30,11 +30,11 @@ export class Browser {
   private constructor(child: ChildProcess, profile: string) { this.child = child; this.profile = profile; }
 
   /** Starts Chrome on a free port in the range with an empty profile and attaches to its one page. */
-  static async launch(debugPort: number): Promise<Browser> {
+  static async launch(debugPort: number, extraArgs: string[] = []): Promise<Browser> {
     const profile = mkdtempSync(join(tmpdir(), 'journey-chrome-'));
     const child = spawn(CHROME, [
       '--headless=new', '--mute-audio', `--remote-debugging-port=${debugPort}`, `--user-data-dir=${profile}`, '--no-first-run', '--no-default-browser-check',
-      '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader', '--hide-scrollbars', '--disable-background-networking', 'about:blank',
+      '--enable-unsafe-swiftshader', '--use-gl=angle', '--use-angle=swiftshader', '--hide-scrollbars', '--disable-background-networking', ...extraArgs, 'about:blank',
     ], { stdio: 'ignore' });
     return Browser.attach(debugPort, child, profile);
   }

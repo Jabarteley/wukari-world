@@ -218,6 +218,8 @@ export default defineConfig({
     // frame): left to the bundler, they ride in that lazy chunk, so the three chunk every scene fetches is the bytes it was.
     if (/node_modules\/three\/examples\/jsm\/(loaders\/GLTFLoader|libs\/meshopt_decoder\.module|utils\/SkeletonUtils)\.js$/.test(id)) return undefined
     if (/node_modules\/three\//.test(id)) return 'three'
+    // The one-line component wrapper every compiled .vue file imports: beside Vue, which each of them imports as well, so the first page and the shell kit do not need a file of its own for it.
+    if (id === '\0plugin-vue:export-helper') return 'vue'
     if (/node_modules\/@?vue\/|node_modules\/vue\//.test(id)) return 'vue'
     // Account metadata and tracking are shared by the lazy game/admin shells, not the loading page.
     // The campus rules are fetched when a life uses the campus (src/game/campus-gate.ts), not with the first page.
@@ -260,6 +262,8 @@ export default defineConfig({
     // Small modules every page uses, shared by the lazy panels and each needing no more than Vue and the engine: kept in the engine chunk
     // (already in the first download) instead of one file apiece, which would each carry its own header and lose what the others share when compressed.
     if (/\/src\/(geo\/frame|campus\/unilag\/(slices|volunteer)|app\/ui\/format|app\/features\/(commerce\/connectionReturn|account\/(accountLite|accountTrack)|hud\/(usePulse|onlinePillModel|coachModel)|sim\/settingsModel|tour\/tourState|neighbourhood\/cityWalkState))\.ts$/.test(id)) return 'engine'
+    // The small shared pieces the game shell itself uses (buttons, sheet, skeleton rows, glyph text, the calls loader and the growth store): one file in the first download instead of six, each of which would carry its own header and lose what the others share when compressed. Lazy panels import them from here.
+    if (/\/src\/app\/(ui\/(BaseButton|BaseSheet|SkeletonRows)\.vue)(\?|$)/.test(id)) return 'shell-kit'
     if (/\/src\/(game\/|life\.ts$|campus\/unilag\/(content|spot-names)\.ts$|tables\/places\.ts$)/.test(id)) return 'engine'
     } } },
   },

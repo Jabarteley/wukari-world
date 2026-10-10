@@ -51,7 +51,7 @@ gltf.scene.traverse((n) => {
   const sm = n as THREE.SkinnedMesh;
   if (!sm.isSkinnedMesh) return;
   const matName = (Array.isArray(sm.material) ? sm.material[0]! : sm.material).name;
-  if (lod && ['brow', 'lash', 'teeth', 'tongue', 'cavity', 'eye'].includes(matName)) return;
+  if (lod && ['brow', 'lash', 'teeth', 'tongue', 'cavity', 'eye', 'face'].includes(matName)) return;
   const g = sm.geometry.clone();
   if (lod) { g.morphAttributes = {}; }
   g.applyMatrix4(sm.matrixWorld);

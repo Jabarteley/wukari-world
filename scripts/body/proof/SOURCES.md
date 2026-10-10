@@ -42,3 +42,7 @@ npx gltfpack@1.3.0 -i <work>/female-final.glb -o char-female.glb -cc -kn -km -kv
 ```
 
 Hair: `build_hair.py -- <work>/female-2.blend braids|afro <out.glb>`; shoes and the low-cut: `build_part.py`; garments: `build-garment.ts <work>/female-final.glb female dress <out.glb>`; the crowd versions add `--lod` and gltfpack `-si`. `shots.ts` drives the proof page (`evidence-shots.json` is the shot list).
+
+## Third build (`rebuild.sh`, `page3/`, `assets3/`)
+
+No new third-party assets. The face recipe, the shape keys, the face atlas (eye, brow and lash shapes; the brow and lash shapes are the CC0 MakeHuman images thickened), the hair (braids, afro, gele), the jewellery and the crowd face decal are written for this project. The shoes (`shoes06`, `shoes02`, cut down to the ankle) and the man's low-cut (`short01`) are CC0 MakeHuman system assets as above. One command rebuilds a character: `scripts/body/proof/rebuild.sh <work-dir> <out-dir> <female|male> [stage ...]`; shots: `shots.ts evidence-shots3.json <out> --assets <abs path to assets3>`.

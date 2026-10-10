@@ -31,7 +31,7 @@ def target(name):
     return None
 
 
-KEEP = {"Body", "Body.high-poly", "Body.eyelashes02", "Body.eyebrow001", "Body.teeth_base", "Body.tongue01", "cavity"}
+KEEP = {"Body", "face", "Body.high-poly", "Body.eyelashes02", "Body.eyebrow001", "Body.teeth_base", "Body.tongue01", "cavity", "decal"}
 for o in list(bpy.data.objects):
     if o.type == "MESH" and o.name not in KEEP:      # hair and shoes are exported as their own parts
         bpy.data.objects.remove(o)
@@ -72,7 +72,7 @@ for o in [o for o in bpy.data.objects if o.type == "MESH"]:
         o.modifiers.new("Armature", "ARMATURE").object = rig
     o.parent = rig
     o.matrix_parent_inverse = rig.matrix_world.inverted()
-    o.name = {"Body.high-poly": "eyes", "Body.eyelashes02": "lashes", "Body.eyebrow001": "brows", "Body.teeth_base": "teeth", "Body.tongue01": "tongue", "cavity": "cavity"}.get(o.name, o.name.lower())
+    o.name = {"Body.high-poly": "eyes", "Body.eyelashes02": "lashes", "Body.eyebrow001": "brows", "Body.teeth_base": "teeth", "Body.tongue01": "tongue", "cavity": "cavity", "face": "face"}.get(o.name, o.name.lower())
     for slot in list(o.material_slots):
         pass
 
@@ -80,7 +80,7 @@ mats = {}
 for o in bpy.data.objects:
     if o.type != "MESH":
         continue
-    name = {"body": "skin", "eyes": "eye", "lashes": "lash", "brows": "brow", "teeth": "teeth", "tongue": "tongue", "cavity": "cavity"}.get(o.name, o.name)
+    name = {"body": "skin", "eyes": "eye", "lashes": "lash", "brows": "brow", "teeth": "teeth", "tongue": "tongue", "cavity": "cavity", "face": "face"}.get(o.name, o.name)
     m = bpy.data.materials.get(name) or bpy.data.materials.new(name)
     o.data.materials.clear()
     o.data.materials.append(m)

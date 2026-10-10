@@ -26,17 +26,19 @@ body = bpy.data.objects["Body"]
 UNITS = os.path.join(LocationService.get_mpfb_data("targets"), "expression", "units", "african")
 
 KEYS = {
-    "blinkL": [("eye-left-closure", 1.0)], "blinkR": [("eye-right-closure", 1.0)],
-    "browUpL": [("eyebrows-left-up", 1.0)], "browUpR": [("eyebrows-right-up", 1.0)],
-    "browInnerUpL": [("eyebrows-left-inner-up", 1.0)], "browInnerUpR": [("eyebrows-right-inner-up", 1.0)],
-    "browDownL": [("eyebrows-left-down", 1.0)], "browDownR": [("eyebrows-right-down", 1.0)],
-    "smile": [("mouth-corner-puller", 1.0), ("mouth-elevation", 0.25)],
-    "mouthOpen": [("mouth-open", 1.0)],
-    "visemeAA": [("mouth-open", 0.85)],
-    "visemeOH": [("mouth-pursing", 0.8), ("mouth-open", 0.35), ("mouth-protusion", 0.3)],
-    "visemeEE": [("mouth-corner-puller", 0.45), ("mouth-open", 0.2), ("mouth-retraction", 0.3)],
-    "visemeMM": [("mouth-compression", 0.9)],
-    "frown": [("mouth-angles-down", 1.0)],
+    "blinkL": [("eye-left-closure", 1.25)], "blinkR": [("eye-right-closure", 1.25)],
+    "browUpL": [("eyebrows-left-up", 1.5)], "browUpR": [("eyebrows-right-up", 1.5)],
+    "browInnerUpL": [("eyebrows-left-inner-up", 1.5)], "browInnerUpR": [("eyebrows-right-inner-up", 1.5)],
+    "browDownL": [("eyebrows-left-down", 1.4)], "browDownR": [("eyebrows-right-down", 1.4)],
+    # a smile that reaches the eyes: corner puller, cheeks lifted and the eyes narrowed a little, a hint of teeth
+    "smile": [("mouth-corner-puller", 1.55), ("mouth-elevation", 0.4), ("mouth-open", 0.14), ("eye-left-slit", 0.3), ("eye-right-slit", 0.3),
+              ("l-cheek-volume-incr", 0.9), ("r-cheek-volume-incr", 0.9), ("l-cheek-trans-up", 0.4), ("r-cheek-trans-up", 0.4)],
+    "mouthOpen": [("mouth-open", 1.2)],
+    "visemeAA": [("mouth-open", 1.0)],
+    "visemeOH": [("mouth-pursing", 1.0), ("mouth-open", 0.45), ("mouth-protusion", 0.4)],
+    "visemeEE": [("mouth-corner-puller", 0.7), ("mouth-open", 0.25), ("mouth-retraction", 0.45)],
+    "visemeMM": [("mouth-compression", 1.1)],
+    "frown": [("mouth-angles-down", 1.4), ("mouth-depression", 0.3)],
 }
 
 body.shape_key_add(name="Basis", from_mix=False)
@@ -82,7 +84,7 @@ tb = bpy.data.objects["Body.teeth_base"]
 cen = sum((v.co for v in tb.data.vertices), Vector()) / len(tb.data.vertices)
 cm = bpy.data.meshes.new("cavity")
 bmc = bmesh.new()
-bmesh.ops.create_uvsphere(bmc, u_segments=12, v_segments=8, radius=1.0)
+bmesh.ops.create_uvsphere(bmc, u_segments=8, v_segments=5, radius=1.0)
 bmesh.ops.scale(bmc, vec=Vector((0.034, 0.034, 0.024)), verts=bmc.verts)
 bmesh.ops.translate(bmc, vec=Vector((0, cen.y + 0.02, cen.z - 0.002)), verts=bmc.verts)
 bmc.to_mesh(cm)
@@ -94,7 +96,7 @@ cav.vertex_groups.new(name="head").add(list(range(len(cm.vertices))), 1.0, "REPL
 teeth = bpy.data.objects["Body.teeth_base"]
 bpy.context.view_layer.objects.active = teeth
 dec = teeth.modifiers.new("dec", "DECIMATE")
-dec.ratio = 0.14
+dec.ratio = 0.3
 bpy.ops.object.modifier_apply(modifier="dec")
 face_names = list(KEYS)
 for part in ("Body.eyebrow001", "Body.eyelashes02", "Body.teeth_base", "Body.tongue01"):
@@ -116,6 +118,10 @@ bm2.verts.ensure_lookup_table()
 bmesh.ops.delete(bm2, geom=[bm2.verts[i] for i in corner], context="VERTS")
 bm2.to_mesh(eyes.data)
 bm2.free()
+bpy.context.view_layer.objects.active = eyes
+dec2 = eyes.modifiers.new("dec", "DECIMATE")
+dec2.ratio = float(os.environ.get("AW_EYE_RATIO", "0.5"))
+bpy.ops.object.modifier_apply(modifier="dec")
 bm = bmesh.new()
 bm.from_mesh(eyes.data)
 bm.verts.ensure_lookup_table()

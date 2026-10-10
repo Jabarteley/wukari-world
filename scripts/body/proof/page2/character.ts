@@ -28,15 +28,18 @@ async function texture(url: string, srgb = true, repeat = false, flip = true): P
   return t;
 }
 
+/** Where the part files and the face textures are served from (the second proof is shown beside later builds). */
+export const config = { base: '/n/' };
+
 export async function loadAssets(names: string[]): Promise<Assets> {
   await MeshoptDecoder.ready;
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
   const clipPack = await loader.loadAsync('/body/clip-pack.glb');
   const chars = new Map<string, GLTF>(), parts = new Map<string, GLTF>();
-  await Promise.all(names.map(async (n) => { try { (n.startsWith('char') ? chars : parts).set(n, await loader.loadAsync(`/n/${n}.glb`)); } catch { /* not built yet */ } }));
+  await Promise.all(names.map(async (n) => { try { (n.startsWith('char') ? chars : parts).set(n, await loader.loadAsync(`${config.base}${n}.glb`)); } catch { /* not built yet */ } }));
   const textures = new Map<string, THREE.Texture>();
-  for (const [n, url, srgb, rep] of [['eye', '/n/eye-brown.jpg', true, false], ['brow', '/n/brow.png', true, false], ['lash', '/n/lash.png', true, false], ['ankara-a', '/a/ankara-a.png', true, true], ['ankara-b', '/a/ankara-b.png', true, true], ['cloth-weave', '/a/cloth-weave.png', true, true], ['hair-coil', '/a/hair-coil.png', true, true], ['hair-coil-normal', '/a/hair-coil-normal.png', false, true], ['hair-braid', '/a/hair-braid.png', true, true]] as [string, string, boolean, boolean][]) {
-    try { textures.set(n, await texture(url, srgb, rep, !url.startsWith('/n/'))); } catch { /* optional */ }
+  for (const [n, url, srgb, rep] of [['eye', `${config.base}eye-brown.jpg`, true, false], ['brow', `${config.base}brow.png`, true, false], ['lash', `${config.base}lash.png`, true, false], ['ankara-a', '/a/ankara-a.png', true, true], ['ankara-b', '/a/ankara-b.png', true, true], ['cloth-weave', '/a/cloth-weave.png', true, true], ['hair-coil', '/a/hair-coil.png', true, true], ['hair-coil-normal', '/a/hair-coil-normal.png', false, true], ['hair-braid', '/a/hair-braid.png', true, true]] as [string, string, boolean, boolean][]) {
+    try { textures.set(n, await texture(url, srgb, rep, !url.startsWith(config.base))); } catch { /* optional */ }
   }
   return { loader, chars, clips: clipPack.animations, parts, textures };
 }

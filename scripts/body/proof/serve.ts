@@ -21,7 +21,7 @@ export async function bundlePage(page = 'page'): Promise<string> {
 export async function serveProof(port: number, page = 'page', assets2 = join(REPO, 'scripts', 'body', 'proof', 'assets2')): Promise<Server> {
   const js = await bundlePage(page);
   const html = await readFile(join(REPO, 'scripts', 'body', 'proof', page, 'index.html'), 'utf8');
-  const roots: [string, string][] = [['/body/', join(REPO, 'src', 'scene', 'body', 'assets')], ['/a/', join(REPO, 'scripts', 'body', 'proof', 'assets')], ['/n/', assets2]];
+  const roots: [string, string][] = [['/body/', join(REPO, 'src', 'scene', 'body', 'assets')], ['/a/', join(REPO, 'scripts', 'body', 'proof', 'assets')], ['/n/', assets2], ['/p2/', join(REPO, 'scripts', 'body', 'proof', 'assets2')]];
   const server = createServer(async (req, res) => {
     const url = new URL(req.url ?? '/', 'http://localhost');
     if (url.pathname === '/' || url.pathname === '/index.html') { res.setHeader('content-type', TYPES['.html']!); res.end(html); return; }

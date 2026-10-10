@@ -35,6 +35,32 @@ def target(n):
     return None
 
 
+trim = os.environ.get("AW_TRIM_ABOVE")
+if trim:
+    # cut a tall shoe down to a flat or a pump: drop everything higher than the given distance above the ankle joint
+    import bmesh
+    ankle_z = max(rig.data.bones["foot_l"].head_local.z, rig.data.bones["foot_r"].head_local.z)
+    bm = bmesh.new()
+    bm.from_mesh(part.data)
+    bmesh.ops.delete(bm, geom=[v for v in bm.verts if v.co.z > ankle_z + float(trim)], context="VERTS")
+    bm.to_mesh(part.data)
+    bm.free()
+push = float(os.environ.get("AW_PART_PUSH", "0"))
+if push:
+    part.data.update()
+    for v in part.data.vertices:
+        v.co += v.normal * push
+ratio = os.environ.get("AW_PART_RATIO")
+if ratio:
+    for m in list(part.modifiers):
+        part.modifiers.remove(m)
+    for o in bpy.context.view_layer.objects:
+        o.select_set(False)
+    part.select_set(True)
+    bpy.context.view_layer.objects.active = part
+    dec = part.modifiers.new("dec", "DECIMATE")
+    dec.ratio = float(ratio)
+    bpy.ops.object.modifier_apply(modifier="dec")
 names = {g.index: g.name for g in part.vertex_groups}
 table = []
 for v in part.data.vertices:

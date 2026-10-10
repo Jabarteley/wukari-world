@@ -35,6 +35,9 @@ const ROWS: Record<string, { name: string; row: string; level?: 'africa' | 'nige
   abuja: { name: 'Abuja', row: 'Federal Capital Territory', level: 'nigeria' }, accra: { name: 'Accra', row: 'Ghana' },
   cairo: { name: 'Cairo', row: 'Egypt' }, kigali: { name: 'Kigali', row: 'Rwanda' }, rabat: { name: 'Rabat', row: 'Morocco' },
   kampala: { name: 'Kampala', row: 'Uganda' }, lusaka: { name: 'Lusaka', row: 'Zambia' },
+  nairobi: { name: 'Nairobi', row: 'Kenya' }, 'addis-ababa': { name: 'Addis Ababa', row: 'Ethiopia' }, abidjan: { name: 'Abidjan', row: 'Ivoire' },
+  dakar: { name: 'Dakar', row: 'Senegal' }, 'cape-town': { name: 'Cape Town', row: 'South Africa' }, algiers: { name: 'Algiers', row: 'Algeria' },
+  cotonou: { name: 'Cotonou', row: 'Benin' }, lome: { name: 'Lomé', row: 'Togo' }, yaounde: { name: 'Yaoundé', row: 'Cameroon' },
 };
 const PLACE_TO_OPEN: Record<string, string> = { cairo: 'Khan El Khalili', kigali: '', lagos: '' };
 // --water "cairo=0.5,0.5;rabat=0.2,0.5": where on the screen (fractions of width, height, from the whole-city view) to zoom in on the main water.
@@ -43,6 +46,10 @@ for (const part of arg('water', '').split(';').filter(Boolean)) { const [c, xy] 
 // --short "abuja,accra": cities that only get the default view and the simple map (the comparison cities).
 const short = new Set(arg('short', 'lagos,abuja,accra').split(',').filter(Boolean));
 const waterOnly = process.argv.includes('--water-only');
+// --lean: the 15-city sweep: default, whole city, centre zoom, water, list top, simple map, plus a zoomed-out and rotated shot at the view limits.
+const lean = process.argv.includes('--lean');
+// --phones 390x844,320x568 (empty for none): the last city is reloaded at each phone size.
+const phones = arg('phones', '390x844').split(',').filter(Boolean).map((p) => p.split('x').map(Number) as [number, number]);
 
 let server: ChildProcess | null = null;
 const serverLog: string[] = [];
@@ -141,7 +148,7 @@ async function settle(b: Browser): Promise<string> {
 
 let current = 'lagos';
 async function fly(b: Browser, city: string): Promise<void> {
-  const t = ROWS[city]!;
+  const t = ROWS[city] ?? { name: city, row: city };
   if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]'))) && !(await b.eval<boolean>(shownNow('.map-levels-cur')))) await b.click('[data-nav="map"]');
   await b.waitFor(`${shownNow('.map-levels-cur')} || ${shownNow('[data-atlas-levels]')}`, 30000, 'the map');
   const level = t.level ?? 'africa', wanted = level === 'africa' ? 1 : 2;
@@ -155,7 +162,7 @@ async function fly(b: Browser, city: string): Promise<void> {
   await b.waitFor(`document.querySelector('[data-atlas-go="${city}:air"]')`, 30000, 'flight line');
   await b.click(`[data-atlas-go="${city}:air"]`);
   if (await b.waitFor<string>(`document.querySelector('[data-atlas-sure]') ? 'ask' : ''`, 4000, 'confirm').catch(() => '')) await b.click('[data-atlas-sure]');
-  await until(async () => { const m = await lifeRaw(b, current); return m.state?.estate?.city === city && !m.state.activeAction; }, 150000, `arrival in ${t.name}`);
+  await until(async () => { const m = await lifeRaw(b, current); return m.state?.estate?.city === city && !m.state.activeAction; }, 360000, `arrival in ${t.name}`);
   await until(async () => !(await lifeRaw(b, city)).state?.activeAction, 60000, 'the action to end');
   current = city;
   await gameShown(b); await dismiss(b);
@@ -270,16 +277,28 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   await click3(b, 'in', 3); await sleep(1800);
   await shot('03-zoom-centre');
   await click3(b, 'in', 2); await sleep(1800);
-  await shot('04-zoom-closer');
+  if (!lean) await shot('04-zoom-closer');
   await click3(b, 'fit', 1); await sleep(1200);
-  { const w = waterAt[prefix]; if (w) { await wheelZoom(b, w[0], w[1], 6); await sleep(1800); await shot('04b-zoom-water'); await click3(b, 'fit', 1); await sleep(1200); } }
+  { const w = waterAt[prefix]; if (w) { await wheelZoom(b, w[0], w[1], 6); await sleep(1800); await shot('05-zoom-water'); await click3(b, 'fit', 1); await sleep(1200); } }
+  if (lean) {
+    // The view limits: zoom all the way out, then turn the map with a right-button drag, to see anything beyond the ground.
+    await click3(b, 'out', 10); await sleep(1500);
+    const { width, height } = b.viewport, x0 = width * 0.6, y0 = height * 0.5;
+    await b.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: x0, y: y0 });
+    await b.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: x0, y: y0, button: 'right', buttons: 2, clickCount: 1 });
+    for (let i = 1; i <= 12; i++) { await b.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: x0 + i * 25, y: y0 - i * 14, button: 'right', buttons: 2 }); await sleep(40); }
+    await b.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: x0 + 300, y: y0 - 168, button: 'right', clickCount: 1 });
+    await sleep(1500); await shot('09-limits');
+    await click3(b, 'fit', 1); await sleep(1200);
+  }
   await listOpen(b);
   await scrollList(b, 'top'); await shot('05-list-top');
   const total = await scrollList(b, 'bottom'); notes.push(`${prefix}: list scroll height ${total}`);
-  await shot('06-list-bottom');
+  if (!lean) await shot('06-list-bottom');
   await scrollList(b, 'top');
   const rows = await listText(b);
   writeFileSync(join(out, `${prefix}-places.txt`), rows.join('\n') + '\n');
+  if (lean) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
   // One place opened from the list.
   const picked = await b.eval<string>(`(() => { const rows = [...document.querySelectorAll('#map-list .map-list button')]; const w = ${JSON.stringify(place.toLowerCase())}; const r = (w && rows.find((x) => x.innerText.toLowerCase().includes(w))) || rows.find((x) => !x.classList.contains('is-here')) || rows[0]; if (!r) return ''; r.scrollIntoView({ block: 'center' }); r.click(); return r.innerText.replace(/\\s+/g, ' ').trim(); })()`);
   notes.push(`${prefix}: opened "${picked}"`);
@@ -307,10 +326,12 @@ try {
   }
   // Phone: the last city, reloaded at phone size.
   const last = cities[cities.length - 1]!;
-  await b.setViewport({ width: 390, height: 844, scale: 3, mobile: true });
-  await b.goto(base + '/');
-  await gameShown(b); await dismiss(b);
-  await mapSet(b, `${last}-phone`, '', { phone: true });
+  for (const [pw, ph] of phones) {
+    await b.setViewport({ width: pw, height: ph, scale: 3, mobile: true });
+    await b.goto(base + '/');
+    await gameShown(b); await dismiss(b);
+    await mapSet(b, `${last}-phone${pw}`, '', { phone: true });
+  }
   const errors = b.consoleErrors.filter((e) => !/401|409/.test(e));
   writeFileSync(join(out, 'timings.json'), JSON.stringify({ note: 'headless software rendering; comparable only with each other', timings, notes, consoleErrors: errors }, null, 2));
   console.log(JSON.stringify({ timings, notes, errors }, null, 2));

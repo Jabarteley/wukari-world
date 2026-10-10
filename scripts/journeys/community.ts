@@ -22,11 +22,9 @@ const HOUR = 3600000;
 const names = ['Sunny Kemi', 'Bola Adeyemi', 'Chidi Okafor', 'Dayo Bello'];
 const pages: Browser[] = [A];
 const ids: string[] = [];
-const go = (p: Browser, place = 'park') => pageCall(p, '/api/action', { actionId: `${lab.now()}:${crypto.randomUUID()}`, cityId: 'lagos', type: 'travel', id: place, mode: 'okada' });
-/** Sends one more player to the park (three hours later in the lab's time) and opens their panel there. */
+/** One more player opens the game (in the park, where a new life starts) and their panel. */
 async function arrive(p: Browser): Promise<void> {
-  await go(p);
-  lab.advance(3 * HOUR);
+  lab.advance(HOUR);
   for (const q of pages) await syncClock(q, lab.offset());
   await p.goto(lab.base + '/'); await gameShown(p); await dismiss(p); await openCommunity(p);
 }
@@ -76,11 +74,8 @@ try {
       detail[`fund${i}`] = fund.status;
     }
     // Only the first player goes to the park now, so the first captures are truly alone; the others are sent later (arrive()).
-    // (a new life starts in the park, so the others are first sent to the market and their pages reloaded there)
-    for (const p of others) await go(p, 'market');
-    lab.advance(3 * HOUR);
-    for (const p of pages) await syncClock(p, lab.offset());
-    for (const p of others) { await p.goto(lab.base + '/'); await gameShown(p); await dismiss(p); }
+    // A new life starts in the park: the others leave the page (and so the room) until they arrive.
+    for (const p of others) await p.goto('about:blank');
     // A is photographed alone first: the others go to the park a little later (they are reloaded after the first captures).
     await A.goto(lab.base + '/'); await gameShown(A); await dismiss(A);
     detail['location'] = (await pageCall(A, '/api/life?city=lagos')).body?.state?.location ?? null;

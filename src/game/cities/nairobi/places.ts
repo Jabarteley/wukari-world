@@ -150,7 +150,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "nairobi-safari-walk",
     "name": "Nairobi Safari Walk",
-    "district": "Nairobi",
+    "district": "Kibera",
     "kind": "walk",
     "category": "fun",
     "icon": "park",

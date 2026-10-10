@@ -1,5 +1,7 @@
 /** Small, dependency-free polygon and line tools for the destination-detail builders (WGS84 degrees, longitude first). */
 import type { Element } from './overpass.ts';
+import type { Pt } from '../../../src/game/cities/africa/polygonCheck.ts';
+import { polygonProblem, triangulationProblem } from '../../../src/game/cities/africa/polygonCheck.ts';
 
 export type P = [number, number];
 export type Ring = P[];
@@ -180,8 +182,8 @@ function tidyMask(mask: Uint8Array, cols: number, rows: number, minIsland: numbe
  * follows the real edge of the mapped blocks as a smooth curve, and a coast, a lake shore or a river bank is the water polygons' own edge. Regions under `minIslandKm2`
  * are dropped and pockets under `minHoleKm2` are filled. Each polygon is an outer ring followed by its holes.
  */
-export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metres: number }[], water: readonly Ring[][], box: Box, options: { cell: number; split: number; closeMetres: number; minIslandKm2: number; minHoleKm2: number; shore: number }): { play: Ring[][]; land: Ring[][]; water: Ring[][] } {
-  const { cell, split, closeMetres, minIslandKm2, minHoleKm2, shore } = options;
+export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metres: number }[], roads: readonly P[][], water: readonly Ring[][], box: Box, options: { cell: number; split: number; closeMetres: number; minIslandKm2: number; minHoleKm2: number; shore: number; joinMetres: number }): { play: Ring[][]; land: Ring[][]; water: Ring[][] } {
+  const { cell, split, closeMetres, minIslandKm2, minHoleKm2, shore, joinMetres } = options;
   const fine = cell / split, fc = Math.ceil((box[3] - box[1]) / fine), fr = Math.ceil((box[2] - box[0]) / fine);
   const metresPerCell = fine * 111_000, cellKm2 = (metresPerCell / 1000) ** 2 * Math.cos(((box[0] + box[2]) / 2) * Math.PI / 180);
   const mask = new Uint8Array(fc * fr);
@@ -194,6 +196,22 @@ export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metre
   const close = blur(mask, fc, fr, closeMetres / metresPerCell / 1.6);
   const joined = new Uint8Array(mask.length);
   for (let i = 0; i < joined.length; i++) joined[i] = close[i]! >= 0.3 ? 1 : 0;
+  // Main roads join the fragments of one built-up area: where a road runs within `joinMetres` of the joined ground, a corridor round it (300 m each side) is built-up too.
+  // A road far from any built-up ground adds nothing, so a highway across the countryside does not grow a spur.
+  if (joinMetres > 0 && roads.length) {
+    const near = blur(joined, fc, fr, joinMetres / metresPerCell / 1.6), corridor = Math.round(300 / metresPerCell);
+    for (const line of roads) {
+      for (let i = 1; i < line.length; i++) {
+        const [ax, ay] = line[i - 1]!, [bx, by] = line[i]!;
+        const steps = Math.max(1, Math.ceil(Math.hypot((bx - ax) * 111320 * Math.cos(ay * Math.PI / 180), (by - ay) * 110574) / 100));
+        for (let k = 0; k <= steps; k++) {
+          const c0 = Math.floor((ax + (bx - ax) * k / steps - box[1]) / fine), r0 = Math.floor((ay + (by - ay) * k / steps - box[0]) / fine);
+          if (c0 < 0 || r0 < 0 || c0 >= fc || r0 >= fr || near[r0 * fc + c0]! < 0.1) continue;
+          for (let r = Math.max(0, r0 - corridor); r <= Math.min(fr - 1, r0 + corridor); r++) for (let c = Math.max(0, c0 - corridor); c <= Math.min(fc - 1, c0 + corridor); c++) if ((c - c0) ** 2 + (r - r0) ** 2 <= corridor * corridor) joined[r * fc + c] = 1;
+        }
+      }
+    }
+  }
   const soft = blur(joined, fc, fr, 2.5);
   for (let i = 0; i < joined.length; i++) joined[i] = soft[i]! >= 0.5 ? 1 : 0;
   // Where the built-up ground runs on past the edge of the traced box, it ends in a wavy oval (an ellipse in the box, its radius varied by angle) and not in a straight cut,
@@ -222,7 +240,7 @@ export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metre
   for (let r = 0; r < fr; r++) for (let c = 0; c < fc; c++) if (wet[r * fc + c] && wetAt(r - 1, c) && wetAt(r + 1, c) && wetAt(r, c - 1) && wetAt(r, c + 1)) inner[r * fc + c] = 1;
   for (let r = 0; r < fr; r++) for (let c = 0; c < fc; c++) {
     const at = r * fc + c;
-    if (!(joined[at] || wet[at]) || inner[at]) continue;
+    if (!joined[at] || wet[at]) continue;
     let near = false;
     for (let dr = -shore; dr <= shore && !near; dr++) for (let dc = -shore; dc <= shore; dc++) {
       const nr = r + dr, nc = c + dc;
@@ -230,7 +248,9 @@ export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metre
     }
     if (!near) land[at] = 1;
   }
-  return { play: traceCells(play, fc, fr, box, fine), land: traceCells(land, fc, fr, box, fine), water: traceCells(inner, fc, fr, box, fine) };
+  // Smooth edges: each mask is blurred a little and cut between its samples (see `contour`). The play area is cut lower than the land and the water, so that it
+  // always encloses them.
+  return { play: smoothPolygons(play, fc, fr, box, fine, 1.3, 0.47), land: smoothPolygons(land, fc, fr, box, fine, 1.3, 0.53), water: smoothPolygons(wet, fc, fr, box, fine, 1.3, 0.53) };
 }
 
 /** A mask of 0 and 1 blurred with a Gaussian of the given standard deviation (in cells); beyond the grid counts as empty. */
@@ -288,6 +308,101 @@ export function traceCells(fill: Uint8Array, cols: number, rows: number, box: Bo
   const signed = (ring: Ring): number => ring.slice(1).reduce((sum, [x, y], i) => sum + ring[i]![0] * y - x * ring[i]![1], 0) / 2;
   const outers = rings.filter((ring) => signed(ring) > 0), holes = rings.filter((ring) => signed(ring) < 0);
   return outers.map((outer) => [outer, ...holes.filter((hole) => inRing(hole[0]!, outer))]);
+}
+
+
+/**
+ * The outline of the part of a grid where `field` is at least `threshold`, as smooth polygons (marching squares: the edge is placed between
+ * two samples by linear interpolation, so it is a curve and not a staircase of cells). The grid is padded by its own edge values and then by
+ * an empty ring, so every contour closes. Each polygon is an outer ring (counter-clockwise) followed by its holes (clockwise).
+ */
+export function contour(field: Float32Array, cols: number, rows: number, box: Box, cell: number, threshold: number): Ring[][] {
+  const W = cols + 2;
+  const sample = (c: number, r: number): number => (c < 0 || r < 0 || c >= cols || r >= rows ? 0 : field[r * cols + c]!);
+  // Samples at c in [-1, cols], r in [-1, rows]; the outer layer is empty, the next one repeats the edge so ground that reaches the edge is kept.
+  const value = (c: number, r: number): number => (c <= -1 || r <= -1 || c >= cols || r >= rows ? 0 : sample(Math.min(cols - 1, Math.max(0, c)), Math.min(rows - 1, Math.max(0, r))));
+  const hKey = (c: number, r: number): number => ((r + 1) * W + (c + 1)) * 2, vKey = (c: number, r: number): number => ((r + 1) * W + (c + 1)) * 2 + 1;
+  const where = new Map<number, P>();
+  const link = new Map<number, number[]>();
+  const point = (key: number, x: number, y: number): void => { if (!where.has(key)) where.set(key, [box[1] + (x + 0.5) * cell, box[0] + (y + 0.5) * cell]); };
+  const join = (a: number, b: number): void => { const la = link.get(a); if (la) la.push(b); else link.set(a, [b]); const lb = link.get(b); if (lb) lb.push(a); else link.set(b, [a]); };
+  const lerp = (v0: number, v1: number): number => (threshold - v0) / (v1 - v0);
+  for (let r = -1; r <= rows - 1 + 1 - 1; r++) for (let c = -1; c <= cols - 1; c++) {
+    const a = value(c, r), b = value(c + 1, r), d = value(c + 1, r + 1), e = value(c, r + 1);
+    const code = (a >= threshold ? 1 : 0) | (b >= threshold ? 2 : 0) | (d >= threshold ? 4 : 0) | (e >= threshold ? 8 : 0);
+    if (code === 0 || code === 15) continue;
+    const T = hKey(c, r), B = hKey(c, r + 1), L = vKey(c, r), R = vKey(c + 1, r);
+    if ((code & 1) !== ((code >> 1) & 1)) point(T, c + lerp(a, b), r);
+    if (((code >> 1) & 1) !== ((code >> 2) & 1)) point(R, c + 1, r + lerp(b, d));
+    if (((code >> 3) & 1) !== ((code >> 2) & 1)) point(B, c + lerp(e, d), r + 1);
+    if ((code & 1) !== ((code >> 3) & 1)) point(L, c, r + lerp(a, e));
+    const centre = (a + b + d + e) / 4 >= threshold;
+    switch (code) {
+      case 1: case 14: join(T, L); break;
+      case 2: case 13: join(T, R); break;
+      case 3: case 12: join(L, R); break;
+      case 4: case 11: join(R, B); break;
+      case 6: case 9: join(T, B); break;
+      case 7: case 8: join(L, B); break;
+      case 5: if (centre) { join(T, R); join(L, B); } else { join(T, L); join(R, B); } break;
+      case 10: if (centre) { join(T, L); join(R, B); } else { join(T, R); join(L, B); } break;
+    }
+  }
+  const rings: Ring[] = [];
+  const used = new Set<number>();
+  for (const start of link.keys()) {
+    if (used.has(start)) continue;
+    const ring: Ring = [];
+    let prev = -1, current = start;
+    for (;;) {
+      used.add(current);
+      ring.push(where.get(current)!);
+      const [n0, n1] = link.get(current)!;
+      const to = n0 === prev ? n1! : n0!;
+      prev = current;
+      current = to;
+      if (current === start) break;
+      if (used.has(current)) break;
+    }
+    if (ring.length >= 3) rings.push([...ring, ring[0]!]);
+  }
+  const signed = (ring: Ring): number => ring.slice(1).reduce((sum, [x, y], i) => sum + ring[i]![0] * y - x * ring[i]![1], 0) / 2;
+  const depth = (ring: Ring): number => rings.filter((other) => other !== ring && inRing(ring[0]!, other)).length;
+  const out: { outer: Ring; holes: Ring[] }[] = [];
+  const outers: Ring[] = [], holes: Ring[] = [];
+  for (const ring of rings) { if (depth(ring) % 2 === 0) outers.push(signed(ring) < 0 ? [...ring].reverse() : ring); else holes.push(signed(ring) > 0 ? [...ring].reverse() : ring); }
+  for (const outer of outers) out.push({ outer, holes: holes.filter((hole) => inRing(hole[0]!, outer)) });
+  return out.map((o) => [o.outer, ...o.holes]);
+}
+
+/** A 0/1 mask as smooth polygons: blurred by `sigma` cells, then the contour where the blur is `threshold`. */
+export function smoothPolygons(mask: Uint8Array, cols: number, rows: number, box: Box, cell: number, sigma: number, threshold: number): Ring[][] {
+  return contour(blur(mask, cols, rows, sigma), cols, rows, box, cell, threshold);
+}
+
+const roundPt = (p: P): P => [round(p[0]), round(p[1])];
+const tidyRing = (ring: Ring): Ring => { const out: Ring = []; for (const p of ring) { const q = roundPt(p); const last = out.at(-1); if (!last || last[0] !== q[0] || last[1] !== q[1]) out.push(q); } if (out.length && (out[0]![0] !== out.at(-1)![0] || out[0]![1] !== out.at(-1)![1])) out.push(out[0]!); return out; };
+
+/**
+ * Simplify polygons (outer ring and holes, Douglas-Peucker) and round them to five decimals, keeping only a result the renderer can triangulate:
+ * if a tolerance makes a ring cross itself, touch another ring or repeat a vertex, the tolerance is halved (down to none) for that polygon.
+ */
+export function safePolygons(polygons: readonly Ring[][], tolerance: number, project?: (p: Pt) => Pt): Ring[][] {
+  const out: Ring[][] = [];
+  for (const polygon of polygons) {
+    let kept: Ring[] | null = null;
+    for (const tol of [tolerance, tolerance / 2, tolerance / 4, tolerance * 2, tolerance * 4, tolerance * 8, tolerance * 16, tolerance / 8, 0]) {
+      const rings = polygon.map((ring) => tidyRing(tol > 0 ? simplifyRing(ring, tol) : ring)).filter((ring) => ring.length >= 4);
+      if (!rings.length) break;
+      const first = rings[0]!;
+      const holes = rings.slice(1).filter((hole) => inRing(hole[0]!, first));
+      // Outer ring counter-clockwise, holes clockwise.
+      const wound = [first, ...holes].map((ring, i) => { const area = ring.slice(1).reduce((sum, [x, y], j) => sum + ring[j]![0] * y - x * ring[j]![1], 0); return (i === 0) === (area > 0) ? ring : [...ring].reverse(); });
+      if (!polygonProblem(wound) && !triangulationProblem(wound, project)) { kept = wound; break; }
+    }
+    if (kept) out.push(kept);
+  }
+  return out;
 }
 
 /**
@@ -362,8 +477,7 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
   const [c0, r0, c1, r1] = [colOf(box[1]), rowOf(box[0]), colOf(box[3]), rowOf(box[2])];
   for (let r = Math.max(0, r0); r <= Math.min(rows - 1, r1); r++) for (let c = Math.max(0, c0); c <= Math.min(cols - 1, c1); c++) { const at = r * cols + c; if (water[at] && distance[at]! > 0) band[at] = 1; }
   // The grid's staircase is rounded off by a light blur, so a shore reads as a curve and not as 37 m steps.
-  const rounded = (mask: Uint8Array): Uint8Array => { const soft = blur(mask, cols, rows, 1.6); const out = new Uint8Array(mask.length); for (let i = 0; i < out.length; i++) out[i] = soft[i]! >= 0.5 ? 1 : 0; return out; };
-  return { far: traceCells(rounded(water), cols, rows, wide, cell), band: traceCells(rounded(band), cols, rows, wide, cell) };
+  return { far: contour(blur(water, cols, rows, 1.6), cols, rows, wide, cell, 0.5), band: contour(blur(band, cols, rows, 1.6), cols, rows, wide, cell, 0.5) };
 }
 
 /** A lookup of where polygons (each an outer ring and holes, even-odd) cover a box, on a grid `cell` degrees wide: `near(point, margin)` asks whether the point, or any of eight points `margin` degrees round it, is covered. */

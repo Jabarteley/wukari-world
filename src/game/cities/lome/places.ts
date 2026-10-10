@@ -156,7 +156,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "fauna-zoo",
     "name": "Fauna Zoo",
-    "district": "Lome",
+    "district": "Totsi",
     "kind": "walk",
     "category": "fun",
     "icon": "park",

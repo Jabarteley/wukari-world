@@ -273,7 +273,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "usthb",
     "name": "University of Sciences and Technology Houari Boumediene",
-    "district": "Algiers",
+    "district": "Dar El Beida",
     "kind": "quad",
     "category": "fun",
     "icon": "school",

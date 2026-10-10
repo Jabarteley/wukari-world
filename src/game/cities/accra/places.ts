@@ -37,7 +37,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "slot": "community",
     "name": "University of Ghana",
-    "district": "Accra",
+    "district": "East Legon",
     "kind": "office",
     "category": "work",
     "icon": "school",

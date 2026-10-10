@@ -16,13 +16,19 @@ import { createHash } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
 import { ask } from './destination-detail/overpass.ts';
 import type { Element } from './destination-detail/overpass.ts';
+import { validateDestinationFacts } from '../../src/game/cities/africa/types.ts';
+import { toLocal } from '../../src/geo/frame.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { OUTLINE_MARGIN, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
 
 const id = process.argv[2];
 if (!id) throw new Error('Usage: build-destination-detail.ts <city id>');
 const config = (await import(`./destination-detail/${id}.ts`) as { CONFIG: DetailConfig }).CONFIG;
+const { FACTS } = await import(`../../src/game/cities/${id}/facts.ts`) as { FACTS: Parameters<typeof validateDestinationFacts>[0] };
+const origin = validateDestinationFacts(FACTS).mapOrigin;
+// The renderer cuts polygons in the map's own units; the safe-simplification check cuts them the same way.
+const project = (p: readonly [number, number]): readonly [number, number] => toLocal(origin, p[0], p[1]);
 const out = (file: string): URL => new URL(`../../src/game/cities/${id}/${file}`, import.meta.url);
 const [south, west, north, east] = config.box;
 const bbox = `${south},${west},${north},${east}`;
@@ -58,11 +64,11 @@ const nameIn = (tags: Record<string, string> | undefined): string => (tags?.['na
 const nameOf = (element: Element): string => nameIn(element.tags);
 
 const labelled = config.names.map((choice) => ({ name: choice.label ?? nameOf(pick(choice.ref)), at: centreOf(pick(choice.ref)) }));
-/** The district of a place is the nearest labelled neighbourhood within two and a half kilometres, else the whole area. */
+/** The district of a place is the nearest labelled neighbourhood within three and a half kilometres (`districtMetres`), else the whole area. */
 const districtOf = ([lon, lat]: P): string => {
   const metres = ([x, y]: P): number => Math.hypot((x - lon) * 111320 * Math.cos(lat * Math.PI / 180), (y - lat) * 110574);
   const nearest = labelled.map((label) => ({ label, d: metres(label.at) })).sort((a, b) => a.d - b.d)[0];
-  return nearest && nearest.d <= 2500 ? nearest.label.name : config.name;
+  return nearest && nearest.d <= (config.districtMetres ?? 3500) ? nearest.label.name : config.name;
 };
 
 const places = config.places.map((choice) => {
@@ -107,11 +113,10 @@ const waterAnswer = await ask(id, 'water', config.water(config.sea || config.wid
 const isShore = (element: Element): boolean => Boolean(element.geometry) && element.type === 'way' && (element.tags?.natural === 'coastline' || (config.sea?.kind === 'lake' && !element.tags?.natural && !element.tags?.waterway));
 const coast = waterAnswer.elements.filter(isShore).map((element) => element.geometry!.map((g): P => [g.lon, g.lat]));
 const landPoints = [...places.map((place): P => [place.lon, place.lat]), ...labelled.map((label) => label.at)];
-const tidyWater = (polygons: P[][][]): P[][][] => polygons.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.waterTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
 const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, outlineBox, wide, config.sea.bandMetres, config.cell / config.split) : null;
-const sea = shoreSide ? tidyWater(shoreSide.band) : [];
+const sea = shoreSide ? safePolygons(shoreSide.band, config.waterTolerance, project) : [];
 // The sea carried far beyond the play box is drawn at a coarser tolerance (about 130 m): nobody reads a shore that far out to the metre, and the file stays small.
-const farSea = shoreSide ? shoreSide.far.map((polygon) => polygon.map((ring) => simplifyRing(ring, Math.max(config.waterTolerance, 0.0012))).filter((ring) => ring.length)).filter((polygon) => polygon.length) : [];
+const farSea = shoreSide ? safePolygons(shoreSide.far, 0.0008, project) : [];
 // Only what the source tags as water: the answer may also hold wetland, islet and wall ways that are members of the lake's relation.
 const inland = waterAnswer.elements.filter((element) => !isShore(element) && (element.tags?.natural === 'water' || element.tags?.waterway === 'riverbank' || element.type === 'relation'));
 // What the outline is traced round (the shore band and the inland water inside the box: the map's declared water), and what is drawn (the same, carried on to the edge of the ground).
@@ -119,17 +124,19 @@ const inland = waterAnswer.elements.filter((element) => !isShore(element) && (el
 const km2 = (polygon: P[][]): number => { const lat = polygon[0]![0]![1]; return ringArea(polygon[0]!) * 111.32 * Math.cos(lat * Math.PI / 180) * 110.57; };
 const big = (polygons: P[][][]): P[][][] => polygons.filter((polygon) => km2(polygon) >= (config.minWaterKm2 ?? 0.4));
 const wet = [...sea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), outlineBox, config.waterTolerance)))];
-const reachWater = [...farSea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008))))];
+const reachWater = [...farSea, ...safePolygons(inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008)))), 0.0008, project)];
 console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
 
 const landuse = await ask(id, 'landuse', config.landuse(outlineBbox));
 const useRings = landuse.elements.flatMap((element) => areaRings(element).outer);
 const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 }))];
-const traced = builtUp(useRings, anchors, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore });
-const tidy = (polygons: P[][][]): P[][][] => polygons.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.outlineTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
+const roadsEarly = await ask(id, 'roads', config.roads(bbox, `${config.core.join(',')}`));
+const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
+const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500 });
+const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015), project);
 const land = tidy(traced.land), play = tidy(traced.play);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
-const water = traced.water.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.waterTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
+const water = safePolygons(traced.water, Math.min(config.waterTolerance, 0.00015), project);
 if (!land.length) throw new Error('The land-use answer left no built-up area in the box');
 const lonLat = (polygons: P[][][]): string => JSON.stringify(polygons.map((polygon) => polygon.map(roundRing)));
 
@@ -149,6 +156,9 @@ export const GEOMETRY: DestinationGeometry = {
 `);
 
 const reach = coverage(play, outlineBox, config.cell / config.split);
+// A road does not run on into the sea: a point inside the sea band ends the run there.
+const inSeaCover = sea.length ? coverage(sea, outlineBox, config.cell / config.split) : null;
+const inSea = (p: P): boolean => Boolean(inSeaCover && inSeaCover(p, 0));
 const roadsAnswer = await ask(id, 'roads', config.roads(bbox, `${config.core.join(',')}`));
 const candidates: { row: string; km: number; points: number; major: boolean }[] = [];
 const lengthKm = (line: P[]): number => line.slice(1).reduce((sum, [lon, lat], i) => sum + Math.hypot((lon - line[i]![0]) * 111.32 * Math.cos(lat * Math.PI / 180), (lat - line[i]![1]) * 110.57), 0);
@@ -163,7 +173,7 @@ for (const way of roadsAnswer.elements) {
   const runs: P[][] = [];
   let run: P[] = [];
   for (const p of kept) {
-    if (reach(p, config.roadMarginDegrees)) run.push(p);
+    if (reach(p, config.roadMarginDegrees) && !inSea(p)) run.push(p);
     else { if (run.length > 1) runs.push(run); run = []; }
   }
   if (run.length > 1) runs.push(run);

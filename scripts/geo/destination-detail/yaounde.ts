@@ -17,6 +17,7 @@ export const CONFIG: DetailConfig = {
   minRoadKm: 0.7,
   maxRoads: 700,
   roadMarginDegrees: 0.004,
+  districtMetres: 9000,
   surround: '#a9d08a',
   water: inlandWaterQuery,
   roads: roadsQuery,

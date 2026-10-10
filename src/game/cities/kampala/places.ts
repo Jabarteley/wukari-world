@@ -64,7 +64,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "slot": "recreation",
     "name": "Entebbe Botanical Gardens",
-    "district": "Kampala",
+    "district": "Katabi",
     "kind": "park",
     "category": "fun",
     "icon": "park",

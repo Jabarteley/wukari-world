@@ -1,8 +1,9 @@
 <script setup lang="ts">
 // The photos of a shop: the cover (the first photo) large directly under the sign, the others in a row that swipes sideways,
 // and a larger view with next and previous (buttons, arrow keys, a swipe). Alt text is the seller's caption when there is one.
-import { computed, nextTick, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import BaseSheet from '../../ui/BaseSheet.vue'
+import { pushOverlay } from './overlays.ts'
 import { photoAlt, photoUrl } from './showcaseModel.ts'
 
 const props = defineProps<{ name: string; photos: readonly { id: string; w: number; h: number; caption?: string }[]; reportable?: boolean }>()
@@ -18,7 +19,12 @@ function show(index: number, event?: Event): void {
   if (event?.currentTarget instanceof HTMLElement) opener.value = event.currentTarget
 }
 function step(by: -1 | 1): void { if (at.value !== null && count.value) at.value = (at.value + by + count.value) % count.value }
-function close(): void { at.value = null; const back = opener.value; void nextTick(() => back?.focus()) }
+/** Closes only the viewer, and gives the focus back to the thumbnail that opened it. */
+function close(): void { if (at.value === null) return; at.value = null; const back = opener.value; void nextTick(() => back?.focus()) }
+// While the viewer is open Escape belongs to it: the app's key hook closes it instead of the whole app.
+let forget: (() => void) | null = null
+watch(at, (now) => { forget?.(); forget = now === null ? null : pushOverlay(close) })
+onBeforeUnmount(() => forget?.())
 function key(event: KeyboardEvent): void {
   if (event.key === 'ArrowLeft') { event.preventDefault(); step(-1) } else if (event.key === 'ArrowRight') { event.preventDefault(); step(1) }
 }

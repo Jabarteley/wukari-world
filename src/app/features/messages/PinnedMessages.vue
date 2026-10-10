@@ -26,7 +26,7 @@ watch(() => props.pins.scope, () => { expanded.value = false; confirming.value =
       <button v-for="entry in pins.items.slice(0, 3)" :key="entry.message.seq" type="button" class="pinned-row" @click="emit('open', entry.message)">
         <span>{{ entry.message.from?.name ?? 'Message' }}</span><b>{{ label(entry.message) }}</b>
       </button>
-      <p class="pinned-help">Shared with everyone in this chat. {{ manager() }}</p>
+      <p class="pinned-help"><span aria-hidden="true">Shared with everyone here.</span><span class="sr-only">Shared with everyone in this chat. {{ manager() }}</span></p>
     </div>
     <div v-if="confirming" class="pinned-confirm" role="alertdialog" aria-modal="false" aria-label="Clear all shared pins">
       <p>Clear all shared pins, including any you cannot see?</p>

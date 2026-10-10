@@ -22,6 +22,7 @@ npm run capacity    # N simulated open pages (polls, two sockets, actions, chat)
 npm ci --ignore-scripts --prefix deploy/tooling && npm run build
 npm run test:edge   # the Worker host in Miniflare: conformance, and the whole new-player journey on the Workers runtime
 npm run start:worker # the Worker host on this machine (Miniflare, built assets), default http://localhost:8787
+npm run dev:open     # npm run dev with the gameplay gates relaxed, local only; also start:open, dev:fund, dev:seed (DEVELOPING.md, "Open mode")
 ```
 
 ### Development

@@ -174,6 +174,16 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   buildId = process.env.BUILD_ID || packageVersion(),
   // Error monitoring and analytics (server/telemetry): off, and doing nothing at all, unless its environment keys are set.
   telemetry = createServerTelemetry({ env: process.env, buildId, now, log }) }: ServerOptions = {}): Promise<AllworldServer> {
+  // OPEN DEV MODE (server/open-dev): the module is loaded only when ALLWORLD_OPEN_DEV is present, whatever its value, and it
+  // either starts (loopback only) or refuses to start. It replaces the environment, the clock, the outside fetch and a few limits.
+  const open = env?.['ALLWORLD_OPEN_DEV'] !== undefined
+    ? (await import('./open-dev/index.ts')).startOpenDev({ env, dataDir, now, publicOrigin: givenOrigin, trustProxy, sessionTtlMs, log })
+    : null;
+  if (open) {
+    env = open.env; now = open.now; outbound = open.fetch; sessionTtlMs = open.sessionTtlMs; interactiveTeachingStarts = true;
+    telemetry = createServerTelemetry({ env: {}, buildId, now, log });
+    log(open.banner());
+  }
   const configuredOrigin = cleanOrigin(givenOrigin);
   // The admin address (server/admin/host.ts): the same server answering on admin.<domain> with a much smaller face.
   const adminName = adminHostName(env?.[ADMIN_HOST_ENV], configuredOrigin);
@@ -229,7 +239,8 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
     return keyFiles.get(name) as Promise<T>;
   }
   // The rate limiter (server/limiter.ts): bounded per class of key, and a full table makes room instead of refusing newcomers.
-  const { allow, peek, wait: retryIn } = createMemoryLimiter({ now });
+  const limiter = createMemoryLimiter({ now });
+  const allow = open ? open.allow(limiter.allow) : limiter.allow, peek = open ? open.peek(limiter.peek) : limiter.peek, retryIn = limiter.wait;
   // Whose session a cookie is — a guest's own record, or the character of the account a signed-in browser is bound to: protocol.ts sessionOfCookie.
   const sessionFor = (req: IncomingMessage, db: Db, renew = false): SessionRecord | undefined => {
     const found = sessionOfCookie(db, cookieId(req), now(), bindingOf(req) !== undefined);
@@ -252,7 +263,8 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   // ctx.settle, ctx.act (server authority, always under a receipt) and what POST /api/action runs: host-context.js, shared with the Worker.
   // One character on several devices: a change a player would see is announced to every socket of that character (host-context.ts lifeAnnouncer).
   const lifeSync = lifeAnnouncer((publicId, frame) => ctx.push(publicId, frame));
-  const { settle, act, playerAct } = lifeAuthority({ now, receipts, changed: lifeSync.note, interactiveTeachingStarts });
+  const authority = lifeAuthority({ now, receipts, changed: lifeSync.note, interactiveTeachingStarts });
+  const { act, playerAct } = authority, settle = open ? open.settle(authority.settle) : authority.settle;
   /** True from a failed write of the data file until the next successful one. Reads still work then; saving does not. */
   const storageFailing = () => { try { return store.stats?.().failing === true; } catch { return false; } };
   function cookieHeader(req: IncomingMessage, secret: string | undefined): string | string[] {
@@ -341,8 +353,11 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   }
   // Nothing a request does may escape as an unhandled rejection: the last line of defence closes the connection.
   const server = http.createServer((req, res) => { handle(req, res).catch(() => { try { res.destroy(); } catch {} }); });
+  open?.guard(server);
   async function handle(req: IncomingMessage, res: ServerResponse): Promise<void> {
     const method = req.method ?? '';
+    // Open mode answers only requests that name this machine, so a page on another site cannot reach it by rebinding a name.
+    if (open && !open.hostAllowed(req.headers.host)) { res.writeHead(421, { 'Content-Type': 'text/plain; charset=utf-8' }); res.end('Open dev mode answers on localhost only.'); return; }
     let at: Matched | null = null; // the matched route and its request, for telemetry (a template and codes, never the URL or the body)
     try {
       const url = new URL(req.url ?? '/', 'http://localhost');
@@ -439,6 +454,11 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
         res.end(method === 'HEAD' ? undefined : site.body);
         return;
       }
+      if (open && url.pathname === open.panelPath) {
+        res.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' });
+        res.end(method === 'HEAD' ? undefined : open.panelScript);
+        return;
+      }
       const root = resolve(distDir);
       let path = adminKind === 'shell' ? resolve(root, ADMIN_SHELL) : resolve(root, `.${decodeURIComponent(url.pathname)}`);
       if (path !== root && !path.startsWith(root + sep)) throw fail(403, 'invalid_path');
@@ -457,7 +477,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       const isShell = adminKind === 'shell';
       const isIndex = path === resolve(root, 'index.html');
       // A short address (/games, /abuja, …) gets its own title, description and link-preview tags; the page's scripts are untouched.
-      const html = isShell ? await readFile(path, 'utf8') : isIndex ? withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req)) : '';
+      const html = isShell ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req))) : '';
       const bytes = isIndex || isShell ? Buffer.from(html) : await readFile(path);
       if (res.headersSent || res.writableEnded) return;
       // The game's page carries the full set of security headers; its inline scripts are admitted by hash, from the page as served.
@@ -569,7 +589,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
     // the Worker host keeps itself alive for it. A module calls ctx.waitUntil?.(promise) and never relies on the answer.
     waitUntil() {},
     keyFile,
-    config: { accounts: accountsConfig(env), founderEmailSha256: founderEmailHash(env), publicOrigin: configuredOrigin, sessionTtlMs, actionWindowMs, maxActiveSessions, maxSockets, socketsPerAddress, socketsPerPlayer: caps.socketsPerPlayer, newSessionsPerAddress: caps.newSessionsPerAddress, roomGroupTarget: caps.roomGroupTarget, roomGroupMax: caps.roomGroupMax, roomGroupMin: caps.roomGroupMin, voiceConfigProvider, buildId: String(buildId).slice(0, 40), votesPerAddress, voteCapMode, heartbeatMs, moderation: Boolean(moderatorDigest) },
+    config: { accounts: accountsConfig(env), founderEmailSha256: founderEmailHash(env), publicOrigin: configuredOrigin, sessionTtlMs, actionWindowMs, maxActiveSessions, maxSockets, socketsPerAddress, socketsPerPlayer: caps.socketsPerPlayer, newSessionsPerAddress: caps.newSessionsPerAddress, roomGroupTarget: caps.roomGroupTarget, roomGroupMax: caps.roomGroupMax, roomGroupMin: caps.roomGroupMin, voiceConfigProvider, buildId: String(buildId).slice(0, 40), votesPerAddress, voteCapMode, heartbeatMs, moderation: Boolean(moderatorDigest), ...(open ? { openDev: true as const } : {}) },
     // Work a module must finish before the server takes requests (loading an in-memory index).
     startup,
     // Work a module must finish when the server stops, BEFORE the store is closed: async functions, run in order
@@ -609,13 +629,13 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
     },
   };
   const sockets = buildSocketHandlers(ctx, wsModules);
-  const routes = buildRoutes(ctx, routeModules || [...ROUTE_MODULES, telemetryRoutes]);
+  const routes = buildRoutes(ctx, routeModules || [...ROUTE_MODULES, telemetryRoutes, ...(open ? [open.routes] : [])]);
   telemetry.attach(ctx);
   /** The renewed session cookie each upgrade request gets on its 101 answer. */
   const renewedCookies = new WeakMap<IncomingMessage, string | string[]>();
   server.on('upgrade', async (req: IncomingMessage, socket: Duplex, head: Buffer) => {
     try {
-      if (req.url !== '/socket' || !req.headers.origin || !sameOrigin(req) || !allow(`upgrade:${addressOf(req)}`, 60)) throw Error('Rejected');
+      if (req.url !== '/socket' || (open && !open.hostAllowed(req.headers.host)) || !req.headers.origin || !sameOrigin(req) || !allow(`upgrade:${addressOf(req)}`, 60)) throw Error('Rejected');
       // Connecting renews the session. While the data file cannot be written the renewal is skipped
       // (it was undone) and the stored session is used as it is: presence and chat keep working.
       const session = await store.transact(db => sessionFor(req, db, true))
@@ -762,6 +782,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
     await step('the world registry', async () => { await world.idle(); await world.saveMeta(); await shards.close(); });
     await step('the store', () => store.close?.());
     await step('telemetry', () => telemetry.close());
+    await step('the open-mode clock', () => open?.stop());
   })());
   server.close = (callback?: (error?: Error) => void) => { closeHttp((error) => { flush().finally(() => callback?.(error)); }); return server; };
   // Attached before the startup work is awaited, as before: nothing that runs during startup can find them missing.
@@ -772,7 +793,9 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   if (process.env.STORE_MODE) console.error('STORE_MODE is no longer used: there is one store. See "Storage and limits" in docs/REFERENCE.md.');
-  const server = await createServer();
+  // A refusal of open dev mode (a setting that must never apply here) is one clear line and a non-zero exit, not a stack trace.
+  const refused = (error: unknown): never => { if (fieldOf(error, 'name') === 'OpenDevRefusal') { console.error(String(fieldOf(error, 'message'))); process.exit(1); } throw error; };
+  const server = await createServer().catch(refused);
   const telemetry = useTelemetry(server.telemetry);
   // Stop taking requests, then write everything in the one shutdown order (server.flush) before the process leaves. A step
   // that hangs (a provider that never answers) cannot hold the process: after the deadline it exits with what is on disk.
@@ -791,9 +814,10 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     console.error(`Port ${port} is already in use, probably by another copy of this server. Stop that one, or set PORT to a free port (PORT=${port + 1} npm start).`);
     process.exit(1);
   });
-  server.listen(port, '0.0.0.0', () => {
+  const bind = process.env.ALLWORLD_OPEN_DEV !== undefined ? (await import('./open-dev/index.ts')).openBindAddress(process.env) : '0.0.0.0';
+  try { server.listen(port, bind, () => {
     const address = server.address();
     console.log(`Allworld server listening on ${isObject(address) ? address.port : address}`);
     stat(join(resolve('dist'), 'index.html')).then(() => console.log(`Open http://localhost:${port}/ to play.`), () => console.error('There is no built page in dist/ yet, so only the API answers. Run `npm run build` first, or use `npm run dev` while developing.'));
-  });
+  }); } catch (error) { refused(error); }
 }

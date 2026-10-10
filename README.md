@@ -45,6 +45,7 @@ npm run check     # typecheck, build, tests: about a minute and a half
 | Make your first change in half an hour | [docs/FIRST-CHANGE.md](docs/FIRST-CHANGE.md) |
 | Know where things live and what the rules of the codebase are | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Try sign-in, mail, two players or the Worker host locally | [docs/DEVELOPING.md](docs/DEVELOPING.md) |
+| Play locally without the gates (rich, settled, fast, operator) | `npm run dev:open`, see "Open mode" in [docs/DEVELOPING.md](docs/DEVELOPING.md) |
 | See every feature, command, setting and file | [docs/REFERENCE.md](docs/REFERENCE.md) |
 | Add or change a city | [docs/CITIES.md](docs/CITIES.md) |
 | Run a server for other people | [SECURITY.md](SECURITY.md), then [docs/REFERENCE.md](docs/REFERENCE.md#production-build) |

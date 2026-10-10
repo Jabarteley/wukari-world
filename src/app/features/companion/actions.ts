@@ -1,7 +1,7 @@
 // What a button can do. Every action is one call on `ActionEnv`, which the host fills with the game's real routes (actionEnv.ts):
 // open a panel, show a place on the Map, open the world map on a city, walk to a spot, ring or message a friend, start a tour.
 // Nothing here spends money, travels or messages anyone on its own: a trip is only ever opened on the Map for the player to start.
-import { panelsOf, whyNot } from './registry.ts'
+import { needsSettle, panelsOf, whyNot } from './registry.ts'
 import type { CompanionAction, CompanionContext, TourId } from './types.ts'
 
 export interface ActionEnv {
@@ -20,13 +20,13 @@ export interface ActionEnv {
   setMode(mode: 'lively' | 'quiet' | 'off'): void
   dismiss(): void
   /** Say, in the chat, why a button did nothing. */
-  tell(text: string): void
+  tell(text: string, actions?: CompanionAction[]): void
 }
 
 /** Run one button. A button that cannot work in the state `ctx` describes says why (in the chat) and does nothing else. */
 export function runAction(action: CompanionAction, env: ActionEnv, ctx?: CompanionContext): void {
   const why = ctx ? whyNot(action, ctx) : null
-  if (why) { env.tell(why); return }
+  if (why) { env.tell(why, ctx && needsSettle(action, ctx) ? [{ kind: 'open', id: 'onboarding', label: 'Settle in now' }] : undefined); return }
   switch (action.kind) {
     case 'open': env.openPanel(action.id, action.params); return
     case 'map': env.openMap(action.venue); return

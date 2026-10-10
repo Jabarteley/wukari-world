@@ -143,7 +143,7 @@ const WELCOME_SPOT: Partial<Record<VenueId, string>> = { park: 'trees' };
 const ACTIVITY_CAP = 9999;
 /** What a guest cannot do at the UNILAG campus (src/campus/unilag): become or be a student. Visiting, the trail, the games and the shuttle stay open. */
 export const GUEST_CAMPUS = /^unilag\.(apply|matriculate|change-programme|register-semester|lecture|assignment|test|close-semester|defer|resume|drop|job|hostel\.|election\.)/;
-const ENROL_REASON = 'Settle in before you enrol: students need a home of their own. Tap the "Settle in" goal — it takes a minute, and you can still look round the campus as a visitor.';
+const ENROL_REASON = 'Settle in before you enrol: students need a home of their own. It takes a minute, and you can still look round the campus as a visitor.';
 const SETTLE_REASON = 'Settle in to get your home: choose your traits, your dream and where you live. It takes a minute, and everything you have earned is kept.';
 const isGuest = (o: Pick<OnboardingState, 'stage' | 'done'> | null | undefined): boolean => o?.stage === 'guest' && !o.done;
 /** A life of the quick start that has not settled in: it has no home, no local government and no house, and is in no directory. */
@@ -349,7 +349,7 @@ const notDone = (state: LifeState) => (state.onboarding.done
 const needStep = (state: LifeState, step: number) => (state.onboarding.step < step
   ? fail(state, 'step_required', `Finish the ${ONBOARDING_STEPS[state.onboarding.step]!.label} step first.`) : null);
 const reach = (state: LifeState, step: number): void => { state.onboarding.step = Math.max(state.onboarding.step, step); };
-const mustBeDone = (state: LifeState) => (state.onboarding.done ? null : fail(state, 'onboarding_required', isGuest(state.onboarding) ? 'Settle in first: tap the "Settle in" goal. The Boutique and your wardrobe open once you have a home.' : 'Finish creating your character first: tap the "Create your character" goal.'));
+const mustBeDone = (state: LifeState) => (state.onboarding.done ? null : fail(state, 'onboarding_required', isGuest(state.onboarding) ? 'Settle in first. The Boutique and your wardrobe open once you have a home.' : 'Finish creating your character first.'));
 
 function giveBonus(state: LifeState, tags: string[]): void {
   const bonus = bonusNeeds(sources(state), tags);

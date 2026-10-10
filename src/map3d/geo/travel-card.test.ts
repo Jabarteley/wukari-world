@@ -35,14 +35,14 @@ test('what stops every way alike is said once above them; what stops one is said
   const all = travelWays(routesTo('fct', 'abuja', { road: busy, air: busy }), { cash: 200_000 })
   assert.equal(all.shared, busy)
   assert.deepEqual(all.ways.map((way) => [way.state, way.why]), [['off', ''], ['off', '']])
-  const guest = 'Settle in first (tap the "Settle in" goal): then you can travel between cities.'
+  const guest = 'Settle in first: then you can travel between cities.'
   assert.equal(travelWays(routesTo('oyo', 'ibadan', { road: guest, rail: guest }), { cash: 5000 }).shared, guest)
   const one = travelWays(routesTo('fct', 'abuja', { air: 'The airport is closed tonight.' }), { cash: 200_000 })
   assert.deepEqual([one.shared, one.ways.map((way) => [way.state, way.why])], [null, [['go', ''], ['off', 'The airport is closed tonight.']]])
   // The server's own "costs …; you have …" is one way's reason, never everyone's.
   const poor = travelWays(routesTo('oyo', 'ibadan', { road: 'Bus costs ₦3,500; you have ₦100.', rail: 'Bus costs ₦3,500; you have ₦100.' }), { cash: 100 })
   assert.deepEqual([poor.shared, poor.ways.map((way) => way.why)], [null, ['You need ₦3,400 more.', 'You need ₦8,900 more.']])
-  assert.deepEqual(travelWays([], { cash: 1 }), { shared: null, ways: [] })
+  assert.deepEqual(travelWays([], { cash: 1 }), { shared: null, settle: false, ways: [] })
 })
 
 test('the card never shows more than three buttons, and never two of one mode', () => {

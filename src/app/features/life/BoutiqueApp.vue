@@ -11,6 +11,7 @@ import type { AccessoryId, Look } from '../../../types/life.ts'
 import type { BoutiqueItem } from '../../../types/view.ts'
 import { useApp } from '../../state/app.ts'
 import { linkWords } from '../../../ui/link.ts'
+import SettleNotice from '../start/SettleNotice.vue'
 import LookStage from '../start/LookStage.vue'
 import { lookSummary, withAccessory, withoutAccessory } from '../start/lookModel.ts'
 import { money } from '../../ui/format.ts'
@@ -48,6 +49,7 @@ const isTrying = (item: BoutiqueItem): boolean => tried.value === item
       </LookStage>
       <p>Wallet <strong>{{ money(game.state.value.cash) }}</strong><small>Try anything on first. Buying puts it on straight away and keeps it in your wardrobe. Styles shown fit your current body; colours are free in your Profile.</small></p>
     </div>
+    <SettleNotice hint message="Settle in first: the Boutique and your wardrobe open once you have a home." />
     <template v-for="section in sections.filter(section => section.items.length)" :key="section.kind">
       <h3>{{ section.title }}</h3>
       <p v-if="section.kind === 'wearables'">Wear these over your outfit. Covered clothing stays in your wardrobe.</p>

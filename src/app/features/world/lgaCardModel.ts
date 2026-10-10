@@ -11,9 +11,9 @@ import type { FoundLga, CityPackApi } from './cityPack.ts'
 import { loadCityPackApi } from './cityPack.ts'
 import { cityUnit } from '../../../game/cities/terminology.ts'
 
-export interface LgaCardUi { finding: boolean; found: FoundLga | null; note: string; picking: boolean; sending: boolean }
+export interface LgaCardUi { finding: boolean; found: FoundLga | null; note: string; /** The refusal's code behind `note`, when the last save was refused. */ code: string; picking: boolean; sending: boolean }
 /** One card state for the page (as before): a choice half made on one screen is still there on the next. */
-export const lgaCardUi = reactive<LgaCardUi>({ finding: false, found: null, note: '', picking: false, sending: false })
+export const lgaCardUi = reactive<LgaCardUi>({ finding: false, found: null, note: '', code: '', picking: false, sending: false })
 
 export const GEOLOCATION_WHY: Readonly<Record<number, string>> = {
   1: 'Location is switched off for this site. Pick your local government from the list instead.',
@@ -33,6 +33,7 @@ export interface FindDeps {
 /** Ask the browser where the device is and turn the answer into a local government: here, and nowhere else. */
 export async function findLga(ui: LgaCardUi, cityId: string, deps: FindDeps = { geolocation: globalThis.navigator?.geolocation }): Promise<void> {
   ui.note = ''
+  ui.code = ''
   ui.found = null
   if (!deps.geolocation) { ui.note = noLocation(cityId); ui.picking = true; return }
   ui.finding = true

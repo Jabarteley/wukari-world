@@ -74,12 +74,17 @@ test('pinned messages render three bounded rows, filtered-empty management, and 
   const html = await render('/src/app/features/messages/PinnedMessages.vue', { pins, kind: 'group', loading: false, pending: false, retryable: false, disabled: false, error: '' })
   const rows = [...html.matchAll(/<button[^>]*class="pinned-row"[^>]*>(.*?)<\/button>/g)].map((match) => words(match[1] ?? ''))
   assert.deepEqual(rows, ['Bola Meet at the library', 'Bola Picture', 'Bola Voice message'])
-  assert.ok(words(html).includes('Clear all also removes shared pins you cannot see.'))
+  // The header counts the pins and the panel stays shut until tapped; its help is one line (these two lines replace the old long help text).
+  assert.ok(words(html).includes('Pinned · 3') && words(html).includes('Shared with everyone in this chat. Only the group owner can change them.'))
+  assert.match(html, /id="pinned-list"[^>]*display:none/)
+  assert.match(html, /aria-expanded="false"/)
 
   const filtered: MessagePinsView = { ...pins, items: [] }
   const offline = await render('/src/app/features/messages/PinnedMessages.vue', { pins: filtered, kind: 'group', loading: false, pending: false, retryable: false, disabled: true, error: '' })
-  assert.ok(words(offline).includes('No shared pins you can see.'))
-  assert.match(offline, /class="pinned-clear"[^>]*disabled/)
+  // With nothing pinned there is no panel and no Clear all (this replaces the old "disabled Clear all" check); a failed change still shows.
+  assert.ok(!offline.includes('pinned-clear') && !offline.includes('Pinned'))
+  const stuck = await render('/src/app/features/messages/PinnedMessages.vue', { pins: filtered, kind: 'group', loading: false, pending: false, retryable: true, disabled: true, error: '' })
+  assert.ok(words(stuck).includes('No shared pins you can see.') && !stuck.includes('pinned-clear'))
   const member = await render('/src/app/features/messages/PinnedMessages.vue', { pins: { ...filtered, canManage: false, items: [{ message: items[0]! }] }, kind: 'group', loading: false, pending: false, retryable: false, disabled: false, error: '' })
   assert.ok(!member.includes('pinned-clear') && words(member).includes('Only the group owner can change them.'))
 })

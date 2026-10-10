@@ -3,7 +3,7 @@
  * Played travel journeys: a brand-new guest, a real browser, the real screens.
  *
  *   node --experimental-strip-types scripts/journeys/run.ts --out <folder> [--cities cairo,rabat,kigali,kampala,lusaka]
- *        [--port 4311] [--debug-port 4331] [--phone] [--keep-data]
+ *        [--port 4311] [--debug-port 4331] [--phone] [--throttle] [--keep-data]
  *
  * It builds nothing: run `npm run build` first. It starts the built app itself (scripts/journeys/serve.ts, a fresh data folder,
  * the repo's sign-in stand-in, no outside request), starts ONE headless Chrome at a time (scripts/journeys/cdp.ts), and stops both
@@ -13,6 +13,7 @@
  *   3  too little money: the fare is refused, nothing charged 8  the same purchase sent again is not charged twice
  *   4  one admin credit with one idempotency id, replayed     9  stop the server, start it on the same data: same life
  *   5  buy the ticket and travel; arrive; money down by exactly the fare; a receipt line
+ * `--throttle` runs the desktop journey with the same slow network and CPU.
  * `--phone` adds the simulated-phone run (390x844 and 320x568, touch, 3x scale, 4G-like network, 4x slower CPU).
  * Screenshots and one JSON result per city go to --out. The exit code is not zero when any step fails.
  * Server calls are made by the page itself, with its own cookie, only to READ the player's life or to repeat a purchase (step 8);
@@ -197,7 +198,7 @@ async function tapStartYourLife(b: Browser): Promise<void> {
 // ---- step 1: the start screens --------------------------------------------------------------------------------------
 async function start(b: Browser, j: Journey, name: string, detail: Record<string, unknown>): Promise<void> {
   await b.goto(base + '/');
-  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 60000, 'the start screen');
+  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 240000, 'the start screen');
   await sleep(600);
   await b.type('[data-qs-name]', name);
   await j.shot('start-you');
@@ -217,7 +218,7 @@ async function start(b: Browser, j: Journey, name: string, detail: Record<string
     if (window.__creatorMounts > 0 && root && root.dataset.step === 'who') return 'creator-back-at-start';
     if (!root && document.querySelector('.hud-cash')) return 'settled';
     return '';
-  })()`, 90000, 'the creator to finish or return').catch((error) => { detail['requestsAfterTap'] = b.requests.slice(asked).filter((r) => r.url.includes('/api/')).map((r) => `${r.method} ${r.url.replace(base, '')} ${r.status ?? ''}`); throw error; });
+  })()`, 300000, 'the creator to finish or return').catch(async (error) => { detail['requestsAfterTap'] = b.requests.slice(asked).filter((r) => r.url.includes('/api/')).map((r) => `${r.method} ${r.url.replace(base, '')} ${r.status ?? ''} ${(r.body ?? '').match(/"type":"[^"]+"/)?.[0] ?? ''}`.trim()); detail['pageNow'] = await b.eval<unknown>(`({ t: Math.round(performance.now()), life: fetch('/api/life?city=lagos').then((r) => r.json()).then((j) => ({ required: j.state.onboarding.required, stage: j.state.onboarding.stage, done: j.state.onboarding.done })).catch((e) => String(e)), step: document.querySelector('[data-cr-root]')?.dataset.step ?? null, pending: document.querySelector('.cr-foot')?.textContent?.slice(0, 80) ?? null })`).catch(() => null); throw error; });
   detail['startOutcome'] = outcome;
   const posts = b.requests.slice(asked).filter((request) => request.method === 'POST' && request.url.includes('/api/')).map((request) => `${request.url.replace(base, '')} ${(request.body ?? '').match(/"type":"[^"]+"/)?.[0] ?? ''}`.trim());
   detail['requestsAfterTap'] = posts;
@@ -309,7 +310,7 @@ async function journey(city: string, phone: { width: number; height: number } | 
   const bag: Record<string, any> = {};
   try {
     await b.setViewport(phone ? { width: phone.width, height: phone.height, scale: 3, mobile: true } : { width: 1280, height: 800, scale: 1, mobile: false });
-    if (phone) await b.throttle(true);
+    if (phone || flag('throttle')) await b.throttle(true);
     const playerName = `Journey ${target.name}`;
 
     await j.run(1, 'Onboard through the start screens and land at home', async (detail) => {

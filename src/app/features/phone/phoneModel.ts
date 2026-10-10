@@ -77,9 +77,13 @@ export function scopeSwitched(before: { session: string | null; city: string }, 
   if (before.session !== null && after.session !== before.session) return true
   return before.session !== null && after.city !== before.city
 }
-/** A number that changes exactly when `scopeSwitched` says so: the key of the sheet's body. */
-export function useSheetScope(session: Ref<string | null>, city: Ref<string>): Ref<number> {
+/**
+ * A number that changes exactly when `scopeSwitched` says so: the key of the sheet's body. While `frozen()` is true (the
+ * visitor's own start is in flight: the session, the life and the city all arrive in an order of the network's choosing) no
+ * change counts, so the creator that sent the start is never rebuilt by it. Read at the moment of each change.
+ */
+export function useSheetScope(session: Ref<string | null>, city: Ref<string>, frozen: () => boolean = () => false): Ref<number> {
   const epoch = ref(0)
-  watch([session, city], ([id, now], [wasId, was]) => { if (scopeSwitched({ session: wasId, city: was }, { session: id, city: now })) epoch.value += 1 })
+  watch([session, city], ([id, now], [wasId, was]) => { if (!frozen() && scopeSwitched({ session: wasId, city: was }, { session: id, city: now })) epoch.value += 1 }, { flush: 'sync' })
   return epoch
 }

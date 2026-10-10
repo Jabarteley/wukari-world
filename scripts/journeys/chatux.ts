@@ -425,11 +425,16 @@ try {
   await scene('28-offline', async () => {
     await A.eval(`document.querySelector(${JSON.stringify(field)})?.focus()`);
     await A.send('Network.emulateNetworkConditions', { offline: true, latency: 0, downloadThroughput: 0, uploadThroughput: 0 });
-    await sleep(1500);
-    await typeInto('Sent while offline');
-    await send(); await sleep(3500);
-    await snap('28a-offline-sent');
-    await A.send('Network.emulateNetworkConditions', { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
+    try {
+      await sleep(1500);
+      const typable = await A.eval<boolean>(`(() => { const t = document.querySelector(${JSON.stringify(field)}); return !!t && !t.disabled; })()`);
+      note(`message box usable while offline: ${typable}`);
+      if (typable) { await typeInto('Sent while offline'); await send(); }
+      await sleep(3500);
+      await snap('28a-offline-sent');
+    } finally {
+      await A.send('Network.emulateNetworkConditions', { offline: false, latency: 0, downloadThroughput: -1, uploadThroughput: -1 });
+    }
     await sleep(2500); await snap('28b-back-online');
     const failedHere = await HERE('.bubble.is-failed');
     note(`failed bubble after offline send: ${failedHere}`);

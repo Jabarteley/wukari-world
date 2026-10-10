@@ -76,7 +76,8 @@ export class Browser {
   send(method: string, params: object = {}): Promise<any> {
     const id = ++this.nextId;
     return new Promise((done, fail) => {
-      this.pending.set(id, (message) => (message.error ? fail(new Error(`${method}: ${message.error.message}`)) : done(message.result)));
+      const timer = setTimeout(() => { this.pending.delete(id); fail(new Error(`${method}: no answer from the browser in 90 s`)); }, 90000);
+      this.pending.set(id, (message) => { clearTimeout(timer); message.error ? fail(new Error(`${method}: ${message.error.message}`)) : done(message.result); });
       this.ws.send(JSON.stringify({ id, method, params }));
     });
   }

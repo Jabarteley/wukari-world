@@ -58,9 +58,9 @@ export const realErrors = (b: Browser): string[] => b.consoleErrors.filter((line
 
 export async function dismiss(b: Browser, waitMs = 5000): Promise<void> {
   const end = Date.now() + waitMs;
-  for (;;) {
-    const point = await b.locate('button.tour-skip, button.is-quiet').catch(() => null);
-    if (point) { await b.tapAt(point.x, point.y); await sleep(400); continue; }
+  for (let taps = 0; ; ) {
+    const point = taps < 6 ? await b.locate('button.tour-skip, button.is-quiet').catch(() => null) : null;   // a few taps only: apps can have quiet buttons of their own (Refresh)
+    if (point) { taps++; await b.tapAt(point.x, point.y); await sleep(400); continue; }
     if (Date.now() > end) return;
     await sleep(250);
   }

@@ -4,7 +4,7 @@
  * source sha256 d976808d010cb1da643ded534560e7f671448f973210a423a1634d7bf1480794 (land use 26af4aafc79cb510c183c1c71c0fb2c1bfc6feba0e2198481b56d581ce2db553, water dc0f3eaed4aa13380f2cd3be25ae3e63f154eb0be8493979fedea0ee470421e3, roads 775f0bd6170784d81e112f602d49e4eb36ae419b06afa6919e4ab9579f1272b1, places fe676fba5444804db9e0b7fe99ee061f19ff2e68eceafe15f95bbd15b38878c0, c3b1957e2b3ce260fe4e520701581da7d02855d5fede36f527e6d210f1a75fda).
  * Roads: Douglas-Peucker 0.0008 degrees (0.0004 in the core -1.99, 30.04, -1.92, 30.13), quantised to 0.0001 degrees;
  * 192 ways of 192 candidates (the longest first, none under 0.7 km unless motorway or trunk), 577 points; each row is name, major (1/0), first longitude and latitude in 0.0001 degrees, then the steps to every
- * next vertex. Roads leave the outline by at most 0.004 degrees. Water: simplified 0.0003 degrees; "water" lies inside the play area, "reachWater" is the same water carried 0.3 degrees beyond the play box, to the edge of the ground that is drawn. Loaded only with this city's map.
+ * next vertex. Roads leave the outline by at most 0.004 degrees. Water: simplified 0.0003 degrees; "water" lies inside the play area, "reachWater" is the same water carried 0.41000000000000086 degrees beyond the play box, to the edge of the ground that is drawn. Loaded only with this city's map.
  */
 import type { DestinationTerrain } from '../africa/map.ts'
 

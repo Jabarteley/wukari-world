@@ -17,7 +17,7 @@ import { writeFileSync } from 'node:fs';
 import { ask } from './destination-detail/overpass.ts';
 import type { Element } from './destination-detail/overpass.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { OUTLINE_MARGIN, areaRings, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
 
 const id = process.argv[2];
@@ -37,7 +37,7 @@ const centreOf = (element: Element): P => {
 /** A place must stand at least this far (about 900 m) inside the play box, so that none sits against the border. */
 const EDGE = 0.008;
 /** Water is kept this far (degrees) beyond the play box, so a river or the sea runs on to the edge of the ground that is drawn (the ground reaches one and a half times the city's width, at most 60 km: see SURROUND_UNITS in src/map3d/cities/module.ts). */
-const REACH = Math.min(0.55, Math.max(0.3, 1.5 * Math.max(north - south, east - west)));
+const REACH = reachFor(config.box);
 // The outline, water and roads are drawn over the play box plus a margin, so the built-up ground ends where it really ends.
 const outlineBox: Box = [south - OUTLINE_MARGIN, west - OUTLINE_MARGIN, north + OUTLINE_MARGIN, east + OUTLINE_MARGIN];
 const outlineBbox = outlineBox.join(',');

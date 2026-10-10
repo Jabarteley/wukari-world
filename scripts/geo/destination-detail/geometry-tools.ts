@@ -122,6 +122,8 @@ export const roundRing = (ring: Ring): Ring => ring.map(([lon, lat]): P => [roun
 
 /** The outline is traced over the play box plus this margin (degrees), so the built-up ground ends where it really ends and not in a straight cut at the box edge. */
 export const OUTLINE_MARGIN = 0.05;
+/** Water is asked for, and drawn, this far (degrees) beyond the play box: the ground reaches 1.5 times the city's width past the traced land (at most 60 km), which is the play box plus the outline margin. */
+export const reachFor = (box: Box): number => Math.min(0.6, Math.max(0.4, 1.5 * Math.max(box[2] - box[0], box[3] - box[1]) + 0.2));
 
 /** Fill closed rings onto a grid (`value` 1 where covered). Every ring is filled on its own, so overlapping areas join instead of cancelling. Three scan lines per row, so a thin stream still lands in a cell. */
 function fillRings(rings: readonly Ring[], cols: number, rows: number, box: Box, cell: number, into: Uint8Array): void {
@@ -194,6 +196,16 @@ export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metre
   for (let i = 0; i < joined.length; i++) joined[i] = close[i]! >= 0.3 ? 1 : 0;
   const soft = blur(joined, fc, fr, 2.5);
   for (let i = 0; i < joined.length; i++) joined[i] = soft[i]! >= 0.5 ? 1 : 0;
+  // Where the built-up ground runs on past the edge of the traced box, it ends in a wavy oval (an ellipse in the box, its radius varied by angle) and not in a straight cut,
+  // so no edge of the traced box shows as a straight line; the discs round the places stay.
+  for (let r = 0; r < fr; r++) for (let c = 0; c < fc; c++) {
+    const dx = (c + 0.5 - fc / 2) / (fc / 2), dy = (r + 0.5 - fr / 2) / (fr / 2), rho = Math.hypot(dx, dy), theta = Math.atan2(dy, dx);
+    if (rho > 1.02 + 0.045 * Math.sin(5 * theta + 0.7) + 0.03 * Math.sin(11 * theta + 2.1)) joined[r * fc + c] = 0;
+  }
+  for (const { at: [lon, lat], metres } of anchors) {
+    const radius = Math.round(metres / metresPerCell), c0 = Math.floor((lon - box[1]) / fine), r0 = Math.floor((lat - box[0]) / fine);
+    for (let r = Math.max(0, r0 - radius); r <= Math.min(fr - 1, r0 + radius); r++) for (let c = Math.max(0, c0 - radius); c <= Math.min(fc - 1, c0 + radius); c++) if ((c - c0) ** 2 + (r - r0) ** 2 <= radius * radius) joined[r * fc + c] = 1;
+  }
   tidyMask(joined, fc, fr, Math.round(minIslandKm2 / cellKm2), Math.round(minHoleKm2 / cellKm2));
   // The water, filled on the same grid.
   const wet = new Uint8Array(fc * fr);

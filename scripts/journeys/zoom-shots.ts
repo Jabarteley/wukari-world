@@ -122,6 +122,7 @@ const GL_COUNTER = `(() => {
   }
   /** What the contexts that are still alive hold (a lost context has let go of everything it made). */
   window.__glLive = () => { const total = Object.fromEntries(kinds.map((k) => [k, 0])); let contexts = 0; for (const ref of live) { const gl = ref.deref(); if (!gl || gl.isContextLost()) continue; contexts++; const e = counts.get(gl); for (const k of kinds) total[k] += e[k]; } return { ...total, contexts }; };
+  window.__phases = []; new MutationObserver((list) => { for (const m of list) window.__phases.push({ phase: m.target.dataset.ladder, t: performance.now() + performance.timeOrigin }); }).observe(document, { attributes: true, attributeFilter: ['data-ladder'], subtree: true });
   window.__frames = []; (function tick(t) { window.__frames.push(t); if (window.__frames.length > 20000) window.__frames.splice(0, 10000); requestAnimationFrame(tick); })(performance.now());
 })()`;
 
@@ -221,7 +222,11 @@ async function handover(b: Browser, name: string, title: string, act: () => Prom
   await cast?.stop();
   const count = cast ? await saveFrames(cast, name, title, from) : 0;
   const timing = await pacing(b, from, to);
-  const row = { ...timing, screencastFrames: count, ms: to - from };
+  // The cross-fade itself: from the moment the host says 'fading' to the moment it is idle again.
+  const phases = await b.eval<{ phase: string; t: number }[]>(`window.__phases`);
+  const fadeStart = phases.find((p) => p.t >= from && p.phase === 'fading'), idleAfter = fadeStart && phases.find((p) => p.t > fadeStart.t && p.phase === 'idle'), loadStart = phases.find((p) => p.t >= from && p.phase === 'loading');
+  const fade = fadeStart && idleAfter ? { ...(await pacing(b, fadeStart.t, idleAfter.t)), ms: Math.round(idleAfter.t - fadeStart.t), waitBeforeFadeMs: loadStart ? Math.round(fadeStart.t - loadStart.t) : null } : null;
+  const row = { ...timing, screencastFrames: count, ms: to - from, fade };
   console.log(`${name}: ${JSON.stringify(row)}`);
   return row;
 }
@@ -320,6 +325,7 @@ async function journey(b: Browser, size: keyof typeof SIZE, throttled: boolean):
   await aimAt(['Accra', 'Ghana'], 'Accra');
   await sleep(600); row.accra = { chip: await read(b, 'chip'), sheet: await b.eval(`document.querySelector('#map-scene .atlas-sheet')?.textContent?.trim().slice(0, 80) ?? ''`), said: await read(b, 'said') };
   await sleep(900); await shot(b, '12-accra-overview', 'Zoomed in on Accra: an overview, the player is still in Lagos', `chip: ${row.accra.chip}`);
+  await b.click('.atlas-close').catch(() => undefined); await sleep(500);
   row.cityAfterAccra = await lifeCity(b);
 
   // 5. Nigeria, then Ibadan (another Nigerian city) as an overview.
@@ -331,6 +337,7 @@ async function journey(b: Browser, size: keyof typeof SIZE, throttled: boolean):
   await aimAt(['Ibadan', 'Oyo'], 'Ibadan');
   await sleep(600); row.ibadan = { chip: await read(b, 'chip'), sheet: await b.eval(`document.querySelector('#map-scene .atlas-sheet')?.textContent?.trim().slice(0, 80) ?? ''`), said: await read(b, 'said') };
   await sleep(900); await shot(b, '14-ibadan-overview', 'Zoomed in on Ibadan: its card as an overview, the player is still in Lagos', `chip: ${row.ibadan.chip}`);
+  await b.click('.atlas-close').catch(() => undefined); await sleep(500);
   row.cityAfterIbadan = await lifeCity(b);
 
   // 6. Home: zoom in on Lagos from the atlas; the hand-over into the city map; then "Find me".
@@ -363,9 +370,39 @@ async function journey(b: Browser, size: keyof typeof SIZE, throttled: boolean):
   await b.throttle(false);
 }
 
+/** The simple (flat) map takes the same ladder; and a player who asked for less motion gets a short fade and no flight. */
+async function simpleAndReduced(b: Browser): Promise<void> {
+  prefix = 'desktop-extra'; phone = false;
+  await b.setViewport(SIZE.desktop); await b.throttle(false);
+  await openMap(b);
+  const out2: Record<string, any> = {};
+  numbers.extra = out2;
+  await b.click('.cmap-switch');
+  await b.waitFor(`document.querySelector('[data-map]')?.dataset.map === '2d'`, 60000, 'the simple map');
+  await sleep(2500); await shot(b, '01-simple-map', 'The simple map, before zooming out');
+  out2.simple = await handover(b, '02-simple-to-nigeria', 'Simple map to Nigeria', async () => { await zoomUntil(b, 'out', async () => (await read(b, 'phase')) !== 'idle' || (await read(b, 'layer')) === 'world', 80, centre(b), 1.4); });
+  await sleep(1500); await shot(b, '03-simple-nigeria', 'The atlas, reached from the simple map', `level: ${await read(b, 'level')}`);
+  out2.simpleLayer = await read(b, 'layer');
+  await b.click('[data-atlas-city]').catch(() => undefined);
+  await sleep(2500);
+  out2.simpleBack = { layer: await read(b, 'layer'), map: await read(b, 'map') };
+  await b.click('.cmap-switch').catch(() => undefined);
+  await b.waitFor(`document.querySelector('[data-map]')?.dataset.map === '3d'`, 60000, '3D map again').catch(() => undefined);
+  // Less motion: the preference is read when the maps start, so load the page again with it on.
+  await b.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+  prefix = 'desktop-reduced';
+  await openMap(b);
+  await b.click('[data-m3="fit"]').catch(() => undefined); await sleep(600);
+  out2.reduced = await handover(b, '01-city-to-nigeria', 'City to Nigeria with reduced motion', async () => { await zoomUntil(b, 'out', async () => (await read(b, 'phase')) !== 'idle' || (await read(b, 'layer')) === 'world', 80, centre(b), 1.4); });
+  await sleep(1200); await shot(b, '02-nigeria', 'Reduced motion: Nigeria, reached with a short fade and no flight', `level: ${await read(b, 'level')}`);
+  await b.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }] });
+}
+
 /** The loading state: a slow network and a map that was let go, so entering the city has to mount it again. */
 async function loadingState(b: Browser): Promise<void> {
   prefix = 'phone-load'; phone = true;
+  // Data Saver on: nothing is fetched or built ahead of need, so the hand-over has to wait for its map and says so.
+  const saver = await b.send('Page.addScriptToEvaluateOnNewDocument', { source: "Object.defineProperty(navigator, 'connection', { value: { saveData: true, effectiveType: '4g' }, configurable: true })" });
   await b.setViewport(SIZE.phone); await b.throttle(false);
   await openMap(b);
   await b.throttle(true);
@@ -377,11 +414,18 @@ async function loadingState(b: Browser): Promise<void> {
   const lagos = await labelAt(b, 'Lagos');
   const cast = await castStart(b), from = Date.now();
   let sawChip = '';
-  for (let i = 0; i < 90 && lagos; i++) { await notch(b, 'in', lagos.x, lagos.y, 1.4); const chip = await read(b, 'chip'); if (chip && !sawChip) { sawChip = chip; await shot(b, '01-loading-chip', 'A hand-over that has to wait for its map: the chip says what for', chip); } if ((await read(b, 'layer')) === 'city') break; }
+  const seen: string[] = [];
+  await zoomOnto(b, ['Lagos'], async () => {
+    const chip = await read(b, 'chip');
+    if (/^Loading/.test(chip) && !sawChip) { sawChip = chip; const file = `${prefix}-01-loading-chip.png`; await b.screenshot(join(out, file)); shots.push({ file, title: 'A hand-over that has to wait for its map: the chip says what for (Data Saver on, 4x slower CPU, slow network)', note: chip, group: prefix }); }
+    if (chip) seen.push(chip);
+    return (await read(b, 'phase')) === 'idle' && (await read(b, 'layer')) === 'city';
+  }, 90);
   await b.waitFor(`document.querySelector('#city-scene')?.parentElement?.dataset.ladder === 'idle'`, 30000, 'idle').catch(() => undefined);
   await cast.stop(); await saveFrames(cast, '02-remount', 'Entering a city whose map was let go', from, 6);
-  numbers.loadingState = { chipSeen: sawChip };
+  numbers.loadingState = { chipSeen: sawChip, dataSaver: true, chips: [...new Set(seen)] };
   await b.throttle(false);
+  await b.send('Page.removeScriptToEvaluateOnNewDocument', { identifier: saver.identifier }).catch(() => undefined);
 }
 
 // ---- gallery ----------------------------------------------------------------------------------------------------------------------
@@ -404,6 +448,7 @@ try {
     try { await journey(browser, size as keyof typeof SIZE, false); } catch (error) { numbers.sizes[size] = { ...(numbers.sizes[size] ?? {}), failed: String(error) }; console.error(`${size} failed:`, error); }
     if (size !== 'desktop') { try { await journey(browser, size as keyof typeof SIZE, true); } catch (error) { numbers.sizes[`${size}-slow`] = { ...(numbers.sizes[`${size}-slow`] ?? {}), failed: String(error) }; console.error(`${size} slow failed:`, error); } }
   }
+  if (sizes.includes('desktop')) { try { await simpleAndReduced(browser); } catch (error) { numbers.extra = { ...(numbers.extra ?? {}), failed: String(error) }; console.error('extra failed:', error); } }
   if (sizes.includes('phone')) { try { await loadingState(browser); } catch (error) { numbers.loadingState = { failed: String(error) }; } }
 } finally {
   writeFileSync(join(out, 'numbers.json'), JSON.stringify(numbers, null, 2));

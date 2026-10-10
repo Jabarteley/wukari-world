@@ -1,6 +1,6 @@
 # Cities abroad
 
-Fifteen cities outside Nigeria are open: Yaoundé, Lomé, Accra, Nairobi, Algiers, Cotonou, Abidjan, Dakar, Cape Town, Addis Ababa, Cairo, Rabat, Kigali, Kampala and Lusaka. Each opened as a bounded starter: a real arrival airport and a small, generic set of game venues. Cairo, Kigali, Kampala, Rabat and Lusaka have received full map detail. This page says what a starter holds, what the detailed tier holds, and how to move another city across.
+Fifteen cities outside Nigeria are open: Yaoundé, Lomé, Accra, Nairobi, Algiers, Cotonou, Abidjan, Dakar, Cape Town, Addis Ababa, Cairo, Rabat, Kigali, Kampala and Lusaka. Each opened as a bounded starter: a real arrival airport and a small, generic set of game venues. All fifteen have received full map detail (the first five on 10 October, the other ten the same day). This page says what a starter holds, what the detailed tier holds, and how to move another city across.
 
 ## The starter tier is deliberate
 
@@ -8,7 +8,7 @@ Fifteen cities outside Nigeria are open: Yaoundé, Lomé, Accra, Nairobi, Algier
 
 ## What differs from a Nigerian city
 
-| Feature | Nigerian city (for example Ibadan, Abuja, Kano) | Starter foreign city | Detailed foreign city (Cairo, Kigali, Kampala, Rabat, Lusaka) |
+| Feature | Nigerian city (for example Ibadan, Abuja, Kano) | Starter foreign city | Detailed foreign city (all fifteen) |
 |---|---|---|---|
 | Outline | Real local-government polygons from geoBoundaries, shared borders (`src/map3d/geo/data/*.ts`) | One rectangle, the sampled window (`<city>/geometry.ts`) | Built-up extent traced from mapped land use, water cut out of it, with a plain ground colour round it so the old square never shows |
 | Districts / units | 6 to 20 local units, 5 to 14 rented-home districts (`rules.ts`) | One unit and one district, "Starter play zone" | One unit, "Greater Cairo"; neighbourhood names on the ground |
@@ -44,12 +44,8 @@ The land outline is a sketch at the grid's size (about 40 m after tracing) and s
 - On a sea or lake, no place or label may stand on an island or on a piece of land the shore ways cut off: a known land point marks its whole region as land, so one place on Gorée made all of Dakar's sea land. Leave island places out.
 - Offline check: render the built pack (outline, water, roads, labels, places, ground extent) to a flat PNG and look at it; magenta anywhere means the ground does not reach far enough.
 
-## Estimates for the remaining cities
+## Measured effort
 
-Five cities are done (Cairo, Kigali, Kampala, Rabat, Lusaka). Measured on those: about one hour of hands-on work per city once the shared tools exist (reading the candidate lists, choosing places, the tests), plus waiting for the public map server, which answered 504 for 5 to 40 minutes at a time; plan 45 to 90 minutes of wall clock per city for the five requests. The work is mostly choosing places honestly.
+All fifteen cities are done. The ten after the first five took about one hour each of hands-on work once the shared tools were right (candidate lists with `scripts` kept outside the repository, one recipe, one build, the offline render, the tests), plus the waiting for the public map server (the land-use answers with geometry and the wide coast queries were the slow ones: 504 for 5 to 20 minutes at a time). The time that mattered was in the shared code: the first outline (a blurred grid of land-use centres) looked like a mosaic and a box on a phone, and was replaced by one traced from the mapped land-use shapes.
 
-| City | Expected effort | Note |
-|---|---|---|
-| Accra, Nairobi, Algiers, Abidjan, Addis Ababa | 1.5 to 2 hours each | Dense mapping; Cape Town and Dakar have a coastline, so they use the coast recipe |
-| Cape Town, Dakar | 2 hours each | Coast recipe (`rabat.ts`) |
-| Yaoundé, Lomé, Cotonou | 2 to 3 hours each | Thin Wikidata tagging; relax the discovery filters and read more candidates; Lomé and Cotonou are on the sea |
+Thin mapping: Cotonou has 141 main roads (the others 190 to 700) and Yaoundé 11 neighbourhood names, because the answers hold no more; Lusaka, Cairo and Nairobi have land use mapped in patches, so their outline uses a larger closing distance or relies on the neighbourhood discs. Addis Ababa and (at 0.4 km2) Nairobi hold little mapped water.

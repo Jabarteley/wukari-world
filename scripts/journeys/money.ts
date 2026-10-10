@@ -17,6 +17,7 @@ const port = Number(arg('port', '4391')), debugPort = Number(arg('debug-port', '
 const lab = await startLab(port);
 const a = await Browser.launch(debugPort);
 const b = await Browser.second(debugPort, a);
+const c = await Browser.second(debugPort, a); // Cara: a third player who is nobody's friend
 const j = new Journey(arg('out'), 'money');
 const naira = (n: number): string => `₦${n.toLocaleString('en-US')}`;
 const HOUR = 3600000;
@@ -34,12 +35,12 @@ async function openChat(p: Browser, who: string): Promise<void> {
   for (let i = 0; i < 5 && !(await p.eval<boolean>(`document.querySelector('[role="tab"][aria-selected="true"]')?.innerText.includes('Chats')`)); i++) { await p.click('[role="tab"]', 'Chats'); await sleep(500); }
   if (await visible(p, '[data-conv]', who)) await p.click('[data-conv]', who);
   else {
-    await p.click('.messages-new');
-    await sleep(700); // the list glides up to the search field
+    for (let i = 0; i < 3 && !(await visible(p, '#message-player-search')); i++) { await p.click('button', 'New message'); await sleep(800); }
     await p.type('#message-player-search', who);
     await sleep(500);
     await p.click('button', 'Find');
-    await p.click('[aria-label="Players found"] button', 'Message', 10000);
+    await p.waitFor(`(() => { const rows = [...document.querySelectorAll('[aria-label="Players found"] > *')]; const row = rows.find((r) => r.innerText.includes(${JSON.stringify(who)})); const btn = row?.querySelector('button'); if (btn) btn.setAttribute('data-pick', 'yes'); return !!btn; })()`, 10000, `${who} in the search results`);
+    await p.click('[data-pick="yes"]'); await p.eval(`document.querySelectorAll('[data-pick]').forEach((x) => x.removeAttribute('data-pick')); true`);
   }
   await p.waitFor(`document.querySelector('.messages-chat .messages-head') && document.querySelector('.messages-chat .messages-head').innerText.includes(${JSON.stringify(who)})`, 15000, `the chat with ${who}`);
   await watchToasts(p);
@@ -66,9 +67,12 @@ async function waitCard(p: Browser, n: number, state: string, what: string): Pro
   await p.waitFor(`(() => { const c = [...document.querySelectorAll('.bubble.is-request')]; return c.length === ${n} && c.at(-1).dataset.requestState === ${JSON.stringify(state)}; })()`, 15000, what);
 }
 async function askerAndPayerSee(state: string, n: number, what: string): Promise<void> { await waitCard(a, n, state, `Ada's card (${what})`); await waitCard(b, n, state, `Bola's card (${what})`); }
+let confirmText = '', shotConfirm = false;
 async function tapPay(p: Browser, double = false): Promise<void> {
   await p.click('.bubble.is-request:last-of-type .request-btn.is-primary', 'Pay');
   await p.waitFor(`!!document.querySelector('.request-confirm')`, 5000, 'the pay confirmation line');
+  confirmText = await text(p, '.request-confirm');
+  if (!shotConfirm) { shotConfirm = true; await j.shot(p, 'pay-confirm-line'); }
   const point = await p.locate('.request-btn.is-primary', 'Confirm');
   must(point, 'no Confirm button');
   await p.tapAt(point!.x, point!.y);
@@ -126,20 +130,33 @@ try {
     await openChat(a, 'Bola'); await openChat(b, 'Ada');
   });
 
-  await j.run('1a', 'Chat options in a brand-new chat with a friend (no message yet) offer "Request money"', [a], async (detail) => {
+  await j.run('1a', 'A brand-new chat with a friend (no message yet): Chat options offer Send money AND Request money', [a], async (detail) => {
+    detail['threadText'] = (await text(a, '.messages-thread')).replace(/\s+/g, ' ').slice(0, 120);
+    const before = await pageCall(a, '/api/social/conversations');
+    detail['conversationsBefore'] = (before.body?.conversations ?? []).filter((x: any) => x.with === ids['bola']).length;
     await a.click('.messages-kebab');
     await a.waitFor(`!!document.querySelector('.messages-manage')`, 5000, 'the chat options');
     detail['optionButtons'] = await a.eval<string[]>(`[...document.querySelectorAll('.messages-manage button')].map((x) => x.innerText.trim())`);
-    detail['finding'] = 'Chat options show only Send money in a chat that has no message yet: the Request money button needs conv.kind === "dm", and the conversation does not exist until a first message is sent (MessagesApp.vue: conv is looked up in me.conversations by the open id).';
-    must(await visible(a, '[data-chat="request-money"]'), 'No "Request money" in a new, empty chat: the option appears only after a first message is sent');
+    must(await visible(a, '[data-chat="send-money"]'), 'No "Send money" in the empty chat');
+    must(await visible(a, '[data-chat="request-money"]'), 'No "Request money" in a new, empty chat');
+    await j.shot(a, 'empty-chat-options');
+    await a.click('.messages-kebab');
   });
-  // workaround for the rest of the journey: a first message from each side makes the conversation exist
-  for (const [p, who] of [[a, 'Bola'], [b, 'Ada']] as const) {
-    if (await visible(p, '.messages-manage')) await p.click('.messages-kebab');
-    await p.type('.messages-chat input[placeholder="Message"], .messages-chat textarea', 'hi');
-    await p.press('Enter', 'Enter', 13);
-    await p.waitFor(`document.querySelector('.messages-thread')?.innerText.includes('hi')`, 10000, `the hello from ${who === 'Bola' ? 'Ada' : 'Bola'}`);
-  }
+  await j.run('1b', 'A partner who is not a friend (Cara) gets Send money at most, never Request money', [a], async (detail) => {
+    await playNow(c, lab.base, 'Cara');
+    await openChat(a, 'Cara');
+    await a.click('.messages-kebab');
+    await a.waitFor(`!!document.querySelector('.messages-manage')`, 5000, 'the chat options');
+    detail['optionButtons'] = await a.eval<string[]>(`[...document.querySelectorAll('.messages-manage button')].map((x) => x.innerText.trim())`);
+    detail['requestButton'] = await visible(a, '[data-chat="request-money"]');
+    await j.shot(a, 'non-friend-options');
+    await a.click('.messages-kebab');
+    // what a tap on it does for a non-friend
+    detail['tapResult'] = 'not tried';
+    if (detail['requestButton']) { await a.click('.messages-kebab'); await openForm(a); await a.type('#message-request-amount', '100'); await a.click('button', 'Send request'); await sleep(800); detail['tapResult'] = (await visible(a, '#message-request-help.is-warn')) ? await text(a, '#message-request-help') : 'no message'; await j.shot(a, 'non-friend-refusal'); await a.click('.messages-kebab'); }
+    await openChat(a, 'Bola');
+    must(!detail['requestButton'], 'a non-friend chat offers "Request money" (a tap is refused afterwards: ' + String(detail['tapResult']) + ')');
+  });
   const cash0 = { ada: await cashOf(a), bola: await cashOf(b) };
   await j.run('1', 'Ada asks Bola for ₦500 ("Lunch"): an Open card for both, Pay/Decline vs Cancel request', [a, b], async (detail) => {
     await openForm(a);
@@ -147,12 +164,19 @@ try {
     const refusal = await sendRequest(a, '500', 'Lunch');
     must(!refusal, `the form refused: ${refusal}`);
     cardsSoFar = 1;
+    const conv = ((await pageCall(a, '/api/social/conversations')).body?.conversations ?? []).filter((x: any) => x.with === ids['bola']).length;
+    detail['conversationsAfter'] = conv;
+    must(conv === 1, 'the first request did not create the conversation');
+    detail['chatHeadAfter'] = (await text(a, '.messages-chat .messages-head')).replace(/\s+/g, ' ');
+    must(detail['chatHeadAfter'].toString().includes('Bola'), 'the screen did not stay on / move to the chat with Bola');
     await askerAndPayerSee('open', 1, 'open');
     detail['adaCard'] = await card(a); detail['bolaCard'] = await card(b);
     detail['adaButtons'] = await cardButtons(a); detail['bolaButtons'] = await cardButtons(b);
     must(JSON.stringify(detail['adaButtons']) === JSON.stringify(['Cancel request']), `Ada's buttons: ${detail['adaButtons']}`);
     must(JSON.stringify(detail['bolaButtons']) === JSON.stringify(['Pay', 'Decline']), `Bola's buttons: ${detail['bolaButtons']}`);
     must(/500/.test(String(detail['bolaCard'])) && /Lunch/.test(String(detail['bolaCard'])), 'amount/note missing on the card');
+    must(/You asked Bola/.test(String(detail['adaCard'])), `the asker's card does not say "You asked Bola": ${detail['adaCard']}`);
+    must(/Ada asked you/.test(String(detail['bolaCard'])), `the friend's card does not say "Ada asked you": ${detail['bolaCard']}`);
   });
 
   await j.run('2', 'A second request while one is open: refused with a clear message, the form stays open', [a], async (detail) => {
@@ -167,6 +191,8 @@ try {
 
   await j.run('3', 'Bola pays (confirm step): both show Paid with no buttons; cash -500/+500; statement shows it', [a, b], async (detail) => {
     await tapPay(b);
+    detail['confirmText'] = confirmText;
+    must(/to Ada\?/.test(confirmText), `the pay confirmation does not name Ada: ${confirmText}`);
     await j.shot(b, 'pay-confirm').catch(() => undefined);
     await askerAndPayerSee('paid', 1, 'paid');
     detail['adaButtons'] = await cardButtons(a); detail['bolaButtons'] = await cardButtons(b);
@@ -255,49 +281,140 @@ try {
     must((await cashOf(a)) === cash0.ada + 900, `Ada's cash is ${await cashOf(a)}, expected ${cash0.ada + 900}`);
   });
 
-  await j.run('9', 'Simulated phone 390x844 and 320x568: form, card and buttons fit and are reachable', [a, b], async (detail) => {
+  /** Geometry of one control for a touch: inside the visible viewport and the topmost element at its centre. */
+  const reach = (p: Browser, sel: string, wanted?: string): Promise<Record<string, unknown>> => p.eval(`(() => {
+    const el = [...document.querySelectorAll(${JSON.stringify(sel)})].find((e) => ${wanted ? `e.innerText.includes(${JSON.stringify(wanted)})` : 'true'}); if (!el) return { found: false };
+    const r = el.getBoundingClientRect(), top = document.elementFromPoint(Math.min(Math.max(r.left + r.width / 2, 0), innerWidth - 1), Math.min(Math.max(r.top + r.height / 2, 0), innerHeight - 1));
+    return { found: true, top: Math.round(r.top), bottom: Math.round(r.bottom), h: Math.round(r.height), inViewNow: r.top >= 0 && r.bottom <= innerHeight, hitIsIt: !!top && (top === el || el.contains(top)) };
+  })()`);
+  const panelInfo = (p: Browser): Promise<Record<string, unknown>> => p.eval(`(() => {
+    const m = document.querySelector('.messages-manage'), f = document.querySelector('.messages-foot'), pin = document.querySelector('.pinned');
+    const box = (e) => e ? { h: Math.round(e.getBoundingClientRect().height), top: Math.round(e.getBoundingClientRect().top) } : null;
+    return { viewportH: innerHeight, panel: box(m), panelScrolls: m ? m.scrollHeight > m.clientHeight + 1 : null, panelScrollTop: m ? Math.round(m.scrollTop) : null, composerShown: !!f && getComputedStyle(f).display !== 'none' && f.getBoundingClientRect().height > 1, composerBox: box(f),
+      pinned: pin ? { ...box(pin), expanded: pin.querySelector('.pinned-toggle')?.getAttribute('aria-expanded'), text: pin.innerText.replace(/\\s+/g, ' ').slice(0, 80) } : null, threadH: Math.round(document.querySelector('.messages-thread')?.getBoundingClientRect().height ?? 0) };
+  })()`);
+
+  await j.run('9', 'Simulated phone 390x844 and 320x568: fields, Send reachable; Pinned header collapsed and pins work; options scroll; composer hides then returns; panel closes on success, stays on refusal', [a, b], async (detail) => {
     const sizes: [number, number][] = [[390, 844], [320, 568]];
     detail['sizes'] = {};
-    const unreachable: string[] = [];
+    const bad: string[] = [];
     for (const [w, h] of sizes) {
+      await skip(25 * HOUR); // a new day for the request limits
       for (const p of [a, b]) await phone(p, w, h);
-      await sleep(800);
+      await sleep(900);
       const out: Record<string, unknown> = {};
-      await openForm(a);
-      await a.waitFor(`(document.querySelector('#message-request-amount')?.getBoundingClientRect().width ?? 0) > 1`, 8000, 'the amount field to be drawn');
-      out['amountFieldReach'] = await a.eval<unknown>(`(() => { const f = document.querySelector('#message-request-amount'); f.scrollIntoView({ block: 'center' }); const r = f.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); const home = document.querySelector('.ph-homebar'); return { reachable: top === f, top: top ? (top.className || top.tagName) : null, fieldTop: Math.round(r.top), fieldBottom: Math.round(r.bottom), viewportH: innerHeight, optionsPanelHeight: Math.round(document.querySelector('.messages-manage, .messages-request')?.getBoundingClientRect().height ?? 0), pinPanelHeight: Math.round((document.querySelector('.messages-chat section, .messages-chat [class*="pin"]') || {getBoundingClientRect: () => ({height: 0})}).getBoundingClientRect().height) }; })()`);
-      if (!(out['amountFieldReach'] as any).reachable) {
-        await j.shot(a, `phone${w}-form-unreachable`);
-        // fill it by script so the rest of the card can still be checked; the unreachable field is reported as a failure below
-        await a.eval(`(() => { const f = document.querySelector('#message-request-amount'); f.value = '300'; f.dispatchEvent(new Event('input', { bubbles: true })); const n = document.querySelector('#message-request-note'); n.value = 'Lunch at the long-named buka by the market'; n.dispatchEvent(new Event('input', { bubbles: true })); return true; })()`);
-        unreachable.push(`${w}x${h}`);
-        await a.eval(`[...document.querySelectorAll('.messages-request button')].find((x) => x.innerText.includes('Send request')).click(); true`);
-      } else {
-      await a.type('#message-request-amount', '300'); await a.type('#message-request-note', 'Lunch at the long-named buka by the market');
-      await j.shot(a, `phone${w}-form`);
-      out['form'] = await layoutProbe(a, '.messages-request');
-      out['formPage'] = await layoutProbe(a);
-      await a.click('button', 'Send request');
+      (detail['sizes'] as Record<string, unknown>)[`${w}x${h}`] = out;
+      await clearToasts(a);
+      // 1. nothing pinned: the Pinned header is a closed header
+      out['closedChat'] = await panelInfo(a);
+      await j.shot(a, `phone${w}-chat-closed`);
+      const pinned0 = (out['closedChat'] as any).pinned;
+      if (w === 390 && (!pinned0 || pinned0.expanded !== 'false' || pinned0.h > 70)) bad.push(`${w}: pinned header not a compact closed header (${JSON.stringify(pinned0)})`);
+      const pinsOpenAtStart = pinned0?.expanded === 'true';
+      if (!pinsOpenAtStart) {
+        await a.click('.pinned-toggle'); await sleep(250);
+        out['pinnedOpenedEmpty'] = (await panelInfo(a) as any).pinned; await j.shot(a, `phone${w}-pinned-opened-empty`);
+        await a.click('.pinned-toggle'); await sleep(250);
       }
+      // 2. the options panel with the form open
+      await a.click('.messages-kebab'); await a.waitFor(`!!document.querySelector('.messages-manage')`, 5000, 'options');
+      out['optionsOnly'] = await panelInfo(a); await j.shot(a, `phone${w}-options`);
+      await openForm(a).catch(() => undefined); await sleep(300);
+      if (pinsOpenAtStart) {
+        out['pinsOpenFormOpen'] = await panelInfo(a); out['pinsOpenAmountReach'] = await reach(a, '#message-request-amount'); out['pinsOpenSendReach'] = await reach(a, '.messages-request button', 'Send request');
+        await j.shot(a, `phone${w}-form-with-pins-open`);
+        const r = out['pinsOpenAmountReach'] as any;
+        if (!r.found || !r.inViewNow || !r.hitIsIt) bad.push(`${w}: with a pin present (the Pinned panel opens by itself) the amount field is not on screen/reachable: ${JSON.stringify(r)}`);
+        await a.eval(`document.querySelector('.messages-manage').scrollTop = 99999; true`); await sleep(250);
+        out['pinsOpenSendReachAfterScroll'] = await reach(a, '.messages-request button', 'Send request'); await j.shot(a, `phone${w}-form-with-pins-open-scrolled`);
+        const rs = out['pinsOpenSendReachAfterScroll'] as any;
+        if (!rs.found || !rs.inViewNow || !rs.hitIsIt) bad.push(`${w}: with a pin present the Send request button stays off screen even after scrolling the options panel: ${JSON.stringify(rs)}`);
+        await a.eval(`document.querySelector('.messages-manage').scrollTop = 0; true`);
+        await a.click('.pinned-toggle'); await sleep(300);
+      }
+      out['formOpen'] = await panelInfo(a);
+      out['amountReach'] = await reach(a, '#message-request-amount'); out['noteReach'] = await reach(a, '#message-request-note');
+      out['sendReach'] = await reach(a, '.messages-request button', 'Send request');
+      await j.shot(a, `phone${w}-form-open`);
+      // the panel scrolls: scroll it to the bottom by touch-drag stand-in (scrollTop) and look again
+      await a.eval(`document.querySelector('.messages-manage').scrollTop = 99999; true`); await sleep(250);
+      out['afterScrollToEnd'] = await panelInfo(a); out['sendReachAfterScroll'] = await reach(a, '.messages-request button', 'Send request');
+      await j.shot(a, `phone${w}-form-scrolled-end`);
+      await a.eval(`document.querySelector('.messages-manage').scrollTop = 0; true`);
+      await a.type('#message-request-amount', '5001'); await a.click('button', 'Send request'); await sleep(900);
+      out['refusal'] = { help: (await visible(a, '#message-request-help.is-warn')) ? await text(a, '#message-request-help') : '', formStillOpen: await visible(a, '#message-request-amount') };
+      await j.shot(a, `phone${w}-refusal`);
+      if (!(out['refusal'] as any).formStillOpen) bad.push(`${w}: the options panel closed on a refusal`);
+      for (const [name, r] of [['amount', out['amountReach']], ['note', out['noteReach']]] as const) if (!(r as any).found) bad.push(`${w}: ${name} field missing`);
+      await a.type('#message-request-amount', '300'); await a.type('#message-request-note', 'Lunch at the long-named buka by the market');
+      out['form'] = await layoutProbe(a, '.messages-request');
+      await a.click('button', 'Send request');
       const shown = await askerAndPayerSee('open', cardsSoFar + 1, 'phone open').then(() => true, () => false);
       out['cardAppeared'] = shown;
-      if (!shown) { unreachable.push(`${w}x${h} (request not sent)`); (detail['sizes'] as Record<string, unknown>)[`${w}x${h}`] = out; continue; }
+      const closedAt = Date.now(); out['panelClosedWithinMs'] = await a.waitFor(`!document.querySelector('.messages-manage')`, 8000, 'the options panel to close').then(() => Date.now() - closedAt, () => -1);
+      out['afterSend'] = await panelInfo(a);
+      out['formAfterSend'] = { panelClosed: !(await visible(a, '.messages-manage')), composerBack: (out['afterSend'] as any).composerShown, toasts: await toasts(a) };
+      await j.shot(a, `phone${w}-after-send`);
+      if (!shown) { bad.push(`${w}: request not sent (toasts ${JSON.stringify(await toasts(a))}, help "${(await visible(a, '#message-request-help')) ? await text(a, '#message-request-help') : ''}")`); continue; }
       cardsSoFar += 1;
-      await j.shot(a, `phone${w}-card-asker`); await j.shot(b, `phone${w}-card-payer`);
+      if (!(out['formAfterSend'] as any).panelClosed) bad.push(`${w}: panel stayed open after a successful request`);
+      if (!(out['formAfterSend'] as any).composerBack) bad.push(`${w}: composer did not return after the request`);
+      await j.shot(b, `phone${w}-card-payer`);
       out['cardAsker'] = await layoutProbe(a, '.bubble.is-request:last-of-type'); out['cardPayer'] = await layoutProbe(b, '.bubble.is-request:last-of-type');
-      out['payerPage'] = await layoutProbe(b);
+      out['cardTexts'] = [await card(a), await card(b)];
       out['cardClipped'] = await b.eval<unknown>(`(() => { const c = [...document.querySelectorAll('.bubble.is-request')].at(-1), r = c.getBoundingClientRect(); return { cardRight: Math.round(r.right), viewport: innerWidth, textOverflow: c.scrollWidth > c.clientWidth + 1, noteFull: c.innerText.includes('market') }; })()`);
-      // the payer's real touch: Pay then Confirm, or Decline on the narrow one
-      if (w === 390) { await tapPay(b); await askerAndPayerSee('paid', cardsSoFar, 'paid on phone'); out['paidByTouch'] = true; await j.shot(b, `phone${w}-paid`); }
-      else { await b.click('.request-btn', 'Pay'); await j.shot(b, `phone${w}-confirm`); out['confirmProbe'] = await layoutProbe(b, '.bubble.is-request:last-of-type'); await b.click('.request-btn', 'Back'); await b.click('.request-btn', 'Decline'); await askerAndPayerSee('declined', cardsSoFar, 'declined on phone'); out['declinedByTouch'] = true; }
-      (detail['sizes'] as Record<string, unknown>)[`${w}x${h}`] = out;
+      if (w === 390) { await tapPay(b); await askerAndPayerSee('paid', cardsSoFar, 'paid on phone'); out['paidByTouch'] = true; await j.shot(b, `phone${w}-paid`);
+        // pins when there ARE pins
+        await a.type('.messages-chat textarea, .messages-chat input[placeholder="Message"]', 'pin me please'); await a.press('Enter', 'Enter', 13);
+        await a.waitFor(`[...document.querySelectorAll('.bubble-wrap')].some((x) => x.innerText.includes('pin me please') && x.querySelector('.bubble-more'))`, 15000, 'the sent text message');
+        await a.eval(`(() => { const t = [...document.querySelectorAll('.bubble-wrap')].filter((x) => x.innerText.includes('pin me please')).at(-1); t.querySelector('.bubble-more').scrollIntoView({ block: 'center' }); return true; })()`);
+        const more = await a.eval<{ x: number; y: number }>(`(() => { const t = [...document.querySelectorAll('.bubble-wrap')].filter((x) => x.innerText.includes('pin me please')).at(-1), r = t.querySelector('.bubble-more').getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2 }; })()`);
+        await a.tapAt(more.x, more.y); await sleep(300);
+        await a.click('.menu-item', 'Pin message');
+        await a.waitFor(`document.querySelectorAll('.pinned-row').length > 0`, 10000, 'the pin to show');
+        await sleep(500); out['pinnedJustAfterPin'] = await panelInfo(a); await j.shot(a, `phone${w}-pinned-just-after`);
+        await a.click('.pinned-toggle'); await sleep(300);
+        out['pinned'] = await panelInfo(a); await j.shot(a, `phone${w}-pinned-open`);
+        out['pinRowVisible'] = await visible(a, '.pinned-row'); out['pinRowText'] = out['pinRowVisible'] ? await text(a, '.pinned-row') : '';
+        if (!out['pinRowVisible']) bad.push(`${w}: the pin row is not visible after opening the Pinned header (${JSON.stringify((out['pinned'] as any).pinned)})`);
+      } else {
+        out['pinnedHeaderAt320Collapsed'] = (await panelInfo(a) as any).pinned; await j.shot(a, `phone${w}-pinned-collapsed`);
+        await a.click('.pinned-toggle'); await sleep(300); out['pinnedAt320'] = await panelInfo(a); await j.shot(a, `phone${w}-pinned-open`);
+        await a.click('.pinned-row'); await sleep(500); await j.shot(a, `phone${w}-pin-preview`); out['pinPreviewShown'] = await visible(a, '.messages-pin-preview');
+        await a.click('.messages-pin-preview button', 'Close').catch(() => undefined);
+        await b.click('.request-btn', 'Decline'); await askerAndPayerSee('declined', cardsSoFar, 'declined on phone'); out['declinedByTouch'] = true;
+      }
     }
     for (const p of [a, b]) await desktop(p);
     for (const p of [a, b]) { await p.goto(lab.base + '/'); await gameShown(p); await dismiss(p); }
     await openChat(a, 'Bola'); await openChat(b, 'Ada'); await sleep(1500);
     cardsSoFar = (await cardsOf(a)).length;
-    detail['formFieldUnreachableAt'] = unreachable;
-    must(unreachable.length === 0, `the amount field could not be reached by touch at ${unreachable.join(', ')}`);
+    detail['problems'] = bad;
+    must(bad.length === 0, bad.join(' | '));
+  });
+
+  await j.run('11', 'Server time decides Expired: page clock +2 h then -2 h against a lab clock 23 h / 25 h after the request', [a, b], async (detail) => {
+    await skip(25 * HOUR);
+    await asked('300', 'Skew');
+    lab.advance(23 * HOUR);                       // the server is 23 h into the 24 h window
+    await syncClock(a, lab.offset() + 2 * HOUR); await syncClock(b, lab.offset() + 2 * HOUR);  // pages 2 h AHEAD: they would read 25 h
+    for (const p of [a, b]) { await p.goto(lab.base + '/'); await gameShown(p); await dismiss(p); }
+    await openChat(a, 'Bola'); await openChat(b, 'Ada'); await sleep(1500);
+    detail['pageAheadStates'] = [await cardState(a), await cardState(b)]; detail['pageAheadButtons'] = [await cardButtons(a), await cardButtons(b)];
+    await j.shot(b, 'skew-plus2h-open');
+    lab.advance(2 * HOUR);                        // the server is 25 h in: expired
+    await syncClock(a, lab.offset() - 2 * HOUR); await syncClock(b, lab.offset() - 2 * HOUR);  // pages 2 h BEHIND: they would read 23 h
+    for (const p of [a, b]) { await p.goto(lab.base + '/'); await gameShown(p); await dismiss(p); }
+    await openChat(a, 'Bola'); await openChat(b, 'Ada'); await sleep(1500);
+    detail['pageBehindStates'] = [await cardState(a), await cardState(b)]; detail['pageBehindButtons'] = [await cardButtons(a), await cardButtons(b)];
+    detail['pageDateOffsetHours'] = (await b.eval<number>(`Date.now()`) - Date.now() - lab.offset()) / HOUR;
+    await j.shot(b, 'skew-minus2h-expired');
+    // restore the pages' clocks to the lab's
+    await syncClock(a, lab.offset()); await syncClock(b, lab.offset());
+    for (const p of [a, b]) { await p.goto(lab.base + '/'); await gameShown(p); await dismiss(p); }
+    await openChat(a, 'Bola'); await openChat(b, 'Ada'); cardsSoFar = (await cardsOf(a)).length;
+    must(detail['pageAheadStates']!.toString() === 'open,open', `with the page 2 h ahead the cards read ${detail['pageAheadStates']} (the server says open)`);
+    must(detail['pageBehindStates']!.toString() === 'expired,expired', `with the page 2 h behind the cards read ${detail['pageBehindStates']} (the server says expired)`);
   });
 
   await j.run('10', 'Expiry: a request open for 24 h reads Expired on both cards, has no buttons, and the server refuses a late Pay', [a, b], async (detail) => {
@@ -319,6 +436,7 @@ try {
     detail['cashBola'] = await cashOf(b);
     for (const p of [a, b]) { await p.goto(lab.base + '/'); await gameShown(p); await dismiss(p); }
     await openChat(b, 'Ada'); await openChat(a, 'Bola');
+    await b.waitFor(`document.querySelectorAll('.bubble.is-request').length > 0`, 15000, 'cards after the reload').catch(() => undefined); await sleep(800);
     detail['afterReloadBola'] = [await cardState(b), await card(b), await cardButtons(b)]; detail['afterReloadAda'] = [await cardState(a), await cardButtons(a)];
     await j.shot(b, 'expired-after-reload'); await j.shot(a, 'expired-asker');
     must(seen === 'expired', 'the open card did not turn Expired by itself on the page');
@@ -345,12 +463,23 @@ try {
     must(last && last.state !== 'open', `the request is still ${last?.state}`);
     await a.goto(lab.base + '/'); await gameShown(a); await dismiss(a);
     await openChat(a, 'Bola').catch((e) => { detail['adaOpen'] = String(e).slice(0, 120); });
+    await a.waitFor(`document.querySelectorAll('.bubble.is-request').length > 0`, 10000, 'cards').catch(() => undefined); await sleep(800);
+    detail['adaHead'] = (await text(a, '.messages-chat .messages-head')).replace(/\s+/g, ' ');
     detail['adaCardAfter'] = await card(a);
+    await a.click('.messages-kebab').catch(() => undefined);
+    detail['adaOptionsAfterBlock'] = await a.eval<string[]>(`[...document.querySelectorAll('.messages-manage button')].map((x) => x.innerText.trim())`);
+    await j.shot(a, 'blocked-asker-options');
+    if ((detail['adaOptionsAfterBlock'] as string[]).includes('Request money')) {
+      await openForm(a); await a.type('#message-request-amount', '100'); await a.click('button', 'Send request'); await sleep(900);
+      detail['blockedTapResult'] = (await visible(a, '#message-request-help.is-warn')) ? await text(a, '#message-request-help') : 'no message';
+      await j.shot(a, 'blocked-asker-refusal');
+    }
+    must(!(detail['adaOptionsAfterBlock'] as string[]).includes('Request money'), 'a blocked partner still gets a Request money button (a tap says: ' + String(detail['blockedTapResult']) + ')');
   });
 
   j.notes.push('Expiry after 24 h: the server clock of the lab was moved with the page clocks moved the same amount (the app stamps request ids with the page clock), see step 10.');
 } catch (e) { console.log('ERR', e); }
 finally {
-  const code = j.finish({ idAda: ids['ada'], idBola: ids['bola'] }, { ada: realErrors(a), bola: realErrors(b) });
-  b.close(); a.close(); await lab.stop(); process.exit(code);
+  const code = j.finish({ idAda: ids['ada'], idBola: ids['bola'] }, { ada: realErrors(a), bola: realErrors(b), cara: realErrors(c) });
+  c.close(); b.close(); a.close(); await lab.stop(); process.exit(code);
 }

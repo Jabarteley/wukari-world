@@ -54,6 +54,7 @@ import MessageBubble from './MessageBubble.vue'
 import PinnedMessages from './PinnedMessages.vue'
 import { canPinMessage, createMessagePins } from './messagePins.ts'
 import { createMoneyRequests } from './moneyRequests.ts'
+import { canAskFor } from './moneyRequestModel.ts'
 import type { RequestOp } from './moneyRequestModel.ts'
 import { mergeMessages } from '../../../game/social-model.ts'
 import { isMessagePinsFrame } from './messagePinsFrame.ts'
@@ -316,6 +317,9 @@ function answerCard(item: ThreadItem, id: string, op: RequestOp): void {
   if (!isOutbox(item) && item.request) void requests.answer(id, op, item.from?.name ?? 'them', item.request.amount)
 }
 const requestForm = ref<HTMLFormElement | null>(null)
+/** Asking is offered only where it can succeed: a current friend, nobody blocked. It goes the moment a block or an unfriend arrives. */
+const canRequest = computed(() => canAskFor(partner.value, me.value?.friends ?? [], me.value?.blocked ?? []))
+watch(canRequest, (can) => { if (!can) requests.closeForm() })
 // The form is brought into view when it opens, whatever the screen's height (the options panel scrolls inside the chat).
 watch(() => requests.ask.open, (open) => { if (open) void nextTick(() => requestForm.value?.scrollIntoView?.({ block: 'nearest' })) }, { flush: 'post' })
 async function sendRequest(): Promise<void> {
@@ -438,11 +442,11 @@ const stopPinReconnect = onSocketOpen(() => pins.reconnect())
 onBeforeUnmount(() => { social.openConv = null; stopPinFrames(); stopPinReconnect(); pins.dispose() })
 
 defineExpose({
-  /** Esc inside a conversation goes back to the list first; the next Esc leaves the app. */
+  /** Esc inside a conversation: the open options panel (with its request form) closes first and focus returns to the control that opened it; then the next Esc goes back to the list, and the one after leaves the app. */
   keys(action: string): boolean {
     if (action !== 'cancel' || !ui.open) return false
-    // What is laid over the chat closes first, so one Escape never leaves the chat with a sheet open.
-    if (pinsOpen.value || attachOpen.value || requests.ask.open || ui.manage) { pinsOpen.value = false; attachOpen.value = false; pinPreview.value = null; if (requests.ask.open) requests.closeForm(); ui.manage = false; return true }
+    // What is laid over the chat (the menu, the request form, pins, the attach sheet) closes first, and focus returns to the control that opened the menu; one Escape never leaves the chat with a sheet open.
+    if (pinsOpen.value || attachOpen.value || requests.ask.open || ui.manage) { const menu = ui.manage; pinsOpen.value = false; attachOpen.value = false; pinPreview.value = null; if (requests.ask.open) requests.closeForm(); ui.manage = false; if (menu) closeMenu(); return true }
     back()
     return true
   },
@@ -501,9 +505,9 @@ defineExpose({
         <BaseSheet v-if="conv?.kind === 'group'" :open="ui.manage" label="Group" @close="ui.manage = false">
           <div class="messages-sheet-body"><GroupManage v-if="ui.manage" :conv="conv" :me="me" @left="groupLeft" @player="openCard" /></div>
         </BaseSheet>
-        <ChatMenu v-else-if="partner && ui.manage" :pins="pinCount" :pins-shown="Boolean(conv && pins.state.view && (pinCount || pins.state.view.canManage))" :chat-exists="conv?.kind === 'dm'" :chat-pinned="conv?.pinned === true" :offline="!connected" @close="closeMenu" @pins="ui.manage = false; pinsOpen = true" @send-money="ui.manage = false; sendMoneyTo(partner, title)" @request-money="ui.manage = false; requests.openForm()" @pin-chat="(on) => { ui.manage = false; pinChat(on) }" @hide="ui.manage = false; hideChat()" />
+        <ChatMenu v-else-if="partner && ui.manage" :pins="pinCount" :pins-shown="Boolean(conv && pins.state.view && (pinCount || pins.state.view.canManage))" :can-request="canRequest" :chat-exists="conv?.kind === 'dm'" :chat-pinned="conv?.pinned === true" :offline="!connected" @close="closeMenu" @pins="ui.manage = false; pinsOpen = true" @send-money="ui.manage = false; sendMoneyTo(partner, title)" @request-money="ui.manage = false; requests.openForm()" @pin-chat="(on) => { ui.manage = false; pinChat(on) }" @hide="ui.manage = false; hideChat()" />
         <BaseSheet v-if="partner" :open="requests.ask.open" label="Request money" @close="requests.closeForm()">
-          <form v-if="requests.ask.open" ref="requestForm" class="messages-request messages-sheet-body" aria-label="Request money" @submit.prevent="sendRequest">
+          <form v-if="requests.ask.open && canRequest" ref="requestForm" class="messages-request messages-sheet-body" aria-label="Request money" @submit.prevent="sendRequest">
             <h3>Request money</h3>
             <label for="message-request-amount">Amount to ask for (₦)</label>
             <input id="message-request-amount" v-model="requests.ask.amount" class="messages-field" name="amount" inputmode="numeric" pattern="[0-9]*" maxlength="13" required :aria-invalid="requests.ask.error ? true : undefined" aria-describedby="message-request-help">

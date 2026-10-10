@@ -14,7 +14,7 @@ import { newClientId } from '../social/useSocial.ts'
 import FieldRow from './FieldRow.vue'
 import PhotoManager from './PhotoManager.vue'
 import ShopFront from './ShopFront.vue'
-import { CODE_WORDS, DRAFT_PARTS, PRICE_NOTE, TEMPLATES, WEEKDAYS, adultConsentBody, categoryList, draftClashes, draftOf, draftProblems, emptyDraft, emptyService, iconList, inputOf, mergeDraft, refusalProblem, statusWords, templateList, wordsFor } from './showcaseModel.ts'
+import { CODE_WORDS, DRAFT_PARTS, PRICE_NOTE, TEMPLATES, WEEKDAYS, WEEKDAYS_SHORT, adultConsentBody, categoryList, draftClashes, draftOf, draftProblems, emptyDraft, emptyService, iconList, inputOf, mergeDraft, refusalProblem, statusWords, templateList, wordsFor } from './showcaseModel.ts'
 import type { Problem, ShopDraft, ShopFace } from './showcaseModel.ts'
 
 const props = defineProps<{ city: string; venue?: string }>()
@@ -99,7 +99,24 @@ function loadLatest(): void {
   Object.assign(draft, mergeDraft(base, draft, next)); setBase(next); stale.value = null
   note.value = 'Loaded the latest. Your unsaved changes are still in the form: check them, then save.'
 }
-const staleWords = computed(() => (stale.value ? `Your shop changed somewhere else, and you changed ${stale.value.clash.map((part) => DRAFT_PARTS[part]).join(', ')} here too.` : ''))
+/** The other change, in words: what the other side wrote for a text, or just which part it was. */
+function otherWords(part: keyof ShopDraft): string {
+  const value = stale.value?.latest.shop ? draftOf(stale.value.latest.shop)[part] : undefined
+  const text = typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : ''
+  return text ? `${DRAFT_PARTS[part]} (the other version reads “${text.length > 80 ? `${text.slice(0, 80)}…` : text}”)` : DRAFT_PARTS[part]
+}
+const staleWords = computed(() => (stale.value ? `Your shop changed somewhere else, and you changed ${stale.value.clash.map(otherWords).join('; ')} here too. “Load the latest” keeps your version of ${stale.value.clash.length === 1 ? 'it' : 'them'} and takes everything else from the server; the other version is dropped. “Use the other version” takes the server’s instead, and your edit to ${stale.value.clash.length === 1 ? 'it' : 'them'} is dropped.` : ''))
+/** The server's version of the parts that clash; everything else the seller changed stays. */
+function useOther(): void {
+  const pending = stale.value
+  if (!pending?.latest.shop) return
+  const next = draftOf(pending.latest.shop)
+  const merged = mergeDraft(base, draft, next)
+  for (const part of pending.clash) Object.assign(merged, { [part]: clone(next[part]) })
+  mine.value = pending.latest
+  Object.assign(draft, merged); setBase(next); stale.value = null
+  note.value = 'Loaded the other version. Your other unsaved changes are still in the form.'
+}
 
 function onFocus(): void { if (shop.value && !busy.value && document.visibilityState !== 'hidden') void refresh() }
 onMounted(() => { void load(); window.addEventListener('focus', onFocus); document.addEventListener('visibilitychange', onFocus) })
@@ -187,7 +204,25 @@ const submit = (): Promise<boolean> => send('submit', '/api/showcase/mine/submit
 const hide = (hidden: boolean): Promise<boolean> => send('hide', '/api/showcase/mine/hide', { hidden }, hidden ? 'Hidden.' : 'Shown again.')
 async function removeShop(): Promise<void> { if (await send('remove', '/api/showcase/mine/remove', {}, 'Your shop is removed and its stall is free.')) { Object.assign(draft, emptyDraft(props.venue ?? '')); setBase(draft); confirmRemove.value = false } }
 const removePhoto = (photo: string): Promise<boolean> => send(`photo-remove:${photo}`, '/api/showcase/mine/photos/remove', { photo }, 'Photo removed.')
-const arrange = (change: { order: string[]; captions?: Record<string, string> }): Promise<boolean> => send('photo-arrange', '/api/showcase/mine/photos/arrange', change, 'Photos updated.')
+const photoErrors = reactive<Record<string, { message: string; text: string }>>({})
+/** Order and captions. A caption the server refuses is shown on its own photo, with the focus on it. */
+async function arrange(change: { order: string[]; captions?: Record<string, string> }): Promise<void> {
+  if (busy.value) return
+  busy.value = 'photo-arrange'; note.value = ''
+  for (const key of Object.keys(photoErrors)) delete photoErrors[key]
+  let refused = ''
+  try {
+    const answer = await post('photo-arrange', '/api/showcase/mine/photos/arrange', change)
+    const caption = Object.entries(change.captions ?? {})[0]
+    if (answer.ok) { note.value = 'Photos updated.'; await refresh() } else if (caption && answer.code !== 'revision_conflict' && answer.code !== 'rate_limited') { photoErrors[caption[0]] = { message: answer.message, text: caption[1] }; refused = caption[0] } else { note.value = answer.message; if (answer.code === 'revision_conflict') await refresh() }
+  } finally { busy.value = '' }
+  if (refused) setTimeout(() => { const node = document.getElementById(`se-cap-${refused}`); node?.scrollIntoView({ block: 'center', behavior: reduced() ? 'auto' : 'smooth' }); node?.focus({ preventScroll: true }) }, 0)
+}
+/** Every open day gets Monday's hours: the quick way to a shop that keeps the same hours all week. */
+function sameHours(): void {
+  const first = draft.hours[0]
+  if (first) for (const day of draft.hours) { day.open = first.open; day.from = first.from; day.to = first.to }
+}
 async function declareAdult(): Promise<void> {
   try { await game.fetchJson('/api/growth/consent', { method: 'POST', body: adultConsentBody(props.city) }); note.value = 'Thank you.'; await refresh() } catch (error) { note.value = error instanceof Error ? error.message : 'That did not work.' }
 }
@@ -211,8 +246,11 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
         <button v-if="mine.blocked === 'adult_self_declaration_required'" type="button" class="ui-button is-block" @click="declareAdult">I am 18 or older</button>
       </section>
       <section v-if="stale" class="se-stale" role="alert" aria-label="Your shop changed somewhere else">
-        <p>{{ staleWords }} Your unsaved changes stay in the form.</p>
-        <button type="button" class="ui-button is-primary is-small" @click="loadLatest">Load the latest</button>
+        <p>{{ staleWords }}</p>
+        <div class="se-stale-go">
+          <button type="button" class="ui-button is-primary is-small" @click="loadLatest">Load the latest, keep mine</button>
+          <button type="button" class="ui-button is-small" @click="useOther">Use the other version</button>
+        </div>
       </section>
       <div class="se-toggle" role="group" aria-label="Edit or preview">
         <button type="button" :class="{ 'is-on': view === 'edit' }" :aria-pressed="view === 'edit'" @click="view = 'edit'">Edit</button>
@@ -265,11 +303,12 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
 
             <section id="se-s-hours" class="se-step" aria-labelledby="se-h-hours" tabindex="-1">
               <h3 id="se-h-hours"><span aria-hidden="true">4</span> Opening hours</h3>
+              <button type="button" class="ui-button is-small se-same" @click="sameHours">Use Monday’s hours for every day</button>
               <div v-for="(day, at) in draft.hours" :key="at" class="se-day" :class="{ 'has-error': errors[`hours-${at}`] }">
-                <label class="se-open"><input v-model="day.open" type="checkbox"> {{ WEEKDAYS[at] }}</label>
+                <div class="se-open"><input :id="`se-f-open-${at}`" v-model="day.open" type="checkbox" :aria-labelledby="`se-dn-${at}`"><span :id="`se-dn-${at}`" class="se-dayname" :aria-label="WEEKDAYS[at]" @click="day.open = !day.open">{{ WEEKDAYS_SHORT[at] }}</span></div>
                 <template v-if="day.open">
-                  <label class="se-time">From<input :id="`se-f-hours-${at}`" v-model="day.from" type="time" :aria-invalid="errors[`hours-${at}`] ? 'true' : undefined" :aria-describedby="errors[`hours-${at}`] ? `se-e-hours-${at}` : undefined"></label>
-                  <label class="se-time">To<input v-model="day.to" type="time" :aria-invalid="errors[`hours-${at}`] ? 'true' : undefined" :aria-describedby="errors[`hours-${at}`] ? `se-e-hours-${at}` : undefined"></label>
+                  <div class="se-time"><span :id="`se-tf-${at}`" class="se-sr">From</span><input :id="`se-f-hours-${at}`" v-model="day.from" type="time" :aria-labelledby="`se-dn-${at} se-tf-${at}`" :aria-invalid="errors[`hours-${at}`] ? 'true' : undefined" :aria-describedby="errors[`hours-${at}`] ? `se-e-hours-${at}` : undefined"></div>
+                  <div class="se-time"><span :id="`se-tt-${at}`" class="se-sr">To</span><input :id="`se-f-hours-to-${at}`" v-model="day.to" type="time" :aria-labelledby="`se-dn-${at} se-tt-${at}`" :aria-invalid="errors[`hours-${at}`] ? 'true' : undefined" :aria-describedby="errors[`hours-${at}`] ? `se-e-hours-${at}` : undefined"></div>
                 </template>
                 <span v-else class="se-closed">Closed</span>
                 <p v-if="errors[`hours-${at}`]" :id="`se-e-hours-${at}`" class="se-day-error" role="alert">{{ errors[`hours-${at}`] }}</p>
@@ -278,9 +317,10 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
 
             <section id="se-s-photos" class="se-step" aria-labelledby="se-h-photos" tabindex="-1">
               <h3 id="se-h-photos"><span aria-hidden="true">5</span> Photos ({{ photoCount }} of {{ SHOWCASE.photosMin }} to {{ SHOWCASE.photosMax }})</h3>
-              <p class="se-help">Real photos of your work. The first one is the cover that people see in the list. They are shrunk on your device and stripped of camera details. A new shop’s photos are shown after the first review.</p>
+              <p class="se-help">Real photos of your work. The first one is the cover.</p>
+              <details class="se-more"><summary>More about photos</summary><p class="se-help">The first photo is the cover that people see in the list. Photos are shrunk on your device and stripped of camera details. A new shop’s photos are shown after the first review.</p></details>
               <p v-if="errors.photos" id="se-e-photos" class="se-day-error" role="alert">{{ errors.photos }}</p>
-              <PhotoManager v-if="shop" :photos="photos" :uploads-left="mine.uploadsLeft" :busy="busy !== ''" @arrange="arrange" @remove="removePhoto" @changed="refresh" />
+              <PhotoManager v-if="shop" :photos="photos" :uploads-left="mine.uploadsLeft" :busy="busy !== ''" :errors="photoErrors" @arrange="arrange" @remove="removePhoto" @changed="refresh" />
               <p v-else class="se-help">Save your shop first (the button below), then add photos here.</p>
             </section>
 
@@ -288,7 +328,8 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
               <h3 id="se-h-contact"><span aria-hidden="true">6</span> Contact and payment</h3>
               <FieldRow v-slot="a" field="chat" label="Chat link" hint="Paste the link where people can message you. In your messaging app, look for “Share link” or “Copy chat link”." :error="errors.chat"><input v-bind="a" v-model="draft.chat" type="url" inputmode="url" autocomplete="off" placeholder="Paste your chat link"></FieldRow>
               <FieldRow v-slot="a" field="pay" label="Payment link (optional)" hint="Only if you take payment online: paste the link to your own payment page. Leave it empty if people pay you another way." :error="errors.pay"><input v-bind="a" v-model="draft.pay" type="url" inputmode="url" autocomplete="off"></FieldRow>
-              <p class="se-help">Your links are never shown on the shop. They are given only to signed-in adults who press Chat or Pay, after a screen that says they are leaving Allworld. Changing your shop’s name or either link sends it back for review. A changed payment link shows “Payment details changed recently” for 7 days.</p>
+              <p class="se-help">Your links are never shown on the shop.</p>
+              <details class="se-more"><summary>More about your links</summary><p class="se-help">They are given only to signed-in adults who press Chat or Pay, after a screen that says they are leaving Allworld. Changing your shop’s name or either link sends it back for review. A changed payment link shows “Payment details changed recently” for 7 days.</p></details>
             </section>
 
             <div class="se-save">
@@ -325,7 +366,11 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
 .se-status { margin: 0; padding: 8px 10px; border-radius: var(--r-sm); background: var(--c-fill); font-weight: 600; font-size: 14px; }
 .se-block { padding: 10px; border-radius: var(--r-sm); background: var(--c-amber-soft); color: var(--c-amber-dark); display: grid; gap: 8px; }
 .se-block p, .se-stale p { margin: 0; }
-.se-stale { padding: 10px; border-radius: var(--r-sm); background: var(--c-blue-soft); color: #1d3f9a; display: grid; gap: 8px; justify-items: start; }
+.se-stale { padding: 10px; border-radius: var(--r-sm); background: var(--c-blue-soft); color: #1d3f9a; display: grid; gap: 8px; justify-items: start; font-size: var(--t-body); }
+.se-stale-go { display: flex; flex-wrap: wrap; gap: 6px; }
+.se-more summary { cursor: pointer; font-size: var(--t-small); font-weight: 600; color: var(--c-green-dark); min-height: 32px; display: flex; align-items: center; }
+.se-more p { margin-top: 4px; }
+.se-same { justify-self: start; }
 .se-toggle { display: flex; gap: 6px; }
 .se-toggle button { flex: 1; min-height: var(--tap); border: 1px solid var(--c-line); border-radius: var(--r-md); background: #fff; font: inherit; font-weight: 600; color: var(--c-ink-2); }
 .se-toggle button.is-on { background: var(--c-night); color: #fff; border-color: var(--c-night); }
@@ -353,12 +398,15 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
 .se-colours label { display: grid; gap: 3px; font-size: var(--t-small); font-weight: 600; }
 .se-service { display: grid; gap: var(--s-2); padding: var(--s-3); border: 1px solid var(--c-line); border-radius: var(--r-sm); background: var(--c-canvas); }
 .se-remove { justify-self: end; }
-.se-day { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 8px; align-items: end; padding: 6px 0; border-top: 1px solid var(--c-line); }
+.se-day { display: grid; grid-template-columns: 76px minmax(0, 1fr) minmax(0, 1fr); gap: 4px 6px; align-items: center; padding: 4px 0; border-top: 1px solid var(--c-line); }
 .se-day:first-of-type { border-top: 0; }
-.se-day .se-open { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; min-height: 36px; font-size: var(--t-body); font-weight: 600; }
-.se-time { display: grid; gap: 2px; min-width: 0; font-size: var(--t-small); }
-.se-time input { min-width: 0; }
-.se-closed { grid-column: 1 / -1; font-size: var(--t-small); color: var(--c-muted); }
+/* The day is not a <label>: the shell lays every label in a form out as a grid with a margin, which stacked the checkbox over the name. */
+.se-day .se-open { display: flex; flex-direction: row; align-items: center; gap: 8px; min-height: 44px; font-size: var(--t-body); font-weight: 600; margin: 0; }
+.se-dayname { cursor: pointer; }
+.se-open input[type='checkbox'] { flex: none; width: 20px; height: 20px; margin: 0; }
+.se-time { display: block; min-width: 0; }
+.se-time input { min-width: 0; min-height: 44px; width: 100%; padding-inline: 6px; }
+.se-closed { grid-column: 2 / -1; font-size: var(--t-small); color: var(--c-muted); }
 .se-day-error { grid-column: 1 / -1; margin: 0; font-size: var(--t-body); font-weight: 600; color: var(--c-red-dark); }
 .se-day.has-error input[type='time'] { border-color: var(--c-red); }
 .se-save { display: grid; gap: var(--s-2); }
@@ -369,12 +417,10 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
 .se-note { margin: 0; font-weight: 600; }
 .se-actions { display: grid; gap: 8px; }
 .se-confirm { display: flex; align-items: center; gap: 8px; font-size: var(--t-body); }
-@container (min-width: 720px) {
+@container (min-width: 660px) {
   .se-toggle { display: none; }
   .se[data-view] .se-preview, .se[data-view] .se-edit { display: grid; }
-  .se-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; }
+  .se-grid { grid-template-columns: minmax(0, 1.2fr) minmax(250px, 1fr); align-items: start; gap: var(--s-3); }
   .se-preview { position: sticky; top: 8px; max-height: calc(100 * var(--ui-vh) - 24px); overflow-y: auto; }
-  .se-day { grid-template-columns: minmax(0, 1.2fr) 1fr 1fr; }
-  .se-day .se-open { grid-column: auto; }
 }
 </style>

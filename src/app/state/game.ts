@@ -19,6 +19,8 @@ import { viewLife } from '../../life.ts'
 import { onSystemsCompleted } from '../../game/registry.ts'
 import { contentFor } from '../../game/cities/runtime.ts'
 import { toast as sharedToast } from './toasts.ts'
+import type { ToastAction } from './toasts.ts'
+import { settleToastAction } from './settleRefusal.ts'
 import { play as playSound } from '../../audio/play.ts'
 import { telemetry as realTelemetry } from '../../telemetry/index.ts'
 
@@ -75,7 +77,7 @@ export interface Game {
   fetchJson: FetchJson
   newId(): string
   serverNow(): number
-  toast(text: unknown, kind?: ToastKind): void
+  toast(text: unknown, kind?: ToastKind, action?: ToastAction): void
   on<K extends keyof GameEvents>(event: K, listener: GameEvents[K]): () => void
   /** The page is going away or was hidden: stop polling. */
   stop(): void
@@ -95,7 +97,7 @@ export interface TelemetryHooks {
 const NO_TELEMETRY: TelemetryHooks = { link() {}, needName() {}, session() {}, state() {}, action: () => undefined }
 
 export interface GameOptions extends Pick<ClientOptions, 'fetch' | 'storage' | 'now' | 'setTimeout' | 'clearTimeout' | 'randomUUID' | 'isHidden' | 'isOnline'> {
-  toast?: (text: unknown, kind?: ToastKind) => void
+  toast?: (text: unknown, kind?: ToastKind, action?: ToastAction) => void
   telemetry?: TelemetryHooks
 }
 
@@ -193,7 +195,7 @@ export function createGame(options: GameOptions = {}): Game {
       const result = await client.command(type, args[0]) as CommandResult<T>
       measured?.(result)
       publish()
-      if (!result.ok && result.reason && result.code !== 'busy') toast(result.reason, 'error')
+      if (!result.ok && result.reason && result.code !== 'busy') toast(result.reason, 'error', settleToastAction(result.code, view.value.onboarding))
       else if (result.ok) playSound(`cmd:${type}`)
       return result
     } finally { saving.value -= 1 }

@@ -80,6 +80,10 @@ export function entryFor(id: string, ctx: CompanionContext): CompanionAction | n
 const naira = (value: number): string => `₦${Math.round(value).toLocaleString('en-NG')}`
 const hourWord = (hour: number): string => `${hour % 12 || 12}${hour < 12 ? 'AM' : 'PM'}`
 
+const SETTLE_STALL = 'Settle in first, then you can rent a stall.'
+/** A button a guest cannot use until it has settled in, and that is the only thing in its way: its answer carries the settle-in button. */
+export const needsSettle = (action: CompanionAction, ctx: CompanionContext): boolean => ctx.guest && whyNot(action, ctx) === SETTLE_STALL
+
 /** Why this button cannot work right now (said in the chat in place of doing nothing), or null when it can. */
 export function whyNot(action: CompanionAction, ctx: CompanionContext): string | null {
   switch (action.kind) {
@@ -89,7 +93,7 @@ export function whyNot(action: CompanionAction, ctx: CompanionContext): string |
         const place = ctx.places.find((item) => item.id === params.venue)
         if (place && !place.open) return `${place.label} is closed right now (${place.status.replace(/^Closed · /, '').toLowerCase()}). Stalls can only be rented while the market is open.`
         if (ctx.stallsOpened > 0) return 'You already run a stall. Open Business to manage it.'
-        if (ctx.guest) return 'Settle in first: choose your look and tap Play, then you can rent a stall.'
+        if (ctx.guest) return SETTLE_STALL
       }
       if (action.id === 'person' && params?.gift === true && ctx.cash <= 0) return `You have ${naira(ctx.cash)}, so there is nothing to send yet.`
       if (action.id === 'account-sign-in' && ctx.signedIn) return 'You are signed in already. Your character is kept.'

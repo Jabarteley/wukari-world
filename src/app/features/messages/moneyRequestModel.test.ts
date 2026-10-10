@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { MONEY_REQUEST } from '../../../moneyRequest.ts'
-import { cardButtons, cardState, cardTitle, checkRequest, doneText, otherParty, refusalText } from './moneyRequestModel.ts'
+import { cardButtons, cardState, cardTitle, checkRequest, canAskFor, doneText, otherParty, refusalText } from './moneyRequestModel.ts'
 import type { MoneyRequestView } from '../../../types/social.ts'
 
 const view = (extra: Partial<MoneyRequestView> = {}): MoneyRequestView => ({ id: 'MR-1', amount: 500, state: 'open', mine: false, expiresAt: 1000, payable: true, ...extra })
@@ -47,4 +47,18 @@ test('a card names the other person on each side: the asker sees the friend, the
   assert.equal(cardTitle(true, otherParty(true, 'Ada', 'Bola')), 'You asked Bola')
   assert.equal(cardTitle(false, otherParty(false, 'Ada', 'Bola')), 'Ada asked you')
   assert.equal(otherParty(true, 'Ada', undefined), 'your friend')
+})
+
+test('asking is offered for a current friend only: not a stranger, not blocked by me, not after a block or unfriend (a block ends the friendship)', () => {
+  const friends = [{ id: 'bola' }, { id: 'chi' }]
+  assert.equal(canAskFor('bola', friends, []), true)
+  assert.equal(canAskFor('dayo', friends, []), false, 'not a friend')
+  assert.equal(canAskFor('bola', friends, [{ id: 'bola' }]), false, 'blocked by me')
+  assert.equal(canAskFor('bola', [{ id: 'chi' }], []), false, 'blocked by them or unfriended: no longer in the list')
+  assert.equal(canAskFor(null, friends, []), false)
+  // The live change: the same inputs as the screen reads, before and after the list changes.
+  let list = friends.slice()
+  assert.equal(canAskFor('bola', list, []), true)
+  list = list.filter((friend) => friend.id !== 'bola')
+  assert.equal(canAskFor('bola', list, []), false)
 })

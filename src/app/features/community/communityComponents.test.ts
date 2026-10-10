@@ -40,17 +40,95 @@ async function render(name: string, store: CommunityStore): Promise<string> {
 const text = (html: string): string => html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&#39;/g, '\'').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim()
 const panel = (patch: Partial<CommunityState> = {}) => { const store = makeStore(deps()); store.state.value = communityState(patch); return store }
 
-test('the panel keeps the old markup: classes, labels, the four Walk buttons and the voice controls', async () => {
+test('the panel: place as the title, city under it, connection and head count, the people, the voice control, the movement pad and the chat', async () => {
   const html = await render('CommunityPanel', panel())
   for (const cls of ['community', 'community-header', 'community-connection', 'community-room', 'community-content', 'community-members', 'community-proximity', 'community-movement', 'community-voice', 'community-join-voice', 'community-chat', 'community-messages', 'community-compose', 'community-feedback']) assert.match(html, new RegExp(`class="[^"]*\\b${cls}\\b`), cls)
-  for (const label of ['Walk your character', 'Walk two steps away from the entrance', 'Walk two steps left', 'Walk two steps towards the entrance', 'Walk two steps right', 'Room members', 'Room messages']) assert.ok(html.includes(`aria-label="${label}"`), label)
+  assert.match(html, /<h2>The Park<\/h2>/)
+  assert.match(html, /<p class="community-room">Lagos<\/p>/)
+  assert.doesNotMatch(text(html), /People nearby|Community\b/)
+  assert.match(text(html), /Connected 2 here/)
+  assert.ok(html.includes('aria-label="Room members"') && html.includes('aria-label="Room messages"'))
   assert.match(html, /aria-live="polite"/)
-  assert.match(text(html), /Lagos · The Park/)
-  assert.match(text(html), /Your microphone is off\. Join voice to request access\./)
-  assert.match(html, /<button[^>]*class="community-join-voice"[^>]*>Join voice<\/button>/)
+  assert.match(html, /<button[^>]*class="community-join-voice"[^>]*>.*Join voice<\/button>/)
   assert.doesNotMatch(html, /community-mute|community-leave-voice/, 'Mute and Leave appear only in voice')
-  assert.match(html, /Say hello to this room…/)
-  assert.match(html, /<h3>In this room <span class="community-count">2<\/span><\/h3>/)
+  assert.match(html, /placeholder="Say hello…"/)
+  assert.match(html, /<h3 class="community-sr-only">In this room<\/h3>/)
+  assert.match(text(html), /How voice works/)
+  assert.match(html, /<details class="how"><summary>How voice works<\/summary>/, 'the long voice text is behind a disclosure')
+})
+
+test('alone: a short empty state with one action, no movement pad; with someone else the pad shows', async () => {
+  const state = communityState()
+  const lone = await render('CommunityPanel', panel({ members: [state.members[0]!], memberCount: 1 }))
+  assert.match(text(lone), /Just you/)
+  assert.match(text(lone), /You are the first one here\./)
+  assert.match(lone, /class="community-invite"[^>]*>Invite a friend</)
+  assert.doesNotMatch(lone, /community-movement/)
+  const two = await render('CommunityPanel', panel())
+  assert.match(two, /community-movement/)
+  assert.doesNotMatch(two, /community-alone|community-invite/)
+})
+
+test('the people row: you, someone in voice (live ring, near), someone muted; everyone but you opens a card', async () => {
+  const state = communityState()
+  const members = [...state.members, { id: 'c', name: 'Cy', you: false, label: 'Cy', state: 'Mic muted · out of range', voice: 'muted' as const, range: 'far' as const }]
+  const html = await render('CommunityPanel', panel({ members, memberCount: 3 }))
+  assert.match(html, /<li class="is-off is-you">/)
+  assert.match(html, /<li class="is-live">/)
+  assert.match(html, /<li class="is-muted">/)
+  assert.match(text(html), /In voice · near/)
+  assert.match(text(html), /Muted · far/)
+  assert.match(html, /<button[^>]*class="community-person"[^>]*aria-label="Bea &lt;b&gt;, open card"/)
+  assert.match(html, /<button[^>]*aria-label="Cy, open card"/)
+  assert.doesNotMatch(html, /aria-label="Alex, open card"/, 'you are not a button')
+})
+
+test('the movement pad: four named arrow buttons in a labelled group, disabled without a place, hidden when it cannot walk', async () => {
+  const html = await render('CommunityPanel', panel())
+  assert.match(html, /role="group" aria-label="Walk your character"/)
+  for (const [cls, name] of [['north', 'up'], ['west', 'left'], ['south', 'down'], ['east', 'right']]) assert.match(html, new RegExp(`class="community-${cls}" aria-label="Walk ${name}"`))
+  assert.match(text(html), /Walk closer to hear someone\./)
+  assert.doesNotMatch(await render('CommunityPanel', panel({ walkDisabled: true })), /community-movement/)
+})
+
+test('chat: own lines are marked and named You with a time, a delivery state shows only when it is not Sent, the empty state is one line', async () => {
+  const empty = await render('CommunityPanel', panel())
+  assert.match(text(empty), /No messages yet\. Say hello\./)
+  const at = new Date(2026, 9, 10, 9, 5).getTime()
+  const html = await render('CommunityPanel', panel({ chat: [
+    { key: '1', author: 'Alex', authorId: 'a', body: 'hi', delivery: 'Sent', canRetry: false, at },
+    { key: '2', author: 'Bea', authorId: 'b', body: 'hello', delivery: 'Sent', canRetry: false, at },
+    { key: '3', author: 'Alex', authorId: 'a', body: 'again', delivery: 'Sending…', canRetry: false, at },
+  ] }))
+  assert.equal((html.match(/class="is-mine"/g) ?? []).length, 2)
+  assert.match(html, /<strong>You<\/strong><time>/)
+  assert.match(html, /<strong>Bea<\/strong>/)
+  assert.doesNotMatch(html, /<small>Sent<\/small>/)
+  assert.match(html, /<small>Sending…<\/small>/)
+  assert.doesNotMatch(text(html), /No messages yet/)
+})
+
+test('the composer: a multi-line field, Send is disabled while empty, and a refusal shows beside it and not at the top', async () => {
+  const html = await render('CommunityPanel', panel())
+  assert.match(html, /<textarea id="community-message"[^>]*maxlength="500"/)
+  assert.match(html, /class="community-send"[^>]*aria-label="Send"[^>]*disabled/)
+  const refused = await render('CommunityPanel', panel({ feedback: 'That wording is not allowed here.', refusal: { seq: 1, text: 'That wording is not allowed here.' } }))
+  assert.match(refused, /<p class="community-refusal" role="alert">That wording is not allowed here\.<\/p>/)
+  assert.match(refused, /<p class="community-feedback" role="status"><\/p>/, 'the top notice stays empty for a chat refusal')
+  const other = await render('CommunityPanel', panel({ feedback: 'Microphone permission was denied. You can still use room chat.' }))
+  assert.match(other, /<p class="community-feedback" role="status">Microphone permission was denied\./)
+  assert.doesNotMatch(other, /community-refusal/)
+  const off = await render('CommunityPanel', panel({ composeDisabled: true }))
+  assert.match(off, /<textarea[^>]*disabled/)
+})
+
+test('connection: the status carries a tone, and Reconnect is a notice at the top', async () => {
+  assert.match(await render('CommunityPanel', panel()), /is-good community-connection/)
+  assert.match(await render('CommunityPanel', panel({ connection: 'Connecting…' })), /is-warn community-connection/)
+  const off = await render('CommunityPanel', panel({ connection: 'Disconnected', canReconnect: true, feedback: 'The room is offline. Reconnect when the server is available.' }))
+  assert.match(off, /is-bad community-connection/)
+  assert.match(off, /class="community-notice"/)
+  assert.match(off, /class="community-retry"[^>]*>Reconnect</)
 })
 
 test('everything typed by a player is text, never markup', async () => {
@@ -63,16 +141,16 @@ test('everything typed by a player is text, never markup', async () => {
 test('in voice: Mute and Leave are shown, Join is not, and the mute state is exposed', async () => {
   const state = communityState()
   const html = await render('CommunityPanel', panel({ voice: { ...state.voice, on: true, muted: true, muteLabel: 'Unmute mic', status: 'Microphone muted. No one in voice is within 12 steps. Walk closer to someone in the venue.' } }))
-  assert.match(html, /class="community-mute"[^>]*aria-pressed="true"[^>]*>Unmute mic</)
-  assert.match(html, />Leave voice</)
+  assert.match(html, /class="community-mute"[^>]*aria-pressed="true"[^>]*>.*Unmute mic</)
+  assert.match(html, />Leave</)
   assert.doesNotMatch(html, /community-join-voice/)
 })
 
 test('a joining button is disabled and says what it waits for; Walk is disabled without a place', async () => {
   const state = communityState()
   const html = await render('CommunityPanel', panel({ walkDisabled: true, voice: { ...state.voice, joining: true, canJoin: false, joinLabel: 'Requesting microphone…', status: 'Waiting for microphone permission…' } }))
-  assert.match(html, /community-join-voice[^>]*disabled[^>]*>Requesting microphone…</)
-  assert.match(html, /community-north[^>]*disabled/)
+  assert.match(html, /community-join-voice[^>]*disabled[^>]*>.*Requesting microphone…</)
+  assert.doesNotMatch(html, /community-movement/, 'no pad while Walk has no place to start from')
 })
 
 test('home is private: only the note, no voice, no chat', async () => {

@@ -23,10 +23,16 @@ export interface CreatorUi {
   /** Play was sent from this creator: the life exists (or is being made), so the rest is a move-in, not a Play. */
   played: boolean
   offered: boolean
+  /** The rest of the choices is being sent (one run at a time, whichever instance of the screen started it). */
+  settleRunning: boolean
   /** The city a life that does not exist yet will be born in (chosen on the Home step); null is the one the device is showing. */
   city: string | null
 }
-export const cr = reactive<CreatorUi>({ draft: null, owner: null, step: 'who', origin: null, history: [], error: '', pending: '', settling: false, played: false, offered: false, city: null })
+export const cr = reactive<CreatorUi>({ draft: null, owner: null, step: 'who', origin: null, history: [], error: '', pending: '', settling: false, played: false, offered: false, settleRunning: false, city: null })
 
 /** Whose draft this is: the session and the city. */
 export const ownerOf = (view: Pick<PanelView, 'session' | 'cityId'>, mode: string): string => `${mode}:${view.session?.id ?? 'local'}:${view.cityId}`
+
+/** Whether the draft and step held in `cr` still belong to this screen: the same owner, or a start of this very screen that is on its way (its session and city arriving change the owner, not the person). */
+export const keepsDraft = (ui: Pick<CreatorUi, 'draft' | 'owner' | 'settling'>, owner: string, mode: string): boolean =>
+  ui.draft !== null && (ui.owner === owner || (mode === 'new' && ui.owner?.startsWith('new:') === true && ui.settling))

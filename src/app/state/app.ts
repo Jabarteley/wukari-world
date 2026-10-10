@@ -36,6 +36,7 @@ import { useGame } from './game.ts'
 import type { Game } from './game.ts'
 import { buildRegistry } from './panels.ts'
 import { createShell } from './shell.ts'
+import { settleHandler } from './settleRefusal.ts'
 import { observe as observeSound, play as playSound } from '../../audio/play.ts'
 import { CAMERA_FRAME } from './cameraFrame.ts'
 import { warmCityScenes } from '../scene/loaders.ts'
@@ -79,6 +80,9 @@ function createApp(game: Game, native: readonly VuePanel[]) {
       if (mode === 'map') scene.mapsWanted.value = true
     },
   })
+
+  // Every "settle in first" notice and toast opens the flow through here; its code loads when the first one is pressed.
+  settleHandler.run = () => { void import('../features/start/settleModel.ts').then(({ startSettling }) => { startSettling(shell) }) }
 
   const playerLook = (): PlayerLook => ({ look: game.state.value.onboarding?.look, seed: game.session.value?.id ?? 'you', name: game.state.value.name || game.client.identity.name })
   const cityVenueLabel = (id: string, cityId: string): string => contentFor(cityId).venues.find((venue) => venue.id === id)?.name ?? id
@@ -160,6 +164,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     toast: (text, kind) => game.toast(text, kind),
     onMembers,
     walkBy: (dx, dz) => scene.venue.value?.walkBy?.(dx, dz) === true,
+    openPerson: (player, name) => shell.open('person', { player, name }),
     telemetry: { chunkFailed: (name, error) => { telemetry.chunkFailed(name as never, error); void noteChunkFailure() }, captureError: (error, context) => { telemetry.captureError(error, context) } },
   })
 

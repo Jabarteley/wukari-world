@@ -4,29 +4,29 @@ import type { Message, MessagePinsView } from '../../../types/social.ts'
 
 const props = defineProps<{ pins: MessagePinsView; kind: 'dm' | 'group' | 'house'; loading: boolean; pending: boolean; retryable: boolean; disabled: boolean; error: string }>()
 const emit = defineEmits<{ open: [message: Message | null]; clear: []; retry: []; dismiss: [] }>()
-// With nothing pinned the panel is only its header (the notes inside would take a phone's screen); it opens on a tap.
-const expanded = ref(props.pins.items.length > 0), confirming = ref(false), clearButton = ref<HTMLButtonElement | null>(null)
+// The panel is only its header until it is tapped (the list and notes would take a phone's screen); the header says how many are pinned.
+const expanded = ref(false), confirming = ref(false), clearButton = ref<HTMLButtonElement | null>(null)
 const label = (message: Message): string => message.body.trim() || (message.image ? 'Picture' : message.voice ? 'Voice message' : 'Message')
 const manager = (): string => props.kind === 'group' ? 'Only the group owner can change them.' : props.kind === 'house' ? 'Only the host can change them.' : 'Either person can change them.'
 function cancelClear(): void { confirming.value = false; void nextTick(() => clearButton.value?.focus()) }
 function confirmClear(): void { emit('clear'); confirming.value = false; void nextTick(() => clearButton.value?.focus()) }
-watch(() => props.pins.scope, () => { expanded.value = props.pins.items.length > 0; confirming.value = false; emit('open', null) }, { flush: 'sync' })
+watch(() => props.pins.scope, () => { expanded.value = false; confirming.value = false; emit('open', null) }, { flush: 'sync' })
 </script>
 
 <template>
-  <section v-if="pins.items.length || pins.canManage" class="pinned" aria-labelledby="pinned-title" @keydown.esc="cancelClear">
+  <section v-if="pins.items.length || retryable || error" class="pinned" aria-labelledby="pinned-title" @keydown.esc="cancelClear">
     <header>
       <button type="button" class="pinned-toggle" :aria-expanded="expanded" aria-controls="pinned-list" @click="expanded = !expanded">
-        <strong id="pinned-title">Pinned messages</strong><span aria-hidden="true">{{ expanded ? '−' : '+' }}</span>
+        <strong id="pinned-title">Pinned<template v-if="pins.items.length"> · {{ pins.items.length }}</template><span class="sr-only"> messages</span></strong><span aria-hidden="true">{{ expanded ? '−' : '+' }}</span>
       </button>
-      <button v-if="pins.canManage" ref="clearButton" type="button" class="pinned-clear" :disabled="pending || retryable || disabled" :aria-expanded="confirming" @click="confirming = !confirming">Clear all</button>
+      <button v-if="pins.canManage && pins.items.length" ref="clearButton" type="button" class="pinned-clear" :disabled="pending || retryable || disabled" :aria-expanded="confirming" @click="confirming = !confirming">Clear all</button>
     </header>
     <div v-show="expanded" id="pinned-list">
       <p v-if="!pins.items.length" class="pinned-empty">No shared pins you can see.</p>
       <button v-for="entry in pins.items.slice(0, 3)" :key="entry.message.seq" type="button" class="pinned-row" @click="emit('open', entry.message)">
         <span>{{ entry.message.from?.name ?? 'Message' }}</span><b>{{ label(entry.message) }}</b>
       </button>
-      <p class="pinned-help">Shared with everyone in this chat. {{ manager() }}<template v-if="pins.canManage"> Clear all also removes shared pins you cannot see.</template> Unpinned older messages may leave the kept history.</p>
+      <p class="pinned-help"><span aria-hidden="true">Shared with everyone here.</span><span class="sr-only">Shared with everyone in this chat. {{ manager() }}</span></p>
     </div>
     <div v-if="confirming" class="pinned-confirm" role="alertdialog" aria-modal="false" aria-label="Clear all shared pins">
       <p>Clear all shared pins, including any you cannot see?</p>
@@ -62,4 +62,5 @@ watch(() => props.pins.scope, () => { expanded.value = props.pins.items.length >
 .pinned-retry button:first-child { color: var(--c-green-dark); font-weight: 650; }
 .pinned-toggle:hover, .pinned-clear:hover, .pinned-row:hover, .pinned-confirm button:hover, .pinned-retry button:hover { background: var(--c-fill-2); }
 button:focus-visible { outline: var(--focus); outline-offset: -2px; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 </style>

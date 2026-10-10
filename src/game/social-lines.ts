@@ -4,9 +4,31 @@
  * Apart from social-model.ts on purpose: only screens that are fetched on demand read them, so they are not part of
  * the first download (vite.config.ts). Pure; tested with the model in social.test.ts and live.test.ts.
  */
-import { PRESENCE, agoText } from './social-model.ts';
-import type { PresenceEntry } from './social-model.ts';
-import type { PeopleListing } from '../types/social.ts';
+import type { PeopleListing, PresenceStatus } from '../types/social.ts';
+
+/** One definition of each presence word, used everywhere a player's status is shown. */
+/** One presence word: what it says, the dot class and the hint. */
+export interface PresenceEntry {
+  label: string
+  dot: string
+  hint: string
+}
+export const PRESENCE: Readonly<Record<PresenceStatus, PresenceEntry>> = Object.freeze({
+  online: { label: 'Online', dot: 'on', hint: 'Connected and in a venue right now.' },
+  away: { label: 'Away', dot: 'away', hint: 'Connected, but travelling or between places.' },
+  reconnecting: { label: 'Reconnecting…', dot: 'wait', hint: 'Their connection dropped a moment ago. They may be back within seconds.' },
+  offline: { label: 'Offline', dot: 'off', hint: 'Not connected.' },
+});
+
+/** How long ago a server time was, from the server's `now`: "just now", "5 min ago", "3 h ago", "2 days ago". */
+export function agoText(at: number, now: number): string {
+  const minutes = Math.floor(Math.max(0, now - at) / 60000);
+  if (minutes < 1) return 'just now';
+  if (minutes < 60) return `${minutes} min ago`;
+  if (minutes < 1440) return `${Math.floor(minutes / 60)} h ago`;
+  const days = Math.floor(minutes / 1440);
+  return `${days} day${days === 1 ? '' : 's'} ago`;
+}
 
 /** PRESENCE read by an arbitrary status word, as the people list reports it. */
 const presenceByStatus: Readonly<Record<string, PresenceEntry | undefined>> = PRESENCE;

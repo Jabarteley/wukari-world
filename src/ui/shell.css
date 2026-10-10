@@ -118,6 +118,9 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:linear-grad
 @media(min-width:721px){.is-guest:not(.is-tray-open) .life-hud{display:none}}
 /* ONE line of guidance, on every screen: while the coach line is talking (the first starter goals) it carries the goal's name and what to tap, so the goal chip that says the same thing waits. It is back the moment the coach is silent or dismissed. */
 .has-coach[data-mode=venue] .life-goal{display:none}
+/* The standing "Settle in" entry stays while the coach carries the goal: only the goal chip steps aside. */
+.has-coach[data-mode=venue] .life-goal:has([data-settle-entry]){display:grid}
+.has-coach[data-mode=venue] .life-goal:has([data-settle-entry]) .goal-chip{display:none}
 .life-menu{display:none}
 /* On a wide screen the open menu takes its place in the column, right under the needs strip, and the chips move down: it never lies on top of them. */
 .is-tray-open .life-menu{display:grid;gap:2px;order:-1;padding:8px;background:var(--c-surface-solid);border-radius:var(--r-lg);box-shadow:var(--e-2);pointer-events:auto}
@@ -493,6 +496,10 @@ button.ui-row:hover{background:#f7f9f8}
   /* One line of guidance: while the first-session coach is talking, it carries the goal's name — the chip that repeats it waits. */
   .has-coach[data-mode=venue] .life-goal{display:none}
   .life-goal .life-job{width:fit-content;max-width:100%}
+  /* A guest's standing "Settle in" entry gets the width of its own row, below the top row, so it is never squeezed to its icon. */
+  .life-goal:has([data-settle-entry]){grid-column:1/-1;grid-row:2}
+  .life-sidebar:has([data-settle-entry]) .life-alerts{grid-row:3}
+  .life-sidebar:has([data-settle-entry]) .life-tray{grid-row:4}
   .life-goal .life-job>div{display:flex;align-items:baseline;gap:6px;min-width:0;overflow:hidden}
   .life-goal .life-job strong{flex:0 0 auto;max-width:58%}
   .life-goal .life-job small{flex:1 1 0;min-width:0}

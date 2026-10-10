@@ -1056,6 +1056,8 @@ export interface ServerConfig {
   voiceConfigProvider?: (session: PublicSession) => Promise<{ iceServers: IceServerConfig[]; expiresAt: number }> | { iceServers: IceServerConfig[]; expiresAt: number }
   /** At most 40 characters. */
   buildId: string
+  /** Set only by the Node host in open dev mode (server/open-dev): /api/health says so. */
+  openDev?: true
   votesPerAddress: number
   voteCapMode: 'flag' | 'refuse'
   heartbeatMs: number

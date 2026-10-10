@@ -3,7 +3,7 @@
 // It hangs over the thread (the thread does not move) and closes on a choice, a tap outside or Escape.
 import { nextTick, onMounted, ref } from 'vue'
 
-defineProps<{ pins: number; pinsShown: boolean; chatExists: boolean; chatPinned: boolean; offline: boolean }>()
+defineProps<{ canRequest: boolean; pins: number; pinsShown: boolean; chatExists: boolean; chatPinned: boolean; offline: boolean }>()
 const emit = defineEmits<{ close: []; pins: []; 'send-money': []; 'request-money': []; 'pin-chat': [on: boolean]; hide: [] }>()
 const box = ref<HTMLElement | null>(null)
 onMounted(() => { void nextTick(() => box.value?.querySelector<HTMLElement>('button')?.focus()) })
@@ -21,7 +21,7 @@ function keys(event: KeyboardEvent): void {
   <section ref="box" class="messages-manage chat-menu" role="menu" aria-label="Chat options" @keydown="keys">
     <button v-if="pinsShown" type="button" role="menuitem" data-chat="pins" @click="emit('pins')">Pinned messages<small v-if="pins">{{ pins }}</small></button>
     <button type="button" role="menuitem" data-chat="send-money" @click="emit('send-money')">Send money</button>
-    <button type="button" role="menuitem" data-chat="request-money" :disabled="offline" @click="emit('request-money')">Request money<small v-if="offline">Reconnect first</small></button>
+    <button v-if="canRequest" type="button" role="menuitem" data-chat="request-money" :disabled="offline" @click="emit('request-money')">Request money<small v-if="offline">Reconnect first</small></button>
     <template v-if="chatExists">
       <button type="button" role="menuitem" data-chat="pin-chat" @click="emit('pin-chat', !chatPinned)">{{ chatPinned ? 'Unpin from the top of my chats' : 'Pin to the top of my chats' }}</button>
       <button type="button" role="menuitem" class="is-danger" data-chat="hide" @click="emit('hide')">Delete this chat for me</button>

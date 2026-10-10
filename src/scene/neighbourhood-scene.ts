@@ -4,7 +4,8 @@
  * coordinates; only the camera starts at their own door. Real room peers keep cached avatar rigs.
  */
 import type * as THREE from 'three';
-import { ESTATE, HOUSE_DESIGNS, HOUSE_STYLE, unpackStyle } from '../game/content/world.ts';
+import { ESTATE, HOUSE_DESIGNS, HOUSE_STYLE } from '../game/content/world.ts';
+import { unpackStyle } from './house-style.ts';
 import type { HouseStyle, HouseTierId, LifeState } from '../types/life.ts';
 import type { WorldStreetResponse } from '../types/world.ts';
 import type { HostRest, HostScene, HostWalk, PlayerLook } from '../venue-world.ts';

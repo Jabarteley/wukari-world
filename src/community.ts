@@ -25,7 +25,7 @@ import type { PublicSession } from './types/protocol.ts'
 import { reconnectDelay, STABLE_CONNECTION_MS } from './reconnect.ts'
 import { cityName } from './game/cities/registry.ts'
 import { fetchIceConfig } from './voice-config.ts'
-import { GROUP_CHAT_NOTE, groupHeader } from './game/roomGroups.ts'
+import { GROUP_CHAT_NOTE, groupHeader } from './community-words.ts'
 import type { IceConfig } from './voice-config.ts'
 import { STREET_NETWORK_SCALE } from './game/neighbourhood-space.ts'
 import type {

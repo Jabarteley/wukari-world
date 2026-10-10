@@ -185,22 +185,3 @@ export function starterLayout(grid: number): PlacedItem[] {
   return fitInto(grid, wanted).items;
 }
 
-/** Move a ghost by (dx, dy) tiles, kept inside the plot. Wall items slide along their wall. */
-export function nudge(space: number | Plot, def: Footprinted, at: Placement, dx: number, dy: number): Placement {
-  const { w: wide, d: deep } = plotIn(space);
-  if (def.wall) {
-    const step = dx || dy;
-    return at.rot === 0 ? { x: clampTo(at.x + step, 0, wide - 1), y: 0, rot: 0 } : { x: 0, y: clampTo(at.y + step, 0, deep - 1), rot: 1 };
-  }
-  const { w, h } = footprint(def, at.rot);
-  return { x: clampTo(at.x + dx, 0, Math.max(0, wide - w)), y: clampTo(at.y + dy, 0, Math.max(0, deep - h)), rot: at.rot };
-}
-
-/** Quarter-turn a ghost (wall items hop to the other wall), kept inside the plot. */
-export function turn(space: number | Plot, def: Footprinted, at: Placement): Placement {
-  const { w: wide, d: deep } = plotIn(space);
-  if (def.wall) return at.rot === 0 ? { x: 0, y: clampTo(at.x, 0, deep - 1), rot: 1 } : { x: clampTo(at.y, 0, wide - 1), y: 0, rot: 0 };
-  return nudge(space, def, { ...at, rot: (at.rot + 1) % 4 }, 0, 0);
-}
-
-function clampTo(value: number, min: number, max: number): number { return Math.min(max, Math.max(min, value)); }

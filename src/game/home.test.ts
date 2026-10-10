@@ -8,7 +8,8 @@ import { createLife, dispatch, advanceLife, viewLife, spotsOf } from '../life.ts
 import { systems, emit, modify } from './registry.ts';
 import { makeContext } from './util.ts';
 import { FURNITURE_BLURBS } from './content/furniture-blurbs.ts';
-import { FURNITURE, CATEGORIES, STARTER_FURNITURE, HOME_ACTIVITIES, KINDS, STAR_MULTIPLIER, SELL_REFUND_RATE } from './content/furniture.ts';
+import { CATEGORIES } from '../app/features/home/buyCategories.ts';
+import { FURNITURE, STARTER_FURNITURE, HOME_ACTIVITIES, KINDS, STAR_MULTIPLIER, SELL_REFUND_RATE } from './content/furniture.ts';
 import { INGREDIENTS, RECIPES } from './content/food.ts';
 import { HOUSES, HOUSE_ORDER, MOVE_IN_WEEKS } from './content/housing.ts';
 import { CARS, CAR_ORDER } from './content/cars.ts';
@@ -17,7 +18,8 @@ import type { FurnitureDefinition } from '../types/content.ts';
 import type { EngineEventMap, TripModifierData, SystemDefinition } from '../types/registry.ts';
 import type { LifeContext, LifeState, TravelModeId } from '../types/life.ts';
 import { isRecord } from './util.ts';
-import { checkPlacement, fitInto, findFreeSpot, starterLayout, footprint, nudge, turn, windowSlot, doorSlot } from './home-layout.ts';
+import { checkPlacement, fitInto, findFreeSpot, starterLayout, footprint, windowSlot, doorSlot } from './home-layout.ts';
+import { nudge, turn } from '../app/features/home/ghostMoves.ts';
 
 const NOW = Date.UTC(2026, 0, 5, 8);
 const ctx = makeContext({ now: NOW, cityId: 'lagos', seed: 'home-test' });

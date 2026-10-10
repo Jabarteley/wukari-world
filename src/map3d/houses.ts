@@ -28,7 +28,8 @@
  */
 import { createBatch } from '../scene/build.ts';
 import { leanGeometry } from './city-build.ts';
-import { ESTATE, PLOTS_PER_ESTATE, HOUSE_STYLE, HOUSE_TIERS, unpackStyle } from '../game/content/world.ts';
+import { ESTATE, PLOTS_PER_ESTATE, HOUSE_STYLE, HOUSE_TIERS } from '../game/content/world.ts';
+import { unpackStyle } from '../scene/house-style.ts';
 import { estateLayout } from './estates.ts';
 import { lgaAt } from './lga.ts';
 import type * as THREE from 'three';

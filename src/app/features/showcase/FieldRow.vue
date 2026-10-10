@@ -5,14 +5,15 @@ import { computed } from 'vue'
 
 const props = defineProps<{ field: string; label: string; hint?: string; error?: string }>()
 const id = computed(() => `se-f-${props.field}`)
-const described = computed(() => [props.hint ? `se-h-${props.field}` : '', props.error ? `se-e-${props.field}` : ''].filter(Boolean).join(' ') || undefined)
+const shownHint = computed(() => (props.error ? '' : props.hint))
+const described = computed(() => [shownHint.value ? `se-h-${props.field}` : '', props.error ? `se-e-${props.field}` : ''].filter(Boolean).join(' ') || undefined)
 </script>
 
 <template>
   <div class="fr" :class="{ 'has-error': error }">
     <label :for="id">{{ label }}</label>
     <slot :id="id" :aria-invalid="error ? 'true' : undefined" :aria-describedby="described" />
-    <p v-if="hint" :id="`se-h-${field}`" class="fr-hint">{{ hint }}</p>
+    <p v-if="shownHint" :id="`se-h-${field}`" class="fr-hint">{{ shownHint }}</p>
     <p v-if="error" :id="`se-e-${field}`" class="fr-error" role="alert">{{ error }}</p>
   </div>
 </template>

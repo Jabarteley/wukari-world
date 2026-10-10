@@ -43,7 +43,7 @@ export const TINTS: Record<string, string> = {
   jobs: '#2563eb', messages: '#16a34a', bank: '#0f766e', ride: '#d97706',
   statement: '#475569', invest: '#7c3aed', career: '#0284c7', richlist: '#b7791f',
   goals: '#ea580c', health: '#e11d48', groceries: '#4d9a1a', boutique: '#db2777', houses: '#b45309', cars: '#334155', settings: '#6b7280', help: '#0e8fd6',
-  contacts: '#0d9488', people: '#4f46e5', family: '#c026d3', invite: '#d98200', community: '#0891b2',
+  contacts: '#0d9488', showcase: '#7a4bb0', people: '#4f46e5', family: '#c026d3', invite: '#d98200', community: '#0891b2',
   governor: '#166534', neighbours: '#059669', ads: '#9333ea', business: '#b4541a', 'hunt-sheet': '#0aa5c2', radio: '#1e293b', support: '#dc5a0c',
 };
 /** The part of a panel the Phone reads for colour: its own `tint` or its id. */

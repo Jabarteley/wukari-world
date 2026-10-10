@@ -125,7 +125,7 @@ export function buildRig(assets: Assets, look: Look, opts: BuildOptions = {}): R
       mesh.material = Array.isArray(sm.material) ? sm.material.map(swap) : swap(sm.material);
       mesh.bind(new THREE.Skeleton(used, sm.skeleton.boneInverses), new THREE.Matrix4());
       scene.add(mesh);
-      if (kind === 'body') { scene.remove(bodyMesh); bodyMesh = mesh; return; }
+      if (kind === 'body') { bodyMesh.parent?.remove(bodyMesh); bodyMesh = mesh; return; }
       (kind === 'face' ? faceMeshes : kind === 'hair' ? hairMeshes : garmentMeshes).push(mesh);
       if (kind === 'face') { if (sm.name === 'lids') morphs.lids = mesh; if (sm.name === 'brows') morphs.brows = mesh; if (sm.name === 'mouth') morphs.mouth = mesh; }
     });

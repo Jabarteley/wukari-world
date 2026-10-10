@@ -8,7 +8,7 @@ function chunk(type: string, data: Buffer): Buffer {
 }
 
 function parts(png: Buffer): { ihdr: Buffer; idat: Buffer; others: Buffer[] } {
-  let at = 8; const idat: Buffer[] = []; let ihdr = Buffer.alloc(0);
+  let at = 8; const idat: Buffer[] = []; let ihdr: Buffer = Buffer.alloc(0);
   while (at < png.length) {
     const len = png.readUInt32BE(at), type = png.toString('ascii', at + 4, at + 8), data = png.subarray(at + 8, at + 8 + len);
     if (type === 'IHDR') ihdr = data; else if (type === 'IDAT') idat.push(data);

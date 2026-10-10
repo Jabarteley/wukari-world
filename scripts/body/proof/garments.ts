@@ -174,7 +174,7 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
       const flare = ellipse(a, b, th) * (0.72 + 0.28 * t);
       const pleat = 1 + (dress ? 0.035 : 0.02) * Math.sin(th * 7 + 0.5) * s + 0.012 * Math.sin(th * 13) * s;
       const rr = lerp(r + (dress ? (lod ? 0.085 : 0.055) : 0.04), flare, s) * pleat;
-      return [Math.cos(th) * rr, y + 0.012 * Math.sin(th * 9) * s * t, hipCz + Math.sin(th) * rr];
+      return [Math.cos(th) * rr, y + 0.004 * Math.sin(th * 9) * s * t, hipCz + Math.sin(th) * rr];
     });
     const first = sh.addRing(pts, y * 4.4, hangingWeights(yHip, hem, dress ? 0.6 : 0.18));
     sh.join(prev, first, NT); prev = first;
@@ -201,7 +201,7 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
         const loose = 0.016 + 0.024 * smooth(0.9, 0.6, y) * (1 - smooth(0.35, 0.12, y));
         const pts: V3[] = R.map((r, k) => { const th = (k / n) * Math.PI * 2; return [cx + Math.cos(th) * (r + loose), y, cz + Math.sin(th) * (r + loose * 0.9)]; });
         const first = sh.addRing(pts, 2 + y * 3, legSkin);
-        if (prevLeg >= 0) sh.join(prevLeg, first, n, side === -1);
+        if (prevLeg >= 0) sh.join(prevLeg, first, n, false);
         prevLeg = first;
       }
     }

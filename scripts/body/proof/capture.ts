@@ -20,7 +20,7 @@ const server = await serveProof(port);
 const browser = await Browser.launch(chromePort);
 const cleanup = (): void => { browser.close(); server.close(); };
 process.once('SIGTERM', () => { cleanup(); process.exit(1); });
-const LOOKS = ['woman-braids', 'man-lowcut', 'woman-afro', 'man-afro'];
+const LOOKS = opt('--looks', 'woman-braids,man-lowcut,woman-afro,man-afro').split(',');
 const DESKTOP = { width: 1280, height: 800, scale: 1, mobile: false }, PHONE = { width: 390, height: 844, scale: 1, mobile: true };
 const numbers: Record<string, unknown> = {};
 try {

@@ -39,6 +39,7 @@ import { registeredCityIds, loadCityContent } from '../src/game/cities/registry.
  * The differences a client can see are listed in src/types/protocol.ts (`WORKER:`) and deploy/RECOVERY-ADAPTER.md.
  */
 import { DurableObject } from 'cloudflare:workers';
+import { openDevRefusal } from './open-dev-refusal.ts';
 import { oldCharacterLanding } from './legacy-bridge.ts';
 import { siteFile } from '../server/site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from '../server/admin/host.ts';
@@ -157,6 +158,9 @@ function sealJson(response: Response, url: URL): Response {
 
 export default {
   async fetch(request: Request, env: WorkerEnv): Promise<Response> {
+    // A local-development setting on a deployment is refused outright, before anything else runs (deploy/open-dev-refusal.ts).
+    const misconfigured = openDevRefusal(env);
+    if (misconfigured) return misconfigured;
     return sealJson(await respond(request, env), new URL(request.url));
   },
 };

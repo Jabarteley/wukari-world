@@ -489,6 +489,7 @@ try {
   });
   await scene('34-group', async () => {
     await clearOverlays();
+    await openMessagesApp();
     if (await HERE('.messages-chat')) { await A.click('.messages-back'); await sleep(500); }
     await A.click('button', 'New group'); await sleep(600); await snap('34-new-group');
   });

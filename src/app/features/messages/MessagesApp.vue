@@ -122,6 +122,8 @@ const gate = computed<{ text: string; warn: boolean; retry: boolean; link: boole
   if (!social.me) return { text: 'Loading…', warn: false, retry: false, link: false }
   return null
 })
+/** A lost connection does not take away what is already on screen: with the overview loaded, the chat stays (read-only, the box says why) under a note. */
+const blocked = computed(() => Boolean(gate.value && !(gate.value.link && me.value)))
 /** The one tap that resolves a lost connection ("Try again", "Start a new life"). */
 const linkAction = computed(() => linkWords(view.value)?.action ?? null)
 function runLinkAction(): void {
@@ -353,6 +355,8 @@ function pickAttachment(choice: AttachChoice): void {
 }
 /** The menu was dismissed (not used): the keyboard goes back to the button that opened it. */
 function closeMenu(): void { ui.manage = false; void nextTick(() => rootBox.value?.querySelector<HTMLElement>('.messages-kebab')?.focus()) }
+/** The floating button opens the player search and puts the cursor in it (the search sits at the top of the list). */
+function toggleFind(): void { finding.value = !finding.value; if (finding.value) void nextTick(() => rootBox.value?.querySelector<HTMLInputElement>('#message-player-search')?.focus()) }
 const pinCount = computed(() => pins.state.view?.items.length ?? 0)
 const pinText = computed(() => { const line = pins.state.view?.items[0]?.message; return line ? line.body.trim() || (line.image ? 'Picture' : line.voice ? 'Voice message' : 'Message') : '' })
 const listMode = ref<'all' | 'unread'>('all')
@@ -447,10 +451,13 @@ defineExpose({
 
 <template>
   <div ref="rootBox" class="messages" :class="{ 'panel-fill': Boolean(ui.open) && !gate }">
-    <div v-if="gate" class="messages-note" :class="{ 'is-warn': gate.warn }" role="status">
+    <div v-if="gate && blocked" class="messages-note" :class="{ 'is-warn': gate.warn }" role="status">
       {{ gate.text }} <button v-if="gate.link && linkAction" class="messages-link" type="button" @click="runLinkAction">{{ linkAction.label }}</button><button v-if="gate.retry" class="messages-link" type="button" @click="social.error = null; sync()">Retry</button>
     </div>
     <template v-else-if="me">
+      <div v-if="gate" class="messages-note" :class="{ 'is-warn': gate.warn, 'is-inset': ui.open }" role="status">
+        {{ gate.text }} <button v-if="gate.link && linkAction" class="messages-link" type="button" @click="runLinkAction">{{ linkAction.label }}</button>
+      </div>
       <div v-if="socket !== 'open'" class="messages-note" :class="{ 'is-warn': socket === 'offline', 'is-inset': ui.open }" role="status">
         <template v-if="socket === 'offline'">Live updates are off. <button class="messages-link" type="button" @click="reconnectSocial()">Reconnect</button></template>
         <template v-else>Connecting live updates… new messages still load when you open a chat.</template>
@@ -629,7 +636,7 @@ defineExpose({
           <EmptyState v-if="!me.conversations.length && !toStart.length" icon="messages" title="No chats yet" text="Tap New message to find a player, or tap someone at a venue and press Chat. You can also make a group with your friends.">
             <BaseButton @click="shell.open('people')">See who is here</BaseButton>
           </EmptyState>
-          <div class="messages-fab"><BaseButton class="messages-new" variant="primary" :aria-expanded="finding" @click="finding = !finding; if (finding) rootBox?.scrollIntoView?.({ block: 'start' })"><GameIcon name="plus" :size="18" /> {{ finding ? 'Close player search' : 'New message' }}</BaseButton></div>
+          <div class="messages-fab"><BaseButton class="messages-new" variant="primary" :aria-expanded="finding" @click="toggleFind"><GameIcon name="plus" :size="18" /> {{ finding ? 'Close player search' : 'New message' }}</BaseButton></div>
           <BaseButton small class="messages-settings-toggle" :aria-expanded="showSettings" @click="showSettings = !showSettings">{{ showSettings ? 'Hide chat settings' : 'Chat settings' }}</BaseButton>
           <ChatSettings v-if="showSettings" :prefs="me.prefs" />
         </div>
@@ -747,6 +754,12 @@ defineExpose({
 .messages-update.is-unread .messages-update-body > b { font-weight: 700; }
 .messages-update-body > small { font-size: 12px; line-height: 1.35; color: var(--c-muted); }
 
+/* A short screen (a phone with its keyboard up): the header stays, the thread gets the room; pins stay in the menu and the notification question waits. */
+@media (max-height: 560px) {
+  .messages-pinbar, .messages-ask-notify, .messages-visit { display: none; }
+  .messages-chat .messages-thread { min-height: 48px; }
+  .messages-head { padding-top: 2px; padding-bottom: 2px; }
+}
 .messages-chat { position: relative; display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .messages-head { flex: none; display: flex; align-items: center; gap: 10px; padding: 8px 12px 8px 6px; background: #fff; border-bottom: 1px solid var(--c-line); }
 /* !important because the sheet's own heading rule outranks a scoped class until that sheet is converted. */

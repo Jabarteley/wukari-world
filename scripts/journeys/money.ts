@@ -35,7 +35,9 @@ async function openChat(p: Browser, who: string): Promise<void> {
   if (await visible(p, '[data-conv]', who)) await p.click('[data-conv]', who);
   else {
     await p.click('.messages-new');
+    await sleep(700); // the list glides up to the search field
     await p.type('#message-player-search', who);
+    await sleep(500);
     await p.click('button', 'Find');
     await p.click('[aria-label="Players found"] button', 'Message', 10000);
   }
@@ -87,7 +89,12 @@ async function openMessages(p: Browser): Promise<void> {
     for (let i = 0; i < 5 && !(await p.eval<boolean>(free)); i++) { await p.press('Escape', 'Escape', 27); await sleep(600); }
     await p.click('[data-nav="phone"]');
   }
-  await p.click('.ph-appbtn', 'Messages');
+  // the home screen is still gliding in right after it opens: a press that lands too early is made again
+  for (let tries = 0; tries < 3; tries++) {
+    await sleep(600);
+    await p.click('.ph-appbtn', 'Messages');
+    if (await p.waitFor(`document.querySelector('.messages')`, 5000, 'the Messages app').catch(() => false)) break;
+  }
   await p.waitFor(`document.querySelector('.messages')`, 15000, 'the Messages app');
 }
 async function earn(p: Browser): Promise<number> {
@@ -257,7 +264,8 @@ try {
       await sleep(800);
       const out: Record<string, unknown> = {};
       await openForm(a);
-      out['amountFieldReach'] = await a.eval<unknown>(`(() => { const f = document.querySelector('#message-request-amount'); f.scrollIntoView({ block: 'center' }); const r = f.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); const home = document.querySelector('.ph-homebar'); return { reachable: top === f, top: top ? (top.className || top.tagName) : null, fieldTop: Math.round(r.top), fieldBottom: Math.round(r.bottom), viewportH: innerHeight, optionsPanelHeight: Math.round(document.querySelector('.messages-manage').getBoundingClientRect().height), pinPanelHeight: Math.round((document.querySelector('.messages-chat section, .messages-chat [class*="pin"]') || {getBoundingClientRect: () => ({height: 0})}).getBoundingClientRect().height) }; })()`);
+      await a.waitFor(`(document.querySelector('#message-request-amount')?.getBoundingClientRect().width ?? 0) > 1`, 8000, 'the amount field to be drawn');
+      out['amountFieldReach'] = await a.eval<unknown>(`(() => { const f = document.querySelector('#message-request-amount'); f.scrollIntoView({ block: 'center' }); const r = f.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); const home = document.querySelector('.ph-homebar'); return { reachable: top === f, top: top ? (top.className || top.tagName) : null, fieldTop: Math.round(r.top), fieldBottom: Math.round(r.bottom), viewportH: innerHeight, optionsPanelHeight: Math.round(document.querySelector('.messages-manage, .messages-request')?.getBoundingClientRect().height ?? 0), pinPanelHeight: Math.round((document.querySelector('.messages-chat section, .messages-chat [class*="pin"]') || {getBoundingClientRect: () => ({height: 0})}).getBoundingClientRect().height) }; })()`);
       if (!(out['amountFieldReach'] as any).reachable) {
         await j.shot(a, `phone${w}-form-unreachable`);
         // fill it by script so the rest of the card can still be checked; the unreachable field is reported as a failure below

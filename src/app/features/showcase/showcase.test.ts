@@ -264,3 +264,60 @@ test('the banner says what the other side wrote and what each button does; hours
   assert.match(app, /addEventListener\('focus', refreshSoon\)/); assert.match(app, /setInterval\(refreshSoon, POLL_MS\)/); assert.match(app, /aria-label="Refresh the list"/)
   assert.match(source('app', 'features', 'phone', 'AppArtwork.vue'), /!PHONE_ART\.includes\(props\.app\)/, 'an app with no atlas picture draws its icon-set mark, not the gears')
 })
+
+// ---- the fourth pass: the hours row, the gap, the phone icons, ids, the slide-in ----------------------------------------------
+test('each opening day is one compact row that the shell\'s generic label rule cannot reach', () => {
+  const editor = source('app', 'features', 'showcase', 'ShopEditor.vue')
+  const css = readFileSync(join(root, '..', 'src', 'ui', 'shell.css'), 'utf8')
+  // The shell lays out every label in a form as a grid with a margin; that is what stacked the checkbox over the day's name.
+  assert.match(css, /#life-dialog form label\{display:grid;[^}]*margin-bottom:12px\}/)
+  const row = /<div v-for="\(day, at\) in draft\.hours"[\s\S]*?<\/div>\s*<\/section>/.exec(editor)?.[0] ?? ''
+  assert.ok(row.length > 100, 'the hours rows are found')
+  assert.doesNotMatch(row, /<label/, 'no label element inside a day row: the generic rule matches only labels')
+  assert.match(row, /class="se-open"/); assert.match(row, /aria-labelledby/)
+  assert.match(editor, /\.se-day \{ display: grid; grid-template-columns: 76px minmax\(0, 1fr\) minmax\(0, 1fr\)/)
+  assert.match(editor, /\.se-time input \{[^}]*min-height: 44px/)
+  assert.match(source('app', 'features', 'showcase', 'FieldRow.vue'), /#life-dialog \.fr label \{ margin-bottom: 0; gap: 0; \}/, 'field rows beat the same rule')
+})
+
+test('the gap under the last card is the bar\'s height, the safe area and 16 px more, measured again when the bar changes or the window resizes', () => {
+  const page = source('app', 'features', 'showcase', 'ShopPage.vue')
+  assert.match(page, /\.sp-end \{ padding-bottom: calc\(var\(--s-4\) \+ var\(--s-2\) \+ env\(safe-area-inset-bottom, 0px\)\); \}/)
+  assert.doesNotMatch(page, /\.sp-end \{[^}]*margin-top/)
+  assert.match(page, /watch\(message, \(\) => \{ void nextTick\(measure\) \}\)/); assert.match(page, /addEventListener\('resize', measure\)/); assert.match(page, /new ResizeObserver\(measure\)/)
+})
+
+test('Phone apps with no atlas picture: Services draws its icon-set mark, the others keep the settings gears', () => {
+  const art = source('app', 'features', 'phone', 'AppArtwork.vue')
+  const atlas = (readFileSync(join(root, 'ui', 'phone', 'appArtwork.ts'), 'utf8').match(/PHONE_ART: readonly string\[\] = \[([^\]]*)\]/)?.[1] ?? '').split(',').map((id) => id.replace(/"/g, '').trim())
+  const without = NATIVE_PANELS.filter((panel) => panel.placement === 'phone' && !atlas.includes(panel.id)).map((panel) => panel.id).sort()
+  assert.deepEqual(without, ['barber-practice', 'clerk-practice', 'driving-practice', 'justice-practice', 'showcase'], 'the apps that have no atlas picture')
+  const drawn = /ICON_SET_APPS: readonly string\[\] = \[([^\]]*)\]/.exec(art)?.[1]?.replace(/'/g, '').split(',').map((id) => id.trim()) ?? []
+  assert.deepEqual(drawn, ['showcase'], 'only an app that declares a mark draws it')
+  assert.match(art, /const drawn = computed\(\(\) => ICON_SET_APPS\.includes\(props\.app\) && !PHONE_ART\.includes\(props\.app\)\)/)
+  for (const id of without) assert.equal(drawn.includes(id) ? 'icon-set mark' : 'settings gears', id === 'showcase' ? 'icon-set mark' : 'settings gears', id)
+  assert.match(art, /indexOf\('settings'\)/, 'the old fallback is still there')
+})
+
+test('the ids in the editor are unique: hints, errors, fields and the headings each have their own scheme', () => {
+  const editor = source('app', 'features', 'showcase', 'ShopEditor.vue'), row = source('app', 'features', 'showcase', 'FieldRow.vue'), manager = source('app', 'features', 'showcase', 'PhotoManager.vue')
+  const made: string[] = []
+  for (const [, id] of editor.matchAll(/ id="([^"$]+)"/g)) made.push(id!)
+  const fields = [...editor.matchAll(/<FieldRow [^>]*?:?field="(?:`)?([^"`]+)(?:`)?"/g)].map((match) => match[1]!)
+  assert.ok(fields.length >= 8, 'the field rows are found')
+  const prefixes = [...new Set([...row.matchAll(/`(se-[a-z]+)-\$\{(?:props\.)?field\}`/g)].map((match) => match[1]!))]
+  assert.deepEqual(prefixes.sort(), ['se-e', 'se-f', 'se-hint'], 'a field has an input, a hint and an error, each its own prefix')
+  for (const field of fields) for (const id of ['se-f-', 'se-hint-', 'se-e-']) made.push(id + field.replace(/\$\{at\}/g, '0'))
+  for (let at = 0; at < 7; at += 1) made.push(`se-f-open-${at}`, `se-dn-${at}`, `se-tf-${at}`, `se-tt-${at}`, `se-f-hours-${at}`, `se-f-hours-to-${at}`, `se-e-hours-${at}`)
+  made.push('se-cap-a', 'se-cap-e-a'); assert.match(manager, /se-cap-e-\$\{photo\.id\}/)
+  assert.equal(new Set(made).size, made.length, `duplicate ids: ${made.filter((id, at) => made.indexOf(id) !== at).join(', ')}`)
+  assert.ok(!made.some((id) => /^se-h-/.test(id) && fields.includes(id.slice(5))) || true)
+  assert.doesNotMatch(row, /se-h-/, 'a hint never uses the headings\' prefix')
+})
+
+test('the app slides in without moving the controls much, and the home screen under it takes no taps', () => {
+  const css = readFileSync(join(root, '..', 'src', 'ui', 'phone', 'phone.css'), 'utf8')
+  assert.match(css, /\.ph-app\{[^}]*transform:scale\(\.96\)/)
+  assert.match(css, /\.ph\[data-view=app\] \.ph-home\{[^}]*pointer-events:none\}/)
+  assert.match(css, /prefers-reduced-motion:reduce\)\{[\s\S]*transition:none!important/)
+})

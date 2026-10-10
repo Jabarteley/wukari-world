@@ -14,7 +14,7 @@ import { newClientId } from '../social/useSocial.ts'
 import FieldRow from './FieldRow.vue'
 import PhotoManager from './PhotoManager.vue'
 import ShopFront from './ShopFront.vue'
-import { CODE_WORDS, DRAFT_PARTS, PRICE_NOTE, TEMPLATES, WEEKDAYS, adultConsentBody, categoryList, draftClashes, draftOf, draftProblems, emptyDraft, emptyService, iconList, inputOf, mergeDraft, refusalProblem, statusWords, templateList, wordsFor } from './showcaseModel.ts'
+import { CODE_WORDS, DRAFT_PARTS, PRICE_NOTE, TEMPLATES, WEEKDAYS, WEEKDAYS_SHORT, adultConsentBody, categoryList, draftClashes, draftOf, draftProblems, emptyDraft, emptyService, iconList, inputOf, mergeDraft, refusalProblem, statusWords, templateList, wordsFor } from './showcaseModel.ts'
 import type { Problem, ShopDraft, ShopFace } from './showcaseModel.ts'
 
 const props = defineProps<{ city: string; venue?: string }>()
@@ -305,10 +305,10 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
               <h3 id="se-h-hours"><span aria-hidden="true">4</span> Opening hours</h3>
               <button type="button" class="ui-button is-small se-same" @click="sameHours">Use Monday’s hours for every day</button>
               <div v-for="(day, at) in draft.hours" :key="at" class="se-day" :class="{ 'has-error': errors[`hours-${at}`] }">
-                <label class="se-open"><input v-model="day.open" type="checkbox"><span>{{ WEEKDAYS[at] }}</span></label>
+                <div class="se-open"><input :id="`se-f-open-${at}`" v-model="day.open" type="checkbox" :aria-labelledby="`se-dn-${at}`"><span :id="`se-dn-${at}`" class="se-dayname" :aria-label="WEEKDAYS[at]" @click="day.open = !day.open">{{ WEEKDAYS_SHORT[at] }}</span></div>
                 <template v-if="day.open">
-                  <label class="se-time"><span>From</span><input :id="`se-f-hours-${at}`" v-model="day.from" type="time" :aria-invalid="errors[`hours-${at}`] ? 'true' : undefined" :aria-describedby="errors[`hours-${at}`] ? `se-e-hours-${at}` : undefined"></label>
-                  <label class="se-time"><span>To</span><input v-model="day.to" type="time" :aria-invalid="errors[`hours-${at}`] ? 'true' : undefined" :aria-describedby="errors[`hours-${at}`] ? `se-e-hours-${at}` : undefined"></label>
+                  <div class="se-time"><span :id="`se-tf-${at}`" class="se-sr">From</span><input :id="`se-f-hours-${at}`" v-model="day.from" type="time" :aria-labelledby="`se-dn-${at} se-tf-${at}`" :aria-invalid="errors[`hours-${at}`] ? 'true' : undefined" :aria-describedby="errors[`hours-${at}`] ? `se-e-hours-${at}` : undefined"></div>
+                  <div class="se-time"><span :id="`se-tt-${at}`" class="se-sr">To</span><input :id="`se-f-hours-to-${at}`" v-model="day.to" type="time" :aria-labelledby="`se-dn-${at} se-tt-${at}`" :aria-invalid="errors[`hours-${at}`] ? 'true' : undefined" :aria-describedby="errors[`hours-${at}`] ? `se-e-hours-${at}` : undefined"></div>
                 </template>
                 <span v-else class="se-closed">Closed</span>
                 <p v-if="errors[`hours-${at}`]" :id="`se-e-hours-${at}`" class="se-day-error" role="alert">{{ errors[`hours-${at}`] }}</p>
@@ -398,13 +398,15 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
 .se-colours label { display: grid; gap: 3px; font-size: var(--t-small); font-weight: 600; }
 .se-service { display: grid; gap: var(--s-2); padding: var(--s-3); border: 1px solid var(--c-line); border-radius: var(--r-sm); background: var(--c-canvas); }
 .se-remove { justify-self: end; }
-.se-day { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 4px 8px; align-items: center; padding: 4px 0; border-top: 1px solid var(--c-line); }
+.se-day { display: grid; grid-template-columns: 76px minmax(0, 1fr) minmax(0, 1fr); gap: 4px 6px; align-items: center; padding: 4px 0; border-top: 1px solid var(--c-line); }
 .se-day:first-of-type { border-top: 0; }
-.se-day .se-open { grid-column: 1 / -1; display: flex; flex-direction: row; align-items: center; gap: 8px; min-height: 36px; font-size: var(--t-body); font-weight: 600; }
+/* The day is not a <label>: the shell lays every label in a form out as a grid with a margin, which stacked the checkbox over the name. */
+.se-day .se-open { display: flex; flex-direction: row; align-items: center; gap: 8px; min-height: 44px; font-size: var(--t-body); font-weight: 600; margin: 0; }
+.se-dayname { cursor: pointer; }
 .se-open input[type='checkbox'] { flex: none; width: 20px; height: 20px; margin: 0; }
-.se-time { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 6px; min-width: 0; font-size: var(--t-small); }
-.se-time input { min-width: 0; min-height: 40px; }
-.se-closed { grid-column: 1 / -1; font-size: var(--t-small); color: var(--c-muted); }
+.se-time { display: block; min-width: 0; }
+.se-time input { min-width: 0; min-height: 44px; width: 100%; padding-inline: 6px; }
+.se-closed { grid-column: 2 / -1; font-size: var(--t-small); color: var(--c-muted); }
 .se-day-error { grid-column: 1 / -1; margin: 0; font-size: var(--t-body); font-weight: 600; color: var(--c-red-dark); }
 .se-day.has-error input[type='time'] { border-color: var(--c-red); }
 .se-save { display: grid; gap: var(--s-2); }

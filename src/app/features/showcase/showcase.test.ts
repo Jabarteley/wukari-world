@@ -9,6 +9,7 @@ import { test } from 'node:test'
 import { SHOWCASE, SHOWCASE_CATEGORIES, SHOWCASE_ICONS, SHOWCASE_TEMPLATES } from '../../../types/showcase.ts'
 import type { ShowcaseMine } from '../../../types/showcase.ts'
 import { SHOWCASE_PANELS, showcase } from './register.ts'
+import { closeTopOverlay, overlayCount, pushOverlay } from './overlays.ts'
 import { NATIVE_PANELS } from '../panels.ts'
 import { CATEGORY_LABELS, CODE_WORDS, ICON_GLYPHS, TEMPLATES, WEEKDAYS, adultConsentBody, directoryPath, draftChanges, draftClashes, draftIssues, draftOf, draftProblems, emptyDraft, hoursLines, inkFor, inputOf, makeCover, mergeDraft, movePhoto, openStatus, photoAlt, photoUrl, refusalProblem, sellerPrice, shopPath, statusWords, weekLines, wordsFor } from './showcaseModel.ts'
 
@@ -217,4 +218,49 @@ test('photo order: the first is the cover, moving and making a cover keep every 
   assert.equal(photoAlt('Ada Braids', { caption: 'Knotless braids, done' }, 0, 3), 'Knotless braids, done')
   assert.equal(photoAlt('Ada Braids', {}, 1, 3), 'Ada Braids, photo 2 of 3')
   assert.equal(SHOWCASE.caption, 60)
+})
+
+// ---- the third pass: Escape, widths, the bar, caption errors, refresh ---------------------------------------------------------
+test('Escape closes the photo viewer and nothing else: the app\'s key hook answers for it, then for the shop page, and the viewer gives the focus back', () => {
+  const seen: string[] = []
+  const forgetA = pushOverlay(() => seen.push('a')), forgetB = pushOverlay(() => seen.push('b'))
+  assert.equal(overlayCount(), 2)
+  assert.equal(closeTopOverlay(), true); assert.deepEqual(seen, ['b'], 'the last opened closes first')
+  forgetB()
+  assert.equal(overlayCount(), 1, 'forgetting one already closed changes nothing more')
+  forgetA(); assert.equal(overlayCount(), 0)
+  assert.equal(closeTopOverlay(), false, 'with nothing open the key is not handled, so the shell may close the app')
+  const app = source('app', 'features', 'showcase', 'ShowcaseApp.vue'), gallery = source('app', 'features', 'showcase', 'PhotoGallery.vue')
+  assert.match(app, /defineExpose\(\{ keys: \(action: string\): boolean => \{\s*if \(action !== 'cancel'\) return false\s*if \(closeTopOverlay\(\)\) return true\s*if \(selected\.value\) \{ selected\.value = null; return true \}/)
+  assert.match(gallery, /pushOverlay\(close\)/); assert.match(gallery, /back\?\.focus\(\)/, 'focus returns to the thumbnail that opened it')
+  assert.match(source('app', 'features', 'phone', 'PanelHost.vue'), /inner\.value\?\.keys\?\.\(action\)/, 'the shell reaches the panel through exposed keys')
+})
+
+test('the side-by-side editor starts at a width the wide panels reach, and the Chat and Pay bar is solid, as wide as the cards, short, and leaves a gap of its own height', () => {
+  const editor = source('app', 'features', 'showcase', 'ShopEditor.vue')
+  const width = Number(/@container \(min-width: (\d+)px\)/.exec(editor)?.[1])
+  assert.ok(width >= 640 && width <= 690, `the preview appears from ${width}px (the panels are 702 and 780 wide)`)
+  const page = source('app', 'features', 'showcase', 'ShopPage.vue')
+  const bar = /\.sp-bar \{[^}]*\}/.exec(page)?.[0] ?? ''
+  assert.match(bar, /background: #fff/); assert.doesNotMatch(bar, /margin: 0 calc|rgb\(255 255 255/, 'no translucent strip wider than the content')
+  assert.match(page, /aria-label="Chat with the seller"[^>]*>Chat</); assert.match(page, /aria-label="Pay the seller"[^>]*>Pay</)
+  assert.match(page, /class="sp-end" :style="\{ height: `\$\{barHeight\}px` \}"/); assert.match(page, /ResizeObserver/)
+  assert.match(page, /'Sign in to chat or pay\.'/, 'a prompt is one short line with one action')
+})
+
+test('a refused photo caption is shown on its own photo, with the focus, and a refusal is not said twice on one field', () => {
+  const manager = source('app', 'features', 'showcase', 'PhotoManager.vue'), editor = source('app', 'features', 'showcase', 'ShopEditor.vue'), row = source('app', 'features', 'showcase', 'FieldRow.vue')
+  assert.match(manager, /id="se-cap-e-\$\{photo\.id\}"|:id="`se-cap-e-\$\{photo\.id\}`"/); assert.match(manager, /aria-describedby/)
+  assert.match(editor, /photoErrors\[caption\[0\]\] = \{ message: answer\.message, text: caption\[1\] \}/)
+  assert.match(editor, /getElementById\(`se-cap-\$\{refused\}`\)/)
+  assert.match(row, /const shownHint = computed\(\(\) => \(props\.error \? '' : props\.hint\)\)/)
+  assert.ok(CODE_WORDS.contact_not_allowed, 'the words for a phone number in a caption exist')
+})
+
+test('the banner says what the other side wrote and what each button does; hours have a one-tap "same every day"; the list refreshes', () => {
+  const editor = source('app', 'features', 'showcase', 'ShopEditor.vue'), app = source('app', 'features', 'showcase', 'ShowcaseApp.vue')
+  assert.match(editor, /the other version reads/); assert.match(editor, /Load the latest, keep mine/); assert.match(editor, /Use the other version/)
+  assert.match(editor, /function sameHours\(\)/)
+  assert.match(app, /addEventListener\('focus', refreshSoon\)/); assert.match(app, /setInterval\(refreshSoon, POLL_MS\)/); assert.match(app, /aria-label="Refresh the list"/)
+  assert.match(source('app', 'features', 'phone', 'AppArtwork.vue'), /!PHONE_ART\.includes\(props\.app\)/, 'an app with no atlas picture draws its icon-set mark, not the gears')
 })

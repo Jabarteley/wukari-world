@@ -60,6 +60,12 @@ export interface BuildOptions { face?: boolean; hair?: boolean; garment?: boolea
 /** Which part files a look wears (names without extension). */
 export function partNames(look: Look, opts: BuildOptions = {}): string[] {
   const out: string[] = [];
+  if (opts.lod === 'crowd') {
+    out.push(`body-lod-${look.body}`);
+    if (look.hair !== 'none') out.push(`hair-${look.hair}-lod-${look.body}`);
+    if (look.garment !== 'none') out.push(`${look.garment}-lod-${look.body}`);
+    return out;
+  }
   if (opts.face !== false) out.push(`face-${look.body}`);
   if (look.hair !== 'none' && opts.hair !== false) out.push(`hair-${look.hair}-${look.body}`);
   if (look.gele && opts.hair !== false) out.push(`gele-${look.body}`);
@@ -73,7 +79,7 @@ export function buildRig(assets: Assets, look: Look, opts: BuildOptions = {}): R
   const scene = clone(src.scene);
   const root = new THREE.Group(); root.add(scene);
   const bones: Record<string, THREE.Bone> = {};
-  let bodyMesh!: THREE.SkinnedMesh;
+  let bodyMesh!: THREE.SkinnedMesh;  // replaced by the thinned body at crowd distance
   scene.traverse((n) => { if ((n as THREE.Bone).isBone) bones[n.name] = n as THREE.Bone; if ((n as THREE.SkinnedMesh).isSkinnedMesh) bodyMesh = n as THREE.SkinnedMesh; });
   const baseMap = (src.scene.getObjectByProperty('isSkinnedMesh', true) as THREE.SkinnedMesh).material as THREE.MeshStandardMaterial;
   const map = baseMap.map!;
@@ -92,7 +98,7 @@ export function buildRig(assets: Assets, look: Look, opts: BuildOptions = {}): R
   const mouthInMat = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.6 });
   materials.push(eyeMat, browMat, lipMat, mouthInMat);
 
-  const attach = (part: GLTF, kind: 'face' | 'hair' | 'garment'): void => {
+  const attach = (part: GLTF, kind: 'face' | 'hair' | 'garment' | 'body'): void => {
     part.scene.traverse((n) => {
       const sm = n as THREE.SkinnedMesh;
       if (!sm.isSkinnedMesh) return;
@@ -119,6 +125,7 @@ export function buildRig(assets: Assets, look: Look, opts: BuildOptions = {}): R
       mesh.material = Array.isArray(sm.material) ? sm.material.map(swap) : swap(sm.material);
       mesh.bind(new THREE.Skeleton(used, sm.skeleton.boneInverses), new THREE.Matrix4());
       scene.add(mesh);
+      if (kind === 'body') { scene.remove(bodyMesh); bodyMesh = mesh; return; }
       (kind === 'face' ? faceMeshes : kind === 'hair' ? hairMeshes : garmentMeshes).push(mesh);
       if (kind === 'face') { if (sm.name === 'lids') morphs.lids = mesh; if (sm.name === 'brows') morphs.brows = mesh; if (sm.name === 'mouth') morphs.mouth = mesh; }
     });
@@ -126,7 +133,7 @@ export function buildRig(assets: Assets, look: Look, opts: BuildOptions = {}): R
   for (const n of partNames(look, opts)) {
     const part = assets.parts.get(n);
     if (!part) continue;
-    attach(part, n.startsWith('face') ? 'face' : n.startsWith('hair') || n.startsWith('gele') ? 'hair' : 'garment');
+    attach(part, n.startsWith('body') ? 'body' : n.startsWith('face') ? 'face' : n.startsWith('hair') || n.startsWith('gele') ? 'hair' : 'garment');
   }
   // The body under a garment: the garment parts record which body triangles they cover; the body index is cut accordingly.
   if (garmentMeshes.length) hideCovered(bodyMesh, look);

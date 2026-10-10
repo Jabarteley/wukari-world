@@ -52,7 +52,7 @@ export function headModel(body: BodyData): HeadModel {
   const dir = (theta: number, phi: number): V3 => [Math.sin(theta) * Math.cos(phi), Math.sin(phi), Math.cos(theta) * Math.cos(phi)];
   const surface = (theta: number, phi: number): V3 => { const d = dir(theta, phi), r = reach(d) || 0.1; return [centre[0] + d[0] * r, centre[1] + d[1] * r, centre[2] + d[2] * r]; };
   const elevationAt = (theta: number, y: number): number => {
-    let lo = -0.2, hi = Math.PI / 2 - 0.02;
+    let lo = -0.95, hi = Math.PI / 2 - 0.02;
     for (let i = 0; i < 22; i++) { const mid = (lo + hi) / 2; if (surface(theta, mid)[1] < y) lo = mid; else hi = mid; }
     return (lo + hi) / 2;
   };
@@ -117,7 +117,7 @@ function skullShell(b: Builder, head: HeadModel, line: Hairline, o: ShellOptions
   }
 }
 
-function afro(body: BodyData): Builder {
+function afro(body: BodyData, lod: boolean): Builder {
   const head = headModel(body), b = new Builder();
   const Rb = body.key === 'female' ? 0.168 : 0.155, cb: V3 = [head.centre[0], head.centre[1] + 0.012, head.centre[2] - 0.03];
   // distance from the skull centre to the ball along d (the centre is inside the ball)
@@ -128,17 +128,17 @@ function afro(body: BodyData): Builder {
   };
   skullShell(b, head, hairline(body.key, 'afro'), {
     ball,
-    rows: 20, around: 48, bump: 0.004, uvScale: 9, sway: 0.0,
+    rows: lod ? 8 : 20, around: lod ? 22 : 48, bump: 0.004, uvScale: 9, sway: 0.0,
     offset: () => 0.004,
   });
   return b;
 }
 
-function lowcut(body: BodyData): Builder[] {
+function lowcut(body: BodyData, lod: boolean): Builder[] {
   const head = headModel(body);
   const b = new Builder();
   skullShell(b, head, hairline(body.key, 'lowcut'), {
-    rows: 12, around: 56, bump: 0.0012, uvScale: 14, fade: 0.017,
+    rows: lod ? 5 : 12, around: lod ? 24 : 56, bump: 0.0012, uvScale: 14, fade: 0.017,
     offset: (_th, t) => 0.0022 + 0.0055 * smooth(0.0, 0.7, t),
   });
   return [b];
@@ -148,7 +148,7 @@ function lowcut(body: BodyData): Builder[] {
 function braids(body: BodyData, detail: 'full' | 'lod'): Builder[] {
   const head = headModel(body), line = hairline(body.key, 'braids');
   const cap = new Builder();
-  skullShell(cap, head, line, { rows: 10, around: 44, bump: 0.0006, uvScale: 10, offset: () => 0.0042 });
+  skullShell(cap, head, line, { rows: detail === 'lod' ? 5 : 10, around: detail === 'lod' ? 22 : 44, bump: 0.0006, uvScale: 10, offset: () => 0.0042 });
   const b = new Builder();
   const rand = rng(body.key === 'female' ? 21 : 22);
   const shoulderY = 1.49;
@@ -224,7 +224,7 @@ function braids(body: BodyData, detail: 'full' | 'lod'): Builder[] {
 
 export type HairStyle = 'afro' | 'braids' | 'lowcut';
 export async function buildHair(body: BodyData, style: HairStyle, detail: 'full' | 'lod' = 'full'): Promise<{ glb: Buffer; triangles: number; vertices: number }> {
-  const builders = style === 'afro' ? [afro(body)] : style === 'lowcut' ? lowcut(body) : braids(body, detail);
+  const builders = style === 'afro' ? [afro(body, detail === 'lod')] : style === 'lowcut' ? lowcut(body, detail === 'lod') : braids(body, detail);
   const meshes = builders.map((b, i) => {
     const mat = new THREE.MeshStandardMaterial(); mat.name = style === 'lowcut' ? 'hairfade' : 'hair';
     return { name: style === 'braids' ? (i === 0 ? 'hair-cap' : 'hair-braid') : `hair-${style}`, geometry: b.geometry(), material: mat };

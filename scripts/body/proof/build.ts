@@ -8,6 +8,7 @@ import { buildFace } from './face.ts';
 import * as tex from './textures.ts';
 import { buildGarment } from './garments.ts';
 import { buildHair } from './hair.ts';
+import { buildBodyLod } from './lod.ts';
 
 const OUT = join(REPO, 'scripts', 'body', 'proof', 'assets');
 mkdirSync(OUT, { recursive: true });
@@ -23,5 +24,10 @@ for (const key of ['female', 'male'] as BodyKey[]) {
   const body = await loadBodyData(key);
   if (want('face')) { const f = await buildFace(body); write(`face-${key}.glb`, f.glb); if (key === 'female') write('eye.png', f.eye); }
   if (want('hair')) for (const style of ['afro', 'braids', 'lowcut'] as const) { const h = await buildHair(body, style); write(`hair-${style}-${key}.glb`, h.glb); console.log('  triangles', h.triangles); }
+  if (want('lod')) {
+    const l = await buildBodyLod(body); write(`body-lod-${key}.glb`, l.glb); console.log('  triangles', l.triangles);
+    for (const style of ['afro', 'braids', 'lowcut'] as const) { const h = await buildHair(body, style, 'lod'); write(`hair-${style}-lod-${key}.glb`, h.glb); console.log('  triangles', h.triangles); }
+    const gk = key === 'female' ? 'dress' : 'kaftan'; const g = await buildGarment(body, { kind: gk, lod: true }); write(`${gk}-lod-${key}.glb`, g.glb); console.log('  triangles', g.triangles);
+  }
   if (want('garments')) { const g = await buildGarment(body, { kind: key === 'female' ? 'dress' : 'kaftan' }); write(`${key === 'female' ? 'dress' : 'kaftan'}-${key}.glb`, g.glb); console.log('  triangles', g.triangles); }
 }

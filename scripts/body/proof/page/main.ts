@@ -82,8 +82,9 @@ function poseDriver(driver: LifeDriver, pose: Pose, phase: number, play = false)
 function buildHolder(x: number): THREE.Group { const g = new THREE.Group(); g.position.x = x; scene.add(g); return g; }
 
 interface Spec {
+  oldDetail?: 'low' | 'medium' | 'high'; noGround?: boolean;
   mode: 'compare' | 'row' | 'crowd' | 'single';
-  look?: string; view?: 'front' | 'tq' | 'back' | 'face' | 'body' | 'head' | 'eyes'; pose?: Pose; phase?: number; mood?: Mood; width?: number; height?: number;
+  look?: string; view?: 'front' | 'tq' | 'back' | 'face' | 'body' | 'head' | 'eyes' | 'far' | 'portrait' | 'side'; pose?: Pose; phase?: number; mood?: Mood; width?: number; height?: number;
   count?: number; shadows?: boolean; lod?: boolean; transparent?: boolean; lookAt?: boolean; pr?: number; side?: 'old' | 'new';
 }
 let spec: Spec = { mode: 'compare' };
@@ -97,7 +98,8 @@ async function setup(s: Spec): Promise<void> {
   const w = s.width ?? innerWidth, h = s.height ?? innerHeight;
   renderer.setPixelRatio(pixelRatio); renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
   canvas.style.width = `${w}px`; canvas.style.height = `${h}px`;
-  yaw = s.view === 'tq' ? 0.62 : s.view === 'back' ? Math.PI : 0;
+  yaw = s.view === 'tq' ? 0.62 : s.view === 'back' ? Math.PI : s.view === 'side' ? 1.45 : 0;
+  document.body.style.background = s.view === 'portrait' ? 'transparent' : '';
   const pose = s.pose ?? 'idle';
   if (s.mode === 'compare' || s.mode === 'single') {
     const look = LOOKS[s.look ?? 'woman-braids']!;
@@ -108,13 +110,13 @@ async function setup(s: Spec): Promise<void> {
       const holder = buildHolder(x);
       holder.rotation.y = yaw;
       if (kind === 'old') {
-        const old = buildAvatar(kit, oldLookOf(look), { detail: 'high', pose: pose === 'idle' ? 'stand' : pose === 'walk' ? 'walk' : 'sit', stride: (s.phase ?? 0.25) * Math.PI * 2, seat: 0.47, appearanceFit: true });
+        const old = buildAvatar(kit, oldLookOf(look), { detail: s.oldDetail ?? 'high', pose: pose === 'idle' ? 'stand' : pose === 'walk' ? 'walk' : 'sit', stride: (s.phase ?? 0.25) * Math.PI * 2, seat: 0.47, appearanceFit: true });
         fitOld(old, look.body === 'female' ? 1.77 : 1.81);
         old.traverse((o) => { o.castShadow = true; o.receiveShadow = true; });
         holder.add(old); if (pose === 'sit') addStool(holder, look.body);
         slots.push({ holder, x, old, label: 'Today' });
       } else {
-        const rig = buildRig(assets, look, { lod: 'full' });
+        const rig = buildRig(assets, look, s.lod ? { lod: 'crowd' } : { lod: 'full' });
         holder.add(rig.root); rig.root.traverse((o) => { o.castShadow = true; o.receiveShadow = true; });
         const driver = new LifeDriver(rig, 3 + Object.keys(LOOKS).indexOf(look.id));
         driver.mood = s.mood ?? 'neutral';
@@ -122,25 +124,27 @@ async function setup(s: Spec): Promise<void> {
         if (pose === 'sit') addStool(holder, look.body);
         slots.push({ holder, x, rig, driver, label: 'Proposed' });
       }
-      addBlob(holder, 0.42);
+      if (!s.noGround) addBlob(holder, 0.42);
     }
   } else if (s.mode === 'row') {
-    const n = 12, step = 0.74;
+    const n = s.count ?? 12, cols = Math.min(n, s.count && s.count > 12 ? 10 : 12), step = 0.74;
     const pose0: Pose = 'idle';
     for (let i = 0; i < n; i++) {
       const look = NPC_LOOKS[i % NPC_LOOKS.length]!;
-      const holder = buildHolder((i - (n - 1) / 2) * step); holder.rotation.y = 0.0 + (i % 3 - 1) * 0.12; holder.position.z = 0;
+      const rowIx = Math.floor(i / cols), colIx = i % cols, inRow = Math.min(cols, n - rowIx * cols);
+      const holder = buildHolder((colIx - (inRow - 1) / 2) * step); holder.rotation.y = 0.0 + (i % 3 - 1) * 0.12; holder.position.z = -rowIx * 0.9;
       if (s.side === 'old') {
-        const old = buildAvatar(kit, oldLookOf(look), { detail: 'medium', pose: 'stand', appearanceFit: true });
+        const old = buildAvatar(kit, oldLookOf(look), { detail: s.oldDetail ?? 'medium', pose: 'stand', appearanceFit: true });
         fitOld(old, look.body === 'female' ? 1.77 : 1.81); old.traverse((o) => { o.castShadow = true; }); holder.add(old);
         slots.push({ holder, x: holder.position.x, old, label: '' });
       } else {
         const rig = buildRig(assets, look, s.lod ? { face: false, lod: 'crowd' } : {});
+        if (!s.lod && (s.count ?? 12) > 12) rig.faceMeshes.forEach((fm) => { fm.visible = true; });
         holder.add(rig.root); rig.root.traverse((o) => { o.castShadow = true; });
         const driver = new LifeDriver(rig, i + 7); driver.mood = (['neutral', 'happy', 'neutral', 'happy', 'uneasy'] as Mood[])[i % 5]!;
         poseDriver(driver, pose0, 0, true); slots.push({ holder, x: holder.position.x, rig, driver, label: '' });
       }
-      addBlob(holder, 0.4);
+      if (!s.noGround) addBlob(holder, 0.4);
     }
   }
   // camera
@@ -162,24 +166,26 @@ function frame(s: Spec): void {
   const view = s.view ?? 'front';
   const key0 = LOOKS[s.look ?? 'woman-braids']?.body ?? 'female';
   const headY = key0 === 'female' ? 1.64 : 1.69;
-  if (s.mode === 'row') { width = 12 * 0.74 + 0.5; height = 2.0; cy = 0.93; }
+  if (s.mode === 'row') { const n = s.count ?? 12, cols = Math.min(n, n > 12 ? 10 : 12), rows = Math.ceil(n / cols); width = cols * 0.74 + 0.5; height = 2.0 + (rows - 1) * 0.5; cy = 0.93 - (rows - 1) * 0.1; }
   if (s.mode === 'compare' || s.mode === 'single') {
     const spread = h > w ? 0.46 : 0.62;
     width = s.mode === 'single' ? 1.3 : spread * 2 + 0.95; height = 2.05;
     if (view === 'face') { height = 0.62; width = s.mode === 'single' ? 0.5 : spread * 2 + 0.7; cy = headY - 0.02; }
+    if (view === 'far') { height = 11; width = spread * 2 + 9; cy = 0.9; }
+    if (view === 'portrait') { height = 0.44; width = 0.44; cy = headY; }
     if (view === 'eyes') { height = 0.12; width = 0.2; cy = headY - 0.0; }
     if (view === 'head') { height = 0.9; width = s.mode === 'single' ? 0.7 : spread * 2 + 0.9; cy = headY - 0.08; }
   }
   if (s.mode === 'crowd') { width = 6; height = 2.4; cy = 1.0; }
   const hb = slots.find((sl) => sl.rig)?.rig?.bones['Head'];
-  if (hb && (view === 'face' || view === 'head' || view === 'eyes')) {
+  if (hb && (view === 'face' || view === 'head' || view === 'eyes' || view === 'portrait')) {
     scene.updateMatrixWorld(true);
     const hy = hb.getWorldPosition(new THREE.Vector3()).y;
-    cy = hy + (view === 'eyes' ? 0.1 : view === 'face' ? 0.045 : 0.0);
+    cy = hy + (view === 'eyes' ? 0.1 : view === 'face' ? 0.045 : view === 'portrait' ? 0.015 : 0.0);
   }
   target.set(0, cy, 0);
   const dist = Math.max(height / 2 / tan, width / 2 / (tan * aspect));
-  camera.position.set(0, cy + (view === 'face' || view === 'eyes' ? 0.0 : 0.25), dist);
+  camera.position.set(0, cy + (view === 'face' || view === 'eyes' || view === 'portrait' ? 0.0 : view === 'far' ? 0.6 : 0.25), dist);
   camera.lookAt(target);
   key.target.position.set(0, 0.9, 0);
   catcher.position.y = 0;
@@ -206,7 +212,7 @@ function advance(seconds: number, dt = 1 / 30): void {
 
 const api = {
   async init(names: string[]): Promise<boolean> { assets = await loadAssets(names); return true; },
-  allParts(): string[] { const set = new Set<string>(); for (const l of [...Object.values(LOOKS), ...NPC_LOOKS]) for (const n of partNames(l)) set.add(n); return [...set]; },
+  allParts(): string[] { const set = new Set<string>(); for (const l of [...Object.values(LOOKS), ...NPC_LOOKS]) for (const n of [...partNames(l), ...partNames(l, { lod: 'crowd' })]) set.add(n); return [...set]; },
   async setup(s: Spec): Promise<void> { await setup(s); },
   render(): void { render(); },
   advance(seconds: number): void { advance(seconds); },
@@ -220,6 +226,19 @@ const api = {
   info(): { triangles: number; calls: number; geometries: number } { return { triangles: renderer.info.render.triangles, calls: renderer.info.render.calls, geometries: renderer.info.memory.geometries }; },
   debugRot(name: string, x: number, y: number, z: number): void { for (const s of slots) { const b = s.rig?.bones[name]; if (b) b.quaternion.multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(x, y, z))); } },
   enable(flags: Record<string, boolean>): void { for (const s of slots) if (s.driver) Object.assign(s.driver.enabled, flags); },
+  async bench(seconds: number): Promise<{ fps: number; frames: number; ms: number }> {
+    let frames = 0; const t0 = performance.now(); let last = t0;
+    await new Promise<void>((done) => {
+      const tick = (now: number): void => {
+        const dt = Math.min(0.05, (now - last) / 1000); last = now;
+        for (const sl of slots) stepRig(sl, dt);
+        render(); frames++;
+        if (now - t0 < seconds * 1000) requestAnimationFrame(tick); else done();
+      };
+      requestAnimationFrame(tick);
+    });
+    const ms = performance.now() - t0; return { fps: (frames * 1000) / ms, frames, ms };
+  },
   ready: true,
   clock: (): number => clock,
   walkPhase: (): number => walkPhase,

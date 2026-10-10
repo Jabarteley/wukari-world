@@ -117,11 +117,10 @@ function hangingWeights(top: number, bottom: number, maxThigh: number): (p: V3) 
 
 const ellipse = (a: number, b: number, theta: number): number => (a * b) / Math.hypot(b * Math.cos(theta), a * Math.sin(theta));
 
-interface GarmentSpec { kind: 'dress' | 'kaftan' }
+interface GarmentSpec { kind: 'dress' | 'kaftan'; lod?: boolean }
 
-function sleeve(sh: Shell, body: BodyData, side: 1 | -1, x0: number, x1: number, r0: number, r1: number, weights: (p: V3) => { joints: number[]; weights: number[] }, rows: number, droop = 0): void {
+function sleeve(sh: Shell, body: BodyData, side: 1 | -1, x0: number, x1: number, r0: number, r1: number, weights: (p: V3) => { joints: number[]; weights: number[] }, rows: number, droop = 0, n = 20): void {
   const ay = body.bonePos[side === 1 ? JOINT.armL : JOINT.armR]!.y - 0.008, az = body.bonePos[side === 1 ? JOINT.armL : JOINT.armR]!.z;
-  const n = 20;
   let prev = -1;
   for (let i = 0; i <= rows; i++) {
     const t = i / rows, x = side * lerp(x0, x1, t), r = lerp(r0, r1, t ** 0.9);
@@ -140,7 +139,8 @@ function sleeve(sh: Shell, body: BodyData, side: 1 | -1, x0: number, x1: number,
 export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{ glb: Buffer; triangles: number; vertices: number }> {
   const dress = spec.kind === 'dress';
   const sh = new Shell(dress ? 8 : 8);
-  const NT = 44;
+  const lod = !!spec.lod;
+  const NT = lod ? 24 : 44;
   const torsoSkin = nearestIn(body, TORSO);
   const armSkin = (side: 1 | -1) => nearestIn(body, set(side === 1 ? JOINT.armL : JOINT.armR, side === 1 ? JOINT.foreL : JOINT.foreR, side === 1 ? JOINT.claviL : JOINT.claviR));
   const yTop = 1.455, yHip = 0.935;
@@ -149,7 +149,7 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
   const hipR = polar(hipSegs, 0, hipCz, NT);
   let prev = -1;
   // ---- bodice: levels from the neckline down to the hips, measured on the body
-  const levels = dress ? 22 : 18;
+  const levels = lod ? 8 : dress ? 22 : 18;
   const yEnd = dress ? yHip : yHip + 0.0;
   for (let i = 0; i <= levels; i++) {
     const y = lerp(yTop, yEnd, i / levels);
@@ -164,7 +164,7 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
     prev = first;
   }
   // ---- skirt (dress) or tunic skirts (kaftan): loft from the hip outline to a flare
-  const hem = dress ? 0.43 : 0.60, rows = dress ? 14 : 10;
+  const hem = dress ? 0.43 : 0.60, rows = lod ? 5 : dress ? 14 : 10;
   const a = dress ? 0.34 : 0.285, b = dress ? 0.285 : 0.205;
   for (let i = 1; i <= rows; i++) {
     const t = i / rows, y = lerp(yHip, hem, t);
@@ -173,7 +173,7 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
       const th = (k / NT) * Math.PI * 2;
       const flare = ellipse(a, b, th) * (0.72 + 0.28 * t);
       const pleat = 1 + (dress ? 0.035 : 0.02) * Math.sin(th * 7 + 0.5) * s + 0.012 * Math.sin(th * 13) * s;
-      const rr = lerp(r + (dress ? 0.055 : 0.04), flare, s) * pleat;
+      const rr = lerp(r + (dress ? (lod ? 0.085 : 0.055) : 0.04), flare, s) * pleat;
       return [Math.cos(th) * rr, y + 0.012 * Math.sin(th * 9) * s * t, hipCz + Math.sin(th) * rr];
     });
     const first = sh.addRing(pts, y * 4.4, hangingWeights(yHip, hem, dress ? 0.6 : 0.18));
@@ -181,8 +181,8 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
   }
   // ---- sleeves
   for (const side of [1, -1] as const) {
-    if (dress) sleeve(sh, body, side, 0.105, 0.255, 0.056, 0.082, armSkin(side), 6, 0.01);
-    else sleeve(sh, body, side, 0.105, 0.56, 0.058, 0.092, armSkin(side), 10, 0.02);
+    if (dress) sleeve(sh, body, side, 0.105, 0.255, 0.056, 0.082, armSkin(side), lod ? 3 : 6, 0.01, lod ? 12 : 20);
+    else sleeve(sh, body, side, 0.105, 0.56, 0.058, 0.092, armSkin(side), lod ? 4 : 10, 0.02, lod ? 12 : 20);
   }
   // ---- trousers (kaftan only): one tube per leg from the hip to the ankle
   if (!dress) {
@@ -191,7 +191,7 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
       const legSkin = nearestIn(body, legSet);
       const range: [number, number] = side === 1 ? [0.0, 0.5] : [-0.5, 0.0];
       let prevLeg = -1;
-      const n = 22, ys = 16;
+      const n = lod ? 12 : 22, ys = lod ? 6 : 16;
       for (let i = 0; i <= ys; i++) {
         const y = lerp(0.9, 0.12, i / ys);
         const segs = section(body, legSet, y, range);

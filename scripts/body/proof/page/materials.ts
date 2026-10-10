@@ -21,8 +21,10 @@ export function makeSkin({ key, tone, hair, map, roughness = 0.58 }: SkinOptions
   const ref = SKIN_REF[key];
   const t = linear(tone), h = linear(hair);
   const masks = FACE_MASKS[key];
+  const lum = 0.2126 * t.r + 0.7152 * t.g + 0.0722 * t.b;
+  const boost = 1 + 0.55 * THREE.MathUtils.smoothstep(0.1 - lum, 0, 0.085);
   const uniforms = {
-    uSkin: { value: new THREE.Vector3(t.r / ref[0], t.g / ref[1], t.b / ref[2]) },
+    uSkin: { value: new THREE.Vector3((t.r / ref[0]) * boost, (t.g / ref[1]) * boost, (t.b / ref[2]) * boost) },
     uHair: { value: new THREE.Vector3(h.r, h.g, h.b) },
     uSkinLum: { value: SKIN_LUM[key] }, uClothLum: { value: CLOTH_LUM[key] },
     uMask: { value: [...masks.eyes, masks.lips, ...masks.brows].map((v) => new THREE.Vector4(v[0] / 1024, v[1] / 1024, v[2] / 1024, v[3] / 1024)) },

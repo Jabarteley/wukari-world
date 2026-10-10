@@ -41,7 +41,7 @@ import StepSpirit from './StepSpirit.vue'
 import StepWho from './StepWho.vue'
 import { FOCUS_CHOICES, defaultSpirit, focusForField, focusForTab, nextLabel, nextStep, previousStep, progressOf, pushHistory, settlePlan, startStep, stepBlocked, stepDef, stepsFor } from './creatorModel.ts'
 import type { CreatorMode, StepId } from './creatorModel.ts'
-import { cr, ownerOf } from './creatorState.ts'
+import { cr, keepsDraft, ownerOf } from './creatorState.ts'
 import type { CreatorDraft } from './creatorState.ts'
 import { chooseLook, lookAlt, lookSummary, lookUi, openLookTab, randomLook, sameLook, starterWardrobe } from './lookModel.ts'
 import type { LookField } from './lookModel.ts'
@@ -93,7 +93,7 @@ function makeDraft(): CreatorDraft {
 }
 function ensureDraft(): CreatorDraft {
   const owner = ownerOf(view.value, props.mode)
-  if (cr.draft && cr.owner === owner) return cr.draft
+  if (cr.draft && keepsDraft(cr, owner, props.mode)) return cr.draft
   cr.owner = owner
   const made = makeDraft()
   cr.draft = made
@@ -277,6 +277,11 @@ let stopWaiting: (() => void) | null = null
 const waiting = shallowRef<PathIntent | null>(null)
 /** The life exists (or Play failed): move in with the choices on screen. */
 async function runSettle(stay: boolean): Promise<void> {
+  if (cr.settleRunning) return
+  cr.settleRunning = true
+  try { await settleChoices(stay) } finally { cr.settleRunning = false }
+}
+async function settleChoices(stay: boolean): Promise<void> {
   const draftNow = d()
   const plan = settlePlan({ saved: state.value.onboarding, draft: { look: draftNow.look, traits: draftNow.traits, dream: draftNow.dream, area: draftNow.area }, stay })
   if (!plan) { cr.error = blocked.value || 'Choose your traits, your dream and where you live first.'; return }
@@ -332,6 +337,9 @@ onMounted(() => {
   const code = pendingRef()
   if (code && props.mode === 'new') void inviterName(game.fetchJson, code).then((name) => { inviter.value = name })
   window.addEventListener('jaw:quick-start-done', onStarted)
+  // This screen was built again while its own start was on its way: the answer may have come in the gap, so it is read from the game.
+  if (isNew && cr.settling) play.settling = true
+  if (isNew && cr.settling && !cr.settleRunning && !play.sending) onStarted(new CustomEvent('jaw:quick-start-done', { detail: { ok: view.value.connected && !o.value.required } }))
   // Once per device, not once per page load: a reload in the middle of the form is the same landing.
   if (isNew && !qs.landed) { qs.landed = true; if (!(o.value.required && view.value.connected) && firstLanding()) track('landed', { join: invited() }) }
   // One funnel event per time the creator is put in front of a guest (a redraw of the same opening is not another offer).

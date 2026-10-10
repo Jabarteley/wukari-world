@@ -33,7 +33,7 @@ export interface DetailConfig {
   discovery: (bbox: string) => Record<string, string>
   /** Land-use areas whose centres mark the built-up extent. */
   landuse: (bbox: string) => string
-  /** Grid cell in degrees, how many cells to grow each land-use point, and the smallest hole (in cells) left unfilled. */
+  /** The coarse grid cell in degrees (the outline's fine grid is cell / split). `grow` and `minHole` are no longer used. */
   cell: number
   grow: number
   /** Fine cells per coarse cell, and how many fine cells the land keeps back from the water. */
@@ -45,9 +45,15 @@ export interface DetailConfig {
   maxRoads: number
   /** How far (degrees) a road may run on past the built-up outline before it is cut. */
   roadMarginDegrees: number
+  /** Gaps between mapped land-use blocks narrower than about this many metres are closed (default 600). */
+  closeMetres?: number
+  /** The smallest inland water body (square kilometres) kept; the default is 0.4. A river is kept when its piece in the box is larger. */
+  minWaterKm2?: number
   /** The ground colour round the outline in the 3D and simple maps. */
   surround: string
   water: (bbox: string) => string
+  /** Ask for the water as far out as the drawn ground (as a sea or a lake is), so that a river mapped in pieces runs on to its edge instead of ending where the box ends. */
+  wideWater?: true
   /** Set when the water answer holds shore ways of the sea (`coast`: coastline, land on the left) or of a big lake (`lake`: the member ways of its relation): the water is drawn this far out from the shore, in metres. */
   sea?: { kind: 'coast' | 'lake'; bandMetres: number }
   roads: (bbox: string, core: string) => string

@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "gh-starter",
-    "name": "Starter district"
+    "name": "Accra"
   },
   "timezone": "Africa/Accra",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://www.gacl.com.gh/accra-international-airport/"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and national aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=-0.221662,5.54898,-0.215662,5.55498",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: national aeronautical information sources",
   "bounds": [
-    -0.233662,
-    5.53698,
-    -0.158,
-    5.608389
+    -0.3,
+    5.48,
+    -0.12,
+    5.68
   ],
-  "coverageNote": "Starter visitor area. Real capital and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "Accra from Korle Gonno and James Town to the University of Ghana and the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the Gulf of Guinea as a band along the coast and the lagoons mapped nearby, main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Accra",
+    "unit": "district",
+    "roadHub": "STC Accra Main"
+  }
 } satisfies DestinationFacts

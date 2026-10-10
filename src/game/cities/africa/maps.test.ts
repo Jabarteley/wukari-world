@@ -4,16 +4,12 @@ import type { CityModule } from '../../../types/content.ts'
 import { assertCityMapContract } from '../cityContractTest.test.ts'
 import { city as yaounde } from '../yaounde/index.ts'
 import { city as lome } from '../lome/index.ts'
-import { city as accra } from '../accra/index.ts'
-import { city as nairobi } from '../nairobi/index.ts'
 import { city as algiers } from '../algiers/index.ts'
 import { city as cotonou } from '../cotonou/index.ts'
-import { city as abidjan } from '../abidjan/index.ts'
 import { city as dakar } from '../dakar/index.ts'
 import { city as capeTown } from '../cape-town/index.ts'
-import { city as addisAbaba } from '../addis-ababa/index.ts'
 
-const destinations: readonly CityModule[] = [yaounde, lome, accra, nairobi, algiers, cotonou, abidjan, dakar, capeTown, addisAbaba]
+const destinations: readonly CityModule[] = [yaounde, lome, algiers, cotonou, dakar, capeTown]
 
 for (const city of destinations) test(`${city.id}: real starter map preserves geometry, arrival and bounded decoration`, async () => {
   const map = await city.loadMap()

@@ -26,6 +26,7 @@ const j = new Journey(arg('out'), 'showcase');
 const HOUR = 3600000;
 const CHAT = 'https://wa.me/2348012345678', PAY = 'https://paystack.com/pay/ada-braids-demo', PAY2 = 'https://paystack.com/pay/ada-braids-new', PAY3 = 'https://paystack.com/pay/ada-braids-third';
 const ids: Record<string, string> = {};
+const lostTaps: string[] = [];
 for (const sig of ['SIGINT', 'SIGTERM'] as const) process.once(sig, () => { try { S.child.kill('SIGKILL'); } catch { /* gone */ } process.exit(130); });
 
 async function openServices(p: Browser): Promise<void> {
@@ -120,8 +121,13 @@ async function addPhotos(p: Browser, seeds: number[], tag: string): Promise<void
 async function openShop(p: Browser, name: string): Promise<void> {
   if (await visible(p, '.sp-back')) { await p.click('.sp-back'); await sleep(700); }
   await p.waitFor(`document.querySelectorAll('.sc-hit').length >= 1`, 20000, 'the directory');
-  await p.click('.sc-hit', name);
-  await p.waitFor(`!!document.querySelector('.sp .shf-about')`, 20000, 'the shop page');
+  let shown = false;
+  for (let attempt = 1; attempt <= 3 && !shown; attempt++) {
+    await p.click('.sc-hit', name);
+    shown = await p.waitFor(`!!document.querySelector('.sp .shf-about')`, attempt === 3 ? 20000 : 6000, 'the shop page').then(() => true, () => false);
+    if (!shown) lostTaps.push(`${name} card tap #${attempt} did not open the shop`);
+  }
+  must(shown, `the shop page never opened after 3 taps on ${name}`);
   await p.waitFor(`[...document.querySelectorAll('.pg img')].every((i) => i.complete && i.naturalWidth > 0)`, 20000, 'the shop photos').catch(() => undefined);
   await sleep(300);
 }
@@ -149,6 +155,22 @@ async function buildShop(p: Browser, email: string, owner: string, spec: { name:
   return sid;
 }
 const setWide = async (p: Browser, on: boolean): Promise<boolean> => { const is = await p.eval<boolean>(`!!document.querySelector('.ph.is-wide')`); if (is !== on) { const shown = await visible(p, '.ph-wide'); if (shown) { await p.click('.ph-wide').catch(() => undefined); await sleep(700); } if ((await p.eval<boolean>(`!!document.querySelector('.ph.is-wide')`)) !== on && shown) { await p.eval(`document.querySelector('.ph-wide').click(); true`); await sleep(700); } } return p.eval<boolean>(`!!document.querySelector('.ph.is-wide')`); };
+
+const duplicateIds = (p: Browser, scope = 'document'): Promise<string[]> => p.eval(`(() => { const seen = {}; for (const e of ${scope}.querySelectorAll('[id]')) seen[e.id] = (seen[e.id] || 0) + 1; return Object.entries(seen).filter(([, n]) => n > 1).map(([id, n]) => id + ' x' + n); })()`);
+/** At the end of the shop page: is "Report this shop" fully clear of the sticky bar, and tappable? */
+const barClear = (p: Browser): Promise<Record<string, unknown>> => p.eval(`(() => {
+  const report = [...document.querySelectorAll('.sp .ui-button')].find((x) => /Report this shop/.test(x.innerText)); report.scrollIntoView({ block: 'end' }); { let sc = report.parentElement; while (sc && getComputedStyle(sc).overflowY !== 'auto' && getComputedStyle(sc).overflowY !== 'scroll') sc = sc.parentElement; if (sc) sc.scrollTop = sc.scrollHeight; }
+  const bar = document.querySelector('.sp-bar'), br = bar.getBoundingClientRect(), rr = report.getBoundingClientRect(), box = (report.closest('.sp') || report).getBoundingClientRect();
+  const top = document.elementFromPoint(rr.left + rr.width / 2, rr.top + rr.height / 2); const home = document.querySelector('.ph-homebar'), hb = home && home.getBoundingClientRect();
+  const sc = report.parentElement; let scroller = report.parentElement; while (scroller && getComputedStyle(scroller).overflowY !== 'auto' && getComputedStyle(scroller).overflowY !== 'scroll') scroller = scroller.parentElement;
+  return { barTop: Math.round(br.top), barBottom: Math.round(br.bottom), reportTop: Math.round(rr.top), reportBottom: Math.round(rr.bottom), vh: innerHeight, homeBarTop: hb ? Math.round(hb.top) : null, clearOfBar: rr.top >= br.bottom - 1 || rr.bottom <= br.top + 1, belowBar: rr.top >= br.bottom - 1, clearOfHomeBar: !hb || rr.bottom <= hb.top + 1, tappable: !!top && (top === report || report.contains(top)), atScrollEnd: scroller ? Math.abs(scroller.scrollTop + scroller.clientHeight - scroller.scrollHeight) < 3 : null };
+})()`);
+const openHomeApp = async (p: Browser, app: string): Promise<void> => {
+  if (await visible(p, '.ph-back')) { await p.click('.ph-back'); await p.waitFor(`(() => { const b = document.querySelector('.ph-back'); return !b || b.getBoundingClientRect().width < 2; })()`, 10000, 'the app to close'); await sleep(1200); }
+  const page = await p.eval<number>(`(() => { const pg = [...document.querySelectorAll('.ph-page')].find((x) => x.querySelector('[data-ph-app="${app}"]')); return pg ? Number(pg.getAttribute('data-ph-page')) : -1; })()`);
+  if (page >= 0) { await p.eval(`document.querySelectorAll('.ph-dots button')[${page}].click(); true`); await p.waitFor(`(() => { const r = document.querySelector('.ph-page[data-ph-page="${page}"]').getBoundingClientRect(); return r.left >= -2 && r.left < innerWidth / 2; })()`, 5000, 'the home page to slide in').catch(() => undefined); await sleep(500); }
+  await p.click(`[data-ph-app="${app}"]`);
+};
 const approveAll = async (): Promise<number> => { const q = await lab.mod('/api/mod/showcase'); let n = 0; for (const s of (q['queue'] ?? [])) { await lab.mod('/api/mod/showcase', { action: 'approve', shop: s.id }); n++; } return n; };
 const widthProbe = (p: Browser, sel: string): Promise<{ n: number; overflowing: string[]; maxRight: number; vw: number }> => p.eval(`(() => { const vw = document.documentElement.clientWidth; const els = [...document.querySelectorAll(${JSON.stringify(sel)} + ', ' + ${JSON.stringify(sel)} + ' *')].filter((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; }); const inScroller = (e) => { for (let n = e.parentElement; n && n !== document.body; n = n.parentElement) { const o = getComputedStyle(n).overflowX; if ((o === 'auto' || o === 'scroll') && n.scrollWidth > n.clientWidth + 1) return true; } return false; }; const bad = els.filter((e) => (e.getBoundingClientRect().right > vw + 0.5 || e.getBoundingClientRect().left < -0.5) && !inScroller(e)); return { n: els.length, overflowing: bad.slice(0, 6).map((e) => e.tagName + '.' + String(e.className).slice(0, 30) + ' ' + Math.round(e.getBoundingClientRect().left) + '-' + Math.round(e.getBoundingClientRect().right)), maxRight: Math.round(Math.max(0, ...els.map((e) => e.getBoundingClientRect().right))), vw }; })()`);
 
@@ -198,6 +220,7 @@ try {
 
   await j.run('2', 'Editor: six steps with a jump bar; template, colours and logo change the preview', [S], async (detail) => {
     const steps = await S.eval<string[]>(`[...document.querySelectorAll('.se-steps button')].map((x) => x.innerText.replace(/\\s+/g, ' ').trim())`);
+    detail['duplicateIds'] = await duplicateIds(S); must((detail['duplicateIds'] as string[]).length === 0, `duplicate ids in the editor: ${detail['duplicateIds']}`);
     detail['steps'] = steps; must(steps.length === 6, `${steps.length} steps in the jump bar`);
     const jumps: Record<string, number> = {};
     for (const [at, name] of steps.entries()) { await S.click('.se-steps button', name.replace(/^\d+\s*/, '')); await sleep(1800); const ids6 = ['look', 'about', 'services', 'hours', 'photos', 'contact']; jumps[name] = await S.eval<number>(`Math.round(document.querySelector('#se-s-${ids6[at]}').getBoundingClientRect().top)`); }
@@ -650,6 +673,7 @@ try {
       out['back'] = await B.eval<unknown>(`(() => { const b = document.querySelector('.sp-back'), r = b.getBoundingClientRect(); return { box: [Math.round(r.width), Math.round(r.height)], text: b.innerText.trim(), aria: b.getAttribute('aria-label') }; })()`);
       out['shop'] = await widthProbe(B, '.sp');
       await B.eval(`[...document.querySelectorAll('.sp .ui-button')].find((x) => /Report this shop/.test(x.innerText)).scrollIntoView({ block: 'end' }); true`); await sleep(700); await j.shot(B, `phone${w}-shop-bottom-bar`);
+      out['clearNoPrompt'] = await barClear(B); out['editorDuplicateIds'] = await duplicateIds(S);
       out['bar'] = await B.eval<unknown>(`(() => { const bar = document.querySelector('.sp-bar'), r = bar.getBoundingClientRect(), cs = getComputedStyle(bar), card = document.querySelector('.shf-card').getBoundingClientRect(); const report = [...document.querySelectorAll('.sp .ui-button')].find((x) => /Report this shop/.test(x.innerText)), rr = report.getBoundingClientRect(); const top = document.elementFromPoint(rr.left + rr.width / 2, rr.top + rr.height / 2); const home = document.querySelector('.ph-homebar'), hb = home && home.getBoundingClientRect(); const m = /rgba?\\(([^)]*)\\)/.exec(cs.backgroundColor); const parts = m ? m[1].split(',').map(Number) : []; return { position: cs.position, background: cs.backgroundColor, opaque: parts.length < 4 || parts[3] === 1, backdrop: cs.backdropFilter, barLeft: Math.round(r.left), barRight: Math.round(r.right), cardLeft: Math.round(card.left), cardRight: Math.round(card.right), barTop: Math.round(r.top), barBottom: Math.round(r.bottom), vh: innerHeight, homeBarTop: hb ? Math.round(hb.top) : null, reportBottom: Math.round(rr.bottom), reportFullyVisible: rr.bottom <= r.top + 1 && rr.top >= 0, reportHit: !!top && (top === report || report.contains(top)), buttons: [...bar.querySelectorAll('button')].map((b) => [b.innerText.trim(), Math.round(b.getBoundingClientRect().height), Math.round(b.getBoundingClientRect().width)]) }; })()`);
       await B.eval(`window.__opened = []; window.open = (...a) => { window.__opened.push(a); return null; }; true`);
       await B.click('.sp-bar button[aria-label="Chat with the seller"]'); await B.waitFor(`!!document.querySelector('[data-trust-leave]')`, 10000, 'sheet'); await sleep(700);
@@ -659,6 +683,7 @@ try {
       // the guest's bar with its prompt
       await phone(G, w, h); await sleep(500); await openShop(G, 'Ada Braids').catch(() => undefined);
       await G.click('.sp-bar button[aria-label="Chat with the seller"]').catch(() => undefined); await sleep(900); await j.shot(G, `phone${w}-guest-bar-prompt`);
+      out['clearWithPrompt'] = await barClear(G); await sleep(400); await j.shot(G, `phone${w}-guest-bar-prompt-at-end`);
       out['guestBar'] = await G.eval<unknown>(`(() => { const b = document.querySelector('.sp-bar'); if (!b) return null; const r = b.getBoundingClientRect(), m = b.querySelector('.sp-msg'), mr = m && m.getBoundingClientRect(); return { text: b.innerText.replace(/\\s+/g, ' '), top: Math.round(r.top), bottom: Math.round(r.bottom), h: Math.round(r.height), vh: innerHeight, promptH: mr ? Math.round(mr.height) : null, promptButtons: m ? [...m.querySelectorAll('button')].map((x) => x.innerText.trim()) : [] }; })()`);
       await B.click('.sp-back').catch(() => undefined);
       res[`${w}x${h}`] = out;
@@ -675,7 +700,9 @@ try {
       if (v.hintVsError.same) problems.push(`${k}: the hint text is repeated as the error`);
       if (!v.bar.opaque) problems.push(`${k}: the Chat/Pay bar is not solid (${v.bar.background})`);
       if (Math.abs(v.bar.barLeft - v.bar.cardLeft) > 3 || Math.abs(v.bar.barRight - v.bar.cardRight) > 3) problems.push(`${k}: the bar (${v.bar.barLeft}-${v.bar.barRight}) is not aligned to the cards (${v.bar.cardLeft}-${v.bar.cardRight})`);
-      if (!v.bar.reportFullyVisible || !v.bar.reportHit) problems.push(`${k}: "Report this shop" is not fully visible/tappable at the end of the page (bottom ${v.bar.reportBottom}, bar top ${v.bar.barTop})`);
+      for (const [name, c] of [['without a prompt', v.clearNoPrompt], ['with a prompt', v.clearWithPrompt]] as [string, any][]) if (!c || !c.clearOfBar || !c.tappable || !c.clearOfHomeBar) problems.push(`${k}: "Report this shop" is not fully clear of the bar ${name}: ${JSON.stringify(c)}`);
+      if (v.editorDuplicateIds.length) problems.push(`${k}: duplicate ids in the editor ${v.editorDuplicateIds}`);
+      if (!v.hoursRows.every((r: any) => r.h >= 36 && r.h <= 70)) problems.push(`${k}: hours rows are not compact single rows (${v.hoursRows.map((r: any) => r.h)})`);
       if (v.bar.buttons.some((b: any) => b[1] > 56)) problems.push(`${k}: a bar button wraps to two lines ${JSON.stringify(v.bar.buttons)}`);
       if (v.bar.homeBarTop !== null && v.bar.barBottom > v.bar.homeBarTop + 1) problems.push(`${k}: the bar is below the home bar`);
       if (!v.guestBar || v.guestBar.promptH === null || v.guestBar.promptH > 48 || v.guestBar.promptButtons.length !== 1) problems.push(`${k}: the guest prompt is not one line with one action ${JSON.stringify(v.guestBar)}`);
@@ -685,9 +712,42 @@ try {
     }
     detail['problems'] = problems; must(problems.length === 0, problems.join(' | '));
   });
+  await j.run('21', 'Tapping "My shop" the moment the app opens works (three tries, no waiting)', [S], async (detail) => {
+    await desktop(S); const tries: Record<string, unknown>[] = [];
+    for (let i = 0; i < 3; i++) {
+      await openHomeApp(S, 'showcase');
+      const t0 = Date.now(); await S.click('.sc-tabs [role="tab"]', 'My shop', 10000); const tapAfterMs = Date.now() - t0;
+      const took = await S.waitFor(`[...document.querySelectorAll('.sc-tabs [role="tab"]')].some((t) => t.getAttribute('aria-selected') === 'true' && /My shop/.test(t.innerText))`, 3000, 'the tab to take').then(() => true, () => false);
+      tries.push({ try: i + 1, tapAfterMs, took }); if (i === 0) await j.shot(S, 'my-shop-immediately');
+    }
+    detail['tries'] = tries; must(tries.every((t) => t['took']), `a tap on "My shop" right after the app opened did not take: ${JSON.stringify(tries)}`);
+  });
+
+  await j.run('22', 'Phone apps open and close normally (Messages, Bank, Missions): the home screen takes no taps while an app is open (once it has settled), and takes them again after it closes', [S], async (detail) => {
+    const out: Record<string, unknown>[] = [];
+    const covered = (app: string): Promise<{ app: string; covered: boolean; x: number; y: number } | null> => S.eval(`(() => { const bs = [...document.querySelectorAll('.ph-pages .ph-appbtn, .ph-dock .ph-appbtn')].filter((b) => b.getAttribute('data-ph-app') !== '${app}'); for (const b of bs) { const r = b.getBoundingClientRect(); if (r.width < 2 || r.top < 0 || r.bottom > innerHeight) continue; const x = r.left + r.width / 2, y = r.top + r.height / 2, t = document.elementFromPoint(x, y); return { app: b.getAttribute('data-ph-app'), covered: !!t && !(t === b || b.contains(t)), x, y }; } return null; })()`);
+    const homeTakes = (app: string): Promise<boolean> => S.eval(`(() => { const b = document.querySelector('[data-ph-app="${app}"]'); if (!b) return false; const r = b.getBoundingClientRect(); const t = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!t && (t === b || b.contains(t)); })()`);
+    const title = (): Promise<string> => S.eval(`(() => { const e = document.querySelector('.ph-appbody'); const h = document.querySelector('.ph-bar h2, .ph-bar, [class*=ph-bar]'); return (h ? h.innerText : '').trim().slice(0, 40) + '|' + (e ? e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 40) : ''); })()`);
+    for (const app of ['messages', 'bank', 'missions']) {
+      await openHomeApp(S, app); await S.waitFor(`!!document.querySelector('.ph-appbody') && !!document.querySelector('.ph-back')`, 15000, `${app} to open`);
+      await sleep(300); const early = await covered(app);
+      await sleep(2200); const settled = await covered(app);
+      const titleBefore = await title();
+      await S.tapAt(settled?.x ?? 100, settled?.y ?? 400); await sleep(700);
+      const titleAfter = await title(); await j.shot(S, `phone-app-${app}-open`);
+      await S.click('.ph-back'); await S.waitFor(`!!document.querySelector('.ph-pages')`, 10000, 'the home screen again'); await sleep(1500);
+      const pg = await S.eval<number>(`(() => { const pg = [...document.querySelectorAll('.ph-page')].find((x) => x.querySelector('[data-ph-app="${app}"]')); return pg ? Number(pg.getAttribute('data-ph-page')) : -1; })()`);
+      if (pg >= 0) { await S.eval(`document.querySelectorAll('.ph-dots button')[${pg}].click(); true`); await sleep(700); }
+      const after = await homeTakes(app);
+      out.push({ app, coveredAt300ms: early?.covered ?? null, coveredWhenSettled: settled?.covered ?? null, tapThroughAppStillOpen: titleBefore === titleAfter, homeTakesTapsAfterClose: after });
+    }
+    detail['apps'] = out;
+    for (const o of out as any[]) must(o.tapThroughAppStillOpen && o.homeTakesTapsAfterClose, `${o.app}: ${JSON.stringify(o)}`);
+    detail['hitTestNote'] = 'coveredWhenSettled is what elementFromPoint says about a home icon under the open app; the real tap (tapThroughAppStillOpen) decides';
+  });
 } catch (e) { console.log('ERR', e); }
 finally {
-  const code = j.finish({ ids }, { seller: realErrors(S), buyer: realErrors(B), guest: realErrors(G), seller2: realErrors(S2), seller3: realErrors(S3) });
+  const code = j.finish({ ids, lostTaps }, { seller: realErrors(S), buyer: realErrors(B), guest: realErrors(G), seller2: realErrors(S2), seller3: realErrors(S3) });
   try { S3.close(); S2.close(); G.close(); B.close(); S.close(); } catch { /* closed */ }
   await lab.stop(); process.exit(code);
 }

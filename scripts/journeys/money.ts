@@ -341,11 +341,19 @@ try {
       // Escape (focus inside the panel) closes it, and typing is back
       await a.eval(`document.querySelector('.messages-manage button').focus(); true`); await a.press('Escape', 'Escape', 27); await sleep(500);
       const chatStillOpen = await visible(a, '.messages-chat .messages-head');
-      out['afterEscape'] = { panelClosed: !(await visible(a, '.messages-manage')), chatStillOpen, composerBack: chatStillOpen ? (await panelInfo(a) as any).composerShown : null };
+      out['afterEscape'] = { panelClosed: !(await visible(a, '.messages-manage')), chatStillOpen, composerBack: chatStillOpen ? (await panelInfo(a) as any).composerShown : null, focusOnOptionsButton: await a.eval<boolean>(`!!document.activeElement && document.activeElement.classList.contains('messages-kebab')`) };
       await j.shot(a, `phone${w}-options-escaped`);
-      if (!chatStillOpen) { bad.push(`${w}: Escape closed the options AND left the chat (back to the chat list)`); await openChat(a, 'Bola'); await a.click('.messages-kebab'); await a.waitFor(`!!document.querySelector('.messages-manage')`, 5000, 'options after reopening the chat'); }
-      else if (!(out['afterEscape'] as any).panelClosed || !(out['afterEscape'] as any).composerBack) bad.push(`${w}: Escape did not close the options and bring the composer back ${JSON.stringify(out['afterEscape'])}`);
-      if (chatStillOpen) await a.click('.messages-kebab').then(() => a.waitFor(`!!document.querySelector('.messages-manage')`, 5000, 'options a second time')).catch(() => undefined);
+      if (!chatStillOpen) { bad.push(`${w}: Escape closed the options AND left the chat (back to the chat list)`); await openChat(a, 'Bola'); }
+      else {
+        if (!(out['afterEscape'] as any).panelClosed || !(out['afterEscape'] as any).composerBack) bad.push(`${w}: Escape did not close the options and bring the composer back ${JSON.stringify(out['afterEscape'])}`);
+        if (!(out['afterEscape'] as any).focusOnOptionsButton) bad.push(`${w}: after Escape focus is not on the options button`);
+        // a second Escape leaves the chat
+        await a.press('Escape', 'Escape', 27); await sleep(700);
+        out['secondEscape'] = { chatLeft: !(await visible(a, '.messages-chat .messages-head')) }; await j.shot(a, `phone${w}-second-escape`);
+        if (!(out['secondEscape'] as any).chatLeft) bad.push(`${w}: a second Escape did not leave the chat`);
+        await openChat(a, 'Bola');
+      }
+      await a.click('.messages-kebab'); await a.waitFor(`!!document.querySelector('.messages-manage')`, 5000, 'options a second time');
       // Done closes it too
       await a.click('.messages-manage-head button', 'Done'); await sleep(500);
       out['afterDone'] = { panelClosed: !(await visible(a, '.messages-manage')), composerBack: (await panelInfo(a) as any).composerShown };
@@ -421,14 +429,14 @@ try {
         await a.click('.pinned-toggle'); await sleep(300);
         out['pinned'] = await panelInfo(a); await j.shot(a, `phone${w}-pinned-open`);
         out['pinRowVisible'] = await visible(a, '.pinned-row'); out['pinRowText'] = out['pinRowVisible'] ? await text(a, '.pinned-row') : '';
-        out['pinnedPanel'] = await a.eval<unknown>(`(() => { const p = document.querySelector('.pinned'), h = p.querySelector('.pinned-help'), lh = h ? parseFloat(getComputedStyle(h).lineHeight) || 16 : 0; return { text: p.innerText.replace(/\\s+/g, ' '), clearAll: /Clear all/i.test(p.innerText), helpLines: h ? Math.round(h.getBoundingClientRect().height / lh) : 0, helpText: h ? h.innerText : '' }; })()`);
+        out['pinnedPanel'] = await a.eval<unknown>(`(() => { const p = document.querySelector('.pinned'), h = p.querySelector('.pinned-help [aria-hidden]') || p.querySelector('.pinned-help'), lh = h ? parseFloat(getComputedStyle(h).lineHeight) || 16 : 0; return { text: p.innerText.replace(/\\s+/g, ' '), clearAll: /Clear all/i.test(p.innerText), helpLines: h ? Math.round(h.getBoundingClientRect().height / lh) : 0, helpText: h ? h.innerText : '' }; })()`);
         if (!out['pinRowVisible']) bad.push(`${w}: the pin row is not visible after opening the Pinned header`);
         if ((out['pinnedPanel'] as any).helpLines > 1) bad.push(`${w}: the pinned help is ${(out['pinnedPanel'] as any).helpLines} lines at ${w} px (${(out['pinnedPanel'] as any).helpText})`);
         await a.click('.pinned-toggle'); await sleep(300);
       } else {
         out['pinnedHeaderAt320Collapsed'] = (await panelInfo(a) as any).pinned; await j.shot(a, `phone${w}-pinned-collapsed`);
         await a.click('.pinned-toggle'); await sleep(300); out['pinnedAt320'] = await panelInfo(a); await j.shot(a, `phone${w}-pinned-open`);
-        out['pinnedPanel'] = await a.eval<unknown>(`(() => { const p = document.querySelector('.pinned'), h = p.querySelector('.pinned-help'), lh = h ? parseFloat(getComputedStyle(h).lineHeight) || 16 : 0; return { clearAll: /Clear all/i.test(p.innerText), helpLines: h ? Math.round(h.getBoundingClientRect().height / lh) : 0, helpHeight: h ? Math.round(h.getBoundingClientRect().height) : 0 }; })()`);
+        out['pinnedPanel'] = await a.eval<unknown>(`(() => { const p = document.querySelector('.pinned'), h = p.querySelector('.pinned-help [aria-hidden]') || p.querySelector('.pinned-help'), lh = h ? parseFloat(getComputedStyle(h).lineHeight) || 16 : 0; return { clearAll: /Clear all/i.test(p.innerText), helpLines: h ? Math.round(h.getBoundingClientRect().height / lh) : 0, helpHeight: h ? Math.round(h.getBoundingClientRect().height) : 0 }; })()`);
         await a.click('.pinned-row'); await sleep(500); await j.shot(a, `phone${w}-pin-preview`); out['pinPreviewShown'] = await visible(a, '.messages-pin-preview');
         await a.click('.messages-pin-preview button', 'Close').catch(() => undefined);
         await b.click('.request-btn', 'Decline'); await askerAndPayerSee('declined', cardsSoFar, 'declined on phone'); out['declinedByTouch'] = true;

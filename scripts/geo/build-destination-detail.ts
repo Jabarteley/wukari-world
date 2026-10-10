@@ -119,7 +119,7 @@ const inland = waterAnswer.elements.filter((element) => !isShore(element) && (el
 const km2 = (polygon: P[][]): number => { const lat = polygon[0]![0]![1]; return ringArea(polygon[0]!) * 111.32 * Math.cos(lat * Math.PI / 180) * 110.57; };
 const big = (polygons: P[][][]): P[][][] => polygons.filter((polygon) => km2(polygon) >= (config.minWaterKm2 ?? 0.4));
 const wet = [...sea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), outlineBox, config.waterTolerance)))];
-const reachWater = [...farSea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, config.waterTolerance)))];
+const reachWater = [...farSea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008))))];
 console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
 
 const landuse = await ask(id, 'landuse', config.landuse(outlineBbox));

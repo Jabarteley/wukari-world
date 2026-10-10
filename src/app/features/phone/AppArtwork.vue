@@ -5,7 +5,7 @@ import { tintOf } from '../../../ui/phone/icons-more.ts'
 import { PHONE_ART, PHONE_ART_COLUMNS, PHONE_ART_X, PHONE_ART_Y } from '../../../ui/phone/appArtwork.ts'
 
 /** The apps whose picture is a mark of the icon set, not a cell of the atlas. */
-export const ICON_SET_APPS: readonly string[] = ['showcase']
+const ICON_SET_APPS: readonly string[] = ['showcase']
 const props = defineProps<{ app: string }>()
 const atlas = new URL('../../../ui/phone/app-icons.webp', import.meta.url).href
 // An app that declares an icon-set mark draws it (a rounded square in its colour). Every other app with no atlas picture keeps the settings gears.

@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "tg-starter",
-    "name": "Starter district"
+    "name": "Lomé"
   },
   "timezone": "Africa/Lome",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://aim.asecna.aero/html/eAIP/FR-_15AD-2.DXXX-fr-FR.html"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and national aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=1.217811,6.130883,1.223811,6.136883",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: national aeronautical information sources",
   "bounds": [
-    1.205811,
-    6.118883,
-    1.266167,
-    6.177833
+    1.14,
+    6.09,
+    1.34,
+    6.24
   ],
-  "coverageNote": "Starter visitor area. Real capital and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "Lomé on the Gulf of Guinea from Adidogomé to Baguida, north to Agoè, and the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the Gulf of Guinea as a band along the coast, main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Lomé",
+    "unit": "district",
+    "roadHub": "Gare routière de REX"
+  }
 } satisfies DestinationFacts

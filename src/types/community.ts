@@ -22,15 +22,18 @@ export interface MembersEvent { self: string | null; members: MemberPlace[] }
 export type CommunityLinkStatus = 'online' | 'session-required' | 'connecting' | 'offline'
 export interface CommunityStatus { connected: boolean; session: PublicSession | null; status: CommunityLinkStatus }
 
-/** One row of "In this room". */
-export interface MemberRow { id: string; label: string; state: string }
+/**
+ * One person in the room. `label` and `state` are the words ("Bea (you)", "In voice · near"); the rest is the same thing for the panel to draw:
+ * `voice` is whether they are in the voice circle (and muted), `range` how near they stand to you (null for yourself or when not in voice).
+ */
+export interface MemberRow { id: string; label: string; state: string; name: string; you: boolean; voice: 'off' | 'live' | 'muted'; range: 'near' | 'far' | null }
 /**
  * One chat line. `delivery` is the words under it ("Sending…", "Sent", "Not sent"); `canRetry` shows its Retry button.
  * `npc` is true only for a line spoken by a game character: the panel gives it the NPC badge and its own look, so it can never pass for
  * a real player's line. Every line from the room's server is a real player's and leaves it unset.
  */
 /** `authorId`: the sender's public id, so a link's "leaving Allworld" screen can show who sent it. */
-export interface ChatLine { key: string; author: string; authorId?: string; body: string; delivery: string; canRetry: boolean; npc?: boolean }
+export interface ChatLine { key: string; author: string; authorId?: string; body: string; delivery: string; canRetry: boolean; npc?: boolean; /** When the line was added here (ms since 1970); the panel shows it as a time. */ at?: number }
 export interface MicrophoneChoice { id: string; label: string }
 /** A received voice the browser would not start by itself: the panel offers a button to play it. */
 export interface BlockedPlayback { id: string; name: string }

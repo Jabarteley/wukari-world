@@ -235,6 +235,7 @@ test('synthetic audio: spatial playback, range, diagnostics and an explicit Join
   assert.equal(routedAudio.playCalls, 1, 'WebAudio uses one muted decode sink')
   ws.receive({ type: 'presence', members: [{ id: 'a', name: 'Alex', enabled: true, position: { x: 0, z: 0 } }, { id: 'b', name: 'Bea', enabled: true, position: { x: 6, z: 0 } }] })
   assert.equal((await api.getDiagnostics()).peers[0]?.gain, 0.5, 'half-range halves receive gain')
+  assert.deepEqual(api.state.members.map(({ name, you, voice, range }) => ({ name, you, voice, range })), [{ name: 'Alex', you: true, voice: 'live', range: null }, { name: 'Bea', you: false, voice: 'live', range: 'near' }], 'each row says who is you, who is in voice and how near')
   assert.equal((await api.getDiagnostics()).peers[0]?.rms, 0.125, 'post-gain analyser amplitude halves')
   api.walk(2, 0)
   assert.deepEqual(lastSent(ws), { type: 'move', x: 2, z: 0 })
@@ -246,6 +247,7 @@ test('synthetic audio: spatial playback, range, diagnostics and an explicit Join
   const nearPeer = PC.all.at(-1) as PC
   ws.receive({ type: 'presence', members: [{ id: 'a', name: 'Alex', enabled: true, position: { x: 0, z: 0 } }, { id: 'b', name: 'Bea', enabled: true, position: { x: 13, z: 0 } }] })
   assert.equal(nearPeer.closed, true, 'out-of-range peer hard closes')
+  assert.equal(api.state.members[1]?.range, 'far')
   assert.equal((await api.getDiagnostics()).peers.length, 0)
   const beforeReentry = PC.all.length
   ws.receive({ type: 'presence', members: [{ id: 'a', name: 'Alex', enabled: true, position: { x: 0, z: 0 } }, { id: 'b', name: 'Bea', enabled: true, position: { x: 3, z: 0 } }] })
@@ -438,7 +440,7 @@ test('state is published to subscribers and onChange, and a rejected line carrie
   ws.receive({ type: 'presence', members: [{ id: 'a', name: 'Alex', enabled: false }] })
   assert.ok(changes > 0)
   assert.equal(latest.memberCount, 1)
-  assert.deepEqual(latest.members, [{ id: 'a', label: 'Alex (you)', state: 'Here' }])
+  assert.deepEqual(latest.members, [{ id: 'a', name: 'Alex', you: true, label: 'Alex (you)', state: 'Here', voice: 'off', range: null }])
   api.sendChat('<b>not html</b>')
   const clientId = lastSent(ws).clientId as string
   ws.receive({ type: 'error', error: 'text_blocked', message: 'That wording is not allowed here.', clientId })

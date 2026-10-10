@@ -164,6 +164,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     toast: (text, kind) => game.toast(text, kind),
     onMembers,
     walkBy: (dx, dz) => scene.venue.value?.walkBy?.(dx, dz) === true,
+    openPerson: (player, name) => shell.open('person', { player, name }),
     telemetry: { chunkFailed: (name, error) => { telemetry.chunkFailed(name as never, error); void noteChunkFailure() }, captureError: (error, context) => { telemetry.captureError(error, context) } },
   })
 

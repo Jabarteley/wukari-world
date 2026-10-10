@@ -3,6 +3,8 @@
 //   npm run dev                              http://127.0.0.1:5173/
 //   npm run dev -- --port 5180               another port (or set DEV_PORT)
 //   npm run dev -- --env .env                read settings from a file first (see .env.example); nothing is read otherwise
+//   npm run dev:open                         open mode: the same, with the gameplay gates relaxed, local data in .data-open
+//                                            (docs/DEVELOPING.md, "Open mode"); it reads no settings file
 //
 // The page reloads itself when its sources change (Vite). The game server is a second process, restarted whenever a file
 // it loads changes (anything server/server.ts imports, the rules and city data under src/ included), so the page and the
@@ -97,6 +99,13 @@ async function launch(): Promise<void> {
     clearTimeout(timer);
   };
   try {
+    const openMode = process.argv.includes('--open');
+    if (openMode) {
+      if (option('env') !== undefined) throw new Error('open mode reads no settings file (it never uses real keys). Run it without --env.');
+      // Both processes see these; the game server (the second process) reads them at start. The setting is honoured on loopback only.
+      process.env.ALLWORLD_OPEN_DEV = '1';
+      process.env.DATA_DIR ||= resolve(root, '.data-open');
+    }
     const envFile = option('env');
     if (envFile !== undefined) {
       if (!existsSync(envFile)) throw new Error(`the settings file ${envFile || '(no name given)'} does not exist. Copy .env.example to .env and fill in what you need.`);
@@ -109,9 +118,11 @@ async function launch(): Promise<void> {
     const gamePort = await freePort(), target = `http://127.0.0.1:${gamePort}`;
     await startGame(gamePort);
     const { createServer: createViteServer } = await import('vite');
-    const vite = await createViteServer({ server: {
+    // Open mode: the badge and panel script is served by the game server and added to every page Vite serves (never to the build).
+    const badge = { name: 'open-dev-badge', transformIndexHtml: () => [{ tag: 'script', attrs: { src: '/__open-dev.js', defer: true }, injectTo: 'body' as const }] };
+    const vite = await createViteServer({ ...(openMode ? { plugins: [badge] } : {}), server: {
       host: '127.0.0.1', port, strictPort: true,
-      proxy: { '/api': { target }, '/socket': { target, ws: true } },
+      proxy: { '/api': { target }, '/socket': { target, ws: true }, ...(openMode ? { '/__open-dev.js': { target } } : {}) },
     } });
     await vite.listen();
     console.log(`\nAllworld is running at http://127.0.0.1:${port}/ (game, API and WebSocket).\nSaved edits show at once: the page reloads, and the game server restarts when its code or the rules change. Press Ctrl+C to stop.\n`);

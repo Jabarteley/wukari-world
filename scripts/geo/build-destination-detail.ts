@@ -17,7 +17,7 @@ import { writeFileSync } from 'node:fs';
 import { ask } from './destination-detail/overpass.ts';
 import type { Element } from './destination-detail/overpass.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { OUTLINE_MARGIN, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
 
 const id = process.argv[2];
@@ -107,11 +107,10 @@ const waterAnswer = await ask(id, 'water', config.water(config.sea || config.wid
 const isShore = (element: Element): boolean => Boolean(element.geometry) && element.type === 'way' && (element.tags?.natural === 'coastline' || (config.sea?.kind === 'lake' && !element.tags?.natural && !element.tags?.waterway));
 const coast = waterAnswer.elements.filter(isShore).map((element) => element.geometry!.map((g): P => [g.lon, g.lat]));
 const landPoints = [...places.map((place): P => [place.lon, place.lat]), ...labelled.map((label) => label.at)];
-const tidyWater = (polygons: P[][][]): P[][][] => polygons.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.waterTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
 const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, outlineBox, wide, config.sea.bandMetres, config.cell / config.split) : null;
-const sea = shoreSide ? tidyWater(shoreSide.band) : [];
+const sea = shoreSide ? safePolygons(shoreSide.band, config.waterTolerance) : [];
 // The sea carried far beyond the play box is drawn at a coarser tolerance (about 130 m): nobody reads a shore that far out to the metre, and the file stays small.
-const farSea = shoreSide ? shoreSide.far.map((polygon) => polygon.map((ring) => simplifyRing(ring, Math.max(config.waterTolerance, 0.0012))).filter((ring) => ring.length)).filter((polygon) => polygon.length) : [];
+const farSea = shoreSide ? safePolygons(shoreSide.far, 0.0008) : [];
 // Only what the source tags as water: the answer may also hold wetland, islet and wall ways that are members of the lake's relation.
 const inland = waterAnswer.elements.filter((element) => !isShore(element) && (element.tags?.natural === 'water' || element.tags?.waterway === 'riverbank' || element.type === 'relation'));
 // What the outline is traced round (the shore band and the inland water inside the box: the map's declared water), and what is drawn (the same, carried on to the edge of the ground).
@@ -119,17 +118,19 @@ const inland = waterAnswer.elements.filter((element) => !isShore(element) && (el
 const km2 = (polygon: P[][]): number => { const lat = polygon[0]![0]![1]; return ringArea(polygon[0]!) * 111.32 * Math.cos(lat * Math.PI / 180) * 110.57; };
 const big = (polygons: P[][][]): P[][][] => polygons.filter((polygon) => km2(polygon) >= (config.minWaterKm2 ?? 0.4));
 const wet = [...sea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), outlineBox, config.waterTolerance)))];
-const reachWater = [...farSea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008))))];
+const reachWater = [...farSea, ...safePolygons(inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008)))), 0.0008)];
 console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
 
 const landuse = await ask(id, 'landuse', config.landuse(outlineBbox));
 const useRings = landuse.elements.flatMap((element) => areaRings(element).outer);
 const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 }))];
-const traced = builtUp(useRings, anchors, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore });
-const tidy = (polygons: P[][][]): P[][][] => polygons.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.outlineTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
+const roadsEarly = await ask(id, 'roads', config.roads(bbox, `${config.core.join(',')}`));
+const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
+const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500 });
+const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015));
 const land = tidy(traced.land), play = tidy(traced.play);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
-const water = traced.water.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.waterTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
+const water = safePolygons(traced.water, Math.min(config.waterTolerance, 0.00015));
 if (!land.length) throw new Error('The land-use answer left no built-up area in the box');
 const lonLat = (polygons: P[][][]): string => JSON.stringify(polygons.map((polygon) => polygon.map(roundRing)));
 

@@ -41,6 +41,7 @@ The land outline is a sketch at the grid's size (about 40 m after tracing) and s
 - Roads are cut 0.004 degrees (about 440 m) past the outline (`roadMarginDegrees`).
 - Inland water under `minWaterKm2` (0.4 by default) is dropped: a small pond reads as a black pit at city scale. Kigali (0.02) and Lusaka (0.08) keep theirs because they have nothing larger.
 - The default and whole-city view frame the built-up land, not the water the play area holds (Kampala's lake). The simple map lays no estate lots and no city chip over a city-wide pack (its pale "0 homes" grid and its chip hid the pins); names are on the ground, and a phone opens on the core, not on the arrival airport.
+- On a sea or lake, no place or label may stand on an island or on a piece of land the shore ways cut off: a known land point marks its whole region as land, so one place on Gorée made all of Dakar's sea land. Leave island places out.
 - Offline check: render the built pack (outline, water, roads, labels, places, ground extent) to a flat PNG and look at it; magenta anywhere means the ground does not reach far enough.
 
 ## Estimates for the remaining cities

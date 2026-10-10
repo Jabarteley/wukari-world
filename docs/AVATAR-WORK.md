@@ -1,5 +1,27 @@
 # Avatar work: motion, objects and wardrobe
 
+## One figure everywhere (October 2026)
+
+The drawn character (`src/scene/characters.ts`) is the one figure of the game. The creator, the home, the street and the venues
+draw it for the player, for other players and for regulars, so a look is the same person on every screen. The skinned body
+(`src/scene/body/`) is switched off by one constant (`SKINNED_BODY` in `gate.ts`); the preview therefore never swaps to another
+body once a scene has loaded, and nothing of the body is fetched.
+
+- **Three levels of one model.** `high` (the creator, about 13,000 to 30,000 triangles), `medium` (the player in a scene, 4,000 to
+  10,500) and `low` (everyone else, 1,500 to 3,200): the same face, hair, outfit, print, accessories and proportions, drawn with fewer
+  segments, flat features and no printed fabric below `medium` (the `TUNE` table). The old separate low model is gone.
+- **Soft material.** `figureMaterials(kit)`: the scene's solid material with a gentle rim and a touch of fill, for every figure.
+- **Movement.** The rig is the six parts of `buildAvatar(..., { rig: true })`, posed by `poseAvatar`. Every pose the game uses has a
+  pose of the figure (`figure-poses.ts`; the home picks eat, drink, cook, bucket, wash, soak and lie from the furniture). Segmented
+  parts driven by transforms, not the clip pack: the parts are already separate, the clips are authored for another skeleton, and
+  transforms cost no download.
+- **Life.** `figure-life.ts`: breathing, weight shift, a head drift, blinks (an eyelid part shown for a moment), a talking mouth
+  (a part that opens and closes), each on its own phase from the figure's seed. Hosts give it in short beats that fade in and out
+  (`life(time, amount)` on a scene; the loop still never idles). Figures drawn as one piece (regulars, other players) breathe and
+  sway as a whole. A mood word (Happy, Okay, Uneasy, Miserable) draws a face through `moodExpression`.
+- **Portraits.** `src/scene/portrait.ts` draws a cached head-and-shoulders image from the same figure; `PlayerAvatar.vue` and
+  `PersonPortrait.vue` show it where there was a letter or an icon.
+
 Updated 7 October 2026. Full avatar integration is active in `neighbourhood-life/JoinAllworld`. Earlier handoff records below are historical checkpoints; the current acceptance status follows. No commits, pushes, deployments, dependencies, purchased assets, test edits or budget increases were made.
 
 ## Final local avatar handoff

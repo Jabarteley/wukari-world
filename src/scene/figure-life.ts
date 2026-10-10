@@ -68,7 +68,8 @@ export function applyLife(parts: LifeParts, { time, phase, pose, speaking = fals
     parts.armR.rotation.x += 0.03 * Math.sin(t * 0.9 + 1) * calm;
     parts.armL.rotation.x += 0.03 * Math.sin(t * 0.8 + 2.4) * calm;
   } else parts.torso.scale.set(1, 1, 1);
-  const headYaw = Math.max(-0.95, Math.min(0.95, gaze * 0.65));
+  // A glance towards someone fades in and out with the beat, so the head is straight again when it ends.
+  const headYaw = Math.max(-0.95, Math.min(0.95, gaze * 0.65)) * Math.min(1, Math.max(0, amount) * 1.6);
   parts.head.rotation.y = headYaw + (calm > 0 ? 0.05 * Math.sin(t * 0.37 * own + 2) * calm : 0);
   parts.head.rotation.x = (calm > 0 ? 0.035 * Math.sin(t * 0.71 * own) * calm : 0) + (speaking ? 0.045 * Math.sin(time * 6.3 + phase * 9) : 0);
   if (speaking && calm > 0) parts.armR.rotation.x += 0.2 * Math.sin(time * 4.6 + phase * 5);

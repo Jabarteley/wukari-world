@@ -16,6 +16,7 @@ import { cityWalk } from '../neighbourhood/cityWalkState.ts'
 import { useApp } from '../../state/app.ts'
 import { momentText, noticeText } from '../../state/momentText.ts'
 import GameIcon from '../../ui/GameIcon.vue'
+import PersonPortrait from '../../ui/PersonPortrait.vue'
 import { linkWording } from '../hud/hudModel.ts'
 
 const { game, shell, command, community } = useApp()
@@ -91,7 +92,7 @@ watch(() => `${state.value.location}:${state.value.spot}`, () => {
 <template>
   <section class="life-venue-panel" data-tour="place" aria-label="Current venue">
     <header class="life-venue-header">
-      <button class="life-avatar" type="button" aria-label="Open your character: profile, needs, goals and skills" @click="shell.open('sim')"><GameIcon inline name="person" /></button>
+      <button class="life-avatar" type="button" aria-label="Open your character: profile, needs, goals and skills" @click="shell.open('sim')"><PersonPortrait :look="state.onboarding?.look" :seed="state.name" :mood="view.needs.mood.label"><GameIcon inline name="person" /></PersonPortrait></button>
       <div class="life-venue-heading"><h1><GameIcon inline kind="venue" :id="visiting ? 'home' : venue.id" :emoji="venue.icon" /> {{ title }} <span>· {{ district }}</span></h1><p :title="line"><GameIcon v-if="privateHome && view.connected" inline name="lock" />{{ line }}</p></div>
       <button v-if="!privateHome && !visiting && !cityStreet && view.connected" class="life-icon-button" data-tour="community" type="button" aria-label="Open community chat" title="Community chat" @click="community.toggle(true)"><GameIcon name="chat" /></button>
       <button class="life-icon-button" type="button" aria-label="Open map" title="Map (M)" @click="shell.open('map')"><GameIcon name="map" /></button>

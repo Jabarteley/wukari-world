@@ -18,7 +18,7 @@ export const isTimeOfDay = (value: unknown): value is TimeOfDay => TIMES.include
  */
 export const LIGHTING: Readonly<Record<Mood, Readonly<Record<TimeOfDay, Lighting>>>> = Object.freeze({
   outdoor: {
-    day: { sky: ['#cfe9f3', '#6fb4e6'], hemi: ['#eaf4ff', '#c9b08a', 1.9], sun: ['#fff0d2', 2.4, [-10, 26, 12]], rim: ['#cfe2ff', 0.7], glow: 0.6, lamps: 0.1 },
+    day: { sky: ['#cfe9f3', '#6fb4e6'], hemi: ['#eef3ff', '#c9a77e', 1.75], sun: ['#ffe2b4', 2.7, [-10, 26, 12]], rim: ['#bcd4ff', 1.05], glow: 0.6, lamps: 0.1 },
     dusk: { sky: ['#f0b48c', '#5d528f'], hemi: ['#f3cdb6', '#8a6f6a', 1.5], sun: ['#ff9a5c', 1.9, [-22, 11, 7]], rim: ['#c9b6f0', 0.9], glow: 1.05, lamps: 0.8 },
     night: { sky: ['#243152', '#0b1020'], hemi: ['#9fb4e6', '#3a3550', 1.05], sun: ['#9fb9ea', 0.8, [-12, 25, 8]], rim: ['#bcd0ff', 0.95], glow: 1.3, lamps: 1.6 },
   },

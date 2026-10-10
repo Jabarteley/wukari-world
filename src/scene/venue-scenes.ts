@@ -1027,7 +1027,20 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     life(time: number, amount = 1) {
       if (!live) return false;
       const figure = shownFigure;
-      if (!driven && figure?.userData.parts) poseAvatar(figure, { pose: 'stand', time, amount });
+      if (!driven && figure?.userData.parts) {
+        // The player's eyes go to whoever is nearest (within six steps, and in front), then come back.
+        let gaze = 0, best = 36;
+        const consider = (x: number, z: number) => {
+          const dx = x - avatar.position.x, dz = z - avatar.position.z, d = dx * dx + dz * dz;
+          if (d < 0.01 || d >= best) return;
+          const turn = Math.atan2(dx, dz) - avatar.rotation.y, wrapped = Math.atan2(Math.sin(turn), Math.cos(turn));
+          if (Math.abs(wrapped) < 2.2) { best = d; gaze = wrapped; }
+        };
+        for (const actor of actorFigures) consider(actor.position.x, actor.position.z);
+        for (const peer of peers.values()) consider(peer.x, peer.z);
+        figure.userData.gaze = gaze;
+        poseAvatar(figure, { pose: 'stand', time, amount });
+      }
       for (const actor of actorFigures) applyIdle(actor, time, amount);
       for (const peer of peers.values()) if (peer.t >= 1) { applyIdle(peer.stand, time, amount); }
       return Boolean(figure || actorFigures.length || peers.size);

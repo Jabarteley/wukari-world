@@ -737,7 +737,12 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   }
   function placeFigure() {
     const at = shownPose === 'work' || shownPose === 'sit' ? seatAt?.at : undefined;
-    if (at) {
+    if (at && shownFigurePose === 'lie' && at.kind === 'seat') {
+      // On the bed: the figure lies along the bed with its pelvis where a sitter's would be, head to the pillow end.
+      const hip = 1.06 * tile * AVATAR_SCALE;
+      avatar.position.set(at.x + Math.sin(at.ry) * hip, at.top + 0.02, at.z + Math.cos(at.ry) * hip);
+      avatar.rotation.y = at.ry;
+    } else if (at) {
       avatar.position.set(at.x, at.kind === 'seat' ? at.top - 0.6 * tile * AVATAR_SCALE : at.y, at.z);
       avatar.rotation.y = at.ry;
     } else { avatar.position.set(floorAt.x, floorAt.y, floorAt.z); avatar.rotation.y = floorAt.ry; }
@@ -801,6 +806,9 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     if (head && body) {
       body.object.updateWorldMatrix(true, true);
       head.getWorldPosition(headAt); group.worldToLocal(headAt); headAt.y += 0.32 * body.scale;
+    } else if (shownFigurePose === 'lie' && shownFigure) {
+      const reach = 2.2 * tile * AVATAR_SCALE;
+      headAt.set(avatar.position.x - Math.sin(avatar.rotation.y) * reach, avatar.position.y + 0.9 * tile * AVATAR_SCALE, avatar.position.z - Math.cos(avatar.rotation.y) * reach);
     } else headAt.set(avatar.position.x, avatar.position.y + (shownFigure?.userData.top ?? 2.95 * tile * AVATAR_SCALE), avatar.position.z);
     if (selfTag) { selfTag.position.x = headAt.x; selfTag.position.y = headAt.y; selfTag.position.z = headAt.z; }
     else selfTag = { id: 'self', name: who.name, kind: 'self', text: who.name, marker: 'crown', colour: '#ffd34d', position: { x: headAt.x, y: headAt.y, z: headAt.z } };

@@ -4,6 +4,7 @@
 import { computed, nextTick, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
+import PersonPortrait from '../../ui/PersonPortrait.vue'
 import PanelHost from '../phone/PanelHost.vue'
 import { moodOf } from '../hud/hudModel.ts'
 
@@ -35,7 +36,7 @@ function onArrow(event: KeyboardEvent, index: number): void {
 
 <template>
   <header class="sheet-head sim-head">
-    <span class="sim-avatar" aria-hidden="true"><GameIcon inline name="person" /></span>
+    <span class="sim-avatar" aria-hidden="true"><PersonPortrait :look="game.state.value.onboarding?.look" :seed="game.state.value.name" :mood="mood.word"><GameIcon inline name="person" /></PersonPortrait></span>
     <div><h2>{{ game.state.value.name }}</h2><p>{{ mood.word }}<template v-if="feeling"> · {{ feeling.label }}</template></p></div>
   </header>
   <div ref="row" class="sim-tabs" role="tablist" aria-label="Your character">

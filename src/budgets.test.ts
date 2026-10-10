@@ -57,7 +57,7 @@ test('source constants that mirror the table equal it', () => {
 test('withinBudget treats the limit as inside, and a floor the other way round', () => {
   const max: Budget = { ...BUDGETS.SCENE_DRAW_CALLS }, min: Budget = { ...BUDGETS.AVATAR_MEDIUM_TRIANGLES_MIN }
   assert.deepEqual([59, 60, 61].map((n) => withinBudget(max, n)), [true, true, false])
-  assert.deepEqual([1499, 1500, 1501].map((n) => withinBudget(min, n)), [false, true, true])
+  assert.deepEqual([2999, 3000, 3001].map((n) => withinBudget(min, n)), [false, true, true])
   assert.equal(describeBudget(BUDGETS.SCENE_TRIANGLES), '60,000 triangles (max)')
 })
 

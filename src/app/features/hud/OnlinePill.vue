@@ -8,13 +8,12 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { onCallFrame, onSocketOpen, sendFrame, social } from '../social/useSocial.ts'
-import { useGrowth } from '../growth/useGrowth.ts'
+import { shareInvite } from '../growth/shareInvite.ts'
 import { aloneLine, easeSteps, onlineView, pulseAria, pulseTitle, pulseTone, compactCount } from './onlinePillModel.ts'
 import { usePulse } from './usePulse.ts'
 
 const { game, shell, api } = useApp()
 const pulse = usePulse((path) => api.fetchJson(path))
-const growth = useGrowth()
 const state = pulse.state
 const connected = game.connected
 
@@ -51,7 +50,7 @@ watch([() => state.numbers, cityId], ([numbers]) => {
   first = false
 }, { immediate: true })
 
-const press = (): void => { if (alone.value) void growth.share('invite', { surface: 'hud' }); else shell.open('people') }
+const press = (): void => { if (alone.value) shareInvite('hud', () => game.toast('That could not be shared.', 'error')); else shell.open('people') }
 const onVisibility = (): void => pulse.visibility()
 // The server sends the counts over the socket: asked for once per connection (the answer is the right count already), and again on its own when they change.
 const askCounts = (): void => { sendFrame({ type: 'pulse-watch' }) }

@@ -374,7 +374,8 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   water.rotation.x = -Math.PI / 2; water.position.set(midX, WATER_Y, midZ);
   count(add(water, 'water'));
   // Water keeps a little light of its own, so a sea or a river is still a natural blue at dusk and at night and not black.
-  const waterwayMaterial = pack.water?.length ? keep(new THREE.MeshStandardMaterial({ color: CITY_LIGHT.day.water, roughness: 0.42, metalness: 0.05, emissive: new THREE.Color(CITY_LIGHT.day.water), emissiveIntensity: 0.3 })) : null;
+  const waterwayMaterial = pack.water?.length ? keep(new THREE.MeshStandardMaterial({ color: CITY_LIGHT.day.water, roughness: 0.42, metalness: 0.05, emissive: new THREE.Color(CITY_LIGHT.day.water), emissiveIntensity: 0.3, ...(pack.surround ? { polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 } : {}) })) : null;
+  // The water lies 0.01 above the ground plane; seen from far out the two share a depth value and stripes of ground show through the sea. A polygon offset puts the water in front at any distance.
   if (waterwayMaterial) {
     const waterways = createRaw(THREE, pack.surround ? 60 : 0);
     for (const part of pack.water ?? []) waterways.shape(part.points, WATER_Y + 0.01, '#ffffff', part.holes);

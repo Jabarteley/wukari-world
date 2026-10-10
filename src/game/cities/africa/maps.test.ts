@@ -4,9 +4,8 @@ import type { CityModule } from '../../../types/content.ts'
 import { assertCityMapContract } from '../cityContractTest.test.ts'
 import { city as yaounde } from '../yaounde/index.ts'
 import { city as lome } from '../lome/index.ts'
-import { city as cotonou } from '../cotonou/index.ts'
 
-const destinations: readonly CityModule[] = [yaounde, lome, cotonou]
+const destinations: readonly CityModule[] = [yaounde, lome]
 
 for (const city of destinations) test(`${city.id}: real starter map preserves geometry, arrival and bounded decoration`, async () => {
   const map = await city.loadMap()

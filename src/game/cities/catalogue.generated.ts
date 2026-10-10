@@ -50,7 +50,7 @@ export const GENERATED_CITY_CATALOGUE_ROWS = Object.freeze([
   ["abidjan","Abidjan","ci-starter","Abidjan",-4.020207,5.323126,1,"ci","Côte d’Ivoire"],
   ["addis-ababa","Addis Ababa","et-starter","Addis Ababa",38.698059,9.035256,1,"et","Ethiopia"],
   ["cape-town","Cape Town","za-starter","Cape Town",18.433042,-33.918065,1,"za","South Africa"],
-  ["cotonou","Cotonou","bj-starter","Starter zone",2.404355,6.36298,1,"bj","Benin"],
+  ["cotonou","Cotonou","bj-starter","Cotonou",2.404355,6.36298,1,"bj","Benin"],
   ["dakar","Dakar","sn-starter","Dakar",-17.475076,14.717778,1,"sn","Senegal"],
   ["cairo","Cairo","eg-starter","Greater Cairo",31.248022,30.051906,1,"eg","Egypt"],
   ["rabat","Rabat","ma-starter","Rabat",-6.836408,34.025307,1,"ma","Morocco"],

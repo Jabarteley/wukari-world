@@ -7,7 +7,7 @@ import { createRenderer, defineComponent, h, nextTick, onBeforeUnmount, onMounte
 import { DEFAULT_LOOK } from '../../../game/content/traits.ts'
 import { loadAllCityRules } from '../../../game/cities/registry.ts'
 import { settlePlan } from '../start/creatorModel.ts'
-import { cr } from '../start/creatorState.ts'
+import { cr, keepsDraft } from '../start/creatorState.ts'
 import { scopeSwitched, useSheetScope } from './phoneModel.ts'
 await loadAllCityRules()
 
@@ -26,6 +26,7 @@ function rig() {
   const session = ref<string | null>(null)
   const city = ref('lagos')
   const sent: string[] = []
+  const start = { inFlight: false }
   const log = { mounted: 0, unmounted: 0 }
   // Stands in for CreatorApp: listens for the shell's "life exists" answer once mounted and then sends the rest.
   const Creator = defineComponent({ setup() {
@@ -38,9 +39,9 @@ function rig() {
     onBeforeUnmount(() => { log.unmounted += 1; events.removeEventListener('done', onDone) })
     return () => h('div')
   } })
-  const Host = defineComponent({ setup() { const scope = useSheetScope(session, city); return () => h(Creator, { key: scope.value }) } })
+  const Host = defineComponent({ setup() { const scope = useSheetScope(session, city, () => start.inFlight); return () => h(Creator, { key: scope.value }) } })
   createApp(Host).mount({ children: [] })
-  return { session, city, sent, log }
+  return { session, city, sent, log, start }
 }
 
 test('the creator survives the session its own Play creates and still sends the rest of the choices', async () => {
@@ -78,4 +79,42 @@ test('which transitions switch', () => {
   assert.equal(scopeSwitched({ session: 'a', city: 'lagos' }, { session: 'b', city: 'lagos' }), true)
   assert.equal(scopeSwitched({ session: 'a', city: 'lagos' }, { session: null, city: 'lagos' }), true)
   assert.equal(scopeSwitched({ session: 'a', city: 'lagos' }, { session: 'a', city: 'abuja' }), true)
+})
+
+test('while the visitor\'s own start is in flight no order of session and city updates rebuilds the creator', async () => {
+  const orders: [string, (r: ReturnType<typeof rig>) => Promise<void>][] = [
+    ['session then city', async (r) => { r.session.value = 's1'; await nextTick(); r.city.value = 'abuja' }],
+    ['city then session', async (r) => { r.city.value = 'abuja'; await nextTick(); r.session.value = 's1' }],
+    ['both in one tick', async (r) => { r.session.value = 's1'; r.city.value = 'abuja' }],
+    ['the city changes twice after the session', async (r) => { r.session.value = 's1'; await nextTick(); r.city.value = 'abuja'; await nextTick(); r.city.value = 'lagos' }],
+    ['the session is issued again', async (r) => { r.session.value = 's1'; await nextTick(); r.session.value = 's2' }],
+  ]
+  for (const [name, order] of orders) {
+    const r = rig()
+    r.start.inFlight = true
+    await order(r)
+    await nextTick()
+    assert.deepEqual([r.log.mounted, r.log.unmounted], [1, 0], name)
+  }
+})
+
+test('a failed start frees the sheet again, and a retried start freezes it again', async () => {
+  const r = rig()
+  r.start.inFlight = true
+  r.session.value = 'a'; await nextTick()
+  r.start.inFlight = false // the start failed: the visitor is a guest with a session
+  r.city.value = 'abuja'; await nextTick()
+  assert.equal(r.log.unmounted, 1) // a real city change outside the flow
+  r.start.inFlight = true // tap Start again
+  r.session.value = 'b'; r.city.value = 'lagos'; await nextTick()
+  assert.equal(r.log.unmounted, 1)
+})
+
+test('a creator built again during its own start keeps its draft and step; another visitor\'s is dropped', () => {
+  const ui = { draft: cr.draft, owner: 'new:local:lagos', settling: true }
+  assert.equal(keepsDraft(ui, 'new:abc:lagos', 'new'), true)
+  assert.equal(keepsDraft(ui, 'new:local:lagos', 'new'), true)
+  assert.equal(keepsDraft({ ...ui, settling: false }, 'new:abc:lagos', 'new'), false)
+  assert.equal(keepsDraft(ui, 'settle:abc:lagos', 'settle'), false)
+  assert.equal(keepsDraft({ ...ui, draft: null }, 'new:local:lagos', 'new'), false)
 })

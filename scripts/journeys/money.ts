@@ -168,7 +168,7 @@ try {
     detail['conversationsAfter'] = conv;
     must(conv === 1, 'the first request did not create the conversation');
     detail['chatHeadAfter'] = (await text(a, '.messages-chat .messages-head')).replace(/\s+/g, ' ');
-    must(detail['chatHeadAfter'].toString().includes('Bola'), 'the screen did not stay on / move to the chat with Bola');
+    must(String(detail['chatHeadAfter']).includes('Bola'), 'the screen did not stay on / move to the chat with Bola');
     await askerAndPayerSee('open', 1, 'open');
     detail['adaCard'] = await card(a); detail['bolaCard'] = await card(b);
     detail['adaButtons'] = await cardButtons(a); detail['bolaButtons'] = await cardButtons(b);

@@ -407,7 +407,7 @@ try {
     const lagosH = new Date(lab.now() + HOUR).getUTCHours(); if (lagosH < 7 || lagosH > 18) { lab.advance(((12 - lagosH + 24) % 24) * HOUR); await syncClock(B, lab.offset()); await syncClock(G, lab.offset()); await syncClock(S, lab.offset()); }
     const send = (action: object) => pageCall(B, '/api/action', { actionId: `${lab.now()}:${crypto.randomUUID()}`, cityId: 'lagos', ...action });
     await B.press('Escape', 'Escape', 27); await B.goto(lab.base + '/'); await gameShown(B); await dismiss(B);
-    const fund = await lab.admin(`/api/admin/players/${ids['buyer']}/act`, { clientId: `${lab.now()}:${crypto.randomUUID()}`, action: 'credit', amount: 5000, reason: 'journey' }).catch((e) => ({ error: String(e) }));
+    const fund = await lab.admin(`/api/admin/players/${ids['buyer']}/act`, { clientId: `${lab.now()}:${crypto.randomUUID()}`, action: 'credit', amount: 5000, reason: 'journey' }).catch((e): Record<string, any> => ({ error: String(e) }));
     detail['fund'] = { status: fund.status };
     const trip = await send({ type: 'travel', id: 'market', mode: 'okada' }); detail['travel'] = { status: trip.status, code: trip.body?.code, reason: trip.body?.reason };
     lab.advance(3 * HOUR); await syncClock(B, lab.offset()); await syncClock(G, lab.offset());

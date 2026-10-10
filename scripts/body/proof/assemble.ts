@@ -1,5 +1,6 @@
 // Rebuilds a Blender-made character on the animation skeleton the clip pack plays on.
-//   node --experimental-strip-types scripts/body/proof/assemble.ts <parts.glb> <joints.json> <female|male> <out.glb>
+//   node --experimental-strip-types scripts/body/proof/assemble.ts <parts.glb> <joints.json> <female|male> <out.glb> [--lod]
+// --lod drops the morph targets and the face parts (brows, lashes, teeth, tongue, mouth cavity, eyes) for the crowd version.
 // The meshes come from Blender with the 23 bone names as vertex groups. The skeleton is the shipped body's: the same bone
 // names, order, hierarchy and rest rotations (the clips are authored against those), with the rest positions of the
 // spine, neck, head and arm bones moved to where this body's joints are. Pelvis and leg bones keep the shipped positions
@@ -11,7 +12,8 @@ import { loadBodyData } from './body-data.ts';
 import type { BodyKey } from './body-data.ts';
 import { exportGlb } from './glb-export.ts';
 
-const [partsPath, jointsPath, key, outPath] = process.argv.slice(2);
+const lod = process.argv.includes('--lod');
+const [partsPath, jointsPath, key, outPath] = process.argv.slice(2).filter((a) => a !== '--lod');
 if (!partsPath || !jointsPath || (key !== 'female' && key !== 'male') || !outPath) throw new Error('usage: assemble.ts <parts.glb> <joints.json> <female|male> <out.glb>');
 
 const KEEP = new Set(['root', 'pelvis', 'thigh_l', 'calf_l', 'foot_l', 'ball_l', 'thigh_r', 'calf_r', 'foot_r', 'ball_r']);
@@ -48,10 +50,14 @@ const out: THREE.SkinnedMesh[] = [];
 gltf.scene.traverse((n) => {
   const sm = n as THREE.SkinnedMesh;
   if (!sm.isSkinnedMesh) return;
+  const matName = (Array.isArray(sm.material) ? sm.material[0]! : sm.material).name;
+  if (lod && ['brow', 'lash', 'teeth', 'tongue', 'cavity', 'eye'].includes(matName)) return;
   const g = sm.geometry.clone();
+  if (lod) { g.morphAttributes = {}; }
   g.applyMatrix4(sm.matrixWorld);
   const lin = new THREE.Matrix4().extractRotation(sm.matrixWorld);
-  for (const attr of Object.keys(g.morphAttributes)) g.morphAttributes[attr] = g.morphAttributes[attr]!.map((a) => { const c = a.clone(); c.applyMatrix4(lin); return c; });
+  const morphs = g.morphAttributes as Record<string, (THREE.BufferAttribute | THREE.InterleavedBufferAttribute)[]>;
+  for (const attr of Object.keys(morphs)) morphs[attr] = morphs[attr]!.map((a: THREE.BufferAttribute | THREE.InterleavedBufferAttribute) => { const c = a.clone(); c.applyMatrix4(lin); return c; });
   g.morphTargetsRelative = sm.geometry.morphTargetsRelative;
   const idx = g.getAttribute('skinIndex'), wt = g.getAttribute('skinWeight');
   const remap = sm.skeleton.bones.map((b) => names.get(b.name) ?? 0);
@@ -64,7 +70,7 @@ gltf.scene.traverse((n) => {
   const m = new THREE.MeshStandardMaterial({ name: (Array.isArray(sm.material) ? sm.material[0]! : sm.material).name });
   const mesh = new THREE.SkinnedMesh(g, m);
   mesh.name = sm.name;
-  if (sm.morphTargetDictionary) { mesh.morphTargetDictionary = { ...sm.morphTargetDictionary }; mesh.morphTargetInfluences = sm.morphTargetInfluences!.map(() => 0); }
+  if (!lod && sm.morphTargetDictionary) { mesh.morphTargetDictionary = { ...sm.morphTargetDictionary }; mesh.morphTargetInfluences = sm.morphTargetInfluences!.map(() => 0); }
   out.push(mesh);
 });
 for (const m of out) { root.add(m); }

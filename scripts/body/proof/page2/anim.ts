@@ -129,7 +129,7 @@ export class LifeDriver {
       bone.updateWorldMatrix(false, true);
     };
     // a narrower, more relaxed stance than the clip's
-    const stance = this.rig.look.body === 'female' ? 0.12 : 0.1;
+    const stance = this.rig.look.body === 'female' ? 0.2 : 0.17;
     addRot(bones['thigh_l'], 0, 0, -stance); addRot(bones['thigh_r'], 0, 0, stance);
     addRot(bones['calf_l'], 0, 0, stance * 0.6); addRot(bones['calf_r'], 0, 0, -stance * 0.6);
     if (this.enabled.breathe) {

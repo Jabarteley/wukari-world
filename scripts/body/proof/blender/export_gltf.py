@@ -31,6 +31,10 @@ def target(name):
     return None
 
 
+KEEP = {"Body", "Body.high-poly", "Body.eyelashes02", "Body.eyebrow001", "Body.teeth_base", "Body.tongue01", "cavity"}
+for o in list(bpy.data.objects):
+    if o.type == "MESH" and o.name not in KEEP:      # hair and shoes are exported as their own parts
+        bpy.data.objects.remove(o)
 rig = bpy.data.objects["Body.rig"]
 rig.name = "Armature"
 for b in rig.data.bones:

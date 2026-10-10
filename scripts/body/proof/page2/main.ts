@@ -107,7 +107,7 @@ function addSlot(kind: Kind, x: number, label: string, look: ReturnType<typeof l
     holder.add(rig.root); rig.root.traverse((o) => { o.castShadow = true; o.receiveShadow = true; });
     const driver = new MidDriver(rig, seed); driver.mood = s.mood ?? 'neutral'; sl.mid = rig; sl.midDriver = driver; poseSlot(sl, pose, s.phase ?? 0.25);
   } else {
-    const rig = buildRig(assets, { ...look, tone: s.tone ?? look.tone });
+    const rig = buildRig(assets, { ...look, tone: s.tone ?? look.tone }, !!s.lod);
     const fit = HEIGHT[look.body] / (heights[look.body] ?? 1.88);
     rig.root.scale.setScalar(fit); sl.fit = fit;
     holder.add(rig.root); rig.root.traverse((o) => { o.castShadow = true; o.receiveShadow = true; });
@@ -212,7 +212,7 @@ const api = {
   },
   allParts(): { n: string[]; m: string[] } {
     const n = new Set<string>(), m = new Set<string>();
-    for (const l of [...Object.values(LOOKS), ...NPC_LOOKS]) { for (const x of partNames(l)) n.add(x); for (const x of [...partNamesMid(l), ...partNamesMid(l, { lod: 'crowd' })]) m.add(x); }
+    for (const l of [...Object.values(LOOKS), ...NPC_LOOKS]) { for (const x of [...partNames(l), ...partNames(l, true)]) n.add(x); for (const x of [...partNamesMid(l), ...partNamesMid(l, { lod: 'crowd' })]) m.add(x); }
     return { n: [...n], m: [...m] };
   },
   heights: (): Record<string, number> => heights,

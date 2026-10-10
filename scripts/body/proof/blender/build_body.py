@@ -40,6 +40,16 @@ for name, w in detail.items():
     TargetService.load_target(body, path, weight=w)
 TargetService.bake_targets(body)
 
+# a slightly larger head for appeal (about 1/7.2 of the height): scale the head and upper neck about the neck joint
+HEAD = float(os.environ.get("AW_HEAD", "1.12"))
+neck = [v.co.copy() for v in body.data.vertices if any(body.vertex_groups[g.group].name == "joint-neck" and g.weight > 0.5 for g in v.groups)]
+pivot = sum(neck, Vector()) / len(neck)
+for v in body.data.vertices:
+    t = min(1.0, max(0.0, (v.co.z - pivot.z) / 0.06))
+    w = t * t * (3 - 2 * t)
+    v.co = pivot + (v.co - pivot) * (1.0 + (HEAD - 1.0) * w)
+body.data.update()
+
 
 def select_only(obj):
     for o in bpy.context.view_layer.objects:

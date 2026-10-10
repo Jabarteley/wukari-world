@@ -1,0 +1,999 @@
+[
+ {
+  "name": "woman-braids-front-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "front"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-tq-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "tq"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-side-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "side"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-back-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "back"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-face-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "man-lowcut-front-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "man-lowcut",
+   "view": "front"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "man-lowcut-face-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "man-lowcut",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-afro-front-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-afro",
+   "view": "front"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-afro-face-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-afro",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "man-afro-front-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "man-afro",
+   "view": "front"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "man-afro-face-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "man-afro",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-mood-happy-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "face",
+   "mood": "happy"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "man-lowcut-mood-happy",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "face",
+   "mood": "happy"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-mood-neutral-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "face",
+   "mood": "neutral"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "man-lowcut-mood-neutral",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "face",
+   "mood": "neutral"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-mood-uneasy-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "face",
+   "mood": "uneasy"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "man-lowcut-mood-uneasy",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "face",
+   "mood": "uneasy"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-blink-1",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "setBlink",
+    0
+   ],
+   [
+    "advance",
+    0.3
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-blink-2",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "setBlink",
+    0.55
+   ],
+   [
+    "advance",
+    0.3
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-blink-3",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "setBlink",
+    1
+   ],
+   [
+    "advance",
+    0.3
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-talk-1-aa",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "setViseme",
+    "aa",
+    0.9
+   ],
+   [
+    "advance",
+    0.4
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-talk-2-oh",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "setViseme",
+    "oh",
+    0.9
+   ],
+   [
+    "advance",
+    0.4
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-talk-3-ee",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "setViseme",
+    "ee",
+    0.9
+   ],
+   [
+    "advance",
+    0.4
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-talk-4-mm",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "setViseme",
+    "mm",
+    0.9
+   ],
+   [
+    "advance",
+    0.4
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-idle-1",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "front"
+  },
+  "calls": [
+   [
+    "advance",
+    0.3
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-idle-2",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "front"
+  },
+  "calls": [
+   [
+    "advance",
+    1.0
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-idle-3",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "front"
+  },
+  "calls": [
+   [
+    "advance",
+    1.7
+   ]
+  ]
+ },
+ {
+  "name": "woman-braids-walk-1-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "tq",
+   "pose": "walk",
+   "phase": 0
+  }
+ },
+ {
+  "name": "woman-braids-walk-2-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "tq",
+   "pose": "walk",
+   "phase": 0.25
+  }
+ },
+ {
+  "name": "woman-braids-walk-3-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "tq",
+   "pose": "walk",
+   "phase": 0.5
+  }
+ },
+ {
+  "name": "woman-braids-walk-4-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "tq",
+   "pose": "walk",
+   "phase": 0.75
+  }
+ },
+ {
+  "name": "woman-braids-sit-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "tq",
+   "pose": "sit"
+  }
+ },
+ {
+  "name": "man-lowcut-sit",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "tq",
+   "pose": "sit"
+  }
+ },
+ {
+  "name": "man-lowcut-walk-2",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "tq",
+   "pose": "walk",
+   "phase": 0.25
+  }
+ },
+ {
+  "name": "skin-darkest",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "tq",
+   "tone": "#3f2416"
+  }
+ },
+ {
+  "name": "skin-lightest",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "tq",
+   "tone": "#e0ac7e"
+  }
+ },
+ {
+  "name": "skin-darkest-face",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face",
+   "tone": "#3f2416",
+   "mood": "happy"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "skin-lightest-face",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "face",
+   "tone": "#e0ac7e",
+   "mood": "happy"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "crowd-distance-three",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "far",
+   "lod": true,
+   "shadows": false,
+   "oldDetail": "low",
+   "info": true
+  }
+ },
+ {
+  "name": "npc-row-before",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "row",
+   "side": "old",
+   "oldDetail": "medium"
+  }
+ },
+ {
+  "name": "npc-row-after-full",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "row",
+   "side": "new",
+   "info": true
+  }
+ },
+ {
+  "name": "npc-row-after-lod",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "row",
+   "side": "new",
+   "lod": true,
+   "info": true
+  }
+ },
+ {
+  "name": "portrait-woman-braids-neutral",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "portrait",
+   "mood": "neutral",
+   "width": 512,
+   "height": 512,
+   "noGround": true,
+   "shadows": false,
+   "pr": 1
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ],
+  "transparent": true,
+  "clip": {
+   "x": 0,
+   "y": 0,
+   "width": 512,
+   "height": 512
+  }
+ },
+ {
+  "name": "portrait-woman-braids-happy",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "portrait",
+   "mood": "happy",
+   "width": 512,
+   "height": 512,
+   "noGround": true,
+   "shadows": false,
+   "pr": 1
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ],
+  "transparent": true,
+  "clip": {
+   "x": 0,
+   "y": 0,
+   "width": 512,
+   "height": 512
+  }
+ },
+ {
+  "name": "portrait-man-lowcut-neutral",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "portrait",
+   "mood": "neutral",
+   "width": 512,
+   "height": 512,
+   "noGround": true,
+   "shadows": false,
+   "pr": 1
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ],
+  "transparent": true,
+  "clip": {
+   "x": 0,
+   "y": 0,
+   "width": 512,
+   "height": 512
+  }
+ },
+ {
+  "name": "portrait-man-lowcut-happy",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "portrait",
+   "mood": "happy",
+   "width": 512,
+   "height": 512,
+   "noGround": true,
+   "shadows": false,
+   "pr": 1
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ],
+  "transparent": true,
+  "clip": {
+   "x": 0,
+   "y": 0,
+   "width": 512,
+   "height": 512
+  }
+ },
+ {
+  "name": "phone-woman-braids-front",
+  "viewport": "phone",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "front"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "phone-woman-braids-face",
+  "viewport": "phone",
+  "spec": {
+   "mode": "compare",
+   "look": "woman-braids",
+   "view": "face"
+  },
+  "calls": [
+   [
+    "enable",
+    {
+     "blink": false
+    }
+   ],
+   [
+    "advance",
+    1.2
+   ]
+  ]
+ },
+ {
+  "name": "single-full-info",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "front",
+   "info": true,
+   "shadows": false,
+   "noGround": true
+  }
+ },
+ {
+  "name": "single-lod-info",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "woman-braids",
+   "view": "front",
+   "info": true,
+   "shadows": false,
+   "noGround": true,
+   "lod": true
+  }
+ },
+ {
+  "name": "single-man-full-info",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "front",
+   "info": true,
+   "shadows": false,
+   "noGround": true
+  }
+ },
+ {
+  "name": "single-man-lod-info",
+  "viewport": "desktop",
+  "spec": {
+   "mode": "single",
+   "look": "man-lowcut",
+   "view": "front",
+   "info": true,
+   "shadows": false,
+   "noGround": true,
+   "lod": true
+  }
+ }
+]

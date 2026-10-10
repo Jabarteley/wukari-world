@@ -33,7 +33,7 @@ export async function loadAssets(names: string[]): Promise<Assets> {
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
   const clipPack = await loader.loadAsync('/body/clip-pack.glb');
   const chars = new Map<string, GLTF>(), parts = new Map<string, GLTF>();
-  await Promise.all(names.map(async (n) => { try { (n.startsWith('char-') ? chars : parts).set(n, await loader.loadAsync(`/n/${n}.glb`)); } catch { /* not built yet */ } }));
+  await Promise.all(names.map(async (n) => { try { (n.startsWith('char') ? chars : parts).set(n, await loader.loadAsync(`/n/${n}.glb`)); } catch { /* not built yet */ } }));
   const textures = new Map<string, THREE.Texture>();
   for (const [n, url, srgb, rep] of [['eye', '/n/eye-brown.jpg', true, false], ['brow', '/n/brow.png', true, false], ['lash', '/n/lash.png', true, false], ['ankara-a', '/a/ankara-a.png', true, true], ['ankara-b', '/a/ankara-b.png', true, true], ['cloth-weave', '/a/cloth-weave.png', true, true], ['hair-coil', '/a/hair-coil.png', true, true], ['hair-coil-normal', '/a/hair-coil-normal.png', false, true], ['hair-braid', '/a/hair-braid.png', true, true]] as [string, string, boolean, boolean][]) {
     try { textures.set(n, await texture(url, srgb, rep, !url.startsWith('/n/'))); } catch { /* optional */ }
@@ -48,17 +48,18 @@ export interface Rig {
   dispose(): void;
 }
 
-export function partNames(look: Look): string[] {
-  const out = [`char-${look.body}`];
-  if (look.hair !== 'none') out.push(`hair-${look.hair}-${look.body}`);
-  if (look.garment !== 'none') out.push(`${look.garment}-${look.body}`);
-  out.push(`shoes-${look.body}`);
+export function partNames(look: Look, lod = false): string[] {
+  const l = lod ? '-lod' : '';
+  const out = [`char${l}-${look.body}`];
+  if (look.hair !== 'none') out.push(`hair-${look.hair}${l}-${look.body}`);
+  if (look.garment !== 'none') out.push(`${look.garment}${l}-${look.body}`);
+  out.push(`shoes${l}-${look.body}`);
   return out;
 }
 
-export function buildRig(assets: Assets, look: Look): Rig {
-  const src = assets.chars.get(`char-${look.body}`);
-  if (!src) throw new Error(`char-${look.body} is not built`);
+export function buildRig(assets: Assets, look: Look, lod = false): Rig {
+  const src = assets.chars.get(`char${lod ? '-lod' : ''}-${look.body}`);
+  if (!src) throw new Error(`char${lod ? '-lod' : ''}-${look.body} is not built`);
   const scene = clone(src.scene);
   const root = new THREE.Group(); root.add(scene);
   const bones: Record<string, THREE.Bone> = {};
@@ -103,7 +104,7 @@ export function buildRig(assets: Assets, look: Look): Rig {
           case 'hair': { const h = own(makeHair(look.hairColor, t.get(partName.includes('braid') ? 'hair-braid' : 'hair-coil') ?? null, sway, false, partName.includes('braid') ? null : t.get('hair-coil-normal') ?? null)); return h; }
           case 'hairfade': return own(makeHair(look.hairColor, t.get('hair-coil') ?? null, sway, true, t.get('hair-coil-normal') ?? null));
           case 'garment': return own(makeFabric(look.color, look.fabric === 'ankara' ? t.get(look.garment === 'kaftan' ? 'ankara-b' : 'ankara-a') ?? null : null, true));
-          case 'shoe': return own(new THREE.MeshStandardMaterial({ color: look.shoes ?? '#3a2a20', roughness: 0.6 }));
+          case 'shoe': return own(new THREE.MeshStandardMaterial({ color: look.shoes ?? '#a97b4f', roughness: 0.55 }));
           default: return mat;
         }
       };
@@ -112,7 +113,7 @@ export function buildRig(assets: Assets, look: Look): Rig {
       scene.add(mesh); meshes.push(mesh);
     });
   };
-  for (const n of partNames(look).slice(1)) {
+  for (const n of partNames(look, lod).slice(1)) {
     const part = assets.parts.get(n);
     if (part) attach(part, n);
   }

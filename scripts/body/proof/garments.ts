@@ -158,7 +158,7 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
     let lo = 9, hi = -9; for (const s of segs) for (const z of [s[1], s[3]]) { lo = Math.min(lo, z); hi = Math.max(hi, z); }
     const cz = (lo + hi) / 2, R = polar(segs, 0, cz, NT);
     const chest = smooth(1.2, 1.32, y) * (1 - smooth(1.36, 1.46, y));
-    const off = dress ? 0.006 + 0.004 * chest + 0.014 * smooth(1.0, 0.935, y) : 0.022 + 0.01 * chest;
+    const off = dress ? 0.011 + 0.008 * chest + 0.014 * smooth(1.0, 0.935, y) : 0.03 + 0.012 * chest;
     const pts: V3[] = R.map((r, k) => { const th = (k / NT) * Math.PI * 2; return [Math.cos(th) * (r + off), y, cz + Math.sin(th) * (r + off)]; });
     const first = sh.addRing(pts, y * 4.4, torsoSkin);
     if (prev >= 0) sh.join(prev, first, NT);
@@ -174,7 +174,7 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
       const th = (k / NT) * Math.PI * 2;
       const flare = ellipse(a, b, th) * (0.72 + 0.28 * t);
       const pleat = 1 + (dress ? 0.035 : 0.02) * Math.sin(th * 7 + 0.5) * s + 0.012 * Math.sin(th * 13) * s;
-      const rr = lerp(r + (dress ? (lod ? 0.085 : 0.055) : 0.04), flare, s) * pleat;
+      const rr = lerp(r + (dress ? (lod ? 0.1 : 0.08) : 0.05), flare, s) * pleat;
       return [Math.cos(th) * rr, y + 0.004 * Math.sin(th * 9) * s * t, hipCz + Math.sin(th) * rr];
     });
     const first = sh.addRing(pts, y * 4.4, hangingWeights(yHip, hem, dress ? 0.6 : 0.18));
@@ -182,8 +182,8 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
   }
   // ---- sleeves
   for (const side of [1, -1] as const) {
-    if (dress) sleeve(sh, body, side, 0.105, 0.255, 0.056, 0.082, armSkin(side), lod ? 3 : 6, 0.01, lod ? 12 : 20);
-    else sleeve(sh, body, side, 0.105, 0.56, 0.058, 0.092, armSkin(side), lod ? 4 : 10, 0.02, lod ? 12 : 20);
+    if (dress) sleeve(sh, body, side, 0.105, 0.255, 0.072, 0.088, armSkin(side), lod ? 3 : 6, 0.01, lod ? 12 : 20);
+    else sleeve(sh, body, side, 0.105, 0.56, 0.074, 0.098, armSkin(side), lod ? 4 : 10, 0.02, lod ? 12 : 20);
   }
   // ---- trousers (kaftan only): one tube per leg from the hip to the ankle
   if (!dress) {

@@ -34,8 +34,12 @@ const message = computed(() => (needs.value === 'account' ? 'Sign in to chat or 
 const bar = ref<HTMLElement | null>(null)
 const barHeight = ref(64)
 let watcher: ResizeObserver | null = null
-watch(bar, (node) => { watcher?.disconnect(); if (node && typeof ResizeObserver === 'function') { watcher = new ResizeObserver(() => { barHeight.value = Math.ceil(node.getBoundingClientRect().height) }); watcher.observe(node) } })
-onBeforeUnmount(() => watcher?.disconnect())
+/** The bar's height as drawn now; read again when its content changes (a prompt shows or goes) and when the window is resized. */
+const measure = (): void => { if (bar.value) barHeight.value = Math.ceil(bar.value.getBoundingClientRect().height) }
+watch(bar, (node) => { watcher?.disconnect(); measure(); if (node && typeof ResizeObserver === 'function') { watcher = new ResizeObserver(measure); watcher.observe(node) } })
+watch(message, () => { void nextTick(measure) })
+onMounted(() => window.addEventListener('resize', measure))
+onBeforeUnmount(() => { watcher?.disconnect(); window.removeEventListener('resize', measure) })
 watch(reporting, (now) => { if (now) void nextTick(() => form.value?.scrollIntoView({ block: 'center' })) })
 
 onMounted(async () => {
@@ -130,5 +134,5 @@ async function report(): Promise<void> {
 .sp-bar { position: sticky; bottom: calc(var(--s-2) + env(safe-area-inset-bottom, 0px)); z-index: 2; padding: var(--s-2); background: #fff; border: 1px solid var(--c-line); border-radius: var(--r-md); box-shadow: var(--e-2); }
 .sp-go { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: var(--s-2); }
 .sp-go .ui-button { white-space: nowrap; }
-.sp-end { margin-top: calc(-1 * var(--s-3)); padding-bottom: calc(var(--s-2) + env(safe-area-inset-bottom, 0px)); }
+.sp-end { padding-bottom: calc(var(--s-4) + var(--s-2) + env(safe-area-inset-bottom, 0px)); }
 </style>

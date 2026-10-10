@@ -412,10 +412,17 @@ const stopPinFrames = onCallFrame((frame) => {
 const stopPinReconnect = onSocketOpen(() => pins.reconnect())
 onBeforeUnmount(() => { social.openConv = null; stopPinFrames(); stopPinReconnect(); pins.dispose() })
 
+const optionsButton = ref<HTMLElement | null>(null)
+function closeOptions(): void {
+  ui.manage = false; requests.closeForm()
+  void nextTick(() => optionsButton.value?.focus())
+}
+
 defineExpose({
-  /** Esc inside a conversation goes back to the list first; the next Esc leaves the app. */
+  /** Esc inside a conversation: the open options panel (with its request form) closes first and focus returns to the control that opened it; then the next Esc goes back to the list, and the one after leaves the app. */
   keys(action: string): boolean {
     if (action !== 'cancel' || !ui.open) return false
+    if (ui.manage) { closeOptions(); return true }
     back()
     return true
   },
@@ -447,7 +454,7 @@ defineExpose({
             <!-- A friend who is not in the game cannot be rung: Ping takes Call's place, so the header never holds a fourth control. -->
             <PingButton v-if="pingFor(partner)" compact :id="partner" :name="title" />
             <PersonCallButton v-else compact :id="partner" :name="title" :status="presenceOf(partner) ?? undefined" />
-            <button type="button" class="messages-kebab" aria-label="Chat options" :aria-expanded="ui.manage" @click="ui.manage = !ui.manage">⋯</button>
+            <button ref="optionsButton" type="button" class="messages-kebab" aria-label="Chat options" :aria-expanded="ui.manage" @click="ui.manage = !ui.manage">⋯</button>
           </template>
         </header>
         <PingStrip v-if="partner && pingFor(partner)" inset :id="partner" :name="title" />
@@ -464,8 +471,8 @@ defineExpose({
         </section>
 
         <GroupManage v-if="conv?.kind === 'group' && ui.manage" :conv="conv" :me="me" @left="groupLeft" @player="openCard" />
-        <section v-else-if="partner && ui.manage" class="messages-manage" aria-label="Chat options" @keydown.esc="ui.manage = false">
-          <div class="messages-manage-head"><b>Chat options</b><BaseButton small data-chat="options-done" aria-label="Close chat options" @click="ui.manage = false">Done</BaseButton></div>
+        <section v-else-if="partner && ui.manage" class="messages-manage" aria-label="Chat options">
+          <div class="messages-manage-head"><b>Chat options</b><BaseButton small data-chat="options-done" aria-label="Close chat options" @click="closeOptions">Done</BaseButton></div>
           <span class="bubble-actions is-start">
             <BaseButton small data-chat="send-money" @click="sendMoneyTo(partner, title)">Send money</BaseButton>
             <BaseButton v-if="canRequest" small data-chat="request-money" :disabled="!connected" :reason="connected ? null : 'Reconnect to ask for money.'" @click="requests.openForm()">Request money</BaseButton>

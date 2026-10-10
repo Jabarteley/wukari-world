@@ -28,7 +28,8 @@ export interface TravelWay {
 }
 /** The most buttons the card shows: one each for the bus, the flight and the train. */
 export const MAX_WAYS = 3;
-export interface TravelCard { shared: string | null; ways: TravelWay[] }
+/** `settle`: what stops every way alike is that the life has not settled in, so the card carries the button that does it. */
+export interface TravelCard { shared: string | null; settle: boolean; ways: TravelWay[] }
 
 const NAMES: Readonly<Record<string, string>> = { road: 'Bus', rail: 'Train', air: 'Flight' };
 const naira = (value: number): string => `₦${value.toLocaleString('en-NG')}`;
@@ -49,7 +50,7 @@ export function travelWays(routes: readonly RouteInfo[], { cash = null, confirmi
     if (!route.live) return { ...base, state: 'off', short: 0, why: shared ? '' : route.why || 'This way is not available right now.' };
     return { ...base, state: confirming === route.id ? 'ask' : 'go', short: 0, why: '' };
   });
-  return { shared, ways: ways.slice(0, MAX_WAYS) };
+  return { shared, settle: Boolean(shared) && bookable.every((route) => route.settle === true), ways: ways.slice(0, MAX_WAYS) };
 }
 
 /**

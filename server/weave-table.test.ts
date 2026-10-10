@@ -61,8 +61,10 @@ test('weave: your rack only, no bag on the wire, computer players answer, an ill
   const text = JSON.stringify(ada.all.filter((frame) => frame.type === 'table-state'));
   assert.equal(/"bag"|"racks":\[\[/.test(text), false, 'no bag and no other racks');
   const rack = ada.state.view.rack ?? [];
-  // A play away from the centre, and one of tiles not in the rack, are refused.
-  await act(ada, 'table-move', { n: 0, move: { t: 'play', tiles: [{ r: 0, c: 0, l: rack[0]?.toLowerCase() ?? 'a' }] } });
+  // A play away from the centre, and one of tiles not in the rack, are refused. The tile played is a letter: a blank ('?') has no
+  // letter of its own, so playing it as itself is refused earlier, as a move that was not understood.
+  const letter = rack.find((tile) => tile !== '?')?.toLowerCase() ?? 'a';
+  await act(ada, 'table-move', { n: 0, move: { t: 'play', tiles: [{ r: 0, c: 0, l: letter }] } });
   assert.equal(ada.errors.at(-1)?.code, 'illegal_move');
   await act(ada, 'table-move', { n: 0, move: { t: 'pass' } });
   await all(ada);

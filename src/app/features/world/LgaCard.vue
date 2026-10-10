@@ -22,6 +22,8 @@ import { useApp } from '../../state/app.ts'
 import { linkWords } from '../../../ui/link.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import { money } from '../../ui/format.ts'
+import SettleNotice from '../start/SettleNotice.vue'
+import { needsSettling } from '../../state/settleRefusal.ts'
 import ListboxSelect from './ListboxSelect.vue'
 import { findLga, lgaCardUi as ui } from './lgaCardModel.ts'
 import { track, worldChanged } from './worldModel.ts'
@@ -43,6 +45,8 @@ const current = computed(() => (estate.value.placed && estate.value.lga ? estate
 const guess = computed(() => (!estate.value.placed && !estate.value.lgaConfirmed && estate.value.lga ? estate.value.lga : null))
 const blocked = computed(() => (current.value && estate.value.change.blocked ? estate.value.change.blocked : ''))
 const showList = computed(() => ui.picking || (!current.value && !ui.found))
+/** The last save was refused because the life has not settled in: the notice carries the button that fixes it. */
+const settleRefused = computed(() => needsSettling(ui.code, game.view.value.onboarding))
 const prices = computed(() => (props.home === 'buy' ? estate.value.settle?.buy.prices ?? null : null))
 const options = computed(() => [{ value: '', label: 'Choose…' }, ...estate.value.lgas.map((item) => ({ value: item.id, label: `${item.name}${prices.value ? ` · ${money(prices.value[item.id] ?? 0)}` : current.value && item.levy ? ` · ${money(item.levy)} to move your house` : ''}` }))])
 /** What the main button says for a visitor's choice. */
@@ -56,7 +60,7 @@ const select = shallowRef<{ focus(): void } | null>(null)
 const setSelect = (el: unknown): void => { select.value = el as { focus(): void } | null }
 
 async function find(): Promise<void> { await findLga(ui, estate.value.city) }
-function choosePick(): void { ui.picking = true; ui.found = null; ui.note = '' }
+function choosePick(): void { ui.picking = true; ui.found = null; ui.note = ''; ui.code = '' }
 
 async function send(via: 'device' | 'manual'): Promise<void> {
   if (ui.sending) return
@@ -65,15 +69,16 @@ async function send(via: 'device' | 'manual'): Promise<void> {
   if (!lga) { ui.note = `Choose ${/^[aeiou]/i.test(estate.value.unit) ? 'an' : 'a'} ${estate.value.unit} first.`; return }
   ui.sending = true
   ui.note = ''
+  ui.code = ''
   const result = await command('estate.set-lga', props.home ? { lga, via, home: props.home } : { lga, via })
   ui.sending = false
   if (result.ok) {
-    Object.assign(ui, { found: null, picking: false, note: '' })
+    Object.assign(ui, { found: null, picking: false, note: '', code: '' })
     track('lga_chosen', { method: via === 'device' ? 'device' : 'manual', lga })
     // The server allocates the house now; the maps are told what they cached is stale.
     worldChanged()
     emit('chosen', lga)
-  } else ui.note = result.reason || 'That could not be saved. Try again.'
+  } else { ui.note = result.reason || 'That could not be saved. Try again.'; ui.code = result.code ?? '' }
 }
 </script>
 
@@ -89,6 +94,7 @@ async function send(via: 'device' | 'manual'): Promise<void> {
     <p v-else-if="home === 'main'" class="ui-note">Pick your {{ estate.unit }} in {{ estate.cityName }}. Your starter house stands on a plot there, free, and you give up {{ estate.settle?.main.gives ?? 'the home you leave' }}.</p>
     <p v-else class="ui-note">Pick your {{ estate.unit }} and a starter house on your own plot there is yours, free. <template v-if="guess">Your home is in {{ guess.name }}.</template></p>
 
+    <SettleNotice v-if="!current && !settleRefused" hint message="Settle in first: choosing where you live is part of settling in." />
     <div v-if="ui.found" class="world-found" role="status">
       <p>{{ ui.found.sure ? 'You are in' : 'Nearest to you is' }} <b>{{ ui.found.name }}</b>. Is that right?</p>
       <div class="ui-actions">
@@ -124,7 +130,8 @@ async function send(via: 'device' | 'manual'): Promise<void> {
       </template>
     </template>
 
-    <p v-if="ui.note" class="ui-why" role="status">{{ ui.note }}</p>
+    <SettleNotice v-if="settleRefused" :code="ui.code" :message="ui.note" />
+    <p v-else-if="ui.note" class="ui-why" role="status">{{ ui.note }}</p>
     <p v-if="offline" class="ui-why">{{ offline }}</p>
   </section>
 </template>

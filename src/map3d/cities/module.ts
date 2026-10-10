@@ -147,7 +147,11 @@ export async function createModulePack(module: CityModule, scene: ModuleScene['l
     const point = home.position ? toLocal(origin, home.position.lon, home.position.lat) : unit.plate
     return [home.definition.id, { x: point[0], z: point[1], district: district?.name ?? unit.name }]
   }))
-  const visible = Object.values(sites).map(({ x, z }): Point2 => [x, z]), core = extent(visible)
+  // The opening view of a city drawn city-wide frames the city: its venues and its named neighbourhoods, not the arrival airport, which can lie 30 km out (Kampala, Dakar, Algiers).
+  const airports = new Set(module.rules.hubs.filter(hub => hub.mode === 'air').map(hub => hub.venueId))
+  const cityPoints = Object.entries(sites).filter(([id]) => !(surround && airports.has(id))).map(([, { x, z }]): Point2 => [x, z])
+  const visible = cityPoints.length ? cityPoints : Object.values(sites).map(({ x, z }): Point2 => [x, z])
+  const core = extent(surround ? [...visible, ...(landmarks.filter(item => item.kind !== 'water').map((item): Point2 => toLocal(origin, item.lon, item.lat)))] : visible)
   const nw = fromLocal(origin, fit.minX, fit.minZ), se = fromLocal(origin, fit.maxX, fit.maxZ)
   const box: Box4 = [se.lat, nw.lon, nw.lat, se.lon]
   const km = (value: number) => value * 10
@@ -165,7 +169,7 @@ export async function createModulePack(module: CityModule, scene: ModuleScene['l
   // Ground name plates for the landmarks that are not venues: none that would lie across another plate or over a venue.
   const plateRoom = (name: string, size: number) => name.length * size * 0.9
   // A name plate is as wide as the city is: 1.4 map units over a 4 km town, growing to 4.5 over a metropolis, so it can still be read in the whole view.
-  const plateSize = surround ? Math.min(4.5, Math.max(1.4, Math.max(fit.maxX - fit.minX, fit.maxZ - fit.minZ) / 100)) : 1.4
+  const plateSize = surround ? Math.min(5, Math.max(1.4, Math.max(fit.maxX - fit.minX, fit.maxZ - fit.minZ) / 90)) : 1.4
   const plates: PackDistrict[] = []
   for (const item of landmarks.filter(item => item.kind !== 'route-reference' && !content.venues.some(venue => venue.id === item.id))) {
     const [x, z] = toLocal(origin, item.lon, item.lat), plate = { name: item.name, x, z, size: plateSize, water: item.kind === 'water' }

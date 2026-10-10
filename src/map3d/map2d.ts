@@ -160,7 +160,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     <p class="m3-hint" data-m3-hint ${hintKnown() ? 'hidden' : ''}>${mapHint(Boolean(globalThis.matchMedia?.('(pointer: coarse)').matches), true)}</p>`;
   container.appendChild(root);
   const worldNode = root.querySelector<HTMLElement>('.m3-flat-world')!, canvas = root.querySelector('canvas')!, labelLayer = root.querySelector<HTMLElement>('.m3-labels')!, hint = root.querySelector<HTMLElement>('[data-m3-hint]')!;
-  const lgaArt = root.querySelector<SVGGElement>('.m3-flat-lgas')!, tripPaths = [root.querySelector('[data-trip]')!, root.querySelector('[data-trip-top]')!];
+  const namesNodes = [...root.querySelectorAll<SVGTextElement>('.m3-flat-names text')].map((node) => ({ node, size: parseFloat(node.getAttribute('font-size') ?? '2') })), lgaArt = root.querySelector<SVGGElement>('.m3-flat-lgas')!, tripPaths = [root.querySelector('[data-trip]')!, root.querySelector('[data-trip-top]')!];
   const paint = canvas.getContext('2d')!;
 
   // ---- places, plates and tags: the 3D map's own markup, so the styles are literally shared -------
@@ -358,7 +358,9 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     worldNode.style.width = `${box.width * scale}px`; worldNode.style.height = `${box.height * scale}px`;
     worldNode.style.transform = `translate(${Math.round(ox)}px,${Math.round(oy)}px)`;
     const far = scale < 3.2, wholeView = scale < fitScale() * WHOLE_SCALE;
-    root.classList.toggle('is-far', far); root.classList.toggle('is-whole', wholeView);
+    root.classList.toggle('is-far', far); root.classList.toggle('is-whole', wholeView); root.classList.toggle('is-city', Boolean(pack.surround));
+    // A city drawn city-wide keeps its neighbourhood names at every zoom, at least 12 screen pixels tall (a name is user units; the art is scaled by `scale`).
+    if (pack.surround) for (const text of namesNodes) text.node.style.fontSize = `${Math.max(text.size, 12 / scale)}px`;
     lgaArt.style.display = layers.lgas ? '' : 'none';
     placeLabels(far, wholeView);
     drawHouses();

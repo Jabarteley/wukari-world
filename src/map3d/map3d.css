@@ -139,6 +139,7 @@ button.m3-house{cursor:pointer}
 .m3-flat.is-whole [data-ink="asphalt"] path { stroke-width: 1.4px; }
 .m3-flat.is-whole [data-ink="dash"] { display: none; }
 .m3-flat.is-whole .m3-flat-names { display: none; }
+.m3-flat.is-whole.is-city .m3-flat-names { display: block; }
 .m3-flat-lgas path { vector-effect: non-scaling-stroke; stroke-width: 1px; }
 
 /* Very wide screens: the names and plates are enlarged with the rest of the interface (--ui-zoom). CSS zoom lays the text out at its

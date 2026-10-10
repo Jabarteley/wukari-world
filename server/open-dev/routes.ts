@@ -51,7 +51,7 @@ export default function openDevRoutes(ctx: RouteContext, config: OpenDevConfig):
   /** A local account for a session that has none, made directly (no browser holds it: seeded players). */
   function localAccount(db: Db, session: SessionRecord, subject: string, email: string): AccountRecord {
     const accounts = (db.accounts ??= {}), id = accountId(subject), at = now();
-    const account = accounts[id] ??= { v: 1, id, provider: 'password', subject, email, createdAt: at - 30 * DAY, lastSeenAt: at, sessionKey: session.secret, publicId: session.publicId, devices: [], parked: [], mailOptIn: false };
+    const account = accounts[id] ??= { v: 1, id, provider: 'password', subject, email, createdAt: at - 30 * DAY, lastSeenAt: at, sessionKey: session.secret, publicId: session.publicId, devices: [], parked: [], mailOptIn: true };
     session.account = id;
     account.sessionKey = session.secret; account.publicId = session.publicId;
     return account;

@@ -17,8 +17,8 @@ function walk(root, dir = root) {
     return entry.isDirectory() ? walk(root, full) : entry.isFile() ? [relative(root, full).split('\\').join('/')] : [];
   });
 }
-/** Every relative import, static or dynamic, of a TypeScript file. */
-const importsOf = text => [...text.matchAll(/(?:\bfrom|\bimport)\s*\(?\s*['"](\.{1,2}\/[^'"]+)['"]/g)].map(match => match[1]);
+/** Every relative import, static or dynamic, of a TypeScript file. @param {string} text @returns {string[]} */
+const importsOf = text => [...text.matchAll(/(?:\bfrom|\bimport)\s*\(?\s*['"](\.{1,2}\/[^'"]+)['"]/g)].map(match => match[1] ?? '');
 /**
  * Open dev mode (server/open-dev) must be impossible to enable on the real site, so this checks the source that is about to ship:
  *   1. the setting is named nowhere but the reviewed files (OPEN_ALLOWED), and in no production configuration file at all;
@@ -37,6 +37,7 @@ export function openDevProblems(root) {
     else if (!OPEN_ALLOWED.test(file)) problems.push(`${file} names ${OPEN_SETTING}, which only the Node host and its local scripts may`);
   }
   const entry = 'deploy/cloudflare-worker.ts', seen = new Set();
+  /** @param {string} path */
   const forbidden = path => /(?:^|\/)server\/open-dev(?:\/|\.)/.test(path) || path === 'server/server.ts' || path === 'scripts/open-dev.ts';
   const queue = existsSync(join(root, entry)) ? [entry] : [];
   for (let file = queue.pop(); file; file = queue.pop()) {

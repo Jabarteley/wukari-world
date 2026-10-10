@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // The toast stack. Toasts must never be covered: a modal dialog sits in the browser's top layer,
 // so the stack moves into the open dialog (`host`) and back to the page when it closes.
-import { toasts } from '../state/toasts.ts'
+import { dismissToast, toasts } from '../state/toasts.ts'
 import GameIcon from './GameIcon.vue'
 import GlyphText from '../features/kit/GlyphText.vue'
 import { stripLeadEmoji } from '../../ui/icon-map.ts'
@@ -15,9 +15,10 @@ withDefaults(defineProps<{
 <template>
   <Teleport :to="host">
     <div class="toast-stack" :class="{ 'is-in-dialog': host !== 'body' }" role="status" aria-live="polite">
-      <div v-for="item in toasts" :key="item.id" class="toast" :class="`is-${item.kind}`">
+      <div v-for="item in toasts" :key="item.id" class="toast" :class="[`is-${item.kind}`, { 'has-action': item.action }]" :role="item.action ? 'alert' : undefined">
         <span class="toast-mark"><GameIcon :name="item.kind" :size="16" /></span>
         <span class="toast-text"><GlyphText :text="stripLeadEmoji(item.text) || item.text" /></span>
+        <button v-if="item.action" type="button" class="toast-action" @click="item.action.run(); dismissToast(item.id)">{{ item.action.label }}</button>
       </div>
     </div>
   </Teleport>
@@ -30,6 +31,11 @@ withDefaults(defineProps<{
 #life-dialog:not([data-phone]):not(.is-fullscreen) > .toast-stack.is-in-dialog { position: absolute; top: 68px; }
 .toast { display: flex; align-items: center; gap: 9px; max-width: 100%; padding: 8px 16px 8px 8px; border-radius: var(--r-lg); background: #1b1f27f7; color: #fff; font-size: var(--t-body); font-weight: 500; line-height: 1.35; box-shadow: var(--e-2), inset 0 0 0 1px #ffffff1f; animation: toast-in .18s ease-out; }
 .toast-text { min-width: 0; overflow: hidden; overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; }
+.toast.has-action { flex-wrap: wrap; pointer-events: auto; }
+/* A toast with a button is read in full, never cut, and the button wraps under the text on a narrow phone. */
+.toast.has-action .toast-text { display: block; flex: 1 1 12em; overflow: visible; }
+.toast-action { flex: none; margin-left: auto; min-height: 36px; padding: 6px 14px; border: 0; border-radius: var(--r-lg); background: #fff; color: #1b1f27; font: inherit; font-weight: 700; cursor: pointer; }
+.toast-action:focus-visible { outline: 3px solid #ffd86b; outline-offset: 2px; }
 .toast-mark { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #ffffff24; }
 .toast.is-good .toast-mark, .toast.is-earn .toast-mark { background: #2f8a57; }
 .toast.is-spend .toast-mark { background: #a2542a; }

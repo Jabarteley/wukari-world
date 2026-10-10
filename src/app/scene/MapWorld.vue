@@ -12,6 +12,7 @@ import { viewLife } from '../../life.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
 import type { CityLinkMode, WorldCityId } from '../../types/life.ts'
+import { openSettleFlow } from '../state/settleRefusal.ts'
 
 const props = defineProps<{ initialUi?: Record<string, unknown>; initialWorld?: Record<string, unknown> | null }>()
 const emit = defineEmits<{ ready: [] }>()
@@ -98,12 +99,14 @@ function load(): Promise<void> {
       onTravel: (to, mode, credit) => { void command('estate.relocate', { to: to as WorldCityId, mode: mode as CityLinkMode, ...(credit ? { credit: true } : {}) }) },
       credit: () => game.view.value.estate?.ride.offer ?? null, // (the Atlas names the ids; the server validates them)
       // Each route also says what arriving at once would add to its fare ('travel.skip'): free for a character that has never skipped.
-      routes: () => viewLife(game.state.value, { now: game.state.value.t, cityId: game.cityId.value }).estate?.links?.map((link) => ({ ...link, skipFree: game.state.value.travel.skipped !== true })) ?? null,
+      routes: () => viewLife(game.state.value, { now: game.state.value.t, cityId: game.cityId.value }).estate?.links?.map((link) => ({ ...link, skipFree: game.state.value.travel.skipped !== true, ...(game.view.value.onboarding.guest ? { settle: true } : {}) })) ?? null,
       wallet: () => game.state.value.cash,
       // A ride home on credit blocks every trip: the card pays it in place (the existing repayment action) or sends a player who cannot to the help card.
       debt: () => game.view.value.estate?.ride.debt ?? 0,
       onRepay: () => command('travel.repay-ride', {}),
       onHelp: () => { shell.open('bank') },
+      // A guest of the quick start cannot travel between cities until it has settled in: the card's one button opens that flow.
+      onSettle: () => { openSettleFlow() },
       held: heldCities,
       // A row of the friends list: Chat opens the conversation; Call and Ping are the card's own buttons, pressed from here.
       onFriend: (action, id, name) => { void friendAction(action, id, name) },

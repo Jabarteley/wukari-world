@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
+import { needsSettling } from '../../state/settleRefusal.ts'
+import SettleNotice from '../start/SettleNotice.vue'
 import { social } from '../social/useSocial.ts'
 import { leaveCityVenue, leaveNeighbour, loadStreet, neighbourhood, startNeighbourhood, walkToNeighbour } from './neighbourhoodStore.ts'
 import type { StreetJourney } from '../../../street/types.ts'
@@ -46,6 +48,7 @@ function stepOutside(): void {
       <button type="button" class="ui-button" :disabled="unavailable" @click="explore">Walk to the city gate</button>
       <p v-if="neighbourhood.street">Estate {{ neighbourhood.street.anchor.estate + 1 }} · Street {{ neighbourhood.street.street.row + 1 }} · Your plot {{ neighbourhood.street.anchor.plot % 14 + 1 }}</p>
       <p v-if="neighbourhood.loading" role="status">Finding your neighbours…</p>
+      <SettleNotice v-else-if="neighbourhood.error && needsSettling(neighbourhood.errorCode, game.view.value.onboarding)" :code="neighbourhood.errorCode" :message="neighbourhood.error" />
       <p v-else-if="neighbourhood.error" class="ui-error" role="alert">{{ neighbourhood.error }}</p>
       <p v-else-if="!doors.length">No listed neighbours on this street yet. Private homes are not named.</p>
       <ul v-if="doors.length" class="neighbourhood-doors">

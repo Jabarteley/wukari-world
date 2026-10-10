@@ -86,6 +86,9 @@ export const weatherChip = lazyPanel('weather-chip', 'Weather', 'hud', () => imp
 
 export const goalChip = lazyPanel('goal-chip', 'Current goal', 'hud', () => import('./life/GoalChip.vue'), { icon: 'goals', slot: 'goal', order: 10 })
 
+/** The standing "Settle in: get your home" entry for a guest (draws nothing once settled). */
+export const settleChip = lazyPanel('settle-chip', 'Settle in', 'hud', () => import('./start/SettleEntry.vue'), { icon: 'home', slot: 'goal', order: 11 })
+
 export const homeChip = lazyPanel('home-chip', 'Home', 'hud', () => import('./home/HomeChip.vue'), { icon: 'home', order: 20,
   /** A room that could not be drawn is something to act on (Try again); otherwise the chip is information for the tray. */
   slot: () => (homeScene.status === 'error' ? 'alert' : 'hud'),
@@ -96,4 +99,4 @@ export const buy = lazyPanel('buy', 'Buy', 'nav', bodyLoader('home/BuyMode'), {
   enabled: (state) => social.me?.visiting ? 'Leave the visit before rearranging your furniture' : state.stories?.running ? 'End your scene before rearranging furniture' : state.location === 'home' || 'Go home to buy furniture',
 })
 
-export const NATIVE_PANELS: readonly VuePanel[] = [captureChip, landPanel, stories, storyChip, neighbourhoodPanel, capture, bank, messages, support, jobs, career, statement, invest, houses, cars, groceries, health, goals, profile, needs, skills, settings, boutique, healthChip, weatherChip, goalChip, homeChip, buy, ...CIVIC_APPS, ...CIVIC_HUD, ...GROWTH_PANELS, ...GROWTH_HUD_PANELS, ...TABLES_PANELS, ...GAMES_PANELS, ...CAMPUS_PANELS, ...WORLD_PANELS, ...SOCIAL_PANELS, ...START_PANELS, ...TRAVEL_PANELS, ...ACCOUNT_PANELS, ...BUSINESS_PANELS, ...COMMERCE_PANELS, ...POLITICS_PANELS, ...ADMIN_PANELS, ...LIVING_WORLD_PANELS]
+export const NATIVE_PANELS: readonly VuePanel[] = [captureChip, landPanel, stories, storyChip, neighbourhoodPanel, capture, bank, messages, support, jobs, career, statement, invest, houses, cars, groceries, health, goals, profile, needs, skills, settings, boutique, healthChip, weatherChip, goalChip, settleChip, homeChip, buy, ...CIVIC_APPS, ...CIVIC_HUD, ...GROWTH_PANELS, ...GROWTH_HUD_PANELS, ...TABLES_PANELS, ...GAMES_PANELS, ...CAMPUS_PANELS, ...WORLD_PANELS, ...SOCIAL_PANELS, ...START_PANELS, ...TRAVEL_PANELS, ...ACCOUNT_PANELS, ...BUSINESS_PANELS, ...COMMERCE_PANELS, ...POLITICS_PANELS, ...ADMIN_PANELS, ...LIVING_WORLD_PANELS]

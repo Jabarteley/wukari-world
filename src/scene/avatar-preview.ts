@@ -40,7 +40,7 @@
 import type * as THREE from 'three';
 import { createKit } from './kit.ts';
 import { avatarProportions } from '../types/avatar.ts';
-import { buildAvatar, normalizeLook } from './characters.ts';
+import { buildAvatar, normalizeLook, poseAvatar } from './characters.ts';
 import type { AvatarGroup } from './characters.ts';
 import type { ThreeModule } from './types.ts';
 import { bodyAllowed, bodyImports, drawsWebGL2, importBody } from './body/gate.ts';
@@ -60,6 +60,8 @@ export interface PreviewOptions {
   focus?: PreviewFocus;
   label?: string;
   reducedMotion?: boolean;
+  /** Idle life (a blink and a breath every few seconds); on by default, never with reduced motion, and only while the page is visible. */
+  life?: boolean;
   /** Pixels at the bottom of the view kept clear of the character and its ground (see setInset). */
   inset?: number;
   onSpin?: () => void;
@@ -279,7 +281,8 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     if (key === lookKey) return false;
     lookKey = key;
     avatar?.userData.dispose();
-    avatar = buildAvatar(kit, look, { detail: 'high', pose: 'relax', seed: 'preview' });
+    avatar = buildAvatar(kit, look, { detail: 'high', pose: 'stand', seed: 'preview', rig: true });
+    poseAvatar(avatar, { pose: 'relax' });
     turntable.add(avatar);
     dress(look);
     if (react && !reduced) {
@@ -287,6 +290,22 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
       animate('react', 420, (t: number) => { turntable.userData.swing = Math.sin(t * Math.PI) * (1 - t) * 0.55; turntable.position.y = Math.sin(t * Math.PI) * 0.035; });
     } else render();
     return true;
+  }
+  // IDLE LIFE: every few seconds one short, bounded beat — a blink and a breath — then nothing is scheduled but the next beat's timer.
+  let lifeTimer = 0;
+  const lifeOn = options.life !== false && !reduced && !options.raf && typeof document !== 'undefined';
+  function scheduleLife() {
+    if (!lifeOn || disposed || lifeTimer) return;
+    lifeTimer = globalThis.setTimeout(() => {
+      lifeTimer = 0;
+      const figure = avatar;
+      if (disposed || lost || !figure?.userData.parts || document.visibilityState === 'hidden' || drag) { scheduleLife(); return; }
+      const base = now() / 1000;
+      animate('life', 560, (t: number) => {
+        poseAvatar(figure, { pose: 'relax', time: base + t * 0.5, blink: t > 0.34 && t < 0.52 });
+        if (t >= 1) { poseAvatar(figure, { pose: 'relax', time: base + 0.5, blink: false }); scheduleLife(); }
+      });
+    }, 2600 + Math.random() * 2600) as unknown as number;
   }
   function setFocus(next: string): boolean {
     const wanted = asFocus(next);
@@ -387,6 +406,7 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
       disposed = true;
       if (current === api) current = null;
       tweens.clear();
+      if (lifeTimer) { globalThis.clearTimeout(lifeTimer); lifeTimer = 0; }
       if (frameId) { caf(frameId); frameId = 0; }
       observer?.disconnect();
       for (const [type, fn, opts] of listeners) canvas.removeEventListener?.(type, fn, opts);
@@ -402,6 +422,7 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     },
   };
   current = api;
+  scheduleLife();
   api.setLabel(options.label ?? 'Preview of your character');
   setLook(options.look);
   if (host) attach(host);

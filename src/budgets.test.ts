@@ -24,9 +24,9 @@ test('every budget has a positive whole value, a place it is enforced and a reas
 test('the numbers are the ones the tests and source hard-coded before the table', () => {
   const values = Object.fromEntries(entries.filter(([, budget]) => budget.status === 'current').map(([name, budget]) => [name, budget.value]))
   assert.deepEqual(values, {
-    SCENE_CROWD_TRIANGLES: 15000, PLAYER_FIGURE_TRIANGLES: 2000, SCENE_TRIANGLES: 17000, SCENE_DRAW_CALLS: 60,
-    SCENE_MESHES: 15, SCENE_MESHES_WITH_WALLS: 21, SCENE_MESHES_NO_CROWD: 13, SCENE_LIGHTS: 4,
-    AVATAR_LOW_TRIANGLES: 600, AVATAR_MEDIUM_TRIANGLES_MIN: 1500, AVATAR_MEDIUM_TRIANGLES: 4500, AVATAR_HIGH_TRIANGLES_MIN: 10000, AVATAR_HIGH_TRIANGLES: 34000,
+    SCENE_CROWD_TRIANGLES: 48000, PLAYER_FIGURE_TRIANGLES: 12000, SCENE_TRIANGLES: 60000, SCENE_DRAW_CALLS: 60,
+    SCENE_MESHES: 32, SCENE_MESHES_WITH_WALLS: 38, SCENE_MESHES_NO_CROWD: 13, SCENE_LIGHTS: 4,
+    AVATAR_LOW_TRIANGLES: 3300, AVATAR_MEDIUM_TRIANGLES_MIN: 3000, AVATAR_MEDIUM_TRIANGLES: 11000, AVATAR_HIGH_TRIANGLES_MIN: 10000, AVATAR_HIGH_TRIANGLES: 34000,
     CITY_TRIANGLES: 90000, CITY_DRAW_CALLS: 40, HOUSES_DETAIL_TRIANGLES: 10000, HOUSES_MAX_DETAILED: 9, HOUSES_DRAW_CALLS: 16,
     STARTUP_RAW: 615000, STARTUP_GZIP: 223000, LOADING_RAW: 92000, LOADING_GZIP: 37000, SCENE_HOST_RAW: 192000, SCENE_HOST_GZIP: 71000,
   })
@@ -58,7 +58,7 @@ test('withinBudget treats the limit as inside, and a floor the other way round',
   const max: Budget = { ...BUDGETS.SCENE_DRAW_CALLS }, min: Budget = { ...BUDGETS.AVATAR_MEDIUM_TRIANGLES_MIN }
   assert.deepEqual([59, 60, 61].map((n) => withinBudget(max, n)), [true, true, false])
   assert.deepEqual([1499, 1500, 1501].map((n) => withinBudget(min, n)), [false, true, true])
-  assert.equal(describeBudget(BUDGETS.SCENE_TRIANGLES), '17,000 triangles (max)')
+  assert.equal(describeBudget(BUDGETS.SCENE_TRIANGLES), '60,000 triangles (max)')
 })
 
 test('budgets.ts imports nothing, so any module or script can read it', () => {

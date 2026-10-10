@@ -59,7 +59,7 @@ async function find(): Promise<void> {
     </div>
     <div v-else-if="mummy && familyData" class="social-list contacts-fav">
       <div class="social-row">
-        <span class="social-avatar is-big" aria-hidden="true"><PlayerAvatar :name="mummy.name" :seed="mummy.id" /></span>
+        <span class="social-avatar is-big" aria-hidden="true"><PlayerAvatar :name="mummy.name" :seed="mummy.id" figure /></span>
         <div><strong>{{ mummy.name }}</strong><small><NpcBadge lead />{{ mummy.line }}{{ mummy.calledToday ? ' · checked in today' : '' }}</small></div>
         <span class="social-actions"><CallButton :member="mummy" /></span>
       </div>

@@ -270,6 +270,8 @@ export interface SceneEntry {
   readonly easing: boolean
   stepCrowd(dt: number): boolean
   settleCrowd(): void
+  /** One step of idle life (breathing, sway, blinks) at `time` seconds; `amount` 0 … 1 fades a beat in and out. */
+  life?(time: number, amount?: number): boolean
   /** The camera is at (x, z): hide whichever wall it has gone behind. True when a wall was shown or hidden. */
   look(x: number, z: number): boolean
   /** Which walls are showing right now, or null for a scene without walls. */

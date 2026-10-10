@@ -11,12 +11,13 @@
  * the host's motion loop while `easing` is true.
  */
 import { bodyAllowed, drawsWebGL2, importBody } from './gate.ts';
+import { BODY_FOR_FIGURE } from '../figure-poses.ts';
 import type { BodyPose, SkinnedBody } from './skinned.ts';
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
 
 /** The scene's procedural poses (characters.ts) as body poses. */
-export const BODY_POSE: Readonly<Record<string, BodyPose>> = Object.freeze({ stand: 'idle', relax: 'idle', sit: 'sit', walk: 'walk', jog: 'jog', wave: 'interact', work: 'interact', dance: 'dance' });
+export const BODY_POSE: Readonly<Record<string, BodyPose>> = BODY_FOR_FIGURE;
 /** The procedural figure's seat height when a sitting pose gives none (drawAvatar's default), in avatar units. */
 const SEAT = 0.6;
 /** Rise over run under the stride that counts as a stair or ramp (a ramp shallower than this walks). */

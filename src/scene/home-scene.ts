@@ -69,9 +69,11 @@
 import { FURNITURE as CATALOGUE, KINDS as KIND_TABLE, HOME_ACTIVITIES, PORTED_ACTIVITY_KIND } from '../game/content/furniture.ts';
 import { RECIPES } from '../game/content/food.ts';
 import { createBatch, sceneMaterials, releaseObjects } from './build.ts';
-import { drawAvatar, buildAvatar, POSES } from './characters.ts';
+import { drawAvatar, buildAvatar, poseAvatar, POSES } from './characters.ts';
+import { BODY_FOR_FIGURE, FIGURE_FOR_BODY_POSE } from './figure-poses.ts';
+import { moodWordOf } from './figure-mood.ts';
 import type { Pose } from './characters.ts';
-import { playerOptions, rigOf } from './avatar-rig.ts';
+import { PLAYER_DETAIL, playerOptions, rigOf } from './avatar-rig.ts';
 import { createWalkGrid } from './movement.ts';
 import { bodyAllowed, drawsWebGL2, importBody } from './body/gate.ts';
 import { lightingFor, timeOfDay } from './lighting.ts';
@@ -156,7 +158,7 @@ export function seatOf(shape: string, W: number, D: number): { top: number; z: n
 type Spot = ObjectAction['use'];
 interface Rest { pose: BodyPose; at?: Spot; id?: string; table?: ObjectAction['table']; surface?: ObjectAction['surface'] }
 /** Skinned body only: the clip pose for each procedural pose. 'sit' needs a seat (else idle). */
-const BODY_POSE: Record<Pose, BodyPose> = { stand: 'idle', sit: 'sit', walk: 'walk', jog: 'jog', wave: 'interact', work: 'interact', dance: 'dance', relax: 'idle' };
+const BODY_POSE = BODY_FOR_FIGURE;
 /** The shared room colours (Lagos): a city's content may give its own `homePalette`. */
 export const ROOM_PALETTE: HomePalette = Object.freeze({ back: '#d7ccb0', left: '#c3cbb6', floor: Object.freeze(['#d9cdb4', '#bfae8f'] as const) });
 const WOOD = '#7a5c40', DARK = '#33373d', WHITE = '#f3f1ea', STEEL = '#9aa3a8';
@@ -341,7 +343,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   people.add(avatar);
   const figures = new Map<Pose, Figure>();
   let sleepingFigure: Figure | null = null, presentedBody: SkinnedBody | null = null, presentation = 'everyday';
-  let shownFigure: Figure | null = null, shownPose: Pose = 'stand', driven = false, walkGrid: WalkGrid | null = null, grids: WalkGrid[] = [], gridKey = '', restAt: HomeRest | null = null, goalMark: THREE.Mesh | null = null;
+  let shownFigure: Figure | null = null, shownPose: Pose = 'stand', shownFigurePose: Pose = 'stand', driven = false, walkGrid: WalkGrid | null = null, grids: WalkGrid[] = [], gridKey = '', restAt: HomeRest | null = null, goalMark: THREE.Mesh | null = null;
   // The skinned body (see the header): asked for on an allowed device; null until it loads, and for good without one.
   const wantsBody = bodyAllowed();
   let body: SkinnedBody | null = null, bodyLoading = false, bodyFailed = false, gone = false, seatAt: Rest | null = null, sat: Spot | undefined;
@@ -700,12 +702,14 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const floor = target ? floorOf(target) : 0, tileAt = nearestFree(plan, floor, centre.x, centre.y, taken)[0] || door;
     return { x: tileAt.x, y: tileAt.y, floor, ry: Math.atan2(centre.x - tileAt.x, centre.y - tileAt.y) || 0 };
   }
+  /** The HUD's mood word, for the face of the player's figure (characters.ts moodExpression). */
+  function moodOption(): { mood?: string } { const word = moodWordOf(lastState); return word ? { mood: word } : {}; }
   function figure(pose: Pose) {
     let entry = figures.get(pose);
     if (!entry) {
       const state = lastState;
       // The player's own figure is seen close up: the best detail characters.js offers a scene (avatar-rig.js).
-      entry = buildAvatar(kit, who.look ?? state?.onboarding?.look ?? null, { pose, seed: who.seed, scale: tile * AVATAR_SCALE, marker: 'crown', ...playerOptions(pose) });
+      entry = buildAvatar(kit, who.look ?? state?.onboarding?.look ?? null, { pose, seed: who.seed, scale: tile * AVATAR_SCALE, marker: 'crown', ...moodOption(), ...playerOptions(pose) });
       entry.visible = false;
       avatar.add(entry);
       figures.set(pose, entry);
@@ -713,13 +717,16 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     return entry;
   }
   function show(pose: Pose) {
-    // A fallback has a real sitting figure; on a bed or tub it sits rather than claiming a lying/bathing clip.
-    const sleeping = pose === 'work' && seatAt?.pose === 'lie';
+    // The figure does what the activity says: it lies on the bed, eats at the table, cooks at the stove (figure-poses.ts); a chair seats it.
+    const acting = pose === 'work' ? seatAt : null, sleeping = acting?.pose === 'lie';
     if (sleeping && !sleepingFigure) {
-      sleepingFigure = buildAvatar(kit, who.look ?? lastState?.onboarding?.look ?? null, { pose: 'sit', sleeping: true, seed: who.seed, scale: tile * AVATAR_SCALE, marker: 'crown', ...playerOptions('sit') });
+      sleepingFigure = buildAvatar(kit, who.look ?? lastState?.onboarding?.look ?? null, { pose: 'stand', sleeping: true, seed: who.seed, scale: tile * AVATAR_SCALE, marker: 'crown', ...moodOption(), detail: PLAYER_DETAIL, rig: true });
       sleepingFigure.visible = false; avatar.add(sleepingFigure);
     }
-    const next = sleeping && sleepingFigure ? sleepingFigure : figure(pose === 'work' && seatAt?.at?.kind === 'seat' ? 'sit' : pose);
+    const sits = pose === 'sit' || acting?.at?.kind === 'seat';
+    const next = sleeping && sleepingFigure ? sleepingFigure : figure(sits ? 'sit' : acting ? 'stand' : pose);
+    shownFigurePose = sleeping ? 'lie' : acting && !sits ? FIGURE_FOR_BODY_POSE[acting.pose] : pose;
+    if (next.userData.parts) poseAvatar(next, { pose: shownFigurePose });
     shownPose = pose;
     if (next === shownFigure) { placeFigure(); return false; }
     if (shownFigure) shownFigure.visible = false;
@@ -846,7 +853,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const pose = who.pose || (!active ? 'stand' : leaving ? 'walk' : 'work');
     let changed = false;
     refreshGrid(state);
-    const dress = JSON.stringify([tile, who.look ?? state?.onboarding?.look ?? null, who.seed]);
+    const dress = JSON.stringify([tile, who.look ?? state?.onboarding?.look ?? null, who.seed, moodWordOf(state)]);
     if (dress !== dressKey) {
       dressKey = dress; clearFigures(); if (!rigOf(figure('stand'))) figure('walk'); if (driven) { show(shownPose); moveAvatar(floorAt.x, floorAt.y, floorAt.z, floorAt.ry); } changed = true;
       if (body) { if (body.wear(who.look ?? state?.onboarding?.look ?? null, who.seed)) { body.fit(tile * AVATAR_SCALE); buildRoom(); } else dropBody(); }
@@ -1032,6 +1039,13 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     },
     get objectPhase() { return sequence.phase; },
     get bodyShown() { return body !== null; },
+    /** One step of idle life at `time` seconds (`amount` 0 … 1 fades a beat in and out): the figure breathes, sways and blinks in whatever it is doing. */
+    life(time: number, amount = 1) {
+      const figure = shownFigure;
+      if (!figure?.userData.parts || driven) return false;
+      poseAvatar(figure, { pose: shownFigurePose, time, amount });
+      return true;
+    },
     stepCrowd(dt: number) {
       const more = Boolean(body?.step(dt)), using = sequence.step(dt), door = hinge?.step(dt) ?? false;
       if (doorDone && body) body.sampleUse('homeDoor', Math.min(2.399, (hinge?.progress ?? 0) * 2.4));

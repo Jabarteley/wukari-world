@@ -40,18 +40,49 @@ import type * as THREE from 'three';
 import { createBatch, sceneMaterials, kitResources, releaseObjects, hash, GLOW } from './build.ts';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { avatarProportions, normalizeAvatarAppearance } from '../types/avatar.ts';
+import { applyLife, figurePhase } from './figure-life.ts';
 import type { AvatarLookExtensions } from '../types/avatar.ts';
 import { normalizeAvatarWearables, resolveAvatarWearablesForRenderer } from '../game/wardrobe/rules.ts';
 import { AVATAR_WEARABLE_CATALOGUE } from '../game/wardrobe/catalogue.ts';
-import { AVATAR_LOW_TRIANGLES } from '../budgets.ts';
 import type { Kit } from './kit.ts';
-import type { Batch, BatchOptions, Colour, ThreeModule, Vec3 } from './types.ts';
+import type { Batch, BatchOptions, Colour, SceneMaterials, ThreeModule, Vec3 } from './types.ts';
+
+/**
+ * One soft material for every figure on every surface: the scene's solid material plus a gentle rim (a warm lift on the
+ * edges that face away from the viewer, tinted by the surface's own colour so skin stays skin) and a touch of fill, so a
+ * figure reads against any backdrop and the darkest skin tones keep their shape. Per kit, freed with it.
+ */
+const figureSolid = new WeakMap<Kit, SceneMaterials['solid']>();
+export function figureMaterials(kit: Kit): SceneMaterials {
+  const base = sceneMaterials(kit);
+  let solid = figureSolid.get(kit);
+  if (!solid) {
+    const { THREE } = kit;
+    if (kit.matte) solid = base.solid;
+    else {
+      const made = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.8, metalness: 0 });
+      made.customProgramCacheKey = () => 'figure-rim';
+      made.onBeforeCompile = (shader) => {
+        shader.fragmentShader = shader.fragmentShader.replace('#include <opaque_fragment>', `
+          float figureRim = pow(1.0 - clamp(dot(normalize(normal), normalize(vViewPosition)), 0.0, 1.0), 2.4);
+          outgoingLight += diffuseColor.rgb * (figureRim * 0.5 + 0.045) + vec3(1.0, 0.92, 0.8) * figureRim * 0.05;
+          #include <opaque_fragment>`);
+      };
+      kit.onDispose(() => made.dispose());
+      solid = made;
+    }
+    figureSolid.set(kit, solid);
+  }
+  return { ...base, solid };
+}
 
 export type Body = 'woman' | 'man';
 export type Fabric = 'plain' | 'ankara' | 'adire' | 'asooke';
 export type Face = 'oval' | 'round' | 'long';
 export type Expression = 'smile' | 'neutral' | 'grin';
-export type Pose = 'stand' | 'sit' | 'walk' | 'wave' | 'work' | 'dance' | 'relax' | 'jog';
+/** What the face can show: the three saved expressions, and two the game's mood can draw over them. */
+export type FaceExpression = Expression | 'worried' | 'sad';
+export type Pose = 'stand' | 'sit' | 'walk' | 'wave' | 'work' | 'dance' | 'relax' | 'jog' | 'talk' | 'interact' | 'eat' | 'drink' | 'cook' | 'cookLow' | 'wash' | 'bucket' | 'soak' | 'lie' | 'door';
 export type DetailLevel = 'low' | 'medium' | 'high';
 /** The floating mark over a head: 'crown' = you, 'npc' = green dot, 'player' = blue dot. */
 export type Marker = 'crown' | 'npc' | 'player';
@@ -107,6 +138,8 @@ export interface Drawing {
 /** Options of drawAvatar and buildAvatar. */
 export interface DrawOptions {
   sleeping?: boolean;
+  /** The game's mood word: the face shows it (moodExpression). */
+  mood?: string;
   x?: number; y?: number; z?: number; ry?: number;
   pose?: Pose;
   /** The phase of 'walk' or 'jog', 0 … 1. */
@@ -123,9 +156,9 @@ export interface DrawOptions {
 export interface AvatarOptions extends DrawOptions { rig?: boolean }
 export interface DrawnAvatar { look: Look; top: number }
 /** The movable parts of a rigged avatar (each a Group pivoted at its joint). */
-export type AvatarParts = Record<PartName | 'body', THREE.Group>;
+export type AvatarParts = Record<PartName | 'body', THREE.Group> & { lids?: THREE.Group; mouth?: THREE.Group };
 interface Bend { geometry: THREE.BufferGeometry; start: number; position: Float32Array; normal: Float32Array; pivotY: number; angle: number; kind: 'calf' | 'fore'; side: 0 | 1 }
-export interface AvatarUserData { look: Look; top: number; triangles: number; dispose: () => void; parts?: AvatarParts; bends?: Bend[] }
+export interface AvatarUserData { look: Look; top: number; triangles: number; dispose: () => void; parts?: AvatarParts; bends?: Bend[]; /** The figure's own offset for its ambient movement (figure-life.ts). */ phase?: number; /** Where its head is turned to, radians (lookAvatar). */ gaze?: number }
 /** What buildAvatar returns. */
 export interface AvatarGroup extends THREE.Group { userData: AvatarUserData }
 /** An avatar built with `rig: true`: its parts are there. */
@@ -173,7 +206,7 @@ export const LOOK_OPTIONS: Readonly<LookOptions> = Object.freeze<LookOptions>({
 });
 /** Accessories that share a slot replace each other: only the first of a slot is drawn. */
 export const ACCESSORY_SLOTS: Readonly<Record<string, string>> = Object.freeze({ glasses: 'eyes', sunglasses: 'eyes', cap: 'head', headwrap: 'head', fila: 'head', earrings: 'ears', chain: 'neck', watch: 'wrist', beads: 'hand', backpack: 'carry', handbag: 'carry' });
-export const POSES: readonly Pose[] = Object.freeze(['stand', 'sit', 'walk', 'wave', 'work', 'dance', 'relax', 'jog']);
+export const POSES: readonly Pose[] = Object.freeze(['stand', 'sit', 'walk', 'wave', 'work', 'dance', 'relax', 'jog', 'talk', 'interact', 'eat', 'drink', 'cook', 'cookLow', 'wash', 'bucket', 'soak', 'lie', 'door']);
 /** The limbs and body sections of a rigged avatar (buildAvatar with `rig: true`). */
 export const PARTS: readonly PartName[] = Object.freeze(['torso', 'head', 'armL', 'armR', 'legL', 'legR']);
 export const DETAILS: readonly DetailLevel[] = Object.freeze(['low', 'medium', 'high']);
@@ -208,6 +241,18 @@ function pickAccessories(value: unknown): string[] {
 const SEEDED_ACCESSORIES: string[][] = [[], [], [], ['glasses'], ['cap'], [], ['backpack'], ['watch'], [], ['sunglasses'], ['handbag'], []];
 
 /** Fill in a look. The same input and seed always give the same result. */
+/**
+ * The face a mood draws (the HUD's words: Very Happy, Happy, Fine or Okay, Uneasy, Miserable). A content mood keeps the face the
+ * player chose; a good mood brightens it one step, a poor one worries it and a miserable one droops it. Unknown or no mood: the chosen face.
+ */
+export function moodExpression(mood: unknown, chosen: Expression = 'smile'): FaceExpression {
+  const word = typeof mood === 'string' ? mood.trim().toLowerCase() : '';
+  if (word === 'very happy') return 'grin';
+  if (word === 'happy') return chosen === 'neutral' ? 'smile' : chosen;
+  if (word === 'uneasy') return 'worried';
+  if (word === 'miserable') return 'sad';
+  return chosen;
+}
 export function normalizeLook(look?: unknown, seed?: unknown): Look {
   const source: Record<string, unknown> = look && typeof look === 'object' ? look as Record<string, unknown> : {};
   const recorded = Object.keys(source).length > 0;
@@ -245,6 +290,8 @@ interface Joints {
   arm: [[number, number], [number, number]];
   fore: [number, number]; leg: [number, number]; calf: [number, number];
   lean: number; bob?: number;
+  /** On the back: the whole body turns to lie along the floor (a bed, a mat). */
+  lay?: boolean;
 }
 const POSE: Partial<Record<Pose, Joints>> & { stand: Joints } = {
   stand: { arm: [[0.06, 0.1], [0.06, 0.1]], fore: [-0.18, -0.18], leg: [0.03, -0.03], calf: [0, 0], lean: 0 },
@@ -255,6 +302,24 @@ const POSE: Partial<Record<Pose, Joints>> & { stand: Joints } = {
   dance: { arm: [[-0.4, 2.2], [-1.1, 0.5]], fore: [-0.7, -1.2], leg: [-0.45, 0.12], calf: [0.75, 0.1], lean: -0.06 },
   // At ease: weight on one leg, the other knee soft, arms a little away from the body and bent.
   relax: { arm: [[0.1, 0.17], [-0.04, 0.15]], fore: [-0.36, -0.26], leg: [0.015, -0.075], calf: [0, 0.13], lean: 0.01 },
+  // Talking: one hand lifted to the chest, open; the other rests.
+  talk: { arm: [[-0.5, 0.32], [0.04, 0.12]], fore: [-1.25, -0.22], leg: [0.03, -0.03], calf: [0, 0], lean: 0.02 },
+  // Reaching out to something (a handle, a counter, a screen).
+  interact: { arm: [[-1.05, 0.14], [0.04, 0.12]], fore: [-0.55, -0.2], leg: [0.03, -0.03], calf: [0, 0], lean: 0.08 },
+  // At a meal: one hand to the mouth, the other holding the plate.
+  eat: { arm: [[-1.2, 0.28], [-0.7, 0.12]], fore: [-2.0, -1.15], leg: [0.03, -0.03], calf: [0, 0], lean: 0.08 },
+  drink: { arm: [[-1.45, 0.32], [0.1, 0.2]], fore: [-2.15, -0.3], leg: [0.03, -0.03], calf: [0, 0], lean: -0.04 },
+  // At the stove: both hands forward over the pot, leaning in; low, squatting at a floor stove.
+  cook: { arm: [[-0.85, 0.2], [-0.7, 0.18]], fore: [-0.95, -1.0], leg: [0.03, -0.03], calf: [0, 0], lean: 0.2 },
+  cookLow: { arm: [[-0.9, 0.22], [-0.75, 0.2]], fore: [-1.0, -1.05], leg: [-1.1, -1.1], calf: [1.9, 1.9], lean: 0.32, bob: -0.5 },
+  // Washing: hands up in the hair at a shower; bent over a bucket; low in a tub with the arms on the rim.
+  wash: { arm: [[-2.55, 0.55], [-2.45, 0.55]], fore: [-1.7, -1.75], leg: [0.03, -0.03], calf: [0, 0], lean: -0.04 },
+  bucket: { arm: [[-0.6, 0.12], [-0.6, 0.12]], fore: [-0.7, -0.7], leg: [-0.28, -0.28], calf: [0.45, 0.45], lean: 0.5, bob: -0.12 },
+  soak: { arm: [[-0.55, 0.85], [-0.55, 0.85]], fore: [-0.5, -0.5], leg: [-1.5, -1.5], calf: [1.5, 1.5], lean: -0.1 },
+  // Asleep on the back, arms at the sides.
+  lie: { arm: [[0.1, 0.3], [0.1, 0.3]], fore: [-0.25, -0.25], leg: [0, 0], calf: [0, 0], lean: 0, lay: true },
+  // Opening a door: the hand on the handle, a step in.
+  door: { arm: [[-1.3, 0.12], [0.04, 0.12]], fore: [-0.25, -0.2], leg: [-0.2, 0.1], calf: [0.15, 0], lean: 0.1 },
 };
 
 // What each outfit is made of. sleeve: short | long | wide | cap. legs: trousers | shorts | skirt |
@@ -420,7 +485,7 @@ function sling(b: Drawing, rings: Ring[], aspect: number, from: Ring, to: Ring, 
  * and rows of ringed dots; aso-oke: narrow woven stripes with a bright thread between them.
  */
 interface PrintOptions { aspect?: number; z?: number; from?: number; to?: number; size?: number; around?: number; seg?: number }
-function print(b: Drawing, look: Look, colours: Colours, rings: Ring[], { aspect = 1, z = 0, from = rings[0]![0], to = rings[rings.length - 1]![0], size = 1, around = 8, seg = 14 }: PrintOptions = {}): void {
+function print(b: Drawing, look: Look, colours: Colours, rings: Ring[], { aspect = 1, z = 0, from = rings[0]![0], to = rings[rings.length - 1]![0], size = 1, around = 8, seg = 14 }: PrintOptions = {}, lite = false): void {
   const [main, second, third] = colours;
   const flat = (p: number, y: number, r: number, colour: Colour, sides: number, lift: number) => { const q = onLoft(rings, aspect, y, p, lift, z); b.cyl(q.x, y, q.z, r, 0.004, colour, { seg: sides, rx: Math.PI / 2, ry: q.ry }); };
   const diamond = (a: number, y: number, s: number, colour: Colour, lift: number) => { const q = onLoft(rings, aspect, y, a, lift, z); b.quad(q.x, y, q.z, s, s, colour, { ry: q.ry, rz: Math.PI / 4 }); };
@@ -429,9 +494,9 @@ function print(b: Drawing, look: Look, colours: Colours, rings: Ring[], { aspect
     for (let y = from + step * 0.5, row = 0; y < to - step * 0.3; y += step, row++) {
       for (let i = 0; i < around; i++) {
         const a = (i + (row % 2) * 0.5) / around * TAU, swap = (i + row) % 2;
-        flat(a, y, 0.054 * size, swap ? third : second, 8, 0.003);
-        flat(a, y, 0.034 * size, swap ? second : third, 6, 0.006);
-        diamond(a, y, 0.026 * size, main, 0.01);
+        flat(a, y, 0.054 * size, swap ? third : second, lite ? 6 : 8, 0.003);
+        flat(a, y, 0.034 * size, swap ? second : third, lite ? 4 : 6, 0.006);
+        if (!lite) diamond(a, y, 0.026 * size, main, 0.01);
         diamond(a + Math.PI / around, y + step * 0.02, 0.03 * size, swap ? second : third, 0.004);
       }
     }
@@ -442,15 +507,15 @@ function print(b: Drawing, look: Look, colours: Colours, rings: Ring[], { aspect
       band(b, rings, y + 0.012 * size, 0.008 * size, second, { seg, aspect, z });
       const dotY = y + step / 2;
       if (dotY > to - 0.03) break;
-      const dots = Math.round(around * 1.5);
+      const dots = Math.round(around * (lite ? 1 : 1.5));
       for (let i = 0; i < dots; i++) {
         const a = (i + (row % 2) * 0.5) / dots * TAU;
-        if (i % 2) { flat(a, dotY, 0.026 * size, second, 8, 0.004); flat(a, dotY, 0.014 * size, third, 6, 0.007); }
+        if (i % 2) { flat(a, dotY, 0.026 * size, second, lite ? 6 : 8, 0.004); if (!lite) flat(a, dotY, 0.014 * size, third, 6, 0.007); }
         else diamond(a, dotY, 0.03 * size, second, 0.005);
       }
     }
   } else if (look.fabric === 'asooke') {
-    const stripes = around * 3, cut = clip(rings, from, to);
+    const stripes = around * (lite ? 2 : 3), cut = clip(rings, from, to);
     for (let k = 0; k < cut.length - 1; k++) {
       const [y0, r0] = cut[k]!, [y1, r1] = cut[k + 1]!;
       for (let i = 0; i < stripes; i++) {
@@ -464,80 +529,8 @@ function print(b: Drawing, look: Look, colours: Colours, rings: Ring[], { aspect
 /** Coarse fabric for the cheaper levels: the garment's own rings take the fabric's colours. */
 const weave = (look: Look, colours: Colours): Paint => ({ ankara: [colours[0], colours[1], colours[0], colours[2]], adire: [colours[0], colours[0], colours[1], colours[0]], asooke: [colours[0], colours[2]] }[look.fabric as string] || colours[0]);
 
-// ---- Low detail (crowds, venue and home scenes): at most 600 triangles --------------------------
-
-const LOW_BUDGET = AVATAR_LOW_TRIANGLES.value;
-function headLow(b: Drawing, look: Look, sleeping = false): void {
-  const age = look.appearance?.ageAppearance === 'elder' ? 1 : look.appearance?.ageAppearance === 'mature' ? 0.55 : 0;
-  b.ball(0, HEAD.y - age * 0.004, 0, 0.26 + age * 0.002, 0.27 + age * 0.004, 0.26, look.skin, { seg: 8 });
-  for (const side of [-1, 1]) b.quad(side * 0.095, 2.215, 0.249, 0.055, sleeping ? 0.006 : 0.065, INK, { ry: side * 0.3 });
-  b.quad(0, 2.07, 0.238, 0.11, 0.026, mix(look.skin, '#4a1d1a', 0.55), { rx: 0.25 });
-}
-const capLow = (b: Drawing, c: Colour) => b.ball(0, 2.32, -0.03, 0.275, 0.19, 0.27, c, { seg: 7 });
 /** Draws one hairstyle: the colour, the look, the fabric colours and whether the fine detail is wanted. */
 type HairDraw = (b: Drawing, c: Colour, look: Look, colours: Colours, fine?: boolean) => void;
-const HAIR_LOW: Record<string, HairDraw> & { lowcut: HairDraw } = {
-  bald() {},
-  lowcut(b, c) { b.ball(0, 2.31, -0.02, 0.273, 0.2, 0.27, c, { seg: 7 }); },
-  fade(b, c, look) {
-    b.ball(0, 2.27, -0.03, 0.266, 0.17, 0.264, mix(c, look.skin, 0.55), { seg: 6 });
-    b.ball(0, 2.39, -0.01, 0.23, 0.13, 0.235, c, { seg: 6 });
-  },
-  classic(b, c, look) {
-    b.ball(0, 2.33, -0.03, 0.285, 0.2, 0.275, c, { seg: 7 });
-    if (look.body === 'woman') b.ball(0, 2.13, -0.11, 0.32, 0.32, 0.24, c, { seg: 7 });
-    else b.ball(0.07, 2.46, 0.08, 0.17, 0.08, 0.14, c, { seg: 6 });
-  },
-  afro(b, c) { b.ball(0, 2.46, -0.09, 0.42, 0.37, 0.39, c, { seg: 8 }); },
-  curls(b, c) {
-    capLow(b, c);
-    for (let i = 0; i < 5; i++) b.ico(Math.sin(i * 1.26) * 0.18, 2.48 + (i % 2) * 0.04, Math.cos(i * 1.26) * 0.16 - 0.05, 0.12, 0.11, 0.12, c);
-  },
-  bun(b, c) { capLow(b, c); b.ball(0, 2.6, -0.12, 0.16, 0.15, 0.16, c, { seg: 6 }); },
-  ponytail(b, c) {
-    capLow(b, c);
-    b.ball(0, 2.42, -0.3, 0.1, 0.1, 0.1, c, { seg: 5 });
-    b.ball(0, 2.08, -0.42, 0.1, 0.34, 0.1, c, { seg: 5, rx: 0.3 });
-  },
-  long(b, c) {
-    b.ball(0, 2.33, -0.03, 0.285, 0.2, 0.28, c, { seg: 7 });
-    b.box(0, 1.86, -0.22, 0.52, 0.8, 0.12, c);
-    for (const side of [-1, 1]) b.box(side * 0.265, 2.02, -0.06, 0.09, 0.46, 0.2, c);
-  },
-  braids(b, c) {
-    capLow(b, c);
-    for (let i = 0; i < 5; i++) {
-      const turn = (i - 2) * 0.6, length = 0.62 + (i % 2) * 0.12;
-      b.box(Math.sin(turn) * 0.27, 2.3 - length / 2, -Math.cos(turn) * 0.27, 0.085, length, 0.085, c);
-    }
-  },
-  locs(b, c) {
-    b.ball(0, 2.34, -0.03, 0.285, 0.2, 0.28, c, { seg: 7 });
-    for (let i = 0; i < 5; i++) {
-      const turn = (i - 2) * 0.6;
-      b.box(Math.sin(turn) * 0.29, 2.08, -Math.cos(turn) * 0.28, 0.13, 0.5 + (i % 3) * 0.06, 0.13, c, { rz: Math.sin(turn) * 0.16 });
-    }
-  },
-  cornrows(b, c, look) {
-    b.ball(0, 2.31, -0.02, 0.268, 0.19, 0.266, mix(c, look.skin, 0.4), { seg: 7 });
-    for (const x of [-0.14, -0.05, 0.05, 0.14]) b.box(x, 2.3 + Math.sqrt(1 - (x / 0.27) ** 2) * 0.19, -0.03, 0.05, 0.03, 0.42, c);
-  },
-  twists(b, c, look) {
-    capLow(b, c);
-    const drop = look.body === 'woman' ? 0.34 : 0.12;
-    for (let i = 0; i < 6; i++) { const turn = i / 6 * TAU + 0.5; b.box(Math.sin(turn) * 0.24, 2.36 - drop / 2 + (look.body === 'woman' ? 0 : 0.14), Math.cos(turn) * 0.23 - 0.03, 0.07, drop, 0.07, c, { rz: Math.sin(turn) * 0.3, rx: -Math.cos(turn) * 0.3 }); }
-  },
-  bantuknots(b, c) {
-    capLow(b, c);
-    for (const [x, y, z] of [[0, 2.56, -0.02], [-0.17, 2.47, 0.06], [0.17, 2.47, 0.06], [-0.18, 2.45, -0.16], [0.18, 2.45, -0.16]] as Vec3[]) b.cone(x, y, z, 0.075, 0.12, c, { seg: 5 });
-  },
-  gele(b, c, look, colours) {
-    b.ball(0, 2.27, -0.04, 0.268, 0.16, 0.265, c, { seg: 7 });
-    b.cyl(0, 2.49, -0.03, 0.27, 0.3, colours[0], { top: 1.45, seg: 8 });
-    b.box(0, 2.72, -0.07, 0.8, 0.26, 0.09, colours[1], { rx: -0.25 });
-    b.box(0.1, 2.78, 0.05, 0.56, 0.2, 0.08, colours[0], { rx: 0.15, rz: 0.12 });
-  },
-};
 // Under a hat only hair that hangs below it is drawn in full; the rest is cut short.
 const HANGING = new Set(['braids', 'locs', 'long', 'ponytail', 'bald', 'cornrows', 'fade', 'lowcut']);
 
@@ -612,16 +605,6 @@ function drawFallbackShoe(b: Drawing, look: Look, end: number, fine: boolean, si
   return true;
 }
 
-/** One tube of a low-detail limb. */
-interface Tube { length: number; r0: number; r1: number; colour: Colour }
-function limbLow(b: Drawing, name: string, x: number, y: number, z: number, pitch: number, roll: number, upper: Tube, bend: number, lower: Tube, end?: (end: number) => void): void {
-  const tube = (tube: Tube, open: boolean) => b.cyl(0, -tube.length / 2, 0, tube.r1, tube.length, tube.colour, { seg: 5, top: q3(tube.r0 / tube.r1), open });
-  part(b, name, x, y, z, () => {
-    tube(upper, false);
-    part(b, name.replace('leg', 'calf').replace('arm', 'forearm'), 0, -upper.length, 0, () => { tube(lower, true); end?.(-lower.length); }, bend);
-  }, pitch, roll);
-}
-
 function markerOf(b: Drawing, marker: Marker | null | undefined): void {
   if (marker === 'crown') {
     b.cyl(0, 3.1, 0, 0.13, 0.16, '#ffd34d', { seg: 6, top: 1.5, ...GLOW });
@@ -634,118 +617,10 @@ function markerOf(b: Drawing, marker: Marker | null | undefined): void {
 }
 const accessoryColour = (look: Look, colours: Colours): Colour => (look.fabric === 'plain' ? shade(look.outfitColor, -0.25) : colours[1]);
 
-/** What drawLow and drawHigh need besides the look. */
-interface Stance { joints: Joints; sitting: boolean; marker: Marker | null | undefined; sleeping?: boolean }
-function drawLow(b: Drawing, look: Look, { joints, sitting, marker, sleeping }: Stance): void {
-  const style = OUTFIT[look.outfit] || OUTFIT.casual, m = BODY[look.body], woman = look.body === 'woman';
-  const colours = fabricColours(look), top = look.outfitColor, bottoms = look.bottomsColor, skin = look.skin;
-  // Accessories are drawn only while they fit the budget: `reserve` is what the rest of the body still needs.
-  const start = b.triangles;
-  let reserve = 84 + (marker ? (marker === 'crown' ? 32 : 20) : 0);
-  const room = (cost: number) => b.triangles - start + cost + reserve <= LOW_BUDGET;
-  const skirt = woman && look.outfit === 'office' || style.legs === 'skirt', long = style.legs === 'wrapper' || style.legs === 'dress';
-  const bareCalf = style.legs === 'shorts' || skirt, bulk = style.bulk || 0;
-  const shoe = (SHOES[skirt ? 'dress' : style.shoe] || SHOES.sneaker)[style.shoe === 'slide' ? 1 : 0];
-  const has = (id: string) => look.accessories.includes(id);
-  if (!long || sitting) {
-    for (const side of [0, 1] as const) {
-      limbLow(b, side ? 'legL' : 'legR', (side ? 1 : -1) * (m.legX + 0.025), 1.04, 0, joints.leg[side], 0,
-        { length: 0.5, r0: m.leg + 0.008, r1: m.leg - 0.012, colour: long || skirt ? shade(bottoms, -0.12) : bottoms },
-        joints.calf[side],
-        { length: 0.46, r0: m.leg - 0.02, r1: m.leg - 0.04, colour: long ? bottoms : bareCalf ? (style.socks ? CLOTH_WHITE : skin) : bottoms },
-        (end) => { if (!drawFallbackShoe(b, look, end, false, true)) b.box(0, end - 0.06, 0.07, 0.19, 0.13, 0.38, shoe); });
-    }
-  } else {
-    for (const side of [-1, 1]) part(b, side > 0 ? 'legL' : 'legR', side * 0.14, 1.04, 0, () => { if (!drawFallbackShoe(b, look, -0.96, false, true)) b.box(0, -0.975, 0.07, 0.19, 0.13, 0.38, shoe); });
-  }
-  if (long) {
-    const dress = style.dress, rings: Colours = dress ? [top, top, bottoms] : look.fabric === 'plain' ? [bottoms, bottoms, shade(bottoms, -0.15)] : [colours[0], colours[1], colours[2]];
-    if (sitting) b.box(0, 1.02, 0.24, 0.56, 0.3, 0.8, rings[0]);
-    else rings.forEach((colour, i) => b.cyl(0, 0.92 - i * 0.33, 0, 0.28 + i * (dress ? 0.075 : 0.045), 0.34, colour, { seg: 8, top: dress ? 0.8 : 0.87 }));
-  } else if (skirt) {
-    if (sitting) b.box(0, 1.03, 0.2, 0.52, 0.28, 0.7, bottoms);
-    else b.cyl(0, 0.84, 0, 0.31, 0.52, bottoms, { seg: 8, top: 0.82 });
-  }
-  b.box(0, 1.03, 0, m.hip * 1.86, 0.22, m.hip * 1.86 * m.aspect, long ? (style.dress ? top : colours[0]) : bottoms);
+/** What drawHigh needs besides the look. */
+interface Stance { joints: Joints; sitting: boolean; marker: Marker | null | undefined; sleeping?: boolean; expression?: FaceExpression }
 
-  b.at(0, HIP_Y, 0, 0, () => {
-    const depth = m.chest * (m.aspect + 0.04) + bulk, aspect = m.aspect + 0.04;
-    const hem = style.tunic && !sitting ? (woman ? -0.62 : -0.45) : -0.1;
-    const rings: Ring[] = [[hem, m.hip + bulk + (style.tunic ? 0.03 : 0)], [0.25, m.waist + 0.012 + bulk], [0.52, m.chest + 0.008 + bulk], [0.77, m.shoulder * 0.92 + bulk]];
-    const by: Colours = ({ ankara: [colours[0], colours[1], colours[2]], adire: [colours[2], colours[1], colours[0]] } as Partial<Record<Fabric, Colours>>)[look.fabric] || [top, top, top];
-    loft(b, rings.slice(0, -1), by, { seg: 8, aspect });
-    loft(b, rings.slice(-2), by[2], { seg: 8, aspect, capped: true });
-    const front = (y: number) => radiusAt(rings, y) * aspect + 0.012;
-    if (look.fabric === 'asooke') for (const side of [-1, 1]) b.quad(0, 0.32, side * front(0.32), 0.06, 0.6, colours[1], side < 0 ? { ry: Math.PI } : undefined);
-    if (style.open) b.quad(0, 0.4, front(0.4), 0.15, 0.66, CLOTH_WHITE);
-    if (style.collar) {
-      b.box(0, 0.78, 0.02, 0.3, 0.06, 0.26, CLOTH_WHITE);
-      if (!woman) b.box(0, 0.5, front(0.5), 0.07, 0.46, 0.02, colours[2] === top ? shade(top, -0.45) : colours[1]);
-    }
-    if (style.vest) {
-      b.cyl(0, 0.42, 0, m.chest + 0.035, 0.5, '#f08a1d', { seg: 8, sz: m.aspect + 0.08, top: 1.04, open: true });
-      b.cyl(0, 0.42, 0, m.chest + 0.045, 0.07, '#eeeacb', { seg: 8, sz: m.aspect + 0.08, open: true });
-    }
-    if (style.hood) {
-      b.ball(0, 0.84, -0.15, 0.22, 0.16, 0.14, top, { seg: 6 });
-      b.box(0, 0.22, front(0.22), 0.32, 0.17, 0.03, shade(top, -0.2));
-    }
-    if (style.gown) b.box(0, 0.46, front(0.46), 0.13, 0.8, 0.03, colours[1] === top ? shade(top, 0.35) : colours[1], { rz: 0.62 });
-    if (style.sport) {
-      for (const side of [-1, 1]) b.quad(side * (m.chest + 0.02 + bulk), 0.36, 0, 0.16, 0.62, CLOTH_WHITE, { ry: side * Math.PI / 2 });
-      b.quad(0, 0.5, front(0.5), 0.13, 0.17, CLOTH_WHITE);
-    }
-    if (style.tunic) { b.quad(0, 0.52, front(0.52), 0.05, 0.44, GOLD); b.box(0, 0.79, 0, 0.2, 0.05, 0.2, shade(top, -0.2)); }
-    if (style.robe) {
-      // Agbada: a wide open robe over the tunic, embroidered at the chest.
-      b.cyl(0, 0.2, 0, 0.44, 1.14, top, { seg: 8, sz: 0.5, top: 0.72, open: true });
-      b.quad(0, 0.5, 0.2, 0.2, 0.36, GOLD, { rx: -0.12 });
-    }
-    if (style.dress) b.cyl(0, 0.2, 0, m.waist + 0.03 + bulk, 0.07, bottoms, { seg: 8, sz: aspect, open: true });
-    b.cyl(0, 0.86, 0, m.neck, 0.18, skin, { seg: 6 });
-    part(b, 'head', 0, 0.86, 0, () => b.at(0, -HIP_Y - 0.86, 0, 0, () => {
-      headLow(b, look, sleeping);
-      const head = style.helmet || look.hair === 'gele' ? null : look.accessories.find((id) => ACCESSORY_SLOTS[id] === 'head');
-      const covered = style.helmet || head;
-      const selectedHead = fallbackHead(look);
-      if (selectedHead) drawFallbackHead(b, selectedHead, look, false);
-      else if (!head || HANGING.has(look.hair)) (covered && !HANGING.has(look.hair) ? HAIR_LOW.lowcut : HAIR_LOW[look.hair] || HAIR_LOW.lowcut)(b, look.hairColor, look, colours); // a hat or wrap hides short hair
-      if (style.helmet) {
-        b.ball(0, 2.37, -0.01, 0.31, 0.2, 0.31, '#f2c230', { seg: 6 });
-        b.box(0, 2.34, 0.22, 0.42, 0.04, 0.24, '#f2c230');
-      }
-      const cloth = accessoryColour(look, colours);
-      if (head === 'cap' && room(48)) { b.ball(0, 2.36, -0.01, 0.295, 0.2, 0.3, cloth, { seg: 6 }); b.box(0, 2.34, 0.3, 0.3, 0.03, 0.22, cloth); }
-      if (head === 'headwrap' && room(48)) { b.ball(0, 2.33, -0.03, 0.295, 0.22, 0.3, cloth, { seg: 6 }); b.box(0, 2.2, -0.3, 0.12, 0.2, 0.06, cloth); }
-      if (head === 'fila' && room(24)) b.cyl(0.02, 2.5, -0.02, 0.27, 0.24, cloth, { seg: 6, top: 1.08, rz: -0.12 });
-      if (has('sunglasses') && room(12)) b.box(0, 2.215, 0.25, 0.34, 0.085, 0.03, '#15171c');
-      else if (has('glasses') && room(12)) b.box(0, 2.215, 0.25, 0.32, 0.03, 0.03, INK);
-      if (has('earrings') && room(24)) for (const side of [-1, 1]) b.box(side * 0.265, 2.1, 0, 0.03, 0.07, 0.03, GOLD);
-      markerOf(b, marker);
-      reserve = 84;
-    }));
-    drawFallbackNeck(b, look, false);
-    if (has('chain') && room(12)) b.box(0, 0.7, front(0.7) - 0.01, 0.2, 0.035, 0.02, GOLD);
-    if (has('backpack') && room(12)) b.box(0, 0.42, -(depth + 0.09), 0.36, 0.46, 0.18, '#3b4658');
-    if (has('handbag') && room(12)) b.box(m.hip + 0.13, -0.08, 0.02, 0.09, 0.2, 0.26, '#b5763a');
-    for (const side of [0, 1] as const) {
-      const dir = side ? 1 : -1, [pitch, roll] = joints.arm[side], wide = style.sleeve === 'wide', bare = style.sleeve === 'cap';
-      limbLow(b, side ? 'armL' : 'armR', dir * (m.shoulder + 0.02 + bulk), SHOULDER_Y + 0.05, 0, pitch, dir * (style.robe ? Math.max(roll, 0.3) : roll),
-        { length: 0.42, r0: wide ? 0.1 : m.arm + 0.02 + bulk, r1: wide ? 0.15 : m.arm + 0.012 + bulk, colour: bare ? skin : wide && look.fabric !== 'plain' ? colours[1] : top },
-        joints.fore[side],
-        { length: 0.38, r0: m.arm, r1: m.arm - 0.016, colour: style.sleeve === 'long' ? top : skin },
-        (end) => {
-          b.box(0, end - 0.06, 0, 0.11, 0.14, 0.1, skin);
-          if (side) drawFallbackWrist(b, look, end);
-          reserve = side ? 0 : 42;
-          if (side && has('watch') && room(12)) b.box(0, end + 0.03, 0, 0.14, 0.05, 0.14, '#23262d');
-          if (!side && has('beads') && room(12)) b.box(0, end + 0.03, 0, 0.14, 0.04, 0.14, CORAL);
-        });
-    }
-  }, joints.lean);
-}
-
-// ---- Medium and high detail: one model, drawn with fewer segments and fewer small parts at medium ----
+// ---- One model at three levels: high (the creator), medium (the player in a scene), low (the crowd) ----
 
 /** The same batch with every curved primitive drawn with fewer segments. */
 function coarse(b: Drawing, scale: number, minCylinder = 5): Drawing {
@@ -784,18 +659,32 @@ function dome(count: number, coverage = 0.6): Vec3[] {
   });
 }
 
-function headHigh(b: Drawing, look: Look, woman: boolean, fine: boolean, sleeping = false): void {
+function headHigh(b: Drawing, look: Look, woman: boolean, fine: boolean, sleeping = false, expression: FaceExpression = look.expression, low = false): void {
   // A clean stylised face: every part is a deliberate shape (primitives cannot be blended into one another).
   const age = look.appearance?.ageAppearance === 'elder' ? 1 : look.appearance?.ageAppearance === 'mature' ? 0.55 : 0;
-  const skin = look.skin, F = FACES[look.face] || FACES.oval, mood = look.expression;
+  const skin = look.skin, F = FACES[look.face] || FACES.oval;
   const dark = channels(skin).reduce((sum, v) => sum + v, 0) < 250; // the two darkest tones: features are lifted, not darkened
   const deep = shade(skin, -0.22), white = '#f6f1e7', fz = (x: number, y: number) => faceZ(x, y, F), relief = shade(skin, dark ? 0.1 : -0.05);
   b.ball(0, HEAD.y + HEAD.ry - F.ry - age * 0.004, 0, HEAD.rx + age * 0.002, F.ry + age * 0.004, HEAD.rz, skin, { seg: 28 });
   if (age) for (const sign of [-1, 1]) b.quad(sign * 0.115, 2.148, fz(sign * 0.115, 2.148) + 0.004, 0.048, 0.003 * age, mix(skin, INK, 0.2), { ry: sign * 0.3 });
   if (F.jaw) b.ball(0, JAW.y, JAW.z, F.jaw, JAW.ry, JAW.rz, skin, { seg: 24 });
-  const brow = mix(look.hairColor, INK, 0.5), grin = mood === 'grin', flat = mood === 'neutral';
+  const brow = mix(look.hairColor, INK, 0.5), grin = expression === 'grin', sad = expression === 'sad', worried = expression === 'worried', flat = expression === 'neutral' || worried || sad;
   for (const side of [-1, 1]) {
     const ex = side * 0.1, ey = 2.214, ez = fz(ex, ey), turn = side * 0.38;
+    if (low) {
+      // The crowd's face: the same eyes, brows and lids as a few flat shapes (a ball each would cost more than the rest of the head).
+      if (!sleeping) {
+        b.quad(ex, ey, ez + 0.006, 0.1, 0.096, white, { ry: turn });
+        b.quad(ex - side * 0.004, ey - 0.003, ez + 0.01, 0.062, 0.074, '#3d2515', { ry: turn });
+      }
+      const lowLid = sleeping ? ey : ey + (grin ? 0.046 : sad ? 0.038 : worried ? 0.052 : 0.06);
+      b.box(ex, lowLid, ez + 0.006, 0.108, 0.026, 0.02, skin, { ry: turn });
+      b.box(ex + side * 0.004, lowLid - 0.012, ez + 0.017, 0.098, woman ? 0.009 : 0.005, 0.01, woman ? INK : mix(skin, INK, 0.7), { ry: turn, rz: side * -0.03 });
+      const lowBrow = 2.318 - (flat && !sad && !worried ? 0.016 : sad ? -0.006 : worried ? 0.004 : 0);
+      b.box(ex + side * 0.004, lowBrow, fz(ex, lowBrow) + 0.006, 0.116, woman ? 0.021 : 0.027, 0.014, brow, { ry: turn, rz: side * (sad ? -0.24 : worried ? -0.15 : flat ? 0 : -0.07) });
+      b.ball(side * 0.247, 2.19, -0.012, 0.034, 0.066, 0.048, skin, { seg: 5 });
+      continue;
+    }
     if (!sleeping) {
     b.ball(ex, ey, ez - 0.01, 0.052, 0.05, 0.022, white, { seg: 10, ry: turn });
     b.ball(ex - side * 0.004, ey - 0.003, ez + 0.003, 0.032, 0.036, 0.013, '#3d2515', { seg: 9, ry: turn });
@@ -805,32 +694,60 @@ function headHigh(b: Drawing, look: Look, woman: boolean, fine: boolean, sleepin
     }
     }
     // Upper lid and lash line; sleeping removes whites and pupils without changing the saved expression.
-    const lid = sleeping ? ey : ey + (grin ? 0.046 : 0.06);
+    const lid = sleeping ? ey : ey + (grin ? 0.046 : sad ? 0.038 : worried ? 0.052 : 0.06);
     b.ball(ex, lid, ez - 0.01, 0.054, 0.014, 0.024, skin, { seg: 9, ry: turn });
     b.box(ex + side * 0.004, lid - 0.012, ez + 0.011, 0.098, woman ? 0.009 : 0.005, 0.012, woman ? INK : mix(skin, INK, 0.7), { ry: turn, rz: side * -0.03 });
     if (woman && fine) b.box(ex + side * 0.054, lid - 0.006, ez + 0.002, 0.03, 0.01, 0.01, INK, { ry: turn, rz: side * 0.55 }); // lash flick
     if (grin && fine) b.ball(ex, ey - 0.046, ez - 0.008, 0.05, 0.014, 0.022, shade(skin, -0.06), { seg: 8, ry: turn });
     // Brows: slim, set a little above the lid, and lifted at the INNER end — an open, friendly face at rest
     // (a brow that dips towards the nose reads as a scowl at phone size). Neutral keeps them level.
-    const by = 2.318 - (flat ? 0.016 : 0);
-    b.ball(ex + side * 0.004, by, fz(ex, by) + 0.003, 0.058, woman ? 0.0105 : 0.0135, 0.012, brow, { seg: 8, ry: turn, rz: side * (flat ? 0 : -0.07) });
+    const by = 2.318 - (flat && !sad && !worried ? 0.016 : sad ? -0.006 : worried ? 0.004 : 0);
+    b.ball(ex + side * 0.004, by, fz(ex, by) + 0.003, 0.058, woman ? 0.0105 : 0.0135, 0.012, brow, { seg: 8, ry: turn, rz: side * (sad ? -0.24 : worried ? -0.15 : flat ? 0 : -0.07) });
     // Ear: the outer shell and its hollow.
     b.ball(side * 0.247, 2.19, -0.012, 0.034, 0.066, 0.048, skin, { seg: 10 });
     if (fine) b.ball(side * 0.266, 2.195, -0.004, 0.016, 0.042, 0.027, deep, { seg: 6 });
   }
   // Nose: a tip with a wing each side.
   b.ball(0, 2.126, fz(0, 2.126) + 0.006, 0.034, 0.032, 0.04, relief, { seg: 10 });
+  if (low) {
+    // The crowd's mouth: a line, the corners of a smile or a frown, and the lower lip.
+    const lowLip = woman ? mix(skin, dark ? '#c9606a' : '#b8454c', 0.6) : mix(skin, dark ? '#a8605a' : '#8a3f3a', dark ? 0.5 : 0.4);
+    const lowY = 2.036, lowZ = fz(0, lowY) + 0.002, lowWide = grin ? 0.12 : worried ? 0.084 : 0.1;
+    if (grin) b.box(0, lowY + 0.002, lowZ + 0.004, 0.092, 0.024, 0.012, white);
+    else b.box(0, lowY + 0.003, lowZ + 0.006, lowWide, 0.01, 0.012, dark ? '#150a09' : mix(skin, '#2a0f0d', 0.72));
+    if (!flat) for (const side of [-1, 1]) b.box(side * (lowWide / 2 + 0.01), lowY + 0.017, lowZ - 0.004, 0.042, 0.009, 0.012, dark ? '#150a09' : mix(skin, '#2a0f0d', 0.72), { rz: side * 0.78, ry: side * 0.45 });
+    else if (sad) for (const side of [-1, 1]) b.box(side * (lowWide / 2 + 0.008), lowY - 0.008, lowZ - 0.004, 0.042, 0.009, 0.012, dark ? '#150a09' : mix(skin, '#2a0f0d', 0.72), { rz: side * -0.7, ry: side * 0.45 });
+    b.ball(0, lowY - (grin ? 0.022 : 0.011), lowZ + 0.003, (grin ? 0.048 : 0.04) * (woman ? 1 : 0.78), 0.0145 * (woman ? 1 : 0.78), 0.017, shade(lowLip, 0.08), { seg: 5 });
+    return;
+  }
   if (fine) for (const side of [-1, 1]) b.ball(side * 0.03, 2.116, fz(0, 2.116) - 0.004, 0.022, 0.02, 0.026, relief, { seg: 7 });
   // Mouth: a line with lifted corners, a two-part upper lip and a fuller lower one.
   const lip = woman ? mix(skin, dark ? '#c9606a' : '#b8454c', 0.6) : mix(skin, dark ? '#a8605a' : '#8a3f3a', dark ? 0.5 : 0.4), line = dark ? '#150a09' : mix(skin, '#2a0f0d', 0.72);
-  const my = 2.036, mz = fz(0, my) + 0.002, wide = grin ? 0.12 : 0.1, full = woman ? 1 : 0.78;
+  const my = 2.036, mz = fz(0, my) + 0.002, wide = grin ? 0.12 : worried ? 0.084 : 0.1, full = woman ? 1 : 0.78;
   if (grin) b.box(0, my + 0.002, mz + 0.004, 0.092, 0.024, 0.012, white);
   else b.box(0, my + 0.003, mz + 0.006, wide, 0.007, 0.012, line);
   for (const side of [-1, 1]) {
     if (!flat) b.box(side * (wide / 2 + 0.01), my + 0.017, mz - 0.004, 0.042, 0.007, 0.012, line, { rz: side * 0.78, ry: side * 0.45 }); // the corners of a smile
+    else if (sad) b.box(side * (wide / 2 + 0.008), my - 0.008, mz - 0.004, 0.042, 0.007, 0.012, line, { rz: side * -0.7, ry: side * 0.45 }); // the corners drawn down
     b.ball(side * 0.019, my + (grin ? 0.024 : 0.014), mz + 0.002, 0.03 * full, 0.0105 * full, 0.015, lip, { seg: 8, rz: side * -0.16, ry: side * 0.2 });
   }
   b.ball(0, my - (grin ? 0.022 : 0.011), mz + 0.003, (grin ? 0.048 : 0.04) * full, 0.0145 * full, 0.017, shade(lip, 0.08), { seg: 9 });
+  // The two parts of a rigged head that move on their own: the eyelids (shown for a blink) and an open mouth (shown, and
+  // scaled, while the figure speaks). Both start hidden; a figure without a rig draws neither.
+  if (b.part && !sleeping) {
+    const own = (name: string, y: number, z: number, draw: () => void) => b.part!(name, 0, y, z, () => b.at(0, -HIP_Y - 0.86, 0, 0, draw));
+    own('lids', 2.214, fz(0, 2.214), () => {
+      for (const side of [-1, 1]) {
+        const ex = side * 0.1, ey = 2.214, ez = fz(ex, ey), turn = side * 0.38;
+        b.ball(ex, ey, ez + 0.002, 0.058, 0.056, 0.03, skin, { seg: 10, ry: turn });
+        b.box(ex + side * 0.004, ey - 0.03, ez + 0.026, 0.098, woman ? 0.009 : 0.005, 0.01, woman ? INK : mix(skin, INK, 0.7), { ry: turn, rz: side * -0.03 });
+      }
+    });
+    own('mouth', my, mz, () => {
+      b.ball(0, my - 0.004, mz + 0.006, 0.04, 0.03, 0.012, '#3a0e12', { seg: 10 });
+      b.ball(0, my - 0.016, mz + 0.012, 0.022, 0.01, 0.006, '#c96a72', { seg: 8 });
+    });
+  }
 }
 
 // ---- Hair ----------------------------------------------------------------------------------------
@@ -1110,9 +1027,20 @@ function eyewear(b: Drawing, kind: string, face: FaceShape, fine: boolean): void
 
 // ---- The model -----------------------------------------------------------------------------------
 
-function drawHigh(b0: Drawing, look: Look, { joints, sitting, marker, sleeping }: Stance, fine: boolean): void {
-  const b = fine ? b0 : coarse(b0, 0.36);
-  const per = fine ? 3 : 1, SEG = 24;
+/**
+ * How much of the one model each level draws. per: ring steps between the keys of a body part (smoother outlines);
+ * scale: segments of every sphere and cylinder against the full model; seg: sides of a garment's rings;
+ * prints: printed fabric (fewer motifs below 'high') or, without it, the garment's own rings taking the fabric's colours.
+ */
+interface Tune { per: number; scale: number; seg: number; prints: boolean }
+const TUNE: Record<DetailLevel, Tune> = {
+  high: { per: 3, scale: 1, seg: 24, prints: true },
+  medium: { per: 2, scale: 0.6, seg: 20, prints: true },
+  low: { per: 1, scale: 0.34, seg: 12, prints: false },
+};
+function drawHigh(b0: Drawing, look: Look, { joints, sitting, marker, sleeping, expression }: Stance, fine: boolean, tune: Tune = TUNE.high): void {
+  const b = fine ? b0 : coarse(b0, tune.scale);
+  const per = tune.per, SEG = tune.seg;
   const style = OUTFIT[look.outfit] || OUTFIT.casual, m = BODY[look.body], woman = look.body === 'woman';
   const colours = fabricColours(look), top = look.outfitColor, bottoms = look.bottomsColor, skin = look.skin;
   const plain = look.fabric === 'plain', has = (id: string) => look.accessories.includes(id);
@@ -1121,8 +1049,8 @@ function drawHigh(b0: Drawing, look: Look, { joints, sitting, marker, sleeping }
   const bulk = style.bulk || 0, aspect = m.aspect, trim = shade(top, -0.2);
   const wrapper: Colours = plain ? [bottoms, bottoms, shade(bottoms, -0.15)] : colours;
   const long = (legs === 'wrapper' || legs === 'dress') && !sitting;
-  const cloth = (rings: Ring[], o: PrintOptions) => { if (fine && !plain) print(b, look, colours, rings, o); };
-  const dyed = fine || plain ? top : weave(look, colours);
+  const cloth = (rings: Ring[], o: PrintOptions) => { if ((fine || tune.prints) && !plain) print(b, look, colours, rings, o, !fine); };
+  const dyed = fine || tune.prints || plain ? top : weave(look, colours);
   const body = smooth(torsoKeys(m), per);
 
   // Legs and shoes
@@ -1162,7 +1090,7 @@ function drawHigh(b0: Drawing, look: Look, { joints, sitting, marker, sleeping }
     else {
       // Iro: a wrapper from the waist to the ankles, with its overlapping edge down the front.
       const rings = smooth([[0.1, 0.3], [0.45, 0.275], [0.9, m.hip + 0.014], [1.04, m.hip * 0.94]], per);
-      loft(b, rings, fine || plain ? wrapper[0] : weave(look, colours), { seg: SEG, aspect: 0.74 });
+      loft(b, rings, fine || tune.prints || plain ? wrapper[0] : weave(look, colours), { seg: SEG, aspect: 0.74 });
       band(b, rings, 0.125, 0.05, plain ? shade(bottoms, -0.2) : colours[2], { seg: SEG, aspect: 0.74 });
       cloth(rings, { aspect: 0.74, from: 0.16, to: 0.98, around: 9, seg: SEG });
       strip(b, rings, 0.1, 1.0, 0.5, 0.035, plain ? shade(bottoms, 0.2) : colours[1], { aspect: 0.74, lift: 0.012, thick: 0.02 });
@@ -1363,7 +1291,7 @@ function drawHigh(b0: Drawing, look: Look, { joints, sitting, marker, sleeping }
     }
 
     part(b, 'head', 0, 0.86, 0, () => b.at(0, -HIP_Y - 0.86, 0, 0, () => {
-      headHigh(b, look, woman, fine, sleeping);
+      headHigh(b, look, woman, fine, sleeping, expression, !fine && tune.scale < 0.45);
       const hat = style.helmet || look.hair === 'gele' ? null : look.accessories.find((id) => ACCESSORY_SLOTS[id] === 'head');
       const hair = (style.helmet || hat) && !HANGING.has(look.hair) ? 'lowcut' : look.hair;
       const selectedHead = fallbackHead(look);
@@ -1454,17 +1382,16 @@ function drawHigh(b0: Drawing, look: Look, { joints, sitting, marker, sleeping }
  * blue dot), detail ('low' — the default — | 'medium' | 'high'; see the top of this file) }
  * Returns { look, top } where top is the height just above the head, for a name tag.
  */
-export function drawAvatar(b: Drawing, input?: unknown, { x = 0, y = 0, z = 0, ry = 0, pose = 'stand', stride, seat = 0.6, seed, scale = 1, appearanceFit = true, sleeping = false, marker = null, detail = 'low' }: DrawOptions = {}): DrawnAvatar {
+export function drawAvatar(b: Drawing, input?: unknown, { x = 0, y = 0, z = 0, ry = 0, pose = 'stand', stride, seat = 0.6, seed, scale = 1, appearanceFit = true, sleeping = false, mood, marker = null, detail = 'low' }: DrawOptions = {}): DrawnAvatar {
   const look = normalizeLook(input, seed), rendered = fallbackLook(look), proportions = avatarProportions(look.appearance);
   if (appearanceFit) scale *= proportions.height;
   // A rig is drawn upright and still: its pose is set afterwards by turning its parts (poseAvatar).
-  const posed = jointsOf(pose, stride), joints = b.part ? { ...posed, lean: 0, bob: 0 } : posed, sitting = pose === 'sit';
-  const lift = (sitting ? seat + 0.13 - 1.05 : 0) + (joints.bob || 0);
-  b.at(x, y + lift * scale, z, ry, () => {
+  const posed = jointsOf(pose, stride), joints = b.part ? { ...posed, lean: 0, bob: 0 } : posed, sitting = pose === 'sit' || pose === 'soak';
+  const lift = (sitting ? seat + 0.13 - 1.05 : 0) + (joints.bob || 0), lay = !b.part && posed.lay === true;
+  b.at(x, y + (lift + (lay ? 0.2 : 0)) * scale, z, ry, () => {
     const selected = look.wearables?.length ? coarse(b, detail === 'low' ? 0.65 : 0.88, detail === 'low' ? 3 : 5) : b;
-    if (detail === 'high' || detail === 'medium') drawHigh(selected, rendered, { joints, sitting, marker, sleeping }, detail === 'high');
-    else drawLow(selected, rendered, { joints, sitting, marker, sleeping });
-  }, 0, 0, scale);
+    drawHigh(selected, rendered, { joints, sitting, marker, sleeping, expression: moodExpression(mood, look.expression) }, detail === 'high', TUNE[detail] ?? TUNE.low);
+  }, lay ? -Math.PI / 2 : 0, 0, scale);
   return { look, top: y + (lift + 2.95) * scale };
 }
 
@@ -1501,13 +1428,14 @@ function rigBatch(THREE: ThreeModule): RigBatch {
  * 'jog') }. Shoulders, hips, elbows and knees turn, the torso leans and the whole body bobs.
  * Returns the avatar.
  */
-export function poseAvatar<T extends { userData?: unknown } | null | undefined>(avatar: T, { pose = 'stand', stride }: { pose?: Pose; stride?: number } = {}): T {
-  const data = avatar?.userData as { parts?: AvatarParts; bends?: Bend[] } | null | undefined;
+export function poseAvatar<T extends { userData?: unknown } | null | undefined>(avatar: T, { pose = 'stand', stride, time, speaking, blink, amount }: { pose?: Pose; stride?: number; blink?: boolean; amount?: number; /** Seconds on any steady clock: adds breathing, weight shift, blinks and (with `speaking`) a talking mouth; see figure-life.ts. */ time?: number; speaking?: boolean } = {}): T {
+  const data = avatar?.userData as { parts?: AvatarParts; bends?: Bend[]; phase?: number; gaze?: number } | null | undefined;
   const parts = data?.parts;
   if (!parts) return avatar;
   const joints = jointsOf(pose, stride);
   parts.torso.rotation.x = joints.lean || 0;
-  parts.body.position.y = joints.bob || 0;
+  parts.body.position.y = (joints.bob || 0) + (joints.lay ? 0.2 : 0);
+  parts.body.rotation.x = joints.lay ? -Math.PI / 2 : 0;
   parts.legR.rotation.x = joints.leg[0]; parts.legL.rotation.x = joints.leg[1];
   parts.armR.rotation.set(joints.arm[0][0], 0, -joints.arm[0][1]); parts.armL.rotation.set(joints.arm[1][0], 0, joints.arm[1][1]);
   for (const bend of data?.bends ?? []) {
@@ -1523,6 +1451,7 @@ export function poseAvatar<T extends { userData?: unknown } | null | undefined>(
     position.needsUpdate = true; normal.needsUpdate = true; bend.angle = angle;
     bend.geometry.boundingBox = null; bend.geometry.boundingSphere = null;
   }
+  if (time !== undefined && Number.isFinite(time)) applyLife(parts as unknown as Parameters<typeof applyLife>[0], { time, phase: data?.phase ?? 0, pose, speaking: speaking === true, gaze: data?.gaze ?? 0, ...(blink === undefined ? {} : { blink }), ...(amount === undefined ? {} : { amount }) });
   return avatar;
 }
 
@@ -1554,17 +1483,17 @@ export function buildAvatar(kit: Kit, look?: unknown, options: AvatarOptions = {
     const proportions = avatarProportions(drawn.look.appearance);
     group.scale.set(proportions.height * proportions.width, proportions.height, proportions.height * proportions.depth);
     if (rest.pose === 'sit') group.position.y += (rest.seat ?? 0.6) * (rest.scale ?? 1) * (1 - proportions.height);
-    const built = batch.build(sceneMaterials(kit));
+    const built = batch.build(figureMaterials(kit));
     built.meshes.forEach((mesh) => { meshes.push(mesh); group.add(mesh); });
     registry.add(dispose);
-    group.userData = { look: drawn.look, top: drawn.top * proportions.height, triangles: built.triangles, dispose };
+    group.userData = { look: drawn.look, top: drawn.top * proportions.height, triangles: built.triangles, dispose, phase: figurePhase(hash(rest.seed ?? JSON.stringify(drawn.look))) };
     return group;
   }
   const { scale = 1, pose = 'stand', stride, ...still } = rest;
   const batch = rigBatch(THREE);
   // Every joint is drawn neutral and posed by its transforms.
   const drawn = drawAvatar(batch, look, { ...still, appearanceFit: false, pose: pose === 'sit' ? 'stand' : pose, stride });
-  const materials = sceneMaterials(kit);
+  const materials = figureMaterials(kit);
   const holder = (name: string, parent: THREE.Object3D, pivot: { x: number; y: number; z: number }, origin: { x: number; y: number; z: number }) => {
     const node = new THREE.Group();
     node.name = name; node.rotation.order = 'YXZ';
@@ -1601,10 +1530,17 @@ export function buildAvatar(kit: Kit, look?: unknown, options: AvatarOptions = {
     }
     for (const mesh of upperMeshes) { mesh.frustumCulled = false; meshes.push(mesh); parts[name].add(mesh); }
   }
+  for (const name of ['lids', 'mouth'] as const) {
+    const source = batch.parts.get(name), pivot = batch.pivots.get(name);
+    if (!source || !pivot) continue;
+    const node = holder(name, parts.head, pivot, zero);
+    node.visible = false; parts[name] = node;
+    fill(node, source, pivot);
+  }
   const proportions = avatarProportions(drawn.look.appearance);
   group.scale.set(scale * proportions.height * proportions.width, scale * proportions.height, scale * proportions.height * proportions.depth);
   registry.add(dispose);
-  group.userData = { look: drawn.look, top: y + 2.95 * scale * proportions.height, triangles: batch.triangles, dispose, parts, bends };
+  group.userData = { look: drawn.look, top: y + 2.95 * scale * proportions.height, triangles: batch.triangles - (batch.parts.get('lids')?.triangles ?? 0) - (batch.parts.get('mouth')?.triangles ?? 0), dispose, parts, bends, phase: figurePhase(hash(still.seed ?? JSON.stringify(drawn.look))) };
   return poseAvatar(group, { pose: pose === 'sit' ? 'stand' : pose, stride });
 }
 
@@ -1646,13 +1582,37 @@ export function buildCrowd(kit: Kit, people: CrowdPerson[] = []): Crowd {
   const { THREE } = kit;
   const batch = createBatch(THREE);
   const tags = drawCrowd(batch, people);
-  const built = batch.build(sceneMaterials(kit));
+  const built = batch.build(figureMaterials(kit));
   const group = new THREE.Group();
   built.meshes.forEach((mesh) => group.add(mesh));
   const registry = kitResources(kit).disposers;
   const dispose = () => { registry.delete(dispose); releaseObjects(built.meshes); group.parent?.remove(group); };
   registry.add(dispose);
   return { group, tags, triangles: built.triangles, dispose };
+}
+
+/**
+ * The same people as buildCrowd, each as a figure of its own (one mesh, one transform): a scene can then breathe, sway and
+ * turn each of them separately, and still draws only one call each. Same look, same level, same tags.
+ * Returns { group, figures, tags, triangles, dispose }; `figures[i]` is `people[i]`.
+ */
+export function buildCrowdFigures(kit: Kit, people: CrowdPerson[] = [], { shadows = true }: { shadows?: boolean } = {}): { group: THREE.Group; figures: AvatarGroup[]; tags: CrowdTag[]; triangles: number; dispose: () => void } {
+  const { THREE } = kit;
+  const group = new THREE.Group(), figures: AvatarGroup[] = [], tags: CrowdTag[] = [];
+  people.forEach((person, index) => {
+    // A regular's green dot is the name tag's (DOM); drawing it in the scene as well would cost every figure a second draw call.
+    const kind = person.kind === 'npc' ? null : person.kind === 'self' ? 'crown' : 'player';
+    const figure = buildAvatar(kit, person.look, {
+      x: person.x || 0, y: person.y || 0, z: person.z || 0, ry: person.ry || 0, pose: person.pose, seat: person.seat, detail: person.detail ?? 'low',
+      seed: person.seed ?? person.id ?? person.name ?? index, marker: person.marker === undefined ? kind : person.marker, ...(person.mood ? { mood: person.mood } : {}),
+    });
+    if (!shadows) figure.traverse((object) => { object.castShadow = false; });
+    figure.userData.phase = figurePhase(hash(person.seed ?? person.id ?? person.name ?? index));
+    group.add(figure); figures.push(figure);
+    tags.push(tagFor(person, index, (person.y || 0) + figure.userData.top));
+  });
+  const dispose = () => { figures.forEach((figure) => figure.userData.dispose()); figures.length = 0; group.parent?.remove(group); };
+  return { group, figures, tags, triangles: figures.reduce((sum, figure) => sum + figure.userData.triangles, 0), dispose };
 }
 
 /** Colours for the original kit-based person(): kept for callers that still use it. */

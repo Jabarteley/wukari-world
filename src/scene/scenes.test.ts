@@ -3,7 +3,7 @@ await preloadCityContent('lagos');
 // Scene modules: every venue kind builds headlessly, stays inside the rendering budget and
 // frees everything it made. Nothing here needs WebGL.
 import test from 'node:test';
-import { SCENE_TRIANGLES, SCENE_DRAW_CALLS, SCENE_LIGHTS, SCENE_MESHES, SCENE_MESHES_WITH_WALLS, SCENE_MESHES_NO_CROWD } from '../budgets.ts';
+import { AVATAR_LOW_TRIANGLES, SCENE_TRIANGLES, SCENE_DRAW_CALLS, SCENE_LIGHTS, SCENE_MESHES, SCENE_MESHES_WITH_WALLS, SCENE_MESHES_NO_CROWD } from '../budgets.ts';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import * as THREE from 'three';
@@ -316,7 +316,7 @@ test('every hairstyle, outfit, fabric and pose builds a distinct low-poly avatar
     const { position, color } = solid.attributes;
     for (let i = 0; i < position!.array.length; i++) sum += position!.array[i]! * (i % 7 + 1) + color!.array[i]! * (i % 5 + 1);
     built.meshes.forEach((mesh) => mesh.geometry.dispose());
-    assert.ok(built.triangles > 150 && built.triangles <= 600, `avatar triangles ${built.triangles} for ${JSON.stringify(look)}`);
+    assert.ok(built.triangles > 150 && built.triangles <= AVATAR_LOW_TRIANGLES.value, `avatar triangles ${built.triangles} for ${JSON.stringify(look)}`);
     return `${built.triangles}:${sum.toFixed(3)}`;
   };
   for (const body of LOOK_OPTIONS.body) {
@@ -356,7 +356,7 @@ test('buildAvatar and buildCrowd return groups, name-tag data and free themselve
     assert.deepEqual(built.tags.map((tag) => [tag.id, tag.text, tag.kind, tag.marker]), [['a', '@Ada', 'player', 'tag'], ['n', 'Mama Nkechi', 'npc', 'dot'], ['person-2', '@Tunde', 'player', 'tag']]);
     assert.deepEqual([built.tags[0]!.position.x, built.tags[0]!.position.z], [1, 1]);
     assert.ok(built.tags[0]!.position.y > 2.5 && built.tags[2]!.position.y < built.tags[0]!.position.y, 'a seated person has a lower tag');
-    assert.ok(built.triangles < 3 * 600);
+    assert.ok(built.triangles < 3 * AVATAR_LOW_TRIANGLES.value);
     assert.deepEqual(buildCrowd(kit, []).tags, []);
     avatar.userData.dispose();
     built.dispose();

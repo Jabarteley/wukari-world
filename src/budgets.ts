@@ -36,17 +36,17 @@ export function describeBudget(budget: Budget): string {
 // ---- Venue and home scenes (src/scene) -------------------------------------------------------------------------------------------
 
 export const SCENE_CROWD_TRIANGLES: Budget = {
-  value: 15000, unit: 'triangles', limit: 'max', status: 'current',
+  value: 48000, unit: 'triangles', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/scenes.test.ts, scenes-rivers/fct/kano.test.ts',
-  why: 'A venue and its full crowd stay cheap enough for a mid-range phone at 60 fps.',
+  why: 'A venue and its full crowd (twelve regulars drawn as the same cartoon figure as the player, about 2,000 triangles each) stay cheap enough for a mid-range phone; draw calls, not triangles, are the limit that bites (SCENE_DRAW_CALLS).',
 }
 export const PLAYER_FIGURE_TRIANGLES: Budget = {
-  value: 2000, unit: 'triangles', limit: 'max', status: 'current',
+  value: 12000, unit: 'triangles', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/scenes.test.ts (inside SCENE_TRIANGLES)',
-  why: "The player's own figure is drawn once at medium detail (up to about 2,700 triangles) on top of the crowd.",
+  why: "The player's own figure is drawn once at medium detail (4,000 to 10,500 triangles, the most with every accessory and a printed gown) on top of the crowd.",
 }
 export const SCENE_TRIANGLES: Budget = {
-  value: 15000 + 2000, unit: 'triangles', limit: 'max', status: 'current',
+  value: 48000 + 12000, unit: 'triangles', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/scenes.test.ts, scenes-rivers/fct/kano.test.ts, parametric-venue.test.ts, src/game/cities/allCities.test.ts',
   why: 'The crowd budget plus the player figure: everything one venue scene draws.',
 }
@@ -56,12 +56,12 @@ export const SCENE_DRAW_CALLS: Budget = {
   why: 'Draw calls, not triangles, are what a phone GPU pays for: a scene is batched into a few meshes plus the crowd and the player.',
 }
 export const SCENE_MESHES: Budget = {
-  value: 15, unit: 'meshes', limit: 'max', status: 'current',
+  value: 32, unit: 'meshes', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/scenes.test.ts',
-  why: 'Static layers (3), sky, crowd (2), the player rig (8 with its crown), the spot ring and two walking marks.',
+  why: 'Static layers (3), sky, the crowd (one mesh per regular, up to 12), the player rig (8 with its crown), the spot ring and two walking marks.',
 }
 export const SCENE_MESHES_WITH_WALLS: Budget = {
-  value: 21, unit: 'meshes', limit: 'max', status: 'current',
+  value: 38, unit: 'meshes', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/scenes.test.ts',
   why: "A room's two walls are parts of their own (3 layers each) so the scene can hide the wall the camera is behind.",
 }
@@ -79,19 +79,19 @@ export const SCENE_LIGHTS: Budget = {
 // ---- Avatar detail levels (src/scene/characters.ts) ------------------------------------------------------------------------------
 
 export const AVATAR_LOW_TRIANGLES: Budget = {
-  value: 600, unit: 'triangles', limit: 'max', status: 'current',
-  enforcedIn: 'src/scene/characters.ts (LOW_BUDGET), src/scene/avatar-preview.test.ts',
-  why: 'Crowds and venue and home scenes draw many figures: low detail holds whatever is worn.',
+  value: 3300, unit: 'triangles', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene/avatar-preview.test.ts',
+  why: 'Crowds draw many figures: the same model as the player with fewer segments, flat features and no printed fabric (1,500 to 3,200 triangles whatever is worn).',
 }
 export const AVATAR_MEDIUM_TRIANGLES_MIN: Budget = {
-  value: 1500, unit: 'triangles', limit: 'min', status: 'current',
+  value: 3000, unit: 'triangles', limit: 'min', status: 'current',
   enforcedIn: 'src/scene/avatar-preview.test.ts',
   why: 'Medium is a light version of the full model, not the low one.',
 }
 export const AVATAR_MEDIUM_TRIANGLES: Budget = {
-  value: 4500, unit: 'triangles', limit: 'max', status: 'current',
+  value: 11000, unit: 'triangles', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/avatar-preview.test.ts',
-  why: "Medium is the player's own figure in a scene: a couple of thousand triangles.",
+  why: "Medium is the player's own figure in a scene: smooth outlines, printed fabric and a face with eyelids and a mouth, a few thousand triangles.",
 }
 export const AVATAR_HIGH_TRIANGLES_MIN: Budget = {
   value: 10000, unit: 'triangles', limit: 'min', status: 'current',

@@ -67,6 +67,7 @@ export function lookAvatar(figure: { userData?: unknown } | null | undefined, ya
   const head = yawable(parts?.head), torso = yawable(parts?.torso);
   if (!head || !torso) return false;
   head.rotation.y = clampTo(yaw * 0.65, 0.95);
+  (figure!.userData as { gaze?: number }).gaze = yaw;
   torso.rotation.y = clampTo(yaw * 0.35, 0.5);
   return true;
 }

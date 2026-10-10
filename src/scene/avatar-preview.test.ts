@@ -228,8 +228,8 @@ test('three detail levels: the crowd budget holds at low, medium is a light vers
       range[detail] = [Math.min(range[detail][0], n), Math.max(range[detail][1], n)];
     }
   }
-  assert.ok(range.low[1] <= AVATAR_LOW_TRIANGLES.value, `low detail: at most 600 triangles whatever is worn (${range.low})`);
-  assert.ok(range.medium[0] >= AVATAR_MEDIUM_TRIANGLES_MIN.value && range.medium[1] <= AVATAR_MEDIUM_TRIANGLES.value, `medium detail: a couple of thousand triangles (${range.medium})`);
+  assert.ok(range.low[1] <= AVATAR_LOW_TRIANGLES.value, `low detail (the crowd): within the budget whatever is worn (${range.low})`);
+  assert.ok(range.medium[0] >= AVATAR_MEDIUM_TRIANGLES_MIN.value && range.medium[1] <= AVATAR_MEDIUM_TRIANGLES.value, `medium detail (the player in a scene): a few thousand triangles (${range.medium})`);
   assert.ok(range.high[0] >= AVATAR_HIGH_TRIANGLES_MIN.value && range.high[1] <= AVATAR_HIGH_TRIANGLES.value, `high detail: a full model (${range.high})`);
   assert.equal(normalizeLook({ skin: 'skin-6' }, 'a').skin, '#5e3620', 'the game’s own skin ids keep their tone in a scene');
   assert.equal(normalizeLook({ skin: 'skin-1' }, 'b').skin, '#e0ac7e');
@@ -308,7 +308,8 @@ test('a rigged avatar is the same figure in movable parts, posed by transforms a
       const look = { body: 'woman', hair: 'braids', outfit: 'jersey', fabric: 'plain', accessories: ['cap', 'watch'] };
       const whole = buildAvatar(kit, look, { detail, seed: 'x' }), rig = buildAvatar(kit, look, { detail, seed: 'x', rig: true, x: 2, z: 1, ry: 0 });
       const { parts } = rig.userData;
-      assert.deepEqual(Object.keys(parts).sort(), ['body', ...PARTS].sort());
+      // Medium and high also carry the two face parts that move on their own: the eyelids (blink) and the open mouth (speech).
+      assert.deepEqual(Object.keys(parts).sort(), ['body', ...PARTS, ...(detail === 'low' ? [] : ['lids', 'mouth'])].sort());
       for (const name of PARTS) assert.ok(parts[name].isGroup && parts[name].children.some((child) => (child as THREE.Mesh).isMesh), `${detail}: ${name} has geometry`);
       assert.equal(rig.userData.triangles, whole.userData.triangles, 'the same model');
       assert.equal(rig.userData.top - 0, whole.userData.top, 'the name tag sits at the same height');
@@ -340,7 +341,7 @@ test('the preview and the panels that use it hold no interval timers or free-run
   const read = async (path: string) => (await readFile(new URL(path, import.meta.url), 'utf8')).replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '');
   const preview = await read('./avatar-preview.ts');
   assert.doesNotMatch(preview, new RegExp([['request', 'Animation', 'Frame'], ['set', 'Animation', 'Loop'], ['set', 'Interval']].map((parts) => parts.join('')).join('|')));
-  assert.equal(preview.match(new RegExp(['set', 'Timeout'].join(''), 'g'))!.length, 1, 'the only timer is the one-shot step of the bounded animator');
+  assert.equal(preview.match(new RegExp(['set', 'Timeout'].join(''), 'g'))!.length, 2, 'two one-shot timers: the step of the bounded animator and the wait before the next idle beat (a blink and a breath, bounded the same way)');
   for (const file of ['start/lookPreview.ts', 'start/LookStage.vue', 'start/OnboardingApp.vue', 'sim/ProfileTab.vue', 'life/BoutiqueApp.vue']) {
     const code = (await read(`../app/features/${file}`)).replace(/^import type .*$/gm, '');
     assert.doesNotMatch(code, new RegExp(`${['request', 'Animation', 'Frame'].join('')}|${['set', 'Interval'].join('')}|${['set', 'Timeout'].join('')}|from '[^']*three[^']*'|from '[^']*scene/`), `${file} has no loops and no static import of the 3D code`);

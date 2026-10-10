@@ -215,6 +215,8 @@ export interface HostScene {
   readonly homeDoor?: Place & { ry?: number; direction: 'outside' | 'inside' }
   camera?: SceneCamera
   update?(state: LifeState): boolean
+  /** One step of idle life (breathing, sway, blinks) at `time` seconds; `amount` 0 … 1 fades a beat in and out. */
+  life?(time: number, amount?: number): boolean
   background?: Colour
   sky?: readonly [Colour, Colour]
   ground?: Colour
@@ -757,6 +759,12 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     // The skinned body sitting down or getting up (bounded).
     if (standIn?.easing) more = (reduced() ? (standIn.settle(), false) : standIn.step(dt)) || more;
     if (afterPose && !current?.easing && !standIn?.easing) { const next = afterPose; afterPose = null; next(); more = walker.mode === 'path' || Boolean(current?.easing || standIn?.easing) || more; }
+    if (lifeStart) {
+      // An idle beat: the figures breathe, sway and blink for a moment, fading in and out so each ends exactly at rest.
+      const u = (globalThis.performance.now() - lifeStart) / LIFE_MS;
+      if (u >= 1 || reduced()) { current?.life?.(globalThis.performance.now() / 1000, 0); lifeStart = 0; }
+      else { current?.life?.(globalThis.performance.now() / 1000, Math.sin(Math.PI * u)); more = true; }
+    }
     setPivot();
     keepInSight();
     if (reduced()) { orbit.snap(); ghost.now = ghost.goal; }
@@ -816,6 +824,21 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   }
   // Hidden: stop and forget held keys. Visible again: resume a pending route or bounded furniture transition.
   const loop = createMotionLoop(tick, { onHidden: dropInput, onVisible: () => { if (walker.mode === 'path' || current?.easing || standIn?.easing || afterPose) loop.wake(); } });
+  // IDLE LIFE. The loop never idles (see motion-loop.ts), so life comes in beats: every few seconds a figure-and-all pass of about a
+  // second wakes the loop, the figures breathe, sway and blink (current.life), and the loop ends itself again. Never with reduced
+  // motion, never while the page is hidden or the avatar is on the move, and nothing is scheduled where there is no frame callback.
+  const LIFE_MS = 1500;
+  let lifeStart = 0, lifeTimer: ReturnType<typeof setTimeout> | null = null;
+  function scheduleLife() {
+    if (gone || lifeTimer !== null || !loop.available || typeof globalThis.matchMedia !== 'function') return;
+    lifeTimer = setTimeout(() => {
+      lifeTimer = null;
+      if (!gone && !reduced() && !loop.running && globalThis.document?.visibilityState !== 'hidden' && current?.life) { lifeStart = globalThis.performance.now(); loop.wake(); }
+      scheduleLife();
+    }, 2600 + Math.random() * 2600);
+    (lifeTimer as unknown as { unref?: () => void }).unref?.();
+  }
+  scheduleLife();
   /** The camera's goal changed: ease to it in the loop, or — with no loop or reduced motion — draw it at once. */
   function redrawView() {
     if (loop.available && !reduced()) { loop.wake(); return; }
@@ -1546,7 +1569,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     position() { const k = presenceScale(); return { x: Math.round(walker.x * k * 100) / 100, z: Math.round(walker.z * k * 100) / 100, location: currentLocation }; },
     dispose() {
       if (gone) return;
-      gone = true; standInStartup.dispose(); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
+      gone = true; if (lifeTimer !== null) { clearTimeout(lifeTimer); lifeTimer = null; } standInStartup.dispose(); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
       releasePointers();
       for (const [type, listener] of Object.entries(listeners)) canvas.removeEventListener?.(type, listener, { capture: type === 'click' });
       win?.removeEventListener?.('jaw:mode', onMode); win?.removeEventListener?.('jaw:reward', onReward); win?.removeEventListener?.('jaw:cheer', onCheer); win?.removeEventListener?.('jaw:key', onKey); win?.removeEventListener?.('jaw:key-up', onKeyUp); win?.removeEventListener?.('blur', dropInput);

@@ -40,7 +40,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   const walker = createWalker({ speed: WALK_SPEED * 0.72, jogSpeed: JOG_SPEED * 0.72 }), orbit = createOrbit()
   orbit.setBase([8, 10, 13], [0, 1, 0]); orbit.setLimits({ near: 0.45, far: 2.5 })
   let closed = false, busy = false, location = 'city-street', initialized = false, centreKey = '', renderCount = 0, travelled = 0, lastSend = 0
-  let player: HostPlayer = {}, avatar = buildAvatar(kit, undefined, { rig: true, scale: 0.72 }), playerKey = ''
+  let player: HostPlayer = {}, avatar = buildAvatar(kit, undefined, { rig: true, detail: 'medium', scale: 0.72 }), playerKey = ''
   let standIn: StandIn | null = null, stride = 0
   world.add(avatar)
   let pending: Promise<void> | null = null, entering = false, doorTask: string | null = null
@@ -183,7 +183,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
     ready, update: draw, resize,
     refresh: async () => { const journey = await client.refresh(); useJourney(journey, true) },
     setState(next: HostState | null) { busy = Boolean(next?.activeAction); if (busy) { held.clear(); walker.stop(); doorTask = null; controls?.release() } draw() },
-    setPlayer(next: HostPlayer = {}) { const value = JSON.stringify(next); if (value === playerKey) return false; playerKey = value; player = next; standIn?.attach(null); world.remove(avatar); avatar.userData.dispose(); avatar = buildAvatar(kit, player.look, { rig: true, scale: 0.72, seed: player.seed }); world.add(avatar); standIn?.wear(player.look, player.seed); standIn?.attach({ group: world, avatar, scale: 0.72 }); draw(); return true },
+    setPlayer(next: HostPlayer = {}) { const value = JSON.stringify(next); if (value === playerKey) return false; playerKey = value; player = next; standIn?.attach(null); world.remove(avatar); avatar.userData.dispose(); avatar = buildAvatar(kit, player.look, { rig: true, detail: 'medium', scale: 0.72, seed: player.seed }); world.add(avatar); standIn?.wear(player.look, player.seed); standIn?.attach({ group: world, avatar, scale: 0.72 }); draw(); return true },
     setCrowd(_people: HostPerson[]): boolean { return false },
     setInsets(insets: { top?: number; bottom?: number }): boolean { controls?.place(insets); status.style.bottom = `${(insets.bottom ?? 0) + 12}px`; return true },
     setLocation(id: string) { location = id; if (id !== 'city-street') { walker.stop(); doorTask = null; loop.stop() } return true },

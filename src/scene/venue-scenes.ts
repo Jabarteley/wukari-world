@@ -79,7 +79,10 @@ import type {
   Anchor, Batch, Colour, CrowdPerson, Landmark, SceneOptions, Lighting, RaisedShape, SceneBuilder, SceneCamera, SceneContext, SceneDef, SceneEntrance, SceneEntry,
   SceneLayout, SceneMaterials, ScenePerson, SceneRest, SceneSpot, SceneState, SceneTag, SceneThing, SceneVenue, SceneWalk, PlayerOptions, ThreeModule, TimeOfDay, Vec3, WalkSpot,
 } from './types.ts';
-import { buildAvatar, drawCrowd } from './characters.ts';
+import { buildAvatar, buildCrowdFigures, poseAvatar } from './characters.ts';
+import { applyIdle } from './figure-life.ts';
+import { moodWordOf } from './figure-mood.ts';
+import { renderTier } from './look.ts';
 import { playerOptions, rigOf, lookAvatar } from './avatar-rig.ts';
 import { createWalkGrid, footprintRecorder, turnTowards } from './movement.ts';
 import { FIGURE_GAP, gapFor, tieOf, newGaze, stepGaze, watch, gazing } from './space.ts';
@@ -367,6 +370,8 @@ type LivePerson = CrowdPerson & { x: number; z: number };
 interface View {
   time: TimeOfDay; fixedTime: boolean; spot: string | null; look: unknown; lookKey: string; seed: unknown; name: string;
   pose: string; poseFixed: boolean; crowd: CrowdPerson[];
+  /** The HUD's mood word: the player's face shows it. */
+  mood: string;
   /** The city's conditions at this place now (a power cut, the season): they change how the light looks. */
   weather: LookConditions;
 }
@@ -405,7 +410,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     time: isTime(options.time) ? options.time : 'day',
     fixedTime: isTime(options.time),
     spot: null, look: options.look ?? null, lookKey: JSON.stringify(options.look ?? null), seed: options.seed ?? 'you', name: 'You',
-    pose: 'stand', poseFixed: false, crowd: [], weather: CLEAR_LOOK,
+    pose: 'stand', poseFixed: false, crowd: [], mood: '', weather: CLEAR_LOOK,
   };
   /** The preset in use: the mood's light for this time of day, as the city's conditions leave it. */
   const lit = (): Lighting => adjustLighting(lightingFor(mood, view.time), view.weather);
@@ -416,7 +421,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   let staticTriangles = 0, actorTriangles = 0, crowdTags: SceneTag[] = [], selfTag: SceneTag | null = null, sky: THREE.Mesh | null = null;
   // Other players who report where they stand: one figure each, eased to every new position.
   const peers = new Map<string, Peer>();
-  let peopleList: ScenePerson[] = [], mergedTags: SceneTag[] = [], batchKey: string | null = null, easing = false;
+  let peopleList: ScenePerson[] = [], mergedTags: SceneTag[] = [], batchKey: string | null = null, easing = false, actorFigures: AvatarGroup[] = [];
   const wallParts: Record<'wallBack' | 'wallLeft', THREE.Object3D[]> = { wallBack: [], wallLeft: [] };
   const sceneCamera = def.camera || SCENE_CAMERA;
   // The ground direction from the scene's centre towards its own camera: "in front of" a marker.
@@ -612,7 +617,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     let entry = figures.get(key);
     if (!entry) {
       // The player's own figure is seen close up: the best detail characters.js offers a scene (avatar-rig.js).
-      entry = buildAvatar(kit, view.look, { pose: pose as Pose, seat, seed: view.seed, marker: 'crown', ...playerOptions(pose as Pose) });
+      entry = buildAvatar(kit, view.look, { pose: pose as Pose, seat, seed: view.seed, marker: 'crown', ...(view.mood ? { mood: view.mood } : {}), ...playerOptions(pose as Pose) });
       entry.visible = false;
       avatar.add(entry);
       figures.set(key, entry);
@@ -785,11 +790,11 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     if (key !== batchKey) {
       batchKey = key;
       releaseObjects(actorObjects);
-      const batch = createBatch(THREE);
-      mergedTags = drawCrowd(batch, merged);
-      const built = batch.build(shared.materials);
-      actorTriangles = built.triangles;
-      for (const mesh of built.meshes) { mesh.name = `actors-${mesh.name}`; group.add(mesh); actorObjects.push(mesh); }
+      actorFigures.forEach((figure) => figure.userData.dispose());
+      // Everyone the scene places itself is a figure of their own (one mesh, one transform), so each breathes and sways on their own time.
+      const made = buildCrowdFigures(kit, merged, { shadows: renderTier().name !== 'phone' });
+      mergedTags = made.tags; actorTriangles = made.triangles; actorFigures = made.figures;
+      for (const figure of made.figures) { figure.name = 'actor'; group.add(figure); }
     }
     const kept = new Set();
     for (const person of placed) if (person.live) kept.add(syncPeer(person as LivePerson).id);
@@ -831,6 +836,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     renderedContactTop = null;
     for (const peer of [...peers.values()]) dropPeer(peer);
     easing = false; batchKey = null; peopleList = []; mergedTags = [];
+    actorFigures.forEach((figure) => figure.userData.dispose()); actorFigures = [];
     wallParts.wallBack.length = 0; wallParts.wallLeft.length = 0;
     releaseObjects(staticObjects);
     releaseObjects(actorObjects);
@@ -1014,6 +1020,18 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     /** True while another player's figure is on its way to a newly reported position. */
     get easing() { return easing; },
     stepCrowd, settleCrowd,
+    /**
+     * One step of idle life at `time` seconds, `amount` 0 … 1 (a beat fades in and out): the player's figure breathes, sways and blinks,
+     * everyone else breathes and sways on their own phase. Returns false when nobody is there to move.
+     */
+    life(time: number, amount = 1) {
+      if (!live) return false;
+      const figure = shownFigure;
+      if (!driven && figure?.userData.parts) poseAvatar(figure, { pose: 'stand', time, amount });
+      for (const actor of actorFigures) applyIdle(actor, time, amount);
+      for (const peer of peers.values()) if (peer.t >= 1) { applyIdle(peer.stand, time, amount); }
+      return Boolean(figure || actorFigures.length || peers.size);
+    },
     /** The camera is at (x, z): hide whichever wall it has gone behind, with what hangs on it. */
     look(x: number, z: number) {
       const zone = footprints?.walls;
@@ -1054,6 +1072,8 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       if (here && typeof state.spot === 'string' && state.spot !== view.spot) { anchorFor(state.spot); findRaised(); view.spot = state.spot; actors = true; }
       const look = state.onboarding?.look;
       if (look !== undefined) { const lookKey = JSON.stringify(look ?? null); if (lookKey !== view.lookKey) { view.look = look; view.lookKey = lookKey; actors = true; dressed = true; } }
+      const mood = moodWordOf(state);
+      if (mood !== view.mood) { view.mood = mood; actors = true; dressed = true; }
       if (typeof state.name === 'string' && state.name && state.name !== view.name) { view.name = state.name; if (selfTag) selfTag = { ...selfTag, name: view.name, text: view.name }; }
       // A running activity uses the spot's own pose (anchor.act); on the way out the avatar is walking.
       if (!view.poseFixed) {

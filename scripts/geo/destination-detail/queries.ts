@@ -10,8 +10,8 @@ export function placesQuery(bbox: string): string {
   return `[out:json][timeout:180][bbox:${bbox}];(\n${[...broad, ...narrow].map((filter) => `nwr${filter};`).join('\n')}\n);out center tags;`;
 }
 
-/** The land-use areas whose centres mark the built-up extent. */
-export const landuseQuery = (bbox: string): string => `[out:json][timeout:120][bbox:${bbox}];(way["landuse"~"^(residential|commercial|industrial|retail|institutional|education|military|cemetery|religious)$"];relation["landuse"~"^(residential|commercial|industrial|retail)$"];);out center;`;
+/** The land-use areas themselves (outlines, not centres): the built-up extent is traced from their shapes. Ways and the larger relations; `qt` keeps the answer small. */
+export const landuseQuery = (bbox: string): string => `[out:json][timeout:240][bbox:${bbox}];(way["landuse"~"^(residential|commercial|industrial|retail|institutional|education|military|cemetery|religious)$"];relation["landuse"~"^(residential|commercial|industrial|retail)$"];);out geom qt;`;
 
 /** Motorway, trunk and primary roads of the box, plus named secondary roads in the core. */
 export const roadsQuery = (bbox: string, core: string): string => `[out:json][timeout:120];way["highway"~"^(motorway|trunk|primary)$"](${bbox});out geom tags;way["highway"="secondary"]["name"](${core});out geom tags;`;

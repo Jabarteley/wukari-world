@@ -17,8 +17,8 @@ import { writeFileSync } from 'node:fs';
 import { ask } from './destination-detail/overpass.ts';
 import type { Element } from './destination-detail/overpass.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { areaRings, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
-import type { P } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, areaRings, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import type { Box, P } from './destination-detail/geometry-tools.ts';
 
 const id = process.argv[2];
 if (!id) throw new Error('Usage: build-destination-detail.ts <city id>');
@@ -38,6 +38,9 @@ const centreOf = (element: Element): P => {
 const EDGE = 0.008;
 /** Water is kept this far (degrees) beyond the play box, so a river or the sea runs on to the edge of the ground that is drawn (the ground reaches one and a half times the city's width, at most 60 km: see SURROUND_UNITS in src/map3d/cities/module.ts). */
 const REACH = Math.min(0.55, Math.max(0.3, 1.5 * Math.max(north - south, east - west)));
+// The outline, water and roads are drawn over the play box plus a margin, so the built-up ground ends where it really ends.
+const outlineBox: Box = [south - OUTLINE_MARGIN, west - OUTLINE_MARGIN, north + OUTLINE_MARGIN, east + OUTLINE_MARGIN];
+const outlineBbox = outlineBox.join(',');
 const wide = [south - REACH, west - REACH, north + REACH, east + REACH] as const;
 
 // ---- places -----------------------------------------------------------------------------------------------------------------------
@@ -105,7 +108,7 @@ const isShore = (element: Element): boolean => Boolean(element.geometry) && elem
 const coast = waterAnswer.elements.filter(isShore).map((element) => element.geometry!.map((g): P => [g.lon, g.lat]));
 const landPoints = [...places.map((place): P => [place.lon, place.lat]), ...labelled.map((label) => label.at)];
 const tidyWater = (polygons: P[][][]): P[][][] => polygons.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.waterTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
-const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, config.box, wide, config.sea.bandMetres, config.cell / config.split) : null;
+const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, outlineBox, wide, config.sea.bandMetres, config.cell / config.split) : null;
 const sea = shoreSide ? tidyWater(shoreSide.band) : [];
 // The sea carried far beyond the play box is drawn at a coarser tolerance (about 130 m): nobody reads a shore that far out to the metre, and the file stays small.
 const farSea = shoreSide ? shoreSide.far.map((polygon) => polygon.map((ring) => simplifyRing(ring, Math.max(config.waterTolerance, 0.0012))).filter((ring) => ring.length)).filter((polygon) => polygon.length) : [];
@@ -115,24 +118,25 @@ const inland = waterAnswer.elements.filter((element) => !isShore(element) && (el
 // A pond or a pool under minWaterKm2 is left out: at the scale of a city it reads as a black pit on the ground.
 const km2 = (polygon: P[][]): number => { const lat = polygon[0]![0]![1]; return ringArea(polygon[0]!) * 111.32 * Math.cos(lat * Math.PI / 180) * 110.57; };
 const big = (polygons: P[][][]): P[][][] => polygons.filter((polygon) => km2(polygon) >= (config.minWaterKm2 ?? 0.4));
-const wet = [...sea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), config.box, config.waterTolerance)))];
-const water = wet;
+const wet = [...sea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), outlineBox, config.waterTolerance)))];
 const reachWater = [...farSea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, config.waterTolerance)))];
-console.log(`water ${water.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
+console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
 
-const landuse = await ask(id, 'landuse', config.landuse(bbox));
-const usePoints = landuse.elements.map((element): P => centreOf(element));
-const anchors = [...places.map((place): P => [place.lon, place.lat]), ...labelled.map((label) => label.at)];
-const traced = builtUp(usePoints, anchors, wet, config.box, { cell: config.cell, split: config.split, grow: config.grow, minHole: config.minHole, shore: config.shore });
+const landuse = await ask(id, 'landuse', config.landuse(outlineBbox));
+const useRings = landuse.elements.flatMap((element) => areaRings(element).outer);
+const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 }))];
+const traced = builtUp(useRings, anchors, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore });
 const tidy = (polygons: P[][][]): P[][][] => polygons.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.outlineTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
 const land = tidy(traced.land), play = tidy(traced.play);
+// The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
+const water = traced.water.map((polygon) => polygon.map((ring) => simplifyRing(ring, config.waterTolerance)).filter((ring) => ring.length)).filter((polygon) => polygon.length);
 if (!land.length) throw new Error('The land-use answer left no built-up area in the box');
 const lonLat = (polygons: P[][][]): string => JSON.stringify(polygons.map((polygon) => polygon.map(roundRing)));
 
 writeFileSync(out('geometry.ts'), `/**
- * The play-area outline of ${config.name}: ${config.boundaryNote}. Land-use points: ${usePoints.length}, traced on a ${config.cell} degree grid
- * grown by ${config.grow} cells and kept round every place of the game, then cut to a ${config.cell / config.split} degree grid with the water taken out of the land
- * (the play area keeps it), and simplified (Douglas-Peucker, ${config.outlineTolerance} degrees). A sketch at the grid's size, not a surveyed edge. © OpenStreetMap contributors, ODbL 1.0. Generated by scripts/geo/build-destination-detail.ts
+ * The play-area outline of ${config.name}: ${config.boundaryNote}. Land-use areas: ${useRings.length}, filled on a ${config.cell / config.split} degree grid
+ * with a disc round every place of the game and every labelled neighbourhood, closed by ${config.closeMetres ?? 600} m and smoothed, the water taken out of the land
+ * (the play area keeps it), over the play box plus ${OUTLINE_MARGIN} degrees, and simplified (Douglas-Peucker, ${config.outlineTolerance} degrees). A sketch at the grid's size, not a surveyed edge. © OpenStreetMap contributors, ODbL 1.0. Generated by scripts/geo/build-destination-detail.ts
  * from the Overpass interpreter; source sha256 ${landuse.sha256}. Loaded only with this city's map.
  */
 import type { DestinationGeometry } from '../africa/map.ts'
@@ -144,7 +148,7 @@ export const GEOMETRY: DestinationGeometry = {
 }
 `);
 
-const reach = coverage(play, config.box, config.cell / config.split);
+const reach = coverage(play, outlineBox, config.cell / config.split);
 const roadsAnswer = await ask(id, 'roads', config.roads(bbox, `${config.core.join(',')}`));
 const candidates: { row: string; km: number; points: number; major: boolean }[] = [];
 const lengthKm = (line: P[]): number => line.slice(1).reduce((sum, [lon, lat], i) => sum + Math.hypot((lon - line[i]![0]) * 111.32 * Math.cos(lat * Math.PI / 180), (lat - line[i]![1]) * 110.57), 0);

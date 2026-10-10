@@ -164,8 +164,8 @@ export async function createModulePack(module: CityModule, scene: ModuleScene['l
   const characterFabric: PackFabric[] = areas.map(item => ({ box: [item.x - item.r, item.z - item.r, item.x + item.r, item.z + item.r], circle: [item.x, item.z, item.r], style: item.tone === 'old' ? 'dense' : 'villas', keep: item.tone === 'old' ? 0.25 : 0.05, ...(item.tone === 'old' ? { roofs: RUST } : {}) }))
   // Ground name plates for the landmarks that are not venues: none that would lie across another plate or over a venue.
   const plateRoom = (name: string, size: number) => name.length * size * 0.9
-  // A name plate is as wide as the city is: 1.4 map units over a 4 km town, growing to 5 over a metropolis, so it can still be read in the whole view.
-  const plateSize = surround ? Math.min(5, Math.max(1.4, Math.max(fit.maxX - fit.minX, fit.maxZ - fit.minZ) / 70)) : 1.4
+  // A name plate is as wide as the city is: 1.4 map units over a 4 km town, growing to 4.5 over a metropolis, so it can still be read in the whole view.
+  const plateSize = surround ? Math.min(4.5, Math.max(1.4, Math.max(fit.maxX - fit.minX, fit.maxZ - fit.minZ) / 100)) : 1.4
   const plates: PackDistrict[] = []
   for (const item of landmarks.filter(item => item.kind !== 'route-reference' && !content.venues.some(venue => venue.id === item.id))) {
     const [x, z] = toLocal(origin, item.lon, item.lat), plate = { name: item.name, x, z, size: plateSize, water: item.kind === 'water' }

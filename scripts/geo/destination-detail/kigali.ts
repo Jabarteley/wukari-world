@@ -24,7 +24,7 @@ export const CONFIG: DetailConfig = {
   boundaryNote: 'the built-up extent of Kigali, from the mapped land use',
   terrainNote: 'the lakes, reservoirs and river banks mapped as water, and the motorway, trunk and primary roads of the box plus named secondary roads in the core.',
   source: 'OpenStreetMap contributors via the Overpass interpreter',
-  outlineTolerance: 0.0005,
+  outlineTolerance: 0.0003,
   waterTolerance: 0.0003,
   farTolerance: 0.0008,
   coreTolerance: 0.0004,

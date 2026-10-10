@@ -120,90 +120,105 @@ export function polygonsOf(rings: { outer: Ring[]; inner: Ring[] }, box: Box, to
 export const round = (value: number, places = 5): number => Math.round(value * 10 ** places) / 10 ** places;
 export const roundRing = (ring: Ring): Ring => ring.map(([lon, lat]): P => [round(lon), round(lat)]);
 
-/**
- * The built-up extent of an area, traced from a grid, as two sets of polygons: the play area (built-up ground and the water in it)
- * and the land (the same without the water, kept `shore` fine cells back from it so land and water never overlap).
- * A coarse cell is built-up when a land-use point lies in it or within `grow` cells of one that does (and always near an anchor,
- * so a place is never left outside); empty pockets under `minHole` coarse cells are filled. The outline is a sketch at the
- * fine grid's size (`cell / split` degrees), not a surveyed edge. Each polygon is an outer ring followed by its holes.
- */
-export function builtUp(points: readonly P[], anchors: readonly P[], water: readonly Ring[][], box: Box, options: { cell: number; split: number; grow: number; minHole: number; shore: number }): { play: Ring[][]; land: Ring[][] } {
-  const { cell, split, grow, minHole, shore } = options;
-  const cols = Math.ceil((box[3] - box[1]) / cell), rows = Math.ceil((box[2] - box[0]) / cell);
-  const seed = new Uint8Array(cols * rows), coarse = new Uint8Array(cols * rows);
-  const cellOf = ([lon, lat]: P): [number, number] => [Math.floor((lon - box[1]) / cell), Math.floor((lat - box[0]) / cell)];
-  for (const point of points) { const [c, r] = cellOf(point); if (c >= 0 && c < cols && r >= 0 && r < rows) seed[r * cols + c] = 1; }
-  const spread = (c0: number, r0: number, radius: number): void => {
-    for (let r = Math.max(0, r0 - radius); r <= Math.min(rows - 1, r0 + radius); r++)
-      for (let c = Math.max(0, c0 - radius); c <= Math.min(cols - 1, c0 + radius); c++) if ((c - c0) ** 2 + (r - r0) ** 2 <= radius * radius + 1) coarse[r * cols + c] = 1;
-  };
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (seed[r * cols + c]) spread(c, r, grow);
-  for (const anchor of anchors) { const [c, r] = cellOf(anchor); spread(c, r, 2); }
-  const seen = new Uint8Array(cols * rows);
-  for (let start = 0; start < coarse.length; start++) {
-    if (coarse[start] || seen[start]) continue;
-    const region: number[] = [start];
-    seen[start] = 1;
-    let touchesEdge = false;
-    for (let i = 0; i < region.length; i++) {
-      const at = region[i]!, c = at % cols, r = Math.floor(at / cols);
-      if (c === 0 || r === 0 || c === cols - 1 || r === rows - 1) touchesEdge = true;
-      for (const [dc, dr] of [[1, 0], [-1, 0], [0, 1], [0, -1]] as const) {
-        const nc = c + dc, nr = r + dr;
-        if (nc < 0 || nr < 0 || nc >= cols || nr >= rows) continue;
-        const next = nr * cols + nc;
-        if (!coarse[next] && !seen[next]) { seen[next] = 1; region.push(next); }
-      }
-    }
-    if (!touchesEdge && region.length < minHole) for (const at of region) coarse[at] = 1;
-  }
-  // The fine grid: the coarse mask, plus the water, scan-filled row by row (even-odd over every ring of every polygon).
-  const fine = cell / split, fc = cols * split, fr = rows * split;
-  const wet = new Uint8Array(fc * fr);
-  // A fine cell is wet when any part of it is under water: three scan lines per row and the cells the span touches, so that a stream narrower than a cell still lies inside the play area.
-  for (let r = 0; r < fr; r++) for (const part of [0.2, 0.5, 0.8]) {
-    const lat = box[0] + (r + part) * fine;
-    // Each polygon is filled on its own (even-odd over its outer ring and holes) and the polygons are joined, so a river that meets the sea does not cancel it.
-    for (const polygon of water) {
-      const hits: number[] = [];
-      for (const ring of polygon) for (let i = 1; i < ring.length; i++) {
+/** The outline is traced over the play box plus this margin (degrees), so the built-up ground ends where it really ends and not in a straight cut at the box edge. */
+export const OUTLINE_MARGIN = 0.05;
+
+/** Fill closed rings onto a grid (`value` 1 where covered). Every ring is filled on its own, so overlapping areas join instead of cancelling. Three scan lines per row, so a thin stream still lands in a cell. */
+function fillRings(rings: readonly Ring[], cols: number, rows: number, box: Box, cell: number, into: Uint8Array): void {
+  const byRow: number[][] = Array.from({ length: rows }, () => []);
+  rings.forEach((ring, id) => {
+    let lo = Infinity, hi = -Infinity;
+    for (const [, y] of ring) { lo = Math.min(lo, y); hi = Math.max(hi, y); }
+    const r0 = Math.max(0, Math.floor((lo - box[0]) / cell) - 1), r1 = Math.min(rows - 1, Math.ceil((hi - box[0]) / cell) + 1);
+    for (let r = r0; r <= r1; r++) byRow[r]!.push(id);
+  });
+  for (let r = 0; r < rows; r++) for (const part of [0.2, 0.5, 0.8]) {
+    const lat = box[0] + (r + part) * cell;
+    for (const id of byRow[r]!) {
+      const ring = rings[id]!, hits: number[] = [];
+      for (let i = 1; i < ring.length; i++) {
         const [ax, ay] = ring[i - 1]!, [bx, by] = ring[i]!;
         if ((ay > lat) !== (by > lat)) hits.push(ax + ((lat - ay) / (by - ay)) * (bx - ax));
       }
       hits.sort((a, b) => a - b);
       for (let h = 0; h + 1 < hits.length; h += 2) {
-        const from = Math.max(0, Math.floor((hits[h]! - box[1]) / fine)), to = Math.min(fc - 1, Math.floor((hits[h + 1]! - box[1]) / fine));
-        for (let c = from; c <= to; c++) wet[r * fc + c] = 1;
+        const from = Math.max(0, Math.floor((hits[h]! - box[1]) / cell)), to = Math.min(cols - 1, Math.floor((hits[h + 1]! - box[1]) / cell));
+        for (let c = from; c <= to; c++) into[r * cols + c] = 1;
       }
     }
   }
-  // The coarse mask is blurred and read back on the fine grid by bilinear interpolation, then cut at about one half: the outline is a smooth
-  // curve through the coarse cells instead of a staircase of coarse squares.
-  // The outermost ring of coarse cells is left empty and the blur sees nothing beyond the box, so the built-up ground rounds off before the edge of the box instead of ending in a straight cut.
-  const inner = Uint8Array.from(coarse);
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (r === 0 || c === 0 || r === rows - 1 || c === cols - 1) inner[r * cols + c] = 0;
-  const field = blur(inner, cols, rows, 1.1);
-  const smooth = (c: number, r: number): number => {
-    const u = Math.min(cols - 1, Math.max(0, (c + 0.5) / split - 0.5)), v = Math.min(rows - 1, Math.max(0, (r + 0.5) / split - 0.5));
-    const c0 = Math.floor(u), r0 = Math.floor(v), c1 = Math.min(cols - 1, c0 + 1), r1 = Math.min(rows - 1, r0 + 1), fu = u - c0, fv = v - r0;
-    return field[r0 * cols + c0]! * (1 - fu) * (1 - fv) + field[r0 * cols + c1]! * fu * (1 - fv) + field[r1 * cols + c0]! * (1 - fu) * fv + field[r1 * cols + c1]! * fu * fv;
-  };
-  const play = new Uint8Array(fc * fr), land = new Uint8Array(fc * fr);
-  for (let r = 0; r < fr; r++) for (let c = 0; c < fc; c++) {
-    const at = r * fc + c;
-    if (smooth(c, r) >= 0.45 || wet[at]) play[at] = 1;
+}
+
+/** Drop filled regions under `minIsland` cells and fill empty pockets under `minHole` cells that do not reach the edge of the grid. */
+function tidyMask(mask: Uint8Array, cols: number, rows: number, minIsland: number, minHole: number): void {
+  const seen = new Uint8Array(mask.length), queue = new Int32Array(mask.length);
+  for (const value of [1, 0]) {
+    seen.fill(0);
+    for (let start = 0; start < mask.length; start++) {
+      if (seen[start] || mask[start] !== value) continue;
+      let head = 0, tail = 0, edge = false;
+      queue[tail++] = start; seen[start] = 1;
+      while (head < tail) {
+        const at = queue[head++]!, c = at % cols, r = (at - c) / cols;
+        if (c === 0 || r === 0 || c === cols - 1 || r === rows - 1) edge = true;
+        if (c > 0 && !seen[at - 1] && mask[at - 1] === value) { seen[at - 1] = 1; queue[tail++] = at - 1; }
+        if (c < cols - 1 && !seen[at + 1] && mask[at + 1] === value) { seen[at + 1] = 1; queue[tail++] = at + 1; }
+        if (r > 0 && !seen[at - cols] && mask[at - cols] === value) { seen[at - cols] = 1; queue[tail++] = at - cols; }
+        if (r < rows - 1 && !seen[at + cols] && mask[at + cols] === value) { seen[at + cols] = 1; queue[tail++] = at + cols; }
+      }
+      if (value === 1 ? tail < minIsland : !edge && tail < minHole) for (let i = 0; i < tail; i++) mask[queue[i]!] = value === 1 ? 0 : 1;
+    }
   }
+}
+
+/**
+ * The built-up extent of an area as two sets of polygons: the play area (built-up ground and the water in it) and the land (the same without the water).
+ * The built-up ground is the mapped land-use areas themselves (`areas`, closed rings), filled on a grid `cell / split` degrees wide (about 37 m), plus a disc round
+ * every place of the game and round every labelled neighbourhood (a named quarter is built-up ground even where its land use is not mapped). The result is closed by `closeMetres` (small gaps between blocks join) and smoothed by a second blur, so the edge
+ * follows the real edge of the mapped blocks as a smooth curve, and a coast, a lake shore or a river bank is the water polygons' own edge. Regions under `minIslandKm2`
+ * are dropped and pockets under `minHoleKm2` are filled. Each polygon is an outer ring followed by its holes.
+ */
+export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metres: number }[], water: readonly Ring[][], box: Box, options: { cell: number; split: number; closeMetres: number; minIslandKm2: number; minHoleKm2: number; shore: number }): { play: Ring[][]; land: Ring[][]; water: Ring[][] } {
+  const { cell, split, closeMetres, minIslandKm2, minHoleKm2, shore } = options;
+  const fine = cell / split, fc = Math.ceil((box[3] - box[1]) / fine), fr = Math.ceil((box[2] - box[0]) / fine);
+  const metresPerCell = fine * 111_000, cellKm2 = (metresPerCell / 1000) ** 2 * Math.cos(((box[0] + box[2]) / 2) * Math.PI / 180);
+  const mask = new Uint8Array(fc * fr);
+  fillRings(areas, fc, fr, box, fine, mask);
+  for (const { at: [lon, lat], metres } of anchors) {
+    const radius = Math.round(metres / metresPerCell);
+    const c0 = Math.floor((lon - box[1]) / fine), r0 = Math.floor((lat - box[0]) / fine);
+    for (let r = Math.max(0, r0 - radius); r <= Math.min(fr - 1, r0 + radius); r++) for (let c = Math.max(0, c0 - radius); c <= Math.min(fc - 1, c0 + radius); c++) if ((c - c0) ** 2 + (r - r0) ** 2 <= radius * radius) mask[r * fc + c] = 1;
+  }
+  const close = blur(mask, fc, fr, closeMetres / metresPerCell / 1.6);
+  const joined = new Uint8Array(mask.length);
+  for (let i = 0; i < joined.length; i++) joined[i] = close[i]! >= 0.3 ? 1 : 0;
+  const soft = blur(joined, fc, fr, 2.5);
+  for (let i = 0; i < joined.length; i++) joined[i] = soft[i]! >= 0.5 ? 1 : 0;
+  tidyMask(joined, fc, fr, Math.round(minIslandKm2 / cellKm2), Math.round(minHoleKm2 / cellKm2));
+  // The water, filled on the same grid.
+  const wet = new Uint8Array(fc * fr);
+  fillRings(water.flatMap((polygon) => polygon.slice(0, 1)), fc, fr, box, fine, wet);
+  // Inner rings of a water polygon (an island in a river) are land again.
+  const islands = new Uint8Array(fc * fr);
+  fillRings(water.flatMap((polygon) => polygon.slice(1)), fc, fr, box, fine, islands);
+  for (let i = 0; i < wet.length; i++) if (islands[i]) wet[i] = 0;
+  const play = new Uint8Array(fc * fr), land = new Uint8Array(fc * fr);
+  for (let i = 0; i < play.length; i++) if (joined[i] || wet[i]) play[i] = 1;
+  // The declared water is the water one cell in from its raster edge, so that it lies inside the play area whatever each outline's simplification does.
+  const inner = new Uint8Array(fc * fr);
+  const wetAt = (r: number, c: number): boolean => r < 0 || c < 0 || r >= fr || c >= fc || wet[r * fc + c] === 1;
+  for (let r = 0; r < fr; r++) for (let c = 0; c < fc; c++) if (wet[r * fc + c] && wetAt(r - 1, c) && wetAt(r + 1, c) && wetAt(r, c - 1) && wetAt(r, c + 1)) inner[r * fc + c] = 1;
   for (let r = 0; r < fr; r++) for (let c = 0; c < fc; c++) {
     const at = r * fc + c;
-    if (!play[at] || wet[at]) continue;
+    if (!(joined[at] || wet[at]) || inner[at]) continue;
     let near = false;
     for (let dr = -shore; dr <= shore && !near; dr++) for (let dc = -shore; dc <= shore; dc++) {
       const nr = r + dr, nc = c + dc;
-      if (nr >= 0 && nc >= 0 && nr < fr && nc < fc && wet[nr * fc + nc]) { near = true; break; }
+      if (shore > 0 && nr >= 0 && nc >= 0 && nr < fr && nc < fc && wet[nr * fc + nc]) { near = true; break; }
     }
     if (!near) land[at] = 1;
   }
-  return { play: traceCells(play, fc, fr, box, fine), land: traceCells(land, fc, fr, box, fine) };
+  return { play: traceCells(play, fc, fr, box, fine), land: traceCells(land, fc, fr, box, fine), water: traceCells(inner, fc, fr, box, fine) };
 }
 
 /** A mask of 0 and 1 blurred with a Gaussian of the given standard deviation (in cells); beyond the grid counts as empty. */
@@ -334,7 +349,9 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
   const band = new Uint8Array(cols * rows);
   const [c0, r0, c1, r1] = [colOf(box[1]), rowOf(box[0]), colOf(box[3]), rowOf(box[2])];
   for (let r = Math.max(0, r0); r <= Math.min(rows - 1, r1); r++) for (let c = Math.max(0, c0); c <= Math.min(cols - 1, c1); c++) { const at = r * cols + c; if (water[at] && distance[at]! > 0) band[at] = 1; }
-  return { far: traceCells(water, cols, rows, wide, cell), band: traceCells(band, cols, rows, wide, cell) };
+  // The grid's staircase is rounded off by a light blur, so a shore reads as a curve and not as 37 m steps.
+  const rounded = (mask: Uint8Array): Uint8Array => { const soft = blur(mask, cols, rows, 1.6); const out = new Uint8Array(mask.length); for (let i = 0; i < out.length; i++) out[i] = soft[i]! >= 0.5 ? 1 : 0; return out; };
+  return { far: traceCells(rounded(water), cols, rows, wide, cell), band: traceCells(rounded(band), cols, rows, wide, cell) };
 }
 
 /** A lookup of where polygons (each an outer ring and holes, even-odd) cover a box, on a grid `cell` degrees wide: `near(point, margin)` asks whether the point, or any of eight points `margin` degrees round it, is covered. */

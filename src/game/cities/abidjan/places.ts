@@ -253,7 +253,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "cap-nord",
     "name": "Cap Nord",
-    "district": "Abidjan",
+    "district": "Cocody",
     "kind": "mall",
     "category": "fun",
     "icon": "market",

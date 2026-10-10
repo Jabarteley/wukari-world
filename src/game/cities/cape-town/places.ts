@@ -301,7 +301,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "maynardville-open-air-theatre",
     "name": "Maynardville Open-Air Theatre",
-    "district": "Cape Town",
+    "district": "Newlands",
     "kind": "walk",
     "category": "fun",
     "icon": "music",

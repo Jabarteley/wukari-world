@@ -5,6 +5,8 @@
  * across the map. The generators (scripts/geo/build-destination-detail.ts) use this to choose a safe simplification and a test runs it
  * on every generated city.
  */
+import { ShapeUtils, Vector2 } from 'three'
+
 export type Pt = readonly [number, number]
 export type Poly = readonly (readonly Pt[])[]
 
@@ -90,5 +92,29 @@ export function polygonProblem(poly: Poly): string | null {
 /** The first problem among a list of polygons, with its index, or null. */
 export function firstPolygonProblem(polys: readonly Poly[]): string | null {
   for (let i = 0; i < polys.length; i++) { const problem = polygonProblem(polys[i]!); if (problem) return `polygon ${i}: ${problem}` }
+  return null
+}
+
+/**
+ * The renderer cuts a polygon into triangles with three.js's ear clipping, which can go wrong on a long, thin, many-sided shore even when the
+ * polygon is simple (triangles that overlap or reach across land: a stripe of the wrong colour across the map). This cuts the polygon the same
+ * way and compares the triangles' total area with the polygon's: a problem is named when they differ by more than half a percent.
+ */
+export function triangulationProblem(poly: Poly, project: (p: Pt) => Pt = (p) => p): string | null {
+  // `project` maps a point to the map's own units, where the renderer cuts it (the shape of a failure depends on the coordinates).
+  const open = (ring: readonly Pt[]): Vector2[] => ring.slice(0, -1).map((p) => { const [x, y] = project(p); return new Vector2(x, y) })
+  const rings = poly.map(open)
+  const triangles = ShapeUtils.triangulateShape(rings[0]!, rings.slice(1))
+  const all = rings.flat()
+  let sum = 0
+  for (const [a, b, c] of triangles) { const p = all[a!]!, q = all[b!]!, r = all[c!]!; sum += Math.abs((q.x - p.x) * (r.y - p.y) - (q.y - p.y) * (r.x - p.x)) / 2 }
+  const flat = (ring: readonly Pt[]): Pt[] => ring.map(project)
+  const area = Math.abs(signedArea(flat(poly[0]!))) - poly.slice(1).reduce((s, hole) => s + Math.abs(signedArea(flat(hole))), 0)
+  return Math.abs(sum - area) > Math.max(area * 0.005, 1e-12) ? `the triangles cover ${sum} where the polygon is ${area}` : null
+}
+
+/** The first polygon the renderer would not triangulate faithfully, with its index, or null. */
+export function firstTriangulationProblem(polys: readonly Poly[], project?: (p: Pt) => Pt): string | null {
+  for (let i = 0; i < polys.length; i++) { const problem = triangulationProblem(polys[i]!, project); if (problem) return `polygon ${i}: ${problem}` }
   return null
 }

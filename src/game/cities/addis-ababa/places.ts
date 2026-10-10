@@ -63,7 +63,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "slot": "recreation",
     "name": "Sheger Park",
-    "district": "Addis Ababa",
+    "district": "Kolfe Tiwan",
     "kind": "park",
     "category": "fun",
     "icon": "park",

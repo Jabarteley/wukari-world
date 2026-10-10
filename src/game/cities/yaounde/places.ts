@@ -10,7 +10,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "slot": "transit",
     "name": "Yaoundé",
-    "district": "Yaounde",
+    "district": "Ayéné",
     "kind": "hub",
     "category": "civic",
     "icon": "train",
@@ -50,7 +50,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "slot": "clinic",
     "name": "Central Hospital of Yaoundé",
-    "district": "Yaounde",
+    "district": "NKolmbong Bethanie",
     "kind": "hospital",
     "category": "care",
     "icon": "health",
@@ -63,7 +63,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "slot": "recreation",
     "name": "Parcours Vita",
-    "district": "Yaounde",
+    "district": "Zone M",
     "kind": "park",
     "category": "fun",
     "icon": "park",
@@ -103,7 +103,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "slot": "polling",
     "name": "Esplanade de l'Hôtel de Ville",
-    "district": "Yaounde",
+    "district": "EBOGO CITY",
     "kind": "polling",
     "category": "civic",
     "icon": "poll",
@@ -144,7 +144,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "stade-ahmadou-ahidjo",
     "name": "Stade Ahmadou Ahidjo",
-    "district": "Yaounde",
+    "district": "NKolmbong Bethanie",
     "kind": "viewing",
     "category": "fun",
     "icon": "ball",
@@ -186,7 +186,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "playce-yaounde",
     "name": "PlaYce Yaoundé",
-    "district": "Yaounde",
+    "district": "Zone M",
     "kind": "mall",
     "category": "fun",
     "icon": "market",
@@ -214,7 +214,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "grande-mosquee-d-odza",
     "name": "Grande Mosquée d'Odza",
-    "district": "Yaounde",
+    "district": "Carrefour Nsam",
     "kind": "worship",
     "category": "fun",
     "icon": "worship",
@@ -227,7 +227,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "rocher",
     "name": "Rocher",
-    "district": "Yaounde",
+    "district": "Zone M",
     "kind": "hilltop",
     "category": "fun",
     "icon": "view",
@@ -292,7 +292,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "marche-de-nkol-eton",
     "name": "Marché de Nkol Eton",
-    "district": "Yaounde",
+    "district": "Zone M",
     "kind": "mall",
     "category": "fun",
     "icon": "market",

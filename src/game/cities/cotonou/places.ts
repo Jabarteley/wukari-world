@@ -200,7 +200,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "universite-des-sciences-et-technologies",
     "name": "Université des Sciences et Technologies du Bénin",
-    "district": "Cotonou",
+    "district": "Dantokpa",
     "kind": "quad",
     "category": "fun",
     "icon": "school",

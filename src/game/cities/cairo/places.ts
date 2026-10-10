@@ -149,7 +149,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "cairo-stadium",
     "name": "Cairo International Stadium",
-    "district": "Cairo",
+    "district": "Nasr City",
     "kind": "viewing",
     "category": "fun",
     "icon": "ball",
@@ -218,7 +218,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "al-azhar-university",
     "name": "Al-Azhar University",
-    "district": "Cairo",
+    "district": "Nasr City",
     "kind": "quad",
     "category": "fun",
     "icon": "school",
@@ -341,7 +341,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "key": "wissa-wassef-art-centre",
     "name": "Wissa Wassef Art Center",
-    "district": "Cairo",
+    "district": "Nazlet al Batran",
     "kind": "walk",
     "category": "fun",
     "icon": "museum",

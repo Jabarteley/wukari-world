@@ -1,6 +1,7 @@
 /** Small, dependency-free polygon and line tools for the destination-detail builders (WGS84 degrees, longitude first). */
 import type { Element } from './overpass.ts';
-import { polygonProblem } from '../../../src/game/cities/africa/polygonCheck.ts';
+import type { Pt } from '../../../src/game/cities/africa/polygonCheck.ts';
+import { polygonProblem, triangulationProblem } from '../../../src/game/cities/africa/polygonCheck.ts';
 
 export type P = [number, number];
 export type Ring = P[];
@@ -386,18 +387,18 @@ const tidyRing = (ring: Ring): Ring => { const out: Ring = []; for (const p of r
  * Simplify polygons (outer ring and holes, Douglas-Peucker) and round them to five decimals, keeping only a result the renderer can triangulate:
  * if a tolerance makes a ring cross itself, touch another ring or repeat a vertex, the tolerance is halved (down to none) for that polygon.
  */
-export function safePolygons(polygons: readonly Ring[][], tolerance: number): Ring[][] {
+export function safePolygons(polygons: readonly Ring[][], tolerance: number, project?: (p: Pt) => Pt): Ring[][] {
   const out: Ring[][] = [];
   for (const polygon of polygons) {
     let kept: Ring[] | null = null;
-    for (const tol of [tolerance, tolerance / 2, tolerance / 4, tolerance / 8, 0]) {
+    for (const tol of [tolerance, tolerance / 2, tolerance / 4, tolerance * 2, tolerance * 4, tolerance * 8, tolerance * 16, tolerance / 8, 0]) {
       const rings = polygon.map((ring) => tidyRing(tol > 0 ? simplifyRing(ring, tol) : ring)).filter((ring) => ring.length >= 4);
       if (!rings.length) break;
       const first = rings[0]!;
       const holes = rings.slice(1).filter((hole) => inRing(hole[0]!, first));
       // Outer ring counter-clockwise, holes clockwise.
       const wound = [first, ...holes].map((ring, i) => { const area = ring.slice(1).reduce((sum, [x, y], j) => sum + ring[j]![0] * y - x * ring[j]![1], 0); return (i === 0) === (area > 0) ? ring : [...ring].reverse(); });
-      if (!polygonProblem(wound)) { kept = wound; break; }
+      if (!polygonProblem(wound) && !triangulationProblem(wound, project)) { kept = wound; break; }
     }
     if (kept) out.push(kept);
   }

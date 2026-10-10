@@ -1,0 +1,13 @@
+/* The zoom ladder (src/map3d/zoom-host.ts): the hint chip near a limit, the give at the limit, and the two map boxes during a hand-over. */
+.zl-chip{position:absolute;z-index:6;left:50%;top:calc(var(--m3-top,0px) + 76px);transform:translateX(-50%);max-width:min(86vw,420px);padding:8px 14px 10px;border-radius:999px;background:rgba(24,34,28,.88);color:#fff;font:600 13px/1.3 system-ui,sans-serif;text-align:center;pointer-events:none;box-shadow:0 4px 18px rgba(0,0,0,.25);overflow:hidden}
+.zl-chip[hidden]{display:none}
+.zl-chip .zl-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.18)}
+.zl-chip .zl-bar i{display:block;height:100%;background:#e8a643;transform-origin:left;transform:scaleX(0);transition:transform .12s linear}
+.zl-chip.is-busy .zl-bar i{width:40%;transform:none;animation:zl-busy 1s ease-in-out infinite alternate}
+@keyframes zl-busy{from{margin-left:0}to{margin-left:60%}}
+.zl-lean{transform:scale(var(--zl-lean,1));transition:transform .16s ease-out;will-change:transform}
+/* During a hand-over both boxes are drawn: the one left stays on screen (even though it is hidden for the layout), and only the one entered takes the pointer. */
+.life-scene.zl-fading,.life-scene[hidden].zl-fading{display:block!important}
+.life-scene.zl-leaving{pointer-events:none}
+.life-scene.zl-entering{z-index:2}
+@media (prefers-reduced-motion:reduce){.zl-lean{transition:none}.zl-chip .zl-bar i{transition:none}.zl-chip.is-busy .zl-bar i{animation:none;width:100%}}

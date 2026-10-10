@@ -1,3 +1,5 @@
+import { NO_PORT } from './zoom-ladder.ts';
+import type { LadderPort } from './zoom-ladder.ts';
 import { cityCatalogue, loadCityContent as preloadCityContent, playableCityIds } from '../game/cities/registry.ts';
 await Promise.all(playableCityIds().map(preloadCityContent));
 // The 3D city map: registry, routing, the server-timed trip, the render budget and the battery rule.
@@ -175,12 +177,12 @@ test('the place on the route is a pure function of progress: leave on foot, ride
 /** A hand-made stub standing in for a DOM or WebGL object: the map reads only the members the stub carries. */
 const stub = <T>(value: object): T => value as unknown as T;
 interface FakeContainer { hidden: boolean; appendChild(): void; getBoundingClientRect: () => { width: number; height: number; left: number; top: number } }
-function harness({ reducedMotion = false, home = 'yaba', width = 390, height = 844, travelVehicle = undefined as TravelVehicleBuilder | undefined } = {}) {
+function harness({ reducedMotion = false, home = 'yaba', width = 390, height = 844, travelVehicle = undefined as TravelVehicleBuilder | undefined, ladder = undefined as LadderPort | undefined } = {}) {
   const calls = { render: 0 }, queue: Array<() => void> = [];
   const renderer = { calls, shadowMap: { enabled: false }, toneMapping: 0, toneMappingExposure: 1, outputColorSpace: 0, domElement: {}, info: { render: {} }, setPixelRatio() {}, setSize() {}, setClearColor() {}, dispose() {}, render() { calls.render += 1; } };
   const container: FakeContainer = { hidden: false, appendChild() {}, getBoundingClientRect: () => ({ width, height, left: 0, top: 0 }) };
   const env = { now: 0, hidden: false, due: 0, arrived: 0 };
-  const map = createMap3D(stub<HTMLElement>(container), { pack, renderer: stub<MapRenderer>(renderer), reducedMotion, travelVehicle, raf: (fn) => { queue.push(fn as () => void); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden, onTripDue: () => { env.due += 1; } });
+  const map = createMap3D(stub<HTMLElement>(container), { pack, renderer: stub<MapRenderer>(renderer), reducedMotion, travelVehicle, ...(ladder ? { ladder } : {}), raf: (fn) => { queue.push(fn as () => void); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden, onTripDue: () => { env.due += 1; } });
   /** Run every frame that has been asked for, `step` ms apart, up to `limit` frames. Returns how many ran. */
   const pump = (limit = 1000, step = 16) => { let ran = 0; while (queue.length && ran < limit) { env.now += step; queue.shift()!(); ran += 1; } return ran; };
   const state = (more: Record<string, unknown> = {}) => ({ location: 'home', t: NOON, activeAction: null, travel: { home }, ...more });
@@ -564,11 +566,12 @@ test('Three.js and the map stay out of the entry chunk, and only the 3D map may 
   assert.match(loaders, /import\('\.\.\/\.\.\/map3d\/index\.ts'\)/);
   assert.match(await readFile('src/app/scene/ScenePane.vue', 'utf8'), /import\('\.\.\/\.\.\/map3d\/index\.ts'\)/, 'the map code is fetched ahead once the scene is up');
   for (const file of ['src/app/features/travel/MapApp.vue', 'src/app/features/travel/RideApp.vue', 'src/app/features/travel/travelModel.ts']) assert.doesNotMatch(await readFile(file, 'utf8'), /^import[^;]*(map3d|'three')/m, `${file} is in the first download and must not pull the map in`);
-  // The loop lives in one place — the host — where it is tied to motion. Everything else under src/map3d draws when asked.
+  // The frame loop lives in one place — the host — where it is tied to motion. Everything else under src/map3d draws when asked.
   for (const name of (await readdir('src/map3d')).filter((item) => item.endsWith('.ts') && !item.endsWith('.test.ts'))) {
     const code = (await readFile(`src/map3d/${name}`, 'utf8')).replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '');
     assert.doesNotMatch(code, /setInterval|setAnimationLoop/, name);
-    if (name !== 'map3d.ts') assert.doesNotMatch(code, /requestAnimationFrame/, name);
+    // The one other loop is the zoom host's cross-fade between two maps: it runs only while a hand-over does (under half a second) and ends itself.
+    if (name !== 'map3d.ts' && name !== 'zoom-host.ts') assert.doesNotMatch(code, /requestAnimationFrame/, name);
   }
   assert.doesNotMatch((await readFile('src/map3d/map3d.ts', 'utf8')), /shadowMap\.enabled = true/, 'no real-time shadow maps');
 });
@@ -648,4 +651,18 @@ test('level of detail: the fabric is drawn near and left out when the whole stat
   assert.equal(plateFit('Ikorodu', 20, 3000).show, false, 'a polygon too small to hold its name keeps it hidden');
   assert.ok(plateFit('Ikorodu', 400, 3000).scale > 1.5 && plateFit('Ikorodu', 4000, 3000).scale <= 2.5, 'a large one is named large, to a limit');
   h.map.destroy();
+});
+
+test('zoom ladder: coming in from the atlas starts at the wide end of the city map and reads its bands for the screen reader', () => {
+  const said: string[] = [];
+  const h = harness({ ladder: { ...NO_PORT, level: (words) => said.push(words) } });
+  h.map.setState(h.state()); h.map.resize(); h.pump();
+  const rig = h.map.rig, far = rig.maxDistance;
+  h.map.enter('in', 0);
+  const start = rig.view.distance;
+  assert.ok(start > rig.core().distance && start < far, 'inside the range, not at an end, so the pinch carries on and the next step is not tripped at once');
+  // Closer: the district, then the neighbourhood; each said once.
+  rig.jump({ distance: 150 }); h.map.resize(); h.pump();
+  rig.jump({ distance: 40 }); h.map.resize(); h.pump();
+  assert.ok(said.length <= 2 && said.every((words) => words.startsWith('Now showing')), `bands said: ${said.join(' | ')}`);
 });

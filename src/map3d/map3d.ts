@@ -66,6 +66,8 @@ import { estateLayout, plotAt } from './estates.ts';
 import { lgaAt } from './lga.ts';
 import { tripOf, createTripClock, tripPose } from './trip.ts';
 import { PLINTH as PLINTH_UNIT } from './landmarks.ts';
+import { NO_PORT, cityBand, entryDistance } from './zoom-ladder.ts';
+import type { CityBand, Edge, LadderPort } from './zoom-ladder.ts';
 import { avatarBox, extentWord, labelShift, nearPoints, plateFit, plateWidth, spanOf, WHOLE_FROM } from './labels.ts';
 import { iconFor } from '../ui/icon-map.ts';
 import { NAMED_FROM, densityFor, shorten, venueNamesAt } from './geo/density.ts'
@@ -123,6 +125,8 @@ export interface Map3DOptions {
   onSelectHouse?: (house: HouseCard) => void
   /** A pin of other players was tapped: the friends it stands for, and the venue it stands at (null on the road). */
   onSelectPeople?: (ids: string[], venue: string | null) => void
+  /** Where the zoom ladder hears of zoom the camera could not take (see ./zoom-ladder.ts). */
+  ladder?: LadderPort
   renderer?: MapRenderer
   raf?: ((callback: FrameRequestCallback) => number) | undefined
   caf?: ((handle: number) => void) | undefined
@@ -138,7 +142,7 @@ export const detailOf = (event: CustomEvent<unknown>): Record<string, unknown> =
 };
 
 export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, travelVehicle = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {}, onSelectContext = () => {}, onTripDue = () => {}, onContextLost = () => {},
-  world = null, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {},
+  world = null, ladder = NO_PORT, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {},
   renderer: providedRenderer, raf = globalThis.requestAnimationFrame?.bind(globalThis), caf = globalThis.cancelAnimationFrame?.bind(globalThis), now = () => globalThis.performance.now(),
   reducedMotion = Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches), deepLink = null, tabHidden }: Map3DOptions) {
   const content = contentFor(cityId), venueTable = Object.fromEntries(content.venues.map((venue) => [venue.id, venue.definition]));
@@ -250,6 +254,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     // The player's piece grows as the view pulls back, so it can always be found — and a trip always followed.
     actor.setSize(clamp(rig.view.distance / 62, rig.view.distance < 34 ? Math.max(0.12, rig.view.distance / 62) : 1.2, Math.max(4, rig.view.distance / 110)));
     city.setDetail(rig.view.distance, wholeFrom * 1.35);
+    readBand();
     if (route && routeStep() !== routeWidth) drawRoute();
     syncWorld();
     renderer.render(scene, camera);
@@ -757,7 +762,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       // Two fingers: the pinch zooms, the twist turns, and the ground between the fingers stays between them as they travel.
       const [a, b] = [...pointers.values()] as [Pt, Pt], distance = Math.hypot(a.x - b.x, a.y - b.y) || 1, mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
       const before = toNdc(gesture.mid), held = rig.groundAt(before.x, before.y), to = toNdc(mid);
-      rig.zoomAt(gesture.distance / distance);
+      zoomInput(gesture.distance / distance);
       rig.orbit(twist(gesture.a, gesture.b, a, b), 0);
       if (!held || !rig.dragTo(held, to.x, to.y)) rig.panScreen(mid.x - gesture.mid.x, mid.y - gesture.mid.y);
       gesture.distance = distance; gesture.mid = mid; gesture.a = a; gesture.b = b;
@@ -829,11 +834,34 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     updateLabels();
     request();
   }
+  // ---- the zoom ladder: what the camera cannot take of a zoom is told to whoever hands over to the next map ----------------------
+  let band: CityBand | null = null;
+  const BAND_NAMES: Record<CityBand, string> = { city: `${pack.name}`, district: 'the district', neighbourhood: 'the neighbourhood' };
+  /** Which limit the camera is within a tenth of its range of (log scale), or null. */
+  function reach(): Edge | null {
+    const at = Math.log(rig.view.distance / CLOSEST) / Math.log(rig.maxDistance / CLOSEST);
+    return at < 0.1 ? 'in' : at > 0.9 ? 'out' : null;
+  }
+  /** Where the city reads as its districts and then as a neighbourhood: wider than the first it is the city (the whole-state views and the opening view). */
+  const bandCuts = (): number[] => [Math.max(220, wholeFrom * 0.45), 70];
+  /** Zoom the player asked for (wheel, pinch): the camera takes what it can, the rest is pressure against the limit. */
+  function zoomInput(factor: number, n: { x: number; y: number } | null = null) {
+    const edge: Edge = factor < 1 ? 'in' : 'out', wanted = rig.view.distance * factor, took = rig.zoomed(factor).distance;
+    ladder.intent(edge, Math.abs(Math.log(factor)));
+    rig.zoomAt(factor, n?.x ?? null, n?.y ?? null);
+    if (Math.abs(Math.log(wanted / took)) > 1e-6) ladder.refused(edge, Math.abs(Math.log(wanted / took)), n ? [n.x, n.y] : null);
+    else ladder.near(reach());
+  }
+  /** Read the band the camera is in; a change is said politely. */
+  function readBand() {
+    const next = cityBand(rig.view.distance, bandCuts(), band ?? 'city');
+    if (next !== band) { const first = band === null; band = next; if (!first) ladder.level(`Now showing ${BAND_NAMES[next]}`); }
+  }
   function onWheel(event: WheelEvent) {
     event.preventDefault();
     grab();
-    const delta = event.deltaY * (event.deltaMode === 1 ? 32 : event.deltaMode === 2 ? 320 : 1), n = toNdc(local(event));
-    rig.zoomAt(Math.exp(clamp(delta, -240, 240) * (event.ctrlKey ? 0.01 : 0.0016)), n.x, n.y);
+    const delta = event.deltaY * (event.deltaMode === 1 ? 32 : event.deltaMode === 2 ? 320 : 1);
+    zoomInput(Math.exp(clamp(delta, -240, 240) * (event.ctrlKey ? 0.01 : 0.0016)), toNdc(local(event)));
     request();
   }
   function onClick(event: MouseEvent) {
@@ -852,8 +880,13 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   }
   function onControl(name: string | undefined) {
     grab();
-    if (name === 'in') motion({ distance: rig.view.distance * 0.68 }, 0.3);
-    else if (name === 'out') motion({ distance: rig.view.distance / 0.68 }, 0.3);
+    if (name === 'in' || name === 'out') {
+      // At the limit a button is the whole step to the next map; short of it, one step of zoom.
+      const edge: Edge = name, atLimit = reach() === edge && Math.abs(Math.log(rig.zoomed(edge === 'in' ? 0.68 : 1 / 0.68).distance / rig.view.distance)) < 0.02;
+      ladder.intent(edge, 0.4);
+      if (atLimit) { ladder.stepped(edge, null); return; }
+      motion({ distance: rig.view.distance * (edge === 'in' ? 0.68 : 1 / 0.68) }, 0.3);
+    }
     else if (name === 'north') { const rest = rig.rest(); motion({ yaw: rest.yaw, pitch: rest.pitch }, 0.45); }
     else if (name === 'fit') { motion(rig.whole(), 0.6); userMoved = false; openedWhole = true; }
     else if (name === 'me') {
@@ -903,7 +936,14 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     listen(root, 'pointerdown', onPointerDown); listen(root, 'pointermove', onPointerMove); listen(root, 'pointerenter', readBox); listen(root, 'contextmenu', (event) => { event.preventDefault(); });
     listen(globalThis, 'pointerup', onPointerUp); listen(globalThis, 'pointercancel', onPointerUp);
     listen(root, 'wheel', onWheel, { passive: false }); listen(root, 'click', onClick);
-    listen(root, 'dblclick', (event) => { const id = (event.target as HTMLElement).closest?.<HTMLElement>('.m3-label')?.dataset.venue; if (id) focus(id); });
+    listen(root, 'dblclick', (event) => {
+      const id = (event.target as HTMLElement).closest?.<HTMLElement>('.m3-label')?.dataset.venue;
+      if (id) { focus(id); return; }
+      // A double-click on bare ground zooms in one step about that spot (the touch twin is the second tap, see tap()).
+      if ((event.target as HTMLElement).closest?.('[data-m3],[data-neighbour],.m3-lga,.m3-person')) return;
+      const n = toNdc(local(event as MouseEvent)); readBox(); grab(); ladder.intent('in', 0.4);
+      if (reach() === 'in' && Math.abs(Math.log(rig.zoomed(0.5).distance / rig.view.distance)) < 0.02) ladder.stepped('in', [n.x, n.y]); else motion({ ...rig.zoomed(0.5, n.x, n.y) }, 0.3);
+    });
     listen(root, 'contextmenu', (event) => event.preventDefault());
     listen(root, 'pointerleave', () => hover(null));
     listen(doc, 'visibilitychange', onVisibility);
@@ -967,6 +1007,12 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     cameraView(): RigView { return { ...rig.view }; },
     /** Put the camera back where it was (a reload): at once when the map is open, otherwise when it first opens. */
     restoreView(next: RigView) { if (opened) { rig.jump(next); userMoved = true; tripCamera = false; request(); } else pendingView = next; },
+    /** Arrive from the map above or below: at the wide end of the range for a zoom in, so the gesture carries on from there (null for a map that is not up yet). */
+    enter(edge: Edge, carry = 0) {
+      if (!opened) return;
+      const target = rig.whole(), far = rig.maxDistance, distance = edge === 'in' ? entryDistance('in', { near: CLOSEST, far }, carry) : rig.view.distance;
+      userMoved = true; tripCamera = false; rig.jump({ x: target.x, z: target.z, yaw: 0, pitch: target.pitch, distance }); request();
+    },
     /** Back to the opening view: the city core. */
     recentre() { if (opened) { openView(); request(); } },
     /** For tests and screenshots: hold the lighting at 'day' | 'dusk' | 'night' (null follows Lagos time again). */

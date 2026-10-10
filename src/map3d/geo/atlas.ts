@@ -40,9 +40,11 @@ import { cachedCityContent, loadCityContent, loadCityRoutes, loadCityMap, loadSt
  * is a marker moved when the server reports progress.
  */
 import * as THREE from 'three';
-import { allCityLinks } from '../../game/cities/registry.ts';
+import { allCityLinks, cityCatalogue } from '../../game/cities/registry.ts';
 import type { AfricaGroupId, Box4, RegionKind } from '../types.ts';
 import { createRig } from '../camera.ts';
+import { NO_PORT, entryDistance } from '../zoom-ladder.ts';
+import type { Edge, LadderPort } from '../zoom-ladder.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
 import type { RigInsets, RigView } from '../camera.ts';
 import { createTripClock } from '../trip.ts';
@@ -112,6 +114,8 @@ export interface AtlasOptions {
   /** The cash the player has in hand, or null when it is not known: the travel card says what a fare leaves short. */
   wallet?: () => number | null;
   held?: () => string[];
+  /** Where the zoom ladder hears of zoom the camera could not take (see ../zoom-ladder.ts). */
+  ladder?: LadderPort;
   renderer?: AtlasRenderer;
   raf?: (callback: () => void) => number;
   caf?: (handle: number) => void;
@@ -180,6 +184,15 @@ export interface AtlasApi {
   selectCity(cityId: string): boolean;
   select(ref: RegionRef | null, options?: SelectOptions): boolean;
   zoomBy(factor: number): void;
+  /** The city a zoom in at `at` (NDC, or the middle) would reach: where the closest zoom leads. `own` is the player's city (entered); another open city is only looked at. */
+  ladderTarget(at?: readonly [number, number] | null): { id: string; name: string; own: boolean } | null;
+  /** Fly in on the player's own city, then hand over to the city map (`onOpenCity`). */
+  enterCity(cityId: string): void;
+  /** Arrive from the city map of `cityId`: start close over it, as the city map's zoom left off, and carry on out to its level. */
+  arriveFrom(cityId: string, carry?: number): void;
+  /** Fetch the level a city's map hands over to; resolves true when it is here. `loaded` says it is, without waiting. */
+  prepare(cityId: string): Promise<boolean>;
+  loaded(cityId: string): boolean;
   /** The friends to show as badges on the cities (or countries) they are in; null clears them. */
   setFriends(model: FriendsModel | null): void;
   /** Fly to a city and open the list of the friends there. False when no friend is shown there. */
@@ -214,7 +227,7 @@ const naira = (value: unknown): string => `₦${Number(value).toLocaleString('en
 const ICON = (path: string): string => `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 const GLYPH = { globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/>', rail: '<rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 10h12M8 17l-2 4m10-4 2 4M9 14h.1M15 14h.1"/>', bus: '<path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10H5zM5 11h14M8 16v2M16 16v2"/><circle cx="8.5" cy="14" r=".6"/><circle cx="15.5" cy="14" r=".6"/>', plane: '<path d="M21 15.5 13.5 11V5.2a1.5 1.5 0 0 0-3 0V11L3 15.5V17l7.5-2.2V19l-2 1.5V22l3.5-1 3.5 1v-1.5l-2-1.5v-4.2L21 17z"/>' };
 
-export function createAtlas(container: HTMLElement, { onFriend = () => {}, onOpenCity = () => {}, onEnterCity = () => {}, onInspectVenue = () => {}, onTravel = () => {}, credit = () => null, routes = () => null, debt = () => 0, onRepay = () => {}, onHelp = () => {}, wallet = () => null, held = () => [], countryDetail: providedCountryDetail,
+export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend = () => {}, onOpenCity = () => {}, onEnterCity = () => {}, onInspectVenue = () => {}, onTravel = () => {}, credit = () => null, routes = () => null, debt = () => 0, onRepay = () => {}, onHelp = () => {}, wallet = () => null, held = () => [], countryDetail: providedCountryDetail,
   renderer: providedRenderer, raf = globalThis.requestAnimationFrame?.bind(globalThis), caf = globalThis.cancelAnimationFrame?.bind(globalThis), now = () => globalThis.performance.now(),
   reducedMotion = Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches), tabHidden, load = (levelId) => ATLAS_LEVELS.find((level) => level.id === levelId)!.data() }: AtlasOptions = {}): AtlasApi {
   const doc = typeof globalThis.document?.createElement === 'function' ? globalThis.document : null;
@@ -479,6 +492,7 @@ export function createAtlas(container: HTMLElement, { onFriend = () => {}, onOpe
     const next = sheets[wanted] ? wanted : level;
     if (next !== level) {
       level = next; hovered = null; settleFriends();
+      if (opened) ladder.level(`Now showing ${level === WORLD ? 'the world' : ATLAS_LEVELS[level]!.name}`);
       // Arriving inside a country, the country itself is no longer the thing selected: its states are.
       if (selected?.kind === 'country' && selected.id === ATLAS_LEVELS[level]!.country) selected = null;
       drawChrome();
@@ -539,12 +553,32 @@ export function createAtlas(container: HTMLElement, { onFriend = () => {}, onOpe
   }
   /** Zoom by a factor about a point of the screen (NDC), keeping the ground under it where it is. The map is always north-up. */
   function zoomBy(factor: number, nx: number | null = null, ny: number | null = null) {
-    const distance = clamp(rig.view.distance * factor, minDistance(), maxDistance());
+    const wanted = rig.view.distance * factor, distance = clamp(wanted, minDistance(), maxDistance()), edge: Edge = factor < 1 ? 'in' : 'out';
+    ladder.intent(edge, Math.abs(Math.log(factor)));
+    // Zoom the camera cannot take builds up against the limit: enough of it, in one go, hands over to the next map.
+    if (wanted !== distance) ladder.refused(edge, Math.abs(Math.log(wanted / distance)), nx === null ? null : [nx, ny!]);
+    else ladder.near(reach(distance));
     const before = nx === null ? null : rig.groundAt(nx, ny!);
     rig.jump({ distance, pitch: pitchAt(distance, distances(), PITCHES), yaw: 0 });
     const after = before ? rig.groundAt(nx!, ny!) : null;
     if (before && after) rig.pan(before.x - after.x, before.z - after.z);
     moved();
+  }
+  /** Which limit a camera distance is within reach of (a tenth of the range, on the log scale), or null. */
+  function reach(distance: number): Edge | null {
+    if (!fits) return null;
+    const span = Math.log(maxDistance() / minDistance()), at = Math.log(distance / minDistance()) / span;
+    return at < 0.1 ? 'in' : at > 0.9 ? 'out' : null;
+  }
+  /** A button or a key asking for zoom: at the limit it is the whole step. */
+  function zoomStep(edge: Edge, factor: number, at: readonly [number, number] | null = null) {
+    ladder.intent(edge, 0.4);
+    const wanted = rig.view.distance * factor;
+    if (wanted < minDistance() * 0.995 || wanted > maxDistance() * 1.005) {
+      if (reach(rig.view.distance) === edge) { ladder.stepped(edge, at); return; }
+    }
+    fly({ distance: wanted, x: rig.view.x, z: rig.view.z, yaw: rig.view.yaw }, 0.3);
+    ladder.near(reach(clamp(wanted, minDistance(), maxDistance())));
   }
   /** A view that holds a feature, never closer than is useful. */
   function viewOf(feature: Feature) {
@@ -1117,6 +1151,31 @@ export function createAtlas(container: HTMLElement, { onFriend = () => {}, onOpe
     rig.ease({ x, z: -y, distance: minDistance() * 0.8, pitch: 0.95, yaw: 0 }, 0.85);
     entering = done; request();
   }
+  /** The open city nearest a point of the canvas (NDC, or the middle), within a good part of the screen; null where there is none. */
+  function ladderTarget(point: readonly [number, number] | null = null): { id: string; name: string; own: boolean } | null {
+    if (!fits || !size.width) return null;
+    const from = point ? { x: ((point[0] + 1) / 2) * size.width, y: ((1 - point[1]) / 2) * size.height } : { x: size.width / 2, y: size.height / 2 };
+    let best: { id: string; name: string; own: boolean } | null = null, least = Math.min(size.width, size.height) * 0.4;
+    for (const city of cityCatalogue()) {
+      if (!city.open) continue;
+      const where = at(city.lon, city.lat);
+      if (where.behind) continue;
+      const away = Math.hypot(where.x - from.x, where.y - from.y);
+      if (away < least) { least = away; best = { id: city.id, name: city.name, own: city.id === current }; }
+    }
+    return best;
+  }
+  /** Coming from the city map: start close over the city, where its zoom left off, and go on out to the level it belongs to. */
+  function arriveFrom(id: string, carry = 0) {
+    const city = cityEntry(id);
+    if (!city || !fits) return;
+    const index = cityLevel(id), [x, y] = project(city.lon, city.lat);
+    const start = entryDistance('out', { near: minDistance(), far: fits[index]!.distance }, carry);
+    const pitch = pitchAt(start, distances(), PITCHES);
+    rig.hold(); rig.jump({ x, z: -y, distance: start, pitch, yaw: 0 });
+    settleLevel(); request();
+    fly(levelView(index), 0.9);
+  }
   function act() {
     const hit = find(selected), action = hit && infoOf(hit).action;
     if (!action) return;
@@ -1306,7 +1365,7 @@ export function createAtlas(container: HTMLElement, { onFriend = () => {}, onOpe
     else if (lvl) { levelsOpen = false; listOpen = false; drawCrumbs(); drawRail(); goLevel(Number(lvl.dataset.atlasLevel)); if (event.detail === 0) chipNode()?.focus(); }
     else if (city) { levelsOpen = false; enterCity(city.dataset.atlasCity!); }
     else if (pick) { const [kind, id] = pick.dataset.atlasPick!.split(':'); select({ kind: kind as RegionKind, id: id! }, { from: 'list', flyTo: true }); }
-    else if (zoom) { const how = zoom.dataset.atlasZoom; if (how === 'fit') fly(levelView(level)); else fly({ distance: rig.view.distance * (how === 'in' ? 0.6 : 1 / 0.6), x: rig.view.x, z: rig.view.z, yaw: rig.view.yaw }, 0.3); }
+    else if (zoom) { const how = zoom.dataset.atlasZoom; if (how === 'fit') fly(levelView(level)); else zoomStep(how === 'in' ? 'in' : 'out', how === 'in' ? 0.6 : 1 / 0.6); }
     else if (hit('layer')) setTint(!tintOn);
     else if (hit('action')) act();
     else if (hit('close')) select(null);
@@ -1343,7 +1402,7 @@ export function createAtlas(container: HTMLElement, { onFriend = () => {}, onOpe
     const step = rig.view.distance * 0.14, pan = ({ 'move-left': [-step, 0], 'move-right': [step, 0], 'move-up': [0, -step], 'move-down': [0, step] } as Record<string, [number, number] | undefined>)[action!];
     if (pan || action === 'place') { keyboard = true; root?.classList.add('is-keys'); }
     if (pan) fly({ x: rig.view.x + pan[0], z: rig.view.z + pan[1], distance: rig.view.distance, yaw: rig.view.yaw }, 0.18);
-    else if (action === 'zoom-in' || action === 'zoom-out') fly({ x: rig.view.x, z: rig.view.z, distance: rig.view.distance * (action === 'zoom-in' ? 0.7 : 1 / 0.7), yaw: rig.view.yaw }, 0.25);
+    else if (action === 'zoom-in' || action === 'zoom-out') zoomStep(action === 'zoom-in' ? 'in' : 'out', action === 'zoom-in' ? 0.7 : 1 / 0.7);
     else if (action === 'zoom-fit') fly(levelView(level));
     else if (action === 'place') { const [lon, lat] = centre(); select(pickLonLat(lon, lat), { from: 'key' }); }
   }
@@ -1395,6 +1454,9 @@ export function createAtlas(container: HTMLElement, { onFriend = () => {}, onOpe
     warm() { void ensure(WORLD).then(() => ensure(AFRICA)); },
     select: (ref, options) => select(ref, options),
     zoomBy: (factor) => { if (fits) zoomBy(factor); },
+    ladderTarget, enterCity, arriveFrom,
+    prepare: (cityId) => ensure(cityLevel(cityId)).then((sheet) => Boolean(sheet)),
+    loaded: (cityId) => Boolean(sheets[cityLevel(cityId)]),
     /** Where a place is on screen (CSS pixels within the container), for tests and the screenshot harness. */
     screenOf(lon, lat) { const where = at(relLon(lon), lat, 0); return { x: where.x, y: where.y }; },
     pick: (lon, lat) => { const hit = pickLonLat(relLon(lon), lat); return hit ? { kind: hit.kind, id: hit.id, name: hit.feature.name } : null; },

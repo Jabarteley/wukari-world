@@ -21,6 +21,7 @@
 import type { HouseCard } from './map2d.ts';
 import type { MapPeople } from './people.ts';
 import type { MapState } from './map3d.ts';
+import type { Edge, LadderPort } from './zoom-ladder.ts';
 import type { TravelVehicleBuilder } from './actor.ts';
 import type { FetchJson, WorldData } from './world-data.ts';
 import '../city-map.css';
@@ -38,6 +39,8 @@ export interface CityViewOptions {
   onSelectNeighbour?: (neighbour: { id: string | undefined; name: string | undefined }) => void
   onSelectLga?: (lga: string) => void
   onSelectHouse?: (house: HouseCard) => void
+  /** Where the zoom ladder hears of zoom the map could not take (src/map3d/zoom-ladder.ts); handed to whichever map is mounted. */
+  ladder?: LadderPort
   /** A pin of other players was tapped: the friends it stands for, and the venue it stands at (null on the road). */
   onSelectPeople?: (ids: string[], venue: string | null) => void
   fetchJson?: FetchJson | null
@@ -59,6 +62,8 @@ export interface MapImpl {
   restoreView?(next: never): void
   /** Back to the opening view (the city core). */
   recentre?(): void
+  /** Arrive from the map above or below, so that a zoom in carries on from the wide end of this map. */
+  enter?(edge: Edge, carry?: number): void
   worldChanged?(): void
   focusPlot?(plot: { lga: string; estate: number; plot: number } | null | undefined): void
   focusEstate?(lga: string, estate: number): void
@@ -87,6 +92,12 @@ export interface CityView {
   setPlayer(next: unknown): void
   /** The host says whether the city map is the screen in front. Hidden, it draws nothing and soon lets go of the GPU. */
   setShown(next: boolean): void
+  /** A hand-over to another map is done: a map that is out of sight lets go of the GPU in `ms`, sooner than the usual two minutes. */
+  releaseIn(ms: number): void
+  /** Fetch what the map needs, so that coming back to it does not wait (nothing is built). */
+  warm(): void
+  /** Arrive from the map above (a zoom in): see MapImpl.enter. */
+  enter(edge: Edge, carry?: number): void
   resize(): void
   /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
   arrive(done: () => void): void
@@ -104,7 +115,7 @@ export interface CityView {
 const PREFERENCE_KEY = 'joinallworld-map';
 const RELEASE_MS = 120000;
 
-export function createCityView(container: HTMLElement, { cityId: firstCity = 'lagos', onSelectVenue, onSelectGov, onSelectNeighbour, onSelectLga, onSelectHouse, onSelectPeople, fetchJson = null, onTripDue, onNotice = () => {} }: CityViewOptions = {}): CityView {
+export function createCityView(container: HTMLElement, { cityId: firstCity = 'lagos', ladder, onSelectVenue, onSelectGov, onSelectNeighbour, onSelectLga, onSelectHouse, onSelectPeople, fetchJson = null, onTripDue, onNotice = () => {} }: CityViewOptions = {}): CityView {
   let cityId = firstCity, state: MapState | null = null, player: unknown = null, impl: MapImpl | null = null, kind: CityViewKind | null = null, layer = 'city', shown = false, mounting = 0, releaseTimer: ReturnType<typeof setTimeout> | null = null, released = false, brokenGl = false;
   let simple = false;
   try { simple = globalThis.localStorage?.getItem(PREFERENCE_KEY) === '2d' || new URLSearchParams(globalThis.location.search).get('map') === '2d'; } catch { simple = false; }
@@ -162,7 +173,7 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
         const travelVehicle = vehicleBuilder as unknown as TravelVehicleBuilder | null; // trust boundary: the model library is JavaScript
         if (ticket !== mounting) return;
         impl?.destroy(); impl = null;
-        next = createMap3D(container, { pack: pack!, cityId, world, travelVehicle, ...callbacks, onTripDue, deepLink, onContextLost: () => { brokenGl = true; onNotice('The 3D map stopped on this device. Showing the simple map instead.'); void mount(); } });
+        next = createMap3D(container, { pack: pack!, cityId, world, travelVehicle, ...(ladder ? { ladder } : {}), ...callbacks, onTripDue, deepLink, onContextLost: () => { brokenGl = true; onNotice('The 3D map stopped on this device. Showing the simple map instead.'); void mount(); } });
         nextKind = '3d';
       } catch (error) {
         console.error('The 3D map could not start; using the simple map:', error);
@@ -174,7 +185,7 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
       // has no pack at all (a legacy preview) falls back to the old hand-drawn schematic, which a pack never reaches.
       const pack = hasCityPack(cityId) ? await loadCityPack(cityId).catch(() => null) : null;
       if (ticket !== mounting) return;
-      if (pack) { impl?.destroy(); impl = null; next = createMap2D(container, { pack, cityId, world, ...callbacks, deepLink }); }
+      if (pack) { impl?.destroy(); impl = null; next = createMap2D(container, { pack, cityId, world, ...(ladder ? { ladder } : {}), ...callbacks, deepLink }); }
       else if (hasCityPack(cityId)) {
         impl?.destroy(); impl = null;
         const message = document.createElement('section'); message.className = 'cmap-error';
@@ -233,10 +244,13 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
       if (next === shown) return;
       shown = next;
       clearTimeout(releaseTimer ?? undefined); releaseTimer = null;
-      if (shown) { void world?.loadCity(); if (released) void mount(); else impl?.resize(); }
+      if (shown) { void world?.loadCity(); if (released) view.started = mount(); else impl?.resize(); }
       else { impl?.resize(); releaseTimer = setTimeout(release, RELEASE_MS); }
     },
     resize() { impl?.resize(); },
+    releaseIn(ms) { if (shown || !impl) return; clearTimeout(releaseTimer ?? undefined); releaseTimer = setTimeout(release, ms); },
+    warm() { if (hasCityPack(cityId)) void loadCityPack(cityId).catch(() => null); },
+    enter(edge, carry) { impl?.enter?.(edge, carry); },
     /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
     arrive(done) { if (impl?.arrive && shown) impl.arrive(done); else done(); },
     diagnostics() { return impl?.diagnostics ? impl.diagnostics() : { kind: kind || 'none', renderCount: 0, released, view: impl?.view?.() }; },

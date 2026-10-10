@@ -98,10 +98,28 @@ async function openPhone(): Promise<void> {
   await A.waitFor(`!!document.querySelector('.ph-appbtn')`, 10000, 'the phone home');
 }
 const MESSAGES = '.messages';
+/** Presses a control by its text from the page itself (for a prompt a pointer cannot reach). */
+const jsClick = (wanted: string): Promise<boolean> => A.eval<boolean>(`(() => { const b = [...document.querySelectorAll('button')].find((x) => x.innerText.trim() === ${JSON.stringify(wanted)} && x.getBoundingClientRect().width > 1); if (!b) return false; b.click(); return true; })()`);
+/** Dismisses what a scene may have left on top (the call question, an open sheet). */
+async function clearOverlays(): Promise<void> {
+  await jsClick('Not now'); await sleep(300);
+  for (let i = 0; i < 2 && (await A.eval<boolean>(`!!document.querySelector('dialog[open]')`)); i++) { await A.press('Escape', 'Escape', 27); await sleep(400); }
+}
+/** An app on the phone's home: scrolled to first (the pages glide), then pressed; tried again if the app did not open. */
+async function appBtn(name: string): Promise<void> {
+  for (let i = 0; i < 3; i++) {
+    await A.eval(`[...document.querySelectorAll('.ph-appbtn')].find((e) => e.innerText.toLowerCase().includes(${JSON.stringify(name.toLowerCase())}))?.scrollIntoView({ block: 'center', inline: 'center' })`);
+    await sleep(1100);
+    await A.click('.ph-appbtn', name);
+    await sleep(900);
+    if (await A.eval<boolean>(`!document.querySelector('.ph-appbtn') || (document.querySelector('.ph-appbar')?.children.length ?? 0) > 0`)) return;
+  }
+}
 async function openMessagesApp(): Promise<void> {
   if (await HERE(MESSAGES)) return;
+  await clearOverlays();
   await openPhone();
-  await A.click('.ph-appbtn', 'Messages');
+  await appBtn('Messages');
   await A.waitFor(`!!document.querySelector('.messages')`, 15000, 'Messages');
   await sleep(500);
 }
@@ -187,7 +205,7 @@ try {
   const pickRow = (who: string, button: string): Promise<boolean> => A.eval<boolean>(`(() => { document.querySelectorAll('[data-pick]').forEach((e) => e.removeAttribute('data-pick')); const rows = [...document.querySelectorAll('.social-card, li, .social-row, div')].filter((e) => e.innerText && e.innerText.includes(${JSON.stringify(who)}) && e.querySelector('button') && e.innerText.length < 400); const row = rows.at(-1); const b = row && [...row.querySelectorAll('button')].find((x) => x.innerText.trim() === ${JSON.stringify(button)}); if (!b) return false; b.setAttribute('data-pick', '1'); return true; })()`);
   await scene('06-friend-card', async () => {
     await toGame(); await openPhone();
-    await A.click('.ph-appbtn', 'People');
+    await appBtn('People');
     await A.waitFor(`document.querySelector('.ph-appbar h2')?.innerText === 'People' && !!document.querySelector('.ph-appbody button')`, 10000, 'people');
     await sleep(900);
     await snap('06a-people');
@@ -205,7 +223,7 @@ try {
   await scene('07b-taps-from-home', async () => {
     await toGame();
     await taps('open-chat-from-home-via-people-row', async () => {
-      await A.click('[data-nav="phone"]'); await A.click('.ph-appbtn', 'People'); await A.waitFor(`document.querySelector('.ph-appbar h2')?.innerText === 'People' && !!document.querySelector('.ph-appbody button')`, 10000, 'people'); await sleep(900);
+      await A.click('[data-nav="phone"]'); await appBtn('People'); await A.waitFor(`document.querySelector('.ph-appbar h2')?.innerText === 'People' && !!document.querySelector('.ph-appbody button')`, 10000, 'people'); await sleep(900);
       must(await pickRow('Bola', 'Chat'), 'no Chat on the row'); await A.click('[data-pick]');
       await A.waitFor(`!!document.querySelector('.messages-chat')`, 10000, 'the chat');
     });
@@ -338,7 +356,8 @@ try {
   await scene('21-send-money', async () => {
     await taps('send-money', async () => {
       if (await HERE('[data-chat="attach"]')) await A.click('[data-chat="attach"]'); else await A.click('.messages-kebab');
-      await sleep(400); await A.click('[data-chat="send-money"]'); await sleep(900);
+      await sleep(500); await snap('21a-attach-or-options');
+      await A.click('[data-chat="send-money"]'); await sleep(900);
     });
     await snap('21-send-money');
     await toGame(); await openChatFromList('Bola');
@@ -357,10 +376,10 @@ try {
   await scene('23-call', async () => {
     await taps('start-call', async () => { await A.click('.messages-chat .messages-head button[aria-label*="Call" i], .messages-head [data-call], .messages-head .call-btn, .messages-head button:not(.messages-back):not(.messages-kebab):not(.messages-name)'); await sleep(1500); });
     await snap('23-call');
-    if (await HERE('button', 'Not now')) { await A.click('button', 'Not now'); await sleep(500); }
-    else { await A.press('Escape', 'Escape', 27); await sleep(500); }
+    await clearOverlays();
   });
   await scene('24-report-block', async () => {
+    await clearOverlays();
     if (!(await HERE('.messages-chat'))) await openChatFromList('Bola');
     await A.click('.messages-name'); await sleep(900);
     await snap('24a-profile-from-chat');
@@ -370,6 +389,7 @@ try {
   });
 
   await scene('25-back-behaviour', async () => {
+    await clearOverlays();
     if (!(await HERE('.messages-chat'))) await openChatFromList('Bola');
     await taps('back-to-list', async () => { await A.click('.messages-back'); });
     await sleep(500); await snap('25a-back-to-list');
@@ -386,7 +406,7 @@ try {
     const toast = await A.eval<string>(`[...document.querySelectorAll('.toast')].map((t) => t.innerText).join(' | ')`);
     note(`toast on arrival: ${toast}`);
     // tap the notification if there is one
-    if (await HERE('.toast')) { await A.click('.toast'); await sleep(900); await snap('26a-after-toast-tap'); note(`toast tap went to chat: ${await HERE('.messages-chat')}`); }
+    if (await HERE('.toast')) { await A.click('.toast').catch(() => undefined); await sleep(900); await snap('26a-after-toast-tap'); note(`toast tap went to chat: ${await HERE('.messages-chat')}`); }
   });
 
   await scene('27-keyboard', async () => {
@@ -424,6 +444,7 @@ try {
 
   // picture and voice note
   await scene('30-picture', async () => {
+    await clearOverlays();
     await openChatFromList('Bola');
     const hasButton = await HERE('[aria-label="Send a picture"]');
     note(`picture button visible: ${hasButton}`);
@@ -437,6 +458,7 @@ try {
     if (await HERE('.bubble-pic button, .bubble-pic img, .bubble-pic')) { await A.click('.bubble-pic button, .bubble-pic'); await sleep(800); await snap('30b-lightbox'); await A.press('Escape', 'Escape', 27); await sleep(300); }
   });
   await scene('31-voice', async () => {
+    await clearOverlays();
     if (!(await HERE('.messages-chat'))) await openChatFromList('Bola');
     await scrollThread('bottom'); await sleep(300);
     const idleStart = '.voice-compose button, .composer-send.is-mic';
@@ -466,7 +488,8 @@ try {
     if (await HERE('[data-conv]', 'Hauwa')) { await A.click('[data-conv]', 'Hauwa'); await sleep(700); await snap('33b-blocked-chat'); }
   });
   await scene('34-group', async () => {
-    await A.click('.messages-back').catch(() => undefined); await sleep(400);
+    await clearOverlays();
+    if (await HERE('.messages-chat')) { await A.click('.messages-back'); await sleep(500); }
     await A.click('button', 'New group'); await sleep(600); await snap('34-new-group');
   });
   await scene('35-a11y', async () => {

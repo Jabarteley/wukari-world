@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "dz-starter",
-    "name": "Starter district"
+    "name": "Algiers"
   },
   "timezone": "Africa/Algiers",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://di.univ-blida.dz/jspui/bitstream/123456789/10975/1/M%C3%A9moire%20fin%20d%27%C3%A9tude%202020%20copie%20finale%20%20conversion.pdf"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and national aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=3.045607,36.762011,3.051607,36.768011",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: national aeronautical information sources",
   "bounds": [
-    3.033607,
-    36.682444,
-    3.228944,
-    36.780011
+    2.96,
+    36.64,
+    3.28,
+    36.82
   ],
-  "coverageNote": "Starter visitor area. Real capital and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "Algiers from Bab El Oued and the Casbah to Hussein Dey, Dar El Beida and the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the Mediterranean as a band along the Bay of Algiers, main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Algiers",
+    "unit": "district",
+    "roadHub": "Tafourah - Main post office"
+  }
 } satisfies DestinationFacts

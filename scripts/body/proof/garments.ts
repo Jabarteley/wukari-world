@@ -143,7 +143,8 @@ export async function buildGarment(body: BodyData, spec: GarmentSpec): Promise<{
   const NT = lod ? 24 : 44;
   const torsoSkin = nearestIn(body, TORSO);
   const armSkin = (side: 1 | -1) => nearestIn(body, set(side === 1 ? JOINT.armL : JOINT.armR, side === 1 ? JOINT.foreL : JOINT.foreR, side === 1 ? JOINT.claviL : JOINT.claviR));
-  const yTop = 1.455, yHip = 0.935;
+  // heights from this body's own joints (the shoulder line and the pelvis)
+  const yTop = body.bonePos[JOINT.claviL]!.y + 0.025, yHip = body.bonePos[JOINT.pelvis]!.y + 0.003;
   const hipSegs = section(body, HIPS, yHip);
   const hipCz = ((): number => { let lo = 9, hi = -9; for (const s of hipSegs) for (const z of [s[1], s[3]]) { lo = Math.min(lo, z); hi = Math.max(hi, z); } return (lo + hi) / 2; })();
   const hipR = polar(hipSegs, 0, hipCz, NT);

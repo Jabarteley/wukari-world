@@ -24,10 +24,10 @@ Zoom that a camera cannot take (it stands at its widest or closest view) is not 
 
 - **City map, out:** the atlas fades in, arriving close over the city and going on out to its level (Nigeria, or Africa for a foreign city).
 - **Atlas, in on the player's own city:** the atlas flies in and the city map fades in at its wide end.
-- **Atlas, in on another open city:** its overview card opens. This is a look: the player's city and place never change, and anything that needs the player to be there keeps its own rule and wording.
+- **Atlas, in on another open city** (the one under the pointer, or the nearest open one within a few degrees): the atlas flies over it as close as it goes and its overview card opens. This is a look: the player's city and place never change, and anything that needs the player to be there keeps its own rule and wording.
 - **Ends of the ladder:** a chip says so ("This is the whole world", "This is as close as Lagos gets for now").
 
-`src/map3d/zoom-host.ts` runs the hand-over: it waits for the next map's data (with a loading chip), cross-fades the two map boxes (opacity only; reduced motion gets a short fade and no flight), turns back if the player turns back, and lets the map it left go a few seconds later. Near a limit it fetches the likely next map ahead of need, unless the device is weak or saving data (the same gate as the character body). Each map only reports what zoom it could not take through a small port (`LadderPort`), so neither knows the other exists.
+`src/map3d/zoom-host.ts` runs the hand-over: it waits for the next map's data (with a loading chip), cross-fades the two map boxes (opacity only; reduced motion gets a short fade and no flight), turns back if the player turns back, and lets the map it left go twenty seconds later (a city map that was let go is built again while the player is still zooming towards it, so the hand-over itself does not stall). Near a limit it fetches the likely next map ahead of need, unless the device is weak or saving data (the same gate as the character body). Each map only reports what zoom it could not take through a small port (`LadderPort`), so neither knows the other exists.
 
 ## Rules the code keeps
 

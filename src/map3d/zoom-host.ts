@@ -45,7 +45,7 @@ export interface ZoomHost {
   destroy(): void
 }
 
-const RELEASE_AFTER_MS = 6000;
+const RELEASE_AFTER_MS = 20000;
 const CHIP_MS = 1500, REVERSE_BY = 0.12;
 const RUNG = (id: Rung['id']): Rung => RUNGS.find((rung) => rung.id === id)!;
 
@@ -157,6 +157,15 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     };
     poll();
   }
+  /** Let the map just entered draw a couple of frames before the fade starts, so its first (heaviest) frame is not part of the fade. */
+  function afterFrames(count: number, mine: number, then: () => void): void {
+    const step = (): void => {
+      pollFrame = 0;
+      if (destroyed || mine !== token) return;
+      if (count-- <= 0) then(); else pollFrame = raf(step);
+    };
+    pollFrame = raf(step);
+  }
   /** The next map did not arrive: stay where we were, and say so. */
   function give(): void {
     const was = session; session = null; handoff = createHandoff({ reduced: reduced() });
@@ -191,7 +200,8 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
       flip();
       // The atlas is measured once it is on screen: arrive over the city after that, then fade.
       until(() => !worldBox.hidden && worldBox.getBoundingClientRect().width > 0, () => {
-        world.resize(); world.arriveFrom(id, carry); handoff.arrived(now()); announce(`Zooming out of ${options.cityName()}`); fade();
+        world.resize(); world.arriveFrom(id, carry); announce(`Zooming out of ${options.cityName()}`);
+        afterFrames(2, mine, () => { handoff.arrived(now()); fade(); });
       }, mine);
     };
     if (world.loaded(id)) { go(); return; }
@@ -209,7 +219,7 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     const { world } = options.maps();
     if (!world) return;
     // Looking, not travelling: the overview card of the city, and nothing about the player changes.
-    world.selectCity(id);
+    world.lookAt(id);
     pressure.settled(now());
     show(`${name}: looking from afar. You are still in ${options.cityName()}.`);
     announce(`Showing ${name} from afar. You are still in ${options.cityName()}.`);
@@ -226,7 +236,8 @@ export function createZoomHost(options: ZoomHostOptions): ZoomHost {
     void Promise.resolve(maps.city?.started).then(() => {
       until(() => Boolean(maps.city?.map) && cityBox.getBoundingClientRect().width > 0, () => {
         if (mine !== token || !session) return;
-        hide(); maps.city?.resize(); maps.city?.enter('in', carry); handoff.arrived(now()); fade();
+        maps.city?.resize(); maps.city?.enter('in', carry);
+        afterFrames(2, mine, () => { hide(); handoff.arrived(now()); fade(); });
       }, mine);
     });
     return true;

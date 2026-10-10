@@ -186,6 +186,8 @@ export interface AtlasApi {
   zoomBy(factor: number): void;
   /** The city a zoom in at `at` (NDC, or the middle) would reach: where the closest zoom leads. `own` is the player's city (entered); another open city is only looked at. */
   ladderTarget(at?: readonly [number, number] | null): { id: string; name: string; own: boolean } | null;
+  /** Fly over another city as close as the atlas goes and open its card: a look, never a move. */
+  lookAt(cityId: string): void;
   /** Fly in on the player's own city, then hand over to the city map (`onOpenCity`). */
   enterCity(cityId: string): void;
   /** Arrive from the city map of `cityId`: start close over it, as the city map's zoom left off, and carry on out to its level. */
@@ -436,7 +438,9 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       seen.add(key); roads.push({ colour: INK.road, width: 1.8, points: [spot(...TOWNS[road.towns[i - 1]!]!, y + 0.004), spot(...TOWNS[road.towns[i]!]!, y + 0.004)] });
     }
     const flights = allCityLinks().filter((link) => link.mode === 'air').map((link) => ({ colour: INK.air, width: 1.3, points: pathPoints(linkPath(link, cityEntry), y + 0.01) }));
-    addLayer(ribbonMesh([...rivers, ...roads, ...flights], 1, 3), [NIGERIA], { extrude: true });
+    addLayer(ribbonMesh([...rivers, ...roads], 1, 3), [NIGERIA], { extrude: true });
+    // Every open city is linked to every other by air: drawn at full strength they cover the country, so they sit back (the one chosen is drawn on its own).
+    addLayer(ribbonMesh(flights, 0.3, 3), [NIGERIA], { extrude: true });
     // The open state: a bright outline round its lifted plate.
     const open = topology.features.filter((feature) => statusOf('state', feature.id) === 'open');
     if (open.length) addLayer(ribbonMesh(open.flatMap((feature) => mesh.ringLines(feature, HEIGHT.open + 0.004, INK.glow, 1.8, { holes: false })), 1, 4), [NIGERIA], { extrude: true });
@@ -495,6 +499,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (opened) ladder.level(`Now showing ${level === WORLD ? 'the world' : ATLAS_LEVELS[level]!.name}`);
       // Arriving inside a country, the country itself is no longer the thing selected: its states are.
       if (selected?.kind === 'country' && selected.id === ATLAS_LEVELS[level]!.country) selected = null;
+      // Further out than the cities the card of the player's own state would only cover the map being zoomed.
+      else if (level !== NIGERIA && selected?.kind === 'state') select(null);
       drawChrome();
     }
     showWait();
@@ -1163,7 +1169,26 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       const away = Math.hypot(where.x - from.x, where.y - from.y);
       if (away < least) { least = away; best = { id: city.id, name: city.name, own: city.id === current }; }
     }
+    if (best) return best;
+    // Nothing near the point on the screen: the open city nearest the ground under it, if there is one within a few degrees (a country with one open city has that city).
+    const spot = point ? rig.groundAt(point[0], point[1]) : { x: rig.view.x, z: rig.view.z };
+    if (!spot) return null;
+    const [lon, lat] = unproject(spot.x, -spot.z);
+    let nearest = 6;
+    for (const city of cityCatalogue()) {
+      if (!city.open) continue;
+      const away = Math.hypot(relLon(city.lon) - relLon(lon), city.lat - lat);
+      if (away < nearest) { nearest = away; best = { id: city.id, name: city.name, own: city.id === current }; }
+    }
     return best;
+  }
+  /** Show another city as an overview, from afar: fly over it as close as the atlas goes and open its card. The player does not move. */
+  function lookAt(id: string) {
+    const city = cityEntry(id);
+    if (!city || !fits) return;
+    selectCity(id);
+    const [x, y] = project(city.lon, city.lat);
+    fly({ x, z: -y, distance: minDistance() * 1.3, yaw: 0 }, 0.7);
   }
   /** Coming from the city map: start close over the city, where its zoom left off, and go on out to the level it belongs to. */
   function arriveFrom(id: string, carry = 0) {
@@ -1173,6 +1198,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const start = entryDistance('out', { near: minDistance(), far: fits[index]!.distance }, carry);
     const pitch = pitchAt(start, distances(), PITCHES);
     rig.hold(); rig.jump({ x, z: -y, distance: start, pitch, yaw: 0 });
+    // The card of the player's own state (opened by showing the atlas) would cover the map that is still being zoomed.
+    if (selected?.kind === 'state') select(null);
     settleLevel(); request();
     fly(levelView(index), 0.9);
   }
@@ -1454,7 +1481,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     warm() { void ensure(WORLD).then(() => ensure(AFRICA)); },
     select: (ref, options) => select(ref, options),
     zoomBy: (factor) => { if (fits) zoomBy(factor); },
-    ladderTarget, enterCity, arriveFrom,
+    ladderTarget, lookAt, enterCity, arriveFrom,
     prepare: (cityId) => ensure(cityLevel(cityId)).then((sheet) => Boolean(sheet)),
     loaded: (cityId) => Boolean(sheets[cityLevel(cityId)]),
     /** Where a place is on screen (CSS pixels within the container), for tests and the screenshot harness. */

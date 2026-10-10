@@ -117,7 +117,7 @@ const RELEASE_MS = 120000;
 
 export function createCityView(container: HTMLElement, { cityId: firstCity = 'lagos', ladder, onSelectVenue, onSelectGov, onSelectNeighbour, onSelectLga, onSelectHouse, onSelectPeople, fetchJson = null, onTripDue, onNotice = () => {} }: CityViewOptions = {}): CityView {
   let cityId = firstCity, state: MapState | null = null, player: unknown = null, impl: MapImpl | null = null, kind: CityViewKind | null = null, layer = 'city', shown = false, mounting = 0, releaseTimer: ReturnType<typeof setTimeout> | null = null, released = false, brokenGl = false;
-  let simple = false;
+  let simple = false, remounting = false;
   try { simple = globalThis.localStorage?.getItem(PREFERENCE_KEY) === '2d' || new URLSearchParams(globalThis.location.search).get('map') === '2d'; } catch { simple = false; }
   let deepLink: string | null = null;
   try { deepLink = new URLSearchParams(globalThis.location.search).get('venue'); } catch { deepLink = null; }
@@ -249,7 +249,15 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
     },
     resize() { impl?.resize(); },
     releaseIn(ms) { if (shown || !impl) return; clearTimeout(releaseTimer ?? undefined); releaseTimer = setTimeout(release, ms); },
-    warm() { if (hasCityPack(cityId)) void loadCityPack(cityId).catch(() => null); },
+    warm() {
+      if (!hasCityPack(cityId)) return;
+      void loadCityPack(cityId).catch(() => null);
+      // A map that was let go is built again before the player gets there, while they are still zooming, rather than during the hand-over.
+      if (released && !shown && !impl && !remounting) {
+        remounting = true;
+        view.started = mount().then(() => { remounting = false; if (!shown && impl) { clearTimeout(releaseTimer ?? undefined); releaseTimer = setTimeout(release, RELEASE_MS); } });
+      }
+    },
     enter(edge, carry) { impl?.enter?.(edge, carry); },
     /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
     arrive(done) { if (impl?.arrive && shown) impl.arrive(done); else done(); },

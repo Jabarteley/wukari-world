@@ -10,4 +10,5 @@
 .life-scene.zl-fading,.life-scene[hidden].zl-fading{display:block!important}
 .life-scene.zl-leaving{pointer-events:none}
 .life-scene.zl-entering{z-index:2}
+@media(max-width:720px){.zl-chip{top:124px}}
 @media (prefers-reduced-motion:reduce){.zl-lean{transition:none}.zl-chip .zl-bar i{transition:none}.zl-chip.is-busy .zl-bar i{animation:none;width:100%}}

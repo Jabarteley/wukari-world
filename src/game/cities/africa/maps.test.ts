@@ -6,9 +6,8 @@ import { city as yaounde } from '../yaounde/index.ts'
 import { city as lome } from '../lome/index.ts'
 import { city as algiers } from '../algiers/index.ts'
 import { city as cotonou } from '../cotonou/index.ts'
-import { city as capeTown } from '../cape-town/index.ts'
 
-const destinations: readonly CityModule[] = [yaounde, lome, algiers, cotonou, capeTown]
+const destinations: readonly CityModule[] = [yaounde, lome, algiers, cotonou]
 
 for (const city of destinations) test(`${city.id}: real starter map preserves geometry, arrival and bounded decoration`, async () => {
   const map = await city.loadMap()

@@ -3,6 +3,7 @@
 // "Make this life yours" panel and remembers the sheet the player came from, so that closing or finishing the flow
 // puts them back there with the refused action ready to be tried again.
 import { reactive } from 'vue'
+import { dismissToast, toasts } from '../../state/toasts.ts'
 import type { Shell } from '../../state/shell.ts'
 import type { Sheet } from '../../types/panel.ts'
 
@@ -20,6 +21,8 @@ let cameFrom: Sheet | null = null
 export function startSettling(shell: Pick<Shell, 'sheet' | 'open'>, params?: unknown): void {
   const open = shell.sheet.value
   // Only another sheet is worth coming back to: the settle-in flow itself and an empty screen are not.
+  // The refusals that sent the player here are answered: their toasts (with the button) go.
+  for (const item of [...toasts.value]) if (item.action) dismissToast(item.id)
   cameFrom = open && !(open.kind === 'panel' && open.id === 'onboarding') ? open : null
   shell.open('onboarding', params)
 }

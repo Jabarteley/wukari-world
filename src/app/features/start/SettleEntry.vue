@@ -22,6 +22,8 @@ const shown = computed(() => { const view = game.view.value; return view.connect
 
 <style scoped>
 .settle-entry { position: relative; display: flex; align-items: center; gap: 4px; max-width: 100%; }
+.settle-entry { width: fit-content; }
+.settle-entry .life-job strong { max-width: none; white-space: nowrap; }
 .settle-entry .life-job { border-color: #ecc95b !important; background: #fff8df; }
 .settle-entry-away { flex: none; width: 32px; height: 32px; border: 0; border-radius: 50%; background: #ffffffcc; color: var(--c-ink, #1b1f27); font-size: 18px; line-height: 1; cursor: pointer; }
 .settle-entry-away:focus-visible { outline: 3px solid #1d6b43; outline-offset: 1px; }

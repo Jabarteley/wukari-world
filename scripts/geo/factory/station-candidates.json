@@ -1,0 +1,50 @@
+{
+  "sourceSha256": "d5453f349c4e628ca5109d751c0dd41d7a9b4b2186c039abb013797f0689de66",
+  "geometryArtifactSha256": "ae3f6a9d2b89326a459c3b998b5d3d936af7b1f0640897a490235475d3d7066b",
+  "stations": [
+    {
+      "id": "mcmurdo",
+      "stationRef": "node/515065315",
+      "requiredExcludedStationRefs": [
+        "node/560153667"
+      ]
+    },
+    {
+      "id": "rothera",
+      "stationRef": "way/1479153727",
+      "campusRef": "way/1479153727"
+    },
+    {
+      "id": "south-pole",
+      "stationRef": "node/5314074411"
+    },
+    {
+      "id": "concordia",
+      "stationRef": "node/1772409653"
+    },
+    {
+      "id": "vostok",
+      "stationRef": "node/10697173881"
+    },
+    {
+      "id": "davis",
+      "stationRef": "node/2011467438"
+    },
+    {
+      "id": "casey",
+      "stationRef": "node/2011467437"
+    },
+    {
+      "id": "mawson",
+      "stationRef": "node/2012557487"
+    },
+    {
+      "id": "syowa",
+      "stationRef": "node/529449204"
+    },
+    {
+      "id": "neumayer",
+      "stationRef": "node/846233942"
+    }
+  ]
+}

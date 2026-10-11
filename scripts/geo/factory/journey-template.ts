@@ -14,7 +14,7 @@ test('__CITY__: flight from Lagos, a meal at the real restaurant, saved reload a
   const context = () => ({ cityId: state.estate.city, now, trustedSave: true, seed: '__CITY__-journey' })
   let state = createLife(null, { cityId: 'lagos', now, isNew: true })
   state.onboarding.done = true
-  state.cash = 2_000_000
+  state.cash = 2 * link.fare + 2_000_000
   assert.equal(dispatch(state, { type: 'estate.set-lga', payload: { lga: 'ikeja' } }, context()).ok, true)
   assert.equal(dispatch(state, { type: 'estate.move-in', payload: {} }, context()).ok, true)
   const beforeHome = structuredClone({ lga: state.estate.lga, plot: state.estate.plot, style: state.estate.style, home: state.estate.home, living: state.estate.living })

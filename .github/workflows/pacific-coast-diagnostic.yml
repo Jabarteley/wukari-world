@@ -1,0 +1,88 @@
+name: Pacific coast diagnosis
+
+on:
+  push:
+    branches: ['codex/world-oceania-20261011']
+    paths: ['scripts/geo/factory/coast-diagnostic.mjs', '.github/workflows/pacific-coast-diagnostic.yml']
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: pacific-coast-diagnostic-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      APP_SHA: 81b993bbfb9afe96b5e5d0457ed090dbd7bd9214
+    steps:
+      - name: Set execution directory
+        run: |
+          mkdir -p "$RUNNER_TEMP/city-factory"
+          echo "FACTORY_SANDBOX=$RUNNER_TEMP/city-factory" >> "$GITHUB_ENV"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - id: input
+        name: Validate bounded target table and source pins
+        run: node scripts/geo/factory/cloud-inputs.mjs scripts/geo/factory/oceania-factory-targets.json
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 81b993bbfb9afe96b5e5d0457ed090dbd7bd9214
+          path: baseline
+          persist-credentials: false
+      - name: Verify producers and download unique pinned artifacts
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "${{ steps.input.outputs.app_sha }}" = "$APP_SHA"
+          test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          node scripts/geo/factory/cloud-sources.mjs \
+            --table scripts/geo/factory/oceania-factory-targets.json \
+            --helper scripts/geo/city-generation.mjs \
+            --download-root "$FACTORY_SANDBOX/downloads" \
+            --extract-root "$FACTORY_SANDBOX/extracts" \
+            --boundary-root "$FACTORY_SANDBOX/boundaries" \
+            --outdir "$FACTORY_SANDBOX/provenance" \
+            --sandbox-root "$FACTORY_SANDBOX"
+      - name: Install baseline dependencies
+        run: npm ci --prefix baseline --ignore-scripts --no-audit --no-fund
+      - name: Verify and download generated candidate artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/${{ github.repository }}/actions/runs/38181064945 > "$FACTORY_SANDBOX/factory-producer.json"
+          node --input-type=module -e 'import fs from "node:fs"; import assert from "node:assert/strict"; const r=JSON.parse(fs.readFileSync(process.env.FACTORY_SANDBOX+"/factory-producer.json")); assert.equal(r.head_sha,"c7de1b792f4ca72a9f2583d088bb364cb0033af8"); assert.equal(r.status,"completed"); assert.equal(r.repository.full_name,process.env.GITHUB_REPOSITORY);'
+          gh run download 38181064945 --repo "${{ github.repository }}" --name city-factory-3targets-c7de1b792f4ca72a9f2583d088bb364cb0033af8 --dir "$FACTORY_SANDBOX/candidate"
+      - name: Diagnose coastline regions and exercise funded journeys
+        run: |
+          set -euo pipefail
+          mkdir -p "$FACTORY_SANDBOX/diagnostics"
+          for city in apia suva; do
+            cp "$FACTORY_SANDBOX/candidate/delivery/recipes/$city.ts" "baseline/scripts/geo/destination-detail/$city.ts"
+            cp -R "$FACTORY_SANDBOX/candidate/delivery/cities/$city" "baseline/src/game/cities/$city"
+            node --experimental-strip-types scripts/geo/factory/coast-diagnostic.mjs --source "$GITHUB_WORKSPACE/baseline" --extract-dir "$FACTORY_SANDBOX/extracts/$city" --recipe "$GITHUB_WORKSPACE/baseline/scripts/geo/destination-detail/$city.ts" --out "$FACTORY_SANDBOX/diagnostics/$city.json"
+          done
+          node --input-type=module -e 'import fs from "node:fs"; const t=fs.readFileSync("scripts/geo/factory/journey-template.ts","utf8"); for(const c of ["apia","suva"]) fs.writeFileSync(`baseline/src/game/cities/${c}/journey.test.ts`,t.replaceAll("__CITY__",c));'
+          cd baseline
+          node --experimental-strip-types scripts/city/build-catalogue.ts
+          node --experimental-strip-types --test --test-concurrency=1 src/game/cities/apia/map.test.ts src/game/cities/apia/journey.test.ts src/game/cities/suva/map.test.ts src/game/cities/suva/journey.test.ts > "$FACTORY_SANDBOX/diagnostics/acceptance.log" 2>&1
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: pacific-coast-diagnostic-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/city-factory/diagnostics
+            ${{ runner.temp }}/city-factory/provenance
+            ${{ runner.temp }}/city-factory/factory-producer.json
+          if-no-files-found: error

@@ -2,45 +2,45 @@
   "schemaVersion": 1,
   "countries": [
     {
-      "id": "tunisia",
+      "id": "libya",
       "file": {
-        "url": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
-        "bytes": 84194711,
-        "md5": "9c5af344ce4a7bb2e2b3b58c222ec92d"
+        "url": "https://download.geofabrik.de/africa/libya-261009.osm.pbf",
+        "bytes": 76692968,
+        "md5": "eb8a10f5d40545dd106c6f4287afece5"
       },
       "cities": [
         {
-          "id": "tunis",
-          "name": "Tunis",
+          "id": "tripoli",
+          "name": "Tripoli",
           "boxes": {
             "play": [
-              36.74,
-              10.08,
-              36.93,
-              10.32
+              32.79,
+              13.08,
+              32.99,
+              13.32
             ],
             "core": [
-              36.755,
-              10.115,
-              36.855,
-              10.245
+              32.855,
+              13.135,
+              32.925,
+              13.225
             ],
             "outline": [
-              36.690000000000005,
-              10.03,
-              36.98,
-              10.370000000000001
+              32.74,
+              13.03,
+              33.04,
+              13.37
             ],
             "wide": [
-              36.18,
-              9.52,
-              37.49,
-              10.88
+              32.23,
+              12.52,
+              33.55,
+              13.88
             ]
           },
           "waterRecipe": {
             "kind": "coast",
-            "wideWater": true,
+            "wideWater": false,
             "sea": {
               "kind": "coast",
               "bandMetres": 40000
@@ -51,40 +51,40 @@
       ]
     },
     {
-      "id": "congo-democratic-republic",
+      "id": "mali",
       "file": {
-        "url": "https://download.geofabrik.de/africa/congo-democratic-republic-261009.osm.pbf",
-        "bytes": 416300671,
-        "md5": "2dd7c19fdb508cc18dc1405283937c1a"
+        "url": "https://download.geofabrik.de/africa/mali-261009.osm.pbf",
+        "bytes": 173784991,
+        "md5": "4237007cfcd37f7416dcc2820503111a"
       },
       "cities": [
         {
-          "id": "kinshasa",
-          "name": "Kinshasa",
+          "id": "bamako",
+          "name": "Bamako",
           "boxes": {
             "play": [
-              -4.55,
-              15.15,
-              -4.2,
-              15.6
+              12.5,
+              -8.1,
+              12.75,
+              -7.88
             ],
             "core": [
-              -4.42,
-              15.2,
-              -4.28,
-              15.38
+              12.615,
+              -8.045,
+              12.685,
+              -7.955
             ],
             "outline": [
-              -4.6,
-              15.1,
-              -4.15,
-              15.65
+              12.45,
+              -8.15,
+              12.8,
+              -7.83
             ],
             "wide": [
-              -5.15,
-              14.55,
-              -3.6,
-              16.2
+              11.925,
+              -8.675,
+              13.325,
+              -7.305
             ]
           },
           "waterRecipe": {
@@ -96,49 +96,90 @@
       ]
     },
     {
-      "id": "tanzania",
+      "id": "burkina-faso",
       "file": {
-        "url": "https://download.geofabrik.de/africa/tanzania-261009.osm.pbf",
-        "bytes": 706320953,
-        "md5": "a8d5701e0e71a71d058b907fb0eb9ffe"
+        "url": "https://download.geofabrik.de/africa/burkina-faso-261009.osm.pbf",
+        "bytes": 84757420,
+        "md5": "486e838ee2145023987cf0fd3f0af5cb"
       },
       "cities": [
         {
-          "id": "dar-es-salaam",
-          "name": "Dar es Salaam",
+          "id": "ouagadougou",
+          "name": "Ouagadougou",
           "boxes": {
             "play": [
-              -6.98,
-              39.12,
-              -6.7,
-              39.4
+              12.27,
+              -1.64,
+              12.47,
+              -1.41
             ],
             "core": [
-              -6.9,
-              39.18,
-              -6.78,
-              39.32
+              12.335,
+              -1.575,
+              12.405,
+              -1.485
             ],
             "outline": [
-              -7.03,
-              39.07,
-              -6.65,
-              39.45
+              12.22,
+              -1.69,
+              12.52,
+              -1.36
             ],
             "wide": [
-              -7.58,
-              38.52,
-              -6.1,
-              40.0
+              11.725,
+              -2.185,
+              13.015,
+              -0.865
             ]
           },
           "waterRecipe": {
-            "kind": "coast",
-            "wideWater": true,
-            "sea": {
-              "kind": "coast",
-              "bandMetres": 40000
-            },
+            "kind": "inland",
+            "wideWater": false,
+            "reviewRequired": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "niger",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/niger-261009.osm.pbf",
+        "bytes": 78421408,
+        "md5": "7d28616d703e55fbd66dacedba1dd0a2"
+      },
+      "cities": [
+        {
+          "id": "niamey",
+          "name": "Niamey",
+          "boxes": {
+            "play": [
+              13.38,
+              1.98,
+              13.62,
+              2.25
+            ],
+            "core": [
+              13.485,
+              2.065,
+              13.555,
+              2.155
+            ],
+            "outline": [
+              13.33,
+              1.93,
+              13.67,
+              2.3
+            ],
+            "wide": [
+              12.78,
+              1.38,
+              14.22,
+              2.9
+            ]
+          },
+          "waterRecipe": {
+            "kind": "inland",
+            "wideWater": false,
             "reviewRequired": false
           }
         }

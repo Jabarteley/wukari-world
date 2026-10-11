@@ -13,8 +13,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: offline-city-sources-${{ github.ref }}
-  cancel-in-progress: true
+  group: offline-city-sources-${{ github.sha }}
+  cancel-in-progress: false
 
 jobs:
   manifest:

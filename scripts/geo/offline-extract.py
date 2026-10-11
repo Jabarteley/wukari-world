@@ -497,4 +497,3 @@ if __name__ == "__main__":
     except (ExtractionError, json.JSONDecodeError) as error:
         print(f"pbf-extract: {error}", file=sys.stderr)
         raise SystemExit(2)
-

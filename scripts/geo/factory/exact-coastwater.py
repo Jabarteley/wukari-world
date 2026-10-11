@@ -9,7 +9,9 @@ from pathlib import Path
 import re
 import time
 
-ALGORITHM = 'osm-directed-coast-closed-land-v1'
+ALGORITHM = 'osm-directed-coast-closed-land-v2'
+WATER_TOLERANCE_DEGREES = 0.00005
+MAX_SIMPLIFICATION_AREA_FRACTION = 0.0001
 SCHEMA = 'exact-coastwater-report-v1'
 LIMIT = 5 * 1024 * 1024
 
@@ -147,9 +149,34 @@ def main():
     water = unary_union([sea] + inland)
     if not water.is_valid:
         raise ValueError('Invalid combined water')
-    island_rows = [{'ref': ident, 'preserved': water.intersection(p.intersection(clip)).area == 0} for ident, p in closed if not p.intersection(clip).is_empty]
+    exact_water = water
+    water = exact_water.simplify(WATER_TOLERANCE_DEGREES, preserve_topology=True)
+    if not exact_water.is_valid or not water.is_valid:
+        raise ValueError('Invalid exact/simplified water')
+    def water_counts(g):
+        ps = area_polygons(g)
+        return {'polygons': len(ps), 'holes': sum(len(p.interiors) for p in ps), 'vertices': sum(len(p.exterior.coords) + sum(len(r.coords) for r in p.interiors) for p in ps)}
+    exact_counts, simplified_counts = water_counts(exact_water), water_counts(water)
+    if (exact_counts['polygons'], exact_counts['holes']) != (simplified_counts['polygons'], simplified_counts['holes']):
+        raise ValueError('Simplification changed water topology')
+    area_fraction = exact_water.symmetric_difference(water).area / exact_water.area
+    if area_fraction > MAX_SIMPLIFICATION_AREA_FRACTION:
+        raise ValueError('Simplification area change exceeds 0.01%')
+    simplification = {
+        'toleranceDegrees': WATER_TOLERANCE_DEGREES,
+        'preserveTopology': True,
+        'maximumAreaSymmetricDifferenceFraction': MAX_SIMPLIFICATION_AREA_FRACTION,
+        'areaSymmetricDifferenceFraction': area_fraction,
+        'signedAreaDeltaDegrees2': water.area - exact_water.area,
+        'boundaryHausdorffDegreesApprox': exact_water.boundary.hausdorff_distance(water.boundary),
+        'boundaryHausdorffMetresApprox': exact_water.boundary.hausdorff_distance(water.boundary) * 111320,
+        'unsimplified': exact_counts,
+        'simplified': simplified_counts,
+        'sceneBudgetVerification': 'Requires authoritative cloud sourceScene; no triangle proxy acceptance',
+    }
+    island_rows = [{'ref': ident, 'preserved': not water.covers(p.representative_point()), 'exactPreserved': exact_water.intersection(p.intersection(clip)).area == 0} for ident, p in closed if not p.intersection(clip).is_empty]
     if not all(r['preserved'] for r in island_rows):
-        raise ValueError('Inland water would erase a closed coastline island')
+        raise ValueError('Water simplification would cover a closed coastline island representative')
     elements = {e['type'] + '/' + str(e['id']): e for name in ['places', 'extras'] for e in extracts[name]['elements']}
     anchor_rows = []
     for choice in config['places'] + [n for n in config['names'] if n['kind'] == 'neighbourhood']:
@@ -255,7 +282,7 @@ def main():
     for path in args.city_directory.glob('*.ts'):
         if path.stat().st_size > LIMIT:
             raise ValueError('Output exceeds 5 MiB: ' + str(path))
-    report.update({'status': 'passed', 'sourceHashes': hashes, 'selectedWaterRefs': selected_water, 'selectedWaterRefCount': len(coast) + len(selected_water), 'coastCount': len(coast), 'closedCoastCount': len(closed), 'islands': island_rows, 'anchors': anchor_rows, 'generatedAnchors': generated_anchors, 'fixtureAnchors': fixture_anchors, 'geometry': stats, 'tiling': tiling, 'outputFiles': [{'path': str(terrain_path), 'bytes': len(raw_after), 'sha256Before': sha(before.encode()), 'sha256After': sha(raw_after)}, {'path': str(geometry_path), 'bytes': len(geometry_raw), 'sha256Before': sha(geometry_before.encode()), 'sha256After': sha(geometry_raw)}], 'preferred2MiB': max(len(raw_after), len(geometry_raw)) <= 2 * 1024 * 1024, 'elapsedSeconds': time.perf_counter() - started})
+    report.update({'status': 'passed', 'sourceHashes': hashes, 'selectedWaterRefs': selected_water, 'selectedWaterRefCount': len(coast) + len(selected_water), 'coastCount': len(coast), 'closedCoastCount': len(closed), 'islands': island_rows, 'anchors': anchor_rows, 'generatedAnchors': generated_anchors, 'fixtureAnchors': fixture_anchors, 'geometry': stats, 'simplification': simplification, 'tiling': tiling, 'outputFiles': [{'path': str(terrain_path), 'bytes': len(raw_after), 'sha256Before': sha(before.encode()), 'sha256After': sha(raw_after)}, {'path': str(geometry_path), 'bytes': len(geometry_raw), 'sha256Before': sha(geometry_before.encode()), 'sha256After': sha(geometry_raw)}], 'preferred2MiB': max(len(raw_after), len(geometry_raw)) <= 2 * 1024 * 1024, 'elapsedSeconds': time.perf_counter() - started})
     # Reserve a new report before generated-source mutations.
     with args.report.open('x') as f:
         terrain_path.write_bytes(raw_after)

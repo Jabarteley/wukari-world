@@ -91,7 +91,7 @@ jobs:
           run-id: ${{ needs.plan.outputs.build_run }}
           name: ${{ needs.plan.outputs.artifact }}
           path: app
-      - name: Record build and driver provenance
+      - name: Restore verified runtime manifests and record build provenance
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/geo/city-browser-recapture.mjs --app app --driver driver --evidence "$ACCEPTANCE_LOGS"

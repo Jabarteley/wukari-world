@@ -1,3 +1,4 @@
+import { restoreBuildHandoff } from './city-build-handoff.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -39,6 +40,7 @@ if (args.includes('--evidence')) {
   const app = resolve(get('--app')), driver = resolve(get('--driver'));
   const gitSha = path => execFileSync('git', ['-C', path, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
   assert.equal(gitSha(app), queue.appSha); assert.equal(gitSha(driver), queue.driverSha);
+  receipt.buildHandoff = restoreBuildHandoff(app, { appSha: queue.appSha, runId: queue.buildRunId, repository: queue.repository, producerSha: queue.buildProducerSha });
   receipt.distChecksumManifestSha256 = createHash('sha256').update(readFileSync(join(app, 'dist-sha256.txt'))).digest('hex');
   receipt.recaptureQaSha = process.env.GITHUB_SHA;
   receipt.diagnosticFiles = Object.fromEntries(['map-shots.ts', 'serve-maps.ts', 'cdp-map-qa.ts'].map(file => [file, createHash('sha256').update(readFileSync(join(driver, 'scripts/journeys', file))).digest('hex')]));

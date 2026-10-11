@@ -74,12 +74,18 @@ jobs:
       - name: Hash exact build
         working-directory: app
         run: find dist -type f -print0 | sort -z | xargs -0 sha256sum > dist-sha256.txt
+      - name: Pin generated runtime manifests and exact dist
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: node scripts/geo/city-build-handoff.mjs pack app "$APP_SHA" "$GITHUB_RUN_ID" "$GITHUB_REPOSITORY" "$GITHUB_SHA" > "$ACCEPTANCE_LOGS/build-handoff.json"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: city-dist-${{ needs.plan.outputs.app }}
           path: |
             app/dist/
             app/dist-sha256.txt
+            app/build-handoff.json
+            app/build-handoff/
           if-no-files-found: error
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: ${{ always() }}
@@ -124,6 +130,10 @@ jobs:
         with:
           name: city-dist-${{ needs.plan.outputs.app }}
           path: app
+      - name: Restore verified generated runtime manifests
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: node scripts/geo/city-build-handoff.mjs restore app "$APP_SHA" "$GITHUB_RUN_ID" "$GITHUB_REPOSITORY" "$GITHUB_SHA" > "$ACCEPTANCE_LOGS/runtime-manifest-verification.json"
       - name: Verify shared build
         working-directory: app
         run: set -o pipefail; sha256sum -c dist-sha256.txt 2>&1 | tee "$ACCEPTANCE_LOGS/dist-verification.log"
@@ -171,6 +181,10 @@ jobs:
         with:
           name: city-dist-${{ needs.plan.outputs.app }}
           path: app
+      - name: Restore verified generated runtime manifests
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: node scripts/geo/city-build-handoff.mjs restore app "$APP_SHA" "$GITHUB_RUN_ID" "$GITHUB_REPOSITORY" "$GITHUB_SHA" > "$ACCEPTANCE_LOGS/runtime-manifest-verification.json"
       - name: Verify shared build
         working-directory: app
         run: set -o pipefail; sha256sum -c dist-sha256.txt 2>&1 | tee "$ACCEPTANCE_LOGS/dist-verification.log"
@@ -237,6 +251,10 @@ jobs:
         with:
           name: city-dist-${{ needs.plan.outputs.app }}
           path: app
+      - name: Restore verified generated runtime manifests
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: node scripts/geo/city-build-handoff.mjs restore app "$APP_SHA" "$GITHUB_RUN_ID" "$GITHUB_REPOSITORY" "$GITHUB_SHA" > "$ACCEPTANCE_LOGS/runtime-manifest-verification.json"
       - name: Verify shared build
         working-directory: app
         run: set -o pipefail; sha256sum -c dist-sha256.txt 2>&1 | tee "$ACCEPTANCE_LOGS/dist-verification.log"

@@ -285,7 +285,7 @@ async function simpleMap(b: Browser, shot: (l: string) => Promise<void>, label: 
   await sleep(3000);
 }
 
-async function auditLabels(b: Browser, prefix: string): Promise<void> {
+async function auditLabels(b: Browser, prefix: string, allowListLocation = false): Promise<void> {
   const result = await b.eval<{ critical: number; failures: string[]; labels: unknown[] }>(`(() => {
     const box = (node) => { const r = node.getBoundingClientRect(); return { l:r.left, r:r.right, t:r.top, b:r.bottom }; };
     const visible = (node) => !node.hidden && node.getBoundingClientRect().width > 0 && node.getBoundingClientRect().height > 0;
@@ -298,8 +298,15 @@ async function auditLabels(b: Browser, prefix: string): Promise<void> {
       if (important) { critical++; if (r.l < 0 || r.r > innerWidth || r.t < 0 || r.b > innerHeight) failures.push('critical label outside viewport: '+node.dataset.venue); }
       if (overlap) failures.push('label under controls: '+node.dataset.venue);
     }
-    if (!critical) failures.push('no current/selected/trip label visible');
-    return {critical, failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
+    const reachable = node => {
+      if (!node || !visible(node) || node.disabled || node.getAttribute('aria-disabled') === 'true') return false;
+      const r = box(node), x = (r.l + r.r) / 2, y = (r.t + r.b) / 2;
+      return x >= 0 && x < innerWidth && y >= 0 && y < innerHeight && node.contains(document.elementFromPoint(x, y));
+    };
+    const list = document.querySelector('#map-list');
+    const listLocation = ${allowListLocation} && list && !list.hidden && (reachable(list.querySelector('.ll-row button.is-here')) || reachable(document.querySelector('[data-m3="me"]')));
+    if (!critical && !listLocation) failures.push('no current location label or reachable list location control');
+    return {critical, listLocation: Boolean(listLocation), failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
   })()`);
   writeFileSync(join(out, `${prefix}-labels.json`), JSON.stringify(result, null, 2));
   must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
@@ -328,7 +335,7 @@ async function auditPlaceList(b: Browser, prefix: string): Promise<void> {
 
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
   if (opts.phone) await dismiss(b, 3000);
-  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (process.argv.includes('--phone-ui-audit') || label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`); if (process.argv.includes('--phone-ui-audit') && opts.phone && (label === '02-list' || label === '03-list-bottom')) await auditPlaceList(b, `${prefix}-${label}`); };
+  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (process.argv.includes('--phone-ui-audit') || label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`, label === '02-list' || label === '03-list-bottom'); if (process.argv.includes('--phone-ui-audit') && opts.phone && (label === '02-list' || label === '03-list-bottom')) await auditPlaceList(b, `${prefix}-${label}`); };
   await openMap(b, prefix);
   if (waterOnly) {
     const w = waterAt[prefix];

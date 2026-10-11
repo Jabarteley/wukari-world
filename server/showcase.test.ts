@@ -500,6 +500,38 @@ test('the public shop link: only a published shop has one, a stranger opens it w
   assert.ok(limited > 0 && limited <= 70, `limited after ${limited}`);
 });
 
+test('the 3D shop: a public address gives the shop, its items (up to 24, or none) with their own photos and the seller\'s own links; the shop\'s id lists carry none of them', async (t) => {
+  const s = await setup(t);
+  const ada = await s.seller('ada@example.com', 'Ada'); s.ready();
+  const items = (n: number, photo?: string): Json[] => Array.from({ length: n }, (_, at) => ({ label: `Item ${at + 1}`, priceNaira: 1000 + at, note: '', ...(photo && at === 0 ? { photo } : {}) }));
+  const id = await s.live(ada, { services: items(0) });
+  const made = await s.post(ada, '/api/showcase/mine/share'), token = (made.path as string).slice(-8);
+  const empty = await s.call(`/api/showcase/entry/${token}`);
+  assert.equal(empty.shop.serviceList.length, 0, 'a shop with no items opens (an empty shop)');
+  assert.equal(empty.chat, 'https://wa.me/2348012345678', 'the seller\'s own chat link, for anyone who has the address');
+  assert.equal(empty.pay, 'https://paystack.com/pay/adabraids')
+  assert.equal(empty.id, id);
+  // 24 items are the most; the 25th is refused. An item may show one of the shop\'s own photos, and only those.
+  const mine = await s.call('/api/showcase/mine', undefined, ada.cookie);
+  const photo = mine.shop.photos[0].id as string, other = 'f'.repeat(32);
+  assert.equal((await s.edit(ada, { services: items(25) })).error, 'invalid_shop');
+  assert.equal((await s.edit(ada, { services: items(24, photo) })).ok, true);
+  assert.equal((await s.edit(ada, { services: [{ label: 'Bad', priceNaira: 5, note: '', photo: '../x' }] })).error, 'invalid_shop', 'a photo is an id, nothing else');
+  assert.equal((await s.edit(ada, { services: items(24, other) })).ok, true, 'a photo the shop does not have is dropped, not kept');
+  assert.equal((await s.call('/api/showcase/mine', undefined, ada.cookie)).shop.services[0].photo, undefined);
+  assert.equal((await s.edit(ada, { services: items(24, photo) })).ok, true);
+  const room = await s.call(`/api/showcase/entry/${token}`);
+  assert.equal(room.shop.serviceList.length, 24); assert.equal(room.shop.serviceList[0].photo, photo);
+  assert.ok(room.shop.photos.some((item: Json) => item.id === photo));
+  // Removing the photo takes it off the item.
+  assert.equal((await s.post(ada, '/api/showcase/mine/photos/remove', { photo })).ok, true);
+  assert.equal((await s.call('/api/showcase/mine', undefined, ada.cookie)).shop.services[0].photo, undefined);
+  assert.ok(!JSON.stringify(await s.call('/api/showcase/directory')).includes('wa.me'), 'no list carries the links');
+  assert.equal((await s.call(`/api/showcase/entry/k3x9m2q7`)).error, 'shop_unavailable');
+  assert.ok(!JSON.stringify(room).includes(ada.id), 'no player id in the room');
+  assert.deepEqual([room.shop.badge.id, room.shop.badge.name], ['', ''], 'nor the seller\'s name');
+});
+
 test('a second seller has a different link, and an edited name keeps the old link working', async (t) => {
   const s = await setup(t);
   const ada = await s.seller('ada@example.com', 'Ada'), bola = await s.seller('bola@example.com', 'Bola'); s.ready();

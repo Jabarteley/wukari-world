@@ -25,9 +25,9 @@ jobs:
       max-parallel: 2
       matrix:
         include:
-          - id: batch2
-            app: 03b10fd2b7c030b884e8d384326d19f732e69186
-            cities: tripoli,bamako,ouagadougou,maseru,lilongwe
+          - id: batch3
+            app: 4fa9255599e4b9ff357bcfa9985f9ba64fba2bdb
+            cities: dar-es-salaam,brazzaville,tunis,libreville,mbabane
             extra: --phone-ui-audit
     env:
       APP_SHA: ${{ matrix.app }}

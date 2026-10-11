@@ -357,7 +357,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
   function near(at: { x: number, z: number }) { scale = Math.max(fitScale(), free().width / 58); centreOn(at.x, at.z); }
   /** A view kept before a reload, applied when the map first opens. */
   let pendingView: { scale: number; x: number; y: number } | null = null;
-  function open() { opened = true; userMoved = false; if (pendingView) { scale = pendingView.scale; ox = pendingView.x; oy = pendingView.y; pendingView = null; userMoved = true; return; } if (size.width > 720) core(); else if (pack.surround) core(); else near(spotOf(state?.location) || homeSpot()); }
+  function open() { opened = true; userMoved = false; if (pendingView) { scale = pendingView.scale; ox = pendingView.x; oy = pendingView.y; pendingView = null; userMoved = true; return; } if (size.width > 720) core(); else if (pack.surround) whole(); else near(spotOf(state?.location) || homeSpot()); }
   function apply() {
     if (!scale) return;
     scale = clamp(scale, fitScale() * 0.8, MAX_SCALE);

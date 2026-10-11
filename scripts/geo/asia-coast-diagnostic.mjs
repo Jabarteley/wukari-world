@@ -103,17 +103,17 @@ try {
   const hits = (p, polygons) => polygons.flatMap((polygon, index) => inPolygon(p, polygon) ? [index] : []);
   const area = polygon => Math.abs(checks.signedArea(polygon[0])) - polygon.slice(1).reduce((sum, ring) => sum + Math.abs(checks.signedArea(ring)), 0);
   const extent = polygon => polygon.flat().reduce((b, p) => [Math.min(b[0], p[0]), Math.min(b[1], p[1]), Math.max(b[2], p[0]), Math.max(b[3], p[1])], [Infinity, Infinity, -Infinity, -Infinity]);
-  const tidy = ring => {
+  const tidy = (ring, precision = 5) => {
     const result = [];
     for (const p of ring) {
-      const q = p.map(v => tools.round(v));
+      const q = p.map(v => tools.round(v, precision));
       if (!result.length || q[0] !== result.at(-1)[0] || q[1] !== result.at(-1)[1]) result.push(q);
     }
     if (result.length && (result[0][0] !== result.at(-1)[0] || result[0][1] !== result.at(-1)[1])) result.push(result[0]);
     return result;
   };
-  const fallbackReasons = (polygon, tolerance) => [tolerance, tolerance / 2, tolerance / 4, tolerance * 2, tolerance * 4, tolerance * 8, tolerance * 16, tolerance / 8, 0].map(tol => {
-    const rings = polygon.map(ring => tidy(tol > 0 ? tools.simplifyRing(ring, tol) : ring));
+  const fallbackReasons = (polygon, tolerance, precision = 5) => [tolerance, tolerance / 2, tolerance / 4, tolerance * 2, tolerance * 4, tolerance * 8, tolerance * 16, tolerance / 8, 0].map(tol => {
+    const rings = polygon.map(ring => tidy(tol > 0 ? tools.simplifyRing(ring, tol) : ring, precision));
     const faithful = rings.map((ring, i) => ({ ring: i, vertices: ring.length, sourceArea: tools.ringArea(polygon[i]), candidateArea: tools.ringArea(ring) }));
     const areaFailures = faithful.filter(r => r.vertices < 4 || r.sourceArea <= 0 || r.candidateArea < r.sourceArea * 0.75 || r.candidateArea > r.sourceArea * 1.25);
     if (areaFailures.length) return { tolerance: tol, rejectedAt: 'ring fidelity', areaFailures };
@@ -265,8 +265,13 @@ try {
   const obstructs = (x, y, px, py, segment) => {
     const rx = px - x, ry = py - y, sx = segment.b[0] - segment.a[0], sy = segment.b[1] - segment.a[1];
     const denominator = cross(rx, ry, sx, sy);
-    if (Math.abs(denominator) < 1e-18) return false;
     const qx = segment.a[0] - x, qy = segment.a[1] - y;
+    if (Math.abs(denominator) < 1e-18) {
+      if (Math.abs(cross(qx, qy, rx, ry)) > 1e-18) return false;
+      const squared = rx * rx + ry * ry;
+      const t0 = (qx * rx + qy * ry) / squared, t1 = ((segment.b[0] - x) * rx + (segment.b[1] - y) * ry) / squared;
+      return Math.max(t0, t1) > 1e-9 && Math.min(t0, t1) <= 1 + 1e-9;
+    }
     const t = cross(qx, qy, sx, sy) / denominator, u = cross(qx, qy, rx, ry) / denominator;
     return t > 1e-9 && t <= 1 + 1e-9 && u >= -1e-9 && u <= 1 + 1e-9;
   };
@@ -361,8 +366,65 @@ try {
   report.candidate.sourceWaterAnchorsToReject = report.candidate.anchors.filter(p => p.componentSourceWater || p.rawFar.length || p.safeFar.length);
   report.candidate.probes = sampleProbes.map(p => ({ ...p, originalRawFar: hits([p.lon, p.lat], raw.far), originalSafeFar: hits([p.lon, p.lat], safe.far), candidateRawFar: hits([p.lon, p.lat], candidateRaw.far), candidateSafeFar: hits([p.lon, p.lat], candidateSafe.far) }));
   report.candidate.status = conflicts.length || unresolvedLarge.length || votes.counters.unindexedSegments ? 'HOLD_SOURCE_CLASSIFICATION' : 'CANDIDATE_CLASSIFICATION_ONLY_NOT_ACCEPTANCE';
+  report.candidate.samplerRevisionNote = 'Collinear overlapping source rays are now rejected; this guard was absent from proof38181701418 and requires this cloud pass.';
+  const precisionHelpers = new Map([[5, tools]]);
+  const roundSeam = 'const roundPt = (p: P): P => [round(p[0]), round(p[1])];';
+  for (const precision of [6, 7]) {
+    const precisionPath = join(app, 'scripts/geo/destination-detail/geometry-tools-precision-' + precision + '.ts');
+    const precisionSource = replaceOnce(original, roundSeam, `const roundPt = (p: P): P => [round(p[0], ${precision}), round(p[1], ${precision})];`);
+    writeFileSync(precisionPath, precisionSource, { flag: 'wx' });
+    precisionHelpers.set(precision, await imported(precisionPath));
+  }
+  const wind = rings => rings.map((ring, i) => (i === 0) === (checks.signedArea(ring) > 0) ? ring : [...ring].reverse());
+  const inspectRings = (polygon, sourcePolygon) => {
+    const polygonProblem = checks.polygonProblem(polygon);
+    return {
+    rings: polygon.length, holes: Math.max(0, polygon.length - 1),
+    sameRingCount: polygon.length === sourcePolygon.length,
+    polygonProblem, triangulationExecuted: !polygonProblem, triangulationProblem: polygonProblem ? null : checks.triangulationProblem(polygon, project),
+    perRing: polygon.map((ring, i) => {
+      const sourceArea = sourcePolygon[i] ? tools.ringArea(sourcePolygon[i]) : null, candidateArea = tools.ringArea(ring);
+      return { index: i, vertices: ring.length, sourceVertices: sourcePolygon[i]?.length, sourceAreaSquareDegrees: sourceArea, areaSquareDegrees: candidateArea, areaRatio: sourceArea > 0 ? candidateArea / sourceArea : null, faithful: ring.length >= 4 && sourceArea > 0 && candidateArea >= sourceArea * 0.75 && candidateArea <= sourceArea * 1.25, holeInsideOuter: i === 0 || (ring.length > 0 && inRing(ring[0], polygon[0])) };
+    }),
+    };
+  };
+  report.candidate.precision = { status: 'INCOMPLETE', scope: 'Principal polygon per band/far only; all other original safe outputs and drops retained in the comparison. No flood/contour rerun.', originalHelperSHA256: hash(originalPath), helpers: Object.fromEntries([6, 7].map(p => [p, hash(join(app, 'scripts/geo/destination-detail/geometry-tools-precision-' + p + '.ts'))])), layers: {} };
+  const principalResults = {};
+  for (const [layer, tolerance] of [['band', CONFIG.waterTolerance], ['far', 0.0008]]) {
+    const principalIndex = candidateRaw[layer].reduce((best, polygon, i, all) => best < 0 || area(polygon) > area(all[best]) ? i : best, -1);
+    if (principalIndex < 0) { report.candidate.precision.layers[layer] = { error: 'No raw polygons' }; continue; }
+    const principal = candidateRaw[layer][principalIndex];
+    const layerReport = { principalIndex, rawAreaSquareDegrees: area(principal), raw: inspectRings(principal, principal), candidates: {} };
+    principalResults[layer] = {};
+    report.candidate.precision.layers[layer] = layerReport;
+    save();
+    for (const precision of [5, 6, 7]) {
+      const rounded = wind(principal.map(ring => tidy(ring, precision)));
+      const helper = precisionHelpers.get(precision), start = performance.now();
+      const kept = helper.safePolygons([principal], tolerance, project);
+      const roundTrip = JSON.parse(JSON.stringify(kept));
+      const inspections = roundTrip.map(polygon => inspectRings(polygon, principal));
+      const passes = kept.length === 1 && inspections.every(p => p.sameRingCount && !p.polygonProblem && !p.triangulationProblem && p.perRing.every(r => r.faithful && r.holeInsideOuter));
+      const candidateReport = { precision, roundedSource: inspectRings(rounded, principal), retained: kept.length, output: inspections, passesRingAndRendererContract: passes, serializedRoundTripEqual: JSON.stringify(roundTrip) === JSON.stringify(kept), elapsedMs: performance.now() - start };
+      if (!kept.length) candidateReport.fallbackCandidates = fallbackReasons(principal, tolerance, precision);
+      layerReport.candidates[precision] = candidateReport;
+      principalResults[layer][precision] = kept;
+      save();
+      console.log(`[DEBUG-dubai-coast] principal ${layer} precision${precision} retained${kept.length} passes${passes}`);
+    }
+  }
+  const selectedPrecision = [5, 6, 7].find(p => ['band', 'far'].every(layer => report.candidate.precision.layers[layer].candidates?.[p]?.passesRingAndRendererContract));
+  report.candidate.precision.selectedPrecision = selectedPrecision ?? null;
+  report.candidate.precision.status = selectedPrecision === undefined ? 'HOLD_PRECISION_CONTRACT' : 'PRINCIPAL_PRECISION_PROTOTYPE_NOT_ACCEPTANCE';
+  if (selectedPrecision !== undefined) {
+    const serialized = Object.fromEntries(['band', 'far'].map(layer => [layer, principalResults[layer][selectedPrecision]]));
+    writeFileSync(join(out, 'dubai-coast-principal-precision.json'), JSON.stringify({ precision: selectedPrecision, layers: serialized }) + '\n');
+    report.candidate.precision.serializedGeometryArtifact = 'dubai-coast-principal-precision.json';
+  }
+  save();
   const features = [];
   for (const [stage, polygons] of [['raw-far', candidateRaw.far], ['safe-far', candidateSafe.far], ['safe-band', candidateSafe.band]]) polygons.forEach((polygon, index) => features.push({ type: 'Feature', properties: { stage, index, acceptance: report.candidate.status }, geometry: { type: 'Polygon', coordinates: polygon } }));
+  for (const layer of ['band', 'far']) for (const precision of [5, 6, 7]) (principalResults[layer]?.[precision] ?? []).forEach((polygon, index) => features.push({ type: 'Feature', properties: { stage: `principal-${layer}-precision${precision}`, index, selected: precision === selectedPrecision, acceptance: report.candidate.precision.status }, geometry: { type: 'Polygon', coordinates: polygon } }));
   writeFileSync(join(out, 'dubai-coast-candidate.geojson'), JSON.stringify({ type: 'FeatureCollection', features }) + '\n');
   report.candidate.geometryArtifact = 'dubai-coast-candidate.geojson';
   report.candidate.remaining = ['Any conflicting coast votes or unresolved large component holds classification.', 'Source-water anchors require future source-selection rejection, not forced land discs.', 'Island fidelity, triangulation drops, full runtime mapping and visual acceptance remain unproven.'];

@@ -139,7 +139,7 @@ function planHouse(plan: StreetPlan, house: PlanHouse, seed: string): void {
 
   // The gate in the front fence (open), the number of the plot on its pier, hedges and a bin by it.
   plan.pieces.push(piece(`gate:${key}`, 'fencegate', house.x, Z.fence, { priority: 8, role: 'gate' }));
-  if (label) plan.pieces.push(piece(`number:${key}`, 'detail-number-sign', house.x + 2.9, Z.fence + 0.33, { y: 1.4, labels: { sign_number: label }, priority: 7, detail: true, role: 'number' }));
+  if (label) plan.pieces.push(piece(`number:${key}`, 'detail-number-sign', house.x + 2.75, Z.fence + 0.45, { y: 1.2, scale: 1.9, labels: { sign_number: label }, priority: 7, detail: true, role: 'number' }));
   if (house.tier !== 'starter') for (const side of [-1, 1]) plan.pieces.push(piece(`hedge:${key}:${side}`, 'hedge', house.x + side * 4.3, Z.fence - 1.1, { scale: 1.1, priority: 3, role: 'hedge' }));
 
   // Exterior detail by rule: more on richer tiers. [piece, x, y, z, turn, level] in the building's own frame.

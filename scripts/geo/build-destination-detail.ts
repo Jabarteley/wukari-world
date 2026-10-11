@@ -155,9 +155,11 @@ const roadsEarly = await recorded('roads', config.roads(bbox, `${config.core.joi
 const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
 const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500 });
 const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015), project);
-const land = tidy(traced.land), play = tidy(traced.play);
+const land = tidy(traced.land);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
 const water = safePolygons(traced.water, Math.min(config.waterTolerance, 0.00015), project);
+// These final, independently safe surfaces are the playable ground. Deriving the play area from them prevents contour/simplification slivers that belong to neither land nor water.
+const play = [...land, ...water];
 if (!land.length) throw new Error('The land-use answer left no built-up area in the box');
 const waterByRef = new Map(waterAnswer.elements.map((element) => [refOf(element), element]));
 const renderedWater = reachWater.length ? reachWater : water;

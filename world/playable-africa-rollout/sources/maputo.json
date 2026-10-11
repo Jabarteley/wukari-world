@@ -3,10 +3,9 @@
   "cityId": "maputo",
   "countryIso2": "MZ",
   "admission": {
-    "registered": false,
+    "registered": true,
     "accepted": false,
-    "status": "UNREGISTERED/NOT_ACCEPTED",
-    "note": "Source and generated-asset provenance only; catalogue registration, visual review, and rollout admission remain pending."
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
   },
   "cityPoint": {
     "osm": "node/27565081",
@@ -107,23 +106,69 @@
     "adapter": "pbf-extract.py/v1-maputo-coast",
     "adapterSha256": "f8a8515eb524201ca8c58e92a16227171daf1d9637f3f9bd900502fbf4cbcbaa",
     "extracts": [
-      { "file": "extras.json", "sha256": "88c8267f1c7051f7912fdc85544d0f2f42bc48d938795d2e1519cd192683aafe", "bytes": 57198, "elements": 193 },
-      { "file": "landuse.json", "sha256": "dd0e6c37d33e1dbfbaa39bb2bb55dafb456e7f1bb3d8dc0e748978106480daf7", "bytes": 534831, "elements": 581 },
-      { "file": "places.json", "sha256": "af588f152302345d80769555c13a548aba59a01471e8a02c1245a3e938787dad", "bytes": 108821, "elements": 474 },
-      { "file": "roads.json", "sha256": "3d3d1b15c438578529cb2dd4fedadd2a4389c8c766bedb11354b516c1322496e", "bytes": 411570, "elements": 900 },
-      { "file": "water.json", "sha256": "73f63d9e598ba71dabbaf4355c48e385f26432555f269e01ab6625effab81ebe", "bytes": 950263, "elements": 153 }
+      {
+        "file": "extras.json",
+        "sha256": "88c8267f1c7051f7912fdc85544d0f2f42bc48d938795d2e1519cd192683aafe",
+        "bytes": 57198,
+        "elements": 193
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "dd0e6c37d33e1dbfbaa39bb2bb55dafb456e7f1bb3d8dc0e748978106480daf7",
+        "bytes": 534831,
+        "elements": 581
+      },
+      {
+        "file": "places.json",
+        "sha256": "af588f152302345d80769555c13a548aba59a01471e8a02c1245a3e938787dad",
+        "bytes": 108821,
+        "elements": 474
+      },
+      {
+        "file": "roads.json",
+        "sha256": "3d3d1b15c438578529cb2dd4fedadd2a4389c8c766bedb11354b516c1322496e",
+        "bytes": 411570,
+        "elements": 900
+      },
+      {
+        "file": "water.json",
+        "sha256": "73f63d9e598ba71dabbaf4355c48e385f26432555f269e01ab6625effab81ebe",
+        "bytes": 950263,
+        "elements": 153
+      }
     ]
   },
   "generatedAssets": {
     "generator": "scripts/geo/build-destination-detail.ts",
     "input": "geometryInput.extracts",
-    "facts.ts": { "bytes": 1373, "sha256": "50b3560ffa3c863ba53117cc42d7957414ab6be8ff8b9a85992189d1902fadb2" },
-    "geometry.ts": { "bytes": 34270, "sha256": "e7626b939de3810bc165fed781c0af590e913cbbaae5aa3ab54656a57ab34370" },
-    "places.ts": { "bytes": 8567, "sha256": "e7475c99b5e83a7b46fb96628baae0de81f10657f228372798cd5976b3422a46" },
-    "terrain.ts": { "bytes": 68566, "sha256": "34357d2064ba45e6de0704654a122c146f7127be19dbb317dfd319d58a00fac7" },
-    "index.ts": { "bytes": 258, "sha256": "39349bc5f9fed9a248736e8e867c90681b84b8e8f7b76e4ceef934e19adbaac0" },
-    "content.ts": { "bytes": 205, "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb" },
-    "map.ts": { "bytes": 290, "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984" }
+    "facts.ts": {
+      "bytes": 1373,
+      "sha256": "50b3560ffa3c863ba53117cc42d7957414ab6be8ff8b9a85992189d1902fadb2"
+    },
+    "geometry.ts": {
+      "bytes": 48216,
+      "sha256": "74b8498ffefd3e35f8b22097e53d2ba8490ff31c178ec095bdc8af861016d8bb"
+    },
+    "places.ts": {
+      "bytes": 8567,
+      "sha256": "e7475c99b5e83a7b46fb96628baae0de81f10657f228372798cd5976b3422a46"
+    },
+    "terrain.ts": {
+      "bytes": 68566,
+      "sha256": "34357d2064ba45e6de0704654a122c146f7127be19dbb317dfd319d58a00fac7"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "39349bc5f9fed9a248736e8e867c90681b84b8e8f7b76e4ceef934e19adbaac0"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
   },
   "licence": "OpenStreetMap ODbL-1.0; Geofabrik dataset terms; OurAirports public-domain dataset",
   "scope": "Generated Maputo detailed-tier source and asset provenance only. Visual, contract, catalogue, hosted, and rollout acceptance remain pending."

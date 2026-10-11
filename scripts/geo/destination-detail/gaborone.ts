@@ -14,7 +14,7 @@ export const CONFIG: DetailConfig = {
   shore: 1,
   minHole: 40,
   minWaterKm2: 0.08,
-  minRoadKm: 0.7,
+  minRoadKm: 0.35,
   maxRoads: 700,
   roadMarginDegrees: 0.004,
   closeMetres: 1000,
@@ -51,6 +51,7 @@ export const CONFIG: DetailConfig = {
     { key: 'mokolodi-reptile-park', ref: 'node/13196160585', kind: 'walk', category: 'fun', icon: 'park', line: 'A reptile park: walk the grounds.' },
   ],
   names: [
+    { id: 'gaborone-north', ref: 'node/12919394406', kind: 'neighbourhood' },
     { id: 'borakanelo', ref: 'node/8491302716', kind: 'neighbourhood' },
     { id: 'badiri', ref: 'node/8491314017', kind: 'neighbourhood' },
     { id: 'botswelelo', ref: 'node/8491314018', kind: 'neighbourhood' },

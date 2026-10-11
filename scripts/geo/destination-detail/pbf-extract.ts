@@ -8,11 +8,12 @@ export type ExtractLabel = 'places' | 'extras' | 'water' | 'landuse' | 'roads';
 export interface RecordedAnswer { raw: string; sha256: string; elements: Element[] }
 export interface ExtractSource { kind: 'geofabrik-pbf'; datasetUrl: string; datasetSha256: string; pbfHeaderTimestamp: string; adapterSha256: string }
 export interface ExtractBundle { answers: Record<ExtractLabel, RecordedAnswer>; source: ExtractSource }
+type ElementMember = NonNullable<Element['members']>[number];
 
 const LABELS: readonly ExtractLabel[] = ['places', 'extras', 'water', 'landuse', 'roads'];
 const BOXES: readonly ('play' | 'core' | 'outline' | 'wide')[] = ['play', 'core', 'outline', 'wide'];
 const record = (value: unknown): value is Record<string, unknown> => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
-const fail = (message: string): never => { throw new Error(`PBF extract: ${message}`); };
+function fail(message: string): never { throw new Error(`PBF extract: ${message}`); }
 const text = (value: unknown, path: string): string => typeof value === 'string' && value ? value : fail(`${path} must be a non-empty string`);
 const integer = (value: unknown, path: string): number => Number.isSafeInteger(value) && Number(value) > 0 ? Number(value) : fail(`${path} must be a positive safe integer`);
 const coordinate = (value: unknown, path: string, limit: number): number => typeof value === 'number' && Number.isFinite(value) && Math.abs(value) <= limit ? value : fail(`${path} is outside WGS84`);
@@ -41,7 +42,7 @@ function element(value: unknown, label: ExtractLabel, path: string): Element {
   if (type === 'way') return { type, id, tags: elementTags, geometry: geometry(value.geometry, `${path}.geometry`, 2) };
   if (label === 'roads') fail(`${path}: roads must be ways`);
   if (!Array.isArray(value.members) || !value.members.length) fail(`${path}.members must be non-empty`);
-  const members = value.members.map((member, index) => {
+  const members = value.members.map((member, index): ElementMember => {
     const memberPath = `${path}.members[${index}]`;
     if (!record(member)) fail(`${memberPath} must be an object`);
     const memberType = member.type;

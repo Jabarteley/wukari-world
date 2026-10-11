@@ -42,7 +42,7 @@ test('maputo: every game venue is a real named place with a recorded OpenStreetM
   assert.equal(airport?.name, FACTS.airport.name)
   assert.deepEqual(airport?.position, { kind: 'lon-lat', lon: FACTS.airport.lon, lat: FACTS.airport.lat }, 'the arrival point is the sourced airport point')
   const kinds = new Set(venues.map(venue => venue.kind))
-  for (const kind of ['airport', 'hub', 'hospital', 'market', 'worship', 'quad', 'viewing', 'walk']) assert.ok(kinds.has(kind as never), kind)
+  for (const kind of ['airport', 'hub', 'hospital', 'market', 'worship', 'office', 'viewing', 'walk']) assert.ok(kinds.has(kind as never), kind)
 })
 
 test('maputo: the map has the coast, main roads and neighbourhood names, and stays within the geometry bounds', async () => {

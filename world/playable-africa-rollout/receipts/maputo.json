@@ -7,9 +7,13 @@
     "stateId": "mz-maputo",
     "stateName": "Maputo"
   },
-  "inventorySha256": "bc1bede46d39dbe5bc15766910b42f2d9fdc66fc0756e533867748fb3b9ba01b",
+  "inventorySha256": "007c7a2a0a7b87aa0d6841483cc0312a0191dee1093bb5a33e84233b679e3728",
   "inventoryPath": "world/playable-africa-rollout/sources/maputo.json",
-  "admission": { "registered": true, "accepted": false, "status": "CANDIDATE_ONLY/NOT_ACCEPTED" },
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
   "selectedPlace": {
     "osm": "node/27565081",
     "name": "Maputo",
@@ -48,9 +52,24 @@
       "role": "Initial Overpass discovery used for city/place selection only; it did not generate the geometry assets.",
       "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
       "answers": {
-        "city": { "querySha256": "a4e814eae2e7fac0542516052e95eebf3681b39360852961b33adc0be044907d", "responseSha256": "4736502a56888c1d00caf724b200bd3d52dfb5e8bef017a473a0ad4d6edf9cfe", "bytes": 4197, "elements": 1 },
-        "places": { "querySha256": "0335b33b4daa6aa68f503f770f2d7c369bde1a7bb02aac0dcfe97bbaa46dd411", "responseSha256": "1e0a5d83094e86d8295abd7b53061e51eb1c2983f66bf539b4dc17c9da8e8743", "bytes": 136679, "elements": 474 },
-        "extras": { "querySha256": "6495e7520c6970d63cdc7bc5b9c5e552ce6f27fe281486975240fb32edaaecc3", "responseSha256": "76eac789aea644853e804147b32ce705daefffd20683256d3364fc4ca52a157a", "bytes": 70254, "elements": 193 }
+        "city": {
+          "querySha256": "a4e814eae2e7fac0542516052e95eebf3681b39360852961b33adc0be044907d",
+          "responseSha256": "4736502a56888c1d00caf724b200bd3d52dfb5e8bef017a473a0ad4d6edf9cfe",
+          "bytes": 4197,
+          "elements": 1
+        },
+        "places": {
+          "querySha256": "0335b33b4daa6aa68f503f770f2d7c369bde1a7bb02aac0dcfe97bbaa46dd411",
+          "responseSha256": "1e0a5d83094e86d8295abd7b53061e51eb1c2983f66bf539b4dc17c9da8e8743",
+          "bytes": 136679,
+          "elements": 474
+        },
+        "extras": {
+          "querySha256": "6495e7520c6970d63cdc7bc5b9c5e552ce6f27fe281486975240fb32edaaecc3",
+          "responseSha256": "76eac789aea644853e804147b32ce705daefffd20683256d3364fc4ca52a157a",
+          "bytes": 70254,
+          "elements": 193
+        }
       }
     },
     "geometryInput": {
@@ -62,11 +81,36 @@
       "adapter": "pbf-extract.py/v1-maputo-coast",
       "adapterSha256": "f8a8515eb524201ca8c58e92a16227171daf1d9637f3f9bd900502fbf4cbcbaa",
       "extracts": [
-        { "file": "extras.json", "sha256": "88c8267f1c7051f7912fdc85544d0f2f42bc48d938795d2e1519cd192683aafe", "bytes": 57198, "elements": 193 },
-        { "file": "landuse.json", "sha256": "dd0e6c37d33e1dbfbaa39bb2bb55dafb456e7f1bb3d8dc0e748978106480daf7", "bytes": 534831, "elements": 581 },
-        { "file": "places.json", "sha256": "af588f152302345d80769555c13a548aba59a01471e8a02c1245a3e938787dad", "bytes": 108821, "elements": 474 },
-        { "file": "roads.json", "sha256": "3d3d1b15c438578529cb2dd4fedadd2a4389c8c766bedb11354b516c1322496e", "bytes": 411570, "elements": 900 },
-        { "file": "water.json", "sha256": "73f63d9e598ba71dabbaf4355c48e385f26432555f269e01ab6625effab81ebe", "bytes": 950263, "elements": 153 }
+        {
+          "file": "extras.json",
+          "sha256": "88c8267f1c7051f7912fdc85544d0f2f42bc48d938795d2e1519cd192683aafe",
+          "bytes": 57198,
+          "elements": 193
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "dd0e6c37d33e1dbfbaa39bb2bb55dafb456e7f1bb3d8dc0e748978106480daf7",
+          "bytes": 534831,
+          "elements": 581
+        },
+        {
+          "file": "places.json",
+          "sha256": "af588f152302345d80769555c13a548aba59a01471e8a02c1245a3e938787dad",
+          "bytes": 108821,
+          "elements": 474
+        },
+        {
+          "file": "roads.json",
+          "sha256": "3d3d1b15c438578529cb2dd4fedadd2a4389c8c766bedb11354b516c1322496e",
+          "bytes": 411570,
+          "elements": 900
+        },
+        {
+          "file": "water.json",
+          "sha256": "73f63d9e598ba71dabbaf4355c48e385f26432555f269e01ab6625effab81ebe",
+          "bytes": 950263,
+          "elements": 153
+        }
       ]
     }
   },
@@ -75,7 +119,7 @@
     "roads": 285,
     "neighbourhoodLabels": 15,
     "landPolygons": 5,
-    "playAreaPolygons": 4,
+    "playAreaPolygons": 11,
     "waterPolygons": 6,
     "reachWaterPolygons": 31
   },
@@ -93,11 +137,26 @@
     "geometryInput": "explicit PBF extract"
   },
   "assets": {
-    "facts.ts": { "bytes": 1373, "sha256": "50b3560ffa3c863ba53117cc42d7957414ab6be8ff8b9a85992189d1902fadb2" },
-    "geometry.ts": { "bytes": 34270, "sha256": "e7626b939de3810bc165fed781c0af590e913cbbaae5aa3ab54656a57ab34370" },
-    "index.ts": { "bytes": 258, "sha256": "39349bc5f9fed9a248736e8e867c90681b84b8e8f7b76e4ceef934e19adbaac0" },
-    "content.ts": { "bytes": 205, "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb" },
-    "map.ts": { "bytes": 290, "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984" }
+    "facts.ts": {
+      "bytes": 1373,
+      "sha256": "50b3560ffa3c863ba53117cc42d7957414ab6be8ff8b9a85992189d1902fadb2"
+    },
+    "geometry.ts": {
+      "bytes": 48216,
+      "sha256": "74b8498ffefd3e35f8b22097e53d2ba8490ff31c178ec095bdc8af861016d8bb"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "39349bc5f9fed9a248736e8e867c90681b84b8e8f7b76e4ceef934e19adbaac0"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
   },
   "cityDetail": {
     "tier": "detailed",

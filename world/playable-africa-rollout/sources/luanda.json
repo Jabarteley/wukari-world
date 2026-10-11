@@ -2,14 +2,164 @@
   "schemaVersion": 1,
   "cityId": "luanda",
   "countryIso2": "AO",
-  "admission": { "registered": false, "accepted": false, "status": "UNREGISTERED/NOT_ACCEPTED" },
-  "cityPoint": { "osm": "node/27564941", "name": "Luanda", "coordinatesWgs84": [13.2439512, -8.8272699], "sourceUrl": "https://www.openstreetmap.org/node/27564941", "sourceClass": "initial discovery city answer" },
-  "airport": { "id": "312665", "ident": "FNBJ", "name": "Dr. Antonio Agostinho Neto International Airport", "municipality": "Luanda (Ícolo e Bengo)", "isoCountry": "AO", "icao": "FNBJ", "iata": "NBJ", "coordinatesWgs84": [13.499078, -9.050734], "scheduledService": "yes", "sourceRecordUrl": "https://ourairports.com/airports/FNBJ/", "datasetUrl": "https://davidmegginson.github.io/ourairports-data/airports.csv", "datasetSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906", "coordinateEvidence": "Published OurAirports dataset point; not an official ARP or evidence of current operations or schedules." },
-  "boxes": { "play": [-9.09, 13.12, -8.72, 13.53], "core": [-8.86227, 13.198951, -8.79227, 13.288951], "outline": [-9.14, 13.07, -8.67, 13.58], "wide": [-9.69, 12.52, -8.12, 14.13] },
-  "waterRecipe": { "kind": "coast", "wideWater": true, "sea": { "kind": "coast", "bandMetres": 40000 } },
-  "discovery": { "role": "Initial Overpass discovery used for city/place selection only; it did not generate the geometry assets.", "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter", "answers": { "city": { "querySha256": "27759d5c6b935c461e06459aec858bcb2723e63579bfb2a6f287e88b9c07df81", "responseSha256": "58c8dbb1b5f9bb474e0b412c7857563fe8edfcd8f01b8d270bd46c464712de7d", "bytes": 3094, "elements": 1 }, "places": { "querySha256": "bb255d43b31e4a4456339512d29f7d81a424b093aff1627f5d08264f7e4e466c", "responseSha256": "74a179bfc6dea7cc5200f62eddf5b68192eac427f88721775f119694b00bd7fb", "bytes": 241303, "elements": 854 }, "extras": { "querySha256": "bc2487125983041a6e9dc8ab1178398ffb19c05156107d2eaf2a30839901ba2b", "responseSha256": "c572716cf2aaa887f49a4ba82532322995403ec63795b76872a9fefae205839c", "bytes": 121454, "elements": 229 } } },
-  "geometryInput": { "role": "Explicit Geofabrik PBF extract and adapter outputs used as geometry and terrain input.", "kind": "geofabrik-pbf", "datasetUrl": "https://download.geofabrik.de/africa/angola-261009.osm.pbf", "datasetSha256": "0f6b090f5f3073f5a6458d7fa782dbcff93e59f040011ad3ab0b9027d2a54bb8", "pbfHeaderTimestamp": "2026-10-09T20:21:04Z", "adapter": "pbf-extract-v2.py/v2-explicit-water", "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f", "comparison": "city-queue/luanda-pbf-comparison.json", "extracts": [ { "file": "extras.json", "sha256": "ea013a4edf9fc462e99e7e27c0cfb597f8e8b123ffce07242d657c2a8a910e77", "elements": 229 }, { "file": "landuse.json", "sha256": "67ebc9cd44b8fd1fe4b6b7221daf7d5562c78dbdf4191d1c0f938c7023a2c935", "elements": 821 }, { "file": "places.json", "sha256": "b1b2c972a5e51a8ad0e3ab91d6adf4302c50ad93a69ad5193554e1bcbdc1039c", "elements": 854 }, { "file": "roads.json", "sha256": "a33693511562c2642c01f1ee3b36ea9865796d71132fd0f1c3049e90f1165e6b", "elements": 2148 }, { "file": "water.json", "sha256": "30f0c8385c293692e108ece50a1ababc85bb9ce9c7ebdd2efcd4ce8405410caa", "elements": 185 } ] },
-  "generatedAssets": { "facts.ts": { "bytes": 1478, "sha256": "a17ca5da9a6c5a8d33b579b24989acaaae379c020c8a96b2ca41ce81a60a7bfa" }, "geometry.ts": { "bytes": 52340, "sha256": "7430feaf1ae497f498b8e795d7a43a88ad17c52781d1c7f41d4af0b74d127134" }, "places.ts": { "bytes": 8481, "sha256": "f439dda2b000e7cfd281fc05d2cead733b571f91e06a1e64f3622f6c358db8ac" }, "terrain.ts": { "bytes": 82468, "sha256": "081bb7e20fea2e9a01212dfb4d86697f7e2b80c691c36d26f893128b4f2a2e7e" }, "index.ts": { "bytes": 258, "sha256": "de06ac7208f22baa1be447ce3959dbdc0610afeb34db8cd5d7fa567d2a3075ae" }, "content.ts": { "bytes": 205, "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb" }, "map.ts": { "bytes": 290, "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984" } },
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "osm": "node/27564941",
+    "name": "Luanda",
+    "coordinatesWgs84": [
+      13.2439512,
+      -8.8272699
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/27564941",
+    "sourceClass": "initial discovery city answer"
+  },
+  "airport": {
+    "id": "312665",
+    "ident": "FNBJ",
+    "name": "Dr. Antonio Agostinho Neto International Airport",
+    "municipality": "Luanda (Ícolo e Bengo)",
+    "isoCountry": "AO",
+    "icao": "FNBJ",
+    "iata": "NBJ",
+    "coordinatesWgs84": [
+      13.499078,
+      -9.050734
+    ],
+    "scheduledService": "yes",
+    "sourceRecordUrl": "https://ourairports.com/airports/FNBJ/",
+    "datasetUrl": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+    "datasetSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906",
+    "coordinateEvidence": "Published OurAirports dataset point; not an official ARP or evidence of current operations or schedules."
+  },
+  "boxes": {
+    "play": [
+      -9.09,
+      13.12,
+      -8.72,
+      13.53
+    ],
+    "core": [
+      -8.86227,
+      13.198951,
+      -8.79227,
+      13.288951
+    ],
+    "outline": [
+      -9.14,
+      13.07,
+      -8.67,
+      13.58
+    ],
+    "wide": [
+      -9.69,
+      12.52,
+      -8.12,
+      14.13
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "discovery": {
+    "role": "Initial Overpass discovery used for city/place selection only; it did not generate the geometry assets.",
+    "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+    "answers": {
+      "city": {
+        "querySha256": "27759d5c6b935c461e06459aec858bcb2723e63579bfb2a6f287e88b9c07df81",
+        "responseSha256": "58c8dbb1b5f9bb474e0b412c7857563fe8edfcd8f01b8d270bd46c464712de7d",
+        "bytes": 3094,
+        "elements": 1
+      },
+      "places": {
+        "querySha256": "bb255d43b31e4a4456339512d29f7d81a424b093aff1627f5d08264f7e4e466c",
+        "responseSha256": "74a179bfc6dea7cc5200f62eddf5b68192eac427f88721775f119694b00bd7fb",
+        "bytes": 241303,
+        "elements": 854
+      },
+      "extras": {
+        "querySha256": "bc2487125983041a6e9dc8ab1178398ffb19c05156107d2eaf2a30839901ba2b",
+        "responseSha256": "c572716cf2aaa887f49a4ba82532322995403ec63795b76872a9fefae205839c",
+        "bytes": 121454,
+        "elements": 229
+      }
+    }
+  },
+  "geometryInput": {
+    "role": "Explicit Geofabrik PBF extract and adapter outputs used as geometry and terrain input.",
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/angola-261009.osm.pbf",
+    "datasetSha256": "0f6b090f5f3073f5a6458d7fa782dbcff93e59f040011ad3ab0b9027d2a54bb8",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+    "comparison": "city-queue/luanda-pbf-comparison.json",
+    "extracts": [
+      {
+        "file": "extras.json",
+        "sha256": "ea013a4edf9fc462e99e7e27c0cfb597f8e8b123ffce07242d657c2a8a910e77",
+        "elements": 229
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "67ebc9cd44b8fd1fe4b6b7221daf7d5562c78dbdf4191d1c0f938c7023a2c935",
+        "elements": 821
+      },
+      {
+        "file": "places.json",
+        "sha256": "b1b2c972a5e51a8ad0e3ab91d6adf4302c50ad93a69ad5193554e1bcbdc1039c",
+        "elements": 854
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a33693511562c2642c01f1ee3b36ea9865796d71132fd0f1c3049e90f1165e6b",
+        "elements": 2148
+      },
+      {
+        "file": "water.json",
+        "sha256": "30f0c8385c293692e108ece50a1ababc85bb9ce9c7ebdd2efcd4ce8405410caa",
+        "elements": 185
+      }
+    ]
+  },
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1478,
+      "sha256": "a17ca5da9a6c5a8d33b579b24989acaaae379c020c8a96b2ca41ce81a60a7bfa"
+    },
+    "geometry.ts": {
+      "bytes": 55741,
+      "sha256": "85f3bcd687c95abe6c0569c67a0c43842c99e596bc58aa25876f82d22a078ea0"
+    },
+    "places.ts": {
+      "bytes": 8481,
+      "sha256": "f439dda2b000e7cfd281fc05d2cead733b571f91e06a1e64f3622f6c358db8ac"
+    },
+    "terrain.ts": {
+      "bytes": 82457,
+      "sha256": "e21f857fed3a4429925ec3dc468e2a245b03257416a1332618e5fdfcf46eaf57"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "de06ac7208f22baa1be447ce3959dbdc0610afeb34db8cd5d7fa567d2a3075ae"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
   "licence": "OpenStreetMap ODbL-1.0; Geofabrik dataset terms; OurAirports public-domain dataset",
   "scope": "Generated Luanda detailed-tier source and asset provenance only. Visual, contract, catalogue, hosted, and rollout acceptance remain pending."
 }

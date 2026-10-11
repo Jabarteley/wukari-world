@@ -89,7 +89,7 @@ export const PLACES: readonly DestinationPlace[] = [
   {
     "slot": "worship",
     "name": "Church of St. Sava",
-    "district": "Gaborone",
+    "district": "Gaborone North",
     "kind": "worship",
     "category": "fun",
     "icon": "worship",

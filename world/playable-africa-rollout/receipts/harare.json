@@ -2,18 +2,109 @@
   "schemaVersion": 1,
   "cityId": "harare",
   "countryIso2": "ZW",
-  "generationIdentity": { "cityId": "harare", "stateId": "zw-harare", "stateName": "Harare" },
-  "inventorySha256": "5743ff17e37004167be964e50e445c8c265d94c4c1e50081ae989a3a4e0b2d3e",
+  "generationIdentity": {
+    "cityId": "harare",
+    "stateId": "zw-harare",
+    "stateName": "Harare"
+  },
+  "inventorySha256": "46f224b2ddceddeda006aacee382da97cb9f8f93f50f3129a46fd269de755b51",
   "inventoryPath": "world/playable-africa-rollout/sources/harare.json",
-  "admission": { "registered": true, "accepted": false, "status": "CANDIDATE_ONLY/NOT_ACCEPTED" },
-  "selectedPlace": { "osm": "node/282335934", "name": "Harare", "coordinatesWgs84": [31.045686, -17.831773], "sourceUrl": "https://www.openstreetmap.org/node/282335934", "sourceClass": "initial discovery city answer" },
-  "airportCandidate": { "id": "3005", "name": "Robert Gabriel Mugabe International Airport", "type": "large_airport", "scheduledService": true, "isoCountry": "ZW", "iata": "HRE", "icao": "FVRG", "coordinatesWgs84": [31.0928, -17.931801], "sourceRecordUrl": "https://ourairports.com/airports/FVHA/", "coordinateEvidence": "OurAirports published airport point, not an official aviation-authority ARP; not independently verified as a runway, terminal, or official reference point." },
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "selectedPlace": {
+    "osm": "node/282335934",
+    "name": "Harare",
+    "coordinatesWgs84": [
+      31.045686,
+      -17.831773
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/282335934",
+    "sourceClass": "initial discovery city answer"
+  },
+  "airportCandidate": {
+    "id": "3005",
+    "name": "Robert Gabriel Mugabe International Airport",
+    "type": "large_airport",
+    "scheduledService": true,
+    "isoCountry": "ZW",
+    "iata": "HRE",
+    "icao": "FVRG",
+    "coordinatesWgs84": [
+      31.0928,
+      -17.931801
+    ],
+    "sourceRecordUrl": "https://ourairports.com/airports/FVHA/",
+    "coordinateEvidence": "OurAirports published airport point, not an official aviation-authority ARP; not independently verified as a runway, terminal, or official reference point."
+  },
   "airportDatasetCaveat": "Dataset point only; no current operating, schedule, or official ARP claim.",
-  "bounds": [-17.97, 30.92, -17.73, 31.17],
-  "sources": { "discovery": "Initial Overpass selection evidence only; see sources/harare.json.", "geometryInput": { "datasetSha256": "57c18bc33c204f86a5aaf762b81b4fd69334e28fca190213ea494fb65ef38763", "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f", "comparison": "valid" } },
-  "kept": { "places": 21, "roads": 375, "neighbourhoodLabels": 15, "landPolygons": 5, "playAreaPolygons": 18, "waterPolygons": 13, "reachWaterPolygons": 2 },
-  "observed": { "places": 290, "extras": 106, "landuse": 560, "roads": 702, "water": 38 },
-  "limits": { "placeEdgeMarginDegrees": 0.008, "maxRoads": 700, "minRoadKm": 0.7, "geometryInput": "explicit PBF extract" },
-  "assets": { "facts.ts": { "bytes": 1360, "sha256": "41349017f038ae7ad133c0fec12ba73dc782da25d814501ed0a209908beb5cad" }, "geometry.ts": { "bytes": 53597, "sha256": "48212f266c0d9fdceb20cf744ca2c47ff5a7dc7700cedb0863ddb0c7a516de14" }, "index.ts": { "bytes": 258, "sha256": "a80f0782cfb2910b19feaa4d833c71efbfefe46aa3a91972df54d3b7379f09b3" }, "content.ts": { "bytes": 205, "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb" }, "map.ts": { "bytes": 290, "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984" } },
-  "cityDetail": { "tier": "detailed", "generator": "scripts/geo/build-destination-detail.ts", "recipe": "scripts/geo/destination-detail/harare.ts", "input": "Geofabrik PBF extract; initial Overpass discovery was selection evidence only", "licence": "ODbL-1.0", "attribution": "© OpenStreetMap contributors", "note": "Generated geography is a sketch of mapped built-up land, not an administrative boundary." }
+  "bounds": [
+    -17.97,
+    30.92,
+    -17.73,
+    31.17
+  ],
+  "sources": {
+    "discovery": "Initial Overpass selection evidence only; see sources/harare.json.",
+    "geometryInput": {
+      "datasetSha256": "57c18bc33c204f86a5aaf762b81b4fd69334e28fca190213ea494fb65ef38763",
+      "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+      "comparison": "valid"
+    }
+  },
+  "kept": {
+    "places": 21,
+    "roads": 375,
+    "neighbourhoodLabels": 15,
+    "landPolygons": 5,
+    "playAreaPolygons": 18,
+    "waterPolygons": 13,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 290,
+    "extras": 106,
+    "landuse": 560,
+    "roads": 702,
+    "water": 38
+  },
+  "limits": {
+    "placeEdgeMarginDegrees": 0.008,
+    "maxRoads": 700,
+    "minRoadKm": 0.7,
+    "geometryInput": "explicit PBF extract"
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1360,
+      "sha256": "41349017f038ae7ad133c0fec12ba73dc782da25d814501ed0a209908beb5cad"
+    },
+    "geometry.ts": {
+      "bytes": 53192,
+      "sha256": "20b870e3b78253eaac67760279c173c602f7ee6890aadf5c5fc9f7b8e097ac56"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "a80f0782cfb2910b19feaa4d833c71efbfefe46aa3a91972df54d3b7379f09b3"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/harare.ts",
+    "input": "Geofabrik PBF extract; initial Overpass discovery was selection evidence only",
+    "licence": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "note": "Generated geography is a sketch of mapped built-up land, not an administrative boundary."
+  }
 }

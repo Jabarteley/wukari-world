@@ -2,31 +2,160 @@
   "schemaVersion": 1,
   "cityId": "gaborone",
   "countryIso2": "BW",
-  "admission": { "registered": false, "accepted": false, "status": "UNREGISTERED/NOT_ACCEPTED" },
-  "cityPoint": { "osm": "node/30670040", "name": "Gaborone", "coordinatesWgs84": [25.9088474, -24.6581357], "sourceUrl": "https://www.openstreetmap.org/node/30670040", "sourceClass": "initial discovery city answer" },
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "osm": "node/30670040",
+    "name": "Gaborone",
+    "coordinatesWgs84": [
+      25.9088474,
+      -24.6581357
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/30670040",
+    "sourceClass": "initial discovery city answer"
+  },
   "airport": {
-    "id": "2864", "ident": "FBSK", "name": "Sir Seretse Khama International Airport", "municipality": "Gaborone", "isoCountry": "BW", "icao": "FBSK", "iata": "GBE", "coordinatesWgs84": [25.9182, -24.555201], "scheduledService": "yes", "sourceRecordUrl": "https://ourairports.com/airports/FBSK/", "datasetUrl": "https://davidmegginson.github.io/ourairports-data/airports.csv", "datasetSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906", "coordinateEvidence": "Published OurAirports dataset point; not an official ARP or evidence of current operations or schedules." },
-  "boxes": { "play": [-24.76, 25.78, -24.52, 26.03], "core": [-24.693136, 25.863847, -24.623136, 25.953847], "outline": [-24.81, 25.73, -24.47, 26.08], "wide": [-25.335, 25.205, -23.945, 26.605] },
-  "waterRecipe": { "kind": "inland", "wideWater": false },
+    "id": "2864",
+    "ident": "FBSK",
+    "name": "Sir Seretse Khama International Airport",
+    "municipality": "Gaborone",
+    "isoCountry": "BW",
+    "icao": "FBSK",
+    "iata": "GBE",
+    "coordinatesWgs84": [
+      25.9182,
+      -24.555201
+    ],
+    "scheduledService": "yes",
+    "sourceRecordUrl": "https://ourairports.com/airports/FBSK/",
+    "datasetUrl": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+    "datasetSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906",
+    "coordinateEvidence": "Published OurAirports dataset point; not an official ARP or evidence of current operations or schedules."
+  },
+  "boxes": {
+    "play": [
+      -24.76,
+      25.78,
+      -24.52,
+      26.03
+    ],
+    "core": [
+      -24.693136,
+      25.863847,
+      -24.623136,
+      25.953847
+    ],
+    "outline": [
+      -24.81,
+      25.73,
+      -24.47,
+      26.08
+    ],
+    "wide": [
+      -25.335,
+      25.205,
+      -23.945,
+      26.605
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
   "discovery": {
-    "role": "Initial Overpass discovery used for city/place selection only; it did not generate the geometry assets.", "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+    "role": "Initial Overpass discovery used for city/place selection only; it did not generate the geometry assets.",
+    "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
     "answers": {
-      "city": { "querySha256": "2b3dc0e111a75f93c47127c460dacdb7ec388c00e4a25feabbe1042d005186d0", "responseSha256": "7f3233d648f1c7446174666a27c3573d6d63964d7078ff66a49ec2eeb49f8983", "bytes": 2870, "elements": 1 },
-      "places": { "querySha256": "d3dfb82d2072aed26a0a1a2f79cfdfe29935845f3251a761957e51a7bbbe693b", "responseSha256": "30285b76d5b52a4c83486e7b3fda548943eb34752c6d40c76fa609d57329eb38", "bytes": 36679, "elements": 157 },
-      "extras": { "querySha256": "ba29cc5aca4d657ebf377d31e864845be31f4743aeb49733a395f77d79397066", "responseSha256": "483d4f87d55b77456576be673078ee0aacc78d9eb47e1d6437d7505c16cfa248", "bytes": 21280, "elements": 89 }
+      "city": {
+        "querySha256": "2b3dc0e111a75f93c47127c460dacdb7ec388c00e4a25feabbe1042d005186d0",
+        "responseSha256": "7f3233d648f1c7446174666a27c3573d6d63964d7078ff66a49ec2eeb49f8983",
+        "bytes": 2870,
+        "elements": 1
+      },
+      "places": {
+        "querySha256": "d3dfb82d2072aed26a0a1a2f79cfdfe29935845f3251a761957e51a7bbbe693b",
+        "responseSha256": "30285b76d5b52a4c83486e7b3fda548943eb34752c6d40c76fa609d57329eb38",
+        "bytes": 36679,
+        "elements": 157
+      },
+      "extras": {
+        "querySha256": "ba29cc5aca4d657ebf377d31e864845be31f4743aeb49733a395f77d79397066",
+        "responseSha256": "483d4f87d55b77456576be673078ee0aacc78d9eb47e1d6437d7505c16cfa248",
+        "bytes": 21280,
+        "elements": 89
+      }
     }
   },
   "geometryInput": {
-    "role": "Explicit Geofabrik PBF extract and adapter outputs used as geometry and terrain input.", "kind": "geofabrik-pbf", "datasetUrl": "https://download.geofabrik.de/africa/botswana-261009.osm.pbf", "datasetSha256": "09f35d1e587f74a1751f02c296ce79263076dbaa3a39ccc97bf65cb0806dff0a", "pbfHeaderTimestamp": "2026-10-09T20:21:04Z", "adapter": "pbf-extract-v2.py/v2-explicit-water", "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f", "comparison": "city-queue/gaborone-pbf-comparison.json",
+    "role": "Explicit Geofabrik PBF extract and adapter outputs used as geometry and terrain input.",
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/botswana-261009.osm.pbf",
+    "datasetSha256": "09f35d1e587f74a1751f02c296ce79263076dbaa3a39ccc97bf65cb0806dff0a",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+    "comparison": "city-queue/gaborone-pbf-comparison.json",
     "extracts": [
-      { "file": "extras.json", "sha256": "fc30000f85e2ed7553c2887508a8def7b529fa10628a76a56cfb72578b6a6480", "elements": 89 },
-      { "file": "landuse.json", "sha256": "86b95a3bc7ee37855ff7f61c410db4b53b9caca26998ab91eebcb08b98c90f21", "elements": 312 },
-      { "file": "places.json", "sha256": "15fa4782af907722374d9ac6442399fa568f82a8adf3635c2b08ef27d64e348b", "elements": 157 },
-      { "file": "roads.json", "sha256": "9228c71571799d11f46655fc332589a76a63a6af8e49b9c953cac22917c5d56f", "elements": 308 },
-      { "file": "water.json", "sha256": "1d9f68597baab44d5fac4692d78f2a37496dcb819a2a36bf80840d4132a396e9", "elements": 32 }
+      {
+        "file": "extras.json",
+        "sha256": "fc30000f85e2ed7553c2887508a8def7b529fa10628a76a56cfb72578b6a6480",
+        "elements": 89
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "86b95a3bc7ee37855ff7f61c410db4b53b9caca26998ab91eebcb08b98c90f21",
+        "elements": 312
+      },
+      {
+        "file": "places.json",
+        "sha256": "15fa4782af907722374d9ac6442399fa568f82a8adf3635c2b08ef27d64e348b",
+        "elements": 157
+      },
+      {
+        "file": "roads.json",
+        "sha256": "9228c71571799d11f46655fc332589a76a63a6af8e49b9c953cac22917c5d56f",
+        "elements": 308
+      },
+      {
+        "file": "water.json",
+        "sha256": "1d9f68597baab44d5fac4692d78f2a37496dcb819a2a36bf80840d4132a396e9",
+        "elements": 32
+      }
     ]
   },
-  "generatedAssets": { "facts.ts": { "bytes": 1388, "sha256": "741a10fc7971c936be707f914c7c0d29eca11a7bb20e097b3f5cca407cf1d652" }, "geometry.ts": { "bytes": 27398, "sha256": "4d7c8c947f4a2b54816be2e56098f38c5395faa1205e9abe511ab6c55f2da4c4" }, "places.ts": { "bytes": 7924, "sha256": "d415bfe006d4348d8cb81a5856e69f3a194bb6dab15f77a3466b0e2ec5c91e92" }, "terrain.ts": { "bytes": 17718, "sha256": "4fc0b29d8af3f1a84b54f4160e97670a7fcd361d995745d872f6f3daa8eec425" }, "index.ts": { "bytes": 259, "sha256": "df7421684f87635352de64a4705d30a608db21ae3aabd093b65c3a8e9441116c" }, "content.ts": { "bytes": 204, "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb" }, "map.ts": { "bytes": 289, "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c" } },
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1388,
+      "sha256": "741a10fc7971c936be707f914c7c0d29eca11a7bb20e097b3f5cca407cf1d652"
+    },
+    "geometry.ts": {
+      "bytes": 27705,
+      "sha256": "9f7ff101fcdbf12b7c56a6b68e586ab9b0b39d18be70d43d40f7577487428113"
+    },
+    "places.ts": {
+      "bytes": 7930,
+      "sha256": "94778496630f96723356abb1b4815a6e303e7d021ed29c258c52b7c60b61fff9"
+    },
+    "terrain.ts": {
+      "bytes": 19556,
+      "sha256": "d8028958ca57a7ae1a16765b6ce780867b6a9a9e09e3a74e69b62350db3c33ec"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "df7421684f87635352de64a4705d30a608db21ae3aabd093b65c3a8e9441116c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
   "licence": "OpenStreetMap ODbL-1.0; Geofabrik dataset terms; OurAirports public-domain dataset",
   "scope": "Generated Gaborone detailed-tier source and asset provenance only. Visual, contract, catalogue, hosted, and rollout acceptance remain pending."
 }

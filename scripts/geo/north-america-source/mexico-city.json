@@ -25,7 +25,6 @@
     "commit": "ecead39624006017b34acf27a4b098c9cc8a4635",
     "snapshotDate": "2026-10-11",
     "commitTimestamp": "2026-10-11T01:53:12Z"
-  }
-,
-  "executionNote": "Retry after run38179933101 was cancelled at35m during derivation without source receipts; run38182309474 exited124 because its inner shell timeout remained25m; corrected inner/step budget is75m and partial receipts/HOLD survive outside the raw PBF"
+  },
+  "executionNote": "Retry after run38179933101 was cancelled at35m during derivation without source receipts; run38182309474 exited124 because its inner shell timeout remained25m; corrected inner/step budget is75m and partial receipts/HOLD survive outside the raw PBF; next attempt applies the verified 75m timeout used by the shell command."
 }

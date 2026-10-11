@@ -96,6 +96,7 @@ const catalogueOfModule = (module: CityModule): CityCatalogueEntry => Object.fre
   lat: module.rules.atlas.lat,
   open: module.rules.status === 'open',
   airport: module.rules.hubs.some((hub) => hub.mode === 'air'),
+  ...(module.rules.generatedLinkPolicy ? { generatedLinkPolicy: module.rules.generatedLinkPolicy } : {}),
   ...(module.rules.atlas.teaser ? { teaser: module.rules.atlas.teaser } : {}),
   ...(module.rules.atlas.preview ? { preview: module.rules.atlas.preview } : {}),
 })
@@ -168,7 +169,7 @@ export function allCityLinks(): readonly CityLink[] {
     if (existing && !sameLink(existing, link)) throw new Error(`Conflicting fixtures city link ${key}`)
     fixtureLinks.set(key, link); merged.set(key, link)
   }
-  const open = CITY_CATALOGUE.filter((city) => city.open).map((city) => ({ id: city.id, name: city.name, lon: city.lon, lat: city.lat, airport: city.airport, countryId: city.countryISO ?? 'ng' }))
+  const open = CITY_CATALOGUE.filter((city) => city.open).map((city) => ({ id: city.id, name: city.name, lon: city.lon, lat: city.lat, airport: city.airport, countryId: city.countryISO ?? 'ng', generatedLinkPolicy: city.generatedLinkPolicy }))
   for (const link of generateCityLinks(open, [...merged.values()])) merged.set(linkKey(link), link)
   return linkCache = Object.freeze([...merged.values()])
 }

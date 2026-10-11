@@ -1,5 +1,5 @@
 import { timedLink } from '../content/travel.ts'
-import type { CityLink } from '../../types/content.ts'
+import type { CityLink, CityModuleRules } from '../../types/content.ts'
 
 /**
  * Links between cities that nobody wrote by hand. A pure function of the open cities, so a city opened later
@@ -34,6 +34,7 @@ export interface LinkableCity {
   airport: boolean
   /** Known country identity permits long domestic road journeys. */
   countryId?: string
+  generatedLinkPolicy?: CityModuleRules['generatedLinkPolicy']
 }
 
 const EARTH_RADIUS_KM = 6371
@@ -54,7 +55,7 @@ const pairKey = (a: string, b: string, mode: string): string => `${[a, b].sort()
 /** The links missing between `cities`, given the `authored` ones. Pairs are listed once, ids in alphabetical order. */
 export function generateCityLinks(cities: readonly LinkableCity[], authored: readonly Pick<CityLink, 'a' | 'b' | 'mode'>[]): readonly CityLink[] {
   const have = new Set(authored.map(link => pairKey(link.a, link.b, link.mode)))
-  const usable = cities.filter(city => Number.isFinite(city.lon) && Number.isFinite(city.lat)).sort((x, y) => (x.id < y.id ? -1 : x.id > y.id ? 1 : 0))
+  const usable = cities.filter(city => city.generatedLinkPolicy !== 'authored-only' && Number.isFinite(city.lon) && Number.isFinite(city.lat)).sort((x, y) => (x.id < y.id ? -1 : x.id > y.id ? 1 : 0))
   const made: CityLink[] = []
   for (let i = 0; i < usable.length; i++) for (let j = i + 1; j < usable.length; j++) {
     const a = usable[i]!, b = usable[j]!, air = Math.round(greatCircleKm(a, b)), road = Math.round(air * GENERATED_LINKS.roadFactor)

@@ -1435,6 +1435,8 @@ export interface CityModuleRules<
   /** Advertises a lazy full-state local-government overview. */
   hasStateOverview?: boolean
   hubs: readonly CityHub<HubId>[]
+  /** Restricts travel to authored links while retaining real transport hub metadata. */
+  generatedLinkPolicy?: 'authored-only'
   links: readonly CityLink[]
 }
 

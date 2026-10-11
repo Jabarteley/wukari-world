@@ -90,8 +90,9 @@ test('no two Kano scenes are the same scene, and each takes its sign from the ve
   for (const [kind, variants] of Object.entries(VARIANTS)) {
     for (const variant of Object.keys(variants)) {
       const entry = buildVenueScene(kit, { id: `${kind}-${variant}`, label: 'Test Place', scene: { kind, variant } } as SceneVenue, CITY);
-      const key = `${entry.stats().triangles}`;
-      assert.ok(!sizes.has(key), `${kind}/${variant} has the same triangle count as ${sizes.get(key)}`);
+      // A scene is told apart by its size and where its spots stand (the people in it are drawn at a few fixed sizes, so two different scenes can share a size).
+      const key = `${entry.stats().triangles}:${JSON.stringify(entry.anchors)}`;
+      assert.ok(!sizes.has(key), `${kind}/${variant} is the same scene as ${sizes.get(key)}`);
       sizes.set(key, `${kind}/${variant}`);
       // The name on the scene is drawn from the label: a longer label draws more lettering.
       const renamed = buildVenueScene(kit, { id: `${kind}-${variant}`, label: 'Another Test Place Entirely', scene: { kind, variant } } as SceneVenue, CITY);

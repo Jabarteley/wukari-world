@@ -83,7 +83,7 @@ test('an idle preview renders nothing; each change costs exactly one frame', asy
     const { preview, canvas, host, renderer, clock } = make();
     const count = () => preview.diagnostics().renderCount;
     assert.equal(count(), 1, 'one frame to show the Sim');
-    assert.ok(preview.diagnostics().triangles > 10000, 'the preview uses the high-detail avatar');
+    assert.ok(preview.diagnostics().triangles > 1800, 'the preview uses the high-detail avatar');
     await new Promise((resolve) => original.timeout(resolve as () => void, 120));
     assert.equal(count(), 1, 'idle: zero renders');
     assert.equal(renderer.calls.render, 1);
@@ -217,7 +217,7 @@ test('the camera frames the whole Sim at any stage shape', () => {
   }
 });
 
-test('three detail levels: the crowd budget holds at low, medium is a light version of the full model, high is the full model', () => {
+test('three detail levels: the crowd budget holds at low, medium is a lighter version of the one figure, high is its finest', () => {
   assert.deepEqual([...DETAILS], ['low', 'medium', 'high']);
   const triangles = (look: Record<string, unknown>, detail: DetailLevel, pose: Pose = 'stand') => { const batch = createBatch(THREE); drawAvatar(batch, look, { detail, pose, seed: 'x', marker: 'crown' }); return batch.triangles; };
   const range: Record<DetailLevel, [number, number]> = { low: [Infinity, 0], medium: [Infinity, 0], high: [Infinity, 0] };
@@ -229,8 +229,8 @@ test('three detail levels: the crowd budget holds at low, medium is a light vers
     }
   }
   assert.ok(range.low[1] <= AVATAR_LOW_TRIANGLES.value, `low detail: at most 600 triangles whatever is worn (${range.low})`);
-  assert.ok(range.medium[0] >= AVATAR_MEDIUM_TRIANGLES_MIN.value && range.medium[1] <= AVATAR_MEDIUM_TRIANGLES.value, `medium detail: a couple of thousand triangles (${range.medium})`);
-  assert.ok(range.high[0] >= AVATAR_HIGH_TRIANGLES_MIN.value && range.high[1] <= AVATAR_HIGH_TRIANGLES.value, `high detail: a full model (${range.high})`);
+  assert.ok(range.medium[0] >= AVATAR_MEDIUM_TRIANGLES_MIN.value && range.medium[1] <= AVATAR_MEDIUM_TRIANGLES.value, `medium detail: under about three thousand triangles (${range.medium})`);
+  assert.ok(range.high[0] >= AVATAR_HIGH_TRIANGLES_MIN.value && range.high[1] <= AVATAR_HIGH_TRIANGLES.value, `high detail: the finest version of the figure (${range.high})`);
   assert.equal(normalizeLook({ skin: 'skin-6' }, 'a').skin, '#5e3620', 'the game’s own skin ids keep their tone in a scene');
   assert.equal(normalizeLook({ skin: 'skin-1' }, 'b').skin, '#e0ac7e');
 });
@@ -267,7 +267,7 @@ test('every option changes the model at every detail level, and one batch can mi
   // The player at medium or high among a low crowd, in one batch.
   const low = createBatch(THREE); drawAvatar(low, { body: 'man' }, { seed: 'a', x: 0 }); drawAvatar(low, { body: 'woman' }, { seed: 'b', x: 1 });
   const mixed = createBatch(THREE); drawAvatar(mixed, { body: 'man' }, { seed: 'a', x: 0, detail: 'medium' }); drawAvatar(mixed, { body: 'woman' }, { seed: 'b', x: 1 });
-  assert.ok(mixed.triangles > low.triangles + 1000 && mixed.triangles < low.triangles + 4500);
+  assert.ok(mixed.triangles > low.triangles + 700 && mixed.triangles < low.triangles + 4500);
   assert.equal(mixed.build(NO_MATERIALS).meshes.length, 1, 'still one mesh: no extra draw call');
 });
 

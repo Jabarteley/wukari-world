@@ -9,17 +9,22 @@ import { createKit } from '../kit.ts';
 import { buildHomeScene } from '../home-scene.ts';
 import { createLife } from '../../life.ts';
 import type { LifeState } from '../../types/life.ts';
-import { bodyAllowed, bodyImports, drawsWebGL2 } from './gate.ts';
+import { SKINNED_BODY, bodyAllowed, bodyImports, drawsWebGL2 } from './gate.ts';
 
-test('bodyAllowed: never on Data Saver, 2G or the low tier', () => {
-  assert.equal(bodyAllowed({ hardwareConcurrency: 8, deviceMemory: 8 }), true);
-  assert.equal(bodyAllowed({}), true, 'unreported values do not count against a device');
-  assert.equal(bodyAllowed({ connection: { saveData: true } }), false);
-  assert.equal(bodyAllowed({ connection: { effectiveType: '2g' } }), false);
-  assert.equal(bodyAllowed({ connection: { effectiveType: 'slow-2g' } }), false);
-  assert.equal(bodyAllowed({ hardwareConcurrency: 2 }), false);
-  assert.equal(bodyAllowed({ deviceMemory: 2 }), false);
-  assert.equal(bodyAllowed(null), false, 'no navigator: no');
+test('one figure everywhere: the skinned body is switched off, so no device asks for it', () => {
+  assert.equal(SKINNED_BODY, false);
+  assert.equal(bodyAllowed({ hardwareConcurrency: 8, deviceMemory: 8 }), false);
+});
+
+test('bodyAllowed (switch on): never on Data Saver, 2G or the low tier', () => {
+  assert.equal(bodyAllowed({ hardwareConcurrency: 8, deviceMemory: 8 }, true), true);
+  assert.equal(bodyAllowed({}, true), true, 'unreported values do not count against a device');
+  assert.equal(bodyAllowed({ connection: { saveData: true } }, true), false);
+  assert.equal(bodyAllowed({ connection: { effectiveType: '2g' } }, true), false);
+  assert.equal(bodyAllowed({ connection: { effectiveType: 'slow-2g' } }, true), false);
+  assert.equal(bodyAllowed({ hardwareConcurrency: 2 }, true), false);
+  assert.equal(bodyAllowed({ deviceMemory: 2 }, true), false);
+  assert.equal(bodyAllowed(null, true), false, 'no navigator: no');
 });
 
 test('drawsWebGL2: false without a WebGL2 context', () => {
@@ -68,7 +73,7 @@ test('a page address cannot turn the body off or on: ?body=procedural is ignored
   const had = Object.getOwnPropertyDescriptor(g, 'location');
   Object.defineProperty(g, 'location', { value: { search: '?body=procedural' }, configurable: true });
   try {
-    assert.equal(bodyAllowed({ hardwareConcurrency: 8, deviceMemory: 8 }), true);
+    assert.equal(bodyAllowed({ hardwareConcurrency: 8, deviceMemory: 8 }, true), true);
   } finally {
     if (had) Object.defineProperty(g, 'location', had); else delete g.location;
   }

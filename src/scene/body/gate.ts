@@ -1,6 +1,6 @@
 /**
- * The skinned body's capability gate (E-A). Every player gets the skinned body (src/scene/body/skinned.ts) in place of
- * the procedural avatar (src/scene/characters.ts) — there is no switch. The only ways out are what the device can do:
+ * The skinned body's capability gate (E-A). When SKINNED_BODY is on, every player gets the skinned body (src/scene/body/skinned.ts) in place of
+ * the procedural avatar (src/scene/characters.ts). The only ways out are what the device can do:
  * no WebGL2, a low-tier device, Data Saver or 2G, or a body file that fails to fetch or parse.
  *
  * This file is the only part of the body the scenes import up front. It holds no Three.js and no assets: the body
@@ -16,11 +16,19 @@ export interface BodyDevice {
 }
 
 /**
+ * One figure everywhere: the drawn character (src/scene/characters.ts) is what the creator, the home, the venues and the street
+ * show, for the player, other players and everyone else, so a look is the same person on every screen. The skinned body stays in
+ * the repository behind this switch (a build-time constant, not a setting): while it is false bodyAllowed() says no on every device
+ * and nothing here is ever fetched.
+ */
+export const SKINNED_BODY = false;
+
+/**
  * Whether this device should fetch the body at all. No on Data Saver, on 2G, and on the low tier: two cores or fewer,
  * or 2 GB of memory or less (what the browser reports; an unreported value does not count against the device).
  */
-export function bodyAllowed(device: BodyDevice | null | undefined = globalThis.navigator as BodyDevice | undefined): boolean {
-  if (!device) return false;
+export function bodyAllowed(device: BodyDevice | null | undefined = globalThis.navigator as BodyDevice | undefined, enabled: boolean = SKINNED_BODY): boolean {
+  if (!enabled || !device) return false;
   const connection = device.connection;
   if (connection?.saveData === true || connection?.effectiveType === '2g' || connection?.effectiveType === 'slow-2g') return false;
   if (typeof device.hardwareConcurrency === 'number' && device.hardwareConcurrency > 0 && device.hardwareConcurrency <= 2) return false;

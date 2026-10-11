@@ -26,7 +26,7 @@ test('the numbers are the ones the tests and source hard-coded before the table'
   assert.deepEqual(values, {
     SCENE_CROWD_TRIANGLES: 15000, PLAYER_FIGURE_TRIANGLES: 2000, SCENE_TRIANGLES: 17000, SCENE_DRAW_CALLS: 60,
     SCENE_MESHES: 15, SCENE_MESHES_WITH_WALLS: 21, SCENE_MESHES_NO_CROWD: 13, SCENE_LIGHTS: 4,
-    AVATAR_LOW_TRIANGLES: 600, AVATAR_MEDIUM_TRIANGLES_MIN: 1500, AVATAR_MEDIUM_TRIANGLES: 4500, AVATAR_HIGH_TRIANGLES_MIN: 10000, AVATAR_HIGH_TRIANGLES: 34000,
+    AVATAR_LOW_TRIANGLES: 600, AVATAR_MEDIUM_TRIANGLES_MIN: 1200, AVATAR_MEDIUM_TRIANGLES: 3200, AVATAR_HIGH_TRIANGLES_MIN: 1800, AVATAR_HIGH_TRIANGLES: 4500,
     CITY_TRIANGLES: 90000, CITY_DRAW_CALLS: 40, HOUSES_DETAIL_TRIANGLES: 10000, HOUSES_MAX_DETAILED: 9, HOUSES_DRAW_CALLS: 16,
     STARTUP_RAW: 615000, STARTUP_GZIP: 223000, LOADING_RAW: 92000, LOADING_GZIP: 37000, SCENE_HOST_RAW: 192000, SCENE_HOST_GZIP: 71000,
   })
@@ -57,7 +57,7 @@ test('source constants that mirror the table equal it', () => {
 test('withinBudget treats the limit as inside, and a floor the other way round', () => {
   const max: Budget = { ...BUDGETS.SCENE_DRAW_CALLS }, min: Budget = { ...BUDGETS.AVATAR_MEDIUM_TRIANGLES_MIN }
   assert.deepEqual([59, 60, 61].map((n) => withinBudget(max, n)), [true, true, false])
-  assert.deepEqual([1499, 1500, 1501].map((n) => withinBudget(min, n)), [false, true, true])
+  assert.deepEqual([1199, 1200, 1201].map((n) => withinBudget(min, n)), [false, true, true])
   assert.equal(describeBudget(BUDGETS.SCENE_TRIANGLES), '17,000 triangles (max)')
 })
 

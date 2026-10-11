@@ -84,22 +84,22 @@ export const AVATAR_LOW_TRIANGLES: Budget = {
   why: 'Crowds and venue and home scenes draw many figures: low detail holds whatever is worn.',
 }
 export const AVATAR_MEDIUM_TRIANGLES_MIN: Budget = {
-  value: 1500, unit: 'triangles', limit: 'min', status: 'current',
+  value: 1200, unit: 'triangles', limit: 'min', status: 'current',
   enforcedIn: 'src/scene/avatar-preview.test.ts',
   why: 'Medium is a light version of the full model, not the low one.',
 }
 export const AVATAR_MEDIUM_TRIANGLES: Budget = {
-  value: 4500, unit: 'triangles', limit: 'max', status: 'current',
+  value: 3200, unit: 'triangles', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/avatar-preview.test.ts',
   why: "Medium is the player's own figure in a scene: a couple of thousand triangles.",
 }
 export const AVATAR_HIGH_TRIANGLES_MIN: Budget = {
-  value: 10000, unit: 'triangles', limit: 'min', status: 'current',
+  value: 1800, unit: 'triangles', limit: 'min', status: 'current',
   enforcedIn: 'src/scene/avatar-preview.test.ts',
-  why: 'High is the full model the look preview shows.',
+  why: 'High is the finest version of the one figure, the one the look preview shows.',
 }
 export const AVATAR_HIGH_TRIANGLES: Budget = {
-  value: 34000, unit: 'triangles', limit: 'max', status: 'current',
+  value: 4500, unit: 'triangles', limit: 'max', status: 'current',
   enforcedIn: 'src/scene/avatar-preview.test.ts',
   why: 'The full model with every accessory still draws in one preview frame.',
 }

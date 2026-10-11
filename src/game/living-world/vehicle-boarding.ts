@@ -19,7 +19,7 @@ export const SEDAN_BOARDING_DESCRIPTOR = Object.freeze({
       'src/scene/body/stand-in.ts': '64bd30a222d7f5b8b1215846aa56a7bd41a4c6c0361a797d54de1d969d3a2257',
       'src/scene/body/skinned.ts': '971a080a5d52bbe351f6b59e5377116d605a8a5c73d8c5e63e146db73a445aab',
       'src/scene/body/poses.ts': '7f328e67ec33d1c94516d76746635e45d8f90a01416176534fa0448d4e797d5e',
-      'src/scene/characters.ts': '3d5990a1dd7a01098a1ab37f820e5f27027d4336090972b56f1e96c44ada55b6',
+      'src/scene/characters.ts': '7fcf80c306e9764b8c2bdb0cda7f7a8cff50db583fb318b4f9e18357402dd437',
       'src/types/avatar.ts': '612d9ccf82dbd32a06926ca79dc837bbc3179ffa11ddb8ec45a9f312ec76eb6d',
       'src/app/features/start/lookModel.ts': 'b3323c862f6aa40a10db0390c7ee96f170b8a18c76b5d9aaf64d3e90fb86ef85',
     }),

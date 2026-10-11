@@ -95,8 +95,9 @@ test('no two Port Harcourt scenes are the same scene, and each keeps its people 
   for (const [kind, variants] of Object.entries(VARIANTS)) {
     for (const variant of Object.keys(variants)) {
       const entry = buildVenueScene(kit, { id: `${kind}-${variant}`, label: 'Test Place', scene: { kind, variant } } as SceneVenue, CITY);
-      const key = `${entry.stats().triangles}`;
-      assert.ok(!sizes.has(key), `${kind}/${variant} has the same triangle count as ${sizes.get(key)}`);
+      // A scene is told apart by its size and where its spots stand (the people in it are drawn at a few fixed sizes, so two different scenes can share a size).
+      const key = `${entry.stats().triangles}:${JSON.stringify(entry.anchors)}`;
+      assert.ok(!sizes.has(key), `${kind}/${variant} is the same scene as ${sizes.get(key)}`);
       sizes.set(key, `${kind}/${variant}`);
       assert.ok(entry.camera.landscape.length === 3 && entry.camera.portrait.length === 3, `${kind}/${variant} has a camera for both orientations`);
       // Everyone the scene places stands inside its walkable bounds: on the bank, the quay or the jetty, never in the creek.

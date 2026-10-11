@@ -1,17 +1,19 @@
 /**
  * OWNER: scenes
- * Procedural people.
+ * Procedural people: one smooth, rounded, low-detail figure (a round head about a sixth of the height, a neck,
+ * tapered torso, capsule limbs, mitten hands, simple shoes), drawn at three levels of detail.
  *
  *   normalizeLook(look, seed)            → a complete look; anything missing or unknown is chosen
  *                                          deterministically from `seed` (e.g. a public player id)
  *   drawAvatar(batch, look, options)     → draws one avatar into a geometry batch (build.ts).
  *                                          options.detail (per avatar, so one batch may mix them):
  *                                            'low'    default; crowds and scenes, at most 600 triangles
- *                                            'medium' the same model as 'high' with fewer segments and
- *                                                     without the smallest parts, about 2,000 triangles —
- *                                                     for the player's own avatar in a scene
- *                                            'high'   the character preview: a full model with a face,
- *                                                     hands, shoes, layered garments and printed fabric
+ *                                            'medium' the same smooth figure with fewer segments and fewer
+ *                                                     small parts, about 1,500 to 2,000 triangles — for the
+ *                                                     player's own avatar in a scene
+ *                                            'high'   the character preview: the same figure with a rounder
+ *                                                     face (ears, nose, highlights), hands with thumbs, two-part
+ *                                                     shoes and printed fabric, about 2,000 to 3,000 triangles
  *   buildAvatar(kit, look, options)      → THREE.Group holding one avatar (one or two meshes); with
  *                                          `rig: true` it is built as movable parts
  *                                          (userData.parts) that poseAvatar() turns
@@ -311,11 +313,11 @@ const SHOES: Record<string, Shoe> & { sneaker: Shoe } = { sneaker: ['#2c3340', '
 // from the hips (1.06 above the feet), where the upper body leans from.
 interface Measures { hip: number; waist: number; chest: number; shoulder: number; aspect: number; arm: number; elbow: number; wrist: number; leg: number; knee: number; calf: number; ankle: number; neck: number; legX: number }
 const BODY: Record<Body, Measures> = {
-  woman: { hip: 0.252, waist: 0.172, chest: 0.222, shoulder: 0.232, aspect: 0.7, arm: 0.07, elbow: 0.058, wrist: 0.044, leg: 0.108, knee: 0.08, calf: 0.078, ankle: 0.05, neck: 0.066, legX: 0.116 },
-  man: { hip: 0.236, waist: 0.222, chest: 0.292, shoulder: 0.312, aspect: 0.6, arm: 0.09, elbow: 0.074, wrist: 0.054, leg: 0.104, knee: 0.086, calf: 0.086, ankle: 0.056, neck: 0.088, legX: 0.112 },
+  woman: { hip: 0.262, waist: 0.185, chest: 0.226, shoulder: 0.246, aspect: 0.72, arm: 0.068, elbow: 0.057, wrist: 0.043, leg: 0.108, knee: 0.08, calf: 0.075, ankle: 0.05, neck: 0.06, legX: 0.115 },
+  man: { hip: 0.245, waist: 0.235, chest: 0.3, shoulder: 0.335, aspect: 0.62, arm: 0.09, elbow: 0.073, wrist: 0.054, leg: 0.106, knee: 0.086, calf: 0.083, ankle: 0.056, neck: 0.082, legX: 0.115 },
 };
-const HIP_Y = 1.06, SHOULDER_Y = 0.672;
-const HEAD = { y: 2.2, rx: 0.25, ry: 0.28, rz: 0.255 };
+const HIP_Y = 1.06, SHOULDER_Y = 0.64;
+const HEAD = { y: 2.14 };
 const CLOTH_WHITE = '#f3f0e8', INK = '#1f1a1a', GOLD = '#d9b048', CORAL = '#d8452c';
 const TAU = Math.PI * 2;
 
@@ -354,7 +356,7 @@ function smooth(keys: Ring[], per = 3): Ring[] {
   out.push([...keys[keys.length - 1]!]);
   return out;
 }
-const torsoKeys = (m: Measures): Ring[] => [[-0.14, m.hip * 0.93], [-0.02, m.hip], [0.25, m.waist], [0.5, m.chest], [0.655, m.shoulder], [0.725, m.shoulder * 0.8], [0.775, m.shoulder * 0.5], [0.8, m.neck + 0.022]];
+const torsoKeys = (m: Measures): Ring[] => [[-0.14, m.hip * 0.93], [-0.02, m.hip], [0.22, m.waist], [0.5, m.chest], [0.64, m.shoulder], [0.73, m.shoulder * 0.66], [0.79, m.neck + 0.075], [0.85, m.neck + 0.03]];
 const padded = (rings: Ring[], pad: number): Ring[] => rings.map(([y, r]) => [y, r + pad]);
 function radiusAt(rings: Ring[], y: number): number {
   if (y <= rings[0]![0]) return rings[0]![1];
@@ -408,134 +410,187 @@ function chain(b: Drawing, points: Vec3[], r0: number, r1: number, colour: Colou
     stick(b, points[i]!, points[i + 1]!, r0 + (r1 - r0) * t0, r0 + (r1 - r0) * t1, colour, seg);
   }
 }
-/** A strap across a loft from [y, angle] to [y, angle], lying on its surface. */
-function sling(b: Drawing, rings: Ring[], aspect: number, from: Ring, to: Ring, radius: number, colour: Colour, steps = 7, lift = 0.012): void {
-  const points = Array.from({ length: steps + 1 }, (_, i): Vec3 => { const t = i / steps, p = onLoft(rings, aspect, from[0] + (to[0] - from[0]) * t, from[1] + (to[1] - from[1]) * t, lift); return [p.x, p.y, p.z]; });
-  chain(b, points, radius, radius, colour, 5);
-}
-
 /**
- * Fabric print laid over a lofted garment. Ankara: rows of wax-print medallions (a disc, a ring
- * and a centre) with small diamonds between them; adire: indigo resist — fine pale double lines
- * and rows of ringed dots; aso-oke: narrow woven stripes with a bright thread between them.
+ * Fabric print laid over a garment, drawn as flat diamonds and squares (two triangles each) so a pattern costs a few
+ * hundred triangles. Ankara: a bold star motif in two colours with a third centre; adire: indigo resist rings, each a
+ * diamond inside a diamond; aso-oke: woven bands (wide, then a thin bright thread).
  */
 interface PrintOptions { aspect?: number; z?: number; from?: number; to?: number; size?: number; around?: number; seg?: number }
 function print(b: Drawing, look: Look, colours: Colours, rings: Ring[], { aspect = 1, z = 0, from = rings[0]![0], to = rings[rings.length - 1]![0], size = 1, around = 8, seg = 14 }: PrintOptions = {}): void {
   const [main, second, third] = colours;
-  const flat = (p: number, y: number, r: number, colour: Colour, sides: number, lift: number) => { const q = onLoft(rings, aspect, y, p, lift, z); b.cyl(q.x, y, q.z, r, 0.004, colour, { seg: sides, rx: Math.PI / 2, ry: q.ry }); };
-  const diamond = (a: number, y: number, s: number, colour: Colour, lift: number) => { const q = onLoft(rings, aspect, y, a, lift, z); b.quad(q.x, y, q.z, s, s, colour, { ry: q.ry, rz: Math.PI / 4 }); };
-  if (look.fabric === 'ankara') {
-    const step = 0.15 * size;
-    for (let y = from + step * 0.5, row = 0; y < to - step * 0.3; y += step, row++) {
-      for (let i = 0; i < around; i++) {
-        const a = (i + (row % 2) * 0.5) / around * TAU, swap = (i + row) % 2;
-        flat(a, y, 0.054 * size, swap ? third : second, 8, 0.003);
-        flat(a, y, 0.034 * size, swap ? second : third, 6, 0.006);
-        diamond(a, y, 0.026 * size, main, 0.01);
-        diamond(a + Math.PI / around, y + step * 0.02, 0.03 * size, swap ? second : third, 0.004);
-      }
-    }
-  } else if (look.fabric === 'adire') {
-    const step = 0.17 * size;
-    for (let y = from + step * 0.35, row = 0; y < to - 0.02; y += step, row++) {
-      band(b, rings, y - 0.012 * size, 0.008 * size, second, { seg, aspect, z });
-      band(b, rings, y + 0.012 * size, 0.008 * size, second, { seg, aspect, z });
-      const dotY = y + step / 2;
-      if (dotY > to - 0.03) break;
-      const dots = Math.round(around * 1.5);
-      for (let i = 0; i < dots; i++) {
-        const a = (i + (row % 2) * 0.5) / dots * TAU;
-        if (i % 2) { flat(a, dotY, 0.026 * size, second, 8, 0.004); flat(a, dotY, 0.014 * size, third, 6, 0.007); }
-        else diamond(a, dotY, 0.03 * size, second, 0.005);
-      }
-    }
-  } else if (look.fabric === 'asooke') {
-    const stripes = around * 3, cut = clip(rings, from, to);
-    for (let k = 0; k < cut.length - 1; k++) {
-      const [y0, r0] = cut[k]!, [y1, r1] = cut[k + 1]!;
-      for (let i = 0; i < stripes; i++) {
-        const a = (i + 0.5) / stripes * TAU, reach = Math.hypot(Math.sin(a), aspect * Math.cos(a)), kind = i % 3;
-        const p = onLoft(cut, aspect, (y0 + y1) / 2, a, 0.004, z);
-        b.box(p.x, (y0 + y1) / 2, p.z, (kind === 0 ? 0.034 : kind === 1 ? 0.008 : 0.018) * size, Math.hypot(y1 - y0, (r1 - r0) * reach) + 0.004, 0.008, kind === 0 ? third : kind === 1 ? second : shade(second, -0.25), { ry: p.ry, rx: Math.atan2((r1 - r0) * reach, y1 - y0) });
+  const quad = (a: number, y: number, s: number, colour: Colour, lift: number, turn: number) => { const q = onLoft(rings, aspect, y, a, lift, z); b.quad(q.x, y, q.z, s, s, colour, { ry: q.ry, rz: turn }); };
+  if (look.fabric === 'asooke') {
+    for (let y = from + 0.04, i = 0; y < to - 0.03; y += i % 2 ? 0.05 : 0.14, i++) band(b, rings, y, i % 2 ? 0.014 : 0.05, i % 2 ? second : third, { seg, aspect, z, lift: 0.004 });
+    return;
+  }
+  const step = (look.fabric === 'ankara' ? 0.25 : 0.27) * size;
+  for (let y = from + step * 0.5, row = 0; y < to - step * 0.3; y += step, row++) {
+    for (let i = 0; i < around; i++) {
+      const a = (i + (row % 2) * 0.5) / around * TAU, swap = (i + row) % 2;
+      if (look.fabric === 'ankara') {
+        quad(a, y, 0.13 * size, swap ? third : second, 0.004, 0);
+        quad(a, y, 0.13 * size, swap ? second : third, 0.006, Math.PI / 4);
+        quad(a, y, 0.05 * size, main, 0.008, Math.PI / 4);
+      } else {
+        quad(a, y, 0.17 * size, second, 0.004, Math.PI / 4);
+        quad(a, y, 0.11 * size, main, 0.006, Math.PI / 4);
+        quad(a, y, 0.05 * size, third, 0.008, Math.PI / 4);
       }
     }
   }
 }
-/** Coarse fabric for the cheaper levels: the garment's own rings take the fabric's colours. */
+/** Coarse fabric for the cheapest level: the garment's own rings take the fabric's colours. */
 const weave = (look: Look, colours: Colours): Paint => ({ ankara: [colours[0], colours[1], colours[0], colours[2]], adire: [colours[0], colours[0], colours[1], colours[0]], asooke: [colours[0], colours[2]] }[look.fabric as string] || colours[0]);
 
-// ---- Low detail (crowds, venue and home scenes): at most 600 triangles --------------------------
+// ---- The figure: one smooth, rounded, low-detail person at three sizes of detail ------------------
+// Everything is a loft of rings, a ball or a flat shape: no boxes in the body. The level only changes how many segments
+// the curves have (coarse() below), how many small parts there are and whether a fabric is printed or just banded.
 
+/** k: the share of each curve's segments kept on the body, kh: on the head and hair; per: rings added between a loft's key rings. */
+interface Level { k: number; kh: number; per: number; n: 0 | 1 | 2 }
+const LEVELS: Record<DetailLevel, Level> = { low: { k: 0.34, kh: 0.42, per: 1, n: 0 }, medium: { k: 0.55, kh: 0.62, per: 1, n: 1 }, high: { k: 0.52, kh: 0.8, per: 2, n: 2 } };
 const LOW_BUDGET = AVATAR_LOW_TRIANGLES.value;
-function headLow(b: Drawing, look: Look, sleeping = false): void {
-  const age = look.appearance?.ageAppearance === 'elder' ? 1 : look.appearance?.ageAppearance === 'mature' ? 0.55 : 0;
-  b.ball(0, HEAD.y - age * 0.004, 0, 0.26 + age * 0.002, 0.27 + age * 0.004, 0.26, look.skin, { seg: 8 });
-  for (const side of [-1, 1]) b.quad(side * 0.095, 2.215, 0.249, 0.055, sleeping ? 0.006 : 0.065, INK, { ry: side * 0.3 });
-  b.quad(0, 2.07, 0.238, 0.11, 0.026, mix(look.skin, '#4a1d1a', 0.55), { rx: 0.25 });
+
+/** The same batch with every curved primitive drawn with fewer segments. */
+function coarse(b: Drawing, scale: number, minCylinder = 5): Drawing {
+  const fewer = (o: BatchOptions | undefined, least: number): BatchOptions => ({ ...o, seg: Math.max(least, Math.round((o?.seg || 8) * scale)) });
+  const lite: Drawing = Object.create(b);
+  lite.ball = (x: number, y: number, z: number, rx: number, ry: number, rz: number, colour: Colour, o?: BatchOptions) => b.ball(x, y, z, rx, ry, rz, colour, fewer(o, 5));
+  lite.cyl = (x: number, y: number, z: number, r: number, h: number, colour: Colour, o?: BatchOptions) => b.cyl(x, y, z, r, h, colour, fewer(o, minCylinder));
+  return lite;
 }
-const capLow = (b: Drawing, c: Colour) => b.ball(0, 2.32, -0.03, 0.275, 0.19, 0.27, c, { seg: 7 });
-/** Draws one hairstyle: the colour, the look, the fabric colours and whether the fine detail is wanted. */
-type HairDraw = (b: Drawing, c: Colour, look: Look, colours: Colours, fine?: boolean) => void;
-const HAIR_LOW: Record<string, HairDraw> & { lowcut: HairDraw } = {
+const cover = (b: Drawing, rings: Ring[], from: number, to: number, pad: number, colour: Colour, seg: number) => loft(b, padded(clip(rings, from, to), pad), colour, { seg });
+/** Rods through points with a ball at every joint, so a bent rope has no gaps. */
+function rope(b: Drawing, points: Vec3[], r0: number, r1: number, colour: Colour, seg = 6): void {
+  chain(b, points, r0, r1, colour, seg);
+  for (let i = 1; i < points.length; i++) { const r = r0 + (r1 - r0) * i / (points.length - 1); b.ball(points[i]![0], points[i]![1], points[i]![2], r, r, r, colour, { seg: 6 }); }
+}
+
+// The head is drawn in its own frame: origin at the head's centre, +y up, +z towards the face.
+interface FaceShape { rx: number; ry: number; rz: number }
+const FACES: Record<Face, FaceShape> = { oval: { rx: 0.178, ry: 0.215, rz: 0.187 }, round: { rx: 0.2, ry: 0.2, rz: 0.2 }, long: { rx: 0.16, ry: 0.246, rz: 0.174 } };
+/** How far forward the face is at (x, y). */
+function faceZ(F: FaceShape, x: number, y: number): number {
+  return F.rz * Math.sqrt(Math.max(0.03, 1 - (x / F.rx) ** 2 - (y / F.ry) ** 2));
+}
+function headShape(b: Drawing, look: Look, F: FaceShape, n: number, sleeping: boolean): void {
+  const age = look.appearance?.ageAppearance === 'elder' ? 1 : look.appearance?.ageAppearance === 'mature' ? 0.55 : 0;
+  const skin = look.skin, woman = look.body === 'woman', mood = look.expression;
+  const dark = channels(skin).reduce((sum, v) => sum + v, 0) < 250, white = '#fbf6ec', eye = '#1b1210';
+  b.ball(0, 0, 0, F.rx, F.ry, F.rz, skin, { seg: 20 });
+  const ey = 0.012, ex = F.rx * 0.43;
+  for (const side of [-1, 1]) {
+    const x = side * ex, z = faceZ(F, x, ey), turn = side * 0.32;
+    if (!n) b.quad(x, ey, z + 0.014, 0.05, sleeping ? 0.008 : 0.064, eye, { ry: turn });
+    else if (!sleeping) { b.cyl(x, ey, z, 0.03, 0.012, eye, { seg: 14, rx: Math.PI / 2, ry: turn, sz: mood === 'grin' ? 0.95 : 1.2 }); b.quad(x - side * 0.01, ey + 0.015, z + 0.012, 0.016, 0.016, white, { rz: Math.PI / 4 }); }
+    else b.ball(x, ey, z, 0.03, 0.005, 0.012, eye, { seg: 6, ry: turn });
+    if (n) {
+      const by = ey + 0.06 + (mood === 'grin' ? 0.012 : 0), bz = faceZ(F, x, by);
+      b.quad(x, by, bz + 0.006, woman ? 0.066 : 0.076, woman ? 0.016 : 0.022, mix(look.hairColor, INK, 0.45), { ry: turn, rz: side * (mood === 'neutral' ? 0 : -0.14) });
+      if (n > 1) b.ball(side * F.rx * 0.985, -0.005, -0.012, 0.022, 0.042, 0.03, skin, { seg: 6 }); // ear
+    }
+  }
+  if (n > 1) b.ball(0, -0.032, faceZ(F, 0, -0.032) + 0.006, 0.022, 0.022, 0.022, shade(skin, dark ? 0.06 : -0.07), { seg: 6 }); // nose
+  const lip = mix(skin, dark ? '#b2545a' : '#a23f46', woman ? 0.65 : 0.5), my = -0.092, mz = faceZ(F, 0, my) + 0.002;
+  if (!n) b.quad(0, my, mz + 0.012, mood === 'neutral' ? 0.06 : 0.09, mood === 'grin' ? 0.04 : 0.016, mood === 'grin' ? white : lip);
+  else if (mood === 'grin') { b.ball(0, my, mz, 0.05, 0.022, 0.012, '#4a1a1a', { seg: 7 }); b.quad(0, my + 0.004, mz + 0.012, 0.075, 0.018, white); }
+  else if (mood === 'smile') b.ball(0, my, mz, 0.038, 0.0105, 0.012, lip, { seg: 7 }), n > 1 && [-1, 1].forEach((side) => b.ball(side * 0.04, my + 0.008, mz - 0.004, 0.012, 0.007, 0.008, shade(lip, -0.25), { seg: 5, rz: side * -0.7 }));
+  else b.ball(0, my, mz, 0.027, 0.0085, 0.01, lip, { seg: 6 });
+  if (age) for (const side of [-1, 1]) b.ball(side * 0.07, ey - 0.052, faceZ(F, side * 0.07, ey - 0.052) + 0.002, 0.03, 0.004 * age + 0.002, 0.006, mix(skin, INK, 0.22), { seg: 5, ry: side * 0.3 });
+}
+
+// ---- Hair, in the head's frame ---------------------------------------------------------------------
+/** The scalp's covering of hair: an ellipsoid tipped back so its edge is the hairline. */
+const cap = (b: Drawing, F: FaceShape, c: Colour, grow = 0, o?: BatchOptions) => b.ball(0, F.ry * 0.3, -0.035, F.rx * 1.05 + grow, F.ry * 0.78 + grow, F.rz * 1.07 + grow, c, { seg: 16, rx: -0.32, ...o });
+/** A point on the head's surface, az from the face (0) round to the back (π), el from the ears (0) up to the crown (π/2). */
+const onHead = (F: FaceShape, az: number, el: number, lift = 0): Vec3 => [Math.sin(az) * Math.cos(el) * (F.rx + lift), 0.02 + Math.sin(el) * (F.ry + lift), Math.cos(az) * Math.cos(el) * (F.rz + lift)];
+/** Points spread evenly over the upper part of a sphere (golden-angle spiral). */
+function dome(count: number, coverage = 0.6): Vec3[] {
+  return Array.from({ length: count }, (_, i): Vec3 => {
+    const up = 1 - (i + 0.5) / count * coverage * 2, r = Math.sqrt(Math.max(0, 1 - up * up)), turn = i * 2.39996;
+    return [Math.cos(turn) * r, up, Math.sin(turn) * r];
+  });
+}
+/** Chunky strands hanging from the head round the back, ear to ear; spread is how far round they go (π/2 is the ears). */
+function hang(b: Drawing, n: number, F: FaceShape, c: Colour, count: number, spread: number, length: number, r0: number, r1: number, { short = length * 0.55, from = 0.45, bead = null as Colour | null, knots = false } = {}): void {
+  for (let i = 0; i < count; i++) {
+    const az = Math.PI + ((i + 0.5) / count - 0.5) * 2 * spread, side = Math.abs(az - Math.PI) > 1.15, len = (side ? short : length) * (1 - ((i * 7) % 5) * 0.04);
+    const a = onHead(F, az, from, 0.012), mid = onHead(F, az, 0.02, 0.028), end: Vec3 = [mid[0] * 1.12, mid[1] - len, mid[2] * 1.12 - (side ? 0 : 0.03)];
+    if (n < 2) stick(b, mid, end, r0, r1, c, 5); else (knots ? rope : chain)(b, [a, mid, end], r0, r1, c, 5);
+    if (bead) b.ball(end[0], end[1] - r1, end[2], r1 * 1.5, r1 * 1.6, r1 * 1.5, bead, { seg: 5 });
+  }
+}
+type HairDraw = (b: Drawing, c: Colour, look: Look, colours: Colours, F: FaceShape, n: number) => void;
+const HAIR: Record<string, HairDraw> & { lowcut: HairDraw } = {
   bald() {},
-  lowcut(b, c) { b.ball(0, 2.31, -0.02, 0.273, 0.2, 0.27, c, { seg: 7 }); },
-  fade(b, c, look) {
-    b.ball(0, 2.27, -0.03, 0.266, 0.17, 0.264, mix(c, look.skin, 0.55), { seg: 6 });
-    b.ball(0, 2.39, -0.01, 0.23, 0.13, 0.235, c, { seg: 6 });
+  lowcut(b, c, _l, _c, F) { cap(b, F, c, 0.006); },
+  fade(b, c, look, _c, F, n) {
+    b.ball(0, F.ry * 0.2, -0.025, F.rx * 1.02, F.ry * 0.8, F.rz * 1.03, mix(c, look.skin, 0.62), { seg: 20, rx: -0.2 });
+    b.ball(0, F.ry * 0.46, -0.03, F.rx * 0.94, F.ry * 0.62, F.rz * 1.0, c, { seg: 18, rx: -0.22 });
+    if (n) b.cyl(0, F.ry * 0.86, -0.03, F.rx * 0.74, 0.07, c, { seg: 14, top: 0.88, sz: 1.1 });
   },
-  classic(b, c, look) {
-    b.ball(0, 2.33, -0.03, 0.285, 0.2, 0.275, c, { seg: 7 });
-    if (look.body === 'woman') b.ball(0, 2.13, -0.11, 0.32, 0.32, 0.24, c, { seg: 7 });
-    else b.ball(0.07, 2.46, 0.08, 0.17, 0.08, 0.14, c, { seg: 6 });
-  },
-  afro(b, c) { b.ball(0, 2.46, -0.09, 0.42, 0.37, 0.39, c, { seg: 8 }); },
-  curls(b, c) {
-    capLow(b, c);
-    for (let i = 0; i < 5; i++) b.ico(Math.sin(i * 1.26) * 0.18, 2.48 + (i % 2) * 0.04, Math.cos(i * 1.26) * 0.16 - 0.05, 0.12, 0.11, 0.12, c);
-  },
-  bun(b, c) { capLow(b, c); b.ball(0, 2.6, -0.12, 0.16, 0.15, 0.16, c, { seg: 6 }); },
-  ponytail(b, c) {
-    capLow(b, c);
-    b.ball(0, 2.42, -0.3, 0.1, 0.1, 0.1, c, { seg: 5 });
-    b.ball(0, 2.08, -0.42, 0.1, 0.34, 0.1, c, { seg: 5, rx: 0.3 });
-  },
-  long(b, c) {
-    b.ball(0, 2.33, -0.03, 0.285, 0.2, 0.28, c, { seg: 7 });
-    b.box(0, 1.86, -0.22, 0.52, 0.8, 0.12, c);
-    for (const side of [-1, 1]) b.box(side * 0.265, 2.02, -0.06, 0.09, 0.46, 0.2, c);
-  },
-  braids(b, c) {
-    capLow(b, c);
-    for (let i = 0; i < 5; i++) {
-      const turn = (i - 2) * 0.6, length = 0.62 + (i % 2) * 0.12;
-      b.box(Math.sin(turn) * 0.27, 2.3 - length / 2, -Math.cos(turn) * 0.27, 0.085, length, 0.085, c);
+  classic(b, c, look, _c, F, n) {
+    cap(b, F, c, 0.022);
+    if (look.body === 'woman') {
+      b.ball(0, -0.02, -0.045, F.rx * 1.3, F.ry * 1.0, F.rz * 1.08, c, { seg: 20 }); // a bob framing the face
+      if (n) b.ball(-0.05, F.ry * 0.78, F.rz * 0.58, F.rx * 0.95, 0.06, F.rz * 0.5, c, { seg: 12, rz: 0.28, rx: 0.4 }); // side-swept fringe
+    } else {
+      b.ball(0, F.ry * 0.82, -0.01, F.rx * 1.02, 0.09, F.rz * 1.04, c, { seg: 16, rx: -0.12 });
+      if (n) b.ball(0.02, F.ry * 0.83, F.rz * 0.5, F.rx * 0.8, 0.065, F.rz * 0.55, c, { seg: 12, rx: 0.2 }); // quiff
     }
   },
-  locs(b, c) {
-    b.ball(0, 2.34, -0.03, 0.285, 0.2, 0.28, c, { seg: 7 });
-    for (let i = 0; i < 5; i++) {
-      const turn = (i - 2) * 0.6;
-      b.box(Math.sin(turn) * 0.29, 2.08, -Math.cos(turn) * 0.28, 0.13, 0.5 + (i % 3) * 0.06, 0.13, c, { rz: Math.sin(turn) * 0.16 });
+  afro(b, c, _l, _c, F, n) { if (n) cap(b, F, c, 0.01); b.ball(0, F.ry * 0.5, -0.085, F.rx * 1.78, F.ry * 1.28, F.rz * 1.32, c, { seg: 22 }); },
+  curls(b, c, _l, _c, F, n) {
+    cap(b, F, c, 0.008);
+    for (const v of dome(n ? 22 : 5, 0.5)) { if (v[2] > 0.5 && v[1] < 0.45) continue; (n ? b.ball : b.ico)(v[0] * F.rx * 1.05, F.ry * 0.3 + v[1] * F.ry * 0.82, -0.035 + v[2] * F.rz * 1.0, 0.07, 0.07, 0.07, c, { seg: 8 }); }
+  },
+  bun(b, c, _l, _c, F, n) { cap(b, F, c, 0.01); b.ball(0, F.ry + 0.07, -0.09, 0.1, 0.095, 0.1, c, { seg: 14 }); if (n) b.cyl(0, F.ry + 0.0, -0.075, 0.07, 0.026, GOLD, { seg: 10, rx: -0.5 }); },
+  ponytail(b, c, _l, _c, F, n) {
+    cap(b, F, c, 0.01);
+    if (!n) { stick(b, [0, F.ry * 0.6, -F.rz * 1.05], [0, -0.28, -F.rz * 1.6], 0.06, 0.03, c, 5); return; }
+    b.cyl(0, F.ry * 0.62, -F.rz * 1.1, 0.05, 0.045, GOLD, { seg: 10, rx: 1.1 });
+    rope(b, [[0, F.ry * 0.6, -F.rz * 1.05], [0, F.ry * 0.3, -F.rz * 1.6], [0, -0.12, -F.rz * 1.72], [0, -0.3, -F.rz * 1.6]], 0.065, 0.03, c, 8);
+  },
+  long(b, c, _l, _c, F, n) {
+    cap(b, F, c, 0.022);
+    b.ball(0, -0.2, -0.085, F.rx * 1.34, 0.34, F.rz * 0.72, c, { seg: n ? 18 : 12 });
+    if (n) for (const side of [-1, 1]) b.ball(side * F.rx * 1.02, -0.07, -0.005, 0.05, 0.18, F.rz * 0.7, c, { seg: 10 });
+  },
+  braids(b, c, look, _c, F, n) {
+    cap(b, F, c, 0.01);
+    hang(b, n, F, c, n > 1 ? 11 : n ? 8 : 4, 2.0, look.body === 'woman' ? 0.62 : 0.42, 0.036, 0.026, { bead: n === 2 ? GOLD : null });
+  },
+  locs(b, c, _l, _c, F, n) {
+    cap(b, F, c, 0.022);
+    if (n) for (const v of dome(n > 1 ? 12 : 7, 0.3)) b.ball(v[0] * F.rx * 0.98, F.ry * 0.38 + v[1] * F.ry * 0.7, -0.03 + v[2] * F.rz * 0.98, 0.058, 0.05, 0.058, c, { seg: 8 });
+    hang(b, n, F, c, n > 1 ? 9 : n ? 7 : 4, 1.95, 0.4, 0.046, 0.036, { short: 0.28, from: 0.55 });
+  },
+  cornrows(b, c, look, _c, F, n) {
+    b.ball(0, F.ry * 0.3, -0.035, F.rx * 1.04, F.ry * 0.78, F.rz * 1.06, mix(c, look.skin, 0.3), { seg: 18, rx: -0.32 });
+    for (const u of n ? [-0.75, -0.4, 0, 0.4, 0.75] : [-0.45, 0.45]) {
+      const w = Math.sqrt(1 - u * u), pts: Vec3[] = [];
+      for (let i = 0; i <= (n ? 4 : 2); i++) { const t = 0.15 + (Math.PI - 0.45) * i / (n ? 4 : 2); pts.push([u * F.rx * 1.06, F.ry * 0.3 + w * Math.sin(t) * F.ry * 0.82, -0.035 + w * Math.cos(t) * F.rz * 1.08]); }
+      if (look.body === 'woman' && n) pts.push([pts[4]![0], pts[4]![1] - 0.2, pts[4]![2] - 0.05]);
+      chain(b, pts, 0.026, 0.022, c, 5);
     }
   },
-  cornrows(b, c, look) {
-    b.ball(0, 2.31, -0.02, 0.268, 0.19, 0.266, mix(c, look.skin, 0.4), { seg: 7 });
-    for (const x of [-0.14, -0.05, 0.05, 0.14]) b.box(x, 2.3 + Math.sqrt(1 - (x / 0.27) ** 2) * 0.19, -0.03, 0.05, 0.03, 0.42, c);
+  twists(b, c, look, _c, F, n) {
+    cap(b, F, c, 0.012);
+    if (look.body === 'woman') hang(b, n, F, c, n > 1 ? 10 : n ? 7 : 4, 2.1, 0.36, 0.034, 0.026, { short: 0.26, knots: n === 2 });
+    else for (const v of dome(n > 1 ? 20 : n ? 12 : 6, 0.5)) { if (v[2] > 0.5 && v[1] < 0.45) continue; (n ? b.ball : b.ico)(v[0] * F.rx * 1.12, F.ry * 0.3 + v[1] * F.ry * 0.88, -0.035 + v[2] * F.rz * 1.1, 0.05, 0.062, 0.05, c, { seg: 6 }); }
   },
-  twists(b, c, look) {
-    capLow(b, c);
-    const drop = look.body === 'woman' ? 0.34 : 0.12;
-    for (let i = 0; i < 6; i++) { const turn = i / 6 * TAU + 0.5; b.box(Math.sin(turn) * 0.24, 2.36 - drop / 2 + (look.body === 'woman' ? 0 : 0.14), Math.cos(turn) * 0.23 - 0.03, 0.07, drop, 0.07, c, { rz: Math.sin(turn) * 0.3, rx: -Math.cos(turn) * 0.3 }); }
+  bantuknots(b, c, _l, _c, F, n) {
+    cap(b, F, c, 0.008);
+    for (const v of dome(n ? 8 : 6, 0.3)) { if (v[2] > 0.5 && v[1] < 0.75) continue; (n ? b.ball : b.ico)(v[0] * F.rx * 1.05, F.ry * 0.35 + v[1] * F.ry * 0.9, -0.035 + v[2] * F.rz * 1.05, 0.062, 0.06, 0.062, c, { seg: 8 }); }
   },
-  bantuknots(b, c) {
-    capLow(b, c);
-    for (const [x, y, z] of [[0, 2.56, -0.02], [-0.17, 2.47, 0.06], [0.17, 2.47, 0.06], [-0.18, 2.45, -0.16], [0.18, 2.45, -0.16]] as Vec3[]) b.cone(x, y, z, 0.075, 0.12, c, { seg: 5 });
-  },
-  gele(b, c, look, colours) {
-    b.ball(0, 2.27, -0.04, 0.268, 0.16, 0.265, c, { seg: 7 });
-    b.cyl(0, 2.49, -0.03, 0.27, 0.3, colours[0], { top: 1.45, seg: 8 });
-    b.box(0, 2.72, -0.07, 0.8, 0.26, 0.09, colours[1], { rx: -0.25 });
-    b.box(0.1, 2.78, 0.05, 0.56, 0.2, 0.08, colours[0], { rx: 0.15, rz: 0.12 });
+  gele(b, c, look, colours, F, n) {
+    const main = colours[0], other = look.fabric === 'plain' ? shade(main, 0.22) : colours[1], deep = look.fabric === 'plain' ? shade(main, -0.18) : colours[2];
+    if (n) b.ball(0, F.ry * 0.12, -0.04, F.rx * 1.02, F.ry * 0.78, F.rz * 1.04, c, { seg: 14 });
+    // The wrap sits round the crown; the fan of pleated cloth stands up behind and above it.
+    b.ball(0, F.ry * 0.78, -0.04, F.rx * 1.28, F.ry * 0.5, F.rz * 1.3, main, { seg: 18, rx: -0.12 });
+    if (n) b.ball(0, F.ry * 0.98, -0.06, F.rx * 1.05, F.ry * 0.4, F.rz * 1.05, other, { seg: 16, rx: -0.12 });
+    const fan: [number, number, number, number, Colour][] = [[0.26, 0.66, -0.12, -0.34, main], [0.25, 0.7, -0.06, -0.16, other], [0.22, 0.7, 0, -0.02, deep]];
+    for (const [r, y, z, tilt, colour] of n ? fan : fan.slice(0, 1)) b.cyl(0, F.ry + y - 0.1, z, r, 0.035, colour, { seg: 20, sz: 0.55, rx: Math.PI / 2 + tilt });
   },
 };
 // Under a hat only hair that hangs below it is drawn in full; the rest is cut short.
@@ -550,76 +605,78 @@ function fallbackLook(look: Look): Look {
   if (ids.includes('wristwatch')) accessories.push('watch');
   return { ...look, outfit: mapped, outfitColor: full === 'school-uniform' ? CLOTH_WHITE : look.outfitColor, accessories };
 }
-function fallbackHead(look: Look): string | undefined { return look.wearables?.find(id => AVATAR_WEARABLE_CATALOGUE[id].slot === 'head'); }
-function drawFallbackHead(b: Drawing, id: string, look: Look, fine: boolean): void {
-  const fabric = accessoryColour(look, fabricColours(look)), seg = fine ? 10 : 5;
-  if (id === 'hijab-drape' || id === 'hijab-wrap') {
-    b.ball(0, 2.43, -0.025, 0.292, 0.163, 0.29, fabric, { seg });
-    // Back and sides surround an open front face aperture.
-    b.quad(0, 2.22, -0.285, 0.55, 0.48, fabric, { ry: Math.PI });
-    for (const sign of [-1, 1]) b.quad(sign * 0.278, 2.2, -0.02, 0.44, 0.43, fabric, { ry: sign * Math.PI / 2 });
-    b.ball(0, 1.98, -0.025, id === 'hijab-drape' ? 0.39 : 0.29, 0.115, 0.29, fabric, { seg });
-    if (id === 'hijab-wrap') b.box(-0.18, 1.84, 0.19, 0.11, 0.35, 0.028, fabric);
-  } else if (id === 'turban') {
-    b.ball(0, 2.44, -0.03, 0.3, 0.19, 0.3, fabric, { seg });
-    b.cyl(0, 2.39, -0.025, 0.3, 0.06, shade(fabric, -0.12), { seg: fine ? 12 : 6, sz: 1.03, open: true });
-    b.box(0, 2.47, 0.27, 0.08, 0.1, 0.033, fabric);
-  } else if (id === 'gele-fan') {
-    b.ball(0, 2.39, -0.04, 0.28, 0.15, 0.28, fabric, { seg });
-    for (const sign of [-1, 0, 1]) b.quad(sign * 0.17, 2.7, -0.08, 0.3, 0.33, fabric, { rz: sign * -0.32 });
-  } else {
-    b.ball(0, 2.42, -0.035, 0.29, 0.16, 0.28, fabric, { seg });
-    for (let i = 0; i < 3; i++) b.cyl(0.12, 2.62, 0.02 + i * 0.012, 0.13 - i * 0.033, 0.025, i % 2 ? shade(fabric, -0.12) : fabric, { seg: fine ? 10 : 5, rx: Math.PI / 2, open: true });
-  }
+const fallbackHead = (look: Look): string | undefined => look.wearables?.find(id => AVATAR_WEARABLE_CATALOGUE[id].slot === 'head');
+const accessoryColour = (look: Look, colours: Colours): Colour => (look.fabric === 'plain' ? shade(look.outfitColor, -0.25) : colours[1]);
+/** Head wearables are drawn in the old, larger head frame (centre 2.2): HEAD_FIT shrinks them about the head's centre. */
+const HEAD_FIT = 0.74;
+function drawFallbackHead(b: Drawing, id: string, look: Look, n: number): void {
+  const fabric = accessoryColour(look, fabricColours(look)), seg = n ? 16 : 8;
+  b.at(0, 2.2 * (1 - HEAD_FIT) + HEAD.y - 2.2, 0, 0, () => {
+    if (id === 'hijab-drape' || id === 'hijab-wrap') {
+      b.ball(0, 2.43, -0.025, 0.292, 0.163, 0.29, fabric, { seg });
+      b.quad(0, 2.22, -0.285, 0.55, 0.48, fabric, { ry: Math.PI });
+      for (const sign of [-1, 1]) b.quad(sign * 0.278, 2.2, -0.02, 0.44, 0.43, fabric, { ry: sign * Math.PI / 2 });
+      b.ball(0, 1.98, -0.025, id === 'hijab-drape' ? 0.39 : 0.29, 0.115, 0.29, fabric, { seg });
+      if (id === 'hijab-wrap') b.box(-0.18, 1.84, 0.19, 0.11, 0.35, 0.028, fabric);
+    } else if (id === 'turban') {
+      b.ball(0, 2.44, -0.03, 0.3, 0.19, 0.3, fabric, { seg });
+      b.cyl(0, 2.39, -0.025, 0.3, 0.06, shade(fabric, -0.12), { seg, sz: 1.03, open: true });
+      b.box(0, 2.47, 0.27, 0.08, 0.1, 0.033, fabric);
+    } else if (id === 'gele-fan') {
+      b.ball(0, 2.39, -0.04, 0.28, 0.15, 0.28, fabric, { seg });
+      for (const sign of [-1, 0, 1]) b.quad(sign * 0.17, 2.7, -0.08, 0.3, 0.33, fabric, { rz: sign * -0.32 });
+    } else {
+      b.ball(0, 2.42, -0.035, 0.29, 0.16, 0.28, fabric, { seg });
+      for (let i = 0; i < 3; i++) b.cyl(0.12, 2.62, 0.02 + i * 0.012, 0.13 - i * 0.033, 0.025, i % 2 ? shade(fabric, -0.12) : fabric, { seg, rx: Math.PI / 2, open: true });
+    }
+  }, 0, 0, HEAD_FIT);
 }
-function drawFallbackNeck(b: Drawing, look: Look, fine: boolean): void {
+function drawFallbackNeck(b: Drawing, look: Look): void {
   const id = look.wearables?.find(value => AVATAR_WEARABLE_CATALOGUE[value].slot === 'neck');
   if (!id) return;
-  const cloth = accessoryColour(look, fabricColours(look)), seg = fine ? 12 : 6;
+  const cloth = accessoryColour(look, fabricColours(look)), neck = BODY[look.body].neck;
   if (id === 'neck-scarf' || id === 'shoulder-wrap') {
-    b.cyl(0, 0.87, 0, BODY[look.body].neck + 0.052, 0.1, cloth, { seg, open: true });
-    if (id === 'neck-scarf') b.box(0.05, 0.63, 0.2, 0.11, 0.4, 0.025, cloth);
-    else b.cyl(0, 0.57, -0.02, BODY[look.body].shoulder + 0.065, 0.37, cloth, { seg, top: 0.7, sz: 0.85, open: true });
+    b.cyl(0, 0.82, 0, neck + 0.05, 0.1, cloth, { seg: 12, open: true });
+    if (id === 'neck-scarf') b.box(0.05, 0.6, 0.2, 0.11, 0.4, 0.025, cloth);
+    else b.cyl(0, 0.54, -0.02, BODY[look.body].shoulder + 0.065, 0.37, cloth, { seg: 12, top: 0.7, sz: 0.85, open: true });
   } else {
-    const beads = id === 'beads' || id === 'coral';
-    const tint = id === 'coral' ? CORAL : beads ? '#9c713b' : GOLD;
-    const points = Array.from({ length: fine ? 13 : 7 }, (_, i): Vec3 => {
-      const a = i / (fine ? 12 : 6) * TAU;
-      return [Math.sin(a) * 0.16, 0.86 - Math.max(0, Math.cos(a)) * 0.16, Math.cos(a) > 0 ? 0.235 : Math.cos(a) * 0.12];
-    });
-    chain(b, points, id === 'chain-cuban' ? 0.012 : 0.006, id === 'chain-cuban' ? 0.012 : 0.006, tint, fine ? 5 : 3);
-    if (beads) for (let i = 0; i < points.length - 1; i += fine ? 1 : 2) b.box(points[i]![0], points[i]![1], points[i]![2], 0.035, id === 'coral' ? 0.047 : 0.035, 0.035, tint);
-    if (id === 'chain-pendant') b.box(0, 0.66, 0.25, 0.055, 0.08, 0.015, GOLD);
+    const beads = id === 'beads' || id === 'coral', tint = id === 'coral' ? CORAL : beads ? '#9c713b' : GOLD;
+    b.cyl(0, 0.78, 0.02, neck + 0.06, id === 'chain-cuban' ? 0.03 : 0.018, tint, { seg: 14, sz: 1.2, rx: 0.5, open: true });
+    if (id === 'chain-pendant') b.ball(0, 0.64, 0.2, 0.03, 0.04, 0.012, GOLD, { seg: 6 });
   }
 }
 function drawFallbackWrist(b: Drawing, look: Look, end: number): void {
   if (!look.wearables?.includes('bangles')) return;
-  for (const y of [end + 0.02, end + 0.05]) b.cyl(0, y, 0, BODY[look.body].wrist + 0.012, 0.015, GOLD, { seg: 6, open: true });
-}
-function drawFallbackShoe(b: Drawing, look: Look, end: number, fine: boolean, simple = false): boolean {
-  const id = look.wearables?.find(value => AVATAR_WEARABLE_CATALOGUE[value].slot === 'shoes');
-  if (!id) return false;
-  if (id === 'sneakers' && simple) {
-    b.box(0, end - 0.09, 0.07, 0.19, 0.045, 0.36, CLOTH_WHITE);
-    b.box(0, end - 0.035, 0.07, 0.18, 0.085, 0.34, INK);
-    b.box(0, end + 0.01, 0.12, 0.12, 0.015, 0.095, CLOTH_WHITE); return true;
-  }
-  if (id === 'sneakers') { shoeHigh(b, 'sneaker', end, look.skin, SHOES.sneaker, fine); return true; }
-  b.box(0, end - 0.08, 0.07, 0.19, 0.045, 0.35, '#272724');
-  b.box(0, end - 0.046, 0.07, 0.16, 0.06, 0.31, look.skin);
-  b.box(0, end - 0.003, 0.09, 0.2, 0.025, id === 'slippers' ? 0.13 : 0.035, '#705539');
-  if (id === 'sandals') b.box(0, end + 0.018, -0.035, 0.18, 0.035, 0.03, '#705539');
-  return true;
+  for (const y of [end + 0.02, end + 0.05]) b.cyl(0, y, 0, BODY[look.body].wrist + 0.012, 0.015, GOLD, { seg: 8, open: true });
 }
 
-/** One tube of a low-detail limb. */
-interface Tube { length: number; r0: number; r1: number; colour: Colour }
-function limbLow(b: Drawing, name: string, x: number, y: number, z: number, pitch: number, roll: number, upper: Tube, bend: number, lower: Tube, end?: (end: number) => void): void {
-  const tube = (tube: Tube, open: boolean) => b.cyl(0, -tube.length / 2, 0, tube.r1, tube.length, tube.colour, { seg: 5, top: q3(tube.r0 / tube.r1), open });
-  part(b, name, x, y, z, () => {
-    tube(upper, false);
-    part(b, name.replace('leg', 'calf').replace('arm', 'forearm'), 0, -upper.length, 0, () => { tube(lower, true); end?.(-lower.length); }, bend);
-  }, pitch, roll);
+/** A shoe on a foot whose ankle is at y = end; the ground is 0.08 below it and the toes point to +z. */
+function shoeFor(b: Drawing, kind: string, end: number, skin: Colour, [upper, sole]: Shoe = SHOES[kind] || SHOES.sneaker, n = 2): void {
+  const g = end - 0.08;
+  if (!n) { b.ico(0, g + 0.05, 0.05, 0.06, 0.05, 0.14, kind === 'slide' ? skin : upper); return; }
+  if (kind === 'slide') {
+    b.ball(0, g + 0.045, 0.05, 0.052, 0.042, 0.125, skin, { seg: 10 });
+    if (n > 1) b.ball(0, g + 0.03, 0.06, 0.062, 0.03, 0.15, sole, { seg: 10 });
+    if (n > 1) b.ball(0, g + 0.065, 0.09, 0.054, 0.025, 0.05, upper, { seg: 8 });
+  } else if (kind === 'boot') {
+    b.ball(0, g + 0.06, 0.05, 0.068, 0.06, 0.145, upper, { seg: 12 });
+    b.cyl(0, end + 0.05, -0.008, 0.064, 0.14, upper, { seg: 12, top: 1.04 });
+    if (n > 1) b.ball(0, g + 0.02, 0.055, 0.07, 0.026, 0.158, sole, { seg: 10 });
+  } else if (kind === 'heel') {
+    b.ball(0, g + 0.075, 0.03, 0.046, 0.046, 0.115, skin, { seg: 10, rx: 0.32 });
+    b.ball(0, g + 0.055, 0.105, 0.05, 0.036, 0.075, upper, { seg: 10, rx: 0.3 });
+    if (n > 1) b.cyl(0, g + 0.03, -0.05, 0.016, 0.06, sole, { seg: 6, top: 0.7 });
+  } else {
+    b.ball(0, g + 0.052, 0.055, 0.06, 0.05, 0.138, upper, { seg: 12 });
+    if (n > 1) b.ball(0, g + 0.02, 0.058, 0.066, 0.026, 0.148, sole, { seg: 12 });
+  }
+}
+function drawFallbackShoe(b: Drawing, look: Look, end: number, n: number): boolean {
+  const id = look.wearables?.find(value => AVATAR_WEARABLE_CATALOGUE[value].slot === 'shoes');
+  if (!id) return false;
+  if (id === 'sneakers') shoeFor(b, 'sneaker', end, look.skin, SHOES.sneaker, n);
+  else shoeFor(b, 'slide', end, look.skin, ['#705539', '#705539'], n);
+  return true;
 }
 
 function markerOf(b: Drawing, marker: Marker | null | undefined): void {
@@ -632,818 +689,301 @@ function markerOf(b: Drawing, marker: Marker | null | undefined): void {
     b.ico(0, 3.02, 0, 0.11, 0.14, 0.11, '#6fb4ff', GLOW);
   }
 }
-const accessoryColour = (look: Look, colours: Colours): Colour => (look.fabric === 'plain' ? shade(look.outfitColor, -0.25) : colours[1]);
 
-/** What drawLow and drawHigh need besides the look. */
-interface Stance { joints: Joints; sitting: boolean; marker: Marker | null | undefined; sleeping?: boolean }
-function drawLow(b: Drawing, look: Look, { joints, sitting, marker, sleeping }: Stance): void {
-  const style = OUTFIT[look.outfit] || OUTFIT.casual, m = BODY[look.body], woman = look.body === 'woman';
-  const colours = fabricColours(look), top = look.outfitColor, bottoms = look.bottomsColor, skin = look.skin;
-  // Accessories are drawn only while they fit the budget: `reserve` is what the rest of the body still needs.
-  const start = b.triangles;
-  let reserve = 84 + (marker ? (marker === 'crown' ? 32 : 20) : 0);
-  const room = (cost: number) => b.triangles - start + cost + reserve <= LOW_BUDGET;
-  const skirt = woman && look.outfit === 'office' || style.legs === 'skirt', long = style.legs === 'wrapper' || style.legs === 'dress';
-  const bareCalf = style.legs === 'shorts' || skirt, bulk = style.bulk || 0;
-  const shoe = (SHOES[skirt ? 'dress' : style.shoe] || SHOES.sneaker)[style.shoe === 'slide' ? 1 : 0];
-  const has = (id: string) => look.accessories.includes(id);
-  if (!long || sitting) {
-    for (const side of [0, 1] as const) {
-      limbLow(b, side ? 'legL' : 'legR', (side ? 1 : -1) * (m.legX + 0.025), 1.04, 0, joints.leg[side], 0,
-        { length: 0.5, r0: m.leg + 0.008, r1: m.leg - 0.012, colour: long || skirt ? shade(bottoms, -0.12) : bottoms },
-        joints.calf[side],
-        { length: 0.46, r0: m.leg - 0.02, r1: m.leg - 0.04, colour: long ? bottoms : bareCalf ? (style.socks ? CLOTH_WHITE : skin) : bottoms },
-        (end) => { if (!drawFallbackShoe(b, look, end, false, true)) b.box(0, end - 0.06, 0.07, 0.19, 0.13, 0.38, shoe); });
-    }
-  } else {
-    for (const side of [-1, 1]) part(b, side > 0 ? 'legL' : 'legR', side * 0.14, 1.04, 0, () => { if (!drawFallbackShoe(b, look, -0.96, false, true)) b.box(0, -0.975, 0.07, 0.19, 0.13, 0.38, shoe); });
-  }
-  if (long) {
-    const dress = style.dress, rings: Colours = dress ? [top, top, bottoms] : look.fabric === 'plain' ? [bottoms, bottoms, shade(bottoms, -0.15)] : [colours[0], colours[1], colours[2]];
-    if (sitting) b.box(0, 1.02, 0.24, 0.56, 0.3, 0.8, rings[0]);
-    else rings.forEach((colour, i) => b.cyl(0, 0.92 - i * 0.33, 0, 0.28 + i * (dress ? 0.075 : 0.045), 0.34, colour, { seg: 8, top: dress ? 0.8 : 0.87 }));
-  } else if (skirt) {
-    if (sitting) b.box(0, 1.03, 0.2, 0.52, 0.28, 0.7, bottoms);
-    else b.cyl(0, 0.84, 0, 0.31, 0.52, bottoms, { seg: 8, top: 0.82 });
-  }
-  b.box(0, 1.03, 0, m.hip * 1.86, 0.22, m.hip * 1.86 * m.aspect, long ? (style.dress ? top : colours[0]) : bottoms);
-
-  b.at(0, HIP_Y, 0, 0, () => {
-    const depth = m.chest * (m.aspect + 0.04) + bulk, aspect = m.aspect + 0.04;
-    const hem = style.tunic && !sitting ? (woman ? -0.62 : -0.45) : -0.1;
-    const rings: Ring[] = [[hem, m.hip + bulk + (style.tunic ? 0.03 : 0)], [0.25, m.waist + 0.012 + bulk], [0.52, m.chest + 0.008 + bulk], [0.77, m.shoulder * 0.92 + bulk]];
-    const by: Colours = ({ ankara: [colours[0], colours[1], colours[2]], adire: [colours[2], colours[1], colours[0]] } as Partial<Record<Fabric, Colours>>)[look.fabric] || [top, top, top];
-    loft(b, rings.slice(0, -1), by, { seg: 8, aspect });
-    loft(b, rings.slice(-2), by[2], { seg: 8, aspect, capped: true });
-    const front = (y: number) => radiusAt(rings, y) * aspect + 0.012;
-    if (look.fabric === 'asooke') for (const side of [-1, 1]) b.quad(0, 0.32, side * front(0.32), 0.06, 0.6, colours[1], side < 0 ? { ry: Math.PI } : undefined);
-    if (style.open) b.quad(0, 0.4, front(0.4), 0.15, 0.66, CLOTH_WHITE);
-    if (style.collar) {
-      b.box(0, 0.78, 0.02, 0.3, 0.06, 0.26, CLOTH_WHITE);
-      if (!woman) b.box(0, 0.5, front(0.5), 0.07, 0.46, 0.02, colours[2] === top ? shade(top, -0.45) : colours[1]);
-    }
-    if (style.vest) {
-      b.cyl(0, 0.42, 0, m.chest + 0.035, 0.5, '#f08a1d', { seg: 8, sz: m.aspect + 0.08, top: 1.04, open: true });
-      b.cyl(0, 0.42, 0, m.chest + 0.045, 0.07, '#eeeacb', { seg: 8, sz: m.aspect + 0.08, open: true });
-    }
-    if (style.hood) {
-      b.ball(0, 0.84, -0.15, 0.22, 0.16, 0.14, top, { seg: 6 });
-      b.box(0, 0.22, front(0.22), 0.32, 0.17, 0.03, shade(top, -0.2));
-    }
-    if (style.gown) b.box(0, 0.46, front(0.46), 0.13, 0.8, 0.03, colours[1] === top ? shade(top, 0.35) : colours[1], { rz: 0.62 });
-    if (style.sport) {
-      for (const side of [-1, 1]) b.quad(side * (m.chest + 0.02 + bulk), 0.36, 0, 0.16, 0.62, CLOTH_WHITE, { ry: side * Math.PI / 2 });
-      b.quad(0, 0.5, front(0.5), 0.13, 0.17, CLOTH_WHITE);
-    }
-    if (style.tunic) { b.quad(0, 0.52, front(0.52), 0.05, 0.44, GOLD); b.box(0, 0.79, 0, 0.2, 0.05, 0.2, shade(top, -0.2)); }
-    if (style.robe) {
-      // Agbada: a wide open robe over the tunic, embroidered at the chest.
-      b.cyl(0, 0.2, 0, 0.44, 1.14, top, { seg: 8, sz: 0.5, top: 0.72, open: true });
-      b.quad(0, 0.5, 0.2, 0.2, 0.36, GOLD, { rx: -0.12 });
-    }
-    if (style.dress) b.cyl(0, 0.2, 0, m.waist + 0.03 + bulk, 0.07, bottoms, { seg: 8, sz: aspect, open: true });
-    b.cyl(0, 0.86, 0, m.neck, 0.18, skin, { seg: 6 });
-    part(b, 'head', 0, 0.86, 0, () => b.at(0, -HIP_Y - 0.86, 0, 0, () => {
-      headLow(b, look, sleeping);
-      const head = style.helmet || look.hair === 'gele' ? null : look.accessories.find((id) => ACCESSORY_SLOTS[id] === 'head');
-      const covered = style.helmet || head;
-      const selectedHead = fallbackHead(look);
-      if (selectedHead) drawFallbackHead(b, selectedHead, look, false);
-      else if (!head || HANGING.has(look.hair)) (covered && !HANGING.has(look.hair) ? HAIR_LOW.lowcut : HAIR_LOW[look.hair] || HAIR_LOW.lowcut)(b, look.hairColor, look, colours); // a hat or wrap hides short hair
-      if (style.helmet) {
-        b.ball(0, 2.37, -0.01, 0.31, 0.2, 0.31, '#f2c230', { seg: 6 });
-        b.box(0, 2.34, 0.22, 0.42, 0.04, 0.24, '#f2c230');
-      }
-      const cloth = accessoryColour(look, colours);
-      if (head === 'cap' && room(48)) { b.ball(0, 2.36, -0.01, 0.295, 0.2, 0.3, cloth, { seg: 6 }); b.box(0, 2.34, 0.3, 0.3, 0.03, 0.22, cloth); }
-      if (head === 'headwrap' && room(48)) { b.ball(0, 2.33, -0.03, 0.295, 0.22, 0.3, cloth, { seg: 6 }); b.box(0, 2.2, -0.3, 0.12, 0.2, 0.06, cloth); }
-      if (head === 'fila' && room(24)) b.cyl(0.02, 2.5, -0.02, 0.27, 0.24, cloth, { seg: 6, top: 1.08, rz: -0.12 });
-      if (has('sunglasses') && room(12)) b.box(0, 2.215, 0.25, 0.34, 0.085, 0.03, '#15171c');
-      else if (has('glasses') && room(12)) b.box(0, 2.215, 0.25, 0.32, 0.03, 0.03, INK);
-      if (has('earrings') && room(24)) for (const side of [-1, 1]) b.box(side * 0.265, 2.1, 0, 0.03, 0.07, 0.03, GOLD);
-      markerOf(b, marker);
-      reserve = 84;
-    }));
-    drawFallbackNeck(b, look, false);
-    if (has('chain') && room(12)) b.box(0, 0.7, front(0.7) - 0.01, 0.2, 0.035, 0.02, GOLD);
-    if (has('backpack') && room(12)) b.box(0, 0.42, -(depth + 0.09), 0.36, 0.46, 0.18, '#3b4658');
-    if (has('handbag') && room(12)) b.box(m.hip + 0.13, -0.08, 0.02, 0.09, 0.2, 0.26, '#b5763a');
-    for (const side of [0, 1] as const) {
-      const dir = side ? 1 : -1, [pitch, roll] = joints.arm[side], wide = style.sleeve === 'wide', bare = style.sleeve === 'cap';
-      limbLow(b, side ? 'armL' : 'armR', dir * (m.shoulder + 0.02 + bulk), SHOULDER_Y + 0.05, 0, pitch, dir * (style.robe ? Math.max(roll, 0.3) : roll),
-        { length: 0.42, r0: wide ? 0.1 : m.arm + 0.02 + bulk, r1: wide ? 0.15 : m.arm + 0.012 + bulk, colour: bare ? skin : wide && look.fabric !== 'plain' ? colours[1] : top },
-        joints.fore[side],
-        { length: 0.38, r0: m.arm, r1: m.arm - 0.016, colour: style.sleeve === 'long' ? top : skin },
-        (end) => {
-          b.box(0, end - 0.06, 0, 0.11, 0.14, 0.1, skin);
-          if (side) drawFallbackWrist(b, look, end);
-          reserve = side ? 0 : 42;
-          if (side && has('watch') && room(12)) b.box(0, end + 0.03, 0, 0.14, 0.05, 0.14, '#23262d');
-          if (!side && has('beads') && room(12)) b.box(0, end + 0.03, 0, 0.14, 0.04, 0.14, CORAL);
-        });
-    }
-  }, joints.lean);
-}
-
-// ---- Medium and high detail: one model, drawn with fewer segments and fewer small parts at medium ----
-
-/** The same batch with every curved primitive drawn with fewer segments. */
-function coarse(b: Drawing, scale: number, minCylinder = 5): Drawing {
-  const fewer = (o: BatchOptions | undefined, least: number): BatchOptions => ({ ...o, seg: Math.max(least, Math.round((o?.seg || 8) * scale)) });
-  // The smallest spheres a sphere template allows are 5 round by 4 high.
-  const lite: Drawing = Object.create(b);
-  lite.ball = (x: number, y: number, z: number, rx: number, ry: number, rz: number, colour: Colour, o?: BatchOptions) => b.ball(x, y, z, rx, ry, rz, colour, fewer(o, 5));
-  lite.cyl = (x: number, y: number, z: number, r: number, h: number, colour: Colour, o?: BatchOptions) => b.cyl(x, y, z, r, h, colour, fewer(o, minCylinder));
-  return lite;
-}
-const cover = (b: Drawing, rings: Ring[], from: number, to: number, pad: number, colour: Colour, seg: number) => loft(b, padded(clip(rings, from, to), pad), colour, { seg });
-/** Rods through points with a ball at every joint, so a bent rope has no gaps. */
-function rope(b: Drawing, points: Vec3[], r0: number, r1: number, colour: Colour, seg = 8): void {
-  chain(b, points, r0, r1, colour, seg);
-  for (let i = 1; i < points.length; i++) { const r = r0 + (r1 - r0) * i / (points.length - 1); b.ball(points[i]![0], points[i]![1], points[i]![2], r, r, r, colour, { seg: Math.min(seg, 8) }); }
-}
-
-// Everything about the head is in the avatar's own coordinates: feet at y = 0, head centre at y = 2.2, face towards +z.
-// Face shapes: the height of the head (its top stays where the hair expects it).
-interface FaceShape { ry: number; jaw: number }
-const FACES: Record<Face, FaceShape> = { oval: { ry: HEAD.ry, jaw: 0 }, round: { ry: 0.256, jaw: 0 }, long: { ry: 0.3, jaw: 0 } };
-const JAW = { y: 2.07, z: 0.016, ry: 0.165, rz: 0.214 };
-/** How far forward the face is at (x, y): the skull or the jaw, whichever is in front. */
-function faceZ(x: number, y: number, face: FaceShape = FACES.oval): number {
-  const skull = HEAD.rz * Math.sqrt(Math.max(0.04, 1 - (x / HEAD.rx) ** 2 - ((y - HEAD.y - HEAD.ry + face.ry) / face.ry) ** 2));
-  const inside = face.jaw ? 1 - (x / face.jaw) ** 2 - ((y - JAW.y) / JAW.ry) ** 2 : 0;
-  return Math.max(skull, inside > 0 ? JAW.z + JAW.rz * Math.sqrt(inside) : 0);
-}
-/** A point on the scalp: az turns from the face (0) round to the back (π); el rises from the ears (0) to the crown (π/2). */
-const scalp = (az: number, el: number, lift = 0): Vec3 => [Math.sin(az) * Math.cos(el) * (HEAD.rx + lift), HEAD.y + Math.sin(el) * (HEAD.ry + lift), Math.cos(az) * Math.cos(el) * (HEAD.rz + lift)];
-/** Points spread evenly over the upper part of a sphere (golden-angle spiral): [x, y, z] unit vectors. */
-function dome(count: number, coverage = 0.6): Vec3[] {
-  return Array.from({ length: count }, (_, i): Vec3 => {
-    const up = 1 - (i + 0.5) / count * coverage * 2, r = Math.sqrt(Math.max(0, 1 - up * up)), turn = i * 2.39996;
-    return [Math.cos(turn) * r, up, Math.sin(turn) * r];
-  });
-}
-
-function headHigh(b: Drawing, look: Look, woman: boolean, fine: boolean, sleeping = false): void {
-  // A clean stylised face: every part is a deliberate shape (primitives cannot be blended into one another).
-  const age = look.appearance?.ageAppearance === 'elder' ? 1 : look.appearance?.ageAppearance === 'mature' ? 0.55 : 0;
-  const skin = look.skin, F = FACES[look.face] || FACES.oval, mood = look.expression;
-  const dark = channels(skin).reduce((sum, v) => sum + v, 0) < 250; // the two darkest tones: features are lifted, not darkened
-  const deep = shade(skin, -0.22), white = '#f6f1e7', fz = (x: number, y: number) => faceZ(x, y, F), relief = shade(skin, dark ? 0.1 : -0.05);
-  b.ball(0, HEAD.y + HEAD.ry - F.ry - age * 0.004, 0, HEAD.rx + age * 0.002, F.ry + age * 0.004, HEAD.rz, skin, { seg: 28 });
-  if (age) for (const sign of [-1, 1]) b.quad(sign * 0.115, 2.148, fz(sign * 0.115, 2.148) + 0.004, 0.048, 0.003 * age, mix(skin, INK, 0.2), { ry: sign * 0.3 });
-  if (F.jaw) b.ball(0, JAW.y, JAW.z, F.jaw, JAW.ry, JAW.rz, skin, { seg: 24 });
-  const brow = mix(look.hairColor, INK, 0.5), grin = mood === 'grin', flat = mood === 'neutral';
-  for (const side of [-1, 1]) {
-    const ex = side * 0.1, ey = 2.214, ez = fz(ex, ey), turn = side * 0.38;
-    if (!sleeping) {
-    b.ball(ex, ey, ez - 0.01, 0.052, 0.05, 0.022, white, { seg: 10, ry: turn });
-    b.ball(ex - side * 0.004, ey - 0.003, ez + 0.003, 0.032, 0.036, 0.013, '#3d2515', { seg: 9, ry: turn });
-    if (fine) {
-      b.ball(ex - side * 0.004, ey - 0.003, ez + 0.011, 0.017, 0.019, 0.007, '#0d0a09', { seg: 8, ry: turn });
-      b.ball(ex + 0.012, ey + 0.012, ez + 0.017, 0.008, 0.008, 0.004, white, { seg: 6 });
-    }
-    }
-    // Upper lid and lash line; sleeping removes whites and pupils without changing the saved expression.
-    const lid = sleeping ? ey : ey + (grin ? 0.046 : 0.06);
-    b.ball(ex, lid, ez - 0.01, 0.054, 0.014, 0.024, skin, { seg: 9, ry: turn });
-    b.box(ex + side * 0.004, lid - 0.012, ez + 0.011, 0.098, woman ? 0.009 : 0.005, 0.012, woman ? INK : mix(skin, INK, 0.7), { ry: turn, rz: side * -0.03 });
-    if (woman && fine) b.box(ex + side * 0.054, lid - 0.006, ez + 0.002, 0.03, 0.01, 0.01, INK, { ry: turn, rz: side * 0.55 }); // lash flick
-    if (grin && fine) b.ball(ex, ey - 0.046, ez - 0.008, 0.05, 0.014, 0.022, shade(skin, -0.06), { seg: 8, ry: turn });
-    // Brows: slim, set a little above the lid, and lifted at the INNER end — an open, friendly face at rest
-    // (a brow that dips towards the nose reads as a scowl at phone size). Neutral keeps them level.
-    const by = 2.318 - (flat ? 0.016 : 0);
-    b.ball(ex + side * 0.004, by, fz(ex, by) + 0.003, 0.058, woman ? 0.0105 : 0.0135, 0.012, brow, { seg: 8, ry: turn, rz: side * (flat ? 0 : -0.07) });
-    // Ear: the outer shell and its hollow.
-    b.ball(side * 0.247, 2.19, -0.012, 0.034, 0.066, 0.048, skin, { seg: 10 });
-    if (fine) b.ball(side * 0.266, 2.195, -0.004, 0.016, 0.042, 0.027, deep, { seg: 6 });
-  }
-  // Nose: a tip with a wing each side.
-  b.ball(0, 2.126, fz(0, 2.126) + 0.006, 0.034, 0.032, 0.04, relief, { seg: 10 });
-  if (fine) for (const side of [-1, 1]) b.ball(side * 0.03, 2.116, fz(0, 2.116) - 0.004, 0.022, 0.02, 0.026, relief, { seg: 7 });
-  // Mouth: a line with lifted corners, a two-part upper lip and a fuller lower one.
-  const lip = woman ? mix(skin, dark ? '#c9606a' : '#b8454c', 0.6) : mix(skin, dark ? '#a8605a' : '#8a3f3a', dark ? 0.5 : 0.4), line = dark ? '#150a09' : mix(skin, '#2a0f0d', 0.72);
-  const my = 2.036, mz = fz(0, my) + 0.002, wide = grin ? 0.12 : 0.1, full = woman ? 1 : 0.78;
-  if (grin) b.box(0, my + 0.002, mz + 0.004, 0.092, 0.024, 0.012, white);
-  else b.box(0, my + 0.003, mz + 0.006, wide, 0.007, 0.012, line);
-  for (const side of [-1, 1]) {
-    if (!flat) b.box(side * (wide / 2 + 0.01), my + 0.017, mz - 0.004, 0.042, 0.007, 0.012, line, { rz: side * 0.78, ry: side * 0.45 }); // the corners of a smile
-    b.ball(side * 0.019, my + (grin ? 0.024 : 0.014), mz + 0.002, 0.03 * full, 0.0105 * full, 0.015, lip, { seg: 8, rz: side * -0.16, ry: side * 0.2 });
-  }
-  b.ball(0, my - (grin ? 0.022 : 0.011), mz + 0.003, (grin ? 0.048 : 0.04) * full, 0.0145 * full, 0.017, shade(lip, 0.08), { seg: 9 });
-}
-
-// ---- Hair ----------------------------------------------------------------------------------------
-
-/** The scalp's covering of hair: an ellipsoid tipped back so its edge is the hairline. */
-const capHigh = (b: Drawing, c: Colour, grow = 0, o?: BatchOptions) => b.ball(0, 2.345, -0.05, 0.258 + grow, 0.18 + grow, 0.262 + grow, c, { seg: 24, rx: -0.3, ...o });
-/** A point on that covering (or `lift` outside it), from a unit vector [x, y, z] with y up and z towards the face. */
-function onCap([x, y, z]: Vec3, grow = 0, lift = 0): Vec3 {
-  const px = x * (0.258 + grow + lift), py = y * (0.18 + grow + lift), pz = z * (0.262 + grow + lift), c = Math.cos(-0.3), sn = Math.sin(-0.3);
-  return [px, 2.345 + py * c - pz * sn, -0.05 + py * sn + pz * c];
-}
-/**
- * Strands hanging from the head, round the back from ear to ear. spread: how far round they go
- * (π/2 = the ears); each strand is a tapered rope with `bead` (a colour) at its end.
- */
-interface HangOptions { length: number; short?: number; r0: number; r1: number; from?: number; splay?: number; seg?: number; bead?: Colour | null; offset?: number; knots?: boolean }
-function hang(b: Drawing, c: Colour, count: number, spread: number, { length, short = length, r0, r1, from = 0.5, splay = 0.03, seg = 5, bead = null, offset = 0, knots = false }: HangOptions): void {
-  for (let i = 0; i < count; i++) {
-    const az = Math.PI + ((i + 0.5 + offset) / count - 0.5) * 2 * spread, side = Math.abs(az - Math.PI) > 1.2;
-    const len = (side ? short : length) * (1 - ((i * 7) % 5) * 0.035);
-    const a = scalp(az, from, 0.012), mid = scalp(az, 0.02, 0.028), out = 1 + splay * 4;
-    const low: Vec3 = [mid[0] * out, mid[1] - len * 0.45, mid[2] * out - (side ? 0 : 0.02)], end: Vec3 = [mid[0] * (out + splay), mid[1] - len, mid[2] * (out + splay) - (side ? 0 : 0.03)];
-    (knots ? rope : chain)(b, [a, mid, low, end], r0, r1, c, seg);
-    if (bead) b.ball(end[0], end[1] - r1, end[2], r1 * 1.5, r1 * 1.7, r1 * 1.5, bead, { seg: 5 });
-  }
-}
-/** Rows of plaits over the scalp from the hairline to the nape, each `u` across the head (−1 … 1). */
-function rows(b: Drawing, c: Colour, list: number[], radius: number, { tail = 0, bead = null, steps = 8 }: { tail?: number; bead?: Colour | null; steps?: number } = {}): void {
-  for (const u of list) {
-    const w = Math.sqrt(1 - u * u), points: Vec3[] = [];
-    for (let i = 0; i <= steps; i++) { const t = 0.05 + (Math.PI - 0.3) * i / steps; points.push(onCap([u, w * Math.sin(t), w * Math.cos(t)], 0, radius * 0.3)); }
-    if (tail) { const last = points[points.length - 1]!; points.push([last[0] * 1.05, last[1] - tail * 0.5, last[2] - 0.02], [last[0] * 1.08, last[1] - tail, last[2] - 0.03]); }
-    chain(b, points, radius, radius * 0.85, c, 6);
-    if (bead && tail) { const end = points[points.length - 1]!; b.ball(end[0], end[1] - 0.015, end[2], radius * 1.4, radius * 1.6, radius * 1.4, bead, { seg: 6 }); }
-  }
-}
-
-const HAIR_HIGH: Record<string, HairDraw> & { lowcut: HairDraw } = {
-  bald() {},
-  lowcut(b, c, look) {
-    b.ball(0, 2.33, -0.05, 0.256, 0.184, 0.26, mix(c, look.skin, 0.45), { seg: 24, rx: -0.27 }); // a soft edge at the hairline
-    capHigh(b, c, 0.006);
-  },
-  fade(b, c, look) {
-    // Skin fade: three bands from almost skin at the ears to full colour on a squared-off top.
-    b.ball(0, 2.275, -0.04, 0.2545, 0.2, 0.26, mix(c, look.skin, 0.66), { seg: 24, rx: -0.2 });
-    b.ball(0, 2.33, -0.045, 0.2575, 0.186, 0.263, mix(c, look.skin, 0.34), { seg: 24, rx: -0.27 });
-    b.ball(0, 2.4, -0.035, 0.232, 0.14, 0.245, c, { seg: 24, rx: -0.2 });
-    b.cyl(0, 2.47, -0.035, 0.2, 0.09, c, { seg: 20, sz: 1.08, top: 0.9 });
-  },
-  classic(b, c, look, colours, fine) {
-    capHigh(b, c, 0.024);
-    if (look.body === 'woman') {
-      b.ball(0, 2.14, -0.075, 0.305, 0.3, 0.25, c, { seg: 24 }); // a bob framing the face
-      b.ball(-0.07, 2.4, 0.15, 0.2, 0.075, 0.13, c, { seg: 14, rz: 0.3, rx: 0.3 }); // side-swept fringe
-      for (const side of [-1, 1]) b.ball(side * 0.255, 1.99, 0.02, 0.07, 0.11, 0.13, c, { seg: 12 }); // ends curling in at the jaw
-    } else {
-      b.ball(0, 2.47, -0.01, 0.215, 0.1, 0.225, c, { seg: 18, rx: -0.12 }); // a fuller top over short sides
-      b.ball(0.02, 2.475, 0.11, 0.17, 0.07, 0.12, c, { seg: 14, rx: 0.2 }); // quiff
-      if (fine) b.box(-0.12, 2.52, 0.0, 0.012, 0.02, 0.3, shade(c, 0.4), { rz: 0.45 }); // side parting
-    }
-  },
-  afro(b, c, look, colours, fine) {
-    // One rounded mass: a core with broad shallow swells for a soft, uneven outline.
-    capHigh(b, c, 0.012);
-    b.ball(0, 2.47, -0.085, 0.385, 0.35, 0.37, c, { seg: 28 });
-    for (const [x, y, z] of dome(fine ? 26 : 10, 0.86)) b.ball(x * 0.262, 2.47 + y * 0.232, -0.085 + z * 0.25, 0.15, 0.148, 0.15, c, { seg: 10 });
-  },
-  curls(b, c, look, colours, fine) {
-    // Short coils: many low overlapping swells that read as one textured cap.
-    capHigh(b, c, 0.01);
-    for (const v of dome(fine ? 70 : 24, 0.5)) {
-      if (v[2] > 0.55 && v[1] < 0.42) continue; // keep the forehead clear
-      const [x, y, z] = onCap(v, 0.01, -0.022);
-      b.ball(x, y, z, 0.06, 0.06, 0.06, c, { seg: 8 });
-    }
-  },
-  bun(b, c, look, colours, fine) {
-    capHigh(b, c, 0.012);
-    b.ball(0, 2.61, -0.13, 0.15, 0.135, 0.15, c, { seg: 18 });
-    b.cyl(0, 2.5, -0.105, 0.085, 0.05, GOLD, { seg: 14, rx: -0.5 });
-    if (fine) for (const tilt of [-0.5, 0.2, 0.9]) b.cyl(0, 2.61, -0.13, 0.152, 0.02, shade(c, 0.2), { seg: 18, rx: tilt, rz: tilt * 0.6, open: true }); // the wrap of the bun
-  },
-  ponytail(b, c) {
-    capHigh(b, c, 0.012);
-    b.cyl(0, 2.43, -0.3, 0.06, 0.07, GOLD, { seg: 12, rx: 1.1 });
-    rope(b, [[0, 2.44, -0.29], [0, 2.38, -0.4], [0, 2.2, -0.455], [0, 2.0, -0.45], [0, 1.84, -0.42], [0, 1.74, -0.4]], 0.07, 0.03, c, 12);
-    b.ball(0, 2.3, -0.43, 0.095, 0.13, 0.085, c, { seg: 12 });
-  },
-  long(b, c, look, colours, fine) {
-    capHigh(b, c, 0.03);
-    b.ball(0, 1.98, -0.185, 0.29, 0.52, 0.13, c, { seg: 24 });
-    for (const side of [-1, 1]) b.ball(side * 0.238, 2.06, -0.03, 0.082, 0.3, 0.16, c, { seg: 14 });
-    b.box(0, 2.515, 0.03, 0.012, 0.02, 0.3, shade(c, 0.45)); // centre parting
-    if (fine) for (let i = -4; i <= 4; i++) b.box(i * 0.058, 1.86, -0.312 + i * i * 0.0028, 0.009, 0.6, 0.009, shade(c, 0.2)); // strands
-  },
-  braids(b, c, look, colours, fine) {
-    capHigh(b, c, 0.012);
-    if (fine) for (const x of [-0.14, -0.07, 0, 0.07, 0.14]) b.box(x, 2.3 + Math.sqrt(1 - (x / 0.275) ** 2) * 0.212, -0.02, 0.008, 0.012, 0.34, mix(c, look.skin, 0.6)); // partings
-    hang(b, c, fine ? 19 : 7, 2.05, { length: 0.82, short: 0.42, r0: fine ? 0.024 : 0.034, r1: fine ? 0.016 : 0.024, bead: fine ? GOLD : null });
-    if (fine) hang(b, c, 18, 1.95, { length: 0.62, short: 0.36, r0: 0.022, r1: 0.015, from: 0.36, splay: 0.05, bead: GOLD, offset: 0.5 });
-  },
-  locs(b, c, look, colours, fine) {
-    capHigh(b, c, 0.026);
-    for (const [x, y, z] of dome(fine ? 14 : 6, 0.3)) b.ball(x * 0.235, 2.35 + y * 0.2, -0.03 + z * 0.245, 0.062, 0.05, 0.062, c, { seg: 8 });
-    hang(b, c, fine ? 13 : 6, 2.0, { length: 0.5, short: 0.36, r0: 0.04, r1: 0.027, from: 0.55, splay: 0.07, seg: 6 });
-    if (fine) hang(b, c, 12, 1.9, { length: 0.4, short: 0.3, r0: 0.036, r1: 0.025, from: 0.75, splay: 0.11, seg: 6, offset: 0.5 });
-  },
-  cornrows(b, c, look, colours, fine) {
-    b.ball(0, 2.335, -0.05, 0.257, 0.184, 0.261, mix(c, look.skin, 0.28), { seg: 24, rx: -0.3 }); // the scalp between the rows
-    const woman = look.body === 'woman';
-    rows(b, c, fine ? [-0.9, -0.72, -0.52, -0.31, -0.1, 0.1, 0.31, 0.52, 0.72, 0.9] : [-0.7, -0.24, 0.24, 0.7], fine ? 0.03 : 0.045, { tail: woman ? 0.34 : 0.05, bead: woman ? GOLD : null, steps: fine ? 8 : 4 });
-  },
-  twists(b, c, look, colours, fine) {
-    capHigh(b, c, 0.014);
-    if (look.body === 'woman') {
-      // Two-strand twists to the jaw: knotted ropes in two layers.
-      hang(b, c, fine ? 17 : 7, 2.15, { length: 0.42, short: 0.3, r0: 0.03, r1: 0.022, from: 0.5, splay: 0.02, knots: fine });
-      if (fine) hang(b, c, 14, 2.0, { length: 0.34, short: 0.26, r0: 0.028, r1: 0.02, from: 0.8, splay: 0.045, knots: true, offset: 0.5 });
-      for (const [x, y, z] of dome(fine ? 10 : 5, 0.22)) b.ball(x * 0.24, 2.38 + y * 0.12, -0.03 + z * 0.24, 0.05, 0.04, 0.05, c, { seg: 8 });
-    } else {
-      // Short twists all over, each drooping a little under its own weight.
-      for (const v of dome(fine ? 46 : 16, 0.5)) {
-        if (v[2] > 0.55 && v[1] < 0.42) continue;
-        const root = onCap(v, 0.014, -0.01), tip = onCap(v, 0.014, 0.05);
-        tip[1] -= 0.028 + (1 - v[1]) * 0.03;
-        stick(b, root, tip, 0.027, 0.02, c, 6);
-        b.ball(tip[0], tip[1], tip[2], 0.021, 0.021, 0.021, c, { seg: 6 });
-      }
-    }
-  },
-  bantuknots(b, c, look, colours, fine) {
-    capHigh(b, c, 0.008);
-    for (const [x, y, z] of dome(fine ? 9 : 6, 0.3)) {
-      if (z > 0.5 && y < 0.75) continue;
-      const at = (r: number): Vec3 => [x * (0.25 + r), 2.2 + y * (0.28 + r) + 0.012, z * (0.255 + r) - 0.03];
-      const [p, q] = [at(0.035), at(0.095)];
-      b.ball(p[0], p[1], p[2], 0.07, 0.07, 0.07, c, { seg: 12 });
-      b.ball(q[0], q[1], q[2], 0.045, 0.045, 0.045, c, { seg: 10 });
-    }
-  },
-  gele(b, c, look, colours) {
-    const main = colours[0], other = look.fabric === 'plain' ? shade(main, 0.22) : colours[1], dark = look.fabric === 'plain' ? shade(main, -0.18) : colours[2];
-    b.ball(0, 2.27, -0.05, 0.257, 0.17, 0.262, c, { seg: 18 }); // hair showing at the nape and temples
-    b.cyl(0, 2.43, -0.03, 0.264, 0.2, main, { seg: 28, top: 1.14, rx: -0.1 });
-    b.cyl(0, 2.58, -0.045, 0.3, 0.14, other, { seg: 28, top: 1.22, rx: -0.1 });
-    b.cyl(0, 2.505, -0.04, 0.304, 0.018, dark, { seg: 28, rx: -0.1, open: true });
-    // The fan: broad rounded pleats standing up behind the wrap, each a little smaller and further forward.
-    ([[0.47, 2.69, -0.15, -0.34, main], [0.44, 2.7, -0.085, -0.2, other], [0.39, 2.69, -0.02, -0.06, dark], [0.31, 2.66, 0.045, 0.1, main]] as [number, number, number, number, Colour][])
-      .forEach(([r, y, z, tilt, colour]) => b.cyl(0, y, z, r, 0.04, colour, { seg: 28, sz: 0.5, rx: Math.PI / 2 + tilt }));
-    b.ball(0, 2.64, -0.07, 0.4, 0.2, 0.1, main, { seg: 20, rx: -0.2 }); // the body of cloth behind the pleats
-    b.ball(0.2, 2.5, 0.2, 0.09, 0.07, 0.06, other, { seg: 12 }); // knot
-  },
-};
-
-// ---- Hands and shoes -----------------------------------------------------------------------------
-
-/** A relaxed hand below the wrist at y = end: palm, four fingers curling towards the body, and a thumb. dir: +1 on the avatar's left. */
-function handHigh(b: Drawing, m: Measures, end: number, dir: number, skin: Colour): void {
-  // Hands are drawn a fifth larger than the wrist would give: they carry every gesture and vanish at phone size otherwise.
-  const w = m.wrist * 1.2, inwards = -dir;
-  b.ball(0, end - 0.058, 0.004, w * 0.5, 0.064, w * 0.98, skin, { seg: 12 });
-  for (let i = 0; i < 4; i++) {
-    const z = (i - 1.5) * w * 0.47 + 0.004, long = [0.062, 0.072, 0.068, 0.054][i]!, y0 = end - 0.1;
-    rope(b, [[0, y0, z], [inwards * 0.008, y0 - long * 0.55, z], [inwards * 0.026, y0 - long, z * 0.94]], w * 0.24, w * 0.19, skin, 5);
-  }
-  rope(b, [[inwards * 0.006, end - 0.035, w * 0.8], [inwards * 0.014, end - 0.075, w * 1.28], [inwards * 0.024, end - 0.112, w * 1.32]], w * 0.3, w * 0.22, skin, 5);
-}
-
-/** A shoe on a foot whose ankle is at y = end; the ground is 0.08 below it and the toes point to +z. */
-function shoeHigh(b: Drawing, kind: string, end: number, skin: Colour, [upper, sole]: Shoe = SHOES[kind] || SHOES.sneaker, fine = true): void {
-  const ground = end - 0.08;
-  const foot = () => { b.ball(0, ground + 0.045, 0.05, 0.047, 0.036, 0.122, skin, { seg: 12 }); b.ball(0, end - 0.01, -0.005, 0.045, 0.05, 0.05, skin, { seg: 10 }); };
-  if (kind === 'slide') {
-    b.cyl(0, ground + 0.007, 0.06, 0.06, 0.014, upper, { seg: 18, sz: 2.2 }); // outsole
-    b.cyl(0, ground + 0.024, 0.06, 0.058, 0.022, sole, { seg: 18, sz: 2.2 }); // footbed
-    foot();
-    if (fine) for (let i = 0; i < 5; i++) b.ball((i - 2) * 0.019, ground + 0.045, 0.168 - Math.abs(i - 1.5) * 0.008, 0.011, 0.012, 0.018, skin, { seg: 6 });
-    b.ball(0, ground + 0.055, 0.085, 0.058, 0.04, 0.05, upper, { seg: 14 }); // the strap over the foot
-    if (fine) b.box(0, ground + 0.094, 0.085, 0.05, 0.004, 0.03, sole);
-  } else if (kind === 'heel') {
-    b.cyl(0, ground + 0.006, 0.1, 0.046, 0.012, sole, { seg: 16, sz: 1.75 }); // the sole under the toes
-    b.ball(0, ground + 0.05, 0.03, 0.043, 0.034, 0.105, skin, { seg: 12, rx: 0.22 });
-    b.ball(0, end - 0.008, -0.01, 0.043, 0.05, 0.046, skin, { seg: 10 });
-    b.ball(0, ground + 0.034, 0.128, 0.047, 0.03, 0.062, upper, { seg: 14 }); // toe box
-    b.ball(0, ground + 0.058, -0.052, 0.042, 0.04, 0.034, upper, { seg: 12 }); // heel cup
-    stick(b, [0, ground, -0.066], [0, ground + 0.06, -0.06], 0.008, 0.02, sole, 8); // the heel itself
-    if (fine) b.cyl(0, end + 0.006, -0.012, 0.05, 0.014, upper, { seg: 14, sz: 1.05 }); // ankle strap
-  } else if (kind === 'boot') {
-    b.cyl(0, ground + 0.02, 0.06, 0.068, 0.04, sole, { seg: 18, sz: 2.05 });
-    if (fine) b.cyl(0, ground + 0.036, 0.06, 0.07, 0.008, shade(upper, 0.3), { seg: 18, sz: 2.05 }); // welt
-    b.ball(0, ground + 0.064, 0.068, 0.064, 0.05, 0.122, upper, { seg: 16 });
-    b.ball(0, ground + 0.058, 0.152, 0.06, 0.042, 0.05, shade(upper, -0.18), { seg: 12 }); // toe cap
-    b.cyl(0, end + 0.045, -0.008, 0.066, 0.16, upper, { seg: 16, top: 1.06 });
-    b.cyl(0, end + 0.122, -0.008, 0.072, 0.03, shade(upper, -0.22), { seg: 16 }); // padded collar
-    if (fine) for (let i = 0; i < 4; i++) b.box(0, end - 0.015 + i * 0.034, 0.064 - i * 0.012, 0.062, 0.008, 0.012, sole, { rx: -0.5 }); // laces
-  } else if (kind === 'dress') {
-    b.cyl(0, ground + 0.007, 0.062, 0.05, 0.014, sole, { seg: 18, sz: 2.55 });
-    b.box(0, ground + 0.016, -0.04, 0.086, 0.032, 0.07, sole); // heel block
-    b.ball(0, ground + 0.045, 0.05, 0.051, 0.04, 0.122, upper, { seg: 16 });
-    b.ball(0, ground + 0.034, 0.148, 0.04, 0.026, 0.052, upper, { seg: 12 }); // a slim toe
-    b.cyl(0, end - 0.012, -0.012, 0.05, 0.036, upper, { seg: 14, top: 1.06 });
-    if (fine) { b.box(0, ground + 0.086, 0.062, 0.03, 0.004, 0.07, shade(upper, 0.5), { rx: 0.42 }); for (let i = 0; i < 3; i++) b.box(0, ground + 0.094 - i * 0.012, 0.045 + i * 0.026, 0.04, 0.005, 0.007, sole, { rx: 0.42 }); }
-  } else {
-    // Sneaker: a thick sole, a toe cap, laces and a stripe.
-    b.cyl(0, ground + 0.016, 0.058, 0.06, 0.032, sole, { seg: 18, sz: 2.05 });
-    b.ball(0, ground + 0.064, 0.056, 0.06, 0.058, 0.122, upper, { seg: 16 });
-    b.ball(0, ground + 0.05, 0.158, 0.056, 0.036, 0.046, sole, { seg: 12 }); // toe cap
-    b.cyl(0, end - 0.004, -0.012, 0.055, 0.05, upper, { seg: 14, top: 1.08 }); // collar
-    b.ball(0, end + 0.004, -0.07, 0.022, 0.03, 0.016, sole, { seg: 8 }); // heel tab
-    if (fine) {
-      b.box(0, ground + 0.116, 0.07, 0.04, 0.006, 0.1, shade(upper, 0.5), { rx: 0.4 }); // tongue
-      for (let i = 0; i < 4; i++) b.box(0, ground + 0.122 - i * 0.012, 0.044 + i * 0.027, 0.058, 0.006, 0.009, sole, { rx: 0.4 });
-      for (const side of [-1, 1]) b.box(side * 0.06, ground + 0.064, 0.05, 0.004, 0.022, 0.09, sole, { rx: -0.35 });
-    }
-  }
-}
-
-/** One segment of a high-detail limb: its rings, and extra detail drawn on it. */
+/** One segment of a limb: its rings, and extra detail drawn on it. */
 interface Piece { length: number; rings: Ring[]; colour: Colour; extra?: (() => unknown) | null; joint?: Colour }
-function limbHigh(b: Drawing, name: string, x: number, y: number, z: number, pitch: number, roll: number, upper: Piece, bend: number, lower: Piece, end?: (end: number) => void): void {
-  const piece = (p: Piece) => { loft(b, p.rings, p.colour, { seg: 14 }); p.extra?.(); };
+function limb(b: Drawing, n: number, name: string, x: number, y: number, z: number, pitch: number, roll: number, upper: Piece, bend: number, lower: Piece, end?: (end: number) => void): void {
+  const piece = (p: Piece, lap = 0) => { loft(b, lap ? [...p.rings, [lap, p.rings[p.rings.length - 1]![1]]] : p.rings, p.colour, { seg: 16 }); p.extra?.(); };
   part(b, name, x, y, z, () => {
     piece(upper);
     part(b, name.replace('leg', 'calf').replace('arm', 'forearm'), 0, -upper.length, 0, () => {
-      const r = upper.rings[0]![1] * 0.975; // just inside both tubes, so a bent joint is filled and a straight one shows no seam
-      b.ball(0, 0, 0, r, r, r, upper.joint ?? upper.colour, { seg: 12 });
-      piece(lower);
+      const r = upper.rings[0]![1] * 0.98; // fills a bent joint, and shows no seam on a straight one
+      if (n > 1) b.ball(0, 0, 0, r, r, r, upper.joint ?? upper.colour, { seg: 10 });
+      piece(lower, n === 1 ? 0.04 : 0); // a little overlap above the joint fills the bend where there is no joint ball
       end?.(-lower.length);
     }, bend);
   }, pitch, roll);
 }
+/** A relaxed mitten of a hand below the wrist at y = end, with a thumb. dir: +1 on the avatar's left. */
+function hand(b: Drawing, m: Measures, end: number, dir: number, skin: Colour, n: number): void {
+  const w = m.wrist * 1.25;
+  (n ? b.ball : b.ico)(0, end - 0.062, 0.004, w * 0.95, 0.078, w * 0.8, skin, { seg: 10 });
+  if (n > 1) b.ball(-dir * w * 0.2, end - 0.07, w * 0.78, 0.022, 0.04, 0.024, skin, { seg: 6, rx: 0.3 });
+}
 
 // ---- Accessories ---------------------------------------------------------------------------------
-
-function headwear(b: Drawing, kind: string, cloth: Colour, fine: boolean): void {
-  const dark = shade(cloth, -0.22);
+function headwear(b: Drawing, n: number, F: FaceShape, kind: string, cloth: Colour): void {
+  const dark = shade(cloth, -0.22), t = F.ry;
+  if (!n) {
+    if (kind === 'fila') b.cyl(0, t * 0.62, -0.02, F.rx * 1.1, 0.2, cloth, { seg: 18, top: 1.03, rz: -0.05 });
+    else b.ball(0, t * 0.32, -0.02, F.rx * 1.1, F.ry * 0.78, F.rz * 1.12, cloth, { seg: 16, rx: -0.15 });
+    if (kind === 'cap') b.quad(0, t * 0.25, F.rz * 1.15, 0.2, 0.05, dark, { rx: -1.2 });
+    return;
+  }
   if (kind === 'cap') {
-    b.ball(0, 2.385, -0.015, 0.27, 0.172, 0.278, cloth, { seg: 24, rx: -0.08 });
-    b.cyl(0, 2.322, 0.262, 0.152, 0.016, dark, { seg: 22, sz: 1.2, rx: 0.16 }); // brim
-    b.ball(0, 2.556, -0.03, 0.024, 0.012, 0.024, dark, { seg: 8 });
-    if (fine) {
-      b.cyl(0, 2.33, -0.012, 0.262, 0.03, dark, { seg: 24, sz: 1.03, rx: -0.08, open: true }); // sweatband edge
-      b.box(0, 2.42, 0.258, 0.1, 0.07, 0.01, CLOTH_WHITE, { rx: -0.3 }); // front patch
-    }
+    b.ball(0, t * 0.34, -0.015, F.rx * 1.1, F.ry * 0.78, F.rz * 1.12, cloth, { seg: 18, rx: -0.1 });
+    b.cyl(0, t * 0.25, F.rz * 0.98, 0.115, 0.014, dark, { seg: 16, sz: 1.25, rx: 0.16 });
   } else if (kind === 'headwrap') {
-    b.ball(0, 2.36, -0.035, 0.266, 0.19, 0.276, cloth, { seg: 24, rx: -0.24 });
-    b.ball(0, 2.14, -0.2, 0.15, 0.13, 0.07, cloth, { seg: 12 }); // the flap at the nape
-    b.ball(0, 2.25, -0.275, 0.05, 0.04, 0.04, dark, { seg: 10 }); // knot
-    for (const side of [-1, 1]) chain(b, [[side * 0.02, 2.24, -0.29], [side * 0.05, 2.08, -0.31], [side * 0.075, 1.93, -0.3]], 0.024, 0.012, dark, 6);
-    if (fine) b.box(0, 2.47, 0.0, 0.008, 0.012, 0.5, dark, { rx: -0.1 }); // centre seam
+    b.ball(0, t * 0.3, -0.035, F.rx * 1.1, F.ry * 0.82, F.rz * 1.12, cloth, { seg: 18, rx: -0.24 });
+    b.ball(0, -0.04, -F.rz * 1.05, 0.12, 0.1, 0.06, cloth, { seg: 10 });
+    b.ball(0, 0.04, -F.rz * 1.2, 0.04, 0.035, 0.035, dark, { seg: 8 });
   } else if (kind === 'fila') {
-    b.cyl(0, 2.46, -0.02, 0.264, 0.2, cloth, { seg: 26, top: 1.03, rz: -0.05, rx: -0.06 });
-    b.ball(0.02, 2.56, -0.025, 0.272, 0.062, 0.272, cloth, { seg: 22, rz: -0.14 });
-    b.ball(0.17, 2.52, -0.03, 0.12, 0.085, 0.2, cloth, { seg: 14, rz: -0.5 }); // the slouch to one side
-    b.cyl(0, 2.375, -0.016, 0.268, 0.035, dark, { seg: 26, rx: -0.06, open: true });
-    if (fine) for (const y of [2.44, 2.5]) b.cyl(0, y, -0.02, 0.269, 0.008, GOLD, { seg: 26, rz: -0.05, rx: -0.06, open: true });
+    b.cyl(0, t * 0.6, -0.02, F.rx * 1.1, 0.19, cloth, { seg: 18, top: 1.03, rz: -0.05, rx: -0.06 });
+    b.ball(0.02, t * 0.98, -0.02, F.rx * 1.12, 0.05, F.rx * 1.12, cloth, { seg: 16, rz: -0.14 });
+    b.ball(0.12, t * 0.92, -0.02, 0.1, 0.07, 0.15, cloth, { seg: 10, rz: -0.5 });
   }
 }
-function eyewear(b: Drawing, kind: string, face: FaceShape, fine: boolean): void {
-  const y = 2.214, frame = kind === 'sunglasses' ? '#17181c' : INK;
+function eyewear(b: Drawing, n: number, F: FaceShape, kind: string): void {
+  const y = 0.012, frame = kind === 'sunglasses' ? '#17181c' : INK;
+  if (!n) { b.quad(0, y + (kind === 'sunglasses' ? 0 : 0.03), faceZ(F, 0, y) + 0.03, kind === 'sunglasses' ? 0.34 : 0.3, kind === 'sunglasses' ? 0.07 : 0.012, frame); return; }
   for (const side of [-1, 1]) {
-    const x = side * 0.1, z = faceZ(x, y, face) + 0.04, turn = side * 0.16;
-    if (kind === 'sunglasses') {
-      b.ball(x, y - 0.006, z, 0.064, 0.046, 0.008, '#101216', { seg: 14, ry: turn });
-      if (fine) b.ball(x - 0.014, y + 0.012, z + 0.008, 0.016, 0.007, 0.002, '#59616f', { seg: 6, ry: turn, rz: 0.5 });
-    } else {
-      b.box(x, y + 0.034, z, 0.1, 0.009, 0.008, frame, { ry: turn });
-      b.box(x, y - 0.036, z, 0.092, 0.007, 0.008, frame, { ry: turn });
-      for (const edge of [-1, 1]) b.box(x + edge * 0.047, y - 0.001, z - (edge * side > 0 ? 0.007 : -0.007), 0.007, 0.07, 0.008, frame, { ry: turn });
+    const x = side * F.rx * 0.43, z = faceZ(F, x, y) + 0.022, turn = side * 0.2;
+    if (kind === 'sunglasses') b.ball(x, y, z, 0.056, 0.042, 0.008, '#101216', { seg: 10, ry: turn });
+    else {
+      b.box(x, y + 0.04, z, 0.1, 0.009, 0.008, frame, { ry: turn });
+      b.box(x, y - 0.04, z, 0.1, 0.009, 0.008, frame, { ry: turn });
+      for (const edge of [-1, 1]) b.box(x + edge * 0.05, y, z, 0.009, 0.08, 0.008, frame, { ry: turn });
     }
-    stick(b, [side * 0.15, y + 0.024, z - 0.012], [side * 0.257, 2.222, 0.0], 0.005, 0.005, frame, 4);
+    b.cyl(side * F.rx * 0.98, y + 0.005, 0.0, 0.005, 0.09, frame, { seg: 4, rx: Math.PI / 2 });
   }
-  const mid = faceZ(0, y, face) + 0.05;
-  b.box(0, y + (kind === 'sunglasses' ? 0.03 : 0.018), mid, kind === 'sunglasses' ? 0.3 : 0.05, kind === 'sunglasses' ? 0.012 : 0.008, 0.008, frame);
+  b.box(0, y + 0.016, faceZ(F, 0, y) + 0.026, kind === 'sunglasses' ? 0.14 : 0.05, 0.009, 0.008, frame);
 }
 
 // ---- The model -----------------------------------------------------------------------------------
 
-function drawHigh(b0: Drawing, look: Look, { joints, sitting, marker, sleeping }: Stance, fine: boolean): void {
-  const b = fine ? b0 : coarse(b0, 0.36);
-  const per = fine ? 3 : 1, SEG = 24;
+/** What drawFigure needs besides the look. */
+interface Stance { joints: Joints; sitting: boolean; marker: Marker | null | undefined; sleeping?: boolean }
+function drawFigure(b0: Drawing, look: Look, { joints, sitting, marker, sleeping }: Stance, L: Level): void {
+  const b = coarse(b0, L.k), bh = coarse(b0, L.kh), n = L.n, per = L.per, SEG = 20;
+  /** A limb's rings: its key rings, or only its two ends on the cheapest level. */
+  const sm = (keys: Ring[]): Ring[] => n ? keys : [keys[0]!, keys[keys.length - 1]!];
   const style = OUTFIT[look.outfit] || OUTFIT.casual, m = BODY[look.body], woman = look.body === 'woman';
   const colours = fabricColours(look), top = look.outfitColor, bottoms = look.bottomsColor, skin = look.skin;
-  const plain = look.fabric === 'plain', has = (id: string) => look.accessories.includes(id);
+  const plain = look.fabric === 'plain', has = (id: string) => look.accessories.includes(id), F = FACES[look.face] || FACES.oval;
   const skirt = woman && look.outfit === 'office' || style.legs === 'skirt', legs = skirt ? 'skirt' : style.legs;
   const shoe = skirt ? 'heel' : style.shoe, shoeColours = skirt ? SHOES.dress : SHOES[shoe];
   const bulk = style.bulk || 0, aspect = m.aspect, trim = shade(top, -0.2);
   const wrapper: Colours = plain ? [bottoms, bottoms, shade(bottoms, -0.15)] : colours;
   const long = (legs === 'wrapper' || legs === 'dress') && !sitting;
-  const cloth = (rings: Ring[], o: PrintOptions) => { if (fine && !plain) print(b, look, colours, rings, o); };
-  const dyed = fine || plain ? top : weave(look, colours);
+  const dyed = style.vest && !n ? '#f47f1b' : n || plain ? top : weave(look, colours);
+  const cloth = (rings: Ring[], o: PrintOptions) => { if (n && !plain) print(b, look, colours, rings, { ...o, size: 1.12, around: Math.max(5, (o.around ?? 8) - 1) }); };
   const body = smooth(torsoKeys(m), per);
+  const start = b.triangles;
+  let reserve = 330;
+  const room = (cost: number) => n > 0 || b.triangles - start + cost + reserve <= LOW_BUDGET;
 
+  const stripe: typeof strip = (...args) => { if (n) strip(...args); }, bandy: typeof band = (...args) => { if (n) band(...args); };
+  /** Fewer key rings on the cheapest level. */
+  const lite = (keys: Ring[]): Ring[] => n ? keys : keys.length > 3 ? [keys[0]!, keys[Math.floor(keys.length / 2)]!, keys[keys.length - 1]!] : keys;
   // Legs and shoes
   if (!long) {
-    const trousers = legs === 'trousers', pad = trousers ? 0.014 : 0, legColour = trousers ? bottoms : skin;
-    const thigh = smooth([[-0.5, m.knee + pad], [-0.25, (m.leg + m.knee) / 2 + 0.008 + pad], [0, m.leg + pad]], per);
-    const shin = smooth(trousers ? [[-0.46, m.ankle + 0.03], [-0.2, m.calf + pad], [0, m.knee + pad]] : [[-0.46, m.ankle], [-0.36, m.ankle + 0.012], [-0.16, m.calf], [0, m.knee]], per);
+    const trousers = legs === 'trousers', pad = trousers ? 0.012 : 0, bare = legs === 'shorts' || legs === 'skirt';
+    const thigh = sm([[-0.5, m.knee + pad], [-0.25, (m.leg + m.knee) / 2 + 0.008 + pad], [0, m.leg + pad]]);
+    const shin = sm([[-0.46, m.ankle + pad * 2], [-0.16, m.calf + pad], [0, m.knee + pad]]);
     for (const side of [0, 1] as const) {
       const dir = side ? 1 : -1;
-      limbHigh(b, side ? 'legL' : 'legR', dir * m.legX, 1.04, 0, joints.leg[side], 0,
-        { length: 0.5, rings: thigh, colour: legColour, extra: legs === 'shorts' ? () => {
-          cover(b, thigh, -0.36, -0.08, 0.03, bottoms, 16);
-          cover(b, thigh, -0.08, 0, 0.004, bottoms, 16);
-          b.cyl(0, -0.35, 0, radiusAt(thigh, -0.35) + 0.033, 0.03, shade(bottoms, -0.18), { seg: 16, open: true });
-          b.cyl(0, -0.362, 0, radiusAt(thigh, -0.36) + 0.028, 0.004, shade(bottoms, -0.55), { seg: 16 });
-          if (style.sport) b.box(dir * (radiusAt(thigh, -0.18) + 0.032), -0.18, 0, 0.008, 0.34, 0.05, CLOTH_WHITE);
-        } : trousers && fine && (style.collar || style.tunic || style.robe) ? () => b.box(0, -0.25, radiusAt(thigh, -0.25) + 0.002, 0.008, 0.5, 0.006, shade(bottoms, -0.14)) : null },
+      limb(b, n, side ? 'legL' : 'legR', dir * m.legX, 1.04, 0, joints.leg[side], 0,
+        { length: 0.5, rings: thigh, colour: trousers ? bottoms : skin, extra: legs === 'shorts' ? () => {
+          cover(b, thigh, -0.38, 0, 0.026, bottoms, 14);
+          b.cyl(0, -0.37, 0, radiusAt(thigh, -0.37) + 0.028, 0.025, shade(bottoms, -0.18), { seg: 14, open: true });
+        } : null },
         joints.calf[side],
-        { length: 0.46, rings: shin, colour: legColour, extra: () => {
-          if (trousers) {
-            b.cyl(0, -0.452, 0, m.ankle + 0.034, 0.018, shade(bottoms, -0.2), { seg: 16, open: true }); // hem
-            b.cyl(0, -0.46, 0, m.ankle + 0.028, 0.004, shade(bottoms, -0.6), { seg: 16 });
-            if (fine) b.cyl(0, -0.39, 0, radiusAt(shin, -0.39) + 0.003, 0.012, shade(bottoms, -0.1), { seg: 16, open: true }); // the break above the shoe
-          } else if (style.socks) {
-            cover(b, shin, -0.46, -0.2, 0.008, CLOTH_WHITE, 16);
-            for (const y of [-0.225, -0.255]) b.cyl(0, y, 0, radiusAt(shin, y) + 0.011, 0.014, top, { seg: 16, open: true });
-          }
-        } },
-        (end) => { if (!drawFallbackShoe(b, look, end, fine)) shoeHigh(b, shoe, end, skin, shoeColours, fine); });
+        { length: 0.46, rings: shin, colour: bare ? (style.socks ? CLOTH_WHITE : skin) : bottoms, extra: trousers && n ? () => b.cyl(0, -0.45, 0, m.ankle + 0.03, 0.02, shade(bottoms, -0.2), { seg: 14, open: true }) : style.socks && n ? () => b.cyl(0, -0.2, 0, radiusAt(shin, -0.2) + 0.012, 0.02, top, { seg: 14, open: true }) : null },
+        (end) => { if (!drawFallbackShoe(b, look, end, n)) shoeFor(b, shoe, end, skin, shoeColours, n); });
     }
   } else {
-    for (const side of [-1, 1]) part(b, side > 0 ? 'legL' : 'legR', side * m.legX, 1.04, 0, () => { if (!drawFallbackShoe(b, look, -0.96, fine)) shoeHigh(b, shoe, -0.96, skin, shoeColours, fine); });
+    for (const side of [-1, 1]) part(b, side > 0 ? 'legL' : 'legR', side * m.legX, 1.04, 0, () => { if (!drawFallbackShoe(b, look, -0.96, n)) shoeFor(b, shoe, -0.96, skin, shoeColours, n); });
   }
   // The garment below the waist
   if (legs === 'wrapper') {
     if (sitting) b.box(0, 1.02, 0.24, 0.56, 0.3, 0.8, wrapper[0]);
     else {
-      // Iro: a wrapper from the waist to the ankles, with its overlapping edge down the front.
-      const rings = smooth([[0.1, 0.3], [0.45, 0.275], [0.9, m.hip + 0.014], [1.04, m.hip * 0.94]], per);
-      loft(b, rings, fine || plain ? wrapper[0] : weave(look, colours), { seg: SEG, aspect: 0.74 });
-      band(b, rings, 0.125, 0.05, plain ? shade(bottoms, -0.2) : colours[2], { seg: SEG, aspect: 0.74 });
-      cloth(rings, { aspect: 0.74, from: 0.16, to: 0.98, around: 9, seg: SEG });
-      strip(b, rings, 0.1, 1.0, 0.5, 0.035, plain ? shade(bottoms, 0.2) : colours[1], { aspect: 0.74, lift: 0.012, thick: 0.02 });
-      if (fine) for (const a of [1.5, 2.4, 3.3, 4.2, 5.3]) strip(b, rings, 0.12, 0.9, a, 0.014, shade(wrapper[0], -0.14), { aspect: 0.74, lift: 0.002, thick: 0.012 }); // folds
+      const rings = smooth(lite([[0.08, 0.31], [0.45, 0.28], [0.9, m.hip + 0.014], [1.04, m.hip * 0.94]]), per);
+      loft(b, rings, n || plain ? wrapper[0] : weave(look, colours), { seg: SEG, aspect: 0.76 });
+      bandy(b, rings, 0.115, 0.05, plain ? shade(bottoms, -0.2) : colours[2], { seg: SEG, aspect: 0.76 });
+      cloth(rings, { aspect: 0.76, from: 0.16, to: 0.98, around: 9, seg: SEG });
+      if (n) stripe(b, rings, 0.1, 1.0, 0.5, 0.035, plain ? shade(bottoms, 0.2) : colours[1], { aspect: 0.76, lift: 0.012, thick: 0.02 });
     }
   } else if (legs === 'dress') {
     if (sitting) b.box(0, 1.02, 0.24, 0.56, 0.3, 0.8, top);
     else {
-      const rings = smooth([[0.09, 0.45], [0.5, 0.37], [0.92, m.hip + 0.045], [1.13, m.hip * 0.99], [1.3, m.waist + 0.03]], per);
+      const rings = smooth(lite([[0.08, 0.45], [0.5, 0.37], [0.92, m.hip + 0.045], [1.13, m.hip * 0.99], [1.3, m.waist + 0.03]]), per);
       loft(b, rings, dyed, { seg: SEG, aspect: 0.84 });
-      band(b, rings, 0.12, 0.06, bottoms, { seg: SEG, aspect: 0.84 });
+      bandy(b, rings, 0.12, 0.06, bottoms, { seg: SEG, aspect: 0.84 });
       cloth(rings, { aspect: 0.84, from: 0.2, to: 1.2, around: 10, seg: SEG });
-      if (fine) for (let i = 0; i < 12; i++) strip(b, rings, 0.16, 0.86 + (i % 3) * 0.07, (i + 0.5) / 12 * TAU, 0.016, shade(top, i % 2 ? -0.13 : 0.1), { aspect: 0.84, lift: 0.002, thick: 0.014 }); // the fall of the skirt
     }
   } else if (legs === 'skirt') {
     if (sitting) b.box(0, 1.03, 0.2, 0.52, 0.28, 0.7, bottoms);
     else {
-      const rings = smooth([[0.6, m.hip - 0.02], [0.88, m.hip + 0.01], [0.99, m.hip - 0.004]], per);
+      const rings = smooth([[0.6, m.hip + 0.01], [0.88, m.hip + 0.03], [0.99, m.hip - 0.004]], per);
       loft(b, rings, bottoms, { seg: SEG, aspect: 0.82 });
-      band(b, rings, 0.615, 0.03, shade(bottoms, -0.2), { seg: SEG, aspect: 0.82 });
-      b.cyl(0, 0.63, 0, m.hip - 0.026, 0.01, shade(bottoms, -0.55), { seg: SEG, sz: 0.82 });
-      if (fine) strip(b, rings, 0.6, 0.72, Math.PI, 0.01, shade(bottoms, -0.5), { aspect: 0.82, lift: 0.003 }); // back vent
+      bandy(b, rings, 0.62, 0.03, shade(bottoms, -0.2), { seg: SEG, aspect: 0.82 });
     }
   }
   // Hips and seat
   const seat = legs === 'wrapper' ? wrapper[0] : legs === 'dress' ? top : bottoms;
   b.at(0, HIP_Y, 0, 0, () => {
-    loft(b, padded(clip(body, -0.14, 0.02), 0.004), seat, { seg: SEG, aspect, capped: true });
-    b.ball(0, -0.13, 0, m.hip * 0.9, 0.075, m.hip * aspect * 0.9, seat, { seg: 16 });
+    loft(b, padded(n ? clip(body, -0.14, 0.02) : [[-0.14, radiusAt(body, -0.14)], [0.02, radiusAt(body, 0.02)]], 0.004), seat, { seg: SEG, aspect, capped: n > 0 });
   });
 
   b.at(0, HIP_Y, 0, 0, () => {
-    const hem = sitting ? Math.max(style.hem, -0.14) : style.tunic && woman ? -0.84 : style.hem;
+    const hem = sitting ? Math.max(style.hem, -0.14) : style.tunic ? (woman ? -0.7 : -0.5) : style.hem;
     let keys = torsoKeys(m);
     keys[0] = [-0.16, m.hip + 0.006]; // a top hangs straight from the hips
     if (hem < -0.14) keys = [[hem, m.hip + (woman ? 0.085 : 0.03)], [(hem - 0.16) / 2, m.hip + (woman ? 0.05 : 0.022)], ...keys.slice(1)];
     const wear = padded(smooth(keys, per), 0.016 + bulk), depthAt = (y: number) => radiusAt(wear, y) * aspect;
     const front = (y: number, a = 0, lift = 0.008) => onLoft(wear, aspect, y, a, lift);
     // Skin under the neckline, then the garment over it
-    loft(b, clip(body, 0.5, 0.8), skin, { seg: SEG, aspect });
-    b.cyl(0, 0.9, 0, m.neck, 0.24, skin, { seg: 18, top: 0.92 });
-    const neckline = style.open ? 0.72 : style.dress ? 0.68 : 0.755;
-    const garment = clip(wear, hem, neckline);
+    if (n) loft(b, clip(body, 0.72, 0.85), skin, { seg: SEG, aspect });
+    b.cyl(0, 0.92, 0, m.neck + (n ? 0 : 0.03), 0.2, skin, { seg: 16, top: 0.94 });
+    const neckline = style.open ? 0.7 : style.dress ? 0.68 : 0.77;
+    const garment = n ? clip(wear, hem, neckline) : [hem, 0.22, 0.55, neckline].map((y): Ring => [y, radiusAt(wear, y)]);
     loft(b, garment, dyed, { seg: SEG, aspect });
-    band(b, wear, hem + 0.02, 0.04, style.gown && !plain ? colours[2] : trim, { seg: SEG, aspect });
-    b.cyl(0, hem + 0.03, 0, radiusAt(wear, hem + 0.03) - 0.006, 0.03, hem < -0.2 ? shade(top, -0.55) : seat, { seg: SEG, sz: aspect }); // closes the hem
-    cloth(garment, { aspect, from: hem + 0.05, to: style.vest ? 0.1 : style.robe ? hem + 0.05 : 0.7, around: 7, seg: SEG });
-    if (fine) for (const side of [-1, 1]) strip(b, wear, hem + 0.05, 0.46, side * Math.PI / 2, 0.007, shade(top, -0.28), { aspect, lift: 0.003 }); // side seams
+    if (n) bandy(b, wear, hem + 0.02, 0.04, style.gown && !plain ? colours[2] : trim, { seg: SEG, aspect });
+    cloth(garment, { aspect, from: hem + 0.06, to: style.vest ? 0.1 : style.robe ? hem + 0.05 : 0.68, around: 8, seg: SEG });
 
     if (style.open) {
       // An unbuttoned camp shirt over a vest: the opening runs down the front between two plackets.
-      strip(b, wear, hem + 0.03, 0.72, 0, 0.13, CLOTH_WHITE, { aspect, lift: 0.004 });
+      stripe(b, wear, hem + 0.03, 0.7, 0, 0.13, CLOTH_WHITE, { aspect, lift: 0.004 });
       for (const side of [-1, 1]) {
-        strip(b, wear, hem + 0.03, 0.72, side * 0.3, 0.028, trim, { aspect, lift: 0.008, thick: 0.014 });
-        b.box(side * 0.105, 0.738, depthAt(0.738) + 0.008, 0.14, 0.055, 0.02, top, { rz: side * 0.5, ry: side * 0.3 }); // camp collar
-        if (fine) for (const y of [0.1, 0.3, 0.5]) { const p = front(y, side * 0.3, 0.018); b.cyl(p.x, y, p.z, 0.011, 0.006, CLOTH_WHITE, { seg: 8, rx: Math.PI / 2, ry: p.ry }); }
+        stripe(b, wear, hem + 0.03, 0.7, side * 0.3, 0.028, trim, { aspect, lift: 0.008, thick: 0.014 });
+        if (n) b.ball(side * 0.1, 0.74, depthAt(0.74) * 0.9, 0.07, 0.03, 0.05, top, { seg: 8, rz: side * 0.5, ry: side * 0.3 }); // camp collar
       }
-      if (fine) { const p = front(0.46, 0.75, 0.008); b.box(p.x, 0.46, p.z, 0.1, 0.1, 0.008, shade(top, -0.12), { ry: p.ry }); }
     } else if (style.collar) {
-      // A blazer: one clear white V of shirt between two broad lapels, a tie or a pendant, two buttons.
+      // A blazer or a school shirt: a white V of shirt between two lapels, a tie or a pendant.
       const tie = colours[2] === top ? shade(top, -0.5) : colours[1], lapel = shade(top, -0.16);
-      strip(b, wear, 0.43, 0.76, 0, 0.21, CLOTH_WHITE, { aspect, lift: 0.004 });
-      if (!woman) {
-        strip(b, wear, 0.44, 0.7, 0, 0.05, tie, { aspect, lift: 0.01 });
-        b.box(0, 0.722, depthAt(0.722) + 0.014, 0.062, 0.05, 0.02, shade(tie, -0.15));
-      } else if (fine) b.ball(0, 0.66, depthAt(0.66) + 0.012, 0.018, 0.018, 0.01, GOLD, { seg: 8 });
-      for (const side of [-1, 1]) {
-        const tilt = Math.atan2((radiusAt(wear, 0.76) - radiusAt(wear, 0.4)) * aspect, 0.36);
-        b.box(side * 0.094, 0.575, depthAt(0.575) + 0.014, 0.125, 0.43, 0.016, lapel, { rz: side * -0.4, rx: tilt });
-        b.box(side * 0.075, 0.782, depthAt(0.782) * 0.72, 0.11, 0.05, 0.03, CLOTH_WHITE, { rz: side * -0.5, ry: side * 0.5 }); // shirt collar
+      stripe(b, wear, 0.43, 0.77, 0, 0.2, CLOTH_WHITE, { aspect, lift: 0.004 });
+      if (!woman) stripe(b, wear, 0.44, 0.74, 0, 0.05, tie, { aspect, lift: 0.01 });
+      if (!n) b.quad(0, 0.62, depthAt(0.62) + 0.01, 0.12, 0.3, CLOTH_WHITE);
+      else for (const side of [-1, 1]) {
+        const tilt = Math.atan2((radiusAt(wear, 0.77) - radiusAt(wear, 0.4)) * aspect, 0.37);
+        b.box(side * 0.09, 0.58, depthAt(0.58) + 0.012, 0.115, 0.4, 0.016, lapel, { rz: side * -0.38, rx: tilt });
+        b.ball(side * 0.08, 0.79, depthAt(0.79) * 0.78, 0.065, 0.03, 0.04, CLOTH_WHITE, { seg: 8, rz: side * -0.5, ry: side * 0.5 });
       }
-      b.cyl(0, 0.79, 0, m.neck + 0.022, 0.05, CLOTH_WHITE, { seg: 18, top: 0.95, open: true });
-      for (const y of [0.27, 0.14]) { const p = front(y, 0, 0.01); b.cyl(0, y, p.z, 0.022, 0.01, shade(top, -0.5), { seg: 10, rx: Math.PI / 2 }); }
-      if (fine) {
-        strip(b, wear, hem + 0.04, 0.36, 0.04, 0.008, shade(top, -0.3), { aspect, lift: 0.004 }); // the front edge of the jacket
-        const pocket = front(0.5, 0.72, 0.01);
-        b.box(pocket.x, 0.5, pocket.z, 0.09, 0.012, 0.01, CLOTH_WHITE, { ry: pocket.ry });
-        for (const side of [-1, 1]) { const p = front(0.06, side * 0.75, 0.008); b.box(p.x, 0.06, p.z, 0.12, 0.014, 0.01, lapel, { ry: p.ry }); }
-      }
+      if (n) for (const y of [0.27, 0.14]) { const p = front(y, 0, 0.01); b.cyl(0, y, p.z, 0.02, 0.01, shade(top, -0.5), { seg: 8, rx: Math.PI / 2 }); }
     } else if (style.hood) {
-      band(b, wear, hem + 0.045, 0.09, trim, { seg: SEG, aspect, lift: 0.008 }); // ribbed hem
-      b.ball(0, 0.77, -0.15, 0.2, 0.16, 0.13, top, { seg: 18, rx: 0.5 }); // the hood, resting behind the neck
-      b.cyl(0, 0.795, -0.012, m.neck + 0.075, 0.11, top, { seg: 20, top: 1.2, sz: 1.05, open: true });
-      b.cyl(0, 0.85, -0.012, (m.neck + 0.075) * 1.2, 0.012, trim, { seg: 20, sz: 1.05, open: true });
+      bandy(b, wear, hem + 0.045, 0.09, trim, { seg: SEG, aspect, lift: 0.008 }); // ribbed hem
+      b.ball(0, 0.8, -0.13, 0.2, 0.15, 0.13, top, { seg: 14, rx: 0.5 }); // the hood, resting behind the neck
+      b.cyl(0, 0.81, -0.01, m.neck + 0.07, 0.1, top, { seg: 16, top: 1.2, sz: 1.05, open: true });
       const pouch = front(0.14, 0, 0.012);
       b.box(0, 0.15, pouch.z, 0.34, 0.19, 0.03, shade(top, -0.1));
-      for (const side of [-1, 1]) {
-        b.box(side * 0.165, 0.15, pouch.z + 0.006, 0.014, 0.15, 0.03, shade(top, -0.32), { rz: side * -0.35 });
-        const cord = front(0.6, side * 0.22, 0.012);
-        b.cyl(cord.x, 0.6, cord.z, 0.009, 0.2, CLOTH_WHITE, { seg: 6, rx: -0.12 });
-        b.ball(cord.x, 0.495, cord.z + 0.012, 0.014, 0.02, 0.014, CLOTH_WHITE, { seg: 6 });
-      }
-      if (fine) strip(b, wear, 0.26, 0.74, 0, 0.008, shade(top, -0.3), { aspect, lift: 0.004 }); // zip line
+      if (n) for (const side of [-1, 1]) { const cord = front(0.6, side * 0.22, 0.012); b.cyl(cord.x, 0.58, cord.z, 0.01, 0.2, CLOTH_WHITE, { seg: 5 }); }
     } else if (style.gown) {
-      // Buba: an embroidered round neckline, a coral necklace and an ipele over the shoulder.
-      band(b, wear, neckline - 0.02, 0.04, GOLD, { seg: SEG, aspect, lift: 0.006 });
-      for (let i = 0, n = fine ? 16 : 8; i < n; i++) { const a = i / n * TAU; b.ball(Math.sin(a) * (m.neck + 0.05), 0.79 - Math.cos(a) * 0.035 - 0.02, Math.cos(a) * (m.neck + 0.05) * 0.95 + 0.01, 0.021, 0.021, 0.021, CORAL, { seg: 8 }); }
+      // Buba: a gold round neckline, a coral necklace and an ipele over the shoulder.
+      bandy(b, wear, neckline - 0.02, 0.04, GOLD, { seg: SEG, aspect, lift: 0.006 });
+      if (n) b.cyl(0, 0.8, 0.012, m.neck + 0.055, 0.03, CORAL, { seg: 16, sz: 1.08, rx: 0.12, open: true }); // coral necklace
       const sash = plain ? shade(top, 0.3) : colours[1];
-      for (const face of [0.62, Math.PI - 0.62]) strip(b, wear, 0.2, 0.7, face, 0.12, sash, { aspect, lift: 0.012, thick: 0.022 });
-      b.box(m.shoulder * 0.52, 0.735, 0, 0.12, 0.03, radiusAt(wear, 0.7) * aspect * 1.75, sash, { rz: -0.3 });
-      for (const side of [-1, 1]) b.at(0, -HIP_Y, 0, 0, () => b.ball(side * 0.262, 2.09, 0, 0.022, 0.034, 0.022, GOLD, { seg: 8 })); // ear studs
+      for (const face of [0.62, Math.PI - 0.62]) stripe(b, wear, 0.2, 0.7, face, 0.12, sash, { aspect, lift: 0.012, thick: 0.022 });
     } else if (style.sport) {
-      // Jersey: contrast side panels, a V-neck, and a number front and back.
+      // Jersey: contrast side panels, a V-neck and a number.
       const second = bottoms === top ? CLOTH_WHITE : bottoms;
-      for (const side of [-1, 1]) strip(b, wear, hem + 0.04, 0.5, side * Math.PI / 2, 0.11, second, { aspect, lift: 0.004 });
-      band(b, wear, neckline - 0.012, 0.03, second, { seg: SEG, aspect, lift: 0.006 });
+      for (const side of [-1, 1]) stripe(b, wear, hem + 0.04, 0.5, side * Math.PI / 2, 0.11, second, { aspect, lift: 0.004 });
+      bandy(b, wear, neckline - 0.012, 0.03, second, { seg: SEG, aspect, lift: 0.006 });
       b.quad(0, 0.705, depthAt(0.705) + 0.008, 0.11, 0.11, second, { rz: Math.PI / 4, rx: -0.25 });
       b.quad(0, 0.725, depthAt(0.725) + 0.011, 0.07, 0.07, skin, { rz: Math.PI / 4, rx: -0.25 });
-      const digits: Record<string, string[]> = { 1: ['010', '110', '010', '010', '111'], 0: ['111', '101', '101', '101', '111'] };
-      const number = (text: string, a0: number, y0: number, size: number) => [...text].forEach((digit, n) => digits[digit]!.forEach((row, j) => [...row].forEach((on, i) => {
-        if (on !== '1') return;
-        const dx = ((n - (text.length - 1) / 2) * 4 + (i - 1)) * size, p = onLoft(wear, aspect, y0 - j * size, a0, 0.006);
-        b.quad(p.x + Math.cos(p.ry) * dx, y0 - j * size, p.z - Math.sin(p.ry) * dx, size * 1.04, size * 1.04, CLOTH_WHITE, { ry: p.ry });
-      })));
-      number('10', 0, 0.5, fine ? 0.034 : 0.04);
-      number('10', Math.PI, 0.6, fine ? 0.05 : 0.06);
+      if (n) for (const y of [0.5, 0.42]) b.quad(0, y, depthAt(y) + 0.008, y > 0.45 ? 0.05 : 0.14, 0.05, CLOTH_WHITE);
     } else if (style.tunic) {
-      // Kaftan: a stand collar, a buttoned placket with embroidery beside it, and slits at the sides.
-      b.cyl(0, 0.79, 0, m.neck + 0.024, 0.06, shade(top, -0.12), { seg: 20, top: 0.94, open: true });
-      strip(b, wear, 0.3, 0.76, 0, 0.055, shade(top, -0.14), { aspect, lift: 0.006 });
-      for (const side of [-1, 1]) strip(b, wear, 0.26, 0.74, side * 0.17, 0.012, GOLD, { aspect, lift: 0.008 });
-      for (const y of [0.38, 0.5, 0.62, 0.72]) { const p = front(y, 0, 0.014); b.cyl(0, y, p.z, 0.013, 0.008, GOLD, { seg: 8, rx: Math.PI / 2 }); }
-      band(b, wear, 0.27, 0.014, GOLD, { seg: SEG, aspect, lift: 0.004 });
-      if (hem < -0.2) for (const side of [-1, 1]) strip(b, wear, hem, hem + 0.2, side * Math.PI / 2, 0.014, shade(top, -0.6), { aspect, lift: 0.004 });
-      if (woman && fine) for (const a of [0.9, 2.1, 3.14, 4.2, 5.4]) strip(b, wear, hem + 0.04, -0.1, a, 0.014, shade(top, -0.14), { aspect, lift: 0.002, thick: 0.012 }); // folds
-      if (fine) { const p = front(0.5, 0.78, 0.008); b.box(p.x, 0.5, p.z, 0.085, 0.09, 0.008, shade(top, -0.1), { ry: p.ry }); }
+      // Kaftan: a stand collar, a buttoned placket with embroidery, and slits at the sides.
+      b.cyl(0, 0.8, 0, m.neck + 0.025, 0.06, shade(top, -0.12), { seg: 16, top: 0.94, open: true });
+      stripe(b, wear, 0.3, 0.76, 0, 0.055, shade(top, -0.14), { aspect, lift: 0.006 });
+      for (const side of [-1, 1]) stripe(b, wear, 0.26, 0.74, side * 0.17, 0.012, GOLD, { aspect, lift: 0.008 });
+      bandy(b, wear, 0.27, 0.014, GOLD, { seg: SEG, aspect, lift: 0.004 });
     } else if (style.dress) {
-      // Gown: a scooped neckline, a sash at the waist with a bow, and a pendant.
-      band(b, wear, neckline - 0.014, 0.028, bottoms, { seg: SEG, aspect, lift: 0.006 });
-      band(b, wear, 0.25, 0.07, bottoms, { seg: SEG, aspect, lift: 0.01 });
+      // Gown: a scooped neckline and a sash at the waist with a bow.
+      bandy(b, wear, neckline - 0.014, 0.028, bottoms, { seg: SEG, aspect, lift: 0.006 });
+      bandy(b, wear, 0.25, 0.07, bottoms, { seg: SEG, aspect, lift: 0.01 });
       const knot = onLoft(wear, aspect, 0.25, 0.6, 0.02);
-      b.ball(knot.x, 0.25, knot.z, 0.035, 0.035, 0.025, shade(bottoms, -0.15), { seg: 10 });
-      for (const tail of [-0.3, 0.25]) b.box(knot.x + tail * 0.12, 0.17, knot.z + 0.008, 0.045, 0.16, 0.012, bottoms, { rz: tail, ry: knot.ry });
-      if (fine) b.ball(0, 0.71, radiusAt(body, 0.71) * aspect + 0.008, 0.016, 0.02, 0.01, GOLD, { seg: 8 });
+      if (n) b.ball(knot.x, 0.25, knot.z, 0.035, 0.035, 0.025, shade(bottoms, -0.15), { seg: 8 });
+      if (n) for (const tail of [-0.3, 0.25]) b.box(knot.x + tail * 0.12, 0.17, knot.z + 0.008, 0.045, 0.16, 0.012, bottoms, { rz: tail, ry: knot.ry });
     } else if (!style.robe) {
-      // A crew-neck tee: ribbed collar and a chest pocket.
-      band(b, wear, neckline - 0.014, 0.03, trim, { seg: SEG, aspect, lift: 0.006 });
-      if (!style.vest) { const p = front(0.5, 0.66, 0.008); b.box(p.x, 0.5, p.z, 0.095, 0.1, 0.008, shade(top, -0.12), { ry: p.ry }); if (fine) b.box(p.x, 0.552, p.z + 0.002, 0.097, 0.012, 0.01, trim, { ry: p.ry }); }
+      // A crew-neck tee: a ribbed collar and a chest pocket.
+      bandy(b, wear, neckline - 0.014, 0.03, trim, { seg: SEG, aspect, lift: 0.006 });
+      if (!style.vest && n) { const p = front(0.5, 0.66, 0.008); b.box(p.x, 0.5, p.z, 0.095, 0.1, 0.008, shade(top, -0.12), { ry: p.ry }); }
     }
     if (style.robe) {
-      // Agbada: a wide open robe over the tunic, its sides gathered up onto the shoulders, embroidered at the chest.
-      const robe = smooth([[sitting ? -0.14 : -0.64, 0.41], [-0.2, 0.42], [0.3, 0.375], [0.6, 0.34], [0.72, 0.305], [0.775, 0.27]], per), ra = 0.5;
-      b.cyl(0, 0.79, 0, m.neck + 0.024, 0.05, shade(top, -0.12), { seg: 20, top: 0.94, open: true }); // the buba's collar
+      // Agbada: a wide open robe over the tunic, embroidered at the chest.
+      const robe = smooth(lite([[sitting ? -0.14 : -0.64, 0.41], [-0.2, 0.42], [0.3, 0.375], [0.6, 0.34], [0.72, 0.29], [0.78, 0.2]]), per), ra = 0.5;
+      b.cyl(0, 0.8, 0, m.neck + 0.025, 0.05, shade(top, -0.12), { seg: 16, top: 0.94, open: true });
       loft(b, robe, dyed, { seg: SEG, aspect: ra });
-      band(b, robe, robe[0]![0] + 0.025, 0.05, trim, { seg: SEG, aspect: ra });
-      b.cyl(0, robe[0]![0] + 0.03, 0, 0.4, 0.02, shade(top, -0.6), { seg: SEG, sz: ra });
-      cloth(robe, { aspect: ra, from: robe[0]![0] + 0.06, to: 0.2, around: 10, seg: SEG });
+      bandy(b, robe, robe[0]![0] + 0.025, 0.05, trim, { seg: SEG, aspect: ra });
+      cloth(robe, { aspect: ra, from: robe[0]![0] + 0.08, to: 0.2, around: 10, seg: SEG });
       const emb = plain ? GOLD : colours[1];
-      strip(b, robe, 0.22, 0.74, 0, 0.25, emb, { aspect: ra, lift: 0.006 });
-      strip(b, robe, 0.27, 0.74, 0, 0.17, shade(top, -0.1), { aspect: ra, lift: 0.009 });
-      strip(b, robe, 0.3, 0.74, 0, 0.02, shade(top, -0.6), { aspect: ra, lift: 0.012 }); // neck slit
-      for (const side of [-1, 1]) {
-        strip(b, robe, 0.3, 0.7, side * 0.11, 0.012, emb, { aspect: ra, lift: 0.012 });
-        if (fine) for (const y of [0.36, 0.46, 0.56]) { const p = onLoft(robe, ra, y, side * 0.22, 0.014); b.quad(p.x, y, p.z, 0.04, 0.04, emb, { ry: p.ry, rz: Math.PI / 4 }); }
-        // Folds of cloth gathered on each shoulder
-        for (let i = 0; i < 3; i++) b.ball(side * (m.shoulder + 0.07 + i * 0.012), 0.69 - i * 0.055, 0, 0.16 - i * 0.012, 0.045, 0.2 - i * 0.012, i % 2 ? shade(top, -0.1) : top, { seg: 16, rz: side * -0.42 });
-        if (fine) for (const a of [0.75, 1.15, 2.0, 2.4]) strip(b, robe, robe[0]![0] + 0.06, 0.52, side * a, 0.018, shade(top, -0.13), { aspect: ra, lift: 0.002, thick: 0.014 });
-      }
+      stripe(b, robe, 0.22, 0.76, 0, 0.25, emb, { aspect: ra, lift: 0.006 });
+      stripe(b, robe, 0.27, 0.76, 0, 0.17, shade(top, -0.1), { aspect: ra, lift: 0.009 });
+      if (n) for (const side of [-1, 1]) b.ball(side * (m.shoulder + 0.06), 0.68, 0, 0.15, 0.06, 0.18, top, { seg: 12, rz: side * -0.42 }); // folds on the shoulders
     }
     if (style.vest) {
       // Hi-vis vest: reflective bands round the body and over both shoulders.
-      const vest = padded(wear, 0.024), panel = clip(vest, 0.04, 0.72), reflect = '#eef0b4';
-      loft(b, panel, '#f47f1b', { seg: SEG, aspect });
-      for (const y of [0.16, 0.38]) band(b, vest, y, 0.06, reflect, { seg: SEG, aspect });
-      for (const side of [-1, 1]) for (const face of [0, Math.PI]) strip(b, vest, 0.41, 0.7, face + side * 0.5, 0.055, reflect, { aspect });
-      strip(b, vest, 0.05, 0.7, 0, 0.02, '#c9650f', { aspect, lift: 0.004 }); // zip
-      if (fine) band(b, vest, 0.055, 0.03, '#c9650f', { seg: SEG, aspect, lift: 0.002 });
+      const vest = padded(wear, 0.024), reflect = '#eef0b4';
+      if (n) loft(b, clip(vest, 0.04, 0.72), '#f47f1b', { seg: SEG, aspect }); else band(b, wear, 0.3, 0.06, reflect, { seg: SEG, aspect, lift: 0.006 });
+      for (const y of [0.16, 0.38]) bandy(b, vest, y, 0.06, reflect, { seg: SEG, aspect });
+      for (const side of [-1, 1]) for (const face of [0, Math.PI]) stripe(b, vest, 0.41, 0.7, face + side * 0.5, 0.055, reflect, { aspect });
     }
     // Things worn on the body
-    drawFallbackNeck(b, look, fine);
-    if (has('chain')) {
-      if (!fine) b.cyl(0, 0.77, 0.02, m.neck + 0.05, 0.02, GOLD, { seg: 14, sz: 1.1, rx: 0.5, open: true });
-      for (let i = 0; i < (fine ? 30 : 0); i++) {
-        const a = i / 30 * TAU, t = (1 + Math.cos(a)) / 2, y = 0.8 - t * 0.17, x = Math.sin(a) * (m.neck + 0.03 + t * 0.045);
-        const z = Math.cos(a) > 0 ? Math.max(Math.cos(a) * (m.neck + 0.03), depthAt(y) * Math.sqrt(Math.max(0, 1 - (x / radiusAt(wear, y)) ** 2)) * t + 0.012) : Math.cos(a) * (m.neck + 0.035);
-        b.ball(x, y, z, 0.012, 0.012, 0.012, GOLD, { seg: 6 });
-      }
-      b.box(0, 0.61, depthAt(0.61) + 0.016, 0.03, 0.04, 0.008, GOLD, { rz: Math.PI / 4 });
+    drawFallbackNeck(b, look);
+    if (has('chain') && room(n ? 0 : 20)) { if (n) b.cyl(0, 0.78, 0.02, m.neck + 0.05, 0.02, GOLD, { seg: 12, sz: 1.15, rx: 0.5, open: true }); else b.quad(0, 0.72, depthAt(0.72) + 0.012, 0.12, 0.05, GOLD); }
+    if (has('backpack') && room(40)) {
+      const pack = '#3b4658', back = depthAt(0.42);
+      (n ? b.ball : b.ico)(0, 0.4, -(back + 0.08), 0.19, 0.26, 0.115, pack, { seg: 14 });
+      if (n) { b.ball(0, 0.27, -(back + 0.16), 0.135, 0.11, 0.05, shade(pack, 0.25), { seg: 10 }); for (const side of [-1, 1]) stripe(b, wear, 0.16, 0.74, side * 0.48, 0.05, shade(pack, -0.2), { aspect, lift: 0.01, thick: 0.016 }); }
     }
-    if (has('backpack')) {
-      const pack = '#3b4658', back = depthAt(0.42), accent = accessoryColour(look, colours);
-      b.ball(0, 0.4, -(back + 0.08), 0.19, 0.26, 0.115, pack, { seg: 18 });
-      b.ball(0, 0.27, -(back + 0.16), 0.135, 0.11, 0.05, shade(pack, 0.25), { seg: 12 }); // front pocket
-      b.box(0, 0.33, -(back + 0.208), 0.16, 0.008, 0.01, accent); // zip
-      b.cyl(0, 0.67, -(back + 0.06), 0.03, 0.012, shade(pack, -0.3), { seg: 8, rz: Math.PI / 2, sz: 1.8 }); // grab handle
-      for (const side of [-1, 1]) {
-        strip(b, wear, 0.16, 0.745, side * 0.48, 0.05, shade(pack, -0.2), { aspect, lift: 0.01, thick: 0.016 });
-        b.box(side * radiusAt(wear, 0.73) * 0.46, 0.775, -0.02, 0.05, 0.016, depthAt(0.73) * 1.5, shade(pack, -0.2));
-      }
-    }
-    if (has('handbag')) {
-      const leather = '#b5763a', p = onLoft(wear, aspect, -0.03, 2.25, 0.07);
-      b.box(p.x, -0.05, p.z, 0.25, 0.19, 0.085, leather, { ry: p.ry });
-      b.box(p.x + Math.sin(p.ry) * 0.045, 0.0, p.z + Math.cos(p.ry) * 0.045, 0.255, 0.09, 0.012, shade(leather, -0.22), { ry: p.ry }); // flap
-      b.box(p.x + Math.sin(p.ry) * 0.054, -0.04, p.z + Math.cos(p.ry) * 0.054, 0.03, 0.03, 0.01, GOLD, { ry: p.ry });
-      sling(b, wear, aspect, [0.05, 1.75], [0.75, -0.42], 0.013, shade(leather, -0.22), fine ? 9 : 5, 0.02);
-      sling(b, wear, aspect, [0.05, 2.75], [0.75, Math.PI + 0.42], 0.013, shade(leather, -0.22), fine ? 9 : 5, 0.02);
-    }
-
-    part(b, 'head', 0, 0.86, 0, () => b.at(0, -HIP_Y - 0.86, 0, 0, () => {
-      headHigh(b, look, woman, fine, sleeping);
-      const hat = style.helmet || look.hair === 'gele' ? null : look.accessories.find((id) => ACCESSORY_SLOTS[id] === 'head');
-      const hair = (style.helmet || hat) && !HANGING.has(look.hair) ? 'lowcut' : look.hair;
-      const selectedHead = fallbackHead(look);
-      if (selectedHead) drawFallbackHead(b, selectedHead, look, fine);
-      else (HAIR_HIGH[hair] || HAIR_HIGH.lowcut)(b, look.hairColor, look, colours, fine);
-      if (hat) headwear(b, hat, accessoryColour(look, colours), fine);
-      if (has('sunglasses')) eyewear(b, 'sunglasses', FACES[look.face], fine);
-      else if (has('glasses')) eyewear(b, 'glasses', FACES[look.face], fine);
-      if (has('earrings')) for (const side of [-1, 1]) {
-        if (!fine) { b.ball(side * 0.262, 2.085, 0.002, 0.024, 0.03, 0.024, GOLD, { seg: 8 }); continue; }
-        const hoop = Array.from({ length: 9 }, (_, i): Vec3 => [side * 0.258, 2.078 + Math.cos(i / 8 * TAU) * 0.034, 0.002 + Math.sin(i / 8 * TAU) * 0.034]);
-        chain(b, hoop, 0.006, 0.006, GOLD, 5);
-      }
-      if (style.helmet) {
-        const hard = '#f2c230';
-        b.ball(0, 2.39, -0.01, 0.3, 0.23, 0.31, hard, { seg: 24 });
-        b.cyl(0, 2.36, 0.03, 0.34, 0.03, hard, { seg: 24, sz: 1.12 });
-        b.box(0, 2.6, -0.01, 0.07, 0.05, 0.5, shade(hard, -0.12));
-        b.cyl(0, 2.39, -0.01, 0.303, 0.035, shade(hard, -0.14), { seg: 24, sz: 1.03, open: true });
-      }
-      markerOf(b, marker);
-    }));
+    if (has('handbag') && room(20)) { const p = onLoft(wear, aspect, -0.03, 2.25, 0.07); (n ? b.ball : b.ico)(p.x, -0.05, p.z, 0.13, 0.1, 0.05, '#b5763a', { seg: 8, ry: p.ry }); }
 
     // Arms and hands
     const sp = 0.014 + bulk * 0.35;
-    const upperArm = smooth([[-0.42, m.elbow], [-0.2, (m.arm + m.elbow) / 2 + 0.005], [0, m.arm]], per);
-    const foreArm = smooth([[-0.38, m.wrist], [-0.14, m.elbow * 1.02], [0, m.elbow]], per);
+    const upperArm = sm([[-0.42, m.elbow], [-0.2, (m.arm + m.elbow) / 2 + 0.005], [0, m.arm]]);
+    const foreArm = sm([[-0.38, m.wrist], [-0.14, m.elbow * 1.02], [0, m.elbow]]);
     for (const side of [0, 1] as const) {
       const dir = side ? 1 : -1, [pitch, roll] = joints.arm[side];
       const sleeve = style.sleeve, wide = sleeve === 'wide', covered = sleeve === 'long';
       const sleeveColour = wide && !plain ? colours[1] : top;
-      const cap = (r: number, colour: Colour) => b.ball(0, 0, 0, r, r * 0.92, r, colour, { seg: 14 });
       const worn = () => {
         if (side) drawFallbackWrist(b, look, -0.38);
-        if (side && has('watch')) {
-          const r = radiusAt(foreArm, -0.325) + (covered ? sp : 0);
-          b.cyl(0, -0.325, 0, r + 0.006, 0.028, '#23262d', { seg: 14 });
-          b.cyl(dir * (r + 0.008), -0.325, 0, 0.025, 0.01, GOLD, { seg: 12, rz: Math.PI / 2 });
-          b.cyl(dir * (r + 0.014), -0.325, 0, 0.018, 0.004, '#101216', { seg: 12, rz: Math.PI / 2 });
-        }
-        if (!side && has('beads')) {
-          const r = radiusAt(foreArm, -0.335) + (covered ? sp : 0) + 0.008, count = fine ? 14 : 0;
-          if (!fine) b.cyl(0, -0.335, 0, r + 0.004, 0.026, CORAL, { seg: 14 });
-          for (let i = 0; i < count; i++) b.ball(Math.sin(i / count * TAU) * r, -0.335 + (i % 2) * 0.004, Math.cos(i / count * TAU) * r, 0.014, 0.014, 0.014, i % 3 === 0 ? GOLD : i % 3 === 1 ? CORAL : '#2f7d6b', { seg: 6 });
-        }
+        if (side && has('watch') && room(n ? 0 : 30)) b.cyl(0, -0.325, 0, radiusAt(foreArm, -0.325) + (covered ? sp : 0) + 0.008, 0.032, '#23262d', { seg: 12 });
+        if (!side && has('beads') && room(n ? 0 : 30)) b.cyl(0, -0.335, 0, radiusAt(foreArm, -0.335) + (covered ? sp : 0) + 0.01, 0.03, CORAL, { seg: 12 });
       };
       const upper: Piece = covered
-        ? { length: 0.42, rings: padded(upperArm, sp), colour: top, extra: () => { cap(m.arm + sp, top); cloth(padded(upperArm, sp), { from: -0.4, to: -0.04, size: 0.62, around: 4, seg: 16 }); } }
+        ? { length: 0.42, rings: padded(upperArm, sp), colour: top, extra: null }
         : { length: 0.42, rings: upperArm, colour: skin, extra: () => {
           if (wide) {
-            const bell = smooth([[-0.42, m.arm + 0.105], [-0.2, m.arm + 0.058], [0, m.arm + 0.02]], per);
-            cap(m.arm + 0.02, sleeveColour);
+            const bell = sm([[-0.42, m.arm + 0.1], [-0.2, m.arm + 0.056], [0, m.arm + 0.02]]);
             loft(b, bell, sleeveColour, { seg: 16 });
-            b.cyl(0, -0.405, 0, m.arm + 0.108, 0.04, plain ? GOLD : colours[2], { seg: 16, open: true });
-            b.cyl(0, -0.418, 0, m.arm + 0.1, 0.004, shade(sleeveColour, -0.5), { seg: 16 });
+            if (n) b.cyl(0, -0.405, 0, m.arm + 0.104, 0.04, plain ? GOLD : colours[2], { seg: 16, open: true });
           } else if (sleeve === 'cap') {
-            b.ball(0, -0.025, 0, m.arm + 0.034, 0.075, m.arm + 0.034, top, { seg: 16 });
-            b.cyl(0, -0.085, 0, m.arm + 0.02, 0.02, bottoms, { seg: 16, open: true });
+            b.ball(0, -0.03, 0, m.arm + 0.03, 0.08, m.arm + 0.03, top, { seg: 14 });
           } else {
-            cap(m.arm + sp, top);
-            cover(b, upperArm, -0.2, 0, sp, top, 16);
-            b.cyl(0, -0.195, 0, radiusAt(upperArm, -0.195) + sp + 0.004, 0.03, style.sport && bottoms !== top ? bottoms : trim, { seg: 16, open: true });
-            b.cyl(0, -0.208, 0, radiusAt(upperArm, -0.2) + sp - 0.002, 0.004, shade(top, -0.55), { seg: 16 });
-            cloth(padded(clip(upperArm, -0.2, 0), sp), { from: -0.19, to: -0.02, size: 0.6, around: 4, seg: 16 });
+            cover(b, upperArm, -0.2, 0, sp, top, 14);
+            if (n) b.cyl(0, -0.195, 0, radiusAt(upperArm, -0.195) + sp + 0.004, 0.028, style.sport && bottoms !== top ? bottoms : trim, { seg: 14, open: true });
           }
         } };
       const lower: Piece = covered
-        ? { length: 0.38, rings: padded(foreArm, sp), colour: top, extra: () => {
-          b.cyl(0, -0.352, 0, m.wrist + sp + 0.005, 0.05, style.collar ? CLOTH_WHITE : style.tunic || style.robe ? GOLD : trim, { seg: 16, open: true });
-          b.cyl(0, -0.378, 0, m.wrist + sp, 0.004, shade(top, -0.55), { seg: 16 });
-          if (fine && style.collar) b.ball(dir * (m.wrist + sp + 0.008), -0.35, 0, 0.008, 0.008, 0.008, GOLD, { seg: 6 }); // cufflink
-          worn();
-        } }
-        : { length: 0.38, rings: foreArm, colour: skin, extra: () => { if (style.vest) b.cyl(0, -0.3, 0, radiusAt(foreArm, -0.3) + 0.005, 0.035, INK, { seg: 16, open: true }); worn(); } };
+        ? { length: 0.38, rings: padded(foreArm, sp), colour: top, extra: () => { b.cyl(0, -0.352, 0, m.wrist + sp + 0.005, 0.05, style.collar ? CLOTH_WHITE : style.tunic || style.robe ? GOLD : trim, { seg: 14, open: true }); worn(); } }
+        : { length: 0.38, rings: foreArm, colour: skin, extra: () => { if (style.vest) b.cyl(0, -0.3, 0, radiusAt(foreArm, -0.3) + 0.005, 0.035, INK, { seg: 14, open: true }); worn(); } };
       upper.joint = covered ? top : skin;
-      limbHigh(b, side ? 'armL' : 'armR', dir * (m.shoulder - 0.004 + bulk), SHOULDER_Y, 0, pitch, dir * (style.robe ? Math.max(roll, 0.3) : roll), upper, joints.fore[side], lower, (end) => {
-        if (fine) handHigh(b, m, end, dir, skin);
-        else { b.ball(0, end - 0.074, 0, m.wrist * 0.74, 0.098, m.wrist * 1.3, skin, { seg: 10 }); b.ball(dir * -0.01, end - 0.058, m.wrist * 1.24, 0.023, 0.046, 0.025, skin, { seg: 6, rx: 0.3 }); }
-      });
+      limb(b, n, side ? 'armL' : 'armR', dir * (m.shoulder - 0.02 + bulk), SHOULDER_Y, 0, pitch, dir * (style.robe ? Math.max(roll, 0.3) : roll), upper, joints.fore[side], lower, (end) => hand(b, m, end, dir, skin, n));
     }
+
+    part(b, 'head', 0, 0.86, 0, () => b.at(0, -HIP_Y - 0.86, 0, 0, () => {
+      reserve = (marker ? (marker === 'crown' ? 32 : 20) : 0) + (style.helmet ? 90 : 0);
+      bh.at(0, HEAD.y, 0, 0, () => {
+        headShape(bh, look, F, n, sleeping === true);
+        const hat = style.helmet || look.hair === 'gele' ? null : look.accessories.find((id) => ACCESSORY_SLOTS[id] === 'head');
+        const hair = (style.helmet || hat) && !HANGING.has(look.hair) ? 'lowcut' : look.hair;
+            if (!fallbackHead(look) && !(!n && (style.helmet || (hat && ['cornrows', 'fade', 'lowcut', 'bald'].includes(look.hair))))) (HAIR[hair] || HAIR.lowcut)(bh, look.hairColor, look, colours, F, n);
+        if (hat && room(n ? 0 : 90)) headwear(b, n, F, hat, accessoryColour(look, colours));
+        if (has('sunglasses') && room(10)) eyewear(b, n, F, 'sunglasses');
+        else if (has('glasses') && room(10)) eyewear(b, n, F, 'glasses');
+        if (has('earrings') && room(44)) for (const side of [-1, 1]) (n ? b.ball : b.ico)(side * (F.rx + 0.012), -0.04, 0, 0.018, 0.026, 0.018, GOLD, { seg: 6 });
+        if (style.helmet) {
+          const hard = '#f2c230';
+          b.ball(0, F.ry * 0.32, -0.01, F.rx * 1.12, F.ry * 0.82, F.rz * 1.14, hard, { seg: 16 });
+          b.cyl(0, F.ry * 0.2, F.rz * 0.2, F.rx * 1.2, 0.025, hard, { seg: 16, sz: 1.2 });
+        }
+      });
+      const selectedHead = fallbackHead(look);
+      if (selectedHead) drawFallbackHead(b, selectedHead, look, n);
+      markerOf(b, marker);
+    }));
   }, joints.lean);
 }
 
@@ -1461,9 +1001,7 @@ export function drawAvatar(b: Drawing, input?: unknown, { x = 0, y = 0, z = 0, r
   const posed = jointsOf(pose, stride), joints = b.part ? { ...posed, lean: 0, bob: 0 } : posed, sitting = pose === 'sit';
   const lift = (sitting ? seat + 0.13 - 1.05 : 0) + (joints.bob || 0);
   b.at(x, y + lift * scale, z, ry, () => {
-    const selected = look.wearables?.length ? coarse(b, detail === 'low' ? 0.65 : 0.88, detail === 'low' ? 3 : 5) : b;
-    if (detail === 'high' || detail === 'medium') drawHigh(selected, rendered, { joints, sitting, marker, sleeping }, detail === 'high');
-    else drawLow(selected, rendered, { joints, sitting, marker, sleeping });
+    drawFigure(b, rendered, { joints, sitting, marker, sleeping }, LEVELS[detail] || LEVELS.low);
   }, 0, 0, scale);
   return { look, top: y + (lift + 2.95) * scale };
 }

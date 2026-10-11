@@ -18,10 +18,12 @@ jobs:
   acceptance:
     runs-on: ubuntu-24.04
     timeout-minutes: 90
-    env:
-      QA_LOG_DIR: ${{ runner.temp }}/city-map-acceptance/logs
-      QA_BROWSER_DIR: ${{ runner.temp }}/city-map-acceptance/browser
     steps:
+      - name: Define runner artifact directories
+        run: |
+          echo "QA_LOG_DIR=$RUNNER_TEMP/city-map-acceptance/logs" >> "$GITHUB_ENV"
+          echo "QA_BROWSER_DIR=$RUNNER_TEMP/city-map-acceptance/browser" >> "$GITHUB_ENV"
+
       - name: Check out the QA diagnostic checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:

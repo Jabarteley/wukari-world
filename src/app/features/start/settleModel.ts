@@ -16,20 +16,26 @@ export const SETTLE_FIRST_HINT = 'Settle in first'
 export const settleEntry = reactive({ dismissed: false })
 
 let cameFrom: Sheet | null = null
+/** Where the player was when it was not a sheet (the map's travel card): the way back is the caller's. */
+let cameBack: (() => void) | null = null
 
 /** Open the settle-in flow, from the sheet that is open now (if any). */
-export function startSettling(shell: Pick<Shell, 'sheet' | 'open'>, params?: unknown): void {
+export function startSettling(shell: Pick<Shell, 'sheet' | 'open'>, params?: unknown, back?: () => void): void {
   const open = shell.sheet.value
   // Only another sheet is worth coming back to: the settle-in flow itself and an empty screen are not.
   // The refusals that sent the player here are answered: their toasts (with the button) go.
   for (const item of [...toasts.value]) if (item.action) dismissToast(item.id)
   cameFrom = open && !(open.kind === 'panel' && open.id === 'onboarding') ? open : null
+  cameBack = back ?? null
   shell.open('onboarding', params)
 }
 
 /** The settle-in flow has closed (finished or "Not now"): bring back the sheet it replaced, if nothing else has opened since. */
 export function returnFromSettling(shell: Pick<Shell, 'sheet'>): void {
-  const back = cameFrom
+  const back = cameFrom, again = cameBack
   cameFrom = null
-  if (back && shell.sheet.value === null) shell.sheet.value = back
+  cameBack = null
+  if (shell.sheet.value !== null) return
+  if (back) shell.sheet.value = back
+  else again?.()
 }

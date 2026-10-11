@@ -220,15 +220,29 @@ test('refusal: the setting with a non-loopback bind, public origin, proxy, bad v
   await once(server, 'listening');
 });
 
+async function freePort(): Promise<string> {
+  const probe = http.createServer();
+  probe.listen(0, '127.0.0.1');
+  await once(probe, 'listening');
+  const { port } = probe.address() as AddressInfo;
+  await new Promise((done) => probe.close(done));
+  return String(port);
+}
+
 test('refusal: the started server process exits with one clear line for a wrong bind or origin, and runs on loopback otherwise', async (t) => {
   const dir = await mkdtemp(join(tmpdir(), 'allworld-open-spawn-'));
   t.after(() => rm(dir, { recursive: true, force: true }));
+  const port = await freePort();
   const run = async (env: Record<string, string>, { wait = false }: { wait?: boolean } = {}) => {
-    const child = spawn(process.execPath, ['--experimental-strip-types', join(root, 'server/server.ts')], { cwd: root, env: { PATH: process.env.PATH ?? '', DATA_DIR: dir, PORT: '4381', ...env } });
+    const child = spawn(process.execPath, ['--experimental-strip-types', join(root, 'server/server.ts')], { cwd: root, env: { PATH: process.env.PATH ?? '', DATA_DIR: dir, PORT: port, ...env } });
+    // Listen for the exit before anything else: a child that stops early has already sent it.
+    const exited = once(child, 'exit') as Promise<[number | null]>;
     let output = '';
     child.stdout.on('data', (chunk) => { output += chunk; }); child.stderr.on('data', (chunk) => { output += chunk; });
     if (wait) { for (let i = 0; i < 300 && !/listening on/.test(output) && child.exitCode === null; i++) await new Promise((done) => setTimeout(done, 100)); child.kill('SIGTERM'); }
-    const [code] = (await once(child, 'exit')) as [number | null];
+    const stuck = setTimeout(() => child.kill('SIGKILL'), 10_000);
+    const [code] = await exited;
+    clearTimeout(stuck);
     return { code, output };
   };
   const bind = await run({ ALLWORLD_OPEN_DEV: '1', ALLWORLD_OPEN_DEV_BIND: '0.0.0.0' });
@@ -236,7 +250,7 @@ test('refusal: the started server process exits with one clear line for a wrong 
   const origin = await run({ ALLWORLD_OPEN_DEV: '1', PUBLIC_ORIGIN: 'https://joinallworld.com' });
   assert.equal(origin.code, 1); assert.match(origin.output, /public origin is not a localhost address/);
   const fine = await run({ ALLWORLD_OPEN_DEV: '1' }, { wait: true });
-  assert.match(fine.output, /Open dev mode is ON/); assert.match(fine.output, /Allworld server listening on 4381/);
+  assert.match(fine.output, /Open dev mode is ON/); assert.match(fine.output, new RegExp(`Allworld server listening on ${port}`));
 });
 
 test('normal mode is unchanged: quick start is not settled, cash is the normal start, admin is refused, the waits stand, the open routes do not exist', async (t) => {

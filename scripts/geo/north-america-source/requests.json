@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "jobs": [
+    {
+      "id": "mexico-2026-10-09",
+      "countryISO": "MX",
+      "sourceUrl": "https://download.geofabrik.de/north-america/mexico-261009.osm.pbf",
+      "snapshotDate": "2026-10-09",
+      "bytes": 646582098,
+      "md5": "165a7baf3e69b06cbd097f9c98c0fe26",
+      "fixture": "fixtures/mx.json"
+    }
+  ]
+}

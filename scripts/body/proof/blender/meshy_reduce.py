@@ -29,8 +29,9 @@ for extra in meshes[1:]:                       # helper shapes some exports carr
     bpy.data.objects.remove(extra)
 meshes = meshes[:1]
 arms = [o for o in bpy.data.objects if o.type == "ARMATURE"]
+for obj in bpy.data.objects:
+    obj.animation_data_clear()
 for a_ in arms:                                  # a bundled clip would leave the skeleton posed at its first frame; the mesh data is in the bind pose
-    a_.animation_data_clear()
     for pb in a_.pose.bones:
         pb.location = (0, 0, 0); pb.rotation_quaternion = (1, 0, 0, 0); pb.rotation_euler = (0, 0, 0); pb.scale = (1, 1, 1)
 for ac in list(bpy.data.actions):
@@ -56,7 +57,7 @@ hands = []
 if arms:
     a = arms[0]
     for side in ("Left", "Right"):
-        b = a.data.bones.get(f"mixamorig:{side}Hand")
+        b = a.data.bones.get(f"mixamorig:{side}Hand") or a.data.bones.get(f"{side}Hand")
         if b:
             hands.append(a.matrix_world @ b.head_local)
 if not hands:

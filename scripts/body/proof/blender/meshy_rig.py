@@ -1,8 +1,9 @@
 """Binds a reduced generated character to the game's 23-bone skeleton.
 
-  blender --background --disable-autoexec --python meshy_rig.py -- <reduced.blend> <skeleton.json> <out-parts.glb> <out-joints.json> <stylised|realistic> [<landmarks.json>] [--hem 0.13] [--obj Low]
+  blender --background --disable-autoexec --python meshy_rig.py -- <reduced.blend> <skeleton.json> <out-parts.glb> <out-joints.json> <stylised|realistic> [<landmarks.json>] [--hem 0.13] [--obj Low] [--vendor free|pro]
 
-* stylised: the file's own skeleton and weights are used (joint names are mapped to the 23 bones, extra joints folded into their parents).
+* stylised --vendor free: the 73-joint Mixamo skeleton and weights are mapped to the 23 game bones.
+* stylised --vendor pro: the recorded Meshy 24-joint skeleton is mapped explicitly; head_end/headfront fold into Head.
 * realistic: no skeleton in the file, so one is built from the landmarks file (fractions of the character's height) and weighted automatically.
 Then, for both: the A-pose is applied to the mesh (arms raised to the game skeleton's rest pose, not left as an offset), the character is scaled so the
 pelvis sits at the game skeleton's pelvis height, the wrapper (skirt) is re-weighted so both thighs move it and the centre follows the pelvis,
@@ -23,22 +24,47 @@ opts = {argv[i]: argv[i + 1] for i, a in enumerate(argv) if a.startswith("--") a
 blend, skel_json, out_glb, out_joints, kind = pos[:5]
 face_json = opts.get('--face')
 landmarks = pos[5] if len(pos) > 5 else None
+vendor = opts.get('--vendor', 'free')
+if kind not in ('stylised', 'realistic') or vendor not in ('free', 'pro'):
+    raise RuntimeError('kind must be stylised|realistic and vendor must be free|pro')
 bpy.ops.wm.open_mainfile(filepath=blend)
 low = bpy.data.objects[opts.get("--obj", "Low")]
 game = json.load(open(skel_json))
 BONES = ["root", "pelvis", "spine_01", "spine_02", "spine_03", "neck_01", "Head", "clavicle_l", "upperarm_l", "lowerarm_l", "hand_l",
          "clavicle_r", "upperarm_r", "lowerarm_r", "hand_r", "thigh_l", "calf_l", "foot_l", "ball_l", "thigh_r", "calf_r", "foot_r", "ball_r"]
-MIX = {"Hips": "pelvis", "Spine": "spine_01", "Spine1": "spine_02", "Spine2": "spine_03", "Neck": "neck_01", "Head": "Head"}
+FREE = {"Hips": "pelvis", "Spine": "spine_01", "Spine1": "spine_02", "Spine2": "spine_03", "Neck": "neck_01", "Head": "Head"}
+PRO = {"Hips": "pelvis", "Spine02": "spine_01", "Spine01": "spine_02", "Spine": "spine_03", "neck": "neck_01", "Head": "Head", "head_end": "Head", "headfront": "Head"}
+MIX = dict(PRO if vendor == 'pro' else FREE)
 for side, s in (("Left", "l"), ("Right", "r")):
     MIX.update({f"{side}Shoulder": f"clavicle_{s}", f"{side}Arm": f"upperarm_{s}", f"{side}ForeArm": f"lowerarm_{s}", f"{side}Hand": f"hand_{s}",
                 f"{side}UpLeg": f"thigh_{s}", f"{side}Leg": f"calf_{s}", f"{side}Foot": f"foot_{s}", f"{side}ToeBase": f"ball_{s}"})
+PRIMARY = {game_name: source_name for source_name, game_name in MIX.items() if game_name not in ('Head',)}
+PRIMARY['Head'] = 'Head'
+PRO_BONES = {'Hips', 'Spine02', 'Spine01', 'Spine', 'neck', 'Head', 'head_end', 'headfront',
+             'LeftShoulder', 'LeftArm', 'LeftForeArm', 'LeftHand', 'RightShoulder', 'RightArm', 'RightForeArm', 'RightHand',
+             'LeftUpLeg', 'LeftLeg', 'LeftFoot', 'LeftToeBase', 'RightUpLeg', 'RightLeg', 'RightFoot', 'RightToeBase'}
 bbox = [low.matrix_world @ Vector(c) for c in low.bound_box]
 zmin = min(v.z for v in bbox); zmax = max(v.z for v in bbox)
 H = zmax - zmin
 
 # ---------------------------------------------------------------- the source skeleton
 arm = next((o for o in bpy.data.objects if o.type == "ARMATURE"), None)
-if kind == "realistic" or arm is None:
+if arm is not None:
+    for obj in bpy.data.objects:
+        obj.animation_data_clear()
+    for pose_bone in arm.pose.bones:
+        pose_bone.matrix_basis = Matrix.Identity(4)
+    for action in list(bpy.data.actions):
+        bpy.data.actions.remove(action)
+    bpy.context.view_layer.update()
+    source_bones = {bone.name.split(":")[-1] for bone in arm.data.bones}
+    required = set(PRIMARY.values())
+    if vendor == 'pro' and source_bones != PRO_BONES:
+        raise RuntimeError(f'Pro rig must have the recorded 24 joints; missing={sorted(PRO_BONES-source_bones)}, extra={sorted(source_bones-PRO_BONES)}')
+    if kind == 'stylised' and not required.issubset(source_bones):
+        raise RuntimeError(f'{vendor} rig is missing joints: {sorted(required-source_bones)}')
+    print('SOURCE RIG', vendor, len(source_bones), 'joints', sorted(source_bones))
+if kind == "realistic":
     lm = json.load(open(landmarks))   # {"Hips": [x, z], ...} x to the character's left, both as fractions of the height from the soles
     bpy.ops.object.select_all(action="DESELECT")
     data = bpy.data.armatures.new("rig"); arm = bpy.data.objects.new("rig", data); bpy.context.collection.objects.link(arm)
@@ -109,6 +135,8 @@ if kind == "realistic" or arm is None:
         for r, n in raw:
             vg[n].add([v.index], r / tot, "REPLACE")
 else:
+    if arm is None:
+        raise RuntimeError('stylised input requires a source armature')
     for m in list(low.modifiers):
         low.modifiers.remove(m)
     m = low.modifiers.new("Armature", "ARMATURE"); m.object = arm
@@ -194,6 +222,7 @@ def fit(p):
     return Vector((p.x * s, p.y * s, (p.z - sole) * s)) + off
 V = [fit(low.matrix_world @ v.co) for v in me.vertices]
 J = {n: fit(p) for n, p in joints_world.items()}
+joint = lambda game_name: J[PRIMARY[game_name]]
 for v, p in zip(me.vertices, V):
     v.co = p
 low.matrix_world = Matrix.Identity(4)
@@ -260,7 +289,7 @@ groups = {n: low.vertex_groups.new(name=n) for n in BONES}
 for i, w in enumerate(W):
     for k, v in w.items():
         groups[k].add([i], v, "REPLACE")
-HEAD = {"root": Vector((0, 0, 0)), "pelvis": g_pelvis, "spine_01": J["Spine"], "spine_02": J["Spine1"], "spine_03": J["Spine2"], "neck_01": J["Neck"], "Head": J["Head"]}
+HEAD = {"root": Vector((0, 0, 0)), "pelvis": g_pelvis, "spine_01": joint("spine_01"), "spine_02": joint("spine_02"), "spine_03": joint("spine_03"), "neck_01": joint("neck_01"), "Head": joint("Head")}
 for s_, sx in (("l", "Left"), ("r", "Right")):
     HEAD.update({f"clavicle_{s_}": J[f"{sx}Shoulder"], f"upperarm_{s_}": J[f"{sx}Arm"], f"lowerarm_{s_}": J[f"{sx}ForeArm"], f"hand_{s_}": J[f"{sx}Hand"],
                  f"thigh_{s_}": J[f"{sx}UpLeg"], f"calf_{s_}": J[f"{sx}Leg"], f"foot_{s_}": J[f"{sx}Foot"], f"ball_{s_}": J[f"{sx}ToeBase"]})
@@ -331,7 +360,13 @@ if face_json:
 
 low.name = "character"
 low.data.materials[0].name = "skin"
-json.dump({"heads": {n: [round(c, 5) for c in HEAD[n]] for n in BONES}, "space": "blender", "height": newH, "scale": s}, open(out_joints, "w"), indent=1)
+if set(b.name for b in data.bones) != set(BONES) or len(data.bones) != 23:
+    raise RuntimeError('output armature is not the game 23-bone skeleton')
+for obj in bpy.data.objects:
+    obj.animation_data_clear()
+for action in list(bpy.data.actions):
+    bpy.data.actions.remove(action)
+json.dump({"heads": {n: [round(c, 5) for c in HEAD[n]] for n in BONES}, "space": "blender", "height": newH, "scale": s, "sourceRig": vendor, "gameBones": BONES}, open(out_joints, "w"), indent=1)
 bpy.ops.object.select_all(action="SELECT")
 bpy.ops.export_scene.gltf(filepath=out_glb, export_format="GLB", use_selection=False, export_apply=False, export_skins=True, export_morph=True, export_morph_normal=False, export_animations=False,
                           export_yup=True, export_image_format="NONE", export_materials="EXPORT", export_cameras=False, export_lights=False)

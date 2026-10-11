@@ -1,5 +1,5 @@
 // Rebuilds a generated character on the animation skeleton the clip pack plays on, keeping its texture.
-//   node --experimental-strip-types scripts/body/proof/meshy_assemble.ts <parts.glb> <joints.json> <out.glb> <colour.jpg> [--normal <normal.jpg>] [--rough <0..1>] [--skeleton female|male]
+//   node --experimental-strip-types scripts/body/proof/meshy_assemble.ts <parts.glb> <joints.json> <out.glb> <colour.jpg> --skeleton <female|male> [--normal <normal.jpg>] [--rough <0..1>]
 // The skeleton has the shipped bones, hierarchy and rest rotations (the clips are authored against those); only root and pelvis keep their
 // shipped positions, every other joint is moved to where this body's joint is. The mesh must already be in the skeleton's rest pose
 // (arms out sideways) with its weights on the 23 bone names; meshy_rig.py writes such a file.
@@ -13,8 +13,10 @@ import { exportGlb } from './glb-export.ts';
 const argv = process.argv.slice(2);
 const flag = (n: string): string | undefined => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : undefined; };
 const [partsPath, jointsPath, outPath, colourPath] = argv.filter((a, i) => !a.startsWith('--') && !(i > 0 && argv[i - 1]!.startsWith('--')));
-if (!partsPath || !jointsPath || !outPath || !colourPath) throw new Error('usage: meshy_assemble.ts <parts.glb> <joints.json> <out.glb> <colour.jpg> [--normal n.jpg]');
-const key = (flag('--skeleton') ?? 'female') as BodyKey;
+if (!partsPath || !jointsPath || !outPath || !colourPath) throw new Error('usage: meshy_assemble.ts <parts.glb> <joints.json> <out.glb> <colour.jpg> --skeleton <female|male> [--normal n.jpg]');
+const skeleton = flag('--skeleton');
+if (skeleton !== 'female' && skeleton !== 'male') throw new Error('--skeleton female|male is required');
+const key: BodyKey = skeleton;
 const rough = Number(flag('--rough') ?? 0.78);
 
 const KEEP = new Set(['root', 'pelvis']);
@@ -22,6 +24,8 @@ const shipped = await loadBodyData(key);
 const joints = JSON.parse(readFileSync(jointsPath, 'utf8')) as { heads: Record<string, [number, number, number]> };
 const toGltf = (p: [number, number, number]): THREE.Vector3 => new THREE.Vector3(p[0], p[2], -p[1]);
 const old = shipped.skeleton.bones;
+if (old.length !== 23) throw new Error(`game skeleton must have 23 bones, got ${old.length}`);
+for (const bone of old) if (!KEEP.has(bone.name) && !joints.heads[bone.name]) throw new Error(`joint file is missing ${bone.name}`);
 const bones = old.map((b) => { const n = new THREE.Bone(); n.name = b.name; n.position.copy(b.position); n.quaternion.copy(b.quaternion); n.scale.copy(b.scale); return n; });
 const parentOf = old.map((b) => (b.parent ? old.indexOf(b.parent as THREE.Bone) : -1));
 parentOf.forEach((p, i) => { if (p >= 0) bones[p]!.add(bones[i]!); });
@@ -37,6 +41,7 @@ holder.updateMatrixWorld(true);
 
 const file = readFileSync(partsPath);
 const gltf = await new GLTFLoader().parseAsync(file.buffer.slice(file.byteOffset, file.byteOffset + file.byteLength) as ArrayBuffer, '');
+if (gltf.animations.length) throw new Error('parts file contains vendor animation');
 gltf.scene.updateMatrixWorld(true);
 const root = new THREE.Group(); root.name = 'Scene'; root.add(holder);
 const names = new Map(bones.map((b, i) => [b.name, i]));
@@ -47,7 +52,8 @@ gltf.scene.traverse((n) => {
   const g = sm.geometry.clone();
   g.applyMatrix4(sm.matrixWorld);
   const idx = g.getAttribute('skinIndex'), wt = g.getAttribute('skinWeight');
-  const remap = sm.skeleton.bones.map((b) => names.get(b.name) ?? 0);
+  for (const bone of sm.skeleton.bones) if (!names.has(bone.name)) throw new Error(`parts file contains non-game bone ${bone.name}`);
+  const remap = sm.skeleton.bones.map((b) => names.get(b.name)!);
   for (let i = 0; i < idx.count; i++) {
     const w = [wt.getX(i), wt.getY(i), wt.getZ(i), wt.getW(i)], j = [idx.getX(i), idx.getY(i), idx.getZ(i), idx.getW(i)];
     const s = w.reduce((a, b) => a + b, 0) || 1;

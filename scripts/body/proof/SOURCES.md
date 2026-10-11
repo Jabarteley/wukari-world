@@ -58,8 +58,15 @@ Credit line required by the licence (CC BY 4.0), to be shown wherever these char
 Rebuild (Blender 5.2 headless, node, npx gltfpack@1.3.0):
 
 ```
-FACE=scripts/body/proof/blender/meshy-stylised-face.json scripts/body/proof/meshy_build.sh <stylised.glb> <work> <out> stylised stylised none --hem 0.13
-scripts/body/proof/meshy_build.sh <realistic.glb> <work> <out> realistic realistic scripts/body/proof/blender/meshy-realistic-landmarks.json --hem 0.12
+FACE=scripts/body/proof/blender/meshy-stylised-face.json scripts/body/proof/meshy_build.sh <stylised.glb> <work> <out> stylised stylised none --hem 0.13 --skeleton female --vendor free
+scripts/body/proof/meshy_build.sh <realistic.glb> <work> <out> realistic realistic scripts/body/proof/blender/meshy-realistic-landmarks.json --hem 0.12 --skeleton female --vendor free
 node --experimental-strip-types scripts/body/proof/capture-meshy.ts <evidence-dir> <out> --set all     # page4 shots and numbers
 node --experimental-strip-types scripts/body/proof/meshy_gallery.ts <evidence-dir> <out> <work>       # index.html and numbers.json
+```
+
+Meshy Pro's rigged character export uses a different recorded 24-joint spine naming scheme. Trial it without face landmarks first; the build maps it onto the same game skeleton and rejects vendor animation, non-game bones, outputs over 2 MiB and anything other than one 23-joint skin:
+
+```
+scripts/body/proof/meshy_build.sh <pro-man-rigged.glb> <work> <out> pro-man stylised none --hem 0.13 --skeleton male --vendor pro
+scripts/body/proof/meshy_build.sh <pro-woman-rigged.glb> <work> <out> pro-woman stylised none --hem 0.13 --skeleton female --vendor pro
 ```

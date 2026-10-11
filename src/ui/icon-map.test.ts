@@ -7,7 +7,8 @@ import { hasGlyph, glyph, glyphFor } from './phone/icons.ts';
 import { COMING_SOON } from '../game/content/venues.ts';
 import { VENUES } from '../game/cities/lagos/venues.ts';
 
-import { FURNITURE, CATEGORIES, HOME_SPOTS, HOME_ACTIVITIES } from '../game/content/furniture.ts';
+import { FURNITURE, HOME_SPOTS, HOME_ACTIVITIES } from '../game/content/furniture.ts';
+import { CATEGORIES } from '../app/features/home/buyCategories.ts';
 import { INGREDIENTS, RECIPES } from '../game/content/food.ts';
 import { JOBS } from '../game/content/jobs.ts';
 import { CARS } from '../game/content/cars.ts';

@@ -1,7 +1,7 @@
 // The wording and small rules the social screens draw with (people, cards, calls, the gate note). Fetched with those screens:
 // the first download needs only the two badge counts in socialModel.ts.
 import type { PresenceStatus } from '../../../types/social.ts'
-import { PRESENCE } from '../../../game/social-model.ts'
+import { PRESENCE } from '../../../game/social-lines.ts'
 
 /** The who-is-here listing is read again after this long (server time). */
 export const STALE_MS = 20000

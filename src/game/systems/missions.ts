@@ -95,7 +95,7 @@ export function dealMissions(state: LifeState, scope: Scope, period: number, ctx
 
 /** Missions open when the life has settled in; a life that never was a guest has them from the start. */
 const open = (state: LifeState): boolean => !(state.onboarding?.stage === 'guest' && state.onboarding.done !== true);
-const LOCKED = 'Missions open once you have settled in. Follow your goal for now: it is the line under your needs.';
+const LOCKED = 'Missions open once you have settled in.';
 
 /** Bring the sets, the stamp card and the visited list to today. Unclaimed missions of an old period lapse. */
 function roll(state: LifeState, ctx: LifeContext | undefined): LagosTime {

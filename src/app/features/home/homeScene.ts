@@ -8,7 +8,7 @@
 import { watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { KINDS } from '../../../game/content/furniture.ts'
-import { nudge, turn } from '../../../game/home-layout.ts'
+import { nudge, turn } from './ghostMoves.ts'
 import { MOVES, defOf, homeUi, objectOf, plotIn, startGhost, whyNot } from './buyModel.ts'
 import type { Ghost, GhostSource } from './buyModel.ts'
 import { H, scene } from './homeState.ts'

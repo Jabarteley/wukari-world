@@ -24,7 +24,8 @@ import { COMING_SOON, SCENE_KINDS, VENUE_CATEGORIES } from '../game/content/venu
 import { HOME_SPOTS, VENUES } from '../game/cities/lagos/venues.ts';
 import { ALL_MODES, FARE_BANDS, TRAVEL_MODES } from '../game/content/travel.ts'
 import { JOBS } from '../game/content/jobs.ts'
-import { CATEGORIES, FURNITURE, HOME_ACTIVITIES, HOME_SPOTS as FURNITURE_HOME_SPOTS, KINDS, STARTER_FURNITURE } from '../game/content/furniture.ts'
+import { CATEGORIES } from '../app/features/home/buyCategories.ts'
+import { FURNITURE, HOME_ACTIVITIES, HOME_SPOTS as FURNITURE_HOME_SPOTS, KINDS, STARTER_FURNITURE } from '../game/content/furniture.ts'
 import { INGREDIENTS, RECIPES } from '../game/content/food.ts'
 import { APPEARANCE, BOUTIQUE_PRICES, DEFAULT_LOOK, DREAMS, LOTTERY, MOODS, ONBOARDING_STEPS, START_HOMES, TRAITS } from '../game/content/traits.ts'
 import { CARS } from '../game/content/cars.ts'

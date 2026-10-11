@@ -3,13 +3,15 @@ import { useGrowth } from '../growth/useGrowth.ts'
 import { useCall } from '../calls/useCall.ts'
 import type { App } from '../../state/app.ts'
 import type { ActionEnv } from './actions.ts'
+import type { CompanionAction } from './types.ts'
+import { openSettleFlow } from '../../state/settleRefusal.ts'
 
-export function actionEnv(app: App, handlers: { tell(text: string): void; ask(text: string): void; setMode(mode: 'lively' | 'quiet' | 'off'): void; dismiss(): void; close(): void }): ActionEnv {
+export function actionEnv(app: App, handlers: { tell(text: string, actions?: CompanionAction[]): void; ask(text: string): void; setMode(mode: 'lively' | 'quiet' | 'off'): void; dismiss(): void; close(): void }): ActionEnv {
   const { shell } = app
   // Whatever the companion's sheet covers is put away first, so the thing opened is what the player sees.
   const away = (): void => handlers.close()
   return {
-    openPanel: (id, params) => { away(); if (id === 'phone') shell.open('phone'); else shell.open(id, params) },
+    openPanel: (id, params) => { away(); if (id === 'phone') shell.open('phone'); else if (id === 'onboarding') openSettleFlow(); else shell.open(id, params) },
     openMap: (venue) => { away(); shell.open('map', { destination: venue }) },
     openWorld: (city) => { away(); app.showMapLayer('world', { city, level: 2 }) },
     goTo: (venue, spot) => { away(); void app.goTo(venue, spot) },

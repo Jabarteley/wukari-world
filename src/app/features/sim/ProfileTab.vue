@@ -14,6 +14,7 @@ import { START_HOMES, TRAITS } from '../../../game/content/traits.ts'
 import { linkWords } from '../../../ui/link.ts'
 import LgaCard from '../world/LgaCard.vue'
 import ResidenceCard from '../locate/ResidenceCard.vue'
+import SettleNotice from '../start/SettleNotice.vue'
 import LookEditor from '../start/LookEditor.vue'
 import LookStage from '../start/LookStage.vue'
 import { chooseLook, lookSummary, sameLook } from '../start/lookModel.ts'
@@ -85,7 +86,7 @@ async function submit(): Promise<void> {
 
 <template>
   <form v-if="current" class="sim-profile" data-profile novalidate @submit.prevent="submit()">
-    <p v-if="!onboarding.done && onboarding.guest" class="sim-note">You are a guest in the city: no traits, dream or home yet. <button type="button" class="sim-link" @click="shell.open('onboarding')">Make this life yours</button> — everything you have earned is kept.</p>
+    <SettleNotice v-if="!onboarding.done && onboarding.guest" hint message="You are a guest in the city: no traits, dream or home yet. Settle in to get them; everything you have earned is kept." />
     <p v-else-if="!onboarding.done" class="sim-note">You have not created your character yet. <button type="button" class="sim-link" @click="shell.open('onboarding')">Create your character</button></p>
     <LookStage class="sim-stage" :look="current.look" variant="wide" :name="state.name" :caption="lookSummary(current.look)" />
     <div class="sim-profile-top">

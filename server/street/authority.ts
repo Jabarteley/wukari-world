@@ -49,7 +49,7 @@ function build(ctx: StreetContext) {
       if (!assets) return unavailable()
       ctx.onceId(body.clientId)
       const before = await ctx.store.transact(db => actor(db, request), { durable: false })
-      if (!hasPlace(before.state) || !before.state.estate.plot) return no('plot_required', 'Settle into your home before using the estate gate.')
+      if (!hasPlace(before.state) || !before.state.estate.plot) return no('plot_required', 'Settle in first: the estate gate belongs to your home.')
       const anchor = { ...before.state.estate.plot }, manifest = await asset(assets.manifest(before.city)), id = `estate:${before.city}:${anchor.lga}:${anchor.estate}`, door = manifest.doors.has(id) ? await asset(assets.door(before.city, manifest.version, id)) : null
       if (!door) throw Object.assign(ctx.fail(503, 'estate_gate_unavailable'), { reason: 'This virtual estate has no supported city walking gate. The map and timed trips still work.' })
       return ctx.store.transact(db => {

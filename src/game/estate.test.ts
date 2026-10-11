@@ -12,7 +12,8 @@ import type { ActionOutcome, LifeContext, LifeContextInit, LifeState, WorldCityI
 import { HOUSES } from './content/housing.ts';
 import { intercitySeconds } from './content/travel.ts';
 import { LAGOS_LGAS } from './cities/lagos/localUnits.ts';
-import { ESTATE, HOUSE_STYLE, HOUSE_TIERS, LGA_CAPACITY, LGA_RULES, STYLE_FIELDS, TIER_ORDER, addressKey, addressLabel, cleanStyle, lgaOf, lgaOfDistrict, moveLevy, packStyle, stylePrice, tierCost, unpackStyle } from './content/world.ts';
+import { ESTATE, HOUSE_STYLE, HOUSE_TIERS, LGA_CAPACITY, LGA_RULES, STYLE_FIELDS, TIER_ORDER, addressKey, addressLabel, cleanStyle, lgaOf, lgaOfDistrict, moveLevy, packStyle, stylePrice, tierCost } from './content/world.ts';
+import { unpackStyle } from '../scene/house-style.ts';
 
 const MONDAY_9AM = Date.UTC(2026, 0, 5, 8), DAY = 86400000;
 const at = (now = MONDAY_9AM, seed = 'estate', extra: LifeContextInit = {}): LifeContext => makeContext({ now, cityId: 'lagos', seed, ...extra });

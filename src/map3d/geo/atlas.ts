@@ -2,10 +2,10 @@ import { stateOverviewHtml, stateOverviewToggleHtml } from './state-overview.ts'
 import type { OverviewExtras } from './state-overview.ts';
 import type { CityStateOverview } from '../../types/content.ts';
 import { venueFor } from '../../game/cities/runtime.ts';
-import { cachedCityContent, loadCityContent, loadCityRoutes, loadCityMap, loadStateOverviewCity, loadCityRules, cityName, cityRules, cityModule, isOpenCityId, catalogueCitiesInState } from '../../game/cities/registry.ts';
+import { cachedCityContent, loadCityContent, loadCityRoutes, loadCityMap, loadStateOverviewCity, loadCityRules, cityName, cityRules, cityModule, isOpenCityId, catalogueCitiesInState, cityCatalogueEntry } from '../../game/cities/registry.ts';
 /**
  * OWNER: world
- * The atlas: ONE continuous map with three levels of detail — the world, Africa, Nigeria — and
+ * The atlas: ONE continuous map with registered continent branches and Nigeria detail — and
  * the way into the open city. It replaces the old country screen (a tilted SVG of Nigeria).
  *
  *   createAtlas(container, { onOpenCity, onEnterCity, onTravel, routes, held, … })
@@ -48,7 +48,7 @@ import type { Edge, LadderPort } from '../zoom-ladder.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
 import type { RigInsets, RigView } from '../camera.ts';
 import { createTripClock } from '../trip.ts';
-import { AFRICA_GROUPS, ATLAS_LEVELS, CONTINENTS, ZONES, cityEntry, plannedRoutes, regionEntry, stateOfCity } from '../regions.ts';
+import { AFRICA_GROUPS, ATLAS_LEVELS, countryAtlasLevel, CONTINENTS, ZONES, cityEntry, plannedRoutes, regionEntry, stateOfCity } from '../regions.ts';
 import type { AtlasLevel } from '../regions.ts';
 import { EXTENT, project, relLon, unproject } from './projection.ts';
 import { decodeTopology } from './topo.ts';
@@ -56,7 +56,7 @@ import type { AfricaFeature, Feature, FeatureData, NigeriaFeature, Topology, Wor
 import { createPicker } from './pick.ts';
 import type { Picker } from './pick.ts';
 import { atlasNamesAt, countChips, densityFor, namedCities } from './density.ts';
-import { focusLevel, leashAt, levelAt, pitchAt, thresholds } from './levels.ts';
+import { focusLevel, levelPath, leashAt, levelAt, pitchAt, thresholds } from './levels.ts';
 import { LABEL_CAP, placeLabels } from './labels.ts';
 import { cityHit } from './city-hit.ts';
 import { badgeOf, byCountry, EMPTY_FRIENDS } from './friends.ts';
@@ -149,7 +149,7 @@ interface LevelSheet<F extends FeatureData = FeatureData> extends Sheet<F> { pai
 interface NigeriaSheet extends LevelSheet<NigeriaFeature> { stateDots: Layer<THREE.Points<THREE.BufferGeometry, THREE.ShaderMaterial>>; cityDots: Layer<THREE.Points<THREE.BufferGeometry, THREE.ShaderMaterial>>; around: Sheet }
 /** What the country colours read of a world or Africa feature. */
 type CountryData = FeatureData & { k?: string; sub?: AfricaGroupId };
-type Sheets = [LevelSheet<WorldFeature> | null, LevelSheet<AfricaFeature> | null, NigeriaSheet | null];
+type Sheets = [LevelSheet<WorldFeature> | null, LevelSheet<AfricaFeature> | null, NigeriaSheet | null, ...(LevelSheet<WorldFeature> | null)[]];
 interface Insets { left: number; top: number; right: number; bottom: number }
 /** The trip being drawn: the line, who walks it from where, and how far (0…1). */
 interface Run { path: LinkPath; line: MeasuredLine; from: string; progress: number }
@@ -212,8 +212,9 @@ export interface AtlasApi {
 export interface SelectOptions { from?: 'map' | 'list' | 'key'; flyTo?: boolean }
 
 const WORLD = 0, AFRICA = 1, NIGERIA = 2;
+const countryLevel = (index: number) => Boolean(ATLAS_LEVELS[index]?.continent);
 /** Camera tilt per level, radians above the horizon: flat-on for the world, leaning in over Nigeria. */
-const PITCHES: readonly number[] = [1.5, 1.44, 1.04];
+const PITCHES = ATLAS_LEVELS.map(entry => entry.pitch);
 const FADE = 0.36;
 const HEIGHT = { around: 0.02, state: 0.08, open: 0.13, country: 0.45, openCountry: 0.95 };
 const INK = {
@@ -243,7 +244,10 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(30, 1, 0.1, 4000);
   /** Each level's frame: where the camera stands, and how far, when that level fills the free part of the screen (null until measured). */
   let fits: { x: number; z: number; distance: number }[] | null = null;
-  const rig = createRig(THREE, camera, { minX: EXTENT.minX, maxX: EXTENT.maxX, minZ: -EXTENT.maxY, maxZ: -EXTENT.minY, minDistance: 0.4, leash: (distance) => (fits ? leashAt(distance, fits[NIGERIA]!.distance, fits[WORLD]!.distance) : 1) });
+  let branch = NIGERIA;
+  const activePath = () => levelPath(ATLAS_LEVELS, branch);
+  const pathPitches = () => activePath().map(index => PITCHES[index]!);
+  const rig = createRig(THREE, camera, { minX: EXTENT.minX, maxX: EXTENT.maxX, minZ: -EXTENT.maxY, maxZ: -EXTENT.minY, minDistance: 0.4, leash: (distance) => (fits ? leashAt(distance, Math.min(...activePath().map(index => fits![index]!.distance)), fits[WORLD]!.distance) : 1) });
   const mesh = mesher(THREE);
   const ribbonMaterials: THREE.ShaderMaterial[] = [], probe = new THREE.Vector3();
   const ribbonMaterial = (opacity = 1, lift = 0.0004) => { const material = mesh.ribbonMaterial(opacity); material.uniforms.lift!.value = lift; ribbonMaterials.push(material); return material; };
@@ -288,9 +292,10 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   let rafId = 0, renderCount = 0, lastTick = 0, loading = '', failed = '';
   const clock = createTripClock();
   /** One per level, filled when its data arrives: { topology, picker, layers… }. */
-  const sheets: Sheets = [null, null, null], pending: (Promise<LevelSheet | null> | null)[] = [null, null, null];
+  const sheets: Sheets = [null, null, null, ...ATLAS_LEVELS.slice(3).map(() => null)], pending: (Promise<LevelSheet | null> | null)[] = ATLAS_LEVELS.map(() => null);
   /** Everything that fades with a level: { object, levels, alpha, extrude, opacity, materials }. */
   const layers: Layer[] = [];
+  const continentDots = new Map<number, Layer<THREE.Points<THREE.BufferGeometry, THREE.ShaderMaterial>>>();
   const shown = () => !destroyed && !container.hidden && !pageHidden() && size.width > 0;
 
   // ---- DOM ----------------------------------------------------------------------------------------
@@ -369,14 +374,14 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (!features.length) continue;
       const made = mesh.plates(features, { height: () => 0, colour: (feature) => countryColour(feature, true), walls: false });
       // Under the Africa level's own plates the world's Africa is not needed; from Nigeria nothing but Africa is in sight.
-      addLayer(new THREE.Mesh(made.geometry, flatMaterial()), continent === 'af' ? [WORLD, NIGERIA] : [WORLD, AFRICA]);
+      addLayer(new THREE.Mesh(made.geometry, flatMaterial()), ATLAS_LEVELS.map((_, index) => index).filter(index => ATLAS_LEVELS[index]!.continent !== continent));
       sheet.paint.push(() => made.paint((feature) => countryColour(feature, true)));
     }
     // Borders in three sets, so a closer level can draw its own, finer ones over the same ground.
     const isAfrica = (users: number[]) => users.some((i) => topology.features[i]!.c === 'af'), isAround = (users: number[]) => users.some((i) => around.has(topology.features[i]!.id));
     const shared = (users: number[]) => users.length > 1;
     const isNear = (users: number[]) => users.some((i) => ['eu', 'as'].includes(topology.features[i]!.c));
-    addLayer(ribbonMesh(arcSegments(topology, (users) => shared(users) && !isAfrica(users) && isNear(users), 0.004, INK.border, 1.1)), [WORLD, AFRICA]);
+    addLayer(ribbonMesh(arcSegments(topology, (users) => shared(users) && !isAfrica(users) && isNear(users), 0.004, INK.border, 1.1)), ATLAS_LEVELS.map((_, index) => index).filter(index => index !== NIGERIA));
     addLayer(ribbonMesh(arcSegments(topology, (users) => shared(users) && !isAfrica(users) && !isNear(users), 0.004, INK.border, 1.1)), [WORLD]);
     addLayer(ribbonMesh(arcSegments(topology, (users) => shared(users) && isAfrica(users) && !isAround(users), 0.004, INK.border, 1.1)), [WORLD, NIGERIA]);
     addLayer(ribbonMesh(arcSegments(topology, (users) => shared(users) && isAround(users), 0.004, INK.border, 1.1)), [WORLD]);
@@ -393,15 +398,24 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     return sheet;
   }
 
+  function buildContinent(module: LevelModule, index: number): LevelSheet<WorldFeature> {
+    const sheet = buildCountrySheet(decodeTopology((module as WorldModule).WORLD), index);
+    const dots = new THREE.Points(mesh.dots([]), mesh.dotMaterial());
+    dots.renderOrder = 7;
+    continentDots.set(index, addLayer(dots, [index]));
+    return sheet;
+  }
   function buildAfrica(module: LevelModule): LevelSheet<AfricaFeature> {
-    const topology = decodeTopology((module as AfricaModule).AFRICA);
+    return buildCountrySheet(decodeTopology((module as AfricaModule).AFRICA), AFRICA);
+  }
+  function buildCountrySheet<F extends CountryData>(topology: Topology<F>, index: number): LevelSheet<F> {
     const heightOf = (feature: Feature) => (statusOf('country', feature.id) === 'open' ? HEIGHT.openCountry : HEIGHT.country);
     const made = mesh.plates(topology.features, { height: heightOf, colour: countryColour, edges: outerEdges(topology), raised: (feature) => heightOf(feature) > HEIGHT.country });
-    addLayer(new THREE.Mesh(made.geometry, flatMaterial()), [AFRICA], { extrude: true });
-    addLayer(ribbonMesh(arcSegments(topology, (users) => users.length > 1, HEIGHT.country + 0.004, INK.border, 1.3)), [AFRICA], { extrude: true });
-    addLayer(ribbonMesh(arcSegments(topology, (users) => users.length === 1, -0.004, INK.shore, 7), 0.9, 1, 0), [AFRICA]);
+    addLayer(new THREE.Mesh(made.geometry, flatMaterial()), [index], { extrude: true });
+    addLayer(ribbonMesh(arcSegments(topology, (users) => users.length > 1, HEIGHT.country + 0.004, INK.border, 1.3)), [index], { extrude: true });
+    addLayer(ribbonMesh(arcSegments(topology, (users) => users.length === 1, -0.004, INK.shore, 7), 0.9, 1, 0), [index]);
     const open = topology.features.filter((feature) => statusOf('country', feature.id) === 'open');
-    if (open.length) addLayer(ribbonMesh(open.flatMap((feature) => mesh.ringLines(feature, HEIGHT.openCountry + 0.004, INK.glow, 2.4)), 1, 4), [AFRICA], { extrude: true });
+    if (open.length) addLayer(ribbonMesh(open.flatMap((feature) => mesh.ringLines(feature, HEIGHT.openCountry + 0.004, INK.glow, 2.4)), 1, 4), [index], { extrude: true });
     return { topology, picker: createPicker(topology, { slack: 0.3 }), kind: 'country', top: heightOf, paint: [() => made.paint(countryColour)] };
   }
 
@@ -470,16 +484,17 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     return Array.from({ length: 25 }, (_, i) => { const at = flightPoint(a, b, i / 24, lift); return [at.x, y + at.height, -at.y]; });
   }
 
-  const BUILD: ((module: LevelModule) => LevelSheet)[] = [buildWorld, buildAfrica, buildNigeria];
+  const BUILD = ATLAS_LEVELS.map((entry, index) => entry.id === 'world' ? buildWorld : entry.id === 'africa' ? buildAfrica : entry.id === 'nigeria' ? buildNigeria : (module: LevelModule) => buildContinent(module, index));
   /** Fetch and build a level once. Resolves when it is in the scene. */
   function ensure(index: number): Promise<LevelSheet | null> {
+    if (!Number.isInteger(index) || !ATLAS_LEVELS[index]) return Promise.resolve(null);
     if (sheets[index]) return Promise.resolve(sheets[index]);
     pending[index] ??= Promise.resolve().then(() => load(ATLAS_LEVELS[index]!.id)).then((module) => {
       if (destroyed) return null;
       const built = BUILD[index]!(module);
       (sheets as (LevelSheet | null)[])[index] = built;
       failed = '';
-      syncResolution(); settleLevel(); drawChrome(); request();
+      syncResolution(); settleLevel(); drawChrome(); drawHighlights(); request();
       return built;
     }).catch((error: unknown) => { pending[index] = null; failed = ATLAS_LEVELS[index]!.name; console.error(`The map of ${ATLAS_LEVELS[index]!.name} could not be loaded:`, error); showWait(); return null; });
     return pending[index]!;
@@ -492,10 +507,18 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     if (!fits) return;
     const [lon, lat] = centre();
     const country = sheets[AFRICA]?.picker.pick(lon, lat) ?? sheets[NIGERIA]?.around?.picker.pick(lon, lat) ?? sheets[WORLD]?.picker.pick(lon, lat);
-    wanted = focusLevel(levelAt(rig.view.distance, cuts, wanted), lon, lat, ATLAS_LEVELS, country?.id ?? null);
+    const registered = country ? countryAtlasLevel(country.id) : null;
+    const registeredIndex = ATLAS_LEVELS.findIndex(entry => entry.id === registered);
+    if (!rig.moving && level === WORLD && registeredIndex > WORLD && selected?.kind !== 'country') branch = registeredIndex === AFRICA ? NIGERIA : registeredIndex;
+    const path = activePath(), pathLevels = path.map(index => ATLAS_LEVELS[index]!);
+    cuts = thresholds(path.map(index => fits![index]!.distance));
+    const local = levelAt(rig.view.distance, cuts, path.indexOf(wanted));
+    const focusedCountry = selected?.kind === 'country' && countryAtlasLevel(selected.id) === ATLAS_LEVELS[path[local]!]!.id;
+    wanted = focusedCountry && local > 0 ? path[local]! : path[focusLevel(local, lon, lat, pathLevels, country?.id ?? null)]!;
     if (!sheets[wanted]) void ensure(wanted);
     // Heading out: have the next level ready before the threshold is reached.
-    if (wanted > WORLD && !sheets[wanted - 1] && rig.view.distance > cuts[wanted - 1]! * 0.62) void ensure(wanted - 1);
+    const pathIndex = path.indexOf(wanted), parent = path[pathIndex - 1];
+    if (parent !== undefined && !sheets[parent] && rig.view.distance > cuts[pathIndex - 1]! * 0.62) void ensure(parent);
     const next = sheets[wanted] ? wanted : level;
     if (next !== level) {
       level = next; hovered = null; settleFriends();
@@ -504,7 +527,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (selected?.kind === 'country' && selected.id === ATLAS_LEVELS[level]!.country) selected = null;
       // Further out than the cities the card of the player's own state would only cover the map being zoomed.
       else if (level !== NIGERIA && selected?.kind === 'state') select(null);
-      drawChrome();
+      drawChrome(); drawHighlights();
     }
     showWait();
     for (const entry of layers) if (reducedMotion || !raf) { entry.alpha = entry.levels.includes(level) ? 1 : 0; applyLayer(entry); }
@@ -547,16 +570,16 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       return fit;
     });
     rig.jump(saved);
-    cuts = thresholds(fits.map((fit) => fit.distance));
+    cuts = thresholds(activePath().map(index => fits![index]!.distance));
   }
-  const distances = () => fits!.map((fit) => fit.distance);
-  const minDistance = () => fits![NIGERIA]!.distance / 9, maxDistance = () => fits![WORLD]!.distance * 1.12;
+  const distances = () => activePath().map(index => fits![index]!.distance);
+  const minDistance = () => Math.min(...distances()) / 9, maxDistance = () => fits![WORLD]!.distance * 1.12;
   const levelView = (index: number) => ({ x: fits![index]!.x, z: fits![index]!.z, distance: fits![index]!.distance, pitch: PITCHES[index]!, yaw: 0 });
   function moved() { settleLevel(); request(); }
   /** Go to a view: flown, or cut when motion is reduced. */
   function fly(target: Partial<RigView>, seconds = 0.75) {
     const distance = clamp(target.distance ?? rig.view.distance, minDistance(), maxDistance());
-    const view = { yaw: 0, ...target, distance, pitch: target.pitch ?? pitchAt(distance, distances(), PITCHES) };
+    const view = { yaw: 0, ...target, distance, pitch: target.pitch ?? pitchAt(distance, distances(), pathPitches()) };
     if (reducedMotion || !raf) rig.jump(view); else rig.ease(view, seconds);
     moved();
   }
@@ -568,7 +591,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     if (wanted !== distance) ladder.refused(edge, Math.abs(Math.log(wanted / distance)), nx === null ? null : [nx, ny!]);
     else ladder.near(reach(distance));
     const before = nx === null ? null : rig.groundAt(nx, ny!);
-    rig.jump({ distance, pitch: pitchAt(distance, distances(), PITCHES), yaw: 0 });
+    rig.jump({ distance, pitch: pitchAt(distance, distances(), pathPitches()), yaw: 0 });
     const after = before ? rig.groundAt(nx!, ny!) : null;
     if (before && after) rig.pan(before.x - after.x, before.z - after.z);
     moved();
@@ -593,7 +616,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   function viewOf(feature: Feature) {
     const b = feature.bounds, saved = { ...rig.view };
     measuring();
-    rig.jump({ yaw: 0, pitch: PITCHES[NIGERIA]! }); measuring();
+    rig.jump({ yaw: 0, pitch: PITCHES[level]! }); measuring();
     const frame = rig.framing(framePoints([b.minLon, b.minLat, b.maxLon, b.maxLat]), { pad: 1.9, min: 0 });
     rig.jump(saved);
     return { x: frame.x, z: frame.z, distance: clamp(frame.distance, minDistance(), maxDistance()) };
@@ -608,7 +631,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     return pickLonLat(lon, lat);
   }
   function pickLonLat(lon: number, lat: number): Hit | null {
-    const order: (Sheet | null | undefined)[] = level === NIGERIA ? [sheets[NIGERIA], sheets[NIGERIA]?.around, sheets[WORLD]] : level === AFRICA ? [sheets[AFRICA], sheets[WORLD]] : [sheets[WORLD]];
+    const order: (Sheet | null | undefined)[] = level === NIGERIA ? [sheets[NIGERIA], sheets[NIGERIA]?.around, sheets[WORLD]] : level !== WORLD ? [sheets[level], sheets[WORLD]] : [sheets[WORLD]];
     // Exactly inside something first; failing that, just off a coast or on a small island.
     for (const how of ['pick', 'near'] as const) for (const sheet of order) {
       const feature = sheet?.picker[how](lon, lat);
@@ -619,7 +642,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   /** The feature a reference names, in the most detailed sheet that has it. */
   function find(ref: RegionRef | null): Hit | null {
     if (!ref) return null;
-    const order: (Sheet | null | undefined)[] = ref.kind === 'state' ? [sheets[NIGERIA]] : level === NIGERIA ? [sheets[NIGERIA]?.around, sheets[AFRICA], sheets[WORLD]] : level === AFRICA ? [sheets[AFRICA], sheets[WORLD]] : [sheets[WORLD], sheets[AFRICA]];
+    const order: (Sheet | null | undefined)[] = ref.kind === 'state' ? [sheets[NIGERIA]] : level === NIGERIA ? [sheets[NIGERIA]?.around, sheets[AFRICA], sheets[WORLD]] : level !== WORLD ? [sheets[level], sheets[WORLD]] : [sheets[WORLD], ...sheets.filter(sheet => sheet?.kind === 'country')];
     for (const sheet of order) { const feature = sheet?.topology.byId.get(ref.id); if (feature && feature.id !== sheet!.skip) return { kind: ref.kind, id: ref.id, feature, sheet: sheet! }; }
     return null;
   }
@@ -633,16 +656,24 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   for (const object of [hoverMesh, selectMesh, selectLine, routeLine]) { object.visible = false; object.frustumCulled = false; scene.add(object); }
   const swap = (object: THREE.Mesh, geometry: THREE.BufferGeometry | null) => { object.geometry.dispose(); object.geometry = geometry || new THREE.BufferGeometry(); object.visible = Boolean(geometry); };
   /** Is this sheet's ground what the current level shows? A state is not lit up from the Africa level. */
-  const inView = (hit: Hit | null): Hit | null => (hit && ((level === NIGERIA ? [sheets[NIGERIA], sheets[NIGERIA]?.around, sheets[WORLD]] : level === AFRICA ? [sheets[AFRICA], sheets[WORLD]] : [sheets[WORLD]]) as (Sheet | null | undefined)[]).includes(hit.sheet) ? hit : null);
+  const inView = (hit: Hit | null): Hit | null => (hit && ((level === NIGERIA ? [sheets[NIGERIA], sheets[NIGERIA]?.around, sheets[WORLD]] : level !== WORLD ? [sheets[level], sheets[WORLD]] : [sheets[WORLD]]) as (Sheet | null | undefined)[]).includes(hit.sheet) ? hit : null);
   function drawHighlights() {
+    for (const [index, dots] of continentDots) {
+      dots.object.geometry.dispose();
+      dots.object.geometry = mesh.dots((index === level ? continentCities() : []).map(city => {
+        const point = spot(city.lon, city.lat, HEIGHT.openCountry + 0.02);
+        return { x: point[0], y: point[1], z: point[2], colour: INK.select, size: 8 };
+      }));
+      dots.object.material.uniforms.ratio!.value = renderer.getPixelRatio?.() || 1;
+    }
     const hit = inView(hovered && !same(hovered, selected) ? find(hovered) : null), chosen = inView(find(selected));
     swap(hoverMesh, hit ? mesh.cap(hit.feature, hit.sheet.top(hit.feature) + 0.006) : null);
     const open = chosen && regionEntry(chosen.kind, chosen.id).status === 'open';
     swap(selectMesh, chosen && !open ? mesh.cap(chosen.feature, chosen.sheet.top(chosen.feature) + 0.007) : null);
     swap(selectLine, chosen && !open ? mesh.ribbons(mesh.ringLines(chosen.feature, chosen.sheet.top(chosen.feature) + 0.008, INK.select, 2.4)).geometry : null);
     const path = routePath(routeShown);
-    const routeHeight = level === AFRICA ? HEIGHT.openCountry + 0.03 : HEIGHT.state + 0.03;
-    swap(routeLine, path && (level === NIGERIA || level === AFRICA) ? mesh.ribbons([{ colour: '#ffffff', width: 7, points: pathPoints(path, routeHeight) }, { colour: INK.route, width: 4, points: pathPoints(path, routeHeight + 0.002) }]).geometry : null);
+    const routeHeight = ATLAS_LEVELS[level]!.kind === 'country' ? HEIGHT.openCountry + 0.03 : HEIGHT.state + 0.03;
+    swap(routeLine, path && (level === NIGERIA || ATLAS_LEVELS[level]!.kind === 'country') ? mesh.ribbons([{ colour: '#ffffff', width: 7, points: pathPoints(path, routeHeight) }, { colour: INK.route, width: 4, points: pathPoints(path, routeHeight + 0.002) }]).geometry : null);
   }
   const authoredRoutes = new Map<string, LinkPath>();
   const pathOf = (link: { a: string; b: string; mode: string }) => authoredRoutes.get(linkId(link)) ?? (link.mode === 'rail' ? null : linkPath(link, cityEntry));
@@ -671,6 +702,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
   function syncResolution() {
     for (const material of ribbonMaterials) material.uniforms.resolution!.value.set(size.width, size.height);
+    for (const dots of continentDots.values()) dots.object.material.uniforms.ratio!.value = renderer.getPixelRatio?.() || 1;
     if (sheets[NIGERIA]) for (const dots of [sheets[NIGERIA].stateDots, sheets[NIGERIA].cityDots]) dots.object.material.uniforms.ratio!.value = renderer.getPixelRatio?.() || 1;
   }
 
@@ -686,8 +718,17 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const state = stateOfCity(cityId), country = countryOf(cityId);
     return state ? { kind: 'state', id: state } : country ? { kind: 'country', id: country } : null;
   };
-  const cityLevel = (cityId: string) => countryOf(cityId) === 'ng' ? NIGERIA : AFRICA;
-  const intercityLevel = (from: string, to: string) => [countryOf(from), countryOf(to)].some(country => country !== null && country !== 'ng') ? AFRICA : NIGERIA;
+  const cityLevel = (cityId: string) => {
+    const id = countryAtlasLevel(countryOf(cityId) ?? '');
+    const index = ATLAS_LEVELS.findIndex(entry => entry.id === id);
+    return index < 0 ? WORLD : index;
+  };
+  const intercityLevel = (from: string, to: string) => {
+    const a = levelPath(ATLAS_LEVELS, cityLevel(from)), b = levelPath(ATLAS_LEVELS, cityLevel(to));
+    return a.filter(index => b.includes(index)).at(-1) ?? WORLD;
+  };
+  const continentCities = () => countryLevel(level) && selected?.kind === 'country'
+    ? cityCatalogue().filter(city => city.open && city.countryISO === selected!.id) : [];
   /** The groups drawn at this level, each with the place it stands at on the screen. */
   function friendBadges(): { key: string; title: string; friends: FriendHere[]; x: number; y: number }[] {
     if (!fits) return [];
@@ -699,7 +740,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
         return where.behind ? [] : [{ key: `city:${group.cityId}`, title: cityName(group.cityId) ?? group.cityId, friends: group.friends, x: where.x + 12, y: where.y + 8 }];
       });
     }
-    const sheet = level === AFRICA ? sheets[AFRICA] : sheets[WORLD];
+    const sheet = countryLevel(level) ? sheets[level] : sheets[WORLD];
     return byCountry(friendsNow, countryOf).flatMap((group) => {
       const feature = (sheet ?? sheets[WORLD] ?? sheets[AFRICA])?.topology.byId.get(group.countryId) as Feature<CountryData & { at?: [number, number] }> | undefined;
       const point = feature && 'at' in feature ? (feature as unknown as { at: [number, number] }).at : null;
@@ -761,9 +802,11 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   function openFriends(cityId: string): boolean {
     if (!friendsNow.cities.some((group) => group.cityId === cityId)) return false;
     const spot = cityEntry(cityId);
-    void ensure(NIGERIA);
+    const index = cityLevel(cityId);
+    branch = index === AFRICA ? NIGERIA : index;
+    void ensure(index);
     friendsOpen = `city:${cityId}`;
-    if (fits && spot) { const [x, y] = project(relLon(spot.lon), spot.lat); fly({ x, z: -y, distance: Math.min(rig.view.distance, fits[NIGERIA]!.distance * 0.8), yaw: 0 }, 0.8); }
+    if (fits && spot) { const [x, y] = project(relLon(spot.lon), spot.lat); fly({ x, z: -y, distance: Math.min(rig.view.distance, fits[index]!.distance * 0.8), yaw: 0 }, 0.8); }
     drawFriendsPanel(); request();
     return true;
   }
@@ -806,13 +849,14 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       for (const [name, lon, lat] of NEIGHBOUR_LABELS) push(`near:${name}`, at(lon, lat), name, { priority: 34, size: 12, cls: 'is-neighbour' });
       for (const [name, lon, lat, kind] of WATER_LABELS) push(`water:${name}`, at(lon, lat, HEIGHT.state), name, { priority: kind === 'sea' ? 40 : 26, size: kind === 'sea' ? 12 : 10, anchor: kind === 'town' ? 'right' : 'centre', cls: `is-${kind}` });
       if (close) for (const port of AIRPORTS) push(`air:${port.id}`, at(port.at[0], port.at[1], HEIGHT.state), '✈', { priority: 18, size: 12, cls: 'is-airport', title: port.name });
-    } else if (level === AFRICA && sheets[AFRICA]) {
-      const sheet = sheets[AFRICA];
+    } else if (countryLevel(level) && sheets[level]) {
+      const sheet = sheets[level]!;
       for (const feature of sheet.topology.features) {
         const top = sheet.top(feature), open = statusOf('country', feature.id) === 'open', b = feature.bounds;
         push(`country:${feature.id}`, at(feature.at[0], feature.at[1], top), feature.name, { room: open ? undefined : roomOf(feature, top) * 0.9, priority: open ? 1000 : 40 + Math.min(30, (b.maxLon - b.minLon) * (b.maxLat - b.minLat) * 0.1), fixed: open, size: open ? dn.city : dn.other, compact: open, cls: open ? `is-city is-open${feature.id === (countryOf(current) === 'nigeria' ? 'ng' : countryOf(current)) ? ' is-you' : ''}` : 'is-region', note: open ? (feature.id === (countryOf(current) === 'nigeria' ? 'ng' : countryOf(current)) ? 'You are here' : 'Open') : undefined, anchor: open ? 'above' : 'centre' });
-        if (feature.cap && MAJOR_CAPITALS.has(feature.cap[0])) push(`cap:${feature.id}`, at(feature.cap[1], feature.cap[2], top), feature.cap[0], { priority: feature.cap[0] === 'Abuja' ? 60 : 30, size: 10, anchor: 'right', cls: 'is-capital' });
+        if (Array.isArray(feature.cap) && MAJOR_CAPITALS.has(feature.cap[0])) push(`cap:${feature.id}`, at(feature.cap[1], feature.cap[2], top), feature.cap[0], { priority: feature.cap[0] === 'Abuja' ? 60 : 30, size: 10, anchor: 'right', cls: 'is-capital' });
       }
+      for (const city of continentCities()) push(`city:${city.id}`, at(city.lon, city.lat, HEIGHT.openCountry + 0.02), city.name, { priority: 1800, size: dn.city, compact: true, anchor: 'above', cls: 'is-city is-open', note: city.id === current ? 'You are here' : 'Open' });
     } else if (sheets[WORLD]) {
       for (const continent of Object.values(CONTINENTS)) push(`continent:${continent.id}`, at(relLon(continent.lon), continent.lat), continent.name, { priority: 100, size: 13, cls: 'is-continent' });
       const here = countryOf(current) === 'nigeria' ? 'ng' : countryOf(current);
@@ -867,9 +911,9 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   function drawMarker() {
     const run = trip || preview;
     if (!ui.marker) return;
-    if (!run || (level !== NIGERIA && level !== AFRICA)) { ui.marker.hidden = true; return; }
+    if (!run) { ui.marker.hidden = true; return; }
     const place = tripPoint(run.path, run.line, run.from, run.progress ?? 0);
-    const ground = level === AFRICA ? HEIGHT.openCountry + 0.05 : HEIGHT.state + 0.05;
+    const ground = ATLAS_LEVELS[level]!.kind === 'country' ? HEIGHT.openCountry + 0.05 : HEIGHT.state + 0.05;
     const where = screenOf(place.x, ground + place.height, -place.y);
     ui.marker.hidden = false;
     ui.marker.className = `atlas-marker is-${place.mode === 'air' ? 'air' : 'road'}`;
@@ -897,7 +941,13 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
 
   // ---- the chrome: breadcrumb, list, sheet -------------------------------------------------------------
   const context = () => ({ current, held: held() || [], routes: routes() });
-  const infoOf = (hit: Pick<Hit, 'kind' | 'id' | 'feature'>): RegionInfo => regionInfo({ kind: hit.kind, id: hit.id }, { ...context(), cityId: selectedCity, feature: hit.feature });
+  const infoOf = (hit: Pick<Hit, 'kind' | 'id' | 'feature'>): RegionInfo => {
+    if (hit.kind === 'country' && selectedCity && countryOf(selectedCity) === hit.id) {
+      const city = cityCatalogueEntry(selectedCity);
+      if (city) return { ...regionInfo({ kind: 'state', id: city.state.id }, { ...context(), cityId: selectedCity }), kind: 'country', id: hit.id, name: hit.feature.name };
+    }
+    return regionInfo({ kind: hit.kind, id: hit.id }, { ...context(), cityId: selectedCity, feature: hit.feature });
+  };
   let countryDetailModel: CountryDetailPanelModel | null = null;
   let countryPanelReturnFocus: HTMLElement | null = null;
   function drawCountryPanel(state: ReturnType<CountryDetailPanelModel['snapshot']>) {
@@ -968,15 +1018,16 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     if (!ui.crumbs) return;
     const city = cityEntry(current);
     ui.crumbs.innerHTML = `<div class="level-menu" ${levelsOpen ? 'data-open' : ''}>
-        <button type="button" class="level-menu-cur" data-atlas-levels data-tour="map-world" aria-expanded="${levelsOpen}" aria-controls="atlas-levels-list" aria-label="Map level: ${esc(ATLAS_LEVELS[level]!.name)}. Show World, Africa and Nigeria">${ICON(GLYPH.globe)}<span>${esc(ATLAS_LEVELS[level]!.name)}</span>${ICON('<path d="m6 9 6 6 6-6"/>')}</button>
+        <button type="button" class="level-menu-cur" data-atlas-levels data-tour="map-world" aria-expanded="${levelsOpen}" aria-controls="atlas-levels-list" aria-label="Map level: ${esc(ATLAS_LEVELS[level]!.name)}. Show ${esc(ATLAS_LEVELS.map(entry => entry.name).join(', '))}">${ICON(GLYPH.globe)}<span>${esc(ATLAS_LEVELS[level]!.name)}</span>${ICON('<path d="m6 9 6 6 6-6"/>')}</button>
         <ol id="atlas-levels-list">${ATLAS_LEVELS.map((entry, i) => `<li><button type="button" data-atlas-level="${i}" ${i === level ? 'aria-current="true"' : ''}>${i === WORLD ? ICON(GLYPH.globe) : ''}<span>${esc(entry.name)}</span></button></li>`).join('')}
           <li><button type="button" class="atlas-back-item" data-atlas-city="${esc(current)}">${esc(city?.name)} · back to the city</button></li></ol></div>
+      ${countryLevel(level) && selected?.kind === 'country' ? `<span class="atlas-country-crumb">${esc(find(selected)?.feature.name)}${selectedCity ? ` · ${esc(cityEntry(selectedCity)?.name)}` : ''}</span>` : ''}
       <button type="button" class="atlas-back" data-atlas-city="${esc(current)}" aria-label="Back to ${esc(city?.name)}: open the city map">${esc(city?.name)}<span aria-hidden="true">Back to the city</span></button>
       <button type="button" class="atlas-countries" data-atlas-countries aria-expanded="${Boolean(countryDetailModel?.snapshot().open)}" aria-controls="atlas-country-panel">Countries</button>
       <button type="button" class="atlas-list-toggle" data-atlas-list aria-label="Find a place" aria-expanded="${listOpen}">${ICON('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>')}<span>Find a place</span></button>`;
     const fit = ui.controls!.querySelector<HTMLElement>('[data-atlas-fit]')!, layer = ui.controls!.querySelector<HTMLElement>('[data-atlas-layer]')!;
     fit.textContent = `Whole of ${level === WORLD ? 'the world' : ATLAS_LEVELS[level]!.name}`;
-    layer.hidden = level === WORLD; layer.setAttribute('aria-pressed', String(tintOn));
+    layer.hidden = level !== NIGERIA && level !== AFRICA; layer.setAttribute('aria-pressed', String(tintOn));
     layer.setAttribute('aria-label', level === NIGERIA ? 'Geographic zones' : 'Geographic regions');
     layer.querySelector('[data-atlas-layer-name]')!.textContent = level === NIGERIA ? 'Zones' : 'Regions';
     const groups = level === NIGERIA ? ZONES : level === AFRICA ? AFRICA_GROUPS : null;
@@ -1020,7 +1071,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     root!.classList.toggle('has-sheet', Boolean(hit));
     if (!hit) { ui.sheet.innerHTML = ''; root!.classList.remove('has-cities'); return; }
     const info = infoOf(hit);
-    const stateCities = hit.kind === 'state' ? catalogueCitiesInState(hit.id).map(city => ({ id: city.id, name: city.name, status: city.open ? 'open' : 'soon', units: cityRules(city.id)?.units ?? [] })) : [];
+    const stateCities = (hit.kind === 'state' ? catalogueCitiesInState(hit.id) : countryLevel(level) ? continentCities() : []).map(city => ({ id: city.id, name: city.name, status: city.open ? 'open' : 'soon', units: cityRules(city.id)?.units ?? [] }));
     root!.classList.toggle('has-cities', stateCities.length > 1);
     const overviewCity = stateCities.find(city => cityModule(city.id)?.rules.hasStateOverview);
     const overview = stateOverviewShown === hit.id ? stateOverviews.get(hit.id) : undefined;
@@ -1058,11 +1109,12 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     // An open city is the thing chosen: the card is named after it, with its state beneath.
     const cityTitle = info.city && info.status === 'open' && !choosing && info.city.name !== info.name ? info.city.name : null;
     ui.sheet.innerHTML = `<header><div><h2>${esc(cityTitle ?? info.name)}</h2><p>${cityTitle ? `${esc(info.name)} · ${esc(info.type.replace(/^(State|Territory) · /, ''))}` : `${esc(info.type)}${info.capital ? ` · capital ${esc(info.capital)}` : ''}`}</p></div><span class="atlas-tag">${esc(info.tag)}</span><button type="button" class="atlas-close" data-atlas-close aria-label="Close ${esc(info.name)}">${ICON('<path d="M6 6l12 12M18 6 6 18"/>')}</button></header>
-      ${stateCities.length > 1 ? `<nav aria-label="Cities in this state">${stateCities.map(city => `<button type="button" data-atlas-inspect-city="${esc(city.id)}" aria-pressed="${city.id === info.city?.id}">${esc(city.name)}</button>`).join('')}</nav>` : ''}
+      ${stateCities.length > 1 ? `<nav aria-label="Cities here">${stateCities.map(city => `<button type="button" data-atlas-inspect-city="${esc(city.id)}" aria-pressed="${city.id === info.city?.id}">${esc(city.name)}</button>`).join('')}</nav>` : ''}
       ${overviewCity ? `${stateOverviewToggleHtml(hit.id, overviewCity.id, stateOverviewShown === hit.id)}${overviewBody}` : ''}
       <p class="atlas-teaser">${esc(choosing ? regionEntry('state', hit.id).teaser || info.teaser : info.teaser)}</p>
       ${hit.kind === 'country' && hit.id !== 'ng' ? '<button type="button" class="atlas-chip atlas-country-cta" data-country-open="' + esc(hit.id) + '">Geographic detail</button>' : ''}
       ${travelCard}
+      ${countryLevel(level) && selectedCity && info.city ? `<button type="button" class="atlas-go" data-atlas-city="${esc(selectedCity)}">Enter ${esc(info.city.name)}</button>` : ''}
       ${info.action ? `<button type="button" class="atlas-go" data-atlas-action>${esc(info.action.label)}<span aria-hidden="true"> →</span></button>` : ''}
       ${more ? `<button type="button" class="atlas-more" data-atlas-expand aria-expanded="${sheetOpen}">${sheetOpen ? 'Less' : guide?.length && info.city ? `Things to do in ${esc(info.city.name)}` : info.routes.length ? 'Routes and details' : 'More'}</button>` : ''}
       ${guide?.length ? `<section class="atlas-guide"><h3>Things to do in ${esc(info.city!.name)}</h3><ul>${guide.map(place => `<li><b>${esc(place.name)}</b> · ${esc(place.line)}</li>`).join('')}</ul></section>` : ''}
@@ -1110,7 +1162,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const back = !hit && doc && ui.sheet?.contains(doc.activeElement);
     // A state with several open cities, picked on the map: go closer, so each of its cities can be tapped.
     const several = hit?.kind === 'state' && !flyTo && from === 'map' && fits && catalogueCitiesInState(hit.id).filter(item => item.open).length > 1 && rig.view.distance > viewOf(hit.feature).distance * 1.15;
-    if (hit && (flyTo || several)) { if (inside > 0) goLevel(inside); else fly(viewOf(hit.feature)); }
+    if (hit && (flyTo || several || hit.kind === 'country' && regionEntry('country', hit.id).status === 'open' && (level === WORLD || countryLevel(level)))) { if (inside > 0 && inside !== level) goLevel(inside); else fly(viewOf(hit.feature)); }
     if (hit && from === 'list') listOpen = false;
     drawCrumbs(); drawRail(); drawSheet(); drawHighlights(); request();
     // The list and the keyboard move focus to the sheet; closing it hands focus back to the breadcrumb.
@@ -1120,6 +1172,13 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
   /** The open city whose dot is within a finger of a point of the canvas, at the level that shows cities; the nearest, or null. */
   function cityNear(point: Point): string | null {
+    if (countryLevel(level) && sheets[level]) {
+      const targets: CityTarget[] = continentCities().flatMap(city => {
+        const where = at(city.lon, city.lat, HEIGHT.openCountry + 0.02);
+        return where.behind ? [] : [{ id: city.id, x: where.x, y: where.y, state: city.countryISO!, label: lastPlaced.get(`city:${city.id}`) ?? null }];
+      });
+      return cityHit(point, targets, { stateUnder: pickAt(point.x, point.y)?.id ?? null });
+    }
     if (level !== NIGERIA || !sheets[NIGERIA] || markerDetail() !== 'cities') return null;
     const sheet = sheets[NIGERIA], targets: CityTarget[] = [];
     for (const feature of sheet.topology.features) for (const city of catalogueCitiesInState(feature.id)) {
@@ -1131,6 +1190,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
   /** Open a city's card: select its state and, in a state with several cities, choose that one. */
   function selectCity(id: string): boolean {
+    if (countryLevel(level) && !continentCities().some(city => city.id === id)) return false;
     const region = cityRegion(id);
     if (!region || !select(region, { from: 'map' })) return false;
     selectedCity = id; confirming = null;
@@ -1141,7 +1201,11 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   /** Asked for before the map has been measured (it is not on screen yet): gone to when it is. */
   let pendingLevel: number | null = null;
   function goLevel(index: number) {
-    const next = clamp(index, WORLD, NIGERIA);
+    if (!Number.isInteger(index) || !ATLAS_LEVELS[index]) return;
+    const next = index;
+    if (next === WORLD) select(null);
+    if (countryLevel(next) && next === level) select(null);
+    if (next !== WORLD) branch = next === AFRICA ? NIGERIA : next;
     void ensure(next);
     if (!fits) { pendingLevel = next; return; }
     pendingLevel = null;
@@ -1166,7 +1230,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const from = point ? { x: ((point[0] + 1) / 2) * size.width, y: ((1 - point[1]) / 2) * size.height } : { x: size.width / 2, y: size.height / 2 };
     let best: { id: string; name: string; own: boolean } | null = null, least = Math.min(size.width, size.height) * 0.4;
     for (const city of cityCatalogue()) {
-      if (!city.open) continue;
+      if (!city.open || countryLevel(level) && !continentCities().some(item => item.id === city.id)) continue;
       const where = at(city.lon, city.lat);
       if (where.behind) continue;
       const away = Math.hypot(where.x - from.x, where.y - from.y);
@@ -1179,7 +1243,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const [lon, lat] = unproject(spot.x, -spot.z);
     let nearest = 6;
     for (const city of cityCatalogue()) {
-      if (!city.open) continue;
+      if (!city.open || countryLevel(level) && !continentCities().some(item => item.id === city.id)) continue;
       const away = Math.hypot(relLon(city.lon) - relLon(lon), city.lat - lat);
       if (away < nearest) { nearest = away; best = { id: city.id, name: city.name, own: city.id === current }; }
     }
@@ -1197,9 +1261,10 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   function arriveFrom(id: string, carry = 0) {
     const city = cityEntry(id);
     if (!city || !fits) return;
-    const index = cityLevel(id), [x, y] = project(city.lon, city.lat);
+    const index = cityLevel(id); branch = index === AFRICA ? NIGERIA : index;
+    const [x, y] = project(city.lon, city.lat);
     const start = entryDistance('out', { near: minDistance(), far: fits[index]!.distance }, carry);
-    const pitch = pitchAt(start, distances(), PITCHES);
+    const pitch = pitchAt(start, distances(), pathPitches());
     rig.hold(); rig.jump({ x, z: -y, distance: start, pitch, yaw: 0 });
     // The card of the player's own state (opened by showing the atlas) would cover the map that is still being zoomed.
     if (selected?.kind === 'state') select(null);
@@ -1233,7 +1298,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     layout(); syncResolution();
     if (!opened || (resetView && !wasShown)) {
       opened = true; resetView = false;
-      const initialLevel = cityLevel(current);
+      const initialLevel = cityLevel(current); branch = initialLevel === AFRICA ? NIGERIA : initialLevel;
       void ensure(initialLevel);
       rig.jump(levelView(initialLevel)); selected = cityRegion(current); routeShown = null;
       drawChrome(); layout(); rig.jump(levelView(initialLevel));
@@ -1335,7 +1400,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     if (town) { selectCity(town); return; }
     // A tap on an open country from further out goes straight in to its cities: there is nothing else to do with it.
     const into = !double && hit?.kind === 'country' && regionEntry('country', hit.id).status === 'open' ? ATLAS_LEVELS.findIndex((entry) => entry.id === regionEntry('country', hit.id).level) : -1;
-    if (into > level) { select(null); goLevel(into); return; }
+    if (into >= 0 && into !== level) { select(null); goLevel(into); return; }
     if (double) {
       // Twice on a region: go to it. Twice on open water: just closer.
       if (hit) { selected = { kind: hit.kind, id: hit.id }; select(selected, { flyTo: true }); }
@@ -1386,7 +1451,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (target && target.cityId === current) onInspectVenue(target.cityId, target.venueId);
     }
     else if (stateLink) { const id = stateLink.dataset.atlasStateLink ?? null; overviewLink = overviewLink === id ? null : id; drawSheet(); }
-    else if (inspectCity) { overviewLink = null; confirming = null; selectedCity = inspectCity.dataset.atlasInspectCity ?? null; if (selectedCity && isOpenCityId(selectedCity)) void loadCityContent(selectedCity).then(drawSheet, () => {}); drawSheet(); }
+    else if (inspectCity && (!countryLevel(level) || continentCities().some(city => city.id === inspectCity.dataset.atlasInspectCity))) { overviewLink = null; confirming = null; selectedCity = inspectCity.dataset.atlasInspectCity ?? null; if (selectedCity && isOpenCityId(selectedCity)) void loadCityContent(selectedCity).then(drawSheet, () => {}); drawSheet(); }
     else if (overviewSection && stateOverviewShown) { const key = `${stateOverviewShown}:${overviewSection.dataset.atlasOverviewSection}`; if (overviewExpanded.has(key)) overviewExpanded.delete(key); else overviewExpanded.add(key); }
     else if (overviewButton) { const id = overviewButton.dataset.atlasStateOverview; if (id) { if (stateOverviewShown === id) { stateOverviewShown = null; drawSheet(); } else void showStateOverview(id); } }
     else if (hit('state-retry')) doc?.defaultView?.location.reload();
@@ -1444,8 +1509,9 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     else if (levelsOpen) closeLevels(true);
     else if (listOpen) { listOpen = false; drawCrumbs(); drawRail(); }
     else if (preview) { preview = null; routeShown = null; drawSheet(); drawHighlights(); request(); }
-    else if (selected) select(null);
-    else if (level > WORLD) goLevel(level - 1);
+    else if (countryLevel(level) && selectedCity) { selectedCity = null; drawSheet(); }
+    else if (selected) { select(null); if (countryLevel(level)) fly(levelView(level)); }
+    else if (level !== WORLD) { const path = levelPath(ATLAS_LEVELS, level); goLevel(path.at(-2) ?? WORLD); }
     else return;
     event.preventDefault();
   }
@@ -1498,7 +1564,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
         triangles: info.triangles ?? 0, calls: info.calls ?? 0, labels: lastLabels, reducedMotion, selected, hovered, routeShown, tint: tintOn,
         cityLabels: candidates().filter(label => label.id.startsWith('city:')).map(({ id, text, note }) => ({ id, text, note: note ?? null })), markers: markerDetail(),
         trip: trip || preview ? { progress: (trip || preview)!.progress, preview: Boolean(preview && !trip), mode: (trip || preview)!.path.mode } : null,
-        view: { ...rig.view }, fits: fits ? distances() : null, cuts: [...cuts], layers: layers.map((entry) => entry.alpha) };
+        view: { ...rig.view }, fits: fits ? fits.map(fit => fit.distance) : null, cuts: [...cuts], layers: layers.map((entry) => entry.alpha) };
     },
     destroy() {
       destroyed = true; countryDetailModel?.destroy(); stop(); watcher?.disconnect();

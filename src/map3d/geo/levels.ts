@@ -73,8 +73,20 @@ export function pitchAt(distance: number, fits: readonly number[], pitches: read
 }
 
 export interface Crumb { id: string; name: string; level?: number; city?: string; current: boolean }
-export function crumbs(levels: readonly { id: string; name: string }[], index: number, city: { id: string; name: string } | null = null): Crumb[] {
-  const out: Crumb[] = levels.slice(0, index + 1).map((level, i) => ({ id: level.id, name: level.name, level: i, current: i === index }));
-  if (city && index === levels.length - 1) out.push({ id: city.id, name: city.name, city: city.id, current: false });
+export function crumbs(levels: readonly { id: string; name: string; parent?: string }[], index: number, city: { id: string; name: string } | null = null): Crumb[] {
+  const path = levelPath(levels, index);
+  const out: Crumb[] = path.map(i => ({ id: levels[i]!.id, name: levels[i]!.name, level: i, current: i === index }));
+  if (city && !levels.some(level => level.parent === levels[index]?.id)) out.push({ id: city.id, name: city.name, city: city.id, current: false });
   return out;
+}
+
+/** Registry indices along one branch, widest first; siblings never share zoom thresholds. */
+export function levelPath(levels: readonly { id: string; parent?: string }[], index: number): number[] {
+  const path: number[] = [];
+  while (index >= 0 && index < levels.length && !path.includes(index)) {
+    path.unshift(index);
+    const parent = levels[index]!.parent;
+    index = parent ? levels.findIndex(level => level.id === parent) : -1;
+  }
+  return path;
 }

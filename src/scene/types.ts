@@ -69,6 +69,12 @@ export interface Lighting {
   rim: [Colour, number]
   glow: number
   lamps: number
+  /** From lightingAt(): how dark it is, 0 (day) to 1 (night), for lamp pools and lit windows. */
+  night?: number
+  /** From lightingAt(): the fog's colour and where it starts and ends, as multiples of the camera's distance from what it looks at. */
+  fog?: [Colour, number, number]
+  /** Set by adjustLighting() while it rains: the ground and walls take a wet sheen. */
+  wet?: boolean
 }
 /**
  * A camera position per orientation. `start` (default 1) scales how far the camera begins from the

@@ -2,8 +2,9 @@
 // draws whatever it is given. Only the 3D venue scenes read this, and they load on demand, so nothing here is in the page's first download.
 //   a power cut      the lamps and the glow of windows go down; a place on a generator keeps most of them, a little lower and steadier
 //   harmattan        a dusty, yellowish haze in the sky and the light, and a weaker sun
-//   the rains        a grey-blue sky and a flatter light
+//   the rains        a grey-blue sky, a flatter light and fog that stands closer; it follows the city's weather (weatherAt), not the month
 // Every number is an original beta value.
+import { weatherAt } from '../systems/health.ts'
 import { citySeason } from '../world-time.ts'
 import { powerCutAt, venueHasGenerator } from './conditions.ts'
 import type { CityClimate } from '../../types/content.ts'
@@ -56,14 +57,20 @@ export function adjustLighting(base: Lighting, now: Readonly<LookConditions>): L
     sunPower *= 0.75
     hemiPower *= 0.95
   }
-  return { ...base, sky, hemi: [hemi[0], hemi[1], hemiPower], sun: [base.sun[0], sunPower, base.sun[2]], glow, lamps }
+  const fog = base.fog && now.wet ? [tint(base.fog[0], RAIN, 0.3), base.fog[1] * 0.8, base.fog[2] * 0.75] as [string, number, number] : base.fog
+  return { ...base, sky, hemi: [hemi[0], hemi[1], hemiPower], sun: [base.sun[0], sunPower, base.sun[2]], glow, lamps, ...(fog ? { fog } : {}), ...(now.wet ? { wet: true } : {}) }
+}
+
+/** Whether it is raining in the city at `now`: the city's own weather, the same one the weather chip shows. A city the weather does not know is dry. */
+export function rainingAt(cityId: string, now: number): boolean {
+  try { return weatherAt(now, cityId).raining } catch { return false }
 }
 
 /** What a place's light has to reckon with at `now`: its district's power, whether it has a generator, and the season of its city. */
 export function lookAt(cityId: string, place: { id?: string; district?: string; generator?: boolean } | null | undefined, climate: Pick<CityClimate, 'rainChanceByMonth' | 'clearLabel' | 'harmattan'> | null | undefined, now: number): LookConditions {
   const season = citySeason(climate, now)
   const outage = Boolean(place?.district && powerCutAt(cityId, place.district, now))
-  return { outage, generator: Boolean(place?.id) && venueHasGenerator({ id: place!.id!, generator: place?.generator }), wet: season.wet, harmattan: season.harmattan }
+  return { outage, generator: Boolean(place?.id) && venueHasGenerator({ id: place!.id!, generator: place?.generator }), wet: rainingAt(cityId, now), harmattan: season.harmattan }
 }
 
 /** A short key of the four flags, so a scene can tell that the conditions changed and the light needs redrawing. */

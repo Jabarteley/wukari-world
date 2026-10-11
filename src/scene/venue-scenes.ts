@@ -89,7 +89,8 @@ import { tablesAt, GAME_LABELS } from '../tables/city-places.ts';
 import { CITY_RULES, DEFAULT_CITY_ID } from '../game/cities/registry.ts';
 import { CLEAR_LOOK, adjustLighting, lookAt, lookKey } from '../game/conditions/look.ts';
 import type { LookConditions } from '../game/conditions/look.ts';
-import { isTimeOfDay as isTime, timeOfDay, lightingFor } from './lighting.ts';
+import { createPools } from './pools.ts';
+import { isTimeOfDay as isTime, timeOfDay, lightingFor, lightingAt, lagosMinute } from './lighting.ts';
 import * as outdoor from './venues-outdoor.ts';
 import * as social from './venues-social.ts';
 import * as work from './venues-work.ts';
@@ -99,7 +100,7 @@ import { CITY_KINDS, citySceneDef, cityScenesReady, parametricSceneAdapter } fro
 
 export const DEFAULT_CAMERA: SceneCamera = { landscape: [16, 21, 27], portrait: [13, 24, 31] };
 const SCENE_CAMERA: SceneCamera = { landscape: [15, 19.8, 25.4], portrait: [16.5, 29.5, 38.5] };
-export { TIMES, LIGHTING, timeOfDay, lightingFor } from './lighting.ts';
+export { TIMES, LIGHTING, timeOfDay, lightingFor, lightingAt } from './lighting.ts';
 export const MAX_CROWD = 12;
 
 /** The kinds every city draws with. A kind a city added (CITY_KINDS) arrives with that city's scenes. */
@@ -365,7 +366,7 @@ type Placed = Point & Tied
 /** A crowd person with a reported position. */
 type LivePerson = CrowdPerson & { x: number; z: number };
 interface View {
-  time: TimeOfDay; fixedTime: boolean; spot: string | null; look: unknown; lookKey: string; seed: unknown; name: string;
+  time: TimeOfDay; /** Minute of the Lagos day the light is at (the sun moves with it). */ minute: number; fixedTime: boolean; spot: string | null; look: unknown; lookKey: string; seed: unknown; name: string;
   pose: string; poseFixed: boolean; crowd: CrowdPerson[];
   /** The city's conditions at this place now (a power cut, the season): they change how the light looks. */
   weather: LookConditions;
@@ -402,18 +403,18 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   group.name = `venue:${kind}`;
 
   const view: View = {
-    time: isTime(options.time) ? options.time : 'day',
+    time: isTime(options.time) ? options.time : 'day', minute: 720,
     fixedTime: isTime(options.time),
     spot: null, look: options.look ?? null, lookKey: JSON.stringify(options.look ?? null), seed: options.seed ?? 'you', name: 'You',
     pose: 'stand', poseFixed: false, crowd: [], weather: CLEAR_LOOK,
   };
   /** The preset in use: the mood's light for this time of day, as the city's conditions leave it. */
-  const lit = (): Lighting => adjustLighting(lightingFor(mood, view.time), view.weather);
+  const lit = (): Lighting => adjustLighting(view.fixedTime ? lightingFor(mood, view.time) : lightingAt(mood, view.minute), view.weather);
   const hints: Record<string, string> = options.anchors && typeof options.anchors === 'object' ? options.anchors : {};
   let layout: SceneLayout | null = null, resolved: Resolved | null = null, live = false, disposed = false, footprints: FootprintShapes | null = null, grid: WalkGrid | null = null, entrance: SceneEntrance | null = null;
   let renderedContactTop: ReturnType<typeof contactSurfaceIndex> | null = null;
   const staticObjects: Releasable[] = [], actorObjects: Releasable[] = [], markObjects: Releasable[] = [];
-  let staticTriangles = 0, actorTriangles = 0, crowdTags: SceneTag[] = [], selfTag: SceneTag | null = null, sky: THREE.Mesh | null = null;
+  let pools: ReturnType<typeof createPools> = null, staticTriangles = 0, actorTriangles = 0, crowdTags: SceneTag[] = [], selfTag: SceneTag | null = null, sky: THREE.Mesh | null = null;
   // Other players who report where they stand: one figure each, eased to every new position.
   const peers = new Map<string, Peer>();
   let peopleList: ScenePerson[] = [], mergedTags: SceneTag[] = [], batchKey: string | null = null, easing = false;
@@ -804,6 +805,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     shared.materials.glow.color.setScalar(preset.glow);
     for (const object of staticObjects as THREE.PointLight[]) if (object.isPointLight) object.intensity = object.userData.intensity * preset.lamps;
     if (sky) paintSky(THREE, sky, preset.sky);
+    pools?.set(preset);
   }
   function realise() {
     if (live || disposed) return;
@@ -815,6 +817,8 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     // Batch.build bakes parent transforms into vertices; the index is already venue-local.
     renderedContactTop = contactSurfaceIndex(built.meshes, deckHeights);
     for (const object of [...built.meshes, ...built.lights]) { group.add(object); staticObjects.push(object); const part = object.userData.part as keyof typeof wallParts | undefined; if (part && wallParts[part]) wallParts[part].push(object); }
+    pools = createPools(THREE, built.lights.map((light) => ({ position: light.position, color: light.color, distance: light.distance })));
+    if (pools) { group.add(pools.mesh); staticObjects.push(pools.mesh); }
     sky = skyDome(kit, shared.materials);
     group.add(sky);
     staticObjects.push(sky);
@@ -1043,8 +1047,8 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       if (!state || typeof state !== 'object') return false;
       let changed = false, actors = false, dressed = false;
       if (!view.fixedTime && Number.isFinite(state.t)) {
-        const time = timeOfDay(state.t!);
-        if (time !== view.time) { view.time = time; changed = true; }
+        const time = timeOfDay(state.t!), minute = lagosMinute(state.t!);
+        if (time !== view.time || minute !== view.minute) { view.time = time; view.minute = minute; changed = true; }
       }
       if (Number.isFinite(state.t)) {
         const weather = lookAt(cityId, venue, CITY_RULES[cityId]?.climate, state.t!);

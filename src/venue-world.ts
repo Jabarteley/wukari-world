@@ -93,6 +93,10 @@ import { createOccluders, resolve as resolveCollision } from './scene/camera-col
 import { sceneMaterials } from './scene/build.ts';
 import { createMotionLoop } from './scene/motion-loop.ts';
 import { rewardChips, cheer } from './scene/reward.ts';
+import { createHostLights, HOST_LIGHTING, lightQuality } from './scene/rig.ts';
+import type { LightPreset } from './scene/rig.ts';
+export { createHostLights, HOST_LIGHTING };
+export type { LightPreset };
 import { applyRendererLook, renderTier, createSky, createGround, mixHex, matteScenery, timeFrames } from './scene/look.ts';
 import type { FrameCost } from './scene/look.ts';
 import { createWalker, createPositionReporter, gaitPhase, WALK_SPEED, JOG_SPEED } from './scene/movement.ts';
@@ -151,6 +155,7 @@ export interface VenueDiagnostics extends SceneDiagnostics {
   crowd: number
   lighting: { hemi: number; sun: number; sky: string }
   tier: string
+  quality: string
   matte: boolean
   pixelRatio: number | undefined
   shadowMap: number
@@ -178,14 +183,6 @@ export interface VenueWorldOptions {
 }
 /** setGoal(): the spot the current goal points at. */
 export interface SceneGoal { venue: string; spot: string; text: string }
-/** The host's lights: hemi [sky, ground, intensity]; sun [colour, intensity, position]; rim [colour, intensity]. */
-export interface LightPreset {
-  hemi: readonly [Colour, Colour, number]
-  sun: readonly [Colour, number, Vec3]
-  rim?: readonly [Colour, number]
-  /** Brightness of the existing shared emissive surfaces; default 1. */
-  glow?: number
-}
 /** Where a scene rests the avatar (walk.rest()): its spot, the seat of a running activity, the way out. */
 export interface HostRest {
   spot: string | null
@@ -267,61 +264,7 @@ export interface VenueWorld {
   dispose(): void
 }
 
-/**
- * The host's default lighting. hemi: [sky, ground, intensity] — the ground colour is the light that
- * comes back UP at a figure (a warm bounce, never near-black: it is what keeps dark skin and the
- * underside of a face readable). sun: [colour, intensity, position]. rim: [colour, intensity] — a
- * light from behind the scene as the camera sees it, which separates dark hair and shoulders from
- * the wall or the night behind them; it casts no shadow.
- */
-export const HOST_LIGHTING = Object.freeze<Required<LightPreset>>({ hemi: ['#bdd4e7', '#8a8474', 1.6], sun: ['#c7dbec', 1.4, [-12, 25, 8]], rim: ['#cfe2ff', 0.7], glow: 1 });
 const DEFAULT_BACKGROUND = '#182a25';
-
-/**
- * The host's three lights. apply(preset) sets them from a scene's lighting(), or back to the
- * defaults; aim(camera, x, y, z) puts the rim light behind the point the camera looks at (called on
- * a frame that is being drawn anyway — it never asks for one). shadowMap: the sun's map size.
- */
-export function createHostLights(THREE: ThreeModule, scene: THREE.Scene, { shadowMap = 2048 }: { shadowMap?: number } = {}) {
-  const hemi = new THREE.HemisphereLight(HOST_LIGHTING.hemi[0], HOST_LIGHTING.hemi[1], HOST_LIGHTING.hemi[2]);
-  const sun = new THREE.DirectionalLight(HOST_LIGHTING.sun[0], HOST_LIGHTING.sun[1]);
-  sun.position.set(...HOST_LIGHTING.sun[2]);
-  sun.castShadow = true;
-  sun.shadow.mapSize.set(shadowMap, shadowMap);
-  Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 22, bottom: -22, near: 1, far: 70 });
-  sun.shadow.normalBias = 0.04;
-  const rim = new THREE.DirectionalLight(HOST_LIGHTING.rim[0], HOST_LIGHTING.rim[1]);
-  rim.castShadow = false;
-  rim.position.set(-14, 12, -18);
-  scene.add(hemi, sun, rim, rim.target);
-  let disposed = false;
-  return {
-    hemi, sun, rim,
-    apply(preset?: Partial<LightPreset> | null) {
-      const use = preset?.hemi && preset.sun && Array.isArray(preset.hemi) && Array.isArray(preset.sun) ? preset as LightPreset : HOST_LIGHTING;
-      hemi.color.set(use.hemi[0]); hemi.groundColor.set(use.hemi[1]); hemi.intensity = use.hemi[2];
-      sun.color.set(use.sun[0]); sun.intensity = use.sun[1]; sun.position.set(...use.sun[2]);
-      const back = Array.isArray(use.rim) ? use.rim as readonly [Colour, number] : HOST_LIGHTING.rim;
-      rim.color.set(back[0]); rim.intensity = back[1];
-    },
-    aim(camera: THREE.Camera, x = 0, y = 0.7, z = 0) {
-      // Behind the subject and a little to the camera's right, above head height.
-      const dx = x - camera.position.x, dz = z - camera.position.z, flat = Math.hypot(dx, dz) || 1;
-      const ux = dx / flat, uz = dz / flat;
-      rim.position.set(x + ux * 16 - uz * 7, y + 11, z + uz * 16 + ux * 7);
-      rim.target.position.set(x, y, z);
-      rim.target.updateMatrixWorld?.();
-    },
-    dispose() {
-      if (disposed) return;
-      disposed = true;
-      // Renderer teardown does not own light shadow targets. Release them while its
-      // render-target dispose listeners can still free the GPU allocations.
-      sun.dispose(); rim.dispose();
-      scene.remove(hemi, sun, rim, rim.target);
-    },
-  };
-}
 
 /** The venue as the scene module should see it: every spot players can stand at, including spots other systems added. */
 export function sceneVenue(id: string, cityId: string = DEFAULT_CITY_ID) {
@@ -411,10 +354,11 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   const scene = new THREE.Scene();
   const renderer = providedRenderer || new THREE.WebGLRenderer({ antialias: true });
   // Colour, tone mapping and what this device may cost (src/scene/look.ts): a phone draws at 1.5× with a 1024 shadow map.
-  let tier = applyRendererLook(THREE, renderer, renderTier());
+  const quality = lightQuality();
+  let tier = applyRendererLook(THREE, renderer, renderTier(), { shadows: quality === 'high' });
   container.appendChild(renderer.domElement);
   const camera = new THREE.PerspectiveCamera(43, 1, 0.1, 360);
-  const lights = createHostLights(THREE, scene, { shadowMap: tier.shadowMap });
+  const lights = createHostLights(THREE, scene, { shadowMap: tier.shadowMap, quality }), dimmed = new WeakSet<HostScene>();
   // The skinned body in place of the player's procedural figure in a venue (scene/body/stand-in.ts, fetched after the
   // first frame on a device the gate allows; home has its own). Null until then, and for good without one.
   let standIn: StandIn | null = null, gone = false;
@@ -1318,8 +1262,13 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   function applyLook() {
     const preset = current?.lighting?.();
     lights.apply(preset);
+    // The low tier draws no real point lights: the scene's lamps are glow and the pools of light on the ground (scene/pools.ts).
+    if (quality === 'low' && current && !dimmed.has(current)) { dimmed.add(current); current.group.traverse((object) => { if ((object as THREE.PointLight).isPointLight) object.visible = false; }); }
     // Shared meshes take the active scene's glow, including Home and the street.
     // No private material or extra rendering pass is needed for a clock change.
+    // Rain: the ground and the walls take a sheen (the sun catches them); dry again afterwards.
+    const surface = sceneMaterials(kit).solid as THREE.MeshStandardMaterial;
+    if (typeof surface.roughness === 'number') surface.roughness = preset?.wet ? 0.6 : 0.9;
     sceneMaterials(kit).glow.color.setScalar(typeof preset?.glow === 'number' && Number.isFinite(preset.glow) && preset.glow >= 0 ? preset.glow : HOST_LIGHTING.glow);
     background = current?.background || DEFAULT_BACKGROUND;
     renderer.setClearColor(background);
@@ -1327,7 +1276,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     const pair = Array.isArray(current?.sky) ? current.sky : [background, mixHex(background, '#ffffff', 0.18)];
     sky.set(pair[0], pair[1]);
     // The ground takes the horizon's colour, a little deeper, so the slab sits on something and the rim melts into the sky.
-    ground.tint(mixHex(pair[0], current?.ground || '#6f7f6a', 0.34));
+    ground.tint(mixHex(current?.ground || '#6f7f6a', pair[0], 0.3));
     placeGround();
   }
   /** The ground disc: under the scene's floor, wide enough to pass well beyond it. */
@@ -1496,7 +1445,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
         textures: renderer.info?.memory.textures,
         location: currentLocation, background, scenes: built.size, crowd: crowd.length,
         lighting: { hemi: lights.hemi.intensity, sun: lights.sun.intensity, sky: `#${lights.hemi.color.getHexString()}` },
-        tier: tier.name, matte: kit.matte, pixelRatio: renderer.getPixelRatio?.(), shadowMap: lights.sun.shadow.mapSize.x, avatarPx: avatarPixels(),
+        tier: tier.name, quality, matte: kit.matte, pixelRatio: renderer.getPixelRatio?.(), shadowMap: quality === 'high' ? lights.sun.shadow.mapSize.x : 0, avatarPx: avatarPixels(),
         tags: shownTags.map((tag) => ({ ...tag })),
       };
     },

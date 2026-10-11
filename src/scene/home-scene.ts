@@ -74,7 +74,9 @@ import type { Pose } from './characters.ts';
 import { playerOptions, rigOf } from './avatar-rig.ts';
 import { createWalkGrid } from './movement.ts';
 import { bodyAllowed, drawsWebGL2, importBody } from './body/gate.ts';
-import { lightingFor, timeOfDay } from './lighting.ts';
+import { lightingAt, lagosMinute } from './lighting.ts';
+import { createPools } from './pools.ts';
+import { CLEAR_LOOK, adjustLighting, rainingAt } from '../game/conditions/look.ts';
 import { createObjectSequence } from './smart-objects/sequence.ts';
 import { createUseProps } from './smart-objects/props.ts';
 import { createHingedHomeDoor } from './smart-objects/door.ts';
@@ -91,7 +93,7 @@ import { planOf, wallsOf, bumpsOf, railsOf, flightAt, stairwellOf, routeOf, slab
 import type { HousePlan, PlanStairs, PlanWall } from '../game/home-plan.ts';
 import type * as THREE from 'three';
 import type { Kit } from './kit.ts';
-import type { Batch, Colour, SceneCamera, TimeOfDay, Vec3 } from './types.ts';
+import type { Batch, Colour, SceneCamera, Vec3 } from './types.ts';
 import type { WalkGrid, WalkPoint, WalkRect } from './movement.ts';
 import type { FurnitureDefinition } from '../types/content.ts';
 import type { HouseStyle, LifeState, PlacedItem } from '../types/life.ts';
@@ -325,10 +327,16 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   const glow = new THREE.PointLight('#ffe3b0', 26, 18, 1.5);
   glow.position.set(-1, 3, -1);
   group.add(glow);
+  // The ceiling light's pool on the floor: warm in the evening, gone by day.
+  const pool = createPools(THREE, [{ position: glow.position, color: glow.color, distance: glow.distance }]);
+  if (pool) group.add(pool.mesh);
 
   let palette: HomePalette = ROOM_PALETTE, grid = 0, owned = false, tile = 1, drawn = '', lastState: LifeState | null = null, camera: THREE.Camera | null = null, canvas: HTMLElement | null = null, status = '', undrawn = false;
-  let homeTime: TimeOfDay = 'day';
-  glow.intensity = 26 * lightingFor('indoor', homeTime).lamps;
+  // The light follows the Lagos clock (the sun crosses the window) and the city's weather; the state tells both.
+  let homeMinute = 720, homeWet = false;
+  const homeLight = () => adjustLighting(lightingAt('indoor', homeMinute), homeWet ? { ...CLEAR_LOOK, wet: true } : CLEAR_LOOK);
+  glow.intensity = 26 * homeLight().lamps;
+  pool?.set(homeLight(), 0.4);
   let plot: Plot = plotOf(1), plan: HousePlan = planOf(plot);
   // The floor the avatar stands on, and the floors drawn (0 … shownFloor): the ones above are lifted off.
   let level = 0, shownFloor = 0, restFloor = 0, lastAt = { x: NaN, z: NaN };
@@ -982,9 +990,9 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   return {
     group,
     get homeDoor() { const x = along(0), z = along(doorSlot(grid)); return { x, y: 0.03, z, ry: -Math.PI / 2, direction: 'outside' as const, ...route(0, x, z) }; },
-    get background() { return lightingFor('indoor', homeTime).sky[0]; },
-    get sky() { return lightingFor('indoor', homeTime).sky; },
-    lighting() { return lightingFor('indoor', homeTime); },
+    get background() { return homeLight().sky[0]; },
+    get sky() { return homeLight().sky; },
+    lighting() { return homeLight(); },
     ground: '#7f8f7c',
     /** The whole house in view: a bigger plot steps the camera back in proportion. */
     get camera(): SceneCamera {
@@ -994,10 +1002,10 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     update(state: LifeState) {
       if (state.activeAction || (doorVisual && !doorDone)) cancelDoor();
       const first = lastState === null;
-      const nextTime = Number.isFinite(state.t) ? timeOfDay(state.t) : homeTime;
-      const timeChanged = nextTime !== homeTime;
-      homeTime = nextTime;
-      if (timeChanged) glow.intensity = 26 * lightingFor('indoor', homeTime).lamps;
+      const nextMinute = Number.isFinite(state.t) ? lagosMinute(state.t) : homeMinute, nextWet = Number.isFinite(state.t) && rainingAt(state.estate?.city ?? 'lagos', state.t);
+      const timeChanged = nextMinute !== homeMinute || nextWet !== homeWet;
+      homeMinute = nextMinute; homeWet = nextWet;
+      if (timeChanged) { glow.intensity = 26 * homeLight().lamps; pool?.set(homeLight(), 0.4); }
       lastState = state;
       const room = refresh(state);
       const changed = refreshPeople(state) || room || first || undrawn || timeChanged;
@@ -1142,6 +1150,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       releaseObjects(markMeshes);
       releaseObjects(roomMeshes);
       releaseObjects(furnitureMeshes);
+      pool?.dispose();
       goalMark = null;
       clearFigures();
       gone = true;

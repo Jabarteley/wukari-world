@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 import * as THREE from 'three';
 import { createVenueWorld, HOST_LIGHTING } from './venue-world.ts';
+import { CLEAR_LOOK, adjustLighting, rainingAt } from './game/conditions/look.ts';
 import type { VenueWorld, VenueWorldOptions, SceneSpotRequest, SceneTag, AvatarPosition, ShownTag } from './venue-world.ts';
 import { LIGHTING, MAX_CROWD } from './scene/venue-scenes.ts';
 import { createLife } from './life.ts';
@@ -68,7 +69,7 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     const world = makeWorld(container, { location: 'park', renderer });
     const count = () => world.diagnostics().renderCount;
     assert.equal(count(), 1);
-    assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.day.hemi[2], sun: LIGHTING.outdoor.day.sun[1], sky: '#eaf4ff' }, 'the host applied the scene’s own lighting preset');
+    assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.day.hemi[2], sun: LIGHTING.outdoor.day.sun[1], sky: '#e4f0ff' }, 'the host applied the scene’s own lighting preset');
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
     assert.equal(count(), 2, 'the avatar changed: one frame');
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
@@ -97,8 +98,9 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     const day = world.diagnostics().background;
     world.setState({ location: 'park', spot: 'amphitheatre', t: MIDNIGHT, name: 'Ada' });
     assert.equal(count(), 6);
-    assert.equal(world.diagnostics().lighting.hemi, LIGHTING.outdoor.night.hemi[2]);
-    assert.notEqual(world.diagnostics().background, day); assert.equal(world.diagnostics().background, LIGHTING.outdoor.night.sky[0]);
+    const night = adjustLighting(LIGHTING.outdoor.night, { ...CLEAR_LOOK, wet: rainingAt('lagos', MIDNIGHT) });
+    assert.equal(world.diagnostics().lighting.hemi, night.hemi[2]);
+    assert.notEqual(world.diagnostics().background, day); assert.equal(world.diagnostics().background, night.sky[0]);
     // Tags are re-projected with the frame a resize draws — nothing else moves them.
     const before = world.diagnostics().tags[0]!;
     container.getBoundingClientRect = () => ({ width: 1280, height: 800 });

@@ -11,12 +11,14 @@ import type { WorldStreetResponse } from '../types/world.ts';
 import type { HostRest, HostScene, HostWalk, PlayerLook } from '../venue-world.ts';
 import { buildAvatar, poseAvatar } from './characters.ts';
 import type { AvatarGroup, Pose } from './characters.ts';
-import { createBatch, releaseObjects, sceneMaterials } from './build.ts';
+import { GLOW, createBatch, releaseObjects, sceneMaterials } from './build.ts';
 import type { Kit } from './kit.ts';
 import { createWalkGrid } from './movement.ts';
-import { lightingFor, timeOfDay } from './lighting.ts';
+import { lightingAt, lagosMinute } from './lighting.ts';
+import { createPools } from './pools.ts';
+import { CLEAR_LOOK, adjustLighting, rainingAt } from '../game/conditions/look.ts';
 import type { WalkRect } from './movement.ts';
-import type { SceneCamera, ScenePerson, SceneTag, TimeOfDay } from './types.ts';
+import type { SceneCamera, ScenePerson, SceneTag } from './types.ts';
 import { ROW_HALF_WIDTH, ROW_PITCH, rowX, streetRow } from '../game/neighbourhood-space.ts';
 import { plotOf } from '../game/home-layout.ts';
 
@@ -81,7 +83,9 @@ const finite = (value: unknown): value is number => typeof value === 'number' &&
 const tierFloors = (tier: HouseTierId): number => plotOf(HOUSE_DESIGNS[tier].grid, true).floors;
 
 export function buildNeighbourhoodScene(kit: Kit): HostScene {
-  let streetTime: TimeOfDay = 'day';
+  // The light follows the Lagos clock and the city's weather; the state tells both.
+  let streetMinute = 720, streetWet = false, pools: ReturnType<typeof createPools> = null;
+  const streetLight = () => adjustLighting(lightingAt('outdoor', streetMinute), streetWet ? { ...CLEAR_LOOK, wet: true } : CLEAR_LOOK);
   const { THREE } = kit, group = new THREE.Group(), scenery = new THREE.Group();
   group.add(scenery);
   const avatar: AvatarGroup = buildAvatar(kit, null, { rig: true, seed: 'neighbourhood-player', marker: 'crown' });
@@ -158,12 +162,14 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     for (const x of lamps) {
       b.cyl(x, 0.62, -0.5, 0.12, 1.24, '#5d5142');
       b.cyl(x, 1.28, -0.5, 0.46, 0.08, '#d5c29d');
-      b.cyl(x, 1.48, -0.5, 0.32, 0.38, '#e9c97c', { seg: 8, top: 0.88 });
-      b.light(x, 1.52, -0.5, '#ffe3a0', 4, 7);
+      b.cyl(x, 1.48, -0.5, 0.32, 0.38, '#ffe6a8', { seg: 8, top: 0.88, ...GLOW });
+      b.light(x, 1.52, -0.5, '#ffe3a0', 12, 9);
     }
     const built = b.build(sceneMaterials(kit));
-    sceneryObjects = [...built.meshes, ...built.lights];
+    pools = createPools(THREE, built.lights.map(light => ({ position: light.position, color: light.color, distance: light.distance })));
+    sceneryObjects = [...built.meshes, ...built.lights, ...(pools ? [pools.mesh] : [])];
     sceneryObjects.forEach(object => scenery.add(object));
+    pools?.set(streetLight());
   }
   render();
 
@@ -241,9 +247,9 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   };
   return {
     group, camera: CAMERA, ground: '#7f9a71', walk,
-    get background() { return lightingFor('outdoor', streetTime).sky[0]; },
-    get sky() { return lightingFor('outdoor', streetTime).sky; },
-    lighting() { return lightingFor('outdoor', streetTime); },
+    get background() { return streetLight().sky[0]; },
+    get sky() { return streetLight().sky; },
+    lighting() { return streetLight(); },
     get homeDoor() { return { ...HOME_DOOR, x: ownX() }; },
     streetGate: { x: 81, z: 0, ry: Math.PI / 2 },
     setStreet(next) {
@@ -277,9 +283,10 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       return changed;
     },
     update(state: LifeState) {
-      const nextTime = finite(state.t) ? timeOfDay(state.t) : streetTime;
-      const timeChanged = nextTime !== streetTime;
-      streetTime = nextTime;
+      const nextMinute = finite(state.t) ? lagosMinute(state.t) : streetMinute, nextWet = finite(state.t) && rainingAt(state.estate?.city ?? 'lagos', state.t);
+      const timeChanged = nextMinute !== streetMinute || nextWet !== streetWet;
+      streetMinute = nextMinute; streetWet = nextWet;
+      if (timeChanged) pools?.set(streetLight());
       const next = JSON.stringify([state.estate.style, state.estate.tier, state.estate.living, state.estate.plot]);
       if (next === signature) return timeChanged;
       signature = next; currentStyle = state.estate.style; ownFloors = state.estate.living === 'own' ? tierFloors(state.estate.tier) : 1;

@@ -208,7 +208,8 @@ test('update(state) reports a change only when something visible changed', () =>
   assert.equal(entry.setTime('noon'), false);
   // A fixed time of day ignores the clock.
   const fixed = buildVenueScene(kit, venueOf('beach', { time: 'dusk' }));
-  assert.equal(fixed.update({ t: midnight }), false);
+  fixed.update({ t: midnight });
+  assert.equal(fixed.update({ t: midnight + 60000 }), false, 'a minute later is the same light: a fixed time ignores the clock');
   assert.equal(fixed.time, 'dusk');
   kit.dispose();
 });
@@ -219,7 +220,7 @@ test('lighting presets exist for every mood and time; the scene reports its pres
     assert.ok(preset.sky.length === 2 && preset.hemi.length === 3 && preset.sun.length === 3 && preset.glow > 0 && preset.lamps > 0, `${mood} ${time}`);
   }
   assert.equal(lightingFor('nope', 'nope'), LIGHTING.outdoor.day);
-  assert.ok(LIGHTING.outdoor.night.hemi[2] < LIGHTING.outdoor.day.hemi[2]);
+  assert.ok(LIGHTING.outdoor.night.sun[1] < LIGHTING.outdoor.day.sun[1]);
   const kit = createKit();
   const scene = new THREE.Scene();
   const lights = createHostLights(THREE, scene);

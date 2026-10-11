@@ -4,9 +4,10 @@
  * graded sky behind a scene and the soft ground it stands on. One place, so the venue host, the
  * character preview, the scene harness (and the city map, when it adopts it) show the same colours.
  *
- * TONE MAPPING. The art is hand-picked sRGB colour, so the tone mapper is Khronos PBR Neutral: it
- * leaves a colour as it was chosen up to a threshold and only rolls off what would otherwise clip
- * to white (sunlit sand, cream walls). Exposure stays at 1.
+ * TONE MAPPING. ACES filmic at an exposure of 1: the sun is several times brighter than the fill, so light and
+ * shade have a real contrast, and the highlights roll off instead of clipping. Chosen by pictures against AgX (greys the
+ * greens and the skin out) and Khronos Neutral (flat, with the sun's contrast squashed): ACES keeps the greens, the
+ * terracotta and the skin tones on brand while the shade goes cool and deep.
  *
  * TIERS. A phone (coarse pointer, short side up to 720 CSS px) draws at a pixel ratio of at most
  * 1.5 with a 1024 shadow map and plain PCF; everything else at up to 2 with a 2048 map and soft
@@ -34,6 +35,8 @@ export interface LookRenderer {
   shadowMap?: { enabled: boolean; type: THREE.ShadowMapType }
 }
 
+/** The exposure the scenes' lighting presets (src/scene/lighting.ts) are balanced for. */
+export const TONE_EXPOSURE = 1;
 export const PHONE_TIER: RenderTier = Object.freeze({ name: 'phone', pixelRatio: 1.5, shadowMap: 1024, softShadows: false });
 export const WIDE_TIER: RenderTier = Object.freeze({ name: 'wide', pixelRatio: 2, shadowMap: 2048, softShadows: true });
 
@@ -61,8 +64,8 @@ export function renderTier(win: LookWindow = globalThis): RenderTier {
 /** Colour space, tone mapping, pixel ratio and shadow filter for a renderer. Safe on a test stub. */
 export function applyRendererLook(THREE: ThreeModule, renderer: LookRenderer, tier: RenderTier = WIDE_TIER, { shadows = true, win = globalThis }: { shadows?: boolean; win?: LookWindow } = {}): RenderTier {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.NeutralToneMapping;
-  renderer.toneMappingExposure = 1;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = TONE_EXPOSURE;
   renderer.setPixelRatio?.(Math.min(win.devicePixelRatio || 1, tier.pixelRatio));
   if (shadows && renderer.shadowMap) {
     renderer.shadowMap.enabled = true;

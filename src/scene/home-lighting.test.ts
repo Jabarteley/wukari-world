@@ -6,11 +6,14 @@ import { loadCityContent } from '../game/cities/registry.ts';
 import { buildHomeScene } from './home-scene.ts';
 import { buildNeighbourhoodScene } from './neighbourhood-scene.ts';
 import { createKit } from './kit.ts';
-import { LIGHTING } from './lighting.ts';
+import { LIGHT_STEP, lagosMinute, lightingAt } from './lighting.ts';
+import { CLEAR_LOOK, adjustLighting, rainingAt } from '../game/conditions/look.ts';
 import { createVenueWorld } from '../venue-world.ts';
 
 await loadCityContent('lagos');
 const now = (hour: number, minute = 0) => Date.UTC(2026, 0, 5, hour, minute);
+/** What a scene should be lit with at `t`: the mood's light at that step of the Lagos day, as the city's weather leaves it. */
+const lit = (mood: string, t: number) => adjustLighting(lightingAt(mood, lagosMinute(t)), rainingAt('lagos', t) ? { ...CLEAR_LOOK, wet: true } : CLEAR_LOOK);
 const life = () => createLife({ location: 'home', home: { custom: true, items: [{ id: 'night-lamp', itemId: 'standing-lamp', x: 0, y: 0, rot: 0 }] } }, { cityId: 'lagos', now: now(12) });
 function geometries(group: THREE.Object3D) {
   const result: THREE.BufferGeometry[] = [];
@@ -27,19 +30,19 @@ test('Home clock changes light and sky once per phase without rebuilding people 
     const lamps: THREE.PointLight[] = [];
     home.group.traverse(object => { if (object instanceof THREE.PointLight) lamps.push(object); });
     assert.equal(lamps.length, 1, 'day/night reuse the existing single Home lamp');
-    for (const [time, hour] of [['day', 12], ['dusk', 17], ['night', 20]] as const) {
+    for (const hour of [12, 17, 20]) {
       const changed = home.update({ ...state, t: now(hour) });
-      assert.equal(changed, time !== 'day');
-      assert.deepEqual(home.lighting(), LIGHTING.indoor[time]);
-      assert.deepEqual(home.sky, LIGHTING.indoor[time].sky);
-      assert.equal(home.background, LIGHTING.indoor[time].sky[0]);
-      assert.equal(lamps[0]!.intensity, 26 * LIGHTING.indoor[time].lamps, 'local warm light follows the same phase');
-      assert.equal(home.update({ ...state, t: now(hour, 1) }), false, 'clock ticks in the same phase keep Home idle');
+      assert.equal(changed, hour !== 12);
+      assert.deepEqual(home.lighting(), lit('indoor', now(hour)));
+      assert.deepEqual(home.sky, lit('indoor', now(hour)).sky);
+      assert.equal(home.background, lit('indoor', now(hour)).sky[0]);
+      assert.equal(lamps[0]!.intensity, 26 * lit('indoor', now(hour)).lamps, 'local warm light follows the same step');
+      assert.equal(home.update({ ...state, t: now(hour, LIGHT_STEP - 1) }), false, 'clock ticks in the same step keep Home idle');
       assert.deepEqual(geometries(home.group), geometry, 'time changes never recreate geometry');
       assert.deepEqual(home.tags(), tags, 'the same people and action anchors survive nightfall');
     }
     assert.equal(home.update({ ...state, t: Number.NaN }), false, 'invalid time retains the last valid light');
-    assert.deepEqual(home.lighting(), LIGHTING.indoor.night);
+    assert.deepEqual(home.lighting(), lit('indoor', now(20)));
   } finally { home.dispose(); kit.dispose(); }
 });
 
@@ -49,10 +52,10 @@ test('neighbourhood sun and sky follow the clock without moving homes or doors',
     street.update?.(state);
     const geometry = geometries(street.group), doors = street.neighbourDoors?.(), homeDoor = { ...street.homeDoor };
     assert.equal(street.update?.({ ...state, t: now(20) }), true);
-    assert.deepEqual(street.lighting?.(), LIGHTING.outdoor.night);
-    assert.deepEqual(street.sky, LIGHTING.outdoor.night.sky);
-    assert.equal(street.background, LIGHTING.outdoor.night.sky[0]);
-    assert.equal(street.update?.({ ...state, t: now(20, 1) }), false);
+    assert.deepEqual(street.lighting?.(), lit('outdoor', now(20)));
+    assert.deepEqual(street.sky, lit('outdoor', now(20)).sky);
+    assert.equal(street.background, lit('outdoor', now(20)).sky[0]);
+    assert.equal(street.update?.({ ...state, t: now(20, LIGHT_STEP - 1) }), false);
     assert.deepEqual(geometries(street.group), geometry);
     assert.deepEqual(street.neighbourDoors?.(), doors);
     assert.deepEqual(street.homeDoor, homeDoor);
@@ -83,24 +86,25 @@ test('actual venue host applies Home and neighbourhood night presets and remains
     const night = { ...state, t: now(20) };
     world.setState(night);
     assert.equal(world.diagnostics().renderCount, dayFrames + 1, 'nightfall draws the changed light once');
-    assert.deepEqual(world.diagnostics().lighting, { hemi: 1.6, sun: 0.9, sky: '#ecdfc9' });
-    assert.equal(glow, LIGHTING.indoor.night.glow, 'active Home applies its emissive brightness to the shared material');
-    world.setState({ ...night, t: now(20, 1) });
+    const shown = (mood: string, t: number) => { const light = lit(mood, t); return { hemi: light.hemi[2], sun: light.sun[1], sky: `#${new THREE.Color(light.hemi[0]).getHexString()}` }; };
+    assert.deepEqual(world.diagnostics().lighting, shown('indoor', night.t));
+    assert.equal(glow, lit('indoor', night.t).glow, 'active Home applies its emissive brightness to the shared material');
+    world.setState({ ...night, t: now(20, LIGHT_STEP - 1) });
     assert.equal(world.diagnostics().renderCount, dayFrames + 1);
     assert.ok(activeGlowMaterial, 'actual Home exposes a shared glow surface');
     for (const destination of ['park', 'market']) {
       assert.equal(world.prepare(destination), true);
-      assert.equal(activeGlowMaterial.color.r, LIGHTING.indoor.night.glow, 'preparing a future day-lit venue cannot dim the visible Home');
+      assert.equal(activeGlowMaterial.color.r, lit('indoor', night.t).glow, 'preparing a future day-lit venue cannot dim the visible Home');
       assert.equal(world.diagnostics().renderCount, dayFrames + 1, 'preparation restores materials without drawing a frame');
-      assert.deepEqual(world.diagnostics().lighting, { hemi: 1.6, sun: 0.9, sky: '#ecdfc9' });
+      assert.deepEqual(world.diagnostics().lighting, shown('indoor', night.t));
       assert.equal(world.diagnostics().scenes, 2, 'only the current and one prepared destination remain');
     }
     const outside = { ...night, location: 'neighbourhood' as const };
     world.setState(outside); world.setLocation('neighbourhood');
-    assert.deepEqual(world.diagnostics().lighting, { hemi: 1.05, sun: 0.8, sky: '#9fb4e6' }, 'transition applies outdoor night instead of default day');
-    assert.equal(glow, LIGHTING.outdoor.night.glow, 'street transition reapplies its own emissive brightness');
+    assert.deepEqual(world.diagnostics().lighting, shown('outdoor', night.t), 'transition applies outdoor night instead of default day');
+    assert.equal(glow, lit('outdoor', night.t).glow, 'street transition reapplies its own emissive brightness');
     const outsideFrames = world.diagnostics().renderCount;
-    world.setState({ ...outside, t: now(20, 2) });
+    world.setState({ ...outside, t: now(20, LIGHT_STEP - 1) });
     assert.equal(world.diagnostics().renderCount, outsideFrames);
   } finally { world.dispose(); }
 });

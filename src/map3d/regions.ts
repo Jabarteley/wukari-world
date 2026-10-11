@@ -1,3 +1,4 @@
+import { relLon } from './geo/projection.ts';
 import { knownCityIds, cityRules, cityCatalogue, cityCatalogueEntry, loadCityMap, catalogueCitiesInState } from '../game/cities/registry.ts';
 /**
  * OWNER: world
@@ -247,7 +248,8 @@ export interface RegionInfo extends RegionEntry { status: RegionStatus }
  * The zoom levels of the atlas, from the widest in. `data` is fetched the first time the level is shown.
  * `frame` is what the level's default view holds: [west, south, east, north] in degrees.
  */
-// Derived from WORLD continent tags and unchanged label anchors at source 81b993bb.
+// Membership and pre-load fallback frames derive from WORLD tags/label anchors at source 81b993bb.
+// Each loaded continent replaces its fallback with the complete decoded source geometry extent.
 // Existing focused atlas checks require this metadata to match WORLD when its producer changes.
 // Polygon data stays behind the existing lazy import; all source components are retained.
 const continentCountries: Readonly<Record<ContinentId, ReadonlySet<string>>> = {
@@ -268,17 +270,38 @@ const continentFrames: Readonly<Partial<Record<ContinentId, Box4>>> = {
   an: [-31.1,-79.8,73.5,-49.3],
 };
 
+/** Display framing only: retain source polygons while bringing extrema into the existing projection domain. */
+export function sourceGeometryFrame(rings: readonly ArrayLike<number>[]): Box4 {
+  let west = Infinity, south = Infinity, east = -Infinity, north = -Infinity;
+  for (const ring of rings) for (let i = 0; i < ring.length; i += 2) {
+    const lon = relLon(ring[i]!), lat = ring[i + 1]!;
+    west = Math.min(west, lon); east = Math.max(east, lon);
+    south = Math.min(south, lat); north = Math.max(north, lat);
+  }
+  if (!(west < east && south < north)) throw new RangeError('Source geometry has no framing extent');
+  return [west, south, east, north];
+}
+async function loadWorldContinent(continent: ContinentId): Promise<typeof import('./geo/data/world.ts')> {
+  const { WORLD } = await import('./geo/data/world.ts');
+  const { decodeTopology } = await import('./geo/topo.ts');
+  const raw = { ...WORLD, features: WORLD.features.filter(feature => feature.c === continent) };
+  const topology = decodeTopology(raw);
+  const entry = ATLAS_LEVELS.find(level => level.continent === continent);
+  if (entry) entry.frame = sourceGeometryFrame(topology.features.flatMap(feature => feature.rings.flat()));
+  return { WORLD: raw };
+}
+
 export const ATLAS_LEVELS: readonly AtlasLevel[] = Object.freeze<AtlasLevel[]>([
   { id: 'world', name: 'World', pitch: 1.5, kind: 'country', frame: [-169, -58, 191, 80], data: () => import('./geo/data/world.ts') },
   { id: 'africa', name: 'Africa', parent: 'world', pitch: 1.44, kind: 'country', continent: 'af', frame: [-18.5, -35.5, 52, 38], data: () => import('./geo/data/africa.ts') },
   // `around`: the neighbouring countries the level draws itself, as flat land (ISO codes; the same list as the data module's AROUND).
   { id: 'nigeria', name: 'Nigeria', parent: 'africa', pitch: 1.04, kind: 'state', country: 'ng', frame: [2.6, 4.1, 14.8, 14], around: ['bf', 'bj', 'cf', 'cm', 'ga', 'gh', 'gq', 'ne', 'ng', 'st', 'td', 'tg'], data: () => import('./geo/data/nigeria.ts') },
-  { id: 'europe', name: CONTINENTS.eu.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'eu', frame: continentFrames.eu!, data: async () => { const { WORLD } = await import('./geo/data/world.ts'); return { WORLD: { ...WORLD, features: WORLD.features.filter(feature => feature.c === 'eu') } }; } },
-  { id: 'asia', name: CONTINENTS.as.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'as', frame: continentFrames.as!, data: async () => { const { WORLD } = await import('./geo/data/world.ts'); return { WORLD: { ...WORLD, features: WORLD.features.filter(feature => feature.c === 'as') } }; } },
-  { id: 'north-america', name: CONTINENTS.na.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'na', frame: continentFrames.na!, data: async () => { const { WORLD } = await import('./geo/data/world.ts'); return { WORLD: { ...WORLD, features: WORLD.features.filter(feature => feature.c === 'na') } }; } },
-  { id: 'south-america', name: CONTINENTS.sa.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'sa', frame: continentFrames.sa!, data: async () => { const { WORLD } = await import('./geo/data/world.ts'); return { WORLD: { ...WORLD, features: WORLD.features.filter(feature => feature.c === 'sa') } }; } },
-  { id: 'oceania', name: CONTINENTS.oc.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'oc', frame: continentFrames.oc!, data: async () => { const { WORLD } = await import('./geo/data/world.ts'); return { WORLD: { ...WORLD, features: WORLD.features.filter(feature => feature.c === 'oc') } }; } },
-  { id: 'antarctica', name: CONTINENTS.an.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'an', frame: continentFrames.an!, data: async () => { const { WORLD } = await import('./geo/data/world.ts'); return { WORLD: { ...WORLD, features: WORLD.features.filter(feature => feature.c === 'an') } }; } },
+  { id: 'europe', name: CONTINENTS.eu.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'eu', frame: continentFrames.eu!, data: () => loadWorldContinent('eu') },
+  { id: 'asia', name: CONTINENTS.as.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'as', frame: continentFrames.as!, data: () => loadWorldContinent('as') },
+  { id: 'north-america', name: CONTINENTS.na.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'na', frame: continentFrames.na!, data: () => loadWorldContinent('na') },
+  { id: 'south-america', name: CONTINENTS.sa.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'sa', frame: continentFrames.sa!, data: () => loadWorldContinent('sa') },
+  { id: 'oceania', name: CONTINENTS.oc.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'oc', frame: continentFrames.oc!, data: () => loadWorldContinent('oc') },
+  { id: 'antarctica', name: CONTINENTS.an.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'an', frame: continentFrames.an!, data: () => loadWorldContinent('an') },
 ]);
 
 export function countryAtlasLevel(id: string): AtlasLevelId | null {

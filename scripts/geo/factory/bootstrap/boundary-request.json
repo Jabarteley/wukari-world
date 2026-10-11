@@ -1,10 +1,40 @@
 {
-  "schemaVersion": 1,
-  "countryISO": "TD",
-  "sourceUrl": "https://download.geofabrik.de/africa/chad-261009.osm.pbf",
-  "bytes": 135262610,
-  "sha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
-  "snapshotDate": "2026-10-09",
-  "fixture": "boundary-fixture.json",
-  "proofRevision": 2
+  "schemaVersion": 2,
+  "countries": [
+    {
+      "countryISO": "BI",
+      "sourceUrl": "https://download.geofabrik.de/africa/burundi-261009.osm.pbf",
+      "bytes": 46297913,
+      "sha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
+      "snapshotDate": "2026-10-09"
+    },
+    {
+      "countryISO": "TZ",
+      "sourceUrl": "https://download.geofabrik.de/africa/tanzania-261009.osm.pbf",
+      "bytes": 706320953,
+      "sha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
+      "snapshotDate": "2026-10-09"
+    },
+    {
+      "countryISO": "DJ",
+      "sourceUrl": "https://download.geofabrik.de/africa/djibouti-261009.osm.pbf",
+      "bytes": 7025642,
+      "sha256": "be609cea9663b59bd4e48f85e73b0e4b3043579737502e3ee0212653d5f6bad3",
+      "snapshotDate": "2026-10-09"
+    },
+    {
+      "countryISO": "MG",
+      "sourceUrl": "https://download.geofabrik.de/africa/madagascar-261009.osm.pbf",
+      "bytes": 390162099,
+      "sha256": "f52ca1cde05cf21b0c9df28a2d7d2b769da1305a85a631e27fd388c8913e26e9",
+      "snapshotDate": "2026-10-09"
+    },
+    {
+      "countryISO": "NE",
+      "sourceUrl": "https://download.geofabrik.de/africa/niger-261009.osm.pbf",
+      "bytes": 78421408,
+      "sha256": "540fa0f0180d99dfc9362b24aff389becd042baf48e23f95c00acbafcf23d20e",
+      "snapshotDate": "2026-10-09"
+    }
+  ]
 }

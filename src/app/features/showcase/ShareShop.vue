@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // "Share my shop": the shop's public address for the seller to send to customers. Only a published shop has one; before that
 // the seller is told plainly what is still needed. The address opens a page that needs no account (docs/SHOWCASE.md, "The public link").
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { SHOWCASE } from '../../../types/showcase.ts'
 import type { ShowcaseStatus } from '../../../types/showcase.ts'
@@ -45,6 +45,8 @@ async function ensure(): Promise<boolean> {
   } finally { busy.value = false }
   return false
 }
+// A live shop shows its link as soon as the card is on screen: made on the server the first time, the same one after that.
+watch(() => props.shop.status, (status) => { if (status === 'live') void ensure() }, { immediate: true })
 async function share(): Promise<void> {
   if (!(await ensure())) return
   const result = await systemShare({ file: null, text: message.value })

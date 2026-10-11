@@ -32,7 +32,7 @@ const photoPath = (id: string): string => `/api/showcase/photo/${encodeURICompon
 const STYLE = `*{box-sizing:border-box}body{margin:0;background:#f6f4ef;color:#1d2330;font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
 a{color:inherit}.wrap{max-width:640px;margin:0 auto;padding:0 16px 40px}
 .top{display:flex;align-items:center;justify-content:space-between;min-height:56px}.brand{font-weight:800;letter-spacing:.02em;text-decoration:none;font-size:18px;display:inline-flex;align-items:center;min-height:44px}
-.hero{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px;background:var(--c2)}
+.hero{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:16px;background:var(--c2)}
 .mark{display:grid;place-items:center;aspect-ratio:16/9;border-radius:16px;background:var(--c1);color:var(--c2);font-size:72px;font-weight:800}
 h1{font-size:26px;line-height:1.2;margin:16px 0 4px;overflow-wrap:anywhere}h2{font-size:18px;margin:28px 0 10px}
 .meta{margin:0;color:#4a5361;font-size:15px;overflow-wrap:anywhere}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none}
@@ -43,7 +43,7 @@ h1{font-size:26px;line-height:1.2;margin:16px 0 4px;overflow-wrap:anywhere}h2{fo
 .about{margin:20px 0 0;overflow-wrap:anywhere}.about p{margin:0 0 8px}
 .items{list-style:none;margin:0;padding:0;display:grid;gap:10px}.item{background:#fff;border-radius:14px;padding:14px;border:1px solid #e1ddd2}
 .item b{display:block;overflow-wrap:anywhere}.item .note{margin:2px 0 0;font-size:14px;color:#4a5361;overflow-wrap:anywhere}.price{margin:6px 0 10px;font-weight:700;font-size:17px}.price small{font-weight:400;color:#4a5361;font-size:13px}
-.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}.shots img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:12px;background:#e8e4da}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;padding:0;list-style:none}.shots img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:12px;background:#e8e4da}
 table{width:100%;border-collapse:collapse;font-size:15px}td{padding:6px 0;border-bottom:1px solid #e1ddd2}td:last-child{text-align:right}
 .inside{margin-top:28px;padding:18px;border-radius:16px;background:#183b2a;color:#fff}.inside h2{margin:0 0 6px}.inside p{margin:0 0 14px;font-size:15px}.inside .btn{background:#e8a643;border-color:#e8a643;color:#20232c}
 .foot{margin:28px 0 0;font-size:13px;color:#4a5361}.empty{padding:14px;border-radius:14px;background:#fff;border:1px dashed #cfc9bb;color:#4a5361;font-size:15px}

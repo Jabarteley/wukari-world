@@ -81,7 +81,7 @@ async function openShopTab(p: Browser): Promise<void> {
     for (let i = 0; i < 3 && !(await visible(p, '.sc-app')); i++) { if (await visible(p, '.ph-appbtn', 'Services')) await p.click('.ph-appbtn', 'Services'); await p.waitFor(`!!document.querySelector('.sc-app')`, 6000, 'Services').catch(() => undefined); }
   }
   await p.waitFor(`!!document.querySelector('.sc-app')`, 8000, 'the Services app');
-  for (let i = 0; i < 4; i++) { await sleep(900); await p.click('.sc-tabs [role="tab"]', 'My shop'); await sleep(500); if (await p.eval<boolean>(`[...document.querySelectorAll('.sc-tabs [role="tab"]')].some((t) => t.getAttribute('aria-selected') === 'true' && /My shop/.test(t.innerText))`)) break; }
+  for (let i = 0; i < 4; i++) { await sleep(900); if (await visible(p, '.sp-back')) { await p.click('.sp-back'); await sleep(600); } await p.click('.sc-tabs [role="tab"]', 'My shop'); await sleep(500); if (await p.eval<boolean>(`[...document.querySelectorAll('.sc-tabs [role="tab"]')].some((t) => t.getAttribute('aria-selected') === 'true' && /My shop/.test(t.innerText))`)) break; }
   await p.waitFor(`document.querySelector('[data-showcase-editor]') && !document.querySelector('[data-showcase-editor]').innerText.includes('Loading')`, 20000, 'the editor');
 }
 
@@ -155,7 +155,7 @@ try {
     const file = join(tmpdir(), `shoplink-bare-${process.pid}.html`);
     writeFileSync(file, shopPageHtml({ shop: bare, token: 'k3x9m2q7', city: 'Lagos', market: 'Market', checked: null, payNotice: null }, lab.base));
     await V.goto(`file://${file}`); await sleep(500);
-    detail['bare'] = (await text(V, 'main')).replace(/\s+/g, ' ').slice(0, 400);
+    detail['bare'] = (await text(V, 'main')).replace(/\s+/g, ' ');
     await shots(V, 'empty-shop');
     must(/Nothing is listed yet/.test(String(detail['bare'])) && /Ask the seller when they are open/.test(String(detail['bare'])), 'the empty states are missing');
     const sideways = await V.eval<boolean>(`document.documentElement.scrollWidth > document.documentElement.clientWidth`); must(!sideways, 'the empty shop overflows sideways');

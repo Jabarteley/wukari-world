@@ -245,6 +245,55 @@
           }
         }
       ]
+    },
+    {
+      "id": "somalia",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/somalia-261009.osm.pbf",
+        "bytes": 164732206,
+        "md5": "400377d3a173dd6b050e6be52e0ab1dd"
+      },
+      "cities": [
+        {
+          "id": "djibouti-neighbor",
+          "name": "Djibouti neighbor-coast water source",
+          "boxes": {
+            "play": [
+              11.5,
+              43.03,
+              11.7,
+              43.27
+            ],
+            "core": [
+              11.565,
+              43.105,
+              11.635,
+              43.195
+            ],
+            "outline": [
+              11.45,
+              42.980000000000004,
+              11.75,
+              43.32
+            ],
+            "wide": [
+              10.94,
+              42.47,
+              12.26,
+              43.83
+            ]
+          },
+          "waterRecipe": {
+            "kind": "coast",
+            "wideWater": true,
+            "sea": {
+              "kind": "coast",
+              "bandMetres": 40000
+            },
+            "reviewRequired": false
+          }
+        }
+      ]
     }
   ]
 }

@@ -7,6 +7,7 @@ on:
       - '.github/workflows/city-generation.yml'
       - 'scripts/geo/city-generation*.mjs'
       - 'scripts/geo/city-generation-batch.json'
+      - 'scripts/geo/merge-coastline-extract.mjs'
 
 permissions:
   actions: read
@@ -80,6 +81,24 @@ jobs:
           run-id: ${{ matrix.sourceRunId }}
           name: ${{ matrix.sourceArtifact }}
           path: ${{ env.EXTRACT_ROOT }}
+      - name: Download pinned coastline supplement
+        if: ${{ matrix.coastSupplement != null }}
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ matrix.sourceRunId }}
+          name: ${{ matrix.coastSupplement.sourceArtifact }}
+          path: ${{ runner.temp }}/coast-supplement
+      - name: Merge the pinned original coastline ways
+        if: ${{ matrix.coastSupplement != null }}
+        env:
+          COAST_SUPPLEMENT_ROOT: ${{ runner.temp }}/coast-supplement
+          MERGED_EXTRACT_ROOT: ${{ runner.temp }}/city-generation/merged-extract
+        run: |
+          set -euo pipefail
+          node scripts/geo/city-generation.mjs --merge-coastline 2>&1 | tee "$OUT_DIR/logs/coast-supplement.log"
+          echo "EXTRACT_ROOT=$MERGED_EXTRACT_ROOT" >> "$GITHUB_ENV"
       - name: Install exact application dependencies
         working-directory: app
         run: |

@@ -1,65 +1,119 @@
 {
   "schemaVersion": 1,
-  "appSha": "27b3542b5939ede4d77e0d401c1dc4a71765830b",
+  "appSha": "55845d4517a9f5be2d850ce8d1115c1c0e6013ba",
   "cities": [
     {
-      "city": "brazzaville",
+      "city": "antananarivo",
       "sourceRunId": 38151719739,
-      "sourceArtifact": "offline-city-layers-congo-brazzaville-d888f91e86268d442093b8ab22a03193220b108f",
+      "sourceArtifact": "offline-city-layers-madagascar-d888f91e86268d442093b8ab22a03193220b108f",
       "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
-      "datasetSha256": "90ac645057fbbda85ae179fbca057b4e994c07db5dbd4265684b957cc64c58ed",
+      "datasetSha256": "f52ca1cde05cf21b0c9df28a2d7d2b769da1305a85a631e27fd388c8913e26e9",
       "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
       "extractSha256": {
-        "places": "5f273c4ad6310c69087d242e57df1edefbc1243e5b1d1c2f9538ce22a0279fba",
-        "extras": "f1865934f32e5b8446290f562333d5b02a176fef800638c6ad6bb649cdb90e97",
-        "water": "9891383bc8ef2d3913566ce0962ebcd8e5e057bd0f07a07cc5932007efe00ce3",
-        "landuse": "10736f9036105c6edfea5f0c7a511c10e20e9c332eebad87c21ff6606537962f",
-        "roads": "ba0e10cfd2d44d968cca361672f61b85c3cd7eab8f5d752970e7308354e11a08"
+        "places": "10a6d0683ccf3085db1879c01381ef46ad4f90c78db30bb942343e444bc10603",
+        "extras": "7c987b0826dea6f7fe30d11f0b7dd540cc831d7b51fa09dc670faa17f7f09ec7",
+        "water": "b11e3f08b901901daa48104c095be6ea683341eb1ed478656198b8e1e16ec24e",
+        "landuse": "c1c53bb64440dbb3fed338e5fa23fe1c071c9e26cae5a50066d0477e35b746b4",
+        "roads": "a05848ecabf99ea9d12100b8b39da61a48cfdce6f7ad20506acb0ce6212824f9"
       }
     },
     {
-      "city": "kinshasa",
-      "sourceRunId": 38153961179,
-      "sourceArtifact": "offline-city-layers-congo-democratic-republic-8308f1f824bfd687590b6cc4dd1c7d3524e45468",
-      "sourceSha": "8308f1f824bfd687590b6cc4dd1c7d3524e45468",
-      "datasetSha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91",
-      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "city": "bujumbura",
+      "sourceRunId": 38151719739,
+      "sourceArtifact": "offline-city-layers-burundi-d888f91e86268d442093b8ab22a03193220b108f",
+      "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
+      "datasetSha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
       "extractSha256": {
-        "places": "40d434ef2c69d84e471f4ed5254d2c281114fbb7bcf710bab107201bc72b4495",
-        "extras": "c5b52a67b30896ce04c8da2bab0bdfff0ca808ee1b9e396935dc562fb9907964",
-        "water": "41898a88c23d40a4d7b69b38bfa679f0a57febb38a27108cb77a865be50796b1",
-        "landuse": "359e9389fe894042450e852b780acc6b623335e7289c35c5350d4c1c2c4bdf77",
-        "roads": "5941c159ea442e1ad737fcd8bb00111a90d9c4d29fd23709d1295a81571fa84d"
+        "places": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
+        "extras": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
+        "water": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
+        "landuse": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
+        "roads": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4"
       }
     },
     {
-      "city": "tunis",
-      "sourceRunId": 38151098671,
-      "sourceArtifact": "offline-city-layers-tunisia-b1183ba208334bb8535669e823244ea737b3014a",
-      "sourceSha": "b1183ba208334bb8535669e823244ea737b3014a",
-      "datasetSha256": "8bea4a9f2a86cce8ca198d9bad50dd1103239bbcb55669058fa50042c767f51b",
-      "adapterSha256": "9f6099b3b15db3e6b59316914d55b427efd650d802f80ffd32bdf94ba5efd7d3",
+      "city": "bangui",
+      "sourceRunId": 38151719739,
+      "sourceArtifact": "offline-city-layers-central-african-republic-d888f91e86268d442093b8ab22a03193220b108f",
+      "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
+      "datasetSha256": "0fbe78876f0f768448edb002ff8dea9ced3797e7ecf9bc185f4ca404c52ba6be",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
       "extractSha256": {
-        "places": "49b0eebcf507983645bc81ca80639334c88d959c157133c199605abc2a8a9bf7",
-        "extras": "8e6222e613813d1569ea354eebded7325fe6eef2f5fe8c08c4eedaf685e6131b",
-        "water": "83a217c86a0861d5b431e2dcb918447b1c51dfa9c6a520a55deb1d7cca84b901",
-        "landuse": "1e0515fbdaecdb68d977fcf983ca26e807210c087c7a1a1887fe138b891b88fe",
-        "roads": "bbfb1ac8638f95aa827b42cfeeb1208548ab0c05fcd58d56e247826e1c5f3b12"
+        "places": "2685d40fc0111736562ce755f2fcb51a422e41bb77f2c9a51f0d266a1cc87b06",
+        "extras": "e733ae122279609cc6d68c43c1a701d295524d8bc46ab582115b62ea024a130a",
+        "water": "62129714bb680bc0c865f8c5b153af917a61ea8d51d217a56e18792cd5f59056",
+        "landuse": "e1cbc1e09b461b1651ea7feaa34b174d828b6687a0273b9138eb0adeb61dffd3",
+        "roads": "37207bd6021a7b1d45986dbd90d7515fbc8029643d5d9d0c7e77d54bac5caa06"
       }
     },
     {
-      "city": "libreville",
+      "city": "dodoma",
+      "sourceRunId": 38151719739,
+      "sourceArtifact": "offline-city-layers-tanzania-d888f91e86268d442093b8ab22a03193220b108f",
+      "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
+      "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+      "extractSha256": {
+        "places": "753e8c845b3fb52539602ae34b96104392f938977e4824ab4aab2cf8251534cb",
+        "extras": "9be99d07296ea42ae43a63d40a4cee9ce3ca90f9a116dcd12a4c7750c020ea0e",
+        "water": "bfcd574737d7779ba12a37ffe867d5ecaa252ae0064859e8b833f62974743cc4",
+        "landuse": "df276c027f191a4d01c2c7d65c7ee3abde73e52d1ac400c4f6f64a3a9019bc0a",
+        "roads": "eb88855dbc1cb32845353883a684d3933bceeb35f1c7db7ba55a23046f0387ad"
+      }
+    },
+    {
+      "city": "freetown",
       "sourceRunId": 38155030896,
-      "sourceArtifact": "offline-city-layers-gabon-e16d78686be70c7435edb873a11c0619e891e09a",
+      "sourceArtifact": "offline-city-layers-sierra-leone-e16d78686be70c7435edb873a11c0619e891e09a",
       "sourceSha": "e16d78686be70c7435edb873a11c0619e891e09a",
-      "datasetSha256": "afd0165c7d2698ecd670bfbdd6d462f1270c85a7f2253fe3ea01db48a63306f1",
+      "datasetSha256": "d690d175f32a16b012a1e5198e9fd7f0e70af03bf656e767269d1833c3d29868",
       "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
       "extractSha256": {
-        "places": "2d64b4973cf7c687beaa90a253dec178896d7ce3bca37d9341a5550e6e6a8893",
-        "extras": "9cba2d4df0f56cdb34786b9d9861e42297110d1dbb02321e8eeeaeba9ab7ed55",
-        "water": "adfbd094815b1ad4caebdf22ba7d509008ea12cdaa43d10446ad2fbccaad4e42",
-        "landuse": "70792216ac52904dc41277ab285db358d33e16b27bbad4220a5ae600167f15eb",
-        "roads": "d5c7093524e37a249307ba289ea6970af71629032a39e4049915c77693371e95"
+        "places": "18edc526120a2434b1c9630d104c98e00bd9d10d9b3736eccdfb99299038e64e",
+        "extras": "3fa2e5f4e393f3211ec5c2006ea52e974a17906f7f5dfd358cefc83150f2109a",
+        "water": "24db139c7a9089dd030dbce39e7d0356a7a64f19f28832809607c9bed09e2df6",
+        "landuse": "d3dfdb4889ee3493ecd01eebd14ea43ce30b35f963a6eb962bd9026f0506c095",
+        "roads": "421ab119b92681f1b0eb72bfdaaf76bddec6a5391a0caba66f18bc08ef53df96"
+      },
+      "coastSupplement": {
+        "sourceArtifact": "offline-city-layers-guinea-e16d78686be70c7435edb873a11c0619e891e09a",
+        "city": "conakry",
+        "waterSha256": "4910606e0dc010e2b1cc09eab486d0fe1121f8e199a92ccc6bd41672f1068a89",
+        "primaryExtractSha256": {
+          "places": "f11183cc0aecc34d45e74a21076822901e6f2f341df867f1c2a19a027a7bdac9",
+          "extras": "b13c94e00fcee721856f871f6abfd434a354bb00bcf9c07d26845efaa2eeb9de",
+          "water": "783151a8f24f5d0607a67041f75277a397f8db65026e19131674047f303f7c08",
+          "landuse": "1a5e219139aed430f2386a467e4753f4ab0fe9b38dab0cd82aa12dbe6db56de8",
+          "roads": "affc54e3bfb1e8c2832491938e69dfaba1e6b0a6f9d0900f4ba63c801f7017df"
+        }
+      }
+    },
+    {
+      "city": "conakry",
+      "sourceRunId": 38155030896,
+      "sourceArtifact": "offline-city-layers-guinea-e16d78686be70c7435edb873a11c0619e891e09a",
+      "sourceSha": "e16d78686be70c7435edb873a11c0619e891e09a",
+      "datasetSha256": "779ce7ce14d61059b46e9baed7c3aac18604d98704f096270820546dbef82f53",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extractSha256": {
+        "places": "890f9f6f60ad0149f6af8a1208c4fa5091fa13d61ef1ddb327a9cb47eea83cd7",
+        "extras": "41c46b2805c4504a9c46233c280c5eff583ce7f1698789605bfd1ff1785d2f83",
+        "water": "88b09ad59ba1fc476e7f71aa1d76835841b3894ec879f2c4ab4b042417dd4a87",
+        "landuse": "f70e6658b24331e04d0a16cee90411edcce4a65a02578b7d26fc6b60c00f42da",
+        "roads": "253ec89a1284c2e5d99f3884ff3151d8c3319657be17d0b00ed1f6f73165819f"
+      },
+      "coastSupplement": {
+        "sourceArtifact": "offline-city-layers-sierra-leone-e16d78686be70c7435edb873a11c0619e891e09a",
+        "city": "freetown",
+        "waterSha256": "783151a8f24f5d0607a67041f75277a397f8db65026e19131674047f303f7c08",
+        "primaryExtractSha256": {
+          "places": "fdacf693ceda572373ef5911bbe404e912bd9c86e34419d708afaa2edc3bef0d",
+          "extras": "afd51945ca692fd30b56bec2df72f70612879564fd6f86b7e684b291b54fd262",
+          "water": "4910606e0dc010e2b1cc09eab486d0fe1121f8e199a92ccc6bd41672f1068a89",
+          "landuse": "5c1e3a49c915ef9548cdb66226450e5f90470acd5007767efdc37cfe30799d78",
+          "roads": "a1f05ede540f1b921a32b89dacd2515192b9cc975f248944b0b28241d57dc5e1"
+        }
       }
     },
     {

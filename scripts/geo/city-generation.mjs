@@ -24,6 +24,16 @@ function job(value) {
   assert.ok(SHA.test(value.sourceSha), `${value.city}: sourceSha must pin the artifact producer commit`);
   assert.ok(HASH.test(value.datasetSha256) && HASH.test(value.adapterSha256), `${value.city}: dataset and adapter SHA-256 pins are required`);
   for (const label of LABELS) assert.ok(HASH.test(value.extractSha256?.[label]), `${value.city}: ${label} extract hash is required`);
+  if (value.coastSupplement !== undefined) {
+    const coast = value.coastSupplement;
+    assert.ok(coast && typeof coast === 'object' && !Array.isArray(coast), `${value.city}: invalid coastSupplement`);
+    assert.ok(typeof coast.sourceArtifact === 'string' && /^[A-Za-z0-9._-]+$/.test(coast.sourceArtifact), `${value.city}: invalid supplement artifact`);
+    assert.ok(typeof coast.city === 'string' && CITY.test(coast.city), `${value.city}: invalid supplement city`);
+    assert.ok(HASH.test(coast.waterSha256), `${value.city}: supplement water hash is required`);
+    for (const label of LABELS) assert.ok(HASH.test(coast.primaryExtractSha256?.[label]), `${value.city}: original primary ${label} hash is required`);
+    // The supplement artifact is downloaded from the primary's verified run and producer.
+    assert.ok(coast.sourceRunId === undefined && coast.sourceSha === undefined, `${value.city}: supplement inherits sourceRunId and sourceSha`);
+  }
   return value;
 }
 
@@ -52,10 +62,18 @@ async function sourceRun(item, out) {
   assert.equal(run.head_sha, item.sourceSha, 'source run producer SHA mismatch');
   assert.equal(run.status, 'completed', 'source run has not completed');
   assert.equal(run.repository?.full_name, repository, 'source run repository mismatch');
-  const record = { repository, runId: run.id, sourceSha: run.head_sha, status: run.status, conclusion: run.conclusion, url: run.html_url, artifact: item.sourceArtifact };
+  const record = { repository, runId: run.id, sourceSha: run.head_sha, status: run.status, conclusion: run.conclusion, url: run.html_url, artifact: item.sourceArtifact, ...(item.coastSupplement ? { coastSupplement: { ...item.coastSupplement, sourceRunId: item.sourceRunId, sourceSha: item.sourceSha } } : {}) };
   // A country matrix can fail while another country's hash-pinned artifact is valid.
   write(join(out, 'input/source-run.json'), record);
   console.log(JSON.stringify(record));
+}
+
+function mergeCoastline(item) {
+  assert.ok(item.coastSupplement, 'coastSupplement is required for --merge-coastline');
+  const root = resolve(process.env.EXTRACT_ROOT), supplementRoot = resolve(process.env.COAST_SUPPLEMENT_ROOT), mergedRoot = resolve(process.env.MERGED_EXTRACT_ROOT);
+  const manifest = join(resolve(process.env.OUT_DIR), 'input/coast-supplement-pins.json');
+  write(manifest, { primary: item.coastSupplement.primaryExtractSha256, supplement: item.coastSupplement.waterSha256 });
+  execFileSync(process.execPath, [join(dirname(fileURLToPath(import.meta.url)), 'merge-coastline-extract.mjs'), '--primary', join(root, item.city), '--supplement', join(supplementRoot, item.coastSupplement.city, 'water.json'), '--out', join(mergedRoot, item.city), '--manifest', manifest], { stdio: 'inherit' });
 }
 
 function changedFiles(app) {
@@ -188,5 +206,6 @@ async function generate(item, appSha, app, extractRoot, out) {
 const [mode, file] = process.argv.slice(2);
 if (mode === '--matrix') matrix(file ?? 'scripts/geo/city-generation-batch.json');
 else if (mode === '--source-run') await sourceRun(job(JSON.parse(process.env.JOB_JSON)), resolve(process.env.OUT_DIR));
+else if (mode === '--merge-coastline') mergeCoastline(job(JSON.parse(process.env.JOB_JSON)));
 else if (mode === '--run') await generate(job(JSON.parse(process.env.JOB_JSON)), process.env.APP_SHA, resolve(process.env.APP_DIR), resolve(process.env.EXTRACT_ROOT), resolve(process.env.OUT_DIR));
-else throw new Error('Usage: city-generation.mjs --matrix [batch.json] | --source-run | --run');
+else throw new Error('Usage: city-generation.mjs --matrix [batch.json] | --source-run | --merge-coastline | --run');

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/south-america/chile-261010.osm.pbf",
+    "bytes": 349164093,
+    "md5": "1086d79d22c855d1b7007c93f28f089f",
+    "snapshotDate": "2026-10-10"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/ecead39624006017b34acf27a4b098c9cc8a4635/airports.csv",
+    "commit": "ecead39624006017b34acf27a4b098c9cc8a4635",
+    "snapshotDate": "2026-10-11",
+    "commitTimestamp": "2026-10-11T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "santiago",
+      "name": "Santiago",
+      "countryISO": "CL",
+      "airport": {
+        "ident": "SCEL",
+        "sourceUrl": "https://aipchile.dgac.gob.cl/aerodromo/show?designador=SCEL"
+      },
+      "timezone": {
+        "id": "America/Santiago",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb/zone1970.tab"
+      }
+    }
+  ]
+}

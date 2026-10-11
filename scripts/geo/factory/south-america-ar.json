@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/south-america/argentina-261009.osm.pbf",
+    "bytes": 432573675,
+    "md5": "32e414daa5dc51100e6eb8b8d6ede7fa",
+    "snapshotDate": "2026-10-09"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/ecead39624006017b34acf27a4b098c9cc8a4635/airports.csv",
+    "commit": "ecead39624006017b34acf27a4b098c9cc8a4635",
+    "snapshotDate": "2026-10-11",
+    "commitTimestamp": "2026-10-11T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "buenos-aires",
+      "name": "Buenos Aires",
+      "countryISO": "AR",
+      "airport": {
+        "ident": "SAEZ",
+        "sourceUrl": "https://www.aeropuertosargentina.com/es/EZE/informacion-general/servicios-gratuitos"
+      },
+      "timezone": {
+        "id": "America/Argentina/Buenos_Aires",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb/zone1970.tab"
+      }
+    }
+  ]
+}

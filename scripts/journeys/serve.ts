@@ -25,6 +25,12 @@ const arg = (name: string, fallback?: string): string => {
   return value;
 };
 const port = Number(arg('port')), dataDir = resolve(arg('data')), cookieFile = resolve(arg('cookie-file'));
+// --clock-hour N: the server clock starts at hour N (Lagos time) today and then runs at real speed, to capture the map by day or by night.
+const clockHour = process.argv.includes('--clock-hour') ? Number(arg('clock-hour')) : null;
+const clockOffset = clockHour === null ? 0 : (() => {
+  const lagos = new Date(Date.now() + 3600000), nowHours = lagos.getUTCHours() + lagos.getUTCMinutes() / 60;
+  return ((clockHour - nowHours + 24) % 24) * 3600000;
+})();
 const PROJECT = 'allworld-journey-local', FOUNDER = 'journey-founder@example.test';
 const env = {
   ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT,
@@ -35,7 +41,7 @@ const env = {
 const key = await makeKey('journey-local-key');
 const provider = fakeProvider([key]);
 const server = await createServer({
-  dataDir, distDir: resolve('dist'), env, publicOrigin: `http://127.0.0.1:${port}`,
+  dataDir, distDir: resolve('dist'), now: () => Date.now() + clockOffset, env, publicOrigin: `http://127.0.0.1:${port}`,
   telemetry: createServerTelemetry({ env: {}, now: Date.now }),
   fetch: (url, init) => provider.fetch(url, init as { body?: unknown }),
 });
@@ -55,7 +61,7 @@ async function founderCookie(): Promise<string> {
   const cookie = guest.headers.get('set-cookie')?.split(';')[0] ?? '';
   await call('/api/life?city=lagos', undefined, cookie);
   const state = await (await call('/api/account', undefined, cookie)).json() as { csrf: string };
-  const idToken = await signToken(key, claimsFor(PROJECT, Date.now(), { subject: 'JourneyFounder', email: FOUNDER, n: Date.now() }));
+  const idToken = await signToken(key, claimsFor(PROJECT, Date.now() + clockOffset, { subject: 'JourneyFounder', email: FOUNDER, n: Date.now() }));
   const signed = await call('/api/account/sign-in', { csrf: state.csrf, idToken }, cookie);
   const next = signed.headers.get('set-cookie')?.split(';')[0] ?? '';
   if (signed.status !== 200 || !next || (await call('/api/admin/me', undefined, next)).status !== 200) throw new Error(`The fixture founder could not sign in (${signed.status}).`);

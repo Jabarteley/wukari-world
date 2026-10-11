@@ -49,12 +49,14 @@ const waterOnly = process.argv.includes('--water-only');
 // --lean: the 15-city sweep: default, whole city, centre zoom, water, list top, simple map, plus a zoomed-out and rotated shot at the view limits.
 const lean = process.argv.includes('--lean');
 // --phones 390x844,320x568 (empty for none): the last city is reloaded at each phone size.
+// --phone-cities dakar,kampala: these cities also get the phone sets (each with its browser storage cleared first, so no saved view is restored); --phones lists the sizes.
+const phoneCities = new Set(arg('phone-cities', '').split(',').filter(Boolean));
 const phones = arg('phones', '390x844').split(',').filter(Boolean).map((p) => p.split('x').map(Number) as [number, number]);
 
 let server: ChildProcess | null = null;
 const serverLog: string[] = [];
 async function startServer(): Promise<void> {
-  const child = spawn(process.execPath, ['--experimental-strip-types', '--no-warnings', 'scripts/journeys/serve.ts', '--port', String(port), '--data', dataDir, '--cookie-file', cookieFile], { stdio: ['ignore', 'pipe', 'pipe'] });
+  const child = spawn(process.execPath, ['--experimental-strip-types', '--no-warnings', 'scripts/journeys/serve.ts', '--port', String(port), '--data', dataDir, '--cookie-file', cookieFile, ...(process.argv.includes('--clock-hour') ? ['--clock-hour', arg('clock-hour')] : [])], { stdio: ['ignore', 'pipe', 'pipe'] });
   server = child;
   console.log(`server pid ${child.pid}`);
   child.stdout!.on('data', (c) => serverLog.push(String(c)));
@@ -257,6 +259,7 @@ async function simpleMap(b: Browser, shot: (l: string) => Promise<void>, label: 
 }
 
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
+  if (opts.phone) await dismiss(b, 3000);
   const shot = async (label: string): Promise<void> => { await sleep(700); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); };
   await openMap(b, prefix);
   if (waterOnly) {
@@ -267,6 +270,7 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
     return;
   }
   await shot('01-default');
+  if (opts.phone) { await sleep(6000); await shot('01b-after-6s'); await dismiss(b, 6000); }
   if (opts.phone) { await listOpen(b); await shot('02-list'); await scrollList(b, 'bottom'); await shot('03-list-bottom'); }
   await pan(b, prefix);
   if (opts.phone) { await b.click('.map-handle').catch(() => undefined); await sleep(600); }
@@ -321,16 +325,19 @@ try {
   await dismiss(b, 1000);
   await mapSet(b, 'lagos', '');
   for (const city of cities) {
-    await fly(b, city);
+    try { await fly(b, city); } catch (e) { console.log(`flight to ${city} failed once (${String(e).slice(0, 80)}); retrying after a reload`); await b.goto(base + '/'); await gameShown(b); await dismiss(b); await fly(b, city); }
     await mapSet(b, city, PLACE_TO_OPEN[city] ?? '');
-  }
-  // Phone: the last city, reloaded at phone size.
-  const last = cities[cities.length - 1]!;
-  for (const [pw, ph] of phones) {
-    await b.setViewport({ width: pw, height: ph, scale: 3, mobile: true });
-    await b.goto(base + '/');
-    await gameShown(b); await dismiss(b);
-    await mapSet(b, `${last}-phone${pw}`, '', { phone: true });
+    if (phoneCities.has(city)) {
+      for (const [pw, ph] of phones) {
+        await b.setViewport({ width: pw, height: ph, scale: 3, mobile: true });
+        await b.send('Storage.clearDataForOrigin', { origin: base, storageTypes: 'local_storage,session_storage,indexeddb,cache_storage,service_workers' });
+        await b.goto(base + '/');
+        await gameShown(b); await dismiss(b, 12000);
+        await mapSet(b, `${city}-phone${pw}`, '', { phone: true });
+      }
+      await b.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
+      await b.goto(base + '/'); await gameShown(b); await dismiss(b);
+    }
   }
   const errors = b.consoleErrors.filter((e) => !/401|409/.test(e));
   writeFileSync(join(out, 'timings.json'), JSON.stringify({ note: 'headless software rendering; comparable only with each other', timings, notes, consoleErrors: errors }, null, 2));

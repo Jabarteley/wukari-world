@@ -103,6 +103,8 @@ import { createRetryableStartup } from './scene/body/startup-gate.ts';
 import type { StandIn } from './scene/body/stand-in.ts';
 import { spotsOf } from './life.ts';
 import type * as THREE from 'three';
+import type { Ident as AmbientIdent } from './scene/ambient/plan.ts';
+import type { AmbientPerson } from './scene/ambient/layer.ts';
 import type { Colour, ThreeModule, Vec3, SceneCamera, SceneTag as DomTag, ScenePerson, SceneThing, WalkSpot, SceneWalk, CrowdPerson } from './scene/types.ts';
 import type { OccluderBox } from './scene/camera-collision.ts';
 import type { HomePick } from './scene/home-scene.ts';
@@ -110,7 +112,7 @@ import type { SceneControls } from './scene/controls.ts';
 import type { WalkPoint, WalkMode } from './scene/movement.ts';
 import type { LifeState } from './types/life.ts';
 import { inputMode, readFacts } from './ui/inputMode.ts';
-import { addNpcWord, npcAria, npcTitle } from './ui/npc-mark.ts';
+import { NPC_WORD, addNpcWord, npcAria, npcTitle } from './ui/npc-mark.ts';
 
 /** The player's avatar in every scene: their saved look, seeded by the session's public id (never the cookie). pose: set only by the host's own callers (a fixed pose). */
 export interface PlayerLook { look: unknown; seed: string; name: string; pose?: string | null }
@@ -226,6 +228,17 @@ export interface HostScene {
   readonly bodyShown?: boolean
   stepCrowd?(dt: number): boolean
   settleCrowd?(): void
+  /** The background people of the place (src/scene/ambient): the venue scene offers them, the home room and the others do not. */
+  setAmbient?(ident: AmbientIdent | null): boolean
+  stepAmbient?(dt: number): boolean
+  wakeAmbient?(): boolean
+  settleAmbient?(): void
+  readonly ambientAwake?: boolean
+  readonly ambientFrames?: number
+  ambientPeople?(): AmbientPerson[]
+  say?(id: string, text: string, ms?: number): boolean
+  talk?(a: string, b: string, ms?: number): boolean
+  onAmbient?: (() => void) | null
   look?(x: number, z: number): boolean
   tags?(): DomTag[]
   walk?: HostWalk
@@ -255,6 +268,17 @@ export interface VenueWorld {
   setPlayer(next?: Partial<PlayerLook>): void
   setGoal(next: { venue?: unknown; spot?: unknown; text?: unknown } | null | undefined): boolean
   setCrowd(people: unknown): boolean
+  /**
+   * The background people of whichever venue is shown: `ambientFor(venue, sceneKind)` says who is there (src/scene/ambient), or null for nobody. The scene wakes the
+   * frame loop for a short window when it is built and whenever `wakeAmbient()` is called (the player arrives, the quarter turns); the loop then ends again.
+   */
+  setAmbient(ambientFor: ((venue: string, kind: string) => AmbientIdent | null) | null): void
+  wakeAmbient(): boolean
+  say(id: string, text: string, ms?: number): boolean
+  talk(a: string, b: string, ms?: number): boolean
+  ambientPeople(): AmbientPerson[]
+  /** How many frames the people have been stepped in this scene (the frame budget the tests count). */
+  ambientFrames(): number
   zoom(direction: number): void
   recentre(): void
   walkTo(x: number, z: number): boolean
@@ -459,6 +483,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   const built = new Map<string, HostScene>();
   let prepared: string | null = null;
   let current: HostScene | null = null, currentLocation: string | null = null, renderCount = 0, lastState: LifeState | null = null, size = { width: 0, height: 0 };
+  let ambientFor: ((venue: string, kind: string) => AmbientIdent | null) | null = null;
   let player: Partial<PlayerLook> = {}, crowd: CrowdPerson[] = [], crowdKey = '[]', background: Colour = DEFAULT_BACKGROUND, insets = { top: 0, bottom: 0 };
   let tagSource: TagData[] = [], shownTags: ShownTag[] = [], tagNodes: TagNode[] = [], tagShape = '', tagsRead = true;
   const point = new THREE.Vector3(), rayA = new THREE.Vector3(), rayB = new THREE.Vector3();
@@ -756,6 +781,11 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     if (current?.easing) more = (reduced() ? (current.settleCrowd!(), false) : current.stepCrowd!(dt)) || more;
     // The skinned body sitting down or getting up (bounded).
     if (standIn?.easing) more = (reduced() ? (standIn.settle(), false) : standIn.step(dt)) || more;
+    // The background people move while their window is open, or while a frame is being drawn anyway; the window is what ends the loop (src/scene/ambient/layer.ts).
+    if (current?.stepAmbient && !reduced()) {
+      if (more) current.wakeAmbient?.();
+      if (more || current.ambientAwake) more = current.stepAmbient(dt) || more;
+    }
     if (afterPose && !current?.easing && !standIn?.easing) { const next = afterPose; afterPose = null; next(); more = walker.mode === 'path' || Boolean(current?.easing || standIn?.easing) || more; }
     setPivot();
     keepInSight();
@@ -1220,6 +1250,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
         if (tag.marker === 'crown') node.innerHTML = CROWN_MARK;
         else if (tag.marker === 'dot') { node.appendChild(globalThis.document.createElement('i')); if (tag.kind === 'npc') addNpcWord(globalThis.document, node); }
         else node.textContent = tag.text;
+        if (tag.kind === 'bark') { node.textContent = tag.text; node.dataset.npc = NPC_WORD; node.setAttribute('aria-hidden', 'true'); node.tabIndex = -1; node.jawX = NaN; node.jawY = NaN; node.jawShown = true; return node; }
         node.title = tag.kind === 'self' ? 'You' : tag.kind === 'npc' ? npcTitle(tag.name) : tag.name;
         node.setAttribute('aria-label', tag.kind === 'city-gate' ? 'Explore city streets. Walk to the estate gate' : tag.kind === 'home-door' || tag.kind === 'neighbour-door' ? `${tag.name}. Walk to the front door` : tag.kind === 'self' ? 'You' : tag.kind === 'goal' ? `Your goal: ${tag.name}. Walk there` : tag.kind === 'table' ? `${tag.name}. Walk up to sit, watch or invite a friend` : tag.kind === 'npc' ? npcAria(tag.name) : `${tag.name}, a player`);
         node.jawX = NaN; node.jawY = NaN; node.jawShown = true;
@@ -1372,6 +1403,18 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     orbit.apply(camera);
   }
   function resize() { frame(); renderScene(); }
+  /** Give the scene just built (or the one shown) its background people, and open their window of frames; a scene that cannot have them is left alone. */
+  function showAmbient(wake = true) {
+    if (!current?.setAmbient) return false;
+    const shown = current;
+    shown.onAmbient = () => { readTags(); if (!loop.running) renderScene(); };
+    const kind = currentLocation ? venueFor(cityId, currentLocation)?.scene?.kind : undefined;
+    shown.setAmbient?.(currentLocation && ambientFor && kind && kind !== 'home' ? ambientFor(currentLocation, kind) : null);
+    if (!ambientFor || !wake) return true;
+    if (!loop.available || reduced()) shown.settleAmbient?.();
+    else if (shown.wakeAmbient?.()) loop.wake();
+    return true;
+  }
   /** Show a venue. Draws one frame only if the venue actually changed. */
   function setLocation(id: string) {
     if (id === currentLocation) return;
@@ -1390,6 +1433,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     current.setCrowd?.(crowd);
     current.settleCrowd?.();
     if (lastState) current.update?.(lastState);
+    showAmbient();
     enterScene();
     readTags();
     applyLook();
@@ -1526,6 +1570,19 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       return true;
     },
     setCrowd,
+    setAmbient(next) {
+      ambientFor = next;
+      if (showAmbient()) { readTags(); if (!loop.running) renderScene(); }
+    },
+    wakeAmbient() {
+      if (!current?.wakeAmbient?.()) return false;
+      if (!loop.available || reduced()) { current.settleAmbient?.(); readTags(); if (!loop.running) renderScene(); return true; }
+      return loop.wake();
+    },
+    say: (id, text, ms) => current?.say?.(id, text, ms) ?? false,
+    talk: (a, b, ms) => current?.talk?.(a, b, ms) ?? false,
+    ambientPeople: () => current?.ambientPeople?.() ?? [],
+    ambientFrames: () => current?.ambientFrames ?? 0,
     /** Camera and walking, for the on-screen controls and for tests. */
     zoom, recentre,
     walkTo(x, z) { const ok = walkTo(x, z, { mark: true }); if (ok && !loop.running) renderScene(); return ok; },

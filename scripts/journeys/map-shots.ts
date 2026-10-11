@@ -285,7 +285,7 @@ async function simpleMap(b: Browser, shot: (l: string) => Promise<void>, label: 
   await sleep(3000);
 }
 
-async function auditLabels(b: Browser, prefix: string, allowListLocation = false): Promise<void> {
+async function auditLabels(b: Browser, prefix: string, listState: 'top' | 'bottom' | false = false): Promise<void> {
   const result = await b.eval<{ critical: number; failures: string[]; labels: unknown[] }>(`(() => {
     const box = (node) => { const r = node.getBoundingClientRect(); return { l:r.left, r:r.right, t:r.top, b:r.bottom }; };
     const visible = (node) => !node.hidden && node.getBoundingClientRect().width > 0 && node.getBoundingClientRect().height > 0;
@@ -304,9 +304,10 @@ async function auditLabels(b: Browser, prefix: string, allowListLocation = false
       return x >= 0 && x < innerWidth && y >= 0 && y < innerHeight && node.contains(document.elementFromPoint(x, y));
     };
     const list = document.querySelector('#map-list');
-    const listLocation = ${allowListLocation} && list && !list.hidden && (reachable(list.querySelector('.ll-row button.is-here')) || reachable(document.querySelector('[data-m3="me"]')));
-    if (!critical && !listLocation) failures.push('no current location label or reachable list location control');
-    return {critical, listLocation: Boolean(listLocation), failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
+    const listLocation = ${listState == 'top'} && list && !list.hidden && (reachable(list.querySelector('.ll-row button.is-here')) || reachable(document.querySelector('[data-m3="me"]')));
+    const listExit = ${listState == 'bottom'} && list && !list.hidden && reachable(document.querySelector('.map-handle'));
+    if (!critical && !listLocation && !listExit) failures.push('no current location label or reachable list recovery control');
+    return {critical, listLocation: Boolean(listLocation), listExit: Boolean(listExit), failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
   })()`);
   writeFileSync(join(out, `${prefix}-labels.json`), JSON.stringify(result, null, 2));
   must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
@@ -335,7 +336,7 @@ async function auditPlaceList(b: Browser, prefix: string): Promise<void> {
 
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
   if (opts.phone) await dismiss(b, 3000);
-  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (process.argv.includes('--phone-ui-audit') || label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`, label === '02-list' || label === '03-list-bottom'); if (process.argv.includes('--phone-ui-audit') && opts.phone && (label === '02-list' || label === '03-list-bottom')) await auditPlaceList(b, `${prefix}-${label}`); };
+  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (process.argv.includes('--phone-ui-audit') || label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`, label === '02-list' ? 'top' : label === '03-list-bottom' ? 'bottom' : false); if (process.argv.includes('--phone-ui-audit') && opts.phone && (label === '02-list' || label === '03-list-bottom')) await auditPlaceList(b, `${prefix}-${label}`); };
   await openMap(b, prefix);
   if (waterOnly) {
     const w = waterAt[prefix];
@@ -348,7 +349,16 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   if (opts.phone) { await sleep(6000); await shot('01b-after-6s'); await dismiss(b, 6000); }
   if (opts.phone) { await listOpen(b); await shot('02-list'); await scrollList(b, 'bottom'); await shot('03-list-bottom'); }
   await pan(b, prefix);
-  if (opts.phone) { await b.click('.map-handle').catch(() => undefined); await sleep(600); }
+  if (opts.phone) {
+    await b.click('.map-handle');
+    await b.waitFor(`document.querySelector('#map-list')?.hidden === true`, 5000, 'closed place list');
+    if (process.argv.includes('--phone-ui-audit')) {
+      await b.waitFor(`(() => { const n = document.querySelector('[data-m3="me"]'); if (!n || n.disabled) return false; const r = n.getBoundingClientRect(); return r.width > 0 && r.height > 0 && n.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)); })()`, 5000, 'reachable Find me after hiding list');
+      await b.click('[data-m3="me"]');
+      await shot('03b-location-recovered');
+    }
+    await sleep(600);
+  }
   await click3(b, 'fit', 1); await sleep(1500);
   if (short.has(prefix) && !opts.phone) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
   await shot(opts.phone ? '04-whole-city' : '02-whole-city');

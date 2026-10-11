@@ -46,6 +46,47 @@
           -67.6658877889739
         ]
       }
+    },
+    {
+      "city": {
+        "id": "mcmurdo"
+      },
+      "purpose": "Source sampling only. NSF centre 77 50.89 S, 166 40.11 E on Hut Point Peninsula; source operator map/point relation is separate from campus membership. Exclude adjacent Scott Base and Antarctic admin0 assumption; no registration or service decision.",
+      "waterRecipe": {
+        "kind": "coast",
+        "wideWater": true,
+        "reviewRequired": false,
+        "sea": {
+          "kind": "coast",
+          "bandMetres": 1000
+        }
+      },
+      "boxes": {
+        "play": [
+          -77.87077677790842,
+          166.5616178670667,
+          -77.82555655542492,
+          166.7753821329333
+        ],
+        "core": [
+          -77.86173273341171,
+          166.60441778583365,
+          -77.83460059992163,
+          166.73258221416634
+        ],
+        "outline": [
+          -77.92077677790842,
+          166.5116178670667,
+          -77.77555655542493,
+          166.8253821329333
+        ],
+        "wide": [
+          -78.3914231767083,
+          166.04097146826683,
+          -77.30491015662504,
+          167.29602853173316
+        ]
+      }
     }
   ],
   "policyNote": "Sampling bounds reuse committed factory radius calculation and outline/reach constants. Coast recipe selects existing mapped coast data; band is an unaccepted candidate rendering parameter. Station facility layer is separate from unchanged urban predicates."

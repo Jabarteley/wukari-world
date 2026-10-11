@@ -5,6 +5,7 @@ on:
     paths: ['scripts/geo/factory/research-source-targets.json', '.github/workflows/research-source-extraction.yml']
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: research-source-${{ github.sha }}
   cancel-in-progress: false
@@ -29,8 +30,8 @@ jobs:
           from pathlib import Path
           table=json.loads(Path('scripts/geo/factory/research-source-targets.json').read_text());s=table['source']
           out=Path('evidence');out.mkdir()
-          pbf=out/'antarctica-261008.osm.pbf'
-          subprocess.run(['curl','--fail','--silent','--show-error','--max-time','300','-o',str(pbf),s['url']],check=True)
+          subprocess.run(['gh','run','download','38180470971','-n','antarctica-pbf-261008','-D','source'],check=True)
+          pbf=Path('source/antarctica-261008.osm.pbf')
           assert pbf.stat().st_size==s['bytes'] and hashlib.sha256(pbf.read_bytes()).hexdigest()==s['sha256']
           for target in table['targets']:
               meta=out/(target['city']['id']+'.source.json');meta.write_text(json.dumps(target,indent=2)+'\n')
@@ -45,10 +46,4 @@ jobs:
           path: |
             evidence/extract/
             evidence/*.json
-          retention-days: 14
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        if: success()
-        with:
-          name: antarctica-pbf-261008
-          path: evidence/antarctica-261008.osm.pbf
           retention-days: 14

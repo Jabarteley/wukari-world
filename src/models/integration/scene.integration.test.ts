@@ -5,7 +5,10 @@ import type { VehicleUserData } from '../vehicles/index.ts';
 import { createKit } from '../../scene/kit.ts';
 import { createActor } from '../../map3d/actor.ts';
 import type { TravelVehicleBuilder } from '../../map3d/actor.ts';
-import { buildTravelVehicle } from './scene-models.ts';
+import { buildTravelVehicle, useGlbSource } from './scene-models.ts';
+import type { GlbSource } from './scene-models.ts';
+import { createGlbVehicle, createTemplate } from '../vehicles/glb-parts.ts';
+import type { GlbRequest, GlbTemplate } from '../vehicles/glb-parts.ts';
 
 /** The pose record the adapter keeps on the vehicle for diagnostics. */
 interface ScenePose { distance: number; steering: number; riding: boolean }
@@ -145,4 +148,155 @@ test('boat keeps a real vehicle and passenger when the road model library is loa
   assert.ok(actor.group.getObjectByName('legacy-vehicle:boat'));
   actor.dispose();
   kit.dispose();
+});
+
+/** A stand-in for the authored models: a box body with the named nodes, handed out when `release()` is called (or at once with `ready`). */
+function fakeSource(ready = false) {
+  const templates = new Map<string, GlbTemplate>();
+  const waiting: Array<() => void> = [];
+  const requests: string[] = [];
+  const make = (request: GlbRequest): GlbTemplate => {
+    const scene = new THREE.Group();
+    scene.add(new THREE.Mesh(new THREE.BoxGeometry(1.8, 1.2, 4.4), new THREE.MeshStandardMaterial()));
+    for (const [name, x, y, z] of [['seat_driver', 0.4, 0.6, 0.3], ['seat_1', -0.4, 0.6, 0.3], ['seat_3', -0.4, 0.6, -0.9], ['light_head_l', 0.6, 0.4, 2.2], ['light_tail_l', 0.6, 0.5, -2.2]] as const) { const node = new THREE.Object3D(); node.name = name; node.position.set(x, y, z); scene.add(node); }
+    for (const name of request.lod === 'near' ? ['wheel_fl', 'wheel_rl'] : []) { const wheel = new THREE.Object3D(); wheel.name = name; scene.add(wheel); }
+    return createTemplate(request, scene);
+  };
+  const key = (request: GlbRequest): string => `${request.kind}:${request.variant ?? ''}:${request.lod}`;
+  const source: GlbSource = {
+    peek: (request) => templates.get(key(request)) ?? null,
+    load: (request) => { requests.push(key(request)); return new Promise((resolve) => { const done = () => { const template = make(request); templates.set(key(request), template); resolve(template); }; if (ready) done(); else waiting.push(done); }); },
+    instantiate: (template, options) => createGlbVehicle(template, options),
+    instancing: () => null,
+  };
+  return { source, requests, release: () => { while (waiting.length) waiting.shift()!(); } };
+}
+const nextTick = () => new Promise((resolve) => setImmediate(resolve));
+
+test('an authored model replaces the procedural vehicle when it arrives, in place: the passenger stays on the seat anchor, the frame is asked for, the old parts are hidden', async () => {
+  const fake = fakeSource();
+  useGlbSource(fake.source);
+  try {
+    let changes = 0;
+    const vehicle = buildTravelVehicle('keke', { time: 'day', onChange: () => { changes += 1; } });
+    assert.ok(vehicle);
+    assert.equal(vehicle.authored, false, 'the procedural vehicle is drawn at once');
+    assert.deepEqual(fake.requests, ['keke::far']);
+    const passenger = new THREE.Group();
+    vehicle.attachPassenger(passenger);
+    const proceduralSeat = vehicle.seatAnchor;
+    fake.release(); await nextTick();
+    assert.equal(vehicle.authored, true);
+    assert.equal(changes, 1, 'the host is told to draw again');
+    assert.equal(passenger.parent, vehicle.seatAnchor);
+    assert.equal(vehicle.seatAnchor, proceduralSeat, 'the same anchor, moved to the model\'s seat');
+    assert.equal(vehicle.seatAnchor.parent, vehicle.object3D);
+    assert.ok(vehicle.object3D.getObjectByName('glb-vehicle:keke-far'));
+    // The seat the player takes in the model, and the driver figure at the other.
+    assert.ok(vehicle.seatAnchor.position.distanceTo(new THREE.Vector3(-0.4, 0.6, 0.3)) < 1e-6 || vehicle.seatAnchor.position.x !== 0);
+    assert.ok(vehicle.object3D.getObjectByName('riders'), 'a keke has an open cab: its driver is drawn');
+    vehicle.dispose(); vehicle.dispose();
+    assert.equal(passenger.parent, null, 'disposal releases the passenger without disposing it');
+  } finally { useGlbSource(null); }
+});
+
+test('with the model already cached the vehicle is the authored one from the first frame, and its lamps follow dusk and night', async () => {
+  const fake = fakeSource(true);
+  useGlbSource(fake.source);
+  try {
+    await fake.source.load({ kind: 'danfo', lod: 'far' });
+    const vehicle = buildTravelVehicle('danfo', { time: 'day' })!;
+    assert.equal(vehicle.authored, true);
+    const lamps = vehicle.object3D.getObjectByName('lights') as THREE.Mesh;
+    assert.equal(lamps.visible, false);
+    assert.equal(vehicle.setLights(true), true);
+    assert.equal(lamps.visible, true);
+    assert.equal(vehicle.setLights(true), false);
+    assert.equal(vehicle.setLights(false), true);
+    assert.equal(lamps.visible, false);
+    assert.equal(buildTravelVehicle('danfo', { time: 'night' })!.object3D.getObjectByName('lights')!.visible, true, 'built at night, lit');
+  } finally { useGlbSource(null); }
+});
+
+test('the close view swaps to the near model, whose wheels turn with the distance travelled; the far one has none', async () => {
+  const fake = fakeSource(true);
+  useGlbSource(fake.source);
+  try {
+    await fake.source.load({ kind: 'danfo', lod: 'far' }); await fake.source.load({ kind: 'danfo', lod: 'near' });
+    const vehicle = buildTravelVehicle('danfo', { time: 'day' })!;
+    vehicle.pose(3, 0, true);
+    assert.ok(vehicle.object3D.getObjectByName('glb-vehicle:danfo-far'));
+    assert.equal(vehicle.object3D.getObjectByName('wheel_fl'), undefined);
+    assert.equal(vehicle.setLod('near'), true, 'it was cached: drawn at once');
+    assert.equal(vehicle.object3D.getObjectByName('glb-vehicle:danfo-far'), undefined, 'the far model is gone');
+    const wheel = vehicle.object3D.getObjectByName('wheel_fl')!;
+    assert.ok(wheel);
+    const before = wheel.quaternion.clone();
+    vehicle.pose(3.5, 0, true);
+    assert.ok(wheel.quaternion.angleTo(before) > 0.05, 'route distance turns the wheels');
+    vehicle.pose(3.5, 0, true);
+    assert.ok(wheel.quaternion.angleTo(before) > 0.05);
+    assert.equal(vehicle.setLod('near'), false);
+    assert.equal(vehicle.object3D.getObjectsByProperty('name', 'glb-vehicle:danfo').length, 1);
+    vehicle.setLod('far');
+    assert.ok(vehicle.object3D.getObjectByName('glb-vehicle:danfo-far'));
+  } finally { useGlbSource(null); }
+});
+
+test('a model that cannot be had leaves the procedural vehicle in place and the host is never told to redraw', async () => {
+  const source: GlbSource = { peek: () => null, load: () => Promise.resolve(null), instantiate: () => { throw new Error('unreachable'); }, instancing: () => null };
+  useGlbSource(source);
+  try {
+    let changes = 0;
+    const vehicle = buildTravelVehicle('okada', { time: 'day', onChange: () => { changes += 1; } })!;
+    await nextTick();
+    assert.equal(vehicle.authored, false);
+    assert.equal(changes, 0);
+    assert.ok(vehicle.object3D.getObjectByName('vehicle:okada'), 'still the procedural okada');
+    assert.equal(vehicle.setLights(true), false, 'no authored lamps to light');
+    vehicle.dispose();
+  } finally { useGlbSource(null); }
+});
+
+test('a model that arrives after the vehicle is gone is ignored', async () => {
+  const fake = fakeSource();
+  useGlbSource(fake.source);
+  try {
+    let changes = 0;
+    const vehicle = buildTravelVehicle('cab', { time: 'day', onChange: () => { changes += 1; } })!;
+    vehicle.dispose();
+    fake.release(); await nextTick();
+    assert.equal(changes, 0);
+    assert.equal(vehicle.authored, false);
+  } finally { useGlbSource(null); }
+});
+
+test('the staff bus is drawn with the bus model (the procedural stand-in until it arrives)', async () => {
+  const fake = fakeSource();
+  useGlbSource(fake.source);
+  try {
+    const vehicle = buildTravelVehicle('bus', { time: 'day' })!;
+    assert.ok(vehicle);
+    assert.deepEqual(fake.requests, ['bus::far']);
+    vehicle.dispose();
+  } finally { useGlbSource(null); }
+});
+
+test('an owned car is drawn with its own model and paint, the player at the wheel; an unknown car is the default saloon', () => {
+  const fake = fakeSource();
+  useGlbSource(fake.source);
+  try {
+    const drawn = (car: string | null): string => {
+      fake.requests.length = 0;
+      buildTravelVehicle('car', { time: 'day', car })!.dispose();
+      return fake.requests.join(',');
+    };
+    assert.equal(drawn('chief-suv'), 'suv:black:far');
+    assert.equal(drawn('boardroom-330'), 'saloon:red:far');
+    assert.equal(drawn('tokunbo-saloon'), 'saloon::far');
+    assert.equal(drawn('agama-150'), 'okada::far', 'the motorbike is a bike');
+    assert.equal(drawn(null), 'saloon:red:far', 'no car named: the default saloon');
+    assert.equal(drawn('toString'), 'saloon:red:far', 'a name that is not a car is not looked up on the table\'s prototype');
+    assert.equal(buildTravelVehicle('trek', { car: 'chief-suv' }), null);
+  } finally { useGlbSource(null); }
 });

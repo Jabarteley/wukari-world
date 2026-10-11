@@ -37,11 +37,15 @@ export interface TravelVehicleModel {
   attachPassenger(passenger: THREE.Object3D): void
   detachPassenger(parent: THREE.Object3D): void
   pose(distance: number, heading: number, riding: boolean): void
+  /** Lamps on or off for an authored model; absent on a builder that has only procedural vehicles. */
+  setLights?(on: boolean): boolean
+  /** The detailed model for a close view, the light one otherwise. */
+  setLod?(lod: 'near' | 'far'): boolean
   dispose(): void
 }
-export type TravelVehicleBuilder = (kind: string, options: { time: string }) => TravelVehicleModel | null;
+export type TravelVehicleBuilder = (kind: string, options: { time: string; car?: string | null; onChange?: () => void }) => TravelVehicleModel | null;
 
-export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehicle?: TravelVehicleBuilder | null } = {}) {
+export function createActor(kit: MapKit, { travelVehicle = null, onChange }: { travelVehicle?: TravelVehicleBuilder | null; onChange?: () => void } = {}) {
   const { THREE } = kit;
   // The model library's trip vehicles (src/models): used when the host passes its builder (src/map3d/index.ts always does); without it, or if the library fails to load, the map's own batch-drawn vehicle is drawn.
   const useModels = typeof travelVehicle === 'function';
@@ -60,7 +64,7 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
 
   let player: { look: unknown; seed: string } = { look: null, seed: 'you' }, playerKey = '', mode: string | null = null, asDot = false, size = 1;
   let frames: { stand: THREE.Group; stride: THREE.Group; mirror: THREE.Group } | null = null, seated: THREE.Group | null = null, vehicle: THREE.Group | null = null, vehicleModel: TravelVehicleModel | null = null, seat = { x: 0, y: 0, z: 0 };
-  let vehicleTime = 'day', disposed = false;
+  let vehicleTime = 'day', lamps = false, close = false, carId: string | null = null, disposed = false;
   const plain = (mesh: THREE.Object3D) => { mesh.castShadow = false; mesh.receiveShadow = false; };
 
   function buildPeople() {
@@ -108,8 +112,10 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
     const kind = lookOf(mode!).vehicle;
     if (!kind) return;
     if (useModels && travelVehicle && kind !== 'boat') {
-      vehicleModel = travelVehicle(kind, { time: vehicleTime });
+      vehicleModel = travelVehicle(kind, { time: vehicleTime, car: carId, ...(onChange ? { onChange } : {}) });
       if (!vehicleModel) return;
+      vehicleModel.setLights?.(lamps);
+      vehicleModel.setLod?.(close ? 'near' : 'far');
       vehicle = vehicleModel.object3D;
       ride.add(vehicle);
       if (seated) vehicleModel.attachPassenger(seated);
@@ -148,6 +154,9 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
     /** Vehicle lights have day/night phases; dusk uses the day phase. */
     setTime(next: string) {
       const phase = next === 'night' ? 'night' : 'day';
+      // Authored models light their lamps from dusk; the procedural vehicle keeps its two phases.
+      const dark = next === 'night' || next === 'dusk';
+      if (dark !== lamps) { lamps = dark; vehicleModel?.setLights?.(dark); }
       if (phase === vehicleTime) return false;
       vehicleTime = phase;
       if (useModels && vehicleModel) buildVehicle();
@@ -163,6 +172,20 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
       walker.scale.setScalar(ACTOR_SCALE * size); ride.scale.setScalar(ACTOR_SCALE * size); ring.scale.setScalar(size); dot.scale.setScalar(size);
     },
     get size() { return size; },
+    /** The car the player drives on a 'car' trip (a CarId, or null): its model is drawn. True when the vehicle on show changed. */
+    setCar(next: string | null) {
+      if (next === carId) return false;
+      carId = next;
+      if (mode !== 'car' || !useModels) return false;
+      buildVehicle();
+      return true;
+    },
+    /** Close views use the vehicle model's detailed version (turning wheels); wider views the light one. True when the drawing changed. */
+    setClose(next: boolean) {
+      if (next === close) return false;
+      close = next;
+      return vehicleModel?.setLod?.(close ? 'near' : 'far') ?? false;
+    },
     /** Reduced motion: show the dot instead of the avatar and vehicle. */
     dot(on: boolean) { asDot = Boolean(on); dot.visible = asDot; },
     /** Stand at a place, facing ry. */

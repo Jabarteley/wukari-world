@@ -20,7 +20,7 @@ import type { Route, RoutePosition } from './roads.ts';
 /** Every way a trip can look: the keys of TRIP_LOOKS. */
 export type TripMode = 'trek' | 'keke' | 'danfo' | 'okada' | 'cab' | 'car' | 'boat' | 'commute';
 /** The vehicle a mode is drawn with (a key of VEHICLES in vehicles.ts), or null on foot. */
-export type TripVehicle = 'keke' | 'danfo' | 'okada' | 'cab' | 'car' | 'boat';
+export type TripVehicle = 'keke' | 'danfo' | 'okada' | 'cab' | 'car' | 'boat' | 'bus';
 export interface TripLook { vehicle: TripVehicle | null; label: string }
 export type TripKind = 'travel' | 'commute';
 
@@ -59,7 +59,7 @@ export const TRIP_LOOKS: Readonly<Record<TripMode, TripLook>> = Object.freeze({
   cab: { vehicle: 'cab', label: 'Cab' },
   car: { vehicle: 'car', label: 'Your car' },
   boat: { vehicle: 'boat', label: 'Boat' },
-  commute: { vehicle: 'danfo', label: 'Staff bus' },
+  commute: { vehicle: 'bus', label: 'Staff bus' },
 });
 export const lookOf = (mode: string): TripLook => (TRIP_LOOKS as Readonly<Record<string, TripLook | undefined>>)[mode] || TRIP_LOOKS.danfo;
 

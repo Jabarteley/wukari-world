@@ -45,7 +45,7 @@ import type { ScreenBox } from './labels.ts';
 import type { PlotAddress } from '../types/life.ts';
 import type { WorldData } from './world-data.ts';
 import type { HouseCard, Map2DState, MapLayers, MapUiDetail } from './map2d.ts';
-import type { City, CityPlace, TimeOfDay } from './city-build.ts';
+import type { City, CityPlace, TimeOfDay, TrafficModels } from './city-build.ts';
 import type { OpeningHours } from '../game/clock.ts';
 import type { ActorPlayer, TravelVehicleBuilder } from './actor.ts';
 import type { OverlayData, OverlayLayers, OverlayChip } from './overlays.ts';
@@ -113,6 +113,8 @@ export interface Map3DOptions {
   cityId?: string
   /** The model library's trip-vehicle builder (src/models/integration/scene-models.ts), or null for the batch-drawn ones. */
   travelVehicle?: TravelVehicleBuilder | null
+  /** The street traffic's authored vehicle models, when they arrive (null if they cannot be had: the stand-ins stay). */
+  trafficModels?: Promise<TrafficModels | null> | null
   onSelectVenue?: (id: string) => void
   onSelectGov?: () => void
   onSelectNeighbour?: (neighbour: { id: string | undefined; name: string | undefined }) => void
@@ -141,7 +143,7 @@ export const detailOf = (event: CustomEvent<unknown>): Record<string, unknown> =
   return detail && typeof detail === 'object' ? detail as Record<string, unknown> : {};
 };
 
-export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, travelVehicle = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {}, onSelectContext = () => {}, onTripDue = () => {}, onContextLost = () => {},
+export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, travelVehicle = null, trafficModels = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectNeighbour = () => {}, onSelectContext = () => {}, onTripDue = () => {}, onContextLost = () => {},
   world = null, ladder = NO_PORT, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {},
   renderer: providedRenderer, raf = globalThis.requestAnimationFrame?.bind(globalThis), caf = globalThis.cancelAnimationFrame?.bind(globalThis), now = () => globalThis.performance.now(),
   reducedMotion = Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches), deepLink = null, tabHidden }: Map3DOptions) {
@@ -170,7 +172,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   scene.add(overlays.group);
   const houses = createHouses(kit, pack);
   scene.add(houses.group);
-  const actor = createActor(kit, { travelVehicle });
+  const actor = createActor(kit, { travelVehicle, onChange: () => request() });
+  void trafficModels?.then((models) => { if (!destroyed && models && city.setTrafficModels(models)) request(); }, () => {});
   scene.add(actor.group);
   const rig = createRig(THREE, camera, { minDistance: CLOSEST, minX: pack.bounds.minX, maxX: pack.bounds.maxX, minZ: pack.bounds.minZ, maxZ: pack.bounds.maxZ, fit: pack.bounds.fit, core: pack.core, context: Boolean(pack.context), inland: pack.inland === true, roamZ: pack.bounds.sea ? pack.bounds.sea.z1 - 16 : undefined });
   const ringOf = (colour: string, opacity: number) => { const mesh = new THREE.Mesh(new THREE.RingGeometry(PLINTH * 0.74, PLINTH * 0.84, 40), new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity, depthWrite: false })); mesh.rotation.x = -Math.PI / 2; mesh.renderOrder = 3; mesh.visible = false; scene.add(mesh); return mesh; };
@@ -255,6 +258,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   function draw(t = now()) {
     // The player's piece grows as the view pulls back, so it can always be found — and a trip always followed.
     actor.setSize(clamp(rig.view.distance / 62, rig.view.distance < 34 ? Math.max(0.12, rig.view.distance / 62) : 1.2, Math.max(4, rig.view.distance / 110)));
+    actor.setClose(rig.view.distance < 45); // a close view of the trip vehicle uses its detailed model (turning wheels)
     city.setDetail(rig.view.distance, wholeFrom * 1.35);
     city.coverSurround(camera);
     readBand();
@@ -975,6 +979,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     get ready() { return layer === 'city'; },
     setState(next: MapState | null) {
       state = next;
+      actor.setCar(state?.property?.car ?? null); // the drawn car follows the one the player drives
       // Home is the rented home's lot — or, for a player living in their own house, the plot it stands on.
       const plot = ownPlot(), living = state?.estate?.living === 'own' && plot;
       let changed = living ? city.setHome(null, { ...plotPoint(plot!), label: pack.lgas.find((lga) => lga.id === plot!.lga)?.name ?? 'Your house', top: Math.max(0.6, estateLayout(pack, plot!.lga)!.pitch(plot!.estate) * 1.1) }) : city.setHome(state?.travel?.home!);

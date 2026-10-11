@@ -276,5 +276,6 @@ watch(card, (now) => { if (now) void nextTick(() => root.value?.querySelector<HT
 .si-report fieldset { display: grid; gap: 6px; border: 0; padding: 0; margin: 0; }
 .si-report legend { font-weight: 700; margin-bottom: 4px; }
 .si-report label { display: grid; gap: 4px; font-size: 14px; }
+@media (max-height: 640px) { .si-card { max-height: calc(100% - 56px); } }
 @media (min-width: 720px) { .si-card { left: auto; right: 16px; bottom: 16px; transform: none; border-radius: 18px; max-height: calc(100% - 96px); } }
 </style>

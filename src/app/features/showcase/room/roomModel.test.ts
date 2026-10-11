@@ -9,7 +9,7 @@ import type { ShowcaseMine, ShowcaseView } from '../../../../types/showcase.ts'
 import { drawItemCard } from './roomCanvas.ts'
 import { coveredTriangles } from './roomGeometry.ts'
 import type { Tri } from './roomGeometry.ts'
-import { CARD_SIZE, DEAL_LINE, PAGE_SIZE, ROOM_THEMES, SLOTS, THEME_OF, cardPlace, clampPage, initialOf, messageLink, mixHex, pageCount, pageOf, payLink, plain, roomColours, roomFromMine, roomFromView, roomPhotoUrl, roomRequest, themeFor, wrapLines } from './roomModel.ts'
+import { CARD_SIZE, DEAL_LINE, PAGE_SIZE, ROOM_THEMES, SLOTS, SLOT_ORDER, THEME_OF, cardPlace, clampPage, initialOf, messageLink, mixHex, pageCount, pageOf, payLink, plain, roomColours, roomFromMine, roomFromView, roomPhotoUrl, roomRequest, themeFor, wrapLines } from './roomModel.ts'
 
 const here = (name: string): string => fileURLToPath(new URL(name, import.meta.url))
 const PHOTO = 'a'.repeat(32), OTHER = 'b'.repeat(32)
@@ -65,14 +65,16 @@ test('a card stands on its shelf or counter and hangs from the rail, faces into 
   }
 })
 
-test('more than twelve items go on pages of twelve, in slot order, and a page that does not exist is the nearest one', () => {
+test('more than twelve items go on pages of twelve, the counter and rail first, and a page that does not exist is the nearest one', () => {
   assert.deepEqual([0, 1, 12, 13, 14, 24, 25].map(pageCount), [1, 1, 1, 2, 2, 2, 3])
   assert.equal(SHOWCASE.services, 24, 'a shop may list two pages of items')
   const list = Array.from({ length: 14 }, (_, at) => `item ${at}`)
   const first = pageOf(list, 0), second = pageOf(list, 1)
   assert.equal(first.length, 12); assert.deepEqual(first.map((entry) => entry.index), Array.from({ length: 12 }, (_, at) => at))
-  assert.deepEqual(first.map((entry) => entry.slot.name), SLOTS.map((slot) => slot.name))
-  assert.deepEqual(second.map((entry) => [entry.item, entry.index, entry.slot.name]), [['item 12', 12, 'slot_01'], ['item 13', 13, 'slot_02']])
+  assert.deepEqual(first.map((entry) => entry.slot.name), SLOT_ORDER.map((at) => SLOTS[at]!.name), 'the counter and the rail fill first, then the shelves')
+  assert.deepEqual([...SLOT_ORDER].sort((a, b) => a - b), SLOTS.map((_, at) => at), 'every slot is used once')
+  assert.deepEqual(first.slice(0, 4).map((entry) => entry.slot.kind), ['counter', 'counter', 'rail', 'rail'])
+  assert.deepEqual(second.map((entry) => [entry.item, entry.index, entry.slot.name]), [['item 12', 12, 'slot_09'], ['item 13', 13, 'slot_10']])
   assert.deepEqual(pageOf([], 0), [], 'an empty shop has no cards')
   assert.equal(clampPage(5, 14), 1); assert.equal(clampPage(-3, 14), 0); assert.equal(clampPage(Number.NaN, 14), 0); assert.equal(clampPage(2, 0), 0)
 })

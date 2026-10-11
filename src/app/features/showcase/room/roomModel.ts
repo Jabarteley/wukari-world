@@ -41,6 +41,8 @@ export const SLOTS: readonly SlotSpec[] = Object.freeze([
   { name: 'slot_12', x: 0.8, y: 1.95, z: -2.04, width: 0.5, height: 0.8, kind: 'rail', anchor: 'top', facing: [0, 0, 1] },
 ])
 export const PAGE_SIZE = SLOTS.length
+/** The order items fill the slots in: the counter and the rail first (they are what a visitor sees first, from the door), then the shelves, one side and the other in turn. */
+export const SLOT_ORDER: readonly number[] = Object.freeze([8, 9, 10, 11, 0, 4, 1, 5, 2, 6, 3, 7])
 
 /** What the shelves are drawn with: the card sizes in room units (the shelf slots read small against their shelves, so the cards are larger than the slots). */
 export const CARD_SIZE: Readonly<Record<SlotSpec['kind'], { w: number; h: number }>> = Object.freeze({ shelf: { w: 0.5, h: 0.5 }, counter: { w: 0.5, h: 0.5 }, rail: { w: 0.54, h: 0.78 } })
@@ -60,10 +62,10 @@ export function cardPlace(slot: SlotSpec): CardPlace {
 
 export const pageCount = (items: number): number => Math.max(1, Math.ceil(Math.max(0, items) / PAGE_SIZE))
 export const clampPage = (page: number, items: number): number => Math.min(pageCount(items) - 1, Math.max(0, Math.trunc(Number.isFinite(page) ? page : 0)))
-/** The items of one page, in slot order. Item `n` of the page goes to `SLOTS[n]`; `first` is its number in the whole list. */
+/** The items of one page, each with its slot: item `n` of the page goes to `SLOTS[SLOT_ORDER[n]]`; `index` is its number in the whole list. */
 export function pageOf<T>(items: readonly T[], page: number): { item: T; slot: SlotSpec; index: number }[] {
   const at = clampPage(page, items.length) * PAGE_SIZE
-  return items.slice(at, at + PAGE_SIZE).flatMap((item, n) => { const slot = SLOTS[n]; return slot ? [{ item, slot, index: at + n }] : [] })
+  return items.slice(at, at + PAGE_SIZE).flatMap((item, n) => { const slot = SLOTS[SLOT_ORDER[n] ?? -1]; return slot ? [{ item, slot, index: at + n }] : [] })
 }
 
 // ---- text and colour ------------------------------------------------------------------------------------------------------------

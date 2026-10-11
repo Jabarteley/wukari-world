@@ -257,9 +257,9 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
       const texture = new THREE.CanvasTexture(stand)
       texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4
       const material = new THREE.MeshBasicMaterial({ map: texture, color: '#f4eee4', toneMapped: false })
-      const board = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.56), material)
-      const holder = new THREE.Group(); holder.position.set(0.65, 1.28, -0.5); holder.rotation.x = -0.12
-      const back = new THREE.Mesh(frameGeometry, frameMaterial); back.scale.set(0.94, 0.6, 0.03); back.position.z = -0.016
+      const board = new THREE.Mesh(new THREE.PlaneGeometry(0.84, 0.52), material)
+      const holder = new THREE.Group(); holder.position.set(0.42, 1.27, -0.5); holder.rotation.x = -0.12
+      const back = new THREE.Mesh(frameGeometry, frameMaterial); back.scale.set(0.88, 0.56, 0.03); back.position.z = -0.016
       board.userData['pick'] = { kind: 'counter' } satisfies RoomPick
       holder.add(back, board); cards.add(holder); pickables.push(board)
       cardResources.push(texture, material, board.geometry)
@@ -293,7 +293,7 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
 
   // ---- the shopkeeper, behind the counter ----
   const kit = createKit()
-  const keeper = buildAvatar(kit, undefined, { seed: `keeper:${data.name}`, pose: 'stand', scale: 0.6, detail: 'medium', x: -0.2, z: -1.25, ry: 0 })
+  const keeper = buildAvatar(kit, undefined, { seed: `keeper:${data.name}`, pose: 'stand', scale: 0.6, detail: 'medium', x: -0.34, z: -1.2, ry: 0 })
   scene.add(keeper)
   keeper.traverse((node) => { node.userData['pick'] = { kind: 'counter' } satisfies RoomPick; if ((node as THREE_TYPES.Mesh).isMesh) pickables.push(node) })
   const counterHit = new THREE.Mesh(new THREE.BoxGeometry(2.6, 1.1, 0.9), new THREE.MeshBasicMaterial({ visible: false }))
@@ -315,7 +315,7 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     renderer.setSize(width, height, false)
     camera.aspect = width / height
     // A tall, narrow screen needs a wide vertical angle to see the room's width; a wide screen a normal one.
-    camera.fov = camera.aspect < 0.8 ? 72 : camera.aspect < 1.2 ? 64 : 52
+    camera.fov = camera.aspect < 0.5 ? 80 : camera.aspect < 0.8 ? 72 : camera.aspect < 1.2 ? 64 : 52
     portrait = camera.aspect < 0.8
     camera.updateProjectionMatrix()
   }
@@ -340,7 +340,7 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
   }
   function goTo(next: Look): void {
     // A tall narrow screen sees little of the width: it looks down a little more and stands further in at the sides.
-    goal = portrait ? { yaw: next.yaw * 1.15, pitch: next.pitch - 0.1, dolly: next === VIEWS.room ? 0 : next.dolly * 0.7 } : { ...next }
+    goal = portrait ? { yaw: next.yaw * 1.3, pitch: next.pitch - 0.1, dolly: next === VIEWS.room ? 0 : next.dolly * 0.7 } : { ...next }
     if (!looping) { looping = true; if (frame) cancelAnimationFrame(frame); frame = requestAnimationFrame(ease) }
   }
 

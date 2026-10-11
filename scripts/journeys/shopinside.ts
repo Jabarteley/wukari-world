@@ -237,6 +237,14 @@ try {
       detail['note'] = (await text(V, '[data-si-card]')).replace(/\s+/g, ' ').slice(-260);
       await j.shot(V, 'services-message-needs-account');
       must(/Sign in to message or pay/.test(String(detail['note'])), `the card says: ${detail['note']}`);
+      // A signed-in adult asks again: the link is released through the "leaving" sheet, which sits above the room.
+      await lab.signIn(V, 'buyer@example.test');
+      must((await pageCall(V, '/api/growth/consent', { cityId: 'lagos', age: 'adult' })).body?.ok === true, 'adult answer');
+      await V.click('[data-si-message]'); await V.waitFor(`!!document.querySelector('[data-trust-leave]')`, 15000, 'the leaving sheet'); await sleep(600);
+      detail['leaving'] = (await text(V, '[data-trust-leave]')).replace(/\s+/g, ' ').slice(0, 200);
+      await j.shot(V, 'services-leaving-sheet');
+      must(/leaving Allworld/i.test(String(detail['leaving'])), `the sheet says: ${detail['leaving']}`);
+      await V.click('[data-trust-back]'); await sleep(500);
       await V.click('[data-si-exit]'); await sleep(900);
       detail['backOnShopPage'] = await visible(V, '[data-step-inside]');
       must(detail['backOnShopPage'], 'leaving did not bring the visitor back to the shop page');

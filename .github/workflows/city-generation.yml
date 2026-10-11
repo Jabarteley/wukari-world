@@ -48,8 +48,6 @@ jobs:
       TOOL_SHA: ${{ github.sha }}
       JOB_JSON: ${{ toJSON(matrix) }}
       APP_DIR: ${{ github.workspace }}/app
-      EXTRACT_ROOT: ${{ runner.temp }}/city-generation/extract
-      OUT_DIR: ${{ runner.temp }}/city-generation/output
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -62,6 +60,10 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24.19.0
+      - name: Set generation directories
+        run: |
+          echo "EXTRACT_ROOT=$RUNNER_TEMP/city-generation/extract" >> "$GITHUB_ENV"
+          echo "OUT_DIR=$RUNNER_TEMP/city-generation/output" >> "$GITHUB_ENV"
       - name: Verify source producer and record checkout pins
         env:
           GITHUB_TOKEN: ${{ github.token }}

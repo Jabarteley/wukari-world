@@ -1,0 +1,66 @@
+name: City factory runtime contract
+on:
+  push:
+    branches: ['codex/world-europe-20261011']
+    paths:
+      - 'scripts/geo/factory/runtime-contract.mjs'
+      - '.github/workflows/europe-runtime-contract.yml'
+permissions:
+  contents: read
+concurrency:
+  group: europe-runtime-contract-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 81b993bbfb9afe96b5e5d0457ed090dbd7bd9214
+          path: current-source
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 7a57e756a10b35a0eec9ec5928f083580fb9e7a9
+          path: historical-source
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Install current runtime dependencies
+        run: npm ci --prefix current-source --ignore-scripts --no-audit --no-fund
+      - name: Prove current paired contract and reject incompatible historical generator
+        run: |
+          mkdir -p "$RUNNER_TEMP/runtime-contract"
+          node --experimental-strip-types scripts/geo/factory/runtime-contract.mjs \
+            --source "$GITHUB_WORKSPACE/current-source" \
+            --out "$RUNNER_TEMP/runtime-contract/current.json"
+          set +e
+          node --experimental-strip-types scripts/geo/factory/runtime-contract.mjs \
+            --source "$GITHUB_WORKSPACE/current-source" \
+            --generator-source "$GITHUB_WORKSPACE/historical-source" \
+            --out "$RUNNER_TEMP/runtime-contract/historical.json"
+          result=$?
+          set -e
+          test "$result" -eq 1
+          node --input-type=module - "$RUNNER_TEMP/runtime-contract/historical.json" <<'JS'
+          import { readFileSync } from 'node:fs';
+          import assert from 'node:assert/strict';
+          const receipt = JSON.parse(readFileSync(process.argv[2]));
+          assert.equal(receipt.status, 'HOLD');
+          assert.equal(receipt.modern.supported, true);
+          assert.equal(receipt.legacy.supported, false);
+          assert.equal(receipt.static.geometryEmission, 'playAreaFromSurfaces');
+          assert.equal(receipt.static.geometryRuntimeCompatible, false);
+          JS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: city-factory-runtime-contract-${{ github.sha }}
+          path: ${{ runner.temp }}/runtime-contract
+          if-no-files-found: error
+          retention-days: 14

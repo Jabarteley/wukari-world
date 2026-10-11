@@ -61,6 +61,5 @@ export const CONFIG: DetailConfig = {
     { id: 'point-kilometre-0', ref: 'node/1984367557', kind: 'neighbourhood' },
     { id: 'pk5', ref: 'node/2001128137', kind: 'neighbourhood' },
     { id: 'lakouanga', ref: 'node/3213816710', kind: 'neighbourhood' },
-    { id: 'mpama', ref: 'way/239553855', kind: 'water' },
   ],
 };

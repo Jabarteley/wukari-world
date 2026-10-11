@@ -194,6 +194,36 @@ bpy.ops.mesh.select_all(action="SELECT")
 bpy.ops.uv.smart_project(angle_limit=math.radians(float(os.environ.get("REDUCE_ANGLE", "66"))), island_margin=0.003, area_weight=0.6, correct_aspect=True, scale_to_bounds=True)
 bpy.ops.uv.select_all(action="SELECT")
 bpy.ops.uv.pack_islands(rotate=True, margin=0.003)
+if os.environ.get("REDUCE_UV") == "front":
+    # a head: the front of the face is one whole, planar island (eyes, brows and mouth are never cut by a seam), the rest keeps the automatic unwrap in the remaining strip
+    import bmesh as _bm
+    bpy.ops.object.mode_set(mode="OBJECT"); bpy.ops.object.mode_set(mode="EDIT")
+    bmx = _bm.from_edit_mesh(low.data); uvl = bmx.loops.layers.uv.verify()
+    cen = sum((v.co for v in bmx.verts), Vector((0, 0, 0))) / len(bmx.verts)   # outward from the middle of the head, so a mesh with flipped normals still splits right
+    outy = lambda f: (f.calc_center_median() - cen).normalized().y
+    front = [f for f in bmx.faces if outy(f) < -0.35]; back = [f for f in bmx.faces if outy(f) >= -0.35]
+    fv = [v.co for f in front for v in f.verts]
+    x0 = min(c.x for c in fv); x1 = max(c.x for c in fv); z0 = min(c.z for c in fv); z1 = max(c.z for c in fv)
+    for f in bmx.faces:
+        f.select = f in back
+    for f in front:
+        for l in f.loops:
+            l[uvl].uv = (0.01 + (l.vert.co.x - x0) / (x1 - x0) * 0.62, 0.01 + (l.vert.co.z - z0) / (z1 - z0) * 0.98)
+    _bm.update_edit_mesh(low.data)
+    bpy.ops.mesh.select_all(action="DESELECT")
+    for f in back:
+        f.select = True
+    _bm.update_edit_mesh(low.data)
+    bpy.ops.uv.smart_project(angle_limit=math.radians(66), island_margin=0.004, area_weight=0.6, correct_aspect=True, scale_to_bounds=True)
+    bpy.ops.uv.select_all(action="SELECT")
+    bpy.ops.uv.pack_islands(rotate=False, margin=0.004)
+    bmx = _bm.from_edit_mesh(low.data); uvl = bmx.loops.layers.uv.verify()
+    back_ids = {f.index for f in back}
+    for f in bmx.faces:
+        if f.index in back_ids:
+            for l in f.loops:
+                u, v = l[uvl].uv; l[uvl].uv = (0.65 + u * 0.34, 0.01 + v * 0.98)
+    _bm.update_edit_mesh(low.data)
 bpy.ops.object.mode_set(mode="OBJECT")
 bpy.ops.object.shade_smooth()
 low_tris = len(low.data.polygons)
@@ -203,8 +233,8 @@ scene.render.engine = "CYCLES"
 scene.cycles.device = "CPU"; scene.cycles.samples = 8; scene.cycles.use_denoising = False
 scene.render.bake.margin = 8; scene.render.bake.margin_type = "EXTEND"
 scene.render.bake.use_selected_to_active = True
-scene.render.bake.cage_extrusion = 0.03 * H / 1.7
-scene.render.bake.max_ray_distance = 0.12 * H / 1.7
+scene.render.bake.cage_extrusion = float(os.environ.get("REDUCE_EXTR", 0.03 * H / 1.7))      # a figure's own parts are close to the reduced surface: a short ray keeps the arm from picking up the torso beside it
+scene.render.bake.max_ray_distance = float(os.environ.get("REDUCE_RAY", 0.12 * H / 1.7))
 scene.view_settings.view_transform = "Standard"
 # the full mesh shows its base colour as emission, so the bake does not depend on its metallic and roughness maps
 hm = high.data.materials[0]

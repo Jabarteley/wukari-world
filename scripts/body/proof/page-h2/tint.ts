@@ -20,7 +20,7 @@ export interface Tinted {
   dispose(): void;
 }
 
-export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: THREE.Texture | null; refs?: Regions; eyes?: EyeSpec; tintable?: boolean }): Tinted {
+export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: THREE.Texture | null; refs?: Regions; eyes?: EyeSpec; tintable?: boolean; neck?: { cx: number; cz: number; rx: number; rz: number; cutY: number } }): Tinted {
   const material = source.clone();
   const refs = opts.refs;
   const u = (v: RGB): THREE.Vector3 => new THREE.Vector3(...v);
@@ -28,6 +28,7 @@ export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: 
     uMask: { value: opts.mask ?? null }, uUseMask: { value: opts.mask && refs ? 1 : 0 },
     uRefSkin: { value: u(refs?.skin ?? ONE) }, uRefTop: { value: u(refs?.top ?? ONE) }, uRefBottom: { value: u(refs?.bottom ?? ONE) }, uRefShoes: { value: u(refs?.shoes ?? ONE) },
     uTSkin: { value: u(refs?.skin ?? ONE) }, uTTop: { value: u(refs?.top ?? ONE) }, uTBottom: { value: u(refs?.bottom ?? ONE) }, uTShoes: { value: u(refs?.shoes ?? ONE) },
+    uNeck: { value: new THREE.Vector4(opts.neck?.cx ?? 0, opts.neck?.cz ?? 0, opts.neck?.rx ?? 1, opts.neck?.rz ?? 1) }, uNeckY: { value: opts.neck ? opts.neck.cutY : -9 },
     uEyes: { value: null }, uEyeBox: { value: new THREE.Vector4() }, uEyeMix: { value: 0 },
   };
   let paint: ((blink: number, gx: number, gy: number) => void) | null = null;
@@ -86,7 +87,7 @@ export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: 
     shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vRest; varying vec3 vRestN;').replace('#include <begin_vertex>', '#include <begin_vertex>\nvRest = position; vRestN = normal;');
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
 varying vec3 vRest; varying vec3 vRestN;
-uniform vec4 uEyeBox; uniform sampler2D uEyes, uMask; uniform float uEyeMix, uUseMask;
+uniform vec4 uEyeBox; uniform sampler2D uEyes, uMask; uniform float uEyeMix, uUseMask, uNeckY; uniform vec4 uNeck;
 uniform vec3 uRefSkin, uRefTop, uRefBottom, uRefShoes, uTSkin, uTTop, uTBottom, uTShoes;
 vec3 recolour(vec3 g, vec3 ref, vec3 target) { vec3 r = g / max(ref, vec3(0.05)); r = r / (1.0 + max(r - vec3(1.25), vec3(0.0)) * 0.6); return clamp(target * r, 0.0, 1.0); }`).replace('#include <map_fragment>', `
 vec4 sampledDiffuseColor = texture2D( map, vMapUv );
@@ -94,10 +95,17 @@ if (uUseMask > 0.5) {
   vec3 g0 = pow(max(sampledDiffuseColor.rgb, vec3(0.0)), vec3(0.4545));
   vec4 m = texture2D(uMask, vMapUv);
   vec3 g = g0;
-  g = mix(g, recolour(g0, uRefSkin, uTSkin), m.r);
+  float lr = dot(g0, vec3(0.3, 0.59, 0.11)) / max(dot(uRefSkin, vec3(0.3, 0.59, 0.11)), 0.05);
+  float gm = max(max(g0.r, g0.g), g0.b), sat = (gm - min(min(g0.r, g0.g), g0.b)) / max(gm, 0.02);
+  float skinW = m.r * smoothstep(0.68, 0.88, lr) * (1.0 - (1.0 - smoothstep(0.07, 0.16, sat)) * smoothstep(0.95, 1.1, lr));   // not the brows or irises (dark) and not the whites of the eyes (bright and grey)   // brows, lashes, irises and lips keep their own colour
+  g = mix(g, recolour(g0, uRefSkin, uTSkin), skinW);
   g = mix(g, recolour(g0, uRefTop, uTTop), m.g);
   g = mix(g, recolour(g0, uRefBottom, uTBottom), m.b);
   g = mix(g, recolour(g0, uRefShoes, uTShoes), m.a);
+  if (uNeckY > -5.0) {      // the neck skin that shows through a collar or neckline: one skin colour from the head's own value
+    vec2 q = (vRest.xz - uNeck.xy) / uNeck.zw; float inside = 1.0 - smoothstep(1.1, 1.4, length(q)); float yy = smoothstep(-0.05, -0.012, vRest.y - uNeckY) * (1.0 - smoothstep(0.02, 0.06, vRest.y - uNeckY));
+    g = mix(g, uTSkin * (0.78 + 0.3 * dot(g0, vec3(0.3, 0.59, 0.11))), inside * yy * 0.9);
+  }
   sampledDiffuseColor.rgb = pow(g, vec3(2.2));
 }
 if (uEyeMix > 0.0 && vRestN.z > 0.25 && vRest.x > uEyeBox.x && vRest.x < uEyeBox.z && vRest.y > uEyeBox.y && vRest.y < uEyeBox.w) {

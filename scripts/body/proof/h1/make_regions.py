@@ -129,8 +129,9 @@ for n, c in zip(names, chans):
     sel = have & (c > 0.9)
     info["ref" + n.capitalize()] = [float(v) for v in np.median(px[sel], axis=0)] if sel.sum() > 50 else None
     info["count" + n.capitalize()] = int(sel.sum())
-# half resolution
-out = np.stack([c[::2, ::2] for c in chans], axis=2)
+# a smaller image: block means (the weights are soft, so a coarse mask costs nothing visible)
+mpx = int(opts.get("--mask-px", 512)); k = max(1, H // mpx)
+out = np.stack([c[:H // k * k, :W // k * k].reshape(H // k, k, W // k, k).mean(axis=(1, 3)) for c in chans], axis=2)
 h2, w2 = out.shape[:2]
 buf = np.concatenate([out, np.zeros((h2, w2, 0))], axis=2).astype(np.float32)
 m = bpy.data.images.new("mask", w2, h2, alpha=True)

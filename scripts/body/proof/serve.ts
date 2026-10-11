@@ -25,7 +25,8 @@ export async function bundlePage(page = 'page'): Promise<string> {
 export async function serveProof(port: number, page = 'page', assets2 = join(REPO, 'scripts', 'body', 'proof', 'assets2'), extra?: string): Promise<Server> {
   const js = await bundlePage(page);
   const html = await readFile(join(REPO, 'scripts', 'body', 'proof', page, 'index.html'), 'utf8');
-  const roots: [string, string][] = [['/body/', join(REPO, 'src', 'scene', 'body', 'assets')], ['/a/', join(REPO, 'scripts', 'body', 'proof', 'assets')], ['/n/', assets2], ['/p2/', join(REPO, 'scripts', 'body', 'proof', 'assets2')], ...(extra ? [['/m/', extra] as [string, string]] : [])];
+  const absolute = (d: string): string => resolve(d);
+  const roots: [string, string][] = [['/body/', join(REPO, 'src', 'scene', 'body', 'assets')], ['/a/', join(REPO, 'scripts', 'body', 'proof', 'assets')], ['/n/', assets2], ['/p2/', join(REPO, 'scripts', 'body', 'proof', 'assets2')], ...(extra ? [['/m/', absolute(extra)] as [string, string]] : [])].map(([p, d]) => [p, absolute(d)] as [string, string]);
   const server = createServer(async (req, res) => {
     const url = new URL(req.url ?? '/', 'http://localhost');
     if (url.pathname === '/' || url.pathname === '/index.html') { res.setHeader('content-type', TYPES['.html']!); res.end(html); return; }
@@ -34,7 +35,7 @@ export async function serveProof(port: number, page = 'page', assets2 = join(REP
       if (url.pathname.startsWith(prefix)) {
         const file = resolve(dir, decodeURIComponent(url.pathname.slice(prefix.length)));
         if (!file.startsWith(dir)) break;
-        try { const data = await readFile(file); res.setHeader('content-type', TYPES[extname(file)] ?? 'application/octet-stream'); res.end(data); return; } catch { break; }
+        try { const data = await readFile(file); res.setHeader('content-type', TYPES[extname(file)] ?? 'application/octet-stream'); res.setHeader('content-length', String(data.length)); if (req.method === 'HEAD') res.end(); else res.end(data); return; } catch { break; }
       }
     }
     res.statusCode = 404; res.end('not found');

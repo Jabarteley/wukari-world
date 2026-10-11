@@ -38,7 +38,8 @@ export class Library {
     for (const n of clipNames) { const c = pack.animations.find((a) => a.name === n); if (c) this.clips.set(n, c); const f = pack.animations.find((a) => a.name === `${n}-female`); if (f) this.clips.set(`${n}-female`, f); }
   }
   glb(url: string): Promise<GLTF> { let p = this.glbs.get(url); if (!p) { p = this.loader.loadAsync(url); this.glbs.set(url, p); this.size(url); } return p; }
-  size(url: string): void { void fetch(url, { method: 'HEAD' }).then((r) => this.sizes.set(url, Number(r.headers.get('content-length') ?? 0))).catch(() => {}); }
+  sizeP = new Map<string, Promise<void>>();
+  size(url: string): Promise<void> { let p = this.sizeP.get(url); if (!p) { p = fetch(url, { method: 'HEAD' }).then((r) => { this.sizes.set(url, Number(r.headers.get('content-length') ?? 0)); }).catch(() => {}); this.sizeP.set(url, p); } return p; }
   meta<T>(url: string): Promise<T> { let p = this.metas.get(url); if (!p) { p = fetch(url).then((r) => r.json()); this.metas.set(url, p); } return p as Promise<T>; }
   mask(url: string): Promise<THREE.Texture> {
     let p = this.masks.get(url);
@@ -66,8 +67,8 @@ export function fitHead(src: THREE.BufferGeometry, head: HeadMeta, body: BodyMet
   const extra = Math.max(0, Math.min(0.03, 0.02 - gap));            // a chin that sits right on the cut is lifted so a little neck shows
   const dy = body.cutY - head.cutY + extra;
   const A = head.ring, B = body.ring;
-  const sx = B.rx / A.rx * 1.012, sz = B.rz / A.rz * 1.012;
-  const lo = head.cutY - head.headDown, span = 0.075;
+  const sx = Math.max(0.8, Math.min(1.25, B.rx / A.rx * 1.012)), sz = Math.max(0.8, Math.min(1.25, B.rz / A.rz * 1.012));
+  const lo = head.cutY - head.headDown, span = 0.11;
   for (let i = 0; i < pos.count; i++) {
     const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
     const w = 1 - smooth((y - lo) / span);                           // 1 at the head's lower edge, 0 a hand's width above the cut
@@ -90,7 +91,7 @@ export async function buildFigure(opts: BuildOptions): Promise<Figure> {
   const bones: Record<string, THREE.Bone> = {}; let bodyMesh!: THREE.SkinnedMesh;
   scene.traverse((o) => { if ((o as THREE.Bone).isBone) bones[o.name] = o as THREE.Bone; if ((o as THREE.SkinnedMesh).isSkinnedMesh) bodyMesh = o as THREE.SkinnedMesh; });
   const tinted: Tinted[] = [];
-  const bodyTint = tintMaterial(bodyMesh.material as THREE.MeshStandardMaterial, { mask: bodyMask, refs: bodyMeta.refs, tintable: bodyMeta.tintable });
+  const bodyTint = tintMaterial(bodyMesh.material as THREE.MeshStandardMaterial, { mask: bodyMask, refs: bodyMeta.refs, tintable: bodyMeta.tintable, neck: { cx: bodyMeta.ring.cx, cz: bodyMeta.ring.cz, rx: bodyMeta.ring.rx, rz: bodyMeta.ring.rz, cutY: bodyMeta.cutY } });
   bodyMesh.material = bodyTint.material; bodyMesh.frustumCulled = false; tinted.push(bodyTint);
   if (look.print && look.print >= 2 && bodyMeta.prints?.[look.print - 2]) bodyTint.setMap(await lib.map(`${prefix}${bodyMeta.prints[look.print - 2]}`));   // print 1 is the colour map in the file
   // the head
@@ -111,7 +112,7 @@ export async function buildFigure(opts: BuildOptions): Promise<Figure> {
   const pieces: HairPiece[] = await buildHair({ lib, look, head: headMeta, dy, geometry, skeleton: bodyMesh.skeleton, bindMatrix: bodyMesh.bindMatrix });
   for (const p of pieces) { bodyMesh.parent!.add(p.mesh); meshes.push(p.mesh); tinted.push(...(p.tinted ?? [])); }
   const fig: Partial<Figure> = { root, look, meshes, tinted, head, headTint, bodyMeta, headMeta };
-  const targets = { skin: look.skin, top: look.top, bottom: look.bottom, shoes: look.shoes };
+  const targets = { skin: look.skin, top: bodyMeta.refs.top ? look.top : undefined, bottom: bodyMeta.refs.bottom ? look.bottom : undefined, shoes: look.shoes };
   headTint.setTargets({ skin: look.skin }); bodyTint.setTargets(bodyMeta.tintable ? targets : { skin: look.skin, shoes: look.shoes });
   // build and head size: bones are scaled, the clips never touch scale
   applyShape(bones, look);
@@ -122,6 +123,7 @@ export async function buildFigure(opts: BuildOptions): Promise<Figure> {
   fig.rig = rig; fig.driver = new LifeDriver(rig, opts.seed ?? 31);
   let tris = 0; for (const m of meshes) tris += (m.geometry.index?.count ?? m.geometry.getAttribute('position').count) / 3;
   fig.triangles = Math.round(tris); fig.drawCalls = meshes.length;
+  await Promise.all([bodyMeta.file, headMeta.file, bodyMeta.mask, headMeta.mask].map((f) => lib.size(`${prefix}${f}`)));
   fig.bytes = [bodyMeta.file, headMeta.file, bodyMeta.mask, headMeta.mask].reduce((a, f) => a + (lib.sizes.get(`${prefix}${f}`) ?? 0), 0);
   fig.dispose = () => { for (const t of tinted) t.dispose(); head.geometry.dispose(); for (const p of pieces) p.mesh.geometry.dispose(); };
   root.userData.figure = fig;
@@ -132,7 +134,8 @@ export async function buildFigure(opts: BuildOptions): Promise<Figure> {
 /** Build (width of the torso and limbs) and head size, as bone scales. The head is kept out of the torso's scale so only the body gets wider. */
 export function applyShape(bones: Record<string, THREE.Bone>, look: Look): void {
   const b = look.build ?? 0, w = 1 + 0.13 * b, wl = 1 + 0.10 * b;
-  bones['spine_01']?.scale.set(w, 1, w); bones['neck_01']?.scale.set(1 / w, 1, 1 / w);
+  const sw = look.sex === 'male' ? 1.09 : 1.05, swz = 1 + (sw - 1) * 0.5;       // the default adult shoulder width, on top of the build
+  bones['spine_01']?.scale.set(w, 1, w); bones['spine_03']?.scale.set(sw, 1, swz); bones['neck_01']?.scale.set(1 / (w * sw), 1, 1 / (w * swz));
   for (const s of ['l', 'r']) { bones[`thigh_${s}`]?.scale.set(wl, 1, wl); }
-  const hs = look.headSize ?? 1; bones['Head']?.scale.set(hs, hs, hs);
+  const hs = look.headSize ?? (look.sex === 'male' ? 0.92 : 0.95); bones['Head']?.scale.set(hs, hs, hs);
 }

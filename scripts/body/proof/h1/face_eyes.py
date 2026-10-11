@@ -145,51 +145,83 @@ def smooth(t):
     t = np.clip(t, 0, 1); return t * t * (3 - 2 * t)
 
 
-# ---------------------------------------------------------------- the eyes
+# ---------------------------------------------------------------- the eyes (v2: one proportion for every head, a dark readable iris, lids that sit on the eye)
 out = px.copy()
+face_w = float(np.nanmax(P3[:, :, 0][have]) - np.nanmin(P3[:, :, 0][have])) if "--head-part" in argv else 0.26
+if "--head-part" in argv:
+    band = have & (np.abs(P3[:, :, 2] - (lm["eyeL"][1])) < 0.03) & (np.abs(P3[:, :, 0]) < 0.17)
+    face_w = float(np.nanmax(P3[:, :, 0][band]) - np.nanmin(P3[:, :, 0][band])) if band.any() else 0.24
+A_EYE = float(opts.get("--eye-a", 0.0)) or 0.086 * face_w     # half width of the eye opening
+B_EYE = 0.50 * A_EYE
+mid = (lm["eyeL"][0] + lm["eyeR"][0]) / 2; half_sep = (lm["eyeL"][0] - lm["eyeR"][0]) / 2
+lm["eyeL"] = [mid + half_sep, lm["eyeL"][1]]; lm["eyeR"] = [mid - half_sep, lm["eyeR"][1]]
+lm["eyeAL"] = lm["eyeAR"] = A_EYE; lm["eyeBL"] = lm["eyeBR"] = B_EYE
+json.dump(lm, open(face_json, "w"), indent=1)
 for side, name in ((1, "L"), (-1, "R")):
     cx, cz = lm["eye" + name]
-    a = lm["eyeA" + name] * 1.04; b = lm["eyeB" + name] * 1.10
+    a = A_EYE; b = B_EYE
     dx = P3[:, :, 0] - cx; dz = P3[:, :, 2] - cz
-    near = have & (np.abs(dx) < a * 1.5) & (np.abs(dz) < b * 2.2)
+    near = have & (np.abs(dx) < a * 1.9) & (np.abs(dz) < b * 4.2)
     u = np.where(near, dx / a, 9); v = np.where(near, dz / b, 9)
-    r = np.sqrt(u * u + v * v)
-    ts = np.where(near, tsize / np.sqrt(a * b), 0.01)       # texel size in eye-ellipse units
-    opening = smooth((1.0 - r) / np.maximum(ts * 1.6, 1e-3))
-    # the upper lid shades the white; the corners are a little darker
-    sclera = np.array([0.93, 0.91, 0.88])
-    shade = 1.0 - 0.30 * smooth((v - 0.05) / 0.9) - 0.12 * smooth((np.abs(u) - 0.65) / 0.35) - 0.06 * smooth((-v - 0.2) / 0.8)
+    # an almond: the lids meet at the corners, the opening is widest a little inside the middle
+    ou = side * u                                  # positive toward the outer corner on this side (left eye: outer is +x)
+    half_h = np.clip(1.0 - np.abs(u) ** 2.2, 0, 1) ** 0.75
+    top_edge = 0.80 * half_h; bot_edge = -0.62 * half_h
+    ts = np.where(near, tsize / b, 0.02)
+    inside = smooth(np.minimum(top_edge - v, v - bot_edge) / np.maximum(ts * 1.4, 1e-3)) * (np.abs(u) < 1.0)
+    sclera = np.array([0.70, 0.66, 0.61])
+    shade = 1.0 - 0.50 * smooth((v - 0.05) / 0.9) - 0.10 * smooth((np.abs(u) - 0.55) / 0.45)
     col = sclera[None, None, :] * shade[..., None]
-    # iris: a disc of radius ri about the centre, in metres
-    ri = min(0.56 * a, 1.05 * b)
-    d = np.sqrt(dx * dx + dz * dz)
-    rr = d / ri
-    iris_a = smooth((1.0 - rr) / np.maximum(ts * np.sqrt(a * b) / ri * 1.6, 1e-3))
-    ring = smooth((rr - 0.78) / 0.22)
-    inner = smooth((0.62 - rr) / 0.4)
-    ic = iris_rgb[None, None, :] * (0.55 + 0.75 * inner[..., None]) * (1 - 0.7 * ring[..., None])
-    # fine radial streaks so the iris is not a flat disc
+    # iris: large, dark, ring, centred, partly covered by the lids
+    ir = 1.18 * b
+    d = np.sqrt(dx * dx + dz * dz); rr = d / ir
+    iris_a = smooth((1.0 - rr) / np.maximum(ts * b / ir * 1.4, 1e-3))
     ang = np.arctan2(dz, dx)
-    ic = ic * (1 + 0.10 * np.sin(ang * 23 + rr * 4)[..., None] * smooth((rr - 0.25) / 0.2)[..., None])
+    base_i = np.array([0.20, 0.105, 0.055]) * np.ones_like(col)
+    ring = smooth((0.82 - rr) / 0.3) * smooth((rr - 0.25) / 0.25)
+    ic = base_i * (1 - ring[..., None]) + np.array([0.42, 0.25, 0.11]) * ring[..., None]
+    ic = ic * (1 + 0.12 * np.sin(ang * 21)[..., None] * smooth((rr - 0.3) / 0.2)[..., None])
+    limb = smooth((rr - 0.80) / 0.2)
+    ic = ic * (1 - 0.6 * limb[..., None])
     col = col * (1 - iris_a[..., None]) + ic * iris_a[..., None]
-    pup = smooth((0.40 - rr) / np.maximum(ts * np.sqrt(a * b) / ri * 1.6 + 0.04, 1e-3))
-    col = col * (1 - pup[..., None]) + np.array([0.02, 0.015, 0.015]) * pup[..., None]
-    # highlights: toward the upper left of the picture (that is -x for a figure facing the viewer), plus a faint one lower right
-    for (hx, hz, hr, ha) in ((-0.30, 0.32, 0.20, 0.95), (0.28, -0.30, 0.10, 0.45)):
-        hd = np.sqrt((dx - hx * ri) ** 2 + (dz - hz * ri) ** 2) / (hr * ri)
-        hl = smooth((1.0 - hd) / 0.35) * ha
-        col = col * (1 - hl[..., None]) + np.array([1.0, 1.0, 1.0]) * hl[..., None]
-    # a thin dark line where the upper lid meets the eye, so the opening has an edge
-    lid = smooth(1 - np.abs(r - 0.97) / 0.12) * smooth((v + 0.1) / 0.5)
-    col = col * (1 - 0.55 * lid[..., None])
-    alpha = np.nan_to_num(opening * (near.astype(float)))
+    pup = smooth((0.40 - rr) / np.maximum(ts * b / ir * 1.4 + 0.05, 1e-3))
+    col = col * (1 - pup[..., None]) + np.array([0.012, 0.01, 0.01]) * pup[..., None]
+    # one catch-light, up and toward the nose side, and a faint second one
+    for (hx, hz, hr, ha) in ((-0.28 * side * -1, 0.30, 0.17, 0.95), (0.25 * side * -1, -0.28, 0.08, 0.35)):
+        hd = np.sqrt((dx - hx * ir) ** 2 + (dz - hz * ir) ** 2) / (hr * ir)
+        hl = smooth((1.0 - hd) / 0.4) * ha
+        col = col * (1 - hl[..., None]) + hl[..., None]
+    # the lids: a dark upper line (heavier toward the outer corner), a soft shadow under it, a faint lower line
+    edge_top = np.abs(v - top_edge)
+    lash = smooth(1 - edge_top / (0.20 + 0.10 * np.clip(ou, 0, 1))) * (np.abs(u) < 1.08)
+    lash = np.where(v > 0.0, lash, 0.0)
+    lower = smooth(1 - np.abs(v - bot_edge) / 0.12) * (np.abs(u) < 0.95) * 0.35
+    shadow_lid = smooth((v - (top_edge - 0.55)) / 0.5) * inside * 0.35
+    alpha_eye = np.nan_to_num(inside * near)
     col = np.nan_to_num(col)
-    out = out * (1 - alpha[..., None]) + col * alpha[..., None]
-    # the lash line: a dark arc just outside the upper edge of the opening, thicker toward the outer corner, with a short wing
-    outer = np.clip((u * side * -1 * -1) if False else (np.abs(u) * (np.sign(dx) == np.sign(cx)) ), 0, 1)
-    lash = smooth(1 - np.abs(r - 1.07) / (0.13 + 0.06 * outer)) * smooth((v + 0.22) / 0.45)
-    lash = np.nan_to_num(lash * near.astype(float)) * 0.92
-    out = out * (1 - lash[..., None]) + np.array([0.06, 0.035, 0.03]) * lash[..., None]
+    out = out * (1 - alpha_eye[..., None]) + col * alpha_eye[..., None]
+    lash = np.nan_to_num(lash * near); lower = np.nan_to_num(lower * near)
+    out = out * (1 - 0.92 * lash[..., None]) + np.array([0.045, 0.028, 0.024]) * 0.92 * lash[..., None]
+    out = out * (1 - lower[..., None]) + np.array([0.16, 0.09, 0.07]) * lower[..., None]
+# the brows: the baked brows come out mauve; repaint every texel in the brow band that is darker than the skin around it as dark brown, keeping its softness
+skin_lum = float(np.median(px[have & (np.abs(P3[:, :, 0]) < 0.03) & (P3[:, :, 2] > lm["eyeL"][1] - 0.03) & (P3[:, :, 2] < lm["eyeL"][1] + 0.0)].mean(axis=1))) if have.any() else 0.6
+for side, name in ((1, "L"), (-1, "R")):
+    bx = lm["eye" + name][0]; ez_ = lm["eye" + name][1]
+    band = have & (np.abs(P3[:, :, 0] - bx) < A_EYE * 2.1) & (P3[:, :, 2] > ez_ + B_EYE * 1.2) & (P3[:, :, 2] < ez_ + B_EYE * 6.5)
+    lum_ = px.mean(axis=2)
+    w = smooth((skin_lum * 0.97 - lum_) / 0.10) * band
+    w = np.nan_to_num(w)
+    dark = np.array([0.075, 0.045, 0.035])
+    out = out * (1 - 0.95 * w[..., None]) + dark * 0.95 * w[..., None]
+# unbaked texels (the bake leaves them white): inside the face they are skin
+if "--head-part" in argv:
+    cheek_med = np.median(px[have & (np.abs(P3[:, :, 0]) < 0.05) & (P3[:, :, 2] < lm["eyeL"][1] - 0.02) & (P3[:, :, 2] > lm["eyeL"][1] - 0.08)], axis=0)
+    lumo = out.mean(axis=2); sato = out.max(axis=2) - out.min(axis=2)
+    near_eye = (np.abs(P3[:, :, 0] - lm["eyeL"][0]) < A_EYE * 1.5) | (np.abs(P3[:, :, 0] - lm["eyeR"][0]) < A_EYE * 1.5)
+    near_eye = near_eye & (np.abs(P3[:, :, 2] - lm["eyeL"][1]) < B_EYE * 2.2)
+    white = have & (lumo > 0.80) & (sato < 0.16) & ~near_eye
+    wk = smooth((lumo - 0.78) / 0.1) * white
+    out = out * (1 - wk[..., None]) + cheek_med * wk[..., None]
 out = np.clip(out, 0, 1)
 buf = np.concatenate([out, np.ones((H, W, 1))], axis=2).astype(np.float32)
 new = bpy.data.images.new("eyes", W, H, alpha=False)

@@ -1,14 +1,15 @@
-// Hair and headwear.  Styles that are a shape of the scalp (low cut, fade, afro, puff, cornrows, locs, head tie, cap) are made here, in the page, from the head that is on the figure:
-// the triangles of the head above a hairline are lifted along their normals, so the hair fits every head exactly, covers the scalp completely (no scalp shows through) and can be any
-// colour.  Styles that need real modelled strands (long braids, the gele) are read from small generated pieces, cut away from their original head and re-fitted to the head's box.
+// Hair and headwear, made in the page from the head that is on the figure so that every style fits every head, covers the scalp completely and takes any colour.
+// Short styles are a skin-hugging cap whose edge is trimmed per pixel by a hairline function (soft, irregular at the temples and nape); a fade is the same cap
+// whose opacity falls off down the sides and back.  An afro is a rounded shell of real volume above the cap.  Braids and locs are many thin tapering strands.
+// A fila is a seated cap with a rolled brim.  Only the gele is a generated piece (cut away from its mannequin), re-fitted to the head's box.
 import * as THREE from 'three';
 import type { Library, HeadMeta, Look } from './parts.ts';
 
 export interface HairPiece { mesh: THREE.SkinnedMesh; tinted?: { dispose(): void; material: THREE.Material }[] }
 export interface HairStyle { id: string; label: string; sex?: 'male' | 'female'; kind: 'hair' | 'wear' }
 export const HAIR_STYLES: HairStyle[] = [
-  { id: 'none', label: 'Bald', kind: 'hair' }, { id: 'low', label: 'Low cut', kind: 'hair' }, { id: 'fade', label: 'Fade', kind: 'hair' }, { id: 'afro', label: 'Afro', kind: 'hair' },
-  { id: 'cornrows', label: 'Cornrows', kind: 'hair' }, { id: 'puff', label: 'Puff', kind: 'hair' }, { id: 'locs', label: 'Locs', kind: 'hair' }, { id: 'braids', label: 'Long braids', kind: 'hair', sex: 'female' },
+  { id: 'none', label: 'Bald', kind: 'hair' }, { id: 'low', label: 'Low cut', kind: 'hair' }, { id: 'fade', label: 'Fade', kind: 'hair', sex: 'male' }, { id: 'lineup', label: 'Lined-up fade', kind: 'hair', sex: 'male' },
+  { id: 'afro', label: 'Afro', kind: 'hair' }, { id: 'cornrows', label: 'Cornrows', kind: 'hair' }, { id: 'puff', label: 'Puff', kind: 'hair' }, { id: 'locs', label: 'Locs', kind: 'hair' }, { id: 'braids', label: 'Long braids', kind: 'hair', sex: 'female' },
 ];
 export const WEAR_STYLES: HairStyle[] = [
   { id: 'none', label: 'None', kind: 'wear' }, { id: 'fila', label: 'Cap (fila)', kind: 'wear', sex: 'male' }, { id: 'scarf', label: 'Headscarf', kind: 'wear', sex: 'female' }, { id: 'gele', label: 'Gele', kind: 'wear', sex: 'female' },
@@ -28,21 +29,23 @@ interface Ctx {
   skin: THREE.Color; hairCol: THREE.Color; headBone: number; spine: number; neck: number;
 }
 
-/** The hairline: how far above the eye line the hair starts, by how far forward the point is (1 at the brow, 0 at the ear, -1 at the nape). */
+/** How far above the eye line the hair starts: t is 1 at the brow, 0 at the ear, -1 at the nape. */
 function hairline(style: string, t: number): number {
+  if (style === 'fila') return 0.058;
+  if (style === 'lineup') return 0.086 - 0.04 * smooth((0.45 - t) / 0.5) - 0.03 * smooth((-0.2 - t) / 0.8);
   const front = 0.082, temple = 0.05, back = style === 'fade' ? -0.02 : -0.05;
-  const a = t > 0.5 ? front : t > -0.1 ? temple + (front - temple) * smooth((t + 0.1) / 0.6) : temple + (back - temple) * smooth((-0.1 - t) / 0.9);
-  return a;
+  return t > 0.5 ? front : t > -0.1 ? temple + (front - temple) * smooth((t + 0.1) / 0.6) : temple + (back - temple) * smooth((-0.1 - t) / 0.9);
 }
 
-function selectCap(c: Ctx, style: string): number[] {
+/** The triangles of the head above the hairline, with a margin: the shader trims the edge exactly. */
+function selectCap(c: Ctx, style: string, margin = 0.03): number[] {
   const sel: number[] = [];
   for (let i = 0; i < c.index.length; i += 3) {
     const a = c.index[i]!, b = c.index[i + 1]!, d = c.index[i + 2]!;
     const x = (c.pos[a * 3]! + c.pos[b * 3]! + c.pos[d * 3]!) / 3, y = (c.pos[a * 3 + 1]! + c.pos[b * 3 + 1]! + c.pos[d * 3 + 1]!) / 3, z = (c.pos[a * 3 + 2]! + c.pos[b * 3 + 2]! + c.pos[d * 3 + 2]!) / 3;
     const t = (z - c.cz) / c.halfD, dx = Math.abs(x - c.cx) / c.halfW;
-    if (y < c.eyeY + hairline(style, t)) continue;
-    if (dx > 0.80 && y < c.eyeY + 0.085 && t > -0.6 && t < 0.45) continue;      // the ears
+    if (y < c.eyeY + hairline(style, t) - margin) continue;
+    if (dx > 0.82 && y < c.eyeY + 0.07 && t > -0.6 && t < 0.45) continue;      // the ears
     sel.push(a, b, d);
   }
   return sel;
@@ -54,8 +57,49 @@ function binding(n: number, bone: number, spine: number, w: (i: number) => numbe
   return { idx: new THREE.Uint16BufferAttribute(idx, 4), wt: new THREE.Float32BufferAttribute(wt, 4) };
 }
 
-function material(color: THREE.Color, map?: THREE.Texture | null, vertexColors = false): THREE.MeshStandardMaterial {
-  return new THREE.MeshStandardMaterial({ color: vertexColors ? 0xffffff : color, map: map ?? null, vertexColors, roughness: 0.82, metalness: 0, side: THREE.DoubleSide });
+export interface HairShade { eyeY: number; cx: number; cz: number; halfD: number; style: string; mode: number }
+
+/** The hair material: the vertex colour is the hair colour; the shader adds strand streaks or curl shading and trims the cap's edge with the hairline. */
+function hairMaterial(sh: HairShade, map?: THREE.Texture | null): THREE.MeshStandardMaterial {
+  const m = new THREE.MeshStandardMaterial({ vertexColors: true, map: map ?? null, roughness: 0.78, metalness: 0, side: THREE.DoubleSide, transparent: true, alphaTest: 0.02 });
+  const front = sh.style === 'lineup' ? 1 : 0, fade = sh.style === 'fade' || sh.style === 'lineup' ? 1 : 0;
+  const uniforms = { uEye: { value: sh.eyeY }, uCx: { value: sh.cx }, uCz: { value: sh.cz }, uHalfD: { value: sh.halfD }, uMode: { value: sh.mode }, uLine: { value: front }, uFade: { value: fade } };
+  m.onBeforeCompile = (shader) => {
+    Object.assign(shader.uniforms, uniforms);
+    shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vRest;').replace('#include <begin_vertex>', '#include <begin_vertex>\nvRest = position;');
+    shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
+varying vec3 vRest; uniform float uEye, uCx, uCz, uHalfD, uMode, uLine, uFade;
+float h31(vec3 p){ return fract(sin(dot(p, vec3(127.1, 311.7, 74.7))) * 43758.5453); }
+float n31(vec3 p){ vec3 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(mix(h31(i), h31(i + vec3(1,0,0)), f.x), mix(h31(i + vec3(0,1,0)), h31(i + vec3(1,1,0)), f.x), f.y), mix(mix(h31(i + vec3(0,0,1)), h31(i + vec3(1,0,1)), f.x), mix(h31(i + vec3(0,1,1)), h31(i + vec3(1,1,1)), f.x), f.y), f.z); }
+float sm1(float a, float b, float x){ return smoothstep(a, b, x); }
+float lineAt(float t){
+  if (uLine > 0.5) return 0.086 - 0.04 * sm1(0.0, 1.0, (0.45 - t) / 0.5) - 0.03 * sm1(0.0, 1.0, (-0.2 - t) / 0.8);
+  float back = uFade > 0.5 ? -0.02 : -0.05;
+  return t > 0.5 ? 0.082 : (t > -0.1 ? mix(0.05, 0.082, sm1(0.0, 1.0, (t + 0.1) / 0.6)) : mix(0.05, back, sm1(0.0, 1.0, (-0.1 - t) / 0.9)));
+}`).replace('#include <map_fragment>', `#include <map_fragment>
+{
+  vec3 p = vRest; float t = (p.z - uCz) / uHalfD;
+  float shade = 1.0;
+  if (uMode < 0.5) {            // a cap: trim at the hairline, streaks along the head, fade down the sides and back
+    float irr = (n31(vec3(p.x * 160.0, p.y * 160.0, p.z * 160.0)) - 0.5) * (uLine > 0.5 ? 0.0015 : 0.011) * (1.0 - 0.6 * sm1(0.4, 1.0, t)) + (n31(p * 40.0) - 0.5) * (uLine > 0.5 ? 0.0 : 0.012);
+    float hh = p.y - (uEye + lineAt(t) + irr);
+    float a = sm1(0.0, uLine > 0.5 ? 0.0025 : 0.012, hh);
+    if (uFade > 0.5) { float side = sm1(0.1, 0.7, abs(t) * 0.0 + (1.0 - sm1(0.45, 0.95, t))); float f = sm1(uEye + 0.075, uEye + 0.165, p.y); a *= mix(1.0, 0.12 + 0.88 * f, side); }
+    diffuseColor.a *= a;
+    float ang = atan(p.x - uCx, p.z - uCz);
+    shade = 0.80 + 0.32 * n31(vec3(ang * 70.0, p.y * 90.0, 3.0)) + 0.10 * (n31(p * 220.0) - 0.5);
+  } else if (uMode < 1.5) {     // the afro: curl pockets
+    float c = 0.55 * n31(p * 150.0) + 0.3 * n31(p * 320.0) + 0.15 * n31(p * 70.0);
+    shade = 0.55 + 0.75 * c;
+  } else if (uMode < 2.5) {     // braids and locs: plaits
+    shade = 0.78 + 0.30 * sin(p.y * 210.0 + h31(floor(p * 60.0)) * 6.0);
+  }
+  diffuseColor.rgb *= shade;
+}`);
+  };
+  m.customProgramCacheKey = () => `hair${sh.mode}${sh.style === 'lineup' ? 'L' : sh.style === 'fade' ? 'F' : ''}`;
+  return m;
 }
 
 function stripes(hair: THREE.Color, skin: THREE.Color): THREE.CanvasTexture {
@@ -67,47 +111,36 @@ function stripes(hair: THREE.Color, skin: THREE.Color): THREE.CanvasTexture {
     const x0 = S * (0.5 + i * 0.095), x1 = S * (0.5 + i * 0.055);
     g.lineCap = 'round';
     g.strokeStyle = css(hair, 1.35); g.lineWidth = 9; g.beginPath(); g.moveTo(x0, S * 0.02); g.quadraticCurveTo((x0 + x1) / 2 + i * 2, S * 0.5, x1, S * 0.98); g.stroke();
-    g.strokeStyle = css(hair, 0.55); g.lineWidth = 2; g.beginPath(); g.moveTo(x0 + 6, S * 0.02); g.quadraticCurveTo((x0 + x1) / 2 + 6 + i * 2, S * 0.5, x1 + 6, S * 0.98); g.stroke();
     g.strokeStyle = css(skin, 0.7); g.lineWidth = 1.5; g.beginPath(); g.moveTo(x0 - 6, S * 0.02); g.quadraticCurveTo((x0 + x1) / 2 - 6 + i * 2, S * 0.5, x1 - 6, S * 0.98); g.stroke();
   }
   const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
 }
 
-function capMesh(c: Ctx, style: string, sel: number[]): { geometry: THREE.BufferGeometry; vcol: boolean } {
+/** The cap: head triangles above the hairline, each vertex lifted along its normal; vertex colour is the hair colour. */
+function capMesh(c: Ctx, style: string, sel: number[], lift: number, mold?: (p: THREE.Vector3, t: number) => void): THREE.BufferGeometry {
   const remap = new Map<number, number>(), src: number[] = [];
   for (const v of sel) if (!remap.has(v)) { remap.set(v, src.length); src.push(v); }
   const n = src.length, pos = new Float32Array(n * 3), nrm = new Float32Array(n * 3), uv = new Float32Array(n * 2), col = new Float32Array(n * 3);
-  const C = new THREE.Vector3(c.cx, c.eyeY + 0.05, c.cz);
+  const P = new THREE.Vector3();
   for (let k = 0; k < n; k++) {
     const v = src[k]!;
-    let x = c.pos[v * 3]!, y = c.pos[v * 3 + 1]!, z = c.pos[v * 3 + 2]!; const nx = c.nrm[v * 3]!, ny = c.nrm[v * 3 + 1]!, nz = c.nrm[v * 3 + 2]!;
-    const t = (z - c.cz) / c.halfD, hl = c.eyeY + hairline(style, t), edge = smooth((y - hl) / 0.05);
-    let lift = 0.0045;
-    if (style === 'afro') {
-      const taper = 0.25 + 0.75 * edge, k2 = 1 + 0.2 * taper;
-      x = C.x + (x - C.x) * k2; y = C.y + (y - C.y) * (1 + 0.14 * taper); z = C.z + (z - C.z) * k2;
-      lift = 0.012 + 0.018 * taper + 0.018 * taper * (noise3(x * 60, y * 60, z * 60) - 0.3);
-    } else if (style === 'puff' || style === 'locs') lift = 0.006;
-    else if (style === 'fade') lift = 0.003 + 0.002 * edge;
-    pos[k * 3] = x + nx * lift; pos[k * 3 + 1] = y + ny * lift; pos[k * 3 + 2] = z + nz * lift;
-    nrm[k * 3] = nx; nrm[k * 3 + 1] = ny; nrm[k * 3 + 2] = nz;
-    uv[k * 2] = (x - c.cx) / (2 * c.halfW) + 0.5; uv[k * 2 + 1] = (z - c.cz) / (2 * c.halfD) + 0.5;
-    // fade: hair on top, skin-dark at the sides and back
-    let f = 1;
-    if (style === 'fade') f = t > 0.5 ? 1 : smooth((y - (c.eyeY + 0.085 + 0.02 * (t > 0 ? 1 : 0) - 0.015)) / 0.07);
-    const base = c.hairCol, sk = c.skin;
-    col[k * 3] = sk.r * 0.55 + (base.r - sk.r * 0.55) * f; col[k * 3 + 1] = sk.g * 0.55 + (base.g - sk.g * 0.55) * f; col[k * 3 + 2] = sk.b * 0.55 + (base.b - sk.b * 0.55) * f;
+    const nx = c.nrm[v * 3]!, ny = c.nrm[v * 3 + 1]!, nz = c.nrm[v * 3 + 2]!;
+    P.set(c.pos[v * 3]! + nx * lift, c.pos[v * 3 + 1]! + ny * lift, c.pos[v * 3 + 2]! + nz * lift);
+    const t = (P.z - c.cz) / c.halfD; if (mold) mold(P, t);
+    pos[k * 3] = P.x; pos[k * 3 + 1] = P.y; pos[k * 3 + 2] = P.z; nrm[k * 3] = nx; nrm[k * 3 + 1] = ny; nrm[k * 3 + 2] = nz;
+    uv[k * 2] = (P.x - c.cx) / (2 * c.halfW) + 0.5; uv[k * 2 + 1] = (P.z - c.cz) / (2 * c.halfD) + 0.5;
+    col[k * 3] = c.hairCol.r; col[k * 3 + 1] = c.hairCol.g; col[k * 3 + 2] = c.hairCol.b;
   }
+  void style;
   const ix = new Uint16Array(sel.length); for (let i = 0; i < sel.length; i++) ix[i] = remap.get(sel[i]!)!;
   const geometry = new THREE.BufferGeometry();
   geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3)); geometry.setAttribute('normal', new THREE.BufferAttribute(nrm, 3)); geometry.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
   geometry.setAttribute('color', new THREE.BufferAttribute(col, 3)); geometry.setIndex(new THREE.BufferAttribute(ix, 1));
   const b = binding(n, c.headBone, c.spine); geometry.setAttribute('skinIndex', b.idx); geometry.setAttribute('skinWeight', b.wt);
-  return { geometry, vcol: style === 'fade' };
+  return geometry;
 }
 
 function merge(parts: THREE.BufferGeometry[]): THREE.BufferGeometry {
-  // all parts carry position, normal, uv, color (optional), skinIndex, skinWeight and an index
   let nv = 0, ni = 0; for (const p of parts) { nv += p.getAttribute('position').count; ni += p.index!.count; }
   const attr = (name: string, size: number, Type: typeof Float32Array | typeof Uint16Array): THREE.BufferAttribute => {
     const a = new Type(nv * size); let o = 0;
@@ -117,38 +150,29 @@ function merge(parts: THREE.BufferGeometry[]): THREE.BufferGeometry {
   const g = new THREE.BufferGeometry();
   g.setAttribute('position', attr('position', 3, Float32Array)); g.setAttribute('normal', attr('normal', 3, Float32Array)); g.setAttribute('uv', attr('uv', 2, Float32Array));
   g.setAttribute('color', attr('color', 3, Float32Array)); g.setAttribute('skinIndex', attr('skinIndex', 4, Uint16Array)); g.setAttribute('skinWeight', attr('skinWeight', 4, Float32Array));
-  const ix = new Uint16Array(ni); let o = 0, base = 0; for (const p of parts) { const a = p.index!.array; for (let i = 0; i < a.length; i++) ix[o + i] = a[i]! + base; o += a.length; base += p.getAttribute('position').count; }
+  const ix = new Uint32Array(ni); let o = 0, base = 0; for (const p of parts) { const a = p.index!.array; for (let i = 0; i < a.length; i++) ix[o + i] = a[i]! + base; o += a.length; base += p.getAttribute('position').count; }
   g.setIndex(new THREE.BufferAttribute(ix, 1)); return g;
 }
 
-function withAttrs(g: THREE.BufferGeometry, bone: number, spine: number, color: THREE.Color): THREE.BufferGeometry {
+function withAttrs(g: THREE.BufferGeometry, bone: number, spine: number, color: THREE.Color, lowWeight?: (i: number) => number): THREE.BufferGeometry {
   const n = g.getAttribute('position').count;
   if (!g.getAttribute('color')) { const c = new Float32Array(n * 3); for (let i = 0; i < n; i++) { c[i * 3] = color.r; c[i * 3 + 1] = color.g; c[i * 3 + 2] = color.b; } g.setAttribute('color', new THREE.BufferAttribute(c, 3)); }
   if (!g.getAttribute('uv')) g.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(n * 2), 2));
-  if (!g.getAttribute('skinIndex')) { const b = binding(n, bone, spine); g.setAttribute('skinIndex', b.idx); g.setAttribute('skinWeight', b.wt); }
+  if (!g.getAttribute('skinIndex')) { const b = binding(n, bone, spine, lowWeight); g.setAttribute('skinIndex', b.idx); g.setAttribute('skinWeight', b.wt); }
   return g;
 }
 
 /** A tapering three-sided strand from a root, going out a little and then down. */
-function strand(root: THREE.Vector3, out: THREE.Vector3, len: number, r: number, segs: number, sway: number): THREE.BufferGeometry {
+function strand(root: THREE.Vector3, out: THREE.Vector3, len: number, r: number, segs: number, sway: number, outReach = 0.03): THREE.BufferGeometry {
   const pts: THREE.Vector3[] = [];
-  for (let i = 0; i <= segs; i++) { const t = i / segs; pts.push(new THREE.Vector3(root.x + out.x * 0.03 * Math.sin(Math.PI * Math.min(1, t * 1.4) * 0.5) + sway * t * t, root.y - len * t + out.y * 0.01, root.z + out.z * 0.03 * Math.sin(Math.PI * Math.min(1, t * 1.4) * 0.5))); }
+  for (let i = 0; i <= segs; i++) { const t = i / segs; const o = Math.sin(Math.PI * Math.min(1, t * 1.6) * 0.5); pts.push(new THREE.Vector3(root.x + out.x * outReach * o + sway * t * t, root.y - len * t, root.z + out.z * outReach * o)); }
   const pos: number[] = [], idx: number[] = [];
-  for (let i = 0; i <= segs; i++) { const rr = r * (1 - 0.55 * i / segs); for (let s = 0; s < 3; s++) { const a = s * Math.PI * 2 / 3; pos.push(pts[i]!.x + Math.cos(a) * rr, pts[i]!.y, pts[i]!.z + Math.sin(a) * rr); } }
+  for (let i = 0; i <= segs; i++) { const rr = r * (1 - 0.5 * i / segs); for (let s = 0; s < 3; s++) { const a = s * Math.PI * 2 / 3; pos.push(pts[i]!.x + Math.cos(a) * rr, pts[i]!.y, pts[i]!.z + Math.sin(a) * rr); } }
   for (let i = 0; i < segs; i++) for (let s = 0; s < 3; s++) { const a = i * 3 + s, b = i * 3 + (s + 1) % 3, c = a + 3, d = b + 3; idx.push(a, b, c, b, d, c); }
   const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g;
 }
 
-function lathe(rings: { y: number; rx: number; rz: number; dz?: number }[], seg: number, cx: number, cz: number): THREE.BufferGeometry {
-  const pos: number[] = [], idx: number[] = [];
-  for (const r of rings) for (let s = 0; s < seg; s++) { const a = s / seg * Math.PI * 2; pos.push(cx + Math.cos(a) * r.rx, r.y, cz + (r.dz ?? 0) + Math.sin(a) * r.rz); }
-  for (let i = 0; i < rings.length - 1; i++) for (let s = 0; s < seg; s++) { const a = i * seg + s, b = i * seg + (s + 1) % seg, c = a + seg, d = b + seg; idx.push(a, c, b, b, c, d); }
-  const top = pos.length / 3; pos.push(cx, rings[rings.length - 1]!.y, cz + (rings[rings.length - 1]!.dz ?? 0));
-  const last = (rings.length - 1) * seg; for (let s = 0; s < seg; s++) idx.push(last + s, top, last + (s + 1) % seg);
-  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g;
-}
-
-export interface HairArgs { lib: Library; look: Look; head: HeadMeta; dy: number; geometry: THREE.BufferGeometry; skeleton: THREE.Skeleton; bindMatrix: THREE.Matrix4 }
+export interface HairArgs { lib: Library; look: Look; head: HeadMeta; dy: number; geometry: THREE.BufferGeometry; skeleton: THREE.Skeleton; bindMatrix: THREE.Matrix4; /** A crowd figure: fewer strands and segments, exact hairline by triangles. */ lod?: boolean }
 
 export async function buildHair(a: HairArgs): Promise<HairPiece[]> {
   const { look } = a;
@@ -163,64 +187,91 @@ export async function buildHair(a: HairArgs): Promise<HairPiece[]> {
     pos, nrm: nArr, index: a.geometry.index!.array, eyeY, cx: (box.xmin + box.xmax) / 2, cz: (box.zmin + box.zmax) / 2, halfW: (box.xmax - box.xmin) / 2, halfD: (box.zmax - box.zmin) / 2,
     crown: a.head.crownY + a.dy, chin: a.head.chinY + a.dy, skin, hairCol, headBone: names.indexOf('Head'), spine: names.indexOf('spine_03'), neck: names.indexOf('neck_01'),
   };
-  const geoms: THREE.BufferGeometry[] = [], mats: THREE.Material[] = [];
   const out: HairPiece[] = [];
   const add = (geo: THREE.BufferGeometry, mat: THREE.Material): void => {
-    const m = new THREE.SkinnedMesh(geo, mat); m.frustumCulled = false; m.bind(a.skeleton, a.bindMatrix); out.push({ mesh: m, tinted: [{ material: mat, dispose: () => mat.dispose() }] }); void geoms; void mats;
+    const m = new THREE.SkinnedMesh(geo, mat); m.frustumCulled = false; m.renderOrder = 2; m.bind(a.skeleton, a.bindMatrix); out.push({ mesh: m, tinted: [{ material: mat, dispose: () => mat.dispose() }] });
   };
-  const wearOn = wear !== 'none';
-  if (style !== 'none' && !(wearOn && (wear === 'gele' || wear === 'scarf'))) {
-    const sel = selectCap(ctx, style === 'braids' || style === 'locs' ? 'low' : style);
-    const { geometry, vcol } = capMesh(ctx, style === 'braids' || style === 'locs' ? 'low' : style, sel);
-    const parts = [geometry];
-    if (style === 'puff') {
-      const s = new THREE.SphereGeometry(0.062, 12, 9); s.translate(ctx.cx, ctx.crown - 0.045, ctx.cz - ctx.halfD * 0.62);
-      const p = s.getAttribute('position'); for (let i = 0; i < p.count; i++) { const k = 1 + 0.12 * (noise3(p.getX(i) * 70, p.getY(i) * 70, p.getZ(i) * 70) - 0.4); const cx = ctx.cx, cy = ctx.crown - 0.045, cz = ctx.cz - ctx.halfD * 0.62; p.setXYZ(i, cx + (p.getX(i) - cx) * k, cy + (p.getY(i) - cy) * k, cz + (p.getZ(i) - cz) * k); }
-      s.computeVertexNormals(); parts.push(withAttrs(s, ctx.headBone, ctx.spine, hairCol));
-    }
-    if (style === 'locs') {
-      const n = 46, rnd = (i: number, k: number): number => hash(i * 3.1, k * 7.7, 1.3);
-      for (let i = 0; i < n; i++) {
-        const ang = (i / n) * Math.PI * 2 + rnd(i, 1) * 0.3, rr = 0.93;
-        const root = new THREE.Vector3(ctx.cx + Math.cos(ang) * ctx.halfW * rr, ctx.eyeY + 0.1 + rnd(i, 2) * 0.06 - (Math.sin(ang) < 0 ? 0.05 : 0), ctx.cz + Math.sin(ang) * ctx.halfD * rr);
-        if (Math.sin(ang) > 0.55 && Math.abs(Math.cos(ang)) < 0.5) root.y += 0.01;   // the front stays clear of the face
-        const out2 = new THREE.Vector3(Math.cos(ang), 0, Math.sin(ang));
-        const front = Math.sin(ang) > 0.35;
-        const s = strand(root, out2, front ? 0.07 + rnd(i, 3) * 0.04 : 0.16 + rnd(i, 3) * 0.13, 0.0085, 6, 0.0);
+  const covered = wear === 'gele' || wear === 'scarf';
+  const cx = ctx.cx, cz = ctx.cz, hw = ctx.halfW, hd = ctx.halfD;
+  const sh = (s: string, mode: number): HairShade => ({ eyeY, cx, cz, halfD: hd, style: s, mode });
+  if (style !== 'none' && !covered) {
+    const baseStyle = style === 'braids' || style === 'locs' ? 'low' : style;
+    if (style === 'afro') {
+      // scalp under it, then a shell of real volume: an ellipsoid above the skull whose rim follows the hairline
+      const cap = capMesh(ctx, 'low', selectCap(ctx, 'low', 0.0), 0.004);
+      const rx = hw + 0.05, ry = 0.135, rz = hd + 0.05, cy = eyeY + 0.05;
+      const sph = new THREE.SphereGeometry(1, a.lod ? 14 : 30, a.lod ? 7 : 14, 0, Math.PI * 2, 0, Math.PI * 0.62), p = sph.getAttribute('position');
+      for (let i = 0; i < p.count; i++) {
+        const dx = p.getX(i), dy = p.getY(i), dz = p.getZ(i), k = 1 + 0.05 * (noise3(dx * 5, dy * 5, dz * 5) - 0.5);
+        let x = cx + dx * rx * k, y = cy + dy * ry * k, z = cz + dz * rz * k; const t = (z - cz) / hd;
+        y = Math.max(y, eyeY + hairline('low', t) + 0.004 + 0.012 * smooth((t - 0.2) / 0.6));
+        x = cx + (x - cx) * (1 - 0.06 * smooth((0.2 - y + eyeY) / 0.1)); p.setXYZ(i, x, y, z);
+      }
+      sph.computeVertexNormals();
+      const shell = withAttrs(sph, ctx.headBone, ctx.spine, hairCol);
+      add(merge([cap, shell]), hairMaterial(sh('afro', 1)));
+    } else if (style === 'puff') {
+      const cap = capMesh(ctx, 'low', selectCap(ctx, 'low', a.lod ? 0.0 : 0.03), 0.005);
+      const s = new THREE.SphereGeometry(0.066, 16, 12), p = s.getAttribute('position'); const bx = cx, by = ctx.crown - 0.03, bz = cz - hd * 0.55;
+      for (let i = 0; i < p.count; i++) { const k = 1 + 0.10 * (noise3(p.getX(i) * 60, p.getY(i) * 60, p.getZ(i) * 60) - 0.4); p.setXYZ(i, bx + p.getX(i) * k, by + p.getY(i) * k * 0.9, bz + p.getZ(i) * k); }
+      s.computeVertexNormals(); add(merge([cap, withAttrs(s, ctx.headBone, ctx.spine, hairCol)]), hairMaterial(sh('low', 0)));
+    } else if (style === 'locs' || style === 'braids') {
+      const cap = capMesh(ctx, 'low', selectCap(ctx, 'low', a.lod ? 0.0 : 0.03), 0.005);
+      const parts: THREE.BufferGeometry[] = [cap];
+      const braids = style === 'braids', n1 = a.lod ? (braids ? 16 : 14) : braids ? 40 : 34, n2 = a.lod ? 0 : braids ? 24 : 0, segs = a.lod ? 3 : 5, rnd = (i: number, k: number): number => hash(i * 3.1, k * 7.7, 1.3);
+      const fallFor = (ang: number): number => { const back = (1 - Math.cos(ang)) / 2; return braids ? 0.30 + 0.22 * back : 0.10 + 0.14 * back; };
+      for (let i = 0; i < n1 + n2; i++) {
+        const tier = i < n1 ? 0 : 1, j = tier === 0 ? i : i - n1, m = tier === 0 ? n1 : n2;
+        const lo = 0.55, hi = Math.PI * 2 - 0.55; // keep clear of the face
+        const ang = lo + (hi - lo) * (j + 0.5 * tier + rnd(i, 1) * 0.3) / m;     // 0 is the front
+        const rr = tier === 0 ? 0.97 : 0.86;
+        const root = new THREE.Vector3(cx + Math.sin(ang) * hw * rr, eyeY + (tier === 0 ? 0.07 : 0.115) + rnd(i, 2) * 0.012 - (Math.cos(ang) < -0.2 ? 0.045 : 0), cz + Math.cos(ang) * hd * rr);
+        const outv = new THREE.Vector3(Math.sin(ang), 0, Math.cos(ang));
+        const len = fallFor(ang) * (0.85 + 0.3 * rnd(i, 3));
+        const sideKeep = Math.abs(Math.sin(ang)) > 0.7 ? Math.sign(Math.sin(ang)) * 0.012 : 0;
+        const s = strand(root, outv, len, a.lod ? 0.011 : braids ? 0.0058 : 0.009, segs, sideKeep, braids ? 0.034 : 0.03);
+        const ps = s.getAttribute('position'), cnt = ps.count, ww = new Float32Array(cnt);
+        const idxLow = new Uint16Array(cnt * 4), wt = new Float32Array(cnt * 4);
+        for (let k = 0; k < cnt; k++) { const y = ps.getY(k), low = smooth((ctx.chin + 0.03 - y) / 0.22) * 0.8; ww[k] = low; idxLow[k * 4] = ctx.headBone; wt[k * 4] = 1 - low; idxLow[k * 4 + 1] = ctx.spine; wt[k * 4 + 1] = low; }
+        s.setAttribute('skinIndex', new THREE.Uint16BufferAttribute(idxLow, 4)); s.setAttribute('skinWeight', new THREE.Float32BufferAttribute(wt, 4));
         parts.push(withAttrs(s, ctx.headBone, ctx.spine, hairCol));
       }
+      add(merge(parts), hairMaterial(sh('low', 2)));
+    } else {
+      const cap = capMesh(ctx, baseStyle, selectCap(ctx, baseStyle, a.lod ? 0.0 : 0.03), style === 'fade' || style === 'lineup' ? 0.0035 : 0.0045);
+      const map = style === 'cornrows' ? stripes(hairCol, skin) : null;
+      const mat = hairMaterial(sh(baseStyle, 0), map);
+      if (style === 'cornrows') { mat.vertexColors = false; mat.color.set(0xffffff); }
+      add(withAttrs(cap, ctx.headBone, ctx.spine, hairCol), mat);
     }
-    if (style === 'braids') {
-      const g = await loadPiece(a, 'hair-braids', ctx);
-      if (g) parts.push(g);
-    }
-    const mergedGeo = merge(parts.map((p) => withAttrs(p, ctx.headBone, ctx.spine, hairCol)));
-    const map: THREE.Texture | null = style === 'cornrows' ? stripes(hairCol, skin) : null;
-    const mat = material(hairCol, map, style !== 'cornrows');
-    add(mergedGeo, mat);
   }
-  if (wearOn) {
-    const mk = (g: THREE.BufferGeometry, c: THREE.Color, rough = 0.8): void => add(withAttrs(g, ctx.headBone, ctx.spine, c), new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: rough, side: THREE.DoubleSide }));
-    const wc = new THREE.Color(look.headwearColor ?? '#e9e2cf');
-    if (wear === 'fila') {
-      const yb = ctx.eyeY + 0.062, rx = ctx.halfW * 0.93 + 0.012, rz = ctx.halfD * 0.93 + 0.012;
-      mk(lathe([{ y: yb - 0.01, rx, rz }, { y: yb + 0.005, rx: rx * 1.01, rz: rz * 1.01 }, { y: yb + 0.05, rx: rx * 0.98, rz: rz * 0.98 }, { y: yb + 0.09, rx: rx * 0.94, rz: rz * 0.9, dz: -0.01 }, { y: yb + 0.12, rx: rx * 0.84, rz: rz * 0.78, dz: -0.02 }, { y: yb + 0.128, rx: rx * 0.6, rz: rz * 0.55, dz: -0.025 }], 28, ctx.cx, ctx.cz), wc);
-    } else if (wear === 'scarf') {
-      const sel = selectCap(ctx, 'low'); const { geometry } = capMesh(ctx, 'low', sel);
-      const p = geometry.getAttribute('position'), nn = geometry.getAttribute('normal'); for (let i = 0; i < p.count; i++) p.setXYZ(i, p.getX(i) + nn.getX(i) * 0.006, p.getY(i) + nn.getY(i) * 0.006, p.getZ(i) + nn.getZ(i) * 0.006);
-      const parts = [withAttrs(geometry, ctx.headBone, ctx.spine, wc)];
-      const knot = new THREE.SphereGeometry(0.034, 10, 8); knot.scale(1.3, 0.9, 1); knot.translate(ctx.cx, ctx.eyeY + 0.07, ctx.cz - ctx.halfD * 0.95); parts.push(withAttrs(knot, ctx.headBone, ctx.spine, wc));
-      for (const sx of [-1, 1]) { const tail = strand(new THREE.Vector3(ctx.cx + sx * 0.02, ctx.eyeY + 0.05, ctx.cz - ctx.halfD - 0.02), new THREE.Vector3(0, 0, -1), 0.12, 0.018, 4, sx * 0.02); parts.push(withAttrs(tail, ctx.headBone, ctx.spine, wc)); }
-      mk(merge(parts), wc);
-    } else if (wear === 'gele') {
-      const g = await loadPiece(a, 'hair-gele', ctx, true);
-      if (g) { const m = new THREE.SkinnedMesh(g, new THREE.MeshStandardMaterial({ map: (g.userData['map'] as THREE.Texture) ?? null, roughness: 0.75, side: THREE.DoubleSide })); m.frustumCulled = false; m.bind(a.skeleton, a.bindMatrix); out.push({ mesh: m, tinted: [{ material: m.material as THREE.Material, dispose: () => (m.material as THREE.Material).dispose() }] }); }
-    }
+  const wc = new THREE.Color(look.headwearColor ?? '#e9e2cf');
+  const solid = (g: THREE.BufferGeometry, rough = 0.8): void => add(withAttrs(g, ctx.headBone, ctx.spine, wc), new THREE.MeshStandardMaterial({ color: 0xffffff, vertexColors: true, roughness: rough, side: THREE.DoubleSide }));
+  if (wear === 'fila') {
+    // a soft folded cap: it hugs the head down to a rolled brim at the brow, rises into a gently flattened, back-leaning crown
+    const cap = capMesh(ctx, 'fila', selectCap(ctx, 'fila', 0.0), 0.010, (p, t) => {
+      const up = smooth((p.y - (eyeY + 0.10)) / 0.07), back = smooth((0.3 - t) / 0.8);
+      p.x = cx + (p.x - cx) * (1 + 0.07 * up); p.z = cz + (p.z - cz) * (1 + 0.05 * up) - 0.012 * up * back; p.y += 0.022 * up + 0.012 * up * back;
+      const top = ctx.crown + 0.026; if (p.y > top) p.y = top + (p.y - top) * 0.2;
+    });
+    const brim = new THREE.TorusGeometry(1, 0.0105, a.lod ? 4 : 8, a.lod ? 16 : 36); brim.rotateX(Math.PI / 2);
+    const bp = brim.getAttribute('position'); for (let i = 0; i < bp.count; i++) { const x = bp.getX(i), z = bp.getZ(i); const t = z; bp.setXYZ(i, cx + x * (hw * 0.97 + 0.013), eyeY + 0.056 + 0.006 * Math.max(0, -t), cz + z * (hd * 0.96 + 0.012)); }
+    brim.computeVertexNormals();
+    solid(merge([withAttrs(cap, ctx.headBone, ctx.spine, wc), withAttrs(brim, ctx.headBone, ctx.spine, wc)]), 0.85);
+  } else if (wear === 'scarf') {
+    const cap = capMesh(ctx, 'low', selectCap(ctx, 'low', 0.0), 0.011);
+    const parts = [cap];
+    const knot = new THREE.SphereGeometry(0.034, 10, 8); knot.scale(1.3, 0.9, 1); knot.translate(cx, eyeY + 0.075, cz - hd * 0.95); parts.push(withAttrs(knot, ctx.headBone, ctx.spine, wc));
+    for (const sx of [-1, 1]) { const tail = strand(new THREE.Vector3(cx + sx * 0.02, eyeY + 0.055, cz - hd - 0.02), new THREE.Vector3(0, 0, -1), 0.13, 0.018, 4, sx * 0.02); parts.push(withAttrs(tail, ctx.headBone, ctx.spine, wc)); }
+    solid(merge(parts));
+  } else if (wear === 'gele') {
+    const g = await loadPiece(a, 'hair-gele', ctx, true);
+    if (g) { const m = new THREE.SkinnedMesh(g, new THREE.MeshStandardMaterial({ map: (g.userData['map'] as THREE.Texture) ?? null, roughness: 0.75, side: THREE.DoubleSide })); m.frustumCulled = false; m.bind(a.skeleton, a.bindMatrix); out.push({ mesh: m, tinted: [{ material: m.material as THREE.Material, dispose: () => (m.material as THREE.Material).dispose() }] }); }
   }
   return out;
 }
 
-/** A generated piece (long braids, the gele) re-fitted to this head: its own head box is stored next to it, and the piece is scaled and moved from that box to this one. */
+/** The generated piece (the gele), cut away from its mannequin, re-fitted to this head: scaled and moved from the head box it was made on to this one. */
 async function loadPiece(a: HairArgs, name: string, c: Ctx, keepMap = false): Promise<THREE.BufferGeometry | null> {
   const meta = await a.lib.meta<{ ref: { xmin: number; xmax: number; zmin: number; zmax: number; crownY: number; eyeY: number } }>(`/m/${name}.json`);
   const gltf = await a.lib.glb(`/m/${name}.glb`);
@@ -238,9 +289,7 @@ async function loadPiece(a: HairArgs, name: string, c: Ctx, keepMap = false): Pr
     idx[i * 4] = c.headBone; wt[i * 4] = 1 - low; idx[i * 4 + 1] = c.spine; wt[i * 4 + 1] = low;
   }
   geo.setAttribute('skinIndex', new THREE.Uint16BufferAttribute(idx, 4)); geo.setAttribute('skinWeight', new THREE.Float32BufferAttribute(wt, 4));
-  const col = new Float32Array(n * 3); for (let i = 0; i < n; i++) { col[i * 3] = c.hairCol.r; col[i * 3 + 1] = c.hairCol.g; col[i * 3 + 2] = c.hairCol.b; }
-  if (!keepMap) { geo.setAttribute('color', new THREE.BufferAttribute(col, 3)); geo.deleteAttribute('uv'); geo.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(n * 2), 2)); }
-  else geo.userData['map'] = (s.material as THREE.MeshStandardMaterial).map;
+  if (keepMap) geo.userData['map'] = (s.material as THREE.MeshStandardMaterial).map;
   if (!geo.index) { const ix = new Uint16Array(n); for (let i = 0; i < n; i++) ix[i] = i; geo.setIndex(new THREE.BufferAttribute(ix, 1)); }
   geo.computeVertexNormals();
   return geo;

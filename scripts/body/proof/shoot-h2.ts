@@ -21,9 +21,9 @@ try {
   await browser.goto(`http://127.0.0.1:${port}/?shoot=1`); await browser.waitFor('!!window.h2', 120000, 'creator page');
   const facts: Record<string, unknown> = {};
   for (const s of shots) {
-    const spec = { width: 1280, height: 800, ...s.spec } as { width: number; height: number };
+    const spec = { width: 1280, height: 800, ...s.spec } as { width: number; height: number; street?: { n: number; seed: number } };
     await browser.setViewport({ width: spec.width, height: spec.height, scale: 1, mobile: false });
-    facts[s.name] = await browser.eval(`window.h2.wall(${JSON.stringify(spec)}).then((r)=>{window.h2.render();return r})`);
+    facts[s.name] = await browser.eval(spec.street ? `window.h2.street(${spec.street.n}, ${spec.street.seed}, ${spec.width}, ${spec.height}).then((r)=>{window.h2.render();return r})` : `window.h2.wall(${JSON.stringify(spec)}).then((r)=>{window.h2.render();return r})`);
     await browser.eval('window.h2.render()');
     const file = join(out, `${s.name}.png`); await browser.screenshot(file); console.log('saved', file);
   }

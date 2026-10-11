@@ -10,11 +10,11 @@ mkdir -p "$OUT"
 run() { perl -e 'alarm shift; exec @ARGV' 1500 "$BL" -b --disable-autoexec --python-exit-code 1 "$@"; }
 CUT=$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).cut)' "$WORK/$NAME-seam.json")
 export REDUCE_H=1.8 REDUCE_JOINTS="$WORK/$NAME-joints.json"
-REDUCE_QUALITY=80 run -P "$B/reduce_figure.py" -- "$WORK/$NAME-head-high.blend" "$WORK/$NAME-head.blend" "$WORK" "$NAME-head" $HT $HP --no-protect | grep REDUCED
-REDUCE_QUALITY=72 run -P "$B/reduce_figure.py" -- "$WORK/$NAME-body-high.blend" "$WORK/$NAME-body.blend" "$WORK" "$NAME-body" $BT $BP | grep REDUCED
+REDUCE_UV=front REDUCE_EXTR=${HEXTR:-0.022} REDUCE_RAY=${HRAY:-0.07} REDUCE_QUALITY=${HQ:-80} run -P "$B/reduce_figure.py" -- "$WORK/$NAME-head-high.blend" "$WORK/$NAME-head.blend" "$WORK" "$NAME-head" $HT $HP --no-protect | grep REDUCED
+REDUCE_EXTR=${EXTR:-0.012} REDUCE_RAY=${RAY:-0.04} REDUCE_QUALITY=${BQ:-66} run -P "$B/reduce_figure.py" -- "$WORK/$NAME-body-high.blend" "$WORK/$NAME-body.blend" "$WORK" "$NAME-body" $BT $BP | grep REDUCED
 run -P "$HERE/face_eyes.py" -- "$WORK/$NAME-head.blend" "$WORK/$NAME-head-color.jpg" "$WORK/$NAME-head-color-eyes.jpg" "$WORK/$NAME-face.json" --detect --head-part | grep LANDMARKS | cut -c1-80
-run -P "$HERE/make_regions.py" -- "$WORK/$NAME-head.blend" "$WORK/$NAME-head-color-eyes.jpg" "$OUT/$NAME-head-mask.png" "$WORK/$NAME-head-regions.json" --kind head | grep REGIONS | cut -c1-120
-run -P "$HERE/make_regions.py" -- "$WORK/$NAME-body.blend" "$WORK/$NAME-body-color.jpg" "$OUT/$NAME-body-mask.png" "$WORK/$NAME-body-regions.json" --kind body "$@" | grep REGIONS | cut -c1-160
+run -P "$HERE/make_regions.py" -- "$WORK/$NAME-head.blend" "$WORK/$NAME-head-color-eyes.jpg" "$OUT/$NAME-head-mask.png" "$WORK/$NAME-head-regions.json" --kind head --mask-px ${HMASK:-256} | grep REGIONS | cut -c1-120
+run -P "$HERE/make_regions.py" -- "$WORK/$NAME-body.blend" "$WORK/$NAME-body-color.jpg" "$OUT/$NAME-body-mask.png" "$WORK/$NAME-body-regions.json" --kind body --mask-px ${BMASK:-384} "$@" | grep REGIONS | cut -c1-160
 BLENDER=$BL COLOR="$WORK/$NAME-head-color-eyes.jpg" "$HERE/finish.sh" "$WORK" "$NAME" $SKEL head "$OUT" --part 1 --neck-cut $CUT --face "$WORK/$NAME-face.json" | tail -1
 BLENDER=$BL "$HERE/finish.sh" "$WORK" "$NAME" $SKEL body "$OUT" --part 1 --neck-cut $CUT | tail -1
 run -P "$HERE/head_info.py" -- "$WORK/$NAME-head.blend" $CUT "$WORK/$NAME-headinfo.json" | grep HEADINFO | cut -c1-100

@@ -13,7 +13,7 @@ img = bpy.data.images.load(colour); img.colorspace_settings.name = "Non-Color"
 W, H = img.size; px = np.array(img.pixels[:]).reshape(H, W, 4)[:, :, :3].astype(np.float32)
 mk = bpy.data.images.load(mask); mk.colorspace_settings.name = "Non-Color"
 mw, mh = mk.size; m = np.array(mk.pixels[:]).reshape(mh, mw, 4)
-skin = np.kron(m[:, :, 0], np.ones((H // mh, W // mw)))[:H, :W].astype(np.float32)
+skin = m[:, :, 0][(np.arange(H) * mh // H)[:, None], (np.arange(W) * mw // W)[None, :]].astype(np.float32)
 
 
 def rgb2hsv(a):

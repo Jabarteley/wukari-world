@@ -119,7 +119,7 @@ export class LifeDriver {
     }
     for (const mesh of this.rig.face) {
       for (const [name, index] of Object.entries(mesh.morphTargetDictionary ?? {})) {
-        if (name.startsWith('look')) continue;
+        if (name.startsWith('look') || name === 'jawWide') continue;   // jawWide is a creator control, not part of the life layer
         const rate = name.startsWith('blink') ? 60 : name.startsWith('viseme') ? 26 : name.startsWith('brow') ? 8 : 10;
         mesh.morphTargetInfluences![index] = this.ease(`${mesh.uuid}${name}`, w[name] ?? 0, dt, rate);
       }

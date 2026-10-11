@@ -229,6 +229,93 @@ try {
     probes.push({ ref: `way/${e.id}`, segment: [[a.lon, a.lat], [b.lon, b.lat]], point: p, method: '1km right of directed source coastline; narrow bays can reach other land', rawFar, safeFar, deliveredReachWater: hits(p, TERRAIN.reachWater ?? []), interpretation: rawFar.length && !safeFar.length ? 'Water coverage disappears during simplification' : !rawFar.length ? 'Absent before simplification; inspect source connectivity/flood/contour or probe crossing other land' : 'Far water coverage retained' });
   }
   report.directedProbes = probes;
+  // Candidate stays in a separate disposable module. Its only algorithm changes
+  // are retaining closed coastline barriers and using directed coast evidence.
+  const closedSeam = "    if (way.length < 2 || (way[0]![0] === way.at(-1)![0] && way[0]![1] === way.at(-1)![1])) continue;";
+  let candidateSource = replaceOnce(instrumented, closedSeam, '    if (way.length < 2) continue;');
+  const anchorSeam = '  for (const at of marked) if (barrier[at]) for (const next of [at - 1, at + 1, at - cols, at + cols]) if (next >= 0 && next < region.length && region[next]! >= 0) hasLand[region[next]!] = true;';
+  const directedClassification = `  const coastVotes = hasLand.map((_, id) => ({ id, land: 0, water: 0, cells: 0, evidence: [] }));
+  for (const id of region) if (id >= 0) coastVotes[id].cells++;
+  let missingSideSamples = 0;
+  for (let wayIndex = 0; wayIndex < shore.length; wayIndex++) {
+    const way = shore[wayIndex];
+    for (let i = 1; i < way.length; i++) {
+      const a = way[i - 1], b = way[i], dx = b[0] - a[0], dy = b[1] - a[1], length = Math.hypot(dx, dy);
+      if (!length) continue;
+      // Source direction alone gives the sides. Use the nearest sampled non-barrier
+      // cell on each side; no venue or neighbourhood can relabel a component.
+      const count = Math.max(1, Math.ceil(length / (cell * 2)));
+      for (let sample = 0; sample < count; sample++) {
+        const t = (sample + 0.5) / count, x = a[0] + t * dx, y = a[1] + t * dy;
+        for (const side of [1, -1]) {
+          let assigned = false;
+          for (const offset of [0.6, 0.9, 1.25, 1.75, 2.5, 4]) {
+            const px = x - side * dy / length * cell * offset, py = y + side * dx / length * cell * offset;
+            const c = colOf(px), r = rowOf(py);
+            if (c < 0 || r < 0 || c >= cols || r >= rows) continue;
+            const at = r * cols + c, id = region[at];
+            if (barrier[at] || id < 0) continue;
+            const vote = coastVotes[id], kind = side === 1 ? 'land' : 'water';
+            vote[kind]++;
+            if (vote.evidence.filter(e => e.kind === kind).length < 4) vote.evidence.push({ wayIndex, segmentIndex: i - 1, kind, offsetCells: offset, point: [px, py] });
+            assigned = true; break;
+          }
+          if (!assigned) missingSideSamples++;
+        }
+      }
+    }
+  }
+  for (const vote of coastVotes) {
+    // Unresolved/conflicting regions are shown as land for diagnostic geometry only.
+    // The report holds them explicitly rather than accepting invented water.
+    hasLand[vote.id] = !(vote.water > 0 && vote.land === 0);
+  }
+  COAST_CLASSIFICATION_VOTES = { components: coastVotes, missingSideSamples, unresolvedLargeThresholdCells: 40 };`;
+  candidateSource = replaceOnce(candidateSource, anchorSeam, directedClassification);
+  candidateSource += '\nexport let COAST_CLASSIFICATION_VOTES = null;\n';
+  const candidatePath = join(app, 'scripts/geo/destination-detail/geometry-tools-coast-prototype.ts');
+  writeFileSync(candidatePath, candidateSource, { flag: 'wx' });
+  const candidateTools = await imported(candidatePath);
+  candidateTools.COAST_DIAGNOSTIC_INPUT.anchors = anchors;
+  candidateTools.COAST_DIAGNOSTIC_INPUT.samples = [...anchors.map(p => ({ ...p, role: 'land-anchor' })), ...sampleProbes];
+  report.candidate = { status: 'INCOMPLETE', sourceSHA256: hash(candidatePath), method: 'Directed OSM coastline: land left, water right; includes closed coastline barriers; nearest non-barrier side samples vote for connected components. Anchors never classify land.', unresolvedLargeThresholdCells: 40 };
+  save();
+  console.log('[DEBUG-dubai-coast] directed candidate shoreWater start');
+  const candidateStart = performance.now();
+  const candidateRaw = candidateTools.shoreWater(coast.map(e => e.geometry.map(p => [p.lon, p.lat])), anchors.map(p => [p.lon, p.lat]), outline, wide, CONFIG.sea.bandMetres, CONFIG.cell / CONFIG.split);
+  report.candidate.elapsedMs = performance.now() - candidateStart;
+  const votes = candidateTools.COAST_CLASSIFICATION_VOTES;
+  for (const component of votes.components) for (const evidence of component.evidence) evidence.sourceRef = `way/${coast[evidence.wayIndex].id}`;
+  const conflicts = votes.components.filter(v => v.land > 0 && v.water > 0);
+  const unresolved = votes.components.filter(v => !v.land && !v.water);
+  const unresolvedLarge = unresolved.filter(v => v.cells >= votes.unresolvedLargeThresholdCells);
+  Object.assign(report.candidate, { classification: votes, conflicts, unresolved, unresolvedLarge, floodContour: candidateTools.COAST_DIAGNOSTIC_STATE });
+  save();
+  const candidateSafe = {};
+  report.candidate.layers = {};
+  for (const [layer, tolerance] of [['band', CONFIG.waterTolerance], ['far', 0.0008]]) {
+    const rows = [];
+    candidateSafe[layer] = [];
+    for (let index = 0; index < candidateRaw[layer].length; index++) {
+      const polygon = candidateRaw[layer][index], kept = tools.safePolygons([polygon], tolerance, project);
+      candidateSafe[layer].push(...kept);
+      rows.push({ index, rawAreaSquareDegrees: area(polygon), retained: kept.length, retainedAreaSquareDegrees: kept.reduce((sum, p) => sum + area(p), 0), rawPolygonProblem: checks.polygonProblem(polygon), rawTriangulationProblem: checks.triangulationProblem(polygon, project) });
+    }
+    report.candidate.layers[layer] = { rawPolygons: candidateRaw[layer].length, keptPolygons: candidateSafe[layer].length, rawAreaSquareDegrees: candidateRaw[layer].reduce((sum, p) => sum + area(p), 0), keptAreaSquareDegrees: candidateSafe[layer].reduce((sum, p) => sum + area(p), 0), dropped: rows.filter(row => !row.retained), rows };
+    save();
+  }
+  report.candidate.anchors = anchors.map(p => {
+    const point = [p.lon, p.lat], sample = report.candidate.floodContour.anchors.find(a => a.ref === p.ref);
+    return { ...p, component: sample?.region, componentSourceWater: sample?.region >= 0 ? votes.components[sample.region].water > 0 && votes.components[sample.region].land === 0 : null, rawFar: hits(point, candidateRaw.far), safeFar: hits(point, candidateSafe.far), rawBand: hits(point, candidateRaw.band), safeBand: hits(point, candidateSafe.band) };
+  });
+  report.candidate.sourceWaterAnchorsToReject = report.candidate.anchors.filter(p => p.componentSourceWater || p.rawFar.length || p.safeFar.length);
+  report.candidate.probes = sampleProbes.map(p => ({ ...p, originalRawFar: hits([p.lon, p.lat], raw.far), originalSafeFar: hits([p.lon, p.lat], safe.far), candidateRawFar: hits([p.lon, p.lat], candidateRaw.far), candidateSafeFar: hits([p.lon, p.lat], candidateSafe.far) }));
+  report.candidate.status = conflicts.length || unresolvedLarge.length ? 'HOLD_SOURCE_CLASSIFICATION' : 'CANDIDATE_CLASSIFICATION_ONLY_NOT_ACCEPTANCE';
+  const features = [];
+  for (const [stage, polygons] of [['raw-far', candidateRaw.far], ['safe-far', candidateSafe.far], ['safe-band', candidateSafe.band]]) polygons.forEach((polygon, index) => features.push({ type: 'Feature', properties: { stage, index, acceptance: report.candidate.status }, geometry: { type: 'Polygon', coordinates: polygon } }));
+  writeFileSync(join(out, 'dubai-coast-candidate.geojson'), JSON.stringify({ type: 'FeatureCollection', features }) + '\n');
+  report.candidate.geometryArtifact = 'dubai-coast-candidate.geojson';
+  report.candidate.remaining = ['Any conflicting coast votes or unresolved large component holds classification.', 'Source-water anchors require future source-selection rejection, not forced land discs.', 'Island fidelity, triangulation drops, full runtime mapping and visual acceptance remain unproven.'];
   report.runtimeSource = { baseline: APP_SHA, map: 'src/game/cities/africa/map.ts:62 forwards reachWater', module: 'src/map3d/cities/module.ts:202 chooses local(reachWater ?? geometry.water)', executed: false };
   report.status = 'DIAGNOSTIC_COMPLETE_NOT_ACCEPTANCE';
   report.remaining = ['Shared flood-component evidence can identify connected land/ocean classification; source closure/connectivity still requires correspondence review.', 'Source coastline/island completeness needs source correspondence review.', 'Actual projected runtime pack and browser acceptance remain separate gates.'];

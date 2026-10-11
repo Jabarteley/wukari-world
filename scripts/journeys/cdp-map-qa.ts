@@ -104,7 +104,7 @@ export class Browser {
 
   async goto(url: string): Promise<void> {
     await this.send('Page.navigate', { url });
-    await this.waitFor(`document.readyState === 'complete'`, 60000, 'the page to finish loading');
+    await this.waitFor(`location.href === ${JSON.stringify(new URL(url).href)} && document.readyState === 'complete'`, 60000, 'the destination page to finish loading');
   }
 
   /** Polls a page expression until it is truthy. Fails with the stated reason. */

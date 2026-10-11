@@ -160,7 +160,8 @@ async function fly(b: Browser, city: string): Promise<void> {
   const level = t.level ?? 'africa', wanted = level === 'africa' ? 1 : 2;
   if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]')))) {
     await b.click('.map-levels-cur');
-    await b.click('[data-map-level="africa"]');
+    const initialLevel = await b.eval<boolean>(`!!document.querySelector('[data-map-level="${level}"]')`) ? level : 'africa';
+    await b.click(`[data-map-level="${initialLevel}"]`);
     await b.waitFor(shownNow('[data-atlas-levels]'), 30000, 'the Africa atlas');
   }
   const atlasLevel = await b.eval<string>(`document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase()`);
@@ -176,6 +177,8 @@ async function fly(b: Browser, city: string): Promise<void> {
   await b.locate(pick);
   await b.screenshot(join(out, `${city}-00-country-list.png`));
   await b.click(pick);
+  const cityChoice = `[data-atlas-inspect-city="${city}"]`;
+  if (await b.eval<boolean>(`!!document.querySelector(${JSON.stringify(cityChoice)})`)) await b.click(cityChoice);
   await b.waitFor(`document.querySelector('[data-atlas-go="${city}:air"]')`, 30000, 'flight line');
   await b.screenshot(join(out, `${city}-00-flight.png`));
   await b.click(`[data-atlas-go="${city}:air"]`);
@@ -187,7 +190,9 @@ async function fly(b: Browser, city: string): Promise<void> {
   }, 360000, `arrival in ${t.name}`);
   await until(async () => !(await lifeRaw(b, city)).state?.activeAction, 60000, 'the action to end');
   current = city;
-  await gameShown(b); await dismiss(b);
+  await gameShown(b);
+  await b.waitFor(`(() => { const nav = document.querySelector('[data-nav="map"]'); return !!nav && nav.getAttribute('aria-current') !== 'page'; })()`, 60000, 'the arrived city to leave the travel map');
+  await dismiss(b);
 }
 
 const timings: Record<string, unknown> = {};
@@ -380,13 +385,14 @@ try {
   await fund(id, 9000000);
   await until(async () => ((await lifeRaw(b!, 'lagos')).state?.cash ?? 0) >= 9000000, 30000, 'funded wallet');
   await dismiss(b, 1000);
-  await mapSet(b, 'lagos', '');
+  if (!cities.includes('lagos')) await mapSet(b, 'lagos', '');
   for (const city of cities) {
     if (city !== current) await fly(b, city);
     await mapSet(b, city, PLACE_TO_OPEN[city] ?? '');
     if (phoneCities.has(city)) {
       for (const [pw, ph] of phones) {
         await b.setViewport({ width: pw, height: ph, scale: 3, mobile: true });
+        await b.goto('about:blank');
         await b.send('Storage.clearDataForOrigin', { origin: base, storageTypes: 'local_storage,session_storage,indexeddb,cache_storage,service_workers' });
         await b.goto(base + '/');
         await gameShown(b); await dismiss(b, 12000);

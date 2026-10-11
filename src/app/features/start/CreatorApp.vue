@@ -259,6 +259,7 @@ function playNow(settle = false): void {
   track('named', { edited: quick.nameEdited, length: plan.name.length })
   track('quick_look_done', { shuffles: quick.shuffles, preset: quick.preset, edited: cr.history.length > 0 })
   track('play_tapped', { taps: qs.taps })
+  void import('../growth/attribution.ts').then((counting) => { counting.noteSource('play') })
   play.sending = true
   play.settling = settle
   cr.settling = settle

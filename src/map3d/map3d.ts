@@ -545,6 +545,13 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   const visitorHere = () => Boolean(state?.estate) && !state!.estate!.lga;
   function placeLabels() {
     if (!labelLayer) return;
+    // The compass shows while the view is turned or tipped; its needle points to north.
+    const north = controls.north;
+    if (north) {
+      const skewed = rig.skewed(), degrees = Math.round((rig.view.yaw * 180) / Math.PI);
+      if (north.hidden === skewed) { north.hidden = !skewed; readLabelExclusions(); labelsDirty = true; }
+      if (skewed && northDegrees !== degrees) { northDegrees = degrees; (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotate(${degrees}deg)`); }
+    }
     // Level of detail: a whole-state view names the local governments, and only the places that matter to the player (here, picked, on the way).
     const wholeView = rig.view.distance > wholeFrom, far = rig.view.distance > 230;
     if (root!.classList.contains('is-far') !== far) { root!.classList.toggle('is-far', far); labelsDirty = true; }
@@ -635,13 +642,6 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     // "Find me" lights up while the player's piece is out of sight, or (on a phone) the view has pulled well back from it.
     const away = !feet?.front || feet.x < insets.left || feet.x > size.width - insets.right || feet.y < insets.top || feet.y > size.height - insets.bottom + 40 || (size.width <= 720 && nearDistance > 0 && rig.view.distance > nearDistance * 1.7);
     if (root!.classList.contains('is-away') !== away) root!.classList.toggle('is-away', away);
-    // The compass shows while the view is turned or tipped; its needle points to north.
-    const north = controls.north;
-    if (north) {
-      const skewed = rig.skewed(), degrees = Math.round((rig.view.yaw * 180) / Math.PI);
-      if (north.hidden === skewed) { north.hidden = !skewed; readLabelExclusions(); labelsDirty = true; }
-      if (skewed && northDegrees !== degrees) { northDegrees = degrees; (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotate(${degrees}deg)`); }
-    }
     for (const { node, chip } of chips.values()) {
       const at = project(chip.x, chip.y, chip.z);
       const visible = at.front && at.x > -40 && at.x < size.width + 40 && at.y > 0 && at.y < size.height + 40 && !(far && (chip.kind === 'plot' || chip.kind === 'board-free'));

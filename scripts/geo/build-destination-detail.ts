@@ -21,7 +21,7 @@ import { loadPbfExtract } from './destination-detail/pbf-extract.ts';
 import { validateDestinationFacts } from '../../src/game/cities/africa/types.ts';
 import { toLocal } from '../../src/geo/frame.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
 import { waterLabelPoint } from './destination-detail/water-label.ts';
 
@@ -173,7 +173,7 @@ const labels = config.names.map((choice) => {
   return { id: choice.id, name, lon: round(lon, 5), lat: round(lat, 5), kind: choice.kind };
 });
 console.log(`labels ${labels.length}`);
-const lonLat = (polygons: P[][][]): string => JSON.stringify(polygons.map((polygon) => polygon.map(roundRing)));
+const lonLat = (polygons: P[][][], decimals = 5): string => JSON.stringify(polygons.map((polygon) => polygon.map((ring) => ring.map(([lon, lat]): P => [round(lon, decimals), round(lat, decimals)]))));
 
 writeFileSync(out('geometry.ts'), `/**
  * The play-area outline of ${config.name}: ${config.boundaryNote}. Land-use areas: ${useRings.length}, filled on a ${config.cell / config.split} degree grid
@@ -185,7 +185,7 @@ import type { DestinationGeometry } from '../africa/map.ts'
 
 export const GEOMETRY: DestinationGeometry = {
   land: ${lonLat(land)},
-  playArea: ${lonLat(play)},
+  playArea: ${lonLat(play, 6)},
   buildings: [], roads: [],
 }
 `);
@@ -239,8 +239,8 @@ writeFileSync(out('terrain.ts'), `/**
 import type { DestinationTerrain } from '../africa/map.ts'
 
 export const TERRAIN: DestinationTerrain = {
-  water: ${lonLat(water)},
-  reachWater: ${lonLat(reachWater)},
+  water: ${lonLat(water, 6)},
+  reachWater: ${lonLat(reachWater, 6)},
   roads: [
 ${rows.join('\n')}
   ],

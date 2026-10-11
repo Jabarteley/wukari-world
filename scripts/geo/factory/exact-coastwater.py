@@ -32,6 +32,7 @@ def main():
         parser.add_argument('--' + flag, required=True, type=Path)
     args = parser.parse_args()
     started = time.perf_counter()
+    args.report.parent.mkdir(parents=True, exist_ok=True)
     recipe_text = args.recipe.read_text()
     config = decoded(recipe_text, r'export const CONFIG\s*=\s*\{\s*\.\.\.\s*')
     report = {'schema': SCHEMA, 'algorithm': ALGORITHM, 'recipeSha256': sha(args.recipe.read_bytes())}

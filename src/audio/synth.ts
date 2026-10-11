@@ -51,7 +51,9 @@ export const MAX_VOICES = 16
 export const MIN_GAP = 0.035
 const FLOOR = 0.0001
 export const NOISE_RATE = 22050
-const NOISE_SECONDS = 2.5
+const NOISE_SECONDS = 5
+/** The end of a noise loop fades into its start over this long, so the loop point has no step (a step is a tick every few seconds). */
+const NOISE_JOIN = 0.3
 
 interface Voice { id: string; pri: number; end: number; stop: (now: number) => void }
 
@@ -105,14 +107,22 @@ export class Synth {
   }
 
   private makeNoise(kind: Colour, rate: number): AudioBuffer {
-    const buffer = this.ctx.createBuffer(1, Math.floor(rate * NOISE_SECONDS), rate)
-    const data = buffer.getChannelData(0)
+    const join = Math.floor(rate * NOISE_JOIN), length = Math.floor(rate * NOISE_SECONDS)
+    const buffer = this.ctx.createBuffer(1, length, rate)
+    const data = new Float32Array(length + join)
     let b0 = 0, b1 = 0, b2 = 0, last = 0
     for (let i = 0; i < data.length; i++) {
       const white = Math.random() * 2 - 1
       if (kind === 'white') data[i] = white * 0.6
       else if (kind === 'pink') { b0 = 0.99765 * b0 + white * 0.099046; b1 = 0.963 * b1 + white * 0.2965164; b2 = 0.57 * b2 + white * 1.0526913; data[i] = (b0 + b1 + b2 + white * 0.1848) * 0.2 }
       else { last = (last + 0.02 * white) / 1.02; data[i] = last * 3.2 }
+    }
+    // Seamless loop: the stream carries on past the end, and that tail fades out as the start fades in.
+    const out = buffer.getChannelData(0)
+    for (let i = 0; i < length; i++) {
+      if (i >= join) { out[i] = data[i] as number; continue }
+      const k = (i / join) * Math.PI / 2
+      out[i] = (data[length + i] as number) * Math.cos(k) + (data[i] as number) * Math.sin(k)
     }
     return buffer
   }

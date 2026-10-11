@@ -1,0 +1,329 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mbabane",
+  "countryIso2": "SZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Mbabane",
+    "coordinatesWgs84": [
+      31.144663,
+      -26.325745
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "airport": {
+    "id": "mbabane-airport",
+    "name": "King Mswati III International Airport",
+    "lon": 31.716944,
+    "lat": -26.358611,
+    "sourceUrl": "https://ourairports.com/airports/FDSK/"
+  },
+  "boxes": {
+    "play": [
+      -26.43,
+      31.02,
+      -26.22,
+      31.75
+    ],
+    "core": [
+      -26.360745,
+      31.099663,
+      -26.290745,
+      31.189663
+    ],
+    "outline": [
+      -26.48,
+      30.97,
+      -26.169999999999998,
+      31.8
+    ],
+    "wide": [
+      -27.03,
+      30.419999999999998,
+      -25.619999999999997,
+      32.35
+    ],
+    "water": [
+      -26.43,
+      31.02,
+      -26.22,
+      31.75
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/swaziland-261009.osm.pbf",
+    "datasetSha256": "e1498eda53a3085095e6c3135ff3f6d9fc56b9d6940e4bdc1ae69cbc0096c22c",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "074f61e9c6d18a3ea0d5af4f0fd1d5e0709d637198bd5e2ac999fc6004efb2bc",
+        "elements": 64
+      },
+      {
+        "file": "extras.json",
+        "sha256": "22e2ceb083163e0500ae8c80848df2b606fabf06459fcc11d95f80fa4c5e7b19",
+        "elements": 11
+      },
+      {
+        "file": "water.json",
+        "sha256": "dddc03f1326f2b1a15f257e06c68eccb173952b1d69e3eb720c394a1d5fe46a9",
+        "elements": 24
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "121fb8a4995e5017377ae009e4cabacc9566b79e03e9c3a62373d15a97d68fda",
+        "elements": 112
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5b86fab4e772f90b915a865d459efff7d1ee5a5626f57bda62acb4906f4ec9d1",
+        "elements": 223
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Mbabane Bus Rank",
+      "osm": "way/162185426",
+      "coordinatesWgs84": [
+        31.141853,
+        -26.325893
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Albert Millin",
+      "osm": "node/4226607691",
+      "coordinatesWgs84": [
+        31.143355,
+        -26.319532
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Univeristy of Eswatini (Mbabane Campus)",
+      "osm": "way/1357139626",
+      "coordinatesWgs84": [
+        31.144558,
+        -26.333524
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mbabane Government Hospital",
+      "osm": "way/393402376",
+      "coordinatesWgs84": [
+        31.143716,
+        -26.331497
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Coronation Park",
+      "osm": "way/162207260",
+      "coordinatesWgs84": [
+        31.141075,
+        -26.319487
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mbabane Market",
+      "osm": "node/5399579030",
+      "coordinatesWgs84": [
+        31.143576,
+        -26.326778
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Holy Resurrection church of Mbabane",
+      "osm": "way/425010324",
+      "coordinatesWgs84": [
+        31.14769,
+        -26.304439
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mbabane City Council",
+      "osm": "way/162142632",
+      "coordinatesWgs84": [
+        31.144778,
+        -26.326566
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Public Service Pension Fund",
+      "osm": "node/4551203291",
+      "coordinatesWgs84": [
+        31.141125,
+        -26.325426
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sifundzani Library",
+      "osm": "way/1010807491",
+      "coordinatesWgs84": [
+        31.13467,
+        -26.323223
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mbabane national library",
+      "osm": "relation/2170584",
+      "coordinatesWgs84": [
+        31.145252,
+        -26.325967
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mbabane Shopping Mall",
+      "osm": "way/162185813",
+      "coordinatesWgs84": [
+        31.140029,
+        -26.326405
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Swazi Plaza",
+      "osm": "way/480008855",
+      "coordinatesWgs84": [
+        31.141992,
+        -26.327748
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Corner Plaza Mall",
+      "osm": "way/420018969",
+      "coordinatesWgs84": [
+        31.17556,
+        -26.398164
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mvithiza Waterfall",
+      "osm": "node/1861477902",
+      "coordinatesWgs84": [
+        31.214049,
+        -26.262881
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sina Rock",
+      "osm": "node/1861487378",
+      "coordinatesWgs84": [
+        31.211244,
+        -26.258455
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gobholo Cave",
+      "osm": "node/1861576076",
+      "coordinatesWgs84": [
+        31.16932,
+        -26.357205
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ngubhela Cave",
+      "osm": "node/1861608333",
+      "coordinatesWgs84": [
+        31.175701,
+        -26.263803
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sibebe Cave",
+      "osm": "node/1861608362",
+      "coordinatesWgs84": [
+        31.174799,
+        -26.261834
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sibebe Rock",
+      "osm": "relation/9763850",
+      "coordinatesWgs84": [
+        31.168358,
+        -26.263605
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baylor Childrens Clinic Eswatini",
+      "osm": "way/784173087",
+      "coordinatesWgs84": [
+        31.131624,
+        -26.318777
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mbabane Clinic",
+      "osm": "way/784172577",
+      "coordinatesWgs84": [
+        31.134719,
+        -26.328366
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1352,
+      "sha256": "de96d94ae7cf8c6449bb38272eda0f38fd23417539fd3623113bad14918e138e"
+    },
+    "geometry.ts": {
+      "bytes": 22769,
+      "sha256": "a245292716b1a0d4fbbe6e659c09800f84b2aca5f3b473c0c7553faa47357a92"
+    },
+    "places.ts": {
+      "bytes": 8802,
+      "sha256": "27a62f16f6c4069cb232ecb4a1731656f8adafc1d3dd9b40c835ced243cb5de0"
+    },
+    "terrain.ts": {
+      "bytes": 8259,
+      "sha256": "c82162a9a9532aca6cdb3485e42d44bdf0ee529cae7d6a366b8772ce06cc5815"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "f66f421b27b0f715bb2bc21f4bce8f663867cc505024a4911313dbd119c45ea0"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Mbabane: a sketch of the mapped built-up extent from Eswatini PBF land use, mapped inland water, roads and named OpenStreetMap places. The play bounds retain the distant FDSK airport; its published OurAirports point is not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places."
+}

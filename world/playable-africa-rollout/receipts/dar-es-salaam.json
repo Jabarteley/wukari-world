@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dar-es-salaam",
+  "countryIso2": "TZ",
+  "generationIdentity": {
+    "cityId": "dar-es-salaam",
+    "stateId": "tz-dar-es-salaam",
+    "stateName": "Dar es Salaam"
+  },
+  "inventorySha256": "a2b338bc6fba4a898fb709f5403e372adee91963fc8345e0b113890e745c0789",
+  "inventoryPath": "world/playable-africa-rollout/sources/dar-es-salaam.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "dar-es-salaam-airport",
+    "name": "Julius Nyerere International Airport",
+    "lon": 39.207288,
+    "lat": -6.873499,
+    "sourceUrl": "https://www.taa.go.tz/services/jnia"
+  },
+  "bounds": [
+    -6.98,
+    39.12,
+    -6.7,
+    39.4
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/tanzania-261009.osm.pbf",
+      "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "9f6099b3b15db3e6b59316914d55b427efd650d802f80ffd32bdf94ba5efd7d3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "8ef94d66458a9ae829efefdd9dacd4cb7f43c3f1350c242605000bf0049486f7",
+          "elements": 1436
+        },
+        {
+          "file": "extras.json",
+          "sha256": "a2591ec225b56a19f3c7afb46a68b28ff1dbb186ef33eab8c5a4097dbba44cb8",
+          "elements": 937
+        },
+        {
+          "file": "water.json",
+          "sha256": "897d411e24eeb46a3e0fe5ff8d6f22544d77b91c5d6f3b79adcf031e71a7f5d5",
+          "elements": 223
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "8df444344c67173f085912a441e0aff43edc50eac0f0793457f0bdbb8dfd7499",
+          "elements": 752
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a18b5eaabe527f4f34f4942a97633e75f5d77ba8cf46bcfae80ffe5ba756b250",
+          "elements": 685
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 22,
+    "roads": 308,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 8,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 7
+  },
+  "observed": {
+    "places": 1436,
+    "extras": 937,
+    "water": 223,
+    "landuse": 752,
+    "roads": 685
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1510,
+      "sha256": "197956fe7cda69df2274fa9125419072efdd2fb84404d089861fe9624696e461"
+    },
+    "geometry.ts": {
+      "bytes": 32500,
+      "sha256": "5d08bb27df8f8ab07f4477ce6d9f871696e6b65674c7a726a9381a4c19dfb8d9"
+    },
+    "index.ts": {
+      "bytes": 265,
+      "sha256": "7b314bc24e6f0b98c7891b96bb2475e60f250d0fdadef8a00d883bf99dc4c239"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/dar-es-salaam.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

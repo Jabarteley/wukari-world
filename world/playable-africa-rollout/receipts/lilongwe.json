@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "lilongwe",
+  "countryIso2": "MW",
+  "generationIdentity": {
+    "cityId": "lilongwe",
+    "stateId": "mw-lilongwe",
+    "stateName": "Lilongwe"
+  },
+  "inventorySha256": "9f36de437c7bf25c386eca2b4b25899faa53498c0e754d565cde7ba3e4c4fa37",
+  "inventoryPath": "world/playable-africa-rollout/sources/lilongwe.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "kamuzu-international-airport",
+    "name": "Kamuzu International Airport",
+    "lon": 33.780998,
+    "lat": -13.7894,
+    "sourceUrl": "https://ourairports.com/airports/FWKI/"
+  },
+  "bounds": [
+    -14.09,
+    33.64,
+    -13.75,
+    33.89
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/malawi-261009.osm.pbf",
+      "datasetSha256": "15ef14762dea36511424af83c17c23a548dc20002cf47417f4b8eeccea78931d",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "3342b377a368ea89b7ae183092246fdf2ab1a40cdefe9974f2aa0eea94586554",
+          "elements": 157
+        },
+        {
+          "file": "extras.json",
+          "sha256": "c6f85a8e94be2440dc0ee2fa4b8cdb439bc2235ecc24364952d75059f1b79fda",
+          "elements": 45
+        },
+        {
+          "file": "water.json",
+          "sha256": "f5a27a6a8f2b86de29982055bc037b79578ce2fd48200b0d889c1c0e2e6112cd",
+          "elements": 49
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "bfee3344b918e2bcbeaf9a4cbc84c470ebf37c26ab341f0c779b561486103c08",
+          "elements": 396
+        },
+        {
+          "file": "roads.json",
+          "sha256": "306fb08b07a24eb34d76bdebedd812346721dffa4412cb3d326efcc78893f78f",
+          "elements": 133
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 23,
+    "roads": 81,
+    "neighbourhoodLabels": 3,
+    "landPolygons": 5,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 1
+  },
+  "observed": {
+    "places": 157,
+    "extras": 45,
+    "water": 49,
+    "landuse": 396,
+    "roads": 133
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1269,
+      "sha256": "8d08d3424973f7900d81be858151a59ac6d6223fab20f9e53d22f56053961dbe"
+    },
+    "geometry.ts": {
+      "bytes": 26161,
+      "sha256": "5ff64c9ca172dfd9d7eb59fb3bdf66749f1f504e33c67c9274fb7ad81b3a1ca4"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "60082382427789d193ea84aa3c01d8b6ff1c8a31683138ac67b4b76de2711cf6"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/lilongwe.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

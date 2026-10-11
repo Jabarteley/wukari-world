@@ -144,9 +144,10 @@
 /* A short phone: the extras give way. The HUD already has "Sign up", so the guest bar waits for a taller screen. */
 @media(max-width:480px) and (max-height:700px){
   body:has(.life-ui.is-expanded) .scene-stick,body:has(.life-ui.is-expanded) .scene-pad{visibility:hidden}
-  /* Short: the view buttons hang from the top (under the switch) and an open panel stops short of them. */
+  /* Short: the view buttons hang from the top (under the switch). The list retains room for place rows. */
   body .m3-controls,body .cmap-controls{bottom:auto;top:calc(max(6px,env(safe-area-inset-top)) + 46px + 46px)}
-  body .life-ui .map-overview,body .life-ui .map-card{max-height:min(45 * var(--ui-vh),calc(100 * var(--ui-vh) - 400px))}
+  body .life-ui .map-overview{max-height:calc(45 * var(--ui-vh))}
+  body .life-ui .map-card{max-height:min(45 * var(--ui-vh),calc(100 * var(--ui-vh) - 400px))}
   body .atlas-zoom{display:none}
   body .atlas-controls{display:flex;gap:6px}
   .life-ui .life-bottom .gbar,.life-ui .life-bottom .bonus-chip{display:none}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "libreville",
+  "countryIso2": "GA",
+  "generationIdentity": {
+    "cityId": "libreville",
+    "stateId": "ga-libreville",
+    "stateName": "Libreville"
+  },
+  "inventorySha256": "6889f75b8230f7ac7b9bdecb446d9854d366da4cebdfa1c9b0160de4ef1f4d10",
+  "inventoryPath": "world/playable-africa-rollout/sources/libreville.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "libreville-airport",
+    "name": "Libreville Leon M'ba International Airport",
+    "lon": 9.41214,
+    "lat": 0.458951,
+    "sourceUrl": "https://ourairports.com/airports/FOOL/"
+  },
+  "bounds": [
+    0.29,
+    9.34,
+    0.49,
+    9.58
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/gabon-261009.osm.pbf",
+      "datasetSha256": "afd0165c7d2698ecd670bfbdd6d462f1270c85a7f2253fe3ea01db48a63306f1",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "2d64b4973cf7c687beaa90a253dec178896d7ce3bca37d9341a5550e6e6a8893",
+          "elements": 382
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9cba2d4df0f56cdb34786b9d9861e42297110d1dbb02321e8eeeaeba9ab7ed55",
+          "elements": 110
+        },
+        {
+          "file": "water.json",
+          "sha256": "adfbd094815b1ad4caebdf22ba7d509008ea12cdaa43d10446ad2fbccaad4e42",
+          "elements": 175
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "70792216ac52904dc41277ab285db358d33e16b27bbad4220a5ae600167f15eb",
+          "elements": 167
+        },
+        {
+          "file": "roads.json",
+          "sha256": "d5c7093524e37a249307ba289ea6970af71629032a39e4049915c77693371e95",
+          "elements": 482
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 22,
+    "roads": 128,
+    "neighbourhoodLabels": 15,
+    "landPolygons": 3,
+    "waterPolygons": 31,
+    "reachWaterPolygons": 26
+  },
+  "observed": {
+    "places": 382,
+    "extras": 110,
+    "water": 175,
+    "landuse": 167,
+    "roads": 482
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1484,
+      "sha256": "0cef0ff68f026b66eb36bfc6780214ca864e77fbaebd7e76bb691f3f96d93769"
+    },
+    "geometry.ts": {
+      "bytes": 32458,
+      "sha256": "c0fa1ac0bcf2b1dd43ab18e6cf80e83a6f0d12cd0779660b5997a9cb0688fdc8"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "97ac8d8991e697597541980b5891e8b5da818ea0f97eb3d73b4f30b3817df050"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/libreville.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

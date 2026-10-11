@@ -173,7 +173,8 @@ test('the travel step names only cities that are open, three at most, and promis
       for (const name of closedNames) assert.ok(!said.includes(name), `${step.id} names ${name}, which is not open`)
       if (step.id !== 'travel') for (const name of openNames) assert.ok(!said.includes(name), `${step.id} names a city`)
     }
-    const named = openNames.filter((name) => wordsOf(travel, context(ALL, { world }), false).text.includes(name))
+    const destinations = wordsOf(travel, context(ALL, { world }), false).text.split('a city like ')[1]?.split(', then the bus')[0]?.split(/, | and /) ?? []
+    const named = openNames.filter((name) => destinations.includes(name))
     assert.ok(named.length === Math.min(3, world.cities.length) && !named.includes(own), `${id}: ${named.join(', ')}`)
   }
   assert.deepEqual(openWorld('test-nowhere'), { cities: openNames, country: 'Nigeria' })

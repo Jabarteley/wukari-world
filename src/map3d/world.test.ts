@@ -212,17 +212,23 @@ test('open and coming-soon cities share the live registry and canonical links', 
   for (const item of soon) { const city = cityCatalogueEntry(item.id); assert.ok(city, 'registered city'); assert.equal(city.open, false); }
   const kaduna = cityCatalogueEntry('kaduna');
   if (kaduna && !kaduna.open) { assert.equal(cityEntry('kaduna')?.preview?.length, 3); assert.ok(allCityLinks().some((link) => link.a === 'kaduna' || link.b === 'kaduna')); }
-  const foreign = [['cm', 'yaounde'], ['tg', 'lome'], ['gh', 'accra'], ['ke', 'nairobi'], ['dz', 'algiers'], ['bj', 'cotonou'], ['ci', 'abidjan'], ['sn', 'dakar'], ['za', 'cape-town'], ['et', 'addis-ababa'], ['eg', 'cairo'], ['ma', 'rabat'], ['rw', 'kigali'], ['ug', 'kampala'], ['zm', 'lusaka'], ['ao', 'luanda'], ['bw', 'gaborone'], ['mz', 'maputo'], ['na', 'windhoek'], ['zw', 'harare']] as const;
-  assert.deepEqual(countryList().map(country => country.id).sort(), ['nigeria', ...foreign.map(([iso]) => iso)].sort());
-  for (const [iso, capital] of foreign) {
-    assert.equal(cityCatalogueEntry(capital)?.countryISO, iso, `${capital}: catalogue country`);
-    assert.equal(cityEntry(capital)?.country, iso, `${capital}: map country`);
-    assert.deepEqual(citiesOf(iso).map(city => [city.id, city.status]), [[capital, 'playable']]);
-    assert.equal(Object.hasOwn(COUNTRIES.nigeria.cities, capital), false, `${capital}: not a Nigeria city`);
-    assert.equal(stateOfCity(capital), null, `${capital}: no Nigeria state level`);
+  const foreign = cityCatalogue().filter(city => city.countryISO && city.countryISO !== 'ng');
+  const foreignCountries = [...new Set(foreign.map(city => city.countryISO))];
+  assert.deepEqual(countryList().map(country => country.id).sort(), ['nigeria', ...foreignCountries].sort());
+  for (const city of foreign) {
+    const iso = city.countryISO;
+    assert.ok(iso);
+    assert.equal(cityEntry(city.id)?.country, iso, `${city.id}: map country`);
+    assert.equal(Object.hasOwn(COUNTRIES.nigeria.cities, city.id), false, `${city.id}: not a Nigeria city`);
+    assert.equal(stateOfCity(city.id), null, `${city.id}: no Nigeria state level`);
+  }
+  for (const iso of foreignCountries) {
+    assert.ok(iso);
+    const expected = foreign.filter(city => city.countryISO === iso);
+    assert.deepEqual(citiesOf(iso).map(city => [city.id, city.status]), expected.map(city => [city.id, city.open ? 'playable' : 'soon']));
     const country = regionEntry('country', iso);
     assert.equal(country.status, 'open', `${iso}: playable country`);
-    assert.equal(country.city, capital, `${iso}: country entry opens its capital`);
+    assert.ok(expected.some(city => city.id === country.city && city.open), `${iso}: country entry opens a playable city`);
   }
   assert.equal(stateOfCity('lagos'), 'lagos');
   assert.equal(regionEntry('country', 'ng').level, 'nigeria');

@@ -17,7 +17,7 @@ export interface CityCatalogueEntry {
   readonly preview?: readonly string[]
 }
 
-/** Compact generated form: open is implicit, and 1/0 keeps the one airport bit small. */
+/** Compact generated form: open is implicit, 1/0 encodes airport, and an empty state name repeats the city name. */
 export type CityCatalogueRow = readonly [id: string, name: string, stateId: string, stateName: string, lon: number, lat: number, airport: 0 | 1, countryISO?: string, countryName?: string]
 
 export type CityModuleLoader = () => Promise<CityModule>
@@ -33,7 +33,7 @@ const RESERVED_CITIES: readonly CityCatalogueEntry[] = Object.freeze([
 
 /** Generated open cities plus the small closed-city catalogue. Full rules, content and maps live behind loaders. */
 const GENERATED_CITY_CATALOGUE: readonly CityCatalogueEntry[] = Object.freeze(GENERATED_CITY_CATALOGUE_ROWS.map(([id, name, stateId, stateName, lon, lat, airport, countryISO, countryName]) => Object.freeze({
-  id, name, state: Object.freeze({ id: stateId, name: stateName }), lon, lat, open: true, airport: airport === 1,
+  id, name, state: Object.freeze({ id: stateId, name: stateName === '' ? name : stateName }), lon, lat, open: true, airport: airport === 1,
   ...(countryISO ? { countryISO, countryName } : {}),
 })))
 export const CITY_CATALOGUE: readonly CityCatalogueEntry[] = Object.freeze([

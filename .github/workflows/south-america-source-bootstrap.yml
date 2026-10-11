@@ -3,7 +3,7 @@ name: South America pinned country source batches
 on:
   push:
     branches: ['codex/world-south-america-20261011']
-    paths: ['scripts/geo/factory/south-america-br.json']
+    paths: ['scripts/geo/factory/south-america-br.json', '.github/workflows/south-america-source-bootstrap.yml']
 
 permissions:
   contents: read

@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bamako",
+  "countryIso2": "ML",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bamako",
+    "coordinatesWgs84": [
+      -8,
+      12.65
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "airport": {
+    "id": "bamako-airport",
+    "name": "Modibo Keita International Airport",
+    "lon": -7.94994,
+    "lat": 12.5335,
+    "sourceUrl": "https://ourairports.com/airports/GABS/"
+  },
+  "boxes": {
+    "play": [
+      12.5,
+      -8.1,
+      12.75,
+      -7.88
+    ],
+    "core": [
+      12.615,
+      -8.045,
+      12.685,
+      -7.955
+    ],
+    "outline": [
+      12.45,
+      -8.15,
+      12.8,
+      -7.83
+    ],
+    "wide": [
+      11.925,
+      -8.675,
+      13.325,
+      -7.305
+    ],
+    "water": [
+      12.5,
+      -8.1,
+      12.75,
+      -7.88
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/mali-261009.osm.pbf",
+    "datasetSha256": "b369d92094f544bc7dd9a3d74e49a02e5bd32dfcd6efb4c2d51a7ca2782dfd0b",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "8b12ede54e4b667d2279ff09418a71be0a96e71a1979a4f21e9e84820411c974",
+        "elements": 687
+      },
+      {
+        "file": "extras.json",
+        "sha256": "2c402dc329a365e95d362914e8edc52d98488ff35c3938c02948b1d3056f915c",
+        "elements": 2055
+      },
+      {
+        "file": "water.json",
+        "sha256": "0f1258c2f72186b5750503f3859411107a6b7bfc2d889de52cdff8ae212defe8",
+        "elements": 16
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "7c16331d46dbdd6745646da787989b364f16c03430729e5f36e946bed4aee1b3",
+        "elements": 1250
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5a5d29cc24075ac1ca908a51e45c7f1bcd2d1b12614f4e272f617cff3212ac45",
+        "elements": 792
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Bamako",
+      "osm": "way/90527879",
+      "coordinatesWgs84": [
+        -7.999028,
+        12.64836
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bafing Bistro",
+      "osm": "node/535753049",
+      "coordinatesWgs84": [
+        -7.997711,
+        12.636465
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "E.N.I ABT",
+      "osm": "way/90247724",
+      "coordinatesWgs84": [
+        -7.997714,
+        12.650873
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hopital Gabriel Toure",
+      "osm": "node/13208556785",
+      "coordinatesWgs84": [
+        -7.99643,
+        12.65117
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Zoo Bamako",
+      "osm": "way/149893031",
+      "coordinatesWgs84": [
+        -7.999945,
+        12.664667
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Marché",
+      "osm": "way/201954582",
+      "coordinatesWgs84": [
+        -7.99669,
+        12.64408
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grande Mosquée de Bamako",
+      "osm": "relation/1327992",
+      "coordinatesWgs84": [
+        -7.993177,
+        12.646886
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Malick Sidibé studio",
+      "osm": "node/5957425885",
+      "coordinatesWgs84": [
+        -7.986916,
+        12.648933
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôtel de Ville - Mairie du District de Bamako",
+      "osm": "node/534853521",
+      "coordinatesWgs84": [
+        -8.001479,
+        12.647272
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stade Mamadou Konaté",
+      "osm": "way/149401318",
+      "coordinatesWgs84": [
+        -8.015523,
+        12.6539
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maison Africaine de la Photographie",
+      "osm": "node/5873729388",
+      "coordinatesWgs84": [
+        -7.97002,
+        12.596361
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "MUSO KUNDA",
+      "osm": "way/96580889",
+      "coordinatesWgs84": [
+        -7.952771,
+        12.667779
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Médine",
+      "osm": "way/149287485",
+      "coordinatesWgs84": [
+        -7.986004,
+        12.660654
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Djelibougou",
+      "osm": "way/93314858",
+      "coordinatesWgs84": [
+        -7.940577,
+        12.672034
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Magnambougou",
+      "osm": "way/155146673",
+      "coordinatesWgs84": [
+        -7.958076,
+        12.619654
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché aux fruits",
+      "osm": "node/3816915394",
+      "coordinatesWgs84": [
+        -7.991486,
+        12.636049
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rectorat de l'Université des Sciences Techniques et des Technologies De Bamako",
+      "osm": "node/3468137909",
+      "coordinatesWgs84": [
+        -8.033901,
+        12.635959
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Faculté de Médécine et d'Odontostomatologie (FMOS)",
+      "osm": "node/4644997421",
+      "coordinatesWgs84": [
+        -7.995434,
+        12.670886
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Prehistoric Petroglyphs",
+      "osm": "node/10860981209",
+      "coordinatesWgs84": [
+        -7.99142,
+        12.661647
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Park Happy Hour",
+      "osm": "node/6329592054",
+      "coordinatesWgs84": [
+        -7.915279,
+        12.63686
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1362,
+      "sha256": "a69bd1373cfd01e2a1ba79e7b14da54f50ec684a05802554e72aeeec21224416"
+    },
+    "geometry.ts": {
+      "bytes": 61328,
+      "sha256": "af680513d94404c017579bc5f9180667517d535d8cd777d4e998d4a8afb75b3d"
+    },
+    "places.ts": {
+      "bytes": 8091,
+      "sha256": "ec124787b11addf0c7cebcd8fd1919fb5d6c07c3aacac3cc9fc836debcedf09b"
+    },
+    "terrain.ts": {
+      "bytes": 55202,
+      "sha256": "2336a9535bf21c985f1b7944145518175aba26e5a4f108e2eff1753a87b184db"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "20ea458c45b34c4c56742e11039066a82091272e2c2e5b62ff4df7b96c2e97ba"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Bamako: a sketch of the built-up extent traced from mapped land use, explicitly mapped Niger River water and other water areas, main roads and named places in OpenStreetMap. Modibo Keita International Airport is the published OurAirports point, not an official reference point or evidence of current schedules. Visitor services and homes are fictional game content set at the real named places."
+}

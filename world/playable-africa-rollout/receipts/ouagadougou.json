@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ouagadougou",
+  "countryIso2": "BF",
+  "generationIdentity": {
+    "cityId": "ouagadougou",
+    "stateId": "bf-ouagadougou",
+    "stateName": "Ouagadougou"
+  },
+  "inventorySha256": "56fa2dd1f5b7f7208ba6eb2cc4c821b2cb604c10da9e4ca5d046b4d2e0f24daf",
+  "inventoryPath": "world/playable-africa-rollout/sources/ouagadougou.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "ouagadougou-airport",
+    "name": "Ouagadougou Thomas Sankara International Airport",
+    "lon": -1.51242,
+    "lat": 12.3532,
+    "sourceUrl": "https://ourairports.com/airports/DFFD/"
+  },
+  "bounds": [
+    12.27,
+    -1.64,
+    12.47,
+    -1.41
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/burkina-faso-261009.osm.pbf",
+      "datasetSha256": "9a69dffbde52ecd7e60031f9606b5a2f4b2b3a6f236300447abd390315912b9d",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "b297c8ad7a4432c87e8acc244a08423a141769b881481b2ef4667572b4fab36a",
+          "elements": 520
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9aa69500c7dbd58b7d73ca83a2d75b7c343d1969698d9978654099ffdacfd47e",
+          "elements": 290
+        },
+        {
+          "file": "water.json",
+          "sha256": "02658e17977693ee16bd81bc795e9746a65531f774ba11579ba5991cf0ee8384",
+          "elements": 19
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d683d2328bddb0b14ee4e9d19ef5553ab597d3c29e3db140c1b2f21f5e622b7a",
+          "elements": 9461
+        },
+        {
+          "file": "roads.json",
+          "sha256": "7ee74c75ba192486801766cc54883bdce640047dbaad86ae74a916ff246292a6",
+          "elements": 708
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 26,
+    "roads": 405,
+    "neighbourhoodLabels": 12,
+    "landPolygons": 5,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 6
+  },
+  "observed": {
+    "places": 520,
+    "extras": 290,
+    "water": 19,
+    "landuse": 9461,
+    "roads": 708
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1416,
+      "sha256": "27f52e5010315b06168c98e88fc0730e4a156e515e9cfb981143cba61796ea8f"
+    },
+    "geometry.ts": {
+      "bytes": 47032,
+      "sha256": "e144f9822366516a1e18e2a884c49227179c3db929d7c3268fefeae88d569495"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "216616fb50b33e17ec85818ca5f72fe7ba880097a270c2934590bb1d607417dc"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/ouagadougou.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

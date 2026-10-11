@@ -116,8 +116,6 @@ export async function createModulePack(module: CityModule, scene: ModuleScene['l
     const points = part[0]
     return points ? [{ id: `${id}-${i}`, kind: 'mainland' as const, exact: true, points, holes: part.slice(1) }] : []
   }))
-  // A city drawn city-wide is framed on its built-up land and not on the water the play area holds round it (Kampala's lake), so the default view shows the city.
-  const fit = extent(local(surround ? Object.values(geometry.localUnits).flat() : geometry.playArea).flatMap(part => part[0] ?? []))
   const lgas: PackLga[] = module.rules.units.map(unit => {
     const parts = shapes[unit.id]
     if (!parts?.length) throw new TypeError(`Missing geometry for ${unit.id}`)
@@ -140,6 +138,8 @@ export async function createModulePack(module: CityModule, scene: ModuleScene['l
     const [x, z] = toLocal(origin, venue.position.lon + (shift ? shift.east / (111320 * Math.cos(lat * Math.PI / 180)) : 0), lat + (shift ? shift.north / 110574 : 0))
     return [venue.id, { x, z }]
   }))
+  // Whole-city framing includes every mapped venue, including airports beyond the built-up land.
+  const fit = extent([...local(surround ? Object.values(geometry.localUnits).flat() : geometry.playArea).flatMap(part => part[0] ?? []), ...Object.values(sites).map(({ x, z }): Point2 => [x, z])])
   const homes = Object.fromEntries(content.housing.map(home => {
     const district = module.rules.districts.find(item => item.id === home.districtId)
     const unit = lgas.find(item => item.id === district?.localUnitId)

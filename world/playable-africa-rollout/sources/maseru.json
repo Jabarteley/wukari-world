@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "cityId": "maseru",
+  "countryIso2": "LS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Maseru",
+    "coordinatesWgs84": [
+      27.478222,
+      -29.310054
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "airport": {
+    "id": "maseru-airport",
+    "name": "Moshoeshoe I International Airport",
+    "lon": 27.554456,
+    "lat": -29.456277,
+    "sourceUrl": "https://ourairports.com/airports/FXMM/"
+  },
+  "boxes": {
+    "play": [
+      -29.49,
+      27.35,
+      -29.21,
+      27.6
+    ],
+    "core": [
+      -29.345054,
+      27.433222,
+      -29.275054,
+      27.523222
+    ],
+    "outline": [
+      -29.54,
+      27.3,
+      -29.16,
+      27.650000000000002
+    ],
+    "wide": [
+      -30.09,
+      26.75,
+      -28.61,
+      28.200000000000003
+    ],
+    "water": [
+      -29.49,
+      27.35,
+      -29.21,
+      27.6
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/lesotho-261009.osm.pbf",
+    "datasetSha256": "5b4a5201106d5838170a974f28258c10ea4c9c3a77af752db879573532f57eeb",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "9f80bac3a8a98a9c5c6acf1dbbde26d3daf39d8b35ce1618750dd2376079afd3",
+        "elements": 270
+      },
+      {
+        "file": "extras.json",
+        "sha256": "68952c86cb8fac650a3ba1ff9aaceccadb1d9593341499fd2fce1a97929b4ec9",
+        "elements": 89
+      },
+      {
+        "file": "water.json",
+        "sha256": "aba4fc0180ef14ee5c62350b8d1971bfebf44feb51ca96f459d5e1bb88d7bba0",
+        "elements": 180
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "096d91c1cc9aa302c3210e199a69e0b91eb755f93389d6c482a45465f1ecd905",
+        "elements": 1118
+      },
+      {
+        "file": "roads.json",
+        "sha256": "f15d575e9518860a5870df760f365327ee698f8ab0932d4d53af733a7164860c",
+        "elements": 300
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Maseru",
+      "osm": "node/632978617",
+      "coordinatesWgs84": [
+        27.470448,
+        -29.297779
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mochachos",
+      "osm": "node/4686199735",
+      "coordinatesWgs84": [
+        27.495307,
+        -29.315969
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Limkokwing University of Creative Technology",
+      "osm": "way/396138717",
+      "coordinatesWgs84": [
+        27.486784,
+        -29.308729
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maseru District Hospital",
+      "osm": "way/147255489",
+      "coordinatesWgs84": [
+        27.486954,
+        -29.315893
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Makoanyane Square",
+      "osm": "way/147255491",
+      "coordinatesWgs84": [
+        27.483065,
+        -29.313776
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maseru Market",
+      "osm": "way/365872973",
+      "coordinatesWgs84": [
+        27.496078,
+        -29.314801
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Our Lady of Victories Cathedral",
+      "osm": "way/295032311",
+      "coordinatesWgs84": [
+        27.494931,
+        -29.317002
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sefika sa Moshoeshoe Park",
+      "osm": "way/294344850",
+      "coordinatesWgs84": [
+        27.481679,
+        -29.315761
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maseru Magistrate Court",
+      "osm": "way/365891463",
+      "coordinatesWgs84": [
+        27.485648,
+        -29.317818
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lesotho State Library",
+      "osm": "node/1312145608",
+      "coordinatesWgs84": [
+        27.485062,
+        -29.314702
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "UNESCO Library",
+      "osm": "node/4357094892",
+      "coordinatesWgs84": [
+        27.483736,
+        -29.313879
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sefika Shopping Centre",
+      "osm": "way/115836469",
+      "coordinatesWgs84": [
+        27.493568,
+        -29.313947
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maseru Mall",
+      "osm": "way/329492444",
+      "coordinatesWgs84": [
+        27.483682,
+        -29.33586
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Setsoto Stadium",
+      "osm": "way/287674169",
+      "coordinatesWgs84": [
+        27.501366,
+        -29.311044
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palace of Justice",
+      "osm": "way/365892888",
+      "coordinatesWgs84": [
+        27.485897,
+        -29.320314
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "High Court",
+      "osm": "way/321057537",
+      "coordinatesWgs84": [
+        27.48601,
+        -29.320788
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lancer's Gap",
+      "osm": "node/1393990758",
+      "coordinatesWgs84": [
+        27.544778,
+        -29.315214
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Likatola Horse Riding and Adventure",
+      "osm": "node/4874011422",
+      "coordinatesWgs84": [
+        27.463776,
+        -29.404082
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Queen Mamohato Memorial Hospital (QMMH)",
+      "osm": "way/314630477",
+      "coordinatesWgs84": [
+        27.5288,
+        -29.343098
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Botho University",
+      "osm": "node/12144442343",
+      "coordinatesWgs84": [
+        27.481796,
+        -29.335969
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maseru Central Park",
+      "osm": "way/147255688",
+      "coordinatesWgs84": [
+        27.489846,
+        -29.313849
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1425,
+      "sha256": "51065db4787f8155d1a3bafe479911eca68598d1107639522178938debb7fc04"
+    },
+    "geometry.ts": {
+      "bytes": 65042,
+      "sha256": "12509fb66134d99927044800d4f4596aaa83b466eace699d3d7fecd4bfa4e4cb"
+    },
+    "places.ts": {
+      "bytes": 8432,
+      "sha256": "f5b934effc9d5af5e7784128e53b9d3bd3d88e361e14d7ae8e73ea02a0803abb"
+    },
+    "terrain.ts": {
+      "bytes": 26175,
+      "sha256": "e5097760570c2bd9070d296463fb5d7e3bd5f46717be6707a0f3033ac43f89eb"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "546d7ffcd9481e70034aed4a92433a1feeaf1d0f1817db78631cc8e26805d346"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Maseru from the mapped built-up land around the city centre and its surrounding neighbourhoods: a sketch of the built-up extent traced from mapped land use, mapped inland water, main roads and named places from OpenStreetMap. The airport point is a published OurAirports dataset point, not an official aviation reference point or evidence of current schedules. Visitor services and homes are fictional game content set at the real named places."
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "brazzaville",
+  "countryIso2": "CG",
+  "generationIdentity": {
+    "cityId": "brazzaville",
+    "stateId": "cg-starter",
+    "stateName": "Brazzaville"
+  },
+  "inventorySha256": "d9803899c47b41aaed585ff4c64ce7db3bcbbae373a1f276100a8d66d407023e",
+  "inventoryPath": "world/playable-africa-rollout/sources/brazzaville.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "brazzaville-airport",
+    "name": "Maya-Maya International Airport",
+    "lon": 15.253,
+    "lat": -4.2517,
+    "sourceUrl": "https://ourairports.com/airports/FCBB/"
+  },
+  "bounds": [
+    -4.36,
+    15.16,
+    -4.16,
+    15.4
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/congo-brazzaville-261009.osm.pbf",
+      "datasetSha256": "90ac645057fbbda85ae179fbca057b4e994c07db5dbd4265684b957cc64c58ed",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5f273c4ad6310c69087d242e57df1edefbc1243e5b1d1c2f9538ce22a0279fba",
+          "elements": 177
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f1865934f32e5b8446290f562333d5b02a176fef800638c6ad6bb649cdb90e97",
+          "elements": 95
+        },
+        {
+          "file": "water.json",
+          "sha256": "9891383bc8ef2d3913566ce0962ebcd8e5e057bd0f07a07cc5932007efe00ce3",
+          "elements": 35
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "10736f9036105c6edfea5f0c7a511c10e20e9c332eebad87c21ff6606537962f",
+          "elements": 209
+        },
+        {
+          "file": "roads.json",
+          "sha256": "ba0e10cfd2d44d968cca361672f61b85c3cd7eab8f5d752970e7308354e11a08",
+          "elements": 296
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 26,
+    "roads": 82,
+    "neighbourhoodLabels": 17,
+    "landPolygons": 5,
+    "waterPolygons": 23,
+    "reachWaterPolygons": 4
+  },
+  "observed": {
+    "places": 177,
+    "extras": 95,
+    "water": 35,
+    "landuse": 209,
+    "roads": 296
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1434,
+      "sha256": "2486a5a541e64e88db2be7b1f1193bfd9353a74e69fbdccdda154c70178a72bd"
+    },
+    "geometry.ts": {
+      "bytes": 59430,
+      "sha256": "ef97f141b5c3b6703bcda2af79b2196fd1f8ba96859d618503be8abd7ae4532a"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "f476aa2aaf92bdc3acf6210ef3671650f5c9203602533981178be87d3bdd3afb"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/brazzaville.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

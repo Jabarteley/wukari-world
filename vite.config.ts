@@ -122,8 +122,8 @@ function lazyCityLoaders(): Plugin {
     enforce: 'pre',
     async transform(code, id) {
       if (!/\/src\/game\/cities\/loaders\.generated\.ts$/.test(id)) return null;
-      const declarations = [...code.matchAll(/async\(\)=>\(await import\(("[^"]+")\)\)\.([A-Za-z_$][\w$]*),/g)];
-      const declaredCount = [...code.matchAll(/async\(\)=>/g)].length;
+      const declarations = [...code.matchAll(/\(\)=>import\(("[^"]+")\)\.then\(m=>m\.([A-Za-z_$][\w$]*)\),/g)];
+      const declaredCount = [...code.matchAll(/\(\)=>import\(/g)].length;
       if (!declarations.length || declarations.length !== declaredCount) throw new Error(`Expected ${declaredCount} generated city loaders, parsed ${declarations.length}`);
       const stringLiteral = (literal: string | undefined, label: string): string => { const value: unknown = JSON.parse(literal ?? 'null'); if (typeof value !== 'string') throw new Error(`${label} is not a string`); return value; };
       const catalogueIds = [...readFileSync(id.replace(/loaders\.generated\.ts$/, 'catalogue.generated.ts'), 'utf8').matchAll(/^  \["([^"]+)"/gm)].flatMap((match) => typeof match[1] === 'string' ? [match[1]] : []);

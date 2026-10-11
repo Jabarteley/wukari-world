@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "maseru",
+  "countryIso2": "LS",
+  "generationIdentity": {
+    "cityId": "maseru",
+    "stateId": "ls-maseru",
+    "stateName": "Maseru"
+  },
+  "inventorySha256": "3b2996ef209a5603d03f523000d15bd3dc1339cef35da484989a442c3e33ceea",
+  "inventoryPath": "world/playable-africa-rollout/sources/maseru.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "maseru-airport",
+    "name": "Moshoeshoe I International Airport",
+    "lon": 27.554456,
+    "lat": -29.456277,
+    "sourceUrl": "https://ourairports.com/airports/FXMM/"
+  },
+  "bounds": [
+    -29.49,
+    27.35,
+    -29.21,
+    27.6
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/lesotho-261009.osm.pbf",
+      "datasetSha256": "5b4a5201106d5838170a974f28258c10ea4c9c3a77af752db879573532f57eeb",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "9f80bac3a8a98a9c5c6acf1dbbde26d3daf39d8b35ce1618750dd2376079afd3",
+          "elements": 270
+        },
+        {
+          "file": "extras.json",
+          "sha256": "68952c86cb8fac650a3ba1ff9aaceccadb1d9593341499fd2fce1a97929b4ec9",
+          "elements": 89
+        },
+        {
+          "file": "water.json",
+          "sha256": "aba4fc0180ef14ee5c62350b8d1971bfebf44feb51ca96f459d5e1bb88d7bba0",
+          "elements": 180
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "096d91c1cc9aa302c3210e199a69e0b91eb755f93389d6c482a45465f1ecd905",
+          "elements": 1118
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f15d575e9518860a5870df760f365327ee698f8ab0932d4d53af733a7164860c",
+          "elements": 300
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 21,
+    "roads": 89,
+    "neighbourhoodLabels": 12,
+    "landPolygons": 19,
+    "waterPolygons": 46,
+    "reachWaterPolygons": 6
+  },
+  "observed": {
+    "places": 270,
+    "extras": 89,
+    "water": 180,
+    "landuse": 1118,
+    "roads": 300
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1425,
+      "sha256": "51065db4787f8155d1a3bafe479911eca68598d1107639522178938debb7fc04"
+    },
+    "geometry.ts": {
+      "bytes": 65042,
+      "sha256": "12509fb66134d99927044800d4f4596aaa83b466eace699d3d7fecd4bfa4e4cb"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "546d7ffcd9481e70034aed4a92433a1feeaf1d0f1817db78631cc8e26805d346"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/maseru.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

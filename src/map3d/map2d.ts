@@ -158,7 +158,7 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
   const { box } = model, fit = pack.bounds.fit || { minX: box.x, maxX: box.x + box.width, minZ: box.z, maxZ: box.z + box.height };
   let state: Map2DState | null = null, layer: 'city' | 'world' = 'city', filter = 'all', selected: string | null = null, friends = new Set<string>(), destroyed = false;
   let layers: MapLayers = { billboards: false, sea: false, neighbours: false, gov: false, moving: false, lgas: true, homes: true }, data: { ads: AdsData | null, gov: GovData | null } = { ads: null, gov: null };
-  let scale = 0, ox = 0, oy = 0, opened = false, userMoved = false, size = { width: 0, height: 0 }, insets = { left: 8, top: 60, right: 8, bottom: 80 }, labelKey = '', chipKey = '', labelsDirty = true, drawn: { lga: string, estate: number }[] = [], controlBox: ScreenBox | null = null;
+  let scale = 0, ox = 0, oy = 0, opened = false, userMoved = false, size = { width: 0, height: 0 }, insets = { left: 8, top: 60, right: 8, bottom: 80 }, labelKey = '', chipKey = '', labelsDirty = true, drawn: { lga: string, estate: number }[] = [], labelExclusions: ScreenBox[] = [];
   let homeAt: Spot | null = null;
 
   const root = document.createElement('div');
@@ -343,7 +343,14 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
     container.style?.setProperty('--map-dock', `${Math.round(bottom)}px`);
     container.style?.setProperty('--map-left', `${Math.round(left)}px`);
     root.style.setProperty('--m3-dock', `${Math.round(bottom)}px`); root.style.setProperty('--m3-left', `${Math.round(left)}px`); root.style.setProperty('--m3-top', `${Math.round(top)}px`);
-    const controls = controlNode.getBoundingClientRect(); controlBox = { l: controls.left - page.left - 5, r: controls.right - page.left + 5, t: controls.top - page.top - 5, b: controls.bottom - page.top + 5 }; labelsDirty = true;
+    labelExclusions = [];
+    for (const node of [controlNode, document.querySelector<HTMLElement>('.map-levels-cur'), container.querySelector<HTMLElement>('.map-credit')]) {
+      if (!node) continue;
+      const exclusion = node.getBoundingClientRect();
+      if (!exclusion?.width || !exclusion.height || node.hidden || document.defaultView?.getComputedStyle?.(node).visibility === 'hidden') continue;
+      labelExclusions.push({ l: exclusion.left - page.left - 5, r: exclusion.right - page.left + 5, t: exclusion.top - page.top - 5, b: exclusion.bottom - page.top + 5 });
+    }
+    labelsDirty = true;
     return page.width > 0 && page.height > 0 && !container.hidden;
   }
   const free = () => ({ width: Math.max(80, size.width - insets.left - insets.right), height: Math.max(80, size.height - insets.top - insets.bottom) });
@@ -388,7 +395,7 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
     measureLabels();
     const entries = [...labels.values()].map((label) => { const spot = spotOf(label.place.id)!; const at = project(spot.x, spot.z - (label.place.id === 'home' && homeAt!.own ? 0 : 2.2)); return { label, at, visible: at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && model.extent === 'state' && label.priority < 70) }; });
     entries.sort((p, q) => q.label.priority - p.label.priority || q.at.y - p.at.y);
-    const taken: ScreenBox[] = controlBox ? [controlBox] : [], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 }, hits = (rect: ScreenBox) => taken.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t);
+    const taken: ScreenBox[] = [...labelExclusions], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 }, hits = (rect: ScreenBox) => taken.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t);
     const allowed = venueNamesAt(densityFor(size.width), scale / fitScale());
     let named = 0;
     for (const { label, at, visible } of entries) {

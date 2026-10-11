@@ -13,8 +13,10 @@
 import { computed, onBeforeUnmount, ref, shallowRef, watch } from 'vue'
 import type { Component, ShallowRef } from 'vue'
 import '../../../ui/controls.css' // the fields, selects and buttons every sheet's panel uses (a panel that does not import it itself would be unstyled until one that does has loaded)
+import { play } from '../../../quick-start/entry.ts'
 import { useApp } from '../../state/app.ts'
 import BaseSheet from '../../ui/BaseSheet.vue'
+import { useSheetScope } from './phoneModel.ts'
 
 const { game, shell } = useApp()
 const sheet = shell.sheet
@@ -26,7 +28,8 @@ const renderer: ShallowRef<Component | null> = shallowRef(null)
 const failed = ref(false)
 let loading: Promise<void> | null = null
 let gone = false
-const scope = computed(() => JSON.stringify([game.session.value?.id ?? null, game.cityId.value]))
+// The body is rebuilt when the identity or the city under it really changes (not when the first session or city of a new life arrives, see scopeSwitched).
+const scope = useSheetScope(computed(() => game.session.value?.id ?? null), game.cityId, () => play.sending || play.settling)
 function loadBody(): void {
   if (renderer.value || loading || !sheet.value) return
   failed.value = false

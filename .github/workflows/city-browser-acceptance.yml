@@ -26,7 +26,7 @@ jobs:
       matrix:
         include:
           - id: batch3
-            app: 4fa9255599e4b9ff357bcfa9985f9ba64fba2bdb
+            app: 435dfe81505f2fa7ae9682ba576c6fae35a928c5
             cities: dar-es-salaam,brazzaville,tunis,libreville,mbabane
             extra: --phone-ui-audit
     env:

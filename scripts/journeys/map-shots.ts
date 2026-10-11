@@ -382,7 +382,7 @@ try {
   await dismiss(b, 1000);
   await mapSet(b, 'lagos', '');
   for (const city of cities) {
-    await fly(b, city);
+    if (city !== current) await fly(b, city);
     await mapSet(b, city, PLACE_TO_OPEN[city] ?? '');
     if (phoneCities.has(city)) {
       for (const [pw, ph] of phones) {

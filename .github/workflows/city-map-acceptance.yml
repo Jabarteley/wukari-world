@@ -2,7 +2,12 @@ name: Five city release acceptance
 
 on:
   push:
-    branches: ['codex/astra-cities-qa-20261011']
+    branches: ['codex/astra-factory-qa-20261011']
+    paths:
+      - '.github/workflows/city-map-acceptance.yml'
+      - 'scripts/journeys/map-shots.ts'
+      - 'scripts/journeys/cdp-map-qa.ts'
+      - 'scripts/journeys/serve-maps.ts'
 
 permissions:
   contents: read
@@ -12,7 +17,8 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  APP_SHA: 1a50116072efdfbf31c8721fd3941b4afdbcb391
+  APP_SHA: bb9bf575df8cdb6159732c1cec0d76261c912ade
+  CITY_SET: tripoli,bamako,ouagadougou,maseru,lilongwe
 
 jobs:
   gates:
@@ -91,8 +97,7 @@ jobs:
           export CHROME_BIN="$(command -v google-chrome)"
           node --experimental-strip-types scripts/journeys/map-shots.ts \
             --out "$RUNNER_TEMP/five-city-browser" --port 4423 --debug-port 4424 \
-            --cities windhoek,maputo,gaborone,luanda,harare \
-            --phone-cities windhoek,maputo,gaborone,luanda,harare \
+            --cities "$CITY_SET" --phone-cities "$CITY_SET" \
             --phones 390x844,320x568 --short lagos --lean --clock-hour 12 --label-audit \
             2>&1 | tee "$RUNNER_TEMP/five-city-browser/browser.log"
           node --input-type=module -e 'import { readFileSync } from "node:fs"; const report=JSON.parse(readFileSync(process.env.RUNNER_TEMP+"/five-city-browser/timings.json","utf8")); if(report.aborted || report.consoleErrors?.length) throw Error(JSON.stringify({aborted:report.aborted,errors:report.consoleErrors}));'

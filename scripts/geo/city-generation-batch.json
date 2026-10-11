@@ -1,20 +1,35 @@
 {
   "schemaVersion": 1,
-  "appSha": "c76f13ede8d2fd534703e6cca89f0b8a94be0790",
+  "appSha": "27b3542b5939ede4d77e0d401c1dc4a71765830b",
   "cities": [
     {
-      "city": "dar-es-salaam",
-      "sourceRunId": 38151098671,
-      "sourceArtifact": "offline-city-layers-tanzania-b1183ba208334bb8535669e823244ea737b3014a",
-      "sourceSha": "b1183ba208334bb8535669e823244ea737b3014a",
-      "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
-      "adapterSha256": "9f6099b3b15db3e6b59316914d55b427efd650d802f80ffd32bdf94ba5efd7d3",
+      "city": "brazzaville",
+      "sourceRunId": 38151719739,
+      "sourceArtifact": "offline-city-layers-congo-brazzaville-d888f91e86268d442093b8ab22a03193220b108f",
+      "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
+      "datasetSha256": "90ac645057fbbda85ae179fbca057b4e994c07db5dbd4265684b957cc64c58ed",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
       "extractSha256": {
-        "places": "8ef94d66458a9ae829efefdd9dacd4cb7f43c3f1350c242605000bf0049486f7",
-        "extras": "a2591ec225b56a19f3c7afb46a68b28ff1dbb186ef33eab8c5a4097dbba44cb8",
-        "water": "897d411e24eeb46a3e0fe5ff8d6f22544d77b91c5d6f3b79adcf031e71a7f5d5",
-        "landuse": "8df444344c67173f085912a441e0aff43edc50eac0f0793457f0bdbb8dfd7499",
-        "roads": "a18b5eaabe527f4f34f4942a97633e75f5d77ba8cf46bcfae80ffe5ba756b250"
+        "places": "5f273c4ad6310c69087d242e57df1edefbc1243e5b1d1c2f9538ce22a0279fba",
+        "extras": "f1865934f32e5b8446290f562333d5b02a176fef800638c6ad6bb649cdb90e97",
+        "water": "9891383bc8ef2d3913566ce0962ebcd8e5e057bd0f07a07cc5932007efe00ce3",
+        "landuse": "10736f9036105c6edfea5f0c7a511c10e20e9c332eebad87c21ff6606537962f",
+        "roads": "ba0e10cfd2d44d968cca361672f61b85c3cd7eab8f5d752970e7308354e11a08"
+      }
+    },
+    {
+      "city": "kinshasa",
+      "sourceRunId": 38153961179,
+      "sourceArtifact": "offline-city-layers-congo-democratic-republic-8308f1f824bfd687590b6cc4dd1c7d3524e45468",
+      "sourceSha": "8308f1f824bfd687590b6cc4dd1c7d3524e45468",
+      "datasetSha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extractSha256": {
+        "places": "40d434ef2c69d84e471f4ed5254d2c281114fbb7bcf710bab107201bc72b4495",
+        "extras": "c5b52a67b30896ce04c8da2bab0bdfff0ca808ee1b9e396935dc562fb9907964",
+        "water": "41898a88c23d40a4d7b69b38bfa679f0a57febb38a27108cb77a865be50796b1",
+        "landuse": "359e9389fe894042450e852b780acc6b623335e7289c35c5350d4c1c2c4bdf77",
+        "roads": "5941c159ea442e1ad737fcd8bb00111a90d9c4d29fd23709d1295a81571fa84d"
       }
     },
     {
@@ -33,21 +48,6 @@
       }
     },
     {
-      "city": "freetown",
-      "sourceRunId": 38155030896,
-      "sourceArtifact": "offline-city-layers-sierra-leone-e16d78686be70c7435edb873a11c0619e891e09a",
-      "sourceSha": "e16d78686be70c7435edb873a11c0619e891e09a",
-      "datasetSha256": "d690d175f32a16b012a1e5198e9fd7f0e70af03bf656e767269d1833c3d29868",
-      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
-      "extractSha256": {
-        "places": "f11183cc0aecc34d45e74a21076822901e6f2f341df867f1c2a19a027a7bdac9",
-        "extras": "b13c94e00fcee721856f871f6abfd434a354bb00bcf9c07d26845efaa2eeb9de",
-        "water": "783151a8f24f5d0607a67041f75277a397f8db65026e19131674047f303f7c08",
-        "landuse": "1a5e219139aed430f2386a467e4753f4ab0fe9b38dab0cd82aa12dbe6db56de8",
-        "roads": "affc54e3bfb1e8c2832491938e69dfaba1e6b0a6f9d0900f4ba63c801f7017df"
-      }
-    },
-    {
       "city": "libreville",
       "sourceRunId": 38155030896,
       "sourceArtifact": "offline-city-layers-gabon-e16d78686be70c7435edb873a11c0619e891e09a",
@@ -63,18 +63,18 @@
       }
     },
     {
-      "city": "djibouti",
+      "city": "monrovia",
       "sourceRunId": 38155030896,
-      "sourceArtifact": "offline-city-layers-djibouti-e16d78686be70c7435edb873a11c0619e891e09a",
+      "sourceArtifact": "offline-city-layers-liberia-e16d78686be70c7435edb873a11c0619e891e09a",
       "sourceSha": "e16d78686be70c7435edb873a11c0619e891e09a",
-      "datasetSha256": "be609cea9663b59bd4e48f85e73b0e4b3043579737502e3ee0212653d5f6bad3",
+      "datasetSha256": "d7cdf04a1e58c2cfea8667cc414b6c9238e3a943f92b520b67656ef5282b928e",
       "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
       "extractSha256": {
-        "places": "3b5147061872bb4c3e7b3f4b2204cf821ef8bb254050205451c8a736ecf7b15e",
-        "extras": "a5510c6d543e965d33693e34b152291c5c97e7f95a4f0eda14e8d075b53c9f3f",
-        "water": "3d63e0e20bd7938fb2af3293c768900ecb13c8613686cf9f69e3fd4f3253ed7b",
-        "landuse": "6fc761c87f2d7901137accfba38fd8c6f5db602290b70164bfd10c827479c6b2",
-        "roads": "7c25184fc4eeefc73c5f14b684a42d13101df0806c878fd21e14619e92bfaffb"
+        "places": "67a3008e760375fdc3c8df23315ca255b131eb506be34f74b032697cfd966fd9",
+        "extras": "e18545a0dae8e3ad55acddd8e0c87a1062302867f9ab6748d283402ab45b3501",
+        "water": "aa856c7c1b0e1738f4e9f55c65c8dd523246b9e908a69962c2b7f848a3e7fd60",
+        "landuse": "6c944583eb27549466f88409041fa5c72acfde7c1c677a727f8cb2de1b7bb1cf",
+        "roads": "edd81afe762355dd566aa6de6b3c0b793ed619ab8b3a2e72e9956bb12dd03377"
       }
     }
   ]

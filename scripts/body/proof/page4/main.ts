@@ -16,12 +16,12 @@ import { oldLookOf } from '../page/looks.ts';
 import { addFaceLife, renderFront } from './aiface.ts';
 import type { FaceLife, FaceSpec } from './aiface.ts';
 
-type Kind = 'old' | 'p3' | 'ais' | 'air';
+type Kind = 'old' | 'p3' | 'ais' | 'air' | 'ois' | 'oir';
 type Pose = 'idle' | 'walk' | 'sit' | 'dance' | 'lie' | 'jog';
 type View = 'front' | 'tq' | 'side' | 'back' | 'face' | 'hands' | 'far' | 'portrait' | 'legs';
 interface Spec {
   mode: 'compare' | 'single' | 'row'; kinds?: Kind[]; view?: View; pose?: Pose; phase?: number; mood?: Mood; width?: number; height?: number;
-  count?: number; shadows?: boolean; lod?: boolean; pr?: number; noGround?: boolean; ingame?: boolean; spread?: number; px?: number; face?: boolean;
+  concepts?: boolean; lods?: boolean[]; count?: number; shadows?: boolean; lod?: boolean; pr?: number; noGround?: boolean; ingame?: boolean; spread?: number; px?: number; face?: boolean;
 }
 interface AiMeta { height: number; face?: FaceSpec }
 interface Slot { kind: Kind; holder: THREE.Group; x: number; label: string; rig?: Rig; driver?: LifeDriver; old?: THREE.Object3D; face?: FaceLife; restFoot?: number; fit?: number }
@@ -55,7 +55,6 @@ const blobTexture = (() => {
 const blobGeo = new THREE.PlaneGeometry(1, 1);
 const blobMat = new THREE.MeshBasicMaterial({ map: blobTexture, transparent: true, depthWrite: false });
 const stoolMat = new THREE.MeshStandardMaterial({ color: 0x8b5a34, roughness: 0.75 });
-const bedMat = new THREE.MeshStandardMaterial({ color: 0xd8cdb8, roughness: 0.9 });
 
 const LOOK: Look = { id: 'woman-gele', label: 'Woman, gele, brown skin, blue aso-ebi gown', body: 'female', tone: '#7a4a2c', hair: 'gele', hairColor: '#1c1917', garment: 'dress', fabric: 'plain', color: '#1f4aa8', shoes: '#d9b98a' };
 
@@ -70,12 +69,11 @@ const HEIGHT = 1.77;
 
 function clearScene(): void { for (const s of slots) { scene.remove(s.holder); s.rig?.dispose(); } slots = []; labels.innerHTML = ''; }
 const addBlob = (holder: THREE.Group, r = 0.42): void => { const b = new THREE.Mesh(blobGeo, blobMat); b.rotation.x = -Math.PI / 2; b.position.y = 0.004; b.scale.set(r * 2.6, r * 2.6, 1); holder.add(b); };
-function addStool(holder: THREE.Group): void {
-  const top = 0.47, s = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.17, 0.05, 20), stoolMat); s.position.set(0, top - 0.025, -0.332);
-  const legs = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.12, top - 0.05, 12), stoolMat); legs.position.set(0, (top - 0.05) / 2, -0.332);
+function addStool(holder: THREE.Group, k = 1): void {
+  const top = 0.47 * k, s = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.17, 0.05, 20), stoolMat); s.position.set(0, top - 0.025, -0.332 * k);
+  const legs = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.12, top - 0.05, 12), stoolMat); legs.position.set(0, (top - 0.05) / 2, -0.332 * k);
   s.castShadow = legs.castShadow = true; s.receiveShadow = true; holder.add(s, legs);
 }
-function addBed(holder: THREE.Group): void { const b = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.2, 2.1), bedMat); b.position.set(0, 0.1, 0); b.receiveShadow = true; holder.add(b); }
 function fitOld(obj: THREE.Object3D, height: number): void { obj.updateMatrixWorld(true); const box = new THREE.Box3().setFromObject(obj), h = box.max.y - box.min.y; const s = height / h; obj.scale.multiplyScalar(s); obj.position.y -= box.min.y * s; }
 
 /** A generated character as a Rig the life layer can drive (no morph targets: the face is a texture). */
@@ -95,9 +93,10 @@ function buildAi(name: string, lod: boolean, withFace: boolean): { rig: Rig; fac
       face = addFaceLife(mat, base, src.meta.face);
     }
   }
+  root.updateMatrixWorld(true);
   const mixer = new THREE.AnimationMixer(sc);
   const actions = new Map(assets.clips.map((c) => [c.name, mixer.clipAction(c)]));
-  const rig: Rig = { look: { ...LOOK }, root, scene: sc, bones, mixer, actions, face: [], eyes: undefined, sway: { uSway: { value: new THREE.Vector3() }, uTime: { value: 0 } }, materials: [], meshes, dispose() { /* shared */ } };
+  const rig: Rig = { look: { ...LOOK }, root, scene: sc, bones, mixer, actions, face: meshes.filter((x) => !!x.morphTargetDictionary), eyes: undefined, sway: { uSway: { value: new THREE.Vector3() }, uTime: { value: 0 } }, materials: [], meshes, dispose() { /* shared */ } };
   return { rig, face, height: src.meta.height };
 }
 
@@ -123,6 +122,12 @@ function addSlot(kind: Kind, x: number, label: string, s: Spec, seed: number): v
     const fit = HEIGHT / p3Height; rig.root.scale.setScalar(fit); sl.fit = fit;
     holder.add(rig.root); rig.root.traverse((o) => { o.castShadow = true; o.receiveShadow = true; });
     sl.rig = rig; sl.driver = new LifeDriver(rig, seed);
+  } else if (kind === 'ois' || kind === 'oir') {
+    const obj = originals.get(kind)!.clone(true);
+    const box = new THREE.Box3().setFromObject(obj); const k = HEIGHT / (box.max.y - box.min.y);
+    obj.scale.setScalar(k); obj.position.set(-((box.min.x + box.max.x) / 2) * k, -box.min.y * k, -((box.min.z + box.max.z) / 2) * k);
+    obj.traverse((o) => { o.castShadow = true; o.receiveShadow = true; });
+    holder.add(obj);
   } else {
     const built = buildAi(kind === 'ais' ? 'stylised' : 'realistic', !!s.lod, s.face !== false);
     const fit = HEIGHT / built.height; built.rig.root.scale.setScalar(fit); sl.fit = fit;
@@ -130,8 +135,7 @@ function addSlot(kind: Kind, x: number, label: string, s: Spec, seed: number): v
     sl.rig = built.rig; sl.driver = new LifeDriver(built.rig, seed); sl.face = built.face;
   }
   if (sl.driver) { sl.driver.mood = s.mood ?? 'neutral'; poseSlot(sl, pose, s.phase ?? 0.25); holder.updateMatrixWorld(true); sl.restFoot = footHeight(sl); }
-  if (pose === 'sit') addStool(holder);
-  if (pose === 'lie') addBed(holder);
+  if (pose === 'sit') addStool(holder, sl.kind === 'old' ? 1 : (sl.fit ?? 1) / (HEIGHT / p3Height));
   if (!s.noGround) addBlob(holder);
   slots.push(sl);
 }
@@ -146,10 +150,14 @@ function stepSlot(sl: Slot, dt: number): void {
   if (sl.face) sl.face.update(sl.driver.faceWeights);
   if (sl.restFoot !== undefined && spec.pose !== 'lie') { sl.holder.position.y = -footHeight(sl); sl.holder.updateMatrixWorld(true); }
 }
-const NAMES: Record<Kind, string> = { old: 'Today', p3: 'Hand-built', ais: 'AI stylised', air: 'AI realistic' };
+const NAMES: Record<Kind, string> = { old: 'Today', p3: 'Hand-built', ais: 'AI stylised', air: 'AI realistic', ois: 'Original 120k', oir: 'Original 113k' };
+const originals = new Map<string, THREE.Object3D>();
 
 async function setup(s: Spec): Promise<void> {
   spec = s; clearScene();
+  for (const k of (s.kinds ?? []).filter((x) => x === 'ois' || x === 'oir')) {
+    if (!originals.has(k)) { const g = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(`/m/${k === 'ois' ? 'stylised' : 'realistic'}-original.glb`); originals.set(k, g.scene); }
+  }
   for (const p of props) scene.remove(p); props = [];
   renderer.shadowMap.enabled = s.shadows !== false; key.castShadow = s.shadows !== false; catcher.visible = s.shadows !== false;
   const w = s.width ?? innerWidth, h = s.height ?? innerHeight;
@@ -168,10 +176,19 @@ async function setup(s: Spec): Promise<void> {
   } else {
     const kinds = s.kinds ?? ['ais'];
     const portrait = h > w, spread = s.spread ?? (portrait ? 0.46 : 0.8);
-    kinds.forEach((k, i) => addSlot(k, (i - (kinds.length - 1) / 2) * spread, NAMES[k], s, 5));
+    kinds.forEach((k, i) => addSlot(k, (i - (kinds.length - 1) / 2) * spread, NAMES[k] + (s.lods?.[i] ? ' (crowd)' : ''), { ...s, lod: s.lods ? !!s.lods[i] : s.lod }, 5));
   }
   if (s.view === 'far') addProps();
   frame(s);
+  if (s.concepts) {
+    const box = document.createElement('div'); box.className = 'concepts';
+    for (const n of ['stylised', 'realistic']) {
+      const img = document.createElement('img'); img.src = `/m/concept-${n}.png`; box.appendChild(img);
+      await new Promise<void>((done) => { img.onload = () => done(); img.onerror = () => done(); });
+    }
+    const tag = document.createElement('div'); tag.className = 'ctag'; tag.textContent = 'The target: the two concept images'; box.appendChild(tag);
+    labels.appendChild(box);
+  }
   for (const sl of slots) for (let i = 0; i < 20; i++) stepSlot(sl, 1 / 30);
 }
 function addProps(): void {
@@ -190,8 +207,9 @@ function frame(s: Spec): void {
   else {
     const spread = s.spread ?? (h > w ? 0.46 : 0.8);
     width = count === 1 ? 1.3 : (count - 1) * spread + 0.95; height = 2.05;
+    if (s.concepts) width += 3.4;
     if (view === 'face') { height = 0.5; width = count === 1 ? 0.45 : (count - 1) * spread + 0.5; cy = headY; }
-    if (view === 'hands') { height = 0.8; width = 1.9; cy = 0.82; }
+    if (view === 'hands') { height = 0.7; width = 1.0; cy = 0.8; }
     if (view === 'legs') { height = 1.0; width = 1.4; cy = 0.5; }
     if (view === 'far') { height = 11; width = 9; cy = 0.9; }
     if (view === 'portrait') { height = 0.42; width = 0.42; cy = headY; }
@@ -200,13 +218,14 @@ function frame(s: Spec): void {
   if (hb && (view === 'face' || view === 'portrait')) { scene.updateMatrixWorld(true); cy = hb.getWorldPosition(new THREE.Vector3()).y + (view === 'face' ? 0.04 : 0.03); }
   if (s.ingame) { height = (1.77 / 120) * h; cy = height / 2 - 0.12; width = height * aspect; }   // the character stands 120 px tall in the frame
   const dist = Math.max(height / 2 / tan, width / 2 / (tan * aspect));
-  camera.position.set(0, cy + (view === 'face' || view === 'portrait' || view === 'hands' ? 0 : view === 'far' ? 0.6 : 0.25), dist);
-  camera.lookAt(new THREE.Vector3(0, cy, 0));
+  const cx = s.concepts ? 1.7 : 0;
+  camera.position.set(cx, cy + (view === 'face' || view === 'portrait' || view === 'hands' ? 0 : view === 'far' ? 0.6 : 0.25), dist);
+  camera.lookAt(new THREE.Vector3(cx, cy, 0));
   key.target.position.set(0, 0.9, 0);
 }
 function render(): void {
-  renderer.setClearColor(0x000000, 0); renderer.render(scene, camera); labels.innerHTML = '';
-  if (spec.mode === 'compare') for (const sl of slots) {
+  renderer.setClearColor(0x000000, 0); renderer.render(scene, camera); labels.querySelectorAll('.tag').forEach((e) => e.remove());
+  if (spec.mode === 'compare' && !spec.ingame) for (const sl of slots) {
     const p = new THREE.Vector3(sl.x, 0, 0).project(camera);
     const div = document.createElement('div'); div.className = 'tag'; div.textContent = sl.label; div.style.left = `${(p.x * 0.5 + 0.5) * 100}%`; labels.appendChild(div);
   }
@@ -250,6 +269,7 @@ const api = {
   setViseme(shape: string | null, amount = 0.8): void { for (const s of slots) if (s.driver) s.driver.forceViseme = shape ? { shape: `viseme${shape.toUpperCase()}`, amount } : null; },
   say(text: string): void { for (const s of slots) s.driver?.say(text); },
   setLookAt(on: boolean): void { lookAtCamera = on; },
+  setGaze(g: [number, number] | null): void { for (const s of slots) if (s.driver) s.driver.forceGaze = g; },
   setPose(pose: Pose, phase = 0, play = false): void { for (const s of slots) poseSlot(s, pose, phase, play); },
   enable(flags: Record<string, boolean>): void { for (const s of slots) if (s.driver) Object.assign(s.driver.enabled, flags); },
   info(): { triangles: number; calls: number; geometries: number } { return { triangles: renderer.info.render.triangles, calls: renderer.info.render.calls, geometries: renderer.info.memory.geometries }; },
@@ -260,6 +280,7 @@ const api = {
     await new Promise<void>((done) => { const tick = (now: number): void => { const dt = Math.min(0.05, (now - last) / 1000); last = now; for (const sl of slots) stepSlot(sl, dt); render(); frames++; if (now - t0 < seconds * 1000) requestAnimationFrame(tick); else done(); }; requestAnimationFrame(tick); });
     const ms = performance.now() - t0; return { fps: (frames * 1000) / ms, frames, ms };
   },
+  debugFace(): unknown { const s = slots.find((x) => x.face); return s ? { w: s.driver!.faceWeights, cell: (s.face!.uniforms['uCell']!.value as THREE.Vector3).toArray(), blinkU: s.face!.uniforms['uBlink']!.value } : null; },
   ready: true, clock: (): number => clock,
 };
 (window as unknown as { proof: typeof api }).proof = api;

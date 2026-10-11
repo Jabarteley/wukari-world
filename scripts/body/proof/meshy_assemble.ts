@@ -55,8 +55,14 @@ gltf.scene.traverse((n) => {
     wt.setXYZW(i, w[0]! / s, w[1]! / s, w[2]! / s, w[3]! / s);
   }
   for (const a of Object.keys(g.attributes)) if (!['position', 'normal', 'uv', 'skinIndex', 'skinWeight'].includes(a)) g.deleteAttribute(a);
+  const lin = new THREE.Matrix4().extractRotation(sm.matrixWorld);
+  const morphs = g.morphAttributes as Record<string, (THREE.BufferAttribute | THREE.InterleavedBufferAttribute)[]>;
+  delete morphs['normal'];
+  for (const attr of Object.keys(morphs)) morphs[attr] = morphs[attr]!.map((a) => { const c = a.clone(); c.applyMatrix4(lin); return c; });
+  g.morphTargetsRelative = sm.geometry.morphTargetsRelative;
   const mesh = new THREE.SkinnedMesh(g, new THREE.MeshStandardMaterial({ name: 'character' }));
   mesh.name = 'character';
+  if (sm.morphTargetDictionary) { mesh.morphTargetDictionary = { ...sm.morphTargetDictionary }; mesh.morphTargetInfluences = sm.morphTargetInfluences!.map(() => 0); }
   out.push(mesh);
 });
 if (out.length !== 1) throw new Error(`expected one mesh, got ${out.length}`);

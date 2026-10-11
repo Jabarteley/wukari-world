@@ -119,7 +119,7 @@ bmesh.ops.triangulate(bm, faces=bm.faces)
 bm.to_mesh(low.data); bm.free()
 low.data.update()
 welded_tris = len(low.data.polygons)
-PW = float(os.environ.get("MESHY_PROTECT", "0.98"))   # how much cheaper it is to collapse outside the head and hands (a lower value protects more)
+PW = float(os.environ.get("REDUCE_PROTECT", "0.98"))   # how much cheaper it is to collapse outside the head and hands (a lower value protects more)
 zone = [zone_weight(v.co) for v in low.data.vertices]
 if "--no-protect" not in flags:
     low.vertex_groups.new(name="protect")
@@ -183,7 +183,7 @@ bpy.ops.object.mode_set(mode="EDIT")
 # --- UVs and textures: a fresh automatic unwrap of the cleaned, decimated surface, then the full mesh's base colour (and tangent normals) baked onto it
 bpy.ops.mesh.normals_make_consistent(inside=False)
 bpy.ops.mesh.select_all(action="SELECT")
-bpy.ops.uv.smart_project(angle_limit=math.radians(float(os.environ.get("MESHY_ANGLE", "66"))), island_margin=0.003, area_weight=0.6, correct_aspect=True, scale_to_bounds=True)
+bpy.ops.uv.smart_project(angle_limit=math.radians(float(os.environ.get("REDUCE_ANGLE", "66"))), island_margin=0.003, area_weight=0.6, correct_aspect=True, scale_to_bounds=True)
 bpy.ops.uv.select_all(action="SELECT")
 bpy.ops.uv.pack_islands(rotate=True, margin=0.003)
 bpy.ops.object.mode_set(mode="OBJECT")
@@ -224,7 +224,7 @@ def bake_to(kind, filename, srgb):
         tn.links.new(emit.outputs[0], out_node.inputs["Surface"])
     else:
         bpy.ops.object.bake(type="EMIT")
-    scene.render.image_settings.file_format = "JPEG"; scene.render.image_settings.quality = 90
+    scene.render.image_settings.file_format = "JPEG"; scene.render.image_settings.quality = int(os.environ.get("REDUCE_QUALITY", "82"))
     img.save_render(os.path.join(out_dir, filename + ".jpg"), scene=scene)
     return mat
 

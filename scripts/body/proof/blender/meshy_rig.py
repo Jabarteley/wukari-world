@@ -21,6 +21,7 @@ argv = sys.argv[sys.argv.index("--") + 1:]
 pos = [a for a in argv if not a.startswith("--")]
 opts = {argv[i]: argv[i + 1] for i, a in enumerate(argv) if a.startswith("--") and i + 1 < len(argv)}
 blend, skel_json, out_glb, out_joints, kind = pos[:5]
+face_json = opts.get('--face')
 landmarks = pos[5] if len(pos) > 5 else None
 bpy.ops.wm.open_mainfile(filepath=blend)
 low = bpy.data.objects[opts.get("--obj", "Low")]
@@ -277,11 +278,62 @@ for n in BONES:
 bpy.ops.object.mode_set(mode="OBJECT")
 low.parent = rig
 low.modifiers.new("Armature", "ARMATURE").object = rig
-low.name = "meshy"
+# ---------------------------------------------------------------- face shape keys: jaw, mouth corners and brows move the surface the painted face sits on
+if face_json:
+    fs = json.load(open(face_json))
+    mouth_x, mouth_z = fs["mouth"]; mw = fs["mouthW"]
+    chin_z = mouth_z - 0.08; head_y = J["Head"].y
+    base = low.shape_key_add(name="Basis", from_mix=False)
+
+    def sm01(t):
+        t = max(0.0, min(1.0, t)); return t * t * (3 - 2 * t)
+
+    def key(name, fn):
+        k = low.shape_key_add(name=name, from_mix=False)
+        for i, v in enumerate(low.data.vertices):
+            p = v.co
+            if p.y > head_y:               # front of the face only (the character looks along -Y here)
+                continue
+            d = fn(p)
+            if d:
+                k.data[i].co = p + Vector(d)
+        return k
+
+    def jaw(amount, pucker=0.0, widen=0.0):
+        def f(p):
+            w = sm01((mouth_z + 0.004 - p.z) / 0.04) * sm01((p.z - (chin_z - 0.035)) / 0.035) * sm01((0.19 - abs(p.x)) / 0.07)
+            if w <= 0:
+                return None
+            return (-p.x * pucker * w + p.x * widen * w, 0.35 * amount * w, -amount * w)
+        return f
+    key("visemeAA", jaw(0.032)); key("visemeOH", jaw(0.02, pucker=0.16)); key("visemeEE", jaw(0.009, widen=0.07)); key("visemeMM", lambda p: None)
+
+    def corner(dz, dx):
+        def f(p):
+            w = sm01(1 - math.hypot(abs(p.x) - mw / 2, p.z - mouth_z) / 0.05)
+            return (math.copysign(dx, p.x) * w, 0, dz * w) if w > 0 else None
+        return f
+    key("smile", corner(0.006, 0.004)); key("frown", corner(-0.006, -0.002))
+
+    def brow(side, dz, inner_only=False):
+        bx, bz = fs["browL" if side > 0 else "browR"]
+        def f(p):
+            if p.x * side <= 0:
+                return None
+            w = sm01(1 - math.hypot((p.x - bx) / 0.075, (p.z - bz) / 0.045))
+            if inner_only:
+                w *= sm01(1 - abs(abs(p.x) - (abs(bx) - 0.045)) / 0.05)
+            return (0, 0, dz * w) if w > 0 else None
+        return f
+    for side, sfx in ((1, "L"), (-1, "R")):
+        key("browUp" + sfx, brow(side, 0.01)); key("browDown" + sfx, brow(side, -0.007)); key("browInnerUp" + sfx, brow(side, 0.012, True))
+    print("FACE KEYS", [k.name for k in low.data.shape_keys.key_blocks])
+
+low.name = "character"
 low.data.materials[0].name = "skin"
 json.dump({"heads": {n: [round(c, 5) for c in HEAD[n]] for n in BONES}, "space": "blender", "height": newH, "scale": s}, open(out_joints, "w"), indent=1)
 bpy.ops.object.select_all(action="SELECT")
-bpy.ops.export_scene.gltf(filepath=out_glb, export_format="GLB", use_selection=False, export_apply=False, export_skins=True, export_animations=False,
+bpy.ops.export_scene.gltf(filepath=out_glb, export_format="GLB", use_selection=False, export_apply=False, export_skins=True, export_morph=True, export_morph_normal=False, export_animations=False,
                           export_yup=True, export_image_format="NONE", export_materials="EXPORT", export_cameras=False, export_lights=False)
 bpy.ops.wm.save_as_mainfile(filepath=out_glb.replace(".glb", ".blend"))
 print("RIGGED", out_glb, "scale", s, "height", newH)

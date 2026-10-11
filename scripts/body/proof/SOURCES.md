@@ -46,3 +46,20 @@ Hair: `build_hair.py -- <work>/female-2.blend braids|afro <out.glb>`; shoes and 
 ## Third build (`rebuild.sh`, `page3/`, `assets3/`)
 
 No new third-party assets. The face recipe, the shape keys, the face atlas (eye, brow and lash shapes; the brow and lash shapes are the CC0 MakeHuman images thickened), the hair (braids, afro, gele), the jewellery and the crowd face decal are written for this project. The shoes (`shoes06`, `shoes02`, cut down to the ankle) and the man's low-cut (`short01`) are CC0 MakeHuman system assets as above. One command rebuilds a character: `scripts/body/proof/rebuild.sh <work-dir> <out-dir> <female|male> [stage ...]`; shots: `shots.ts evidence-shots3.json <out> --assets <abs path to assets3>`.
+
+## Generated characters (fourth proof: `meshy_*` scripts, `page4/`)
+
+Two characters made by an AI 3D generator from two concept images (a stylised woman and a realistic woman in a gele and ankara wrapper), generated on 2026-10-10 on the free tier (High Detail model, licence CC BY 4.0; the exports are about 120,000 triangles each with three 2048 px maps). The downloaded originals and the generator's bundled "Walking" clip are not in the repository (the clip's licence is unknown and it is not used by anything here). Everything committed is derived from the two meshes: a reduced hero (about 13,000 triangles, one 1024 px base colour map) and crowd (about 2,800 triangles, 512 px) version of each, bound to the game's 23-bone skeleton, plus the scripts that make them.
+
+Credit line required by the licence (CC BY 4.0), to be shown wherever these characters ship:
+
+> Model created with Meshy (https://www.meshy.ai/) – CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
+
+Rebuild (Blender 5.2 headless, node, npx gltfpack@1.3.0):
+
+```
+FACE=scripts/body/proof/blender/meshy-stylised-face.json scripts/body/proof/meshy_build.sh <stylised.glb> <work> <out> stylised stylised none --hem 0.13
+scripts/body/proof/meshy_build.sh <realistic.glb> <work> <out> realistic realistic scripts/body/proof/blender/meshy-realistic-landmarks.json --hem 0.12
+node --experimental-strip-types scripts/body/proof/capture-meshy.ts <evidence-dir> <out> --set all     # page4 shots and numbers
+node --experimental-strip-types scripts/body/proof/meshy_gallery.ts <evidence-dir> <out> <work>       # index.html and numbers.json
+```

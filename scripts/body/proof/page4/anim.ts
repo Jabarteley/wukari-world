@@ -35,6 +35,8 @@ export class LifeDriver {
   blinkAt = 1.4; blinkStart = -10; doubleBlink = false;
   /** Forced values for deterministic frames (a number replaces the automatic one). */
   forceBlink: number | null = null;
+  /** Eyes-only gaze for deterministic frames: x to the character's left, y up, each -1..1. */
+  forceGaze: [number, number] | null = null;
   target: THREE.Vector3 | null = null;
   talk: { cues: TalkCue[]; start: number } | null = null;
   forceViseme: { shape: string; amount: number } | null = null;
@@ -179,12 +181,14 @@ export class LifeDriver {
       wantYaw = lim(ry, 0.95); wantPitch = lim(-rp, 0.45);
       eyeYaw = lim(ry - this.headAngles.x * 0.7, 0.42); eyePitch = lim(rp + this.headAngles.y * 0.7, 0.31);
     }
+    if (this.forceGaze) { eyeYaw = this.forceGaze[0] * 0.42; eyePitch = this.forceGaze[1] * 0.31; }
     this.headAngles.x += (wantYaw * 0.75 - this.headAngles.x) * (1 - Math.exp(-5 * dt));
     this.headAngles.y += (wantPitch * 0.7 - this.headAngles.y) * (1 - Math.exp(-5 * dt));
     this.gaze.x += (eyeYaw - this.gaze.x) * (1 - Math.exp(-22 * dt)); this.gaze.y += (eyePitch - this.gaze.y) * (1 - Math.exp(-22 * dt));
     const nod = this.talking ? Math.sin(t * 5.2) * 0.012 * talkPulse : 0;
     addRot(bones['neck_01'], this.headAngles.y * 0.35 + mh0 * 0.4 + nod, this.headAngles.x * 0.3, mh1 * 0.3);
     addRot(bones['Head'], this.headAngles.y * 0.65 + mh0 * 0.6 + nod, this.headAngles.x * 0.7, mh1 * 0.7);
+    this.faceWeights['gazeX'] = this.gaze.x / 0.42; this.faceWeights['gazeY'] = this.gaze.y / 0.31;
     // eyes: four look morph targets on the eye mesh (the eyes lead the head, as above)
     const eyeMesh = this.rig.eyes;
     if (eyeMesh?.morphTargetDictionary) {

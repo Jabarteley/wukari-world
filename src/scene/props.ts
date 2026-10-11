@@ -59,6 +59,7 @@ export function chair(b: Batch, x: number, z: number, { ry = 0, color = '#4d6f8f
     b.box(0, seat - 0.05, 0, 0.62, 0.1, 0.6, color);
     b.box(0, seat + 0.42, -0.27, 0.62, 0.75, 0.08, color);
     b.box(0, (seat - 0.1) / 2, 0, 0.5, seat - 0.1, 0.08, leg);
+    b.seat?.(0, 0.05, 0, seat);
   });
 }
 
@@ -66,6 +67,7 @@ export interface StoolOptions { color?: Colour; h?: number; r?: number }
 export function stool(b: Batch, x: number, z: number, { color = WOOD, h = 0.6, r = 0.3 }: StoolOptions = {}): void {
   b.cyl(x, h - 0.05, z, r, 0.1, color, { seg: 8 });
   b.cyl(x, (h - 0.1) / 2, z, 0.06, h - 0.1, METAL_DARK, { seg: 5 });
+  b.seat?.(x, z, 0, h);
 }
 
 export interface BenchOptions { w?: number; ry?: number; color?: Colour; leg?: Colour; back?: boolean; seat?: number }
@@ -74,6 +76,7 @@ export function bench(b: Batch, x: number, z: number, { w = 3, ry = 0, color = W
     b.box(0, seat - 0.05, 0, w, 0.1, 0.55, color);
     for (const side of [-1, 1]) b.box(side * (w / 2 - 0.2), (seat - 0.1) / 2, 0, 0.12, seat - 0.1, 0.48, leg);
     if (back) b.box(0, seat + 0.4, -0.25, w, 0.5, 0.08, color);
+    for (let at = -w / 2 + 0.6; at <= w / 2 - 0.5; at += 1.15) b.seat?.(at, 0, 0, seat);
   });
 }
 
@@ -85,6 +88,7 @@ export function sofa(b: Batch, x: number, z: number, { w = 3, ry = 0, color = '#
     b.box(0, 0.63, 0.08, w - 0.5, 0.12, 0.9, pad);
     b.box(0, 0.85, -0.45, w, 0.9, 0.3, color);
     for (const side of [-1, 1]) b.box(side * (w / 2 - 0.13), 0.6, 0, 0.26, 0.5, 1.1, color);
+    for (let at = -w / 2 + 0.8; at <= w / 2 - 0.7; at += 1.15) b.seat?.(at, 0.1, 0, 0.62);
   });
 }
 

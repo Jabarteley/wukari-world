@@ -34,6 +34,60 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def artifact_provenance(artifact: Path, city: str, artifact_run_id: int, app_sha: str, driver_sha: str) -> dict[str, object]:
+    receipts = list(artifact.rglob("source-driver-provenance.json"))
+    if len(receipts) > 1:
+        raise ValueError(f"expected at most one source-driver-provenance.json, found {len(receipts)}")
+    if receipts:
+        receipt_path = receipts[0]
+        provenance = json.loads(receipt_path.read_text(encoding="utf-8"))
+        if provenance.get("repository") != "kromate/joinallworld":
+            raise ValueError("artifact source-driver provenance names an unexpected repository")
+        if provenance.get("appSha") != app_sha or provenance.get("driverSha") != driver_sha:
+            raise ValueError("artifact source-driver provenance does not match the requested app and driver SHAs")
+        if city not in provenance.get("cities", []):
+            raise ValueError("artifact source-driver provenance does not include the requested city")
+        return {
+            "kind": "city-browser-recapture",
+            "repository": provenance["repository"],
+            "buildRunId": provenance.get("buildRunId"),
+            "artifactRunId": artifact_run_id,
+            "sourceDriverProvenancePath": receipt_path.relative_to(artifact).as_posix(),
+            "sourceDriverProvenance": provenance,
+        }
+
+    def unique_file(name: str) -> Path:
+        matches = list(artifact.rglob(name))
+        if len(matches) != 1:
+            raise ValueError(f"expected one {name}, found {len(matches)}")
+        return matches[0]
+
+    app_file = unique_file("app-sha.txt")
+    driver_file = unique_file("driver-sha.txt")
+    verification_file = unique_file("dist-verification.log")
+    if app_file.read_text(encoding="utf-8").strip() != app_sha:
+        raise ValueError("artifact app-sha.txt does not match the requested app SHA")
+    if driver_file.read_text(encoding="utf-8").strip() != driver_sha:
+        raise ValueError("artifact driver-sha.txt does not match the requested driver SHA")
+    verification_text = verification_file.read_text(encoding="utf-8")
+    verification_lines = verification_text.splitlines()
+    if not verification_lines or any(not line.strip() or not line.rstrip().endswith(": OK") for line in verification_lines):
+        raise ValueError("artifact dist-verification.log is empty or contains a failed checksum")
+    return {
+        "kind": "city-browser-fast-workflow",
+        "repository": "kromate/joinallworld",
+        "buildRunId": artifact_run_id,
+        "artifactRunId": artifact_run_id,
+        "appShaFile": {"path": app_file.relative_to(artifact).as_posix(), "value": app_sha},
+        "driverShaFile": {"path": driver_file.relative_to(artifact).as_posix(), "value": driver_sha},
+        "distVerificationLog": {
+            "path": verification_file.relative_to(artifact).as_posix(),
+            "sha256": sha256(verification_file),
+            "verifiedFiles": len(verification_lines),
+        },
+    }
+
+
 def main() -> None:
     import argparse
 
@@ -48,16 +102,7 @@ def main() -> None:
 
     artifact = args.artifact.resolve(strict=True)
     out = args.out.resolve()
-    receipts = list(artifact.rglob("source-driver-provenance.json"))
-    if len(receipts) != 1:
-        raise ValueError(f"expected one source-driver-provenance.json, found {len(receipts)}")
-    provenance = json.loads(receipts[0].read_text(encoding="utf-8"))
-    if provenance.get("repository") != "kromate/joinallworld":
-        raise ValueError("artifact source-driver provenance names an unexpected repository")
-    if provenance.get("appSha") != args.app_sha or provenance.get("driverSha") != args.driver_sha:
-        raise ValueError("artifact source-driver provenance does not match the requested app and driver SHAs")
-    if args.city not in provenance.get("cities", []):
-        raise ValueError("artifact source-driver provenance does not include the requested city")
+    provenance = artifact_provenance(artifact, args.city, args.artifact_run_id, args.app_sha, args.driver_sha)
 
     images = sorted(path for path in artifact.rglob("*.png") if out not in path.parents)
     if not images:
@@ -122,12 +167,12 @@ def main() -> None:
     manifest = {
         "schemaVersion": 1,
         "city": args.city,
-        "repository": provenance.get("repository"),
+        "repository": "kromate/joinallworld",
         "artifactRunId": args.artifact_run_id,
-        "buildRunId": provenance.get("buildRunId"),
+        "buildRunId": provenance.get("sourceDriverProvenance", {}).get("buildRunId"),
         "appSha": args.app_sha,
         "driverSha": args.driver_sha,
-        "sourceDriverProvenance": provenance,
+        "provenance": provenance,
         "sourcePngCount": len(images),
         "pages": pages,
     }

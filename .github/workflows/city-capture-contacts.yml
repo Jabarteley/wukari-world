@@ -35,7 +35,9 @@ jobs:
               assert isinstance(city["runId"], int) and city["runId"] > 0
               for key in ("appSha", "driverSha"):
                   assert len(city[key]) == 40 and all(c in "0123456789abcdef" for c in city[key])
-              assert city["artifactName"].startswith("city-browser-recapture-" + city["id"] + "-")
+              recapture_name = f"city-browser-recapture-{city['id']}-{city['appSha']}-{city['driverSha']}"
+              fast_name = f"city-browser-{city['id']}-{city['appSha']}"
+              assert city["artifactName"] in (recapture_name, fast_name)
           print("cities=" + json.dumps(cities, separators=(",", ":")))
           PY
   contacts:

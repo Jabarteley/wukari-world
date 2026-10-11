@@ -7,5 +7,15 @@
   "artifactId": 11712247207,
   "appSha": "9aa1f5b4d7c8d584a7cb5cbf2072d638198988c8",
   "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc",
-  "cities": ["tripoli"]
+  "cities": [
+    "bamako",
+    "ouagadougou",
+    "maseru",
+    "lilongwe",
+    "dar-es-salaam",
+    "brazzaville",
+    "tunis",
+    "libreville",
+    "mbabane"
+  ]
 }

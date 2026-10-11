@@ -14,22 +14,22 @@ triangles=world.reshape(-1,3,3)
 linear=np.array(mesh['color']['array']).reshape(-1,3)
 colours=np.where(linear<=.0031308,linear*12.92,1.055*np.power(linear,1/2.4)-.055).reshape(-1,3,3).mean(axis=1)
 assert np.isfinite(world).all() and len(triangles)>0
-fig=plt.figure(figsize=(15,8));flat=fig.add_subplot(121);scene=fig.add_subplot(122,projection='3d')
+fig=plt.figure(figsize=(15,10));flat=fig.add_subplot(121);scene=fig.add_subplot(122,projection='3d')
 flat.set_facecolor('#edf1e9')
 for i,item in enumerate(items,1):
  ring=item['localFootprint'];xy=[(x*100,-z*100) for x,z in ring]
  face=item['colour'];poly=Polygon(xy,closed=True,facecolor=face,edgecolor='#52606d',linewidth=1);flat.add_patch(poly)
  cx=sum(x for x,y in xy[:-1])/max(1,len(xy)-1);cy=sum(y for x,y in xy[:-1])/max(1,len(xy)-1)
  flat.annotate(str(i),(cx,cy),ha='center',va='center',fontsize=8,color='#10273a',weight='bold')
-spanx=np.ptp(points[:,0])*100;spanz=np.ptp(points[:,2])*100;cx=(points[:,0].max()+points[:,0].min())*50;cz=-(points[:,2].max()+points[:,2].min())*50
+spanx=np.ptp(points[:,0]);spanz=np.ptp(points[:,2]);cx=(points[:,0].max()+points[:,0].min())*50;cz=-(points[:,2].max()+points[:,2].min())*50
 halfx=max(spanx*.65,40);halfz=max(spanz*.65,60)
 flat.set_xlim(cx-halfx,cx+halfx);flat.set_ylim(cz-halfz,cz+halfz);flat.set_aspect('equal');flat.set_xlabel('East of station frame (m)');flat.set_ylabel('North (m)');flat.grid(alpha=.18)
 flat.set_title('Mapped footprint plan')
 scene.add_collection3d(Poly3DCollection(triangles,facecolors=colours,edgecolors='#52606d',linewidths=.12))
 lo=world.min(axis=0);hi=world.max(axis=0);span=np.maximum(hi-lo,.1)
-scene.set_xlim(lo[0]-12,hi[0]+12);scene.set_ylim(lo[1]-12,hi[1]+12);scene.set_zlim(0,max(hi[2]+2,8));scene.set_zticks([0,3,6]);scene.set_box_aspect([span[0]+24,span[1]+24,max(hi[2]+2,8)])
+scene.set_xlim(lo[0]-12,hi[0]+12);scene.set_ylim(lo[1]-12,hi[1]+12);scene.set_zlim(0,max(hi[2]+2,8));scene.set_zticks([0,6]);scene.set_box_aspect([span[0]+24,span[1]+24,max(hi[2]+2,8)])
 scene.view_init(elev=28,azim=-55);scene.set_xlabel('East (m)');scene.set_ylabel('North (m)');scene.set_zlabel('Height (m)');scene.set_title('Extruded mesh at 1:1 scale')
-legend=[Patch(facecolor=i['colour'],edgecolor='#52606d',label=f"{n}. {i['name']} ({i['height']['metres']}m estimated)") for n,i in enumerate(items,1)];fig.legend(handles=legend,loc='lower center',ncol=2,fontsize=9)
-fig.suptitle('Rothera: six screened mapped footprints',fontsize=15);fig.text(.04,.015,'Source footprints, not a current operation census or gameplay. Six reported demolished structures and superseded sewage footprint withheld. OSM contributors, ODbL.',fontsize=8)
-fig.tight_layout(rect=[0,.13,1,.95]);fig.savefig(root/'station-buildings-review.png',dpi=160,bbox_inches='tight');plt.close(fig)
+legend=[Patch(facecolor=i['colour'],edgecolor='#52606d',label=f"{n}. {i['name']} ({i['height']['metres']}m est.)") for n,i in enumerate(items,1)];fig.legend(handles=legend,loc='upper center',bbox_to_anchor=(.5,.91),ncol=2,fontsize=9,frameon=False)
+fig.suptitle('Rothera: six screened mapped footprints',fontsize=15);fig.text(.05,.015,'Source footprints, not a current-operation census or gameplay. Six legacy structures and replaced sewage footprint withheld. OSM contributors, ODbL.',fontsize=8)
+fig.tight_layout(rect=[0,.06,1,.80]);fig.savefig(root/'station-buildings-review.png',dpi=160,bbox_inches='tight');plt.close(fig)
 print(json.dumps({'buildingCount':len(items),'triangles':len(triangles),'views':['footprint plan','1:1 3D'],'labels':len(legend)}))

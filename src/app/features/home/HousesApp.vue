@@ -17,6 +17,7 @@ import MyHouse from '../travel/MyHouse.vue'
 const VisitHome = defineAsyncComponent(() => import('../visit/VisitHome.vue'))
 import HouseArt from './HouseArt.vue'
 import CatalogueCard from '../../ui/CatalogueCard.vue'
+import SettleNotice from '../start/SettleNotice.vue'
 import BaseButton from '../../ui/BaseButton.vue'
 import { housesRules, moveReason, nextHouse, savedPercent } from './homeModel.ts'
 import type { HouseId } from '../../../types/life.ts'
@@ -56,7 +57,7 @@ const move = (id: HouseId): Promise<boolean> => act(`move:${id}`, () => command(
     <section class="ui-hero houses-hero">
       <small>{{ guest ? 'Browse homes' : next ? 'Next step up' : 'Top of the ladder' }}</small>
       <strong>{{ guest ? 'A place of your own' : next ? `${next.label}, ${next.district}` : 'The grandest house in the city' }}</strong>
-      <p v-if="guest">Settle in for your free starter house. You can move to a rental afterwards.</p>
+      <SettleNotice v-if="guest" hint message="Settle in for your free starter house. You can move to a rental afterwards." />
       <template v-else-if="next">
         <div class="houses-progress" role="meter" aria-label="Saved towards the move" aria-valuemin="0" aria-valuemax="100" :aria-valuenow="progress"><i :style="{ width: `${progress}%` }" /></div>
         <p>{{ next.affordable ? 'You can afford the move.' : `${money(next.moveIn - cash)} to go · you have ${money(cash)}` }}</p>

@@ -3,7 +3,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { newVenue, place, planMerge, seat, unseat } from './ws/groups.ts';
 import type { MergeFacts, Venue, Wish } from './ws/groups.ts';
-import { ROOM_GROUP_DEFAULTS, groupHeader, groupNotice } from '../src/game/roomGroups.ts';
+import { ROOM_GROUP_DEFAULTS, groupNotice } from '../src/game/roomGroups.ts';
+import { groupHeader } from '../src/community-words.ts';
 
 const limits = { target: 4, max: 6, min: 2 };
 const names = (count: number, prefix = 'p'): string[] => Array.from({ length: count }, (_, index) => `${prefix}${index}`);

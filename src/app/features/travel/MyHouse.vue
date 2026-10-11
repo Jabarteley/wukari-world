@@ -21,6 +21,7 @@ import { STYLE_FIELDS } from '../world/worldContent.ts'
 import { focusMap, track, worldChanged } from '../world/worldModel.ts'
 import { FIELD_NAMES, afterStyle, minutesToGo, offeredTiers, offlineWhy, swatchLabel, swatchOff, swatchTitle, tierWhy } from './myHouseModel.ts'
 import { linkWords } from './travelBoundary.ts'
+import { startSettling } from '../start/settleModel.ts'
 
 const { game, shell, command } = useApp()
 const { act, pending } = useAct()
@@ -31,7 +32,7 @@ const choosing = ref(false)
 /** A settled life picks from the card right here; a guest is taken to the settling-in screen, which ends at the same choice. */
 function chooseLga(): void {
   if (game.state.value.onboarding.done) choosing.value = true
-  else shell.open('onboarding', { why: 'home' })
+  else startSettling(shell, { why: 'home' })
 }
 const tiers = computed(() => offeredTiers(estate.value.tiers))
 

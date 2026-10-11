@@ -6,9 +6,15 @@
 // moving in is what creates the home, the rent-free starter house and the start cash.
 // params: { nudge?: 'first-reward' | 'third-activity' | 'next-day', why?: 'home' | 'buy' }.
 // A life that predates character creation never sees it.
+import { onBeforeUnmount } from 'vue'
+import { useApp } from '../../state/app.ts'
 import CreatorApp from './CreatorApp.vue'
+import { returnFromSettling } from './settleModel.ts'
 
 defineProps<{ params?: unknown }>()
+// Closed or finished: the sheet the player was sent here from comes back, so the refused action can be tried again.
+const { shell } = useApp()
+onBeforeUnmount(() => { returnFromSettling(shell) })
 </script>
 
 <template>

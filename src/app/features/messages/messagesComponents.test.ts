@@ -8,7 +8,7 @@ import type { ViteDevServer } from 'vite'
 import { createSSRApp, h } from 'vue'
 import type { Component } from 'vue'
 import { renderToString } from 'vue/server-renderer'
-import type { Conversation, Message, MessagePinsView, SocialOverview } from '../../../types/social.ts'
+import type { Conversation, Message, MessagePinsView, MoneyRequestView, SocialOverview } from '../../../types/social.ts'
 
 const root = fileURLToPath(new URL('../../../..', import.meta.url))
 let vite: ViteDevServer
@@ -74,12 +74,17 @@ test('pinned messages render three bounded rows, filtered-empty management, and 
   const html = await render('/src/app/features/messages/PinnedMessages.vue', { pins, kind: 'group', loading: false, pending: false, retryable: false, disabled: false, error: '' })
   const rows = [...html.matchAll(/<button[^>]*class="pinned-row"[^>]*>(.*?)<\/button>/g)].map((match) => words(match[1] ?? ''))
   assert.deepEqual(rows, ['Bola Meet at the library', 'Bola Picture', 'Bola Voice message'])
-  assert.ok(words(html).includes('Clear all also removes shared pins you cannot see.'))
+  // The header counts the pins and the panel stays shut until tapped; its help is one line (these two lines replace the old long help text).
+  assert.ok(words(html).includes('Pinned · 3') && words(html).includes('Shared with everyone in this chat. Only the group owner can change them.'))
+  assert.match(html, /id="pinned-list"[^>]*display:none/)
+  assert.match(html, /aria-expanded="false"/)
 
   const filtered: MessagePinsView = { ...pins, items: [] }
   const offline = await render('/src/app/features/messages/PinnedMessages.vue', { pins: filtered, kind: 'group', loading: false, pending: false, retryable: false, disabled: true, error: '' })
-  assert.ok(words(offline).includes('No shared pins you can see.'))
-  assert.match(offline, /class="pinned-clear"[^>]*disabled/)
+  // With nothing pinned there is no panel and no Clear all (this replaces the old "disabled Clear all" check); a failed change still shows.
+  assert.ok(!offline.includes('pinned-clear') && !offline.includes('Pinned'))
+  const stuck = await render('/src/app/features/messages/PinnedMessages.vue', { pins: filtered, kind: 'group', loading: false, pending: false, retryable: true, disabled: true, error: '' })
+  assert.ok(words(stuck).includes('No shared pins you can see.') && !stuck.includes('pinned-clear'))
   const member = await render('/src/app/features/messages/PinnedMessages.vue', { pins: { ...filtered, canManage: false, items: [{ message: items[0]! }] }, kind: 'group', loading: false, pending: false, retryable: false, disabled: false, error: '' })
   assert.ok(!member.includes('pinned-clear') && words(member).includes('Only the group owner can change them.'))
 })
@@ -113,4 +118,27 @@ test('the group panel: people with the admin marked, who may change them, the si
   assert.ok(!member.includes('Remove') && !member.includes('Add people') && member.includes('Ada runs this group'))
   const full = words(await render('/src/app/features/messages/GroupManage.vue', { conv: { ...conv, members: Array.from({ length: 12 }, (_, i) => ({ id: i ? `m${i}` : 'ada', name: `P${i}` })) }, me }))
   assert.ok(full.includes('12 of 12'))
+})
+
+test('a request for money is a card: the friend asked gets Pay and Decline, the asker gets Cancel, and a resolved card has none', async () => {
+  const request: MoneyRequestView = { id: 'MR-1', amount: 1500, note: 'Lunch', state: 'open', mine: false, expiresAt: 5000, payable: true }
+  const card = (view: Partial<MoneyRequestView>, extra: Record<string, unknown> = {}) => bubble(line({ body: 'Asked for ₦1,500: Lunch', request: { ...request, ...view } }), { now: 1000, ...extra })
+  const asked = await card({})
+  assert.match(asked, /role="group"[^>]*aria-label="Bola asked you ₦1,500: Lunch\. Open\."/)
+  assert.ok(words(asked).includes('Bola asked you') && words(asked).includes('₦1,500') && words(asked).includes('Lunch') && words(asked).includes('Open'))
+  assert.match(asked, />Pay<\/button>/); assert.match(asked, />Decline<\/button>/); assert.ok(!asked.includes('Cancel request'))
+  const own = await card({ mine: true, payable: false }, { partner: 'Chidi' })
+  assert.ok(words(own).includes('You asked Chidi') && !words(own).includes('You asked Bola')); assert.match(own, />Cancel request<\/button>/); assert.ok(!own.includes('>Pay<'))
+  for (const [state, label] of [['paid', 'Paid'], ['declined', 'Declined'], ['cancelled', 'Cancelled']] as const) {
+    const done = await card({ state })
+    assert.ok(words(done).includes(label), state); assert.ok(!done.includes('request-btn'), `${state} has no buttons`)
+  }
+  const late = await card({}, { now: 5000 })
+  assert.ok(words(late).includes('Expired') && !late.includes('request-btn'), 'out of time, with no write yet')
+  assert.match(await card({}, { requestBusy: true }), /<button[^>]*disabled[^>]*>Working…<\/button>/)
+  assert.match(await card({}, { requestOffline: true }), /<button[^>]*disabled[^>]*>Pay<\/button>/)
+  const menu = await card({}, { canActions: true })
+  assert.ok(!menu.includes('class="bubble-text"'), 'a card is not words')
+  const hostile = await card({ note: '<img src=x onerror=alert(1)>' })
+  assert.ok(!hostile.includes('<img') && hostile.includes('&lt;img'))
 })

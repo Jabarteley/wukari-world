@@ -1,19 +1,21 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { useApp } from '../../state/app.ts'
+import { needsSettling } from '../../state/settleRefusal.ts'
 import { call, newClientId, refreshLife } from '../social/useSocial.ts'
 import { loadStreet, readWorld } from './neighbourhoodStore.ts'
+import SettleNotice from '../start/SettleNotice.vue'
 import type { LandBuyRequest, LandView } from '../../../types/land.ts'
 const { game, shell } = useApp()
-const land = ref<LandView | null>(null), busy = ref(false), message = ref(''), selected = ref<number | null>(null)
+const land = ref<LandView | null>(null), busy = ref(false), message = ref(''), code = ref(''), selected = ref<number | null>(null)
 let retry: LandBuyRequest | null = null
 const price = computed(() => land.value?.candidates.find((candidate) => candidate.plot === selected.value)?.price ?? null)
 const money = (value: number) => `₦${value.toLocaleString('en-NG')}`
 async function load(): Promise<void> {
-  busy.value = true; message.value = ''
+  busy.value = true; message.value = ''; code.value = ''
   try {
     const result = await readWorld<LandView>(`/api/world/land?city=${encodeURIComponent(game.cityId.value)}`)
-    if (!result.ok) { message.value = result.reason; return }
+    if (!result.ok) { message.value = result.reason; code.value = result.code ?? ''; return }
     land.value = result
     if (!result.candidates.some((candidate) => candidate.plot === selected.value)) selected.value = null
   } finally { busy.value = false }
@@ -66,9 +68,11 @@ onMounted(load)
       </div>
       <p class="ui-note">Land prices and the three-plot limit are provisional game rules. House upgrades and upstairs rooms are managed in Houses.</p>
     </template>
+    <SettleNotice v-else-if="!busy && !message && game.view.value.onboarding.guest" hint message="Settle in first: land is bought beside your own home." />
     <p v-else-if="!busy && !message">Settle into an owned home to expand its lot.</p>
     <button type="button" class="ui-button" @click="shell.open('houses')">House upgrades &amp; rooms</button>
-    <p v-if="message" role="status">{{ message }}</p>
+    <SettleNotice v-if="message && needsSettling(code, game.view.value.onboarding)" :code="code" :message="message" />
+    <p v-else-if="message" role="status">{{ message }}</p>
     <button v-if="retry" type="button" class="ui-button" :disabled="busy" @click="buy()">Retry the same purchase</button>
     <button type="button" class="ui-button" :disabled="busy" @click="load()">Refresh land</button>
   </section>

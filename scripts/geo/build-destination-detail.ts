@@ -23,6 +23,7 @@ import { toLocal } from '../../src/geo/frame.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
 import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
+import { waterLabelPoint } from './destination-detail/water-label.ts';
 
 const args = process.argv.slice(2), id = args[0], extractDir = args[1] === '--extract-dir' && args.length === 3 ? args[2] : null;
 if (!id || (args.length !== 1 && !extractDir)) throw new Error('Usage: build-destination-detail.ts <city id> [--extract-dir <directory>]');
@@ -76,7 +77,8 @@ const pick = (ref: string): Element => {
 const nameIn = (tags: Record<string, string> | undefined): string => (tags?.['name:en'] ?? tags?.['name:fr'] ?? tags?.name ?? '').replace(/\s+/g, ' ').trim();
 const nameOf = (element: Element): string => nameIn(element.tags);
 
-const labelled = config.names.map((choice) => ({ name: choice.label ?? nameOf(pick(choice.ref)), at: centreOf(pick(choice.ref)) }));
+const neighbourhoods = config.names.filter((choice) => choice.kind === 'neighbourhood');
+const labelled = neighbourhoods.map((choice) => ({ name: choice.label ?? nameOf(pick(choice.ref)), at: centreOf(pick(choice.ref)) }));
 /** The district of a place is the nearest labelled neighbourhood within three and a half kilometres (`districtMetres`), else the whole area. */
 const districtOf = ([lon, lat]: P): string => {
   const metres = ([x, y]: P): number => Math.hypot((x - lon) * 111320 * Math.cos(lat * Math.PI / 180), (y - lat) * 110574);
@@ -100,14 +102,6 @@ const places = config.places.map((choice) => {
   };
 });
 
-const labels = config.names.map((choice) => {
-  const element = pick(choice.ref);
-  const [lon, lat] = centreOf(element);
-  const name = choice.label ?? nameOf(element);
-  if (!name) throw new Error(`${choice.ref} has no English name`);
-  return { id: choice.id, name, lon: round(lon, 5), lat: round(lat, 5), kind: choice.kind };
-});
-
 writeFileSync(out('places.ts'), `/**
  * Real places of ${config.name} that replace the generic game venues. Every place is one OpenStreetMap element of the recorded
  * ${pbfPublic ? `${pbfPublic}; ${pbfDiscovery}` : `answers (sha256 ${discoverySha.join(', ')}) to the queries in scripts/geo/destination-detail/${id}.ts`}; its name is the element's
@@ -118,7 +112,7 @@ import type { DestinationPlace } from '../africa/types.ts'
 
 export const PLACES: readonly DestinationPlace[] = ${JSON.stringify(places, null, 2)}
 `);
-console.log(`places ${places.length}, labels ${labels.length}`);
+console.log(`places ${places.length}`);
 
 // ---- outline, water and roads ---------------------------------------------------------------------------------------------------------
 // A sea or a big lake is asked for as far out as the water is drawn, so that its shore ways run on to the edge of the drawn ground and the shore can be closed there.
@@ -165,6 +159,18 @@ const land = tidy(traced.land), play = tidy(traced.play);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
 const water = safePolygons(traced.water, Math.min(config.waterTolerance, 0.00015), project);
 if (!land.length) throw new Error('The land-use answer left no built-up area in the box');
+const waterByRef = new Map(waterAnswer.elements.map((element) => [refOf(element), element]));
+const renderedWater = reachWater.length ? reachWater : water;
+const labels = config.names.map((choice) => {
+  const element = choice.kind === 'water' ? waterByRef.get(choice.ref) : pick(choice.ref);
+  if (!element) throw new Error(`${choice.ref} is not in the recorded ${choice.kind === 'water' ? 'water' : 'discovery'} answer`);
+  const source = choice.kind === 'water' ? big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008))) : [];
+  const [lon, lat] = choice.kind === 'water' ? waterLabelPoint(element, source, renderedWater) : centreOf(element);
+  const name = choice.label ?? nameOf(element);
+  if (!name) throw new Error(`${choice.ref} has no English name`);
+  return { id: choice.id, name, lon: round(lon, 5), lat: round(lat, 5), kind: choice.kind };
+});
+console.log(`labels ${labels.length}`);
 const lonLat = (polygons: P[][][]): string => JSON.stringify(polygons.map((polygon) => polygon.map(roundRing)));
 
 writeFileSync(out('geometry.ts'), `/**

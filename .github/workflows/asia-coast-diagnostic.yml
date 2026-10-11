@@ -1,0 +1,70 @@
+name: Asia pinned Dubai coast diagnostic
+
+on:
+  push:
+    branches: ['codex/world-asia-20261011']
+    paths: ['scripts/geo/asia-coast-diagnostic.json']
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: asia-coast-diagnostic-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      APP_SHA: 81b993bbfb9afe96b5e5d0457ed090dbd7bd9214
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+          path: factory
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 81b993bbfb9afe96b5e5d0457ed090dbd7bd9214
+          path: baseline
+          persist-credentials: false
+      - name: Verify and prepare pinned five-layer source
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/asia-coast"
+          test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
+          node scripts/geo/asia-factory-prepare.mjs \
+            --table scripts/geo/asia-factory-targets.json \
+            --factory-source "$GITHUB_WORKSPACE/factory" \
+            --sandbox-root "$RUNNER_TEMP/asia-coast"
+      - name: Prepare disposable81 app and dependencies
+        run: |
+          set -euo pipefail
+          git clone --shared baseline "$RUNNER_TEMP/asia-coast/app"
+          git -C "$RUNNER_TEMP/asia-coast/app" checkout --detach "$APP_SHA"
+          printf '%s\n' '{"disposable":true}' > "$RUNNER_TEMP/asia-coast/app/.factory-disposable.json"
+          npm ci --prefix "$RUNNER_TEMP/asia-coast/app" --ignore-scripts --no-audit --no-fund
+      - name: Diagnose raw shore versus safe simplification
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/asia-coast/diagnostic"
+          node --experimental-strip-types scripts/geo/asia-coast-diagnostic.mjs \
+            --table scripts/geo/asia-factory-targets.json \
+            --workspace "$RUNNER_TEMP/asia-coast/app" \
+            --sandbox-root "$RUNNER_TEMP/asia-coast" \
+            2>&1 | tee "$RUNNER_TEMP/asia-coast/diagnostic/diagnostic.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: asia-coast-diagnostic-${{ github.sha }}
+          path: ${{ runner.temp }}/asia-coast/diagnostic
+          if-no-files-found: error

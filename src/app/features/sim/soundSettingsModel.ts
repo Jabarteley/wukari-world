@@ -14,6 +14,12 @@ export const SOUND_SLIDERS: readonly { id: SoundSliderId; label: string; hint: s
   { id: 'ambience', label: 'Ambience', hint: 'The sound of the place you are in, and the weather.' },
   { id: 'calls', label: 'Call sounds', hint: 'Ringing and call tones.' },
 ]
+export const VOICE_CHOICES: readonly { id: SoundSettings['voices']; label: string }[] = [
+  { id: 'off', label: 'Off' }, { id: 'sounds', label: 'Sounds' }, { id: 'speech', label: 'Speech' },
+]
+export const VOICES_HINT = 'People in a place make soft talk sounds as their words appear. Speech reads the nearest line aloud with a voice already on your device, where it has one; it stays off in Quiet.'
+/** What picking one of the spoken-voice choices stores. */
+export const voicesChange = (value: string): Partial<SoundSettings> => ({ voices: value === 'off' || value === 'speech' ? value : 'sounds' })
 export const SOUND_NOT_SAVED = 'This browser would not save the sound settings, so they last only until you close the tab.'
 
 /** A 0..1 level as the whole percent shown beside a slider. */

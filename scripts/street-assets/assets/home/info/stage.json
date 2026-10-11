@@ -1,0 +1,15 @@
+{
+ "w": 5,
+ "h": 3,
+ "kind": "decor",
+ "piece": "stage",
+ "triangles": 135,
+ "extentMetres": [
+  5.52,
+  3.04,
+  3.68
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

@@ -1,0 +1,17 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "counterZ": 0.86,
+ "sink": true,
+ "piece": "cabinet-sink",
+ "triangles": 70,
+ "extentMetres": [
+  1.22,
+  0.75,
+  1.21
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

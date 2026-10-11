@@ -1,0 +1,18 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "ceiling": true,
+ "powered": true,
+ "spin": "blades about Z",
+ "piece": "fan-ceiling",
+ "triangles": 40,
+ "extentMetres": [
+  1.43,
+  1.43,
+  2.99
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

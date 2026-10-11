@@ -1,0 +1,15 @@
+{
+ "kind": "generator-hut",
+ "attach": "ground",
+ "w": 1,
+ "d": 1.6,
+ "piece": "detail-generator-hut",
+ "triangles": 65,
+ "extentMetres": [
+  2.0,
+  1.6,
+  2.3
+ ],
+ "h": 1,
+ "empties": []
+}

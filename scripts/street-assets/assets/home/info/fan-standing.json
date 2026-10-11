@@ -1,0 +1,16 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "powered": true,
+ "piece": "fan-standing",
+ "triangles": 73,
+ "extentMetres": [
+  0.57,
+  0.6,
+  1.68
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

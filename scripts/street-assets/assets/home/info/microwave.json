@@ -1,0 +1,16 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "surfaceItem": true,
+ "piece": "microwave",
+ "triangles": 25,
+ "extentMetres": [
+  0.64,
+  0.51,
+  1.29
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

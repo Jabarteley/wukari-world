@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "piece": "coffee-table",
+ "triangles": 45,
+ "extentMetres": [
+  1.08,
+  0.74,
+  0.51
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

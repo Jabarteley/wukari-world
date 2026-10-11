@@ -1,0 +1,717 @@
+{
+ "humble": {
+  "room": "room-selfcontain-ceramic",
+  "W": 6,
+  "D": 6,
+  "items": [
+   {
+    "piece": "mattress",
+    "x": 0,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "chair-plastic",
+    "x": 2,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "stool",
+    "x": 3,
+    "y": 3,
+    "rot": 0
+   },
+   {
+    "piece": "bucket-bowl",
+    "x": 4,
+    "y": 4,
+    "rot": 0
+   },
+   {
+    "piece": "toilet",
+    "x": 5,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "basin",
+    "x": 4,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "cooker",
+    "x": 2,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "gas-cylinder",
+    "x": 3,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "shoe-rack",
+    "x": 0,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "washing-line",
+    "x": 3,
+    "y": 1,
+    "rot": 0
+   },
+   {
+    "piece": "cabinet-base",
+    "x": 1,
+    "y": 5,
+    "rot": 0
+   }
+  ]
+ },
+ "nice": {
+  "room": "room-selfcontain-parquet",
+  "W": 6,
+  "D": 6,
+  "items": [
+   {
+    "piece": "bed-double",
+    "x": 0,
+    "y": 0,
+    "rot": 0,
+    "variant": "ankara-a"
+   },
+   {
+    "piece": "bedside",
+    "x": 2,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "wardrobe",
+    "x": 4,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "rug1",
+    "x": 2,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "coffee-table",
+    "x": 2,
+    "y": 2,
+    "rot": 0,
+    "floorZ": 0.013
+   },
+   {
+    "piece": "tv-console",
+    "x": 0,
+    "y": 2,
+    "rot": 1
+   },
+   {
+    "piece": "sofa2",
+    "x": 4,
+    "y": 2,
+    "rot": 3,
+    "variant": "terracotta"
+   },
+   {
+    "piece": "lamp-floor",
+    "x": 3,
+    "y": 1,
+    "rot": 0
+   },
+   {
+    "piece": "plant-tall",
+    "x": 5,
+    "y": 1,
+    "rot": 0
+   },
+   {
+    "piece": "fan-ceiling",
+    "x": 3,
+    "y": 3,
+    "rot": 0
+   },
+   {
+    "piece": "ac-unit",
+    "x": 2,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.1
+   },
+   {
+    "piece": "curtains",
+    "x": 3,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "blue"
+   },
+   {
+    "piece": "frame-lagoon",
+    "x": 1,
+    "y": 0,
+    "rot": 0,
+    "wall": "back"
+   },
+   {
+    "piece": "frame-adire",
+    "x": 0,
+    "y": 1,
+    "rot": 1,
+    "wall": "left"
+   },
+   {
+    "piece": "toilet",
+    "x": 5,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "basin",
+    "x": 4,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "shower",
+    "x": 5,
+    "y": 4,
+    "rot": 0
+   },
+   {
+    "piece": "cooker-pots",
+    "x": 2,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "cabinet-sink",
+    "x": 1,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "fridge",
+    "x": 1,
+    "y": 4,
+    "rot": 0
+   },
+   {
+    "piece": "shoe-rack",
+    "x": 0,
+    "y": 5,
+    "rot": 0
+   }
+  ]
+ },
+ "flat": {
+  "room": "room-flat-terrazzo",
+  "W": 12,
+  "D": 8,
+  "items": [
+   {
+    "piece": "fridge",
+    "x": 0,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "cabinet-sink",
+    "x": 1,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "cabinet-base",
+    "x": 2,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "microwave",
+    "x": 2,
+    "y": 0,
+    "rot": 0,
+    "floorZ": 0.86
+   },
+   {
+    "piece": "cooker-pots",
+    "x": 3,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "cabinet-wall",
+    "x": 1,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 1.45
+   },
+   {
+    "piece": "cabinet-wall",
+    "x": 2,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 1.45
+   },
+   {
+    "piece": "water-dispenser",
+    "x": 0,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "gas-cylinder",
+    "x": 3,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "dining-laid",
+    "x": 4,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "rug2",
+    "x": 2,
+    "y": 3,
+    "rot": 0
+   },
+   {
+    "piece": "coffee-table",
+    "x": 2,
+    "y": 3,
+    "rot": 0,
+    "floorZ": 0.013
+   },
+   {
+    "piece": "tv-console",
+    "x": 0,
+    "y": 3,
+    "rot": 1
+   },
+   {
+    "piece": "sofa3",
+    "x": 5,
+    "y": 3,
+    "rot": 3,
+    "variant": "slate"
+   },
+   {
+    "piece": "armchair",
+    "x": 2,
+    "y": 5,
+    "rot": 2,
+    "variant": "terracotta"
+   },
+   {
+    "piece": "lamp-floor",
+    "x": 5,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "bookshelf",
+    "x": 7,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "plant-tall",
+    "x": 7,
+    "y": 4,
+    "rot": 0
+   },
+   {
+    "piece": "plant-bushy",
+    "x": 4,
+    "y": 6,
+    "rot": 0
+   },
+   {
+    "piece": "shoe-rack",
+    "x": 0,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "inverter",
+    "x": 7,
+    "y": 6,
+    "rot": 0
+   },
+   {
+    "piece": "ring-light",
+    "x": 6,
+    "y": 6,
+    "rot": 0
+   },
+   {
+    "piece": "fan-ceiling",
+    "x": 3,
+    "y": 4,
+    "rot": 0
+   },
+   {
+    "piece": "ac-unit",
+    "x": 7,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.1
+   },
+   {
+    "piece": "curtains",
+    "x": 2,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "default"
+   },
+   {
+    "piece": "curtains",
+    "x": 6,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "default"
+   },
+   {
+    "piece": "frame-adire",
+    "x": 4,
+    "y": 0,
+    "rot": 0,
+    "wall": "back"
+   },
+   {
+    "piece": "frame-portrait",
+    "x": 0,
+    "y": 1,
+    "rot": 1,
+    "wall": "left",
+    "mountZ": 1.6
+   },
+   {
+    "piece": "bed-double",
+    "x": 9,
+    "y": 0,
+    "rot": 0,
+    "variant": "green"
+   },
+   {
+    "piece": "bedside",
+    "x": 8,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "bedside",
+    "x": 11,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "wardrobe",
+    "x": 9,
+    "y": 4,
+    "rot": 2
+   },
+   {
+    "piece": "dressing-table",
+    "x": 11,
+    "y": 2,
+    "rot": 3
+   },
+   {
+    "piece": "rug3",
+    "x": 9,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "prayer-mat",
+    "x": 8,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "fan-standing",
+    "x": 8,
+    "y": 4,
+    "rot": 0
+   },
+   {
+    "piece": "curtains",
+    "x": 10,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "cream"
+   },
+   {
+    "piece": "frame-lagoon",
+    "x": 9,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 1.7
+   },
+   {
+    "piece": "shower",
+    "x": 11,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "toilet",
+    "x": 11,
+    "y": 7,
+    "rot": 0
+   },
+   {
+    "piece": "basin",
+    "x": 9,
+    "y": 7,
+    "rot": 0
+   },
+   {
+    "piece": "bucket-bowl",
+    "x": 10,
+    "y": 5,
+    "rot": 0
+   }
+  ]
+ },
+ "hall": {
+  "room": "room-hall-checker",
+  "W": 20,
+  "D": 14,
+  "items": [
+   {
+    "piece": "stage",
+    "x": 7,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 1,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 5,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 12,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 16,
+    "y": 5,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 1,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 5,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 12,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 16,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "rug2",
+    "x": 9,
+    "y": 4,
+    "rot": 0
+   },
+   {
+    "piece": "rug2",
+    "x": 9,
+    "y": 6,
+    "rot": 0
+   },
+   {
+    "piece": "rug2",
+    "x": 9,
+    "y": 8,
+    "rot": 0
+   },
+   {
+    "piece": "rug2",
+    "x": 9,
+    "y": 10,
+    "rot": 0
+   },
+   {
+    "piece": "lamp-floor",
+    "x": 6,
+    "y": 3,
+    "rot": 0
+   },
+   {
+    "piece": "lamp-floor",
+    "x": 13,
+    "y": 3,
+    "rot": 0
+   },
+   {
+    "piece": "plant-tall",
+    "x": 6,
+    "y": 1,
+    "rot": 0
+   },
+   {
+    "piece": "plant-tall",
+    "x": 14,
+    "y": 1,
+    "rot": 0
+   },
+   {
+    "piece": "curtains",
+    "x": 4,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "blue"
+   },
+   {
+    "piece": "curtains",
+    "x": 5,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "blue"
+   },
+   {
+    "piece": "curtains",
+    "x": 10,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "blue"
+   },
+   {
+    "piece": "curtains",
+    "x": 11,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "blue"
+   },
+   {
+    "piece": "curtains",
+    "x": 15,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "blue"
+   },
+   {
+    "piece": "curtains",
+    "x": 16,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "variant": "blue"
+   },
+   {
+    "piece": "ac-unit",
+    "x": 2,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.1
+   },
+   {
+    "piece": "ac-unit",
+    "x": 17,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.1
+   },
+   {
+    "piece": "fan-ceiling",
+    "x": 4,
+    "y": 8,
+    "rot": 0
+   },
+   {
+    "piece": "fan-ceiling",
+    "x": 15,
+    "y": 8,
+    "rot": 0
+   },
+   {
+    "piece": "fan-ceiling",
+    "x": 9,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "frame-portrait",
+    "x": 2,
+    "y": 0,
+    "rot": 1,
+    "wall": "left",
+    "mountZ": 1.6
+   },
+   {
+    "piece": "frame-lagoon",
+    "x": 6,
+    "y": 0,
+    "rot": 1,
+    "wall": "left",
+    "mountZ": 1.5
+   },
+   {
+    "piece": "ring-light",
+    "x": 2,
+    "y": 3,
+    "rot": 0
+   },
+   {
+    "piece": "ring-light",
+    "x": 17,
+    "y": 3,
+    "rot": 0
+   }
+  ]
+ }
+}

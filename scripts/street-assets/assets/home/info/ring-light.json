@@ -1,0 +1,16 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "tripod",
+ "light": true,
+ "piece": "ring-light",
+ "triangles": 95,
+ "extentMetres": [
+  0.71,
+  0.7,
+  1.94
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

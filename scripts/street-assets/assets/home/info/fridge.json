@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "cooler",
+ "piece": "fridge",
+ "triangles": 35,
+ "extentMetres": [
+  0.76,
+  0.81,
+  2.01
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

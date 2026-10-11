@@ -1,0 +1,21 @@
+{
+ "kind": "security-light",
+ "attach": "wall",
+ "w": 1,
+ "h": 1,
+ "piece": "detail-security-light",
+ "triangles": 20,
+ "extentMetres": [
+  0.28,
+  0.36,
+  0.3
+ ],
+ "empties": [
+  {
+   "name": "light_security",
+   "x": 0.0,
+   "y": 0.1,
+   "z": 0.25
+  }
+ ]
+}

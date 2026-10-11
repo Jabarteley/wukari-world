@@ -1,0 +1,66 @@
+{
+ "w": 2,
+ "h": 2,
+ "kind": "seat",
+ "seats": 4,
+ "laid": true,
+ "piece": "dining-laid",
+ "triangles": 323,
+ "extentMetres": [
+  1.49,
+  1.89,
+  1.09
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "seat_1",
+   "x": -0.368,
+   "y": 0.575,
+   "z": 0.606,
+   "kind": "seat",
+   "facing": [
+    0,
+    1,
+    0
+   ]
+  },
+  {
+   "name": "seat_2",
+   "x": 0.368,
+   "y": 0.575,
+   "z": 0.606,
+   "kind": "seat",
+   "facing": [
+    0,
+    1,
+    0
+   ]
+  },
+  {
+   "name": "seat_3",
+   "x": -0.368,
+   "y": 0.575,
+   "z": -0.606,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  },
+  {
+   "name": "seat_4",
+   "x": 0.368,
+   "y": 0.575,
+   "z": -0.606,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

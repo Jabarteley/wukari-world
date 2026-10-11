@@ -1,0 +1,24 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "light",
+ "light": true,
+ "piece": "lamp-floor",
+ "triangles": 56,
+ "extentMetres": [
+  0.69,
+  0.67,
+  2.0
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "light_lamp",
+   "x": 0.0,
+   "y": 1.782,
+   "z": -0.0,
+   "kind": "lamp"
+  }
+ ],
+ "fitsFootprint": true
+}

@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "water",
+ "piece": "water-dispenser",
+ "triangles": 40,
+ "extentMetres": [
+  0.39,
+  0.43,
+  1.61
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

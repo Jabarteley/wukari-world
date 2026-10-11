@@ -1,0 +1,16 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "shelf",
+ "use": "read",
+ "piece": "bookshelf",
+ "triangles": 305,
+ "extentMetres": [
+  0.94,
+  0.34,
+  2.05
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

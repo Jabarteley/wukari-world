@@ -1,0 +1,45 @@
+{
+ "w": 1,
+ "h": 2,
+ "kind": "bed",
+ "tintable": [
+  "cream",
+  "blue",
+  "red",
+  "green",
+  "default",
+  "ankara-a",
+  "ankara-b"
+ ],
+ "sleeps": 1,
+ "piece": "bed-single",
+ "triangles": 125,
+ "extentMetres": [
+  1.22,
+  2.28,
+  1.21
+ ],
+ "variants": [
+  "cream",
+  "blue",
+  "red",
+  "green",
+  "default",
+  "ankara-a"
+ ],
+ "empties": [
+  {
+   "name": "sleep_1",
+   "x": 0.0,
+   "y": 0.633,
+   "z": -0.011,
+   "kind": "bed",
+   "facing": [
+    0,
+    1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

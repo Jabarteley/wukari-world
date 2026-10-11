@@ -1,0 +1,15 @@
+{
+ "kind": "clothes-line",
+ "attach": "ground",
+ "w": 1,
+ "d": 0.1,
+ "piece": "detail-clothes-line",
+ "triangles": 37,
+ "extentMetres": [
+  3.46,
+  0.05,
+  2.1
+ ],
+ "h": 1,
+ "empties": []
+}

@@ -1,0 +1,17 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "counterZ": 0.86,
+ "sink": false,
+ "piece": "cabinet-base",
+ "triangles": 45,
+ "extentMetres": [
+  1.22,
+  0.75,
+  0.99
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

@@ -1,0 +1,29 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "seat",
+ "seats": 1,
+ "piece": "stool",
+ "triangles": 29,
+ "extentMetres": [
+  0.46,
+  0.46,
+  0.54
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "seat_1",
+   "x": 0.0,
+   "y": 0.54,
+   "z": -0.0,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

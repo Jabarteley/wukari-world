@@ -1,0 +1,28 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "wall": true,
+ "mountZ": 0.0,
+ "tintable": [
+  "default",
+  "blue",
+  "green",
+  "cream"
+ ],
+ "piece": "curtains",
+ "triangles": 27,
+ "extentMetres": [
+  1.49,
+  0.1,
+  2.33
+ ],
+ "variants": [
+  "default",
+  "blue",
+  "green",
+  "cream"
+ ],
+ "empties": [],
+ "fitsFootprint": true
+}

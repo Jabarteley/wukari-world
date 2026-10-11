@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "piece": "gas-cylinder",
+ "triangles": 66,
+ "extentMetres": [
+  0.39,
+  0.42,
+  0.89
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

@@ -1,0 +1,28 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "bath",
+ "piece": "bucket-bowl",
+ "triangles": 54,
+ "extentMetres": [
+  0.86,
+  0.63,
+  0.39
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "use_wash",
+   "x": 0.0,
+   "y": 0.0,
+   "z": 0.46,
+   "kind": "bath",
+   "facing": [
+    0,
+    1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

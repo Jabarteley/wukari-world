@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "piece": "basin",
+ "triangles": 62,
+ "extentMetres": [
+  0.6,
+  0.54,
+  1.96
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

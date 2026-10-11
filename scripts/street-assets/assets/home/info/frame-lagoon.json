@@ -1,0 +1,18 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "wall": true,
+ "mountZ": 1.6,
+ "swappablePicture": "front quad uses atlas rect art_lagoon",
+ "piece": "frame-lagoon",
+ "triangles": 6,
+ "extentMetres": [
+  1.03,
+  0.06,
+  0.39
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "piece": "shoe-rack",
+ "triangles": 75,
+ "extentMetres": [
+  1.01,
+  0.34,
+  0.81
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

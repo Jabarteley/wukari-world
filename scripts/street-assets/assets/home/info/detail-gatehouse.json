@@ -1,0 +1,22 @@
+{
+ "kind": "gatehouse",
+ "attach": "ground",
+ "w": 1,
+ "d": 2.0,
+ "piece": "detail-gatehouse",
+ "triangles": 25,
+ "extentMetres": [
+  2.0,
+  2.0,
+  2.3
+ ],
+ "h": 1,
+ "empties": [
+  {
+   "name": "light_gate",
+   "x": 0.0,
+   "y": 2.1,
+   "z": 0.9
+  }
+ ]
+}

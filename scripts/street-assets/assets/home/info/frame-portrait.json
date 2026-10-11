@@ -1,0 +1,18 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "wall": true,
+ "mountZ": 1.6,
+ "swappablePicture": "front quad uses atlas rect art_portrait",
+ "piece": "frame-portrait",
+ "triangles": 6,
+ "extentMetres": [
+  0.63,
+  0.06,
+  0.41
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

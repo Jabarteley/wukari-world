@@ -1,0 +1,42 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "seat",
+ "tintable": [
+  "slate",
+  "terracotta",
+  "grey",
+  "green",
+  "default"
+ ],
+ "seats": 1,
+ "piece": "armchair",
+ "triangles": 230,
+ "extentMetres": [
+  1.09,
+  1.06,
+  1.06
+ ],
+ "variants": [
+  "slate",
+  "terracotta",
+  "grey",
+  "green",
+  "default"
+ ],
+ "empties": [
+  {
+   "name": "seat_1",
+   "x": 0.0,
+   "y": 0.575,
+   "z": 0.023,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

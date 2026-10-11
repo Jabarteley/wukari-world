@@ -1,0 +1,28 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "bath",
+ "piece": "shower",
+ "triangles": 52,
+ "extentMetres": [
+  1.03,
+  1.03,
+  2.28
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "use_shower",
+   "x": 0.0,
+   "y": 0.115,
+   "z": -0.0,
+   "kind": "bath",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

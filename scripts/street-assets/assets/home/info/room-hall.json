@@ -1,0 +1,101 @@
+{
+ "room": "hall",
+ "cells": [
+  20,
+  14
+ ],
+ "metres": [
+  24.0,
+  16.8,
+  2.6
+ ],
+ "floor": "checker",
+ "triangles": 1775,
+ "doors": [
+  {
+   "wall": "wall_left",
+   "along": 14.4,
+   "width": 2.4,
+   "height": 2.2
+  }
+ ],
+ "windows": [
+  {
+   "wall": "wall_back",
+   "along": 6.0,
+   "width": 2.4,
+   "z0": 1.0,
+   "z1": 2.2
+  },
+  {
+   "wall": "wall_back",
+   "along": 13.2,
+   "width": 2.4,
+   "z0": 1.0,
+   "z1": 2.2
+  },
+  {
+   "wall": "wall_back",
+   "along": 19.2,
+   "width": 2.4,
+   "z0": 1.0,
+   "z1": 2.2
+  },
+  {
+   "wall": "wall_front",
+   "along": 7.2,
+   "width": 2.4,
+   "z0": 1.0,
+   "z1": 2.2
+  },
+  {
+   "wall": "wall_front",
+   "along": 16.8,
+   "width": 2.4,
+   "z0": 1.0,
+   "z1": 2.2
+  },
+  {
+   "wall": "wall_right",
+   "along": 4.8,
+   "width": 2.4,
+   "z0": 1.0,
+   "z1": 2.2
+  },
+  {
+   "wall": "wall_right",
+   "along": 12.0,
+   "width": 2.4,
+   "z0": 1.0,
+   "z1": 2.2
+  }
+ ],
+ "lights": 6,
+ "nodes": [
+  "wall_back",
+  "wall_left",
+  "wall_front",
+  "wall_right",
+  "partition",
+  "floor",
+  "glass_wall_back",
+  "glass_wall_left",
+  "glass_wall_front",
+  "glass_wall_right",
+  "glow"
+ ],
+ "walls": {
+  "cream": "#efe3c8",
+  "white": "#f6f3ea",
+  "sage": "#bcd3bc",
+  "sky": "#b9d3e8",
+  "peach": "#f2c3a7"
+ },
+ "floors": [
+  "ceramic",
+  "terrazzo",
+  "parquet",
+  "checker"
+ ],
+ "gameCellOf": "x = cell x * 1.2 m, y = -(cell y) * 1.2 m (the game's y runs toward the camera)"
+}

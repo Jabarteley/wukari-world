@@ -97,3 +97,14 @@ All buildings and props of one palette and level of detail carry the same 1024 p
 The game can therefore keep one texture and one material per palette and merge or instance many different buildings and props into one draw call (a mesh merged per street row, or an instanced mesh per model).
 The colour variants (cream, mint, sky; the kiosk and stall teal, red, blue) differ only in that atlas. The generated vehicles each have their own 512 px texture (256 far); the clean cars share nothing but are 256 px flat colours,
 so the four saloon colours are four tiny textures. Sign boards (`sign_n`), the billboard face and the traffic lamps are separate nodes with their own materials: the game paints them. Spin the wheel nodes about X only.
+
+## Round four: homes, furniture, exterior detail
+
+- `assets/home/`: `home-atlas.jpg` (one 1024 px atlas shared by every furniture piece, room shell and detail piece), about 100 furniture pieces and variants (`blender/furniture.py`, `build_home.sh`),
+  16 room shells (`blender/rooms.py`, `build_rooms.sh`: self-contain, flat, three-bedroom floor and hall, each in ceramic, terrazzo, parquet and checker floors), `info/*.json` (footprint in cells, kind, anchors) and `layouts.json` (the dressed rooms).
+- `assets/detail-*.glb` come with `build_detail.sh` (`blender/detail.py`): balcony, window bars, awning, external AC, dish, number sign, gate and fence, gatehouse, security light, generator hut, clothes line. Placement rules by detail level 1-3 are in `capture3.ts` (RULES).
+- Units: one home grid cell is 1.2 m (the home scene fits a 10-unit room to the grid). Pieces are drawn at real size times 1.15 and fit their footprint (`fitsFootprint` in the info files).
+- The material is called `home-atlas` and has no image in the glb: bind the shared atlas to it once. Tintable pieces (sofa, bed, curtains, walls) carry a vertex colour: change it to recolour. Walls take their colour the same way (WALLS in `homelib.py`).
+- Instancing/merging: every home piece uses the same atlas and material, so a whole dressed room merges into two meshes (solid and glow): 2 draw calls (see `room-stats.json`); the window and lamp glow parts use an unlit material.
+- Anchors are named empties: `seat_n`, `sleep_n`, `use_*`, `light_*` (lamp positions for the game's point lights), in glTF axes relative to the piece's footprint centre.
+- Vehicles: saloon and SUV were regenerated from clean side-view pictures (`configs/saloon.json`, `suv.json`) with the clean-wheel replacement.

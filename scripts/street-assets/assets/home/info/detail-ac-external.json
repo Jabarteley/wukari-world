@@ -1,0 +1,15 @@
+{
+ "kind": "ac",
+ "attach": "wall",
+ "w": 1,
+ "d": 0.4,
+ "piece": "detail-ac-external",
+ "triangles": 40,
+ "extentMetres": [
+  0.8,
+  0.41,
+  0.55
+ ],
+ "h": 1,
+ "empties": []
+}

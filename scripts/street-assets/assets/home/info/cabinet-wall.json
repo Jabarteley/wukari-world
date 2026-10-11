@@ -1,0 +1,17 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "wall": true,
+ "mountZ": 1.45,
+ "piece": "cabinet-wall",
+ "triangles": 35,
+ "extentMetres": [
+  1.15,
+  0.44,
+  0.8
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

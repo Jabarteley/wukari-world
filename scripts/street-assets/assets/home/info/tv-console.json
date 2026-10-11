@@ -1,0 +1,29 @@
+{
+ "w": 2,
+ "h": 1,
+ "kind": "tv",
+ "powered": true,
+ "piece": "tv-console",
+ "triangles": 61,
+ "extentMetres": [
+  1.89,
+  0.61,
+  1.47
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "use_tv",
+   "x": 0.0,
+   "y": 0.0,
+   "z": 1.035,
+   "kind": "tv",
+   "facing": [
+    0,
+    1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

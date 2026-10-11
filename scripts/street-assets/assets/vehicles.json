@@ -295,132 +295,144 @@
   ]
  },
  "saloon": {
-  "type": "saloon",
-  "triangles": 221,
+  "name": "saloon",
+  "originalTriangles": 3496,
+  "triangles": 1990,
+  "bodyTriangles": 1750,
   "size": {
-   "width": 1.85,
-   "length": 4.4,
-   "height": 1.5
+   "width": 1.88,
+   "length": 4.5,
+   "height": 1.41
   },
-  "wheelRadius": 0.37,
-  "wheelNodes": [],
-  "seats": 4,
+  "wheelRadius": 0.346,
+  "wheelNodes": [
+   "wheel_fl",
+   "wheel_fr",
+   "wheel_rl",
+   "wheel_rr"
+  ],
   "empties": [
    {
     "name": "seat_driver",
-    "x": 0.37,
-    "y": 0.9,
-    "z": 0.1
+    "x": 0.42,
+    "y": 0.59,
+    "z": 0.36
    },
    {
     "name": "seat_1",
-    "x": -0.37,
-    "y": 0.9,
-    "z": 0.1
+    "x": -0.42,
+    "y": 0.59,
+    "z": 0.36
    },
    {
     "name": "seat_2",
-    "x": 0.37,
-    "y": 0.9,
-    "z": -0.8
+    "x": 0.42,
+    "y": 0.59,
+    "z": -0.9
    },
    {
     "name": "seat_3",
-    "x": -0.37,
-    "y": 0.9,
-    "z": -0.8
+    "x": -0.42,
+    "y": 0.59,
+    "z": -0.9
    },
    {
     "name": "light_head_l",
     "x": 0.61,
-    "y": 0.88,
-    "z": 2.26
-   },
-   {
-    "name": "light_tail_l",
-    "x": 0.62,
-    "y": 0.97,
-    "z": -2.26
+    "y": 0.39,
+    "z": 2.2
    },
    {
     "name": "light_head_r",
     "x": -0.61,
-    "y": 0.88,
-    "z": 2.26
+    "y": 0.39,
+    "z": 2.2
+   },
+   {
+    "name": "light_tail_l",
+    "x": 0.61,
+    "y": 0.56,
+    "z": -2.2
    },
    {
     "name": "light_tail_r",
-    "x": -0.62,
-    "y": 0.97,
-    "z": -2.26
+    "x": -0.61,
+    "y": 0.56,
+    "z": -2.2
    }
   ]
  },
  "suv": {
-  "type": "suv",
-  "triangles": 221,
+  "name": "suv",
+  "originalTriangles": 3489,
+  "triangles": 2065,
+  "bodyTriangles": 1825,
   "size": {
-   "width": 1.95,
+   "width": 2.08,
    "length": 4.7,
-   "height": 1.9
+   "height": 1.83
   },
-  "wheelRadius": 0.45,
-  "wheelNodes": [],
-  "seats": 5,
+  "wheelRadius": 0.423,
+  "wheelNodes": [
+   "wheel_fl",
+   "wheel_fr",
+   "wheel_rl",
+   "wheel_rr"
+  ],
   "empties": [
    {
     "name": "seat_driver",
-    "x": 0.44,
-    "y": 1.14,
-    "z": 0.15
+    "x": 0.47,
+    "y": 0.88,
+    "z": 0.47
    },
    {
     "name": "seat_1",
-    "x": -0.44,
-    "y": 1.14,
-    "z": 0.15
+    "x": -0.47,
+    "y": 0.88,
+    "z": 0.47
    },
    {
     "name": "seat_2",
-    "x": 0.44,
-    "y": 1.14,
-    "z": -0.75
+    "x": 0.47,
+    "y": 0.92,
+    "z": -0.56
    },
    {
     "name": "seat_3",
-    "x": -0.44,
-    "y": 1.14,
-    "z": -0.75
+    "x": -0.47,
+    "y": 0.92,
+    "z": -0.56
    },
    {
     "name": "seat_4",
-    "x": 0.44,
-    "y": 1.14,
-    "z": -1.55
+    "x": 0.0,
+    "y": 0.92,
+    "z": -1.41
    },
    {
     "name": "light_head_l",
-    "x": 0.65,
-    "y": 1.08,
-    "z": 2.41
-   },
-   {
-    "name": "light_tail_l",
-    "x": 0.68,
-    "y": 1.17,
-    "z": -2.41
+    "x": 0.67,
+    "y": 0.6,
+    "z": 2.3
    },
    {
     "name": "light_head_r",
-    "x": -0.65,
-    "y": 1.08,
-    "z": 2.41
+    "x": -0.67,
+    "y": 0.6,
+    "z": 2.3
+   },
+   {
+    "name": "light_tail_l",
+    "x": 0.67,
+    "y": 0.82,
+    "z": -2.3
    },
    {
     "name": "light_tail_r",
-    "x": -0.68,
-    "y": 1.17,
-    "z": -2.41
+    "x": -0.67,
+    "y": 0.82,
+    "z": -2.3
    }
   ]
  },

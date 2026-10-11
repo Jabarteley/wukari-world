@@ -1,0 +1,15 @@
+{
+ "kind": "dish",
+ "attach": "roof",
+ "w": 1,
+ "d": 0.5,
+ "piece": "detail-dish",
+ "triangles": 47,
+ "extentMetres": [
+  0.68,
+  0.46,
+  0.96
+ ],
+ "h": 1,
+ "empties": []
+}

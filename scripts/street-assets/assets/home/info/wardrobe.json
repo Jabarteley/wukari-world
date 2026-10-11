@@ -1,0 +1,15 @@
+{
+ "w": 2,
+ "h": 1,
+ "kind": "decor",
+ "piece": "wardrobe",
+ "triangles": 50,
+ "extentMetres": [
+  1.89,
+  0.72,
+  2.24
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

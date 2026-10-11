@@ -1,0 +1,66 @@
+{
+ "w": 3,
+ "h": 1,
+ "kind": "seat",
+ "tintable": [
+  "slate",
+  "terracotta",
+  "grey",
+  "green",
+  "default"
+ ],
+ "seats": 3,
+ "piece": "sofa3",
+ "triangles": 350,
+ "extentMetres": [
+  2.99,
+  1.06,
+  1.06
+ ],
+ "variants": [
+  "slate",
+  "terracotta",
+  "grey",
+  "green",
+  "default"
+ ],
+ "empties": [
+  {
+   "name": "seat_1",
+   "x": -0.859,
+   "y": 0.575,
+   "z": 0.023,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  },
+  {
+   "name": "seat_2",
+   "x": 0.0,
+   "y": 0.575,
+   "z": 0.023,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  },
+  {
+   "name": "seat_3",
+   "x": 0.859,
+   "y": 0.575,
+   "z": 0.023,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

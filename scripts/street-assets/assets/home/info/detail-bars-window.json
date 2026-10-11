@@ -1,0 +1,14 @@
+{
+ "kind": "bars",
+ "attach": "wall",
+ "w": 1,
+ "h": 1,
+ "piece": "detail-bars-window",
+ "triangles": 90,
+ "extentMetres": [
+  1.4,
+  0.15,
+  1.5
+ ],
+ "empties": []
+}

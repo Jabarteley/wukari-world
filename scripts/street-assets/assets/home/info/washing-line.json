@@ -1,0 +1,16 @@
+{
+ "w": 2,
+ "h": 1,
+ "kind": "decor",
+ "thin": true,
+ "piece": "washing-line",
+ "triangles": 57,
+ "extentMetres": [
+  2.37,
+  0.18,
+  2.3
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

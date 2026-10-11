@@ -1,0 +1,16 @@
+{
+ "kind": "gate-fence",
+ "attach": "ground",
+ "w": 1,
+ "d": 0.7,
+ "opening": 3.0,
+ "piece": "detail-gate-fence",
+ "triangles": 195,
+ "extentMetres": [
+  6.64,
+  0.64,
+  2.65
+ ],
+ "h": 1,
+ "empties": []
+}

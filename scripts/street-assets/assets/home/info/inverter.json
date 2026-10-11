@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "power",
+ "piece": "inverter",
+ "triangles": 56,
+ "extentMetres": [
+  0.69,
+  0.52,
+  1.09
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

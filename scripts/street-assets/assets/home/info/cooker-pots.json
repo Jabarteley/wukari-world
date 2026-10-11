@@ -1,0 +1,29 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "stove",
+ "pots": true,
+ "piece": "cooker-pots",
+ "triangles": 235,
+ "extentMetres": [
+  0.83,
+  0.76,
+  1.35
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "use_cook",
+   "x": 0.0,
+   "y": 0.0,
+   "z": 0.805,
+   "kind": "stove",
+   "facing": [
+    0,
+    1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

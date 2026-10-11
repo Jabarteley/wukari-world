@@ -1,0 +1,41 @@
+{
+ "w": 2,
+ "h": 2,
+ "kind": "desk",
+ "powered": true,
+ "piece": "desk-laptop",
+ "triangles": 131,
+ "extentMetres": [
+  1.49,
+  1.56,
+  1.2
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "seat_1",
+   "x": 0.0,
+   "y": 0.621,
+   "z": 0.897,
+   "kind": "seat",
+   "facing": [
+    0,
+    1,
+    0
+   ]
+  },
+  {
+   "name": "use_desk",
+   "x": 0.0,
+   "y": 0.92,
+   "z": 0.46,
+   "kind": "desk",
+   "facing": [
+    0,
+    1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

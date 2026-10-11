@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "piece": "plant-tall",
+ "triangles": 42,
+ "extentMetres": [
+  0.78,
+  0.75,
+  1.77
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

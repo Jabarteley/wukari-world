@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "piece": "dressing-table",
+ "triangles": 98,
+ "extentMetres": [
+  1.15,
+  1.12,
+  1.84
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

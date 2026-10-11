@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "power",
+ "piece": "generator",
+ "triangles": 55,
+ "extentMetres": [
+  0.8,
+  0.57,
+  0.98
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

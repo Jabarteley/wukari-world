@@ -1,0 +1,16 @@
+{
+ "w": 2,
+ "h": 2,
+ "kind": "decor",
+ "flat": true,
+ "piece": "rug3",
+ "triangles": 5,
+ "extentMetres": [
+  2.18,
+  2.18,
+  0.01
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

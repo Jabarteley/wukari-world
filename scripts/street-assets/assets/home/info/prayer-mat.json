@@ -1,0 +1,16 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "flat": true,
+ "piece": "prayer-mat",
+ "triangles": 5,
+ "extentMetres": [
+  0.76,
+  1.1,
+  0.01
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

@@ -1,0 +1,15 @@
+{
+ "w": 1,
+ "h": 1,
+ "kind": "decor",
+ "piece": "plant-bushy",
+ "triangles": 48,
+ "extentMetres": [
+  0.87,
+  0.87,
+  0.99
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

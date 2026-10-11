@@ -1,0 +1,15 @@
+{
+ "kind": "balcony",
+ "attach": "wall",
+ "w": 1,
+ "d": 1.1,
+ "piece": "detail-balcony",
+ "triangles": 112,
+ "extentMetres": [
+  2.6,
+  1.11,
+  1.08
+ ],
+ "h": 1,
+ "empties": []
+}

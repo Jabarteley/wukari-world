@@ -1,5 +1,5 @@
 // Round three captures. node --experimental-strip-types scripts/street-assets/capture3.ts <glb-dir> <out-dir> --set finals|spin|scenes|side|numbers [--only name,name] [--suffix -far]
-import { mkdirSync, readdirSync, statSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Browser } from '../journeys/cdp.ts';
 import { serveProof } from './serve.ts';
@@ -9,6 +9,8 @@ const opt = (n: string, d: string): string => { const i = args.indexOf(n); retur
 const glbDir = args[0]!, out = args[1]!;
 const port = Number(opt('--port', '4485')), chromePort = Number(opt('--chrome-port', '4486'));
 const set = opt('--set', 'finals');
+const detail = Number(opt('--detail', '0'));
+const tag = opt('--tag', '');
 const only = opt('--only', '').split(',').filter(Boolean);
 const suffix = opt('--suffix', '');
 mkdirSync(out, { recursive: true });
@@ -71,7 +73,7 @@ try {
     const have = new Set(names);
     const PI2 = PI / 2;
     const camPos: V3 = [0, 12, 34];
-    type It = { src: 'new'; kind: string; file: string; x: number; z: number; ry: number };
+    type It = { src: "new"; kind: string; file: string; x: number; z: number; ry: number; home?: boolean; y?: number };
     const mk = (list: [string, number, number, number?][]): It[] => list.map(([file, x, z, ry = 0]) => {
       const far = Math.hypot(x - camPos[0], z - camPos[2]) > 40 && have.has(file + '-far');
       if (!have.has(file)) return null as unknown as It;
@@ -101,12 +103,41 @@ try {
         ...road([['bus', -30], ['danfo-white-green', -9], ['saloon-green', 4], ['suv-black', 18], ['danfo', 34]], 4.7, PI2), ...road([['okada', -24], ['bus', -5], ['danfo-blue-white', 17], ['van-blue', 32]], 8.6, -PI2),
       ]),
     };
+    // exterior detail by rule: [piece, x, y, z, ry, level] in the building's own frame (x right, y up, z toward the street)
+    const FOOT = JSON.parse(readFileSync(join(opt('--assets', '/Users/anthonyakpan/Documents/Allworld-notes/work/h2-street/scripts/street-assets/assets'), 'footprints.json'), 'utf8')) as Record<string, any>;
+    const PI3 = PI;
+    const RULES: Record<string, [string, number, number, number, number, number][]> = {
+      bungalow: [['gate-fence', 0, 0, 6.3, 0, 1], ['number-sign', 3.0, 1.4, 6.56, 0, 1], ['security-light', -3.0, 2.2, 6.56, 0, 1], ['ac-external', 5.0, 2.2, -1, PI3 / 2, 2], ['dish', 2, 5.5, -1, 0, 2], ['bars-window', -3.3, 1.2, 2.86, 0, 2], ['bars-window', 3.3, 1.2, 2.86, 0, 2], ['gatehouse', 6.8, 0, 6.0, 0, 3], ['clothes-line', 7.5, 0, -2, PI3 / 2, 3], ['generator-hut', -7, 0, -1.5, 0, 3]],
+      house2: [['gate-fence', 0, 0, 6.2, 0, 1], ['number-sign', 3.0, 1.4, 6.46, 0, 1], ['security-light', -2.0, 2.6, 2.95, 0, 1], ['ac-external', -4.8, 4.8, 0, -PI3 / 2, 2], ['dish', -2, 9.3, -1, 0, 2], ['bars-window', -3.1, 1.0, 2.95, 0, 2], ['bars-window', 3.1, 1.0, 2.95, 0, 2], ['bars-window', -3.1, 4.4, 2.95, 0, 2], ['bars-window', 3.1, 4.4, 2.95, 0, 2], ['awning', 3.1, 3.0, 2.95, 0, 3], ['gatehouse', 5.6, 0, 6.0, 0, 3], ['generator-hut', -6.2, 0, -2, 0, 3]],
+      flats: [['gate-fence', 0, 0, 7.3, 0, 1], ['number-sign', 3.0, 1.4, 7.56, 0, 1], ['number-sign', 0, 2.9, 4.1, 0, 1], ['security-light', -4.8, 3.0, 4.1, 0, 1], ['ac-external', 5.6, 3.0, 0, PI3 / 2, 2], ['ac-external', 5.6, 6.4, 0, PI3 / 2, 2], ['dish', 3, 10.4, -1, 0, 2], ['bars-window', -4.2, 1.0, 4.1, 0, 2], ['bars-window', 4.2, 1.0, 4.1, 0, 2], ['clothes-line', 0, 3.45, 5.3, 0, 3], ['clothes-line', 0, 6.85, 5.3, 0, 3], ['gatehouse', 6.6, 0, 7.0, 0, 3], ['generator-hut', 8.0, 0, -1, 0, 3]],
+      shops: [['security-light', -5.5, 3.3, 4.1, 0, 1], ['security-light', 5.5, 3.3, 4.1, 0, 1], ['ac-external', 6.1, 5.0, 0, PI3 / 2, 2], ['dish', 3, 10.5, -1, 0, 2], ['bars-window', -1.5, 4.9, 4.1, 0, 2], ['bars-window', 1.5, 4.9, 4.1, 0, 2], ['generator-hut', 7.8, 0, -1, 0, 3], ['clothes-line', -3, 7.4, 4.05, 0, 3]],
+    };
+    const BASE: Record<string, { bz: number; wall: number }> = { bungalow: { bz: 0, wall: 2.85 }, house2: { bz: 0, wall: 2.9 }, flats: { bz: 0, wall: 4.0 }, shops: { bz: 0, wall: 4.0 } };
+    void BASE;
+    const withDetail = (items: It[]): It[] => {
+      if (!detail) return items;
+      const extra: It[] = [];
+      for (const b of items) {
+        const gk = ['school', 'clinic', 'bank', 'mosque', 'church', 'shoprow'].find((k) => b.file.startsWith(k + '-'));
+        if (gk) {
+          const fp = FOOT[gk]; const wz = fp?.door?.z ?? 3.5; const hw = (fp?.footprint?.[0] ?? 10) / 2;
+          const g: [string, number, number, number, number, number][] = [['security-light', -hw + 1.2, 2.6, wz + 0.1, 0, 1], ['security-light', hw - 1.2, 2.6, wz + 0.1, 0, 1], ['ac-external', hw, 2.4, 0, PI / 2, 2], ['dish', 2, gk === 'bank' ? 7.5 : 4.4, -1, 0, 2], ['bars-window', -hw + 2.4, 1.0, wz + 0.05, 0, 2], ['generator-hut', hw + 1.6, 0, -1, PI / 2, 3]];
+          for (const [piece, x, y, z, ry, lvl] of g) if (lvl <= detail) extra.push({ src: 'new', kind: 'x', file: 'detail-' + piece, home: true, x: b.x + x, y, z: b.z + z, ry } as unknown as It);
+          continue;
+        }
+        const key = Object.keys(RULES).find((k) => b.file.startsWith(k + '-'));
+        if (!key) continue;
+        for (const [piece, x, y, z, ry, lvl] of RULES[key]!) if (lvl <= detail) extra.push({ src: 'new', kind: 'x', file: 'detail-' + piece, home: true, x: b.x + (Math.cos(b.ry) * x), y, z: b.z + z, ry: ry + b.ry } as unknown as It);
+      }
+      return [...items, ...extra];
+    };
     const stats: Record<string, unknown> = {};
-    for (const [name, items] of Object.entries(scenes)) {
+    for (const [name, items0] of Object.entries(scenes)) {
+      const items = withDetail(items0);
       for (const time of ['day', 'dusk', 'night']) {
         for (const [pre, vp, cam] of [['d', { width: 1280, height: 800, scale: 1, mobile: false }, { pos: camPos, look: [0, 4.2, 1.5] as V3, fov: 52 }], ['p', { width: 390, height: 844, scale: 1, mobile: true }, { pos: [0, 40, 62] as V3, look: [0, 1.5, 3] as V3, fov: 50 }]] as const) {
           await browser.setViewport(vp);
-          await stage(`scene-${name}-${time}-${pre}`, { time, base: 'street', items, cam, lightsOn: time !== 'day' }, false);
+          await stage(`scene-${name}${tag}-${time}-${pre}`, { time, base: 'street', items, cam, lightsOn: time !== 'day' }, false);
           if (pre === 'd' && time === 'day') stats[name] = { items: items.length, ...(await call('measure', 6)) };
         }
       }

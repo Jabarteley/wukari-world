@@ -1,0 +1,22 @@
+{
+ "kind": "number-sign",
+ "attach": "wall",
+ "w": 1,
+ "h": 1,
+ "writableNode": "sign_number",
+ "atlasRect": [
+  256,
+  768,
+  128,
+  64
+ ],
+ "atlasSize": 1024,
+ "piece": "detail-number-sign",
+ "triangles": 6,
+ "extentMetres": [
+  0.6,
+  0.04,
+  0.3
+ ],
+ "empties": []
+}

@@ -4,6 +4,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { createKit } from '../../../src/scene/kit.ts';
 import { createBatch, sceneMaterials } from '../../../src/scene/build.ts';
 import { applyRendererLook, createGround, createSky } from '../../../src/scene/look.ts';
@@ -13,7 +14,7 @@ import { buildVehicle } from '../../../src/models/vehicles/index.ts';
 import type { Batch } from '../../../src/scene/types.ts';
 
 type Kind = 'danfo' | 'keke' | 'house' | 'kiosk' | 'mango-tree' | 'palm';
-interface Item { src: 'old' | 'new'; kind: Kind; file?: string; x: number; z: number; ry?: number; lod?: 'near' | 'far'; variant?: string; s?: number; wheels?: number }
+interface Item { src: 'old' | 'new'; kind: Kind; file?: string; home?: boolean; y?: number; x: number; z: number; ry?: number; lod?: 'near' | 'far'; variant?: string; s?: number; wheels?: number }
 interface Spec {
   width: number; height: number; time: 'day' | 'dusk' | 'night'; base: 'street' | 'plain'; items: Item[];
   cam: { pos: [number, number, number]; look: [number, number, number]; fov?: number };
@@ -185,6 +186,12 @@ async function setup(spec: Spec): Promise<{ items: number }> {
       resolved.push({ it, object: obj });
       continue;
     }
+    if (it.home) {
+      const hm = await loadHome(it.file!);
+      const o = hm.root.clone(true); o.position.set(it.x, it.y ?? 0, it.z); o.rotation.y = it.ry ?? 0; if (it.s) o.scale.setScalar(it.s);
+      stage.add(o); resolved.push({ it, object: o });
+      continue;
+    }
     const model = await load(nameOf(it));
     if (spec.instanced) {
       const key = nameOf(it);
@@ -221,6 +228,13 @@ async function setup(spec: Spec): Promise<{ items: number }> {
     list.forEach((p, i) => { e.set(0, p.ry, 0); m4.compose(new THREE.Vector3(p.x, 0, p.z), q.setFromEuler(e), new THREE.Vector3(p.s, p.s, p.s)); inst.setMatrixAt(i, m4); });
     inst.castShadow = true; inst.receiveShadow = true; inst.frustumCulled = false;
     stage.add(inst);
+  }
+  if (spec.lightsOn && spec.time !== 'day') {
+    // lit windows: an emissive mask that is white only over the window, church and mosque tiles of the street atlas
+    const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d')!;
+    g.fillStyle = '#000'; g.fillRect(0, 0, 256, 256); g.fillStyle = '#fff'; g.fillRect(0, 0, 64, 64); g.fillRect(64, 0, 64, 64);
+    const mask = new THREE.CanvasTexture(cv); mask.flipY = false;
+    stage.traverse((o) => { const m = o as THREE.Mesh; if (!m.isMesh) return; const mt = m.material as THREE.MeshStandardMaterial; if (mt && mt.map && mt.name === 'atlas' && !mt.emissiveMap) { m.material = mt.clone(); const nm = m.material as THREE.MeshStandardMaterial; const mk = mask.clone(); mk.flipY = false; mk.offset.copy(mt.map.offset); mk.repeat.copy(mt.map.repeat); mk.rotation = mt.map.rotation; mk.center.copy(mt.map.center); mk.needsUpdate = true; nm.emissiveMap = mk; nm.emissive.set(spec.time === 'night' ? '#ffd9a0' : '#ffbf80'); nm.emissiveIntensity = spec.time === 'night' ? 1.0 : 0.55; } });
   }
   if (spec.lightsOn) {
     stage.updateMatrixWorld(true);
@@ -315,5 +329,129 @@ function nodeNames(name: string): string[] {
   return out;
 }
 
-(window as unknown as { proof: unknown }).proof = { setup, render, measure, modelInfo, oldInfo, spinWheels, nodeNames, tallTree };
+// ---------------------------------------------------------------- the home set: rooms, furniture and detail pieces share one atlas and one material
+interface HomeItem { piece: string; x: number; y: number; rot?: number; variant?: string; mountZ?: number; floorZ?: number; wall?: 'back' | 'left' }
+interface HomeSpec {
+  width: number; height: number; time: 'day' | 'dusk' | 'night'; room: string; items: HomeItem[]; hide?: string[]; cam: { pos: [number, number, number]; look: [number, number, number]; fov?: number };
+  lightsOn?: boolean; merge?: boolean; shadows?: boolean; extra?: { file: string; x: number; y: number; z: number; ry?: number; s?: number }[];
+}
+let homeMat: THREE.MeshStandardMaterial | null = null, homeGlow: THREE.MeshBasicMaterial | null = null;
+const homeCache = new Map<string, { root: THREE.Object3D; info: any; bytes: number }>();
+async function homeAssets(): Promise<void> {
+  if (homeMat) return;
+  const tex = await new THREE.TextureLoader().loadAsync('/g/home-atlas.jpg');
+  tex.colorSpace = THREE.SRGBColorSpace; tex.flipY = false; tex.anisotropy = 4;
+  homeMat = new THREE.MeshStandardMaterial({ map: tex, vertexColors: true, roughness: 0.85, metalness: 0 });
+  homeGlow = new THREE.MeshBasicMaterial({ map: tex, vertexColors: true });
+}
+async function loadHome(name: string): Promise<{ root: THREE.Object3D; info: any; bytes: number }> {
+  const have = homeCache.get(name);
+  if (have) return have;
+  await homeAssets();
+  const buf = await (await fetch(`/g/${name}.glb`)).arrayBuffer();
+  const gltf = await loader.parseAsync(buf, '');
+  gltf.scene.traverse((o) => {
+    const m = o as THREE.Mesh;
+    if (!m.isMesh) return;
+    m.material = /glow/.test(m.name) || /glow/.test(m.parent?.name ?? '') ? homeGlow! : homeMat!;
+    m.castShadow = !/glass|glow/.test(m.name); m.receiveShadow = true;
+  });
+  const base = name.replace(/-(slate|terracotta|grey|green|cream|blue|red|ankara-a|ankara-b)$/, '');
+  let info: any = null;
+  try { info = await (await fetch(`/g/info/${base}.json`)).json(); } catch { /* wall/room pieces may have none */ }
+  const made = { root: gltf.scene, info, bytes: buf.byteLength };
+  homeCache.set(name, made);
+  return made;
+}
+const CELLM = 1.2;
+async function setupHome(spec: HomeSpec): Promise<{ meshes: number; triangles: number; drawCalls: number; unmergedDrawCalls: number; unmergedTriangles: number; pieces: number }> {
+  for (const g of (stage.userData['glow'] ?? []) as THREE.Object3D[]) scene.remove(g);
+  scene.remove(stage);
+  stage = new THREE.Group(); scene.add(stage);
+  labelBox.innerHTML = '';
+  current = null;
+  canvas.width = spec.width; canvas.height = spec.height;
+  renderer.setPixelRatio(1); renderer.setSize(spec.width, spec.height, false);
+  camera.aspect = spec.width / spec.height; camera.fov = spec.cam.fov ?? 40; camera.position.set(...spec.cam.pos); camera.lookAt(...spec.cam.look); camera.updateProjectionMatrix();
+  const light = lightingFor('indoor', spec.time);
+  sky.set(light.sky[0], light.sky[1]);
+  hemi.color.set(light.hemi[0]); hemi.groundColor.set(light.hemi[1]); hemi.intensity = light.hemi[2] * (spec.time === 'night' ? 0.55 : 0.9);
+  sun.color.set(light.sun[0]); sun.intensity = light.sun[1] * (spec.time === 'night' ? 0.5 : 1); sun.position.set(...light.sun[2]);
+  sun.target.position.set(6, 0, 5); sun.shadow.camera.left = -20; sun.shadow.camera.right = 20; sun.shadow.camera.top = 20; sun.shadow.camera.bottom = -20; sun.shadow.camera.updateProjectionMatrix();
+  rim.color.set(light.rim[0]); rim.intensity = light.rim[1];
+  renderer.shadowMap.enabled = spec.shadows !== false;
+  ground.place(6, 5, 60, -0.2); ground.tint('#6d7a63');
+  const room = await loadHome(spec.room);
+  const root = new THREE.Group(); root.name = 'home';
+  const rr = room.root.clone(true);
+  rr.traverse((o) => { if (spec.hide?.includes(o.name)) o.visible = false; });
+  root.add(rr);
+  const lamps: THREE.Vector3[] = [];
+  stage.add(root);
+  let pieces = 0;
+  for (const it of spec.items) {
+    const name = it.variant && it.variant !== 'default' ? `${it.piece}-${it.variant}` : it.piece;
+    const m = await loadHome(name);
+    const info = m.info ?? (await loadHome(it.piece)).info;
+    const w = info?.w ?? 1, h = info?.h ?? 1, rot = it.rot ?? 0;
+    const obj = m.root.clone(true);
+    const holder = new THREE.Group();
+    holder.add(obj);
+    if (info?.wall || info?.ceiling) {
+      const slot = (it.wall === 'left' || rot === 1) ? it.y : it.x;
+      if (it.wall === 'left' || rot === 1) { holder.position.set(0.0, it.mountZ ?? info.mountZ ?? 1.4, (slot + 0.5) * CELLM); holder.rotation.y = Math.PI / 2; }
+      else if (info?.ceiling) { holder.position.set((it.x + 0.5) * CELLM, 0, (it.y + 0.5) * CELLM); }
+      else { holder.position.set((slot + 0.5) * CELLM, it.mountZ ?? info.mountZ ?? 1.4, 0.0); }
+    } else {
+      const ew = rot % 2 ? h : w, eh = rot % 2 ? w : h;
+      holder.position.set((it.x + ew / 2) * CELLM, it.floorZ ?? 0, (it.y + eh / 2) * CELLM);
+      holder.rotation.y = rot * Math.PI / 2;
+    }
+    stage.add(holder); pieces++;
+  }
+  for (const e of spec.extra ?? []) {
+    const m = await loadHome(e.file); const o = m.root.clone(true); const hd = new THREE.Group(); hd.add(o); hd.position.set(e.x, e.y, e.z); hd.rotation.y = e.ry ?? 0; if (e.s) hd.scale.setScalar(e.s); stage.add(hd); pieces++;
+  }
+  stage.updateMatrixWorld(true);
+  const count = (obj: THREE.Object3D): { t: number; c: number } => { let t = 0, c = 0; obj.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh && m.visible) { c++; t += (m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position!.count) / 3; } }); return { t, c }; };
+  const before = count(stage);
+  stage.traverse((o) => { if (/^light_/.test(o.name) && o.visible) lamps.push(o.getWorldPosition(new THREE.Vector3())); });
+  if (spec.merge) {
+    const groups = new Map<string, THREE.BufferGeometry[]>();
+    const kill: THREE.Object3D[] = [];
+    stage.traverse((o) => {
+      const m = o as THREE.Mesh;
+      if (!m.isMesh || !m.visible) return;
+      let hidden = false; m.traverseAncestors((a) => { if (!a.visible) hidden = true; }); if (hidden) return;
+      const g = m.geometry.clone(); g.applyMatrix4(m.matrixWorld);
+      for (const k of Object.keys(g.attributes)) if (!['position', 'normal', 'uv', 'color'].includes(k)) g.deleteAttribute(k);
+      if (!g.attributes['color']) g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(g.attributes.position!.count * 3).fill(1), 3));
+      else if ((g.attributes['color'] as THREE.BufferAttribute).itemSize === 4) { const c = g.attributes['color'] as THREE.BufferAttribute; const a = new Float32Array(c.count * 3); for (let i = 0; i < c.count; i++) { a[i * 3] = c.getX(i); a[i * 3 + 1] = c.getY(i); a[i * 3 + 2] = c.getZ(i); } g.setAttribute('color', new THREE.BufferAttribute(a, 3)); }
+      const key = m.material === homeGlow ? 'glow' : 'solid';
+      (groups.get(key) ?? groups.set(key, []).get(key)!).push(g.index ? g.toNonIndexed() : g);
+      kill.push(m);
+    });
+    for (const m of kill) (m as THREE.Mesh).visible = false;
+    for (const [k, list] of groups) {
+      const merged = mergeGeometries(list, false)!;
+      const mesh = new THREE.Mesh(merged, k === 'glow' ? homeGlow! : homeMat!);
+      mesh.castShadow = k === 'solid'; mesh.receiveShadow = true; mesh.name = 'merged-' + k; mesh.frustumCulled = false;
+      stage.add(mesh);
+    }
+  }
+  const after = (() => { let t = 0, c = 0; stage.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh && m.visible) { let hidden = false; m.traverseAncestors((a) => { if (!a.visible) hidden = true; }); if (!hidden) { c++; t += (m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position!.count) / 3; } } }); return { t, c }; })();
+  if (spec.lightsOn) {
+    const warm = spec.time === 'day' ? 0.35 : 1;
+    const use = lamps.slice(0, 10);
+    for (const p of use) { const pl = new THREE.PointLight('#ffcf8a', 9 * warm, 9, 1.3); pl.position.copy(p); scene.add(pl); stage.userData['glow'] = (stage.userData['glow'] ?? []).concat(pl); }
+  }
+  return { meshes: after.c, triangles: after.t, drawCalls: after.c, unmergedDrawCalls: before.c, unmergedTriangles: before.t, pieces };
+}
+async function homeInfo(names: string[]): Promise<Record<string, { bytes: number; triangles: number }>> {
+  const out: Record<string, { bytes: number; triangles: number }> = {};
+  for (const n of names) { const m = await loadHome(n); let t = 0; m.root.traverse((o) => { const mm = o as THREE.Mesh; if (mm.isMesh) t += (mm.geometry.index ? mm.geometry.index.count : mm.geometry.attributes.position!.count) / 3; }); out[n] = { bytes: m.bytes, triangles: t }; }
+  return out;
+}
+
+(window as unknown as { proof: unknown }).proof = { setup, setupHome, homeInfo, render, measure, modelInfo, oldInfo, spinWheels, nodeNames, tallTree };
 void tallTree;

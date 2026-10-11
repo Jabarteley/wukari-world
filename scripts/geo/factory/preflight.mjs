@@ -1,3 +1,4 @@
+import { slotPresentation } from './destination-contract.mjs';
 /** Read-only dry-run: node --experimental-strip-types preflight.mjs ROOT CITY EXTRACT_DIR POLICY_JSON */
 import { loadCountryScope, assertCountryFacts } from './country-scope.mjs';
 import { resolve, join } from 'node:path';
@@ -53,9 +54,8 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
             if (!(p.slot in ids) || slots.has(p.slot))
                 errors.push(`invalid/duplicate slot ${p.slot}`);
             slots.add(p.slot);
-            const v = base.venues.find(v => v.id === ids[p.slot]);
-            if (v?.kind !== p.kind)
-                errors.push(`${p.slot}: expected kind ${v?.kind}, got ${p.kind}`);
+            const expected = slotPresentation(base, ids, p.slot);
+            for (const field of ['kind', 'category', 'icon']) if (p[field] !== expected[field]) errors.push(`${p.slot}: expected ${field} ${expected[field]}, got ${p[field]}`);
         }
         if (p.key) {
             if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(p.key) || keys.has(p.key))

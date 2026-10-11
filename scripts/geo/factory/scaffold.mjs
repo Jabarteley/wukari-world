@@ -1,3 +1,4 @@
+import { slotPresentation, destinationNames, assertDestinationOutput } from './destination-contract.mjs';
 import assert from 'node:assert/strict';
 import { insideSandbox } from './paths.mjs';
 import { readFileSync, mkdirSync, writeFileSync, existsSync, rmSync } from 'node:fs';
@@ -18,7 +19,8 @@ if (!['coast', 'inland', 'lake'].includes(m.queryPolicy?.kind))
     throw Error('Unknown query policy');
 if (m.queryPolicy.kind === 'lake' && (!/^[A-Za-z0-9 -]+$/.test(m.queryPolicy.lakeName ?? '') || !m.queryPolicy.lakeName.trim()))
     throw Error('Lake query needs an exact reviewed name with safe query characters');
-config.places = config.places.map(p => p.slot ? { ...p, kind: base.venues.find(v => v.id === ids[p.slot])?.kind } : { ...p });
+config.places = config.places.map(p => p.slot ? { ...p, ...slotPresentation(base, ids, p.slot) } : { ...p });
+if (f.names) f.names = destinationNames(f, f.names.area, f.names.roadHub);
 const policy = m.queryPolicy.kind, waterName = policy === 'coast' ? 'coastWaterQuery' : policy === 'lake' ? 'lakeWaterQuery' : 'inlandWaterQuery';
 if (policy === 'coast' && config.sea?.kind !== 'coast' || policy === 'lake' && config.sea?.kind !== 'lake' || policy === 'inland' && config.sea)
     throw Error('Water query policy must match reviewed sea metadata');
@@ -26,6 +28,7 @@ config.discovery = bbox => ({ places: q.placesQuery(bbox), extras: q.extrasQuery
 config.landuse = q.landuseQuery;
 config.roads = q.roadsQuery;
 config.water = policy === 'lake' ? bbox => q.lakeWaterQuery(bbox, m.queryPolicy.lakeName) : q[waterName];
+assertDestinationOutput(f, config.places);
 const report = await preflight(root, id, m.extract.directory, config, f, false, m.countryScope);
 assert.deepEqual(report.countryScope, m.countryScopeReceipt, 'country scope receipt changed since selection');
 for (const layer of ['places', 'extras', 'water', 'landuse', 'roads'])

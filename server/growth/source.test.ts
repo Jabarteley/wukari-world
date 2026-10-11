@@ -47,7 +47,7 @@ test('old days are pruned', () => {
 
 test('the endpoint counts a step, refuses an unknown one, is rate limited and stores nothing about the sender', async (t) => {
   const f = await fixture(t, { moderatorToken: TOKEN });
-  const post = async (body: unknown) => { const res = await f.request('/api/growth/source', body); return { status: res.status, ...(await res.json() as Record<string, unknown>) }; };
+  const post = async (body: unknown) => { const res = await f.request('/api/growth/source', body); return { status: res.status, ...(await res.json() as { counted?: boolean }) }; };
   assert.deepEqual([(await post({ event: 'landed', source: 'TikTok', medium: 'paid', campaign: 'test1' })).counted, (await post({ event: 'play', source: 'tiktok', medium: 'paid', campaign: 'test1' })).counted], [true, true]);
   assert.equal((await post({ event: 'evil', source: 'tiktok' })).counted, false);
   const read = async () => (await (await fetch(`${f.base}/api/mod/growth/metrics`, { headers: { Authorization: `Bearer ${TOKEN}` } })).json()) as GrowthMetricsResponse;

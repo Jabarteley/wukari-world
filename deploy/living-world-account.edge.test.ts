@@ -94,7 +94,7 @@ async function host(t: TestContext) {
       unsafeInspectDurableObjects: true,
       bindings: { ...ACCOUNT_BINDINGS, ...bindings },
       outboundService: fakeOutbound,
-      serviceBindings: { ASSETS: () => new Response('asset') },
+      assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
       handleStructuredLogs: () => {},
     }
     mf = new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} })

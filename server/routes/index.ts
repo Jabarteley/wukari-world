@@ -229,6 +229,7 @@ import showcase from './showcase.ts';
 import showcaseMod from './showcase-mod.ts';
 import street from './street.ts';
 import livingWorld from './living-world.ts';
+import { prepareRouteCityContent } from '../request-city-content.ts';
 
 export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, pulse, ping, visit, business, commerce, businessMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod];
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
@@ -252,6 +253,13 @@ function refusingBanned(ctx: RouteContext, path: string, handler: RouteHandler):
   };
 }
 
+function withCityContent(ctx: RouteContext, handler: RouteHandler): RouteHandler {
+  return async (request) => {
+    await prepareRouteCityContent(ctx, request);
+    return handler(request);
+  };
+}
+
 interface PatternRoute { key: string; method: string; segments: string[]; handler: RouteHandler }
 
 /** Build the lookup. Returns { match(method, pathname) → { handler, params } | null, keys }. */
@@ -263,7 +271,7 @@ export function buildRoutes(ctx: RouteContext, modules: RouteModule[] = ROUTE_MO
       const parsed = KEY.exec(key);
       if (!parsed || typeof handler !== 'function') throw new Error(`Invalid route: ${key}`);
       if (exact.has(key) || patterns.some(route => route.key === key)) throw new Error(`Duplicate route: ${key}`);
-      const guarded = refusingBanned(ctx, parsed[2] ?? '', handler);
+      const guarded = refusingBanned(ctx, parsed[2] ?? '', withCityContent(ctx, handler));
       if (!key.includes('/:')) { exact.set(key, guarded); continue; }
       patterns.push({ key, method: parsed[1] ?? '', segments: (parsed[2] ?? '').split('/'), handler: guarded });
     }

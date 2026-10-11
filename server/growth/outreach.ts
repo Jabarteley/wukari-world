@@ -52,6 +52,8 @@ import { comebackService } from './comeback.ts';
 import { pingMailService } from './ping-mail.ts';
 import { messagePushService } from './message-push.ts';
 import { announceMailService } from './announce-mail.ts';
+import { prepareStoredCityContent } from '../request-city-content.ts';
+import { requireSessionCities } from '../city-content.ts';
 import { mailConfig, sendMail } from './email/zeptomail.ts';
 import { awayMail, confirmMail, welcomeMail, weekMail } from './email/templates.ts';
 import { b64u, cleanSubscription, sendPush, vapidKeys } from './webpush.ts';
@@ -386,11 +388,44 @@ function buildService(ctx: RouteContext) {
     const jobs: Job[] = [];
     try {
       if (inQuietHours(now())) return { ran: true, jobs: 0, reason: 'quiet_hours' };
+      const candidates = await ctx.store.read((db) => {
+        const g = growthOf(ctx, db), o = book(g), t = now(), week = lagosTime(t).week, sessions: SessionRecord[] = [];
+        const seen = new Set<string>();
+        const due = (id: string, entry: { sends: number[]; periods: OutreachPeriods }, channel: Channel): boolean => {
+          const player = playerOf(g, id, { create: false });
+          if (player?.consent?.age !== 'adult' || player.consent[channel] !== true) return false;
+          const life = lifeOf(db, id);
+          if (!life) return false;
+          const stamps = life.state.missions?.stamps;
+          const sends = channel === 'email' ? comeback.sendsFor(g, id, entry.sends) : entry.sends;
+          const plan = planMessage({ now: t, seen: player.seen, sends, periods: entry.periods, playedThisWeek: stamps?.week === week && stamps.days > 0 });
+          return Boolean(plan.kind) && !(channel === 'email' && (plan.kind === 'away' || (plan.kind === 'week' && !comeback.weekAllowed(g, id, t))));
+        };
+        const add = (id: string): void => {
+          if (seen.has(id)) return;
+          const session = ctx.core.sessionByPublicId?.(db, id);
+          if (session) { seen.add(id); sessions.push(session); }
+        };
+        if (!o.off.email) for (const [id, contact] of Object.entries(contactsOf(g))) {
+          if (sessions.length >= LIMITS.batch) break;
+          if (contact.confirmed && due(id, contact, 'email')) add(id);
+        }
+        if (!o.off.push && !((o.pushPausedUntil ?? 0) > t)) for (const [id, entry] of Object.entries(pushOf(g))) {
+          if (sessions.length >= LIMITS.batch) break;
+          if (entry.subs.length && due(id, entry, 'push')) add(id);
+        }
+        return sessions;
+      });
+      await Promise.all(candidates.map((session) => prepareStoredCityContent(ctx, session)));
+      const preparedIds = new Set(candidates.map((session) => session.publicId));
       await ctx.store.transact((db) => {
         const g = growthOf(ctx, db), o = book(g), t = now(), week = lagosTime(t).week;
         const due = (id: string, entry: { sends: number[]; periods: OutreachPeriods }, channel: Channel) => {
+          if (!preparedIds.has(id)) return null;
           const player = playerOf(g, id, { create: false });
           if (player?.consent?.age !== 'adult' || player.consent[channel] !== true) return null;
+          const session = ctx.core.sessionByPublicId?.(db, id);
+          if (session) requireSessionCities(session);
           const life = lifeOf(db, id);
           if (!life) return null;
           const stamps = life.state.missions?.stamps;

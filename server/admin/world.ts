@@ -1,3 +1,4 @@
+import { prepareStoredCityContent } from '../request-city-content.ts';
 /**
  * OWNER: admin
  * WORLD TOOLS: a small grant to everyone online, or to everyone of a city ("launch bonus").
@@ -65,6 +66,11 @@ export function worldService(ctx: RouteContext) {
     preview(db: Db, input: { audience: GrantAudience; city: string | null; amount: number }) {
       const count = recipients(db, input.audience, input.city).length, limits = limitsOf(ctx), given = grantedToday(db);
       return { count, total: count * input.amount, grantedToday: given, leftToday: Math.max(0, limits.grantTotalDay - given), needsConfirmation: count > limits.grantConfirmAbove, confirmAbove: limits.grantConfirmAbove, maxPlayers: GRANT_MAX_PLAYERS };
+    },
+    async prepare(input: { audience: GrantAudience; city: string | null }): Promise<void> {
+      const list = await ctx.store.read(db => recipients(db, input.audience, input.city));
+      if (list.length > GRANT_MAX_PLAYERS) throw refuse(409, 'too_many', `A grant reaches at most ${GRANT_MAX_PLAYERS} players. Narrow it to one city.`);
+      await Promise.all(list.map(session => prepareStoredCityContent(ctx, session)));
     },
     /** Inside a transaction, inside ctx.once. */
     run(db: Db, admin: Admin, input: { audience: GrantAudience; city: string | null; amount: number; reason: string; unrestricted?: boolean }, effects: { push?: unknown[] }) {

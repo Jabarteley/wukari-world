@@ -24,7 +24,7 @@ const { build } = require('esbuild') as { build(options: BundleOptions): Promise
 const here = (path: string): string => new URL(path, import.meta.url).pathname;
 
 /** What the platform allows a Worker script to be, compressed (the smaller, free-plan figure is used so the guard has room), and the budgets of this test. */
-const LIMITS = { fileBytes: 5_000_000, gzipBytes: 3_000_000, dictionaryImportMs: 200, workerImportMs: 400, dictionaryHeapBytes: 4_000_000, readyMs: 1000, warmMs: 500, lookupUs: 20 };
+const LIMITS = { fileBytes: 5_000_000, workerBytes: 3_500_000, gzipBytes: 3_000_000, dictionaryImportMs: 200, workerImportMs: 400, dictionaryHeapBytes: 4_000_000, readyMs: 1000, warmMs: 500, lookupUs: 20 };
 
 async function bundles() {
   const folder = await mkdtemp(join(tmpdir(), 'joinallworld-words-'));
@@ -34,8 +34,8 @@ async function bundles() {
   // Size the same artifact as scripts/package-joinallworld.mjs; keep the stricter existing file cap.
   await build({ entryPoints: [here('./cloudflare-worker.js')], outfile: files.real, bundle: true, minifyWhitespace: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'] });
   await build({ entryPoints: [here('./cloudflare-worker.js')], outfile: files.worker, bundle: true, minifyWhitespace: true, format: 'esm', platform: 'neutral', alias: { 'cloudflare:workers': stub } });
-  await build({ entryPoints: [here('../src/words/dict.ts')], outfile: files.dictionary, bundle: true, format: 'esm', platform: 'neutral' });
-  await build({ entryPoints: [here('../src/tables/weave.ts')], outfile: files.weave, bundle: true, format: 'esm', platform: 'neutral' });
+  await build({ entryPoints: [here('../src/words/dict.ts')], outfile: files.dictionary, bundle: true, format: 'esm', platform: 'neutral', alias: { '#word-dictionary': here('../src/words/dictionary-source.ts') } });
+  await build({ entryPoints: [here('../src/tables/weave.ts')], outfile: files.weave, bundle: true, format: 'esm', platform: 'neutral', alias: { '#word-dictionary': here('../src/words/dictionary-source.ts') } });
   return { folder, files };
 }
 /** Run a module in a fresh Node process and answer what its script printed as JSON. */
@@ -168,7 +168,7 @@ test('the Worker script and every built asset stay inside the per-file limit, an
   const script = await readFile(files.real);
   const size = { raw: (await stat(files.real)).size, gzip: gzipSync(script, { level: 9 }).length };
   console.log(`Worker script: ${size.raw} bytes, ${size.gzip} gzipped`);
-  assert.ok(size.raw <= LIMITS.fileBytes, `the Worker script is ${size.raw} bytes raw (the pipeline takes at most 5 MiB per file; guard ${LIMITS.fileBytes})`);
+  assert.ok(size.raw < LIMITS.workerBytes, `the Worker script is ${size.raw} bytes raw (guard ${LIMITS.workerBytes})`);
   assert.ok(size.gzip <= LIMITS.gzipBytes, `the Worker script is ${size.gzip} bytes gzipped (guard ${LIMITS.gzipBytes})`);
   const built = await filesUnder(here('../dist')).catch(() => []);
   for (const file of built) assert.ok(file.bytes <= LIMITS.fileBytes, `${file.path} is ${file.bytes} bytes (guard ${LIMITS.fileBytes})`);
@@ -257,9 +257,11 @@ test('the Worker runtime inflates the list on first use and answers lookups', as
   t.after(() => rm(folder, { recursive: true, force: true }));
   const entry = join(folder, 'entry.ts');
   await writeFile(entry, `import { isReady, isWord, ready } from ${JSON.stringify(here('../src/words/dict.ts'))};
+import { installDictionaryAssetReader } from ${JSON.stringify(here('../src/words/dictionary-asset.ts'))};
 const started = Date.now();
 export default {
-  async fetch(request: Request): Promise<Response> {
+  async fetch(request: Request, env: { ASSETS: { fetch(request: Request): Promise<Response> } }): Promise<Response> {
+    installDictionaryAssetReader(async path => { const response = await env.ASSETS.fetch(new Request('https://assets.invalid' + path)); if (!response.ok) throw Error('Missing dictionary'); return new Uint8Array(await response.arrayBuffer()); });
     const before = isReady();
     const t0 = Date.now(); await ready(); const inflateMs = Date.now() - t0;
     const words = new URL(request.url).searchParams.get('words')?.split(',') ?? [];
@@ -270,7 +272,7 @@ export default {
   const script = join(folder, 'runtime.mjs');
   await build({ entryPoints: [entry], outfile: script, bundle: true, format: 'esm', platform: 'neutral' });
   const { real, fake } = samples();
-  const miniflare = new Miniflare(convertV4MiniflareOptions({ name: 'joinallworld-words-runtime', script: await readFile(script, 'utf8'), modules: true, compatibilityDate: '2026-10-01' }));
+  const miniflare = new Miniflare(convertV4MiniflareOptions({ name: 'joinallworld-words-runtime', script: await readFile(script, 'utf8'), modules: true, compatibilityDate: '2026-10-01', assets: { directory: here('../dist'), binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'none' } } }));
   t.after(() => miniflare.dispose());
   const base = (await miniflare.ready).origin;
   const ask = async (words: string[]) => (await (await miniflare.dispatchFetch(`${base}/?words=${words.join(',')}`)).json()) as { before: boolean; after: boolean; inflateMs: number; results: boolean[] };

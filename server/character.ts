@@ -1,5 +1,5 @@
 /** One active character and recoverable older lives, shared by both hosts. */
-import { cityRules } from '../src/game/content/world.ts'
+import { cityName, isCityId } from '../src/game/cities/registry.ts'
 import { hasPlace } from '../src/game/systems/estate.ts'
 import type { CityId } from '../src/types/protocol.ts'
 import type { CityLifeRecord, SessionRecord } from './types.ts'
@@ -9,7 +9,7 @@ const isCurrentPin = (character: SessionRecord['character']): boolean => Boolean
 
 /** The city of the life played most recently; ties go to the city with a house, then to Lagos. */
 function newestLifeCity(session: SessionRecord): CityId | null {
-  const entries = Object.entries(session.cities).filter((entry): entry is [CityId, CityLifeRecord] => Boolean(cityRules(entry[0]) && entry[1]?.state))
+  const entries = Object.entries(session.cities).filter((entry): entry is [CityId, CityLifeRecord] => Boolean(isCityId(entry[0]) && entry[1]?.state))
   const rank = (entry: [CityId, CityLifeRecord]): number => (hasPlace(entry[1].state) ? 2 : 0) + (entry[0] === 'lagos' ? 1 : 0)
   const latest = entries.reduce<[CityId, CityLifeRecord] | null>((best, entry) => {
     if (!best) return entry
@@ -22,7 +22,7 @@ function newestLifeCity(session: SessionRecord): CityId | null {
 /** The one place the active city is derived. Pure: normalizeCharacter writes the result down as a current pin. */
 export function characterCity(session: SessionRecord): CityId | null {
   const explicit = session.character?.city
-  if (isCurrentPin(session.character) && explicit && cityRules(explicit) && session.cities[explicit as CityId]) return explicit as CityId
+  if (isCurrentPin(session.character) && explicit && isCityId(explicit) && session.cities[explicit as CityId]) return explicit as CityId
   return newestLifeCity(session)
 }
 
@@ -54,7 +54,7 @@ export function requireCharacterCity(session: SessionRecord, city: string): void
   const active = characterCity(session)
   if (active && active !== city) throw Object.assign(new Error('city_moved'), {
     status: 409, code: 'city_moved', city: active,
-    reason: `Your character is in ${cityRules(active)?.name ?? active}. Open that city to carry on.`,
+    reason: `Your character is in ${cityName(active) ?? active}. Open that city to carry on.`,
   })
 }
 
@@ -62,7 +62,7 @@ export function fileCharacter(session: SessionRecord, from: CityId, now: number)
   const entry = session.cities[from]
   if (!entry) return
   const to = entry.state.estate.city
-  if (!cityRules(to)) throw new TypeError('Character has an unregistered city')
+  if (!isCityId(to)) throw new TypeError('Character has an unregistered city')
   if (to !== from) {
     const aside = session.cities[to as CityId]
     if (aside && aside !== entry) archiveLife(session, to, aside)
@@ -76,7 +76,7 @@ export function swapLegacyLife(session: SessionRecord, id: string): { ok: true; 
   const selected = session.legacyLives?.[id]
   if (!selected) throw Object.assign(new Error('unknown_legacy_life'), { status: 404, code: 'unknown_legacy_life' })
   const city = legacyLifeCity(session, id, selected)
-  if (!cityRules(city)) throw Object.assign(new Error('invalid_city'), { status: 400, code: 'invalid_city' })
+  if (!isCityId(city)) throw Object.assign(new Error('invalid_city'), { status: 400, code: 'invalid_city' })
   const active = normalizeCharacter(session)
   const previous = active ? session.cities[active] : undefined
   if (previous?.state.activeAction) throw Object.assign(new Error('busy'), { status: 409, code: 'busy', reason: 'Finish your current action before switching characters.' })
@@ -91,6 +91,6 @@ export function swapLegacyLife(session: SessionRecord, id: string): { ok: true; 
 
 export function legacyLifeCity(session: SessionRecord, id: string, entry: CityLifeRecord): string {
   const city = entry.state.estate?.city ?? session.legacyLifeCities?.[id] ?? id.split(':')[0]
-  if (!city || !cityRules(city)) throw Object.assign(new Error('invalid_city'), { status: 400, code: 'invalid_city' })
+  if (!city || !isCityId(city)) throw Object.assign(new Error('invalid_city'), { status: 400, code: 'invalid_city' })
   return city
 }

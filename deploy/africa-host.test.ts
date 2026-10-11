@@ -77,7 +77,7 @@ for (const destinations of AFRICA_DESTINATION_BATCHES) test(`Worker HTTP host: $
       if (url.href.split('?')[0] === TOKEN_KEYS_URL) return new Response(JSON.stringify({ keys: [key.jwk] }), { status: 200, headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=3600' } })
       return new Response('{}', { status: 200, headers: { 'content-type': 'application/json' } })
     },
-    serviceBindings: { ASSETS: () => new Response('asset') }, handleStructuredLogs: () => {},
+    assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } }, handleStructuredLogs: () => {},
   }
   const make = (): WorkerHost => new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: storagePath, unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} })
   worker = make()

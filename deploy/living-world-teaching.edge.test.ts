@@ -46,7 +46,7 @@ async function fixture(t: TestContext) {
       compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } },
       durableObjectsPersist: join(folder, 'storage'), bindings: { BUILD_ID: 'teaching-fixture', FOUNDER_EMAIL_SHA256: '',
         ...(startEnabled ? { INTERACTIVE_TEACHING_STARTS: malformedTeachingBinding ? 'true' : '1' } : {}) },
-      serviceBindings: { ASSETS: () => new Response('asset') } }), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} })
+      assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } }), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} })
     await worker.ready
   }
   async function storage(): Promise<StoredObject> {

@@ -60,7 +60,7 @@ async function host(t: TestContext) {
       compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } },
       durableObjectsPersist: join(folder, 'storage'), bindings: { BUILD_ID: 'rental-fixture', STORE_LAYOUT: 'legacy',
         MODERATOR_TOKEN: TOKEN, FOUNDER_EMAIL_SHA256: '', ...bindings },
-      outboundService: (request: Request) => { outbound.push(new URL(request.url).origin); return new Response('fixture outbound disabled', { status: 503 }) }, serviceBindings: { ASSETS: () => new Response('asset') } }),
+      outboundService: (request: Request) => { outbound.push(new URL(request.url).origin); return new Response('fixture outbound disabled', { status: 503 }) }, assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } }),
       resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} })
     await worker.ready
   }

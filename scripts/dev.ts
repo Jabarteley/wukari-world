@@ -35,6 +35,10 @@ const messageOf = (error: unknown): string => error instanceof Error ? error.mes
 
 /** The second process: only the game server, on the loopback port the launcher chose. It stops when told to, or with the launcher. */
 async function serveGame(port: number): Promise<void> {
+  const { buildCityContentAssets } = await import('./city/build-content-assets.ts');
+  const { buildDictionaryAsset } = await import('./build-dictionary-asset.ts');
+  await buildCityContentAssets({ root, outDir: resolve(root, 'dist/assets/cities'), typescriptPath: resolve(root, 'src/game/cities/content-assets.generated.ts') });
+  await buildDictionaryAsset({ outDir: resolve(root, 'dist/assets/words'), typescriptPath: resolve(root, 'src/words/dictionary-asset.generated.ts') });
   const { createServer } = await import('../server/server.ts');
   const game = await createServer() as unknown as GameServer;
   let stopping = false;
@@ -55,7 +59,7 @@ async function serveGame(port: number): Promise<void> {
 
 /** Every file the game server loads: server/server.ts and what it imports, followed through relative imports (static and lazy). */
 function serverSources(): Set<string> {
-  const seen = new Set<string>(), queue = [resolve(root, 'server/server.ts')];
+  const seen = new Set<string>(), queue = [resolve(root, 'server/server.ts'), resolve(root, 'src/game/cities/loaders.generated.ts'), resolve(root, 'src/words/data/dictionary.ts')];
   for (let file = queue.pop(); file; file = queue.pop()) {
     if (seen.has(file)) continue;
     seen.add(file);

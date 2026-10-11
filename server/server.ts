@@ -1,4 +1,5 @@
-import { registeredCityIds, loadCityContent } from '../src/game/cities/registry.ts';
+import { registeredCityIds, loadCityLinks, installCityModuleLoader } from '../src/game/cities/registry.ts';
+import { loadHostCityModule } from '../src/game/cities/host-loaders.ts';
 import '../src/game/dilemma-pack.ts'; // installs the kit of work dilemmas and place actions: every life this server plays has them
 import '../src/game/routines/pack.ts'; // installs the routines of the regulars: who is at their venue at what hour
 import '../src/game/home-plan.ts';
@@ -174,6 +175,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   buildId = process.env.BUILD_ID || packageVersion(),
   // Error monitoring and analytics (server/telemetry): off, and doing nothing at all, unless its environment keys are set.
   telemetry = createServerTelemetry({ env: process.env, buildId, now, log }) }: ServerOptions = {}): Promise<AllworldServer> {
+  installCityModuleLoader(id => loadHostCityModule(id, path => readFile(new URL(`../dist${path}`, import.meta.url))));
   // OPEN DEV MODE (server/open-dev): the module is loaded only when ALLWORLD_OPEN_DEV is present, whatever its value, and it
   // either starts (loopback only) or refuses to start. It replaces the environment, the clock, the outside fetch and a few limits.
   const open = env?.['ALLWORLD_OPEN_DEV'] !== undefined
@@ -530,7 +532,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
   // In-process events between server modules (never sent to a client by the host itself).
   type Listener = (data: ServerEvents[keyof ServerEvents]) => void;
   const listeners = new Map<keyof ServerEvents, Listener[]>();
-  const startup: Promise<unknown>[] = registeredCityIds().map(loadCityContent);
+  const startup: Promise<unknown>[] = [loadCityLinks()];
   const closing: (() => Promise<void>)[] = [];
   /** Small HTML pages outside /api/, by path prefix: pages.set('/s/', async ({ path, query, origin, ip }) => ({ status, html })). */
   const pages = new Map<string, PageHandler>();

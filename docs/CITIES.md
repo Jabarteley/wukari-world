@@ -181,3 +181,18 @@ Every city has a web address made from its registry id, with no other table to k
 - A returning player in the city is shown the city map; elsewhere, the atlas with that city's travel card. Nothing is bought or started by an address: the player taps a way to travel. A new visitor is offered "Start in <City>"; the character is born in that city exactly as the Home step's city chips make it (`cr.city`, the same quick start), and its free starter house is chosen when they settle in.
 - "Find my city" on the landing is offered, never asked for. The position is worked out on the device against the registry's coordinates and the city packs, and reduced to a city id; it is never stored or sent.
 - The page for these addresses carries the path's own title, description, Open Graph and Twitter tags and a canonical address (an unknown address gets the default head and `noindex`). Only the head text changes: the inline scripts, and so the Content-Security-Policy hashes, are the same as the home page's. The sitemap lists the games, every open city and every state with several open cities.
+
+
+## Server content assets
+
+The Worker keeps the city catalogue and travel links in its script. Each city's full rules and content live in an immutable JSON asset. `scripts/city/build-content-assets.ts` creates these assets from the same authored modules used by browser chunks. Each manifest entry records the city id, byte length, and SHA-256 digest. Generation preserves object key order and rejects values that JSON would discard.
+
+`npm run build` generates the assets under `dist/assets/cities` and the compiled manifest in `src/game/cities/content-assets.generated.ts`. `npm test` generates runtime assets before its checks. The development server regenerates them before each child-server start. Generated manifests are written only when their contents change.
+
+The package import `#city-loaders` selects authored modules for the browser and authenticated asset loaders for the Worker. The Node host installs the same loader with a filesystem reader rooted at the source checkout's `dist`. The registry deduplicates pending loads and caches successful modules per process or isolate. Failed reads are retryable and return `503 city_content_unavailable` before settlement.
+
+`server/city-content.ts` discovers current, archived, and referenced cities before synchronous rules read a stored session. Request, socket, and background service boundaries await this preparation. Receipt callbacks remain synchronous. A concurrent change that introduces a cold city is rejected before settlement rather than replaying a transaction.
+
+The packed word dictionary uses a separate hashed text asset behind its existing `ready()` boundary. The UNILAG map remains compiled because campus navigation and position validation read it synchronously.
+
+`scripts/city/worker-content-budget.test.ts` rejects authored city modules or the packed dictionary in the Worker graph. It checks a Worker limit of 3.5 MB and fewer than 500 compiled catalogue-and-manifest bytes per city. The package guard requires every content asset referenced by the Worker and verifies its filename digest. Saved-life, receipt replay, cold-start, and failed-read checks cover the loader transition.

@@ -33,6 +33,13 @@ async function scene(t: Parameters<typeof harness>[0]) {
 test('grants: paid out of the treasury within its limits, in the open, to a real resident, once each', { timeout: 90000 }, async (t) => {
   const { f, player, elect, fund, grant, state, cash, edit, get } = await scene(t);
   const governor = await player('Governor'), bola = await player('Bola'), chi = await player('Chi'), newcomer = await player('Newcomer');
+  await f.server.store.transact((db) => {
+    const session = Object.values(db.sessions).find((item) => item.publicId === bola.id), lagos = session?.cities.lagos;
+    assert.ok(session && lagos);
+    const held = structuredClone(lagos);
+    held.state.estate.city = 'abuja';
+    session.cities.abuja = held;
+  });
   await elect(governor, 'state:lagos', QUORUM.state);
   await fund(10000);
   assert.equal((await state(governor)).you?.grantRoom, 3000);

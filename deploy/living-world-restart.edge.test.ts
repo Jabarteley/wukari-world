@@ -40,7 +40,7 @@ async function fixture(t: TestContext) {
     worker = new Miniflare({ ...convertV4MiniflareOptions({ name: 'joinallworld-restart', script, modules: true,
       compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } },
       durableObjectsPersist: join(folder, 'storage'), bindings: { BUILD_ID: 'restart-fixture', STORE_LAYOUT: layout,
-        MODERATOR_TOKEN: token, FOUNDER_EMAIL_SHA256: '' }, serviceBindings: { ASSETS: () => new Response('asset') } }),
+        MODERATOR_TOKEN: token, FOUNDER_EMAIL_SHA256: '' }, assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } }),
       resourcePersistencePath: join(folder, 'storage'), handleStructuredLogs: () => {} })
     await worker.ready
   }

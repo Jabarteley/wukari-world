@@ -1,7 +1,7 @@
-// Word lookups. The tile-game dictionary (about 3.2 MB, 2 to 13 letters: the board is 13 across) is stored deflated inside the script
-// (about 1 MB as text) and inflated the first time `ready()` is awaited, never at module load. Import this module only from the server host;
-// browser code should import ./guess.ts instead.
-import { FIRST_LENGTH, PACKED, WORD_COUNTS } from './data/dictionary.ts'
+// Word lookups. The tile-game dictionary (about 3.2 MB inflated) is a versioned static text asset. `ready()` reads, authenticates and
+// inflates it on first use. Browser code should import ./guess.ts instead.
+import { loadPackedDictionary } from '#word-dictionary'
+import { DICTIONARY_ASSET } from './dictionary-asset.generated.ts'
 import letterCounts from './data/letters.ts'
 import { hasFixedWidth } from './guess.ts'
 import { decodeText, unpackFrontCoded } from './pack.ts'
@@ -15,7 +15,8 @@ let lists: Readonly<Record<number, string>> | null = null
 let pending: Promise<void> | null = null
 
 async function inflate(): Promise<Uint8Array> {
-  const stream = new Blob([decodeText(PACKED)]).stream().pipeThrough(new DecompressionStream('deflate-raw'))
+  const packed = await loadPackedDictionary(DICTIONARY_ASSET)
+  const stream = new Blob([decodeText(packed)]).stream().pipeThrough(new DecompressionStream('deflate-raw'))
   return new Uint8Array(await new Response(stream).arrayBuffer())
 }
 
@@ -23,7 +24,7 @@ async function inflate(): Promise<Uint8Array> {
 export function ready(): Promise<void> {
   if (lists) return Promise.resolve()
   pending ??= inflate().then(
-    (bytes) => { lists = unpackFrontCoded(bytes, FIRST_LENGTH, WORD_COUNTS); pending = null },
+    (bytes) => { lists = unpackFrontCoded(bytes, DICTIONARY_ASSET.firstLength, DICTIONARY_ASSET.wordCounts); pending = null },
     (cause: unknown) => { pending = null; throw new Error('The word list could not be unpacked.', { cause }) },
   )
   return pending

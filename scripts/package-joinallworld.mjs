@@ -24,4 +24,14 @@ function walk(path) {
 }
 walk(root);
 writeFileSync(join(root, 'manifest.json'), JSON.stringify({ sourceSha, publish, files }, null, 2) + '\n');
-console.log(checkPackage(root, sourceSha, publish));
+const packageDigest = checkPackage(root, sourceSha, publish);
+const manifestBytes = statSync(join(root, 'manifest.json')).size;
+console.log(JSON.stringify({
+  packageDigest,
+  manifest: 'manifest.json',
+  files: files.length + 1,
+  bytes: files.reduce((total, file) => total + file.bytes, manifestBytes),
+  cityPayloads: files.filter(file => /^assets\/assets\/cities\/.+\.[a-f0-9]{64}\.json$/.test(file.path)).length,
+  dictionaryPayloads: files.filter(file => /^assets\/assets\/words\/dictionary\.[a-f0-9]{64}\.txt$/.test(file.path)).length,
+  largestFileBytes: Math.max(manifestBytes, ...files.map(file => file.bytes)),
+}));

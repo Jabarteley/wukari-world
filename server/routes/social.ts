@@ -55,6 +55,7 @@
  */
 import type { Db, RouteContext, RouteHandler, RouteKey, RouteRequest, SessionRecord } from '../types.ts';
 import { socialService, MATERIAL, LIMITS } from '../social/service.ts';
+import { transactWithCityContent } from '../prepared-city-transaction.ts';
 import { pageLimit } from '../social/pages.ts';
 import { CONTENT_TYPES, FAULT_WORDS, PICTURE_LIMITS, cleanPicture, claimedType, fromBase64, pictureSettings } from '../social/images.ts';
 import { inspectVoiceNote, VOICE_POLICY } from '../social/voice-notes.ts';
@@ -72,16 +73,18 @@ const UPLOAD_BYTES = Math.ceil(PICTURE_LIMITS.bytes / 3) * 4 + 4096;
 export default function socialRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const service = socialService(ctx);
   /** Wrap a service call: parse the body, authenticate, rate limit, transact, then push. */
-  const route = (call: Call, own = false): RouteHandler => async (request) => {
+  const route = (call: Call, own = false, prepareLife = false): RouteHandler => async (request) => {
     const body = request.method === 'POST' ? await request.json() : {};
     // Every POST is durable before it is answered. A GET that only registered the caller need not
     // wait for the disk; one that applied something owed to their life (a gift, a friendship) does.
     // The caller's rooms are re-checked by the route host after every request (core.revalidate, server.js).
-    const result = await ctx.store.transact((db) => {
+    const operation = (db: Db) => {
       const session = request.requireSession(db, { renew: true });
       if (!ctx.allow(`social:http:${session.publicId}`, HTTP_PER_MINUTE)) throw ctx.fail(429, 'rate_limited');
       return service.finish(db, call(db, session, body, request));
-    }, { durable: (value) => request.method !== 'GET' || typeof value === 'object' && value !== null && Reflect.get(value, MATERIAL) === true, waitForObserved: true, committed: (value) => service.committed(value) });
+    };
+    const options = { durable: (value: ReturnType<typeof operation>) => request.method !== 'GET' || typeof value === 'object' && value !== null && Reflect.get(value, MATERIAL) === true, waitForObserved: true, committed: (value: ReturnType<typeof operation>) => service.committed(value) };
+    const result = await (prepareLife ? transactWithCityContent(ctx, request, [], operation, options) : ctx.store.transact(operation, options));
     const answer = service.deliver(result);
     // One player, several devices: a change the caller made to their own friends, groups, blocks or visits is told to
     // every open socket of theirs, so the other devices read the overview again (docs/DEVICES.md).
@@ -204,7 +207,7 @@ export default function socialRoutes(ctx: RouteContext): Record<RouteKey, RouteH
   };
   return {
     // `lite=1`: a first page of chats (`conversationsMore` for the rest) and, for the founder, none of the automatic friends (the Players view reads them). Absent: as before, up to LIMITS.convs chats.
-    'GET /api/social/me': route((db, session, body, request) => service.me(db, session, { lite: request.query.get('lite') === '1' })),
+    'GET /api/social/me': route((db, session, body, request) => service.me(db, session, { lite: request.query.get('lite') === '1' }), false, true),
     'GET /api/social/family': route((db, session) => service.familyView(db, session)),
     'POST /api/social/family': mine((db, session, body) => service.familyChange(db, session, body)),
     'GET /api/social/friends': route((db, session, body, request) => service.friendsPage(db, session, request.query.get('after'))),

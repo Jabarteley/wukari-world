@@ -40,6 +40,8 @@ import { cityName } from '../../src/game/cities/index.ts';
 import { mailRecipientOf } from './recipient.ts';
 import { autoFriend, friendsIn } from '../social/founder.ts';
 import { presenceOf } from '../social/presence.ts';
+import { prepareStoredCityContent } from '../request-city-content.ts';
+import { requireSessionCities } from '../city-content.ts';
 import type { AccountOf, MailRecipient } from './recipient.ts';
 import type { ComebackType, Facts, LedgerType, Memory, MilestoneInput, NudgeItem, Plan, PrefKey, Prefs, WaitingItem } from '../../src/game/comeback.ts';
 import type { ComebackCounters, ComebackView } from '../../src/types/growth.ts';
@@ -305,7 +307,7 @@ export function comebackService(ctx: RouteContext, mailing: Mailing) {
    * Look at the players who are due and claim the mails to send. Runs inside the transaction. Returns the jobs.
    * `wakeAt` is set from the records' own next times.
    */
-  function plan(db: Db): Job[] {
+  function plan(db: Db, prepared: ReadonlySet<string>): Job[] {
     const g = growthOf(ctx, db), t = now(), jobs: Job[] = [];
     if (!isRecord(g.comeback) || !Object.keys(g.comeback).length) { wakeAt = NEVER; return jobs; } // nobody has opted in: nothing to look at, nothing stored
     const all = book(g), day = lagosTime(t).day;
@@ -318,6 +320,9 @@ export function comebackService(ctx: RouteContext, mailing: Mailing) {
       if (!record || record.next > t) continue;
       if (jobs.length >= LIMITS.batch || examined >= LIMITS.examine) { break; }
       examined++;
+      if (!prepared.has(id)) continue;
+      const current = ctx.core.sessionByPublicId?.(db, id);
+      if (current) requireSessionCities(current);
       const recipient = recipientOf(db, g, id), life = recipient ? mailing.lifeOf(db, id) : null;
       if (!recipient || !life) { record.next = t + (recipient ? 7 * DAY : DAY); continue; }
       // The welcome message of a new account is one of this player's mails: it is in the same ledger, so the caps hold across both.
@@ -387,7 +392,26 @@ export function comebackService(ctx: RouteContext, mailing: Mailing) {
     running = true; lastTick = now(); passes++;
     let jobs: Job[] = [];
     try {
-      await ctx.store.transact((db) => { jobs = plan(db); }, { durable: () => jobs.length > 0 });
+      const prepared = await ctx.store.read((db) => {
+        const g = growthOf(ctx, db), all = book(g), t = now(), sessions: SessionRecord[] = [], ids: string[] = [];
+        if (!isRecord(g.comeback) || !Object.keys(g.comeback).length) return { sessions, ids, idle: 'empty' as const };
+        if (g.outreach?.off?.email === true) return { sessions, ids, idle: 'off' as const };
+        let examined = 0;
+        for (const { key: id } of scanKeys(all, 'growthComeback', { nBelow: t + 1, missing: true })) {
+          const record = recordOf(g, id, false);
+          if (!record || record.next > t) continue;
+          if (examined++ >= LIMITS.examine) break;
+          ids.push(id);
+          const session = ctx.core.sessionByPublicId?.(db, id);
+          if (session) sessions.push(session);
+        }
+        return { sessions, ids, idle: null };
+      });
+      if (prepared.idle === 'empty') { wakeAt = NEVER; return { ran: true, jobs: 0 }; }
+      if (prepared.idle === 'off') { wakeAt = now() + 10 * 60000; return { ran: true, jobs: 0 }; }
+      await Promise.all(prepared.sessions.map((session) => prepareStoredCityContent(ctx, session)));
+      const preparedIds = new Set(prepared.ids);
+      await ctx.store.transact((db) => { jobs = plan(db, preparedIds); }, { durable: () => jobs.length > 0 });
       for (const job of jobs) await send(job);
       return { ran: true, jobs: jobs.length };
     } catch (error) {

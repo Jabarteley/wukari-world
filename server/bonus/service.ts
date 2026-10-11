@@ -30,6 +30,7 @@
  * Disposable e-mail domains are not blocked in this version.
  */
 import { characterCity } from '../character.ts';
+import { prepareStoredCityContent } from '../request-city-content.ts';
 import { addressBucket } from '../host-context.ts';
 import { hash53 } from '../protocol.ts';
 import { accountOfBinding } from '../accounts/service.ts';
@@ -162,6 +163,8 @@ export function bonusService(ctx: RouteContext) {
     if (quick === 'none') return NONE(config);
     if (quick === 'ended') return NONE(config, 'ended');
     if (quick !== 'work') return { state: 'paid', amount: quick.amount, n: quick.n, places: config.places, show: false };
+    const held = await ctx.store.read(db => { const account = accountOfBinding(db, input.binding, ctx.now()); return account ? playable(db, account) : null; });
+    if (held) await prepareStoredCityContent(ctx, held.session, [held.city]);
     const done = await ctx.store.transact((db) => claim(db, input));
     social.deliver(done.push);
     return done.answer;

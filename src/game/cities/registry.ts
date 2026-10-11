@@ -40,6 +40,12 @@ const loadedMaps = new Map<string, CityMapPack>()
 const pendingModules = new Map<string, Promise<CityModule>>()
 const pendingContent = new Map<string, Promise<CityContent>>()
 const pendingMaps = new Map<string, Promise<CityMapPack>>()
+let hostModuleLoader: ((id: string) => Promise<CityModule>) | undefined
+
+/** Hosts install their immutable asset reader before serving requests. */
+export function installCityModuleLoader(loader: (id: string) => Promise<CityModule>): void {
+  hostModuleLoader = loader
+}
 let authoredCityLinks: readonly CityLink[] | null = null
 /** Loaded authored routes only. loadCityLinks fills this live binding. */
 export let CITY_LINKS: readonly CityLink[] = Object.freeze([])
@@ -68,7 +74,7 @@ async function readCityModule(id: string): Promise<CityModule> {
   if (cached) return cached
   const loader = CITY_LOADERS[id]
   if (!loader) throw new RangeError(`City rules are not available: ${id}`)
-  const module = await loader()
+  const module = await (hostModuleLoader ? hostModuleLoader(id) : loader())
   if (module.id !== id || module.rules.id !== id) throw new Error(`City module id ${module.id} does not match ${id}`)
   return rememberModule(module)
 }

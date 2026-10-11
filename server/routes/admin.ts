@@ -1,3 +1,4 @@
+import { prepareStoredCityContent } from '../request-city-content.ts';
 /**
  * OWNER: admin
  * THE ADMIN SECTION, under /api/admin/ (docs/ADMIN.md). Not the operator surface: that is /api/mod/ with a bearer token, which is
@@ -182,6 +183,7 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
           return { body: { ok: false, code: 'confirmation_required', ...issued, summary: `${parsed.action} ${named}` }, headers: NO_STORE };
         }
       }
+      await prepareStoredCityContent(ctx, await ctx.store.read(db => { const caller = again(db, request), target = targetOf(db, id); mayAct(ctx, db, caller, target); return target; }));
       const effects: Effects = {};
       const result = await ctx.store.transact((db) => {
         const caller = again(db, request), target = targetOf(db, id);
@@ -209,6 +211,8 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
         const issued = await issueConfirm(ctx, admin.accountId, 'bulk', parsed.action, bound);
         return { body: { ok: false, code: 'confirmation_required', ...issued, summary: parsed.action === 'credit' ? `Give ${formatNaira(Number(parsed.params.amount))} to ${ids.length} players (${formatNaira(Number(parsed.params.amount) * ids.length)} in all)` : `Send your message to ${ids.length} players`, players: ids.length }, headers: NO_STORE };
       }
+      const targets = await ctx.store.read(db => { const caller = again(db, request); return ids.map(id => { const target = targetOf(db, id); mayAct(ctx, db, caller, target); return target; }); });
+      await Promise.all(targets.map(target => prepareStoredCityContent(ctx, target)));
       const effects: Effects = {};
       const result = await ctx.store.transact((db) => {
         const caller = again(db, request);
@@ -235,6 +239,7 @@ export default function adminRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
           return { body: { ok: false, code: 'confirmation_required', ...issued, summary: `Give ${formatNaira(input.amount)} to ${preview.count} players (${formatNaira(preview.total)} in all)`, players: preview.count, total: preview.total }, headers: NO_STORE };
         }
       }
+      await world.prepare(input);
       const effects: Effects = {};
       const result = await ctx.store.transact((db) => {
         const caller = again(db, request);

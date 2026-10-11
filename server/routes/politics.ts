@@ -44,6 +44,8 @@ import { archiveCity } from '../records/city.ts';
 import { assemblyOf, billsOf, castVote, count, enact, leverBlock, needed, propose, proposeBlock, signBlock, signOrVeto, voteBlock } from '../politics/assembly.ts';
 import { append, recordsOf } from '../records/store.ts';
 import { auditBlock, credit, decreeBlock, drawSalary, found, foundBlock, grantBlock, grantRoom, impeachBlock, join, joinBlock, leave, leverValue, memberCount, partyOf, payGrant, runAudit, salaryBlock, salaryDue, setDecree, signPetition, signaturesNeeded, termAccounts } from '../politics/rules.ts';
+import { prepareStoredCityContent } from '../request-city-content.ts';
+import { transactWithCityContent } from '../prepared-city-transaction.ts';
 
 export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const { store, fail } = ctx;
@@ -124,6 +126,13 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
   const presence = presenceOf(ctx);
   const DAY = 86400000;
   const playerId = (value: unknown): string => { if (typeof value !== 'string' || !UUID_PATTERN.test(value)) throw fail(400, 'invalid_player'); return value; };
+  async function prepareTargets(cityId: CityId, ids: readonly string[]): Promise<void> {
+    const sessions = await store.read((db) => [...new Set(ids)].flatMap((id) => {
+      const session = ctx.core.sessionByPublicId(db, id);
+      return session?.cities?.[cityId]?.state ? [session] : [];
+    }));
+    await Promise.all(sessions.map((session) => prepareStoredCityContent(ctx, session, [cityId])));
+  }
   const scopeNameOf = (cityId: CityId, scope: string): string => seatsOf(cityId, cityName(cityId)).find((seat) => seat.id === scope)?.name ?? scope;
   const tierOfScope = (scope: string): TierId => (scope.startsWith('city:') ? 'city' : scope.startsWith('state:') ? 'state' : 'nation');
   const sittingOf = (db: Db, scope: string): { id: string; week: number } | null => { const sitting = governorAt(govOfId(db, scope), ctx.now(), QUORUM[tierOfScope(scope)]); return sitting ? { id: sitting.id, week: sitting.week } : null; };
@@ -186,7 +195,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier);
       const seat = seatOf(cityId, tier);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('decree', who.id, 30);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id);
@@ -203,7 +212,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier);
       const seat = seatOf(cityId, tier);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('salary', who.id, 12);
         const outcome = ctx.once(db, session, { id: body.requestId, kind: 'politics.salary', fingerprint: [cityId, tier] }, () => {
@@ -227,7 +236,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const name = cleanLine(body.name, { min: PARTY.nameMin, max: PARTY.nameMax, what: 'The party name' });
       const motto = cleanLine(body.motto, { min: PARTY.mottoMin, max: PARTY.mottoMax, what: 'The motto' });
       const colour = colours.find((id) => id === body.colour);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('party', who.id, 12);
         const outcome = ctx.once(db, session, { id: body.requestId, kind: 'politics.party', fingerprint: [cityId, name.ok ? name.text : String(body.name ?? '')] }, () => {
@@ -250,7 +259,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/party/join': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('party', who.id, 30);
         const politics = politicsOf(ctx, db);
@@ -264,7 +273,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/party/leave': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('party', who.id, 30);
         const left = leave(politicsOf(ctx, db), who.id);
@@ -276,7 +285,12 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/bill': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier);
-      return store.transact((db) => {
+      const members = await store.read((db) => {
+        const scope = peekScope(peekPolitics(db), seat.id), gov = tier === 'city' ? govOf(db, seat, cityId) : peekGov(scope);
+        return assemblyOf(gov, ctx.now(), tier).members.map((member) => member.id);
+      });
+      await prepareTargets(cityId, members);
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('bill', who.id, 30);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
@@ -299,7 +313,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier), billId = typeof body.bill === 'string' && /^b\d{1,4}$/.test(body.bill) ? body.bill : null;
       const yes = body.yes;
       if (!billId || typeof yes !== 'boolean') throw fail(400, 'invalid_bill');
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('bill', who.id, 60);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
@@ -317,7 +331,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier), billId = typeof body.bill === 'string' && /^b\d{1,4}$/.test(body.bill) ? body.bill : null;
       const sign = body.sign;
       if (!billId || typeof sign !== 'boolean') throw fail(400, 'invalid_bill');
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('bill', who.id, 60);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
@@ -335,7 +349,8 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier), recipient = playerId(body.player), seat = seatOf(cityId, tier);
       const purpose = cleanLine(body.purpose, { min: GRANTS.purposeMin, max: GRANTS.purposeMax, what: 'The purpose' });
-      return store.transact((db) => {
+      await prepareTargets(cityId, [recipient]);
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('grant', who.id, 20);
         const outcome = ctx.once(db, session, { id: body.requestId, kind: 'politics.grant', fingerprint: [cityId, tier, recipient, String(body.amount ?? '')] }, () => {
@@ -363,7 +378,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/audit': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('audit', who.id, 20);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
@@ -379,7 +394,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/impeach': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('impeach', who.id, 20);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
@@ -409,7 +424,8 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/justice/fight': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId), target = playerId(body.target);
-      return store.transact((db) => {
+      await prepareTargets(cityId, [target]);
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('fight', who.id, 20);
         let after: (() => void) | undefined;
@@ -445,7 +461,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/justice/enrol': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier), player = playerId(body.player), seat = seatOf(cityId, tier);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('enrol', who.id, 30);
         const sitting = sittingOf(db, seat.id), target = ctx.core.sessionByPublicId(db, player);
@@ -461,7 +477,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/justice/dismiss': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier), player = playerId(body.player), seat = seatOf(cityId, tier);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('enrol', who.id, 30);
         const justice = justiceOf(politicsOf(ctx, db)), roster = body.role === 'judge' ? justice.judges : justice.police, record = roster[player], sitting = sittingOf(db, seat.id);
@@ -476,7 +492,9 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const body = await request.json();
       const cityId = cityParam(body.cityId), offenceId = typeof body.offence === 'string' && /^o\d{1,12}$/.test(body.offence) ? body.offence : null;
       if (!offenceId) throw fail(400, 'invalid_offence');
-      return store.transact((db) => {
+      const offender = await store.read((db) => peekJustice(peekPolitics(db)).offences[offenceId]?.by.id);
+      if (offender) await prepareTargets(cityId, [offender]);
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('arrest', who.id, 30);
         let after: (() => void) | undefined;
@@ -508,7 +526,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/justice/lawyer': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('bar', who.id, 20);
         const justice = justiceOf(politicsOf(ctx, db));
@@ -526,7 +544,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const body = await request.json();
       const cityId = cityParam(body.cityId);
       const statement = cleanLine(body.statement, { min: 3, max: JUSTICE.statementMax, what: 'Your statement' });
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('court', who.id, 20);
         const outcome = ctx.once(db, session, { id: body.requestId, kind: 'justice.appeal', fingerprint: [cityId, statement.ok ? statement.text : String(body.statement ?? ''), String(body.counsel ?? '')] }, () => {
@@ -557,7 +575,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const cityId = cityParam(body.cityId), offenceId = typeof body.offence === 'string' && /^o\d{1,12}$/.test(body.offence) ? body.offence : null;
       if (!offenceId) throw fail(400, 'invalid_offence');
       const argument = cleanLine(body.argument, { min: 3, max: JUSTICE.argumentMax, what: 'Your argument' });
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('court', who.id, 20);
         const found = justiceOf(politicsOf(ctx, db)).cases[offenceId];
@@ -575,7 +593,9 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       if (!offenceId) throw fail(400, 'invalid_offence');
       const verdict: Verdict | undefined = (['upheld', 'reduced', 'quashed'] as const).find((item) => item === body.verdict);
       const note = cleanLine(body.note, { min: 3, max: JUSTICE.noteMax, what: 'The reasons' });
-      return store.transact((db) => {
+      const defendant = await store.read((db) => peekJustice(peekPolitics(db)).cases[offenceId]?.defendant.id);
+      if (defendant) await prepareTargets(cityId, [defendant]);
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('court', who.id, 30);
         const justice = justiceOf(politicsOf(ctx, db)), found = justice.cases[offenceId], now = ctx.now();
@@ -598,7 +618,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/justice/escalate': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('court', who.id, 20);
         const outcome = ctx.once(db, session, { id: body.requestId, kind: 'justice.escalate', fingerprint: [cityId] }, () => {
@@ -621,7 +641,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/justice/bail': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId);
-      return store.transact((db) => {
+      return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('court', who.id, 20);
         const outcome = ctx.once(db, session, { id: body.requestId, kind: 'justice.bail', fingerprint: [cityId] }, () => {

@@ -91,6 +91,7 @@ test('Worker: a shop from opening to winding up, and a look at it writes no row'
       if (request.url.split('?')[0] === TOKEN_KEYS_URL) return new Response(JSON.stringify({ keys: [key.jwk] }), { status: 200, headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=3600' } })
       return new Response('{}', { status: 200, headers: { 'content-type': 'application/json' } })
     },
+    assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
   }
   const acknowledged = async (target: { dispatchFetch(url: string, init?: RequestInit): Promise<WorkerResponse> }, expected: number): Promise<void> => {
     const response = await target.dispatchFetch(origin + clockPath, { method: 'GET' })

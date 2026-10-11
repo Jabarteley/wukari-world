@@ -52,6 +52,7 @@ import type { OverlayData, OverlayLayers, OverlayChip } from './overlays.ts';
 import type { Trip, TripPose, TripSource } from './trip.ts';
 import type { Route } from './roads.ts';
 import { createKit } from '../scene/kit.ts';
+import { timeFrames } from '../scene/look.ts';
 import { COMING_SOON } from '../game/content/venues.ts';
 import { contentFor } from '../game/cities/runtime.ts';
 import { openingInfo, lagosTime } from '../game/clock.ts';
@@ -1036,6 +1037,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     holdTime(next: TimeOfDay | null) { heldTime = next; if (applyTime(next || timeOfDay(state?.t ?? 0))) request(); },
     /** What the Map panel says, for callers that do not go through the window event (tests, a host replaying it). */
     ui(detail: MapUiDetail) { onUi({ detail } as CustomEvent<unknown>); },
+    /** For `?diagnostics`: the cost of a frame with the GPU waited for (not counted as renders). */
+    timeFrames(count?: number) { return timeFrames(renderer, () => renderer.render(scene, camera), count); },
     /** For tests and the diagnostics panel. */
     diagnostics() {
       const info = renderer.info?.render || {}, sorted = [...frameMs].sort((a, b) => a - b), gap = [...gaps].sort((a, b) => a - b);

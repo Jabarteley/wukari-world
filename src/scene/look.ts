@@ -71,6 +71,22 @@ export function applyRendererLook(THREE: ThreeModule, renderer: LookRenderer, ti
   return tier;
 }
 
+/** What timeFrames reports: the cost of one frame with the GPU waited for, and what it drew. */
+export interface FrameCost { msPerFrame: number; drawCalls: number; triangles: number }
+/**
+ * For `?diagnostics` and measurements only: draws `count` frames in a row, waiting for the GPU after each with a one-pixel read-back,
+ * and reports the mean time and what one frame drew. Nothing calls it in play; the caller keeps its own frame counter out of it.
+ */
+export function timeFrames(renderer: Pick<THREE.WebGLRenderer, 'info' | 'getContext'>, draw: () => void, count = 12): FrameCost {
+  const gl = renderer.getContext(), pixel = new Uint8Array(4);
+  const wait = () => gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+  draw(); wait();
+  const start = performance.now();
+  for (let i = 0; i < count; i += 1) { draw(); wait(); }
+  const info = renderer.info.render;
+  return { msPerFrame: Math.round(((performance.now() - start) / count) * 100) / 100, drawCalls: info.calls, triangles: info.triangles };
+}
+
 const channels = (hex: Colour): [number, number, number] => { const n = parseInt(String(hex).slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
 /** '#rrggbb' between two colours. */
 export function mixHex(a: Colour, b: Colour, t: number): Colour {

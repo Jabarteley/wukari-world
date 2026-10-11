@@ -93,7 +93,8 @@ import { createOccluders, resolve as resolveCollision } from './scene/camera-col
 import { sceneMaterials } from './scene/build.ts';
 import { createMotionLoop } from './scene/motion-loop.ts';
 import { rewardChips, cheer } from './scene/reward.ts';
-import { applyRendererLook, renderTier, createSky, createGround, mixHex, matteScenery } from './scene/look.ts';
+import { applyRendererLook, renderTier, createSky, createGround, mixHex, matteScenery, timeFrames } from './scene/look.ts';
+import type { FrameCost } from './scene/look.ts';
 import { createWalker, createPositionReporter, gaitPhase, WALK_SPEED, JOG_SPEED } from './scene/movement.ts';
 import { createSceneControls } from './scene/controls.ts';
 import { buildVenueScene, DEFAULT_CAMERA, MAX_CROWD, SPOT_REACH, TABLE_REACH } from './scene/venue-scenes.ts';
@@ -247,6 +248,8 @@ export interface VenueWorld {
   readonly location: string | null
   prepare(id: string): boolean
   diagnostics(): VenueDiagnostics
+  /** For `?diagnostics`: the cost of a frame with the GPU waited for (not counted as renders). */
+  timeFrames(count?: number): FrameCost
   resize(): void
   /** `top` / `bottom`: how many CSS pixels of the canvas the HUD covers; `hint`: where the HUD rows under the top bar end. */
   setInsets(next?: { top?: number; bottom?: number; hint?: number }): boolean
@@ -1470,6 +1473,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       finally { applyLook(); }
       return true;
     },
+    timeFrames(count) { return timeFrames(renderer, () => { lookIn(); lights.aim(camera, orbit.now.x + orbit.now.px, orbit.now.y, orbit.now.z + orbit.now.pz); renderer.render(scene, camera); }, count); },
     diagnostics() {
       return {
         renderCount,

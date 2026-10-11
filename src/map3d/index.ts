@@ -57,6 +57,7 @@ export interface MapImpl {
   resize(): void
   arrive?(done: () => void): void
   diagnostics?(): object
+  timeFrames?(count?: number): object
   view?(): object
   cameraView?(): { x: number; z: number; yaw: number; pitch: number; distance: number }
   restoreView?(next: never): void
@@ -102,6 +103,8 @@ export interface CityView {
   /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
   arrive(done: () => void): void
   diagnostics(): object
+  /** For `?diagnostics`: the cost of a frame with the GPU waited for; null while the map is not a 3D one. */
+  timeFrames(count?: number): object | null
   /** Where the camera is, for keeping it across a reload (null while no map is up). */
   camera(): MapCamera | null
   /** Put the camera back (a reload): applied when the map first opens if it is not up yet. A camera of the other kind of map is dropped. */
@@ -261,6 +264,7 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
     enter(edge, carry) { impl?.enter?.(edge, carry); },
     /** Show the arrival, then call `done`. With nothing to show (2D, hidden, reduced motion) it is called at once. */
     arrive(done) { if (impl?.arrive && shown) impl.arrive(done); else done(); },
+    timeFrames(count) { return impl?.timeFrames?.(count) ?? null; },
     diagnostics() { return impl?.diagnostics ? impl.diagnostics() : { kind: kind || 'none', renderCount: 0, released, view: impl?.view?.() }; },
     camera() {
       if (!impl) return null;

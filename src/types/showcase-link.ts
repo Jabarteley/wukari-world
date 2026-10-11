@@ -63,11 +63,13 @@ export function safeLink(raw: unknown): string | null {
   if (!text || text.length > 300 || /[\s<>"'`\\]/.test(text)) return null
   if (/^tel:\+?[0-9()-]{5,20}$/i.test(text)) return text
   if (/^mailto:[^\s?&#,;@]+@[^\s?&#,;@]+$/i.test(text)) return text
-  try {
-    const url = new URL(text)
-    if (url.protocol !== 'https:' || !url.hostname || url.username || url.password) return null
-    return url.href
-  } catch { return null }
+  const web = webParts(text)
+  return web ? `https://${web.host}${web.path}${web.query}${web.hash}` : null
+}
+/** The parts of an https address: a host with a dot (no port, user name or password), a path, a query ("?a=b" or "") and a hash. */
+function webParts(text: string): { host: string; path: string; query: string; hash: string } | null {
+  const found = /^https:\/\/([a-z0-9-]+(?:\.[a-z0-9-]+)+)(\/[^?#]*)?(\?[^#]*)?(#.*)?$/i.exec(text)
+  return found?.[1] ? { host: found[1].toLowerCase(), path: found[2] ?? '', query: found[3] ?? '', hash: found[4] ?? '' } : null
 }
 
 /** What a chat address can take as the first words: a messaging app's link takes `text`, an address takes a subject and a body, a phone number takes nothing. */
@@ -78,9 +80,8 @@ export function messageHref(raw: unknown, message: string, subject = ''): string
   try { text = encodeURIComponent(message) } catch { text = '' }
   if (/^mailto:/i.test(link)) return `${link}?subject=${encodeURIComponent(subject || message)}${text ? `&body=${text}` : ''}`
   if (!text || !/^https:/i.test(link)) return link
-  const url = new URL(link)
-  if (url.hostname !== 'wa.me' && url.hostname !== 'api.whatsapp.com' && url.hostname !== 'www.wa.me') return link
-  url.searchParams.delete('text')
-  const rest = url.search
-  return `${url.origin}${url.pathname}${rest ? `${rest}&` : '?'}text=${text}`
+  const web = webParts(link)
+  if (!web || (web.host !== 'wa.me' && web.host !== 'api.whatsapp.com' && web.host !== 'www.wa.me')) return link
+  const rest = web.query.slice(1).split('&').filter((part) => part && !/^text=/i.test(part)).join('&')
+  return `https://${web.host}${web.path || '/'}${rest ? `?${rest}&` : '?'}text=${text}`
 }

@@ -47,7 +47,7 @@ async function ensure(): Promise<boolean> {
 }
 async function share(): Promise<void> {
   if (!(await ensure())) return
-  const result = await systemShare({ text: message.value })
+  const result = await systemShare({ file: null, text: message.value })
   if (result === 'shared') note.value = 'Shared.'
   else if (result === 'unavailable') await copy('message')
 }

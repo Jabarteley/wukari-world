@@ -8,10 +8,10 @@ import type { LandingDeps } from './landingStore.ts'
 
 const HOST = '11111111-2222-4333-8444-555555555555'
 
-function setup(over: Partial<LandingDeps> = {}, kept: { join?: string | null; ref?: string | null; table?: string | null; go?: string | null } = {}) {
+function setup(over: Partial<LandingDeps> = {}, kept: { join?: string | null; ref?: string | null; table?: string | null; go?: string | null; shop?: string | null } = {}) {
   const calls: { path: string; body?: unknown }[] = []
   const log: string[] = []
-  const keep = { join: kept.join ?? null, ref: kept.ref ?? null, table: kept.table ?? null, go: kept.go ?? null }
+  const keep = { join: kept.join ?? null, ref: kept.ref ?? null, table: kept.table ?? null, go: kept.go ?? null, shop: kept.shop ?? null }
   const timers: (() => void)[] = []
   const answers: Record<string, unknown> = {
     '/api/social/join': { ok: true, code: 'joined', host: { name: 'Ada' }, venue: 'market' },
@@ -26,7 +26,7 @@ function setup(over: Partial<LandingDeps> = {}, kept: { join?: string | null; re
     cleanAddress: () => { log.push('clean') }, takeLinkHost: () => { log.push('take') },
     joinTarget: () => keep.join, forgetJoin: () => { keep.join = null; log.push('forget-join') },
     pendingRef: () => keep.ref, forgetRef: () => { keep.ref = null }, pendingTable: () => keep.table, forgetTable: () => { keep.table = null },
-    pendingGo: () => keep.go, forgetGo: () => { keep.go = null }, panelFor: (go) => (go === 'needs' ? 'needs' : go === 'messages' ? 'messages' : null),
+    pendingGo: () => keep.go, forgetGo: () => { keep.go = null; keep.shop = null }, pendingShop: () => keep.shop, panelFor: (go) => (go === 'needs' ? 'needs' : go === 'messages' ? 'messages' : go === 'shop' ? 'showcase' : null),
     setTimeout: (run) => timers.push(run), clearTimeout: () => {},
     ...over,
   }
@@ -126,4 +126,27 @@ test('an e-mail button opens one panel from the list, once, with no request; an 
   const offline = setup({ online: () => false }, { go: 'needs' })
   await offline.landing.land()
   assert.equal(offline.keep.go, 'needs', 'kept until the connection is there')
+})
+
+test('a shop link opens that shop in the Services app, by the id the server gives for its public address', async () => {
+  const { landing, calls, log, keep, answers } = setup({}, { go: 'shop', shop: 'k3x9m2q7' })
+  answers['/api/showcase/entry/k3x9m2q7'] = { ok: true, id: 'SC-12' }
+  await landing.land()
+  assert.deepEqual(calls, [{ path: '/api/showcase/entry/k3x9m2q7', body: undefined }])
+  assert.ok(log.includes(`open:showcase:${JSON.stringify({ shop: 'SC-12' })}`))
+  assert.equal(keep.go, null); assert.equal(keep.shop, null)
+})
+
+test('a shop link whose shop is gone says so and opens nothing', async () => {
+  const { landing, log } = setup({ fetchJson: (async () => { throw Object.assign(new Error('gone'), { status: 404 }) }) as LandingDeps['fetchJson'] }, { go: 'shop', shop: 'k3x9m2q7' })
+  await landing.land()
+  assert.ok(log.includes('toast:That shop is not available.'))
+  assert.ok(!log.some((line) => line.startsWith('open:')))
+})
+
+test('a shop link with no shop in it opens the Services app on its list', async () => {
+  const { landing, calls, log } = setup({}, { go: 'shop' })
+  await landing.land()
+  assert.equal(calls.length, 0)
+  assert.ok(log.includes('open:showcase:undefined'))
 })

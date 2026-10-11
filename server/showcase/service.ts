@@ -180,6 +180,7 @@ export function showcaseService(ctx: RouteContext) {
         ...(input.pay && payChanged ? { payChangedAt: at } : input.pay && current?.payChangedAt !== undefined ? { payChangedAt: current.payChangedAt } : {}),
         ...(current?.reapprove || (approved && changed) ? { reapprove: true as const } : {}),
         ...(current?.note ? { note: current.note } : {}),
+        ...(current?.pub ? { pub: current.pub } : {}),
         revision: (current?.revision ?? 0) + 1, createdAt: current?.createdAt ?? at, updatedAt: at,
       };
       // A live shop whose name or destinations changed is looked at again before it is shown; any other edit shows at once.

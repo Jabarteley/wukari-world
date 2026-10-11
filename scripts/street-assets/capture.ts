@@ -167,12 +167,16 @@ try {
   }
   if (want('numbers')) {
     // frame rate with 1, 10 and 40 mixed assets (near and far versions by distance), cloned meshes and instanced meshes
-    const all = busyItems(99, true);
-    // a fixed mix: take items round-robin by kind so every size contains every kind
-    const byKind = new Map<Kind, Item[]>(); for (const it of all) { const l = byKind.get(it.kind) ?? []; l.push(it); byKind.set(it.kind, l); }
+    // a fixed mix, every kind in turn, spread over +-22 units of the street so that all of them are in view; far versions beyond 32 units from the camera
     const mix = (n: number, lod: 'auto' | 'near'): Item[] => {
-      const res: Item[] = []; let i = 0;
-      while (res.length < n) { const k = KINDS[i % KINDS.length]!; const l = byKind.get(k)!; const it = l[Math.floor(i / KINDS.length) % l.length]!; res.push({ ...it, lod: lod === 'near' ? 'near' : it.lod, variant: undefined }); i++; }
+      const res: Item[] = [];
+      for (let i = 0; i < n; i++) {
+        const kind = KINDS[i % KINDS.length]!;
+        const x = (((i * 7) % 45) - 22) * (phone() ? 0.4 : 1);
+        const z = kind === 'house' ? SIZE.house.newZ : kind === 'kiosk' ? -0.2 : kind === 'danfo' || kind === 'keke' ? (i % 2 ? 4.7 : 8.6) : 1.5;
+        const far = lod === 'auto' && Math.hypot(x, 12, z - 34) > 32;
+        res.push({ src: 'new', kind, x, z, ry: kind === 'danfo' || kind === 'keke' ? (i % 2 ? Math.PI / 2 : -Math.PI / 2) : 0, lod: far ? 'far' : 'near' });
+      }
       return res;
     };
     const rows: Record<string, unknown>[] = [];

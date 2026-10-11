@@ -1,0 +1,64 @@
+# Street assets: generated models at game size
+
+A repeatable path from a generated street model (one big mesh, four 2048 px textures, 4-9 MB) to a file the game can load: one mesh, one material, one
+512 px texture, 100-140 kB. Nothing here is switched on in the game. `assets/` holds the packed results, `page/` the proof page that draws them beside what the
+game draws today, and `capture.ts` / `gallery.ts` turn that into pictures, numbers and a gallery.
+
+## Run it
+
+    scripts/street-assets/build.sh <originals-dir> <work-dir> <out-dir> [name ...]     # needs Blender 5.2 and npx gltfpack@1.3.0
+    node --experimental-strip-types scripts/street-assets/capture.ts <out-dir> <shots-dir> [--set all]   # headless Chrome, ports 4481-4489
+    node --experimental-strip-types scripts/street-assets/gallery.ts <shots-dir> <originals-dir> <work-dir> <out-dir> <gallery-dir>
+
+Typecheck, build and test commands go through the shared heavy-command lock; Blender and browser captures run outside it with their own time limits.
+The originals are untrusted data: they are only ever passed as paths, and no script runs from their folder.
+
+## What the pipeline does (`blender/reduce_asset.py`, one config per asset in `configs/`)
+
+1. Weld, split into connected pieces, keep the wanted ones (`keep`), cut a fused ground disc (`cutBelow`) or litter (`deleteBoxes`).
+2. Turn so the front faces -Y (glTF +Z, the game's forward), scale one axis to the game's size, origin on the ground at the centre.
+3. Optional: replace a broken half by a mirror image of the good half (`mirrorFrom`). The danfo needed it: one side of the generated mesh was folded.
+4. Remove faces no ray can leave from (seats, floors, inner walls) so thin shells do not fold when decimated (`hidden`; off for the kiosk, whose awning is a thin shell).
+5. Decimate in steps; drop loose shards, and for thin foliage rebuild as one closed surface with a voxel remesh (far versions only get there).
+6. Save, reopen, fresh unwrap (an unwrap in the session that decimated shatters into single triangles), bake the base colour from the full mesh to 512 px (256 px far).
+   Normal and metal maps are dropped: the renders do not show a loss at street distance.
+7. One principled material, plain glTF out, `gltfpack -cc -kn -km` (meshopt compression, named nodes kept).
+8. `blender/variants.py` + `swap_texture.py`: colour variants made by recolouring the baked texture inside region masks (hue/saturation/value plus a position bake for the
+   danfo's stripe). Same mesh, another 512 px texture. `configs/variants.json` holds the rules.
+
+Units: the danfo and keke keep the model library's street size (4.94 and 3.16 long) so a swap is drop-in; the house is 11 wide (a plot is 12), the kiosk 3.4 high (the figure is 2.45), the trees 7 high.
+Wheels: the keke's three wheels are separate pieces in the file and are packed as nodes `wheel_f`, `wheel_rl`, `wheel_rr` (origin on the axle, spin about X). The danfo's wheels are
+fused to the body: a cut leaves mudguard fragments that flap when turned, so the danfo stays one mesh. The far versions are always one mesh (one draw call).
+Trees keep their foliage as solid shards (no alpha), so the renderer needs nothing new.
+
+## Prompts and settings that would have avoided the cleanup
+
+What had to be cleaned: a patch of ground under the palm; two trees and loose paper under the kiosk; a danfo with one good side and one folded side, with seats and
+floor inside the body; a keke front mudguard welded to its wheel; inconsistent facing (the vehicles lie along X and face -X, the house faces +Z);
+every model normalised to about 1.9 units whatever its real size.
+
+Wording for every street asset (put it first):
+
+> One single [object]. Isolated on a plain white background, nothing else in the picture. No ground, no base, no shadow, no grass, no road, no surroundings, no
+> people, no litter, no extra trees, no text, no logos. Strictly left-right symmetrical. Side view, the front pointing left. Closed solid body: no interior, no seats,
+> windows are opaque dark glass. Flat clean colours, no baked lighting, no dirt, no scratches. Simple chunky shapes, game-ready, low detail.
+
+Settings: ask for the final count straight away (3,000 for a vehicle or house, 2,000 for a kiosk, 1,500 for a tree) with triangle topology, texture 1K, no metal or normal
+maps (they are thrown away); generate from a reference picture in strict side view when facing matters (text alone gave vehicles that face along X and houses along Z);
+generate the preview first and only refine when the silhouette is right; never rely on the prompt for scale (set it in the config).
+For wheels: ask for "the body without wheels, wheel arches open" and a separate "single wheel, front view" and add the wheels in the game (worth one test, not yet tried).
+
+## Next twelve street assets (one line each, after the wording above)
+
+1. Okada: a motorbike taxi, small yellow-black bike with a flat rear seat and a footrest, no rider.
+2. Saloon car: an older four-door saloon car, boxy, cream paint, rounded roof, small hubcaps, no number plate text.
+3. Bus stop: a roadside bus shelter, concrete posts, corrugated metal roof, one long bench, an empty sign pole beside it.
+4. Market stall with umbrella: a wooden table stall under a big striped umbrella, three plastic stools, crates of produce, no people.
+5. Generator: a petrol generator in a welded steel cage on two skids, red engine, black fuel tank, short exhaust.
+6. Street lamp: a tall concrete street lamp post with a curved arm and a rounded lamp head, small solar panel on top.
+7. Water tank on a stand: a black plastic water tank on a steel-frame tower with a short ladder and a pipe.
+8. Signboard: a large rectangular billboard sign on two metal posts, blank faces so the game can paint text.
+9. Wheelbarrow: a steel wheelbarrow, green tray, one wheel, two wooden handles, a little sand in it.
+10. Roadside seller's table: a small wooden table with a plastic tray of oranges, a scale and a cloth awning on two sticks.
+11. Gutter slab: a flat concrete drain cover section, three slabs side by side with a handle slot each, grey.
+12. Fence and gate: a two-metre piece of cement block fence with a painted metal gate in the middle, two pillars with round caps.

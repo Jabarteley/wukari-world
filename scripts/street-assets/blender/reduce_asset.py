@@ -140,7 +140,7 @@ if cfg.get("mirrorFrom"):
     print("MIRRORED from", cfg["mirrorFrom"], len(high.data.polygons), "faces")
 
 # --- which faces are wheels: one integer per face (0 = body, n = the n-th wheel of the config)
-wheels = cfg.get("wheels", [])
+wheels = [] if os.environ.get("REDUCE_NOWHEELS") else cfg.get("wheels", [])      # the far version has no wheel parts: one mesh, one draw call
 bm = bmesh.new(); bm.from_mesh(high.data); bm.faces.ensure_lookup_table()
 wl = bm.faces.layers.int.get("wheel") or bm.faces.layers.int.new("wheel")
 bl = bm.faces.layers.int.get("wheelbox")

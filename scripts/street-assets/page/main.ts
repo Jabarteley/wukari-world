@@ -52,7 +52,7 @@ const geometryCount = (root: THREE.Object3D): { triangles: number; drawCalls: nu
     const m = o as THREE.Mesh;
     if (!m.isMesh) return;
     drawCalls += 1;
-    triangles += (m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position!.count) / 3;
+    triangles += ((m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position!.count) / 3) * ((m as THREE.InstancedMesh).isInstancedMesh ? (m as THREE.InstancedMesh).count : 1);
     const map = (m.material as THREE.MeshStandardMaterial).map;
     if (map?.image) texture = Math.max(texture, (map.image as { width: number }).width);
   });

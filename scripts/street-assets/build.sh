@@ -11,12 +11,13 @@ NAMES=("$@"); [ ${#NAMES} -eq 0 ] && NAMES=(danfo keke house kiosk mango-tree pa
 # near triangles, far triangles
 typeset -A NEAR FAR
 NEAR=(danfo 3000 keke 2000 house 3000 kiosk 2000 mango-tree 2000 palm 1500)
-FAR=(danfo 600 keke 400 house 600 kiosk 400 mango-tree 400 palm 300)
+FAR=(danfo 600 keke 400 house 900 kiosk 400 mango-tree 400 palm 300)
 mkdir -p $WORK $OUT
 for N in $NAMES; do
   for V in near far; do
     if [ $V = near ]; then T=$NEAR[$N]; PX=${NEAR_PX:-512}; ID=$N; else T=$FAR[$N]; PX=256; ID=$N-far; fi
-    $BLENDER --background --disable-autoexec --python-exit-code 1 --python $HERE/blender/reduce_asset.py -- $SRC/$N.glb $HERE/configs/$N.json $WORK/$ID $ID $T $PX | grep -E "^(ISLANDS|SIZE|REDUCED)"
+    NW=; [ $V = far ] && NW=1
+    REDUCE_NOWHEELS=$NW $BLENDER --background --disable-autoexec --python-exit-code 1 --python $HERE/blender/reduce_asset.py -- $SRC/$N.glb $HERE/configs/$N.json $WORK/$ID $ID $T $PX | grep -E "^(ISLANDS|SIZE|REDUCED)"
     npx -y gltfpack@1.3.0 -i $WORK/$ID/$ID.raw.glb -o $OUT/$ID.glb -cc -kn -km > /dev/null
     # colour variants: the same model with another texture, recoloured through region masks (configs/variants.json)
     VARS=$(python3 -I -c "import json,sys; print(' '.join(json.load(open(sys.argv[1])).get(sys.argv[2], {})))" $HERE/configs/variants.json $N)

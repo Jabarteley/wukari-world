@@ -100,7 +100,7 @@ test('walkers come in by a gate, leave by a gate, stay on free floor, and never 
       for (let i = 0; i < here.length; i++) for (let j = i + 1; j < here.length; j++) {
         const [a, b] = [here[i]!, here[j]!]
         if (a.id.includes('|q|') && b.id.includes('|q|')) continue // two long stays are planned apart by seat and place, not by this check
-        assert.ok(Math.hypot(a.x - b.x, a.z - b.z) >= KEEP_APART - 0.12, `${a.id} and ${b.id} are ${Math.hypot(a.x - b.x, a.z - b.z).toFixed(2)} apart at ${at}`)
+        assert.ok(Math.hypot(a.x - b.x, a.z - b.z) >= KEEP_APART - 0.12, `${a.id} and ${b.id} are ${Math.hypot(a.x - b.x, a.z - b.z).toFixed(2)} apart at ${at}: ${JSON.stringify([a, b, wave.filter((t) => t.id === a.id || t.id === b.id).map((t) => t.keys.map((k) => [Math.round(k.t - at), +k.x.toFixed(1), +k.z.toFixed(1), k.hold]))])}`)
       }
     }
   }

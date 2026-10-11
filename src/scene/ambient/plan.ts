@@ -155,20 +155,30 @@ function positionsAt(tracks: readonly Track[], at: number): Point[] {
 
 /**
  * Does a candidate track come within KEEP_APART of a person already planned, at any instant it is in the place? It is looked at often enough
- * that two people walking at each other cannot step through one another between looks: about a fifth of a second while the candidate walks,
- * two fifths while it stands.
+ * that two people walking at each other cannot step through one another between looks (about a fifth of a second while the candidate walks,
+ * two fifths while it stands), and at the instants people appear and disappear: someone arriving at a door the moment another is leaving
+ * by it is looked at too.
  */
 function clashes(candidate: Track, others: readonly Track[], fixed: readonly Point[]): boolean {
   const first = candidate.keys[0], last = candidate.keys[candidate.keys.length - 1]
   if (!first || !last) return true
   const end = last.t + last.hold
-  for (let at = first.t; at <= end;) {
+  const meets = (at: number): boolean => {
     const me = sampleTrack(candidate, at)
-    if (me) {
-      for (const fixedAt of fixed) if (distance(me, fixedAt) < KEEP_APART) return true
-      for (const other of positionsAt(others, at)) if (distance(me, other) < KEEP_APART) return true
-    }
-    at += me?.walking ? 200 : 400
+    if (!me) return false
+    for (const fixedAt of fixed) if (distance(me, fixedAt) < KEEP_APART) return true
+    for (const other of positionsAt(others, at)) if (distance(me, other) < KEEP_APART) return true
+    return false
+  }
+  for (let at = first.t; at <= end;) {
+    if (meets(at)) return true
+    at += sampleTrack(candidate, at)?.walking ? 200 : 400
+  }
+  if (meets(end)) return true
+  for (const other of others) {
+    const from = other.keys[0], to = other.keys[other.keys.length - 1]
+    if (!from || !to) continue
+    for (const edge of [from.t, to.t + to.hold]) if (edge >= first.t && edge <= end && meets(edge)) return true
   }
   return false
 }

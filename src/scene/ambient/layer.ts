@@ -21,18 +21,19 @@ import { lookAvatar } from '../avatar-rig.ts';
 import { hash } from '../build.ts';
 import { createPlanner, poseOf } from './plan.ts';
 import type { AmbientPose, Ident, Planner, Role, Sample, Stage, Track } from './plan.ts';
-import { makeFarFigures, makeFigure } from './figure.ts';
+import { FIGURE_COST, makeFarFigures, makeFigure } from './figure.ts';
 import type { FarFigures } from './figure.ts';
 
 /** How long the layer keeps the frame loop awake after being woken. */
 export const WINDOW_MS = 12_000;
 /** The most background people built as figures of their own (the far crowd is on top of this). */
-export const MAX_FIGURES = 14;
+export const MAX_FIGURES = 16;
+/** How many of them may be the game's own full person (the rest are lean ones): they are the ones close enough to be looked at. */
+export const MAX_FULL = 4;
 /** The most regulars drawn as figures of their own (the rest stay in the scene's merged batch). */
 export const MAX_RESIDENTS = 6;
-/** A figure of the game's own bodies costs about this much at most (low detail: 600), and takes this many draw calls (its solid mesh is drawn twice, once for the sun's shadow, and its glow once). */
-const FIGURE_TRIANGLES = 450;
-const FIGURE_MESHES = 3;
+/** Draw calls a figure takes: a full one is a solid mesh drawn twice (once for the sun's shadow) and its glow; a lean one is one mesh drawn twice. */
+const FULL_CALLS = 3, LEAN_CALLS = 2;
 /** The far crowd costs about this much a person, in triangles. */
 const FAR_TRIANGLES = 60;
 
@@ -64,6 +65,7 @@ interface Entry {
   seed: string
   role: Role
   resident: boolean
+  lean: boolean
   holder: THREE.Group
   figures: Map<string, AvatarGroup>
   shown: AvatarGroup | null
@@ -98,6 +100,8 @@ export interface AmbientLayer {
   speak(id: string, text: string, ms?: number): boolean
   talk(a: string, b: string, ms?: number): boolean
   stats(): { triangles: number; meshes: number }
+  /** How many full figures, lean figures and far figures the budget allows (tests and diagnostics). */
+  caps(): { full: number; lean: number; far: number }
   dispose(): void
 }
 
@@ -113,23 +117,28 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
   const barks = new Map<string, { text: string; timer: ReturnType<typeof setTimeout> }>()
   let far: FarFigures | null = null, farKey = ''
   let windowLeft = 0, frames = 0, disposed = false, current = clock()
-  let cap = 0, farCap = 0
+  let fullCap = 0, leanCap = 0, farCap = 0
   let residents: Resident[] = []
 
-  /** What the scene has left decides how many figures there can be. Read when the layer is made or its regulars change. */
+  /**
+   * What the scene has left decides how many people there can be: first the regulars (full figures), then a few full ones, then lean ones,
+   * then the far crowd. Read when the layer is made, when its regulars change and when the scene's own crowd does.
+   */
   function budget(): void {
     const room = options.room(), own = residents.length
-    const figures = Math.max(0, Math.min(MAX_FIGURES, Math.floor(room.triangles / FIGURE_TRIANGLES) - own, Math.floor(room.meshes / FIGURE_MESHES) - own))
-    cap = figures
-    farCap = Math.max(0, Math.floor((room.triangles - (figures + own) * FIGURE_TRIANGLES) / FAR_TRIANGLES))
-    if (room.meshes - (figures + own) * FIGURE_MESHES < 2) farCap = 0 // the far crowd is one mesh, drawn twice
+    const triangles = room.triangles - own * FIGURE_COST.full, calls = room.meshes - own * FULL_CALLS
+    fullCap = Math.max(0, Math.min(MAX_FULL, Math.floor(triangles / FIGURE_COST.full), Math.floor(calls / FULL_CALLS)))
+    const t1 = triangles - fullCap * FIGURE_COST.full, c1 = calls - fullCap * FULL_CALLS
+    leanCap = Math.max(0, Math.min(MAX_FIGURES - fullCap, Math.floor(t1 / FIGURE_COST.lean), Math.floor(c1 / LEAN_CALLS)))
+    const t2 = t1 - leanCap * FIGURE_COST.lean, c2 = c1 - leanCap * LEAN_CALLS
+    farCap = c2 >= 2 ? Math.max(0, Math.floor(t2 / FAR_TRIANGLES)) : 0
   }
 
-  function enter(id: string, seed: string, role: Role, resident: boolean): Entry {
+  function enter(id: string, seed: string, role: Role, resident: boolean, lean = false): Entry {
     const holder = new THREE.Group()
     holder.name = resident ? 'ambient-resident' : 'ambient-person'
     group.add(holder)
-    const entry: Entry = { id, seed, role, resident, holder, figures: new Map(), shown: null, shownKey: '', x: 0, z: 0, ry: 0, placed: false, ox: 0, oz: 0, gaze: newGaze(), top: 2.9, talk: null }
+    const entry: Entry = { id, seed, role, resident, lean, holder, figures: new Map(), shown: null, shownKey: '', x: 0, z: 0, ry: 0, placed: false, ox: 0, oz: 0, gaze: newGaze(), top: 2.9, talk: null }
     entries.set(id, entry)
     return entry
   }
@@ -145,7 +154,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     if (key === entry.shownKey) return
     let figure = entry.figures.get(key)
     if (!figure) {
-      figure = makeFigure(kit, { seed: entry.seed, pose, step, seat })
+      figure = makeFigure(kit, { seed: entry.seed, pose, step, seat, lean: entry.lean })
       entry.holder.add(figure)
       entry.figures.set(key, figure)
     }
@@ -197,12 +206,24 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       const sample: Sample = { x: resident.x, z: resident.z, ry: resident.ry, mode: 'stand', pose: poseOf(track, { mode: 'stand' }, at), seat: 0.6, step: 0, walking: false }
       moving = put(entry, sample, at, dt, still, player) || moving
     }
-    // When there is room for fewer than the plan holds, the ones kept are a mix of walkers, sitters and standers (by a hash of who they are), not all of one kind.
-    const live = planner.at(at).sort((a, b) => hash(a.track.id) - hash(b.track.id) || (a.track.id < b.track.id ? -1 : 1)).slice(0, cap)
-    const present = new Set([...live.map(({ track }) => track.id), ...residents.map((resident) => resident.id)])
+    // When there is room for fewer than the plan holds, the ones kept are a mix of walkers, sitters and standers (by a hash of who they are), not all
+    // of one kind. Someone already in the place keeps their kind of figure; a newcomer is full while there is a full place left, lean after.
+    const sorted = planner.at(at).sort((a, b) => hash(a.track.id) - hash(b.track.id) || (a.track.id < b.track.id ? -1 : 1))
+    const admitted: { track: Track; sample: Sample; lean: boolean }[] = []
+    let fullUsed = 0, leanUsed = 0
+    for (const item of sorted) {
+      const known = entries.get(item.track.id)
+      if (!known || known.resident) continue
+      if (known.lean ? leanUsed < leanCap : fullUsed < fullCap) { admitted.push({ ...item, lean: known.lean }); if (known.lean) leanUsed++; else fullUsed++ }
+    }
+    for (const item of sorted) {
+      if (entries.has(item.track.id)) continue
+      if (fullUsed < fullCap) { admitted.push({ ...item, lean: false }); fullUsed++ } else if (leanUsed < leanCap) { admitted.push({ ...item, lean: true }); leanUsed++ }
+    }
+    const present = new Set([...admitted.map(({ track }) => track.id), ...residents.map((resident) => resident.id)])
     for (const entry of [...entries.values()]) if (!present.has(entry.id)) leave(entry)
-    for (const { track, sample } of live) {
-      const entry = entries.get(track.id) ?? enter(track.id, track.seed, track.role, false)
+    for (const { track, sample, lean } of admitted) {
+      const entry = entries.get(track.id) ?? enter(track.id, track.seed, track.role, false, lean)
       moving = put(entry, sample, at, dt, still, player) || moving
     }
     return moving
@@ -287,6 +308,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       second.talk = { until, face: Math.atan2(first.x - second.x, first.z - second.z), lead: false }
       return true
     },
+    caps: () => ({ full: fullCap, lean: leanCap, far: farCap }),
     stats() {
       let triangles = far?.triangles ?? 0, meshes = far ? far.group.children.length : 0
       for (const entry of entries.values()) if (entry.shown) { triangles += entry.shown.userData.triangles ?? 0; meshes += entry.shown.children.length }

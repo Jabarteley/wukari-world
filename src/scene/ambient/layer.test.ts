@@ -15,6 +15,8 @@ import type { Ident, Stage } from './plan.ts';
 import { createWalkGrid } from '../walk-grid.ts';
 import type { SceneEntry, SceneVenue } from '../types.ts';
 import { createVenueWorld } from '../../venue-world.ts';
+import { loadAmbient } from './hub.ts';
+await loadAmbient();
 await loadAllCityScenes();
 
 const KINDS = ['park', 'buka', 'hub', 'club', 'office', 'market', 'gym', 'mall', 'beach', 'hospital', 'salon', 'rooftop', 'police', 'worship', 'radio', 'polling', 'viewing', 'shrine', 'walk', 'statehouse', 'airport', 'refinery', 'quad', 'hilltop', 'lakeside', 'generic'];
@@ -79,12 +81,13 @@ test('a market with a few regulars holds a real crowd at ten, inside the budget,
     const entry = SCENES.market!(kit, venueOf('market'))
     entry.setCrowd(regulars)
     entry.setAmbient!(ident('market'))
-    const stats = entry.stats(), here = count(entry), far = entry.group.getObjectByName('ambient-far')?.children.length ?? 0
+    const stats = entry.stats(), here = count(entry), far = entry.group.getObjectByName('ambient-far')?.children.length ?? 0, caps = entry.ambientCaps!()
     entry.dispose()
-    return { stats, here, far }
+    return { stats, here, far, caps }
   })
-  const busy = run(TEN), quiet = run(TEN_PM)
-  assert.ok(busy.here >= 9, `a busy market: ${busy.here} people`)
+  // a quarter of an hour in the people have all had time to come in; and the same in the quiet hour
+  const busy = run(TEN + 300_000), quiet = run(TEN_PM + 300_000)
+  assert.ok(busy.here >= 9, `a busy market: ${busy.here} people ${JSON.stringify(busy)}`)
   assert.ok(busy.stats.triangles < SCENE_TRIANGLES.value && busy.stats.drawCalls <= SCENE_DRAW_CALLS.value, JSON.stringify(busy.stats))
   assert.ok(quiet.here < busy.here / 2, `${quiet.here} at ten at night against ${busy.here}`)
   console.log('market with three regulars at 10:00:', JSON.stringify(busy), 'at 22:00:', JSON.stringify(quiet))

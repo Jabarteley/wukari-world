@@ -238,7 +238,7 @@ export interface HostScene {
   ambientPeople?(): AmbientPerson[]
   say?(id: string, text: string, ms?: number): boolean
   talk?(a: string, b: string, ms?: number): boolean
-  onAmbient?: (() => void) | null
+  onAmbient?: ((ready: boolean) => void) | null
   look?(x: number, z: number): boolean
   tags?(): DomTag[]
   walk?: HostWalk
@@ -1404,15 +1404,24 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   }
   function resize() { frame(); renderScene(); }
   /** Give the scene just built (or the one shown) its background people, and open their window of frames; a scene that cannot have them is left alone. */
+  /** Open the window of frames for the scene's people (or place them still when there is no frame loop or motion is reduced). True when a frame is on its way. */
+  function wakeAmbientFrames(shown: HostScene) {
+    if (!loop.available || reduced()) { shown.settleAmbient?.(); readTags(); if (!loop.running) renderScene(); return true; }
+    return shown.wakeAmbient?.() === true && loop.wake();
+  }
   function showAmbient(wake = true) {
     if (!current?.setAmbient) return false;
     const shown = current;
-    shown.onAmbient = () => { readTags(); if (!loop.running) renderScene(); };
+    shown.onAmbient = (ready) => {
+      readTags();
+      // The people arrived after the scene was shown: they get their window of frames like everyone who was there on arrival.
+      if (ready && wakeAmbientFrames(shown)) return;
+      if (!loop.running) renderScene();
+    };
     const kind = currentLocation ? venueFor(cityId, currentLocation)?.scene?.kind : undefined;
     shown.setAmbient?.(currentLocation && ambientFor && kind && kind !== 'home' ? ambientFor(currentLocation, kind) : null);
     if (!ambientFor || !wake) return true;
-    if (!loop.available || reduced()) shown.settleAmbient?.();
-    else if (shown.wakeAmbient?.()) loop.wake();
+    wakeAmbientFrames(shown);
     return true;
   }
   /** Show a venue. Draws one frame only if the venue actually changed. */
@@ -1574,11 +1583,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       ambientFor = next;
       if (showAmbient()) { readTags(); if (!loop.running) renderScene(); }
     },
-    wakeAmbient() {
-      if (!current?.wakeAmbient?.()) return false;
-      if (!loop.available || reduced()) { current.settleAmbient?.(); readTags(); if (!loop.running) renderScene(); return true; }
-      return loop.wake();
-    },
+    wakeAmbient() { return current ? wakeAmbientFrames(current) : false; },
     say: (id, text, ms) => current?.say?.(id, text, ms) ?? false,
     talk: (a, b, ms) => current?.talk?.(a, b, ms) ?? false,
     ambientPeople: () => current?.ambientPeople?.() ?? [],

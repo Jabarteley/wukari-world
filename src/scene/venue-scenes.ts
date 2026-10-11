@@ -432,10 +432,10 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   /** The game tables that stand here: [{ id, kind: 'table', table, game, x, z, top, r, label }] (see TABLE_PLACES). */
   const tableList: SceneThing[] = [];
   // The background people (src/scene/ambient): nothing exists until a host asks for them with setAmbient(), so a scene without it is exactly what it was.
-  let ambientChanged: (() => void) | null = null;
+  let ambientChanged: ((ready: boolean) => void) | null = null;
   const ambient = createAmbientHub({
     kit, parent: group, grid: () => grid, shapes: () => footprints, entrance: () => (entrance ? [entrance.x, entrance.z] as const : null), open: () => walkSpec().open, offMarkers: (x, z) => offMarkers(x, z),
-    heightAt: (x, z) => walk.heightAt(x, z), avatar: () => ({ x: avatar.position.x, z: avatar.position.z }), spent: () => spentWithoutAmbient(), live: () => live, changed: () => ambientChanged?.(),
+    heightAt: (x, z) => walk.heightAt(x, z), avatar: () => ({ x: avatar.position.x, z: avatar.position.z }), spent: () => spentWithoutAmbient(), live: () => live, changed: () => ambientChanged?.(false), ready: () => { batchKey = null; buildActors(); ambientChanged?.(true); },
   });
 
   /** What the scene draws now without its background people: triangles and draw calls (a solid mesh is drawn twice, once for the sun's shadow). */
@@ -1057,11 +1057,12 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     get ambientAwake() { return ambient.layer?.awake ?? false; },
     get ambientFrames() { return ambient.layer?.frames ?? 0; },
     ambientPeople() { return ambient.people(); },
+    ambientCaps() { return ambient.caps(); },
     /** A line over a background person or a regular; true when they are in the scene. */
     say(id: string, text: string, ms?: number) { return ambient.layer?.speak(id, text, ms) ?? false; },
     /** Two regulars face each other for a while. */
     talk(a: string, b: string, ms?: number) { return ambient.layer?.talk(a, b, ms) ?? false; },
-    set onAmbient(fn: (() => void) | null) { ambientChanged = fn; },
+    set onAmbient(fn: ((ready: boolean) => void) | null) { ambientChanged = fn; },
     /** The camera is at (x, z): hide whichever wall it has gone behind, with what hangs on it. */
     look(x: number, z: number) {
       const zone = footprints?.walls;

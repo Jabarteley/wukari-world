@@ -11,9 +11,20 @@ import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
 import type { FootprintShapes, WalkGrid } from '../movement.ts';
 import { SCENE_DRAW_CALLS, SCENE_TRIANGLES } from '../../budgets.ts';
-import { createAmbientLayer } from './layer.ts';
+import type * as Layers from './layer.ts';
 import type { AmbientLayer, AmbientPerson, AmbientTag, Resident } from './layer.ts';
 import type { Ident, Stage } from './plan.ts';
+
+/**
+ * The layer, the plan, the density curves and the figures are one lazy chunk: this file is all the scene's own chunk carries. It is fetched the
+ * first time a scene is given a place to fill (after the first frame), never on a device that is told to show nobody, and kept for the session.
+ */
+let loaded: typeof Layers | null = null;
+let loading: Promise<void> | null = null;
+export function loadAmbient(): Promise<void> {
+  loading ||= import('./layer.ts').then((module) => { loaded = module; });
+  return loading;
+}
 
 /** What the scene keeps for the things it cannot foresee (its own crowd changing, the walking marks). */
 const MARGIN_TRIANGLES = 800, MARGIN_CALLS = 4;
@@ -35,6 +46,8 @@ export interface HubEnv {
   live(): boolean
   /** The ambient tags (a spoken line) changed. */
   changed(): void
+  /** The chunk arrived and the layer was built after the scene had asked: draw again, with the people in. */
+  ready(): void
   clock?(): number
 }
 
@@ -51,6 +64,8 @@ export interface AmbientHub {
   residentTag(id: string, name: string): AmbientTag | null
   readonly layer: AmbientLayer | null
   readonly on: boolean
+  /** What the budget allows (diagnostics). */
+  caps(): { full: number; lean: number; far: number } | null
   tags(): AmbientTag[]
   people(): AmbientPerson[]
 }
@@ -73,10 +88,16 @@ export function createAmbientHub(env: HubEnv): AmbientHub {
   function build(): void {
     drop()
     if (!config || !env.live() || !env.grid() || config.tier === 'off') return
+    if (!loaded) {
+      // Not here yet: ask for it, and build when it comes (if the scene is still asking for the same place).
+      const asked = config
+      void loadAmbient().then(() => { if (config === asked && !layer && env.live()) { build(); if (layer) env.ready() } }, () => undefined)
+      return
+    }
     const base = env.spent()
     fixed.length = 0
     for (const resident of residents) fixed.push({ x: resident.x, z: resident.z })
-    layer = createAmbientLayer({
+    layer = loaded.createAmbientLayer({
       kit: env.kit, parent: env.parent, stage: stage(), ident: config, heightAt: env.heightAt, avatar: env.avatar, changed: env.changed, ...(env.clock ? { clock: env.clock } : {}),
       room: () => ({ triangles: SCENE_TRIANGLES.value - base.triangles - MARGIN_TRIANGLES, meshes: SCENE_DRAW_CALLS.value - base.drawCalls - MARGIN_CALLS }),
     })
@@ -103,6 +124,7 @@ export function createAmbientHub(env: HubEnv): AmbientHub {
     residentTag: (id, name) => layer?.residentTag(id, name) ?? null,
     get layer() { return layer },
     get on() { return layer !== null },
+    caps: () => layer?.caps() ?? null,
     tags: () => layer?.tags() ?? [],
     people: () => layer?.people() ?? [],
   }

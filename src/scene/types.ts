@@ -277,9 +277,11 @@ export interface SceneEntry {
   readonly ambientAwake?: boolean
   readonly ambientFrames?: number
   ambientPeople?(): import('./ambient/layer.ts').AmbientPerson[]
+  ambientCaps?(): { full: number; lean: number; far: number } | null
   say?(id: string, text: string, ms?: number): boolean
   talk?(a: string, b: string, ms?: number): boolean
-  onAmbient?: (() => void) | null
+  /** Called when a spoken line comes or goes (false) and when the people have arrived after the scene asked for them (true). */
+  onAmbient?: ((ready: boolean) => void) | null
   readonly easing: boolean
   stepCrowd(dt: number): boolean
   settleCrowd(): void

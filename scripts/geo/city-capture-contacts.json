@@ -3,30 +3,16 @@
   "repository": "kromate/joinallworld",
   "cities": [
     {
-      "id": "lilongwe",
+      "id": "libreville",
       "runId": 38169589307,
-      "artifactName": "city-browser-lilongwe-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
+      "artifactName": "city-browser-libreville-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
     },
     {
-      "id": "dar-es-salaam",
+      "id": "mbabane",
       "runId": 38169589307,
-      "artifactName": "city-browser-dar-es-salaam-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
-      "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
-      "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
-    },
-    {
-      "id": "tunis",
-      "runId": 38169589307,
-      "artifactName": "city-browser-tunis-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
-      "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
-      "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
-    },
-    {
-      "id": "brazzaville",
-      "runId": 38169589307,
-      "artifactName": "city-browser-brazzaville-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
+      "artifactName": "city-browser-mbabane-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
     }

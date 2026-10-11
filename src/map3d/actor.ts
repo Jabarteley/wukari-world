@@ -29,6 +29,8 @@ export interface ActorPlayer { look?: unknown; seed?: string }
 
 export const ACTOR_SCALE = 0.86;
 const SEAT_HEIGHT = 0.6;
+/** How far an authored vehicle model stands above the ground height of the route, so its wheels rest on the road ribbon. */
+const AUTHORED_LIFT = 0.24;
 const SEATED_AVATAR_SCALE = 0.62;
 
 /** A model-library trip vehicle (src/models/integration/scene-models.ts buildTravelVehicle): real seat anchors, posed along the route. */
@@ -41,6 +43,8 @@ export interface TravelVehicleModel {
   setLights?(on: boolean): boolean
   /** The detailed model for a close view, the light one otherwise. */
   setLod?(lod: 'near' | 'far'): boolean
+  /** True once an authored model has replaced the procedural drawing. */
+  readonly authored?: boolean
   dispose(): void
 }
 export type TravelVehicleBuilder = (kind: string, options: { time: string; car?: string | null; onChange?: () => void }) => TravelVehicleModel | null;
@@ -211,7 +215,8 @@ export function createActor(kit: MapKit, { travelVehicle = null, onChange }: { t
       }
       ride.visible = Boolean(pose.vehicle && vehicle);
       if (ride.visible) {
-        ride.position.set(pose.vehicle!.x, pose.vehicle!.y + 0.1 + (!useModels && riding ? Math.sin(pose.distance * 2.4) * 0.03 : 0), pose.vehicle!.z);
+        // An authored model's wheels stand on the road's surface (a fixed height, however small the piece is drawn); the stand-in keeps its own offset.
+        ride.position.set(pose.vehicle!.x, pose.vehicle!.y + (vehicleModel?.authored ? AUTHORED_LIFT : 0.1) + (!useModels && riding ? Math.sin(pose.distance * 2.4) * 0.03 : 0), pose.vehicle!.z);
         ride.rotation.y = pose.vehicle!.ry;
         vehicleModel?.pose(pose.distance, pose.vehicle!.ry, riding);
         seated!.visible = riding;

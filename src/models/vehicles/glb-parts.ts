@@ -136,7 +136,7 @@ function lightGeometry(root: THREE.Object3D): THREE.BufferGeometry | null {
     if (!head && !tail) return;
     _world.setFromMatrixPosition(node.matrixWorld).applyMatrix4(inverse);
     // A lamp that stands a little proud of the body: a lit lens, and a pale halo behind it.
-    const size = head ? 0.2 : 0.16;
+    const size = head ? 0.34 : 0.28;
     const out = head ? 0.03 : -0.03;
     box(parts, _world.x, _world.y, _world.z + out, size * 1.25, size * 0.8, 0.06, head ? HEAD : TAIL);
     if (head) box(parts, _world.x, _world.y, _world.z + 0.06, size * 0.6, size * 0.4, 0.04, '#ffffff');

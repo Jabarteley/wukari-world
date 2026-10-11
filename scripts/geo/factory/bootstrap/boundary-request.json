@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "TD",
+  "sourceUrl": "https://download.geofabrik.de/africa/chad-261009.osm.pbf",
+  "bytes": 135262610,
+  "sha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+  "snapshotDate": "2026-10-09",
+  "fixture": "boundary-fixture.json",
+  "proofRevision": 2
+}

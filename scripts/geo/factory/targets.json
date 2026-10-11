@@ -1,0 +1,322 @@
+{
+  "expectedSourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "geometryPreset": "standard",
+  "targets": [
+    {
+      "id": "ndjamena",
+      "name": "N'Djamena",
+      "country": "td",
+      "facts": {
+        "id": "ndjamena",
+        "name": "N'Djamena",
+        "country": {
+          "idISOlower": "td",
+          "name": "Chad"
+        },
+        "state": {
+          "idunique": "td-ndjamena",
+          "name": "N'Djamena"
+        },
+        "timezone": "Africa/Ndjamena",
+        "centre": {
+          "lon": 15.0502758,
+          "lat": 12.1191543
+        },
+        "airport": {
+          "id": "ndjamena-airport",
+          "name": "N'Djamena International Airport",
+          "lon": 15.034,
+          "lat": 12.1337,
+          "sourceUrl": "https://ourairports.com/airports/FTTJ/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/27565022",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          14.866392607896925,
+          11.93827341006602,
+          15.234158992103074,
+          12.300035189933979
+        ]
+      },
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/27565022",
+          "sourceUrl": "https://www.openstreetmap.org/node/27565022",
+          "sourceRecord": {
+            "ref": "node/27565022",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "\u0627\u0646\u0652\u062c\u064e\u0645\u0650\u064a\u0646\u0627;\u0646\u062c\u0627\u0645\u064a\u0646\u0627;\u0625\u0646\u062c\u0627\u0645\u064a\u0646\u0627;\u0646\u062f\u062c\u0627\u0645\u0644\u064a\u0646\u0627",
+              "alt_name:ar": "\u0627\u0646\u0652\u062c\u064e\u0645\u0650\u064a\u0646\u0627;\u0646\u062c\u0627\u0645\u064a\u0646\u0627;\u0625\u0646\u062c\u0627\u0645\u064a\u0646\u0627;\u0646\u062f\u062c\u0627\u0645\u0644\u064a\u0646\u0627",
+              "alt_name:eo": "N\u011dameno;N\u0135ameno",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "is_capital": "country",
+              "name": "N'Djam\u00e9na \u0627\u0646\u062c\u0645\u064a\u0646\u0627",
+              "name:af": "N'Djamena",
+              "name:am": "\u1295\u1303\u1218\u1293",
+              "name:an": "N'Djamena",
+              "name:ar": "\u0627\u0646\u062c\u0645\u064a\u0646\u0627",
+              "name:arc": "\u0722\u0713\u0721\u071d\u0722\u0710",
+              "name:az": "Ncamena",
+              "name:ba": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:be": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:be-tarask": "\u041d\u0434\u0436\u0430\u043c\u044d\u043d\u0430",
+              "name:bg": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:bn": "\u098f\u09a8\u099c\u09be\u09ae\u09c7\u09a8\u09be",
+              "name:bo": "\u0f47\u0f0b\u0f58\u0f72\u0f0b\u0f53\u0f0d",
+              "name:br": "Ndjamena",
+              "name:bs": "N'Djamena",
+              "name:ca": "N'Djamena",
+              "name:ce": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:ckb": "\u0646\u062c\u0627\u0645\u06ce\u0646\u0627",
+              "name:cs": "N'Djamena",
+              "name:cy": "N'Djamena",
+              "name:da": "N'Djamena",
+              "name:de": "N\u2019Djamena",
+              "name:el": "\u039d\u03c4\u03b6\u03b1\u03bc\u03ad\u03bd\u03b1",
+              "name:en": "N'Djamena",
+              "name:eo": "Ni\u011dameno",
+              "name:es": "Yamena",
+              "name:et": "N'Djamena",
+              "name:eu": "N'Djamena",
+              "name:fa": "\u0627\u0646\u062c\u0627\u0645\u0646\u0627",
+              "name:fi": "N\u2019Djamena",
+              "name:fr": "N'Djam\u00e9na",
+              "name:frp": "N\u2019Dj\u00b7am\u00e8na",
+              "name:fy": "N'Djamena",
+              "name:ga": "N'Djamena",
+              "name:gd": "N'Djamena",
+              "name:gl": "Xamena",
+              "name:gn": "Jam\u00e9na",
+              "name:ha": "Ndjamena",
+              "name:he": "\u05e0\u05d2'\u05de\u05e0\u05d4",
+              "name:hi": "\u0905\u0928 \u091c\u093e\u092e\u0947\u0928\u093e",
+              "name:hif": "N'Djamena",
+              "name:hr": "N\u2019Djamena",
+              "name:ht": "N'Djam\u00e8na",
+              "name:hu": "N\u2019Djamena",
+              "name:hy": "\u0546\u057b\u0561\u0574\u0565\u0576\u0561",
+              "name:ia": "N'Djamena",
+              "name:id": "N'Djamena",
+              "name:ie": "N'Djamena",
+              "name:io": "N'Djamena",
+              "name:is": "N\u2019Djamena",
+              "name:it": "N'Djamena",
+              "name:ja": "\u30f3\u30b8\u30e3\u30e1\u30ca",
+              "name:jv": "N'Djamena",
+              "name:ka": "\u10dc\u10ef\u10d0\u10db\u10d4\u10dc\u10d0",
+              "name:kab": "N\u01e7amena",
+              "name:kg": "Ndjamena",
+              "name:ki": "N'Djamena",
+              "name:kk": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:ko": "\uc740\uc790\uba54\ub098",
+              "name:ku": "N'Djamena",
+              "name:kw": "N'Djamena",
+              "name:ky": "\u041d\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:la": "Ndjamena",
+              "name:lb": "N'Djamena",
+              "name:lij": "N'Djamena",
+              "name:lmo": "N'Djamena",
+              "name:ln": "N\u2019Djamena",
+              "name:lt": "Nd\u017eamena",
+              "name:lv": "Nd\u017eamena",
+              "name:mg": "N'Djamena",
+              "name:mk": "\u041d\u045f\u0430\u043c\u0435\u043d\u0430",
+              "name:ml": "\u0d7b\u0d21\u0d4d\u0d1c\u0d3e\u0d2e\u0d46\u0d28",
+              "name:mr": "\u0907\u0902\u091c\u093e\u092e\u093f\u0928\u093e",
+              "name:mrj": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:ms": "N'Djamena",
+              "name:nah": "Yamena",
+              "name:nb": "N\u2019Djamena",
+              "name:nl": "Ndjamena",
+              "name:nn": "N'Djamena",
+              "name:no": "N'Djamena",
+              "name:nov": "N'Djamena",
+              "name:nv": "S\u00e9\u00edb\u0105\u0105hk\u02bceh",
+              "name:oc": "N'Djamena",
+              "name:os": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u00e6",
+              "name:pa": "\u0a28\u0a3f\u0a1c\u0a3e\u0a2e\u0a40\u0a28\u0a3e",
+              "name:pl": "Nd\u017camena",
+              "name:pms": "N'Djamena",
+              "name:pnb": "\u0646\u062c\u0627\u0645\u064a\u0646\u0627",
+              "name:ps": "\u0627\u0646\u062c\u0627\u0645\u0646\u0627",
+              "name:pt": "Jamena",
+              "name:qu": "Yamina",
+              "name:ro": "N'Djamena",
+              "name:roa-rup": "N'Djamena",
+              "name:ru": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:sc": "N'Djamena",
+              "name:scn": "N'Djamena",
+              "name:sco": "N'Djamena",
+              "name:sd": "\u0627\u064a\u0646\u062c\u0627\u0645\u064a\u0646\u0627",
+              "name:sh": "N'Djamena",
+              "name:sk": "N\u2019Djamena",
+              "name:sl": "N'Djamena",
+              "name:sn": "N'Djamena",
+              "name:so": "Nijamiina",
+              "name:sq": "Nxhamena",
+              "name:sr": "\u041d\u045f\u0430\u043c\u0435\u043d\u0430",
+              "name:sv": "N\u2019Djamena",
+              "name:sw": "N'Djamena",
+              "name:syc": "\u0722\u0713\u0721\u071d\u0722\u0710",
+              "name:ta": "\u0ba8\u0bbf\u0b9c\u0bbe\u0bae\u0bc0\u0ba9\u0bbe",
+              "name:tg": "\u041d\u04b7\u0430\u043c\u0435\u043d\u0430",
+              "name:th": "\u0e40\u0e2d\u0e47\u0e19\u0e08\u0e32\u0e40\u0e21\u0e19\u0e32",
+              "name:tl": "NDjamena",
+              "name:tr": "Encemine",
+              "name:udm": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:uk": "\u041d\u0434\u0436\u0430\u043c\u0435\u043d\u0430",
+              "name:ur": "\u0627\u06cc\u0646\u062c\u0627\u0645\u06cc\u0646\u0627",
+              "name:uz": "Njamena",
+              "name:vec": "N'Djamena",
+              "name:vi": "N\u2019Djamena",
+              "name:wal": "Anjjaamena",
+              "name:war": "N'Djamena",
+              "name:wo": "Njamena",
+              "name:yi": "\u05e0'\u05d3\u05d6\u05e9\u05d0\u05de\u05e2\u05e0\u05d0",
+              "name:yo": "N'Djamena",
+              "name:zh": "\u6069\u8cc8\u6885\u7d0d",
+              "old_name": "Fort-Lamy",
+              "place": "city",
+              "population": "1092066",
+              "population:date": "2012",
+              "wikidata": "Q3659",
+              "wikipedia": "en:N'Djamena"
+            },
+            "lon": 15.0502758,
+            "lat": 12.1191543
+          },
+          "pbfSha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5"
+        },
+        "airport": {
+          "rowNumber": 28175,
+          "row": {
+            "id": "2998",
+            "ident": "FTTJ",
+            "type": "large_airport",
+            "name": "N'Djamena International Airport",
+            "latitude_deg": "12.1337",
+            "longitude_deg": "15.034",
+            "elevation_ft": "968",
+            "continent": "AF",
+            "iso_country": "TD",
+            "iso_region": "TD-ND",
+            "municipality": "N'Djamena",
+            "scheduled_service": "yes",
+            "icao_code": "FTTJ",
+            "iata_code": "NDJ",
+            "gps_code": "FTTJ",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/N'Djamena_International_Airport",
+            "keywords": "Ndjamena Hassan Djamous"
+          },
+          "rowSha256": "19ae77a9fd63e04fa7e74723bb952704f329cb999d8e9c62650a480ef865c2cf",
+          "csvSha256": "bee4e45e2f3b3acb463af0b2bf7bd2fa5abbb324cb9519766fcab0acb33ecaaf",
+          "snapshotDate": "2026-10-11",
+          "sourceUrl": "https://ourairports.com/airports/FTTJ/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TD",
+              "+1207+01503",
+              "Africa/Ndjamena"
+            ]
+          ],
+          "zoneTabSha256": "7cc78ea166261b3dedf951cdd721051460851e6fcd96c12b8e3194cf25677f21",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a"
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/chad-261009.osm.pbf",
+          "bytes": 135262610,
+          "sha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+          "headerTimestamp": "2026-10-09T20:21:04Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              11.93827341006602,
+              14.866392607896925,
+              12.300035189933979,
+              15.234158992103074
+            ],
+            "core": [
+              12.073934077516505,
+              15.00432859336466,
+              12.164374522483495,
+              15.09622300663534
+            ],
+            "outline": [
+              11.88827341006602,
+              14.816392607896924,
+              12.35003518993398,
+              15.284158992103075
+            ],
+            "wide": [
+              11.338273410066021,
+              14.266392607896925,
+              12.900035189933979,
+              15.834158992103074
+            ]
+          },
+          "airportMarginMetres": 18241.22974527108,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "ndjamena",
+      "extractSha256": {
+        "places": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788",
+        "extras": "ef2ce19040f826febd24a832e238e03f68cea231c4177c9672b2f40548ff4d56",
+        "water": "9d7f4e77eddf185764fcf938cb05965c185074c427aeae162d471ce16fb05ae1",
+        "landuse": "7e08d6716253b75993e3fb645c5206c7d29ccd0dfa3b9afac00708a7d93d969b",
+        "roads": "0621b3fd6c52d4b9bb1a1d544fc4a5170de94ad25b10d29250135c280ea05804"
+      },
+      "sourceJob": {
+        "city": "ndjamena",
+        "sourceRunId": 38167355715,
+        "sourceArtifact": "city-bootstrap-ndjamena-6da92e8cfe1a0c9e4923c5f7c78f7128f6c809cf",
+        "sourceSha": "6da92e8cfe1a0c9e4923c5f7c78f7128f6c809cf",
+        "datasetSha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788",
+          "extras": "ef2ce19040f826febd24a832e238e03f68cea231c4177c9672b2f40548ff4d56",
+          "water": "9d7f4e77eddf185764fcf938cb05965c185074c427aeae162d471ce16fb05ae1",
+          "landuse": "7e08d6716253b75993e3fb645c5206c7d29ccd0dfa3b9afac00708a7d93d969b",
+          "roads": "0621b3fd6c52d4b9bb1a1d544fc4a5170de94ad25b10d29250135c280ea05804"
+        }
+      }
+    }
+  ],
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "TD",
+    "datasetSha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+    "receiptSha256": "bf098ab19c37193d519fc1f05469846cb0be3552d2cc724194a5008f81f3692e",
+    "receiptBytes": 73490,
+    "geometrySha256": "65c972572ab0a5c3e97924d64752687eb002bb06bf749af9ceb302c59e294097",
+    "geometryBytes": 360983,
+    "relationId": 2361304,
+    "scriptSha256": "77aba50a07d455d546c8c1f33d96cff84d62c685188729e01983c7d867cac992",
+    "boundaryKey": "td",
+    "boundaryJob": {
+      "sourceRunId": 38174561566,
+      "sourceArtifact": "country-boundary-77294d1ed16051679005b9b97df55b47b7354400",
+      "sourceSha": "77294d1ed16051679005b9b97df55b47b7354400"
+    }
+  }
+}

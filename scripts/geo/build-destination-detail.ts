@@ -186,7 +186,7 @@ import type { DestinationGeometry } from '../africa/map.ts'
 
 export const GEOMETRY: DestinationGeometry = {
   land: ${lonLat(land)},
-  playArea: ${lonLat(play)},
+  playAreaFromSurfaces: true,
   buildings: [], roads: [],
 }
 `);

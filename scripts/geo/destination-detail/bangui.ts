@@ -14,7 +14,8 @@ export const CONFIG: DetailConfig = {
   split: 12,
   shore: 0,
   minHole: 40,
-  minRoadKm: 0.7,
+  // OSM splits primary streets at junctions and bridges; retain their sourced segments down to 20 m.
+  minRoadKm: 0.02,
   maxRoads: 700,
   roadMarginDegrees: 0.004,
   minWaterKm2: 0.02,
@@ -43,7 +44,7 @@ export const CONFIG: DetailConfig = {
     { key: 'national-museum', ref: 'way/188492702', kind: 'walk', category: 'fun', icon: 'museum', line: 'The national museum; take a quiet walk through the game visit.' },
     { key: 'stade-bonga-bonga', ref: 'way/188497852', kind: 'viewing', category: 'fun', icon: 'ball', line: 'A mapped stadium; watch from the stands in the game.' },
     { key: 'institut-new-tech', ref: 'node/4637219536', kind: 'quad', category: 'fun', icon: 'school', line: 'A mapped college; walk its grounds in the game.' },
-    { key: 'marché-artisanat', ref: 'node/4637748534', kind: 'market', category: 'work', icon: 'market', line: 'A craft market; browse this game market stop.' },
+    { key: 'marche-artisanat', ref: 'node/4637748534', kind: 'market', category: 'work', icon: 'market', line: 'A craft market; browse this game market stop.' },
     { key: 'palais-justice', ref: 'node/4637140692', kind: 'walk', category: 'fun', icon: 'civic', line: 'A courthouse landmark; walk around its mapped grounds in the game.' },
     { key: 'restaurant-azimuth', ref: 'node/5440488621', kind: 'buka', category: 'food', icon: 'food', line: 'A restaurant; this is a fictional game meal stop.' },
     { key: 'restaurant-equateur', ref: 'node/8951524535', kind: 'buka', category: 'food', icon: 'food', line: 'A restaurant; this is a fictional game meal stop.' },

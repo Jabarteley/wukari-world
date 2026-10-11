@@ -9,6 +9,8 @@ export interface DestinationGeometry {
   readonly land: readonly LonLatPolygon[]
   /** The play area where it is more than the land, because water lies inside it. */
   readonly playArea?: readonly LonLatPolygon[]
+  /** The play area is the exact union of land and declared water, without storing those coordinates twice. */
+  readonly playAreaFromSurfaces?: true
   readonly buildings: readonly {
     readonly id: string
     readonly ring: readonly Point2[]
@@ -42,7 +44,8 @@ export interface DestinationTerrain {
 export function createDestinationMap(facts: DestinationFacts, geometry: DestinationGeometry, loadModule: () => Promise<CityModule>, terrain?: DestinationTerrain): CityMapPack<string, 'centre'> {
   const valid = validateDestinationFacts(facts)
   if (!geometry.land.length || geometry.buildings.length > 350 || geometry.roads.length > 160) throw new RangeError('Starter map geometry exceeds its bounds')
-  const rings = [...geometry.land.flat(), ...(geometry.playArea?.flat() ?? []), ...(terrain?.state?.flat() ?? []), ...(terrain?.water.flat() ?? []), ...geometry.buildings.map(building => building.ring), ...geometry.roads.map(road => road.points)]
+  const playArea = geometry.playArea ?? (geometry.playAreaFromSurfaces ? [...geometry.land, ...(terrain?.water ?? [])] : geometry.land)
+  const rings = [...geometry.land.flat(), ...playArea.flat(), ...(terrain?.state?.flat() ?? []), ...(terrain?.water.flat() ?? []), ...geometry.buildings.map(building => building.ring), ...geometry.roads.map(road => road.points)]
   for (const ring of rings) {
     if (ring.length > 6000 || !ring.every(([lon, lat]) => Number.isFinite(lon) && Number.isFinite(lat) && Math.abs(lon) <= 180 && Math.abs(lat) <= 90)) throw new TypeError('Starter map needs finite WGS84 points')
   }
@@ -51,7 +54,7 @@ export function createDestinationMap(facts: DestinationFacts, geometry: Destinat
     cityId: valid.id, origin: valid.mapOrigin, projection: 'nigeria-equirectangular-v1', unitsPerKm: 10,
     localUnitIds: ['centre'], stateFeatureId: valid.state.idunique,
     loadGeometry: async () => ({
-      localUnits: { centre: geometry.land }, playArea: geometry.playArea ?? geometry.land, state: terrain?.state ?? geometry.playArea ?? geometry.land, water: terrain?.water ?? [],
+      localUnits: { centre: geometry.land }, playArea, state: terrain?.state ?? playArea, water: terrain?.water ?? [],
       gridDegrees: .000001, sharedArcCount: 0, source: `${terrain ? `${terrain.source}. ` : ''}${valid.sourceLabel}. ${valid.coverageNote}`, licence: terrain ? `${valid.licence}; ${terrain.licence}` : valid.licence,
     }),
     loadScene: async (): Promise<CityPack> => {

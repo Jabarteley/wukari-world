@@ -34,7 +34,7 @@ export const CONFIG: DetailConfig = {
     { slot: 'meal', ref: 'node/5250003633', kind: 'buka', category: 'food', icon: 'food', line: 'A restaurant, here a stop for a simple meal in the game.' },
     { slot: 'community', ref: 'way/94957275', kind: 'office', category: 'work', icon: 'school', line: 'The University of Liberia; the game sets community activities and starter work shifts here.' },
     { slot: 'clinic', ref: 'node/7710661312', kind: 'hospital', category: 'care', icon: 'health', line: 'John F. Kennedy Memorial Medical Center; game clinic activities are set here.' },
-    { slot: 'recreation', ref: 'node/1730515734', kind: 'viewing', category: 'fun', icon: 'view', line: 'The Cotton Tree is a named city landmark; take in the view.' },
+    { slot: 'recreation', ref: 'node/1730515734', kind: 'park', category: 'fun', icon: 'view', line: 'The Cotton Tree is a named city landmark; take in the view.' },
     { slot: 'market', ref: 'node/3708485896', kind: 'market', category: 'work', icon: 'market', line: 'A mapped marketplace, here the market stop of the game.' },
     { slot: 'worship', ref: 'way/299927206', kind: 'worship', category: 'fun', icon: 'worship', line: 'A cathedral; a quiet place to rest and reflect in the game.' },
     { slot: 'polling', ref: 'node/5251784923', kind: 'polling', category: 'civic', icon: 'poll', line: 'City Town Hall is a real civic place. The voting desk here is a fictional game activity, not an election office.' },

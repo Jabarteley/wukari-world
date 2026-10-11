@@ -64,7 +64,7 @@ export const CONFIG: DetailConfig = {
   {
     "slot": "recreation",
     "ref": "way/550010888",
-    "kind": "viewing",
+    "kind": "park",
     "category": "fun",
     "icon": "ball",
     "line": "A stadium; take a break and watch from the stands in the game."
@@ -120,14 +120,6 @@ export const CONFIG: DetailConfig = {
   {
     "key": "kabinet-kouyate-stadium",
     "ref": "way/548791131",
-    "kind": "viewing",
-    "category": "fun",
-    "icon": "ball",
-    "line": "A stadium; watch from the stands in the game."
-  },
-  {
-    "key": "lansana-conte-stadium",
-    "ref": "relation/7829658",
     "kind": "viewing",
     "category": "fun",
     "icon": "ball",

@@ -13,7 +13,8 @@ export const CONFIG: DetailConfig = {
   split: 12,
   shore: 1,
   minHole: 40,
-  minRoadKm: 0.7,
+  // Retain mapped street segments from 100 m; the offline ways split the network at junctions.
+  minRoadKm: 0.1,
   maxRoads: 700,
   roadMarginDegrees: 0.004,
   minWaterKm2: 0.02,
@@ -70,7 +71,6 @@ export const CONFIG: DetailConfig = {
     { id: 'lake-mamamba', ref: 'way/26385344', kind: 'water' },
     { id: 'lake-mandroseza', ref: 'way/26386172', kind: 'water' },
     { id: 'marais-masay', ref: 'way/27362768', kind: 'water' },
-    { id: 'lake-tsimbazaza', ref: 'way/45421677', kind: 'water' },
     { id: 'lake-anosy', ref: 'relation/1166119', kind: 'water' },
   ],
 };

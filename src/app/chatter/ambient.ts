@@ -15,7 +15,6 @@ import { timeBand } from '../../game/world-time.ts'
 import { createVoice } from '../../game/chatter/voice.ts'
 import type { Candidate, Speaker, VoiceContext } from '../../game/chatter/voice.ts'
 import type { PublicRecord } from '../../game/chatter/gossip.ts'
-import { QUARTER_MS } from '../../scene/ambient/plan.ts'
 import type { Ident } from '../../scene/ambient/plan.ts'
 import type { Tier } from '../../scene/ambient/density.ts'
 import { bodyAllowed } from '../../scene/body/gate.ts'
@@ -25,6 +24,8 @@ import { say as sayAbove, tagOf } from './bubbles.ts'
 
 /** How often the driver looks at the clock. A slot of the voice is nine seconds, so this never misses one. */
 export const AMBIENT_POLL_MS = 4_000
+/** The quarter hour the places are cast in (scene/ambient/plan.ts QUARTER_MS: kept here so this chunk does not reach into the scene's). */
+const QUARTER_MS = 900_000
 
 let started = false
 

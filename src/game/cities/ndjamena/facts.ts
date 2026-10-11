@@ -35,6 +35,7 @@ export const FACTS = {
   ],
   "names": {
     "area": "N'Djamena",
-    "roadHub": "Gare d'Abeché"
+    "roadHub": "Gare d'Abeché",
+    "unit": "starter play zone"
   }
 } satisfies DestinationFacts

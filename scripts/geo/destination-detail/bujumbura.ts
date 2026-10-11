@@ -37,55 +37,73 @@ export const CONFIG = {
       "slot": "transit",
       "kind": "hub",
       "ref": "node/1344199948",
-      "line": "Bujumbura Bus Station (Siyoni), a mapped place for the game."
+      "line": "Bujumbura Bus Station (Siyoni), a mapped place for the game.",
+      "category": "civic",
+      "icon": "bus"
     },
     {
       "slot": "meal",
       "kind": "buka",
       "ref": "node/2188525265",
-      "line": "Maman Ngabo, a mapped place for the game."
+      "line": "Maman Ngabo, a mapped place for the game.",
+      "category": "food",
+      "icon": "food"
     },
     {
       "slot": "community",
       "kind": "office",
       "ref": "way/1006372439",
-      "line": "Hope Africa University, a mapped place for the game."
+      "line": "Hope Africa University, a mapped place for the game.",
+      "category": "work",
+      "icon": "office"
     },
     {
       "slot": "clinic",
       "kind": "hospital",
       "ref": "way/122956893",
-      "line": "Hopital Militaire De Kamenge, a mapped place for the game."
+      "line": "Hopital Militaire De Kamenge, a mapped place for the game.",
+      "category": "care",
+      "icon": "health"
     },
     {
       "slot": "recreation",
       "kind": "park",
       "ref": "way/29863497",
-      "line": "Jardin Public, a mapped place for the game."
+      "line": "Jardin Public, a mapped place for the game.",
+      "category": "fun",
+      "icon": "park"
     },
     {
       "slot": "market",
       "kind": "market",
       "ref": "way/325686721",
-      "line": "KANYOSHA MARKET, a mapped place for the game."
+      "line": "KANYOSHA MARKET, a mapped place for the game.",
+      "category": "work",
+      "icon": "market"
     },
     {
       "slot": "worship",
       "kind": "worship",
       "ref": "way/92028037",
-      "line": "Regina Mundi Cathedral, a mapped place for the game."
+      "line": "Regina Mundi Cathedral, a mapped place for the game.",
+      "category": "fun",
+      "icon": "worship"
     },
     {
       "slot": "polling",
       "kind": "polling",
       "ref": "node/1420210976",
-      "line": "Palais des Congres de Kigobe; voting here is a fictional game activity."
+      "line": "Palais des Congres de Kigobe; voting here is a fictional game activity.",
+      "category": "civic",
+      "icon": "poll"
     },
     {
       "slot": "government",
       "kind": "statehouse",
       "ref": "node/6862969717",
-      "line": "Palais présidentiel Ntare Rushatsi, a mapped place for the game."
+      "line": "Palais présidentiel Ntare Rushatsi, a mapped place for the game.",
+      "category": "civic",
+      "icon": "civic"
     },
     {
       "key": "osm-node-3349652326",

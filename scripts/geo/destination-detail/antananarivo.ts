@@ -37,55 +37,73 @@ export const CONFIG = {
       "slot": "transit",
       "kind": "hub",
       "ref": "node/335803824",
-      "line": "Soarano, a mapped place for the game."
+      "line": "Soarano, a mapped place for the game.",
+      "category": "civic",
+      "icon": "bus"
     },
     {
       "slot": "meal",
       "kind": "buka",
       "ref": "node/1107526880",
-      "line": "Le Castel, a mapped place for the game."
+      "line": "Le Castel, a mapped place for the game.",
+      "category": "food",
+      "icon": "food"
     },
     {
       "slot": "community",
       "kind": "office",
       "ref": "node/6978575117",
-      "line": "Archives Nationales Malagasy, a mapped place for the game."
+      "line": "Archives Nationales Malagasy, a mapped place for the game.",
+      "category": "work",
+      "icon": "office"
     },
     {
       "slot": "clinic",
       "kind": "hospital",
       "ref": "node/11491535952",
-      "line": "ONG Mobile Hilfe Madagaskar, a mapped place for the game."
+      "line": "ONG Mobile Hilfe Madagaskar, a mapped place for the game.",
+      "category": "care",
+      "icon": "health"
     },
     {
       "slot": "recreation",
       "kind": "park",
       "ref": "node/11844416762",
-      "line": "Parc Adventures - Vidzar, a mapped place for the game."
+      "line": "Parc Adventures - Vidzar, a mapped place for the game.",
+      "category": "fun",
+      "icon": "park"
     },
     {
       "slot": "market",
       "kind": "market",
       "ref": "way/1280878984",
-      "line": "Marché Communale Alakamisy, a mapped place for the game."
+      "line": "Marché Communale Alakamisy, a mapped place for the game.",
+      "category": "work",
+      "icon": "market"
     },
     {
       "slot": "worship",
       "kind": "worship",
       "ref": "way/511204750",
-      "line": "Catholic Cathedral of Andohalo, a mapped place for the game."
+      "line": "Catholic Cathedral of Andohalo, a mapped place for the game.",
+      "category": "fun",
+      "icon": "worship"
     },
     {
       "slot": "polling",
       "kind": "polling",
       "ref": "node/5316749261",
-      "line": "Kaominina Ankadikely Ilafy; voting here is a fictional game activity."
+      "line": "Kaominina Ankadikely Ilafy; voting here is a fictional game activity.",
+      "category": "civic",
+      "icon": "poll"
     },
     {
       "slot": "government",
       "kind": "statehouse",
       "ref": "node/11849665965",
-      "line": "Fokontany Ampanefy, a mapped place for the game."
+      "line": "Fokontany Ampanefy, a mapped place for the game.",
+      "category": "civic",
+      "icon": "civic"
     },
     {
       "key": "osm-way-1280560456",

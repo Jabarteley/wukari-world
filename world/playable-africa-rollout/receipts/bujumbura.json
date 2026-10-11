@@ -7,7 +7,7 @@
     "stateId": "bi-starter",
     "stateName": "Bujumbura"
   },
-  "inventorySha256": "1f97df127c7070de837923325bb048c776c631b55cb3b90f7d3b8ff39320bc4e",
+  "inventorySha256": "57da82206fafe91d6981476f203895b3620341aaf3e0832c6ef139016f281fc6",
   "inventoryPath": "world/playable-africa-rollout/sources/bujumbura.json",
   "admission": {
     "registered": true,

@@ -322,8 +322,8 @@
       "sha256": "ddf655ec29adbb590eb4e231bcfe8ac4f5c1c875de80f35d7821d948c4d2ecd6"
     },
     "places.ts": {
-      "bytes": 8919,
-      "sha256": "70c9b2e86e8bd88c95ed4a97d76fe3093f2b542930e3edbcfe7efb124a512da8"
+      "bytes": 9325,
+      "sha256": "246a84d3017eb80e10fd079ee5a6ea59df66bcb7828807d801a5c21e3033c2c4"
     },
     "terrain.ts": {
       "bytes": 109903,

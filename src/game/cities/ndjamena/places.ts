@@ -16,7 +16,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": 12.120351,
     "line": "Gare d'Abeché, a mapped place for the game.",
     "osm": "node/3134981852",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "bus"
   },
   {
     "slot": "meal",
@@ -27,7 +29,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": 12.126036,
     "line": "Maquis d'à côté, a mapped place for the game.",
     "osm": "node/3997990146",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "food",
+    "icon": "food"
   },
   {
     "slot": "community",
@@ -38,7 +42,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": 12.091248,
     "line": "Institut AVD, a mapped place for the game.",
     "osm": "way/438541531",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "work",
+    "icon": "office"
   },
   {
     "slot": "clinic",
@@ -49,7 +55,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": 12.165863,
     "line": "Centre de santé de Ndjamena-Koudou, a mapped place for the game.",
     "osm": "way/679766331",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "care",
+    "icon": "health"
   },
   {
     "slot": "recreation",
@@ -60,7 +68,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": 12.122536,
     "line": "Jardin Botanique, a mapped place for the game.",
     "osm": "relation/2813502",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "fun",
+    "icon": "park"
   },
   {
     "slot": "market",
@@ -71,7 +81,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": 12.158762,
     "line": "Marché a betail, a mapped place for the game.",
     "osm": "node/4335243174",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "work",
+    "icon": "market"
   },
   {
     "slot": "worship",
@@ -83,7 +95,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "line": "Cathédrale Notre-Dame de N'Djaména, a mapped place for the game.",
     "osm": "way/125359481",
     "wikidata": "Q15689003",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "fun",
+    "icon": "worship"
   },
   {
     "slot": "polling",
@@ -94,7 +108,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": 12.114336,
     "line": "Commune du 7ème Arrondissement LA MAIRIE; voting here is a fictional game activity.",
     "osm": "node/10826298705",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "poll"
   },
   {
     "slot": "government",
@@ -105,7 +121,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": 12.008036,
     "line": "Centre de détention, a mapped place for the game.",
     "osm": "node/4108575389",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "civic"
   },
   {
     "key": "osm-node-11176434237",

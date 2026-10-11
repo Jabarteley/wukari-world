@@ -17,7 +17,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "line": "Soarano, a mapped place for the game.",
     "osm": "node/335803824",
     "wikidata": "Q20571241",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "bus"
   },
   {
     "slot": "meal",
@@ -28,7 +30,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -18.79194,
     "line": "Le Castel, a mapped place for the game.",
     "osm": "node/1107526880",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "food",
+    "icon": "food"
   },
   {
     "slot": "community",
@@ -40,7 +44,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "line": "Archives Nationales Malagasy, a mapped place for the game.",
     "osm": "node/6978575117",
     "wikidata": "Q6970440",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "work",
+    "icon": "office"
   },
   {
     "slot": "clinic",
@@ -51,7 +57,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -18.836915,
     "line": "ONG Mobile Hilfe Madagaskar, a mapped place for the game.",
     "osm": "node/11491535952",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "care",
+    "icon": "health"
   },
   {
     "slot": "recreation",
@@ -62,7 +70,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -18.966281,
     "line": "Parc Adventures - Vidzar, a mapped place for the game.",
     "osm": "node/11844416762",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "fun",
+    "icon": "park"
   },
   {
     "slot": "market",
@@ -73,7 +83,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -18.939464,
     "line": "Marché Communale Alakamisy, a mapped place for the game.",
     "osm": "way/1280878984",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "work",
+    "icon": "market"
   },
   {
     "slot": "worship",
@@ -84,7 +96,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -18.917863,
     "line": "Catholic Cathedral of Andohalo, a mapped place for the game.",
     "osm": "way/511204750",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "fun",
+    "icon": "worship"
   },
   {
     "slot": "polling",
@@ -95,7 +109,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -18.848824,
     "line": "Kaominina Ankadikely Ilafy; voting here is a fictional game activity.",
     "osm": "node/5316749261",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "poll"
   },
   {
     "slot": "government",
@@ -106,7 +122,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -18.974948,
     "line": "Fokontany Ampanefy, a mapped place for the game.",
     "osm": "node/11849665965",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "civic"
   },
   {
     "key": "osm-way-1280560456",

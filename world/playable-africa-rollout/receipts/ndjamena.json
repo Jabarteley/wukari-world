@@ -7,7 +7,7 @@
     "stateId": "td-ndjamena",
     "stateName": "N'Djamena"
   },
-  "inventorySha256": "4f8d8d84515afa43761fe207ae31d865f177d28861dadd624ee2186edf99cccf",
+  "inventorySha256": "be2566602a8811199dbfd3f7ecf6179e25a4620043a142924017757fe966f5de",
   "inventoryPath": "world/playable-africa-rollout/sources/ndjamena.json",
   "admission": {
     "registered": true,
@@ -81,8 +81,8 @@
   },
   "assets": {
     "facts.ts": {
-      "bytes": 1186,
-      "sha256": "6a52719834059b12897c6590bbac3837c48cf742d9a5e32e0665c2eee24c579f"
+      "bytes": 1219,
+      "sha256": "5693b53682aaf49f51cc4cd61814aacaf926e0d5c1d794189a723339b8d6a354"
     },
     "geometry.ts": {
       "bytes": 67604,

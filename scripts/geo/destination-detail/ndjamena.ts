@@ -37,55 +37,73 @@ export const CONFIG = {
       "slot": "transit",
       "kind": "hub",
       "ref": "node/3134981852",
-      "line": "Gare d'Abeché, a mapped place for the game."
+      "line": "Gare d'Abeché, a mapped place for the game.",
+      "category": "civic",
+      "icon": "bus"
     },
     {
       "slot": "meal",
       "kind": "buka",
       "ref": "node/3997990146",
-      "line": "Maquis d'à côté, a mapped place for the game."
+      "line": "Maquis d'à côté, a mapped place for the game.",
+      "category": "food",
+      "icon": "food"
     },
     {
       "slot": "community",
       "kind": "office",
       "ref": "way/438541531",
-      "line": "Institut AVD, a mapped place for the game."
+      "line": "Institut AVD, a mapped place for the game.",
+      "category": "work",
+      "icon": "office"
     },
     {
       "slot": "clinic",
       "kind": "hospital",
       "ref": "way/679766331",
-      "line": "Centre de santé de Ndjamena-Koudou, a mapped place for the game."
+      "line": "Centre de santé de Ndjamena-Koudou, a mapped place for the game.",
+      "category": "care",
+      "icon": "health"
     },
     {
       "slot": "recreation",
       "kind": "park",
       "ref": "relation/2813502",
-      "line": "Jardin Botanique, a mapped place for the game."
+      "line": "Jardin Botanique, a mapped place for the game.",
+      "category": "fun",
+      "icon": "park"
     },
     {
       "slot": "market",
       "kind": "market",
       "ref": "node/4335243174",
-      "line": "Marché a betail, a mapped place for the game."
+      "line": "Marché a betail, a mapped place for the game.",
+      "category": "work",
+      "icon": "market"
     },
     {
       "slot": "worship",
       "kind": "worship",
       "ref": "way/125359481",
-      "line": "Cathédrale Notre-Dame de N'Djaména, a mapped place for the game."
+      "line": "Cathédrale Notre-Dame de N'Djaména, a mapped place for the game.",
+      "category": "fun",
+      "icon": "worship"
     },
     {
       "slot": "polling",
       "kind": "polling",
       "ref": "node/10826298705",
-      "line": "Commune du 7ème Arrondissement LA MAIRIE; voting here is a fictional game activity."
+      "line": "Commune du 7ème Arrondissement LA MAIRIE; voting here is a fictional game activity.",
+      "category": "civic",
+      "icon": "poll"
     },
     {
       "slot": "government",
       "kind": "statehouse",
       "ref": "node/4108575389",
-      "line": "Centre de détention, a mapped place for the game."
+      "line": "Centre de détention, a mapped place for the game.",
+      "category": "civic",
+      "icon": "civic"
     },
     {
       "key": "osm-node-11176434237",

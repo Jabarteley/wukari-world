@@ -16,7 +16,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -3.363777,
     "line": "Bujumbura Bus Station (Siyoni), a mapped place for the game.",
     "osm": "node/1344199948",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "bus"
   },
   {
     "slot": "meal",
@@ -27,7 +29,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -3.338287,
     "line": "Maman Ngabo, a mapped place for the game.",
     "osm": "node/2188525265",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "food",
+    "icon": "food"
   },
   {
     "slot": "community",
@@ -39,7 +43,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "line": "Hope Africa University, a mapped place for the game.",
     "osm": "way/1006372439",
     "wikidata": "Q2687972",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "work",
+    "icon": "office"
   },
   {
     "slot": "clinic",
@@ -51,7 +57,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "line": "Hopital Militaire De Kamenge, a mapped place for the game.",
     "osm": "way/122956893",
     "wikidata": "Q125218513",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "care",
+    "icon": "health"
   },
   {
     "slot": "recreation",
@@ -62,7 +70,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -3.392092,
     "line": "Jardin Public, a mapped place for the game.",
     "osm": "way/29863497",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "fun",
+    "icon": "park"
   },
   {
     "slot": "market",
@@ -73,7 +83,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -3.431508,
     "line": "KANYOSHA MARKET, a mapped place for the game.",
     "osm": "way/325686721",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "work",
+    "icon": "market"
   },
   {
     "slot": "worship",
@@ -85,7 +97,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "line": "Regina Mundi Cathedral, a mapped place for the game.",
     "osm": "way/92028037",
     "wikidata": "Q16964613",
-    "accuracy": "feature-centroid"
+    "accuracy": "feature-centroid",
+    "category": "fun",
+    "icon": "worship"
   },
   {
     "slot": "polling",
@@ -96,7 +110,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -3.359829,
     "line": "Palais des Congres de Kigobe; voting here is a fictional game activity.",
     "osm": "node/1420210976",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "poll"
   },
   {
     "slot": "government",
@@ -107,7 +123,9 @@ export const PLACES: readonly DestinationPlace[] = [
     "lat": -3.334116,
     "line": "Palais présidentiel Ntare Rushatsi, a mapped place for the game.",
     "osm": "node/6862969717",
-    "accuracy": "mapped-feature"
+    "accuracy": "mapped-feature",
+    "category": "civic",
+    "icon": "civic"
   },
   {
     "key": "osm-node-3349652326",

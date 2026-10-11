@@ -9,13 +9,13 @@
  */
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
-import { drawsWebGL2, heroAllowed, importBody } from '../body/gate.ts';
+import { bodyAllowed, drawsWebGL2, heroAllowed, importBody } from '../body/gate.ts';
 import type { SkinnedBody } from '../body/skinned.ts';
 import { BODY_POSE } from '../body/stand-in.ts';
 import { createRosterBudget } from './budget.ts';
 import type { Detail, RosterBudget, RosterKind, RosterTier } from './budget.ts';
-import { pickOf, regularPick, seedNumber, seededPick } from './map.ts';
-import type { Regular, RosterPick } from './map.ts';
+import { pickOf, regularPick, seedNumber, seededPick } from '../../roster/map.ts';
+import type { Regular, RosterPick } from '../../roster/map.ts';
 
 /** Who is to stand in the scene, and where. `parent` is the object the body is added to; x, y, z, ry are in its coordinates. */
 export interface BodySpec {
@@ -60,6 +60,8 @@ export interface CrowdBodies {
   dispose(): void;
 }
 
+/** Whether this device draws roster bodies at all (the scene asks before it builds the module's state). */
+export const rosterAllowed = (): boolean => bodyAllowed();
 const PARALLEL = 2;
 /** The character a person wears: a regular by their description, anyone else by their saved look, else the seed alone. */
 export function pickFor(spec: Pick<BodySpec, 'kind' | 'look' | 'seed' | 'regular'>): RosterPick | null {
@@ -67,9 +69,10 @@ export function pickFor(spec: Pick<BodySpec, 'kind' | 'look' | 'seed' | 'regular
   return spec.look ? pickOf(spec.look, spec.seed) : seededPick(spec.seed);
 }
 
-export function createCrowdBodies(kit: Kit, onChange: () => void, options: { allowed?: boolean; tier?: RosterTier; load?: (look: unknown, seed: unknown, pick: RosterPick, detail: Detail) => Promise<SkinnedBody> } = {}): CrowdBodies {
+export function createCrowdBodies(kit: Kit, onChange: () => void, options: { allowed?: boolean; tier?: RosterTier; /** The player's own figure (the stand-in) is one of the scene's roster figures and takes its share first. Default true. */ selfFigure?: boolean; load?: (look: unknown, seed: unknown, pick: RosterPick, detail: Detail) => Promise<SkinnedBody> } = {}): CrowdBodies {
   const tier: RosterTier = options.tier ?? (heroAllowed() ? 'full' : 'lite');
   const budget = createRosterBudget(tier);
+  if (options.selfFigure !== false) budget.request('self');
   const entries = new Map<string, Entry>();
   let failed = options.allowed === false, gone = false, loading = 0;
 

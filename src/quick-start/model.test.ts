@@ -57,7 +57,7 @@ test('the draft is rebuilt from untrusted storage and is always ready to play', 
   assert.ok(fresh.look.character, 'a new device starts as a character of the roster');
   assert.ok(checkLook(fresh.look, { starter: true }).look);
   const kept = draftFrom({ name: ' Zee ', look: presetLook('owambe'), landedAt: 4000, nameEdited: true, shuffles: 3, preset: 'owambe' }, { random, now });
-  assert.deepEqual([kept.name, kept.landedAt, kept.nameEdited, kept.shuffles, kept.preset, kept.look.hair], ['Zee', 4000, true, 3, 'owambe', 'gele']);
+  assert.deepEqual([kept.name, kept.landedAt, kept.nameEdited, kept.shuffles, kept.preset, kept.look.hair], ['Zee', 4000, true, 3, 'owambe', presetLook('owambe')!.hair]);
   // Hostile or stale storage: every part falls back by itself.
   const hostile = draftFrom({ name: 'x', look: { body: 'man', hair: '<script>' }, landedAt: 9e15, nameEdited: 'yes', shuffles: -1, preset: '__proto__' }, { random, now, name: 'Bola' });
   assert.deepEqual([hostile.name, hostile.landedAt, hostile.nameEdited, hostile.shuffles, hostile.preset], ['Bola', 5000, false, 0, null]);

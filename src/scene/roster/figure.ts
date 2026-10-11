@@ -20,8 +20,8 @@ import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
 import { rosterAsset, rosterMeta } from './files.ts';
-import { SKIN_HEX } from './map.ts';
-import type { RosterPick } from './map.ts';
+import { SKIN_HEX } from '../../roster/map.ts';
+import type { RosterPick } from '../../roster/map.ts';
 
 export type RosterLod = 'hero' | 'crowd';
 type Rgb = [number, number, number];
@@ -210,14 +210,13 @@ export async function loadRosterFigure(kit: Kit, pick: RosterPick, lod: RosterLo
   const source = skinned.material as THREE.MeshStandardMaterial, baseMap = source.map;
   if (!baseMap) throw new Error(`no base colour in ${pick.id}-${lod}`);
   const material = kit.matte ? new T.MeshLambertMaterial({ map: baseMap }) : new T.MeshStandardMaterial({ map: baseMap, roughness: 0.82, metalness: 0 });
-  const refs = meta.refs, one = new T.Vector3(1, 1, 1);
+  const refs = meta.refs;
   const refSkin = new T.Vector3(...(refs.skin ?? [1, 1, 1])), refSkin2 = new T.Vector3(...(refs.skin2 ?? refs.skin ?? [1, 1, 1]));
   const uniforms: Record<string, THREE.IUniform> = {
     uMask: { value: model.mask }, uMaskOn: { value: 1 }, uSkinOn: { value: 0 }, uSkin2On: { value: refs.skin2 ? 1 : 0 },
     uRefSkin: { value: refSkin }, uTSkin: { value: refSkin.clone() }, uRefSkin2: { value: refSkin2 }, uTSkin2: { value: refSkin2.clone() },
     uEyes: { value: null }, uEyeBox: { value: new T.Vector4() }, uEyeMix: { value: 0 },
   };
-  void one;
   const painter = lod === 'hero' && meta.eyes ? eyePainter(T, meta.eyes, uniforms) : null;
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);

@@ -23,3 +23,4 @@
 .rp-swatch[aria-pressed=true]{box-shadow:0 0 0 3px var(--c-ink)}
 @media (min-width:420px){.rp-cards{gap:10px}}
 @media (min-width:560px){.rp-cards{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media (max-width:359px){.rp-outfits{gap:6px}.rp-outfit{width:60px;min-height:68px;padding:3px}.rp-outfit img{height:60px}.rp-card .rp-name{font-size:11px}}

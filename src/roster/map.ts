@@ -12,8 +12,8 @@
  *
  * Ids are compared with everything but letters and digits removed ('low-cut' and 'lowcut', 'aso-oke' and 'asooke' are one).
  */
-import { SKIN_STEPS, rosterEntry, rosterOn } from '../../game/roster.ts';
-import type { RosterEntry, RosterSex } from '../../game/roster.ts';
+import { SKIN_STEPS, rosterEntry, rosterOn } from '../game/roster.ts';
+import type { RosterEntry, RosterSex } from '../game/roster.ts';
 
 export interface RosterPick { id: string; outfit: number; skin: number }
 

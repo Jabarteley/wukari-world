@@ -1,6 +1,6 @@
 // The roster's 2D faces: a 256 px head-and-shoulders portrait and a full-figure thumbnail per character and outfit. Plain addresses
 // (no Three.js): the creator, the contacts, the chat and the share cards read them. Fetched by the browser only when an image is drawn.
-import { rosterEntry } from '../../game/roster.ts';
+import { rosterEntry } from '../game/roster.ts';
 import { pickOf } from './map.ts';
 
 const urls = import.meta.glob<string>('./portraits/*.png', { query: '?url', import: 'default', eager: true });

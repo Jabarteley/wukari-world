@@ -12,7 +12,7 @@ import type { DreamId, TraitId } from '../types/life.ts';
 import { avatarLookFields } from '../game/wardrobe/look.ts';
 import { AVATAR_STARTER_WEARABLES } from '../game/wardrobe/prices.ts';
 import { tidyRosterFields } from '../game/roster.ts';
-import { ensureCharacter, shuffleCharacter, withSex } from '../scene/roster/look.ts';
+import { ensureCharacter, shuffleCharacter, withSex } from '../roster/look.ts';
 
 // ---- names ---------------------------------------------------------------------------------
 /** Friendly suggestions for the name field: "<mood> <name>", always 3–24 ordinary characters. */

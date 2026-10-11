@@ -485,6 +485,8 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   function startBody(renderer: THREE.WebGLRenderer) {
     if (body || bodyLoading || bodyFailed || gone) return;
     if (!drawsWebGL2(renderer)) { bodyFailed = true; return; }
+    // Until the life's own look is known the body would be a seeded character that is thrown away a moment later (a model of 600 kB): wait for the next draw.
+    if (who.look == null && !lastState) return;
     bodyLoading = true;
     const look = who.look ?? lastState?.onboarding?.look ?? null, seed = who.seed;
     setTimeout(() => {

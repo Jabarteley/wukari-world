@@ -18,7 +18,7 @@ const act = <T extends ActionType>(state: LifeState, type: T, payload?: unknown,
   dispatch(state, { type, payload } as unknown as ActionBody<T>, context);
 const OLD: Look = { body: 'man', hair: 'afro', outfit: 'hoodie', fabric: 'ankara', skin: 'skin-6', hairColor: 'auburn', outfitColor: 'teal', bottomsColor: 'cream' };
 
-test('the manifest: twelve characters, six of each sex, unique ids, sensible counts, m3 and w5 off until their files are fixed', () => {
+test('the manifest: twelve characters, six of each sex, unique ids, sensible counts, four off (m3, m6, w2, w5) until their files are fixed', () => {
   assert.equal(ROSTER.length, 12);
   assert.deepEqual(new Set(ROSTER.map((entry) => entry.id)).size, 12);
   for (const entry of ROSTER) {
@@ -32,8 +32,8 @@ test('the manifest: twelve characters, six of each sex, unique ids, sensible cou
     assert.ok(APPEARANCE.fabrics.includes(fabric), `${entry.id} fabric`);
     for (const [kind, id] of [['hair', hair], ['outfit', outfit]] as const) assert.ok(!(APPEARANCE.boutiqueOnly[kind] as readonly string[]).includes(id), `${entry.id} ${kind} ${id} is free at creation`);
   }
-  assert.deepEqual(ROSTER.filter((entry) => entry.on === 0).map((entry) => entry.id), ['m3', 'w5']);
-  assert.equal(rosterOn('man').length, 5); assert.equal(rosterOn('woman').length, 5); assert.equal(rosterEntry('zz'), null);
+  assert.deepEqual(ROSTER.filter((entry) => entry.on === 0).map((entry) => entry.id), ['m3', 'm6', 'w2', 'w5']);
+  assert.equal(rosterOn('man').length, 4); assert.equal(rosterOn('woman').length, 4); assert.equal(rosterEntry('zz'), null);
 });
 
 test('checkRosterFields: ids, sex, outfit and skin step ranges; defaults are not stored', () => {

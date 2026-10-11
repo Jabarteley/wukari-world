@@ -1,7 +1,7 @@
 // OWNER: scenes — the hero / crowd choice and the per-scene budget of roster figures.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CROWD_TRIANGLES, FIGURES_MAX, HERO_MAX, HERO_TRIANGLES, LITE_FIGURES, TRIANGLES_MAX, createRosterBudget } from './budget.ts';
+import { CROWD_TRIANGLES, FIGURES_MAX, HERO_MAX, HERO_PLAYERS, HERO_TRIANGLES, LITE_FIGURES, TRIANGLES_MAX, createRosterBudget } from './budget.ts';
 
 test('the player and other players get the hero model near the camera, regulars the crowd model', () => {
   const budget = createRosterBudget('full');
@@ -11,20 +11,22 @@ test('the player and other players get the hero model near the camera, regulars 
   assert.deepEqual(budget.used, { hero: 2, crowd: 1, triangles: 2 * HERO_TRIANGLES + CROWD_TRIANGLES });
 });
 
-test('never more than four heroes, and never over the scene\'s roster triangles', () => {
+test('the hero model goes to the player and the next two players only, and the figures never go over the scene\'s roster triangles', () => {
   const budget = createRosterBudget('full');
   const got = Array.from({ length: 12 }, () => budget.request('peer'));
-  assert.equal(got.filter((detail) => detail === 'hero').length, 2, 'two heroes fill the triangle budget; the rest are crowd or none');
-  assert.ok(budget.used.triangles <= TRIANGLES_MAX);
-  assert.ok(budget.used.hero <= HERO_MAX);
+  assert.equal(got.filter((detail) => detail === 'hero').length, HERO_PLAYERS, 'three heroes, the rest crowd or none');
+  assert.ok(budget.used.triangles <= TRIANGLES_MAX && budget.used.hero <= HERO_MAX);
+  assert.ok(got.includes(null), 'a crowd of players beyond the budget stays procedural');
+  const own = createRosterBudget('full');
+  assert.equal(own.request('self'), 'hero');
+  assert.deepEqual([own.request('peer'), own.request('peer'), own.request('peer')], ['hero', 'hero', 'crowd'], 'the player and two others are heroes');
   const crowd = createRosterBudget('full');
   const npcs = Array.from({ length: 30 }, () => crowd.request('npc'));
-  const fits = Math.floor(TRIANGLES_MAX / CROWD_TRIANGLES);
-  assert.ok(fits <= FIGURES_MAX);
-  assert.equal(npcs.filter(Boolean).length, fits, 'a crowd of regulars is capped by the triangle budget');
+  const fits = Math.min(FIGURES_MAX, Math.floor(TRIANGLES_MAX / CROWD_TRIANGLES));
+  assert.equal(npcs.filter(Boolean).length, fits, 'a crowd of regulars is capped by the figure count and the triangle budget');
   assert.ok(crowd.used.triangles <= TRIANGLES_MAX);
   assert.equal(npcs[fits], null, 'beyond it the procedural figure stays');
-  assert.ok(HERO_MAX * HERO_TRIANGLES > TRIANGLES_MAX, 'the triangle budget, not the hero count, is what usually binds');
+  assert.ok(HERO_MAX * HERO_TRIANGLES > TRIANGLES_MAX, 'the triangle budget, not the hero count, is what binds');
 });
 
 test('a lite device has no hero model and only a few figures; releasing a figure makes room', () => {

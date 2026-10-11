@@ -19,7 +19,7 @@ import RosterPicker from '../start/RosterPicker.vue'
 import LookStage from '../start/LookStage.vue'
 import { lookSummary, sameLook } from '../start/lookModel.ts'
 import GameIcon from '../../ui/GameIcon.vue'
-import { ensureCharacter } from '../../../scene/roster/look.ts'
+import { ensureCharacter } from '../../../roster/look.ts'
 import { saveFailure, saveState } from './profileModel.ts'
 import { draft, form, saved } from './profileState.ts'
 

@@ -80,9 +80,7 @@ import type {
   SceneLayout, SceneMaterials, ScenePerson, SceneRest, SceneSpot, SceneState, SceneTag, SceneThing, SceneVenue, SceneWalk, PlayerOptions, ThreeModule, TimeOfDay, Vec3, WalkSpot,
 } from './types.ts';
 import { buildAvatar, drawCrowd } from './characters.ts';
-import { createCrowdBodies } from './roster/crowd-bodies.ts';
 import type { BodySpec, CrowdBodies } from './roster/crowd-bodies.ts';
-import { bodyAllowed } from './body/gate.ts';
 import { playerOptions, rigOf, lookAvatar } from './avatar-rig.ts';
 import { createWalkGrid, footprintRecorder, turnTowards } from './movement.ts';
 import { FIGURE_GAP, gapFor, tieOf, newGaze, stepGaze, watch, gazing } from './space.ts';
@@ -421,7 +419,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   const peers = new Map<string, Peer>();
   let peopleList: ScenePerson[] = [], mergedTags: SceneTag[] = [], batchKey: string | null = null, easing = false;
   // Roster bodies of the other people (src/scene/roster/): fetched after the first frame, they stand in for the procedural figures.
-  let bodies: CrowdBodies | null = null, bodyHolder: THREE.Group | null = null, bodiesChanged: (() => void) | null = null, syncing = false;
+  let bodies: CrowdBodies | null = null, bodyHolder: THREE.Group | null = null, bodiesChanged: (() => void) | null = null, syncing = false, bodiesAsked = false;
   const wallParts: Record<'wallBack' | 'wallLeft', THREE.Object3D[]> = { wallBack: [], wallLeft: [] };
   const sceneCamera = def.camera || SCENE_CAMERA;
   // The ground direction from the scene's centre towards its own camera: "in front of" a marker.
@@ -847,10 +845,6 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     buildMarks();
     prebuild();
     live = true;
-    if (bodyAllowed()) {
-      bodyHolder = new THREE.Group(); bodyHolder.name = 'roster-bodies'; group.add(bodyHolder);
-      bodies = createCrowdBodies(kit, () => { if (live && !syncing) { buildActors(); bodiesChanged?.(); } });
-    }
     buildActors();
     settle();
     applyLighting();
@@ -859,7 +853,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     renderedContactTop = null;
     for (const peer of [...peers.values()]) dropPeer(peer);
     easing = false; batchKey = null; peopleList = []; mergedTags = [];
-    bodies?.dispose(); bodies = null; bodyHolder?.parent?.remove(bodyHolder); bodyHolder = null;
+    bodies?.dispose(); bodies = null; bodyHolder?.parent?.remove(bodyHolder); bodyHolder = null; bodiesAsked = false;
     wallParts.wallBack.length = 0; wallParts.wallLeft.length = 0;
     releaseObjects(staticObjects);
     releaseObjects(actorObjects);
@@ -1041,7 +1035,20 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       return crowdTags;
     },
     /** After a frame was drawn: start fetching the roster bodies of the people here (a body that arrives asks `changed` for a frame). */
-    startCrowd(renderer: { getContext?: () => unknown }, changed: () => void) { bodiesChanged = changed; bodies?.start(renderer); },
+    startCrowd(renderer: { getContext?: () => unknown }, changed: () => void) {
+      bodiesChanged = changed;
+      if (bodies) { bodies.start(renderer); return; }
+      // The roster bodies are a module of their own, fetched after the scene's first frame, once, and only where the device draws them.
+      if (bodiesAsked || !live || disposed) return;
+      bodiesAsked = true;
+      void import('./roster/crowd-bodies.ts').then((module) => {
+        if (!live || disposed || !module.rosterAllowed()) return;
+        bodyHolder = new THREE.Group(); bodyHolder.name = 'roster-bodies'; group.add(bodyHolder);
+        bodies = module.createCrowdBodies(kit, () => { if (live && !syncing) { buildActors(); bodiesChanged?.(); } });
+        buildActors();
+        bodies.start(renderer);
+      }, (error: unknown) => { console.warn('Roster bodies unavailable; keeping the drawn figures:', error); });
+    },
     /** The roster bodies in the scene (diagnostics, tests). */
     get rosterBodies() { return bodies; },
     /** True while another player's figure is on its way to a newly reported position. */

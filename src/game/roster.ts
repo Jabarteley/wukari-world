@@ -5,7 +5,9 @@
  * `outfits` counts the outfits of a character, the one it is made in included (outfit 0). `skin` says whether the character has
  * skin-tone steps (SKIN_STEPS of them; step 0 is the tone it was made in). `on` is the switch: a character that is off is not
  * offered, not accepted from a client and not drawn; a look that names it is read as the nearest character that is on.
- * Turning one on is changing its `on` to 1 once its files are in src/scene/roster/assets/ and src/scene/roster/portraits/.
+ * Turning one on is changing its `on` to 1 once its files are in src/scene/roster/assets/ and src/roster/portraits/.
+ * Off for now: m3 (eyes misplaced) and w5 (the wrapper tears in motion), both being fixed; m6 and w2 (the eyes are baked a second time onto
+ * the cap and the gele, so a face shows them on the headwear and blank on the face).
  */
 import type { FabricId, HairId, OutfitId } from '../types/life.ts'
 
@@ -28,9 +30,9 @@ export const ROSTER: readonly RosterEntry[] = [
   { id: 'm3', sex: 'man', name: 'Agbada', outfits: 4, skin: 1, on: 0, as: ['bald', 'office', 'aso-oke'] },
   { id: 'm4', sex: 'man', name: 'Hoodie and joggers', outfits: 4, skin: 1, on: 1, as: ['locs', 'hoodie', 'plain'] },
   { id: 'm5', sex: 'man', name: 'Shirt and trousers', outfits: 4, skin: 1, on: 1, as: ['classic', 'office', 'plain'] },
-  { id: 'm6', sex: 'man', name: 'Ankara shirt and chinos', outfits: 4, skin: 1, on: 1, as: ['low-cut', 'casual', 'ankara'] },
+  { id: 'm6', sex: 'man', name: 'Ankara shirt and chinos', outfits: 4, skin: 1, on: 0, as: ['low-cut', 'casual', 'ankara'] },
   { id: 'w1', sex: 'woman', name: 'Ankara wrapper and blouse', outfits: 3, skin: 0, on: 1, as: ['braids', 'casual', 'ankara'] },
-  { id: 'w2', sex: 'woman', name: 'Aso-ebi', outfits: 4, skin: 0, on: 1, as: ['gele', 'owambe', 'aso-oke'] },
+  { id: 'w2', sex: 'woman', name: 'Aso-ebi', outfits: 4, skin: 0, on: 0, as: ['gele', 'owambe', 'aso-oke'] },
   { id: 'w3', sex: 'woman', name: 'Crop top and jeans', outfits: 4, skin: 1, on: 1, as: ['afro', 'casual', 'plain'] },
   { id: 'w4', sex: 'woman', name: 'Two-piece', outfits: 4, skin: 1, on: 1, as: ['low-cut', 'office', 'plain'] },
   { id: 'w5', sex: 'woman', name: 'Iro and buba', outfits: 3, skin: 1, on: 0, as: ['bun', 'owambe', 'adire'] },

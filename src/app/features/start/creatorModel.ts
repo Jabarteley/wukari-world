@@ -6,7 +6,7 @@ import { DREAMS, TRAITS, TRAITS_REQUIRED } from '../../../game/content/traits.ts
 import type { PreviewFocus } from '../../../scene/avatar-preview.ts'
 import type { DreamId, Look, OnboardingState, TraitId } from '../../../types/life.ts'
 import type { AreaChoice } from './onboardingModel.ts'
-import { ensureCharacter } from '../../../scene/roster/look.ts'
+import { ensureCharacter } from '../../../roster/look.ts'
 import { sameLook } from './lookModel.ts'
 
 export type StepId = 'who' | 'look' | 'spirit' | 'home' | 'ready'

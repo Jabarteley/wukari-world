@@ -170,7 +170,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   scene.add(overlays.group);
   const houses = createHouses(kit, pack);
   scene.add(houses.group);
-  const actor = createActor(kit, { travelVehicle });
+  const actor = createActor(kit, { travelVehicle, renderer, onBody: () => request() });
   scene.add(actor.group);
   const rig = createRig(THREE, camera, { minDistance: CLOSEST, minX: pack.bounds.minX, maxX: pack.bounds.maxX, minZ: pack.bounds.minZ, maxZ: pack.bounds.maxZ, fit: pack.bounds.fit, core: pack.core, context: Boolean(pack.context), inland: pack.inland === true, roamZ: pack.bounds.sea ? pack.bounds.sea.z1 - 16 : undefined });
   const ringOf = (colour: string, opacity: number) => { const mesh = new THREE.Mesh(new THREE.RingGeometry(PLINTH * 0.74, PLINTH * 0.84, 40), new THREE.MeshBasicMaterial({ color: colour, transparent: true, opacity, depthWrite: false })); mesh.rotation.x = -Math.PI / 2; mesh.renderOrder = 3; mesh.visible = false; scene.add(mesh); return mesh; };

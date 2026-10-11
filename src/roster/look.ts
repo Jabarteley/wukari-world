@@ -7,9 +7,9 @@
  * skin tone step. The old fields of a character are free styles (ROSTER[].as), so the server accepts them at creation and wearing a
  * character never grants a style that is sold.
  */
-import { SKIN_STEPS, rosterEntry, rosterOn } from '../../game/roster.ts';
-import type { RosterSex } from '../../game/roster.ts';
-import type { Look, SkinId } from '../../types/life.ts';
+import { SKIN_STEPS, rosterEntry, rosterOn } from '../game/roster.ts';
+import type { RosterSex } from '../game/roster.ts';
+import type { Look, SkinId } from '../types/life.ts';
 import { SKIN_HEX, pickOf } from './map.ts';
 
 /** The old skin swatch nearest to each skin step (index 0 is step 1), for the old figure. */

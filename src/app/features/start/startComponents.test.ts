@@ -66,16 +66,19 @@ async function resetCreator(): Promise<void> {
   cr.owner = null
 }
 
-test('the first screen: full-screen creator with the welcome, the quick characters, the body, the name, Play now and Next', async () => {
+test('the first screen: full-screen creator with the welcome, Man or Woman, the characters as cards, the shuffle, the name, Play now and Next', async () => {
   await resetCreator()
   const html = await render('QuickStartApp', { params: { reason: 'new' } })
   const words = text(html)
   assert.match(html, /<div class="cr-root" data-step="who" data-mode="new" data-cr-root>/)
   assert.ok(words.includes('Welcome to Allworld') && words.includes('A digital world you can live in'))
   assert.ok(words.includes('Step 1 of 5 · You'))
-  for (const label of ['Street', 'Owambe', 'Office', 'Sporty', 'Chill']) assert.match(html, new RegExp(`aria-label="${label} character"`))
-  assert.match(html, /role="group" aria-label="Body"/)
-  assert.ok(words.includes('Surprise me') && words.includes('Your name'))
+  assert.match(html, /role="group" aria-label="Man or woman"/)
+  const cards = [...html.matchAll(/data-key="look:([mw][1-6])"/g)].map((match) => match[1])
+  assert.ok(cards.length >= 4 && cards.length <= 6, `the characters of one body are cards: ${cards.join(',')}`)
+  assert.ok(new Set(cards.map((id) => id![0])).size === 1, 'only the characters of one body at a time')
+  assert.ok(words.includes('Choose a look') && words.includes('Shuffle') && words.includes('Your name'))
+  assert.ok(!html.includes('data-key="outfit:'), 'the outfits are on the next step')
   assert.match(html, /<input[^>]*name="name"[^>]*minlength="3"[^>]*maxlength="24"[^>]*autocomplete="nickname"/)
   assert.match(html, /<button[^>]*data-key="play-now"[^>]*>Play now<\/button>/)
   assert.match(html, /<button[^>]*data-key="primary"[^>]*>Next: Look<\/button>/)
@@ -223,9 +226,9 @@ test('a life that never had a character starts the creator on the look, with und
     const html = await render('OnboardingApp')
     const words = text(html)
     assert.match(html, /data-step="look" data-mode="settle"/)
-    assert.ok(words.includes('Step 1 of 4 · Look') && words.includes('Undo') && words.includes('Reset') && words.includes('Surprise me'))
+    assert.ok(words.includes('Step 1 of 4 · Look') && words.includes('Undo') && words.includes('Reset') && words.includes('Shuffle'))
     assert.match(html, /<button[^>]*data-key="undo"[^>]*disabled/)
-    assert.ok(html.includes('look-editor') && !html.includes('data-key="later"'), 'no "Not now" for a life that was not a guest')
+    assert.ok(html.includes('class="rp"') && html.includes('data-key="outfit:0"') && !html.includes('data-key="later"'), 'the whole picker: characters, outfits; no "Not now" for a life that was not a guest')
   })
   await resetCreator()
 })

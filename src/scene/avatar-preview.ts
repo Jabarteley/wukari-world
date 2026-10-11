@@ -43,6 +43,7 @@ import { avatarProportions } from '../types/avatar.ts';
 import { buildAvatar, normalizeLook } from './characters.ts';
 import type { AvatarGroup } from './characters.ts';
 import type { ThreeModule } from './types.ts';
+import { pickOf } from '../roster/map.ts';
 import { bodyAllowed, bodyImports, drawsWebGL2, heroAllowed, importBody } from './body/gate.ts';
 import type { SkinnedBody } from './body/skinned.ts';
 
@@ -206,7 +207,8 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     previewProportions = avatarProportions(normalizeLook(look, 'preview').appearance);
     if (body && !body.wear(look, 'preview')) { body.dispose(); body = null; }
     if (body) { if (avatar) avatar.visible = false; return; }
-    if (bodyLoading || bodyFailed || !bodyImports.count) return;
+    // The roster's characters are the look of everyone, so the creator fetches the body itself instead of waiting for a world scene to.
+    if (bodyLoading || bodyFailed || !(bodyImports.count || pickOf(look, 'preview'))) return;
     if (!drawsWebGL2(renderer)) { bodyFailed = true; return; }
     bodyLoading = true;
     importBody().then((module) => module.loadBody(kit, look, 'preview', 1, { lod: heroAllowed() ? 'hero' : 'crowd', onDressed: () => { if (!disposed) render(); } })).then((loaded) => {

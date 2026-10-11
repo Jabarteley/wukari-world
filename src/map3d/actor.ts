@@ -23,6 +23,8 @@ import { buildAvatar } from '../scene/characters.ts';
 import type { Pose } from '../scene/characters.ts';
 import { VEHICLES } from './vehicles.ts';
 import { lookOf } from './trip.ts';
+import { bodyAllowed, drawsWebGL2, importBody } from '../scene/body/gate.ts';
+import type { SkinnedBody } from '../scene/body/skinned.ts';
 
 /** The player's saved look (a record from the server, normalised by src/scene/characters.ts) and public id. */
 export interface ActorPlayer { look?: unknown; seed?: string }
@@ -41,7 +43,7 @@ export interface TravelVehicleModel {
 }
 export type TravelVehicleBuilder = (kind: string, options: { time: string }) => TravelVehicleModel | null;
 
-export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehicle?: TravelVehicleBuilder | null } = {}) {
+export function createActor(kit: MapKit, { travelVehicle = null, renderer = null, onBody }: { travelVehicle?: TravelVehicleBuilder | null; renderer?: { getContext?: () => unknown } | null; /** A roster body arrived: draw one more frame. */ onBody?: () => void } = {}) {
   const { THREE } = kit;
   // The model library's trip vehicles (src/models): used when the host passes its builder (src/map3d/index.ts always does); without it, or if the library fails to load, the map's own batch-drawn vehicle is drawn.
   const useModels = typeof travelVehicle === 'function';
@@ -61,9 +63,34 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
   let player: { look: unknown; seed: string } = { look: null, seed: 'you' }, playerKey = '', mode: string | null = null, asDot = false, size = 1;
   let frames: { stand: THREE.Group; stride: THREE.Group; mirror: THREE.Group } | null = null, seated: THREE.Group | null = null, vehicle: THREE.Group | null = null, vehicleModel: TravelVehicleModel | null = null, seat = { x: 0, y: 0, z: 0 };
   let vehicleTime = 'day', disposed = false;
+  // The roster body of the player (src/scene/roster/), fetched after the first frame: one for standing and walking, one for the seat of a vehicle.
+  // The drawn figures above stay until they are in, and for good if the body cannot load (no WebGL2, a weak device, a failed file).
+  let bodies: { walk: SkinnedBody; sit: SkinnedBody } | null = null, bodyTries = 0, bodyGen = 0;
   const plain = (mesh: THREE.Object3D) => { mesh.castShadow = false; mesh.receiveShadow = false; };
 
+  function dropBodies() { if (bodies) { bodies.walk.dispose(); bodies.sit.dispose(); bodies = null; } }
+  function wantBodies() {
+    const gen = bodyGen;
+    if (bodies || disposed || bodyTries >= 2 || !frames || !seated || !bodyAllowed() || !drawsWebGL2(renderer)) return;
+    bodyTries += 1;
+    setTimeout(() => {
+      importBody().then((module) => Promise.all([0, 1].map(() => module.loadBody(kit, player.look, player.seed, 1, { lod: 'crowd', onDressed: () => onBody?.() })))).then(([walk, sit]) => {
+        if (!walk || !sit) return;
+        if (disposed || gen !== bodyGen || !frames || !seated) { walk.dispose(); sit.dispose(); return; }
+        walker.add(walk.object); seated.add(sit.object);
+        for (const part of [frames.stand, frames.stride, frames.mirror]) part.visible = false;
+        for (const child of seated.children) if (child !== sit.object) child.visible = false;
+        walk.fit(1); sit.fit(1);
+        walk.show('idle', false);
+        sit.show('sit', false); sit.sitOn(0, useModels ? 0 : SEAT_HEIGHT, 0, 0);
+        bodies = { walk, sit };
+        onBody?.();
+      }).catch((error: unknown) => { console.warn('Roster body unavailable on the map; keeping the drawn figure:', error); });
+    }, 0);
+  }
+
   function buildPeople() {
+    dropBodies(); bodyGen += 1; bodyTries = 0;
     for (const built of [frames?.stand, frames?.stride, seated]) built?.userData.dispose();
     if (frames?.mirror) walker.remove(frames.mirror);
     const make = (pose: Pose, riding = false): THREE.Group => {
@@ -91,6 +118,7 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
       seated.position.set(seat.x, seat.y - SEAT_HEIGHT - 0.13, seat.z);
       ride.add(seated);
     }
+    wantBodies();
   }
   function releaseVehicle() {
     if (vehicleModel) {
@@ -124,7 +152,13 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
     if (seated) seated.position.set(seat.x, seat.y - SEAT_HEIGHT - 0.13, seat.z);
   }
   function show(part: string) {
+    if (bodies) return;
     frames!.stand.visible = part === 'stand'; frames!.stride.visible = part === 'a'; frames!.mirror.visible = part === 'b';
+  }
+  /** The roster body's frame for a pose: standing, or a walking frame at the stride the distance covered gives (one stride is 1.7 map units). */
+  function poseBody(walking: boolean, distance: number) {
+    if (!bodies) return;
+    if (walking) bodies.walk.stride((distance / 1.7) * 2 * Math.PI, false); else bodies.walk.show('idle', false);
   }
 
   const actor = {
@@ -169,7 +203,7 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
     stand(x: number, z: number, ry: number) {
       if (!frames) actor.setPlayer(player);
       walker.visible = !asDot; ride.visible = false; ring.visible = true; dot.visible = false;
-      show('stand');
+      show('stand'); poseBody(false, 0);
       walker.position.set(x, 0, z); walker.rotation.y = ry;
       ring.position.set(x, 0.09, z);
     },
@@ -182,7 +216,7 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
       const riding = pose.phase === 'ride';
       walker.visible = !riding;
       if (!riding) {
-        show(pose.walking ? (pose.step % 2 ? 'b' : 'a') : 'stand');
+        show(pose.walking ? (pose.step % 2 ? 'b' : 'a') : 'stand'); poseBody(Boolean(pose.walking), pose.distance);
         const bob = pose.walking ? Math.abs(Math.sin((pose.distance / 0.85) * Math.PI)) * 0.14 : 0;
         walker.position.set(pose.x, pose.y + 0.08 + bob, pose.z); walker.rotation.y = pose.ry;
       }
@@ -202,7 +236,7 @@ export function createActor(kit: MapKit, { travelVehicle = null }: { travelVehic
     dispose() {
       if (disposed) return;
       disposed = true;
-      releaseVehicle();
+      releaseVehicle(); dropBodies();
       for (const built of [frames?.stand, frames?.stride, seated]) built?.userData.dispose();
       for (const mesh of [dot, ring]) { mesh.geometry.dispose(); mesh.material.dispose(); }
       group.parent?.remove(group);

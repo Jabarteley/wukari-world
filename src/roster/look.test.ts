@@ -2,10 +2,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { characterOf, ensureCharacter, hasCharacter, shuffleCharacter, withCharacter, withOutfit, withSex, withSkinStep } from './look.ts';
-import { rosterEntry, rosterOn } from '../../game/roster.ts';
-import { checkLook } from '../../game/systems/onboarding.ts';
-import type { Look } from '../../types/life.ts';
-import { makeRng } from '../../game/util.ts';
+import { rosterEntry, rosterOn } from '../game/roster.ts';
+import { checkLook } from '../game/systems/onboarding.ts';
+import type { Look } from '../types/life.ts';
+import { makeRng } from '../game/util.ts';
 
 const OLD: Look = { body: 'woman', hair: 'braids', outfit: 'casual', fabric: 'ankara', skin: 'skin-5', hairColor: 'black', outfitColor: 'blue', bottomsColor: 'navy', accessories: ['glasses'] };
 

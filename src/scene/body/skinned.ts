@@ -4,9 +4,11 @@
  * importBody(), so this module, GLTFLoader and the meshopt decoder are one lazy chunk fetched after a scene's first frame
  * (home-scene.ts for the home room, stand-in.ts for venues, avatar-preview.ts once one of those has fetched it).
  *
- *   loadBody(kit, look, seed, scale) → SkinnedBody
- *     one SkinnedMesh (one primitive, one material, 23 bones, ≤ 4 weights a vertex) from assets/base-body-<male|female>.glb,
- *     the clips from assets/clip-pack.glb, and the look's colours (tint.ts) as material uniforms.
+ *   loadBody(kit, look, seed, scale, options?) → SkinnedBody
+ *     one SkinnedMesh (one primitive, one material, 23 bones, ≤ 4 weights a vertex) and the clips from assets/clip-pack.glb.
+ *     The mesh is the roster character the look wears (src/scene/roster/figure.ts: the hero model near the camera, the crowd
+ *     model for everyone else) or, where the look has none that is shipped, assets/base-body-<male|female>.glb dressed in the
+ *     look's colours (tint.ts) as material uniforms. Both are driven by the same clips, so every pose below works for either.
  *
  * STATIC RENDERING (the battery rule). The body never asks for frames. A resting pose (idle, sit, interact, dance,
  * lie, soak, wash) is one still frame of its clip. Walking and jogging sample the walk/jog clip (stairs-up/-down on a
@@ -35,8 +37,8 @@ import { gltfLoader, loadRosterFigure, rosterShipped } from '../roster/figure.ts
 import type { RosterFigure, RosterLod } from '../roster/figure.ts';
 import { createFaceLife } from '../roster/life.ts';
 import type { FaceLife, Mood } from '../roster/life.ts';
-import { pickOf } from '../roster/map.ts';
-import type { RosterPick } from '../roster/map.ts';
+import { pickOf } from '../../roster/map.ts';
+import type { RosterPick } from '../../roster/map.ts';
 import type { FootContact, FootSolveResult } from './foot-contact.ts';
 import type { BodyTint } from './tint.ts';
 import { DOOR, INTO, OUT, SEATED, STAIRS, STILL, WORK_INTO, WORK_OUT } from './poses.ts';

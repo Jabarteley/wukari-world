@@ -9,7 +9,7 @@ import { createKit } from '../kit.ts';
 import { buildHomeScene } from '../home-scene.ts';
 import { createLife } from '../../life.ts';
 import type { LifeState } from '../../types/life.ts';
-import { bodyAllowed, bodyImports, drawsWebGL2 } from './gate.ts';
+import { bodyAllowed, bodyImports, drawsWebGL2, heroAllowed } from './gate.ts';
 
 test('bodyAllowed: never on Data Saver, 2G or the low tier', () => {
   assert.equal(bodyAllowed({ hardwareConcurrency: 8, deviceMemory: 8 }), true);
@@ -20,6 +20,16 @@ test('bodyAllowed: never on Data Saver, 2G or the low tier', () => {
   assert.equal(bodyAllowed({ hardwareConcurrency: 2 }), false);
   assert.equal(bodyAllowed({ deviceMemory: 2 }), false);
   assert.equal(bodyAllowed(null), false, 'no navigator: no');
+});
+
+test('heroAllowed: the 13,000-triangle hero model only where four cores or fewer are not reported; nothing where the body itself is not allowed', () => {
+  assert.equal(heroAllowed({ hardwareConcurrency: 8, deviceMemory: 8 }), true);
+  assert.equal(heroAllowed({}), true, 'unreported values do not count against a device');
+  assert.equal(heroAllowed({ hardwareConcurrency: 6 }), true);
+  assert.equal(heroAllowed({ hardwareConcurrency: 4 }), false, 'a four-core device wears the crowd model');
+  assert.equal(heroAllowed({ hardwareConcurrency: 8, connection: { saveData: true } }), false);
+  assert.equal(heroAllowed({ hardwareConcurrency: 2 }), false);
+  assert.equal(heroAllowed(null), false);
 });
 
 test('drawsWebGL2: false without a WebGL2 context', () => {

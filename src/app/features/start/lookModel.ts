@@ -17,6 +17,9 @@ import { avatarLookFields, keepAvatarAccessoryChoice } from '../../../game/wardr
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
 import type { PreviewFocus } from '../../../scene/avatar-preview.ts'
 import type { RosterFields } from '../../../game/roster.ts'
+import { rosterEntry } from '../../../game/roster.ts'
+import { SKIN_NAMES } from '../../../roster/map.ts'
+import { characterOf } from '../../../roster/look.ts'
 
 export type SwatchGroup = 'skin' | 'hairColours' | 'outfitColours'
 /** The look fields an option button can set. */
@@ -132,8 +135,17 @@ export function chooseLook(look: AvatarLook, group: string, value: string, owned
   return { ...next, hair: fit('hair', hairOptions(next.body)) as Look['hair'], outfit: fit('outfit', outfitOptions(next.body)) as Look['outfit'] }
 }
 
-/** "Woman · Braids · Owambe · Ankara · Glasses" */
+/** The words of the character a look wears: its name, its outfit when not the one it is made in, its skin tone step when chosen. Null when none is on. */
+function rosterWords(look: AvatarLook): { name: string; outfit: string; skin: string } | null {
+  const pick = characterOf(look), entry = rosterEntry(pick?.id)
+  if (!pick || !entry) return null
+  return { name: entry.name, outfit: pick.outfit ? `Outfit ${pick.outfit + 1}` : '', skin: pick.skin ? SKIN_NAMES[pick.skin - 1] ?? '' : '' }
+}
+
+/** "Woman · Braids · Owambe · Ankara · Glasses", or for a roster look "Woman · Aso-ebi · Outfit 2" */
 export function lookSummary(look: AvatarLook): string {
+  const named = rosterWords(look)
+  if (named) return [titled(look.body), named.name, named.outfit, named.skin].filter(Boolean).join(' · ')
   const layers = avatarLookFields(look).wearables ?? []
   const head = layers.find(id => AVATAR_WEARABLES[id].slot === 'head')
   const outfit = layers.find(id => AVATAR_WEARABLES[id].slot === 'full')
@@ -144,6 +156,8 @@ export function lookSummary(look: AvatarLook): string {
 }
 /** The preview's text alternative: everything the picture shows, in words. */
 export function lookAlt(look: AvatarLook, name = 'Your character'): string {
+  const named = rosterWords(look)
+  if (named) return `${name}: ${titled(look.body)}, ${named.name}${named.outfit ? `, ${named.outfit.toLowerCase()}` : ''}${named.skin ? `, ${named.skin.toLowerCase()} skin` : ''}. The look is one of the twelve characters.`
   const wearing = worn(look)
   return `${name}: ${titled(look.body)}, ${swatchLabel('skin', look.skin).toLowerCase()} skin, ${titled(look.hair).toLowerCase()} hairstyle in ${swatchLabel('hairColours', look.hairColor).toLowerCase()}, ${titled(look.outfit).toLowerCase()} outfit in ${titled(look.fabric).toLowerCase()} ${swatchLabel('outfitColours', look.outfitColor).toLowerCase()}, ${swatchLabel('outfitColours', look.bottomsColor).toLowerCase()} bottoms${wearing.length ? `, wearing ${wearing.map((id) => titled(id).toLowerCase()).join(', ')}` : ''}${look.wearables?.length ? `, layered with ${avatarLookFields(look).wearables?.map(id => AVATAR_WEARABLES[id].label).join(', ')}` : ''}${look.appearance ? `, ${look.appearance.height} height, ${look.appearance.build} build, ${look.appearance.ageAppearance} appearance` : ''}.`
 }

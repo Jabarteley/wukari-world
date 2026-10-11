@@ -76,6 +76,17 @@ export const SCENE_LIGHTS: Budget = {
   why: 'Every point light is paid for on every fragment.',
 }
 
+export const ROSTER_SCENE_TRIANGLES: Budget = {
+  value: 52_000, unit: 'triangles', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene/roster/budget.ts, src/scene/roster/budget.test.ts, src/scene/roster/crowd-bodies.test.ts',
+  why: "The roster figures of one scene together, the player's own included (hero model about 13,000, crowd model about 3,000), on top of the scene's own geometry: up to 3 heroes with a few crowd figures, or 1 hero and 12 crowd figures.",
+}
+export const ROSTER_HERO_FIGURES: Budget = {
+  value: 4, unit: 'meshes', limit: 'max', status: 'current',
+  enforcedIn: 'src/scene/roster/budget.ts, src/scene/roster/budget.test.ts',
+  why: 'At most four figures with the hero model in one scene; everyone else wears the crowd model.',
+}
+
 // ---- Avatar detail levels (src/scene/characters.ts) ------------------------------------------------------------------------------
 
 export const AVATAR_LOW_TRIANGLES: Budget = {
@@ -220,6 +231,7 @@ export const PHONE_SCENE_DRAW_CALLS: Budget = {
 
 export const BUDGETS = {
   SCENE_CROWD_TRIANGLES, PLAYER_FIGURE_TRIANGLES, SCENE_TRIANGLES, SCENE_DRAW_CALLS, SCENE_MESHES, SCENE_MESHES_WITH_WALLS, SCENE_MESHES_NO_CROWD, SCENE_LIGHTS,
+  ROSTER_SCENE_TRIANGLES, ROSTER_HERO_FIGURES,
   AVATAR_LOW_TRIANGLES, AVATAR_MEDIUM_TRIANGLES_MIN, AVATAR_MEDIUM_TRIANGLES, AVATAR_HIGH_TRIANGLES_MIN, AVATAR_HIGH_TRIANGLES,
   CITY_TRIANGLES, CITY_DRAW_CALLS, HOUSES_DETAIL_TRIANGLES, HOUSES_MAX_DETAILED, HOUSES_DRAW_CALLS,
   STARTUP_RAW, STARTUP_GZIP, LOADING_RAW, LOADING_GZIP, SCENE_HOST_RAW, SCENE_HOST_GZIP,

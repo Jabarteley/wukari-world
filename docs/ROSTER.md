@@ -10,13 +10,17 @@ are on; the models, textures and portraits are fetched later and never sit in th
 | --- | --- |
 | The manifest (ids, names, outfit counts, skin steps, the `on` switch) | `src/game/roster.ts` |
 | Models and textures: `<id>-hero.glb`, `<id>-crowd.glb`, masks, `-o1..o3.jpg`, `.json` | `src/scene/roster/assets/` |
-| Portraits (256 px) and whole-figure thumbnails | `src/scene/roster/portraits/` |
+| Portraits (256 px) and whole-figure thumbnails | `src/roster/portraits/` |
 | The figure loader, the face (moods, blink) and the hero / crowd budget | `src/scene/roster/figure.ts`, `life.ts`, `budget.ts` |
-| Who wears what (old looks, regulars, seeds) | `src/scene/roster/map.ts` |
+| Who wears what (old looks, regulars, seeds), the creator's look changes, the portrait addresses | `src/roster/map.ts`, `look.ts`, `portraits.ts` |
 | Other people's bodies in a scene | `src/scene/roster/crowd-bodies.ts` |
 
 To turn a character on, put its files in the two folders and change its `on` to `1`. To turn it off, change it back: a saved look
 that names it is then read as the nearest character that is on.
+
+Off for now: m3 (the eyes are misplaced) and w5 (the wrapper tears in motion), both being fixed, and m6 and w2 (the eyes are baked a
+second time onto the cap and the gele, so up close the headwear shows eyes and the face shows blank ones; the shipped portraits show
+it too). m3 and w5 are not shipped at all; m6 and w2 are shipped, so turning them on is the one-line change.
 
 ## The saved look
 
@@ -37,11 +41,11 @@ tone becomes the nearest of the six steps. Nothing stored changes until the play
 | man, hoodie | Hoodie and joggers (m4) |
 | man, office | Shirt and trousers (m5) |
 | man, kaftan; agbada | Senator (m2) |
-| man, in ankara / adire, or a fila | Ankara shirt and chinos (m6) |
+| man, in ankara / adire, or a fila | Ankara shirt and chinos (m6) while it is on; else the nearest |
 | woman, casual / jersey | Crop top and jeans (w3) |
 | woman, casual in ankara with braids | Ankara wrapper and blouse (w1) |
 | woman, office | Two-piece (w4) |
-| woman, owambe / gown, or a gele | Aso-ebi (w2) |
+| woman, owambe / gown, or a gele | Aso-ebi (w2) while it is on; else the nearest |
 | woman, kaftan, or a headwrap | Bubu (w6) |
 
 ## Regulars and crowds
@@ -51,6 +55,6 @@ their id, so the same regular always looks the same. A person with no look gets 
 
 ## Budgets
 
-A scene draws at most four hero figures, and its roster figures together stay under 30,000 triangles on top of the scene's own
-(`budget.ts`). The player's own figure is the first claim. A device with four cores or fewer has no hero model and at most four
+A scene draws at most four hero figures, and its roster figures together (the player's own included) stay under 52,000 triangles on
+top of the scene's own geometry, which keeps its 17,000 (`budget.ts`). The player's own figure is the first claim. A device with four cores or fewer has no hero model and at most four
 figures. Anything over the budget, a failed file, or no WebGL2 leaves the procedural figure.

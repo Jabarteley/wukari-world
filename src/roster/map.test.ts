@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { TABLE, pickOf, regularPick, regularSex, seededPick, skinStepOf, SKIN_HEX } from './map.ts';
-import { ROSTER, rosterEntry, rosterOn } from '../../game/roster.ts';
+import { ROSTER, rosterEntry, rosterOn } from '../game/roster.ts';
 
 const base = { fabric: 'plain', skin: 'skin-4', hairColor: 'black', outfitColor: 'blue', bottomsColor: 'navy' };
 const CASES: [string, Record<string, unknown>, string][] = [
@@ -16,13 +16,13 @@ const CASES: [string, Record<string, unknown>, string][] = [
   ['man site work', { body: 'man', outfit: 'site-work', hair: 'low-cut' }, 'm1'],
   ['man kaftan', { body: 'man', outfit: 'kaftan', hair: 'low-cut' }, 'm2'],
   ['man agbada (m3 is off: the next nearest)', { body: 'man', outfit: 'agbada', hair: 'bald', fabric: 'aso-oke' }, 'm2'],
-  ['man in ankara', { body: 'man', outfit: 'casual', hair: 'low-cut', fabric: 'ankara' }, 'm6'],
-  ['man with a fila', { body: 'man', outfit: 'casual', hair: 'low-cut', accessories: ['fila'] }, 'm6'],
+  ['man in ankara (m6 is off: the next nearest)', { body: 'man', outfit: 'casual', hair: 'low-cut', fabric: 'ankara' }, 'm1'],
+  ['man with a fila (m6 is off)', { body: 'man', outfit: 'casual', hair: 'low-cut', accessories: ['fila'] }, 'm1'],
   ['woman casual', { body: 'woman', outfit: 'casual', hair: 'braids' }, 'w3'],
   ['woman casual in ankara with braids', { body: 'woman', outfit: 'casual', hair: 'braids', fabric: 'ankara' }, 'w1'],
   ['woman office', { body: 'woman', outfit: 'office', hair: 'bun' }, 'w4'],
-  ['woman owambe with a gele', { body: 'woman', outfit: 'owambe', hair: 'gele', fabric: 'aso-oke' }, 'w2'],
-  ['woman gown', { body: 'woman', outfit: 'gown', hair: 'long' }, 'w2'],
+  ['woman owambe with a gele (w2 is off: the next nearest)', { body: 'woman', outfit: 'owambe', hair: 'gele', fabric: 'aso-oke' }, 'w1'],
+  ['woman gown (w2 is off)', { body: 'woman', outfit: 'gown', hair: 'long' }, 'w6'],
   ['woman kaftan', { body: 'woman', outfit: 'kaftan', hair: 'classic', accessories: ['headwrap'] }, 'w6'],
   ['woman afro', { body: 'woman', outfit: 'casual', hair: 'afro' }, 'w3'],
   ['legacy keys: gender and hairstyle', { gender: 'female', outfit: 'office', hairstyle: 'lowcut' }, 'w4'],
@@ -45,8 +45,8 @@ test('the old skin tone maps to the nearest of the six steps, only for character
 });
 
 test('a look that names a character wears it (outfit and skin step in range), and one switched off is read by its words', () => {
-  assert.deepEqual(pickOf({ body: 'man', character: 'm6', characterOutfit: 2, characterSkin: 4 }, 'x'), { id: 'm6', outfit: 2, skin: 4 });
-  assert.deepEqual(pickOf({ body: 'man', character: 'm6', characterOutfit: 9, characterSkin: 40 }, 'x'), { id: 'm6', outfit: 0, skin: 0 });
+  assert.deepEqual(pickOf({ body: 'man', character: 'm5', characterOutfit: 2, characterSkin: 4 }, 'x'), { id: 'm5', outfit: 2, skin: 4 });
+  assert.deepEqual(pickOf({ body: 'man', character: 'm5', characterOutfit: 9, characterSkin: 40 }, 'x'), { id: 'm5', outfit: 0, skin: 0 });
   assert.deepEqual(pickOf({ body: 'woman', character: 'w1', characterSkin: 3 }, 'x'), { id: 'w1', outfit: 0, skin: 0 });
   assert.notEqual(pickOf({ body: 'man', character: 'm3', outfit: 'agbada' }, 'x')?.id, 'm3');
   assert.notEqual(pickOf({ body: 'woman', character: 'm1' }, 'x')?.id, 'm1', 'the wrong sex is ignored');

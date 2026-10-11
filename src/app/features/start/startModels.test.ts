@@ -67,14 +67,19 @@ test('where the preview looks: the open tab, then what was changed last, then th
 
 test('the words of a look: summary, text alternative and what the scene is given', () => {
   const look: Look = { ...base, accessories: ['glasses'] }
-  assert.equal(lookSummary(look), 'Woman · Braids · Owambe · Ankara · Glasses')
+  // The figure drawn is a roster character (an old look is read as the nearest one), so the words name it.
+  assert.equal(lookSummary(look), 'Woman · Ankara wrapper and blouse')
+  assert.equal(lookSummary({ ...look, character: 'w6', characterOutfit: 2, characterSkin: 0 }), 'Woman · Bubu · Outfit 3')
+  assert.equal(lookSummary({ ...base, body: 'man', hair: 'low-cut', outfit: 'hoodie', character: 'm4', characterSkin: 5 }), 'Man · Hoodie and joggers · Dark')
   const alt = lookAlt(look, 'Ada')
-  assert.ok(alt.startsWith('Ada: Woman, warm brown skin') || alt.startsWith('Ada: Woman, brown skin'), alt)
-  assert.ok(alt.includes('braids hairstyle in black') && alt.endsWith(', wearing glasses.'))
+  assert.ok(alt.startsWith('Ada: Woman, Ankara wrapper and blouse'), alt)
+  assert.ok(alt.endsWith('one of the twelve characters.'))
   const scene = sceneLook(look)
   assert.match(scene.skin, /^#[0-9a-f]{6}$/)
   assert.equal(scene.face, 'oval')
   assert.equal(scene.expression, 'smile')
+  assert.equal(sceneLook({ ...look, character: 'w3', characterOutfit: 1, characterSkin: 2 }).character, 'w3')
+  assert.equal(sceneLook(look).character, undefined, 'an old look is not given a character on its way to the scene')
 })
 
 test('the same look is the same whatever order the accessories are in and however the optional fields are spelled', () => {

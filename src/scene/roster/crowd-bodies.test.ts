@@ -6,7 +6,7 @@ import type { BodySpec } from './crowd-bodies.ts';
 import type { SkinnedBody } from '../body/skinned.ts';
 import type { Kit } from '../kit.ts';
 import type { Detail } from './budget.ts';
-import { CROWD_TRIANGLES, HERO_TRIANGLES } from './budget.ts';
+import { CROWD_TRIANGLES, HERO_TRIANGLES, TRIANGLES_MAX } from './budget.ts';
 
 class FakeGL2 {}
 const renderer = { getContext: () => new FakeGL2() };
@@ -34,7 +34,7 @@ const spec = (id: string, kind: BodySpec['kind'], extra: Partial<BodySpec> = {})
 test('players get the hero model, regulars the crowd model; the procedural figure stays until the body is in', async () => {
   const loads: Detail[] = [];
   let changes = 0;
-  const bodies = createCrowdBodies(kit, () => { changes += 1; }, { tier: 'full', load: async (_look, _seed, _pick, detail) => { loads.push(detail); return stubBody(detail).body; } });
+  const bodies = createCrowdBodies(kit, () => { changes += 1; }, { tier: 'full', selfFigure: false, load: async (_look, _seed, _pick, detail) => { loads.push(detail); return stubBody(detail).body; } });
   bodies.sync([spec('npc:a', 'npc', { regular: { id: 'a', name: 'Mama Ronke' } }), spec('p1', 'peer', { look: { body: 'man', outfit: 'hoodie' } }), spec('npc:b', 'npc')]);
   assert.equal(bodies.has('p1'), false, 'nothing is shown before a frame has been drawn');
   bodies.start(renderer);
@@ -52,7 +52,7 @@ test('a failed load keeps the procedural figure, gives the budget back and never
   const warn = console.warn; console.warn = () => undefined;
   try {
     let attempts = 0;
-    const bodies = createCrowdBodies(kit, () => undefined, { tier: 'full', load: async () => { attempts += 1; throw new Error('404'); } });
+    const bodies = createCrowdBodies(kit, () => undefined, { tier: 'full', selfFigure: false, load: async () => { attempts += 1; throw new Error('404'); } });
     bodies.sync([spec('p1', 'peer'), spec('npc:a', 'npc')]);
     bodies.start(renderer);
     await flush();
@@ -85,14 +85,15 @@ test('the budget caps the figures: two heroes at most fit with their crowd, the 
   const seen: Detail[] = [];
   const load = async (_l: unknown, _s: unknown, _p: unknown, detail: Detail): Promise<SkinnedBody> => { seen.push(detail); return stubBody(detail).body; };
   const busy = createCrowdBodies(kit, () => undefined, { tier: 'full', load });
+  assert.deepEqual(busy.budget.used, { hero: 1, crowd: 0, triangles: HERO_TRIANGLES }, 'the player\'s own figure has its share before anyone else');
   busy.sync([...Array.from({ length: 4 }, (_, i) => spec(`p${i}`, 'peer')), ...Array.from({ length: 12 }, (_, i) => spec(`npc:${i}`, 'npc'))]);
   busy.start(renderer);
   await flush(); await flush();
   assert.ok(seen.filter((d) => d === 'hero').length <= 4);
-  assert.ok(busy.triangles <= 30_000, `${busy.triangles} triangles`);
-  assert.ok(busy.ready >= 3 && busy.ready < 16);
+  assert.ok(busy.triangles + HERO_TRIANGLES <= TRIANGLES_MAX, `${busy.triangles} triangles besides the player's own`);
+  assert.ok(busy.ready >= 4 && busy.ready < 16);
   seen.length = 0;
-  const weak = createCrowdBodies(kit, () => undefined, { tier: 'lite', load });
+  const weak = createCrowdBodies(kit, () => undefined, { tier: 'lite', selfFigure: false, load });
   weak.sync([spec('p1', 'peer'), ...Array.from({ length: 8 }, (_, i) => spec(`npc:${i}`, 'npc'))]);
   weak.start(renderer);
   await flush(); await flush();
@@ -101,7 +102,7 @@ test('the budget caps the figures: two heroes at most fit with their crowd, the 
 });
 
 test('a person who leaves is freed; one whose look changes is a new body; the same look only re-poses', async () => {
-  const bodies = createCrowdBodies(kit, () => undefined, { tier: 'full', load: async (_l, _s, _p, detail) => stubBody(detail).body });
+  const bodies = createCrowdBodies(kit, () => undefined, { tier: 'full', selfFigure: false, load: async (_l, _s, _p, detail) => stubBody(detail).body });
   const first = spec('p1', 'peer', { look: { body: 'man', outfit: 'office' } });
   bodies.sync([first]); bodies.start(renderer); await flush();
   assert.ok(bodies.has('p1'));

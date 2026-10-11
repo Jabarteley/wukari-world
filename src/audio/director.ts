@@ -265,7 +265,7 @@ export class Director {
       if (!wanted) continue
       const trim = this.trims[chan]
       const kind = this.seen ? this.kind(this.seen) : ''
-      trim.gain.value = chan === 'rain' && !ZINC.has(kind) && INDOORS.has(kind) ? 0.45 : 1
+      trim.gain.setTargetAtTime(chan === 'rain' && !ZINC.has(kind) && INDOORS.has(kind) ? 0.45 : 1, this.ctx.currentTime, 0.3)
       const scape = new Scape(this.synth, wanted[1], trim, wanted[0].endsWith('n'), FADE)
       scape.fill(this.ctx.currentTime + AHEAD)
       this.cur[chan] = { key: wanted[0], scape }

@@ -8,7 +8,7 @@ import { NIGERIA, AROUND, WATER } from './data/nigeria.ts';
 import { decodeTopology, decodeInts, encodeInts, encodeArc, selfIntersections, ringArea2 } from './topo.ts';
 import { createPicker } from './pick.ts';
 import { EXTENT, project, relLon, unproject } from './projection.ts';
-import { FRAME_MARGIN, HYSTERESIS, LEASH_FLOOR, crumbs, focusLevel, leashAt, levelAt, pitchAt, thresholds } from './levels.ts';
+import { FRAME_MARGIN, HYSTERESIS, LEASH_FLOOR, crumbs, focusLevel, levelPath, leashAt, levelAt, pitchAt, thresholds } from './levels.ts';
 import { EDGE_MARGIN, LABEL_CAP, placeLabels, textWidth } from './labels.ts';
 import { DOT_EXACT_PX, MIN_TOUCH_PX, cityHit } from './city-hit.ts';
 import { CITY_DETAIL_DISTANCE_SHARE, nigeriaMarkerDetail } from './atlas-scale.ts';
@@ -21,7 +21,7 @@ import { DENSITY, NAMED_FROM, atlasNamesAt, countChips, densityFor, namedCities,
 import * as THREE from 'three';
 import { createRig } from '../camera.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
-import { ATLAS, ATLAS_LEVELS, ZONES, AFRICA_GROUPS, canEnter, cityAccess, cityEntry, plannedRoutes, regionEntry, regionStatus, stateOfCity, MORE_REGIONS } from '../regions.ts';
+import { ATLAS, ATLAS_LEVELS, countryAtlasLevel, ZONES, AFRICA_GROUPS, canEnter, cityAccess, cityEntry, plannedRoutes, regionEntry, regionStatus, stateOfCity, MORE_REGIONS } from '../regions.ts';
 import { allCityLinks, cityCatalogue, cityCatalogueEntry, cityName, isOpenCityId, loadCityLinks, playableCityIds } from '../../game/cities/registry.ts';
 import type { CountryDetailCatalogue, CountryDetailOutline, CountryDetailService } from './country-detail-types.ts';
 
@@ -234,6 +234,22 @@ test('open versus coming soon is derived from the additive city catalogue', () =
 
 test('levels: thresholds half-way between the fits, hysteresis at each, and a closer level only over its own frame', () => {
   const fits = [750, 220, 30], cuts = thresholds(fits);
+  assert.deepEqual(levelPath(ATLAS_LEVELS, 2), [0, 1, 2]);
+  assert.deepEqual(levelPath(ATLAS_LEVELS, 3), [0, 3]);
+  assert.deepEqual(ATLAS_LEVELS.map(level => level.id), ['world', 'africa', 'nigeria', 'europe', 'asia', 'north-america', 'south-america', 'oceania', 'antarctica']);
+  for (const country of world.features) if (regionStatus('country', country.id) === 'open') assert.ok(ATLAS_LEVELS.some(level => level.id === countryAtlasLevel(country.id)));
+  assert.equal(countryAtlasLevel('gb'), 'europe');
+  assert.equal(countryAtlasLevel('gh'), 'africa');
+  assert.equal(countryAtlasLevel('ng'), 'nigeria');
+  for (const feature of WORLD.features) {
+    const entry = ATLAS_LEVELS.find(level => level.id === countryAtlasLevel(feature.id));
+    assert.ok(entry, `${feature.id} has a registered continent sheet`);
+    if (feature.id !== 'ng') assert.equal(entry.continent, feature.c);
+  }
+  for (const entry of ATLAS_LEVELS.filter(level => level.continent && level.id !== 'africa')) {
+    const points = WORLD.features.filter(feature => feature.c === entry.continent).map(feature => feature.at);
+    assert.deepEqual(entry.frame, [Math.min(...points.map(point => point[0])), Math.min(...points.map(point => point[1])), Math.max(...points.map(point => point[0])), Math.max(...points.map(point => point[1]))]);
+  }
   assert.deepEqual(cuts.map(Math.round), [406, 81]);
   assert.deepEqual([900, 407, 405, 82, 80, 5].map((distance) => levelAt(distance, cuts)), [0, 0, 1, 1, 2, 2]);
   // Just past a threshold nothing changes; clearly past it, it does — in both directions.
@@ -252,6 +268,7 @@ test('levels: thresholds half-way between the fits, hysteresis at each, and a cl
   assert.equal(pitchAt(2000, fits, pitches), 1.5); assert.equal(pitchAt(10, fits, pitches), 1.04); assert.equal(pitchAt(220, fits, pitches), 1.44);
   assert.ok(pitchAt(80, fits, pitches) > 1.04 && pitchAt(80, fits, pitches) < 1.44);
   assert.deepEqual(crumbs(ATLAS_LEVELS, 2, { id: 'lagos', name: 'Lagos' }).map((crumb) => crumb.name), ['World', 'Africa', 'Nigeria', 'Lagos']);
+  assert.deepEqual(crumbs(ATLAS_LEVELS, 3).map(crumb => crumb.name), ['World', 'Europe']);
   assert.deepEqual(crumbs(ATLAS_LEVELS, 0).map((crumb) => [crumb.name, crumb.current]), [['World', true]]);
 });
 
@@ -616,7 +633,11 @@ test('the atlas stays out of the first download, and its one frame loop lives in
   assert.doesNotMatch(main, /^import (?!type ).*(geo\/|world-map)/m); assert.match(main, /import\('\.\.\/\.\.\/world-map\.ts'\)/);
   assert.doesNotMatch(door, /requestAnimationFrame/);
   // The data is reached only through dynamic imports in the registry: one chunk per level.
-  for (const level of ATLAS_LEVELS) assert.match(registry, new RegExp(`data: \\(\\) => import\\('\\./geo/data/${level.id}\\.ts'\\)`));
+  assert.doesNotMatch(registry, /^import (?!type ).*data\/world\.ts/m, 'world polygons remain lazy in the shared registry');
+  for (const level of ATLAS_LEVELS) {
+    if (['world', 'africa', 'nigeria'].includes(level.id)) assert.match(registry, new RegExp(`data: \\(\\) => import\\('\\./geo/data/${level.id}\\.ts'\\)`));
+    else assert.match(registry, new RegExp(`id: '${level.id}'[^\\n]*await import\\('\\./geo/data/world\\.ts'\\)[^\\n]*features: WORLD\\.features\\.filter\\(feature => feature\\.c === '${level.continent}'\\)`), `${level.id} lazily filters the existing world topology`);
+  }
   for (const name of readdirSync(here('./')).filter((item) => item.endsWith('.ts') && !item.endsWith('.test.ts'))) {
     const code = readFileSync(here(`./${name}`), 'utf8'), bare = code.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '');
     assert.doesNotMatch(bare, /^import[^;]*data\/(world|africa|nigeria)\.ts/m, `${name} must not import map data statically`);

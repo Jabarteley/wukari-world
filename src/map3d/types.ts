@@ -145,7 +145,7 @@ export type RegionKind = 'state' | 'country'
 export type ZoneId = 'sw' | 'se' | 'ss' | 'nc' | 'nw' | 'ne'
 export type AfricaGroupId = 'north' | 'west' | 'east' | 'central' | 'south'
 export type ContinentId = 'af' | 'eu' | 'as' | 'na' | 'sa' | 'oc' | 'an'
-export type AtlasLevelId = 'world' | 'africa' | 'nigeria'
+export type AtlasLevelId = 'world' | 'africa' | 'nigeria' | 'europe' | 'asia' | 'north-america' | 'south-america' | 'oceania' | 'antarctica'
 export interface Hub { name: string; lon: number; lat: number }
 export interface RegionEntry {
   status?: RegionStatus

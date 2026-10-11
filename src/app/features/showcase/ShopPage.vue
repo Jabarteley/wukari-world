@@ -17,6 +17,11 @@ const LinkInterstitial = defineAsyncComponent(() => import('../trust/LinkInterst
 const props = defineProps<{ id: string }>()
 const emit = defineEmits<{ back: [] }>()
 const { game, shell } = useApp()
+/** "Step inside": the shop in 3D. Leaving brings the visitor back to this page. */
+function stepInside(): void {
+  shell.close()
+  void import('./room/openRoom.ts').then((room) => room.openShopRoom({ by: 'id', id: props.id }, { back: () => shell.open('showcase', { shop: props.id }) }))
+}
 const shop = ref<ShowcaseView | null>(null)
 const failed = ref('')
 const note = ref('')
@@ -88,6 +93,7 @@ async function report(): Promise<void> {
       <ShopFront :shop="shop" reportable @report="reporting = { photo: $event }" />
       <p v-if="shop.payNotice" class="sp-warn" role="status">{{ shop.payNotice }}. Check it with the seller before you pay.</p>
       <p class="sp-fine">Chat and payment happen outside Allworld, on the seller’s own page. Allworld does not hold your money or take part in the deal.</p>
+      <button type="button" class="ui-button is-primary is-block" data-step-inside @click="stepInside">Step inside</button>
       <button type="button" class="ui-button is-quiet is-block" @click="reporting = {}">Report this shop</button>
       <form v-if="reporting" ref="form" class="sp-report" @submit.prevent="report">
         <fieldset>

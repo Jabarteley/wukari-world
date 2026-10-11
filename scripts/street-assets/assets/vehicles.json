@@ -1,0 +1,539 @@
+{
+ "okada": {
+  "name": "okada",
+  "originalTriangles": 3061,
+  "triangles": 2069,
+  "bodyTriangles": 1949,
+  "size": {
+   "width": 1.14,
+   "length": 2.6,
+   "height": 1.3
+  },
+  "wheelRadius": 0.346,
+  "wheelNodes": [
+   "wheel_f",
+   "wheel_r"
+  ],
+  "empties": [
+   {
+    "name": "seat_driver",
+    "x": 0.0,
+    "y": 0.75,
+    "z": -0.05
+   },
+   {
+    "name": "seat_1",
+    "x": 0.0,
+    "y": 0.78,
+    "z": -0.52
+   },
+   {
+    "name": "light_head_c",
+    "x": 0.0,
+    "y": 0.81,
+    "z": 1.14
+   },
+   {
+    "name": "light_tail_c",
+    "x": 0.0,
+    "y": 0.65,
+    "z": -1.27
+   }
+  ]
+ },
+ "bus": {
+  "name": "bus",
+  "originalTriangles": 3954,
+  "triangles": 1856,
+  "bodyTriangles": 1496,
+  "size": {
+   "width": 3.11,
+   "length": 10.5,
+   "height": 2.47
+  },
+  "wheelRadius": 0.42,
+  "wheelNodes": [
+   "wheel_fl",
+   "wheel_fr",
+   "wheel_ml",
+   "wheel_mr",
+   "wheel_rl",
+   "wheel_rr"
+  ],
+  "empties": [
+   {
+    "name": "seat_driver",
+    "x": 0.78,
+    "y": 1.23,
+    "z": 4.51
+   },
+   {
+    "name": "seat_1",
+    "x": -0.78,
+    "y": 1.11,
+    "z": 2.62
+   },
+   {
+    "name": "seat_2",
+    "x": 0.78,
+    "y": 1.11,
+    "z": 2.62
+   },
+   {
+    "name": "seat_3",
+    "x": -0.78,
+    "y": 1.11,
+    "z": 1.05
+   },
+   {
+    "name": "seat_4",
+    "x": 0.78,
+    "y": 1.11,
+    "z": 1.05
+   },
+   {
+    "name": "seat_5",
+    "x": -0.78,
+    "y": 1.11,
+    "z": -0.52
+   },
+   {
+    "name": "seat_6",
+    "x": 0.78,
+    "y": 1.11,
+    "z": -0.52
+   },
+   {
+    "name": "seat_7",
+    "x": -0.78,
+    "y": 1.11,
+    "z": -2.1
+   },
+   {
+    "name": "seat_8",
+    "x": 0.78,
+    "y": 1.11,
+    "z": -2.1
+   },
+   {
+    "name": "light_head_l",
+    "x": 1.09,
+    "y": 0.49,
+    "z": 5.14
+   },
+   {
+    "name": "light_head_r",
+    "x": -1.09,
+    "y": 0.49,
+    "z": 5.14
+   },
+   {
+    "name": "light_tail_l",
+    "x": 1.09,
+    "y": 0.74,
+    "z": -5.14
+   },
+   {
+    "name": "light_tail_r",
+    "x": -1.09,
+    "y": 0.74,
+    "z": -5.14
+   }
+  ]
+ },
+ "keke": {
+  "name": "keke",
+  "originalTriangles": 2759,
+  "triangles": 1870,
+  "bodyTriangles": 1690,
+  "size": {
+   "width": 1.51,
+   "length": 3.16,
+   "height": 2.05
+  },
+  "wheelRadius": 0.3,
+  "wheelNodes": [
+   "wheel_f",
+   "wheel_rl",
+   "wheel_rr"
+  ],
+  "empties": [
+   {
+    "name": "seat_driver",
+    "x": 0.0,
+    "y": 0.72,
+    "z": 0.79
+   },
+   {
+    "name": "seat_1",
+    "x": -0.3,
+    "y": 0.72,
+    "z": -0.32
+   },
+   {
+    "name": "seat_2",
+    "x": 0.3,
+    "y": 0.72,
+    "z": -0.32
+   },
+   {
+    "name": "light_head_c",
+    "x": 0.0,
+    "y": 0.82,
+    "z": 1.49
+   },
+   {
+    "name": "light_tail_l",
+    "x": 0.45,
+    "y": 0.72,
+    "z": -1.55
+   },
+   {
+    "name": "light_tail_r",
+    "x": -0.45,
+    "y": 0.72,
+    "z": -1.55
+   }
+  ]
+ },
+ "danfo": {
+  "name": "danfo",
+  "originalTriangles": 3109,
+  "triangles": 2451,
+  "bodyTriangles": 2211,
+  "size": {
+   "width": 2.49,
+   "length": 4.94,
+   "height": 2.67
+  },
+  "wheelRadius": 0.331,
+  "wheelNodes": [
+   "wheel_fl",
+   "wheel_fr",
+   "wheel_rl",
+   "wheel_rr"
+  ],
+  "empties": [
+   {
+    "name": "seat_driver",
+    "x": 0.62,
+    "y": 1.2,
+    "z": 1.48
+   },
+   {
+    "name": "seat_1",
+    "x": 0.62,
+    "y": 1.12,
+    "z": 0.49
+   },
+   {
+    "name": "seat_2",
+    "x": -0.62,
+    "y": 1.12,
+    "z": 0.49
+   },
+   {
+    "name": "seat_3",
+    "x": 0.62,
+    "y": 1.12,
+    "z": -0.25
+   },
+   {
+    "name": "seat_4",
+    "x": -0.62,
+    "y": 1.12,
+    "z": -0.25
+   },
+   {
+    "name": "seat_5",
+    "x": 0.62,
+    "y": 1.12,
+    "z": -0.99
+   },
+   {
+    "name": "seat_6",
+    "x": -0.62,
+    "y": 1.12,
+    "z": -0.99
+   },
+   {
+    "name": "seat_7",
+    "x": 0.62,
+    "y": 1.12,
+    "z": -1.73
+   },
+   {
+    "name": "seat_8",
+    "x": -0.62,
+    "y": 1.12,
+    "z": -1.73
+   },
+   {
+    "name": "light_head_l",
+    "x": 0.87,
+    "y": 0.75,
+    "z": 2.42
+   },
+   {
+    "name": "light_head_r",
+    "x": -0.87,
+    "y": 0.75,
+    "z": 2.42
+   },
+   {
+    "name": "light_tail_l",
+    "x": 0.87,
+    "y": 0.8,
+    "z": -2.42
+   },
+   {
+    "name": "light_tail_r",
+    "x": -0.87,
+    "y": 0.8,
+    "z": -2.42
+   }
+  ]
+ },
+ "saloon": {
+  "type": "saloon",
+  "triangles": 221,
+  "size": {
+   "width": 1.85,
+   "length": 4.4,
+   "height": 1.5
+  },
+  "wheelRadius": 0.37,
+  "wheelNodes": [],
+  "seats": 4,
+  "empties": [
+   {
+    "name": "seat_driver",
+    "x": 0.37,
+    "y": 0.9,
+    "z": 0.1
+   },
+   {
+    "name": "seat_1",
+    "x": -0.37,
+    "y": 0.9,
+    "z": 0.1
+   },
+   {
+    "name": "seat_2",
+    "x": 0.37,
+    "y": 0.9,
+    "z": -0.8
+   },
+   {
+    "name": "seat_3",
+    "x": -0.37,
+    "y": 0.9,
+    "z": -0.8
+   },
+   {
+    "name": "light_head_l",
+    "x": 0.61,
+    "y": 0.88,
+    "z": 2.26
+   },
+   {
+    "name": "light_tail_l",
+    "x": 0.62,
+    "y": 0.97,
+    "z": -2.26
+   },
+   {
+    "name": "light_head_r",
+    "x": -0.61,
+    "y": 0.88,
+    "z": 2.26
+   },
+   {
+    "name": "light_tail_r",
+    "x": -0.62,
+    "y": 0.97,
+    "z": -2.26
+   }
+  ]
+ },
+ "suv": {
+  "type": "suv",
+  "triangles": 221,
+  "size": {
+   "width": 1.95,
+   "length": 4.7,
+   "height": 1.9
+  },
+  "wheelRadius": 0.45,
+  "wheelNodes": [],
+  "seats": 5,
+  "empties": [
+   {
+    "name": "seat_driver",
+    "x": 0.44,
+    "y": 1.14,
+    "z": 0.15
+   },
+   {
+    "name": "seat_1",
+    "x": -0.44,
+    "y": 1.14,
+    "z": 0.15
+   },
+   {
+    "name": "seat_2",
+    "x": 0.44,
+    "y": 1.14,
+    "z": -0.75
+   },
+   {
+    "name": "seat_3",
+    "x": -0.44,
+    "y": 1.14,
+    "z": -0.75
+   },
+   {
+    "name": "seat_4",
+    "x": 0.44,
+    "y": 1.14,
+    "z": -1.55
+   },
+   {
+    "name": "light_head_l",
+    "x": 0.65,
+    "y": 1.08,
+    "z": 2.41
+   },
+   {
+    "name": "light_tail_l",
+    "x": 0.68,
+    "y": 1.17,
+    "z": -2.41
+   },
+   {
+    "name": "light_head_r",
+    "x": -0.65,
+    "y": 1.08,
+    "z": 2.41
+   },
+   {
+    "name": "light_tail_r",
+    "x": -0.68,
+    "y": 1.17,
+    "z": -2.41
+   }
+  ]
+ },
+ "pickup": {
+  "type": "pickup",
+  "triangles": 244,
+  "size": {
+   "width": 1.9,
+   "length": 5.2,
+   "height": 1.72
+  },
+  "wheelRadius": 0.45,
+  "wheelNodes": [],
+  "seats": 4,
+  "empties": [
+   {
+    "name": "seat_driver",
+    "x": 0.38,
+    "y": 1.03,
+    "z": 0.5
+   },
+   {
+    "name": "seat_1",
+    "x": -0.38,
+    "y": 1.03,
+    "z": 0.5
+   },
+   {
+    "name": "seat_2",
+    "x": 0.38,
+    "y": 1.03,
+    "z": -0.1
+   },
+   {
+    "name": "seat_3",
+    "x": -0.38,
+    "y": 1.03,
+    "z": -0.1
+   },
+   {
+    "name": "light_head_l",
+    "x": 0.63,
+    "y": 0.93,
+    "z": 2.66
+   },
+   {
+    "name": "light_tail_l",
+    "x": 0.65,
+    "y": 1.02,
+    "z": -2.66
+   },
+   {
+    "name": "light_head_r",
+    "x": -0.63,
+    "y": 0.93,
+    "z": 2.66
+   },
+   {
+    "name": "light_tail_r",
+    "x": -0.65,
+    "y": 1.02,
+    "z": -2.66
+   }
+  ]
+ },
+ "van": {
+  "type": "van",
+  "triangles": 214,
+  "size": {
+   "width": 2.0,
+   "length": 5.0,
+   "height": 2.55
+  },
+  "wheelRadius": 0.42,
+  "wheelNodes": [],
+  "seats": 2,
+  "empties": [
+   {
+    "name": "seat_driver",
+    "x": 0.45,
+    "y": 1.53,
+    "z": 1.0
+   },
+   {
+    "name": "seat_1",
+    "x": -0.45,
+    "y": 1.53,
+    "z": 1.0
+   },
+   {
+    "name": "light_head_l",
+    "x": 0.68,
+    "y": 0.93,
+    "z": 2.56
+   },
+   {
+    "name": "light_tail_l",
+    "x": 0.7,
+    "y": 1.07,
+    "z": -2.56
+   },
+   {
+    "name": "light_head_r",
+    "x": -0.68,
+    "y": 0.93,
+    "z": 2.56
+   },
+   {
+    "name": "light_tail_r",
+    "x": -0.7,
+    "y": 1.07,
+    "z": -2.56
+   }
+  ]
+ }
+}

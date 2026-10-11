@@ -18,9 +18,9 @@ interface Spec {
   width: number; height: number; time: 'day' | 'dusk' | 'night'; base: 'street' | 'plain'; items: Item[];
   cam: { pos: [number, number, number]; look: [number, number, number]; fov?: number };
   labels?: { at: [number, number, number]; text: string; note?: string }[];
-  instanced?: boolean; pr?: number; shadows?: boolean; quad?: { pos: [number, number, number]; look: [number, number, number] }[];
+  instanced?: boolean; pr?: number; shadows?: boolean; lightsOn?: boolean; slotItems?: boolean; quad?: { pos: [number, number, number]; look: [number, number, number] }[];
 }
-interface Model { root: THREE.Object3D; bytes: number; triangles: number; drawCalls: number; texture: number }
+interface Model { root: THREE.Object3D; bytes: number; triangles: number; drawCalls: number; texture: number; size: [number, number, number] }
 
 const canvas = document.getElementById('c') as HTMLCanvasElement;
 const labelBox = document.getElementById('labels') as HTMLDivElement;
@@ -64,7 +64,8 @@ async function load(name: string): Promise<Model> {
   const buf = await (await fetch(`/g/${name}.glb`)).arrayBuffer();
   const gltf = await loader.parseAsync(buf, '');
   gltf.scene.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
-  const made: Model = { root: gltf.scene, bytes: buf.byteLength, ...geometryCount(gltf.scene) };
+  const box = new THREE.Box3().setFromObject(gltf.scene).getSize(new THREE.Vector3());
+  const made: Model = { root: gltf.scene, bytes: buf.byteLength, ...geometryCount(gltf.scene), size: [box.x, box.y, box.z] };
   models.set(name, made);
   return made;
 }
@@ -159,6 +160,7 @@ const nameOf = (it: Item): string => it.file ?? `${it.kind}${it.variant ? '-' + 
 
 async function setup(spec: Spec): Promise<{ items: number }> {
   current = spec;
+  for (const g of (stage.userData['glow'] ?? []) as THREE.Object3D[]) scene.remove(g);
   scene.remove(stage);
   stage.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh && !(m as THREE.InstancedMesh).isInstancedMesh) { /* geometries of old things are rebuilt each time */ m.geometry?.dispose?.(); } if ((o as THREE.InstancedMesh).isInstancedMesh) (o as THREE.InstancedMesh).dispose(); });
   stage = new THREE.Group(); scene.add(stage);
@@ -195,6 +197,18 @@ async function setup(spec: Spec): Promise<{ items: number }> {
     const obj = model.root.clone(true);
     obj.position.set(it.x, 0, it.z); obj.rotation.y = it.ry ?? 0; if (it.s) obj.scale.setScalar(it.s);
     stage.add(obj);
+    if (spec.slotItems) {
+      const colours = ['#e0524a', '#3b82c4', '#e8b23a', '#4caf6a', '#8e63c7', '#e07b39'];
+      let k = 0;
+      obj.traverse((n) => {
+        if (!/^slot_/.test(n.name)) return;
+        const ex = n.userData as { width?: number; height?: number; facing?: number[]; anchor?: string };
+        const w = ex.width ?? 0.4, h = ex.height ?? 0.4, f = ex.facing ?? [0, 0, 1];
+        const box = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.12), new THREE.MeshStandardMaterial({ color: colours[k++ % colours.length]! }));
+        box.position.y = ex.anchor === 'top' ? -h / 2 : h / 2; box.rotation.y = Math.atan2(f[0] ?? 0, f[2] ?? 1); box.castShadow = true;
+        n.add(box);
+      });
+    }
     resolved.push({ it, model, object: obj });
   }
   for (const { model, list } of instanceGroups.values()) {
@@ -207,6 +221,22 @@ async function setup(spec: Spec): Promise<{ items: number }> {
     list.forEach((p, i) => { e.set(0, p.ry, 0); m4.compose(new THREE.Vector3(p.x, 0, p.z), q.setFromEuler(e), new THREE.Vector3(p.s, p.s, p.s)); inst.setMatrixAt(i, m4); });
     inst.castShadow = true; inst.receiveShadow = true; inst.frustumCulled = false;
     stage.add(inst);
+  }
+  if (spec.lightsOn) {
+    stage.updateMatrixWorld(true);
+    const glow = { head: new THREE.MeshBasicMaterial({ color: '#fff3c0' }), tail: new THREE.MeshBasicMaterial({ color: '#ff2a1a' }), lamp: new THREE.MeshBasicMaterial({ color: '#ffe9a8' }), traffic: new THREE.MeshBasicMaterial({ color: '#ffffff' }) };
+    const geo = new THREE.SphereGeometry(0.16, 8, 6);
+    const spots: THREE.Object3D[] = [];
+    stage.traverse((o) => { if (/^light_/.test(o.name)) spots.push(o); });
+    let nLights = 0;
+    for (const o of spots) {
+      const kind = o.name.startsWith('light_head') ? 'head' : o.name.startsWith('light_tail') ? 'tail' : o.name.startsWith('light_lamp') ? 'lamp' : 'traffic';
+      const wp = o.getWorldPosition(new THREE.Vector3());
+      const m = new THREE.Mesh(geo, glow[kind]); m.position.copy(wp); m.scale.setScalar(kind === 'lamp' ? 1.4 : kind === 'traffic' ? 0.7 : 1);
+      if (kind === 'traffic') { const c = o.name.endsWith('red') ? '#ff3020' : o.name.endsWith('amber') ? '#ffb020' : '#30ff60'; m.material = new THREE.MeshBasicMaterial({ color: c }); }
+      scene.add(m); stage.userData['glow'] = (stage.userData['glow'] ?? []).concat(m);
+      if ((kind === 'lamp') && nLights < 6) { const pl = new THREE.PointLight('#ffd890', 40, 16, 1.5); pl.position.copy(wp); scene.add(pl); stage.userData['glow'].push(pl); nLights++; }
+    }
   }
   camera.updateMatrixWorld();
   for (const l of spec.labels ?? []) {
@@ -261,9 +291,9 @@ function measure(frames: number): { msPerFrame: number; fps: number; callsScene:
   return { msPerFrame: +ms.toFixed(2), fps: +(1000 / ms).toFixed(1), callsScene: scenePass.calls, trianglesScene: scenePass.triangles, callsWithShadowPass: withShadow.calls, trianglesWithShadowPass: withShadow.triangles };
 }
 
-async function modelInfo(): Promise<Record<string, { bytes: number; triangles: number; drawCalls: number; texture: number }>> {
-  const out: Record<string, { bytes: number; triangles: number; drawCalls: number; texture: number }> = {};
-  for (const [k, m] of models) out[k] = { bytes: m.bytes, triangles: m.triangles, drawCalls: m.drawCalls, texture: m.texture };
+async function modelInfo(): Promise<Record<string, { bytes: number; triangles: number; drawCalls: number; texture: number; size: number[] }>> {
+  const out: Record<string, { bytes: number; triangles: number; drawCalls: number; texture: number; size: number[] }> = {};
+  for (const [k, m] of models) out[k] = { bytes: m.bytes, triangles: m.triangles, drawCalls: m.drawCalls, texture: m.texture, size: m.size };
   return out;
 }
 

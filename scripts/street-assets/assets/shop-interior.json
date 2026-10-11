@@ -1,0 +1,653 @@
+{
+ "fashion": {
+  "theme": "fashion",
+  "triangles": 217,
+  "room": {
+   "width": 6.0,
+   "depth": 5.0,
+   "height": 3.2,
+   "front": "open at -y (glTF +z)",
+   "origin": "floor centre"
+  },
+  "slots": [
+   {
+    "name": "slot_01",
+    "x": -2.61,
+    "y": 1.0,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_02",
+    "x": -2.61,
+    "y": 1.0,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_03",
+    "x": -2.61,
+    "y": 1.65,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_04",
+    "x": -2.61,
+    "y": 1.65,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_05",
+    "x": 2.61,
+    "y": 1.0,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_06",
+    "x": 2.61,
+    "y": 1.0,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_07",
+    "x": 2.61,
+    "y": 1.65,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_08",
+    "x": 2.61,
+    "y": 1.65,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_09",
+    "x": 0.1,
+    "y": 1.0,
+    "z": -0.55,
+    "width": 0.45,
+    "height": 0.4,
+    "kind": "counter",
+    "anchor": "bottom",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_10",
+    "x": 0.9,
+    "y": 1.0,
+    "z": -0.55,
+    "width": 0.45,
+    "height": 0.4,
+    "kind": "counter",
+    "anchor": "bottom",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_11",
+    "x": -0.8,
+    "y": 1.95,
+    "z": -2.04,
+    "width": 0.5,
+    "height": 0.8,
+    "kind": "rail",
+    "anchor": "top",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_12",
+    "x": 0.8,
+    "y": 1.95,
+    "z": -2.04,
+    "width": 0.5,
+    "height": 0.8,
+    "kind": "rail",
+    "anchor": "top",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   }
+  ],
+  "signArea": {
+   "node": "shop_sign",
+   "width": 3.2,
+   "height": 0.45,
+   "atlasRectPx": [
+    0,
+    256,
+    256,
+    96
+   ],
+   "atlasSize": 1024
+  },
+  "photosArea": {
+   "node": "photos_area",
+   "width": 2.8,
+   "height": 0.75,
+   "atlasRectPx": [
+    256,
+    256,
+    256,
+    160
+   ],
+   "atlasSize": 1024
+  }
+ },
+ "food": {
+  "theme": "food",
+  "triangles": 217,
+  "room": {
+   "width": 6.0,
+   "depth": 5.0,
+   "height": 3.2,
+   "front": "open at -y (glTF +z)",
+   "origin": "floor centre"
+  },
+  "slots": [
+   {
+    "name": "slot_01",
+    "x": -2.61,
+    "y": 1.0,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_02",
+    "x": -2.61,
+    "y": 1.0,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_03",
+    "x": -2.61,
+    "y": 1.65,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_04",
+    "x": -2.61,
+    "y": 1.65,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_05",
+    "x": 2.61,
+    "y": 1.0,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_06",
+    "x": 2.61,
+    "y": 1.0,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_07",
+    "x": 2.61,
+    "y": 1.65,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_08",
+    "x": 2.61,
+    "y": 1.65,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_09",
+    "x": 0.1,
+    "y": 1.0,
+    "z": -0.55,
+    "width": 0.45,
+    "height": 0.4,
+    "kind": "counter",
+    "anchor": "bottom",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_10",
+    "x": 0.9,
+    "y": 1.0,
+    "z": -0.55,
+    "width": 0.45,
+    "height": 0.4,
+    "kind": "counter",
+    "anchor": "bottom",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_11",
+    "x": -0.8,
+    "y": 1.95,
+    "z": -2.04,
+    "width": 0.5,
+    "height": 0.8,
+    "kind": "rail",
+    "anchor": "top",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_12",
+    "x": 0.8,
+    "y": 1.95,
+    "z": -2.04,
+    "width": 0.5,
+    "height": 0.8,
+    "kind": "rail",
+    "anchor": "top",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   }
+  ],
+  "signArea": {
+   "node": "shop_sign",
+   "width": 3.2,
+   "height": 0.45,
+   "atlasRectPx": [
+    0,
+    256,
+    256,
+    96
+   ],
+   "atlasSize": 1024
+  },
+  "photosArea": {
+   "node": "photos_area",
+   "width": 2.8,
+   "height": 0.75,
+   "atlasRectPx": [
+    256,
+    256,
+    256,
+    160
+   ],
+   "atlasSize": 1024
+  }
+ },
+ "electronics": {
+  "theme": "electronics",
+  "triangles": 217,
+  "room": {
+   "width": 6.0,
+   "depth": 5.0,
+   "height": 3.2,
+   "front": "open at -y (glTF +z)",
+   "origin": "floor centre"
+  },
+  "slots": [
+   {
+    "name": "slot_01",
+    "x": -2.61,
+    "y": 1.0,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_02",
+    "x": -2.61,
+    "y": 1.0,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_03",
+    "x": -2.61,
+    "y": 1.65,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_04",
+    "x": -2.61,
+    "y": 1.65,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_05",
+    "x": 2.61,
+    "y": 1.0,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_06",
+    "x": 2.61,
+    "y": 1.0,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_07",
+    "x": 2.61,
+    "y": 1.65,
+    "z": 0.65,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_08",
+    "x": 2.61,
+    "y": 1.65,
+    "z": -1.5,
+    "width": 0.55,
+    "height": 0.4,
+    "kind": "shelf",
+    "anchor": "bottom",
+    "facing_gltf": [
+     -1,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "slot_09",
+    "x": 0.1,
+    "y": 1.0,
+    "z": -0.55,
+    "width": 0.45,
+    "height": 0.4,
+    "kind": "counter",
+    "anchor": "bottom",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_10",
+    "x": 0.9,
+    "y": 1.0,
+    "z": -0.55,
+    "width": 0.45,
+    "height": 0.4,
+    "kind": "counter",
+    "anchor": "bottom",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_11",
+    "x": -0.8,
+    "y": 1.95,
+    "z": -2.04,
+    "width": 0.5,
+    "height": 0.8,
+    "kind": "rail",
+    "anchor": "top",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "name": "slot_12",
+    "x": 0.8,
+    "y": 1.95,
+    "z": -2.04,
+    "width": 0.5,
+    "height": 0.8,
+    "kind": "rail",
+    "anchor": "top",
+    "facing_gltf": [
+     0,
+     0,
+     1
+    ]
+   }
+  ],
+  "signArea": {
+   "node": "shop_sign",
+   "width": 3.2,
+   "height": 0.45,
+   "atlasRectPx": [
+    0,
+    256,
+    256,
+    96
+   ],
+   "atlasSize": 1024
+  },
+  "photosArea": {
+   "node": "photos_area",
+   "width": 2.8,
+   "height": 0.75,
+   "atlasRectPx": [
+    256,
+    256,
+    256,
+    160
+   ],
+   "atlasSize": 1024
+  }
+ }
+}

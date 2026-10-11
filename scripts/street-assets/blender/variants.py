@@ -21,7 +21,7 @@ argv = sys.argv[sys.argv.index("--") + 1:]
 blend, colour_jpg, rules_path, key, out_dir, name = argv[:6]
 rules = json.load(open(rules_path))[key]
 bpy.ops.wm.open_mainfile(filepath=blend)
-low = bpy.data.objects["Low"]
+low = bpy.data.objects.get("Low") or bpy.data.objects[name]
 low.hide_render = False; low.hide_viewport = False
 scene = bpy.context.scene
 img = bpy.data.images.load(colour_jpg)
@@ -119,6 +119,7 @@ for variant, rule_list in rules.items():
         else:
             new = hsv_to_rgb(np.full_like(hue, to["hue"]) if "hue" in to else hue, np.clip(sat * to.get("satMul", 1.0) + to.get("satAdd", 0.0), 0, 1) if "sat" not in to else np.full_like(sat, to["sat"]), np.clip(val * to.get("valMul", 1.0) + to.get("valAdd", 0.0), 0, 1))
         res = res * (1 - m) + new * m
+    res[int(0.95 * h):, int(0.95 * w):] = rgb[int(0.95 * h):, int(0.95 * w):]          # the wheel colour patches stay as they were
     outimg = bpy.data.images.new("v-" + variant, w, h, alpha=False)
     outimg.colorspace_settings.name = "sRGB"
     flat = np.concatenate([res, np.ones((h, w, 1), dtype=np.float32)], axis=2).reshape(-1).astype(np.float32)

@@ -78,3 +78,22 @@ Round one shrank a lumpy generated mesh by edge collapse, and the walls wobbled.
 What worked in the prompts: "single [object], plain flat light-grey background, nothing else, clean low-poly stylised game asset, simple bold shapes, flat colour planes, straight edges"
 for the concept picture (look at it before spending on the 3D step); for a building, "exact side view" or "three-quarter front view" with named parts; for flat texture pictures, "flat orthographic
 front view of a single window ... fills the picture, no perspective".
+
+## Round three: the first street set
+
+Files in `assets/` (157 `.glb`, each under 140 kB, the whole folder about 11 MB); descriptions in `assets/footprints.json` (buildings and props: footprint, door, sign boards, named empties),
+`assets/shop-interior.json` (the shop room and its twelve slots) and `assets/vehicles.json` (sizes, wheel nodes, seat and light anchors).
+
+- Buildings and props: `blender/set_build.py` on the shared atlas `blender/setlib.py` (`build_set.sh`). Clean scripted geometry, one draw call except where a sign board or a traffic lamp is its own node.
+  Generated pictures supply the window, door, roller shutter, church and mosque windows; everything else on the atlas is drawn. `blender/crop_set.py` crops the generated pictures to the tiles.
+- Shop interior: `blender/shop.py`, three themes, each with a generated back-wall picture (fashion, food, electronics).
+- Vehicles: danfo, keke, okada and bus are generated from clean side-view pictures; the generated wheels are cut out and replaced by clean cylinder wheels (one node per wheel, origin on the axle,
+  turn about X) by `blender/vehicle.py` (`build_vehicles3.sh`). Saloon (four colours), SUV, pickup and van are clean profile builds (`blender/car_shell.py`, `build_cars.sh`) because the generator account ran
+  out of credits before they could be converted; their pictures were checked and the same wheel scheme is used. Anchors: `seat_driver`, `seat_1..`, `light_head_l/r/c`, `light_tail_l/r/c`.
+
+### Instancing note
+
+All buildings and props of one palette and level of detail carry the same 1024 px atlas image (512 px for far versions), pixel for pixel: `atlas-cream-near.jpg`, `atlas-mint-near.jpg`, `atlas-sky-near.jpg` and the three far ones.
+The game can therefore keep one texture and one material per palette and merge or instance many different buildings and props into one draw call (a mesh merged per street row, or an instanced mesh per model).
+The colour variants (cream, mint, sky; the kiosk and stall teal, red, blue) differ only in that atlas. The generated vehicles each have their own 512 px texture (256 far); the clean cars share nothing but are 256 px flat colours,
+so the four saloon colours are four tiny textures. Sign boards (`sign_n`), the billboard face and the traffic lamps are separate nodes with their own materials: the game paints them. Spin the wheel nodes about X only.

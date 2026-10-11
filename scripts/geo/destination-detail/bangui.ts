@@ -56,7 +56,6 @@ export const CONFIG: DetailConfig = {
     { key: 'la-tourangelle', ref: 'node/5018538125', kind: 'buka', category: 'food', icon: 'food', line: 'A restaurant; this is a fictional game meal stop.' },
     { key: 'capitol-patisserie', ref: 'node/4486692189', kind: 'buka', category: 'food', icon: 'food', line: 'A café; this is a fictional game meal stop.' },
     { key: 'l-escale', ref: 'node/2381570792', kind: 'buka', category: 'food', icon: 'food', line: 'A restaurant; this is a fictional game meal stop.' },
-    { key: 'b-africa', ref: 'node/8047941186', kind: 'buka', category: 'food', icon: 'food', line: 'A restaurant; this is a fictional game meal stop.' },
   ],
   names: [
     { id: 'point-kilometre-0', ref: 'node/1984367557', kind: 'neighbourhood' },

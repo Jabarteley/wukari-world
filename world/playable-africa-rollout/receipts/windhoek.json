@@ -7,6 +7,7 @@
     "stateId": "na-windhoek",
     "stateName": "Windhoek"
   },
+  "admission": { "registered": true, "accepted": false, "status": "CANDIDATE_ONLY/NOT_ACCEPTED" },
   "inventorySha256": "013fbdfa33d0f55d9b0e14767c1d7aeb1c95e1f795b18f170825b2e571e7f448",
   "inventoryPath": "world/playable-africa-rollout/sources/windhoek.json",
   "selectedPlace": {

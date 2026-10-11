@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "cityId": "maputo",
+  "countryIso2": "MZ",
+  "admission": {
+    "registered": false,
+    "accepted": false,
+    "status": "UNREGISTERED/NOT_ACCEPTED",
+    "note": "Source and generated-asset provenance only; catalogue registration, visual review, and rollout admission remain pending."
+  },
+  "cityPoint": {
+    "osm": "node/27565081",
+    "name": "Maputo",
+    "coordinatesWgs84": [
+      32.56745,
+      -25.966213
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/27565081",
+    "sourceClass": "initial discovery city answer"
+  },
+  "airport": {
+    "id": "2975",
+    "ident": "FQMA",
+    "name": "Maputo Airport",
+    "municipality": "Maputo",
+    "isoCountry": "MZ",
+    "icao": "FQMA",
+    "iata": "MPM",
+    "coordinatesWgs84": [
+      32.572601,
+      -25.920799
+    ],
+    "scheduledService": "yes",
+    "sourceRecordUrl": "https://ourairports.com/airports/FQMA/",
+    "datasetUrl": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+    "datasetSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906",
+    "coordinateEvidence": "Published OurAirports dataset point; not an official ARP or evidence of current operations or schedules.",
+    "selection": "Exact row id 2975 from the pinned full OurAirports CSV; selected because the row identifies Maputo, MZ, FQMA/MPM."
+  },
+  "boxes": {
+    "play": [
+      -26.07,
+      32.44,
+      -25.86,
+      32.69
+    ],
+    "core": [
+      -26.001213,
+      32.52245,
+      -25.931213,
+      32.61245
+    ],
+    "outline": [
+      -26.12,
+      32.39,
+      -25.81,
+      32.74
+    ],
+    "wide": [
+      -26.645,
+      31.865,
+      -25.285,
+      33.265
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "discovery": {
+    "role": "initial Overpass discovery used to select the city point and named place refs; it did not generate the committed geometry assets.",
+    "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+    "answers": {
+      "city": {
+        "querySha256": "a4e814eae2e7fac0542516052e95eebf3681b39360852961b33adc0be044907d",
+        "responseSha256": "4736502a56888c1d00caf724b200bd3d52dfb5e8bef017a473a0ad4d6edf9cfe",
+        "bytes": 4197,
+        "elements": 1,
+        "osmBaseTimestamp": "2026-10-11T01:04:40Z"
+      },
+      "places": {
+        "querySha256": "0335b33b4daa6aa68f503f770f2d7c369bde1a7bb02aac0dcfe97bbaa46dd411",
+        "responseSha256": "1e0a5d83094e86d8295abd7b53061e51eb1c2983f66bf539b4dc17c9da8e8743",
+        "bytes": 136679,
+        "elements": 474,
+        "osmBaseTimestamp": "2026-10-11T01:09:51Z"
+      },
+      "extras": {
+        "querySha256": "6495e7520c6970d63cdc7bc5b9c5e552ce6f27fe281486975240fb32edaaecc3",
+        "responseSha256": "76eac789aea644853e804147b32ce705daefffd20683256d3364fc4ca52a157a",
+        "bytes": 70254,
+        "elements": 193,
+        "osmBaseTimestamp": "2026-10-11T01:16:44Z"
+      }
+    }
+  },
+  "geometryInput": {
+    "role": "Explicit PBF extract used as the geometry and terrain input; it is distinct from the initial Overpass discovery answers above.",
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/mozambique-261009.osm.pbf",
+    "datasetSha256": "1971e76500da2135ec1c4de59257255b8da48c57ddc105f89760e16b2ef0097e",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract.py/v1-maputo-coast",
+    "adapterSha256": "f8a8515eb524201ca8c58e92a16227171daf1d9637f3f9bd900502fbf4cbcbaa",
+    "extracts": [
+      { "file": "extras.json", "sha256": "88c8267f1c7051f7912fdc85544d0f2f42bc48d938795d2e1519cd192683aafe", "bytes": 57198, "elements": 193 },
+      { "file": "landuse.json", "sha256": "dd0e6c37d33e1dbfbaa39bb2bb55dafb456e7f1bb3d8dc0e748978106480daf7", "bytes": 534831, "elements": 581 },
+      { "file": "places.json", "sha256": "af588f152302345d80769555c13a548aba59a01471e8a02c1245a3e938787dad", "bytes": 108821, "elements": 474 },
+      { "file": "roads.json", "sha256": "3d3d1b15c438578529cb2dd4fedadd2a4389c8c766bedb11354b516c1322496e", "bytes": 411570, "elements": 900 },
+      { "file": "water.json", "sha256": "73f63d9e598ba71dabbaf4355c48e385f26432555f269e01ab6625effab81ebe", "bytes": 950263, "elements": 153 }
+    ]
+  },
+  "generatedAssets": {
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "input": "geometryInput.extracts",
+    "facts.ts": { "bytes": 1373, "sha256": "50b3560ffa3c863ba53117cc42d7957414ab6be8ff8b9a85992189d1902fadb2" },
+    "geometry.ts": { "bytes": 34270, "sha256": "e7626b939de3810bc165fed781c0af590e913cbbaae5aa3ab54656a57ab34370" },
+    "places.ts": { "bytes": 8567, "sha256": "e7475c99b5e83a7b46fb96628baae0de81f10657f228372798cd5976b3422a46" },
+    "terrain.ts": { "bytes": 68566, "sha256": "34357d2064ba45e6de0704654a122c146f7127be19dbb317dfd319d58a00fac7" },
+    "index.ts": { "bytes": 258, "sha256": "39349bc5f9fed9a248736e8e867c90681b84b8e8f7b76e4ceef934e19adbaac0" },
+    "content.ts": { "bytes": 205, "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb" },
+    "map.ts": { "bytes": 290, "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984" }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; Geofabrik dataset terms; OurAirports public-domain dataset",
+  "scope": "Generated Maputo detailed-tier source and asset provenance only. Visual, contract, catalogue, hosted, and rollout acceptance remain pending."
+}

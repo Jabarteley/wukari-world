@@ -17,7 +17,7 @@ export const FACTS = {
   "sourceLabel": "OpenStreetMap contributors via the Overpass interpreter and OurAirports dataset",
   "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
-  "bounds": [-24.76, 25.78, -24.52, 26.03],
+  "bounds": [25.78, -24.76, 26.03, -24.52],
   "coverageNote": "Gaborone from the mapped built-up land around the city centre and its surrounding neighbourhoods: a sketch of the built-up extent traced from mapped land use, mapped inland water, main roads and named places from OpenStreetMap. The airport point is a published OurAirports dataset point, not an official aviation reference point or evidence of current schedules. Visitor services and homes are fictional game content set at the real named places.",
   "names": { "area": "Gaborone", "unit": "district", "roadHub": "Gaborone" }
 } satisfies DestinationFacts

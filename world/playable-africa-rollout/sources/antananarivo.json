@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "antananarivo",
+  "countryIso2": "MG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Antananarivo",
+    "coordinatesWgs84": [
+      47.5255809,
+      -18.9100122
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/madagascar-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "FMMI",
+    "name": "Ivato International Airport",
+    "lon": 47.478802,
+    "lat": -18.7969,
+    "sourceUrl": "https://ourairports.com/airports/FMMI/"
+  },
+  "boxes": {
+    "play": [
+      -19.01,
+      47.39,
+      -18.76,
+      47.63
+    ],
+    "core": [
+      -18.945,
+      47.465,
+      -18.875,
+      47.555
+    ],
+    "outline": [
+      -19.06,
+      47.34,
+      -18.71,
+      47.68
+    ],
+    "wide": [
+      -19.585,
+      46.815,
+      -18.185,
+      48.205
+    ],
+    "water": [
+      -19.01,
+      47.39,
+      -18.76,
+      47.63
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/madagascar-261009.osm.pbf",
+    "datasetSha256": "f52ca1cde05cf21b0c9df28a2d7d2b769da1305a85a631e27fd388c8913e26e9",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "10a6d0683ccf3085db1879c01381ef46ad4f90c78db30bb942343e444bc10603",
+        "elements": 1194
+      },
+      {
+        "file": "extras.json",
+        "sha256": "7c987b0826dea6f7fe30d11f0b7dd540cc831d7b51fa09dc670faa17f7f09ec7",
+        "elements": 500
+      },
+      {
+        "file": "water.json",
+        "sha256": "b11e3f08b901901daa48104c095be6ea683341eb1ed478656198b8e1e16ec24e",
+        "elements": 57
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "c1c53bb64440dbb3fed338e5fa23fe1c071c9e26cae5a50066d0477e35b746b4",
+        "elements": 890
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a05848ecabf99ea9d12100b8b39da61a48cfdce6f7ad20506acb0ce6212824f9",
+        "elements": 700
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Soarano",
+      "osm": "node/335803824",
+      "coordinatesWgs84": [
+        47.521035,
+        -18.903163
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Castel",
+      "osm": "node/1107526880",
+      "coordinatesWgs84": [
+        47.579134,
+        -18.79194
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Archives Nationales Malagasy",
+      "osm": "node/6978575117",
+      "coordinatesWgs84": [
+        47.518922,
+        -18.9066
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ONG Mobile Hilfe Madagaskar",
+      "osm": "node/11491535952",
+      "coordinatesWgs84": [
+        47.434479,
+        -18.836915
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parc Adventures - Vidzar",
+      "osm": "node/11844416762",
+      "coordinatesWgs84": [
+        47.594054,
+        -18.966281
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marché Communale Alakamisy",
+      "osm": "way/1280878984",
+      "coordinatesWgs84": [
+        47.423248,
+        -18.939464
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Catholic Cathedral of Andohalo",
+      "osm": "way/511204750",
+      "coordinatesWgs84": [
+        47.530669,
+        -18.917863
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kaominina Ankadikely Ilafy",
+      "osm": "node/5316749261",
+      "coordinatesWgs84": [
+        47.553782,
+        -18.848824
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fokontany Ampanefy",
+      "osm": "node/11849665965",
+      "coordinatesWgs84": [
+        47.508505,
+        -18.974948
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Collège théologique Assemblée de Dieu",
+      "osm": "way/1280560456",
+      "coordinatesWgs84": [
+        47.418784,
+        -18.787741
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Ampasamborona",
+      "osm": "way/49037178",
+      "coordinatesWgs84": [
+        47.487892,
+        -18.854974
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen's Palace",
+      "osm": "way/52638460",
+      "coordinatesWgs84": [
+        47.532155,
+        -18.923609
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre de loisirs Tanamasoanadro",
+      "osm": "node/4391442008",
+      "coordinatesWgs84": [
+        47.506651,
+        -18.787767
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "CHRD Ambohimangakely",
+      "osm": "node/13496096598",
+      "coordinatesWgs84": [
+        47.586417,
+        -18.90041
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kianja Barea Mahamasina",
+      "osm": "relation/16814959",
+      "coordinatesWgs84": [
+        47.525909,
+        -18.919412
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "LANGO Snack",
+      "osm": "node/11888568626",
+      "coordinatesWgs84": [
+        47.475482,
+        -18.936038
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stade Cnaps",
+      "osm": "way/1222327356",
+      "coordinatesWgs84": [
+        47.410501,
+        -18.987289
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Casa Niñas",
+      "osm": "way/1280179586",
+      "coordinatesWgs84": [
+        47.600064,
+        -18.841995
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CSB II Ampangabe",
+      "osm": "node/11840542812",
+      "coordinatesWgs84": [
+        47.400364,
+        -18.865545
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parc Antsaha Soa sy Tsara",
+      "osm": "node/11883673240",
+      "coordinatesWgs84": [
+        47.460896,
+        -18.799843
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maxi Pizza bypass",
+      "osm": "node/11892950099",
+      "coordinatesWgs84": [
+        47.547301,
+        -18.963694
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tsarasaotra Bird Park",
+      "osm": "relation/1167731",
+      "coordinatesWgs84": [
+        47.519022,
+        -18.866454
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Institut Supérieur de Travail Social",
+      "osm": "way/798028413",
+      "coordinatesWgs84": [
+        47.535011,
+        -18.993318
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faculté de Médecine Département Vétérinaire",
+      "osm": "node/623568960",
+      "coordinatesWgs84": [
+        47.560478,
+        -18.879884
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1585,
+      "sha256": "a838ab2885e51207a62bf103eb4cc1e6018b00e60cc61bbd6cadbda775461992"
+    },
+    "geometry.ts": {
+      "bytes": 27770,
+      "sha256": "fd0ffbaa6a3f7354e814a0094d60982459cedd7de198b2e9d2d7306c2cd9c1f7"
+    },
+    "places.ts": {
+      "bytes": 9097,
+      "sha256": "a3e243b40ad7a502eea2d1c20165d42ae28edd549a3b03550a52d55885eeb7a3"
+    },
+    "terrain.ts": {
+      "bytes": 9087,
+      "sha256": "13b454fe11c4eff09c9c09b4d618ae0aeed9cd096243e344317ddc7a1c37a701"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "0bfec5558cf4d540f9d6972eb5b256d4721a75310855e6c73d963122ab2ac173"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "A broad play area from the mapped suburbs west of Ivato through central Antananarivo and south toward Mandroseza: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), water bodies mapped as lakes, marshes and river banks, primary roads and named places from a dated OpenStreetMap country extract. The airport point is from the OurAirports dataset, not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places."
+}

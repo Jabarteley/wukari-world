@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ndjamena",
+  "countryIso2": "TD",
+  "generationIdentity": {
+    "cityId": "ndjamena",
+    "stateId": "td-ndjamena",
+    "stateName": "N'Djamena"
+  },
+  "inventorySha256": "4f8d8d84515afa43761fe207ae31d865f177d28861dadd624ee2186edf99cccf",
+  "inventoryPath": "world/playable-africa-rollout/sources/ndjamena.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "ndjamena-airport",
+    "name": "N'Djamena International Airport",
+    "lon": 15.034,
+    "lat": 12.1337,
+    "sourceUrl": "https://ourairports.com/airports/FTTJ/"
+  },
+  "bounds": [
+    11.93827341006602,
+    14.866392607896925,
+    12.300035189933979,
+    15.234158992103074
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/chad-261009.osm.pbf",
+      "datasetSha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788",
+          "elements": 306
+        },
+        {
+          "file": "extras.json",
+          "sha256": "ef2ce19040f826febd24a832e238e03f68cea231c4177c9672b2f40548ff4d56",
+          "elements": 190
+        },
+        {
+          "file": "water.json",
+          "sha256": "9d7f4e77eddf185764fcf938cb05965c185074c427aeae162d471ce16fb05ae1",
+          "elements": 49
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "7e08d6716253b75993e3fb645c5206c7d29ccd0dfa3b9afac00708a7d93d969b",
+          "elements": 560
+        },
+        {
+          "file": "roads.json",
+          "sha256": "0621b3fd6c52d4b9bb1a1d544fc4a5170de94ad25b10d29250135c280ea05804",
+          "elements": 264
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 113,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 13,
+    "waterPolygons": 50,
+    "reachWaterPolygons": 11
+  },
+  "observed": {
+    "places": 306,
+    "extras": 190,
+    "water": 49,
+    "landuse": 560,
+    "roads": 264
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1186,
+      "sha256": "6a52719834059b12897c6590bbac3837c48cf742d9a5e32e0665c2eee24c579f"
+    },
+    "geometry.ts": {
+      "bytes": 67604,
+      "sha256": "2d4d5253da8da7d0ee34dadb477fb04d5694ed9a9e3479aaab99b37a90adc506"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "b2d4f40e07bef481a28af58d2892762c3490bee09afa8cf85c643bbfb339b745"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/ndjamena.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "antananarivo",
+  "countryIso2": "MG",
+  "generationIdentity": {
+    "cityId": "antananarivo",
+    "stateId": "mg-t",
+    "stateName": "Analamanga"
+  },
+  "inventorySha256": "6e7c6801bf872f6ec3916599e4dbb64608da7d0f3cdd4adbdd6ec614d106d248",
+  "inventoryPath": "world/playable-africa-rollout/sources/antananarivo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "FMMI",
+    "name": "Ivato International Airport",
+    "lon": 47.478802,
+    "lat": -18.7969,
+    "sourceUrl": "https://ourairports.com/airports/FMMI/"
+  },
+  "bounds": [
+    -19.01,
+    47.39,
+    -18.76,
+    47.63
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/madagascar-261009.osm.pbf",
+      "datasetSha256": "f52ca1cde05cf21b0c9df28a2d7d2b769da1305a85a631e27fd388c8913e26e9",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "10a6d0683ccf3085db1879c01381ef46ad4f90c78db30bb942343e444bc10603",
+          "elements": 1194
+        },
+        {
+          "file": "extras.json",
+          "sha256": "7c987b0826dea6f7fe30d11f0b7dd540cc831d7b51fa09dc670faa17f7f09ec7",
+          "elements": 500
+        },
+        {
+          "file": "water.json",
+          "sha256": "b11e3f08b901901daa48104c095be6ea683341eb1ed478656198b8e1e16ec24e",
+          "elements": 57
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "c1c53bb64440dbb3fed338e5fa23fe1c071c9e26cae5a50066d0477e35b746b4",
+          "elements": 890
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a05848ecabf99ea9d12100b8b39da61a48cfdce6f7ad20506acb0ce6212824f9",
+          "elements": 700
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 25,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 3
+  },
+  "observed": {
+    "places": 1194,
+    "extras": 500,
+    "water": 57,
+    "landuse": 890,
+    "roads": 700
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1585,
+      "sha256": "a838ab2885e51207a62bf103eb4cc1e6018b00e60cc61bbd6cadbda775461992"
+    },
+    "geometry.ts": {
+      "bytes": 27770,
+      "sha256": "fd0ffbaa6a3f7354e814a0094d60982459cedd7de198b2e9d2d7306c2cd9c1f7"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "0bfec5558cf4d540f9d6972eb5b256d4721a75310855e6c73d963122ab2ac173"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/antananarivo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bujumbura",
+  "countryIso2": "BI",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bujumbura",
+    "coordinatesWgs84": [
+      29.3675028,
+      -3.3638125
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/burundi-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "bujumbura-airport",
+    "name": "Bujumbura Melchior Ndadaye International Airport",
+    "lon": 29.318501,
+    "lat": -3.32402,
+    "sourceUrl": "https://ourairports.com/airports/HBBA/"
+  },
+  "boxes": {
+    "play": [
+      -3.48,
+      29.24,
+      -3.28,
+      29.48
+    ],
+    "core": [
+      -3.415,
+      29.315,
+      -3.345,
+      29.405
+    ],
+    "outline": [
+      -3.53,
+      29.19,
+      -3.23,
+      29.53
+    ],
+    "wide": [
+      -4.04,
+      28.68,
+      -2.72,
+      30.04
+    ],
+    "water": [
+      -3.48,
+      29.24,
+      -3.28,
+      29.48
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/burundi-261009.osm.pbf",
+    "datasetSha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
+        "elements": 363
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
+        "elements": 54
+      },
+      {
+        "file": "water.json",
+        "sha256": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
+        "elements": 3
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
+        "elements": 143
+      },
+      {
+        "file": "roads.json",
+        "sha256": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4",
+        "elements": 170
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Bujumbura Bus Station (Siyoni)",
+      "osm": "node/1344199948",
+      "coordinatesWgs84": [
+        29.357378,
+        -3.363777
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maman Ngabo",
+      "osm": "node/2188525265",
+      "coordinatesWgs84": [
+        29.269272,
+        -3.338287
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hope Africa University",
+      "osm": "way/1006372439",
+      "coordinatesWgs84": [
+        29.371236,
+        -3.347357
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hopital Militaire De Kamenge",
+      "osm": "way/122956893",
+      "coordinatesWgs84": [
+        29.38696,
+        -3.36972
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jardin Public",
+      "osm": "way/29863497",
+      "coordinatesWgs84": [
+        29.375439,
+        -3.392092
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "KANYOSHA MARKET",
+      "osm": "way/325686721",
+      "coordinatesWgs84": [
+        29.360824,
+        -3.431508
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Regina Mundi Cathedral",
+      "osm": "way/92028037",
+      "coordinatesWgs84": [
+        29.36377,
+        -3.392163
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palais des Congres de Kigobe",
+      "osm": "node/1420210976",
+      "coordinatesWgs84": [
+        29.373003,
+        -3.359829
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Palais présidentiel Ntare Rushatsi",
+      "osm": "node/6862969717",
+      "coordinatesWgs84": [
+        29.412827,
+        -3.334116
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Université des Grands Lacs",
+      "osm": "node/3349652326",
+      "coordinatesWgs84": [
+        29.36623,
+        -3.378887
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stade Intwari",
+      "osm": "way/10630191",
+      "coordinatesWgs84": [
+        29.373686,
+        -3.383364
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée Vivant",
+      "osm": "way/425918156",
+      "coordinatesWgs84": [
+        29.353822,
+        -3.387696
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université du Burundi",
+      "osm": "way/124316871",
+      "coordinatesWgs84": [
+        29.384394,
+        -3.378849
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lake Tanganyika University",
+      "osm": "way/211284748",
+      "coordinatesWgs84": [
+        29.381183,
+        -3.357513
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Izere",
+      "osm": "way/784755483",
+      "coordinatesWgs84": [
+        29.41423,
+        -3.459094
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CDS KOMEZA GUSENGA",
+      "osm": "way/209975003",
+      "coordinatesWgs84": [
+        29.47177,
+        -3.32738
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Geny's Beach",
+      "osm": "node/2174030720",
+      "coordinatesWgs84": [
+        29.314235,
+        -3.350887
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lumière",
+      "osm": "node/2135030807",
+      "coordinatesWgs84": [
+        29.349226,
+        -3.334724
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "STADE OLIMPIQUE",
+      "osm": "way/121963993",
+      "coordinatesWgs84": [
+        29.34726,
+        -3.45262
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pagode Pascasia",
+      "osm": "node/5542555221",
+      "coordinatesWgs84": [
+        29.341723,
+        -3.416738
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Isoko Gatumba",
+      "osm": "node/5648265555",
+      "coordinatesWgs84": [
+        29.250635,
+        -3.333375
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marché Musaga",
+      "osm": "node/1343582898",
+      "coordinatesWgs84": [
+        29.371575,
+        -3.416543
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kwa Johnson Chez Johnson",
+      "osm": "node/4169751891",
+      "coordinatesWgs84": [
+        29.394326,
+        -3.354628
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Place de l'Indépendance",
+      "osm": "way/46692291",
+      "coordinatesWgs84": [
+        29.361488,
+        -3.382521
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1430,
+      "sha256": "e445765731a473c08fd0d36d49aba48ea990f4e8e6de709d6850173b31591866"
+    },
+    "geometry.ts": {
+      "bytes": 27346,
+      "sha256": "ddf655ec29adbb590eb4e231bcfe8ac4f5c1c875de80f35d7821d948c4d2ecd6"
+    },
+    "places.ts": {
+      "bytes": 8919,
+      "sha256": "70c9b2e86e8bd88c95ed4a97d76fe3093f2b542930e3edbcfe7efb124a512da8"
+    },
+    "terrain.ts": {
+      "bytes": 109903,
+      "sha256": "ea9ae4ae3807952155ee420eaa462d6536d4fa9caac6599cc7f589ac760bf7ff"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "08afa98c8a1143eb3b1df2f9aa507d459051496bab7fe0819401aaf3439f770e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Bujumbura: built-up ground traced from mapped land use, actual Lake Tanganyika and river polygons, roads and named places in the dated Burundi OpenStreetMap PBF. Airport coordinates are an OurAirports dataset point, not proof of operations or schedules. Visitor services and homes are fictional game content at real places."
+}

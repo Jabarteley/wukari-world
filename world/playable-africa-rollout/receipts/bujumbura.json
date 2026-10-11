@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bujumbura",
+  "countryIso2": "BI",
+  "generationIdentity": {
+    "cityId": "bujumbura",
+    "stateId": "bi-starter",
+    "stateName": "Bujumbura"
+  },
+  "inventorySha256": "1f97df127c7070de837923325bb048c776c631b55cb3b90f7d3b8ff39320bc4e",
+  "inventoryPath": "world/playable-africa-rollout/sources/bujumbura.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bujumbura-airport",
+    "name": "Bujumbura Melchior Ndadaye International Airport",
+    "lon": 29.318501,
+    "lat": -3.32402,
+    "sourceUrl": "https://ourairports.com/airports/HBBA/"
+  },
+  "bounds": [
+    -3.48,
+    29.24,
+    -3.28,
+    29.48
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/burundi-261009.osm.pbf",
+      "datasetSha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
+          "elements": 363
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
+          "elements": 54
+        },
+        {
+          "file": "water.json",
+          "sha256": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
+          "elements": 3
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
+          "elements": 143
+        },
+        {
+          "file": "roads.json",
+          "sha256": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4",
+          "elements": 170
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 66,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 363,
+    "extras": 54,
+    "water": 3,
+    "landuse": 143,
+    "roads": 170
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1430,
+      "sha256": "e445765731a473c08fd0d36d49aba48ea990f4e8e6de709d6850173b31591866"
+    },
+    "geometry.ts": {
+      "bytes": 27346,
+      "sha256": "ddf655ec29adbb590eb4e231bcfe8ac4f5c1c875de80f35d7821d948c4d2ecd6"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "08afa98c8a1143eb3b1df2f9aa507d459051496bab7fe0819401aaf3439f770e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bujumbura.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ndjamena",
+  "countryIso2": "TD",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "N'Djamena",
+    "coordinatesWgs84": [
+      15.0502758,
+      12.1191543
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/chad-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "ndjamena-airport",
+    "name": "N'Djamena International Airport",
+    "lon": 15.034,
+    "lat": 12.1337,
+    "sourceUrl": "https://ourairports.com/airports/FTTJ/"
+  },
+  "boxes": {
+    "play": [
+      11.93827341006602,
+      14.866392607896925,
+      12.300035189933979,
+      15.234158992103074
+    ],
+    "core": [
+      12.073934077516505,
+      15.00432859336466,
+      12.164374522483495,
+      15.09622300663534
+    ],
+    "outline": [
+      11.88827341006602,
+      14.816392607896924,
+      12.35003518993398,
+      15.284158992103075
+    ],
+    "wide": [
+      11.338273410066021,
+      14.266392607896925,
+      12.900035189933979,
+      15.834158992103074
+    ],
+    "water": [
+      11.93827341006602,
+      14.866392607896925,
+      12.300035189933979,
+      15.234158992103074
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/chad-261009.osm.pbf",
+    "datasetSha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788",
+        "elements": 306
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ef2ce19040f826febd24a832e238e03f68cea231c4177c9672b2f40548ff4d56",
+        "elements": 190
+      },
+      {
+        "file": "water.json",
+        "sha256": "9d7f4e77eddf185764fcf938cb05965c185074c427aeae162d471ce16fb05ae1",
+        "elements": 49
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "7e08d6716253b75993e3fb645c5206c7d29ccd0dfa3b9afac00708a7d93d969b",
+        "elements": 560
+      },
+      {
+        "file": "roads.json",
+        "sha256": "0621b3fd6c52d4b9bb1a1d544fc4a5170de94ad25b10d29250135c280ea05804",
+        "elements": 264
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Gare d'Abeché",
+      "osm": "node/3134981852",
+      "coordinatesWgs84": [
+        15.083175,
+        12.120351
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maquis d'à côté",
+      "osm": "node/3997990146",
+      "coordinatesWgs84": [
+        14.991557,
+        12.126036
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Institut AVD",
+      "osm": "way/438541531",
+      "coordinatesWgs84": [
+        15.131651,
+        12.091248
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre de santé de Ndjamena-Koudou",
+      "osm": "way/679766331",
+      "coordinatesWgs84": [
+        15.030619,
+        12.165863
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jardin Botanique",
+      "osm": "relation/2813502",
+      "coordinatesWgs84": [
+        15.034609,
+        12.122536
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché a betail",
+      "osm": "node/4335243174",
+      "coordinatesWgs84": [
+        15.101429,
+        12.158762
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cathédrale Notre-Dame de N'Djaména",
+      "osm": "way/125359481",
+      "coordinatesWgs84": [
+        15.03729,
+        12.111451
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Commune du 7ème Arrondissement LA MAIRIE",
+      "osm": "node/10826298705",
+      "coordinatesWgs84": [
+        15.109371,
+        12.114336
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre de détention",
+      "osm": "node/4108575389",
+      "coordinatesWgs84": [
+        15.202468,
+        12.008036
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Complexe Abou Hourayra",
+      "osm": "node/11176434237",
+      "coordinatesWgs84": [
+        14.956767,
+        12.124094
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stade Olympique Maréchal Idriss Déby Itno",
+      "osm": "way/1415633322",
+      "coordinatesWgs84": [
+        15.15726,
+        12.052534
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "musée national du Tchad",
+      "osm": "way/199599925",
+      "coordinatesWgs84": [
+        15.077427,
+        12.125407
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc de jeux",
+      "osm": "node/4502748090",
+      "coordinatesWgs84": [
+        15.155116,
+        11.961284
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Khassam",
+      "osm": "node/8652966419",
+      "coordinatesWgs84": [
+        15.071618,
+        12.063217
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ferme David Durant",
+      "osm": "node/7174815188",
+      "coordinatesWgs84": [
+        14.944818,
+        12.177236
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Académie Royale",
+      "osm": "node/12350268725",
+      "coordinatesWgs84": [
+        15.06275,
+        12.093829
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "hopital de toukra",
+      "osm": "node/13208665829",
+      "coordinatesWgs84": [
+        15.1149,
+        12.06661
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "La caravelle",
+      "osm": "node/4146090928",
+      "coordinatesWgs84": [
+        15.091147,
+        12.092141
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre de santé revitalise de Goudji",
+      "osm": "node/11135875905",
+      "coordinatesWgs84": [
+        15.053778,
+        12.143392
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "مسجد Mosquée",
+      "osm": "node/4108051090",
+      "coordinatesWgs84": [
+        15.041212,
+        12.189582
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marché de Wara",
+      "osm": "way/1451346354",
+      "coordinatesWgs84": [
+        15.080704,
+        12.149884
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché a Mil",
+      "osm": "way/156565063",
+      "coordinatesWgs84": [
+        15.055662,
+        12.112806
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "parc du marche Koweïtien",
+      "osm": "way/1066128727",
+      "coordinatesWgs84": [
+        15.055502,
+        12.127484
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université virtuelle du Tchad",
+      "osm": "way/678864284",
+      "coordinatesWgs84": [
+        15.04312,
+        12.132635
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1186,
+      "sha256": "6a52719834059b12897c6590bbac3837c48cf742d9a5e32e0665c2eee24c579f"
+    },
+    "geometry.ts": {
+      "bytes": 67604,
+      "sha256": "2d4d5253da8da7d0ee34dadb477fb04d5694ed9a9e3479aaab99b37a90adc506"
+    },
+    "places.ts": {
+      "bytes": 9086,
+      "sha256": "b503ad0460813bfca208876e10716b987fe335983ed495d0c0787a9523571482"
+    },
+    "terrain.ts": {
+      "bytes": 93582,
+      "sha256": "c08d5a37b48aeaa12e68e25aaa0b1570cb4b0d92c344bec5a1d1618829c10c2d"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "b2d4f40e07bef481a28af58d2892762c3490bee09afa8cf85c643bbfb339b745"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

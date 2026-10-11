@@ -72,4 +72,7 @@ export const GENERATED_CITY_CATALOGUE_ROWS = Object.freeze([
   ["libreville","Libreville","ga-libreville","",9.46,0.39,1,"ga","Gabon"],
   ["mbabane","Mbabane","sz-hhohho","Hhohho",31.144663,-26.325745,1,"sz","Eswatini"],
   ["tunis","Tunis","tn-tunis","",10.179678,36.802778,1,"tn","Tunisia"],
+  ["antananarivo","Antananarivo","mg-t","Analamanga",47.5255809,-18.9100122,1,"mg","Madagascar"],
+  ["bujumbura","Bujumbura","bi-starter","",29.3675028,-3.3638125,1,"bi","Burundi"],
+  ["ndjamena","N'Djamena","td-ndjamena","",15.0502758,12.1191543,1,"td","Chad"],
 ] satisfies readonly CityCatalogueRow[])

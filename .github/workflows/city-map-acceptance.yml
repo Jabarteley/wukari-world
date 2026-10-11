@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  APP_SHA: 4fa9255599e4b9ff357bcfa9985f9ba64fba2bdb
+  APP_SHA: 435dfe81505f2fa7ae9682ba576c6fae35a928c5
   CITY_SET: dar-es-salaam,brazzaville,tunis,libreville,mbabane
 
 jobs:

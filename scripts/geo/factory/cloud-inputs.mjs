@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { readFileSync, writeFileSync } from 'node:fs';
+const table = JSON.parse(readFileSync(process.argv[2], 'utf8'));
+assert.equal(table.targets.length, 1, 'the bounded workflow accepts exactly one target');
+assert.match(table.expectedSourceGitSHA, /^[0-9a-f]{40}$/);
+const target = table.targets[0], job = target.sourceJob;
+assert.equal(job.city, target.id);
+assert.match(job.sourceArtifact, /^[A-Za-z0-9._-]+$/);
+assert.match(job.sourceSha, /^[0-9a-f]{40}$/);
+assert.ok(Number.isSafeInteger(job.sourceRunId) && job.sourceRunId > 0);
+assert.deepEqual(job.extractSha256, target.extractSha256);
+for (const value of [job.datasetSha256, job.adapterSha256, ...Object.values(job.extractSha256)]) assert.match(value, /^[0-9a-f]{64}$/);
+const outputs = { target_id: target.id, app_sha: table.expectedSourceGitSHA, job_json: JSON.stringify(job), source_run: String(job.sourceRunId), source_artifact: job.sourceArtifact };
+if (process.env.GITHUB_OUTPUT) writeFileSync(process.env.GITHUB_OUTPUT, Object.entries(outputs).map(([key, value]) => `${key}=${value}\n`).join(''), { flag: 'a' });
+console.log(JSON.stringify(outputs));

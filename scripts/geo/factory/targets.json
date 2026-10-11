@@ -1,0 +1,86 @@
+{
+  "geometryPreset": "standard",
+  "expectedSourceGitSHA": "d5d85f4422afe11cef10468c255e5cae0084d45b",
+  "targets": [
+    {
+      "id": "tunis",
+      "name": "Tunis",
+      "country": "tn",
+      "facts": {
+        "id": "tunis",
+        "name": "Tunis",
+        "country": {
+          "idISOlower": "tn",
+          "name": "Tunisia"
+        },
+        "state": {
+          "idunique": "tn-tunis",
+          "name": "Tunis"
+        },
+        "timezone": "Africa/Tunis",
+        "centre": {
+          "lon": 10.179678,
+          "lat": 36.802778
+        },
+        "airport": {
+          "id": "tunis-airport",
+          "name": "Tunis Carthage International Airport",
+          "lon": 10.2272,
+          "lat": 36.851002,
+          "sourceUrl": "https://ourairports.com/airports/DTTA/"
+        },
+        "sourceLabel": "OpenStreetMap contributors via Geofabrik PBF and OurAirports dataset",
+        "sourceUrl": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "bounds": [
+          10.08,
+          36.74,
+          10.32,
+          36.93
+        ],
+        "coverageNote": "Tunis: a mapped land-use outline with the Gulf of Tunis coast and Lac de Tunis water, main roads, and named places selected from the dated Tunisia Geofabrik PBF. The arrival airport point is from OurAirports and is not an official aerodrome reference point or evidence of current operations or schedules.",
+        "names": {
+          "area": "Tunis",
+          "unit": "district",
+          "roadHub": "Tunis Station"
+        }
+      },
+      "metadataSources": {
+        "centre": {
+          "record": "reviewed embedded Tunis projection centre",
+          "sourceUrl": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
+          "verification": "primary-coordinate review pending"
+        },
+        "airport": {
+          "record": "tunis-airport",
+          "sourceUrl": "https://ourairports.com/airports/DTTA/",
+          "verification": "primary-coordinate review pending"
+        }
+      },
+      "geometryPreset": "standard",
+      "extractKey": "tunis",
+      "extractSha256": {
+        "places": "49b0eebcf507983645bc81ca80639334c88d959c157133c199605abc2a8a9bf7",
+        "extras": "8e6222e613813d1569ea354eebded7325fe6eef2f5fe8c08c4eedaf685e6131b",
+        "water": "83a217c86a0861d5b431e2dcb918447b1c51dfa9c6a520a55deb1d7cca84b901",
+        "landuse": "1e0515fbdaecdb68d977fcf983ca26e807210c087c7a1a1887fe138b891b88fe",
+        "roads": "bbfb1ac8638f95aa827b42cfeeb1208548ab0c05fcd58d56e247826e1c5f3b12"
+      },
+      "sourceJob": {
+        "city": "tunis",
+        "sourceRunId": 38151098671,
+        "sourceArtifact": "offline-city-layers-tunisia-b1183ba208334bb8535669e823244ea737b3014a",
+        "sourceSha": "b1183ba208334bb8535669e823244ea737b3014a",
+        "datasetSha256": "8bea4a9f2a86cce8ca198d9bad50dd1103239bbcb55669058fa50042c767f51b",
+        "adapterSha256": "9f6099b3b15db3e6b59316914d55b427efd650d802f80ffd32bdf94ba5efd7d3",
+        "extractSha256": {
+          "places": "49b0eebcf507983645bc81ca80639334c88d959c157133c199605abc2a8a9bf7",
+          "extras": "8e6222e613813d1569ea354eebded7325fe6eef2f5fe8c08c4eedaf685e6131b",
+          "water": "83a217c86a0861d5b431e2dcb918447b1c51dfa9c6a520a55deb1d7cca84b901",
+          "landuse": "1e0515fbdaecdb68d977fcf983ca26e807210c087c7a1a1887fe138b891b88fe",
+          "roads": "bbfb1ac8638f95aa827b42cfeeb1208548ab0c05fcd58d56e247826e1c5f3b12"
+        }
+      }
+    }
+  ]
+}

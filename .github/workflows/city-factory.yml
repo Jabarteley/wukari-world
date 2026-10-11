@@ -19,8 +19,9 @@ jobs:
     timeout-minutes: 60
     env:
       APP_SHA: d5d85f4422afe11cef10468c255e5cae0084d45b
-      FACTORY_SANDBOX: ${{ runner.temp }}/city-factory
     steps:
+      - name: Set execution directory
+        run: echo "FACTORY_SANDBOX=$RUNNER_TEMP/city-factory" >> "$GITHUB_ENV"
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false

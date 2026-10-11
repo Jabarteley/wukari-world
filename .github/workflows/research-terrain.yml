@@ -2,7 +2,7 @@ name: Station coastal terrain candidate
 on:
   push:
     branches: ['codex/world-antarctica-20261011']
-    paths: ['scripts/geo/factory/research-terrain.py', '.github/workflows/research-terrain.yml']
+    paths: ['scripts/geo/factory/research-terrain.py', 'src/game/cities/stations/frame.ts', '.github/workflows/research-terrain.yml']
 permissions:
   contents: read
   actions: read
@@ -19,6 +19,7 @@ jobs:
           node-version: 24.19.0
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: python -m pip install shapely==2.1.2 matplotlib==3.10.7
+      - run: npm run typecheck
       - name: Retrieve exact source artifacts
         env:
           GH_TOKEN: ${{ github.token }}
@@ -33,12 +34,25 @@ jobs:
           import {readFileSync,writeFileSync} from 'node:fs';
           import assert from 'node:assert/strict';
           import {polygonProblem,triangulationProblem} from './src/game/cities/africa/polygonCheck.ts';
-          import {toLocal,originAt} from './src/geo/frame.ts';
+          import {createStationFrame} from './src/game/cities/stations/frame.ts';
           const t=JSON.parse(readFileSync('evidence/terrain-candidate.json','utf8'));
-          const origin=originAt(-68.1248,-67.568889);
-          const results=t.land.map(p=>({polygonProblem:polygonProblem(p),triangulationProblem:triangulationProblem(p,q=>toLocal(origin,...q))}));
+          const frame=createStationFrame({lon:-68.1248,lat:-67.568889});
+          const projected=p=>frame.project({lon:p[0],lat:p[1]});
+          const results=t.land.map(p=>({polygonProblem:polygonProblem(p),triangulationProblem:triangulationProblem(p,projected)}));
           assert.ok(results.every(r=>!r.polygonProblem&&!r.triangulationProblem));
-          writeFileSync('evidence/renderer-geometry-check.json',JSON.stringify({sourceGitSHA:process.env.GITHUB_SHA,results,limitation:'Polygon/triangulation only; existing global projection still distorts polar physical scale.'},null,2));
+          const land=t.land.map(p=>p.map(r=>r.map(projected)));
+          let maxRoundTripDegrees=0;
+          for(const polygon of t.land) for(const ring of polygon) for(const point of ring){
+            const back=frame.unproject(projected(point));
+            maxRoundTripDegrees=Math.max(maxRoundTripDegrees,Math.abs(back.lon-point[0]),Math.abs(back.lat-point[1]));
+          }
+          assert.ok(maxRoundTripDegrees<1e-8);
+          const pole=createStationFrame({lon:0,lat:-90});
+          for(const lon of [-180,-90,0,90,180]) assert.ok(Math.hypot(...pole.project({lon,lat:-90}))<1e-8);
+          assert.throws(()=>frame.project({lon:0,lat:0}));
+          assert.throws(()=>frame.unproject([1000,1000]));
+          writeFileSync('evidence/station-local-terrain.json',JSON.stringify({sourceGitSHA:process.env.GITHUB_SHA,sourceSha256:t.sourceSha256,projection:'station-local-spherical-orthographic-v1',origin:{lon:-68.1248,lat:-67.568889},unitsPerKm:frame.unitsPerKm,land,registrationAllowed:false}));
+          writeFileSync('evidence/renderer-geometry-check.json',JSON.stringify({sourceGitSHA:process.env.GITHUB_SHA,results,maxRoundTripDegrees,poleEquivalence:5,domainRejections:2,limitation:'Station-frame terrain proof only; shared runtime projection integration, station scene and browser acceptance pending.'},null,2));
           JS
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

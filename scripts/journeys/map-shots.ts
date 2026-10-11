@@ -171,8 +171,10 @@ async function fly(b: Browser, city: string): Promise<void> {
   if (!(await b.eval<boolean>(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`))) await b.click('[data-atlas-list]').catch(() => undefined);
   await b.waitFor(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`, 15000, 'search');
   await b.type('[data-atlas-search]', t.row);
+  await b.screenshot(join(out, `${city}-00-country-list.png`));
   await b.click('[data-atlas-pick]', t.row);
   await b.waitFor(`document.querySelector('[data-atlas-go="${city}:air"]')`, 30000, 'flight line');
+  await b.screenshot(join(out, `${city}-00-flight.png`));
   await b.click(`[data-atlas-go="${city}:air"]`);
   if (await b.waitFor<string>(`document.querySelector('[data-atlas-sure]') ? 'ask' : ''`, 4000, 'confirm').catch(() => '')) await b.click('[data-atlas-sure]');
   await until(async () => {
@@ -312,7 +314,16 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   await click3(b, 'fit', 1); await sleep(1500);
   if (short.has(prefix) && !opts.phone) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
   await shot(opts.phone ? '04-whole-city' : '02-whole-city');
-  if (opts.phone) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
+  if (opts.phone) {
+    for (let step = 0; step < 10; step++) {
+      await b.send('Input.dispatchMouseEvent', { type: 'mouseWheel', x: b.viewport.width * 0.55, y: b.viewport.height * 0.4, deltaX: 0, deltaY: 240 });
+      await sleep(900);
+      must(await b.eval<boolean>(shownNow('.map-handle')), `${prefix}: city map left during phone limits capture`);
+    }
+    await shot('09-limits'); await auditLabels(b, `${prefix}-09-limits`);
+    await click3(b, 'fit', 1); await sleep(1000);
+    await simpleMap(b, shot, '08-simple-map', prefix); return;
+  }
   await click3(b, 'in', 3); await sleep(1800);
   await shot('03-zoom-centre');
   await click3(b, 'in', 2); await sleep(1800);

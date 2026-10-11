@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  APP_SHA: dead3d477e6cc182e175d035d4ea3cd05532089c
+  APP_SHA: 1a50116072efdfbf31c8721fd3941b4afdbcb391
 
 jobs:
   gates:

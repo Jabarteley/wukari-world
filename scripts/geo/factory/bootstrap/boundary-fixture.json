@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "TD",
+  "datasetSha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+  "checks": [
+    {
+      "ref": "way/415082224",
+      "point": [
+        14.990924,
+        12.0867505
+      ],
+      "expected": "outside",
+      "sourceLayer": "places",
+      "layerSha256": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788"
+    },
+    {
+      "ref": "way/415254562",
+      "point": [
+        15.037019449999999,
+        12.0544476
+      ],
+      "expected": "outside",
+      "sourceLayer": "places",
+      "layerSha256": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788"
+    },
+    {
+      "ref": "way/415254566",
+      "point": [
+        15.0506298,
+        12.063435
+      ],
+      "expected": "outside",
+      "sourceLayer": "places",
+      "layerSha256": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788"
+    },
+    {
+      "ref": "way/399898040",
+      "point": [
+        15.0337391,
+        12.0798247
+      ],
+      "expected": "outside",
+      "sourceLayer": "extras",
+      "layerSha256": "ef2ce19040f826febd24a832e238e03f68cea231c4177c9672b2f40548ff4d56"
+    },
+    {
+      "ref": "centre",
+      "point": [
+        15.0502758,
+        12.1191543
+      ],
+      "expected": "inside"
+    },
+    {
+      "ref": "airport",
+      "point": [
+        15.034,
+        12.1337
+      ],
+      "expected": "inside"
+    }
+  ]
+}

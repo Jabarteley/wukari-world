@@ -1,0 +1,103 @@
+name: One-table city factory
+
+on:
+  push:
+    branches: ['codex/world-oceania-20261011']
+    paths: ['scripts/geo/factory/oceania-factory-targets.json']
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: city-factory-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      APP_SHA: 7a57e756a10b35a0eec9ec5928f083580fb9e7a9
+    steps:
+      - name: Set execution directory
+        run: |
+          mkdir -p "$RUNNER_TEMP/city-factory"
+          echo "FACTORY_SANDBOX=$RUNNER_TEMP/city-factory" >> "$GITHUB_ENV"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - id: input
+        name: Validate bounded target table and source pins
+        run: node scripts/geo/factory/cloud-inputs.mjs scripts/geo/factory/oceania-factory-targets.json
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 7a57e756a10b35a0eec9ec5928f083580fb9e7a9
+          path: baseline
+          persist-credentials: false
+      - name: Verify producers and download unique pinned artifacts
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "${{ steps.input.outputs.app_sha }}" = "$APP_SHA"
+          test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          node scripts/geo/factory/cloud-sources.mjs \
+            --table scripts/geo/factory/oceania-factory-targets.json \
+            --helper scripts/geo/city-generation.mjs \
+            --download-root "$FACTORY_SANDBOX/downloads" \
+            --extract-root "$FACTORY_SANDBOX/extracts" \
+            --boundary-root "$FACTORY_SANDBOX/boundaries" \
+            --outdir "$FACTORY_SANDBOX/provenance" \
+            --sandbox-root "$FACTORY_SANDBOX"
+      - name: Prepare separate disposable app
+        run: |
+          set -euo pipefail
+          git clone --shared baseline "$FACTORY_SANDBOX/app"
+          git -C "$FACTORY_SANDBOX/app" checkout --detach "$APP_SHA"
+          printf '%s\n' '{"disposable":true}' > "$FACTORY_SANDBOX/app/.factory-disposable.json"
+          npm ci --prefix "$FACTORY_SANDBOX/app" --ignore-scripts --no-audit --no-fund
+          ln -s "$FACTORY_SANDBOX/app/node_modules" baseline/node_modules
+      - name: Install Linux SVG renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y librsvg2-bin
+      - name: Execute bounded factory candidate
+        run: |
+          set -euo pipefail
+          node --experimental-strip-types scripts/geo/factory/runner.mjs \
+            --table scripts/geo/factory/oceania-factory-targets.json \
+            --source "$GITHUB_WORKSPACE/baseline" \
+            --extract-root "$FACTORY_SANDBOX/extracts" \
+            --boundary-root "$FACTORY_SANDBOX/boundaries" \
+            --proof-helper "$GITHUB_WORKSPACE/scripts/geo/city-generation-proof.mjs" \
+            --receipt-helper "$GITHUB_WORKSPACE/scripts/geo/factory/integrate-city-receipts.mjs" \
+            --helper-root "$GITHUB_WORKSPACE" \
+            --workspace "$FACTORY_SANDBOX/app" \
+            --sandbox-root "$FACTORY_SANDBOX" \
+            --outdir "$FACTORY_SANDBOX/evidence" \
+            --execute 2>&1 | tee "$FACTORY_SANDBOX/runner.log"
+      - name: Collect generated source and diff for all targets
+        if: always()
+        run: |
+          node scripts/geo/factory/cloud-sources.mjs \
+            --table scripts/geo/factory/oceania-factory-targets.json \
+            --collect \
+            --workspace "$FACTORY_SANDBOX/app" \
+            --outdir "$FACTORY_SANDBOX/delivery" \
+            --sandbox-root "$FACTORY_SANDBOX"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: city-factory-${{ steps.input.outputs.target_count }}targets-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/city-factory/evidence
+            ${{ runner.temp }}/city-factory/provenance
+            ${{ runner.temp }}/city-factory/delivery
+            ${{ runner.temp }}/city-factory/runner.log
+          if-no-files-found: error

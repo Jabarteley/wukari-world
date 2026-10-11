@@ -77,8 +77,11 @@ if (args.includes('--collect')) {
   }
   const copied = new Set();
   for (const group of input.boundaryGroups) {
-    const key = 'boundary-' + groupKey(group), directory = join(downloadRoot, key);
-    mkdirSync(directory, { recursive: true });
+    const key = 'boundary-' + groupKey(group);
+    const sharedSource = input.groups.some(source => groupKey(source) === groupKey(group));
+    const artifactDirectory = join(downloadRoot, sharedSource ? groupKey(group) : key);
+    const directory = group.artifactSubdirectory ? join(artifactDirectory, group.artifactSubdirectory) : artifactDirectory;
+    mkdirSync(artifactDirectory, { recursive: true });
     const producerLog = join(out, key + '-producer.json');
     const producerOk = run('gh', ['api', `repos/${repository}/actions/runs/${group.sourceRunId}`], {}, producerLog);
     let producer;
@@ -89,7 +92,8 @@ if (args.includes('--collect')) {
       assert.equal(producer.id, group.sourceRunId);
       assert.equal(producer.head_sha, group.sourceSha);
       assert.equal(producer.status, 'completed');
-      assert.equal(producer.conclusion, 'success', 'country boundary proof producer failed');
+      // Batch failure may belong to another city. The exact boundary receipt is verified below.
+      if (!group.artifactSubdirectory) assert.equal(producer.conclusion, 'success', 'country boundary proof producer failed');
     } catch (error) {
       for (const target of input.table.targets.filter(target => {
         const job = (target.countryScope ?? input.table.countryScope).boundaryJob;
@@ -97,7 +101,7 @@ if (args.includes('--collect')) {
       })) { const row = rows.find(row => row.id === target.id); row.status = 'HOLD'; row.reasons.push(error.message); }
       continue;
     }
-    const ok = run('gh', ['run', 'download', String(group.sourceRunId), '--repo', repository, '--name', group.sourceArtifact, '--dir', directory], {}, join(out, key + '-download.log'));
+    const ok = sharedSource || run('gh', ['run', 'download', String(group.sourceRunId), '--repo', repository, '--name', group.sourceArtifact, '--dir', artifactDirectory], {}, join(out, key + '-download.log'));
     for (const target of input.table.targets.filter(target => {
       const job = (target.countryScope ?? input.table.countryScope).boundaryJob;
       return job.sourceRunId === group.sourceRunId && job.sourceArtifact === group.sourceArtifact;

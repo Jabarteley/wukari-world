@@ -3,7 +3,7 @@ name: Oceania pinned country source batches
 on:
   push:
     branches: ['codex/world-oceania-20261011']
-    paths: ['scripts/geo/factory/oceania-*.json', 'scripts/geo/factory/bootstrap/**', '.github/workflows/city-source-bootstrap.yml']
+    paths: ['scripts/geo/factory/oceania-au.json', 'scripts/geo/factory/oceania-nz.json']
 
 permissions:
   contents: read

@@ -111,8 +111,8 @@ export interface AtlasOptions {
   onRepay?: () => Promise<unknown> | void;
   /** "What you can do now": where a player who cannot cover the debt is sent. */
   onHelp?: () => void;
-  /** "Settle in now" on the travel card of a life that has not settled in: opens the settle-in flow. */
-  onSettle?: () => void;
+  /** "Settle in now" on the travel card of a life that has not settled in: opens the settle-in flow; the city is the card's. */
+  onSettle?: (city?: string) => void;
   /** The cash the player has in hand, or null when it is not known: the travel card says what a fare leaves short. */
   wallet?: () => number | null;
   held?: () => string[];
@@ -1050,7 +1050,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
         ? `<div class="atlas-way-ask" role="group" aria-label="Confirm the ride on credit"><p>${naira(owed.fare)} is advanced for the ticket and you owe it: it comes out of what you earn. No skipping the trip.</p><div><button type="button" class="atlas-go is-small" data-atlas-credit="${esc(owed.to)}:${esc(owed.mode)}" data-atlas-sure>Ride home on credit</button><button type="button" class="atlas-chip" data-atlas-cancel>Not now</button></div></div>`
         : `<button type="button" class="atlas-way" data-atlas-credit="${esc(owed.to)}:${esc(owed.mode)}"><span class="atlas-way-mode" aria-hidden="true">${ICON(GLYPH.bus)}</span><b>Ride home on credit</b><span>${naira(owed.fare)} owed</span></button>`}</li>` : '';
     const owing = debt(), debtRow = debtHtml(owing, cash);
-    const travelCard = ways.length ? `<section class="atlas-travel" aria-label="Travel to ${esc(info.city!.name)}"><h3>Go to ${esc(info.city!.name)}</h3>${debtRow}${shared && !owing ? `<p class="atlas-way-why" role="${settle ? 'alert' : 'status'}">${esc(shared)}</p>${settle ? '<button type="button" class="atlas-go is-small" data-atlas-settle>Settle in now</button>' : ''}` : ''}<ul>${ways.map(wayRow).join('')}${creditRow}</ul></section>`
+    const travelCard = ways.length ? `<section class="atlas-travel" aria-label="Travel to ${esc(info.city!.name)}"><h3>Go to ${esc(info.city!.name)}</h3>${debtRow}${shared && !owing ? `<p class="atlas-way-why" role="${settle ? 'alert' : 'status'}">${esc(shared)}</p>${settle ? '<button type="button" class="atlas-go is-small" data-atlas-settle="${esc(info.city!.id)}">Settle in now</button>' : ''}` : ''}<ul>${ways.map(wayRow).join('')}${creditRow}</ul></section>`
       : choosing ? `<p class="atlas-travel atlas-way-why">${esc(info.name)} has ${openHere.length} open cities. Choose one to go there.</p>` : '';
     const more = Boolean(overviewCity || info.preview || info.routes.length || info.soon.length || info.planned || info.wait || guide?.length);
     ui.sheet.className = `atlas-sheet is-${info.tone}${sheetOpen ? ' is-expanded' : ''}`;
@@ -1406,7 +1406,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     else if (go) { const [to, mode] = go.dataset.atlasTravel!.split(':'); onTravel(to!, mode!); }
     else if (repay) { void Promise.resolve(onRepay()).then(drawSheet, drawSheet); }
     else if (help) onHelp();
-    else if (settleNow) onSettle();
+    else if (settleNow) onSettle(settleNow.dataset.atlasSettle || undefined);
     else if (onCredit) {
       const [to, mode] = onCredit.dataset.atlasCredit!.split(':');
       if (!('atlasSure' in onCredit.dataset)) { creditAsk = true; drawSheet(); ui.sheet!.querySelector<HTMLElement>('[data-atlas-sure]')?.focus({ preventScroll: true }); }

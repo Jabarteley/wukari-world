@@ -757,9 +757,15 @@ test('Combined game on the Worker: quick start, settle in with a plot, a mission
   const { MISSION_REWARDS } = await import('../src/game/content/missions.ts');
   const { NPCS } = await import('../src/game/cities/lagos/regulars.ts');
   const { joinIdFrom, linkParts } = await import('../src/quick-start/model.ts');
+  const { where } = await import('../src/game/routines/resolve.ts');
+  const { weatherAt } = await import('../src/game/systems/health.ts');
   const now = Date.now(), daytime = new Date(now);
-  daytime.setUTCHours(11, 0, 0, 0); // Noon in Lagos: the park regular used below is present.
-  const f = await combined(t, { clockShiftMs: daytime.getTime() - now, bindings: { ...layoutBindings(), BUILD_ID: 'local-conformance', PUBLIC_ORIGIN: 'https://play.example' } });
+  daytime.setUTCHours(11, 0, 0, 0); // Noon in Lagos.
+  // The park regular used below keeps days off and stays away in the rain: take the first noon he is there.
+  const regular = Object.values(NPCS).find(npc => npc.venue === 'park')!;
+  let noon = daytime.getTime();
+  for (let day = 0; day < 14 && !where(regular, noon, CITY, { raining: weatherAt(noon, CITY).raining }).here; day++) noon += 86400000;
+  const f = await combined(t, { clockShiftMs: noon - now, bindings: { ...layoutBindings(), BUILD_ID: 'local-conformance', PUBLIC_ORIGIN: 'https://play.example' } });
   const LGA = 'ikeja', TABLE = 'buka-corner', ORIGIN = 'https://play.example';
 
   // 1. landing → Play: a guest in the park, with no missions, no house, in no directory.

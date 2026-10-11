@@ -55,6 +55,17 @@ test('a refusal needs settling by its code, not its words', async () => {
   assert.equal(needsSettling('onboarding_required', { guest: false, required: false }), false)
   assert.equal(needsSettling('insufficient_funds', guestView), false)
   assert.equal(needsSettling(undefined, guestView), false)
+  // The answer follows the life now: a settled life never needs settling, whatever the last refusal said.
+  const settledView = { guest: false, required: false }
+  for (const code of ['settle_required', 'onboarding_required', 'plot_required']) assert.equal(needsSettling(code, settledView), false, code)
+})
+
+test('a refusal that outlives the settling draws no notice once the life has settled', async () => {
+  const code = 'settle_required', message = 'Settle in to get your home.'
+  await withState(guest, async () => assert.match(text(await render(NOTICE, { code, message })), /Settle in now/))
+  await withState(settled, async () => assert.equal(text(await render(NOTICE, { code, message })), ''))
+  const source = await (await import('node:fs/promises')).readFile(`${root}src/app/features/world/LgaCard.vue`, 'utf8')
+  assert.match(source, /isSettleCode\(ui.code\) && !settleRefused.value/, 'the card hides a settle note that no longer applies')
 })
 
 test('the notice carries the button for a settle refusal and draws nothing for any other', async () => {
@@ -124,6 +135,21 @@ test('pressing the button opens the settle-in panel, and closing it brings the s
   fake.sheet.value = null
   model.returnFromSettling(fake as never)
   assert.equal(fake.sheet.value, sheet)
+  // From the map's travel card there is no sheet: the card's own way back is taken once, and not over a sheet.
+  let back = 0
+  fake.sheet.value = null
+  model.startSettling(fake as never, undefined, () => { back += 1 })
+  fake.sheet.value = null
+  model.returnFromSettling(fake as never)
+  model.returnFromSettling(fake as never)
+  assert.equal(back, 1)
+  model.startSettling(fake as never, undefined, () => { back += 1 })
+  model.returnFromSettling(fake as never)
+  assert.equal(back, 1, 'a sheet that is open is not covered')
+  fake.sheet.value = sheet
+  model.startSettling(fake as never)
+  fake.sheet.value = null
+  model.returnFromSettling(fake as never)
   // Nothing comes back twice, nor over something else that opened in between.
   fake.sheet.value = null
   model.returnFromSettling(fake as never)

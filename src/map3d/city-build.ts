@@ -365,9 +365,11 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   const edge = pack.context?.rect;
   const [bx0, bx1, bz0, bz1] = edge ? [Math.min(minX, edge.minX), Math.max(maxX, edge.maxX), Math.min(minZ, edge.minZ), Math.max(seaZ, edge.maxZ)] : [minX, maxX, minZ, seaZ];
   const width = bx1 - bx0, depth = bz1 - bz0, midX = (bx0 + bx1) / 2, midZ = (bz0 + bz1) / 2;
-  const board = new THREE.Mesh(new THREE.BoxGeometry(width + 2, 3, depth + 2), materials.board);
-  board.position.set(midX, WATER_Y - 1.56, midZ);
-  count(add(board, 'board'));
+  if (!pack.surround) {
+    const board = new THREE.Mesh(new THREE.BoxGeometry(width + 2, 3, depth + 2), materials.board);
+    board.position.set(midX, WATER_Y - 1.56, midZ);
+    count(add(board, 'board'));
+  }
   const water = new THREE.Mesh(new THREE.PlaneGeometry(width, depth), materials.water);
   materials.water.map!.repeat.set(width / WATER_TILE, depth / WATER_TILE);
   if (pack.inland) { materials.water.map = null; materials.water.color.set(pack.surround ?? '#bcd596'); materials.water.roughness = 1; materials.water.metalness = 0; }

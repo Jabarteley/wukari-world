@@ -81,6 +81,7 @@ test('Worker: a showcase shop from sign-in to approval, the contact release, a f
       if (request.url.split('?')[0] === TOKEN_KEYS_URL) return new Response(JSON.stringify({ keys: [key.jwk] }), { status: 200, headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=3600' } })
       return new Response('{}', { status: 200, headers: { 'content-type': 'application/json' } })
     },
+    assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
   }
   let now = JOURNEY_TIME
   const create = (): WorkerHost => new Miniflare({ ...convertV4MiniflareOptions({ ...options, script: template.replace(seed, String(now)) }), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} })

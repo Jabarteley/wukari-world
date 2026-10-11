@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * A one-minute check of a running Allworld, for the person shipping a release.
+ * A release check of a running Allworld, for the person shipping a release.
  *
  *   node --experimental-strip-types scripts/smoke.ts [origin]        (default http://127.0.0.1:5173)
  *   npm run smoke -- https://example.org
@@ -12,10 +12,12 @@
  *      with the right content type
  *   3. a guest session is made, its life loads, and the world pulse answers with `today` present and a world total at
  *      least as large as every city's count, with at least one city counted
- *   4. a socket opens, is answered, and sends the pulse counts frame
- *   5. one harmless action (choosing the spot the character already stands at) is accepted, and its repeated id answers
+ *   4. every open city's life route answers for a fresh guest, making the server load every immutable city payload
+ *   5. a socket opens, is answered, sends the pulse counts frame, and starts a private game of Weave against a bot,
+ *      making the server load and unpack the immutable dictionary
+ *   6. one harmless action (choosing the spot the character already stands at) is accepted, and its repeated id answers
  *      as a duplicate
- *   6. the chunks of every open city (its rules or content, and its map) are fetched (built page only; the dev server has no such files)
+ *   7. the chunks of every open city (its rules or content, and its map) are fetched (built page only; the dev server has no such files)
  *
  * It prints one line per check and a short PASS summary, or one FAIL line and a non-zero exit code at the first failure.
  * Run against a built app (npm start, npm run start:worker) or a deployed origin. Against `npm run dev` the page is Vite's:
@@ -37,6 +39,7 @@ class Failure extends Error {}
 const fail = (message: string): never => { throw new Failure(message); };
 const pass = (what: string, note = ''): void => { checks++; console.log(`ok    ${what}${note ? `  ${note}` : ''}`); };
 const messageOf = (error: unknown): string => error instanceof Error ? error.message : String(error);
+const pause = (ms: number): Promise<void> => new Promise(resolve => setTimeout(resolve, ms));
 
 /** One request, counted; a refused or dropped connection is a failure with the address in it. */
 async function get(path: string, init: RequestInit = {}): Promise<Response> {
@@ -52,6 +55,24 @@ async function json<T>(path: string, body?: unknown): Promise<{ status: number; 
   const type = response.headers.get('content-type') ?? '';
   if (!type.startsWith('application/json')) fail(`${path}: answered ${response.status} with content type "${type}", not JSON`);
   return { status: response.status, body: await response.json() as T };
+}
+
+async function createGuest(name: string): Promise<{ cookie: string; session: { id: string; name: string } }> {
+  requests++;
+  const created = await fetch(new URL('/api/session', `${origin}/`), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) });
+  if (created.status !== 200) fail(`POST /api/session answered ${created.status} ${await created.text()}`);
+  const nextCookie = (created.headers.get('set-cookie') ?? '').split(';')[0] ?? '';
+  if (!nextCookie) fail('POST /api/session set no cookie');
+  const session = (await created.json() as { session: { id: string; name: string } }).session;
+  if (session.name !== name) fail(`the session is named "${session.name}", not "${name}"`);
+  return { cookie: nextCookie, session };
+}
+
+async function cityLife(city: string): Promise<{ status: number; body: LifeResponse & { error?: string } }> {
+  const path = `/api/life?city=${encodeURIComponent(city)}`;
+  let answer = await json<LifeResponse & { error?: string }>(path);
+  if (answer.status === 503 && answer.body.error === 'city_content_unavailable') answer = await json<LifeResponse & { error?: string }>(path);
+  return answer;
 }
 
 const TYPES: Record<string, RegExp> = {
@@ -117,20 +138,32 @@ async function main(): Promise<void> {
   const { dev, scripts } = await checkPage();
 
   // A guest session: the cookie comes back on the answer that made it.
-  requests++;
-  const created = await fetch(new URL('/api/session', `${origin}/`), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: SESSION_NAME }) });
-  if (created.status !== 200) fail(`POST /api/session answered ${created.status} ${await created.text()}`);
-  const raw = created.headers.get('set-cookie') ?? '';
-  cookie = raw.split(';')[0] ?? '';
-  if (!cookie) fail('POST /api/session set no cookie');
-  const session = (await created.json() as { session: { id: string; name: string } }).session;
-  if (session.name !== SESSION_NAME) fail(`the session is named "${session.name}", not "${SESSION_NAME}"`);
+  const created = await createGuest(SESSION_NAME);
+  cookie = created.cookie;
+  const { session } = created;
   pass('guest session', `"${session.name}"`);
 
-  const life = await json<LifeResponse>(`/api/life?city=${CITY}`);
+  const life = await cityLife(CITY);
   if (life.status !== 200 || typeof life.body.state?.cash !== 'number' || typeof life.body.state.spot !== 'string') fail(`GET /api/life answered ${life.status} without a life`);
   const state = life.body.state;
   pass('life', `in ${state.location}, spot ${state.spot}`);
+
+  const cities = playableCityIds();
+  const loaded: string[] = [];
+  const primaryCookie = cookie;
+  for (const [index, city] of cities.entries()) {
+    if (city !== CITY) {
+      // Session creation is limited per address before a cookie exists. Stay below sixty starts in any minute when the catalogue grows.
+      await pause(1050);
+      cookie = (await createGuest(`Zz City ${index + 1}`)).cookie;
+    }
+    const answer = await cityLife(city);
+    if (answer.status !== 200 || !answer.body.state || answer.body.state.estate.city !== city) fail(`GET /api/life?city=${city} answered ${answer.status} without a life whose estate city is ${city}`);
+    loaded.push(city);
+    pass('server city content', city);
+  }
+  cookie = primaryCookie;
+  pass('server city content total', `${loaded.length} cities`);
 
   const pulse = await json<{ online: number; visits: number; today: number; cities: Record<string, number> }>('/api/world/pulse');
   if (pulse.status !== 200) fail(`GET /api/world/pulse answered ${pulse.status} ${JSON.stringify(pulse.body)}`);
@@ -152,7 +185,6 @@ async function main(): Promise<void> {
   if (again.body.code !== first.body.code) fail(`the repeat answered "${again.body.code}", the first "${first.body.code}"`);
   pass('action and its repeat', `"${first.body.code}", then duplicate`);
 
-  const cities = playableCityIds();
   if (dev) pass('city chunks', 'skipped: the dev server has no built chunks');
   else {
     let fetched = 0;
@@ -198,18 +230,26 @@ async function checkSocket(): Promise<void> {
   const url = `${origin.replace(/^http/, 'ws')}/socket`;
   const ws = new WebSocket(url, { headers: { Origin: origin, Cookie: cookie } });
   const types: string[] = [];
-  const heard: { pulse?: { online: number; today: number; cities: Record<string, number> } } = {};
+  const heard: { pulse?: { online: number; today: number; cities: Record<string, number> }; weave?: boolean } = {};
   try {
     await new Promise<void>((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Failure(`the socket at ${url} gave no pulse counts within 8 s (heard: ${types.join(', ') || 'nothing'})`)), 8000);
+      const timer = setTimeout(() => reject(new Failure(`the socket at ${url} did not finish its pulse and dictionary checks within 12 s (heard: ${types.join(', ') || 'nothing'})`)), 12000);
       ws.on('error', (error) => { clearTimeout(timer); reject(new Failure(`the socket at ${url} failed: ${error.message}`)); });
       ws.on('unexpected-response', (_request, response) => { clearTimeout(timer); reject(new Failure(`the socket at ${url} was refused with ${response.statusCode}`)); });
       ws.on('close', (code) => { clearTimeout(timer); reject(new Failure(`the socket closed (${code}) before the pulse counts arrived`)); });
-      ws.on('open', () => { requests++; ws.send(JSON.stringify({ type: 'pulse-watch' })); });
+      ws.on('open', () => {
+        requests++;
+        ws.send(JSON.stringify({ type: 'pulse-watch' }));
+        ws.send(JSON.stringify({ type: 'table-sit', cityId: CITY, table: 'phone-weave' }));
+      });
       ws.on('message', (data) => {
-        const frame = JSON.parse(String(data)) as { type?: string; online?: number; today?: number; cities?: Record<string, number> };
+        const frame = JSON.parse(String(data)) as { type?: string; online?: number; today?: number; cities?: Record<string, number>; code?: string; table?: { id?: string; status?: string }; you?: number | null };
         types.push(String(frame.type));
-        if (frame.type === 'pulse' && typeof frame.online === 'number' && typeof frame.today === 'number' && frame.cities) { heard.pulse = { online: frame.online, today: frame.today, cities: frame.cities }; clearTimeout(timer); resolve(); }
+        if (frame.type === 'error') { clearTimeout(timer); reject(new Failure(`the socket refused the release smoke frame (${frame.code ?? 'unknown error'})`)); return; }
+        if (frame.type === 'pulse' && typeof frame.online === 'number' && typeof frame.today === 'number' && frame.cities) heard.pulse = { online: frame.online, today: frame.today, cities: frame.cities };
+        if (frame.type === 'table-state' && frame.table?.id === 'phone-weave' && frame.you === 0 && frame.table.status === 'open') ws.send(JSON.stringify({ type: 'table-start', cityId: CITY, table: 'phone-weave', bots: 1 }));
+        if (frame.type === 'table-state' && frame.table?.id === 'phone-weave' && frame.table.status === 'playing') heard.weave = true;
+        if (heard.pulse && heard.weave) { clearTimeout(timer); resolve(); }
       });
     });
   } finally { ws.removeAllListeners(); ws.terminate(); }
@@ -218,6 +258,8 @@ async function checkSocket(): Promise<void> {
   const counts = Object.values(pulse.cities);
   if (!counts.length || Math.max(...counts) < 1) fail('the counts frame counts nobody, though this guest has a socket open');
   pass('socket', `frames: ${types.join(', ')}; online ${pulse.online}`);
+  if (!heard.weave) return fail('the private Weave game did not start after loading the dictionary');
+  pass('server dictionary', 'private Weave game started');
 }
 
 try { await main(); }

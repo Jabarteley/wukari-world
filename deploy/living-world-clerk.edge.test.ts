@@ -49,7 +49,7 @@ async function host(t: TestContext) {
       durableObjectsPersist: join(folder, 'storage'), bindings: { BUILD_ID: 'clerk-fixture', STORE_LAYOUT: 'legacy',
         MODERATOR_TOKEN: operatorToken, FOUNDER_EMAIL_SHA256: '', ...bindings },
       outboundService: (request: Request) => { outbound.push(new URL(request.url).origin); return new Response('fixture outbound disabled', { status: 503 }) },
-      serviceBindings: { ASSETS: () => new Response('asset') } }), resourcePersistencePath: join(folder, 'storage'), handleStructuredLogs: () => {} })
+      assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } }), resourcePersistencePath: join(folder, 'storage'), handleStructuredLogs: () => {} })
     await worker.ready
   }
   async function request(path: string, cookie = '', body?: object, operator = false): Promise<JsonResponse> {

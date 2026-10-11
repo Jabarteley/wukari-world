@@ -18,7 +18,8 @@ import { hasLife } from '../host-context.ts';
 import { socialService } from '../social/service.ts';
 import { emailHash } from '../social/founder.ts';
 import { trustOf } from '../trust/service.ts';
-import { cityRules } from '../../src/game/content/world.ts';
+import { isCityId } from '../../src/game/cities/registry.ts';
+import { prepareSessionCities } from '../city-content.ts';
 import { isVerifiedTier } from '../../src/game/trust/tiers.ts';
 import type { VerifiedTier } from '../../src/game/trust/tiers.ts';
 import type { CityId } from '../../src/types/protocol.ts';
@@ -37,7 +38,7 @@ export default function openDevRoutes(ctx: RouteContext, config: OpenDevConfig):
   const refuse = (status: number, code: string, reason: string) => Object.assign(fail(status, code), { reason });
   const mustBeSameOrigin = (request: RouteRequest): void => { if (request.strictOrigin !== true) throw refuse(403, 'origin_required', 'Open-mode changes come from this page or from the dev scripts (they send an Origin header).'); };
   const text = (value: unknown, max = 40): string => (typeof value === 'string' ? value.trim().slice(0, max) : '');
-  const openCities = (): CityId[] => ctx.cityIds.filter((id) => cityRules(id)?.status === 'open');
+  const openCities = (): CityId[] => ctx.cityIds.filter(isCityId);
 
   const named = (db: Db, name: string): SessionRecord | undefined => Object.values(db.sessions).find((session) => session.name.toLowerCase() === name.toLowerCase());
   /** The player a request is about: the one named, else the caller. */
@@ -131,6 +132,11 @@ export default function openDevRoutes(ctx: RouteContext, config: OpenDevConfig):
     mustBeSameOrigin(request);
     const cities = openCities();
     if (!cities.length) throw refuse(409, 'no_open_city', 'No city is open.');
+    const existingSessions = await store.read(db => Object.values(db.sessions));
+    await Promise.all([
+      prepareSessionCities(undefined, cities.slice(0, SEED_NAMES.length)),
+      ...existingSessions.map(session => prepareSessionCities(session)),
+    ]);
     const social = socialService(ctx);
     const made = await store.transact((db) => {
       const seeded = new Set<string>(), rows: { name: string; city: CityId; created: boolean }[] = [];
@@ -186,6 +192,7 @@ export default function openDevRoutes(ctx: RouteContext, config: OpenDevConfig):
       mustBeSameOrigin(request);
       const body = await request.json(), given = body.amount;
       if (given !== undefined && !(typeof given === 'number' && Number.isSafeInteger(given) && given > 0)) throw refuse(400, 'invalid_amount', 'The amount is a whole number of naira above zero.');
+      await prepareSessionCities(await store.read(db => targetOf(db, request, body)));
       const out = await store.transact((db) => { const session = targetOf(db, request, body); return { name: session.name, lives: fundSession(db, session, typeof given === 'number' ? given : null) }; });
       return { body: { ok: true, ...out, ...(typeof given === 'number' ? { amount: given } : { upTo: config.cash }) } };
     },

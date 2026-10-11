@@ -5,7 +5,7 @@ import { boundedFingerprint } from '../routes/once.ts';
 import { UUID_PATTERN } from '../protocol.ts';
 import { LAND, landPrice } from '../../src/game/land.ts';
 import { PLOTS_PER_ESTATE } from '../../src/game/content/world.ts';
-import { loadCityContent } from '../../src/game/cities/registry.ts';
+import { prepareStoredCityContent } from '../request-city-content.ts';
 import { isRecord } from '../../src/game/util.ts';
 import { worldOf } from './service.ts';
 import { readPlot, samePlot } from './street.ts';
@@ -60,6 +60,7 @@ function buildLand(ctx: RouteContext) {
   async function reconcileNow(owner: string): Promise<Result> {
     const p = await pending(owner);
     if (!p) return { ok: true, code: 'land_idle' };
+    await prepareStoredCityContent(ctx, undefined, [p.city]);
     if (p.phase === 'paid') {
       const result = await ready().transact(shardOf(p), (state) => {
         const finished = registry.finalizeLand(state, owner, p.anchor.estate, p.plot, p.token);
@@ -175,7 +176,6 @@ function buildLand(ctx: RouteContext) {
   async function drain(limit: number): Promise<void> {
     if (!recoverySeeded) {
       // One startup inventory of unfinished transactions, never a scan of residents/lives.
-      await Promise.all(ctx.cityIds.map(loadCityContent));
       const owners = await ctx.store.read((db) => Object.keys(db.civic?.landPurchases ?? {}));
       for (const owner of owners) recoveryOwners.add(owner);
       recoverySeeded = true;

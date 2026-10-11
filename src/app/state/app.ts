@@ -18,7 +18,7 @@ import { isDeparting } from '../../life.ts'
 import { roomJoinNeeded } from '../../client.ts'
 import { crowdList, playersHere } from '../../scene/crowd.ts'
 import { linkWords } from '../../ui/link.ts'
-import { captureLink, cleanAddress, forgetCampusEntry, forgetDraft, forgetGo, forgetJoin, forgetRef, forgetTable, joinTarget, keepPlay, pendingCampusEntry, pendingGo, pendingPlay, pendingRef, pendingTable, play, track } from '../../quick-start/entry.ts'
+import { captureLink, cleanAddress, forgetCampusEntry, forgetDraft, forgetGo, forgetJoin, forgetRef, forgetTable, joinTarget, keepPlay, pendingCampusEntry, pendingGo, pendingPlay, pendingRef, pendingShop, pendingTable, play, track } from '../../quick-start/entry.ts'
 import { deviceToken } from '../features/growth/boundary.ts'
 import { GO_TARGETS } from '../../game/go-links.ts'
 import type { GoTarget } from '../../game/go-links.ts'
@@ -333,7 +333,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     track,
     cleanAddress() { if (location.pathname.replace(/\/+$/, '') !== '/unilag') cleanAddress() },
     takeLinkHost: () => { takeLinkHost() },
-    joinTarget, forgetJoin, pendingRef, forgetRef, pendingTable, forgetTable, pendingGo, forgetGo,
+    joinTarget, forgetJoin, pendingRef, forgetRef, pendingTable, forgetTable, pendingGo, forgetGo, pendingShop,
     panelFor: (go) => (Object.hasOwn(GO_TARGETS, go) ? GO_TARGETS[go as GoTarget] : null),
     setTimeout: (run, ms) => globalThis.setTimeout(run, ms),
     clearTimeout: (handle) => globalThis.clearTimeout(handle as number),

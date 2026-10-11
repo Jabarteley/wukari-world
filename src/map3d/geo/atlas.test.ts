@@ -14,14 +14,14 @@ import { DOT_EXACT_PX, MIN_TOUCH_PX, cityHit } from './city-hit.ts';
 import { CITY_DETAIL_DISTANCE_SHARE, nigeriaMarkerDetail } from './atlas-scale.ts';
 import { AIRPORTS, HIGHWAYS, TOWNS, interCityTripOf, linkId, linkPath, measure, pointAlong, travelEase, tripPoint } from './routes.ts';
 import { listOrder, regionInfo } from './info.ts';
-import { createAtlas } from './atlas.ts';
+import { createAtlas, countryFocusFrame } from './atlas.ts';
 import { NO_PORT } from '../zoom-ladder.ts';
 import type { LadderPort } from '../zoom-ladder.ts';
 import { DENSITY, NAMED_FROM, atlasNamesAt, countChips, densityFor, namedCities, shorten, venueNamesAt } from './density.ts';
 import * as THREE from 'three';
 import { createRig } from '../camera.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
-import { ATLAS, ATLAS_LEVELS, countryAtlasLevel, ZONES, AFRICA_GROUPS, canEnter, cityAccess, cityEntry, plannedRoutes, regionEntry, regionStatus, stateOfCity, MORE_REGIONS } from '../regions.ts';
+import { ATLAS, ATLAS_LEVELS, countryAtlasLevel, sourceGeometryFrame, ZONES, AFRICA_GROUPS, canEnter, cityAccess, cityEntry, plannedRoutes, regionEntry, regionStatus, stateOfCity, MORE_REGIONS } from '../regions.ts';
 import { allCityLinks, cityCatalogue, cityCatalogueEntry, cityName, isOpenCityId, loadCityLinks, playableCityIds } from '../../game/cities/registry.ts';
 import type { CountryDetailCatalogue, CountryDetailOutline, CountryDetailService } from './country-detail-types.ts';
 
@@ -232,7 +232,7 @@ test('open versus coming soon is derived from the additive city catalogue', () =
   assert.deepEqual(rows.slice(0, 5).map((row) => row.id), ['abia', 'adamawa', 'akwa-ibom', 'anambra', 'bauchi']);
 });
 
-test('levels: thresholds half-way between the fits, hysteresis at each, and a closer level only over its own frame', () => {
+test('levels: thresholds half-way between the fits, hysteresis at each, and a closer level only over its own frame', async () => {
   const fits = [750, 220, 30], cuts = thresholds(fits);
   assert.deepEqual(levelPath(ATLAS_LEVELS, 2), [0, 1, 2]);
   assert.deepEqual(levelPath(ATLAS_LEVELS, 3), [0, 3]);
@@ -247,8 +247,20 @@ test('levels: thresholds half-way between the fits, hysteresis at each, and a cl
     if (feature.id !== 'ng') assert.equal(entry.continent, feature.c);
   }
   for (const entry of ATLAS_LEVELS.filter(level => level.continent && level.id !== 'africa')) {
-    const points = WORLD.features.filter(feature => feature.c === entry.continent).map(feature => feature.at);
-    assert.deepEqual(entry.frame, [Math.min(...points.map(point => point[0])), Math.min(...points.map(point => point[1])), Math.max(...points.map(point => point[0])), Math.max(...points.map(point => point[1]))]);
+    const module = await entry.data();
+    assert.ok('WORLD' in module);
+    const source = WORLD.features.filter(feature => feature.c === entry.continent);
+    assert.deepEqual(module.WORLD.features, source);
+    const topology = decodeTopology(module.WORLD);
+    assert.deepEqual(entry.frame, sourceGeometryFrame(topology.features.flatMap(feature => feature.rings.flat())));
+    assert.ok(entry.frame[0] >= -169 && entry.frame[2] < 191);
+    for (const city of cityCatalogue().filter(city => city.open && countryAtlasLevel(city.countryISO ?? 'ng') === entry.id)) {
+      const lon = relLon(city.lon);
+      const contains = lon >= entry.frame[0] && lon <= entry.frame[2] && city.lat >= entry.frame[1] && city.lat <= entry.frame[3];
+      const feature = topology.byId.get(city.countryISO ?? 'ng');
+      assert.ok(contains || feature, `${city.id} is framed or reachable through its source country`);
+      if (feature) assert.ok(countryFocusFrame(feature, [city.lon, city.lat]).every(Number.isFinite));
+    }
   }
   assert.deepEqual(cuts.map(Math.round), [406, 81]);
   assert.deepEqual([900, 407, 405, 82, 80, 5].map((distance) => levelAt(distance, cuts)), [0, 0, 1, 1, 2, 2]);
@@ -634,9 +646,11 @@ test('the atlas stays out of the first download, and its one frame loop lives in
   assert.doesNotMatch(door, /requestAnimationFrame/);
   // The data is reached only through dynamic imports in the registry: one chunk per level.
   assert.doesNotMatch(registry, /^import (?!type ).*data\/world\.ts/m, 'world polygons remain lazy in the shared registry');
+  assert.match(registry, /await import\('\.\/geo\/data\/world\.ts'\)/);
+  assert.match(registry, /WORLD\.features\.filter\(feature => feature\.c === continent\)/);
   for (const level of ATLAS_LEVELS) {
     if (['world', 'africa', 'nigeria'].includes(level.id)) assert.match(registry, new RegExp(`data: \\(\\) => import\\('\\./geo/data/${level.id}\\.ts'\\)`));
-    else assert.match(registry, new RegExp(`id: '${level.id}'[^\\n]*await import\\('\\./geo/data/world\\.ts'\\)[^\\n]*features: WORLD\\.features\\.filter\\(feature => feature\\.c === '${level.continent}'\\)`), `${level.id} lazily filters the existing world topology`);
+    else assert.match(registry, new RegExp(`id: '${level.id}'[^\\n]*data: \\(\\) => loadWorldContinent\\('${level.continent}'\\)`), `${level.id} uses the lazy source topology loader`);
   }
   for (const name of readdirSync(here('./')).filter((item) => item.endsWith('.ts') && !item.endsWith('.test.ts'))) {
     const code = readFileSync(here(`./${name}`), 'utf8'), bare = code.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, '');

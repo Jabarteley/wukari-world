@@ -48,12 +48,12 @@ import type { Edge, LadderPort } from '../zoom-ladder.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
 import type { RigInsets, RigView } from '../camera.ts';
 import { createTripClock } from '../trip.ts';
-import { AFRICA_GROUPS, ATLAS_LEVELS, countryAtlasLevel, CONTINENTS, ZONES, cityEntry, plannedRoutes, regionEntry, stateOfCity } from '../regions.ts';
+import { AFRICA_GROUPS, ATLAS_LEVELS, countryAtlasLevel, sourceGeometryFrame, CONTINENTS, ZONES, cityEntry, plannedRoutes, regionEntry, stateOfCity } from '../regions.ts';
 import type { AtlasLevel } from '../regions.ts';
 import { EXTENT, project, relLon, unproject } from './projection.ts';
 import { decodeTopology } from './topo.ts';
 import type { AfricaFeature, Feature, FeatureData, NigeriaFeature, Topology, WorldFeature } from './topo.ts';
-import { createPicker } from './pick.ts';
+import { createPicker, inRing } from './pick.ts';
 import type { Picker } from './pick.ts';
 import { atlasNamesAt, countChips, densityFor, namedCities } from './density.ts';
 import { focusLevel, levelPath, leashAt, levelAt, pitchAt, thresholds } from './levels.ts';
@@ -210,6 +210,12 @@ export interface AtlasApi {
   destroy(): void;
 }
 export interface SelectOptions { from?: 'map' | 'list' | 'key'; flyTo?: boolean }
+
+/** Focus the actual source component containing a catalogue anchor, preserving every component in the sheet. */
+export function countryFocusFrame(feature: Feature, anchor: readonly [number, number] | null): Box4 {
+  const component = anchor ? feature.rings.find(polygon => inRing(polygon[0]!, relLon(anchor[0]), anchor[1]) && !polygon.slice(1).some(hole => inRing(hole, relLon(anchor[0]), anchor[1]))) : null;
+  return sourceGeometryFrame(component ?? feature.rings.flat());
+}
 
 const WORLD = 0, AFRICA = 1, NIGERIA = 2;
 const countryLevel = (index: number) => Boolean(ATLAS_LEVELS[index]?.continent);
@@ -494,6 +500,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       const built = BUILD[index]!(module);
       (sheets as (LevelSheet | null)[])[index] = built;
       failed = '';
+      if (index > NIGERIA && fits) computeFits();
       syncResolution(); settleLevel(); drawChrome(); drawHighlights(); request();
       return built;
     }).catch((error: unknown) => { pending[index] = null; failed = ATLAS_LEVELS[index]!.name; console.error(`The map of ${ATLAS_LEVELS[index]!.name} could not be loaded:`, error); showWait(); return null; });
@@ -614,10 +621,12 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
   /** A view that holds a feature, never closer than is useful. */
   function viewOf(feature: Feature) {
-    const b = feature.bounds, saved = { ...rig.view };
+    const anchor = countryLevel(level) ? cityCatalogue().find(city => city.open && city.countryISO === feature.id && (!selectedCity || city.id === selectedCity)) : null;
+    const frameBounds: Box4 = countryLevel(level) && level > NIGERIA ? countryFocusFrame(feature, anchor ? [anchor.lon, anchor.lat] : null) : [feature.bounds.minLon, feature.bounds.minLat, feature.bounds.maxLon, feature.bounds.maxLat];
+    const saved = { ...rig.view };
     measuring();
     rig.jump({ yaw: 0, pitch: PITCHES[level]! }); measuring();
-    const frame = rig.framing(framePoints([b.minLon, b.minLat, b.maxLon, b.maxLat]), { pad: 1.9, min: 0 });
+    const frame = rig.framing(framePoints(frameBounds), { pad: 1.9, min: 0 });
     rig.jump(saved);
     return { x: frame.x, z: frame.z, distance: clamp(frame.distance, minDistance(), maxDistance()) };
   }
@@ -1194,6 +1203,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const region = cityRegion(id);
     if (!region || !select(region, { from: 'map' })) return false;
     selectedCity = id; confirming = null;
+    if (countryLevel(level) && level > NIGERIA && fits) { const hit = find(region); if (hit) fly(viewOf(hit.feature)); }
     if (isOpenCityId(id) && !cachedCityContent(id)) void loadCityContent(id).then(() => { if (selectedCity === id) drawSheet(); }, () => {});
     drawSheet();
     return true;
@@ -1206,7 +1216,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     if (next === WORLD) select(null);
     if (countryLevel(next) && next === level) select(null);
     if (next !== WORLD) branch = next === AFRICA ? NIGERIA : next;
-    void ensure(next);
+    const loadingSheet = !sheets[next];
+    void ensure(next).then(sheet => { if (sheet && loadingSheet && next > NIGERIA && branch === next && !selected && fits) fly(levelView(next), 0.9); });
     if (!fits) { pendingLevel = next; return; }
     pendingLevel = null;
     // Further out than the cities, the card of the player's own state would only cover the map it was asked to show.

@@ -1,0 +1,54 @@
+name: Research station source extraction
+on:
+  push:
+    branches: ['codex/world-antarctica-20261011']
+    paths: ['scripts/geo/factory/research-source-targets.json', '.github/workflows/research-source-extraction.yml']
+permissions:
+  contents: read
+concurrency:
+  group: research-source-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  extract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+          path: factory-baseline
+          persist-credentials: false
+      - run: python -m pip install osmium==4.3.1
+      - name: Extract pinned source with unchanged factory adapter
+        run: |
+          python - <<'PY'
+          import json,subprocess,hashlib
+          from pathlib import Path
+          table=json.loads(Path('scripts/geo/factory/research-source-targets.json').read_text());s=table['source']
+          out=Path('evidence');out.mkdir()
+          pbf=out/'antarctica-261008.osm.pbf'
+          subprocess.run(['curl','--fail','--silent','--show-error','--max-time','300','-o',str(pbf),s['url']],check=True)
+          assert pbf.stat().st_size==s['bytes'] and hashlib.sha256(pbf.read_bytes()).hexdigest()==s['sha256']
+          for target in table['targets']:
+              meta=out/(target['city']['id']+'.source.json');meta.write_text(json.dumps(target,indent=2)+'\n')
+              subprocess.run(['python','factory-baseline/scripts/geo/offline-extract.py',str(pbf),str(meta),'--dataset-url',s['url'],'--dataset-bytes',str(s['bytes']),'--dataset-md5',s['md5'],'--dataset-sha256',s['sha256'],'--output-root',str(out/'extract')],check=True)
+          receipt={str(p.relative_to(out)):{'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in (out/'extract').rglob('*.json')}
+          (out/'layer-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: research-layers-${{ github.sha }}
+          path: |
+            evidence/extract/
+            evidence/*.json
+          retention-days: 14
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: success()
+        with:
+          name: antarctica-pbf-261008
+          path: evidence/antarctica-261008.osm.pbf
+          retention-days: 14

@@ -3,8 +3,11 @@ on:
   push:
     branches: ['codex/world-antarctica-20261011']
     paths:
-      - 'scripts/geo/factory/station-*'
-      - '.github/workflows/antarctic-station-diagnostics.yml'
+      - 'scripts/geo/factory/station-inventory.py'
+      - 'scripts/geo/factory/station-coverage.py'
+      - 'scripts/geo/factory/station-geometry.py'
+      - 'scripts/geo/factory/station-seeds.json'
+      - 'scripts/geo/factory/inventory-request.json'
 permissions:
   contents: read
 concurrency:

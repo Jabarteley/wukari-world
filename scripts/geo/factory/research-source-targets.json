@@ -1,0 +1,52 @@
+{
+  "source": {
+    "url": "https://download.geofabrik.de/antarctica-261008.osm.pbf",
+    "bytes": 33093408,
+    "md5": "e610c04ac1849a65909c3d7ebe2b3404",
+    "sha256": "d5453f349c4e628ca5109d751c0dd41d7a9b4b2186c039abb013797f0689de66"
+  },
+  "targets": [
+    {
+      "city": {
+        "id": "rothera"
+      },
+      "purpose": "Source sampling only; no city identity, registration, membership or release approval",
+      "waterRecipe": {
+        "kind": "coast",
+        "wideWater": true,
+        "reviewRequired": false,
+        "sea": {
+          "kind": "coast",
+          "bandMetres": 1000
+        }
+      },
+      "boxes": {
+        "play": [
+          -67.59149911124175,
+          -68.18371221102608,
+          -67.54627888875825,
+          -68.06588778897391
+        ],
+        "core": [
+          -67.58245506674504,
+          -68.16013380100853,
+          -67.55532293325496,
+          -68.08946619899146
+        ],
+        "outline": [
+          -67.64149911124174,
+          -68.23371221102607,
+          -67.49627888875825,
+          -68.01588778897391
+        ],
+        "wide": [
+          -67.99149911124175,
+          -68.58371221102608,
+          -67.14627888875825,
+          -67.6658877889739
+        ]
+      }
+    }
+  ],
+  "policyNote": "Sampling bounds reuse committed factory radius calculation and outline/reach constants. Coast recipe selects existing mapped coast data; band is an unaccepted candidate rendering parameter. Station facility layer is separate from unchanged urban predicates."
+}

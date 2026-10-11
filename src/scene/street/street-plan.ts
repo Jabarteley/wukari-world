@@ -79,8 +79,8 @@ const TIER: Record<HouseTierId, { asset: string; scale: number; detail: number }
   starter: { asset: 'bungalow', scale: 0.8, detail: 0 },
   bq: { asset: 'bungalow', scale: 0.88, detail: 1 },
   bungalow: { asset: 'bungalow', scale: 0.96, detail: 2 },
-  duplex: { asset: 'house2', scale: 0.96, detail: 3 },
-  villa: { asset: 'house2', scale: 1.04, detail: 3 },
+  duplex: { asset: 'house2', scale: 0.92, detail: 3 },
+  villa: { asset: 'house2', scale: 1.0, detail: 3 },
 };
 export const tierLook = (tier: HouseTierId): { asset: string; scale: number; detail: number } => TIER[tier];
 

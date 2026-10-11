@@ -2,46 +2,245 @@
   "schemaVersion": 1,
   "countries": [
     {
-      "id": "congo-democratic-republic",
+      "id": "sierra-leone",
       "file": {
-        "url": "https://download.geofabrik.de/africa/congo-democratic-republic-261009.osm.pbf",
-        "bytes": 416300671,
-        "md5": "2dd7c19fdb508cc18dc1405283937c1a",
-        "sha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91"
+        "url": "https://download.geofabrik.de/africa/sierra-leone-261009.osm.pbf",
+        "bytes": 46311788,
+        "md5": "d7435d57accb85323f25cc59e19ffe50"
       },
       "cities": [
         {
-          "id": "kinshasa",
-          "name": "Kinshasa",
+          "id": "freetown",
+          "name": "Freetown",
           "boxes": {
             "play": [
-              -4.55,
-              15.15,
-              -4.2,
-              15.6
+              8.37,
+              -13.36,
+              8.65,
+              -13.12
             ],
             "core": [
-              -4.42,
-              15.2,
-              -4.28,
-              15.38
+              8.435,
+              -13.285,
+              8.505,
+              -13.195
             ],
             "outline": [
-              -4.6,
-              15.1,
-              -4.15,
-              15.65
+              8.319999999999999,
+              -13.41,
+              8.700000000000001,
+              -13.069999999999999
             ],
             "wide": [
-              -5.15,
-              14.55,
-              -3.6,
-              16.2
+              7.77,
+              -13.959999999999999,
+              9.25,
+              -12.52
             ]
           },
           "waterRecipe": {
-            "kind": "inland",
-            "wideWater": false,
+            "kind": "coast",
+            "wideWater": true,
+            "sea": {
+              "kind": "coast",
+              "bandMetres": 40000
+            },
+            "reviewRequired": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "gabon",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/gabon-261009.osm.pbf",
+        "bytes": 25486848,
+        "md5": "eddcaea33ad93740f48e52b4b71de5a1"
+      },
+      "cities": [
+        {
+          "id": "libreville",
+          "name": "Libreville",
+          "boxes": {
+            "play": [
+              0.29,
+              9.34,
+              0.49,
+              9.58
+            ],
+            "core": [
+              0.355,
+              9.415,
+              0.425,
+              9.505
+            ],
+            "outline": [
+              0.24,
+              9.29,
+              0.54,
+              9.63
+            ],
+            "wide": [
+              -0.2700000000000003,
+              8.78,
+              1.0500000000000003,
+              10.14
+            ]
+          },
+          "waterRecipe": {
+            "kind": "coast",
+            "wideWater": true,
+            "sea": {
+              "kind": "coast",
+              "bandMetres": 40000
+            },
+            "reviewRequired": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "liberia",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/liberia-261009.osm.pbf",
+        "bytes": 37311769,
+        "md5": "18dfb8a4506cd50303af2fe1bb356b11"
+      },
+      "cities": [
+        {
+          "id": "monrovia",
+          "name": "Monrovia",
+          "boxes": {
+            "play": [
+              6.21,
+              -10.92,
+              6.41,
+              -10.68
+            ],
+            "core": [
+              6.275,
+              -10.845,
+              6.345,
+              -10.755
+            ],
+            "outline": [
+              6.16,
+              -10.97,
+              6.46,
+              -10.629999999999999
+            ],
+            "wide": [
+              5.6499999999999995,
+              -11.48,
+              6.970000000000001,
+              -10.12
+            ]
+          },
+          "waterRecipe": {
+            "kind": "coast",
+            "wideWater": true,
+            "sea": {
+              "kind": "coast",
+              "bandMetres": 40000
+            },
+            "reviewRequired": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "djibouti",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/djibouti-261009.osm.pbf",
+        "bytes": 7025642,
+        "md5": "5252e90272cd54e8dc7b8d1e068b9acc"
+      },
+      "cities": [
+        {
+          "id": "djibouti",
+          "name": "Djibouti",
+          "boxes": {
+            "play": [
+              11.5,
+              43.03,
+              11.7,
+              43.27
+            ],
+            "core": [
+              11.565,
+              43.105,
+              11.635,
+              43.195
+            ],
+            "outline": [
+              11.45,
+              42.980000000000004,
+              11.75,
+              43.32
+            ],
+            "wide": [
+              10.939999999999998,
+              42.47,
+              12.260000000000002,
+              43.830000000000005
+            ]
+          },
+          "waterRecipe": {
+            "kind": "coast",
+            "wideWater": true,
+            "sea": {
+              "kind": "coast",
+              "bandMetres": 40000
+            },
+            "reviewRequired": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "guinea",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/guinea-261009.osm.pbf",
+        "bytes": 118413819,
+        "md5": "92ad551fc3bf7590a9ff4da9d8e06833"
+      },
+      "cities": [
+        {
+          "id": "conakry",
+          "name": "Conakry",
+          "boxes": {
+            "play": [
+              9.43,
+              -13.8,
+              9.63,
+              -13.56
+            ],
+            "core": [
+              9.495,
+              -13.725,
+              9.565,
+              -13.635
+            ],
+            "outline": [
+              9.379999999999999,
+              -13.850000000000001,
+              9.680000000000001,
+              -13.51
+            ],
+            "wide": [
+              8.87,
+              -14.360000000000001,
+              10.190000000000001,
+              -13
+            ]
+          },
+          "waterRecipe": {
+            "kind": "coast",
+            "wideWater": true,
+            "sea": {
+              "kind": "coast",
+              "bandMetres": 40000
+            },
             "reviewRequired": false
           }
         }

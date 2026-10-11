@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "countries": [
+    {
+      "id": "tunisia",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
+        "bytes": 84194711,
+        "md5": "9c5af344ce4a7bb2e2b3b58c222ec92d"
+      },
+      "cities": [
+        {
+          "id": "tunis",
+          "name": "Tunis",
+          "boxes": {
+            "play": [
+              36.74,
+              10.08,
+              36.93,
+              10.32
+            ],
+            "core": [
+              36.755,
+              10.115,
+              36.855,
+              10.245
+            ],
+            "outline": [
+              36.690000000000005,
+              10.03,
+              36.98,
+              10.370000000000001
+            ],
+            "wide": [
+              36.18,
+              9.52,
+              37.49,
+              10.88
+            ]
+          },
+          "waterRecipe": {
+            "kind": "coast",
+            "wideWater": true,
+            "sea": {
+              "kind": "coast",
+              "bandMetres": 40000
+            },
+            "reviewRequired": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "congo-democratic-republic",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/congo-democratic-republic-261009.osm.pbf",
+        "bytes": 416300671,
+        "md5": "2dd7c19fdb508cc18dc1405283937c1a"
+      },
+      "cities": [
+        {
+          "id": "kinshasa",
+          "name": "Kinshasa",
+          "boxes": {
+            "play": [
+              -4.55,
+              15.15,
+              -4.2,
+              15.6
+            ],
+            "core": [
+              -4.42,
+              15.2,
+              -4.28,
+              15.38
+            ],
+            "outline": [
+              -4.6,
+              15.1,
+              -4.15,
+              15.65
+            ],
+            "wide": [
+              -5.15,
+              14.55,
+              -3.6,
+              16.2
+            ]
+          },
+          "waterRecipe": {
+            "kind": "inland",
+            "wideWater": false,
+            "reviewRequired": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "tanzania",
+      "file": {
+        "url": "https://download.geofabrik.de/africa/tanzania-261009.osm.pbf",
+        "bytes": 706320953,
+        "md5": "a8d5701e0e71a71d058b907fb0eb9ffe"
+      },
+      "cities": [
+        {
+          "id": "dar-es-salaam",
+          "name": "Dar es Salaam",
+          "boxes": {
+            "play": [
+              -6.98,
+              39.12,
+              -6.7,
+              39.4
+            ],
+            "core": [
+              -6.9,
+              39.18,
+              -6.78,
+              39.32
+            ],
+            "outline": [
+              -7.03,
+              39.07,
+              -6.65,
+              39.45
+            ],
+            "wide": [
+              -7.58,
+              38.52,
+              -6.1,
+              40.0
+            ]
+          },
+          "waterRecipe": {
+            "kind": "coast",
+            "wideWater": true,
+            "sea": {
+              "kind": "coast",
+              "bandMetres": 40000
+            },
+            "reviewRequired": false
+          }
+        }
+      ]
+    }
+  ]
+}

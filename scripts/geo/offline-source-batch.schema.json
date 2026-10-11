@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "countries"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "countries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "file",
+          "cities"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "file": {
+            "type": "object",
+            "required": [
+              "url",
+              "bytes",
+              "md5"
+            ],
+            "properties": {
+              "url": {
+                "type": "string",
+                "pattern": "^https://download\\.geofabrik\\.de/.+\\.osm\\.pbf$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "md5": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{32}$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{64}$"
+              }
+            },
+            "additionalProperties": false
+          },
+          "cities": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "name",
+                "boxes",
+                "waterRecipe"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "boxes": {
+                  "type": "object",
+                  "required": [
+                    "play",
+                    "core",
+                    "outline",
+                    "wide"
+                  ],
+                  "properties": {
+                    "play": {
+                      "$ref": "#/$defs/box"
+                    },
+                    "core": {
+                      "$ref": "#/$defs/box"
+                    },
+                    "outline": {
+                      "$ref": "#/$defs/box"
+                    },
+                    "wide": {
+                      "$ref": "#/$defs/box"
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "waterRecipe": {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "wideWater"
+                  ],
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "inland",
+                        "coast"
+                      ]
+                    },
+                    "wideWater": {
+                      "type": "boolean"
+                    },
+                    "reviewRequired": {
+                      "type": "boolean"
+                    },
+                    "sea": {
+                      "type": "object",
+                      "required": [
+                        "kind",
+                        "bandMetres"
+                      ],
+                      "properties": {
+                        "kind": {
+                          "const": "coast"
+                        },
+                        "bandMetres": {
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "$defs": {
+    "box": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "number"
+        }
+      ],
+      "minItems": 4,
+      "maxItems": 4
+    }
+  },
+  "additionalProperties": false
+}

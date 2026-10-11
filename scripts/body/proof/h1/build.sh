@@ -23,13 +23,20 @@ HERE=${0:A:h}; P=${HERE:h}; B=$P/blender
 BL=${BLENDER:-blender}
 mkdir -p "$WORK" "$OUT"
 run() { perl -e 'alarm shift; exec @ARGV' 1500 "$BL" -b --disable-autoexec --python-exit-code 1 "$@"; }
-run -P "$HERE/pose_high.py" -- "$RIGGED" "$DETAIL" "$B/skeleton-$SKEL.json" "$WORK/$NAME-posed.blend" "$WORK/$NAME-joints.json" --hip-ratio $HIP | grep -E "WARP|POSED"
+[[ -n ${SKIPPOSE:-} && -f "$WORK/$NAME-posed.blend" ]] || run -P "$HERE/pose_high.py" -- "$RIGGED" "$DETAIL" "$B/skeleton-$SKEL.json" "$WORK/$NAME-posed.blend" "$WORK/$NAME-joints.json" --hip-ratio $HIP | grep -E "WARP|POSED"
 for V in hero crowd; do
   [[ -n ${ONLY:-} && $V != $ONLY ]] && continue
   if [[ $V = hero ]]; then TRIS=13000; PX=1024; else TRIS=${CROWDTRIS:-2800}; PX=512; fi
-  REDUCE_HEADSCALE=${HEADSCALE:-2.1} REDUCE_QUALITY=${Q:-63} REDUCE_JOINTS="$WORK/$NAME-joints.json" run -P "$B/reduce_figure.py" -- "$WORK/$NAME-posed.blend" "$WORK/$NAME-$V.blend" "$WORK" "$NAME-$V" $TRIS $PX | grep REDUCED
+  FA=; [[ $V = crowd ]] && FA=1
+  REDUCE_FACEATLAS=$FA REDUCE_HEADSCALE=${HEADSCALE:-2.1} REDUCE_QUALITY=${Q:-63} REDUCE_JOINTS="$WORK/$NAME-joints.json" run -P "$B/reduce_figure.py" -- "$WORK/$NAME-posed.blend" "$WORK/$NAME-$V.blend" "$WORK" "$NAME-$V" $TRIS $PX | grep REDUCED
   if [[ $V = hero ]]; then MODE=--detect; else MODE=--use; fi
-  run -P "$HERE/face_eyes.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color.jpg" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-face.json" $MODE --iris $IRIS
+  run -P "$HERE/face_eyes.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color.jpg" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-face.json" $MODE --joints "$WORK/$NAME-joints.json" --debug "$WORK/$NAME-$V-p3.npz" --iris $IRIS
+  if [[ -n ${TEXFIX_PY:-} ]]; then      # speck/streak clean-up of the baked map (needs numpy, scipy, pillow in the interpreter named by TEXFIX_PY)
+    MP=1024; [[ $V = crowd ]] && MP=512
+    run -P "$HERE/uvcover.py" -- "$WORK/$NAME-$V.blend" $MP "$WORK/$NAME-$V-cover.npz" | grep COVER
+    NZ=$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).joints.neck[2]-0.03)' "$WORK/$NAME-joints.json")
+    "$TEXFIX_PY" -I "$HERE/texfix.py" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-$V-color-eyes.jpg" --cover "$WORK/$NAME-$V-cover.npz" --protect-z $NZ --p3 "$WORK/$NAME-$V-p3.npz" ${=TEXFIX_ARGS:-}
+  fi
   NECK=$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).joints.neck[2])' "$WORK/$NAME-joints.json"); SKINREF=$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).skinCheek.join(","))' "$WORK/$NAME-face.json"); MPX=512; [[ $V = crowd ]] && MPX=256
   run -P "$HERE/make_regions.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-$V-mask.png" "$WORK/$NAME-$V-regions.json" --kind whole --neck-z $NECK --skin-ref $SKINREF --mask-px $MPX --top-split $SPLIT --sleeve-x $SLEEVE --bare-leg-z $LEG $( [[ $FEET = 1 ]] && echo --feet shoes || echo --feet colour ) --shoe-z 0.09
   FACE=(); [[ $V = hero ]] && FACE=(--face "$WORK/$NAME-face.json")

@@ -19,7 +19,107 @@ pos = [a for a in argv if not a.startswith("--")]
 opts = {argv[i]: argv[i + 1] for i, a in enumerate(argv) if a.startswith("--") and i + 1 < len(argv)}
 blend, colour_in, colour_out, face_json = pos[:4]
 mode = "use" if "--use" in argv else "detect"
+joints_path = opts.get("--joints")
 iris_rgb = np.array([float(v) for v in opts.get("--iris", "0.36,0.20,0.09").split(",")])
+
+def find_eyes_in_head_frame(joints_file, have, P3, px, top):
+    """Finds the two eyes from the head's own frame, never from the brightest or darkest thing on the head.
+    Frame: the middle plane of the head is x = Head.x, the face looks along -y, the eyes sit in a band of the head's height (a fixed share of the figure's height above the neck
+    joint) and at a distance from the middle that is a fixed share of the head's width at that height.  Inside those windows the eye is where white and dark texels meet.
+    The pair is then checked: both found, at one height, mirror images about the middle plane, a plausible distance apart.  If any check fails the result says so (ok = False) and
+    the caller leaves the generated eyes untouched.  Returns (landmarks, ok, reason)."""
+    J = json.load(open(joints_file))
+    jt = J["joints"]; fig_h = float(J.get("height", top))
+    cx = float(jt["Head"][0]); neck = float(jt["neck"][2])
+    ez0 = neck + 0.108 * fig_h
+    sat_ = px.max(axis=2) - px.min(axis=2); lum_ = px.mean(axis=2)
+    bright = (px.min(axis=2) > 0.50) & (sat_ < 0.30)
+    dark = lum_ < 0.26
+    # head width at the eye line from the surface itself (hats and hair widen it, so use the narrower of the two sides' 90th percentile of the face texels)
+    band = have & (np.abs(P3[:, :, 2] - (ez0 - 0.01)) < 0.04)
+    if band.sum() < 100:
+        return default_eyes(cx, ez0, fig_h), False, "no face texels at the eye line"
+    xs = P3[:, :, 0][band] - cx
+    hw = float(min(np.percentile(xs, 97), -np.percentile(xs, 3)))
+    lo, hi = 0.20 * hw, 0.62 * hw            # an eye centre sits between a fifth and 0.6 of the half width from the middle
+    found = {}
+    info = []
+    for side, name in ((1, "L"), (-1, "R")):
+        dxm = (P3[:, :, 0] - cx) * side
+        win = have & (dxm > lo) & (dxm < hi) & (P3[:, :, 2] > ez0 - 0.06) & (P3[:, :, 2] < ez0 + 0.042)
+        if win.sum() < 30:
+            info.append(name + ": window empty"); continue
+        # density grid, 3 mm cells; an eye cell has white and dark in it and around it
+        ix = np.floor((P3[:, :, 0][win] - cx) * side / 0.003).astype(int); iz = np.floor((P3[:, :, 2][win] - ez0) / 0.003).astype(int)
+        ixmin, izmin = ix.min(), iz.min(); ix -= ixmin; iz -= izmin
+        gw = np.zeros((ix.max() + 1, iz.max() + 1)); gd = np.zeros_like(gw); gn = np.zeros_like(gw)
+        np.add.at(gw, (ix, iz), bright[win]); np.add.at(gd, (ix, iz), dark[win]); np.add.at(gn, (ix, iz), 1)
+        def box(g, r=3):
+            o = np.zeros_like(g)
+            for a in range(-r, r + 1):
+                for b in range(-r, r + 1):
+                    o += np.roll(np.roll(g, a, 0), b, 1)
+            return o
+        bw, bd, bn = box(gw), box(gd), box(gn)
+        zc0 = ez0 + (np.arange(gw.shape[1]) + izmin + 0.5) * 0.003
+        zprior = np.exp(-0.5 * ((zc0 - ez0 + 0.008) / 0.030) ** 2)[None, :]
+        score = np.minimum(bw, bd) / np.maximum(bn, 1) * zprior
+        score[bn < 20] = 0
+        score[:, (zc0 - ez0 > 0.028) | (zc0 - ez0 < -0.05)] = 0        # the eyes are within a few cm of the usual eye line; a brow or a hat edge above it is not an eye
+        k = np.unravel_index(np.argmax(score), score.shape)
+        odd_mode = False
+        if score[k] < 0.02:
+            # a pale-ringed or all-dark stylised eye: look for the compact patch that differs from the skin round it (inside a narrower height window, so brows stay out)
+            med = np.median(px[win], axis=0)
+            odd = ((lum_ - float(med.mean())) > 0.07) & ~(sat_ > 0.45)        # a pale ring or pale eye on darker skin (brows are darker and stay out)
+            go = np.zeros_like(gw); np.add.at(go, (ix, iz), odd[win])
+            zc = ez0 + (np.arange(gw.shape[1]) + izmin + 0.5) * 0.003
+            s2 = box(go) / np.maximum(bn, 1) * zprior; s2[bn < 20] = 0; s2[:, (zc - ez0 > 0.028) | (zc - ez0 < -0.05)] = 0
+            k = np.unravel_index(np.argmax(s2), s2.shape)
+            if s2[k] < 0.11:
+                info.append(name + ": no eye-like patch (best %.3f / %.3f)" % (score[k], s2[k])); continue
+            score = s2; odd_mode = True
+        z0 = ez0 + (k[1] + izmin + 0.5) * 0.003
+        xk = (k[0] + ixmin + 0.5) * 0.003
+        sel = win & (odd if odd_mode else (bright | dark))
+        pts = P3[sel]; pts_x = (pts[:, 0] - cx) * side
+        m = np.hypot(pts_x - xk, pts[:, 2] - z0) < 0.016
+        print('CAND', name, 'odd' if odd_mode else 'wd', round(z0 - ez0, 3), round(float(score[k]), 3), int(m.sum()))
+        for _ in range(4):                         # mean shift onto the densest part
+            if m.sum() < 15:
+                break
+            xk = float(np.mean(pts_x[m])); z0 = float(np.mean(pts[m][:, 2]))
+            m = np.hypot(pts_x - xk, pts[:, 2] - z0) < 0.016
+        if m.sum() < 15:
+            info.append(name + ": cluster too small"); continue
+        found[name] = (float(side * np.median(pts_x[m]) + cx), float(np.median(pts[m][:, 2])), float(score[k]))
+    lm = default_eyes(cx, ez0, fig_h)
+    if len(found) < 2:
+        if len(found) == 1:
+            # one eye found: the other is its mirror image about the middle plane; accept only if it shows some dark or white there
+            n1 = list(found)[0]; x1, z1, sc = found[n1]
+            mx = 2 * cx - x1
+            near = have & (np.hypot(P3[:, :, 0] - mx, P3[:, :, 2] - z1) < 0.02)
+            if near.sum() > 20 and ((bright | dark) & near).sum() > 0.12 * near.sum():
+                found["R" if n1 == "L" else "L"] = (mx, z1, 0.0); info.append("mirrored the " + n1 + " eye")
+        if len(found) < 2:
+            return lm, False, "; ".join(info) or "only one eye found"
+    (xl, zl, sl), (xr, zr, sr) = found["L"], found["R"]
+    half = (xl - xr) / 2; mid = (xl + xr) / 2
+    why = "L(%.3f,%.3f) R(%.3f,%.3f) hw %.3f mid-cx %.3f" % (xl, zl, xr, zr, hw, mid - cx)
+    if abs(zl - zr) > 0.012: return lm, False, "eyes at different heights: " + why
+    if abs(mid - cx) > 0.010: return lm, False, "pair not centred on the head: " + why
+    if not (0.22 * hw < half < 0.62 * hw): return lm, False, "distance not plausible: " + why
+    mid = 0.5 * (mid + cx)                       # the middle plane of the head counts as much as the two detections
+    lm["eyeL"] = [float(mid + half), float((zl + zr) / 2)]; lm["eyeR"] = [float(mid - half), float((zl + zr) / 2)]
+    lm["eyeAL"] = lm["eyeAR"] = 0.0224; lm["eyeBL"] = lm["eyeBR"] = 0.0112
+    return lm, True, why
+
+
+def default_eyes(cx, ez0, fig_h):
+    half = 0.040 * fig_h / 1.8
+    return {"eyeL": [cx + half, ez0], "eyeR": [cx - half, ez0], "eyeAL": 0.0224, "eyeAR": 0.0224, "eyeBL": 0.0112, "eyeBR": 0.0112}
+
 
 bpy.ops.wm.open_mainfile(filepath=blend)
 low = bpy.data.objects["Low"]
@@ -86,47 +186,56 @@ if mode == "detect":
         eye_band = have & (P3[:, :, 2] > zmin_ + 0.50 * hh) & (P3[:, :, 2] < zmin_ + 0.76 * hh)
     else:
         eye_band = have & (P3[:, :, 2] > top - 0.22) & (P3[:, :, 2] < top - 0.04) & (np.abs(P3[:, :, 0]) < 0.14)   # the head only: a white shirt is as bright as an eye
-    sclera = eye_band & (px.min(axis=2) > 0.58) & (sat < 0.25)
-    lm = {}
-    for side, name in ((1, "L"), (-1, "R")):
-        m = sclera & (P3[:, :, 0] * side > 0.015)
-        p = P3[m]
-        if len(p) < 40 and "--head-part" not in argv:
-            # no visible white (a stylised eye that is nearly all iris): look for the dark iris between the brow and the cheek instead
-            dm = eye_band & (px.mean(axis=2) < 0.20) & (P3[:, :, 0] * side > 0.02) & (np.abs(P3[:, :, 0]) < 0.11) & (P3[:, :, 2] < top - 0.09) & (P3[:, :, 2] > top - 0.17)
-            p = P3[dm]
-            sclera_used = False
-        else:
-            sclera_used = True
-        if len(p) < 20 and "--head-part" not in argv:
-            dm = eye_band & (px.mean(axis=2) < 0.30) & (P3[:, :, 0] * side > 0.015) & (np.abs(P3[:, :, 0]) < 0.12) & (P3[:, :, 2] < top - 0.08) & (P3[:, :, 2] > top - 0.23)
-            p = P3[dm]
-        if len(p) < 20:
-            if "--head-part" not in argv:       # a last resort: the usual place of the eyes on these characters
-                p = np.array([[side * 0.045, 0.0, top - 0.115]] * 25)
+    ok = True
+    if joints_path and "--head-part" not in argv:
+        lm, ok, why = find_eyes_in_head_frame(joints_path, have, P3, px, top)
+        print("EYES", "ok" if ok else "REFUSED", why)
+        sep = lm["eyeL"][0] - lm["eyeR"][0]
+        ez = lm["eyeL"][1]
+    else:
+        lm = {}
+        sclera = eye_band & (px.min(axis=2) > 0.58) & (sat < 0.25)
+        lm = {}
+        for side, name in ((1, "L"), (-1, "R")):
+            m = sclera & (P3[:, :, 0] * side > 0.015)
+            p = P3[m]
+            if len(p) < 40 and "--head-part" not in argv:
+                # no visible white (a stylised eye that is nearly all iris): look for the dark iris between the brow and the cheek instead
+                dm = eye_band & (px.mean(axis=2) < 0.20) & (P3[:, :, 0] * side > 0.02) & (np.abs(P3[:, :, 0]) < 0.11) & (P3[:, :, 2] < top - 0.09) & (P3[:, :, 2] > top - 0.17)
+                p = P3[dm]
+                sclera_used = False
             else:
-                raise RuntimeError(f"cannot find the {name} eye ({len(p)} texels)")
-        # mean shift to the densest cluster of white
-        c0 = np.median(p, axis=0)
-        cells = {}
-        for q in p:
-            k = (int(q[0] / 0.006), int(q[2] / 0.006)); cells[k] = cells.get(k, 0) + 1
-        kbest = max(cells, key=cells.get); c0 = np.array([kbest[0] * 0.006, 0, kbest[1] * 0.006])
-        for _ in range(6):
-            d2 = np.hypot(p[:, 0] - c0[0], p[:, 2] - c0[2]); sel = p[d2 < 0.032]
-            if len(sel) < 10:
-                break
-            c0 = np.array([np.median(sel[:, 0]), 0, np.median(sel[:, 2])])
-        d2 = np.hypot(p[:, 0] - c0[0], p[:, 2] - c0[2]); p = p[d2 < 0.034]
-        x_lo, x_hi = np.percentile(p[:, 0], [2, 98]); z_lo, z_hi = np.percentile(p[:, 2], [2, 98])
-        lm["eye" + name] = [float((x_lo + x_hi) / 2), float((z_lo + z_hi) / 2)]
-        lm["eyeA" + name] = float((x_hi - x_lo) / 2); lm["eyeB" + name] = float((z_hi - z_lo) / 2)
-    # the two eyes are at one height: average, and keep them mirror images about the middle of the face
-    zz = (lm["eyeL"][1] + lm["eyeR"][1]) / 2; lm["eyeL"][1] = zz; lm["eyeR"][1] = zz
-    aa = (lm["eyeAL"] + lm["eyeAR"]) / 2; bb = (lm["eyeBL"] + lm["eyeBR"]) / 2; lm["eyeAL"] = lm["eyeAR"] = aa; lm["eyeBL"] = lm["eyeBR"] = bb
-    sep = lm["eyeL"][0] - lm["eyeR"][0]
-    ez = (lm["eyeL"][1] + lm["eyeR"][1]) / 2
+                sclera_used = True
+            if len(p) < 20 and "--head-part" not in argv:
+                dm = eye_band & (px.mean(axis=2) < 0.30) & (P3[:, :, 0] * side > 0.015) & (np.abs(P3[:, :, 0]) < 0.12) & (P3[:, :, 2] < top - 0.08) & (P3[:, :, 2] > top - 0.23)
+                p = P3[dm]
+            if len(p) < 20:
+                if "--head-part" not in argv:       # a last resort: the usual place of the eyes on these characters
+                    p = np.array([[side * 0.045, 0.0, top - 0.115]] * 25)
+                else:
+                    raise RuntimeError(f"cannot find the {name} eye ({len(p)} texels)")
+            # mean shift to the densest cluster of white
+            c0 = np.median(p, axis=0)
+            cells = {}
+            for q in p:
+                k = (int(q[0] / 0.006), int(q[2] / 0.006)); cells[k] = cells.get(k, 0) + 1
+            kbest = max(cells, key=cells.get); c0 = np.array([kbest[0] * 0.006, 0, kbest[1] * 0.006])
+            for _ in range(6):
+                d2 = np.hypot(p[:, 0] - c0[0], p[:, 2] - c0[2]); sel = p[d2 < 0.032]
+                if len(sel) < 10:
+                    break
+                c0 = np.array([np.median(sel[:, 0]), 0, np.median(sel[:, 2])])
+            d2 = np.hypot(p[:, 0] - c0[0], p[:, 2] - c0[2]); p = p[d2 < 0.034]
+            x_lo, x_hi = np.percentile(p[:, 0], [2, 98]); z_lo, z_hi = np.percentile(p[:, 2], [2, 98])
+            lm["eye" + name] = [float((x_lo + x_hi) / 2), float((z_lo + z_hi) / 2)]
+            lm["eyeA" + name] = float((x_hi - x_lo) / 2); lm["eyeB" + name] = float((z_hi - z_lo) / 2)
+        # the two eyes are at one height: average, and keep them mirror images about the middle of the face
+        zz = (lm["eyeL"][1] + lm["eyeR"][1]) / 2; lm["eyeL"][1] = zz; lm["eyeR"][1] = zz
+        aa = (lm["eyeAL"] + lm["eyeAR"]) / 2; bb = (lm["eyeBL"] + lm["eyeBR"]) / 2; lm["eyeAL"] = lm["eyeAR"] = aa; lm["eyeBL"] = lm["eyeBR"] = bb
+        sep = lm["eyeL"][0] - lm["eyeR"][0]
+        ez = (lm["eyeL"][1] + lm["eyeR"][1]) / 2
     lm["eyeSep"] = float(sep)
+    lm["paint"] = bool(ok)
     # brows: the dark band above each eye
     for side, name in ((1, "L"), (-1, "R")):
         ex, _ = lm["eye" + name]
@@ -172,7 +281,20 @@ mid = (lm["eyeL"][0] + lm["eyeR"][0]) / 2; half_sep = (lm["eyeL"][0] - lm["eyeR"
 lm["eyeL"] = [mid + half_sep, lm["eyeL"][1]]; lm["eyeR"] = [mid - half_sep, lm["eyeR"][1]]
 lm["eyeAL"] = lm["eyeAR"] = A_EYE; lm["eyeBL"] = lm["eyeBR"] = B_EYE
 json.dump(lm, open(face_json, "w"), indent=1)
+paint_it = bool(lm.get("paint", True))
+if paint_it and "--head-part" not in argv:
+    # clear what the generated eye left around the new one (a larger or off-centre original would show as a second eye): inside a wide window round each eye every texel that is clearly
+    # darker or whiter than the skin next to it becomes skin; brows are above the window and stay
+    skin_ref = np.array(lm.get("skinCheek", [0.55, 0.38, 0.30]))
+    for side, name in ((1, "L"), (-1, "R")):
+        cx, cz = lm["eye" + name]
+        win = have & (np.abs(P3[:, :, 0] - cx) < A_EYE * 1.9) & (np.abs(P3[:, :, 2] - cz) < B_EYE * 1.45)
+        diff = np.abs(out - skin_ref[None, None, :]).max(axis=2) * ((out.max(axis=2) - out.min(axis=2)) < 0.40)
+        wgt = np.nan_to_num(smooth((diff - 0.05) / 0.08) * win)
+        out = out * (1 - wgt[..., None]) + skin_ref[None, None, :] * wgt[..., None]
 for side, name in ((1, "L"), (-1, "R")):
+    if not paint_it:
+        break
     cx, cz = lm["eye" + name]
     a = A_EYE; b = B_EYE
     dx = P3[:, :, 0] - cx; dz = P3[:, :, 2] - cz
@@ -248,4 +370,6 @@ new.pixels.foreach_set(buf.ravel())
 bpy.context.scene.render.image_settings.file_format = "JPEG"
 bpy.context.scene.render.image_settings.quality = int(opts.get("--quality", 80))
 new.save_render(colour_out, scene=bpy.context.scene)
-print("PAINTED", colour_out)
+if "--debug" in opts:
+    np.savez_compressed(opts["--debug"], P=P3.astype(np.float32), before=px.astype(np.float32), after=out.astype(np.float32), have=have, lm=json.dumps(lm))
+print("PAINTED" if lm.get("paint", True) else "KEPT GENERATED EYES", colour_out)

@@ -49,7 +49,7 @@ const waterOnly = process.argv.includes('--water-only');
 const lean = process.argv.includes('--lean');
 const allowScriptedFallback = process.argv.includes('--allow-scripted-fallback');
 // --phones 390x844,320x568 (empty for none): the last city is reloaded at each phone size.
-// --phone-cities dakar,kampala: these cities also get the phone sets (each with its browser storage cleared first, so no saved view is restored); --phones lists the sizes.
+// --phone-cities dakar,kampala: these cities also get the phone sets (each reloaded from the venue view); --phones lists the sizes.
 const phoneCities = new Set(arg('phone-cities', '').split(',').filter(Boolean));
 const phones = arg('phones', '390x844').split(',').filter(Boolean).map((p) => p.split('x').map(Number) as [number, number]);
 
@@ -200,6 +200,7 @@ const notes: string[] = [];
 
 /** Opens the map and measures: ms from the tap to a first full render (the map element built and labels drawn, two frames after). */
 async function openMap(b: Browser, key: string): Promise<void> {
+  must(!(await b.eval<boolean>(`document.querySelector('[data-nav="map"]')?.getAttribute('aria-current') === 'page'`)), `${key}: Map was already open before native entry`);
   await b.eval(`window.__rafs = 0; (function tick(){ window.__rafs++; requestAnimationFrame(tick); })(); true`);
   const t0 = Date.now();
   await b.click('[data-nav="map"]');
@@ -288,7 +289,7 @@ async function auditLabels(b: Browser, prefix: string): Promise<void> {
   const result = await b.eval<{ critical: number; failures: string[]; labels: unknown[] }>(`(() => {
     const box = (node) => { const r = node.getBoundingClientRect(); return { l:r.left, r:r.right, t:r.top, b:r.bottom }; };
     const visible = (node) => !node.hidden && node.getBoundingClientRect().width > 0 && node.getBoundingClientRect().height > 0;
-    const controls = [...document.querySelectorAll('.m3-controls button')].filter(visible).map(box);
+    const controls = [...document.querySelectorAll(${JSON.stringify(process.argv.includes('--phone-ui-audit') ? '.m3-controls button,.map-levels-cur,.map-credit' : '.m3-controls button')})].filter(visible).map(box);
     const failures = [], labels = []; let critical = 0;
     for (const node of [...document.querySelectorAll('.m3-label')].filter(visible)) {
       const r = box(node), important = node.matches('.is-here,.is-selected,.is-going');
@@ -304,9 +305,30 @@ async function auditLabels(b: Browser, prefix: string): Promise<void> {
   must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
 }
 
+
+async function auditPlaceList(b: Browser, prefix: string): Promise<void> {
+  const result = await b.eval<{ visibleRows: number; failures: string[] }>(`(() => {
+    const root = document.querySelector('#map-list'), failures = [];
+    const rows = [...(root?.querySelectorAll('.ll-row button') ?? [])];
+    const visible = rows.filter(node => {
+      const r = node.getBoundingClientRect(), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2;
+      return r.height >= 40 && x >= 0 && x < innerWidth && y >= 0 && y < innerHeight && node.contains(document.elementFromPoint(x, y));
+    });
+    if (!visible.length) failures.push('opened place list has no visible usable place row');
+    const jump = root?.querySelector('.ll-top'), last = rows.at(-1);
+    if (jump && last) {
+      const a = jump.getBoundingClientRect(), z = last.getBoundingClientRect();
+      if (a.width && a.height && a.left < z.right && a.right > z.left && a.top < z.bottom && a.bottom > z.top) failures.push('Jump to top overlaps final place row');
+    }
+    return { visibleRows: visible.length, failures };
+  })()`);
+  writeFileSync(join(out, `${prefix}-list-audit.json`), JSON.stringify(result, null, 2));
+  must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
+}
+
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
   if (opts.phone) await dismiss(b, 3000);
-  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`); };
+  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (process.argv.includes('--phone-ui-audit') || label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`); if (process.argv.includes('--phone-ui-audit') && opts.phone && (label === '02-list' || label === '03-list-bottom')) await auditPlaceList(b, `${prefix}-${label}`); };
   await openMap(b, prefix);
   if (waterOnly) {
     const w = waterAt[prefix];
@@ -392,8 +414,13 @@ try {
     if (phoneCities.has(city)) {
       for (const [pw, ph] of phones) {
         await b.setViewport({ width: pw, height: ph, scale: 3, mobile: true });
+        if (await b.eval<boolean>(`document.querySelector('[data-nav="map"]')?.getAttribute('aria-current') === 'page'`)) await b.click('[data-nav="map"]');
+        await b.waitFor(`(() => {
+          const nav = document.querySelector('[data-nav="map"]');
+          const saved = JSON.parse(sessionStorage.getItem('joinallworld-view') || 'null');
+          return !!nav && nav.getAttribute('aria-current') !== 'page' && saved?.mode === 'venue' && saved.camera === null;
+        })()`, 20000, 'the venue view to be saved without a map camera');
         await b.goto('about:blank');
-        await b.send('Storage.clearDataForOrigin', { origin: base, storageTypes: 'local_storage,session_storage,indexeddb,cache_storage,service_workers' });
         await b.goto(base + '/');
         await gameShown(b); await dismiss(b, 12000);
         await mapSet(b, `${city}-phone${pw}`, '', { phone: true });

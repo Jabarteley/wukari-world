@@ -26,14 +26,17 @@ jobs:
       matrix:
         include:
           - id: loader
-            app: 134e5c3b5f4f0835bd6efd57c6ce58a0fb9694d7
+            app: 05c31c17aece82df2ed0de0283af4666a093cf08
             cities: lagos,abuja,cairo,dakar,yaounde
+            extra: ""
           - id: batch2
-            app: bb9bf575df8cdb6159732c1cec0d76261c912ade
+            app: 64869b7d45ff67f425364dd284285b6551633dbf
             cities: tripoli,bamako,ouagadougou,maseru,lilongwe
+            extra: --phone-ui-audit
     env:
       APP_SHA: ${{ matrix.app }}
       CITY_SET: ${{ matrix.cities }}
+      AUDIT_EXTRA: ${{ matrix.extra }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -67,7 +70,7 @@ jobs:
           node --experimental-strip-types scripts/journeys/map-shots.ts \
             --out "$RUNNER_TEMP/city-browser" --port 4423 --debug-port 4424 \
             --cities "$CITY_SET" --phone-cities "$CITY_SET" \
-            --phones 390x844,320x568 --short lagos,abuja --lean --clock-hour 12 --label-audit \
+            --phones 390x844,320x568 --short lagos,abuja --lean --clock-hour 12 --label-audit $AUDIT_EXTRA \
             2>&1 | tee "$RUNNER_TEMP/city-browser/browser.log"
           node --input-type=module -e 'import { readFileSync } from "node:fs"; const r=JSON.parse(readFileSync(process.env.RUNNER_TEMP+"/city-browser/timings.json","utf8")); if(r.aborted || r.consoleErrors?.length) throw Error(JSON.stringify({aborted:r.aborted,errors:r.consoleErrors}));'
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

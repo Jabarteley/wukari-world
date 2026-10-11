@@ -1,0 +1,36 @@
+name: Station source building geometry
+on:
+  push:
+    branches: ['codex/world-antarctica-20261011']
+    paths: ['src/game/cities/stations/buildings.ts', 'scripts/geo/factory/research-building-proof.mjs', '.github/workflows/research-buildings.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  buildings:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run typecheck
+      - name: Retrieve pinned facility artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 38180033319 -n antarctic-source-924610424d357c0076be9261a3edee1720b11e53 -D geometry
+      - name: Rebuild reviewed source candidates and actual mesh
+        run: |
+          mkdir evidence
+          python scripts/geo/factory/station-candidates.py geometry scripts/geo/factory/station-candidates.json evidence/station-candidates.json
+          node --experimental-strip-types scripts/geo/factory/research-building-proof.mjs geometry evidence/station-candidates.json evidence
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: station-buildings-${{ github.sha }}
+          path: evidence/
+          retention-days: 14

@@ -27,5 +27,5 @@
     "commitTimestamp": "2026-10-11T01:53:12Z"
   }
 ,
-  "executionNote": "Retry after run38179933101 was cancelled at35m during derivation without source receipts; next run has75m stage budget and preserves partial receipts/HOLD outside the raw PBF"
+  "executionNote": "Retry after run38179933101 was cancelled at35m during derivation without source receipts; run38182309474 exited124 because its inner shell timeout remained25m; corrected inner/step budget is75m and partial receipts/HOLD survive outside the raw PBF"
 }

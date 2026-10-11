@@ -52,7 +52,7 @@ jobs:
       - name: Derive source metadata and five layers with shared runner
         timeout-minutes: 75
         run: |
-          timeout --signal=TERM --kill-after=15s 25m python source-tooling/scripts/geo/factory/bootstrap/run.py \
+          timeout --signal=TERM --kill-after=30s 75m python source-tooling/scripts/geo/factory/bootstrap/run.py \
             --table scripts/geo/north-america-source/mexico-city.json \
             --geometry-source "$GITHUB_WORKSPACE/geometry-source" \
             --outdir "$BOOTSTRAP_OUT"

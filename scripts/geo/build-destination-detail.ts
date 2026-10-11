@@ -1,0 +1,219 @@
+/**
+ * Regenerates the city-wide geography of one foreign destination from OpenStreetMap (© OpenStreetMap contributors, ODbL 1.0)
+ * through the public Overpass interpreter:
+ *
+ *   ALLWORLD_GEO_CACHE=<directory outside the repository> node --experimental-strip-types scripts/geo/build-destination-detail.ts cairo
+ *
+ * It writes, in src/game/cities/<id>/:
+ *   places.ts    the real named places that stand in for the generic game venues, each with its OpenStreetMap element
+ *   geometry.ts  the play-area outline (built-up extent traced from mapped land use)
+ *   terrain.ts   water polygons, main roads and the ground labels
+ * The choices (which element becomes which venue, which names label the ground) are in scripts/geo/destination-detail/<id>.ts.
+ * Nothing is drawn that the source does not hold: a name and a point are read from the recorded element, never typed in.
+ * Four requests at most, one at a time, 30 seconds apart; every answer is cached outside the repository (overpass.ts).
+ */
+import { createHash } from 'node:crypto';
+import { writeFileSync } from 'node:fs';
+import { ask } from './destination-detail/overpass.ts';
+import type { Element } from './destination-detail/overpass.ts';
+import { validateDestinationFacts } from '../../src/game/cities/africa/types.ts';
+import { toLocal } from '../../src/geo/frame.ts';
+import type { DetailConfig } from './destination-detail/config.ts';
+import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import type { Box, P } from './destination-detail/geometry-tools.ts';
+
+const id = process.argv[2];
+if (!id) throw new Error('Usage: build-destination-detail.ts <city id>');
+const config = (await import(`./destination-detail/${id}.ts`) as { CONFIG: DetailConfig }).CONFIG;
+const { FACTS } = await import(`../../src/game/cities/${id}/facts.ts`) as { FACTS: Parameters<typeof validateDestinationFacts>[0] };
+const origin = validateDestinationFacts(FACTS).mapOrigin;
+// The renderer cuts polygons in the map's own units; the safe-simplification check cuts them the same way.
+const project = (p: readonly [number, number]): readonly [number, number] => toLocal(origin, p[0], p[1]);
+const out = (file: string): URL => new URL(`../../src/game/cities/${id}/${file}`, import.meta.url);
+const [south, west, north, east] = config.box;
+const bbox = `${south},${west},${north},${east}`;
+const sha = (...parts: string[]): string => createHash('sha256').update(parts.join('')).digest('hex');
+const refOf = (element: Element): string => `${element.type}/${element.id}`;
+const centreOf = (element: Element): P => {
+  if (element.type === 'node') return [element.lon!, element.lat!];
+  if (!element.center) throw new Error(`${refOf(element)} has no centre`);
+  return [element.center.lon, element.center.lat];
+};
+
+/** A place must stand at least this far (about 900 m) inside the play box, so that none sits against the border. */
+const EDGE = 0.008;
+/** Water is kept this far (degrees) beyond the play box, so a river or the sea runs on to the edge of the ground that is drawn (the ground reaches one and a half times the city's width, at most 60 km: see SURROUND_UNITS in src/map3d/cities/module.ts). */
+const REACH = reachFor(config.box);
+// The outline, water and roads are drawn over the play box plus a margin, so the built-up ground ends where it really ends.
+const outlineBox: Box = [south - OUTLINE_MARGIN, west - OUTLINE_MARGIN, north + OUTLINE_MARGIN, east + OUTLINE_MARGIN];
+const outlineBbox = outlineBox.join(',');
+const wide = [south - REACH, west - REACH, north + REACH, east + REACH] as const;
+
+// ---- places -----------------------------------------------------------------------------------------------------------------------
+const discoveries = [];
+for (const [label, query] of Object.entries(config.discovery(bbox))) discoveries.push(await ask(id, label, query));
+const discoverySha = discoveries.map((answer) => answer.sha256);
+const byRef = new Map(discoveries.flatMap((answer) => answer.elements).map((element) => [refOf(element), element]));
+const pick = (ref: string): Element => {
+  const element = byRef.get(ref);
+  if (!element) throw new Error(`${ref} is not in the recorded answer`);
+  return element;
+};
+/** The English name, else the French one, else the local one (a name is never transliterated here). */
+const nameIn = (tags: Record<string, string> | undefined): string => (tags?.['name:en'] ?? tags?.['name:fr'] ?? tags?.name ?? '').replace(/\s+/g, ' ').trim();
+const nameOf = (element: Element): string => nameIn(element.tags);
+
+const labelled = config.names.map((choice) => ({ name: choice.label ?? nameOf(pick(choice.ref)), at: centreOf(pick(choice.ref)) }));
+/** The district of a place is the nearest labelled neighbourhood within three and a half kilometres (`districtMetres`), else the whole area. */
+const districtOf = ([lon, lat]: P): string => {
+  const metres = ([x, y]: P): number => Math.hypot((x - lon) * 111320 * Math.cos(lat * Math.PI / 180), (y - lat) * 110574);
+  const nearest = labelled.map((label) => ({ label, d: metres(label.at) })).sort((a, b) => a.d - b.d)[0];
+  return nearest && nearest.d <= (config.districtMetres ?? 3500) ? nearest.label.name : config.name;
+};
+
+const places = config.places.map((choice) => {
+  const element = pick(choice.ref);
+  const [lon, lat] = centreOf(element);
+  const name = choice.label ?? nameOf(element);
+  if (!name) throw new Error(`${choice.ref} has no English name`);
+  if (!inBox(config.box, [lon, lat])) throw new Error(`${choice.ref} lies outside the play box`);
+  if (!inBox([config.box[0] + EDGE, config.box[1] + EDGE, config.box[2] - EDGE, config.box[3] - EDGE], [lon, lat]) && !choice.atEdge) throw new Error(`${choice.ref} lies within ${EDGE} degrees of the play box edge: widen the box or leave the place out`);
+  return {
+    ...(choice.slot ? { slot: choice.slot } : { key: choice.key }),
+    name, district: districtOf([lon, lat]), kind: choice.kind, category: choice.category, icon: choice.icon,
+    lon: round(lon, 6), lat: round(lat, 6), line: choice.line, osm: choice.ref,
+    ...(element.tags?.wikidata ? { wikidata: element.tags.wikidata } : {}),
+    accuracy: element.type === 'node' ? 'mapped-feature' : 'feature-centroid',
+  };
+});
+
+const labels = config.names.map((choice) => {
+  const element = pick(choice.ref);
+  const [lon, lat] = centreOf(element);
+  const name = choice.label ?? nameOf(element);
+  if (!name) throw new Error(`${choice.ref} has no English name`);
+  return { id: choice.id, name, lon: round(lon, 5), lat: round(lat, 5), kind: choice.kind };
+});
+
+writeFileSync(out('places.ts'), `/**
+ * Real places of ${config.name} that replace the generic game venues. Every place is one OpenStreetMap element of the recorded
+ * answers (sha256 ${discoverySha.join(', ')}) to the queries in scripts/geo/destination-detail/${id}.ts; its name is the element's
+ * English name and its point is the node, or the centre of the way or relation. © OpenStreetMap contributors, ODbL 1.0
+ * (https://www.openstreetmap.org/copyright). Generated by scripts/geo/build-destination-detail.ts; do not edit by hand.
+ */
+import type { DestinationPlace } from '../africa/types.ts'
+
+export const PLACES: readonly DestinationPlace[] = ${JSON.stringify(places, null, 2)}
+`);
+console.log(`places ${places.length}, labels ${labels.length}`);
+
+// ---- outline, water and roads ---------------------------------------------------------------------------------------------------------
+// A sea or a big lake is asked for as far out as the water is drawn, so that its shore ways run on to the edge of the drawn ground and the shore can be closed there.
+const waterAnswer = await ask(id, 'water', config.water(config.sea || config.wideWater ? wide.join(',') : bbox));
+const isShore = (element: Element): boolean => Boolean(element.geometry) && element.type === 'way' && (element.tags?.natural === 'coastline' || (config.sea?.kind === 'lake' && !element.tags?.natural && !element.tags?.waterway));
+const coast = waterAnswer.elements.filter(isShore).map((element) => element.geometry!.map((g): P => [g.lon, g.lat]));
+const landPoints = [...places.map((place): P => [place.lon, place.lat]), ...labelled.map((label) => label.at)];
+const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, outlineBox, wide, config.sea.bandMetres, config.cell / config.split) : null;
+const sea = shoreSide ? safePolygons(shoreSide.band, config.waterTolerance, project) : [];
+// The sea carried far beyond the play box is drawn at a coarser tolerance (about 130 m): nobody reads a shore that far out to the metre, and the file stays small.
+const farSea = shoreSide ? safePolygons(shoreSide.far, 0.0008, project) : [];
+// Only what the source tags as water: the answer may also hold wetland, islet and wall ways that are members of the lake's relation.
+const inland = waterAnswer.elements.filter((element) => !isShore(element) && (element.tags?.natural === 'water' || element.tags?.waterway === 'riverbank' || element.type === 'relation'));
+// What the outline is traced round (the shore band and the inland water inside the box: the map's declared water), and what is drawn (the same, carried on to the edge of the ground).
+// A pond or a pool under minWaterKm2 is left out: at the scale of a city it reads as a black pit on the ground.
+const km2 = (polygon: P[][]): number => { const lat = polygon[0]![0]![1]; return ringArea(polygon[0]!) * 111.32 * Math.cos(lat * Math.PI / 180) * 110.57; };
+const big = (polygons: P[][][]): P[][][] => polygons.filter((polygon) => km2(polygon) >= (config.minWaterKm2 ?? 0.4));
+const wet = [...sea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), outlineBox, config.waterTolerance)))];
+const reachWater = [...farSea, ...safePolygons(inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008)))), 0.0008, project)];
+console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
+
+const landuse = await ask(id, 'landuse', config.landuse(outlineBbox));
+const useRings = landuse.elements.flatMap((element) => areaRings(element).outer);
+const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 }))];
+const roadsEarly = await ask(id, 'roads', config.roads(bbox, `${config.core.join(',')}`));
+const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
+const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500 });
+const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015), project);
+const land = tidy(traced.land), play = tidy(traced.play);
+// The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
+const water = safePolygons(traced.water, Math.min(config.waterTolerance, 0.00015), project);
+if (!land.length) throw new Error('The land-use answer left no built-up area in the box');
+const lonLat = (polygons: P[][][]): string => JSON.stringify(polygons.map((polygon) => polygon.map(roundRing)));
+
+writeFileSync(out('geometry.ts'), `/**
+ * The play-area outline of ${config.name}: ${config.boundaryNote}. Land-use areas: ${useRings.length}, filled on a ${config.cell / config.split} degree grid
+ * with a disc round every place of the game and every labelled neighbourhood, closed by ${config.closeMetres ?? 600} m and smoothed, the water taken out of the land
+ * (the play area keeps it), over the play box plus ${OUTLINE_MARGIN} degrees, and simplified (Douglas-Peucker, ${config.outlineTolerance} degrees). A sketch at the grid's size, not a surveyed edge. © OpenStreetMap contributors, ODbL 1.0. Generated by scripts/geo/build-destination-detail.ts
+ * from the Overpass interpreter; source sha256 ${landuse.sha256}. Loaded only with this city's map.
+ */
+import type { DestinationGeometry } from '../africa/map.ts'
+
+export const GEOMETRY: DestinationGeometry = {
+  land: ${lonLat(land)},
+  playArea: ${lonLat(play)},
+  buildings: [], roads: [],
+}
+`);
+
+const reach = coverage(play, outlineBox, config.cell / config.split);
+// A road does not run on into the sea: a point inside the sea band ends the run there.
+const inSeaCover = sea.length ? coverage(sea, outlineBox, config.cell / config.split) : null;
+const inSea = (p: P): boolean => Boolean(inSeaCover && inSeaCover(p, 0));
+const roadsAnswer = await ask(id, 'roads', config.roads(bbox, `${config.core.join(',')}`));
+const candidates: { row: string; km: number; points: number; major: boolean }[] = [];
+const lengthKm = (line: P[]): number => line.slice(1).reduce((sum, [lon, lat], i) => sum + Math.hypot((lon - line[i]![0]) * 111.32 * Math.cos(lat * Math.PI / 180), (lat - line[i]![1]) * 110.57), 0);
+for (const way of roadsAnswer.elements) {
+  if (way.type !== 'way' || !way.geometry || !way.tags?.highway) continue;
+  const isMajor = way.tags.highway === 'motorway' || way.tags.highway === 'trunk';
+  const near = inBox(config.core, [way.geometry[0]!.lon, way.geometry[0]!.lat]);
+  const kept = simplify(way.geometry.map((g): P => [g.lon, g.lat]), near ? config.coreTolerance : config.farTolerance)
+    .filter((p, i, all) => i === 0 || p[0] !== all[i - 1]![0] || p[1] !== all[i - 1]![1]);
+  if (kept.length < 2 || !kept.some((p) => inBox(config.box, p))) continue;
+  // A road is kept where it runs through, or within a short way of, the built-up outline; beyond that it fades out rather than crossing the countryside to the edge.
+  const runs: P[][] = [];
+  let run: P[] = [];
+  for (const p of kept) {
+    if (reach(p, config.roadMarginDegrees) && !inSea(p)) run.push(p);
+    else { if (run.length > 1) runs.push(run); run = []; }
+  }
+  if (run.length > 1) runs.push(run);
+  for (const piece of runs) {
+    const km = lengthKm(piece);
+    // A short unmajor piece is a junction fragment, not a road a player can read at this scale.
+    if (!isMajor && km < config.minRoadKm) continue;
+    const q = piece.map(([lon, lat]): P => [Math.round(lon * 1e4), Math.round(lat * 1e4)]);
+    const steps = q.slice(1).flatMap(([x, y], i) => [x - q[i]![0], y - q[i]![1]]);
+    const name = nameIn(way.tags) || (way.tags.ref ?? '').trim() || 'Road';
+    candidates.push({ row: `  [${JSON.stringify(name)}, ${isMajor ? 1 : 0}, ${q[0]![0]}, ${q[0]![1]}, ${steps.join(', ')}],`, km, points: q.length, major: isMajor });
+  }
+}
+const chosen = candidates.sort((a, b) => Number(b.major) - Number(a.major) || b.km - a.km).slice(0, config.maxRoads);
+const rows = chosen.map((road) => road.row);
+const points = chosen.reduce((sum, road) => sum + road.points, 0);
+const trunk = [...new Set(roadsAnswer.elements.filter((way) => way.tags?.highway === 'motorway' || way.tags?.highway === 'trunk').map((way) => way.tags?.['name:en'] ?? way.tags?.name).filter((name): name is string => Boolean(name)))];
+
+const terrainSha = sha(landuse.sha256, waterAnswer.sha256, roadsAnswer.sha256);
+writeFileSync(out('terrain.ts'), `/**
+ * Water, main roads and ground labels of ${config.name}: ${config.terrainNote} © OpenStreetMap contributors, ODbL 1.0
+ * (https://www.openstreetmap.org/copyright). Generated by scripts/geo/build-destination-detail.ts from the Overpass interpreter;
+ * source sha256 ${terrainSha} (land use ${landuse.sha256}, water ${waterAnswer.sha256}, roads ${roadsAnswer.sha256}, places ${discoverySha.join(', ')}).
+ * Roads: Douglas-Peucker ${config.farTolerance} degrees (${config.coreTolerance} in the core ${config.core.join(', ')}), quantised to 0.0001 degrees;
+ * ${rows.length} ways of ${candidates.length} candidates (the longest first, none under ${config.minRoadKm} km unless motorway or trunk), ${points} points; each row is name, major (1/0), first longitude and latitude in 0.0001 degrees, then the steps to every
+ * next vertex. Roads leave the outline by at most ${config.roadMarginDegrees} degrees. Water: simplified ${config.waterTolerance} degrees; "water" lies inside the play area, "reachWater" is the same water carried ${REACH} degrees beyond the play box, to the edge of the ground that is drawn. Loaded only with this city's map.
+ */
+import type { DestinationTerrain } from '../africa/map.ts'
+
+export const TERRAIN: DestinationTerrain = {
+  water: ${lonLat(water)},
+  reachWater: ${lonLat(reachWater)},
+  roads: [
+${rows.join('\n')}
+  ],
+  trunkRoads: ${JSON.stringify(trunk)},
+  names: ${JSON.stringify(labels)},
+  surround: ${JSON.stringify(config.surround)},
+  source: ${JSON.stringify(config.source)},
+  licence: 'ODbL-1.0',
+}
+`);
+console.log(`land ${land.length} parts, water ${water.length} parts, roads ${rows.length} ways / ${points} points`);

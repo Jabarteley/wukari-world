@@ -1,0 +1,73 @@
+import type { SceneKind, VenueCategoryId } from '../../../src/types/content.ts';
+import type { DestinationPlace } from '../../../src/game/cities/africa/types.ts';
+import type { Box } from './geometry-tools.ts';
+
+/** One real place chosen from the recorded places answer. The name and point are read from the element, never typed. */
+export interface PlacePick {
+  /** `node/1`, `way/2` or `relation/3` in the recorded answer. */
+  ref: string
+  /** The generic starter venue it replaces (its id and activities are kept), or the key of an added venue. */
+  slot?: NonNullable<DestinationPlace['slot']>
+  key?: string
+  kind: SceneKind
+  category: VenueCategoryId
+  icon: string
+  line: string
+  /** Only to shorten an English name that is longer than a map label; it must be a part of the recorded name. */
+  label?: string
+  /** Only for a place that must stand within a kilometre of the play box edge (it keeps its real point). */
+  atEdge?: true
+}
+
+export interface NamePick { id: string; ref: string; kind: 'neighbourhood' | 'water'; label?: string }
+
+/** Everything that differs between destinations in scripts/geo/build-destination-detail.ts. */
+export interface DetailConfig {
+  name: string
+  /** South, west, north, east of the play area. */
+  box: Box
+  /** The dense core, where roads keep more detail. */
+  core: Box
+  /** Overpass queries; `bbox` is "south,west,north,east". */
+  /** One query per cache label; each answer is recorded by its sha256. */
+  discovery: (bbox: string) => Record<string, string>
+  /** Land-use areas whose centres mark the built-up extent. */
+  landuse: (bbox: string) => string
+  /** The coarse grid cell in degrees (the outline's fine grid is cell / split). `grow` and `minHole` are no longer used. */
+  cell: number
+  grow: number
+  /** Fine cells per coarse cell, and how many fine cells the land keeps back from the water. */
+  split: number
+  shore: number
+  minHole: number
+  /** The shortest a non-major road may be, in kilometres, and the most roads kept (longest first). */
+  minRoadKm: number
+  maxRoads: number
+  /** How far (degrees) a road may run on past the built-up outline before it is cut. */
+  roadMarginDegrees: number
+  /** Gaps between mapped land-use blocks narrower than about this many metres are closed (default 600). */
+  closeMetres?: number
+  /** How far (metres) from a labelled neighbourhood a place still takes its name as its district (default 3500). */
+  districtMetres?: number
+  /** A main road within this many metres of the built-up ground joins the fragments it passes (default 1500; 0 for none). */
+  joinMetres?: number
+  /** The smallest inland water body (square kilometres) kept; the default is 0.4. A river is kept when its piece in the box is larger. */
+  minWaterKm2?: number
+  /** The ground colour round the outline in the 3D and simple maps. */
+  surround: string
+  water: (bbox: string) => string
+  /** Ask for the water as far out as the drawn ground (as a sea or a lake is), so that a river mapped in pieces runs on to its edge instead of ending where the box ends. */
+  wideWater?: true
+  /** Set when the water answer holds shore ways of the sea (`coast`: coastline, land on the left) or of a big lake (`lake`: the member ways of its relation): the water is drawn this far out from the shore, in metres. */
+  sea?: { kind: 'coast' | 'lake'; bandMetres: number }
+  roads: (bbox: string, core: string) => string
+  boundaryNote: string
+  terrainNote: string
+  source: string
+  outlineTolerance: number
+  waterTolerance: number
+  farTolerance: number
+  coreTolerance: number
+  places: readonly PlacePick[]
+  names: readonly NamePick[]
+}

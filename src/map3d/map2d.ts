@@ -167,7 +167,7 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
     <p class="m3-hint" data-m3-hint ${hintKnown() ? 'hidden' : ''}>${mapHint(Boolean(globalThis.matchMedia?.('(pointer: coarse)').matches), true)}</p>`;
   container.appendChild(root);
   const worldNode = root.querySelector<HTMLElement>('.m3-flat-world')!, canvas = root.querySelector('canvas')!, labelLayer = root.querySelector<HTMLElement>('.m3-labels')!, hint = root.querySelector<HTMLElement>('[data-m3-hint]')!;
-  const lgaArt = root.querySelector<SVGGElement>('.m3-flat-lgas')!, tripPaths = [root.querySelector('[data-trip]')!, root.querySelector('[data-trip-top]')!];
+  const namesNodes = [...root.querySelectorAll<SVGTextElement>('.m3-flat-names text')].map((node) => ({ node, size: parseFloat(node.getAttribute('font-size') ?? '2') })), lgaArt = root.querySelector<SVGGElement>('.m3-flat-lgas')!, tripPaths = [root.querySelector('[data-trip]')!, root.querySelector('[data-trip-top]')!];
   const paint = canvas.getContext('2d')!;
 
   // ---- places, plates and tags: the 3D map's own markup, so the styles are literally shared -------
@@ -280,7 +280,8 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
         paint.fillRect(at.x + 1, at.y + 1, stepX * scale - 2, stepZ * scale - 2);
       }
     }
-    if (layers.homes && pack.lgas?.length) {
+    // A city drawn city-wide (a ground colour round it) has one local unit holding the whole city: no estate lots are laid over it, and its chip would lie across the pins; its neighbourhood names are on the ground instead.
+    if (layers.homes && pack.lgas?.length && !pack.surround) {
       const centre = ground(insets.left + (size.width - insets.left - insets.right) / 2, insets.top + (size.height - insets.top - insets.bottom) / 2), detail = [];
       for (const lga of pack.lgas) {
         const xs = lga.polygon.map((point) => point[0]), zs = lga.polygon.map((point) => point[1]);
@@ -354,7 +355,7 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
   function near(at: { x: number, z: number }) { scale = Math.max(fitScale(), free().width / 58); centreOn(at.x, at.z); }
   /** A view kept before a reload, applied when the map first opens. */
   let pendingView: { scale: number; x: number; y: number } | null = null;
-  function open() { opened = true; userMoved = false; if (pendingView) { scale = pendingView.scale; ox = pendingView.x; oy = pendingView.y; pendingView = null; userMoved = true; return; } if (size.width > 720) core(); else near(spotOf(state?.location) || homeSpot()); }
+  function open() { opened = true; userMoved = false; if (pendingView) { scale = pendingView.scale; ox = pendingView.x; oy = pendingView.y; pendingView = null; userMoved = true; return; } if (size.width > 720) core(); else if (pack.surround) core(); else near(spotOf(state?.location) || homeSpot()); }
   function apply() {
     if (!scale) return;
     scale = clamp(scale, fitScale() * 0.8, MAX_SCALE);
@@ -365,13 +366,15 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
     worldNode.style.width = `${box.width * scale}px`; worldNode.style.height = `${box.height * scale}px`;
     worldNode.style.transform = `translate(${Math.round(ox)}px,${Math.round(oy)}px)`;
     const far = scale < 3.2, wholeView = scale < fitScale() * WHOLE_SCALE;
-    root.classList.toggle('is-far', far); root.classList.toggle('is-whole', wholeView);
+    root.classList.toggle('is-far', far); root.classList.toggle('is-whole', wholeView); root.classList.toggle('is-city', Boolean(pack.surround));
+    // A city drawn city-wide keeps its neighbourhood names at every zoom, at least 12 screen pixels tall (a name is user units; the art is scaled by `scale`).
+    if (pack.surround) for (const text of namesNodes) text.node.style.fontSize = `${Math.max(text.size, 12 / scale)}px`;
     lgaArt.style.display = layers.lgas ? '' : 'none';
     placeLabels(far, wholeView);
     drawHouses();
   }
   function placeLabels(far: boolean, wholeView: boolean) {
-    const entries = [...labels.values()].map((label) => { const spot = spotOf(label.place.id)!; const at = project(spot.x, spot.z - (label.place.id === 'home' && homeAt!.own ? 0 : 2.2)); return { label, at, visible: at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && label.priority < 70) }; });
+    const entries = [...labels.values()].map((label) => { const spot = spotOf(label.place.id)!; const at = project(spot.x, spot.z - (label.place.id === 'home' && homeAt!.own ? 0 : 2.2)); return { label, at, visible: at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && model.extent === 'state' && label.priority < 70) }; });
     entries.sort((p, q) => q.label.priority - p.label.priority || q.at.y - p.at.y);
     const taken: { l: number, r: number, t: number, b: number }[] = [], hits = (rect: { l: number, r: number, t: number, b: number }) => taken.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t);
     const allowed = venueNamesAt(densityFor(size.width), scale / fitScale());
@@ -396,7 +399,7 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
       const { node, lga } = plate, at = project(lga.plate[0], lga.plate[1]), distance = wholeView ? 1000 : 0;
       const fit = plateFit(lga.name, (plate.span.maxX - plate.span.minX) * scale, distance);
       const w = plateWidth(lga.name) * fit.scale * 0.6, h = 24 * fit.scale, rect = { l: at.x - w, r: at.x + w, t: at.y - h / 2, b: at.y + h / 2 };
-      const visible = layers.lgas && fit.show && at.x > -80 && at.x < size.width + 80 && at.y > insets.top - 10 && at.y < size.height + 30 && scale < 26 && !platesAt.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t) && !(!wholeView && hits(rect));
+      const visible = layers.lgas && !pack.surround && fit.show && at.x > -80 && at.x < size.width + 80 && at.y > insets.top - 10 && at.y < size.height + 30 && scale < 26 && !platesAt.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t) && !(!wholeView && hits(rect));
       if (node.hidden === visible) node.hidden = !visible;
       if (!visible) continue;
       platesAt.push(rect);

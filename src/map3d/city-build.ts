@@ -139,8 +139,8 @@ const ASPHALT = '#5d626b', TRUNK = '#464a52', TRUNK_KERB = '#f0eadb', KERB = '#e
 
 export const CITY_LIGHT: Readonly<Record<TimeOfDay, TimePreset>> = Object.freeze({
   day: { sky: ['#d7edf3', '#a8cfdd'], hemi: ['#f0f5f1', '#879578', 1.25], sun: ['#ffe3b4', 1.65, [-70, 120, 90]], water: '#347f9b', windows: '#526b7c', waves: 0.34, shadow: 0.26 },
-  dusk: { sky: ['#efaa7c', '#625d87'], hemi: ['#e5b697', '#4e5063', 0.95], sun: ['#ffad70', 1.25, [-130, 46, 40]], water: '#355e80', windows: '#ffd49a', waves: 0.28, shadow: 0.3 },
-  night: { sky: ['#202b4a', '#0b142b'], hemi: ['#9caed7', '#172439', 0.8], sun: ['#a9bde9', 0.65, [-60, 110, 60]], water: '#173653', windows: '#ffffff', waves: 0.14, shadow: 0.34 },
+  dusk: { sky: ['#efaa7c', '#625d87'], hemi: ['#e5b697', '#4e5063', 0.95], sun: ['#ffad70', 1.25, [-130, 46, 40]], water: '#3f7fa5', windows: '#ffd49a', waves: 0.28, shadow: 0.3 },
+  night: { sky: ['#202b4a', '#0b142b'], hemi: ['#9caed7', '#172439', 0.8], sun: ['#a9bde9', 0.65, [-60, 110, 60]], water: '#2f6a94', windows: '#ffffff', waves: 0.14, shadow: 0.34 },
 });
 
 function mulberry(seed: number) { let a = seed >>> 0; return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
@@ -154,7 +154,7 @@ export const FABRIC_FAR = 760;
 const inBox = (x: number, z: number, [x0, z0, x1, z1]: Box4) => x >= x0 && x <= x1 && z >= z0 && z <= z1;
 
 /** A hand-rolled mesh collector for flat things the batch has no primitive for: polygons, ribbons, walls. */
-export function createRaw(THREE: Three): Raw {
+export function createRaw(THREE: Three, split = 0): Raw {
   const pos: number[] = [], nor: number[] = [], col: number[] = [], idx: number[] = [], tint = new THREE.Color(), cache = new Map<string, [number, number, number]>();
   const rgb = (colour: string) => { if (!cache.has(colour)) { tint.set(colour); cache.set(colour, [tint.r, tint.g, tint.b]); } return cache.get(colour)!; };
   const v = (x: number, y: number, z: number, nx: number, ny: number, nz: number, colour: string) => { const c = rgb(colour); pos.push(x, y, z); nor.push(nx, ny, nz); col.push(c[0], c[1], c[2]); return pos.length / 3 - 1; };
@@ -173,7 +173,19 @@ export function createRaw(THREE: Three): Raw {
       const base = pos.length / 3;
       for (const ring of rings) for (const [x, z] of ring) v(x, y, z, 0, 1, 0, colour);
       const vectors = rings.map((ring) => ring.map(([x, z]) => new THREE.Vector2(x, z)));
-      for (const [a, b, c] of THREE.ShapeUtils.triangulateShape(vectors[0]!, vectors.slice(1))) tri(base + a!, base + b!, base + c!);
+      const longest = (ia: number, ib: number, ic: number) => Math.max(Math.hypot(pos[ia * 3]! - pos[ib * 3]!, pos[ia * 3 + 2]! - pos[ib * 3 + 2]!), Math.hypot(pos[ib * 3]! - pos[ic * 3]!, pos[ib * 3 + 2]! - pos[ic * 3 + 2]!), Math.hypot(pos[ic * 3]! - pos[ia * 3]!, pos[ic * 3 + 2]! - pos[ia * 3 + 2]!));
+      // A sea or a river cut into a few huge slivers (a long shore fanned out to the far corners) is drawn badly: the rasteriser loses the thin edges and streaks of
+      // ground show through. A triangle with a side over SPLIT map units is cut in halves across its longest side until none is, so every triangle is small and fat.
+      const SPLIT = split || Infinity;
+      const cut = (ia: number, ib: number, ic: number, depth: number): void => {
+        if (depth > 12 || longest(ia, ib, ic) <= SPLIT) { tri(ia, ib, ic); return; }
+        const sides: [number, number, number][] = [[ia, ib, ic], [ib, ic, ia], [ic, ia, ib]];
+        const [p, q, r] = sides.sort((m, n) => Math.hypot(pos[n[0] * 3]! - pos[n[1] * 3]!, pos[n[0] * 3 + 2]! - pos[n[1] * 3 + 2]!) - Math.hypot(pos[m[0] * 3]! - pos[m[1] * 3]!, pos[m[0] * 3 + 2]! - pos[m[1] * 3 + 2]!))[0]!;
+        const mid = pos.length / 3;
+        v((pos[p * 3]! + pos[q * 3]!) / 2, y, (pos[p * 3 + 2]! + pos[q * 3 + 2]!) / 2, 0, 1, 0, colour);
+        cut(p, mid, r, depth + 1); cut(mid, q, r, depth + 1);
+      };
+      for (const [a, b, c] of THREE.ShapeUtils.triangulateShape(vectors[0]!, vectors.slice(1))) cut(base + a!, base + b!, base + c!, 0);
     },
     /** The vertical side of a closed polygon between two heights, facing outwards. */
     wall(polygon, y0, y1, colour) {
@@ -358,12 +370,14 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   count(add(board, 'board'));
   const water = new THREE.Mesh(new THREE.PlaneGeometry(width, depth), materials.water);
   materials.water.map!.repeat.set(width / WATER_TILE, depth / WATER_TILE);
-  if (pack.inland) { materials.water.map = null; materials.water.color.set('#bcd596'); materials.water.roughness = 1; materials.water.metalness = 0; }
+  if (pack.inland) { materials.water.map = null; materials.water.color.set(pack.surround ?? '#bcd596'); materials.water.roughness = 1; materials.water.metalness = 0; }
   water.rotation.x = -Math.PI / 2; water.position.set(midX, WATER_Y, midZ);
   count(add(water, 'water'));
-  const waterwayMaterial = pack.water?.length ? keep(new THREE.MeshStandardMaterial({ color: CITY_LIGHT.day.water, roughness: 0.42, metalness: 0.05 })) : null;
+  // Water keeps a little light of its own, so a sea or a river is still a natural blue at dusk and at night and not black.
+  const waterwayMaterial = pack.water?.length ? keep(new THREE.MeshStandardMaterial({ color: CITY_LIGHT.day.water, roughness: 0.42, metalness: 0.05, emissive: new THREE.Color(CITY_LIGHT.day.water), emissiveIntensity: 0.3, ...(pack.surround ? { polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 } : {}) })) : null;
+  // The water lies 0.01 above the ground plane; seen from far out the two share a depth value and stripes of ground show through the sea. A polygon offset puts the water in front at any distance.
   if (waterwayMaterial) {
-    const waterways = createRaw(THREE);
+    const waterways = createRaw(THREE, pack.surround ? 60 : 0);
     for (const part of pack.water ?? []) waterways.shape(part.points, WATER_Y + 0.01, '#ffffff', part.holes);
     count(add(waterways.build(waterwayMaterial), 'waterways'));
   }
@@ -886,8 +900,8 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     setTime(next: string) {
       const preset = presets[next] || CITY_LIGHT.day;
       time = presets[next] ? next : 'day';
-      materials.water.color.set(pack.inland ? '#bcd596' : preset.water); materials.windows.color.set(preset.windows);
-      waterwayMaterial?.color.set(preset.water);
+      materials.water.color.set(pack.inland ? pack.surround ?? '#bcd596' : preset.water); materials.windows.color.set(preset.windows);
+      waterwayMaterial?.color.set(preset.water); waterwayMaterial?.emissive.set(preset.water);
       materials.waves.opacity = preset.waves; materials.shadow.opacity = preset.shadow;
       return preset;
     },

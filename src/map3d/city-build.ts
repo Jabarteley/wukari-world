@@ -23,6 +23,7 @@
 import type { BufferGeometry, Group, InstancedMesh, Material, Mesh, MeshBasicMaterial, MeshStandardMaterial, Object3D, PerspectiveCamera } from 'three';
 import { CITY_TRIANGLES } from '../budgets.ts';
 import type { Kit } from '../scene/kit.ts';
+import { mix3, skyWeights } from '../scene/lighting.ts';
 import { createBatch, sceneMaterials, hash } from '../scene/build.ts';
 import { sign, textWidth } from '../scene/props.ts';
 import { drawLandmark, PLINTH } from './landmarks.ts';
@@ -143,6 +144,19 @@ export const CITY_LIGHT: Readonly<Record<TimeOfDay, TimePreset>> = Object.freeze
   dusk: { sky: ['#efaa7c', '#625d87'], hemi: ['#e5b697', '#4e5063', 0.95], sun: ['#ffad70', 1.25, [-130, 46, 40]], water: '#3f7fa5', windows: '#ffd49a', waves: 0.28, shadow: 0.3 },
   night: { sky: ['#202b4a', '#0b142b'], hemi: ['#9caed7', '#172439', 0.8], sun: ['#a9bde9', 0.65, [-60, 110, 60]], water: '#2f6a94', windows: '#ffffff', waves: 0.14, shadow: 0.34 },
 });
+
+/** The city's light at a minute of the Lagos day: the day, dusk and night looks blended by the sun's height, so it eases through the evening. */
+export function cityLightAt(minute: number): TimePreset {
+  const w = skyWeights(minute), l = [CITY_LIGHT.night, CITY_LIGHT.dusk, CITY_LIGHT.day] as const;
+  const num = (pick: (p: TimePreset) => number) => l.reduce((sum, p, i) => sum + pick(p) * w[i]!, 0);
+  const col = (pick: (p: TimePreset) => string) => mix3(pick(l[0]), pick(l[1]), pick(l[2]), w[0], w[1], w[2]);
+  const at = (i: 0 | 1 | 2) => num((p) => p.sun[2][i]);
+  return {
+    sky: [col((p) => p.sky[0]), col((p) => p.sky[1])], hemi: [col((p) => p.hemi[0]), col((p) => p.hemi[1]), num((p) => p.hemi[2])],
+    sun: [col((p) => p.sun[0]), num((p) => p.sun[1]), [at(0), at(1), at(2)]],
+    water: col((p) => p.water), windows: col((p) => p.windows), waves: num((p) => p.waves), shadow: num((p) => p.shadow),
+  };
+}
 
 function mulberry(seed: number) { let a = seed >>> 0; return () => { a = (a + 0x6d2b79f5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
 const segmentDistance = (x: number, z: number, a: XZ, b: XZ) => { const dx = b.x - a.x, dz = b.z - a.z, t = Math.max(0, Math.min(1, ((x - a.x) * dx + (z - a.z) * dz) / (dx * dx + dz * dz || 1))); return Math.hypot(x - a.x - dx * t, z - a.z - dz * t); };
@@ -914,8 +928,8 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
       return true;
     },
     /** Lighting that belongs to the city's own materials. The host applies hemi, sun and sky. */
-    setTime(next: string) {
-      const preset = presets[next] || CITY_LIGHT.day;
+    setTime(next: string, blended?: TimePreset) {
+      const preset = blended || presets[next] || CITY_LIGHT.day;
       time = presets[next] ? next : 'day';
       materials.water.color.set(pack.inland ? pack.surround ?? '#bcd596' : preset.water); materials.windows.color.set(preset.windows);
       waterwayMaterial?.color.set(preset.water); waterwayMaterial?.emissive.set(preset.water);

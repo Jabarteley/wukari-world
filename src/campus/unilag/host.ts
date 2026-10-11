@@ -1,6 +1,8 @@
 import './host.css';
 import type { Group, WebGLRenderer } from 'three';
 import { createKit } from '../../scene/kit.ts';
+import { lightingAt, lagosMinute } from '../../scene/lighting.ts';
+import { lightQuality } from '../../scene/rig.ts';
 import { createMotionLoop } from '../../scene/motion-loop.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
 import { createPositionReporter, createWalker, gaitPhase, WALK_SPEED, JOG_SPEED } from '../../scene/movement.ts';
@@ -93,7 +95,8 @@ export function createCampusHost(container: HTMLElement, {
   const renderer: WebGLRenderer = providedRenderer || new THREE.WebGLRenderer({ antialias: true, alpha: false });
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.shadowMap.enabled = true;
+  const quality = lightQuality();
+  renderer.shadowMap.enabled = quality === 'high';
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.12;
@@ -107,7 +110,7 @@ export function createCampusHost(container: HTMLElement, {
   const hemi = new THREE.HemisphereLight('#c6e0e6', '#68765a', 2);
   const sun = new THREE.DirectionalLight('#fff0d2', 2.4);
   sun.position.set(80, 140, 50);
-  sun.castShadow = true;
+  sun.castShadow = quality === 'high';
   sun.shadow.mapSize.set(2048, 2048);
   sun.shadow.camera.left = -120; sun.shadow.camera.right = 120;
   sun.shadow.camera.top = 120; sun.shadow.camera.bottom = -120;
@@ -271,9 +274,11 @@ export function createCampusHost(container: HTMLElement, {
     updateCamera();
     world.background = new THREE.Color(campus.background);
     world.fog = new THREE.Fog(campus.background, 450, 2200);
-    sun.position.set(walker.x-70,140,walker.z+60); sun.target.position.set(walker.x,0,walker.z);
-    const night = campus.time === 'night'; hemi.intensity = night ? 0.9 : 2; sun.intensity = night ? 0.65 : 2.4;
-    sun.color.set(night ? '#9ebadb' : '#fff0d2');
+    // The sun follows the Lagos clock: low and warm at the ends of the day, high at noon, a cool moon by night.
+    const light = lightingAt('outdoor', lagosMinute(now())), day = 1 - Math.min(1, light.night ?? 0);
+    sun.position.set(walker.x + light.sun[2][0] * 6, light.sun[2][1] * 6, walker.z + light.sun[2][2] * 6); sun.target.position.set(walker.x,0,walker.z);
+    hemi.intensity = 0.9 + 1.1 * day; sun.intensity = 0.65 + 1.75 * day;
+    sun.color.set(light.sun[0]);
     renderer.render(world, camera); renderCount += 1;
     syncTags(); drawMap();
   }

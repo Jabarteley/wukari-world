@@ -53,11 +53,12 @@ import type { Trip, TripPose, TripSource } from './trip.ts';
 import type { Route } from './roads.ts';
 import { createKit } from '../scene/kit.ts';
 import { timeFrames } from '../scene/look.ts';
+import { lagosMinute } from '../scene/lighting.ts';
 import { COMING_SOON } from '../game/content/venues.ts';
 import { contentFor } from '../game/cities/runtime.ts';
 import { openingInfo, lagosTime } from '../game/clock.ts';
 import { buildNetwork, localTripRoute, pointInPolygon } from './roads.ts';
-import { buildCity, createRaw, LANDMARK_SCALE } from './city-build.ts';
+import { buildCity, cityLightAt, createRaw, LANDMARK_SCALE } from './city-build.ts';
 import { createRig, DEFAULT_PITCH, MIN_DISTANCE } from './camera.ts';
 import { createFlick, DOUBLE_TAP_MS, DOUBLE_TAP_PX, dragKind, isDrag, isTap, localPoint, mapHint, MAP_HINT_KEY, ROTATE_PITCH, ROTATE_YAW, twist } from '../scene/gesture.ts';
 import { createActor } from './actor.ts';
@@ -416,10 +417,13 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   }
 
   // ---- lighting ----------------------------------------------------------------------------------
-  function applyTime(next: TimeOfDay) {
-    if (next === time) return false;
-    time = next;
-    const preset = city.setTime(next);
+  let lookKey = '';
+  /** The light for a time of day name, or, with the Lagos minute, the blend of the looks at that minute (it eases through the evening). */
+  function applyTime(next: TimeOfDay, minute?: number) {
+    const key = minute === undefined ? next : `${next}@${minute}`;
+    if (key === lookKey) return false;
+    lookKey = key; time = next;
+    const preset = city.setTime(next, minute === undefined ? undefined : cityLightAt(minute));
     actor.setTime?.(next); // model-library trip vehicles have day and night lights; a no-op otherwise
     hemi.color.set(preset.hemi[0]); hemi.groundColor.set(preset.hemi[1]); hemi.intensity = preset.hemi[2];
     sun.color.set(preset.sun[0]); sun.intensity = preset.sun[1]; sun.position.set(...preset.sun[2]);
@@ -427,6 +431,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     return true;
   }
   applyTime('day');
+  const applyClock = () => (heldTime ? applyTime(heldTime) : applyTime(timeOfDay(state?.t ?? 0), lagosMinute(state?.t ?? 0)));
 
   // ---- labels ------------------------------------------------------------------------------------
   const probe = new THREE.Vector3();
@@ -981,7 +986,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       let changed = living ? city.setHome(null, { ...plotPoint(plot!), label: pack.lgas.find((lga) => lga.id === plot!.lga)?.name ?? 'Your house', top: Math.max(0.6, estateLayout(pack, plot!.lga)!.pitch(plot!.estate) * 1.1) }) : city.setHome(state?.travel?.home!);
       if (hasWorld && city.setLgas(layers.lgas, state?.estate?.lga ?? null)) { changed = true; updatePlates(); }
       if (changed) { labelKey = ''; if (overlays.set(layers, data)) syncChips(); }
-      changed = applyTime(heldTime || timeOfDay(state?.t ?? 0)) || changed;
+      changed = applyClock() || changed;
       const nextTrip = tripOf(state);
       if (nextTrip && city.places[nextTrip.to]) {
         const fresh = clock.sync(nextTrip, now());
@@ -1034,7 +1039,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     /** Back to the opening view: the city core. */
     recentre() { if (opened) { openView(); request(); } },
     /** For tests and screenshots: hold the lighting at 'day' | 'dusk' | 'night' (null follows Lagos time again). */
-    holdTime(next: TimeOfDay | null) { heldTime = next; if (applyTime(next || timeOfDay(state?.t ?? 0))) request(); },
+    holdTime(next: TimeOfDay | null) { heldTime = next; if (applyClock()) request(); },
     /** What the Map panel says, for callers that do not go through the window event (tests, a host replaying it). */
     ui(detail: MapUiDetail) { onUi({ detail } as CustomEvent<unknown>); },
     /** For `?diagnostics`: the cost of a frame with the GPU waited for (not counted as renders). */

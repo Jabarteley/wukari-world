@@ -2,6 +2,8 @@ import type { Object3D, WebGLRenderer } from 'three'
 import type { HostPerson, HostPlayer, HostState } from '../campus/unilag/host.ts'
 import type { StreetJourney } from './types.ts'
 import { createKit } from '../scene/kit.ts'
+import { lightingAt, lagosMinute } from '../scene/lighting.ts'
+import { TONE_EXPOSURE } from '../scene/look.ts'
 import { buildAvatar, poseAvatar } from '../scene/characters.ts'
 import { createWalker, gaitPhase, WALK_SPEED, JOG_SPEED } from '../scene/movement.ts'
 import { createOrbit } from '../scene/camera-controls.ts'
@@ -29,13 +31,24 @@ export interface StreetHostOptions {
 /** A separate, lazy host. Global metres are authoritative; only drawing uses a nearby local origin. */
 export function createStreetHost(container: HTMLElement, options: StreetHostOptions = {}) {
   const kit = createKit({ matte: true }), { THREE } = kit, world = new THREE.Scene()
-  world.background = new THREE.Color('#b7d0d1'); world.fog = new THREE.Fog('#b7d0d1', 85, 180)
+  const sky = new THREE.Color('#b7d0d1'), mist = new THREE.Fog('#b7d0d1', 85, 180)
+  world.background = sky; world.fog = mist
   const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 220), renderer = options.renderer ?? new THREE.WebGLRenderer({ antialias: true })
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 1.5)); renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.shadowMap.enabled = false
   container.appendChild(renderer.domElement)
   Object.assign(renderer.domElement.style, { display: 'block', width: '100%', height: '100%', touchAction: 'none' })
-  world.add(new THREE.HemisphereLight('#e9f1ec', '#797359', 2.5))
-  const sun = new THREE.DirectionalLight('#fff0d0', 2); sun.position.set(20, 45, 15); world.add(sun)
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = TONE_EXPOSURE
+  const hemi = new THREE.HemisphereLight('#e9f1ec', '#797359', 2.5); world.add(hemi)
+  const sun = new THREE.DirectionalLight('#fff0d0', 2); sun.position.set(20, 45, 15); world.add(sun, sun.target)
+  const clock = options.now ?? Date.now
+  /** The sky, the sun and the fog at the Lagos clock's minute: set on a frame that is drawn anyway (nothing here asks for one). */
+  function shine(x: number, z: number) {
+    const light = lightingAt('outdoor', lagosMinute(clock()))
+    hemi.color.set(light.hemi[0]); hemi.groundColor.set(light.hemi[1]); hemi.intensity = light.hemi[2]
+    sun.color.set(light.sun[0]); sun.intensity = light.sun[1]
+    sun.position.set(x + light.sun[2][0] * 2.5, light.sun[2][1] * 2.5, z + light.sun[2][2] * 2.5); sun.target.position.set(x, 0, z)
+    sky.set(light.sky[0]); mist.color.set(light.sky[0])
+  }
   const scenery = createStreetRenderer(kit); world.add(scenery.group)
   const walker = createWalker({ speed: WALK_SPEED * 0.72, jogSpeed: JOG_SPEED * 0.72 }), orbit = createOrbit()
   orbit.setBase([8, 10, 13], [0, 1, 0]); orbit.setLimits({ near: 0.45, far: 2.5 })
@@ -142,7 +155,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
       element.style.left = `${(point.x + 1) * container.clientWidth / 2}px`; element.style.top = `${(1 - point.y) * container.clientHeight / 2}px`; element.style.transform = 'translate(-50%,-100%)'
     }
   }
-  function draw() { if (closed) return; const at = scenery.local(walker); avatar.position.set(at.x, 0, at.z); avatar.rotation.y = walker.ry; standIn?.move(at.x, 0, at.z, walker.ry); orbit.follow(at.x, 1.2, at.z); orbit.apply(camera); renderer.render(world, camera); renderCount++; renderDoors(); renderPracticeLabels() }
+  function draw() { if (closed) return; const at = scenery.local(walker); avatar.position.set(at.x, 0, at.z); avatar.rotation.y = walker.ry; standIn?.move(at.x, 0, at.z, walker.ry); orbit.follow(at.x, 1.2, at.z); orbit.apply(camera); shine(at.x, at.z); renderer.render(world, camera); renderCount++; renderDoors(); renderPracticeLabels() }
   const loop = createMotionLoop(dt => {
     if (closed || !initialized) return false
     const accepted = client.journey, before = { x: walker.x, z: walker.z }, ahead = accepted ? Math.hypot(walker.x - accepted.point.x, walker.z - accepted.point.z) : 0

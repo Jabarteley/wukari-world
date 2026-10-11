@@ -374,7 +374,8 @@ async function clickListVenue(b: Browser, name: string): Promise<void> {
 
 async function sceneTargets(city: string): Promise<{ id: string; name: string; kind: string }[]> {
   const content = await loadCityContent(city);
-  return (['quad', 'hilltop'] as const).map((kind) => {
+  const kinds: readonly ('quad' | 'hilltop')[] = city === 'accra' ? ['quad'] : ['quad', 'hilltop'];
+  return kinds.map((kind) => {
     const venue = content.venues.find((item) => item.id !== 'home' && item.definition.scene.kind === kind);
     if (!venue) throw new Error(`${city}: no ${kind} venue in loadCityContent().venues`);
     return { id: venue.id, name: venue.name, kind };

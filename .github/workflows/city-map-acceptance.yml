@@ -123,13 +123,13 @@ jobs:
             --out "$QA_BROWSER_DIR" \
             --port 4423 \
             --debug-port 4424 \
-            --cities cairo,yaounde,dakar,nairobi,abuja \
+            --cities cairo,accra,yaounde,dakar,nairobi,abuja \
             --phone-cities cairo,yaounde,dakar,nairobi \
             --phones 390x844,320x568 \
-            --short lagos,abuja \
+            --short lagos,accra,abuja \
             --lean \
             --clock-hour 12 \
-            --scene-cities cairo \
+            --scene-cities cairo,accra \
             --label-audit \
             --water 'cairo=0.55,0.55;yaounde=0.4,0.5' 2>&1 | tee "$QA_LOG_DIR/browser.log"
 

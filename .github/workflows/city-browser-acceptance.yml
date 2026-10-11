@@ -25,12 +25,8 @@ jobs:
       max-parallel: 2
       matrix:
         include:
-          - id: loader
-            app: 05c31c17aece82df2ed0de0283af4666a093cf08
-            cities: lagos,abuja,cairo,dakar,yaounde
-            extra: ""
           - id: batch2
-            app: 64869b7d45ff67f425364dd284285b6551633dbf
+            app: 03b10fd2b7c030b884e8d384326d19f732e69186
             cities: tripoli,bamako,ouagadougou,maseru,lilongwe
             extra: --phone-ui-audit
     env:
@@ -60,8 +56,17 @@ jobs:
           test -z "$(git -C app diff --name-only)"
       - working-directory: app
         run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Typecheck final layout candidate
+        working-directory: app
+        run: set -o pipefail; npm run typecheck 2>&1 | tee "$RUNNER_TEMP/city-browser/typecheck.log"
+      - name: Focused map and travel checks
+        working-directory: app
+        run: set -o pipefail; node --experimental-strip-types --import ./scripts/node-scene-css.ts --test --test-reporter=tap --test-concurrency=1 src/map3d/map3d.test.ts src/app/features/travel/travelComponents.test.ts 2>&1 | tee "$RUNNER_TEMP/city-browser/map-checks.log"
       - working-directory: app
         run: npm run build
+      - name: Verify final startup sizes
+        working-directory: app
+        run: set -o pipefail; npm run size:download 2>&1 | tee "$RUNNER_TEMP/city-browser/download.log"
       - name: Capture desktop and phone journeys
         working-directory: app
         run: |

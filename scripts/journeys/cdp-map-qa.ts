@@ -134,8 +134,9 @@ export class Browser {
   /** A real pointer (or touch, on a phone-sized viewport) press at a point. */
   async tapAt(x: number, y: number): Promise<void> {
     if (this.viewport.mobile) {
-      await this.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
-      await this.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await this.send('Input.dispatchTouchEvent', { type: 'touchStart', timestamp: Date.now() / 1000, touchPoints: [{ id: 1, x, y, radiusX: 1, radiusY: 1, force: 1 }] });
+      await sleep(16);
+      await this.send('Input.dispatchTouchEvent', { type: 'touchEnd', timestamp: Date.now() / 1000, touchPoints: [] });
     } else {
       await this.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x, y });
       await this.send('Input.dispatchMouseEvent', { type: 'mousePressed', x, y, button: 'left', clickCount: 1 });

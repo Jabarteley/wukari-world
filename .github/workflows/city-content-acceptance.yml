@@ -1,0 +1,138 @@
+name: City content acceptance
+
+on:
+  push:
+    branches: ['codex/astra-factory-qa-20261011']
+    paths:
+      - '.github/workflows/city-content-acceptance.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: city-content-factory-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  APP_SHA: 134e5c3b5f4f0835bd6efd57c6ce58a0fb9694d7
+  PUBLISH: 'false'
+
+jobs:
+  gates:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - name: Check out workflow policy
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Check out exact loader candidate
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ env.APP_SHA }}
+          path: app
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Install deployment compiler tooling
+        run: npm ci --ignore-scripts --no-audit --no-fund --prefix .github/wrangler
+      - name: Record exact application source
+        working-directory: app
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$APP_SHA"
+          mkdir -p "$RUNNER_TEMP/content-logs"
+          git rev-parse HEAD > "$RUNNER_TEMP/content-logs/source.txt"
+      - name: Install application dependencies
+        working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Typecheck
+        working-directory: app
+        run: set -o pipefail; npm run typecheck 2>&1 | tee "$RUNNER_TEMP/content-logs/typecheck.log"
+      - name: Build
+        id: build
+        working-directory: app
+        run: set -o pipefail; npm run build 2>&1 | tee "$RUNNER_TEMP/content-logs/build.log"
+      - name: Download size and Worker script budget
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        working-directory: app
+        run: |
+          set -o pipefail
+          npm run size:download 2>&1 | tee "$RUNNER_TEMP/content-logs/download.log"
+          node --experimental-strip-types --test scripts/city/worker-content-budget.test.ts 2>&1 | tee "$RUNNER_TEMP/content-logs/worker-budget.log"
+      - name: Complete Node suite
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        working-directory: app
+        run: set -o pipefail; npm test 2>&1 | tee "$RUNNER_TEMP/content-logs/node.log"
+      - name: Install Worker test runtime
+        id: edge
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund --prefix deploy/tooling
+      - name: Complete Worker suite
+        if: ${{ !cancelled() && steps.edge.outcome == 'success' }}
+        working-directory: app
+        run: set -o pipefail; npm run test:edge 2>&1 | tee "$RUNNER_TEMP/content-logs/edge.log"
+      - name: Package guard tests
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        working-directory: app
+        run: set -o pipefail; node --test scripts/guard-joinallworld-package.test.mjs 2>&1 | tee "$RUNNER_TEMP/content-logs/package-guard-tests.log"
+      - name: Compile and inventory the non-publishing package
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        working-directory: app
+        run: |
+          set -euo pipefail
+          rm -rf "$RUNNER_TEMP/content-package"
+          node scripts/package-joinallworld.mjs "$GITHUB_WORKSPACE/app" "$RUNNER_TEMP/content-package" "$APP_SHA" "$PUBLISH" "$GITHUB_WORKSPACE/.github/wrangler" 2>&1 | tee "$RUNNER_TEMP/content-logs/package.log"
+          node scripts/guard-joinallworld-package.mjs check "$RUNNER_TEMP/content-package" "$APP_SHA" "$PUBLISH" 2>&1 | tee "$RUNNER_TEMP/content-logs/package-guard.log"
+          cp "$RUNNER_TEMP/content-package/manifest.json" "$RUNNER_TEMP/content-logs/package-manifest.json"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: city-content-gates-${{ env.APP_SHA }}
+          path: ${{ runner.temp }}/content-logs/
+
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Check out workflow policy
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Check out exact loader candidate
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ env.APP_SHA }}
+          path: app
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Build candidate and capture browser journey
+        working-directory: app
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run build
+          mkdir -p "$RUNNER_TEMP/content-browser" scripts/journeys
+          test "$(git rev-parse HEAD)" = "$APP_SHA"
+          git rev-parse HEAD > "$RUNNER_TEMP/content-browser/source.txt"
+          git -C .. rev-parse HEAD > "$RUNNER_TEMP/content-browser/diagnostic-source.txt"
+          cp ../scripts/journeys/map-shots.ts ../scripts/journeys/serve-maps.ts ../scripts/journeys/cdp-map-qa.ts scripts/journeys/
+          export CHROME_BIN="$(command -v google-chrome)"
+          node --experimental-strip-types scripts/journeys/map-shots.ts \
+            --out "$RUNNER_TEMP/content-browser" --port 4423 --debug-port 4424 \
+            --cities lagos,abuja,cairo,dakar,yaounde \
+            --phone-cities lagos,abuja,cairo,dakar,yaounde \
+            --phones 390x844,320x568 --short lagos,abuja --lean --clock-hour 12 --label-audit \
+            2>&1 | tee "$RUNNER_TEMP/content-browser/browser.log"
+          node --input-type=module -e 'import { readFileSync } from "node:fs"; const report=JSON.parse(readFileSync(process.env.RUNNER_TEMP+"/content-browser/timings.json","utf8")); if(report.aborted || report.consoleErrors?.length) throw Error(JSON.stringify({aborted:report.aborted,errors:report.consoleErrors}));'
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: city-content-browser-${{ env.APP_SHA }}
+          path: ${{ runner.temp }}/content-browser/

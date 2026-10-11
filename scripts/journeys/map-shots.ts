@@ -17,6 +17,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { Browser, sleep } from './cdp-map-qa.ts';
+import { cityCatalogueEntry } from '../../src/game/cities/registry.ts';
 
 const arg = (name: string, fallback?: string): string => {
   const at = process.argv.indexOf(`--${name}`);
@@ -31,15 +32,11 @@ const base = `http://127.0.0.1:${port}`;
 mkdirSync(out, { recursive: true });
 const work = mkdtempSync(join(tmpdir(), 'mapshots-'));
 const dataDir = join(work, 'data'), cookieFile = join(work, 'founder.cookie');
-const ROWS: Record<string, { name: string; row: string; level?: 'africa' | 'nigeria' }> = {
-  abuja: { name: 'Abuja', row: 'Federal Capital Territory', level: 'nigeria' }, accra: { name: 'Accra', row: 'Ghana' },
-  cairo: { name: 'Cairo', row: 'Egypt' }, kigali: { name: 'Kigali', row: 'Rwanda' }, rabat: { name: 'Rabat', row: 'Morocco' },
-  kampala: { name: 'Kampala', row: 'Uganda' }, lusaka: { name: 'Lusaka', row: 'Zambia' },
-  nairobi: { name: 'Nairobi', row: 'Kenya' }, 'addis-ababa': { name: 'Addis Ababa', row: 'Ethiopia' }, abidjan: { name: 'Abidjan', row: 'Ivoire' },
-  dakar: { name: 'Dakar', row: 'Senegal' }, 'cape-town': { name: 'Cape Town', row: 'South Africa' }, algiers: { name: 'Algiers', row: 'Algeria' },
-  cotonou: { name: 'Cotonou', row: 'Benin' }, lome: { name: 'Lomé', row: 'Togo' }, yaounde: { name: 'Yaoundé', row: 'Cameroon' },
-  windhoek: { name: 'Windhoek', row: 'Namibia' }, maputo: { name: 'Maputo', row: 'Mozambique' }, gaborone: { name: 'Gaborone', row: 'Botswana' },
-  luanda: { name: 'Luanda', row: 'Angola' }, harare: { name: 'Harare', row: 'Zimbabwe' },
+const rowFor = (id: string): { name: string; pick: string; level: 'africa' | 'nigeria' } => {
+  const city = cityCatalogueEntry(id);
+  if (!city) throw new Error(`Unknown city in acceptance set: ${id}`);
+  if (city.countryISO && city.countryISO !== 'ng') return { name: city.name, pick: `country:${city.countryISO}`, level: 'africa' };
+  return { name: city.name, pick: `state:${city.state.id}`, level: 'nigeria' };
 };
 const PLACE_TO_OPEN: Record<string, string> = { cairo: 'Khan El Khalili', kigali: '', lagos: '' };
 // --water "cairo=0.5,0.5;rabat=0.2,0.5": where on the screen (fractions of width, height, from the whole-city view) to zoom in on the main water.
@@ -50,6 +47,7 @@ const short = new Set(arg('short', 'lagos,abuja,accra').split(',').filter(Boolea
 const waterOnly = process.argv.includes('--water-only');
 // --lean: the 15-city sweep: default, whole city, centre zoom, water, list top, simple map, plus a zoomed-out and rotated shot at the view limits.
 const lean = process.argv.includes('--lean');
+const allowScriptedFallback = process.argv.includes('--allow-scripted-fallback');
 // --phones 390x844,320x568 (empty for none): the last city is reloaded at each phone size.
 // --phone-cities dakar,kampala: these cities also get the phone sets (each with its browser storage cleared first, so no saved view is restored); --phones lists the sizes.
 const phoneCities = new Set(arg('phone-cities', '').split(',').filter(Boolean));
@@ -156,7 +154,7 @@ async function settle(b: Browser): Promise<string> {
 
 let current = 'lagos';
 async function fly(b: Browser, city: string): Promise<void> {
-  const t = ROWS[city] ?? { name: city, row: city };
+  const t = rowFor(city);
   if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]'))) && !(await b.eval<boolean>(shownNow('.map-levels-cur')))) await b.click('[data-nav="map"]');
   await b.waitFor(`${shownNow('.map-levels-cur')} || ${shownNow('[data-atlas-levels]')}`, 30000, 'the map');
   const level = t.level ?? 'africa', wanted = level === 'africa' ? 1 : 2;
@@ -170,9 +168,14 @@ async function fly(b: Browser, city: string): Promise<void> {
   await b.waitFor(`${shownNow('[data-atlas-levels]')} && document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase().startsWith(${JSON.stringify(level)})`, 30000, `${level} level`);
   if (!(await b.eval<boolean>(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`))) await b.click('[data-atlas-list]').catch(() => undefined);
   await b.waitFor(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`, 15000, 'search');
-  await b.type('[data-atlas-search]', t.row);
+  await b.type('[data-atlas-search]', '');
+  const pick = `[data-atlas-pick="${t.pick}"]`;
+  const rowName = await b.eval<string>(`document.querySelector(${JSON.stringify(pick + ' b')})?.textContent?.trim() || ''`);
+  if (!rowName) throw new Error(`Missing atlas entry ${t.pick} for ${city}`);
+  await b.type('[data-atlas-search]', rowName);
+  await b.locate(pick);
   await b.screenshot(join(out, `${city}-00-country-list.png`));
-  await b.click('[data-atlas-pick]', t.row);
+  await b.click(pick);
   await b.waitFor(`document.querySelector('[data-atlas-go="${city}:air"]')`, 30000, 'flight line');
   await b.screenshot(join(out, `${city}-00-flight.png`));
   await b.click(`[data-atlas-go="${city}:air"]`);
@@ -196,7 +199,8 @@ async function openMap(b: Browser, key: string): Promise<void> {
   const t0 = Date.now();
   await b.click('[data-nav="map"]');
   if (!(await b.waitFor<boolean>(shownNow('.map-handle'), 8000, 'the map panel').catch(() => false))) {
-    // A touch tap on the tab did not open the map: press the tab's own click once, and say so.
+    if (!allowScriptedFallback) throw new Error(`${key}: native-touch-map-entry failed`);
+    // A touch tap on the tab did not open the map: use the explicitly enabled scripted fallback.
     notes.push(`${key}: the touch tap on the Map tab did not open the map; opened with a scripted click`);
     await b.eval(`document.querySelector('[data-nav="map"]').click(); true`);
   }
@@ -356,7 +360,8 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   writeFileSync(join(out, `${prefix}-places.txt`), rows.join('\n') + '\n');
   if (lean) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
   // One place opened from the list.
-  const picked = await b.eval<string>(`(() => { const rows = [...document.querySelectorAll('#map-list .map-list button')]; const w = ${JSON.stringify(place.toLowerCase())}; const r = (w && rows.find((x) => x.innerText.toLowerCase().includes(w))) || rows.find((x) => !x.classList.contains('is-here')) || rows[0]; if (!r) return ''; r.scrollIntoView({ block: 'center' }); r.click(); return r.innerText.replace(/\\s+/g, ' ').trim(); })()`);
+  const picked = await b.eval<string>(`(() => { const rows = [...document.querySelectorAll('#map-list .map-list button')]; const w = ${JSON.stringify(place.toLowerCase())}; const r = (w && rows.find((x) => x.innerText.toLowerCase().includes(w))) || rows.find((x) => !x.classList.contains('is-here')) || rows[0]; if (!r) return ''; r.scrollIntoView({ block: 'center' }); return r.innerText.replace(/\\s+/g, ' ').trim(); })()`);
+  if (picked) await b.click('#map-list .map-list button', picked);
   notes.push(`${prefix}: opened "${picked}"`);
   await sleep(2500);
   await shot('07-place-card');

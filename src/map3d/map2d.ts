@@ -66,6 +66,8 @@ export interface Map2DState {
   activeAction?: { kind: string; id: string; duration: number; remaining: number; mode?: string } | null;
   estate?: { living?: string; plot?: PlotAddress | null; lga?: string | null };
   travel?: { home?: string };
+  /** The car the player drives on a 'car' trip (a CarId), which decides the model that is drawn. */
+  property?: { car?: string | null };
 }
 export interface Map2DOptions {
   /** Where the zoom ladder hears of zoom the map could not take (see ./zoom-ladder.ts). */

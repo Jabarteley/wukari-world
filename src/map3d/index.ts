@@ -169,12 +169,14 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
       try {
         // The trip vehicles come from the model library, fetched with the city pack (never in the first download). If they fail to load the map keeps its own batch-drawn vehicles.
         const [pack, models] = await Promise.all([loadCityPack(cityId), import('../models/integration/scene-models.ts').catch(() => null)]);
+        await models?.loadGlbSource(); // the authored vehicle models' own lazy chunk: registered before the first trip; false (procedural vehicles stay) if it cannot be had
         const vehicleBuilder = models?.buildTravelVehicle ?? null;
         const travelVehicle = vehicleBuilder as unknown as TravelVehicleBuilder | null; // trust boundary: the model library is JavaScript
         if (ticket !== mounting) return;
         impl?.destroy(); impl = null;
-        next = createMap3D(container, { pack: pack!, cityId, world, travelVehicle, ...(ladder ? { ladder } : {}), ...callbacks, onTripDue, deepLink, onContextLost: () => { brokenGl = true; onNotice('The 3D map stopped on this device. Showing the simple map instead.'); void mount(); } });
+        next = createMap3D(container, { pack: pack!, cityId, world, travelVehicle, trafficModels: models ? models.loadTrafficModels() : null, ...(ladder ? { ladder } : {}), ...callbacks, onTripDue, deepLink, onContextLost: () => { brokenGl = true; onNotice('The 3D map stopped on this device. Showing the simple map instead.'); void mount(); } });
         nextKind = '3d';
+        void models?.warmGlbVehicles(); // the authored vehicle models arrive after the first frame; until then (and if they never do) the procedural ones are drawn
       } catch (error) {
         console.error('The 3D map could not start; using the simple map:', error);
         brokenGl = true; next = null;

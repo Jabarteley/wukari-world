@@ -19,7 +19,7 @@ import type { Element } from './destination-detail/overpass.ts';
 import { validateDestinationFacts } from '../../src/game/cities/africa/types.ts';
 import { toLocal } from '../../src/geo/frame.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
 
 const id = process.argv[2];
@@ -124,7 +124,19 @@ const inland = waterAnswer.elements.filter((element) => !isShore(element) && (el
 const km2 = (polygon: P[][]): number => { const lat = polygon[0]![0]![1]; return ringArea(polygon[0]!) * 111.32 * Math.cos(lat * Math.PI / 180) * 110.57; };
 const big = (polygons: P[][][]): P[][][] => polygons.filter((polygon) => km2(polygon) >= (config.minWaterKm2 ?? 0.4));
 const wet = [...sea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), outlineBox, config.waterTolerance)))];
-const reachWater = [...farSea, ...safePolygons(inland.flatMap((element) => big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008)))), 0.0008, project)];
+const reachInland = inland.flatMap((element) => {
+  const rings = areaRings(element);
+  const clipped = big(polygonsOf(rings, wide, Math.max(config.waterTolerance, 0.0008)));
+  const safe = safePolygons(clipped, 0.0008, project);
+  if (safe.length === clipped.length) return safe;
+  // A hole clipped at the wide box can touch the clipped outer ring and make the whole polygon unsafe. Fill the source rings first,
+  // then trace the clipped result; this turns an edge-touching hole into a bank indentation and keeps interior islands as holes.
+  const rastered = big(rasterArea(rings, wide, Math.max(config.cell / config.split, 0.0004)));
+  const repaired = safePolygons(rastered, 0.0008, project);
+  console.log(`water ${element.type}/${element.id}: raster repaired ${clipped.length - safe.length} rejected polygon(s) into ${repaired.length}`);
+  return repaired;
+});
+const reachWater = [...farSea, ...reachInland];
 console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
 
 const landuse = await ask(id, 'landuse', config.landuse(outlineBbox));

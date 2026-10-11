@@ -380,6 +380,20 @@ export function smoothPolygons(mask: Uint8Array, cols: number, rows: number, box
   return contour(blur(mask, cols, rows, sigma), cols, rows, box, cell, threshold);
 }
 
+/**
+ * Rasterise one mapped area before tracing it back to polygons. This is a clipping fallback for large relations whose holes meet
+ * the edge of `box`: clipping every ring separately can make a hole cross or touch its clipped outer ring, while the filled area
+ * still has an unambiguous shape. Inner rings stay empty, so mapped islands remain land.
+ */
+export function rasterArea(rings: { outer: readonly Ring[]; inner: readonly Ring[] }, box: Box, cell: number): Ring[][] {
+  const cols = Math.ceil((box[3] - box[1]) / cell), rows = Math.ceil((box[2] - box[0]) / cell);
+  const filled = new Uint8Array(cols * rows), holes = new Uint8Array(cols * rows);
+  fillRings(rings.outer, cols, rows, box, cell, filled);
+  fillRings(rings.inner, cols, rows, box, cell, holes);
+  for (let i = 0; i < filled.length; i++) if (holes[i]) filled[i] = 0;
+  return smoothPolygons(filled, cols, rows, box, cell, 1.3, 0.5);
+}
+
 const roundPt = (p: P): P => [round(p[0]), round(p[1])];
 const tidyRing = (ring: Ring): Ring => { const out: Ring = []; for (const p of ring) { const q = roundPt(p); const last = out.at(-1); if (!last || last[0] !== q[0] || last[1] !== q[1]) out.push(q); } if (out.length && (out[0]![0] !== out.at(-1)![0] || out[0]![1] !== out.at(-1)![1])) out.push(out[0]!); return out; };
 

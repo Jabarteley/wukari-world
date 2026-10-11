@@ -37,14 +37,24 @@ for pb in arm.pose.bones:
     pb.matrix_basis = Matrix.Identity(4)
 bpy.context.view_layer.update()
 M = arm.matrix_world.copy()
-before = {o.name for o in bpy.data.objects}
-bpy.ops.import_scene.gltf(filepath=detail)
-high = max((o for o in bpy.data.objects if o.name not in before and o.type == "MESH"), key=lambda o: len(o.data.polygons))
-for o in list(bpy.data.objects):
-    if o.name not in before and o is not high:
-        bpy.data.objects.remove(o)
-high.name = "High"
-high.parent = None
+if detail == "same":
+    # no heavier mesh exists: the light mesh is the detail mesh and keeps its own weights
+    high = light.copy(); high.data = light.data.copy(); bpy.context.collection.objects.link(high)
+    for m_ in list(high.modifiers):
+        high.modifiers.remove(m_)
+    high.parent = None
+    high.matrix_world = light.matrix_world.copy()
+    high.name = "High"
+else:
+    before = {o.name for o in bpy.data.objects}
+    bpy.ops.import_scene.gltf(filepath=detail)
+    high = max((o for o in bpy.data.objects if o.name not in before and o.type == "MESH"), key=lambda o: len(o.data.polygons))
+    for o in list(bpy.data.objects):
+        if o.name not in before and o is not high:
+            bpy.data.objects.remove(o)
+    high.name = "High"
+    high.parent = None
+
 bpy.context.view_layer.update()
 bpy.ops.object.select_all(action="DESELECT"); high.select_set(True); bpy.context.view_layer.objects.active = high
 bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
@@ -57,40 +67,45 @@ def bbox(o):
 
 lmin, lmax = bbox(light)
 hmin, hmax = bbox(high)
-# the heavy mesh is the same character at another size: match the soles, the height and the centre line of the A-pose arms
-k = (lmax[2] - lmin[2]) / (hmax[2] - hmin[2])
-for v in high.data.vertices:
-    p = v.co
-    v.co = Vector(((p.x - (hmin[0] + hmax[0]) / 2) * k + (lmin[0] + lmax[0]) / 2, (p.y - (hmin[1] + hmax[1]) / 2) * k + (lmin[1] + lmax[1]) / 2, (p.z - hmin[2]) * k + lmin[2]))
-high.data.update()
-hmin, hmax = bbox(high)
-print("ALIGN scale", k, "light", lmin, lmax, "high", hmin, hmax)
+SAME = detail == "same"
+if not SAME:
+    # the heavy mesh is the same character at another size: match the soles, the height and the centre line of the A-pose arms
+    k = (lmax[2] - lmin[2]) / (hmax[2] - hmin[2])
+    for v in high.data.vertices:
+        p = v.co
+        v.co = Vector(((p.x - (hmin[0] + hmax[0]) / 2) * k + (lmin[0] + lmax[0]) / 2, (p.y - (hmin[1] + hmax[1]) / 2) * k + (lmin[1] + lmax[1]) / 2, (p.z - hmin[2]) * k + lmin[2]))
+    high.data.update()
+    hmin, hmax = bbox(high)
+    print("ALIGN scale", k, "light", lmin, lmax, "high", hmin, hmax)
+
 H0 = lmax[2] - lmin[2]
 
 # ---------------------------------------------------------------- skin weights from the light mesh onto the heavy one
 for g in light.vertex_groups:
     if g.name not in high.vertex_groups:
         high.vertex_groups.new(name=g.name)
-from mathutils.bvhtree import BVHTree
-from mathutils.interpolate import poly_3d_calc
-light.data.calc_loop_triangles()
-lverts = [light.matrix_world @ v.co for v in light.data.vertices]
-lw = [{g.group: g.weight for g in v.groups} for v in light.data.vertices]
-ltris = [tuple(t.vertices) for t in light.data.loop_triangles]
-bvh = BVHTree.FromPolygons(lverts, ltris)
-gnames = {g.index: g.name for g in light.vertex_groups}
-hg = {g.name: g for g in high.vertex_groups}
-for v in high.data.vertices:
-    loc, nrm, fi, dist = bvh.find_nearest(v.co)
-    tri = ltris[fi]
-    ws = poly_3d_calc([lverts[i] for i in tri], loc)
-    acc = {}
-    for wt, i in zip(ws, tri):
-        for gi, gw in lw[i].items():
-            acc[gi] = acc.get(gi, 0.0) + wt * gw
-    for gi, gw in acc.items():
-        if gw > 1e-4:
-            hg[gnames[gi]].add([v.index], gw, "REPLACE")
+if not SAME:
+    from mathutils.bvhtree import BVHTree
+    from mathutils.interpolate import poly_3d_calc
+    light.data.calc_loop_triangles()
+    lverts = [light.matrix_world @ v.co for v in light.data.vertices]
+    lw = [{g.group: g.weight for g in v.groups} for v in light.data.vertices]
+    ltris = [tuple(t.vertices) for t in light.data.loop_triangles]
+    bvh = BVHTree.FromPolygons(lverts, ltris)
+    gnames = {g.index: g.name for g in light.vertex_groups}
+    hg = {g.name: g for g in high.vertex_groups}
+    for v in high.data.vertices:
+        loc, nrm, fi, dist = bvh.find_nearest(v.co)
+        tri = ltris[fi]
+        ws = poly_3d_calc([lverts[i] for i in tri], loc)
+        acc = {}
+        for wt, i in zip(ws, tri):
+            for gi, gw in lw[i].items():
+                acc[gi] = acc.get(gi, 0.0) + wt * gw
+        for gi, gw in acc.items():
+            if gw > 1e-4:
+                hg[gnames[gi]].add([v.index], gw, "REPLACE")
+
 print("WEIGHTED VERTS", sum(1 for v in high.data.vertices if len(v.groups)), "of", len(high.data.vertices), "light weighted", sum(1 for v in light.data.vertices if len(v.groups)))
 # normalise
 for v in high.data.vertices:

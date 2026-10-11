@@ -88,6 +88,33 @@ if opts.get("--wrapper", "0") == "1":
         changed += 1
     print("WRAPPER VERTICES REWEIGHTED", changed)
 
+# ---------------------------------------------------------------- spine: the game's chain is placed at fixed fractions between pelvis and neck, and the generator's
+# spine weights are redistributed by height onto it, so the trunk bends where the clips bend it (the clips were authored against the game's torso)
+g_pelvis = Vector(game["pelvis"]["head"])
+SPINE = ["pelvis", "spine_01", "spine_02", "spine_03"]
+neck_j = J["neck"]
+span = game["neck_01"]["head"][2] - g_pelvis.z
+SPINE_POS = {"pelvis": g_pelvis}
+for k_ in SPINE[1:]:
+    f_ = (game[k_]["head"][2] - g_pelvis.z) / span
+    SPINE_POS[k_] = Vector((neck_j.x * f_, g_pelvis.y + (neck_j.y - g_pelvis.y) * f_, g_pelvis.z + (neck_j.z - g_pelvis.z) * f_))
+if opts.get("--respine", "1") == "1":
+    zk = [SPINE_POS[k_].z for k_ in SPINE]
+    for i, p in enumerate(V):
+        S = sum(W[i].get(k_, 0.0) for k_ in SPINE)
+        if S <= 0 or p.z <= zk[0]:
+            continue
+        if p.z >= zk[3]:
+            dist = [0, 0, 0, 1.0]
+        else:
+            j = max(m_ for m_ in range(3) if p.z >= zk[m_]); t_ = (p.z - zk[j]) / (zk[j + 1] - zk[j])
+            dist = [0, 0, 0, 0]; dist[j] = 1 - t_; dist[j + 1] = t_
+        for k_ in SPINE:
+            W[i].pop(k_, None)
+        for k_, d_ in zip(SPINE, dist):
+            if d_ > 0:
+                W[i][k_] = S * d_
+
 # smooth over the surface (edges), limit to four influences, normalise
 adj = [[] for _ in V]
 for e in me.edges:
@@ -116,8 +143,7 @@ for i, w in enumerate(W):
 
 # ---------------------------------------------------------------- the game armature at this body's joints
 joint = lambda game_name: J[PRIMARY[game_name]]
-g_pelvis = Vector(game["pelvis"]["head"])
-HEAD = {"root": Vector((0, 0, 0)), "pelvis": g_pelvis, "spine_01": joint("spine_01"), "spine_02": joint("spine_02"), "spine_03": joint("spine_03"), "neck_01": joint("neck_01"), "Head": joint("Head")}
+HEAD = {"root": Vector((0, 0, 0)), "pelvis": g_pelvis, "spine_01": SPINE_POS["spine_01"], "spine_02": SPINE_POS["spine_02"], "spine_03": SPINE_POS["spine_03"], "neck_01": joint("neck_01"), "Head": joint("Head")}
 for s_, sx in (("l", "Left"), ("r", "Right")):
     HEAD.update({f"clavicle_{s_}": J[f"{sx}Shoulder"], f"upperarm_{s_}": J[f"{sx}Arm"], f"lowerarm_{s_}": J[f"{sx}ForeArm"], f"hand_{s_}": J[f"{sx}Hand"],
                  f"thigh_{s_}": J[f"{sx}UpLeg"], f"calf_{s_}": J[f"{sx}Leg"], f"foot_{s_}": J[f"{sx}Foot"], f"ball_{s_}": J[f"{sx}ToeBase"]})

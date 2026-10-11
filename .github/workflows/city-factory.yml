@@ -21,7 +21,9 @@ jobs:
       APP_SHA: d5d85f4422afe11cef10468c255e5cae0084d45b
     steps:
       - name: Set execution directory
-        run: echo "FACTORY_SANDBOX=$RUNNER_TEMP/city-factory" >> "$GITHUB_ENV"
+        run: |
+          mkdir -p "$RUNNER_TEMP/city-factory"
+          echo "FACTORY_SANDBOX=$RUNNER_TEMP/city-factory" >> "$GITHUB_ENV"
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
@@ -29,32 +31,29 @@ jobs:
         with:
           node-version: 24.19.0
       - id: input
-        name: Validate single target and source pins
+        name: Validate bounded target table and source pins
         run: node scripts/geo/factory/cloud-inputs.mjs scripts/geo/factory/targets.json
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           ref: d5d85f4422afe11cef10468c255e5cae0084d45b
           path: baseline
           persist-credentials: false
-      - name: Verify producer receipt and checkout pins
+      - name: Verify producers and download unique pinned artifacts
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          JOB_JSON: ${{ steps.input.outputs.job_json }}
-          OUT_DIR: ${{ runner.temp }}/city-factory/provenance
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           test "${{ steps.input.outputs.app_sha }}" = "$APP_SHA"
           test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
-          mkdir -p "$OUT_DIR"
-          node scripts/geo/city-generation.mjs --source-run 2>&1 | tee "$OUT_DIR/source-run.log"
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          github-token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          run-id: ${{ steps.input.outputs.source_run }}
-          name: ${{ steps.input.outputs.source_artifact }}
-          path: ${{ runner.temp }}/city-factory/extracts
+          node scripts/geo/factory/cloud-sources.mjs \
+            --table scripts/geo/factory/targets.json \
+            --helper scripts/geo/city-generation.mjs \
+            --download-root "$FACTORY_SANDBOX/downloads" \
+            --extract-root "$FACTORY_SANDBOX/extracts" \
+            --outdir "$FACTORY_SANDBOX/provenance" \
+            --sandbox-root "$FACTORY_SANDBOX"
       - name: Prepare separate disposable app
         run: |
           set -euo pipefail
@@ -81,25 +80,19 @@ jobs:
             --sandbox-root "$FACTORY_SANDBOX" \
             --outdir "$FACTORY_SANDBOX/evidence" \
             --execute 2>&1 | tee "$FACTORY_SANDBOX/runner.log"
-      - name: Collect generated source and diff
+      - name: Collect generated source and diff for all targets
         if: always()
-        env:
-          TARGET_ID: ${{ steps.input.outputs.target_id }}
         run: |
-          mkdir -p "$FACTORY_SANDBOX/delivery"
-          if [ -d "$FACTORY_SANDBOX/app/.git" ]; then
-            git -C "$FACTORY_SANDBOX/app" status --short > "$FACTORY_SANDBOX/delivery/git-status.txt"
-            git -C "$FACTORY_SANDBOX/app" diff --binary HEAD > "$FACTORY_SANDBOX/delivery/generated.patch"
-            cp -R "$FACTORY_SANDBOX/app/src/game/cities/$TARGET_ID" "$FACTORY_SANDBOX/delivery/"
-            cp "$FACTORY_SANDBOX/app/scripts/geo/destination-detail/$TARGET_ID.ts" "$FACTORY_SANDBOX/delivery/"
-            if [ -d "$FACTORY_SANDBOX/app/world/playable-africa-rollout" ]; then
-              cp -R "$FACTORY_SANDBOX/app/world/playable-africa-rollout" "$FACTORY_SANDBOX/delivery/"
-            fi
-          fi
+          node scripts/geo/factory/cloud-sources.mjs \
+            --table scripts/geo/factory/targets.json \
+            --collect \
+            --workspace "$FACTORY_SANDBOX/app" \
+            --outdir "$FACTORY_SANDBOX/delivery" \
+            --sandbox-root "$FACTORY_SANDBOX"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: city-factory-${{ steps.input.outputs.target_id }}-${{ github.sha }}
+          name: city-factory-${{ steps.input.outputs.target_count }}targets-${{ github.sha }}
           path: |
             ${{ runner.temp }}/city-factory/evidence
             ${{ runner.temp }}/city-factory/provenance

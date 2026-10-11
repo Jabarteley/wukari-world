@@ -3,85 +3,263 @@
   "expectedSourceGitSHA": "d5d85f4422afe11cef10468c255e5cae0084d45b",
   "targets": [
     {
-      "id": "tunis",
-      "name": "Tunis",
-      "country": "tn",
+      "id": "dar-es-salaam",
+      "name": "Dar es Salaam",
+      "country": "tz",
       "facts": {
-        "id": "tunis",
-        "name": "Tunis",
+        "id": "dar-es-salaam",
+        "name": "Dar es Salaam",
         "country": {
-          "idISOlower": "tn",
-          "name": "Tunisia"
+          "idISOlower": "tz",
+          "name": "Tanzania"
         },
         "state": {
-          "idunique": "tn-tunis",
-          "name": "Tunis"
+          "idunique": "tz-dar-es-salaam",
+          "name": "Dar es Salaam"
         },
-        "timezone": "Africa/Tunis",
+        "timezone": "Africa/Dar_es_Salaam",
         "centre": {
-          "lon": 10.179678,
-          "lat": 36.802778
+          "lon": 39.266396,
+          "lat": -6.798067
         },
         "airport": {
-          "id": "tunis-airport",
-          "name": "Tunis Carthage International Airport",
-          "lon": 10.2272,
-          "lat": 36.851002,
-          "sourceUrl": "https://ourairports.com/airports/DTTA/"
+          "id": "dar-es-salaam-airport",
+          "name": "Julius Nyerere International Airport",
+          "lon": 39.207288,
+          "lat": -6.873499,
+          "sourceUrl": "https://www.taa.go.tz/services/jnia"
         },
-        "sourceLabel": "OpenStreetMap contributors via Geofabrik PBF and OurAirports dataset",
-        "sourceUrl": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
+        "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
+        "sourceUrl": "https://www.openstreetmap.org/copyright",
         "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
         "bounds": [
-          10.08,
-          36.74,
-          10.32,
-          36.93
+          39.12,
+          -6.98,
+          39.4,
+          -6.7
         ],
-        "coverageNote": "Tunis: a mapped land-use outline with the Gulf of Tunis coast and Lac de Tunis water, main roads, and named places selected from the dated Tunisia Geofabrik PBF. The arrival airport point is from OurAirports and is not an official aerodrome reference point or evidence of current operations or schedules.",
+        "coverageNote": "Dar es Salaam: a sketch of the built-up extent traced from mapped land use, not an administrative boundary, with Indian Ocean coastal water and harbour, main roads and named places from the Tanzania OpenStreetMap PBF snapshot of 2026-10-09. Julius Nyerere International Airport coordinates are an offline OurAirports dataset point, not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places.",
         "names": {
-          "area": "Tunis",
+          "area": "Dar es Salaam",
           "unit": "district",
-          "roadHub": "Tunis Station"
+          "roadHub": "Old Central Railway Station"
         }
       },
       "metadataSources": {
         "centre": {
-          "record": "reviewed embedded Tunis projection centre",
-          "sourceUrl": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
+          "record": "committed city projection origin",
+          "sourceUrl": "https://www.openstreetmap.org/copyright",
           "verification": "primary-coordinate review pending"
         },
         "airport": {
-          "record": "tunis-airport",
-          "sourceUrl": "https://ourairports.com/airports/DTTA/",
-          "verification": "Coordinates and country match OurAirports DTTA row 2133; cached CSV SHA-256 79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906"
+          "record": "dar-es-salaam-airport",
+          "sourceUrl": "https://www.taa.go.tz/services/jnia",
+          "verification": "primary-coordinate review pending"
         }
       },
       "geometryPreset": "standard",
-      "extractKey": "tunis",
+      "geographyClass": "coast",
+      "recordedWaterPolicy": {
+        "kind": "coast",
+        "wideWater": true,
+        "sea": {
+          "kind": "coast",
+          "bandMetres": 40000
+        }
+      },
+      "extractKey": "dar-es-salaam",
       "extractSha256": {
-        "places": "49b0eebcf507983645bc81ca80639334c88d959c157133c199605abc2a8a9bf7",
-        "extras": "8e6222e613813d1569ea354eebded7325fe6eef2f5fe8c08c4eedaf685e6131b",
-        "water": "83a217c86a0861d5b431e2dcb918447b1c51dfa9c6a520a55deb1d7cca84b901",
-        "landuse": "1e0515fbdaecdb68d977fcf983ca26e807210c087c7a1a1887fe138b891b88fe",
-        "roads": "bbfb1ac8638f95aa827b42cfeeb1208548ab0c05fcd58d56e247826e1c5f3b12"
+        "places": "8ef94d66458a9ae829efefdd9dacd4cb7f43c3f1350c242605000bf0049486f7",
+        "extras": "a2591ec225b56a19f3c7afb46a68b28ff1dbb186ef33eab8c5a4097dbba44cb8",
+        "water": "897d411e24eeb46a3e0fe5ff8d6f22544d77b91c5d6f3b79adcf031e71a7f5d5",
+        "landuse": "8df444344c67173f085912a441e0aff43edc50eac0f0793457f0bdbb8dfd7499",
+        "roads": "a18b5eaabe527f4f34f4942a97633e75f5d77ba8cf46bcfae80ffe5ba756b250"
       },
       "sourceJob": {
-        "city": "tunis",
+        "city": "dar-es-salaam",
         "sourceRunId": 38151098671,
-        "sourceArtifact": "offline-city-layers-tunisia-b1183ba208334bb8535669e823244ea737b3014a",
+        "sourceArtifact": "offline-city-layers-tanzania-b1183ba208334bb8535669e823244ea737b3014a",
         "sourceSha": "b1183ba208334bb8535669e823244ea737b3014a",
-        "datasetSha256": "8bea4a9f2a86cce8ca198d9bad50dd1103239bbcb55669058fa50042c767f51b",
+        "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
         "adapterSha256": "9f6099b3b15db3e6b59316914d55b427efd650d802f80ffd32bdf94ba5efd7d3",
         "extractSha256": {
-          "places": "49b0eebcf507983645bc81ca80639334c88d959c157133c199605abc2a8a9bf7",
-          "extras": "8e6222e613813d1569ea354eebded7325fe6eef2f5fe8c08c4eedaf685e6131b",
-          "water": "83a217c86a0861d5b431e2dcb918447b1c51dfa9c6a520a55deb1d7cca84b901",
-          "landuse": "1e0515fbdaecdb68d977fcf983ca26e807210c087c7a1a1887fe138b891b88fe",
-          "roads": "bbfb1ac8638f95aa827b42cfeeb1208548ab0c05fcd58d56e247826e1c5f3b12"
+          "places": "8ef94d66458a9ae829efefdd9dacd4cb7f43c3f1350c242605000bf0049486f7",
+          "extras": "a2591ec225b56a19f3c7afb46a68b28ff1dbb186ef33eab8c5a4097dbba44cb8",
+          "water": "897d411e24eeb46a3e0fe5ff8d6f22544d77b91c5d6f3b79adcf031e71a7f5d5",
+          "landuse": "8df444344c67173f085912a441e0aff43edc50eac0f0793457f0bdbb8dfd7499",
+          "roads": "a18b5eaabe527f4f34f4942a97633e75f5d77ba8cf46bcfae80ffe5ba756b250"
+        }
+      }
+    },
+    {
+      "id": "dodoma",
+      "name": "Dodoma",
+      "country": "tz",
+      "facts": {
+        "id": "dodoma",
+        "name": "Dodoma",
+        "country": {
+          "idISOlower": "tz",
+          "name": "Tanzania"
+        },
+        "state": {
+          "idunique": "tz-dodoma",
+          "name": "Dodoma"
+        },
+        "timezone": "Africa/Dar_es_Salaam",
+        "centre": {
+          "lon": 35.7493783,
+          "lat": -6.1839376
+        },
+        "airport": {
+          "id": "dodoma-airport",
+          "name": "Dodoma Airport",
+          "lon": 35.756036,
+          "lat": -6.170559,
+          "sourceUrl": "https://ourairports.com/airports/HTDO/"
+        },
+        "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
+        "sourceUrl": "https://www.openstreetmap.org/copyright",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "bounds": [
+          35.62,
+          -6.28,
+          35.87,
+          -6.07
+        ],
+        "coverageNote": "Dodoma: a sketch of the built-up extent traced from mapped land use, not an administrative boundary, with inland water, main roads, neighbourhood labels and named places from the Tanzania OpenStreetMap PBF snapshot of 2026-10-09. Dodoma Airport coordinates are a published OurAirports dataset point, not an official ARP or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places.",
+        "names": {
+          "area": "Dodoma",
+          "unit": "neighbourhood",
+          "roadHub": "Shabiby Bus Terminal"
+        }
+      },
+      "metadataSources": {
+        "centre": {
+          "record": "committed city projection origin",
+          "sourceUrl": "https://www.openstreetmap.org/copyright",
+          "verification": "primary-coordinate review pending"
+        },
+        "airport": {
+          "record": "dodoma-airport",
+          "sourceUrl": "https://ourairports.com/airports/HTDO/",
+          "verification": "primary-coordinate review pending"
+        }
+      },
+      "geometryPreset": "standard",
+      "geographyClass": "inland",
+      "recordedWaterPolicy": {
+        "kind": "inland",
+        "wideWater": false
+      },
+      "extractKey": "dodoma",
+      "extractSha256": {
+        "places": "753e8c845b3fb52539602ae34b96104392f938977e4824ab4aab2cf8251534cb",
+        "extras": "9be99d07296ea42ae43a63d40a4cee9ce3ca90f9a116dcd12a4c7750c020ea0e",
+        "water": "bfcd574737d7779ba12a37ffe867d5ecaa252ae0064859e8b833f62974743cc4",
+        "landuse": "df276c027f191a4d01c2c7d65c7ee3abde73e52d1ac400c4f6f64a3a9019bc0a",
+        "roads": "eb88855dbc1cb32845353883a684d3933bceeb35f1c7db7ba55a23046f0387ad"
+      },
+      "sourceJob": {
+        "city": "dodoma",
+        "sourceRunId": 38151719739,
+        "sourceArtifact": "offline-city-layers-tanzania-d888f91e86268d442093b8ab22a03193220b108f",
+        "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
+        "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
+        "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+        "extractSha256": {
+          "places": "753e8c845b3fb52539602ae34b96104392f938977e4824ab4aab2cf8251534cb",
+          "extras": "9be99d07296ea42ae43a63d40a4cee9ce3ca90f9a116dcd12a4c7750c020ea0e",
+          "water": "bfcd574737d7779ba12a37ffe867d5ecaa252ae0064859e8b833f62974743cc4",
+          "landuse": "df276c027f191a4d01c2c7d65c7ee3abde73e52d1ac400c4f6f64a3a9019bc0a",
+          "roads": "eb88855dbc1cb32845353883a684d3933bceeb35f1c7db7ba55a23046f0387ad"
+        }
+      }
+    },
+    {
+      "id": "bujumbura",
+      "name": "Bujumbura",
+      "country": "bi",
+      "facts": {
+        "id": "bujumbura",
+        "name": "Bujumbura",
+        "country": {
+          "idISOlower": "bi",
+          "name": "Burundi"
+        },
+        "state": {
+          "idunique": "bi-starter",
+          "name": "Bujumbura"
+        },
+        "timezone": "Africa/Bujumbura",
+        "centre": {
+          "lon": 29.36,
+          "lat": -3.38
+        },
+        "airport": {
+          "id": "bujumbura-airport",
+          "name": "Bujumbura Melchior Ndadaye International Airport",
+          "lon": 29.318501,
+          "lat": -3.32402,
+          "sourceUrl": "https://ourairports.com/airports/HBBA/"
+        },
+        "sourceLabel": "Natural Earth, OpenStreetMap contributors via Geofabrik Burundi 2026-10-09, and OurAirports dataset",
+        "sourceUrl": "https://www.openstreetmap.org/copyright",
+        "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "bounds": [
+          29.24,
+          -3.48,
+          29.48,
+          -3.28
+        ],
+        "coverageNote": "Bujumbura: built-up ground traced from mapped land use, actual Lake Tanganyika and river polygons, roads and named places in the dated Burundi OpenStreetMap PBF. Airport coordinates are an OurAirports dataset point, not proof of operations or schedules. Visitor services and homes are fictional game content at real places.",
+        "names": {
+          "area": "Bujumbura",
+          "unit": "district",
+          "roadHub": "Bujumbura Bus Station (Siyoni)"
+        }
+      },
+      "metadataSources": {
+        "centre": {
+          "record": "committed city projection origin",
+          "sourceUrl": "https://www.openstreetmap.org/copyright",
+          "verification": "primary-coordinate review pending"
+        },
+        "airport": {
+          "record": "bujumbura-airport",
+          "sourceUrl": "https://ourairports.com/airports/HBBA/",
+          "verification": "primary-coordinate review pending"
+        }
+      },
+      "geometryPreset": "standard",
+      "geographyClass": "lake",
+      "recordedWaterPolicy": {
+        "kind": "inland",
+        "wideWater": false
+      },
+      "extractKey": "bujumbura",
+      "extractSha256": {
+        "places": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
+        "extras": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
+        "water": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
+        "landuse": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
+        "roads": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4"
+      },
+      "sourceJob": {
+        "city": "bujumbura",
+        "sourceRunId": 38151719739,
+        "sourceArtifact": "offline-city-layers-burundi-d888f91e86268d442093b8ab22a03193220b108f",
+        "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
+        "datasetSha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
+        "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+        "extractSha256": {
+          "places": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
+          "extras": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
+          "water": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
+          "landuse": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
+          "roads": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4"
         }
       }
     }
-  ],
-  "executionRevision": 4
+  ]
 }

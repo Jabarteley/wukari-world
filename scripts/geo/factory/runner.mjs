@@ -1,3 +1,4 @@
+import { writeReviewPage } from './gallery.mjs';
 import { machineFailed, contactSheetInputs } from './report.mjs';
 import { insideSandbox, remapTable } from './paths.mjs';
 /** Plan by default. Execution requires a marked disposable clone; no live approval. */
@@ -15,7 +16,7 @@ const sandbox = a.includes('--sandbox-root') ? resolve(get('--sandbox-root')) : 
 insideSandbox(out, sandbox);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex'), readhash = path => hash(readFileSync(path));
 const shared = ['scripts/geo/build-destination-detail.ts', 'scripts/geo/destination-detail/geometry-tools.ts', 'scripts/geo/destination-detail/pbf-extract.ts', 'scripts/geo/destination-detail/queries.ts', 'scripts/geo/destination-detail/water-label.ts', 'scripts/city/build-catalogue.ts', 'src/game/cities/africa/contentBuilder.ts', 'src/game/cities/africa/types.ts', 'src/game/cities/africa/map.ts', 'src/game/cities/africa/module.ts', 'src/game/cities/cityContractTest.test.ts', 'package.json', 'package-lock.json'];
-const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs'].map(n => join(home, n));
+const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs', 'gallery.mjs'].map(n => join(home, n));
 if (!a.includes('--proof-helper') || !a.includes('--receipt-helper')) throw Error('Explicit --proof-helper and --receipt-helper are required');
 const proof = resolve(get('--proof-helper')), receipt = resolve(get('--receipt-helper'));
 tools.push(proof, receipt);
@@ -160,6 +161,7 @@ for (const row of rows) {
 const failed = machineFailed(catalogue, rows);
 writeFileSync(join(out, 'contact-sheet-inputs.json'), JSON.stringify(contactSheetInputs(out, rows), null, 2));
 writeFileSync(join(out, 'machine-holds.json'), JSON.stringify({ identity, catalogue, machineFailed: failed, rows }, null, 2));
+writeReviewPage(out, rows);
 console.log(JSON.stringify({ identity, rows, receiptRoot: join(workspace, 'world/playable-africa-rollout'), approval: 'none' }, null, 2));
 
 process.exitCode = failed ? 1 : 0;

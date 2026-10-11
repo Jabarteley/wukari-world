@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  APP_SHA: da862ac9a713805dd65742684463e5ea54c46379
+  APP_SHA: fdba3f40dfdb244f0f75905dad677346cdc1501c
 
 jobs:
   acceptance:
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: kromate/joinallworld
-          ref: da862ac9a713805dd65742684463e5ea54c46379
+          ref: fdba3f40dfdb244f0f75905dad677346cdc1501c
           path: app
           persist-credentials: false
 

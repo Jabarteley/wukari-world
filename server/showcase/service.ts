@@ -8,6 +8,7 @@ import { SAFETY_LINE, outboundLink, screenFee } from '../../src/game/trust/index
 import { businessVenue } from '../../src/game/business-model.ts';
 import { SHOWCASE } from '../../src/types/showcase.ts';
 import type { ShowcasePhoto, ShowcaseCard, ShowcaseChatKind, ShowcaseCollection, ShowcaseGo, ShowcaseInput, ShowcaseLinkKind, ShowcaseMine, ShowcasePage, ShowcasePayKind, ShowcaseQueueItem, ShowcaseShop, ShowcaseView } from '../../src/types/showcase.ts';
+import { SHOP_TOKEN_ALPHABET, SHOP_TOKEN_LENGTH, isShopToken, shopPath } from '../../src/types/showcase-link.ts';
 import { screenText } from '../moderation/text.ts';
 import { trustService } from '../trust/service.ts';
 import type { Db, RouteContext, SessionRecord } from '../types.ts';
@@ -179,6 +180,7 @@ export function showcaseService(ctx: RouteContext) {
         ...(input.pay && payChanged ? { payChangedAt: at } : input.pay && current?.payChangedAt !== undefined ? { payChangedAt: current.payChangedAt } : {}),
         ...(current?.reapprove || (approved && changed) ? { reapprove: true as const } : {}),
         ...(current?.note ? { note: current.note } : {}),
+        ...(current?.pub ? { pub: current.pub } : {}),
         revision: (current?.revision ?? 0) + 1, createdAt: current?.createdAt ?? at, updatedAt: at,
       };
       // A live shop whose name or destinations changed is looked at again before it is shown; any other edit shows at once.
@@ -290,6 +292,33 @@ export function showcaseService(ctx: RouteContext) {
       shop.updatedAt = now(); shop.revision += 1;
       collection.shops[shop.id] = shop;
       return { ok: true, code: 'photos_arranged', id: shop.id, revision: shop.revision, status: shop.status };
+    },
+    /**
+     * The public address of the caller's shop, made the first time. Only a published shop (live, its owner still able to publish)
+     * has one: before that the seller is told what is still needed. The shop itself is not changed, so no revision moves.
+     */
+    share(db: Db, session: SessionRecord): { ok: true; code: 'shared'; id: string; path: string } {
+      const { collection, shop } = mineOf(db, session, true);
+      if (!shop) throw ctx.fail(404, 'no_shop');
+      if (shop.status === 'held') throw ctx.fail(403, 'shop_held');
+      if (shop.status !== 'live' || !isPublic(db, shop)) throw ctx.fail(409, 'not_published');
+      if (!shop.pub) {
+        const taken = new Set(Object.values(collection.shops).map((item) => item.pub));
+        let token = '';
+        for (let tries = 0; tries < 8 && (!isShopToken(token) || taken.has(token)); tries += 1) {
+          const bytes = ctx.randomId().replace(/-/g, '').match(/../g) ?? [];
+          token = bytes.slice(0, SHOP_TOKEN_LENGTH).map((pair) => SHOP_TOKEN_ALPHABET[Number.parseInt(pair, 16) % SHOP_TOKEN_ALPHABET.length]).join('');
+        }
+        if (!isShopToken(token) || taken.has(token)) throw ctx.fail(503, 'unavailable');
+        shop.pub = token; collection.shops[shop.id] = shop;
+      }
+      return { ok: true, code: 'shared', id: shop.id, path: shopPath(shop.name, shop.pub) };
+    },
+    /** The shop a public address leads to, when a stranger may see it: live, its owner able to publish, held by nobody. Null otherwise. */
+    byToken(db: Db, token: unknown): ShowcaseShop | null {
+      if (!isShopToken(token)) return null;
+      const shop = Object.values(peekShowcase(db).shops).find((item) => isShop(item) && item.pub === token);
+      return shop && isPublic(db, shop) && trust.badge(db, shop.owner)?.held === false ? shop : null;
     },
     /** The caller wants the chat or pay destination of a shop. One contact event is kept; the link is not stored anywhere new. */
     go(db: Db, session: SessionRecord, id: string, kind: unknown): { ok: true; code: 'link' } & ShowcaseGo {

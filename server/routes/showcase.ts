@@ -5,6 +5,9 @@
  *
  *   GET  /api/showcase/directory?city&venue&category&q&after   cards, newest first, paged
  *   GET  /api/showcase/:id                               one shop page
+ *   GET  /api/showcase/entry/:token                      the id of the shop a public address leads to (the game opens it for a visitor)
+ *   POST /api/showcase/mine/share                        the public address of the caller's published shop, made once { clientId }
+ *   GET  /shop/<name>-<token>                            the public page (ctx.pages): no sign-in, no script, the seller's own message link
  *   GET  /api/showcase/photo/:id                         a photo's bytes (public photos of live shops; the owner sees all of theirs)
  *   GET  /api/showcase/mine                              the caller's shop with their own links, status and upload allowance
  *   POST /api/showcase/mine                              create or edit        { clientId, expectedRevision, ...shop }
@@ -15,6 +18,11 @@
  *   POST /api/showcase/:id/report                        { clientId, reason, note?, photo? }
  */
 import { SHOWCASE } from '../../src/types/showcase.ts';
+import { shopTokenOf } from '../../src/types/showcase-link.ts';
+import { VERIFIED_TIERS } from '../../src/game/trust/index.ts';
+import { businessVenue } from '../../src/game/business-model.ts';
+import { placeFacts } from '../../src/paths.ts';
+import { shopPageHtml, unavailablePageHtml } from '../showcase/page.ts';
 import { CONTENT_TYPES, FAULT_WORDS, PICTURE_LIMITS, claimedType, cleanPicture, fromBase64 } from '../social/images.ts';
 import { showcaseService } from '../showcase/service.ts';
 import { isShop, peekShowcase } from '../showcase/data.ts';
@@ -89,15 +97,37 @@ export default function showcaseRoutes(ctx: RouteContext): Record<RouteKey, Rout
     return { file: { bytes: stored.bytes, type: CONTENT_TYPES[stored.image.type], cache: 'no-store' } };
   };
 
+  // The public page. A stranger's first request: no session is read and none is set. The shop is looked up by its token only, and
+  // anything that is not a published shop (unknown, hidden, held, in review, removed) gets the same plain page.
+  ctx.pages?.set('/shop/', async ({ path, origin, ip }) => {
+    if (!ctx.allow(`showcase:page:${ip}`, 60)) return { status: 429, cache: false, html: unavailablePageHtml(origin) };
+    const token = shopTokenOf(path);
+    const found = token ? await ctx.store.read((db) => {
+      const shop = service.byToken(db, token);
+      const badge = shop ? service.trust.badge(db, shop.owner) : null;
+      const place = shop ? placeFacts(shop.city) : null;
+      return shop && token ? { shop, token, city: place?.name ?? '', market: businessVenue(shop.city, shop.venue)?.name ?? '', checked: badge && (VERIFIED_TIERS as readonly string[]).includes(badge.tier) ? badge.label : null, payNotice: service.view(db, shop)?.payNotice ?? null } : null;
+    }).catch(() => null) : null;
+    // Never cached by a shared cache: a shop hidden or held a minute ago must not still be served.
+    return found ? { status: 200, cache: false, html: shopPageHtml(found, origin) } : { status: 404, cache: false, html: unavailablePageHtml(origin) };
+  });
+
   return {
     'GET /api/showcase/directory': read((db, viewer, request) => service.page(db, request.query, viewer)),
     'GET /api/showcase/mine': async (request) => ({ body: await ctx.store.read((db) => { const session = request.requireSession(db); rate(`read:${session.publicId}`, 120); if (service.trust.tierOf(db, session) === 'guest') throw ctx.fail(403, 'account_required'); return service.mine(db, session); }), headers }),
     'GET /api/showcase/photo/:id': photo,
+    'GET /api/showcase/entry/:token': async (request) => ({ body: await ctx.store.read((db) => {
+      if (!ctx.allow(`showcase:entry:${request.ip}`, 30)) throw ctx.fail(429, 'rate_limited');
+      const shop = service.byToken(db, request.params.token);
+      if (!shop) throw ctx.fail(404, 'shop_unavailable');
+      return { id: shop.id };
+    }), headers }),
     'GET /api/showcase/:id': read((db, viewer, request) => ({ shop: service.view(db, service.get(db, String(request.params.id), viewer)) })),
     'POST /api/showcase/mine': write('save', (db, session, _id, body) => service.save(db, session, body)),
     'POST /api/showcase/mine/photos': upload,
     'POST /api/showcase/mine/photos/arrange': write('photo-arrange', (db, session, _id, body) => service.arrange(db, session, body)),
     'POST /api/showcase/mine/photos/remove': write('photo-remove', (db, session, _id, body, gone) => service.detach(db, session, body.photo, gone)),
+    'POST /api/showcase/mine/share': write('share', (db, session) => service.share(db, session)),
     'POST /api/showcase/mine/submit': write('submit', (db, session) => service.submit(db, session)),
     'POST /api/showcase/mine/hide': write('hide', (db, session, _id, body) => service.hide(db, session, body.hidden)),
     'POST /api/showcase/mine/remove': write('remove', (db, session, _id, _body, gone) => service.remove(db, session, gone)),

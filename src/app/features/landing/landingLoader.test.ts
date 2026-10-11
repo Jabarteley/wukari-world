@@ -18,7 +18,7 @@ function fixture(over: Partial<LandingLoaderDeps> = {}, pending: { join?: string
     refresh: async () => { events.push('refresh') }, open: (id) => { events.push(`open:${id}`) }, toast: (text) => { events.push(`toast:${text}`) }, venueLabel: (id) => id, welcomeText: () => 'Welcome',
     tableExists: () => false, deviceToken: () => 'device', track: (name) => { events.push(`track:${name}`) }, cleanAddress: () => events.push('clean'), takeLinkHost: () => events.push('take'),
     joinTarget: () => kept.join, forgetJoin: () => { kept.join = null }, pendingRef: () => kept.ref, forgetRef: () => { kept.ref = null },
-    pendingTable: () => kept.table, forgetTable: () => { kept.table = null }, pendingGo: () => kept.go, forgetGo: () => { kept.go = null },
+    pendingTable: () => kept.table, forgetTable: () => { kept.table = null }, pendingGo: () => kept.go, forgetGo: () => { kept.go = null }, pendingShop: () => null,
     panelFor: (go) => go === 'messages' ? 'messages' : null, setTimeout: () => 1, clearTimeout: () => {}, importFailed: () => events.push('import-failed'),
     ...rest,
     load: async () => { imports++; return customLoad ? customLoad() : { createLanding } },

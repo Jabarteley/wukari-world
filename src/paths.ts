@@ -27,7 +27,7 @@ export type PathIntent =
   | { kind: 'panel'; panel: PanelWord }
 
 /** First segments that belong to something else: the API, the build, the share and invite links, the mail pages, the operator pages, the socket and the image folders. Never a place. */
-export const RESERVED_PREFIXES: readonly string[] = Object.freeze(['api', 'assets', 's', 'j', 'v', 'e', 'admin', 'socket', 'og', 'icons']);
+export const RESERVED_PREFIXES: readonly string[] = Object.freeze(['api', 'assets', 's', 'j', 'v', 'e', 'shop', 'admin', 'socket', 'og', 'icons']);
 
 const games = (game: GameSlug | null): PathIntent => ({ kind: 'games', game });
 /** The words that always mean what they say, whatever the registry holds. */

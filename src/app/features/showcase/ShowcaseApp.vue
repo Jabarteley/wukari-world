@@ -34,6 +34,9 @@ let seen: unknown = null
 watch(() => props.params, (params) => {
   if (!params || params === seen) return
   seen = params
+  const shop = (params as { shop?: unknown }).shop
+  // Opened from a shop's public link: that shop's page first.
+  if (typeof shop === 'string' && /^SC-\d{1,16}$/.test(shop)) { selected.value = shop; return }
   const found = (params as { venue?: unknown }).venue
   if (typeof found === 'string' && found) { venue.value = found; scope.value = 'here'; void load(true) }
 }, { immediate: true })

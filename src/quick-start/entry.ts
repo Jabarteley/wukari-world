@@ -44,7 +44,7 @@
  */
 import type { Look } from '../types/life.ts';
 import { nudgeMemory, joinIdFrom, linkParts } from './model.ts';
-import { goFrom } from '../game/go-links.ts';
+import { goFrom, shopFrom } from '../game/go-links.ts';
 import type { GoTarget } from '../game/go-links.ts';
 import type { Draft, NudgeMemory } from './model.ts';
 
@@ -121,7 +121,7 @@ export function captureLink(): CapturedLink {
   if (link.ref) { found.ref = link.ref; write(KEYS.ref, { code: link.ref, at: Date.now() }); }
   if (link.table) { found.table = link.table; write(KEYS.table, link.table); }
   const go = goFrom(location.search);
-  if (go) { found.go = go; write(KEYS.go, { go, at: Date.now() }); }
+  if (go) { found.go = go; write(KEYS.go, { go, at: Date.now(), shop: go === 'shop' ? shopFrom(location.search) : null }); }
   found.campus = location.pathname.replace(/\/+$/, '') === '/unilag';
   if (found.campus) write(KEYS.campus, { at: Date.now() });
   return found;
@@ -151,6 +151,11 @@ export function pendingGo(): GoTarget | null {
   return goFrom(`?go=${kept.go}`);
 }
 export const forgetGo = (): void => write(KEYS.go, null);
+/** The public address of the shop a link asked for (go=shop), until the landing has opened it; shape only, the server decides. */
+export function pendingShop(): string | null {
+  const kept = recordOf(read(KEYS.go)) as { go?: unknown; shop?: unknown } | null;
+  return kept?.go === 'shop' && typeof kept.shop === 'string' ? shopFrom(`?shop=${kept.shop}`) : null;
+}
 
 /**
  * A random token made once per browser ('allworld-device'). It is sent with a referral link and with the growth hello and is

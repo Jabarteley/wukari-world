@@ -7,6 +7,7 @@ import { dirname, join, resolve } from 'node:path'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 import { SAGAMU_LEGACY_RECIPE } from '../../src/game/cities/sagamu/recipe.ts'
+import { loadLegacySnapshot } from '../../src/game/cities/sagamu/snapshot.ts'
 import { castFor } from '../../src/game/cities/formula/cast.ts'
 import { buildFormulaContent, orderedPlacesOf } from '../../src/game/cities/formula/content.ts'
 import { buildFormulaRules } from '../../src/game/cities/formula/rules.ts'
@@ -347,7 +348,7 @@ test('legacy generation is deterministic and stale text is observable', () => {
 })
 
 test('Sagamu generated runtime preserves the exact original baseline', async () => {
-  const text = JSON.stringify(await SAGAMU_LEGACY_RECIPE.loadSnapshot())
+  const text = JSON.stringify(await loadLegacySnapshot())
   assert.equal(Buffer.byteLength(text), SAGAMU_LEGACY_RECIPE.baselineBytes)
   assert.equal(createHash('sha256').update(text).digest('hex'), SAGAMU_LEGACY_RECIPE.baselineSha256)
 })

@@ -13,6 +13,7 @@ import SkeletonRows from '../../ui/SkeletonRows.vue'
 import { newClientId } from '../social/useSocial.ts'
 import FieldRow from './FieldRow.vue'
 import PhotoManager from './PhotoManager.vue'
+import ShareShop from './ShareShop.vue'
 import ShopFront from './ShopFront.vue'
 import { CODE_WORDS, DRAFT_PARTS, PRICE_NOTE, TEMPLATES, WEEKDAYS, WEEKDAYS_SHORT, adultConsentBody, categoryList, draftClashes, draftOf, draftProblems, emptyDraft, emptyService, iconList, inputOf, mergeDraft, refusalProblem, statusWords, templateList, wordsFor } from './showcaseModel.ts'
 import type { Problem, ShopDraft, ShopFace } from './showcaseModel.ts'
@@ -241,6 +242,7 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
     <SkeletonRows v-else-if="!mine" :rows="3" label="Loading your shop" />
     <template v-else>
       <p v-if="shop" class="se-status" role="status" data-status>{{ statusWords(shop.status, photoCount, shop.note) }}</p>
+      <ShareShop v-if="shop" :shop="shop" :photos="photoCount" :blocked="mine.blocked" />
       <section v-if="mine.blocked" class="se-block" aria-label="Before you can publish">
         <p>{{ wordsFor(mine.blocked, 'You cannot publish a shop yet.') }}</p>
         <button v-if="mine.blocked === 'adult_self_declaration_required'" type="button" class="ui-button is-block" @click="declareAdult">I am 18 or older</button>

@@ -57,6 +57,8 @@ export interface LandingDeps {
   /** The panel a link in an e-mail asked for (a name from the fixed list), kept until it is opened. */
   pendingGo(): string | null
   forgetGo(): void
+  /** The public address of the shop a go=shop link named, kept with the go until it is opened. */
+  pendingShop(): string | null
   /** The panel a go-link name opens, or null when this build has no such panel. */
   panelFor(go: string): string | null
   setTimeout(run: () => void, ms: number): unknown
@@ -179,7 +181,22 @@ export function createLanding(deps: LandingDeps, refs?: LandingRefs): Landing {
         if (exists) deps.open('tables', { table })
       }
       // An e-mail's button: one panel from the fixed list, opened once. A table link, which names its own panel, wins.
-      if (go) { if (!isCurrent()) return; deps.forgetGo(); const panel = deps.panelFor(go); if (panel && !table && !host) deps.open(panel) }
+      if (go) {
+        if (!isCurrent()) return
+        const shop = go === 'shop' ? deps.pendingShop() : null
+        deps.forgetGo()
+        const panel = deps.panelFor(go)
+        if (panel && !table && !host) {
+          // A shop link opens that shop's page in the Services app: the visitor's first sight is the shop, not the tour.
+          if (shop) {
+            try {
+              const found = await deps.fetchJson<{ id?: string }>(`/api/showcase/entry/${shop}`, undefined, isCurrent)
+              if (!isCurrent()) return
+              if (found.id) deps.open(panel, { shop: found.id })
+            } catch { if (isCurrent()) deps.toast('That shop is not available.') }
+          } else deps.open(panel)
+        }
+      }
       if (!isCurrent()) return
       if (landedName && host) landed.value = { kind, by: { id: host, name: landedName } }
       else if (gift && sharer && host && !landed.value) landed.value = { kind, by: { id: host, name: sharer } }

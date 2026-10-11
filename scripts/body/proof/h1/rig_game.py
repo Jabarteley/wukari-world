@@ -53,7 +53,7 @@ for v in me.vertices:
 V = [v.co.copy() for v in me.vertices]
 zs = [p.z for p in V]
 newH = max(zs) - min(zs)
-if abs(min(zs)) > 0.01:
+if "--part" not in opts and abs(min(zs)) > 0.01:
     raise RuntimeError(f"soles are not on the floor: {min(zs)}")
 
 # ---------------------------------------------------------------- an optional skirt-like garment: both thighs move it, the centre follows the pelvis
@@ -134,6 +134,32 @@ for i, w in enumerate(W):
     tot = sum(v for _, v in top) or 1.0
     W[i] = {k: v / tot for k, v in top if v / tot > 0.01}
 
+# ---------------------------------------------------------------- the seam: every part that touches the neck is weighted by the same function of the height above the cut,
+# so a head from one figure and a body from another move as one piece at the neck
+if "--neck-cut" in opts:
+    cut = float(opts["--neck-cut"])
+    nc = J["neck"]
+    for i, p in enumerate(V):
+        u = p.z - cut
+        if u < -0.05:
+            continue
+        # only the neck and its collar: the shoulders and arms next to it keep their own weights
+        f = 1.0 - sm((math.hypot(p.x - nc.x, p.y - nc.y) - 0.10) / 0.05)
+        if f <= 0.0:
+            continue
+        if u < 0.0:
+            t = sm((u + 0.05) / 0.05); new = {k: (1 - t) * v for k, v in W[i].items()}; new["neck_01"] = new.get("neck_01", 0.0) + t
+        elif u < 0.03:
+            new = {"neck_01": 1.0}
+        elif u < 0.09:
+            s_ = sm((u - 0.03) / 0.06); new = {"neck_01": 1 - s_, "Head": s_}
+        else:
+            new = {"Head": 1.0}
+        mixed = {k: (1 - f) * v for k, v in W[i].items()}
+        for k, v in new.items():
+            mixed[k] = mixed.get(k, 0.0) + f * v
+        W[i] = mixed
+
 for g in list(low.vertex_groups):
     low.vertex_groups.remove(g)
 groups = {n: low.vertex_groups.new(name=n) for n in BONES}
@@ -197,6 +223,12 @@ if "--face" in opts:
             return (math.copysign(dx * sc, p.x - mouth_x) * w, 0, dz * sc * w) if w > 0 else None
         return f
     key("smile", corner(0.006, 0.004)); key("frown", corner(-0.006, -0.002))
+
+    def jaw_wide(p):
+        # the lower face widens about the middle: the cheeks and jaw line, from just below the mouth corners down to the chin, not the neck
+        w = sm01((mouth_z + 0.06 * sc - p.z) / (0.07 * sc)) * sm01((p.z - (chin_z - 0.03 * sc)) / (0.03 * sc))
+        return ((p.x - mouth_x) * 0.14 * w, 0, 0) if w > 0 else None
+    key("jawWide", jaw_wide)
 
     def brow(side, dz, inner_only=False):
         bx, bz = fs["browL" if side > 0 else "browR"]

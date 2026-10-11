@@ -54,7 +54,7 @@ full_tris = sum(len(p.vertices) - 2 for p in high.data.polygons)
 hi_tris = full_tris
 bb = [high.matrix_world @ Vector(c) for c in high.bound_box]
 lo = Vector((min(v[i] for v in bb) for i in range(3))); hi = Vector((max(v[i] for v in bb) for i in range(3)))
-H = hi.z - lo.z
+H = float(os.environ.get("REDUCE_H", hi.z - lo.z))   # a part (a head) states the height of the whole figure so the bake distances scale with the figure
 
 # --- the protected zones: head and hands (hand positions come from the skeleton when the file has one, from proportions otherwise)
 hands = []

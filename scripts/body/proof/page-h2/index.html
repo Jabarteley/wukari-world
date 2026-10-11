@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Allworld character creator (proof)</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#10201b;font:14px system-ui,sans-serif;color:#eef3ee}
+#c{position:fixed;left:0;top:0;width:calc(100% - 340px);height:100%;display:block;touch-action:none;cursor:grab}
+body.shoot #c{width:100%}
+#panel{position:fixed;right:0;top:0;width:340px;height:100%;overflow-y:auto;background:#17302a;box-sizing:border-box;padding:12px 14px 40px;box-shadow:-4px 0 16px #0006}
+body.shoot #panel{display:none}
+h1{font-size:17px;margin:2px 0 10px}
+h2{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#9fd1bd;margin:16px 0 6px}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+button{font:inherit;color:#eef3ee;background:#25473d;border:1px solid #3c6a5b;border-radius:8px;padding:6px 10px;cursor:pointer}
+button.on{background:#3f8a6f;border-color:#7fe0b6;font-weight:700}
+button:hover{background:#2f5a4d}
+.sw{width:30px;height:30px;padding:0;border-radius:50%;border:2px solid #0004}
+.sw.on{outline:3px solid #fff}
+label{display:block;margin:8px 0 2px}
+input[type=range]{width:100%}
+#stats{position:fixed;left:12px;bottom:10px;background:#0009;padding:6px 10px;border-radius:8px;font-size:12px}
+body.shoot #stats{display:none}
+.dis{opacity:.35;pointer-events:none}
+small{color:#9fb8ad}
+</style></head>
+<body><canvas id="c"></canvas><div id="panel"></div><div id="stats"></div><script type="module" src="/page.js"></script></body></html>

@@ -33,6 +33,8 @@ px = np.array(img.pixels[:]).reshape(H, W, 4)[:, :, :3].copy()
 verts = np.array([v.co[:] for v in me.vertices])
 top = verts[:, 2].max()
 head_zone = top - 0.32 * (top - 0.0) * 0.85           # the head: the top fifth or so
+if "--head-part" in argv:
+    head_zone = verts[:, 2].min() - 1.0                    # the file is only a head
 
 # ---------------------------------------------------------------- texel -> surface point, for the front of the head
 P3 = np.full((H, W, 3), np.nan)
@@ -78,21 +80,37 @@ lum = px.mean(axis=2)
 sat = px.max(axis=2) - px.min(axis=2)
 if mode == "detect":
     zface = verts[:, 2]
-    eye_band = have & (P3[:, :, 2] > top - 0.30 * (top)) & (P3[:, :, 2] < top - 0.04)
-    sclera = eye_band & (px.min(axis=2) > 0.60) & (sat < 0.22)
+    zmin_ = verts[:, 2].min() if "--head-part" in argv else 0.0
+    if "--head-part" in argv:
+        hh = top - zmin_
+        eye_band = have & (P3[:, :, 2] > zmin_ + 0.50 * hh) & (P3[:, :, 2] < zmin_ + 0.76 * hh)
+    else:
+        eye_band = have & (P3[:, :, 2] > top - 0.30 * (top)) & (P3[:, :, 2] < top - 0.04)
+    sclera = eye_band & (px.min(axis=2) > 0.58) & (sat < 0.25)
     lm = {}
     for side, name in ((1, "L"), (-1, "R")):
         m = sclera & (P3[:, :, 0] * side > 0.015)
         p = P3[m]
         if len(p) < 20:
             raise RuntimeError(f"cannot find the white of the {name} eye ({len(p)} texels)")
-        # keep the largest blob around the median
-        med = np.median(p, axis=0)
-        keep = np.linalg.norm(p - med, axis=1) < 0.05
-        p = p[keep]
-        x_lo, x_hi = np.percentile(p[:, 0], [1.5, 98.5]); z_lo, z_hi = np.percentile(p[:, 2], [1.5, 98.5])
+        # mean shift to the densest cluster of white
+        c0 = np.median(p, axis=0)
+        cells = {}
+        for q in p:
+            k = (int(q[0] / 0.006), int(q[2] / 0.006)); cells[k] = cells.get(k, 0) + 1
+        kbest = max(cells, key=cells.get); c0 = np.array([kbest[0] * 0.006, 0, kbest[1] * 0.006])
+        for _ in range(6):
+            d2 = np.hypot(p[:, 0] - c0[0], p[:, 2] - c0[2]); sel = p[d2 < 0.032]
+            if len(sel) < 10:
+                break
+            c0 = np.array([np.median(sel[:, 0]), 0, np.median(sel[:, 2])])
+        d2 = np.hypot(p[:, 0] - c0[0], p[:, 2] - c0[2]); p = p[d2 < 0.034]
+        x_lo, x_hi = np.percentile(p[:, 0], [2, 98]); z_lo, z_hi = np.percentile(p[:, 2], [2, 98])
         lm["eye" + name] = [float((x_lo + x_hi) / 2), float((z_lo + z_hi) / 2)]
         lm["eyeA" + name] = float((x_hi - x_lo) / 2); lm["eyeB" + name] = float((z_hi - z_lo) / 2)
+    # the two eyes are at one height: average, and keep them mirror images about the middle of the face
+    zz = (lm["eyeL"][1] + lm["eyeR"][1]) / 2; lm["eyeL"][1] = zz; lm["eyeR"][1] = zz
+    aa = (lm["eyeAL"] + lm["eyeAR"]) / 2; bb = (lm["eyeBL"] + lm["eyeBR"]) / 2; lm["eyeAL"] = lm["eyeAR"] = aa; lm["eyeBL"] = lm["eyeBR"] = bb
     sep = lm["eyeL"][0] - lm["eyeR"][0]
     ez = (lm["eyeL"][1] + lm["eyeR"][1]) / 2
     lm["eyeSep"] = float(sep)
@@ -106,13 +124,15 @@ if mode == "detect":
     skin = np.median(px[have & (P3[:, :, 2] > ez - 0.04) & (P3[:, :, 2] < ez + 0.0) & (np.abs(P3[:, :, 0]) < 0.03)], axis=0)
     red = (px[:, :, 0] - px[:, :, 1]) - (skin[0] - skin[1])
     zone = have & (P3[:, :, 2] < ez - 0.45 * sep) & (P3[:, :, 2] > ez - 1.6 * sep) & (np.abs(P3[:, :, 0]) < 0.9 * sep)
-    cand = zone & (red > 0.5 * np.percentile(red[zone], 97))
+    cand = zone & (red > 0.5 * np.percentile(red[zone], 97)) if zone.any() else zone
     p = P3[cand]
     lm["mouth"] = [float(np.median(p[:, 0])), float(np.median(p[:, 2]))] if len(p) > 10 else [0.0, ez - 0.9 * sep]
     lm["mouthW"] = float(0.75 * sep)     # the face the shape keys were authored on has its mouth 0.75 as wide as its eyes are far apart
     lm["scale"] = float(sep / 0.0833 / 2)       # relative to the face the shape keys were authored on (eye centre about 0.083 off the middle)
     lm["chinDrop"] = float(0.08 * lm["scale"])
     cheek = have & (P3[:, :, 2] > ez - 0.9 * sep) & (P3[:, :, 2] < ez - 0.2 * sep) & (np.abs(np.abs(P3[:, :, 0]) - 0.6 * sep) < 0.25 * sep)
+    if cheek.sum() < 50:
+        cheek = have & (P3[:, :, 2] > ez - 0.7 * sep) & (P3[:, :, 2] < ez - 0.2 * sep) & (np.abs(P3[:, :, 0]) < 0.9 * sep)
     lm["skinCheek"] = [float(v) for v in np.median(px[cheek], axis=0)]
     lm["iris"] = [float(v) for v in iris_rgb]
     json.dump(lm, open(face_json, "w"), indent=1)

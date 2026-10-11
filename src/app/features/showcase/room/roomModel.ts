@@ -41,11 +41,17 @@ export const SLOTS: readonly SlotSpec[] = Object.freeze([
   { name: 'slot_12', x: 0.8, y: 1.95, z: -2.04, width: 0.5, height: 0.8, kind: 'rail', anchor: 'top', facing: [0, 0, 1] },
 ])
 export const PAGE_SIZE = SLOTS.length
-/** The order items fill the slots in: the counter and the rail first (they are what a visitor sees first, from the door), then the shelves, one side and the other in turn. */
-export const SLOT_ORDER: readonly number[] = Object.freeze([8, 9, 10, 11, 0, 4, 1, 5, 2, 6, 3, 7])
+/** The order items fill the slots in: the two counter places, then the shelf places on both sides that the entry view can see (the far ones, not the ones beside the door), then the rail, then the near shelf places, one side and the other in turn. */
+export const SLOT_ORDER: readonly number[] = Object.freeze([8, 9, 1, 5, 3, 7, 10, 11, 0, 4, 2, 6])
 
 /** What the shelves are drawn with: the card sizes in room units (the shelf slots read small against their shelves, so the cards are larger than the slots). */
-export const CARD_SIZE: Readonly<Record<SlotSpec['kind'], { w: number; h: number }>> = Object.freeze({ shelf: { w: 0.5, h: 0.5 }, counter: { w: 0.5, h: 0.5 }, rail: { w: 0.54, h: 0.78 } })
+export const CARD_SIZE: Readonly<Record<SlotSpec['kind'], { w: number; h: number }>> = Object.freeze({ shelf: { w: 0.6, h: 0.56 }, counter: { w: 0.42, h: 0.5 }, rail: { w: 0.5, h: 0.55 } })
+/** Where the shopkeeper stands, and how far to each side of that nothing is hung or stood (so no card hides the face from the door). */
+export const KEEPER = Object.freeze({ x: -0.05, z: -1.2, clear: 0.4 })
+/** The slots whose cards are moved sideways from the model's place, clear of the shopkeeper: both counter cards to the right of her (the till is on the left), the rail cards further apart. */
+const SIDEWAYS: Readonly<Record<string, number>> = Object.freeze({ slot_09: 0.55, slot_10: 1.0, slot_11: -1.1, slot_12: 1.1 })
+/** Rail cards hang higher than the model's rail, so they clear the counter cards from the entry view. */
+const RAISED: Readonly<Record<string, number>> = Object.freeze({ slot_11: 0.4, slot_12: 0.4 })
 /** How far a card stands out of its slot, along its facing, so it never sinks into the wall or the counter. */
 const STAND_OUT = 0.07
 
@@ -55,7 +61,7 @@ export function cardPlace(slot: SlotSpec): CardPlace {
   const { w, h } = CARD_SIZE[slot.kind]
   const [fx, , fz] = slot.facing
   const standing = slot.anchor === 'bottom'
-  return { x: slot.x + fx * STAND_OUT, y: standing ? slot.y + h / 2 : slot.y - h / 2, z: slot.z + fz * STAND_OUT, yaw: Math.atan2(fx, fz), tilt: standing ? -0.1 : 0, w, h }
+  return { x: (SIDEWAYS[slot.name] ?? slot.x) + fx * STAND_OUT, y: standing ? slot.y + h / 2 : slot.y + (RAISED[slot.name] ?? 0) - h / 2, z: slot.z + fz * STAND_OUT, yaw: Math.atan2(fx, fz), tilt: standing ? -0.1 : 0, w, h }
 }
 
 // ---- pages ----------------------------------------------------------------------------------------------------------------------

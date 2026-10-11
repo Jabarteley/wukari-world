@@ -44,3 +44,8 @@ export function coveredTriangles(tris: readonly Tri[], minArea = 1): Set<number>
   }
   return out
 }
+
+/** The till of the room models: a plain dark box on the counter, drawn with a swatch of the picture. The scene leaves it out and puts its own till there. */
+export const MODEL_TILL = Object.freeze({ min: [-1.31, 0.99, -0.86] as V3, max: [-0.69, 1.29, -0.44] as V3 })
+/** Whether every corner of the triangle is inside the box (the counter top, which is far larger, is not). */
+export const insideBox = (t: Tri, box: { min: V3; max: V3 }): boolean => t.p.every((p) => p.every((value, at) => value >= box.min[at]! && value <= box.max[at]!))

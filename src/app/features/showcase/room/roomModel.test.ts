@@ -7,9 +7,9 @@ import { test } from 'node:test'
 import { SHOWCASE, SHOWCASE_CATEGORIES } from '../../../../types/showcase.ts'
 import type { ShowcaseMine, ShowcaseView } from '../../../../types/showcase.ts'
 import { drawItemCard } from './roomCanvas.ts'
-import { coveredTriangles } from './roomGeometry.ts'
+import { MODEL_TILL, coveredTriangles, insideBox } from './roomGeometry.ts'
 import type { Tri } from './roomGeometry.ts'
-import { CARD_SIZE, DEAL_LINE, PAGE_SIZE, ROOM_THEMES, SLOTS, SLOT_ORDER, THEME_OF, cardPlace, clampPage, initialOf, messageLink, mixHex, pageCount, pageOf, payLink, plain, roomColours, roomFromMine, roomFromView, roomPhotoUrl, roomRequest, themeFor, wrapLines } from './roomModel.ts'
+import { CARD_SIZE, DEAL_LINE, KEEPER, PAGE_SIZE, ROOM_THEMES, SLOTS, SLOT_ORDER, THEME_OF, cardPlace, clampPage, initialOf, messageLink, mixHex, pageCount, pageOf, payLink, plain, roomColours, roomFromMine, roomFromView, roomPhotoUrl, roomRequest, themeFor, wrapLines } from './roomModel.ts'
 
 const here = (name: string): string => fileURLToPath(new URL(name, import.meta.url))
 const PHOTO = 'a'.repeat(32), OTHER = 'b'.repeat(32)
@@ -47,7 +47,7 @@ test('a card stands on its shelf or counter and hangs from the rail, faces into 
   for (const { slot, place } of places) {
     const bottom = place.y - place.h / 2, top = place.y + place.h / 2
     if (slot.anchor === 'bottom') assert.ok(Math.abs(bottom - slot.y) < 1e-9, `${slot.name} stands on its slot`)
-    else assert.ok(Math.abs(top - slot.y) < 1e-9, `${slot.name} hangs from its slot`)
+    else assert.ok(top >= slot.y - 1e-9 && top <= slot.y + 0.5, `${slot.name} hangs at its slot, raised a little at most`)
     assert.ok(Math.abs(place.x) + place.w / 2 <= room.w / 2 && Math.abs(place.z) <= room.d / 2 && bottom >= 0 && top <= room.h, `${slot.name} is inside the room`)
     // The card's front looks along the slot's facing: yaw turns +z onto it.
     assert.ok(Math.abs(Math.sin(place.yaw) - slot.facing[0]) < 1e-9 && Math.abs(Math.cos(place.yaw) - slot.facing[2]) < 1e-9, `${slot.name} faces ${slot.facing.join(',')}`)
@@ -192,4 +192,28 @@ test('a wall that has a plain swatch sheet at the same place as its picture drop
   const small: Tri = { p: [[3, 0, 0], [3, 0.1, 0], [3, 0.1, 0.1]], uv: [[0, 0], [0.001, 0], [0.001, 0.001]] }
   assert.deepEqual([...coveredTriangles([...tris, small, { ...small, uv: [[0, 0], [0.2, 0], [0.2, 0.2]] }])].sort(), [2, 3], 'small pieces are never touched')
   assert.deepEqual([...coveredTriangles([{ p: [[0, 0, 0], [1, 0, 0], [2, 0, 0]], uv: [[0, 0], [0, 0], [0, 0]] }])], [], 'a sliver is ignored')
+})
+
+test('from the door nothing hides the shopkeeper: counter cards stand to her right, rail cards hang well to each side, and the shelves fill on both sides first', () => {
+  const places = SLOTS.map((slot) => ({ slot, place: cardPlace(slot) }))
+  for (const { slot, place } of places) {
+    const [from, to] = [place.x - place.w / 2, place.x + place.w / 2]
+    if (slot.kind === 'counter') assert.ok(from >= KEEPER.x + KEEPER.clear - 1e-9, `${slot.name} is clear of her`)
+    if (slot.kind === 'rail') assert.ok(to <= KEEPER.x - KEEPER.clear + 1e-9 || from >= KEEPER.x + KEEPER.clear - 1e-9, `${slot.name} is clear of her`)
+  }
+  const counter = places.filter((entry) => entry.slot.kind === 'counter')
+  const rail = places.filter((entry) => entry.slot.kind === 'rail'), top = Math.max(...counter.map((entry) => entry.place.y + entry.place.h / 2))
+  assert.ok(rail.every((entry) => entry.place.y - entry.place.h / 2 >= top), 'rail cards hang above the counter cards')
+  assert.ok(counter[0]!.place.x + counter[0]!.place.w / 2 <= counter[1]!.place.x - counter[1]!.place.w / 2, 'the two counter cards do not overlap')
+  const eight = pageOf(Array.from({ length: 8 }, (_, at) => at), 0).map((entry) => entry.slot)
+  const left = eight.filter((slot) => slot.kind === 'shelf' && slot.x < 0).length, right = eight.filter((slot) => slot.kind === 'shelf' && slot.x > 0).length
+  assert.deepEqual([left, right], [2, 2], 'eight items put two cards on each side shelf')
+  assert.ok(CARD_SIZE.shelf.w >= 0.58, 'shelf cards read from the door')
+})
+
+test('the model\'s plain dark till is recognised and only it: the counter top and the shelves are not', () => {
+  const box = (a: [number, number, number], b: [number, number, number], c: [number, number, number]) => ({ p: [a, b, c] as const, uv: [[0, 0], [1, 0], [1, 1]] as const })
+  assert.ok(insideBox(box([-1.3, 1.28, -0.45], [-0.7, 1.28, -0.45], [-0.7, 1.28, -0.85]), MODEL_TILL))
+  assert.ok(!insideBox(box([-1.4, 1, -0.3], [1.4, 1, -0.3], [1.4, 1, -1]), MODEL_TILL), 'the counter top')
+  assert.ok(!insideBox(box([-2.6, 1, 0.6], [-2.6, 1.1, 0.6], [-2.6, 1.1, 0.7]), MODEL_TILL), 'a shelf')
 })

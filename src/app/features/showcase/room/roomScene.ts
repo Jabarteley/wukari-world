@@ -12,9 +12,9 @@ import electronicsUrl from './assets/shop-electronics.glb?url'
 import fashionUrl from './assets/shop-fashion.glb?url'
 import foodUrl from './assets/shop-food.glb?url'
 import { drawCover, drawItemCard, FONT, roundedRect } from './roomCanvas.ts'
-import { coveredTriangles } from './roomGeometry.ts'
+import { MODEL_TILL, coveredTriangles, insideBox } from './roomGeometry.ts'
 import type { Tri, V3 } from './roomGeometry.ts'
-import { cardPlace, clampPage, mixHex, pageCount, pageOf, roomColours, roomPhotoUrl, wrapLines } from './roomModel.ts'
+import { KEEPER, cardPlace, clampPage, mixHex, pageCount, pageOf, roomColours, roomPhotoUrl, wrapLines } from './roomModel.ts'
 import type { RoomData, RoomTheme } from './roomModel.ts'
 
 type Three = typeof THREE_TYPES
@@ -90,6 +90,7 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     const at = (i: number): { p: V3; uv: [number, number] } => { world.fromBufferAttribute(position, i).applyMatrix4(mesh.matrixWorld); return { p: [world.x, world.y, world.z], uv: [uv.getX(i), uv.getY(i)] } }
     for (let t = 0; t < index.count; t += 3) { const [a, b, c] = [at(index.getX(t)), at(index.getX(t + 1)), at(index.getX(t + 2))]; tris.push({ p: [a.p, b.p, c.p], uv: [a.uv, b.uv, c.uv] }) }
     const drop = coveredTriangles(tris)
+    tris.forEach((tri, n) => { if (insideBox(tri, MODEL_TILL)) drop.add(n) })
     if (!drop.size) return
     const kept: number[] = []
     tris.forEach((_, n) => { if (!drop.has(n)) kept.push(index.getX(n * 3), index.getX(n * 3 + 1), index.getX(n * 3 + 2)) })
@@ -258,7 +259,7 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
       texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4
       const material = new THREE.MeshBasicMaterial({ map: texture, color: '#f4eee4', toneMapped: false })
       const board = new THREE.Mesh(new THREE.PlaneGeometry(0.84, 0.52), material)
-      const holder = new THREE.Group(); holder.position.set(0.42, 1.27, -0.5); holder.rotation.x = -0.12
+      const holder = new THREE.Group(); holder.position.set(0.7, 1.27, -0.5); holder.rotation.x = -0.12
       const back = new THREE.Mesh(frameGeometry, frameMaterial); back.scale.set(0.88, 0.56, 0.03); back.position.z = -0.016
       board.userData['pick'] = { kind: 'counter' } satisfies RoomPick
       holder.add(back, board); cards.add(holder); pickables.push(board)
@@ -291,9 +292,27 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     cards.add(plaque); pickables.push(plaque)
   }
 
+  // ---- the till: a cash register where the model's plain box was ----
+  {
+    const body = track(new THREE.MeshLambertMaterial({ color: '#cfc8b8' })), trim = track(new THREE.MeshLambertMaterial({ color: '#3b3a38' }))
+    const keys = track(new THREE.MeshLambertMaterial({ color: '#8e8a80' })), drawer = track(new THREE.MeshLambertMaterial({ color: '#a8a294' }))
+    const { canvas: face, ctx } = canvasOf(128, 64)
+    ctx.fillStyle = '#12301f'; ctx.fillRect(0, 0, 128, 64); ctx.fillStyle = '#7fe3a1'; ctx.font = `700 34px ${FONT}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle'; ctx.fillText('0.00', 118, 34)
+    const screen = track(new THREE.MeshBasicMaterial({ map: textureOf(face), toneMapped: false }))
+    const till = new THREE.Group(); till.position.set(-1.0, 1.0, -0.65)
+    const part = (w: number, h: number, d: number, x: number, y: number, z: number, material: THREE_TYPES.Material): THREE_TYPES.Mesh => { const mesh = new THREE.Mesh(track(new THREE.BoxGeometry(w, h, d)), material); mesh.position.set(x, y, z); till.add(mesh); return mesh }
+    part(0.5, 0.12, 0.34, 0, 0.06, 0, drawer)                 // the drawer
+    part(0.5, 0.06, 0.34, 0, 0.15, 0, body)                   // the body
+    const pad = part(0.46, 0.04, 0.16, 0, 0.2, 0.07, keys); pad.rotation.x = -0.25   // the keypad, tilted to the seller
+    part(0.46, 0.14, 0.06, 0, 0.3, -0.12, trim)               // the display's back
+    const glass = new THREE.Mesh(track(new THREE.PlaneGeometry(0.4, 0.1)), screen); glass.position.set(0, 0.3, -0.088); glass.rotation.x = -0.2; till.add(glass)
+    part(0.5, 0.01, 0.34, 0, 0.12, 0, trim)                   // the seam of the drawer
+    scene.add(till)
+  }
+
   // ---- the shopkeeper, behind the counter ----
   const kit = createKit()
-  const keeper = buildAvatar(kit, undefined, { seed: `keeper:${data.name}`, pose: 'stand', scale: 0.6, detail: 'medium', x: -0.34, z: -1.2, ry: 0 })
+  const keeper = buildAvatar(kit, undefined, { seed: `keeper:${data.name}`, pose: 'stand', scale: 0.6, detail: 'medium', x: KEEPER.x, z: KEEPER.z, ry: 0 })
   scene.add(keeper)
   keeper.traverse((node) => { node.userData['pick'] = { kind: 'counter' } satisfies RoomPick; if ((node as THREE_TYPES.Mesh).isMesh) pickables.push(node) })
   const counterHit = new THREE.Mesh(new THREE.BoxGeometry(2.6, 1.1, 0.9), new THREE.MeshBasicMaterial({ visible: false }))
@@ -315,7 +334,7 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     renderer.setSize(width, height, false)
     camera.aspect = width / height
     // A tall, narrow screen needs a wide vertical angle to see the room's width; a wide screen a normal one.
-    camera.fov = camera.aspect < 0.5 ? 80 : camera.aspect < 0.8 ? 72 : camera.aspect < 1.2 ? 64 : 52
+    camera.fov = camera.aspect < 0.5 ? 80 : camera.aspect < 0.8 ? 72 : camera.aspect < 1.2 ? 64 : 58
     portrait = camera.aspect < 0.8
     camera.updateProjectionMatrix()
   }

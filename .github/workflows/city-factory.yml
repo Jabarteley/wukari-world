@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
-      APP_SHA: b8f90621df4d43e2413e14038ce7591fc5ce47d0
+      APP_SHA: 397b95341e85623e8085059a47342fa7cc9cd0a7
     steps:
       - name: Set execution directory
         run: |
@@ -35,7 +35,7 @@ jobs:
         run: node scripts/geo/factory/cloud-inputs.mjs scripts/geo/factory/oceania-factory-targets.json
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: b8f90621df4d43e2413e14038ce7591fc5ce47d0
+          ref: 397b95341e85623e8085059a47342fa7cc9cd0a7
           path: baseline
           persist-credentials: false
       - name: Verify producers and download unique pinned artifacts

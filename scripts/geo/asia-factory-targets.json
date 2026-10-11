@@ -1177,6 +1177,12 @@
           "landuse": "e0010f3c865473dd96b46f9f4878e660fbce4c6c6405073b8ded96b7a90d1d02",
           "roads": "256079f8d90642912376460e35ce7e828cb6d4a674f0c2751a7a43ab9fe6b712"
         }
+      },
+      "sourceVenueOverrides": {
+        "recreation": {
+          "ref": "way/230622240",
+          "reason": "The pinned source record names Al Wasl Park and records access=yes, recurring opening hours and Dubai Municipality as operator. The previous recreation anchor is not contained in generated land or the playable area."
+        }
       }
     }
   ]

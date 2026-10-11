@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "pbfDatePolicy": "source snapshot date is used for explicit date-range opening_hours=off records",
+  "excludedStatusTags": {
+    "construction": [
+      "yes"
+    ],
+    "disused": [
+      "yes"
+    ],
+    "abandoned": [
+      "yes"
+    ]
+  },
+  "excludedAccess": [
+    "no",
+    "private",
+    "customers"
+  ],
+  "excludeOpeningHoursOff": true,
+  "venueOverrides": {
+    "dubai": {
+      "recreation": {
+        "ref": "way/230622240",
+        "reason": "The pinned source record names Al Wasl Park and records access=yes, recurring opening hours and Dubai Municipality as operator. The previous recreation anchor is not contained in generated land or the playable area."
+      }
+    }
+  }
+}

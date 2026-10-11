@@ -3,7 +3,7 @@ name: Asia pinned Dubai factory QA
 on:
   push:
     branches: ['codex/world-asia-20261011']
-    paths: ['scripts/geo/asia-factory-targets.json']
+    paths: ['scripts/geo/asia-factory-targets.json', 'scripts/geo/asia-factory-venue-policy.json', 'scripts/geo/asia-factory-venue-policy.mjs', '.github/workflows/asia-factory.yml']
 
 permissions:
   actions: read
@@ -57,6 +57,13 @@ jobs:
             --table scripts/geo/asia-factory-targets.json \
             --factory-source "$GITHUB_WORKSPACE/factory" \
             --sandbox-root "$FACTORY_SANDBOX"
+      - name: Apply source availability policy to pinned batch helper
+        run: |
+          set -euo pipefail
+          node scripts/geo/asia-factory-venue-policy.mjs \
+            --factory-source "$GITHUB_WORKSPACE/factory" \
+            --policy scripts/geo/asia-factory-venue-policy.json \
+            --table scripts/geo/asia-factory-targets.json
       - name: Prepare separate disposable app
         run: |
           set -euo pipefail

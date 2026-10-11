@@ -51,6 +51,8 @@ test('djibouti: mapped water, main roads and neighborhood labels fit the geometr
   const geometry = await map.loadGeometry()
   assert.ok(GEOMETRY.land.length > 0 && GEOMETRY.land.every(polygon => polygon[0] && polygon[0].length >= 4))
   assert.ok(geometry.water.length > 0, 'source-mapped water is drawn')
+  assert.ok(TERRAIN.water.some(part => pointInPart(43.2, 11.65, part)), 'the sourced gulf east of the city is declared water')
+  assert.ok(TERRAIN.reachWater?.some(part => pointInPart(43.2, 11.65, part)), 'the gulf continues into the surrounding map')
   assert.ok(TERRAIN.roads.length >= 50, `${TERRAIN.roads.length} road rows`)
   assert.ok(TERRAIN.names.length >= 5)
   assert.match(geometry.source, /OpenStreetMap/u)

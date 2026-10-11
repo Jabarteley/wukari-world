@@ -10,6 +10,7 @@
 import { useApp } from '../../state/app.ts'
 import { openLogin, openSignup } from '../account/accountOpen.ts'
 import { useAccountLite } from '../account/useAccountLite.ts'
+import type { SignupWhere } from '../account/accountTrack.ts'
 
 export interface AccountEntry {
   /** Accounts are configured on this server. */
@@ -24,14 +25,15 @@ export interface AccountEntry {
   openSave(): void
 }
 
-export function useAccountEntry(): AccountEntry {
+/** `where` is the screen the buttons are on (reported with the funnel event): the creator by default. */
+export function useAccountEntry(where: SignupWhere = 'creator'): AccountEntry {
   const account = useAccountLite(), { shell } = useApp()
   void account.load()
   return {
     get available() { return account.state.loaded && account.state.enabled },
     get signedIn() { return account.state.account !== null },
-    openSignUp() { openSignup(shell, 'creator', account.state.guest) },
-    openSignIn() { openLogin(shell, 'creator') },
+    openSignUp() { openSignup(shell, where, account.state.guest) },
+    openSignIn() { openLogin(shell, where) },
     openSave() { openSignup(shell, 'ready', account.state.guest) },
   }
 }

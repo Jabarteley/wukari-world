@@ -668,6 +668,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/admin/companion/test',
   'GET /api/world/me',
   'GET /api/world/pulse',
+  'GET /api/world/pulse/online',
   'GET /api/world/city',
   'GET /api/world/lga/:id',
   'GET /api/world/lga/:id/estates',

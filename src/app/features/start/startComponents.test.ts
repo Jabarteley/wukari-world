@@ -68,7 +68,7 @@ async function resetCreator(): Promise<void> {
 
 test('the first screen: full-screen creator with the welcome, the quick characters, the body, the name, Play now and Next', async () => {
   await resetCreator()
-  const html = await render('QuickStartApp', { params: { reason: 'new' } })
+  const html = await render('QuickStartApp', { params: { reason: 'new', creator: true } })
   const words = text(html)
   assert.match(html, /<div class="cr-root" data-step="who" data-mode="new" data-cr-root>/)
   assert.ok(words.includes('Welcome to Allworld') && words.includes('A digital world you can live in'))
@@ -86,13 +86,54 @@ test('the first screen: full-screen creator with the welcome, the quick characte
   for (const view of ['Body', 'Face', 'Outfit']) assert.ok(words.includes(view))
 })
 
-test('the first screen offers play now, sign up and log in only on a server with accounts, and nothing otherwise', async () => {
+test('the first screen of a new visitor is the entry page: the world, one card, Play now, the creator link and the agent link', async () => {
+  await resetCreator()
+  const html = await render('QuickStartApp', { params: { reason: 'new' } })
+  const words = text(html)
+  assert.match(html, /data-entry/)
+  assert.ok(!html.includes('data-cr-root'), 'the creator is not the first screen')
+  assert.ok(words.includes('A digital world you can live in') && words.includes('real cities across Africa, and more opening. Free, in your browser, no download.'))
+  assert.match(html, /<button[^>]*data-key="play-now"[^>]*>Play now<\/button>/)
+  assert.match(html, /data-entry-creator[^>]*>Make my character first<\/button>/)
+  assert.match(html, /data-entry-agent[^>]*>[\s\S]*Connect an AI agent/)
+  for (const tile of ['Live in a real city', 'Work and earn', 'Open a shop for your real business', 'Friends, voice and games']) assert.ok(words.includes(tile), tile)
+  assert.ok(words.includes('Find my city') && words.includes('Source code'))
+  assert.ok(!html.includes('data-key="sign-up"'), 'no accounts configured: exactly the guest start')
+  assert.ok(!html.includes('data-agent-sheet'), 'the agent sheet is closed until asked for')
+})
+
+test('the entry page offers sign up and log in on a server with accounts, and not when signed in', async () => {
   await resetCreator()
   const { useAccountLite } = await load<{ useAccountLite: () => { state: { loaded: boolean; enabled: boolean; account: unknown } } }>('/src/app/features/account/useAccountLite.ts')
   const lite = useAccountLite()
   Object.assign(lite.state, { loaded: true, enabled: true, account: null })
   try {
     const html = await render('QuickStartApp', { params: { reason: 'new' } })
+    assert.match(html, /data-key="sign-up"[^>]*>Sign up free<\/button>/)
+    assert.match(html, /data-key="sign-in"[^>]*>Log in<\/button>/)
+    Object.assign(lite.state, { account: { email: 'ada@example.com', provider: 'password', createdAt: 0, devices: 1 } })
+    assert.ok(!(await render('QuickStartApp', { params: { reason: 'new' } })).includes('data-key="sign-up"'))
+  } finally { Object.assign(lite.state, { loaded: false, enabled: false, account: null }) }
+})
+
+test('the agent sheet explains, shows both choices as coming soon, and leaves a slot for the real controls', async () => {
+  const html = await render('AgentSheet')
+  const words = text(html)
+  assert.match(html, /role="dialog" aria-modal="true"/)
+  assert.ok(words.includes('Connect an AI agent') && words.includes('Your own AI assistant can play Allworld for you'))
+  assert.ok(words.includes('labelled') && words.includes('disconnect'))
+  assert.ok(words.includes('Let an agent play my character') && words.includes('Give an agent its own character'))
+  assert.equal((html.match(/data-agent-soon/g) ?? []).length, 2)
+  assert.match(html, /href="https:\/\/github.com\/kromate\/joinallworld\/blob\/main\/docs\/AGENTS.md"/)
+})
+
+test('the first screen offers play now, sign up and log in only on a server with accounts, and nothing otherwise', async () => {
+  await resetCreator()
+  const { useAccountLite } = await load<{ useAccountLite: () => { state: { loaded: boolean; enabled: boolean; account: unknown } } }>('/src/app/features/account/useAccountLite.ts')
+  const lite = useAccountLite()
+  Object.assign(lite.state, { loaded: true, enabled: true, account: null })
+  try {
+    const html = await render('QuickStartApp', { params: { reason: 'new', creator: true } })
     assert.match(html, /<div class="cr-choices" data-cr-choices>/)
     assert.match(html, /<button[^>]*data-key="play-now"[^>]*>Play now<\/button>/)
     assert.match(html, /<button[^>]*data-key="sign-up"[^>]*>Sign up free<span> — keep your character<\/span><\/button>/)
@@ -100,10 +141,10 @@ test('the first screen offers play now, sign up and log in only on a server with
     assert.ok(text(html).includes('Play now needs no password or e-mail.'))
     // Signed in already: the choices step aside.
     Object.assign(lite.state, { account: { email: 'ada@example.com', provider: 'password', createdAt: 0, devices: 1 } })
-    assert.ok(!(await render('QuickStartApp', { params: { reason: 'new' } })).includes('data-cr-choices'))
+    assert.ok(!(await render('QuickStartApp', { params: { reason: 'new', creator: true } })).includes('data-cr-choices'))
   } finally { Object.assign(lite.state, { loaded: false, enabled: false, account: null }) }
   await resetCreator()
-  const plain = await render('QuickStartApp', { params: { reason: 'new' } })
+  const plain = await render('QuickStartApp', { params: { reason: 'new', creator: true } })
   assert.ok(!plain.includes('data-cr-choices') && !plain.includes('Sign up') && !plain.includes('Log in') && !plain.includes('data-key="sign-in"'), 'no accounts: exactly the guest start')
 })
 
@@ -124,7 +165,7 @@ test('the first screen: "the world is full" is a calm notice, not the red error'
 test('the first screen opened again after a Play that was turned away (the world was full): the sentence is there, and so is Play now', async () => {
   await resetCreator()
   const full = 'The world is full right now: every place is taken. Nothing is lost — your name and character are kept on this device. Trying again in about 10 seconds; tap Play now to try at once.'
-  const first = await render('QuickStartApp', { params: { reason: 'new' } })
+  const first = await render('QuickStartApp', { params: { reason: 'new', creator: true } })
   assert.match(first, /data-qs="play"/)
   // Play was tapped: the screen closed with the start on its way, and what it remembered of that tap is still there when it is opened again.
   const { cr } = await load<{ cr: { played: boolean; pending: string; settling: boolean; step: string } }>('/src/app/features/start/creatorState.ts')
@@ -260,13 +301,13 @@ test('the home step of a life not yet started offers every open state, and the c
   const cities = await load<{ loadCityContent(id: string): Promise<unknown> }>('/src/game/cities/registry.ts')
   await cities.loadCityContent('ibadan')
   try {
-    await render('QuickStartApp', { params: { reason: 'new' } })
+    await render('QuickStartApp', { params: { reason: 'new', creator: true } })
     cr.step = 'home'
-    const lagos = await render('QuickStartApp', { params: { reason: 'new' } })
+    const lagos = await render('QuickStartApp', { params: { reason: 'new', creator: true } })
     assert.ok(text(lagos).includes('Lagos State') && text(lagos).includes('Oyo State'), 'both open states are chips')
     assert.ok(text(lagos).includes('local governments of Lagos'))
     cr.city = 'ibadan'
-    const ibadan = await render('QuickStartApp', { params: { reason: 'new' } })
+    const ibadan = await render('QuickStartApp', { params: { reason: 'new', creator: true } })
     const words = text(ibadan)
     assert.ok(words.includes('11 local governments of Ibadan'), 'the list is the chosen city’s own')
     for (const id of ['akinyele', 'egbeda', 'ibadan-north', 'ibadan-north-east', 'ibadan-north-west', 'ibadan-south-east', 'ibadan-south-west', 'ido', 'lagelu', 'oluyole', 'ona-ara']) assert.ok(ibadan.includes(`data-lga="${id}"`), id)

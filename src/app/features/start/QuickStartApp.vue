@@ -1,17 +1,42 @@
 <script setup lang="ts">
-// THE LANDING SCREEN — the session gate of a new device ('quick-start', role 'session-gate'): the
-// full-screen character creator (CreatorApp.vue) in its first-time mode. Play now sends
-// 'jaw:quick-start' { name, look } (App.vue), which opens the session and confirms the look with the
-// 'onboarding.quick-start' action — exactly once: the action id is kept on the device until the
-// server has answered (src/quick-start/entry.ts). The name and character are kept on the device as
-// they are edited (startBoundary.ts), so a reload in the middle loses nothing.
-// params: { reason: 'new', problem?: { reason, name } } — or none, when the shell opened it because
+// THE FIRST SCREEN — the session gate of a new device ('quick-start', role 'session-gate'). A visitor with no life sees the entry page
+// (EntryPage.vue: the world behind a compact card, Play now, Sign up, Log in, "Make my character first"); the full-screen character
+// creator (CreatorApp.vue, its code fetched only when it is needed) is one tap away, and is shown straight away when the screen is
+// reopened with a refusal, for a short address, for a character that was being edited, or while a Play is on its way.
+// Play now sends 'jaw:quick-start' { name, look } (App.vue), which opens the session and confirms the look with the
+// 'onboarding.quick-start' action — exactly once: the action id is kept on the device until the server has answered
+// (src/quick-start/entry.ts). The name and character are kept on the device as they are edited (startBoundary.ts).
+// params: { reason: 'new', problem?: { reason, name }, creator?: true } — or none, when the shell opened it because
 // the life is still held for its look.
-import CreatorApp from './CreatorApp.vue'
+import { computed, defineAsyncComponent } from 'vue'
+import { cr } from './creatorState.ts'
+import EntryPage from './EntryPage.vue'
+import { entryShown } from './entryModel.ts'
+import { isPathAddress } from './pathAddress.ts'
+import { problemOf } from './quickStartModel.ts'
+import { qs } from './quickStartState.ts'
+import { quickDraft } from './startBoundary.ts'
 
-defineProps<{ params?: unknown }>()
+const CreatorApp = defineAsyncComponent(() => import('./CreatorApp.vue'))
+const props = defineProps<{ params?: unknown }>()
+const wantsCreator = (params: unknown): boolean => Boolean(params && typeof params === 'object' && (params as { creator?: unknown }).creator === true)
+const entry = computed(() => {
+  const draft = quickDraft()
+  return entryShown({
+    problem: problemOf(props.params) !== null || wantsCreator(props.params) || qs.creator,
+    pathAddress: typeof location !== 'undefined' && isPathAddress(location.pathname),
+    editing: draft.nameEdited || draft.shuffles > 0,
+    sending: cr.settling || cr.played,
+  })
+})
+/** "Make my character first": the creator's code has arrived (it was asked for when the link was approached), then it replaces this page. */
+async function toCreator(): Promise<void> {
+  try { await import('./CreatorApp.vue') } catch { /* the async component asks again */ }
+  qs.creator = true
+}
 </script>
 
 <template>
-  <CreatorApp mode="new" :params="params" />
+  <EntryPage v-if="entry" @creator="toCreator" />
+  <CreatorApp v-else mode="new" :params="params" />
 </template>

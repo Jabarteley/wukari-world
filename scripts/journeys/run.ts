@@ -26,6 +26,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { Browser, sleep } from './cdp.ts';
+import { toCreator } from './kit.ts';
 
 const arg = (name: string, fallback?: string): string => {
   const at = process.argv.indexOf(`--${name}`);
@@ -198,7 +199,7 @@ async function tapStartYourLife(b: Browser): Promise<void> {
 // ---- step 1: the start screens --------------------------------------------------------------------------------------
 async function start(b: Browser, j: Journey, name: string, detail: Record<string, unknown>): Promise<void> {
   await b.goto(base + '/');
-  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 240000, 'the start screen');
+  await toCreator(b, 240000);
   await sleep(600);
   await b.type('[data-qs-name]', name);
   await j.shot('start-you');
@@ -552,7 +553,7 @@ async function phoneRun(size: { width: number; height: number }): Promise<Record
     await b.throttle(true);
     const t0 = Date.now();
     await b.send('Page.navigate', { url: base + '/' });
-    await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 120000, 'the start screen');
+    await toCreator(b, 120000);
     report['secondsToStartScreen'] = Math.round((Date.now() - t0) / 100) / 10;
     await sleep(800);
     await j.shot('start');

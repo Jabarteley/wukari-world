@@ -66,7 +66,7 @@ import { estateLayout, plotAt } from './estates.ts';
 import { lgaAt } from './lga.ts';
 import { tripOf, createTripClock, tripPose } from './trip.ts';
 import { PLINTH as PLINTH_UNIT } from './landmarks.ts';
-import { avatarBox, extentWord, labelShift, nearPoints, plateFit, plateWidth, spanOf, WHOLE_FROM } from './labels.ts';
+import { avatarBox, extentWord, fitLabel, labelShift, nearPoints, plateFit, plateWidth, spanOf, WHOLE_FROM } from './labels.ts';
 import { iconFor } from '../ui/icon-map.ts';
 import { NAMED_FROM, densityFor, shorten, venueNamesAt } from './geo/density.ts'
 import { dockOf } from './insets.ts';
@@ -178,7 +178,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   let routeLine: THREE.Mesh | null = null;
 
   // ---- DOM: the canvas, the labels over it, the view buttons ---------------------------------
-  let root: HTMLDivElement | null = null, labelLayer: HTMLElement | null = null, controls: Record<string, HTMLElement> = {}, hint: HTMLElement | null = null, you: HTMLDivElement | null = null;
+  let root: HTMLDivElement | null = null, labelLayer: HTMLElement | null = null, controls: Record<string, HTMLElement> = {}, hint: HTMLElement | null = null, you: HTMLDivElement | null = null, controlBox: ScreenBox | null = null;
   const labels = new Map<string, LabelEntry>(), chips = new Map<string, { node: HTMLDivElement; chip: OverlayChip }>();
   if (doc) {
     root = doc.createElement('div');
@@ -193,6 +193,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     labelLayer = root.querySelector('.m3-labels'); hint = root.querySelector('[data-m3-hint]');
     controls = Object.fromEntries([...root.querySelectorAll<HTMLElement>('[data-m3]')].map((node) => [node.dataset.m3!, node]));
   }
+  const controlNode = root?.querySelector<HTMLElement>('.m3-controls') ?? null;
+  const readControlBox = (page = container.getBoundingClientRect()) => { const rect = controlNode?.getBoundingClientRect(); controlBox = rect ? { l: rect.left - page.left - 5, r: rect.right - page.left + 5, t: rect.top - page.top - 5, b: rect.bottom - page.top + 5 } : null; };
 
   // ---- state ----------------------------------------------------------------------------------
   let state: MapState | null = null, layer = 'city', filter = 'all', selected: string | null = null, hovered: string | null = null, destroyed = false, lost = false;
@@ -211,7 +213,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   const readZoom = (): void => { const value = root ? parseFloat(getComputedStyle(root).getPropertyValue('--ui-zoom')) : 1; uz = Number.isFinite(value) && value > 0 && globalThis.CSS?.supports?.('zoom', '2') ? value : 1; };
   /** Where a node goes: whole screen pixels, expressed in the node's own zoomed pixels. */
   const here = (value: number): string => `${Math.round(value) / uz}px`;
-  let size = { width: 0, height: 0 }, insets: Insets = { left: 0, top: 0, right: 0, bottom: 0 }, opened = false, userMoved = false, time: TimeOfDay | null = null, labelKey = '', chipKey = '';
+  let size = { width: 0, height: 0 }, insets: Insets = { left: 0, top: 0, right: 0, bottom: 0 }, opened = false, userMoved = false, time: TimeOfDay | null = null, labelKey = '', chipKey = '', labelsDirty = true;
   let rafId = 0, renderCount = 0, frameCount = 0, lastTick = 0, seconds = 0, frameMs: number[] = [], gaps: number[] = [];
   let trip: Trip | null = null, route: Route | null = null, returning: { p: number; rate: number } | null = null, settling = false, pendingArrive: (() => void) | null = null, dueAt = -Infinity, tripCamera = true, pose: (TripPose & { progress?: number }) | null = null;
   let stood: { x: number; y: number; z: number } | null = null, nearDistance = 0;             // stood: where the piece stands when it is not travelling; nearDistance: how far out the close view is
@@ -468,7 +470,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const at = state?.t ?? 0, going = trip && state?.location !== trip.to ? trip.to : null, home = city.places.home!;
     const next = JSON.stringify([densityFor(size.width).venueChars, state?.location, going, home.house, filter, selected, hovered, layers.gov, Object.values(venueTable).map((venue) => openingInfo(venue.hours, at).status)]);
     if (next === labelKey) return;
-    labelKey = next;
+    labelKey = next; labelsDirty = true;
     for (const [id, label] of labels) {
       const place = city.places[id]!, venue = venueTable[id], soon = place.kind === 'soon';
       const opening = venue ? openingInfo(venue.hours, at) : null, open = Boolean(opening?.open), here = state?.location === id;
@@ -482,8 +484,14 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       node.title = `${nameOf(place)}${status ? ` · ${status}` : ''}`;
       if (here) node.setAttribute('aria-current', 'location'); else node.removeAttribute('aria-current');
       label.priority = (notable.has(id) ? 25 : 0) + (here ? 100 : 0) + (selected === id ? 90 : 0) + (going === id ? 80 : 0) + (hovered === id ? 70 : 0) + (place.kind === 'home' ? 40 : 0) + (soon ? 5 : open ? 20 : 10) - (dimmed ? 30 : 0);
-      label.width = (node.offsetWidth || 90) * uz; label.height = (node.offsetHeight || 30) * uz;
     }
+  }
+  function measureLabels() {
+    if (!labelsDirty) return;
+    for (const { node } of labels.values()) { node.hidden = false; node.classList.remove('is-compact'); }
+    let complete = true;
+    for (const label of labels.values()) { const width = label.node.offsetWidth, height = label.node.offsetHeight; if (width && height) { label.width = width * uz; label.height = height * uz; } else complete = false; }
+    labelsDirty = !complete;
   }
   function syncChips() {
     if (!labelLayer) return;
@@ -525,14 +533,16 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   function placeLabels() {
     if (!labelLayer) return;
     // Level of detail: a whole-state view names the local governments, and only the places that matter to the player (here, picked, on the way).
-    const wholeView = rig.view.distance > wholeFrom;
+    const wholeView = rig.view.distance > wholeFrom, far = rig.view.distance > 230;
+    if (root!.classList.contains('is-far') !== far) { root!.classList.toggle('is-far', far); labelsDirty = true; }
+    measureLabels();
     const entries: { label: LabelEntry; at: ReturnType<typeof project>; visible: boolean }[] = [];
     for (const [id, label] of labels) {
       const place = city.places[id]!, at = project(place.x, place.top + 0.5, place.z);
       entries.push({ label, at, visible: !(place.kind === 'home' && visitorHere()) && at.front && at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && label.priority < 70) });
     }
     entries.sort((a, b) => b.label.priority - a.label.priority || b.at.y - a.at.y);
-    const taken: ScreenBox[] = [];
+    const taken: ScreenBox[] = controlBox ? [controlBox] : [], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 };
     // Level of detail: only a few names are written at the opening view (a table in geo/density.ts), more as the camera comes closer; the rest are round icons.
     const allowed = venueNamesAt(densityFor(size.width, doc?.defaultView ? parseFloat(doc.defaultView.getComputedStyle(doc.documentElement).fontSize) / 16 || 1 : 1), nearDistance > 0 ? nearDistance / rig.view.distance : 1);
     let named = 0;
@@ -546,30 +556,32 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       if (!visible) { if (!node.hidden) node.hidden = true; continue; }
       const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 };
       // A name that would sit on top of a more important one shrinks to its icon; it is still a button with its full name.
-      const lift = labelShift(full, piece), moved = lift ? { l: full.l, r: full.r, t: full.t + lift, b: full.b + lift } : full;
-      const wantsName = label.priority >= NAMED_FROM || named < allowed, compact = !wantsName || hits(moved), small = { l: at.x - 15 * uz, r: at.x + 15 * uz, t: at.y - 30 * uz, b: at.y };
+      const lift = labelShift(full, piece), moved = lift ? { l: full.l, r: full.r, t: full.t + lift, b: full.b + lift } : full, fitted = label.priority >= 70 ? fitLabel(at, label.width + 6, label.height + 4, bounds, piece ? [...taken, piece] : taken) : null;
+      const wantsName = label.priority >= NAMED_FROM || named < allowed, compact = fitted ? false : !wantsName || hits(moved), small = { l: at.x - 15 * uz, r: at.x + 15 * uz, t: at.y - 30 * uz, b: at.y };
       // It steps clear of the player's piece: up on a longer stalk, or down over its own roof (src/map3d/labels.ts).
-      const shift = compact ? labelShift(small, piece) : lift;
-      const used = compact ? { l: small.l - 2, r: small.r + 2, t: small.t + shift - 2, b: small.b + shift + 2 } : moved;
+      const shift = fitted ? 0 : compact ? labelShift(small, piece) : lift, x = fitted?.x ?? at.x, y = (fitted?.y ?? at.y) + shift;
+      const used = fitted?.box ?? (compact ? { l: small.l - 2, r: small.r + 2, t: small.t + shift - 2, b: small.b + shift + 2 } : moved);
       // Level of detail: an icon that would still sit on a more important label or icon is left out; it returns as the view comes closer.
       if (compact && label.priority < 70 && hits(used)) { if (!node.hidden) node.hidden = true; continue; }
       if (node.hidden) node.hidden = false;
       taken.push(used);
       if (!compact && label.priority < NAMED_FROM) named += 1;
       node.classList.toggle('is-compact', compact);
-      if (shift !== label.shift) {
+      const offset = !compact && (Math.abs(x - at.x) > 1 || Math.abs(y - at.y) > 1), wasOffset = node.style.getPropertyValue('--m3-stalk-turn') !== '';
+      node.classList.toggle('is-offset', offset);
+      if (offset) { const dx = at.x - x, top = Math.abs(at.y - y + label.height) < Math.abs(at.y - y), dy = at.y - (top ? y - label.height : y); label.shift = 0; node.classList.remove('is-lowered'); node.style.setProperty('--m3-stalk', `${Math.hypot(dx, dy) / uz}px`); node.style.setProperty('--m3-stalk-turn', `${Math.atan2(-dx, dy)}rad`); node.style.setProperty('--m3-stalk-top', top ? '0' : '100%'); }
+      else if (shift !== label.shift || wasOffset) {
         label.shift = shift;
         node.classList.toggle('is-lowered', shift > 0);
+        node.style.removeProperty('--m3-stalk-turn'); node.style.removeProperty('--m3-stalk-top');
         if (shift < 0) node.style.setProperty('--m3-stalk', `${(compact ? 6 : 9) - shift / uz}px`); else node.style.removeProperty('--m3-stalk');
       }
-      node.style.transform = `translate(${here(at.x)},${here(at.y + shift)}) translate(-50%,-100%)`;
+      node.style.transform = `translate(${here(x)},${here(y)}) translate(-50%,-100%)`;
     }
     if (you) {
       if (you.hidden === travelling) you.hidden = !travelling;
       if (travelling) you.style.transform = `translate(${here(head!.x)},${here(head!.y)}) translate(-50%,-100%)`;
     }
-    const far = rig.view.distance > 230;
-    if (root!.classList.contains('is-far') !== far) root!.classList.toggle('is-far', far);
     // Local-government name plates stand on the ground at their plate point; near the houses they step back.
     const drawn: ScreenBox[] = [];
     for (const plate of [...plates.values()].sort((p, q) => (q.span.maxX - q.span.minX) - (p.span.maxX - p.span.minX))) {
@@ -614,7 +626,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const north = controls.north;
     if (north) {
       const skewed = rig.skewed(), degrees = Math.round((rig.view.yaw * 180) / Math.PI);
-      if (north.hidden === skewed) north.hidden = !skewed;
+      if (north.hidden === skewed) { north.hidden = !skewed; readControlBox(); labelsDirty = true; }
       if (skewed && northDegrees !== degrees) { northDegrees = degrees; (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotate(${degrees}deg)`); }
     }
     for (const { node, chip } of chips.values()) {
@@ -663,8 +675,9 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     if (container.hidden || !rect.width || !rect.height) { stop(); return false; }
     const next = measureInsets();
     const changed = rect.width !== size.width || rect.height !== size.height || (['left', 'top', 'right', 'bottom'] as const).some((side) => Math.round(next[side]) !== Math.round(insets[side]));
+    const oldZoom = uz; readZoom(); if (uz !== oldZoom) labelsDirty = true;
     if (changed) {
-      size = { width: rect.width, height: rect.height }; insets = next; readZoom();
+      size = { width: rect.width, height: rect.height }; insets = next; labelsDirty = true;
       renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, size.width <= 720 ? 1.75 : 2));
       renderer.setSize(size.width, size.height, false);
       rig.setViewport(size.width, size.height, insets);
@@ -673,6 +686,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       container.style?.setProperty('--map-left', `${Math.round(insets.left)}px`);
       if (root) { root.style.setProperty('--m3-dock', `${Math.round(insets.bottom)}px`); root.style.setProperty('--m3-left', `${Math.round(insets.left)}px`); root.style.setProperty('--m3-top', `${Math.round(insets.top)}px`); }
     }
+    readControlBox(rect);
     if (!opened) { openView(); if (trip && route && !reducedMotion) rig.jump(rig.framing(route.points.filter((_, i) => i % 4 === 0 || i === route!.points.length - 1), { pad: 1.5, min: 70 })); }
     else if (changed && !userMoved && size.width > 720 && !trip) rig.jump(openedWhole ? rig.whole() : rig.core());
     // The panels change as a trip starts (the list gives way to the trip bar): the route is framed again in the room that is left.

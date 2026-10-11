@@ -41,6 +41,18 @@ export function labelShift(box: ScreenBox, avatar: ScreenBox | null | undefined,
   return Math.round((up <= down * DOWN_BIAS ? -up : down) * k * k * (3 - 2 * k));
 }
 
+/** Nearest full label position inside `bounds` and clear of reserved screen boxes. Its x/y is the label's bottom centre. */
+export function fitLabel(anchor: ScreenPoint, width: number, height: number, bounds: ScreenBox, blocked: readonly ScreenBox[], gap = 5): { x: number; y: number; box: ScreenBox } | null {
+  if (width > bounds.r - bounds.l || height > bounds.b - bounds.t) return null;
+  const half = width / 2, point = (x: number, y: number) => { x = clamp(x, bounds.l + half, bounds.r - half); y = clamp(y, bounds.t + height, bounds.b); return { x, y, box: { l: x - half, r: x + half, t: y - height, b: y } }; };
+  const clear = (choice: ReturnType<typeof point>) => !blocked.some((box) => choice.box.l < box.r && choice.box.r > box.l && choice.box.t < box.b && choice.box.b > box.t), natural = point(anchor.x, anchor.y);
+  if (clear(natural)) return natural;
+  const xs = [anchor.x], ys = [anchor.y];
+  for (const box of blocked) { xs.push(box.l - gap - half, box.r + gap + half); ys.push(box.t - gap, box.b + gap + height); }
+  const choices = xs.flatMap((x) => ys.map((y) => point(x, y)));
+  return choices.filter(clear).sort((a, b) => Math.hypot(a.x - anchor.x, a.y - anchor.y) - Math.hypot(b.x - anchor.x, b.y - anchor.y))[0] ?? null;
+}
+
 /**
  * The ground the close view holds around `at` (the player): the streets either side and a little
  * more to the south, where the camera looks from. A phone gets a tighter patch than a wide screen,

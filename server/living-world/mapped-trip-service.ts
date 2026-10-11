@@ -6,6 +6,7 @@
  */
 import { characterCity } from '../character.ts'
 import { readValidatedQualificationRecord } from './qualification-service.ts'
+import { transactWithCityContent } from '../prepared-city-transaction.ts'
 import { readDrivingQualificationEvidence } from './driving-service.ts'
 import { readValidatedStarterRentalRecord } from './rental-service.ts'
 import {
@@ -440,7 +441,7 @@ export function createMappedTripService(ctx: RouteContext, resolver?: MappedPhys
   function current(request: RouteRequest, cityUnknown: unknown): Promise<MappedTripResponse> {
     const city = cityOf(ctx, cityUnknown)
     if (city !== CITY) throw ctx.fail(400, 'invalid_city')
-    return ctx.store.transact(async db => {
+    return transactWithCityContent(ctx, request, [city], async db => {
       const { session, location } = access(ctx, db, request, city), root = world(db)
       let now = ctx.now()
       if (!time(now)) return response(null, 'invalid_server_clock')
@@ -491,7 +492,7 @@ export function createMappedTripService(ctx: RouteContext, resolver?: MappedPhys
     const city = cityOf(ctx, parsed.cityId)
     if (city !== CITY) throw ctx.fail(400, 'invalid_city')
     const receiptAt = ctx.onceId(parsed.requestId)
-    return ctx.store.transact(async db => {
+    return transactWithCityContent(ctx, request, [city], async db => {
       const { session, location } = access(ctx, db, request, city)
       let now = ctx.now()
       if (!time(now) || !time(receiptAt) || receiptAt > now) return response(null, 'invalid_server_clock')
@@ -557,7 +558,7 @@ export function createMappedTripService(ctx: RouteContext, resolver?: MappedPhys
   function input(request: RouteRequest, body: unknown): Promise<MappedTripResponse> {
     const parsed = parse(body, 'input') as MappedTripControlRequest | null
     if (!parsed) throw ctx.fail(400, 'invalid_mapped_trip_packet')
-    return ctx.store.transact(async db => {
+    return transactWithCityContent(ctx, request, [parsed.cityId], async db => {
       const city = cityOf(ctx, parsed.cityId)
       if (city !== CITY) throw ctx.fail(400, 'invalid_city')
       const { session, location } = access(ctx, db, request, city), root = world(db)
@@ -722,7 +723,7 @@ export function createMappedTripService(ctx: RouteContext, resolver?: MappedPhys
     const parsed = parse(body, 'lifecycle') as MappedTripLifecycleRequest | null
     if (!parsed) throw ctx.fail(400, 'invalid_mapped_trip_request')
     const receiptAt = ctx.onceId(parsed.requestId)
-    return ctx.store.transact(async db => {
+    return transactWithCityContent(ctx, request, [parsed.cityId], async db => {
       const city = cityOf(ctx, parsed.cityId)
       if (city !== CITY) throw ctx.fail(400, 'invalid_city')
       const { session, location } = access(ctx, db, request, city), root = world(db)

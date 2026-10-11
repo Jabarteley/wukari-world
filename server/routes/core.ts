@@ -1,4 +1,6 @@
 import { isFamilySlot } from '../social/family.ts';
+import { transactWithCityContent } from '../prepared-city-transaction.ts';
+import { requestedCityIds } from '../request-city-content.ts';
 import { normalizeCharacter, swapLegacyLife, legacyLifeCity } from '../character.ts';
 /**
  * OWNER: foundation
@@ -59,13 +61,13 @@ export const outcomeKey = (state: LifeState | null | undefined): string => (stat
  *                are discarded together. It must be synchronous and must not send anything.
  */
 export async function executeCommand(ctx: RouteContext, request: RouteRequest, body: ActionRequest, { internal = false, scope, afterAction }: CommandOptions = {}, withRevision = false, terminalCityMoved = false): Promise<ActionOutcome> {
-  const { store, now, settle, core, config } = ctx;
+  const { now, settle, core, config } = ctx;
   if (scope !== undefined && (typeof scope !== 'string' || !/^[a-z][a-z0-9_.-]{0,63}$/.test(scope))) throw new Error('A command scope is a fixed server string');
   if (afterAction !== undefined && (typeof afterAction !== 'function' || scope === undefined)) throw new Error('A command callback requires a fixed server scope');
   if (!body || typeof body !== 'object' || Array.isArray(body)) throw ctx.fail(400, 'invalid_action');
   validateActionPayload(body, now(), config.actionWindowMs);
   const authority = `${scope ? `scope:${scope}:` : ''}${internal === true ? 'internal:' : ''}`;
-  const { outcome, publicId, responseCity } = await store.transact(db => {
+  const { outcome, publicId, responseCity } = await transactWithCityContent(ctx, request, requestedCityIds(body), db => {
     const session = request.requireSession(db, { renew: true });
     validateActionPayload(body, now(), config.actionWindowMs);
     let responseCity = body.cityId;
@@ -212,7 +214,7 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
       }
       return { body: { ...voice, radius: VOICE_RADIUS }, renew: renewed };
     },
-    'GET /api/characters': async (request) => ({ body: await store.transact(db => {
+    'GET /api/characters': async (request) => ({ body: await transactWithCityContent(ctx, request, [], db => {
       const session = request.requireSession(db);
       normalizeCharacter(session);
       return { active: session.character?.city ?? null, legacy: Object.entries(session.legacyLives ?? {}).map(([id, entry]) => ({ id, city: legacyLifeCity(session, id, entry), cash: entry.state.cash, updatedAt: entry.updatedAt })) };
@@ -221,7 +223,7 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
       const body = await request.json();
       if (typeof body.id !== 'string') throw fail(400, 'invalid_character');
       const id = body.id;
-      return { body: await store.transact(db => {
+      return { body: await transactWithCityContent(ctx, request, [], db => {
         const session = request.requireSession(db, { renew: true });
         return ctx.once(db, session, { id: body.clientId, kind: 'character.switch', fingerprint: { id } }, () => {
           const swapped = swapLegacyLife(session, id);
@@ -240,7 +242,7 @@ export default function coreRoutes(ctx: RouteContext): Record<RouteKey, RouteHan
       // outcomeKey) is in the data file before it is answered, exactly like an action. Either way the
       // poll waits for other requests' unsaved outcomes it may have seen (waitForObserved), so it
       // never shows a player something that a failed write then takes back.
-      const { state, publicId, rev } = await store.transact(db => {
+      const { state, publicId, rev } = await transactWithCityContent(ctx, request, [city], db => {
         const session = request.requireSession(db, { renew: true });
         // A character that travelled to another city has no life left in this one (server/world/service.ts).
         ctx.checks?.cityGate?.(session, city);

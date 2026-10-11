@@ -68,10 +68,10 @@ async function createGuest(name: string): Promise<{ cookie: string; session: { i
   return { cookie: nextCookie, session };
 }
 
-async function cityLife(city: string): Promise<{ status: number; body: LifeResponse & { code?: string; retryable?: boolean } }> {
+async function cityLife(city: string): Promise<{ status: number; body: LifeResponse & { error?: string } }> {
   const path = `/api/life?city=${encodeURIComponent(city)}`;
-  let answer = await json<LifeResponse & { code?: string; retryable?: boolean }>(path);
-  if (answer.status === 503 && answer.body.code === 'city_content_unavailable' && answer.body.retryable === true) answer = await json<LifeResponse & { code?: string; retryable?: boolean }>(path);
+  let answer = await json<LifeResponse & { error?: string }>(path);
+  if (answer.status === 503 && answer.body.error === 'city_content_unavailable') answer = await json<LifeResponse & { error?: string }>(path);
   return answer;
 }
 

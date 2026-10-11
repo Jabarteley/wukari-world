@@ -1,0 +1,119 @@
+name: Exact-build city browser recapture
+on:
+  push:
+    branches: ['codex/astra-factory-qa-20261011']
+    paths: ['scripts/geo/city-browser-recapture.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: city-browser-recapture-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      app: ${{ steps.plan.outputs.app }}
+      driver: ${{ steps.plan.outputs.driver }}
+      build_run: ${{ steps.plan.outputs.build_run }}
+      repository: ${{ steps.plan.outputs.repository }}
+      artifact: ${{ steps.plan.outputs.artifact }}
+      cities: ${{ steps.plan.outputs.cities }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - id: plan
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/geo/city-browser-recapture.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: browser-recapture-plan
+          path: browser-recapture-plan.json
+          if-no-files-found: error
+  browser:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        city: ${{ fromJSON(needs.plan.outputs.cities) }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.plan.outputs.app }}
+          path: app
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Initialize evidence
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: |
+          set -euo pipefail
+          echo "ACCEPTANCE_LOGS=$RUNNER_TEMP/acceptance" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/acceptance"
+          test "$(git -C app rev-parse HEAD)" = "$APP_SHA"
+          git -C app rev-parse HEAD > "$RUNNER_TEMP/acceptance/app-sha.txt"
+          node --version > "$RUNNER_TEMP/acceptance/node-version.txt"
+      - working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.plan.outputs.driver }}
+          path: driver
+          persist-credentials: false
+      - name: Pin diagnostic drivers
+        env:
+          DRIVER_SHA: ${{ needs.plan.outputs.driver }}
+        run: |
+          set -euo pipefail
+          test "$(git -C driver rev-parse HEAD)" = "$DRIVER_SHA"
+          git -C driver rev-parse HEAD > "$ACCEPTANCE_LOGS/driver-sha.txt"
+          mkdir -p app/scripts/journeys
+          cp driver/scripts/journeys/{map-shots,serve-maps,cdp-map-qa}.ts app/scripts/journeys/
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ needs.plan.outputs.repository }}
+          run-id: ${{ needs.plan.outputs.build_run }}
+          name: ${{ needs.plan.outputs.artifact }}
+          path: app
+      - name: Record build and driver provenance
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/geo/city-browser-recapture.mjs --app app --driver driver --evidence "$ACCEPTANCE_LOGS"
+      - name: Verify shared build
+        working-directory: app
+        run: set -o pipefail; sha256sum -c dist-sha256.txt 2>&1 | tee "$ACCEPTANCE_LOGS/dist-verification.log"
+      - name: Native desktop and strict phone journeys
+        working-directory: app
+        env:
+          CITY: ${{ matrix.city }}
+        run: |
+          set -euo pipefail
+          export CHROME_BIN="$(command -v google-chrome)"
+          node --experimental-strip-types scripts/journeys/map-shots.ts \
+            --out "$ACCEPTANCE_LOGS" --port 4423 --debug-port 4424 \
+            --cities "$CITY" --phone-cities "$CITY" --phones 390x844,320x568 \
+            --short '' --lean --clock-hour 12 --label-audit --phone-ui-audit \
+            2>&1 | tee "$ACCEPTANCE_LOGS/browser.log"
+          node --input-type=module -e 'import {readFileSync} from "node:fs"; const r=JSON.parse(readFileSync(process.env.ACCEPTANCE_LOGS+"/timings.json","utf8")); if(r.aborted || r.consoleErrors?.length) throw Error(JSON.stringify({aborted:r.aborted,errors:r.consoleErrors}));'
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: city-browser-recapture-${{ matrix.city }}-${{ needs.plan.outputs.app }}-${{ needs.plan.outputs.driver }}
+          path: ${{ env.ACCEPTANCE_LOGS }}/
+          if-no-files-found: error

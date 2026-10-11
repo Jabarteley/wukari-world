@@ -5,7 +5,7 @@
  *   node --experimental-strip-types scripts/journeys/map-shots.ts --out <folder> [--port 4311] [--debug-port 4331] [--cities kigali,cairo]
  *
  * It builds nothing (run `npm run build` first). It starts the built app (scripts/journeys/serve.ts, fresh data folder, no outside
- * request) and ONE headless Chrome, plays one new guest through the "Play now" shortcut, settles through Sim > Profile, funds it once
+ * request) and ONE headless Chrome, plays one new guest through the "Play now" shortcut, settles through the standing Settle in entry, funds it once
  * through the founder fixture route, then takes one set of map screenshots in the home city and in each destination. The last
  * destination is also shot at phone size (device metrics and touch only: a simulation, not a phone).
  * Timings are software-rendered headless numbers: comparable with each other, not with a real device.
@@ -89,10 +89,10 @@ async function until(check: () => Promise<boolean>, ms: number, what: string): P
   const end = Date.now() + ms;
   for (;;) { if (await check().catch(() => false)) return; if (Date.now() > end) throw new Error(`Timed out waiting for ${what}`); await sleep(250); }
 }
-async function dismiss(b: Browser, waitMs = 4000): Promise<void> {
+async function dismiss(b: Browser, waitMs = 12000): Promise<void> {
   const end = Date.now() + waitMs;
   for (;;) {
-    const p = await b.locate('button.tour-skip, button.is-quiet').catch(() => null);
+    const p = await b.locate('button.tour-skip').catch(() => null);
     if (p) { await b.tapAt(p.x, p.y); await sleep(400); continue; }
     if (Date.now() > end) return;
     await sleep(250);
@@ -113,7 +113,7 @@ async function fund(playerId: string, amount: number): Promise<void> {
 }
 const shownNow = (s: string): string => `[...document.querySelectorAll(${JSON.stringify(s)})].some((e) => { const r = e.getBoundingClientRect(); return r.width > 1 && r.height > 1 && getComputedStyle(e).visibility !== 'hidden'; })`;
 
-/** Play now, then settle through Sim > Profile (the full creator's last tap is not used). */
+/** Play now, then use the standing Settle in entry. */
 async function settle(b: Browser): Promise<string> {
   console.log('settle step 1');
   await b.goto(base + '/');
@@ -126,9 +126,13 @@ async function settle(b: Browser): Promise<string> {
   await b.click('[data-key="play-now"]');
   await gameShown(b); await dismiss(b);
   console.log('settle step 5');
-  await b.click('.hud-name');
+  await until(async () => {
+    await dismiss(b, 800);
+    if (await b.eval<boolean>(`!!document.querySelector('[data-cr-root]')`)) return true;
+    await b.click('[data-settle-entry] .life-job', undefined, 1500).catch(() => undefined);
+    return b.eval<boolean>(`!!document.querySelector('[data-cr-root]')`);
+  }, 30000, 'the current Settle in entry');
   console.log('settle step 6');
-  await b.click('.sim-link', 'Make this life yours');
   console.log('settle step 7');
   await b.waitFor(`document.querySelector('[data-cr-root]')?.dataset.step === 'spirit'`, 20000, 'spirit');
   console.log('settle step 8');

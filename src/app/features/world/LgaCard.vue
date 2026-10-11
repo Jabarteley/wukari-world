@@ -23,7 +23,8 @@ import { linkWords } from '../../../ui/link.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import { money } from '../../ui/format.ts'
 import SettleNotice from '../start/SettleNotice.vue'
-import { needsSettling } from '../../state/settleRefusal.ts'
+import { isSettleCode, needsSettling } from '../../state/settleRefusal.ts'
+import { dismissToast, toasts } from '../../state/toasts.ts'
 import ListboxSelect from './ListboxSelect.vue'
 import { findLga, lgaCardUi as ui } from './lgaCardModel.ts'
 import { track, worldChanged } from './worldModel.ts'
@@ -47,6 +48,8 @@ const blocked = computed(() => (current.value && estate.value.change.blocked ? e
 const showList = computed(() => ui.picking || (!current.value && !ui.found))
 /** The last save was refused because the life has not settled in: the notice carries the button that fixes it. */
 const settleRefused = computed(() => needsSettling(ui.code, game.view.value.onboarding))
+/** A settle-in refusal that no longer applies (the life has settled since) says nothing: the note follows the life. */
+const note = computed(() => (isSettleCode(ui.code) && !settleRefused.value ? '' : ui.note))
 const prices = computed(() => (props.home === 'buy' ? estate.value.settle?.buy.prices ?? null : null))
 const options = computed(() => [{ value: '', label: 'Choose…' }, ...estate.value.lgas.map((item) => ({ value: item.id, label: `${item.name}${prices.value ? ` · ${money(prices.value[item.id] ?? 0)}` : current.value && item.levy ? ` · ${money(item.levy)} to move your house` : ''}` }))])
 /** What the main button says for a visitor's choice. */
@@ -78,7 +81,12 @@ async function send(via: 'device' | 'manual'): Promise<void> {
     // The server allocates the house now; the maps are told what they cached is stale.
     worldChanged()
     emit('chosen', lga)
-  } else { ui.note = result.reason || 'That could not be saved. Try again.'; ui.code = result.code ?? '' }
+  } else {
+    ui.note = result.reason || 'That could not be saved. Try again.'
+    ui.code = result.code ?? ''
+    // The notice on the card carries the button: the toast of the same refusal would only cover it.
+    if (settleRefused.value) for (const item of [...toasts.value]) if (item.action) dismissToast(item.id)
+  }
 }
 </script>
 
@@ -94,7 +102,8 @@ async function send(via: 'device' | 'manual'): Promise<void> {
     <p v-else-if="home === 'main'" class="ui-note">Pick your {{ estate.unit }} in {{ estate.cityName }}. Your starter house stands on a plot there, free, and you give up {{ estate.settle?.main.gives ?? 'the home you leave' }}.</p>
     <p v-else class="ui-note">Pick your {{ estate.unit }} and a starter house on your own plot there is yours, free. <template v-if="guess">Your home is in {{ guess.name }}.</template></p>
 
-    <SettleNotice v-if="!current && !settleRefused" hint message="Settle in first: choosing where you live is part of settling in." />
+    <SettleNotice v-if="settleRefused" :code="ui.code" :message="ui.note" />
+    <SettleNotice v-else-if="!current" hint message="Settle in first: choosing where you live is part of settling in." />
     <div v-if="ui.found" class="world-found" role="status">
       <p>{{ ui.found.sure ? 'You are in' : 'Nearest to you is' }} <b>{{ ui.found.name }}</b>. Is that right?</p>
       <div class="ui-actions">
@@ -130,8 +139,7 @@ async function send(via: 'device' | 'manual'): Promise<void> {
       </template>
     </template>
 
-    <SettleNotice v-if="settleRefused" :code="ui.code" :message="ui.note" />
-    <p v-else-if="ui.note" class="ui-why" role="status">{{ ui.note }}</p>
+    <p v-if="note && !settleRefused" class="ui-why" role="status">{{ note }}</p>
     <p v-if="offline" class="ui-why">{{ offline }}</p>
   </section>
 </template>

@@ -82,7 +82,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
   })
 
   // Every "settle in first" notice and toast opens the flow through here; its code loads when the first one is pressed.
-  settleHandler.run = () => { void import('../features/start/settleModel.ts').then(({ startSettling }) => { startSettling(shell) }) }
+  settleHandler.run = (back) => { void import('../features/start/settleModel.ts').then(({ startSettling }) => { startSettling(shell, undefined, back) }) }
 
   const playerLook = (): PlayerLook => ({ look: game.state.value.onboarding?.look, seed: game.session.value?.id ?? 'you', name: game.state.value.name || game.client.identity.name })
   const cityVenueLabel = (id: string, cityId: string): string => contentFor(cityId).venues.find((venue) => venue.id === id)?.name ?? id

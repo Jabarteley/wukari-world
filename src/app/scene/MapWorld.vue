@@ -106,7 +106,8 @@ function load(): Promise<void> {
       onRepay: () => command('travel.repay-ride', {}),
       onHelp: () => { shell.open('bank') },
       // A guest of the quick start cannot travel between cities until it has settled in: the card's one button opens that flow.
-      onSettle: () => { openSettleFlow() },
+      // After settling the player is back on the map with that city's card open, not in the house.
+      onSettle: (city) => { openSettleFlow(city ? () => { if (game.mode.value !== 'map') showMapLayer('world', { level: 2, city }) } : undefined) },
       held: heldCities,
       // A row of the friends list: Chat opens the conversation; Call and Ping are the card's own buttons, pressed from here.
       onFriend: (action, id, name) => { void friendAction(action, id, name) },

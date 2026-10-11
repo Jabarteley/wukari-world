@@ -186,7 +186,7 @@ try {
     detail['conversationsAfter'] = conv;
     must(conv === 1, 'the first request did not create the conversation');
     detail['chatHeadAfter'] = (await text(a, '.messages-chat .messages-head')).replace(/\s+/g, ' ');
-    must(detail['chatHeadAfter'].toString().includes('Bola'), 'the screen did not stay on / move to the chat with Bola');
+    must(String(detail['chatHeadAfter']).includes('Bola'), 'the screen did not stay on / move to the chat with Bola');
     await askerAndPayerSee('open', 1, 'open');
     detail['adaCard'] = await card(a); detail['bolaCard'] = await card(b);
     detail['adaButtons'] = await cardButtons(a); detail['bolaButtons'] = await cardButtons(b);
@@ -540,7 +540,7 @@ try {
       detail['blockedTapResult'] = (await visible(a, '#message-request-help.is-warn')) ? await text(a, '#message-request-help') : 'no message';
       await j.shot(a, 'blocked-asker-refusal');
     }
-    must(detail['liveVanishMs'] >= 0, 'Request money did not vanish live for the blocked asker');
+    must(Number(detail['liveVanishMs']) >= 0, 'Request money did not vanish live for the blocked asker');
     must(!((detail['blockerOptions'] ?? []) as string[]).includes('Request money'), 'the blocker is still offered Request money');
     must(!(detail['adaOptionsAfterBlock'] as string[]).includes('Request money'), 'a blocked partner still gets a Request money button (a tap says: ' + String(detail['blockedTapResult']) + ')');
   });

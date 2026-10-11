@@ -178,7 +178,7 @@ test('the attach sheet lists only what this chat can do, each with a name a scre
 })
 
 test('the chat menu: pins and money for any direct chat, pin-to-top and delete only once the chat exists', async () => {
-  const menu = (extra: Record<string, unknown>): Promise<string> => render('/src/app/features/messages/ChatMenu.vue', { pins: 2, pinsShown: true, chatExists: true, chatPinned: false, offline: false, ...extra })
+  const menu = (extra: Record<string, unknown>): Promise<string> => render('/src/app/features/messages/ChatMenu.vue', { canRequest: true, pins: 2, pinsShown: true, chatExists: true, chatPinned: false, offline: false, ...extra })
   const full = await menu({})
   assert.match(full, /role="menu"[^>]*aria-label="Chat options"/)
   for (const key of ['pins', 'send-money', 'request-money', 'pin-chat', 'hide']) assert.ok(full.includes(`data-chat="${key}"`), key)
@@ -187,6 +187,9 @@ test('the chat menu: pins and money for any direct chat, pin-to-top and delete o
   assert.ok(fresh.includes('data-chat="send-money"') && fresh.includes('data-chat="request-money"') && !fresh.includes('data-chat="hide"') && !fresh.includes('data-chat="pins"'))
   assert.ok(words(await menu({ chatPinned: true })).includes('Unpin from the top of my chats'))
   assert.match(await menu({ offline: true }), /data-chat="request-money"[^>]*disabled/)
+  // Asking is offered only to a current friend who is not blocked; sending money stays.
+  const stranger = await menu({ canRequest: false })
+  assert.ok(!stranger.includes('data-chat="request-money"') && stranger.includes('data-chat="send-money"'))
 })
 
 test('an own message ends with a tick that screen readers hear as "Sent"', async () => {

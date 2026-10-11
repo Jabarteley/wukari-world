@@ -57,7 +57,7 @@ export function adjustLighting(base: Lighting, now: Readonly<LookConditions>): L
     sunPower *= 0.75
     hemiPower *= 0.95
   }
-  const fog = base.fog && now.wet ? [tint(base.fog[0], RAIN, 0.3), base.fog[1] * 0.8, base.fog[2] * 0.75] as [string, number, number] : base.fog
+  const fog = base.fog && now.wet ? [tint(base.fog[0], RAIN, 0.3), base.fog[1] * 0.8, base.fog[2] * 0.8] as [string, number, number] : base.fog
   return { ...base, sky, hemi: [hemi[0], hemi[1], hemiPower], sun: [base.sun[0], sunPower, base.sun[2]], glow, lamps, ...(fog ? { fog } : {}), ...(now.wet ? { wet: true } : {}) }
 }
 

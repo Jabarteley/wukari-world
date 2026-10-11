@@ -61,7 +61,7 @@ test('host lights: the sun follows the look-at point, the shadow box is tight an
   lights.aim(camera, 3.1, 0.7, -2.3);
   assert.ok(lights.sun.shadow.camera.right < far, 'closer in, the box shrinks and the shadow gets sharper');
   const distance = camera.position.distanceTo(lights.sun.target.position.clone().set(3.1, 0.7, -2.3));
-  assert.ok(lights.fog.near > distance * 0.8 && lights.fog.near < distance * 1.3 && lights.fog.far > lights.fog.near * 2, 'the fog starts about where the subject is and follows the camera in');
+  assert.ok(lights.fog.near > distance * 0.8 && lights.fog.near < distance * 1.5 && lights.fog.far > lights.fog.near * 2, 'the fog starts about where the subject is and follows the camera in');
   lights.dispose();
   assert.equal(scene.fog, null);
   assert.deepEqual(scene.children, []);

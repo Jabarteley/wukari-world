@@ -71,7 +71,7 @@ export function mix3(a: Colour, b: Colour, c: Colour, wa: number, wb: number, wc
   return `#${[0, 1, 2].map((i) => Math.round(x[i]! * wa + y[i]! * wb + z[i]! * wc).toString(16).padStart(2, '0')).join('')}`;
 }
 /** [night, dusk, day] fog distances: where the fog starts and ends, as multiples of how far the camera is from what it looks at. */
-const FOG_REACH: readonly (readonly [number, number])[] = [[0.9, 2.4], [1, 2.8], [1.15, 3.4]];
+const FOG_REACH: readonly (readonly [number, number])[] = [[1, 2.8], [1.2, 3.4], [1.4, 4.2]];
 
 /**
  * The light of a mood at a minute of the Lagos day: the day, dusk and night presets blended by the sun's height, so the light

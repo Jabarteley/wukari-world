@@ -1,4 +1,4 @@
-name: City content browser acceptance
+name: Five city phone limits acceptance
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: d2617f54e71d11dc0042946ce9798ec726adcb8c
+          ref: dead3d477e6cc182e175d035d4ea3cd05532089c
           path: app
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -27,7 +27,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$RUNNER_TEMP/content-browser"
-          test "$(git -C app rev-parse HEAD)" = d2617f54e71d11dc0042946ce9798ec726adcb8c
+          test "$(git -C app rev-parse HEAD)" = dead3d477e6cc182e175d035d4ea3cd05532089c
           git -C app rev-parse HEAD > "$RUNNER_TEMP/content-browser/source.txt"
           git rev-parse HEAD > "$RUNNER_TEMP/content-browser/diagnostic-source.txt"
           cp scripts/journeys/map-shots.ts scripts/journeys/serve-maps.ts scripts/journeys/cdp-map-qa.ts app/scripts/journeys/
@@ -43,10 +43,11 @@ jobs:
           export CHROME_BIN="$(command -v google-chrome)"
           node --experimental-strip-types scripts/journeys/map-shots.ts \
             --out "$RUNNER_TEMP/content-browser" --port 4423 --debug-port 4424 \
-            --cities lagos,abuja,cairo,dakar,yaounde \
-            --phone-cities lagos,abuja,cairo,dakar,yaounde \
-            --phones 390x844,320x568 --short lagos,abuja --lean --clock-hour 12 --label-audit \
+            --cities windhoek,maputo,gaborone,luanda,harare \
+            --phone-cities windhoek,maputo,gaborone,luanda,harare \
+            --phones 390x844,320x568 --short lagos --phone-limits-only --lean --clock-hour 12 --label-audit \
             2>&1 | tee "$RUNNER_TEMP/content-browser/browser.log"
+          node --input-type=module -e 'import { readFileSync } from "node:fs"; const report=JSON.parse(readFileSync(process.env.RUNNER_TEMP+"/content-browser/timings.json","utf8")); if(report.aborted || report.consoleErrors?.length) throw Error(JSON.stringify({aborted:report.aborted,errors:report.consoleErrors}));'
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: ${{ always() }}
         with:

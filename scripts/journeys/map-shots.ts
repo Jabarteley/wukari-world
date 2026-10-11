@@ -296,7 +296,19 @@ async function auditLabels(b: Browser, prefix: string): Promise<void> {
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
   if (opts.phone) await dismiss(b, 3000);
   const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`); };
+  if (process.argv.includes('--phone-limits-only') && !opts.phone) return;
   await openMap(b, prefix);
+  if (process.argv.includes('--phone-limits-only')) {
+    await click3(b, 'fit', 1); await sleep(1500);
+    for (let step = 0; step < 10; step++) {
+      await b.send('Input.dispatchMouseEvent', { type: 'mouseWheel', x: b.viewport.width * 0.55, y: b.viewport.height * 0.4, deltaX: 0, deltaY: 240 });
+      await sleep(900);
+      must(await b.eval<boolean>(shownNow('.map-handle')), `${prefix}: city map left during phone limits capture`);
+    }
+    await shot('09-limits');
+    await auditLabels(b, `${prefix}-09-limits`);
+    return;
+  }
   if (waterOnly) {
     const w = waterAt[prefix];
     await click3(b, 'fit', 1); await sleep(1500);

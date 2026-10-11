@@ -69,6 +69,8 @@ function createApp(game: Game, native: readonly VuePanel[]) {
   }
   // The link this page was opened with is read once, here, before anything rewrites the address.
   { const link = captureLink(); if (link.join || link.ref || link.table) track('invite_opened', { kind: link.table ? 'table' : link.ref ? 'share' : 'house', has_session: game.client.hasSavedIdentity === true }) }
+  // Where the visit came from is counted by a small chunk of its own (features/growth/attribution.ts).
+  if (globalThis.window) void import('../features/growth/attribution.ts').then((counting) => { counting.noteLanded() })
   let pendingRoute: { venue: string; spot?: string } | null = null
   let shownTrip = '', warmedCity = ''
 
@@ -462,6 +464,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     } finally { ready.value = true }
     if (ok) {
       await firstMinute()
+      if (!game.state.value.onboarding.required) void import('../features/growth/attribution.ts').then((counting) => { counting.noteGame() })
       if (game.state.value.onboarding.done && game.state.value.estate.lga === null && !game.state.value.estate.home) shell.open('city')
     }
     // Not awaited: a slow or failing community chunk must not hold up the game or block a later Reconnect.

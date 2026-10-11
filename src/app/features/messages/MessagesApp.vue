@@ -98,19 +98,6 @@ function setOpen(key: string | null): void {
 }
 /** Opened for a new group (the guide's "create a group"): the form opens as soon as the chats are there to pick friends from. */
 const wantGroup = ref(false)
-// Opened from a person card, a contact or a notification: { to, name } | { conv } | { tab }.
-watch(() => props.params, (params) => {
-  const asked = (params ?? null) as { tab?: string; conv?: string; to?: string; name?: string; new?: string } | null
-  if (!asked) return
-  if (asked.tab === 'updates' || asked.tab === 'chats' || asked.tab === 'groups') { setOpen(null); ui.tab = asked.tab }
-  else if (asked.new === 'group') { setOpen(null); ui.tab = 'chats'; wantGroup.value = true }
-  else if (asked.conv) { setOpen(asked.conv); void openThread(asked.conv) }
-  else if (asked.to) {
-    const existing = social.me?.conversations.find((conv) => conv.with === asked.to)
-    setOpen(existing ? existing.id : provisionalKey(asked.to)); ui.openName = asked.name ?? null; ui.tab = 'chats'
-    if (existing) void openThread(existing.id)
-  }
-}, { immediate: true })
 // A new chat received its real conversation id.
 watch(tick, () => { if (social.openConv !== ui.open && social.openConv) ui.open = social.openConv })
 
@@ -207,6 +194,20 @@ async function moreChats(): Promise<void> { if (chatsMore.value) return; chatsMo
 const atBottom = ref(true)
 const fresh = ref(0)
 const quoted = ref<{ from: string; text: string } | null>(null)
+// Below the refs it clears: this watch runs at once, and setOpen() writes `replying`, `fresh` and `quoted` (a watch above them hit "Cannot access ... before initialization").
+// Opened from a person card, a contact or a notification: { to, name } | { conv } | { tab }.
+watch(() => props.params, (params) => {
+  const asked = (params ?? null) as { tab?: string; conv?: string; to?: string; name?: string; new?: string } | null
+  if (!asked) return
+  if (asked.tab === 'updates' || asked.tab === 'chats' || asked.tab === 'groups') { setOpen(null); ui.tab = asked.tab }
+  else if (asked.new === 'group') { setOpen(null); ui.tab = 'chats'; wantGroup.value = true }
+  else if (asked.conv) { setOpen(asked.conv); void openThread(asked.conv) }
+  else if (asked.to) {
+    const existing = social.me?.conversations.find((conv) => conv.with === asked.to)
+    setOpen(existing ? existing.id : provisionalKey(asked.to)); ui.openName = asked.name ?? null; ui.tab = 'chats'
+    if (existing) void openThread(existing.id)
+  }
+}, { immediate: true })
 const nearBottom = (box: HTMLElement): boolean => box.scrollHeight - box.scrollTop - box.clientHeight < 80
 function onScroll(): void { const box = threadBox.value; if (!box) return; atBottom.value = nearBottom(box); if (atBottom.value) fresh.value = 0; if (box.scrollTop < box.clientHeight * 1.5 && hasEarlier.value) void showEarlier() }
 function toLatest(): void { const box = threadBox.value; if (box) box.scrollTo({ top: box.scrollHeight }); fresh.value = 0; atBottom.value = true }

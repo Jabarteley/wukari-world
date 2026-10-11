@@ -330,7 +330,7 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 24px; 
 .tour-actions button { min-height: var(--tap); padding: 0 16px; border: 0; border-radius: var(--r-pill); background: var(--c-fill); color: var(--c-ink); font: 700 13px var(--font); cursor: pointer; }
 .tour-actions button:focus-visible { outline: var(--focus); outline-offset: 2px; }
 .tour-actions .tour-next { background: var(--c-green-dark); color: #fff; }
-.tour-actions .tour-skip { margin-right: auto; padding: 0 6px; background: none; color: var(--c-ink-2); text-decoration: underline; text-underline-offset: 3px; }
+.tour-actions .tour-skip { margin-right: auto; min-width: var(--tap); padding: 0 14px; background: none; color: var(--c-ink-2); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 420px) { .tour-actions button { padding: 0 12px; } }
 @media (prefers-reduced-motion: reduce) { .tour-hole, .tour-card { transition: none; } }
 .is-still .tour-hole, .is-still .tour-card { transition: none; }

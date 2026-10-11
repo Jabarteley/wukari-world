@@ -1,0 +1,54 @@
+name: Antarctic source and route-policy diagnostics
+on:
+  push:
+    branches: ['codex/world-antarctica-20261011']
+    paths:
+      - 'scripts/geo/factory/station-*'
+      - '.github/workflows/antarctic-station-diagnostics.yml'
+permissions:
+  contents: read
+concurrency:
+  group: antarctic-diagnostics-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  inventory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+          path: factory-baseline
+          persist-credentials: false
+      - name: Install pinned source reader
+        run: python -m pip install osmium==4.3.1
+      - name: Acquire and inspect dated source
+        run: |
+          mkdir -p evidence
+          curl --fail --silent --show-error --max-time 300 -o evidence/antarctica.osm.pbf https://download.geofabrik.de/antarctica-261008.osm.pbf
+          python scripts/geo/factory/station-inventory.py evidence/antarctica.osm.pbf evidence/inventory.json
+          python scripts/geo/factory/station-coverage.py evidence scripts/geo/factory/station-seeds.json factory-baseline/scripts/geo/offline-extract.py
+          rm evidence/antarctica.osm.pbf
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: antarctic-source-${{ github.sha }}
+          path: evidence/
+          retention-days: 14
+  routes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run typecheck
+      - run: node --experimental-strip-types scripts/city/build-catalogue.ts --check
+      - run: node --experimental-strip-types --test --test-concurrency=1 src/game/cities/generatedLinks.test.ts

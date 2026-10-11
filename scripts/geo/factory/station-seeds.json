@@ -1,0 +1,103 @@
+[
+  {
+    "id": "mcmurdo",
+    "name": "McMurdo Station",
+    "point": [
+      166.666667,
+      -77.833333
+    ],
+    "source": "https://www.nsf.gov/od/opp/ail/mcmurdo-station",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "rothera",
+    "name": "Rothera Research Station",
+    "point": [
+      -68.1248,
+      -67.568889
+    ],
+    "source": "https://www.bas.ac.uk/polar-operations/sites-and-facilities/facility/rothera/",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "south-pole",
+    "name": "Geographic South Pole vicinity",
+    "point": [
+      0,
+      -90
+    ],
+    "source": "https://www.nsf.gov/od/opp/ail/amundson-scott-south-pole-station",
+    "limitation": "Conventional zero longitude for distance query only; not a station anchor",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "concordia",
+    "name": "Concordia",
+    "point": [
+      123.35,
+      -75.1
+    ],
+    "source": "https://www.pnra.aq/sites/default/files/report%20spedizioni/Report_2017_XXXI-XXXII%20spedizione.pdf",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "vostok",
+    "name": "Vostok",
+    "point": [
+      106.8,
+      -78.466667
+    ],
+    "source": "https://www.aari.ru/expeditions/russian-antarctic-expedition/vostok-eng",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "davis",
+    "name": "Davis",
+    "point": [
+      77.9688,
+      -68.5763
+    ],
+    "source": "https://www.antarctica.gov.au/antarctic-operations/stations-and-field-locations/",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "casey",
+    "name": "Casey",
+    "point": [
+      110.5266,
+      -66.2822
+    ],
+    "source": "https://www.antarctica.gov.au/antarctic-operations/stations-and-field-locations/",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "mawson",
+    "name": "Mawson",
+    "point": [
+      62.873,
+      -67.6027
+    ],
+    "source": "https://www.antarctica.gov.au/antarctic-operations/stations-and-field-locations/",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "syowa",
+    "name": "Syowa",
+    "point": [
+      39.581111,
+      -69.005278
+    ],
+    "source": "https://www.nipr.ac.jp/antarctic/english/jarestations/",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  },
+  {
+    "id": "neumayer",
+    "name": "Neumayer III",
+    "point": [
+      -8.283333,
+      -70.65
+    ],
+    "source": "https://www.awi.de/en/fleet-stations/stations/neumayer-station-iii.html",
+    "purpose": "Approximate operator-sourced inventory query centre; not an approved venue anchor"
+  }
+]

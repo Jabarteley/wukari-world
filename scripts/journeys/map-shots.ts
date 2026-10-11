@@ -158,8 +158,13 @@ async function fly(b: Browser, city: string): Promise<void> {
   if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]'))) && !(await b.eval<boolean>(shownNow('.map-levels-cur')))) await b.click('[data-nav="map"]');
   await b.waitFor(`${shownNow('.map-levels-cur')} || ${shownNow('[data-atlas-levels]')}`, 30000, 'the map');
   const level = t.level ?? 'africa', wanted = level === 'africa' ? 1 : 2;
-  if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]')))) { await b.click('.map-levels-cur'); await b.click(`[data-map-level="${level}"]`); }
-  else { const cur = await b.eval<string>(`document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase()`); if (!cur.startsWith(level)) { await b.click('[data-atlas-levels]'); await b.click(`[data-atlas-level="${wanted}"]`); } }
+  if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]')))) {
+    await b.click('.map-levels-cur');
+    await b.click('[data-map-level="africa"]');
+    await b.waitFor(shownNow('[data-atlas-levels]'), 30000, 'the Africa atlas');
+  }
+  const atlasLevel = await b.eval<string>(`document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase()`);
+  if (!atlasLevel.startsWith(level)) { await b.click('[data-atlas-levels]'); await b.click(`[data-atlas-level="${wanted}"]`); }
   await b.waitFor(`${shownNow('[data-atlas-levels]')} && document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase().startsWith(${JSON.stringify(level)})`, 30000, `${level} level`);
   if (!(await b.eval<boolean>(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`))) await b.click('[data-atlas-list]').catch(() => undefined);
   await b.waitFor(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`, 15000, 'search');

@@ -6,7 +6,7 @@ import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.j
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js';
 
 interface Item { src: string; clip?: string; t?: number; label?: string; x?: number; ry?: number; skin?: boolean }
-interface Spec { items: Item[]; width: number; height: number; view?: 'front' | 'side' | 'tq' | 'back'; fov?: number; target?: [number, number, number]; dist?: number; bones?: boolean; bg?: string }
+interface Spec { items: Item[]; width: number; height: number; view?: 'front' | 'side' | 'tq' | 'back'; lift?: number; fov?: number; target?: [number, number, number]; dist?: number; bones?: boolean; bg?: string }
 
 const canvas = document.getElementById('c') as HTMLCanvasElement, labels = document.getElementById('labels') as HTMLDivElement;
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
@@ -50,7 +50,7 @@ async function show(spec: Spec): Promise<void> {
   const span = Math.max(1.8, n * 1.5), dist = spec.dist ?? span / 2 / Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2) / Math.min(1, camera.aspect) * 1.0;
   const t = spec.target ?? [0, 0.95, 0], v = spec.view ?? 'front';
   const ang = { front: 0, side: Math.PI / 2, tq: 0.6, back: Math.PI }[v];
-  camera.position.set(t[0] + Math.sin(ang) * dist, t[1] + 0.25, t[2] + Math.cos(ang) * dist); camera.lookAt(t[0], t[1], t[2]);
+  camera.position.set(t[0] + Math.sin(ang) * dist, t[1] + (spec.lift ?? 0.25), t[2] + Math.cos(ang) * dist); camera.lookAt(t[0], t[1], t[2]);
   sun.position.set(Math.sin(ang) * 3 + 2, 5, Math.cos(ang) * 4);
 }
 const api = { show, render: () => renderer.render(scene, camera), ready: true };

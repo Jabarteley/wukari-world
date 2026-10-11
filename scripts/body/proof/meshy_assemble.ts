@@ -53,8 +53,10 @@ gltf.scene.traverse((n) => {
   if (!sm.isSkinnedMesh) return;
   const g = sm.geometry.clone();
   g.applyMatrix4(sm.matrixWorld);
-  g.computeBoundingBox();
-  const sourceHeight = g.boundingBox!.max.y - g.boundingBox!.min.y;
+  // the height of the bind surface itself: the box three computes also covers the face shapes, which would shrink the figure
+  const at = g.getAttribute('position'); let lowY = Infinity, highY = -Infinity;
+  for (let i = 0; i < at.count; i++) { lowY = Math.min(lowY, at.getY(i)); highY = Math.max(highY, at.getY(i)); }
+  const sourceHeight = highY - lowY;
   const unitScale = joints.height / sourceHeight;
   if (!Number.isFinite(sourceHeight) || sourceHeight <= 0 || !Number.isFinite(unitScale) || unitScale < 1e-4 || unitScale > 1e4) throw new Error(`parts mesh has invalid height ${sourceHeight}`);
   g.scale(unitScale, unitScale, unitScale);

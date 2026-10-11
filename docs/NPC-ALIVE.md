@@ -37,3 +37,15 @@ A regular keeps two small counters per player on the relationship that already e
 ## Frames
 
 A scene is drawn on demand. The layer asks for frames only inside a window of twelve seconds (`WINDOW_MS`), opened when the player arrives, when a quarter hour turns while they stay, when they walk or tap, and when someone speaks; then the loop ends and people stand where they were. A weak phone or reduced motion places the people once, standing, and never opens a window. `layer.test.ts` counts the frames.
+
+## Voices (heard, not just seen)
+
+`src/audio/voice/`, a lazy chunk of the audio engine, fetched on the first line that is to be heard (after the first tap). The game raises three window events through `emit.ts` (`jaw:voice` a line, `jaw:voice-scene` who is in the place and what they do, `jaw:voice-stop`); the engine listens and nothing else imports the voices.
+
+- **Talk sounds** (`syllables.ts`, `talk.ts`): a line becomes one soft vowel-like blip per syllable, paced by the text (a pause at a space, longer at a comma, longest at a full stop; a question climbs, an exclamation lifts). One glottal-ish source runs through three band-pass formants whose centres glide from vowel to vowel. Everything is scheduled on the audio clock when the line appears.
+- **A voice from a seed** (`seed.ts`): pitch, pace, breath, vowel tract, vibrato and brightness come from a stable seed (a regular's id, a player's public id, or a voice seed the server puts on a line), so each person always sounds like themselves; men, women, youths and elders sit in different ranges.
+- **Place and cap** (`spatial.ts`, `cap.ts`): loudness, dullness and stereo pan follow distance and screen position (far speakers are a quiet murmur). At most three voices sound at once, nearest first; a farther newcomer is not heard.
+- **Spoken words, optional** (`speech.ts`): the browser's own speech synthesis for the nearest speaker only, with a voice that runs on the device (never one that sends text to a server), the African English locale first, pitch and rate from the same seed, queued so lines never overlap, cancelled when the scene changes or the page is hidden. No voice on the device means the talk sounds carry on. Setting: Spoken voices Off / Sounds / Speech (default Sounds); Quiet keeps speech off.
+- **Human sounds** (`cues.ts`, `sounds.ts`): a laugh after a reply, a call between two walkers, a hum from a lone sitter, a whistle outdoors, a seller's call at a market, a cheer when a goal is spoken at a viewing centre, and the footsteps of the nearest two walkers. At most one vocal cue every eight seconds, each kind on its own cooldown.
+- **Never private**: only bubbles over people and venue chat lines are voiced; direct messages never are.
+- **Measuring** (`scripts/voice-render/run.ts`): renders sample voices and three places offline in a headless browser through the game's own mixer, with loudness, pitch and spectra, WAV files and spectrograms.

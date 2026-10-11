@@ -9,6 +9,7 @@ import type { Chosen, Regular } from '../../game/chatter/index.ts'
 import { isDeparting } from '../../life.ts'
 import { useApp } from '../state/app.ts'
 import { clearBubbles, say, tagOf } from './bubbles.ts'
+import { heard, heardStop } from '../../audio/voice/emit.ts'
 
 /** How often the visit asks the picker. An exchange stays due for 20 s, so this never misses one. */
 export const POLL_MS = 4_000
@@ -25,7 +26,7 @@ export function startChatter(): void {
     const id = globalThis.setTimeout(() => { timers.delete(id); run() }, ms)
     timers.add(id)
   }
-  const stop = (): void => { for (const id of timers) globalThis.clearTimeout(id); timers.clear(); clearBubbles() }
+  const stop = (): void => { for (const id of timers) globalThis.clearTimeout(id); timers.clear(); clearBubbles(); heardStop() }
 
   /** The regulars standing in the scene that the scene is drawing a tag over: only they can be heard to talk. */
   const standing = (cityId: string, venue: string): Regular[] => {
@@ -34,8 +35,10 @@ export function startChatter(): void {
     return list.filter((npc) => npc.venue === venue && tagOf(npc.id) !== null).map((npc) => ({ id: npc.id, name: npc.name }))
   }
 
-  const speak = (who: { npcId: string; name: string; text: string }, beta: boolean): void => {
+  const speak = (who: { npcId: string; name: string; text: string }, beta: boolean, reply = false): void => {
     say(who.npcId, who.name, who.text, beta)
+    const at = scene.venue.value?.ambientPeople?.().find((person) => person.id === `npc:${who.npcId}`)
+    heard({ id: `npc:${who.npcId}`, text: who.text, kind: 'regular', reply, ...(at ? { x: at.x, z: at.z } : {}) })
     community.controller()?.npcLine?.(beta ? `${who.name} (beta)` : who.name, who.text)
   }
   const play = (chosen: Chosen, key: string): void => {
@@ -43,7 +46,7 @@ export function startChatter(): void {
     // The two turn to face each other while they talk.
     scene.venue.value?.talk?.(`npc:${chosen.first.npcId}`, `npc:${chosen.second.npcId}`, REPLY_DELAY_MS + 6_000)
     speak(chosen.first, chosen.beta)
-    later(() => { if (same()) speak(chosen.second, chosen.beta) }, REPLY_DELAY_MS)
+    later(() => { if (same()) speak(chosen.second, chosen.beta, true) }, REPLY_DELAY_MS)
   }
 
   const tick = (): void => {

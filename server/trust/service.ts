@@ -136,6 +136,7 @@ export function trustService(ctx: RouteContext) {
       const made: TrustReport = { id: `T-${++t.seq}`, about, aboutName: target.name, by: session.publicId, reason, note, at: now(), status: 'received' };
       t.reports.push(made);
       if (t.reports.length > TRUST_REPORTS_KEPT) t.reports.splice(0, t.reports.length - TRUST_REPORTS_KEPT);
+      ctx.checks?.agentReported?.(db, about);
       return { ok: true as const, code: 'reported', id: made.id };
     },
 

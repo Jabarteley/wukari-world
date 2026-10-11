@@ -34,7 +34,7 @@ export function houseOf(life: LifeState, districts: readonly ResidentDistrict[] 
  * found gems to the city counter and counts a visit on the first check-in of a Lagos day.
  * Residents not seen for a whole session lifetime are dropped (their session has expired).
  */
-export function checkIn(city: CivicCityRecord, now: number, who: PlayerRef, life: LifeState, ttlMs: number, districts: readonly ResidentDistrict[] = DISTRICTS): ResidentRecord {
+export function checkIn(city: CivicCityRecord, now: number, who: PlayerRef, life: LifeState, ttlMs: number, districts: readonly ResidentDistrict[] = DISTRICTS, agentPlayed = false): ResidentRecord {
   const day = lagosTime(now).day;
   const resident = city.residents[who.id] ||= { name: who.name, house: null, since: now, lastSeen: 0, day: -1, cash: 0, week: 0, earned: 0, gems: 0, claims: 0 };
   if (resident.day !== day) { resident.day = day; city.visits = count(city.visits) + 1; }
@@ -43,7 +43,9 @@ export function checkIn(city: CivicCityRecord, now: number, who: PlayerRef, life
   resident.lastSeen = now;
   resident.cash = count(life.cash);
   resident.week = count(life.civic?.week?.week);
-  resident.earned = count(life.civic?.week?.earned);
+  // A character an AI agent played this Lagos week is not ranked on what it earned that week (and says so on the balance list).
+  if (agentPlayed) resident.ag = lagosTime(now).week;
+  resident.earned = resident.ag === lagosTime(now).week ? 0 : count(life.civic?.week?.earned);
   const gems = count(life.civic?.gems), claims = count(life.civic?.claims);
   const fresh = Math.max(0, gems - count(resident.gems));
   if (fresh) {
@@ -115,9 +117,9 @@ export function neighboursView(city: CivicCityRecord, now: number, ttlMs: number
 export function richListView(city: CivicCityRecord, now: number, ttlMs: number, prefs: CivicCollection['prefs'] | undefined, viewerId: string | null = null) {
   const week = lagosTime(now).week;
   const listed = current(city, now, ttlMs).filter(([id]) => prefs?.[id]?.richList !== true)
-    .map(([id, entry]) => ({ id, name: entry.name, cash: count(entry.cash), earned: entry.week === week ? count(entry.earned) : 0 }));
+    .map(([id, entry]) => ({ id, name: entry.name, cash: count(entry.cash), earned: entry.week === week ? count(entry.earned) : 0, agent: entry.ag === week }));
   const board = (key: 'cash' | 'earned'): RichRow[] => listed.filter((entry) => entry[key] > 0).sort((a, b) => b[key] - a[key] || (a.id < b.id ? -1 : 1))
-    .map((entry, index) => ({ rank: index + 1, id: entry.id, name: entry.name, amount: entry[key], you: entry.id === viewerId }));
+    .map((entry, index) => ({ rank: index + 1, id: entry.id, name: entry.name, amount: entry[key], you: entry.id === viewerId, ...(entry.agent ? { agent: true as const } : {}) }));
   const balances = board('cash'), earners = board('earned');
   const mine = viewerId ? city.residents[viewerId] : null;
   return {
@@ -137,7 +139,7 @@ export const NEIGHBOURS_PAGE = { size: 40, max: 100 };
 /** How far down the rich list a reader can go, and the rows of a page. */
 export const RICH_PAGE = { size: 40, max: 100, depth: 500 };
 interface HomeRow { id: string; name: string; lower: string }
-interface BoardRow { id: string; name: string; amount: number }
+interface BoardRow { id: string; name: string; amount: number; agent?: true }
 const homeIndexes = new Map<string, { at: number; districts: Map<string, HomeRow[]> }>();
 const boardIndexes = new Map<string, { at: number; week: number; boards: Record<'balances' | 'earners', BoardRow[]> }>();
 const homeOrder = (a: HomeRow, b: HomeRow): number => (a.lower < b.lower ? -1 : a.lower > b.lower ? 1 : a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
@@ -183,8 +185,8 @@ export function richListPage(key: string, city: CivicCityRecord, now: number, tt
   const week = lagosTime(now).week;
   let held = boardIndexes.get(key);
   if (!held || held.week !== week || now - held.at > INDEX_TTL_MS) {
-    const listed = current(city, now, ttlMs).map(([id, entry]) => ({ id, name: entry.name, cash: count(entry.cash), earned: entry.week === week ? count(entry.earned) : 0 }));
-    const make = (field: 'cash' | 'earned'): BoardRow[] => listed.filter((entry) => entry[field] > 0).map((entry) => ({ id: entry.id, name: entry.name, amount: entry[field] }))
+    const listed = current(city, now, ttlMs).map(([id, entry]) => ({ id, name: entry.name, cash: count(entry.cash), earned: entry.week === week ? count(entry.earned) : 0, agent: entry.ag === week }));
+    const make = (field: 'cash' | 'earned'): BoardRow[] => listed.filter((entry) => entry[field] > 0).map((entry) => ({ id: entry.id, name: entry.name, amount: entry[field], ...(entry.agent ? { agent: true as const } : {}) }))
       .sort((a, b) => b.amount - a.amount || (a.id < b.id ? -1 : 1)).slice(0, RICH_PAGE.depth);
     held = { at: now, week, boards: { balances: make('cash'), earners: make('earned') } }; boardIndexes.delete(key); boardIndexes.set(key, held); cut(boardIndexes);
   }
@@ -200,7 +202,7 @@ export function richListPage(key: string, city: CivicCityRecord, now: number, tt
     const row = rows[i]!;
     // A player who opted out of the list is left out, as in the top of it (the rank is the place on the list the reader sees).
     if (prefs?.[row.id]?.richList === true) continue;
-    out.push({ rank: i + 1, id: row.id, name: row.name, amount: row.amount, you: row.id === viewerId });
+    out.push({ rank: i + 1, id: row.id, name: row.name, amount: row.amount, you: row.id === viewerId, ...(row.agent ? { agent: true as const } : {}) });
   }
   const last = out.at(-1), lastIndex = last ? last.rank : from;
   return { board, rows: out, next: last && lastIndex < rows.length ? `${last.amount}:${last.id}` : null };

@@ -1,4 +1,5 @@
 import { civicTitle } from '../../src/game/cities/terminology.ts';
+import { lagosTime } from '../../src/game/clock.ts';
 /**
  * OWNER: civic
  * Civic endpoints under /api/civic/. Shared city state is stored under ctx.collection(db, 'civic')
@@ -146,8 +147,9 @@ export default function civicRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     // Nor is a guest who is playing: a guest has no local government and no house, so it is in no residents directory, estate
     // or rich list until it settles in (src/game/systems/onboarding.ts THE STAGED MODEL). It still plays, travels and meets people.
     // A visitor in a city (arrived and no local government chosen yet) has no home there either, so it is not listed as a resident until it chooses.
-    const resident = !(life.onboarding?.required === true && life.onboarding.done !== true) && !isGuestLife(life) && Boolean(life.estate?.lga);
-    if (resident) checkIn(city, ctx.now(), who, life, ttl(), districts(cityId));
+    // An agent character is in none of these: it is counted on the agents board only (server/agents/).
+    const resident = !(life.onboarding?.required === true && life.onboarding.done !== true) && !isGuestLife(life) && Boolean(life.estate?.lga) && session.agent?.char !== true;
+    if (resident) checkIn(city, ctx.now(), who, life, ttl(), districts(cityId), session.agent?.week === lagosTime(ctx.now()).week);
     prunePrefs(civic);
     return { session, who, life, civic, city, resident };
   }

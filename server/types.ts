@@ -112,12 +112,18 @@ export interface SessionRecord {
    * answers its devices are given (docs/DEVICES.md). Absent on a record stored before it existed, which reads as 0.
    */
   rev?: number
+  /**
+   * AI agent access (server/agents/). `char`: an agent character, marked as agent-played for good, with `owner` the account that owns it. `at`: when an
+   * agent key last acted for this character (the "AI-played" mark is shown for a few minutes after it). `week`: the Lagos week an agent last played this
+   * account's own character, which leaves that week's earnings out of the rankings.
+   */
+  agent?: { char?: true; owner?: string; at?: number; week?: number }
 }
 /**
  * WORKER: what deploy/cloudflare-worker.ts stores in its `sessions` table. Action receipts live
  * in their own SQL table (without `type`), and there is no `once` and no `onboarding`.
  */
-export type WorkerSessionRecord = Pick<SessionRecord, 'secret' | 'publicId' | 'name' | 'expiresAt' | 'cities' | 'character' | 'legacyLives' | 'legacyLifeCities'>
+export type WorkerSessionRecord = Pick<SessionRecord, 'secret' | 'publicId' | 'name' | 'expiresAt' | 'cities' | 'character' | 'legacyLives' | 'legacyLifeCities' | 'agent'>
 
 /** An expired session's lives, kept without the secret (protocol.js archivedLife). Keyed by public id. */
 export interface ArchivedLife {
@@ -212,6 +218,8 @@ export interface AccountsConfig { projectId: string; apiKey: string; googleClien
 export interface SocialPlayerRecord {
   /** Consented in-game family roles; absent for existing players. */
   familyLinks?: FamilyBook
+  /** AI agent play (server/agents/): `char` an agent character (marked for good), `at` when a key last acted for the character. Read by pub(), so chat and lists carry the mark. */
+  agent?: { char?: true; at?: number }
   name: string
   /** First and latest social request, server ms. */
   first: number
@@ -529,6 +537,8 @@ export interface ResidentRecord {
   /** Lagos week this resident was last added to the city's weekly tally, and what they added then (server/civic/boards.ts). */
   tw?: number
   te?: number
+  /** Lagos week in which an AI agent played this resident's own character (server/agents/): its earnings that week are left out of every ranking, and its rows carry the mark. */
+  ag?: number
 }
 /** A city's weekly totals, kept as residents check in so the place boards never read the residents. */
 export interface PrideWeek { week: number; active: number; earned: number }
@@ -942,6 +952,8 @@ export interface RouteResult {
   renew?: boolean
   /** Runs once the answer is out; a throw is logged and goes no further. */
   after?: () => void | Promise<void>
+  /** Send `body` exactly as given: no `serverTime` or other field added (the MCP endpoint answers JSON-RPC, which has no room for one). */
+  bare?: true
   /** Instead of `body`: bytes to send as they are, with their content type. Always sent `private`, `nosniff` and `inline`. */
   file?: { bytes: Uint8Array; type: string; cache?: 'no-store' }
 }
@@ -1037,6 +1049,10 @@ export interface ContextChecks {
    * that has no character yet, the new record becomes that account's character (and is returned re-keyed).
    */
   adoptSession?: (db: Db, binding: string | undefined, session: SessionRecord) => SessionRecord
+  /** Social: an AI agent just acted for this character (server/agents/): the public mark is kept with the player's social record. */
+  agentActive?: (db: Db, session: SessionRecord, at: number, character: boolean) => void
+  /** Agents: a player was reported; enough reports about a character an agent plays suspend its keys. */
+  agentReported?: (db: Db, aboutId: string) => void
 }
 
 export interface ServerConfig {

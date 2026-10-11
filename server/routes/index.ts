@@ -31,7 +31,7 @@
  *
  * PATHS   must start with /api/<your area>/ (accounts → /api/account, social → /api/social/,
  *         civic → /api/civic/, support → /api/support/, companion → /api/companion/, moderation → /api/mod/, world → /api/world/, growth → /api/growth/ and,
- *         for its operator view, /api/mod/growth/; business → /api/business/ and /api/mod/business/). A ":name" segment captures into request.params. A duplicate
+ *         for its operator view, /api/mod/growth/; agents → /api/agents/ and /api/mod/agents (the MCP endpoint /mcp is served by the host as /api/agents/mcp); business → /api/business/ and /api/mod/business/). A ":name" segment captures into request.params. A duplicate
  *         "METHOD /path" aborts start-up.
  *
  * REQUEST (portable — no Node req/res, so the same module can run in the Worker later)
@@ -229,9 +229,10 @@ import showcase from './showcase.ts';
 import showcaseMod from './showcase-mod.ts';
 import street from './street.ts';
 import livingWorld from './living-world.ts';
+import agents from './agents.ts';
 import { prepareRouteCityContent, warmCityContentFailure } from '../request-city-content.ts';
 
-export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, pulse, ping, visit, business, commerce, businessMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod];
+export const ROUTE_MODULES: RouteModule[] = [core, auth, social, civic, support, moderation, world, land, growth, growthMod, campus, pulse, ping, visit, business, commerce, businessMod, notice, residence, companion, admin, bonus, storageMod, politics, records, trust, realValue, street, livingWorld, showcase, showcaseMod, agents];
 const KEY = /^(GET|POST|PUT|PATCH|DELETE) (\/api\/[A-Za-z0-9\-_/:.]+)$/;
 
 /**

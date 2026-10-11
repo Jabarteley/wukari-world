@@ -3,6 +3,7 @@ import { registeredCityIds } from '../src/game/cities/registry.ts';
 // No Node-only imports here (no node:*, ws or fs): the worker bundles this file as-is.
 import { hasAction, isDeparting, occupiesVenue } from '../src/life.ts';
 import { screenText } from './moderation/text.ts';
+import { agentMark } from './agents/policy.ts';
 import { createCampusWalk } from '../src/campus/unilag/walk.ts';
 import { ENTRANCE } from '../src/campus/unilag/layout.ts';
 import type { ActionRequest, CityId, IceServerConfig, PublicSession } from '../src/types/protocol.ts';
@@ -102,7 +103,9 @@ export function validateActionPayload(body: unknown, now: number, windowMs = ACT
   }
   return parseActionId(fields.actionId, now, windowMs);
 }
-export function publicSession(session: Pick<SessionRecord, 'publicId' | 'name'>): PublicSession { return { id: session.publicId, name: session.name }; }
+export function publicSession(session: Pick<SessionRecord, 'publicId' | 'name'> & Partial<Pick<SessionRecord, 'agent'>>): PublicSession {
+  return { id: session.publicId, name: session.name, ...agentMark(session.agent) };
+}
 /** `secure`: this host is being reached over https, so an Origin naming it must be https too (the same host over plain http is another origin). */
 export function isSameOrigin(origin: string | null | undefined, host: string | null | undefined, { requireOrigin = false, secure = false }: { requireOrigin?: boolean; secure?: boolean } = {}): boolean {
   if (!origin) return !requireOrigin;

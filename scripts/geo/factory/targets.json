@@ -1,92 +1,305 @@
 {
-  "geometryPreset": "standard",
   "expectedSourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "geometryPreset": "standard",
   "targets": [
     {
-      "id": "bujumbura",
-      "name": "Bujumbura",
-      "country": "bi",
+      "id": "ndjamena",
+      "name": "N'Djamena",
+      "country": "td",
       "facts": {
-        "id": "bujumbura",
-        "name": "Bujumbura",
+        "id": "ndjamena",
+        "name": "N'Djamena",
         "country": {
-          "idISOlower": "bi",
-          "name": "Burundi"
+          "idISOlower": "td",
+          "name": "Chad"
         },
         "state": {
-          "idunique": "bi-starter",
-          "name": "Bujumbura"
+          "idunique": "td-ndjamena",
+          "name": "N'Djamena"
         },
-        "timezone": "Africa/Bujumbura",
+        "timezone": "Africa/Ndjamena",
         "centre": {
-          "lon": 29.36,
-          "lat": -3.38
+          "lon": 15.0502758,
+          "lat": 12.1191543
         },
         "airport": {
-          "id": "bujumbura-airport",
-          "name": "Bujumbura Melchior Ndadaye International Airport",
-          "lon": 29.318501,
-          "lat": -3.32402,
-          "sourceUrl": "https://ourairports.com/airports/HBBA/"
+          "id": "ndjamena-airport",
+          "name": "N'Djamena International Airport",
+          "lon": 15.034,
+          "lat": 12.1337,
+          "sourceUrl": "https://ourairports.com/airports/FTTJ/"
         },
-        "sourceLabel": "Natural Earth, OpenStreetMap contributors via Geofabrik Burundi 2026-10-09, and OurAirports dataset",
-        "sourceUrl": "https://www.openstreetmap.org/copyright",
-        "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/27565022",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
         "bounds": [
-          29.24,
-          -3.48,
-          29.48,
-          -3.28
-        ],
-        "coverageNote": "Bujumbura: built-up ground traced from mapped land use, actual Lake Tanganyika and river polygons, roads and named places in the dated Burundi OpenStreetMap PBF. Airport coordinates are an OurAirports dataset point, not proof of operations or schedules. Visitor services and homes are fictional game content at real places.",
-        "names": {
-          "area": "Bujumbura",
-          "unit": "district",
-          "roadHub": "Bujumbura Bus Station (Siyoni)"
-        }
+          14.866392607896925,
+          11.93827341006602,
+          15.234158992103074,
+          12.300035189933979
+        ]
       },
       "metadataSources": {
         "centre": {
-          "record": "committed city projection origin",
-          "sourceUrl": "https://www.openstreetmap.org/copyright",
-          "verification": "primary-coordinate review pending"
+          "osmRef": "node/27565022",
+          "sourceUrl": "https://www.openstreetmap.org/node/27565022",
+          "sourceRecord": {
+            "ref": "node/27565022",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "انْجَمِينا;نجامينا;إنجامينا;ندجاملينا",
+              "alt_name:ar": "انْجَمِينا;نجامينا;إنجامينا;ندجاملينا",
+              "alt_name:eo": "Nĝameno;Nĵameno",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "is_capital": "country",
+              "name": "N'Djaména انجمينا",
+              "name:af": "N'Djamena",
+              "name:am": "ንጃመና",
+              "name:an": "N'Djamena",
+              "name:ar": "انجمينا",
+              "name:arc": "ܢܓܡܝܢܐ",
+              "name:az": "Ncamena",
+              "name:ba": "Нджамена",
+              "name:be": "Нджамена",
+              "name:be-tarask": "Нджамэна",
+              "name:bg": "Нджамена",
+              "name:bn": "এনজামেনা",
+              "name:bo": "ཇ་མི་ན།",
+              "name:br": "Ndjamena",
+              "name:bs": "N'Djamena",
+              "name:ca": "N'Djamena",
+              "name:ce": "Нджамена",
+              "name:ckb": "نجامێنا",
+              "name:cs": "N'Djamena",
+              "name:cy": "N'Djamena",
+              "name:da": "N'Djamena",
+              "name:de": "N’Djamena",
+              "name:el": "Ντζαμένα",
+              "name:en": "N'Djamena",
+              "name:eo": "Niĝameno",
+              "name:es": "Yamena",
+              "name:et": "N'Djamena",
+              "name:eu": "N'Djamena",
+              "name:fa": "انجامنا",
+              "name:fi": "N’Djamena",
+              "name:fr": "N'Djaména",
+              "name:frp": "N’Dj·amèna",
+              "name:fy": "N'Djamena",
+              "name:ga": "N'Djamena",
+              "name:gd": "N'Djamena",
+              "name:gl": "Xamena",
+              "name:gn": "Jaména",
+              "name:ha": "Ndjamena",
+              "name:he": "נג'מנה",
+              "name:hi": "अन जामेना",
+              "name:hif": "N'Djamena",
+              "name:hr": "N’Djamena",
+              "name:ht": "N'Djamèna",
+              "name:hu": "N’Djamena",
+              "name:hy": "Նջամենա",
+              "name:ia": "N'Djamena",
+              "name:id": "N'Djamena",
+              "name:ie": "N'Djamena",
+              "name:io": "N'Djamena",
+              "name:is": "N’Djamena",
+              "name:it": "N'Djamena",
+              "name:ja": "ンジャメナ",
+              "name:jv": "N'Djamena",
+              "name:ka": "ნჯამენა",
+              "name:kab": "Nǧamena",
+              "name:kg": "Ndjamena",
+              "name:ki": "N'Djamena",
+              "name:kk": "Нджамена",
+              "name:ko": "은자메나",
+              "name:ku": "N'Djamena",
+              "name:kw": "N'Djamena",
+              "name:ky": "Нжамена",
+              "name:la": "Ndjamena",
+              "name:lb": "N'Djamena",
+              "name:lij": "N'Djamena",
+              "name:lmo": "N'Djamena",
+              "name:ln": "N’Djamena",
+              "name:lt": "Ndžamena",
+              "name:lv": "Ndžamena",
+              "name:mg": "N'Djamena",
+              "name:mk": "Нџамена",
+              "name:ml": "ൻഡ്ജാമെന",
+              "name:mr": "इंजामिना",
+              "name:mrj": "Нджамена",
+              "name:ms": "N'Djamena",
+              "name:nah": "Yamena",
+              "name:nb": "N’Djamena",
+              "name:nl": "Ndjamena",
+              "name:nn": "N'Djamena",
+              "name:no": "N'Djamena",
+              "name:nov": "N'Djamena",
+              "name:nv": "Séíbąąhkʼeh",
+              "name:oc": "N'Djamena",
+              "name:os": "Нджаменæ",
+              "name:pa": "ਨਿਜਾਮੀਨਾ",
+              "name:pl": "Ndżamena",
+              "name:pms": "N'Djamena",
+              "name:pnb": "نجامينا",
+              "name:ps": "انجامنا",
+              "name:pt": "Jamena",
+              "name:qu": "Yamina",
+              "name:ro": "N'Djamena",
+              "name:roa-rup": "N'Djamena",
+              "name:ru": "Нджамена",
+              "name:sc": "N'Djamena",
+              "name:scn": "N'Djamena",
+              "name:sco": "N'Djamena",
+              "name:sd": "اينجامينا",
+              "name:sh": "N'Djamena",
+              "name:sk": "N’Djamena",
+              "name:sl": "N'Djamena",
+              "name:sn": "N'Djamena",
+              "name:so": "Nijamiina",
+              "name:sq": "Nxhamena",
+              "name:sr": "Нџамена",
+              "name:sv": "N’Djamena",
+              "name:sw": "N'Djamena",
+              "name:syc": "ܢܓܡܝܢܐ",
+              "name:ta": "நிஜாமீனா",
+              "name:tg": "Нҷамена",
+              "name:th": "เอ็นจาเมนา",
+              "name:tl": "NDjamena",
+              "name:tr": "Encemine",
+              "name:udm": "Нджамена",
+              "name:uk": "Нджамена",
+              "name:ur": "اینجامینا",
+              "name:uz": "Njamena",
+              "name:vec": "N'Djamena",
+              "name:vi": "N’Djamena",
+              "name:wal": "Anjjaamena",
+              "name:war": "N'Djamena",
+              "name:wo": "Njamena",
+              "name:yi": "נ'דזשאמענא",
+              "name:yo": "N'Djamena",
+              "name:zh": "恩賈梅納",
+              "old_name": "Fort-Lamy",
+              "place": "city",
+              "population": "1092066",
+              "population:date": "2012",
+              "wikidata": "Q3659",
+              "wikipedia": "en:N'Djamena"
+            },
+            "lon": 15.0502758,
+            "lat": 12.1191543
+          },
+          "pbfSha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5"
         },
         "airport": {
-          "record": "bujumbura-airport",
-          "sourceUrl": "https://ourairports.com/airports/HBBA/",
-          "verification": "primary-coordinate review pending"
+          "rowNumber": 28175,
+          "row": {
+            "id": "2998",
+            "ident": "FTTJ",
+            "type": "large_airport",
+            "name": "N'Djamena International Airport",
+            "latitude_deg": "12.1337",
+            "longitude_deg": "15.034",
+            "elevation_ft": "968",
+            "continent": "AF",
+            "iso_country": "TD",
+            "iso_region": "TD-ND",
+            "municipality": "N'Djamena",
+            "scheduled_service": "yes",
+            "icao_code": "FTTJ",
+            "iata_code": "NDJ",
+            "gps_code": "FTTJ",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/N'Djamena_International_Airport",
+            "keywords": "Ndjamena Hassan Djamous"
+          },
+          "rowSha256": "19ae77a9fd63e04fa7e74723bb952704f329cb999d8e9c62650a480ef865c2cf",
+          "csvSha256": "bee4e45e2f3b3acb463af0b2bf7bd2fa5abbb324cb9519766fcab0acb33ecaaf",
+          "snapshotDate": "2026-10-11",
+          "sourceUrl": "https://ourairports.com/airports/FTTJ/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TD",
+              "+1207+01503",
+              "Africa/Ndjamena"
+            ]
+          ],
+          "zoneTabSha256": "7cc78ea166261b3dedf951cdd721051460851e6fcd96c12b8e3194cf25677f21",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a"
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/chad-261009.osm.pbf",
+          "bytes": 135262610,
+          "sha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+          "headerTimestamp": "2026-10-09T20:21:04Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              11.93827341006602,
+              14.866392607896925,
+              12.300035189933979,
+              15.234158992103074
+            ],
+            "core": [
+              12.073934077516505,
+              15.00432859336466,
+              12.164374522483495,
+              15.09622300663534
+            ],
+            "outline": [
+              11.88827341006602,
+              14.816392607896924,
+              12.35003518993398,
+              15.284158992103075
+            ],
+            "wide": [
+              11.338273410066021,
+              14.266392607896925,
+              12.900035189933979,
+              15.834158992103074
+            ]
+          },
+          "airportMarginMetres": 18241.22974527108,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         }
       },
-      "geometryPreset": "standard",
-      "geographyClass": "lake",
-      "recordedWaterPolicy": {
-        "kind": "inland",
-        "wideWater": false
-      },
-      "extractKey": "bujumbura",
+      "extractKey": "ndjamena",
       "extractSha256": {
-        "places": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
-        "extras": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
-        "water": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
-        "landuse": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
-        "roads": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4"
+        "places": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788",
+        "extras": "ef2ce19040f826febd24a832e238e03f68cea231c4177c9672b2f40548ff4d56",
+        "water": "9d7f4e77eddf185764fcf938cb05965c185074c427aeae162d471ce16fb05ae1",
+        "landuse": "7e08d6716253b75993e3fb645c5206c7d29ccd0dfa3b9afac00708a7d93d969b",
+        "roads": "0621b3fd6c52d4b9bb1a1d544fc4a5170de94ad25b10d29250135c280ea05804"
       },
       "sourceJob": {
-        "city": "bujumbura",
-        "sourceRunId": 38151719739,
-        "sourceArtifact": "offline-city-layers-burundi-d888f91e86268d442093b8ab22a03193220b108f",
-        "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
-        "datasetSha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
-        "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+        "city": "ndjamena",
+        "sourceRunId": 38167355715,
+        "sourceArtifact": "city-bootstrap-ndjamena-6da92e8cfe1a0c9e4923c5f7c78f7128f6c809cf",
+        "sourceSha": "6da92e8cfe1a0c9e4923c5f7c78f7128f6c809cf",
+        "datasetSha256": "9f876208c74fda7d7107c29c46e612376047b74d40179ed0f2fee873041a3be5",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
         "extractSha256": {
-          "places": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
-          "extras": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
-          "water": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
-          "landuse": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
-          "roads": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4"
+          "places": "613a11353499f8e94c09dc9ce363fcff7e4298a6317ba30ad8a5da8c16c24788",
+          "extras": "ef2ce19040f826febd24a832e238e03f68cea231c4177c9672b2f40548ff4d56",
+          "water": "9d7f4e77eddf185764fcf938cb05965c185074c427aeae162d471ce16fb05ae1",
+          "landuse": "7e08d6716253b75993e3fb645c5206c7d29ccd0dfa3b9afac00708a7d93d969b",
+          "roads": "0621b3fd6c52d4b9bb1a1d544fc4a5170de94ad25b10d29250135c280ea05804"
         }
       }
     }
-  ],
-  "executionRevision": 7
+  ]
 }

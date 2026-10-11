@@ -40,7 +40,7 @@ async function host(t: TestContext) {
     if (reverseGearIssuance !== undefined) bindings['REVERSE_GEAR_ISSUANCE'] = reverseGearIssuance
     worker = new Miniflare({ ...convertV4MiniflareOptions({ name: 'joinallworld-driving-v2-offline', script, modules: true,
       compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } },
-      durableObjectsPersist: join(folder, 'storage'), bindings, unsafeInspectDurableObjects: true, serviceBindings: { ASSETS: () => new Response('asset') } }),
+      durableObjectsPersist: join(folder, 'storage'), bindings, unsafeInspectDurableObjects: true, assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } }),
       resourcePersistencePath: join(folder, 'storage'), handleStructuredLogs: () => {} })
     await worker.ready
   }

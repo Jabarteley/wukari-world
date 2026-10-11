@@ -57,6 +57,7 @@ test('Worker: a visitor who cannot pay the way home rides on credit, once, and o
   const options = {
     name: 'ride-credit', script: await readFile(bundle, 'utf8'), modules: true, compatibilityDate: '2026-10-01',
     durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, bindings: { ...layoutBindings(), BUILD_ID: 'local-ride-credit' },
+    assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
   }
   const worker = new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} })
   const sockets: TestWebSocket[] = [], responses: WorkerResponse[] = []

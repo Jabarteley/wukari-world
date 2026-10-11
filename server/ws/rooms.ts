@@ -526,7 +526,13 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     for (const city of ctx.cityIds) for (const ws of rooms.get(venueRoomKey(city, 'home', publicId)) ?? []) if (ws.session.id !== publicId) list.push(ws);
     return list;
   }
-  const revalidate = (publicId: unknown): Promise<void> => (typeof publicId === 'string' ? verify(dependants(publicId)) : Promise.resolve());
+  const revalidate = (publicId: unknown): Promise<void> => {
+    if (typeof publicId !== 'string') return Promise.resolve();
+    const sockets = dependants(publicId);
+    // The mark is synchronous: frames arriving while the authoritative read waits cannot use old membership.
+    for (const ws of sockets) if (ws.room) ws.stale = true;
+    return verify(sockets);
+  };
 
   // A life was settled or acted on (inside somebody's transaction). If what it now says no longer
   // allows a room, mark the sockets and re-check them against the store right after that

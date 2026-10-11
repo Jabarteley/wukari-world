@@ -9,6 +9,18 @@
       "browser": "./src/game/cities/*/map.ts",
       "node": "./src/game/cities/*/map.ts",
       "default": "./src/game/cities/map-unavailable.ts"
+    },
+    "#city-loaders": {
+      "types": "./src/game/cities/loaders.generated.ts",
+      "browser": "./src/game/cities/loaders.generated.ts",
+      "node": "./src/game/cities/loaders.generated.ts",
+      "default": "./src/game/cities/host-loaders.ts"
+    },
+    "#word-dictionary": {
+      "types": "./src/words/dictionary-source.ts",
+      "browser": "./src/words/dictionary-source.ts",
+      "node": "./src/words/dictionary-node.ts",
+      "default": "./src/words/dictionary-asset.ts"
     }
   },
   "scripts": {
@@ -18,14 +30,14 @@
     "prestart:open": "npm run -s preflight",
     "prebuild": "npm run -s preflight && npm run -s cities:catalogue -- --check",
     "pretypecheck": "npm run -s preflight",
-    "pretest": "npm run -s preflight",
+    "pretest": "npm run -s preflight && npm run -s cities:assets && npm run -s words:assets",
     "prestart": "npm run -s preflight",
     "dev": "node --experimental-strip-types scripts/dev.ts",
     "dev:open": "node --experimental-strip-types scripts/dev.ts --open",
     "start:open": "node --experimental-strip-types scripts/open-dev.ts start",
     "dev:fund": "node --experimental-strip-types scripts/open-dev.ts fund",
     "dev:seed": "node --experimental-strip-types scripts/open-dev.ts seed",
-    "build": "vite build",
+    "build": "vite build && npm run cities:assets && npm run words:assets",
     "check": "npm run typecheck && npm run build && npm test",
     "test:smoke": "node --experimental-strip-types --test --test-concurrency=1 src/app/entry.test.ts server/release.test.ts src/types/protocol.test.ts",
     "check:fast": "npm run typecheck && npm run build && npm run size:download && npm run test:smoke",
@@ -33,7 +45,7 @@
     "geo:boundaries": "node --experimental-strip-types scripts/geo/build-boundaries.ts",
     "body:build": "node --experimental-strip-types scripts/body/build-body.ts",
     "typecheck": "node --experimental-strip-types scripts/typecheck.ts --serial",
-    "test": "node --experimental-strip-types --test --test-concurrency=1 \"src/**/*.test.js\" \"src/**/*.test.ts\" \"server/**/*.test.js\" \"server/**/*.test.ts\" \"scripts/city/*.test.ts\" \"scripts/agent-slot.test.ts\" \"scripts/typecheck.test.ts\" \"scripts/download-budget.test.ts\"",
+    "test": "node --experimental-strip-types --test --test-concurrency=1 \"src/**/*.test.js\" \"src/**/*.test.ts\" \"server/**/*.test.js\" \"server/**/*.test.ts\" \"scripts/city/*.test.ts\" \"scripts/agent-slot.test.ts\" \"scripts/typecheck.test.ts\" \"scripts/download-budget.test.ts\" \"scripts/build-dictionary-asset.test.ts\"",
     "slot": "node --experimental-strip-types scripts/agent-slot.ts",
     "check:slot": "node --experimental-strip-types scripts/agent-slot.ts heavy -- npm run check",
     "test:slot": "node --experimental-strip-types scripts/agent-slot.ts heavy -- npm test",
@@ -58,7 +70,9 @@
     "smoke": "node --experimental-strip-types scripts/smoke.ts",
     "sentry:sourcemaps": "node --experimental-strip-types scripts/sentry-sourcemaps.ts",
     "cities:build": "node --experimental-strip-types scripts/city/build-city.ts",
-    "cities:catalogue": "node --experimental-strip-types scripts/city/build-catalogue.ts"
+    "cities:catalogue": "node --experimental-strip-types scripts/city/build-catalogue.ts",
+    "cities:assets": "node --experimental-strip-types scripts/city/build-content-assets.ts --out dist/assets/cities --typescript src/game/cities/content-assets.generated.ts",
+    "words:assets": "node --experimental-strip-types scripts/build-dictionary-asset.ts --out dist/assets/words --typescript src/words/dictionary-asset.generated.ts"
   },
   "dependencies": {
     "@sentry/browser": "^11.4.0",

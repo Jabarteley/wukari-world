@@ -35,7 +35,7 @@ async function host(t: TestContext) {
   async function start(bindings: Record<string, string> = {}): Promise<void> {
     if (mf) await mf.dispose();
     const options = { name: 'joinallworld-driving', script, modules: true, compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(folder, 'storage'),
-      bindings: { BUILD_ID: 'driving-fixture', MODERATOR_TOKEN: TOKEN, FOUNDER_EMAIL_SHA256: '', ...bindings }, serviceBindings: { ASSETS: () => new Response('asset') } };
+      bindings: { BUILD_ID: 'driving-fixture', MODERATOR_TOKEN: TOKEN, FOUNDER_EMAIL_SHA256: '', ...bindings }, assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } };
     mf = new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), handleStructuredLogs: () => {} });
     await mf.ready;
   }

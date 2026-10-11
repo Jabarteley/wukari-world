@@ -1,5 +1,5 @@
 import { GENERATED_CITY_CATALOGUE_ROWS } from './catalogue.generated.ts'
-import { GENERATED_CITY_LOADERS } from './loaders.generated.ts'
+import { GENERATED_CITY_LOADERS } from '#city-loaders'
 import type { CityModule } from '../../types/content.ts'
 
 /** The city facts needed before any city's rules arrive. Keep this list small: it is paid once for every city. */

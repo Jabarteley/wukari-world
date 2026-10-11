@@ -38,6 +38,7 @@ async function fixture(t: TestContext, bindings: Record<string, string>) {
       const target = new URL(request.url);
       return fetch(`${gateway.base}${target.pathname}`, { method: request.method, headers: request.headers, body: request.method === 'GET' ? undefined : await request.text() });
     },
+    assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
   };
   const mf = new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), handleStructuredLogs: () => {} });
   t.after(async () => { await mf.dispose(); await gateway.stop(); await rm(folder, { recursive: true, force: true }); });

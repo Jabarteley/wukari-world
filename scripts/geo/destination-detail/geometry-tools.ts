@@ -493,9 +493,15 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
     }
     hasLand.push(land);
   }
-  // Barrier cells cannot establish which side is land; only interior anchors classify a region.
+  // Closed coastlines are complete island outlines. Keep their interiors as source-backed land
+  // even when no selected venue falls on the island; the outer ocean ring then remains water.
+  const closedShore = shore.filter(way => way.length > 3 && way[0]![0] === way.at(-1)![0] && way[0]![1] === way.at(-1)![1]);
+  const closedLand = new Uint8Array(cols * rows);
+  fillRings(closedShore, cols, rows, wide, cell, closedLand);
+  // Barrier cells cannot establish which side is land; only interior anchors and closed source
+  // islands classify a region. Open water-facing cells remain water across the coastline barrier.
   const water = new Uint8Array(cols * rows);
-  for (let at = 0; at < water.length; at++) if (!barrier[at] && !hasLand[region[at]!]) water[at] = 1;
+  for (let at = 0; at < water.length; at++) if (!closedLand[at] && !barrier[at] && !hasLand[region[at]!]) water[at] = 1;
   // A shore cell belongs to the water when water lies beside it.
   for (let at = 0; at < water.length; at++) if (barrier[at]) {
     const c = at % cols;

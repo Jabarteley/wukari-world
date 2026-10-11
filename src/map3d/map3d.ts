@@ -213,7 +213,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   const readZoom = (): void => { const value = root ? parseFloat(getComputedStyle(root).getPropertyValue('--ui-zoom')) : 1; uz = Number.isFinite(value) && value > 0 && globalThis.CSS?.supports?.('zoom', '2') ? value : 1; };
   /** Where a node goes: whole screen pixels, expressed in the node's own zoomed pixels. */
   const here = (value: number): string => `${Math.round(value) / uz}px`;
-  let size = { width: 0, height: 0 }, insets: Insets = { left: 0, top: 0, right: 0, bottom: 0 }, opened = false, userMoved = false, time: TimeOfDay | null = null, labelKey = '', chipKey = '';
+  let size = { width: 0, height: 0 }, insets: Insets = { left: 0, top: 0, right: 0, bottom: 0 }, opened = false, userMoved = false, time: TimeOfDay | null = null, labelKey = '', chipKey = '', labelsDirty = true;
   let rafId = 0, renderCount = 0, frameCount = 0, lastTick = 0, seconds = 0, frameMs: number[] = [], gaps: number[] = [];
   let trip: Trip | null = null, route: Route | null = null, returning: { p: number; rate: number } | null = null, settling = false, pendingArrive: (() => void) | null = null, dueAt = -Infinity, tripCamera = true, pose: (TripPose & { progress?: number }) | null = null;
   let stood: { x: number; y: number; z: number } | null = null, nearDistance = 0;             // stood: where the piece stands when it is not travelling; nearDistance: how far out the close view is
@@ -469,7 +469,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const at = state?.t ?? 0, going = trip && state?.location !== trip.to ? trip.to : null, home = city.places.home!;
     const next = JSON.stringify([densityFor(size.width).venueChars, state?.location, going, home.house, filter, selected, hovered, layers.gov, Object.values(venueTable).map((venue) => openingInfo(venue.hours, at).status)]);
     if (next === labelKey) return;
-    labelKey = next;
+    labelKey = next; labelsDirty = true;
     for (const [id, label] of labels) {
       const place = city.places[id]!, venue = venueTable[id], soon = place.kind === 'soon';
       const opening = venue ? openingInfo(venue.hours, at) : null, open = Boolean(opening?.open), here = state?.location === id;
@@ -483,8 +483,14 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       node.title = `${nameOf(place)}${status ? ` · ${status}` : ''}`;
       if (here) node.setAttribute('aria-current', 'location'); else node.removeAttribute('aria-current');
       label.priority = (notable.has(id) ? 25 : 0) + (here ? 100 : 0) + (selected === id ? 90 : 0) + (going === id ? 80 : 0) + (hovered === id ? 70 : 0) + (place.kind === 'home' ? 40 : 0) + (soon ? 5 : open ? 20 : 10) - (dimmed ? 30 : 0);
-      label.width = (node.offsetWidth || 90) * uz; label.height = (node.offsetHeight || 30) * uz;
     }
+  }
+  function measureLabels() {
+    if (!labelsDirty) return;
+    for (const { node } of labels.values()) { node.hidden = false; node.classList.remove('is-compact'); }
+    let complete = true;
+    for (const label of labels.values()) { const width = label.node.offsetWidth, height = label.node.offsetHeight; if (width && height) { label.width = width * uz; label.height = height * uz; } else complete = false; }
+    labelsDirty = !complete;
   }
   function syncChips() {
     if (!labelLayer) return;
@@ -526,7 +532,9 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   function placeLabels() {
     if (!labelLayer) return;
     // Level of detail: a whole-state view names the local governments, and only the places that matter to the player (here, picked, on the way).
-    const wholeView = rig.view.distance > wholeFrom;
+    const wholeView = rig.view.distance > wholeFrom, far = rig.view.distance > 230;
+    if (root!.classList.contains('is-far') !== far) { root!.classList.toggle('is-far', far); labelsDirty = true; }
+    measureLabels();
     const entries: { label: LabelEntry; at: ReturnType<typeof project>; visible: boolean }[] = [];
     for (const [id, label] of labels) {
       const place = city.places[id]!, at = project(place.x, place.top + 0.5, place.z);
@@ -573,8 +581,6 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       if (you.hidden === travelling) you.hidden = !travelling;
       if (travelling) you.style.transform = `translate(${here(head!.x)},${here(head!.y)}) translate(-50%,-100%)`;
     }
-    const far = rig.view.distance > 230;
-    if (root!.classList.contains('is-far') !== far) root!.classList.toggle('is-far', far);
     // Local-government name plates stand on the ground at their plate point; near the houses they step back.
     const drawn: ScreenBox[] = [];
     for (const plate of [...plates.values()].sort((p, q) => (q.span.maxX - q.span.minX) - (p.span.maxX - p.span.minX))) {
@@ -619,7 +625,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const north = controls.north;
     if (north) {
       const skewed = rig.skewed(), degrees = Math.round((rig.view.yaw * 180) / Math.PI);
-      if (north.hidden === skewed) { north.hidden = !skewed; readControlBox(); }
+      if (north.hidden === skewed) { north.hidden = !skewed; readControlBox(); labelsDirty = true; }
       if (skewed && northDegrees !== degrees) { northDegrees = degrees; (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotate(${degrees}deg)`); }
     }
     for (const { node, chip } of chips.values()) {
@@ -668,8 +674,9 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     if (container.hidden || !rect.width || !rect.height) { stop(); return false; }
     const next = measureInsets();
     const changed = rect.width !== size.width || rect.height !== size.height || (['left', 'top', 'right', 'bottom'] as const).some((side) => Math.round(next[side]) !== Math.round(insets[side]));
+    const oldZoom = uz; readZoom(); if (uz !== oldZoom) labelsDirty = true;
     if (changed) {
-      size = { width: rect.width, height: rect.height }; insets = next; readZoom();
+      size = { width: rect.width, height: rect.height }; insets = next; labelsDirty = true;
       renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, size.width <= 720 ? 1.75 : 2));
       renderer.setSize(size.width, size.height, false);
       rig.setViewport(size.width, size.height, insets);
@@ -677,8 +684,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       container.style?.setProperty('--map-dock', `${Math.round(insets.bottom)}px`);
       container.style?.setProperty('--map-left', `${Math.round(insets.left)}px`);
       if (root) { root.style.setProperty('--m3-dock', `${Math.round(insets.bottom)}px`); root.style.setProperty('--m3-left', `${Math.round(insets.left)}px`); root.style.setProperty('--m3-top', `${Math.round(insets.top)}px`); }
-      readControlBox(rect);
     }
+    readControlBox(rect);
     if (!opened) { openView(); if (trip && route && !reducedMotion) rig.jump(rig.framing(route.points.filter((_, i) => i % 4 === 0 || i === route!.points.length - 1), { pad: 1.5, min: 70 })); }
     else if (changed && !userMoved && size.width > 720 && !trip) rig.jump(openedWhole ? rig.whole() : rig.core());
     // The panels change as a trip starts (the list gives way to the trip bar): the route is framed again in the room that is left.

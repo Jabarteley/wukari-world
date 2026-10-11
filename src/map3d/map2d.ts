@@ -150,7 +150,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
   const { box } = model, fit = pack.bounds.fit || { minX: box.x, maxX: box.x + box.width, minZ: box.z, maxZ: box.z + box.height };
   let state: Map2DState | null = null, layer: 'city' | 'world' = 'city', filter = 'all', selected: string | null = null, friends = new Set<string>(), destroyed = false;
   let layers: MapLayers = { billboards: false, sea: false, neighbours: false, gov: false, moving: false, lgas: true, homes: true }, data: { ads: AdsData | null, gov: GovData | null } = { ads: null, gov: null };
-  let scale = 0, ox = 0, oy = 0, opened = false, userMoved = false, size = { width: 0, height: 0 }, insets = { left: 8, top: 60, right: 8, bottom: 80 }, labelKey = '', chipKey = '', drawn: { lga: string, estate: number }[] = [], controlBox: ScreenBox | null = null;
+  let scale = 0, ox = 0, oy = 0, opened = false, userMoved = false, size = { width: 0, height: 0 }, insets = { left: 8, top: 60, right: 8, bottom: 80 }, labelKey = '', chipKey = '', labelsDirty = true, drawn: { lga: string, estate: number }[] = [], controlBox: ScreenBox | null = null;
   let homeAt: Spot | null = null;
 
   const root = document.createElement('div');
@@ -206,7 +206,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     homeAt = homeSpot();
     const next = JSON.stringify([densityFor(size.width).venueChars, state?.location, going, homeAt.x, homeAt.z, filter, selected, layers.gov, Object.values(venueTable).map((venue) => openingInfo(venue.hours, at).status)]);
     if (next === labelKey) return;
-    labelKey = next;
+    labelKey = next; labelsDirty = true;
     for (const [id, label] of labels) {
       const venue = venueTable[id], soon = label.place.kind === 'soon';
       const opening = venue ? openingInfo(venue.hours, at) : null, open = Boolean(opening?.open), here = state?.location === id;
@@ -219,8 +219,14 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
       label.node.title = `${nameOf(id)}${status ? ` · ${status}` : ''}`;
       if (here) label.node.setAttribute('aria-current', 'location'); else label.node.removeAttribute('aria-current');
       label.priority = (notable.has(id) ? 25 : 0) + (here ? 100 : 0) + (selected === id ? 90 : 0) + (going === id ? 80 : 0) + (id === 'home' ? 40 : 0) + (soon ? 5 : open ? 20 : 10) - (dimmed ? 30 : 0);
-      label.width = label.node.offsetWidth || 90; label.height = label.node.offsetHeight || 30;
     }
+  }
+  function measureLabels() {
+    if (!labelsDirty) return;
+    for (const { node } of labels.values()) { node.hidden = false; node.classList.remove('is-compact'); }
+    let complete = true;
+    for (const label of labels.values()) { const width = label.node.offsetWidth, height = label.node.offsetHeight; if (width && height) { label.width = width; label.height = height; } else complete = false; }
+    labelsDirty = !complete;
   }
   function updatePlates() {
     const summary = world?.summary() ?? null, own = state?.estate?.lga ?? null;
@@ -329,7 +335,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     container.style?.setProperty('--map-dock', `${Math.round(bottom)}px`);
     container.style?.setProperty('--map-left', `${Math.round(left)}px`);
     root.style.setProperty('--m3-dock', `${Math.round(bottom)}px`); root.style.setProperty('--m3-left', `${Math.round(left)}px`); root.style.setProperty('--m3-top', `${Math.round(top)}px`);
-    const controls = controlNode.getBoundingClientRect(); controlBox = { l: controls.left - page.left - 5, r: controls.right - page.left + 5, t: controls.top - page.top - 5, b: controls.bottom - page.top + 5 };
+    const controls = controlNode.getBoundingClientRect(); controlBox = { l: controls.left - page.left - 5, r: controls.right - page.left + 5, t: controls.top - page.top - 5, b: controls.bottom - page.top + 5 }; labelsDirty = true;
     return page.width > 0 && page.height > 0 && !container.hidden;
   }
   const free = () => ({ width: Math.max(80, size.width - insets.left - insets.right), height: Math.max(80, size.height - insets.top - insets.bottom) });
@@ -362,7 +368,8 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     worldNode.style.width = `${box.width * scale}px`; worldNode.style.height = `${box.height * scale}px`;
     worldNode.style.transform = `translate(${Math.round(ox)}px,${Math.round(oy)}px)`;
     const far = scale < 3.2, wholeView = scale < fitScale() * WHOLE_SCALE;
-    root.classList.toggle('is-far', far); root.classList.toggle('is-whole', wholeView); root.classList.toggle('is-city', Boolean(pack.surround));
+    if (root.classList.contains('is-far') !== far) { root.classList.toggle('is-far', far); labelsDirty = true; }
+    root.classList.toggle('is-whole', wholeView); root.classList.toggle('is-city', Boolean(pack.surround));
     // A city drawn city-wide keeps its neighbourhood names at every zoom, at least 12 screen pixels tall (a name is user units; the art is scaled by `scale`).
     if (pack.surround) for (const text of namesNodes) text.node.style.fontSize = `${Math.max(text.size, 12 / scale)}px`;
     lgaArt.style.display = layers.lgas ? '' : 'none';
@@ -370,6 +377,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     drawHouses();
   }
   function placeLabels(far: boolean, wholeView: boolean) {
+    measureLabels();
     const entries = [...labels.values()].map((label) => { const spot = spotOf(label.place.id)!; const at = project(spot.x, spot.z - (label.place.id === 'home' && homeAt!.own ? 0 : 2.2)); return { label, at, visible: at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && model.extent === 'state' && label.priority < 70) }; });
     entries.sort((p, q) => q.label.priority - p.label.priority || q.at.y - p.at.y);
     const taken: ScreenBox[] = controlBox ? [controlBox] : [], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 }, hits = (rect: ScreenBox) => taken.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t);

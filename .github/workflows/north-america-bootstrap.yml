@@ -51,10 +51,34 @@ jobs:
           npm ci --prefix geometry-source --ignore-scripts --no-audit --no-fund
       - name: Derive source metadata and five layers with shared runner
         run: |
-          python source-tooling/scripts/geo/factory/bootstrap/run.py \
+          timeout --signal=TERM --kill-after=15s 25m python source-tooling/scripts/geo/factory/bootstrap/run.py \
             --table scripts/geo/north-america-source/mexico-city.json \
             --geometry-source "$GITHUB_WORKSPACE/geometry-source" \
             --outdir "$BOOTSTRAP_OUT"
+      - name: Preserve partial source diagnostics if the runner is interrupted
+        if: always()
+        run: |
+          python - <<'PYCODE'
+          import json, os, shutil
+          from pathlib import Path
+          out = Path(os.environ['BOOTSTRAP_OUT'])
+          publish = out / 'publish'
+          if not (publish / 'receipts/result.json').exists():
+              publish.mkdir(parents=True, exist_ok=True)
+              for name in ('metadata', 'receipts', 'logs'):
+                  source = out / name
+                  if source.exists():
+                      shutil.copytree(source, publish / name, dirs_exist_ok=True)
+              receipts = publish / 'receipts'
+              receipts.mkdir(exist_ok=True)
+              result = {'status': 'HOLD', 'reason': 'Source runner did not finish; partial diagnostics only',
+                        'scope': 'No completed source candidate or layer acceptance',
+                        'rawPbfPublished': False}
+              (receipts / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
+              inventory = [{'path': str(path.relative_to(out)), 'bytes': path.stat().st_size}
+                           for path in out.rglob('*') if path.is_file() and publish not in path.parents]
+              (receipts / 'partial-file-inventory.json').write_text(json.dumps(inventory, indent=2) + '\n')
+          PYCODE
       - name: Assert known source hashes and record effective tooling provenance
         if: always()
         run: |

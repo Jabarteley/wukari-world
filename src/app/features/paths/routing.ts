@@ -9,6 +9,7 @@
 //   /<city>/<venue>    in that city, a venue that exists: the map on that venue. Otherwise as /<city>
 //   /<state>, /nigeria, /world   the atlas, at that level
 //   /messages, /friends, /invite, /business, /jobs, /help, /sound, /signup, /login   that panel
+import { ENTRY_VARIANTS } from '../../../entry-variants.ts'
 import { PHONE_TABLE, pathOf } from '../../../paths.ts'
 import type { PanelWord, PathIntent } from '../../../paths.ts'
 import type { Views } from './address.ts'
@@ -32,7 +33,10 @@ export interface Env {
   openAccount(which: 'signup' | 'login'): Promise<void>
 }
 
-const PANEL_OF: Readonly<Record<Exclude<PanelWord, 'signup' | 'login'>, string>> = { messages: 'messages', friends: 'people', invite: 'invite', business: 'business', jobs: 'jobs', help: 'help', sound: 'settings', politics: 'politics', records: 'politics' }
+const PANEL_OF: Readonly<Record<Exclude<PanelWord, 'signup' | 'login'>, string>> = { messages: 'messages', friends: 'people', invite: 'invite', business: 'business', jobs: 'jobs', help: 'help', sound: 'settings', politics: 'politics', records: 'politics', shops: 'showcase', services: 'showcase' }
+
+/** The kind of shop My shop starts on for /shops and /services (the rows of src/entry-variants.ts). */
+const setupCategory = (panel: 'shops' | 'services'): string | undefined => ENTRY_VARIANTS.find((variant) => variant.id === panel)?.category
 
 export async function arrive(env: Env, found: WaitingIntent | null): Promise<void> {
   if (!found) return
@@ -44,7 +48,7 @@ export async function arrive(env: Env, found: WaitingIntent | null): Promise<voi
   const map = (to: string, run: () => void): void => { views.hold(to, () => env.mapOpen(), 'replace'); run() }
   switch (intent.kind) {
     case 'panel':
-      if (intent.panel === 'signup' || intent.panel === 'login') await env.openAccount(intent.panel); else env.open(PANEL_OF[intent.panel], intent.panel === 'records' ? { tab: 'records' } : undefined)
+      if (intent.panel === 'signup' || intent.panel === 'login') await env.openAccount(intent.panel); else env.open(PANEL_OF[intent.panel], intent.panel === 'records' ? { tab: 'records' } : intent.panel === 'shops' || intent.panel === 'services' ? { setup: setupCategory(intent.panel) } : undefined)
       return
     case 'games': {
       const table = intent.game && intent.game !== 'oro' ? PHONE_TABLE[intent.game] : null

@@ -4,6 +4,7 @@
 // "Log in" are the existing sheets; "Make my character first" opens the creator, unchanged. The backdrop is a pre-rendered picture
 // of the game's own scenes, asked for after the first paint (nothing 3D is loaded here); the live count is the public
 // GET /api/world/pulse/online. Returning players never reach this: the quick-start gate only opens for a device with no life.
+import '../../../ui/panels/fullscreen.css'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { CITY_CATALOGUE } from '../../../game/cities/catalogue.ts'
 import { loadCityContent } from '../../../game/cities/registry.ts'
@@ -14,11 +15,15 @@ import BonusLine from '../bonus/BonusLine.vue'
 import { invitedWords, inviterName } from '../growth/inviterLookup.ts'
 import { useAccountEntry } from './accountEntry.ts'
 import AgentSheet from './AgentSheet.vue'
-import { ENTRY_LEAD, ENTRY_TILES, SOURCE_URL, entryPitch, liveLine, worldFigures } from './entryModel.ts'
+import { ENTRY_VARIANTS, variantOf, withFigures } from '../../../entry-variants.ts'
+import type { EntryAction } from '../../../entry-variants.ts'
+import { SETUP_NEEDS, SETUP_STEPS, SOURCE_URL, liveLine, worldFigures } from './entryModel.ts'
 import { invitedNow, playFromEntry } from './entryPlay.ts'
+import { cleanAddress, store } from '../../../quick-start/entry.ts'
 import { firstLanding, pendingRef, track } from './startBoundary.ts'
 import type { CityFind } from './findCity.ts'
 
+const props = defineProps<{ path?: string }>()
 const emit = defineEmits<{ creator: [] }>()
 const { game, shell } = useApp()
 const view = game.view
@@ -26,7 +31,11 @@ const account = useAccountEntry('entry')
 const figures = worldFigures(CITY_CATALOGUE)
 const online = ref<number | null>(null)
 const line = computed(() => liveLine(online.value, figures))
-const pitch = entryPitch(figures.cities)
+const variant = variantOf(props.path ?? globalThis.location?.pathname ?? '/') ?? ENTRY_VARIANTS[0]!
+const isHome = variant.id === 'home'
+const headline = withFigures(variant.headline, figures)
+const pitch = withFigures(variant.pitch, figures)
+const setup = variant.primary.kind === 'setup'
 const invited = invitedNow()
 const inviter = ref<string | null>(null)
 const invitedNote = computed(() => invitedWords(inviter.value))
@@ -38,10 +47,22 @@ const found = ref<CityFind | null>(null)
 const root = ref<HTMLElement | null>(null)
 let poll: ReturnType<typeof setInterval> | null = null
 
-function play(city: string | null = null): void {
+/** What the address asked for (My shop, the Games app, the map) is kept for the life that is about to exist; the page's other buttons leave it. */
+function armPaths(): void { if (!isHome) void import('../paths/arrive.ts').then((module) => { module.startPaths() }, () => undefined) }
+function play(city: string | null = null, withAddress = true): void {
   if (sending.value) return
+  if (withAddress) armPaths(); else if (!isHome) cleanAddress()
   sending.value = playFromEntry({ shell, viewName: view.value.name }, city)
 }
+function act(action: EntryAction): void {
+  if (action.kind === 'play') play(null, action === variant.primary)
+  else if (action.kind === 'setup') play()
+  else if (action.kind === 'browse') { store.write(store.KEYS.go, { go: 'shop', at: Date.now(), shop: null }); play(null, false) }
+  else if (action.kind === 'agent') openAgent()
+  else void find()
+}
+function signUp(): void { armPaths(); account.openSignUp() }
+function logIn(): void { armPaths(); account.openSignIn() }
 async function startIn(city: string): Promise<void> {
   try { await loadCityContent(city); (await import('../paths/intent.ts')).markLanding() } catch { play(null); return }
   play(city)
@@ -55,8 +76,16 @@ function warmCreator(): void {
   void import('./CreatorApp.vue').catch(() => undefined)
   void import('./lookPreview.ts').then((module) => module.warmLookPreview()).catch(() => undefined)
 }
-function openCreator(): void { track('entry_creator'); emit('creator') }
-function openAgent(): void { track('entry_agent'); agentOpen.value = true }
+const opening = ref(false)
+/** The creator's code arrives first, so the page is replaced at once and never by a blank; the button says so meanwhile. */
+async function openCreator(): Promise<void> {
+  if (opening.value) return
+  opening.value = true
+  armPaths()
+  try { await import('./CreatorApp.vue') } catch { /* the creator's own loader asks again */ }
+  emit('creator')
+}
+function openAgent(): void { agentOpen.value = true }
 
 async function loadOnline(): Promise<void> {
   if (document.visibilityState === 'hidden') return
@@ -81,6 +110,7 @@ onMounted(() => {
   void loadOnline()
   poll = setInterval(() => { void loadOnline() }, 30000)
   requestAnimationFrame(() => { setTimeout(loadArt, 0) })
+  if (variant.id === 'agents') agentOpen.value = true
   root.value?.querySelector<HTMLElement>('[data-entry-title]')?.focus({ preventScroll: true })
 })
 onBeforeUnmount(() => { if (poll !== null) clearInterval(poll) })
@@ -89,30 +119,39 @@ onBeforeUnmount(() => { if (poll !== null) clearInterval(poll) })
 <template>
   <div ref="root" class="en-root" data-entry>
     <div class="en-backdrop" aria-hidden="true"><div class="en-art" :class="{ 'is-on': art }" :style="art ? { backgroundImage: `url(${art})` } : undefined" /></div>
-    <main class="en-card" aria-labelledby="en-title" :inert="agentOpen">
+    <main class="en-card" aria-labelledby="en-title" :inert="agentOpen" :data-variant="variant.id">
+      <img v-if="variant.image" class="en-shot" :src="variant.image" width="640" height="280" loading="lazy" decoding="async" :alt="variant.title" data-entry-shot>
       <p class="en-brand"><i aria-hidden="true"><GameIcon name="globe" :size="22" /></i><b>Allworld</b></p>
       <p class="en-live" role="status" data-entry-live><i class="en-dot" :class="{ 'is-live': online !== null }" aria-hidden="true" /><span>{{ line }}</span></p>
-      <h1 id="en-title" tabindex="-1" data-entry-title>{{ ENTRY_LEAD }}</h1>
+      <h1 id="en-title" tabindex="-1" data-entry-title>{{ headline }}</h1>
       <p class="en-pitch">{{ pitch }}</p>
+      <ol v-if="setup" class="en-steps" aria-label="How it works" data-entry-steps><li v-for="step in SETUP_STEPS" :key="step">{{ step }}</li></ol>
       <p v-if="invited" class="en-invite" role="status" data-entry-invite><strong>{{ invitedNote.title }}</strong> {{ inviter ? `Tap Play now and you land where ${inviter} is.` : 'Tap Play now and you land where they are.' }}</p>
 
       <div class="en-actions">
-        <button type="button" class="en-btn is-primary" data-qs="play" data-key="play-now" data-entry-play :disabled="sending" @click="play()">{{ sending ? 'Starting…' : 'Play now' }}</button>
+        <button type="button" class="en-btn is-primary" data-qs="play" data-key="play-now" data-entry-play :disabled="sending" @click="act(variant.primary)">{{ sending ? 'Starting…' : variant.primary.label }}</button>
+        <div v-if="variant.secondary.some((item) => item.kind !== 'find')" class="en-pair">
+          <button v-for="action in variant.secondary.filter((item) => item.kind !== 'find')" :key="action.label" type="button" class="en-btn" :data-entry-secondary="action.kind" :disabled="sending && action.kind !== 'agent'" @click="act(action)">{{ action.label }}</button>
+        </div>
         <div v-if="account.available && !account.signedIn" class="en-pair">
-          <button type="button" class="en-btn" data-key="sign-up" data-entry-signup @click="account.openSignUp()">Sign up free</button>
-          <button type="button" class="en-btn" data-key="sign-in" data-entry-login @click="account.openSignIn()">Log in</button>
+          <button type="button" class="en-btn" data-key="sign-up" data-entry-signup @click="signUp">Sign up free</button>
+          <button type="button" class="en-btn" data-key="sign-in" data-entry-login @click="logIn">Log in</button>
         </div>
       </div>
+      <details v-if="setup" class="en-needs" data-entry-needs>
+        <summary>What publishing needs</summary>
+        <ul><li v-for="need in SETUP_NEEDS" :key="need">{{ need }}</li></ul>
+      </details>
       <BonusLine v-if="account.available && !account.signedIn" />
       <p class="en-fine">No password, no e-mail to start.
-        <button type="button" class="en-link" data-key="make-character" data-entry-creator @pointerenter="warmCreator" @focus="warmCreator" @touchstart.passive="warmCreator" @click="openCreator">Make my character first</button>
+        <button type="button" class="en-link" data-key="make-character" data-entry-creator @pointerenter="warmCreator" @focus="warmCreator" @touchstart.passive="warmCreator" @click="openCreator">{{ opening ? 'Opening…' : 'Make my character first' }}</button>
       </p>
 
       <ul class="en-tiles" aria-label="What you can do">
-        <li v-for="tile in ENTRY_TILES" :key="tile.id"><i aria-hidden="true"><GameIcon :name="tile.icon" :size="20" /></i><span>{{ tile.label }}</span></li>
+        <li v-for="tile in variant.tiles" :key="tile.label"><i aria-hidden="true"><GameIcon :name="tile.icon" :size="20" /></i><span>{{ tile.label }}</span></li>
       </ul>
 
-      <div class="en-find">
+      <div v-if="isHome || variant.secondary.some((item) => item.kind === 'find')" class="en-find">
         <p v-if="found" class="en-found" role="status" data-entry-found>{{ found.line }}</p>
         <button v-if="found && found.kind !== 'none'" type="button" class="en-btn is-small" data-key="found-start" :disabled="sending" @click="startIn(found.city)">Start in {{ found.name }}</button>
         <button v-else type="button" class="en-link" data-key="find-city" :disabled="finding" @click="find">{{ finding ? 'Finding…' : 'Find my city' }}</button>
@@ -173,6 +212,16 @@ h1:focus { outline: none; }
 .en-quiet { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: 12px; padding-top: 6px; border-top: 1px solid var(--c-line); }
 .en-quiet .en-link { font-size: 13px; font-weight: 600; color: var(--c-ink-2); }
 
+.en-shot { display: block; width: calc(100% + 44px); max-width: none; height: auto; aspect-ratio: 640 / 280; margin: -22px -22px 0; object-fit: cover; border-radius: 24px 24px 0 0; background: var(--c-fill); }
+.en-steps { display: flex; flex-wrap: wrap; gap: 6px 8px; padding: 0; list-style: none; counter-reset: step; }
+.en-steps li { counter-increment: step; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--r-pill); background: var(--c-amber-soft); color: var(--c-amber-dark); font-size: 13px; font-weight: 700; }
+.en-steps li::before { content: counter(step); display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--c-amber-dark); color: #fff; font-size: 11px; }
+.en-needs { font-size: 13.5px; color: var(--c-ink-2); }
+.en-needs summary { display: flex; align-items: center; min-height: var(--tap); cursor: pointer; color: var(--c-green-dark); font-weight: 700; }
+.en-needs ul { margin: 0 0 4px; padding-left: 20px; }
+@media (max-height: 700px) { .en-shot { display: none; } }
+@media (max-width: 600px) { .en-shot { width: calc(100% + 36px); margin: -20px -18px 0; } }
+@media (min-width: 1800px) and (min-height: 1000px) { .en-shot { width: calc(100% + 64px); margin: -32px -32px 0; } }
 /* A phone: the card is a sheet on the bottom edge. */
 @media (max-width: 600px) {
   .en-root { place-items: end center; padding: 0; }
@@ -181,5 +230,5 @@ h1:focus { outline: none; }
 }
 @media (max-height: 620px) { .en-tiles li { min-height: 44px; } .en-card { gap: 8px; } }
 /* A very large screen: the same card, drawn larger so it is not lost in the picture. */
-@media (min-width: 1800px) and (min-height: 1000px) { .en-card { width: 34rem; font-size: 18px; padding: 28px 28px 22px; } h1 { font-size: 34px; } .en-btn.is-primary { min-height: 60px; font-size: 20px; } .en-live { font-size: 15px; } .en-tiles li { font-size: 15px; } .en-fine, .en-find small { font-size: 15px; } .en-quiet .en-link { font-size: 15px; } }
+@media (min-width: 1800px) and (min-height: 1000px) { .en-card { width: 38rem; font-size: 21px; padding: 32px 32px 26px; } h1 { font-size: 40px; } .en-btn.is-primary { min-height: 68px; font-size: 24px; } .en-btn { min-height: 56px; } .en-live { font-size: 17px; } .en-tiles li { font-size: 17px; } .en-fine, .en-find small { font-size: 17px; } .en-quiet .en-link { font-size: 17px; } .en-brand b { font-size: 26px; } }
 </style>

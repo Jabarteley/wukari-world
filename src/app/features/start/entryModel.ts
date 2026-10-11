@@ -17,7 +17,7 @@ export interface EntryFacts {
 /** True for the entry page; false when the creator is shown straight away (unchanged behaviour for every one of those). */
 export const entryShown = (facts: EntryFacts): boolean => !facts.problem && !facts.pathAddress && !facts.editing && !facts.sending
 
-export { isPathAddress } from './pathAddress.ts'
+export { isEntryAddress, isPathAddress } from './pathAddress.ts'
 
 /** What the catalogue says: how many cities are open and in how many countries. */
 export function worldFigures(catalogue: readonly Pick<CityCatalogueEntry, 'open' | 'countryISO' | 'countryName'>[]): { cities: number; countries: number } {
@@ -36,16 +36,17 @@ export function liveLine(online: number | null, figures: { cities: number; count
   return here > 0 ? `${here.toLocaleString('en-US')} in Allworld now · ${world}` : world
 }
 
-/** The approved pitch: leads with the world, then what is open. */
-export const ENTRY_LEAD = 'A digital world you can live in'
-export const entryPitch = (cities: number): string => `${cities} real cities across Africa, and more opening. Free, in your browser, no download.`
-
-export interface EntryTile { id: string; icon: string; label: string }
-export const ENTRY_TILES: readonly EntryTile[] = Object.freeze([
-  { id: 'city', icon: 'pin', label: 'Live in a real city' },
-  { id: 'work', icon: 'earn', label: 'Work and earn' },
-  { id: 'shop', icon: 'boutique', label: 'Open a shop for your real business' },
-  { id: 'friends', icon: 'people', label: 'Friends, voice and games' },
+/** What a seller does, in order: the line shown up front on /shops and /services. */
+export const SETUP_STEPS: readonly string[] = Object.freeze(['Set up now', 'Sign up to save it', 'Goes live once checked'])
+/** What publishing a shop needs, as the server enforces it (server/showcase/service.ts gate, src/game/trust/tiers.ts, SHOWCASE.photosMin). */
+export const SETUP_NEEDS: readonly string[] = Object.freeze([
+  'A free account, so your shop is saved.',
+  'A checked phone number.',
+  'An account at least a day old.',
+  'Your word that you are 18 or older.',
+  'Three photos of your goods or work (up to six).',
+  'A quick approval before it goes live.',
+  'Prices are yours and are paid outside Allworld: it never holds your money.',
 ])
 
 /** The public place to read about agents until the controls arrive. */

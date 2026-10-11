@@ -1141,7 +1141,7 @@ test('short addresses: /games, /abuja and an unknown path get their own head fro
   const homePolicy = home.headers.get('content-security-policy');
   assert.ok(homePolicy);
   assert.equal(title(await home.text()), title(index), 'the home page keeps its own head');
-  for (const [path, expected, canonical] of [['/games', 'Play chess, the daily word and more — Allworld', '/games'], ['/games/oro', 'Oro, a new word every day — Allworld', '/games/oro'], ['/abuja', 'Live in Abuja — Allworld', '/abuja'], ['/fct', 'Live in Abuja — Allworld', '/abuja'], ['/kano', 'Live in Kano — Allworld', '/kano']] as const) {
+  for (const [path, expected, canonical] of [['/games', 'Play chess, the daily word and more — Allworld', '/games'], ['/games/oro', 'Oro, a new word every day — Allworld', '/games/oro'], ['/abuja', 'Live in Abuja — Allworld', '/abuja'], ['/fct', 'Live in Abuja — Allworld', '/abuja'], ['/kano', 'Live in Kano — Allworld', '/kano'], ['/shops', 'Open a free shop for your real business — Allworld', '/shops'], ['/sell', 'Open a free shop for your real business — Allworld', '/shops'], ['/services', 'List your services in a virtual office — Allworld', '/services'], ['/cities', 'The map of the world — Allworld', '/cities']] as const) {
     const response = await f.fetch(path);
     const body = await response.text();
     assert.equal(response.status, 200, path);

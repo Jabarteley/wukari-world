@@ -102,6 +102,38 @@ test('the first screen of a new visitor is the entry page: the world, one card, 
   assert.ok(!html.includes('data-agent-sheet'), 'the agent sheet is closed until asked for')
 })
 
+test('the entry page of an address: /shops says what a seller needs, /services and /games and /cities have their own words, /agents opens the sheet', async () => {
+  await resetCreator()
+  const shops = await render('EntryPage', { path: '/shops' })
+  const words = text(shops)
+  assert.match(shops, /data-variant="shops"/)
+  assert.ok(words.includes('Open a free shop for your real business') && words.includes('Allworld never holds your money'))
+  assert.ok(words.includes('Set up now') && words.includes('Sign up to save it') && words.includes('Goes live once checked'))
+  assert.match(shops, /data-entry-play[^>]*>Open my shop<\/button>/)
+  assert.ok(words.includes('Browse shops') && words.includes('Just play') && words.includes('What publishing needs') && words.includes('18 or older') && words.includes('Three photos'))
+  assert.match(shops, /<img[^>]*src="\/icons\/entry-shops.webp"[^>]*loading="lazy"/)
+  assert.ok(!words.includes('Find my city'))
+  const services = text(await render('EntryPage', { path: '/services' }))
+  assert.ok(services.includes('List my services') && services.includes('service menu and portfolio') && services.includes('Browse services'))
+  const games = text(await render('EntryPage', { path: '/games' }))
+  assert.ok(games.includes('Whot, Ayo, chess, Weave, penalties') && games.includes('Play now') && !games.includes('What publishing needs'))
+  const cities = text(await render('EntryPage', { path: '/cities' }))
+  assert.match(cities, /\d+ real cities in \d+ countries/)
+  assert.ok(cities.includes('Find my city'))
+  assert.ok(!text(await render('EntryPage', { path: '/' })).includes('Set up now'))
+})
+
+test('the seller checklist: steps, the real requirements, and the sign-up button only for a guest', async () => {
+  const load2 = async (guest: boolean): Promise<string> => {
+    const component = (await load('/src/app/features/showcase/SetupChecklist.vue')).default
+    return renderToString(createSSRApp({ render: () => h(component, { guest }) }))
+  }
+  const guest = await load2(true), signedIn = await load2(false)
+  assert.match(guest, /data-setup-signup[^>]*>Sign up free<\/button>/)
+  assert.ok(!signedIn.includes('data-setup-signup'))
+  for (const html of [guest, signedIn]) assert.ok(text(html).includes('Set up now') && text(html).includes('A checked phone number') && text(html).includes('At least a day old') === false && text(html).includes('at least a day old'))
+})
+
 test('the entry page offers sign up and log in on a server with accounts, and not when signed in', async () => {
   await resetCreator()
   const { useAccountLite } = await load<{ useAccountLite: () => { state: { loaded: boolean; enabled: boolean; account: unknown } } }>('/src/app/features/account/useAccountLite.ts')

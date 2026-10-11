@@ -42,8 +42,6 @@ export const EVENTS: Record<string, EventSpec> = {
 
   // ---- The first minute (reported by the quick start: src/quick-start/entry.ts; `ms` = milliseconds since this device landed)
   landed: { from: 'quick-start', props: { join: 'boolean', ms: 'number' }, when: 'Once per device: the landing screen (a name, a quick character, Play) was shown to a browser with no session. join: it arrived by an invite or share link.', why: 'Top of the activation funnel.' },
-  entry_creator: { from: 'quick-start', props: { ms: 'number' }, when: 'On the entry page, "Make my character first" was pressed.', why: 'How many visitors want to shape their character before playing.' },
-  entry_agent: { from: 'quick-start', props: { ms: 'number' }, when: 'On the entry page, "Connect an AI agent" was pressed and its sheet opened.', why: 'Interest in playing through an agent.' },
   named: { from: 'quick-start', props: { edited: 'boolean', length: 'number', ms: 'number' }, when: 'Play was tapped with this name. Only whether the suggestion was edited and how long the name is — never the name.', why: 'Do people keep the suggested name?' },
   quick_look_done: { from: 'quick-start', props: { shuffles: 'number', preset: 'string', edited: 'boolean', ms: 'number' }, when: 'Play was tapped with this character: how many shuffles, which one-tap preset (if any), whether "More options" was opened.', why: 'How much character choice the landing needs.' },
   play_tapped: { from: 'quick-start', props: { taps: 'number', ms: 'number' }, when: 'Play was tapped (taps: taps on the landing screen, Play included).', why: 'Funnel step 2; the start of "time to first reward".' },

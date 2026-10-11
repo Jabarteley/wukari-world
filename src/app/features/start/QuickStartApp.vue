@@ -18,6 +18,8 @@ import { qs } from './quickStartState.ts'
 import { quickDraft } from './startBoundary.ts'
 
 const CreatorApp = defineAsyncComponent(() => import('./CreatorApp.vue'))
+// The creator is the first screen (a short address, a refusal, an edited character): its preview is asked for at once, as the landing always did.
+const warmPreview = (): void => { void import('./lookPreview.ts').then((module) => module.warmLookPreview()).catch(() => undefined) }
 const props = defineProps<{ params?: unknown }>()
 const wantsCreator = (params: unknown): boolean => Boolean(params && typeof params === 'object' && (params as { creator?: unknown }).creator === true)
 const entry = computed(() => {
@@ -29,11 +31,9 @@ const entry = computed(() => {
     sending: cr.settling || cr.played,
   })
 })
-/** "Make my character first": the creator's code has arrived (it was asked for when the link was approached), then it replaces this page. */
-async function toCreator(): Promise<void> {
-  try { await import('./CreatorApp.vue') } catch { /* the async component asks again */ }
-  qs.creator = true
-}
+if (!entry.value) warmPreview()
+/** "Make my character first": the creator's code has arrived (EntryPage.vue waits for it), and it replaces the entry page. */
+const toCreator = (): void => { qs.creator = true }
 </script>
 
 <template>

@@ -13,6 +13,7 @@
 // The stage (CreatorStage.vue) is the one 3D preview, large; the panel holds the steps. The look is kept on the
 // device as it is edited (the landing's draft, or the look draft of settling in), so a reload loses nothing.
 // Every server rule is the engine's: this file chooses what to show and in which order to send.
+import '../../../ui/panels/fullscreen.css'
 import '../../../ui/panels/quick-start.css'
 import '../../../ui/panels/creator.css'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'

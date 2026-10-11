@@ -34,7 +34,8 @@ import { estateLayout, plotAt } from './estates.ts';
 import { lgaAt } from './lga.ts';
 import { cityUnit } from '../game/cities/terminology.ts';
 import { civicTitle } from '../game/cities/terminology.ts';
-import { plateFit, plateWidth, spanOf } from './labels.ts';
+import { fitLabel, plateFit, plateWidth, spanOf } from './labels.ts';
+import type { ScreenBox } from './labels.ts';
 import { DOUBLE_TAP_MS, DOUBLE_TAP_PX, isDrag, isTap, mapHint, MAP_HINT_KEY } from '../scene/gesture.ts';
 import type { CityPack, PackLga } from './types.ts';
 import type { Route } from './roads.ts';
@@ -148,7 +149,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
   const { box } = model, fit = pack.bounds.fit || { minX: box.x, maxX: box.x + box.width, minZ: box.z, maxZ: box.z + box.height };
   let state: Map2DState | null = null, layer: 'city' | 'world' = 'city', filter = 'all', selected: string | null = null, friends = new Set<string>(), destroyed = false;
   let layers: MapLayers = { billboards: false, sea: false, neighbours: false, gov: false, moving: false, lgas: true, homes: true }, data: { ads: AdsData | null, gov: GovData | null } = { ads: null, gov: null };
-  let scale = 0, ox = 0, oy = 0, opened = false, userMoved = false, size = { width: 0, height: 0 }, insets = { left: 8, top: 60, right: 8, bottom: 80 }, labelKey = '', chipKey = '', drawn: { lga: string, estate: number }[] = [];
+  let scale = 0, ox = 0, oy = 0, opened = false, userMoved = false, size = { width: 0, height: 0 }, insets = { left: 8, top: 60, right: 8, bottom: 80 }, labelKey = '', chipKey = '', drawn: { lga: string, estate: number }[] = [], controlBox: ScreenBox | null = null;
   let homeAt: Spot | null = null;
 
   const root = document.createElement('div');
@@ -159,7 +160,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     <div class="m3-controls" role="group" aria-label="Map view"><div class="m3-zoom"><button type="button" data-m3="in" aria-label="Zoom in" title="Zoom in">${ICON('<path d="M12 5v14M5 12h14"/>')}</button><button type="button" data-m3="out" aria-label="Zoom out" title="Zoom out">${ICON('<path d="M5 12h14"/>')}</button></div><div class="m3-go"><button type="button" class="m3-pill" data-m3="fit" aria-label="Show the whole ${model.extent}" title="Show the whole ${model.extent}">${ICON('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')}<span>${model.extent === 'state' ? 'Whole state' : 'Whole city'}</span></button><button type="button" class="m3-pill m3-me" data-m3="me" aria-label="Show where you are" title="Show where you are">${ICON('<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>')}<span>Find me</span></button></div></div>
     <p class="m3-hint" data-m3-hint ${hintKnown() ? 'hidden' : ''}>${mapHint(Boolean(globalThis.matchMedia?.('(pointer: coarse)').matches), true)}</p>`;
   container.appendChild(root);
-  const worldNode = root.querySelector<HTMLElement>('.m3-flat-world')!, canvas = root.querySelector('canvas')!, labelLayer = root.querySelector<HTMLElement>('.m3-labels')!, hint = root.querySelector<HTMLElement>('[data-m3-hint]')!;
+  const worldNode = root.querySelector<HTMLElement>('.m3-flat-world')!, canvas = root.querySelector('canvas')!, labelLayer = root.querySelector<HTMLElement>('.m3-labels')!, hint = root.querySelector<HTMLElement>('[data-m3-hint]')!, controlNode = root.querySelector<HTMLElement>('.m3-controls')!;
   const namesNodes = [...root.querySelectorAll<SVGTextElement>('.m3-flat-names text')].map((node) => ({ node, size: parseFloat(node.getAttribute('font-size') ?? '2') })), lgaArt = root.querySelector<SVGGElement>('.m3-flat-lgas')!, tripPaths = [root.querySelector('[data-trip]')!, root.querySelector('[data-trip-top]')!];
   const paint = canvas.getContext('2d')!;
 
@@ -327,6 +328,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     container.style?.setProperty('--map-dock', `${Math.round(bottom)}px`);
     container.style?.setProperty('--map-left', `${Math.round(left)}px`);
     root.style.setProperty('--m3-dock', `${Math.round(bottom)}px`); root.style.setProperty('--m3-left', `${Math.round(left)}px`); root.style.setProperty('--m3-top', `${Math.round(top)}px`);
+    const controls = controlNode.getBoundingClientRect(); controlBox = { l: controls.left - page.left - 5, r: controls.right - page.left + 5, t: controls.top - page.top - 5, b: controls.bottom - page.top + 5 };
     return page.width > 0 && page.height > 0 && !container.hidden;
   }
   const free = () => ({ width: Math.max(80, size.width - insets.left - insets.right), height: Math.max(80, size.height - insets.top - insets.bottom) });
@@ -369,22 +371,24 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
   function placeLabels(far: boolean, wholeView: boolean) {
     const entries = [...labels.values()].map((label) => { const spot = spotOf(label.place.id)!; const at = project(spot.x, spot.z - (label.place.id === 'home' && homeAt!.own ? 0 : 2.2)); return { label, at, visible: at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && model.extent === 'state' && label.priority < 70) }; });
     entries.sort((p, q) => q.label.priority - p.label.priority || q.at.y - p.at.y);
-    const taken: { l: number, r: number, t: number, b: number }[] = [], hits = (rect: { l: number, r: number, t: number, b: number }) => taken.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t);
+    const taken: ScreenBox[] = controlBox ? [controlBox] : [], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 }, hits = (rect: ScreenBox) => taken.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t);
     const allowed = venueNamesAt(densityFor(size.width), scale / fitScale());
     let named = 0;
     for (const { label, at, visible } of entries) {
       const node = label.node;
       if (node.hidden === visible) node.hidden = !visible;
       if (!visible) continue;
-      const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 }, compact = (label.priority < NAMED_FROM && named >= allowed) || hits(full);
-      const used = compact ? { l: at.x - 17, r: at.x + 17, t: at.y - 32, b: at.y + 2 } : full;
+      const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 }, fitted = label.priority >= 70 ? fitLabel(at, label.width + 6, label.height + 4, bounds, taken) : null, compact = fitted ? false : (label.priority < NAMED_FROM && named >= allowed) || hits(full);
+      const used = fitted?.box ?? (compact ? { l: at.x - 17, r: at.x + 17, t: at.y - 32, b: at.y + 2 } : full), x = fitted?.x ?? at.x, y = fitted?.y ?? at.y;
       // Level of detail: an icon that would still sit on a more important label or icon is left out until the view is closer.
       if (compact && label.priority < 70 && hits(used)) { if (!node.hidden) node.hidden = true; continue; }
       if (node.hidden) node.hidden = false;
       taken.push(used);
       if (!compact && label.priority < NAMED_FROM) named += 1;
       node.classList.toggle('is-compact', compact);
-      node.style.transform = `translate(${Math.round(at.x)}px,${Math.round(at.y)}px) translate(-50%,-100%)`;
+      const offset = !compact && (Math.abs(x - at.x) > 1 || Math.abs(y - at.y) > 1), dx = at.x - x, top = Math.abs(at.y - y + label.height) < Math.abs(at.y - y), dy = at.y - (top ? y - label.height : y);
+      node.classList.toggle('is-offset', offset); if (offset) { node.style.setProperty('--m3-stalk', `${Math.hypot(dx, dy)}px`); node.style.setProperty('--m3-stalk-turn', `${Math.atan2(-dx, dy)}rad`); node.style.setProperty('--m3-stalk-top', top ? '0' : '100%'); } else { node.style.removeProperty('--m3-stalk'); node.style.removeProperty('--m3-stalk-turn'); node.style.removeProperty('--m3-stalk-top'); }
+      node.style.transform = `translate(${Math.round(x)}px,${Math.round(y)}px) translate(-50%,-100%)`;
     }
     // Level of detail: a whole-state view names the local governments by their size; nearer, the usual small plates, out of the way of the place names.
     const platesAt: { l: number, r: number, t: number, b: number }[] = [];

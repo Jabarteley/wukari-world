@@ -66,7 +66,7 @@ import { estateLayout, plotAt } from './estates.ts';
 import { lgaAt } from './lga.ts';
 import { tripOf, createTripClock, tripPose } from './trip.ts';
 import { PLINTH as PLINTH_UNIT } from './landmarks.ts';
-import { avatarBox, extentWord, labelShift, nearPoints, plateFit, plateWidth, spanOf, WHOLE_FROM } from './labels.ts';
+import { avatarBox, extentWord, fitLabel, labelShift, nearPoints, plateFit, plateWidth, spanOf, WHOLE_FROM } from './labels.ts';
 import { iconFor } from '../ui/icon-map.ts';
 import { NAMED_FROM, densityFor, shorten, venueNamesAt } from './geo/density.ts'
 import { dockOf } from './insets.ts';
@@ -178,7 +178,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   let routeLine: THREE.Mesh | null = null;
 
   // ---- DOM: the canvas, the labels over it, the view buttons ---------------------------------
-  let root: HTMLDivElement | null = null, labelLayer: HTMLElement | null = null, controls: Record<string, HTMLElement> = {}, hint: HTMLElement | null = null, you: HTMLDivElement | null = null;
+  let root: HTMLDivElement | null = null, labelLayer: HTMLElement | null = null, controls: Record<string, HTMLElement> = {}, hint: HTMLElement | null = null, you: HTMLDivElement | null = null, controlBox: ScreenBox | null = null;
   const labels = new Map<string, LabelEntry>(), chips = new Map<string, { node: HTMLDivElement; chip: OverlayChip }>();
   if (doc) {
     root = doc.createElement('div');
@@ -193,6 +193,8 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     labelLayer = root.querySelector('.m3-labels'); hint = root.querySelector('[data-m3-hint]');
     controls = Object.fromEntries([...root.querySelectorAll<HTMLElement>('[data-m3]')].map((node) => [node.dataset.m3!, node]));
   }
+  const controlNode = root?.querySelector<HTMLElement>('.m3-controls') ?? null;
+  const readControlBox = (page = container.getBoundingClientRect()) => { const rect = controlNode?.getBoundingClientRect(); controlBox = rect ? { l: rect.left - page.left - 5, r: rect.right - page.left + 5, t: rect.top - page.top - 5, b: rect.bottom - page.top + 5 } : null; };
 
   // ---- state ----------------------------------------------------------------------------------
   let state: MapState | null = null, layer = 'city', filter = 'all', selected: string | null = null, hovered: string | null = null, destroyed = false, lost = false;
@@ -531,7 +533,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       entries.push({ label, at, visible: !(place.kind === 'home' && visitorHere()) && at.front && at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && label.priority < 70) });
     }
     entries.sort((a, b) => b.label.priority - a.label.priority || b.at.y - a.at.y);
-    const taken: ScreenBox[] = [];
+    const taken: ScreenBox[] = controlBox ? [controlBox] : [], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 };
     // Level of detail: only a few names are written at the opening view (a table in geo/density.ts), more as the camera comes closer; the rest are round icons.
     const allowed = venueNamesAt(densityFor(size.width, doc?.defaultView ? parseFloat(doc.defaultView.getComputedStyle(doc.documentElement).fontSize) / 16 || 1 : 1), nearDistance > 0 ? nearDistance / rig.view.distance : 1);
     let named = 0;
@@ -545,23 +547,27 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       if (!visible) { if (!node.hidden) node.hidden = true; continue; }
       const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 };
       // A name that would sit on top of a more important one shrinks to its icon; it is still a button with its full name.
-      const lift = labelShift(full, piece), moved = lift ? { l: full.l, r: full.r, t: full.t + lift, b: full.b + lift } : full;
-      const wantsName = label.priority >= NAMED_FROM || named < allowed, compact = !wantsName || hits(moved), small = { l: at.x - 15 * uz, r: at.x + 15 * uz, t: at.y - 30 * uz, b: at.y };
+      const lift = labelShift(full, piece), moved = lift ? { l: full.l, r: full.r, t: full.t + lift, b: full.b + lift } : full, fitted = label.priority >= 70 ? fitLabel(at, label.width + 6, label.height + 4, bounds, piece ? [...taken, piece] : taken) : null;
+      const wantsName = label.priority >= NAMED_FROM || named < allowed, compact = fitted ? false : !wantsName || hits(moved), small = { l: at.x - 15 * uz, r: at.x + 15 * uz, t: at.y - 30 * uz, b: at.y };
       // It steps clear of the player's piece: up on a longer stalk, or down over its own roof (src/map3d/labels.ts).
-      const shift = compact ? labelShift(small, piece) : lift;
-      const used = compact ? { l: small.l - 2, r: small.r + 2, t: small.t + shift - 2, b: small.b + shift + 2 } : moved;
+      const shift = fitted ? 0 : compact ? labelShift(small, piece) : lift, x = fitted?.x ?? at.x, y = (fitted?.y ?? at.y) + shift;
+      const used = fitted?.box ?? (compact ? { l: small.l - 2, r: small.r + 2, t: small.t + shift - 2, b: small.b + shift + 2 } : moved);
       // Level of detail: an icon that would still sit on a more important label or icon is left out; it returns as the view comes closer.
       if (compact && label.priority < 70 && hits(used)) { if (!node.hidden) node.hidden = true; continue; }
       if (node.hidden) node.hidden = false;
       taken.push(used);
       if (!compact && label.priority < NAMED_FROM) named += 1;
       node.classList.toggle('is-compact', compact);
-      if (shift !== label.shift) {
+      const offset = !compact && (Math.abs(x - at.x) > 1 || Math.abs(y - at.y) > 1), wasOffset = node.classList.contains('is-offset');
+      node.classList.toggle('is-offset', offset);
+      if (offset) { const dx = at.x - x, top = Math.abs(at.y - y + label.height) < Math.abs(at.y - y), dy = at.y - (top ? y - label.height : y); label.shift = 0; node.classList.remove('is-lowered'); node.style.setProperty('--m3-stalk', `${Math.hypot(dx, dy) / uz}px`); node.style.setProperty('--m3-stalk-turn', `${Math.atan2(-dx, dy)}rad`); node.style.setProperty('--m3-stalk-top', top ? '0' : '100%'); }
+      else if (shift !== label.shift || wasOffset) {
         label.shift = shift;
         node.classList.toggle('is-lowered', shift > 0);
+        node.style.removeProperty('--m3-stalk-turn'); node.style.removeProperty('--m3-stalk-top');
         if (shift < 0) node.style.setProperty('--m3-stalk', `${(compact ? 6 : 9) - shift / uz}px`); else node.style.removeProperty('--m3-stalk');
       }
-      node.style.transform = `translate(${here(at.x)},${here(at.y + shift)}) translate(-50%,-100%)`;
+      node.style.transform = `translate(${here(x)},${here(y)}) translate(-50%,-100%)`;
     }
     if (you) {
       if (you.hidden === travelling) you.hidden = !travelling;
@@ -613,7 +619,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const north = controls.north;
     if (north) {
       const skewed = rig.skewed(), degrees = Math.round((rig.view.yaw * 180) / Math.PI);
-      if (north.hidden === skewed) north.hidden = !skewed;
+      if (north.hidden === skewed) { north.hidden = !skewed; readControlBox(); }
       if (skewed && northDegrees !== degrees) { northDegrees = degrees; (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotate(${degrees}deg)`); }
     }
     for (const { node, chip } of chips.values()) {
@@ -671,6 +677,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       container.style?.setProperty('--map-dock', `${Math.round(insets.bottom)}px`);
       container.style?.setProperty('--map-left', `${Math.round(insets.left)}px`);
       if (root) { root.style.setProperty('--m3-dock', `${Math.round(insets.bottom)}px`); root.style.setProperty('--m3-left', `${Math.round(insets.left)}px`); root.style.setProperty('--m3-top', `${Math.round(insets.top)}px`); }
+      readControlBox(rect);
     }
     if (!opened) { openView(); if (trip && route && !reducedMotion) rig.jump(rig.framing(route.points.filter((_, i) => i % 4 === 0 || i === route!.points.length - 1), { pad: 1.5, min: 70 })); }
     else if (changed && !userMoved && size.width > 720 && !trip) rig.jump(openedWhole ? rig.whole() : rig.core());

@@ -236,29 +236,29 @@ def main():
     tile_union = unary_union([development_land, exact_play_water])
     if not water.is_valid or not tile_union.is_valid:
         raise ValueError('Invalid canonical land/water union')
-    # Polygonize the boundary before serializing independent playable faces.
-    play_faces, cuts, dangles, invalid = polygonize_full(unary_union(tile_union.boundary))
-    if any(not g.is_empty for g in [cuts, dangles, invalid]):
-        raise ValueError('Invalid canonical play-area boundary linework')
-    selected_faces = [p for p in play_faces.geoms if tile_union.covers(p.representative_point())]
     def ring_contacts(p):
         rings = [p.exterior, *p.interiors]
         return any(a.intersects(b) for i, a in enumerate(rings) for b in rings[i + 1:])
-    clean_faces = []
-    split_faces = 0
-    for face in selected_faces:
-        if ring_contacts(face):
-            # OGC permits a hole touching its shell at one point; the renderer does not.
-            # Constrained triangles retain the exact face while each has one simple ring.
-            split_faces += 1
-            clean_faces.extend(shapely.constrained_delaunay_triangles(face).geoms)
-        else:
-            clean_faces.append(face)
-    serialized_union = unary_union(clean_faces)
-    serialization_difference = tile_union.symmetric_difference(serialized_union).area
-    if serialization_difference != 0 or any(not p.is_valid or ring_contacts(p) for p in clean_faces):
-        raise ValueError('Play-area serialization changed coverage or retained ring contacts')
-    play_arrays = [[list(p.exterior.coords)] + [list(r.coords) for r in p.interiors] for p in clean_faces]
+    def serializeNoRingContacts(g):
+        faces, cuts, dangles, invalid = polygonize_full(unary_union(g.boundary))
+        if any(not part.is_empty for part in [cuts, dangles, invalid]):
+            raise ValueError('Invalid polygon boundary linework')
+        selected = [p for p in faces.geoms if g.covers(p.representative_point())]
+        clean, split = [], 0
+        for face in selected:
+            if ring_contacts(face):
+                # Exact constrained triangles separate point contacts without moving a coast.
+                split += 1
+                clean.extend(shapely.constrained_delaunay_triangles(face).geoms)
+            else:
+                clean.append(face)
+        represented = unary_union(clean)
+        difference = g.symmetric_difference(represented).area
+        if difference != 0 or any(not p.is_valid or ring_contacts(p) for p in clean):
+            raise ValueError('Serialization changed coverage or retained ring contacts')
+        arrays = [[list(p.exterior.coords)] + [list(r.coords) for r in p.interiors] for p in clean]
+        return arrays, {'boundaryFaces': len(selected), 'touchFacesSplit': split, 'serializedSymmetricDifferenceDegrees2': difference, 'ringContacts': 0, 'addedPolygons': len(clean) - len(selected)}
+    play_arrays, play_serialization = serializeNoRingContacts(tile_union)
     play_encoded = json.dumps(play_arrays, separators=(',', ':'), allow_nan=False)
     geometry_after = geometry_before[:play_hit.start(1)] + play_encoded + geometry_before[play_hit.end(1):]
     geometry_raw = geometry_after.encode()
@@ -275,10 +275,10 @@ def main():
         'landWaterOverlapAfterDegrees2': development_land.intersection(water).area,
         'canonicalTileUnionSymmetricDifferenceDegrees2': tile_union.symmetric_difference(unary_union([development_land, exact_play_water])).area,
         'landUnchanged': True,
-        'playAreaBoundaryFaces': len(selected_faces),
-        'playAreaTouchFacesSplit': split_faces,
-        'playAreaSerializedSymmetricDifferenceDegrees2': serialization_difference,
-        'playAreaRingContacts': sum(ring_contacts(p) for p in clean_faces),
+        'playAreaBoundaryFaces': play_serialization['boundaryFaces'],
+        'playAreaTouchFacesSplit': play_serialization['touchFacesSplit'],
+        'playAreaSerializedSymmetricDifferenceDegrees2': play_serialization['serializedSymmetricDifferenceDegrees2'],
+        'playAreaRingContacts': play_serialization['ringContacts'],
         'playAreaPolygons': len(play_arrays),
         'playAreaHoles': sum(len(p) - 1 for p in play_arrays),
         'playAreaVertices': sum(len(r) for p in play_arrays for r in p),
@@ -289,8 +289,7 @@ def main():
         raise ValueError('Ambiguous TERRAIN declaration')
     stats, edits = {}, []
     for key, b in [('water', play), ('reachWater', wide)]:
-        polygons = area_polygons(water.intersection(bounds(b)))
-        arrays = [[list(p.exterior.coords)] + [list(r.coords) for r in p.interiors] for p in polygons]
+        arrays, serialization = serializeNoRingContacts(water.intersection(bounds(b)))
         encoded = json.dumps(arrays, separators=(',', ':'), allow_nan=False)
         hits = list(re.finditer(r'(?m)^  ' + key + r': (\[.*\]),$', before))
         if len(hits) != 1:
@@ -298,7 +297,7 @@ def main():
         h = hits[0]
         json.loads(h.group(1))
         edits.append((h.start(1), h.end(1), encoded))
-        stats[key] = {'polygons': len(polygons), 'rings': sum(len(p) for p in arrays), 'holes': sum(len(p) - 1 for p in arrays), 'vertices': sum(len(r) for p in arrays for r in p), 'rawTsBytes': len(encoded.encode())}
+        stats[key] = {**serialization, 'polygons': len(arrays), 'rings': sum(len(p) for p in arrays), 'holes': sum(len(p) - 1 for p in arrays), 'vertices': sum(len(r) for p in arrays for r in p), 'rawTsBytes': len(encoded.encode())}
     after = before
     for start, end, encoded in sorted(edits, reverse=True):
         after = after[:start] + encoded + after[end:]

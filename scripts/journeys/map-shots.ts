@@ -285,7 +285,7 @@ async function simpleMap(b: Browser, shot: (l: string) => Promise<void>, label: 
   await sleep(3000);
 }
 
-async function auditLabels(b: Browser, prefix: string, listState: 'top' | 'bottom' | false = false): Promise<void> {
+async function auditLabels(b: Browser, prefix: string, listState: 'top' | 'bottom' | false = false, allowFindMe = false): Promise<void> {
   const result = await b.eval<{ critical: number; failures: string[]; labels: unknown[] }>(`(() => {
     const box = (node) => { const r = node.getBoundingClientRect(); return { l:r.left, r:r.right, t:r.top, b:r.bottom }; };
     const visible = (node) => !node.hidden && node.getBoundingClientRect().width > 0 && node.getBoundingClientRect().height > 0;
@@ -306,8 +306,9 @@ async function auditLabels(b: Browser, prefix: string, listState: 'top' | 'botto
     const list = document.querySelector('#map-list');
     const listLocation = ${listState == 'top'} && list && !list.hidden && (reachable(list.querySelector('.ll-row button.is-here')) || reachable(document.querySelector('[data-m3="me"]')));
     const listExit = ${listState == 'bottom'} && list && !list.hidden && reachable(document.querySelector('.map-handle'));
-    if (!critical && !listLocation && !listExit) failures.push('no current location label or reachable list recovery control');
-    return {critical, listLocation: Boolean(listLocation), listExit: Boolean(listExit), failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
+    const findMeRecovery = ${allowFindMe} && reachable(document.querySelector('[data-m3="me"]'));
+    if (!critical && !listLocation && !listExit && !findMeRecovery) failures.push('no current location label or reachable list recovery control');
+    return {critical, listLocation: Boolean(listLocation), listExit: Boolean(listExit), findMeRecovery: Boolean(findMeRecovery), failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
   })()`);
   writeFileSync(join(out, `${prefix}-labels.json`), JSON.stringify(result, null, 2));
   must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
@@ -336,7 +337,7 @@ async function auditPlaceList(b: Browser, prefix: string): Promise<void> {
 
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
   if (opts.phone) await dismiss(b, 3000);
-  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (process.argv.includes('--phone-ui-audit') || label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`, label === '02-list' ? 'top' : label === '03-list-bottom' ? 'bottom' : false); if (process.argv.includes('--phone-ui-audit') && opts.phone && (label === '02-list' || label === '03-list-bottom')) await auditPlaceList(b, `${prefix}-${label}`); };
+  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (process.argv.includes('--phone-ui-audit') || label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`, label === '02-list' ? 'top' : label === '03-list-bottom' ? 'bottom' : false, label === '01-default' || label === '01b-after-6s'); if (process.argv.includes('--phone-ui-audit') && opts.phone && (label === '02-list' || label === '03-list-bottom')) await auditPlaceList(b, `${prefix}-${label}`); };
   await openMap(b, prefix);
   if (waterOnly) {
     const w = waterAt[prefix];

@@ -1,3 +1,4 @@
+import { loadCountryScope } from './country-scope.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -37,10 +38,11 @@ if (args.includes('--collect')) {
     if (existsSync(receipts)) cpSync(receipts, join(out, 'playable-africa-rollout'), { recursive: true });
   }
 } else {
-  for (const flag of ['--download-root', '--extract-root', '--helper']) if (!args.includes(flag)) throw Error(`Missing ${flag}`);
+  for (const flag of ['--download-root', '--extract-root', '--boundary-root', '--helper']) if (!args.includes(flag)) throw Error(`Missing ${flag}`);
   const downloadRoot = insideSandbox(get('--download-root'), get('--sandbox-root'));
   const extractRoot = insideSandbox(get('--extract-root'), get('--sandbox-root'));
-  mkdirSync(downloadRoot, { recursive: true }); mkdirSync(extractRoot, { recursive: true });
+  const boundaryRoot = insideSandbox(get('--boundary-root'), get('--sandbox-root'));
+  mkdirSync(downloadRoot, { recursive: true }); mkdirSync(extractRoot, { recursive: true }); mkdirSync(boundaryRoot, { recursive: true });
   const repository = process.env.GITHUB_REPOSITORY;
   assert.match(repository ?? '', /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/);
   const rows = [], verified = new Set();
@@ -73,7 +75,51 @@ if (args.includes('--collect')) {
       } catch (error) { row.status = 'HOLD'; row.reasons.push(error.message); }
     }
   }
+  const copied = new Set();
+  for (const group of input.boundaryGroups) {
+    const key = 'boundary-' + groupKey(group), directory = join(downloadRoot, key);
+    mkdirSync(directory, { recursive: true });
+    const producerLog = join(out, key + '-producer.json');
+    const producerOk = run('gh', ['api', `repos/${repository}/actions/runs/${group.sourceRunId}`], {}, producerLog);
+    let producer;
+    try {
+      assert.ok(producerOk, 'boundary producer lookup failed');
+      producer = JSON.parse(readFileSync(producerLog));
+      assert.equal(producer.repository?.full_name, repository);
+      assert.equal(producer.id, group.sourceRunId);
+      assert.equal(producer.head_sha, group.sourceSha);
+      assert.equal(producer.status, 'completed');
+      assert.equal(producer.conclusion, 'success', 'country boundary proof producer failed');
+    } catch (error) {
+      for (const target of input.table.targets.filter(target => {
+        const job = (target.countryScope ?? input.table.countryScope).boundaryJob;
+        return job.sourceRunId === group.sourceRunId && job.sourceArtifact === group.sourceArtifact;
+      })) { const row = rows.find(row => row.id === target.id); row.status = 'HOLD'; row.reasons.push(error.message); }
+      continue;
+    }
+    const ok = run('gh', ['run', 'download', String(group.sourceRunId), '--repo', repository, '--name', group.sourceArtifact, '--dir', directory], {}, join(out, key + '-download.log'));
+    for (const target of input.table.targets.filter(target => {
+      const job = (target.countryScope ?? input.table.countryScope).boundaryJob;
+      return job.sourceRunId === group.sourceRunId && job.sourceArtifact === group.sourceArtifact;
+    })) {
+      const row = rows.find(row => row.id === target.id);
+      try {
+        assert.ok(ok && row.status === 'PINNED_SOURCE_READY', 'boundary artifact or city source not ready');
+        const policy = target.countryScope ?? input.table.countryScope;
+        const scope = loadCountryScope(directory, { ...policy, directory }, target.country, target.sourceJob.datasetSha256);
+        const destination = join(boundaryRoot, policy.boundaryKey);
+        if (!copied.has(destination)) {
+          mkdirSync(destination, { recursive: true });
+          for (const file of ['receipt.json', 'boundary.geojson']) writeFileSync(join(destination, file), readFileSync(join(directory, file)), { flag: 'wx' });
+          writeFileSync(join(destination, 'producer.json'), JSON.stringify({ repository, runId: producer.id, sourceSha: producer.head_sha, artifact: group.sourceArtifact, status: producer.status, conclusion: producer.conclusion }, null, 2));
+          copied.add(destination);
+        }
+        loadCountryScope(destination, { ...policy, directory: destination }, target.country, target.sourceJob.datasetSha256);
+        row.status = 'PINNED_SOURCE_AND_BOUNDARY_READY'; row.boundaryKey = policy.boundaryKey; row.countryScopeReceipt = scope.receipt;
+      } catch (error) { row.status = 'HOLD'; row.reasons.push(error.message); }
+    }
+  }
   writeFileSync(join(out, 'source-holds.json'), JSON.stringify(rows, null, 2));
-  console.log(JSON.stringify({ sourceGroups: input.groups.length, rows }));
-  process.exitCode = rows.some(row => row.status !== 'PINNED_SOURCE_READY') ? 1 : 0;
+  console.log(JSON.stringify({ sourceGroups: input.groups.length, boundaryGroups: input.boundaryGroups.length, rows }));
+  process.exitCode = rows.some(row => row.status !== 'PINNED_SOURCE_AND_BOUNDARY_READY') ? 1 : 0;
 }

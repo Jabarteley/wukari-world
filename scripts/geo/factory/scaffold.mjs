@@ -1,3 +1,4 @@
+import assert from 'node:assert/strict';
 import { insideSandbox } from './paths.mjs';
 import { readFileSync, mkdirSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
@@ -25,7 +26,8 @@ config.discovery = bbox => ({ places: q.placesQuery(bbox), extras: q.extrasQuery
 config.landuse = q.landuseQuery;
 config.roads = q.roadsQuery;
 config.water = policy === 'lake' ? bbox => q.lakeWaterQuery(bbox, m.queryPolicy.lakeName) : q[waterName];
-const report = await preflight(root, id, m.extract.directory, config, f, false);
+const report = await preflight(root, id, m.extract.directory, config, f, false, m.countryScope);
+assert.deepEqual(report.countryScope, m.countryScopeReceipt, 'country scope receipt changed since selection');
 for (const layer of ['places', 'extras', 'water', 'landuse', 'roads'])
     if (m.extract.sha256?.[layer] !== report.extractHashes[layer])
         report.errors.push(`Pinned ${layer} SHA-256 does not match actual extract`);

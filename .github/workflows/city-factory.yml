@@ -52,6 +52,7 @@ jobs:
             --helper scripts/geo/city-generation.mjs \
             --download-root "$FACTORY_SANDBOX/downloads" \
             --extract-root "$FACTORY_SANDBOX/extracts" \
+            --boundary-root "$FACTORY_SANDBOX/boundaries" \
             --outdir "$FACTORY_SANDBOX/provenance" \
             --sandbox-root "$FACTORY_SANDBOX"
       - name: Prepare separate disposable app
@@ -73,6 +74,7 @@ jobs:
             --table scripts/geo/factory/targets.json \
             --source "$GITHUB_WORKSPACE/baseline" \
             --extract-root "$FACTORY_SANDBOX/extracts" \
+            --boundary-root "$FACTORY_SANDBOX/boundaries" \
             --proof-helper "$GITHUB_WORKSPACE/scripts/geo/city-generation-proof.mjs" \
             --receipt-helper "$GITHUB_WORKSPACE/scripts/geo/factory/integrate-city-receipts.mjs" \
             --helper-root "$GITHUB_WORKSPACE" \

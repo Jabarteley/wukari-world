@@ -1,9 +1,10 @@
-/** Read-only dry-run: node --experimental-strip-types preflight.mjs ROOT CITY EXTRACT_DIR */
+/** Read-only dry-run: node --experimental-strip-types preflight.mjs ROOT CITY EXTRACT_DIR POLICY_JSON */
+import { loadCountryScope, assertCountryFacts } from './country-scope.mjs';
 import { resolve, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-export async function preflight(rootArg, city, extractArg, suppliedConfig, suppliedFacts, inventory = true) {
+export async function preflight(rootArg, city, extractArg, suppliedConfig, suppliedFacts, inventory = true, countryPolicy) {
     if (!rootArg || !extractArg || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(city ?? ''))
         throw Error('Usage: preflight.mjs ROOT CITY EXTRACT_DIR');
     const root = resolve(rootArg), load = file => import(pathToFileURL(join(root, file)).href);
@@ -15,12 +16,14 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
     const { OUTLINE_MARGIN, reachFor, inBox, areaRings, polygonsOf, ringArea, simplify } = await load('scripts/geo/destination-detail/geometry-tools.ts');
     const { waterLabelPoint } = await load('scripts/geo/destination-detail/water-label.ts');
     validateDestinationFacts(f);
-    if (typeof c.name !== 'string' || !c.name.trim() || c.name !== f.name) {
+        if (typeof c.name !== 'string' || !c.name.trim() || c.name !== f.name) {
         throw Error('Recipe name must match the source-backed facts name; district fallback cannot be empty');
     }
     const [s, w, n, e] = c.box, r = reachFor(c.box);
     const boxes = { play: c.box, core: c.core, outline: [s - OUTLINE_MARGIN, w - OUTLINE_MARGIN, n + OUTLINE_MARGIN, e + OUTLINE_MARGIN], wide: [s - r, w - r, n + r, e + r] };
     const extract = loadPbfExtract(resolve(extractArg), city, boxes);
+    const countryScope = loadCountryScope(root, countryPolicy, f.country.idISOlower, extract.source.datasetSha256);
+    assertCountryFacts(countryScope, f);
     const refs = new Map([...extract.answers.places.elements, ...extract.answers.extras.elements].map(el => [`${el.type}/${el.id}`, el]));
     const errors = [], slots = new Set(), keys = new Set(), names = new Set(), selected = new Set();
     const point = el => el.type === 'node' ? [el.lon, el.lat] : [el.center.lon, el.center.lat];
@@ -34,6 +37,7 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
         }
         const original = (el.tags?.['name:en'] ?? el.tags?.['name:fr'] ?? el.tags?.name ?? '').replace(/\s+/g, ' ').trim();
         const name = p.label ?? original, [lon, lat] = point(el);
+        if (countryScope.classify([lon, lat]) !== 'inside') errors.push(`${p.ref}: outside/on OSM country boundary ${countryScope.receipt.iso}; HOLD`);
         if (!original || !name || (p.label && !original.includes(p.label)))
             errors.push(`${p.ref}: name/label not source-backed`);
         const normalized = normalize(name);
@@ -107,10 +111,12 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
     const length = line => line.slice(1).reduce((sum, p, i) => sum + Math.hypot((p[0] - line[i][0]) * 111.32 * Math.cos(p[1] * Math.PI / 180), (p[1] - line[i][1]) * 110.57), 0);
     const roads = extract.answers.roads.elements.filter(el => el.type === 'way' && el.geometry && el.tags?.highway);
     const sourceRoadUpperBound = roads.filter(el => ['motorway', 'trunk'].includes(el.tags.highway) || length(simplify(el.geometry.map(p => [p.lon, p.lat]), inBox(c.core, [el.geometry[0].lon, el.geometry[0].lat]) ? c.coreTolerance : c.farTolerance)) >= c.minRoadKm).length;
-    return { city, status: errors.length ? 'blocked' : 'local-preflight-only', source: extract.source, extractHashes: Object.fromEntries(Object.entries(extract.answers).map(([k, v]) => [k, v.sha256])), venues: places.length, airportMarginKm: marginKm, waterLabels, sourceRoadUpperBound, postClipRoadCount: null, eightFilePlan: plan, errors, remaining: ['source metadata review', 'outline generation and rendered district/scene checks', 'shared integration', 'browser acceptance'] };
+    return { city, countryScope: countryScope.receipt, status: errors.length ? 'blocked' : 'local-preflight-only', source: extract.source, extractHashes: Object.fromEntries(Object.entries(extract.answers).map(([k, v]) => [k, v.sha256])), venues: places.length, airportMarginKm: marginKm, waterLabels, sourceRoadUpperBound, postClipRoadCount: null, eightFilePlan: plan, errors, remaining: ['source metadata review', 'outline generation and rendered district/scene checks', 'shared integration', 'browser acceptance'] };
 }
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
-    const report = await preflight(...process.argv.slice(2));
+    const [root, city, extract, policyFile] = process.argv.slice(2);
+    if (!policyFile) throw Error('Country reference policy JSON required; pending country HOLD');
+    const report = await preflight(root, city, extract, undefined, undefined, true, JSON.parse(readFileSync(resolve(policyFile), 'utf8')));
     console.log(JSON.stringify(report, null, 2));
     process.exitCode = report.errors.length ? 1 : 0;
 }

@@ -1,3 +1,4 @@
+import { loadCountryScope } from './country-scope.mjs';
 import { writeReviewPage } from './gallery.mjs';
 import { machineFailed, contactSheetInputs } from './report.mjs';
 import { insideSandbox, remapTable } from './paths.mjs';
@@ -11,12 +12,12 @@ import { ensureAcceptance } from './acceptance.mjs';
 const a = process.argv.slice(2), get = k => a[a.indexOf(k) + 1], home = dirname(fileURLToPath(import.meta.url));
 if (!['--table', '--workspace', '--outdir'].every(k => a.includes(k)))
     throw Error('Usage: runner.mjs --table JSON --workspace DISPOSABLE_CLONE --outdir PRIVATE_EVIDENCE [--plan|--execute]');
-const tablePath = resolve(get('--table')), rawTable = JSON.parse(readFileSync(tablePath)), table = a.includes('--source') && a.includes('--extract-root') ? remapTable(rawTable, get('--source'), get('--extract-root')) : rawTable, workspace = resolve(get('--workspace')), out = resolve(get('--outdir')), execute = a.includes('--execute');
+const tablePath = resolve(get('--table')), rawTable = JSON.parse(readFileSync(tablePath)), table = a.includes('--source') && a.includes('--extract-root') ? remapTable(rawTable, get('--source'), get('--extract-root'), a.includes('--boundary-root') ? get('--boundary-root') : undefined) : rawTable, workspace = resolve(get('--workspace')), out = resolve(get('--outdir')), execute = a.includes('--execute');
 const sandbox = a.includes('--sandbox-root') ? resolve(get('--sandbox-root')) : home;
 insideSandbox(out, sandbox);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex'), readhash = path => hash(readFileSync(path));
 const shared = ['scripts/geo/build-destination-detail.ts', 'scripts/geo/destination-detail/geometry-tools.ts', 'scripts/geo/destination-detail/pbf-extract.ts', 'scripts/geo/destination-detail/queries.ts', 'scripts/geo/destination-detail/water-label.ts', 'scripts/city/build-catalogue.ts', 'src/game/cities/africa/contentBuilder.ts', 'src/game/cities/africa/types.ts', 'src/game/cities/africa/map.ts', 'src/game/cities/africa/module.ts', 'src/game/cities/cityContractTest.test.ts', 'package.json', 'package-lock.json'];
-const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs', 'gallery.mjs'].map(n => join(home, n));
+const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs', 'gallery.mjs', 'country-scope.mjs'].map(n => join(home, n));
 if (!a.includes('--proof-helper') || !a.includes('--receipt-helper')) throw Error('Explicit --proof-helper and --receipt-helper are required');
 const proof = resolve(get('--proof-helper')), receipt = resolve(get('--receipt-helper'));
 tools.push(proof, receipt);
@@ -60,6 +61,7 @@ const pins = {
     cityInputs: Object.fromEntries(table.targets.map(target => [target.id, {
             metadata: target.facts ? hash(JSON.stringify({ facts: target.facts, metadataSources: target.metadataSources })) : readhash(join(table.root, target.factsRecordRef)),
             extract: target.extractSha256,
+            countryScope: loadCountryScope(table.root, target.countryScope ?? table.countryScope, target.country, target.sourceJob?.datasetSha256).receipt,
             geometryPreset: target.geometryPreset ?? table.geometryPreset ?? 'standard',
         }])),
 };
@@ -137,7 +139,8 @@ for (const row of rows) {
         continue;
     const c = cityPlan.find(c => c.id === row.id);
     const target = table.targets.find(target => target.id === row.id);
-    writeFileSync(join(out, `${row.id}-source-expected.json`), JSON.stringify(target.sourceJob ?? { extractSha256: target.extractSha256 }));
+    const selectionManifest = JSON.parse(readFileSync(join(out, 'selection', `${row.id}-manifest.json`)));
+    writeFileSync(join(out, `${row.id}-source-expected.json`), JSON.stringify({ ...(target.sourceJob ?? { extractSha256: target.extractSha256 }), countryScope: selectionManifest.countryScope, countryScopeReceipt: selectionManifest.countryScopeReceipt }));
     row.machineStages.sourceScene = run(`${row.id}/source-scene`, c.sourceScene, [join(out, row.id, 'proof', 'scene-source.json')]);
     if (!row.machineStages.sourceScene) row.reasons.push('source/name/point/scene-kind/budget proof incomplete or failed');
     if (!catalogue)

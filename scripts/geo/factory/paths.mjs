@@ -13,14 +13,17 @@ export function insideSandbox(path, sandbox) {
   return target;
 }
 
-export function remapTable(table, source, extractRoot) {
+export function remapTable(table, source, extractRoot, boundaryRoot) {
   return {
     ...table,
     root: resolve(source),
     targets: table.targets.map(target => {
       const key = target.extractKey ?? target.id;
       if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(key)) throw Error('Invalid extract key');
-      const next = { ...target, extractDirectory: resolve(extractRoot, key) };
+      const policy = target.countryScope ?? table.countryScope;
+      if (policy?.boundaryKey && !boundaryRoot) throw Error('Explicit --boundary-root required for country artifact mapping; HOLD');
+      const countryScope = policy?.boundaryKey ? { ...policy, directory: resolve(boundaryRoot, policy.boundaryKey) } : policy;
+      const next = { ...target, countryScope, extractDirectory: resolve(extractRoot, key) };
       delete next.extractKey;
       return next;
     }),

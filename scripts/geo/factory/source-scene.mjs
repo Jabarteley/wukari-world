@@ -1,3 +1,4 @@
+import { loadCountryScope, assertCountryFacts } from './country-scope.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
@@ -61,6 +62,29 @@ export async function inspectSourceScene(app, cityId, extractDir, expected) {
   return { sourceProblems, unknownKinds, sharedCityKinds: [...new Set(venues.map(venue => venue.definition.scene.kind).filter(kind => Object.hasOwn(CITY_KINDS, kind)))], places: PLACES.length, uniqueNames: new Set(PLACES.map(place => place.name)).size, venues: venues.length, airportMinimumBoxMarginMetres: margin, triangles: built.triangles, triangleLimit: CITY_TRIANGLE_BUDGET, drawCalls, drawCallLimit: CITY_DRAW_CALLS.value };
 }
 
+
+export function countryProblemsFor(places, bundle, scope) {
+  assert.ok(scope, 'factory OSM country scope required');
+  const refs = new Map([...bundle.answers.places.elements, ...bundle.answers.extras.elements].map(element => [`${element.type}/${element.id}`, element]));
+  return places.flatMap(place => {
+    const element = refs.get(place.osm), point = element?.type === 'node' ? element : element?.center;
+    return !point || scope.classify([point.lon, point.lat]) !== 'inside' || scope.classify([place.lon, place.lat]) !== 'inside'
+      ? [{ ref: place.osm, problem: 'outside/on OSM country boundary; HOLD' }] : [];
+  });
+}
+
+export async function inspectFactorySourceScene(app, cityId, extractDir, expected) {
+  const [{ PLACES }, { FACTS }, { CONFIG }] = await Promise.all([
+    moduleAt(app, `src/game/cities/${cityId}/places.ts`), moduleAt(app, `src/game/cities/${cityId}/facts.ts`), moduleAt(app, `scripts/geo/destination-detail/${cityId}.ts`),
+  ]);
+  const bundle = await loadSourceBundle(app, cityId, extractDir, CONFIG, expected);
+  const scope = loadCountryScope(app, expected.countryScope, FACTS.country.idISOlower, bundle.source.datasetSha256);
+  assertCountryFacts(scope, FACTS);
+  assert.deepEqual(scope.receipt, expected.countryScopeReceipt, 'country receipt changed since selection');
+  const scene = await inspectSourceScene(app, cityId, extractDir, expected);
+  return { ...scene, countryScope: scope.receipt, sourceProblems: [...scene.sourceProblems, ...countryProblemsFor(PLACES, bundle, scope)] };
+}
+
 export function assertSourceScene(scene) {
   assert.ok(!scene.sourceProblems.length && !scene.unknownKinds.length, 'source reference or scene-kind proof failed');
   assert.ok(scene.places >= 20 && scene.venues >= 20 && scene.airportMinimumBoxMarginMetres >= 900, 'places or airport margin below city acceptance bar');
@@ -71,7 +95,7 @@ if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.m
   const args = process.argv.slice(2), get = flag => args[args.indexOf(flag) + 1];
   for (const flag of ['--workspace', '--city', '--extract-dir', '--expected', '--out']) if (!args.includes(flag)) throw Error(`Missing ${flag}`);
   const { readFileSync } = await import('node:fs');
-  const scene = await inspectSourceScene(resolve(get('--workspace')), get('--city'), resolve(get('--extract-dir')), JSON.parse(readFileSync(get('--expected'))));
+  const scene = await inspectFactorySourceScene(resolve(get('--workspace')), get('--city'), resolve(get('--extract-dir')), JSON.parse(readFileSync(get('--expected'))));
   const output = resolve(get('--out'));
   mkdirSync(dirname(output), { recursive: true });
   writeFileSync(output, JSON.stringify(scene, null, 2) + '\n');

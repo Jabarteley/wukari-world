@@ -1,10 +1,11 @@
+import { validateCountryScopePolicy } from '../country-scope.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 
-const [input, output] = process.argv.slice(2);
-if (!input || !output) throw Error('Usage: table.mjs BOOTSTRAP_ARTIFACT TARGET_TABLE');
+const [input, output, boundaryPolicyFile] = process.argv.slice(2);
+if (!input || !output || !boundaryPolicyFile) throw Error('Usage: table.mjs BOOTSTRAP_ARTIFACT TARGET_TABLE BOUNDARY_POLICY_JSON; missing country boundary HOLD');
 const root = resolve(input), read = file => JSON.parse(readFileSync(join(root, file), 'utf8'));
 const result = read('receipts/result.json'), metadata = read('metadata/candidate/metadata.json'), job = read('receipts/source-job.json');
 assert.equal(result.status, 'SOURCE_CANDIDATE');
@@ -29,9 +30,12 @@ for (const layer of ['places', 'extras', 'water', 'landuse', 'roads']) {
   assert.equal(source.adapterSha256, job.adapterSha256);
   assert.deepEqual(source.boxes.play, metadata.sourceInput.boxes.play);
 }
+const countryScope = JSON.parse(readFileSync(resolve(boundaryPolicyFile), 'utf8'));
+validateCountryScopePolicy(countryScope, facts.country.idISOlower, job.datasetSha256);
 const table = {
   expectedSourceGitSHA: sources.bounds.geometrySourceGitSHA,
   geometryPreset: 'standard',
+  countryScope,
   targets: [{ id: metadata.id, name: metadata.name, country: metadata.country, facts,
     metadataSources: { ...sources, airport: { ...sources.airport, sourceUrl: facts.airport.sourceUrl } },
     extractKey: metadata.id, extractSha256: job.extractSha256, sourceJob: job }],

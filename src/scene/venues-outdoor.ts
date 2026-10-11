@@ -84,6 +84,8 @@ const park: SceneDef = {
     // Trees, lamps and planting around the edge
     ([[-12, -9, 1.2, 0], [-12.5, -3, 1.05, 1], [-9.5, -11, 0.95, 2], [3, -11.2, 1, 1], [-13, 11, 0.9, 0], [13, -2.4, 0.85, 2]] as [number, number, number, number][]).forEach(([x, z, s, tone]) => leafTree(b, x, z, { s, tone }));
     lampPost(b, -2.6, -0.2, { light: true }); lampPost(b, 3.2, 5.4); lampPost(b, 11.5, 0.6); lampPost(b, -9, 1);
+    // Warm light on the fronts at night: the kiosk, the help desk and the art pavilion (pools only, no lights).
+    b.pool(-10, 1, 6.6, '#ffc070', 9).pool(-3.4, 1, 9.4, '#ffd9a0', 8).pool(9, 1, -3.2, '#ffd9a0', 10).pool(8.8, 1, 6.2, '#ffc878', 8);
     ([[-6, 0.6], [5.5, 0.4], [-2.2, 12], [3, 12.2], [-13.4, 2.6]] as [number, number][]).forEach(([x, z], i) => bush(b, x, z, { s: 0.9 + (i % 2) * 0.25 }));
     bench(b, 4.2, 0.5, { w: 2.6, ry: PI, back: true, color: '#8f9384', leg: '#6f766c' });
     bench(b, -4.6, 4.4, { w: 2.6, back: true, color: '#8f9384', leg: '#6f766c' });

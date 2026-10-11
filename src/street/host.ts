@@ -37,7 +37,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 1.5)); renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.shadowMap.enabled = false
   container.appendChild(renderer.domElement)
   Object.assign(renderer.domElement.style, { display: 'block', width: '100%', height: '100%', touchAction: 'none' })
-  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = TONE_EXPOSURE
+  renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = TONE_EXPOSURE
   const hemi = new THREE.HemisphereLight('#e9f1ec', '#797359', 2.5); world.add(hemi)
   const sun = new THREE.DirectionalLight('#fff0d0', 2); sun.position.set(20, 45, 15); world.add(sun, sun.target)
   const clock = options.now ?? Date.now

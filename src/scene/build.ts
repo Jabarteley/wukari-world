@@ -131,6 +131,11 @@ export function createBatch(THREE: ThreeModule): Batch {
       lights.push({ x: v.x, y: v.y, z: v.z, colour, intensity, distance });
       return batch;
     },
+    pool(x, y, z, colour, distance = 9) {
+      v.set(x, y, z).applyMatrix4(stack[stack.length - 1]!);
+      lights.push({ x: v.x, y: v.y, z: v.z, colour, intensity: 0, distance, pool: true });
+      return batch;
+    },
     /** Where a local point ends up in scene space — for anchors recorded while drawing. */
     world(x, y, z) { v.set(x, y, z).applyMatrix4(stack[stack.length - 1]!); return { x: v.x, y: v.y, z: v.z }; },
     get triangles(): number { let count = 0; for (const data of Object.values(layers)) count += data.idx.length; return count / 3; },
@@ -158,13 +163,14 @@ export function createBatch(THREE: ThreeModule): Batch {
         triangles += data.idx.length / 3;
         meshes.push(mesh);
       }
-      const pointLights = lights.map((spec) => {
+      const pointLights = lights.filter((spec) => !spec.pool).map((spec) => {
         const light = new THREE.PointLight(spec.colour, spec.intensity, spec.distance, 1.5);
         light.position.set(spec.x, spec.y, spec.z);
         light.userData.intensity = spec.intensity;
         return light;
       });
-      return { meshes, lights: pointLights, triangles };
+      const pools = lights.map((spec) => ({ position: new THREE.Vector3(spec.x, spec.y, spec.z), color: new THREE.Color(spec.colour), distance: spec.distance }));
+      return { meshes, lights: pointLights, pools, triangles };
     },
   };
   return batch;

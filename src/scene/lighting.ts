@@ -18,14 +18,14 @@ export const isTimeOfDay = (value: unknown): value is TimeOfDay => TIMES.include
  */
 export const LIGHTING: Readonly<Record<Mood, Readonly<Record<TimeOfDay, Lighting>>>> = Object.freeze({
   outdoor: {
-    day: { sky: ['#cfe9f3', '#6fb4e6'], hemi: ['#e4f0ff', '#bca57f', 1.0], sun: ['#fff1d6', 2.9, [-18, 22, 4]], rim: ['#cfe2ff', 0.7], glow: 0.6, lamps: 0.1 },
-    dusk: { sky: ['#f0b48c', '#5d528f'], hemi: ['#c4bde6', '#9a7a6c', 1.0], sun: ['#ffa468', 2.7, [-22, 11, 7]], rim: ['#c9b6f0', 0.9], glow: 1.05, lamps: 0.8 },
+    day: { sky: ['#cfe9f3', '#6fb4e6'], hemi: ['#e4f0ff', '#bca57f', 1.0], sun: ['#fff1d6', 3.0, [-18, 22, 4]], rim: ['#cfe2ff', 0.7], glow: 0.6, lamps: 0.1 },
+    dusk: { sky: ['#f0b48c', '#5d528f'], hemi: ['#aaa6e8', '#a8745c', 0.95], sun: ['#ff9a4c', 3.4, [-22, 11, 7]], rim: ['#ffb070', 1.5], glow: 1.05, lamps: 0.8 },
     night: { sky: ['#243152', '#0b1020'], hemi: ['#9fb4e6', '#3a3550', 1.1], sun: ['#9fb9ea', 1.1, [-12, 25, 8]], rim: ['#bcd0ff', 0.95], glow: 1.3, lamps: 1.6 },
   },
   indoor: {
-    day: { sky: ['#d6e9ef', '#8cc0e2'], hemi: ['#fff6ea', '#cdbba6', 1.5], sun: ['#fff1d8', 2.6, [-18, 22, 4]], rim: ['#dfeaff', 0.5], glow: 0.85, lamps: 0.45 },
-    dusk: { sky: ['#e3a37c', '#6f5f95'], hemi: ['#ffe4c7', '#a8937f', 1.3], sun: ['#ffb57c', 2.2, [-22, 11, 7]], rim: ['#d9c8f2', 0.6], glow: 1.05, lamps: 0.85 },
-    night: { sky: ['#232e4a', '#0e1324'], hemi: ['#ecdfc9', '#7a6f78', 1.3], sun: ['#c9d3ee', 0.9, [-12, 25, 8]], rim: ['#c6d4ff', 0.7], glow: 1.2, lamps: 1.1 },
+    day: { sky: ['#d6e9ef', '#8cc0e2'], hemi: ['#fff6ea', '#cdbba6', 0.95], sun: ['#fff1d8', 3.6, [-20, 15, 9]], rim: ['#dfeaff', 0.5], glow: 0.85, lamps: 0.12 },
+    dusk: { sky: ['#e3a37c', '#6f5f95'], hemi: ['#c9bde8', '#a8806c', 1.05], sun: ['#ff9f58', 3.0, [-22, 11, 7]], rim: ['#ffb070', 1.1], glow: 1.05, lamps: 0.85 },
+    night: { sky: ['#232e4a', '#0e1324'], hemi: ['#d8cdc0', '#6e6470', 1.0], sun: ['#c9d3ee', 0.9, [-12, 25, 8]], rim: ['#c6d4ff', 0.9], glow: 1.2, lamps: 1.3 },
   },
   club: {
     day: { sky: ['#241d3a', '#120f1f'], hemi: ['#b3a2ea', '#4a3550', 1.1], sun: ['#c0b0ff', 0.7, [-10, 26, 10]], rim: ['#ffd9b0', 0.8], glow: 1.2, lamps: 1.05 },
@@ -84,7 +84,7 @@ export function lightingAt(mood: string, minute: number): Lighting {
   const t = [set.night, set.dusk, set.day] as const;
   const num = (pick: (l: Lighting) => number) => t.reduce((sum, l, i) => sum + pick(l) * w[i]!, 0);
   const col = (pick: (l: Lighting) => Colour) => mix3(pick(t[0]), pick(t[1]), pick(t[2]), w[0], w[1], w[2]);
-  // The sun's path: from the left of the camera's view, across to the right, never straight overhead (a shadow that falls away from the camera is hidden), higher towards noon; at night the preset's moon.
+  // The sun's path: from the left of the camera's view, across to the right, never straight overhead (a shadow that falls away from the camera is hidden), low at the ends of the day so the shadows are long, higher towards noon; at night the preset's moon.
   const noon = Math.max(height, 0.02), across = -Math.cos(Math.PI * Math.min(1, Math.max(0, ((((minute % 1440) + 1440) % 1440) - SUNRISE) / (SUNSET - SUNRISE))));
   const moon = set.night.sun[2];
   const place = (axis: 0 | 1 | 2, sun: number) => Math.round((sun * (1 - night) + moon[axis] * night) * 100) / 100;
@@ -92,7 +92,7 @@ export function lightingAt(mood: string, minute: number): Lighting {
   return {
     sky,
     hemi: [col((l) => l.hemi[0]), col((l) => l.hemi[1]), num((l) => l.hemi[2])],
-    sun: [col((l) => l.sun[0]), num((l) => l.sun[1]), [place(0, -16 + across * 20), place(1, 8 + 14 * noon), place(2, 4)]],
+    sun: [col((l) => l.sun[0]), num((l) => l.sun[1]), [place(0, -10 + across * 18), place(1, 5 + 17 * noon), place(2, 4)]],
     rim: [col((l) => l.rim[0]), num((l) => l.rim[1])],
     glow: num((l) => l.glow), lamps: num((l) => l.lamps),
     night: night + dusk * 0.5,

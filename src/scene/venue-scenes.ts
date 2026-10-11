@@ -817,7 +817,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     // Batch.build bakes parent transforms into vertices; the index is already venue-local.
     renderedContactTop = contactSurfaceIndex(built.meshes, deckHeights);
     for (const object of [...built.meshes, ...built.lights]) { group.add(object); staticObjects.push(object); const part = object.userData.part as keyof typeof wallParts | undefined; if (part && wallParts[part]) wallParts[part].push(object); }
-    pools = createPools(THREE, built.lights.map((light) => ({ position: light.position, color: light.color, distance: light.distance })));
+    pools = createPools(THREE, built.pools);
     if (pools) { group.add(pools.mesh); staticObjects.push(pools.mesh); }
     sky = skyDome(kit, shared.materials);
     group.add(sky);

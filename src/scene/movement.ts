@@ -114,6 +114,7 @@ export function footprintRecorder(inner: Batch, { low = 0.34, high = 1.2 }: { lo
     disc(x, y, z, r, colour, o) { inner.disc(x, y, z, r, colour, note(x, y, z, r * (o?.sx || 1), 0.01, r * (o?.sz || 1), o, true)); return batch; },
     at(x, y, z, ry, draw, rx, rz, scale) { inner.at(x, y, z, ry, () => draw(batch), rx, rz, scale); return batch; },
     light(x, y, z, colour, intensity, distance) { inner.light(x, y, z, colour, intensity, distance); return batch; },
+    pool(x, y, z, colour, distance) { inner.pool(x, y, z, colour, distance); return batch; },
     /** The builder's room: a back wall along z = −d / 2 and a left wall along x = −w / 2 (props.js room()). */
     walls({ w, d }: { w?: number; d?: number } = {}) { if (Number.isFinite(w) && Number.isFinite(d)) walls = { backZ: -d! / 2, leftX: -w! / 2 }; return batch; },
     world: (x, y, z) => inner.world(x, y, z),

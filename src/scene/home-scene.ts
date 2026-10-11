@@ -93,7 +93,7 @@ import { planOf, wallsOf, bumpsOf, railsOf, flightAt, stairwellOf, routeOf, slab
 import type { HousePlan, PlanStairs, PlanWall } from '../game/home-plan.ts';
 import type * as THREE from 'three';
 import type { Kit } from './kit.ts';
-import type { Batch, Colour, SceneCamera, Vec3 } from './types.ts';
+import type { Batch, Colour, PoolLamp, SceneCamera, Vec3 } from './types.ts';
 import type { WalkGrid, WalkPoint, WalkRect } from './movement.ts';
 import type { FurnitureDefinition } from '../types/content.ts';
 import type { HouseStyle, LifeState, PlacedItem } from '../types/life.ts';
@@ -335,13 +335,17 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   // The light follows the Lagos clock (the sun crosses the window) and the city's weather; the state tells both.
   let homeMinute = 720, homeWet = false;
   const homeLight = () => adjustLighting(lightingAt('indoor', homeMinute), homeWet ? { ...CLEAR_LOOK, wet: true } : CLEAR_LOOK);
-  glow.intensity = 26 * homeLight().lamps;
-  pool?.set(homeLight(), 0.4);
+  glow.intensity = 18 * homeLight().lamps;
+  pool?.set(homeLight(), 0.22);
   let plot: Plot = plotOf(1), plan: HousePlan = planOf(plot);
   // The floor the avatar stands on, and the floors drawn (0 … shownFloor): the ones above are lifted off.
   let level = 0, shownFloor = 0, restFloor = 0, lastAt = { x: NaN, z: NaN };
   let ui: HomeUi = { selected: null, ghost: null, buy: false };
   let who: { look: unknown; seed: string; name: string; pose: Pose | null } = { look: undefined, seed: 'you', name: 'You', pose: null }, guests: Guest[] = [], guestTags: HomeTag[] = [], selfTag: HomeTag | null = null, guestKey = '', restKey = '', dressKey = '';
+  // Daylight from the window: a soft warm patch on the floor, shown by day (rebuilt with the room).
+  const windowLights: PoolLamp[] = [];
+  let sunPatch: ReturnType<typeof createPools> = null;
+  const setSunPatch = () => { sunPatch?.set({ night: 1, lamps: 0.9 * (1 - (homeLight().night ?? 0)) }, 0.45); };
   const actorMeshes: THREE.Mesh[] = [], markMeshes: THREE.Mesh[] = [], roomMeshes: THREE.Mesh[] = [], furnitureMeshes: THREE.Mesh[] = [];
   // The player's own figure: a group moved by its transform, with one prebuilt figure per pose.
   const avatar = new THREE.Group();
@@ -405,6 +409,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   /** A window on an outer wall: frame and glass. */
   function windowAt(b: Batch, x: number, y: number, part: string) {
     const wide = Math.min(tile * 0.86, 1.5), z = -ROOM / 2;
+    windowLights.push({ position: new THREE.Vector3(x + 1.1, 0, z + 2.3), color: new THREE.Color('#ffe6b0'), distance: 8, floor: y });
     b.box(x, y + 2.0, z + 0.03, wide, 1.2, 0.07, '#5f4a36', { part });
     b.box(x, y + 2.0, z + 0.07, wide - 0.16, 1.04, 0.02, '#a9d3ea', { part, layer: 'glow' });
   }
@@ -429,7 +434,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   /** The house: floors (tiles, slab, stairwell), the walls between rooms, stairs, and the two outer walls of every floor. */
   function buildRoom() {
     cancelDoor(); hinge?.dispose(); hinge = null; doorDone = null;
-    releaseObjects(roomMeshes); room.clear();
+    releaseObjects(roomMeshes); room.clear(); windowLights.length = 0; sunPatch = null;
     const W = plot.w * tile, D = plot.d * tile, x0 = -ROOM / 2, z0 = -ROOM / 2;
     // The plinth is drawn whatever floor is in view: it reports the camera and canvas the host draws with, so taps can be resolved.
     const plinth = kit.box(x0 + W / 2, -0.21, z0 + D / 2, W + 0.5, 0.4, D + 0.5, '#6f6253', room);
@@ -485,6 +490,8 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       if (!open) windowAt(b, along(windowSlot(grid)), y, back);
     }
     for (const mesh of b.build(sceneMaterials(kit)).meshes) { mesh.name = `home-room-${mesh.name}`; room.add(mesh); roomMeshes.push(mesh); }
+    sunPatch = createPools(THREE, windowLights);
+    if (sunPatch) { room.add(sunPatch.mesh); roomMeshes.push(sunPatch.mesh); setSunPatch(); }
     applyParts();
   }
 
@@ -1005,7 +1012,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
       const nextMinute = Number.isFinite(state.t) ? lagosMinute(state.t) : homeMinute, nextWet = Number.isFinite(state.t) && rainingAt(state.estate?.city ?? 'lagos', state.t);
       const timeChanged = nextMinute !== homeMinute || nextWet !== homeWet;
       homeMinute = nextMinute; homeWet = nextWet;
-      if (timeChanged) { glow.intensity = 26 * homeLight().lamps; pool?.set(homeLight(), 0.4); }
+      if (timeChanged) { glow.intensity = 18 * homeLight().lamps; pool?.set(homeLight(), 0.22); setSunPatch(); }
       lastState = state;
       const room = refresh(state);
       const changed = refreshPeople(state) || room || first || undrawn || timeChanged;

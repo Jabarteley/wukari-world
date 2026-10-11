@@ -31,8 +31,10 @@ export interface BatchOptions {
   sx?: number
   sz?: number
 }
-export interface LightSpec { x: number; y: number; z: number; colour: Colour; intensity: number; distance: number }
-export interface BatchResult { meshes: THREE.Mesh[]; lights: THREE.PointLight[]; triangles: number }
+export interface LightSpec { x: number; y: number; z: number; colour: Colour; intensity: number; distance: number; /** A pool of light on the ground only: no point light is made for it. */ pool?: boolean }
+/** A lamp as the ground pools see it (src/scene/pools.ts): every point light, and the lamps that are only a pool. */
+export interface PoolLamp { position: THREE.Vector3; color: THREE.Color; distance: number; /** The height of the floor the pool lies on; default the ground. */ floor?: number }
+export interface BatchResult { meshes: THREE.Mesh[]; lights: THREE.PointLight[]; pools: PoolLamp[]; triangles: number }
 export interface SceneMaterials { solid: THREE.MeshLambertMaterial | THREE.MeshStandardMaterial; glow: THREE.MeshBasicMaterial; glass: THREE.MeshStandardMaterial }
 
 /** The geometry batcher (src/scene/build.ts). */
@@ -47,6 +49,8 @@ export interface Batch {
   disc(x: number, y: number, z: number, r: number, colour: Colour, o?: BatchOptions): Batch
   at(x: number, y: number, z: number, ry: number, draw: (b: Batch) => void, rx?: number, rz?: number, scale?: number): Batch
   light(x: number, y: number, z: number, colour: Colour, intensity?: number, distance?: number): Batch
+  /** A pool of lamplight on the ground at night, with no point light behind it (cheap: use it for the lamps that are not near the camera). */
+  pool(x: number, y: number, z: number, colour: Colour, distance?: number): Batch
   world(x: number, y: number, z: number): { x: number; y: number; z: number }
   readonly triangles: number
   /** Any material may back a layer (the map passes one shared material for all three). */

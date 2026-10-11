@@ -36,7 +36,7 @@ test('Home clock changes light and sky once per phase without rebuilding people 
       assert.deepEqual(home.lighting(), lit('indoor', now(hour)));
       assert.deepEqual(home.sky, lit('indoor', now(hour)).sky);
       assert.equal(home.background, lit('indoor', now(hour)).sky[0]);
-      assert.equal(lamps[0]!.intensity, 26 * lit('indoor', now(hour)).lamps, 'local warm light follows the same step');
+      assert.equal(lamps[0]!.intensity, 18 * lit('indoor', now(hour)).lamps, 'local warm light follows the same step');
       assert.equal(home.update({ ...state, t: now(hour, LIGHT_STEP - 1) }), false, 'clock ticks in the same step keep Home idle');
       assert.deepEqual(geometries(home.group), geometry, 'time changes never recreate geometry');
       assert.deepEqual(home.tags(), tags, 'the same people and action anchors survive nightfall');

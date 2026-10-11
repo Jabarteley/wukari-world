@@ -52,6 +52,8 @@ export interface TimePreset {
   windows: string;
   waves: number;
   shadow: number;
+  /** 0 by day, 1 at night: how much the houses show lit windows and the roads glow. */
+  night: number;
 }
 /** One place on the map: a venue, the player's Home, or a coming-soon site. `gate` is where its path meets the road. */
 export interface CityPlace {
@@ -140,9 +142,9 @@ const SHALLOWS = 0.55, BEACH = 0.22;
 const ASPHALT = '#5d626b', TRUNK = '#464a52', TRUNK_KERB = '#f0eadb', KERB = '#e4dfcf', DASH = '#f6f2e2', PATH = '#dcd2b6';
 
 export const CITY_LIGHT: Readonly<Record<TimeOfDay, TimePreset>> = Object.freeze({
-  day: { sky: ['#d7edf3', '#a8cfdd'], hemi: ['#f0f5f1', '#879578', 1.25], sun: ['#ffe3b4', 1.65, [-70, 120, 90]], water: '#347f9b', windows: '#526b7c', waves: 0.34, shadow: 0.26 },
-  dusk: { sky: ['#efaa7c', '#625d87'], hemi: ['#e5b697', '#4e5063', 0.95], sun: ['#ffad70', 1.25, [-130, 46, 40]], water: '#3f7fa5', windows: '#ffd49a', waves: 0.28, shadow: 0.3 },
-  night: { sky: ['#202b4a', '#0b142b'], hemi: ['#9caed7', '#172439', 0.8], sun: ['#a9bde9', 0.65, [-60, 110, 60]], water: '#2f6a94', windows: '#ffffff', waves: 0.14, shadow: 0.34 },
+  day: { sky: ['#d7edf3', '#a8cfdd'], hemi: ['#f0f5f1', '#879578', 1.25], sun: ['#ffe3b4', 1.65, [-70, 120, 90]], water: '#347f9b', windows: '#526b7c', waves: 0.34, shadow: 0.26, night: 0 },
+  dusk: { sky: ['#efaa7c', '#625d87'], hemi: ['#e5b697', '#4e5063', 0.95], sun: ['#ffad70', 1.25, [-130, 46, 40]], water: '#3f7fa5', windows: '#ffd49a', waves: 0.28, shadow: 0.3, night: 0.5 },
+  night: { sky: ['#202b4a', '#0b142b'], hemi: ['#9caed7', '#172439', 0.8], sun: ['#a9bde9', 0.65, [-60, 110, 60]], water: '#2f6a94', windows: '#ffffff', waves: 0.14, shadow: 0.34, night: 1 },
 });
 
 /** The city's light at a minute of the Lagos day: the day, dusk and night looks blended by the sun's height, so it eases through the evening. */
@@ -154,7 +156,7 @@ export function cityLightAt(minute: number): TimePreset {
   return {
     sky: [col((p) => p.sky[0]), col((p) => p.sky[1])], hemi: [col((p) => p.hemi[0]), col((p) => p.hemi[1]), num((p) => p.hemi[2])],
     sun: [col((p) => p.sun[0]), num((p) => p.sun[1]), [at(0), at(1), at(2)]],
-    water: col((p) => p.water), windows: col((p) => p.windows), waves: num((p) => p.waves), shadow: num((p) => p.shadow),
+    water: col((p) => p.water), windows: col((p) => p.windows), waves: num((p) => p.waves), shadow: num((p) => p.shadow), night: num((p) => p.night),
   };
 }
 
@@ -360,14 +362,30 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   group.name = `city:${pack.id}`;
   const own: { dispose(): void }[] = [];                                   // geometries and materials this city must free
   const keep = <T extends { dispose(): void }>(thing: T): T => { own.push(thing); return thing; };
+  // By night the houses speckle with lit windows and the roads glow warm: emissive in the materials that are already there, no lights.
+  const night = { value: 0 };
+  const glowAtNight = <M extends MeshStandardMaterial>(material: M, kind: 'houses' | 'roads'): M => {
+    material.onBeforeCompile = (shader) => {
+      shader.uniforms['uNight'] = night;
+      shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vNW;')
+        .replace('#include <project_vertex>', '#include <project_vertex>\nvec4 nwp = vec4(transformed, 1.0);\n#ifdef USE_INSTANCING\nnwp = instanceMatrix * nwp;\n#endif\nvNW = (modelMatrix * nwp).xyz;');
+      const lit = kind === 'houses'
+        ? 'float h = fract(sin(dot(floor(vNW.xz * 2.2) + floor(vNW.y * 3.0), vec2(12.9898, 78.233))) * 43758.5453);\ntotalEmissiveRadiance += uNight * step(vColor.g * 1.05, vColor.r) * step(0.82, h) * vec3(1.0, 0.7, 0.32) * 1.6;'
+        : 'totalEmissiveRadiance += uNight * step(0.04, vColor.r) * step(vColor.r, 0.25) * step(abs(vColor.r - vColor.b), 0.08) * vec3(1.0, 0.68, 0.36) * 0.1;';
+      shader.fragmentShader = shader.fragmentShader.replace('#include <common>', '#include <common>\nuniform float uNight;\nvarying vec3 vNW;')
+        .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>\n${lit}`);
+    };
+    material.customProgramCacheKey = () => `night-${kind}`;
+    return material;
+  };
   const materials = {
-    ground: keep(new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1, metalness: 0 })),
+    ground: keep(glowAtNight(new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1, metalness: 0 }), 'roads')),
     water: keep(new THREE.MeshStandardMaterial({ color: CITY_LIGHT.day.water, roughness: 0.42, metalness: 0.05, map: keep(waterTexture(THREE)) })),
     board: keep(new THREE.MeshStandardMaterial({ color: '#2c4a52', roughness: 1 })),
     waves: keep(new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.5, depthWrite: false })),
     windows: keep(new THREE.MeshBasicMaterial({ vertexColors: true, color: CITY_LIGHT.day.windows })),
     shadow: keep(new THREE.MeshBasicMaterial({ color: '#0d1a14', transparent: true, opacity: 0.2, depthWrite: false })),
-    instanced: keep(new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92, metalness: 0 })),
+    instanced: keep(glowAtNight(new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.92, metalness: 0 }), 'houses')),
   };
   let triangles = 0;
   const add = <T extends Mesh>(mesh: T, name: string, order = 0): T => { mesh.name = name; mesh.renderOrder = order; mesh.matrixAutoUpdate = false; mesh.updateMatrix(); keep(mesh.geometry); group.add(mesh); return mesh; };
@@ -933,7 +951,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
       time = presets[next] ? next : 'day';
       materials.water.color.set(pack.inland ? pack.surround ?? '#bcd596' : preset.water); materials.windows.color.set(preset.windows);
       waterwayMaterial?.color.set(preset.water); waterwayMaterial?.emissive.set(preset.water);
-      materials.waves.opacity = preset.waves; materials.shadow.opacity = preset.shadow;
+      materials.waves.opacity = preset.waves; materials.shadow.opacity = preset.shadow; night.value = preset.night;
       return preset;
     },
     setTraffic(on: boolean) { if (trafficOn === Boolean(on)) return false; trafficOn = Boolean(on); placeTraffic(0); return true; },

@@ -183,7 +183,7 @@ export function lampPost(b: Batch, x: number, z: number, { h = 4, light = false,
   b.cyl(x, 0.1, z, 0.2, 0.2, color, { seg: 6 });
   b.box(x, h + 0.1, z, 0.42, 0.55, 0.42, WARM, GLOW);
   b.box(x, h + 0.44, z, 0.62, 0.1, 0.62, color);
-  if (light) b.light(x, h - 0.2, z, '#ffc878', 22, 12);
+  if (light) b.light(x, h - 0.2, z, '#ffc878', 22, 12); else b.pool(x, h - 0.2, z, '#ffc878', 10);
 }
 
 export interface ShelfOptions { w?: number; h?: number; d?: number; ry?: number; color?: Colour; rows?: number; per?: number; items?: Colour[]; y?: number }

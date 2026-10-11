@@ -6,12 +6,10 @@
  * and are gone by day. No frame loop: it is called when the lighting changes.
  */
 import type * as THREE from 'three';
-import type { Lighting, ThreeModule } from './types.ts';
+import type { Lighting, PoolLamp, ThreeModule } from './types.ts';
 
 const SIZE = 32;
 const FLOOR = 0.045;
-/** A lamp as the pools see it: where it stands, its colour and how far its light reaches. */
-export interface PoolLamp { position: THREE.Vector3; color: THREE.Color; distance: number }
 
 let falloff: THREE.DataTexture | null = null;
 /** The soft round falloff every pool shares (made once; 4 KB). */
@@ -35,7 +33,7 @@ export function createPools(THREE: ThreeModule, lamps: readonly PoolLamp[]) {
   lamps.forEach((lamp, i) => {
     const r = Math.min(7, Math.max(1.6, lamp.distance * 0.42)), x = lamp.position.x, z = lamp.position.z, base = i * 4;
     for (const [dx, dz, u, v] of [[-1, -1, 0, 0], [1, -1, 1, 0], [1, 1, 1, 1], [-1, 1, 0, 1]] as const) {
-      positions.push(x + dx * r, FLOOR, z + dz * r); uvs.push(u, v); colours.push(lamp.color.r, lamp.color.g, lamp.color.b);
+      positions.push(x + dx * r, (lamp.floor ?? 0) + FLOOR, z + dz * r); uvs.push(u, v); colours.push(lamp.color.r, lamp.color.g, lamp.color.b);
     }
     index.push(base, base + 2, base + 1, base, base + 3, base + 2);
   });

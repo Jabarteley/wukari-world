@@ -166,7 +166,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       b.light(x, 1.52, -0.5, '#ffe3a0', 12, 9);
     }
     const built = b.build(sceneMaterials(kit));
-    pools = createPools(THREE, built.lights.map(light => ({ position: light.position, color: light.color, distance: light.distance })));
+    pools = createPools(THREE, built.pools);
     sceneryObjects = [...built.meshes, ...built.lights, ...(pools ? [pools.mesh] : [])];
     sceneryObjects.forEach(object => scenery.add(object));
     pools?.set(streetLight());

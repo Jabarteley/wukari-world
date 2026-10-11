@@ -4,10 +4,10 @@
  * graded sky behind a scene and the soft ground it stands on. One place, so the venue host, the
  * character preview, the scene harness (and the city map, when it adopts it) show the same colours.
  *
- * TONE MAPPING. ACES filmic at an exposure of 1: the sun is several times brighter than the fill, so light and
- * shade have a real contrast, and the highlights roll off instead of clipping. Chosen by pictures against AgX (greys the
- * greens and the skin out) and Khronos Neutral (flat, with the sun's contrast squashed): ACES keeps the greens, the
- * terracotta and the skin tones on brand while the shade goes cool and deep.
+ * TONE MAPPING. Khronos PBR Neutral at exposure 1: it keeps a colour as it was chosen up to a threshold and only rolls off what
+ * would clip, so the greens, the red roofs and the skin tones stay as vivid as the art. The sun is several times brighter
+ * than the fill, so light and shade still have a real contrast. Chosen by pictures: ACES (even with a higher exposure)
+ * greyed the greens and flattened the dusk, AgX more so.
  *
  * TIERS. A phone (coarse pointer, short side up to 720 CSS px) draws at a pixel ratio of at most
  * 1.5 with a 1024 shadow map and plain PCF; everything else at up to 2 with a 2048 map and soft
@@ -64,7 +64,7 @@ export function renderTier(win: LookWindow = globalThis): RenderTier {
 /** Colour space, tone mapping, pixel ratio and shadow filter for a renderer. Safe on a test stub. */
 export function applyRendererLook(THREE: ThreeModule, renderer: LookRenderer, tier: RenderTier = WIDE_TIER, { shadows = true, win = globalThis }: { shadows?: boolean; win?: LookWindow } = {}): RenderTier {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMapping = THREE.NeutralToneMapping;
   renderer.toneMappingExposure = TONE_EXPOSURE;
   renderer.setPixelRatio?.(Math.min(win.devicePixelRatio || 1, tier.pixelRatio));
   if (shadows && renderer.shadowMap) {

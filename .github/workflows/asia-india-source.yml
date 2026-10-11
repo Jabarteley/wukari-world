@@ -1,0 +1,61 @@
+name: Asia India source batch
+
+on:
+  push:
+    branches: ['codex/world-asia-20261011']
+    paths: ['scripts/geo/asia-source-in.json']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: city-source-bootstrap-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        country: [in]
+    steps:
+      - name: Set source output directory
+        run: echo "BOOTSTRAP_OUT=$RUNNER_TEMP/city-source-bootstrap" >> "$GITHUB_ENV"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 7a57e756a10b35a0eec9ec5928f083580fb9e7a9
+          path: geometry-source
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 6106f8432eca8676f091bd5b391a071b603958dc
+          path: factory-source
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Install pinned source and geometry dependencies
+        run: |
+          python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1' 'shapely==2.1.2'
+          npm ci --prefix geometry-source --ignore-scripts --no-audit --no-fund
+      - name: Download verified country source and derive metadata and layers
+        run: |
+          python factory-source/scripts/geo/factory/bootstrap/batch-run.py \
+            --table scripts/geo/asia-source-${{ matrix.country }}.json \
+            --geometry-source "$GITHUB_WORKSPACE/geometry-source" \
+            --outdir "$BOOTSTRAP_OUT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: city-bootstrap-${{ matrix.country }}-${{ github.sha }}
+          path: ${{ runner.temp }}/city-source-bootstrap/publish
+          if-no-files-found: error

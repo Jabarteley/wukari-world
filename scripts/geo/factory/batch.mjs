@@ -77,7 +77,7 @@ for (const target of table.targets) {
             }
             catch { }
         }
-        const config = { ...old, box: boxes.play, core: boxes.core, places: choices, names };
+        const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names };
         for (const key of ['discovery', 'water', 'landuse', 'roads', 'sea', 'wideWater'])
             delete config[key];
         if (policy.kind !== 'inland') {

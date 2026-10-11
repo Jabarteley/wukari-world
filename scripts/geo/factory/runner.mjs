@@ -1,3 +1,4 @@
+import { machineFailed, contactSheetInputs } from './report.mjs';
 import { insideSandbox, remapTable } from './paths.mjs';
 /** Plan by default. Execution requires a marked disposable clone; no live approval. */
 import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, realpathSync, readdirSync } from 'node:fs';
@@ -14,7 +15,7 @@ const sandbox = a.includes('--sandbox-root') ? resolve(get('--sandbox-root')) : 
 insideSandbox(out, sandbox);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex'), readhash = path => hash(readFileSync(path));
 const shared = ['scripts/geo/build-destination-detail.ts', 'scripts/geo/destination-detail/geometry-tools.ts', 'scripts/geo/destination-detail/pbf-extract.ts', 'scripts/geo/destination-detail/queries.ts', 'scripts/geo/destination-detail/water-label.ts', 'scripts/city/build-catalogue.ts', 'src/game/cities/africa/contentBuilder.ts', 'src/game/cities/africa/types.ts', 'src/game/cities/africa/map.ts', 'src/game/cities/africa/module.ts', 'src/game/cities/cityContractTest.test.ts', 'package.json', 'package-lock.json'];
-const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs'].map(n => join(home, n));
+const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs'].map(n => join(home, n));
 if (!a.includes('--proof-helper') || !a.includes('--receipt-helper')) throw Error('Explicit --proof-helper and --receipt-helper are required');
 const proof = resolve(get('--proof-helper')), receipt = resolve(get('--receipt-helper'));
 tools.push(proof, receipt);
@@ -66,7 +67,7 @@ for (const t of table.targets)
         if (readhash(join(t.extractDirectory, layer + '.json')) !== t.extractSha256?.[layer])
             throw Error(`${t.id}: actual extract ${layer} hash mismatch`);
 const identity = hash(JSON.stringify(pins)), node = process.execPath, command = (...args) => [node, '--experimental-strip-types', ...args];
-const cityPlan = table.targets.map(t => ({ id: t.id, scaffoldFiles: ['facts', 'index', 'content', 'map'].map(n => `src/game/cities/${t.id}/${n}.ts`).concat(`scripts/geo/destination-detail/${t.id}.ts`), generatedFiles: ['places', 'geometry', 'terrain'].map(n => `src/game/cities/${t.id}/${n}.ts`), generation: command('scripts/geo/build-destination-detail.ts', t.id, '--extract-dir', t.extractDirectory), acceptance: command('--test', '--test-concurrency=1', `src/game/cities/${t.id}/map.test.ts`, `src/game/cities/${t.id}/journey.test.ts`), proof: command(proof, '--worktree', workspace, '--city', t.id, '--outdir', join(out, t.id, 'proof')), genericAcceptance: 'emit proven map/journey wrappers only when absent; preserve existing stricter files', holds: ['metadata coordinates need primary record review', 'auto-bounds/re-extraction unverified; pinned boxes preserved', 'rendered visual and browser acceptance pending'] }));
+const cityPlan = table.targets.map(t => ({ id: t.id, scaffoldFiles: ['facts', 'index', 'content', 'map'].map(n => `src/game/cities/${t.id}/${n}.ts`).concat(`scripts/geo/destination-detail/${t.id}.ts`), generatedFiles: ['places', 'geometry', 'terrain'].map(n => `src/game/cities/${t.id}/${n}.ts`), generation: command('scripts/geo/build-destination-detail.ts', t.id, '--extract-dir', t.extractDirectory), acceptance: command('--test', '--test-concurrency=1', `src/game/cities/${t.id}/map.test.ts`, `src/game/cities/${t.id}/journey.test.ts`), proofs: Object.fromEntries(['ground', 'city'].map(view => [view, command(proof, '--worktree', workspace, '--city', t.id, '--outdir', join(out, t.id, 'proof', view), '--view', view)])), genericAcceptance: 'emit proven map/journey wrappers only when absent; preserve existing stricter files', holds: ['metadata coordinates need primary record review', 'auto-bounds/re-extraction unverified; pinned boxes preserved', 'rendered visual and browser acceptance pending'] }));
 const plan = { mode: execute ? 'execute' : 'plan', identity, pins, workspace, selection: command(join(home, 'batch.mjs'), '--table', join(out, 'execution-table.json'), '--out', join(out, 'selection'), '--sandbox-root', sandbox), cities: cityPlan, catalogueOnce: command('scripts/city/build-catalogue.ts'), receipts: command(receipt, workspace, 'PER_CITY_PRIVATE_RECEIPT_MANIFEST'), cloudNeeds: ['clean committed source baseline plus separately marked disposable clone', 'Node strip-types runtime and repository dependencies', 'pinned five-layer extracts reachable at table paths', 'existing Linux proof helper needs rsvg-convert on Linux or sips on macOS', 'generic map/journey wrappers emitted only when absent; preserve stricter existing tests', 'metadata/visual/browser review after machine artifacts'] };
 mkdirSync(out, { recursive: true });
 const planPath = join(out, 'plan.json');
@@ -137,7 +138,11 @@ for (const row of rows) {
     if (!catalogue)
         row.reasons.push('shared catalogue failed');
     row.machineStages.acceptance = run(`${row.id}/acceptance`, c.acceptance);
-    row.machineStages.proof = run(`${row.id}/proof`, c.proof);
+    for (const view of ['ground', 'city']) {
+        const stage = view === 'ground' ? 'proofGround' : 'proofCity';
+        row.machineStages[stage] = run(`${row.id}/proof-${view}`, c.proofs[view], [join(out, row.id, 'proof', view, `${row.id}-flat.png`), join(out, row.id, 'proof', view, `${row.id}-proof.json`)]);
+    }
+    row.machineStages.proof = row.machineStages.proofGround && row.machineStages.proofCity;
     if (!row.machineStages.acceptance)
         row.reasons.push('map/journey acceptance incomplete or failed');
     if (!row.machineStages.proof)
@@ -148,5 +153,9 @@ for (const row of rows) {
     if (!row.machineStages.receipt)
         row.reasons.push('receipt creation failed');
 }
-writeFileSync(join(out, 'machine-holds.json'), JSON.stringify({ identity, catalogue, rows }, null, 2));
+const failed = machineFailed(catalogue, rows);
+writeFileSync(join(out, 'contact-sheet-inputs.json'), JSON.stringify(contactSheetInputs(out, rows), null, 2));
+writeFileSync(join(out, 'machine-holds.json'), JSON.stringify({ identity, catalogue, machineFailed: failed, rows }, null, 2));
 console.log(JSON.stringify({ identity, rows, receiptRoot: join(workspace, 'world/playable-africa-rollout'), approval: 'none' }, null, 2));
+
+process.exitCode = failed ? 1 : 0;

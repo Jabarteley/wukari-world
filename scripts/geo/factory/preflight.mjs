@@ -15,6 +15,9 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
     const { OUTLINE_MARGIN, reachFor, inBox, areaRings, polygonsOf, ringArea, simplify } = await load('scripts/geo/destination-detail/geometry-tools.ts');
     const { waterLabelPoint } = await load('scripts/geo/destination-detail/water-label.ts');
     validateDestinationFacts(f);
+    if (typeof c.name !== 'string' || !c.name.trim() || c.name !== f.name) {
+        throw Error('Recipe name must match the source-backed facts name; district fallback cannot be empty');
+    }
     const [s, w, n, e] = c.box, r = reachFor(c.box);
     const boxes = { play: c.box, core: c.core, outline: [s - OUTLINE_MARGIN, w - OUTLINE_MARGIN, n + OUTLINE_MARGIN, e + OUTLINE_MARGIN], wide: [s - r, w - r, n + r, e + r] };
     const extract = loadPbfExtract(resolve(extractArg), city, boxes);

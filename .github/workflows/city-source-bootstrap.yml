@@ -44,7 +44,7 @@ jobs:
           npm ci --prefix geometry-source --ignore-scripts --no-audit --no-fund
       - name: Download verified country source and derive metadata and layers
         run: |
-          python scripts/geo/factory/bootstrap/run.py \
+          python scripts/geo/factory/bootstrap/batch-run.py \
             --table scripts/geo/factory/oceania-${{ matrix.country }}.json \
             --geometry-source "$GITHUB_WORKSPACE/geometry-source" \
             --outdir "$BOOTSTRAP_OUT"

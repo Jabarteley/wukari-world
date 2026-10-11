@@ -16,6 +16,7 @@ import { AVATAR_WEARABLES } from '../../../game/wardrobe/catalogue.ts'
 import { avatarLookFields, keepAvatarAccessoryChoice } from '../../../game/wardrobe/look.ts'
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
 import type { PreviewFocus } from '../../../scene/avatar-preview.ts'
+import type { RosterFields } from '../../../game/roster.ts'
 
 export type SwatchGroup = 'skin' | 'hairColours' | 'outfitColours'
 /** The look fields an option button can set. */
@@ -147,9 +148,10 @@ export function lookAlt(look: AvatarLook, name = 'Your character'): string {
   return `${name}: ${titled(look.body)}, ${swatchLabel('skin', look.skin).toLowerCase()} skin, ${titled(look.hair).toLowerCase()} hairstyle in ${swatchLabel('hairColours', look.hairColor).toLowerCase()}, ${titled(look.outfit).toLowerCase()} outfit in ${titled(look.fabric).toLowerCase()} ${swatchLabel('outfitColours', look.outfitColor).toLowerCase()}, ${swatchLabel('outfitColours', look.bottomsColor).toLowerCase()} bottoms${wearing.length ? `, wearing ${wearing.map((id) => titled(id).toLowerCase()).join(', ')}` : ''}${look.wearables?.length ? `, layered with ${avatarLookFields(look).wearables?.map(id => AVATAR_WEARABLES[id].label).join(', ')}` : ''}${look.appearance ? `, ${look.appearance.height} height, ${look.appearance.build} build, ${look.appearance.ageAppearance} appearance` : ''}.`
 }
 /** The look as the scene code takes it: style ids as they are, colours as hex values. */
-export interface SceneLook extends AvatarLookExtensions { body: string; hair: string; outfit: string; fabric: string; accessories: string[]; face: string; expression: string; skin: string; hairColor: string; outfitColor: string; bottomsColor: string }
+export interface SceneLook extends AvatarLookExtensions, RosterFields { body: string; hair: string; outfit: string; fabric: string; accessories: string[]; face: string; expression: string; skin: string; hairColor: string; outfitColor: string; bottomsColor: string }
 export const sceneLook = (look: AvatarLook): SceneLook => ({
   ...avatarLookFields(look),
+  ...(look.character ? { character: look.character, ...(look.characterOutfit ? { characterOutfit: look.characterOutfit } : {}), ...(look.characterSkin ? { characterSkin: look.characterSkin } : {}) } : {}),
   body: look.body, hair: look.hair, outfit: look.outfit, fabric: look.fabric, accessories: [...worn(look)], face: look.face ?? APPEARANCE.faces[0] ?? 'oval', expression: look.expression ?? APPEARANCE.expressions[0] ?? 'smile',
   skin: hexOf('skin', look.skin), hairColor: hexOf('hairColours', look.hairColor), outfitColor: hexOf('outfitColours', look.outfitColor), bottomsColor: hexOf('outfitColours', look.bottomsColor),
 })
@@ -172,7 +174,7 @@ export function randomLook(random: () => number = Math.random): Look {
 }
 
 /** The same look, whatever order the accessories are in and whether or not the optional fields are spelled out. */
-const canonical = (look: AvatarLook): string => JSON.stringify([look.body, look.hair, look.outfit, look.fabric, look.skin, look.hairColor, look.outfitColor, look.bottomsColor,
+const canonical = (look: AvatarLook): string => JSON.stringify([look.body, look.hair, look.outfit, look.fabric, look.skin, look.hairColor, look.outfitColor, look.bottomsColor, look.character ?? null, look.characterOutfit ?? 0, look.characterSkin ?? 0,
   [...worn(look)].sort(), look.face ?? APPEARANCE.faces[0], look.expression ?? APPEARANCE.expressions[0],
   [...(avatarLookFields(look).wearables ?? [])].sort(), normalizeAvatarAppearance(look.appearance)])
 export const sameLook = (a: Look, b: Look): boolean => canonical(a) === canonical(b)

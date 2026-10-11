@@ -2,6 +2,7 @@
 // while it is edited, why the sheet opened, what each card's one primary action says and what is
 // still missing, and the sentence a refused step shows. Every step is confirmed by a server action
 // (src/game/systems/onboarding.ts); the screen only keeps the draft being edited.
+import { tidyRosterFields } from '../../../game/roster.ts'
 import { APPEARANCE, DREAM_REWARD, TRAITS_REQUIRED } from '../../../game/content/traits.ts'
 import type { DreamId, Look, StartHomeId, TraitId } from '../../../types/life.ts'
 import { hairOptions, outfitOptions, slotOf, starterWardrobe } from './lookModel.ts'
@@ -41,6 +42,7 @@ export function storedLook(key: string, storage: Storage | null = deviceStorage(
     if (!valid) return null
     return {
       ...avatarLookFields(look),
+      ...tidyRosterFields(look, look.body === 'man' ? 'man' : 'woman'),
       body: look.body, hair: look.hair as Look['hair'], outfit: look.outfit as Look['outfit'], fabric: look.fabric as Look['fabric'], skin: look.skin as Look['skin'],
       hairColor: look.hairColor as Look['hairColor'], outfitColor: look.outfitColor as Look['outfitColor'], bottomsColor: look.bottomsColor as Look['bottomsColor'],
       accessories: [...extras], face: (APPEARANCE.faces as string[]).includes(look.face as string) ? look.face as Look['face'] : APPEARANCE.faces[0] as Look['face'],

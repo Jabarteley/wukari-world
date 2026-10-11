@@ -7,6 +7,7 @@ import { avatarLookFields, chooseAvatarWearable, keepAvatarAccessoryChoice } fro
 import { wearableCards } from '../wardrobe/view.ts';
 import { dreamFor, dreamsFor, lotteryBulletsFor } from '../cities/characterContent.ts';
 import { cityUnit, cityUnitArticle } from '../cities/terminology.ts';
+import { SKIN_STEPS, checkRosterFields, rosterOn, tidyRosterFields } from '../roster.ts';
 /**
  * OWNER: character
  * The quick start (a look, then straight into a public venue as a GUEST), settling in (personality →
@@ -259,6 +260,9 @@ export function checkLook(value: unknown, { starter = false }: { starter?: boole
     if (!known.includes(given)) return { reason: `Choose a ${label}: ${list(APPEARANCE[group])}.` };
     if (given !== known[0]) look[field] = given;
   }
+  const roster = checkRosterFields(value, body);
+  if ('reason' in roster) return { reason: roster.reason };
+  Object.assign(look, roster.fields);
   const layers = PLAYS ? validateAvatarWearables(value.wearables) : { ok: true as const, ids: avatarSavedFields(value).wearables ?? [] };
   if (!layers.ok) return { reason: 'Choose compatible clothing layers from the wardrobe.' };
   if (starter && layers.ids.some(id => !AVATAR_STARTER_WEARABLES.includes(id))) return { reason: 'Buy this clothing in the Boutique after moving in.' };
@@ -274,7 +278,7 @@ export function checkLook(value: unknown, { starter = false }: { starter?: boole
   return { look: look as Look };
 }
 /** Two looks are the same when every field matches (the accessories in any order). */
-const SAME_LOOK_FIELDS: (keyof Look)[] = [...KINDS, 'body', ...COLOUR_FIELD_IDS, 'face', 'expression'];
+const SAME_LOOK_FIELDS: (keyof Look)[] = [...KINDS, 'body', ...COLOUR_FIELD_IDS, 'face', 'expression', 'character', 'characterOutfit', 'characterSkin'];
 const sameLook = (a: Look, b: Look): boolean => SAME_LOOK_FIELDS.every((field) => a[field] === b[field])
   && [...(a.accessories ?? [])].sort().join() === [...(b.accessories ?? [])].sort().join()
   && [...(a.wearables ?? [])].sort().join() === [...(b.wearables ?? [])].sort().join()
@@ -283,23 +287,23 @@ const sameLook = (a: Look, b: Look): boolean => SAME_LOOK_FIELDS.every((field) =
 function randomLook(rng: () => number): Look {
   const pick = <T>(items: readonly T[]): T => items[Math.floor(rng() * items.length) % items.length]!; // the catalogue lists are not empty
   const body = pick(APPEARANCE.bodies).id;
-  // Only what a new Sim may wear: nothing that is sold in the Boutique.
-  function free(kind: 'hair'): HairId[];
-  function free(kind: 'outfit'): OutfitId[];
-  function free(kind: 'hair' | 'outfit'): string[] { return optionsFor(kind, body).filter((id) => !boutiqueOnly(kind, id)); }
-  return { body, hair: pick(free('hair')), outfit: pick(free('outfit')), fabric: pick(APPEARANCE.fabrics),
-    skin: pick(APPEARANCE.skin).id, hairColor: pick(APPEARANCE.hairColours).id, outfitColor: pick(APPEARANCE.outfitColours).id, bottomsColor: pick(APPEARANCE.outfitColours).id };
+  // A character of the roster that is on, in an outfit and skin step of its own; the old fields are the free styles that stand in for it.
+  const who = pick(rosterOn(body)), [hair, outfit, fabric] = who.as;
+  const outfitIndex = Math.floor(rng() * who.outfits), skinStep = who.skin && rng() < 0.5 ? 1 + Math.floor(rng() * SKIN_STEPS) : 0;
+  return { body, hair, outfit, fabric,
+    skin: pick(APPEARANCE.skin).id, hairColor: pick(APPEARANCE.hairColours).id, outfitColor: pick(APPEARANCE.outfitColours).id, bottomsColor: pick(APPEARANCE.outfitColours).id,
+    character: who.id, ...(outfitIndex ? { characterOutfit: outfitIndex } : {}), ...(skinStep ? { characterSkin: skinStep } : {}) };
 }
 
 /**
- * Owned styles: the basics, whatever is being worn (`look`, if given), and any valid saved ids.
+ * Owned styles: the basics, whatever is being worn (`look`, if given; a character's stand-in styles are not owned by wearing it), and any valid saved ids.
  * Bought accessories are kept under `accessories` only once there are some, so a wardrobe that
  * has none is exactly the three lists it always was.
  */
 function wardrobeOf(saved: unknown, look: Look | null | undefined): Wardrobe {
   const wardrobe: Record<WardrobeKind, string[]> & { accessories?: string[]; wearables?: AvatarWearableId[] } = { hair: [], outfit: [], fabric: [] };
   for (const kind of KINDS) {
-    const owned: unknown[] = [...WARDROBE_BASICS[kind], ...(isRecord(saved) && Array.isArray(saved[kind]) ? saved[kind].slice(0, 40) : []), look?.[kind]];
+    const owned: unknown[] = [...WARDROBE_BASICS[kind], ...(isRecord(saved) && Array.isArray(saved[kind]) ? saved[kind].slice(0, 40) : []), look?.character ? undefined : look?.[kind]];
     wardrobe[kind] = [...new Set(owned.filter((id): id is string => typeof id === 'string' && Object.hasOwn(BOUTIQUE_PRICES[kind], id)))];
   }
   const extras: unknown[] = [...(isRecord(saved) && Array.isArray(saved.accessories) ? saved.accessories.slice(0, 40) : []), ...(look?.accessories ?? [])];
@@ -508,7 +512,8 @@ const actions = {
     const o = state.onboarding;
     const { look, reason } = checkLook(payload?.look);
     if (!look) return fail(state, 'invalid_look', reason);
-    for (const kind of KINDS) {
+    // A character is a finished look: the old hairstyle, outfit and fabric stand in for it where the old figure is drawn, and need not be owned.
+    for (const kind of look.character ? [] : KINDS) {
       if (!ownsStyle(o, kind, look[kind])) {
         return fail(state, 'not_owned', `You do not own the ${name(look[kind])} ${kind === 'hair' ? 'hairstyle' : kind} yet. Buy it in Phone → Boutique for ${naira(BOUTIQUE_PRICES[kind][look[kind]])}.`);
       }
@@ -611,7 +616,8 @@ export default {
     } else {
       // A saved look keeps everything that is still valid: an unknown accessory, face or expression is dropped, not the whole look.
       base.look = checkLook(isRecord(raw.look) ? { ...raw.look, ...(PLAYS ? avatarLookFields(raw.look) : avatarSavedFields(raw.look)), wearables: (PLAYS ? avatarLookFields(raw.look) : avatarSavedFields(raw.look)).wearables, appearance: (PLAYS ? avatarLookFields(raw.look) : avatarSavedFields(raw.look)).appearance, accessories: tidyAccessories(raw.look.accessories),
-        face: isOneOf(APPEARANCE.faces, raw.look.face) ? raw.look.face : undefined, expression: isOneOf(APPEARANCE.expressions, raw.look.expression) ? raw.look.expression : undefined } : raw.look).look ?? base.look;
+        face: isOneOf(APPEARANCE.faces, raw.look.face) ? raw.look.face : undefined, expression: isOneOf(APPEARANCE.expressions, raw.look.expression) ? raw.look.expression : undefined,
+        character: undefined, characterOutfit: undefined, characterSkin: undefined, ...tidyRosterFields(raw.look, raw.look.body === 'man' ? 'man' : 'woman') } : raw.look).look ?? base.look;
       base.traits = Array.isArray(raw.traits) ? [...new Set(raw.traits.filter(isTraitId))].slice(0, TRAITS_REQUIRED) : [];
       base.dream = isDreamId(raw.dream) ? raw.dream : null;
       base.house = isStartHomeId(raw.house) ? raw.house : null;

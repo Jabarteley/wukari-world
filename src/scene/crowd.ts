@@ -36,6 +36,8 @@ export interface CrowdEntry {
   spot?: string;
   /** Only ever `true`: a friend of the player. Left out for everyone else. */
   friend?: true;
+  /** A regular's description (role, emoji, age, a look): the roster character they wear comes from it. */
+  regular?: { id: string; name?: string; role?: string; emoji?: string; age?: string; look?: unknown };
 }
 /** What crowdList reads (the data is not trusted: anything malformed is skipped). */
 export interface CrowdInput {
@@ -47,7 +49,7 @@ export interface CrowdInput {
   positions?: unknown;
 }
 interface PlayerIn { id?: unknown; name?: unknown; here?: unknown; look?: unknown; friend?: unknown }
-interface NpcIn { id?: unknown; name?: unknown; at?: unknown }
+interface NpcIn { id?: unknown; name?: unknown; at?: unknown; role?: unknown; emoji?: unknown; age?: unknown; look?: unknown }
 /** The server's who-is-here listing for a venue room. */
 export interface PresenceListing { error?: unknown; venue?: unknown; cityId?: unknown; players?: unknown }
 
@@ -69,7 +71,8 @@ export function crowdList({ players = [], npcs = [], selfId = null, max = CROWD_
   }
   for (const npc of (Array.isArray(npcs) ? npcs : []) as (NpcIn | null)[]) {
     if (!npc || typeof npc.id !== 'string') continue;
-    list.push({ id: `npc:${npc.id}`, name: String(npc.name ?? ''), kind: 'npc', seed: npc.id, ...(typeof npc.at === 'string' ? { spot: npc.at } : {}) });
+    const regular = { id: npc.id, ...(typeof npc.name === 'string' ? { name: npc.name } : {}), ...(typeof npc.role === 'string' ? { role: npc.role } : {}), ...(typeof npc.emoji === 'string' ? { emoji: npc.emoji } : {}), ...(typeof npc.age === 'string' ? { age: npc.age } : {}), ...(npc.look && typeof npc.look === 'object' ? { look: npc.look } : {}) };
+    list.push({ id: `npc:${npc.id}`, name: String(npc.name ?? ''), kind: 'npc', seed: npc.id, regular, ...(typeof npc.at === 'string' ? { spot: npc.at } : {}) });
   }
   return list.slice(0, Math.max(0, max));
 }

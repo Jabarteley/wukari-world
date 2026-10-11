@@ -659,3 +659,7 @@ body[data-hold-hint] .scene-hint{display:none!important}
 
 /* A phone shows the invitation chip right under the top bar: a toast waits below it instead of lying over it. */
 @media(max-width:720px){body:has(.inv-chip) .life-toasts{top:calc(var(--toast-top,74px) + 72px)}}
+/* A roster portrait in place of the letter (src/app/ui/faces.ts): the head and shoulders, cropped round. */
+.ui-avatar.has-face,.row-mark.has-face{padding:0;background:#dfe8e3}
+.row-mark.has-face{overflow:hidden}
+.ui-face{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:inherit}

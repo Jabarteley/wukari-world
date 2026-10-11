@@ -11,6 +11,8 @@ import type { Draft, DraftArea } from './model.ts';
 import type { DreamId, TraitId } from '../types/life.ts';
 import { avatarLookFields } from '../game/wardrobe/look.ts';
 import { AVATAR_STARTER_WEARABLES } from '../game/wardrobe/prices.ts';
+import { tidyRosterFields } from '../game/roster.ts';
+import { ensureCharacter, shuffleCharacter, withSex } from '../scene/roster/look.ts';
 
 // ---- names ---------------------------------------------------------------------------------
 /** Friendly suggestions for the name field: "<mood> <name>", always 3–24 ordinary characters. */
@@ -63,11 +65,14 @@ export function starterLook(value: unknown): Look | null {
     || new Set(extras.map(slotOf)).size !== extras.length) return null;
   const avatar = avatarLookFields(value);
   if (avatar.wearables?.some(id => !AVATAR_STARTER_WEARABLES.includes(id))) return null;
-  return { body: look.body, hair: look.hair, outfit: look.outfit, fabric: look.fabric, skin: look.skin, hairColor: look.hairColor, outfitColor: look.outfitColor, bottomsColor: look.bottomsColor,
+  const made = { body: look.body, hair: look.hair, outfit: look.outfit, fabric: look.fabric, skin: look.skin, hairColor: look.hairColor, outfitColor: look.outfitColor, bottomsColor: look.bottomsColor,
     ...avatar,
+    ...tidyRosterFields(value, look.body),
     // face/expression default to the list's first entry ('oval'/'smile') although Look documents the key as absent for the default; kept as the original result.
     accessories: [...extras] as AccessoryId[], face: (APPEARANCE.faces.includes(look.face as FaceId) ? look.face : APPEARANCE.faces[0]) as Look['face'],
-    expression: (APPEARANCE.expressions.includes(look.expression as ExpressionId) ? look.expression : APPEARANCE.expressions[0]) as Look['expression'] };
+    expression: (APPEARANCE.expressions.includes(look.expression as ExpressionId) ? look.expression : APPEARANCE.expressions[0]) as Look['expression'] } as Look;
+  // A look from before the roster is read as the nearest character and written as one: a draft kept on the device is not a saved life.
+  return ensureCharacter(made);
 }
 
 /** One-tap characters. Each is a complete starter look; `label` is what the button says. */
@@ -80,23 +85,16 @@ export const PRESETS = Object.freeze([
 ].map((preset) => Object.freeze({ ...preset, look: Object.freeze(preset.look) })));
 export const presetLook = (id: string): Look | null => { const preset = PRESETS.find((item) => item.id === id); return preset ? starterLook(preset.look) : null; };
 
-/** A random look a new Sim may wear. */
+/** A random look a new Sim may wear: a character of the roster that is on, in an outfit and (for those that have steps) a skin tone step of its own. */
 export function shuffleLook(random: () => number): Look {
-  const body = pick(APPEARANCE.bodies, random).id;
+  const base: Look = { body: 'woman', hair: 'braids', outfit: 'casual', fabric: 'plain', skin: 'skin-4', hairColor: 'black', outfitColor: 'blue', bottomsColor: 'navy', accessories: [], face: 'oval', expression: 'smile' } as unknown as Look;
   // Always valid by construction, so never null.
-  return starterLook({ body, hair: pick(starterStyles('hair', body), random), outfit: pick(starterStyles('outfit', body), random), fabric: pick(APPEARANCE.fabrics, random),
-    skin: pick(APPEARANCE.skin, random).id, hairColor: pick(APPEARANCE.hairColours, random).id, outfitColor: pick(APPEARANCE.outfitColours, random).id, bottomsColor: pick(APPEARANCE.outfitColours, random).id,
-    accessories: random() < 0.35 ? [pick(ACCESSORY_BASICS, random)] : [], face: pick(APPEARANCE.faces, random), expression: pick(APPEARANCE.expressions, random) }) as Look;
+  return starterLook(shuffleCharacter(base, random)) as Look;
 }
-/** The same look with the other body: the hairstyle and outfit are kept when that body has them. */
+/** The same look with the other body: the first character of that body that is on. */
 export function withBody(look: Look, requested: string): Look {
   if (!APPEARANCE.bodies.some((item) => item.id === requested) || look.body === requested) return look;
-  const body = requested as BodyId; // one of the known bodies, as checked above
-  const keep = <K extends StyleKind>(kind: K): StyleOf<K> => {
-    const kept = look[kind] as StyleOf<K>;
-    return starterStyles(kind, body).includes(kept) ? kept : starterStyles(kind, body)[0] as StyleOf<K>;
-  };
-  return { ...look, body, hair: keep('hair'), outfit: keep('outfit') };
+  return withSex(look, requested === 'man' ? 'man' : 'woman');
 }
 
 // ---- the draft -----------------------------------------------------------------------------
@@ -119,14 +117,13 @@ export function draftFrom(saved: unknown, { random, now, name }: { random: () =>
   const keptName = typeof kept.name === 'string' && !nameProblem(kept.name) ? kept.name.trim() : null;
   const given = typeof name === 'string' && !nameProblem(name) ? name.trim() : null;
   const look = starterLook(kept.look);
-  const preset = pick(PRESETS, random);
   return {
     name: keptName ?? given ?? suggestName(random),
-    look: look ?? presetLook(preset.id) as Look,
+    look: look ?? shuffleLook(random),
     landedAt: typeof kept.landedAt === 'number' && Number.isFinite(kept.landedAt) && kept.landedAt > 0 && kept.landedAt <= now ? kept.landedAt : now,
     nameEdited: keptName !== null && kept.nameEdited === true,
     shuffles: typeof kept.shuffles === 'number' && Number.isSafeInteger(kept.shuffles) && kept.shuffles >= 0 ? Math.min(kept.shuffles, 999) : 0,
     ...spiritFrom(kept),
-    preset: look ? (typeof kept.preset === 'string' && PRESETS.some((item) => item.id === kept.preset) ? kept.preset : null) : preset.id,
+    preset: look && typeof kept.preset === 'string' && PRESETS.some((item) => item.id === kept.preset) ? kept.preset : null,
   };
 }

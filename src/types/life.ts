@@ -678,6 +678,12 @@ export interface Look extends AvatarLookExtensions {
   face?: Exclude<FaceId, 'oval'>
   /** The key exists only for an expression other than the default 'smile'. */
   expression?: Exclude<ExpressionId, 'smile'>
+  /** The roster character the look wears (src/game/roster.ts). A look without it is read as the nearest character (src/scene/roster/map.ts); the stored look is not rewritten. */
+  character?: string
+  /** The character's outfit, 1 and up; the key exists only for an outfit other than the one it is made in. */
+  characterOutfit?: number
+  /** The character's skin tone step, 1 to 6; the key exists only for a step other than the tone it is made in. */
+  characterSkin?: number
 }
 
 /** Owned styles: the basics, the look chosen at creation, and boutique purchases. */

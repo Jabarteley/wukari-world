@@ -41,6 +41,8 @@ import { createBatch, sceneMaterials, kitResources, releaseObjects, hash, GLOW }
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { avatarProportions, normalizeAvatarAppearance } from '../types/avatar.ts';
 import type { AvatarLookExtensions } from '../types/avatar.ts';
+import { tidyRosterFields } from '../game/roster.ts';
+import type { RosterFields } from '../game/roster.ts';
 import { normalizeAvatarWearables, resolveAvatarWearablesForRenderer } from '../game/wardrobe/rules.ts';
 import { AVATAR_WEARABLE_CATALOGUE } from '../game/wardrobe/catalogue.ts';
 import { AVATAR_LOW_TRIANGLES } from '../budgets.ts';
@@ -74,7 +76,7 @@ export interface LookOptions {
   outfitColor: readonly Swatch[];
 }
 /** A complete look: every field set, colours as '#rrggbb'. */
-export interface Look extends AvatarLookExtensions {
+export interface Look extends AvatarLookExtensions, RosterFields {
   body: Body;
   hair: string;
   outfit: string;
@@ -138,6 +140,10 @@ export interface CrowdPerson extends DrawOptions {
   look?: unknown;
   /** Overrides the marker the kind would give. */
   marker?: Marker | null;
+  /** What the game knows of a regular (role, emoji, age, a look): a roster figure's character comes from it. */
+  regular?: { id: string; name?: string; role?: string; emoji?: string; age?: string; look?: unknown };
+  /** Another figure stands for this person (a roster body): nothing is drawn, the name tag is still made. */
+  skip?: boolean;
 }
 /** Name-tag record for the DOM layer. */
 export interface CrowdTag {
@@ -235,6 +241,7 @@ export function normalizeLook(look?: unknown, seed?: unknown): Look {
     expression: pickOption(source.expression, LOOK_OPTIONS.expression, 0),
     ...(source.wearables != null ? { wearables: normalizeAvatarWearables(source.wearables) } : {}),
     ...(source.appearance != null ? { appearance: normalizeAvatarAppearance(source.appearance) } : {}),
+    ...(source.character != null ? tidyRosterFields(source, body === 'man' ? 'man' : 'woman') : {}),
   };
 }
 
@@ -1626,6 +1633,7 @@ function tagFor(person: CrowdPerson, index: number, top: number): CrowdTag {
 /** Draw people into an existing batch; returns their name tags. */
 export function drawCrowd(b: Drawing, people: CrowdPerson[] = []): CrowdTag[] {
   return people.map((person, index) => {
+    if (person.skip) return tagFor(person, index, (person.y || 0) + 2.95);
     const kind = person.kind === 'npc' ? 'npc' : person.kind === 'self' ? 'crown' : 'player';
     const drawn = drawAvatar(b, person.look, {
       x: person.x || 0, y: person.y || 0, z: person.z || 0, ry: person.ry || 0, pose: person.pose, seat: person.seat, detail: person.detail,

@@ -1,0 +1,25 @@
+/* The roster picker (src/app/features/start/RosterPicker.vue): body, character cards, outfit thumbnails, skin steps. Fits 320 px wide. */
+.rp{display:grid;gap:16px;min-width:0}
+.rp-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rp-top .rp-sex{min-width:150px}
+.rp-shuffle{flex:0 0 auto}
+.rp-group{border:0;min-width:0;margin:0;padding:0}
+.rp-group legend{padding:0;margin-bottom:8px;font-size:13px;font-weight:600;color:var(--c-muted)}
+.rp-group legend b{margin-left:6px;color:var(--c-ink);font-weight:700}
+.rp-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.rp-card{display:grid;justify-items:center;align-content:start;gap:4px;min-width:0;padding:6px 4px 8px;border:1px solid var(--cr-line,#e3e6e4);border-radius:14px;background:#f4f7f5;color:var(--c-ink);font-size:12px;font-weight:600;line-height:1.2;text-align:center;cursor:pointer}
+.rp-card img{display:block;width:100%;max-width:92px;height:auto;aspect-ratio:1;border-radius:10px;object-fit:cover;background:#e8eef0}
+.rp-card .rp-name{display:block;min-height:2.4em;overflow-wrap:anywhere}
+.rp-card:hover{border-color:#a9b8b0}
+.rp-card[aria-pressed=true]{border-color:var(--c-ink);box-shadow:inset 0 0 0 2px var(--c-ink);background:#e8f5ec}
+.rp-outfits{display:flex;gap:8px;flex-wrap:wrap}
+.rp-outfit{display:grid;place-items:center;width:64px;min-height:72px;padding:4px;border:1px solid var(--cr-line,#e3e6e4);border-radius:12px;background:#f4f7f5;cursor:pointer}
+.rp-outfit img{display:block;width:auto;height:64px;max-width:100%;object-fit:contain}
+.rp-outfit[aria-pressed=true]{border-color:var(--c-ink);box-shadow:inset 0 0 0 2px var(--c-ink);background:#e8f5ec}
+.rp-skins{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rp-made{min-height:44px;padding:0 12px;border:1px solid #cdd3cf;border-radius:22px;background:#fff;color:var(--c-ink);font-weight:600;font-size:14px;cursor:pointer}
+.rp-made[aria-pressed=true]{border-color:var(--c-ink);box-shadow:inset 0 0 0 2px var(--c-ink)}
+.rp-swatch{width:44px;height:44px;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 1px #cdd3cf;cursor:pointer}
+.rp-swatch[aria-pressed=true]{box-shadow:0 0 0 3px var(--c-ink)}
+@media (min-width:420px){.rp-cards{gap:10px}}
+@media (min-width:560px){.rp-cards{grid-template-columns:repeat(5,minmax(0,1fr))}}

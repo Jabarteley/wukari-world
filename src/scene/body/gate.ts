@@ -28,6 +28,15 @@ export function bodyAllowed(device: BodyDevice | null | undefined = globalThis.n
   return true;
 }
 
+/**
+ * Whether this device draws the roster's hero model (about 13,000 triangles, the face that blinks) or only the crowd model (about
+ * 3,000): a device that reports four cores or fewer gets the crowd model for every figure, the player's own included.
+ */
+export function heroAllowed(device: BodyDevice | null | undefined = globalThis.navigator as BodyDevice | undefined): boolean {
+  if (!bodyAllowed(device)) return false;
+  return !(typeof device?.hardwareConcurrency === 'number' && device.hardwareConcurrency > 0 && device.hardwareConcurrency <= 4);
+}
+
 /** A renderer that draws with WebGL2 (the body needs it; anything else keeps the procedural avatar). */
 export function drawsWebGL2(renderer: { getContext?: () => unknown } | null | undefined): boolean {
   const Context = (globalThis as { WebGL2RenderingContext?: abstract new (...args: never[]) => unknown }).WebGL2RenderingContext;

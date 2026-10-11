@@ -63,6 +63,10 @@ export interface LookIds extends AvatarLookExtensions {
   /** Only for a face / an expression other than the default. */
   face?: string
   expression?: string
+  /** The roster character, outfit and skin step (src/game/roster.ts), only when the look has them. */
+  character?: string
+  characterOutfit?: number
+  characterSkin?: number
 }
 
 export type ConversationKind = 'dm' | 'group' | 'house'

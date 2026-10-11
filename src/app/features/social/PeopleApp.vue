@@ -87,7 +87,7 @@ function openVenueChat(): void { shell.close(); app.community.toggle(true) }
         <PlayerAvatar :name="player.name" :seed="player.id" status="online" /><strong>{{ player.name }}<FounderTag v-if="player.founder" /><ResidentBadge :id="player.id" /></strong><small class="is-player">Real player{{ player.friend ? ' · Friend' : '' }}</small>
       </button>
       <button v-for="npc in here" :key="`n${npc.id}`" type="button" class="social-card" @click="shell.open('person', { npc: npc.id })">
-        <span class="social-avatar" aria-hidden="true"><PlayerAvatar :name="npc.name" :seed="npc.id" /></span><strong>{{ npc.name }}</strong><small><NpcBadge lead />{{ npc.role }}</small>
+        <span class="social-avatar" aria-hidden="true"><PlayerAvatar :name="npc.name" :seed="npc.id" :emoji="npc.emoji" /></span><strong>{{ npc.name }}</strong><small><NpcBadge lead />{{ npc.role }}</small>
       </button>
     </div>
     <button v-for="npc in social.away" :key="`a${npc.id}`" type="button" class="social-btn is-away" @click="shell.open('person', { npc: npc.id })">{{ npc.name }} · {{ npc.where }}</button>
@@ -132,7 +132,7 @@ function openVenueChat(): void { shell.close(); app.community.toggle(true) }
     <h3 class="ui-section">Relationships</h3>
     <div v-if="social.relationships.length" class="social-list">
       <div v-for="rel in social.relationships" :key="rel.id" class="social-row">
-        <span class="social-avatar" aria-hidden="true"><PlayerAvatar :name="rel.name" :seed="rel.id" /></span>
+        <span class="social-avatar" aria-hidden="true"><PlayerAvatar :name="rel.name" :seed="rel.id" :emoji="rel.npc ? rel.emoji : undefined" /></span>
         <div>
           <strong>{{ rel.name }}</strong><small><NpcBadge v-if="rel.npc" lead />{{ rel.role }} · {{ closenessText(rel, social.maxCloseness) }}<template v-if="rel.where"> · {{ rel.where }}</template></small>
           <ClosenessMeter :points="rel.points" :max="rel.next ? rel.next.min : social.maxCloseness" :label="`Closeness with ${rel.name}`" />

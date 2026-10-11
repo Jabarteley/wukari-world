@@ -14,6 +14,7 @@ import { linkWords } from '../../../ui/link.ts'
 import SettleNotice from '../start/SettleNotice.vue'
 import LookStage from '../start/LookStage.vue'
 import { lookSummary, withAccessory, withoutAccessory } from '../start/lookModel.ts'
+import { characterOf } from '../../../scene/roster/look.ts'
 import { money } from '../../ui/format.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import BaseButton from '../../ui/BaseButton.vue'
@@ -32,7 +33,10 @@ const offline = computed(() => { const words = view.value.connected ? null : lin
 const tried = computed(() => triedItem(onboarding.value.boutique, trying.value))
 const shown = computed<Look>(() => (tried.value ? wearing(onboarding.value.look, tried.value, withAccessory) : onboarding.value.look))
 const caption = computed(() => (tried.value ? `Trying on: ${itemLabel(tried.value)}${tried.value.owned ? '' : ` · ${money(tried.value.price)}`}` : lookSummary(onboarding.value.look)))
-const sections = computed(() => SECTIONS.map(([kind, title]) => ({ kind, title, items: onboarding.value.boutique.filter((item) => item.kind === kind) })))
+// A roster character is a finished look: hairstyles, outfits and fabrics no longer change it, so none are offered for sale while one is worn.
+// What was bought stays in the wardrobe (nothing is taken away or refunded here).
+const character = computed(() => characterOf(onboarding.value.look) !== null)
+const sections = computed(() => (character.value ? [] : SECTIONS.map(([kind, title]) => ({ kind, title, items: onboarding.value.boutique.filter((item) => item.kind === kind) }))))
 
 function tryOn(item: BoutiqueItem): void { trying.value = nextTrying(trying.value, { kind: item.kind, id: item.id }) }
 const wear = (item: BoutiqueItem): Promise<boolean> => act(`wear:${item.kind}:${item.id}`, () => command('onboarding.set-look', { look: wearing(onboarding.value.look, item, withAccessory) }))
@@ -50,6 +54,7 @@ const isTrying = (item: BoutiqueItem): boolean => tried.value === item
       <p>Wallet <strong>{{ money(game.state.value.cash) }}</strong><small>Try anything on first. Buying puts it on straight away and keeps it in your wardrobe. Styles shown fit your current body; colours are free in your Profile.</small></p>
     </div>
     <SettleNotice hint message="Settle in first: the Boutique and your wardrobe open once you have a home." />
+    <p v-if="character" class="boutique-why" data-boutique-character>You now look like one of Allworld's twelve characters, so hairstyles, outfits and fabrics do not change you any more and are not on sale. Everything you bought stays in your wardrobe. Change who you look like, your outfit or your skin tone for free in Profile.</p>
     <template v-for="section in sections.filter(section => section.items.length)" :key="section.kind">
       <h3>{{ section.title }}</h3>
       <p v-if="section.kind === 'wearables'">Wear these over your outfit. Covered clothing stays in your wardrobe.</p>

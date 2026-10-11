@@ -267,6 +267,10 @@ export interface SceneEntry {
   setSpot(id: string): boolean
   setPlayer(options?: PlayerOptions): boolean
   setCrowd(people: unknown): SceneTag[]
+  /** After a frame was drawn: fetch the roster bodies of the people here; `changed` asks the host for a frame when one arrives. */
+  startCrowd?(renderer: { getContext?: () => unknown }, changed: () => void): void
+  /** The roster bodies in the scene (diagnostics, tests). */
+  readonly rosterBodies?: import('./roster/crowd-bodies.ts').CrowdBodies | null
   readonly easing: boolean
   stepCrowd(dt: number): boolean
   settleCrowd(): void

@@ -927,6 +927,9 @@ export interface NpcSummary {
   emoji: string
   npc: true
   beta: boolean
+  /** The regular's life stage and look fields, when the content gives them (the roster character they wear is chosen from them). */
+  age?: string
+  look?: Record<string, unknown>
   /** Landmark key of the venue's scene, or null. */
   at: string | null
   quote: string

@@ -10,7 +10,7 @@
  * under the stride), and only sit-enter / sit-exit, and the door clip on coming into a scene, run in time, stepped by
  * the host's motion loop while `easing` is true.
  */
-import { bodyAllowed, drawsWebGL2, importBody } from './gate.ts';
+import { bodyAllowed, drawsWebGL2, heroAllowed, importBody } from './gate.ts';
 import type { BodyPose, SkinnedBody } from './skinned.ts';
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
@@ -155,7 +155,7 @@ export function createStandIn(kit: Kit, onReady: () => void, allowed: boolean = 
       if (!drawsWebGL2(renderer)) { failed = true; return; }
       loading = true;
       setTimeout(() => {
-        const request = load ? load(kit, look, seed, scene?.scale ?? 1) : importBody().then((module) => module.loadBody(kit, look, seed, scene?.scale ?? 1));
+        const request = load ? load(kit, look, seed, scene?.scale ?? 1) : importBody().then((module) => module.loadBody(kit, look, seed, scene?.scale ?? 1, { lod: heroAllowed() ? 'hero' : 'crowd', onDressed: onReady }));
         request.then((loaded) => {
           loading = false;
           if (gone) { loaded.dispose(); return; }

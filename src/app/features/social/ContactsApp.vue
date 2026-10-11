@@ -59,7 +59,7 @@ async function find(): Promise<void> {
     </div>
     <div v-else-if="mummy && familyData" class="social-list contacts-fav">
       <div class="social-row">
-        <span class="social-avatar is-big" aria-hidden="true"><PlayerAvatar :name="mummy.name" :seed="mummy.id" /></span>
+        <span class="social-avatar is-big" aria-hidden="true"><PlayerAvatar :name="mummy.name" :seed="mummy.id" :emoji="mummy.emoji" /></span>
         <div><strong>{{ mummy.name }}</strong><small><NpcBadge lead />{{ mummy.line }}{{ mummy.calledToday ? ' · checked in today' : '' }}</small></div>
         <span class="social-actions"><CallButton :member="mummy" /></span>
       </div>
@@ -96,7 +96,7 @@ async function find(): Promise<void> {
         </div>
       </template>
       <div v-for="rel in met" :key="`n${rel.id}`" class="social-row">
-        <span class="social-avatar" aria-hidden="true"><PlayerAvatar :name="rel.name" :seed="rel.id" /></span>
+        <span class="social-avatar" aria-hidden="true"><PlayerAvatar :name="rel.name" :seed="rel.id" :emoji="rel.npc ? rel.emoji : undefined" /></span>
         <div><strong>{{ rel.name }}</strong><small><NpcBadge lead />{{ rel.role }} · {{ rel.tierLabel }}</small></div>
         <span class="social-actions"><button type="button" class="social-btn" @click="shell.open('person', { npc: rel.id })">View</button></span>
       </div>

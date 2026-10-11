@@ -4,7 +4,7 @@
 // It is a form with a draft (profileState.ts). The display name is the device-session nickname,
 // renamed through POST /api/session; the look is saved with the 'onboarding.set-look' action.
 // The preview and the appearance editor are the look components of the start feature
-// (LookStage, LookEditor); the local-government card is
+// (LookStage, RosterPicker); the local-government card is
 // the world feature's LgaCard.
 import { computed, nextTick, onBeforeUnmount, watch } from 'vue'
 import type { Look } from '../../../types/life.ts'
@@ -15,11 +15,11 @@ import { linkWords } from '../../../ui/link.ts'
 import LgaCard from '../world/LgaCard.vue'
 import ResidenceCard from '../locate/ResidenceCard.vue'
 import SettleNotice from '../start/SettleNotice.vue'
-import LookEditor from '../start/LookEditor.vue'
+import RosterPicker from '../start/RosterPicker.vue'
 import LookStage from '../start/LookStage.vue'
-import { chooseLook, lookSummary, sameLook } from '../start/lookModel.ts'
-import type { LookField } from '../start/lookModel.ts'
+import { lookSummary, sameLook } from '../start/lookModel.ts'
 import GameIcon from '../../ui/GameIcon.vue'
+import { ensureCharacter } from '../../../scene/roster/look.ts'
 import { saveFailure, saveState } from './profileModel.ts'
 import { draft, form, saved } from './profileState.ts'
 
@@ -53,10 +53,6 @@ let focusKey = ''
 function redraw(): void {
   if (focusKey) void nextTick(() => document.querySelector<HTMLElement>(`[data-profile] [data-key="${CSS.escape(focusKey)}"]`)?.focus({ preventScroll: true }))
 }
-function onChoose(field: LookField, value: string): void {
-  if (!current.value) return
-  draft.value = { ...current.value, look: chooseLook(current.value.look, field, value, view.value.onboarding.wardrobe) }
-}
 function replaceLook(look: Look): void { if (current.value) draft.value = { ...current.value, look } }
 // A saved change from elsewhere replaces the draft: the pieces draw it again.
 watch([() => state.value.name, () => state.value.onboarding.look], () => { sync() })
@@ -75,7 +71,7 @@ async function submit(): Promise<void> {
       renaming = false
     }
     // Also sent when only the name changed: any action returns the state with the new name.
-    const result = await command('onboarding.set-look', { look: mine.look })
+    const result = await command('onboarding.set-look', { look: sameLook(mine.look, state.value.onboarding.look) ? mine.look : ensureCharacter(mine.look) })
     if (!result.ok) form.error = result.reason || 'Your look could not be saved. Try again.'
     else { draft.value = null; saved.value = ''; sync(); game.toast('Profile saved.', 'good') }
   } catch (problem) { form.error = renaming ? saveFailure(problem) : 'Your profile could not be saved. Try again.' } finally { form.pending = false }
@@ -104,8 +100,8 @@ async function submit(): Promise<void> {
       </div>
     </div>
     <h3>Appearance</h3>
-    <p class="sim-hint">Colours are free. New hairstyles, outfits and fabrics come from Phone → Boutique.</p>
-    <LookEditor :look="current.look" :owned="onboarding.wardrobe" @choose="onChoose" @replace="replaceLook" />
+    <p class="sim-hint">Choose who you look like, then an outfit and a skin tone. It is free to change.</p>
+    <RosterPicker :look="current.look" @replace="replaceLook" />
     <LgaCard v-if="onboarding.done && !view.estate.settle" />
     <ResidenceCard v-if="onboarding.done" />
     <p v-if="form.error" class="sim-error" role="alert">{{ form.error }}</p>

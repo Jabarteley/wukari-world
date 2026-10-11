@@ -5,6 +5,7 @@
 // was heading for" — expressed over the stores instead of over the DOM. The 3D hosts register
 // themselves here (ScenePane, MapPane) so those rules can reach them; until one has loaded its
 // callers skip it, exactly as before, and it is given the current state the moment it exists.
+import { rememberLook } from '../ui/faces.ts'
 import { noteChunkFailure } from './updateNotice.ts'
 import { shallowRef, watch } from 'vue'
 import type { LifeState } from '../../types/life.ts'
@@ -88,7 +89,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
 
   const playerLook = (): PlayerLook => ({ look: game.state.value.onboarding?.look, seed: game.session.value?.id ?? 'you', name: game.state.value.name || game.client.identity.name })
   const cityVenueLabel = (id: string, cityId: string): string => contentFor(cityId).venues.find((venue) => venue.id === id)?.name ?? id
-  function showPlayer(): void { scene.venue.value?.setPlayer(playerLook()); scene.city.value?.setPlayer(playerLook()) }
+  function showPlayer(): void { const me = game.session.value?.id; if (me) rememberLook(me, game.state.value.onboarding?.look); scene.venue.value?.setPlayer(playerLook()); scene.city.value?.setPlayer(playerLook()) }
   /** The crowd in the scene, from real data only: the server's who-is-here listing and the venue's regulars. */
   function showCrowd(): void {
     const state = game.state.value
@@ -104,6 +105,8 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     scene.venue.value?.setCrowd(crowdList({ players: playersHere(social.people, state, game.cityId.value), npcs, selfId: game.session.value?.id ?? null, positions }))
   }
   onPeople(showCrowd)
+  // Whoever the room listing shows has a face in the contacts and the chat from now on (src/app/ui/faces.ts).
+  onPeople(() => { const listing = social.people; if (listing && 'players' in listing && Array.isArray(listing.players)) for (const person of listing.players) rememberLook(person.id, person.look) })
   // Friends' houses are named on the map (public ids only).
   const showFriends = (): void => { scene.city.value?.setFriends?.((social.me?.friends ?? []).map((friend) => friend.id)) }
   onPeople(showFriends)

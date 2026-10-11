@@ -73,7 +73,7 @@ import { drawAvatar, buildAvatar, POSES } from './characters.ts';
 import type { Pose } from './characters.ts';
 import { playerOptions, rigOf } from './avatar-rig.ts';
 import { createWalkGrid } from './movement.ts';
-import { bodyAllowed, drawsWebGL2, importBody } from './body/gate.ts';
+import { bodyAllowed, drawsWebGL2, heroAllowed, importBody } from './body/gate.ts';
 import { lightingFor, timeOfDay } from './lighting.ts';
 import { createObjectSequence } from './smart-objects/sequence.ts';
 import { createUseProps } from './smart-objects/props.ts';
@@ -488,7 +488,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     bodyLoading = true;
     const look = who.look ?? lastState?.onboarding?.look ?? null, seed = who.seed;
     setTimeout(() => {
-      importBody().then((module) => module.loadBody(kit, look, seed, tile * AVATAR_SCALE)).then((loaded) => {
+      importBody().then((module) => module.loadBody(kit, look, seed, tile * AVATAR_SCALE, { lod: heroAllowed() ? 'hero' : 'crowd', onDressed: () => { globalThis.window?.dispatchEvent?.(new CustomEvent('jaw:home-frame')); } })).then((loaded) => {
         bodyLoading = false;
         if (gone) { loaded.dispose(); return; }
         // The look changed while it loaded: recolour, or (the other body) start again on the next frame.

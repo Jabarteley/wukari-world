@@ -40,17 +40,16 @@ import StepLook from './StepLook.vue'
 import StepReady from './StepReady.vue'
 import StepSpirit from './StepSpirit.vue'
 import StepWho from './StepWho.vue'
-import { FOCUS_CHOICES, defaultSpirit, focusForField, focusForTab, nextLabel, nextStep, previousStep, progressOf, pushHistory, settlePlan, startStep, stepBlocked, stepDef, stepsFor } from './creatorModel.ts'
+import { FOCUS_CHOICES, defaultSpirit, focusForTab, nextLabel, nextStep, previousStep, progressOf, pushHistory, settlePlan, startStep, stepBlocked, stepDef, stepsFor } from './creatorModel.ts'
 import type { CreatorMode, StepId } from './creatorModel.ts'
 import { cr, keepsDraft, ownerOf } from './creatorState.ts'
 import type { CreatorDraft } from './creatorState.ts'
-import { chooseLook, lookAlt, lookSummary, lookUi, openLookTab, randomLook, sameLook, starterWardrobe } from './lookModel.ts'
-import type { LookField } from './lookModel.ts'
+import { lookAlt, lookSummary, lookUi, openLookTab, sameLook, starterWardrobe } from './lookModel.ts'
 import { failureText, introFor, keepLook, storedLook, toggleTrait, triggerOf } from './onboardingModel.ts'
 import { fallbackPreset, isCalm, planPlay, problemOf, refusedNameToKeep, showsLinkNote, shownError } from './quickStartModel.ts'
 import { currentDraft, draft as quickDraftRef, qs } from './quickStartState.ts'
 import { invitedWords, inviterName } from '../growth/inviterLookup.ts'
-import { firstLanding, joinTarget, keepDraft, nameProblem, pendingRef, presetLook, shuffleLook, suggestName, track, withBody } from './startBoundary.ts'
+import { firstLanding, joinTarget, keepDraft, nameProblem, pendingRef, presetLook, suggestName, track } from './startBoundary.ts'
 import type { QuickDraft } from './startBoundary.ts'
 
 const props = defineProps<{ mode: CreatorMode; params?: unknown }>()
@@ -199,33 +198,7 @@ function next(): void {
 // ---- who ---------------------------------------------------------------------------------------
 function typed(value: string): void { d().name = value; cr.error = ''; if (isNew) quickDraftRef.value = keepDraft({ name: value, nameEdited: true }) }
 function dice(): void { tap(); const name = suggestName(Math.random); d().name = name; quickDraftRef.value = keepDraft({ name, nameEdited: false }) }
-function preset(id: string): void {
-  tap()
-  const look = presetLook(id)
-  if (!look) return
-  const draftNow = d()
-  cr.history = pushHistory(cr.history, draftNow.look, look)
-  draftNow.look = look
-  quickDraftRef.value = keepDraft({ look, preset: id })
-  focus.value = 'body'
-}
-function body(id: string): void { tap(); setLook(withBody(d().look, id)); focus.value = 'body' }
-function shuffle(): void {
-  tap()
-  const current = d().look
-  let nextLook = isNew && cr.step === 'who' ? shuffleLook(Math.random) : randomLook()
-  for (let tries = 0; tries < 4 && sameLook(nextLook, current); tries++) nextLook = isNew && cr.step === 'who' ? shuffleLook(Math.random) : randomLook()
-  setLook(nextLook, { shuffles: (quickDraftRef.value?.shuffles ?? 0) + 1 })
-  focus.value = 'body'
-}
-
 // ---- look --------------------------------------------------------------------------------------
-function choose(field: LookField, value: string): void {
-  tap()
-  setLook(chooseLook(d().look, field, value, wardrobe))
-  const near = focusForField(field)
-  if (near) focus.value = near
-}
 function replaceLook(look: Look): void { tap(); setLook(look); focus.value = 'body' }
 function undo(): void {
   const previousLook = cr.history[cr.history.length - 1]
@@ -398,8 +371,8 @@ onBeforeUnmount(() => {
           <div v-else :key="cr.step" class="cr-body">
             <h1 id="cr-title" ref="heading" tabindex="-1">{{ title }}</h1>
             <p class="cr-lead">{{ lead }}</p>
-            <StepWho v-if="cr.step === 'who'" :look="draft.look" :preset="presetId" :name="draft.name" :error="shown" @preset="preset" @body="body" @shuffle="shuffle" @dice="dice" @name="typed" @submit="next" />
-            <StepLook v-else-if="cr.step === 'look'" :look="draft.look" :owned="wardrobe" :can-undo="cr.history.length > 0" :can-reset="cr.origin !== null && !sameLook(cr.origin, draft.look)" @choose="choose" @replace="replaceLook" @undo="undo" @reset="reset" @shuffle="shuffle" @tab="onTab" />
+            <StepWho v-if="cr.step === 'who'" :look="draft.look" :preset="presetId" :name="draft.name" :error="shown" @replace="replaceLook" @shuffle="tap" @dice="dice" @name="typed" @submit="next" />
+            <StepLook v-else-if="cr.step === 'look'" :look="draft.look" :owned="wardrobe" :can-undo="cr.history.length > 0" :can-reset="cr.origin !== null && !sameLook(cr.origin, draft.look)" @choose="tap" @replace="replaceLook" @undo="undo" @reset="reset" @shuffle="tap" @tab="onTab" />
             <StepSpirit v-else-if="cr.step === 'spirit'" :city="cr.city ?? view.cityId" :traits="draft.traits" :dream="draft.dream" @trait="pickTrait" @dream="pickDream" @random="randomSpirit" />
             <StepHome v-else-if="cr.step === 'home'" v-model="draft.area" :choosable="isNew" @ready="homeReady = $event" />
             <StepReady v-else :city="cr.city ?? view.cityId" :name="draft.name" :look="draft.look" :traits="draft.traits" :dream="draft.dream" :area="areaName" @edit="go" />

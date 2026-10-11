@@ -3,6 +3,7 @@
 // derived from an id (so one person keeps one colour).
 import { computed } from 'vue'
 import { hueOf, initialOf } from './format.ts'
+import { faceOfPlayer } from './faces.ts'
 
 const props = withDefaults(defineProps<{
   /** A name: draws its first letter as an avatar. Without it the slot is shown. */
@@ -13,10 +14,11 @@ const props = withDefaults(defineProps<{
   tone?: 'neutral' | 'in' | 'out'
 }>(), { name: undefined, seed: undefined, round: false, tone: 'neutral' })
 const hue = computed(() => hueOf(props.seed ?? props.name))
+const face = computed(() => (props.name !== undefined ? faceOfPlayer(props.seed) : null))
 </script>
 
 <template>
-  <span v-if="name !== undefined" class="row-mark is-avatar" aria-hidden="true" :style="{ '--hue': hue }">{{ initialOf(name) }}</span>
+  <span v-if="name !== undefined" class="row-mark is-avatar" :class="{ 'has-face': face }" aria-hidden="true" :style="{ '--hue': hue }"><img v-if="face" class="ui-face" :src="face" alt="" loading="lazy" decoding="async"><template v-else>{{ initialOf(name) }}</template></span>
   <span v-else class="row-mark" :class="[`is-${tone}`, { 'is-round': round }]" aria-hidden="true"><slot /></span>
 </template>
 

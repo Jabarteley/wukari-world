@@ -53,13 +53,14 @@ test('presets and shuffles are looks the server accepts for a new Sim; anything 
 test('the draft is rebuilt from untrusted storage and is always ready to play', () => {
   const now = 5000, random = () => 0;
   const fresh = draftFrom(null, { random, now });
-  assert.deepEqual([fresh.name, fresh.landedAt, fresh.nameEdited, fresh.shuffles, fresh.preset], ['Sunny Tobi', 5000, false, 0, 'street']);
+  assert.deepEqual([fresh.name, fresh.landedAt, fresh.nameEdited, fresh.shuffles, fresh.preset], ['Sunny Tobi', 5000, false, 0, null]);
+  assert.ok(fresh.look.character, 'a new device starts as a character of the roster');
   assert.ok(checkLook(fresh.look, { starter: true }).look);
   const kept = draftFrom({ name: ' Zee ', look: presetLook('owambe'), landedAt: 4000, nameEdited: true, shuffles: 3, preset: 'owambe' }, { random, now });
   assert.deepEqual([kept.name, kept.landedAt, kept.nameEdited, kept.shuffles, kept.preset, kept.look.hair], ['Zee', 4000, true, 3, 'owambe', 'gele']);
   // Hostile or stale storage: every part falls back by itself.
   const hostile = draftFrom({ name: 'x', look: { body: 'man', hair: '<script>' }, landedAt: 9e15, nameEdited: 'yes', shuffles: -1, preset: '__proto__' }, { random, now, name: 'Bola' });
-  assert.deepEqual([hostile.name, hostile.landedAt, hostile.nameEdited, hostile.shuffles, hostile.preset], ['Bola', 5000, false, 0, 'street']);
+  assert.deepEqual([hostile.name, hostile.landedAt, hostile.nameEdited, hostile.shuffles, hostile.preset], ['Bola', 5000, false, 0, null]);
   assert.equal(draftFrom('junk', { random, now, name: 'x' }).name, 'Sunny Tobi');
 });
 

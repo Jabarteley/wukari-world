@@ -6,6 +6,7 @@ import { DREAMS, TRAITS, TRAITS_REQUIRED } from '../../../game/content/traits.ts
 import type { PreviewFocus } from '../../../scene/avatar-preview.ts'
 import type { DreamId, Look, OnboardingState, TraitId } from '../../../types/life.ts'
 import type { AreaChoice } from './onboardingModel.ts'
+import { ensureCharacter } from '../../../scene/roster/look.ts'
 import { sameLook } from './lookModel.ts'
 
 export type StepId = 'who' | 'look' | 'spirit' | 'home' | 'ready'
@@ -111,7 +112,7 @@ const sameTraits = (a: readonly string[], b: readonly string[]): boolean => a.le
 export function settlePlan({ saved, draft, stay = false }: SettleInput): SettleAction[] | null {
   if (!draft.area?.lga || draft.traits.length !== TRAITS_REQUIRED || !draft.dream) return null
   const plan: SettleAction[] = []
-  if (saved.step <= 0 || !sameLook(saved.look, draft.look)) plan.push({ type: 'onboarding.look', payload: { look: draft.look }, label: 'Saving your look…' })
+  if (saved.step <= 0 || !sameLook(saved.look, draft.look)) plan.push({ type: 'onboarding.look', payload: { look: ensureCharacter(draft.look) }, label: 'Saving your look…' })
   if (!sameTraits(saved.traits, draft.traits)) plan.push({ type: 'onboarding.traits', payload: { traits: [...draft.traits] }, label: 'Choosing your traits…' })
   if (saved.dream !== draft.dream) plan.push({ type: 'onboarding.dream', payload: { dream: draft.dream }, label: 'Choosing your dream…' })
   if (!saved.lottery) plan.push({ type: 'onboarding.lottery', payload: {}, label: 'Rolling your birth lottery…' })

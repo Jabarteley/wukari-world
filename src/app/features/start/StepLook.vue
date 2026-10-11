@@ -4,7 +4,7 @@
 // creator decides what to do with it.
 import type { Look } from '../../../types/life.ts'
 import GameIcon from '../../ui/GameIcon.vue'
-import LookEditor from './LookEditor.vue'
+import RosterPicker from './RosterPicker.vue'
 import type { LookField, Owned } from './lookModel.ts'
 
 defineProps<{ look: Look; owned: Owned; canUndo: boolean; canReset: boolean }>()
@@ -20,8 +20,7 @@ function onTap(event: MouseEvent): void {
     <div class="cr-tools" role="group" aria-label="Look tools">
       <button type="button" class="cr-btn is-small" data-key="undo" :disabled="!canUndo" @click="emit('undo')"><GameIcon name="back" inline /> Undo</button>
       <button type="button" class="cr-btn is-small" data-key="reset" :disabled="!canReset" @click="emit('reset')"><GameIcon name="refresh" inline /> Reset</button>
-      <button type="button" class="cr-btn is-small" data-key="shuffle" @click="emit('shuffle')"><GameIcon name="game" inline /> Surprise me</button>
     </div>
-    <div class="cr-editor" @click="onTap"><LookEditor :look="look" :owned="owned" @choose="(field, value) => emit('choose', field, value)" @replace="emit('replace', $event)" /></div>
+    <div class="cr-editor" @click="onTap"><RosterPicker :look="look" @replace="emit('replace', $event)" @shuffle="emit('shuffle')" /></div>
   </div>
 </template>

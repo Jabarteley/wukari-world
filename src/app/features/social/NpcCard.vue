@@ -66,7 +66,7 @@ async function start(activity: string): Promise<void> {
 <template>
   <p v-if="!base" class="ui-error">That person is not around.</p>
   <div v-else>
-    <div class="social-head people-who"><span class="social-avatar is-big" aria-hidden="true"><PlayerAvatar :name="base.name" :seed="base.id" /></span><h3>{{ base.name }}</h3><NpcBadge /></div>
+    <div class="social-head people-who"><span class="social-avatar is-big" aria-hidden="true"><PlayerAvatar :name="base.name" :seed="base.id" :emoji="base.emoji" /></span><h3>{{ base.name }}</h3><NpcBadge /></div>
     <p>{{ base.role }}<template v-if="here"> · {{ here.left }} of {{ view.social.dailyInteractions }} interactions left today</template></p>
     <p v-if="whereNow" class="social-note">{{ whereNow }}</p>
     <p v-if="here" class="social-quote">“{{ greeting }}”</p>

@@ -43,7 +43,7 @@ import { avatarProportions } from '../types/avatar.ts';
 import { buildAvatar, normalizeLook } from './characters.ts';
 import type { AvatarGroup } from './characters.ts';
 import type { ThreeModule } from './types.ts';
-import { bodyAllowed, bodyImports, drawsWebGL2, importBody } from './body/gate.ts';
+import { bodyAllowed, bodyImports, drawsWebGL2, heroAllowed, importBody } from './body/gate.ts';
 import type { SkinnedBody } from './body/skinned.ts';
 
 export const ANIMATION_LIMIT_MS = 600;
@@ -209,7 +209,7 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     if (bodyLoading || bodyFailed || !bodyImports.count) return;
     if (!drawsWebGL2(renderer)) { bodyFailed = true; return; }
     bodyLoading = true;
-    importBody().then((module) => module.loadBody(kit, look, 'preview', 1)).then((loaded) => {
+    importBody().then((module) => module.loadBody(kit, look, 'preview', 1, { lod: heroAllowed() ? 'hero' : 'crowd', onDressed: () => { if (!disposed) render(); } })).then((loaded) => {
       bodyLoading = false;
       if (disposed) { loaded.dispose(); return; }
       if (!loaded.wear(bodyLook, 'preview')) { loaded.dispose(); dress(bodyLook); return; }

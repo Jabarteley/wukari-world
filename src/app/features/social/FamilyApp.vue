@@ -74,7 +74,7 @@ const role = (slot: FamilyId): string => view.value.social.family.find(member =>
     <section aria-label="Your family" class="family-section">
       <h3>Your family</h3>
       <article v-for="member in members" :key="member.id" class="family-card">
-        <div class="family-person"><PlayerAvatar :name="member.link?.state === 'accepted' ? member.link.other.name : member.name" :seed="member.link?.state === 'accepted' ? member.link.player : member.id" /><div><small>{{ member.relation }}</small><h4>{{ member.link?.state === 'accepted' ? member.link.other.name : member.name }}</h4><p v-if="member.link?.state === 'accepted'">Real player · accepted</p><p v-else><NpcBadge lead />Game character{{ member.calledToday ? ' · checked in today' : '' }}</p></div></div>
+        <div class="family-person"><PlayerAvatar :name="member.link?.state === 'accepted' ? member.link.other.name : member.name" :seed="member.link?.state === 'accepted' ? member.link.player : member.id" :emoji="member.link?.state === 'accepted' ? undefined : member.emoji" /><div><small>{{ member.relation }}</small><h4>{{ member.link?.state === 'accepted' ? member.link.other.name : member.name }}</h4><p v-if="member.link?.state === 'accepted'">Real player · accepted</p><p v-else><NpcBadge lead />Game character{{ member.calledToday ? ' · checked in today' : '' }}</p></div></div>
         <div v-if="member.link?.state === 'accepted'" class="family-actions">
           <BaseButton :reason="cannot('message')" @click="shell.open('messages', { to: member.link.player, name: member.link.other.name })">Message</BaseButton>
           <PersonCallButton :id="member.link.player" :name="member.link.other.name" :status="presence(member.link.player)" compact />

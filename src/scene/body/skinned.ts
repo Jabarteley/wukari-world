@@ -16,7 +16,6 @@
  * step(dt), and settle() jumps to its end. Otherwise the pose is taken at once, so a still frame never shows a
  * half-sat body.
  */
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 import type * as THREE from 'three';
 import type { Kit } from '../kit.ts';
@@ -32,6 +31,12 @@ import type { WardrobePresentation, WardrobeMetrics } from '../wardrobe/renderer
 import { createAvatarAppearanceController } from './appearance.ts';
 import { createFootContactController } from './foot-contact.ts';
 import { createAnimationPoseCheckpoint } from './animation-pose.ts';
+import { gltfLoader, loadRosterFigure, rosterShipped } from '../roster/figure.ts';
+import type { RosterFigure, RosterLod } from '../roster/figure.ts';
+import { createFaceLife } from '../roster/life.ts';
+import type { FaceLife, Mood } from '../roster/life.ts';
+import { pickOf } from '../roster/map.ts';
+import type { RosterPick } from '../roster/map.ts';
 import type { FootContact, FootSolveResult } from './foot-contact.ts';
 import type { BodyTint } from './tint.ts';
 import { DOOR, INTO, OUT, SEATED, STAIRS, STILL, WORK_INTO, WORK_OUT } from './poses.ts';
@@ -96,7 +101,14 @@ export interface SkinnedBody {
   /** A standing/crouched object-use anchor, with feet over its floor; keep the separate place() exit destination. */
   workOn(x: number, floor: number, z: number, ry: number): void;
   fit(sceneScale: number): void;
-  /** Wear another look. False when it needs the other body file (load again). */
+  /** The roster character this body is (null for the base body) and the level of detail its model has. */
+  readonly roster: { readonly pick: RosterPick; readonly lod: RosterLod } | null;
+  /** Triangles of the body's mesh. */
+  readonly triangles: number;
+  /** A roster body's face: the mood it wears, and a step of the blink and the glance (true while it wants another frame). No effect on the base body. */
+  mood(next: Mood): void;
+  life(dt: number): boolean;
+  /** Wear another look. False when it needs another model file (load again). */
   wear(look: unknown, seed?: unknown): boolean;
   dispose(): void;
 }
@@ -132,34 +144,45 @@ const DRESS = /* glsl */ `
   diffuseColor.rgb = skin * vRegion.r + (uTop * vRegion.g + uBottoms * vRegion.b + uHair * vRegion.a + uShoes * shoes) * shade;
 }`;
 
-let loader: GLTFLoader | null = null;
 let clipsOnce: Promise<THREE.AnimationClip[]> | null = null;
-function gltfLoader(): GLTFLoader {
-  if (!loader) loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-  return loader;
-}
 /** The clip pack, fetched once a session (the two bodies share it). A failed fetch can be tried again. */
 function loadClips(): Promise<THREE.AnimationClip[]> {
   clipsOnce ??= gltfLoader().loadAsync(BODY_FILES.clips).then((gltf) => gltf.animations).catch((error: unknown) => { clipsOnce = null; throw error; });
   return clipsOnce;
 }
 
-/** Load the body a look wears, dressed in it, scaled for a scene whose avatar scale is `sceneScale`. */
-export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScale: number): Promise<SkinnedBody> {
+/** What a caller may ask of loadBody beyond the look. */
+export interface LoadBodyOptions {
+  /** 'hero' (about 13,000 triangles, the face that blinks) near the camera, 'crowd' (about 3,000) for everyone else. Default hero. */
+  lod?: RosterLod;
+  /** The roster character to wear, in place of the one the look names (a regular's own); null wears the base body. */
+  pick?: RosterPick | null;
+  /** A roster body's outfit texture arrived after wear() (it is fetched on first use): the host draws one more frame. */
+  onDressed?: () => void;
+}
+const seedOf = (seed: unknown): number => { const text = String(seed ?? 1); let h = 7; for (let i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) % 9973; return h; };
+const UNIT = Object.freeze({ width: 1, height: 1, depth: 1 });
+const NO_METRICS = Object.freeze({ triangles: 0, hiddenTriangles: 0, addedDrawCalls: 0 as const, bytes: 0, itemTriangles: Object.freeze({}) });
+
+/** Load the body a look wears, dressed in it, scaled for a scene whose avatar scale is `sceneScale`. A roster character when the look has one (and its files are in this build), else the base body. */
+export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScale: number, options: LoadBodyOptions = {}): Promise<SkinnedBody> {
   const { THREE: T } = kit;
+  const lod: RosterLod = options.lod ?? 'hero';
+  const wantedPick = options.pick !== undefined ? options.pick : pickOf(look, seed);
+  const figure: RosterFigure | null = wantedPick && rosterShipped(wantedPick.id, lod) ? await loadRosterFigure(kit, wantedPick, lod) : null;
   let tint = bodyTint(look, seed);
-  const key = tint.key, facts = BODY_MANIFEST.bodies[key];
+  const key: BodyKey = figure ? figure.sex : tint.key, facts = BODY_MANIFEST.bodies[key];
   await MeshoptDecoder.ready;
-  const [gltf, clips] = await Promise.all([gltfLoader().loadAsync(BODY_FILES[key]), loadClips()]);
-  let mesh: THREE.SkinnedMesh | null = null;
-  gltf.scene.traverse((node) => { if ((node as THREE.SkinnedMesh).isSkinnedMesh && !mesh) mesh = node as THREE.SkinnedMesh; });
+  const [gltf, clips] = await Promise.all([figure ? Promise.resolve({ scene: figure.scene }) : gltfLoader().loadAsync(BODY_FILES[key]), loadClips()]);
+  let mesh: THREE.SkinnedMesh | null = figure ? figure.mesh : null;
+  if (!mesh) gltf.scene.traverse((node) => { if ((node as THREE.SkinnedMesh).isSkinnedMesh && !mesh) mesh = node as THREE.SkinnedMesh; });
   if (!mesh) throw new Error(`no skinned mesh in ${BODY_FILES[key]}`);
   const skinned: THREE.SkinnedMesh = mesh;
-  const loaded = skinned.material as THREE.MeshStandardMaterial;
-  const map = loaded.map;
-  if (!map) throw new Error(`no base colour in ${BODY_FILES[key]}`);
-  // The scene's own material family (Lambert when scenery is matte), with the look as uniforms.
-  const material = kit.matte ? new T.MeshLambertMaterial({ map }) : new T.MeshStandardMaterial({ map, roughness: 0.82, metalness: 0 });
+  const loaded = figure ? null : skinned.material as THREE.MeshStandardMaterial;
+  const map = loaded ? loaded.map : null;
+  if (!figure && !map) throw new Error(`no base colour in ${BODY_FILES[key]}`);
+  // The scene's own material family (Lambert when scenery is matte), with the look as uniforms. A roster figure brings its own.
+  const material = figure ? skinned.material as THREE.Material : kit.matte ? new T.MeshLambertMaterial({ map }) : new T.MeshStandardMaterial({ map, roughness: 0.82, metalness: 0 });
   const uniforms = {
     uSkin: { value: new T.Vector3() }, uTop: { value: new T.Vector3() }, uBottoms: { value: new T.Vector3() },
     uHair: { value: new T.Vector3() }, uShoes: { value: new T.Vector3() },
@@ -167,30 +190,38 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
     uSleeping: { value: 0 }, uEyeU: { value: new T.Vector2(key === 'male' ? 141 / 1024 : 134 / 1024, key === 'male' ? 240 / 1024 : 239 / 1024) },
   };
   const apply = (next: BodyTint) => { for (const part of ['skin', 'top', 'bottoms', 'hair', 'shoes'] as const) uniforms[`u${part[0]!.toUpperCase()}${part.slice(1)}` as 'uSkin'].value.fromArray(next[part]); };
-  apply(tint);
-  material.onBeforeCompile = (shader) => {
-    Object.assign(shader.uniforms, uniforms);
-    shader.vertexShader = shader.vertexShader.replace('#include <common>', `#include <common>${VERTEX}`).replace('#include <begin_vertex>', '#include <begin_vertex>\n  vRegion = color;');
-    shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>${FRAGMENT}`).replace('#include <map_fragment>', DRESS);
-  };
-  material.customProgramCacheKey = () => 'allworld-body-sleep-1';
-  loaded.dispose();
-  skinned.material = material;
-  // A posed body leaves its bind-pose bounds; one small mesh is cheaper to draw than to cull wrongly.
-  skinned.frustumCulled = false;
-  skinned.name = `body-${key}`;
+  if (!figure) {
+    apply(tint);
+    material.onBeforeCompile = (shader) => {
+      Object.assign(shader.uniforms, uniforms);
+      shader.vertexShader = shader.vertexShader.replace('#include <common>', `#include <common>${VERTEX}`).replace('#include <begin_vertex>', '#include <begin_vertex>\n  vRegion = color;');
+      shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>${FRAGMENT}`).replace('#include <map_fragment>', DRESS);
+    };
+    material.customProgramCacheKey = () => 'allworld-body-sleep-1';
+    loaded?.dispose();
+    skinned.material = material;
+    // A posed body leaves its bind-pose bounds; one small mesh is cheaper to draw than to cull wrongly.
+    skinned.frustumCulled = false;
+    skinned.name = `body-${key}`;
+  }
 
   const object = new T.Group();
   object.name = 'skinned-body';
   object.add(gltf.scene);
   // Garment rest fitting must see the untouched asset before age-face geometry changes.
-  const wardrobe = createWardrobeRenderer(skinned, kit.matte);
-  const appearanceMade = createAvatarAppearanceController(skinned);
+  // A roster character is a finished look: no garment layers and no proportions on top of it.
+  const noGarments = figure ? new T.SkinnedMesh() : null;
+  if (noGarments) noGarments.visible = false;
+  const wardrobe = noGarments ? { object: noGarments, metrics: NO_METRICS, lastError: null, wear: () => false, setPresentation: () => true, dispose: () => undefined }
+    : createWardrobeRenderer(skinned, kit.matte);
+  const appearanceMade = figure ? ({ ok: false } as const) : createAvatarAppearanceController(skinned);
   const footContact = createFootContactController(object, skinned, wardrobe.object);
   let read = normalizeLook(look, seed), appearance = normalizeAvatarAppearance(read.appearance);
-  let proportions = avatarProportions(appearance), sceneFit = sceneScale;
-  wardrobe.wear({ look: read, ids: resolveAvatarWearablesForRenderer(read) });
+  let proportions = figure ? UNIT : avatarProportions(appearance), sceneFit = sceneScale;
+  if (!figure) wardrobe.wear({ look: read, ids: resolveAvatarWearablesForRenderer(read) });
   if (appearanceMade.ok) appearanceMade.controller.apply(appearance);
+  const face: FaceLife | null = figure ? createFaceLife(figure, seedOf(seed)) : null;
+  face?.rest();
   const mixer = new T.AnimationMixer(gltf.scene);
   const actions = new Map(clips.map((clip) => [clip.name, mixer.clipAction(clip)]));
   let active: THREE.AnimationAction | null = null, scale = 1, pose: BodyPose = 'idle';
@@ -273,7 +304,15 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
     get strideScale() { return proportions.height * proportions.depth; },
     get wardrobe() { return wardrobe.metrics; },
     get wardrobeError() { return wardrobe.lastError; },
-    setPresentation(next) { uniforms.uSleeping.value = next === 'sleeping' ? 1 : 0; return wardrobe.setPresentation(next); },
+    setPresentation(next) {
+      uniforms.uSleeping.value = next === 'sleeping' ? 1 : 0;
+      if (face) { face.asleep = next === 'sleeping'; face.rest(); }
+      return wardrobe.setPresentation(next);
+    },
+    roster: figure ? { pick: figure.pick, lod } : null,
+    get triangles() { return figure ? figure.triangles : BODY_MANIFEST.bodies[key].triangles; },
+    mood(next) { if (face) { face.mood = next; face.rest(); } },
+    life(dt) { return face ? face.step(dt) : false; },
     sampleFootContacts() { object.updateWorldMatrix(true, false); object.updateMatrixWorld(true); return footContact.sample(); },
     solveFeet(heightAt) {
       // SkinnedMesh updates bindMatrixInverse in updateMatrixWorld, not updateWorldMatrix.
@@ -332,6 +371,14 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       put();
     },
     wear(next, nextSeed) {
+      const nextPick = options.pick !== undefined ? options.pick : pickOf(next, nextSeed);
+      const nextRoster = Boolean(nextPick && rosterShipped(nextPick.id, lod));
+      if (nextRoster !== Boolean(figure)) return false;
+      if (figure && nextPick) {
+        if (nextPick.id !== figure.pick.id) return false;
+        void figure.dress(nextPick.outfit, nextPick.skin).then(() => { face?.rest(); options.onDressed?.(); }, () => undefined);
+        return true;
+      }
       const wanted = bodyTint(next, nextSeed);
       if (wanted.key !== key) return false;
       const nextRead = normalizeLook(next, nextSeed);
@@ -347,10 +394,13 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       if (appearanceMade.ok) appearanceMade.controller.dispose();
       mixer.stopAllAction();
       mixer.uncacheRoot(gltf.scene);
-      skinned.geometry.dispose();
-      material.dispose();
-      map.dispose();
-      skinned.skeleton.dispose();
+      if (figure) figure.dispose();
+      else {
+        skinned.geometry.dispose();
+        material.dispose();
+        map?.dispose();
+        skinned.skeleton.dispose();
+      }
       object.removeFromParent();
     },
   };

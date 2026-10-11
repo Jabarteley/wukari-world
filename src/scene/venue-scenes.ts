@@ -80,6 +80,9 @@ import type {
   SceneLayout, SceneMaterials, ScenePerson, SceneRest, SceneSpot, SceneState, SceneTag, SceneThing, SceneVenue, SceneWalk, PlayerOptions, ThreeModule, TimeOfDay, Vec3, WalkSpot,
 } from './types.ts';
 import { buildAvatar, drawCrowd } from './characters.ts';
+import { createCrowdBodies } from './roster/crowd-bodies.ts';
+import type { BodySpec, CrowdBodies } from './roster/crowd-bodies.ts';
+import { bodyAllowed } from './body/gate.ts';
 import { playerOptions, rigOf, lookAvatar } from './avatar-rig.ts';
 import { createWalkGrid, footprintRecorder, turnTowards } from './movement.ts';
 import { FIGURE_GAP, gapFor, tieOf, newGaze, stepGaze, watch, gazing } from './space.ts';
@@ -417,6 +420,8 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   // Other players who report where they stand: one figure each, eased to every new position.
   const peers = new Map<string, Peer>();
   let peopleList: ScenePerson[] = [], mergedTags: SceneTag[] = [], batchKey: string | null = null, easing = false;
+  // Roster bodies of the other people (src/scene/roster/): fetched after the first frame, they stand in for the procedural figures.
+  let bodies: CrowdBodies | null = null, bodyHolder: THREE.Group | null = null, bodiesChanged: (() => void) | null = null, syncing = false;
   const wallParts: Record<'wallBack' | 'wallLeft', THREE.Object3D[]> = { wallBack: [], wallLeft: [] };
   const sceneCamera = def.camera || SCENE_CAMERA;
   // The ground direction from the scene's centre towards its own camera: "in front of" a marker.
@@ -680,6 +685,11 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     return figure;
   }
   function showPeer(peer: Peer, walking: boolean) {
+    if (bodies?.has(peer.id)) {
+      if (peer.shown) { peer.shown.visible = false; peer.shown = null; }
+      bodies.update(peer.id, { pose: walking ? 'walk' : 'stand', phase: peer.stride * Math.PI * 0.5 });
+      return;
+    }
     const next = walking ? peer.walk : peer.stand;
     if (peer.shown === next) return;
     if (peer.shown) peer.shown.visible = false;
@@ -779,7 +789,23 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   }
   function buildActors() {
     const placed = placeCrowd(view.crowd);
-    const merged = placed.filter((person) => !person.live);
+    const live = placed.filter((person) => person.live);
+    const still = placed.filter((person) => !person.live);
+    // Everyone not standing at a reported position is in the merged batch: NPCs, and players who have not reported one yet.
+    const kept = new Set<string>();
+    for (const person of live) kept.add(syncPeer(person as LivePerson).id);
+    for (const peer of [...peers.values()]) if (!kept.has(peer.id)) dropPeer(peer);
+    // Who gets a roster body: the other players (at their reported places and in the merged batch), then the regulars and the rest.
+    if (bodies && bodyHolder && !syncing) {
+      syncing = true;
+      const specs: BodySpec[] = [];
+      for (const peer of peers.values()) specs.push({ id: peer.id, kind: 'peer', look: peer.look, seed: peer.seed, parent: peer.group, x: 0, y: 0, z: 0, ry: 0, pose: peer.t < 1 ? 'walk' : 'stand' });
+      still.forEach((person, index) => specs.push({ id: String(person.id ?? `person-${index}`), kind: person.kind === 'npc' ? 'npc' : 'peer', look: person.look, seed: person.seed ?? person.id ?? index, regular: person.regular, parent: bodyHolder!,
+        x: person.x || 0, y: person.y || 0, z: person.z || 0, ry: person.ry || 0, pose: person.pose ?? 'stand', seat: person.seat }));
+      bodies.sync(specs);
+      syncing = false;
+    }
+    const merged = still.map((person, index) => (bodies?.has(String(person.id ?? `person-${index}`)) ? { ...person, skip: true } : person));
     // The merged batch holds NPCs and players without a reported position: rebuilt only when THEY change.
     const key = JSON.stringify(merged);
     if (key !== batchKey) {
@@ -791,9 +817,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       actorTriangles = built.triangles;
       for (const mesh of built.meshes) { mesh.name = `actors-${mesh.name}`; group.add(mesh); actorObjects.push(mesh); }
     }
-    const kept = new Set();
-    for (const person of placed) if (person.live) kept.add(syncPeer(person as LivePerson).id);
-    for (const peer of [...peers.values()]) if (!kept.has(peer.id)) dropPeer(peer);
+    for (const peer of peers.values()) if (bodies?.has(peer.id)) showPeer(peer, false);
     // Tags and tap targets in the order the crowd was given.
     let next = 0;
     crowdTags = placed.map((person) => (person.live ? peers.get(String(person.id))!.tag : mergedTags[next++])).filter((tag): tag is SceneTag => Boolean(tag));
@@ -823,6 +847,10 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     buildMarks();
     prebuild();
     live = true;
+    if (bodyAllowed()) {
+      bodyHolder = new THREE.Group(); bodyHolder.name = 'roster-bodies'; group.add(bodyHolder);
+      bodies = createCrowdBodies(kit, () => { if (live && !syncing) { buildActors(); bodiesChanged?.(); } });
+    }
     buildActors();
     settle();
     applyLighting();
@@ -831,6 +859,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     renderedContactTop = null;
     for (const peer of [...peers.values()]) dropPeer(peer);
     easing = false; batchKey = null; peopleList = []; mergedTags = [];
+    bodies?.dispose(); bodies = null; bodyHolder?.parent?.remove(bodyHolder); bodyHolder = null;
     wallParts.wallBack.length = 0; wallParts.wallLeft.length = 0;
     releaseObjects(staticObjects);
     releaseObjects(actorObjects);
@@ -1011,6 +1040,10 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       if (live) buildActors(); else { crowdTags = []; peopleList = []; }
       return crowdTags;
     },
+    /** After a frame was drawn: start fetching the roster bodies of the people here (a body that arrives asks `changed` for a frame). */
+    startCrowd(renderer: { getContext?: () => unknown }, changed: () => void) { bodiesChanged = changed; bodies?.start(renderer); },
+    /** The roster bodies in the scene (diagnostics, tests). */
+    get rosterBodies() { return bodies; },
     /** True while another player's figure is on its way to a newly reported position. */
     get easing() { return easing; },
     stepCrowd, settleCrowd,

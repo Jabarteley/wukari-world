@@ -148,3 +148,22 @@ test('label cells are shared by equal text and sit inside the atlas', () => {
   assert.equal(mergeKeys(part, 'near', false), 'x:near');
   assert.equal(mergeKeys({ ...part, writable: true }, 'far', true), 'label:far');
 });
+
+test('moving the focus reads the file a placement now needs, and keeps its other version on screen meanwhile', async () => {
+  const cache = createModelCache(source({ n: model('n', 'x', 4), f: model('f', 'x-far', 1) }));
+  const kit = createKit();
+  try {
+    const layer = createModelLayer(kit, cache, { nearRadius: 50, focus: { x: 100, z: 0 } });
+    let notices = 0;
+    layer.add({ near: 'n', far: 'f', x: 0, z: 0, standIn: () => undefined });
+    layer.build();
+    await layer.load(() => { notices += 1; });
+    assert.deepEqual(layer.stats().levels, { near: 0, far: 1 });
+    assert.equal(cache.peek('n'), null, 'the full model has not been read');
+    assert.equal(layer.focus(0, 0), true);
+    assert.equal(layer.stats().standIns, 0, 'the far version stays until the full one has arrived');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    assert.equal(cache.peek('n') !== null, true); assert.equal(layer.stats().triangles, 8); assert.equal(notices, 2);
+    layer.dispose();
+  } finally { kit.dispose(); }
+});

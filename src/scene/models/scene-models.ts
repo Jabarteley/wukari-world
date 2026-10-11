@@ -268,8 +268,11 @@ export function createModelLayer(kit: Kit, cache: ModelCache, options: LayerOpti
     // A little hysteresis: a placement that is far stays far until it is clearly inside.
     return distance > nearRadius + (levels[index] === 'far' ? -8 : 0) ? 'far' : 'near';
   };
-  const modelFor = (placement: Placement, level: ModelLevel): ModelData | null =>
-    (level === 'far' && placement.far ? cache.peek(placement.far) : null) ?? cache.peek(placement.near);
+  /** The model for the wanted level; until that file is here, whichever version of it is (no stand-in when a cheaper or fuller one is on hand). */
+  const modelFor = (placement: Placement, level: ModelLevel): ModelData | null => {
+    const far = placement.far ? cache.peek(placement.far) : null, near = cache.peek(placement.near);
+    return level === 'far' ? far ?? near : near ?? far;
+  };
 
   function materialFor(atlas: string): THREE.Material {
     let material = materials.get(atlas);
@@ -455,8 +458,11 @@ export function createModelLayer(kit: Kit, cache: ModelCache, options: LayerOpti
       focusX = x; focusZ = z; hasFocus = true;
       const next = placements.map((placement, i) => levelFor(placement, i));
       if (next.every((level, i) => level === levels[i])) return false;
-      // Far models the placements now need may not have been read yet: ask for them; draw with what is here meanwhile.
-      const need = placements.flatMap((placement, i) => next[i] === 'far' && placement.far && !cache.peek(placement.far) && !cache.failed(placement.far) ? [placement.far] : []);
+      // Models the placements now need at their new level may not have been read yet: ask for them, and draw with what is here meanwhile.
+      const need = placements.flatMap((placement, i) => {
+        const key = next[i] === 'far' && placement.far && !cache.failed(placement.far) ? placement.far : placement.near;
+        return !cache.peek(key) && !cache.failed(key) ? [key] : [];
+      });
       if (need.length) void Promise.all(need.map((key) => cache.request(key))).then(() => { if (!disposed) { rebuild(); notify?.(); } });
       rebuild();
       return true;

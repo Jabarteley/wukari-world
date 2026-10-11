@@ -31,7 +31,7 @@ const ENTRANCE = { x: 0, y: 0, z: -3.25, ry: 0 };
 const CAMERA: SceneCamera = { landscape: [15, 12, 17], portrait: [9, 10, 15], start: 1.25 };
 /** What the street's model meshes may cost on top of the road and the walls (a venue scene is 17,000 triangles and 60 draw calls with its crowd). */
 const MODEL_BUDGET = { triangles: 11500, drawCalls: 20 };
-const FENCE_COLOUR = ['#d9c9a6', '#3f8a57', '#f6f2e6', '#c9c2b0'];
+const FENCE_COLOUR = ['#d9c9a6', '#5d9a62', '#f6f2e6', '#c9c2b0'];
 /** How lit the windows are by the time of day. */
 const WINDOW_GLOW: Record<TimeOfDay, number> = { day: 0, dusk: 0.55, night: 1 };
 const NO_MODELS: ModelCache = createModelCache({ load: () => Promise.reject(new Error('No models')), texture: () => null });

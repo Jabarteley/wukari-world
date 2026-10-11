@@ -194,11 +194,11 @@ export function planStreet({ houses, seed, mix }: PlanInput): StreetPlan {
   // Compounds: fences (sides and back are walls; the front is the gate's piers plus two lengths of wall).
   for (const { left, right, gate, house } of compounds) {
     const depth = Z.fence - Z.back + 0.2;
-    plan.walls.push({ rect: [left + 0.15, Z.back + 0.5, left + 0.42, Z.fence + 0.15], fence: house.fence, height: 1.5 });
-    plan.walls.push({ rect: [right - 0.42, Z.back + 0.5, right - 0.15, Z.fence + 0.15], fence: house.fence, height: 1.5 });
-    plan.walls.push({ rect: [left + 0.15, Z.back + 0.5, right - 0.15, Z.back + 0.77], fence: house.fence, height: 1.5 });
-    plan.walls.push({ rect: [left + 0.15, Z.fence - 0.15, gate - 3.3, Z.fence + 0.15], fence: house.fence, height: 1.5 });
-    plan.walls.push({ rect: [gate + 3.3, Z.fence - 0.15, right - 0.15, Z.fence + 0.15], fence: house.fence, height: 1.5 });
+    plan.walls.push({ rect: [left + 0.15, Z.back + 0.5, left + 0.42, Z.fence + 0.15], fence: house.fence, height: house.fence === 1 ? 1.1 : 1.5 });
+    plan.walls.push({ rect: [right - 0.42, Z.back + 0.5, right - 0.15, Z.fence + 0.15], fence: house.fence, height: house.fence === 1 ? 1.1 : 1.5 });
+    plan.walls.push({ rect: [left + 0.15, Z.back + 0.5, right - 0.15, Z.back + 0.77], fence: house.fence, height: house.fence === 1 ? 1.1 : 1.5 });
+    plan.walls.push({ rect: [left + 0.15, Z.fence - 0.15, gate - 3.3, Z.fence + 0.15], fence: house.fence, height: house.fence === 1 ? 1.1 : 1.5 });
+    plan.walls.push({ rect: [gate + 3.3, Z.fence - 0.15, right - 0.15, Z.fence + 0.15], fence: house.fence, height: house.fence === 1 ? 1.1 : 1.5 });
     plan.blocks.push([left + 0.15, Z.back, left + 0.42, Z.fence + 0.15], [right - 0.42, Z.back, right - 0.15, Z.fence + 0.15], [left + 0.15, Z.back, right - 0.15, Z.back + 0.77],
       [left + 0.15, Z.fence - 0.3, gate - GATE_OPENING - 0.1, Z.fence + 0.3], [gate + GATE_OPENING + 0.1, Z.fence - 0.3, right - 0.15, Z.fence + 0.3]);
     plan.solids.push([left + 0.15, 0, Z.back + 0.5, left + 0.42, 1.5, Z.fence], [right - 0.42, 0, Z.back + 0.5, right - 0.15, 1.5, Z.fence]);

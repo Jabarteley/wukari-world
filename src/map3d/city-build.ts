@@ -101,9 +101,21 @@ export interface City {
   setTime(next: string): TimePreset;
   setTraffic(on: boolean): boolean;
   readonly traffic: boolean;
+  /**
+   * Draw the street traffic with authored vehicle models instead of the few-box stand-ins (the stand-ins stay if this is never called). Called once,
+   * after the models have arrived, with a model for each of the six traffic paints; at most TRAFFIC_MODEL_LIMITS of each are drawn so the frame stays inside the budget.
+   */
+  setTrafficModels(models: TrafficModels | null): boolean;
   animate(seconds: number): void;
   dispose(): void;
 }
+/** An authored vehicle as an instanceable mesh: geometry with its transform baked in, facing +z on y = 0, in metres. */
+export interface TrafficModel { geometry: BufferGeometry; material: Material }
+/** The danfo, and a car for each of the six paints (TRAFFIC_PAINTS order). */
+export interface TrafficModels { danfo: TrafficModel; cars: readonly TrafficModel[]; /** metres to scene units */ scale: number }
+export const TRAFFIC_PAINTS: readonly string[] = Object.freeze(['#f6f2e6', '#c9423a', '#2b5fa8', '#30343b', '#d9d4c4', '#1f8a86']);
+/** How many of each traffic kind are drawn once its authored model is in, so a street of real models stays inside CITY_TRIANGLE_BUDGET. */
+export const TRAFFIC_MODEL_LIMITS = Object.freeze({ danfo: 4, cars: 5 });
 /** createRaw: a hand-rolled mesh collector for flat things the batch has no primitive for. */
 export interface Raw {
   shape(polygon: readonly Point2[], y: number, colour: string, holes?: readonly (readonly Point2[])[]): void;
@@ -772,7 +784,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   const traffic: TrafficItem[] = [];
   for (let i = 0; i < 38 && lanes.length; i++) {
     const road = lanes[i % lanes.length]!;
-    traffic.push({ road, at: rng() * road.length, speed: (2.2 + rng() * 2.2) * (i % 2 ? 1 : -1), kind: i % 5 < 2 ? 'danfo' : 'car', colour: ['#f6f2e6', '#c9423a', '#2b5fa8', '#30343b', '#d9d4c4', '#1f8a86'][i % 6]! });
+    traffic.push({ road, at: rng() * road.length, speed: (2.2 + rng() * 2.2) * (i % 2 ? 1 : -1), kind: i % 5 < 2 ? 'danfo' : 'car', colour: TRAFFIC_PAINTS[i % 6]! });
   }
   const along = (road: Road, distance: number) => {
     const points = road.points, d = ((distance % road.length) + road.length) % road.length;
@@ -784,25 +796,53 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     }
     return { x: points[0]!.x, y: 0, z: points[0]!.z, ry: 0 };
   };
-  const fleets = ['danfo', 'car'].map((kind) => {
+  interface Fleet { mesh: InstancedMesh; items: TrafficItem[]; limit: number }
+  const fleets: Fleet[] = ['danfo', 'car'].map((kind) => {
     const items = traffic.filter((item) => item.kind === kind);
     const mesh = instanced(`traffic-${kind}`, unit((u) => miniVehicle(u, kind)), materials.instanced, items, (item, o) => o.position.set(0, 0, 0), kind === 'car' ? (item) => item.colour : null);
     mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-    return { mesh, items };
+    return { mesh, items, limit: Infinity };
   });
   const vehicleScale = Math.min(1, Math.max(0.5, k * 1.3));
   let trafficOn = false;
+  let modelScale = 1;
   function placeTraffic(seconds: number) {
-    for (const { mesh, items } of fleets) {
-      items.forEach((item, i) => {
+    for (const { mesh, items, limit } of fleets) {
+      const shown = Math.min(items.length, limit);
+      for (let i = 0; i < shown; i++) {
+        const item = items[i]!;
         const spot = along(item.road, item.at + (trafficOn ? item.speed * seconds : 0)), lane = (item.speed > 0 ? -0.62 : 0.62) * pk, ry = spot.ry + (item.speed > 0 ? 0 : Math.PI);
         dummy.position.set(spot.x - Math.cos(spot.ry) * lane, spot.y + 0.08, spot.z + Math.sin(spot.ry) * lane);
-        dummy.rotation.set(0, ry, 0); dummy.scale.setScalar(vehicleScale); dummy.updateMatrix();
+        dummy.rotation.set(0, ry, 0); dummy.scale.setScalar(vehicleScale * modelScale); dummy.updateMatrix();
         mesh.setMatrixAt(i, dummy.matrix);
-      });
-      mesh.count = trafficOn ? items.length : Math.ceil(items.length / 2);
+      }
+      mesh.count = trafficOn ? shown : Math.ceil(shown / 2);
       mesh.instanceMatrix.needsUpdate = true;
     }
+  }
+  let modelled = false;
+  function setTrafficModels(models: TrafficModels | null): boolean {
+    if (!models || modelled) return false;
+    modelled = true;
+    modelScale = models.scale;
+    const [dan, car] = fleets as [Fleet, Fleet];
+    dan.mesh.geometry = models.danfo.geometry; dan.mesh.material = models.danfo.material; dan.limit = TRAFFIC_MODEL_LIMITS.danfo;
+    // The cars are one instanced mesh for each distinct model, so each paint draws with its own texture.
+    const byModel = new Map<TrafficModel, TrafficItem[]>();
+    for (const item of car.items) {
+      const model = models.cars[Math.max(0, TRAFFIC_PAINTS.indexOf(item.colour))] ?? models.cars[0]!;
+      byModel.set(model, [...(byModel.get(model) ?? []), item]);
+    }
+    car.mesh.visible = false;
+    const perModel = Math.max(1, Math.ceil(TRAFFIC_MODEL_LIMITS.cars / Math.max(1, byModel.size)));
+    fleets.splice(1, 1);
+    for (const [model, items] of byModel) {
+      const mesh = instanced('traffic-car-model', model.geometry, model.material, items, (item, o) => o.position.set(0, 0, 0));
+      mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      fleets.push({ mesh, items, limit: perModel });
+    }
+    placeTraffic(0);
+    return true;
   }
   placeTraffic(0);
 
@@ -924,6 +964,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     },
     setTraffic(on: boolean) { if (trafficOn === Boolean(on)) return false; trafficOn = Boolean(on); placeTraffic(0); return true; },
     get traffic() { return trafficOn; },
+    setTrafficModels,
     /** Only ever called from a running frame loop: nothing here moves while the map is idle. */
     animate(seconds: number) {
       waves.position.x = Math.sin(seconds * 0.5) * 0.9; waves.position.z = Math.cos(seconds * 0.37) * 0.35; waves.updateMatrix();

@@ -85,7 +85,7 @@ test('the shared shell does not statically import a city venue or regular catalo
 
 test('each generated catalogue row has one checked-in Node and Worker loader', () => {
   const catalogue = readFileSync(join(root, 'src/game/cities/catalogue.generated.ts'), 'utf8').split('\n').filter((line) => /^  \["/.test(line))
-  const loaders = readFileSync(join(root, 'src/game/cities/loaders.generated.ts'), 'utf8').split('\n').filter((line) => /^  async\(\)/.test(line))
+  const loaders = readFileSync(join(root, 'src/game/cities/loaders.generated.ts'), 'utf8').split('\n').filter((line) => /^  \(\)=>import\(/.test(line))
   assert.equal(loaders.length, catalogue.length, 'one lazy loader per compact catalogue row')
   for (let index = 0; index < catalogue.length; index += 1) {
     const id = catalogue[index]?.match(/^  \["([^"]+)"/)?.[1] ?? `row ${index}`
@@ -209,7 +209,7 @@ test('automatic game startup, including one selected city, stays within the orig
   const routes = all.filter(name => /^city-routes-[\w-]+\.js$/.test(name))
   assert.equal(routes.length, 1, 'the automatic startup has one lazy authored-route table')
   const catalogueRows = readFileSync(join(root, 'src/game/cities/catalogue.generated.ts'), 'utf8').split('\n').filter((line) => /^  \["/.test(line)).map((line) => JSON.parse(line.trim().replace(/,$/, '')) as [string, string, string, string, number, number, 0 | 1])
-  const loaderExports = [...readFileSync(join(root, 'src/game/cities/loaders.generated.ts'), 'utf8').matchAll(/\.([A-Za-z_$][\w$]*),$/gm)].map((match) => match[1] ?? '')
+  const loaderExports = [...readFileSync(join(root, 'src/game/cities/loaders.generated.ts'), 'utf8').matchAll(/\.then\(m=>m\.([A-Za-z_$][\w$]*)\),$/gm)].map((match) => match[1] ?? '')
   assert.equal(loaderExports.length, catalogueRows.length)
   const one = (pattern: RegExp, label: string): string => {
     const found = all.filter((name) => pattern.test(name))

@@ -169,7 +169,7 @@ const labels = config.names.map((choice) => {
   const element = choice.kind === 'water' ? waterByRef.get(choice.ref) : pick(choice.ref);
   if (!element) throw new Error(`${choice.ref} is not in the recorded ${choice.kind === 'water' ? 'water' : 'discovery'} answer`);
   const source = choice.kind === 'water' ? big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008))) : [];
-  const [lon, lat] = choice.kind === 'water' ? waterLabelPoint(element, source, renderedWater) : centreOf(element);
+  const [lon, lat] = choice.kind === 'water' ? waterLabelPoint(element, source, renderedWater, config.box) : centreOf(element);
   const name = choice.label ?? nameOf(element);
   if (!name) throw new Error(`${choice.ref} has no English name`);
   return { id: choice.id, name, lon: round(lon, 5), lat: round(lat, 5), kind: choice.kind };

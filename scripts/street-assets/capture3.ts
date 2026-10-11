@@ -104,7 +104,7 @@ try {
       ]),
     };
     // exterior detail by rule: [piece, x, y, z, ry, level] in the building's own frame (x right, y up, z toward the street)
-    const FOOT = JSON.parse(readFileSync(join(opt('--assets', '/Users/anthonyakpan/Documents/Allworld-notes/work/h2-street/scripts/street-assets/assets'), 'footprints.json'), 'utf8')) as Record<string, any>;
+    const FOOT = JSON.parse(readFileSync(join(opt('--assets', new URL('./assets', import.meta.url).pathname), 'footprints.json'), 'utf8')) as Record<string, any>;
     const PI3 = PI;
     const RULES: Record<string, [string, number, number, number, number, number][]> = {
       bungalow: [['gate-fence', 0, 0, 6.3, 0, 1], ['number-sign', 3.0, 1.4, 6.56, 0, 1], ['security-light', -3.0, 2.2, 6.56, 0, 1], ['ac-external', 5.0, 2.2, -1, PI3 / 2, 2], ['dish', 2, 5.5, -1, 0, 2], ['bars-window', -3.3, 1.2, 2.86, 0, 2], ['bars-window', 3.3, 1.2, 2.86, 0, 2], ['gatehouse', 6.8, 0, 6.0, 0, 3], ['clothes-line', 7.5, 0, -2, PI3 / 2, 3], ['generator-hut', -7, 0, -1.5, 0, 3]],

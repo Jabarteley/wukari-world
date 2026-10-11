@@ -20,7 +20,7 @@
  *   }
  * places[id] = { id, kind: 'venue' | 'home' | 'soon', x, z, ry, top, gate }
  */
-import type { BufferGeometry, Group, InstancedMesh, Material, Mesh, MeshBasicMaterial, MeshStandardMaterial, Object3D } from 'three';
+import type { BufferGeometry, Group, InstancedMesh, Material, Mesh, MeshBasicMaterial, MeshStandardMaterial, Object3D, PerspectiveCamera } from 'three';
 import { CITY_TRIANGLES } from '../budgets.ts';
 import type { Kit } from '../scene/kit.ts';
 import { createBatch, sceneMaterials, hash } from '../scene/build.ts';
@@ -96,6 +96,7 @@ export interface City {
   setLgas(on: boolean, own?: string | null): boolean;
   /** Level of detail for a camera this far from the ground: returns true when something was shown or hidden. */
   setDetail(distance: number, far?: number): boolean;
+  coverSurround(camera: PerspectiveCamera): void;
   fronts: CityFront[];
   setTime(next: string): TimePreset;
   setTraffic(on: boolean): boolean;
@@ -882,6 +883,7 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     return changed;
   }
 
+  const surroundCorner = new THREE.Vector3();
   let time = 'day';
   const presets: Readonly<Record<string, TimePreset | undefined>> = CITY_LIGHT;
   return {
@@ -890,6 +892,19 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     counts: { houses: fabric.houses.length, towers: fabric.towers.length, trees: fabric.trees.length, palms: fabric.palms.length, vehicles: traffic.length, shadows: shadows.length },
     get time() { return time; },
     setHome, setLgas, fronts,
+    /** The untextured countryside extends beyond every point the camera can draw. */
+    coverSurround(camera: PerspectiveCamera) {
+      if (!pack.surround || !pack.inland) return;
+      let x0 = camera.position.x, x1 = x0, z0 = camera.position.z, z1 = z0;
+      for (let x = -1; x <= 1; x += 2) for (let y = -1; y <= 1; y += 2) {
+        surroundCorner.set(x, y, 1).unproject(camera);
+        x0 = Math.min(x0, surroundCorner.x); x1 = Math.max(x1, surroundCorner.x);
+        z0 = Math.min(z0, surroundCorner.z); z1 = Math.max(z1, surroundCorner.z);
+      }
+      water.position.set((x0 + x1) / 2, WATER_Y, (z0 + z1) / 2);
+      water.scale.set((x1 - x0) / width, (z1 - z0) / depth, 1);
+      water.updateMatrix();
+    },
     /** Choose the level of detail for a camera this far away: the fabric is drawn near, and left out when the whole state is in view. True when it changed. */
     setDetail(distance: number, far = FABRIC_FAR) {
       const on = distance < far;

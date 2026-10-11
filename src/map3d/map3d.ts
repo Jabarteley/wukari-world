@@ -250,6 +250,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     // The player's piece grows as the view pulls back, so it can always be found — and a trip always followed.
     actor.setSize(clamp(rig.view.distance / 62, rig.view.distance < 34 ? Math.max(0.12, rig.view.distance / 62) : 1.2, Math.max(4, rig.view.distance / 110)));
     city.setDetail(rig.view.distance, wholeFrom * 1.35);
+    city.coverSurround(camera);
     if (route && routeStep() !== routeWidth) drawRoute();
     syncWorld();
     renderer.render(scene, camera);

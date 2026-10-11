@@ -128,7 +128,7 @@ async function generate(item, appSha, app, extractRoot, out) {
     result.source = bundle.source;
     const nodeArgs = ['--experimental-strip-types', '--import', './scripts/node-scene-css.ts'];
     stage('generate', ['--experimental-strip-types', 'scripts/geo/build-destination-detail.ts', item.city, '--extract-dir', extractDir]);
-    stage('focused-tests', [...nodeArgs, '--test', '--test-concurrency=1', `${relativeCity}/map.test.ts`, `${relativeCity}/journey.test.ts`]);
+    stage('focused-tests', [...nodeArgs, '--test', '--test-reporter=tap', '--test-concurrency=1', `${relativeCity}/map.test.ts`, `${relativeCity}/journey.test.ts`]);
     assert.ok(result.counts.tests.tests > 0 && result.counts.tests.fail === 0, 'focused tests have no passing test receipt');
     const proofScript = join(dirname(fileURLToPath(import.meta.url)), 'city-generation-proof.mjs');
     for (const view of ['ground', 'city']) {

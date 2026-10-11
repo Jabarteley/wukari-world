@@ -26,4 +26,6 @@
     "snapshotDate": "2026-10-11",
     "commitTimestamp": "2026-10-11T01:53:12Z"
   }
+,
+  "executionNote": "Retry after run38179933101 was cancelled at35m during derivation without source receipts; next run has75m stage budget and preserves partial receipts/HOLD outside the raw PBF"
 }

@@ -12,7 +12,7 @@ concurrency:
 jobs:
   source:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 90
     steps:
       - name: Set source output directory
         run: echo "BOOTSTRAP_OUT=$RUNNER_TEMP/city-source-bootstrap" >> "$GITHUB_ENV"
@@ -50,6 +50,7 @@ jobs:
           python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1'
           npm ci --prefix geometry-source --ignore-scripts --no-audit --no-fund
       - name: Derive source metadata and five layers with shared runner
+        timeout-minutes: 75
         run: |
           timeout --signal=TERM --kill-after=15s 25m python source-tooling/scripts/geo/factory/bootstrap/run.py \
             --table scripts/geo/north-america-source/mexico-city.json \

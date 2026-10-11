@@ -31,7 +31,7 @@ const loose = (socket: TestSocket): LooseSocket => ({ ws: socket.ws, next: async
 /** A frame the feature module invents: it is outside the shipped frame union, so it travels under the union's own type. */
 const frameOf = (frame: object): ServerFrame => frame as ServerFrame;
 /** A bare context for the registries: modules only read it when they are called. */
-const bareContext = (): RouteContext => ({ core: {}, config: {}, store: {}, cityIds: [], checks: {} }) as unknown as RouteContext;
+const bareContext = (): RouteContext => ({ core: {}, config: {}, store: { read: async (read: (db: Database) => unknown) => read({ sessions: {} } as Database) }, cityIds: [], checks: {} }) as unknown as RouteContext;
 /** A route handler, a system or a module the type system would refuse: built to see the registry refuse it too. */
 const unchecked = <T>(value: unknown): T => value as T;
 /** The stored session of a device cookie (`sid=<secret>`). */
@@ -110,7 +110,7 @@ test('route registry: a module gets storage, sessions, settlement, actions and p
   assert.equal((await f.request('/api/guestbook/entries/lagos/extra', { text: 'x' }, a.cookie)).status, 404);
 });
 
-test('route registry rejects duplicate and malformed routes at start-up and lists the core routes', () => {
+test('route registry rejects duplicate and malformed routes at start-up and lists the core routes', async () => {
   const ctx = bareContext();
   const keys = buildRoutes(ctx).keys;
   const CORE = ['GET /api/characters', 'GET /api/health', 'GET /api/life', 'GET /api/session', 'GET /api/voice-config', 'POST /api/action', 'POST /api/characters/switch', 'POST /api/session'];
@@ -131,7 +131,8 @@ test('route registry rejects duplicate and malformed routes at start-up and list
   assert.throws(() => buildRoutes(ctx, [() => ({ 'GET /api/x': unchecked<RouteHandler>('not a function') })]), /Invalid route/);
   const routes = buildRoutes(ctx, [() => ({ 'GET /api/a/:one/b/:two': unchecked<RouteHandler>(() => 'hit'), 'GET /api/a/list': unchecked<RouteHandler>(() => 'exact') })]);
   assert.deepEqual(routes.match('GET', '/api/a/x%20y/b/2')?.params, { one: 'x y', two: '2' });
-  assert.equal(routes.match('GET', '/api/a/list')?.handler(unchecked<RouteRequest>({})), 'exact');
+  const portable = unchecked<RouteRequest>({ query: new URLSearchParams(), params: {}, session: () => undefined, json: async () => ({}), secret: undefined });
+  assert.equal(await routes.match('GET', '/api/a/list')?.handler(portable), 'exact');
   assert.equal(routes.match('POST', '/api/a/1/b/2'), null); assert.equal(routes.match('GET', '/api/a//b/2'), null); assert.equal(routes.match('GET', '/api/a/%E0%A4%A/b/2'), null);
 });
 

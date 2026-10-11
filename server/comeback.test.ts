@@ -344,7 +344,7 @@ test('zero work: not configured, nobody opted in, switched off', async (t) => {
   dry.go(5);
   const result = await dry.run();
   assert.deepEqual(result.comeback, { ran: false, reason: 'not_configured' });
-  assert.equal(reads <= 2, true, 'the operator route itself reads; the comeback tick adds nothing');
+  assert.equal(reads <= 5, true, 'the operator route and its request barriers read; the unconfigured schedulers add no storage work');
   store.transact = transact; store.read = read;
   assert.equal(dry.calls.length, 0);
   // Configured, but nobody has a confirmed address: one look, and then none until something changes.

@@ -1,8 +1,8 @@
 // Portable settlement logic shared by the Node server and the Cloudflare worker (no I/O).
 import { normalizeCharacter, requireCharacterCity, fileCharacter } from './character.ts';
+import { requireSessionCities } from './city-content.ts';
 import { cityRules } from '../src/game/content/world.ts';
 import { createLife, advanceLife, dispatch, hasAction } from '../src/life.ts';
-import { VENUES } from '../src/game/cities/lagos/venues.ts';
 import { isPeerTransferId, walletEffectSink } from './economy/effects.ts';
 
 import type { ActionType, ActionBody } from '../src/types/actions.ts';
@@ -24,8 +24,6 @@ export interface LifeActionBody {
 export type LifeWatcher = (publicId: string, cityId: CityId, state: LifeState) => void
 /** The link from a settled state to its salt and owner. */
 interface LifeMeta { salt: string; publicId: string; cityId: CityId; session: SessionRecord }
-
-export { VENUES };
 
 /**
  * THE PER-LIFE SECRET SALT
@@ -116,6 +114,7 @@ function announce(meta: LifeMeta | undefined, state: LifeState): void {
  * every session the Cloudflare worker makes — behaves as before.
  */
 export function settleCity(session: SessionRecord, cityId: CityId, now: number): LifeState {
+  requireSessionCities(session, [cityId]);
   const stored = session.cities?.[cityId];
   if (Object.hasOwn(session.cities ?? {}, cityId) && (!stored?.state || !Number.isSafeInteger(stored.state.cash) || stored.state.cash < 0)) {
     throw Object.assign(new Error('economy_unavailable'), { status: 409, code: 'economy_unavailable', reason: 'This wallet needs recovery before it can be used.' });

@@ -1,4 +1,6 @@
-import { registeredCityIds, loadCityContent } from '../src/game/cities/registry.ts';
+import { registeredCityIds, loadCityLinks } from '../src/game/cities/registry.ts';
+import { installCityAssetReader } from '../src/game/cities/host-loaders.ts';
+import { installDictionaryAssetReader } from '../src/words/dictionary-asset.ts';
 /**
  * WORKER HOST: the Cloudflare Worker and its SQLite Durable Object — the production host.
  *
@@ -323,6 +325,16 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
   ready: Promise<void>;
   constructor(ctx: DurableObjectState, env: WorkerEnv) {
     super(ctx, env); this.env = env; this.meter = createWriteMeter(ctx.storage.sql); this.sql = this.meter.sql; this.peers = new Map(); this.inflight = new Map();
+    installCityAssetReader(async path => {
+      const response = await env.ASSETS.fetch(new Request(`https://allworld-assets.invalid${path}`, { redirect: 'manual' }));
+      if (!response.ok) throw new Error('City asset request failed');
+      return new Uint8Array(await response.arrayBuffer());
+    });
+    installDictionaryAssetReader(async path => {
+      const response = await env.ASSETS.fetch(new Request(`https://allworld-assets.invalid${path}`, { redirect: 'manual' }));
+      if (!response.ok) throw new Error('Dictionary asset request failed');
+      return new Uint8Array(await response.arrayBuffer());
+    });
     this.held = { all: new Set(), bySecret: new Map(), byPlayer: new Map(), byAddress: new Map() }; this.unsaved = new Set(); this.checked = new WeakMap();
     const now = () => Date.now();
     const log = (line: unknown): void => { try { console.error(String(line).slice(0, 500)); } catch { /* a failing logger changes nothing */ } };
@@ -443,7 +455,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       // Work that outlives the request that started it: the object stays up until it has finished.
       waitUntil: (promise) => { try { ctx.waitUntil(Promise.resolve(promise).catch(() => {})); } catch { /* not in a request */ } },
       config: { accounts: accountsConfig(env), founderEmailSha256: founderEmailHash(env), publicOrigin: cleanOrigin(env.PUBLIC_ORIGIN), sessionTtlMs: SESSION_TTL_MS, actionWindowMs: ACTION_WINDOW_MS, ...this.caps, buildId, votesPerAddress, voteCapMode, heartbeatMs: HEARTBEAT_MS, moderation: Boolean(operatorToken) },
-      startup: registeredCityIds().map(loadCityContent),
+      startup: [loadCityLinks()],
       // Nothing stops a Durable Object in an orderly way: every write is durable when it is acknowledged, and work in
       // flight is covered by waitUntil. The list exists so a module can register without asking which host it is on.
       closing: [],

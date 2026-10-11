@@ -453,14 +453,25 @@ test('transfers: friends only, aged accounts, earned money, atomic, in both ledg
   assert.deepEqual([defined(bolaLife.ledger.at(-1)).amount, defined(bolaLife.ledger.at(-1)).reason], [500, 'Transfer from Ada']);
   assert.deepEqual((await database(f)).walletEffects?.filter(row => row.transferId === transferId).map(row => [row.publicId,row.amount]),[[ada.id,-500],[bola.id,500]]);
   assert.equal((await socialOf(f)).pending[bola.id], undefined);
-  // Bola is online: credited in the same transaction.
+  // Bola is online but has another cold saved city: delivery waits for his next prepared request.
   f.advance(61000);
   const b = await f.socket(bola);
+  await f.server.store.transact((db) => {
+    const session = Object.values(db.sessions).find((item) => item.publicId === bola.id), lagos = session?.cities.lagos;
+    assert.ok(session && lagos);
+    const held = structuredClone(lagos);
+    held.state.estate.city = 'lusaka';
+    session.cities.lusaka = held;
+  });
   const liveClientId=f.id(),liveTransferId=peerTransferId(ada.id,liveClientId);
   const live = await send({ amount: 400,clientId:liveClientId });
-  assert.equal(live.credited, true);
-  assert.deepEqual([(await until(b, 'transfer')).amount, (await get(f, '/api/life?city=lagos', bola)).state.cash], [400, 5900]);
+  assert.equal(live.credited, false, 'an online recipient with cold referenced content keeps the credit queued');
+  assert.equal((await until(b, 'transfer')).amount, 400);
+  assert.deepEqual((await database(f)).walletEffects?.filter(row=>row.transferId===liveTransferId).map(row=>[row.publicId,row.amount]),[[ada.id,-400]]);
+  await get(f, '/api/social/me', bola); await get(f, '/api/social/me', bola);
+  assert.equal((await get(f, '/api/life?city=lagos', bola)).state.cash, 5900, 'the prepared recipient claims the queued credit exactly once');
   assert.deepEqual((await database(f)).walletEffects?.filter(row=>row.transferId===liveTransferId).map(row=>[row.publicId,row.amount]),[[ada.id,-400],[bola.id,400]]);
+  assert.equal((await socialOf(f)).pending[bola.id], undefined);
   // Only earned money can be given, and only three gifts a day.
   refused = await send({ amount: 2200 });
   assert.equal(refused.code, 'gift_exceeds_earned'); assert.match(refused.reason, /You can still give ₦2,100/);

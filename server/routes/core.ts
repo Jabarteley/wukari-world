@@ -1,4 +1,5 @@
 import { isFamilySlot } from '../social/family.ts';
+import { prepareStoredCityContent, requestedCityIds } from '../request-city-content.ts';
 import { normalizeCharacter, swapLegacyLife, legacyLifeCity } from '../character.ts';
 /**
  * OWNER: foundation
@@ -64,6 +65,7 @@ export async function executeCommand(ctx: RouteContext, request: RouteRequest, b
   if (afterAction !== undefined && (typeof afterAction !== 'function' || scope === undefined)) throw new Error('A command callback requires a fixed server scope');
   if (!body || typeof body !== 'object' || Array.isArray(body)) throw ctx.fail(400, 'invalid_action');
   validateActionPayload(body, now(), config.actionWindowMs);
+  await prepareStoredCityContent(ctx, await store.read(db => request.requireSession(db)), requestedCityIds(body));
   const authority = `${scope ? `scope:${scope}:` : ''}${internal === true ? 'internal:' : ''}`;
   const { outcome, publicId, responseCity } = await store.transact(db => {
     const session = request.requireSession(db, { renew: true });

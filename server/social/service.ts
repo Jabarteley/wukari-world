@@ -69,6 +69,8 @@ import { MONEY_REQUEST, moneyRequestStateAt } from '../../src/moneyRequest.ts';
 import { freeOf } from '../../src/game/systems/wallet.ts';
 import { venueLabel } from '../../src/game/content/venues.ts';
 import { cityName } from '../../src/game/cities/index.ts';
+import { cachedCityContent } from '../../src/game/cities/registry.ts';
+import { sessionCityIds } from '../city-content.ts';
 import { DREAMS, TRAITS } from '../../src/game/content/traits.ts';
 import { presenceOf, describeRoom } from './presence.ts';
 import { screenText } from '../moderation/text.ts';
@@ -447,10 +449,11 @@ function buildService(ctx: RouteContext) {
     }
     return null;
   }
-  /** 'applied' | 'refused' (the rules engine said no) | 'no-life' (nowhere to apply it yet: it waits). */
-  function runEffect(s: SocialCollection, session: SessionRecord, effect: PendingEffect): 'applied' | 'refused' | 'no-life' {
+  /** `waiting` means a referenced city's authenticated content is cold: keep the effect for the recipient's next prepared request. */
+  function runEffect(s: SocialCollection, session: SessionRecord, effect: PendingEffect): 'applied' | 'refused' | 'no-life' | 'waiting' {
     const cityId = lifeCity(session, effect.cityId);
     if (!cityId) return 'no-life';
+    if (sessionCityIds(session, [cityId]).some(id => cachedCityContent(id) === null)) return 'waiting';
     const owed = session.cities?.[cityId]?.state?.travel?.rideDebt ?? 0;
     const done = act(session, cityId, effect.payload.op, effect.payload, `social|effect|${effect.n}`, 'an owed effect is applied and taken off the queue in one transaction');
     if (!done.ok) return 'refused';
@@ -478,7 +481,7 @@ function buildService(ctx: RouteContext) {
     for (const effect of queue) {
       const outcome = runEffect(s, session, effect);
       // Money (keep) is never dropped. Anything waits while the player has no life to apply it to.
-      if (outcome === 'no-life' || (outcome === 'refused' && effect.keep)) left.push(effect);
+      if (outcome === 'no-life' || outcome === 'waiting' || (outcome === 'refused' && effect.keep)) left.push(effect);
       else {
         endedIn(s).material = true; // a gift or a friendship reached this life (or was settled): the request must be durable
         const chat = effect.gift ? s.convs[effect.gift.conv] : undefined, line = chat?.messages.find((item) => item.seq === effect.gift!.seq);

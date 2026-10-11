@@ -27,6 +27,30 @@ test('accepts exact separate-worker package and rejects content changes', t => {
   const f = fixture(t); assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
   writeFileSync(join(f.root, 'worker.js'), 'tampered'); assert.throws(() => checkPackage(f.root, sha, false), /manifest mismatch/);
 });
+test('accepts hashed city JSON and refuses a resealed payload under the wrong content hash', t => {
+  const f = fixture(t), bytes = '{"version":1,"cityId":"lagos"}';
+  const digest = createHash('sha256').update(bytes).digest('hex');
+  const dir = join(f.root, 'assets/assets/cities');
+  mkdirSync(dir, { recursive: true });
+  const path = join(dir, `lagos.${digest}.json`);
+  writeFileSync(path, bytes); f.seal();
+  assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
+  writeFileSync(path, '{"version":1,"cityId":"ibadan"}'); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /City content filename hash mismatch/);
+});
+test('requires every content asset referenced by the sealed Worker and authenticates the dictionary', t => {
+  const f = fixture(t), dictionary = 'synthetic packed words';
+  const digest = createHash('sha256').update(dictionary).digest('hex');
+  const path = `/assets/words/dictionary.${digest}.txt`;
+  writeFileSync(join(f.root, 'worker.js'), `export const dictionary = ${JSON.stringify(path)};`); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Missing referenced content asset/);
+  mkdirSync(join(f.root, 'assets/assets/words'), { recursive: true });
+  const file = join(f.root, `assets${path}`);
+  writeFileSync(file, dictionary); f.seal();
+  assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
+  writeFileSync(file, 'wrong payload'); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Content asset filename hash mismatch/);
+});
 for (const [name, change] of [
   ['rebundling the sealed Worker', config => { config.no_bundle = false; }],
   ['static assets included as Worker modules', config => { config.find_additional_modules = true; }],

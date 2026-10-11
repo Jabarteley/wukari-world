@@ -40,7 +40,7 @@ async function host(t: TestContext) {
     const options = { name: 'joinallworld-barber', script, modules: true, compatibilityDate: '2026-10-01',
       durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(folder, 'storage'),
       bindings: { BUILD_ID: 'barber-fixture', MODERATOR_TOKEN: TOKEN, FOUNDER_EMAIL_SHA256: '', ...bindings },
-      serviceBindings: { ASSETS: () => new Response('asset') } }
+      assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } }
     mf = new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: join(folder, 'storage'), handleStructuredLogs: () => {} })
     await mf.ready
   }

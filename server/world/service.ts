@@ -42,6 +42,8 @@ import { fileCharacter } from '../character.ts';
 import { lagosTime } from '../../src/game/clock.ts';
 import { ESTATE, PLOTS_PER_ESTATE, cityRules, lgaOf, lgasOf, packStyle } from '../../src/game/content/world.ts';
 import { hasPlace } from '../../src/game/systems/estate.ts';
+import { prepareStoredCityContent } from '../request-city-content.ts';
+import { isCityId } from '../../src/game/cities/registry.ts';
 import { characterCity } from '../character.ts';
 import { watchLives } from '../life-service.ts';
 import { socialService } from '../social/service.ts';
@@ -134,6 +136,7 @@ function buildWorld(ctx: RouteContext) {
 
   /** Bring one player's registry entries in line with their stored life. Safe to repeat; see the header. */
   async function syncNow(publicId: string, cityId: CityId): Promise<{ lga: string; estate: number; plot: number } | null> {
+    await prepareStoredCityContent(ctx, await ctx.store.read(db => ctx.core.sessionByPublicId(db, publicId)), [cityId]);
     const key = `${publicId}:${cityId}`;
     const snap = await ctx.store.read((db) => {
       const session = ctx.core.sessionByPublicId(db, publicId);
@@ -192,7 +195,7 @@ function buildWorld(ctx: RouteContext) {
   /** One sync at a time per player; a change noticed meanwhile runs one more afterwards. */
   function sync(publicId: string, cityId: CityId): Promise<{ lga: string; estate: number; plot: number } | null> {
     const key = `${publicId}:${cityId}`;
-    if (!shards || !cityRules(cityId)) return Promise.resolve(null);
+    if (!shards || !isCityId(cityId)) return Promise.resolve(null);
     const current = running.get(key);
     if (current) { dirty.add(key); return current; }
     const work = syncNow(publicId, cityId).catch((error) => { sigs.delete(key); if ((error as { code?: unknown } | null)?.code !== 'storage_unavailable') log(`World sync failed: ${String((error as { message?: unknown } | null)?.message ?? error).split('\n')[0]}`); return null; })

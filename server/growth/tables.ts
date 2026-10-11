@@ -40,6 +40,7 @@ import { TABLE_REWARDS } from '../../src/game/content/growth.ts';
 import { venueLabel } from '../../src/game/content/venues.ts';
 import { cityContent } from '../../src/game/cities/index.ts';
 import { BOT_NAMES } from '../../src/tables/places.ts';
+import { prepareStoredCityContent } from '../request-city-content.ts';
 import type { TableDef } from '../../src/tables/places.ts';
 import { withBoardGames } from '../../src/tables/derive.ts';
 import { warm as warmWeave } from '../../src/tables/weave.ts';
@@ -392,8 +393,14 @@ function buildService(ctx: RouteContext) {
   /** A finished table that nobody is playing at any more: the next people who come may sit at once instead of waiting for the reset. */
   const abandoned = (table: Table) => table.status === 'over' && !table.seats.some((seat) => !seat.bot && !seat.left);
 
+  async function prepareTableParticipants(table: Table): Promise<void> {
+    const sessions = await ctx.store.read((db) => table.seats.filter((seat) => !seat.bot).map((seat) => ctx.core.sessionByPublicId(db, seat.id)).filter((session): session is SessionRecord => session !== undefined));
+    await Promise.all([prepareStoredCityContent(ctx, undefined, [table.cityId]), ...sessions.map((session) => prepareStoredCityContent(ctx, session, [table.cityId]))]);
+  }
+
   /** The match is over: say so, and record what it earned — once, in one saved transaction. */
   async function finish(table: Table): Promise<void> {
+    await prepareTableParticipants(table);
     const match = matchOf(table), outcome = match.engine.outcome(), t = now();
     table.status = 'over'; table.endedAt = t;
     // pump only calls this once the rules say the game is over; the original read `outcome.reason` here and threw.

@@ -182,7 +182,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
   let routeLine: THREE.Mesh | null = null;
 
   // ---- DOM: the canvas, the labels over it, the view buttons ---------------------------------
-  let root: HTMLDivElement | null = null, labelLayer: HTMLElement | null = null, controls: Record<string, HTMLElement> = {}, hint: HTMLElement | null = null, you: HTMLDivElement | null = null, controlBox: ScreenBox | null = null;
+  let root: HTMLDivElement | null = null, labelLayer: HTMLElement | null = null, controls: Record<string, HTMLElement> = {}, hint: HTMLElement | null = null, you: HTMLDivElement | null = null, labelExclusions: ScreenBox[] = [];
   const labels = new Map<string, LabelEntry>(), chips = new Map<string, { node: HTMLDivElement; chip: OverlayChip }>();
   if (doc) {
     root = doc.createElement('div');
@@ -198,7 +198,15 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     controls = Object.fromEntries([...root.querySelectorAll<HTMLElement>('[data-m3]')].map((node) => [node.dataset.m3!, node]));
   }
   const controlNode = root?.querySelector<HTMLElement>('.m3-controls') ?? null;
-  const readControlBox = (page = container.getBoundingClientRect()) => { const rect = controlNode?.getBoundingClientRect(); controlBox = rect ? { l: rect.left - page.left - 5, r: rect.right - page.left + 5, t: rect.top - page.top - 5, b: rect.bottom - page.top + 5 } : null; };
+  const readLabelExclusions = (page = container.getBoundingClientRect()) => {
+    labelExclusions = [];
+    for (const node of [controlNode, doc?.querySelector<HTMLElement>('.map-levels-cur'), container.querySelector?.<HTMLElement>('.map-credit')]) {
+      if (!node) continue;
+      const rect = node.getBoundingClientRect();
+      if (!rect?.width || !rect.height || node.hidden || doc?.defaultView?.getComputedStyle?.(node).visibility === 'hidden') continue;
+      labelExclusions.push({ l: rect.left - page.left - 5, r: rect.right - page.left + 5, t: rect.top - page.top - 5, b: rect.bottom - page.top + 5 });
+    }
+  };
 
   // ---- state ----------------------------------------------------------------------------------
   let state: MapState | null = null, layer = 'city', filter = 'all', selected: string | null = null, hovered: string | null = null, destroyed = false, lost = false;
@@ -547,7 +555,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       entries.push({ label, at, visible: !(place.kind === 'home' && visitorHere()) && at.front && at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && label.priority < 70) });
     }
     entries.sort((a, b) => b.label.priority - a.label.priority || b.at.y - a.at.y);
-    const taken: ScreenBox[] = controlBox ? [controlBox] : [], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 };
+    const taken: ScreenBox[] = [...labelExclusions], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 };
     // Level of detail: only a few names are written at the opening view (a table in geo/density.ts), more as the camera comes closer; the rest are round icons.
     const allowed = venueNamesAt(densityFor(size.width, doc?.defaultView ? parseFloat(doc.defaultView.getComputedStyle(doc.documentElement).fontSize) / 16 || 1 : 1), nearDistance > 0 ? nearDistance / rig.view.distance : 1);
     let named = 0;
@@ -631,7 +639,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const north = controls.north;
     if (north) {
       const skewed = rig.skewed(), degrees = Math.round((rig.view.yaw * 180) / Math.PI);
-      if (north.hidden === skewed) { north.hidden = !skewed; readControlBox(); labelsDirty = true; }
+      if (north.hidden === skewed) { north.hidden = !skewed; readLabelExclusions(); labelsDirty = true; }
       if (skewed && northDegrees !== degrees) { northDegrees = degrees; (north.firstElementChild as SVGElement | null)?.style.setProperty('transform', `rotate(${degrees}deg)`); }
     }
     for (const { node, chip } of chips.values()) {
@@ -689,7 +697,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       container.style?.setProperty('--map-left', `${Math.round(insets.left)}px`);
       if (root) { root.style.setProperty('--m3-dock', `${Math.round(insets.bottom)}px`); root.style.setProperty('--m3-left', `${Math.round(insets.left)}px`); root.style.setProperty('--m3-top', `${Math.round(insets.top)}px`); }
     }
-    readControlBox(rect);
+    readLabelExclusions(rect);
     if (!opened) { openView(); if (trip && route && !reducedMotion) rig.jump(rig.framing(route.points.filter((_, i) => i % 4 === 0 || i === route!.points.length - 1), { pad: 1.5, min: 70 })); }
     else if (changed && !userMoved && size.width > 720 && !trip) rig.jump(openedWhole ? rig.whole() : rig.core());
     // The panels change as a trip starts (the list gives way to the trip bar): the route is framed again in the room that is left.

@@ -28,6 +28,7 @@
 .map-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:2px;overflow-x:hidden;overflow-y:auto;max-height:calc(38 * var(--ui-vh));scrollbar-width:thin;overscroll-behavior:contain}
 .life-ui .map-list button{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:4px 8px;border-radius:14px;background:none;text-align:left}
 .life-ui .map-list button:hover{background:var(--c-fill)}
+.life-ui .map-list .ll-top{position:static;width:auto;min-height:var(--tap);padding:7px 14px;background:var(--c-card,#fff)}
 .map-list button>span:first-child{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--c-surface-solid);border:1px solid var(--c-line);font-size:18px}
 .map-list li{min-width:0}
 .map-list-text{flex:1;min-width:0}

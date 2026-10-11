@@ -19,8 +19,12 @@ from mathutils import Vector
 argv = sys.argv[sys.argv.index("--") + 1:]
 flags = [a for a in argv if a.startswith("--")]
 src, out_blend, out_dir, name, target_tris, tex_px = argv[0], argv[1], argv[2], argv[3], int(argv[4]), int(argv[5])
-bpy.ops.wm.read_factory_settings(use_empty=True)
-bpy.ops.import_scene.gltf(filepath=src)
+FROM_BLEND = src.endswith(".blend")     # a mesh already brought to the game's rest pose (h1/pose_high.py): object "High", joints in REDUCE_JOINTS
+if FROM_BLEND:
+    bpy.ops.wm.open_mainfile(filepath=src)
+else:
+    bpy.ops.wm.read_factory_settings(use_empty=True)
+    bpy.ops.import_scene.gltf(filepath=src)
 os.makedirs(out_dir, exist_ok=True)
 
 meshes = [o for o in bpy.data.objects if o.type == "MESH"]
@@ -60,6 +64,9 @@ if arms:
         b = a.data.bones.get(f"mixamorig:{side}Hand") or a.data.bones.get(f"{side}Hand")
         if b:
             hands.append(a.matrix_world @ b.head_local)
+if FROM_BLEND:
+    jj = json.load(open(os.environ["REDUCE_JOINTS"]))["joints"]
+    hands = [Vector(jj["LeftHand"]), Vector(jj["RightHand"])]
 if not hands:
     hands = [Vector((s * 0.30 * H, 0, lo.z + 0.46 * H)) for s in (1, -1)]
 head_z = lo.z + 0.80 * H

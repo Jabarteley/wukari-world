@@ -24,7 +24,8 @@ const replacement = `        const unavailablePlaces = [];
             for (const [key, values] of Object.entries(${JSON.stringify(policy.excludedStatusTags)}))
                 if (values.includes(tags[key])) reasons.push(key + '=' + tags[key]);
             if (${JSON.stringify(policy.excludedAccess)}.includes(tags.access)) reasons.push('access=' + tags.access);
-            const qualifier = /\(([^()]*)\)\\s*$/.exec(String(tags.wikipedia ?? ''))?.[1]?.trim();
+            const wiki = String(tags.wikipedia ?? ''), opening = wiki.lastIndexOf('('), closing = wiki.lastIndexOf(')');
+            const qualifier = opening >= 0 && closing === wiki.length - 1 && closing > opening ? wiki.slice(opening + 1, closing).trim() : null;
             if (${Boolean(policy.excludeConflictingWikipediaLocality)} && qualifier && !normal(qualifier).includes(normal(target.name))) reasons.push('wikipedia-locality=' + qualifier);
             const closed = /^([0-9]{4}-[0-9]{2}-[0-9]{2})-([0-9]{4}-[0-9]{2}-[0-9]{2})\\s+off$/i.exec(tags.opening_hours ?? '');
             const snapshot = raw.source.pbfHeaderTimestamp.slice(0, 10);

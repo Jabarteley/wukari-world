@@ -4,4 +4,3 @@ import { GEOMETRY } from './geometry.ts'
 import { TERRAIN } from './terrain.ts'
 
 export const CITY_MAP = createDestinationMap(FACTS, GEOMETRY, async () => (await import('./index.ts')).city, TERRAIN)
-

@@ -65,4 +65,3 @@ export const CONFIG: DetailConfig = {
     { id: 'mangwaneni', ref: 'node/6551621095', kind: 'neighbourhood' },
   ],
 };
-

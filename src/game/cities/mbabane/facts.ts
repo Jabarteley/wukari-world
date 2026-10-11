@@ -21,4 +21,3 @@ export const FACTS = {
   coverageNote: 'Mbabane: a sketch of the mapped built-up extent from Eswatini PBF land use, mapped inland water, roads and named OpenStreetMap places. The play bounds retain the distant FDSK airport; its published OurAirports point is not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places.',
   names: { area: 'Mbabane', unit: 'district', roadHub: 'Mbabane Bus Rank' },
 } satisfies DestinationFacts
-

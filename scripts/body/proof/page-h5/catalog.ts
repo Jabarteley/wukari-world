@@ -6,12 +6,12 @@ export const LOOKS: Look[] = [
   { id: 'm3', sex: 'male', name: 'Agbada', blurb: 'Forties, bald and beard', dot: '#2b3f8a', outfits: [], skinSteps: true },
   { id: 'm4', sex: 'male', name: 'Hoodie and joggers', blurb: 'Twenties, short locs', dot: '#8a8d92', outfits: [], skinSteps: true },
   { id: 'm5', sex: 'male', name: 'Shirt and trousers', blurb: 'Fifties, grey hair', dot: '#8ab0d8', outfits: [], skinSteps: true },
-  { id: 'm6', sex: 'male', name: 'Ankara shirt and chinos', blurb: 'Thirties, fila cap', dot: '#c8452f', outfits: [], skinSteps: true },
+  { id: 'm6', sex: 'male', name: 'Ankara shirt and chinos', blurb: 'Thirties, red cap', dot: '#c8452f', outfits: [], skinSteps: true },
   { id: 'w1', sex: 'female', name: 'Ankara wrapper and blouse', blurb: 'Twenties, long braids', dot: '#3b3a9a', outfits: [], skinSteps: true },
   { id: 'w2', sex: 'female', name: 'Aso-ebi', blurb: 'Thirties, lace gown and gele', dot: '#1f7a4f', outfits: [], skinSteps: true },
   { id: 'w3', sex: 'female', name: 'Crop top and jeans', blurb: 'Twenties, natural afro', dot: '#d4a21f', outfits: [], skinSteps: true },
   { id: 'w4', sex: 'female', name: 'Two-piece', blurb: 'Forties, low cut', dot: '#1f2b44', outfits: [], skinSteps: true },
-  { id: 'w5', sex: 'female', name: 'Iro and buba', blurb: 'Thirties, high bun', dot: '#6e2a35', outfits: [], skinSteps: true },
+  { id: 'w5', sex: 'female', name: 'Iro and buba', blurb: 'Thirties, low bun', dot: '#6e2a35', outfits: [], skinSteps: true },
   { id: 'w6', sex: 'female', name: 'Bubu', blurb: 'Fifties, headscarf', dot: '#3a9a4a', outfits: [], skinSteps: true },
 ];
 export const SKIN_TONES = ['#c48f66', '#a8704a', '#8a5a38', '#6e4429', '#523320', '#3a2317'];

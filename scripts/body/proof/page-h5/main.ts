@@ -52,7 +52,7 @@ const loadOutfit = (file: string): Promise<THREE.Texture> => once(`o:${file}`, (
 const sizes = new Map<string, number>();
 const sizeOf = async (url: string): Promise<number> => { if (!sizes.has(url)) { try { const r = await fetch(url, { method: 'HEAD' }); sizes.set(url, Number(r.headers.get('content-length') ?? 0)); } catch { sizes.set(url, 0); } } return sizes.get(url)!; };
 
-try { const cfg = await (await fetch('/m/roster.json')).json() as Record<string, { outfits: number; skinSteps: boolean }>; for (const l of LOOKS) { const c = cfg[l.id]; if (c) { l.outfits = Array.from({ length: c.outfits }, (_, i) => `o${i + 1}`); l.skinSteps = c.skinSteps; } } } catch { /* the page still works with the as-made outfit only */ }
+try { const man = await (await fetch('/m/roster.json')).json() as { characters: { id: string; outfits: number; skinSteps: boolean; ok: boolean }[] }; const cfg: Record<string, { outfits: number; skinSteps: boolean }> = Object.fromEntries(man.characters.map((c) => [c.id, c])); for (const l of LOOKS) { const c = cfg[l.id]; if (c) { l.outfits = Array.from({ length: c.outfits }, (_, i) => `o${i + 1}`); l.skinSteps = c.skinSteps; } } } catch { /* the page still works with the as-made outfit only */ }
 for (const l of LOOKS) if (l.outfits.length === 0 && !params.has('shoot')) l.skinSteps = l.skinSteps && true;
 const lookOf = (id: string): Look => LOOKS.find((l) => l.id === id)!;
 async function build(pick: Pick, seed = 31): Promise<Fig> {
@@ -66,7 +66,7 @@ async function build(pick: Pick, seed = 31): Promise<Fig> {
   const tint = tintMaterial(mesh.material as THREE.MeshStandardMaterial, { mask, refs: meta.refs, eyes });
   mesh.material = tint.material; mesh.frustumCulled = false;
   tint.setTargets({ skin: look.skinSteps ? pick.skin : undefined });
-  if (pick.outfit && pick.outfit > 0) tint.setMap(await loadOutfit(`${pick.id}-${lod}-o${pick.outfit}.jpg`));
+  if (pick.outfit && pick.outfit > 0) tint.setMap(await loadOutfit(`${pick.id}-${lod}-outfit-${pick.outfit}.jpg`));
   const mixer = new THREE.AnimationMixer(scn), actions = new Map<string, THREE.AnimationAction>([...clips].map(([n, c]) => [n, mixer.clipAction(c)]));
   const face = mesh.morphTargetDictionary ? [mesh] : [];
   const rig: Rig = { look: { body: look.sex } as unknown as Rig['look'], root, scene: scn, bones, mixer, actions, face, eyes: undefined, sway: { uSway: { value: new THREE.Vector3() }, uTime: { value: 0 } }, materials: [tint.material], meshes: [mesh], dispose() {} };
@@ -177,10 +177,10 @@ function chipRow(title: string, items: { id: string; label: string }[], current:
 function build_panel(): void {
   const keep = panel.scrollTop; panel.innerHTML = ''; panel.appendChild(el('h1', '', 'Pick your look'));
   const seg = el('div', 'seg'); for (const [id, label] of [['male', 'Man'], ['female', 'Woman']] as const) { const b = el('button', id === sex ? 'on' : '', label); b.onclick = () => { sex = id; pick = { id: LOOKS.find((l) => l.sex === id)!.id }; void rebuild(); build_panel(); }; seg.appendChild(b); } panel.appendChild(seg);
-  const cards = el('div', 'cards'); for (const l of LOOKS.filter((x) => x.sex === sex)) { const c = el('button', 'card' + (l.id === pick.id ? ' on' : '')); const im = document.createElement('img'); im.src = `/m/portrait-${l.id}-o0.png`; im.alt = ''; im.style.cssText = 'width:56px;height:56px;border-radius:50%;background:#e4e1d8;object-fit:cover'; c.append(im, el('span', '', l.name), el('small', '', l.blurb)); c.onclick = () => { pick = { id: l.id }; void rebuild(); build_panel(); }; cards.appendChild(c); } panel.appendChild(cards);
+  const cards = el('div', 'cards'); for (const l of LOOKS.filter((x) => x.sex === sex)) { const c = el('button', 'card' + (l.id === pick.id ? ' on' : '')); const im = document.createElement('img'); im.src = `/m/portraits/${l.id}-0-face.png`; im.alt = ''; im.style.cssText = 'width:56px;height:56px;border-radius:50%;background:#e4e1d8;object-fit:cover'; c.append(im, el('span', '', l.name), el('small', '', l.blurb)); c.onclick = () => { pick = { id: l.id }; void rebuild(); build_panel(); }; cards.appendChild(c); } panel.appendChild(cards);
   const look = lookOf(pick.id);
   const o = el('div'); o.appendChild(head('Outfit', pick.outfit ? `Outfit ${pick.outfit + 1}` : 'As made')); const orow = el('div', 'row');
-  for (let k = 0; k <= look.outfits.length; k++) { const b = el('button', 'thumb' + ((pick.outfit ?? 0) === k ? ' on' : '')); const im = document.createElement('img'); im.src = `/m/figure-${look.id}-o${k}.png`; im.alt = `Outfit ${k + 1}`; b.appendChild(im); b.setAttribute('aria-label', `Outfit ${k + 1}`); b.onclick = () => choose({ outfit: k }); orow.appendChild(b); }
+  for (let k = 0; k <= look.outfits.length; k++) { const b = el('button', 'thumb' + ((pick.outfit ?? 0) === k ? ' on' : '')); const im = document.createElement('img'); im.src = `/m/portraits/${look.id}-${k}-full.png`; im.alt = `Outfit ${k + 1}`; b.appendChild(im); b.setAttribute('aria-label', `Outfit ${k + 1}`); b.onclick = () => choose({ outfit: k }); orow.appendChild(b); }
   o.appendChild(orow); panel.appendChild(o);
   if (look.skinSteps) { const w = el('div'); w.appendChild(head('Skin tone', pick.skin ? SKIN_NAMES[SKIN_TONES.indexOf(pick.skin)] ?? '' : 'As made')); const row = el('div', 'row'); const made = el('button', 'sw made' + (!pick.skin ? ' on' : ''), 'As made'); made.onclick = () => choose({ skin: undefined }); row.appendChild(made); SKIN_TONES.forEach((c, i) => { const b = el('button', 'sw' + (pick.skin === c ? ' on' : '')); b.style.background = c; b.title = SKIN_NAMES[i]!; b.setAttribute('aria-label', `Skin tone: ${SKIN_NAMES[i]}`); b.onclick = () => choose({ skin: c }); row.appendChild(b); }); w.appendChild(row); panel.appendChild(w); }
   panel.appendChild(chipRow('Move', [['idle', 'Stand'], ['walk', 'Walk'], ['jog', 'Jog'], ['sit', 'Sit'], ['dance', 'Dance']].map(([id, label]) => ({ id: id!, label: label! })), pose, (id) => { pose = id; void rebuild(false); build_panel(); }));

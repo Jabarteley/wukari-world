@@ -7,6 +7,7 @@ import { contentFor } from './game/cities/runtime.ts'
 await loadCityContent('lagos')
 
 const json = (body: unknown) => ({ ok: true, status: 200, json: async () => body })
+const messageOf = (value: unknown): string => value instanceof Error ? value.message : ''
 
 test('a returning session loads its held city before publishing that city to reactive shell readers', async () => {
   assert.equal(cachedCityContent('abuja'), null, 'the destination starts cold')
@@ -26,7 +27,7 @@ test('a returning session loads its held city before publishing that city to rea
   })
 
   const connected = await client.connect()
-  assert.equal(coldRead, null, coldRead?.message)
+  assert.equal(coldRead, null, messageOf(coldRead))
   assert.equal(connected, true)
   assert.equal(client.cityId, 'abuja')
 })

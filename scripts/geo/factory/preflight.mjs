@@ -93,7 +93,7 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
         const el = water.get(pick.ref), polys = el ? polygonsOf(areaRings(el), boxes.wide, Math.max(c.waterTolerance, .0008)) : [];
         const kept = polys.filter(p => ringArea(p[0]) * 111.32 * Math.cos(p[0][0][1] * Math.PI / 180) * 110.57 >= (c.minWaterKm2 ?? .4));
         try {
-            const labelPoint = waterLabelPoint(el, kept, kept);
+            const labelPoint = waterLabelPoint(el, kept, kept, c.box);
             if (!inBox(c.box, labelPoint))
                 errors.push(`${pick.ref}: water label outside play box`);
         }

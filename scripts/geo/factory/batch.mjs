@@ -103,7 +103,7 @@ for (const target of table.targets) {
         for (const el of waterElements.filter(el => name(el) && (el.tags.natural === 'water' || el.tags.waterway === 'riverbank')).sort((a, b) => ref(a).localeCompare(ref(b)))) {
             try {
                 const polys = polygonsOf(areaRings(el), boxes.wide, Math.max(old.waterTolerance, .0008)).filter(p => ringArea(p[0]) * 111.32 * Math.cos(p[0][0][1] * Math.PI / 180) * 110.57 >= (old.minWaterKm2 ?? .4));
-                const p = waterLabelPoint(el, polys, polys);
+                const p = waterLabelPoint(el, polys, polys, boxes.play);
                 if (inBox(boxes.play, p) && !names.some(n => n.ref === ref(el)))
                     names.push({ id: `water-${el.type}-${el.id}`, ref: ref(el), kind: 'water' });
             }

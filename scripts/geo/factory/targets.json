@@ -1,92 +1,7 @@
 {
   "geometryPreset": "standard",
-  "expectedSourceGitSHA": "d5d85f4422afe11cef10468c255e5cae0084d45b",
+  "expectedSourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
   "targets": [
-    {
-      "id": "dodoma",
-      "name": "Dodoma",
-      "country": "tz",
-      "facts": {
-        "id": "dodoma",
-        "name": "Dodoma",
-        "country": {
-          "idISOlower": "tz",
-          "name": "Tanzania"
-        },
-        "state": {
-          "idunique": "tz-dodoma",
-          "name": "Dodoma"
-        },
-        "timezone": "Africa/Dar_es_Salaam",
-        "centre": {
-          "lon": 35.7493783,
-          "lat": -6.1839376
-        },
-        "airport": {
-          "id": "dodoma-airport",
-          "name": "Dodoma Airport",
-          "lon": 35.756036,
-          "lat": -6.170559,
-          "sourceUrl": "https://ourairports.com/airports/HTDO/"
-        },
-        "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
-        "sourceUrl": "https://www.openstreetmap.org/copyright",
-        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
-        "bounds": [
-          35.62,
-          -6.28,
-          35.87,
-          -6.07
-        ],
-        "coverageNote": "Dodoma: a sketch of the built-up extent traced from mapped land use, not an administrative boundary, with inland water, main roads, neighbourhood labels and named places from the Tanzania OpenStreetMap PBF snapshot of 2026-10-09. Dodoma Airport coordinates are a published OurAirports dataset point, not an official ARP or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places.",
-        "names": {
-          "area": "Dodoma",
-          "unit": "neighbourhood",
-          "roadHub": "Shabiby Bus Terminal"
-        }
-      },
-      "metadataSources": {
-        "centre": {
-          "record": "committed city projection origin",
-          "sourceUrl": "https://www.openstreetmap.org/copyright",
-          "verification": "primary-coordinate review pending"
-        },
-        "airport": {
-          "record": "dodoma-airport",
-          "sourceUrl": "https://ourairports.com/airports/HTDO/",
-          "verification": "primary-coordinate review pending"
-        }
-      },
-      "geometryPreset": "standard",
-      "geographyClass": "inland",
-      "recordedWaterPolicy": {
-        "kind": "inland",
-        "wideWater": false
-      },
-      "extractKey": "dodoma",
-      "extractSha256": {
-        "places": "753e8c845b3fb52539602ae34b96104392f938977e4824ab4aab2cf8251534cb",
-        "extras": "9be99d07296ea42ae43a63d40a4cee9ce3ca90f9a116dcd12a4c7750c020ea0e",
-        "water": "bfcd574737d7779ba12a37ffe867d5ecaa252ae0064859e8b833f62974743cc4",
-        "landuse": "df276c027f191a4d01c2c7d65c7ee3abde73e52d1ac400c4f6f64a3a9019bc0a",
-        "roads": "eb88855dbc1cb32845353883a684d3933bceeb35f1c7db7ba55a23046f0387ad"
-      },
-      "sourceJob": {
-        "city": "dodoma",
-        "sourceRunId": 38151719739,
-        "sourceArtifact": "offline-city-layers-tanzania-d888f91e86268d442093b8ab22a03193220b108f",
-        "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
-        "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
-        "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
-        "extractSha256": {
-          "places": "753e8c845b3fb52539602ae34b96104392f938977e4824ab4aab2cf8251534cb",
-          "extras": "9be99d07296ea42ae43a63d40a4cee9ce3ca90f9a116dcd12a4c7750c020ea0e",
-          "water": "bfcd574737d7779ba12a37ffe867d5ecaa252ae0064859e8b833f62974743cc4",
-          "landuse": "df276c027f191a4d01c2c7d65c7ee3abde73e52d1ac400c4f6f64a3a9019bc0a",
-          "roads": "eb88855dbc1cb32845353883a684d3933bceeb35f1c7db7ba55a23046f0387ad"
-        }
-      }
-    },
     {
       "id": "bujumbura",
       "name": "Bujumbura",
@@ -173,5 +88,5 @@
       }
     }
   ],
-  "executionRevision": 6
+  "executionRevision": 7
 }

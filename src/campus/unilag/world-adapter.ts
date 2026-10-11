@@ -67,6 +67,7 @@ interface WorldHost {
   walkHomeDoor?(): boolean;
   position?(): unknown;
   diagnostics(): object;
+  timeFrames?(count?: number): object;
   dispose(): void;
 }
 
@@ -229,6 +230,8 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     /** Which host is drawing: 'venue', 'campus', or null while the campus is on its way. */
     get host() { return kind; },
     diagnostics() { return { adapter: kind, ...host?.diagnostics() }; },
+    /** For `?diagnostics`: the cost of a frame with the GPU waited for (null when the host cannot say). */
+    timeFrames(count?: number) { return host?.timeFrames?.(count) ?? null; },
     setInsets(next: Insets) { insets = { ...next }; return host?.setInsets(next); },
     setLocation(id: string) {
       if (id === currentLocation) return false;

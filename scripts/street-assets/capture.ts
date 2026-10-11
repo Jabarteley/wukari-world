@@ -62,7 +62,7 @@ try {
   };
   const camCompare = () => phone()
     ? { pos: [0, 30, 66] as [number, number, number], look: [0, 2.5, 1] as [number, number, number] }
-    : { pos: [0, 15, 38] as [number, number, number], look: [0, 2.8, 1.5] as [number, number, number] };
+    : { pos: [0, 11, 32] as [number, number, number], look: [0, 3.9, 1] as [number, number, number], fov: 46 };
   const labelsCompare = (time: string) => [
     { at: [-14, 9.5, 0] as [number, number, number], text: "Today's (drawn by the game)" },
     { at: [14, 9.5, 0] as [number, number, number], text: 'Generated, reduced', note: time === 'day' ? 'near versions' : 'near versions' },
@@ -70,27 +70,37 @@ try {
   if (want('compare')) {
     for (const [pre, vp] of [['d', DESKTOP], ['p', PHONE]] as const) {
       await browser.setViewport(vp);
-      for (const time of ['day', 'dusk']) await stage(`${pre}-street-side-by-side-${time}`, { time, items: compareItems(), cam: camCompare(), labels: labelsCompare(time) });
+      for (const time of ['day', 'dusk']) {
+        if (pre === 'p') {
+          // a portrait screen is too narrow for two halves of a street side by side: today's in a row at the back, the new ones in a row in front, same places in each
+          const rows: Item[] = [];
+          for (const [side, z0] of [['old', -12], ['new', 6]] as const) {
+            const at = (kind: Kind, x: number, z: number, ry = 0): Item => ({ src: side, kind, x, z: z0 + z + (side === 'new' && kind === 'house' ? SIZE.house.newZ : 0), ry });
+            rows.push(at('kiosk', -8, 0), at('palm', -3.5, 1.5), at('mango-tree', 3, 1.5), at('keke', -5, 7.5, Math.PI / 2), at('danfo', 3.5, 7.5, Math.PI / 2));
+          }
+          await stage(`p-street-side-by-side-${time}`, { time, base: 'plain', items: rows, cam: { pos: [0, 34, 36], look: [0, 1.5, -1], fov: 52 }, labels: [{ at: [0, 9, -12], text: "Today's (drawn by the game)" }, { at: [0, 9, 6], text: 'Generated, reduced' }] });
+        } else await stage(`${pre}-street-side-by-side-${time}`, { time, items: compareItems(), cam: camCompare(), labels: labelsCompare(time) });
+      }
     }
   }
   // ---- the busy street: several of each, all new
   const busyItems = (n = 99, lod = true): Item[] => {
     const items: Item[] = [];
     const camX = 0, camZ = 38;
-    const pick = (x: number, z: number): 'near' | 'far' => (!lod ? 'near' : Math.hypot(x - camX, z - camZ) > 52 ? 'far' : 'near');
+    const pick = (x: number, z: number): 'near' | 'far' => (!lod ? 'near' : Math.hypot(x - camX, z - camZ) > 40 ? 'far' : 'near');
     const add = (kind: Kind, x: number, z: number, ry = 0, variant?: string, s?: number): void => { items.push({ src: 'new', kind, x, z: kind === 'house' ? SIZE.house.newZ : z, ry, lod: pick(x, z), variant, s }); };
-    for (const x of [-32, -16, 0, 16, 32]) add('house', x, 0);
-    for (const x of [-24, -3, 22, 38]) add('kiosk', x, -0.2, 0);
+    [[-32, 'mint'], [-16, undefined], [0, 'sky'], [16, undefined], [32, 'mint']].forEach(([x, v]) => add('house', x as number, 0, 0, v as string | undefined));
+    [[-24, 'red'], [-3, undefined], [22, 'blue'], [38, undefined]].forEach(([x, v]) => add('kiosk', x as number, -0.2, 0, v as string | undefined));
     for (const x of [-38, -10, 9, 28]) add('mango-tree', x, 1.6, 0, undefined, x % 2 ? 0.9 : 1.1);
     for (const x of [-30, -20, 5, 14, 34]) add('palm', x, 2.0, 0, undefined, x % 3 ? 1 : 0.85);
     const lane = Math.PI / 2;
-    [[-34, 'white'], [-20, undefined], [-4, 'blue'], [12, undefined], [27, 'white']].forEach(([x, v]) => add('danfo', x as number, 4.7, lane, v as string | undefined));
+    [[-34, 'white-green'], [-20, undefined], [-4, 'blue-white'], [12, undefined], [27, 'white-green']].forEach(([x, v]) => add('danfo', x as number, 4.7, lane, v as string | undefined));
     [[-27, undefined], [-12, undefined], [3, undefined], [20, undefined]].forEach(([x, v]) => add('keke', x as number, 4.7, lane, v as string | undefined));
-    [[-26, 'white'], [-8, undefined], [8, 'blue'], [32, undefined]].forEach(([x, v]) => add('danfo', x as number, 8.6, -lane, v as string | undefined));
+    [[-26, 'white-green'], [-8, undefined], [8, 'blue-white'], [32, undefined]].forEach(([x, v]) => add('danfo', x as number, 8.6, -lane, v as string | undefined));
     [[-18, undefined], [-1, undefined], [17, undefined]].forEach(([x, v]) => add('keke', x as number, 8.6, -lane, v as string | undefined));
     return items.slice(0, n);
   };
-  const camBusy = () => phone() ? { pos: [0, 34, 78] as [number, number, number], look: [0, 2.5, 2] as [number, number, number] } : { pos: [0, 17, 40] as [number, number, number], look: [0, 3, 1.5] as [number, number, number], fov: 52 };
+  const camBusy = () => phone() ? { pos: [0, 40, 62] as [number, number, number], look: [0, 1.5, 3] as [number, number, number], fov: 50 } : { pos: [0, 12, 34] as [number, number, number], look: [0, 4.2, 1.5] as [number, number, number], fov: 52 };
   if (want('busy')) {
     for (const [pre, vp] of [['d', DESKTOP], ['p', PHONE]] as const) {
       await browser.setViewport(vp);
@@ -118,9 +128,42 @@ try {
       await stage(`new-close-${kind}`, { base: 'plain', items: near('near'), cam: one }, true);
       await stage(`far-close-${kind}`, { base: 'plain', items: near('far'), cam: one }, true);
       // street distance: the game's neighbourhood camera offset, 25 units out
-      const street = { pos: [15, 12, 17] as [number, number, number], look: [0, 1.5, 0] as [number, number, number] };
-      await stage(`pair-street-${kind}`, { base: 'street', items: pair().map((i) => ({ ...i, x: i.x > 0 ? 4.2 : -4.2 })).map((i) => ({ ...i, z: kind === 'house' ? (i.src === 'new' ? -4 : 0) : 2.4, ry: kind === 'danfo' || kind === 'keke' ? 0.5 : (i.ry ?? 0) })), cam: street, labels: [] }, true);
+      const street = { pos: [15, 12, 17] as [number, number, number], look: [0, 1.5, kind === 'house' ? -2 : 1.5] as [number, number, number] };
+      const lane: Record<Kind, [number, number]> = { danfo: [5.2, 4.7], keke: [3.6, 4.7], house: [8.5, 0], kiosk: [4.2, -0.2], 'mango-tree': [4.5, 1.2], palm: [3.5, 1.2] };
+      const [gx, gz] = lane[kind];
+      const streetItems: Item[] = [{ src: 'old', kind, x: -gx, z: gz, ry: s.ry }, { src: 'new', kind, x: gx, z: kind === 'house' ? s.newZ : gz, ry: s.ry }];
+      await stage(`pair-street-${kind}`, { base: 'street', items: streetItems, cam: street, labels: [] }, true);
     }
+  }
+  // ---- colour variants: the same model with three textures
+  if (want('variants')) {
+    const sets: [Kind, (string | undefined)[], string[]][] = [
+      ['danfo', [undefined, 'white-green', 'blue-white'], ['Standard: yellow, black stripe', 'White, green stripe', 'Blue, white stripe']],
+      ['house', [undefined, 'mint', 'sky'], ['Cream walls', 'Mint walls', 'Sky walls']],
+      ['kiosk', [undefined, 'red', 'blue'], ['Teal awning', 'Red awning', 'Blue awning']],
+    ];
+    for (const [kind, vars, names] of sets) {
+      const s = SIZE[kind];
+      const gap = s.r * 2.3;
+      const items: Item[] = vars.map((v, i) => ({ src: 'new', kind, x: (i - 1) * gap, z: s.newZ, ry: s.ry, variant: v }));
+      const dist = s.r * 4.5;
+      await stage(`variants-${kind}`, { base: 'plain', items, cam: { pos: [dist * 0.18, dist * 0.3 + s.h, dist * 0.94] as [number, number, number], look: [0, s.h, s.newZ / 2] as [number, number, number] }, labels: vars.map((_, i) => ({ at: [(i - 1) * gap, s.h * 2.0 + (kind === 'house' ? 3 : 0.4), s.newZ] as [number, number, number], text: names[i]! })) }, true);
+    }
+  }
+  // ---- wheels: the new vehicles side on, with their wheel nodes turned by three different angles about their own axles
+  if (want('wheels')) {
+    const wheelReport: Record<string, unknown> = {};
+    for (const kind of ['danfo', 'keke'] as Kind[]) {
+      const s = SIZE[kind];
+      for (const [i, angle] of [0, 1.0, 2.1].entries()) {
+        await call('setup', { width: 1280, height: 800, time: 'day', base: 'plain', items: [{ src: 'new', kind, x: 0, z: 0, ry: s.ry }], cam: { pos: [0, s.h + 0.6, s.r * 2.6], look: [0, s.h * 0.9, 0] }, shadows: true });
+        const n = await call('spinWheels', angle);
+        await call('render');
+        if (i === 0) wheelReport[kind] = { wheelNodesFound: n, nodes: await call('nodeNames', kind) };
+        await save(`wheels-${kind}-spin${i}`, true);
+      }
+    }
+    numbers['wheels'] = wheelReport;
   }
   if (want('numbers')) {
     // frame rate with 1, 10 and 40 mixed assets (near and far versions by distance), cloned meshes and instanced meshes
@@ -138,9 +181,9 @@ try {
       for (const n of [0, 1, 10, 40]) for (const [label, lod, instanced] of [['near, one mesh each', 'near', false], ['near/far by distance, one mesh each', 'auto', false], ['near/far by distance, instanced', 'auto', true]] as const) {
         if (n === 0 && label !== 'near, one mesh each') continue;
         await call('setup', { width: vp.width, height: vp.height, time: 'day', base: 'street', items: n ? mix(n, lod) : [], cam: phone() ? camBusy() : camBusy(), instanced });
-        const m = await call('measure', 12);
+        const m = await call('measure', 10);
         rows.push({ viewport: pre, assets: n, mode: label, ...m });
-        console.log(pre, n, label, m.fps, 'fps', m.calls, 'calls', m.triangles, 'tris');
+        console.log(pre, n, label, m.fps, 'fps', m.callsScene, 'calls', m.trianglesScene, 'tris');
       }
     }
     // the same with today's procedural props, for comparison (1, 10, 40 of the old versions)
@@ -148,9 +191,9 @@ try {
     for (const n of [1, 10, 40]) {
       const items = mix(n, 'near').map((i) => ({ ...i, src: 'old' as const }));
       await call('setup', { width: 1280, height: 800, time: 'day', base: 'street', items, cam: camBusy() });
-      const m = await call('measure', 12);
+      const m = await call('measure', 10);
       rows.push({ viewport: 'desktop 1280x800', assets: n, mode: "today's procedural", ...m });
-      console.log('old', n, m.fps, 'fps', m.calls, 'calls', m.triangles, 'tris');
+      console.log('old', n, m.fps, 'fps', m.callsScene, 'calls', m.trianglesScene, 'tris');
     }
     numbers['frameRate'] = rows;
   }

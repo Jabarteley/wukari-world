@@ -225,20 +225,26 @@ function render(): { calls: number; triangles: number } {
   return { calls: renderer.info.render.calls, triangles: lastTriangles };
 }
 
-/** Times n frames after a warm-up, waiting for the GPU (software here) to finish each one. Spins the wheels a little so nothing is cached. */
-function measure(frames: number): { msPerFrame: number; fps: number; calls: number; triangles: number } {
+/** Times n frames after a warm-up. A one-pixel read-back after every frame makes the (software) GPU finish it, so the time is real. Calls and triangles are those of one
+ * scene pass with the shadow map off (the shadow pass draws the casters a second time). */
+function measure(frames: number): { msPerFrame: number; fps: number; callsScene: number; trianglesScene: number; callsWithShadowPass: number; trianglesWithShadowPass: number } {
   const gl = renderer.getContext();
-  for (let i = 0; i < 2; i++) { renderer.render(scene, camera); }
-  gl.finish();
+  const px = new Uint8Array(4);
+  const sync = (): void => gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+  for (let i = 0; i < 2; i++) { renderer.render(scene, camera); sync(); }
   const t0 = performance.now();
   for (let i = 0; i < frames; i++) {
     camera.position.x += i % 2 ? -0.002 : 0.002; camera.updateMatrixWorld();
     renderer.render(scene, camera);
-    gl.finish();
+    sync();
   }
   const ms = (performance.now() - t0) / frames;
-  const info = renderer.info.render;
-  return { msPerFrame: +ms.toFixed(2), fps: +(1000 / ms).toFixed(1), calls: info.calls, triangles: info.triangles };
+  const withShadow = { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles };
+  const was = renderer.shadowMap.enabled;
+  renderer.shadowMap.enabled = false; renderer.render(scene, camera);
+  const scenePass = { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles };
+  renderer.shadowMap.enabled = was;
+  return { msPerFrame: +ms.toFixed(2), fps: +(1000 / ms).toFixed(1), callsScene: scenePass.calls, trianglesScene: scenePass.triangles, callsWithShadowPass: withShadow.calls, trianglesWithShadowPass: withShadow.triangles };
 }
 
 async function modelInfo(): Promise<Record<string, { bytes: number; triangles: number; drawCalls: number; texture: number }>> {

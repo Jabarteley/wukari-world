@@ -274,9 +274,30 @@ async function simpleMap(b: Browser, shot: (l: string) => Promise<void>, label: 
   await sleep(3000);
 }
 
+async function auditLabels(b: Browser, prefix: string): Promise<void> {
+  const result = await b.eval<{ critical: number; failures: string[]; labels: unknown[] }>(`(() => {
+    const box = (node) => { const r = node.getBoundingClientRect(); return { l:r.left, r:r.right, t:r.top, b:r.bottom }; };
+    const visible = (node) => !node.hidden && node.getBoundingClientRect().width > 0 && node.getBoundingClientRect().height > 0;
+    const controls = [...document.querySelectorAll('.m3-controls button')].filter(visible).map(box);
+    const failures = [], labels = []; let critical = 0;
+    for (const node of [...document.querySelectorAll('.m3-label')].filter(visible)) {
+      const r = box(node), important = node.matches('.is-here,.is-selected,.is-going');
+      const overlap = controls.some(c => r.l < c.r && r.r > c.l && r.t < c.b && r.b > c.t);
+      labels.push({venue:node.dataset.venue, text:node.textContent, box:r, important, overlap});
+      if (important) { critical++; if (r.l < 0 || r.r > innerWidth || r.t < 0 || r.b > innerHeight) failures.push('critical label outside viewport: '+node.dataset.venue); }
+      if (overlap) failures.push('label under controls: '+node.dataset.venue);
+    }
+    if (!critical) failures.push('no current/selected/trip label visible');
+    return {critical, failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
+  })()`);
+  writeFileSync(join(out, `${prefix}-labels.json`), JSON.stringify(result, null, 2));
+  must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
+}
+
+
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
   if (opts.phone) await dismiss(b, 3000);
-  const shot = async (label: string): Promise<void> => { await sleep(700); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); };
+  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`); };
   await openMap(b, prefix);
   if (waterOnly) {
     const w = waterAt[prefix];
@@ -293,7 +314,7 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   await click3(b, 'fit', 1); await sleep(1500);
   if (short.has(prefix) && !opts.phone) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
   await shot(opts.phone ? '04-whole-city' : '02-whole-city');
-  if (opts.phone) return;
+  if (opts.phone) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
   await click3(b, 'in', 3); await sleep(1800);
   await shot('03-zoom-centre');
   await click3(b, 'in', 2); await sleep(1800);

@@ -12,12 +12,12 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  APP_SHA: a642ac75493d0c66aa06d90fd595e9d3fe3d78ec
+  APP_SHA: da862ac9a713805dd65742684463e5ea54c46379
 
 jobs:
   acceptance:
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - name: Define runner artifact directories
         run: |
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: kromate/joinallworld
-          ref: a642ac75493d0c66aa06d90fd595e9d3fe3d78ec
+          ref: da862ac9a713805dd65742684463e5ea54c46379
           path: app
           persist-credentials: false
 
@@ -100,6 +100,10 @@ jobs:
         run: |
           set -euo pipefail
           node --experimental-strip-types --test --test-concurrency=1 \
+            src/map3d/camera.test.ts \
+            src/map3d/map3d.test.ts \
+            src/map3d/water.test.ts \
+            src/map3d/context-water.test.ts \
             src/scene/city-scenes.test.ts \
             src/scene/scenes.test.ts \
             src/game/cities/africa/geometry.test.ts \
@@ -110,7 +114,7 @@ jobs:
 
       - name: Capture frozen maps in the disposable browser
         working-directory: app
-        timeout-minutes: 30
+        timeout-minutes: 40
         run: |
           set -euo pipefail
           export CHROME_BIN="$(command -v google-chrome)"
@@ -119,13 +123,14 @@ jobs:
             --out "$QA_BROWSER_DIR" \
             --port 4423 \
             --debug-port 4424 \
-            --cities cairo,yaounde,abuja \
-            --phone-cities cairo,yaounde \
+            --cities cairo,yaounde,dakar,nairobi,abuja \
+            --phone-cities cairo,yaounde,dakar,nairobi \
             --phones 390x844,320x568 \
             --short lagos,abuja \
             --lean \
             --clock-hour 12 \
             --scene-cities cairo \
+            --label-audit \
             --water 'cairo=0.55,0.55;yaounde=0.4,0.5' 2>&1 | tee "$QA_LOG_DIR/browser.log"
 
       - name: Preserve browser evidence before the full suite

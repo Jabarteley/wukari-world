@@ -20,6 +20,7 @@ export function validateCountryScopePolicy(policy, country, datasetSha256) {
     assert.ok(Number.isSafeInteger(job.sourceRunId) && job.sourceRunId > 0);
     assert.match(job.sourceSha ?? '', /^[a-f0-9]{40}$/);
     assert.match(job.sourceArtifact ?? '', /^[A-Za-z0-9._-]+$/);
+    if (job.artifactSubdirectory !== undefined) assert.equal(job.artifactSubdirectory, 'country-boundary', 'unsupported boundary artifact layout');
   }
   return policy;
 }

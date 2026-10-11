@@ -558,7 +558,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       taken.push(used);
       if (!compact && label.priority < NAMED_FROM) named += 1;
       node.classList.toggle('is-compact', compact);
-      const offset = !compact && (Math.abs(x - at.x) > 1 || Math.abs(y - at.y) > 1), wasOffset = node.classList.contains('is-offset');
+      const offset = !compact && (Math.abs(x - at.x) > 1 || Math.abs(y - at.y) > 1), wasOffset = node.style.getPropertyValue('--m3-stalk-turn') !== '';
       node.classList.toggle('is-offset', offset);
       if (offset) { const dx = at.x - x, top = Math.abs(at.y - y + label.height) < Math.abs(at.y - y), dy = at.y - (top ? y - label.height : y); label.shift = 0; node.classList.remove('is-lowered'); node.style.setProperty('--m3-stalk', `${Math.hypot(dx, dy) / uz}px`); node.style.setProperty('--m3-stalk-turn', `${Math.atan2(-dx, dy)}rad`); node.style.setProperty('--m3-stalk-top', top ? '0' : '100%'); }
       else if (shift !== label.shift || wasOffset) {

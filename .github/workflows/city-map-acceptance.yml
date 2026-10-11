@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  APP_SHA: a34e41c205b84f60aa7c2628fbc5068dac497289
+  APP_SHA: 3f641fc1f97a5da9104f7a8772b7aff688ad6ca5
 
 jobs:
   acceptance:
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: kromate/joinallworld
-          ref: a34e41c205b84f60aa7c2628fbc5068dac497289
+          ref: 3f641fc1f97a5da9104f7a8772b7aff688ad6ca5
           path: app
           persist-credentials: false
 
@@ -52,7 +52,6 @@ jobs:
             printf 'diagnostic_sha=%s\n' "$(git rev-parse HEAD)"
             printf 'application_sha=%s\n' "$(git -C app rev-parse HEAD)"
             printf 'expected_application_sha=%s\n' "$APP_SHA"
-            printf 'full_test_run=%s\n' '38107895595'
           } | tee "$QA_LOG_DIR/source.txt"
 
       - name: Set up Node 24
@@ -107,6 +106,7 @@ jobs:
             src/map3d/camera.test.ts 2>&1 | tee "$QA_LOG_DIR/focused.log"
 
       - name: Capture frozen maps in the disposable browser
+        id: browser
         working-directory: app
         timeout-minutes: 30
         run: |
@@ -136,6 +136,13 @@ jobs:
             ${{ runner.temp }}/city-map-acceptance/logs/browser.log
           if-no-files-found: warn
           retention-days: 30
+
+      - name: Run the complete literal npm test command
+        if: ${{ !cancelled() && steps.focused.outcome == 'success' && steps.browser.outcome == 'success' }}
+        working-directory: app
+        run: |
+          set -euo pipefail
+          npm test 2>&1 | tee "$QA_LOG_DIR/npm-test.log"
 
       - name: Preserve QA logs, source pins, and screenshots
         if: ${{ always() }}

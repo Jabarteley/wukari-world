@@ -80,10 +80,10 @@ async function cookieOf(b: Browser): Promise<string> {
   const jar = await b.send('Network.getCookies', { urls: [base] });
   return (jar.cookies as { name: string; value: string }[]).map((c) => `${c.name}=${c.value}`).join('; ');
 }
-async function lifeRaw(b: Browser, city: string): Promise<{ status: number; state: any }> {
+async function lifeRaw(b: Browser, city: string): Promise<{ status: number; state: any; error?: string; city?: string }> {
   const r = await fetch(`${base}/api/life?city=${city}`, { headers: { Cookie: await cookieOf(b) } });
-  const body = await r.json().catch(() => null) as { state?: unknown } | null;
-  return { status: r.status, state: body?.state };
+  const body = await r.json().catch(() => null) as { state?: unknown; error?: string; city?: string } | null;
+  return { status: r.status, state: body?.state, error: body?.error, city: body?.city };
 }
 async function until(check: () => Promise<boolean>, ms: number, what: string): Promise<void> {
   const end = Date.now() + ms;
@@ -168,7 +168,11 @@ async function fly(b: Browser, city: string): Promise<void> {
   await b.waitFor(`document.querySelector('[data-atlas-go="${city}:air"]')`, 30000, 'flight line');
   await b.click(`[data-atlas-go="${city}:air"]`);
   if (await b.waitFor<string>(`document.querySelector('[data-atlas-sure]') ? 'ask' : ''`, 4000, 'confirm').catch(() => '')) await b.click('[data-atlas-sure]');
-  await until(async () => { const m = await lifeRaw(b, current); return m.state?.estate?.city === city && !m.state.activeAction; }, 360000, `arrival in ${t.name}`);
+  await until(async () => {
+    const source = await lifeRaw(b, current);
+    const arrived = source.status === 409 && source.error === 'city_moved' && source.city === city ? await lifeRaw(b, city) : source;
+    return arrived.status === 200 && arrived.state?.estate?.city === city && !arrived.state.activeAction;
+  }, 360000, `arrival in ${t.name}`);
   await until(async () => !(await lifeRaw(b, city)).state?.activeAction, 60000, 'the action to end');
   current = city;
   await gameShown(b); await dismiss(b);
@@ -276,7 +280,7 @@ async function auditLabels(b: Browser, prefix: string): Promise<void> {
       if (overlap) failures.push('label under controls: '+node.dataset.venue);
     }
     if (!critical) failures.push('no current/selected/trip label visible');
-    return {critical, failures, labels};
+    return {critical, failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
   })()`);
   writeFileSync(join(out, `${prefix}-labels.json`), JSON.stringify(result, null, 2));
   must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
@@ -349,7 +353,7 @@ try {
   await dismiss(b, 1000);
   await mapSet(b, 'lagos', '');
   for (const city of cities) {
-    try { await fly(b, city); } catch (e) { console.log(`flight to ${city} failed once (${String(e).slice(0, 80)}); retrying after a reload`); await b.goto(base + '/'); await gameShown(b); await dismiss(b); await fly(b, city); }
+    await fly(b, city);
     await mapSet(b, city, PLACE_TO_OPEN[city] ?? '');
     if (phoneCities.has(city)) {
       for (const [pw, ph] of phones) {

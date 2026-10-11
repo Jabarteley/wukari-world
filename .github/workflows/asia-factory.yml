@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
-      APP_SHA: a29a52bb39eae79a0dc65a444aa62d4c7e2437ba
+      APP_SHA: a29a52bb77738874705c991685b34f001a1dfdf0
     steps:
       - name: Set execution directory
         run: |

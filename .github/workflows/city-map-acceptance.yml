@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  APP_SHA: 871c012a85e20db8539affe1c5e665593f31e362
+  APP_SHA: 55a63da957cb17a173b5fd8099e1fb3a314caa96
 
 jobs:
   acceptance:
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: kromate/joinallworld
-          ref: 871c012a85e20db8539affe1c5e665593f31e362
+          ref: 55a63da957cb17a173b5fd8099e1fb3a314caa96
           path: app
           persist-credentials: false
 
@@ -95,25 +95,22 @@ jobs:
           npm run size:download 2>&1 | tee "$QA_LOG_DIR/size-download.log"
 
       - name: Run focused geometry and Cairo/Yaounde map journeys
+        id: focused
         working-directory: app
         run: |
           set -euo pipefail
           node --experimental-strip-types --test --test-concurrency=1 \
+            src/scene/city-scenes.test.ts \
+            src/scene/scenes.test.ts \
             src/game/cities/africa/geometry.test.ts \
             src/game/cities/cairo/map.test.ts \
             src/game/cities/cairo/journey.test.ts \
             src/game/cities/yaounde/map.test.ts \
             src/game/cities/yaounde/journey.test.ts 2>&1 | tee "$QA_LOG_DIR/focused.log"
 
-      - name: Run the complete literal npm test command
-        working-directory: app
-        run: |
-          set -euo pipefail
-          npm test 2>&1 | tee "$QA_LOG_DIR/npm-test.log"
-
       - name: Capture frozen maps in the disposable browser
         working-directory: app
-        timeout-minutes: 20
+        timeout-minutes: 30
         run: |
           set -euo pipefail
           export CHROME_BIN="$(command -v google-chrome)"
@@ -128,7 +125,27 @@ jobs:
             --short lagos,abuja \
             --lean \
             --clock-hour 12 \
+            --scene-cities cairo \
             --water 'cairo=0.55,0.55;yaounde=0.4,0.5' 2>&1 | tee "$QA_LOG_DIR/browser.log"
+
+      - name: Preserve browser evidence before the full suite
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: city-browser-evidence-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/city-map-acceptance/browser/
+            ${{ runner.temp }}/city-map-acceptance/logs/source.txt
+            ${{ runner.temp }}/city-map-acceptance/logs/browser.log
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Run the complete literal npm test command
+        if: ${{ !cancelled() && steps.focused.outcome == 'success' }}
+        working-directory: app
+        run: |
+          set -euo pipefail
+          npm test 2>&1 | tee "$QA_LOG_DIR/npm-test.log"
 
       - name: Preserve QA logs, source pins, and screenshots
         if: ${{ always() }}

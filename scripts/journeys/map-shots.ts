@@ -17,6 +17,7 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { Browser, sleep } from './cdp-map-qa.ts';
+const { loadCityContent } = await import('../../src/game/cities/registry.ts');
 
 const arg = (name: string, fallback?: string): string => {
   const at = process.argv.indexOf(`--${name}`);
@@ -52,6 +53,7 @@ const lean = process.argv.includes('--lean');
 // --phone-cities dakar,kampala: these cities also get the phone sets (each with its browser storage cleared first, so no saved view is restored); --phones lists the sizes.
 const phoneCities = new Set(arg('phone-cities', '').split(',').filter(Boolean));
 const phones = arg('phones', '390x844').split(',').filter(Boolean).map((p) => p.split('x').map(Number) as [number, number]);
+const sceneCities = new Set(arg('scene-cities', '').split(',').map((c) => c.trim()).filter(Boolean));
 
 let server: ChildProcess | null = null;
 const serverLog: string[] = [];
@@ -172,6 +174,7 @@ async function fly(b: Browser, city: string): Promise<void> {
 
 const timings: Record<string, unknown> = {};
 const notes: string[] = [];
+const sceneReceipts: Record<string, unknown> = {};
 
 /** Opens the map and measures: ms from the tap to a first full render (the map element built and labels drawn, two frames after). */
 async function openMap(b: Browser, key: string): Promise<void> {
@@ -312,6 +315,72 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   await simpleMap(b, shot, '08-simple-map', prefix);
 }
 
+async function clickListVenue(b: Browser, name: string): Promise<void> {
+  if (!(await b.locate('.map-handle').catch(() => null))) {
+    await b.click('[data-nav="map"]');
+    await b.waitFor(shownNow('.map-handle'), 60000, 'the map before scene selection');
+  }
+  await listOpen(b);
+  await scrollList(b, 'top');
+  const end = Date.now() + 30000;
+  for (;;) {
+    const point = await b.locate('#map-list .map-list button', name).catch(() => null);
+    if (point) { await b.click('#map-list .map-list button', name); return; }
+    await b.eval(`(() => { const root = document.querySelector('#map-list'); const els = root ? [root, ...root.querySelectorAll('*')].filter((e) => e.scrollHeight > e.clientHeight + 4 && ['auto', 'scroll'].includes(getComputedStyle(e).overflowY)) : []; const el = els[els.length - 1]; if (el) el.scrollTop += el.clientHeight * 0.8; return true; })()`);
+    await sleep(300);
+    if (Date.now() > end) throw new Error(`Timed out finding ${name} in the map list`);
+  }
+}
+
+async function sceneTargets(city: string): Promise<{ id: string; name: string; kind: string }[]> {
+  const content = await loadCityContent(city);
+  return (['quad', 'hilltop'] as const).map((kind) => {
+    const venue = content.venues.find((item) => item.id !== 'home' && item.definition.scene.kind === kind);
+    if (!venue) throw new Error(`${city}: no ${kind} venue in loadCityContent().venues`);
+    return { id: venue.id, name: venue.name, kind };
+  });
+}
+
+async function captureScene(b: Browser, city: string): Promise<void> {
+  const targets = await sceneTargets(city);
+  try {
+    for (const target of targets) {
+      await clickListVenue(b, target.name);
+      await b.waitFor(shownNow('.map-go'), 15000, `${target.name} VenueCard`);
+      await b.click('.map-go');
+      await until(async () => { const life = await lifeRaw(b, city); return life.state?.location === target.id && !life.state?.activeAction; }, 180000, `${target.name} arrival`);
+      await b.waitFor(`(() => { const scene = document.querySelector('#venue-scene'); const canvas = scene?.querySelector('canvas'); const wait = scene?.querySelector('.scene-wait'); if (!scene || scene.hidden || !canvas) return false; const box = canvas.getBoundingClientRect(); return box.width > 1 && box.height > 1 && (!wait || wait.hidden || getComputedStyle(wait).display === 'none'); })()`, 120000, `${target.name} scene canvas`);
+      await b.waitFor(`document.querySelector('.life-venue-heading h1')?.textContent.includes(${JSON.stringify(target.name)})`, 20000, `${target.name} heading`);
+      const heading = await b.eval<string | null>(`(() => { const node = document.querySelector('.life-venue-heading h1'); const box = node?.getBoundingClientRect(); return node && box && box.width > 1 && box.height > 1 ? node.textContent?.replace(/\\s+/g, ' ').trim() ?? null : null; })()`);
+      const canvas = await b.eval<{ width: number; height: number; visible: boolean } | null>(`(() => { const node = document.querySelector('#venue-scene canvas'); if (!node) return null; const box = node.getBoundingClientRect(); return { width: box.width, height: box.height, visible: box.width > 1 && box.height > 1 && getComputedStyle(node).visibility !== 'hidden' }; })()`);
+      const resourcePaths = await b.eval<string[]>(`performance.getEntriesByType('resource').map((entry) => new URL(entry.name).pathname).filter((path) => path.endsWith('.js'))`);
+      const ibadanResources = resourcePaths.filter((path) => /\/venues-ibadan-/u.test(path));
+      must(ibadanResources.length === 0, `${city}: foreign scene loaded Ibadan-specific resources: ${ibadanResources.join(', ')}`);
+      const sceneChunk = target.kind === 'quad' ? 'venues-campus-' : 'venues-viewpoint-';
+      must(resourcePaths.some((path) => path.includes(sceneChunk)), `${target.name}: expected scene download missing`);
+      must(Boolean(heading), `${target.name}: visible venue heading missing`);
+      must(Boolean(canvas?.visible), `${target.name}: visible venue canvas missing`);
+      const life = await lifeRaw(b, city);
+      const currentState = { city, location: life.state?.location ?? null, activeAction: Boolean(life.state?.activeAction) };
+      must(currentState.location === target.id && !currentState.activeAction, `${target.name}: arrival state changed unexpectedly`);
+      const screenshots: Record<string, string> = {};
+      for (const [width, height, label] of [[1280, 800, 'desktop'], [390, 844, 'phone390'], [320, 568, 'phone320']] as const) {
+        await b.setViewport({ width, height, scale: label === 'desktop' ? 1 : 3, mobile: label !== 'desktop' });
+        await sleep(1200);
+        const file = `${city}-scene-${target.kind}-${label}.png`;
+        await b.screenshot(join(out, file));
+        screenshots[label] = file;
+      }
+      sceneReceipts[`${city}:${target.kind}`] = { id: target.id, kind: target.kind, name: target.name, currentStateArrival: currentState, visibleHeading: heading, canvas, downloadedJavaScriptResourcePaths: resourcePaths, screenshots };
+      await b.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
+      await sleep(800);
+      await b.goto(base + '/'); await gameShown(b); await dismiss(b, 12000);
+    }
+  } finally {
+    await b.setViewport({ width: 1280, height: 800, scale: 1, mobile: false }).catch(() => undefined);
+  }
+}
+
 let b: Browser | null = null;
 try {
   await startServer();
@@ -338,14 +407,17 @@ try {
       await b.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
       await b.goto(base + '/'); await gameShown(b); await dismiss(b);
     }
+    if (sceneCities.has(city)) await captureScene(b, city);
   }
   const errors = b.consoleErrors.filter((e) => !/401|409/.test(e));
-  writeFileSync(join(out, 'timings.json'), JSON.stringify({ note: 'headless software rendering; comparable only with each other', timings, notes, consoleErrors: errors }, null, 2));
-  console.log(JSON.stringify({ timings, notes, errors }, null, 2));
+  writeFileSync(join(out, 'timings.json'), JSON.stringify({ note: 'headless software rendering; comparable only with each other', timings, notes, consoleErrors: errors, sceneReceipts }, null, 2));
+  writeFileSync(join(out, 'scene-receipts.json'), JSON.stringify(sceneReceipts, null, 2));
+  console.log(JSON.stringify({ timings, notes, errors, sceneReceipts }, null, 2));
 } catch (error) {
   console.error(error instanceof Error ? error.stack : String(error));
   if (b) await b.screenshot(join(out, 'aborted.png')).catch(() => undefined);
-  writeFileSync(join(out, 'timings.json'), JSON.stringify({ aborted: String(error), timings, notes }, null, 2));
+  writeFileSync(join(out, 'timings.json'), JSON.stringify({ aborted: String(error), timings, notes, sceneReceipts }, null, 2));
+  writeFileSync(join(out, 'scene-receipts.json'), JSON.stringify(sceneReceipts, null, 2));
   process.exitCode = 1;
 } finally {
   b?.close();

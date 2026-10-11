@@ -349,9 +349,8 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   await shot('01-default');
   if (opts.phone) { await sleep(6000); await shot('01b-after-6s'); await dismiss(b, 6000); }
   if (opts.phone) { await listOpen(b); await shot('02-list'); await scrollList(b, 'bottom'); await shot('03-list-bottom'); }
-  await pan(b, prefix);
   if (opts.phone) {
-    await b.click('.map-handle');
+    if (await b.eval<boolean>(`document.querySelector('.map-handle')?.getAttribute('aria-expanded') === 'true'`)) await b.click('.map-handle');
     await b.waitFor(`document.querySelector('#map-list')?.hidden === true`, 5000, 'closed place list');
     if (process.argv.includes('--phone-ui-audit')) {
       await b.waitFor(`(() => { const n = document.querySelector('[data-m3="me"]'); if (!n || n.disabled) return false; const r = n.getBoundingClientRect(); return r.width > 0 && r.height > 0 && n.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)); })()`, 5000, 'reachable Find me after hiding list');
@@ -360,6 +359,7 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
     }
     await sleep(600);
   }
+  await pan(b, prefix);
   await click3(b, 'fit', 1); await sleep(1500);
   if (short.has(prefix) && !opts.phone) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
   await shot(opts.phone ? '04-whole-city' : '02-whole-city');

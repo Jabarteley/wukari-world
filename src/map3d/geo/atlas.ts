@@ -437,10 +437,11 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (seen.has(key)) continue;
       seen.add(key); roads.push({ colour: INK.road, width: 1.8, points: [spot(...TOWNS[road.towns[i - 1]!]!, y + 0.004), spot(...TOWNS[road.towns[i]!]!, y + 0.004)] });
     }
-    const flights = allCityLinks().filter((link) => link.mode === 'air').map((link) => ({ colour: INK.air, width: 1.3, points: pathPoints(linkPath(link, cityEntry), y + 0.01) }));
+    // Only the flights between Nigerian cities: the ones that leave the country are drawn at the Africa and world levels, and across a Nigeria screen they only cross it.
+    const flights = allCityLinks().filter((link) => link.mode === 'air' && cityEntry(link.a)?.country === 'nigeria' && cityEntry(link.b)?.country === 'nigeria').map((link) => ({ colour: INK.air, width: 1.3, points: pathPoints(linkPath(link, cityEntry), y + 0.01) }));
     addLayer(ribbonMesh([...rivers, ...roads], 1, 3), [NIGERIA], { extrude: true });
     // Every open city is linked to every other by air: drawn at full strength they cover the country, so they sit back (the one chosen is drawn on its own).
-    addLayer(ribbonMesh(flights, 0.3, 3), [NIGERIA], { extrude: true });
+    addLayer(ribbonMesh(flights, 0.35, 3), [NIGERIA], { extrude: true });
     // The open state: a bright outline round its lifted plate.
     const open = topology.features.filter((feature) => statusOf('state', feature.id) === 'open');
     if (open.length) addLayer(ribbonMesh(open.flatMap((feature) => mesh.ringLines(feature, HEIGHT.open + 0.004, INK.glow, 1.8, { holes: false })), 1, 4), [NIGERIA], { extrude: true });

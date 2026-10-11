@@ -123,6 +123,7 @@ const GL_COUNTER = `(() => {
   /** What the contexts that are still alive hold (a lost context has let go of everything it made). */
   window.__glLive = () => { const total = Object.fromEntries(kinds.map((k) => [k, 0])); let contexts = 0; for (const ref of live) { const gl = ref.deref(); if (!gl || gl.isContextLost()) continue; contexts++; const e = counts.get(gl); for (const k of kinds) total[k] += e[k]; } return { ...total, contexts }; };
   window.__phases = []; new MutationObserver((list) => { for (const m of list) window.__phases.push({ phase: m.target.dataset.ladder, t: performance.now() + performance.timeOrigin }); }).observe(document, { attributes: true, attributeFilter: ['data-ladder'], subtree: true });
+  window.__chips = []; setInterval(() => { const c = document.querySelector('.zl-chip'); const text = c && !c.hidden ? c.textContent.trim() : ''; if (text) window.__chips.push({ text, t: performance.now() + performance.timeOrigin }); }, 40);
   window.__frames = []; (function tick(t) { window.__frames.push(t); if (window.__frames.length > 20000) window.__frames.splice(0, 10000); requestAnimationFrame(tick); })(performance.now());
 })()`;
 
@@ -175,8 +176,8 @@ async function castStart(b: Browser): Promise<Cast> {
   await b.send('Page.startScreencast', { format: 'jpeg', quality: 55, everyNthFrame: 1 });
   return { frames, async stop() { await b.send('Page.stopScreencast').catch(() => undefined); b.ws.removeEventListener('message', onMessage); } };
 }
-async function saveFrames(cast: Cast, name: string, title: string, from: number, count = 6): Promise<number> {
-  const inside = cast.frames.filter((f) => f.t >= from);
+async function saveFrames(cast: Cast, name: string, title: string, from: number, count = 6, to = Infinity): Promise<number> {
+  const inside = cast.frames.filter((f) => f.t >= from && f.t <= to);
   const pick = inside.length <= count ? inside : Array.from({ length: count }, (_, i) => inside[Math.round((i * (inside.length - 1)) / (count - 1))]!);
   pick.forEach((frame, i) => {
     const file = `${prefix}-${name}-f${i + 1}.jpg`;
@@ -211,6 +212,13 @@ async function zoomOnto(b: Browser, names: string[], done: () => Promise<boolean
     if (!target) { await sleep(250); continue; }
     for (let i = 0; i < 3; i++) await notch(b, 'in', target.x, target.y, 1.4);
   }
+}
+/** From the atlas into the player's city: by zooming onto its label, or (a screen too small to label it) with the "Back to the city" chip. Says which. */
+async function intoCity(b: Browser): Promise<string> {
+  const inCity = async (): Promise<boolean> => (await read(b, 'phase')) !== 'idle' || (await read(b, 'layer')) === 'city';
+  if (await labelAt(b, 'Lagos')) { await zoomOnto(b, ['Lagos'], inCity); return 'zoom'; }
+  await b.click('[data-atlas-city]').catch(() => undefined);
+  return 'chip';
 }
 /** One hand-over, measured: starts the screencast and the clock, runs `act`, waits for the host to be idle again, then reports frames and pacing. */
 async function handover(b: Browser, name: string, title: string, act: () => Promise<void>, withCast = true): Promise<Record<string, unknown>> {
@@ -315,7 +323,7 @@ async function journey(b: Browser, size: keyof typeof SIZE, throttled: boolean):
     let overview = 0;
     for (let round = 0; round < 40 && overview < 3; round++) {
       const target = await labelAt(b, ...names);
-      if (!target) { await sleep(300); continue; }
+      if (!target) { await sleep(300); if (round === 39) row.errors.push(`no label to aim at for ${tag} at this size`); continue; }
       if (round === 0) numbers.notes.push(`${prefix}: ${tag} target label: ${target.text}`);
       for (let i = 0; i < 3; i++) await notch(b, 'in', target.x, target.y, 1.4);
       if ((await read(b, 'chip')).includes('overview') || /from afar/.test(await read(b, 'said'))) overview += 1;
@@ -344,8 +352,7 @@ async function journey(b: Browser, size: keyof typeof SIZE, throttled: boolean):
   await b.click('[data-atlas-levels]').catch(() => undefined);
   await b.click('[data-atlas-level="2"]').catch(() => undefined);
   await sleep(1500);
-  const inCity = async (): Promise<boolean> => (await read(b, 'phase')) !== 'idle' || (await read(b, 'layer')) === 'city';
-  row.handovers.nigeriaToCity = await handover(b, '15-nigeria-to-city', 'Nigeria to Lagos', async () => { await zoomOnto(b, ['Lagos'], inCity); });
+  row.handovers.nigeriaToCity = await handover(b, '15-nigeria-to-city', 'Nigeria to Lagos', async () => { row.nigeriaToCityBy = await intoCity(b); });
   await sleep(1500); await shot(b, '16-back-in-lagos', 'Back in the city map of Lagos', `layer: ${await read(b, 'layer')}`);
   await b.click('[data-m3="me"]').catch(() => undefined);
   await sleep(1200); await shot(b, '17-find-me', '"Find me": the player\'s own place', `layer: ${await read(b, 'layer')}`);
@@ -361,7 +368,7 @@ async function journey(b: Browser, size: keyof typeof SIZE, throttled: boolean):
     const out2 = await handover(b, `rt${n}-out`, 'round trip out', async () => { await zoomUntil(b, 'out', async () => (await read(b, 'phase')) !== 'idle' || (await read(b, 'layer')) === 'world', 60, mid2, 1.4); }, false);
     await sleep(22000);   // the city map lets go of the GPU twenty seconds after the hand-over
     const atlas = await heap(b);
-    const in2 = await handover(b, `rt${n}-in`, 'round trip in', async () => { await zoomOnto(b, ['Lagos'], async () => (await read(b, 'phase')) !== 'idle' || (await read(b, 'layer')) === 'city'); }, false);
+    const in2 = await handover(b, `rt${n}-in`, 'round trip in', async () => { row.roundTripInBy = await intoCity(b); }, false);
     await sleep(2500);
     trips.push({ n, layer: await read(b, 'layer'), out: out2, in: in2, atlasAfterRelease: atlas, ...(await heap(b)) });
   }
@@ -422,8 +429,12 @@ async function loadingState(b: Browser): Promise<void> {
     return (await read(b, 'phase')) === 'idle' && (await read(b, 'layer')) === 'city';
   }, 90);
   await b.waitFor(`document.querySelector('#city-scene')?.parentElement?.dataset.ladder === 'idle'`, 30000, 'idle').catch(() => undefined);
-  await cast.stop(); await saveFrames(cast, '02-remount', 'Entering a city whose map was let go', from, 6);
-  numbers.loadingState = { chipSeen: sawChip, dataSaver: true, chips: [...new Set(seen)] };
+  await cast.stop();
+  const chips = await b.eval<{ text: string; t: number }[]>(`window.__chips.filter((c) => c.t >= ${from})`);
+  const loading = chips.filter((c) => /^Loading/.test(c.text));
+  if (loading.length) { const first = loading[0]!.t, last = loading.at(-1)!.t; await saveFrames(cast, '02-loading', 'Entering a city whose map was let go: the loading chip, then the fade', first - 150, 6, last + 900); sawChip = sawChip || loading[0]!.text; }
+  else await saveFrames(cast, '02-remount', 'Entering a city whose map was let go', from, 6);
+  numbers.loadingState = { chipSeen: sawChip, dataSaver: true, chips: [...new Set(chips.map((c) => c.text))], loadingChipMs: loading.length ? Math.round(loading.at(-1)!.t - loading[0]!.t) : 0 };
   await b.throttle(false);
   await b.send('Page.removeScriptToEvaluateOnNewDocument', { identifier: saver.identifier }).catch(() => undefined);
 }

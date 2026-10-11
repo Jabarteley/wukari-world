@@ -2,7 +2,7 @@ name: Station source building geometry
 on:
   push:
     branches: ['codex/world-antarctica-20261011']
-    paths: ['src/game/cities/stations/buildings.ts', 'scripts/geo/factory/research-building-proof.mjs', '.github/workflows/research-buildings.yml']
+    paths: ['src/game/cities/stations/buildings.ts', 'scripts/geo/factory/research-building-proof.mjs', 'scripts/geo/factory/research-building-review.py', '.github/workflows/research-buildings.yml']
 permissions:
   contents: read
   actions: read
@@ -19,6 +19,7 @@ jobs:
           node-version: 24.19.0
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm run typecheck
+      - run: python -m pip install matplotlib==3.10.7
       - name: Retrieve pinned facility artifact
         env:
           GH_TOKEN: ${{ github.token }}
@@ -28,6 +29,7 @@ jobs:
           mkdir evidence
           python scripts/geo/factory/station-candidates.py geometry scripts/geo/factory/station-candidates.json evidence/station-candidates.json
           node --experimental-strip-types scripts/geo/factory/research-building-proof.mjs geometry evidence/station-candidates.json evidence
+          python scripts/geo/factory/research-building-review.py evidence
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

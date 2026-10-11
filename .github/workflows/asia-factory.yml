@@ -3,7 +3,7 @@ name: Asia pinned Dubai factory QA
 on:
   push:
     branches: ['codex/world-asia-20261011']
-    paths: ['scripts/geo/asia-factory-targets.json', 'scripts/geo/asia-factory-venue-policy.json', 'scripts/geo/asia-factory-venue-policy.mjs', 'scripts/geo/build-destination-detail.ts', 'scripts/geo/destination-detail/config.ts', 'scripts/geo/destination-detail/geometry-tools.ts', '.github/workflows/asia-factory.yml']
+    paths: ['scripts/geo/asia-factory-targets.json', 'scripts/geo/asia-factory-venue-policy.json', 'scripts/geo/asia-factory-venue-policy.mjs', 'scripts/geo/asia-factory-prepare.mjs', 'scripts/geo/build-destination-detail.ts', 'scripts/geo/destination-detail/config.ts', 'scripts/geo/destination-detail/geometry-tools.ts', '.github/workflows/asia-factory.yml']
 
 permissions:
   actions: read
@@ -40,7 +40,7 @@ jobs:
         run: node factory/scripts/geo/factory/cloud-inputs.mjs scripts/geo/asia-factory-targets.json
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: e6e7b6c240874ba83398ef4c73072072589610cd
+          ref: a29a52bb39eae79a0dc65a444aa62d4c7e2437ba
           path: baseline
           persist-credentials: false
       - name: Verify producers and download unique pinned artifacts

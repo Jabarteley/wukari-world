@@ -97,3 +97,28 @@ export function settle(followUps: readonly MemoryFact[] | undefined, npc: string
   for (const item of followUps ?? []) (item.v === npc && item.day <= today ? due : rest).push(item);
   return { due, rest };
 }
+
+/** Days of absence after which a regular who knows you remarks on it (the same week the friends' remark uses). */
+export const NEGLECT_DAYS = AWAY_DAYS;
+/** A regular customer: met on at least this many different days. */
+export const REGULAR_VISITS = 4;
+/** Every this-many-th visit of a regular customer earns a small treat. */
+export const LOYALTY_EVERY = 3;
+export const LOYALTY_PERCENT = 5;
+
+/**
+ * How a regular stands with the player, from what the save keeps: the days met (`v`), the points (`p`), the last day (`d`) and whether
+ * anything was bought (`b`). A life saved before `v` existed has a relationship and no count: that is one visit at least, never zero.
+ */
+export function standingOf(rel: { p: number; d: number; v?: number } | undefined, day: number, friendAt: number, warmAt: number): 'new' | 'known' | 'cold' | 'regular' | 'friend' | 'neglected' {
+  if (!rel) return 'new';
+  const visits = rel.v ?? 1;
+  const away = rel.d > 0 && day - rel.d >= NEGLECT_DAYS;
+  if (away && visits >= 2) return 'neglected';
+  if (rel.p >= friendAt) return 'friend';
+  if (visits >= REGULAR_VISITS) return 'regular';
+  if (visits >= 3 && rel.p < warmAt) return 'cold';
+  return visits <= 0 ? 'new' : 'known';
+}
+/** Whether this visit (the one being counted now, after `visits` before it) earns the loyalty treat. */
+export const loyaltyDue = (visits: number): boolean => visits + 1 >= REGULAR_VISITS && (visits + 1) % LOYALTY_EVERY === 0;

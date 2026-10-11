@@ -15,7 +15,7 @@ export interface ShowcaseHttpRoutes {
   'GET /api/showcase/directory': { query: { city?: string; venue?: string; category?: string; q?: string; after?: string }; response: Ok<ShowcasePage>; errors: ReadError }
   'GET /api/showcase/mine': { response: Ok<ShowcaseMine>; errors: ReadError }
   'GET /api/showcase/photo/:id': { params: { id: string }; response: Ok<Record<string, never>>; errors: ReadError | 'unknown_photo' }
-  'GET /api/showcase/entry/:token': { params: { token: string }; response: Ok<{ id: string }>; errors: ReadError }
+  'GET /api/showcase/entry/:token': { params: { token: string }; response: Ok<{ id: string; shop: ShowcaseView; chat: string | null; pay: string | null }>; errors: ReadError }
   'GET /api/showcase/:id': { params: { id: string }; response: Ok<{ shop: ShowcaseView }>; errors: ReadError }
   'POST /api/showcase/mine': { body: Receipt & { expectedRevision: number } & ShowcaseInput; response: Result; errors: WriteError }
   'POST /api/showcase/mine/photos': { body: Receipt & { type: 'image/jpeg' | 'image/png' | 'image/webp'; data: string }; response: Result & { photo?: string }; errors: WriteError }

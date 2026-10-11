@@ -9,6 +9,8 @@ import type { MemoryFact } from '../../types/life.ts';
 export const FACTS_KEPT = 8;
 export const RUMOURS_KEPT = 8;
 export const FOLLOW_UPS_KEPT = 5;
+/** Different days a regular remembers meeting the player on, at most (Relationship.v), and services that went through (Relationship.b). */
+export const VISITS_KEPT = 99;
 
 const short = (value: unknown): value is string => typeof value === 'string'
   && /^[a-z0-9][a-z0-9-]{0,63}$/.test(value)

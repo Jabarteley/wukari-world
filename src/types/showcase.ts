@@ -33,7 +33,7 @@ export const SHOWCASE = Object.freeze({
   name: Object.freeze({ min: 3, max: 40 }),
   sign: 24,
   about: 400,
-  services: 12,
+  services: 24,
   label: 40,
   note: 80,
   /** A photo's caption (also its alt text). */
@@ -59,7 +59,8 @@ export const SHOWCASE = Object.freeze({
   day: 86400000,
 })
 
-export interface ShowcaseService { label: string; priceNaira: number; note: string }
+/** `photo` is one of the shop's own photo ids: the picture of this item (optional). */
+export interface ShowcaseService { label: string; priceNaira: number; note: string; photo?: string }
 /** 24-hour "HH:MM"; a day with no entry is closed. Monday first. */
 export interface ShowcaseHours { open: string; close: string }
 export interface ShowcaseLink { kind: ShowcaseChatKind; url: string }

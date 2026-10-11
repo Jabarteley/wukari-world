@@ -5,7 +5,7 @@
  *
  *   GET  /api/showcase/directory?city&venue&category&q&after   cards, newest first, paged
  *   GET  /api/showcase/:id                               one shop page
- *   GET  /api/showcase/entry/:token                      the id of the shop a public address leads to (the game opens it for a visitor)
+ *   GET  /api/showcase/entry/:token                      the shop a public address leads to, with the seller's own chat and pay links (the game opens its 3D room for a visitor)
  *   POST /api/showcase/mine/share                        the public address of the caller's published shop, made once { clientId }
  *   GET  /shop/<name>-<token>                            the public page (ctx.pages): no sign-in, no script, the seller's own message link
  *   GET  /api/showcase/photo/:id                         a photo's bytes (public photos of live shops; the owner sees all of theirs)
@@ -18,7 +18,7 @@
  *   POST /api/showcase/:id/report                        { clientId, reason, note?, photo? }
  */
 import { SHOWCASE } from '../../src/types/showcase.ts';
-import { shopTokenOf } from '../../src/types/showcase-link.ts';
+import { safeLink, shopTokenOf } from '../../src/types/showcase-link.ts';
 import { VERIFIED_TIERS } from '../../src/game/trust/index.ts';
 import { businessVenue } from '../../src/game/business-model.ts';
 import { placeFacts } from '../../src/paths.ts';
@@ -119,8 +119,11 @@ export default function showcaseRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'GET /api/showcase/entry/:token': async (request) => ({ body: await ctx.store.read((db) => {
       if (!ctx.allow(`showcase:entry:${request.ip}`, 30)) throw ctx.fail(429, 'rate_limited');
       const shop = service.byToken(db, request.params.token);
-      if (!shop) throw ctx.fail(404, 'shop_unavailable');
-      return { id: shop.id };
+      const view = shop ? service.view(db, shop) : null;
+      if (!shop || !view) throw ctx.fail(404, 'shop_unavailable');
+      // What the shop's own public page shows, so the 3D room can show the same: the shop, and the seller's own chat and pay links
+      // (checked again here). Anyone who has the shop's public address may see them. The seller's id and name are left out, as on the page.
+      return { id: shop.id, shop: { ...view, badge: { ...view.badge, id: '', name: '' } }, chat: safeLink(shop.chat.url), pay: safeLink(shop.pay?.url) };
     }), headers }),
     'GET /api/showcase/:id': read((db, viewer, request) => ({ shop: service.view(db, service.get(db, String(request.params.id), viewer)) })),
     'POST /api/showcase/mine': write('save', (db, session, _id, body) => service.save(db, session, body)),

@@ -53,6 +53,8 @@ export interface Batch {
   build(materials: Record<keyof SceneMaterials, THREE.Material>): BatchResult
   /** Added by footprintRecorder (movement.ts): tells the recorder where the two walls are. */
   walls?(size: { w: number; d: number }): void
+  /** Added by footprintRecorder: a place where a person can sit, in the batch's current frame. `ry` faces away from the backrest. */
+  seat?(x: number, z: number, ry: number, height?: number): void
 }
 
 // ---- The scene entry contract (src/scene/venue-scenes.ts; the home scene returns the same shape) ----
@@ -269,6 +271,19 @@ export interface SceneEntry {
   setSpot(id: string): boolean
   setPlayer(options?: PlayerOptions): boolean
   setCrowd(people: unknown): SceneTag[]
+  /** The background people of the place (src/scene/ambient); null switches them off. */
+  setAmbient?(ident: import('./ambient/plan.ts').Ident | null): boolean
+  stepAmbient?(dt: number): boolean
+  wakeAmbient?(): boolean
+  settleAmbient?(): void
+  readonly ambientAwake?: boolean
+  readonly ambientFrames?: number
+  ambientPeople?(): import('./ambient/layer.ts').AmbientPerson[]
+  ambientCaps?(): { full: number; lean: number; far: number } | null
+  say?(id: string, text: string, ms?: number): boolean
+  talk?(a: string, b: string, ms?: number): boolean
+  /** Called when a spoken line comes or goes (false) and when the people have arrived after the scene asked for them (true). */
+  onAmbient?: ((ready: boolean) => void) | null
   readonly easing: boolean
   stepCrowd(dt: number): boolean
   settleCrowd(): void

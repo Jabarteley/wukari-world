@@ -44,6 +44,9 @@ type Insets = { top?: number; bottom?: number };
 /** Where the fetch of a city's own scenes stands. */
 export type ScenesState = LazyState & { city: string };
 
+type AmbientFor = (venue: string, kind: string) => import('../../scene/ambient/plan.ts').Ident | null;
+type AmbientPerson = import('../../scene/ambient/layer.ts').AmbientPerson;
+
 /** What the adapter asks of either host (the venue host has more; the campus host has no setGoal/zoom/recentre/prepare). */
 interface WorldHost {
   setStreet?(street: WorldStreetResponse | null): void;
@@ -58,6 +61,13 @@ interface WorldHost {
   setCrowd(people: HostPerson[]): boolean | undefined;
   setInsets(insets: Insets): boolean | undefined;
   setGoal?(goal: unknown): boolean | undefined;
+  /** The background people of a place (the venue host only: src/scene/ambient). */
+  setAmbient?(ambientFor: AmbientFor | null): void;
+  wakeAmbient?(): boolean;
+  say?(id: string, text: string, ms?: number): boolean;
+  talk?(a: string, b: string, ms?: number): boolean;
+  ambientPeople?(): AmbientPerson[];
+  ambientFrames?(): number;
   setLocation(id: string): boolean | void;
   prepare?(id: string): boolean | undefined;
   zoom?(direction: number): unknown;
@@ -99,7 +109,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
   // Where the regulars are (their daily routines): a chunk of its own, fetched with the scene and not with the first page. Until it lands every regular of a venue is listed, as before.
   void import('../../game/routines/pack.ts').then(undefined, () => undefined);
   let host: WorldHost | null = null, kind: HostKind | null = null, token = 0, disposed = false;
-  let state: AdapterState | null = null, player: HostPlayer | null = null, crowd: HostPerson[] = [], insets: Insets | null = null, goal: unknown = null;
+  let state: AdapterState | null = null, player: HostPlayer | null = null, crowd: HostPerson[] = [], insets: Insets | null = null, goal: unknown = null, ambientFor: AmbientFor | null = null;
   let street: WorldStreetResponse | null = null, visitHome: VisitHomeProjection | null = null;
   const displayState = (next: AdapterState | null): AdapterState | null => next && visitHome ? { ...next, estate: { ...next.estate, city: visitHome.city }, location: 'home', spot: null, activeAction: null } : next;
   let neighbourhoodBuilder: VenueWorldOptions['buildNeighbourhood'];
@@ -140,6 +150,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     if (state?.location === currentLocation && crowd.length) host.setCrowd(crowd);
     if (insets) host.setInsets(insets);
     if (goal !== null) host.setGoal?.(goal);
+    if (ambientFor) host.setAmbient?.(ambientFor);
     host.resize?.();
     onHost?.(kind);
   }
@@ -269,6 +280,13 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     get awaiting() { return awaited; },
     setPlayer(next: HostPlayer) { player = { ...next }; return host?.setPlayer(next); },
     setGoal(next?: unknown) { goal = next ?? null; return host?.setGoal?.(next) ?? false; },
+    /** Who is in whichever venue is shown (src/scene/ambient); only the venue host has people to show, the campus and the street do not. */
+    setAmbient(next: AmbientFor | null) { ambientFor = next; host?.setAmbient?.(next); },
+    wakeAmbient() { return host?.wakeAmbient?.() ?? false; },
+    say(id: string, text: string, ms?: number) { return host?.say?.(id, text, ms) ?? false; },
+    talk(a: string, b: string, ms?: number) { return host?.talk?.(a, b, ms) ?? false; },
+    ambientPeople() { return host?.ambientPeople?.() ?? []; },
+    ambientFrames() { return host?.ambientFrames?.() ?? 0; },
     setCrowd(next: HostPerson[]) { crowd = Array.isArray(next) ? next.map((person) => ({ ...person })) : []; return host?.setCrowd(crowd); },
     zoom(direction: number) { return host?.zoom?.(direction); },
     recentre() { return host?.recentre?.(); },

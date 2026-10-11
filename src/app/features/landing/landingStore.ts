@@ -59,6 +59,8 @@ export interface LandingDeps {
   forgetGo(): void
   /** The public address of the shop a go=shop link named, kept with the go until it is opened. */
   pendingShop(): string | null
+  /** Walk the visitor into that shop in 3D (features/showcase/room). Left out: the room's own loader is used. */
+  openShop?(token: string): void | Promise<void>
   /** The panel a go-link name opens, or null when this build has no such panel. */
   panelFor(go: string): string | null
   setTimeout(run: () => void, ms: number): unknown
@@ -187,12 +189,12 @@ export function createLanding(deps: LandingDeps, refs?: LandingRefs): Landing {
         deps.forgetGo()
         const panel = deps.panelFor(go)
         if (panel && !table && !host) {
-          // A shop link opens that shop's page in the Services app: the visitor's first sight is the shop, not the tour.
+          // A shop link walks the visitor into that shop in 3D: the visitor's first sight is the shop, not the tour. The room asks the
+          // server for the shop itself and says so when the address is not a shop that is open.
           if (shop) {
             try {
-              const found = await deps.fetchJson<{ id?: string }>(`/api/showcase/entry/${shop}`, undefined, isCurrent)
-              if (!isCurrent()) return
-              if (found.id) deps.open(panel, { shop: found.id })
+              if (deps.openShop) await deps.openShop(shop)
+              else (await import('../showcase/room/openRoom.ts')).openShopRoom({ by: 'token', token: shop })
             } catch { if (isCurrent()) deps.toast('That shop is not available.') }
           } else deps.open(panel)
         }

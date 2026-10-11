@@ -313,8 +313,8 @@ const SHOES: Record<string, Shoe> & { sneaker: Shoe } = { sneaker: ['#2c3340', '
 // from the hips (1.06 above the feet), where the upper body leans from.
 interface Measures { hip: number; waist: number; chest: number; shoulder: number; aspect: number; arm: number; elbow: number; wrist: number; leg: number; knee: number; calf: number; ankle: number; neck: number; legX: number }
 const BODY: Record<Body, Measures> = {
-  woman: { hip: 0.262, waist: 0.185, chest: 0.226, shoulder: 0.246, aspect: 0.72, arm: 0.068, elbow: 0.057, wrist: 0.043, leg: 0.108, knee: 0.08, calf: 0.075, ankle: 0.05, neck: 0.06, legX: 0.115 },
-  man: { hip: 0.245, waist: 0.235, chest: 0.3, shoulder: 0.335, aspect: 0.62, arm: 0.09, elbow: 0.073, wrist: 0.054, leg: 0.106, knee: 0.086, calf: 0.083, ankle: 0.056, neck: 0.082, legX: 0.115 },
+  woman: { hip: 0.252, waist: 0.172, chest: 0.208, shoulder: 0.226, aspect: 0.72, arm: 0.062, elbow: 0.052, wrist: 0.04, leg: 0.1, knee: 0.075, calf: 0.07, ankle: 0.048, neck: 0.056, legX: 0.11 },
+  man: { hip: 0.232, waist: 0.208, chest: 0.272, shoulder: 0.308, aspect: 0.62, arm: 0.08, elbow: 0.066, wrist: 0.05, leg: 0.1, knee: 0.08, calf: 0.078, ankle: 0.054, neck: 0.074, legX: 0.11 },
 };
 const HIP_Y = 1.06, SHOULDER_Y = 0.64;
 const HEAD = { y: 2.14 };
@@ -468,7 +468,7 @@ function rope(b: Drawing, points: Vec3[], r0: number, r1: number, colour: Colour
 
 // The head is drawn in its own frame: origin at the head's centre, +y up, +z towards the face.
 interface FaceShape { rx: number; ry: number; rz: number }
-const FACES: Record<Face, FaceShape> = { oval: { rx: 0.178, ry: 0.215, rz: 0.187 }, round: { rx: 0.2, ry: 0.2, rz: 0.2 }, long: { rx: 0.16, ry: 0.246, rz: 0.174 } };
+const FACES: Record<Face, FaceShape> = { oval: { rx: 0.178, ry: 0.215, rz: 0.187 }, round: { rx: 0.206, ry: 0.196, rz: 0.2 }, long: { rx: 0.154, ry: 0.256, rz: 0.17 } };
 /** How far forward the face is at (x, y). */
 function faceZ(F: FaceShape, x: number, y: number): number {
   return F.rz * Math.sqrt(Math.max(0.03, 1 - (x / F.rx) ** 2 - (y / F.ry) ** 2));
@@ -482,7 +482,7 @@ function headShape(b: Drawing, look: Look, F: FaceShape, n: number, sleeping: bo
   for (const side of [-1, 1]) {
     const x = side * ex, z = faceZ(F, x, ey), turn = side * 0.32;
     if (!n) b.quad(x, ey, z + 0.014, 0.05, sleeping ? 0.008 : 0.064, eye, { ry: turn });
-    else if (!sleeping) { b.cyl(x, ey, z, 0.03, 0.012, eye, { seg: 14, rx: Math.PI / 2, ry: turn, sz: mood === 'grin' ? 0.95 : 1.2 }); b.quad(x - side * 0.01, ey + 0.015, z + 0.012, 0.016, 0.016, white, { rz: Math.PI / 4 }); }
+    else if (!sleeping) { b.cyl(x, ey, z, 0.025, 0.012, eye, { seg: 14, rx: Math.PI / 2, ry: turn, sz: mood === 'grin' ? 0.95 : 1.25 }); b.quad(x - side * 0.01, ey + 0.015, z + 0.012, 0.016, 0.016, white, { rz: Math.PI / 4 }); }
     else b.ball(x, ey, z, 0.03, 0.005, 0.012, eye, { seg: 6, ry: turn });
     if (n) {
       const by = ey + 0.06 + (mood === 'grin' ? 0.012 : 0), bz = faceZ(F, x, by);
@@ -494,7 +494,7 @@ function headShape(b: Drawing, look: Look, F: FaceShape, n: number, sleeping: bo
   const lip = mix(skin, dark ? '#b2545a' : '#a23f46', woman ? 0.65 : 0.5), my = -0.092, mz = faceZ(F, 0, my) + 0.002;
   if (!n) b.quad(0, my, mz + 0.012, mood === 'neutral' ? 0.06 : 0.09, mood === 'grin' ? 0.04 : 0.016, mood === 'grin' ? white : lip);
   else if (mood === 'grin') { b.ball(0, my, mz, 0.05, 0.022, 0.012, '#4a1a1a', { seg: 7 }); b.quad(0, my + 0.004, mz + 0.012, 0.075, 0.018, white); }
-  else if (mood === 'smile') b.ball(0, my, mz, 0.038, 0.0105, 0.012, lip, { seg: 7 }), n > 1 && [-1, 1].forEach((side) => b.ball(side * 0.04, my + 0.008, mz - 0.004, 0.012, 0.007, 0.008, shade(lip, -0.25), { seg: 5, rz: side * -0.7 }));
+  else if (mood === 'smile') { b.ball(0, my - 0.006, mz, 0.044, 0.013, 0.012, lip, { seg: 8 }); for (const side of [-1, 1]) b.quad(side * 0.052, my + 0.008, faceZ(F, side * 0.052, my + 0.008) + 0.006, 0.034, 0.008, shade(lip, -0.3), { rz: side * 0.8, ry: side * 0.5 }); }
   else b.ball(0, my, mz, 0.027, 0.0085, 0.01, lip, { seg: 6 });
   if (age) for (const side of [-1, 1]) b.ball(side * 0.07, ey - 0.052, faceZ(F, side * 0.07, ey - 0.052) + 0.002, 0.03, 0.004 * age + 0.002, 0.006, mix(skin, INK, 0.22), { seg: 5, ry: side * 0.3 });
 }
@@ -558,7 +558,7 @@ const HAIR: Record<string, HairDraw> & { lowcut: HairDraw } = {
   },
   braids(b, c, look, _c, F, n) {
     cap(b, F, c, 0.01);
-    hang(b, n, F, c, n > 1 ? 11 : n ? 8 : 4, 2.0, look.body === 'woman' ? 0.62 : 0.42, 0.036, 0.026, { bead: n === 2 ? GOLD : null });
+    hang(b, n, F, c, n > 1 ? 11 : n ? 8 : 4, 2.0, look.body === 'woman' ? 0.62 : 0.42, 0.036, 0.026, { bead: null });
   },
   locs(b, c, _l, _c, F, n) {
     cap(b, F, c, 0.022);
@@ -943,8 +943,9 @@ function drawFigure(b0: Drawing, look: Look, { joints, sitting, marker, sleeping
         if (!side && has('beads') && room(n ? 0 : 30)) b.cyl(0, -0.335, 0, radiusAt(foreArm, -0.335) + (covered ? sp : 0) + 0.01, 0.03, CORAL, { seg: 12 });
       };
       const upper: Piece = covered
-        ? { length: 0.42, rings: padded(upperArm, sp), colour: top, extra: null }
+        ? { length: 0.42, rings: padded(upperArm, sp), colour: top, extra: () => { if (n > 1) b.ball(0, 0, 0, m.arm + sp, m.arm + sp, m.arm + sp, top, { seg: 12 }); } }
         : { length: 0.42, rings: upperArm, colour: skin, extra: () => {
+          if (n > 1 && !(sleeve === 'cap')) b.ball(0, 0, 0, m.arm + (wide ? 0.02 : sp), m.arm + (wide ? 0.02 : sp), m.arm + (wide ? 0.02 : sp), sleeveColour, { seg: 12 });
           if (wide) {
             const bell = sm([[-0.42, m.arm + 0.1], [-0.2, m.arm + 0.056], [0, m.arm + 0.02]]);
             loft(b, bell, sleeveColour, { seg: 16 });

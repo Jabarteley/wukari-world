@@ -92,9 +92,9 @@ interface Tween { start: number; last: number; duration: number; step: (t: numbe
 interface Drag { id: number; x: number; time: number; speed: number; moved?: boolean }
 
 const FRAMES: Record<PreviewFocus, PreviewFrame> = {
-  body: { y: 1.47, height: 3.22, width: 1.9 },
-  head: { y: 2.26, height: 1.62, width: 1.5 }, // head and shoulders, with room for the tallest hair, a gele or a hat
-  outfit: { y: 1.5, height: 2.5, width: 1.9 }, // shoulders to the shoes: what is worn, without the empty space above the hair
+  body: { y: 1.38, height: 3.0, width: 1.8 },
+  head: { y: 2.2, height: 1.45, width: 1.35 }, // head and shoulders, with room for the tallest hair, a gele or a hat
+  outfit: { y: 1.38, height: 2.4, width: 1.8 }, // shoulders to the shoes: what is worn, without the empty space above the hair
 };
 const FOV = 26, START_YAW = -0.42, DRAG_SPEED = 0.011, KEY_STEP = Math.PI / 12, MAX_PIXEL_RATIO = 2.5;
 const clamp = (value: number, low: number, high: number): number => Math.max(low, Math.min(high, value));

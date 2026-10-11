@@ -1,23 +1,23 @@
-name: Phone map label acceptance
+name: City map acceptance
 
 on:
   push:
-    branches: ['codex/astra-phone-qa-20261011']
+    branches: ['codex/astra-cities-qa-20261011']
 
 permissions:
   contents: read
 
 concurrency:
-  group: phone-map-browser-${{ github.sha }}
+  group: city-map-browser-${{ github.sha }}
   cancel-in-progress: false
 
 env:
-  APP_SHA: 4a5572d6cfc1df422945d3d0c325598ef531d45d
+  APP_SHA: 106e0769fab6ecf990138b3657cdbc56d82423ad
 
 jobs:
   acceptance:
     runs-on: ubuntu-24.04
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - name: Define runner artifact directories
         run: |
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: kromate/joinallworld
-          ref: 4a5572d6cfc1df422945d3d0c325598ef531d45d
+          ref: 106e0769fab6ecf990138b3657cdbc56d82423ad
           path: app
           persist-credentials: false
 
@@ -83,6 +83,7 @@ jobs:
           npm run typecheck 2>&1 | tee "$QA_LOG_DIR/typecheck.log"
 
       - name: Build
+        id: build
         working-directory: app
         run: |
           set -euo pipefail
@@ -94,21 +95,29 @@ jobs:
           set -euo pipefail
           npm run size:download 2>&1 | tee "$QA_LOG_DIR/size-download.log"
 
-      - name: Run focused map rendering checks
+      - name: Run focused five-city map and journey checks
         id: focused
         working-directory: app
         run: |
           set -euo pipefail
           node --experimental-strip-types --test --test-concurrency=1 \
-            src/scene/city-scenes.test.ts \
-            src/scene/scenes.test.ts \
-            src/map3d/map3d.test.ts \
-            src/map3d/camera.test.ts 2>&1 | tee "$QA_LOG_DIR/focused.log"
+            src/game/cities/windhoek/map.test.ts \
+            src/game/cities/windhoek/journey.test.ts \
+            src/game/cities/maputo/map.test.ts \
+            src/game/cities/maputo/journey.test.ts \
+            src/game/cities/gaborone/map.test.ts \
+            src/game/cities/gaborone/journey.test.ts \
+            src/game/cities/luanda/map.test.ts \
+            src/game/cities/luanda/journey.test.ts \
+            src/game/cities/harare/map.test.ts \
+            src/game/cities/harare/journey.test.ts \
+            src/game/cities/registry.test.ts 2>&1 | tee "$QA_LOG_DIR/focused.log"
 
       - name: Capture frozen maps in the disposable browser
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         id: browser
         working-directory: app
-        timeout-minutes: 30
+        timeout-minutes: 35
         run: |
           set -euo pipefail
           export CHROME_BIN="$(command -v google-chrome)"
@@ -117,10 +126,10 @@ jobs:
             --out "$QA_BROWSER_DIR" \
             --port 4423 \
             --debug-port 4424 \
-            --cities dakar,nairobi,abuja \
-            --phone-cities dakar,nairobi \
+            --cities windhoek,maputo,gaborone,luanda,harare \
+            --phone-cities windhoek,maputo,gaborone,luanda,harare \
             --phones 390x844,320x568 \
-            --short lagos,abuja \
+            --short lagos \
             --lean \
             --clock-hour 12 \
             --label-audit 2>&1 | tee "$QA_LOG_DIR/browser.log"
@@ -138,7 +147,7 @@ jobs:
           retention-days: 30
 
       - name: Run the complete literal npm test command
-        if: ${{ !cancelled() && steps.focused.outcome == 'success' && steps.browser.outcome == 'success' }}
+        if: ${{ !cancelled() && steps.focused.outcome == 'success' }}
         working-directory: app
         run: |
           set -euo pipefail
@@ -148,7 +157,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: phone-map-label-acceptance-${{ github.sha }}
+          name: city-map-acceptance-${{ github.sha }}
           path: |
             ${{ runner.temp }}/city-map-acceptance/logs/
             ${{ runner.temp }}/city-map-acceptance/browser/

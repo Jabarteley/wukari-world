@@ -38,6 +38,8 @@ const ROWS: Record<string, { name: string; row: string; level?: 'africa' | 'nige
   nairobi: { name: 'Nairobi', row: 'Kenya' }, 'addis-ababa': { name: 'Addis Ababa', row: 'Ethiopia' }, abidjan: { name: 'Abidjan', row: 'Ivoire' },
   dakar: { name: 'Dakar', row: 'Senegal' }, 'cape-town': { name: 'Cape Town', row: 'South Africa' }, algiers: { name: 'Algiers', row: 'Algeria' },
   cotonou: { name: 'Cotonou', row: 'Benin' }, lome: { name: 'Lomé', row: 'Togo' }, yaounde: { name: 'Yaoundé', row: 'Cameroon' },
+  windhoek: { name: 'Windhoek', row: 'Namibia' }, maputo: { name: 'Maputo', row: 'Mozambique' }, gaborone: { name: 'Gaborone', row: 'Botswana' },
+  luanda: { name: 'Luanda', row: 'Angola' }, harare: { name: 'Harare', row: 'Zimbabwe' },
 };
 const PLACE_TO_OPEN: Record<string, string> = { cairo: 'Khan El Khalili', kigali: '', lagos: '' };
 // --water "cairo=0.5,0.5;rabat=0.2,0.5": where on the screen (fractions of width, height, from the whole-city view) to zoom in on the main water.
@@ -293,7 +295,7 @@ async function auditLabels(b: Browser, prefix: string): Promise<void> {
 
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
   if (opts.phone) await dismiss(b, 3000);
-  const shot = async (label: string): Promise<void> => { await sleep(700); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`); };
+  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`); };
   await openMap(b, prefix);
   if (waterOnly) {
     const w = waterAt[prefix];

@@ -26,7 +26,7 @@ export async function serveProof(port: number, page = 'page', assets2 = join(REP
   const js = await bundlePage(page);
   const html = await readFile(join(REPO, 'scripts', 'body', 'proof', page, 'index.html'), 'utf8');
   const absolute = (d: string): string => resolve(d);
-  const roots: [string, string][] = [['/body/', join(REPO, 'src', 'scene', 'body', 'assets')], ['/a/', join(REPO, 'scripts', 'body', 'proof', 'assets')], ['/n/', assets2], ['/p2/', join(REPO, 'scripts', 'body', 'proof', 'assets2')], ...(extra ? [['/m/', absolute(extra)] as [string, string]] : [])].map(([p, d]) => [p, absolute(d)] as [string, string]);
+  const roots: [string, string][] = [['/body/', join(REPO, 'src', 'scene', 'body', 'assets')], ['/a/', join(REPO, 'scripts', 'body', 'proof', 'assets')], ['/n/', assets2], ['/p2/', join(REPO, 'scripts', 'body', 'proof', 'assets2')], ...(extra ? [['/m/', absolute(extra)] as [string, string]] : [])].map((pair) => [pair[0], absolute(pair[1])] as [string, string]);
   const server = createServer(async (req, res) => {
     const url = new URL(req.url ?? '/', 'http://localhost');
     if (url.pathname === '/' || url.pathname === '/index.html') { res.setHeader('content-type', TYPES['.html']!); res.end(html); return; }

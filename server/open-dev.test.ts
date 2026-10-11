@@ -82,7 +82,17 @@ test('open mode: waits run faster: a flight arrives in a tenth of the time, and 
     const who = await f.player('Chidi');
     assert.equal((await f.act(who.cookie, 'estate.relocate', { to: link.to, mode: link.mode })).ok, true);
     f.advance(after);
-    const life = await who.life().catch(async () => (await f.call(`/api/life?city=${link.to}`, undefined, who.cookie)).json.state as Json);
+    const origin = await f.call('/api/life?city=lagos', undefined, who.cookie);
+    let life = origin.json.state as Json | undefined;
+    if (!life) {
+      assert.deepEqual([origin.status, origin.json.error], [409, 'city_moved']);
+      const destination = await f.call(`/api/life?city=${link.to}`, undefined, who.cookie);
+      assert.equal(destination.status, 200);
+      assert.ok(destination.json.state);
+      life = destination.json.state as Json;
+    } else {
+      assert.equal(origin.status, 200);
+    }
     assert.equal(life.activeAction === null || life.activeAction === undefined, arrives, arrives ? 'arrived' : 'still on the way at real speed');
   }
   const worker = await fast.player('Dayo');

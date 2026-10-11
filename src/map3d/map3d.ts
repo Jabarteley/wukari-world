@@ -662,8 +662,6 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     rig.jump({ yaw: 0, pitch: DEFAULT_PITCH });
     openedWhole = false;
     if (size.width > 720) { rig.jump(rig.core()); return; }
-    // A city drawn city-wide opens on the whole city on a phone, so the built-up ground is in the frame from the first view.
-    if (pack.surround) { rig.jump(rig.whole()); openedWhole = true; return; }
     // A phone opens on the metropolitan core, filling the width of the screen; "Find me" brings the view back to the player.
     nearView(city.places[state?.location!] || city.places.home!);
     rig.jump(rig.core());

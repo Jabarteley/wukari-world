@@ -170,13 +170,24 @@ export async function createModulePack(module: CityModule, scene: ModuleScene['l
   const plateRoom = (name: string, size: number) => name.length * size * 0.9
   // A name plate is as wide as the city is: 1.4 map units over a 4 km town, growing to 4.5 over a metropolis, so it can still be read in the whole view.
   const plateSize = surround ? Math.min(5, Math.max(1.4, Math.max(fit.maxX - fit.minX, fit.maxZ - fit.minZ) / 90)) : 1.4
-  const plates: PackDistrict[] = []
-  for (const item of landmarks.filter(item => item.kind !== 'route-reference' && !content.venues.some(venue => venue.id === item.id))) {
-    const [x, z] = toLocal(origin, item.lon, item.lat), plate = { name: item.name, x, z, size: plateSize, water: item.kind === 'water' }
-    const room = plateRoom(plate.name, plate.size) / 2 + 3
-    const clash = plates.some(other => Math.abs(other.x - x) < room + plateRoom(other.name, other.size) / 2 && Math.abs(other.z - z) < 4 * plateSize / 1.4)
-      || Object.values(sites).some(site => Math.abs(site.x - x) < (surround ? room * 0.5 + 1 : room + 4) && Math.abs(site.z - z) < (surround ? 2.5 * plateSize / 1.4 : 6))
-    if (plate.water || !clash) plates.push(plate)
+  const plateItems = landmarks.filter(item => item.kind !== 'route-reference' && !content.venues.some(venue => venue.id === item.id))
+  const platesAt = (size: number): PackDistrict[] => {
+    const placed: PackDistrict[] = []
+    for (const item of plateItems) {
+      const [x, z] = toLocal(origin, item.lon, item.lat), plate = { name: item.name, x, z, size, water: item.kind === 'water' }
+      const room = plateRoom(plate.name, plate.size) / 2 + 3
+      const clash = placed.some(other => Math.abs(other.x - x) < room + plateRoom(other.name, other.size) / 2 && Math.abs(other.z - z) < 4 * size / 1.4)
+        || Object.values(sites).some(site => Math.abs(site.x - x) < (surround ? room * 0.5 + 1 : room + 4) && Math.abs(site.z - z) < (surround ? 2.5 * size / 1.4 : 6))
+      if (plate.water || !clash) placed.push(plate)
+    }
+    return placed
+  }
+  let plates = platesAt(plateSize)
+  if (plates.filter(plate => !plate.water).length < 5 && plateSize > 1.4) {
+    for (let size = Math.floor((plateSize - 0.01) * 5) / 5; size >= 1.4; size = Math.round((size - 0.2) * 5) / 5) {
+      plates = platesAt(size)
+      if (plates.filter(plate => !plate.water).length >= 5 || size === 1.4) break
+    }
   }
   // Round a city drawn city-wide the ground goes on for 25 km, so the board's edge and wall are never in view.
   const ring = surround ? Math.min(SURROUND_MAX_UNITS, Math.max(SURROUND_UNITS, 1.5 * Math.max(fit.maxX - fit.minX, fit.maxZ - fit.minZ))) : 30

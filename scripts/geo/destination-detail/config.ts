@@ -19,7 +19,13 @@ export interface PlacePick {
   atEdge?: true
 }
 
-export interface NamePick { id: string; ref: string; kind: 'neighbourhood' | 'water'; label?: string }
+export interface NamePick {
+  id: string
+  /** A neighbourhood comes from a discovery answer; water comes from the recorded water answer. */
+  ref: string
+  kind: 'neighbourhood' | 'water'
+  label?: string
+}
 
 /** Everything that differs between destinations in scripts/geo/build-destination-detail.ts. */
 export interface DetailConfig {

@@ -55,7 +55,9 @@ test('device auth, isolation, concurrent duplicate fare, and server time persist
   const actionId = `100000:${randomUUID()}`;
   const fields: ActionAttempt = { actionId, type: 'travel', id: 'library', mode: 'cab' };
   const [first, second] = await Promise.all([f.action(a.cookie, fields), f.action(a.cookie, fields)]);
-  assert.equal(first.state.cash, 4600); assert.equal(second.state.cash, 4600); assert.equal(second.duplicate, true);
+  assert.equal(first.state.cash, 4600); assert.equal(second.state.cash, 4600);
+  assert.equal([first, second].filter((result) => result.duplicate === true).length, 1);
+  assert.equal([first, second].filter((result) => result.duplicate !== true).length, 1);
   assert.equal((await (await f.request('/api/life?city=lagos', null, b.cookie)).json()).state.cash, 5000);
   const otherCity = await f.request('/api/life?city=ibadan', null, a.cookie);
   assert.deepEqual([otherCity.status, (await otherCity.json()).error], [409, 'city_moved']);

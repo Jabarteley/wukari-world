@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "cityId": "gaborone",
+  "countryIso2": "BW",
+  "generationIdentity": {
+    "cityId": "gaborone",
+    "stateId": "bw-gaborone",
+    "stateName": "Gaborone"
+  },
+  "inventorySha256": "703cdce6f8feb1cf5be4152cb517fc4b4359296e901781a711b3d1c752bf0eff",
+  "inventoryPath": "world/playable-africa-rollout/sources/gaborone.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "selectedPlace": {
+    "osm": "node/30670040",
+    "name": "Gaborone",
+    "coordinatesWgs84": [
+      25.9088474,
+      -24.6581357
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/30670040",
+    "sourceClass": "initial discovery city answer"
+  },
+  "airportCandidate": {
+    "id": "2864",
+    "name": "Sir Seretse Khama International Airport",
+    "type": "large_airport",
+    "scheduledService": true,
+    "isoCountry": "BW",
+    "iata": "GBE",
+    "icao": "FBSK",
+    "coordinatesWgs84": [
+      25.9182,
+      -24.555201
+    ],
+    "sourceRecordUrl": "https://ourairports.com/airports/FBSK/",
+    "coordinateEvidence": "OurAirports published airport point, not an official aviation-authority ARP; not independently verified as a runway, terminal, or official reference point."
+  },
+  "airportDatasetCaveat": "Dataset point only; no current operating, schedule, or official ARP claim.",
+  "bounds": [
+    -24.76,
+    25.78,
+    -24.52,
+    26.03
+  ],
+  "sources": {
+    "discovery": "Initial Overpass selection evidence only; see sources/gaborone.json.",
+    "geometryInput": {
+      "datasetSha256": "09f35d1e587f74a1751f02c296ce79263076dbaa3a39ccc97bf65cb0806dff0a",
+      "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+      "comparison": "valid"
+    }
+  },
+  "kept": {
+    "places": 20,
+    "roads": 158,
+    "neighbourhoodLabels": 11,
+    "landPolygons": 5,
+    "playAreaPolygons": 9,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 5
+  },
+  "observed": {
+    "places": 157,
+    "extras": 89,
+    "landuse": 312,
+    "roads": 308,
+    "water": 32
+  },
+  "limits": {
+    "placeEdgeMarginDegrees": 0.008,
+    "maxRoads": 700,
+    "minRoadKm": 0.35,
+    "geometryInput": "explicit PBF extract"
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1388,
+      "sha256": "741a10fc7971c936be707f914c7c0d29eca11a7bb20e097b3f5cca407cf1d652"
+    },
+    "geometry.ts": {
+      "bytes": 27705,
+      "sha256": "9f7ff101fcdbf12b7c56a6b68e586ab9b0b39d18be70d43d40f7577487428113"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "df7421684f87635352de64a4705d30a608db21ae3aabd093b65c3a8e9441116c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/gaborone.ts",
+    "input": "Geofabrik PBF extract; initial Overpass discovery was selection evidence only",
+    "licence": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "note": "Generated geography is a sketch of mapped built-up land, not an administrative boundary."
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "cityId": "luanda",
+  "countryIso2": "AO",
+  "generationIdentity": {
+    "cityId": "luanda",
+    "stateId": "ao-luanda",
+    "stateName": "Luanda"
+  },
+  "inventorySha256": "7eaf5f1bd6892d15685c08b5b4fb2f953c9a04dd8180439f081086e3dd56e397",
+  "inventoryPath": "world/playable-africa-rollout/sources/luanda.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "selectedPlace": {
+    "osm": "node/27564941",
+    "name": "Luanda",
+    "coordinatesWgs84": [
+      13.2439512,
+      -8.8272699
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/27564941",
+    "sourceClass": "initial discovery city answer"
+  },
+  "airportCandidate": {
+    "id": "312665",
+    "name": "Dr. Antonio Agostinho Neto International Airport",
+    "type": "large_airport",
+    "scheduledService": true,
+    "isoCountry": "AO",
+    "iata": "NBJ",
+    "icao": "FNBJ",
+    "coordinatesWgs84": [
+      13.499078,
+      -9.050734
+    ],
+    "sourceRecordUrl": "https://ourairports.com/airports/FNBJ/",
+    "coordinateEvidence": "OurAirports published airport point, not an official aviation-authority ARP; not independently verified as a runway, terminal, or official reference point."
+  },
+  "airportDatasetCaveat": "Dataset point only; no current operating, schedule, or official ARP claim.",
+  "bounds": [
+    -9.09,
+    13.12,
+    -8.72,
+    13.53
+  ],
+  "sources": {
+    "discovery": "Initial Overpass selection evidence only; see sources/luanda.json.",
+    "geometryInput": {
+      "datasetSha256": "0f6b090f5f3073f5a6458d7fa782dbcff93e59f040011ad3ab0b9027d2a54bb8",
+      "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+      "comparison": "valid"
+    }
+  },
+  "kept": {
+    "places": 21,
+    "roads": 700,
+    "neighbourhoodLabels": 15,
+    "landPolygons": 20,
+    "playAreaPolygons": 30,
+    "waterPolygons": 10,
+    "reachWaterPolygons": 32
+  },
+  "observed": {
+    "places": 854,
+    "extras": 229,
+    "landuse": 821,
+    "roads": 2148,
+    "water": 185
+  },
+  "limits": {
+    "placeEdgeMarginDegrees": 0.008,
+    "maxRoads": 700,
+    "minRoadKm": 0.7,
+    "geometryInput": "explicit PBF extract"
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1478,
+      "sha256": "a17ca5da9a6c5a8d33b579b24989acaaae379c020c8a96b2ca41ce81a60a7bfa"
+    },
+    "geometry.ts": {
+      "bytes": 55741,
+      "sha256": "85f3bcd687c95abe6c0569c67a0c43842c99e596bc58aa25876f82d22a078ea0"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "de06ac7208f22baa1be447ce3959dbdc0610afeb34db8cd5d7fa567d2a3075ae"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/luanda.ts",
+    "input": "Geofabrik PBF extract; initial Overpass discovery was selection evidence only",
+    "licence": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "note": "Generated geography is a sketch of mapped built-up land, not an administrative boundary."
+  }
+}

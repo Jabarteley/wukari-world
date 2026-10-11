@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "cityId": "windhoek",
+  "countryIso2": "NA",
+  "generationIdentity": {
+    "cityId": "windhoek",
+    "stateId": "na-windhoek",
+    "stateName": "Windhoek"
+  },
+  "admission": { "registered": true, "accepted": false, "status": "CANDIDATE_ONLY/NOT_ACCEPTED" },
+  "inventorySha256": "013fbdfa33d0f55d9b0e14767c1d7aeb1c95e1f795b18f170825b2e571e7f448",
+  "inventoryPath": "world/playable-africa-rollout/sources/windhoek.json",
+  "selectedPlace": {
+    "osm": "node/33364833",
+    "name": "Windhoek",
+    "coordinatesWgs84": [
+      17.0772739,
+      -22.5776104
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/33364833"
+  },
+  "airportCandidate": {
+    "name": "Hosea Kutako International Airport",
+    "icao": "FYWH",
+    "lat": -22.481111111111108,
+    "lon": 17.470277777777778,
+    "sourceUrl": "https://ncaa.com.na/publications/aeronautical-information/aeronautical-information-publication/aip-supplement/S04_2025%20FYWH%20AD.pdf",
+    "published": "2025-09-04",
+    "effective": "2025-10-30",
+    "rawARP": "222852S 0172813E"
+  },
+  "airportDatasetCaveat": "The airport point is the reference coordinate in the cited AIP supplement. It does not assert current operations or schedules.",
+  "bounds": [
+    16.95,
+    -22.68,
+    17.51,
+    -22.45
+  ],
+  "sources": {
+    "city": {
+      "queryKey": "city-80147e5b46",
+      "sha256": "74cb8b46c80e01eccf8925c8ebb59484cbf22e0406f07ee68ba92ca9aea7d8b8",
+      "bytes": 5114,
+      "elements": 1,
+      "osmBaseTimestamp": "2026-10-11T00:33:12Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "places": {
+      "queryKey": "places-54c4e0868e",
+      "sha256": "61455a23eff649b1a9f607aca3a18533c291da27d98102b242159d8009bb7291",
+      "bytes": 107175,
+      "elements": 350,
+      "osmBaseTimestamp": "2026-10-11T00:33:12Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "extras": {
+      "queryKey": "extras-630bcc4dab",
+      "sha256": "67e43c19b9932e1a74ed3ccf0d60223957b3d73350204926ffac2185c3dc5cb8",
+      "bytes": 34944,
+      "elements": 112,
+      "osmBaseTimestamp": "2026-10-11T00:35:17Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "water": {
+      "queryKey": "water-a70db1cdd6",
+      "sha256": "f5f81e9b9c975e0f5ac3d6c5b39746b173b74f7a85278547d3e04b139dcbaab5",
+      "bytes": 644656,
+      "elements": 190,
+      "osmBaseTimestamp": "2026-10-11T00:36:18Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "landuse": {
+      "queryKey": "landuse-5bf9a95b2e",
+      "sha256": "2cdfc5df912f67dcdea3c7c2cdff0c15f1392e98bda4ffae51566b1ab356b538",
+      "bytes": 977774,
+      "elements": 506,
+      "osmBaseTimestamp": "2026-10-11T00:38:18Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "roads": {
+      "queryKey": "roads-bc6937360d",
+      "sha256": "91e40ebd35e34b123ef8b3ce254e03d08734ec2156dc4a0403258ad0d7b5df59",
+      "bytes": 578581,
+      "elements": 729,
+      "osmBaseTimestamp": "2026-10-11T00:56:36Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    }
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1490,
+      "sha256": "6c2f61431d8fb70b620580df805313ec7c2270aafb4270b61978e505ba076b0e"
+    },
+    "geometry.ts": {
+      "bytes": 26834,
+      "sha256": "e13e36a250378db3b63cdda6b1ed8f9b956582cd512e1b4af2213c928fe10439"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "f76156c2336fd53c5c4b1ae98cfdac79c8d83fab9f38a50fe1d3fc0e838f56a8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/windhoek.ts",
+    "licence": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "note": "Generated geography is a sketch of mapped built-up land, not an administrative boundary."
+  }
+}

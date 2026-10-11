@@ -1,8 +1,9 @@
 /**
  * Regenerates the city-wide geography of one foreign destination from OpenStreetMap (© OpenStreetMap contributors, ODbL 1.0)
- * through the public Overpass interpreter:
+ * through the public Overpass interpreter, or from a separately recorded Geofabrik PBF extract:
  *
  *   ALLWORLD_GEO_CACHE=<directory outside the repository> node --experimental-strip-types scripts/geo/build-destination-detail.ts cairo
+ *   node --experimental-strip-types scripts/geo/build-destination-detail.ts maputo --extract-dir <extract/maputo>
  *
  * It writes, in src/game/cities/<id>/:
  *   places.ts    the real named places that stand in for the generic game venues, each with its OpenStreetMap element
@@ -16,14 +17,16 @@ import { createHash } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
 import { ask } from './destination-detail/overpass.ts';
 import type { Element } from './destination-detail/overpass.ts';
+import { loadPbfExtract } from './destination-detail/pbf-extract.ts';
 import { validateDestinationFacts } from '../../src/game/cities/africa/types.ts';
 import { toLocal } from '../../src/geo/frame.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
 import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
+import { waterLabelPoint } from './destination-detail/water-label.ts';
 
-const id = process.argv[2];
-if (!id) throw new Error('Usage: build-destination-detail.ts <city id>');
+const args = process.argv.slice(2), id = args[0], extractDir = args[1] === '--extract-dir' && args.length === 3 ? args[2] : null;
+if (!id || (args.length !== 1 && !extractDir)) throw new Error('Usage: build-destination-detail.ts <city id> [--extract-dir <directory>]');
 const config = (await import(`./destination-detail/${id}.ts`) as { CONFIG: DetailConfig }).CONFIG;
 const { FACTS } = await import(`../../src/game/cities/${id}/facts.ts`) as { FACTS: Parameters<typeof validateDestinationFacts>[0] };
 const origin = validateDestinationFacts(FACTS).mapOrigin;
@@ -48,10 +51,21 @@ const REACH = reachFor(config.box);
 const outlineBox: Box = [south - OUTLINE_MARGIN, west - OUTLINE_MARGIN, north + OUTLINE_MARGIN, east + OUTLINE_MARGIN];
 const outlineBbox = outlineBox.join(',');
 const wide = [south - REACH, west - REACH, north + REACH, east + REACH] as const;
+const extract = extractDir ? loadPbfExtract(extractDir, id, { play: config.box, core: config.core, outline: outlineBox, wide }) : null;
+const recorded = async (label: string, query: string) => {
+  if (!extract) return ask(id, label, query);
+  switch (label) {
+    case 'places': case 'extras': case 'water': case 'landuse': case 'roads': return extract.answers[label];
+    default: throw new Error(`PBF extract has no ${label} source`);
+  }
+};
+const pbf = extract?.source;
+const pbfPublic = pbf ? `Geofabrik PBF ${pbf.datasetUrl}; dataset sha256 ${pbf.datasetSha256}; snapshot ${pbf.pbfHeaderTimestamp}; adapter sha256 ${pbf.adapterSha256}` : null;
+const pbfDiscovery = extract ? `raw extract sha256 places ${extract.answers.places.sha256}, extras ${extract.answers.extras.sha256}` : null;
 
 // ---- places -----------------------------------------------------------------------------------------------------------------------
 const discoveries = [];
-for (const [label, query] of Object.entries(config.discovery(bbox))) discoveries.push(await ask(id, label, query));
+for (const [label, query] of Object.entries(config.discovery(bbox))) discoveries.push(await recorded(label, query));
 const discoverySha = discoveries.map((answer) => answer.sha256);
 const byRef = new Map(discoveries.flatMap((answer) => answer.elements).map((element) => [refOf(element), element]));
 const pick = (ref: string): Element => {
@@ -63,7 +77,8 @@ const pick = (ref: string): Element => {
 const nameIn = (tags: Record<string, string> | undefined): string => (tags?.['name:en'] ?? tags?.['name:fr'] ?? tags?.name ?? '').replace(/\s+/g, ' ').trim();
 const nameOf = (element: Element): string => nameIn(element.tags);
 
-const labelled = config.names.map((choice) => ({ name: choice.label ?? nameOf(pick(choice.ref)), at: centreOf(pick(choice.ref)) }));
+const neighbourhoods = config.names.filter((choice) => choice.kind === 'neighbourhood');
+const labelled = neighbourhoods.map((choice) => ({ name: choice.label ?? nameOf(pick(choice.ref)), at: centreOf(pick(choice.ref)) }));
 /** The district of a place is the nearest labelled neighbourhood within three and a half kilometres (`districtMetres`), else the whole area. */
 const districtOf = ([lon, lat]: P): string => {
   const metres = ([x, y]: P): number => Math.hypot((x - lon) * 111320 * Math.cos(lat * Math.PI / 180), (y - lat) * 110574);
@@ -87,17 +102,9 @@ const places = config.places.map((choice) => {
   };
 });
 
-const labels = config.names.map((choice) => {
-  const element = pick(choice.ref);
-  const [lon, lat] = centreOf(element);
-  const name = choice.label ?? nameOf(element);
-  if (!name) throw new Error(`${choice.ref} has no English name`);
-  return { id: choice.id, name, lon: round(lon, 5), lat: round(lat, 5), kind: choice.kind };
-});
-
 writeFileSync(out('places.ts'), `/**
  * Real places of ${config.name} that replace the generic game venues. Every place is one OpenStreetMap element of the recorded
- * answers (sha256 ${discoverySha.join(', ')}) to the queries in scripts/geo/destination-detail/${id}.ts; its name is the element's
+ * ${pbfPublic ? `${pbfPublic}; ${pbfDiscovery}` : `answers (sha256 ${discoverySha.join(', ')}) to the queries in scripts/geo/destination-detail/${id}.ts`}; its name is the element's
  * English name and its point is the node, or the centre of the way or relation. © OpenStreetMap contributors, ODbL 1.0
  * (https://www.openstreetmap.org/copyright). Generated by scripts/geo/build-destination-detail.ts; do not edit by hand.
  */
@@ -105,11 +112,11 @@ import type { DestinationPlace } from '../africa/types.ts'
 
 export const PLACES: readonly DestinationPlace[] = ${JSON.stringify(places, null, 2)}
 `);
-console.log(`places ${places.length}, labels ${labels.length}`);
+console.log(`places ${places.length}`);
 
 // ---- outline, water and roads ---------------------------------------------------------------------------------------------------------
 // A sea or a big lake is asked for as far out as the water is drawn, so that its shore ways run on to the edge of the drawn ground and the shore can be closed there.
-const waterAnswer = await ask(id, 'water', config.water(config.sea || config.wideWater ? wide.join(',') : bbox));
+const waterAnswer = await recorded('water', config.water(config.sea || config.wideWater ? wide.join(',') : bbox));
 const isShore = (element: Element): boolean => Boolean(element.geometry) && element.type === 'way' && (element.tags?.natural === 'coastline' || (config.sea?.kind === 'lake' && !element.tags?.natural && !element.tags?.waterway));
 const coast = waterAnswer.elements.filter(isShore).map((element) => element.geometry!.map((g): P => [g.lon, g.lat]));
 const landPoints = [...places.map((place): P => [place.lon, place.lat]), ...labelled.map((label) => label.at)];
@@ -141,24 +148,38 @@ const reachInland = inland.flatMap((element) => {
 const reachWater = [...farSea, ...reachInland];
 console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
 
-const landuse = await ask(id, 'landuse', config.landuse(outlineBbox));
+const landuse = await recorded('landuse', config.landuse(outlineBbox));
 const useRings = landuse.elements.flatMap((element) => areaRings(element).outer);
 const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 }))];
-const roadsEarly = await ask(id, 'roads', config.roads(bbox, `${config.core.join(',')}`));
+const roadsEarly = await recorded('roads', config.roads(bbox, `${config.core.join(',')}`));
 const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
 const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500 });
 const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015), project);
-const land = tidy(traced.land), play = tidy(traced.play);
+const land = tidy(traced.land);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
 const water = safePolygons(traced.water, Math.min(config.waterTolerance, 0.00015), project);
+// These final, independently safe surfaces are the playable ground. Deriving the play area from them prevents contour/simplification slivers that belong to neither land nor water.
+const play = [...land, ...water];
 if (!land.length) throw new Error('The land-use answer left no built-up area in the box');
+const waterByRef = new Map(waterAnswer.elements.map((element) => [refOf(element), element]));
+const renderedWater = reachWater.length ? reachWater : water;
+const labels = config.names.map((choice) => {
+  const element = choice.kind === 'water' ? waterByRef.get(choice.ref) : pick(choice.ref);
+  if (!element) throw new Error(`${choice.ref} is not in the recorded ${choice.kind === 'water' ? 'water' : 'discovery'} answer`);
+  const source = choice.kind === 'water' ? big(polygonsOf(areaRings(element), wide, Math.max(config.waterTolerance, 0.0008))) : [];
+  const [lon, lat] = choice.kind === 'water' ? waterLabelPoint(element, source, renderedWater) : centreOf(element);
+  const name = choice.label ?? nameOf(element);
+  if (!name) throw new Error(`${choice.ref} has no English name`);
+  return { id: choice.id, name, lon: round(lon, 5), lat: round(lat, 5), kind: choice.kind };
+});
+console.log(`labels ${labels.length}`);
 const lonLat = (polygons: P[][][]): string => JSON.stringify(polygons.map((polygon) => polygon.map(roundRing)));
 
 writeFileSync(out('geometry.ts'), `/**
  * The play-area outline of ${config.name}: ${config.boundaryNote}. Land-use areas: ${useRings.length}, filled on a ${config.cell / config.split} degree grid
  * with a disc round every place of the game and every labelled neighbourhood, closed by ${config.closeMetres ?? 600} m and smoothed, the water taken out of the land
  * (the play area keeps it), over the play box plus ${OUTLINE_MARGIN} degrees, and simplified (Douglas-Peucker, ${config.outlineTolerance} degrees). A sketch at the grid's size, not a surveyed edge. © OpenStreetMap contributors, ODbL 1.0. Generated by scripts/geo/build-destination-detail.ts
- * from the Overpass interpreter; source sha256 ${landuse.sha256}. Loaded only with this city's map.
+ * ${pbfPublic ? `from ${pbfPublic}; raw landuse extract sha256 ${landuse.sha256}` : `from the Overpass interpreter; source sha256 ${landuse.sha256}`}. Loaded only with this city's map.
  */
 import type { DestinationGeometry } from '../africa/map.ts'
 
@@ -173,7 +194,7 @@ const reach = coverage(play, outlineBox, config.cell / config.split);
 // A road does not run on into the sea: a point inside the sea band ends the run there.
 const inSeaCover = sea.length ? coverage(sea, outlineBox, config.cell / config.split) : null;
 const inSea = (p: P): boolean => Boolean(inSeaCover && inSeaCover(p, 0));
-const roadsAnswer = await ask(id, 'roads', config.roads(bbox, `${config.core.join(',')}`));
+const roadsAnswer = await recorded('roads', config.roads(bbox, `${config.core.join(',')}`));
 const candidates: { row: string; km: number; points: number; major: boolean }[] = [];
 const lengthKm = (line: P[]): number => line.slice(1).reduce((sum, [lon, lat], i) => sum + Math.hypot((lon - line[i]![0]) * 111.32 * Math.cos(lat * Math.PI / 180), (lat - line[i]![1]) * 110.57), 0);
 for (const way of roadsAnswer.elements) {
@@ -207,10 +228,10 @@ const points = chosen.reduce((sum, road) => sum + road.points, 0);
 const trunk = [...new Set(roadsAnswer.elements.filter((way) => way.tags?.highway === 'motorway' || way.tags?.highway === 'trunk').map((way) => way.tags?.['name:en'] ?? way.tags?.name).filter((name): name is string => Boolean(name)))];
 
 const terrainSha = sha(landuse.sha256, waterAnswer.sha256, roadsAnswer.sha256);
+const terrainProvenance = pbfPublic ? `from ${pbfPublic}; raw source sha256 ${terrainSha} (land use ${landuse.sha256}, water ${waterAnswer.sha256}, roads ${roadsAnswer.sha256}, places ${discoverySha.join(', ')})` : `from the Overpass interpreter;\n * source sha256 ${terrainSha} (land use ${landuse.sha256}, water ${waterAnswer.sha256}, roads ${roadsAnswer.sha256}, places ${discoverySha.join(', ')})`;
 writeFileSync(out('terrain.ts'), `/**
  * Water, main roads and ground labels of ${config.name}: ${config.terrainNote} © OpenStreetMap contributors, ODbL 1.0
- * (https://www.openstreetmap.org/copyright). Generated by scripts/geo/build-destination-detail.ts from the Overpass interpreter;
- * source sha256 ${terrainSha} (land use ${landuse.sha256}, water ${waterAnswer.sha256}, roads ${roadsAnswer.sha256}, places ${discoverySha.join(', ')}).
+ * (https://www.openstreetmap.org/copyright). Generated by scripts/geo/build-destination-detail.ts ${terrainProvenance}.
  * Roads: Douglas-Peucker ${config.farTolerance} degrees (${config.coreTolerance} in the core ${config.core.join(', ')}), quantised to 0.0001 degrees;
  * ${rows.length} ways of ${candidates.length} candidates (the longest first, none under ${config.minRoadKm} km unless motorway or trunk), ${points} points; each row is name, major (1/0), first longitude and latitude in 0.0001 degrees, then the steps to every
  * next vertex. Roads leave the outline by at most ${config.roadMarginDegrees} degrees. Water: simplified ${config.waterTolerance} degrees; "water" lies inside the play area, "reachWater" is the same water carried ${REACH} degrees beyond the play box, to the edge of the ground that is drawn. Loaded only with this city's map.
@@ -226,7 +247,7 @@ ${rows.join('\n')}
   trunkRoads: ${JSON.stringify(trunk)},
   names: ${JSON.stringify(labels)},
   surround: ${JSON.stringify(config.surround)},
-  source: ${JSON.stringify(config.source)},
+  source: ${JSON.stringify(pbfPublic ? 'OpenStreetMap contributors via Geofabrik PBF' : config.source)},
   licence: 'ODbL-1.0',
 }
 `);

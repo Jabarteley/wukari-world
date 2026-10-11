@@ -177,12 +177,12 @@ test('the place on the route is a pure function of progress: leave on foot, ride
 /** A hand-made stub standing in for a DOM or WebGL object: the map reads only the members the stub carries. */
 const stub = <T>(value: object): T => value as unknown as T;
 interface FakeContainer { hidden: boolean; appendChild(): void; getBoundingClientRect: () => { width: number; height: number; left: number; top: number } }
-function harness({ reducedMotion = false, home = 'yaba', width = 390, height = 844, travelVehicle = undefined as TravelVehicleBuilder | undefined, ladder = undefined as LadderPort | undefined } = {}) {
+function harness({ reducedMotion = false, home = 'yaba', width = 390, height = 844, travelVehicle = undefined as TravelVehicleBuilder | undefined, ladder = undefined as LadderPort | undefined, cityWide = false } = {}) {
   const calls = { render: 0 }, queue: Array<() => void> = [];
   const renderer = { calls, shadowMap: { enabled: false }, toneMapping: 0, toneMappingExposure: 1, outputColorSpace: 0, domElement: {}, info: { render: {} }, setPixelRatio() {}, setSize() {}, setClearColor() {}, dispose() {}, render() { calls.render += 1; } };
   const container: FakeContainer = { hidden: false, appendChild() {}, getBoundingClientRect: () => ({ width, height, left: 0, top: 0 }) };
   const env = { now: 0, hidden: false, due: 0, arrived: 0 };
-  const map = createMap3D(stub<HTMLElement>(container), { pack, renderer: stub<MapRenderer>(renderer), reducedMotion, travelVehicle, ...(ladder ? { ladder } : {}), raf: (fn) => { queue.push(fn as () => void); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden, onTripDue: () => { env.due += 1; } });
+  const map = createMap3D(stub<HTMLElement>(container), { pack: cityWide ? { ...pack, surround: '#bcd596' } : pack, renderer: stub<MapRenderer>(renderer), reducedMotion, travelVehicle, ...(ladder ? { ladder } : {}), raf: (fn) => { queue.push(fn as () => void); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden, onTripDue: () => { env.due += 1; } });
   /** Run every frame that has been asked for, `step` ms apart, up to `limit` frames. Returns how many ran. */
   const pump = (limit = 1000, step = 16) => { let ran = 0; while (queue.length && ran < limit) { env.now += step; queue.shift()!(); ran += 1; } return ran; };
   const state = (more: Record<string, unknown> = {}) => ({ location: 'home', t: NOON, activeAction: null, travel: { home }, ...more });
@@ -421,6 +421,17 @@ test('the opening view: a phone and a wide screen both open on the metropolitan 
   assert.ok(core.distance < all.distance * 0.5, `the core is much closer than the whole state (${Math.round(core.distance)} against ${Math.round(all.distance)})`);
   assert.ok(all.pitch > core.pitch, 'the whole state is seen tipped up towards the map');
   for (const h of [phone, away, desk]) h.map.destroy();
+});
+
+test('city-wide maps open on the built-up core at both phone sizes instead of fitting distant bounds', () => {
+  for (const [width, height] of [[320, 568], [390, 844]]) {
+    const h = harness({ width, height, cityWide: true });
+    h.map.setState(h.state()); h.map.resize(); h.pump();
+    const opened = h.map.diagnostics().view, core = h.map.rig.core(), whole = h.map.rig.whole();
+    assert.deepEqual([opened.x, opened.z, Math.round(opened.distance)], [core.x, core.z, Math.round(core.distance)], `${width}: open on the built-up core`);
+    assert.ok(opened.distance < whole.distance, `${width}: full extent remains a separate wider view`);
+    h.map.destroy();
+  }
 });
 
 test('a label never covers the player’s piece: it steps up (or down over its own roof) while they overlap, and back when they part', () => {

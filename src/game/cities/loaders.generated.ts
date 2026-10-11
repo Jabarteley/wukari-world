@@ -57,4 +57,9 @@ export const GENERATED_CITY_LOADERS = Object.freeze([
   async()=>(await import("./kigali/index.ts")).city,
   async()=>(await import("./kampala/index.ts")).city,
   async()=>(await import("./lusaka/index.ts")).city,
+  async()=>(await import("./gaborone/index.ts")).city,
+  async()=>(await import("./harare/index.ts")).city,
+  async()=>(await import("./luanda/index.ts")).city,
+  async()=>(await import("./maputo/index.ts")).city,
+  async()=>(await import("./windhoek/index.ts")).city,
 ] satisfies readonly CityModuleLoader[])

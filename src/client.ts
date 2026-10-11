@@ -610,8 +610,12 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
       if (previousIdentity && previousIdentity !== response.session.id) { pendingAction = null; resetIdentityCooldowns(); }
       client.session = response.session; client.hasSavedIdentity = true; client.identity.name = response.session.name; client.ready = false;
       // A new device asks for the default city first: when the session says its one life is elsewhere, ask for that one, not for a city that has moved on.
-      if (!createNew && Array.isArray(held) && held.length === 1 && isCityId(held[0]) && held[0] !== client.cityId) { client.cityId = held[0] as CityId; onSession(client.session, createNew); await loadCityContent(held[0]); if (!current()) return false }
-      else onSession(client.session, createNew)
+      if (!createNew && Array.isArray(held) && held.length === 1 && isCityId(held[0]) && held[0] !== client.cityId) {
+        await loadCityContent(held[0])
+        if (!current()) return false
+        client.cityId = held[0]
+      }
+      onSession(client.session, createNew)
       if (!ownsSnapshot) persist()
       const askedAt = taken;
       const responseTeachingCurrent = teachingScope()

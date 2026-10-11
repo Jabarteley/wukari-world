@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "cityId": "harare",
+  "countryIso2": "ZW",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "osm": "node/282335934",
+    "name": "Harare",
+    "coordinatesWgs84": [
+      31.045686,
+      -17.831773
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/282335934",
+    "sourceClass": "initial discovery city answer"
+  },
+  "airport": {
+    "id": "3005",
+    "ident": "FVHA",
+    "name": "Robert Gabriel Mugabe International Airport",
+    "municipality": "Harare",
+    "isoCountry": "ZW",
+    "icao": "FVRG",
+    "iata": "HRE",
+    "coordinatesWgs84": [
+      31.0928,
+      -17.931801
+    ],
+    "scheduledService": "yes",
+    "sourceRecordUrl": "https://ourairports.com/airports/FVHA/",
+    "datasetUrl": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+    "datasetSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906",
+    "coordinateEvidence": "Published OurAirports dataset point; not an official ARP or evidence of current operations or schedules."
+  },
+  "boxes": {
+    "play": [
+      -17.97,
+      30.92,
+      -17.73,
+      31.17
+    ],
+    "core": [
+      -17.866773,
+      31.000686,
+      -17.796773,
+      31.090686
+    ],
+    "outline": [
+      -18.02,
+      30.87,
+      -17.68,
+      31.22
+    ],
+    "wide": [
+      -18.545,
+      30.345,
+      -17.155,
+      31.745
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "discovery": {
+    "role": "Initial Overpass discovery used for city/place selection only; it did not generate the geometry assets.",
+    "endpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+    "answers": {
+      "city": {
+        "querySha256": "f26cb6778aa23723fb8b2f86692638aba93c2e9e4f7acada797ee59065902fad",
+        "responseSha256": "fd0ebcaa6a721d73e825189260fdbface4e3d6a7b3c637657817f55466e26aee",
+        "bytes": 2847,
+        "elements": 1
+      },
+      "places": {
+        "querySha256": "1a4e9917fb222e757595c2fe8f3e3f047bf8e2489190253ca9fe5a2a3e8f33fb",
+        "responseSha256": "b7f3f2aeb87cd665ead088d55b33b8d629c306fe4bb7554858875ce7cd6d3fd4",
+        "bytes": 67271,
+        "elements": 290
+      },
+      "extras": {
+        "querySha256": "11c04f38ce00bca9b2228f5bec5f7e7cef470af7042d7e499a9e7702db04ad6d",
+        "responseSha256": "cd6f042862094e0db5fa967279ad07249a0839c19334a6384d484e3c09c15491",
+        "bytes": 31656,
+        "elements": 106
+      }
+    }
+  },
+  "geometryInput": {
+    "role": "Explicit Geofabrik PBF extract and adapter outputs used as geometry and terrain input.",
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/zimbabwe-261009.osm.pbf",
+    "datasetSha256": "57c18bc33c204f86a5aaf762b81b4fd69334e28fca190213ea494fb65ef38763",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+    "comparison": "city-queue/harare-pbf-comparison.json",
+    "extracts": [
+      {
+        "file": "extras.json",
+        "sha256": "51c09cdd52ddf374c3911c8ec5da1243b25c4fd6aa29948998e370fb4b8abf8b",
+        "elements": 106
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "e6503f9ea7cbeb99e66ae6def68e1dc34b999fa69f9a857b61acb5902100cb85",
+        "elements": 560
+      },
+      {
+        "file": "places.json",
+        "sha256": "3db451322bc277ab9ec25c1633faf0ff2a46a3a953e187187f514bbf5ed42293",
+        "elements": 290
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c5282b991d094a7b82e1a17dde119f0581693c9e003f92fb28bc54cc67b75ba5",
+        "elements": 702
+      },
+      {
+        "file": "water.json",
+        "sha256": "058f4011ece35da4e86035bfcf7b7eb490bca54fe4bbc746ba4683ab2d0a865e",
+        "elements": 38
+      }
+    ]
+  },
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1360,
+      "sha256": "41349017f038ae7ad133c0fec12ba73dc782da25d814501ed0a209908beb5cad"
+    },
+    "geometry.ts": {
+      "bytes": 53192,
+      "sha256": "20b870e3b78253eaac67760279c173c602f7ee6890aadf5c5fc9f7b8e097ac56"
+    },
+    "places.ts": {
+      "bytes": 8475,
+      "sha256": "661349e7c063a82cd610059c27232f1d02dc403323784c80e8915b5ec0e1bae4"
+    },
+    "terrain.ts": {
+      "bytes": 30379,
+      "sha256": "2fecd9144eab31c8f6596ca4c4a17eb3e11ecc4ca24cd0efe65272529a6eb87a"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "a80f0782cfb2910b19feaa4d833c71efbfefe46aa3a91972df54d3b7379f09b3"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; Geofabrik dataset terms; OurAirports public-domain dataset",
+  "scope": "Generated Harare detailed-tier source and asset provenance only. Visual, contract, catalogue, hosted, and rollout acceptance remain pending."
+}

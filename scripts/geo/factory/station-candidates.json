@@ -17,50 +17,59 @@
         {
           "ref": "way/386918478",
           "status": "current-use-unverified",
-          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
-          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
-          "sourcePublicationDate": "2025-10-24",
-          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
+          "sourcePublicationDate": "2026-06-08",
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
         },
         {
           "ref": "way/1450652233",
           "status": "current-use-unverified",
-          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
-          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
-          "sourcePublicationDate": "2025-10-24",
-          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
+          "sourcePublicationDate": "2026-06-08",
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
         },
         {
           "ref": "way/1450652234",
           "status": "current-use-unverified",
-          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
-          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
-          "sourcePublicationDate": "2025-10-24",
-          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
+          "sourcePublicationDate": "2026-06-08",
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
         },
         {
           "ref": "way/1450652230",
           "status": "current-use-unverified",
-          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
-          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
-          "sourcePublicationDate": "2025-10-24",
-          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
+          "sourcePublicationDate": "2026-06-08",
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
         },
         {
           "ref": "way/1450652232",
           "status": "current-use-unverified",
-          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
-          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
-          "sourcePublicationDate": "2025-10-24",
-          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
+          "sourcePublicationDate": "2026-06-08",
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
         },
         {
           "ref": "way/1450652231",
           "status": "current-use-unverified",
-          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
-          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
-          "sourcePublicationDate": "2025-10-24",
-          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
+          "sourcePublicationDate": "2026-06-08",
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
+        },
+        {
+          "ref": "way/1450652235",
+          "status": "replacement-facility-unverified",
+          "reason": "This OSM footprint is named the existing Sewage Treatment Plant. A 2019 BAS site plan set replacement in 2025 and BAS documents a new Sewage Treatment Plant under construction in January2025. Its mapped footprint is not established as the new active plant; withhold until matched to current as-built geometry.",
+          "sourceUrl": "https://www.bas.ac.uk/news/december-2024-postcard-from-rothera-research-station/",
+          "sourcePublicationDate": "2025-01-15",
+          "sourcePlanUrl": "https://www.bas.ac.uk/wp-content/uploads/2019/11/Rothera-Modernisation-Phase-1-IEE-Final.pdf",
+          "evidenceLevel": "BAS project update and site plan; new facility footprint not crosswalked"
         }
       ]
     },

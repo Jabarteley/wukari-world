@@ -53,11 +53,11 @@ const matches=stations.filter(candidate=>candidate.id==='rothera');
 assert.equal(matches.length,1,'Rothera review is missing or ambiguous');
 const station=matches[0];assert.ok(station,'Rothera review is missing');
 const eligible=station.buildings.filter(building=>building.membership==='inside'&&building.sourceDispute===null);
-assert.equal(eligible.length,7);
+assert.equal(eligible.length,6);
 const sourceFeatures=array(source.features).map(feature);
 const features=new Map(sourceFeatures.map(row=>[row.ref,row]));
 assert.equal(features.size,sourceFeatures.length,'Duplicate source feature refs');
-assert.equal(new Set(eligible.map(building=>building.ref)).size,7,'Duplicate reviewed building refs');
+assert.equal(new Set(eligible.map(building=>building.ref)).size,6,'Duplicate reviewed building refs');
 /** @param {ReviewedBuilding} b @returns {import('../../../src/game/cities/stations/buildings.ts').StationBuilding & {name:string}} */
 function building(b) {
  const f=features.get(b.ref);assert.ok(f,`Missing source feature ${b.ref}`);assert.ok(f.complete&&f.closedByNodeIdentity);

@@ -2,7 +2,7 @@ name: Station source building geometry
 on:
   push:
     branches: ['codex/world-antarctica-20261011']
-    paths: ['src/game/cities/stations/buildings.ts', 'scripts/geo/factory/research-building-proof.mjs', 'scripts/geo/factory/research-building-review.py', '.github/workflows/research-buildings.yml']
+    paths: ['src/game/cities/stations/buildings.ts', 'scripts/geo/factory/research-building-proof.mjs', 'scripts/geo/factory/station-candidates.json', 'scripts/geo/factory/research-building-review.py', '.github/workflows/research-buildings.yml']
 permissions:
   contents: read
   actions: read

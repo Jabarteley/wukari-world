@@ -13,7 +13,7 @@
  *   buildCity(kit, pack, network, { venues, soon, labelOf }) → {
  *     group, places, triangles, counts,
  *     setHome(houseId)        move the Home landmark to the player's district
- *     setTime('day'|'dusk'|'night')
+ *     setTime('day'|'dusk'|'night', blended?)
  *     setTraffic(on)          the decorative "Moving" layer: more vehicles, and they drive
  *     animate(seconds)        called only from a running frame loop: water and traffic drift
  *     dispose()
@@ -99,7 +99,7 @@ export interface City {
   setDetail(distance: number, far?: number): boolean;
   coverSurround(camera: PerspectiveCamera): void;
   fronts: CityFront[];
-  setTime(next: string): TimePreset;
+  setTime(next: string, blended?: TimePreset): TimePreset;
   setTraffic(on: boolean): boolean;
   readonly traffic: boolean;
   animate(seconds: number): void;

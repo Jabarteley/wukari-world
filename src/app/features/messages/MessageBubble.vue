@@ -2,7 +2,7 @@
 import VoiceNote from './VoiceNote.vue'
 // One message: its name and time, the quoted message it answers, its words with mention chips (or large emoji), a gift's money
 // line, reactions as counted chips, and the actions (Reply, react) behind a small button, a right-click or a long press.
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref } from 'vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import EmojiPicker from './EmojiPicker.vue'
 import PictureView from './PictureView.vue'
@@ -23,7 +23,9 @@ const moreButton = ref<HTMLButtonElement | null>(null)
 let timer: ReturnType<typeof setTimeout> | null = null
 const mineReaction = computed(() => props.item.reactions?.find((entry) => entry.mine)?.emoji ?? null)
 const actionLabel = computed(() => props.canPin ? `Message actions, including ${props.pinned ? 'Unpin' : 'Pin'} message` : 'Message actions')
-function show(): void { open.value = true; more.value = false }
+const menuBox = ref<HTMLElement | null>(null)
+// The menu hangs below its message: near the bottom of the thread it is brought into view, not left under the composer.
+function show(): void { open.value = true; more.value = false; void nextTick(() => menuBox.value?.scrollIntoView?.({ block: 'nearest' })) }
 function hide(focus = false): void { open.value = false; more.value = false; if (focus) void Promise.resolve().then(() => moreButton.value?.focus()) }
 let pointer: { x: number; y: number; id: number } | null = null
 function press(event: PointerEvent): void {
@@ -73,13 +75,13 @@ onBeforeUnmount(cancel)
       <span v-if="item.body || !item.image" class="bubble-text" :class="{ 'is-big': big > 0 }" :style="big ? { fontSize: `${big === 1 ? 44 : big === 2 ? 36 : 30}px` } : undefined"><template v-for="(piece, index) in parts" :key="index"><button v-if="piece.mention && piece.mention.id !== 'everyone'" type="button" class="chip" :aria-label="`Open ${piece.text.slice(1)}'s card`" @click.stop="emit('player', piece.mention.id)">{{ piece.text }}</button><span v-else-if="piece.mention" class="chip is-all">{{ piece.text }}</span><template v-else>{{ piece.text }}</template></template></span>
       <VoiceNote v-if="item.voice && !preview" :voice="item.voice" :me-id="meId" :off="!mine && voiceEnabled === false" />
       <span v-else-if="item.voice" class="bubble-media-label">Voice message</span>
-      <small v-if="tail">{{ time }}<template v-if="item.editedAt && !item.deleted"> · Edited</template><template v-if="mine && !item.deleted"> · Sent</template></small>
+      <small v-if="tail">{{ time }}<template v-if="item.editedAt && !item.deleted"> · Edited</template><template v-if="mine && !item.deleted"> <span class="bubble-tick" aria-hidden="true">✓</span><span class="sr-only"> Sent</span></template></small>
     </div>
     <div v-if="item.reactions?.length" class="reactions" role="group" aria-label="Reactions">
       <button v-for="entry in item.reactions" :key="entry.emoji" type="button" class="reaction" :class="{ 'is-mine': entry.mine }" :aria-pressed="Boolean(entry.mine)" :aria-label="`${entry.emoji} ${entry.count}${entry.mine ? ', yours' : ''}`" :disabled="!canReact" @click="react(entry.emoji)">{{ entry.emoji }}<small>{{ entry.count }}</small></button>
     </div>
     <button v-if="canActions && !item.deleted" ref="moreButton" type="button" class="bubble-more" :aria-label="actionLabel" :aria-expanded="open" @click.stop="open ? hide() : show()">⋯</button>
-    <div v-if="open" class="menu" role="menu" @click.stop>
+    <div v-if="open" ref="menuBox" class="menu" role="menu" @click.stop>
       <div v-if="canReact && !more" class="menu-row">
         <button v-for="emoji in QUICK_REACTIONS" :key="emoji" type="button" role="menuitem" class="menu-emoji" :class="{ 'is-on': mineReaction === emoji }" :aria-label="`React ${emoji}`" @click="react(emoji)">{{ emoji }}</button>
         <button type="button" role="menuitem" class="menu-emoji" aria-label="More reactions" @click="more = true">＋</button>
@@ -136,6 +138,8 @@ onBeforeUnmount(cancel)
 .menu-item { min-height: 44px; padding: 0 10px; border: 0; border-radius: 10px; background: none; font: 600 14px var(--font); text-align: left; cursor: pointer; }
 .menu-item:hover, .menu-emoji:hover { background: var(--c-fill-2); }
 .bubble-more, .menu button { touch-action: manipulation; }
+.bubble-tick { margin-left: 3px; font-weight: 700; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .bubble-more:focus-visible, .menu button:focus-visible { outline: var(--focus); outline-offset: 2px; }
 .menu-item.is-quiet { color: var(--c-muted); }
 </style>

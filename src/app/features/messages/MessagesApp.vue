@@ -19,6 +19,7 @@ import type { Conversation, Message, MoneyRequestView, SearchResult, ThreadItem 
 import type { PlayerRef } from '../../../types/protocol.ts'
 import { call, cityId as socialCityId, discard, newClientId, onCallFrame, onSocketOpen, openThread, perform, refreshLife, reconnect as reconnectSocial, retry, send, social, start as startSocial, sync, threadView } from '../social/useSocial.ts'
 import BaseButton from '../../ui/BaseButton.vue'
+import BaseSheet from '../../ui/BaseSheet.vue'
 import EmptyState from '../../ui/EmptyState.vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import ListRow from '../../ui/ListRow.vue'
@@ -46,7 +47,7 @@ import { unreadChats, updatesCount } from './messagesModel.ts'
 import { announceLines, announceUi } from '../announce/announceStore.ts'
 import type { UpdateLine } from './messagesThread.ts'
 import { isOutbox, lastLine, partnerOf, provisionalKey, readOnlyReason, targetOf, threadKind, threadTitle, updateLines } from './messagesThread.ts'
-import { filterChats, sortChats, threadRows } from './messagesText.ts'
+import { filterChats, friendsToStart, onlyUnread, listTime, previewOf, sortChats, threadRows } from './messagesText.ts'
 import Composer from './Composer.vue'
 import MessageAction from './MessageAction.vue'
 import MessageBubble from './MessageBubble.vue'
@@ -60,6 +61,9 @@ import { isMessagePinsFrame } from './messagePinsFrame.ts'
 import FriendPicker from './FriendPicker.vue'
 import GroupManage from './GroupManage.vue'
 import ChatSettings from './ChatSettings.vue'
+import ChatMenu from './ChatMenu.vue'
+import AttachSheet from './AttachSheet.vue'
+import type { AttachChoice } from './AttachSheet.vue'
 import Lightbox from './Lightbox.vue'
 import { askedAboutNotifications, noteAskedAboutNotifications } from './notifyAsk.ts'
 
@@ -69,6 +73,8 @@ const { game, shell, api, menu } = useApp()
 const growth = useGrowth()
 const pins = createMessagePins({ fetchJson: game.fetchJson, newId: () => game.newId(), actor: () => game.session.value?.id ?? null, connected: () => game.connected.value })
 const pinPreview = ref<number | null>(null)
+/** The sheets over a chat: the pinned messages and the "+" of the message box. */
+const pinsOpen = ref(false), attachOpen = ref(false)
 const previewedPin = computed(() => pins.state.view?.items.find((entry) => entry.message.seq === pinPreview.value)?.message ?? null)
 const isPinned = (item: ThreadItem): boolean => !isOutbox(item) && Boolean(pins.state.view?.items.some((entry) => entry.message.seq === item.seq))
 
@@ -117,6 +123,8 @@ const gate = computed<{ text: string; warn: boolean; retry: boolean; link: boole
   if (!social.me) return { text: 'Loading…', warn: false, retry: false, link: false }
   return null
 })
+/** A lost connection does not take away what is already on screen: with the overview loaded, the chat stays (read-only, the box says why) under a note. */
+const blocked = computed(() => Boolean(gate.value && !(gate.value.link && me.value)))
 /** The one tap that resolves a lost connection ("Try again", "Start a new life"). */
 const linkAction = computed(() => linkWords(view.value)?.action ?? null)
 function runLinkAction(): void {
@@ -130,7 +138,7 @@ const socket = computed(() => { void tick.value; return social.socket })
 // ---- the thread ----------------------------------------------------------------------------
 const conv = computed<Conversation | null>(() => (ui.open ? me.value?.conversations.find((item) => item.id === ui.open) ?? null : null))
 watch([() => game.session.value?.id ?? null, () => ui.open, () => conv.value?.owner ?? null, () => conv.value?.members.map((member) => member.id).join(',') ?? ''], () => {
-  pinPreview.value = null
+  pinPreview.value = null; pinsOpen.value = false
   pins.setContext(game.session.value?.id ?? null, conv.value)
 }, { immediate: true, flush: 'sync' })
 const thread = computed(() => { void tick.value; const now = ui.open ? social.threads.get(ui.open) : undefined; return now ? { loaded: now.loaded, error: now.error } : null })
@@ -147,7 +155,7 @@ const composer = ref<InstanceType<typeof Composer> | null>(null)
 /** The message being answered, until it is sent or cancelled. */
 const replying = ref<Message | null>(null)
 const messageAction = ref<{ kind: 'edit' | 'delete' | 'forward'; item: Message } | null>(null)
-watch(() => ui.open, () => { messageAction.value = null })
+watch(() => ui.open, () => { messageAction.value = null; attachOpen.value = false })
 let actorTurn = 0
 // Of a long conversation only the newest lines are drawn; earlier ones are drawn as the reader scrolls up, and read from the server
 // when the kept lines run out (chunked rendering: a line's height is not known, so there is no fixed window).
@@ -340,8 +348,29 @@ async function hideChat(): Promise<void> {
   if (turn === actorTurn && result.ok && ui.open === key) groupLeft()
 }
 async function pinChat(on: boolean): Promise<void> { const key = ui.open; if (key) await perform(`/api/social/conversations/${encodeURIComponent(key)}/prefs`, { pin: on }) }
+function pickAttachment(choice: AttachChoice): void {
+  attachOpen.value = false
+  void nextTick(() => {
+    if (choice === 'picture') composer.value?.pickPicture()
+    else if (choice === 'voice') composer.value?.startVoice()
+    else if (choice === 'send-money' && partner.value) void sendMoneyTo(partner.value, title.value)
+    else if (choice === 'request-money') requests.openForm()
+  })
+}
+/** The menu was dismissed (not used): the keyboard goes back to the button that opened it. */
+function closeMenu(): void { ui.manage = false; void nextTick(() => rootBox.value?.querySelector<HTMLElement>('.messages-kebab')?.focus()) }
+/** The floating button opens the player search and puts the cursor in it (the search sits at the top of the list). */
+function toggleFind(): void { finding.value = !finding.value; if (finding.value) void nextTick(() => rootBox.value?.querySelector<HTMLInputElement>('#message-player-search')?.focus()) }
+const pinCount = computed(() => pins.state.view?.items.length ?? 0)
+const pinText = computed(() => { const line = pins.state.view?.items[0]?.message; return line ? line.body.trim() || (line.image ? 'Picture' : line.voice ? 'Voice message' : 'Message') : '' })
+const listMode = ref<'all' | 'unread'>('all')
 const chatFilter = ref('')
-const chatList = computed(() => sortChats(filterChats((me.value?.conversations ?? []).filter((item) => ui.tab !== 'groups' || item.kind === 'group'), chatFilter.value)))
+const chatList = computed(() => sortChats(filterChats((listMode.value === 'unread' ? onlyUnread(me.value?.conversations ?? []) : me.value?.conversations ?? []).filter((item) => ui.tab !== 'groups' || item.kind === 'group'), chatFilter.value)))
+/** Friends not yet written to: a tap starts the chat, so the list is never a dead end for someone who has friends. */
+const toStart = computed(() => (ui.tab === 'chats' && listMode.value === 'all' && !chatFilter.value && me.value ? friendsToStart(me.value.friends, me.value.conversations) : []))
+function startWith(friend: { id: string; name: string }): void { setOpen(provisionalKey(friend.id)); ui.openName = friend.name }
+const unreadTotal = computed(() => onlyUnread(me.value?.conversations ?? []).length)
+const clockNow = computed(() => { void now.value; return game.serverNow() })
 const showSettings = ref(false)
 const lightbox = ref<Message | null>(null)
 /** The picture button shows where pictures are switched on and the chat takes them: a direct chat with a friend, or a group. */
@@ -392,7 +421,7 @@ watch(() => game.session.value?.id ?? null, () => {
   actorTurn++
   resetMessageUi(); social.openConv = null
   messageAction.value = null; replying.value = null; quoted.value = null; lightbox.value = null
-  wantGroup.value = false; finding.value = false; chatFilter.value = ''; showSettings.value = false
+  wantGroup.value = false; finding.value = false; chatFilter.value = ''; showSettings.value = false; listMode.value = 'all'; pinsOpen.value = false; attachOpen.value = false
   Object.assign(find, { text: '', busy: false, results: null, error: null })
   Object.assign(group, { open: false, name: '', members: [], clientId: '', busy: false })
   earlier.busy = false; earlier.error = ''; exhausted.clear(); shown.value = FIRST_SHOWN
@@ -412,17 +441,12 @@ const stopPinFrames = onCallFrame((frame) => {
 const stopPinReconnect = onSocketOpen(() => pins.reconnect())
 onBeforeUnmount(() => { social.openConv = null; stopPinFrames(); stopPinReconnect(); pins.dispose() })
 
-const optionsButton = ref<HTMLElement | null>(null)
-function closeOptions(): void {
-  ui.manage = false; requests.closeForm()
-  void nextTick(() => optionsButton.value?.focus())
-}
-
 defineExpose({
   /** Esc inside a conversation: the open options panel (with its request form) closes first and focus returns to the control that opened it; then the next Esc goes back to the list, and the one after leaves the app. */
   keys(action: string): boolean {
     if (action !== 'cancel' || !ui.open) return false
-    if (ui.manage) { closeOptions(); return true }
+    // What is laid over the chat (the menu, the request form, pins, the attach sheet) closes first, and focus returns to the control that opened the menu; one Escape never leaves the chat with a sheet open.
+    if (pinsOpen.value || attachOpen.value || requests.ask.open || ui.manage) { const menu = ui.manage; pinsOpen.value = false; attachOpen.value = false; pinPreview.value = null; if (requests.ask.open) requests.closeForm(); ui.manage = false; if (menu) closeMenu(); return true }
     back()
     return true
   },
@@ -431,10 +455,13 @@ defineExpose({
 
 <template>
   <div ref="rootBox" class="messages" :class="{ 'panel-fill': Boolean(ui.open) && !gate }">
-    <div v-if="gate" class="messages-note" :class="{ 'is-warn': gate.warn }" role="status">
+    <div v-if="gate && blocked" class="messages-note" :class="{ 'is-warn': gate.warn }" role="status">
       {{ gate.text }} <button v-if="gate.link && linkAction" class="messages-link" type="button" @click="runLinkAction">{{ linkAction.label }}</button><button v-if="gate.retry" class="messages-link" type="button" @click="social.error = null; sync()">Retry</button>
     </div>
     <template v-else-if="me">
+      <div v-if="gate" class="messages-note" :class="{ 'is-warn': gate.warn, 'is-inset': ui.open }" role="status">
+        {{ gate.text }} <button v-if="gate.link && linkAction" class="messages-link" type="button" @click="runLinkAction">{{ linkAction.label }}</button>
+      </div>
       <div v-if="socket !== 'open'" class="messages-note" :class="{ 'is-warn': socket === 'offline', 'is-inset': ui.open }" role="status">
         <template v-if="socket === 'offline'">Live updates are off. <button class="messages-link" type="button" @click="reconnectSocial()">Reconnect</button></template>
         <template v-else>Connecting live updates… new messages still load when you open a chat.</template>
@@ -449,35 +476,40 @@ defineExpose({
           <RowMark v-else :name="title" :seed="conv?.with ?? ui.open" />
           <h3 v-if="withFounder"><button type="button" class="messages-name" :aria-label="`${title}: open profile`" @click="conv?.with && shell.open('person', { player: conv.with, name: title })">{{ title }}</button><FounderTag /><ResidentBadge v-if="conv?.kind === 'dm' && conv.with" :id="conv.with" /><small :class="presenceOf(conv?.with) ? `messages-presence is-${presenceOf(conv?.with)}` : undefined">{{ (conv?.kind === 'dm' && presenceWord(conv.with)) || threadKind(conv) }}</small></h3>
           <h3 v-else><button v-if="partner" type="button" class="messages-name" :aria-label="`${title}: open profile`" @click="shell.open('person', { player: partner, name: title })">{{ title }}</button><template v-else>{{ title }}</template><small :class="partner && presenceOf(partner) ? `messages-presence is-${presenceOf(partner)}` : undefined">{{ (partner && presenceWord(partner)) || threadKind(conv) }}</small></h3>
-          <BaseButton v-if="conv?.kind === 'group'" small :aria-expanded="ui.manage" @click="ui.manage = !ui.manage">{{ ui.manage ? 'Done' : 'Group' }}</BaseButton>
+          <BaseButton v-if="conv?.kind === 'group'" small :aria-expanded="ui.manage" aria-haspopup="dialog" @click="ui.manage = true">Group</BaseButton>
           <template v-else-if="partner">
             <!-- A friend who is not in the game cannot be rung: Ping takes Call's place, so the header never holds a fourth control. -->
             <PingButton v-if="pingFor(partner)" compact :id="partner" :name="title" />
             <PersonCallButton v-else compact :id="partner" :name="title" :status="presenceOf(partner) ?? undefined" />
-            <button ref="optionsButton" type="button" class="messages-kebab" aria-label="Chat options" :aria-expanded="ui.manage" @click="ui.manage = !ui.manage">⋯</button>
+            <button type="button" class="messages-kebab" aria-label="Chat options" aria-haspopup="menu" :aria-expanded="ui.manage" @click="ui.manage = !ui.manage">⋯</button>
           </template>
         </header>
         <PingStrip v-if="partner && pingFor(partner)" inset :id="partner" :name="title" />
         <div v-if="partner && conv?.kind === 'dm'" class="messages-visit"><VisitButton compact :id="partner" :name="title" /></div>
         <div v-if="conv?.kind === 'house'" class="messages-note is-inset">House chat: only the host and the guests inside can read this.</div>
 
-        <PinnedMessages v-if="conv && pins.state.view" :pins="pins.state.view" :kind="conv.kind" :loading="pins.state.loading" :pending="pins.state.pending" :retryable="pins.state.retryable" :disabled="!connected" :error="pins.state.error" @open="(message) => { pinPreview = message?.seq ?? null }" @clear="pins.change({ clearAll: true })" @retry="pins.retryChange" @dismiss="pins.dismissRetry" />
+        <button v-if="conv && pinCount" type="button" class="messages-pinbar" data-chat="pinbar" :aria-label="`Pinned messages, ${pinCount}: ${pinText}. Open the list`" @click="pinsOpen = true"><span aria-hidden="true">📌</span><span class="messages-pinbar-text">{{ pinText }}</span><small v-if="pinCount > 1">{{ pinCount }}</small></button>
         <div v-else-if="conv && (pins.state.loading || pins.state.error)" class="messages-note is-inset" :class="{ 'is-warn': pins.state.error }" :role="pins.state.error ? 'alert' : 'status'">
           {{ pins.state.error || 'Loading pinned messages…' }} <button v-if="pins.state.error" type="button" class="messages-link" @click="pins.load()">Try again</button>
         </div>
-        <section v-if="previewedPin" class="messages-pin-preview" aria-label="Pinned message">
-          <MessageBubble :item="previewedPin" :me-id="me.me.id" :group="isGroup" :head="true" :tail="true" :time="time(previewedPin.at)" :can-react="false" :can-actions="true" :can-pin="Boolean(pins.state.view?.canManage && canPinMessage(previewedPin))" :pinned="true" :pin-pending="pins.state.pending" :pin-blocked="pins.state.retryable" :pin-offline="!connected" preview @pin="(item, pinned) => pins.change({ message: item, pinned })" @reply="(line) => { replying = line; composer?.focus() }" @player="openCard" @jump="jump" @report-voice="reportVoice" @edit="(item) => { messageAction = { kind: 'edit', item } }" @remove="(item) => { messageAction = { kind: 'delete', item } }" @forward="(item) => { messageAction = { kind: 'forward', item } }" />
-          <button type="button" aria-label="Close pinned message" @click="pinPreview = null">Close</button>
-        </section>
+        <BaseSheet v-if="conv && pins.state.view" :open="pinsOpen" label="Pinned messages" @close="pinsOpen = false; pinPreview = null">
+          <div class="messages-sheet-body">
+            <PinnedMessages :pins="pins.state.view" :kind="conv.kind" :loading="pins.state.loading" :pending="pins.state.pending" :retryable="pins.state.retryable" :disabled="!connected" :error="pins.state.error" @open="(message) => { pinPreview = message?.seq ?? null }" @clear="pins.change({ clearAll: true })" @retry="pins.retryChange" @dismiss="pins.dismissRetry" />
+            <section v-if="previewedPin" class="messages-pin-preview" aria-label="Pinned message">
+              <MessageBubble :item="previewedPin" :me-id="me.me.id" :group="isGroup" :head="true" :tail="true" :time="time(previewedPin.at)" :can-react="false" :can-actions="true" :can-pin="Boolean(pins.state.view?.canManage && canPinMessage(previewedPin))" :pinned="true" :pin-pending="pins.state.pending" :pin-blocked="pins.state.retryable" :pin-offline="!connected" preview @pin="(item, pinned) => pins.change({ message: item, pinned })" @reply="(line) => { replying = line; pinsOpen = false; composer?.focus() }" @player="openCard" @jump="(seq) => { pinsOpen = false; jump(seq) }" @report-voice="reportVoice" @edit="(item) => { pinsOpen = false; messageAction = { kind: 'edit', item } }" @remove="(item) => { pinsOpen = false; messageAction = { kind: 'delete', item } }" @forward="(item) => { pinsOpen = false; messageAction = { kind: 'forward', item } }" />
+              <button type="button" aria-label="Close pinned message" @click="pinPreview = null">Close</button>
+            </section>
+            <BaseButton class="messages-sheet-done" small @click="pinsOpen = false; pinPreview = null">Done</BaseButton>
+          </div>
+        </BaseSheet>
 
-        <GroupManage v-if="conv?.kind === 'group' && ui.manage" :conv="conv" :me="me" @left="groupLeft" @player="openCard" />
-        <section v-else-if="partner && ui.manage" class="messages-manage" aria-label="Chat options">
-          <div class="messages-manage-head"><b>Chat options</b><BaseButton small data-chat="options-done" aria-label="Close chat options" @click="closeOptions">Done</BaseButton></div>
-          <span class="bubble-actions is-start">
-            <BaseButton small data-chat="send-money" @click="sendMoneyTo(partner, title)">Send money</BaseButton>
-            <BaseButton v-if="canRequest" small data-chat="request-money" :disabled="!connected" :reason="connected ? null : 'Reconnect to ask for money.'" @click="requests.openForm()">Request money</BaseButton>
-          </span>
-          <form v-if="requests.ask.open && canRequest" ref="requestForm" class="messages-request" aria-label="Request money" @submit.prevent="sendRequest">
+        <BaseSheet v-if="conv?.kind === 'group'" :open="ui.manage" label="Group" @close="ui.manage = false">
+          <div class="messages-sheet-body"><GroupManage v-if="ui.manage" :conv="conv" :me="me" @left="groupLeft" @player="openCard" /></div>
+        </BaseSheet>
+        <ChatMenu v-else-if="partner && ui.manage" :pins="pinCount" :pins-shown="Boolean(conv && pins.state.view && (pinCount || pins.state.view.canManage))" :can-request="canRequest" :chat-exists="conv?.kind === 'dm'" :chat-pinned="conv?.pinned === true" :offline="!connected" @close="closeMenu" @pins="ui.manage = false; pinsOpen = true" @send-money="ui.manage = false; sendMoneyTo(partner, title)" @request-money="ui.manage = false; requests.openForm()" @pin-chat="(on) => { ui.manage = false; pinChat(on) }" @hide="ui.manage = false; hideChat()" />
+        <BaseSheet v-if="partner" :open="requests.ask.open" label="Request money" @close="requests.closeForm()">
+          <form v-if="requests.ask.open && canRequest" ref="requestForm" class="messages-request messages-sheet-body" aria-label="Request money" @submit.prevent="sendRequest">
+            <h3>Request money</h3>
             <label for="message-request-amount">Amount to ask for (₦)</label>
             <input id="message-request-amount" v-model="requests.ask.amount" class="messages-field" name="amount" inputmode="numeric" pattern="[0-9]*" maxlength="13" required :aria-invalid="requests.ask.error ? true : undefined" aria-describedby="message-request-help">
             <label for="message-request-note">Note (optional)</label>
@@ -488,12 +520,8 @@ defineExpose({
               <BaseButton small @click="requests.closeForm()">Cancel</BaseButton>
             </span>
           </form>
-          <template v-if="conv?.kind === 'dm'">
-          <label class="messages-switch"><input type="checkbox" :checked="conv.pinned === true" @change="pinChat(($event.target as HTMLInputElement).checked)"> Pin to the top of my chats</label>
-          <BaseButton small variant="danger" @click="hideChat">Delete this chat for me</BaseButton>
-          <div class="messages-note">The other person keeps their copy. The chat comes back if either of you writes again.</div>
-          </template>
-        </section>
+        </BaseSheet>
+        <AttachSheet :open="attachOpen" :pictures="pictureAllowed" :voice="voiceAllowed && !readOnly" :money="Boolean(partner) && !readOnly" :offline="!connected" @close="attachOpen = false" @pick="pickAttachment" />
 
         <div class="messages-body">
           <div ref="threadBox" class="messages-thread" aria-live="polite" @scroll.passive="onScroll">
@@ -531,7 +559,7 @@ defineExpose({
         <footer class="messages-foot">
           <span v-if="readOnly" class="messages-why">{{ readOnly }}</span>
           <MessageAction v-if="messageAction" :key="`${messageAction.kind}:${messageAction.item.id}`" :kind="messageAction.kind" :item="messageAction.item" :conversations="me.conversations" :disabled="Boolean(readOnly)" :max="me.limits.body" @close="messageAction = null" />
-          <Composer ref="composer" :pictures="pictureAllowed" :voice="voiceAllowed" :target="targetOf(ui.open)" :new-id="newClientId" :conv="ui.open" :members="isGroup && conv?.kind === 'group' ? conv.members : []" :me-id="me.me.id" :admin="conv?.owner === me.me.id" :max="me.limits.body" :disabled="Boolean(readOnly)" :reply="replying" :prefill="ui.prefill" @send="sendFromComposer" @cancel-reply="replying = null" @sent-picture="pictureSent" @sent-voice="pictureSent" />
+          <Composer ref="composer" :pictures="pictureAllowed" :voice="voiceAllowed" :target="targetOf(ui.open)" :new-id="newClientId" :conv="ui.open" :members="isGroup && conv?.kind === 'group' ? conv.members : []" :me-id="me.me.id" :admin="conv?.owner === me.me.id" :max="me.limits.body" :disabled="Boolean(readOnly)" :reply="replying" :prefill="ui.prefill" @send="sendFromComposer" @cancel-reply="replying = null" @attach="attachOpen = true" @sent-picture="pictureSent" @sent-voice="pictureSent" />
         </footer>
       </div>
 
@@ -545,7 +573,6 @@ defineExpose({
 
         <div v-if="ui.tab !== 'updates'" role="tabpanel">
           <CompanionPin />
-          <BaseButton class="messages-new" @click="finding = !finding" :aria-expanded="finding">{{ finding ? 'Close player search' : 'New message' }}</BaseButton>
           <label v-if="finding" class="messages-find-label" for="message-player-search">Find a player</label>
           <form v-if="finding" class="messages-form is-search" role="search" @submit.prevent="search">
             <input id="message-player-search" v-model="find.text" name="q" maxlength="36" placeholder="Find a player by name" aria-label="Find a player by name" autocomplete="off">
@@ -574,17 +601,27 @@ defineExpose({
           </form>
 
           <input v-if="me.conversations.length > 4" v-model="chatFilter" class="messages-filter" type="search" name="chatfilter" placeholder="Search your chats" aria-label="Search your chats" autocomplete="off">
+          <div v-if="ui.tab === 'chats' && (unreadTotal || listMode === 'unread')" class="messages-chips" role="group" aria-label="Show">
+            <button type="button" :aria-pressed="listMode === 'all'" @click="listMode = 'all'">All</button>
+            <button type="button" :aria-pressed="listMode === 'unread'" @click="listMode = 'unread'">Unread<span v-if="unreadTotal" class="messages-badge is-quiet">{{ unreadTotal }}</span></button>
+          </div>
           <ListRows v-if="chatList.length" label="Chats">
             <LazyList :items="chatList" :item-key="(chat: Conversation) => chat.id" :has-more="Boolean(me.conversationsMore?.next) && !chatFilter" :loading="chatsMore" :row-height="60" label="chats" :key="ui.tab" :memory="ui.tab" @more="moreChats">
             <template #row="{ item }">
-            <ListRow as="button" :data-conv="item.id" :title="`${item.pinned ? '📌 ' : ''}${item.name}${item.muted ? ' 🔕' : ''}`" :sub="lastLine(item, me.me.id)" :unread="item.unread > 0" @click="openConversation(item.id)">
+            <ListRow as="button" :data-conv="item.id" :title="item.name" :unread="item.unread > 0" @click="openConversation(item.id)">
               <template #icon>
-                <RowMark v-if="item.kind === 'group'" :name="item.name" :seed="item.id" />
-                <RowMark v-else-if="item.kind === 'house'" round>🏠</RowMark>
-                <RowMark v-else :name="item.name" :seed="item.with ?? item.id" />
+                <span class="messages-avatar" :class="{ 'is-online': item.kind === 'dm' && presenceOf(item.with) === 'online' }">
+                  <RowMark v-if="item.kind === 'group'" :name="item.name" :seed="item.id" />
+                  <RowMark v-else-if="item.kind === 'house'" round>🏠</RowMark>
+                  <RowMark v-else :name="item.name" :seed="item.with ?? item.id" />
+                </span>
+              </template>
+              <template #sub>
+                <span v-if="item.kind === 'dm' && presenceOf(item.with) === 'online'" class="sr-only">Online. </span>
+                <span class="messages-preview" :class="{ 'is-unread': item.unread > 0 }"><b v-if="previewOf(item, me.me.id).who">{{ previewOf(item, me.me.id).who }}: </b><span v-if="previewOf(item, me.me.id).kind === 'picture'" aria-hidden="true">📷 </span><span v-else-if="previewOf(item, me.me.id).kind === 'voice'" aria-hidden="true">🎤 </span>{{ previewOf(item, me.me.id).text }}</span>
               </template>
               <template #end>
-                <span class="messages-when"><small v-if="item.kind === 'dm' && presenceOf(item.with)" class="messages-presence" :class="`is-${presenceOf(item.with)}`">{{ presenceOf(item.with) === 'online' ? 'Online' : 'Offline' }}</small><small v-if="item.last?.at">{{ time(item.last.at) }}</small><span v-if="item.mentions" class="messages-at" aria-label="You were mentioned">@</span><span v-if="item.unread" class="messages-badge" :class="{ 'is-quiet': item.muted }" :aria-label="`${item.unread} unread`">{{ item.unread }}</span></span>
+                <span class="messages-when"><small v-if="item.last?.at" :class="{ 'is-unread': item.unread > 0 }">{{ listTime(item.last.at, clockNow, time) }}</small><span class="messages-marks"><span v-if="item.pinned" class="messages-mark" role="img" aria-label="Pinned">📌</span><span v-if="item.muted" class="messages-mark" role="img" aria-label="Muted">🔕</span><span v-if="item.mentions" class="messages-at" aria-label="You were mentioned">@</span><span v-if="item.unread" class="messages-badge" :class="{ 'is-quiet': item.muted }" :aria-label="`${item.unread} unread`">{{ item.unread }}</span></span></span>
               </template>
             </ListRow>
             </template>
@@ -592,9 +629,19 @@ defineExpose({
           </ListRows>
           <BaseButton v-if="!chatList.length && me.conversationsMore?.next && !chatFilter" small :disabled="chatsMore" @click="moreChats">Load more conversations</BaseButton>
           <p v-if="!chatList.length && me.conversations.length" class="messages-note" role="status">{{ ui.tab === 'groups' ? 'No matching groups. Create a group with your friends.' : 'No chat has that name.' }}</p>
-          <EmptyState v-if="!me.conversations.length" icon="messages" title="No chats yet" text="Tap New message to find a player, or tap someone at a venue and press Chat. You can also make a group with your friends.">
+          <template v-if="toStart.length">
+            <SectionTitle>{{ me.conversations.length ? 'Friends to message' : 'Start a chat with a friend' }}</SectionTitle>
+            <ListRows label="Friends to message">
+              <ListRow v-for="friend in toStart" :key="friend.id" as="button" :data-friend="friend.id" :title="friend.name" :sub="presenceOf(friend.id) === 'online' ? 'Online now. Tap to say hello' : 'Tap to say hello'" @click="startWith(friend)">
+                <template #icon><span class="messages-avatar" :class="{ 'is-online': presenceOf(friend.id) === 'online' }"><RowMark :name="friend.name" :seed="friend.id" /></span></template>
+                <template #end><GameIcon name="messages" :size="20" /></template>
+              </ListRow>
+            </ListRows>
+          </template>
+          <EmptyState v-if="!me.conversations.length && !toStart.length" icon="messages" title="No chats yet" text="Tap New message to find a player, or tap someone at a venue and press Chat. You can also make a group with your friends.">
             <BaseButton @click="shell.open('people')">See who is here</BaseButton>
           </EmptyState>
+          <div class="messages-fab"><BaseButton class="messages-new" variant="primary" :aria-expanded="finding" @click="toggleFind"><GameIcon name="plus" :size="18" /> {{ finding ? 'Close player search' : 'New message' }}</BaseButton></div>
           <BaseButton small class="messages-settings-toggle" :aria-expanded="showSettings" @click="showSettings = !showSettings">{{ showSettings ? 'Hide chat settings' : 'Chat settings' }}</BaseButton>
           <ChatSettings v-if="showSettings" :prefs="me.prefs" />
         </div>
@@ -640,9 +687,31 @@ defineExpose({
 </template>
 
 <style scoped>
-.messages-new { margin: 10px 0; width: 100%; }
+.messages-fab { position: sticky; bottom: 14px; z-index: 2; display: flex; justify-content: flex-end; margin: 12px 0 0; pointer-events: none; }
+.messages-fab .messages-new { pointer-events: auto; min-height: 52px; padding: 0 20px; border-radius: 26px; box-shadow: var(--e-2, var(--e-1)); }
+.messages-avatar { position: relative; display: inline-grid; }
+.messages-avatar.is-online::after { content: ''; position: absolute; right: -1px; bottom: -1px; width: 12px; height: 12px; border: 2px solid #fff; border-radius: 50%; background: var(--c-green-dark); }
+.messages-preview { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.messages-preview b { font-weight: 600; color: var(--c-ink-2); }
+.messages-preview.is-unread { color: var(--c-ink); font-weight: 600; }
+.messages-marks { display: flex; align-items: center; gap: 4px; min-height: 22px; }
+.messages-mark { font-size: 13px; line-height: 1; }
+.messages-when small.is-unread { color: var(--c-green-dark); font-weight: 700; }
+.messages-chips { display: flex; gap: 8px; margin: 0 0 var(--s-2); }
+.messages-chips button { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 16px; border: 1px solid var(--c-line); border-radius: 20px; background: #fff; font: 600 13px var(--font); color: var(--c-ink-2); cursor: pointer; }
+.messages-chips button[aria-pressed='true'] { border-color: var(--c-green-dark); background: #eef8f1; color: var(--c-green-dark); }
+.messages-chips button:focus-visible { outline: var(--focus); outline-offset: 2px; }
+.messages-pinbar { flex: none; display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 0 14px; border: 0; border-bottom: 1px solid var(--c-line); background: #fff; font: 600 13px var(--font); text-align: left; color: var(--c-ink-2); cursor: pointer; }
+.messages-pinbar-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.messages-pinbar small { color: var(--c-muted); }
+.messages-pinbar:focus-visible { outline: var(--focus); outline-offset: -3px; }
+.messages-sheet-body { padding: 18px 16px 16px; max-height: inherit; overflow-y: auto; overscroll-behavior: contain; }
+.messages-sheet-done { margin-top: 10px; }
+.messages-sheet-body h3 { margin: 0 0 6px; font-size: 16px; }
 .messages-find-label { display: block; margin: 10px 0 6px; font-size: 14px; font-weight: 650; }
-.messages-name { display: block; max-width: 100%; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+.messages-name { position: relative; display: block; max-width: 100%; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+.messages-head :deep(.ui-button) { min-height: var(--tap); }
+.messages-name::after { content: ''; position: absolute; inset: -10px -8px -22px; }
 .messages-presence { font-weight: 700; color: var(--c-muted); }
 .messages-presence::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 5px; border-radius: 50%; background: currentColor; vertical-align: 1px; }
 .messages-presence.is-online { color: var(--c-green-dark); }
@@ -655,7 +724,7 @@ defineExpose({
 .messages-note.is-inset { margin: 6px 14px; }
 .messages-visit { display: flex; margin: 4px 14px 0; }
 .messages-visit:empty { display: none; }
-.messages-pin-preview { flex: none; display: flex; align-items: center; gap: 8px; margin: 6px 10px 0; padding: 8px 10px; border-left: 3px solid var(--c-green-dark); background: var(--c-fill); font-size: 12px; }
+.messages-pin-preview { flex: none; display: flex; align-items: center; gap: 8px; margin: 8px 0 0; padding: 8px 10px 8px 34px; border-left: 3px solid var(--c-green-dark); background: var(--c-fill); font-size: 12px; }
 .messages-pin-preview :deep(.bubble-wrap) { flex: 1; min-width: 0; }
 .messages-pin-preview button { min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--c-green-dark); font: 650 12px var(--font); cursor: pointer; }
 .messages-link { min-height: 32px; padding: 0 4px; border: 0; background: none; color: var(--c-green-dark); font: 600 12px var(--font); text-decoration: underline; cursor: pointer; }
@@ -671,11 +740,6 @@ defineExpose({
 .messages-form.is-search input { border-radius: var(--r-sm); border-color: var(--c-line); background: #fff; box-shadow: var(--ring); }
 .messages-field { width: 100%; margin: 4px 0; }
 .messages-manage { display: grid; gap: 6px; margin: 0 0 var(--s-2); padding: var(--s-3) var(--s-4); border: 1px solid var(--c-line); border-radius: var(--r-md); background: #fff; font-size: 13px; }
-.messages-chat .messages-manage { flex: none; margin: 8px 12px; max-height: 60%; overflow-y: auto; overscroll-behavior: contain; scroll-padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); padding-bottom: calc(var(--s-3) + env(safe-area-inset-bottom, 0px)); }
-/* While the options are open the thread gives way (it keeps what is left), and on a short screen the composer waits, so the fields and Send stay on screen. */
-.messages-chat.is-managing .messages-thread { min-height: 0; }
-@media (max-height: 680px) { .messages-chat.is-managing .messages-foot { display: none; } }
-.messages-manage-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .messages-manage ul { display: flex; flex-wrap: wrap; gap: 2px 12px; margin: 0; padding: 0; list-style: none; }
 .messages-add { display: flex; flex-wrap: wrap; gap: 6px; }
 .messages-checks { display: grid; gap: 2px; max-height: 150px; overflow-y: auto; margin: 6px 0; }
@@ -695,11 +759,17 @@ defineExpose({
 .messages-update.is-unread .messages-update-body > b { font-weight: 700; }
 .messages-update-body > small { font-size: 12px; line-height: 1.35; color: var(--c-muted); }
 
-.messages-chat { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+/* A short screen (a phone with its keyboard up): the header stays, the thread gets the room; pins stay in the menu and the notification question waits. */
+@media (max-height: 560px) {
+  .messages-pinbar, .messages-ask-notify, .messages-visit { display: none; }
+  .messages-chat .messages-thread { min-height: 48px; }
+  .messages-head { padding-top: 2px; padding-bottom: 2px; }
+}
+.messages-chat { position: relative; display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .messages-head { flex: none; display: flex; align-items: center; gap: 10px; padding: 8px 12px 8px 6px; background: #fff; border-bottom: 1px solid var(--c-line); }
 /* !important because the sheet's own heading rule outranks a scoped class until that sheet is converted. */
-.messages-head h3 { flex: 1; min-width: 0; margin: 0 !important; font-size: 15px !important; color: var(--c-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.messages-head h3 small { display: block; font-size: 11px; font-weight: 500; color: var(--c-muted); }
+.messages-head h3 { flex: 1; min-width: 0; margin: 0 !important; font-size: 15px !important; color: var(--c-ink); white-space: nowrap; }
+.messages-head h3 small { display: block; overflow: hidden; text-overflow: ellipsis; font-size: 11px; font-weight: 500; color: var(--c-muted); }
 .messages-back { flex: none; display: grid; place-items: center; width: var(--tap); height: var(--tap); border: 0; border-radius: 50%; background: none; color: var(--c-ink); cursor: pointer; }
 .messages-thread { flex: 1; display: flex; flex-direction: column; gap: 6px; min-height: 120px; overflow-y: auto; padding: 12px; overscroll-behavior: contain; }
 .bubble { align-self: flex-start; max-width: 80%; padding: 8px 12px 6px; border-radius: 18px 18px 18px 5px; background: #fff; box-shadow: var(--ring); font-size: 14px; line-height: 1.35; overflow-wrap: anywhere; white-space: pre-wrap; }
@@ -713,7 +783,7 @@ defineExpose({
 .bubble.is-sys { align-self: center; padding: 2px; background: none; box-shadow: none; color: var(--c-muted); font-size: 11px; }
 .bubble-actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; margin-top: 6px; }
 .bubble-actions.is-start { justify-content: flex-start; }
-.messages-foot { flex: none; padding: 8px 10px 22px; background: #fff; border-top: 1px solid var(--c-line); }
+.messages-foot { flex: none; padding: 8px 10px calc(14px + env(safe-area-inset-bottom, 0px)); background: #fff; border-top: 1px solid var(--c-line); }
 .messages-compose { display: flex; gap: 8px; margin: 0; }
 .messages-compose input { flex: 1; min-width: 0; min-height: var(--tap); padding: 10px 16px; border: 1px solid transparent; border-radius: var(--r-pill); background: var(--c-fill); font: 400 15px var(--font); }
 .messages-compose button { flex: none; display: grid; place-items: center; width: var(--tap); height: var(--tap); border: 0; border-radius: 50%; background: var(--app-tint, var(--c-green-dark)); color: #fff; cursor: pointer; }
@@ -729,9 +799,10 @@ defineExpose({
 .messages-at { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: var(--c-green-dark); color: #fff; font-size: 11px; font-weight: 700; }
 .messages-update > .bubble-actions { flex-basis: 100%; justify-content: flex-start; margin: -4px 0 2px; padding-left: 50px; }
 .messages-badge.is-quiet { background: var(--c-muted); }
-.messages-ask-notify { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 12px 6px; padding: 8px 12px; border-radius: var(--r-md); background: #eef8f1; font-size: 13px; }
-.messages-ask-notify span { flex: 1 1 200px; }
-.messages-kebab { flex: none; min-width: 36px; min-height: 36px; border: 0; border-radius: 50%; background: none; font-size: 20px; cursor: pointer; }
+.messages-ask-notify { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; margin: 0 10px 6px; padding: 4px 6px 4px 12px; border-radius: var(--r-md); background: #eef8f1; font-size: 12px; line-height: 1.3; }
+.messages-ask-notify span { flex: 1 1 150px; }
+.messages-ask-notify :deep(.ui-button) { min-height: 40px; }
+.messages-kebab { flex: none; min-width: var(--tap); min-height: var(--tap); border: 0; border-radius: 50%; background: none; font-size: 20px; cursor: pointer; }
 .messages-switch { display: flex; align-items: center; gap: 8px; min-height: 36px; font-weight: 500; }
 .messages-settings-toggle { margin-top: var(--s-3); }
 :deep(.bubble-wrap.is-flash .bubble) { box-shadow: 0 0 0 3px #e8a643; transition: box-shadow .3s; }

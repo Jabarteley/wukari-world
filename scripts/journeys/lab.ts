@@ -30,19 +30,19 @@ export interface Lab {
   stop(): Promise<void>;
 }
 
-export async function startLab(port: number): Promise<Lab> {
+export async function startLab(port: number, extraEnv: Record<string, string> = {}): Promise<Lab> {
   const dir = mkdtempSync(join(tmpdir(), 'journey-lab-'));
   const dataDir = join(dir, 'data'); mkdirSync(dataDir);
   let offset = 0;
   const now = (): number => Date.now() + offset;
   const env = {
     ACCOUNTS_FIREBASE_PROJECT_ID: PROJECT, ACCOUNTS_FIREBASE_API_KEY: 'journey-local-api-key-0000000000000000000000',
-    FOUNDER_EMAIL_SHA256: createHash('sha256').update(FOUNDER).digest('hex'), NEW_SESSIONS_PER_ADDRESS: '1000',
+    FOUNDER_EMAIL_SHA256: createHash('sha256').update(FOUNDER).digest('hex'), NEW_SESSIONS_PER_ADDRESS: '1000', ...extraEnv,
   };
   const key = await makeKey('journey-local-key');
   const provider = fakeProvider([key]);
   const server = await createServer({
-    dataDir, distDir: resolve('dist'), env, publicOrigin: `http://127.0.0.1:${port}`, moderatorToken: OPERATOR, now,
+    dataDir, distDir: resolve(process.env['JOURNEY_DIST'] ?? 'dist'), env, publicOrigin: `http://127.0.0.1:${port}`, moderatorToken: OPERATOR, now,
     telemetry: createServerTelemetry({ env: {}, now }),
     fetch: (url, init) => provider.fetch(url, init as { body?: unknown }),
   });

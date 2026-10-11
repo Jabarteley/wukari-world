@@ -19,11 +19,11 @@ import type { AmbientPose } from './plan.ts';
 
 /**
  * What a figure is asked to look like: who it is and what it is doing. `step` is which of the two walking steps. `lean` asks for the cheap
- * kind (about 150 triangles, one mesh) that a place can afford many of; the other is the game's own person (up to 600).
+ * kind (about 200 triangles, one mesh) that a place can afford many of; the other is the game's own person (up to 600).
  */
 export interface FigureSpec { seed: string; pose: AmbientPose; step: number; seat: number; lean?: boolean }
 /** What a figure of each kind costs at most, in triangles: the layer plans its budget with these. */
-export const FIGURE_COST = Object.freeze({ full: 450, lean: 170 })
+export const FIGURE_COST = Object.freeze({ full: 450, lean: 230 })
 
 /** The figure, standing at the origin facing +z, ready to be placed by its transform. Built once per (person, pose) and reused. */
 export function makeFigure(kit: Kit, spec: FigureSpec): AvatarGroup {
@@ -50,21 +50,29 @@ function makeLeanFigure(kit: Kit, spec: FigureSpec): AvatarGroup {
       limb(side * 0.2, hip, 0.75, Math.max(0.3, hip - 0.1), 0.11, trousers, 0)
     }
   } else {
-    limb(-0.2, hip, 0, 1.28, 0.13, trousers, legSwing, spec.pose === 'relax' ? -0.1 : 0)
-    limb(0.2, hip, 0, 1.28, 0.13, trousers, -legSwing, spec.pose === 'relax' ? 0.16 : 0)
+    limb(-0.2, hip, 0, 1.28, 0.15, trousers, legSwing, spec.pose === 'relax' ? -0.1 : 0)
+    limb(0.2, hip, 0, 1.28, 0.15, trousers, -legSwing, spec.pose === 'relax' ? 0.16 : 0)
   }
   batch.cyl(0, hip + 0.6, 0, 0.36, 1.2, shirt, { seg: 6, top: 0.8 })
   batch.ico(0, hip + 1.45, 0, 0.26, 0.29, 0.26, skin)
   batch.ico(0, hip + 1.58, -0.02, 0.28, 0.2, 0.28, hair)
   const shoulder = hip + 1.1
   const swing = spec.pose === 'walk' ? -legSwing * 1.1 : 0
-  const arms: Record<string, [number, number, number, number]> = {
-    stand: [0, 0.12, 0, -0.12], walk: [swing, 0.08, -swing, -0.08], sit: [-0.5, 0.1, -0.5, -0.1], relax: [-0.25, 0.1, 0.1, -0.2],
-    work: [0, 0.12, -1.35, -0.12], wave: [0, 0.12, 0, -2.7],
+  // [left arm swing, left arm out, left elbow, right arm swing, right arm out, right elbow]
+  const arms: Record<string, [number, number, number, number, number, number]> = {
+    stand: [0, 0.1, -0.15, 0, -0.1, -0.15], walk: [swing, 0.06, -0.3, -swing, -0.06, -0.3], sit: [-0.7, 0.1, -0.9, -0.7, -0.1, -0.9], relax: [-0.3, 0.1, -0.7, 0.1, -0.2, -0.1],
+    work: [0, 0.1, -0.15, -0.7, -0.1, -1.7], wave: [0, 0.1, -0.15, 0, -2.5, -0.5],
   }
-  const [lx, lz, rx, rz] = arms[spec.pose] ?? arms.stand as [number, number, number, number]
-  limb(-0.45, shoulder, 0, 1.05, 0.1, skin, lx, lz)
-  limb(0.45, shoulder, 0, 1.05, 0.1, skin, rx, rz)
+  const [lx, lz, le, rx, rz, re] = arms[spec.pose] ?? arms.stand as [number, number, number, number, number, number]
+  const sleeve = (h >>> 3) % 3 === 0 ? skin : shirt
+  const arm = (side: number, swingX: number, out: number, elbow: number): void => {
+    batch.at(side * 0.46, shoulder, 0, 0, () => {
+      batch.cyl(0, -0.27, 0, 0.125, 0.54, sleeve, { seg: 5 })
+      batch.at(0, -0.54, 0, 0, () => { batch.cyl(0, -0.25, 0, 0.1, 0.5, skin, { seg: 5 }) }, elbow)
+    }, swingX, out)
+  }
+  arm(-1, lx, lz, le)
+  arm(1, rx, rz, re)
   const built = batch.build(sceneMaterials(kit))
   const group = new THREE.Group() as AvatarGroup
   group.scale.set(height, height, height)

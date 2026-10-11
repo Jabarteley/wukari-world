@@ -20,7 +20,7 @@ const last = computed(() => props.rows.at(-1))
       <li v-for="row in rows" :key="row.id" class="ranking-row" :class="{ 'is-you': row.you, 'is-first': row.rank === 1 }">
         <span class="ranking-rank" :aria-label="`Rank ${row.rank}`">{{ row.rank }}</span>
         <CivicAvatar :name="row.name" :seed="row.name" />
-        <span class="ranking-person"><strong>{{ row.name }}</strong><small v-if="row.you">You</small></span>
+        <span class="ranking-person"><strong>{{ row.name }}</strong><small v-if="row.you">You</small><small v-if="row.agent">AI-played</small></span>
         <b class="ranking-amount">{{ money(row.amount) }}</b>
       </li>
     </ol>

@@ -270,6 +270,11 @@ interface PatternRoute { key: string; method: string; segments: string[]; handle
 
 /** Build the lookup. Returns { match(method, pathname) → { handler, params } | null, keys }. */
 export function buildRoutes(ctx: RouteContext, modules: RouteModule[] = ROUTE_MODULES): RouteTable {
+  const table = buildTable(ctx, modules);
+  ctx.routeTable = table;
+  return table;
+}
+function buildTable(ctx: RouteContext, modules: RouteModule[]): RouteTable {
   const exact = new Map<string, RouteHandler>();
   const patterns: PatternRoute[] = [];
   for (const module of modules) {

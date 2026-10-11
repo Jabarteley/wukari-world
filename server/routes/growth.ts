@@ -92,6 +92,8 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     const result = await ctx.store.transact((db): GrowthAnswer => {
       const session = request.requireSession(db, { renew: true });
       if (!ctx.allow(`growth:http:${session.publicId}`, LIMITS.httpPerMinute)) throw ctx.fail(429, 'rate_limited');
+      // The growth funnel, referrals and e-mail are about people: an AI agent character is counted apart (server/agents/, the pulse's `ai`).
+      if (session.agent?.char === true) return { ok: false, code: 'not_counted', reason: 'AI agents are not part of the growth numbers.' };
       const cityId = city(body.cityId);
       // A life is never created here: someone who has not finished character creation is simply not ready.
       const stored = session.cities?.[cityId]?.state;

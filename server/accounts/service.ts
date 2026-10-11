@@ -298,6 +298,25 @@ function prove(db: Db, deps: AccountDeps, caller: Caller, identity: VerifiedIden
   return bound;
 }
 
+/**
+ * Make a live session record (an agent character the account has claimed) the account's active character. The character in play is set
+ * aside as in switchCharacter, nothing is deleted. The record keeps its key and becomes the account's own. The caller is signed in.
+ */
+export function takeOverCharacter(db: Db, deps: AccountDeps, caller: Caller, record: SessionRecord): AfterChange {
+  const { account } = requireAccount(db, deps, caller);
+  const after: AfterChange = { closeKeys: [], closeDevices: [] };
+  const mine = activeCharacter(db, deps, account);
+  if (mine) {
+    after.closeKeys.push(mine.secret);
+    if (hasLife(mine)) park(db, deps, account, mine); else delete db.sessions[mine.secret];
+    account.sessionKey = null;
+  }
+  record.account = account.id;
+  account.sessionKey = record.secret; account.publicId = record.publicId;
+  audit(db, deps, 'switched', account, record.publicId);
+  return after;
+}
+
 /** Bring a set-aside (or expired and archived) character back as the account's active one. Undefined when the archive has none this account may take. */
 function fromArchive(db: Db, deps: AccountDeps, account: AccountRecord, publicId: string): SessionRecord | undefined {
   const archive = db.archivedLives, entry = own(archive, publicId);

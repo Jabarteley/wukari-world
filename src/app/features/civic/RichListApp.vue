@@ -11,17 +11,19 @@ import CivicStale from './CivicStale.vue'
 import CivicStatus from './CivicStatus.vue'
 import RichBoard from './RichBoard.vue'
 import { count, richKey, richPath } from './civicModel.ts'
+import type { BoardFamily } from './civicModel.ts'
 import { useCivic, useLoaded, useOffline } from './useCivic.ts'
 
 const props = defineProps<{ params?: unknown }>()
 // The cities, states and countries board is its own lazily loaded part of this screen.
 const PlacesBoard = defineAsyncComponent(() => import('./PlacesBoard.vue'))
 const tab = ref<'players' | 'places'>(typeof props.params === 'object' && props.params !== null && Reflect.get(props.params, 'tab') === 'places' ? 'places' : 'players')
+const family = ref<BoardFamily>('humans')
 const { game } = useApp()
 const civic = useCivic()
 const offline = useOffline()
 const view = game.view
-const { item, reload } = useLoaded<RichListResponse>({ key: () => richKey(view.value.cityId), path: () => richPath(view.value.cityId), maxAge: 30000, live: true })
+const { item, reload } = useLoaded<RichListResponse>({ key: () => richKey(view.value.cityId, family.value), path: () => richPath(view.value.cityId, family.value), maxAge: 30000, live: true })
 const data = computed(() => item.value.data)
 const you = computed(() => data.value?.you ?? null)
 
@@ -34,11 +36,15 @@ async function toggle(): Promise<void> {
 
 <template>
   <div class="richlist">
+    <nav class="richlist-tabs" role="group" aria-label="Whose rankings" data-board-family>
+      <button type="button" :class="{ 'is-on': family === 'humans' }" :aria-pressed="family === 'humans'" @click="family = 'humans'">Humans</button>
+      <button type="button" :class="{ 'is-on': family === 'agents' }" :aria-pressed="family === 'agents'" @click="family = 'agents'">Agents</button>
+    </nav>
     <nav class="richlist-tabs" role="group" aria-label="Rich List">
       <button type="button" :class="{ 'is-on': tab === 'players' }" :aria-pressed="tab === 'players'" @click="tab = 'players'">Players</button>
       <button type="button" :class="{ 'is-on': tab === 'places' }" :aria-pressed="tab === 'places'" @click="tab = 'places'">Places</button>
     </nav>
-    <PlacesBoard v-if="tab === 'places'" />
+    <PlacesBoard v-if="tab === 'places'" :family="family" />
     <template v-else>
     <CivicStatus :item="item" @retry="reload" />
     <template v-if="data">
@@ -51,8 +57,8 @@ async function toggle(): Promise<void> {
       </ul>
       <CivicStale :item="item" />
       <div class="richlist-boards">
-        <div><RichBoard title="Top balances" :rows="data.balances" none="Nobody is listed yet." :more="{ path: `/api/civic/richlist?city=${encodeURIComponent(view.cityId)}&board=balances`, size: data.size }" /></div>
-        <div><RichBoard title="Top earners this week" :rows="data.earners" none="Nobody has earned anything this week yet." :more="{ path: `/api/civic/richlist?city=${encodeURIComponent(view.cityId)}&board=earners`, size: data.size }" /></div>
+        <div><RichBoard title="Top balances" :rows="data.balances" none="Nobody is listed yet." :more="{ path: `/api/civic/richlist?city=${encodeURIComponent(view.cityId)}&board=balances${family === 'agents' ? '&family=agents' : ''}`, size: data.size }" /></div>
+        <div><RichBoard title="Top earners this week" :rows="data.earners" none="Nobody has earned anything this week yet." :more="{ path: `/api/civic/richlist?city=${encodeURIComponent(view.cityId)}&board=earners${family === 'agents' ? '&family=agents' : ''}`, size: data.size }" /></div>
       </div>
       <div class="civic-actions">
         <CivicAction v-if="you" :working="civic.busy('prefs')" :reason="offline('change this') ?? ''" @click="toggle">{{ you.listed ? 'Hide me from the Rich List' : 'Show me on the Rich List' }}</CivicAction>

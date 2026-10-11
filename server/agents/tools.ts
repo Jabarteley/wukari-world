@@ -18,36 +18,35 @@ import { transactWithCityContent } from '../prepared-city-transaction.ts';
 import { executeCommand, outcomeKey } from '../routes/core.ts';
 import { socialService } from '../social/service.ts';
 import { presenceOf } from '../social/presence.ts';
-import { AGENT_LIMITS, agentMark, scopeAllows } from './policy.ts';
+import { AGENT_LIMITS, agentMark } from './policy.ts';
+import { mayRunAction } from './access.ts';
 import { refusal } from './service.ts';
 import type { Agent, AgentOutcome, AgentService } from './service.ts';
 
 /** JSON-schema type names (spelled through this table so that the frame scan of src/types/protocol.test.ts, which reads `{ type: '…'`, does not take them for socket frames). */
-const JT = { object: 'object', string: 'string', integer: 'integer', boolean: 'boolean' } as const;
+export const JT = { object: 'object', string: 'string', integer: 'integer', boolean: 'boolean' } as const;
 type Json = Record<string, unknown>;
 export interface ToolContext { ctx: RouteContext; svc: AgentService; agent: Agent; request: RouteRequest }
 /** What a tool answers: the data for the agent, and what the bookkeeping needs to know. */
-export interface ToolOutput { ok: boolean; code: string; data: Json; refused?: boolean; sent?: boolean; aid?: string; facts?: AgentOutcome['facts'] }
+export interface ToolOutput { ok: boolean; code: string; data: Json; refused?: boolean; aid?: string; facts?: AgentOutcome['facts']; say?: string }
 export interface ToolDefinition {
   name: string
   description: string
   inputSchema: Json
   readOnly: boolean
-  /** A tool that sends a message counts against the message caps too. */
-  message?: boolean
   run(c: ToolContext, args: Json, rid: string | undefined): Promise<ToolOutput>
 }
 
-const str = (value: unknown): string | undefined => (typeof value === 'string' && value.length ? value : undefined);
-const num = (value: unknown): number | undefined => (typeof value === 'number' && Number.isFinite(value) ? value : undefined);
-const naira = (value: number): string => `₦${Math.round(value).toLocaleString('en-NG')}`;
-const bad = (c: ToolContext, code: string, reason: string): Error => refusal(c.ctx, 400, code, reason);
+export const str = (value: unknown): string | undefined => (typeof value === 'string' && value.length ? value : undefined);
+export const num = (value: unknown): number | undefined => (typeof value === 'number' && Number.isFinite(value) ? value : undefined);
+export const naira = (value: number): string => `₦${Math.round(value).toLocaleString('en-NG')}`;
+export const bad = (c: ToolContext, code: string, reason: string): Error => refusal(c.ctx, 400, code, reason);
 
 // ---- the player's own life ----------------------------------------------------------------------------------------------------------
 
 interface Look<T> { value: T; state: LifeState; view: LifeView; session: SessionRecord }
 /** The caller's life, settled to now, and `read` of it. Saved only when the settlement changed something a player would see (as GET /api/life). */
-async function look<T>(c: ToolContext, read: (state: LifeState, view: LifeView, db: Db, session: SessionRecord) => T): Promise<Look<T>> {
+export async function look<T>(c: ToolContext, read: (state: LifeState, view: LifeView, db: Db, session: SessionRecord) => T): Promise<Look<T>> {
   const cityId = c.agent.cityId;
   const done = await transactWithCityContent(c.ctx, c.request, [cityId], (db) => {
     const session = c.request.requireSession(db, { renew: true });
@@ -61,7 +60,7 @@ async function look<T>(c: ToolContext, read: (state: LifeState, view: LifeView, 
 }
 
 /** The short summary every answer carries. Compact on purpose: an agent pays for what it reads. */
-function brief(c: ToolContext, state: LifeState, view: LifeView): Json {
+export function brief(c: ToolContext, state: LifeState, view: LifeView): Json {
   const now = c.ctx.now(), t = lagosTime(now);
   const here = view.travel.destinations.find((place) => place.here);
   const active = state.activeAction;
@@ -78,7 +77,7 @@ function brief(c: ToolContext, state: LifeState, view: LifeView): Json {
 }
 /** A cursor that changes only when something an agent decides on changes (not with the clock). */
 const cursorOf = (summary: Json): string => hash53(JSON.stringify({ ...summary, time: undefined, lastMessage: undefined, needs: Object.entries(summary.needs as Record<string, number>).map(([k, v]) => [k, Math.round(v / 5)]) }));
-const factsOf = (state: LifeState, now: number): NonNullable<ToolOutput['facts']> => ({ cash: state.cash, week: state.civic?.week?.week ?? 0, earned: state.civic?.week?.week === lagosTime(now).week ? state.civic.week.earned : 0 });
+export const factsOf = (state: LifeState, now: number): NonNullable<ToolOutput['facts']> => ({ cash: state.cash, week: state.civic?.week?.week ?? 0, earned: state.civic?.week?.week === lagosTime(now).week ? state.civic.week.earned : 0, shifts: state.completedShifts ?? 0, won: 0, friends: 0, offices: 0 });
 
 /** What to do next, for the refusals an agent meets most. The game's own sentence always comes first. */
 const NEXT: Record<string, string> = {
@@ -92,7 +91,7 @@ const NEXT: Record<string, string> = {
   day_off: 'You do not work today. Do something else.',
   shift_done: 'You already worked your shift today.',
 };
-const wordsFor = (code: string, reason: string | undefined, state: LifeState | undefined): string => {
+export const wordsFor = (code: string, reason: string | undefined, state: LifeState | undefined): string => {
   const sentence = (reason ?? state?.message ?? 'That is not possible right now.').trim();
   const next = NEXT[code];
   return next && !sentence.includes(next) ? `${sentence} ${next}` : sentence;
@@ -104,8 +103,8 @@ const wordsFor = (code: string, reason: string | undefined, state: LifeState | u
  * Run ONE game action for the agent through the player's own pipeline. The action must be on the key's allow-list (deny by default); the
  * rules, costs, cooldowns and the exactly-once receipt are the game's. A `rid` the agent sent again answers from the receipt.
  */
-async function act(c: ToolContext, type: string, payload: Json, rid?: string): Promise<ToolOutput & { outcome: ActionOutcome }> {
-  if (!scopeAllows(c.agent.key.scopes, type)) throw refusal(c.ctx, 403, 'not_allowed', 'This key is not allowed to do that. Agents may play the game (travel, activities, work, shops, messages) but not change settings, property, money accounts or identity.');
+export async function act(c: ToolContext, type: string, payload: Json, rid?: string): Promise<ToolOutput & { outcome: ActionOutcome }> {
+  if (!mayRunAction(c.agent.key.scopes, type)) throw refusal(c.ctx, 403, 'not_allowed', 'That is not an action an agent may run (list_action_types shows the ones it may). Account security, identity checks, agent keys and operator routes stay with people.');
   const known = rid ? c.agent.key.audit.find((entry) => entry.rid === rid)?.aid : undefined;
   const aid = known ?? `${c.ctx.now()}:${c.ctx.randomId()}`;
   const body: ActionRequest = { actionId: aid as ActionRequest['actionId'], cityId: c.agent.cityId, type: type as ActionRequest['type'], payload } as ActionRequest;
@@ -114,30 +113,30 @@ async function act(c: ToolContext, type: string, payload: Json, rid?: string): P
   return { ok: outcome.ok, code: outcome.code, refused: !outcome.ok, aid, outcome, data: {}, ...(state ? { facts: factsOf(state, c.ctx.now()) } : {}) };
 }
 /** The answer of a tool that ran one action: what happened in words, then the summary of the life as it now stands. */
-async function answered(c: ToolContext, done: ToolOutput & { outcome: ActionOutcome }, extra: Json = {}): Promise<ToolOutput> {
+export async function answered(c: ToolContext, done: ToolOutput & { outcome: ActionOutcome }, extra: Json = {}): Promise<ToolOutput> {
   const state = done.outcome.state;
   const view = state ? viewLife(state, { now: c.ctx.now(), cityId: c.agent.cityId }) : null;
   const words = done.ok ? (state?.message ? state.message : 'Done.') : wordsFor(done.code, done.outcome.reason, state);
   return { ...done, data: { ok: done.ok, code: done.code, result: words, ...(done.ok ? extra : {}), ...(state && view ? { life: brief(c, state, view) } : {}), ...(done.outcome.duplicate ? { duplicate: true } : {}) } };
 }
-const endsIn = (state: LifeState | undefined): Json => (state?.activeAction ? { endsInSeconds: Math.ceil(state.activeAction.remaining), ask: 'Call wait_until_done, or do other quick things, then check get_my_life.' } : {});
+export const endsIn = (state: LifeState | undefined): Json => (state?.activeAction ? { endsInSeconds: Math.ceil(state.activeAction.remaining), ask: 'Call wait_until_done, or do other quick things, then check get_my_life.' } : {});
 
 // ---- the tools -------------------------------------------------------------------------------------------------------------------
 
-const obj = (properties: Json, required: string[] = []): Json => ({ type: JT.object, properties, required, additionalProperties: false });
-const RID = { type: JT.string, minLength: 4, maxLength: 64, description: 'Optional. A unique id you make for this call: if you send the same one again (a retry after a timeout) the game answers from the first result instead of doing it twice.' };
+export const obj = (properties: Json, required: string[] = []): Json => ({ type: JT.object, properties, required, additionalProperties: false });
+export const RID = { type: JT.string, minLength: 4, maxLength: 64, description: 'Optional. A unique id you make for this call: if you send the same one again (a retry after a timeout) the game answers from the first result instead of doing it twice.' };
 
-function placeCards(view: LifeView) {
+export function placeCards(view: LifeView) {
   return view.travel.destinations.filter((place) => place.kind !== 'soon');
 }
 /** The cheapest trip to a place that can start now, or the reason none can. */
-function bestMode(place: LifeView['travel']['destinations'][number], wanted: string | undefined) {
+export function bestMode(place: LifeView['travel']['destinations'][number], wanted: string | undefined) {
   const ok = place.modes.filter((mode) => !mode.blocked && (wanted === undefined || mode.id === wanted));
   return ok.sort((a, b) => a.fare - b.fare || a.seconds - b.seconds)[0];
 }
 
 /** Rows of the activities at this spot, compact. */
-const cards = (view: LifeView) => view.activities.cards.map((card) => ({
+export const cards = (view: LifeView) => view.activities.cards.map((card) => ({
   id: card.id, label: card.label, ...(card.cost ? { cost: card.cost } : {}), ...(card.reward ? { pays: card.reward } : {}), minutes: Math.max(1, Math.round((card.duration ?? 0) / 60 * 10) / 10),
   ...(card.effects && Object.keys(card.effects).length ? { needs: card.effects } : {}), ...(card.choices ? { choices: card.choices.map((choice) => choice.id) } : {}), ...(card.blocked ? { blocked: card.blocked.reason } : {}),
 }));
@@ -147,10 +146,10 @@ const get_my_life: ToolDefinition = {
   description: 'Your character right now: money (naira), needs 0-100 (hunger, energy, fun, social, hygiene, bladder: low means bad), mood, job and today\'s shift, the place you are in, what you are doing and how long it has left, and the time in Lagos. Pass the `cursor` from your last answer as `since` to get a tiny "unchanged" answer when nothing that matters changed: the cheap way to poll.',
   inputSchema: obj({ since: { type: JT.string, maxLength: 40, description: 'The cursor of your previous get_my_life answer.' } }),
   async run(c, args) {
-    const { value } = await look(c, (state, view) => brief(c, state, view));
-    const cursor = cursorOf(value);
-    if (args.since === cursor) return { ok: true, code: 'unchanged', data: { unchanged: true, cursor, time: value.time, doing: value.doing } };
-    return { ok: true, code: 'ok', data: { ...value, cursor } };
+    const { value, state } = await look(c, (state, view) => brief(c, state, view));
+    const cursor = cursorOf(value), facts = factsOf(state, c.ctx.now());
+    if (args.since === cursor) return { ok: true, code: 'unchanged', facts, data: { unchanged: true, cursor, time: value.time, doing: value.doing } };
+    return { ok: true, code: 'ok', facts, data: { ...value, cursor } };
   },
 };
 
@@ -353,20 +352,20 @@ const buy: ToolDefinition = {
 
 // ---- people and messages --------------------------------------------------------------------------------------------------------------
 
-type Social = ReturnType<typeof socialService>;
+export type Social = ReturnType<typeof socialService>;
 interface PlayerPage { players: Record<string, { name: string; friends: Record<string, number>; agent?: { char?: true; at?: number } } | undefined> }
-const playersOf = (db: Db): PlayerPage['players'] => ((db.social as unknown as PlayerPage | undefined)?.players ?? {});
+export const playersOf = (db: Db): PlayerPage['players'] => ((db.social as unknown as PlayerPage | undefined)?.players ?? {});
 const dmKey = (a: string, b: string): string => `dm.${[a, b].sort().join('.')}`;
 
 /** Run a social call for the agent in one saved transaction, as the social routes do (finish, commit hooks, then deliver). */
-async function inSocial<T extends object>(c: ToolContext, social: Social, call: (db: Db, session: SessionRecord) => T): Promise<T> {
+export async function inSocial<T extends object>(c: ToolContext, social: Social, call: (db: Db, session: SessionRecord) => T): Promise<T> {
   const result = await transactWithCityContent(c.ctx, c.request, [], (db) => {
     const session = c.request.requireSession(db, { renew: true });
     return social.finish(db, call(db, session));
   }, { durable: true, waitForObserved: true, committed: (value) => social.committed(value) });
   return social.deliver(result) as T;
 }
-const who = (players: PlayerPage['players'], id: string) => { const p = players[id]; return { id, name: p?.name ?? 'Former player', ...agentMark(p?.agent) }; };
+export const who = (players: PlayerPage['players'], id: string) => { const p = players[id]; return { id, name: p?.name ?? 'Former player', ...agentMark(p?.agent) }; };
 
 const list_friends: ToolDefinition = {
   name: 'list_friends', readOnly: true,
@@ -421,29 +420,17 @@ const read_messages: ToolDefinition = {
 };
 
 const send_message: ToolDefinition = {
-  name: 'send_message', readOnly: false, message: true,
-  description: `Send a short direct message (up to 300 characters, no links, phone numbers or contact details) to a friend, or to someone who has already messaged you. Agents cannot message strangers first, cannot message groups, and may send ${AGENT_LIMITS.messagesPerDay} messages a day. Be kind: people can see an AI plays this character.`,
-  inputSchema: obj({ to: { type: JT.string, maxLength: 40 }, text: { type: JT.string, minLength: 1, maxLength: 300 }, rid: RID }, ['to', 'text']),
+  name: 'send_message', readOnly: false,
+  description: 'Send a direct message as a player does: to a player (`to`, an id from list_friends, list_people_here or read_messages) or into a group chat (`conv`). The same filters and limits as a person (no links or contact details in public text, the stranger and new-chat limits). Be kind: people can see an AI plays this character. For the public chat of the place you are in, use say_here.',
+  inputSchema: obj({ to: { type: JT.string, maxLength: 40 }, conv: { type: JT.string, maxLength: 90 }, text: { type: JT.string, minLength: 1, maxLength: 500 }, rid: RID }, ['text']),
   async run(c, args, rid) {
-    const to = str(args.to)?.toLowerCase(), text = str(args.text);
-    if (!to || !UUID_PATTERN.test(to)) throw bad(c, 'invalid_player', 'to must be a player id from list_friends or read_messages.');
-    if (!text || text.length > 300) throw bad(c, 'invalid_message', 'Write between 1 and 300 characters.');
-    const verdict = screenText(text, { contact: true, what: 'An agent message' });
-    if (verdict) return { ok: false, code: 'message_refused', refused: true, data: { ok: false, code: 'message_refused', result: `${verdict.reason} Agents may not send links or contact details.` } };
+    const to = str(args.to)?.toLowerCase(), conv = str(args.conv), text = str(args.text);
+    if ((to === undefined) === (conv === undefined)) throw bad(c, 'invalid_target', 'Give either `to` (a player id) or `conv` (a group chat id).');
+    if (to !== undefined && !UUID_PATTERN.test(to)) throw bad(c, 'invalid_player', 'to must be a player id from list_friends, list_people_here or read_messages.');
+    if (!text) throw bad(c, 'invalid_message', 'Write between 1 and 500 characters.');
     const social = socialService(c.ctx);
-    const out = await inSocial(c, social, (db, session) => {
-      const players = playersOf(db), me = players[session.publicId], mine = session.publicId;
-      const accountPlayer = c.agent.character ? db.accounts?.[c.agent.key.account]?.publicId : undefined;
-      const ownerFriends = accountPlayer ? players[accountPlayer]?.friends ?? {} : {};
-      const friend = me?.friends[to] !== undefined && players[to]?.friends[mine] !== undefined;
-      const ownersFriend = ownerFriends[to] !== undefined;
-      const conv = (db.social as unknown as { convs?: Record<string, { messages: { from: string | null }[] } | undefined> } | undefined)?.convs?.[dmKey(mine, to)];
-      const wroteFirst = Boolean(conv?.messages.some((line) => line.from === to));
-      if (!friend && !ownersFriend && !wroteFirst) return { ok: false as const, code: 'not_allowed_to_message', reason: 'Agents may only message friends, the owner\'s friends, and people who messaged first. Ask a friend to message you, then answer.' };
-      const sent = social.send(db, session, { to, body: text, clientId: `agent-${(rid ?? c.ctx.randomId()).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 60).padEnd(8, '0')}` });
-      return sent;
-    });
-    if (out.ok === true) return { ok: true, code: 'sent', sent: true, data: { ok: true, code: 'sent', result: 'Message sent.' } };
+    const out = await inSocial(c, social, (db, session) => social.send(db, session, { ...(to !== undefined ? { to } : { conv }), body: text, clientId: `agent-${(rid ?? c.ctx.randomId()).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 60).padEnd(8, '0')}` }));
+    if (out.ok === true) return { ok: true, code: 'sent', data: { ok: true, code: 'sent', result: 'Message sent.' }, say: text };
     const code = String(out.code ?? 'refused'), reason = 'reason' in out ? String(out.reason) : 'That message could not be sent.';
     return { ok: false, code, refused: true, data: { ok: false, code, result: reason } };
   },
@@ -451,19 +438,14 @@ const send_message: ToolDefinition = {
 
 const answer_money_request: ToolDefinition = {
   name: 'answer_money_request', readOnly: false,
-  description: `Answer a friend's request for money (the \`request.id\` from read_messages): "pay" gives them the amount from your money under the game's usual gift rules, or "decline". Agents may pay requests of up to ${naira(AGENT_LIMITS.payRequestMax)}; ask your owner about anything larger.`,
+  description: 'Answer a friend\'s request for money (the `request.id` from read_messages): "pay" gives them the amount from your money under the game\'s usual gift rules, or "decline".',
   inputSchema: obj({ id: { type: JT.string, pattern: '^MR-[0-9]{1,12}$' }, op: { type: JT.string, enum: ['pay', 'decline'] }, rid: RID }, ['id', 'op']),
-  async run(c, args, rid) {
+  async run(c, args) {
     const id = str(args.id), op = args.op;
     if (!id || !/^MR-[0-9]{1,12}$/.test(id) || (op !== 'pay' && op !== 'decline')) throw bad(c, 'invalid_request', 'Give the request id from read_messages and op "pay" or "decline".');
     const social = socialService(c.ctx);
     const clientId = `${c.ctx.now()}:${c.ctx.randomId()}`;
-    const out = await inSocial(c, social, (db, session) => {
-      const requests = (db.social as unknown as { moneyRequests?: Record<string, { n: number; to: string } | undefined> } | undefined)?.moneyRequests;
-      const found = requests?.[id];
-      if (op === 'pay' && found && found.to === session.publicId && found.n > AGENT_LIMITS.payRequestMax) return { ok: false as const, code: 'too_large_for_agent', reason: `That is more than an agent may pay (${naira(AGENT_LIMITS.payRequestMax)}). Ask your owner to pay it themselves.` };
-      return social.answerMoneyRequest(db, session, { id, op, cityId: c.agent.cityId, clientId });
-    });
+    const out = await inSocial(c, social, (db, session) => social.answerMoneyRequest(db, session, { id, op, cityId: c.agent.cityId, clientId }));
     const code = String(out.code ?? ''), reason = 'reason' in out ? String(out.reason) : '';
     return out.ok === true ? { ok: true, code, data: { ok: true, code, result: code === 'paid' ? 'Paid.' : 'Declined.' } } : { ok: false, code, refused: true, data: { ok: false, code, result: reason || 'That request could not be answered.' } };
   },

@@ -6,6 +6,7 @@
 // The regulars talking to each other (./chatter/start.ts, REALISM R12) start here too, in a chunk of their own.
 export function startExtras(diagnostics: boolean): void {
   if (diagnostics) void import('./diagnostics.ts').then(({ showDiagnostics }) => { showDiagnostics() })
+  if (location.search.includes('claim-agent=')) void import('./features/agents/claimEntry.ts').then(({ startClaim }) => { startClaim() })
   if (location.pathname !== '/') void import('./features/paths/arrive.ts').then(({ startPaths }) => { startPaths() })
 }
 

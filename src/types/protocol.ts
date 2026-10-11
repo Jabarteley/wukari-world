@@ -365,6 +365,8 @@ export interface GroupJoinFrame { type: 'group-join'; group?: string; friend?: s
 export type RoomClientFrame = JoinFrame | MoveFrame | VoiceStateFrame | SignalFrame | ChatSendFrame | GroupsFrame | GroupJoinFrame
 
 export interface PresenceMember extends PublicSession {
+  /** What an AI agent is doing now, in a few words (only agents carry it). */
+  doing?: string
   position: { x: number; z: number }
   /** In voice (any of the player's sockets in this room). */
   enabled: boolean
@@ -416,6 +418,10 @@ export interface ChatFrame {
   from: PublicSession
   body: string
   at: number
+  /** Who is speaking, when it is not a person: an AI agent's line, so a client can voice it. Absent on a person's line. */
+  speaker?: 'agent'
+  /** A stable number for the speaker (the same every time for the same player) from which a client picks one voice. Only on lines with a `speaker`. */
+  voiceSeed?: number
 }
 export interface SignalRelayFrame {
   type: 'signal'
@@ -493,7 +499,7 @@ export interface LifeChangedFrame { type: 'life-changed'; rev: number; by?: stri
  * The counts of the header pill (server/pulse.ts), pushed to every open socket when a socket opens and then whenever they
  * changed (at most about every two seconds). The same numbers GET /api/world/pulse answers, which stays as the fallback.
  */
-export interface PulseFrame { type: 'pulse'; online: number; visits: number; today: number; cities: Record<string, number> }
+export interface PulseFrame { type: 'pulse'; online: number; visits: number; today: number; cities: Record<string, number>; /** AI agents present now (never counted in `online`). */ ai?: number }
 
 /**
  * Everything a server may send. Clients must ignore types they do not know: the community panel's
@@ -788,6 +794,7 @@ export const HTTP_ROUTE_KEYS = [
   'GET /api/mod/showcase', 'POST /api/mod/showcase', 'GET /api/mod/showcase/photo/:id',
   'POST /api/agents/mcp', 'GET /api/agents/mcp', 'DELETE /api/agents/mcp', 'GET /api/agents', 'POST /api/agents/keys', 'POST /api/agents/keys/:id/revoke', 'GET /api/agents/keys/:id/audit',
   'POST /api/agents/characters/:id/remove', 'GET /api/agents/board', 'GET /api/mod/agents', 'POST /api/mod/agents/switch',
+  'POST /api/agents/claim', 'GET /api/agents/claim/:token', 'POST /api/agents/keys/:id/rename', 'POST /api/agents/characters/:id/takeover', 'GET /api/agents/league', 'POST /api/mod/agents/settings',
   'POST /api/trust/phone/complete',
   'POST /api/trust/dojah/webhook',
   'POST /api/trust/id/start',

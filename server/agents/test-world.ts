@@ -56,6 +56,12 @@ export async function world(t: TestContext, options: FixtureOptions = {}) {
     const result = (answer.json.result ?? {}) as Json;
     return { ok: result.isError === false, data: (result.structuredContent ?? {}) as Json, status: answer.status, rpc: answer.json };
   }
+  /** An agent with no key signs itself up (create_agent_account): the key, the claim link and token it was given. */
+  async function signup(name: string, extra: Json = {}, headers: Record<string, string> = {}): Promise<{ ok: boolean; data: Json; status: number; key: string; claim: string }> {
+    const answer = await mcp(null, 'tools/call', { name: 'create_agent_account', arguments: { name, ...extra } }, { headers });
+    const data = (((answer.json.result ?? {}) as Json).structuredContent ?? {}) as Json;
+    return { ok: data.ok === true, data, status: answer.status, key: String(data.key ?? ''), claim: String(data.claimToken ?? '') };
+  }
   const stored = <T>(read: (db: Parameters<Parameters<typeof f.server.store.read>[0]>[0]) => T): Promise<T> => f.server.store.read(read) as Promise<T>;
   const change = <T>(write: (db: Parameters<Parameters<typeof f.server.store.transact>[0]>[0]) => T): Promise<T> => f.server.store.transact(write) as Promise<T>;
   /** The account behind an owner and the character it plays, read from the store. */
@@ -65,7 +71,7 @@ export async function world(t: TestContext, options: FixtureOptions = {}) {
     const { account } = await accountOf(who);
     await change((db) => { const trust = (db.trust ??= { v: 1, players: {}, reviewed: {}, reports: [], seq: 0 }) as { players: Record<string, unknown> }; trust.players[who.id] = { tier: 'phone', by: 'admin', at: f.now(), admin: 'test', account }; });
   }
-  return { f, call, json, post, guest, owner, makeAgentKey, mcp, tool, stored, change, accountOf, checkPhone, token, csrf };
+  return { f, call, json, post, guest, owner, makeAgentKey, mcp, signup, tool, stored, change, accountOf, checkPhone, token, csrf };
 }
 /** The stored agent keys of a document, as plain records a test may read and change. */
 export const agentKeys = (db: object): Record<string, unknown>[] => Object.values((db as { agents?: { keys?: Record<string, unknown> } }).agents?.keys ?? {}) as Record<string, unknown>[];

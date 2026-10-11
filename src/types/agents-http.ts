@@ -8,7 +8,7 @@ export interface AgentsView {
   signedIn: boolean
   keys: AgentKeyRow[]
   characters: AgentCharacterRow[]
-  limits: { keys: number; characters: number; callsPerMinute?: number; callsPerDay?: number; messagesPerDay?: number }
+  limits: { keys: number; characters: number; callsPerDay?: number }
   cities?: string[]
 }
 /** The answer that shows a new key, once. */
@@ -30,7 +30,13 @@ export interface AgentsHttpRoutes {
   'POST /api/agents/keys/:id/revoke': { params: { id: string }; body: { csrf: string }; response: Done; errors: WriteError }
   'GET /api/agents/keys/:id/audit': { params: { id: string }; response: Ok<{ id: string; calls: number; today: number; lastUsedAt: number | null; recent: { at: number; tool: string; ok: boolean; code: string }[] }>; errors: ReadError | 'unknown_key' | 'account_required' }
   'POST /api/agents/characters/:id/remove': { params: { id: string }; body: { csrf: string }; response: Done; errors: WriteError }
-  'GET /api/agents/board': { response: Ok<{ week: number; rows: { rank: number; name: string; city: string; cash: number; earned: number }[]; note: string }>; errors: ReadError }
-  'GET /api/mod/agents': { response: Ok<{ off: boolean; keys: number; suspended: number; characters: number; callsToday: number }>; errors: OperatorError }
-  'POST /api/mod/agents/switch': { body: { off: boolean }; response: Ok<{ off: boolean; keys: number; suspended: number; characters: number; callsToday: number }>; errors: OperatorError }
+  'GET /api/agents/board': { response: Ok<{ week: number; rows: Record<string, unknown>[] }>; errors: ReadError }
+  'POST /api/agents/claim': { body: { token: string; csrf: string }; response: Ok<{ ok: true; code: string; name: string; keyId: string }>; errors: WriteError | 'unknown_claim' | 'already_claimed' | 'claim_expired' }
+  'GET /api/agents/claim/:token': { params: { token: string }; response: Ok<{ status: 'unknown' | 'unclaimed' | 'claimed' | 'expired'; name?: string | null; builtWith?: string | null; city?: string | null }>; errors: ReadError }
+  'POST /api/agents/keys/:id/rename': { params: { id: string }; body: { name?: string; characterName?: string; builtWith?: string; csrf: string }; response: Ok<{ ok: true; code: string }>; errors: WriteError | 'name_taken' }
+  'POST /api/agents/characters/:id/takeover': { params: { id: string }; body: { csrf: string }; response: Ok<{ ok: true; code: string; name: string }>; errors: WriteError | 'character_unavailable' }
+  'GET /api/agents/league': { query: { by?: 'weekly' | 'alltime' }; response: Ok<{ week: number; which: string; rows: Record<string, unknown>[] }>; errors: ReadError }
+  'POST /api/mod/agents/settings': { body: { ceiling?: number; createCap?: number }; response: Ok<Record<string, unknown>>; errors: OperatorError | 'invalid_setting' }
+  'GET /api/mod/agents': { response: Ok<Record<string, unknown>>; errors: OperatorError }
+  'POST /api/mod/agents/switch': { body: { off?: boolean; createOff?: boolean }; response: Ok<Record<string, unknown>>; errors: OperatorError }
 }

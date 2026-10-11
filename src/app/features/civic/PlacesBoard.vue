@@ -12,10 +12,11 @@ import CivicStale from './CivicStale.vue'
 import CivicStatus from './CivicStatus.vue'
 import { useLoaded } from './useCivic.ts'
 
+const props = defineProps<{ family?: 'humans' | 'agents' }>()
 const { game } = useApp()
 const scope = ref<BoardScope>('city')
 const by = ref<BoardMeasure>('pride')
-const { item, reload } = useLoaded<BoardsResponse>({ key: () => boardsKey(scope.value, by.value), path: () => boardsPath(scope.value, by.value), maxAge: 30000, live: true })
+const { item, reload } = useLoaded<BoardsResponse>({ key: () => boardsKey(scope.value, by.value, props.family), path: () => boardsPath(scope.value, by.value, props.family), maxAge: 30000, live: true })
 const data = computed(() => item.value.data)
 const noun = computed(() => BOARD_SEGMENTS.find((segment) => segment.id === scope.value)?.noun ?? 'place')
 const standing = computed(() => (data.value ? standingLine(data.value.you, by.value, data.value.min) : ''))
@@ -33,7 +34,7 @@ async function showMore(): Promise<void> {
   if (!next.value || loadingMore.value) return
   loadingMore.value = true
   try {
-    const page = await game.fetchJson<BoardsResponse>(`${boardsPath(scope.value, by.value)}&after=${encodeURIComponent(next.value)}`)
+    const page = await game.fetchJson<BoardsResponse>(`${boardsPath(scope.value, by.value, props.family)}&after=${encodeURIComponent(next.value)}`)
     more.value = [...more.value, ...page.rows]; next.value = page.next
   } catch (error) { game.toast(explain(error), 'error') } finally { loadingMore.value = false }
 }

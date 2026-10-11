@@ -39,7 +39,7 @@
 import type { AfterChange, AccountDeps, Caller } from '../accounts/service.ts';
 import type { VerifiedIdentity } from '../accounts/token.ts';
 import type { RouteContext, RouteHandler, RouteKey, RouteRequest } from '../types.ts';
-import { accountView, adoptNewSession, deleteAccount, exportAccount, signIn, signOut, signOutEverywhere, switchCharacter } from '../accounts/service.ts';
+import { accountView, adoptNewSession, deleteAccount, exportAccount, signIn, signOut, signOutEverywhere, switchCharacter, takeOverCharacter } from '../accounts/service.ts';
 import { KeysUnavailable, TOKEN_MAX_AGE_MS, TokenError, createTokenVerifier } from '../accounts/token.ts';
 import { commerceSecrets } from '../commerce/service.ts';
 import { welcomeService } from '../accounts/welcome.ts';
@@ -116,6 +116,8 @@ export default function accountRoutes(ctx: RouteContext): Record<RouteKey, Route
     if (!allow('account:sign-in', 300) || !allow(`account:sign-in:id:${hash53(identity.subject)}`, 8, 300000)) throw limited();
     return identity;
   }
+  // For the agent routes (server/routes/agents.ts): a claimed agent character is taken over as the account's own character.
+  if (ctx.checks) ctx.checks.takeOver = (db, request, record) => takeOverCharacter(db, deps, callerOf(request), record);
   /** Sockets opened under a session that moved or a binding that is gone are closed: they would otherwise keep their old identity. */
   function closeSockets(after: AfterChange): void {
     if (!core.closeSocket || (!after.closeKeys.length && !after.closeDevices.length)) return;

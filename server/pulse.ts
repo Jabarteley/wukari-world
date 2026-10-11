@@ -39,7 +39,8 @@ import type { PulseFrame } from '../src/types/protocol.ts';
 import type { Db, RouteContext, WsConnection } from './types.ts';
 
 /** What GET /api/world/pulse answers (besides `serverTime`). */
-export interface Pulse { online: number; visits: number; today: number; cities: Record<string, number> }
+/** `online` and `today` count people; `ai` counts AI agents (characters an agent plays: virtual members of venues, and own characters an agent is driving now), so the two are never mixed. */
+export interface Pulse { online: number; visits: number; today: number; cities: Record<string, number>; ai?: number }
 /** Who is asking: always counted, in `city` when it is known. */
 export interface Viewer { id: string; city: string | null }
 export interface PulseService {
@@ -103,6 +104,7 @@ function build(ctx: RouteContext): PulseService {
     for (const ws of liveSockets()) {
       const id = ws.session?.id;
       if (!id) continue;
+      if (ws.session.agent === true) continue; // a character an AI agent is driving is counted in `ai`, not as a person
       const city = roomCity(ws);
       if (!found.has(id) || (found.get(id) === null && city)) found.set(id, city);
     }
@@ -117,6 +119,8 @@ function build(ctx: RouteContext): PulseService {
     return found;
   }
 
+  /** AI agents present now: the virtual members of venues, and the sockets of own characters an agent is driving. */
+  const aiCount = (): number => (ctx.checks?.agentRoom?.count() ?? 0) + new Set(liveSockets().filter((ws) => ws.session?.agent === true).map((ws) => ws.session.id)).size;
   function base(fresh: boolean): NonNullable<typeof cached> {
     const at = ctx.now();
     if (cached && at >= cached.at && at - cached.at < CACHE_MS && !(dirty && fresh)) return cached;
@@ -125,7 +129,8 @@ function build(ctx: RouteContext): PulseService {
     for (const id of ctx.cityIds) cities[id] = 0;
     for (const city of everyone.values()) if (city) cities[city] = (cities[city] ?? 0) + 1;
     dirty = false;
-    cached = { at, members: everyone, value: { online: everyone.size, visits: 0, today: 0, cities } };
+    const aiNow = aiCount();
+    cached = { at, members: everyone, value: { online: everyone.size, visits: 0, today: 0, cities, ...(aiNow > 0 ? { ai: aiNow } : {}) } };
     return cached;
   }
 
@@ -140,12 +145,12 @@ function build(ctx: RouteContext): PulseService {
       else if (placed === null && city) cities[city] = (cities[city] ?? 0) + 1;
     }
     // `today` is never below the players online now: they are players of today.
-    return { online, visits: visits ?? 0, today: Math.max(online, seen && seen.day === today() ? seen.count : 0), cities };
+    return { online, visits: visits ?? 0, today: Math.max(online, seen && seen.day === today() ? seen.count : 0), cities, ...(value.ai ? { ai: value.ai } : {}) };
   }
 
   // ---- the counts frame -------------------------------------------------------------------------
   let sentKey = '', sentAt = -Infinity, timer: ReturnType<typeof setTimeout> | null = null;
-  const keyOf = (value: Pulse): string => `${value.online}|${value.visits}|${value.today}|${ctx.cityIds.map((id) => value.cities[id] ?? 0).join(',')}`;
+  const keyOf = (value: Pulse): string => `${value.online}|${value.ai ?? 0}|${value.visits}|${value.today}|${ctx.cityIds.map((id) => value.cities[id] ?? 0).join(',')}`;
   /** Something may have changed: the counts are looked at soon, and sent when they differ from what was sent, at most every PUSH_MS. */
   function changed(): void {
     dirty = true;
@@ -186,6 +191,8 @@ function build(ctx: RouteContext): PulseService {
           for (const id of todo) {
             const session = ctx.core?.sessionByPublicId(db, id);
             if (!session || session.visitDay === day) continue;
+            // An agent-driven character is a visit of the agents, counted apart (`aiVisits`): the people's numbers stay people's.
+            if (session.agent?.char === true || (session.agent?.at !== undefined && ctx.now() - session.agent.at < 6 * 3600000)) { session.visitDay = day; stored['aiVisits'] = (isCount(stored['aiVisits']) ? stored['aiVisits'] : 0) + 1; continue; }
             session.visitDay = day;
             count += 1; first += 1;
           }

@@ -19,7 +19,9 @@ import type { RouteContext, RouteHandler, RouteKey, RouteRequest } from '../type
 import { agentService, hashOfKey, newKeySecret } from '../agents/service.ts';
 import { mcpRoutes } from '../agents/mcp.ts';
 import { AGENT_LIMITS } from '../agents/policy.ts';
-import { csrfOf } from './auth.ts';
+import { SESSION_CHANGED, csrfOf } from './auth.ts';
+import { agentPageHtml, claimPageHtml, leaguePageHtml } from '../agents/pages.ts';
+import { isClaimToken } from '../agents/service.ts';
 
 const NO_STORE = { 'Cache-Control': 'no-store' };
 const sameText = (a: string, b: unknown): boolean => {
@@ -38,16 +40,29 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     if (!request.cookie || !sameText(await csrfOf(request.cookie), body.csrf)) throw ctx.fail(403, 'csrf_rejected');
   }
   const limited = (request: RouteRequest, session: string): void => { if (!ctx.allow(`agents:manage:${session}`, 20, 600000) || !ctx.allow(`agents:manage:ip:${request.ip}`, 60, 600000)) throw ctx.fail(429, 'rate_limited'); };
+  const leagueRoute: RouteHandler = async (request) => {
+    if (!ctx.allow(`agents:league:${request.ip}`, 60)) throw ctx.fail(429, 'rate_limited');
+    return { body: await ctx.store.read((db) => svc.league(db, request.query.get('by') === 'alltime' ? 'allTime' : 'weekly')), headers: { 'Cache-Control': 'public, max-age=30' } };
+  };
+  // The public pages (no script, no cookie): the league, one agent, and a claim link.
+  ctx.pages?.set('/agents/', async ({ path, query, origin, ip }) => {
+    if (!ctx.allow(`agents:page:${ip}`, 60)) return { status: 429, cache: false, html: leaguePageHtml([], 'weekly', origin) };
+    const rest = decodeURIComponent(path.slice('/agents/'.length)).replace(/\/+$/, '');
+    if (rest === 'league' || rest === '') { const league = await ctx.store.read((db) => svc.league(db, query.get('by') === 'alltime' ? 'allTime' : 'weekly')); return { status: 200, cache: false, html: leaguePageHtml(league.rows, league.which, origin) }; }
+    if (rest.startsWith('claim/')) { const token = rest.slice(6); const state = isClaimToken(token) ? await ctx.store.read((db) => svc.claimStatus(db, token)) : { status: 'unknown' as const }; return { status: state.status === 'unknown' ? 404 : 200, cache: false, html: claimPageHtml(state, token, origin) }; }
+    const profile = await ctx.store.read((db) => svc.profile(db, rest));
+    return profile ? { status: 200, cache: false, html: agentPageHtml(profile, origin) } : { status: 404, cache: false, html: leaguePageHtml([], 'weekly', origin) };
+  });
   const origin = (request: RouteRequest): string => ctx.config.publicOrigin || (request.header?.('origin') ?? '');
 
   return {
     ...mcpRoutes(ctx, svc),
-    'GET /api/agents': async (request) => ({ body: await ctx.store.read((db) => ({ ...svc.view(db, request.requireSession(db)), limits: { keys: AGENT_LIMITS.keysPerAccount, characters: AGENT_LIMITS.charactersPerAccount, callsPerMinute: AGENT_LIMITS.callsPerMinute, callsPerDay: AGENT_LIMITS.callsPerDay, messagesPerDay: AGENT_LIMITS.messagesPerDay }, cities: ctx.cityIds })), headers: NO_STORE }),
+    'GET /api/agents': async (request) => ({ body: await ctx.store.read((db) => ({ ...svc.view(db, request.requireSession(db)), limits: { keys: AGENT_LIMITS.keysPerAccount, characters: AGENT_LIMITS.charactersPerAccount, callsPerDay: AGENT_LIMITS.callsPerDay }, cities: ctx.cityIds })), headers: NO_STORE }),
     'POST /api/agents/keys': async (request) => {
       const body = await request.json();
       await guard(request, body);
       const secret = newKeySecret(), hash = hashOfKey(secret);
-      const made = await ctx.store.transact((db) => { const session = request.requireSession(db, { renew: true }); limited(request, session.publicId); return svc.createKey(db, session, { hash, mode: body.mode, name: body.name, characterName: body.characterName, character: body.character, city: body.city }); });
+      const made = await ctx.store.transact((db) => { const session = request.requireSession(db, { renew: true }); limited(request, session.publicId); return svc.createKey(db, session, { hash, mode: body.mode, name: body.name, characterName: body.characterName, character: body.character, city: body.city, builtWith: body.builtWith }); });
       return { body: { ...made, key: secret, url: `${origin(request)}/mcp`, shownOnce: true }, headers: NO_STORE, renew: true };
     },
     'POST /api/agents/keys/:id/revoke': async (request) => {
@@ -61,9 +76,29 @@ export default function agentRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
       await guard(request, body);
       return { body: await ctx.store.transact((db) => { const session = request.requireSession(db, { renew: true }); limited(request, session.publicId); return svc.removeCharacter(db, session, request.params.id); }), headers: NO_STORE, renew: true };
     },
-    'GET /api/agents/board': async (request) => {
-      if (!ctx.allow(`agents:board:${request.ip}`, 60)) throw ctx.fail(429, 'rate_limited');
-      return { body: await ctx.store.read((db) => svc.board(db)), headers: { 'Cache-Control': 'public, max-age=30' } };
+    'GET /api/agents/league': leagueRoute,
+    'GET /api/agents/board': leagueRoute,
+    'GET /api/agents/claim/:token': async (request) => {
+      if (!ctx.allow(`agents:claimpeek:${request.ip}`, 30)) throw ctx.fail(429, 'rate_limited');
+      return { body: await ctx.store.read((db) => svc.claimStatus(db, request.params.token)), headers: NO_STORE };
+    },
+    'POST /api/agents/claim': async (request) => {
+      const body = await request.json();
+      await guard(request, body);
+      return { body: await ctx.store.transact((db) => { const session = request.requireSession(db, { renew: true }); limited(request, session.publicId); return svc.claim(db, session, body.token); }), headers: NO_STORE, renew: true };
+    },
+    'POST /api/agents/keys/:id/rename': async (request) => {
+      const body = await request.json();
+      await guard(request, body);
+      return { body: await ctx.store.transact((db) => { const session = request.requireSession(db, { renew: true }); limited(request, session.publicId); return svc.rename(db, session, request.params.id, body); }), headers: NO_STORE, renew: true };
+    },
+    'POST /api/agents/characters/:id/takeover': async (request) => {
+      const body = await request.json();
+      await guard(request, body);
+      const done = await ctx.store.transact((db) => { const session = request.requireSession(db, { renew: true }); limited(request, session.publicId); return svc.takeOver(db, request, session, request.params.id); });
+      // The character that was in play is set aside: its sockets are closed, as when an account switches character.
+      if (ctx.core.closeSocket) for (const ws of ctx.core.sockets()) if (done.after.closeKeys.includes(ws.secret)) ctx.core.closeSocket(ws, SESSION_CHANGED, 'Session changed');
+      return { body: { ok: true, code: 'taken_over', name: done.name }, headers: NO_STORE, renew: true };
     },
   };
 }

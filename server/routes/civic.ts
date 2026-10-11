@@ -86,6 +86,7 @@ import { characterCity } from '../character.ts';
 import { pulseOf } from '../pulse.ts';
 import type { Viewer } from '../pulse.ts';
 import { BOARD_MEASURES, BOARD_PAGE, BOARD_SCOPES, boardView, createBoards } from '../civic/boards.ts';
+import type { BoardFamily } from '../civic/boards.ts';
 import { NEIGHBOURS_PAGE, RICH_PAGE, checkIn, counters, huntCounters, neighboursPage, neighboursView, richListPage, richListView } from '../civic/residents.ts';
 
 const COUNTER_CACHE_MS = 5000;
@@ -147,9 +148,9 @@ export default function civicRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
     // Nor is a guest who is playing: a guest has no local government and no house, so it is in no residents directory, estate
     // or rich list until it settles in (src/game/systems/onboarding.ts THE STAGED MODEL). It still plays, travels and meets people.
     // A visitor in a city (arrived and no local government chosen yet) has no home there either, so it is not listed as a resident until it chooses.
-    // An agent character is in none of these: it is counted on the agents board only (server/agents/).
-    const resident = !(life.onboarding?.required === true && life.onboarding.done !== true) && !isGuestLife(life) && Boolean(life.estate?.lga) && session.agent?.char !== true;
-    if (resident) checkIn(city, ctx.now(), who, life, ttl(), districts(cityId), session.agent?.week === lagosTime(ctx.now()).week);
+    // An agent character is a resident like any other and is on the agents' boards (server/civic/residents.ts familyOf).
+    const resident = !(life.onboarding?.required === true && life.onboarding.done !== true) && !isGuestLife(life) && Boolean(life.estate?.lga);
+    if (resident) checkIn(city, ctx.now(), who, life, ttl(), districts(cityId), session.agent?.week);
     prunePrefs(civic);
     return { session, who, life, civic, city, resident };
   }
@@ -449,14 +450,15 @@ export default function civicRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
       const signedIn = await store.read(db => request.session(db)?.publicId ?? null);
       limit('read', signedIn ?? `ip:${request.ip}`, 120);
       const board = request.query.get('board');
+      const family: BoardFamily = request.query.get('family') === 'agents' ? 'agents' : 'humans';
       if (board !== null) {
         if (board !== 'balances' && board !== 'earners') throw fail(400, 'invalid_board');
         const size = Math.min(RICH_PAGE.max, Math.max(1, Number(request.query.get('limit')) || RICH_PAGE.size));
-        const page = await store.read(db => { const session = request.session(db), civic = civicOf(db), city = cityOf(civic, cityId); return richListPage(cityId, city, ctx.now(), ttl(), civic.prefs, session ? ctx.publicSession(session).id : null, board, request.query.get('after'), size); });
+        const page = await store.read(db => { const session = request.session(db), civic = civicOf(db), city = cityOf(civic, cityId); return richListPage(cityId, city, ctx.now(), ttl(), civic.prefs, session ? ctx.publicSession(session).id : null, board, request.query.get('after'), size, family); });
         if (!page) throw fail(400, 'invalid_cursor');
         return { body: { ok: true, ...page } };
       }
-      const build = (civic: CivicCollection, city: CivicCityRecord, who: PlayerRef | null, viewer: Viewer | null) => ({ city: cityId, ...richListView(city, ctx.now(), ttl(), civic.prefs, who?.id ?? null), counters: cityCounters(city, cityId, viewer) });
+      const build = (civic: CivicCollection, city: CivicCityRecord, who: PlayerRef | null, viewer: Viewer | null) => ({ city: cityId, ...richListView(city, ctx.now(), ttl(), civic.prefs, who?.id ?? null, family), ...(family === 'agents' ? { family } : {}), counters: cityCounters(city, cityId, viewer) });
       // Opening the list checks the viewer in first, so their own row is never stale.
       if (signedIn && ctx.allow(`civic:checkin:${signedIn}`, 6)) {
         const body = await store.transact(db => { const { session, who, civic, city } = enter(db, request, cityId); counterCache.delete(cityId); return build(civic, city, who, viewerOf(session)); }, { durable: false });
@@ -469,10 +471,11 @@ export default function civicRoutes(ctx: RouteContext): Record<RouteKey, RouteHa
       if (!scope) throw fail(400, 'invalid_scope');
       if (!by) throw fail(400, 'invalid_measure');
       const size = Math.min(BOARD_PAGE.max, Math.max(1, Number(request.query.get('limit')) || BOARD_PAGE.size));
+      const family: BoardFamily = request.query.get('family') === 'agents' ? 'agents' : 'humans';
       const body = await store.read(db => {
         const session = request.session(db);
         limit('read', session?.publicId ?? `ip:${request.ip}`, 120);
-        const view = boardView(boards.get(civicOf(db), ctx.now()), scope, by, session ? characterCity(session) : null, request.query.get('after'), size);
+        const view = boardView(boards.get(civicOf(db), ctx.now(), family), scope, by, session ? characterCity(session) : null, request.query.get('after'), size, family);
         if (!view) throw fail(400, 'invalid_cursor');
         return view;
       });

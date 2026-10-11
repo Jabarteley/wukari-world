@@ -172,6 +172,7 @@ function buildService(ctx: RouteContext) {
     ctx.checks.blocked = blocked;
     ctx.checks.anyBlocks = () => blockIndex.size > 0;
     ctx.checks.agentActive = (db, session, at, character) => service.markAgent(db, session, at, character);
+    ctx.checks.agentClear = (db, id) => { const p = col(db).players[id]; if (p) delete p.agent; };
   }
   // Who blocked whom, read from the players' index (server/keyed.ts: a player's blocked ids are kept beside the record), not from every record.
   ctx.startup?.push(ctx.store.read((db): [string, string[]][] => (db.social?.players ? scanKeys(db.social.players, 'socialPlayer', { hasJ: true }).flatMap((hit): [string, string[]][] => { const blocked = hit.j ? (JSON.parse(hit.j) as { b?: string[] }).b : undefined; return blocked?.length ? [[hit.key, blocked]] : []; }) : []))
@@ -1276,7 +1277,7 @@ function buildService(ctx: RouteContext) {
       const inRoom = new Map((mates ? presence.among(mates, room) : presence.inRoom(room)).map((member) => [member.id, member]));
       const counts = mates ? ctx.checks?.venueCounts?.(room) ?? null : null;
       const card = (member: string) => ({ ...pub(s, member), friend: areFriends(s, id, member), requested: Boolean(p.out[member]), incoming: Boolean(p.in[member]),
-        look: inRoom.get(member)?.look ?? null, here: inRoom.has(member) });
+        look: inRoom.get(member)?.look ?? null, here: inRoom.has(member), ...(inRoom.get(member)?.doing ? { doing: inRoom.get(member)?.doing } : {}) });
       let players: ReturnType<typeof card>[] = [];
       if (state.location === 'home') players = Object.keys(pruneHouse(s, id)?.guests || {}).map(card);
       else if (joined) players = [...inRoom.values()].filter((member) => member.id !== id && s.players[member.id] && !blockedEither(s, id, member.id)).map((member) => card(member.id));

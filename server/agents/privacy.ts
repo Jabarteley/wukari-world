@@ -20,6 +20,8 @@ export function eraseAgents(db: Db, accountId: string, sessionOf: (db: Db, publi
   if (!a || !owner) return;
   for (const hash of owner.keys) delete a.keys[hash];
   for (const publicId of owner.chars) {
+    const gone = a.chars[publicId];
+    if (gone?.slug && a.names) delete a.names[gone.slug];
     delete a.chars[publicId];
     const stored = sessionOf(db, publicId);
     if (stored?.agent?.char === true && stored.agent.owner === accountId) archive(db, stored.secret, stored);

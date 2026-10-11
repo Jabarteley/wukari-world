@@ -77,12 +77,6 @@ async function host(t: TestContext) {
     await start()
     return { id, cookie }
   }
-  async function phoneChecked(who: Person): Promise<void> {
-    const db = await storage()
-    const account = String((await db.exec('SELECT id FROM accounts'))[0]?.['id'])
-    await db.exec('INSERT OR REPLACE INTO collections(name, value) VALUES(?, ?)', 'trust', JSON.stringify({ v: 1, players: { [who.id]: { tier: 'phone', by: 'admin', at: 1, admin: 'test', account } }, reviewed: {}, reports: [], seq: 0 }))
-    await start()
-  }
   const makeAgentKey = async (who: Person, body: Json): Promise<Json & { status: number; key: string }> => { const r = await browser('/api/agents/keys', { ...body, csrf: await csrf(who.cookie) }, who.cookie); return { ...(await r.json() as Json), status: r.status } as Json & { status: number; key: string } }
   const mcp = async (bearer: string | null, method: string, params?: Json, headers: Record<string, string> = {}): Promise<{ status: number; json: Json; headers: Headers }> => {
     const response = await dispatch('/mcp', { method: 'POST', headers: { 'content-type': 'application/json', 'cf-connecting-ip': ip(), ...(bearer ? { authorization: `Bearer ${bearer}` } : {}), ...headers }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, ...(params ? { params } : {}) }) })
@@ -95,7 +89,13 @@ async function host(t: TestContext) {
     return { ok: result.isError === false, data: (result.structuredContent ?? {}) as Json, status: answer.status }
   }
   const operator = (path: string, body?: object): Promise<Response> => dispatch(path, { method: body === undefined ? 'GET' : 'POST', headers: { authorization: `Bearer ${MODERATOR}`, 'content-type': 'application/json', 'cf-connecting-ip': ip() }, ...(body === undefined ? {} : { body: JSON.stringify(body) }) })
-  return { start, browser, csrf, owner, phoneChecked, makeAgentKey, mcp, tool, storage, operator }
+  const signup = async (name: string, extra: Json = {}): Promise<{ ok: boolean; data: Json; key: string; claim: string }> => {
+    const answer = await mcp(null, 'tools/call', { name: 'create_agent_account', arguments: { name, ...extra } })
+    const data = (((answer.json.result ?? {}) as Json).structuredContent ?? {}) as Json
+    return { ok: data.ok === true, data, key: String(data.key ?? ''), claim: String(data.claimToken ?? '') }
+  }
+  const page = (path: string): Promise<Response> => dispatch(path, { headers: { 'cf-connecting-ip': ip() } })
+  return { start, browser, csrf, owner, makeAgentKey, mcp, tool, storage, operator, signup, page }
 }
 
 test('POST /mcp through the Durable Object: a key plays the player\'s own character, is stored only as a hash, closed to browsers, and survives a restart', { timeout: 240_000 }, async (t) => {
@@ -114,7 +114,7 @@ test('POST /mcp through the Durable Object: a key plays the player\'s own charac
   assert.equal(life.ok, true, JSON.stringify(life))
   assert.equal(typeof life.data.cash, 'number')
   assert.equal((await h.mcp(made.key, 'ping', undefined, { origin: ORIGIN })).status, 403, 'a browser origin is refused, even the site\'s own')
-  assert.equal((await h.mcp(null, 'ping')).status, 401)
+  assert.equal((await h.mcp(null, 'tools/call', { name: 'get_my_life', arguments: {} })).status, 401)
   const stored = await readStoredCollection((query, ...args) => h.storage().then((db) => db.exec(query, ...args)), 'agents') ?? ''
   assert.ok(stored.includes(hashOfKey(made.key)) && !stored.includes(made.key), 'only the hash is stored')
   await h.start();
@@ -126,12 +126,10 @@ test('POST /mcp through the Durable Object: a key plays the player\'s own charac
   assert.equal((await h.mcp(made.key, 'ping')).status, 401)
 })
 
-test('POST /mcp: an agent character in a city whose content is not loaded yet is read through the on-demand loader after a cold start', { timeout: 240_000 }, async (t) => {
+test('POST /mcp: an agent that signs itself up in a city whose content is not loaded yet is read through the on-demand loader after a cold start', { timeout: 240_000 }, async (t) => {
   const h = await host(t)
-  const ada = await h.owner('Ada1', 'Ada')
-  await h.phoneChecked(ada)
-  const made = await h.makeAgentKey(ada, { mode: 'agent', name: 'cold', characterName: 'Cold Ibadan', city: 'ibadan' })
-  assert.equal(made.status, 200, JSON.stringify(made))
+  const made = await h.signup('Cold Ibadan', { city: 'ibadan', builtWith: 'edge' })
+  assert.equal(made.ok, true, JSON.stringify(made.data))
   await h.start()
   const life = await h.tool(made.key, 'get_my_life')
   assert.equal(life.ok, true, JSON.stringify(life))
@@ -146,11 +144,42 @@ test('POST /mcp: an agent character in a city whose content is not loaded yet is
   assert.equal(refused.ok, false)
 })
 
+test('POST /mcp on the Worker: the two keyless tools, the claim flow, the public pages, the general tools and venue chat', { timeout: 240_000 }, async (t) => {
+  const h = await host(t)
+  const keyless = (await h.mcp(null, 'tools/list')).json.result as { tools: { name: string }[] }
+  assert.deepEqual(keyless.tools.map((tool) => tool.name).sort(), ['create_agent_account', 'get_claim_status'])
+  assert.equal((await h.mcp(null, 'tools/call', { name: 'get_my_life', arguments: {} })).status, 401)
+  const made = await h.signup('Edge Robo', { builtWith: 'rules' })
+  assert.equal(made.ok, true, JSON.stringify(made.data))
+  assert.match(String(made.data.claimLink), /\/agents\/claim\/awc_/)
+  assert.equal((await h.tool(made.key, 'get_my_life')).ok, true)
+  assert.equal((await h.tool(made.key, 'list_action_types', { match: 'estate' })).ok, true)
+  assert.equal((await h.tool(made.key, 'call_api', { method: 'GET', path: '/api/account' })).data.code, 'not_allowed')
+  assert.equal((await h.tool(made.key, 'call_api', { method: 'GET', path: '/api/civic/gov?city=lagos' })).ok, true)
+  const said = await h.tool(made.key, 'say_here', { text: 'Hello from the edge.' })
+  assert.ok(said.ok || said.data.code === 'nobody_here', JSON.stringify(said.data))
+  const league = await h.page('/agents/league')
+  assert.equal(league.status, 200)
+  const html = await league.text()
+  assert.ok(html.includes('<title>The Allworld Agent league</title>') && html.includes('Edge Robo') && !html.includes('<script'))
+  assert.equal((await h.page('/agents/edge-robo')).status, 200)
+  assert.equal((await h.page(`/agents/claim/${made.claim}`)).status, 200)
+  const ada = await h.owner('Ada1', 'Ada')
+  const claim = await h.browser('/api/agents/claim', { token: made.claim, csrf: await h.csrf(ada.cookie) }, ada.cookie)
+  assert.equal(claim.status, 200, await claim.clone().text())
+  assert.equal((await h.tool(made.key, 'get_my_life')).ok, true, 'the key keeps working once claimed')
+  const board = await (await h.browser('/api/agents/league')).json() as { rows: { name: string; claimed: boolean }[] }
+  assert.deepEqual(board.rows.map((row) => [row.name, row.claimed]), [['Edge Robo', true]])
+})
+
 test('POST /mcp: the operator switch ends agent access on the Worker, and back', { timeout: 240_000 }, async (t) => {
   const h = await host(t)
   const ada = await h.owner('Ada1', 'Ada')
   const made = await h.makeAgentKey(ada, { mode: 'own', name: 'switch' })
   const switchTo = (off: boolean) => h.operator('/api/mod/agents/switch', { off })
+  assert.equal(((await (await h.operator('/api/mod/agents/switch', { createOff: true })).json()) as Json).createOff, true)
+  assert.equal((await h.signup('Blocked Bot')).data.code, 'creation_off', 'creation has its own switch')
+  await h.operator('/api/mod/agents/switch', { createOff: false })
   assert.equal((await switchTo(true)).status, 200)
   const refused = await h.mcp(made.key, 'tools/list')
   assert.deepEqual([refused.status, ((refused.json.error as Json).data as Json).code], [403, 'agents_off'])

@@ -68,7 +68,12 @@ export function trustService(ctx: RouteContext) {
   /** Guest without an account; `claimed` with one; the checked tier on top of an account. */
   function tierOf(db: Db, session: SessionRecord): TrustTier {
     const account = accountOfSession(db, session);
-    if (!account) return 'guest';
+    if (!account) {
+      // An agent character claimed by an account has that account's trust (an unclaimed one is a guest).
+      const owner = session.agent?.owner ? db.accounts?.[session.agent.owner] : undefined;
+      const stored = owner?.publicId ? peekTrust(db).players[owner.publicId] : undefined;
+      return owner ? (soundPlayer(stored) && (!stored.account || stored.account === owner.id) ? stored.tier : 'claimed') : 'guest';
+    }
     const stored = peekTrust(db).players[session.publicId];
     return soundPlayer(stored) && (!stored.account || stored.account === account.id) ? stored.tier : 'claimed';
   }
@@ -90,7 +95,7 @@ export function trustService(ctx: RouteContext) {
     return Boolean(account && soundPlayer(stored) && stored.account === account.id && stored.adultVerified === true);
   }
   function facts(db: Db, session: SessionRecord): PosterFacts {
-    const account = accountOfSession(db, session);
+    const account = accountOfSession(db, session) ?? (session.agent?.owner ? db.accounts?.[session.agent.owner] : undefined);
     return { tier: tierOf(db, session), adult: adult(db, session.publicId), held: complaints(db, session.publicId).held, now: now(), ...(account ? { accountAt: account.createdAt } : {}) };
   }
   function badge(db: Db, publicId: string): TrustBadge | null {

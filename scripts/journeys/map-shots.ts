@@ -321,7 +321,13 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   { const w = waterAt[prefix]; if (w) { await wheelZoom(b, w[0], w[1], 6); await sleep(1800); await shot('05-zoom-water'); await click3(b, 'fit', 1); await sleep(1200); } }
   if (lean) {
     // The view limits: zoom all the way out, then turn the map with a right-button drag, to see anything beyond the ground.
-    await click3(b, 'out', 10); await sleep(1500);
+    // Separate wheel gestures reach the city limit without accumulating pressure into the atlas.
+    for (let step = 0; step < 10; step++) {
+      await b.send('Input.dispatchMouseEvent', { type: 'mouseWheel', x: b.viewport.width * 0.65, y: b.viewport.height * 0.4, deltaX: 0, deltaY: 240 });
+      await sleep(900);
+      must(await b.eval<boolean>(shownNow('.map-handle')), `${prefix}: city map left during the limits capture`);
+    }
+    await sleep(1500);
     const { width, height } = b.viewport, x0 = width * 0.6, y0 = height * 0.5;
     await b.send('Input.dispatchMouseEvent', { type: 'mouseMoved', x: x0, y: y0 });
     await b.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: x0, y: y0, button: 'right', buttons: 2, clickCount: 1 });

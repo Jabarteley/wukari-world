@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "za-starter",
-    "name": "Starter zone"
+    "name": "Cape Town"
   },
   "timezone": "Africa/Johannesburg",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://caasanwebsitestorage.blob.core.windows.net/aeronautical-information-publication/Aerodromes%20%2815_JAN_2026%29.PDF"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=18.430042,-33.921065,18.436042,-33.915065",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
   "bounds": [
-    18.418042,
-    -33.983369,
-    18.616292,
-    -33.903065
+    18.34,
+    -34.04,
+    18.7,
+    -33.82
   ],
-  "coverageNote": "legislative capital; Pretoria is executive and Bloemfontein judicial capital. Starter visitor area. Real city and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "Cape Town from Clifton and the City Bowl across the Cape Flats to Delft and the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the Atlantic and Table Bay as a band along the coast, main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Cape Town",
+    "unit": "district",
+    "roadHub": "Cape Town"
+  }
 } satisfies DestinationFacts

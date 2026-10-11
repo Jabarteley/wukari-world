@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "ci-starter",
-    "name": "Starter zone"
+    "name": "Abidjan"
   },
   "timezone": "Africa/Abidjan",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://aim.asecna.aero/html/eAIP/FR-_06AD-2.DIAP-fr-FR.html"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=-4.023207,5.320126,-4.017207,5.326126",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
   "bounds": [
-    -4.035207,
-    5.242503,
-    -3.916656,
-    5.338126
+    -4.12,
+    5.2,
+    -3.88,
+    5.43
   ],
-  "coverageNote": "commercial city; Yamoussoukro is the political capital. Starter visitor area. Real city and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "Abidjan from Yopougon and Abobo to Port-Bouët and the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the Ebrié lagoon and the Gulf of Guinea as a band along the coast, main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Abidjan",
+    "unit": "district",
+    "roadHub": "Gare de Treichville"
+  }
 } satisfies DestinationFacts

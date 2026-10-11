@@ -15,7 +15,7 @@
  *
  * This module reads the already-loaded city content catalogue to decide whether the shared parametric adapter is needed.
  */
-import { cachedCityContent, playableCityIds } from '../game/cities/registry.ts';
+import { cachedCityContent, loadCityContent, playableCityIds } from '../game/cities/registry.ts';
 import type { SceneDef } from './types.ts';
 
 /** VARIANTS[kind][variant] of a scene file. */
@@ -26,6 +26,8 @@ export interface ScenePart { kinds?: Readonly<Record<string, SceneDef>>; variant
 
 const FETCH = {
   ibadan: async (): Promise<ScenePart> => { const [own, variants] = await Promise.all([import('./venues-ibadan-a.ts'), import('./venues-ibadan-b.ts')]); return { kinds: own.SCENES, variants: variants.VARIANTS }; },
+  campus: async (): Promise<ScenePart> => ({ kinds: (await import('./venues-campus.ts')).SCENES }),
+  viewpoint: async (): Promise<ScenePart> => ({ kinds: (await import('./venues-viewpoint.ts')).SCENES }),
   'ogun-signature': async (): Promise<ScenePart> => ({ variants: (await import('./venues-ogun-a.ts')).VARIANTS }),
   'ogun-everyday': async (): Promise<ScenePart> => ({ variants: (await import('./venues-ogun-b.ts')).VARIANTS }),
   'port-harcourt': async (): Promise<ScenePart> => ({ variants: (await import('./venues-rivers.ts')).VARIANTS }),
@@ -35,25 +37,28 @@ const FETCH = {
 } satisfies Record<string, () => Promise<ScenePart>>;
 type PartId = keyof typeof FETCH;
 
-/** The pieces each city draws with, in the order a variant is looked up. A city that is not listed has no scenes of its own. */
+/** Explicit city pieces, searched before the shared pieces selected from its content. */
 const CITY_PARTS: Readonly<Record<string, readonly PartId[]>> = Object.freeze({
   ibadan: ['ibadan'],
   abeokuta: ['ogun-signature', 'ogun-everyday'], 'ijebu-ode': ['ogun-signature', 'ogun-everyday'],
   ota: ['ogun-everyday'], sagamu: ['ogun-everyday'],
   'port-harcourt': ['port-harcourt'], abuja: ['abuja'], kano: ['kano'],
 });
-/** Scene kinds that are part of a city's download, with that city: the kind's own scene is there until the city is loaded. */
+/** On-demand scene kinds and the representative city used by the scene viewer. */
 export const CITY_KINDS: Readonly<Record<string, string>> = Object.freeze({ quad: 'ibadan', hilltop: 'ibadan', lakeside: 'ibadan' });
 
 const loaded = new Map<PartId, ScenePart>(), pending = new Map<PartId, Promise<ScenePart>>();
+const hasKind = (cityId: string, kind: string): boolean => cachedCityContent(cityId)?.venues.some((venue) => venue.definition.scene.kind === kind) === true;
 const hasParametricVenues = (cityId: string): boolean => cachedCityContent(cityId)?.venues.some((venue) => venue.definition.scene.design !== undefined) === true;
 const partsOf = (cityId: string): readonly PartId[] => [
   ...(Object.hasOwn(CITY_PARTS, cityId) ? CITY_PARTS[cityId]! : []),
+  ...(hasKind(cityId, 'quad') ? ['campus' as const] : []),
+  ...(hasKind(cityId, 'hilltop') ? ['viewpoint' as const] : []),
   ...(hasParametricVenues(cityId) ? ['parametric' as const] : []),
 ];
 
 /** Cities with scenes of their own. */
-export const sceneCityIds = (): readonly string[] => [...new Set([...Object.keys(CITY_PARTS), ...playableCityIds().filter(hasParametricVenues)])];
+export const sceneCityIds = (): readonly string[] => [...new Set([...Object.keys(CITY_PARTS), ...playableCityIds().filter((cityId) => hasKind(cityId, 'quad') || hasKind(cityId, 'hilltop') || hasParametricVenues(cityId))])];
 export const cityScenesReady = (cityId: string): boolean => partsOf(cityId).every((part) => loaded.has(part));
 
 function loadPart(part: PartId): Promise<ScenePart> {
@@ -65,12 +70,12 @@ function loadPart(part: PartId): Promise<ScenePart> {
   pending.set(part, work);
   return work;
 }
-/** Fetch a city's own scenes. Resolves at once for a city that has none or has them already; rejects if a piece did not arrive. */
-export async function loadCityScenes(cityId: string): Promise<void> { await Promise.all(partsOf(cityId).map(loadPart)); }
+/** Fetch a city's own scenes. Content comes first because it declares the shared lazy parts this city needs. */
+export async function loadCityScenes(cityId: string): Promise<void> { await loadCityContent(cityId); await Promise.all(partsOf(cityId).map(loadPart)); }
 /** Fetch the shared parametric adapter explicitly (unit scene probes that construct a design without city content). */
 export async function loadParametricScenes(): Promise<void> { await loadPart('parametric'); }
-/** Every city's scenes (the scene viewer and the tests). */
-export async function loadAllCityScenes(): Promise<void> { await Promise.all(sceneCityIds().map(loadCityScenes)); }
+/** Every city's scenes (the scene viewer and the tests), including parts discovered only after content loads. */
+export async function loadAllCityScenes(): Promise<void> { await Promise.all(playableCityIds().map(loadCityScenes)); }
 
 /** The synchronous adapter after loadCityScenes/loadParametricScenes has prepared it. */
 export const parametricSceneAdapter = (): ParametricSceneAdapter | null => loaded.get('parametric')?.parametric ?? null;

@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "bj-starter",
-    "name": "Starter zone"
+    "name": "Cotonou"
   },
   "timezone": "Africa/Porto-Novo",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://aim.asecna.aero/html/eAIP/FR-_01AD-2.DBBB-fr-FR.html"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=2.401355,6.35998,2.407355,6.36598",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
   "bounds": [
-    2.371333,
-    6.344389,
-    2.419355,
-    6.37798
+    2.26,
+    6.3,
+    2.5,
+    6.46
   ],
-  "coverageNote": "commercial city; Porto-Novo is constitutional capital. Starter visitor area. Real city and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "Cotonou between the Atlantic, the channel and Lake Nokoué, with Abomey-Calavi, to the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the Atlantic as a band along the coast, the channel and Lake Nokoué mapped as water, main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Cotonou",
+    "unit": "district",
+    "roadHub": "Gare routière"
+  }
 } satisfies DestinationFacts

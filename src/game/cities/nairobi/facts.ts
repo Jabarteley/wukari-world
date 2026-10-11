@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "ke-starter",
-    "name": "Starter district"
+    "name": "Nairobi"
   },
   "timezone": "Africa/Nairobi",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://eaip.kcaa.or.ke/eAIP_03102024/03-10-2024/eAIP/HK-AD%202%20HKJK-en-GB.html"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and national aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=36.811711,-1.284401,36.817711,-1.278401",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: national aeronautical information sources",
   "bounds": [
-    36.799711,
-    -1.331242,
-    36.939775,
-    -1.266401
+    36.7,
+    -1.38,
+    36.96,
+    -1.2
   ],
-  "coverageNote": "Starter visitor area. Real capital and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "Nairobi from Karen and Kibera to Westlands, Kasarani and the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the lakes and reservoirs mapped nearby, main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Nairobi",
+    "unit": "district",
+    "roadHub": "Nairobi Central Railway Station"
+  }
 } satisfies DestinationFacts

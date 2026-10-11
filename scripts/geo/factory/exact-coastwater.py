@@ -236,7 +236,29 @@ def main():
     tile_union = unary_union([development_land, exact_play_water])
     if not water.is_valid or not tile_union.is_valid:
         raise ValueError('Invalid canonical land/water union')
-    play_arrays = [[list(p.exterior.coords)] + [list(r.coords) for r in p.interiors] for p in area_polygons(tile_union)]
+    # Polygonize the boundary before serializing independent playable faces.
+    play_faces, cuts, dangles, invalid = polygonize_full(unary_union(tile_union.boundary))
+    if any(not g.is_empty for g in [cuts, dangles, invalid]):
+        raise ValueError('Invalid canonical play-area boundary linework')
+    selected_faces = [p for p in play_faces.geoms if tile_union.covers(p.representative_point())]
+    def ring_contacts(p):
+        rings = [p.exterior, *p.interiors]
+        return any(a.intersects(b) for i, a in enumerate(rings) for b in rings[i + 1:])
+    clean_faces = []
+    split_faces = 0
+    for face in selected_faces:
+        if ring_contacts(face):
+            # OGC permits a hole touching its shell at one point; the renderer does not.
+            # Constrained triangles retain the exact face while each has one simple ring.
+            split_faces += 1
+            clean_faces.extend(shapely.constrained_delaunay_triangles(face).geoms)
+        else:
+            clean_faces.append(face)
+    serialized_union = unary_union(clean_faces)
+    serialization_difference = tile_union.symmetric_difference(serialized_union).area
+    if serialization_difference != 0 or any(not p.is_valid or ring_contacts(p) for p in clean_faces):
+        raise ValueError('Play-area serialization changed coverage or retained ring contacts')
+    play_arrays = [[list(p.exterior.coords)] + [list(r.coords) for r in p.interiors] for p in clean_faces]
     play_encoded = json.dumps(play_arrays, separators=(',', ':'), allow_nan=False)
     geometry_after = geometry_before[:play_hit.start(1)] + play_encoded + geometry_before[play_hit.end(1):]
     geometry_raw = geometry_after.encode()
@@ -253,6 +275,10 @@ def main():
         'landWaterOverlapAfterDegrees2': development_land.intersection(water).area,
         'canonicalTileUnionSymmetricDifferenceDegrees2': tile_union.symmetric_difference(unary_union([development_land, exact_play_water])).area,
         'landUnchanged': True,
+        'playAreaBoundaryFaces': len(selected_faces),
+        'playAreaTouchFacesSplit': split_faces,
+        'playAreaSerializedSymmetricDifferenceDegrees2': serialization_difference,
+        'playAreaRingContacts': sum(ring_contacts(p) for p in clean_faces),
         'playAreaPolygons': len(play_arrays),
         'playAreaHoles': sum(len(p) - 1 for p in play_arrays),
         'playAreaVertices': sum(len(r) for p in play_arrays for r in p),

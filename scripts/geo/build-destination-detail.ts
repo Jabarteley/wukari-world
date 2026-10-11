@@ -21,7 +21,7 @@ import { loadPbfExtract } from './destination-detail/pbf-extract.ts';
 import { validateDestinationFacts } from '../../src/game/cities/africa/types.ts';
 import { toLocal } from '../../src/geo/frame.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, inRing, polygonsOf, rasterArea, round, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
 import { waterLabelPoint } from './destination-detail/water-label.ts';
 
@@ -119,8 +119,14 @@ console.log(`places ${places.length}`);
 const waterAnswer = await recorded('water', config.water(config.sea || config.wideWater ? wide.join(',') : bbox));
 const isShore = (element: Element): boolean => Boolean(element.geometry) && element.type === 'way' && (element.tags?.natural === 'coastline' || (config.sea?.kind === 'lake' && !element.tags?.natural && !element.tags?.waterway));
 const coast = waterAnswer.elements.filter(isShore).map((element) => element.geometry!.map((g): P => [g.lon, g.lat]));
-const landPoints = [...places.map((place): P => [place.lon, place.lat]), ...labelled.map((label) => label.at)];
-const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, outlineBox, wide, config.sea.bandMetres, config.cell / config.split) : null;
+const selectedAnchors = [...places.map((place) => ({ ref: place.osm, at: [place.lon, place.lat] as P })), ...neighbourhoods.map((choice) => ({ ref: choice.ref, at: centreOf(pick(choice.ref)) }))];
+const landPoints = selectedAnchors.map((anchor) => anchor.at);
+if (config.sea?.kind === 'coast' && !coast.length) throw new Error('HOLD_SOURCE_CLASSIFICATION: no source coastline ways');
+const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, outlineBox, wide, config.sea.bandMetres, config.cell / config.split, { kind: config.sea.kind }) : null;
+if (shoreSide && config.sea?.kind === 'coast') {
+  const invalid = selectedAnchors.map((anchor) => ({ ...anchor, classification: shoreSide.classify(anchor.at) })).filter((anchor) => anchor.classification !== 'land');
+  if (invalid.length) throw new Error(`HOLD_SOURCE_ANCHORS: ${JSON.stringify({ invalid, sourceWaterAnchors: shoreSide.sourceWaterAnchors })}`);
+}
 const sea = shoreSide ? safePolygons(shoreSide.band, config.waterTolerance, project) : [];
 // The sea carried far beyond the play box is drawn at a coarser tolerance (about 130 m): nobody reads a shore that far out to the metre, and the file stays small.
 const farSea = shoreSide ? safePolygons(shoreSide.far, 0.0008, project) : [];
@@ -146,6 +152,9 @@ const reachInland = inland.flatMap((element) => {
   return repaired;
 });
 const reachWater = [...farSea, ...reachInland];
+const contains = (point: P, polygons: readonly P[][][]): boolean => polygons.some((polygon) => inRing(point, polygon[0]!) && !polygon.slice(1).some((hole) => inRing(point, hole)));
+const waterAnchors = selectedAnchors.filter((anchor) => contains(anchor.at, wet) || contains(anchor.at, reachWater));
+if (waterAnchors.length) throw new Error(`HOLD_SOURCE_ANCHORS: selected land anchors overlap water ${JSON.stringify(waterAnchors)}`);
 console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
 
 const landuse = await recorded('landuse', config.landuse(outlineBbox));
@@ -153,7 +162,7 @@ const useRings = landuse.elements.flatMap((element) => areaRings(element).outer)
 const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 }))];
 const roadsEarly = await recorded('roads', config.roads(bbox, `${config.core.join(',')}`));
 const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
-const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500 });
+const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500, blockingWater: reachWater });
 const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015), project);
 const land = tidy(traced.land);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
@@ -161,6 +170,8 @@ const water = safePolygons(traced.water, Math.min(config.waterTolerance, 0.00015
 // These final, independently safe surfaces are the playable ground. Deriving the play area from them prevents contour/simplification slivers that belong to neither land nor water.
 const play = [...land, ...water];
 if (!land.length) throw new Error('The land-use answer left no built-up area in the box');
+const lostAnchors = selectedAnchors.filter((anchor) => !contains(anchor.at, land));
+if (lostAnchors.length) throw new Error(`HOLD_LAND_ANCHORS: selected source anchors were not preserved in land ${JSON.stringify(lostAnchors)}`);
 const waterByRef = new Map(waterAnswer.elements.map((element) => [refOf(element), element]));
 const renderedWater = reachWater.length ? reachWater : water;
 const labels = config.names.map((choice) => {
@@ -184,7 +195,7 @@ writeFileSync(out('geometry.ts'), `/**
 import type { DestinationGeometry } from '../africa/map.ts'
 
 export const GEOMETRY: DestinationGeometry = {
-  land: ${lonLat(land)},
+  land: ${lonLat(land, 6)},
   playArea: ${lonLat(play, 6)},
   buildings: [], roads: [],
 }

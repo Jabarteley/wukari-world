@@ -154,23 +154,25 @@ function fillRings(rings: readonly Ring[], cols: number, rows: number, box: Box,
 }
 
 /** Drop filled regions under `minIsland` cells and fill empty pockets under `minHole` cells that do not reach the edge of the grid. */
-function tidyMask(mask: Uint8Array, cols: number, rows: number, minIsland: number, minHole: number): void {
+function tidyMask(mask: Uint8Array, cols: number, rows: number, minIsland: number, minHole: number, protectedCells: ReadonlySet<number>, blocked: Uint8Array): void {
   const seen = new Uint8Array(mask.length), queue = new Int32Array(mask.length);
   for (const value of [1, 0]) {
     seen.fill(0);
     for (let start = 0; start < mask.length; start++) {
       if (seen[start] || mask[start] !== value) continue;
-      let head = 0, tail = 0, edge = false;
+      let head = 0, tail = 0, edge = false, protectedIsland = false, blockedHole = false;
       queue[tail++] = start; seen[start] = 1;
       while (head < tail) {
         const at = queue[head++]!, c = at % cols, r = (at - c) / cols;
         if (c === 0 || r === 0 || c === cols - 1 || r === rows - 1) edge = true;
+        if (protectedCells.has(at)) protectedIsland = true;
+        if (blocked[at]) blockedHole = true;
         if (c > 0 && !seen[at - 1] && mask[at - 1] === value) { seen[at - 1] = 1; queue[tail++] = at - 1; }
         if (c < cols - 1 && !seen[at + 1] && mask[at + 1] === value) { seen[at + 1] = 1; queue[tail++] = at + 1; }
         if (r > 0 && !seen[at - cols] && mask[at - cols] === value) { seen[at - cols] = 1; queue[tail++] = at - cols; }
         if (r < rows - 1 && !seen[at + cols] && mask[at + cols] === value) { seen[at + cols] = 1; queue[tail++] = at + cols; }
       }
-      if (value === 1 ? tail < minIsland : !edge && tail < minHole) for (let i = 0; i < tail; i++) mask[queue[i]!] = value === 1 ? 0 : 1;
+      if (value === 1 ? !protectedIsland && tail < minIsland : !edge && !blockedHole && tail < minHole) for (let i = 0; i < tail; i++) mask[queue[i]!] = value === 1 ? 0 : 1;
     }
   }
 }
@@ -180,9 +182,10 @@ function tidyMask(mask: Uint8Array, cols: number, rows: number, minIsland: numbe
  * The built-up ground is the mapped land-use areas themselves (`areas`, closed rings), filled on a grid `cell / split` degrees wide (about 37 m), plus a disc round
  * every place of the game and round every labelled neighbourhood (a named quarter is built-up ground even where its land use is not mapped). The result is closed by `closeMetres` (small gaps between blocks join) and smoothed by a second blur, so the edge
  * follows the real edge of the mapped blocks as a smooth curve, and a coast, a lake shore or a river bank is the water polygons' own edge. Regions under `minIslandKm2`
- * are dropped and pockets under `minHoleKm2` are filled. Each polygon is an outer ring followed by its holes.
+ * are dropped unless they contain a selected anchor cell, and pockets under `minHoleKm2` are filled unless blocked by water.
+ * `blockingWater` prevents land growth into water beyond the playable water band; it never adds playable water. Each polygon is an outer ring followed by its holes.
  */
-export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metres: number }[], roads: readonly P[][], water: readonly Ring[][], box: Box, options: { cell: number; split: number; closeMetres: number; minIslandKm2: number; minHoleKm2: number; shore: number; joinMetres: number }): { play: Ring[][]; land: Ring[][]; water: Ring[][] } {
+export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metres: number }[], roads: readonly P[][], water: readonly Ring[][], box: Box, options: { cell: number; split: number; closeMetres: number; minIslandKm2: number; minHoleKm2: number; shore: number; joinMetres: number; blockingWater?: readonly Ring[][] }): { play: Ring[][]; land: Ring[][]; water: Ring[][] } {
   const { cell, split, closeMetres, minIslandKm2, minHoleKm2, shore, joinMetres } = options;
   const fine = cell / split, fc = Math.ceil((box[3] - box[1]) / fine), fr = Math.ceil((box[2] - box[0]) / fine);
   const metresPerCell = fine * 111_000, cellKm2 = (metresPerCell / 1000) ** 2 * Math.cos(((box[0] + box[2]) / 2) * Math.PI / 180);
@@ -224,7 +227,6 @@ export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metre
     const radius = Math.round(metres / metresPerCell), c0 = Math.floor((lon - box[1]) / fine), r0 = Math.floor((lat - box[0]) / fine);
     for (let r = Math.max(0, r0 - radius); r <= Math.min(fr - 1, r0 + radius); r++) for (let c = Math.max(0, c0 - radius); c <= Math.min(fc - 1, c0 + radius); c++) if ((c - c0) ** 2 + (r - r0) ** 2 <= radius * radius) joined[r * fc + c] = 1;
   }
-  tidyMask(joined, fc, fr, Math.round(minIslandKm2 / cellKm2), Math.round(minHoleKm2 / cellKm2));
   // The water, filled on the same grid.
   const wet = new Uint8Array(fc * fr);
   fillRings(water.flatMap((polygon) => polygon.slice(0, 1)), fc, fr, box, fine, wet);
@@ -232,6 +234,22 @@ export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metre
   const islands = new Uint8Array(fc * fr);
   fillRings(water.flatMap((polygon) => polygon.slice(1)), fc, fr, box, fine, islands);
   for (let i = 0; i < wet.length; i++) if (islands[i]) wet[i] = 0;
+  // Water blocks land even beyond the playable shore band. Rasterise each polygon's holes separately,
+  // so an island in one water polygon cannot erase overlapping water from another polygon.
+  const blocked = new Uint8Array(wet);
+  for (const polygon of options.blockingWater ?? []) {
+    const shell = new Uint8Array(fc * fr), holes = new Uint8Array(fc * fr);
+    fillRings(polygon.slice(0, 1), fc, fr, box, fine, shell);
+    fillRings(polygon.slice(1), fc, fr, box, fine, holes);
+    for (let i = 0; i < blocked.length; i++) if (shell[i] && !holes[i]) blocked[i] = 1;
+  }
+  const protectedCells = new Set<number>();
+  for (const { at: [lon, lat] } of anchors) {
+    const c = Math.floor((lon - box[1]) / fine), r = Math.floor((lat - box[0]) / fine);
+    if (c >= 0 && r >= 0 && c < fc && r < fr && !blocked[r * fc + c]) protectedCells.add(r * fc + c);
+  }
+  for (let i = 0; i < joined.length; i++) if (blocked[i]) joined[i] = 0;
+  tidyMask(joined, fc, fr, Math.round(minIslandKm2 / cellKm2), Math.round(minHoleKm2 / cellKm2), protectedCells, blocked);
   const play = new Uint8Array(fc * fr), land = new Uint8Array(fc * fr);
   for (let i = 0; i < play.length; i++) if (joined[i] || wet[i]) play[i] = 1;
   // The declared water is the water one cell in from its raster edge, so that it lies inside the play area whatever each outline's simplification does.
@@ -240,7 +258,7 @@ export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metre
   for (let r = 0; r < fr; r++) for (let c = 0; c < fc; c++) if (wet[r * fc + c] && wetAt(r - 1, c) && wetAt(r + 1, c) && wetAt(r, c - 1) && wetAt(r, c + 1)) inner[r * fc + c] = 1;
   for (let r = 0; r < fr; r++) for (let c = 0; c < fc; c++) {
     const at = r * fc + c;
-    if (!joined[at] || wet[at]) continue;
+    if (!joined[at] || blocked[at]) continue;
     let near = false;
     for (let dr = -shore; dr <= shore && !near; dr++) for (let dc = -shore; dc <= shore; dc++) {
       const nr = r + dr, nc = c + dc;
@@ -394,11 +412,11 @@ export function rasterArea(rings: { outer: readonly Ring[]; inner: readonly Ring
   return smoothPolygons(filled, cols, rows, box, cell, 1.3, 0.5);
 }
 
-const roundPt = (p: P): P => [round(p[0]), round(p[1])];
+const roundPt = (p: P): P => [round(p[0], 6), round(p[1], 6)];
 const tidyRing = (ring: Ring): Ring => { const out: Ring = []; for (const p of ring) { const q = roundPt(p); const last = out.at(-1); if (!last || last[0] !== q[0] || last[1] !== q[1]) out.push(q); } if (out.length && (out[0]![0] !== out.at(-1)![0] || out[0]![1] !== out.at(-1)![1])) out.push(out[0]!); return out; };
 
 /**
- * Simplify polygons (outer ring and holes, Douglas-Peucker) and round them to five decimals, keeping only a result the renderer can triangulate:
+ * Simplify polygons (outer ring and holes, Douglas-Peucker) and round them to six decimals, keeping only a result the renderer can triangulate:
  * Every ring retains 75–125% of its source area. Valid source polygons simplify each ring independently, retaining narrow islands;
  * other polygons retry the existing tolerance sequence without dropping rings. Every accepted polygon passes geometry and triangulation checks.
  */
@@ -449,23 +467,26 @@ export function safePolygons(polygons: readonly Ring[][], tolerance: number, pro
   return out;
 }
 
+export type ShoreSemantics = { kind: 'coast' } | { kind: 'lake' };
+export type ShorePointKind = 'land' | 'water' | 'unresolved' | 'barrier' | 'outside';
+
 /**
- * The sea, or a big lake, as water polygons, from the shore ways OpenStreetMap holds (the coastline, or the member ways of the lake's relation).
- * The ways are drawn as a barrier on a grid `cell` degrees wide over `wide`; the ground between the barriers falls into regions, and a region is land
- * when a known land point (a place of the game, a neighbourhood label) lies in it and water otherwise. The shore needs no direction, so the same
- * recipe serves a coastline and a lake. Ways that close on themselves (islets) are not barriers. Returns the water of the whole box `wide`
- * (`far`) and the part of it within `bandMetres` of the shore and inside `box` (`band`, what the play area keeps).
+ * Shore barriers divide the wide grid into connected components. Coastlines include closed ways and follow OSM's
+ * directed land-left/water-right semantics. Only distinct, validated opposite-side source samples vote; anchors never vote.
+ * Lakes retain the existing undirected land-anchor classification. The default is lake for existing six-argument callers.
+ * Coastal conflicts, unindexed source segments and unresolved components of at least 40 cells HOLD with a diagnostic error.
+ * `classify` and `sourceWaterAnchors` report source classification separately from smoothed render polygons.
  */
-export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box: Box, wide: Box, bandMetres: number, cell: number): { far: Ring[][]; band: Ring[][] } {
+export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box: Box, wide: Box, bandMetres: number, cell: number, semantics: ShoreSemantics = { kind: 'lake' }): { far: Ring[][]; band: Ring[][]; classify: (point: P) => ShorePointKind; sourceWaterAnchors: P[] } {
   const cols = Math.ceil((wide[3] - wide[1]) / cell), rows = Math.ceil((wide[2] - wide[0]) / cell);
   const barrier = new Uint8Array(cols * rows);
   const colOf = (lon: number): number => Math.floor((lon - wide[1]) / cell), rowOf = (lat: number): number => Math.floor((lat - wide[0]) / cell);
   for (const way of shore) {
-    if (way.length < 2 || (way[0]![0] === way.at(-1)![0] && way[0]![1] === way.at(-1)![1])) continue;
+    if (way.length < 2 || (semantics.kind === 'lake' && way[0]![0] === way.at(-1)![0] && way[0]![1] === way.at(-1)![1])) continue;
     for (let i = 1; i < way.length; i++) {
       const [ax, ay] = way[i - 1]!, [bx, by] = way[i]!;
       const steps = Math.max(1, Math.ceil(Math.max(Math.abs(bx - ax), Math.abs(by - ay)) / (cell / 3)));
-      if (steps > 4000) continue;
+      if (steps > 4000) { if (semantics.kind === 'coast') throw new Error('HOLD_SOURCE_CLASSIFICATION: coastline segment exceeds raster limit'); continue; }
       for (let k = 0; k <= steps; k++) {
         const c = colOf(ax + (bx - ax) * k / steps), r = rowOf(ay + (by - ay) * k / steps);
         if (c >= 0 && r >= 0 && c < cols && r < rows) barrier[r * cols + c] = 1;
@@ -493,8 +514,119 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
     }
     hasLand.push(land);
   }
-  // A land point sitting on a barrier cell counts for the regions beside it.
-  for (const at of marked) if (barrier[at]) for (const next of [at - 1, at + 1, at - cols, at + cols]) if (next >= 0 && next < region.length && region[next]! >= 0) hasLand[region[next]!] = true;
+  const unresolved = new Set<number>();
+  if (semantics.kind === 'lake') {
+      // A lake land anchor on a barrier counts for the regions beside it.
+    for (const at of marked) if (barrier[at]) for (const next of [at - 1, at + 1, at - cols, at + cols]) if (next >= 0 && next < region.length && region[next]! >= 0) hasLand[region[next]!] = true;
+  } else {
+    const coastVotes = hasLand.map((_, id) => ({ id, land: 0, water: 0, cells: 0 }));
+    for (const id of region) if (id >= 0) coastVotes[id]!.cells++;
+    const rejected = { outsideGrid: 0, barrierCell: 0, wrongLocalSide: 0, closerSourceSegment: 0, obstructedPath: 0, missingPair: 0, sameComponentPair: 0, indexedSegments: 0, unindexedSegments: 0, acceptedPairs: 0 };
+    type Segment = { a: P; b: P; wayIndex: number; segmentIndex: number };
+    const segmentIndex = new Map<string, number[]>(), sourceSegments: Segment[] = [], binSize = cell * 8;
+    const binX = (x: number): number => Math.floor((x - wide[1]) / binSize), binY = (y: number): number => Math.floor((y - wide[0]) / binSize);
+    const binKey = (x: number, y: number): string => x + ',' + y;
+    for (let wayIndex = 0; wayIndex < shore.length; wayIndex++) for (let i = 1; i < shore[wayIndex]!.length; i++) {
+      const a = shore[wayIndex]![i - 1]!, b = shore[wayIndex]![i]!, id = sourceSegments.length;
+      sourceSegments.push({ a, b, wayIndex, segmentIndex: i - 1 });
+      const x0 = binX(Math.min(a[0], b[0])), x1 = binX(Math.max(a[0], b[0])), y0 = binY(Math.min(a[1], b[1])), y1 = binY(Math.max(a[1], b[1]));
+      if ((x1 - x0 + 1) * (y1 - y0 + 1) > 4096) { rejected.unindexedSegments++; continue; }
+      rejected.indexedSegments++;
+      for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) {
+        const key = binKey(x, y), bucket = segmentIndex.get(key);
+        if (bucket) bucket.push(id); else segmentIndex.set(key, [id]);
+      }
+  }
+    const nearby = (x0: number, y0: number, x1: number, y1: number): Segment[] => {
+      const ids = new Set<number>();
+      for (let x = binX(x0); x <= binX(x1); x++) for (let y = binY(y0); y <= binY(y1); y++) for (const id of segmentIndex.get(binKey(x, y)) ?? []) ids.add(id);
+      return [...ids].map(id => sourceSegments[id]!);
+    };
+    const cross = (ax: number, ay: number, bx: number, by: number): number => ax * by - ay * bx;
+    const distanceSquared = (px: number, py: number, a: P, b: P): number => {
+      const dx = b[0] - a[0], dy = b[1] - a[1], lengthSquared = dx * dx + dy * dy;
+      const t = lengthSquared ? Math.max(0, Math.min(1, ((px - a[0]) * dx + (py - a[1]) * dy) / lengthSquared)) : 0;
+      return (px - a[0] - t * dx) ** 2 + (py - a[1] - t * dy) ** 2;
+    };
+    const obstructs = (x: number, y: number, px: number, py: number, segment: Segment): boolean => {
+      const rx = px - x, ry = py - y, sx = segment.b[0] - segment.a[0], sy = segment.b[1] - segment.a[1];
+      const denominator = cross(rx, ry, sx, sy);
+      const qx = segment.a[0] - x, qy = segment.a[1] - y;
+      if (Math.abs(denominator) < 1e-18) {
+        if (Math.abs(cross(qx, qy, rx, ry)) > 1e-18) return false;
+        const squared = rx * rx + ry * ry;
+        const t0 = (qx * rx + qy * ry) / squared, t1 = ((segment.b[0] - x) * rx + (segment.b[1] - y) * ry) / squared;
+        return Math.max(t0, t1) > 1e-9 && Math.min(t0, t1) <= 1 + 1e-9;
+      }
+      const t = cross(qx, qy, sx, sy) / denominator, u = cross(qx, qy, rx, ry) / denominator;
+      return t > 1e-9 && t <= 1 + 1e-9 && u >= -1e-9 && u <= 1 + 1e-9;
+    };
+    const reject = (reason: keyof typeof rejected): void => { rejected[reason]++; };
+
+    for (let wayIndex = 0; wayIndex < shore.length; wayIndex++) {
+      const way = shore[wayIndex]!;
+      for (let i = 1; i < way.length; i++) {
+        const a = way[i - 1]!, b = way[i]!, dx = b[0] - a[0], dy = b[1] - a[1], length = Math.hypot(dx, dy);
+        if (!length) continue;
+        // A vote is cast only as a validated opposite-side pair. A sample cannot
+        // jump another shoreline or be closer to a different source segment.
+        const count = Math.max(1, Math.ceil(length / (cell * 2)));
+        for (let sample = 0; sample < count; sample++) {
+          const t = (sample + 0.5) / count, x = a[0] + t * dx, y = a[1] + t * dy;
+          const pair: ({ id: number; kind: 'land' | 'water' } | null)[] = [];
+          for (const side of [1, -1]) {
+            let accepted: { id: number; kind: 'land' | 'water' } | null = null;
+            for (const offset of [0.6, 0.9, 1.25, 1.75, 2.5, 4]) {
+              const px = x - side * dy / length * cell * offset, py = y + side * dx / length * cell * offset;
+              const c = colOf(px), r = rowOf(py);
+
+              if (c < 0 || r < 0 || c >= cols || r >= rows) { reject('outsideGrid'); continue; }
+              const at = r * cols + c, id = region[at]!;
+              if (barrier[at] || id < 0) { reject('barrierCell'); continue; }
+              if (cross(dx, dy, px - a[0], py - a[1]) * side <= 0) { reject('wrongLocalSide'); continue; }
+              const radius = cell * offset + cell * 0.01, intendedDistance = distanceSquared(px, py, a, b);
+              const neighbours = nearby(Math.min(x, px) - radius, Math.min(y, py) - radius, Math.max(x, px) + radius, Math.max(y, py) + radius);
+              const closer = neighbours.find(s => distanceSquared(px, py, s.a, s.b) < intendedDistance - 1e-16);
+              if (closer) { reject('closerSourceSegment'); continue; }
+              const blocker = neighbours.find(s => !(s.wayIndex === wayIndex && s.segmentIndex === i - 1) && obstructs(x, y, px, py, s));
+              if (blocker) { reject('obstructedPath'); continue; }
+              accepted = { id, kind: side === 1 ? 'land' : 'water' }; break;
+            }
+
+            pair.push(accepted);
+          }
+          if (!pair[0] || !pair[1]) { reject('missingPair'); continue; }
+          if (pair[0].id === pair[1].id) { reject('sameComponentPair'); continue; }
+          rejected.acceptedPairs++;
+          for (const evidence of pair) {
+            const vote = coastVotes[evidence!.id]!;
+            vote[evidence!.kind]++;
+          }
+        }
+      }
+  }
+
+    const conflicts = coastVotes.filter((vote) => vote.land > 0 && vote.water > 0);
+    const unresolvedLarge = coastVotes.filter((vote) => !vote.land && !vote.water && vote.cells >= 40);
+    if (conflicts.length || unresolvedLarge.length || rejected.unindexedSegments) {
+      throw new Error(`HOLD_SOURCE_CLASSIFICATION: ${JSON.stringify({ conflicts, unresolvedLarge, counters: rejected })}`);
+  }
+    for (const vote of coastVotes) {
+      if (!vote.land && !vote.water) unresolved.add(vote.id);
+      // Tiny unresolved pockets stay outside accepted water. An anchor there still fails classification.
+      hasLand[vote.id] = !(vote.water > 0 && vote.land === 0);
+  }
+
+  }
+  const classify = ([lon, lat]: P): ShorePointKind => {
+    const c = colOf(lon), r = rowOf(lat);
+    if (c < 0 || r < 0 || c >= cols || r >= rows) return 'outside';
+    const at = r * cols + c, id = region[at]!;
+    if (barrier[at]) return 'barrier';
+    if (unresolved.has(id)) return 'unresolved';
+    return hasLand[id] ? 'land' : 'water';
+  };
+  const sourceWaterAnchors = landPoints.filter((point) => classify(point) === 'water');
   const water = new Uint8Array(cols * rows);
   for (let at = 0; at < water.length; at++) if (!barrier[at] && !hasLand[region[at]!]) water[at] = 1;
   // A shore cell belongs to the water when water lies beside it.
@@ -521,7 +653,7 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
   const [c0, r0, c1, r1] = [colOf(box[1]), rowOf(box[0]), colOf(box[3]), rowOf(box[2])];
   for (let r = Math.max(0, r0); r <= Math.min(rows - 1, r1); r++) for (let c = Math.max(0, c0); c <= Math.min(cols - 1, c1); c++) { const at = r * cols + c; if (water[at] && distance[at]! > 0) band[at] = 1; }
   // The grid's staircase is rounded off by a light blur, so a shore reads as a curve and not as 37 m steps.
-  return { far: contour(blur(water, cols, rows, 1.6), cols, rows, wide, cell, 0.5), band: contour(blur(band, cols, rows, 1.6), cols, rows, wide, cell, 0.5) };
+  return { far: contour(blur(water, cols, rows, 1.6), cols, rows, wide, cell, 0.5), band: contour(blur(band, cols, rows, 1.6), cols, rows, wide, cell, 0.5), classify, sourceWaterAnchors };
 }
 
 /** A lookup of where polygons (each an outer ring and holes, even-odd) cover a box, on a grid `cell` degrees wide: `near(point, margin)` asks whether the point, or any of eight points `margin` degrees round it, is covered. */

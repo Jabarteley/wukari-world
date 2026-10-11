@@ -1,16 +1,13 @@
 // Showcase shops, the browser's side: paths, the storefront templates and icons, the editor's draft and its checks, the words
 // for every state and refusal, and the photo shrink. Pure apart from preparePhoto. The rules are the server's (docs/SHOWCASE.md):
 // these checks only save a round trip. Nothing here is in src/game, so none of it is in the first download.
-import { SHOWCASE, SHOWCASE_CATEGORIES, SHOWCASE_ICONS, SHOWCASE_TEMPLATES } from '../../../types/showcase.ts'
+import { SHOWCASE, SHOWCASE_CATEGORIES, SHOWCASE_CATEGORY_LABELS, SHOWCASE_ICONS, SHOWCASE_TEMPLATES } from '../../../types/showcase.ts'
 import type { ShowcaseCategory, ShowcaseHours, ShowcaseIcon, ShowcaseInput, ShowcaseMine, ShowcaseService, ShowcaseStatus, ShowcaseTemplate } from '../../../types/showcase.ts'
 import { cachedCityContent, cityName, cityRules } from '../../../game/cities/registry.ts'
 import type { TrustBadge } from '../../../game/trust/index.ts'
 import { fitWithin, refusalFor, toBase64 } from '../messages/pictureModel.ts'
 
-export const CATEGORY_LABELS: Record<ShowcaseCategory, string> = {
-  salon: 'Hair and salon', tailor: 'Tailoring', tech: 'Tech and phones', food: 'Food and catering', beauty: 'Beauty', photography: 'Photography', repair: 'Repairs',
-  tutoring: 'Lessons', crafts: 'Crafts', cleaning: 'Cleaning', events: 'Events', other: 'Other',
-}
+export const CATEGORY_LABELS: Record<ShowcaseCategory, string> = SHOWCASE_CATEGORY_LABELS
 export const ICON_GLYPHS: Record<ShowcaseIcon, { glyph: string; label: string }> = {
   scissors: { glyph: '✂️', label: 'Scissors' }, needle: { glyph: '🧵', label: 'Thread' }, laptop: { glyph: '💻', label: 'Laptop' }, pot: { glyph: '🍲', label: 'Pot' }, camera: { glyph: '📷', label: 'Camera' },
   wrench: { glyph: '🔧', label: 'Wrench' }, book: { glyph: '📖', label: 'Book' }, brush: { glyph: '🖌️', label: 'Brush' }, broom: { glyph: '🧹', label: 'Broom' }, star: { glyph: '⭐', label: 'Star' },

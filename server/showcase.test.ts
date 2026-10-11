@@ -439,3 +439,76 @@ test('a restart keeps shops, photos, the upload count and contact events (Node h
   assert.equal(photo.status, 200);
   assert.equal(((await (await fetch(`${base}/api/showcase/directory`)).json()) as Json).shops.length, 1);
 });
+
+test('the public shop link: only a published shop has one, a stranger opens it with no sign-in, and a shop that is hidden, held or unknown shows the plain page', async (t) => {
+  const s = await setup(t);
+  const ada = await s.seller('ada@example.com', 'Ada'); s.ready();
+  const page = async (path: string) => { const res = await fetch(s.f.base + path); return { res, html: await res.text() }; };
+  assert.equal((await s.post(ada, '/api/showcase/mine/share')).error, 'no_shop');
+  const made = await s.save(ada); assert.equal(made.ok, true);
+  assert.equal((await s.post(ada, '/api/showcase/mine/share')).error, 'not_published', 'a draft has no link');
+  for (let i = 0; i < SHOWCASE.photosMin; i += 1) assert.equal((await s.upload(ada, jpeg(2000 + i))).ok, true);
+  assert.equal((await s.post(ada, '/api/showcase/mine/submit')).status, 'review');
+  assert.equal((await s.post(ada, '/api/showcase/mine/share')).error, 'not_published', 'a shop waiting for review has no link');
+  assert.equal((await s.op('', { action: 'approve', shop: made.id })).status, 'live');
+
+  const shared = await s.post(ada, '/api/showcase/mine/share');
+  assert.equal(shared.ok, true, JSON.stringify(shared));
+  const token = /-?([a-hjkmnp-z2-9]{8})$/.exec(shared.path as string)?.[1] ?? '';
+  assert.ok(token && /^\/shop\/[a-z0-9-]+$/.test(shared.path), shared.path);
+  assert.ok(!shared.path.includes(made.id) && !shared.path.toLowerCase().includes('sc-'), 'the link is not the shop\'s own id');
+  assert.equal((await s.post(ada, '/api/showcase/mine/share')).path, shared.path, 'the same link every time');
+  assert.equal((await s.call('/api/showcase/mine', undefined, ada.cookie)).shop.pub, token);
+  assert.equal((await s.stored((c) => c.shops[made.id]?.revision)), (await s.rev(ada)), 'making the link changes nothing else of the shop');
+
+  // A stranger: no cookie, no account.
+  const open = await page(shared.path);
+  assert.equal(open.res.status, 200);
+  assert.ok((open.res.headers.get('content-type') ?? '').startsWith('text/html'));
+  assert.equal(open.res.headers.get('set-cookie'), null, 'no cookie is set for a stranger');
+  assert.ok((open.res.headers.get('content-security-policy') ?? '').includes("default-src 'none'"));
+  assert.ok(open.res.headers.get('cache-control')?.includes('no-store'));
+  assert.ok(open.html.includes('<meta property="og:title"') && open.html.includes(`og:url" content="${s.f.base}${shared.path}"`) && open.html.includes('og:image'));
+  assert.ok(open.html.includes('Message the seller') && open.html.includes('https://wa.me/') && open.html.includes('You deal directly with the seller.') && open.html.includes('Step inside'));
+  assert.ok(!open.html.includes(ada.id) && !open.html.includes(made.id as string) && !open.html.includes('<script'), 'no player id, no shop id, no script');
+  assert.equal((await page(`/shop/renamed-shop-${token}`)).res.status, 200, 'the readable part is decoration: only the token finds the shop');
+  // The id behind the link is for the game, by token, and the link's token is in no list.
+  assert.deepEqual((await s.call(`/api/showcase/entry/${token}`)).id, made.id);
+  assert.equal((await s.call('/api/showcase/entry/k3x9m2q7')).error, 'shop_unavailable');
+  assert.equal((await s.call(`/api/showcase/entry/${made.id}`)).error, 'shop_unavailable', 'an id is not a token');
+  assert.ok(!JSON.stringify(await s.call('/api/showcase/directory')).includes(token) && !JSON.stringify(await s.call(`/api/showcase/${made.id}`)).includes(token));
+  // Unknown, malformed and removed addresses all give the same plain page.
+  for (const path of ['/shop/k3x9m2q7', '/shop/nothing-here', '/shop/', `/shop/x-${token.toUpperCase()}`]) {
+    const gone = await page(path);
+    assert.equal(gone.res.status, 404, path);
+    assert.ok(gone.html.includes('This shop is not available') && gone.html.includes('Open Allworld') && !gone.html.includes('Message the seller'), path);
+  }
+  // Hidden by its seller, held by an operator, its owner held by complaints: not available; shown again: back.
+  assert.equal((await s.post(ada, '/api/showcase/mine/hide', { hidden: true })).status, 'hidden');
+  assert.equal((await page(shared.path)).res.status, 404);
+  assert.equal((await s.call(`/api/showcase/entry/${token}`)).error, 'shop_unavailable');
+  assert.equal((await s.post(ada, '/api/showcase/mine/hide', { hidden: false })).status, 'live');
+  assert.equal((await page(shared.path)).res.status, 200);
+  assert.equal((await s.op('', { action: 'hide', shop: made.id, reason: 'checking' })).status, 'held');
+  assert.equal((await page(shared.path)).res.status, 404);
+  assert.equal((await s.post(ada, '/api/showcase/mine/share')).error, 'shop_held');
+  assert.equal((await s.op('', { action: 'restore', shop: made.id })).status, 'live');
+  assert.equal((await page(shared.path)).res.status, 200);
+  // Reading is rate limited like the other public reads.
+  let limited = 0;
+  for (let i = 0; i < 80 && !limited; i += 1) if ((await page(shared.path)).res.status === 429) limited = i + 1;
+  assert.ok(limited > 0 && limited <= 70, `limited after ${limited}`);
+});
+
+test('a second seller has a different link, and an edited name keeps the old link working', async (t) => {
+  const s = await setup(t);
+  const ada = await s.seller('ada@example.com', 'Ada'), bola = await s.seller('bola@example.com', 'Bola'); s.ready();
+  const a = await s.live(ada), b = await s.live(bola, { name: 'Bola Tailoring' });
+  const one = await s.post(ada, '/api/showcase/mine/share'), two = await s.post(bola, '/api/showcase/mine/share');
+  assert.notEqual(one.path.slice(-8), two.path.slice(-8));
+  assert.ok(two.path.startsWith('/shop/bola-tailoring-'));
+  assert.equal((await s.call(`/api/showcase/entry/${one.path.slice(-8)}`)).id, a);
+  assert.equal((await s.call(`/api/showcase/entry/${two.path.slice(-8)}`)).id, b);
+  assert.equal((await s.edit(ada, { sign: 'New sign' })).ok, true);
+  assert.equal((await s.call(`/api/showcase/entry/${one.path.slice(-8)}`)).id, a);
+});

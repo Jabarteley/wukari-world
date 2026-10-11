@@ -9,6 +9,11 @@ import type { TrustBadge } from '../game/trust/index.ts'
 
 export const SHOWCASE_CATEGORIES = ['salon', 'tailor', 'tech', 'food', 'beauty', 'photography', 'repair', 'tutoring', 'crafts', 'cleaning', 'events', 'other'] as const
 export type ShowcaseCategory = (typeof SHOWCASE_CATEGORIES)[number]
+/** What a kind of shop is called, for a person to read (the editor, the cards and the public page). */
+export const SHOWCASE_CATEGORY_LABELS: Readonly<Record<ShowcaseCategory, string>> = Object.freeze({
+  salon: 'Hair and salon', tailor: 'Tailoring', tech: 'Tech and phones', food: 'Food and catering', beauty: 'Beauty', photography: 'Photography', repair: 'Repairs',
+  tutoring: 'Lessons', crafts: 'Crafts', cleaning: 'Cleaning', events: 'Events', other: 'Other',
+})
 export const SHOWCASE_TEMPLATES = ['classic', 'bold', 'fresh', 'night', 'craft', 'plain'] as const
 export type ShowcaseTemplate = (typeof SHOWCASE_TEMPLATES)[number]
 export const SHOWCASE_ICONS = ['scissors', 'needle', 'laptop', 'pot', 'camera', 'wrench', 'book', 'brush', 'broom', 'star', 'gift', 'music'] as const
@@ -124,6 +129,8 @@ export interface ShowcaseShop {
   reapprove?: true
   /** Why an operator held it (shown to its owner). */
   note?: string
+  /** The token of the shop's public address (src/types/showcase-link.ts), made the first time the seller shares a published shop. */
+  pub?: string
   revision: number
   createdAt: number
   updatedAt: number

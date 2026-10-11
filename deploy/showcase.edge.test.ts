@@ -173,6 +173,14 @@ test('Worker: a showcase shop from sign-in to approval, the contact release, a f
   const page = await call(`/api/showcase/${shop}`)
   assert.ok(!/wa\.me|paystack|https?:/i.test(JSON.stringify([directory, page])))
   assert.equal((await call(`/api/showcase/photo/${page.shop.photos[0].id}`)).status, 200, 'public after approval')
+  // The public link: the Worker sends /shop/ to the object; a stranger reads the page with no cookie, with the seller's own chat link and the words filled in.
+  const shared = await post(ada, '/api/showcase/mine/share')
+  assert.equal(shared.ok, true)
+  const stranger = await worker.dispatchFetch(origin + shared.path)
+  const strangerHtml = await stranger.text()
+  assert.equal(stranger.status, 200); assert.equal(stranger.headers.get('set-cookie'), null)
+  assert.ok(strangerHtml.includes('og:title') && strangerHtml.includes('https://wa.me/2348012345678?text='))
+  assert.equal((await worker.dispatchFetch(origin + '/shop/k3x9m2q7')).status, 404)
   const visitor = guest.headers.get('set-cookie')?.split(';')[0] ?? ''
   assert.equal((await post({ cookie: visitor, id: '' }, `/api/showcase/${shop}/go`, { kind: 'chat' })).error, 'account_required')
   const clientId = id()

@@ -39,6 +39,8 @@ import { plateFit, plateWidth, spanOf } from './labels.ts';
 import { DOUBLE_TAP_MS, DOUBLE_TAP_PX, isDrag, isTap, mapHint, MAP_HINT_KEY } from '../scene/gesture.ts';
 import type { CityPack, PackLga } from './types.ts';
 import type { Route } from './roads.ts';
+import { NO_PORT } from './zoom-ladder.ts';
+import type { Edge, LadderPort } from './zoom-ladder.ts';
 import { NAMED_FROM, densityFor, shorten, venueNamesAt } from './geo/density.ts';
 import type { HouseStyle, PlotAddress } from '../types/index.ts';
 
@@ -65,6 +67,8 @@ export interface Map2DState {
   travel?: { home?: string };
 }
 export interface Map2DOptions {
+  /** Where the zoom ladder hears of zoom the map could not take (see ./zoom-ladder.ts). */
+  ladder?: LadderPort;
   pack: CityPack;
   cityId?: string;
   world?: WorldView | null;
@@ -112,6 +116,8 @@ export interface Map2D {
   setFriends(ids?: Iterable<string> | null): void;
   /** Other players to draw (src/map3d/people.ts), and the server clock their trips are timed by. */
   setPeople(next: MapPeople | null | undefined, clock?: () => number): void;
+  /** Arrive from the map above (a zoom in). */
+  enter(): void;
   focusEstate(lga: string, estate: number): void;
   focusPlot(plot: PlotAddress | null | undefined): void;
   focusLga(id: string): void;
@@ -141,7 +147,7 @@ export function cityFlatModel(pack: CityPack, cityId = pack.id, network = buildN
   return flatModel(pack, network, { venues, soon: COMING_SOON });
 }
 
-export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, world = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {}, deepLink = null }: Map2DOptions = {} as Map2DOptions): Map2D {
+export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, cityId = pack.id, world = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {}, deepLink = null }: Map2DOptions = {} as Map2DOptions): Map2D {
   const content = contentFor(cityId), venueTable = Object.fromEntries(content.venues.map((venue) => [venue.id, venue.definition]));
   const stateHouseId = content.venues.find((venue) => venue.kind === 'statehouse')?.id ?? null;
   const govVenueIds = new Set(content.venues.filter((venue) => venue.kind === 'statehouse' || venue.kind === 'polling').map((venue) => venue.id));
@@ -451,9 +457,17 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     you.style.transform = `translate(${Math.round(at.x)}px,${Math.round(at.y)}px) translate(-50%,-100%)`;
   }
   function layout() { if (!measure()) return false; if (!opened) open(); else if (!userMoved && size.width > 720 && !isDeparting(state)) homeView(); apply(); return true; }
+  /** Which limit the scale is within a tenth of its range of (log scale), or null. */
+  function reach(): Edge | null {
+    const low = fitScale() * 0.8, at = Math.log(scale / low) / Math.log(MAX_SCALE / low);
+    return at < 0.1 ? 'out' : at > 0.9 ? 'in' : null;
+  }
   function zoomAt(factor: number, px: number, py: number) {
-    const before = ground(px, py);
-    scale = clamp(scale * factor, fitScale() * 0.8, MAX_SCALE);
+    const before = ground(px, py), edge: Edge = factor > 1 ? 'in' : 'out', wanted = scale * factor;
+    scale = clamp(wanted, fitScale() * 0.8, MAX_SCALE);
+    ladder.intent(edge, Math.abs(Math.log(factor)));
+    // What the map cannot take of a zoom builds up against its limit: enough of it hands over to the next map.
+    if (Math.abs(Math.log(wanted / scale)) > 1e-6) ladder.refused(edge, Math.abs(Math.log(wanted / scale)), null); else ladder.near(reach());
     ox = px - (before.x - box.x) * scale; oy = py - (before.z - box.z) * scale;
     userMoved = true; apply();
   }
@@ -549,7 +563,8 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
   }
   function onControl(name: string | undefined) {
     const at = middle();
-    if (name === 'in') zoomAt(1.5, at.x, at.y); else if (name === 'out') zoomAt(1 / 1.5, at.x, at.y);
+    if ((name === 'in' || name === 'out') && reach() === name && Math.abs(Math.log(clamp(scale * (name === 'in' ? 1.5 : 1 / 1.5), fitScale() * 0.8, MAX_SCALE) / scale)) < 0.02) { ladder.intent(name, 0.4); ladder.stepped(name, null); }
+    else if (name === 'in') zoomAt(1.5, at.x, at.y); else if (name === 'out') zoomAt(1 / 1.5, at.x, at.y);
     else if (name === 'fit') { whole(); apply(); }
     else if (name === 'me') { near(spotOf(state?.location) || homeSpot()); userMoved = true; apply(); }
   }
@@ -603,6 +618,8 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     worldChanged() { updatePlates(); if (scale) apply(); },
     setFriends(ids?: Iterable<string> | null) { friends = new Set(ids || []); if (scale) apply(); },
     setPeople(next: MapPeople | null | undefined, clock?: () => number) { people = next ?? EMPTY_PEOPLE; if (clock) peopleNow = clock; placePeople(); },
+    /** Arrive from the map above (a zoom in): the whole city, to carry on from. */
+    enter() { if (opened && measure()) { whole(); apply(); } },
     focusEstate(lga: string, estate: number) { const cell = estateLayout(pack, lga)?.cells[estate]; if (!cell || !measure()) return; scale = clamp(Math.min(free().width, free().height) / (cell.size * 1.15), fitScale(), MAX_SCALE); centreOn(cell.x, cell.z); userMoved = true; apply(); },
     focusPlot(plot: PlotAddress | null | undefined) { if (!plot || !pack.lgas?.some((lga) => lga.id === plot.lga) || !measure()) return; const layoutOf = estateLayout(pack, plot.lga)!, cell = layoutOf.cells[plot.estate]!, at = layoutOf.plot(plot.estate, plot.plot); scale = clamp(free().width / (cell.size * 0.9), fitScale(), MAX_SCALE); centreOn(at.x, at.z); userMoved = true; apply(); },
     focusLga(id: string) { const lga = pack.lgas?.find((item) => item.id === id); if (!lga || !measure()) return; const xs = lga.polygon.map((point) => clamp(point[0], fit.minX, fit.maxX)), zs = lga.polygon.map((point) => clamp(point[1], fit.minZ, fit.maxZ)); scale = Math.min(free().width / (Math.max(...xs) - Math.min(...xs) + 6), free().height / (Math.max(...zs) - Math.min(...zs) + 6)); centreOn((Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...zs) + Math.max(...zs)) / 2); userMoved = true; apply(); },

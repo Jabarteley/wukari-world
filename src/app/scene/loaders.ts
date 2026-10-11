@@ -16,7 +16,7 @@ export function warmCityScenes(cityId: string): Promise<void> {
 let cityScenes: { cityScenesReady(cityId: string): boolean } | null = null
 /** Whether a city's own scenes have arrived, answered without waiting (false until anything was asked for). */
 export const cityScenesHere = (cityId: string): boolean => cityScenes?.cityScenesReady(cityId) === true
-export async function loadMaps(): Promise<{ createCityView: (container: HTMLElement, options?: CityViewOptions) => CityView; createWorldMap: (container: HTMLElement, options?: WorldMapOptions) => WorldMap }> {
-  const [city, world] = await Promise.all([import('../../map3d/index.ts'), import('../../world-map.ts')])
-  return { createCityView: city.createCityView, createWorldMap: world.createWorldMap }
+export async function loadMaps(): Promise<{ createCityView: (container: HTMLElement, options?: CityViewOptions) => CityView; createWorldMap: (container: HTMLElement, options?: WorldMapOptions) => WorldMap; createZoomHost: typeof import('../../map3d/zoom-host.ts').createZoomHost }> {
+  const [city, world, zoom] = await Promise.all([import('../../map3d/index.ts'), import('../../world-map.ts'), import('../../map3d/zoom-host.ts')])
+  return { createCityView: city.createCityView, createWorldMap: world.createWorldMap, createZoomHost: zoom.createZoomHost }
 }

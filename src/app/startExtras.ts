@@ -13,4 +13,5 @@ export function startAfterReady(): void {
   void import('./moments.ts').then(({ startMoments }) => { startMoments() }, () => undefined)
   void import('../game/dilemma-pack.ts').catch(() => undefined)
   void import('./chatter/start.ts').then(({ startChatter }) => { startChatter() }, () => undefined)
+  void import('./chatter/ambient.ts').then(({ startAmbient }) => { startAmbient() }, () => undefined)
 }

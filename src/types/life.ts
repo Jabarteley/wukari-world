@@ -832,6 +832,10 @@ export interface Relationship {
   name?: string
   /** NPCs only: what they remember of you, as short ids (at most 4), e.g. `haggled`. Absent until something is remembered. */
   tags?: string[]
+  /** NPCs only: how many different Lagos days you have met them on, at most 99. Absent on a life saved before it was kept (read as the days it can be known from: one if they know you at all). */
+  v?: number
+  /** NPCs only: how many times a service or favour they offer has gone through for you, at most 99. */
+  b?: number
   /** Players only, and only while friends (the key is deleted on unfriend). NPC friendship is derived from points. */
   friend?: true
   /** Non-Lagos NPCs only: bounded identity retained when the origin city's lazy content is not loaded. */

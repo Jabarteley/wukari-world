@@ -40,6 +40,8 @@ export function startChatter(): void {
   }
   const play = (chosen: Chosen, key: string): void => {
     const same = (): boolean => `${game.view.value.cityId}|${game.state.value.location}` === key && !isDeparting(game.state.value)
+    // The two turn to face each other while they talk.
+    scene.venue.value?.talk?.(`npc:${chosen.first.npcId}`, `npc:${chosen.second.npcId}`, REPLY_DELAY_MS + 6_000)
     speak(chosen.first, chosen.beta)
     later(() => { if (same()) speak(chosen.second, chosen.beta) }, REPLY_DELAY_MS)
   }

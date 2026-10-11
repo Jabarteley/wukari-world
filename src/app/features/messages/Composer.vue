@@ -5,7 +5,7 @@ import VoiceComposer from './VoiceComposer.vue'
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import EmojiPicker from './EmojiPicker.vue'
-import { composerLines, createDrafts, insertMention, liveMentions, messageLength, mentionChoices, mentionQuery, shortcodes } from './messagesText.ts'
+import { composerLines, createDrafts, insertMention, liveMentions, messageLength, mentionChoices, mentionQuery, shortcodes, showCount } from './messagesText.ts'
 import type { Picked } from './messagesText.ts'
 import type { Message, SendMessageResult } from '../../../types/social.ts'
 import { preparePicture, uploadBody } from './pictureModel.ts'
@@ -30,7 +30,7 @@ const props = defineProps<{
   target: { to: string } | { conv: string }
   newId: () => string
 }>()
-const emit = defineEmits<{ send: [body: string, extra: { mentions?: { id: string; start: number }[]; replyTo?: number }]; cancelReply: []; sentVoice: [result: { conv: { id: string } }]; sentPicture: [result: Extract<SendMessageResult, { ok: true }>] }>()
+const emit = defineEmits<{ send: [body: string, extra: { mentions?: { id: string; start: number }[]; replyTo?: number }]; cancelReply: []; attach: []; sentVoice: [result: { conv: { id: string } }]; sentPicture: [result: Extract<SendMessageResult, { ok: true }>] }>()
 
 const storage = (() => { try { return globalThis.localStorage ?? null } catch { return null } })()
 const actorDrafts = new Map<string, ReturnType<typeof createDrafts>>()
@@ -153,6 +153,8 @@ function insertEmoji(char: string): void {
 }
 function submit(): void {
   const body = text.value.trim()
+  // With nothing written, the round button is the microphone.
+  if (!body && micShown.value) { startVoice(); return }
   if (!body || props.disabled || tooLong.value) return
   // Only the mentions still written in the text go along; the server checks each against the group.
   const mentions = props.members.length ? liveMentions(text.value.trimStart(), picked.value) : []
@@ -169,7 +171,14 @@ function onKey(event: KeyboardEvent): void {
   }
   if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); submit() }
 }
-defineExpose({ focus: () => field.value?.focus(), setText(value: string) { text.value = value; void nextTick(grow) } })
+const voiceBox = ref<InstanceType<typeof VoiceComposer> | null>(null)
+const recording = computed(() => Boolean(voiceBox.value?.active))
+/** The round button is a microphone while the box is empty, where voice notes are on and nothing else is being made. */
+const micShown = computed(() => props.voice === true && !count.value && !photo.value && !recording.value && voiceBox.value?.supported !== false)
+const countShown = computed(() => showCount(count.value, props.max) || tooLong.value)
+function startVoice(): void { emoji.value = false; voiceBox.value?.start() }
+function pickPicture(): void { fileInput.value?.click() }
+defineExpose({ focus: () => field.value?.focus(), startVoice, pickPicture, setText(value: string) { text.value = value; void nextTick(grow) } })
 const lines = computed(() => composerLines(text.value))
 </script>
 
@@ -196,29 +205,40 @@ const lines = computed(() => composerLines(text.value))
         </span>
       </div>
     </div>
-    <VoiceComposer v-if="voice" :target="target" :conv="conv" :me-id="meId" :disabled="disabled || Boolean(photo)" :new-id="newId" :reply-to="reply?.seq" @sent="(result) => { emit('sentVoice', result); emit('cancelReply') }" />
+    <VoiceComposer v-if="voice" ref="voiceBox" :target="target" :conv="conv" :me-id="meId" :disabled="disabled || Boolean(photo)" :new-id="newId" :reply-to="reply?.seq" @sent="(result) => { emit('sentVoice', result); emit('cancelReply') }" />
     <EmojiPicker v-if="emoji" class="composer-emoji" @pick="insertEmoji" />
     <form class="composer-form" @submit.prevent="submit">
       <input v-if="pictures" ref="fileInput" type="file" accept="image/*" class="composer-file" aria-label="Choose a picture" tabindex="-1" @change="chosen">
-      <button v-if="pictures" type="button" class="composer-side" aria-label="Send a picture" title="Send a picture" :disabled="disabled" @click="fileInput?.click()">📷</button>
-      <button type="button" class="composer-side" :aria-pressed="emoji" aria-label="Emoji" :disabled="disabled" @click="emoji = !emoji">☺</button>
-      <textarea ref="field" v-model="text" name="body" :rows="lines" :maxlength="max * 2" autocomplete="off" enterkeyhint="send" placeholder="Message" aria-label="Message" :aria-describedby="limitId" :aria-invalid="tooLong || undefined" :disabled="disabled" @input="onInput" @keydown="onKey" @keyup="track" @click="track" @focus="emoji = false" />
-      <button type="submit" class="composer-send" aria-label="Send" :title="tooLong ? `Shorten your message to ${max} characters.` : 'Send'" :disabled="disabled || !count || tooLong"><GameIcon name="earn" :size="22" /></button>
+      <div class="composer-pill">
+        <button type="button" class="composer-side" :aria-pressed="emoji" aria-label="Emoji" :disabled="disabled" @click="emoji = !emoji">☺</button>
+        <textarea ref="field" v-model="text" name="body" :rows="lines" :maxlength="max * 2" autocomplete="off" enterkeyhint="send" placeholder="Message" aria-label="Message" :aria-describedby="limitId" :aria-invalid="tooLong || undefined" :disabled="disabled" @input="onInput" @keydown="onKey" @keyup="track" @click="track" @focus="emoji = false" />
+        <button type="button" class="composer-side" aria-label="Attach or send money" aria-haspopup="dialog" data-chat="attach" :disabled="disabled" @click="emit('attach')"><GameIcon name="plus" :size="22" /></button>
+        <button v-if="pictures" type="button" class="composer-side" aria-label="Send a picture" title="Send a picture" :disabled="disabled" @click="pickPicture">📷</button>
+      </div>
+      <button type="submit" class="composer-send" :class="{ 'is-mic': micShown }" :aria-label="micShown ? 'Record a voice note' : 'Send'" :title="tooLong ? `Shorten your message to ${max} characters.` : micShown ? 'Record a voice note' : 'Send'" :disabled="disabled || tooLong || (!count && !micShown)">
+        <svg v-if="micShown" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 15a3.5 3.5 0 0 0 3.5-3.5v-6a3.5 3.5 0 0 0-7 0v6A3.5 3.5 0 0 0 12 15Zm6-3.5a1 1 0 0 0-2 0 4 4 0 0 1-8 0 1 1 0 0 0-2 0 6 6 0 0 0 5 5.9V20H9.5a1 1 0 0 0 0 2h5a1 1 0 0 0 0-2H13v-2.6a6 6 0 0 0 5-5.9Z" /></svg>
+        <GameIcon v-else name="earn" :size="22" />
+      </button>
     </form>
-    <p :id="limitId" class="composer-count" :class="{ 'is-over': tooLong }" :role="tooLong ? 'alert' : undefined">{{ tooLong ? `Remove ${count - max} characters to send.` : `${count} / ${max} characters` }}</p>
+    <p :id="limitId" class="composer-count" :class="{ 'is-over': tooLong, 'sr-only': !countShown }" :role="tooLong ? 'alert' : undefined">{{ tooLong ? `Remove ${count - max} characters to send.` : `${count} / ${max} characters` }}</p>
   </div>
 </template>
 
 <style scoped>
 .composer { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; max-width: 100%; gap: 6px; }
 .composer-form { display: flex; min-width: 0; width: 100%; align-items: flex-end; gap: 8px; margin: 0; }
+.composer-pill { flex: 1; min-width: 0; display: flex; align-items: flex-end; gap: 0; padding: 0 4px; border: 1px solid var(--c-line); border-radius: 24px; background: var(--c-fill); }
+.composer-pill:focus-within { border-color: var(--app-tint, var(--c-green-dark)); outline: var(--focus); outline-offset: 1px; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 /* The id selectors beat the panel-wide textarea rule (controls.css), which makes every textarea 96px tall. */
-.composer-form textarea, #life-dialog .composer-form textarea, .life-ui .composer-form textarea { flex: 1; width: auto; min-width: 0; box-sizing: border-box; min-height: var(--tap); max-height: 108px; resize: none; padding: 11px 16px; border: 1px solid var(--c-line); border-radius: 12px; background: var(--c-fill); font: 400 16px/22px var(--font); overflow-y: auto; }
+.composer-form textarea, #life-dialog .composer-form textarea, .life-ui .composer-form textarea { flex: 1; width: auto; min-width: 0; box-sizing: border-box; min-height: var(--tap); max-height: 108px; resize: none; padding: 11px 6px; border: 0; border-radius: 0; background: none; box-shadow: none; outline: none; font: 400 16px/22px var(--font); overflow-y: auto; }
+.composer-form textarea:focus, .composer-form textarea:focus-visible, #life-dialog .composer-form textarea:focus-visible, .life-ui .composer-form textarea:focus-visible { outline: none !important; box-shadow: none; }
 .composer-count { margin: 0; font-size: 12px; line-height: 1.4; color: var(--c-muted); text-align: right; }
 .composer-count.is-over { color: var(--c-red-dark); }
-.composer-send, .composer-side { flex: none; display: grid; place-items: center; width: var(--tap); height: var(--tap); border: 0; border-radius: 10px; cursor: pointer; }
+.composer-send, .composer-side { flex: none; display: grid; place-items: center; width: var(--tap); height: var(--tap); border: 0; border-radius: 50%; cursor: pointer; }
 .composer-send { background: #176347; color: #fff; }
-.composer-side { background: var(--c-fill); font-size: 22px; }
+.composer-side { background: none; font-size: 22px; color: var(--c-ink-2); }
+.composer-side:focus-visible, .composer-send:focus-visible { outline: var(--focus); outline-offset: 1px; }
 .composer-side[aria-pressed='true'] { background: var(--c-fill-2); }
 .composer-send:disabled, .composer-side:disabled { opacity: .45; cursor: not-allowed; }
 .composer-reply { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-left: 3px solid var(--app-tint, var(--c-green-dark)); border-radius: 8px; background: var(--c-fill); font-size: 12px; color: var(--c-ink-2); }

@@ -238,11 +238,16 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
     walkDisabled = !roomReady || !self || room.venueId === 'unilag'
   }
   function renderMembers(): void {
-    memberRows = members.map((member) => ({
-      id: member.id,
-      label: `${member.name}${member.id === session?.id ? ' (you)' : ''}`,
-      state: member.enabled ? `${member.muted ? 'Mic muted' : 'In voice'}${member.id !== session?.id ? distanceTo(member) < VOICE_RADIUS ? ' · near' : ' · out of range' : ''}` : 'Here',
-    }))
+    memberRows = members.map((member) => {
+      const you = member.id === session?.id
+      const range = member.enabled && !you ? (distanceTo(member) < VOICE_RADIUS ? 'near' : 'far') : null
+      return {
+        id: member.id, name: member.name, you,
+        label: `${member.name}${you ? ' (you)' : ''}`,
+        state: member.enabled ? `${member.muted ? 'Mic muted' : 'In voice'}${range === 'near' ? ' · near' : range === 'far' ? ' · out of range' : ''}` : 'Here',
+        voice: member.enabled ? (member.muted ? 'muted' : 'live') : 'off', range,
+      } satisfies MemberRow
+    })
     renderPosition()
     emit()
     announce()
@@ -413,7 +418,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
 
   // ---- chat --------------------------------------------------------------------------------------------------
   function appendChat(message: { body: string; from?: PublicSession }, delivery = 'Sent', key?: string): ChatLine {
-    const line: ChatLine = { key: key ?? `line-${++lineCounter}`, author: message.from?.name || session?.name || '', ...(message.from?.id ? { authorId: message.from.id } : {}), body: message.body, delivery, canRetry: false }
+    const line: ChatLine = { key: key ?? `line-${++lineCounter}`, author: message.from?.name || session?.name || '', ...(message.from?.id ? { authorId: message.from.id } : {}), body: message.body, delivery, canRetry: false, at: Date.now() }
     chat.push(line)
     while (chat.length > 80) chat.shift()
     emit()
@@ -421,7 +426,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
   }
   /** A line a game character said, for this device's feed only: nothing is sent, and `npc` gives it the NPC mark in the panel. */
   function npcLine(author: string, body: string): void {
-    chat.push({ key: `line-${++lineCounter}`, author: String(author).slice(0, 60), body: String(body).slice(0, 300), delivery: '', canRetry: false, npc: true })
+    chat.push({ key: `line-${++lineCounter}`, author: String(author).slice(0, 60), body: String(body).slice(0, 300), delivery: '', canRetry: false, npc: true, at: Date.now() })
     while (chat.length > 80) chat.shift()
     emit()
   }

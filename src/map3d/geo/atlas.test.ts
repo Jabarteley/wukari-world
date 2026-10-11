@@ -15,6 +15,8 @@ import { CITY_DETAIL_DISTANCE_SHARE, nigeriaMarkerDetail } from './atlas-scale.t
 import { AIRPORTS, HIGHWAYS, TOWNS, interCityTripOf, linkId, linkPath, measure, pointAlong, travelEase, tripPoint } from './routes.ts';
 import { listOrder, regionInfo } from './info.ts';
 import { createAtlas } from './atlas.ts';
+import { NO_PORT } from '../zoom-ladder.ts';
+import type { LadderPort } from '../zoom-ladder.ts';
 import { DENSITY, NAMED_FROM, atlasNamesAt, countChips, densityFor, namedCities, shorten, venueNamesAt } from './density.ts';
 import * as THREE from 'three';
 import { createRig } from '../camera.ts';
@@ -313,12 +315,12 @@ test('routes: the roads pass real towns in Nigeria, every link has a line, and a
 });
 
 // ---- the view: a fake renderer and a hand-cranked frame queue, as in ../map3d.test.ts ----
-function harness({ reducedMotion = false, width = 1280, height = 800, delay = 0, waitFor, failures = new Set<string>(), countryDetail }: { reducedMotion?: boolean; width?: number; height?: number; delay?: number; waitFor?: (id: string) => Promise<void>; failures?: Set<string>; countryDetail?: CountryDetailService } = {}) {
+function harness({ reducedMotion = false, width = 1280, height = 800, delay = 0, waitFor, failures = new Set<string>(), countryDetail, ladder }: { ladder?: LadderPort; reducedMotion?: boolean; width?: number; height?: number; delay?: number; waitFor?: (id: string) => Promise<void>; failures?: Set<string>; countryDetail?: CountryDetailService } = {}) {
   const queue: (() => void)[] = [], env = { now: 1000, hidden: false, loads: [] as string[], opened: [] as string[], entered: [] as string[] }, calls = { render: 0, routeVisible: false };
   const renderer = { calls, domElement: {} as HTMLCanvasElement, info: { render: {} }, setPixelRatio() {}, setSize() {}, setClearColor() {}, dispose() {}, render(scene: THREE.Scene) { calls.render += 1; calls.routeVisible = scene.children.some((object) => object.renderOrder === 9 && object.visible && object instanceof THREE.Mesh && object.geometry.getAttribute('position').count > 0); } };
   const container = { hidden: false, getBoundingClientRect: () => ({ left: 0, top: 0, right: width, bottom: height, width, height }) };
   const load = async (id: string) => { env.loads.push(id); if (delay) await new Promise((done) => setTimeout(done, delay)); if (waitFor) await waitFor(id); if (failures.has(id)) throw new Error(`Unavailable test level: ${id}`); return ATLAS_LEVELS.find((level) => level.id === id)!.data(); };
-  const atlas = createAtlas(container as unknown as HTMLElement, { renderer, reducedMotion, load, countryDetail, raf: (fn) => { queue.push(fn); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden,
+  const atlas = createAtlas(container as unknown as HTMLElement, { renderer, reducedMotion, load, countryDetail, ...(ladder ? { ladder } : {}), raf: (fn) => { queue.push(fn); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden,
     onOpenCity: (id) => env.opened.push(id), onEnterCity: (id) => env.entered.push(id) });
   /** Run frames until nothing asks for another (or the limit). Returns how many ran. */
   const run = (limit = 2000, step = 16) => { let frames = 0; while (queue.length && frames < limit) { env.now += step; queue.shift()!(); frames += 1; } return frames; };
@@ -845,4 +847,42 @@ test('a state that lost three or more names to dots gets a count chip', () => {
   assert.deepEqual(countChips([]), []);
   const code = readFileSync(here('./atlas.ts'), 'utf8');
   assert.match(code, /count:\$\{stateId\}/, 'the atlas draws the chip');
+});
+
+test('zoom ladder: the atlas tells the ladder what zoom its camera could not take, and nothing else', async () => {
+  const heard: string[] = [];
+  const ladder: LadderPort = { ...NO_PORT, intent: (direction) => heard.push(`intent ${direction}`), refused: (edge, overflow) => heard.push(`refused ${edge} ${overflow > 0}`), stepped: (edge) => heard.push(`stepped ${edge}`) };
+  const { atlas, settle, env } = harness({ reducedMotion: true, ladder });
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    // Zoom the camera takes is not refused; it is only intent.
+    atlas.zoomBy(0.9);
+    assert.deepEqual(heard.filter((line) => line.startsWith('refused')), []);
+    // Far past the closest view: the refused part is what the ladder hears.
+    for (let i = 0; i < 12; i++) atlas.zoomBy(0.5);
+    assert.ok(heard.includes('refused in true'), 'zoom in past the closest view is refused, not lost');
+    // Past the widest view too.
+    for (let i = 0; i < 40; i++) atlas.zoomBy(2);
+    assert.ok(heard.includes('refused out true'));
+    assert.deepEqual([env.opened, env.entered], [[], []], 'zooming never enters or moves a character');
+  } finally { atlas.destroy(); }
+});
+
+test('zoom ladder: the city under the closest zoom is found, and the player\'s own city is told from another one', async () => {
+  const { atlas, settle } = harness({ reducedMotion: true });
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    atlas.setCity('lagos'); await settle();
+    // Close over Lagos, the middle of the screen is Lagos.
+    const at = atlas.screenOf(3.38, 6.52);
+    atlas.select({ kind: 'state', id: 'lagos' }, { flyTo: true }); await settle();
+    for (let i = 0; i < 6; i++) atlas.zoomBy(0.6);
+    const target = atlas.ladderTarget();
+    assert.ok(at);
+    assert.deepEqual(target && { id: target.id, own: target.own }, { id: 'lagos', own: true });
+    // The player is in Ibadan: the same view over Lagos is another city, to be looked at and never entered.
+    atlas.setCity('ibadan');
+    const other = atlas.ladderTarget();
+    assert.deepEqual(other && { id: other.id, own: other.own }, { id: 'lagos', own: false });
+  } finally { atlas.destroy(); }
 });

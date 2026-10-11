@@ -83,6 +83,45 @@ Served by `npm run dev` only, never built:
 - http://127.0.0.1:5173/src/scene/harness.html?kind=park&time=night&crowd=8 shows one venue scene on its own, with buttons for every kind and time of day.
 - `npm run preview:models` is the model workshop ([MODELS.md](MODELS.md)); `npm run preview:campus` is the walkable campus ([CAMPUS-UNILAG.md](CAMPUS-UNILAG.md)).
 
+## Open mode: play without the gates
+
+The real game has gates: a new life must settle in before it can travel, money is short, flights and shifts take real minutes, a new account waits a day before it can open a stall, and a few limits stop abuse. They are right for players and slow for developers. Open mode switches a short, listed set of them off on your own machine, so you can try a feature in seconds.
+
+```sh
+npm run dev:open                       # like npm run dev, in open mode: http://127.0.0.1:5173/
+npm run start:open                     # the built game (npm run build first) on 127.0.0.1:3001, or PORT
+npm run dev:fund -- "Ada"              # top Ada's lives up to the open-mode amount (a name, as a local player is called)
+npm run dev:fund -- "Ada" 2000000      # or add 2,000,000 naira to each of Ada's lives
+npm run dev:seed                       # four local players in different cities, friends of the local players
+```
+
+`dev:fund` and `dev:seed` talk to a server that is already running in open mode (default 5173, then 3001; `-- --url http://127.0.0.1:PORT` names another). Open mode keeps its saves in `.data-open`, so they never mix with your normal local saves; delete that folder to start again. It reads no settings file (`dev:open` refuses `--env`), so no real key is ever used.
+
+### What it changes
+
+| Convenience | What happens | Where |
+| --- | --- | --- |
+| A life is ready at once | Play now (and the creator) gives a settled life with a free house: look, two traits, a dream, the birth lottery and a home are all done through the real actions. Travel and every app work; there is no "Settle in first". | `server/open-dev/life.ts` |
+| Money is not a blocker | A new life starts with N50,000,000 (`ALLWORLD_OPEN_DEV_CASH` changes it), credited as unrestricted money, so gifting, stalls and fares are open. The panel button and `dev:fund` top up again. | `server/open-dev/life.ts`, `routes.ts` |
+| Waits are short | Server time runs 10 times faster (`ALLWORLD_OPEN_DEV_SPEED`, 1 to 1000; 1 is real time): flights, shifts and their breaks, cooldowns. Game time is saved beside the data and never goes back on a restart. Needs, weather and day changes run at that speed too, and a session lasts as long in real time as it normally does. The page's own countdowns follow the server clock only when it answers, so a bar may look slow and then jump. | `server/open-dev/clock.ts` |
+| Limits are loose | New sessions per address, sockets per address, the active-session cap and every per-minute limit (`ctx.allow`) are 100 times looser. | `server/open-dev/index.ts` |
+| You are the operator | "Be the operator" in the panel (or `POST /api/account/open-dev/operator`) signs the browser in as the local founder: the admin and moderation tools open with no outside sign-in. The admin page is on its own address: open `http://admin.localhost:PORT/api/account/open-dev/operator` once, then `http://admin.localhost:PORT/`. | `server/open-dev/routes.ts` |
+| Trust in one step | "Set my trust" (or `POST /api/account/open-dev/trust`, optional `{ "name", "tier" }`) makes a local account, sets the tier (phone by default; id or business), declares the player an adult, and backdates the account so the 24-hour new-account wait is over. Shops, stalls and showcases can then be tried. | `server/open-dev/routes.ts` |
+| Optional local features on | Chat pictures and interactive teaching starts are on. Voice notes are on by default already. | `server/open-dev/index.ts` |
+| Some company | `dev:seed` makes Dev Ada, Dev Tunde, Dev Ngozi and Dev Musa in open cities, each phone-checked, rich and settled, and makes them friends of you (two-day-old friendships, so no "new friend" limits). Run it again and nobody is made twice. They are never online; they are for lists, requests, gifts, rankings and visits. | `server/open-dev/routes.ts` |
+| A visible marker | Every game page has a red "Open dev mode" button (it opens the panel), `GET /api/health` reports `openDev: true`, and the start-up log says exactly what is on. The panel is a script the server adds to the page: it is not part of the build, so the first download is the same. | `server/open-dev/panel.ts` |
+
+What stays as it is: every rule of the game itself (prices, fares, skill, needs), the age rules that protect minors, and anything that needs an outside service. The companion (needs a key), mail, push, the call relay, commerce, ID and phone checks and analytics stay off; the settings for them are not read and every outside request is refused. Moderator-token routes are unchanged.
+
+### Safety: it cannot be switched on by accident
+
+- It is one setting, `ALLWORLD_OPEN_DEV=1`, read only by the Node host (`server/server.ts`). If the setting is present at all, with any value, the server either runs open mode or refuses to start with one clear line: it is never ignored and never half applied. It refuses when the value is not exactly `1`, when it is not bound to a loopback address (checked where it listens, so `0.0.0.0` and "all addresses" are refused), when `PUBLIC_ORIGIN` is set to anything but a localhost address, when `TRUST_PROXY=1`, or when a number is out of range. While it runs it answers only requests whose `Host` is a localhost name.
+- The Cloudflare Worker host never contains the code: `deploy/` does not import `server/open-dev/` or `server/server.ts`, and a Worker that is given the setting answers every request with a 503 instead of honouring it (`deploy/open-dev-refusal.ts`). `npm run start:worker` refuses it too.
+- The release checks fail if the setting appears in any production configuration file (`wrangler.jsonc`, `.github/`, `package.json`, `.env*`, `deploy/` config), anywhere outside the reviewed files, if the Worker's import graph reaches open-mode code, or if the release package's Worker carries it (`scripts/check-joinallworld-source.mjs`, `scripts/guard-joinallworld-package.mjs`; tests in `scripts/guard-joinallworld-package.test.mjs` and `server/open-dev.test.ts`).
+- With the setting absent the open-mode files are not loaded and no rule changes.
+
+Do not put the setting in a settings file or a deployment: use the commands above.
+
 ## Tests
 
 ```sh

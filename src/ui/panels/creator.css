@@ -98,6 +98,7 @@
 .cr-body{display:grid;gap:16px;align-content:start}
 .cr-body>h1{font-size:26px;line-height:1.15;letter-spacing:-.5px;outline:none}
 .cr-lead{font-size:15px!important;line-height:1.5!important;color:var(--c-muted);margin-top:-8px!important}
+.cr-pitch{font-size:15px;line-height:1.4;font-weight:700;color:var(--c-ink);margin-bottom:4px}
 .cr-note{font-size:13px!important;line-height:1.45!important;color:var(--c-muted)}
 .cr-note.is-warn{color:var(--c-amber-dark)}
 .cr-stay{text-align:center}
@@ -241,7 +242,7 @@
 }
 /* short screens (a phone on its side) */
 @container cr (max-height:520px){
-  .cr-brand span,.cr-caption,.cr-fine,.cr-lead,.cr-progress span{display:none}
+  .cr-brand span,.cr-caption,.cr-fine,.cr-lead,.cr-pitch,.cr-progress span{display:none}
   .cr-progress .is-current span{display:none}
   .cr-progress li>button,.cr-progress li>.cr-prog-item{min-height:20px}
   .cr-head{padding:8px 16px 0}.cr-head-row{min-height:40px}
@@ -271,8 +272,16 @@
 @container cr (max-width:639px){.cr-root:has(.cr-choices){--cr-stage-h:36cqh}}
 /* A short phone (320x568): the stage gives most of its height to the panel, so the fields are not left under the footer and the primary button stays on screen. The Look step keeps more of it. */
 @container cr (max-width:639px) and (max-height:700px){
-  .cr-root,.cr-root:has(.cr-choices){grid-template-rows:minmax(124px,var(--cr-stage-h)) minmax(0,1fr);--cr-stage-h:22cqh}
-  .cr-root[data-step=look]{--cr-stage-h:30cqh}
+  .cr-root,.cr-root:has(.cr-choices){grid-template-rows:minmax(224px,var(--cr-stage-h)) minmax(0,1fr);--cr-stage-h:36cqh}
+  .cr-root[data-step=look]{--cr-stage-h:38cqh}
+  .cr-hint{display:none}
+}
+/* A narrow phone: the stage buttons stay on ONE row (Turn left, Turn right, Body / Face / Outfit; dragging also turns), so they
+   neither climb over the logo nor take the figure's room. Two rows were 106px tall, more than a short stage had. */
+@container cr (max-width:420px){
+  .cr-stage-tools{flex-wrap:nowrap;gap:8px}
+  .cr-turn .cr-round.is-wide{display:none}
+  .cr-zoom button{min-width:52px}
 }
 
 /* Settling from a phone app uses the app's frame and available height. */

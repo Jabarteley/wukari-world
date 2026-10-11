@@ -43,5 +43,5 @@ controller = await createCommunity({
   },
 })
 state.value = controller.state
-createApp({ render: () => h(CommunityPanel, { store: { state, controller: () => controller } }) }).mount('#test-community')
+createApp({ render: () => h(CommunityPanel, { store: { state, controller: () => controller, close: () => {}, openPerson: () => {} } }) }).mount('#test-community')
 window.addEventListener('pagehide', () => { controller?.destroy(); for (const { context } of sources) if (context.state !== 'closed') void context.close() })

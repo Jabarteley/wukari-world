@@ -1,16 +1,6 @@
 // What the "AI agents" section of Settings shows and sends. Plain data and text: no server call is made here.
-export interface AgentKeyRow { id: string; name: string; mode: 'own' | 'agent'; character: string | null; createdAt: number; lastUsedAt: number | null; calls: number; suspended?: 'refusals' | 'reports' | 'operator' }
-export interface AgentCharacterRow { id: string; name: string; city: string; createdAt: number; hasKey: boolean }
-export interface AgentsView {
-  enabled: boolean
-  signedIn: boolean
-  keys: AgentKeyRow[]
-  characters: AgentCharacterRow[]
-  limits: { keys: number; characters: number; callsPerMinute?: number; callsPerDay?: number; messagesPerDay?: number }
-  cities?: string[]
-}
-/** The answer that shows a new key, once. */
-export interface AgentKeyMade { id: string; name: string; mode: 'own' | 'agent'; character: string | null; key: string; url: string }
+export type { AgentKeyRow, AgentCharacterRow, AgentsView, AgentKeyMade } from '../../../types/agents-http.ts'
+import type { AgentKeyRow } from '../../../types/agents-http.ts'
 
 /** The three plain sentences that explain the feature. */
 export const AGENT_EXPLAINER = [

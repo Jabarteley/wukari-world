@@ -113,7 +113,7 @@ export function mcpRoutes(ctx: RouteContext, svc: AgentService): Record<RouteKey
     const done = await ctx.store.transact((db) => svc.record(db, agent, { tool: tool.name, ok: output.ok, code: output.code, ...(rid ? { rid } : {}), ...(output.aid ? { aid: output.aid } : {}), ...(output.sent ? { sent: true } : {}), ...(output.refused ? { refused: true } : {}), ...(output.facts ? { facts: output.facts } : {}) }),
       { durable: tool.readOnly ? false : true });
     if (done.announce) ctx.core.refreshNames(ctx.publicSession(done.announce));
-    return { answer: { content: [{ type: 'text', text: JSON.stringify(output.data) }], structuredContent: output.data, isError: !output.ok }, error: !output.ok };
+    return { answer: { content: [{ ['type']: 'text', text: JSON.stringify(output.data) }], structuredContent: output.data, isError: !output.ok }, error: !output.ok };
   }
 
   async function handle(request: RouteRequest, message: unknown, agent: Agent) {

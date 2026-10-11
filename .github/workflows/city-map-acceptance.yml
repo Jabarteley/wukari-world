@@ -1,18 +1,18 @@
-name: Frozen city map acceptance
+name: Phone map label acceptance
 
 on:
   push:
-    branches: ['codex/astra-map-qa-20261011']
+    branches: ['codex/astra-phone-qa-20261011']
 
 permissions:
   contents: read
 
 concurrency:
-  group: frozen-city-map-acceptance
+  group: phone-map-label-acceptance
   cancel-in-progress: false
 
 env:
-  APP_SHA: 871c012a85e20db8539affe1c5e665593f31e362
+  APP_SHA: 9da7f8f1dfbf833aef1b4e5898c11cdb38ef841c
 
 jobs:
   acceptance:
@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: kromate/joinallworld
-          ref: 871c012a85e20db8539affe1c5e665593f31e362
+          ref: 9da7f8f1dfbf833aef1b4e5898c11cdb38ef841c
           path: app
           persist-credentials: false
 
@@ -94,16 +94,13 @@ jobs:
           set -euo pipefail
           npm run size:download 2>&1 | tee "$QA_LOG_DIR/size-download.log"
 
-      - name: Run focused geometry and Cairo/Yaounde map journeys
+      - name: Run focused map rendering checks
         working-directory: app
         run: |
           set -euo pipefail
           node --experimental-strip-types --test --test-concurrency=1 \
-            src/game/cities/africa/geometry.test.ts \
-            src/game/cities/cairo/map.test.ts \
-            src/game/cities/cairo/journey.test.ts \
-            src/game/cities/yaounde/map.test.ts \
-            src/game/cities/yaounde/journey.test.ts 2>&1 | tee "$QA_LOG_DIR/focused.log"
+            src/map3d/map3d.test.ts \
+            src/map3d/camera.test.ts 2>&1 | tee "$QA_LOG_DIR/focused.log"
 
       - name: Run the complete literal npm test command
         working-directory: app
@@ -122,19 +119,19 @@ jobs:
             --out "$QA_BROWSER_DIR" \
             --port 4423 \
             --debug-port 4424 \
-            --cities cairo,yaounde,abuja \
-            --phone-cities cairo,yaounde \
+            --cities dakar,nairobi,abuja \
+            --phone-cities dakar,nairobi \
             --phones 390x844,320x568 \
             --short lagos,abuja \
             --lean \
             --clock-hour 12 \
-            --water 'cairo=0.55,0.55;yaounde=0.4,0.5' 2>&1 | tee "$QA_LOG_DIR/browser.log"
+            --label-audit 2>&1 | tee "$QA_LOG_DIR/browser.log"
 
       - name: Preserve QA logs, source pins, and screenshots
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: frozen-city-map-acceptance-${{ github.sha }}
+          name: phone-map-label-acceptance-${{ github.sha }}
           path: |
             ${{ runner.temp }}/city-map-acceptance/logs/
             ${{ runner.temp }}/city-map-acceptance/browser/

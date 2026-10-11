@@ -4,12 +4,12 @@
 // read this file. Everything a seller wrote is kept as plain text here and only ever drawn as text (canvas) or set as a Vue text node.
 import { SHOWCASE_CATEGORIES } from '../../../../types/showcase.ts'
 import type { ShowcaseCategory, ShowcaseHours, ShowcaseMine, ShowcaseView } from '../../../../types/showcase.ts'
+import { VERIFIED_TIERS } from '../../../../game/trust/index.ts'
 import { buyMessage, messageHref, safeLink } from '../../../../types/showcase-link.ts'
 
+/** Goods shops (shelves, a counter, a rail) get one of three fittings colourings; service shops get the office. */
 export type RoomTheme = 'fashion' | 'food' | 'electronics'
 export const ROOM_THEMES: readonly RoomTheme[] = ['fashion', 'food', 'electronics']
-
-/** Which of the three rooms a kind of shop gets. Every kind has one; services without goods get the electronics room (a repair-shop wall). */
 export const THEME_OF: Readonly<Record<ShowcaseCategory, RoomTheme>> = Object.freeze({
   salon: 'fashion', tailor: 'fashion', beauty: 'fashion', crafts: 'fashion',
   food: 'food', events: 'food',
@@ -17,62 +17,105 @@ export const THEME_OF: Readonly<Record<ShowcaseCategory, RoomTheme>> = Object.fr
 })
 export const themeFor = (category: unknown): RoomTheme => (typeof category === 'string' && (SHOWCASE_CATEGORIES as readonly string[]).includes(category) ? THEME_OF[category as ShowcaseCategory] : 'electronics')
 
-// ---- the slots ------------------------------------------------------------------------------------------------------------------
+// ---- goods or service ---------------------------------------------------------------------------------------------------------
 
-/** One display place of the room model, in its own units (the room is 6 x 5 x 3.2, origin at the middle of the floor, open at +z). */
-export interface SlotSpec {
-  name: string
-  x: number; y: number; z: number
-  /** The room model's own slot size; the scene draws cards a little larger (CARD_SIZE) because the shelves are big. */
-  width: number; height: number
-  kind: 'shelf' | 'counter' | 'rail'
-  /** 'bottom': the card stands on y; 'top': it hangs from y. */
-  anchor: 'bottom' | 'top'
-  /** The direction the card faces (x, y, z). */
-  facing: readonly [number, number, number]
+/** 'goods': a shop with shelves, a counter and a rail. 'service': an office or studio with a reception desk and a service menu. */
+export type RoomKind = 'goods' | 'service'
+/** What each kind of shop is before its items are looked at. */
+export const KIND_OF: Readonly<Record<ShowcaseCategory, RoomKind>> = Object.freeze({
+  salon: 'service', photography: 'service', repair: 'service', tutoring: 'service', cleaning: 'service', events: 'service',
+  tailor: 'service', beauty: 'service', tech: 'service',
+  food: 'goods', crafts: 'goods', other: 'goods',
+})
+/** Kinds that can be either: their items decide (see `roomKindFor`). The rest are always what `KIND_OF` says. */
+export const MIXED: ReadonlySet<ShowcaseCategory> = new Set<ShowcaseCategory>(['tailor', 'beauty', 'tech', 'other'])
+/** Words that say an item is a piece of someone's time: a length of time, a session, an appointment, a lesson. */
+const TIMED = /\b(\d+\s*(?:min|mins|minute|minutes|hr|hrs|hour|hours|day|days)|per\s+hour|an?\s+hour|half\s+an?\s+hour|session|appointment|lesson|class|consultation|booking|visit)\b/i
+export const looksTimed = (item: { name: string; note: string }): boolean => TIMED.test(`${item.name} ${item.note}`)
+/** The room a shop gets: a kind that cannot be mixed is what it is; a mixed kind with items is a service when half of them are priced by time or marked as services, else goods; with no items it is its default. */
+export function roomKindFor(category: unknown, items: readonly { name: string; note: string }[] = []): RoomKind {
+  const known = typeof category === 'string' && (SHOWCASE_CATEGORIES as readonly string[]).includes(category) ? (category as ShowcaseCategory) : 'other'
+  if (!MIXED.has(known) || items.length === 0) return KIND_OF[known]
+  return items.filter(looksTimed).length * 2 >= items.length ? 'service' : 'goods'
 }
-const shelf = (n: number, x: number, y: number, z: number, fx: number): SlotSpec => ({ name: `slot_${String(n).padStart(2, '0')}`, x, y, z, width: 0.55, height: 0.4, kind: 'shelf', anchor: 'bottom', facing: [fx, 0, 0] })
-export const SLOTS: readonly SlotSpec[] = Object.freeze([
-  shelf(1, -2.61, 1.0, 0.65, 1), shelf(2, -2.61, 1.0, -1.5, 1), shelf(3, -2.61, 1.65, 0.65, 1), shelf(4, -2.61, 1.65, -1.5, 1),
-  shelf(5, 2.61, 1.0, 0.65, -1), shelf(6, 2.61, 1.0, -1.5, -1), shelf(7, 2.61, 1.65, 0.65, -1), shelf(8, 2.61, 1.65, -1.5, -1),
-  { name: 'slot_09', x: 0.1, y: 1.0, z: -0.55, width: 0.45, height: 0.4, kind: 'counter', anchor: 'bottom', facing: [0, 0, 1] },
-  { name: 'slot_10', x: 0.9, y: 1.0, z: -0.55, width: 0.45, height: 0.4, kind: 'counter', anchor: 'bottom', facing: [0, 0, 1] },
-  { name: 'slot_11', x: -0.8, y: 1.95, z: -2.04, width: 0.5, height: 0.8, kind: 'rail', anchor: 'top', facing: [0, 0, 1] },
-  { name: 'slot_12', x: 0.8, y: 1.95, z: -2.04, width: 0.5, height: 0.8, kind: 'rail', anchor: 'top', facing: [0, 0, 1] },
-])
+
+// ---- the goods room: where each of the twelve items goes ----------------------------------------------------------------------------
+
+/** One place for one item, in room units (the room is 6 x 5 x 3.2, the middle of the floor is the origin, the open front is at +z, the back wall at z = -2.5). */
+export interface GoodsSlot {
+  name: string
+  kind: 'shelf' | 'counter' | 'rail'
+  /** The middle of the panel across the room. */
+  x: number
+  /** Shelf and counter: the top of the board the panel stands on. Rail: where it hangs from. */
+  y: number
+  z: number
+  w: number
+  h: number
+}
+const PANEL = Object.freeze({ shelf: { w: 0.5, h: 0.5 }, counter: { w: 0.42, h: 0.46 }, rail: { w: 0.46, h: 0.52 } })
+/** The two shelf units on the back wall, either side of the counter; two columns of panels, two boards (eye level first). */
+export const SHELF_UNITS = Object.freeze({ left: -2.25, right: 2.25, width: 1.4, pitch: 0.62, boards: [1.7, 1.0] as readonly number[], depth: 0.36, thickness: 0.16 })
+const slot = (name: string, kind: GoodsSlot['kind'], x: number, y: number, z: number): GoodsSlot => ({ name, kind, x, y, z, ...PANEL[kind] })
+/** In the order items fill them: the two counter easels, the shelves both sides the entry view can see (eye-level board first, both units in turn), then the rail. */
+export const SLOTS: readonly GoodsSlot[] = Object.freeze((() => {
+  const out: GoodsSlot[] = [slot('counter_1', 'counter', 0.47, 1.06, -0.62), slot('counter_2', 'counter', 0.95, 1.06, -0.62)]
+  for (const [row, y] of SHELF_UNITS.boards.entries()) for (const col of [-1, 1]) for (const side of [SHELF_UNITS.left, SHELF_UNITS.right]) out.push(slot(`shelf_${side < 0 ? 'l' : 'r'}${row + 1}${col < 0 ? 'a' : 'b'}`, 'shelf', side + (col * SHELF_UNITS.pitch) / 2, y, -2.3))
+  out.push(slot('rail_1', 'rail', -1.1, 2.2, -2.3), slot('rail_2', 'rail', 1.1, 2.2, -2.3))
+  return out
+})())
 export const PAGE_SIZE = SLOTS.length
-/** The order items fill the slots in: the two counter places, then the shelf places on both sides that the entry view can see (the far ones, not the ones beside the door), then the rail, then the near shelf places, one side and the other in turn. */
-export const SLOT_ORDER: readonly number[] = Object.freeze([8, 9, 1, 5, 3, 7, 10, 11, 0, 4, 2, 6])
+/** Where the shopkeeper stands, and how far to each side of that nothing is hung or stood. */
+export const KEEPER = Object.freeze({ x: -0.05, z: -1.3, clear: 0.3 })
+/** The height of the ledge an easel panel leans on. */
+export const EASEL_LEDGE = 0.1
+/** How far a panel on a shelf or an easel leans back. */
+export const LEAN = -0.12
 
-/** What the shelves are drawn with: the card sizes in room units (the shelf slots read small against their shelves, so the cards are larger than the slots). */
-export const CARD_SIZE: Readonly<Record<SlotSpec['kind'], { w: number; h: number }>> = Object.freeze({ shelf: { w: 0.6, h: 0.56 }, counter: { w: 0.42, h: 0.5 }, rail: { w: 0.5, h: 0.55 } })
-/** Where the shopkeeper stands, and how far to each side of that nothing is hung or stood (so no card hides the face from the door). */
-export const KEEPER = Object.freeze({ x: -0.05, z: -1.2, clear: 0.3 })
-/** The slots whose cards are moved sideways from the model's place, clear of the shopkeeper: both counter cards to the right of her (the till is on the left), the rail cards further apart. */
-const SIDEWAYS: Readonly<Record<string, number>> = Object.freeze({ slot_09: 0.55, slot_10: 1.0, slot_11: -1.1, slot_12: 1.1 })
-/** Rail cards hang higher than the model's rail, so they clear the counter cards from the entry view. */
-const RAISED: Readonly<Record<string, number>> = Object.freeze({ slot_11: 0.4, slot_12: 0.4 })
-/** How far a card stands out of its slot, along its facing, so it never sinks into the wall or the counter. */
-const STAND_OUT = 0.07
+export interface Placement { x: number; y: number; z: number; tilt: number; w: number; h: number; label: { x: number; y: number; z: number; w: number; h: number } | null }
+/** The middle of a panel, how far it leans, and where the small price label under it goes (on the front edge of its shelf board or its easel ledge). A rail panel hangs straight and has no label. */
+export function placementOf(spot: GoodsSlot): Placement {
+  const { w, h } = spot
+  if (spot.kind === 'rail') return { x: spot.x, y: spot.y - 0.08 - h / 2, z: spot.z, tilt: 0, w, h, label: null }
+  const lift = (h / 2) * Math.cos(LEAN)
+  // an easel: a low ledge on the counter, the panel leaning on it, the label on the ledge's front edge
+  if (spot.kind === 'counter') return { x: spot.x, y: spot.y + EASEL_LEDGE + lift, z: spot.z, tilt: LEAN, w, h, label: { x: spot.x, y: spot.y + EASEL_LEDGE / 2, z: spot.z + 0.097, w: 0.4, h: 0.08 } }
+  return { x: spot.x, y: spot.y + lift, z: spot.z + 0.02, tilt: LEAN, w, h, label: { x: spot.x, y: spot.y - SHELF_UNITS.thickness / 2, z: -2.5 + SHELF_UNITS.depth + 0.004, w: 0.5, h: 0.13 } }
+}
 
-export interface CardPlace { x: number; y: number; z: number; yaw: number; tilt: number; w: number; h: number }
-/** Where a card's middle is and which way it faces: a card on a shelf or the counter stands on its slot and leans back a little; a rail card hangs from it. */
-export function cardPlace(slot: SlotSpec): CardPlace {
-  const { w, h } = CARD_SIZE[slot.kind]
-  const [fx, , fz] = slot.facing
-  const standing = slot.anchor === 'bottom'
-  return { x: (SIDEWAYS[slot.name] ?? slot.x) + fx * STAND_OUT, y: standing ? slot.y + h / 2 : slot.y + (RAISED[slot.name] ?? 0) - h / 2, z: slot.z + fz * STAND_OUT, yaw: Math.atan2(fx, fz), tilt: standing ? -0.1 : 0, w, h }
+// ---- the office: the service menu board ----------------------------------------------------------------------------------------------
+
+/** Services on one page of the menu board. */
+export const MENU_LINES = 6
+/** The board's size on the wall, and where it hangs. */
+export const MENU_BOARD = Object.freeze({ w: 2.6, h: 1.56, x: 1.45, y: 1.72, z: -2.47 })
+/** The rows of the board, as fractions of its height from the top: the header, each line, the footer with the page arrows. */
+export const MENU_ROWS = Object.freeze({ header: 0.15, first: 0.17, pitch: 0.118, line: 0.108, footer: 0.89 })
+export const menuPages = (items: number): number => Math.max(1, Math.ceil(Math.max(0, items) / MENU_LINES))
+/** The services on a page of the board with the row each is drawn in. */
+export function menuPageOf<T>(items: readonly T[], page: number): { item: T; index: number; row: number }[] {
+  const at = Math.min(menuPages(items.length) - 1, Math.max(0, Math.trunc(Number.isFinite(page) ? page : 0))) * MENU_LINES
+  return items.slice(at, at + MENU_LINES).map((item, row) => ({ item, index: at + row, row }))
+}
+/** What a tap on the board at (u, v), each from 0 to 1 (v from the top), lands on: a service, a page arrow, or nothing. */
+export function menuHit(u: number, v: number, onPage: number, page: number, pages: number): { kind: 'item'; row: number } | { kind: 'page'; step: 1 | -1 } | null {
+  if (v >= MENU_ROWS.footer && pages > 1) { if (u < 0.5 && page > 0) return { kind: 'page', step: -1 }; if (u >= 0.5 && page < pages - 1) return { kind: 'page', step: 1 }; return null }
+  const row = Math.floor((v - MENU_ROWS.first + (MENU_ROWS.pitch - MENU_ROWS.line) / 2) / MENU_ROWS.pitch)
+  const top = MENU_ROWS.first + row * MENU_ROWS.pitch
+  return row >= 0 && row < onPage && v >= top - 0.005 && v <= top + MENU_ROWS.pitch ? { kind: 'item', row } : null
 }
 
 // ---- pages ----------------------------------------------------------------------------------------------------------------------
 
-export const pageCount = (items: number): number => Math.max(1, Math.ceil(Math.max(0, items) / PAGE_SIZE))
-export const clampPage = (page: number, items: number): number => Math.min(pageCount(items) - 1, Math.max(0, Math.trunc(Number.isFinite(page) ? page : 0)))
-/** The items of one page, each with its slot: item `n` of the page goes to `SLOTS[SLOT_ORDER[n]]`; `index` is its number in the whole list. */
-export function pageOf<T>(items: readonly T[], page: number): { item: T; slot: SlotSpec; index: number }[] {
+export const pageCount = (items: number, size = PAGE_SIZE): number => Math.max(1, Math.ceil(Math.max(0, items) / size))
+export const clampPage = (page: number, items: number, size = PAGE_SIZE): number => Math.min(pageCount(items, size) - 1, Math.max(0, Math.trunc(Number.isFinite(page) ? page : 0)))
+/** The items of one page of a goods room, each with its place: item `n` of the page goes to `SLOTS[n]`; `index` is its number in the whole list. */
+export function pageOf<T>(items: readonly T[], page: number): { item: T; slot: GoodsSlot; index: number }[] {
   const at = clampPage(page, items.length) * PAGE_SIZE
-  return items.slice(at, at + PAGE_SIZE).flatMap((item, n) => { const slot = SLOTS[SLOT_ORDER[n] ?? -1]; return slot ? [{ item, slot, index: at + n }] : [] })
+  return items.slice(at, at + PAGE_SIZE).flatMap((item, n) => { const spot = SLOTS[n]; return spot ? [{ item, slot: spot, index: at + n }] : [] })
 }
+/** How many items a page holds in each kind of room. */
+export const pageSizeOf = (kind: RoomKind): number => (kind === 'service' ? MENU_LINES : PAGE_SIZE)
 
 // ---- text and colour ------------------------------------------------------------------------------------------------------------
 
@@ -137,6 +180,11 @@ export interface RoomData {
   sign: string
   category: ShowcaseCategory
   theme: RoomTheme
+  kind: RoomKind
+  /** The trust badge's words ("Phone checked") when the seller has one worth showing, else null. */
+  checked: string | null
+  /** Salon and beauty offices get a styling chair and a mirror in place of the visitor chairs. */
+  styling: boolean
   colours: [string, string]
   about: string
   hours: (ShowcaseHours | null)[]
@@ -165,24 +213,27 @@ function itemsOf(list: readonly { label: string; priceNaira: number; note: strin
   return list.map((item) => ({ name: plain(item.label, 40), priceNaira: Number.isFinite(item.priceNaira) && item.priceNaira > 0 ? Math.trunc(item.priceNaira) : 0, note: plain(item.note, 80), photo: item.photo && shown.has(item.photo) && roomPhotoUrl(item.photo) ? item.photo : null })).filter((item) => item.name !== '')
 }
 
+/** The room's kind is decided last, from the items it was given. */
+const withKind = (data: RoomData): RoomData => ({ ...data, kind: roomKindFor(data.category, data.items) })
+
 /** A room from a shop's page (the Services app) or from a public address (`links` present: the seller's own links, released to anyone who has the address). */
 export function roomFromView(view: ShowcaseView, links?: { chat: string | null; pay: string | null }, place = '', zone = 'Africa/Lagos'): RoomData {
   const photos = photosOf(view.photos)
-  return {
-    shopId: view.id, name: plain(view.name, 40), sign: plain(view.sign, 24), category: view.category, theme: themeFor(view.category), colours: [safeHex(view.colours[0], '#1f3a5f'), safeHex(view.colours[1], '#f1f3f5')], about: plain(view.about, 400),
+  return withKind({
+    shopId: view.id, name: plain(view.name, 40), sign: plain(view.sign, 24), category: view.category, theme: themeFor(view.category), kind: 'goods', checked: view.badge && (VERIFIED_TIERS as readonly string[]).includes(view.badge.tier) ? plain(view.badge.label, 30) : null, styling: view.category === 'salon' || view.category === 'beauty', colours: [safeHex(view.colours[0], '#1f3a5f'), safeHex(view.colours[1], '#f1f3f5')], about: plain(view.about, 400),
     hours: view.hours.slice(0, 7), place: plain(place, 80), zone, items: itemsOf(view.serviceList, new Set(photos.map((photo) => photo.id))), photos,
     chat: links ? safeLink(links.chat) : null, pay: links ? safeLink(links.pay) : null, hasPay: links ? safeLink(links.pay) !== null : view.pay, payNotice: view.payNotice ? plain(view.payNotice, 80) : null, author: view.badge?.id ? { id: view.badge.id, name: plain(view.badge.name, 40) } : null,
     access: links ? 'direct' : 'released',
-  }
+  })
 }
 /** The seller's own record, drafts and unapproved photos included: the preview before publishing. */
 export function roomFromMine(shop: NonNullable<ShowcaseMine['shop']>, place = '', zone = 'Africa/Lagos'): RoomData {
   const photos = photosOf(shop.photos.filter((photo) => !photo.hidden))
-  return {
-    shopId: shop.id, name: plain(shop.name, 40), sign: plain(shop.sign, 24), category: shop.category, theme: themeFor(shop.category), colours: [safeHex(shop.colours[0], '#1f3a5f'), safeHex(shop.colours[1], '#f1f3f5')], about: plain(shop.about, 400),
+  return withKind({
+    shopId: shop.id, name: plain(shop.name, 40), sign: plain(shop.sign, 24), category: shop.category, theme: themeFor(shop.category), kind: 'goods', checked: null, styling: shop.category === 'salon' || shop.category === 'beauty', colours: [safeHex(shop.colours[0], '#1f3a5f'), safeHex(shop.colours[1], '#f1f3f5')], about: plain(shop.about, 400),
     hours: shop.hours.slice(0, 7), place: plain(place, 80), zone, items: itemsOf(shop.services, new Set(photos.map((photo) => photo.id))), photos,
     chat: safeLink(shop.chat.url), pay: safeLink(shop.pay?.url), hasPay: safeLink(shop.pay?.url) !== null, payNotice: null, author: null, access: 'preview',
-  }
+  })
 }
 
 /** The address "Message the seller" opens, with the first words filled in (about an item, or about the shop). Null when there is no usable link here. */
@@ -196,7 +247,7 @@ export const payLink = (data: RoomData): string | null => safeLink(data.pay)
 /** The line the room always says: nothing is bought or held here. */
 export const DEAL_LINE = 'You deal directly with the seller. Allworld takes no orders and never holds or moves your money.'
 /** What the room is called by a screen reader. */
-export const roomLabel = (data: RoomData): string => `${data.name}: a 3D shop with ${data.items.length === 1 ? '1 item' : `${data.items.length} items`}`
+export const roomLabel = (data: RoomData): string => `${data.name}: a 3D ${data.kind === 'service' ? 'office' : 'shop'} with ${data.items.length === 1 ? (data.kind === 'service' ? '1 service' : '1 item') : `${data.items.length} ${data.kind === 'service' ? 'services' : 'items'}`}`
 
 // ---- how a visitor arrived: where Step inside leads -----------------------------------------------------------------------------
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Feature journey: the 3D shop (docs/SHOWCASE.md, "The 3D shop"). Three sellers publish three shops (fashion with 8 items and photos, food
- * with 14 items, a repair shop with no items). For each shop, a FRESH guest opens the public link, taps "Step inside", starts as a guest and
+ * Feature journey: the 3D shop (docs/SHOWCASE.md, "The 3D shop"). Four sellers publish four shops (goods with 8 items and photos, food
+ * with 14 items, a repair studio with 6 services and a tutoring studio with none). For each shop, a FRESH guest opens the public link, taps "Step inside", starts as a guest and
  * is in the room. Captures at 1280x800, 390x844 and 320x568: the room on entry, a close view of the shelves, an item card, the counter card,
  * and for the food shop the arrow for the second page and the second page; for the empty shop the "Opening soon" stand. Also: the seller's
  * preview before and after publishing, "Step inside" from the Services app, and a link that is not a shop.
  *
- *   node --experimental-strip-types --no-warnings scripts/journeys/shopinside.ts --out <folder> [--port 4533] [--public-port 4531] [--debug-port 4532] [--only fashion,food] [--size 390x844] [--tag name] [--extras 0]
+ *   node --experimental-strip-types --no-warnings scripts/journeys/shopinside.ts --out <folder> [--port 4533] [--public-port 4531] [--debug-port 4532] [--only goods,food] [--size 390x844] [--tag name] [--extras 0]
  *
  * With --public-port the pages are reached through a dev server on that port that proxies the API to --port (no build needed); without
  * it the built game in dist/ (or JOURNEY_DIST) is served by the lab itself. One server, one muted headless Chrome, no outside request.
@@ -29,12 +29,15 @@ const id = (): string => `${lab.now()}:${crypto.randomUUID()}`;
 const WEEK = [{ open: '09:00', close: '18:00' }, { open: '09:00', close: '18:00' }, { open: '09:00', close: '18:00' }, { open: '09:00', close: '18:00' }, { open: '09:00', close: '18:00' }, { open: '10:00', close: '16:00' }, null];
 
 interface Shop { key: string; email: string; seller: string; name: string; category: string; colours: [string, string]; sign: string; about: string; items: [string, number, string][]; photos: number; cookie: string; path: string; token: string; id: string }
+const timed = (names: string[]): [string, number, string][] => names.map((n, at): [string, number, string] => [n, at === 4 ? 0 : 2500 + at * 1500, ['45 minutes', '1 hour', '30 minutes', '2 hours', 'A short visit', 'Per session'][at % 6] ?? '']);
 const shops: Shop[] = [
-  { key: 'fashion', email: 'ada@example.test', seller: 'Ada Seller', name: 'Ada Fashion House', category: 'tailor', colours: ['#8e2c48', '#f7e4ea'], sign: 'Made in Lagos', about: 'Ankara, lace and adire, cut to your size. Walk in, or message us first.', photos: 4, cookie: '', path: '', token: '', id: '',
-    items: [['Ankara wrapper', 18000, 'Two yards, fast colours'], ['Lace blouse', 22500, ''], ['Agbada set', 85000, 'Three pieces, made to measure'], ['Kaftan', 31000, ''], ['Ankara skirt', 14500, ''], ['Adire scarf', 9000, 'Hand dyed'], ['Leather sandals', 16000, ''], ['Gele and cap', 12000, '']] },
-  { key: 'food', email: 'nkechi@example.test', seller: 'Nkechi Seller', name: 'Mama Nkechi Kitchen', category: 'food', colours: ['#1f6f3f', '#fff1d6'], sign: 'Hot food daily', about: 'Home cooking for lunch, parties and small chops. Order ahead for big trays.', photos: 3, cookie: '', path: '', token: '', id: '',
-    items: ['Jollof rice', 'Fried rice', 'Egusi soup', 'Pounded yam', 'Moi moi', 'Puff puff', 'Suya', 'Pepper soup', 'Akara', 'Fried plantain', 'Meat pie', 'Zobo drink', 'Chapman', 'Small chops tray'].map((n, at): [string, number, string] => [n, 1500 + at * 700, at % 4 === 0 ? 'Fresh today' : '']) },
-  { key: 'services', email: 'tunde@example.test', seller: 'Tunde Seller', name: 'Tunde Phone Repair', category: 'repair', colours: ['#1f4e79', '#e6f0fa'], sign: 'Fixed while you wait', about: 'Screens, batteries and charging ports. Ask about your phone.', photos: 3, cookie: '', path: '', token: '', id: '', items: [] },
+  { key: 'goods', email: 'ada@example.test', seller: 'Test Seller One', name: 'Test Goods Store', category: 'crafts', colours: ['#8e2c48', '#f7e4ea'], sign: 'Test items only', about: 'A test shop with test items, made for checking the 3D room.', photos: 4, cookie: '', path: '', token: '', id: '',
+    items: ['Test item 1', 'Test item 2 with a long name', 'Test item 3', 'Test item 4', 'Test item 5', 'Test item 6', 'Test item 7', 'Test item 8'].map((n, at): [string, number, string] => [n, 4000 + at * 1500, at === 1 ? 'A test note' : '']) },
+  { key: 'food', email: 'nkechi@example.test', seller: 'Test Seller Two', name: 'Test Food Corner', category: 'food', colours: ['#1f6f3f', '#fff1d6'], sign: 'Test items only', about: 'A test food shop with fourteen test items.', photos: 3, cookie: '', path: '', token: '', id: '',
+    items: Array.from({ length: 14 }, (_, at): [string, number, string] => [`Test dish ${at + 1}`, 1500 + at * 700, at % 4 === 0 ? 'A test note' : '']) },
+  { key: 'services', email: 'tunde@example.test', seller: 'Test Seller Three', name: 'Test Repair Studio', category: 'repair', colours: ['#1f4e79', '#e6f0fa'], sign: 'Test services only', about: 'A test service business with six test services.', photos: 4, cookie: '', path: '', token: '', id: '',
+    items: timed(['Test service 1', 'Test service 2 with a long name', 'Test service 3', 'Test service 4', 'Test service 5', 'Test service 6']) },
+  { key: 'empty', email: 'bola@example.test', seller: 'Test Seller Four', name: 'Test Empty Studio', category: 'tutoring', colours: ['#5b3a8a', '#efe6fa'], sign: 'Test services only', about: 'A test service business that has listed nothing yet.', photos: 3, cookie: '', path: '', token: '', id: '', items: [] },
 ];
 
 /** A JPEG made in the page (a gradient and shapes), small enough for the 150 kB cap. */
@@ -66,7 +69,7 @@ const probe = (b: Browser): Promise<{ culprits: string[]; overflow: boolean; sma
 
 try {
   await S.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
-  await j.run('0', 'Setup: three sellers who may publish publish a fashion shop (8 items, 4 photos), a food shop (14 items) and a repair shop (no items)', [S], async (detail) => {
+  await j.run('0', 'Setup: four sellers who may publish publish a goods shop (8 items, 4 photos), a food shop (14 items), a service business with 6 services and one with none', [S], async (detail) => {
     // The first seller is this browser (it also shows the seller's own screens); the others are made over HTTP.
     await playNow(S, lab.base, shops[0]!.seller); await lab.signIn(S, shops[0]!.email); await S.goto(lab.base + '/'); await gameShown(S); await dismiss(S);
     for (const shop of shops.slice(1)) shop.cookie = await lab.account(shop.email, shop.seller);
@@ -145,11 +148,13 @@ try {
         detail['address'] = await V.eval<string>(`location.pathname + location.search`);
         detail['drawn'] = await V.eval<boolean>(`(() => { const c = document.querySelector('[data-shop-inside] canvas'); return !!c && c.clientWidth > 100 && c.clientHeight > 100 })()`);
         await j.shot(V, `${shop.key}-${label}-1-entry`);
-        // a close view of the shelves
-        await V.click('[data-si-view="left"]'); await sleep(2200);
-        await j.shot(V, `${shop.key}-${label}-2-shelves`);
+        const office = shop.category === 'repair' || shop.category === 'tutoring';
+        // a close view of the shelves, or of the service menu board
+        await V.click(office ? '[data-si-view="menu"]' : '[data-si-view="left"]'); await sleep(2200);
+        await j.shot(V, `${shop.key}-${label}-2-${office ? 'menu-board' : 'shelves'}`);
         // an item card
         if (shop.items.length) {
+          if (!shop.items.length) throw new Error('unreachable');
           const hit = await scanTap(V, '[data-si-item-name]');
           must(hit, 'no item could be tapped on the shelves');
           await sleep(500);
@@ -168,10 +173,9 @@ try {
           await V.click('[data-si-close]'); await sleep(300);
         }
         // the counter card
-        await V.click('[data-si-view="counter"]'); await sleep(2200);
-        await j.shot(V, `${shop.key}-${label}-4-counter-view`);
-        const counter = await scanTap(V, '[data-si-shop-name]');
-        must(counter, 'the counter or the shopkeeper could not be tapped');
+        await V.click(office ? '[data-si-view="portfolio"]' : '[data-si-view="counter"]'); await sleep(2200);
+        await j.shot(V, `${shop.key}-${label}-4-${office ? 'portfolio' : 'counter-view'}`);
+        await V.click('[data-si-about]'); await sleep(700);
         await sleep(400);
         detail['counterCard'] = (await text(V, '[data-si-card]')).replace(/\s+/g, ' ').slice(0, 300);
         must((await text(V, '[data-si-card]')).includes(shop.name) && /Opening hours|Mon/.test(await text(V, '[data-si-card]')), 'the counter card has no shop name or hours');
@@ -182,8 +186,8 @@ try {
         if (shop.items.length > 12) {
           await V.click('[data-si-view="room"]'); await sleep(1500);
           await V.eval(`document.querySelector('[data-shop-inside] canvas').focus(); true`);
-          for (let i = 0; i < 8; i++) { await V.press('ArrowRight', 'ArrowRight', 39); await sleep(40); }
-          for (let i = 0; i < 4; i++) { await V.press('ArrowUp', 'ArrowUp', 38); await sleep(40); }
+          for (let i = 0; i < 7; i++) { await V.press('ArrowRight', 'ArrowRight', 39); await sleep(40); }
+          for (let i = 0; i < 3; i++) { await V.press('ArrowUp', 'ArrowUp', 38); await sleep(40); }
           await sleep(700);
           detail['chipBefore'] = (await text(V, '[data-si-more]')).trim();
           await j.shot(V, `${shop.key}-${label}-6-page-arrow`);

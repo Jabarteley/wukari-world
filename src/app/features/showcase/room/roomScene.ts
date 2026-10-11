@@ -1,5 +1,6 @@
-// The 3D shop: the room model for the shop's kind, tinted in the shop's colours, with its name on the sign, its photos on the photos
-// wall and the seller's items in the twelve display slots. Loaded only when a visitor steps inside (never in the first download).
+// The 3D shop: a goods shop (counter, shelf units, rail) or, for services, an office with a reception desk and a service menu board; built from
+// boxes and planes in the shop's colours (roomBuild.ts), with the shop's name on the sign, its photos on a photos wall and the seller's own
+// items as the only goods in the room. Loaded only when a visitor steps inside (never in the first download).
 //
 // Everything the seller wrote is drawn as text into a canvas; nothing here builds markup. Photos come only from the game's own photo
 // store (roomPhotoUrl). The scene draws on demand: a frame is drawn when something changed (a size, a page, a picture that arrived,
@@ -7,20 +8,15 @@
 import type * as THREE_TYPES from 'three'
 import { applyRendererLook, renderTier } from '../../../../scene/look.ts'
 import { createKit } from '../../../../scene/kit.ts'
-import { buildAvatar } from '../../../../scene/characters.ts'
-import electronicsUrl from './assets/shop-electronics.glb?url'
-import fashionUrl from './assets/shop-fashion.glb?url'
-import foodUrl from './assets/shop-food.glb?url'
-import { drawCover, drawItemCard, FONT, roundedRect } from './roomCanvas.ts'
-import { MODEL_TILL, coveredTriangles, insideBox } from './roomGeometry.ts'
-import type { Tri, V3 } from './roomGeometry.ts'
-import { KEEPER, cardPlace, clampPage, mixHex, pageCount, pageOf, roomColours, roomPhotoUrl, wrapLines } from './roomModel.ts'
-import type { RoomData, RoomTheme } from './roomModel.ts'
+import { buildAvatar, normalizeLook } from '../../../../scene/characters.ts'
+import { buildGoods, buildOffice, drawPhotoWall } from './roomBuild.ts'
+import type { Build, Fittings } from './roomBuild.ts'
+import { FONT, drawCover, drawMenuBoard, drawPanel, drawShelfLabel, roundedRect } from './roomCanvas.ts'
+import { EASEL_LEDGE, clampPage, menuHit, menuPageOf, menuPages, mixHex, pageCount, pageOf, pageSizeOf, placementOf, roomColours, roomPhotoUrl } from './roomModel.ts'
+import type { RoomData } from './roomModel.ts'
 
-type Three = typeof THREE_TYPES
-
-export type RoomPick = { kind: 'item'; index: number } | { kind: 'counter' } | { kind: 'page'; step: 1 | -1 } | { kind: 'photos' }
-export type RoomView = 'room' | 'left' | 'counter' | 'right' | 'more'
+export type RoomPick = { kind: 'item'; index: number } | { kind: 'counter' } | { kind: 'page'; step: 1 | -1 } | { kind: 'photos' } | { kind: 'menu' }
+export type RoomView = 'room' | 'left' | 'counter' | 'right' | 'more' | 'menu' | 'portfolio'
 export interface RoomEvents {
   pick(pick: RoomPick): void
 }
@@ -35,22 +31,24 @@ export interface RoomScene {
   dispose(): void
 }
 
-const FILES: Record<RoomTheme, string> = { fashion: fashionUrl, food: foodUrl, electronics: electronicsUrl }
-const FRAME_DARK = '#3a2a1c'
-
 /** The camera: a visitor standing at the door, looking in. yaw 0 looks at the back wall; positive turns to the left wall. */
-interface Look { yaw: number; pitch: number; dolly: number }
-const START: Look = { yaw: 0, pitch: -0.06, dolly: 0 }
-const VIEWS: Record<RoomView, Look> = {
+interface Look { x: number; yaw: number; pitch: number; dolly: number }
+const START: Look = { x: 0, yaw: 0, pitch: -0.06, dolly: 0 }
+const GOODS_VIEWS: Partial<Record<RoomView, Look>> = {
   room: START,
-  left: { yaw: 0.78, pitch: -0.12, dolly: 0.55 },
-  right: { yaw: -0.78, pitch: -0.12, dolly: 0.55 },
-  counter: { yaw: -0.1, pitch: -0.22, dolly: 0.72 },
-  more: { yaw: -0.95, pitch: 0.1, dolly: 0.35 },
+  left: { x: -0.9, yaw: 0.33, pitch: -0.05, dolly: 0.6 },
+  right: { x: 0.9, yaw: -0.33, pitch: -0.05, dolly: 0.6 },
+  counter: { x: 0.3, yaw: -0.05, pitch: -0.2, dolly: 0.72 },
+  more: { x: 0.6, yaw: -0.85, pitch: 0.1, dolly: 0.6 },
 }
-const YAW_LIMIT = 1.25, PITCH_LIMIT = 0.5
+const OFFICE_VIEWS: Partial<Record<RoomView, Look>> = {
+  room: START,
+  menu: { x: 1.3, yaw: 0, pitch: -0.01, dolly: 0.8 },
+  portfolio: { x: 0.6, yaw: -0.87, pitch: -0.02, dolly: 0.4 },
+}
+const YAW_LIMIT = 1.25, PITCH_LIMIT = 0.5, X_LIMIT = 1.6
 /** Where the camera stands: the door end of the room, moving in towards the visitor's spot as the visitor zooms. */
-const CAMERA_FAR = { x: 0, y: 1.6, z: 2.5 }, CAMERA_NEAR = { x: 0, y: 1.5, z: 0.7 }
+const CAMERA_FAR = { y: 1.6, z: 2.5 }, CAMERA_NEAR = { y: 1.5, z: 0.7 }
 
 function canvasOf(width: number, height: number): { canvas: HTMLCanvasElement; ctx: CanvasRenderingContext2D } {
   const canvas = document.createElement('canvas')
@@ -59,10 +57,10 @@ function canvasOf(width: number, height: number): { canvas: HTMLCanvasElement; c
   if (!ctx) throw new Error('no 2d canvas')
   return { canvas, ctx }
 }
+
 export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData, events: RoomEvents): Promise<RoomScene> {
   const THREE = await import('three')
-  const [{ GLTFLoader }, { MeshoptDecoder }] = await Promise.all([import('three/examples/jsm/loaders/GLTFLoader.js'), import('three/examples/jsm/libs/meshopt_decoder.module.js')])
-  await MeshoptDecoder.ready
+  const service = data.kind === 'service'
   const colours = roomColours(data.colours)
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'low-power' })
   const tier = applyRendererLook(THREE, renderer, renderTier(), { shadows: false })
@@ -70,119 +68,30 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
   const scene = new THREE.Scene()
   scene.background = new THREE.Color(mixHex(colours.sign, '#000000', 0.72))
   const camera = new THREE.PerspectiveCamera(60, 1, 0.05, 40)
-  const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(FILES[data.theme])
-  const room = gltf.scene
-  scene.add(room)
-  room.updateMatrixWorld(true)
 
   const disposables: { dispose(): void }[] = []
   const track = <T extends { dispose(): void }>(item: T): T => { disposables.push(item); return item }
   let renders = 0, looping = false, frame = 0, dirty = false, gone = false
   let calls = 0, triangles = 0
-
-  /** Some walls of the models have a plain swatch sheet at the same place as the wall's picture: leave those triangles out so the wall does not flicker. */
-  function leaveOutCovered(mesh: THREE_TYPES.Mesh): void {
-    const geometry = mesh.geometry, position = geometry.getAttribute('position'), uv = geometry.getAttribute('uv'), held = geometry.getIndex()
-    if (!uv) return
-    // A model without an index lists its triangles in order.
-    const index = { count: held ? held.count : position.count, getX: (n: number): number => (held ? held.getX(n) : n) }
-    const world = new THREE.Vector3(), tris: Tri[] = []
-    const at = (i: number): { p: V3; uv: [number, number] } => { world.fromBufferAttribute(position, i).applyMatrix4(mesh.matrixWorld); return { p: [world.x, world.y, world.z], uv: [uv.getX(i), uv.getY(i)] } }
-    for (let t = 0; t < index.count; t += 3) { const [a, b, c] = [at(index.getX(t)), at(index.getX(t + 1)), at(index.getX(t + 2))]; tris.push({ p: [a.p, b.p, c.p], uv: [a.uv, b.uv, c.uv] }) }
-    const drop = coveredTriangles(tris)
-    tris.forEach((tri, n) => { if (insideBox(tri, MODEL_TILL)) drop.add(n) })
-    if (!drop.size) return
-    const kept: number[] = []
-    tris.forEach((_, n) => { if (!drop.has(n)) kept.push(index.getX(n * 3), index.getX(n * 3 + 1), index.getX(n * 3 + 2)) })
-    geometry.setIndex(kept)
+  const anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy())
+  const texture = (source: HTMLCanvasElement): THREE_TYPES.CanvasTexture => {
+    const made = track(new THREE.CanvasTexture(source))
+    made.colorSpace = THREE.SRGBColorSpace; made.anisotropy = anisotropy
+    return made
   }
+  const basic = (map: THREE_TYPES.Texture): THREE_TYPES.MeshBasicMaterial => track(new THREE.MeshBasicMaterial({ map, color: '#f4eee4', toneMapped: false }))
 
-  // ---- the room: walls tinted from the shop's colour, a ceiling, a warm light and a soft fill ----
-  room.traverse((node) => {
-    const mesh = node as THREE_TYPES.Mesh
-    if (!mesh.isMesh) return
-    const material = mesh.material as THREE_TYPES.MeshStandardMaterial
-    // The two quads that carry the sign and the photos are replaced by the scene's own planes (below); the room itself is tinted.
-    if (node.parent?.name === 'shop_sign' || node.parent?.name === 'photos_area') return
-    leaveOutCovered(mesh)
-    material.color = new THREE.Color(mixHex('#ffffff', colours.wall, 0.45))
-    material.roughness = 0.95
-    // The room's picture is an atlas: smaller sizes of it blend neighbouring parts together at a slant, so it is sampled at full size only.
-    if (material.map) { material.map.minFilter = THREE.LinearFilter; material.map.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy()); material.map.needsUpdate = true }
-  })
-  const ceilingMaterial = track(new THREE.MeshLambertMaterial({ color: mixHex('#fff6e6', colours.wall, 0.2), side: THREE.DoubleSide }))
-  const ceiling = new THREE.Mesh(track(new THREE.PlaneGeometry(6.3, 5.6)), ceilingMaterial)
-  ceiling.rotation.x = Math.PI / 2; ceiling.position.set(0, 3.2, 0.1)
-  scene.add(ceiling)
-  const lamp = new THREE.Mesh(track(new THREE.CylinderGeometry(0.32, 0.4, 0.07, 18)), track(new THREE.MeshBasicMaterial({ color: '#fff1cf' })))
-  lamp.position.set(0, 3.15, 0.2)
-  scene.add(lamp)
+  // ---- the room: walls tinted from the shop's colour, a warm light and a soft fill ----
+  const build: Build = { THREE, parent: scene, colours, data, track, texture, canvas: canvasOf }
+  const fittings: Fittings = service ? buildOffice(build) : buildGoods(build, data.theme)
   scene.add(new THREE.HemisphereLight('#fff1d9', '#b98a5e', 1.5))
   const bulb = new THREE.PointLight('#ffdfae', 14, 11, 1.6)
   bulb.position.set(0, 2.85, 0.4)
   scene.add(bulb)
 
-  // The room's own sign and photos nodes: their world boxes say where the planes go.
-  const boxOf = (name: string): THREE_TYPES.Box3 | null => { const node = room.getObjectByName(name); return node ? new THREE.Box3().setFromObject(node) : null }
-  const textureOf = (canvasElement: HTMLCanvasElement): THREE_TYPES.CanvasTexture => {
-    const texture = track(new THREE.CanvasTexture(canvasElement))
-    texture.colorSpace = THREE.SRGBColorSpace
-    texture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy())
-    return texture
-  }
-  const basic = (map: THREE_TYPES.Texture): THREE_TYPES.MeshBasicMaterial => track(new THREE.MeshBasicMaterial({ map, color: '#f4eee4', toneMapped: false }))
-
   const pickables: THREE_TYPES.Object3D[] = []
-
-  // ---- the sign: the shop's name, in a canvas ----
-  const signBox = boxOf('shop_sign')
-  if (signBox) {
-    const { canvas: signCanvas, ctx } = canvasOf(1280, 180)
-    ctx.fillStyle = colours.sign; ctx.fillRect(0, 0, 1280, 180)
-    ctx.strokeStyle = colours.accent; ctx.lineWidth = 6; roundedRect(ctx, 14, 14, 1252, 152, 16); ctx.stroke()
-    ctx.fillStyle = colours.signInk; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-    let size = 104
-    do { ctx.font = `800 ${size}px ${FONT}`; size -= 4 } while (ctx.measureText(data.name).width > 1140 && size > 36)
-    ctx.fillText(data.name, 640, data.sign ? 78 : 92)
-    if (data.sign) { ctx.font = `600 34px ${FONT}`; ctx.globalAlpha = 0.85; ctx.fillText(data.sign, 640, 142, 1100); ctx.globalAlpha = 1 }
-    const width = signBox.max.x - signBox.min.x, height = signBox.max.y - signBox.min.y
-    const plane = new THREE.Mesh(track(new THREE.PlaneGeometry(width * 0.94, height * 0.82)), basic(textureOf(signCanvas)))
-    plane.position.set((signBox.min.x + signBox.max.x) / 2, (signBox.min.y + signBox.max.y) / 2, signBox.max.z + 0.012)
-    scene.add(plane)
-  }
-
-  // ---- the photos wall: the shop's photos side by side, never stretched ----
-  const photosBox = boxOf('photos_area')
-  let photosTexture: THREE_TYPES.CanvasTexture | null = null
-  const photoImages: (HTMLImageElement | null)[] = data.photos.slice(0, 6).map(() => null)
-  const photosCanvas = canvasOf(1344, 360)
-  const paintPhotos = (): void => {
-    const { ctx } = photosCanvas, w = 1344, h = 360
-    ctx.fillStyle = mixHex(colours.accent, '#ffffff', 0.5); ctx.fillRect(0, 0, w, h)
-    const count = Math.max(1, photoImages.length), gap = 12, tile = (w - gap * (count + 1)) / count
-    if (!data.photos.length) {
-      ctx.fillStyle = colours.sign; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `700 48px ${FONT}`
-      ctx.fillText('Photos coming soon', w / 2, h / 2, w - 80)
-    }
-    photoImages.forEach((image, at) => {
-      const x = gap + at * (tile + gap)
-      ctx.save(); roundedRect(ctx, x, gap, tile, h - gap * 2, 10); ctx.clip()
-      if (image && image.naturalWidth > 0) drawCover(ctx, image, x, gap, tile, h - gap * 2)
-      else { ctx.fillStyle = mixHex(colours.tile, '#ffffff', 0.3); ctx.fillRect(x, gap, tile, h - gap * 2) }
-      ctx.restore()
-    })
-    if (photosTexture) photosTexture.needsUpdate = true
-  }
-  if (photosBox) {
-    paintPhotos()
-    photosTexture = textureOf(photosCanvas.canvas)
-    const depth = photosBox.max.z - photosBox.min.z, height = photosBox.max.y - photosBox.min.y
-    const plane = new THREE.Mesh(track(new THREE.PlaneGeometry(depth * 0.94, height * 0.8)), basic(photosTexture))
-    plane.rotation.y = Math.PI / 2
-    plane.position.set(photosBox.max.x + 0.012, (photosBox.min.y + photosBox.max.y) / 2, (photosBox.min.z + photosBox.max.z) / 2)
-    plane.userData['pick'] = { kind: 'photos' } satisfies RoomPick
-    scene.add(plane); pickables.push(plane)
-  }
+  fittings.deskHit.userData['pick'] = { kind: 'counter' } satisfies RoomPick
+  pickables.push(fittings.deskHit)
 
   // ---- pictures: the shop's photos and each item's photo, from the game's own store, loaded one by one ----
   const images = new Map<string, HTMLImageElement | 'failed'>()
@@ -203,19 +112,32 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     image.src = src
     return null
   }
-  data.photos.slice(0, 6).forEach((photo, at) => {
-    const ready = (): void => { photoImages[at] = images.get(photo.id) as HTMLImageElement; paintPhotos(); invalidate() }
-    const image = picture(photo.id, ready)
-    if (image) photoImages[at] = image
-  })
-  if (photosBox) paintPhotos()
 
-  // ---- items: a framed card in each slot of the page ----
+  // ---- the photos wall ----
+  if (fittings.photos) {
+    const wall = fittings.photos, { canvas: wallCanvas, ctx: wallCtx } = canvasOf(wall.width, wall.height)
+    const shown = data.photos.slice(0, wall.cols * wall.rows), photoImages: (HTMLImageElement | null)[] = shown.map(() => null)
+    const wallTexture = texture(wallCanvas)
+    wall.mesh.material = basic(wallTexture)
+    const repaint = (): void => { drawPhotoWall(wallCtx, wall.width, wall.height, wall.cols, wall.rows, photoImages, colours, shown.length, drawCover); wallTexture.needsUpdate = true }
+    repaint()
+    shown.forEach((photo, at) => {
+      const image = picture(photo.id, () => { photoImages[at] = images.get(photo.id) as HTMLImageElement; repaint(); invalidate() })
+      if (image) { photoImages[at] = image; repaint() }
+    })
+    wall.mesh.userData['pick'] = { kind: 'photos' } satisfies RoomPick
+    pickables.push(wall.mesh)
+  }
+
+  // ---- a goods shop: each item is a product panel on a shelf, on an easel or on a hanger ----
   const cards = new THREE.Group()
   scene.add(cards)
   let page = 0
+  const size = pageSizeOf(data.kind)
   const frameGeometry = track(new THREE.BoxGeometry(1, 1, 1))
-  const frameMaterial = track(new THREE.MeshLambertMaterial({ color: mixHex(FRAME_DARK, colours.sign, 0.25) }))
+  const frameMaterial = track(new THREE.MeshLambertMaterial({ color: mixHex('#3a2a1c', colours.sign, 0.25) }))
+  const ledgeMaterial = track(new THREE.MeshLambertMaterial({ color: '#a07040' }))
+  const wireMaterial = track(new THREE.MeshLambertMaterial({ color: '#8a8a90' }))
   const faceGeometries = new Map<string, THREE_TYPES.PlaneGeometry>()
   const faceGeometry = (w: number, h: number): THREE_TYPES.PlaneGeometry => { const key = `${w}x${h}`; let found = faceGeometries.get(key); if (!found) { found = track(new THREE.PlaneGeometry(w, h)); faceGeometries.set(key, found) } return found }
   let cardResources: { dispose(): void }[] = []
@@ -223,58 +145,62 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     for (const child of [...cards.children]) cards.remove(child)
     for (const item of cardResources) item.dispose()
     cardResources = []
-    for (let at = pickables.length - 1; at >= 0; at -= 1) { const kind = (pickables[at]?.userData['pick'] as RoomPick | undefined)?.kind; if (kind === 'item' || kind === 'page') pickables.splice(at, 1) }
+    for (let at = pickables.length - 1; at >= 0; at -= 1) { const kind = (pickables[at]?.userData['pick'] as RoomPick | undefined)?.kind; if (kind === 'item') pickables.splice(at, 1) }
   }
   function buildCards(): void {
     clearCards()
-    const shown = pageOf(data.items, page)
-    for (const { item, slot, index } of shown) {
-      const place = cardPlace(slot)
+    for (const { item, slot, index } of pageOf(data.items, page)) {
+      const place = placementOf(slot)
       const holder = new THREE.Group()
-      holder.position.set(place.x, place.y, place.z); holder.rotation.y = place.yaw; holder.rotation.x = place.tilt
+      holder.position.set(place.x, place.y, place.z); holder.rotation.x = place.tilt
       const frame = new THREE.Mesh(frameGeometry, frameMaterial)
       frame.scale.set(place.w + 0.04, place.h + 0.04, 0.03); frame.position.z = -0.016
       holder.add(frame)
       const { canvas: art, ctx } = canvasOf(320, Math.round(320 * (place.h / place.w)))
-      const draw = (): void => { drawItemCard(ctx, art.width, art.height, item, colours, item.photo ? ((images.get(item.photo) as HTMLImageElement | undefined) ?? null) : null) }
+      const draw = (): void => { drawPanel(ctx, art.width, art.height, item, colours, item.photo ? ((images.get(item.photo) as HTMLImageElement | undefined) ?? null) : null) }
       draw()
-      const texture = new THREE.CanvasTexture(art)
-      texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy())
-      const material = new THREE.MeshBasicMaterial({ map: texture, color: '#f4eee4', toneMapped: false })
+      const map = new THREE.CanvasTexture(art)
+      map.colorSpace = THREE.SRGBColorSpace; map.anisotropy = anisotropy
+      const material = new THREE.MeshBasicMaterial({ map, color: '#f4eee4', toneMapped: false })
       const face = new THREE.Mesh(faceGeometry(place.w, place.h), material)
       face.userData['pick'] = { kind: 'item', index } satisfies RoomPick
       holder.add(face); cards.add(holder); pickables.push(face)
-      cardResources.push(texture, material)
-      if (item.photo) picture(item.photo, () => { if (!cardResources.includes(texture)) return; draw(); texture.needsUpdate = true; invalidate() })
+      cardResources.push(map, material)
+      if (place.label) {
+        const { canvas: tag, ctx: tagCtx } = canvasOf(320, Math.round(320 * (place.label.h / place.label.w)))
+        drawShelfLabel(tagCtx, tag.width, tag.height, item, colours)
+        const tagMap = new THREE.CanvasTexture(tag)
+        tagMap.colorSpace = THREE.SRGBColorSpace; tagMap.anisotropy = anisotropy
+        const tagMaterial = new THREE.MeshBasicMaterial({ map: tagMap, color: '#f4eee4', toneMapped: false })
+        const label = new THREE.Mesh(faceGeometry(place.label.w, place.label.h), tagMaterial)
+        label.position.set(place.label.x, place.label.y, place.label.z)
+        label.userData['pick'] = { kind: 'item', index } satisfies RoomPick
+        cards.add(label); pickables.push(label)
+        cardResources.push(tagMap, tagMaterial)
+      }
+      if (slot.kind === 'counter') {
+        const ledge = new THREE.Mesh(frameGeometry, ledgeMaterial)
+        ledge.scale.set(place.w + 0.06, EASEL_LEDGE, 0.16); ledge.position.set(slot.x, slot.y + EASEL_LEDGE / 2, slot.z + 0.015)
+        cards.add(ledge)
+      } else if (slot.kind === 'rail') {
+        const hook = new THREE.Mesh(frameGeometry, wireMaterial); hook.scale.set(0.015, 0.2, 0.015); hook.position.set(slot.x, slot.y + 0.05, slot.z)
+        const bar = new THREE.Mesh(frameGeometry, wireMaterial); bar.scale.set(place.w * 0.7, 0.018, 0.018); bar.position.set(slot.x, slot.y - 0.055, slot.z + 0.02)
+        cards.add(hook, bar)
+      }
+      if (item.photo) picture(item.photo, () => { if (!cardResources.includes(map)) return; draw(); map.needsUpdate = true; invalidate() })
     }
-    if (!data.items.length) {
-      // An empty shop: a tidy "Opening soon" stand on the counter.
-      const { canvas: stand, ctx } = canvasOf(512, 320)
-      ctx.fillStyle = colours.label; ctx.fillRect(0, 0, 512, 320)
-      ctx.fillStyle = colours.sign; ctx.fillRect(0, 0, 512, 78)
-      ctx.fillStyle = colours.signInk; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `800 52px ${FONT}`; ctx.fillText('Opening soon', 256, 42, 470)
-      ctx.fillStyle = colours.labelInk; ctx.font = `600 30px ${FONT}`
-      wrapLines('Nothing is on the shelves yet. Tap the counter to message the seller.', 450, 3, (text) => ctx.measureText(text).width).forEach((line, at) => ctx.fillText(line, 256, 128 + at * 44))
-      const texture = new THREE.CanvasTexture(stand)
-      texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4
-      const material = new THREE.MeshBasicMaterial({ map: texture, color: '#f4eee4', toneMapped: false })
-      const board = new THREE.Mesh(new THREE.PlaneGeometry(0.84, 0.52), material)
-      const holder = new THREE.Group(); holder.position.set(0.7, 1.27, -0.5); holder.rotation.x = -0.12
-      const back = new THREE.Mesh(frameGeometry, frameMaterial); back.scale.set(0.88, 0.56, 0.03); back.position.z = -0.016
-      board.userData['pick'] = { kind: 'counter' } satisfies RoomPick
-      holder.add(back, board); cards.add(holder); pickables.push(board)
-      cardResources.push(texture, material, board.geometry)
-    }
-    buildPlaque()
+    buildPageBoard()
   }
 
-  // ---- "more items": an arrow board on the right-hand wall, only when there is more than one page ----
-  let plaque: THREE_TYPES.Mesh | null = null
-  function buildPlaque(): void {
-    if (plaque) { cards.remove(plaque); const material = plaque.material as THREE_TYPES.MeshBasicMaterial; material.map?.dispose(); material.dispose(); plaque.geometry.dispose(); plaque = null }
-    const pages = pageCount(data.items.length)
+  // ---- goods: the board on the right-hand wall for more items ----
+  function buildPageBoard(): void {
+    const board = fittings.pageBoard
+    if (!board) return
+    const pages = pageCount(data.items.length, size)
+    board.visible = pages > 1
+    for (let at = pickables.length - 1; at >= 0; at -= 1) if (pickables[at] === board) pickables.splice(at, 1)
     if (pages < 2) return
-    const { canvas: board, ctx } = canvasOf(768, 240)
+    const { canvas: face, ctx } = canvasOf(768, 240)
     ctx.fillStyle = colours.sign; ctx.fillRect(0, 0, 768, 240)
     ctx.strokeStyle = colours.accent; ctx.lineWidth = 6; roundedRect(ctx, 10, 10, 748, 220, 18); ctx.stroke()
     ctx.fillStyle = colours.signInk; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
@@ -284,40 +210,53 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     ctx.globalAlpha = 1
     ctx.font = `800 46px ${FONT}`; ctx.fillText(page < pages - 1 ? 'More items' : 'Earlier items', 384, 98, 440)
     ctx.font = `600 32px ${FONT}`; ctx.fillText(`Page ${page + 1} of ${pages}`, 384, 156)
-    const texture = new THREE.CanvasTexture(board)
-    texture.colorSpace = THREE.SRGBColorSpace; texture.anisotropy = 4
-    plaque = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.47), new THREE.MeshBasicMaterial({ map: texture, color: '#f4eee4', toneMapped: false }))
-    plaque.position.set(2.96, 2.55, 0.1); plaque.rotation.y = -Math.PI / 2
-    plaque.userData['pick'] = { kind: 'page', step: 1 } satisfies RoomPick
-    cards.add(plaque); pickables.push(plaque)
+    const old = board.material as THREE_TYPES.MeshBasicMaterial
+    old.map?.dispose(); old.dispose()
+    board.material = new THREE.MeshBasicMaterial({ map: (() => { const m = new THREE.CanvasTexture(face); m.colorSpace = THREE.SRGBColorSpace; m.anisotropy = anisotropy; return m })(), color: '#f4eee4', toneMapped: false })
+    board.userData['pick'] = { kind: 'page', step: 1 } satisfies RoomPick
+    pickables.push(board)
   }
 
-  // ---- the till: a cash register where the model's plain box was ----
-  {
-    const body = track(new THREE.MeshLambertMaterial({ color: '#cfc8b8' })), trim = track(new THREE.MeshLambertMaterial({ color: '#3b3a38' }))
-    const keys = track(new THREE.MeshLambertMaterial({ color: '#8e8a80' })), drawer = track(new THREE.MeshLambertMaterial({ color: '#a8a294' }))
-    const { canvas: face, ctx } = canvasOf(128, 64)
-    ctx.fillStyle = '#12301f'; ctx.fillRect(0, 0, 128, 64); ctx.fillStyle = '#7fe3a1'; ctx.font = `700 34px ${FONT}`; ctx.textAlign = 'right'; ctx.textBaseline = 'middle'; ctx.fillText('0.00', 118, 34)
-    const screen = track(new THREE.MeshBasicMaterial({ map: textureOf(face), toneMapped: false }))
-    const till = new THREE.Group(); till.position.set(-1.0, 1.0, -0.65)
-    const part = (w: number, h: number, d: number, x: number, y: number, z: number, material: THREE_TYPES.Material): THREE_TYPES.Mesh => { const mesh = new THREE.Mesh(track(new THREE.BoxGeometry(w, h, d)), material); mesh.position.set(x, y, z); till.add(mesh); return mesh }
-    part(0.5, 0.12, 0.34, 0, 0.06, 0, drawer)                 // the drawer
-    part(0.5, 0.06, 0.34, 0, 0.15, 0, body)                   // the body
-    const pad = part(0.46, 0.04, 0.16, 0, 0.2, 0.07, keys); pad.rotation.x = -0.25   // the keypad, tilted to the seller
-    part(0.46, 0.14, 0.06, 0, 0.3, -0.12, trim)               // the display's back
-    const glass = new THREE.Mesh(track(new THREE.PlaneGeometry(0.4, 0.1)), screen); glass.position.set(0, 0.3, -0.088); glass.rotation.x = -0.2; till.add(glass)
-    part(0.5, 0.01, 0.34, 0, 0.12, 0, trim)                   // the seam of the drawer
-    scene.add(till)
+  // ---- an office: the service menu board ----
+  const menuCanvas = service ? canvasOf(1536, 922) : null
+  const menuMap = menuCanvas ? texture(menuCanvas.canvas) : null
+  function drawMenu(): void {
+    if (!menuCanvas || !menuMap || !fittings.menu) return
+    drawMenuBoard(menuCanvas.ctx, menuCanvas.canvas.width, menuCanvas.canvas.height, { name: data.name }, data.items, page, colours)
+    menuMap.needsUpdate = true
   }
+  if (menuMap && fittings.menu) {
+    fittings.menu.material = basic(menuMap)
+    fittings.menu.userData['pick'] = { kind: 'menu' } satisfies RoomPick
+    pickables.push(fittings.menu)
+    drawMenu()
+  }
+  /** Empty goods shops and empty offices say so on their own fittings: the menu board above, and here a small stand on the counter. */
+  function buildOpeningSoon(): void {
+    if (service || data.items.length) return
+    const { canvas: stand, ctx } = canvasOf(512, 320)
+    ctx.fillStyle = colours.label; ctx.fillRect(0, 0, 512, 320)
+    ctx.fillStyle = colours.sign; ctx.fillRect(0, 0, 512, 78)
+    ctx.fillStyle = colours.signInk; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.font = `800 52px ${FONT}`; ctx.fillText('Opening soon', 256, 42, 470)
+    ctx.fillStyle = colours.labelInk; ctx.font = `600 30px ${FONT}`
+    ;['Nothing is on the shelves yet.', 'Tap the counter to message', 'the seller.'].forEach((line, at) => ctx.fillText(line, 256, 128 + at * 44))
+    const map = texture(stand)
+    const holder = new THREE.Group(); holder.position.set(0.85, 1.36, -0.62); holder.rotation.x = -0.12
+    const back = new THREE.Mesh(frameGeometry, frameMaterial); back.scale.set(0.88, 0.56, 0.03); back.position.z = -0.016
+    const boardFace = new THREE.Mesh(track(new THREE.PlaneGeometry(0.84, 0.52)), basic(map))
+    boardFace.userData['pick'] = { kind: 'counter' } satisfies RoomPick
+    holder.add(back, boardFace); scene.add(holder); pickables.push(boardFace)
+  }
+  buildOpeningSoon()
 
-  // ---- the shopkeeper, behind the counter ----
+  // ---- the shopkeeper (or the person at the desk), behind the counter ----
   const kit = createKit()
-  const keeper = buildAvatar(kit, undefined, { seed: `keeper:${data.name}`, pose: 'stand', scale: 0.6, detail: 'medium', x: KEEPER.x, z: KEEPER.z, ry: 0 })
+  // A neat figure behind the counter: the first look this shop's name gives that is not in a hard hat.
+  let seed = `keeper:${data.name}`
+  for (let at = 0; at < 12 && normalizeLook(undefined, seed).outfit === 'sitework'; at += 1) seed = `keeper:${data.name}:${at}`
+  const keeper = buildAvatar(kit, undefined, { seed, pose: 'stand', scale: 0.6, detail: 'medium', x: fittings.keeper.x, z: fittings.keeper.z, ry: 0 })
   scene.add(keeper)
   keeper.traverse((node) => { node.userData['pick'] = { kind: 'counter' } satisfies RoomPick; if ((node as THREE_TYPES.Mesh).isMesh) pickables.push(node) })
-  const counterHit = new THREE.Mesh(new THREE.BoxGeometry(2.6, 1.1, 0.9), new THREE.MeshBasicMaterial({ visible: false }))
-  counterHit.position.set(0, 0.55, -0.55); counterHit.userData['pick'] = { kind: 'counter' } satisfies RoomPick
-  scene.add(counterHit); pickables.push(counterHit)
 
   // ---- the camera ----
   let portrait = false
@@ -325,11 +264,11 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
   let goal: Look | null = null
   const point = (): void => {
     const f = now.dolly
-    camera.position.set(CAMERA_FAR.x + (CAMERA_NEAR.x - CAMERA_FAR.x) * f, CAMERA_FAR.y + (CAMERA_NEAR.y - CAMERA_FAR.y) * f, CAMERA_FAR.z + (CAMERA_NEAR.z - CAMERA_FAR.z) * f)
+    camera.position.set(now.x, CAMERA_FAR.y + (CAMERA_NEAR.y - CAMERA_FAR.y) * f, CAMERA_FAR.z + (CAMERA_NEAR.z - CAMERA_FAR.z) * f)
     camera.rotation.order = 'YXZ'
     camera.rotation.set(now.pitch, now.yaw, 0)
   }
-  function size(): void {
+  function fit(): void {
     const width = Math.max(1, canvas.clientWidth || canvas.width), height = Math.max(1, canvas.clientHeight || canvas.height)
     renderer.setSize(width, height, false)
     camera.aspect = width / height
@@ -350,16 +289,16 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
   function ease(): void {
     if (gone || !goal) { looping = false; return }
     const k = 0.2
-    now.yaw += (goal.yaw - now.yaw) * k; now.pitch += (goal.pitch - now.pitch) * k; now.dolly += (goal.dolly - now.dolly) * k
-    const done = Math.abs(goal.yaw - now.yaw) < 0.002 && Math.abs(goal.pitch - now.pitch) < 0.002 && Math.abs(goal.dolly - now.dolly) < 0.004
+    now.x += (goal.x - now.x) * k; now.yaw += (goal.yaw - now.yaw) * k; now.pitch += (goal.pitch - now.pitch) * k; now.dolly += (goal.dolly - now.dolly) * k
+    const done = Math.abs(goal.x - now.x) < 0.004 && Math.abs(goal.yaw - now.yaw) < 0.002 && Math.abs(goal.pitch - now.pitch) < 0.002 && Math.abs(goal.dolly - now.dolly) < 0.004
     if (done) { Object.assign(now, goal); goal = null }
     draw()
     if (goal) frame = requestAnimationFrame(ease)
     else { looping = false; if (dirty) invalidate() }
   }
-  function goTo(next: Look): void {
-    // A tall narrow screen sees little of the width: it looks down a little more and stands further in at the sides.
-    goal = portrait ? { yaw: next.yaw * 1.3, pitch: next.pitch - 0.1, dolly: next === VIEWS.room ? 0 : next.dolly * 0.7 } : { ...next }
+  function goTo(next: Look, home: boolean): void {
+    // A tall narrow screen sees little of the width: it looks down a little more and stands further back at the sides.
+    goal = portrait ? { x: next.x, yaw: next.yaw * 1.3, pitch: next.pitch - 0.1, dolly: home ? 0 : next.dolly * 0.7 } : { ...next }
     if (!looping) { looping = true; if (frame) cancelAnimationFrame(frame); frame = requestAnimationFrame(ease) }
   }
 
@@ -367,7 +306,7 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
   const raycaster = new THREE.Raycaster(), ndc = new THREE.Vector2()
   const pointers = new Map<number, { x: number; y: number }>()
   let travelled = 0, pinch = 0
-  const clampLook = (): void => { now.yaw = Math.min(YAW_LIMIT, Math.max(-YAW_LIMIT, now.yaw)); now.pitch = Math.min(PITCH_LIMIT, Math.max(-PITCH_LIMIT, now.pitch)); now.dolly = Math.min(1, Math.max(0, now.dolly)) }
+  const clampLook = (): void => { now.x = Math.min(X_LIMIT, Math.max(-X_LIMIT, now.x)); now.yaw = Math.min(YAW_LIMIT, Math.max(-YAW_LIMIT, now.yaw)); now.pitch = Math.min(PITCH_LIMIT, Math.max(-PITCH_LIMIT, now.pitch)); now.dolly = Math.min(1, Math.max(0, now.dolly)) }
   const spread = (): number => { const [a, b] = [...pointers.values()]; return a && b ? Math.hypot(a.x - b.x, a.y - b.y) : 0 }
   function down(event: PointerEvent): void {
     canvas.setPointerCapture?.(event.pointerId)
@@ -382,8 +321,8 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     travelled += Math.abs(dx) + Math.abs(dy)
     goal = null
     if (pointers.size >= 2) {
-      const now2 = spread()
-      if (pinch > 0 && now2 > 0) { now.dolly += (now2 - pinch) / 320; pinch = now2 }
+      const apart = spread()
+      if (pinch > 0 && apart > 0) { now.dolly += (apart - pinch) / 320; pinch = apart }
     } else if (travelled > 6) {
       const per = camera.fov * (Math.PI / 180) / Math.max(1, canvas.clientHeight)
       now.yaw += dx * per; now.pitch += dy * per
@@ -398,11 +337,19 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
     ndc.set(((event.clientX - rect.left) / rect.width) * 2 - 1, -(((event.clientY - rect.top) / rect.height) * 2 - 1))
     point(); camera.updateMatrixWorld(true)
     raycaster.setFromCamera(ndc, camera)
-    const hit = raycaster.intersectObjects(pickables, false)[0]
+    const hit = raycaster.intersectObjects(pickables, false).find((found) => found.object.visible)
     const pick = hit?.object.userData['pick'] as RoomPick | undefined
     if (!hit || !pick) return
+    const pages = pageCount(data.items.length, size)
+    if (pick.kind === 'menu') {
+      const onPage = menuPageOf(data.items, page)
+      const found = menuHit(hit.uv?.x ?? 0, 1 - (hit.uv?.y ?? 0), onPage.length, page, menuPages(data.items.length))
+      if (found?.kind === 'item') { const entry = onPage[found.row]; if (entry) events.pick({ kind: 'item', index: entry.index }) }
+      else if (found?.kind === 'page') { api.setPage(page + found.step); events.pick({ kind: 'page', step: found.step }) }
+      return
+    }
     if (pick.kind === 'page') {
-      const pages = pageCount(data.items.length), right = (hit.uv?.x ?? 1) >= 0.5
+      const right = (hit.uv?.x ?? 1) >= 0.5
       const target = right ? Math.min(pages - 1, page + 1) : Math.max(0, page - 1)
       if (target === page) return
       const step = target > page ? 1 : -1
@@ -423,31 +370,39 @@ export async function createRoomScene(canvas: HTMLCanvasElement, data: RoomData,
   }
   canvas.addEventListener('pointerdown', down); canvas.addEventListener('pointermove', move); canvas.addEventListener('pointerup', up); canvas.addEventListener('pointercancel', up)
   canvas.addEventListener('wheel', wheel, { passive: false })
-  const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(() => { size(); invalidate() }) : null
+  const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(() => { fit(); invalidate() }) : null
   observer?.observe(canvas)
   const hidden = (): void => { if (!document.hidden) invalidate() }
   document.addEventListener('visibilitychange', hidden)
 
   const api: RoomScene = {
-    setPage(next) { const at = clampPage(next, data.items.length); if (at === page && cards.children.length) return; page = at; buildCards(); invalidate() },
-    view(name) { goTo(VIEWS[name]) },
+    setPage(next) {
+      const at = clampPage(next, data.items.length, size)
+      if (at === page && (service || cards.children.length || !data.items.length)) return
+      page = at
+      if (service) drawMenu(); else buildCards()
+      invalidate()
+    },
+    view(name) { const views = service ? OFFICE_VIEWS : GOODS_VIEWS; const look = views[name]; if (look) goTo(look, name === 'room') },
     nudge,
-    resize() { size(); invalidate() },
-    diagnostics: () => ({ renders, looping, triangles, calls, page, pages: pageCount(data.items.length) }),
+    resize() { fit(); invalidate() },
+    diagnostics: () => ({ renders, looping, triangles, calls, page, pages: pageCount(data.items.length, size) }),
     dispose() {
       gone = true
       if (frame) cancelAnimationFrame(frame)
       canvas.removeEventListener('pointerdown', down); canvas.removeEventListener('pointermove', move); canvas.removeEventListener('pointerup', up); canvas.removeEventListener('pointercancel', up)
       canvas.removeEventListener('wheel', wheel)
       observer?.disconnect(); document.removeEventListener('visibilitychange', hidden)
-      clearCards(); if (plaque) { (plaque.material as THREE_TYPES.MeshBasicMaterial).map?.dispose(); (plaque.material as THREE_TYPES.Material).dispose(); plaque.geometry.dispose() }
+      clearCards()
+      const board = fittings.pageBoard?.material as THREE_TYPES.MeshBasicMaterial | undefined
+      board?.map?.dispose(); board?.dispose()
       for (const item of disposables) item.dispose()
-      room.traverse((node) => { const mesh = node as THREE_TYPES.Mesh; if (!mesh.isMesh) return; mesh.geometry.dispose(); const material = mesh.material as THREE_TYPES.MeshStandardMaterial; material.map?.dispose(); material.dispose() })
-      kit.dispose(); counterHit.geometry.dispose()
+      kit.dispose()
       renderer.dispose(); renderer.forceContextLoss()
     },
   }
-  size(); if (portrait) now.pitch = START.pitch - 0.1
-  buildCards(); draw()
+  fit(); if (portrait) now.pitch = START.pitch - 0.1
+  if (!service) buildCards()
+  draw()
   return api
 }

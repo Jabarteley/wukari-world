@@ -14,7 +14,7 @@ import { newClientId } from '../../social/useSocial.ts'
 import GameIcon from '../../../ui/GameIcon.vue'
 import LinkInterstitial from '../../trust/LinkInterstitial.vue'
 import { PRICE_NOTE, openStatus, placeWords, weekLines, wordsFor, zoneOf } from '../showcaseModel.ts'
-import { DEAL_LINE, initialOf, messageLink, pageCount, pageOf, payLink, roomColours, roomFromMine, roomFromView, roomLabel, roomPhotoUrl } from './roomModel.ts'
+import { DEAL_LINE, initialOf, menuPageOf, messageLink, pageCount, pageOf, pageSizeOf, payLink, roomColours, roomFromMine, roomFromView, roomLabel, roomPhotoUrl } from './roomModel.ts'
 import type { RoomData, RoomRequest } from './roomModel.ts'
 import type { RoomScene, RoomView } from './roomScene.ts'
 
@@ -40,8 +40,9 @@ let scene: RoomScene | null = null
 let gone = false
 const ids = new Map<string, string>()
 
-const pages = computed(() => (data.value ? pageCount(data.value.items.length) : 1))
-const pageItems = computed(() => (data.value ? pageOf(data.value.items, page.value) : []))
+const service = computed(() => data.value?.kind === 'service')
+const pages = computed(() => (data.value ? pageCount(data.value.items.length, pageSizeOf(data.value.kind)) : 1))
+const pageItems = computed(() => (data.value ? (service.value ? menuPageOf(data.value.items, page.value) : pageOf(data.value.items, page.value)) : []))
 const item = computed(() => (data.value && card.value?.kind === 'item' ? data.value.items[card.value.index] ?? null : null))
 const colours = computed(() => roomColours(data.value?.colours ?? ['#1f3a5f', '#f1f3f5']))
 const hours = computed(() => { const open = openStatus(data.value?.hours ?? [], new Date(), data.value?.zone); return { open, week: weekLines(data.value?.hours ?? [], open.today) } })
@@ -97,8 +98,8 @@ function pick(found: { kind: string; index?: number }): void {
   else if (found.kind === 'page') page.value = scene?.diagnostics().page ?? 0
 }
 function look(view: RoomView): void { card.value = null; scene?.view(view) }
-function more(): void { if (!scene) return; card.value = null; scene.setPage(page.value + 1 < pages.value ? page.value + 1 : 0); page.value = scene.diagnostics().page; scene.view('room') }
-function about(): void { scene?.view('counter'); card.value = { kind: 'counter' }; note.value = ''; reporting.value = false }
+function more(): void { if (!scene) return; card.value = null; scene.setPage(page.value + 1 < pages.value ? page.value + 1 : 0); page.value = scene.diagnostics().page; scene.view(service.value ? 'menu' : 'room') }
+function about(): void { scene?.view(service.value ? 'room' : 'counter'); card.value = { kind: 'counter' }; note.value = ''; reporting.value = false }
 function closeCard(): void { card.value = null; reporting.value = false; note.value = ''; needs.value = false }
 /** Escape (or the browser's back gesture): the report, then the card, then the room. */
 function back(): void { if (reporting.value) reporting.value = false; else if (card.value) closeCard(); else emit('close') }
@@ -172,16 +173,24 @@ watch(card, (now) => { if (now) void nextTick(() => root.value?.querySelector<HT
     </div>
 
     <template v-if="data && status === 'ready'">
-      <p v-if="!data.items.length && !card" class="si-hint" data-si-empty>Opening soon: nothing is on the shelves yet.</p>
+      <p v-if="!data.items.length && !card" class="si-hint" data-si-empty>{{ service ? 'Opening soon: no services are listed yet.' : 'Opening soon: nothing is on the shelves yet.' }}</p>
       <ul v-if="!card" class="si-sr" aria-label="Items on this page">
         <li v-for="entry in pageItems" :key="entry.index"><button type="button" :data-si-item="entry.index" @click="pick({ kind: 'item', index: entry.index })">{{ entry.item.name }}, {{ priceWords(entry.item.priceNaira) }}</button></li>
       </ul>
       <nav v-if="!card" class="si-views" aria-label="Look around the shop">
-        <button type="button" data-si-view="room" @click="look('room')">Shop</button>
-        <button type="button" data-si-view="left" @click="look('left')">Left</button>
-        <button type="button" data-si-view="counter" @click="look('counter')">Counter</button>
-        <button type="button" data-si-view="right" @click="look('right')">Right</button>
-        <button v-if="pages > 1" type="button" data-si-more :aria-label="`More items: page ${page + 1} of ${pages}`" @click="more">More items {{ page + 1 }}/{{ pages }}</button>
+        <template v-if="service">
+          <button type="button" data-si-view="room" @click="look('room')">Reception</button>
+          <button type="button" data-si-view="menu" @click="look('menu')">Service menu</button>
+          <button type="button" data-si-view="portfolio" @click="look('portfolio')">Portfolio</button>
+          <button v-if="pages > 1" type="button" data-si-more :aria-label="`More services: page ${page + 1} of ${pages}`" @click="more">More services {{ page + 1 }}/{{ pages }}</button>
+        </template>
+        <template v-else>
+          <button type="button" data-si-view="room" @click="look('room')">Shop</button>
+          <button type="button" data-si-view="left" @click="look('left')">Left</button>
+          <button type="button" data-si-view="counter" @click="look('counter')">Counter</button>
+          <button type="button" data-si-view="right" @click="look('right')">Right</button>
+          <button v-if="pages > 1" type="button" data-si-more :aria-label="`More items: page ${page + 1} of ${pages}`" @click="more">More items {{ page + 1 }}/{{ pages }}</button>
+        </template>
         <button type="button" data-si-about @click="about">About</button>
       </nav>
 

@@ -6,7 +6,7 @@ import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const FACTORY_SHA = '0786c00510f2827d6495a53fc3299f3112d0d6b4';
-const APP_SHA = '81b993bbfb9afe96b5e5d0457ed090dbd7bd9214';
+const APP_SHA = '44ddbdf267f8292a299118df949a675233b7e06e';
 const REPOSITORY = 'kromate/joinallworld';
 const PRODUCER = {
   sourceRunId: 38178165871,

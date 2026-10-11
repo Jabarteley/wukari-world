@@ -73,7 +73,7 @@ export const HOUSE_STYLE: Readonly<HouseStyleContent> = Object.freeze({
 });
 // Object.keys is string[]; the keys of HOUSE_STYLE are exactly the HouseStyleField union.
 export const STYLE_FIELDS: readonly HouseStyleField[] = Object.freeze(Object.keys(HOUSE_STYLE) as HouseStyleField[]);
-const STYLE_BITS: Readonly<Record<HouseStyleField, number>> = Object.freeze({ shape: 2, wall: 3, roof: 3, door: 2, windows: 2, fence: 2, yard: 3, sign: 1 });
+export const STYLE_BITS: Readonly<Record<HouseStyleField, number>> = Object.freeze({ shape: 2, wall: 3, roof: 3, door: 2, windows: 2, fence: 2, yard: 3, sign: 1 });
 // Object.fromEntries is { [k: string]: number }; it has an entry for every HouseStyleField.
 export const DEFAULT_STYLE: Readonly<HouseStyle> = Object.freeze(Object.fromEntries(STYLE_FIELDS.map((field) => [field, 0])) as HouseStyle);
 
@@ -92,14 +92,6 @@ export function packStyle(style: Partial<HouseStyle> | null | undefined, tier: H
   let bits = HOUSE_TIERS[tier]?.rank ?? 0, shift = 3;
   for (const field of STYLE_FIELDS) { bits |= (style?.[field] ?? 0) << shift; shift += STYLE_BITS[field]; }
   return bits;
-}
-export function unpackStyle(bits: unknown): { tier: HouseTierId; style: HouseStyle } {
-  const value = typeof bits === 'number' && Number.isSafeInteger(bits) && bits >= 0 ? bits : 0;
-  const style: HouseStyle = { ...DEFAULT_STYLE };
-  let shift = 3;
-  for (const field of STYLE_FIELDS) { const index = (value >>> shift) & ((1 << STYLE_BITS[field]) - 1); style[field] = index < HOUSE_STYLE[field].length ? index : 0; shift += STYLE_BITS[field]; }
-  // The index is clamped into TIER_ORDER, so the fallback is never used.
-  return { tier: TIER_ORDER[Math.min(value & 7, TIER_ORDER.length - 1)] ?? 'starter', style };
 }
 /** What changing from one style to another costs: the price of every field that changes to a priced option. */
 export function stylePrice(from: HouseStyle, to: HouseStyle): number {

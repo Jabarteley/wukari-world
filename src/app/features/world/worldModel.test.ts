@@ -116,7 +116,7 @@ test('the directory: counts and first page, a search, the online filter, more, a
   assert.equal(emptyPeopleText({ q: '', online: false }), 'Nobody is listed here yet.')
 })
 
-function freshUi(): LgaCardUi { return { finding: false, found: null, note: '', picking: false, sending: false } }
+function freshUi(): LgaCardUi { return { finding: false, found: null, note: '', code: '', picking: false, sending: false } }
 const packs = (over: Partial<CityPackApi> = {}): (() => Promise<CityPackApi>) => async () => ({ has: () => true, load: async () => ({ name: 'Lagos' }), resolve: () => ({ id: 'ikeja', name: 'Ikeja', sure: true }), ...over })
 
 test('finding the local government: only an id is kept, and every failure says why and offers the list', async () => {

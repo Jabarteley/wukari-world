@@ -109,7 +109,7 @@ import { planHomeward } from '../homeward-gate.ts';
 import type { HomewardQuote } from '../cities/homewardRoute.ts';
 
 const DAY_MS = 86400000;
-const SETTLE_FIRST = 'Settle in first (tap the "Settle in" goal): then you can travel between cities.';
+const SETTLE_FIRST = 'Settle in first: then you can travel between cities.';
 /** A life still held for its look, or a guest of the quick start: it has not settled in (systems/onboarding.ts THE STAGED MODEL). */
 export const unsettled = (state: LifeState): boolean => { const o = state?.onboarding; return Boolean(o && o.done !== true && (o.required === true || o.stage === 'guest')); };
 const MAX_CATCHUP_WEEKS = 4;
@@ -241,7 +241,7 @@ function setLga(state: LifeState, payload: Record<string, unknown>, ctx: LifeCon
   if (state.activeAction?.kind === 'homeward') return fail(state, 'busy', 'Arrive home before changing your homes.');
   const e = state.estate, now = nowOf(state, ctx);
   // Chosen when the life settles in, not before: a life still being created belongs nowhere yet.
-  if (unsettled(state)) return fail(state, 'settle_required', `Settle in first: your ${cityUnit(state.estate.city)} is chosen when you settle in (tap the "Settle in" goal), and your free house comes with it.`);
+  if (unsettled(state)) return fail(state, 'settle_required', `Settle in first: your ${cityUnit(state.estate.city)} is chosen when you settle in, and your free house comes with it.`);
   const unit = lgaOf(e.city, payload?.lga);
   if (!unit) return fail(state, 'invalid_lga', `Choose one of the ${lgasOf(e.city).length} ${cityUnit(e.city, true)} of ${cityRules(e.city)?.name ?? 'this city'}.`);
   const via = payload?.via === 'device' ? 'device' : 'manual';
@@ -374,7 +374,7 @@ function moveIn(state: LifeState, payload: Record<string, unknown>, ctx: LifeCon
 /** Why a room at a guest house cannot be taken now, or null. */
 export function lodgeBlock(state: LifeState): { code: 'settle_required' | 'has_home' | 'busy' | 'rested' | 'insufficient_funds'; reason: string } | null {
   const e = state.estate, name = cityRules(e.city)?.name ?? 'this city';
-  if (unsettled(state)) return { code: 'settle_required', reason: 'Settle in first (tap the "Settle in" goal): then a room is there wherever you travel.' };
+  if (unsettled(state)) return { code: 'settle_required', reason: 'Settle in first: then a room is there wherever you travel.' };
   if (e.lga) return { code: 'has_home', reason: `You have a home in ${name}: rest there, free.` };
   if (state.activeAction) return { code: 'busy', reason: 'Finish or cancel your current action before you take a room.' };
   if (LODGING.needs.every((need) => (state.needs[need] ?? 0) >= LODGING.restedFrom)) return { code: 'rested', reason: 'You are rested and fresh already. Keep your money.' };

@@ -590,6 +590,24 @@ test('Recovery parity: Node and Worker share onboarding, social, blocking, civic
  await edge.restart();
 });
 
+test('Place boards: the Worker (real SQLite object storage) and Node answer the same, and a hidden player changes no total', async t=>{
+ const {fixture:nodeFixture}=await import('../server/test-fixture.ts');
+ const edge=await fixture(t), node=await nodeFixture(t,{now:Date.now});
+ interface Driver { device(name: string): Promise<{ id: string; cookie: string }>; request(path: string, body?: object | null, cookie?: string | null): Promise<Response> }
+ async function sequence(f: Driver){
+   const people=[];for(const name of ['Ada','Bola','Chidi','Dayo','Efe'])people.push(await f.device(name));
+   const out=[];const read=async(path: string,who?: { cookie: string })=>{const body=await (await f.request(path,null,who?.cookie)).json();delete body.serverTime;delete body.lastWeek;delete body.week;return body;};
+   for(const who of people)await f.request('/api/civic/pulse?city=lagos',null,who.cookie);
+   await f.request('/api/civic/prefs',{richList:false},(people[1] as { cookie: string }).cookie);
+   for(const scope of ['city','state','country'])out.push(await read(`/api/civic/boards?scope=${scope}&by=residents`,people[0]));
+   out.push(await read('/api/civic/boards?scope=sea',people[0]));
+   return out;
+ }
+ const expected=await sequence(node),actual=await sequence(edge);assert.deepEqual(actual,expected);
+ for(const index of [0,1,2])assert.equal((expected[index] as { rows: { residents: number; active: number }[] }).rows[0]?.residents,5);
+ assert.equal((expected[3] as { error: string }).error,'invalid_scope');
+});
+
 test('Recovery Worker: SQL receipt failure rolls back debit; feature write failure does not acknowledge friendship',async t=>{
  const f=await fixture(t),a=await f.device('Ada'),b=await f.device('Bola');
  await f.life(a);for(const who of [a,b])assert.equal((await f.request('/api/social/me',null,who.cookie)).status,200);
@@ -739,9 +757,15 @@ test('Combined game on the Worker: quick start, settle in with a plot, a mission
   const { MISSION_REWARDS } = await import('../src/game/content/missions.ts');
   const { NPCS } = await import('../src/game/cities/lagos/regulars.ts');
   const { joinIdFrom, linkParts } = await import('../src/quick-start/model.ts');
+  const { where } = await import('../src/game/routines/resolve.ts');
+  const { weatherAt } = await import('../src/game/systems/health.ts');
   const now = Date.now(), daytime = new Date(now);
-  daytime.setUTCHours(11, 0, 0, 0); // Noon in Lagos: the park regular used below is present.
-  const f = await combined(t, { clockShiftMs: daytime.getTime() - now, bindings: { ...layoutBindings(), BUILD_ID: 'local-conformance', PUBLIC_ORIGIN: 'https://play.example' } });
+  daytime.setUTCHours(11, 0, 0, 0); // Noon in Lagos.
+  // The park regular used below keeps days off and stays away in the rain: take the first noon he is there.
+  const regular = Object.values(NPCS).find(npc => npc.venue === 'park')!;
+  let noon = daytime.getTime();
+  for (let day = 0; day < 14 && !where(regular, noon, CITY, { raining: weatherAt(noon, CITY).raining }).here; day++) noon += 86400000;
+  const f = await combined(t, { clockShiftMs: noon - now, bindings: { ...layoutBindings(), BUILD_ID: 'local-conformance', PUBLIC_ORIGIN: 'https://play.example' } });
   const LGA = 'ikeja', TABLE = 'buka-corner', ORIGIN = 'https://play.example';
 
   // 1. landing → Play: a guest in the park, with no missions, no house, in no directory.

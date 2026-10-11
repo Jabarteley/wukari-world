@@ -15,9 +15,9 @@ import { civicTitle } from '../../../game/cities/terminology.ts'
 import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import { formatClock } from '../../../game/clock.ts'
-import type { Conversation, Message, SearchResult, ThreadItem } from '../../../types/social.ts'
+import type { Conversation, Message, MoneyRequestView, SearchResult, ThreadItem } from '../../../types/social.ts'
 import type { PlayerRef } from '../../../types/protocol.ts'
-import { call, cityId as socialCityId, discard, newClientId, onCallFrame, onSocketOpen, openThread, perform, reconnect as reconnectSocial, retry, send, social, start as startSocial, sync, threadView } from '../social/useSocial.ts'
+import { call, cityId as socialCityId, discard, newClientId, onCallFrame, onSocketOpen, openThread, perform, refreshLife, reconnect as reconnectSocial, retry, send, social, start as startSocial, sync, threadView } from '../social/useSocial.ts'
 import BaseButton from '../../ui/BaseButton.vue'
 import EmptyState from '../../ui/EmptyState.vue'
 import GameIcon from '../../ui/GameIcon.vue'
@@ -52,6 +52,10 @@ import MessageAction from './MessageAction.vue'
 import MessageBubble from './MessageBubble.vue'
 import PinnedMessages from './PinnedMessages.vue'
 import { canPinMessage, createMessagePins } from './messagePins.ts'
+import { createMoneyRequests } from './moneyRequests.ts'
+import { canAskFor } from './moneyRequestModel.ts'
+import type { RequestOp } from './moneyRequestModel.ts'
+import { mergeMessages } from '../../../game/social-model.ts'
 import { isMessagePinsFrame } from './messagePinsFrame.ts'
 import FriendPicker from './FriendPicker.vue'
 import GroupManage from './GroupManage.vue'
@@ -277,6 +281,43 @@ async function sendMoneyTo(player: string, name: string): Promise<void> {
   for (let tries = 0; tries < 40 && personUi.player !== player; tries += 1) await new Promise((done) => setTimeout(done, 50))
   if (turn === actorTurn && personUi.player === player) { personUi.form = 'money'; personUi.clientId = newClientId() }
 }
+/** Requests for money: asking from the chat options, and answering a card in the thread. A card is redrawn from the server's answer (and from the live frame both players get). */
+// The server's clock as this device has measured it, so a wrong device clock does not hide a card that can still be paid (or show one that cannot).
+const now = ref(game.serverNow())
+// Started on mount, not in setup: setup also runs when the markup is rendered on a server, which never unmounts and so never clears it.
+let clock: ReturnType<typeof setInterval> | undefined
+onMounted(() => { clock = setInterval(() => { now.value = game.serverNow() }, 15000) })
+onBeforeUnmount(() => clearInterval(clock))
+const requests = createMoneyRequests({
+  call: async (path, body) => { const result = await call<{ request: MoneyRequestView; message?: Message }>(path, body); void sync(); return result },
+  newClientId,
+  cityId: socialCityId,
+  apply(message, request) {
+    const key = message?.conv ?? ui.open
+    if (!key) return
+    // The first request in a chat with nobody written to yet makes the chat: the screen moves from "to:<player>" to it and reads it.
+    if (message && ui.open?.startsWith('to:')) { showConversation(key); social.openConv = key; void openThread(key); return }
+    const thread = social.threads.get(key)
+    if (!thread) return
+    const line = message ?? thread.messages.find((item) => item.request?.id === request.id)
+    if (line) thread.messages = mergeMessages(thread.messages, [{ ...line, request }])
+  },
+  toast: (text, kind) => game.toast(text, kind),
+  refreshLife,
+})
+function answerCard(item: ThreadItem, id: string, op: RequestOp): void {
+  if (!isOutbox(item) && item.request) void requests.answer(id, op, item.from?.name ?? 'them', item.request.amount)
+}
+const requestForm = ref<HTMLFormElement | null>(null)
+/** Asking is offered only where it can succeed: a current friend, nobody blocked. It goes the moment a block or an unfriend arrives. */
+const canRequest = computed(() => canAskFor(partner.value, me.value?.friends ?? [], me.value?.blocked ?? []))
+watch(canRequest, (can) => { if (!can) requests.closeForm() })
+// The form is brought into view when it opens, whatever the screen's height (the options panel scrolls inside the chat).
+watch(() => requests.ask.open, (open) => { if (open) void nextTick(() => requestForm.value?.scrollIntoView?.({ block: 'nearest' })) }, { flush: 'post' })
+async function sendRequest(): Promise<void> {
+  if (partner.value && await requests.submit(partner.value, transferLimits.value)) ui.manage = false
+}
+const transferLimits = computed(() => { const transfer = game.view.value.social?.transfer; return transfer ? { min: transfer.min, max: transfer.maxPerTransfer } : {} })
 function newGroup(): void { Object.assign(group, { open: true, name: '', members: [], clientId: newClientId() }) }
 // Opened for a new group (the guide's "create a group"): the form opens as soon as the chats are there to pick friends from.
 watch([wantGroup, me], () => { if (wantGroup.value && me.value) { wantGroup.value = false; newGroup() } }, { immediate: true })
@@ -371,10 +412,17 @@ const stopPinFrames = onCallFrame((frame) => {
 const stopPinReconnect = onSocketOpen(() => pins.reconnect())
 onBeforeUnmount(() => { social.openConv = null; stopPinFrames(); stopPinReconnect(); pins.dispose() })
 
+const optionsButton = ref<HTMLElement | null>(null)
+function closeOptions(): void {
+  ui.manage = false; requests.closeForm()
+  void nextTick(() => optionsButton.value?.focus())
+}
+
 defineExpose({
-  /** Esc inside a conversation goes back to the list first; the next Esc leaves the app. */
+  /** Esc inside a conversation: the open options panel (with its request form) closes first and focus returns to the control that opened it; then the next Esc goes back to the list, and the one after leaves the app. */
   keys(action: string): boolean {
     if (action !== 'cancel' || !ui.open) return false
+    if (ui.manage) { closeOptions(); return true }
     back()
     return true
   },
@@ -393,7 +441,7 @@ defineExpose({
       </div>
 
       <!-- A conversation -->
-      <div v-if="ui.open" class="messages-chat">
+      <div v-if="ui.open" class="messages-chat" :class="{ 'is-managing': ui.manage }">
         <header class="messages-head">
           <button class="messages-back" type="button" aria-label="Back to chats" @click="back"><GameIcon name="back" :size="22" /></button>
           <RowMark v-if="conv?.kind === 'group'" :name="title" :seed="conv.id" />
@@ -406,7 +454,7 @@ defineExpose({
             <!-- A friend who is not in the game cannot be rung: Ping takes Call's place, so the header never holds a fourth control. -->
             <PingButton v-if="pingFor(partner)" compact :id="partner" :name="title" />
             <PersonCallButton v-else compact :id="partner" :name="title" :status="presenceOf(partner) ?? undefined" />
-            <button type="button" class="messages-kebab" aria-label="Chat options" :aria-expanded="ui.manage" @click="ui.manage = !ui.manage">⋯</button>
+            <button ref="optionsButton" type="button" class="messages-kebab" aria-label="Chat options" :aria-expanded="ui.manage" @click="ui.manage = !ui.manage">⋯</button>
           </template>
         </header>
         <PingStrip v-if="partner && pingFor(partner)" inset :id="partner" :name="title" />
@@ -424,7 +472,22 @@ defineExpose({
 
         <GroupManage v-if="conv?.kind === 'group' && ui.manage" :conv="conv" :me="me" @left="groupLeft" @player="openCard" />
         <section v-else-if="partner && ui.manage" class="messages-manage" aria-label="Chat options">
-          <BaseButton small data-chat="send-money" @click="sendMoneyTo(partner, title)">Send money</BaseButton>
+          <div class="messages-manage-head"><b>Chat options</b><BaseButton small data-chat="options-done" aria-label="Close chat options" @click="closeOptions">Done</BaseButton></div>
+          <span class="bubble-actions is-start">
+            <BaseButton small data-chat="send-money" @click="sendMoneyTo(partner, title)">Send money</BaseButton>
+            <BaseButton v-if="canRequest" small data-chat="request-money" :disabled="!connected" :reason="connected ? null : 'Reconnect to ask for money.'" @click="requests.openForm()">Request money</BaseButton>
+          </span>
+          <form v-if="requests.ask.open && canRequest" ref="requestForm" class="messages-request" aria-label="Request money" @submit.prevent="sendRequest">
+            <label for="message-request-amount">Amount to ask for (₦)</label>
+            <input id="message-request-amount" v-model="requests.ask.amount" class="messages-field" name="amount" inputmode="numeric" pattern="[0-9]*" maxlength="13" required :aria-invalid="requests.ask.error ? true : undefined" aria-describedby="message-request-help">
+            <label for="message-request-note">Note (optional)</label>
+            <input id="message-request-note" v-model="requests.ask.note" class="messages-field" name="note" maxlength="60" placeholder="What is it for?">
+            <p id="message-request-help" class="messages-note" :class="{ 'is-warn': requests.ask.error }" :role="requests.ask.error ? 'alert' : undefined">{{ requests.ask.error || `Your friend sees a card and can pay or decline it. It lasts 24 hours. Paying counts as a gift under the usual gift limits.` }}</p>
+            <span class="bubble-actions is-start">
+              <BaseButton small variant="primary" type="submit" :disabled="requests.ask.busy">{{ requests.ask.busy ? 'Sending…' : 'Send request' }}</BaseButton>
+              <BaseButton small @click="requests.closeForm()">Cancel</BaseButton>
+            </span>
+          </form>
           <template v-if="conv?.kind === 'dm'">
           <label class="messages-switch"><input type="checkbox" :checked="conv.pinned === true" @change="pinChat(($event.target as HTMLInputElement).checked)"> Pin to the top of my chats</label>
           <BaseButton small variant="danger" @click="hideChat">Delete this chat for me</BaseButton>
@@ -454,7 +517,7 @@ defineExpose({
                 </span>
               </div>
               <div v-else-if="row.item.sys" class="bubble is-sys">{{ row.item.body }}</div>
-              <MessageBubble v-else :item="row.item" :me-id="me.me.id" :group="isGroup" :head="row.head" :tail="row.tail" :time="time(row.item.at)" :can-react="conv?.kind !== 'house'" :can-actions="true" :can-pin="Boolean(pins.state.view?.canManage && canPinMessage(row.item))" :pinned="isPinned(row.item)" :pin-pending="pins.state.pending" :pin-blocked="pins.state.retryable" :pin-offline="!connected" :voice-enabled="me.prefs.voiceNotes !== 'nobody'" @pin="(item, pinned) => pins.change({ message: item, pinned })" @reply="(line) => { replying = line; composer?.focus() }" @react="react" @player="openCard" @jump="jump" @report-voice="reportVoice" @picture="(line) => { lightbox = line }" @edit="(item) => { messageAction = { kind: 'edit', item } }" @remove="(item) => { messageAction = { kind: 'delete', item } }" @forward="(item) => { messageAction = { kind: 'forward', item } }" />
+              <MessageBubble v-else :item="row.item" :me-id="me.me.id" :group="isGroup" :head="row.head" :tail="row.tail" :time="time(row.item.at)" :can-react="conv?.kind !== 'house'" :can-actions="true" :can-pin="Boolean(pins.state.view?.canManage && canPinMessage(row.item))" :pinned="isPinned(row.item)" :pin-pending="pins.state.pending" :pin-blocked="pins.state.retryable" :pin-offline="!connected" :voice-enabled="me.prefs.voiceNotes !== 'nobody'" :now="now" :partner="title" :request-busy="Boolean(row.item.request && requests.busy.has(row.item.request.id))" :request-offline="!connected" @request="(id, op) => answerCard(row.item, id, op)" @pin="(item, pinned) => pins.change({ message: item, pinned })" @reply="(line) => { replying = line; composer?.focus() }" @react="react" @player="openCard" @jump="jump" @report-voice="reportVoice" @picture="(line) => { lightbox = line }" @edit="(item) => { messageAction = { kind: 'edit', item } }" @remove="(item) => { messageAction = { kind: 'delete', item } }" @forward="(item) => { messageAction = { kind: 'forward', item } }" />
             </template>
           </div>
           <button v-if="fresh > 0 || !atBottom" type="button" class="messages-latest" :aria-label="fresh ? `Jump to latest, ${fresh} new` : 'Jump to latest'" @click="toLatest">↓<span v-if="fresh" class="messages-badge">{{ fresh }}</span></button>
@@ -608,7 +671,11 @@ defineExpose({
 .messages-form.is-search input { border-radius: var(--r-sm); border-color: var(--c-line); background: #fff; box-shadow: var(--ring); }
 .messages-field { width: 100%; margin: 4px 0; }
 .messages-manage { display: grid; gap: 6px; margin: 0 0 var(--s-2); padding: var(--s-3) var(--s-4); border: 1px solid var(--c-line); border-radius: var(--r-md); background: #fff; font-size: 13px; }
-.messages-chat .messages-manage { margin: 8px 12px; }
+.messages-chat .messages-manage { flex: none; margin: 8px 12px; max-height: 60%; overflow-y: auto; overscroll-behavior: contain; scroll-padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); padding-bottom: calc(var(--s-3) + env(safe-area-inset-bottom, 0px)); }
+/* While the options are open the thread gives way (it keeps what is left), and on a short screen the composer waits, so the fields and Send stay on screen. */
+.messages-chat.is-managing .messages-thread { min-height: 0; }
+@media (max-height: 680px) { .messages-chat.is-managing .messages-foot { display: none; } }
+.messages-manage-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .messages-manage ul { display: flex; flex-wrap: wrap; gap: 2px 12px; margin: 0; padding: 0; list-style: none; }
 .messages-add { display: flex; flex-wrap: wrap; gap: 6px; }
 .messages-checks { display: grid; gap: 2px; max-height: 150px; overflow-y: auto; margin: 6px 0; }

@@ -3,7 +3,7 @@
  * Furniture catalogue, the starter room, and the actions furniture offers.
  *
  * FURNITURE[id] = { id, label, category, kind, w, h, wall?, stars, price, icon, shape, color, beta? }  (the shop line of each is in ./furniture-blurbs.ts)
- *   category  one of CATEGORIES (the Buy tabs)
+ *   category  one of CATEGORIES (the Buy tabs: src/app/features/home/buyCategories.ts)
  *   kind      what the object does (see KINDS); objects of the same kind share actions
  *   w, h      footprint in floor tiles before rotation; `wall: true` items hang on a wall instead
  *   stars     quality 0–4. Better furniture gives better results: STAR_MULTIPLIER[stars] scales
@@ -18,20 +18,8 @@
  */
 import type { FurnitureId } from '../../types/life.ts'
 import type {
-  FurnitureCategory, FurnitureDefinition, FurnitureKind, FurnitureKindInfo, HomeActivityDefinition, HomeSpotMeta, StarterFurnitureEntry,
+  FurnitureDefinition, FurnitureKind, FurnitureKindInfo, HomeActivityDefinition, HomeSpotMeta, StarterFurnitureEntry,
 } from '../../types/content.ts'
-
-export const CATEGORIES: FurnitureCategory[] = [
-  { id: 'sleep', label: 'Sleep', icon: '🛏️' },
-  { id: 'kitchen', label: 'Kitchen', icon: '🍳' },
-  { id: 'bath', label: 'Bath', icon: '🪣' },
-  { id: 'comfort', label: 'Comfort', icon: '🛋️' },
-  { id: 'fun', label: 'Fun', icon: '📻' },
-  { id: 'skills', label: 'Skills', icon: '📚' },
-  { id: 'light', label: 'Light', icon: '💡' },
-  { id: 'decor', label: 'Decor', icon: '🪴' },
-  { id: 'pets', label: 'Pets', icon: '🐕', beta: true },
-];
 
 /** Positive effects and XP are multiplied by this, by star rating (original beta values). */
 export const STAR_MULTIPLIER: number[] = [0.8, 1, 1.25, 1.5, 1.8];

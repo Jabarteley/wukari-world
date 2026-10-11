@@ -160,9 +160,11 @@ test('open versus coming soon is derived from the additive city catalogue', () =
   const nigeriaCities = cityCatalogue().filter((city) => city.open && (!city.countryISO || city.countryISO === 'ng'));
   const openStates = [...new Set(nigeriaCities.map((city) => city.state.id))];
   assert.deepEqual(Object.keys(ATLAS.state).filter((id) => canEnter('state', id)).sort(), openStates.slice().sort());
-  const openForeignCountries = [...new Set(cityCatalogue().filter((city) => city.open && city.countryISO && city.countryISO !== 'ng').map((city) => city.countryISO!))].sort();
-  assert.deepEqual(openForeignCountries, ['ao', 'bj', 'bw', 'ci', 'cm', 'dz', 'eg', 'et', 'gh', 'ke', 'ma', 'mz', 'na', 'rw', 'sn', 'tg', 'ug', 'za', 'zm', 'zw'], 'each open foreign-city catalogue entry admits its country');
-  assert.deepEqual(world.features.map((feature) => feature.id).filter((id) => canEnter('country', id)).sort(), ['ao', 'bj', 'bw', 'ci', 'cm', 'dz', 'eg', 'et', 'gh', 'ke', 'ma', 'mz', 'na', 'ng', 'rw', 'sn', 'tg', 'ug', 'za', 'zm', 'zw'], 'Nigeria and the twenty open foreign-city countries are enterable');
+  const openForeignCountries = [...new Set(cityCatalogue().flatMap(city => city.open && city.countryISO && city.countryISO !== 'ng' ? [city.countryISO] : []))].sort();
+  const expectedCountries = ['ng', ...openForeignCountries].sort();
+  assert.deepEqual(world.features.map(feature => feature.id).filter(id => canEnter('country', id)).sort(), expectedCountries, 'every open catalogue country is enterable on the world map');
+  const africanCountries = new Set(africa.features.map(feature => feature.id));
+  assert.deepEqual(africa.features.map(feature => feature.id).filter(id => canEnter('country', id)).sort(), expectedCountries.filter(id => africanCountries.has(id)), 'every open African catalogue country is enterable on the Africa map');
   const context = { current: 'lagos', held: ['lagos'], routes: null };
   for (const feature of nigeria.features) {
     const info = regionInfo({ kind: 'state', id: feature.id }, { ...context, feature });

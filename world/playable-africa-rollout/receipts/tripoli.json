@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tripoli",
+  "countryIso2": "LY",
+  "generationIdentity": {
+    "cityId": "tripoli",
+    "stateId": "ly-tripoli",
+    "stateName": "Tripoli"
+  },
+  "inventorySha256": "3072c4df29352d3376fa074ddf0ad28cc7edc3435eac0596172ecfd6b607eb45",
+  "inventoryPath": "world/playable-africa-rollout/sources/tripoli.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "mitiga-international-airport",
+    "name": "Mitiga International Airport",
+    "lon": 13.287878,
+    "lat": 32.89177,
+    "sourceUrl": "https://ourairports.com/airports/HLLM/"
+  },
+  "bounds": [
+    32.79,
+    13.08,
+    32.99,
+    13.32
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/libya-261009.osm.pbf",
+      "datasetSha256": "db700457843f638368e58a2f3635d3f5fcd4b7785c7a09ff692092c0428b8826",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "550e8ff4847d76301c24ec6eefc2e0b6a83164f31950db41f583000cc253f32f",
+          "elements": 829
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f1e1f8c3b23a002cbca7fc34ea7ad07d7ed6cd8783b31e69a64610a76d0f1fad",
+          "elements": 436
+        },
+        {
+          "file": "water.json",
+          "sha256": "59209790001bb66ecee5d8c8628ae0eca6784f47dac746158863b234c2b7b2e4",
+          "elements": 228
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "df7c6e5d2f24693d8645034e695e7665e9b576712656a29e1052c8eb1e561638",
+          "elements": 393
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a1bb147c923d003cb5b7a6286b9b8fc79c5dc9de3c1a1d57fe318eeb87d93230",
+          "elements": 819
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 21,
+    "roads": 455,
+    "neighbourhoodLabels": 11,
+    "landPolygons": 12,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 829,
+    "extras": 436,
+    "water": 228,
+    "landuse": 393,
+    "roads": 819
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1414,
+      "sha256": "7bf30210d82d71fd7da356404ecea643ed34c94f941ed4a8c7514e2b9dc2e4b6"
+    },
+    "geometry.ts": {
+      "bytes": 33725,
+      "sha256": "ae3f8a06d4b65d350992f741e81deb9b4d641c91a3cde4545494a5cc26c19475"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "a424b0de0eb30e412999baaa4a94b4b21972b85263675789531283375921472e"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/tripoli.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

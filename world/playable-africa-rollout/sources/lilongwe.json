@@ -1,0 +1,338 @@
+{
+  "schemaVersion": 1,
+  "cityId": "lilongwe",
+  "countryIso2": "MW",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Lilongwe",
+    "coordinatesWgs84": [
+      33.768144,
+      -13.9875107
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "airport": {
+    "id": "kamuzu-international-airport",
+    "name": "Kamuzu International Airport",
+    "lon": 33.780998,
+    "lat": -13.7894,
+    "sourceUrl": "https://ourairports.com/airports/FWKI/"
+  },
+  "boxes": {
+    "play": [
+      -14.09,
+      33.64,
+      -13.75,
+      33.89
+    ],
+    "core": [
+      -14.022511,
+      33.723144,
+      -13.952511,
+      33.813144
+    ],
+    "outline": [
+      -14.14,
+      33.59,
+      -13.7,
+      33.94
+    ],
+    "wide": [
+      -14.69,
+      33.04,
+      -13.15,
+      34.49
+    ],
+    "water": [
+      -14.09,
+      33.64,
+      -13.75,
+      33.89
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/malawi-261009.osm.pbf",
+    "datasetSha256": "15ef14762dea36511424af83c17c23a548dc20002cf47417f4b8eeccea78931d",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "3342b377a368ea89b7ae183092246fdf2ab1a40cdefe9974f2aa0eea94586554",
+        "elements": 157
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c6f85a8e94be2440dc0ee2fa4b8cdb439bc2235ecc24364952d75059f1b79fda",
+        "elements": 45
+      },
+      {
+        "file": "water.json",
+        "sha256": "f5a27a6a8f2b86de29982055bc037b79578ce2fd48200b0d889c1c0e2e6112cd",
+        "elements": 49
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "bfee3344b918e2bcbeaf9a4cbc84c470ebf37c26ab341f0c779b561486103c08",
+        "elements": 396
+      },
+      {
+        "file": "roads.json",
+        "sha256": "306fb08b07a24eb34d76bdebedd812346721dffa4412cb3d326efcc78893f78f",
+        "elements": 133
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Bus Terminal Lilongwe",
+      "osm": "node/2131385204",
+      "coordinatesWgs84": [
+        33.777471,
+        -13.994318
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mamma Mia",
+      "osm": "node/1731801555",
+      "coordinatesWgs84": [
+        33.766661,
+        -13.982091
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Malawi College of Accountancy (M.C.A)",
+      "osm": "relation/3938914",
+      "coordinatesWgs84": [
+        33.790492,
+        -13.941659
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kamuzu Central Hospital",
+      "osm": "way/808424986",
+      "coordinatesWgs84": [
+        33.78573,
+        -13.976927
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bingu National Stadium",
+      "osm": "way/893629092",
+      "coordinatesWgs84": [
+        33.753197,
+        -13.943867
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lilongwe Central Market",
+      "osm": "way/447446170",
+      "coordinatesWgs84": [
+        33.77765,
+        -13.993288
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lilongwe Central Mosque",
+      "osm": "way/444042284",
+      "coordinatesWgs84": [
+        33.776956,
+        -13.989355
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "City Centre Roundabout",
+      "osm": "way/1425872635",
+      "coordinatesWgs84": [
+        33.794364,
+        -13.957272
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Malawi Parliament Building",
+      "osm": "relation/12359795",
+      "coordinatesWgs84": [
+        33.787925,
+        -13.952304
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Library Service",
+      "osm": "node/1975172107",
+      "coordinatesWgs84": [
+        33.7949,
+        -13.960026
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "MADSOC Theatre",
+      "osm": "node/6257378285",
+      "coordinatesWgs84": [
+        33.774342,
+        -13.986517
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "open Theatre",
+      "osm": "way/505755023",
+      "coordinatesWgs84": [
+        33.790923,
+        -13.951964
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CIVO Stadium",
+      "osm": "way/221073293",
+      "coordinatesWgs84": [
+        33.758774,
+        -13.978292
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Silver Stadium",
+      "osm": "node/3664439631",
+      "coordinatesWgs84": [
+        33.769469,
+        -13.953688
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pacific Mall",
+      "osm": "node/393334585",
+      "coordinatesWgs84": [
+        33.791495,
+        -13.938416
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Old Town Mall",
+      "osm": "way/161182620",
+      "coordinatesWgs84": [
+        33.766374,
+        -13.981892
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gateway Shopping Mall",
+      "osm": "way/289660593",
+      "coordinatesWgs84": [
+        33.742093,
+        -13.97052
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lilongwe Wildlife Center",
+      "osm": "way/442847669",
+      "coordinatesWgs84": [
+        33.783892,
+        -13.972249
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "War Memorial Tower",
+      "osm": "node/2501747953",
+      "coordinatesWgs84": [
+        33.784721,
+        -13.946049
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kumbali Cultural Village",
+      "osm": "way/164887641",
+      "coordinatesWgs84": [
+        33.84104,
+        -13.939162
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "African Bible College",
+      "osm": "node/5332030021",
+      "coordinatesWgs84": [
+        33.742369,
+        -13.962273
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mzuzu University - Lilongwe Branch",
+      "osm": "way/809177507",
+      "coordinatesWgs84": [
+        33.775609,
+        -13.893585
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Capital Kids Play Centre",
+      "osm": "node/5421990028",
+      "coordinatesWgs84": [
+        33.741811,
+        -13.971748
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1269,
+      "sha256": "8d08d3424973f7900d81be858151a59ac6d6223fab20f9e53d22f56053961dbe"
+    },
+    "geometry.ts": {
+      "bytes": 26161,
+      "sha256": "5ff64c9ca172dfd9d7eb59fb3bdf66749f1f504e33c67c9274fb7ad81b3a1ca4"
+    },
+    "places.ts": {
+      "bytes": 9245,
+      "sha256": "9269680c7973a3f586a04bd08cb06652ac66f236e6085381c639b2e43c310114"
+    },
+    "terrain.ts": {
+      "bytes": 7149,
+      "sha256": "b68bd4fe088fe8c76eed08a4c21af7ef42563c31a457b5abe6baf695046d0977"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "60082382427789d193ea84aa3c01d8b6ff1c8a31683138ac67b4b76de2711cf6"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0",
+  "scope": "Lilongwe from mapped built-up land, inland water, roads and named places in a verified Malawi PBF extract. The airport point is a published directory reference, not an airport boundary or evidence of current schedules. Visitor services and homes are fictional game content set at real named places."
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bamako",
+  "countryIso2": "ML",
+  "generationIdentity": {
+    "cityId": "bamako",
+    "stateId": "ml-bamako",
+    "stateName": "Bamako District"
+  },
+  "inventorySha256": "7f583038e356164aaf8cbaa5c16f0ec5dcaa6f27cbed56e8b556cad34a64a359",
+  "inventoryPath": "world/playable-africa-rollout/sources/bamako.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bamako-airport",
+    "name": "Modibo Keita International Airport",
+    "lon": -7.94994,
+    "lat": 12.5335,
+    "sourceUrl": "https://ourairports.com/airports/GABS/"
+  },
+  "bounds": [
+    12.5,
+    -8.1,
+    12.75,
+    -7.88
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/mali-261009.osm.pbf",
+      "datasetSha256": "b369d92094f544bc7dd9a3d74e49a02e5bd32dfcd6efb4c2d51a7ca2782dfd0b",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "8b12ede54e4b667d2279ff09418a71be0a96e71a1979a4f21e9e84820411c974",
+          "elements": 687
+        },
+        {
+          "file": "extras.json",
+          "sha256": "2c402dc329a365e95d362914e8edc52d98488ff35c3938c02948b1d3056f915c",
+          "elements": 2055
+        },
+        {
+          "file": "water.json",
+          "sha256": "0f1258c2f72186b5750503f3859411107a6b7bfc2d889de52cdff8ae212defe8",
+          "elements": 16
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "7c16331d46dbdd6745646da787989b364f16c03430729e5f36e946bed4aee1b3",
+          "elements": 1250
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5a5d29cc24075ac1ca908a51e45c7f1bcd2d1b12614f4e272f617cff3212ac45",
+          "elements": 792
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 20,
+    "roads": 467,
+    "neighbourhoodLabels": 16,
+    "landPolygons": 11,
+    "waterPolygons": 10,
+    "reachWaterPolygons": 8
+  },
+  "observed": {
+    "places": 687,
+    "extras": 2055,
+    "water": 16,
+    "landuse": 1250,
+    "roads": 792
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1362,
+      "sha256": "a69bd1373cfd01e2a1ba79e7b14da54f50ec684a05802554e72aeeec21224416"
+    },
+    "geometry.ts": {
+      "bytes": 61328,
+      "sha256": "af680513d94404c017579bc5f9180667517d535d8cd777d4e998d4a8afb75b3d"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "20ea458c45b34c4c56742e11039066a82091272e2c2e5b62ff4df7b96c2e97ba"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bamako.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

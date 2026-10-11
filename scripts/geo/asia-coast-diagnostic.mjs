@@ -126,11 +126,78 @@ try {
   });
   report.input = { sourceJob: target.sourceJob, extractHashes: target.extractSha256, coastWays: coast.length, closedCoastWays: coast.filter(e => e.geometry[0].lon === e.geometry.at(-1).lon && e.geometry[0].lat === e.geometry.at(-1).lat).length, anchors, config: manifest.config, wide, outline, generatedHashes: Object.fromEntries(['places', 'terrain', 'geometry', 'facts'].map(name => [name, hash(join(download, `delivery/cities/dubai/${name}.ts`))])) };
   report.mushrif = PLACES.filter(p => p.osm === 'way/311254501').map(p => ({ ref: p.osm, name: p.name, lon: p.lon, lat: p.lat, landHits: hits([p.lon, p.lat], GEOMETRY.land), playHits: hits([p.lon, p.lat], GEOMETRY.playArea ?? GEOMETRY.land) }));
+  const sampleProbes = [];
+  for (const e of coast) for (let i = 1; i < e.geometry.length; i++) {
+    const a = e.geometry[i - 1], b = e.geometry[i], lon = (a.lon + b.lon) / 2, lat = (a.lat + b.lat) / 2, scale = Math.cos(lat * Math.PI / 180);
+    const dx = (b.lon - a.lon) * scale, dy = b.lat - a.lat, length = Math.hypot(dx, dy);
+    if (length < 0.003 || lon < west || lon > east || lat < south || lat > north) continue;
+    sampleProbes.push({ role: 'directed-coast-probe', ref: `way/${e.id}`, segment: [[a.lon, a.lat], [b.lon, b.lat]], lon: lon + dy / length * (1000 / 111000) / scale, lat: lat - dx / length * (1000 / 111000) });
+  }
+  const originalPath = join(app, 'scripts/geo/destination-detail/geometry-tools.ts');
+  const original = readFileSync(originalPath, 'utf8');
+  const replaceOnce = (source, needle, replacement) => {
+    assert.equal(source.split(needle).length, 2, 'Expected unique exact81 instrumentation seam');
+    return source.replace(needle, replacement);
+  };
+  const barrierSeam = '  // A land point sitting on a barrier cell counts for the regions beside it.';
+  let instrumented = replaceOnce(original, barrierSeam, '  const diagnosticDirectLand = [...hasLand];\n' + barrierSeam);
+  const returnSeam = '  return { far: contour(blur(water, cols, rows, 1.6), cols, rows, wide, cell, 0.5), band: contour(blur(band, cols, rows, 1.6), cols, rows, wide, cell, 0.5) };';
+  const injection = `  const diagnosticComponents = hasLand.map((land, id) => ({ id, cells: 0, hasLand: land, directAnchorLand: diagnosticDirectLand[id], boundaryCells: 0, anchors: [] }));
+  let diagnosticBarrierCells = 0, diagnosticWaterCells = 0, diagnosticBandCells = 0;
+  for (let at = 0; at < region.length; at++) {
+    const id = region[at], c = at % cols, r = (at - c) / cols;
+    if (id >= 0) { diagnosticComponents[id].cells++; if (c === 0 || r === 0 || c === cols - 1 || r === rows - 1) diagnosticComponents[id].boundaryCells++; }
+    if (barrier[at]) diagnosticBarrierCells++;
+    if (water[at]) diagnosticWaterCells++;
+    if (band[at]) diagnosticBandCells++;
+  }
+  const diagnosticSample = p => {
+    const c = colOf(p.lon), r = rowOf(p.lat), at = r * cols + c;
+    if (c < 0 || r < 0 || c >= cols || r >= rows) return { ...p, c, r, outsideGrid: true };
+    const neighbours = [c > 0 ? at - 1 : -1, c < cols - 1 ? at + 1 : -1, r > 0 ? at - cols : -1, r < rows - 1 ? at + cols : -1];
+    return { ...p, c, r, at, region: region[at], hasLand: region[at] >= 0 ? hasLand[region[at]] : null, barrier: Boolean(barrier[at]), waterMask: water[at], bandMask: band[at], adjacentRegions: [...new Set(neighbours.filter(n => n >= 0 && region[n] >= 0).map(n => region[n]))] };
+  };
+  const diagnosticAnchors = COAST_DIAGNOSTIC_INPUT.anchors.map(diagnosticSample);
+  for (const p of diagnosticAnchors) {
+    const ids = p.outsideGrid ? [] : p.barrier ? p.adjacentRegions : [p.region];
+    for (const id of ids) if (id >= 0) diagnosticComponents[id].anchors.push({ ref: p.ref, lon: p.lon, lat: p.lat, viaBarrier: p.barrier });
+  }
+  COAST_DIAGNOSTIC_STATE = { cols, rows, cell, components: diagnosticComponents, barrierCells: diagnosticBarrierCells, waterMaskCells: diagnosticWaterCells, bandMaskCells: diagnosticBandCells, anchors: diagnosticAnchors, samples: COAST_DIAGNOSTIC_INPUT.samples.map(diagnosticSample) };
+  const diagnosticFarField = blur(water, cols, rows, 1.6);
+  let diagnosticFarAboveThreshold = 0;
+  for (const value of diagnosticFarField) if (value >= 0.5) diagnosticFarAboveThreshold++;
+  COAST_DIAGNOSTIC_STATE.farBlurAboveThresholdCells = diagnosticFarAboveThreshold;
+  for (const p of COAST_DIAGNOSTIC_STATE.samples) if (!p.outsideGrid) p.farBlurValue = diagnosticFarField[p.at];
+  const diagnosticFar = contour(diagnosticFarField, cols, rows, wide, cell, 0.5);
+  const diagnosticBand = contour(blur(band, cols, rows, 1.6), cols, rows, wide, cell, 0.5);
+  return { far: diagnosticFar, band: diagnosticBand };`;
+  instrumented = replaceOnce(instrumented, returnSeam, injection);
+  instrumented += '\nexport const COAST_DIAGNOSTIC_INPUT = { samples: [], anchors: [] };\nexport let COAST_DIAGNOSTIC_STATE = null;\n';
+  const diagnosticPath = join(app, 'scripts/geo/destination-detail/geometry-tools-coast-diagnostic.ts');
+  writeFileSync(diagnosticPath, instrumented, { flag: 'wx' });
+  assert.equal(readFileSync(originalPath, 'utf8'), original, 'Original geometry helper changed');
+  report.instrumentation = { originalSHA256: hash(originalPath), diagnosticSHA256: hash(diagnosticPath), exactReplacementSeams: 2, algorithm: 'Original flood, masks, blur and contour arguments preserved; bounded statistics and samples only; original module untouched.' };
+  const diagnosticTools = await imported(diagnosticPath);
+  diagnosticTools.COAST_DIAGNOSTIC_INPUT.anchors = anchors;
+  diagnosticTools.COAST_DIAGNOSTIC_INPUT.samples = [...anchors.map(p => ({ ...p, role: 'land-anchor' })), ...sampleProbes];
   save();
   console.log('[DEBUG-dubai-coast] shoreWater start');
   const started = performance.now();
-  const raw = tools.shoreWater(coast.map(e => e.geometry.map(p => [p.lon, p.lat])), anchors.map(p => [p.lon, p.lat]), outline, wide, CONFIG.sea.bandMetres, CONFIG.cell / CONFIG.split);
+  const raw = diagnosticTools.shoreWater(coast.map(e => e.geometry.map(p => [p.lon, p.lat])), anchors.map(p => [p.lon, p.lat]), outline, wide, CONFIG.sea.bandMetres, CONFIG.cell / CONFIG.split);
   report.shoreElapsedMs = performance.now() - started;
+  report.floodContour = diagnosticTools.COAST_DIAGNOSTIC_STATE;
+  for (const sample of report.floodContour.samples) {
+    const point = [sample.lon, sample.lat];
+    sample.rawFarPolygons = hits(point, raw.far);
+    sample.rawBandPolygons = hits(point, raw.band);
+    sample.stageFinding = sample.outsideGrid ? 'outside grid' : !sample.waterMask ? 'absent in classified water mask before blur' : sample.farBlurValue < 0.5 ? 'water mask erased below blur threshold' : !sample.rawFarPolygons.length ? 'above blur threshold but absent from contour polygons at source point' : 'present through flood, blur and contour';
+  }
+  report.contourComparison = { rawFarPolygons: raw.far.length, rawBandPolygons: raw.band.length, rawFarAreaSquareDegrees: raw.far.reduce((sum, p) => sum + area(p), 0), rawBandAreaSquareDegrees: raw.band.reduce((sum, p) => sum + area(p), 0), referenceRun: 38180861307, scope: 'Compare with prior uninstrumented pinned diagnostic; no duplicate shore generation executed.' };
+  const reference = { rawFarPolygons: 155, rawBandPolygons: 66, rawFarAreaSquareDegrees: 0.007295467456856386, rawBandAreaSquareDegrees: 0.002956918245217821 };
+  report.contourComparison.reference = reference;
+  report.contourComparison.matchesReference = Object.entries(reference).every(([key, value]) => Math.abs(report.contourComparison[key] - value) <= (key.includes('Area') ? 1e-12 : 0));
+  save();
+  assert.ok(report.contourComparison.matchesReference, 'Instrumented output differs from unchanged pinned diagnostic; HOLD');
   // Raw polygons are inspected one by one with the unchanged81 safety helper.
   const safe = {}, stages = {};
   for (const [layer, tolerance] of [['band', CONFIG.waterTolerance], ['far', 0.0008]]) {
@@ -164,7 +231,7 @@ try {
   report.directedProbes = probes;
   report.runtimeSource = { baseline: APP_SHA, map: 'src/game/cities/africa/map.ts:62 forwards reachWater', module: 'src/map3d/cities/module.ts:202 chooses local(reachWater ?? geometry.water)', executed: false };
   report.status = 'DIAGNOSTIC_COMPLETE_NOT_ACCEPTANCE';
-  report.remaining = ['Raw shoreWater combines flood and contour; absence before simplification does not isolate those two stages.', 'Source coastline/island completeness needs source correspondence review.', 'Actual projected runtime pack and browser acceptance remain separate gates.'];
+  report.remaining = ['Shared flood-component evidence can identify connected land/ocean classification; source closure/connectivity still requires correspondence review.', 'Source coastline/island completeness needs source correspondence review.', 'Actual projected runtime pack and browser acceptance remain separate gates.'];
   save();
   console.log('[DEBUG-dubai-coast] ' + JSON.stringify(report.summary));
 } catch (error) {

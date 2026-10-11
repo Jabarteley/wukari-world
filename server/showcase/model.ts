@@ -31,13 +31,14 @@ export function parseInput(body: Record<string, unknown>): Parsed {
   if (about.length < 1 || about.length > SHOWCASE.about) return bad();
   if (!Array.isArray(body.colours) || body.colours.length !== 2 || !body.colours.every((item) => typeof item === 'string' && COLOUR.test(item))) return bad();
   const colours: [string, string] = [String(body.colours[0]).toLowerCase(), String(body.colours[1]).toLowerCase()];
-  if (!Array.isArray(body.services) || body.services.length < 1 || body.services.length > SHOWCASE.services) return bad();
+  if (!Array.isArray(body.services) || body.services.length > SHOWCASE.services) return bad();
   const services: ShowcaseService[] = [];
   for (const item of body.services) {
-    if (!record(item) || Object.keys(item).some((key) => key !== 'label' && key !== 'priceNaira' && key !== 'note')) return bad();
+    if (!record(item) || Object.keys(item).some((key) => key !== 'label' && key !== 'priceNaira' && key !== 'note' && key !== 'photo')) return bad();
     const label = line(item.label, 1, SHOWCASE.label), note = line(item.note ?? '', 0, SHOWCASE.note);
     if (!label || note === null || !whole(item.priceNaira, 0, SHOWCASE.priceMax)) return bad();
-    services.push({ label, priceNaira: item.priceNaira, note });
+    if (item.photo !== undefined && (typeof item.photo !== 'string' || !/^[0-9a-f]{32}$/.test(item.photo))) return bad();
+    services.push({ label, priceNaira: item.priceNaira, note, ...(typeof item.photo === 'string' ? { photo: item.photo } : {}) });
   }
   if (!Array.isArray(body.hours) || body.hours.length !== 7) return bad();
   const hours: (ShowcaseHours | null)[] = [];

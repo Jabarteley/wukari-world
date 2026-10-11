@@ -163,8 +163,7 @@ test('from the door the shopkeeper is clear: the counter easels are to her right
     const [from, to] = [place.x - place.w / 2, place.x + place.w / 2]
     if (spot.kind !== 'shelf') assert.ok(from >= KEEPER.x + KEEPER.clear - 1e-9 || to <= KEEPER.x - KEEPER.clear + 1e-9, `${spot.name} is clear of her`)
   }
-  const top = Math.max(...places.filter((entry) => entry.spot.kind === 'counter').map((entry) => entry.place.y + entry.place.h / 2))
-  assert.ok(places.filter((entry) => entry.spot.kind === 'rail').every((entry) => entry.place.y - entry.place.h / 2 >= top), 'the rail hangs above the easels')
+  assert.ok(places.filter((entry) => entry.spot.kind === 'rail').every((entry) => entry.place.y - entry.place.h / 2 >= 1.5), 'the rail hangs well above the counter, on the back wall')
   const eight = pageOf(Array.from({ length: 8 }, (_, at) => at), 0).map((entry) => entry.slot).filter((spot) => spot.kind === 'shelf')
   assert.deepEqual([eight.filter((spot) => spot.x < 0).length, eight.filter((spot) => spot.x > 0).length], [3, 3], 'six on the shelves, three each side')
 })

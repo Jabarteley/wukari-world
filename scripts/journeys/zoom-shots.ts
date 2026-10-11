@@ -6,7 +6,7 @@
  *   node --experimental-strip-types scripts/journeys/zoom-shots.ts --out <folder> [--port 4431] [--debug-port 4432] [--sizes desktop,phone,small]
  *
  * It builds nothing (run `npm run build` first). It starts the built app (scripts/journeys/serve.ts, fresh data folder, no outside request) and ONE
- * headless Chrome, settles one guest through Sim > Profile, then for each size: screenshots at every level, the frames of every hand-over
+ * headless Chrome, settles one guest through Sim > Profile (its "Settle in now" button), then for each size: screenshots at every level, the frames of every hand-over
  * (the browser's own screencast), the hint chips, the loading state under a slow network, frame pacing during each hand-over (page rAF gaps),
  * the JS heap and the live WebGL resources before and after repeated round trips. It writes numbers.json and an index.html gallery.
  * Everything is software-rendered headless: comparable between rows, not with a real phone.
@@ -84,7 +84,7 @@ async function settle(b: Browser): Promise<void> {
   await b.click('[data-key="play-now"]');
   await gameShown(b); await dismiss(b);
   await b.click('.hud-name');
-  await b.click('.sim-link', 'Make this life yours');
+  await b.click('[data-settle-notice] button', 'Settle in now');
   await b.waitFor(`document.querySelector('[data-cr-root]')?.dataset.step === 'spirit'`, 20000, 'spirit');
   await b.click('[data-key="primary"]');
   await b.waitFor(`document.querySelector('[data-cr-root]')?.dataset.step === 'home'`, 20000, 'home');
@@ -94,6 +94,10 @@ async function settle(b: Browser): Promise<void> {
   await b.click('[data-key="primary"]', 'Start your life');
   await b.waitFor(`(async () => { const m = await fetch('/api/life?city=lagos').then((r) => r.json()); return m.state.onboarding.done && !document.querySelector('[data-cr-root]'); })()`, 60000, 'settled');
   await gameShown(b); await dismiss(b);
+  // The settle screen hands the player back to the sheet they came from (Profile): close it to see the city.
+  for (let i = 0; i < 3 && (await b.eval<boolean>(`!!document.querySelector('dialog.base-sheet[open]')`)); i++) {
+    await b.eval(`[...document.querySelectorAll('dialog.base-sheet[open] button')].find((x) => x.innerText.trim() === '×' || /close/i.test(x.getAttribute('aria-label') ?? ''))?.click(); true`); await sleep(700);
+  }
 }
 const lifeCity = (b: Browser): Promise<string> => b.eval<string>(`fetch('/api/life?city=lagos').then((r) => r.json()).then((m) => m.state?.estate?.city ?? m.state?.location ?? '')`);
 
@@ -244,7 +248,11 @@ async function openMap(b: Browser): Promise<void> {
   await b.goto(base + '/');
   await gameShown(b); await dismiss(b);
   // A reload may bring the Map back open (the page keeps what was showing): only press the tab when it is not.
-  if (!(await b.eval<boolean>(shownNow('.map-levels-cur')))) await b.click('[data-nav="map"]');
+  if (!(await b.eval<boolean>(shownNow('.map-levels-cur')))) await b.click('[data-nav="map"]', undefined, 8000).catch(async (error) => {
+    const cover = await b.eval<string>(`(() => { const n = document.querySelector('[data-nav="map"]'); const r = n.getBoundingClientRect(); const t = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return t ? t.tagName + '.' + t.className + ' | ' + (t.closest('[role=dialog],.base-sheet,.toast,[data-settle-notice]')?.className ?? '') + ' | ' + t.innerText?.slice(0, 80) : 'none'; })()`);
+    await b.screenshot(join(out, `${prefix}-debug-cover.png`));
+    throw new Error(`${error} covered by ${cover}`);
+  });
   if (!(await b.waitFor<boolean>(shownNow('.map-handle') + ' || ' + shownNow('.map-levels-cur'), 8000, 'the map panel').catch(() => false))) {
     numbers.notes.push(`${prefix}: the touch tap on the Map tab did not open the map; opened with a scripted click`);
     await b.eval(`document.querySelector('[data-nav="map"]').click(); true`);

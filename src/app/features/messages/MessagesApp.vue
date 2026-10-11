@@ -390,6 +390,8 @@ async function reportPicture(): Promise<void> {
   if (turn === actorTurn) void openThread(key)
 }
 /** After the player's own message in a chat, once: "Get a notification when Joy replies?" (never on arrival; the browser's own question comes only after Yes). */
+/** A message's actions menu is open: the notification question waits so the menu has the room. */
+const menuUp = ref(false)
 const askNotify = computed(() => Boolean(ui.open && conv.value && items.value.some((item) => isOutbox(item) || (!isOutbox(item) && item.from?.id === me.value?.me.id)) && !askedAboutNotifications() && growth.state.hello?.consent?.push !== true && growth.state.hello?.consent?.age !== 'minor'))
 const askedNow = ref(0)
 function answerNotify(yes: boolean): void { noteAskedAboutNotifications(); askedNow.value += 1; if (yes) shell.open('touch') }
@@ -545,14 +547,14 @@ defineExpose({
                 </span>
               </div>
               <div v-else-if="row.item.sys" class="bubble is-sys">{{ row.item.body }}</div>
-              <MessageBubble v-else :item="row.item" :me-id="me.me.id" :group="isGroup" :head="row.head" :tail="row.tail" :time="time(row.item.at)" :can-react="conv?.kind !== 'house'" :can-actions="true" :can-pin="Boolean(pins.state.view?.canManage && canPinMessage(row.item))" :pinned="isPinned(row.item)" :pin-pending="pins.state.pending" :pin-blocked="pins.state.retryable" :pin-offline="!connected" :voice-enabled="me.prefs.voiceNotes !== 'nobody'" :now="now" :partner="title" :request-busy="Boolean(row.item.request && requests.busy.has(row.item.request.id))" :request-offline="!connected" @request="(id, op) => answerCard(row.item, id, op)" @pin="(item, pinned) => pins.change({ message: item, pinned })" @reply="(line) => { replying = line; composer?.focus() }" @react="react" @player="openCard" @jump="jump" @report-voice="reportVoice" @picture="(line) => { lightbox = line }" @edit="(item) => { messageAction = { kind: 'edit', item } }" @remove="(item) => { messageAction = { kind: 'delete', item } }" @forward="(item) => { messageAction = { kind: 'forward', item } }" />
+              <MessageBubble v-else @menu="menuUp = $event" :item="row.item" :me-id="me.me.id" :group="isGroup" :head="row.head" :tail="row.tail" :time="time(row.item.at)" :can-react="conv?.kind !== 'house'" :can-actions="true" :can-pin="Boolean(pins.state.view?.canManage && canPinMessage(row.item))" :pinned="isPinned(row.item)" :pin-pending="pins.state.pending" :pin-blocked="pins.state.retryable" :pin-offline="!connected" :voice-enabled="me.prefs.voiceNotes !== 'nobody'" :now="now" :partner="title" :request-busy="Boolean(row.item.request && requests.busy.has(row.item.request.id))" :request-offline="!connected" @request="(id, op) => answerCard(row.item, id, op)" @pin="(item, pinned) => pins.change({ message: item, pinned })" @reply="(line) => { replying = line; composer?.focus() }" @react="react" @player="openCard" @jump="jump" @report-voice="reportVoice" @picture="(line) => { lightbox = line }" @edit="(item) => { messageAction = { kind: 'edit', item } }" @remove="(item) => { messageAction = { kind: 'delete', item } }" @forward="(item) => { messageAction = { kind: 'forward', item } }" />
             </template>
           </div>
           <button v-if="fresh > 0 || !atBottom" type="button" class="messages-latest" :aria-label="fresh ? `Jump to latest, ${fresh} new` : 'Jump to latest'" @click="toLatest">↓<span v-if="fresh" class="messages-badge">{{ fresh }}</span></button>
         </div>
         <div v-if="quoted" class="messages-quoted" role="status"><b>{{ quoted.from }}</b> {{ quoted.text }}<small> — the original is no longer kept</small> <button type="button" class="messages-link" @click="quoted = null">Close</button></div>
 
-        <div v-if="askNotify && askedNow >= 0" class="messages-ask-notify" role="group" aria-label="Notifications">
+        <div v-if="askNotify && askedNow >= 0 && !menuUp" class="messages-ask-notify" role="group" aria-label="Notifications">
           <span>Get a notification when {{ conv?.kind === 'dm' ? title : 'someone answers here' }} replies?</span>
           <BaseButton small variant="primary" @click="answerNotify(true)">Yes</BaseButton><BaseButton small @click="answerNotify(false)">Not now</BaseButton>
         </div>

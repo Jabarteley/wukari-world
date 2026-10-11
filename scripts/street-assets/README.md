@@ -62,3 +62,19 @@ For wheels: ask for "the body without wheels, wheel arches open" and a separate 
 10. Roadside seller's table: a small wooden table with a plastic tray of oranges, a scale and a cloth awning on two sticks.
 11. Gutter slab: a flat concrete drain cover section, three slabs side by side with a handle slot each, grey.
 12. Fence and gate: a two-metre piece of cement block fence with a painted metal gate in the middle, two pillars with round caps.
+
+## Round two: straight walls
+
+Round one shrank a lumpy generated mesh by edge collapse, and the walls wobbled. Round two keeps the pipeline for organic things (trees) and changes the method elsewhere.
+
+- Buildings, kiosk, market stall: **clean shells** (`blender/shells.py`, `build_shells.sh`). Walls, roof planes, window and door pieces, veranda, balconies and parapets are
+  built by script as exact flat geometry (110-680 triangles, one draw call) with one texture atlas: a generated picture of a window and a door, plus drawn plaster, roofing, stripes and planks.
+  Wall colours and awning colours are variants of the atlas only. `assets/footprints.json` records each building's footprint in game units and its door (x, z toward the street, facing +z).
+- Vehicles: generated again from a clean side-view concept picture, which came out nearly low-poly already (about 3,000 triangles), so only a plain reduction is needed. Limited dissolve
+  was tried first and broke the bake, so it is off for them (`configs/danfo2.json`, `keke2.json`); `build_vehicles2.sh`. Only the keke's rear wheels are separate pieces.
+- The route comparison for the house (clean concept then gentle reduction, clean shell, shell plus props) is in the round-two gallery; the shell won on straightness and size.
+- `capture2.ts` and `gallery2.ts` produce round two's pictures: four corners of every asset, side by side with today's props, the busy street at day, dusk and night.
+
+What worked in the prompts: "single [object], plain flat light-grey background, nothing else, clean low-poly stylised game asset, simple bold shapes, flat colour planes, straight edges"
+for the concept picture (look at it before spending on the 3D step); for a building, "exact side view" or "three-quarter front view" with named parts; for flat texture pictures, "flat orthographic
+front view of a single window ... fills the picture, no perspective".

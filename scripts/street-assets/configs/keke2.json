@@ -1,0 +1,1 @@
+{"yaw": 90, "size": {"axis": "y", "metres": 3.16}, "wheelBoxes": [[0.45, 0.85, -0.5, 0.5, -0.7, -0.3]], "wheels": [{"name": "wheel_rl", "box": 0, "side": "-x"}, {"name": "wheel_rr", "box": 0, "side": "+x"}], "hidden": false}

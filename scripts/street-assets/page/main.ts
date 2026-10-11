@@ -13,12 +13,12 @@ import { buildVehicle } from '../../../src/models/vehicles/index.ts';
 import type { Batch } from '../../../src/scene/types.ts';
 
 type Kind = 'danfo' | 'keke' | 'house' | 'kiosk' | 'mango-tree' | 'palm';
-interface Item { src: 'old' | 'new'; kind: Kind; x: number; z: number; ry?: number; lod?: 'near' | 'far'; variant?: string; s?: number; wheels?: number }
+interface Item { src: 'old' | 'new'; kind: Kind; file?: string; x: number; z: number; ry?: number; lod?: 'near' | 'far'; variant?: string; s?: number; wheels?: number }
 interface Spec {
-  width: number; height: number; time: 'day' | 'dusk'; base: 'street' | 'plain'; items: Item[];
+  width: number; height: number; time: 'day' | 'dusk' | 'night'; base: 'street' | 'plain'; items: Item[];
   cam: { pos: [number, number, number]; look: [number, number, number]; fov?: number };
   labels?: { at: [number, number, number]; text: string; note?: string }[];
-  instanced?: boolean; pr?: number; shadows?: boolean;
+  instanced?: boolean; pr?: number; shadows?: boolean; quad?: { pos: [number, number, number]; look: [number, number, number] }[];
 }
 interface Model { root: THREE.Object3D; bytes: number; triangles: number; drawCalls: number; texture: number }
 
@@ -155,7 +155,7 @@ let current: Spec | null = null;
 let lastTriangles = 0;
 const resolved: { it: Item; model?: Model; object?: THREE.Object3D }[] = [];
 
-const nameOf = (it: Item): string => `${it.kind}${it.variant ? '-' + it.variant : ''}${it.lod === 'far' ? '-far' : ''}`;
+const nameOf = (it: Item): string => it.file ?? `${it.kind}${it.variant ? '-' + it.variant : ''}${it.lod === 'far' ? '-far' : ''}`;
 
 async function setup(spec: Spec): Promise<{ items: number }> {
   current = spec;
@@ -220,6 +220,20 @@ async function setup(spec: Spec): Promise<{ items: number }> {
 }
 
 function render(): { calls: number; triangles: number } {
+  const q = current?.quad;
+  if (q && q.length) {
+    // four views of the same scene in one picture (2 x 2): shows every side of an asset at once
+    const w = current!.width, h = current!.height;
+    renderer.setScissorTest(true);
+    q.forEach((view, i) => {
+      const x = (i % 2) * (w / 2), y = (1 - Math.floor(i / 2)) * (h / 2);
+      renderer.setViewport(x, y, w / 2, h / 2); renderer.setScissor(x, y, w / 2, h / 2);
+      camera.aspect = w / h; camera.position.set(...view.pos); camera.lookAt(...view.look); camera.updateProjectionMatrix();
+      renderer.render(scene, camera);
+    });
+    renderer.setScissorTest(false); renderer.setViewport(0, 0, w, h);
+    return { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles };
+  }
   renderer.render(scene, camera);
   lastTriangles = renderer.info.render.triangles;
   return { calls: renderer.info.render.calls, triangles: lastTriangles };

@@ -231,6 +231,14 @@ def decimate(obj, target):
     dropped smallest first, and if the surface is still far above the target (thin foliage) it is rebuilt as one closed surface with a voxel remesh
     and decimated again."""
     bpy.context.view_layer.objects.active = obj
+    if cfg.get("planar"):
+        # flat-sided things: merge near-coplanar faces first (limited dissolve) so the collapse only has real corners left to spend on
+        bpy.ops.object.mode_set(mode="EDIT")
+        bpy.ops.mesh.select_all(action="SELECT")
+        bpy.ops.mesh.dissolve_limited(angle_limit=math.radians(cfg["planar"]), use_dissolve_boundaries=False)
+        bpy.ops.mesh.quads_convert_to_tris()
+        bpy.ops.object.mode_set(mode="OBJECT")
+        print("PLANAR", len(obj.data.polygons))
     for step in range(12):
         got = len(obj.data.polygons)
         if got <= target * 1.03:

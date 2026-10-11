@@ -79,16 +79,30 @@ if opts.get("--hair-smooth") == "1":
     sm = np.stack([ndi.gaussian_filter(sm[:, :, c], 0.8 * k) for c in range(3)], axis=2)
     w = ndi.gaussian_filter(neutral.astype(np.float32), 1.0)[:, :, None]
     out = out * (1 - w) + sm * w
+if "--pink-fix" in opts and "--skin" in opts:
+    # a pink stain at the neckline (skin colour bled into the cloth edge): in the given height band every texel that is pinker than the skin is refilled from the skin-coloured texels round it
+    z0_, z1_ = [float(v) for v in opts["--pink-fix"].split(",")]
+    skin = np.array([float(v) for v in opts["--skin"].split(",")])
+    r_, g_, b_ = out[:, :, 0], out[:, :, 1], out[:, :, 2]
+    band = cover & (zmap > z0_) & (zmap < z1_)
+    pink = band & (r_ - g_ > 0.22) & (b_ > 0.28) & (b_ > g_ - 0.03) & (r_ > skin[0] + 0.04)
+    pink = ndi.binary_dilation(ndi.binary_opening(pink, iterations=1), iterations=max(1, int(round(2 * k)))) & band
+    good = cover & (np.abs(out - skin[None, None, :]).max(axis=2) < 0.12) & (zmap > z0_ - 0.05) & (zmap < z1_ + 0.05)
+    if pink.sum() > 20 and good.sum() > 200:
+        out = fill(out, pink, 6 * k, good.astype(np.float32))
+        print("PINK texels", int(pink.sum()))
 if "--logo-z" in opts:
-    # a printed word on a cap: above the given height every pale texel (the print) takes the cap's own colour
+    # a printed word on a cap: the cap is red; everything inside the closed outline of the red region above the given height that is not red (the print and its pink halo) takes the cap's flat colour
     zl_ = float(opts["--logo-z"])
-    capm = cover & (zmap > zl_) & (out[:, :, 0] > 0.50) & (out[:, :, 1] < 0.35) & (out[:, :, 2] < 0.45)
-    if capm.sum() > 50:
-        ref = np.median(out[capm], axis=0)
-        pale = cover & (zmap > zl_) & (out[:, :, 1] > 0.30) & (out[:, :, 0] > 0.50) & ~((out[:, :, 0] > 0.45) & (out[:, :, 1] < 0.55) & (out[:, :, 2] < 0.45) & (out[:, :, 0] - out[:, :, 1] > 0.2) & (zmap < zl_ + 0.001))
-        pale = ndi.binary_dilation(pale, iterations=max(1, int(round(4 * k)))) & cover & (zmap > zl_) & (out[:, :, 0] > 0.45)
-        w = ndi.gaussian_filter(pale.astype(np.float32), 1.0)[:, :, None]
+    r_, g_, b_ = out[:, :, 0], out[:, :, 1], out[:, :, 2]
+    core = cover & (zmap > zl_) & (r_ > 0.50) & (g_ < 0.30) & (b_ < 0.38) & (r_ - g_ > 0.30)
+    if core.sum() > 50:
+        ref = np.median(out[core], axis=0)
+        closed = ndi.binary_closing(np.pad(core, 40), structure=np.ones((3, 3), bool), iterations=int(18 * k))[40:-40, 40:-40]
+        holes = closed & ~core & cover & (zmap > zl_)
+        holes = ndi.binary_dilation(holes, iterations=max(1, int(round(2 * k)))) & closed & (zmap > zl_)
+        w = ndi.gaussian_filter(holes.astype(np.float32), 0.8)[:, :, None]
         out = out * (1 - w) + ref[None, None, :] * w
-        print("LOGO texels", int(pale.sum()))
+        print("LOGO texels", int(holes.sum()))
 Image.fromarray((np.clip(out, 0, 1) * 255 + 0.5).astype(np.uint8)).save(dst, quality=int(opts.get("--quality", 88)))
 print("TEXFIX", dst, "patch texels", n_bad)

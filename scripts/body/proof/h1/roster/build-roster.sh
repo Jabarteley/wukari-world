@@ -24,7 +24,7 @@ OPT=(
 # the ray test that culls hidden faces removes visible faces of trousers and gowns (white or black streaks), so no figure is culled
 NOCULL=(m1 1 m2 1 m3 1 m4 1 m5 1 m6 1 w1 1 w2 1 w3 1 w4 1 w5 1 w6 1)
 typeset -A TFX
-TFX=(w1 "--hair-smooth 1" m6 "--logo-z 1.73")
+TFX=(w1 "--hair-smooth 1" m6 "--logo-z 1.73" w6 "--pink-fix 1.25,1.47 --skin 0.698,0.431,0.306")
 for n in "$@"; do
   sx=male; [[ $n = w* ]] && sx=female
   mkdir -p $ROOT/$n $ROOT/out

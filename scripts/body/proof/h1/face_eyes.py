@@ -113,6 +113,7 @@ def find_eyes_in_head_frame(joints_file, have, P3, px, top):
     mid = 0.5 * (mid + cx)                       # the middle plane of the head counts as much as the two detections
     lm["eyeL"] = [float(mid + half), float((zl + zr) / 2)]; lm["eyeR"] = [float(mid - half), float((zl + zr) / 2)]
     lm["eyeAL"] = lm["eyeAR"] = 0.0224; lm["eyeBL"] = lm["eyeBR"] = 0.0112
+    lm["hw"] = hw
     return lm, True, why
 
 
@@ -275,7 +276,7 @@ face_w = float(np.nanmax(P3[:, :, 0][have]) - np.nanmin(P3[:, :, 0][have])) if "
 if "--head-part" in argv:
     band = have & (np.abs(P3[:, :, 2] - (lm["eyeL"][1])) < 0.03) & (np.abs(P3[:, :, 0]) < 0.17)
     face_w = float(np.nanmax(P3[:, :, 0][band]) - np.nanmin(P3[:, :, 0][band])) if band.any() else 0.24
-A_EYE = float(opts.get("--eye-a", 0.0)) or 0.086 * face_w     # half width of the eye opening
+A_EYE = float(opts.get("--eye-a", 0.0)) or 0.086 * face_w * float(np.clip(lm.get("hw", 0.09) / 0.09, 1.0, 1.25))     # half width of the eye opening
 B_EYE = 0.50 * A_EYE
 mid = (lm["eyeL"][0] + lm["eyeR"][0]) / 2; half_sep = (lm["eyeL"][0] - lm["eyeR"][0]) / 2
 lm["eyeL"] = [mid + half_sep, lm["eyeL"][1]]; lm["eyeR"] = [mid - half_sep, lm["eyeR"][1]]
@@ -283,14 +284,43 @@ lm["eyeAL"] = lm["eyeAR"] = A_EYE; lm["eyeBL"] = lm["eyeBR"] = B_EYE
 json.dump(lm, open(face_json, "w"), indent=1)
 paint_it = bool(lm.get("paint", True))
 if paint_it and "--head-part" not in argv:
-    # clear what the generated eye left around the new one (a larger or off-centre original would show as a second eye): inside a wide window round each eye every texel that is clearly
-    # darker or whiter than the skin next to it becomes skin; brows are above the window and stay
+    # clear what the generated eye left round the new one.  The fill is the skin of the texels around it, sampled locally (a normalised box average of skin-like texels outside the window,
+    # over a few centimetres), never a fixed colour, so no pale or dark halo is left whatever the lighting of that part of the face.
+    def local_fill(img, bad, ok, r):
+        k_ = np.ones(2 * r + 1)
+        def box(m):
+            c = np.cumsum(np.pad(m, ((r + 1, r), (0, 0))), axis=0); m = c[2 * r + 1:] - c[:-(2 * r + 1)]
+            c = np.cumsum(np.pad(m, ((0, 0), (r + 1, r))), axis=1); return c[:, 2 * r + 1:] - c[:, :-(2 * r + 1)]
+        wgt = ok.astype(np.float64)
+        den = box(wgt)
+        res = img.copy()
+        for ch in range(3):
+            num = box(img[:, :, ch] * wgt)
+            res[:, :, ch] = np.where(bad & (den > 1e-6), num / np.maximum(den, 1e-6), img[:, :, ch])
+        return res
     skin_ref = np.array(lm.get("skinCheek", [0.55, 0.38, 0.30]))
+    clear_win = np.zeros(px.shape[:2], bool)
     for side, name in ((1, "L"), (-1, "R")):
         cx, cz = lm["eye" + name]
-        win = have & (np.abs(P3[:, :, 0] - cx) < A_EYE * 1.9) & (np.abs(P3[:, :, 2] - cz) < B_EYE * 1.45)
-        diff = np.abs(out - skin_ref[None, None, :]).max(axis=2) * ((out.max(axis=2) - out.min(axis=2)) < 0.40)
-        wgt = np.nan_to_num(smooth((diff - 0.05) / 0.08) * win)
+        clear_win |= have & (np.abs(P3[:, :, 0] - cx) < A_EYE * 3.0) & (P3[:, :, 2] > cz - B_EYE * 3.4) & (P3[:, :, 2] < cz + B_EYE * 1.7)
+    ring = have & ~clear_win & (np.abs(np.abs(P3[:, :, 0] - (lm["eyeL"][0] + lm["eyeR"][0]) / 2) - (lm["eyeL"][0] - lm["eyeR"][0]) / 2) < A_EYE * 4.6) & (np.abs(P3[:, :, 2] - lm["eyeL"][1]) < B_EYE * 5.5)
+    chroma = out.max(axis=2) - out.min(axis=2)
+    skinlike = ring & (out[:, :, 0] > out[:, :, 1]) & (out[:, :, 1] > out[:, :, 2]) & (chroma > 0.07) & (out.mean(axis=2) > 0.15) & (out.mean(axis=2) < 0.75)
+    r_px = max(6, int(round(0.02 / max(float(np.nanmedian(tsize)), 1e-4))))
+    if skinlike.sum() > 200:
+        filled = local_fill(out, clear_win, skinlike, r_px)
+        # feather the window: a box-blurred mask, so the filled skin melts into the surround
+        al = clear_win.astype(np.float64)
+        for _ in range(3):
+            c = np.cumsum(np.pad(al, ((4, 3), (0, 0))), axis=0); al = (c[7:] - c[:-7]) / 7
+            c = np.cumsum(np.pad(al, ((0, 0), (4, 3))), axis=1); al = (c[:, 7:] - c[:, :-7]) / 7
+        al = np.clip(al * 1.6, 0, 1) * have
+        dev_ = np.abs(out - filled).max(axis=2)
+        al = al * np.nan_to_num(smooth((dev_ - 0.035) / 0.07))        # only what differs from the local skin is replaced; skin that is already skin stays as it was
+        out = out * (1 - al[..., None]) + filled * al[..., None]
+    else:
+        diff = np.abs(out - skin_ref[None, None, :]).max(axis=2) * (chroma < 0.40)
+        wgt = np.nan_to_num(smooth((diff - 0.05) / 0.08) * clear_win)
         out = out * (1 - wgt[..., None]) + skin_ref[None, None, :] * wgt[..., None]
 for side, name in ((1, "L"), (-1, "R")):
     if not paint_it:

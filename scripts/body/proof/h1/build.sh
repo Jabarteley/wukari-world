@@ -25,7 +25,8 @@ mkdir -p "$WORK" "$OUT"
 run() { perl -e 'alarm shift; exec @ARGV' 1500 "$BL" -b --disable-autoexec --python-exit-code 1 "$@"; }
 run -P "$HERE/pose_high.py" -- "$RIGGED" "$DETAIL" "$B/skeleton-$SKEL.json" "$WORK/$NAME-posed.blend" "$WORK/$NAME-joints.json" --hip-ratio $HIP | grep -E "WARP|POSED"
 for V in hero crowd; do
-  if [[ $V = hero ]]; then TRIS=13000; PX=1024; else TRIS=2800; PX=512; fi
+  [[ -n ${ONLY:-} && $V != $ONLY ]] && continue
+  if [[ $V = hero ]]; then TRIS=13000; PX=1024; else TRIS=${CROWDTRIS:-2800}; PX=512; fi
   REDUCE_HEADSCALE=${HEADSCALE:-2.1} REDUCE_QUALITY=${Q:-63} REDUCE_JOINTS="$WORK/$NAME-joints.json" run -P "$B/reduce_figure.py" -- "$WORK/$NAME-posed.blend" "$WORK/$NAME-$V.blend" "$WORK" "$NAME-$V" $TRIS $PX | grep REDUCED
   if [[ $V = hero ]]; then MODE=--detect; else MODE=--use; fi
   run -P "$HERE/face_eyes.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color.jpg" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-face.json" $MODE --iris $IRIS

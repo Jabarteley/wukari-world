@@ -5,7 +5,7 @@
 import * as THREE from 'three';
 
 export type RGB = [number, number, number];
-export interface Regions { skin: RGB; top: RGB | null; bottom: RGB | null; shoes: RGB | null }
+export interface Regions { skin2?: RGB | null; skin: RGB; top: RGB | null; bottom: RGB | null; shoes: RGB | null }
 export interface EyeSpec { eyeL: [number, number]; eyeR: [number, number]; a: number; b: number; skin: RGB; iris: RGB }
 export interface Targets { skin?: string; top?: string; bottom?: string; shoes?: string }
 
@@ -30,6 +30,7 @@ export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: 
     uRefSkin: { value: u(refs?.skin ?? ONE) }, uRefTop: { value: u(refs?.top ?? ONE) }, uRefBottom: { value: u(refs?.bottom ?? ONE) }, uRefShoes: { value: u(refs?.shoes ?? ONE) },
     uTSkin: { value: u(refs?.skin ?? ONE) }, uTTop: { value: u(refs?.top ?? ONE) }, uTBottom: { value: u(refs?.bottom ?? ONE) }, uTShoes: { value: u(refs?.shoes ?? ONE) },
     uNeck: { value: new THREE.Vector4(opts.neck?.cx ?? 0, opts.neck?.cz ?? 0, opts.neck?.rx ?? 1, opts.neck?.rz ?? 1) }, uNeckY: { value: opts.neck ? opts.neck.cutY : -9 },
+    uRefSkin2: { value: new THREE.Vector3(...(refs?.skin2 ?? refs?.skin ?? ONE)) }, uTSkin2: { value: new THREE.Vector3(...(refs?.skin2 ?? refs?.skin ?? ONE)) }, uSkin2On: { value: refs?.skin2 ? 1 : 0 },
     uPrint: { value: null }, uPrintOn: { value: 0 }, uPrintScale: { value: 3.2 }, uPrintRegion: { value: 2 }, uOn: { value: new THREE.Vector4(0, 0, 0, 0) },
     uEyes: { value: null }, uEyeBox: { value: new THREE.Vector4() }, uEyeMix: { value: 0 },
   };
@@ -89,7 +90,7 @@ export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: 
     shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vRest; varying vec3 vRestN;').replace('#include <begin_vertex>', '#include <begin_vertex>\nvRest = position; vRestN = normal;');
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
 varying vec3 vRest; varying vec3 vRestN;
-uniform vec4 uEyeBox; uniform sampler2D uEyes, uMask; uniform float uEyeMix, uUseMask, uNeckY, uPrintOn, uPrintScale, uPrintRegion; uniform vec4 uOn; uniform sampler2D uPrint; uniform vec4 uNeck;
+uniform vec4 uEyeBox; uniform sampler2D uEyes, uMask; uniform vec3 uRefSkin2, uTSkin2; uniform float uSkin2On; uniform float uEyeMix, uUseMask, uNeckY, uPrintOn, uPrintScale, uPrintRegion; uniform vec4 uOn; uniform sampler2D uPrint; uniform vec4 uNeck;
 uniform vec3 uRefSkin, uRefTop, uRefBottom, uRefShoes, uTSkin, uTTop, uTBottom, uTShoes;
 vec3 recolour(vec3 g, vec3 ref, vec3 target) { vec3 r = g / max(ref, vec3(0.05)); r = r / (1.0 + max(r - vec3(1.25), vec3(0.0)) * 0.6); r = vec3(1.0) + (r - vec3(1.0)) * 0.62; return clamp(target * r, 0.0, 1.0); }`).replace('#include <map_fragment>', `
 vec4 sampledDiffuseColor = texture2D( map, vMapUv );
@@ -101,7 +102,12 @@ if (uUseMask > 0.5) {
   float gm = max(max(g0.r, g0.g), g0.b), sat = (gm - min(min(g0.r, g0.g), g0.b)) / max(gm, 0.02);
   float skinW = uOn.x * m.r * smoothstep(0.68, 0.88, lr) * (1.0 - (1.0 - smoothstep(0.07, 0.16, sat)) * smoothstep(0.95, 1.1, lr));   // not the brows or irises (dark) and not the whites of the eyes (bright and grey)   // brows, lashes, irises and lips keep their own colour
   g = mix(g, recolour(g0, uRefSkin, uTSkin), skinW);
-  g = mix(g, recolour(g0, uRefTop, uTTop), m.g * uOn.y);
+  if (uSkin2On > 0.5) {
+    float lr2 = dot(g0, vec3(0.3, 0.59, 0.11)) / max(dot(uRefSkin2, vec3(0.3, 0.59, 0.11)), 0.05);
+    float gm2 = max(max(g0.r, g0.g), g0.b), sat2 = (gm2 - min(min(g0.r, g0.g), g0.b)) / max(gm2, 0.02);
+    float w2 = uOn.x * m.g * smoothstep(0.55, 0.8, lr2) * (1.0 - (1.0 - smoothstep(0.07, 0.16, sat2)) * smoothstep(1.0, 1.15, lr2));
+    g = mix(g, recolour(g0, uRefSkin2, uTSkin2), w2);
+  } else g = mix(g, recolour(g0, uRefTop, uTTop), m.g * uOn.y);
   g = mix(g, recolour(g0, uRefBottom, uTBottom), m.b * uOn.z);
   g = mix(g, recolour(g0, uRefShoes, uTShoes), m.a * uOn.w);
   if (uPrintOn > 0.5) {      // a real printed cloth: a tiled swatch through the cloth mask, the baked shading kept as a multiply so folds remain
@@ -128,6 +134,7 @@ diffuseColor *= sampledDiffuseColor;`);
       const set = (name: string, c: string | undefined, ref: RGB | null | undefined): void => { (uniforms[name]!.value as THREE.Vector3).set(...(c ? hex(c) : ref ?? ONE)); };
       set('uTSkin', t.skin, refs?.skin); set('uTTop', t.top, refs?.top); set('uTBottom', t.bottom, refs?.bottom); set('uTShoes', t.shoes, refs?.shoes);
       (uniforms['uOn']!.value as THREE.Vector4).set(t.skin ? 1 : 0, t.top ? 1 : 0, t.bottom ? 1 : 0, t.shoes ? 1 : 0);
+      if (t.skin && refs?.skin2) { const tg = hex(t.skin); (uniforms['uTSkin2']!.value as THREE.Vector3).set(Math.min(1, tg[0] * refs.skin2[0] / refs.skin[0]), Math.min(1, tg[1] * refs.skin2[1] / refs.skin[1]), Math.min(1, tg[2] * refs.skin2[2] / refs.skin[2])); } else if (refs?.skin2) (uniforms['uTSkin2']!.value as THREE.Vector3).set(...refs.skin2);
       skinNow = t.skin ? hex(t.skin) : refs?.skin ?? skinNow; repaint();
     },
     setMap(map) { material.map = map; material.needsUpdate = true; },

@@ -2,7 +2,7 @@
 import VoiceNote from './VoiceNote.vue'
 // One message: its name and time, the quoted message it answers, its words with mention chips (or large emoji), a gift's money
 // line, reactions as counted chips, and the actions (Reply, react) behind a small button, a right-click or a long press.
-import { computed, nextTick, onBeforeUnmount, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import EmojiPicker from './EmojiPicker.vue'
 import PictureView from './PictureView.vue'
@@ -13,11 +13,14 @@ import type { RequestOp } from './moneyRequestModel.ts'
 import type { Message } from '../../../types/social.ts'
 
 const props = defineProps<{ item: Message; meId: string; group: boolean; head: boolean; tail: boolean; time: string; canReact: boolean; canActions: boolean; canPin?: boolean; pinned?: boolean; pinPending?: boolean; pinBlocked?: boolean; pinOffline?: boolean; preview?: boolean; voiceEnabled?: boolean; now?: number; partner?: string; requestBusy?: boolean; requestOffline?: boolean }>()
-const emit = defineEmits<{ reply: [item: Message]; react: [item: Message, emoji: string | null]; player: [id: string]; jump: [seq: number]; reportVoice: [item: Message]; picture: [item: Message]; edit: [item: Message]; remove: [item: Message]; forward: [item: Message]; pin: [item: Message, pinned: boolean]; request: [id: string, op: RequestOp] }>()
+const emit = defineEmits<{ reply: [item: Message]; react: [item: Message, emoji: string | null]; player: [id: string]; jump: [seq: number]; reportVoice: [item: Message]; picture: [item: Message]; edit: [item: Message]; remove: [item: Message]; forward: [item: Message]; pin: [item: Message, pinned: boolean]; request: [id: string, op: RequestOp]; menu: [open: boolean] }>()
 const mine = computed(() => props.item.from?.id === props.meId)
 const parts = computed(() => pieces(props.item.body, props.item.mentions))
 const big = computed(() => (props.item.mentions?.length || props.item.replyTo || props.item.image || props.item.voice ? 0 : emojiOnly(props.item.body)))
 const open = ref(false)
+// The thread is told while the menu is up so it can make room (a short screen has no space for the menu beside other cards).
+watch(open, (now) => emit('menu', now))
+onBeforeUnmount(() => { if (open.value) emit('menu', false) })
 const more = ref(false)
 const moreButton = ref<HTMLButtonElement | null>(null)
 let timer: ReturnType<typeof setTimeout> | null = null

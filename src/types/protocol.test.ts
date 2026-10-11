@@ -314,6 +314,7 @@ test('core, social, civic and support answers carry exactly the typed keys', asy
   assert.deepEqual(await post('/api/growth/push/unsubscribe', { cityId: 'lagos' }, efe.cookie), { ok: true, code: 'unsubscribed', serverTime: f.now() })
   assert.deepEqual(await post('/api/growth/tables/claim', { cityId: 'lagos' }, efe.cookie), { ok: true, code: 'claimed', results: [], ratings: {}, serverTime: f.now() })
   assert.deepEqual(await post('/api/growth/client', { signals: ['save-data', 'no-such-signal'] }), { ok: true, counted: 1, serverTime: f.now() })
+  assert.deepEqual(await post('/api/growth/source', { event: 'landed', source: 'tiktok', medium: 'paid', campaign: 'test1' }), { ok: true, counted: true, serverTime: f.now() })
   sameKeys(await get('/api/telemetry/config'), ['enabled', 'serverTime'], 'GET /api/telemetry/config (telemetry is off)')
 
   // ---- table games (socket) ----

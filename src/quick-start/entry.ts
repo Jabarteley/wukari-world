@@ -17,6 +17,7 @@
  *   allworld-ref               { code, at } — the share code a link carried, until it was attached as a referral (the
  *                              growth client reads the same key; a code is dropped after a week)
  *   joinallworld-quick-nudge   { [life]: { count, reasons, day, until } } — how often settling in was offered, and until when it stays quiet
+ *   aw-src                     (session storage, this visit only) the four raw utm_ words of the landing address; src/app/features/growth/attribution.ts
  *   joinallworld-quick-landed  1 once the landing screen was shown, so 'landed' is reported once per device
  * None of it is a credential: the session is the cookie the server sets, exactly as before.
  *
@@ -112,6 +113,8 @@ export function captureLink(): CapturedLink {
   if (captured) return captured;
   const found: CapturedLink = captured = { join: null, ref: null, table: null, go: null, campus: false };
   if (typeof location === 'undefined') return found;
+  // Where this visit came from: the four utm_ words, raw, for this browser session only (cleaned and counted by the growth chunk).
+  try { if (!sessionStorage.getItem('aw-src')) { const q = new URLSearchParams(location.search); sessionStorage.setItem('aw-src', JSON.stringify(['source', 'medium', 'campaign', 'content'].map((k) => (q.get(`utm_${k}`) ?? '').slice(0, 60)))) } } catch { /* no session storage: the visit counts as direct */ }
   found.join = joinIdFrom(location.pathname, location.search);
   if (found.join) write(KEYS.join, found.join);
   const link = linkParts(location.pathname, location.search);

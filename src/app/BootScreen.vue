@@ -90,6 +90,7 @@ async function clearAndReload(): Promise<void> {
       <img class="boot-world" src="/icons/world-loader.webp" width="96" height="96" alt="" :class="{ paused: failed }">
       <h1 id="boot-title">Allworld</h1>
       <p class="boot-lead">A whole world to live in.</p>
+      <p class="boot-sub">Real cities across Africa. Free, in your browser.</p>
       <div v-if="failed" role="alert">
         <p v-if="updateAvailable">Allworld has been updated. Reload to continue.</p>
         <p v-else>Allworld couldn't finish loading. Check your connection, then try again.</p>
@@ -115,7 +116,8 @@ async function clearAndReload(): Promise<void> {
 .boot-content { position: relative; z-index: 1; width: min(100%, 25rem); margin: auto; text-align: center; }
 h1 { margin: 0; color: var(--c-green-dark); font-size: clamp(2rem, 8vw, 3rem); line-height: 1.15; letter-spacing: -.03em; }
 .boot-world { border-radius: 26px; margin-bottom: 20px; }
-.boot-lead { margin: 12px 0 32px; font-size: 20px; }
+.boot-lead { margin: 12px 0 6px; font-size: 20px; }
+.boot-sub { margin: 0 0 32px; font-size: 16px; color: var(--c-muted); text-wrap: balance; }
 .boot-status { color: var(--c-muted); }
 button { min-height: var(--tap); margin-top: 12px; padding: 10px 22px; border: 0; border-radius: var(--r-pill); background: var(--c-green-dark); color: var(--c-surface-solid); font: inherit; font-weight: 700; cursor: pointer; }
 button:focus-visible { outline: var(--focus); outline-offset: 4px; }

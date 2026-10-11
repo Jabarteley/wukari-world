@@ -31,6 +31,8 @@
  *   POST /api/growth/oro/state      { cityId }            the daily word puzzle: today's number, the caller's guesses with their marks, stats; the answer only once finished
  *   POST /api/growth/oro/guess      { cityId, no, n, word, hard? }   one guess (see server/growth/oro.ts); finishing writes the result once
  *   POST /api/growth/client         { signals: [name] }   a browser says something about itself from a fixed list (metrics only)
+ *   POST /api/growth/source         { event, source?, medium?, campaign?, content? }   one step of a visit (landed, play, game, stayed) counted under the
+ *                                                         cleaned utm_ words, as an aggregate per day (server/growth/metrics.ts); nothing about the sender is stored
  *   GET  /s/<code>                                        the link-preview page (HTML, no script; see server/growth/share.ts)
  *
  * WHAT PAYS. Nothing here credits a life except through ctx.act with a server-only action
@@ -42,12 +44,13 @@ import { lagosTime } from '../../src/game/clock.ts';
 import { upcomingEvents } from '../../src/game/calendar.ts';
 import { cityRules } from '../../src/game/cities/index.ts';
 import { composeDigest } from '../../src/game/digest.ts';
+import { SOURCE_EVENTS } from '../../src/game/attribution.ts';
 import { isShareCode } from '../../src/game/share-model.ts';
 import { growthOf, playerOf, sweep, LIMITS } from '../growth/data.ts';
 import { createShare, findShare, sharePageHtml } from '../growth/share.ts';
 import { bonusConfig, claimedOf, publicOffer } from '../bonus/service.ts';
 import { referralService } from '../growth/referral.ts';
-import { CLIENT_SIGNALS, count, prune, touch } from '../growth/metrics.ts';
+import { CLIENT_SIGNALS, count, countSource, prune, touch } from '../growth/metrics.ts';
 import { outreachService } from '../growth/outreach.ts';
 import { tablesService } from '../growth/tables.ts';
 import { oroService } from '../growth/oro.ts';
@@ -253,6 +256,15 @@ export default function growthRoutes(ctx: RouteContext): Record<RouteKey, RouteH
       // never accept a client-supplied city merely to add a dimension.
       if (signals.length) await ctx.store.transact((db) => { const g = growthOf(ctx, db); for (const name of signals) count(g, ctx.now(), `client.${name}`); }, { durable: false });
       return { body: { ok: true, counted: signals.length } };
+    },
+
+    // Where visits came from: one aggregate count per day and campaign. No session, no address and no browser detail is kept.
+    'POST /api/growth/source': async (request) => {
+      const body = await request.json();
+      if (!ctx.allow(`growth:source:${request.ip}`, 30)) throw ctx.fail(429, 'rate_limited');
+      const event = SOURCE_EVENTS.find((name) => name === body.event);
+      if (event) await ctx.store.transact((db) => { countSource(growthOf(ctx, db), ctx.now(), body, event); }, { durable: false });
+      return { body: { ok: true, counted: event !== undefined } };
     },
 
   };

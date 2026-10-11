@@ -691,6 +691,7 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/growth/push/test',
   'POST /api/growth/push/unsubscribe',
   'POST /api/growth/client',
+  'POST /api/growth/source',
   'GET /api/mod/growth/outreach',
   'POST /api/mod/growth/outreach/switch',
   'POST /api/mod/growth/outreach/run',

@@ -32,14 +32,18 @@ export const boxOf = (asset: string): Box => BOXES[asset] ?? [-1, 1, -1, 1, 1];
 
 /** Models that have one file for the whole set (their own texture, no palette) or that are the same for every palette. */
 const NO_PALETTE = new Set(['palm']);
+/** Only buildings (and the kiosk and stall) come in all three palettes; every prop is cream. */
+const PALETTED = new Set(['bungalow', 'house2', 'flats', 'shops', 'shoprow', 'church', 'mosque', 'school', 'clinic', 'filling', 'bank', 'unfinished', 'kiosk', 'stall']);
 const COLOURED = new Set(['kiosk', 'stall']);
 const COLOUR_OF: Record<Palette, string> = { cream: 'teal', mint: 'red', sky: 'blue' };
 /** The file a placement asks for. Exterior details have no palette and no far version. */
 export function fileKey(asset: string, palette: Palette, level: ModelLevel = 'near'): string {
-  const base = asset.startsWith('detail-') || NO_PALETTE.has(asset) ? asset : `${asset}-${COLOURED.has(asset) ? COLOUR_OF[palette] : palette}`;
+  // The palm's full model is 1,500 triangles: the street only ever draws its 370-triangle version.
+  if (asset === 'palm') return 'palm-far';
+  const base = asset.startsWith('detail-') || NO_PALETTE.has(asset) ? asset : `${asset}-${!PALETTED.has(asset) ? 'cream' : COLOURED.has(asset) ? COLOUR_OF[palette] : palette}`;
   return level === 'far' && !asset.startsWith('detail-') ? `${base}-far` : base;
 }
-export const hasFar = (asset: string): boolean => !asset.startsWith('detail-');
+export const hasFar = (asset: string): boolean => !asset.startsWith('detail-') && asset !== 'palm';
 
 const OLDER = /^(bungalow|house2|flats)-/;
 const PALETTE_OF: Record<string, Palette> = { cream: 'cream', teal: 'cream', mint: 'mint', red: 'mint', sky: 'sky', blue: 'sky' };
@@ -60,16 +64,18 @@ export function wallLook(wall: number): { palette: Palette; tint?: string } {
   switch (wall) {
     case 3: return { palette: 'mint' };
     case 4: return { palette: 'sky' };
-    case 5: return { palette: 'cream', tint: '#ffb9a6' };
-    case 6: return { palette: 'sky', tint: '#e6d2ff' };
-    case 7: return { palette: 'cream', tint: '#ffeb70' };
+    case 5: return { palette: 'cream', tint: '#ffcdbf' };
+    case 6: return { palette: 'sky', tint: '#efe3ff' };
+    case 7: return { palette: 'cream', tint: '#fff0a6' };
     default: return { palette: 'cream' };
   }
 }
 
 /** The triangles of the closed gate's leaf (the "rail" tile of the street atlas): left out, the gate stands open. */
 export const RAIL_TILE = { u0: 768 / 1024, v0: 256 / 1024, u1: 896 / 1024, v1: 384 / 1024 } as const;
-export const isGateLeaf = (key: string, u: number, v: number): boolean => key.startsWith('fencegate-') && u >= RAIL_TILE.u0 && u < RAIL_TILE.u1 && v >= RAIL_TILE.v0 && v < RAIL_TILE.v1;
+export const METAL_TILE = { u0: 896 / 1024, v0: 256 / 1024, u1: 960 / 1024, v1: 320 / 1024 } as const;
+const inTile = (t: { u0: number; v0: number; u1: number; v1: number }, u: number, v: number): boolean => u >= t.u0 && u < t.u1 && v >= t.v0 && v < t.v1;
+export const isGateLeaf = (key: string, u: number, v: number): boolean => key.startsWith('fencegate-') && (inTile(RAIL_TILE, u, v) || inTile(METAL_TILE, u, v));
 /** The opening of an open gate, in the model's own x. */
 export const GATE_OPENING = 1.3;
 

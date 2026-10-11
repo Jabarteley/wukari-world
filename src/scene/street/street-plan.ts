@@ -138,17 +138,15 @@ function planHouse(plan: StreetPlan, house: PlanHouse, seed: string): void {
   void minX; void minZ; void maxX;
 
   // The gate in the front fence (open), the number of the plot on its pier, hedges and a bin by it.
-  plan.pieces.push(piece(`gate:${key}`, 'fencegate', house.x, Z.fence, { palette: wall.palette, tint: wall.tint, priority: 8, role: 'gate' }));
+  plan.pieces.push(piece(`gate:${key}`, 'fencegate', house.x, Z.fence, { priority: 8, role: 'gate' }));
   if (label) plan.pieces.push(piece(`number:${key}`, 'detail-number-sign', house.x + 2.9, Z.fence + 0.33, { y: 1.4, labels: { sign_number: label }, priority: 7, detail: true, role: 'number' }));
-  if (house.tier !== 'starter') for (const side of [-1, 1]) plan.pieces.push(piece(`hedge:${key}:${side}`, 'hedge', house.x + side * 4.3, Z.fence - 1.1, { palette: wall.palette, scale: 1.1, priority: 3, role: 'hedge' }));
-  plan.pieces.push(piece(`bin:${key}`, 'bin', house.x - 3.9, Z.fence + 0.9, { priority: 2, role: 'bin', ry: 0 }));
+  if (house.tier !== 'starter') for (const side of [-1, 1]) plan.pieces.push(piece(`hedge:${key}:${side}`, 'hedge', house.x + side * 4.3, Z.fence - 1.1, { scale: 1.1, priority: 3, role: 'hedge' }));
 
   // Exterior detail by rule: more on richer tiers. [piece, x, y, z, turn, level] in the building's own frame.
   const wallZ = look.asset === 'bungalow' ? 2.86 : 2.95;
   const rules: [string, number, number, number, number, number][] = look.asset === 'bungalow'
-    ? [['security-light', -3.0, 2.2, wallZ, 0, 1], ['ac-external', 5.0, 2.2, -1, Math.PI / 2, 2], ['dish', 2, 5.5, -1, 0, 2], ['bars-window', -3.3, 1.2, wallZ, 0, 2], ['bars-window', 3.3, 1.2, wallZ, 0, 2]]
-    : [['security-light', -2.0, 2.6, wallZ, 0, 1], ['ac-external', -4.8, 4.8, 0, -Math.PI / 2, 2], ['dish', -2, 9.3, -1, 0, 2], ['bars-window', -3.1, 1.0, wallZ, 0, 2], ['bars-window', 3.1, 1.0, wallZ, 0, 2],
-      ['bars-window', -3.1, 4.4, wallZ, 0, 3], ['bars-window', 3.1, 4.4, wallZ, 0, 3], ['awning', 3.1, 3.0, wallZ, 0, 3]];
+    ? [['security-light', -3.0, 2.2, wallZ, 0, 1], ['ac-external', 5.0, 2.2, -1, Math.PI / 2, 2], ['dish', 2, 5.5, -1, 0, 2], ['bars-window', -3.3, 1.2, wallZ, 0, 3], ['bars-window', 3.3, 1.2, wallZ, 0, 3]]
+    : [['security-light', -2.0, 2.6, wallZ, 0, 1], ['ac-external', -4.8, 4.8, 0, -Math.PI / 2, 2], ['dish', -2, 9.3, -1, 0, 2], ['bars-window', -3.1, 1.0, wallZ, 0, 3], ['bars-window', 3.1, 1.0, wallZ, 0, 3], ['awning', 3.1, 3.0, wallZ, 0, 3]];
   rules.forEach(([name, x, y, z, ry, level], i) => {
     if (level <= look.detail) plan.pieces.push(piece(`d:${key}:${i}`, `detail-${name}`, house.x + x * s, cz + z * s, { y: y * s, ry, scale: s, priority: 0, detail: true, role: 'detail' }));
   });
@@ -229,7 +227,7 @@ export function planStreet({ houses, seed, mix }: PlanInput): StreetPlan {
       plan.scenery.push({ plot, asset, x });
       void minZ;
     } else {
-      const trees = roll < 62 ? ['shadetree', 'palm'] : roll < 82 ? ['pawpaw', 'plantain'] : [];
+      const trees = roll < 62 ? ['shadetree', 'pawpaw'] : roll < 82 ? ['pawpaw', 'plantain'] : [];
       trees.forEach((asset, i) => {
         const tx = x + (i ? 3.2 : -2.6), tz = Z.front - 3 - (hash(`${seed}:t:${plot}:${i}`) % 5);
         plan.pieces.push(piece(`tree:${seed}:${plot}:${i}`, asset, tx, tz, { scale: asset === 'shadetree' ? 0.85 : 1, priority: 4, role: 'tree', mode: asset === 'palm' ? 'instance' : 'merge' }));
@@ -244,8 +242,8 @@ export function planStreet({ houses, seed, mix }: PlanInput): StreetPlan {
   }
 
   // The road: gutter slabs along the kerb, lamps with their lights, trees and bins on the pavement.
-  const slab = 3.56 * 0.995;
-  for (let x = -ROW_HALF_WIDTH + slab / 2; x < ROW_HALF_WIDTH; x += slab) plan.pieces.push(piece(`gutter:${Math.round(x)}`, 'gutter', x, Z.road0 + 0.35, { priority: 1, role: 'gutter' }));
+  // Gutter cover slabs along the kerb, one in front of every plot (the open channel is drawn by the scene).
+  for (let i = 0; i < ESTATE.plots; i++) plan.pieces.push(piece(`gutter:${i}`, 'gutter', rowX(i), Z.road0 + 0.35, { priority: 1, role: 'gutter' }));
   for (let i = 0; i < Math.ceil(ESTATE.plots / 2); i++) {
     const x = rowX(i * 2) + 5;
     plan.pieces.push(piece(`lamp:${i}`, 'lamp', x, Z.kerb - 0.45, { ry: -Math.PI / 2, priority: 7, role: 'lamp', mode: 'instance' }));
@@ -281,14 +279,14 @@ export function planStreet({ houses, seed, mix }: PlanInput): StreetPlan {
   far('far:flats', 'flats', -6, Z.farFront + 0.2, { scale: fit('flats', 14, 8), palette: 'sky' });
   far('far:sign', 'billboard', 34, Z.farFront + 0.4, { scale: 0.8, labels: { sign_1: 'ALLWORLD' }, role: 'billboard' });
   for (const x of [-70, -30, 12, 44]) plan.pieces.push(piece(`far:tree:${x}`, 'shadetree', x, 16.5, { scale: 0.9, priority: 3, role: 'tree' }));
-  for (const x of [-48, -14, 24, 58]) plan.pieces.push(piece(`far:palm:${x}`, 'palm', x, 13.3, { priority: 3, role: 'tree', mode: 'instance' }));
-  for (const x of [-48, -14, 24, 58]) plan.blocks.push(rectOf('palm', x, 13.3, 0, 1));
+  for (const x of [-48, 24]) plan.pieces.push(piece(`far:palm:${x}`, 'palm', x, 13.3, { priority: 3, role: 'tree', mode: 'instance' }));
+  for (const x of [-48, 24]) plan.blocks.push(rectOf('palm', x, 13.3, 0, 1));
 
   // Palms along the near pavement between the lamps.
-  for (let i = 0; i < ESTATE.plots; i += 3) {
-    const x = rowX(i) - 4.6;
-    plan.pieces.push(piece(`palm:${i}`, 'palm', x, Z.kerb - 0.9, { priority: 3, role: 'tree', mode: 'instance', scale: 0.7 }));
-    plan.blocks.push(rectOf('palm', x, Z.kerb - 0.9, 0, 0.7));
+  for (let i = 0; i < ESTATE.plots; i += 2) {
+    const x = rowX(i) - 4.6, asset = i % 4 === 0 ? 'pawpaw' : 'plantain';
+    plan.pieces.push(piece(`tree:${i}`, asset, x, Z.kerb - 0.9, { priority: 3, role: 'tree', scale: 0.9 }));
+    plan.blocks.push(rectOf(asset, x, Z.kerb - 0.9, 0, 0.9));
   }
   return plan;
 }

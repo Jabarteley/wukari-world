@@ -22,6 +22,8 @@ export interface GltfSourceOptions {
   bareAtlas?: string;
   /** Leave out the triangles whose texture centre (in atlas UV) this says yes to: an open gate is the closed one without its leaf. */
   omit?(key: string, u: number, v: number): boolean;
+  /** Reads a file into a glTF scene instead of fetching its address (tests read from disk). */
+  open?(key: string): Promise<{ scene: THREE.Group }>;
 }
 
 export function createGltfSource(kit: Kit, options: GltfSourceOptions): ModelSource {
@@ -67,8 +69,8 @@ export function createGltfSource(kit: Kit, options: GltfSourceOptions): ModelSou
     dispose() { disposed = true; for (const texture of textures.values()) texture.dispose(); textures.clear(); },
     async load(key) {
       const url = options.urls[key];
-      if (!url) throw new Error(`Unknown model ${key}`);
-      const gltf = await (await readLoader()).loadAsync(url);
+      if (!url && !options.open) throw new Error(`Unknown model ${key}`);
+      const gltf = options.open ? await options.open(key) : await (await readLoader()).loadAsync(url!);
       if (disposed) throw new Error('Source disposed');
       const root = gltf.scene;
       root.updateMatrixWorld(true);

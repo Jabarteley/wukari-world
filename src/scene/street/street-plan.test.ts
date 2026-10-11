@@ -59,7 +59,67 @@ test('the same street plans the same, and a vacant plot is given scenery from th
 });
 
 test('palettes and file names', () => {
-  assert.equal(fileKey('bungalow', 'mint'), 'bungalow-mint'); assert.equal(fileKey('kiosk', 'cream', 'far'), 'kiosk-teal-far'); assert.equal(fileKey('detail-dish', 'sky', 'far'), 'detail-dish'); assert.equal(fileKey('palm', 'sky'), 'palm');
+  assert.equal(fileKey('bungalow', 'mint'), 'bungalow-mint'); assert.equal(fileKey('kiosk', 'cream', 'far'), 'kiosk-teal-far'); assert.equal(fileKey('detail-dish', 'sky', 'far'), 'detail-dish'); assert.equal(fileKey('palm', 'sky'), 'palm-far');
   assert.equal(atlasOf('bungalow-cream'), 'older-cream'); assert.equal(atlasOf('flats-sky-far'), 'older-sky-far'); assert.equal(atlasOf('kiosk-red'), 'street-mint'); assert.equal(atlasOf('palm-far'), 'palm-far');
   assert.equal(wallLook(3).palette, 'mint'); assert.equal(wallLook(0).tint, undefined); assert.ok(wallLook(5).tint);
+});
+
+// ---- the files a plan asks for exist, and a full street stays inside the budget ----
+import { existsSync, readFileSync } from 'node:fs';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
+import { createKit } from '../kit.ts';
+import { createGltfSource } from '../models/gltf-source.ts';
+import { createModelCache, createModelLayer } from '../models/scene-models.ts';
+import { hasFar, isGateLeaf } from './street-kit.ts';
+
+const FILES = new URL('./assets/', import.meta.url);
+/** The file read as a glTF scene without its picture (node has no image decoder): geometry, nodes and transforms are the real ones. */
+async function open(key: string): Promise<{ scene: THREE.Group }> {
+  const bytes = readFileSync(new URL(`${key}.glb`, FILES)), length = bytes.readUInt32LE(12);
+  const json = JSON.parse(bytes.subarray(20, 20 + length).toString()) as { images?: unknown; textures?: unknown; samplers?: unknown; extensionsUsed?: string[]; materials?: { pbrMetallicRoughness?: { baseColorTexture?: unknown } }[] };
+  delete json.images; delete json.textures; delete json.samplers;
+  for (const material of json.materials ?? []) delete material.pbrMetallicRoughness?.baseColorTexture;
+  json.extensionsUsed = (json.extensionsUsed ?? []).filter((name) => name !== 'KHR_texture_transform');
+  const text = Buffer.from(JSON.stringify(json)); const padded = Buffer.concat([text, Buffer.alloc((4 - text.length % 4) % 4, 0x20)]);
+  const head = Buffer.alloc(20); head.writeUInt32LE(0x46546c67, 0); head.writeUInt32LE(2, 4); head.writeUInt32LE(20 + padded.length + bytes.length - 20 - length, 8); head.writeUInt32LE(padded.length, 12); head.writeUInt32LE(0x4e4f534a, 16);
+  const glb = Buffer.concat([head, padded, bytes.subarray(20 + length)]);
+  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  const picture = new THREE.DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1);
+  return new Promise((resolve, reject) => loader.parse(glb.buffer.slice(glb.byteOffset, glb.byteOffset + glb.byteLength), '', (gltf) => {
+    // Pieces that have a picture of their own get a stand-in picture, so atlases and draw calls count as they do in the game.
+    if (!key.startsWith('detail-')) gltf.scene.traverse((object) => { const mesh = object as THREE.Mesh; if (mesh.isMesh) (mesh.material as THREE.MeshStandardMaterial).map = picture; });
+    resolve({ scene: gltf.scene });
+  }, reject));
+}
+
+const placementsOf = (plan: { pieces: unknown[] }): number => plan.pieces.length;
+
+test('every file a street can ask for is shipped, and a full street built from the real files stays inside the model budget', async () => {
+  const tiers: PlanHouse['tier'][] = ['villa', 'starter', 'duplex', 'bq', 'bungalow', 'duplex', 'starter', 'duplex', 'villa', 'bq', 'bungalow', 'starter', 'bq', 'starter'];
+  const kit = createKit();
+  const cache = createModelCache(createGltfSource(kit, { urls: {}, atlasOf, open, omit: isGateLeaf }));
+  const budget = process.env.G2_NO_BUDGET ? { triangles: 1e9, drawCalls: 1e9 } : { triangles: 11500, drawCalls: 20 };
+  try {
+    for (const seed of ['a', 'b', 'c']) {
+      const houses = tiers.map((tier, plot) => house(plot, tier, { wall: (plot + seed.charCodeAt(0)) % 8, yard: (plot * 3) % 8, own: plot === 5 }));
+      const full = sceneryMix([{ kind: 'worship', variant: 'church' }, { kind: 'worship', variant: 'mosque' }, { kind: 'hospital' }, { kind: 'market' }, { kind: 'campus' }, { kind: 'office' }, { kind: 'transport' }], true);
+      const plan = planStreet({ houses: houses.filter((_, i) => seed === 'a' || i % 3 !== 0), seed, mix: full });
+      const layer = createModelLayer(kit, cache, { budget, nearRadius: 30, focus: { x: rowX(5), z: 8 } });
+      for (const item of plan.pieces) {
+        assert.ok(existsSync(new URL(`${fileKey(item.asset, item.palette)}.glb`, FILES)), `${fileKey(item.asset, item.palette)} is shipped`);
+        if (hasFar(item.asset)) assert.ok(existsSync(new URL(`${fileKey(item.asset, item.palette, 'far')}.glb`, FILES)), `${fileKey(item.asset, item.palette, 'far')} is shipped`);
+        layer.add({ near: fileKey(item.asset, item.palette), far: hasFar(item.asset) ? fileKey(item.asset, item.palette, 'far') : undefined, x: item.x, y: item.y ?? 0, z: item.z, ry: item.ry, scale: item.scale, tint: item.tint, mode: item.mode ?? 'merge', labels: item.labels, priority: item.priority, ...(item.detail ? { detail: true } : {}) });
+      }
+      layer.build();
+      await layer.load(() => undefined);
+      const stats = layer.stats();
+      assert.ok(stats.triangles <= budget.triangles && stats.drawCalls <= budget.drawCalls, `street ${seed}: ${stats.triangles} triangles, ${stats.drawCalls} draw calls`);
+      assert.ok(stats.dropped <= placementsOf(plan) * 0.2, `street ${seed} drops only a few details: ${JSON.stringify(stats)}`);
+      assert.equal(stats.standIns, 0, 'every file loaded');
+      console.log(`street ${seed}: ${JSON.stringify(stats)}`);
+      layer.dispose();
+    }
+  } finally { kit.dispose(); }
 });

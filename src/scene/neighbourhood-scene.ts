@@ -30,7 +30,7 @@ const HOME_DOOR = { x: 0, z: -6.25, ry: Math.PI, direction: 'inside' as const };
 const ENTRANCE = { x: 0, y: 0, z: -3.25, ry: 0 };
 const CAMERA: SceneCamera = { landscape: [15, 12, 17], portrait: [9, 10, 15], start: 1.25 };
 /** What the street's model meshes may cost on top of the road and the walls (a venue scene is 17,000 triangles and 60 draw calls with its crowd). */
-const MODEL_BUDGET = { triangles: 10000, drawCalls: 20 };
+const MODEL_BUDGET = { triangles: 11500, drawCalls: 20 };
 const FENCE_COLOUR = ['#d9c9a6', '#3f8a57', '#f6f2e6', '#c9c2b0'];
 /** How lit the windows are by the time of day. */
 const WINDOW_GLOW: Record<TimeOfDay, number> = { day: 0, dusk: 0.55, night: 1 };
@@ -129,6 +129,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     slab(-ROW_HALF_WIDTH, Z.farKerb, ROW_HALF_WIDTH, Z.pavement1, 0.05, 0.14, '#d3cab6');
     const mid = (Z.road0 + Z.road1) / 2;
     for (let x = -ROW_HALF_WIDTH + 3; x <= ROW_HALF_WIDTH - 3; x += 6) slab(x - 1.4, mid - 0.07, x + 1.4, mid + 0.07, 0.012, 0.012, '#d9d4b8');
+    slab(-ROW_HALF_WIDTH, Z.road0 + 0.05, ROW_HALF_WIDTH, Z.road0 + 0.75, 0.002, 0.004, '#4a4d4b');
     slab(-ROW_HALF_WIDTH, Z.road0 + 0.55, ROW_HALF_WIDTH, Z.road0 + 0.63, 0.012, 0.012, '#d9d4b8');
     slab(-ROW_HALF_WIDTH, Z.road1 - 0.63, ROW_HALF_WIDTH, Z.road1 - 0.55, 0.012, 0.012, '#d9d4b8');
     for (let z = Z.road0 + 1; z < Z.road1 - 0.8; z += 1.1) slab(76.6, z, 79.4, z + 0.55, 0.012, 0.012, '#e9e6d6');
@@ -147,7 +148,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     sceneryObjects = [...built.meshes, ...built.lights];
     sceneryObjects.forEach(object => scenery.add(object));
 
-    layer = createModelLayer(kit, models, { budget: MODEL_BUDGET, nearRadius: 52, focus: { x: focusX, z: focusZ }, decorate });
+    layer = createModelLayer(kit, models, { budget: MODEL_BUDGET, nearRadius: 30, focus: { x: focusX, z: focusZ }, decorate });
     for (const item of plan.pieces) layer.add({ near: fileKey(item.asset, item.palette), far: hasFar(item.asset) ? fileKey(item.asset, item.palette, 'far') : undefined, x: item.x, ...(item.y === undefined ? {} : { y: item.y }), z: item.z, ry: item.ry, scale: item.scale,
       tint: item.tint, ...(item.mode ? { mode: item.mode } : {}), labels: item.labels, priority: item.priority, ...(item.detail ? { detail: true } : {}), standIn: standInFor(item) });
     scenery.add(layer.group);

@@ -73,17 +73,23 @@ def main():
         if scope and (not simple_ring(scope) or scope['tags'].get('amenity') != 'research_institute'):
             raise ValueError('Campus needs a complete simple mapped research-site ring')
         named_buildings = [f for f in features.values() if row['id'] in f['nearbyQueries'] and f['tags'].get('building') and (f['tags'].get('name') or f['tags'].get('name:en'))]
+        disputes = {item['ref']: item for item in row.get('sourceDisputes', [])}
+        if any(ref not in features for ref in disputes):
+            raise ValueError('Source dispute reference missing from pinned geometry')
         buildings = []
         for feature in named_buildings:
             membership = 'unverified' if scope is None else 'inside' if contained(feature, scope['points']) else 'outside-or-contact'
-            buildings.append({'ref': feature['ref'], 'version': feature['version'], 'name': feature['tags'].get('name:en', feature['tags'].get('name')), 'sourceBuildingTag': feature['tags']['building'], 'membership': membership})
+            buildings.append({'ref': feature['ref'], 'version': feature['version'], 'name': feature['tags'].get('name:en', feature['tags'].get('name')), 'sourceBuildingTag': feature['tags']['building'], 'membership': membership, 'sourceDispute': disputes.get(feature['ref'])})
         accepted = [f for f in buildings if f['membership'] == 'inside']
+        undisputed = [f for f in accepted if f['sourceDispute'] is None]
         holds = ['station-runtime-projection-pending', 'transport-scope-and-arrival-pending', 'station-service-contract-pending', 'five-layer-factory-extraction-pending', 'browser-and-release-gates-pending']
+        if disputes:
+            holds.append('operator-source-disagrees-with-mapped-current-use')
         if scope is None:
             holds.append('campus-membership-unverified')
         if len({f['name'] for f in accepted}) < 20:
             holds.append('ordinary-city-twenty-name-gate-not-met')
-        candidates.append({'id': row['id'], 'kind': 'research-station', 'regionISO': 'AQ', 'operatorFromSource': station['tags'].get('operator'), 'stationRef': row['stationRef'], 'stationSourcePoint': station['point'], 'pointMethod': 'mapped-node' if row['stationRef'].startswith('node/') else 'first-way-node-not-arrival-anchor', 'campusRef': row.get('campusRef'), 'requiredExcludedStationRefs': row.get('requiredExcludedStationRefs', []), 'buildings': buildings, 'containedDistinctNames': len({f['name'] for f in accepted}), 'status': 'HOLD', 'holds': holds})
+        candidates.append({'id': row['id'], 'kind': 'research-station', 'regionISO': 'AQ', 'operatorFromSource': station['tags'].get('operator'), 'stationRef': row['stationRef'], 'stationSourcePoint': station['point'], 'pointMethod': 'mapped-node' if row['stationRef'].startswith('node/') else 'first-way-node-not-arrival-anchor', 'campusRef': row.get('campusRef'), 'requiredExcludedStationRefs': row.get('requiredExcludedStationRefs', []), 'buildings': buildings, 'containedDistinctNames': len({f['name'] for f in accepted}), 'undisputedContainedNames': len({f['name'] for f in undisputed}), 'status': 'HOLD', 'holds': holds})
     receipt = {'schemaVersion': 1, 'kind': 'station-source-review', 'sourceSha256': table['sourceSha256'], 'inventorySha256': digest(inventory_path), 'geometryArtifactSha256': digest(geometry_path), 'tableSha256': digest(args.table), 'scriptSha256': digest(Path(__file__)), 'registrationAllowed': False, 'limitation': 'Source feature containment is not current occupancy, service availability, venue anchoring, transport access or release acceptance. No ordinary city gate is relaxed.', 'candidates': candidates}
     args.output.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps([{'id': c['id'], 'containedDistinctNames': c['containedDistinctNames'], 'status': c['status']} for c in candidates]))

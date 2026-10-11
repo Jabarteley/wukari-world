@@ -12,7 +12,57 @@
     {
       "id": "rothera",
       "stationRef": "way/1479153727",
-      "campusRef": "way/1479153727"
+      "campusRef": "way/1479153727",
+      "sourceDisputes": [
+        {
+          "ref": "way/386918478",
+          "status": "current-use-unverified",
+          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
+          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
+          "sourcePublicationDate": "2025-10-24",
+          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+        },
+        {
+          "ref": "way/1450652233",
+          "status": "current-use-unverified",
+          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
+          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
+          "sourcePublicationDate": "2025-10-24",
+          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+        },
+        {
+          "ref": "way/1450652234",
+          "status": "current-use-unverified",
+          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
+          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
+          "sourcePublicationDate": "2025-10-24",
+          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+        },
+        {
+          "ref": "way/1450652230",
+          "status": "current-use-unverified",
+          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
+          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
+          "sourcePublicationDate": "2025-10-24",
+          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+        },
+        {
+          "ref": "way/1450652232",
+          "status": "current-use-unverified",
+          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
+          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
+          "sourcePublicationDate": "2025-10-24",
+          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+        },
+        {
+          "ref": "way/1450652231",
+          "status": "current-use-unverified",
+          "reason": "BAS2025-10-24announcement identifies structure for dismantling during2025/26; mapped footprint does not establish present operation.",
+          "sourceUrl": "https://www.bas.ac.uk/news/discovery-building-comes-to-life-in-a-milestone-new-season-for-british-antarctic-survey/",
+          "sourcePublicationDate": "2025-10-24",
+          "evidenceLevel": "primary-publisher search-index excerpt; direct page robot challenge"
+        }
+      ]
     },
     {
       "id": "south-pole",

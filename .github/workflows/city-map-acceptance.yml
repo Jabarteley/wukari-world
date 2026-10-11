@@ -13,12 +13,12 @@ permissions:
   contents: read
 
 concurrency:
-  group: five-city-${{ github.ref }}
-  cancel-in-progress: true
+  group: five-city-${{ github.sha }}
+  cancel-in-progress: false
 
 env:
-  APP_SHA: 64869b7d45ff67f425364dd284285b6551633dbf
-  CITY_SET: tripoli,bamako,ouagadougou,maseru,lilongwe
+  APP_SHA: 4fa9255599e4b9ff357bcfa9985f9ba64fba2bdb
+  CITY_SET: dar-es-salaam,brazzaville,tunis,libreville,mbabane
 
 jobs:
   gates:

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "cityId": "windhoek",
+  "countryIso2": "NA",
+  "cityPoint": {
+    "osm": "node/33364833",
+    "name": "Windhoek",
+    "coordinatesWgs84": [
+      17.0772739,
+      -22.5776104
+    ],
+    "sourceUrl": "https://www.openstreetmap.org/node/33364833"
+  },
+  "airport": {
+    "name": "Hosea Kutako International Airport",
+    "icao": "FYWH",
+    "lat": -22.481111111111108,
+    "lon": 17.470277777777778,
+    "sourceUrl": "https://ncaa.com.na/publications/aeronautical-information/aeronautical-information-publication/aip-supplement/S04_2025%20FYWH%20AD.pdf",
+    "published": "2025-09-04",
+    "effective": "2025-10-30",
+    "rawARP": "222852S 0172813E"
+  },
+  "boxes": {
+    "play": [
+      -22.68,
+      16.95,
+      -22.45,
+      17.51
+    ],
+    "core": [
+      -22.61261,
+      17.03227,
+      -22.54261,
+      17.12227
+    ]
+  },
+  "answers": {
+    "city": {
+      "queryKey": "city-80147e5b46",
+      "sha256": "74cb8b46c80e01eccf8925c8ebb59484cbf22e0406f07ee68ba92ca9aea7d8b8",
+      "bytes": 5114,
+      "elements": 1,
+      "osmBaseTimestamp": "2026-10-11T00:33:12Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "places": {
+      "queryKey": "places-54c4e0868e",
+      "sha256": "61455a23eff649b1a9f607aca3a18533c291da27d98102b242159d8009bb7291",
+      "bytes": 107175,
+      "elements": 350,
+      "osmBaseTimestamp": "2026-10-11T00:33:12Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "extras": {
+      "queryKey": "extras-630bcc4dab",
+      "sha256": "67e43c19b9932e1a74ed3ccf0d60223957b3d73350204926ffac2185c3dc5cb8",
+      "bytes": 34944,
+      "elements": 112,
+      "osmBaseTimestamp": "2026-10-11T00:35:17Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "water": {
+      "queryKey": "water-a70db1cdd6",
+      "sha256": "f5f81e9b9c975e0f5ac3d6c5b39746b173b74f7a85278547d3e04b139dcbaab5",
+      "bytes": 644656,
+      "elements": 190,
+      "osmBaseTimestamp": "2026-10-11T00:36:18Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "landuse": {
+      "queryKey": "landuse-5bf9a95b2e",
+      "sha256": "2cdfc5df912f67dcdea3c7c2cdff0c15f1392e98bda4ffae51566b1ab356b538",
+      "bytes": 977774,
+      "elements": 506,
+      "osmBaseTimestamp": "2026-10-11T00:38:18Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    },
+    "roads": {
+      "queryKey": "roads-bc6937360d",
+      "sha256": "91e40ebd35e34b123ef8b3ce254e03d08734ec2156dc4a0403258ad0d7b5df59",
+      "bytes": 578581,
+      "elements": 729,
+      "osmBaseTimestamp": "2026-10-11T00:56:36Z",
+      "endpoint": "https://overpass-api.de/api/interpreter"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; airport reference coordinate from the named aviation publication",
+  "scope": "Mapped places, main roads, water and built-up extent for the Windhoek play area."
+}

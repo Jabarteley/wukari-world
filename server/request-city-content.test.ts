@@ -1,11 +1,13 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { cachedCityContent, registerCityForTest } from '../src/game/cities/registry.ts'
-import { fictionalCity } from '../src/game/cities/testing/fictionalCity.test-fixture.ts'
+import { cachedCityContent, isCityId, loadCityContent, registerCityForTest } from '../src/game/cities/registry.ts'
+import { createLife } from '../src/life.ts'
+import { fictionalCity, fictionalNeighbourCity } from '../src/game/cities/testing/fictionalCity.test-fixture.ts'
 import { buildRoutes } from './routes/index.ts'
 import { buildSocketHandlers } from './ws/index.ts'
+import { requireSessionCities } from './city-content.ts'
 import { prepareStoredCityContent, requestedCityIds } from './request-city-content.ts'
-import type { Db, RouteContext, RouteRequest, WsConnection } from './types.ts'
+import type { Db, RouteContext, RouteRequest, SessionRecord, WsConnection } from './types.ts'
 
 const context = (): RouteContext => {
   const core: Record<string, unknown> = {
@@ -85,7 +87,39 @@ test('socket barrier prepares an explicit city before the registered handler', a
   assert.equal(handled, true)
 })
 
-test('asset failures become retryable city-content errors', async () => {
+test('request and socket barriers do not read a stored session or retain readiness by secret', async (t) => {
+  await loadCityContent('lagos')
+  const registrations = [registerCityForTest(fictionalCity), registerCityForTest(fictionalNeighbourCity)]
+  t.after(() => registrations.reverse().forEach((registration) => registration.dispose()))
+  const state = createLife(null, { cityId: 'lagos', now: 1 })
+  const session: SessionRecord = { secret: 'secret', publicId: 'public', name: 'Player', expiresAt: 100, cities: { lagos: { state, updatedAt: 1, salt: '0123456789abcdef' } }, actions: {} }
+  let reads = 0
+  const ctx = context()
+  ctx.store.read = async (read) => { reads += 1; return read({ sessions: { secret: session } } as unknown as Db) }
+  ctx.core.sessionOf = () => session
+  const sockets = buildSocketHandlers(ctx, [() => ({ messages: { 'city-read': () => {} } })])
+  const ws = { session: { id: 'public', name: 'Player' }, secret: 'secret' } as WsConnection
+  await sockets.messages.get('city-read')!.handle(ws, { type: 'city-read', cityId: 'lagos' })
+  const routes = buildRoutes(ctx, [() => ({ 'GET /api/test': () => { requireSessionCities(session); return { body: { ok: true } } } })])
+  const incoming = () => ({ ...request(async () => ({})), method: 'GET', secret: 'secret', session: () => session })
+  await routes.match('GET', '/api/test')!.handler(incoming())
+  assert.equal(reads, 0)
+  session.cities[fictionalCity.id] = { state: { ...state, estate: { ...state.estate, city: fictionalCity.id } }, updatedAt: 2, salt: 'fedcba9876543210' }
+  await assert.rejects(async () => routes.match('GET', '/api/test')!.handler(incoming()), { code: 'city_content_unavailable', status: 503 })
+  assert.equal(reads, 0)
+  assert.ok(cachedCityContent(fictionalCity.id))
+  await routes.match('GET', '/api/test')!.handler(incoming())
+  assert.equal(reads, 0)
+
+  session.legacyLives = { [`${fictionalNeighbourCity.id}:restored`]: { state: { ...state, estate: { ...state.estate, city: fictionalNeighbourCity.id } }, updatedAt: 3, salt: '0011223344556677' } }
+  session.legacyLifeCities = { [`${fictionalNeighbourCity.id}:restored`]: fictionalNeighbourCity.id }
+  await assert.rejects(async () => routes.match('GET', '/api/test')!.handler(incoming()), { code: 'city_content_unavailable', status: 503 })
+  assert.equal(reads, 0)
+  assert.ok(cachedCityContent(fictionalNeighbourCity.id))
+  await routes.match('GET', '/api/test')!.handler(incoming())
+})
+
+test('asset failures keep the same retryable refusal after abort-and-warm without leaking loader details', async (t) => {
   const id = 'test-load-failure'
   const registration = registerCityForTest({
     ...fictionalCity,
@@ -93,14 +127,26 @@ test('asset failures become retryable city-content errors', async () => {
     rules: { ...fictionalCity.rules, id },
     loadContent: async () => { throw new Error('private transport detail') },
   })
-  try {
-    await assert.rejects(prepareStoredCityContent(context(), undefined, [id]), {
+  t.after(() => registration.dispose())
+  assert.ok(isCityId(id))
+  await assert.rejects(prepareStoredCityContent(context(), undefined, [id]), {
+    status: 503,
+    code: 'city_content_unavailable',
+    retryable: true,
+    reason: 'City content is not ready. Please retry.',
+  })
+
+  await loadCityContent('lagos')
+  const state = createLife(null, { cityId: 'lagos', now: 1 })
+  const session: SessionRecord = { secret: 'failed', publicId: 'failed', name: 'Player', expiresAt: 100, cities: { [id]: { state: { ...state, estate: { ...state.estate, city: id } }, updatedAt: 1, salt: '0123456789abcdef' } }, actions: {} }
+  const routes = buildRoutes(context(), [() => ({ 'GET /api/test': () => { requireSessionCities(session); return { body: { ok: true } } } })])
+  for (let attempt = 0; attempt < 2; attempt++) {
+    await assert.rejects(async () => routes.match('GET', '/api/test')!.handler(request(async () => ({}))), {
       status: 503,
       code: 'city_content_unavailable',
       retryable: true,
       reason: 'City content is not ready. Please retry.',
     })
-  } finally {
-    registration.dispose()
+    assert.equal(cachedCityContent(id), null)
   }
 })

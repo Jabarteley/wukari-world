@@ -1,10 +1,22 @@
 import { lifeCities } from '../src/game/cities/lifeCities.ts'
 import { cachedCityContent, isCityId, loadCityContent, loadCityLinks } from '../src/game/cities/registry.ts'
+import type { CityId } from '../src/types/protocol.ts'
 import type { SessionRecord } from './types.ts'
 
+const missingCityContent = Symbol('missing-city-content')
+
+interface MissingCityContentError extends Error {
+  readonly [missingCityContent]: true
+  readonly cityIds: readonly CityId[]
+  readonly status: 503
+  readonly code: 'city_content_unavailable'
+  readonly reason: string
+  readonly retryable: true
+}
+
 /** Include archived lives before character normalization can choose or restore one. */
-export function sessionCityIds(session: SessionRecord | undefined, extra: readonly unknown[] = []): string[] {
-  const found = new Set<string>()
+export function sessionCityIds(session: SessionRecord | undefined, extra: readonly unknown[] = []): CityId[] {
+  const found = new Set<CityId>()
   const add = (id: unknown): void => { if (isCityId(id)) found.add(id) }
   extra.forEach(add)
   if (!session) return [...found]
@@ -28,14 +40,25 @@ export async function prepareSessionCities(session: SessionRecord | undefined, e
   await Promise.all([loadCityLinks(), ...sessionCityIds(session, extra).map(loadCityContent)])
 }
 
+/** Internal handoff from a synchronous transaction guard to an async host boundary. */
+export function missingCityContentIds(error: unknown): readonly CityId[] | null {
+  if (typeof error !== 'object' || error === null || Reflect.get(error, missingCityContent) !== true) return null
+  const ids: unknown = Reflect.get(error, 'cityIds')
+  if (!Array.isArray(ids) || !ids.every(isCityId)) return null
+  return ids
+}
+
 /** A state change during preparation must fail before settlement mutates the saved life. */
 export function requireSessionCities(session: SessionRecord, extra: readonly unknown[] = []): void {
-  if (sessionCityIds(session, extra).some(id => cachedCityContent(id) === null)) {
+  const cityIds = sessionCityIds(session, extra).filter(id => cachedCityContent(id) === null)
+  if (cityIds.length) {
     throw Object.assign(new Error('city_content_unavailable'), {
-      status: 503,
-      code: 'city_content_unavailable',
+      [missingCityContent]: true as const,
+      cityIds,
+      status: 503 as const,
+      code: 'city_content_unavailable' as const,
       reason: 'City content is not ready. Please retry.',
-      retryable: true,
-    })
+      retryable: true as const,
+    }) satisfies MissingCityContentError
   }
 }

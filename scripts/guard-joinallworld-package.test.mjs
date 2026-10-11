@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, statSync, rmSync, symlinkSync, realpathSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, statSync, rmSync, symlinkSync, realpathSync, truncateSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
@@ -14,14 +14,19 @@ function fixture(t) {
   const root = realpathSync(mkdtempSync(join(tmpdir(), 'joinallworld-package-test-')));
   t.after(() => rmSync(root, { recursive: true, force: true }));
   mkdirSync(join(root, 'assets')); writeFileSync(join(root, 'assets/index.html'), '<!doctype html><title>Fixture</title>');
-  writeFileSync(join(root, 'worker.js'), 'export default {fetch(){return new Response("fixture")}}');
+  const city = '{"version":1,"cityId":"lagos"}', dictionary = 'synthetic packed words';
+  const cityDigest = createHash('sha256').update(city).digest('hex'), dictionaryDigest = createHash('sha256').update(dictionary).digest('hex');
+  const cityPath = `/assets/cities/lagos.${cityDigest}.json`, dictionaryPath = `/assets/words/dictionary.${dictionaryDigest}.txt`;
+  mkdirSync(join(root, 'assets/assets/cities'), { recursive: true }); mkdirSync(join(root, 'assets/assets/words'), { recursive: true });
+  writeFileSync(join(root, `assets${cityPath}`), city); writeFileSync(join(root, `assets${dictionaryPath}`), dictionary);
+  writeFileSync(join(root, 'worker.js'), `export const content = ${JSON.stringify([cityPath, dictionaryPath])};`);
   writeFileSync(join(root, 'wrangler.json'), JSON.stringify(expectedConfig(sha, false)));
   const seal = () => {
     const files = [];
     function walk(path) { for (const name of readdirSync(path).sort()) { if (name === 'manifest.json') continue; const full = join(path, name), stat = statSync(full); if (stat.isDirectory()) walk(full); else files.push({ path: relative(root, full), bytes: stat.size, sha256: createHash('sha256').update(readFileSync(full)).digest('hex') }); } }
     walk(root); writeFileSync(join(root, 'manifest.json'), JSON.stringify({ sourceSha: sha, publish: false, files }));
   };
-  seal(); return { root, seal };
+  seal(); return { root, seal, cityPath, dictionaryPath };
 }
 test('accepts exact separate-worker package and rejects content changes', t => {
   const f = fixture(t); assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
@@ -39,17 +44,26 @@ test('accepts hashed city JSON and refuses a resealed payload under the wrong co
   assert.throws(() => checkPackage(f.root, sha, false), /City content filename hash mismatch/);
 });
 test('requires every content asset referenced by the sealed Worker and authenticates the dictionary', t => {
-  const f = fixture(t), dictionary = 'synthetic packed words';
+  const f = fixture(t), dictionary = 'another synthetic packed word list';
   const digest = createHash('sha256').update(dictionary).digest('hex');
   const path = `/assets/words/dictionary.${digest}.txt`;
-  writeFileSync(join(f.root, 'worker.js'), `export const dictionary = ${JSON.stringify(path)};`); f.seal();
+  writeFileSync(join(f.root, 'worker.js'), `export const content = ${JSON.stringify([f.cityPath, path])};`); f.seal();
   assert.throws(() => checkPackage(f.root, sha, false), /Missing referenced content asset/);
-  mkdirSync(join(f.root, 'assets/assets/words'), { recursive: true });
+  rmSync(join(f.root, `assets${f.dictionaryPath}`));
   const file = join(f.root, `assets${path}`);
   writeFileSync(file, dictionary); f.seal();
   assert.match(checkPackage(f.root, sha, false), /^[a-f0-9]{64}$/);
   writeFileSync(file, 'wrong payload'); f.seal();
   assert.throws(() => checkPackage(f.root, sha, false), /Content asset filename hash mismatch/);
+});
+test('rejects a missing referenced city payload and content files larger than 5 MiB', t => {
+  const missing = fixture(t);
+  rmSync(join(missing.root, `assets${missing.cityPath}`)); missing.seal();
+  assert.throws(() => checkPackage(missing.root, sha, false), /Missing referenced content asset/);
+
+  const oversized = fixture(t), file = join(oversized.root, 'assets/too-large.txt');
+  writeFileSync(file, 'x'); truncateSync(file, 5 * 1024 * 1024 + 1); oversized.seal();
+  assert.throws(() => checkPackage(oversized.root, sha, false), /Invalid package file/);
 });
 for (const [name, change] of [
   ['rebundling the sealed Worker', config => { config.no_bundle = false; }],

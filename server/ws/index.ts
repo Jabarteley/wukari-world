@@ -88,7 +88,7 @@ import calls from './calls.ts';
 import live from './live.ts';
 import notice from './notice.ts';
 import admin from './admin.ts';
-import { prepareSocketCityContent } from '../request-city-content.ts';
+import { prepareSocketCityContent, warmCityContentFailure } from '../request-city-content.ts';
 import type { RouteContext, WsConnection, WsDispatch, WsHandlerModule, WsLifecycle, WsMessageHandler } from '../types.ts';
 
 export const WS_MODULES: readonly WsHandlerModule[] = [rooms, social, world, tables, calls, live, notice, admin];
@@ -116,7 +116,10 @@ export function buildSocketHandlers(ctx: RouteContext, modules: readonly WsHandl
       if (messages.has(type)) throw new Error(`Duplicate socket message type: ${type}`);
       messages.set(type, {
         room: typeof entry === 'function' ? false : entry.room === true,
-        handle: async (ws, message) => { await prepareSocketCityContent(ctx, ws, message); await handle(ws, message); },
+        handle: async (ws, message) => {
+          await prepareSocketCityContent(ctx, ws, message);
+          try { await handle(ws, message); } catch (error) { throw await warmCityContentFailure(error); }
+        },
       });
     }
     if (built.open) opens.push(built.open);

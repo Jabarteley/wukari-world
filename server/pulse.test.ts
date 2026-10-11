@@ -5,6 +5,7 @@ import { once } from 'node:events';
 import { fixture } from './test-fixture.ts';
 import { createServer } from './server.ts';
 import { createLife } from '../src/life.ts';
+import { loadCityContent } from '../src/game/cities/registry.ts';
 import type { Device } from './test-fixture.ts';
 
 type Pulse = { online: number; visits: number; cities: Record<string, number> };
@@ -206,6 +207,7 @@ test('the first start seeds from the stored sessions (and archived lives), and m
 });
 
 test('the header pill, the Neighbours directory and the hunt chip read one number per city, in two cities', async (t) => {
+  await loadCityContent('ibadan');
   const f = await fixture(t);
   const ada = await f.device('Ada'), bola = await f.device('Bola'), chidi = await f.device('Chidi');
   const a = await f.joinRoom(ada), b = await f.joinRoom(bola), c = await f.joinRoom(chidi);

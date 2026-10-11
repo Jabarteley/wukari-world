@@ -35,6 +35,7 @@ async function fixture(t: TestContext) {
     name: 'joinallworld-voice-notes', script: await readFile(bundle, 'utf8'), modules: true, compatibilityDate: '2026-10-01',
     durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: storagePath,
     bindings: { ...layoutBindings(), BUILD_ID: 'local-voice-notes', FOUNDER_EMAIL_SHA256: '', CHAT_VOICE_NOTES: 'friends' },
+    assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } },
   }
   const make = () => new Miniflare({ ...convertV4MiniflareOptions(options), resourcePersistencePath: storagePath, unsafeInspectDurableObjects: true, handleStructuredLogs: () => {} })
   let mf = make()

@@ -1,5 +1,5 @@
-import { isCityId } from '../src/game/cities/registry.ts'
-import { prepareSessionCities, requireSessionCities } from './city-content.ts'
+import { isCityId, loadCityContent, loadCityLinks } from '../src/game/cities/registry.ts'
+import { missingCityContentIds, prepareSessionCities, requireSessionCities } from './city-content.ts'
 import type { RouteContext, RouteRequest, SessionRecord, WsConnection } from './types.ts'
 
 const record = (value: unknown): Record<string, unknown> | null =>
@@ -46,32 +46,38 @@ export async function prepareStoredCityContent(
   }
 }
 
-async function sessionForRequest(ctx: RouteContext, request: RouteRequest): Promise<SessionRecord | undefined> {
-  return ctx.store.read((db) => request.session(db))
-}
-
 /**
- * Prepare stored lives and a query city now, then prepare parsed JSON fields at the parser boundary.
+ * Prepare explicit path and query cities now, then parsed JSON fields at the parser boundary.
  * This deliberately leaves rawBody and routes which never parse JSON alone.
  */
 export async function prepareRouteCityContent(ctx: RouteContext, request: RouteRequest): Promise<void> {
-  const session = await sessionForRequest(ctx, request)
   const queryCity = request.query.get('city')
   const initial = [queryCity, ...Object.values(request.params)].filter(isCityId)
-  if (session || initial.length) await prepareStoredCityContent(ctx, session, initial)
+  if (initial.length) await prepareStoredCityContent(ctx, undefined, initial)
 
   const parse = request.json.bind(request)
   request.json = async (limit?: number) => {
     const body = await parse(limit)
     const extra = requestedCityIds(body)
-    if (session || extra.length) await prepareStoredCityContent(ctx, session, extra)
+    if (extra.length) await prepareStoredCityContent(ctx, undefined, extra)
     return body
   }
 }
 
-/** Prepare a socket sender's stored lives and explicit city fields before its registered handler. */
-export async function prepareSocketCityContent(ctx: RouteContext, ws: WsConnection, message: unknown): Promise<void> {
-  const session = await ctx.store.read((db) => ctx.core.sessionOf(ws, db))
+/** Prepare only explicit city fields before the registered socket handler. */
+export async function prepareSocketCityContent(ctx: RouteContext, _ws: WsConnection, message: unknown): Promise<void> {
   const extra = requestedCityIds(message)
-  if (session || extra.length) await prepareStoredCityContent(ctx, session, extra)
+  if (extra.length) await prepareStoredCityContent(ctx, undefined, extra)
+}
+
+/** Warm the exact cold cities named by a transaction guard, then preserve its original refusal. */
+export async function warmCityContentFailure(error: unknown): Promise<unknown> {
+  const cityIds = missingCityContentIds(error)
+  if (!cityIds) return error
+  try {
+    await Promise.all([loadCityLinks(), ...cityIds.map(loadCityContent)])
+  } catch {
+    // The stable retryable refusal must not expose asset paths or transport failures.
+  }
+  return error
 }

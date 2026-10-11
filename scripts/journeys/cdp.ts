@@ -14,6 +14,8 @@ export const sleep = (ms: number): Promise<void> => new Promise((done) => setTim
 export interface Viewport { width: number; height: number; scale: number; mobile: boolean }
 export interface Captured { method: string; url: string; body: string | null; status?: number; requestId: string }
 
+/** The longest a single DevTools call may take; the slowest real one is a screenshot or a page load. */
+const SEND_TIMEOUT_MS = 45000;
 const CHROME = process.env['CHROME_BIN'] || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 export class Browser {
@@ -76,7 +78,9 @@ export class Browser {
   send(method: string, params: object = {}): Promise<any> {
     const id = ++this.nextId;
     return new Promise((done, fail) => {
-      this.pending.set(id, (message) => (message.error ? fail(new Error(`${method}: ${message.error.message}`)) : done(message.result)));
+      // A call that is never answered (a page that is stuck, a promise that never settles) fails the step instead of holding the run.
+      const timer = setTimeout(() => { this.pending.delete(id); fail(new Error(`${method}: no answer in ${SEND_TIMEOUT_MS / 1000} s`)); }, SEND_TIMEOUT_MS);
+      this.pending.set(id, (message) => { clearTimeout(timer); if (message.error) fail(new Error(`${method}: ${message.error.message}`)); else done(message.result); });
       this.ws.send(JSON.stringify({ id, method, params }));
     });
   }

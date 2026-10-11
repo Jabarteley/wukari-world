@@ -59,9 +59,10 @@ export const realErrors = (b: Browser): string[] => b.consoleErrors.filter((line
 export async function dismiss(b: Browser, waitMs = 5000): Promise<void> {
   const end = Date.now() + waitMs;
   for (;;) {
+    // The wait is a hard limit: a screen that keeps a quiet button on show (an open app's Refresh) must not be tapped for ever.
+    if (Date.now() > end) return;
     const point = await b.locate('button.tour-skip, button.is-quiet').catch(() => null);
     if (point) { await b.tapAt(point.x, point.y); await sleep(400); continue; }
-    if (Date.now() > end) return;
     await sleep(250);
   }
 }

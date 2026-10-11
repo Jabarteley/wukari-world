@@ -118,10 +118,11 @@ try {
   });
 
   await j.run('2', 'Operator approves; the seller sees the link, the ready-made message, and copies it', [S], async (detail) => {
-    const queue = await lab.mod('/api/mod/showcase'); must((queue['queue'] ?? []).length === 1, 'the shop is not in the operator queue');
-    const done = await lab.mod('/api/mod/showcase', { action: 'approve', shop: state.shop }); must(done['status'] === 'live', 'approve');
-    await S.goto(lab.base + '/'); await gameShown(S); await dismiss(S); await syncClock(S, lab.offset());
-    await openShopTab(S);
+    const trace = (what: string): void => console.log(`[shoplink]   ${new Date().toISOString().slice(11, 19)} ${what}`);
+    trace('queue'); const queue = await lab.mod('/api/mod/showcase'); trace('queued'); must((queue['queue'] ?? []).length === 1, 'the shop is not in the operator queue');
+    const done = await lab.mod('/api/mod/showcase', { action: 'approve', shop: state.shop }); trace('approved'); must(done['status'] === 'live', 'approve');
+    await S.goto(lab.base + '/'); trace('loaded'); await gameShown(S); trace('game'); await dismiss(S); await syncClock(S, lab.offset()); trace('clock');
+    await openShopTab(S); trace('editor');
     await S.waitFor(`!!document.querySelector('[data-share-url]')`, 15000, 'the share link');
     state.url = (await text(S, '[data-share-url]')).trim();
     detail['url'] = state.url; detail['message'] = (await text(S, '[data-share-message]')).trim();

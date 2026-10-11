@@ -63,7 +63,7 @@ async function copy(what: 'link' | 'message'): Promise<void> {
   <section class="ss" aria-label="Share my shop" data-share>
     <template v-if="shop.status === 'live'">
       <h3 class="ss-title">Share my shop</h3>
-      <p class="ss-lead">Customers open your link with no sign-up, see your items and prices, and message you.</p>
+      <p class="ss-lead">Customers open your link with no sign-up, see your items and prices, and message you. Anyone who has the link can see your contact and payment links.</p>
       <p v-if="url" class="ss-url" data-share-url>{{ url }}</p>
       <p v-if="message" class="ss-msg" data-share-message>{{ message }}</p>
       <div class="ss-go">

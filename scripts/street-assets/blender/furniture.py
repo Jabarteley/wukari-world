@@ -40,23 +40,26 @@ def legs4(x, y, h, s=0.04, tile="wood_d", z0=0.0):
 
 
 def sofa(n):
-    W = {1: 0.95, 2: 1.9, 3: 2.6}[n]
+    W = {1: 1.0, 2: 1.95, 3: 2.65}[n]
     tint = T(SOFA_TINTS.get(variant, SOFA_TINTS["default"]))
-    D = 0.92
-    B.rbox(-W / 2, W / 2, -D / 2, D / 2, 0.12, 0.42, 0.05, "fabric", tint)
-    B.rbox(-W / 2, W / 2, D / 2 - 0.28, D / 2, 0.3, 0.92, 0.07, "fabric", tint)
-    for sx in (-1, 1):
-        B.rbox(sx * (W / 2 - 0.09) - 0.09, sx * (W / 2 - 0.09) + 0.09, -D / 2, D / 2, 0.12, 0.66, 0.05, "fabric", tint)
-    inner = W - 0.36
-    for i in range(n):
-        cx = -inner / 2 + inner / n * (i + 0.5)
-        B.rbox(cx - inner / n / 2 + 0.02, cx + inner / n / 2 - 0.02, -D / 2 + 0.04, D / 2 - 0.26, 0.4, 0.55, 0.06, "fabric", tint)
-        B.rbox(cx - inner / n / 2 + 0.04, cx + inner / n / 2 - 0.04, D / 2 - 0.3, D / 2 - 0.16, 0.5, 0.88, 0.06, "fabric", tint)
-        B.empty("seat_%d" % (i + 1), (cx, -0.02, 0.5), kind="seat", facing=[0, -1, 0])
+    D = 0.98
+    B.rbox(-W / 2, W / 2, -D / 2, D / 2, 0.14, 0.4, 0.09, "fabric", tint)                       # base
+    B.rbox(-W / 2 + 0.02, W / 2 - 0.02, D / 2 - 0.3, D / 2, 0.3, 0.98, 0.12, "fabric", tint)     # back, tall and soft
+    for sx in (-1, 1):                                                                           # rolled arms
+        B.rbox(sx * (W / 2 - 0.1) - 0.1, sx * (W / 2 - 0.1) + 0.1, -D / 2, D / 2, 0.14, 0.7, 0.1, "fabric", tint)
+    inner = W - 0.4
+    for i in range(n):                                                                           # separate seat and back cushions
+        cx = -inner / 2 + inner / n * (i + 0.5); cw = inner / n / 2 - 0.015
+        B.rbox(cx - cw, cx + cw, -D / 2 + 0.03, D / 2 - 0.28, 0.38, 0.56, 0.08, "fabric", tint)
+        B.rbox(cx - cw, cx + cw, D / 2 - 0.34, D / 2 - 0.14, 0.52, 0.94, 0.08, "fabric", tint, rot=(-0.12, 0, 0))
+        B.empty("seat_%d" % (i + 1), (cx, -0.02, 0.56), kind="seat", facing=[0, -1, 0])
     for sx in (-1, 1):
         for sy in (-1, 1):
-            B.box(sx * (W / 2 - 0.1) - 0.03, sx * (W / 2 - 0.1) + 0.03, sy * (D / 2 - 0.1) - 0.03, sy * (D / 2 - 0.1) + 0.03, 0, 0.12, "wood_d")
-    B.rbox(-W / 2 + 0.2, -W / 2 + 0.5, -0.2, 0.05, 0.55, 0.85, 0.05, "fabric", T("#c4553a") if n > 1 else T("#d9a53a"))
+            B.cyl(sx * (W / 2 - 0.12), sy * (D / 2 - 0.12), 0, 0.14, 0.04, 8, "wood_d")
+    pil = T("#d9a53a") if n > 1 else T("#c4553a")
+    B.rbox(-W / 2 + 0.26, -W / 2 + 0.62, 0.06, 0.28, 0.58, 0.9, 0.09, "fabric", pil, rot=(0.1, 0.0, 0.5))
+    if n > 1:
+        B.rbox(W / 2 - 0.62, W / 2 - 0.26, 0.06, 0.28, 0.58, 0.9, 0.09, "fabric", T("#c4553a"), rot=(0.1, 0.0, -0.5))
     return dict(w={1: 1, 2: 2, 3: 3}[n], h=1, kind="seat", tintable=list(SOFA_TINTS), seats=n)
 
 
@@ -299,18 +302,18 @@ def bed(w_cells, double):
     W = 1.5 if double else 0.95
     L = 1.82
     B.box(-W / 2 - 0.04, W / 2 + 0.04, -L / 2 - 0.04, L / 2 + 0.04, 0.12, 0.3, "wood_m")
-    B.box(-W / 2 - 0.04, W / 2 + 0.04, L / 2 + 0.03, L / 2 + 0.08, 0.1, 1.05, "wood_d")
-    B.box(-W / 2 - 0.04, W / 2 + 0.04, -L / 2 - 0.08, -L / 2 - 0.03, 0.1, 0.5, "wood_d")
+    B.rbox(-W / 2 - 0.04, W / 2 + 0.04, L / 2 + 0.03, L / 2 + 0.1, 0.1, 1.1, 0.04, "wood_d")      # headboard
+    B.rbox(-W / 2 - 0.04, W / 2 + 0.04, -L / 2 - 0.1, -L / 2 - 0.03, 0.1, 0.5, 0.04, "wood_d")
     legs4(W / 2 + 0.02, L / 2 + 0.03, 0.12, 0.035)
-    B.rbox(-W / 2, W / 2, -L / 2, L / 2, 0.3, 0.52, 0.05, "white", T("#f4f1ea"))
-    B.rbox(-W / 2 - 0.02, W / 2 + 0.02, -L / 2 + 0.05, L / 2 - 0.55, 0.5, 0.58, 0.05, print_tile or "fabric", None if print_tile else tint)
-    B.rbox(-W / 2 - 0.02, W / 2 + 0.02, -L / 2 + 0.02, -L / 2 + 0.3, 0.5, 0.56, 0.04, "white", T("#f4f1ea")) if False else None
+    B.rbox(-W / 2, W / 2, -L / 2, L / 2, 0.3, 0.55, 0.08, "white", T("#f4f1ea"))                    # mattress
+    B.rbox(-W / 2 - 0.03, W / 2 + 0.03, -L / 2 + 0.02, L / 2 - 0.55, 0.5, 0.64, 0.07, print_tile or "fabric", None if print_tile else tint)   # duvet
+    B.rbox(-W / 2 - 0.03, W / 2 + 0.03, -L / 2 + 0.02, -L / 2 + 0.25, 0.58, 0.7, 0.07, print_tile or "fabric", None if print_tile else tint)   # folded roll at the foot
     for i in range(2 if double else 1):
         cx = (-W / 4 + i * W / 2) if double else 0
-        B.rbox(cx - 0.3, cx + 0.3, L / 2 - 0.5, L / 2 - 0.1, 0.52, 0.66, 0.06, "white", T("#fbf8f2"))
-    B.empty("sleep_1", (-W / 4 if double else 0, L / 2 - 0.9, 0.55), kind="bed", facing=[0, 1, 0])
+        B.rbox(cx - 0.3, cx + 0.3, L / 2 - 0.55, L / 2 - 0.1, 0.55, 0.78, 0.11, "white", T("#fbf8f2"), rot=(-0.12, 0, 0))
+    B.empty("sleep_1", (-W / 4 if double else 0, L / 2 - 0.9, 0.62), kind="bed", facing=[0, 1, 0])
     if double:
-        B.empty("sleep_2", (W / 4, L / 2 - 0.9, 0.55), kind="bed", facing=[0, 1, 0])
+        B.empty("sleep_2", (W / 4, L / 2 - 0.9, 0.62), kind="bed", facing=[0, 1, 0])
     return dict(w=w_cells, h=2, kind="bed", tintable=list(BED_TINTS) + ["ankara-a", "ankara-b"], sleeps=2 if double else 1)
 
 
@@ -400,19 +403,37 @@ def bucket_bowl():
     return dict(w=1, h=1, kind="bath")
 
 
+def cloth_shirt(x, top, w, h, tile, tint=None):
+    sl = w * 0.32
+    pts = [(x, top - 0.02), (x + sl, top), (x + w * 0.5, top - 0.05), (x + w - sl, top), (x + w, top - 0.02), (x + w, top - h * 0.3), (x + w - sl * 0.9, top - h * 0.3), (x + w - sl * 0.9, top - h),
+           (x + sl * 0.9, top - h), (x + sl * 0.9, top - h * 0.3), (x, top - h * 0.3)]
+    for flip in (0, 1):
+        P = [V((px, 0.012 * (1 if flip else -1) + 0.01 * math.sin(px * 9), pz)) for px, pz in pts]
+        uv = [((p.x - x) / w, (p.z - top + h) / h) for p in P]
+        B.poly(P if not flip else P[::-1], tile, None, uv if not flip else uv[::-1], tint=tint)
+
+
+def cloth_wrapper(x, top, w, h, tile):
+    n = 6
+    pts = [(x + w * i / n, top - 0.03 * math.sin(i)) for i in range(n + 1)] + [(x + w - w * i / n, top - h + 0.04 * math.sin(i * 1.7)) for i in range(n + 1)]
+    for flip in (0, 1):
+        P = [V((px, (0.015 if flip else -0.015) + 0.02 * math.sin(px * 7), pz)) for px, pz in pts]
+        uv = [((p.x - x) / w, (p.z - top + h) / h) for p in P]
+        B.poly(P if not flip else P[::-1], tile, None, uv if not flip else uv[::-1])
+
+
 def washing_line():
     for sx in (-1, 1):
         B.cyl(sx * 0.95, 0, 0, 2.0, 0.025, 8, "steel", cap=True)
         B.cyl(sx * 0.95, 0, 0.0, 0.05, 0.08, 8, "dark")
     B.box(-0.95, 0.95, -0.005, 0.005, 1.92, 1.935, "white")
     B.cur = "clothes"
-    cols = ["red", "blue", "yellow", "green", "orange", "white", "bed_a", "curtain"]
     x = -0.85
-    for i in range(6):
-        w = 0.2 + 0.06 * (i % 3); h = 0.35 + 0.15 * (i % 2)
-        t = cols[i % len(cols)]
-        B.poly([(x, 0, 1.92), (x + w, 0, 1.92), (x + w, 0, 1.92 - h), (x, 0, 1.92 - h)], t, None); B.poly([(x, 0, 1.92), (x, 0, 1.92 - h), (x + w, 0, 1.92 - h), (x + w, 0, 1.92)], t, None)
-        x += w + 0.05
+    for i, (kind, tile) in enumerate((("shirt", "blue"), ("wrap", "bed_a"), ("shirt", "yellow"), ("wrap", "curtain"), ("shirt", "white"))):
+        if kind == "shirt":
+            cloth_shirt(x, 1.92, 0.34, 0.5, tile); x += 0.4
+        else:
+            cloth_wrapper(x, 1.92, 0.3, 0.8, tile); x += 0.36
     B.cur = None
     return dict(w=2, h=1, kind="decor", thin=True)
 
@@ -533,48 +554,157 @@ def desk_laptop():
 
 def curtains():
     tint = T(CURTAIN_TINTS.get(variant, CURTAIN_TINTS["default"]))
-    B.box(-0.62, 0.62, -0.1, -0.08, 1.98, 2.0, "wood_d")
+    B.box(-0.66, 0.66, -0.1, -0.08, 1.98, 2.0, "wood_d")
     for sx in (-1, 1):
-        B.sph = None
-        B.box(sx * 0.62 - 0.03, sx * 0.62 + 0.03, -0.12, -0.06, 1.95, 2.03, "gold")
-    n = 6 if near else 3
-    for side in (-1, 1):
+        B.cyl(sx * 0.66, -0.09, 1.93, 2.04, 0.035, 8, "gold")
+    n = 14 if near else 6
+    for side in (-1, 1):                                       # gathered panels: sine folds in depth, pinched at a tie-back
+        edge = side * 0.64
         for i in range(n):
-            x0 = side * 0.6 + (-side) * i * 0.1
-            d = -0.14 if i % 2 == 0 else -0.08
-            x1 = x0 + (-side) * 0.1
-            shade = 0.82 if i % 2 else 1.0
-            B.poly([(x0, d, 0.05), (x1, -0.11 if i % 2 else -0.15, 0.05), (x1, -0.11 if i % 2 else -0.15, 1.97), (x0, d, 1.97)], "fabric", (0, 5, 1), tint=(tint[0] * shade, tint[1] * shade, tint[2] * shade))
+            u0, u1 = i / n, (i + 1) / n
+            def pt(u, z):
+                x = edge - side * 0.5 * u * (1.0 - 0.25 * (1 - abs(z - 1.0) / 1.0))      # narrower at the tie-back (z about 1.0)
+                d = -0.1 - 0.05 * (0.5 + 0.5 * math.sin(u * 6.2832 * 2.5 + (0 if side > 0 else 1.0)))
+                return (x, d, z)
+            sh = 0.78 + 0.22 * (0.5 + 0.5 * math.sin(((u0 + u1) / 2) * 6.2832 * 2.5 + (0 if side > 0 else 1.0)))
+            B.poly([pt(u0, 0.05), pt(u1, 0.05), pt(u1, 1.97), pt(u0, 1.97)], "fabric", (0, 5, 1), tint=(tint[0] * sh, tint[1] * sh, tint[2] * sh))
     return dict(w=1, h=1, kind="decor", wall=True, mountZ=0.0, tintable=list(CURTAIN_TINTS))
 
 
 def hall_table():
     B.cyl(0, 0, 0, 0.72, 0.09, 10, "dark", rtop=0.06)
     B.cyl(0, 0, 0.7, 0.73, 0.9, 20, "white")
-    B.cyl(0, 0, 0.0, 0.74, 0.92, 20, "red", rtop=0.9, cap=False) if False else None
-    B.cyl(0, 0, 0.2, 0.74, 0.92, 20, "white", rtop=0.9, cap=False)
-    B.cyl(0, 0, 0.2, 0.34, 0.915, 20, "gold", rtop=0.92, cap=False)
+    B.cyl(0, 0, 0.2, 0.74, 0.92, 20, "white", rtop=0.9, cap=False)           # floor-length cloth
+    B.cyl(0, 0, 0.5, 0.56, 0.915, 20, "gold", rtop=0.92, cap=False)           # sash of gold braid
     B.cyl(0, 0, 0.73, 0.74, 0.5, 14, "red")
     B.cyl(0, 0, 0.74, 0.94, 0.07, 10, "glass", rtop=0.11)
+    for k in range(5):
+        a = k * 1.26
+        B.cyl(math.cos(a) * 0.05, math.sin(a) * 0.05, 0.94, 1.1, 0.03, 6, "orange" if k % 2 else "red", rtop=0.005)
     for i in range(8):
         a = i / 8 * 6.2832
         c, s = math.cos(a), math.sin(a)
-        B.rbox(c * 1.1 - 0.2, c * 1.1 + 0.2, s * 1.1 - 0.2, s * 1.1 + 0.2, 0.44, 0.5, 0.03, "white")
-        B.box(c * 1.28 - 0.17, c * 1.28 + 0.17, s * 1.28 - 0.17, s * 1.28 + 0.17, 0.5, 0.95, "white") if False else None
-        B.cyl(c * 1.1, s * 1.1, 0.0, 0.44, 0.02, 6, "chrome")
-        B.rbox(c * 1.3 - 0.2, c * 1.3 + 0.2, s * 1.3 - 0.04, s * 1.3 + 0.04, 0.5, 0.95, 0.03, "red") if False else None
-        B.box(c * 1.3 - 0.02, c * 1.3 + 0.02, s * 1.3 - 0.2, s * 1.3 + 0.2, 0.5, 0.95, "red") if abs(c) > 0.7 else B.box(c * 1.3 - 0.2, c * 1.3 + 0.2, s * 1.3 - 0.02, s * 1.3 + 0.02, 0.5, 0.95, "red")
+        cx, cy = c * 1.3, s * 1.3
+        # covered chair: a white cover over seat and back, a sash round the back with a bow, facing the table
+        ex, ey = -c, -s                                           # direction toward the table
+        px, py = -ey, ex
+        def at(du, dv, z):
+            return (cx + ex * du + px * dv, cy + ey * du + py * dv, z)
+        B.cyl(cx, cy, 0.0, 0.46, 0.2, 10, "white", rtop=0.21)       # cover skirt to the floor
+        B.rbox(cx - 0.21, cx + 0.21, cy - 0.21, cy + 0.21, 0.44, 0.52, 0.04, "white", None, rot=(0, 0, a))
+        bx, by = cx - ex * 0.19, cy - ey * 0.19
+        B.rbox(bx - 0.2, bx + 0.2, by - 0.03, by + 0.03, 0.5, 0.98, 0.04, "white", None, rot=(0, 0, a + 1.5708)) if False else None
+        B.poly([at(-0.19, -0.21, 0.5), at(-0.19, 0.21, 0.5), at(-0.19, 0.21, 0.98), at(-0.19, -0.21, 0.98)], "white", (cx, cy, 0.7))
+        B.poly([at(-0.15, -0.21, 0.5), at(-0.15, 0.21, 0.5), at(-0.15, 0.21, 0.98), at(-0.15, -0.21, 0.98)], "white", (cx, cy, 0.7)) if False else None
+        B.poly([at(-0.2, -0.22, 0.64), at(-0.2, 0.22, 0.64), at(-0.2, 0.22, 0.74), at(-0.2, -0.22, 0.74)], "red" if i % 2 else "gold", (cx, cy, 0.7))
+        B.poly([at(-0.21, 0.0, 0.69), at(-0.21, 0.12, 0.8), at(-0.21, 0.12, 0.6)], "red" if i % 2 else "gold", (cx, cy, 0.7))
+        B.poly([at(-0.21, 0.0, 0.69), at(-0.21, -0.12, 0.8), at(-0.21, -0.12, 0.6)], "red" if i % 2 else "gold", (cx, cy, 0.7))
+        B.empty("seat_%d" % (i + 1), (cx, cy, 0.52), kind="seat", facing=[ex, ey, 0])
     return dict(w=3, h=3, kind="seat", seats=8)
 
 
 def stage():
     B.box(-2.4, 2.4, -1.3, 1.3, 0.0, 0.7, "wood_d", top="carpet")
     B.box(-2.4, 2.4, -1.32, -1.28, 0.0, 0.7, "gold")
-    for x in (-0.9, 0.9):
-        B.rbox(x - 0.45, x + 0.45, 0.3, 0.9, 0.7, 1.55, 0.08, "gold")
-        B.rbox(x - 0.35, x + 0.35, 0.4, 0.8, 1.4, 2.0, 0.08, "red")
-    B.box(-2.4, 2.4, 1.28, 1.32, 0.7, 3.2, "red")
+    for k in range(9):                                        # a pleated skirt along the front of the stage
+        x0 = -2.4 + k * 0.5333
+        B.poly([(x0, -1.34, 0.02), (x0 + 0.5333, -1.34, 0.02), (x0 + 0.5333, -1.34, 0.68), (x0, -1.34, 0.68)], "fabric", (0, 5, 0.3), tint=T("#9d1f35") if k % 2 else T("#c7324a"))
+    for sx in (-1, 1):
+        B.cyl(sx * 2.2, -1.1, 0.7, 1.4, 0.04, 8, "gold")
+        B.cyl(sx * 2.2, -1.1, 1.4, 1.6, 0.14, 10, "red", rtop=0.0)
     return dict(w=5, h=3, kind="decor")
+
+
+def high_table():
+    L = 2.9
+    B.box(-L / 2, L / 2, -0.4, 0.4, 0.0, 0.76, "white")                              # a long table under a white cloth
+    B.box(-L / 2 - 0.02, L / 2 + 0.02, -0.42, 0.42, 0.74, 0.78, "white")
+    for k in range(10):                                                              # gathered swags along the front
+        x0 = -L / 2 + k * L / 10
+        B.poly([(x0, -0.43, 0.6), (x0 + L / 10, -0.43, 0.6), (x0 + L / 20 + L / 20, -0.43, 0.74), (x0, -0.43, 0.74)], "gold", (0, 5, 0.6))
+    B.box(-L / 2, L / 2, -0.12, 0.12, 0.78, 0.785, "red")                            # runner
+    for x in (-1.1, -0.55, 0.55, 1.1):
+        B.cyl(x, 0.0, 0.785, 1.0, 0.07, 10, "glass", rtop=0.1)
+        for k in range(6):
+            a = k * 1.05
+            B.cyl(x + math.cos(a) * 0.05, math.sin(a) * 0.05, 1.0, 1.28, 0.035, 6, ("orange", "red", "yellow")[k % 3], rtop=0.005)
+    B.cyl(0.0, 0.0, 0.785, 0.95, 0.25, 14, "white", rtop=0.2)                        # a tiered cake
+    B.cyl(0.0, 0.0, 0.95, 1.1, 0.17, 14, "gold", rtop=0.15)
+    B.cyl(0.0, 0.0, 1.1, 1.2, 0.11, 12, "white", rtop=0.04)
+    for x in (-1.3, 1.3):
+        B.cyl(x, 0.0, 0.785, 0.8, 0.12, 10, "plate")
+    for i, x in enumerate((-0.8, 0.8)):
+        B.rbox(x - 0.35, x + 0.35, 0.7, 1.1, 0.0, 0.07, 0.03, "carpet")
+        B.rbox(x - 0.22, x + 0.22, 0.75, 1.05, 0.07, 0.5, 0.08, "gold")
+        B.rbox(x - 0.22, x + 0.22, 1.0, 1.08, 0.5, 1.5, 0.06, "gold")
+        B.empty("seat_%d" % (i + 1), (x, 0.9, 0.5), kind="seat", facing=[0, -1, 0])
+    return dict(w=3, h=2, kind="decor")
+
+
+def backdrop():
+    W, H2 = 4.4, 2.8
+    B.box(-W / 2, W / 2, -0.08, 0.0, 0.0, H2, "gold")
+    B.box(-W / 2 + 0.08, W / 2 - 0.08, -0.1, -0.08, 0.08, H2 - 0.08, "red")
+    B.cur = "sign_backdrop"
+    B.poly([(-1.9, -0.101, 1.25), (1.9, -0.101, 1.25), (1.9, -0.101, 2.35), (-1.9, -0.101, 2.35)], "sign", (0, 5, 1.5))
+    B.cur = None
+    for sx in (-1, 1):                                        # drapes at both sides, tied back, with a swag across the top
+        for k in range(8):
+            x0 = sx * (W / 2 - 0.05) - sx * k * 0.07
+            sh = 0.78 + 0.22 * (0.5 + 0.5 * math.sin(k * 1.6))
+            B.poly([(x0, -0.16 - 0.04 * math.sin(k * 1.6), 0.05), (x0 - sx * 0.07, -0.16 - 0.04 * math.sin(k * 1.6 + 1.6), 0.05), (x0 - sx * 0.07, -0.16 - 0.04 * math.sin(k * 1.6 + 1.6), H2 - 0.05), (x0, -0.16 - 0.04 * math.sin(k * 1.6), H2 - 0.05)], "fabric", (0, 5, 1), tint=(T("#d4a73a")[0] * sh, T("#d4a73a")[1] * sh, T("#d4a73a")[2] * sh))
+    for k in range(9):
+        x0 = -W / 2 + k * W / 9
+        B.poly([(x0, -0.12, H2), (x0 + W / 9, -0.12, H2), (x0 + W / 18 + W / 18, -0.12, H2 - 0.35), (x0 + W / 18, -0.12, H2 - 0.42)], "fabric", (0, 5, H2), tint=T("#c7324a") if k % 2 else T("#9d1f35"))
+    for i in range(7):                                        # a balloon arch
+        a = math.pi * i / 6
+        B.cyl(math.cos(a) * 1.9 * 0.0 + (-1.7 + i * 0.57), -0.22, 0.0, 0.0, 0.0, 6, "gold") if False else None
+        B.rbox(-1.8 + i * 0.6 - 0.12, -1.8 + i * 0.6 + 0.12, -0.34, -0.1, 2.5 + 0.25 * math.sin(math.pi * i / 6) - 0.12, 2.5 + 0.25 * math.sin(math.pi * i / 6) + 0.12, 0.1, "gloss" if False else ("orange", "red", "gold", "white")[i % 4])
+    return dict(w=5, h=1, kind="decor", wall=False, tallH=H2, writableNode="sign_backdrop", atlasRect=list(homelib.RECTS["sign"]), atlasSize=1024)
+
+
+UP_TINTS = {"magenta": "#ff3fb0", "blue": "#3f6bff", "amber": "#ffb02e", "default": "#ffd27a"}
+
+
+def uplight():
+    tint = T(UP_TINTS.get(variant, UP_TINTS["default"]))
+    B.cyl(0, 0, 0, 0.1, 0.14, 10, "black", rtop=0.1)
+    B.cur = "glow"
+    B.cyl(0, 0, 0.1, 0.16, 0.12, 10, "lampglow", tint=tint, rtop=0.1)
+    B.cur = None
+    B.cyl(0, 0, 0.16, 0.19, 0.12, 10, "black")
+    B.empty("light_uplight", (0, 0, 0.2), kind="uplight", aimUp=True)
+    return dict(w=1, h=1, kind="light", light=True)
+
+
+def dance_floor():
+    cols = ["red", "blue", "green", "yellow", "orange", "plasticred", "white", "gold"]
+    n = 8
+    B.cur = "glow"
+    for i in range(n):
+        for j in range(n):
+            x0, y0 = -1.9 + i * 3.8 / n, -1.9 + j * 3.8 / n
+            t = cols[(i * 3 + j * 5) % len(cols)]
+            B.poly([(x0 + 0.01, y0 + 0.01, 0.034), (x0 + 3.8 / n - 0.01, y0 + 0.01, 0.034), (x0 + 3.8 / n - 0.01, y0 + 3.8 / n - 0.01, 0.034), (x0 + 0.01, y0 + 3.8 / n - 0.01, 0.034)], t, (0, 0, -5), tint=(0.8, 0.8, 0.8))
+    B.cur = None
+    B.box(-1.95, 1.95, -1.95, 1.95, 0.0, 0.025, "dark")
+    B.box(-2.0, 2.0, -2.0, -1.95, 0.0, 0.04, "gold"); B.box(-2.0, 2.0, 1.95, 2.0, 0.0, 0.04, "gold"); B.box(-2.0, -1.95, -1.95, 1.95, 0.0, 0.04, "gold"); B.box(1.95, 2.0, -1.95, 1.95, 0.0, 0.04, "gold")
+    return dict(w=4, h=4, kind="decor", flat=True)
+
+
+def drape_swag():
+    W = 1.2
+    n = 6
+    for k in range(n):
+        x0 = -W / 2 + k * W / n
+        for half in (0, 1):
+            pass
+        sag = 0.45
+        def z(u): return 0.0 - sag * 4 * u * (1 - u)
+        u0, u1 = k / n, (k + 1) / n
+        B.poly([(x0, -0.05, z(u0) + 0.0), (x0 + W / n, -0.05, z(u1)), (x0 + W / n, -0.12, z(u1) - 0.5), (x0, -0.12, z(u0) - 0.5)], "fabric", (0, 5, 0), tint=T("#c7324a") if k % 2 else T("#e3b04a"))
+    B.cyl(-W / 2, -0.05, -0.04, 0.04, 0.05, 8, "gold"); B.cyl(W / 2, -0.05, -0.04, 0.04, 0.05, 8, "gold")
+    return dict(w=1, h=1, kind="decor", wall=True, mountZ=2.5)
 
 
 # name -> (function, variants)
@@ -591,7 +721,7 @@ PIECES = {
     "toilet": (toilet, []), "basin": (basin, []), "shower": (shower, []), "bucket-bowl": (bucket_bowl, []),
     "washing-line": (washing_line, []), "generator": (generator, []), "inverter": (inverter, []), "gas-cylinder": (gas_cylinder, []), "shoe-rack": (shoe_rack, []),
     "plant-tall": (lambda: plant(True), []), "plant-bushy": (lambda: plant(False), []), "prayer-mat": (prayer_mat, []), "ring-light": (ring_light, []), "desk-laptop": (desk_laptop, []),
-    "curtains": (curtains, list(CURTAIN_TINTS)), "hall-table": (hall_table, []), "stage": (stage, []),
+    "curtains": (curtains, list(CURTAIN_TINTS)), "hall-table": (hall_table, []), "stage": (stage, []), "high-table": (high_table, []), "backdrop": (backdrop, []), "uplight": (uplight, list(UP_TINTS)), "dance-floor": (dance_floor, []), "drape-swag": (drape_swag, []),
 }
 if __name__ == "__main__":
     fn, vars_ = PIECES[piece]

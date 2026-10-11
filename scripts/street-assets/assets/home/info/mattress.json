@@ -4,7 +4,7 @@
  "kind": "bed",
  "sleeps": 1,
  "piece": "mattress",
- "triangles": 60,
+ "triangles": 108,
  "extentMetres": [
   1.03,
   2.18,

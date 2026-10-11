@@ -6,7 +6,7 @@ PIC=$1; WORK=$2; OUT=$3; shift 3
 HERE=${0:A:h}; BLENDER=${BLENDER:-/Applications/Blender.app/Contents/MacOS/Blender}
 mkdir -p $WORK $OUT
 [ -f $OUT/home-atlas.jpg ] || $BLENDER --background --python $HERE/blender/make_home_atlas.py -- $PIC $OUT/home-atlas.jpg > /dev/null
-PIECES=("$@"); [ ${#PIECES} -eq 0 ] && PIECES=(sofa2 sofa3 armchair coffee-table rug1 rug2 rug3 tv-console fan-standing fan-ceiling ac-unit lamp-floor frame-lagoon frame-adire frame-portrait bookshelf dining dining-laid chair-plastic stool cabinet-base cabinet-sink cabinet-wall cooker cooker-pots fridge microwave water-dispenser bed-single bed-double mattress wardrobe dressing-table bedside toilet basin shower bucket-bowl washing-line generator inverter gas-cylinder shoe-rack plant-tall plant-bushy prayer-mat ring-light desk-laptop curtains hall-table stage)
+PIECES=("$@"); [ ${#PIECES} -eq 0 ] && PIECES=(sofa2 sofa3 armchair coffee-table rug1 rug2 rug3 tv-console fan-standing fan-ceiling ac-unit lamp-floor frame-lagoon frame-adire frame-portrait bookshelf dining dining-laid chair-plastic stool cabinet-base cabinet-sink cabinet-wall cooker cooker-pots fridge microwave water-dispenser bed-single bed-double mattress wardrobe dressing-table bedside toilet basin shower bucket-bowl washing-line generator inverter gas-cylinder shoe-rack plant-tall plant-bushy prayer-mat ring-light desk-laptop curtains hall-table stage high-table backdrop uplight dance-floor drape-swag)
 for P in $PIECES; do
   # the variants a piece offers: read from its own record after the first build
   $BLENDER --background --disable-autoexec --python-exit-code 1 --python $HERE/blender/furniture.py -- $P default near $WORK | grep -E "^PIECE|rror|Trace|line " | cut -c1-120 || true

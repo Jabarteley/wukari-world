@@ -26,14 +26,14 @@ WT = srgb(WALLS["cream"])
 
 # kind: (W cells, D cells, windows on walls, doors on walls, partitions, kitchen rect, bath rect, lights)
 SPEC = {
-    "selfcontain": dict(W=6, D=6, back=[("window", 3, 4)], left=[("door", 4, 5)], right=[("window", 2, 3)], front=[],
+    "selfcontain": dict(zones=[], W=6, D=6, back=[("window", 3, 4)], left=[("door", 4, 5)], right=[("window", 2, 3)], front=[],
                         part=[], kitchen=(1, 4, 4, 6), bath=(4, 4, 6, 6), lights=[(3, 3)]),
-    "flat": dict(W=12, D=8, back=[("window", 2, 3), ("window", 6, 7), ("window", 10, 11)], left=[("door", 6, 7)], right=[("window", 2, 3), ("window", 6.5, 7.5)], front=[("window", 3, 4), ("window", 8.5, 9.5)],
+    "flat": dict(zones=[((8, 0, 12, 5), "floor_parquet")], accent=("left", 2, 6), W=12, D=8, back=[("window", 2, 3), ("window", 6, 7), ("window", 10, 11)], left=[("door", 6, 7)], right=[("window", 2, 3), ("window", 6.5, 7.5)], front=[("window", 3, 4), ("window", 8.5, 9.5)],
                  part=[("v", 8, 0, 8, [(3, 4, True), (6, 7, True)]), ("h", 5, 8, 12, [])], kitchen=(0, 0, 4, 3), bath=(8, 5, 12, 8), lights=[(3, 5), (6, 3), (10, 2.5), (10, 6.5), (2, 1.5)]),
-    "house3": dict(W=18, D=12, back=[("window", 2, 3), ("window", 5, 6), ("window", 10, 11), ("window", 15, 16)], left=[("door", 8, 9)], right=[("window", 2, 3), ("window", 8, 9)], front=[("window", 3, 4), ("window", 11, 12), ("window", 15, 16)],
+    "house3": dict(zones=[((8, 0, 13, 4), "floor_parquet"), ((13, 0, 18, 4), "floor_parquet"), ((8, 6, 13, 12), "floor_parquet"), ((13, 9, 18, 12), "floor_parquet")], accent=("left", 3, 8), W=18, D=12, back=[("window", 2, 3), ("window", 5, 6), ("window", 10, 11), ("window", 15, 16)], left=[("door", 8, 9)], right=[("window", 2, 3), ("window", 8, 9)], front=[("window", 3, 4), ("window", 11, 12), ("window", 15, 16)],
                    part=[("v", 8, 0, 4, []), ("v", 8, 6, 12, []), ("h", 4, 8, 18, [(10, 11, True), (15, 16, True)]), ("h", 6, 8, 18, [(10, 11, True), (15, 16, True)]), ("v", 13, 0, 4, []), ("v", 13, 6, 12, []), ("h", 9, 13, 18, [])],
                    kitchen=(0, 0, 4, 4), bath=(13, 6, 18, 9), lights=[(4, 7), (10.5, 2), (15.5, 2), (10.5, 9), (15.5, 7.5), (15.5, 10.5), (11, 5)]),
-    "hall": dict(W=20, D=14, back=[("window", 4, 6), ("window", 10, 12), ("window", 15, 17)], left=[("door", 11, 13)], right=[("window", 3, 5), ("window", 9, 11)], front=[("window", 5, 7), ("window", 13, 15)], part=[], kitchen=None, bath=None,
+    "hall": dict(zones=[], W=20, D=14, back=[("window", 4, 6), ("window", 10, 12), ("window", 15, 17)], left=[("door", 11, 13)], right=[("window", 3, 5), ("window", 9, 11)], front=[("window", 5, 7), ("window", 13, 15)], part=[], kitchen=None, bath=None,
                  lights=[(5, 6), (10, 6), (15, 6), (5, 10), (10, 10), (15, 10)]),
 }
 S = SPEC[kind]
@@ -66,7 +66,7 @@ def wall(frame, length, openings, d0, d1, node, bars=True, skirt_sides=(0,), cut
                 wbox(frame, cur, o0, d0, d1, 0, cut, "plaster", WT)
                 wbox(frame, cur, o0, d0 - 0.01, d1 + 0.01, cut, cut + 0.05, "wood_d")
                 for sd in (0, 1):
-                    wbox(frame, cur, o0, d0 - 0.014 if sd == 0 else d1, d0 if sd == 0 else d1 + 0.014, 0, 0.11, "white", srgb("#f2efe6"))
+                    wbox(frame, cur, o0, d0 - 0.014 if sd == 0 else d1, d0 if sd == 0 else d1 + 0.014, 0, 0.13, "wood_m", srgb("#7a5538"))
             cur = o1
             if kindo != "end":
                 doors.append(dict(wall=node, along=round((o0 + o1) / 2, 2), width=round(o1 - o0, 2), height=cut, leaf=False))
@@ -89,9 +89,9 @@ def wall(frame, length, openings, d0, d1, node, bars=True, skirt_sides=(0,), cut
         if z0 == 0:
             for sd in skirt_sides:
                 if sd == 0:
-                    wbox(frame, a, b, d0 - 0.014 if d0 < 0 else -0.014, d0 if d0 < 0 else 0.0, 0, 0.11, "white", srgb("#f2efe6"))
+                    wbox(frame, a, b, d0 - 0.014 if d0 < 0 else -0.014, d0 if d0 < 0 else 0.0, 0, 0.13, "wood_m", srgb("#7a5538"))
                 else:
-                    wbox(frame, a, b, d1, d1 + 0.014, 0, 0.11, "white", srgb("#f2efe6"))
+                    wbox(frame, a, b, d1, d1 + 0.014, 0, 0.13, "wood_m", srgb("#7a5538"))
     th = d1 - d0
     for kindo, o0, o1 in openings:
         mid = (o0 + o1) / 2
@@ -145,10 +145,19 @@ kit = S.get("kitchen"); bath = S.get("bath")
 inside = lambda r, cx, cy: r and r[0] <= cx < r[2] and r[1] <= cy < r[3]
 for cy in range(D):
     for cx in range(W):
-        t = "floor_checker" if inside(kit, cx, cy) else "floor_mosaic" if inside(bath, cx, cy) else FLOORTILE
+        t = "floor_checker" if inside(kit, cx, cy) else "floor_mosaic" if inside(bath, cx, cy) else next((zt for (zr, zt) in S["zones"] if inside(zr, cx, cy)), FLOORTILE)
         x0, x1, y0, y1 = cx * CELL, (cx + 1) * CELL, -(cy + 1) * CELL, -cy * CELL
         B.poly([(x0, y0, 0), (x1, y0, 0), (x1, y1, 0), (x0, y1, 0)], t, (0, 0, -5), [(0, 0), (1, 0), (1, 1), (0, 1)])
 B.cur = None
+# an accent wall: slatted wood panel over part of one wall (its own node, so the game can swap or hide it)
+if S.get("accent"):
+    fr_, c0, c1 = S["accent"]
+    B.cur = "accent_wall"
+    n_sl = int((c1 - c0) * CELL / 0.14)
+    for i in range(n_sl):
+        a0 = c0 * CELL + i * (c1 - c0) * CELL / n_sl
+        wbox(fr_, a0, a0 + (c1 - c0) * CELL / n_sl - 0.012, -0.045, 0.0, 0.13, 2.5, "slat")
+    B.cur = None
 # an outer slab so the room has a base
 B.box(-TH - 0.02, Wm + TH + 0.02, -Dm - TH - 0.02, TH + 0.02, -0.15, -0.04, "wood_d")
 

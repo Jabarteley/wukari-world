@@ -1,0 +1,40 @@
+{
+ "w": 3,
+ "h": 2,
+ "kind": "decor",
+ "piece": "high-table",
+ "triangles": 659,
+ "extentMetres": [
+  3.38,
+  1.76,
+  1.72
+ ],
+ "variants": [],
+ "empties": [
+  {
+   "name": "seat_1",
+   "x": -0.92,
+   "y": 0.575,
+   "z": -1.035,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  },
+  {
+   "name": "seat_2",
+   "x": 0.92,
+   "y": 0.575,
+   "z": -1.035,
+   "kind": "seat",
+   "facing": [
+    0,
+    -1,
+    0
+   ]
+  }
+ ],
+ "fitsFootprint": true
+}

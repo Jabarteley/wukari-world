@@ -3,11 +3,11 @@
  "h": 3,
  "kind": "decor",
  "piece": "stage",
- "triangles": 135,
+ "triangles": 63,
  "extentMetres": [
   5.52,
   3.04,
-  3.68
+  1.84
  ],
  "variants": [],
  "empties": [],

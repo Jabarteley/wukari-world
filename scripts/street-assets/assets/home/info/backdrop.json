@@ -1,0 +1,25 @@
+{
+ "w": 5,
+ "h": 1,
+ "kind": "decor",
+ "wall": false,
+ "tallH": 2.8,
+ "writableNode": "sign_backdrop",
+ "atlasRect": [
+  256,
+  768,
+  128,
+  64
+ ],
+ "atlasSize": 1024,
+ "piece": "backdrop",
+ "triangles": 414,
+ "extentMetres": [
+  5.06,
+  0.39,
+  3.3
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

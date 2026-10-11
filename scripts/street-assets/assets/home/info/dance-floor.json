@@ -1,0 +1,16 @@
+{
+ "w": 4,
+ "h": 4,
+ "kind": "decor",
+ "flat": true,
+ "piece": "dance-floor",
+ "triangles": 89,
+ "extentMetres": [
+  4.6,
+  4.6,
+  0.05
+ ],
+ "variants": [],
+ "empties": [],
+ "fitsFootprint": true
+}

@@ -13,11 +13,11 @@
  ],
  "sleeps": 2,
  "piece": "bed-double",
- "triangles": 155,
+ "triangles": 403,
  "extentMetres": [
   1.85,
-  2.28,
-  1.21
+  2.32,
+  1.26
  ],
  "variants": [
   "cream",
@@ -32,7 +32,7 @@
   {
    "name": "sleep_1",
    "x": -0.431,
-   "y": 0.633,
+   "y": 0.713,
    "z": -0.011,
    "kind": "bed",
    "facing": [
@@ -44,7 +44,7 @@
   {
    "name": "sleep_2",
    "x": 0.431,
-   "y": 0.633,
+   "y": 0.713,
    "z": -0.011,
    "kind": "bed",
    "facing": [

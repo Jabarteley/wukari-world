@@ -11,11 +11,11 @@
  ],
  "seats": 3,
  "piece": "sofa3",
- "triangles": 350,
+ "triangles": 688,
  "extentMetres": [
-  2.99,
-  1.06,
-  1.06
+  3.05,
+  1.13,
+  1.13
  ],
  "variants": [
   "slate",
@@ -27,8 +27,8 @@
  "empties": [
   {
    "name": "seat_1",
-   "x": -0.859,
-   "y": 0.575,
+   "x": -0.862,
+   "y": 0.644,
    "z": 0.023,
    "kind": "seat",
    "facing": [
@@ -40,7 +40,7 @@
   {
    "name": "seat_2",
    "x": 0.0,
-   "y": 0.575,
+   "y": 0.644,
    "z": 0.023,
    "kind": "seat",
    "facing": [
@@ -51,8 +51,8 @@
   },
   {
    "name": "seat_3",
-   "x": 0.859,
-   "y": 0.575,
+   "x": 0.862,
+   "y": 0.644,
    "z": 0.023,
    "kind": "seat",
    "facing": [

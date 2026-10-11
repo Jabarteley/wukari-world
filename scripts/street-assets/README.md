@@ -108,3 +108,10 @@ so the four saloon colours are four tiny textures. Sign boards (`sign_n`), the b
 - Instancing/merging: every home piece uses the same atlas and material, so a whole dressed room merges into two meshes (solid and glow): 2 draw calls (see `room-stats.json`); the window and lamp glow parts use an unlit material.
 - Anchors are named empties: `seat_n`, `sleep_n`, `use_*`, `light_*` (lamp positions for the game's point lights), in glTF axes relative to the piece's footprint centre.
 - Vehicles: saloon and SUV were regenerated from clean side-view pictures (`configs/saloon.json`, `suv.json`) with the clean-wheel replacement.
+
+## Round five: defect and warmth pass
+
+Floors redrawn (large ceramic tiles with grout, warm wood planks, terrazzo with larger chips, chequer), per-room floors in the flat and three-bedroom floor (`zones` in `blender/rooms.py`), a slatted accent wall node
+(`accent_wall`), darker skirting; rounded soft furniture (bevelled boxes, smooth shading, cushions and pillows), folded curtains, shaped cloth on the lines; owambe hall pieces (`high-table`, `backdrop` with writable node
+`sign_backdrop`, `uplight` in magenta, blue and amber, `dance-floor`, `drape-swag`, covered chairs with sashes in `hall-table`); car wheel arches are now cut round after decimation with an inner liner (`blender/vehicle.py`).
+`contact.ts` makes contact sheets so every picture can be looked at. The proof page's night windows use a per-atlas emissive mask (the older three buildings use their own atlas layout).

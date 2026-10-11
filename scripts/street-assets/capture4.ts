@@ -27,7 +27,7 @@ const ROOMS: Record<string, { room: string; W: number; D: number; items: It[] }>
     it('frame-lagoon', 1, 0, 0, { wall: 'back' }), it('frame-adire', 0, 1, 1, { wall: 'left' }), it('toilet', 5, 5), it('basin', 4, 5), it('shower', 5, 4), it('cooker-pots', 2, 5), it('cabinet-sink', 1, 5), it('fridge', 1, 4), it('shoe-rack', 0, 5),
     it('dining', 2, 4) as It,
   ].filter((i) => i.piece !== 'dining') },
-  flat: { room: 'room-flat-terrazzo', W: 12, D: 8, items: [
+  flat: { room: 'room-flat-ceramic', W: 12, D: 8, items: [
     // kitchen along the back wall, open to the living room
     it('fridge', 0, 0), it('cabinet-sink', 1, 0), it('cabinet-base', 2, 0), it('microwave', 2, 0, 0, { floorZ: 0.86 }), it('cooker-pots', 3, 0), it('cabinet-wall', 1, 0, 0, { wall: 'back', mountZ: 1.45 }), it('cabinet-wall', 2, 0, 0, { wall: 'back', mountZ: 1.45 }),
     it('water-dispenser', 0, 2), it('gas-cylinder', 3, 2),
@@ -43,11 +43,13 @@ const ROOMS: Record<string, { room: string; W: number; D: number; items: It[] }>
     it('shower', 11, 5), it('toilet', 11, 7), it('basin', 9, 7), it('bucket-bowl', 10, 5),
   ].filter((i) => !(i.piece === 'frame-lagoon' && i.x === 7)) },
 };
-ROOMS['hall'] = { room: 'room-hall-checker', W: 20, D: 14, items: [
-  it('stage', 7, 0), ...[[1, 5], [5, 5], [12, 5], [16, 5], [1, 9], [5, 9], [12, 9], [16, 9]].map(([x, y]) => it('hall-table', x!, y!)),
-  ...[4, 6, 8, 10].map((y) => it('rug2', 9, y)), it('lamp-floor', 6, 3), it('lamp-floor', 13, 3), it('plant-tall', 6, 1), it('plant-tall', 14, 1),
-  ...[4, 5, 10, 11, 15, 16].map((x) => it('curtains', x, 0, 0, { wall: 'back', variant: 'blue' })), it('ac-unit', 2, 0, 0, { wall: 'back', mountZ: 2.1 }), it('ac-unit', 17, 0, 0, { wall: 'back', mountZ: 2.1 }),
-  it('fan-ceiling', 4, 8), it('fan-ceiling', 15, 8), it('fan-ceiling', 9, 9), it('frame-portrait', 2, 0, 1, { wall: 'left', mountZ: 1.6 }), it('frame-lagoon', 6, 0, 1, { wall: 'left', mountZ: 1.5 }), it('ring-light', 2, 3), it('ring-light', 17, 3),
+ROOMS['hall'] = { room: 'room-hall-ceramic', W: 20, D: 14, items: [
+  it('stage', 7, 0), it('backdrop', 7, -0.5), it('high-table', 8, 0.25, 0, { floorZ: 0.7 }), it('dance-floor', 7.5, 5),
+  ...[[1, 4.5], [4, 4.5], [1, 9], [4, 9], [13.5, 4.5], [16.5, 4.5], [13.5, 9], [16.5, 9]].map(([x, y]) => it('hall-table', x!, y!)),
+  ...[2, 5, 14, 17].map((x, i) => it('uplight', x, 0.6, 0, { variant: ['magenta', 'blue', 'blue', 'magenta'][i] })), ...[3, 17].map((y, i) => it('uplight', 0.4, y - 8, 0, { variant: 'amber' })),
+  ...[0, 1, 2, 3, 4, 5, 6, 12, 13, 14, 15, 16, 17, 18, 19].map((x) => it('drape-swag', x, 0, 0, { wall: 'back', mountZ: 2.5 })),
+  it('lamp-floor', 6, 3), it('plant-tall', 12, 1), it('plant-tall', 6, 1), it('ring-light', 2, 2), it('ring-light', 17, 2), it('ac-unit', 1, 0, 0, { wall: 'back', mountZ: 2.1 }), it('ac-unit', 18, 0, 0, { wall: 'back', mountZ: 2.1 }),
+  it('fan-ceiling', 4, 7), it('fan-ceiling', 15, 7), it('fan-ceiling', 9.5, 11), it('frame-portrait', 2, 0, 1, { wall: 'left', mountZ: 1.6 }), it('frame-lagoon', 6, 0, 1, { wall: 'left', mountZ: 1.5 }),
 ] };
 const FLOOR_LIST = ['ceramic', 'terrazzo', 'parquet', 'checker'];
 
@@ -84,7 +86,7 @@ try {
       }
       // the same room unmerged, to compare the draw calls
       await browser.setViewport({ width: 390, height: 844, scale: 1, mobile: true });
-      await call('setupHome', { width: 390, height: 844, time: 'night', room: r.room, items: r.items, hide: ['wall_front', 'wall_right', 'glass_wall_front', 'glass_wall_right'], cam: { ...cams(r.W, r.D, false), pos: cams(r.W, r.D, false).pos.map((v, i) => (i === 1 ? v * 1.25 : v * 1.1)) as V3 }, lightsOn: true, merge: true });
+      await call('setupHome', { width: 390, height: 844, time: 'night', room: r.room, items: r.items, hide: ['wall_front', 'wall_right', 'glass_wall_front', 'glass_wall_right'], cam: { ...cams(r.W, r.D, false), fov: 50, pos: ((): V3 => { const c = cams(r.W, r.D, false); const t = c.look; return [t[0] + (c.pos[0] - t[0]) * 1.75, t[1] + (c.pos[1] - t[1]) * 1.75, t[2] + (c.pos[2] - t[2]) * 1.75]; })() }, lightsOn: true, merge: true });
       await shot(`room-${name}-night-phone`);
       await browser.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
     }
@@ -119,10 +121,10 @@ try {
         const p = per[n]!;
         await call('setupHome', { width: 900, height: 500, time: 'day', room: 'room-hall-ceramic', items: p.wall ? [{ piece: n, x: 6, y: 0, rot: 0, wall: 'back', mountZ: n.startsWith('ac') ? 1.4 : 1.0 }] : [{ piece: n, x: 6, y: 3, rot: 0 }], hide: ['wall_front', 'wall_right', 'wall_left', 'glass_wall_front', 'glass_wall_right', 'glass_wall_left'], cam: { pos: [0, 0, 0], look: [0, 0, 0] }, merge: false });
         const cx = (6 + p.w / 2) * C, cz = (p.wall ? 0.3 : (3 + p.h / 2) * C);
-        const R = Math.max(p.w, p.h, 1.6) * C * 1.1;
+        const R = Math.max(p.w, p.h, 2.1) * C * 1.15; const lookY = n.startsWith('fan-ceiling') ? 2.3 : n.startsWith('ac') ? 2.0 : 0.95;
         for (const [i, az] of [[0, 25], [1, 150]] as const) {
           const a = (az * Math.PI) / 180;
-          await call('setupHome', { width: 900, height: 500, time: 'day', room: 'room-hall-ceramic', items: p.wall ? [{ piece: n, x: 6, y: 0, rot: 0, wall: 'back', mountZ: n.startsWith('ac') ? 1.4 : 1.0 }] : [{ piece: n, x: 6, y: 3, rot: 0 }], hide: ['wall_front', 'wall_right', 'wall_left', 'wall_back', 'glass_wall_front', 'glass_wall_right', 'glass_wall_left', 'glass_wall_back'], cam: { pos: [cx + Math.sin(a) * R * 1.6, 1.2 + R * 0.5, cz + Math.cos(a) * R * 1.6 * (p.wall && i ? -1 : 1)], look: [cx, 0.7, cz], fov: 36 }, merge: false });
+          await call('setupHome', { width: 900, height: 500, time: 'day', room: 'room-hall-ceramic', items: p.wall ? [{ piece: n, x: 6, y: 0, rot: 0, wall: 'back', mountZ: n.startsWith('ac') ? 1.4 : 1.0 }] : [{ piece: n, x: 6, y: 3, rot: 0 }], hide: ['wall_front', 'wall_right', 'wall_left', 'wall_back', 'glass_wall_front', 'glass_wall_right', 'glass_wall_left', 'glass_wall_back'], cam: { pos: [cx + Math.sin(a) * R * 1.7, lookY + 0.6 + R * 0.35, cz + Math.cos(a) * R * 1.7 * (p.wall && i ? -1 : 1)], look: [cx, lookY, cz], fov: 40 }, merge: false });
           await shot(`piece-${n}-${i + 1}`);
         }
       }

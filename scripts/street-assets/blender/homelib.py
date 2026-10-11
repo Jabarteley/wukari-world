@@ -31,7 +31,7 @@ RECTS = {
     "prayer": (768, 640, 96, 128), "slat": (896, 640, 128, 128), "plaster": (0, 768, 128, 128), "carpet": (128, 768, 128, 128), "sign": (256, 768, 128, 64),
 }
 # the wall colours and floor names the rooms offer
-WALLS = {"cream": "#efe3c8", "white": "#f6f3ea", "sage": "#bcd3bc", "sky": "#b9d3e8", "peach": "#f2c3a7"}
+WALLS = {"cream": "#ecd8b2", "terracotta": "#d9a37e"} if False else {"cream": "#ecd8b2", "white": "#f6f3ea", "sage": "#bcd3bc", "sky": "#b9d3e8", "peach": "#f2c3a7"}
 FLOORS = ["ceramic", "terrazzo", "parquet", "checker"]
 
 
@@ -43,7 +43,9 @@ def srgb(h):
 
 def _grid_noise(h, w, rng, scale, amp):
     small = rng.standard_normal((max(2, h // scale), max(2, w // scale)))
-    return np.kron(small, np.ones((scale, scale)))[:h, :w] * amp
+    big = np.kron(small, np.ones((scale, scale)))
+    big = np.pad(big, ((0, max(0, h - big.shape[0])), (0, max(0, w - big.shape[1]))), mode='edge')
+    return big[:h, :w] * amp
 
 
 def solid(rgb, h, w, rng, amp=0.02, scale=8):
@@ -81,7 +83,7 @@ def make_atlas(tex_dir, path, quality=78):
         t[n] = solid(c, *R(n), rng, 0.02 if n not in ("plaster",) else 0.01, 8 if n != "plaster" else 32)
     # a woven look for the fabric tile (tinted): fine crossing lines
     f = t["fabric"]
-    f[::4] *= 0.93; f[:, ::4] *= 0.95
+    f[::4] *= 0.985; f[:, ::4] *= 0.99
     leaf = t["leaf"]; leaf[:, 30:34] = (0.45, 0.7, 0.3)
     # wood grain lines
     for n in ("wood_l", "wood_m", "wood_d"):
@@ -91,21 +93,55 @@ def make_atlas(tex_dir, path, quality=78):
     mi = t["mirror"]; mi *= np.linspace(1.15, 0.8, 64)[:, None, None]
     # kitchen and bathroom floors drawn: chequered black and white, blue-white mosaic
     yy, xx = np.mgrid[0:128, 0:128]
-    ck = np.where((((yy // 32) + (xx // 32)) % 2 == 0)[:, :, None], np.array((0.08, 0.08, 0.09)), np.array((0.92, 0.92, 0.9)))
+    ck = np.where((((yy // 32) + (xx // 32)) % 2 == 0)[:, :, None], np.array((0.20, 0.17, 0.15)), np.array((0.90, 0.86, 0.78)))
     t["floor_checker"] = np.clip(ck * (1 + _grid_noise(128, 128, rng, 4, 0.02)[:, :, None]), 0, 1)
     mo = np.zeros((128, 128, 3)); mo[:] = (0.62, 0.76, 0.86)
     m2 = (((yy // 16) + (xx // 16)) % 2 == 0)
     mo[m2] = (0.9, 0.94, 0.96)
     mo[(yy % 16 == 0) | (xx % 16 == 0)] = (0.78, 0.82, 0.84)
     t["floor_mosaic"] = mo
-    sl = np.zeros((128, 128, 3)); sl[:] = (0.28, 0.16, 0.1)
+    sl = np.zeros((128, 128, 3)); sl[:] = (0.16, 0.09, 0.05)
     for x in range(0, 128, 16):
-        sl[:, x + 1:x + 14] = np.array((0.46, 0.27, 0.16)) * (0.9 + 0.1 * rng.random())
+        sl[:, x + 2:x + 14] = (np.array((0.36, 0.20, 0.11)) * (0.92 + 0.12 * rng.random()))[None, None, :] * (1 + 0.05 * np.sin(np.linspace(0, 12, 128)))[:, None, None]
     t["slat"] = sl
     P = lambda name: os.path.join(tex_dir, name)
-    t["floor_ceramic"] = load_crop(P("t-ceramic.png"), None, 256, 256)
-    t["floor_terrazzo"] = load_crop(P("t-terrazzo.png"), None, 256, 256)
-    t["floor_parquet"] = load_crop(P("t-parquet.png"), None, 256, 256)
+    # ---- floors, drawn: low noise, large scale. One tile = one 1.2 m floor cell.
+    fr = np.random.default_rng(5)
+    cer = np.zeros((256, 256, 3))
+    for ty in range(2):                                   # four 0.6 m ceramic tiles with grout and a faint bevel
+        for tx in range(2):
+            base = np.array((0.93, 0.89, 0.81)) * (1 + 0.025 * (fr.random() - 0.5) * 2)
+            cer[ty * 128:(ty + 1) * 128, tx * 128:(tx + 1) * 128] = base
+    yy, xx = np.mgrid[0:256, 0:256]
+    edge = np.minimum(np.minimum(xx % 128, 127 - xx % 128), np.minimum(yy % 128, 127 - yy % 128))
+    cer *= (1 - 0.06 * np.clip(1 - edge / 10.0, 0, 1))[:, :, None]
+    cer[(edge < 2)] = (0.66, 0.62, 0.54)
+    cer *= (1 + _grid_noise(256, 256, fr, 32, 0.012)[:, :, None])
+    t["floor_ceramic"] = np.clip(cer, 0, 1)
+    wood = np.zeros((256, 256, 3)); rows = 6
+    for r_ in range(rows):
+        y0, y1 = r_ * 256 // rows, (r_ + 1) * 256 // rows
+        shade = 0.82 + 0.3 * fr.random()
+        base = np.array((0.40, 0.23, 0.12)) * shade
+        grain = 1 + _grid_noise(y1 - y0, 256, fr, 3, 0.05)[:, ::1] * 1.0
+        grain = np.kron(np.ones((1, 1)), grain) if False else grain
+        streak = 1 + 0.07 * np.sin(np.linspace(0, 6.28 * (2 + r_ % 3), 256) + r_)[None, :]
+        wood[y0:y1] = (base[None, None, :] * (grain * streak)[:, :, None])
+        wood[y0:y0 + 1] *= 0.55                           # seam between planks
+        seam = int(fr.random() * 200) + 30
+        wood[y0:y1, seam:seam + 1] *= 0.55                # a butt joint
+    t["floor_parquet"] = np.clip(wood, 0, 1)
+    ter = np.zeros((256, 256, 3)); ter[:] = (0.93, 0.90, 0.84)
+    ter *= (1 + _grid_noise(256, 256, fr, 16, 0.01)[:, :, None])
+    chip_cols = [(0.62, 0.60, 0.56), (0.80, 0.66, 0.52), (0.97, 0.96, 0.93), (0.70, 0.52, 0.40), (0.76, 0.76, 0.72)]
+    for _ in range(75):                                   # larger chips, kept close to the ground colour
+        cx, cy, rr = fr.integers(0, 256), fr.integers(0, 256), fr.integers(4, 9)
+        col = np.array(chip_cols[fr.integers(len(chip_cols))]) * 0.45 + ter[0, 0] * 0.55
+        for ox in (-256, 0, 256):
+            for oy in (-256, 0, 256):
+                m = ((xx - cx - ox) ** 2 / (rr * 1.3) ** 2 + (yy - cy - oy) ** 2 / (rr * 0.8) ** 2) < 1
+                ter[m] = col
+    t["floor_terrazzo"] = np.clip(ter, 0, 1)
     t["rug1"] = load_crop(P("t-rug-1.png"), None, 256, 256)
     t["rug2"] = load_crop(P("t-rug-2.png"), None, 256, 256)
     t["rug3"] = load_crop(P("t-rug-3.png"), (0.07, 0.06, 0.93, 0.93), 256, 256)
@@ -151,6 +187,7 @@ class Builder:
         self.empties = []
         self.cur = None
         self.k = 1.0
+        self.smooth = False
 
     def _paint(self, f, tile, tint, uvs):
         c = tint if tint is not None else (1, 1, 1)
@@ -187,15 +224,24 @@ class Builder:
         self.poly([(x0, y0, z0), (x0, y1, z0), (x0, y1, z1), (x0, y0, z1)], sides, ref, tint=tint)
         self.poly([(x1, y0, z0), (x1, y1, z0), (x1, y1, z1), (x1, y0, z1)], sides, ref, tint=tint)
 
-    def rbox(self, x0, x1, y0, y1, z0, z1, r=0.05, tile="fabric", tint=None, seg=2):
+    def rbox(self, x0, x1, y0, y1, z0, z1, r=0.05, tile="fabric", tint=None, seg=2, rot=None, squash=None):
         """A soft box: all twelve edges bevelled by r. UVs by box projection onto `tile`."""
         r = min(r, (x1 - x0) / 2.01, (y1 - y0) / 2.01, (z1 - z0) / 2.01)
         tmp = bmesh.new()
         bmesh.ops.create_cube(tmp, size=1.0)
         for v in tmp.verts:
-            v.co = V(((x0 + x1) / 2 + v.co.x * (x1 - x0), (y0 + y1) / 2 + v.co.y * (y1 - y0), (z0 + z1) / 2 + v.co.z * (z1 - z0)))
+            v.co = V((v.co.x * (x1 - x0), v.co.y * (y1 - y0), v.co.z * (z1 - z0)))
         if r > 0.002:
-            bmesh.ops.bevel(tmp, geom=list(tmp.edges), offset=r, segments=seg if self.near else 1, affect="EDGES")
+            bmesh.ops.bevel(tmp, geom=list(tmp.edges), offset=r, segments=seg if self.near else 2, affect="EDGES", profile=0.7)
+        cen = V(((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2))
+        if rot is not None:
+            from mathutils import Euler
+            m = Euler(rot, "XYZ").to_matrix()
+            for v in tmp.verts:
+                v.co = m @ v.co
+        for v in tmp.verts:
+            v.co = v.co + cen
+        self.smooth = True
         c = tint if tint is not None else (1, 1, 1)
         mp = {}
         for v in tmp.verts:
@@ -208,7 +254,7 @@ class Builder:
             for v in f.verts:
                 a, b = [(1, 2), (0, 2), (0, 1)][ax]
                 lo = (x0, y0, z0); hi = (x1, y1, z1)
-                uvs.append(((v.co[a] - lo[a]) / max(hi[a] - lo[a], 1e-6), (v.co[b] - lo[b]) / max(hi[b] - lo[b], 1e-6)))
+                uvs.append((min(1.0, max(0.0, (v.co[a] - lo[a]) / max(hi[a] - lo[a], 1e-6))) if rot is None else 0.5, min(1.0, max(0.0, (v.co[b] - lo[b]) / max(hi[b] - lo[b], 1e-6))) if rot is None else 0.5))
             self._paint(nf, tile, tint, uvs)
         tmp.free()
 
@@ -253,6 +299,8 @@ def finish(B, name, out_dir, textured=False, atlas_path=None, centre=(0.0, 0.0))
         if not b2.faces:
             b2.free(); return None
         me = bpy.data.meshes.new(label); b2.to_mesh(me); b2.free()
+        if B.smooth:
+            me.shade_smooth()
         ob = bpy.data.objects.new(label, me); bpy.context.collection.objects.link(ob)
         return ob
     main = make(name, None)

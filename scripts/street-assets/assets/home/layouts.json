@@ -69,6 +69,30 @@
     "x": 1,
     "y": 5,
     "rot": 0
+   },
+   {
+    "piece": "fan-standing",
+    "x": 5,
+    "y": 1,
+    "rot": 0
+   },
+   {
+    "piece": "generator",
+    "x": 5,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "prayer-mat",
+    "x": 2,
+    "y": 0,
+    "rot": 0
+   },
+   {
+    "piece": "plant-bushy",
+    "x": 5,
+    "y": 3,
+    "rot": 0
    }
   ]
  },
@@ -215,7 +239,7 @@
   ]
  },
  "flat": {
-  "room": "room-flat-terrazzo",
+  "room": "room-flat-ceramic",
   "W": 12,
   "D": 8,
   "items": [
@@ -496,7 +520,7 @@
   ]
  },
  "hall": {
-  "room": "room-hall-checker",
+  "room": "room-hall-ceramic",
   "W": 20,
   "D": 14,
   "items": [
@@ -507,160 +531,275 @@
     "rot": 0
    },
    {
-    "piece": "hall-table",
-    "x": 1,
-    "y": 5,
+    "piece": "backdrop",
+    "x": 7,
+    "y": -0.5,
     "rot": 0
    },
    {
-    "piece": "hall-table",
-    "x": 5,
-    "y": 5,
-    "rot": 0
+    "piece": "high-table",
+    "x": 8,
+    "y": 0.25,
+    "rot": 0,
+    "floorZ": 0.7
    },
    {
-    "piece": "hall-table",
-    "x": 12,
-    "y": 5,
-    "rot": 0
-   },
-   {
-    "piece": "hall-table",
-    "x": 16,
+    "piece": "dance-floor",
+    "x": 7.5,
     "y": 5,
     "rot": 0
    },
    {
     "piece": "hall-table",
     "x": 1,
-    "y": 9,
+    "y": 4.5,
     "rot": 0
    },
    {
     "piece": "hall-table",
-    "x": 5,
-    "y": 9,
-    "rot": 0
-   },
-   {
-    "piece": "hall-table",
-    "x": 12,
-    "y": 9,
-    "rot": 0
-   },
-   {
-    "piece": "hall-table",
-    "x": 16,
-    "y": 9,
-    "rot": 0
-   },
-   {
-    "piece": "rug2",
-    "x": 9,
-    "y": 4,
-    "rot": 0
-   },
-   {
-    "piece": "rug2",
-    "x": 9,
-    "y": 6,
-    "rot": 0
-   },
-   {
-    "piece": "rug2",
-    "x": 9,
-    "y": 8,
-    "rot": 0
-   },
-   {
-    "piece": "rug2",
-    "x": 9,
-    "y": 10,
-    "rot": 0
-   },
-   {
-    "piece": "lamp-floor",
-    "x": 6,
-    "y": 3,
-    "rot": 0
-   },
-   {
-    "piece": "lamp-floor",
-    "x": 13,
-    "y": 3,
-    "rot": 0
-   },
-   {
-    "piece": "plant-tall",
-    "x": 6,
-    "y": 1,
-    "rot": 0
-   },
-   {
-    "piece": "plant-tall",
-    "x": 14,
-    "y": 1,
-    "rot": 0
-   },
-   {
-    "piece": "curtains",
     "x": 4,
-    "y": 0,
-    "rot": 0,
-    "wall": "back",
-    "variant": "blue"
+    "y": 4.5,
+    "rot": 0
    },
    {
-    "piece": "curtains",
+    "piece": "hall-table",
+    "x": 1,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 4,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 13.5,
+    "y": 4.5,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 16.5,
+    "y": 4.5,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 13.5,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "hall-table",
+    "x": 16.5,
+    "y": 9,
+    "rot": 0
+   },
+   {
+    "piece": "uplight",
+    "x": 2,
+    "y": 0.6,
+    "rot": 0,
+    "variant": "magenta"
+   },
+   {
+    "piece": "uplight",
     "x": 5,
-    "y": 0,
+    "y": 0.6,
     "rot": 0,
-    "wall": "back",
     "variant": "blue"
    },
    {
-    "piece": "curtains",
-    "x": 10,
-    "y": 0,
+    "piece": "uplight",
+    "x": 14,
+    "y": 0.6,
     "rot": 0,
-    "wall": "back",
     "variant": "blue"
    },
    {
-    "piece": "curtains",
-    "x": 11,
+    "piece": "uplight",
+    "x": 17,
+    "y": 0.6,
+    "rot": 0,
+    "variant": "magenta"
+   },
+   {
+    "piece": "uplight",
+    "x": 0.4,
+    "y": -5,
+    "rot": 0,
+    "variant": "amber"
+   },
+   {
+    "piece": "uplight",
+    "x": 0.4,
+    "y": 9,
+    "rot": 0,
+    "variant": "amber"
+   },
+   {
+    "piece": "drape-swag",
+    "x": 0,
     "y": 0,
     "rot": 0,
     "wall": "back",
-    "variant": "blue"
+    "mountZ": 2.5
    },
    {
-    "piece": "curtains",
-    "x": 15,
+    "piece": "drape-swag",
+    "x": 1,
     "y": 0,
     "rot": 0,
     "wall": "back",
-    "variant": "blue"
+    "mountZ": 2.5
    },
    {
-    "piece": "curtains",
-    "x": 16,
-    "y": 0,
-    "rot": 0,
-    "wall": "back",
-    "variant": "blue"
-   },
-   {
-    "piece": "ac-unit",
+    "piece": "drape-swag",
     "x": 2,
     "y": 0,
     "rot": 0,
     "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 3,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 4,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 5,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 6,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 12,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 13,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 14,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 15,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 16,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 17,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 18,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "drape-swag",
+    "x": 19,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
+    "mountZ": 2.5
+   },
+   {
+    "piece": "lamp-floor",
+    "x": 6,
+    "y": 3,
+    "rot": 0
+   },
+   {
+    "piece": "plant-tall",
+    "x": 12,
+    "y": 1,
+    "rot": 0
+   },
+   {
+    "piece": "plant-tall",
+    "x": 6,
+    "y": 1,
+    "rot": 0
+   },
+   {
+    "piece": "ring-light",
+    "x": 2,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "ring-light",
+    "x": 17,
+    "y": 2,
+    "rot": 0
+   },
+   {
+    "piece": "ac-unit",
+    "x": 1,
+    "y": 0,
+    "rot": 0,
+    "wall": "back",
     "mountZ": 2.1
    },
    {
     "piece": "ac-unit",
-    "x": 17,
+    "x": 18,
     "y": 0,
     "rot": 0,
     "wall": "back",
@@ -669,19 +808,19 @@
    {
     "piece": "fan-ceiling",
     "x": 4,
-    "y": 8,
+    "y": 7,
     "rot": 0
    },
    {
     "piece": "fan-ceiling",
     "x": 15,
-    "y": 8,
+    "y": 7,
     "rot": 0
    },
    {
     "piece": "fan-ceiling",
-    "x": 9,
-    "y": 9,
+    "x": 9.5,
+    "y": 11,
     "rot": 0
    },
    {
@@ -699,18 +838,6 @@
     "rot": 1,
     "wall": "left",
     "mountZ": 1.5
-   },
-   {
-    "piece": "ring-light",
-    "x": 2,
-    "y": 3,
-    "rot": 0
-   },
-   {
-    "piece": "ring-light",
-    "x": 17,
-    "y": 3,
-    "rot": 0
    }
   ]
  }

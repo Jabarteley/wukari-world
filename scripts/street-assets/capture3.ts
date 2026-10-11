@@ -73,7 +73,7 @@ try {
     const have = new Set(names);
     const PI2 = PI / 2;
     const camPos: V3 = [0, 12, 34];
-    type It = { src: "new"; kind: string; file: string; x: number; z: number; ry: number; home?: boolean; y?: number };
+    type It = { src: "new"; kind: string; file: string; x: number; z: number; ry: number; home?: boolean; y?: number; label?: string };
     const mk = (list: [string, number, number, number?][]): It[] => list.map(([file, x, z, ry = 0]) => {
       const far = Math.hypot(x - camPos[0], z - camPos[2]) > 40 && have.has(file + '-far');
       if (!have.has(file)) return null as unknown as It;
@@ -127,7 +127,7 @@ try {
         }
         const key = Object.keys(RULES).find((k) => b.file.startsWith(k + '-'));
         if (!key) continue;
-        for (const [piece, x, y, z, ry, lvl] of RULES[key]!) if (lvl <= detail) extra.push({ src: 'new', kind: 'x', file: 'detail-' + piece, home: true, x: b.x + (Math.cos(b.ry) * x), y, z: b.z + z, ry: ry + b.ry } as unknown as It);
+        for (const [piece, x, y, z, ry, lvl] of RULES[key]!) if (lvl <= detail) extra.push({ src: 'new', kind: 'x', file: 'detail-' + piece, home: true, label: piece === 'number-sign' ? String((Math.abs(Math.round(b.x)) * 3) % 47 + 2) : undefined, x: b.x + (Math.cos(b.ry) * x), y, z: b.z + z, ry: ry + b.ry } as unknown as It);
       }
       return [...items, ...extra];
     };

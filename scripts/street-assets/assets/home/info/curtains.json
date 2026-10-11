@@ -11,11 +11,11 @@
   "cream"
  ],
  "piece": "curtains",
- "triangles": 27,
+ "triangles": 53,
  "extentMetres": [
-  1.49,
-  0.1,
-  2.33
+  1.6,
+  0.11,
+  2.35
  ],
  "variants": [
   "default",

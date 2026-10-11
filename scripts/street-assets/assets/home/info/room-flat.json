@@ -10,7 +10,7 @@
   2.6
  ],
  "floor": "checker",
- "triangles": 1326,
+ "triangles": 1496,
  "doors": [
   {
    "wall": "wall_left",
@@ -99,7 +99,7 @@
   "glow"
  ],
  "walls": {
-  "cream": "#efe3c8",
+  "cream": "#ecd8b2",
   "white": "#f6f3ea",
   "sage": "#bcd3bc",
   "sky": "#b9d3e8",

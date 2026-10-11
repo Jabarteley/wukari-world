@@ -11,11 +11,11 @@
  ],
  "seats": 1,
  "piece": "armchair",
- "triangles": 230,
+ "triangles": 418,
  "extentMetres": [
-  1.09,
-  1.06,
-  1.06
+  1.15,
+  1.13,
+  1.13
  ],
  "variants": [
   "slate",
@@ -28,7 +28,7 @@
   {
    "name": "seat_1",
    "x": 0.0,
-   "y": 0.575,
+   "y": 0.644,
    "z": 0.023,
    "kind": "seat",
    "facing": [

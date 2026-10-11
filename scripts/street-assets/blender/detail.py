@@ -27,9 +27,7 @@ def balcony():
         x = -W / 2 + 0.12 + i * (W - 0.24) / 13
         B.box(x - 0.012, x + 0.012, -D + 0.01, -D + 0.03, 0.04, 1.0, "black")
     B.box(-W / 2, W / 2, -D - 0.01, -D + 0.05, 1.03, 1.08, "wood_d")
-    B.cur = "clothes"
-    B.poly([(-0.5, -D + 0.1, 0.95), (-0.2, -D + 0.1, 0.95), (-0.2, -D + 0.1, 0.45), (-0.5, -D + 0.1, 0.45)], "bed_a", None)
-    B.cur = None
+
     B.box(0.6, 0.9, -0.8, -0.5, 0.0, 0.3, "terracotta"); B.cyl(0.75, -0.65, 0.3, 0.55, 0.14, 8, "leaf", cap=True)
     return dict(kind="balcony", attach="wall", w=2.6, d=1.1)
 
@@ -148,18 +146,29 @@ def gen_hut():
     return dict(kind="generator-hut", attach="ground", w=2.0, d=1.6)
 
 
+def cloth(kind, x, top, w, h, tile):
+    if kind == "shirt":
+        sl = w * 0.32
+        pts = [(x, top - 0.02), (x + sl, top), (x + w * 0.5, top - 0.05), (x + w - sl, top), (x + w, top - 0.02), (x + w, top - h * 0.3), (x + w - sl * 0.9, top - h * 0.3), (x + w - sl * 0.9, top - h), (x + sl * 0.9, top - h), (x + sl * 0.9, top - h * 0.3), (x, top - h * 0.3)]
+    else:
+        n = 6
+        pts = [(x + w * i / n, top - 0.03 * math.sin(i)) for i in range(n + 1)] + [(x + w - w * i / n, top - h + 0.05 * math.sin(i * 1.7)) for i in range(n + 1)]
+    for flip in (0, 1):
+        P = [V((px, (0.015 if flip else -0.015) + 0.02 * math.sin(px * 7), pz)) for px, pz in pts]
+        uv = [((p.x - x) / w, (p.z - top + h) / h) for p in P]
+        B.poly(P if not flip else P[::-1], tile, None, uv if not flip else uv[::-1])
+
+
 def clothes_line():
     for sx in (-1, 1):
         B.cyl(sx * 1.6, 0, 0, 2.1, 0.03, 6, "steel")
     B.box(-1.6, 1.6, -0.005, 0.005, 2.02, 2.04, "white")
     B.cur = "clothes"
-    cols = ["red", "blue", "yellow", "green", "orange", "bed_a", "curtain", "white", "bed_b"]
     x = -1.5
-    for i in range(8):
-        w = 0.25 + 0.07 * (i % 3); h = 0.45 + 0.2 * (i % 2)
-        t = cols[i % len(cols)]
-        B.poly([(x, 0, 2.02), (x + w, 0, 2.02), (x + w, 0, 2.02 - h), (x, 0, 2.02 - h)], t, None); B.poly([(x, 0, 2.02), (x, 0, 2.02 - h), (x + w, 0, 2.02 - h), (x + w, 0, 2.02)], t, None)
-        x += w + 0.12
+    for i, (k, t) in enumerate((("shirt", "red"), ("wrap", "bed_a"), ("shirt", "blue"), ("shirt", "yellow"), ("wrap", "curtain"), ("shirt", "white"), ("wrap", "bed_b"))):
+        w = 0.4 if k == "shirt" else 0.42
+        cloth(k, x, 2.02, w, 0.62 if k == "shirt" else 1.0, t)
+        x += w + 0.08
     B.cur = None
     return dict(kind="clothes-line", attach="ground", w=3.2, d=0.1)
 

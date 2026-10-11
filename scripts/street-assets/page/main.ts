@@ -14,7 +14,7 @@ import { buildVehicle } from '../../../src/models/vehicles/index.ts';
 import type { Batch } from '../../../src/scene/types.ts';
 
 type Kind = 'danfo' | 'keke' | 'house' | 'kiosk' | 'mango-tree' | 'palm';
-interface Item { src: 'old' | 'new'; kind: Kind; file?: string; home?: boolean; y?: number; x: number; z: number; ry?: number; lod?: 'near' | 'far'; variant?: string; s?: number; wheels?: number }
+interface Item { src: 'old' | 'new'; kind: Kind; file?: string; home?: boolean; label?: string; y?: number; x: number; z: number; ry?: number; lod?: 'near' | 'far'; variant?: string; s?: number; wheels?: number }
 interface Spec {
   width: number; height: number; time: 'day' | 'dusk' | 'night'; base: 'street' | 'plain'; items: Item[];
   cam: { pos: [number, number, number]; look: [number, number, number]; fov?: number };
@@ -188,7 +188,9 @@ async function setup(spec: Spec): Promise<{ items: number }> {
     }
     if (it.home) {
       const hm = await loadHome(it.file!);
-      const o = hm.root.clone(true); o.position.set(it.x, it.y ?? 0, it.z); o.rotation.y = it.ry ?? 0; if (it.s) o.scale.setScalar(it.s);
+      const o = hm.root.clone(true);
+      o.traverse((n) => { if (n.name === 'sign_number' && it.label) { const cv = document.createElement('canvas'); cv.width = 256; cv.height = 128; const g = cv.getContext('2d')!; g.fillStyle = '#ffffff'; g.fillRect(0, 0, 256, 128); g.fillStyle = '#12306a'; g.font = 'bold 84px system-ui'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(it.label, 128, 70); const tx = new THREE.CanvasTexture(cv); tx.flipY = false; tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(1024 / 128, 1024 / 64); tx.offset.set(-256 / 128, -768 / 64); (n as THREE.Mesh).material = new THREE.MeshBasicMaterial({ map: tx }); } });
+      o.position.set(it.x, it.y ?? 0, it.z); o.rotation.y = it.ry ?? 0; if (it.s) o.scale.setScalar(it.s);
       stage.add(o); resolved.push({ it, object: o });
       continue;
     }
@@ -202,6 +204,7 @@ async function setup(spec: Spec): Promise<{ items: number }> {
       continue;
     }
     const obj = model.root.clone(true);
+    if (/^(bungalow|house2|flats)-/.test(nameOf(it))) obj.userData['r2'] = true;
     obj.position.set(it.x, 0, it.z); obj.rotation.y = it.ry ?? 0; if (it.s) obj.scale.setScalar(it.s);
     stage.add(obj);
     if (spec.slotItems) {
@@ -234,7 +237,9 @@ async function setup(spec: Spec): Promise<{ items: number }> {
     const cv = document.createElement('canvas'); cv.width = cv.height = 256; const g = cv.getContext('2d')!;
     g.fillStyle = '#000'; g.fillRect(0, 0, 256, 256); g.fillStyle = '#fff'; g.fillRect(0, 0, 64, 64); g.fillRect(64, 0, 64, 64);
     const mask = new THREE.CanvasTexture(cv); mask.flipY = false;
-    stage.traverse((o) => { const m = o as THREE.Mesh; if (!m.isMesh) return; const mt = m.material as THREE.MeshStandardMaterial; if (mt && mt.map && mt.name === 'atlas' && !mt.emissiveMap) { m.material = mt.clone(); const nm = m.material as THREE.MeshStandardMaterial; const mk = mask.clone(); mk.flipY = false; mk.offset.copy(mt.map.offset); mk.repeat.copy(mt.map.repeat); mk.rotation = mt.map.rotation; mk.center.copy(mt.map.center); mk.needsUpdate = true; nm.emissiveMap = mk; nm.emissive.set(spec.time === 'night' ? '#ffd9a0' : '#ffbf80'); nm.emissiveIntensity = spec.time === 'night' ? 1.0 : 0.55; } });
+    const cv2 = document.createElement('canvas'); cv2.width = cv2.height = 256; const g2 = cv2.getContext('2d')!; g2.fillStyle = '#000'; g2.fillRect(0, 0, 256, 256); g2.fillStyle = '#fff'; g2.fillRect(128, 192, 64, 64);
+    const mask2 = new THREE.CanvasTexture(cv2); mask2.flipY = false;
+    stage.traverse((o) => { const m = o as THREE.Mesh; if (!m.isMesh) return; const mt = m.material as THREE.MeshStandardMaterial; if (mt && mt.map && mt.name === 'atlas' && !mt.emissiveMap) { m.material = mt.clone(); const nm = m.material as THREE.MeshStandardMaterial; let isR2 = false; m.traverseAncestors((a) => { if (a.userData['r2']) isR2 = true; }); const mk = (isR2 ? mask2 : mask).clone(); mk.flipY = false; mk.offset.copy(mt.map.offset); mk.repeat.copy(mt.map.repeat); mk.rotation = mt.map.rotation; mk.center.copy(mt.map.center); mk.needsUpdate = true; nm.emissiveMap = mk; nm.emissive.set(spec.time === 'night' ? '#ffd9a0' : '#ffbf80'); nm.emissiveIntensity = spec.time === 'night' ? 1.0 : 0.55; } });
   }
   if (spec.lightsOn) {
     stage.updateMatrixWorld(true);
@@ -373,20 +378,22 @@ async function setupHome(spec: HomeSpec): Promise<{ meshes: number; triangles: n
   canvas.width = spec.width; canvas.height = spec.height;
   renderer.setPixelRatio(1); renderer.setSize(spec.width, spec.height, false);
   camera.aspect = spec.width / spec.height; camera.fov = spec.cam.fov ?? 40; camera.position.set(...spec.cam.pos); camera.lookAt(...spec.cam.look); camera.updateProjectionMatrix();
-  const light = lightingFor('indoor', spec.time);
-  sky.set(light.sky[0], light.sky[1]);
-  hemi.color.set(light.hemi[0]); hemi.groundColor.set(light.hemi[1]); hemi.intensity = light.hemi[2] * (spec.time === 'night' ? 0.55 : 0.9);
-  sun.color.set(light.sun[0]); sun.intensity = light.sun[1] * (spec.time === 'night' ? 0.5 : 1); sun.position.set(...light.sun[2]);
+  // one warm key, a soft fill, dark surroundings: the room glows against the dark (renders only; the game has its own lighting)
+  const night = spec.time === 'night';
+  sky.set('#15110f', '#0c0a09');
+  hemi.color.set(night ? '#6b6a8a' : '#d9e1ee'); hemi.groundColor.set('#3a2a1e'); hemi.intensity = night ? 0.55 : 0.75;
+  sun.color.set(night ? '#ffc98a' : '#ffe3b8'); sun.intensity = night ? 0.55 : 2.1; sun.position.set(-9, 16, 12);
+  sun.shadow.radius = 7; sun.shadow.blurSamples = 12; sun.shadow.bias = -0.0006;
   sun.target.position.set(6, 0, 5); sun.shadow.camera.left = -20; sun.shadow.camera.right = 20; sun.shadow.camera.top = 20; sun.shadow.camera.bottom = -20; sun.shadow.camera.updateProjectionMatrix();
-  rim.color.set(light.rim[0]); rim.intensity = light.rim[1];
+  rim.color.set('#ffd9b0'); rim.intensity = night ? 0.1 : 0.25;
   renderer.shadowMap.enabled = spec.shadows !== false;
-  ground.place(6, 5, 60, -0.2); ground.tint('#6d7a63');
+  ground.place(6, 5, 60, -0.3); ground.tint('#1a1512');
   const room = await loadHome(spec.room);
   const root = new THREE.Group(); root.name = 'home';
   const rr = room.root.clone(true);
   rr.traverse((o) => { if (spec.hide?.includes(o.name)) o.visible = false; });
   root.add(rr);
-  const lamps: THREE.Vector3[] = [];
+  const lamps: THREE.Vector3[] = []; const lampCol: string[] = [];
   stage.add(root);
   let pieces = 0;
   for (const it of spec.items) {
@@ -407,6 +414,7 @@ async function setupHome(spec: HomeSpec): Promise<{ meshes: number; triangles: n
       holder.position.set((it.x + ew / 2) * CELLM, it.floorZ ?? 0, (it.y + eh / 2) * CELLM);
       holder.rotation.y = rot * Math.PI / 2;
     }
+    if (it.piece === 'uplight') holder.userData['lamp'] = ({ magenta: '#ff3fb0', blue: '#4f7bff', amber: '#ffb02e' } as Record<string, string>)[it.variant ?? ''] ?? '#ffd27a';
     stage.add(holder); pieces++;
   }
   for (const e of spec.extra ?? []) {
@@ -415,7 +423,7 @@ async function setupHome(spec: HomeSpec): Promise<{ meshes: number; triangles: n
   stage.updateMatrixWorld(true);
   const count = (obj: THREE.Object3D): { t: number; c: number } => { let t = 0, c = 0; obj.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh && m.visible) { c++; t += (m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position!.count) / 3; } }); return { t, c }; };
   const before = count(stage);
-  stage.traverse((o) => { if (/^light_/.test(o.name) && o.visible) lamps.push(o.getWorldPosition(new THREE.Vector3())); });
+  stage.traverse((o) => { if (/^light_/.test(o.name) && o.visible) { lamps.push(o.getWorldPosition(new THREE.Vector3())); let col = '#ffc27a'; o.traverseAncestors((a) => { if (a.userData['lamp']) col = a.userData['lamp']; }); lampCol.push(col); } });
   if (spec.merge) {
     const groups = new Map<string, THREE.BufferGeometry[]>();
     const kill: THREE.Object3D[] = [];
@@ -442,8 +450,8 @@ async function setupHome(spec: HomeSpec): Promise<{ meshes: number; triangles: n
   const after = (() => { let t = 0, c = 0; stage.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh && m.visible) { let hidden = false; m.traverseAncestors((a) => { if (!a.visible) hidden = true; }); if (!hidden) { c++; t += (m.geometry.index ? m.geometry.index.count : m.geometry.attributes.position!.count) / 3; } } }); return { t, c }; })();
   if (spec.lightsOn) {
     const warm = spec.time === 'day' ? 0.35 : 1;
-    const use = lamps.slice(0, 10);
-    for (const p of use) { const pl = new THREE.PointLight('#ffcf8a', 9 * warm, 9, 1.3); pl.position.copy(p); scene.add(pl); stage.userData['glow'] = (stage.userData['glow'] ?? []).concat(pl); }
+    const use = lamps.slice(0, 16);
+    for (const [li, p] of use.entries()) { const pl = new THREE.PointLight(lampCol[li] ?? '#ffc27a', (lampCol[li] && lampCol[li] !== '#ffc27a' ? 5 : 7) * warm, 8, 1.8); pl.castShadow = false; pl.position.copy(p); scene.add(pl); stage.userData['glow'] = (stage.userData['glow'] ?? []).concat(pl); }
   }
   return { meshes: after.c, triangles: after.t, drawCalls: after.c, unmergedDrawCalls: before.c, unmergedTriangles: before.t, pieces };
 }

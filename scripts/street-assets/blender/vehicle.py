@@ -74,29 +74,16 @@ for w in cfg["wheels"]:
     xc = w["side"] * (half - WW * 0.45) if w["side"] else 0.0
     wheels.append({"name": w["name"], "x": xc, "y": yc, "z": R})
 
-# --- the body without the generated wheels: faces inside a cylinder round each axle are removed from a copy
-cut = high.copy(); cut.data = high.data.copy(); cut.name = "Cut"
-bpy.context.collection.objects.link(cut)
-bm = bmesh.new(); bm.from_mesh(cut.data); bm.faces.ensure_lookup_table()
-kill = []
-for f in bm.faces:
-    c = f.calc_center_median()
-    for w in wheels:
-        if abs(c.x - w["x"]) <= WW * (0.9 if w["x"] == 0 else 1.15) and math.hypot(c.y - w["y"], c.z - w["z"]) <= R * cfg.get("cutR", 1.12):
-            kill.append(f); break
-bmesh.ops.delete(bm, geom=kill, context="FACES")
-bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
-bmesh.ops.triangulate(bm, faces=bm.faces)
-bm.to_mesh(cut.data); bm.free()
-print("CUT faces", len(kill))
-low = cut
-low.name = "Low"
+# --- the low body: a copy of the whole generated mesh (wheels included), decimated first; the wheel arches are cut afterwards, cleanly
+low = high.copy(); low.data = high.data.copy(); low.name = "Low"
+bpy.context.collection.objects.link(low)
 for uv in list(low.data.uv_layers):
     low.data.uv_layers.remove(uv)
 low.data.materials.clear()
+bm = bmesh.new(); bm.from_mesh(low.data); bmesh.ops.triangulate(bm, faces=bm.faces); bm.to_mesh(low.data); bm.free()
 bpy.context.view_layer.objects.active = low
 wheel_tris = (96 if near else 0) * len(wheels)
-tgt = max(400, target_tris - wheel_tris)
+tgt = max(400, int(target_tris * 1.15) - wheel_tris)
 for step in range(10):
     got = len(low.data.polygons)
     if got <= tgt * 1.03:
@@ -105,6 +92,32 @@ for step in range(10):
     bpy.ops.object.modifier_apply(modifier=m.name)
     if len(low.data.polygons) >= got * 0.97:
         break
+# the arch: finer triangles round each wheel, faces inside a cylinder removed, the boundary vertices pushed onto the circle (a clean round opening)
+RC = R * cfg.get("cutR", 1.2)
+bm = bmesh.new(); bm.from_mesh(low.data)
+def near_wheel(co, w, rad):
+    return abs(co.x - w["x"]) <= WW * 1.25 and math.hypot(co.y - w["y"], co.z - w["z"]) <= rad
+for rnd in range(2):
+    es = [e for e in bm.edges if any(near_wheel((e.verts[0].co + e.verts[1].co) / 2, w, RC * 1.7) for w in wheels) and (e.verts[0].co - e.verts[1].co).length > RC * 0.35]
+    bmesh.ops.subdivide_edges(bm, edges=es, cuts=1, use_grid_fill=False)
+    bmesh.ops.triangulate(bm, faces=bm.faces)
+bm.faces.ensure_lookup_table()
+kill = []
+for f in bm.faces:
+    c = f.calc_center_median()
+    if any(near_wheel(c, w, RC) for w in wheels):
+        kill.append(f)
+bmesh.ops.delete(bm, geom=kill, context="FACES")
+bmesh.ops.delete(bm, geom=[v for v in bm.verts if not v.link_faces], context="VERTS")
+for v in bm.verts:
+    for w in wheels:
+        if abs(v.co.x - w["x"]) <= WW * 1.25:
+            d = math.hypot(v.co.y - w["y"], v.co.z - w["z"])
+            if d < RC * 1.12 and d > 1e-6:
+                k_ = RC / d
+                v.co.y = w["y"] + (v.co.y - w["y"]) * k_; v.co.z = w["z"] + (v.co.z - w["z"]) * k_
+bm.to_mesh(low.data); bm.free()
+print("CUT faces", len(kill))
 bpy.ops.object.mode_set(mode="EDIT")
 bpy.ops.mesh.select_all(action="SELECT")
 bpy.ops.mesh.delete_loose()
@@ -198,6 +211,37 @@ for o in wheel_objs:
     bpy.context.view_layer.objects.active = o; o.select_set(True)
     bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.select_all(action="SELECT"); bpy.ops.mesh.normals_make_consistent(inside=False); bpy.ops.object.mode_set(mode="OBJECT")
     o.select_set(False)
+
+# --- arch liners: an inner shell in each arch (dark, tyre colour patch), so no hole shows into the body
+def make_liner(w):
+    b = bmesh.new()
+    uvl = b.loops.layers.uv.new("UVMap")
+    sd = 1 if w["x"] >= 0 else -1
+    if w["x"] == 0:
+        sd = 1
+    half = max((abs(v.x) for v in verts if abs(v.y - w["y"]) < R and v.z > 0.25 * Ht), default=Wd / 2)
+    xs0, xs1 = (w["x"] + WW * 0.5 * sd, w["x"] - WW * 1.3 * sd) if w["x"] != 0 else (WW * 0.6, -WW * 0.6)
+    seg = 14
+    rr = RC * 0.985
+    for i in range(seg):
+        a0, a1 = -0.25 + (math.pi + 0.5) * i / seg, -0.25 + (math.pi + 0.5) * (i + 1) / seg
+        P = lambda x, a: Vector((x, w["y"] + rr * math.cos(a), w["z"] + rr * math.sin(a)))
+        f = b.faces.new([b.verts.new(P(xs0, a0)), b.verts.new(P(xs0, a1)), b.verts.new(P(xs1, a1)), b.verts.new(P(xs1, a0))])
+        f2 = b.faces.new([b.verts.new(P(xs0, a1)), b.verts.new(P(xs0, a0)), b.verts.new(P(xs1, a0)), b.verts.new(P(xs1, a1))])
+        for ff in (f, f2):
+            for lp in ff.loops:
+                lp[uvl].uv = (TYRE_UV[0], TYRE_UV[1])
+    me = bpy.data.meshes.new("liner"); b.to_mesh(me); b.free()
+    ob = bpy.data.objects.new("liner", me); bpy.context.collection.objects.link(ob)
+    ob.data.materials.append(mat)
+    return ob
+liners = [make_liner(w) for w in wheels]
+bpy.ops.object.select_all(action="DESELECT")
+for o in [low] + liners:
+    o.select_set(True)
+bpy.context.view_layer.objects.active = low
+bpy.ops.object.join()
+low = bpy.context.view_layer.objects.active
 
 # --- the final material and the empties
 mt = mat.node_tree

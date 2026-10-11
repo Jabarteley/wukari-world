@@ -168,7 +168,8 @@ export function createCityView(container: HTMLElement, { cityId: firstCity = 'la
     if (want3d) {
       try {
         // The trip vehicles come from the model library, fetched with the city pack (never in the first download). If they fail to load the map keeps its own batch-drawn vehicles.
-        const [pack, models] = await Promise.all([loadCityPack(cityId), import('../models/integration/scene-models.ts').then(async (loaded) => { await loaded.loadGlbSource(); return loaded; }).catch(() => null)]);
+        const [pack, models] = await Promise.all([loadCityPack(cityId), import('../models/integration/scene-models.ts').catch(() => null)]);
+        await models?.loadGlbSource(); // the authored vehicle models' own lazy chunk: registered before the first trip; false (procedural vehicles stay) if it cannot be had
         const vehicleBuilder = models?.buildTravelVehicle ?? null;
         const travelVehicle = vehicleBuilder as unknown as TravelVehicleBuilder | null; // trust boundary: the model library is JavaScript
         if (ticket !== mounting) return;

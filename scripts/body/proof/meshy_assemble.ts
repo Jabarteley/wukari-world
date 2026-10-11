@@ -21,7 +21,8 @@ const rough = Number(flag('--rough') ?? 0.78);
 
 const KEEP = new Set(['root', 'pelvis']);
 const shipped = await loadBodyData(key);
-const joints = JSON.parse(readFileSync(jointsPath, 'utf8')) as { heads: Record<string, [number, number, number]> };
+const joints = JSON.parse(readFileSync(jointsPath, 'utf8')) as { height: number; heads: Record<string, [number, number, number]> };
+if (!Number.isFinite(joints.height) || joints.height <= 0) throw new Error('joint file has no finite positive height');
 const toGltf = (p: [number, number, number]): THREE.Vector3 => new THREE.Vector3(p[0], p[2], -p[1]);
 const old = shipped.skeleton.bones;
 if (old.length !== 23) throw new Error(`game skeleton must have 23 bones, got ${old.length}`);
@@ -46,11 +47,17 @@ gltf.scene.updateMatrixWorld(true);
 const root = new THREE.Group(); root.name = 'Scene'; root.add(holder);
 const names = new Map(bones.map((b, i) => [b.name, i]));
 const out: THREE.SkinnedMesh[] = [];
+let assembledUnitScale = NaN;
 gltf.scene.traverse((n) => {
   const sm = n as THREE.SkinnedMesh;
   if (!sm.isSkinnedMesh) return;
   const g = sm.geometry.clone();
   g.applyMatrix4(sm.matrixWorld);
+  g.computeBoundingBox();
+  const sourceHeight = g.boundingBox!.max.y - g.boundingBox!.min.y;
+  const unitScale = joints.height / sourceHeight;
+  if (!Number.isFinite(sourceHeight) || sourceHeight <= 0 || !Number.isFinite(unitScale) || unitScale < 1e-4 || unitScale > 1e4) throw new Error(`parts mesh has invalid height ${sourceHeight}`);
+  g.scale(unitScale, unitScale, unitScale);
   const idx = g.getAttribute('skinIndex'), wt = g.getAttribute('skinWeight');
   for (const bone of sm.skeleton.bones) if (!names.has(bone.name)) throw new Error(`parts file contains non-game bone ${bone.name}`);
   const remap = sm.skeleton.bones.map((b) => names.get(b.name)!);
@@ -69,6 +76,7 @@ gltf.scene.traverse((n) => {
   const mesh = new THREE.SkinnedMesh(g, new THREE.MeshStandardMaterial({ name: 'character' }));
   mesh.name = 'character';
   if (sm.morphTargetDictionary) { mesh.morphTargetDictionary = { ...sm.morphTargetDictionary }; mesh.morphTargetInfluences = sm.morphTargetInfluences!.map(() => 0); }
+  assembledUnitScale = unitScale;
   out.push(mesh);
 });
 if (out.length !== 1) throw new Error(`expected one mesh, got ${out.length}`);
@@ -103,4 +111,4 @@ const head = Buffer.alloc(12); head.write('glTF', 0); head.writeUInt32LE(2, 4); 
 const ch = (len: number, type: string): Buffer => { const b = Buffer.alloc(8); b.writeUInt32LE(len, 0); b.write(type, 4); return b; };
 writeFileSync(outPath, Buffer.concat([head, ch(jb.length, 'JSON'), jb, ch(bin.length, 'BIN\0'), bin]));
 const box = new THREE.Box3().setFromObject(root);
-console.log(JSON.stringify({ out: outPath, bytes: Buffer.concat([head, jb, bin]).length, triangles: out[0]!.geometry.index!.count / 3, height: box.max.y - box.min.y }));
+console.log(JSON.stringify({ out: outPath, bytes: Buffer.concat([head, jb, bin]).length, triangles: out[0]!.geometry.index!.count / 3, height: box.max.y - box.min.y, unitScale: assembledUnitScale }));

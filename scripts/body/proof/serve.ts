@@ -3,7 +3,7 @@
 import { createServer } from 'node:http';
 import type { Server } from 'node:http';
 import { readFile } from 'node:fs/promises';
-import { extname, join, resolve } from 'node:path';
+import { basename, extname, join, resolve } from 'node:path';
 import { build } from 'esbuild';
 import { REPO } from './body-data.ts';
 
@@ -14,6 +14,10 @@ export async function bundlePage(page = 'page'): Promise<string> {
     entryPoints: [join(REPO, 'scripts', 'body', 'proof', page, 'main.ts')], bundle: true, write: false, format: 'esm', target: 'es2022', minify: false, sourcemap: false,
     logLevel: 'error', define: { 'import.meta.vitest': 'undefined' },
     alias: { '@proof-assets': join(REPO, 'scripts', 'body', 'proof', 'assets') },
+    plugins: [{ name: 'body-asset-urls', setup(context) {
+      context.onResolve({ filter: /\/assets\/(?:base-body-(?:male|female)|clip-pack)\.glb\?url$/ }, args => ({ path: args.path, namespace: 'body-url' }));
+      context.onLoad({ filter: /.*/, namespace: 'body-url' }, args => ({ contents: `export default ${JSON.stringify('/body/' + basename(args.path).replace(/\?url$/, ''))}`, loader: 'js' }));
+    } }],
   });
   return out.outputFiles[0]!.text;
 }

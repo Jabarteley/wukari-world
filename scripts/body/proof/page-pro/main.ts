@@ -10,6 +10,7 @@ import { createKit } from '../../../../src/scene/kit.ts';
 import { loadCityContent } from '../../../../src/game/cities/registry.ts';
 import { buildAvatar } from '../../../../src/scene/characters.ts';
 import { BODY_MANIFEST } from '../../../../src/scene/body/manifest.ts';
+import { SIT, LIFT } from '../../../../src/scene/body/skinned.ts';
 import { buildVenueScene } from '../../../../src/scene/venue-scenes.ts';
 import type { SceneEntry } from '../../../../src/scene/types.ts';
 import { LifeDriver } from '../page4/anim.ts';
@@ -112,10 +113,13 @@ function addSlot(kind: Kind, index: number, count: number, spec: Spec, targetHei
   if (kind === 'today') {
     const pose = spec.pose === 'idle' ? 'stand' : spec.pose;
     const avatar = buildAvatar(kit, oldLookOf(look()), { detail: 'medium', pose, stride: phase, seat: furniture ? target.seat : 0.47, appearanceFit: true });
-    holder.add(avatar); dispose = avatar.userData.dispose;
+    holder.add(avatar); if (!furniture) holder.position.y = 0.06; dispose = avatar.userData.dispose;
   } else {
     const built = buildPro(kind, targetHeight); holder.add(built.root); slot.rig = built.rig; slot.driver = built.driver; dispose = built.rig.dispose; poseRig(slot, spec.pose, phase);
-    holder.position.y = furniture ? target.seat - 0.47 * built.scale : 0;
+    if (furniture) {
+      const back = SIT.back * built.scale;
+      holder.position.set(Math.sin(target.ry) * back, target.seat - SIT.contact * built.scale, Math.cos(target.ry) * back);
+    } else holder.position.y = 0.06 + LIFT * built.scale;
   }
   for (const object of holder.children) object.traverse((part) => { const mesh = part as THREE.Mesh; if (mesh.isMesh) { mesh.castShadow = true; mesh.receiveShadow = true; } });
   scene.add(holder); slots.push(slot);
@@ -135,13 +139,15 @@ async function setup(spec: Spec): Promise<void> {
   canvas.style.width = `${width}px`; canvas.style.height = `${height}px`;
   const current = buildAvatar(kit, oldLookOf(look()), { detail: 'medium', pose: 'stand', appearanceFit: true });
   const targetHeight = heightOf(current); todayFacts ??= factsOfObject(current, 0); current.userData.dispose();
-  const focus = spec.furniture ? { x: target.x, z: target.z } : { x: 0, z: 3 };
+  const focus = spec.furniture ? { x: target.x, z: target.z } : { x: 0, z: 10.5 };
   venue.group.position.set(-focus.x, 0, -focus.z);
   spec.kinds.forEach((kind, index) => addSlot(kind, index, spec.kinds.length, spec, targetHeight));
-  if (spec.furniture) for (const slot of slots) slot.holder.position.set(0, slot.holder.position.y, 0);
   const tan = Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2), subjectWidth = spec.kinds.length > 1 ? (spec.kinds.length - 1) * 2.35 + 1.25 : 1.4;
   const distance = Math.max(3.4 / 2 / tan, subjectWidth / 2 / (tan * camera.aspect));
-  camera.position.set(spec.view === 'side' ? distance : spec.view === 'tq' ? distance * 0.45 : 0, 2.8, spec.view === 'side' ? 0.4 : distance);
+  if (spec.furniture) {
+    const angle = target.ry + 0.35;
+    camera.position.set(Math.sin(angle) * distance, 1.8, Math.cos(angle) * distance);
+  } else camera.position.set(spec.view === 'side' ? distance : spec.view === 'tq' ? distance * 0.45 : 0, 2.8, spec.view === 'side' ? 0.4 : distance);
   camera.lookAt(0, 1.15, 0); sun.target.position.set(0, 1, 0); scene.background = new THREE.Color(venue.background); labelsFor(spec);
 }
 

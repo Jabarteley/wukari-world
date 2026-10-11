@@ -140,8 +140,13 @@ else:
     for m in list(low.modifiers):
         low.modifiers.remove(m)
     m = low.modifiers.new("Armature", "ARMATURE"); m.object = arm
-    low.parent = arm
-    low.matrix_parent_inverse = arm.matrix_world.inverted()
+    # The reduced vendor mesh is already parented in the armature's imported coordinate system.
+    # Replacing its parent inverse here changes the mesh from the shared 0.01 world scale to unit
+    # scale before the modifier is applied, so the pose bones deform against the wrong bind space.
+    if low.parent is not arm:
+        world = low.matrix_world.copy()
+        low.parent = arm
+        low.matrix_world = world
 
 bpy.context.view_layer.update()
 bones = arm.data.bones

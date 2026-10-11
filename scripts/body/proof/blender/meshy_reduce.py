@@ -202,7 +202,12 @@ scene.view_settings.view_transform = "Standard"
 # the full mesh shows its base colour as emission, so the bake does not depend on its metallic and roughness maps
 hm = high.data.materials[0]
 tn = hm.node_tree
-colour_node = next(n for n in tn.nodes if n.type == "TEX_IMAGE" and n.image.colorspace_settings.name == "sRGB")
+principled = next(n for n in tn.nodes if n.type == "BSDF_PRINCIPLED")
+base_colour = principled.inputs.get("Base Color")
+base_link = next((link for link in tn.links if link.to_socket == base_colour), None)
+colour_node = base_link.from_node if base_link else None
+if colour_node is None or colour_node.type != "TEX_IMAGE" or colour_node.image is None:
+    raise RuntimeError("source material Base Color must be linked directly from an image texture")
 emit = tn.nodes.new("ShaderNodeEmission"); tn.links.new(colour_node.outputs["Color"], emit.inputs["Color"])
 out_node = next(n for n in tn.nodes if n.type == "OUTPUT_MATERIAL"); tn.links.new(emit.outputs[0], out_node.inputs["Surface"])
 

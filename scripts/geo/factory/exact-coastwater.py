@@ -184,6 +184,52 @@ def main():
             fixture_anchors.append(row)
             if not land.covers(point) or water.covers(point):
                 raise ValueError('Fixture anchor is not dry: ' + json.dumps(row))
+    geometry_path = args.city_directory / 'geometry.ts'
+    if geometry_path.stat().st_size > LIMIT:
+        raise ValueError('Input geometry exceeds 5 MiB')
+    geometry_before = geometry_path.read_text()
+    if len(re.findall(r'export const GEOMETRY: DestinationGeometry = \{', geometry_before)) != 1:
+        raise ValueError('Ambiguous GEOMETRY declaration')
+    def geometry_property(key):
+        hits = list(re.finditer(r'(?m)^  ' + key + r': (\[.*\]),$', geometry_before))
+        if len(hits) != 1:
+            raise ValueError('Ambiguous GEOMETRY.' + key)
+        h = hits[0]
+        arrays = json.loads(h.group(1))
+        polys = [Polygon(p[0], p[1:]) for p in arrays]
+        if not polys or any(not p.is_valid for p in polys):
+            raise ValueError('Invalid generated GEOMETRY.' + key)
+        return h, unary_union(polys)
+    _, development_land = geometry_property('land')
+    play_hit, old_play = geometry_property('playArea')
+    overlap = development_land.intersection(water)
+    # Land owns any legacy coastal sliver; never draw both layers at the same point.
+    water = water.difference(development_land)
+    exact_play_water = water.intersection(bounds(play))
+    tile_union = unary_union([development_land, exact_play_water])
+    if not water.is_valid or not tile_union.is_valid:
+        raise ValueError('Invalid canonical land/water union')
+    play_arrays = [[list(p.exterior.coords)] + [list(r.coords) for r in p.interiors] for p in area_polygons(tile_union)]
+    play_encoded = json.dumps(play_arrays, separators=(',', ':'), allow_nan=False)
+    geometry_after = geometry_before[:play_hit.start(1)] + play_encoded + geometry_before[play_hit.end(1):]
+    geometry_raw = geometry_after.encode()
+    if len(geometry_raw) > LIMIT:
+        raise ValueError('Output geometry exceeds 5 MiB')
+    tiling = {
+        'originalPlayAreaDegrees2': old_play.area,
+        'canonicalPlayAreaDegrees2': tile_union.area,
+        'originalSymmetricDifferenceFraction': old_play.symmetric_difference(tile_union).area / old_play.area,
+        'excludedPriorAreaFraction': old_play.difference(tile_union).area / old_play.area,
+        'addedPriorAreaFraction': tile_union.difference(old_play).area / old_play.area,
+        'landWaterOverlapRemovedDegrees2': overlap.area,
+        'landWaterOverlapRemovedM2Approx': overlap.area * scale[0] * scale[1],
+        'landWaterOverlapAfterDegrees2': development_land.intersection(water).area,
+        'canonicalTileUnionSymmetricDifferenceDegrees2': tile_union.symmetric_difference(unary_union([development_land, exact_play_water])).area,
+        'landUnchanged': True,
+        'playAreaPolygons': len(play_arrays),
+        'playAreaHoles': sum(len(p) - 1 for p in play_arrays),
+        'playAreaVertices': sum(len(r) for p in play_arrays for r in p),
+    }
     terrain_path = args.city_directory / 'terrain.ts'
     before = terrain_path.read_text()
     if len(re.findall(r'export const TERRAIN: DestinationTerrain = \{', before)) != 1:
@@ -209,10 +255,11 @@ def main():
     for path in args.city_directory.glob('*.ts'):
         if path.stat().st_size > LIMIT:
             raise ValueError('Output exceeds 5 MiB: ' + str(path))
-    report.update({'status': 'passed', 'sourceHashes': hashes, 'selectedWaterRefs': selected_water, 'selectedWaterRefCount': len(coast) + len(selected_water), 'coastCount': len(coast), 'closedCoastCount': len(closed), 'islands': island_rows, 'anchors': anchor_rows, 'generatedAnchors': generated_anchors, 'fixtureAnchors': fixture_anchors, 'geometry': stats, 'outputFiles': [{'path': str(terrain_path), 'bytes': len(raw_after), 'sha256Before': sha(before.encode()), 'sha256After': sha(raw_after)}], 'preferred2MiB': len(raw_after) <= 2 * 1024 * 1024, 'elapsedSeconds': time.perf_counter() - started})
-    # Reserve a new report before the sole generated-source mutation.
+    report.update({'status': 'passed', 'sourceHashes': hashes, 'selectedWaterRefs': selected_water, 'selectedWaterRefCount': len(coast) + len(selected_water), 'coastCount': len(coast), 'closedCoastCount': len(closed), 'islands': island_rows, 'anchors': anchor_rows, 'generatedAnchors': generated_anchors, 'fixtureAnchors': fixture_anchors, 'geometry': stats, 'tiling': tiling, 'outputFiles': [{'path': str(terrain_path), 'bytes': len(raw_after), 'sha256Before': sha(before.encode()), 'sha256After': sha(raw_after)}, {'path': str(geometry_path), 'bytes': len(geometry_raw), 'sha256Before': sha(geometry_before.encode()), 'sha256After': sha(geometry_raw)}], 'preferred2MiB': max(len(raw_after), len(geometry_raw)) <= 2 * 1024 * 1024, 'elapsedSeconds': time.perf_counter() - started})
+    # Reserve a new report before generated-source mutations.
     with args.report.open('x') as f:
         terrain_path.write_bytes(raw_after)
+        geometry_path.write_bytes(geometry_raw)
         json.dump(report, f, indent=2)
     print(json.dumps({'status': report['status'], 'report': str(args.report), 'outputFiles': report['outputFiles'], 'geometry': stats}))
 

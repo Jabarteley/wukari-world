@@ -29,5 +29,6 @@
         "reason": "The pinned PBF names this Dubai Grand Masjid worship relation, and its centre intersects a mapped land-use polygon inside the city play box. It replaces the previous Al Noor Mosque (Sharjah) record outside generated Dubai land."
       }
     }
-  }
+  },
+  "excludeConflictingWikipediaLocality": true
 }

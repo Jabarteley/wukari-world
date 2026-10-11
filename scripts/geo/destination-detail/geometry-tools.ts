@@ -453,7 +453,7 @@ export function safePolygons(polygons: readonly Ring[][], tolerance: number, pro
  * The sea, or a big lake, as water polygons, from the shore ways OpenStreetMap holds (the coastline, or the member ways of the lake's relation).
  * The ways are drawn as a barrier on a grid `cell` degrees wide over `wide`; the ground between the barriers falls into regions, and a region is land
  * when a known land point (a place of the game, a neighbourhood label) lies in it and water otherwise. The shore needs no direction, so the same
- * recipe serves a coastline and a lake. Ways that close on themselves (islets) are not barriers. Returns the water of the whole box `wide`
+ * recipe serves a coastline and a lake. Closed shore ways also form barriers, so island land points cannot classify the surrounding sea. Returns the water of the whole box `wide`
  * (`far`) and the part of it within `bandMetres` of the shore and inside `box` (`band`, what the play area keeps).
  */
 export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box: Box, wide: Box, bandMetres: number, cell: number): { far: Ring[][]; band: Ring[][] } {
@@ -461,7 +461,7 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
   const barrier = new Uint8Array(cols * rows);
   const colOf = (lon: number): number => Math.floor((lon - wide[1]) / cell), rowOf = (lat: number): number => Math.floor((lat - wide[0]) / cell);
   for (const way of shore) {
-    if (way.length < 2 || (way[0]![0] === way.at(-1)![0] && way[0]![1] === way.at(-1)![1])) continue;
+    if (way.length < 2) continue;
     for (let i = 1; i < way.length; i++) {
       const [ax, ay] = way[i - 1]!, [bx, by] = way[i]!;
       const steps = Math.max(1, Math.ceil(Math.max(Math.abs(bx - ax), Math.abs(by - ay)) / (cell / 3)));
@@ -493,8 +493,7 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
     }
     hasLand.push(land);
   }
-  // A land point sitting on a barrier cell counts for the regions beside it.
-  for (const at of marked) if (barrier[at]) for (const next of [at - 1, at + 1, at - cols, at + cols]) if (next >= 0 && next < region.length && region[next]! >= 0) hasLand[region[next]!] = true;
+  // Barrier cells cannot establish which side is land; only interior anchors classify a region.
   const water = new Uint8Array(cols * rows);
   for (let at = 0; at < water.length; at++) if (!barrier[at] && !hasLand[region[at]!]) water[at] = 1;
   // A shore cell belongs to the water when water lies beside it.

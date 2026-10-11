@@ -128,9 +128,12 @@ if (shoreSide && config.sea?.kind === 'coast') {
   if (invalid.length) throw new Error(`HOLD_SOURCE_ANCHORS: ${JSON.stringify({ invalid, sourceWaterAnchors: shoreSide.sourceWaterAnchors })}`);
 }
 const sea = shoreSide ? safePolygons(shoreSide.band, config.waterTolerance, project) : [];
-// Far water uses a separate tolerance: 0.0008 degrees by default, or a reviewed city override.
-// Dubai uses 0.0012 degrees (about 130 m) to reduce distant-water triangles while retaining checked rings and holes.
+// Keep land morphology on the default far-water mask; render-only simplification must not reshape playable ground.
+// Far water render uses 0.0008 degrees by default, or a reviewed city override. Dubai uses 0.0012 degrees (about 130 m).
 const farSea = shoreSide ? safePolygons(shoreSide.far, config.farWaterTolerance ?? 0.0008, project) : [];
+const farSeaForLand = shoreSide && config.farWaterTolerance !== undefined && config.farWaterTolerance !== 0.0008
+  ? safePolygons(shoreSide.far, 0.0008, project)
+  : farSea;
 // Only what the source tags as water: the answer may also hold wetland, islet and wall ways that are members of the lake's relation.
 const inland = waterAnswer.elements.filter((element) => !isShore(element) && (element.tags?.natural === 'water' || element.tags?.waterway === 'riverbank' || element.type === 'relation'));
 // What the outline is traced round (the shore band and the inland water inside the box: the map's declared water), and what is drawn (the same, carried on to the edge of the ground).
@@ -152,9 +155,10 @@ const reachInland = inland.flatMap((element) => {
   console.log(`water ${element.type}/${element.id}: raster repaired ${clipped.length - safe.length} rejected polygon(s) into ${repaired.length}`);
   return repaired;
 });
+const landBlockingWater = [...farSeaForLand, ...reachInland];
 const reachWater = [...farSea, ...reachInland];
 const contains = (point: P, polygons: readonly P[][][]): boolean => polygons.some((polygon) => inRing(point, polygon[0]!) && !polygon.slice(1).some((hole) => inRing(point, hole)));
-const waterAnchors = selectedAnchors.filter((anchor) => contains(anchor.at, wet) || contains(anchor.at, reachWater));
+const waterAnchors = selectedAnchors.filter((anchor) => contains(anchor.at, wet) || contains(anchor.at, landBlockingWater) || contains(anchor.at, reachWater));
 if (waterAnchors.length) throw new Error(`HOLD_SOURCE_ANCHORS: selected land anchors overlap water ${JSON.stringify(waterAnchors)}`);
 console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the edge of the ground (${sea.length} of shore band from ${coast.length} shore ways)`);
 
@@ -163,7 +167,7 @@ const useRings = landuse.elements.flatMap((element) => areaRings(element).outer)
 const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 }))];
 const roadsEarly = await recorded('roads', config.roads(bbox, `${config.core.join(',')}`));
 const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
-const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500, blockingWater: reachWater });
+const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500, blockingWater: landBlockingWater });
 const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015), project);
 const land = tidy(traced.land);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.

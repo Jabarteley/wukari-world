@@ -1182,6 +1182,10 @@
         "recreation": {
           "ref": "way/230622240",
           "reason": "The pinned source record names Al Wasl Park and records access=yes, recurring opening hours and Dubai Municipality as operator. The previous recreation anchor is not contained in generated land or the playable area."
+        },
+        "worship": {
+          "ref": "relation/7214752",
+          "reason": "The pinned PBF names this Dubai Grand Masjid worship relation, and its centre intersects a mapped land-use polygon inside the city play box. It replaces the previous Al Noor Mosque (Sharjah) record outside generated Dubai land."
         }
       }
     }

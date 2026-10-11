@@ -53,6 +53,8 @@ export interface CommunityDeps {
   onMembers: (event: MembersEvent) => void
   /** Walk the avatar in the scene by (dx, dz). True when it walked. */
   walkBy: (dx: number, dz: number) => boolean
+  /** Open a player's card (the shell's own). */
+  openPerson?: (id: string, name: string) => void
   telemetry?: {
     chunkFailed?: (name: string, error: string | null) => void
     captureError?: (error: unknown, context: { chunk: string }) => void
@@ -85,6 +87,8 @@ export interface CommunityStore {
   /** The `data-community` buttons. */
   toggle(force?: boolean): void
   close(): void
+  /** A person in the room: opens their card (the panel closes itself first). */
+  openPerson(id: string, name: string): void
   /** "Try again": ask the loader at once. */
   retry(): void
   /** "Reload and retry". */
@@ -255,7 +259,7 @@ export function createCommunityStore(deps: CommunityDeps): CommunityStore {
   return {
     open: readonly(open), state, positions, load, recovery,
     running: computed(() => state.value !== null),
-    start, ensure: start, toggle, close: () => { open.value = false }, retry,
+    start, ensure: start, toggle, close: () => { open.value = false }, openPerson: (id, name) => deps.openPerson?.(id, name), retry,
     reload: () => (deps.reload ?? (() => globalThis.location.reload()))(),
     moveTo: (x, z) => instance?.moveTo(x, z) === true,
     controller: () => instance,

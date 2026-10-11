@@ -7,6 +7,7 @@
 import '../../../ui/controls.css'
 import { computed, reactive, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
+import { SETTLE_LABEL, openSettleFlow } from '../../state/settleRefusal.ts'
 import { attach, call, perform, social, sync } from '../social/useSocial.ts'
 import { HOUSE_KEY } from '../ping/pingLoader.ts'
 import type { LinkEnterResult } from '../../../types/visit.ts'
@@ -25,7 +26,7 @@ function kept(): string | null {
 }
 const forget = (): void => { try { store()?.removeItem(HOUSE_KEY) } catch { /* nothing was kept */ } token.value = null }
 const token = ref<string | null>(kept())
-const line = ref<{ title: string; text: string; tone: 'good' | 'info' } | null>(null)
+const line = ref<{ title: string; text: string; tone: 'good' | 'info'; settle?: true } | null>(null)
 const hands = { toast: (text: string, tone?: 'good' | 'error') => game.toast(text, tone), open: (id: string, params?: unknown) => shell.open(id, params) }
 const ready = computed(() => game.connected.value && game.view.value.onboarding?.required !== true)
 /** A host this device is about to be let in by (a link that asked, or an invitation): the visit opens its screen when it begins. */
@@ -69,7 +70,7 @@ watch(() => social.me?.visiting?.host.id ?? null, (now, before) => {
   if (now && expecting) { expecting = null; line.value = null; hands.toast(`You are visiting ${social.me?.visiting?.host.name ?? 'their'}’s home.`, 'good'); hands.open('invite', { host: now }) }
   if (!now && before) {
     const guest = game.state.value.onboarding?.stage === 'guest' && !game.state.value.onboarding.done
-    line.value = { title: 'Thanks for visiting', text: guest ? 'You are back where you were. Settle in to build a home of your own, and sign up to keep your friends.' : 'You are back where you were.', tone: 'info' }
+    line.value = { title: 'Thanks for visiting', text: guest ? 'You are back where you were. Settle in to build a home of your own, and sign up to keep your friends.' : 'You are back where you were.', tone: 'info', ...(guest ? { settle: true as const } : {}) }
   }
 })
 
@@ -80,6 +81,7 @@ const dismissed = reactive(new Set<string>())
 const invites = computed(() => (social.me?.invites ?? []).filter((invite) => invite.expiresAt > now.value && !dismissed.has(invite.from.id)))
 const answer = (visitor: string, choice: 'accept' | 'decline'): Promise<unknown> => perform<{ code: string }>('/api/social/house/answer', { visitor, answer: choice }, (done) => (done.code === 'accepted' ? 'They are in' : 'You said not now'))
 const comeIn = (id: string, name: string): Promise<boolean> => visitHome(hands, id, name)
+const settleNow = (): void => { line.value = null; openSettleFlow() }
 const dismiss = (): void => { line.value = null; if (token.value) forget() }
 const any = computed(() => line.value !== null || knocks.value.length > 0 || invites.value.length > 0)
 </script>
@@ -89,6 +91,7 @@ const any = computed(() => line.value !== null || knocks.value.length > 0 || inv
     <aside v-if="line" class="visit-card" :class="`is-${line.tone}`" data-visit="line">
       <div class="visit-words"><strong>{{ line.title }}</strong><small>{{ line.text }}</small></div>
       <button type="button" class="visit-close" aria-label="Dismiss" @click="dismiss">×</button>
+      <div v-if="line.settle" class="visit-actions"><button type="button" class="ui-button is-small is-primary" data-settle-now @click="settleNow">{{ SETTLE_LABEL }}</button></div>
     </aside>
     <aside v-for="knock in knocks" :key="`k${knock.from.id}`" class="visit-card is-good" data-visit="knock">
       <div class="visit-words"><strong>{{ knock.from.name }} {{ knock.via === 'link' ? 'wants to come in through your link' : 'is at your door' }}</strong><small>{{ knock.via === 'link' ? 'You have not met yet. Let them in or not.' : 'Let them in or not now.' }}</small></div>

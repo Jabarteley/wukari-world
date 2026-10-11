@@ -10,7 +10,7 @@ import '../ui/tokens.css'
 import '../ui/shell.css'
 // The compact layout of a phone (and a phone on its side), after the page layout it adjusts.
 import '../ui/compact.css'
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from './state/app.ts'
 import { heldActionFor, shortcutFor } from '../ui/keys.ts'
 import { start as startSocial, wakeSocket } from './features/social/useSocial.ts'
@@ -19,7 +19,6 @@ import ToastStack from './ui/ToastStack.vue'
 import LinkBanner from './features/landing/LinkBanner.vue'
 import UpdateBanner from './ui/UpdateBanner.vue'
 import NoticeHost from './features/notice/NoticeHost.vue'
-import { useGrowth } from './features/growth/useGrowth.ts'
 import CoachTip from './features/hud/CoachTip.vue'
 import HudBar from './features/hud/HudBar.vue'
 import HudSidebar from './features/hud/HudSidebar.vue'
@@ -33,7 +32,8 @@ import PanelHost from './features/phone/PanelHost.vue'
 import SheetHost from './features/phone/SheetHost.vue'
 import { startLandingHold } from './state/landingHold.ts'
 import { createPageLifecycle } from './state/pageLifecycle.ts'
-import CommunityHost from './features/community/CommunityHost.vue'
+// The Community aside is fetched the first time it is opened (and ahead of that when the browser is idle: state/idlePreload.ts).
+const CommunityHost = defineAsyncComponent({ loader: () => import('./features/community/CommunityHost.vue'), onError: (_error, retry, fail, attempts) => { if (attempts <= 3) setTimeout(retry, 800 * attempts); else fail() } })
 import CallsHost from './features/calls/CallsHost.vue'
 import PingHost from './features/ping/PingHost.vue'
 import ScenePane from './scene/ScenePane.vue'
@@ -150,7 +150,7 @@ onBeforeUnmount(() => { for (const [target, type, listener] of listeners) target
 // confirms the look a moment after connecting must start it again; otherwise the new player is not findable until a reload.
 watch(() => game.connected.value && game.view.value.onboarding?.required !== true, (ready) => { if (ready) startSocial(api) })
 // Where the page's share link came from, once the landing knows (growth.state.landing).
-watch(landing.landed, (landed) => { if (landed) useGrowth().state.landing = landed })
+watch(landing.landed, (landed) => { if (landed) void import('./features/growth/useGrowth.ts').then(({ useGrowth }) => { useGrowth().state.landing = landed }) })
 watch(mode, (now) => document.body.classList.toggle('map-open', now === 'map'), { immediate: true })
 watch(game.snapshotPhase, (phase, before) => { if (phase === 'unavailable' && before === 'available') { shell.closeSheet(); shell.setMode('venue') } })
 </script>
@@ -177,7 +177,7 @@ watch(game.snapshotPhase, (phase, before) => { if (phase === 'unavailable' && be
   </div>
   <SheetHost />
   <TourTrigger v-if="snapshotAvailable" />
-  <CommunityHost v-if="snapshotAvailable" />
+  <CommunityHost v-if="snapshotAvailable && community.open.value" />
   <CallsHost v-if="snapshotAvailable" :host="sheetOpen ? '#life-dialog' : 'body'" />
   <PingHost v-if="snapshotAvailable" :host="sheetOpen ? '#life-dialog' : 'body'" />
   <LinkBanner :banner="landing.banner.value" :host="sheetOpen ? '#life-dialog' : 'body'" @knock="landing.knock" @close="landing.dismiss" />

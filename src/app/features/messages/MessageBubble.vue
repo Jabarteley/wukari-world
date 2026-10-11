@@ -2,26 +2,33 @@
 import VoiceNote from './VoiceNote.vue'
 // One message: its name and time, the quoted message it answers, its words with mention chips (or large emoji), a gift's money
 // line, reactions as counted chips, and the actions (Reply, react) behind a small button, a right-click or a long press.
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import EmojiPicker from './EmojiPicker.vue'
 import PictureView from './PictureView.vue'
+import MoneyRequestCard from './MoneyRequestCard.vue'
 import { QUICK_REACTIONS } from './emojiData.ts'
 import { emojiOnly, giftDetail, giftLine, pieces } from './messagesText.ts'
+import type { RequestOp } from './moneyRequestModel.ts'
 import type { Message } from '../../../types/social.ts'
 
-const props = defineProps<{ item: Message; meId: string; group: boolean; head: boolean; tail: boolean; time: string; canReact: boolean; canActions: boolean; canPin?: boolean; pinned?: boolean; pinPending?: boolean; pinBlocked?: boolean; pinOffline?: boolean; preview?: boolean; voiceEnabled?: boolean }>()
-const emit = defineEmits<{ reply: [item: Message]; react: [item: Message, emoji: string | null]; player: [id: string]; jump: [seq: number]; reportVoice: [item: Message]; picture: [item: Message]; edit: [item: Message]; remove: [item: Message]; forward: [item: Message]; pin: [item: Message, pinned: boolean] }>()
+const props = defineProps<{ item: Message; meId: string; group: boolean; head: boolean; tail: boolean; time: string; canReact: boolean; canActions: boolean; canPin?: boolean; pinned?: boolean; pinPending?: boolean; pinBlocked?: boolean; pinOffline?: boolean; preview?: boolean; voiceEnabled?: boolean; now?: number; partner?: string; requestBusy?: boolean; requestOffline?: boolean }>()
+const emit = defineEmits<{ reply: [item: Message]; react: [item: Message, emoji: string | null]; player: [id: string]; jump: [seq: number]; reportVoice: [item: Message]; picture: [item: Message]; edit: [item: Message]; remove: [item: Message]; forward: [item: Message]; pin: [item: Message, pinned: boolean]; request: [id: string, op: RequestOp]; menu: [open: boolean] }>()
 const mine = computed(() => props.item.from?.id === props.meId)
 const parts = computed(() => pieces(props.item.body, props.item.mentions))
 const big = computed(() => (props.item.mentions?.length || props.item.replyTo || props.item.image || props.item.voice ? 0 : emojiOnly(props.item.body)))
 const open = ref(false)
+// The thread is told while the menu is up so it can make room (a short screen has no space for the menu beside other cards).
+watch(open, (now) => emit('menu', now))
+onBeforeUnmount(() => { if (open.value) emit('menu', false) })
 const more = ref(false)
 const moreButton = ref<HTMLButtonElement | null>(null)
 let timer: ReturnType<typeof setTimeout> | null = null
 const mineReaction = computed(() => props.item.reactions?.find((entry) => entry.mine)?.emoji ?? null)
 const actionLabel = computed(() => props.canPin ? `Message actions, including ${props.pinned ? 'Unpin' : 'Pin'} message` : 'Message actions')
-function show(): void { open.value = true; more.value = false }
+const menuBox = ref<HTMLElement | null>(null)
+// The menu hangs below its message: near the bottom of the thread it is brought into view, not left under the composer.
+function show(): void { open.value = true; more.value = false; void nextTick(() => menuBox.value?.scrollIntoView?.({ block: 'nearest' })) }
 function hide(focus = false): void { open.value = false; more.value = false; if (focus) void Promise.resolve().then(() => moreButton.value?.focus()) }
 let pointer: { x: number; y: number; id: number } | null = null
 function press(event: PointerEvent): void {
@@ -59,6 +66,7 @@ onBeforeUnmount(cancel)
       <span v-if="giftDetail(item, meId)" class="gift-detail">{{ giftDetail(item, meId) }}</span>
       <small>{{ time }}</small>
     </div>
+    <MoneyRequestCard v-else-if="item.request" :item="item" :time="time" :now="now ?? 0" :partner="partner" :busy="requestBusy" :offline="requestOffline" @answer="(id, op) => emit('request', id, op)" />
     <div v-else class="bubble" :class="{ 'is-mine': mine, 'is-big': big > 0, 'is-head': head }">
       <small v-if="item.forwarded && !item.deleted">Forwarded</small>
       <b v-if="group && head && !mine && item.from" class="bubble-name">{{ item.from.name }}</b>
@@ -70,13 +78,13 @@ onBeforeUnmount(cancel)
       <span v-if="item.body || !item.image" class="bubble-text" :class="{ 'is-big': big > 0 }" :style="big ? { fontSize: `${big === 1 ? 44 : big === 2 ? 36 : 30}px` } : undefined"><template v-for="(piece, index) in parts" :key="index"><button v-if="piece.mention && piece.mention.id !== 'everyone'" type="button" class="chip" :aria-label="`Open ${piece.text.slice(1)}'s card`" @click.stop="emit('player', piece.mention.id)">{{ piece.text }}</button><span v-else-if="piece.mention" class="chip is-all">{{ piece.text }}</span><template v-else>{{ piece.text }}</template></template></span>
       <VoiceNote v-if="item.voice && !preview" :voice="item.voice" :me-id="meId" :off="!mine && voiceEnabled === false" />
       <span v-else-if="item.voice" class="bubble-media-label">Voice message</span>
-      <small v-if="tail">{{ time }}<template v-if="item.editedAt && !item.deleted"> · Edited</template><template v-if="mine && !item.deleted"> · Sent</template></small>
+      <small v-if="tail">{{ time }}<template v-if="item.editedAt && !item.deleted"> · Edited</template><template v-if="mine && !item.deleted"> <span class="bubble-tick" aria-hidden="true">✓</span><span class="sr-only"> Sent</span></template></small>
     </div>
     <div v-if="item.reactions?.length" class="reactions" role="group" aria-label="Reactions">
       <button v-for="entry in item.reactions" :key="entry.emoji" type="button" class="reaction" :class="{ 'is-mine': entry.mine }" :aria-pressed="Boolean(entry.mine)" :aria-label="`${entry.emoji} ${entry.count}${entry.mine ? ', yours' : ''}`" :disabled="!canReact" @click="react(entry.emoji)">{{ entry.emoji }}<small>{{ entry.count }}</small></button>
     </div>
     <button v-if="canActions && !item.deleted" ref="moreButton" type="button" class="bubble-more" :aria-label="actionLabel" :aria-expanded="open" @click.stop="open ? hide() : show()">⋯</button>
-    <div v-if="open" class="menu" role="menu" @click.stop>
+    <div v-if="open" ref="menuBox" class="menu" role="menu" @click.stop>
       <div v-if="canReact && !more" class="menu-row">
         <button v-for="emoji in QUICK_REACTIONS" :key="emoji" type="button" role="menuitem" class="menu-emoji" :class="{ 'is-on': mineReaction === emoji }" :aria-label="`React ${emoji}`" @click="react(emoji)">{{ emoji }}</button>
         <button type="button" role="menuitem" class="menu-emoji" aria-label="More reactions" @click="more = true">＋</button>
@@ -84,9 +92,9 @@ onBeforeUnmount(cancel)
       <EmojiPicker v-else-if="canReact && more" @pick="react" />
       <button v-if="canPin" type="button" role="menuitem" class="menu-item" :disabled="pinPending || pinBlocked || pinOffline" @click="pin">{{ pinPending ? 'Updating pin…' : pinOffline ? 'Reconnect to change pins' : pinBlocked ? 'Finish pending pin change' : pinned ? 'Unpin message' : 'Pin message' }}</button>
       <button type="button" role="menuitem" class="menu-item" @click="reply">Reply</button>
-      <button v-if="!item.image && !item.voice && !item.gift" type="button" role="menuitem" class="menu-item" @click="action('forward')">Forward</button>
-      <button v-if="mine && !item.image && !item.voice && !item.gift" type="button" role="menuitem" class="menu-item" @click="action('edit')">Edit</button>
-      <button v-if="mine && !item.gift" type="button" role="menuitem" class="menu-item" @click="action('remove')">Delete for everyone</button>
+      <button v-if="!item.image && !item.voice && !item.gift && !item.request" type="button" role="menuitem" class="menu-item" @click="action('forward')">Forward</button>
+      <button v-if="mine && !item.image && !item.voice && !item.gift && !item.request" type="button" role="menuitem" class="menu-item" @click="action('edit')">Edit</button>
+      <button v-if="mine && !item.gift && !item.request" type="button" role="menuitem" class="menu-item" @click="action('remove')">Delete for everyone</button>
       <button v-if="item.voice && !mine" type="button" role="menuitem" class="menu-item" @click="emit('reportVoice', item); hide()">Report voice note</button>
       <button type="button" role="menuitem" class="menu-item is-quiet" @click="hide(true)">Close</button>
     </div>
@@ -133,6 +141,8 @@ onBeforeUnmount(cancel)
 .menu-item { min-height: 44px; padding: 0 10px; border: 0; border-radius: 10px; background: none; font: 600 14px var(--font); text-align: left; cursor: pointer; }
 .menu-item:hover, .menu-emoji:hover { background: var(--c-fill-2); }
 .bubble-more, .menu button { touch-action: manipulation; }
+.bubble-tick { margin-left: 3px; font-weight: 700; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .bubble-more:focus-visible, .menu button:focus-visible { outline: var(--focus); outline-offset: 2px; }
 .menu-item.is-quiet { color: var(--c-muted); }
 </style>

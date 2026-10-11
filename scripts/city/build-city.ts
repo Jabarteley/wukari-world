@@ -132,7 +132,8 @@ async function verifyLegacy(cityId: string, recipePath: string, check: boolean):
     process.exitCode = 1
     return false
   }
-  const text = JSON.stringify(await recipe.loadSnapshot())
+  const { loadLegacySnapshot } = (await moduleAt(join(cityDirectory, 'snapshot.ts'))) as { loadLegacySnapshot(): Promise<unknown> }
+  const text = JSON.stringify(await loadLegacySnapshot())
   const bytes = Buffer.byteLength(text)
   const sha256 = createHash('sha256').update(text).digest('hex')
   if (bytes !== recipe.baselineBytes || sha256 !== recipe.baselineSha256) {

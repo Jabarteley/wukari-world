@@ -48,6 +48,8 @@ export function checkPackage(root, sourceSha, publish) {
   const config = JSON.parse(readFileSync(join(root, 'wrangler.json'), 'utf8'));
   if (JSON.stringify(config) !== JSON.stringify(expectedConfig(sourceSha, publish))) throw Error('Unapproved deployment configuration');
   if (!files.some(file => file.path === 'worker.js') || !files.some(file => file.path === 'assets/index.html')) throw Error('Missing runtime files');
+  // The Node host's local developer mode is never part of a release: its module carries this marker, so a Worker bundle that pulled it in is refused.
+  if (readFileSync(join(root, 'worker.js'), 'utf8').includes('allworld-open-dev-node-only')) throw Error('Open dev mode code in the release package');
   return hash(JSON.stringify(files));
 }
 // A binary glTF 2.0 file: "glTF" magic, version 2, a declared length equal to the file size, then a JSON chunk first.

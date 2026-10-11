@@ -8,8 +8,8 @@ import { rowX, sameStreet, STREET_NETWORK_SCALE } from '../../../game/neighbourh
 import { cityWalk } from './cityWalkState.ts'
 import type { StreetJourney } from '../../../street/types.ts'
 
-interface NeighbourhoodState { street: WorldStreetResponse | null; home: VisitHomeProjection | null; loading: boolean; error: string; pending: string; homeError: string }
-export const neighbourhood = reactive<NeighbourhoodState>({ street: null, home: null, loading: false, error: '', pending: '', homeError: '' })
+interface NeighbourhoodState { street: WorldStreetResponse | null; home: VisitHomeProjection | null; loading: boolean; error: string; pending: string; homeError: string; /** The refusal's code behind `error`. */ errorCode: string }
+export const neighbourhood = reactive<NeighbourhoodState>({ street: null, home: null, loading: false, error: '', pending: '', homeError: '', errorCode: '' })
 let started = false, streetEpoch = 0, visitEpoch = 0
 let shownVisit = ''
 const acceptedVisitKey = (): string => {
@@ -58,11 +58,11 @@ export async function readWorld<T>(path: string) {
 export async function loadStreet(): Promise<void> {
   const { game, scene, reportPlace } = useApp(), epoch = ++streetEpoch
   if (game.state.value.location !== 'neighbourhood' || !game.connected.value) return
-  neighbourhood.loading = true; neighbourhood.error = ''
+  neighbourhood.loading = true; neighbourhood.error = ''; neighbourhood.errorCode = ''
   const result = await readWorld<WorldStreetResponse>(`/api/world/street?city=${encodeURIComponent(game.cityId.value)}`)
   if (epoch !== streetEpoch || game.state.value.location !== 'neighbourhood') return
   neighbourhood.loading = false
-  if (!result.ok) { neighbourhood.error = result.reason; neighbourhood.street = null; scene.venue.value?.setStreet(null); return }
+  if (!result.ok) { neighbourhood.error = result.reason; neighbourhood.errorCode = result.code ?? ''; neighbourhood.street = null; scene.venue.value?.setStreet(null); return }
   const previous = neighbourhood.street?.anchor
   const changedAnchor = !previous || previous.lga !== result.anchor.lga || previous.estate !== result.anchor.estate || previous.plot !== result.anchor.plot
   neighbourhood.street = result

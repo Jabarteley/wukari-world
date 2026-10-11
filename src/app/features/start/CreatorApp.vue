@@ -34,6 +34,7 @@ import PathIntro from './PathIntro.vue'
 import type { PathIntent } from '../../../paths.ts'
 import StepHome from './StepHome.vue'
 import { lgasOf } from '../../../game/content/world.ts'
+import { CITY_CATALOGUE } from '../../../game/cities/catalogue.ts'
 import { cachedCityContent, isDefaultName, loadCityContent } from '../../../game/cities/registry.ts'
 import StepLook from './StepLook.vue'
 import StepReady from './StepReady.vue'
@@ -41,7 +42,7 @@ import StepSpirit from './StepSpirit.vue'
 import StepWho from './StepWho.vue'
 import { FOCUS_CHOICES, defaultSpirit, focusForField, focusForTab, nextLabel, nextStep, previousStep, progressOf, pushHistory, settlePlan, startStep, stepBlocked, stepDef, stepsFor } from './creatorModel.ts'
 import type { CreatorMode, StepId } from './creatorModel.ts'
-import { cr, ownerOf } from './creatorState.ts'
+import { cr, keepsDraft, ownerOf } from './creatorState.ts'
 import type { CreatorDraft } from './creatorState.ts'
 import { chooseLook, lookAlt, lookSummary, lookUi, openLookTab, randomLook, sameLook, starterWardrobe } from './lookModel.ts'
 import type { LookField } from './lookModel.ts'
@@ -93,7 +94,7 @@ function makeDraft(): CreatorDraft {
 }
 function ensureDraft(): CreatorDraft {
   const owner = ownerOf(view.value, props.mode)
-  if (cr.draft && cr.owner === owner) return cr.draft
+  if (cr.draft && keepsDraft(cr, owner, props.mode)) return cr.draft
   cr.owner = owner
   const made = makeDraft()
   cr.draft = made
@@ -159,6 +160,8 @@ const progress = computed(() => progressOf(steps.value, cr.step))
 const def = computed(() => stepDef(cr.step))
 const title = computed(() => (isNew && cr.step === 'who' ? (campusEntry ? 'Explore UNILAG' : 'Welcome to Allworld') : def.value.title))
 const lead = computed(() => (isNew && cr.step === 'who' ? (campusEntry ? 'Create your Sim and enter the University of Lagos through Main Gate.' : 'A digital world you can live in, with your friends. Choose who you are to begin; you can play in seconds.') : def.value.lead))
+// What is open, read from the catalogue the page already has: no number is written here to go stale.
+const pitch = computed(() => `${CITY_CATALOGUE.filter((city) => city.open).length} real cities across Africa, and more opening. Free, in your browser, no download.`)
 const homePending = computed(() => cr.step === 'home' && !homeReady.value)
 const blocked = computed(() => homePending.value ? 'Load this city before continuing.' : stepBlocked(cr.step, { nameProblem: nameProblem(draft.value.name.trim()), area: draft.value.area, traits: draft.value.traits.length }))
 const last = computed(() => nextStep(steps.value, cr.step) === null)
@@ -259,6 +262,7 @@ function playNow(settle = false): void {
   track('named', { edited: quick.nameEdited, length: plan.name.length })
   track('quick_look_done', { shuffles: quick.shuffles, preset: quick.preset, edited: cr.history.length > 0 })
   track('play_tapped', { taps: qs.taps })
+  void import('../growth/attribution.ts').then((counting) => { counting.noteSource('play') })
   play.sending = true
   play.settling = settle
   cr.settling = settle
@@ -277,6 +281,11 @@ let stopWaiting: (() => void) | null = null
 const waiting = shallowRef<PathIntent | null>(null)
 /** The life exists (or Play failed): move in with the choices on screen. */
 async function runSettle(stay: boolean): Promise<void> {
+  if (cr.settleRunning) return
+  cr.settleRunning = true
+  try { await settleChoices(stay) } finally { cr.settleRunning = false }
+}
+async function settleChoices(stay: boolean): Promise<void> {
   const draftNow = d()
   const plan = settlePlan({ saved: state.value.onboarding, draft: { look: draftNow.look, traits: draftNow.traits, dream: draftNow.dream, area: draftNow.area }, stay })
   if (!plan) { cr.error = blocked.value || 'Choose your traits, your dream and where you live first.'; return }
@@ -332,6 +341,9 @@ onMounted(() => {
   const code = pendingRef()
   if (code && props.mode === 'new') void inviterName(game.fetchJson, code).then((name) => { inviter.value = name })
   window.addEventListener('jaw:quick-start-done', onStarted)
+  // This screen was built again while its own start was on its way: the answer may have come in the gap, so it is read from the game.
+  if (isNew && cr.settling) play.settling = true
+  if (isNew && cr.settling && !cr.settleRunning && !play.sending) onStarted(new CustomEvent('jaw:quick-start-done', { detail: { ok: view.value.connected && !o.value.required } }))
   // Once per device, not once per page load: a reload in the middle of the form is the same landing.
   if (isNew && !qs.landed) { qs.landed = true; if (!(o.value.required && view.value.connected) && firstLanding()) track('landed', { join: invited() }) }
   // One funnel event per time the creator is put in front of a guest (a redraw of the same opening is not another offer).
@@ -370,6 +382,7 @@ onBeforeUnmount(() => {
       </header>
 
       <div ref="scroller" class="cr-scroll">
+        <p v-if="isNew && cr.step === 'who' && !campusEntry" class="cr-pitch">{{ pitch }}</p>
         <p v-if="intro" class="cr-banner is-info"><span aria-hidden="true"><GameIcon :name="intro.kind === 'why' ? 'home' : 'star'" inline /></span><span><strong>{{ intro.strong }}</strong> {{ intro.text }}</span></p>
         <PathIntro v-if="isNew && playable && cr.step === 'who' && !invited()" :intent="waiting" :busy="Boolean(cr.pending) || play.sending" @start="startIn" @signup="openSignUp" @login="openSignIn" />
         <p v-if="isNew && invited()" class="cr-banner is-good" role="status"><span aria-hidden="true"><GameIcon name="invite" inline /></span><span><strong>{{ invitedNote.title }}</strong> {{ inviter ? `Start your life and you land where ${inviter} is.` : 'Start your life and you land where they are.' }}</span></p>

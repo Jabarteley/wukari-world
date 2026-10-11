@@ -18,7 +18,7 @@ import { isDeparting } from '../../life.ts'
 import { roomJoinNeeded } from '../../client.ts'
 import { crowdList, playersHere } from '../../scene/crowd.ts'
 import { linkWords } from '../../ui/link.ts'
-import { captureLink, cleanAddress, forgetCampusEntry, forgetDraft, forgetGo, forgetJoin, forgetRef, forgetTable, joinTarget, keepPlay, pendingCampusEntry, pendingGo, pendingPlay, pendingRef, pendingTable, play, track } from '../../quick-start/entry.ts'
+import { captureLink, cleanAddress, forgetCampusEntry, forgetDraft, forgetGo, forgetJoin, forgetRef, forgetTable, joinTarget, keepPlay, pendingCampusEntry, pendingGo, pendingPlay, pendingRef, pendingShop, pendingTable, play, track } from '../../quick-start/entry.ts'
 import { deviceToken } from '../features/growth/boundary.ts'
 import { GO_TARGETS } from '../../game/go-links.ts'
 import type { GoTarget } from '../../game/go-links.ts'
@@ -36,6 +36,7 @@ import { useGame } from './game.ts'
 import type { Game } from './game.ts'
 import { buildRegistry } from './panels.ts'
 import { createShell } from './shell.ts'
+import { settleHandler } from './settleRefusal.ts'
 import { observe as observeSound, play as playSound } from '../../audio/play.ts'
 import { CAMERA_FRAME } from './cameraFrame.ts'
 import { warmCityScenes } from '../scene/loaders.ts'
@@ -68,6 +69,8 @@ function createApp(game: Game, native: readonly VuePanel[]) {
   }
   // The link this page was opened with is read once, here, before anything rewrites the address.
   { const link = captureLink(); if (link.join || link.ref || link.table) track('invite_opened', { kind: link.table ? 'table' : link.ref ? 'share' : 'house', has_session: game.client.hasSavedIdentity === true }) }
+  // Where the visit came from is counted by a small chunk of its own (features/growth/attribution.ts).
+  if (globalThis.window) void import('../features/growth/attribution.ts').then((counting) => { counting.noteLanded() })
   let pendingRoute: { venue: string; spot?: string } | null = null
   let shownTrip = '', warmedCity = ''
 
@@ -79,6 +82,9 @@ function createApp(game: Game, native: readonly VuePanel[]) {
       if (mode === 'map') scene.mapsWanted.value = true
     },
   })
+
+  // Every "settle in first" notice and toast opens the flow through here; its code loads when the first one is pressed.
+  settleHandler.run = (back) => { void import('../features/start/settleModel.ts').then(({ startSettling }) => { startSettling(shell, undefined, back) }) }
 
   const playerLook = (): PlayerLook => ({ look: game.state.value.onboarding?.look, seed: game.session.value?.id ?? 'you', name: game.state.value.name || game.client.identity.name })
   const cityVenueLabel = (id: string, cityId: string): string => contentFor(cityId).venues.find((venue) => venue.id === id)?.name ?? id
@@ -160,6 +166,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     toast: (text, kind) => game.toast(text, kind),
     onMembers,
     walkBy: (dx, dz) => scene.venue.value?.walkBy?.(dx, dz) === true,
+    openPerson: (player, name) => shell.open('person', { player, name }),
     telemetry: { chunkFailed: (name, error) => { telemetry.chunkFailed(name as never, error); void noteChunkFailure() }, captureError: (error, context) => { telemetry.captureError(error, context) } },
   })
 
@@ -328,7 +335,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     track,
     cleanAddress() { if (location.pathname.replace(/\/+$/, '') !== '/unilag') cleanAddress() },
     takeLinkHost: () => { takeLinkHost() },
-    joinTarget, forgetJoin, pendingRef, forgetRef, pendingTable, forgetTable, pendingGo, forgetGo,
+    joinTarget, forgetJoin, pendingRef, forgetRef, pendingTable, forgetTable, pendingGo, forgetGo, pendingShop,
     panelFor: (go) => (Object.hasOwn(GO_TARGETS, go) ? GO_TARGETS[go as GoTarget] : null),
     setTimeout: (run, ms) => globalThis.setTimeout(run, ms),
     clearTimeout: (handle) => globalThis.clearTimeout(handle as number),
@@ -457,6 +464,7 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     } finally { ready.value = true }
     if (ok) {
       await firstMinute()
+      if (!game.state.value.onboarding.required) void import('../features/growth/attribution.ts').then((counting) => { counting.noteGame() })
       if (game.state.value.onboarding.done && game.state.value.estate.lga === null && !game.state.value.estate.home) shell.open('city')
     }
     // Not awaited: a slow or failing community chunk must not hold up the game or block a later Reconnect.

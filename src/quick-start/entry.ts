@@ -17,6 +17,7 @@
  *   allworld-ref               { code, at } — the share code a link carried, until it was attached as a referral (the
  *                              growth client reads the same key; a code is dropped after a week)
  *   joinallworld-quick-nudge   { [life]: { count, reasons, day, until } } — how often settling in was offered, and until when it stays quiet
+ *   aw-src                     (session storage, this visit only) the four raw utm_ words of the landing address; src/app/features/growth/attribution.ts
  *   joinallworld-quick-landed  1 once the landing screen was shown, so 'landed' is reported once per device
  * None of it is a credential: the session is the cookie the server sets, exactly as before.
  *
@@ -43,7 +44,7 @@
  */
 import type { Look } from '../types/life.ts';
 import { nudgeMemory, joinIdFrom, linkParts } from './model.ts';
-import { goFrom } from '../game/go-links.ts';
+import { goFrom, shopFrom } from '../game/go-links.ts';
 import type { GoTarget } from '../game/go-links.ts';
 import type { Draft, NudgeMemory } from './model.ts';
 
@@ -112,13 +113,15 @@ export function captureLink(): CapturedLink {
   if (captured) return captured;
   const found: CapturedLink = captured = { join: null, ref: null, table: null, go: null, campus: false };
   if (typeof location === 'undefined') return found;
+  // Where this visit came from: the four utm_ words, raw, for this browser session only (cleaned and counted by the growth chunk).
+  try { if (!sessionStorage.getItem('aw-src')) { const q = new URLSearchParams(location.search); sessionStorage.setItem('aw-src', JSON.stringify(['source', 'medium', 'campaign', 'content'].map((k) => (q.get(`utm_${k}`) ?? '').slice(0, 60)))) } } catch { /* no session storage: the visit counts as direct */ }
   found.join = joinIdFrom(location.pathname, location.search);
   if (found.join) write(KEYS.join, found.join);
   const link = linkParts(location.pathname, location.search);
   if (link.ref) { found.ref = link.ref; write(KEYS.ref, { code: link.ref, at: Date.now() }); }
   if (link.table) { found.table = link.table; write(KEYS.table, link.table); }
   const go = goFrom(location.search);
-  if (go) { found.go = go; write(KEYS.go, { go, at: Date.now() }); }
+  if (go) { found.go = go; write(KEYS.go, { go, at: Date.now(), shop: go === 'shop' ? shopFrom(location.search) : null }); }
   found.campus = location.pathname.replace(/\/+$/, '') === '/unilag';
   if (found.campus) write(KEYS.campus, { at: Date.now() });
   return found;
@@ -148,6 +151,11 @@ export function pendingGo(): GoTarget | null {
   return goFrom(`?go=${kept.go}`);
 }
 export const forgetGo = (): void => write(KEYS.go, null);
+/** The public address of the shop a link asked for (go=shop), until the landing has opened it; shape only, the server decides. */
+export function pendingShop(): string | null {
+  const kept = recordOf(read(KEYS.go)) as { go?: unknown; shop?: unknown } | null;
+  return kept?.go === 'shop' && typeof kept.shop === 'string' ? shopFrom(`?shop=${kept.shop}`) : null;
+}
 
 /**
  * A random token made once per browser ('allworld-device'). It is sent with a referral link and with the growth hello and is

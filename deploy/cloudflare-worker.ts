@@ -39,6 +39,7 @@ import { registeredCityIds, loadCityContent } from '../src/game/cities/registry.
  * The differences a client can see are listed in src/types/protocol.ts (`WORKER:`) and deploy/RECOVERY-ADAPTER.md.
  */
 import { DurableObject } from 'cloudflare:workers';
+import { openDevRefusal } from './open-dev-refusal.ts';
 import { oldCharacterLanding } from './legacy-bridge.ts';
 import { siteFile } from '../server/site-files.ts';
 import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName, adminHostRoute, isAdminHost } from '../server/admin/host.ts';
@@ -47,6 +48,7 @@ import { createSqliteStore } from './sqlite-store.ts';
 import { parseLayout } from '../server/keyed.ts';
 import { createSqliteVoices } from './sqlite-voices.ts';
 import { createSqliteImages } from './sqlite-images.ts';
+import { keepAlways } from '../server/showcase/image-files.ts';
 import { LIMITER_CAPS, createMemoryLimiter, limiterBatch, limiterClass, type LimiterClass } from '../server/limiter.ts';
 import { sqliteShardBackend } from './sqlite-shards.ts';
 import { ALARM_TABLE, createWriteMeter, type WriteMeter } from './write-meter.ts';
@@ -88,7 +90,7 @@ const ACK_CHECK_MS = 60000;
 /** How often expired sessions are looked for after start-up (expiredSessions below). */
 const EXPIRY_SWEEP_MS = 60000;
 /** Path prefixes outside /api/ that a module may serve as an HTML page (ctx.pages). The Worker sends these to the object. */
-const PAGE_PREFIXES = ['/s/', '/e/'];
+const PAGE_PREFIXES = ['/s/', '/e/', '/shop/'];
 /** A socket's attachment may hold 2,048 bytes. */
 const ATTACHMENT_BYTES = 2000;
 /** The limiter's STORED classes, one table each (server/limiter.ts). The short class is kept in memory and has no table. */
@@ -157,6 +159,9 @@ function sealJson(response: Response, url: URL): Response {
 
 export default {
   async fetch(request: Request, env: WorkerEnv): Promise<Response> {
+    // A local-development setting on a deployment is refused outright, before anything else runs (deploy/open-dev-refusal.ts).
+    const misconfigured = openDevRefusal(env);
+    if (misconfigured) return misconfigured;
     return sealJson(await respond(request, env), new URL(request.url));
   },
 };
@@ -304,6 +309,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
   store: SqliteStore;
   shards: ShardStore;
   images: ImageStore;
+  showcaseImages: ImageStore;
   voices: VoiceStore;
   sweepAt: number;
   expirySweepAt: number;
@@ -333,6 +339,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     this.sleeps = env.SLEEP_BETWEEN_BEATS === '1';
     this.store = createSqliteStore(storage, { barrier, lazyFlushMs: this.sleeps ? 0 : LAZY_FLUSH_MS, layout: parseLayout(env.STORE_LAYOUT) ?? 'legacy', log });
     this.images = createSqliteImages(storage);
+    this.showcaseImages = keepAlways(createSqliteImages(storage, 'showcase_images'));
     this.voices = createSqliteVoices(storage);
     // The world registry: one append-only shard per local government, as rows beside the main tables (sqlite-shards.ts).
     this.shards = createShardStoreOn(sqliteShardBackend(storage, { barrier, beforeWrite: () => this.store.assertWritable() }), { empty: worldRegistry.empty, reduce: worldRegistry.reduce, snapshot: worldRegistry.snapshot, loaded: worldRegistry.loaded, live: worldRegistry.live, log }) as ShardStore;
@@ -371,7 +378,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     const open = (): HostSocket[] => [...this.held.all].filter(ws => ws.readyState === 1);
     const openOf = (id: string): HostSocket[] => [...this.held.byPlayer.get(id) ?? []].filter(ws => ws.readyState === 1);
     const context: RouteContext = this.context = {
-      store: this.store, images: this.images, voices: this.voices, shards: this.shards, now, fail: protocolError, collection, publicSession, cityIds: registeredCityIds(), telemetry: this.telemetry,
+      store: this.store, images: this.images, showcaseImages: this.showcaseImages, voices: this.voices, shards: this.shards, now, fail: protocolError, collection, publicSession, cityIds: registeredCityIds(), telemetry: this.telemetry,
       ...(env.INTERACTIVE_TEACHING_STARTS === '1' ? { interactiveTeachingStarts: true } : {}),
       reverseGearIssuance: env.REVERSE_GEAR_ISSUANCE === '1',
       randomId: () => crypto.randomUUID(),

@@ -6,7 +6,10 @@ export function communityState(patch: Partial<CommunityState> = {}): CommunitySt
   return {
     room: { cityId: 'lagos', venueId: 'park' }, group: null, groupList: null, apart: null, groupNote: null, roomText: 'Lagos · The Park', privateHome: false, connection: 'Connected',
     hasSession: true, session: { id: 'a', name: 'Alex' }, savingName: false,
-    members: [{ id: 'a', label: 'Alex (you)', state: 'Here' }, { id: 'b', label: 'Bea <b>', state: 'In voice · near' }], memberCount: 2,
+    members: [
+      { id: 'a', name: 'Alex', you: true, label: 'Alex (you)', state: 'Here', voice: 'off', range: null },
+      { id: 'b', name: 'Bea <b>', you: false, label: 'Bea <b>', state: 'In voice · near', voice: 'live', range: 'near' },
+    ], memberCount: 2,
     positionText: 'Nobody else is in voice here yet.', walkDisabled: false,
     voice: {
       on: false, joining: false, muted: false, canJoin: true, joinLabel: 'Join voice', muteLabel: 'Mute mic',

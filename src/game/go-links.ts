@@ -13,6 +13,7 @@ export const GO_TARGETS = Object.freeze({
   tables: 'tables',
   bank: 'bank',
   touch: 'touch',
+  shop: 'showcase',
 } as const);
 export type GoTarget = keyof typeof GO_TARGETS;
 
@@ -22,6 +23,9 @@ export function goFrom(search: unknown): GoTarget | null {
   const name = found?.[1];
   return name !== undefined && Object.hasOwn(GO_TARGETS, name) ? (name as GoTarget) : null;
 }
+
+/** The public shop address a link carries (`&shop=<token>`; the token's alphabet is src/types/showcase-link.ts), or null. */
+export const shopFrom = (search: unknown): string | null => /[?&]shop=([a-hjkmnp-z2-9]{8})(?:[&#]|$)/.exec(String(search ?? ''))?.[1] ?? null;
 
 /** The address a mail's button opens. */
 export const goUrl = (origin: string, target: GoTarget): string => `${origin}/?go=${target}`;

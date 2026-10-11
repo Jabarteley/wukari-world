@@ -9,6 +9,7 @@ import type {
   CityModuleRules,
 } from '../../../types/content.ts'
 
+/** What a city's snapshot module (snapshot.ts, exporting loadLegacySnapshot) answers; kept out of the recipe so the recipe stays free of map data. */
 export interface LegacyCitySnapshot {
   readonly rules: CityModuleRules
   readonly content: CityContent
@@ -53,7 +54,6 @@ export interface LegacyCityRecipe {
   }
   readonly baselineSha256: string
   readonly baselineBytes: number
-  readonly loadSnapshot: () => Promise<LegacyCitySnapshot>
 }
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/

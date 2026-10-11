@@ -5,12 +5,14 @@ import type { ToastKind } from '../types/panel.ts'
 import { stripLeadEmoji } from '../../ui/dom.ts'
 import { play } from '../../audio/play.ts'
 
-export interface ToastItem { id: number; text: string; kind: ToastKind }
+/** A button on a toast: the one thing the player can do about what it says. */
+export interface ToastAction { label: string; run: () => void }
+export interface ToastItem { id: number; text: string; kind: ToastKind; action?: ToastAction }
 
 export const MAX_TOASTS = 2
 const KINDS: readonly ToastKind[] = ['info', 'good', 'earn', 'spend', 'error']
 /** How long a toast stays: longer for a longer sentence, never more than seven seconds. */
-export const toastLifetime = (text: string): number => Math.min(7000, 2800 + text.length * 40)
+export const toastLifetime = (text: string, withAction = false): number => (withAction ? 12000 : Math.min(7000, 2800 + text.length * 40))
 
 /** While true (the first landing, see landingHold.ts) a toast that is not an error waits its turn. */
 export const toastHold = ref(false)
@@ -21,7 +23,7 @@ export function createToasts(later: (run: () => void, ms: number) => unknown = (
   const items = ref<ToastItem[]>([])
   let nextId = 1
   function dismiss(id: number): void { items.value = items.value.filter((item) => item.id !== id) }
-  function toast(text: unknown, kind: ToastKind = 'info'): void {
+  function toast(text: unknown, kind: ToastKind = 'info', action?: ToastAction): void {
     if (!text) return
     const body = String(text)
     if (toastHold.value && kind !== 'error') { if (!waiting.some((item) => item.text === body)) waiting.push({ text: body, kind }); if (waiting.length > 3) waiting.shift(); return }
@@ -39,10 +41,10 @@ export function createToasts(later: (run: () => void, ms: number) => unknown = (
     const showing = items.value.find((item) => item.text === body)
     // Money has its own sound (from the ledger), a finished goal its own phrase; the rest are a soft tick, a chime or a knock.
     if (!showing) play(isGoal ? 'goal' : tone === 'error' ? 'refused' : tone === 'good' ? 'success' : tone === 'info' ? 'toast' : '')
-    if (showing) { if (tone !== 'info') showing.kind = tone; return }
-    const item: ToastItem = { id: nextId++, text: body, kind: tone }
+    if (showing) { if (tone !== 'info') showing.kind = tone; if (action && !showing.action) showing.action = action; return }
+    const item: ToastItem = { id: nextId++, text: body, kind: tone, ...(action ? { action } : {}) }
     items.value = [...items.value, item].slice(-MAX_TOASTS)
-    later(() => dismiss(item.id), toastLifetime(body))
+    later(() => dismiss(item.id), toastLifetime(body, Boolean(action)))
   }
   releaseWaiting = () => { const next = waiting.shift(); if (!next) return; toast(next.text, next.kind); if (waiting.length) later(releaseWaiting, RELEASE_STEP_MS) }
   return { items, toast, dismiss }

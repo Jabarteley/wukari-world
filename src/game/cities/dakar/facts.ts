@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "sn-starter",
-    "name": "Starter zone"
+    "name": "Dakar"
   },
   "timezone": "Africa/Dakar",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://aim.asecna.aero/html/eAIP/FR-_13AD-2.GOBD-fr-FR.html"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=-17.478076,14.714778,-17.472076,14.720778",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
   "bounds": [
-    -17.490076,
-    14.658833,
-    -17.060778,
-    14.732778
+    -17.54,
+    14.6,
+    -17.04,
+    14.82
   ],
-  "coverageNote": "national capital. Starter visitor area. Real city and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "The Cap-Vert peninsula of Dakar from Gorée and the Plateau to Yoff and the Almadies, and the way east to the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the Atlantic as a band of water round the peninsula, main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Dakar",
+    "unit": "district",
+    "roadHub": "Gare de Dakar"
+  }
 } satisfies DestinationFacts

@@ -31,15 +31,23 @@
  *   referral.welcomed · referral.counted · referral.paid · referral.refused.<why>
  *   table.started.<game> · table.finished.<game> · table.abandoned.<game> · table.human · table.bot
  *   consent.adult · consent.minor · client.<signal> (webgl-missing, opera-mini, save-data, slow-start)
+ *
+ * WHERE VISITS CAME FROM (`sources`, POST /api/growth/source). { [lagosDay]: { "source|medium|campaign|content": { landed,
+ * play, game, stayed } } } — four whole-number totals per campaign per day: opened the page, pressed Play, reached the game,
+ * still there about ten minutes later. The four words are the `utm_` words of the landing address, cleaned
+ * (src/game/attribution.ts). At most KEEP.sourceKeys distinct keys a day (a new one past that is counted under
+ * other|other|other|none), kept KEEP.sourceDays days. No player id, address or browser detail is stored with it.
  */
 import { lagosTime } from '../../src/game/clock.ts';
 import { STARTER_GOALS } from '../../src/game/content/goals.ts';
 import type { LifeState } from '../../src/types/life.ts';
-import type { FunnelStep, GrowthMetricsResponse, MetricsCohort, MetricsDay, RetentionCell } from '../../src/types/growth.ts';
+import type { FunnelStep, GrowthMetricsResponse, MetricsCohort, MetricsDay, RetentionCell, SourceCampaign, SourceRow } from '../../src/types/growth.ts';
 import type { CityId } from '../../src/types/protocol.ts';
+import { cleanSource, SOURCE_EVENTS } from '../../src/game/attribution.ts';
+import type { SourceEvent } from '../../src/game/attribution.ts';
 import type { GrowthCollection } from '../types.ts';
 
-export const KEEP = Object.freeze({ days: 400, cohorts: 120, window: 31, lives: 50000 });
+export const KEEP = Object.freeze({ days: 400, cohorts: 120, window: 31, lives: 50000, sourceDays: 90, sourceKeys: 200 });
 export const RETENTION_DAYS = Object.freeze([1, 3, 7, 14, 30]);
 /**
  * Funnel steps. `reached(state)` is read from the server's own copy of the life. A life's steps are kept as a bit mask BY
@@ -137,9 +145,23 @@ export function touch(g: GrowthCollection, now: number, publicId: string, state:
   });
 }
 
+const OVERFLOW_KEY = 'other|other|other|none';
+/** Count one step of a visit under its (source, medium, campaign, content). The words are cleaned here again; a new key past the day's cap goes to `other`. */
+export function countSource(g: GrowthCollection, now: number, words: unknown, event: SourceEvent): void {
+  if (!SOURCE_EVENTS.includes(event)) return;
+  const { source, medium, campaign, content } = cleanSource(words);
+  const sources = (g.metrics.sources ||= {}), day = lagosTime(now).day;
+  const today = (sources[day] ||= {});
+  let key = `${source}|${medium}|${campaign}|${content}`;
+  if (!Object.hasOwn(today, key) && Object.keys(today).length >= KEEP.sourceKeys) key = OVERFLOW_KEY;
+  const row = (today[key] ||= { landed: 0, play: 0, game: 0, stayed: 0 });
+  row[event] = Math.min(Number.MAX_SAFE_INTEGER, row[event] + 1);
+}
+
 /** Drop what is past its retention. Called from the hourly sweep. */
 export function prune(g: GrowthCollection, now: number): void {
   const day = lagosTime(now).day;
+  for (const key of Object.keys(g.metrics.sources ?? {})) if (day - Number(key) > KEEP.sourceDays) delete g.metrics.sources?.[key];
   for (const [, m] of cityBooks(g)) {
     for (const key of Object.keys(m.days)) if (day - Number(key) > KEEP.days) delete m.days[key];
     for (const key of Object.keys(m.cohorts)) if (day - Number(key) > KEEP.cohorts) delete m.cohorts[key];
@@ -147,6 +169,21 @@ export function prune(g: GrowthCollection, now: number): void {
   }
 }
 
+/** The campaigns' totals, per day and summed over the days shown. */
+function sourceReport(g: GrowthCollection, today: number, span: number): { sources: SourceRow[]; campaigns: SourceCampaign[] } {
+  const sources: SourceRow[] = [], sums = new Map<string, SourceCampaign>();
+  for (let day = today - span + 1; day <= today; day++) {
+    for (const [key, counts] of Object.entries(g.metrics.sources?.[day] ?? {})) {
+      const [source = '', medium = '', campaign = '', content = ''] = key.split('|');
+      sources.push({ day, date: dateOf(day), source, medium, campaign, content, ...counts });
+      const sum = sums.get(key) ?? { source, medium, campaign, content, landed: 0, play: 0, game: 0, stayed: 0 };
+      for (const event of SOURCE_EVENTS) sum[event] += counts[event];
+      sums.set(key, sum);
+    }
+  }
+  const campaigns = [...sums.values()].sort((a, b) => b.landed - a.landed);
+  return { sources, campaigns };
+}
 const dateOf = (day: number): string => new Date(day * 86400000).toISOString().slice(0, 10);
 /** The operator's report: totals per day and the cohort table. Carries no player id. */
 export function report(g: GrowthCollection, now: number, { days = 35 }: { days?: number } = {}): Omit<GrowthMetricsResponse, 'analytics'> {
@@ -175,6 +212,6 @@ export function report(g: GrowthCollection, now: number, { days = 35 }: { days?:
   const totals: Record<string, number> = {};
   for (const row of daily) for (const [name, value] of Object.entries(row)) if (name !== 'day' && name !== 'date' && typeof value === 'number') totals[name] = (totals[name] ?? 0) + value;
   const funnel = FUNNEL_ORDER.map((id) => ({ step: id, lives: totals[`funnel.${id}`] ?? 0 }));
-  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, tracked: Object.keys(m.lives).length,
+  return { generatedAt: now, timezone: 'Africa/Lagos', source: 'first-party', days: daily, cohorts, totals, funnel, ...sourceReport(g, today, span), tracked: Object.keys(m.lives).length,
     retention: { daily: `${KEEP.days} days`, cohorts: `${KEEP.cohorts} days`, perLife: `${KEEP.window} days, then deleted` } };
 }

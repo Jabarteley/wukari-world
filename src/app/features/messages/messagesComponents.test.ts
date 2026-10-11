@@ -8,7 +8,7 @@ import type { ViteDevServer } from 'vite'
 import { createSSRApp, h } from 'vue'
 import type { Component } from 'vue'
 import { renderToString } from 'vue/server-renderer'
-import type { Conversation, Message, MessagePinsView, SocialOverview } from '../../../types/social.ts'
+import type { Conversation, Message, MessagePinsView, MoneyRequestView, SocialOverview } from '../../../types/social.ts'
 
 const root = fileURLToPath(new URL('../../../..', import.meta.url))
 let vite: ViteDevServer
@@ -74,12 +74,17 @@ test('pinned messages render three bounded rows, filtered-empty management, and 
   const html = await render('/src/app/features/messages/PinnedMessages.vue', { pins, kind: 'group', loading: false, pending: false, retryable: false, disabled: false, error: '' })
   const rows = [...html.matchAll(/<button[^>]*class="pinned-row"[^>]*>(.*?)<\/button>/g)].map((match) => words(match[1] ?? ''))
   assert.deepEqual(rows, ['Bola Meet at the library', 'Bola Picture', 'Bola Voice message'])
-  assert.ok(words(html).includes('Clear all also removes shared pins you cannot see.'))
+  // The header counts the pins and the panel stays shut until tapped; its help is one line (these two lines replace the old long help text).
+  assert.ok(words(html).includes('Pinned · 3') && words(html).includes('Shared with everyone in this chat. Only the group owner can change them.'))
+  assert.match(html, /id="pinned-list"[^>]*display:none/)
+  assert.match(html, /aria-expanded="false"/)
 
   const filtered: MessagePinsView = { ...pins, items: [] }
   const offline = await render('/src/app/features/messages/PinnedMessages.vue', { pins: filtered, kind: 'group', loading: false, pending: false, retryable: false, disabled: true, error: '' })
-  assert.ok(words(offline).includes('No shared pins you can see.'))
-  assert.match(offline, /class="pinned-clear"[^>]*disabled/)
+  // With nothing pinned there is no panel and no Clear all (this replaces the old "disabled Clear all" check); a failed change still shows.
+  assert.ok(!offline.includes('pinned-clear') && !offline.includes('Pinned'))
+  const stuck = await render('/src/app/features/messages/PinnedMessages.vue', { pins: filtered, kind: 'group', loading: false, pending: false, retryable: true, disabled: true, error: '' })
+  assert.ok(words(stuck).includes('No shared pins you can see.') && !stuck.includes('pinned-clear'))
   const member = await render('/src/app/features/messages/PinnedMessages.vue', { pins: { ...filtered, canManage: false, items: [{ message: items[0]! }] }, kind: 'group', loading: false, pending: false, retryable: false, disabled: false, error: '' })
   assert.ok(!member.includes('pinned-clear') && words(member).includes('Only the group owner can change them.'))
 })
@@ -113,4 +118,83 @@ test('the group panel: people with the admin marked, who may change them, the si
   assert.ok(!member.includes('Remove') && !member.includes('Add people') && member.includes('Ada runs this group'))
   const full = words(await render('/src/app/features/messages/GroupManage.vue', { conv: { ...conv, members: Array.from({ length: 12 }, (_, i) => ({ id: i ? `m${i}` : 'ada', name: `P${i}` })) }, me }))
   assert.ok(full.includes('12 of 12'))
+})
+
+test('a request for money is a card: the friend asked gets Pay and Decline, the asker gets Cancel, and a resolved card has none', async () => {
+  const request: MoneyRequestView = { id: 'MR-1', amount: 1500, note: 'Lunch', state: 'open', mine: false, expiresAt: 5000, payable: true }
+  const card = (view: Partial<MoneyRequestView>, extra: Record<string, unknown> = {}) => bubble(line({ body: 'Asked for ₦1,500: Lunch', request: { ...request, ...view } }), { now: 1000, ...extra })
+  const asked = await card({})
+  assert.match(asked, /role="group"[^>]*aria-label="Bola asked you ₦1,500: Lunch\. Open\."/)
+  assert.ok(words(asked).includes('Bola asked you') && words(asked).includes('₦1,500') && words(asked).includes('Lunch') && words(asked).includes('Open'))
+  assert.match(asked, />Pay<\/button>/); assert.match(asked, />Decline<\/button>/); assert.ok(!asked.includes('Cancel request'))
+  const own = await card({ mine: true, payable: false }, { partner: 'Chidi' })
+  assert.ok(words(own).includes('You asked Chidi') && !words(own).includes('You asked Bola')); assert.match(own, />Cancel request<\/button>/); assert.ok(!own.includes('>Pay<'))
+  for (const [state, label] of [['paid', 'Paid'], ['declined', 'Declined'], ['cancelled', 'Cancelled']] as const) {
+    const done = await card({ state })
+    assert.ok(words(done).includes(label), state); assert.ok(!done.includes('request-btn'), `${state} has no buttons`)
+  }
+  const late = await card({}, { now: 5000 })
+  assert.ok(words(late).includes('Expired') && !late.includes('request-btn'), 'out of time, with no write yet')
+  assert.match(await card({}, { requestBusy: true }), /<button[^>]*disabled[^>]*>Working…<\/button>/)
+  assert.match(await card({}, { requestOffline: true }), /<button[^>]*disabled[^>]*>Pay<\/button>/)
+  const menu = await card({}, { canActions: true })
+  assert.ok(!menu.includes('class="bubble-text"'), 'a card is not words')
+  const hostile = await card({ note: '<img src=x onerror=alert(1)>' })
+  assert.ok(!hostile.includes('<img') && hostile.includes('&lt;img'))
+})
+
+const composer = (extra: Record<string, unknown> = {}): Promise<string> => render('/src/app/features/messages/Composer.vue', { conv: 'dm.a.b', members: [], meId: 'ada', admin: false, max: 500, disabled: false, reply: null, prefill: '', pictures: false, voice: false, target: { to: 'bola' }, newId: () => 'id', ...extra })
+
+test('the message box is one pill with a "+" that names what it opens, and a round button that is the microphone until there is text', async () => {
+  const html = await composer({ voice: true })
+  assert.match(html, /class="composer-pill"/)
+  assert.match(html, /<button[^>]*aria-label="Attach or send money"[^>]*aria-haspopup="dialog"/)
+  assert.match(html, /<button[^>]*class="is-mic composer-send"[^>]*aria-label="Record a voice note"/)
+  const noVoice = await composer({ voice: false })
+  assert.match(noVoice, /<button[^>]*class="composer-send"[^>]*aria-label="Send"[^>]*disabled/, 'with no voice notes and no text, Send waits')
+  assert.ok(!html.includes('Record voice note</button>'), 'no recording bar sits above the box any more')
+  assert.match(await composer({ pictures: true }), /aria-label="Send a picture"/)
+})
+
+test('the character count is read by screen readers always, and seen only near the limit or over it', async () => {
+  const quiet = await composer({ prefill: '' })
+  assert.match(quiet, /<p[^>]*class="sr-only composer-count"/)
+  const near = await composer({ prefill: 'a'.repeat(450) })
+  assert.match(near, /<p[^>]*class="composer-count"[^>]*>450 \/ 500 characters/)
+  const over = await composer({ prefill: 'a'.repeat(520) })
+  assert.match(over, /class="is-over composer-count"[^>]*role="alert"[^>]*>Remove 20 characters to send/)
+})
+
+test('the attach sheet lists only what this chat can do, each with a name a screen reader can use', async () => {
+  const sheet = (extra: Record<string, unknown>): Promise<string> => render('/src/app/features/messages/AttachSheet.vue', { open: false, pictures: false, voice: false, money: false, offline: false, ...extra })
+  const all = await sheet({ open: true, pictures: true, voice: true, money: true })
+  for (const name of ['Picture', 'Voice note', 'Send money', 'Request money']) assert.ok(words(all).includes(name), name)
+  assert.match(all, /<dialog[^>]*aria-label="Attach or send money"/)
+  assert.match(all, /data-chat="attach-picture"/); assert.match(all, /data-chat="attach-voice"/); assert.match(all, /data-chat="send-money"/); assert.match(all, /data-chat="request-money"/)
+  assert.ok(!words(await sheet({ pictures: true, money: true })).includes('Send money'), 'a closed sheet draws nothing')
+  const text = words(await sheet({ open: true }))
+  assert.ok(text.includes('Nothing can be added to this chat.') && !text.includes('Picture'))
+  assert.match(await sheet({ open: true, money: true, offline: true }), /data-chat="request-money" disabled/)
+})
+
+test('the chat menu: pins and money for any direct chat, pin-to-top and delete only once the chat exists', async () => {
+  const menu = (extra: Record<string, unknown>): Promise<string> => render('/src/app/features/messages/ChatMenu.vue', { canRequest: true, pins: 2, pinsShown: true, chatExists: true, chatPinned: false, offline: false, ...extra })
+  const full = await menu({})
+  assert.match(full, /role="menu"[^>]*aria-label="Chat options"/)
+  for (const key of ['pins', 'send-money', 'request-money', 'pin-chat', 'hide']) assert.ok(full.includes(`data-chat="${key}"`), key)
+  assert.ok(words(full).includes('Pinned messages 2') && words(full).includes('Pin to the top of my chats'))
+  const fresh = await menu({ chatExists: false, pinsShown: false })
+  assert.ok(fresh.includes('data-chat="send-money"') && fresh.includes('data-chat="request-money"') && !fresh.includes('data-chat="hide"') && !fresh.includes('data-chat="pins"'))
+  assert.ok(words(await menu({ chatPinned: true })).includes('Unpin from the top of my chats'))
+  assert.match(await menu({ offline: true }), /data-chat="request-money"[^>]*disabled/)
+  // Asking is offered only to a current friend who is not blocked; sending money stays.
+  const stranger = await menu({ canRequest: false })
+  assert.ok(!stranger.includes('data-chat="request-money"') && stranger.includes('data-chat="send-money"'))
+})
+
+test('an own message ends with a tick that screen readers hear as "Sent"', async () => {
+  const mineLine = line({ from: { id: 'ada', name: 'Ada' } })
+  const html = await bubble(mineLine)
+  assert.match(html, /class="bubble-tick" aria-hidden="true"/); assert.match(html, /class="sr-only"[^>]*> Sent</)
+  assert.ok(!(await bubble(line())).includes('bubble-tick'), 'the other person\'s line has no tick')
 })

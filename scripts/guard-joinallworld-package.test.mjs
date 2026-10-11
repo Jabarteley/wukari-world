@@ -7,7 +7,7 @@ import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { checkPackage, expectedConfig } from './guard-joinallworld-package.mjs';
-import { checkSource } from './check-joinallworld-source.mjs';
+import { checkSource, openDevProblems } from './check-joinallworld-source.mjs';
 import { checkWorkflow, nodePinProblems, parseYaml } from './check-workflows.mjs';
 const sha = 'a'.repeat(40);
 function fixture(t) {
@@ -135,4 +135,34 @@ test('archive extractor accepts the street-pack count and rejects excess entries
     if (accepted) assert.equal(result.status, 0, result.stderr);
     else { assert.notEqual(result.status, 0); assert.match(result.stderr, /Package size limit/); }
   }
+});
+
+// Open dev mode (server/open-dev) must never reach a release: the setting, its module and the Worker's import graph are guarded.
+test('open dev mode guard: the real source is clean', () => {
+  assert.deepEqual(openDevProblems(fileURLToPath(new URL('..', import.meta.url))), []);
+});
+test('open dev mode guard: catches the setting in production configuration and open-mode code reached from the Worker', t => {
+  const root = realpathSync(mkdtempSync(join(tmpdir(), 'joinallworld-open-dev-guard-')));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  for (const dir of ['deploy', 'server/open-dev', '.github/workflows', 'docs']) mkdirSync(join(root, dir), { recursive: true });
+  writeFileSync(join(root, 'deploy/cloudflare-worker.ts'), "import { value } from './helper.ts';\nexport default value;\n");
+  writeFileSync(join(root, 'deploy/helper.ts'), 'export const value = 1;\n');
+  writeFileSync(join(root, 'docs/DEVELOPING.md'), 'Run it with ALLWORLD_OPEN_DEV=1 on your own machine.\n');
+  writeFileSync(join(root, 'server/open-dev/index.ts'), 'export const x = 1;\n');
+  assert.deepEqual(openDevProblems(root), []);
+  for (const [file, text] of [['wrangler.jsonc', '{ "vars": { "ALLWORLD_OPEN_DEV": "1" } }'], ['.github/workflows/release.yml', 'env:\n  ALLWORLD_OPEN_DEV: 1\n'], ['.env.production', 'ALLWORLD_OPEN_DEV=1\n'], ['package.json', '{"scripts":{"start":"ALLWORLD_OPEN_DEV=1 node x"}}'], ['server/routes/core.ts', "if (env.ALLWORLD_OPEN_DEV) {}"]]) {
+    mkdirSync(join(root, file, '..'), { recursive: true }); writeFileSync(join(root, file), text);
+    assert.match(openDevProblems(root).join('\n'), new RegExp(file.replace(/[.]/g, '\\.')), file);
+    rmSync(join(root, file));
+  }
+  writeFileSync(join(root, 'deploy/helper.ts'), "import './../server/open-dev/index.ts';\nexport const value = 1;\n");
+  assert.match(openDevProblems(root).join('\n'), /Worker entry reaches server\/open-dev\/index\.ts/);
+  assert.match(openDevProblems(root).join('\n'), /deploy\/helper\.ts imports server\/open-dev\/index\.ts/);
+  writeFileSync(join(root, 'deploy/helper.ts'), "import '../server/server.ts';\n");
+  assert.match(openDevProblems(root).join('\n'), /Worker entry reaches server\/server\.ts/);
+});
+test('open dev mode guard: a release package whose Worker carries the open-mode module is refused', t => {
+  const f = fixture(t);
+  writeFileSync(join(f.root, 'worker.js'), 'export default {fetch(){return new Response("/* allworld-open-dev-node-only */")}}'); f.seal();
+  assert.throws(() => checkPackage(f.root, sha, false), /Open dev mode code in the release package/);
 });

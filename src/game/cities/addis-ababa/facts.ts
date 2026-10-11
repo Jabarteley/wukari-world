@@ -9,7 +9,7 @@ export const FACTS = {
   },
   "state": {
     "idunique": "et-starter",
-    "name": "Starter zone"
+    "name": "Addis Ababa"
   },
   "timezone": "Africa/Addis_Ababa",
   "centre": {
@@ -24,13 +24,18 @@ export const FACTS = {
     "sourceUrl": "https://pdfcoffee.com/aip-ethiopia-2-pdf-free.html"
   },
   "sourceLabel": "Natural Earth, OpenStreetMap contributors and cited aeronautical information sources",
-  "sourceUrl": "https://api.openstreetmap.org/api/0.6/map?bbox=38.695059,9.032256,38.701059,9.038256",
+  "sourceUrl": "https://www.openstreetmap.org/copyright",
   "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; Airport reference points: cited aeronautical information sources",
   "bounds": [
-    38.683059,
-    8.963041,
-    38.8114,
-    9.050256
+    38.62,
+    8.93,
+    38.84,
+    9.12
   ],
-  "coverageNote": "national capital. Starter visitor area. Real city and airport points, clipped country land and a bounded central street/building sample. Visitor services and homes are fictional game content. Buildings use approximate box silhouettes; missing heights are estimates. Game prices remain in the shared Allworld economy."
+  "coverageNote": "Addis Ababa from Kolfe and Entoto to Bole and the airport: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), main roads and named places mapped in OpenStreetMap. The airport point comes from the source named in the airport entry, not from OpenStreetMap, and is not evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places.",
+  "names": {
+    "area": "Addis Ababa",
+    "unit": "district",
+    "roadHub": "Long Distance Bus Station"
+  }
 } satisfies DestinationFacts

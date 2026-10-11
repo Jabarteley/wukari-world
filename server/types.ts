@@ -16,7 +16,7 @@ import type { ActionType } from '../src/types/actions.ts'
 import type { ActionRequest, CityId, ClientFrameType, IceServerConfig, PlayerRef, PublicSession, ServerFrame, TimedId } from '../src/types/protocol.ts'
 import type { ConversationKind, LookIds, PlayerReportReceipt, ReportReason, SocialUpdate } from '../src/types/social.ts'
 import type { PlayerReportStatus, StoreStats, SupportReport } from '../src/types/support.ts'
-import type { ConsentView, OutreachLogLine, ResultGameId, ShareFacts, ShareKind, TableGameId, TelemetryConfigResponse } from '../src/types/growth.ts'
+import type { ConsentView, OutreachLogLine, ResultGameId, ShareFacts, ShareKind, SourceCounts, TableGameId, TelemetryConfigResponse } from '../src/types/growth.ts'
 import type { CampusElectionRecord } from '../src/types/campus.ts'
 import type { CommerceCollection, CommerceGateway } from './commerce/types.ts'
 import type { BusinessCollection } from '../src/types/business.ts'
@@ -287,6 +287,8 @@ export interface MessageRecord {
   re?: { seq: number; from: string; text: string }
   /** A gift of money sent from the chat: `n` naira, and `r` of it that went to a ride debt on arrival. Its words are in `body`. */
   gift?: { n: number; r?: number }
+  /** A request for money (MoneyRequestRecord, kept apart in social.moneyRequests): `n` naira, `x` when it lapses, and once it ended `s` how, so the line still reads right after the record is forgotten. */
+  req?: { id: string; n: number; note?: string; x: number; s?: 'paid' | 'declined' | 'cancelled' }
   /** Reactions: player id → the one emoji they reacted with (at most REACTION_KINDS different emoji on a message). */
   rx?: Record<string, string>
   /** A picture: the id of its bytes (kept apart from this collection), its size and what became of it. */
@@ -475,6 +477,24 @@ export interface SocialCollection {
   pings?: Record<string, PingRecord>
   /** Journeys to another city each player made free of charge by joining a friend: server ms, the last 24 hours only. */
   pingJoins?: Record<string, number[]>
+  /** Requests for money by id (src/moneyRequest.ts, server/social/service.ts): kept apart from the chat so trimming a thread never loses one. Absent until the first. */
+  moneyRequests?: Record<string, MoneyRequestRecord>
+}
+/** One request for money. `from` asks `to`; the chat line is `conv` #`seq`, if it is still kept. Never `expired` here: that is read from `expires`. */
+export interface MoneyRequestRecord {
+  id: string
+  from: string
+  to: string
+  n: number
+  note?: string
+  at: number
+  expires: number
+  state: 'open' | 'paid' | 'declined' | 'cancelled'
+  conv: string
+  seq: number
+  closedAt?: number
+  /** Set once paid: the transfer that settled it (the same id the two wallet lines carry) and the payer's request id. */
+  paid?: { transferId: string; cid: string }
 }
 /** One pending ping: who asked whom to come, when, and where the pinger was. `venue` is a venue id or `'home'`; nothing more exact than that is ever kept. */
 export interface PingRecord {
@@ -506,6 +526,15 @@ export interface ResidentRecord {
   earned: number
   gems: number
   claims: number
+  /** Lagos week this resident was last added to the city's weekly tally, and what they added then (server/civic/boards.ts). */
+  tw?: number
+  te?: number
+}
+/** A city's weekly totals, kept as residents check in so the place boards never read the residents. */
+export interface PrideWeek { week: number; active: number; earned: number }
+export interface PrideTally extends PrideWeek {
+  /** The week before, when this one rolled over from it: with the residents there were then. */
+  prev?: PrideWeek & { residents: number }
 }
 export interface ElectionRecord {
   candidates: Record<string, { name: string; slogan: string; at: number; /** party id, absent for an independent */ party?: string }>
@@ -532,6 +561,8 @@ export interface CivicCityRecord {
   visits: number
   prunedAt: number
   residents: Record<string, ResidentRecord>
+  /** This week's totals and the last week's; absent until a resident checks in. */
+  pride?: PrideTally
   gov: { elections: Record<string, ElectionRecord>; announcements: AnnouncementRecord[] }
   ads: { billboard: Record<string, AdRecord>; sea: Record<string, AdRecord> }
   hunt: { found: number; claims: number; byDay: Record<string, number> }
@@ -644,8 +675,10 @@ export interface GrowthMetricsRecord {
   days?: Record<string, Record<string, number>>
   cohorts?: Record<string, { size: number; r: Record<string, number> }>
   lives?: Record<string, { first: number; last: number | null; steps: number }>
+  /** Visits by campaign: { [lagosDay]: { "source|medium|campaign|content": counts } } (server/growth/metrics.ts). */
+  sources?: Record<string, Record<string, SourceCounts>>
 }
-export type GrowthCityMetricsRecord = Omit<GrowthMetricsRecord, 'cities'>
+export type GrowthCityMetricsRecord = Omit<GrowthMetricsRecord, 'cities' | 'sources'>
 export interface GrowthCityTablesRecord {
   ratings?: Record<string, Partial<Record<TableGameId, { rating: number; played: number; won: number }>>>
 }
@@ -764,6 +797,8 @@ export interface Database {
   trustChecks?: import('./trust/dojah.ts').IdChecks
   street?: import('./street/types.ts').StreetCollection
   realValue?: import('../src/types/real-value.ts').RealValueCollection
+  /** server/showcase/data.ts: showcase shops, their owners' upload counts and contact events. Created by the first shop. */
+  showcase?: import('../src/types/showcase.ts').ShowcaseCollection
   /** server/politics/data.ts: parties, decrees, treasuries and the state and national ballots. */
   politics?: PoliticsCollection
   /** server/routes/campus.ts: this week's Student Union election. Created by the first nomination or vote, so it is not in COLLECTION_NAMES. */
@@ -1023,6 +1058,8 @@ export interface ServerConfig {
   voiceConfigProvider?: (session: PublicSession) => Promise<{ iceServers: IceServerConfig[]; expiresAt: number }> | { iceServers: IceServerConfig[]; expiresAt: number }
   /** At most 40 characters. */
   buildId: string
+  /** Set only by the Node host in open dev mode (server/open-dev): /api/health says so. */
+  openDev?: true
   votesPerAddress: number
   voteCapMode: 'flag' | 'refuse'
   heartbeatMs: number
@@ -1154,6 +1191,8 @@ export interface RouteContext {
   retryIn?(key: string): number
   /** The picture bytes (server/social/images.ts); null on a host built without them. */
   images: ImageStore | null
+  /** Showcase shop photos (server/showcase/): a store of their own, never trimmed by age or by the chat ceiling; null on a host built without it. */
+  showcaseImages?: ImageStore | null
   voices?: VoiceStore | null
   /** The module's namespaced top-level collection, created on first use. */
   collection<K extends CollectionName>(db: Db, name: K, initial?: Partial<Collections[K]>): Collections[K]

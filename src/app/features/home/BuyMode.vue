@@ -15,7 +15,8 @@
 // before pressing Place. In a house with floors, the floor buttons choose which one is furnished:
 // the scene shows that floor (the ones above lift off) and new pieces start on it.
 import { computed } from 'vue'
-import { CATEGORIES, FURNITURE, SELL_REFUND_RATE, STAR_MULTIPLIER } from '../../../game/content/furniture.ts'
+import { FURNITURE, SELL_REFUND_RATE, STAR_MULTIPLIER } from '../../../game/content/furniture.ts'
+import { CATEGORIES } from './buyCategories.ts'
 import { FURNITURE_BLURBS } from '../../../game/content/furniture-blurbs.ts'
 // The house's rooms, walls and stairs, so the ghost's green/red knows them as the server does.
 import '../../../game/home-plan.ts'

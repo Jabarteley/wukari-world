@@ -9,6 +9,7 @@ You need Node.js 22.18 or newer (24 is recommended; `.nvmrc` names it) and npm. 
 ```sh
 npm install
 npm run dev         # the whole game at http://127.0.0.1:5173/
+npm run dev:open    # the same with the gameplay gates relaxed, local only (docs/DEVELOPING.md, "Open mode")
 npm run check       # typecheck, build, tests: about a minute and a half
 ```
 

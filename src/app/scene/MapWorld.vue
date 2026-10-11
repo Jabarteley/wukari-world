@@ -12,6 +12,7 @@ import { viewLife } from '../../life.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
 import type { CityLinkMode, WorldCityId } from '../../types/life.ts'
+import { openSettleFlow } from '../state/settleRefusal.ts'
 
 const props = defineProps<{ initialUi?: Record<string, unknown>; initialWorld?: Record<string, unknown> | null }>()
 const emit = defineEmits<{ ready: [] }>()
@@ -51,6 +52,7 @@ if (props.initialWorld) onLayer(new CustomEvent('jaw:map-ui', { detail: props.in
 if (props.initialUi) onLayer(new CustomEvent('jaw:map-ui', { detail: props.initialUi }))
 onMounted(() => emit('ready'))
 let loading: Promise<void> | null = null
+let zoom: ReturnType<Awaited<ReturnType<typeof loadMaps>>['createZoomHost']> | null = null
 
 /** What a row of the atlas's friends list asks for. The pieces are fetched when first wanted. */
 async function friendAction(action: 'chat' | 'call' | 'ping', id: string, name: string): Promise<void> {
@@ -83,10 +85,17 @@ function show(): void {
   if (mapOpen()) { scene.world.value?.resize(); city?.resize(); aim() }
 }
 function load(): Promise<void> {
-  loading ??= loadMaps().then(({ createCityView, createWorldMap }) => {
+  loading ??= loadMaps().then(({ createCityView, createWorldMap, createZoomHost }) => {
     if (!cityBox.value || !worldBox.value) return
+    // Zooming past the end of one map hands over to the next (src/map3d/zoom-host.ts); the same fade serves "Open city".
+    zoom = createZoomHost({
+      city: cityBox.value, world: worldBox.value, maps: () => ({ city: scene.city.value, world: scene.world.value }),
+      cityId: () => game.cityId.value, cityName: () => game.view.value.city?.name ?? 'the city',
+      setLayer: (layer) => { worldLayer.value = layer === 'world'; showMapLayer(layer) },
+    })
     scene.world.value = createWorldMap(worldBox.value, {
-      onOpenCity: () => { worldLayer.value = false; showMapLayer('city') },
+      ladder: zoom.worldPort,
+      onOpenCity: () => { if (!worldLayer.value || !zoom?.fadeTo('city')) { worldLayer.value = false; showMapLayer('city') } },
       onEnterCity: (cityId) => { void switchCity(cityId) },
       onInspectVenue: (cityId, venueId) => {
         if (cityId !== game.cityId.value) return
@@ -98,12 +107,15 @@ function load(): Promise<void> {
       onTravel: (to, mode, credit) => { void command('estate.relocate', { to: to as WorldCityId, mode: mode as CityLinkMode, ...(credit ? { credit: true } : {}) }) },
       credit: () => game.view.value.estate?.ride.offer ?? null, // (the Atlas names the ids; the server validates them)
       // Each route also says what arriving at once would add to its fare ('travel.skip'): free for a character that has never skipped.
-      routes: () => viewLife(game.state.value, { now: game.state.value.t, cityId: game.cityId.value }).estate?.links?.map((link) => ({ ...link, skipFree: game.state.value.travel.skipped !== true })) ?? null,
+      routes: () => viewLife(game.state.value, { now: game.state.value.t, cityId: game.cityId.value }).estate?.links?.map((link) => ({ ...link, skipFree: game.state.value.travel.skipped !== true, ...(game.view.value.onboarding.guest ? { settle: true } : {}) })) ?? null,
       wallet: () => game.state.value.cash,
       // A ride home on credit blocks every trip: the card pays it in place (the existing repayment action) or sends a player who cannot to the help card.
       debt: () => game.view.value.estate?.ride.debt ?? 0,
       onRepay: () => command('travel.repay-ride', {}),
       onHelp: () => { shell.open('bank') },
+      // A guest of the quick start cannot travel between cities until it has settled in: the card's one button opens that flow.
+      // After settling the player is back on the map with that city's card open, not in the house.
+      onSettle: (city) => { openSettleFlow(city ? () => { if (game.mode.value !== 'map') showMapLayer('world', { level: 2, city }) } : undefined) },
       held: heldCities,
       // A row of the friends list: Chat opens the conversation; Call and Ping are the card's own buttons, pressed from here.
       onFriend: (action, id, name) => { void friendAction(action, id, name) },
@@ -111,6 +123,7 @@ function load(): Promise<void> {
     void keepFriends()
     const city = createCityView(cityBox.value, {
       cityId: game.cityId.value,
+      ladder: zoom.cityPort,
       onSelectVenue: (venueId) => { shell.open('map', { destination: venueId }) },
       onSelectGov: () => { shell.open('state-house') },
       onSelectNeighbour: (player) => { shell.open('person', { player: player.id, name: player.name }) },
@@ -146,6 +159,7 @@ watch(() => heldCities().join(), () => scene.world.value?.refresh?.())
 const onResize = (): void => { if (mapOpen()) { scene.world.value?.resize(); scene.city.value?.resize() } }
 window.addEventListener('resize', onResize)
 onBeforeUnmount(() => {
+  zoom?.destroy(); zoom = null
   stopFriends?.()
   window.removeEventListener('jaw:map-ui', keepMapUi); window.removeEventListener('jaw:map-ui', onLayer); window.removeEventListener('resize', onResize)
   scene.city.value?.destroy(); scene.city.value = null; scene.world.value = null

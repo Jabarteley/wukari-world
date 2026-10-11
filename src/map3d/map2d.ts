@@ -26,7 +26,8 @@ import { createPinLayer, pinsOf, EMPTY_PEOPLE } from './people.ts';
 import type { MapPeople, PeoplePin } from './people.ts';
 import { openingInfo } from '../game/clock.ts';
 import { isDeparting } from '../game/registry.ts';
-import { ESTATE, PLOTS_PER_ESTATE, HOUSE_STYLE, unpackStyle } from '../game/content/world.ts';
+import { ESTATE, PLOTS_PER_ESTATE, HOUSE_STYLE } from '../game/content/world.ts';
+import { unpackStyle } from '../scene/house-style.ts';
 import { iconFor } from '../ui/icon-map.ts';
 import { buildNetwork, localTripRoute, pointAt } from './roads.ts';
 import { flatModel, flatSvg } from './flat.ts';
@@ -34,10 +35,13 @@ import { estateLayout, plotAt } from './estates.ts';
 import { lgaAt } from './lga.ts';
 import { cityUnit } from '../game/cities/terminology.ts';
 import { civicTitle } from '../game/cities/terminology.ts';
-import { plateFit, plateWidth, spanOf } from './labels.ts';
+import { fitLabel, plateFit, plateWidth, spanOf } from './labels.ts';
+import type { ScreenBox } from './labels.ts';
 import { DOUBLE_TAP_MS, DOUBLE_TAP_PX, isDrag, isTap, mapHint, MAP_HINT_KEY } from '../scene/gesture.ts';
 import type { CityPack, PackLga } from './types.ts';
 import type { Route } from './roads.ts';
+import { NO_PORT } from './zoom-ladder.ts';
+import type { Edge, LadderPort } from './zoom-ladder.ts';
 import { NAMED_FROM, densityFor, shorten, venueNamesAt } from './geo/density.ts';
 import type { HouseStyle, PlotAddress } from '../types/index.ts';
 
@@ -64,6 +68,8 @@ export interface Map2DState {
   travel?: { home?: string };
 }
 export interface Map2DOptions {
+  /** Where the zoom ladder hears of zoom the map could not take (see ./zoom-ladder.ts). */
+  ladder?: LadderPort;
   pack: CityPack;
   cityId?: string;
   world?: WorldView | null;
@@ -111,6 +117,8 @@ export interface Map2D {
   setFriends(ids?: Iterable<string> | null): void;
   /** Other players to draw (src/map3d/people.ts), and the server clock their trips are timed by. */
   setPeople(next: MapPeople | null | undefined, clock?: () => number): void;
+  /** Arrive from the map above (a zoom in). */
+  enter(): void;
   focusEstate(lga: string, estate: number): void;
   focusPlot(plot: PlotAddress | null | undefined): void;
   focusLga(id: string): void;
@@ -140,7 +148,7 @@ export function cityFlatModel(pack: CityPack, cityId = pack.id, network = buildN
   return flatModel(pack, network, { venues, soon: COMING_SOON });
 }
 
-export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, world = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {}, deepLink = null }: Map2DOptions = {} as Map2DOptions): Map2D {
+export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, cityId = pack.id, world = null, onSelectVenue = () => {}, onSelectGov = () => {}, onSelectLga = () => {}, onSelectHouse = () => {}, onSelectPeople = () => {}, deepLink = null }: Map2DOptions = {} as Map2DOptions): Map2D {
   const content = contentFor(cityId), venueTable = Object.fromEntries(content.venues.map((venue) => [venue.id, venue.definition]));
   const stateHouseId = content.venues.find((venue) => venue.kind === 'statehouse')?.id ?? null;
   const govVenueIds = new Set(content.venues.filter((venue) => venue.kind === 'statehouse' || venue.kind === 'polling').map((venue) => venue.id));
@@ -148,7 +156,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
   const { box } = model, fit = pack.bounds.fit || { minX: box.x, maxX: box.x + box.width, minZ: box.z, maxZ: box.z + box.height };
   let state: Map2DState | null = null, layer: 'city' | 'world' = 'city', filter = 'all', selected: string | null = null, friends = new Set<string>(), destroyed = false;
   let layers: MapLayers = { billboards: false, sea: false, neighbours: false, gov: false, moving: false, lgas: true, homes: true }, data: { ads: AdsData | null, gov: GovData | null } = { ads: null, gov: null };
-  let scale = 0, ox = 0, oy = 0, opened = false, userMoved = false, size = { width: 0, height: 0 }, insets = { left: 8, top: 60, right: 8, bottom: 80 }, labelKey = '', chipKey = '', drawn: { lga: string, estate: number }[] = [];
+  let scale = 0, ox = 0, oy = 0, opened = false, userMoved = false, size = { width: 0, height: 0 }, insets = { left: 8, top: 60, right: 8, bottom: 80 }, labelKey = '', chipKey = '', labelsDirty = true, drawn: { lga: string, estate: number }[] = [], controlBox: ScreenBox | null = null;
   let homeAt: Spot | null = null;
 
   const root = document.createElement('div');
@@ -159,8 +167,8 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     <div class="m3-controls" role="group" aria-label="Map view"><div class="m3-zoom"><button type="button" data-m3="in" aria-label="Zoom in" title="Zoom in">${ICON('<path d="M12 5v14M5 12h14"/>')}</button><button type="button" data-m3="out" aria-label="Zoom out" title="Zoom out">${ICON('<path d="M5 12h14"/>')}</button></div><div class="m3-go"><button type="button" class="m3-pill" data-m3="fit" aria-label="Show the whole ${model.extent}" title="Show the whole ${model.extent}">${ICON('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>')}<span>${model.extent === 'state' ? 'Whole state' : 'Whole city'}</span></button><button type="button" class="m3-pill m3-me" data-m3="me" aria-label="Show where you are" title="Show where you are">${ICON('<circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>')}<span>Find me</span></button></div></div>
     <p class="m3-hint" data-m3-hint ${hintKnown() ? 'hidden' : ''}>${mapHint(Boolean(globalThis.matchMedia?.('(pointer: coarse)').matches), true)}</p>`;
   container.appendChild(root);
-  const worldNode = root.querySelector<HTMLElement>('.m3-flat-world')!, canvas = root.querySelector('canvas')!, labelLayer = root.querySelector<HTMLElement>('.m3-labels')!, hint = root.querySelector<HTMLElement>('[data-m3-hint]')!;
-  const lgaArt = root.querySelector<SVGGElement>('.m3-flat-lgas')!, tripPaths = [root.querySelector('[data-trip]')!, root.querySelector('[data-trip-top]')!];
+  const worldNode = root.querySelector<HTMLElement>('.m3-flat-world')!, canvas = root.querySelector('canvas')!, labelLayer = root.querySelector<HTMLElement>('.m3-labels')!, hint = root.querySelector<HTMLElement>('[data-m3-hint]')!, controlNode = root.querySelector<HTMLElement>('.m3-controls')!;
+  const namesNodes = [...root.querySelectorAll<SVGTextElement>('.m3-flat-names text')].map((node) => ({ node, size: parseFloat(node.getAttribute('font-size') ?? '2') })), lgaArt = root.querySelector<SVGGElement>('.m3-flat-lgas')!, tripPaths = [root.querySelector('[data-trip]')!, root.querySelector('[data-trip-top]')!];
   const paint = canvas.getContext('2d')!;
 
   // ---- places, plates and tags: the 3D map's own markup, so the styles are literally shared -------
@@ -204,7 +212,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     homeAt = homeSpot();
     const next = JSON.stringify([densityFor(size.width).venueChars, state?.location, going, homeAt.x, homeAt.z, filter, selected, layers.gov, Object.values(venueTable).map((venue) => openingInfo(venue.hours, at).status)]);
     if (next === labelKey) return;
-    labelKey = next;
+    labelKey = next; labelsDirty = true;
     for (const [id, label] of labels) {
       const venue = venueTable[id], soon = label.place.kind === 'soon';
       const opening = venue ? openingInfo(venue.hours, at) : null, open = Boolean(opening?.open), here = state?.location === id;
@@ -217,8 +225,14 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
       label.node.title = `${nameOf(id)}${status ? ` · ${status}` : ''}`;
       if (here) label.node.setAttribute('aria-current', 'location'); else label.node.removeAttribute('aria-current');
       label.priority = (notable.has(id) ? 25 : 0) + (here ? 100 : 0) + (selected === id ? 90 : 0) + (going === id ? 80 : 0) + (id === 'home' ? 40 : 0) + (soon ? 5 : open ? 20 : 10) - (dimmed ? 30 : 0);
-      label.width = label.node.offsetWidth || 90; label.height = label.node.offsetHeight || 30;
     }
+  }
+  function measureLabels() {
+    if (!labelsDirty) return;
+    for (const { node } of labels.values()) { node.hidden = false; node.classList.remove('is-compact'); }
+    let complete = true;
+    for (const label of labels.values()) { const width = label.node.offsetWidth, height = label.node.offsetHeight; if (width && height) { label.width = width; label.height = height; } else complete = false; }
+    labelsDirty = !complete;
   }
   function updatePlates() {
     const summary = world?.summary() ?? null, own = state?.estate?.lga ?? null;
@@ -273,7 +287,8 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
         paint.fillRect(at.x + 1, at.y + 1, stepX * scale - 2, stepZ * scale - 2);
       }
     }
-    if (layers.homes && pack.lgas?.length) {
+    // A city drawn city-wide (a ground colour round it) has one local unit holding the whole city: no estate lots are laid over it, and its chip would lie across the pins; its neighbourhood names are on the ground instead.
+    if (layers.homes && pack.lgas?.length && !pack.surround) {
       const centre = ground(insets.left + (size.width - insets.left - insets.right) / 2, insets.top + (size.height - insets.top - insets.bottom) / 2), detail = [];
       for (const lga of pack.lgas) {
         const xs = lga.polygon.map((point) => point[0]), zs = lga.polygon.map((point) => point[1]);
@@ -326,6 +341,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     container.style?.setProperty('--map-dock', `${Math.round(bottom)}px`);
     container.style?.setProperty('--map-left', `${Math.round(left)}px`);
     root.style.setProperty('--m3-dock', `${Math.round(bottom)}px`); root.style.setProperty('--m3-left', `${Math.round(left)}px`); root.style.setProperty('--m3-top', `${Math.round(top)}px`);
+    const controls = controlNode.getBoundingClientRect(); controlBox = { l: controls.left - page.left - 5, r: controls.right - page.left + 5, t: controls.top - page.top - 5, b: controls.bottom - page.top + 5 }; labelsDirty = true;
     return page.width > 0 && page.height > 0 && !container.hidden;
   }
   const free = () => ({ width: Math.max(80, size.width - insets.left - insets.right), height: Math.max(80, size.height - insets.top - insets.bottom) });
@@ -347,7 +363,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
   function near(at: { x: number, z: number }) { scale = Math.max(fitScale(), free().width / 58); centreOn(at.x, at.z); }
   /** A view kept before a reload, applied when the map first opens. */
   let pendingView: { scale: number; x: number; y: number } | null = null;
-  function open() { opened = true; userMoved = false; if (pendingView) { scale = pendingView.scale; ox = pendingView.x; oy = pendingView.y; pendingView = null; userMoved = true; return; } if (size.width > 720) core(); else near(spotOf(state?.location) || homeSpot()); }
+  function open() { opened = true; userMoved = false; if (pendingView) { scale = pendingView.scale; ox = pendingView.x; oy = pendingView.y; pendingView = null; userMoved = true; return; } if (size.width > 720) core(); else if (pack.surround) whole(); else near(spotOf(state?.location) || homeSpot()); }
   function apply() {
     if (!scale) return;
     scale = clamp(scale, fitScale() * 0.8, MAX_SCALE);
@@ -358,30 +374,36 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     worldNode.style.width = `${box.width * scale}px`; worldNode.style.height = `${box.height * scale}px`;
     worldNode.style.transform = `translate(${Math.round(ox)}px,${Math.round(oy)}px)`;
     const far = scale < 3.2, wholeView = scale < fitScale() * WHOLE_SCALE;
-    root.classList.toggle('is-far', far); root.classList.toggle('is-whole', wholeView);
+    if (root.classList.contains('is-far') !== far) { root.classList.toggle('is-far', far); labelsDirty = true; }
+    root.classList.toggle('is-whole', wholeView); root.classList.toggle('is-city', Boolean(pack.surround));
+    // A city drawn city-wide keeps its neighbourhood names at every zoom, at least 12 screen pixels tall (a name is user units; the art is scaled by `scale`).
+    if (pack.surround) for (const text of namesNodes) text.node.style.fontSize = `${Math.max(text.size, 12 / scale)}px`;
     lgaArt.style.display = layers.lgas ? '' : 'none';
     placeLabels(far, wholeView);
     drawHouses();
   }
   function placeLabels(far: boolean, wholeView: boolean) {
-    const entries = [...labels.values()].map((label) => { const spot = spotOf(label.place.id)!; const at = project(spot.x, spot.z - (label.place.id === 'home' && homeAt!.own ? 0 : 2.2)); return { label, at, visible: at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && label.priority < 70) }; });
+    measureLabels();
+    const entries = [...labels.values()].map((label) => { const spot = spotOf(label.place.id)!; const at = project(spot.x, spot.z - (label.place.id === 'home' && homeAt!.own ? 0 : 2.2)); return { label, at, visible: at.x > -60 && at.x < size.width + 60 && at.y > -20 && at.y < size.height + 80 && !(wholeView && model.extent === 'state' && label.priority < 70) }; });
     entries.sort((p, q) => q.label.priority - p.label.priority || q.at.y - p.at.y);
-    const taken: { l: number, r: number, t: number, b: number }[] = [], hits = (rect: { l: number, r: number, t: number, b: number }) => taken.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t);
+    const taken: ScreenBox[] = controlBox ? [controlBox] : [], bounds = { l: insets.left + 4, r: size.width - insets.right - 4, t: insets.top + 4, b: size.height - insets.bottom - 4 }, hits = (rect: ScreenBox) => taken.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t);
     const allowed = venueNamesAt(densityFor(size.width), scale / fitScale());
     let named = 0;
     for (const { label, at, visible } of entries) {
       const node = label.node;
       if (node.hidden === visible) node.hidden = !visible;
       if (!visible) continue;
-      const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 }, compact = (label.priority < NAMED_FROM && named >= allowed) || hits(full);
-      const used = compact ? { l: at.x - 17, r: at.x + 17, t: at.y - 32, b: at.y + 2 } : full;
+      const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 }, fitted = label.priority >= 70 ? fitLabel(at, label.width + 6, label.height + 4, bounds, taken) : null, compact = fitted ? false : (label.priority < NAMED_FROM && named >= allowed) || hits(full);
+      const used = fitted?.box ?? (compact ? { l: at.x - 17, r: at.x + 17, t: at.y - 32, b: at.y + 2 } : full), x = fitted?.x ?? at.x, y = fitted?.y ?? at.y;
       // Level of detail: an icon that would still sit on a more important label or icon is left out until the view is closer.
       if (compact && label.priority < 70 && hits(used)) { if (!node.hidden) node.hidden = true; continue; }
       if (node.hidden) node.hidden = false;
       taken.push(used);
       if (!compact && label.priority < NAMED_FROM) named += 1;
       node.classList.toggle('is-compact', compact);
-      node.style.transform = `translate(${Math.round(at.x)}px,${Math.round(at.y)}px) translate(-50%,-100%)`;
+      const offset = !compact && (Math.abs(x - at.x) > 1 || Math.abs(y - at.y) > 1), dx = at.x - x, top = Math.abs(at.y - y + label.height) < Math.abs(at.y - y), dy = at.y - (top ? y - label.height : y);
+      node.classList.toggle('is-offset', offset); if (offset) { node.style.setProperty('--m3-stalk', `${Math.hypot(dx, dy)}px`); node.style.setProperty('--m3-stalk-turn', `${Math.atan2(-dx, dy)}rad`); node.style.setProperty('--m3-stalk-top', top ? '0' : '100%'); } else { node.style.removeProperty('--m3-stalk'); node.style.removeProperty('--m3-stalk-turn'); node.style.removeProperty('--m3-stalk-top'); }
+      node.style.transform = `translate(${Math.round(x)}px,${Math.round(y)}px) translate(-50%,-100%)`;
     }
     // Level of detail: a whole-state view names the local governments by their size; nearer, the usual small plates, out of the way of the place names.
     const platesAt: { l: number, r: number, t: number, b: number }[] = [];
@@ -389,7 +411,7 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
       const { node, lga } = plate, at = project(lga.plate[0], lga.plate[1]), distance = wholeView ? 1000 : 0;
       const fit = plateFit(lga.name, (plate.span.maxX - plate.span.minX) * scale, distance);
       const w = plateWidth(lga.name) * fit.scale * 0.6, h = 24 * fit.scale, rect = { l: at.x - w, r: at.x + w, t: at.y - h / 2, b: at.y + h / 2 };
-      const visible = layers.lgas && fit.show && at.x > -80 && at.x < size.width + 80 && at.y > insets.top - 10 && at.y < size.height + 30 && scale < 26 && !platesAt.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t) && !(!wholeView && hits(rect));
+      const visible = layers.lgas && !pack.surround && fit.show && at.x > -80 && at.x < size.width + 80 && at.y > insets.top - 10 && at.y < size.height + 30 && scale < 26 && !platesAt.some((other) => rect.l < other.r && rect.r > other.l && rect.t < other.b && rect.b > other.t) && !(!wholeView && hits(rect));
       if (node.hidden === visible) node.hidden = !visible;
       if (!visible) continue;
       platesAt.push(rect);
@@ -450,9 +472,17 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     you.style.transform = `translate(${Math.round(at.x)}px,${Math.round(at.y)}px) translate(-50%,-100%)`;
   }
   function layout() { if (!measure()) return false; if (!opened) open(); else if (!userMoved && size.width > 720 && !isDeparting(state)) homeView(); apply(); return true; }
+  /** Which limit the scale is within a tenth of its range of (log scale), or null. */
+  function reach(): Edge | null {
+    const low = fitScale() * 0.8, at = Math.log(scale / low) / Math.log(MAX_SCALE / low);
+    return at < 0.1 ? 'out' : at > 0.9 ? 'in' : null;
+  }
   function zoomAt(factor: number, px: number, py: number) {
-    const before = ground(px, py);
-    scale = clamp(scale * factor, fitScale() * 0.8, MAX_SCALE);
+    const before = ground(px, py), edge: Edge = factor > 1 ? 'in' : 'out', wanted = scale * factor;
+    scale = clamp(wanted, fitScale() * 0.8, MAX_SCALE);
+    ladder.intent(edge, Math.abs(Math.log(factor)));
+    // What the map cannot take of a zoom builds up against its limit: enough of it hands over to the next map.
+    if (Math.abs(Math.log(wanted / scale)) > 1e-6) ladder.refused(edge, Math.abs(Math.log(wanted / scale)), null); else ladder.near(reach());
     ox = px - (before.x - box.x) * scale; oy = py - (before.z - box.z) * scale;
     userMoved = true; apply();
   }
@@ -548,7 +578,8 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
   }
   function onControl(name: string | undefined) {
     const at = middle();
-    if (name === 'in') zoomAt(1.5, at.x, at.y); else if (name === 'out') zoomAt(1 / 1.5, at.x, at.y);
+    if ((name === 'in' || name === 'out') && reach() === name && Math.abs(Math.log(clamp(scale * (name === 'in' ? 1.5 : 1 / 1.5), fitScale() * 0.8, MAX_SCALE) / scale)) < 0.02) { ladder.intent(name, 0.4); ladder.stepped(name, null); }
+    else if (name === 'in') zoomAt(1.5, at.x, at.y); else if (name === 'out') zoomAt(1 / 1.5, at.x, at.y);
     else if (name === 'fit') { whole(); apply(); }
     else if (name === 'me') { near(spotOf(state?.location) || homeSpot()); userMoved = true; apply(); }
   }
@@ -602,6 +633,8 @@ export function createMap2D(container: HTMLElement, { pack, cityId = pack.id, wo
     worldChanged() { updatePlates(); if (scale) apply(); },
     setFriends(ids?: Iterable<string> | null) { friends = new Set(ids || []); if (scale) apply(); },
     setPeople(next: MapPeople | null | undefined, clock?: () => number) { people = next ?? EMPTY_PEOPLE; if (clock) peopleNow = clock; placePeople(); },
+    /** Arrive from the map above (a zoom in): the whole city, to carry on from. */
+    enter() { if (opened && measure()) { whole(); apply(); } },
     focusEstate(lga: string, estate: number) { const cell = estateLayout(pack, lga)?.cells[estate]; if (!cell || !measure()) return; scale = clamp(Math.min(free().width, free().height) / (cell.size * 1.15), fitScale(), MAX_SCALE); centreOn(cell.x, cell.z); userMoved = true; apply(); },
     focusPlot(plot: PlotAddress | null | undefined) { if (!plot || !pack.lgas?.some((lga) => lga.id === plot.lga) || !measure()) return; const layoutOf = estateLayout(pack, plot.lga)!, cell = layoutOf.cells[plot.estate]!, at = layoutOf.plot(plot.estate, plot.plot); scale = clamp(free().width / (cell.size * 0.9), fitScale(), MAX_SCALE); centreOn(at.x, at.z); userMoved = true; apply(); },
     focusLga(id: string) { const lga = pack.lgas?.find((item) => item.id === id); if (!lga || !measure()) return; const xs = lga.polygon.map((point) => clamp(point[0], fit.minX, fit.maxX)), zs = lga.polygon.map((point) => clamp(point[1], fit.minZ, fit.maxZ)); scale = Math.min(free().width / (Math.max(...xs) - Math.min(...xs) + 6), free().height / (Math.max(...zs) - Math.min(...zs) + 6)); centreOn((Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...zs) + Math.max(...zs)) / 2); userMoved = true; apply(); },

@@ -18,6 +18,7 @@ import MissionItem from './MissionItem.vue'
 import { daysTail, setLine, stampCells, stampsNote } from './missionsLines.ts'
 import { until } from './growthModel.ts'
 import { useGrowth } from './useGrowth.ts'
+import { startSettling } from '../start/settleModel.ts'
 import type { MissionRow } from '../../../types/view.ts'
 
 defineProps<{ params?: unknown }>()
@@ -75,7 +76,7 @@ function go(mission: MissionRow): void {
     <!-- A guest of the quick start follows the starter goals first: one line of guidance at a time. -->
     <template v-else-if="m.locked">
       <HeroCard label="Missions" figure="Settle in first" class="gr-hero"><p class="gr-lock">{{ m.locked }}</p></HeroCard>
-      <BaseButton variant="primary" block @click="shell.open('onboarding')">Settle in</BaseButton>
+      <BaseButton variant="primary" block data-settle-now @click="startSettling(shell)">Settle in now</BaseButton>
     </template>
     <p v-else-if="noMissions" class="gr-note">{{ view.connected ? 'Today’s missions are being dealt…' : noteWhy }}</p>
     <template v-else>

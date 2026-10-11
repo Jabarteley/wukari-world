@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { composerLines, createDrafts, dayLabel, emojiOnly, filterChats, giftDetail, giftLine, insertMention, liveMentions, mentionChoices, mentionQuery, pieces, shortcodes, sortChats, threadRows } from './messagesText.ts'
+import { composerLines, createDrafts, dayLabel, emojiOnly, filterChats, friendsToStart, giftDetail, giftLine, insertMention, liveMentions, listTime, mentionChoices, onlyUnread, mentionQuery, pieces, previewOf, shortcodes, showCount, sortChats, threadRows } from './messagesText.ts'
 import { EMOJI_CATEGORIES, QUICK_REACTIONS } from './emojiData.ts'
 import type { Conversation, Message } from '../../../types/social.ts'
 
@@ -86,6 +86,26 @@ test('chats: pinned first then newest; search by the chat\'s or a member\'s name
   assert.deepEqual(sortChats(list).map((c) => c.id), ['c', 'b', 'a'])
   assert.deepEqual(filterChats(list, 'zain').length, 3); assert.deepEqual(filterChats(list, 'pinn').map((c) => c.id), ['c']); assert.equal(filterChats(list, '').length, 3)
   assert.deepEqual([composerLines(''), composerLines('a\nb'), composerLines('a\nb\nc\nd\ne\nf')], [1, 2, 4])
+})
+
+test('a chat row: the time of day for today, the day word otherwise; the preview names the sender only where it helps and marks pictures and voice notes', () => {
+  const noon = new Date(2026, 9, 10, 12, 0).getTime(), clock = (at: number): string => `clock ${new Date(at).getHours()}`
+  assert.equal(listTime(noon - 3600000, noon, clock), 'clock 11'); assert.equal(listTime(noon - 86400000, noon, clock), 'Yesterday')
+  const row = (body: string, from: string, kind: Conversation['kind'] = 'dm'): Pick<Conversation, 'kind' | 'last'> => ({ kind, last: { seq: 1, from: { id: from, name: from === 'ada' ? 'Ada' : 'Bola' }, body, at: 1 } })
+  assert.deepEqual(previewOf(row('Hello', 'bola'), 'ada'), { kind: 'text', who: '', text: 'Hello' })
+  assert.deepEqual(previewOf(row('Hello', 'ada'), 'ada'), { kind: 'text', who: 'You', text: 'Hello' })
+  assert.deepEqual(previewOf(row('Hello', 'bola', 'group'), 'ada'), { kind: 'text', who: 'Bola', text: 'Hello' })
+  assert.equal(previewOf(row('Picture', 'bola'), 'ada').kind, 'picture'); assert.equal(previewOf(row('Voice note', 'ada'), 'ada').kind, 'voice')
+  assert.deepEqual(previewOf({ kind: 'dm', last: null }, 'ada'), { kind: 'none', who: '', text: 'No messages yet' })
+})
+
+test('friends to start a chat with: those with no conversation, newest friendship first, at most six; the count shows from 80% of the limit', () => {
+  const friends = Array.from({ length: 9 }, (_, i) => ({ id: `f${i}`, since: i }))
+  assert.deepEqual(friendsToStart(friends, [{ with: 'f8' }, { with: null }]).map((f) => f.id), ['f7', 'f6', 'f5', 'f4', 'f3', 'f2'])
+  assert.equal(friendsToStart(friends, [], 2).length, 2)
+  const c = (id: string, extra: Partial<Conversation>): Conversation => ({ id, kind: 'dm', name: id, members: [], owner: null, with: null, last: null, unread: 0, ...extra })
+  assert.deepEqual(onlyUnread([c('a', { unread: 2 }), c('b', {}), c('m', { unread: 3, muted: true }), c('n', { unread: 3, muted: true, mentions: 1 })]).map((x) => x.id), ['a', 'n'])
+  assert.deepEqual([showCount(399, 500), showCount(400, 500), showCount(0, 500)], [false, true, false])
 })
 
 test('a gift reads "You sent" for the sender, and the share that paid a ride debt shows only to the receiver', () => {

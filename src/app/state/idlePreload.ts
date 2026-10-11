@@ -9,6 +9,8 @@ type Loader = () => Promise<unknown>
 const NEXT: Loader[] = [
   // The rules of the city's conditions (the grid, the go-slow; src/game/conditions/pack.ts): the Home, the Map and the Bank show what the server applies once they are in.
   () => import('../../game/conditions/pack.ts'),
+  // The Community aside, so opening it the first time does not wait for its code.
+  () => import('../features/community/CommunityHost.vue'),
   () => import('../features/phone/PhoneDevice.vue'),
   () => import('../features/travel/MapApp.vue'),
   () => import('../features/jobs/JobsApp.vue'),

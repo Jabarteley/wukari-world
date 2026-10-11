@@ -3,95 +3,6 @@
   "expectedSourceGitSHA": "d5d85f4422afe11cef10468c255e5cae0084d45b",
   "targets": [
     {
-      "id": "dar-es-salaam",
-      "name": "Dar es Salaam",
-      "country": "tz",
-      "facts": {
-        "id": "dar-es-salaam",
-        "name": "Dar es Salaam",
-        "country": {
-          "idISOlower": "tz",
-          "name": "Tanzania"
-        },
-        "state": {
-          "idunique": "tz-dar-es-salaam",
-          "name": "Dar es Salaam"
-        },
-        "timezone": "Africa/Dar_es_Salaam",
-        "centre": {
-          "lon": 39.266396,
-          "lat": -6.798067
-        },
-        "airport": {
-          "id": "dar-es-salaam-airport",
-          "name": "Julius Nyerere International Airport",
-          "lon": 39.207288,
-          "lat": -6.873499,
-          "sourceUrl": "https://www.taa.go.tz/services/jnia"
-        },
-        "sourceLabel": "OpenStreetMap contributors and OurAirports dataset",
-        "sourceUrl": "https://www.openstreetmap.org/copyright",
-        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
-        "bounds": [
-          39.12,
-          -6.98,
-          39.4,
-          -6.7
-        ],
-        "coverageNote": "Dar es Salaam: a sketch of the built-up extent traced from mapped land use, not an administrative boundary, with Indian Ocean coastal water and harbour, main roads and named places from the Tanzania OpenStreetMap PBF snapshot of 2026-10-09. Julius Nyerere International Airport coordinates are an offline OurAirports dataset point, not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places.",
-        "names": {
-          "area": "Dar es Salaam",
-          "unit": "district",
-          "roadHub": "Old Central Railway Station"
-        }
-      },
-      "metadataSources": {
-        "centre": {
-          "record": "committed city projection origin",
-          "sourceUrl": "https://www.openstreetmap.org/copyright",
-          "verification": "primary-coordinate review pending"
-        },
-        "airport": {
-          "record": "dar-es-salaam-airport",
-          "sourceUrl": "https://www.taa.go.tz/services/jnia",
-          "verification": "primary-coordinate review pending"
-        }
-      },
-      "geometryPreset": "standard",
-      "geographyClass": "coast",
-      "recordedWaterPolicy": {
-        "kind": "coast",
-        "wideWater": true,
-        "sea": {
-          "kind": "coast",
-          "bandMetres": 40000
-        }
-      },
-      "extractKey": "dar-es-salaam",
-      "extractSha256": {
-        "places": "8ef94d66458a9ae829efefdd9dacd4cb7f43c3f1350c242605000bf0049486f7",
-        "extras": "a2591ec225b56a19f3c7afb46a68b28ff1dbb186ef33eab8c5a4097dbba44cb8",
-        "water": "897d411e24eeb46a3e0fe5ff8d6f22544d77b91c5d6f3b79adcf031e71a7f5d5",
-        "landuse": "8df444344c67173f085912a441e0aff43edc50eac0f0793457f0bdbb8dfd7499",
-        "roads": "a18b5eaabe527f4f34f4942a97633e75f5d77ba8cf46bcfae80ffe5ba756b250"
-      },
-      "sourceJob": {
-        "city": "dar-es-salaam",
-        "sourceRunId": 38151098671,
-        "sourceArtifact": "offline-city-layers-tanzania-b1183ba208334bb8535669e823244ea737b3014a",
-        "sourceSha": "b1183ba208334bb8535669e823244ea737b3014a",
-        "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
-        "adapterSha256": "9f6099b3b15db3e6b59316914d55b427efd650d802f80ffd32bdf94ba5efd7d3",
-        "extractSha256": {
-          "places": "8ef94d66458a9ae829efefdd9dacd4cb7f43c3f1350c242605000bf0049486f7",
-          "extras": "a2591ec225b56a19f3c7afb46a68b28ff1dbb186ef33eab8c5a4097dbba44cb8",
-          "water": "897d411e24eeb46a3e0fe5ff8d6f22544d77b91c5d6f3b79adcf031e71a7f5d5",
-          "landuse": "8df444344c67173f085912a441e0aff43edc50eac0f0793457f0bdbb8dfd7499",
-          "roads": "a18b5eaabe527f4f34f4942a97633e75f5d77ba8cf46bcfae80ffe5ba756b250"
-        }
-      }
-    },
-    {
       "id": "dodoma",
       "name": "Dodoma",
       "country": "tz",
@@ -261,5 +172,6 @@
         }
       }
     }
-  ]
+  ],
+  "executionRevision": 6
 }

@@ -48,14 +48,46 @@ for (const target of table.targets) {
             const venue = base.venues.find(v => v.id === ids[slot]);
             choose(el, { slot, kind: venue.kind, category: venue.category, icon: venue.icon });
         }
-        const addedKind = t => t.amenity === 'place_of_worship' ? 'worship' : t.leisure === 'park' ? 'park' : ['restaurant', 'cafe'].includes(t.amenity) ? 'buka' : ['hospital', 'clinic'].includes(t.amenity) ? 'hospital' : t.amenity === 'marketplace' || t.shop === 'mall' ? 'market' : t.leisure === 'stadium' || t.tourism === 'viewpoint' ? 'viewing' : t.tourism || t.historic ? 'walk' : null;
-        while (choices.length < 24) {
-            const el = rank(pool.filter(el => addedKind(el.tags)))[0];
-            if (!el)
-                break;
-            const kind = addedKind(el.tags);
-            choose(el, { key: `osm-${el.type}-${el.id}`, kind, category: ['buka'].includes(kind) ? 'food' : kind === 'hospital' ? 'care' : kind === 'market' ? 'work' : 'fun', icon: kind === 'buka' ? 'food' : kind === 'hospital' ? 'health' : kind === 'market' ? 'market' : kind === 'park' ? 'park' : 'walk' });
+        const addedKind = tags => {
+            if (['university', 'college'].includes(tags.amenity)) return 'quad';
+            if (tags.amenity === 'place_of_worship') return 'worship';
+            if (tags.leisure === 'park') return 'park';
+            if (['restaurant', 'cafe'].includes(tags.amenity)) return 'buka';
+            if (['hospital', 'clinic'].includes(tags.amenity)) return 'hospital';
+            if (tags.amenity === 'marketplace' || tags.shop === 'mall') return 'market';
+            if (tags.leisure === 'stadium' || tags.tourism === 'viewpoint') return 'viewing';
+            if (tags.tourism || tags.historic) return 'walk';
+            return null;
+        };
+        const add = element => {
+            const kind = addedKind(element.tags);
+            choose(element, {
+                key: `osm-${element.type}-${element.id}`, kind,
+                category: kind === 'buka' ? 'food' : kind === 'hospital' ? 'care' : ['market', 'quad'].includes(kind) ? 'work' : 'fun',
+                icon: kind === 'buka' ? 'food' : kind === 'hospital' ? 'health' : kind === 'market' ? 'market' : kind === 'park' ? 'park' : kind === 'quad' ? 'school' : kind === 'viewing' ? 'view' : 'walk',
+            });
+        };
+        const semanticKinds = [...new Set(pool.map(element => addedKind(element.tags)).filter(Boolean))].sort();
+        const maximumPerKind = 3;
+        row.eligibleKindCounts = Object.fromEntries(semanticKinds.map(kind => [kind, new Set(pool.filter(element => addedKind(element.tags) === kind).map(element => normal(name(element)))).size]));
+        row.semanticPolicy = { maximumPerKind, targetPlaces: 24, minimumPlaces: 20 };
+        const unavailableSemanticKinds = [];
+        for (const kind of semanticKinds) {
+            if (choices.some(choice => choice.kind === kind)) continue;
+            const element = rank(pool.filter(element => addedKind(element.tags) === kind))[0];
+            if (element) add(element);
+            else unavailableSemanticKinds.push(kind);
         }
+        while (choices.length < 24) {
+            const element = rank(pool.filter(element => {
+                const kind = addedKind(element.tags);
+                return kind && choices.filter(choice => choice.kind === kind).length < maximumPerKind;
+            }))[0];
+            if (!element) break;
+            add(element);
+        }
+        row.semanticCoverage = semanticKinds.map(kind => ({ kind, refs: choices.filter(choice => choice.kind === kind).map(choice => choice.ref) }));
+        row.unavailableSemanticKinds = unavailableSemanticKinds;
         if (choices.length < 20)
             row.errors.push(`only ${choices.length} eligible unique named venues`);
         const names = pool.filter(el => el.type === 'node' && ['suburb', 'neighbourhood', 'quarter'].includes(el.tags.place)).sort((a, b) => (b.tags.wikidata ? 1 : 0) - (a.tags.wikidata ? 1 : 0) || ref(a).localeCompare(ref(b))).filter((el, i, all) => all.findIndex(x => normal(name(x)) === normal(name(el))) === i).slice(0, 18).map(el => ({ id: `district-${el.id}`, ref: ref(el), kind: 'neighbourhood' }));

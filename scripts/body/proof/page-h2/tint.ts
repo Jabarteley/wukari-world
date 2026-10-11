@@ -7,7 +7,7 @@ import * as THREE from 'three';
 export type RGB = [number, number, number];
 export interface Regions { skin: RGB; top: RGB | null; bottom: RGB | null; shoes: RGB | null }
 export interface EyeSpec { eyeL: [number, number]; eyeR: [number, number]; a: number; b: number; skin: RGB; iris: RGB }
-export interface Targets { skin: string; top?: string; bottom?: string; shoes?: string }
+export interface Targets { skin?: string; top?: string; bottom?: string; shoes?: string }
 
 const hex = (h: string): RGB => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255) as RGB;
 const ONE: RGB = [1, 1, 1];
@@ -16,7 +16,7 @@ export interface Tinted {
   material: THREE.MeshStandardMaterial;
   setTargets(t: Targets): void;
   setMap(map: THREE.Texture): void;
-  setPrint(tex: THREE.Texture | null, scale?: number): void;
+  setPrint(tex: THREE.Texture | null, scale?: number, region?: number): void;
   eyes(blink: number, gazeX: number, gazeY: number): void;
   dispose(): void;
 }
@@ -30,7 +30,7 @@ export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: 
     uRefSkin: { value: u(refs?.skin ?? ONE) }, uRefTop: { value: u(refs?.top ?? ONE) }, uRefBottom: { value: u(refs?.bottom ?? ONE) }, uRefShoes: { value: u(refs?.shoes ?? ONE) },
     uTSkin: { value: u(refs?.skin ?? ONE) }, uTTop: { value: u(refs?.top ?? ONE) }, uTBottom: { value: u(refs?.bottom ?? ONE) }, uTShoes: { value: u(refs?.shoes ?? ONE) },
     uNeck: { value: new THREE.Vector4(opts.neck?.cx ?? 0, opts.neck?.cz ?? 0, opts.neck?.rx ?? 1, opts.neck?.rz ?? 1) }, uNeckY: { value: opts.neck ? opts.neck.cutY : -9 },
-    uPrint: { value: null }, uPrintOn: { value: 0 }, uPrintScale: { value: 3.2 },
+    uPrint: { value: null }, uPrintOn: { value: 0 }, uPrintScale: { value: 3.2 }, uPrintRegion: { value: 2 }, uOn: { value: new THREE.Vector4(0, 0, 0, 0) },
     uEyes: { value: null }, uEyeBox: { value: new THREE.Vector4() }, uEyeMix: { value: 0 },
   };
   let paint: ((blink: number, gx: number, gy: number) => void) | null = null;
@@ -89,7 +89,7 @@ export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: 
     shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vRest; varying vec3 vRestN;').replace('#include <begin_vertex>', '#include <begin_vertex>\nvRest = position; vRestN = normal;');
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
 varying vec3 vRest; varying vec3 vRestN;
-uniform vec4 uEyeBox; uniform sampler2D uEyes, uMask; uniform float uEyeMix, uUseMask, uNeckY, uPrintOn, uPrintScale; uniform sampler2D uPrint; uniform vec4 uNeck;
+uniform vec4 uEyeBox; uniform sampler2D uEyes, uMask; uniform float uEyeMix, uUseMask, uNeckY, uPrintOn, uPrintScale, uPrintRegion; uniform vec4 uOn; uniform sampler2D uPrint; uniform vec4 uNeck;
 uniform vec3 uRefSkin, uRefTop, uRefBottom, uRefShoes, uTSkin, uTTop, uTBottom, uTShoes;
 vec3 recolour(vec3 g, vec3 ref, vec3 target) { vec3 r = g / max(ref, vec3(0.05)); r = r / (1.0 + max(r - vec3(1.25), vec3(0.0)) * 0.6); r = vec3(1.0) + (r - vec3(1.0)) * 0.62; return clamp(target * r, 0.0, 1.0); }`).replace('#include <map_fragment>', `
 vec4 sampledDiffuseColor = texture2D( map, vMapUv );
@@ -99,14 +99,14 @@ if (uUseMask > 0.5) {
   vec3 g = g0;
   float lr = dot(g0, vec3(0.3, 0.59, 0.11)) / max(dot(uRefSkin, vec3(0.3, 0.59, 0.11)), 0.05);
   float gm = max(max(g0.r, g0.g), g0.b), sat = (gm - min(min(g0.r, g0.g), g0.b)) / max(gm, 0.02);
-  float skinW = m.r * smoothstep(0.68, 0.88, lr) * (1.0 - (1.0 - smoothstep(0.07, 0.16, sat)) * smoothstep(0.95, 1.1, lr));   // not the brows or irises (dark) and not the whites of the eyes (bright and grey)   // brows, lashes, irises and lips keep their own colour
+  float skinW = uOn.x * m.r * smoothstep(0.68, 0.88, lr) * (1.0 - (1.0 - smoothstep(0.07, 0.16, sat)) * smoothstep(0.95, 1.1, lr));   // not the brows or irises (dark) and not the whites of the eyes (bright and grey)   // brows, lashes, irises and lips keep their own colour
   g = mix(g, recolour(g0, uRefSkin, uTSkin), skinW);
-  g = mix(g, recolour(g0, uRefTop, uTTop), m.g);
-  g = mix(g, recolour(g0, uRefBottom, uTBottom), m.b);
-  g = mix(g, recolour(g0, uRefShoes, uTShoes), m.a);
+  g = mix(g, recolour(g0, uRefTop, uTTop), m.g * uOn.y);
+  g = mix(g, recolour(g0, uRefBottom, uTBottom), m.b * uOn.z);
+  g = mix(g, recolour(g0, uRefShoes, uTShoes), m.a * uOn.w);
   if (uPrintOn > 0.5) {      // a real printed cloth: a tiled swatch through the cloth mask, the baked shading kept as a multiply so folds remain
     vec3 pr = pow(max(texture2D(uPrint, vMapUv * uPrintScale).rgb, vec3(0.0)), vec3(0.4545));
-    float pw = clamp(m.g + m.b, 0.0, 1.0); float shd = clamp(0.45 + 0.85 * dot(g0, vec3(0.3, 0.59, 0.11)), 0.62, 1.12);
+    float pw = uPrintRegion < 0.5 ? m.g : (uPrintRegion < 1.5 ? m.b : clamp(m.g + m.b, 0.0, 1.0)); float shd = clamp(0.45 + 0.85 * dot(g0, vec3(0.3, 0.59, 0.11)), 0.62, 1.12);
     g = mix(g, pr * shd, pw);
   }
   if (uNeckY > -5.0) {      // the neck skin that shows through a collar or neckline: one skin colour from the head's own value
@@ -127,10 +127,11 @@ diffuseColor *= sampledDiffuseColor;`);
     setTargets(t) {
       const set = (name: string, c: string | undefined, ref: RGB | null | undefined): void => { (uniforms[name]!.value as THREE.Vector3).set(...(c ? hex(c) : ref ?? ONE)); };
       set('uTSkin', t.skin, refs?.skin); set('uTTop', t.top, refs?.top); set('uTBottom', t.bottom, refs?.bottom); set('uTShoes', t.shoes, refs?.shoes);
-      skinNow = hex(t.skin); repaint();
+      (uniforms['uOn']!.value as THREE.Vector4).set(t.skin ? 1 : 0, t.top ? 1 : 0, t.bottom ? 1 : 0, t.shoes ? 1 : 0);
+      skinNow = t.skin ? hex(t.skin) : refs?.skin ?? skinNow; repaint();
     },
     setMap(map) { material.map = map; material.needsUpdate = true; },
-    setPrint(tex, scale = 3.2) { uniforms['uPrint']!.value = tex; uniforms['uPrintOn']!.value = tex ? 1 : 0; uniforms['uPrintScale']!.value = scale; },
+    setPrint(tex, scale = 3.2, region = 2) { uniforms['uPrintRegion']!.value = region; uniforms['uPrint']!.value = tex; uniforms['uPrintOn']!.value = tex ? 1 : 0; uniforms['uPrintScale']!.value = scale; },
     eyes: (blink, gx, gy) => paint?.(blink, gx, gy),
     dispose() { material.dispose(); canvasTex?.dispose(); },
   };

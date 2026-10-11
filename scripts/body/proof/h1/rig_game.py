@@ -54,7 +54,42 @@ V = [v.co.copy() for v in me.vertices]
 zs = [p.z for p in V]
 newH = max(zs) - min(zs)
 if "--part" not in opts and abs(min(zs)) > 0.01:
-    raise RuntimeError(f"soles are not on the floor: {min(zs)}")
+    if abs(min(zs)) > 0.05:
+        raise RuntimeError(f"soles are not on the floor: {min(zs)}")
+    lift_ = min(zs)                                   # the reduction moved the soles a little: put them back on the floor
+    V = [Vector((p.x, p.y, p.z - lift_)) for p in V]
+    J = {n: Vector((p.x, p.y, p.z - lift_)) for n, p in J.items()}
+    zs = [p.z for p in V]
+
+# ---------------------------------------------------------------- hands and forearms to the game body's size (the generated ones come out chunkier): girth of the forearm and
+# length and width of the hand are scaled to the game's own numbers, about the elbow-wrist line and the wrist, for both arms from the left arm's measurement
+GAME_HAND = {"male": (0.231, 0.123), "female": (0.204, 0.093)}      # hand length, forearm girth (mean of the y and z extents) of the shipped bodies
+if "--no-hands" not in opts and "--part" not in opts:
+    sex_ = "female" if "female" in skel_json else "male"
+    dom = []
+    for i, w_ in enumerate(W):
+        k_ = max(w_, key=w_.get) if w_ else None
+        dom.append(k_)
+    wl, el = J["LeftHand"], J["LeftForeArm"]
+    fore = [V[i] for i, k_ in enumerate(dom) if k_ == "lowerarm_l"]; hand = [V[i] for i, k_ in enumerate(dom) if k_ == "hand_l"]
+    if fore and hand and len({round(p.y, 4) for p in fore}) > 2 and max(p.x for p in hand) - wl.x > 1e-3:
+        girth = ((max(p.y for p in fore) - min(p.y for p in fore)) + (max(p.z for p in fore) - min(p.z for p in fore))) / 2
+        hlen = max(p.x for p in hand) - wl.x
+        kf = max(0.72, min(1.0, GAME_HAND[sex_][1] / max(girth, 1e-3))); kh = max(0.70, min(1.0, GAME_HAND[sex_][0] / max(hlen, 1e-3)))
+        print("HANDS girth", round(girth, 3), "hand length", round(hlen, 3), "factors", round(kf, 2), round(kh, 2))
+        for i, k_ in enumerate(dom):
+            if k_ not in ("lowerarm_l", "lowerarm_r", "hand_l", "hand_r"):
+                continue
+            left_ = k_.endswith("_l"); wj = J["LeftHand" if left_ else "RightHand"]; ej = J["LeftForeArm" if left_ else "RightForeArm"]
+            p = V[i]
+            if k_.startswith("lowerarm"):
+                t = max(0.0, min(1.0, abs(p.x - ej.x) / max(abs(wj.x - ej.x), 1e-3)))
+                f_ = 1 + (kf - 1) * smooth_t(t) if False else 1 + (kf - 1) * min(1.0, 0.35 + t)
+                V[i] = Vector((p.x, ej.y + (p.y - ej.y) * f_, ej.z + (p.z - ej.z) * f_))
+            else:
+                V[i] = Vector((wj.x + (p.x - wj.x) * kh, wj.y + (p.y - wj.y) * kh * kf / 1.0 ** 0, wj.z + (p.z - wj.z) * kh * kf))
+        for i, v in enumerate(me.vertices):
+            v.co = V[i]
 
 # ---------------------------------------------------------------- an optional skirt-like garment: both thighs move it, the centre follows the pelvis
 def sm(t):

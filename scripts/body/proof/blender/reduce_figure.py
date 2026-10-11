@@ -192,6 +192,16 @@ bpy.ops.object.mode_set(mode="EDIT")
 bpy.ops.mesh.normals_make_consistent(inside=False)
 bpy.ops.mesh.select_all(action="SELECT")
 bpy.ops.uv.smart_project(angle_limit=math.radians(float(os.environ.get("REDUCE_ANGLE", "66"))), island_margin=0.003, area_weight=0.6, correct_aspect=True, scale_to_bounds=True)
+if os.environ.get("REDUCE_HEADSCALE") and FROM_BLEND:
+    # a whole figure: the head gets a larger share of the colour map (its islands are scaled up before packing), because a face needs far more detail per metre than a trouser leg
+    import bmesh as _hb
+    neck_ = json.load(open(os.environ["REDUCE_JOINTS"]))["joints"]["neck"][2]; k_ = float(os.environ["REDUCE_HEADSCALE"])
+    bh = _hb.from_edit_mesh(low.data); uvh = bh.loops.layers.uv.verify()
+    for f in bh.faces:
+        if f.calc_center_median().z > neck_ - 0.01:
+            for l in f.loops:
+                u_, v_ = l[uvh].uv; l[uvh].uv = ((u_ - 0.5) * k_ + 0.5, (v_ - 0.5) * k_ + 0.5)
+    _hb.update_edit_mesh(low.data)
 bpy.ops.uv.select_all(action="SELECT")
 bpy.ops.uv.pack_islands(rotate=True, margin=0.003)
 if os.environ.get("REDUCE_UV") == "front":

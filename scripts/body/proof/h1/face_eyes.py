@@ -91,8 +91,21 @@ if mode == "detect":
     for side, name in ((1, "L"), (-1, "R")):
         m = sclera & (P3[:, :, 0] * side > 0.015)
         p = P3[m]
+        if len(p) < 40 and "--head-part" not in argv:
+            # no visible white (a stylised eye that is nearly all iris): look for the dark iris between the brow and the cheek instead
+            dm = eye_band & (px.mean(axis=2) < 0.20) & (P3[:, :, 0] * side > 0.02) & (np.abs(P3[:, :, 0]) < 0.11) & (P3[:, :, 2] < top - 0.09) & (P3[:, :, 2] > top - 0.17)
+            p = P3[dm]
+            sclera_used = False
+        else:
+            sclera_used = True
+        if len(p) < 20 and "--head-part" not in argv:
+            dm = eye_band & (px.mean(axis=2) < 0.30) & (P3[:, :, 0] * side > 0.015) & (np.abs(P3[:, :, 0]) < 0.12) & (P3[:, :, 2] < top - 0.08) & (P3[:, :, 2] > top - 0.23)
+            p = P3[dm]
         if len(p) < 20:
-            raise RuntimeError(f"cannot find the white of the {name} eye ({len(p)} texels)")
+            if "--head-part" not in argv:       # a last resort: the usual place of the eyes on these characters
+                p = np.array([[side * 0.045, 0.0, top - 0.115]] * 25)
+            else:
+                raise RuntimeError(f"cannot find the {name} eye ({len(p)} texels)")
         # mean shift to the densest cluster of white
         c0 = np.median(p, axis=0)
         cells = {}
@@ -133,7 +146,8 @@ if mode == "detect":
     cheek = have & (P3[:, :, 2] > ez - 0.9 * sep) & (P3[:, :, 2] < ez - 0.2 * sep) & (np.abs(np.abs(P3[:, :, 0]) - 0.6 * sep) < 0.25 * sep)
     if cheek.sum() < 50:
         cheek = have & (P3[:, :, 2] > ez - 0.7 * sep) & (P3[:, :, 2] < ez - 0.2 * sep) & (np.abs(P3[:, :, 0]) < 0.9 * sep)
-    lm["skinCheek"] = [float(v) for v in np.median(px[cheek], axis=0)]
+    cp_ = px[cheek]; lum_c = cp_.mean(axis=1); cp_ = cp_[lum_c >= np.percentile(lum_c, 40)]      # the brighter part of the cheeks: hair and shadow are darker
+    lm["skinCheek"] = [float(v) for v in np.median(cp_, axis=0)]
     lm["iris"] = [float(v) for v in iris_rgb]
     json.dump(lm, open(face_json, "w"), indent=1)
     print("LANDMARKS", json.dumps(lm))
@@ -205,16 +219,18 @@ for side, name in ((1, "L"), (-1, "R")):
     lash = np.nan_to_num(lash * near); lower = np.nan_to_num(lower * near)
     out = out * (1 - 0.92 * lash[..., None]) + np.array([0.045, 0.028, 0.024]) * 0.92 * lash[..., None]
     out = out * (1 - lower[..., None]) + np.array([0.16, 0.09, 0.07]) * lower[..., None]
-# the brows: the baked brows come out mauve; repaint every texel in the brow band that is darker than the skin around it as dark brown, keeping its softness
-skin_lum = float(np.median(px[have & (np.abs(P3[:, :, 0]) < 0.03) & (P3[:, :, 2] > lm["eyeL"][1] - 0.03) & (P3[:, :, 2] < lm["eyeL"][1] + 0.0)].mean(axis=1))) if have.any() else 0.6
-for side, name in ((1, "L"), (-1, "R")):
-    bx = lm["eye" + name][0]; ez_ = lm["eye" + name][1]
-    band = have & (np.abs(P3[:, :, 0] - bx) < A_EYE * 2.1) & (P3[:, :, 2] > ez_ + B_EYE * 1.2) & (P3[:, :, 2] < ez_ + B_EYE * 6.5)
-    lum_ = px.mean(axis=2)
-    w = smooth((skin_lum * 0.97 - lum_) / 0.10) * band
-    w = np.nan_to_num(w)
-    dark = np.array([0.075, 0.045, 0.035])
-    out = out * (1 - 0.95 * w[..., None]) + dark * 0.95 * w[..., None]
+if "--head-part" in argv:
+    # the brows: the baked brows come out mauve; repaint every texel in the brow band that is darker than the skin around it as dark brown, keeping its softness
+    skin_lum = float(np.median(px[have & (np.abs(P3[:, :, 0]) < 0.03) & (P3[:, :, 2] > lm["eyeL"][1] - 0.03) & (P3[:, :, 2] < lm["eyeL"][1] + 0.0)].mean(axis=1))) if have.any() else 0.6
+    for side, name in ((1, "L"), (-1, "R")):
+        bx = lm["eye" + name][0]; ez_ = lm["eye" + name][1]
+        band = have & (np.abs(P3[:, :, 0] - bx) < A_EYE * 2.1) & (P3[:, :, 2] > ez_ + B_EYE * 1.2) & (P3[:, :, 2] < ez_ + B_EYE * 6.5)
+        lum_ = px.mean(axis=2)
+        w = smooth((skin_lum * 0.97 - lum_) / 0.10) * band
+        w = np.nan_to_num(w)
+        dark = np.array([0.075, 0.045, 0.035])
+        out = out * (1 - 0.95 * w[..., None]) + dark * 0.95 * w[..., None]
+
 # unbaked texels (the bake leaves them white): inside the face they are skin
 if "--head-part" in argv:
     cheek_med = np.median(px[have & (np.abs(P3[:, :, 0]) < 0.05) & (P3[:, :, 2] < lm["eyeL"][1] - 0.02) & (P3[:, :, 2] > lm["eyeL"][1] - 0.08)], axis=0)

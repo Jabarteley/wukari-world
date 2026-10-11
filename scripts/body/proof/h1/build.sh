@@ -26,13 +26,14 @@ run() { perl -e 'alarm shift; exec @ARGV' 1500 "$BL" -b --disable-autoexec --pyt
 run -P "$HERE/pose_high.py" -- "$RIGGED" "$DETAIL" "$B/skeleton-$SKEL.json" "$WORK/$NAME-posed.blend" "$WORK/$NAME-joints.json" --hip-ratio $HIP | grep -E "WARP|POSED"
 for V in hero crowd; do
   if [[ $V = hero ]]; then TRIS=13000; PX=1024; else TRIS=2800; PX=512; fi
-  REDUCE_JOINTS="$WORK/$NAME-joints.json" run -P "$B/reduce_figure.py" -- "$WORK/$NAME-posed.blend" "$WORK/$NAME-$V.blend" "$WORK" "$NAME-$V" $TRIS $PX | grep REDUCED
+  REDUCE_HEADSCALE=${HEADSCALE:-2.1} REDUCE_QUALITY=${Q:-63} REDUCE_JOINTS="$WORK/$NAME-joints.json" run -P "$B/reduce_figure.py" -- "$WORK/$NAME-posed.blend" "$WORK/$NAME-$V.blend" "$WORK" "$NAME-$V" $TRIS $PX | grep REDUCED
   if [[ $V = hero ]]; then MODE=--detect; else MODE=--use; fi
   run -P "$HERE/face_eyes.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color.jpg" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-face.json" $MODE --iris $IRIS
-  run -P "$HERE/make_mask.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-joints.json" "$WORK/$NAME-face.json" "$WORK/$NAME-$V-mask.png" "$WORK/$NAME-$V-mask.json" --split $SPLIT --sleeve-x $SLEEVE --bare-leg-z $LEG $( [[ $FEET = 1 ]] && echo --feet-shoes 1 )
+  NECK=$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).joints.neck[2])' "$WORK/$NAME-joints.json"); SKINREF=$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).skinCheek.join(","))' "$WORK/$NAME-face.json"); MPX=512; [[ $V = crowd ]] && MPX=256
+  run -P "$HERE/make_regions.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-$V-mask.png" "$WORK/$NAME-$V-regions.json" --kind whole --neck-z $NECK --skin-ref $SKINREF --mask-px $MPX --top-split $SPLIT --sleeve-x $SLEEVE --bare-leg-z $LEG $( [[ $FEET = 1 ]] && echo --feet shoes || echo --feet colour ) --shoe-z 0.09
   FACE=(); [[ $V = hero ]] && FACE=(--face "$WORK/$NAME-face.json")
   BLENDER=$BL COLOR="$WORK/$NAME-$V-color-eyes.jpg" "$HERE/finish.sh" "$WORK" "$NAME" $SKEL $V "$OUT" $RIG $( [[ $V = hero ]] && echo --face "$WORK/$NAME-face.json" ) $FACE
   cp "$WORK/$NAME-$V-mask.png" "$OUT/$NAME-$V-mask.png"
-  node "$HERE/make-meta.mjs" "$WORK/$NAME-face.json" "$WORK/$NAME-$V-pj.json" $SKEL "$OUT/$NAME-$V.json" "$NAME-$V-mask.png" "$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).skinRef.join(","))' "$WORK/$NAME-$V-mask.json")"
+  node "$HERE/make-whole-meta.mjs" "$WORK/$NAME-face.json" "$WORK/$NAME-$V-pj.json" "$WORK/$NAME-$V-regions.json" $SKEL "$OUT/$NAME-$V.json" "$NAME-$V-mask.png"
 done
 echo "built $NAME"

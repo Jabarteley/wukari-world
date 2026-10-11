@@ -19,7 +19,7 @@ argv = sys.argv[sys.argv.index("--") + 1:]
 pos = [a for a in argv if not a.startswith("--")]
 opts = {argv[i]: argv[i + 1] for i, a in enumerate(argv) if a.startswith("--") and i + 1 < len(argv)}
 blend, colour_in, out_png, out_info = pos[:4]
-kind = opts["--kind"]; tol = float(opts.get("--tol", 0.14))
+kind = opts["--kind"]; neck_z = float(opts.get("--neck-z", 0)); tol = float(opts.get("--tol", 0.14))
 bpy.ops.wm.open_mainfile(filepath=blend)
 low = bpy.data.objects["Low"]; me = low.data
 me.calc_loop_triangles()
@@ -64,10 +64,19 @@ else:
     ref = np.median(px[zone], axis=0)
 dist = np.linalg.norm(px - ref, axis=2)
 skin_like = np.where(have, 1.0 - smooth((dist - tol) / 0.10), 0.0)
+if kind == "whole":
+    # the hands are often a different shade from the face: a second reference, taken from the hands, and a texel is skin when it is near either
+    hz = have & (np.abs(X) > 0.72) & (Z < neck_z) & (Z > 0.8)
+    if hz.sum() > 200:
+        ref2 = np.median(px[hz], axis=0)
+        if np.linalg.norm(ref2 - ref) < 0.3:
+            dist2 = np.linalg.norm(px - ref2, axis=2)
+            skin_like = np.maximum(skin_like, np.where(have, 1.0 - smooth((dist2 - tol) / 0.10), 0.0))
+            print("SKIN HANDS REF", ref2)
 skin = skin_like.copy()
 top_w = np.zeros((H, W), np.float32); bot_w = top_w.copy(); shoe_w = top_w.copy()
 info = {"kind": kind, "skinRef": [float(v) for v in ref]}
-if kind == "body":
+if kind in ("body", "whole"):
     split = float(opts["--top-split"]); shoe_z = float(opts.get("--shoe-z", 0.085)); feet = opts.get("--feet", "colour")
     sleeve_x = float(opts.get("--sleeve-x", 0.0)); bare = float(opts.get("--bare-legs", 0.0))
     cloth = 1.0 - skin_like
@@ -77,10 +86,17 @@ if kind == "body":
     elif feet == "colour":
         shoe_w = np.where(foot, cloth, 0.0).astype(np.float32)
     # a band of skin-like colour on the garments themselves (a mustard top, brown trousers) is not skin: skin may only be where the body shows
-    can_skin = (Z > np.nanmax(Z) - 0.08) | (np.abs(X) > sleeve_x) | foot | (Z < bare)
+    can_skin = (Z > (neck_z - 0.02 if kind == "whole" else np.nanmax(Z) - 0.08)) | (np.abs(X) > sleeve_x) | foot | (Z < bare)
     if "--no-skin-gate" not in argv:
         skin = np.where(can_skin, skin, 0.0)
-    cloth_w = np.where(have & ~foot, np.clip(1.0 - skin, 0, 1), 0.0)
+    if "--bare-x" in opts:
+        bx = float(opts["--bare-x"]); bare_arm = have & (np.abs(X) > bx) & (Z > 0.8) & (Z < neck_z)
+        skin = np.where(bare_arm, 1.0, skin); skin_like = np.where(bare_arm, 1.0, skin_like)      # forearms and hands of a short-sleeved character are bare
+    cloth_w = np.where(have & ~foot & ((Z < neck_z - 0.02) if kind == "whole" else True), np.clip(1.0 - skin, 0, 1), 0.0)
+    if kind == "whole":
+        mxc = px.max(axis=2); sat_ = (mxc - px.min(axis=2)) / np.maximum(mxc, 1e-3)
+        hair_like = have & (px.mean(axis=2) < 0.22) & (sat_ < 0.16) & (Z > neck_z - 0.30) & (np.abs(X) < 0.25)     # braids and hair that hang below the neck are not clothes
+        cloth_w = np.where(hair_like, 0.0, cloth_w)
     if feet == "colour":
         cloth_w = np.where(foot, 0.0, cloth_w)
     if "--blue-bottom" in argv:

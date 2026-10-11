@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": { "lib": ["ES2023", "DOM", "DOM.Iterable"], "types": ["vite/client"] },
-  "include": ["../src/**/*", "../scripts/body/proof/page/**/*", "../scripts/body/proof/page2/**/*", "../scripts/body/proof/page3/**/*", "../scripts/body/proof/page4/**/*", "../scripts/body/proof/page-pro/**/*", "../scripts/body/proof/page-h1/**/*", "../scripts/body/proof/page-h1g/**/*", "../scripts/body/proof/page-h2/**/*", "../env.d.ts"],
+  "include": ["../src/**/*", "../scripts/body/proof/page/**/*", "../scripts/body/proof/page2/**/*", "../scripts/body/proof/page3/**/*", "../scripts/body/proof/page4/**/*", "../scripts/body/proof/page-pro/**/*", "../scripts/body/proof/page-h1/**/*", "../scripts/body/proof/page-h1g/**/*", "../scripts/body/proof/page-h2/**/*", "../scripts/body/proof/page-h5/**/*", "../env.d.ts"],
   "exclude": ["../**/*.test.js", "../**/*.test.ts"]
 }

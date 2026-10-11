@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Allworld looks</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:#10201b;font:14px system-ui,sans-serif;color:#eef3ee}
+#c{position:fixed;left:0;top:0;width:calc(100% - 400px);height:100%;display:block;touch-action:none;cursor:grab}
+body.shoot #c{width:100%}
+#msg{position:fixed;left:0;top:0;width:calc(100% - 400px);height:100%;display:flex;align-items:center;justify-content:center;font-size:18px;color:#cfe0d6;pointer-events:none;z-index:3;text-align:center;padding:20px}
+#msg.err{color:#ffb4a8;background:#10201bee}#msg.hide{display:none}body.shoot #msg{display:none}
+#panel{position:fixed;right:0;top:0;width:400px;height:100%;overflow-y:auto;background:#f6f4ee;color:#1d2b25;padding:12px 16px 40px;box-shadow:-4px 0 16px #0006}
+body.shoot #panel{display:none}
+h1{font-size:18px;margin:4px 0 8px}
+h2{font-size:13px;margin:14px 0 6px;display:flex;justify-content:space-between;align-items:baseline}
+h2 b{font-weight:500;color:#6b7a72;font-size:12px}
+.seg{display:flex;background:#e4e1d8;border-radius:10px;padding:3px}
+.seg button{flex:1;border:0;background:transparent;padding:8px;border-radius:8px;font:inherit;cursor:pointer;color:#1d2b25}
+.seg button.on{background:#fff;font-weight:700;box-shadow:0 1px 3px #0003}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.card{display:flex;flex-direction:column;align-items:center;gap:3px;border:1px solid #d4d0c4;background:#fff;border-radius:10px;padding:8px 6px;cursor:pointer;font:inherit;color:#1d2b25;min-height:64px}
+.card.on{border-color:#1f8a63;background:#e6f4ee;font-weight:700}
+.card small{color:#6b7a72;font-weight:400;font-size:11px;text-align:center}
+.row{display:flex;flex-wrap:wrap;gap:7px}
+.sw{width:30px;height:30px;border-radius:50%;border:2px solid #0002;cursor:pointer;padding:0;font:10px system-ui;color:#1d2b25;background:#fff}
+.sw.made{width:auto;border-radius:16px;padding:0 10px;font-size:12px}
+.sw.on{outline:3px solid #1f8a63;outline-offset:1px}
+.chip{border:1px solid #d4d0c4;background:#fff;border-radius:16px;padding:6px 11px;cursor:pointer;font:inherit;color:#1d2b25}
+.chip.on{border-color:#1f8a63;background:#e6f4ee;font-weight:700}
+.shuffle{position:fixed;left:14px;top:14px;z-index:4;border:0;background:#fffe;border-radius:12px;padding:9px 14px;font:inherit;font-weight:700;cursor:pointer;color:#1d2b25;box-shadow:0 2px 8px #0004}
+body.shoot .shuffle{display:none}
+#stats{position:fixed;left:12px;bottom:10px;background:#0009;padding:6px 10px;border-radius:8px;font-size:12px}
+body.shoot #stats{display:none}
+@media (max-width:760px){
+ body.shoot #c,body.shoot #msg{height:100%}
+ #c{width:100%;height:48%}#msg{width:100%;height:48%}
+ #panel{top:48%;width:100%;height:52%;box-shadow:0 -4px 16px #0006}
+ #stats{bottom:auto;top:8px;left:auto;right:8px;font-size:11px}.sw{width:34px;height:34px}
+}
+</style></head>
+<body><div id="msg">Loading the park and the character parts…</div><canvas id="c"></canvas><button class="shuffle" id="shuffle">Shuffle</button><div id="panel"></div><div id="stats"></div><script>addEventListener("error",function(e){var m=document.getElementById("msg");if(m){m.className="err";m.textContent="Something went wrong: "+e.message}});addEventListener("unhandledrejection",function(e){var m=document.getElementById("msg");if(m){m.className="err";m.textContent="Something went wrong: "+(e.reason&&e.reason.message||e.reason)}});</script><script type="module" src="/page.js"></script></body></html>

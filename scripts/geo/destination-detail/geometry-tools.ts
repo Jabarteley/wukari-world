@@ -399,17 +399,47 @@ const tidyRing = (ring: Ring): Ring => { const out: Ring = []; for (const p of r
 
 /**
  * Simplify polygons (outer ring and holes, Douglas-Peucker) and round them to five decimals, keeping only a result the renderer can triangulate:
- * if a tolerance makes a ring cross itself, touch another ring or repeat a vertex, the tolerance is halved (down to none) for that polygon.
+ * Every ring retains 75–125% of its source area. Valid source polygons simplify each ring independently, retaining narrow islands;
+ * other polygons retry the existing tolerance sequence without dropping rings. Every accepted polygon passes geometry and triangulation checks.
  */
 export function safePolygons(polygons: readonly Ring[][], tolerance: number, project?: (p: Pt) => Pt): Ring[][] {
   const out: Ring[][] = [];
   for (const polygon of polygons) {
     let kept: Ring[] | null = null;
+    const faithful = (ring: Ring, original: Ring): boolean => {
+      const area = ringArea(original), simplified = ringArea(ring);
+      return ring.length >= 4 && area > 0 && simplified >= area * 0.75 && simplified <= area * 1.25;
+    };
+    const wind = (rings: Ring[]): Ring[] => rings.map((ring, i) => {
+      const area = ring.slice(1).reduce((sum, [x, y], j) => sum + ring[j]![0] * y - x * ring[j]![1], 0);
+      return (i === 0) === (area > 0) ? ring : [...ring].reverse();
+    });
+    const valid = (rings: Ring[]): boolean => !polygonProblem(rings) && !triangulationProblem(rings, project);
+    // A tiny island must not force every bank and island to keep all source vertices.
+    // Change one ring at a time from a valid polygon; preserve every hole and its area.
+    const independent = wind(polygon.map(tidyRing));
+    if (independent.every((ring, i) => faithful(ring, polygon[i]!)) && valid(independent)) {
+      for (let i = 0; i < independent.length; i++) {
+        const original = independent[i]!;
+        for (const tol of [tolerance, tolerance / 2, tolerance / 4, tolerance / 8]) {
+          const simplified = tidyRing(simplifyRing(polygon[i]!, tol));
+          if (!faithful(simplified, polygon[i]!)) continue;
+          independent[i] = wind([simplified])[0]!;
+          if (i > 0) independent[i] = [...independent[i]!].reverse();
+          if (!polygonProblem(independent)) break;
+          independent[i] = original;
+        }
+      }
+      if (valid(independent)) kept = independent;
+    }
     for (const tol of [tolerance, tolerance / 2, tolerance / 4, tolerance * 2, tolerance * 4, tolerance * 8, tolerance * 16, tolerance / 8, 0]) {
-      const rings = polygon.map((ring) => tidyRing(tol > 0 ? simplifyRing(ring, tol) : ring)).filter((ring) => ring.length >= 4);
+      if (kept) break;
+      const rings = polygon.map((ring) => tidyRing(tol > 0 ? simplifyRing(ring, tol) : ring));
       if (!rings.length) break;
+      if (!rings.every((ring, i) => faithful(ring, polygon[i]!))) continue;
       const first = rings[0]!;
-      const holes = rings.slice(1).filter((hole) => inRing(hole[0]!, first));
+      const holes = rings.slice(1);
+      if (!holes.every((hole) => inRing(hole[0]!, first))) continue;
       // Outer ring counter-clockwise, holes clockwise.
       const wound = [first, ...holes].map((ring, i) => { const area = ring.slice(1).reduce((sum, [x, y], j) => sum + ring[j]![0] * y - x * ring[j]![1], 0); return (i === 0) === (area > 0) ? ring : [...ring].reverse(); });
       if (!polygonProblem(wound) && !triangulationProblem(wound, project)) { kept = wound; break; }

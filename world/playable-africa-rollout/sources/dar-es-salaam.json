@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dar-es-salaam",
+  "countryIso2": "TZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Dar es Salaam",
+    "coordinatesWgs84": [
+      39.266396,
+      -6.798067
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "airport": {
+    "id": "dar-es-salaam-airport",
+    "name": "Julius Nyerere International Airport",
+    "lon": 39.207288,
+    "lat": -6.873499,
+    "sourceUrl": "https://www.taa.go.tz/services/jnia"
+  },
+  "boxes": {
+    "play": [
+      -6.98,
+      39.12,
+      -6.7,
+      39.4
+    ],
+    "core": [
+      -6.9,
+      39.18,
+      -6.78,
+      39.32
+    ],
+    "outline": [
+      -7.03,
+      39.07,
+      -6.65,
+      39.45
+    ],
+    "wide": [
+      -7.58,
+      38.52,
+      -6.1,
+      40
+    ],
+    "water": [
+      -7.58,
+      38.52,
+      -6.1,
+      40
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/tanzania-261009.osm.pbf",
+    "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "9f6099b3b15db3e6b59316914d55b427efd650d802f80ffd32bdf94ba5efd7d3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "8ef94d66458a9ae829efefdd9dacd4cb7f43c3f1350c242605000bf0049486f7",
+        "elements": 1436
+      },
+      {
+        "file": "extras.json",
+        "sha256": "a2591ec225b56a19f3c7afb46a68b28ff1dbb186ef33eab8c5a4097dbba44cb8",
+        "elements": 937
+      },
+      {
+        "file": "water.json",
+        "sha256": "897d411e24eeb46a3e0fe5ff8d6f22544d77b91c5d6f3b79adcf031e71a7f5d5",
+        "elements": 223
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "8df444344c67173f085912a441e0aff43edc50eac0f0793457f0bdbb8dfd7499",
+        "elements": 752
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a18b5eaabe527f4f34f4942a97633e75f5d77ba8cf46bcfae80ffe5ba756b250",
+        "elements": 685
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Old Central Railway Station",
+      "osm": "way/769690792",
+      "coordinatesWgs84": [
+        39.284558,
+        -6.822714
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Akemi Revolving Restaurant",
+      "osm": "node/5863597485",
+      "coordinatesWgs84": [
+        39.289427,
+        -6.813853
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dar es Salaam Institute of Technology",
+      "osm": "way/382872691",
+      "coordinatesWgs84": [
+        39.280164,
+        -6.814087
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ocean Road Hospital",
+      "osm": "way/369844321",
+      "coordinatesWgs84": [
+        39.296399,
+        -6.81106
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Posta ya Zamani Park",
+      "osm": "way/368997802",
+      "coordinatesWgs84": [
+        39.289955,
+        -6.818274
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kariakoo Market Cooperation",
+      "osm": "node/7615449194",
+      "coordinatesWgs84": [
+        39.275303,
+        -6.819286
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Joseph Cathedral",
+      "osm": "way/688369839",
+      "coordinatesWgs84": [
+        39.287988,
+        -6.819303
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "City Hall [9]",
+      "osm": "node/4303477590",
+      "coordinatesWgs84": [
+        39.286856,
+        -6.820626
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kigamboni Municipal Council",
+      "osm": "way/1192591949",
+      "coordinatesWgs84": [
+        39.391461,
+        -6.864897
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Village Museum",
+      "osm": "node/921494687",
+      "coordinatesWgs84": [
+        39.245581,
+        -6.775989
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Museum of Tanzania",
+      "osm": "way/451985626",
+      "coordinatesWgs84": [
+        39.294787,
+        -6.813584
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Askari Monument",
+      "osm": "node/273348341",
+      "coordinatesWgs84": [
+        39.289479,
+        -6.816633
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ex Botanical Garden",
+      "osm": "way/151205893",
+      "coordinatesWgs84": [
+        39.294321,
+        -6.812205
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kenyatta Grounds",
+      "osm": "way/338010299",
+      "coordinatesWgs84": [
+        39.284699,
+        -6.78139
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Leaders Club",
+      "osm": "way/360823149",
+      "coordinatesWgs84": [
+        39.275698,
+        -6.786303
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Uhuru Stadium",
+      "osm": "way/665368000",
+      "coordinatesWgs84": [
+        39.272839,
+        -6.855942
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Benjamin Mkapa Stadium",
+      "osm": "way/665368011",
+      "coordinatesWgs84": [
+        39.273289,
+        -6.853684
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mlimani city",
+      "osm": "node/1558156568",
+      "coordinatesWgs84": [
+        39.22013,
+        -6.772384
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ardhi University",
+      "osm": "node/924394602",
+      "coordinatesWgs84": [
+        39.213745,
+        -6.766411
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nafasi Art Space",
+      "osm": "way/1137577719",
+      "coordinatesWgs84": [
+        39.240766,
+        -6.763358
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tandale Market",
+      "osm": "node/3446148877",
+      "coordinatesWgs84": [
+        39.237463,
+        -6.799302
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Open University of Tanzania",
+      "osm": "way/669083772",
+      "coordinatesWgs84": [
+        39.265641,
+        -6.782877
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1510,
+      "sha256": "197956fe7cda69df2274fa9125419072efdd2fb84404d089861fe9624696e461"
+    },
+    "geometry.ts": {
+      "bytes": 32500,
+      "sha256": "5d08bb27df8f8ab07f4477ce6d9f871696e6b65674c7a726a9381a4c19dfb8d9"
+    },
+    "places.ts": {
+      "bytes": 8555,
+      "sha256": "a5ad91b8e6588dcd63c836df303698a97b3401ddba7456765336caf779cca0ac"
+    },
+    "terrain.ts": {
+      "bytes": 36839,
+      "sha256": "051b9ce93d02e888d82852097a1847065c5435e645e79366ff77921fccf3aca6"
+    },
+    "index.ts": {
+      "bytes": 265,
+      "sha256": "7b314bc24e6f0b98c7891b96bb2475e60f250d0fdadef8a00d883bf99dc4c239"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Dar es Salaam: a sketch of the built-up extent traced from mapped land use, not an administrative boundary, with Indian Ocean coastal water and harbour, main roads and named places from the Tanzania OpenStreetMap PBF snapshot of 2026-10-09. Julius Nyerere International Airport coordinates are an offline OurAirports dataset point, not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places."
+}

@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "cityId": "brazzaville",
+  "countryIso2": "CG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Brazzaville",
+    "coordinatesWgs84": [
+      15.28,
+      -4.26
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "airport": {
+    "id": "brazzaville-airport",
+    "name": "Maya-Maya International Airport",
+    "lon": 15.253,
+    "lat": -4.2517,
+    "sourceUrl": "https://ourairports.com/airports/FCBB/"
+  },
+  "boxes": {
+    "play": [
+      -4.36,
+      15.16,
+      -4.16,
+      15.4
+    ],
+    "core": [
+      -4.295,
+      15.235,
+      -4.225,
+      15.325
+    ],
+    "outline": [
+      -4.41,
+      15.11,
+      -4.11,
+      15.45
+    ],
+    "wide": [
+      -4.92,
+      14.6,
+      -3.6,
+      15.96
+    ],
+    "water": [
+      -4.36,
+      15.16,
+      -4.16,
+      15.4
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/congo-brazzaville-261009.osm.pbf",
+    "datasetSha256": "90ac645057fbbda85ae179fbca057b4e994c07db5dbd4265684b957cc64c58ed",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5f273c4ad6310c69087d242e57df1edefbc1243e5b1d1c2f9538ce22a0279fba",
+        "elements": 177
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f1865934f32e5b8446290f562333d5b02a176fef800638c6ad6bb649cdb90e97",
+        "elements": 95
+      },
+      {
+        "file": "water.json",
+        "sha256": "9891383bc8ef2d3913566ce0962ebcd8e5e057bd0f07a07cc5932007efe00ce3",
+        "elements": 35
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "10736f9036105c6edfea5f0c7a511c10e20e9c332eebad87c21ff6606537962f",
+        "elements": 209
+      },
+      {
+        "file": "roads.json",
+        "sha256": "ba0e10cfd2d44d968cca361672f61b85c3cd7eab8f5d752970e7308354e11a08",
+        "elements": 296
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Gare CFCO",
+      "osm": "node/3748007971",
+      "coordinatesWgs84": [
+        15.288272,
+        -4.269946
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gourmandine",
+      "osm": "node/3725418819",
+      "coordinatesWgs84": [
+        15.281328,
+        -4.270827
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Université Marien Ngouabi",
+      "osm": "way/368806390",
+      "coordinatesWgs84": [
+        15.248177,
+        -4.2771
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre Hospitalier Universitaire de Brazzaville (CHU-BZV)",
+      "osm": "way/368809377",
+      "coordinatesWgs84": [
+        15.269572,
+        -4.264932
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Esplanade des Droits de l'Homme",
+      "osm": "way/364766139",
+      "coordinatesWgs84": [
+        15.261062,
+        -4.281363
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché Poto-Poto",
+      "osm": "node/3725889187",
+      "coordinatesWgs84": [
+        15.286213,
+        -4.263142
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Basilique Sainte-Anne",
+      "osm": "way/50491968",
+      "coordinatesWgs84": [
+        15.284532,
+        -4.268365
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mairie de Poto-Poto",
+      "osm": "node/3291519892",
+      "coordinatesWgs84": [
+        15.284679,
+        -4.266647
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôtel de Ville",
+      "osm": "way/370986947",
+      "coordinatesWgs84": [
+        15.27842,
+        -4.278963
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mémorial Pierre Savorgnan de Brazza",
+      "osm": "way/370986946",
+      "coordinatesWgs84": [
+        15.27938,
+        -4.278489
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée galerie du bassin du Congo",
+      "osm": "node/3725455994",
+      "coordinatesWgs84": [
+        15.291359,
+        -4.269257
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Félix Éboué Stadium",
+      "osm": "way/48986326",
+      "coordinatesWgs84": [
+        15.285541,
+        -4.268943
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Alphonse Massamba-Débat",
+      "osm": "way/325722883",
+      "coordinatesWgs84": [
+        15.248716,
+        -4.273405
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gymnase Michel d'Ornano",
+      "osm": "way/55685712",
+      "coordinatesWgs84": [
+        15.265211,
+        -4.269772
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Manufacture d'Arts et d'Artisanat Congolais",
+      "osm": "way/694114716",
+      "coordinatesWgs84": [
+        15.257095,
+        -4.287029
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bibliothèque National",
+      "osm": "way/1026525114",
+      "coordinatesWgs84": [
+        15.262648,
+        -4.268763
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palais des Congrès",
+      "osm": "way/55685714",
+      "coordinatesWgs84": [
+        15.258229,
+        -4.268576
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Fleuve",
+      "osm": "way/477506458",
+      "coordinatesWgs84": [
+        15.282248,
+        -4.277185
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Brazza Mall",
+      "osm": "way/1381284135",
+      "coordinatesWgs84": [
+        15.294119,
+        -4.242496
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Institut Supérieur de Gestion (I.S.G. - UMN)",
+      "osm": "way/483285672",
+      "coordinatesWgs84": [
+        15.276141,
+        -4.273412
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université Protestante de Brazzaville",
+      "osm": "way/1358118381",
+      "coordinatesWgs84": [
+        15.222041,
+        -4.305681
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathédrale Sacré-Cœur",
+      "osm": "way/731643099",
+      "coordinatesWgs84": [
+        15.273938,
+        -4.270191
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place Rotary",
+      "osm": "way/364766149",
+      "coordinatesWgs84": [
+        15.253954,
+        -4.284242
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Esplanade Marien Ngouabi",
+      "osm": "way/364766140",
+      "coordinatesWgs84": [
+        15.272803,
+        -4.27942
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Nkombo",
+      "osm": "way/595453407",
+      "coordinatesWgs84": [
+        15.252093,
+        -4.188638
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché Moukondo",
+      "osm": "way/766337897",
+      "coordinatesWgs84": [
+        15.267884,
+        -4.229405
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1434,
+      "sha256": "2486a5a541e64e88db2be7b1f1193bfd9353a74e69fbdccdda154c70178a72bd"
+    },
+    "geometry.ts": {
+      "bytes": 59430,
+      "sha256": "ef97f141b5c3b6703bcda2af79b2196fd1f8ba96859d618503be8abd7ae4532a"
+    },
+    "places.ts": {
+      "bytes": 10526,
+      "sha256": "aad867fe31f0a301ab1ba571245373d6555911376e7ebac03fc5e94407747aa4"
+    },
+    "terrain.ts": {
+      "bytes": 241521,
+      "sha256": "6240c904d4c6bdca176c49508af093725c2b1c9783090d4a1322e1fcd56c1731"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "f476aa2aaf92bdc3acf6210ef3671650f5c9203602533981178be87d3bdd3afb"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Brazzaville on the north bank of the Congo River: built-up extent traced from mapped land use, mapped river geometry, main roads and named places from the dated Geofabrik Republic of the Congo PBF. This is not an administrative boundary. The airport coordinates are an OurAirports dataset point, not evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places."
+}

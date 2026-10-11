@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import time
 from datetime import date
 
 HERE = Path(__file__).resolve().parent
@@ -43,6 +44,24 @@ def main():
     out = Path(args.outdir)
     if out.exists(): raise ValueError('execution output must be new')
     for name in ('downloads', 'metadata', 'extract', 'receipts', 'logs'): (out / name).mkdir(parents=True, exist_ok=True)
+    events = out / 'receipts/stages.jsonl'
+    def observed(label, action, *arguments):
+        started = time.monotonic()
+        def emit(status):
+            record = {'stage': label, 'status': status, 'elapsedSeconds': round(time.monotonic() - started, 3)}
+            with events.open('a') as stream:
+                stream.write(json.dumps(record) + '\n')
+            print(json.dumps(record), flush=True)
+        emit('started')
+        try:
+            value = action(*arguments)
+        except Exception:
+            emit('failed')
+            raise
+        emit('completed')
+        return value
+    def stage(arguments, logfile):
+        return observed(logfile.stem, _shared.stage, arguments, logfile)
     result = {'status': 'HOLD', 'scope': 'source candidate only; no factory generation or browser acceptance'}
     try:
         table = json.loads(Path(args.table).read_text())
@@ -51,9 +70,11 @@ def main():
         sha = subprocess.check_output(['git', '-C', str(geometry), 'rev-parse', 'HEAD'], text=True).strip()
         if sha != BASELINE: raise ValueError('geometry checkout SHA mismatch')
         pbf, csv = out / 'downloads/country.osm.pbf', out / 'downloads/airports.csv'
-        source_http, csv_http = download(source['url'], pbf), download(airports['url'], csv)
-        if pbf.stat().st_size != source['bytes'] or digest(pbf, 'md5') != source['md5']: raise ValueError('PBF byte count/MD5 mismatch')
-        pbf_sha, csv_sha = digest(pbf), digest(csv)
+        source_http = observed('country-download', download, source['url'], pbf)
+        csv_http = observed('airport-download', download, airports['url'], csv)
+        if pbf.stat().st_size != source['bytes'] or observed('country-md5', digest, pbf, 'md5') != source['md5']: raise ValueError('PBF byte count/MD5 mismatch')
+        pbf_sha = observed('country-sha256', digest, pbf)
+        csv_sha = observed('airport-sha256', digest, csv)
         receipts = {'pbf': {**source, 'sha256': pbf_sha, 'http': source_http}, 'airports': {**airports, 'sha256': csv_sha, 'http': csv_http}, 'geometrySourceSha': sha, 'extractorSha256': digest(EXTRACTOR)}
         (out / 'receipts/downloads.json').write_text(json.dumps(receipts, indent=2))
         zone, countries = Path('/usr/share/zoneinfo/zone.tab'), Path('/usr/share/zoneinfo/iso3166.tab')

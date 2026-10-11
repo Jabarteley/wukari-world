@@ -147,6 +147,7 @@ def smooth(t):
 
 # ---------------------------------------------------------------- the eyes (v2: one proportion for every head, a dark readable iris, lids that sit on the eye)
 out = px.copy()
+eye_open = np.zeros(px.shape[:2], bool)
 face_w = float(np.nanmax(P3[:, :, 0][have]) - np.nanmin(P3[:, :, 0][have])) if "--head-part" in argv else 0.26
 if "--head-part" in argv:
     band = have & (np.abs(P3[:, :, 2] - (lm["eyeL"][1])) < 0.03) & (np.abs(P3[:, :, 0]) < 0.17)
@@ -169,11 +170,11 @@ for side, name in ((1, "L"), (-1, "R")):
     top_edge = 0.80 * half_h; bot_edge = -0.62 * half_h
     ts = np.where(near, tsize / b, 0.02)
     inside = smooth(np.minimum(top_edge - v, v - bot_edge) / np.maximum(ts * 1.4, 1e-3)) * (np.abs(u) < 1.0)
-    sclera = np.array([0.70, 0.66, 0.61])
-    shade = 1.0 - 0.50 * smooth((v - 0.05) / 0.9) - 0.10 * smooth((np.abs(u) - 0.55) / 0.45)
+    sclera = np.array([0.50, 0.46, 0.42])
+    shade = 1.0 - 0.45 * smooth((v - 0.2) / 0.8) - 0.10 * smooth((np.abs(u) - 0.55) / 0.45)
     col = sclera[None, None, :] * shade[..., None]
     # iris: large, dark, ring, centred, partly covered by the lids
-    ir = 1.18 * b
+    ir = 1.38 * b
     d = np.sqrt(dx * dx + dz * dz); rr = d / ir
     iris_a = smooth((1.0 - rr) / np.maximum(ts * b / ir * 1.4, 1e-3))
     ang = np.arctan2(dz, dx)
@@ -193,11 +194,12 @@ for side, name in ((1, "L"), (-1, "R")):
         col = col * (1 - hl[..., None]) + hl[..., None]
     # the lids: a dark upper line (heavier toward the outer corner), a soft shadow under it, a faint lower line
     edge_top = np.abs(v - top_edge)
-    lash = smooth(1 - edge_top / (0.20 + 0.10 * np.clip(ou, 0, 1))) * (np.abs(u) < 1.08)
+    lash = smooth(1 - edge_top / (0.30 + 0.12 * np.clip(ou, 0, 1))) * (np.abs(u) < 1.10)
     lash = np.where(v > 0.0, lash, 0.0)
-    lower = smooth(1 - np.abs(v - bot_edge) / 0.12) * (np.abs(u) < 0.95) * 0.35
+    lower = smooth(1 - np.abs(v - bot_edge) / 0.18) * (np.abs(u) < 1.0) * 0.55
     shadow_lid = smooth((v - (top_edge - 0.55)) / 0.5) * inside * 0.35
     alpha_eye = np.nan_to_num(inside * near)
+    eye_open |= alpha_eye > 0.2
     col = np.nan_to_num(col)
     out = out * (1 - alpha_eye[..., None]) + col * alpha_eye[..., None]
     lash = np.nan_to_num(lash * near); lower = np.nan_to_num(lower * near)
@@ -219,8 +221,8 @@ if "--head-part" in argv:
     lumo = out.mean(axis=2); sato = out.max(axis=2) - out.min(axis=2)
     near_eye = (np.abs(P3[:, :, 0] - lm["eyeL"][0]) < A_EYE * 1.5) | (np.abs(P3[:, :, 0] - lm["eyeR"][0]) < A_EYE * 1.5)
     near_eye = near_eye & (np.abs(P3[:, :, 2] - lm["eyeL"][1]) < B_EYE * 2.2)
-    white = have & (lumo > 0.80) & (sato < 0.16) & ~near_eye
-    wk = smooth((lumo - 0.78) / 0.1) * white
+    white = have & (lumo > 0.62) & (sato < 0.22) & ~eye_open
+    wk = smooth((lumo - 0.60) / 0.08) * white
     out = out * (1 - wk[..., None]) + cheek_med * wk[..., None]
 out = np.clip(out, 0, 1)
 buf = np.concatenate([out, np.ones((H, W, 1))], axis=2).astype(np.float32)

@@ -10,7 +10,7 @@ import type { SceneEntry } from '../../../../src/scene/types.ts';
 import type { Mood } from '../page4/anim.ts';
 import { Library, buildFigure } from './parts.ts';
 import type { Figure, Look } from './parts.ts';
-import { HEADS, OUTFITS, SKIN_TONES, SKIN_NAMES, HAIR_COLOURS, CLOTH_COLOURS, SHOE_COLOURS, COMBOS, PROPORTIONS, rng, randomLook } from './catalog.ts';
+import { HEADS, OUTFITS, SKIN_TONES, SKIN_NAMES, HAIR_COLOURS, CLOTH_COLOURS, SHOE_COLOURS, COMBOS, PROPORTIONS, PRINT_NAMES, rng, randomLook } from './catalog.ts';
 import { buildCrowd, crowdRenderer } from './crowd.ts';
 import { HAIR_STYLES, WEAR_STYLES } from './hair.ts';
 
@@ -67,7 +67,7 @@ export interface WallSpec {
 }
 async function wall(spec0: WallSpec): Promise<{ triangles: number[]; drawCalls: number[]; bytes: number[] }> {
   const spec = { ...spec0 } as WallSpec & { looks: Look[] };
-  if (spec0.random) { const r = rng(spec0.random.seed), rr = spec0.random; spec.looks = rr.mix ? rr.mix.map((s) => randomLook(s, r)) : Array.from({ length: rr.n ?? 12 }, () => randomLook(rr.sex ?? 'male', r)); }
+  if (spec0.random) { const r = rng(spec0.random.seed), rr = spec0.random; spec.looks = rr.mix ? rr.mix.map((s, i) => randomLook(s, r, { slot: i })) : Array.from({ length: rr.n ?? 12 }, (_, i) => randomLook(rr.sex ?? 'male', r, { slot: i })); }
   clearAll(); running = false;
   renderer.setPixelRatio(1); renderer.setSize(spec.width, spec.height, false); camera.aspect = spec.width / spec.height; camera.fov = spec.cam.fov; camera.updateProjectionMatrix();
   const n = spec.looks.length, rows = Math.ceil(n / spec.cols), gz = spec.spacingZ ?? 1.6;
@@ -155,7 +155,7 @@ function buildPanel(): void {
   panel.appendChild(group('Hair', chips('Style', HAIR_STYLES.filter((s) => !s.sex || s.sex === look.sex), look.hair ?? 'none', (id) => setFromLook({ hair: id }, true)), swatches('Hair colour', HAIR_COLOURS, look.hairColor, (c) => setFromLook({ hairColor: c }, true), HAIR_NAMES),
     chips('Headwear', WEAR_STYLES.filter((s) => !s.sex || s.sex === look.sex), look.headwear ?? 'none', (id) => setFromLook({ headwear: id }, true)), swatches('Headwear colour', Object.keys(WEAR_NAMES), look.headwearColor, (c) => setFromLook({ headwearColor: c }, true), WEAR_NAMES)));
   const outfitKids: HTMLElement[] = [chips('Outfit', OUTFITS[look.sex], look.body, (id) => { const o = OUTFITS[look.sex].find((x) => x.id === id)!; const combo = COMBOS[id]![0]!; setFromLook({ body: id, print: o.prints ? 1 : 0, top: combo.top, bottom: combo.bottom, shoes: combo.shoes }, true); })];
-  if (outfit.prints) outfitKids.push(chips('Print', Array.from({ length: outfit.prints }, (_, i) => ({ id: String(i + 1), label: `Print ${i + 1}` })), String(look.print || 1), (id) => setFromLook({ print: Number(id) }, true)));
+  if (outfit.prints) outfitKids.push(chips('Print', Array.from({ length: outfit.prints }, (_, i) => ({ id: String(i + 1), label: PRINT_NAMES[look.body]?.[i] ?? `Print ${i + 1}` })), String(look.print || 1), (id) => setFromLook({ print: Number(id) }, true)));
   if (outfit.tintTop) outfitKids.push(swatches('Top colour', CLOTH_COLOURS, look.top, (c) => setFromLook({ top: c }, true), CLOTH_NAMES));
   if (outfit.tintBottom) outfitKids.push(swatches('Trousers or skirt', CLOTH_COLOURS, look.bottom, (c) => setFromLook({ bottom: c }, true), CLOTH_NAMES));
   outfitKids.push(swatches('Shoes', SHOE_COLOURS, look.shoes, (c) => setFromLook({ shoes: c }, true), SHOE_NAMES));
@@ -186,7 +186,7 @@ interface StreetStats { figures: number; triangles: number; drawCalls: number; m
 /** Forty (or n) mixed crowd figures walking along a street, then a timed run of frames: the frame rate is that of this headless, software-rendered browser. */
 async function street(n: number, seed: number, width: number, height: number): Promise<StreetStats> {
   clearAll(); running = false; renderer.setPixelRatio(1); renderer.setSize(width, height, false); camera.aspect = width / height; camera.fov = 34; camera.updateProjectionMatrix();
-  const r = rng(seed), looks: Look[] = Array.from({ length: n }, (_, i) => randomLook(i % 2 ? 'female' : 'male', r));
+  const r = rng(seed), looks: Look[] = Array.from({ length: n }, (_, i) => randomLook(i % 2 ? 'female' : 'male', r, { slot: Math.floor(i / 2) }));
   const figs = await Promise.all(looks.map((l, i) => buildCrowd(lib, l, 5 + i)));
   figs.forEach((fig, i) => {
     const holder = new THREE.Group(); holder.add(fig.root); const lane = i % 4, along = Math.floor(i / 4);
@@ -197,9 +197,9 @@ async function street(n: number, seed: number, width: number, height: number): P
   });
   camera.position.set(0.5, 3.2, 8.5); camera.lookAt(0, 0.9, -3.2); sun.target.position.set(0, 1, -3); sun.position.set(light.sun[2][0] * 0.8, light.sun[2][1], -3 + light.sun[2][2] * 0.6);
   for (let i = 0; i < 6; i++) { for (const s of slots) s.fig.driver.update(1 / 30); renderer.render(scene, camera); }
-  const t0 = performance.now(), frames = 40; for (let i = 0; i < frames; i++) { for (const s of slots) s.fig.driver.update(1 / 30); renderer.render(scene, camera); } renderer.getContext().finish();
+  const gl = renderer.getContext(), px = new Uint8Array(4), t0 = performance.now(), frames = 300; for (let i = 0; i < frames; i++) { for (const s of slots) s.fig.driver.update(1 / 30); renderer.render(scene, camera); gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); }   // a read-back each frame forces the frame to finish
   const ms = (performance.now() - t0) / frames;
-  return { figures: n, triangles: figs.reduce((a, f) => a + f.triangles, 0), drawCalls: figs.reduce((a, f) => a + f.drawCalls, 0), msPerFrame: +ms.toFixed(1), fps: +(1000 / ms).toFixed(1), note: 'headless Chrome, software rendering (no GPU); a real device is much faster' };
+  return { figures: n, triangles: figs.reduce((a, f) => a + f.triangles, 0), drawCalls: figs.reduce((a, f) => a + f.drawCalls, 0), msPerFrame: +ms.toFixed(1), fps: +(1000 / ms).toFixed(1), note: '300 frames, 1 pixel read back per frame, headless Chrome with software rendering (no GPU); a real device is much faster' };
 }
 
 const api = {

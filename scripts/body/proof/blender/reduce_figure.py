@@ -107,7 +107,7 @@ for p in hm_.polygons:
             free = True; break
     visible.append(free)
 bmh = bmesh.new(); bmh.from_mesh(hm_); bmh.faces.ensure_lookup_table()
-hidden = [f for f, ok in zip(bmh.faces, visible) if not ok]
+hidden = [f for f, ok in zip(bmh.faces, visible) if not ok] if not os.environ.get("REDUCE_NOCULL") else []   # REDUCE_NOCULL: a long gown whose outer faces the ray test mistakes for hidden ones
 print("HIDDEN FACES", len(hidden), "of", len(visible))
 bmesh.ops.delete(bmh, geom=hidden, context="FACES")
 bmh.to_mesh(hm_); bmh.free()

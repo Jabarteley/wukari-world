@@ -9,6 +9,7 @@ import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { tintMaterial } from './tint.ts';
 import type { EyeSpec, RGB, Regions, Tinted, Targets } from './tint.ts';
 import { buildHair } from './hair.ts';
+import { PRINT_SETS } from './catalog.ts';
 import type { HairPiece } from './hair.ts';
 import type { Rig } from '../page3/character.ts';
 import { LifeDriver } from '../page4/anim.ts';
@@ -49,6 +50,11 @@ export class Library {
       });
       this.masks.set(url, p); this.size(url);
     }
+    return p;
+  }
+  print(url: string): Promise<THREE.Texture> {
+    let p = this.maps.get('p:' + url);
+    if (!p) { p = new THREE.TextureLoader().loadAsync(url).then((t) => { t.flipY = false; t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.MirroredRepeatWrapping; t.anisotropy = 4; return t; }); this.maps.set('p:' + url, p); this.size(url); }
     return p;
   }
   map(url: string): Promise<THREE.Texture> {
@@ -93,7 +99,8 @@ export async function buildFigure(opts: BuildOptions): Promise<Figure> {
   const tinted: Tinted[] = [];
   const bodyTint = tintMaterial(bodyMesh.material as THREE.MeshStandardMaterial, { mask: bodyMask, refs: bodyMeta.refs, tintable: bodyMeta.tintable, neck: { cx: bodyMeta.ring.cx, cz: bodyMeta.ring.cz, rx: bodyMeta.ring.rx, rz: bodyMeta.ring.rz, cutY: bodyMeta.cutY } });
   bodyMesh.material = bodyTint.material; bodyMesh.frustumCulled = false; tinted.push(bodyTint);
-  if (look.print && look.print >= 2 && bodyMeta.prints?.[look.print - 2]) bodyTint.setMap(await lib.map(`${prefix}${bodyMeta.prints[look.print - 2]}`));   // print 1 is the colour map in the file
+  const printFile = look.print ? PRINT_SETS[look.body]?.[look.print - 1] : undefined;
+  if (printFile) bodyTint.setPrint(await lib.print(`${prefix}print-${printFile}.jpg`));
   // the head
   let headSrc!: THREE.SkinnedMesh; headGltf.scene.traverse((o) => { if ((o as THREE.SkinnedMesh).isSkinnedMesh) headSrc = o as THREE.SkinnedMesh; });
   const { geometry, dy } = fitHead(headSrc.geometry, headMeta, bodyMeta);
@@ -137,5 +144,8 @@ export function applyShape(bones: Record<string, THREE.Bone>, look: Look): void 
   const sw = look.sex === 'male' ? 1.09 : 1.05, swz = 1 + (sw - 1) * 0.5;       // the default adult shoulder width, on top of the build
   bones['spine_01']?.scale.set(w, 1, w); bones['spine_03']?.scale.set(sw, 1, swz); bones['neck_01']?.scale.set(1 / (w * sw), 1, 1 / (w * swz));
   for (const s of ['l', 'r']) { bones[`thigh_${s}`]?.scale.set(wl, 1, wl); }
+  // forearms and hands: the generated ones are chunkier than the game body's, so they are brought down (the clips never touch scale; the hand cancels the forearm's share)
+  const fa = look.sex === 'male' ? 0.9 : 0.86, ha = look.sex === 'male' ? 0.84 : 0.80;
+  for (const s of ['l', 'r']) { bones[`lowerarm_${s}`]?.scale.set(fa, 1, fa); bones[`hand_${s}`]?.scale.set(ha / fa, ha, ha / fa); }
   const hs = look.headSize ?? (look.sex === 'male' ? 0.92 : 0.95); bones['Head']?.scale.set(hs, hs, hs);
 }

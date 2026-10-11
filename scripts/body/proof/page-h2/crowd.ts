@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils.js';
 import { Library, fitHead, applyShape } from './parts.ts';
+import { PRINT_SETS } from './catalog.ts';
 import type { BodyMeta, HeadMeta, Look, Figure } from './parts.ts';
 import { buildHair } from './hair.ts';
 import { LifeDriver } from '../page4/anim.ts';
@@ -11,8 +12,8 @@ import type { Tinted } from './tint.ts';
 
 const hex = (h: string): THREE.Vector3 => new THREE.Vector3(...([1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16) / 255) as [number, number, number]));
 const VS = 'varying vec2 vUv; uniform vec4 uRect; void main(){ vUv = uv; vec2 p = uRect.xy + uv * uRect.zw; gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0); }';
-const FS = `varying vec2 vUv; uniform sampler2D uMap, uMask; uniform float uFlat; uniform vec3 uColor, uRefSkin, uRefTop, uRefBottom, uRefShoes, uTSkin, uTTop, uTBottom, uTShoes;
-vec3 recolour(vec3 g, vec3 ref, vec3 target) { vec3 r = g / max(ref, vec3(0.05)); r = r / (1.0 + max(r - vec3(1.25), vec3(0.0)) * 0.6); return clamp(target * r, 0.0, 1.0); }
+const FS = `varying vec2 vUv; uniform sampler2D uMap, uMask; uniform float uFlat, uPrintOn, uPrintScale; uniform sampler2D uPrint; uniform vec3 uColor, uRefSkin, uRefTop, uRefBottom, uRefShoes, uTSkin, uTTop, uTBottom, uTShoes;
+vec3 recolour(vec3 g, vec3 ref, vec3 target) { vec3 r = g / max(ref, vec3(0.05)); r = r / (1.0 + max(r - vec3(1.25), vec3(0.0)) * 0.6); r = vec3(1.0) + (r - vec3(1.0)) * 0.62; return clamp(target * r, 0.0, 1.0); }
 void main(){
   if (uFlat > 0.5) { gl_FragColor = vec4(pow(uColor, vec3(2.2)), 1.0); return; }
   vec3 g0 = pow(max(texture2D(uMap, vUv).rgb, vec3(0.0)), vec3(0.4545)); vec4 m = texture2D(uMask, vUv); vec3 g = g0;
@@ -20,6 +21,7 @@ void main(){
   float gm = max(max(g0.r, g0.g), g0.b), sat = (gm - min(min(g0.r, g0.g), g0.b)) / max(gm, 0.02);
   float skinW = m.r * smoothstep(0.68, 0.88, lr) * (1.0 - (1.0 - smoothstep(0.07, 0.16, sat)) * smoothstep(0.95, 1.1, lr));
   g = mix(g, recolour(g0, uRefSkin, uTSkin), skinW); g = mix(g, recolour(g0, uRefTop, uTTop), m.g); g = mix(g, recolour(g0, uRefBottom, uTBottom), m.b); g = mix(g, recolour(g0, uRefShoes, uTShoes), m.a);
+  if (uPrintOn > 0.5) { vec3 pr = pow(max(texture2D(uPrint, vUv * uPrintScale).rgb, vec3(0.0)), vec3(0.4545)); float pw = clamp(m.g + m.b, 0.0, 1.0); float shd = clamp(0.45 + 0.85 * dot(g0, vec3(0.3, 0.59, 0.11)), 0.62, 1.12); g = mix(g, pr * shd, pw); }
   gl_FragColor = vec4(pow(g, vec3(2.2)), 1.0);
 }`;
 
@@ -39,7 +41,7 @@ function drawTo(rt: THREE.WebGLRenderTarget, rect: THREE.Vector4, u: Record<stri
 const D = new THREE.Vector3(1, 1, 1);
 function partUniforms(map: THREE.Texture, mask: THREE.Texture, refs: { skin: number[]; top: number[] | null; bottom: number[] | null; shoes: number[] | null }, t: { skin: string; top?: string; bottom?: string; shoes?: string }): Record<string, THREE.IUniform> {
   const v = (a: number[] | null): THREE.Vector3 => a ? new THREE.Vector3(a[0], a[1], a[2]) : D;
-  return { uMap: { value: map }, uMask: { value: mask }, uFlat: { value: 0 }, uColor: { value: D }, uRefSkin: { value: v(refs.skin) }, uRefTop: { value: v(refs.top) }, uRefBottom: { value: v(refs.bottom) }, uRefShoes: { value: v(refs.shoes) },
+  return { uPrint: { value: null }, uPrintOn: { value: 0 }, uPrintScale: { value: 1 }, uMap: { value: map }, uMask: { value: mask }, uFlat: { value: 0 }, uColor: { value: D }, uRefSkin: { value: v(refs.skin) }, uRefTop: { value: v(refs.top) }, uRefBottom: { value: v(refs.bottom) }, uRefShoes: { value: v(refs.shoes) },
     uTSkin: { value: hex(t.skin) }, uTTop: { value: t.top && refs.top ? hex(t.top) : v(refs.top) }, uTBottom: { value: t.bottom && refs.bottom ? hex(t.bottom) : v(refs.bottom) }, uTShoes: { value: t.shoes ? hex(t.shoes) : v(refs.shoes) } };
 }
 
@@ -62,8 +64,9 @@ export async function buildCrowd(lib: Library, look: Look, seed = 5): Promise<Cr
   const bmapRect = new THREE.Vector4(0, 0.4, 1, 0.6), hmapRect = new THREE.Vector4(0, 0, 0.5, 0.4), hairRect = new THREE.Vector4(0.5, 0, 0.25, 0.2), wearRect = new THREE.Vector4(0.75, 0, 0.25, 0.2);
   const targets = { skin: look.skin, top: bm.refs.top ? look.top : undefined, bottom: bm.refs.bottom ? look.bottom : undefined, shoes: look.shoes };
   const bmap = (bodyMesh.material as THREE.MeshStandardMaterial).map!, hmap = (headSrc.material as THREE.MeshStandardMaterial).map!;
-  if (look.print && look.print >= 2 && bm.prints?.[look.print - 2]) { /* a print variant is a separate texture */ const t = await lib.map(`/m/${bm.prints[look.print - 2]}`); drawTo(rt, bmapRect, partUniforms(t, bmask, bm.refs, targets)); }
-  else drawTo(rt, bmapRect, partUniforms(bmap, bmask, bm.refs, targets));
+  const printFile = look.print ? PRINT_SETS[look.body]?.[look.print - 1] : undefined; const pu = partUniforms(bmap, bmask, bm.refs, targets);
+  if (printFile) { pu['uPrint'] = { value: await lib.print(`/m/print-${printFile}.jpg`) }; pu['uPrintOn'] = { value: 1 }; pu['uPrintScale'] = { value: 3.2 }; }
+  drawTo(rt, bmapRect, pu);
   drawTo(rt, hmapRect, partUniforms(hmap, hmask, { skin: hm.refSkin, top: null, bottom: null, shoes: null }, { skin: look.skin }));
   const flat = (rect: THREE.Vector4, color: string): void => { drawTo(rt, rect, { uFlat: { value: 1 }, uColor: { value: hex(color) }, uMap: { value: bmap }, uMask: { value: bmask }, uRefSkin: { value: D }, uRefTop: { value: D }, uRefBottom: { value: D }, uRefShoes: { value: D }, uTSkin: { value: D }, uTTop: { value: D }, uTBottom: { value: D }, uTShoes: { value: D } }); };
   flat(hairRect, look.hairColor ?? '#14100e'); flat(wearRect, look.headwearColor ?? '#e9e2cf');

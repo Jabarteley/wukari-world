@@ -1,0 +1,1 @@
+{"id": "m3-cbody", "sex": "male", "cutY": 1.56, "ring": {"cx": -0.0001, "cz": 0.0174, "rx": 0.0708, "rz": 0.025}, "file": "m3-cbody.glb", "mask": "m3-cbody-mask.png", "label": "Print shirt", "tintable": true, "bodyUp": 0.015, "refs": {"skin": [0.698, 0.5451, 0.4745], "top": null, "bottom": [0.6471, 0.6471, 0.6353], "shoes": [0.5255, 0.4157, 0.3529]}, "height": 1.5757}

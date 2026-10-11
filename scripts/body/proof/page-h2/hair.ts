@@ -9,7 +9,7 @@ export interface HairPiece { mesh: THREE.SkinnedMesh; tinted?: { dispose(): void
 export interface HairStyle { id: string; label: string; sex?: 'male' | 'female'; kind: 'hair' | 'wear' }
 export const HAIR_STYLES: HairStyle[] = [
   { id: 'none', label: 'Bald', kind: 'hair' }, { id: 'low', label: 'Low cut', kind: 'hair' }, { id: 'fade', label: 'Fade', kind: 'hair', sex: 'male' }, { id: 'lineup', label: 'Lined-up fade', kind: 'hair', sex: 'male' },
-  { id: 'afro', label: 'Afro', kind: 'hair' }, { id: 'cornrows', label: 'Cornrows', kind: 'hair' }, { id: 'puff', label: 'Puff', kind: 'hair' }, { id: 'locs', label: 'Locs', kind: 'hair' }, { id: 'braids', label: 'Long braids', kind: 'hair', sex: 'female' },
+  { id: 'afroShort', label: 'Short afro', kind: 'hair' }, { id: 'afro', label: 'Full afro', kind: 'hair' }, { id: 'cornrows', label: 'Cornrows', kind: 'hair' }, { id: 'puff', label: 'Puff', kind: 'hair' }, { id: 'locs', label: 'Locs', kind: 'hair' }, { id: 'braids', label: 'Long braids', kind: 'hair', sex: 'female' },
 ];
 export const WEAR_STYLES: HairStyle[] = [
   { id: 'none', label: 'None', kind: 'wear' }, { id: 'fila', label: 'Cap (fila)', kind: 'wear', sex: 'male' }, { id: 'scarf', label: 'Headscarf', kind: 'wear', sex: 'female' }, { id: 'gele', label: 'Gele', kind: 'wear', sex: 'female' },
@@ -92,6 +92,8 @@ float lineAt(float t){
   } else if (uMode < 1.5) {     // the afro: curl pockets
     float c = 0.55 * n31(p * 150.0) + 0.3 * n31(p * 320.0) + 0.15 * n31(p * 70.0);
     shade = 0.55 + 0.75 * c;
+    float hhA = p.y - (uEye + lineAt(t) + 0.014 + (n31(p * 55.0) - 0.5) * 0.02);
+    diffuseColor.a *= sm1(0.0, 0.02, hhA) * (0.6 + 0.8 * n31(p * 90.0));
   } else if (uMode < 2.5) {     // braids and locs: plaits
     shade = 0.78 + 0.30 * sin(p.y * 210.0 + h31(floor(p * 60.0)) * 6.0);
   }
@@ -196,20 +198,21 @@ export async function buildHair(a: HairArgs): Promise<HairPiece[]> {
   const sh = (s: string, mode: number): HairShade => ({ eyeY, cx, cz, halfD: hd, style: s, mode });
   if (style !== 'none' && !covered) {
     const baseStyle = style === 'braids' || style === 'locs' ? 'low' : style;
-    if (style === 'afro') {
-      // scalp under it, then a shell of real volume: an ellipsoid above the skull whose rim follows the hairline
-      const cap = capMesh(ctx, 'low', selectCap(ctx, 'low', 0.0), 0.004);
-      const rx = hw + 0.05, ry = 0.135, rz = hd + 0.05, cy = eyeY + 0.05;
-      const sph = new THREE.SphereGeometry(1, a.lod ? 14 : 30, a.lod ? 7 : 14, 0, Math.PI * 2, 0, Math.PI * 0.62), p = sph.getAttribute('position');
+    if (style === 'afro' || style === 'afroShort') {
+      // a rounded mass standing clear of the skull all round: an upper dome whose rim sits on the hairline plane, a few centimetres wider than the head, noise-displaced
+      const full = style === 'afro', lift = full ? 0.105 : 0.06, wide = full ? 0.055 : 0.034;
+      const cap = capMesh(ctx, 'low', selectCap(ctx, 'low', a.lod ? 0.0 : 0.03), 0.004);
+      const cy = eyeY + 0.07, rx = hw * 0.97 + wide, rz = hd * 0.97 + wide, ry = (ctx.crown - cy) + lift;
+      const sph = new THREE.SphereGeometry(1, a.lod ? 16 : 40, a.lod ? 8 : 18, 0, Math.PI * 2, 0, Math.PI * 0.6), p = sph.getAttribute('position');
       for (let i = 0; i < p.count; i++) {
-        const dx = p.getX(i), dy = p.getY(i), dz = p.getZ(i), k = 1 + 0.05 * (noise3(dx * 5, dy * 5, dz * 5) - 0.5);
-        let x = cx + dx * rx * k, y = cy + dy * ry * k, z = cz + dz * rz * k; const t = (z - cz) / hd;
-        y = Math.max(y, eyeY + hairline('low', t) + 0.004 + 0.012 * smooth((t - 0.2) / 0.6));
-        x = cx + (x - cx) * (1 - 0.06 * smooth((0.2 - y + eyeY) / 0.1)); p.setXYZ(i, x, y, z);
+        const dx = p.getX(i), dy = p.getY(i), dz = p.getZ(i);
+        const bump = 1 + (full ? 0.05 : 0.035) * (noise3(dx * 7, dy * 7, dz * 7) - 0.5) * 2 + 0.018 * (noise3(dx * 19, dy * 19, dz * 19) - 0.5) * 2;
+        const front = Math.max(0, dz * -1);       // the face looks along -z... the hairline is lower in front, so the dome is pushed back there a little
+        void front;
+        p.setXYZ(i, cx + dx * rx * bump, cy + dy * ry * bump - 0.012 * Math.max(0, 1 - dy * 4), cz + dz * rz * bump + 0.0);
       }
       sph.computeVertexNormals();
-      const shell = withAttrs(sph, ctx.headBone, ctx.spine, hairCol);
-      add(merge([cap, shell]), hairMaterial(sh('afro', 1)));
+      add(merge([cap, withAttrs(sph, ctx.headBone, ctx.spine, hairCol)]), hairMaterial(sh('afro', 1)));
     } else if (style === 'puff') {
       const cap = capMesh(ctx, 'low', selectCap(ctx, 'low', a.lod ? 0.0 : 0.03), 0.005);
       const s = new THREE.SphereGeometry(0.066, 16, 12), p = s.getAttribute('position'); const bx = cx, by = ctx.crown - 0.03, bz = cz - hd * 0.55;
@@ -218,8 +221,8 @@ export async function buildHair(a: HairArgs): Promise<HairPiece[]> {
     } else if (style === 'locs' || style === 'braids') {
       const cap = capMesh(ctx, 'low', selectCap(ctx, 'low', a.lod ? 0.0 : 0.03), 0.005);
       const parts: THREE.BufferGeometry[] = [cap];
-      const braids = style === 'braids', n1 = a.lod ? (braids ? 16 : 14) : braids ? 40 : 34, n2 = a.lod ? 0 : braids ? 24 : 0, segs = a.lod ? 3 : 5, rnd = (i: number, k: number): number => hash(i * 3.1, k * 7.7, 1.3);
-      const fallFor = (ang: number): number => { const back = (1 - Math.cos(ang)) / 2; return braids ? 0.30 + 0.22 * back : 0.10 + 0.14 * back; };
+      const braids = style === 'braids', n1 = a.lod ? (braids ? 20 : 14) : braids ? 64 : 34, n2 = a.lod ? 0 : braids ? 40 : 0, segs = a.lod ? 3 : 6, rnd = (i: number, k: number): number => hash(i * 3.1, k * 7.7, 1.3);
+      const fallFor = (ang: number): number => { const back = (1 - Math.cos(ang)) / 2; return braids ? 0.26 + 0.30 * back : 0.10 + 0.14 * back; };
       for (let i = 0; i < n1 + n2; i++) {
         const tier = i < n1 ? 0 : 1, j = tier === 0 ? i : i - n1, m = tier === 0 ? n1 : n2;
         const lo = 0.55, hi = Math.PI * 2 - 0.55; // keep clear of the face
@@ -229,8 +232,9 @@ export async function buildHair(a: HairArgs): Promise<HairPiece[]> {
         const outv = new THREE.Vector3(Math.sin(ang), 0, Math.cos(ang));
         const len = fallFor(ang) * (0.85 + 0.3 * rnd(i, 3));
         const sideKeep = Math.abs(Math.sin(ang)) > 0.7 ? Math.sign(Math.sin(ang)) * 0.012 : 0;
-        const s = strand(root, outv, len, a.lod ? 0.011 : braids ? 0.0058 : 0.009, segs, sideKeep, braids ? 0.034 : 0.03);
+        const s = strand(root, outv, len, a.lod ? 0.009 : braids ? 0.0042 : 0.009, segs, sideKeep, braids ? 0.034 : 0.03);
         const ps = s.getAttribute('position'), cnt = ps.count, ww = new Float32Array(cnt);
+        if (braids) for (let k = 0; k < cnt; k++) { const drop = Math.max(0, root.y - ps.getY(k)), push = Math.min(1, drop / 0.3); ps.setXYZ(k, ps.getX(k) + Math.sign(Math.sin(ang)) * Math.min(Math.abs(Math.sin(ang)), 1) * 0.045 * push, ps.getY(k), ps.getZ(k) - Math.max(0, -Math.cos(ang)) * 0.05 * push + Math.max(0, Math.cos(ang)) * 0.02 * push); }
         const idxLow = new Uint16Array(cnt * 4), wt = new Float32Array(cnt * 4);
         for (let k = 0; k < cnt; k++) { const y = ps.getY(k), low = smooth((ctx.chin + 0.03 - y) / 0.22) * 0.8; ww[k] = low; idxLow[k * 4] = ctx.headBone; wt[k * 4] = 1 - low; idxLow[k * 4 + 1] = ctx.spine; wt[k * 4 + 1] = low; }
         s.setAttribute('skinIndex', new THREE.Uint16BufferAttribute(idxLow, 4)); s.setAttribute('skinWeight', new THREE.Float32BufferAttribute(wt, 4));

@@ -16,6 +16,7 @@ export interface Tinted {
   material: THREE.MeshStandardMaterial;
   setTargets(t: Targets): void;
   setMap(map: THREE.Texture): void;
+  setPrint(tex: THREE.Texture | null, scale?: number): void;
   eyes(blink: number, gazeX: number, gazeY: number): void;
   dispose(): void;
 }
@@ -29,6 +30,7 @@ export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: 
     uRefSkin: { value: u(refs?.skin ?? ONE) }, uRefTop: { value: u(refs?.top ?? ONE) }, uRefBottom: { value: u(refs?.bottom ?? ONE) }, uRefShoes: { value: u(refs?.shoes ?? ONE) },
     uTSkin: { value: u(refs?.skin ?? ONE) }, uTTop: { value: u(refs?.top ?? ONE) }, uTBottom: { value: u(refs?.bottom ?? ONE) }, uTShoes: { value: u(refs?.shoes ?? ONE) },
     uNeck: { value: new THREE.Vector4(opts.neck?.cx ?? 0, opts.neck?.cz ?? 0, opts.neck?.rx ?? 1, opts.neck?.rz ?? 1) }, uNeckY: { value: opts.neck ? opts.neck.cutY : -9 },
+    uPrint: { value: null }, uPrintOn: { value: 0 }, uPrintScale: { value: 3.2 },
     uEyes: { value: null }, uEyeBox: { value: new THREE.Vector4() }, uEyeMix: { value: 0 },
   };
   let paint: ((blink: number, gx: number, gy: number) => void) | null = null;
@@ -87,9 +89,9 @@ export function tintMaterial(source: THREE.MeshStandardMaterial, opts: { mask?: 
     shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vRest; varying vec3 vRestN;').replace('#include <begin_vertex>', '#include <begin_vertex>\nvRest = position; vRestN = normal;');
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
 varying vec3 vRest; varying vec3 vRestN;
-uniform vec4 uEyeBox; uniform sampler2D uEyes, uMask; uniform float uEyeMix, uUseMask, uNeckY; uniform vec4 uNeck;
+uniform vec4 uEyeBox; uniform sampler2D uEyes, uMask; uniform float uEyeMix, uUseMask, uNeckY, uPrintOn, uPrintScale; uniform sampler2D uPrint; uniform vec4 uNeck;
 uniform vec3 uRefSkin, uRefTop, uRefBottom, uRefShoes, uTSkin, uTTop, uTBottom, uTShoes;
-vec3 recolour(vec3 g, vec3 ref, vec3 target) { vec3 r = g / max(ref, vec3(0.05)); r = r / (1.0 + max(r - vec3(1.25), vec3(0.0)) * 0.6); return clamp(target * r, 0.0, 1.0); }`).replace('#include <map_fragment>', `
+vec3 recolour(vec3 g, vec3 ref, vec3 target) { vec3 r = g / max(ref, vec3(0.05)); r = r / (1.0 + max(r - vec3(1.25), vec3(0.0)) * 0.6); r = vec3(1.0) + (r - vec3(1.0)) * 0.62; return clamp(target * r, 0.0, 1.0); }`).replace('#include <map_fragment>', `
 vec4 sampledDiffuseColor = texture2D( map, vMapUv );
 if (uUseMask > 0.5) {
   vec3 g0 = pow(max(sampledDiffuseColor.rgb, vec3(0.0)), vec3(0.4545));
@@ -102,6 +104,11 @@ if (uUseMask > 0.5) {
   g = mix(g, recolour(g0, uRefTop, uTTop), m.g);
   g = mix(g, recolour(g0, uRefBottom, uTBottom), m.b);
   g = mix(g, recolour(g0, uRefShoes, uTShoes), m.a);
+  if (uPrintOn > 0.5) {      // a real printed cloth: a tiled swatch through the cloth mask, the baked shading kept as a multiply so folds remain
+    vec3 pr = pow(max(texture2D(uPrint, vMapUv * uPrintScale).rgb, vec3(0.0)), vec3(0.4545));
+    float pw = clamp(m.g + m.b, 0.0, 1.0); float shd = clamp(0.45 + 0.85 * dot(g0, vec3(0.3, 0.59, 0.11)), 0.62, 1.12);
+    g = mix(g, pr * shd, pw);
+  }
   if (uNeckY > -5.0) {      // the neck skin that shows through a collar or neckline: one skin colour from the head's own value
     vec2 q = (vRest.xz - uNeck.xy) / uNeck.zw; float inside = 1.0 - smoothstep(1.1, 1.4, length(q)); float yy = smoothstep(-0.05, -0.012, vRest.y - uNeckY) * (1.0 - smoothstep(0.02, 0.06, vRest.y - uNeckY));
     g = mix(g, uTSkin * (0.78 + 0.3 * dot(g0, vec3(0.3, 0.59, 0.11))), inside * yy * 0.9);
@@ -123,6 +130,7 @@ diffuseColor *= sampledDiffuseColor;`);
       skinNow = hex(t.skin); repaint();
     },
     setMap(map) { material.map = map; material.needsUpdate = true; },
+    setPrint(tex, scale = 3.2) { uniforms['uPrint']!.value = tex; uniforms['uPrintOn']!.value = tex ? 1 : 0; uniforms['uPrintScale']!.value = scale; },
     eyes: (blink, gx, gy) => paint?.(blink, gx, gy),
     dispose() { material.dispose(); canvasTex?.dispose(); },
   };

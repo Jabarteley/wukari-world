@@ -83,8 +83,13 @@ if kind == "body":
     cloth_w = np.where(have & ~foot, np.clip(1.0 - skin, 0, 1), 0.0)
     if feet == "colour":
         cloth_w = np.where(foot, 0.0, cloth_w)
-    top_w = np.where(Z >= split, cloth_w, 0.0).astype(np.float32)
-    bot_w = np.where(Z < split, cloth_w, 0.0).astype(np.float32)
+    if "--blue-bottom" in argv:
+        bluish = (px[:, :, 2] - px[:, :, 0]) > 0.04
+        is_bot = (Z < split) | ((Z < split + 0.12) & (np.abs(X) < 0.2) & bluish)        # jeans that ride above the split; a sleeve is never trousers
+    else:
+        is_bot = Z < split
+    top_w = np.where(~is_bot, cloth_w, 0.0).astype(np.float32)
+    bot_w = np.where(is_bot, cloth_w, 0.0).astype(np.float32)
     info.update({"topSplit": split, "shoeZ": shoe_z, "feet": feet})
 else:
     top_w[:] = 0

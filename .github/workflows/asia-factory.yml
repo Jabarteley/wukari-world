@@ -40,9 +40,10 @@ jobs:
         run: node factory/scripts/geo/factory/cloud-inputs.mjs scripts/geo/asia-factory-targets.json
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: a29a52bb39eae79a0dc65a444aa62d4c7e2437ba
+          ref: ${{ github.ref }}
           path: baseline
           persist-credentials: false
+          fetch-depth: 0
       - name: Verify producers and download unique pinned artifacts
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -50,6 +51,7 @@ jobs:
         run: |
           set -euo pipefail
           test "${{ steps.input.outputs.app_sha }}" = "$APP_SHA"
+          git -C baseline checkout --detach "$APP_SHA"
           test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           test "$(git -C factory rev-parse HEAD)" = "0786c00510f2827d6495a53fc3299f3112d0d6b4"

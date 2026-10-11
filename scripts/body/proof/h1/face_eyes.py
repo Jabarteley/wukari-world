@@ -85,7 +85,7 @@ if mode == "detect":
         hh = top - zmin_
         eye_band = have & (P3[:, :, 2] > zmin_ + 0.50 * hh) & (P3[:, :, 2] < zmin_ + 0.76 * hh)
     else:
-        eye_band = have & (P3[:, :, 2] > top - 0.30 * (top)) & (P3[:, :, 2] < top - 0.04)
+        eye_band = have & (P3[:, :, 2] > top - 0.22) & (P3[:, :, 2] < top - 0.04) & (np.abs(P3[:, :, 0]) < 0.14)   # the head only: a white shirt is as bright as an eye
     sclera = eye_band & (px.min(axis=2) > 0.58) & (sat < 0.25)
     lm = {}
     for side, name in ((1, "L"), (-1, "R")):

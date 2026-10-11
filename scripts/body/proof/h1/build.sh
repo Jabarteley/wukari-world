@@ -31,7 +31,7 @@ for V in hero crowd; do
   run -P "$HERE/face_eyes.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color.jpg" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-face.json" $MODE --iris $IRIS
   run -P "$HERE/make_mask.py" -- "$WORK/$NAME-$V.blend" "$WORK/$NAME-$V-color-eyes.jpg" "$WORK/$NAME-joints.json" "$WORK/$NAME-face.json" "$WORK/$NAME-$V-mask.png" "$WORK/$NAME-$V-mask.json" --split $SPLIT --sleeve-x $SLEEVE --bare-leg-z $LEG $( [[ $FEET = 1 ]] && echo --feet-shoes 1 )
   FACE=(); [[ $V = hero ]] && FACE=(--face "$WORK/$NAME-face.json")
-  BLENDER=$BL COLOR="$WORK/$NAME-$V-color-eyes.jpg" "$HERE/finish.sh" "$WORK" "$NAME" $SKEL $V "$OUT" $RIG $FACE
+  BLENDER=$BL COLOR="$WORK/$NAME-$V-color-eyes.jpg" "$HERE/finish.sh" "$WORK" "$NAME" $SKEL $V "$OUT" $RIG $( [[ $V = hero ]] && echo --face "$WORK/$NAME-face.json" ) $FACE
   cp "$WORK/$NAME-$V-mask.png" "$OUT/$NAME-$V-mask.png"
   node "$HERE/make-meta.mjs" "$WORK/$NAME-face.json" "$WORK/$NAME-$V-pj.json" $SKEL "$OUT/$NAME-$V.json" "$NAME-$V-mask.png" "$(node -e 'console.log(JSON.parse(require("fs").readFileSync(process.argv[1],"utf8")).skinRef.join(","))' "$WORK/$NAME-$V-mask.json")"
 done

@@ -402,7 +402,7 @@ const tidyRing = (ring: Ring): Ring => { const out: Ring = []; for (const p of r
  * Every ring retains 75–125% of its source area. Valid source polygons simplify each ring independently, retaining narrow islands;
  * other polygons retry the existing tolerance sequence without dropping rings. Every accepted polygon passes geometry and triangulation checks.
  */
-export function safePolygons(polygons: readonly Ring[][], tolerance: number, project?: (p: Pt) => Pt): Ring[][] {
+export function safePolygons(polygons: readonly Ring[][], tolerance: number, project?: (p: Pt) => Pt, protectedLand: readonly P[] = []): Ring[][] {
   const out: Ring[][] = [];
   for (const polygon of polygons) {
     let kept: Ring[] | null = null;
@@ -414,7 +414,8 @@ export function safePolygons(polygons: readonly Ring[][], tolerance: number, pro
       const area = ring.slice(1).reduce((sum, [x, y], j) => sum + ring[j]![0] * y - x * ring[j]![1], 0);
       return (i === 0) === (area > 0) ? ring : [...ring].reverse();
     });
-    const valid = (rings: Ring[]): boolean => !polygonProblem(rings) && !triangulationProblem(rings, project);
+    const keepsLand = (rings: Ring[]): boolean => protectedLand.every(point => !rings.reduce((inside, ring) => inRing(point, ring) ? !inside : inside, false));
+    const valid = (rings: Ring[]): boolean => keepsLand(rings) && !polygonProblem(rings) && !triangulationProblem(rings, project);
     // A tiny island must not force every bank and island to keep all source vertices.
     // Change one ring at a time from a valid polygon; preserve every hole and its area.
     const independent = wind(polygon.map(tidyRing));
@@ -426,7 +427,7 @@ export function safePolygons(polygons: readonly Ring[][], tolerance: number, pro
           if (!faithful(simplified, polygon[i]!)) continue;
           independent[i] = wind([simplified])[0]!;
           if (i > 0) independent[i] = [...independent[i]!].reverse();
-          if (!polygonProblem(independent)) break;
+          if (keepsLand(independent) && !polygonProblem(independent)) break;
           independent[i] = original;
         }
       }
@@ -442,9 +443,10 @@ export function safePolygons(polygons: readonly Ring[][], tolerance: number, pro
       if (!holes.every((hole) => inRing(hole[0]!, first))) continue;
       // Outer ring counter-clockwise, holes clockwise.
       const wound = [first, ...holes].map((ring, i) => { const area = ring.slice(1).reduce((sum, [x, y], j) => sum + ring[j]![0] * y - x * ring[j]![1], 0); return (i === 0) === (area > 0) ? ring : [...ring].reverse(); });
-      if (!polygonProblem(wound) && !triangulationProblem(wound, project)) { kept = wound; break; }
+      if (valid(wound)) { kept = wound; break; }
     }
     if (kept) out.push(kept);
+    else if (protectedLand.length) throw new Error('Water simplification cannot preserve the mapped land anchors');
   }
   return out;
 }
@@ -456,7 +458,7 @@ export function safePolygons(polygons: readonly Ring[][], tolerance: number, pro
  * recipe serves a coastline and a lake. Ways that close on themselves (islets) are not barriers. Returns the water of the whole box `wide`
  * (`far`) and the part of it within `bandMetres` of the shore and inside `box` (`band`, what the play area keeps).
  */
-export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box: Box, wide: Box, bandMetres: number, cell: number): { far: Ring[][]; band: Ring[][] } {
+export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box: Box, wide: Box, bandMetres: number, cell: number, kind: 'coast' | 'lake'): { far: Ring[][]; band: Ring[][] } {
   const cols = Math.ceil((wide[3] - wide[1]) / cell), rows = Math.ceil((wide[2] - wide[0]) / cell);
   const barrier = new Uint8Array(cols * rows);
   const colOf = (lon: number): number => Math.floor((lon - wide[1]) / cell), rowOf = (lat: number): number => Math.floor((lat - wide[0]) / cell);
@@ -493,8 +495,42 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
     }
     hasLand.push(land);
   }
-  // A land point sitting on a barrier cell counts for the regions beside it.
-  for (const at of marked) if (barrier[at]) for (const next of [at - 1, at + 1, at - cols, at + cols]) if (next >= 0 && next < region.length && region[next]! >= 0) hasLand[region[next]!] = true;
+  const coastalAnchorEdges: { c: number; r: number; a: P; b: P }[] = [];
+  // Lake shores have no prescribed direction. OSM coastline keeps land on the left.
+  for (const [lon, lat] of landPoints) {
+    const c = colOf(lon), r = rowOf(lat), at = r * cols + c;
+    if (c < 0 || r < 0 || c >= cols || r >= rows || !barrier[at]) continue;
+    const neighbours = [c > 0 ? at - 1 : -1, c < cols - 1 ? at + 1 : -1, at - cols, at + cols];
+    if (kind === 'lake') {
+      for (const next of neighbours) if (next >= 0 && next < region.length && region[next]! >= 0) hasLand[region[next]!] = true;
+      continue;
+    }
+    const scale = Math.cos(lat * Math.PI / 180);
+    let nearest: { a: P; b: P; distance: number } | undefined;
+    for (const way of shore) {
+      if (way.length < 2 || (way[0]![0] === way.at(-1)![0] && way[0]![1] === way.at(-1)![1])) continue;
+      for (let i = 1; i < way.length; i++) {
+        const a = way[i - 1]!, b = way[i]!, dx = (b[0] - a[0]) * scale, dy = b[1] - a[1];
+        const length = dx * dx + dy * dy;
+        if (!length) continue;
+        const x = (lon - a[0]) * scale, y = lat - a[1], t = Math.max(0, Math.min(1, (x * dx + y * dy) / length));
+        const distance = (x - t * dx) ** 2 + (y - t * dy) ** 2;
+        if (!nearest || distance < nearest.distance) nearest = { a, b, distance };
+      }
+    }
+    if (!nearest) throw new Error('Coast barrier anchor has no directed shoreline');
+    const { a, b } = nearest;
+    const landSide = (x: number, y: number): boolean => (b[0] - a[0]) * (y - a[1]) - (b[1] - a[1]) * (x - a[0]) > 0;
+    if (!landSide(lon, lat)) throw new Error(`Coast anchor ${lon},${lat} is not on the mapped land side`);
+    let resolved = false;
+    for (const next of neighbours) {
+      if (next < 0 || next >= region.length || region[next]! < 0) continue;
+      const nc = next % cols, nr = (next - nc) / cols;
+      if (landSide(wide[1] + (nc + 0.5) * cell, wide[0] + (nr + 0.5) * cell)) { hasLand[region[next]!] = true; resolved = true; }
+    }
+    if (!resolved) throw new Error(`Coast anchor ${lon},${lat} has no adjacent land component`);
+    coastalAnchorEdges.push({ c, r, a, b });
+  }
   const water = new Uint8Array(cols * rows);
   for (let at = 0; at < water.length; at++) if (!barrier[at] && !hasLand[region[at]!]) water[at] = 1;
   // A shore cell belongs to the water when water lies beside it.
@@ -503,6 +539,7 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
     if ((c > 0 && water[at - 1]) || (c < cols - 1 && water[at + 1]) || (at >= cols && water[at - cols]) || (at + cols < water.length && water[at + cols])) water[at] = 2;
   }
   for (let at = 0; at < water.length; at++) if (water[at] === 2) water[at] = 1;
+  if (kind === 'coast') for (const at of marked) if (barrier[at]) water[at] = 0;
   // The band: water within `reach` cells of the ground, inside the play box.
   const reach = Math.max(1, Math.round(bandMetres / (cell * 111_000)));
   const distance = new Int32Array(cols * rows).fill(-1);
@@ -521,7 +558,19 @@ export function shoreWater(shore: readonly P[][], landPoints: readonly P[], box:
   const [c0, r0, c1, r1] = [colOf(box[1]), rowOf(box[0]), colOf(box[3]), rowOf(box[2])];
   for (let r = Math.max(0, r0); r <= Math.min(rows - 1, r1); r++) for (let c = Math.max(0, c0); c <= Math.min(cols - 1, c1); c++) { const at = r * cols + c; if (water[at] && distance[at]! > 0) band[at] = 1; }
   // The grid's staircase is rounded off by a light blur, so a shore reads as a curve and not as 37 m steps.
-  return { far: contour(blur(water, cols, rows, 1.6), cols, rows, wide, cell, 0.5), band: contour(blur(band, cols, rows, 1.6), cols, rows, wide, cell, 0.5) };
+  const coastField = (mask: Uint8Array): Float32Array => {
+    const field = blur(mask, cols, rows, 1.6);
+    // At evidenced coastal anchors, preserve the mapped shore instead of letting blur move it inland.
+    for (const { c, r, a, b } of coastalAnchorEdges) {
+      const dx = b[0] - a[0], dy = b[1] - a[1], length = Math.hypot(dx, dy);
+      for (let nr = Math.max(0, r - 1); nr <= Math.min(rows - 1, r + 1); nr++) for (let nc = Math.max(0, c - 1); nc <= Math.min(cols - 1, c + 1); nc++) {
+        const x = wide[1] + (nc + 0.5) * cell, y = wide[0] + (nr + 0.5) * cell;
+        field[nr * cols + nc] = Math.max(0, Math.min(1, 0.5 - (dx * (y - a[1]) - dy * (x - a[0])) / (length * cell)));
+      }
+    }
+    return field;
+  };
+  return { far: contour(coastField(water), cols, rows, wide, cell, 0.5), band: contour(coastField(band), cols, rows, wide, cell, 0.5) };
 }
 
 /** A lookup of where polygons (each an outer ring and holes, even-odd) cover a box, on a grid `cell` degrees wide: `near(point, margin)` asks whether the point, or any of eight points `margin` degrees round it, is covered. */

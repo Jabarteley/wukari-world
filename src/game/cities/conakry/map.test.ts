@@ -3,6 +3,7 @@ import test from 'node:test'
 import { assertCityContentContract, assertCityMapContract } from '../cityContractTest.test.ts'
 import { destinationVenueIds } from '../africa/types.ts'
 import { buildCity, CITY_TRIANGLE_BUDGET } from '../../../map3d/city-build.ts'
+import { pointInPart } from '../../../map3d/lga.ts'
 import { buildNetwork } from '../../../map3d/roads.ts'
 import { createKit } from '../../../scene/kit.ts'
 import { CITY_DRAW_CALLS } from '../../../budgets.ts'
@@ -55,6 +56,12 @@ test('conakry: the map has the coast, main roads and neighbourhood names, and st
   const geometry = await map.loadGeometry()
   assert.ok(GEOMETRY.land.length > 0 && GEOMETRY.land.every(polygon => polygon[0] && polygon[0].length >= 4))
   assert.ok(geometry.water.length > 0, 'water is drawn')
+  for (const [label, water] of [['declared', TERRAIN.water], ['reach', TERRAIN.reachWater]] as const) {
+    assert.ok(water.some(part => pointInPart(-13.675, 9.525, part)), `${label}: the sourced offshore point stays ocean`)
+    const bistro = PLACES.find(place => place.osm === 'node/4212901903')
+    assert.ok(bistro, 'the real coastal Bistro remains selected')
+    assert.ok(!water.some(part => pointInPart(bistro.lon, bistro.lat, part)), `${label}: Bistro stays on land`)
+  }
   assert.ok(TERRAIN.roads.length >= 30, `${TERRAIN.roads.length} road rows`)
   assert.ok(TERRAIN.names.length >= 10)
   assert.match(geometry.source, /OpenStreetMap/u)

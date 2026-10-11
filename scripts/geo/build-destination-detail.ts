@@ -121,10 +121,11 @@ const waterAnswer = await recorded('water', config.water(config.sea || config.wi
 const isShore = (element: Element): boolean => Boolean(element.geometry) && element.type === 'way' && (element.tags?.natural === 'coastline' || (config.sea?.kind === 'lake' && !element.tags?.natural && !element.tags?.waterway));
 const coast = waterAnswer.elements.filter(isShore).map((element) => element.geometry!.map((g): P => [g.lon, g.lat]));
 const landPoints = [...places.map((place): P => [place.lon, place.lat]), ...labelled.map((label) => label.at)];
-const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, outlineBox, wide, config.sea.bandMetres, config.cell / config.split) : null;
-const sea = shoreSide ? safePolygons(shoreSide.band, config.waterTolerance, project) : [];
+const shoreSide = coast.length && config.sea ? shoreWater(coast, landPoints, outlineBox, wide, config.sea.bandMetres, config.cell / config.split, config.sea.kind) : null;
+const shoreAnchors = config.sea?.kind === 'coast' ? landPoints : [];
+const sea = shoreSide ? safePolygons(shoreSide.band, config.waterTolerance, project, shoreAnchors) : [];
 // The sea carried far beyond the play box is drawn at a coarser tolerance (about 130 m): nobody reads a shore that far out to the metre, and the file stays small.
-const farSea = shoreSide ? safePolygons(shoreSide.far, 0.0008, project) : [];
+const farSea = shoreSide ? safePolygons(shoreSide.far, 0.0008, project, shoreAnchors) : [];
 // Only what the source tags as water: the answer may also hold wetland, islet and wall ways that are members of the lake's relation.
 const inland = waterAnswer.elements.filter((element) => !isShore(element) && (element.tags?.natural === 'water' || element.tags?.waterway === 'riverbank' || element.type === 'relation'));
 // What the outline is traced round (the shore band and the inland water inside the box: the map's declared water), and what is drawn (the same, carried on to the edge of the ground).

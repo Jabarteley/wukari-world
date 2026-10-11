@@ -97,28 +97,52 @@ def sm(t):
 
 
 if opts.get("--wrapper", "0") == "1":
+    # Long garments (wrappers, gowns, robes).  Below the hips every vertex is blended between "follows the legs" and "follows the pelvis":
+    #  - close to a leg's axis (cloth lying on the thigh or calf, trousers under a robe, the legs themselves under the cloth) it follows that leg completely, so nothing passes through a leg
+    #    and a seated figure's lap stays on the thighs;
+    #  - away from the legs (the loose fall of the cloth) the weights are shared between the two thighs, a little of the calves below the knee, and the pelvis, with the pelvis taking the
+    #    middle (between the legs) so the hem follows both legs gently instead of tearing between them or flaring out behind one leg.
+    # Weights change smoothly with the position, so neighbouring vertices never get opposite motions.  --hem is the height below which a trouser leg or the bare leg keeps its own
+    # weights (a short ramp above it); --leg-max is the leg share of loose cloth at its outer side.
     hem = float(opts.get("--hem", 0.13)) * newH
+    leg_max = float(opts.get("--leg-max", 0.62))
     hipz = J["LeftUpLeg"].z
     kneez = J["LeftLeg"].z
+    segs = {"l": [(J["LeftUpLeg"], J["LeftLeg"]), (J["LeftLeg"], J["LeftFoot"])], "r": [(J["RightUpLeg"], J["RightLeg"]), (J["RightLeg"], J["RightFoot"])]}
+
+    def seg_dist(p, a_, b_):
+        ab = b_ - a_; t_ = max(0.0, min(1.0, (p - a_).dot(ab) / max(ab.dot(ab), 1e-9))); return (p - (a_ + ab * t_)).length
+
     changed = 0
     for i, p in enumerate(V):
         if p.z <= hem or p.z >= hipz + 0.02:
             continue
-        t = sm((hipz - p.z) / (0.14 * newH))
+        t = sm((hipz - p.z) / (0.14 * newH)) * sm((p.z - hem) / (0.07 * newH))
+        if t <= 0:
+            continue
         side = max(-1.0, min(1.0, p.x / (0.085 * newH)))
         left = sm((side + 1) / 2)
         centre = 1 - abs(side)
-        calf = 0.28 * sm((kneez - p.z) / max(kneez - hem, 1e-3)) * (1 - 0.6 * centre)
-        pelvis = max(centre * 0.7, 0.15) * t
-        legs = max(0.0, 1 - pelvis - calf) * t
-        nw = {"pelvis": (1 - t) * W[i].get("pelvis", 0.0) + pelvis}
+        dl = min(seg_dist(p, a_, b_) for a_, b_ in segs["l"]); dr = min(seg_dist(p, a_, b_) for a_, b_ in segs["r"])
+        d = min(dl, dr)
+        hug = 1 - sm((d - 0.085 * newH / 1.8) / (0.075 * newH / 1.8))          # 1 on a leg's surface, 0 well away from both
+        t = t * (1 - hug)                      # on a leg's surface the generator's own weights stay (they follow that leg)
+        if t <= 0:
+            continue
+        below_knee = sm((kneez - p.z) / max(kneez - hem, 1e-3))
+        leg_share = leg_max * (1 - 0.55 * centre)
+        calf = leg_share * 0.22 * below_knee
+        thigh = leg_share - calf
+        pelvis = 1 - leg_share
+        nw = {"pelvis": (1 - t) * W[i].get("pelvis", 0.0) + t * pelvis}
         for k, wv in W[i].items():
             if k not in ("thigh_l", "thigh_r", "calf_l", "calf_r", "pelvis"):
                 nw[k] = nw.get(k, 0.0) + (1 - t) * wv
-        nw["thigh_l"] = (1 - t) * W[i].get("thigh_l", 0.0) + legs * left
-        nw["thigh_r"] = (1 - t) * W[i].get("thigh_r", 0.0) + legs * (1 - left)
-        nw["calf_l"] = (1 - t) * W[i].get("calf_l", 0.0) + calf * left * t
-        nw["calf_r"] = (1 - t) * W[i].get("calf_r", 0.0) + calf * (1 - left) * t
+        lw = left
+        nw["thigh_l"] = (1 - t) * W[i].get("thigh_l", 0.0) + t * thigh * lw
+        nw["thigh_r"] = (1 - t) * W[i].get("thigh_r", 0.0) + t * thigh * (1 - lw)
+        nw["calf_l"] = (1 - t) * W[i].get("calf_l", 0.0) + t * calf * lw
+        nw["calf_r"] = (1 - t) * W[i].get("calf_r", 0.0) + t * calf * (1 - lw)
         W[i] = nw
         changed += 1
     print("WRAPPER VERTICES REWEIGHTED", changed)

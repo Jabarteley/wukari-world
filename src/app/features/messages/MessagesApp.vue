@@ -499,6 +499,7 @@ defineExpose({
               <MessageBubble :item="previewedPin" :me-id="me.me.id" :group="isGroup" :head="true" :tail="true" :time="time(previewedPin.at)" :can-react="false" :can-actions="true" :can-pin="Boolean(pins.state.view?.canManage && canPinMessage(previewedPin))" :pinned="true" :pin-pending="pins.state.pending" :pin-blocked="pins.state.retryable" :pin-offline="!connected" preview @pin="(item, pinned) => pins.change({ message: item, pinned })" @reply="(line) => { replying = line; pinsOpen = false; composer?.focus() }" @player="openCard" @jump="(seq) => { pinsOpen = false; jump(seq) }" @report-voice="reportVoice" @edit="(item) => { pinsOpen = false; messageAction = { kind: 'edit', item } }" @remove="(item) => { pinsOpen = false; messageAction = { kind: 'delete', item } }" @forward="(item) => { pinsOpen = false; messageAction = { kind: 'forward', item } }" />
               <button type="button" aria-label="Close pinned message" @click="pinPreview = null">Close</button>
             </section>
+            <BaseButton class="messages-sheet-done" small @click="pinsOpen = false; pinPreview = null">Done</BaseButton>
           </div>
         </BaseSheet>
 
@@ -704,9 +705,9 @@ defineExpose({
 .messages-pinbar-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .messages-pinbar small { color: var(--c-muted); }
 .messages-pinbar:focus-visible { outline: var(--focus); outline-offset: -3px; }
-.messages-sheet-body { padding: 56px 16px 16px; max-height: inherit; overflow-y: auto; overscroll-behavior: contain; }
-.messages-sheet-body h3 { margin: 0 48px 6px 0; font-size: 16px; }
-.messages-request.messages-sheet-body { padding-top: 18px; }
+.messages-sheet-body { padding: 18px 16px 16px; max-height: inherit; overflow-y: auto; overscroll-behavior: contain; }
+.messages-sheet-done { margin-top: 10px; }
+.messages-sheet-body h3 { margin: 0 0 6px; font-size: 16px; }
 .messages-find-label { display: block; margin: 10px 0 6px; font-size: 14px; font-weight: 650; }
 .messages-name { position: relative; display: block; max-width: 100%; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
 .messages-head :deep(.ui-button) { min-height: var(--tap); }
@@ -723,7 +724,7 @@ defineExpose({
 .messages-note.is-inset { margin: 6px 14px; }
 .messages-visit { display: flex; margin: 4px 14px 0; }
 .messages-visit:empty { display: none; }
-.messages-pin-preview { flex: none; display: flex; align-items: center; gap: 8px; margin: 8px 0 0; padding: 8px 10px; border-left: 3px solid var(--c-green-dark); background: var(--c-fill); font-size: 12px; }
+.messages-pin-preview { flex: none; display: flex; align-items: center; gap: 8px; margin: 8px 0 0; padding: 8px 10px 8px 34px; border-left: 3px solid var(--c-green-dark); background: var(--c-fill); font-size: 12px; }
 .messages-pin-preview :deep(.bubble-wrap) { flex: 1; min-width: 0; }
 .messages-pin-preview button { min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--c-green-dark); font: 650 12px var(--font); cursor: pointer; }
 .messages-link { min-height: 32px; padding: 0 4px; border: 0; background: none; color: var(--c-green-dark); font: 600 12px var(--font); text-decoration: underline; cursor: pointer; }

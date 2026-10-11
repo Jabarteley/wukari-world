@@ -63,6 +63,8 @@ jobs:
           printf '%s\n' '{"disposable":true}' > "$FACTORY_SANDBOX/app/.factory-disposable.json"
           npm ci --prefix "$FACTORY_SANDBOX/app" --ignore-scripts --no-audit --no-fund
           ln -s "$FACTORY_SANDBOX/app/node_modules" baseline/node_modules
+      - name: Install pinned exact shoreline overlay dependency
+        run: python -m pip install --disable-pip-version-check --no-input 'shapely==2.1.2'
       - name: Install Linux SVG renderer
         run: |
           sudo apt-get update

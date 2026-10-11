@@ -32,7 +32,7 @@ export const CONFIG: DetailConfig = {
   places: [
     { slot: 'transit', ref: 'node/6968532985', kind: 'hub', category: 'civic', icon: 'bus', line: 'Red Light Motorpark is a mapped bus station; the game uses it as a road-travel hub.' },
     { slot: 'meal', ref: 'node/5250003633', kind: 'buka', category: 'food', icon: 'food', line: 'A restaurant, here a stop for a simple meal in the game.' },
-    { slot: 'community', ref: 'way/94957275', kind: 'quad', category: 'work', icon: 'school', line: 'The University of Liberia; the game sets community activities and starter work shifts here.' },
+    { slot: 'community', ref: 'way/94957275', kind: 'office', category: 'work', icon: 'school', line: 'The University of Liberia; the game sets community activities and starter work shifts here.' },
     { slot: 'clinic', ref: 'node/7710661312', kind: 'hospital', category: 'care', icon: 'health', line: 'John F. Kennedy Memorial Medical Center; game clinic activities are set here.' },
     { slot: 'recreation', ref: 'node/1730515734', kind: 'viewing', category: 'fun', icon: 'view', line: 'The Cotton Tree is a named city landmark; take in the view.' },
     { slot: 'market', ref: 'node/3708485896', kind: 'market', category: 'work', icon: 'market', line: 'A mapped marketplace, here the market stop of the game.' },

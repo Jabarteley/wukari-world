@@ -9,7 +9,7 @@ export const CONFIG: DetailConfig = {
   discovery: (bbox) => ({ places: placesQuery(bbox), extras: extrasQuery(bbox) }),
   landuse: landuseQuery,
   cell: 0.003, grow: 2, split: 12, shore: 0, minHole: 40,
-  minRoadKm: 0.45, maxRoads: 500, roadMarginDegrees: 0.004,
+  minRoadKm: 0.4, maxRoads: 500, roadMarginDegrees: 0.004,
   surround: '#bcd596',
   water: coastWaterQuery, wideWater: true,
   sea: { kind: 'coast', bandMetres: 40000 },

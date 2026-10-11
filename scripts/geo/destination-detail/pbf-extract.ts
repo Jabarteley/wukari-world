@@ -6,7 +6,8 @@ import type { Box } from './geometry-tools.ts';
 
 export type ExtractLabel = 'places' | 'extras' | 'water' | 'landuse' | 'roads';
 export interface RecordedAnswer { raw: string; sha256: string; elements: Element[] }
-export interface ExtractSource { kind: 'geofabrik-pbf'; datasetUrl: string; datasetSha256: string; pbfHeaderTimestamp: string; adapterSha256: string }
+export interface CoastSupplement { datasetUrl: string; datasetSha256: string; pbfHeaderTimestamp: string; adapterSha256: string; waterExtractSha256: string; selectionBounds: Box; primaryExtractSha256: Record<ExtractLabel, string>; mergerSha256: string; selectionRule: 'full original natural=coastline ways whose geometry bbox intersects primary wide box' }
+export interface ExtractSource { kind: 'geofabrik-pbf'; datasetUrl: string; datasetSha256: string; pbfHeaderTimestamp: string; adapterSha256: string; coastSupplement?: CoastSupplement }
 export interface ExtractBundle { answers: Record<ExtractLabel, RecordedAnswer>; source: ExtractSource }
 type ElementMember = NonNullable<Element['members']>[number];
 
@@ -64,7 +65,23 @@ function source(value: unknown, cityId: string, boxes: Record<'play' | 'core' | 
   if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(pbfHeaderTimestamp) || !Number.isFinite(Date.parse(pbfHeaderTimestamp)) || new Date(pbfHeaderTimestamp).toISOString().replace('.000Z', 'Z') !== pbfHeaderTimestamp) fail(`${path}.pbfHeaderTimestamp must be canonical UTC ISO-8601`);
   if (!record(value.boxes)) fail(`${path}.boxes must be an object`);
   for (const key of BOXES) sameBox(value.boxes[key], boxes[key], `${path}.boxes.${key}`);
-  return { kind: 'geofabrik-pbf', datasetUrl, datasetSha256: digest(value.datasetSha256, `${path}.datasetSha256`), pbfHeaderTimestamp, adapterSha256: digest(value.adapterSha256, `${path}.adapterSha256`) };
+  let coastSupplement: CoastSupplement | undefined;
+  if (value.coastSupplement !== undefined) {
+    const cohort = value.coastSupplement, cohortPath = `${path}.coastSupplement`;
+    if (!record(cohort)) fail(`${cohortPath} must be an object`);
+    const supplementUrl = text(cohort.datasetUrl, `${cohortPath}.datasetUrl`);
+    if (!/^https:\/\/download\.geofabrik\.de\/[A-Za-z0-9._/-]+\.osm\.pbf$/.test(supplementUrl)) fail(`${cohortPath}.datasetUrl must be a comment-safe official PBF URL`);
+    if (cohort.pbfHeaderTimestamp !== pbfHeaderTimestamp) fail(`${cohortPath}.pbfHeaderTimestamp must match the primary snapshot`);
+    const bounds = cohort.selectionBounds;
+    if (!Array.isArray(bounds) || bounds.length !== 4) fail(`${cohortPath}.selectionBounds must be a box`);
+    const selectionBounds: Box = [coordinate(bounds[0], cohortPath, 90), coordinate(bounds[1], cohortPath, 180), coordinate(bounds[2], cohortPath, 90), coordinate(bounds[3], cohortPath, 180)];
+    if (selectionBounds[0] >= selectionBounds[2] || selectionBounds[1] >= selectionBounds[3]) fail(`${cohortPath}.selectionBounds is inverted`);
+    if (!record(cohort.primaryExtractSha256)) fail(`${cohortPath}.primaryExtractSha256 must be an object`);
+    const primaryExtractSha256 = { places: digest(cohort.primaryExtractSha256.places, cohortPath), extras: digest(cohort.primaryExtractSha256.extras, cohortPath), water: digest(cohort.primaryExtractSha256.water, cohortPath), landuse: digest(cohort.primaryExtractSha256.landuse, cohortPath), roads: digest(cohort.primaryExtractSha256.roads, cohortPath) };
+    if (cohort.selectionRule !== 'full original natural=coastline ways whose geometry bbox intersects primary wide box') fail(`${cohortPath}.selectionRule is unsupported`);
+    coastSupplement = { datasetUrl: supplementUrl, datasetSha256: digest(cohort.datasetSha256, cohortPath), pbfHeaderTimestamp, adapterSha256: digest(cohort.adapterSha256, cohortPath), waterExtractSha256: digest(cohort.waterExtractSha256, cohortPath), selectionBounds, primaryExtractSha256, mergerSha256: digest(cohort.mergerSha256, cohortPath), selectionRule: cohort.selectionRule };
+  }
+  return { kind: 'geofabrik-pbf', datasetUrl, datasetSha256: digest(value.datasetSha256, `${path}.datasetSha256`), pbfHeaderTimestamp, adapterSha256: digest(value.adapterSha256, `${path}.adapterSha256`), ...(coastSupplement ? { coastSupplement } : {}) };
 }
 
 export function loadPbfExtract(directory: string, cityId: string, boxes: Record<'play' | 'core' | 'outline' | 'wide', Box>): ExtractBundle {

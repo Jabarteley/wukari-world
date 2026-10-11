@@ -60,7 +60,8 @@ const recorded = async (label: string, query: string) => {
   }
 };
 const pbf = extract?.source;
-const pbfPublic = pbf ? `Geofabrik PBF ${pbf.datasetUrl}; dataset sha256 ${pbf.datasetSha256}; snapshot ${pbf.pbfHeaderTimestamp}; adapter sha256 ${pbf.adapterSha256}` : null;
+const coastSupplementPublic = pbf?.coastSupplement ? `; coastline supplement Geofabrik PBF ${pbf.coastSupplement.datasetUrl}; dataset sha256 ${pbf.coastSupplement.datasetSha256}; snapshot ${pbf.coastSupplement.pbfHeaderTimestamp}; adapter sha256 ${pbf.coastSupplement.adapterSha256}; original water extract sha256 ${pbf.coastSupplement.waterExtractSha256}; selection bounds ${JSON.stringify(pbf.coastSupplement.selectionBounds)}; original primary extracts sha256 ${JSON.stringify(pbf.coastSupplement.primaryExtractSha256)}; merger sha256 ${pbf.coastSupplement.mergerSha256}; selection ${pbf.coastSupplement.selectionRule}` : '';
+const pbfPublic = pbf ? `Geofabrik PBF ${pbf.datasetUrl}; dataset sha256 ${pbf.datasetSha256}; snapshot ${pbf.pbfHeaderTimestamp}; adapter sha256 ${pbf.adapterSha256}${coastSupplementPublic}` : null;
 const pbfDiscovery = extract ? `raw extract sha256 places ${extract.answers.places.sha256}, extras ${extract.answers.extras.sha256}` : null;
 
 // ---- places -----------------------------------------------------------------------------------------------------------------------

@@ -73,4 +73,9 @@ export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./libreville/index.ts").then(m=>m.city),
   ()=>import("./monrovia/index.ts").then(m=>m.city),
   ()=>import("./kinshasa/index.ts").then(m=>m.city),
+  ()=>import("./antananarivo/index.ts").then(m=>m.city),
+  ()=>import("./bangui/index.ts").then(m=>m.city),
+  ()=>import("./bujumbura/index.ts").then(m=>m.city),
+  ()=>import("./conakry/index.ts").then(m=>m.city),
+  ()=>import("./dodoma/index.ts").then(m=>m.city),
 ] satisfies readonly CityModuleLoader[])

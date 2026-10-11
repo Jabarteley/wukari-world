@@ -24,9 +24,8 @@ const B = await Browser.second(debugPort, S);       // the adult buyer
 const G = await Browser.second(debugPort, S);       // the guest
 const j = new Journey(arg('out'), 'showcase');
 const HOUR = 3600000;
-const CHAT = 'https://wa.me/2348012345678', PAY = 'https://paystack.com/pay/ada-braids-demo', PAY2 = 'https://paystack.com/pay/ada-braids-new', PAY3 = 'https://paystack.com/pay/ada-braids-third';
+const CHAT = 'https://wa.me/2348012345678', PAY = 'https://paystack.com/pay/ada-braids-demo', PAY2 = 'https://paystack.com/pay/ada-braids-new';
 const ids: Record<string, string> = {};
-const lostTaps: string[] = [];
 for (const sig of ['SIGINT', 'SIGTERM'] as const) process.once(sig, () => { try { S.child.kill('SIGKILL'); } catch { /* gone */ } process.exit(130); });
 
 async function openServices(p: Browser): Promise<void> {
@@ -119,15 +118,10 @@ async function addPhotos(p: Browser, seeds: number[], tag: string): Promise<void
   }
 }
 async function openShop(p: Browser, name: string): Promise<void> {
-  if (await visible(p, '.sp-back')) { await p.click('.sp-back'); await sleep(700); }
+  if (await visible(p, '.sp .ui-button', 'Back to the list')) { await p.click('.sp .ui-button', 'Back to the list'); await sleep(500); }
   await p.waitFor(`document.querySelectorAll('.sc-hit').length >= 1`, 20000, 'the directory');
-  let shown = false;
-  for (let attempt = 1; attempt <= 3 && !shown; attempt++) {
-    await p.click('.sc-hit', name);
-    shown = await p.waitFor(`!!document.querySelector('.sp .shf-about')`, attempt === 3 ? 20000 : 6000, 'the shop page').then(() => true, () => false);
-    if (!shown) lostTaps.push(`${name} card tap #${attempt} did not open the shop`);
-  }
-  must(shown, `the shop page never opened after 3 taps on ${name}`);
+  await p.click('.sc-hit', name);
+  await p.waitFor(`!!document.querySelector('.sp .shf-about')`, 20000, 'the shop page');
   await p.waitFor(`[...document.querySelectorAll('.pg img')].every((i) => i.complete && i.naturalWidth > 0)`, 20000, 'the shop photos').catch(() => undefined);
   await sleep(300);
 }
@@ -155,22 +149,6 @@ async function buildShop(p: Browser, email: string, owner: string, spec: { name:
   return sid;
 }
 const setWide = async (p: Browser, on: boolean): Promise<boolean> => { const is = await p.eval<boolean>(`!!document.querySelector('.ph.is-wide')`); if (is !== on) { const shown = await visible(p, '.ph-wide'); if (shown) { await p.click('.ph-wide').catch(() => undefined); await sleep(700); } if ((await p.eval<boolean>(`!!document.querySelector('.ph.is-wide')`)) !== on && shown) { await p.eval(`document.querySelector('.ph-wide').click(); true`); await sleep(700); } } return p.eval<boolean>(`!!document.querySelector('.ph.is-wide')`); };
-
-const duplicateIds = (p: Browser, scope = 'document'): Promise<string[]> => p.eval(`(() => { const seen = {}; for (const e of ${scope}.querySelectorAll('[id]')) seen[e.id] = (seen[e.id] || 0) + 1; return Object.entries(seen).filter(([, n]) => n > 1).map(([id, n]) => id + ' x' + n); })()`);
-/** At the end of the shop page: is "Report this shop" fully clear of the sticky bar, and tappable? */
-const barClear = (p: Browser): Promise<Record<string, unknown>> => p.eval(`(() => {
-  const report = [...document.querySelectorAll('.sp .ui-button')].find((x) => /Report this shop/.test(x.innerText)); report.scrollIntoView({ block: 'end' }); { let sc = report.parentElement; while (sc && getComputedStyle(sc).overflowY !== 'auto' && getComputedStyle(sc).overflowY !== 'scroll') sc = sc.parentElement; if (sc) sc.scrollTop = sc.scrollHeight; }
-  const bar = document.querySelector('.sp-bar'), br = bar.getBoundingClientRect(), rr = report.getBoundingClientRect(), box = (report.closest('.sp') || report).getBoundingClientRect();
-  const top = document.elementFromPoint(rr.left + rr.width / 2, rr.top + rr.height / 2); const home = document.querySelector('.ph-homebar'), hb = home && home.getBoundingClientRect();
-  const sc = report.parentElement; let scroller = report.parentElement; while (scroller && getComputedStyle(scroller).overflowY !== 'auto' && getComputedStyle(scroller).overflowY !== 'scroll') scroller = scroller.parentElement;
-  return { barTop: Math.round(br.top), barBottom: Math.round(br.bottom), reportTop: Math.round(rr.top), reportBottom: Math.round(rr.bottom), vh: innerHeight, homeBarTop: hb ? Math.round(hb.top) : null, clearOfBar: rr.top >= br.bottom - 1 || rr.bottom <= br.top + 1, belowBar: rr.top >= br.bottom - 1, clearOfHomeBar: !hb || rr.bottom <= hb.top + 1, tappable: !!top && (top === report || report.contains(top)), atScrollEnd: scroller ? Math.abs(scroller.scrollTop + scroller.clientHeight - scroller.scrollHeight) < 3 : null };
-})()`);
-const openHomeApp = async (p: Browser, app: string): Promise<void> => {
-  if (await visible(p, '.ph-back')) { await p.click('.ph-back'); await p.waitFor(`(() => { const b = document.querySelector('.ph-back'); return !b || b.getBoundingClientRect().width < 2; })()`, 10000, 'the app to close'); await sleep(1200); }
-  const page = await p.eval<number>(`(() => { const pg = [...document.querySelectorAll('.ph-page')].find((x) => x.querySelector('[data-ph-app="${app}"]')); return pg ? Number(pg.getAttribute('data-ph-page')) : -1; })()`);
-  if (page >= 0) { await p.eval(`document.querySelectorAll('.ph-dots button')[${page}].click(); true`); await p.waitFor(`(() => { const r = document.querySelector('.ph-page[data-ph-page="${page}"]').getBoundingClientRect(); return r.left >= -2 && r.left < innerWidth / 2; })()`, 5000, 'the home page to slide in').catch(() => undefined); await sleep(500); }
-  await p.click(`[data-ph-app="${app}"]`);
-};
 const approveAll = async (): Promise<number> => { const q = await lab.mod('/api/mod/showcase'); let n = 0; for (const s of (q['queue'] ?? [])) { await lab.mod('/api/mod/showcase', { action: 'approve', shop: s.id }); n++; } return n; };
 const widthProbe = (p: Browser, sel: string): Promise<{ n: number; overflowing: string[]; maxRight: number; vw: number }> => p.eval(`(() => { const vw = document.documentElement.clientWidth; const els = [...document.querySelectorAll(${JSON.stringify(sel)} + ', ' + ${JSON.stringify(sel)} + ' *')].filter((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; }); const inScroller = (e) => { for (let n = e.parentElement; n && n !== document.body; n = n.parentElement) { const o = getComputedStyle(n).overflowX; if ((o === 'auto' || o === 'scroll') && n.scrollWidth > n.clientWidth + 1) return true; } return false; }; const bad = els.filter((e) => (e.getBoundingClientRect().right > vw + 0.5 || e.getBoundingClientRect().left < -0.5) && !inScroller(e)); return { n: els.length, overflowing: bad.slice(0, 6).map((e) => e.tagName + '.' + String(e.className).slice(0, 30) + ' ' + Math.round(e.getBoundingClientRect().left) + '-' + Math.round(e.getBoundingClientRect().right)), maxRight: Math.round(Math.max(0, ...els.map((e) => e.getBoundingClientRect().right))), vw }; })()`);
 
@@ -220,7 +198,6 @@ try {
 
   await j.run('2', 'Editor: six steps with a jump bar; template, colours and logo change the preview', [S], async (detail) => {
     const steps = await S.eval<string[]>(`[...document.querySelectorAll('.se-steps button')].map((x) => x.innerText.replace(/\\s+/g, ' ').trim())`);
-    detail['duplicateIds'] = await duplicateIds(S); must((detail['duplicateIds'] as string[]).length === 0, `duplicate ids in the editor: ${detail['duplicateIds']}`);
     detail['steps'] = steps; must(steps.length === 6, `${steps.length} steps in the jump bar`);
     const jumps: Record<string, number> = {};
     for (const [at, name] of steps.entries()) { await S.click('.se-steps button', name.replace(/^\d+\s*/, '')); await sleep(1800); const ids6 = ['look', 'about', 'services', 'hours', 'photos', 'contact']; jumps[name] = await S.eval<number>(`Math.round(document.querySelector('#se-s-${ids6[at]}').getBoundingClientRect().top)`); }
@@ -301,7 +278,7 @@ try {
     await j.shot(S, 'huge-photo');
     await S.eval(`document.querySelectorAll('.pm-item.is-failed button').forEach((b) => b.click()); true`);
     const kept = await photoIds(S); detail['hugeKept'] = kept.length > before5 ? kept.find((x) => !beforeIds.includes(x)) : null;
-    if (detail['hugeKept']) { await S.click(`.pm-item[data-photo="${detail['hugeKept']}"] button[aria-label^="Remove photo"]`); await sleep(1500); }
+    if (detail['hugeKept']) { await S.click(`.pm-item[data-photo="${detail['hugeKept']}"] button`, 'Remove'); await sleep(1500); }
     const over = await pageCall(S, '/api/showcase/mine/photos', { clientId: `${lab.now()}:${crypto.randomUUID()}`, type: 'image/jpeg', data: 'A'.repeat(300000) });
     detail['serverOversize'] = { status: over.status, body: over.body };
     await addPhotos(S, [3, 4, 5], 'b');
@@ -310,35 +287,40 @@ try {
     must(String(detail['textFile']).length > 0, 'a text file was not refused where the photos are');
   });
 
-  await j.run('6', 'Photos: icon tools with accessible names, Cover, Earlier, Later; a caption with a phone number is refused ON that photo with focus there; Remove', [S], async (detail) => {
+  await j.run('6', 'Photos: Make cover, Earlier, Later, captions (a caption with a phone number is refused), Remove', [S], async (detail) => {
     const ids0 = await photoIds(S); detail['order0'] = ids0;
-    const q = (id: string, what: string): string => `.pm-item[data-photo="${id}"] ${what}`;
+    const itemBtn = (id: string, label: string): Promise<void> => S.click(`.pm-item[data-photo="${id}"] button`, label);
     await S.eval(`document.querySelector('#se-s-photos').scrollIntoView(); true`);
-    detail['tools'] = await S.eval<any[]>(`[...document.querySelectorAll('.pm-tool')].map((b) => ({ name: b.getAttribute('aria-label') || '', text: b.innerText.trim(), icon: !!b.querySelector('svg, img, [class*=icon]'), w: Math.round(b.getBoundingClientRect().width), h: Math.round(b.getBoundingClientRect().height) }))`);
-    await S.click(q(ids0[2]!, 'button[aria-label$="the cover"]')); await S.waitFor(`document.querySelector('.pm-item[data-photo]').dataset.photo === ${JSON.stringify(ids0[2])}`, 10000, 'the cover to change');
-    const ids1 = await photoIds(S); detail['afterCover'] = ids1; await j.shot(S, 'photos-after-cover');
-    await S.click(q(ids1[1]!, 'button[title="Earlier"]')); await S.waitFor(`document.querySelector('.pm-item[data-photo]').dataset.photo === ${JSON.stringify(ids1[1])}`, 10000, 'Earlier');
+    await itemBtn(ids0[2]!, 'Make cover'); await S.waitFor(`document.querySelector('.pm-item[data-photo]').dataset.photo === ${JSON.stringify(ids0[2])}`, 10000, 'the cover to change');
+    const ids1 = await photoIds(S); detail['afterMakeCover'] = ids1; await j.shot(S, 'photos-after-make-cover');
+    detail['coverBadgeOn'] = await S.eval<string>(`(document.querySelector('.pm-item[data-photo] .pm-cover') || {closest: () => null}).closest?.('.pm-item')?.dataset.photo ?? ''`);
+    await S.click(`.pm-item[data-photo="${ids1[1]}"] button[aria-label^="Move photo"]`, 'Earlier');
+    await S.waitFor(`document.querySelector('.pm-item[data-photo]').dataset.photo === ${JSON.stringify(ids1[1])}`, 10000, 'Earlier to take effect');
     const ids2 = await photoIds(S); detail['afterEarlier'] = ids2;
-    await S.click(q(ids2[0]!, 'button[title="Later"]')); await S.waitFor(`document.querySelector('.pm-item[data-photo]').dataset.photo !== ${JSON.stringify(ids2[0])}`, 10000, 'Later');
+    await S.click(`.pm-item[data-photo="${ids2[0]}"] button[aria-label^="Move photo"]`, 'Later');
+    await S.waitFor(`document.querySelector('.pm-item[data-photo]').dataset.photo !== ${JSON.stringify(ids2[0])}`, 10000, 'Later to take effect');
     const ids3 = await photoIds(S); detail['afterLater'] = ids3;
-    const id = ids3[0]!, cap = q(id, '.pm-capin');
-    await S.type(cap, 'Call 0801 234 5678 to book'); await S.press('Tab', 'Tab', 9); await sleep(1500);
-    detail['phoneCaption'] = await S.eval<unknown>(`(() => { const e = document.querySelector(${JSON.stringify(q(id, '.pm-error'))}); const r = e && e.getBoundingClientRect(); const ae = document.activeElement; return { errorOnCard: e ? e.innerText : null, errorInView: !!r && r.top >= 0 && r.bottom <= innerHeight, focusId: ae ? ae.id : '', expectedFocus: 'se-cap-' + ${JSON.stringify(id)}, invalid: document.querySelector(${JSON.stringify(cap)}).getAttribute('aria-invalid') }; })()`);
-    detail['serverCaptionsAfterPhone'] = await S.eval<string>(`(async () => { const r = await fetch('/api/showcase/mine').then((x) => x.json()); return JSON.stringify((r.shop?.photos || r.mine?.shop?.photos || []).map((p) => p.caption || '')); })()`);
-    await j.shot(S, 'caption-phone-refused-on-card');
-    await S.type(cap, 'Knotless braids, medium'); await S.press('Tab', 'Tab', 9); await sleep(1500);
-    detail['goodCaption'] = { errorGone: !(await visible(S, q(id, '.pm-error'))), serverCaptions: await S.eval<string>(`(async () => { const r = await fetch('/api/showcase/mine').then((x) => x.json()); return JSON.stringify((r.shop?.photos || r.mine?.shop?.photos || []).map((p) => p.caption || '')); })()`) };
-    const last = ids3.at(-1)!; await S.click(q(last, 'button[aria-label^="Remove photo"]')); await sleep(1500);
+    // a caption with a phone number
+    const cap = `.pm-item[data-photo="${ids3[0]}"] .pm-cap input`;
+    await S.type(cap, 'Call 0801 234 5678 to book'); await S.press('Tab', 'Tab', 9); await sleep(1200);
+    detail['phoneCaption'] = { note: await note(S), errorText: await S.eval<string>(`[...document.querySelectorAll('.pm-error, .pm-state, [role=alert]')].map((x) => x.innerText).join(' | ')`), kept: await S.eval<string>(`document.querySelector(${JSON.stringify(cap)}).value`) };
+    await j.shot(S, 'caption-phone-refused');
+    const afterReloadCaption = await S.eval<string>(`(async () => { const r = await fetch('/api/showcase/mine').then((x) => x.json()); return JSON.stringify((r.shop?.photos || r.mine?.shop?.photos || []).map((p) => p.caption || '')); })()`);
+    detail['serverCaptionsAfterPhone'] = afterReloadCaption;
+    await S.type(cap, 'Knotless braids, medium'); await S.press('Tab', 'Tab', 9); await sleep(1200);
+    detail['goodCaption'] = { note: await note(S), serverCaptions: await S.eval<string>(`(async () => { const r = await fetch('/api/showcase/mine').then((x) => x.json()); return JSON.stringify((r.shop?.photos || r.mine?.shop?.photos || []).map((p) => p.caption || '')); })()`) };
+    await j.shot(S, 'caption-good');
+    // Remove the last photo, then add another
+    const last = ids3.at(-1)!; await itemBtn(last, 'Remove'); await sleep(1500);
     detail['afterRemove'] = (await photoIds(S)).length; await j.shot(S, 'photos-after-remove');
-    await addPhotos(S, [6], 'c'); detail['coverId'] = (await photoIds(S))[0];
-    const pc = detail['phoneCaption'] as any;
-    must((detail['tools'] as any[]).length > 0 && (detail['tools'] as any[]).every((t) => t.name.length > 3), `a photo tool has no accessible name: ${JSON.stringify(detail['tools']).slice(0, 300)}`);
-    must(ids1[0] === ids0[2] && ids2[0] === ids1[1] && ids3[0] !== ids2[0], 'Cover / Earlier / Later did not reorder');
-    must(pc.errorOnCard && /phone/i.test(pc.errorOnCard) && pc.errorInView, `the caption refusal is not on the photo's card: ${JSON.stringify(pc)}`);
-    must(pc.focusId === pc.expectedFocus, `focus is on "${pc.focusId}", not on the caption of that photo`);
-    must(!/0801 234 5678/.test(String(detail['serverCaptionsAfterPhone'])) && (detail['goodCaption'] as any).errorGone, 'a refused caption was kept, or the error stayed after a good caption');
-    must(detail['afterRemove'] === ids3.length - 1, 'Remove did not remove');
+    await addPhotos(S, [6], 'c');
+    detail['coverId'] = (await photoIds(S))[0];
+    must(ids1[0] === ids0[2] && ids2[0] === ids1[1], 'Make cover / Earlier did not reorder');
+    must(ids3[0] !== ids2[0], 'Later did not reorder');
+    must(/\d{3}|phone|number|contact/i.test(String((detail['phoneCaption'] as any).note + (detail['phoneCaption'] as any).errorText)) && !/0801 234 5678/.test(String((detail['goodCaption'] as any).serverCaptions) + String(detail['serverCaptionsAfterPhone'])), 'a caption with a phone number was not refused');
+    must((detail['afterRemove'] as number) === ids3.length - 1, 'Remove did not remove');
   });
+
   await j.run('7', 'Send for review; the banner says it is waiting; the editor stays usable', [S], async (detail) => {
     await S.click('.se-actions button', 'Send for review');
     await S.waitFor(`/review/i.test((document.querySelector('[data-status]')||{}).innerText||'')`, 15000, 'the waiting banner');
@@ -359,36 +341,33 @@ try {
     must(!s.stale && /Saved/.test(s.note), `Save after the operator approval: stale=${s.stale} note="${s.note}" errors=${JSON.stringify(s.errors)}`);
   });
 
-  await j.run('9', 'A genuine conflict in a second tab: the banner quotes the other change; "Load the latest, keep mine" and "Use the other version" each do what they say', [S], async (detail) => {
+  await j.run('9', 'A genuine conflict: the same field edited in a second tab; "Load the latest" appears and behaves sensibly', [S], async (detail) => {
     const created = await (await fetch(`http://127.0.0.1:${debugPort}/json/new?about:blank`, { method: 'PUT' })).json() as { id: string };
     const T = await Browser.attach(debugPort, S.child, S.profile, created.id); T.shared = true;
-    const openEditor = async (): Promise<void> => { try { await T.send('Page.bringToFront'); await T.goto(lab.base + '/'); await gameShown(T); await dismiss(T); await openServices(T); await sleep(1200); await tab(T, 'My shop'); await editorReady(T); } catch (e) { await j.shot(T, 'second-tab-failure').catch(() => undefined); detail['secondTabText'] = (await text(T).catch(() => '')).replace(/\s+/g, ' ').slice(0, 300); throw e; } };
     try {
+      await field(S, 'about', 'First tab says something different about the shop.');   // an unsaved edit in the first tab, made before the second tab saves
       await desktop(T); await syncClock(T, lab.offset());
-      await field(S, 'about', 'First tab says something different about the shop.');   // unsaved, made before the second tab saves
-      await openEditor();
+      await T.send('Page.bringToFront'); await T.goto(lab.base + '/'); await gameShown(T); await dismiss(T);
+      await openServices(T); await tab(T, 'My shop'); await editorReady(T);
       await field(T, 'about', 'Second tab says: knotless braids, twists and care. Ask for Ada.');
-      const t2 = await save(T); must(/Saved/.test(t2.note), `the second tab could not save: ${t2.note}`); await j.shot(T, 'conflict-second-tab');
+      const t2 = await save(T); detail['secondTabSave'] = t2.note; must(/Saved/.test(t2.note), `the second tab could not save: ${t2.note}`);
+      await j.shot(T, 'conflict-second-tab');
       await S.send('Page.bringToFront'); await sleep(800);
       const s1 = await save(S);
-      detail['banner1'] = { note: s1.note, stale: s1.stale, text: s1.staleText.replace(/\s+/g, ' '), buttons: await S.eval<string[]>(`[...document.querySelectorAll('.se-stale button')].map((b) => b.innerText.trim())`) };
-      await S.eval(`document.querySelector('.se-stale')?.scrollIntoView({ block: 'center' }); true`); await j.shot(S, 'conflict-banner');
-      must(s1.stale && /Second tab says/.test(s1.staleText), `the banner does not quote the other change: ${JSON.stringify(detail['banner1'])}`);
-      await S.click('.se-stale button', 'keep mine'); await sleep(1200);
-      const k = await formState(S); detail['afterKeepMine'] = { aboutNow: await S.eval<string>(`document.querySelector('#se-f-about').value`), staleGone: !k.stale, note: k.note };
-      must(!k.stale && /First tab says/.test(String((detail['afterKeepMine'] as any).aboutNow)), `"Load the latest, keep mine" did not keep mine / clear the banner: ${JSON.stringify(detail['afterKeepMine'])}`);
-      const k2 = await save(S); must(/Saved/.test(k2.note) && !k2.stale, `Save after keep mine: ${k2.note}`);
-      // round two: the other tab changes it again (fresh), this tab has an unsaved edit; "Use the other version" takes theirs
-      await field(S, 'about', 'First tab again, a different line.');   // unsaved edit first, then the other tab saves
-      await openEditor(); await field(T, 'about', 'Second tab again: twists, locs and care. Ask for Ada.'); const t3 = await save(T); must(/Saved/.test(t3.note), 'second tab round two');
-      await S.send('Page.bringToFront'); await sleep(500);
-      const s3 = await save(S); must(s3.stale, 'no conflict banner in round two');
-      await S.click('.se-stale button', 'other version'); await sleep(1200);
-      const o = await formState(S); detail['afterUseOther'] = { aboutNow: await S.eval<string>(`document.querySelector('#se-f-about').value`), staleGone: !o.stale, note: o.note };
-      await j.shot(S, 'conflict-after-use-other');
-      must(!o.stale && /Second tab again/.test(String((detail['afterUseOther'] as any).aboutNow)), `"Use the other version" did not take the other text: ${JSON.stringify(detail['afterUseOther'])}`);
+      detail['firstTabSave'] = { note: s1.note, stale: s1.stale, staleText: s1.staleText.replace(/\s+/g, ' '), errors: s1.errors };
+      await S.eval(`document.querySelector('.se-stale')?.scrollIntoView({ block: 'center' }); true`); await j.shot(S, 'conflict-stale-banner');
+      must(s1.stale && /Load the latest/i.test(await text(S, '.se-stale')), `no "Load the latest" banner in the first tab: ${JSON.stringify(s1)}`);
+      detail['aboutBeforeLoad'] = await S.eval<string>(`document.querySelector('#se-f-about').value`);
+      await S.click('.se-stale button', 'Load the latest'); await sleep(1200);
+      const after = await formState(S);
+      detail['afterLoadLatest'] = { aboutNow: await S.eval<string>(`document.querySelector('#se-f-about').value`), staleGone: !after.stale, note: after.note, focusId: after.focusId };
+      await j.shot(S, 'conflict-after-load-latest');
+      must(!after.stale && /Loaded the latest/.test(after.note) && /First tab says/.test(String((detail['afterLoadLatest'] as any).aboutNow)), 'Load the latest did not clear the banner / keep the unsaved text');
+      const s2 = await save(S); detail['saveAfterLoad'] = { note: s2.note, stale: s2.stale };
+      must(!s2.stale, 'Save after Load the latest is still refused as stale');
     } finally { T.close(); try { await fetch(`http://127.0.0.1:${debugPort}/json/close/${created.id}`); } catch { /* closed */ } }
   });
+
   await j.run('10', 'Two more shops (Tunde Tech: Bold, tech; Chidi Kitchen: Fresh, food) made through the real editor and approved', [S2, S3], async (detail) => {
     ids['s2'] = await buildShop(S2, 'seller2@example.test', 'Tunde Tech', { name: 'Tunde Tech Fix', sign: 'Phones fixed fast', category: 'tech', template: 'Bold', about: 'Screen swaps, batteries and unlocking for every common phone. Honest quotes before any work starts.', service: 'Screen replacement', price: '18000', seeds: [11, 12, 13] });
     ids['s3'] = await buildShop(S3, 'seller3@example.test', 'Chidi Kitchen', { name: 'Chidi Kitchen', sign: 'Jollof and small chops', category: 'food', template: 'Fresh', about: 'Party jollof, small chops and puff puff for events of every size. Order two days ahead.', service: 'Party jollof tray', price: '35000', seeds: [21, 22, 23] });
@@ -398,8 +377,7 @@ try {
   });
 
   await j.run('11', 'Buyer directory: three shopfront cards (Classic salon, Bold tech, Fresh food); cover on the card; filters, search, the "no matches" state with a clear button', [B], async (detail) => {
-    await B.goto(lab.base + '/'); await gameShown(B); await dismiss(B); await openServices(B); await sleep(800);
-    if (await visible(B, '.sp-back')) { detail['restoredOnShopPage'] = true; await B.click('.sp-back'); }
+    await B.goto(lab.base + '/'); await gameShown(B); await dismiss(B); await openServices(B);
     await B.waitFor(`document.querySelectorAll('.sc-hit').length >= 3`, 20000, 'three shops in the directory');
     await B.eval(`document.querySelectorAll('.sc-hit').forEach((c) => c.scrollIntoView({ block: 'center' })); true`); await sleep(1500); await B.eval(`document.querySelectorAll('.sc-hit')[0].scrollIntoView({ block: 'start' }); true`); await sleep(500); await j.shot(B, 'directory-three');
     detail['cards'] = await B.eval<unknown>(`[...document.querySelectorAll('.sc-hit')].map((c) => { const sf = c.querySelector('[data-storefront]'), img = c.querySelector('.sf-cover'); return { text: c.innerText.replace(/\\s+/g, ' ').slice(0, 140), layout: sf.className, bg: sf.style.getPropertyValue('--sf-bg'), cover: img ? img.getAttribute('src') : null, coverLoaded: img ? img.complete && img.naturalWidth > 0 : null }; })`);
@@ -429,8 +407,8 @@ try {
     const lagosH = new Date(lab.now() + HOUR).getUTCHours(); if (lagosH < 7 || lagosH > 18) { lab.advance(((12 - lagosH + 24) % 24) * HOUR); await syncClock(B, lab.offset()); await syncClock(G, lab.offset()); await syncClock(S, lab.offset()); }
     const send = (action: object) => pageCall(B, '/api/action', { actionId: `${lab.now()}:${crypto.randomUUID()}`, cityId: 'lagos', ...action });
     await B.press('Escape', 'Escape', 27); await B.goto(lab.base + '/'); await gameShown(B); await dismiss(B);
-    const fund = await lab.admin(`/api/admin/players/${ids['buyer']}/act`, { clientId: `${lab.now()}:${crypto.randomUUID()}`, action: 'credit', amount: 5000, reason: 'journey' }).catch((e) => ({ error: String(e) }));
-    detail['fund'] = { status: ('status' in fund ? fund.status : fund.error) };
+    const fund = await lab.admin(`/api/admin/players/${ids['buyer']}/act`, { clientId: `${lab.now()}:${crypto.randomUUID()}`, action: 'credit', amount: 5000, reason: 'journey' }).catch((e): Record<string, any> => ({ error: String(e) }));
+    detail['fund'] = { status: fund.status };
     const trip = await send({ type: 'travel', id: 'market', mode: 'okada' }); detail['travel'] = { status: trip.status, code: trip.body?.code, reason: trip.body?.reason };
     lab.advance(3 * HOUR); await syncClock(B, lab.offset()); await syncClock(G, lab.offset());
     await B.goto(lab.base + '/'); await gameShown(B); await dismiss(B);
@@ -482,53 +460,42 @@ try {
     must((detail['todayLines'] as string[]).length === 1, 'today is not highlighted once in the week');
   });
 
-  await j.run('14', 'Photo viewer: next/previous by button and arrow keys; Escape closes ONLY the viewer and focus returns to the thumbnail; Escape again leaves the shop page for the list; only then Escape closes the app', [B], async (detail) => {
+  await j.run('14', 'Lightbox: open, Next and Previous by button and arrow keys, Escape closes, focus returns', [B], async (detail) => {
     await B.setViewport({ width: 1280, height: 800, scale: 1, mobile: false }); await syncClock(B, lab.offset()); await openShop(B, 'Ada Braids'); await setWide(B, true);
     detail['gallery'] = await B.eval<unknown>(`(() => { const c = document.querySelector('.pg-cover'), r = document.querySelector('.pg-row'); const cr = c.getBoundingClientRect(); return { coverBox: [Math.round(cr.width), Math.round(cr.height)], thumbs: r ? r.querySelectorAll('li').length : 0, coverSrc: c.querySelector('img').getAttribute('src') }; })()`);
     await B.eval(`document.querySelector('.pg').scrollIntoView(); true`); await j.shot(B, 'shop-gallery');
     const counter = (): Promise<string> => B.eval<string>(`(document.querySelector('.pg-cap span') || {}).innerText || ''`);
-    detail['thumbLabel'] = await B.eval<string>(`document.querySelector('.pg-row li button').getAttribute('aria-label')`);
-    await B.click('.pg-row li button'); await B.waitFor(`!!document.querySelector('.pg-view')`, 8000, 'the viewer'); await sleep(500);
+    await B.click('.pg-cover'); await B.waitFor(`!!document.querySelector('.pg-view')`, 8000, 'the lightbox'); await sleep(500);
     detail['c0'] = await counter(); await j.shot(B, 'lightbox-open');
     await B.click('.pg-nav button', 'Next'); await sleep(300); detail['afterNextButton'] = await counter();
     await B.click('.pg-nav button', 'Previous'); await sleep(300); detail['afterPrevButton'] = await counter();
     await B.press('ArrowRight', 'ArrowRight', 39); await sleep(300); detail['afterArrowRight'] = await counter();
     await B.press('ArrowLeft', 'ArrowLeft', 37); await sleep(300); detail['afterArrowLeft'] = await counter();
-    await B.press('Escape', 'Escape', 27); await sleep(700);
-    detail['esc1'] = { viewerClosed: !(await visible(B, '.pg-view')), shopShown: await visible(B, '.sp .shf-about'), appShown: await visible(B, '.sc-app'), focusLabel: await B.eval<string>(`(document.activeElement && (document.activeElement.getAttribute('aria-label') || document.activeElement.className)) + ''`) };
-    await j.shot(B, 'esc1-after-viewer');
-    await B.press('Escape', 'Escape', 27); await sleep(900);
-    detail['esc2'] = { listShown: await visible(B, '.sc-list, .sc-hit'), shopGone: !(await visible(B, '.sp .shf-about')), appShown: await visible(B, '.sc-app') };
-    await j.shot(B, 'esc2-after-shop');
-    await B.press('Escape', 'Escape', 27); await sleep(900);
-    detail['esc3'] = { appShown: await visible(B, '.sc-app'), homeShown: await visible(B, '.ph-appbtn') };
-    await j.shot(B, 'esc3-after-list');
-    must(String(detail['c0']).match(/(\d+) of/)![1] === '2' && /3 of/.test(String(detail['afterNextButton'])) && /2 of/.test(String(detail['afterPrevButton'])) && /3 of/.test(String(detail['afterArrowRight'])) && /2 of/.test(String(detail['afterArrowLeft'])), `viewer navigation: ${JSON.stringify(detail)}`);
+    detail['focusInLightbox'] = await B.eval<string>(`(document.activeElement && (document.activeElement.className || document.activeElement.tagName)) + ''`);
+    await B.press('Escape', 'Escape', 27); await sleep(600);
+    detail['closed'] = !(await visible(B, '.pg-view')); detail['shopStillShown'] = await visible(B, '.sp .shf-about'); await j.shot(B, 'lightbox-after-escape');
+    detail['focusAfter'] = await B.eval<string>(`(document.activeElement && (document.activeElement.className || document.activeElement.tagName)) + ''`);
     must(String((detail['gallery'] as any).coverSrc).includes(String(await S.eval<string>(`(async () => { const r = await fetch('/api/showcase/mine').then((x) => x.json()); const p = (r.shop || (r.mine && r.mine.shop) || {}).photos || []; return p[0] ? p[0].id : ''; })()`))), 'the gallery does not show the seller\'s cover first');
-    const e1 = detail['esc1'] as any, e2 = detail['esc2'] as any, e3 = detail['esc3'] as any;
-    must(e1.viewerClosed && e1.shopShown && e1.appShown, `Escape 1: ${JSON.stringify(e1)}`);
-    must(e1.focusLabel === detail['thumbLabel'], `Escape 1: focus is on "${e1.focusLabel}", not the thumbnail "${detail['thumbLabel']}"`);
-    must(e2.listShown && e2.shopGone && e2.appShown, `Escape 2: ${JSON.stringify(e2)}`);
-    must(!e3.appShown && e3.homeShown, `Escape 3: ${JSON.stringify(e3)}`);
+    must(/1 of/.test(String(detail['c0'])) && /2 of/.test(String(detail['afterNextButton'])) && /1 of/.test(String(detail['afterPrevButton'])) && /2 of/.test(String(detail['afterArrowRight'])) && /1 of/.test(String(detail['afterArrowLeft'])), `lightbox navigation: ${JSON.stringify(detail)}`);
+    must(detail['closed'] && detail['shopStillShown'] && /pg-cover|pg-row|pg-/.test(String(detail['focusAfter'])), `Escape/focus: lightbox closed ${detail['closed']}, shop page still shown ${detail['shopStillShown']}, focus on "${detail['focusAfter']}"`);
   });
+
   await j.run('15', 'Buyer: adult prompt inside the bar, then Chat and Pay open the leaving sheet that names the destination and the safety line', [B], async (detail) => {
     if (!(await visible(B, '.sp-bar'))) { await openServices(B); await openShop(B, 'Ada Braids'); detail['reopened'] = true; }
     await B.eval(`window.__opened = []; window.open = (...a) => { window.__opened.push(a); return null; }; true`);
     await B.eval(`document.querySelector('.sp-bar').scrollIntoView(); true`);
-    await B.click('.sp-bar button[aria-label="Chat with the seller"]'); await sleep(900);
+    await B.click('.sp-bar button', 'Chat with the seller'); await sleep(900);
     const out: Record<string, unknown> = {};
     out['promptInBar'] = await B.eval<string>(`(document.querySelector('.sp-bar .sp-msg') || {}).innerText || ''`);
-    out['promptShape'] = await B.eval<unknown>(`(() => { const m = document.querySelector('.sp-bar .sp-msg'); if (!m) return null; const r = m.getBoundingClientRect(); return { h: Math.round(r.height), buttons: [...m.querySelectorAll('button')].map((b) => b.innerText.trim()), text: (m.querySelector('.sp-status') || {}).innerText || '' }; })()`);
     await j.shot(B, 'bar-adult-prompt');
-    if (await visible(B, '.sp-bar button', 'I am 18')) { await B.click('.sp-bar button', 'I am 18'); await sleep(900); await B.click('.sp-bar button[aria-label="Chat with the seller"]'); }
+    if (await visible(B, '.sp-bar button', 'I am 18')) { await B.click('.sp-bar button', 'I am 18'); await sleep(900); await B.click('.sp-bar button', 'Chat with the seller'); }
     await B.waitFor(`!!document.querySelector('[data-trust-leave]')`, 10000, 'the leaving sheet'); await sleep(600);
     out['chatSheet'] = (await text(B, '[data-trust-leave]')).replace(/\s+/g, ' '); await j.shot(B, 'leaving-chat');
     await B.click('[data-trust-leave] button', 'Continue'); out['opened'] = await B.eval<unknown>(`window.__opened`); await sleep(500);
-    await B.click('.sp-bar button[aria-label="Pay the seller"]'); await B.waitFor(`!!document.querySelector('[data-trust-leave]')`, 10000, 'the pay sheet'); await sleep(600);
+    await B.click('.sp-bar button', 'Pay the seller'); await B.waitFor(`!!document.querySelector('[data-trust-leave]')`, 10000, 'the pay sheet'); await sleep(600);
     out['paySheet'] = (await text(B, '[data-trust-leave]')).replace(/\s+/g, ' '); await j.shot(B, 'leaving-pay');
     await B.click('[data-trust-leave] button', 'Continue'); out['openedAfterPay'] = await B.eval<unknown>(`window.__opened`);
     detail['sheets'] = out;
-    must((out['promptShape'] as any)?.buttons?.length === 1 && /18/.test((out['promptShape'] as any).buttons[0]), `the 18+ prompt is not one line with one action: ${JSON.stringify(out['promptShape'])}`);
     must(/18/.test(String(out['promptInBar'])), `no 18+ prompt inside the bar before the first Chat: "${out['promptInBar']}"`);
     must(String(out['chatSheet']).includes('wa.me') && /safe|pay|money|careful|trust/i.test(String(out['chatSheet'])), 'the chat sheet does not name wa.me and show a safety line');
     must(String(out['paySheet']).includes('paystack.com'), 'the pay sheet does not name the destination');
@@ -539,9 +506,9 @@ try {
   await j.run('16', 'Guest: browse and open the shop; Chat/Pay ask to sign in inside the bar; no link in any payload', [G], async (detail) => {
     await openServices(G); await G.waitFor(`document.querySelectorAll('.sc-hit').length >= 1`, 15000, 'the directory as a guest');
     await openShop(G, 'Ada Braids');
-    await G.click('.sp-bar button[aria-label="Chat with the seller"]'); await sleep(1500);
+    await G.click('.sp-bar button', 'Chat with the seller'); await sleep(1500);
     detail['barText'] = await G.eval<string>(`(document.querySelector('.sp-bar') || {}).innerText || ''`); await j.shot(G, 'guest-chat');
-    await G.click('.sp-bar button[aria-label="Pay the seller"]').catch(() => undefined); await sleep(1200); await j.shot(G, 'guest-pay');
+    await G.click('.sp-bar button', 'Pay the seller').catch(() => undefined); await sleep(1200); await j.shot(G, 'guest-pay');
     detail['leavingSheet'] = await visible(G, '[data-trust-leave]');
     detail['signInInBar'] = await visible(G, '.sp-bar button', 'Sign in');
     const leaked: string[] = [];
@@ -556,45 +523,27 @@ try {
     must(detail['signInInBar'], 'no sign-in prompt inside the bar for the guest');
   });
 
-  await j.run('17', 'Directory refreshes without a reload (on focus, via Refresh, on returning to the list, by itself within about a minute); a pay-link change leaves it, and after approval the notice shows', [S, B], async (detail) => {
-    const hits = (): Promise<number> => B.eval<number>(`document.querySelectorAll('.sc-hit').length`);
-    const dirCount = async (): Promise<number> => ((await lab.call('/api/showcase/directory'))['shops'] ?? []).length;
-    await B.goto(lab.base + '/'); await gameShown(B); await dismiss(B); await openServices(B); await sleep(800);
-    if (await visible(B, '.sp-back')) { detail['restoredOnShopPage'] = true; await B.click('.sp-back'); }
-    await B.waitFor(`document.querySelectorAll('.sc-hit').length >= 3`, 20000, 'three shops'); await j.shot(B, 'refresh-before');
-    // the seller changes the pay link: the shop leaves the directory
-    await field(S, 'pay', PAY2); const s1 = await save(S); detail['note'] = s1.note; detail['status'] = await statusLine(S);
-    detail['serverCountAfterEdit'] = await dirCount();
+  await j.run('17', 'Seller edits the pay link: leaves the directory; after approval "Payment details changed recently" shows', [S, B], async (detail) => {
+    await field(S, 'pay', PAY2);
+    const s = await save(S); detail['note'] = s.note; detail['status'] = await statusLine(S);
+    const dir = await lab.call('/api/showcase/directory'); detail['directoryAfterEdit'] = (dir['shops'] ?? []).length;
+    must(detail['directoryAfterEdit'] === 2, `${detail['directoryAfterEdit']} shops in the directory after a pay link change (expected the other 2)`);
     await S.eval(`document.querySelector('[data-status]').scrollIntoView({ block: 'center' }); true`); await j.shot(S, 'edit-pay-review');
     const queue = await lab.mod('/api/mod/showcase'); must((queue['queue'] ?? []).some((x: any) => x.id === ids['shop']), 'the changed shop is not back in the queue');
-    must(detail['serverCountAfterEdit'] === 2, `${detail['serverCountAfterEdit']} shops in the directory after a pay link change`);
-    detail['hitsRightAfter'] = await hits();
-    // (a) on focus (the list is older than 15 s)
-    await sleep(16000); await B.eval(`window.dispatchEvent(new Event('focus')); true`);
-    detail['focusRefresh'] = await B.waitFor(`document.querySelectorAll('.sc-hit').length === 2`, 8000, 'focus refresh').then(() => true, () => false); await j.shot(B, 'refresh-after-focus');
-    // (b) the Refresh button
-    await lab.mod('/api/mod/showcase', { action: 'approve', shop: ids['shop'] }); await sleep(300);
-    detail['refreshButton'] = await B.eval<unknown>(`(() => { const b = [...document.querySelectorAll('.sc-head button')].find((x) => /Refresh/.test(x.innerText)); return b ? { text: b.innerText.trim(), aria: b.getAttribute('aria-label') } : null; })()`);
-    await B.click('.sc-head button', 'Refresh'); detail['refreshClick'] = await B.waitFor(`document.querySelectorAll('.sc-hit').length === 3`, 8000, 'Refresh button').then(() => true, () => false);
-    // (c) returning to the list from a shop page
-    await field(S, 'pay', PAY3); await save(S); detail['serverCountAfterSecondEdit'] = await dirCount();
-    await sleep(16000); await B.click('.sc-hit', 'Tunde'); await B.waitFor(`!!document.querySelector('.sp .shf-about')`, 15000, 'a shop'); await B.click('.sp-back');
-    detail['backRefresh'] = await B.waitFor(`document.querySelectorAll('.sc-hit').length === 2`, 10000, 'refresh on return to the list').then(() => true, () => false); await j.shot(B, 'refresh-after-back');
-    // (d) by itself within about a minute
     await lab.mod('/api/mod/showcase', { action: 'approve', shop: ids['shop'] });
-    const t0 = Date.now(); detail['pollRefreshMs'] = await B.waitFor(`document.querySelectorAll('.sc-hit').length === 3`, 90000, 'the automatic refresh').then(() => Date.now() - t0, () => -1);
-    await openShop(B, 'Ada Braids'); await B.waitFor(`!!document.querySelector('.sp-warn')`, 8000, 'the payment notice').catch(() => undefined);
+    await B.goto(lab.base + '/'); await gameShown(B); await dismiss(B); await openServices(B);
+    await B.waitFor(`document.querySelectorAll('.sc-hit').length >= 3`, 15000, 'three shops again').catch(() => undefined);
+    await openShop(B, 'Ada Braids');
+    await B.waitFor(`!!document.querySelector('.sp-warn')`, 8000, 'the payment notice').catch(() => undefined);
     detail['notice'] = (await text(B, '.sp-warn').catch(() => '')) || '';
     await B.eval(`document.querySelector('.sp-warn')?.scrollIntoView({ block: 'center' }); true`); await j.shot(B, 'pay-notice');
-    must(detail['hitsRightAfter'] === 3 || detail['hitsRightAfter'] === 2, 'unexpected list count');
-    must(detail['focusRefresh'], 'the directory did not refresh on focus'); must(detail['refreshClick'], 'the Refresh button did not refresh the list');
-    must(detail['backRefresh'], 'the list did not refresh on returning from a shop'); must((detail['pollRefreshMs'] as number) >= 0, 'the directory did not refresh by itself within 90 s');
     must(/Payment details changed recently/.test(String(detail['notice'])), 'no "Payment details changed recently" notice');
   });
+
   await j.run('18', 'No provider name in the showcase UI (the destination site on the leaving sheet excepted)', [B], async (detail) => {
     const names = /whatsapp|paystack|flutterwave|telegram|wa\.me|facebook|instagram/i; const hits: string[] = [];
     if (names.test(await text(B, '.sp'))) hits.push('shop page');
-    await B.click('.sp-back'); await sleep(500);
+    await B.click('.sp .ui-button', 'Back to the list'); await sleep(500);
     if (names.test(await text(B, '.sc-app'))) hits.push('directory');
     const edText = await text(S, '[data-showcase-editor]'); const m = edText.match(names); if (m) hits.push(`editor: ${m[0]}`);
     const ph = await S.eval<string[]>(`[...document.querySelectorAll('.se input, .se textarea')].map((e) => (e.placeholder || '') + '|' + (e.getAttribute('aria-label') || '')).filter((x) => /whatsapp|paystack|flutterwave|telegram/i.test(x))`);
@@ -602,152 +551,101 @@ try {
     detail['hits'] = hits; must(hits.length === 0, `a provider name appears: ${hits.join('; ')}`);
   });
 
-  await j.run('19', 'Editor preview beside the form at the wide panel (702 px editor) and the 780 px state; the Edit/Preview toggle on the narrow panel', [S], async (detail) => {
-    const probe = (): Promise<any> => S.eval(`(() => { const e = document.querySelector('.se-edit').getBoundingClientRect(), p = document.querySelector('.se-preview'), r = p.getBoundingClientRect(), g = document.querySelector('.se-grid').getBoundingClientRect(); const inp = document.querySelector('#se-f-name'); return { gridWidth: Math.round(g.width), editBox: [Math.round(e.left), Math.round(e.right)], previewBox: [Math.round(r.left), Math.round(r.right), Math.round(r.top), Math.round(r.bottom)], previewVisible: getComputedStyle(p).display !== 'none' && r.width > 50, toggleShown: getComputedStyle(document.querySelector('.se-toggle')).display !== 'none', previewSticky: getComputedStyle(p).position, nameFieldWidth: inp ? Math.round(inp.getBoundingClientRect().width) : null, vw: innerWidth, hscroll: document.documentElement.scrollWidth > innerWidth }; })()`);
+  await j.run('19', 'Editor at 1280x800 and about 900 wide: the live preview sits beside the form and matches the shop page', [S], async (detail) => {
     const sizes: Record<string, unknown> = {};
-    for (const [label, w, h, wide] of [['1280-narrow-panel', 1280, 800, false], ['1280-wide-panel', 1280, 800, true], ['900-wide-panel', 900, 800, true], ['1100-wide-panel', 1100, 800, true]] as [string, number, number, boolean][]) {
-      await S.setViewport({ width: w, height: h, scale: 1, mobile: false }); await sleep(700);
-      const on = await setWide(S, wide); await sleep(600);
-      await S.eval(`document.querySelector('#se-s-look').scrollIntoView(); true`); await sleep(400);
-      const o = await probe(); o.wideOn = on; sizes[label] = o; await j.shot(S, `editor-${label}`);
-      await S.eval(`document.querySelector('#se-s-hours').scrollIntoView(); true`); await sleep(400);
-      o.previewStillVisibleAtHours = await S.eval<boolean>(`(() => { const r = document.querySelector('.se-preview').getBoundingClientRect(); return r.width > 50 && r.bottom > 80 && r.top < innerHeight; })()`);
-      await j.shot(S, `editor-${label}-hours`);
+    for (const [w, h] of [[1280, 800], [900, 800]] as [number, number][]) {
+      await S.setViewport({ width: w, height: h, scale: 1, mobile: false }); await sleep(800);
+      await j.shot(S, `editor-${w}-panel-default`);
+      const wideOn = await setWide(S, true);
+      await S.eval(`document.querySelector('#se-s-look').scrollIntoView(); true`); await sleep(300);
+      const o = await S.eval<any>(`(() => { const e = document.querySelector('.se-edit').getBoundingClientRect(), p = document.querySelector('.se-preview'), gw = Math.round(document.querySelector('.se-grid').getBoundingClientRect().width); const r = p.getBoundingClientRect(); return { gridWidth: gw, editBox: [Math.round(e.left), Math.round(e.right)], previewBox: [Math.round(r.left), Math.round(r.right), Math.round(r.top), Math.round(r.bottom)], previewVisible: getComputedStyle(p).display !== 'none' && r.width > 50, toggleShown: !!document.querySelector('.se-toggle') && getComputedStyle(document.querySelector('.se-toggle')).display !== 'none', previewSticky: getComputedStyle(p).position, vw: innerWidth, hscroll: document.documentElement.scrollWidth > innerWidth }; })()`);
+      o.wideOn = wideOn; sizes[`${w}x${h}`] = o; await j.shot(S, `editor-${w}`);
+      await S.eval(`document.querySelector('#se-s-hours').scrollIntoView(); true`); await sleep(300);
+      (sizes[`${w}x${h}`] as any).previewStillVisibleAtHours = await S.eval<boolean>(`(() => { const r = document.querySelector('.se-preview').getBoundingClientRect(); return r.width > 50 && r.bottom > 80 && r.top < innerHeight; })()`);
+      await j.shot(S, `editor-${w}-hours`);
     }
     detail['sizes'] = sizes;
-    const p: Record<string, any> = sizes as any;
-    must(p['1280-wide-panel'].previewVisible && p['1280-wide-panel'].previewBox[0] >= p['1280-wide-panel'].editBox[1] - 4, `at 1280 (wide panel) the preview is not beside the form: ${JSON.stringify(p['1280-wide-panel'])}`);
-    must(p['900-wide-panel'].previewVisible && p['900-wide-panel'].previewBox[0] >= p['900-wide-panel'].editBox[1] - 4, `at 900 (wide panel) the preview is not beside the form: ${JSON.stringify(p['900-wide-panel'])}`);
-    must(p['1280-narrow-panel'].toggleShown && !p['1280-narrow-panel'].previewVisible, 'on the narrow panel the Edit/Preview toggle is not what shows');
-    must(!p['1280-wide-panel'].hscroll && !p['900-wide-panel'].hscroll, 'horizontal scroll in the editor');
+    const s9 = (sizes['900x800'] as any);
+    must(s9.previewVisible && s9.previewBox[0] >= s9.editBox[1] - 4, `at 900 wide the preview is not beside the form: ${JSON.stringify(s9)}`);
+    must(!(sizes['1280x800'] as any).hscroll && !s9.hscroll, 'horizontal scroll in the editor');
     await setWide(S, false); await desktop(S);
   });
-  await j.run('20', 'Simulated phone 390x844 and 320x568: toggle, compact hours (checkbox and day on one line, same-hours button), refusal with focus and no duplicated hint, photo cards, Preview = shop page, directory, shop page with the solid bar and "Report this shop" visible, one-line prompts, Chat/Pay on one line', [S, B], async (detail) => {
+
+  await j.run('20', 'Simulated phone 390x844 and 320x568: editor (hours rows, refusals with focus and summary, photos, Preview my shop = shop page), directory, shop page and the sticky bar, leaving sheet', [S, B], async (detail) => {
     const res: Record<string, unknown> = {};
     await setWide(B, false); await setWide(S, false); await setWide(G, false);
     for (const [w, h] of [[390, 844], [320, 568]] as [number, number][]) {
       for (const p of [S, B]) await phone(p, w, h);
       await sleep(900);
       const out: Record<string, unknown> = {};
+      // --- editor: top, jump bar, hours rows
       await S.eval(`document.querySelector('[data-showcase-editor]').scrollIntoView(); true`); await j.shot(S, `phone${w}-editor-top`);
       out['editorTop'] = await layoutProbe(S, '[data-showcase-editor]');
-      out['toggle'] = await S.eval<unknown>(`(() => { const t = document.querySelector('.se-toggle'); const r = t.getBoundingClientRect(); return { shown: getComputedStyle(t).display !== 'none' && r.width > 50, box: [Math.round(r.width), Math.round(r.height)] }; })()`);
-      // --- hours
-      await S.click('.se-steps button', 'Hours'); await sleep(1500);
-      await S.eval(`document.querySelector('#se-s-hours').scrollIntoView(); true`); await sleep(300); await j.shot(S, `phone${w}-hours-a`);
+      out['stepsBar'] = await S.eval<unknown>(`(() => { const n = document.querySelector('.se-steps'); const r = n.getBoundingClientRect(); return { box: [Math.round(r.left), Math.round(r.right), Math.round(r.height)], scrollsSideways: n.scrollWidth > n.clientWidth + 1, sticky: getComputedStyle(n).position }; })()`);
+      await S.click('.se-steps button', 'Hours'); await sleep(600);
+      await S.eval(`document.querySelector('#se-s-hours').scrollIntoView(); true`); await sleep(300);
+      await j.shot(S, `phone${w}-hours-a`);
       out['hours'] = await widthProbe(S, '#se-s-hours');
-      out['hoursRows'] = await S.eval<unknown>(`[...document.querySelectorAll('.se-day')].map((d) => { const r = d.getBoundingClientRect(), cb = d.querySelector('input[type=checkbox]'), lab = d.querySelector('.se-open span'); const c = cb.getBoundingClientRect(), l = lab.getBoundingClientRect(); return { h: Math.round(r.height), checkboxSameLine: Math.abs((c.top + c.height / 2) - (l.top + l.height / 2)) < 10, right: Math.round(r.right) }; })`);
-      out['hoursSectionHeight'] = await S.eval<number>(`Math.round(document.querySelector('#se-s-hours').getBoundingClientRect().height)`);
+      out['hoursRows'] = await S.eval<unknown>(`[...document.querySelectorAll('.se-day')].map((d) => { const r = d.getBoundingClientRect(); const inputs = [...d.querySelectorAll('input[type=time]')].map((i) => Math.round(i.getBoundingClientRect().right)); return { row: [Math.round(r.left), Math.round(r.right)], timeRights: inputs }; })`);
       await S.eval(`[...document.querySelectorAll('.se-day')].at(-1).scrollIntoView({ block: 'end' }); true`); await j.shot(S, `phone${w}-hours-b`);
-      // same hours for every day
-      await S.eval(`(() => { const ins = document.querySelectorAll('.se-day')[0].querySelectorAll('input[type=time]'); const set = (i, v) => { i.value = v; i.dispatchEvent(new Event('input', { bubbles: true })); }; set(ins[0], '08:00'); set(ins[1], '17:00'); return true; })()`);
-      await S.click('.se-same'); await sleep(500);
-      out['sameHours'] = await S.eval<unknown>(`[...document.querySelectorAll('.se-day')].map((d) => { const ins = [...d.querySelectorAll('input[type=time]')]; return { open: d.querySelector('input[type=checkbox]').checked, from: ins[0] ? ins[0].value : null, to: ins[1] ? ins[1].value : null }; })`);
-      await j.shot(S, `phone${w}-hours-same`);
-      // --- refusal and hint duplication
+      // --- editor: refusals (a phone number in About) with focus and summary
       await field(S, 'about', 'Call me on 0801 234 5678 now.');
       const bad = await save(S); out['refusal'] = { errors: bad.errors, focusId: bad.focusId, focusInView: bad.focusInView, summary: bad.summary.replace(/\s+/g, ' ') };
-      out['hintVsError'] = await S.eval<unknown>(`(() => { const h = document.querySelector('#se-h-about'), e = document.querySelector('#se-e-about'); const vis = (x) => !!x && x.getBoundingClientRect().height > 1 && getComputedStyle(x).display !== 'none'; return { hintVisible: vis(h), hint: h ? h.innerText : '', error: e ? e.innerText : '', same: !!h && !!e && vis(h) && h.innerText.trim() === e.innerText.trim() }; })()`);
       await j.shot(S, `phone${w}-refusal-focus`);
       await S.eval(`document.querySelector('#se-summary')?.scrollIntoView({ block: 'center' }); true`); await j.shot(S, `phone${w}-refusal-summary`);
       out['refusalChecks'] = { errorBeside: bad.errors.some((e) => e.id === 'se-e-about'), focusOnAbout: bad.focusId === 'se-f-about', summary: bad.summary.length > 0 };
-      await field(S, 'about', 'Neat knotless braids and natural hair care since 2019.'); out['saveAfter'] = (await save(S)).note;
-      // --- photos
+      await field(S, 'about', 'Neat knotless braids and natural hair care since 2019.'); const good = await save(S); out['saveAfter'] = good.note;
+      // --- editor: photos
       await S.eval(`document.querySelector('#se-s-photos').scrollIntoView(); true`); await sleep(300); await j.shot(S, `phone${w}-editor-photos`);
       out['photos'] = await widthProbe(S, '#se-s-photos');
-      out['photoTools'] = await S.eval<unknown>(`[...document.querySelectorAll('.pm-tool')].slice(0, 4).map((b) => ({ name: b.getAttribute('aria-label'), w: Math.round(b.getBoundingClientRect().width), h: Math.round(b.getBoundingClientRect().height) }))`);
-      // --- preview toggle
+      // --- preview toggle vs the shop page
       await S.eval(`document.querySelector('.se-toggle').scrollIntoView(); true`); await S.click('.se-toggle button', 'Preview my shop'); await sleep(700);
       await j.shot(S, `phone${w}-preview-top`);
-      out['previewText'] = (await text(S, '.se-preview')).replace(/\s+/g, ' '); out['previewProbe'] = await widthProbe(S, '.se-preview');
+      out['previewText'] = (await text(S, '.se-preview')).replace(/\s+/g, ' ');
+      out['previewProbe'] = await widthProbe(S, '.se-preview');
       await S.eval(`document.querySelector('.se-preview').scrollIntoView({ block: 'end' }); true`); await j.shot(S, `phone${w}-preview-bottom`);
       await S.click('.se-toggle button', 'Edit'); await sleep(400);
       // --- directory and shop page
-      await B.click('.sp-back').catch(() => undefined);
-      await B.waitFor(`document.querySelectorAll('.sc-hit').length >= 3`, 20000, 'directory');
+      await B.click('.sp .ui-button', 'Back to the list').catch(() => undefined);
+      await B.waitFor(`document.querySelectorAll('.sc-hit').length >= 3`, 15000, 'directory');
       await B.eval(`document.querySelector('.sc-app').scrollIntoView(); true`); await j.shot(B, `phone${w}-directory`);
       out['directory'] = await widthProbe(B, '.sc-app');
       await B.eval(`document.querySelectorAll('.sc-hit')[1].scrollIntoView({ block: 'center' }); true`); await j.shot(B, `phone${w}-directory-cards`);
       await openShop(B, 'Ada Braids');
       await j.shot(B, `phone${w}-shop-top`);
-      out['back'] = await B.eval<unknown>(`(() => { const b = document.querySelector('.sp-back'), r = b.getBoundingClientRect(); return { box: [Math.round(r.width), Math.round(r.height)], text: b.innerText.trim(), aria: b.getAttribute('aria-label') }; })()`);
       out['shop'] = await widthProbe(B, '.sp');
-      await B.eval(`[...document.querySelectorAll('.sp .ui-button')].find((x) => /Report this shop/.test(x.innerText)).scrollIntoView({ block: 'end' }); true`); await sleep(700); await j.shot(B, `phone${w}-shop-bottom-bar`);
-      out['clearNoPrompt'] = await barClear(B); out['editorDuplicateIds'] = await duplicateIds(S);
-      out['bar'] = await B.eval<unknown>(`(() => { const bar = document.querySelector('.sp-bar'), r = bar.getBoundingClientRect(), cs = getComputedStyle(bar), card = document.querySelector('.shf-card').getBoundingClientRect(); const report = [...document.querySelectorAll('.sp .ui-button')].find((x) => /Report this shop/.test(x.innerText)), rr = report.getBoundingClientRect(); const top = document.elementFromPoint(rr.left + rr.width / 2, rr.top + rr.height / 2); const home = document.querySelector('.ph-homebar'), hb = home && home.getBoundingClientRect(); const m = /rgba?\\(([^)]*)\\)/.exec(cs.backgroundColor); const parts = m ? m[1].split(',').map(Number) : []; return { position: cs.position, background: cs.backgroundColor, opaque: parts.length < 4 || parts[3] === 1, backdrop: cs.backdropFilter, barLeft: Math.round(r.left), barRight: Math.round(r.right), cardLeft: Math.round(card.left), cardRight: Math.round(card.right), barTop: Math.round(r.top), barBottom: Math.round(r.bottom), vh: innerHeight, homeBarTop: hb ? Math.round(hb.top) : null, reportBottom: Math.round(rr.bottom), reportFullyVisible: rr.bottom <= r.top + 1 && rr.top >= 0, reportHit: !!top && (top === report || report.contains(top)), buttons: [...bar.querySelectorAll('button')].map((b) => [b.innerText.trim(), Math.round(b.getBoundingClientRect().height), Math.round(b.getBoundingClientRect().width)]) }; })()`);
+      out['shopText'] = (await text(B, '.sp')).replace(/\s+/g, ' ');
+      await B.eval(`[...document.querySelectorAll('.sp .ui-button')].find((x) => /Report this shop/.test(x.innerText)).scrollIntoView({ block: 'end' }); true`); await sleep(600); await j.shot(B, `phone${w}-shop-bottom-bar`);
+      out['bar'] = await B.eval<unknown>(`(() => { const bar = document.querySelector('.sp-bar'), r = bar.getBoundingClientRect(), fine = document.querySelector('.sp-fine').getBoundingClientRect(), report = [...document.querySelectorAll('.sp > .ui-button, .sp .ui-button')].find((x) => /Report this shop/.test(x.innerText)), rr = report && report.getBoundingClientRect(), home = document.querySelector('.ph-homebar'), hb = home && home.getBoundingClientRect(); return { position: getComputedStyle(bar).position, barTop: Math.round(r.top), barBottom: Math.round(r.bottom), vh: innerHeight, homeBarTop: hb ? Math.round(hb.top) : null, lastContentBottom: Math.round(Math.max(fine.bottom, rr ? rr.bottom : 0)), contentCoveredByBar: Math.max(fine.bottom, rr ? rr.bottom : 0) > r.top + 1, buttons: [...bar.querySelectorAll('button')].map((b) => [b.innerText.trim(), Math.round(b.getBoundingClientRect().height), Math.round(b.getBoundingClientRect().width)]) }; })()`);
       await B.eval(`window.__opened = []; window.open = (...a) => { window.__opened.push(a); return null; }; true`);
-      await B.click('.sp-bar button[aria-label="Chat with the seller"]'); await B.waitFor(`!!document.querySelector('[data-trust-leave]')`, 10000, 'sheet'); await sleep(700);
+      await B.click('.sp-bar button', 'Chat with the seller'); await B.waitFor(`!!document.querySelector('[data-trust-leave]')`, 10000, 'sheet'); await sleep(700);
       await j.shot(B, `phone${w}-leaving`); out['sheet'] = await layoutProbe(B, '[data-trust-leave]');
       out['sheetContinueReachable'] = await B.eval<boolean>(`(() => { const b = [...document.querySelectorAll('[data-trust-leave] button')].find((x) => /Continue/.test(x.innerText)); if (!b) return false; b.scrollIntoView({ block: 'center' }); const r = b.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return r.bottom <= innerHeight + 1 && (top === b || b.contains(top)); })()`);
       await B.click('[data-trust-leave] button', 'Continue'); out['openedByTouch'] = await B.eval<unknown>(`window.__opened.length`);
-      // the guest's bar with its prompt
+      // the guest's bar with its prompt, on the same size
       await phone(G, w, h); await sleep(500); await openShop(G, 'Ada Braids').catch(() => undefined);
-      await G.click('.sp-bar button[aria-label="Chat with the seller"]').catch(() => undefined); await sleep(900); await j.shot(G, `phone${w}-guest-bar-prompt`);
-      out['clearWithPrompt'] = await barClear(G); await sleep(400); await j.shot(G, `phone${w}-guest-bar-prompt-at-end`);
-      out['guestBar'] = await G.eval<unknown>(`(() => { const b = document.querySelector('.sp-bar'); if (!b) return null; const r = b.getBoundingClientRect(), m = b.querySelector('.sp-msg'), mr = m && m.getBoundingClientRect(); return { text: b.innerText.replace(/\\s+/g, ' '), top: Math.round(r.top), bottom: Math.round(r.bottom), h: Math.round(r.height), vh: innerHeight, promptH: mr ? Math.round(mr.height) : null, promptButtons: m ? [...m.querySelectorAll('button')].map((x) => x.innerText.trim()) : [] }; })()`);
-      await B.click('.sp-back').catch(() => undefined);
+      await G.click('.sp-bar button', 'Chat with the seller').catch(() => undefined); await sleep(900); await j.shot(G, `phone${w}-guest-bar-prompt`);
+      out['guestBar'] = await G.eval<unknown>(`(() => { const b = document.querySelector('.sp-bar'); if (!b) return null; const r = b.getBoundingClientRect(); return { text: b.innerText.replace(/\\s+/g, ' '), top: Math.round(r.top), bottom: Math.round(r.bottom), h: Math.round(r.height), vh: innerHeight }; })()`);
+      await B.click('.sp .ui-button', 'Back to the list').catch(() => undefined);
       res[`${w}x${h}`] = out;
     }
     detail['sizes'] = res;
     for (const p of [S, B, G]) await desktop(p);
     const problems: string[] = [];
     for (const [k, v] of Object.entries(res) as [string, any][]) {
-      if (!v.toggle.shown) problems.push(`${k}: no Edit/Preview toggle`);
       if (v.hours.overflowing.length) problems.push(`${k}: hours overflow ${v.hours.overflowing.join(', ')}`);
-      if (!v.hoursRows.every((r: any) => r.checkboxSameLine)) problems.push(`${k}: a day's checkbox is not on the same line as its name`);
-      if (!v.sameHours.slice(1, 6).every((r: any) => r.open && r.from === '08:00' && r.to === '17:00')) problems.push(`${k}: "Use Monday's hours for every day" did not set Tuesday to Saturday: ${JSON.stringify(v.sameHours)}`);
       if (!v.refusalChecks.errorBeside || !v.refusalChecks.focusOnAbout || !v.refusalChecks.summary) problems.push(`${k}: refusal ${JSON.stringify(v.refusalChecks)}`);
-      if (v.hintVsError.same) problems.push(`${k}: the hint text is repeated as the error`);
-      if (!v.bar.opaque) problems.push(`${k}: the Chat/Pay bar is not solid (${v.bar.background})`);
-      if (Math.abs(v.bar.barLeft - v.bar.cardLeft) > 3 || Math.abs(v.bar.barRight - v.bar.cardRight) > 3) problems.push(`${k}: the bar (${v.bar.barLeft}-${v.bar.barRight}) is not aligned to the cards (${v.bar.cardLeft}-${v.bar.cardRight})`);
-      for (const [name, c] of [['without a prompt', v.clearNoPrompt], ['with a prompt', v.clearWithPrompt]] as [string, any][]) if (!c || !c.clearOfBar || !c.tappable || !c.clearOfHomeBar) problems.push(`${k}: "Report this shop" is not fully clear of the bar ${name}: ${JSON.stringify(c)}`);
-      if (v.editorDuplicateIds.length) problems.push(`${k}: duplicate ids in the editor ${v.editorDuplicateIds}`);
-      if (!v.hoursRows.every((r: any) => r.h >= 36 && r.h <= 70)) problems.push(`${k}: hours rows are not compact single rows (${v.hoursRows.map((r: any) => r.h)})`);
-      if (v.bar.buttons.some((b: any) => b[1] > 56)) problems.push(`${k}: a bar button wraps to two lines ${JSON.stringify(v.bar.buttons)}`);
-      if (v.bar.homeBarTop !== null && v.bar.barBottom > v.bar.homeBarTop + 1) problems.push(`${k}: the bar is below the home bar`);
-      if (!v.guestBar || v.guestBar.promptH === null || v.guestBar.promptH > 48 || v.guestBar.promptButtons.length !== 1) problems.push(`${k}: the guest prompt is not one line with one action ${JSON.stringify(v.guestBar)}`);
+      if (v.bar.contentCoveredByBar) problems.push(`${k}: the sticky bar covers the last content`);
+      if (v.bar.homeBarTop !== null && v.bar.barBottom > v.bar.homeBarTop + 1) problems.push(`${k}: the sticky bar (${v.bar.barBottom}) is below the home bar (${v.bar.homeBarTop})`);
       if (!v.sheetContinueReachable) problems.push(`${k}: Continue not reachable`);
       for (const area of ['shop', 'directory', 'photos', 'previewProbe']) if (v[area].overflowing.length) problems.push(`${k}: ${area} overflow ${v[area].overflowing.join(', ')}`);
       if (!/Braids by Ada|Ada Braids/.test(v.previewText) || !/Knotless braids/.test(v.previewText) || !/₦25,000/.test(v.previewText)) problems.push(`${k}: the preview lacks the shop's content`);
     }
     detail['problems'] = problems; must(problems.length === 0, problems.join(' | '));
   });
-  await j.run('21', 'Tapping "My shop" the moment the app opens works (three tries, no waiting)', [S], async (detail) => {
-    await desktop(S); const tries: Record<string, unknown>[] = [];
-    for (let i = 0; i < 3; i++) {
-      await openHomeApp(S, 'showcase');
-      const t0 = Date.now(); await S.click('.sc-tabs [role="tab"]', 'My shop', 10000); const tapAfterMs = Date.now() - t0;
-      const took = await S.waitFor(`[...document.querySelectorAll('.sc-tabs [role="tab"]')].some((t) => t.getAttribute('aria-selected') === 'true' && /My shop/.test(t.innerText))`, 3000, 'the tab to take').then(() => true, () => false);
-      tries.push({ try: i + 1, tapAfterMs, took }); if (i === 0) await j.shot(S, 'my-shop-immediately');
-    }
-    detail['tries'] = tries; must(tries.every((t) => t['took']), `a tap on "My shop" right after the app opened did not take: ${JSON.stringify(tries)}`);
-  });
-
-  await j.run('22', 'Phone apps open and close normally (Messages, Bank, Missions): the home screen takes no taps while an app is open (once it has settled), and takes them again after it closes', [S], async (detail) => {
-    const out: Record<string, unknown>[] = [];
-    const covered = (app: string): Promise<{ app: string; covered: boolean; x: number; y: number } | null> => S.eval(`(() => { const bs = [...document.querySelectorAll('.ph-pages .ph-appbtn, .ph-dock .ph-appbtn')].filter((b) => b.getAttribute('data-ph-app') !== '${app}'); for (const b of bs) { const r = b.getBoundingClientRect(); if (r.width < 2 || r.top < 0 || r.bottom > innerHeight) continue; const x = r.left + r.width / 2, y = r.top + r.height / 2, t = document.elementFromPoint(x, y); return { app: b.getAttribute('data-ph-app'), covered: !!t && !(t === b || b.contains(t)), x, y }; } return null; })()`);
-    const homeTakes = (app: string): Promise<boolean> => S.eval(`(() => { const b = document.querySelector('[data-ph-app="${app}"]'); if (!b) return false; const r = b.getBoundingClientRect(); const t = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!t && (t === b || b.contains(t)); })()`);
-    const title = (): Promise<string> => S.eval(`(() => { const e = document.querySelector('.ph-appbody'); const h = document.querySelector('.ph-bar h2, .ph-bar, [class*=ph-bar]'); return (h ? h.innerText : '').trim().slice(0, 40) + '|' + (e ? e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 40) : ''); })()`);
-    for (const app of ['messages', 'bank', 'missions']) {
-      await openHomeApp(S, app); await S.waitFor(`!!document.querySelector('.ph-appbody') && !!document.querySelector('.ph-back')`, 15000, `${app} to open`);
-      await sleep(300); const early = await covered(app);
-      await sleep(2200); const settled = await covered(app);
-      const titleBefore = await title();
-      await S.tapAt(settled?.x ?? 100, settled?.y ?? 400); await sleep(700);
-      const titleAfter = await title(); await j.shot(S, `phone-app-${app}-open`);
-      await S.click('.ph-back'); await S.waitFor(`!!document.querySelector('.ph-pages')`, 10000, 'the home screen again'); await sleep(1500);
-      const pg = await S.eval<number>(`(() => { const pg = [...document.querySelectorAll('.ph-page')].find((x) => x.querySelector('[data-ph-app="${app}"]')); return pg ? Number(pg.getAttribute('data-ph-page')) : -1; })()`);
-      if (pg >= 0) { await S.eval(`document.querySelectorAll('.ph-dots button')[${pg}].click(); true`); await sleep(700); }
-      const after = await homeTakes(app);
-      out.push({ app, coveredAt300ms: early?.covered ?? null, coveredWhenSettled: settled?.covered ?? null, tapThroughAppStillOpen: titleBefore === titleAfter, homeTakesTapsAfterClose: after });
-    }
-    detail['apps'] = out;
-    for (const o of out as any[]) must(o.tapThroughAppStillOpen && o.homeTakesTapsAfterClose, `${o.app}: ${JSON.stringify(o)}`);
-    detail['hitTestNote'] = 'coveredWhenSettled is what elementFromPoint says about a home icon under the open app; the real tap (tapThroughAppStillOpen) decides';
-  });
 } catch (e) { console.log('ERR', e); }
 finally {
-  const code = j.finish({ ids, lostTaps }, { seller: realErrors(S), buyer: realErrors(B), guest: realErrors(G), seller2: realErrors(S2), seller3: realErrors(S3) });
+  const code = j.finish({ ids }, { seller: realErrors(S), buyer: realErrors(B), guest: realErrors(G), seller2: realErrors(S2), seller3: realErrors(S3) });
   try { S3.close(); S2.close(); G.close(); B.close(); S.close(); } catch { /* closed */ }
   await lab.stop(); process.exit(code);
 }

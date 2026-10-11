@@ -2,7 +2,7 @@
 
 ![Allworld: a whole world to live in](public/og/allworld.png)
 
-Allworld is an open-source browser game: a digital world of real cities you can live in and travel between. You make a character, pick a city, walk around its venues in 3D, work, eat, make friends, play table games, rent or build a home, vote in your local government, and take the road, the train or a flight to the next city. The aim is the whole world. Today nine cities are open: Lagos, Ibadan, Ogun's cities (Abeokuta, Ota, Ijebu-Ode and Sagamu), Port Harcourt, Abuja and Kano, and more places are opening; the in-game atlas shows the world, then Africa, then Nigeria, with other places marked as coming.
+Allworld is an open-source browser game: a digital world of real cities you can live in and travel between. You make a character, pick a city, walk around its venues in 3D, work, eat, make friends, play table games, rent or build a home, vote in your local government, and take the road, the train or a flight to the next city. The aim is the whole world. Real cities across Africa are open, from Lagos and Accra to Nairobi and Cape Town, and more are opening; the in-game atlas lists every open city and shows the world, then Africa, then Nigeria, with other places marked as coming.
 
 Play it at [joinallworld.com](https://joinallworld.com).
 
@@ -27,7 +27,7 @@ Open http://127.0.0.1:5173/ and press **Play now**. You are a guest with a new c
 
 ## What you get
 
-- **The whole game, locally.** The rules engine, the nine open cities, the 3D city maps and venue scenes, chat, friends, houses, elections, table games and the atlas all run on your machine.
+- **The whole game, locally.** The rules engine, the open cities, the 3D city maps and venue scenes, chat, friends, houses, elections, table games and the atlas all run on your machine.
 - **No outside service.** Sign-in, e-mail, push, analytics and error reporting are off unless you configure them, and the game is complete without them. [`.env.example`](.env.example) lists every setting.
 - **Small.** Vue 3, strict TypeScript, Three.js and Vite in the browser; Node's built-ins and `ws` on the server. Node runs the TypeScript directly, so there is no server build step.
 - **Tested.** About 1,800 tests on Node's built-in runner, next to the code they cover.
@@ -45,6 +45,7 @@ npm run check     # typecheck, build, tests: about a minute and a half
 | Make your first change in half an hour | [docs/FIRST-CHANGE.md](docs/FIRST-CHANGE.md) |
 | Know where things live and what the rules of the codebase are | [CONTRIBUTING.md](CONTRIBUTING.md) |
 | Try sign-in, mail, two players or the Worker host locally | [docs/DEVELOPING.md](docs/DEVELOPING.md) |
+| Play locally without the gates (rich, settled, fast, operator) | `npm run dev:open`, see "Open mode" in [docs/DEVELOPING.md](docs/DEVELOPING.md) |
 | See every feature, command, setting and file | [docs/REFERENCE.md](docs/REFERENCE.md) |
 | Add or change a city | [docs/CITIES.md](docs/CITIES.md) |
 | Run a server for other people | [SECURITY.md](SECURITY.md), then [docs/REFERENCE.md](docs/REFERENCE.md#production-build) |

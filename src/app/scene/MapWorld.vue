@@ -52,6 +52,7 @@ if (props.initialWorld) onLayer(new CustomEvent('jaw:map-ui', { detail: props.in
 if (props.initialUi) onLayer(new CustomEvent('jaw:map-ui', { detail: props.initialUi }))
 onMounted(() => emit('ready'))
 let loading: Promise<void> | null = null
+let zoom: ReturnType<Awaited<ReturnType<typeof loadMaps>>['createZoomHost']> | null = null
 
 /** What a row of the atlas's friends list asks for. The pieces are fetched when first wanted. */
 async function friendAction(action: 'chat' | 'call' | 'ping', id: string, name: string): Promise<void> {
@@ -84,10 +85,17 @@ function show(): void {
   if (mapOpen()) { scene.world.value?.resize(); city?.resize(); aim() }
 }
 function load(): Promise<void> {
-  loading ??= loadMaps().then(({ createCityView, createWorldMap }) => {
+  loading ??= loadMaps().then(({ createCityView, createWorldMap, createZoomHost }) => {
     if (!cityBox.value || !worldBox.value) return
+    // Zooming past the end of one map hands over to the next (src/map3d/zoom-host.ts); the same fade serves "Open city".
+    zoom = createZoomHost({
+      city: cityBox.value, world: worldBox.value, maps: () => ({ city: scene.city.value, world: scene.world.value }),
+      cityId: () => game.cityId.value, cityName: () => game.view.value.city?.name ?? 'the city',
+      setLayer: (layer) => { worldLayer.value = layer === 'world'; showMapLayer(layer) },
+    })
     scene.world.value = createWorldMap(worldBox.value, {
-      onOpenCity: () => { worldLayer.value = false; showMapLayer('city') },
+      ladder: zoom.worldPort,
+      onOpenCity: () => { if (!worldLayer.value || !zoom?.fadeTo('city')) { worldLayer.value = false; showMapLayer('city') } },
       onEnterCity: (cityId) => { void switchCity(cityId) },
       onInspectVenue: (cityId, venueId) => {
         if (cityId !== game.cityId.value) return
@@ -115,6 +123,7 @@ function load(): Promise<void> {
     void keepFriends()
     const city = createCityView(cityBox.value, {
       cityId: game.cityId.value,
+      ladder: zoom.cityPort,
       onSelectVenue: (venueId) => { shell.open('map', { destination: venueId }) },
       onSelectGov: () => { shell.open('state-house') },
       onSelectNeighbour: (player) => { shell.open('person', { player: player.id, name: player.name }) },
@@ -150,6 +159,7 @@ watch(() => heldCities().join(), () => scene.world.value?.refresh?.())
 const onResize = (): void => { if (mapOpen()) { scene.world.value?.resize(); scene.city.value?.resize() } }
 window.addEventListener('resize', onResize)
 onBeforeUnmount(() => {
+  zoom?.destroy(); zoom = null
   stopFriends?.()
   window.removeEventListener('jaw:map-ui', keepMapUi); window.removeEventListener('jaw:map-ui', onLayer); window.removeEventListener('resize', onResize)
   scene.city.value?.destroy(); scene.city.value = null; scene.world.value = null

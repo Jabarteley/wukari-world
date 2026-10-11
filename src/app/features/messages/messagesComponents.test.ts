@@ -142,3 +142,59 @@ test('a request for money is a card: the friend asked gets Pay and Decline, the 
   const hostile = await card({ note: '<img src=x onerror=alert(1)>' })
   assert.ok(!hostile.includes('<img') && hostile.includes('&lt;img'))
 })
+
+const composer = (extra: Record<string, unknown> = {}): Promise<string> => render('/src/app/features/messages/Composer.vue', { conv: 'dm.a.b', members: [], meId: 'ada', admin: false, max: 500, disabled: false, reply: null, prefill: '', pictures: false, voice: false, target: { to: 'bola' }, newId: () => 'id', ...extra })
+
+test('the message box is one pill with a "+" that names what it opens, and a round button that is the microphone until there is text', async () => {
+  const html = await composer({ voice: true })
+  assert.match(html, /class="composer-pill"/)
+  assert.match(html, /<button[^>]*aria-label="Attach or send money"[^>]*aria-haspopup="dialog"/)
+  assert.match(html, /<button[^>]*class="is-mic composer-send"[^>]*aria-label="Record a voice note"/)
+  const noVoice = await composer({ voice: false })
+  assert.match(noVoice, /<button[^>]*class="composer-send"[^>]*aria-label="Send"[^>]*disabled/, 'with no voice notes and no text, Send waits')
+  assert.ok(!html.includes('Record voice note</button>'), 'no recording bar sits above the box any more')
+  assert.match(await composer({ pictures: true }), /aria-label="Send a picture"/)
+})
+
+test('the character count is read by screen readers always, and seen only near the limit or over it', async () => {
+  const quiet = await composer({ prefill: '' })
+  assert.match(quiet, /<p[^>]*class="sr-only composer-count"/)
+  const near = await composer({ prefill: 'a'.repeat(450) })
+  assert.match(near, /<p[^>]*class="composer-count"[^>]*>450 \/ 500 characters/)
+  const over = await composer({ prefill: 'a'.repeat(520) })
+  assert.match(over, /class="is-over composer-count"[^>]*role="alert"[^>]*>Remove 20 characters to send/)
+})
+
+test('the attach sheet lists only what this chat can do, each with a name a screen reader can use', async () => {
+  const sheet = (extra: Record<string, unknown>): Promise<string> => render('/src/app/features/messages/AttachSheet.vue', { open: false, pictures: false, voice: false, money: false, offline: false, ...extra })
+  const all = await sheet({ open: true, pictures: true, voice: true, money: true })
+  for (const name of ['Picture', 'Voice note', 'Send money', 'Request money']) assert.ok(words(all).includes(name), name)
+  assert.match(all, /<dialog[^>]*aria-label="Attach or send money"/)
+  assert.match(all, /data-chat="attach-picture"/); assert.match(all, /data-chat="attach-voice"/); assert.match(all, /data-chat="send-money"/); assert.match(all, /data-chat="request-money"/)
+  assert.ok(!words(await sheet({ pictures: true, money: true })).includes('Send money'), 'a closed sheet draws nothing')
+  const text = words(await sheet({ open: true }))
+  assert.ok(text.includes('Nothing can be added to this chat.') && !text.includes('Picture'))
+  assert.match(await sheet({ open: true, money: true, offline: true }), /data-chat="request-money" disabled/)
+})
+
+test('the chat menu: pins and money for any direct chat, pin-to-top and delete only once the chat exists', async () => {
+  const menu = (extra: Record<string, unknown>): Promise<string> => render('/src/app/features/messages/ChatMenu.vue', { canRequest: true, pins: 2, pinsShown: true, chatExists: true, chatPinned: false, offline: false, ...extra })
+  const full = await menu({})
+  assert.match(full, /role="menu"[^>]*aria-label="Chat options"/)
+  for (const key of ['pins', 'send-money', 'request-money', 'pin-chat', 'hide']) assert.ok(full.includes(`data-chat="${key}"`), key)
+  assert.ok(words(full).includes('Pinned messages 2') && words(full).includes('Pin to the top of my chats'))
+  const fresh = await menu({ chatExists: false, pinsShown: false })
+  assert.ok(fresh.includes('data-chat="send-money"') && fresh.includes('data-chat="request-money"') && !fresh.includes('data-chat="hide"') && !fresh.includes('data-chat="pins"'))
+  assert.ok(words(await menu({ chatPinned: true })).includes('Unpin from the top of my chats'))
+  assert.match(await menu({ offline: true }), /data-chat="request-money"[^>]*disabled/)
+  // Asking is offered only to a current friend who is not blocked; sending money stays.
+  const stranger = await menu({ canRequest: false })
+  assert.ok(!stranger.includes('data-chat="request-money"') && stranger.includes('data-chat="send-money"'))
+})
+
+test('an own message ends with a tick that screen readers hear as "Sent"', async () => {
+  const mineLine = line({ from: { id: 'ada', name: 'Ada' } })
+  const html = await bubble(mineLine)
+  assert.match(html, /class="bubble-tick" aria-hidden="true"/); assert.match(html, /class="sr-only"[^>]*> Sent</)
+  assert.ok(!(await bubble(line())).includes('bubble-tick'), 'the other person\'s line has no tick')
+})

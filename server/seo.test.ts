@@ -115,12 +115,13 @@ test('the page, the manifest and the readme say which cities are open, and say i
   const manifest = (JSON.parse(siteFile('/manifest.webmanifest', '')?.body ?? '') as { description: string }).description;
   const description = tag(head, 'description') ?? '';
   for (const text of [description, tag(head, 'og:description') ?? '', tag(head, 'twitter:description') ?? '', manifest]) {
-    assert.match(text, /Explore open cities across Nigeria, from Lagos to Kano\./, text);
+    assert.match(text, /Real cities across Africa, with more opening/, text);
+    assert.ok(!/Nigeria|nine|Explore/.test(text), `no stale country, count or repeated verb in: ${text}`);
   }
   assert.ok(description.length <= 155 && ((/<title>([^<]*)<\/title>/.exec(head)?.[1] ?? '').length <= 60), 'title at most 60 and description at most 155 characters');
-  assert.match(html, /<noscript>[^]*nine cities of Nigeria, from Lagos to Abuja and Kano[^]*<\/noscript>/);
+  assert.match(html, /<noscript>[^]*real cities across Africa, from Lagos to Cape Town, and more opening[^]*<\/noscript>/);
   for (const [name, text] of [['index.html', html], ['manifest', manifest], ['README.md', await read('README.md')], ['CONTRIBUTING.md', await read('CONTRIBUTING.md')]] as const) {
     assert.ok(!/two cities|Lagos and Ibadan are open|first two cities|more cities (are )?coming/i.test(text), `${name} does not claim only two cities are open`);
   }
-  assert.match(await read('README.md'), /Today nine cities are open: Lagos, Ibadan, Ogun's cities \(Abeokuta, Ota, Ijebu-Ode and Sagamu\), Port Harcourt, Abuja and Kano/);
+  assert.match(await read('README.md'), /Real cities across Africa are open, from Lagos and Accra to Nairobi and Cape Town, and more are opening/);
 });

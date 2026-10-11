@@ -16,7 +16,7 @@ import type { ActionType } from '../src/types/actions.ts'
 import type { ActionRequest, CityId, ClientFrameType, IceServerConfig, PlayerRef, PublicSession, ServerFrame, TimedId } from '../src/types/protocol.ts'
 import type { ConversationKind, LookIds, PlayerReportReceipt, ReportReason, SocialUpdate } from '../src/types/social.ts'
 import type { PlayerReportStatus, StoreStats, SupportReport } from '../src/types/support.ts'
-import type { ConsentView, OutreachLogLine, ResultGameId, ShareFacts, ShareKind, TableGameId, TelemetryConfigResponse } from '../src/types/growth.ts'
+import type { ConsentView, OutreachLogLine, ResultGameId, ShareFacts, ShareKind, SourceCounts, TableGameId, TelemetryConfigResponse } from '../src/types/growth.ts'
 import type { CampusElectionRecord } from '../src/types/campus.ts'
 import type { CommerceCollection, CommerceGateway } from './commerce/types.ts'
 import type { BusinessCollection } from '../src/types/business.ts'
@@ -675,8 +675,10 @@ export interface GrowthMetricsRecord {
   days?: Record<string, Record<string, number>>
   cohorts?: Record<string, { size: number; r: Record<string, number> }>
   lives?: Record<string, { first: number; last: number | null; steps: number }>
+  /** Visits by campaign: { [lagosDay]: { "source|medium|campaign|content": counts } } (server/growth/metrics.ts). */
+  sources?: Record<string, Record<string, SourceCounts>>
 }
-export type GrowthCityMetricsRecord = Omit<GrowthMetricsRecord, 'cities'>
+export type GrowthCityMetricsRecord = Omit<GrowthMetricsRecord, 'cities' | 'sources'>
 export interface GrowthCityTablesRecord {
   ratings?: Record<string, Partial<Record<TableGameId, { rating: number; played: number; won: number }>>>
 }
@@ -1056,6 +1058,8 @@ export interface ServerConfig {
   voiceConfigProvider?: (session: PublicSession) => Promise<{ iceServers: IceServerConfig[]; expiresAt: number }> | { iceServers: IceServerConfig[]; expiresAt: number }
   /** At most 40 characters. */
   buildId: string
+  /** Set only by the Node host in open dev mode (server/open-dev): /api/health says so. */
+  openDev?: true
   votesPerAddress: number
   voteCapMode: 'flag' | 'refuse'
   heartbeatMs: number

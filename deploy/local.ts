@@ -39,6 +39,8 @@ const { Miniflare, convertV4MiniflareOptions } = tooling.miniflare;
 const { build } = tooling.esbuild;
 if (!existsSync(join(root, 'dist/index.html'))) missing('There is no built page in dist/.', 'npm run build');
 
+// The Worker host has no open developer mode: the Node host's setting for it is refused here, not ignored (deploy/open-dev-refusal.ts).
+if (process.env.ALLWORLD_OPEN_DEV !== undefined) { console.error('ALLWORLD_OPEN_DEV is a setting of the Node host (npm run dev:open, npm run start:open); the Worker host never honours it. Remove it to run npm run start:worker.'); process.exit(1); }
 const port = Number(process.env.PORT) || 8787;
 const scratch = await mkdtemp(join(tmpdir(), 'allworld-worker-'));
 const storage = process.env.DATA_DIR ? resolve(process.env.DATA_DIR) : join(scratch, 'storage');

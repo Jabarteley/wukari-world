@@ -19,6 +19,7 @@ import type { GrowthView } from './view.ts'
 import type { CityId, HostErrorCode, JsonBodyErrorCode, Ok, PlayerRef, Refusal, SessionErrorCode, StorageErrorCode } from './protocol.ts'
 import type { Done, Repeat } from './social.ts'
 import type { PrefKey } from '../game/comeback-prefs.ts'
+import type { SourceEvent } from '../game/attribution.ts'
 
 // ---- shares and the events calendar ---------------------------------------------------------------
 
@@ -356,6 +357,8 @@ export interface GrowthHttpRoutes {
   }
   /** No session needed. At most 8 signals a request, 10 requests a minute per address; `counted` is how many were known. */
   'POST /api/growth/client': { body: { signals: ClientSignal[] }; response: Ok<{ ok: true; counted: number }>; errors: HostErrorCode | JsonBodyErrorCode }
+  /** No session needed. One step of a visit under its cleaned `utm_` words, counted as an aggregate (nothing is stored about the sender). 30 a minute per address. */
+  'POST /api/growth/source': { body: { event: SourceEvent; source?: string; medium?: string; campaign?: string; content?: string }; response: Ok<{ ok: true; counted: boolean }>; errors: HostErrorCode | JsonBodyErrorCode }
 }
 
 // ---- HTTP: /api/mod/growth/ (the operator's view) -------------------------------------------------
@@ -384,6 +387,13 @@ export interface MetricsCohort {
 /** server/growth/metrics.ts FUNNEL_ORDER. */
 export type FunnelStep = 'onboarded' | 'goal-1' | 'settled' | 'job' | 'shift' | 'goals-done' | 'mission' | 'table' | 'day-two-work'
 
+/** Four totals for one campaign: opened the page, pressed Play, reached the game, still there about ten minutes later. */
+export interface SourceCounts { landed: number; play: number; game: number; stayed: number }
+/** The cleaned `utm_` words a visit came with (`direct` when there were none; content `none`). */
+export interface SourceCampaign extends SourceCounts { source: string; medium: string; campaign: string; content: string }
+/** One Lagos day of one campaign. */
+export interface SourceRow extends SourceCampaign { day: number; date: string }
+
 /** GET /api/mod/growth/metrics: first-party daily totals and retention cohorts. Carries no player id. */
 export interface GrowthMetricsResponse {
   generatedAt: number
@@ -394,6 +404,10 @@ export interface GrowthMetricsResponse {
   /** Every counter summed over the days shown. */
   totals: Record<string, number>
   funnel: { step: FunnelStep; lives: number }[]
+  /** Where visits came from: per day and per campaign, aggregate only (no person). */
+  sources: SourceRow[]
+  /** The same, summed over the days shown, most landings first. */
+  campaigns: SourceCampaign[]
   /** Lives currently followed (inside their 31-day window). */
   tracked: number
   /** How long each kind of record is kept, as sentences. */
@@ -644,7 +658,7 @@ export const TABLE_STATE_FRAME_KEYS = [
   'clock', 'cityId', 'host', 'log', 'n', 'optionList', 'result', 'table', 'toMove', 'type', 'view', 'you',
 ] as const satisfies readonly (keyof TableStateFrame)[]
 export const GROWTH_METRICS_RESPONSE_KEYS = [
-  'analytics', 'cohorts', 'days', 'funnel', 'generatedAt', 'retention', 'serverTime', 'source', 'timezone', 'totals', 'tracked',
+  'analytics', 'campaigns', 'cohorts', 'days', 'funnel', 'generatedAt', 'retention', 'serverTime', 'source', 'sources', 'timezone', 'totals', 'tracked',
 ] as const satisfies readonly (keyof Ok<GrowthMetricsResponse>)[]
 export const OUTREACH_OPERATOR_RESPONSE_KEYS = [
   'comeback', 'email', 'log', 'previews', 'push', 'quietNow', 'rules', 'serverTime', 'whatsapp',

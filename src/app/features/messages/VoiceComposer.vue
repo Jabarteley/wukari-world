@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { createVoiceRecorder, canRecordVoice } from './voiceRecorder.ts'
 import type { VoiceRecorderState } from './voiceRecorder.ts'
 const props = defineProps<{ target: { to: string } | { conv: string }; conv: string; meId: string; disabled: boolean; newId: () => string; replyTo?: number }>()
@@ -13,6 +13,9 @@ function cancel(): void { generation++; sending?.abort(); sending = null; busy.v
 watch(() => [props.conv, props.meId], cancel, { flush: 'sync' })
 watch(() => props.disabled, disabled => { if (disabled && (state.value.kind === 'recording' || state.value.kind === 'requesting')) cancel() })
 onBeforeUnmount(() => { cancel(); recorder.dispose() })
+/** The microphone button of the message box starts a recording here; nothing is drawn while idle. */
+const active = computed(() => state.value.kind !== 'idle' && state.value.kind !== 'failed')
+defineExpose({ start(): void { if (props.disabled || !supported || active.value) return; error.value = ''; recorder.start() }, active, supported })
 async function send(): Promise<void> {
   if (state.value.kind !== 'review' || busy.value || props.disabled) return
   const draft = state.value.draft, turn = generation, identity = props.meId, destination = props.conv
@@ -35,11 +38,8 @@ async function send(): Promise<void> {
 }
 </script>
 <template>
-  <section class="voice-compose" aria-label="Voice note">
+  <section v-if="active || state.kind === 'failed' || error" class="voice-compose" aria-label="Voice note">
     <template v-if="state.kind === 'idle' || state.kind === 'failed'">
-      <button type="button" :disabled="disabled || !supported" @click="error = ''; recorder.start()">Record voice note</button>
-      <small v-if="!supported">Voice recording needs Opus support in your browser. Text messages still work.</small>
-      <small v-else>Up to one minute. Review before sending.</small>
       <p v-if="state.kind === 'failed'" role="alert">{{ state.reason }}</p>
     </template>
     <template v-else-if="state.kind === 'requesting'"><span role="status">Waiting for microphone permission…</span><button type="button" @click="cancel">Cancel</button></template>

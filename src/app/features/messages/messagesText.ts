@@ -135,6 +135,27 @@ export function filterChats(list: readonly Conversation[], query: string): Conve
   const q = query.trim().toLowerCase()
   return q ? list.filter((conv) => conv.name.toLowerCase().includes(q) || conv.members.some((member) => member.name.toLowerCase().includes(q))) : [...list]
 }
+/** The time on a chat row: the clock for today, else "Yesterday", the weekday or the date. */
+export const listTime = (at: number, now: number, clock: (at: number) => string): string => (dayLabel(at, now) === 'Today' ? clock(at) : dayLabel(at, now))
+export interface Preview { kind: 'text' | 'picture' | 'voice' | 'none'; /** "You", or a group member's name; empty in a direct chat from the other person. */ who: string; text: string }
+/** The second line of a chat row: who said it (only "You" in a direct chat), a mark for a picture or a voice note, and the words. */
+export function previewOf(conv: Pick<Conversation, 'kind' | 'last'>, meId: string): Preview {
+  const last = conv.last
+  if (!last) return { kind: 'none', who: '', text: 'No messages yet' }
+  const mine = last.from?.id === meId
+  const who = mine ? 'You' : conv.kind === 'dm' ? '' : last.from?.name ?? ''
+  const kind = last.body === 'Picture' ? 'picture' : last.body === 'Voice note' ? 'voice' : 'text'
+  return { kind, who, text: last.body }
+}
+/** Friends with no conversation yet, newest friendship first, at most `max`: the people a player can start a chat with from the list. */
+export function friendsToStart<T extends { id: string; since: number }>(friends: readonly T[], conversations: readonly Pick<Conversation, 'with'>[], max = 6): T[] {
+  const talking = new Set(conversations.map((conv) => conv.with))
+  return friends.filter((friend) => !talking.has(friend.id)).sort((a, b) => b.since - a.since).slice(0, max)
+}
+/** The chats with something unread (a muted one counts only for what mentions the viewer, as in the badge). */
+export const onlyUnread = (list: readonly Conversation[]): Conversation[] => list.filter((conv) => (conv.muted ? (conv.mentions ?? 0) > 0 : conv.unread > 0))
+/** The character count is only worth showing near the limit: from 80% of it. */
+export const showCount = (count: number, max: number): boolean => count >= Math.floor(max * 0.8)
 /** The line the composer needs to grow to, at most `max` lines. */
 export const composerLines = (text: string, max = 4): number => Math.min(max, Math.max(1, text.split('\n').length))
 

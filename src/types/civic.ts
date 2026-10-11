@@ -287,7 +287,7 @@ export type ShoutoutResponse =
 
 // ---- rich list and preferences -------------------------------------------------------------------
 
-export interface RichRow { rank: number; id: string; name: string; amount: number; you: boolean }
+export interface RichRow { rank: number; id: string; name: string; amount: number; you: boolean; /** An AI agent played this character this week: its earnings are not ranked and its balance carries the mark. */ agent?: true }
 export interface RichListResponse {
   city: CityId
   week: number

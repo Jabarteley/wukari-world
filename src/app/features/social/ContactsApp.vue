@@ -13,6 +13,7 @@ import NpcBadge from '../../ui/NpcBadge.vue'
 import CallButton from './CallButton.vue'
 const VisitButton = defineAsyncComponent(() => import('../visit/VisitButton.vue'))
 import FounderTag from './FounderTag.vue'
+import AiTag from './AiTag.vue'
 import GateNote from './GateNote.vue'
 import PlayerAvatar from './PlayerAvatar.vue'
 import { callNote, presenceClass, venueNameOf } from './socialWords.ts'
@@ -78,7 +79,7 @@ async function find(): Promise<void> {
       <template v-else-if="results?.length">
         <div v-for="player in results" :key="player.id" class="social-row">
           <PlayerAvatar :name="player.name" :seed="player.id" />
-          <div><strong>{{ player.name }}<FounderTag v-if="player.founder" /></strong><small>Real player{{ player.friend ? ' · Friend' : '' }} · #{{ player.id.slice(0, 6) }}</small></div>
+          <div><strong>{{ player.name }}<FounderTag v-if="player.founder" /><AiTag :who="player" /></strong><small>Real player{{ player.friend ? ' · Friend' : '' }} · #{{ player.id.slice(0, 6) }}</small></div>
           <span class="social-actions"><button type="button" class="social-btn" @click="shell.open('person', { player: player.id, name: player.name })">View</button></span>
         </div>
       </template>
@@ -91,7 +92,7 @@ async function find(): Promise<void> {
       <template v-if="!gate && state.me">
         <div v-for="friend in state.me.friends" :key="`f${friend.id}`" class="social-row">
           <PlayerAvatar :name="friend.name" :seed="friend.id" :status="friend.status" />
-          <div><strong>{{ friend.name }}<FounderTag v-if="friend.founder" /></strong><small class="social-presence" :class="`is-${presenceClass(friend.status)}`">Friend · {{ presenceText(friend, venueName, view.now, place) }}</small></div>
+          <div><strong>{{ friend.name }}<FounderTag v-if="friend.founder" /><AiTag :who="friend" /></strong><small class="social-presence" :class="`is-${presenceClass(friend.status)}`">Friend · {{ presenceText(friend, venueName, view.now, place) }}</small></div>
           <span class="social-actions"><VisitButton compact :id="friend.id" :name="friend.name" /><button type="button" class="social-btn is-primary" @click="shell.open('messages', { to: friend.id, name: friend.name })">Chat</button></span>
         </div>
       </template>

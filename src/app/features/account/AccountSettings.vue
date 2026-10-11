@@ -26,6 +26,8 @@ import { COMEBACK_ACCOUNT_SENTENCE } from '../growth/touchModel.ts'
 import { useGrowth } from '../growth/useGrowth.ts'
 // The account's trust badge, phone and ID checks, and what it may post (lazy: its own chunk).
 const TrustCard = defineAsyncComponent(() => import('../trust/TrustCard.vue'))
+// AI agent keys and agent characters (lazy: its own chunk, fetched only when this section is shown to a signed-in player).
+const AgentAccess = defineAsyncComponent(() => import('../agents/AgentAccess.vue'))
 
 /** What is waiting for the person to prove who they are. */
 type Pending = { kind: 'everywhere' } | { kind: 'export' } | { kind: 'switch'; id: string; name: string } | { kind: 'delete' }
@@ -138,6 +140,7 @@ onBeforeUnmount(() => { removeGoogle?.() })
           <ComebackSwitches :view="mail" />
         </template>
         <TrustCard />
+        <AgentAccess />
         <template v-if="state.parked.length">
           <h3 class="ui-section">Set-aside characters</h3>
           <div class="ui-rows">

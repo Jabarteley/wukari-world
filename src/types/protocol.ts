@@ -61,6 +61,10 @@ export type CityId = import('../game/cities/ids.ts').CityId
 export interface PublicSession {
   id: string
   name: string
+  /** An AI agent plays this character: always for an agent character, for a few minutes after a key last acted for a player's own (server/agents/). */
+  agent?: true
+  /** Server ms the mark lapses; absent for an agent character, which is marked for good. */
+  agentUntil?: number
 }
 /**
  * The caller's OWN session, as the session routes answer it (server/routes/core.ts ownSession):

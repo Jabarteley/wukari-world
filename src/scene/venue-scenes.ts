@@ -710,7 +710,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       holder.name = 'peer';
       peer = { id, lookKey, look: person.look ?? null, seed: person.seed ?? id, group: holder, shown: null, x: person.x, z: person.z, y: 0, ry: Number.isFinite(person.ry) ? person.ry! : Math.atan2(-person.x, -person.z) || 0,
         fromX: person.x, fromZ: person.z, toX: person.x, toZ: person.z, t: 1, span: 0, stride: 0, top: 2.95,
-        tag: { id, name, kind: 'player', text: `@${name}`, marker: 'tag', colour: '#6fb4ff', position: { x: person.x, y: 2.95, z: person.z } },
+        tag: { id, name, kind: 'player', text: `@${name}${person.ai === true ? ' · AI' : ''}`, marker: 'tag', colour: '#6fb4ff', position: { x: person.x, y: 2.95, z: person.z } },
         at: { id, kind: 'player', x: person.x, z: person.z, top: 2.95 }, friend: person.friend === true, gaze: newGaze() } as Peer;
       peer.stand = peerFigure(peer, 'stand'); peer.walk = peerFigure(peer, 'walk');
       peer.top = peer.stand.userData.top ?? 2.95;
@@ -720,7 +720,8 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       placePeer(peer);
       return peer;
     }
-    if (peer.tag.name !== name) { peer.tag.name = name; peer.tag.text = `@${name}`; }
+    const tagText = `@${name}${person.ai === true ? ' · AI' : ''}`;
+    if (peer.tag.name !== name || peer.tag.text !== tagText) { peer.tag.name = name; peer.tag.text = tagText; }
     peer.friend = person.friend === true;
     const distance = Math.hypot(person.x - peer.toX, person.z - peer.toZ);
     if (distance < 0.01) return peer;

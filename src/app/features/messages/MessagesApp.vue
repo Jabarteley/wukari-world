@@ -37,6 +37,7 @@ const VisitButton = defineAsyncComponent(() => import('../visit/VisitButton.vue'
 import { pingInstead } from '../ping/pingModel.ts'
 import { personUi } from '../social/socialState.ts'
 import FounderTag from '../social/FounderTag.vue'
+import AiTag from '../social/AiTag.vue'
 import ResidentBadge from '../locate/ResidentBadge.vue'
 import CompanionPin from '../companion/CompanionPin.vue'
 import { noticeMarks, resetMessageUi, showConversation, takeDraft, ui } from './messagesState.ts'
@@ -132,6 +133,8 @@ const thread = computed(() => { void tick.value; const now = ui.open ? social.th
 const items = computed(() => { void tick.value; return ui.open ? threadView(ui.open) : [] })
 /** The other player of the direct chat on screen, also before its first message (messagesThread.ts partnerOf). */
 const partner = computed(() => partnerOf(ui.open, conv.value))
+/** The other player of a direct chat, as the server names them (it carries the AI-played mark). */
+const partnerRef = computed(() => (conv.value?.kind === 'dm' && partner.value ? conv.value.members.find((member) => member.id === partner.value) ?? null : null))
 const title = computed(() => (ui.open ? threadTitle(ui.open, conv.value, me.value?.friends.find(friend => friend.id === partner.value)?.name ?? ui.openName) : ''))
 /** A direct chat with the founder: the server marked that member. */
 const withFounder = computed(() => conv.value?.kind === 'dm' && conv.value.members.some((member) => member.id === conv.value?.with && member.founder === true))
@@ -479,6 +482,7 @@ defineExpose({
           <RowMark v-else :name="title" :seed="conv?.with ?? ui.open" />
           <h3 v-if="withFounder"><button type="button" class="messages-name" :aria-label="`${title}: open profile`" @click="conv?.with && shell.open('person', { player: conv.with, name: title })">{{ title }}</button><FounderTag /><ResidentBadge v-if="conv?.kind === 'dm' && conv.with" :id="conv.with" /><small :class="presenceOf(conv?.with) ? `messages-presence is-${presenceOf(conv?.with)}` : undefined">{{ (conv?.kind === 'dm' && presenceWord(conv.with)) || threadKind(conv) }}</small></h3>
           <h3 v-else><button v-if="partner" type="button" class="messages-name" :aria-label="`${title}: open profile`" @click="shell.open('person', { player: partner, name: title })">{{ title }}</button><template v-else>{{ title }}</template><small :class="partner && presenceOf(partner) ? `messages-presence is-${presenceOf(partner)}` : undefined">{{ (partner && presenceWord(partner)) || threadKind(conv) }}</small></h3>
+          <AiTag v-if="partnerRef" :who="partnerRef" />
           <BaseButton v-if="conv?.kind === 'group'" small :aria-expanded="ui.manage" aria-haspopup="dialog" @click="ui.manage = true">Group</BaseButton>
           <template v-else-if="partner">
             <!-- A friend who is not in the game cannot be rung: Ping takes Call's place, so the header never holds a fourth control. -->

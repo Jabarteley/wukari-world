@@ -2,20 +2,13 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "cities-ten-frame",
-      "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
+      "id": "africa-three-20261012",
+      "appSha": "a0df4b0cd523a1e23c7700d6bed9c1f7919a8294",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc",
       "cities": [
-        "tripoli",
-        "bamako",
-        "ouagadougou",
-        "maseru",
-        "lilongwe",
-        "dar-es-salaam",
-        "brazzaville",
-        "tunis",
-        "libreville",
-        "mbabane"
+        "ndjamena",
+        "bujumbura",
+        "antananarivo"
       ]
     }
   ]

@@ -1,165 +1,54 @@
-name: City map acceptance
+name: City content browser acceptance
 
 on:
   push:
-    branches: ['codex/astra-cities-qa-20261011']
+    branches: ['codex/astra-content-browser-qa-20261011']
 
 permissions:
   contents: read
 
-concurrency:
-  group: city-map-browser-${{ github.sha }}
-  cancel-in-progress: false
-
-env:
-  APP_SHA: 5fbde5ccedaf42a52423df2a77d154a6f91c8a4e
-
 jobs:
-  acceptance:
+  browser:
     runs-on: ubuntu-24.04
-    timeout-minutes: 120
+    timeout-minutes: 40
     steps:
-      - name: Define runner artifact directories
-        run: |
-          echo "QA_LOG_DIR=$RUNNER_TEMP/city-map-acceptance/logs" >> "$GITHUB_ENV"
-          echo "QA_BROWSER_DIR=$RUNNER_TEMP/city-map-acceptance/browser" >> "$GITHUB_ENV"
-
-      - name: Check out the QA diagnostic checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          repository: kromate/joinallworld
-          ref: ${{ github.sha }}
           persist-credentials: false
-
-      - name: Check out the frozen application source
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          repository: kromate/joinallworld
-          ref: 5fbde5ccedaf42a52423df2a77d154a6f91c8a4e
+          ref: d2617f54e71d11dc0042946ce9798ec726adcb8c
           path: app
           persist-credentials: false
-
-      - name: Verify repository, source pins, and clean application checkout
-        run: |
-          set -euo pipefail
-          mkdir -p "$QA_LOG_DIR" "$QA_BROWSER_DIR"
-          test "$GITHUB_REPOSITORY" = "kromate/joinallworld"
-          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
-          test "$(git -C app rev-parse HEAD)" = "$APP_SHA"
-          test -z "$(git -C app diff --name-only)"
-          {
-            printf 'repository=%s\n' "$GITHUB_REPOSITORY"
-            printf 'diagnostic_sha=%s\n' "$(git rev-parse HEAD)"
-            printf 'application_sha=%s\n' "$(git -C app rev-parse HEAD)"
-            printf 'expected_application_sha=%s\n' "$APP_SHA"
-          } | tee "$QA_LOG_DIR/source.txt"
-
-      - name: Set up Node 24
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24.19.0
-
-      - name: Copy only the QA drivers into the frozen application checkout
+      - name: Verify application source and copy diagnostic drivers
         run: |
           set -euo pipefail
-          mkdir -p app/scripts/journeys
-          cp scripts/journeys/map-shots.ts app/scripts/journeys/map-shots.ts
-          cp scripts/journeys/serve-maps.ts app/scripts/journeys/serve-maps.ts
-          cp scripts/journeys/cdp-map-qa.ts app/scripts/journeys/cdp-map-qa.ts
+          mkdir -p "$RUNNER_TEMP/content-browser"
+          test "$(git -C app rev-parse HEAD)" = d2617f54e71d11dc0042946ce9798ec726adcb8c
+          git -C app rev-parse HEAD > "$RUNNER_TEMP/content-browser/source.txt"
+          git rev-parse HEAD > "$RUNNER_TEMP/content-browser/diagnostic-source.txt"
+          cp scripts/journeys/map-shots.ts scripts/journeys/serve-maps.ts scripts/journeys/cdp-map-qa.ts app/scripts/journeys/
           test -z "$(git -C app diff --name-only)"
-          git -C app status --porcelain=v1 --untracked-files=all | tee "$QA_LOG_DIR/application-status.txt"
-          test "$(git -C app status --porcelain=v1 --untracked-files=all | sort)" = "$(printf '%s\n' '?? scripts/journeys/cdp-map-qa.ts' '?? scripts/journeys/map-shots.ts' '?? scripts/journeys/serve-maps.ts' | sort)"
-
-      - name: Install locked dependencies
+      - working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - working-directory: app
+        run: npm run build
+      - name: Capture desktop and phone maps
         working-directory: app
-        run: |
-          set -euo pipefail
-          npm ci --ignore-scripts --no-audit --no-fund 2>&1 | tee "$QA_LOG_DIR/npm-ci.log"
-
-      - name: Typecheck
-        working-directory: app
-        run: |
-          set -euo pipefail
-          npm run typecheck 2>&1 | tee "$QA_LOG_DIR/typecheck.log"
-
-      - name: Build
-        id: build
-        working-directory: app
-        run: |
-          set -euo pipefail
-          npm run build 2>&1 | tee "$QA_LOG_DIR/build.log"
-
-      - name: Check download size
-        working-directory: app
-        run: |
-          set -euo pipefail
-          npm run size:download 2>&1 | tee "$QA_LOG_DIR/size-download.log"
-
-      - name: Run focused five-city map and journey checks
-        id: focused
-        working-directory: app
-        run: |
-          set -euo pipefail
-          node --experimental-strip-types --test --test-concurrency=1 \
-            src/game/cities/windhoek/map.test.ts \
-            src/game/cities/windhoek/journey.test.ts \
-            src/game/cities/maputo/map.test.ts \
-            src/game/cities/maputo/journey.test.ts \
-            src/game/cities/gaborone/map.test.ts \
-            src/game/cities/gaborone/journey.test.ts \
-            src/game/cities/luanda/map.test.ts \
-            src/game/cities/luanda/journey.test.ts \
-            src/game/cities/harare/map.test.ts \
-            src/game/cities/harare/journey.test.ts \
-            src/game/cities/registry.test.ts 2>&1 | tee "$QA_LOG_DIR/focused.log"
-
-      - name: Capture frozen maps in the disposable browser
-        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
-        id: browser
-        working-directory: app
-        timeout-minutes: 35
         run: |
           set -euo pipefail
           export CHROME_BIN="$(command -v google-chrome)"
-          test -x "$CHROME_BIN"
           node --experimental-strip-types scripts/journeys/map-shots.ts \
-            --out "$QA_BROWSER_DIR" \
-            --port 4423 \
-            --debug-port 4424 \
-            --cities windhoek,maputo,gaborone,luanda,harare \
-            --phone-cities windhoek,maputo,gaborone,luanda,harare \
-            --phones 390x844,320x568 \
-            --short lagos \
-            --lean \
-            --clock-hour 12 \
-            --label-audit 2>&1 | tee "$QA_LOG_DIR/browser.log"
-
-      - name: Preserve browser evidence before the full suite
+            --out "$RUNNER_TEMP/content-browser" --port 4423 --debug-port 4424 \
+            --cities lagos,abuja,cairo,dakar,yaounde \
+            --phone-cities lagos,abuja,cairo,dakar,yaounde \
+            --phones 390x844,320x568 --short lagos,abuja --lean --clock-hour 12 --label-audit \
+            2>&1 | tee "$RUNNER_TEMP/content-browser/browser.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: ${{ always() }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
-          name: city-browser-evidence-${{ github.sha }}
-          path: |
-            ${{ runner.temp }}/city-map-acceptance/browser/
-            ${{ runner.temp }}/city-map-acceptance/logs/source.txt
-            ${{ runner.temp }}/city-map-acceptance/logs/browser.log
-          if-no-files-found: warn
-          retention-days: 30
-
-      - name: Run the complete literal npm test command
-        if: ${{ !cancelled() && steps.focused.outcome == 'success' }}
-        working-directory: app
-        run: |
-          set -euo pipefail
-          npm test 2>&1 | tee "$QA_LOG_DIR/npm-test.log"
-
-      - name: Preserve QA logs, source pins, and screenshots
-        if: ${{ always() }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: city-map-acceptance-${{ github.sha }}
-          path: |
-            ${{ runner.temp }}/city-map-acceptance/logs/
-            ${{ runner.temp }}/city-map-acceptance/browser/
-          if-no-files-found: error
-          retention-days: 30
+          name: content-browser-${{ github.sha }}
+          path: ${{ runner.temp }}/content-browser/

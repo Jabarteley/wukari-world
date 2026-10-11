@@ -3,7 +3,7 @@
 // Nothing is a recording or a melody that exists. The human calls of a Lagos day (hawkers, conductors, the call to prayer) are
 // invented gestures of a buzzing wave through vowel filters: no words, no sample. A few helpers below build the layers that repeat.
 import type { Layer, Recipe } from './synth.ts'
-import type { ScapeSpec } from './scape.ts'
+import type { Bed, ScapeSpec } from './scape.ts'
 import type { TimeBand } from '../game/world-time.ts'
 
 const hz = (m: number): number => 440 * 2 ** ((m - 69) / 12)
@@ -23,8 +23,25 @@ const knock = (f: number, at = 0, g = 0.3, d = 0.07): Layer[] => [
 /** A short burst of filtered noise. */
 const puff = (hzc: number, d: number, g: number, at = 0, q = 0.8, type: BiquadFilterType = 'bandpass', end?: number): Layer => ({ w: 'noise', at, a: Math.min(0.01, d / 3), d, g, fl: end ? [type, hzc, q, end] : [type, hzc, q] })
 const seq = (notes: readonly number[], step: number, make: (m: number, at: number, i: number) => Layer[]): Layer[] => notes.flatMap((m, i) => make(m, i * step, i))
-const pent = [0, 2, 4, 7, 9]
-void pent
+/** The key of every place: D major pentatonic (D E F# A B). Pads, plucks and the beat only use these notes, so places blend into each other. */
+const KEY_NOTES = [62, 64, 66, 69, 71] as const
+/** A soft held chord of three slightly detuned voices through a low-pass, swelling very slowly. Notes are MIDI numbers from the key. */
+const pad = (notes: readonly [number, number, number], g = 0.15): Bed[] => [
+  { hum: hz(notes[0]) * 0.9985, w: 'triangle', fl: ['lowpass', 520], g, lfo: [0.045, 0.5], night: 0.85 },
+  { hum: hz(notes[1]) * 1.0015, w: 'sine', fl: ['lowpass', 700], g: g * 0.8, lfo: [0.06, 0.5], night: 0.85 },
+  { hum: hz(notes[2]), w: 'sine', fl: ['lowpass', 800], g: g * 0.45, lfo: [0.035, 0.5], night: 0.85 },
+]
+const A_PAD = [57, 64, 69] as const, D_PAD = [62, 69, 74] as const, E_PAD = [64, 71, 76] as const, F_PAD = [66, 71, 78] as const, B_PAD = [59, 66, 71] as const
+/** A soft plucked string (highlife guitar): a triangle with a darkening low-pass and a quiet octave. */
+const pluck = (m: number, at: number, g = 0.12, d = 0.7): Layer[] => [
+  { w: 'triangle', f: hz(m), at, a: 0.003, d, g, fl: ['lowpass', 1800, 0.7, 500], rv: 0.3 },
+  { w: 'sine', f: hz(m) * 2, at, a: 0.002, d: d * 0.3, g: g * 0.3 },
+]
+/** A soft marimba note. */
+const mar = (m: number, at: number, g = 0.14): Layer[] => [
+  { w: 'sine', f: hz(m), at, a: 0.002, d: 0.5, g, rv: 0.3 },
+  { w: 'sine', f: hz(m) * 4, at, a: 0.001, d: 0.08, g: g * 0.2 },
+]
 /** A shouted or sung vowel: a buzzing wave through two formant filters, gliding from f to f2 (`f1` and `fb` are the formants). */
 const vowel = (f: number, f2: number, at: number, d: number, g: number, f1 = 750, fb = 1150, a = 0.03, consonant = true): Layer[] => [
   { w: 'sawtooth', f, f2, at, a, d, g, fl: ['bandpass', f1, 4] },
@@ -46,15 +63,16 @@ const azanPhrase = (g: number, dark: number): Layer[] => [
 export const BEAT_SECONDS = (60 / 104) * 8
 const beat = (bright: number, g: number): Layer[] => {
   const step = 60 / 104 / 4, out: Layer[] = []
-  const kicks = [0, 6, 10, 16, 22, 26], bass = [45, 45, 48, 41, 41, 43]
+  const kicks = [0, 6, 10, 16, 22, 26], bass = [38, 38, 45, 38, 40, 45]
   kicks.forEach((s, i) => {
     const at = s * step
-    out.push({ w: 'sine', f: 130, f2: 46, at, a: 0.002, d: 0.24, g: 0.5 * g })
-    out.push({ w: 'sine', f: hz(bass[i] as number), at, a: 0.01, d: 0.34, g: 0.3 * g })
+    out.push({ w: 'sine', f: 120, f2: 50, at, a: 0.004, d: 0.24, g: 0.4 * g })
+    out.push({ w: 'triangle', f: hz(bass[i] as number), at, a: 0.01, d: 0.36, g: 0.28 * g, fl: ['lowpass', 400, 0.7] })
   })
-  for (const s of [8, 24]) out.push({ w: 'noise', at: s * step, a: 0.002, d: 0.16, g: 0.3 * g, fl: ['bandpass', bright * 0.5, 0.9] })
-  for (let s = 0; s < 32; s += 2) out.push({ w: 'noise', at: s * step, a: 0.001, d: s % 4 === 2 ? 0.06 : 0.035, g: (s % 4 === 2 ? 0.09 : 0.05) * g, fl: ['bandpass', bright * 1.3, 1.2] })
-  for (const s of [3, 11, 19, 27]) for (const m of [64, 69]) out.push({ w: 'triangle', f: hz(m), at: s * step, a: 0.004, d: 0.3, g: 0.07 * g, fl: ['lowpass', bright, 0.7] })
+  // the backbeat is a soft low marimba note, the off-beats are tiny wooden ticks, and the stabs walk the pentatonic scale
+  for (const s of [8, 24]) out.push(...mar(50, s * step, 0.18 * g))
+  for (let s = 0; s < 32; s += 2) out.push({ w: 'triangle', f: s % 4 === 2 ? 1500 : 1200, at: s * step, a: 0.002, d: 0.05, g: 0.035 * g })
+  ;[3, 11, 19, 27].forEach((s, i) => { for (const m of [[69, 74], [66, 71], [64, 69], [66, 74]][i] as number[]) out.push({ w: 'triangle', f: hz(m), at: s * step, a: 0.01, d: 0.35, g: 0.06 * g, fl: ['lowpass', Math.min(bright, 1500), 0.7] }) })
   return out
 }
 
@@ -119,7 +137,13 @@ export const RECIPES: Readonly<Record<string, Recipe>> = {
   'seller-bell': { l: [...tink(91, 0, 0.14, 0.5, 0.3), ...tink(91, 0.17, 0.1, 0.4, 0.3)], pri: 0, j: 0.04 },
   'campus-bell': { l: [...tink(67, 0, 0.12, 1.4, 0.5), { w: 'sine', f: hz(67) * 2, a: 0.002, d: 1, g: 0.05, rv: 0.4 }], pri: 0 },
   announce: { l: [...bar(84, 0, 0.14, 0.4, 0.5), ...bar(79, 0.42, 0.14, 0.4, 0.5), ...bar(72, 0.84, 0.16, 0.7, 0.5)], pri: 0 },
-  'car-horn': { l: [{ w: 'square', f: 420, a: 0.02, d: 0.28, g: 0.04, fl: ['lowpass', 900, 0.7] }], pri: 0, j: 0.15 },
+  'car-horn': { l: [{ w: 'triangle', f: 392, a: 0.04, d: 0.4, g: 0.05, fl: ['lowpass', 700, 0.7], rv: 0.5 }, { w: 'triangle', f: 494, at: 0.02, a: 0.04, d: 0.36, g: 0.04, fl: ['lowpass', 700, 0.7], rv: 0.5 }], pri: 0, j: 0.04 },
+  // a pot lid and a spoon in a kitchen two rooms away
+  'pot-clink': { l: [{ w: 'sine', f: 880, a: 0.002, d: 0.14, g: 0.07, rv: 0.2 }, { w: 'sine', f: 1318, at: 0.1, a: 0.002, d: 0.12, g: 0.05, rv: 0.2 }, ...knock(300, 0.1, 0.06, 0.05)], pri: 0, j: 0.04 },
+  // sparse highlife guitar and marimba phrases, all in the key of the places
+  'hl-a': { l: [...pluck(69, 0), ...pluck(66, 0.24), ...pluck(64, 0.48), ...pluck(62, 0.9, 0.12, 1.2)], pri: 0 },
+  'hl-b': { l: [...pluck(62, 0), ...pluck(64, 0.2), ...pluck(66, 0.4), ...pluck(69, 0.6), ...pluck(66, 1.0, 0.1, 1.2)], pri: 0 },
+  'hl-c': { l: [...mar(74, 0), ...mar(71, 0.25), ...mar(69, 0.5), ...mar(66, 0.9, 0.12)], pri: 0 },
   // ---- the calls and the music of the day: hawkers, danfo conductors, church, the call to prayer, rain on zinc, a bar ------------------
   'hawk-a': { l: [...vowel(300, 255, 0, 0.26, 0.4), ...vowel(250, 215, 0.27, 0.34, 0.4, 600, 1000), ...vowel(300, 255, 0.85, 0.26, 0.4), ...vowel(250, 200, 1.12, 0.5, 0.4, 600, 1000)], pri: 0, j: 0.08 },
   'hawk-b': { l: [...vowel(380, 420, 0, 0.2, 0.34, 800, 1300), ...vowel(430, 470, 0.22, 0.2, 0.34, 800, 1300), ...vowel(500, 400, 0.45, 0.6, 0.36, 450, 2000)], pri: 0, j: 0.08 },
@@ -187,22 +211,22 @@ export const COMMANDS: Readonly<Record<string, string>> = {
 }
 
 /** Beds for the same everywhere: vehicles, weather, places. */
-const city: ScapeSpec = { beds: [{ c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.3, v: 0.3, lfo: [0.05, 0.3] }, { c: 'pink', fl: ['lowpass', 700, 0.5], g: 0.04, v: 0.4 }], shots: [['car-horn', 14, 34, 0.35]] }
+const city: ScapeSpec = { beds: [...pad(A_PAD), { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.3, v: 0.3, lfo: [0.05, 0.3] }, { c: 'pink', fl: ['lowpass', 700, 0.5], g: 0.04, v: 0.4 }], shots: [['bird-b', 10, 26, 0.4, 'day'], ['car-horn', 14, 34, 0.35]] }
 export const SCAPES: Readonly<Record<string, ScapeSpec>> = {
   // places (ambience bus)
   city,
-  harmattan: { beds: [{ c: 'brown', fl: ['lowpass', 260, 0.7], g: 0.25, v: 0.3 }, { c: 'pink', fl: ['lowpass', 600, 0.5], g: 0.05, v: 0.4, lfo: [0.05, 0.5] }], shots: [['car-horn', 20, 44, 0.3]] },
-  harbour: { beds: [{ c: 'brown', fl: ['lowpass', 260, 0.7], g: 0.25, v: 0.3 }, { c: 'brown', fl: ['lowpass', 420, 0.5], g: 0.2, lfo: [0.09, 0.6] }], shots: [['car-horn', 24, 50, 0.28]] },
-  calm: { beds: [{ c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.22, v: 0.3 }], shots: [['bird-a', 6, 16, 0.5, 'day'], ['cricket', 1.5, 4, 0.4, 'night']] },
-  market: { beds: [{ c: 'pink', fl: ['lowpass', 800, 0.6], g: 0.12, v: 0.4, night: 0.6 }, { c: 'brown', fl: ['lowpass', 260, 0.7], g: 0.15, v: 0.3 }], shots: [['murmur', 1.2, 3.5, 0.4], ['seller-bell', 12, 26, 0.4, 'day']] },
-  park: { beds: [{ c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.2, v: 0.3 }, { c: 'pink', fl: ['lowpass', 500, 0.5], g: 0.04, v: 0.4 }], shots: [['bird-a', 5, 12, 0.6, 'day'], ['bird-b', 7, 16, 0.5, 'day'], ['cricket', 1.2, 3, 0.5, 'night']] },
-  water: { beds: [{ c: 'brown', fl: ['lowpass', 420, 0.6], g: 0.3, lfo: [0.1, 0.5] }, { c: 'pink', fl: ['lowpass', 900, 0.4], g: 0.04, lfo: [0.1, 0.6] }], shots: [['splash', 4, 10, 0.4]] },
-  campus: { beds: [{ c: 'pink', fl: ['lowpass', 700, 0.6], g: 0.05, v: 0.4 }, { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.18, v: 0.3 }], shots: [['step-path', 3, 8, 0.4], ['campus-bell', 28, 60, 0.4, 'day'], ['bird-a', 6, 16, 0.4, 'day'], ['cricket', 1.5, 4, 0.3, 'night']] },
-  worship: { beds: [{ c: 'brown', fl: ['lowpass', 220, 0.7], g: 0.22, v: 0.15 }] },
-  office: { beds: [{ c: 'brown', fl: ['lowpass', 700, 0.7], g: 0.25, v: 0.1 }, { hum: 120, fl: ['lowpass', 400], g: 0.025 }], shots: [['keys', 2.5, 8, 0.5, 'day']] },
-  hall: { beds: [{ c: 'brown', fl: ['lowpass', 600, 0.7], g: 0.2, v: 0.1 }, { hum: 110, fl: ['lowpass', 400], g: 0.02 }] },
-  home: { beds: [{ c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.22, v: 0.15 }, { hum: 50, fl: ['lowpass', 300], g: 0.035 }, { hum: 100, fl: ['lowpass', 300], g: 0.012 }], shots: [['cricket', 0.8, 2, 0.3, 'night']] },
-  transit: { beds: [{ c: 'brown', fl: ['lowpass', 160, 0.7], g: 0.3, v: 0.2, lfo: [0.3, 0.15] }, { c: 'pink', fl: ['lowpass', 600, 0.6], g: 0.03, v: 0.4 }], shots: [['announce', 24, 55, 0.5], ['car-horn', 16, 36, 0.3]] },
+  harmattan: { beds: [...pad(B_PAD), { c: 'brown', fl: ['lowpass', 260, 0.7], g: 0.25, v: 0.3 }, { c: 'pink', fl: ['lowpass', 600, 0.5], g: 0.05, v: 0.4, lfo: [0.05, 0.5] }], shots: [['car-horn', 20, 44, 0.3]] },
+  harbour: { beds: [...pad(B_PAD), { c: 'brown', fl: ['lowpass', 260, 0.7], g: 0.25, v: 0.3 }, { c: 'brown', fl: ['lowpass', 420, 0.5], g: 0.2, lfo: [0.09, 0.6] }], shots: [['car-horn', 24, 50, 0.28]] },
+  calm: { beds: [...pad(F_PAD), { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.22, v: 0.3 }], shots: [['bird-a', 6, 16, 0.5, 'day'], ['cricket', 1.5, 4, 0.4, 'night']] },
+  market: { beds: [...pad(E_PAD), { c: 'pink', fl: ['lowpass', 800, 0.6], g: 0.12, v: 0.4, night: 0.6 }, { c: 'brown', fl: ['lowpass', 260, 0.7], g: 0.15, v: 0.3 }], shots: [['hl-a', 28, 60, 0.45, 'day', true], ['murmur', 1.2, 3.5, 0.4], ['seller-bell', 12, 26, 0.4, 'day']] },
+  park: { beds: [...pad(F_PAD), { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.2, v: 0.3 }, { c: 'pink', fl: ['lowpass', 500, 0.5], g: 0.04, v: 0.4 }], shots: [['hl-c', 40, 90, 0.3, 'day', true], ['bird-a', 5, 12, 0.6, 'day'], ['bird-b', 7, 16, 0.5, 'day'], ['cricket', 1.2, 3, 0.5, 'night']] },
+  water: { beds: [...pad(B_PAD), { c: 'brown', fl: ['lowpass', 420, 0.6], g: 0.3, lfo: [0.1, 0.5] }, { c: 'pink', fl: ['lowpass', 900, 0.4], g: 0.04, lfo: [0.1, 0.6] }], shots: [['splash', 4, 10, 0.4]] },
+  campus: { beds: [...pad(D_PAD), { c: 'pink', fl: ['lowpass', 700, 0.6], g: 0.05, v: 0.4 }, { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.18, v: 0.3 }], shots: [['step-path', 3, 8, 0.4], ['campus-bell', 28, 60, 0.4, 'day'], ['bird-a', 6, 16, 0.4, 'day'], ['cricket', 1.5, 4, 0.3, 'night']] },
+  worship: { beds: [...pad(A_PAD), { c: 'brown', fl: ['lowpass', 220, 0.7], g: 0.22, v: 0.15 }] },
+  office: { beds: [...pad(B_PAD), { c: 'brown', fl: ['lowpass', 700, 0.7], g: 0.25, v: 0.1 }, { hum: 120, fl: ['lowpass', 400], g: 0.025 }], shots: [['keys', 2.5, 8, 0.5, 'day']] },
+  hall: { beds: [...pad(D_PAD), { c: 'brown', fl: ['lowpass', 600, 0.7], g: 0.2, v: 0.1 }, { hum: 110, fl: ['lowpass', 400], g: 0.02 }] },
+  home: { beds: [{ c: 'brown', fl: ['lowpass', 220, 0.7], g: 0.12, v: 0.15 }, ...pad(D_PAD)], shots: [['pot-clink', 16, 40, 0.5, 'day'], ['car-horn', 40, 90, 0.2, 'day'], ['cricket', 1.5, 4, 0.3, 'night']] },
+  transit: { beds: [...pad(A_PAD), { c: 'brown', fl: ['lowpass', 160, 0.7], g: 0.3, v: 0.2, lfo: [0.3, 0.15] }, { c: 'pink', fl: ['lowpass', 600, 0.6], g: 0.03, v: 0.4 }], shots: [['announce', 24, 55, 0.5], ['car-horn', 16, 36, 0.3]] },
   industry: { beds: [{ c: 'brown', fl: ['lowpass', 200, 0.7], g: 0.3, v: 0.15 }, { hum: 60, w: 'triangle', fl: ['lowpass', 200], g: 0.04 }] },
   rain: { beds: [{ c: 'pink', fl: ['lowpass', 900, 0.5], g: 0.16, v: 0.3 }, { c: 'brown', fl: ['lowpass', 220, 0.7], g: 0.14 }], shots: [['rain-drop', 0.12, 0.45, 0.4]] },
   // rain on a zinc roof: louder, brighter, with the ticks of single drops
@@ -214,13 +238,13 @@ export const SCAPES: Readonly<Record<string, ScapeSpec>> = {
   // a generator two compounds away, and one in the yard
   generator: { beds: [{ hum: 47, w: 'triangle', fl: ['lowpass', 140, 0.8], g: 0.08, lfo: [2.4, 0.4] }, { hum: 94, w: 'sine', fl: ['lowpass', 200], g: 0.02, lfo: [2.4, 0.4] }, { c: 'brown', fl: ['lowpass', 200, 0.7], g: 0.08, v: 0.15 }] },
   'generator-far': { beds: [{ hum: 47, w: 'triangle', fl: ['lowpass', 120, 0.8], g: 0.04, lfo: [2.4, 0.4] }, { c: 'brown', fl: ['lowpass', 160, 0.7], g: 0.05, v: 0.2 }] },
-  'church-service': { beds: [{ hum: 130.8, w: 'triangle', fl: ['lowpass', 700], g: 0.06, lfo: [0.11, 0.6] }, { hum: 164.8, w: 'triangle', fl: ['lowpass', 700], g: 0.045, lfo: [0.09, 0.6] }, { hum: 196, w: 'triangle', fl: ['lowpass', 700], g: 0.04, lfo: [0.13, 0.6] }, { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.1, v: 0.2 }], shots: [['hymn', 14, 22, 0.6], ['church-bell', 55, 90, 0.45, 'day'], ['murmur', 5, 12, 0.25]] },
+  'church-service': { beds: [...pad(D_PAD, 0.15), { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.1, v: 0.2 }], shots: [['hymn', 14, 22, 0.6], ['church-bell', 55, 90, 0.45, 'day'], ['murmur', 5, 12, 0.25]] },
   'azan-near': { shots: [['azan', 38, 50, 0.7]] },
   'azan-far': { shots: [['azan-far', 38, 50, 0.45]] },
   jumuah: { beds: [{ c: 'pink', fl: ['lowpass', 600, 1], g: 0.08, lfo: [0.15, 0.6] }, { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.1, v: 0.2 }], shots: [['murmur', 8, 18, 0.25]] },
   // a bar or a club at night: a pulse through the wall and a generator behind it
   'club-night': { beds: [{ c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.1 }, { hum: 47, w: 'triangle', fl: ['lowpass', 140, 0.8], g: 0.03, lfo: [2.4, 0.4] }], shots: [['crowd-swell', 14, 30, 0.3]], loops: [['beat-club', BEAT_SECONDS, 0.55]] },
-  'bar-night': { beds: [{ hum: 47, w: 'triangle', fl: ['lowpass', 140, 0.8], g: 0.03, lfo: [2.4, 0.4] }], shots: [['clink', 4, 10, 0.4]], loops: [['beat-low', BEAT_SECONDS, 0.5]] },
+  'bar-night': { beds: [{ hum: 47, w: 'triangle', fl: ['lowpass', 140, 0.8], g: 0.03, lfo: [2.4, 0.4] }], shots: [['clink', 4, 10, 0.4], ['hl-b', 16, 34, 0.45, undefined, true], ['hl-c', 24, 50, 0.4, undefined, true]], loops: [['beat-low', BEAT_SECONDS, 0.5]] },
   'viewing-night': { beds: [{ hum: 47, w: 'triangle', fl: ['lowpass', 140, 0.8], g: 0.04, lfo: [2.4, 0.4] }], shots: [['crowd-swell', 14, 34, 0.4], ['murmur', 2, 6, 0.35]] },
   // vehicles (effects bus)
   'ride-bus': { beds: [{ hum: 46, w: 'triangle', fl: ['lowpass', 150], g: 0.12, lfo: [3, 0.25] }, { c: 'brown', fl: ['lowpass', 240, 0.7], g: 0.3, v: 0.15 }] },

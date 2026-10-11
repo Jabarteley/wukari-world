@@ -18,8 +18,8 @@ export interface Bed {
   /** Level multiplier at night (default 1). */
   night?: number
 }
-/** A one-shot recipe at random intervals: [recipe, min s, max s, level, only 'day' | 'night']. */
-export type Shot = readonly [string, number, number, number, ('day' | 'night')?]
+/** A one-shot recipe at random intervals: [recipe, min s, max s, level, only 'day' | 'night', tuned]. A tuned shot (a melody in the key of the place) keeps its pitch; the others vary a little. */
+export type Shot = readonly [string, number, number, number, ('day' | 'night')?, boolean?]
 /** A pattern that repeats on the beat, exactly and without the random level, pan and pitch of a shot (music): [recipe, length s, level, only 'day' | 'night']. */
 export type Loop = readonly [string, number, number, ('day' | 'night')?]
 export interface ScapeSpec { beds?: readonly Bed[]; shots?: readonly Shot[]; loops?: readonly Loop[] }
@@ -96,7 +96,7 @@ export class Scape {
         if (when && (when === 'night') !== this.night) continue
         // Shots that fell due while the context was suspended are dropped, not played all at once on waking.
         if (at < this.synth.ctx.currentTime - 0.05) continue
-        this.synth.play(shot[0], { at, vel: shot[3] * rand(0.6, 1), pan: rand(-0.6, 0.6), pitch: rand(0.94, 1.06), dest: this.out })
+        this.synth.play(shot[0], { at, vel: shot[3] * rand(0.6, 1), pan: rand(-0.6, 0.6), pitch: shot[5] ? 1 : rand(0.94, 1.06), dest: this.out })
       }
     }
     const loops = this.spec.loops ?? []

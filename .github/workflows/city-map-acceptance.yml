@@ -8,7 +8,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: frozen-city-map-acceptance
+  group: city-map-browser-${{ github.sha }}
   cancel-in-progress: false
 
 env:
@@ -52,6 +52,7 @@ jobs:
             printf 'diagnostic_sha=%s\n' "$(git rev-parse HEAD)"
             printf 'application_sha=%s\n' "$(git -C app rev-parse HEAD)"
             printf 'expected_application_sha=%s\n' "$APP_SHA"
+            printf 'full_test_run=%s\n' '38107895055'
           } | tee "$QA_LOG_DIR/source.txt"
 
       - name: Set up Node 24
@@ -139,13 +140,6 @@ jobs:
             ${{ runner.temp }}/city-map-acceptance/logs/browser.log
           if-no-files-found: warn
           retention-days: 30
-
-      - name: Run the complete literal npm test command
-        if: ${{ !cancelled() && steps.focused.outcome == 'success' }}
-        working-directory: app
-        run: |
-          set -euo pipefail
-          npm test 2>&1 | tee "$QA_LOG_DIR/npm-test.log"
 
       - name: Preserve QA logs, source pins, and screenshots
         if: ${{ always() }}

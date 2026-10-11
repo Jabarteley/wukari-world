@@ -1,0 +1,84 @@
+name: City capture contact sheets
+on:
+  push:
+    branches: ['codex/astra-factory-qa-20261011']
+    paths: ['scripts/geo/city-capture-contacts.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: city-capture-contacts-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      cities: ${{ steps.queue.outputs.cities }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - id: queue
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          queue = json.loads(Path("scripts/geo/city-capture-contacts.json").read_text())
+          assert queue.get("schemaVersion") == 1
+          assert queue.get("repository") == "kromate/joinallworld"
+          cities = queue.get("cities")
+          assert isinstance(cities, list) and 1 <= len(cities) <= 10
+          assert len({city["id"] for city in cities}) == len(cities)
+          for city in cities:
+              assert city["id"].replace("-", "").isalnum()
+              assert isinstance(city["runId"], int) and city["runId"] > 0
+              for key in ("appSha", "driverSha"):
+                  assert len(city[key]) == 40 and all(c in "0123456789abcdef" for c in city[key])
+              assert city["artifactName"].startswith("city-browser-recapture-" + city["id"] + "-")
+          print("cities=" + json.dumps(cities, separators=(",", ":")))
+          PY
+  contacts:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        city: ${{ fromJSON(needs.plan.outputs.cities) }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Download original browser evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          repository: kromate/joinallworld
+          run-id: ${{ matrix.city.runId }}
+          name: ${{ matrix.city.artifactName }}
+          path: ${{ runner.temp }}/city-evidence
+      - name: Render contact pages
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/city-evidence/contacts"
+          if ! command -v "$CHROME_BIN" >/dev/null 2>&1; then
+            export CHROME_BIN="$(command -v google-chrome)"
+          fi
+          python3 scripts/geo/capture-contacts.py \
+            --artifact "$RUNNER_TEMP/city-evidence" \
+            --out "$RUNNER_TEMP/city-evidence/contacts" \
+            --city '${{ matrix.city.id }}' \
+            --artifact-run-id '${{ matrix.city.runId }}' \
+            --app-sha '${{ matrix.city.appSha }}' \
+            --driver-sha '${{ matrix.city.driverSha }}' \
+            2>&1 | tee "$RUNNER_TEMP/city-evidence/contacts/command.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: city-capture-contacts-${{ matrix.city.id }}-${{ github.sha }}
+          path: ${{ runner.temp }}/city-evidence/contacts/
+          if-no-files-found: error

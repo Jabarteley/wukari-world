@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "repository": "kromate/joinallworld",
+  "cities": [
+    {
+      "id": "tripoli",
+      "runId": 38167497664,
+      "artifactName": "city-browser-recapture-tripoli-9aa1f5b4d7c8d584a7cb5cbf2072d638198988c8-de92e4156db16d8f9a3eb5b949765c9f8a88c1fc",
+      "appSha": "9aa1f5b4d7c8d584a7cb5cbf2072d638198988c8",
+      "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
+    }
+  ]
+}

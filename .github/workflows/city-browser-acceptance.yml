@@ -1,13 +1,7 @@
 name: City browser acceptance
 
 on:
-  push:
-    branches: ['codex/astra-browser-qa-20261011']
-    paths:
-      - '.github/workflows/city-browser-acceptance.yml'
-      - 'scripts/journeys/map-shots.ts'
-      - 'scripts/journeys/cdp-map-qa.ts'
-      - 'scripts/journeys/serve-maps.ts'
+  workflow_dispatch:
 
 permissions:
   contents: read

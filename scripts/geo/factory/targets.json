@@ -319,8 +319,8 @@
         },
         "timezone": "Africa/Bujumbura",
         "centre": {
-          "lon": 29.36,
-          "lat": -3.38
+          "lon": 29.3675028,
+          "lat": -3.3638125
         },
         "airport": {
           "id": "bujumbura-airport",
@@ -347,26 +347,65 @@
       },
       "metadataSources": {
         "centre": {
-          "sourceUrl": "https://www.openstreetmap.org/copyright",
+          "osmRef": "node/60715062",
+          "sourceUrl": "https://www.openstreetmap.org/node/60715062",
           "sourceRecord": {
-            "lon": 29.36,
-            "lat": -3.38
+            "ref": "node/60715062",
+            "tags": {
+              "name": "Bujumbura",
+              "place": "city",
+              "admin_level": "4"
+            },
+            "lon": 29.3675028,
+            "lat": -3.3638125,
+            "timestamp": "2025-08-14T07:33:30Z"
           },
-          "evidenceStatus": "existing draft FACTS.ts value; primary centre verification not supplied in pinned latest-main inputs"
+          "pbfSha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
+          "evidenceStatus": "Current OSM API object verified; pinned dated city extract was checked and does not contain this city identity object.",
+          "lookupUrl": "https://api.openstreetmap.org/api/0.6/node/60715062.json",
+          "pinnedExtractCheck": "city identity object absent from pinned places/extras; current OSM API object is separate provenance"
         },
         "airport": {
-          "sourceUrl": "https://ourairports.com/airports/HBBA/",
-          "sourceRecord": {
-            "id": "bujumbura-airport",
+          "rowNumber": 30700,
+          "row": {
+            "id": "3170",
+            "ident": "HBBA",
+            "type": "large_airport",
             "name": "Bujumbura Melchior Ndadaye International Airport",
-            "lon": 29.318501,
-            "lat": -3.32402
+            "latitude_deg": "-3.32402",
+            "longitude_deg": "29.318501",
+            "elevation_ft": "2582",
+            "continent": "AF",
+            "iso_country": "BI",
+            "iso_region": "BI-BM",
+            "municipality": "Bujumbura",
+            "scheduled_service": "yes",
+            "icao_code": "HBBA",
+            "iata_code": "BJM",
+            "gps_code": "HBBA",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Bujumbura_International_Airport",
+            "keywords": ""
           },
-          "evidenceStatus": "existing draft FACTS.ts value; source row not included in boundary/source artifact"
+          "rowSha256": "ad365aacac6969dbd9f67a248f4c172e464e6672a32fb6fb1667c728348fa82a",
+          "csvSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906",
+          "snapshotDate": "2026-10-11",
+          "sourceUrl": "https://ourairports.com/data/",
+          "sourceRowDetailUrl": "https://ourairports.com/airports/HBBA/",
+          "coordinateCaveat": "Dataset coordinate point; not an official ARP and not evidence of current operations or schedules."
         },
         "timezone": {
-          "sourceRecord": "Africa/Bujumbura",
-          "evidenceStatus": "existing draft FACTS.ts value; no independent source-row pin included"
+          "rows": [
+            [
+              "BI",
+              "-0323+02922",
+              "Africa/Bujumbura"
+            ]
+          ],
+          "zoneTabSha256": "7cc78ea166261b3dedf951cdd721051460851e6fcd96c12b8e3194cf25677f21",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "tzdataVersion": "# version 2026c"
         }
       },
       "extractKey": "bujumbura",
@@ -429,8 +468,8 @@
         },
         "timezone": "Indian/Antananarivo",
         "centre": {
-          "lon": 47.52,
-          "lat": -18.91
+          "lon": 47.5255809,
+          "lat": -18.9100122
         },
         "airport": {
           "id": "FMMI",
@@ -457,26 +496,67 @@
       },
       "metadataSources": {
         "centre": {
-          "sourceUrl": "https://www.openstreetmap.org/copyright",
+          "osmRef": "node/27565116",
+          "sourceUrl": "https://www.openstreetmap.org/node/27565116",
           "sourceRecord": {
-            "lon": 47.52,
-            "lat": -18.91
+            "ref": "node/27565116",
+            "tags": {
+              "name": "Antananarivo",
+              "place": "city",
+              "capital": "yes",
+              "admin_level": "2",
+              "is_capital": "country"
+            },
+            "lon": 47.5255809,
+            "lat": -18.9100122,
+            "timestamp": "2026-03-12T11:42:37Z"
           },
-          "evidenceStatus": "existing draft FACTS.ts value; primary centre verification not supplied in pinned latest-main inputs"
+          "pbfSha256": "f52ca1cde05cf21b0c9df28a2d7d2b769da1305a85a631e27fd388c8913e26e9",
+          "evidenceStatus": "Current OSM API object verified; pinned dated city extract was checked and does not contain this city identity object.",
+          "lookupUrl": "https://api.openstreetmap.org/api/0.6/node/27565116.json",
+          "pinnedExtractCheck": "city identity object absent from pinned places/extras; current OSM API object is separate provenance"
         },
         "airport": {
-          "sourceUrl": "https://ourairports.com/airports/FMMI/",
-          "sourceRecord": {
-            "id": "FMMI",
+          "rowNumber": 26620,
+          "row": {
+            "id": "2908",
+            "ident": "FMMI",
+            "type": "large_airport",
             "name": "Ivato International Airport",
-            "lon": 47.478802,
-            "lat": -18.7969
+            "latitude_deg": "-18.7969",
+            "longitude_deg": "47.478802",
+            "elevation_ft": "4198",
+            "continent": "AF",
+            "iso_country": "MG",
+            "iso_region": "MG-T",
+            "municipality": "Antananarivo",
+            "scheduled_service": "yes",
+            "icao_code": "FMMI",
+            "iata_code": "TNR",
+            "gps_code": "FMMI",
+            "local_code": "",
+            "home_link": "https://ravinala-airports.aero/en/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Ivato_Airport",
+            "keywords": ""
           },
-          "evidenceStatus": "existing draft FACTS.ts value; source row not included in boundary/source artifact"
+          "rowSha256": "3eddc84541242f3c5cd40644699b52ff01f22cb9a94f7df1f1a2ab963347935a",
+          "csvSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906",
+          "snapshotDate": "2026-10-11",
+          "sourceUrl": "https://ourairports.com/data/",
+          "sourceRowDetailUrl": "https://ourairports.com/airports/FMMI/",
+          "coordinateCaveat": "Dataset coordinate point; not an official ARP and not evidence of current operations or schedules."
         },
         "timezone": {
-          "sourceRecord": "Indian/Antananarivo",
-          "evidenceStatus": "existing draft FACTS.ts value; no independent source-row pin included"
+          "rows": [
+            [
+              "MG",
+              "-1855+04731",
+              "Indian/Antananarivo"
+            ]
+          ],
+          "zoneTabSha256": "7cc78ea166261b3dedf951cdd721051460851e6fcd96c12b8e3194cf25677f21",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "tzdataVersion": "# version 2026c"
         }
       },
       "extractKey": "antananarivo",

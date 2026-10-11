@@ -11,7 +11,7 @@ import { createRequire } from 'node:module'
 import { claimsFor, makeKey, signToken } from '../server/accounts/test-tokens.ts'
 import { TOKEN_KEYS_URL } from '../server/accounts/token.ts'
 import { layoutBindings, readStoredCollection } from '../server/testing/sqliteStorage.ts'
-import { hashOfKey } from '../server/agents/policy.ts'
+import { hashOfKey } from '../server/agents/service.ts'
 
 interface MiniflareInstance {
   ready: Promise<URL>
@@ -120,7 +120,7 @@ test('POST /mcp through the Durable Object: a key plays the player\'s own charac
   await h.start();
   assert.equal((await h.tool(made.key, 'list_actions_here')).ok, true, 'the key works after the object restarts')
   const listed = await (await h.browser('/api/agents', undefined, ada.cookie)).json() as { keys: { calls: number; lastUsedAt: number }[] }
-  assert.ok(listed.keys[0] && listed.keys[0].calls >= 2 && listed.keys[0].lastUsedAt > 0)
+  assert.ok(listed.keys[0] && listed.keys[0].calls >= 1 && listed.keys[0].lastUsedAt > 0, 'a call is counted (a read-only call is held in memory and may be forgotten by a restart, as the store documents)')
   const revoked = await h.browser(`/api/agents/keys/${String((made as Json).id)}/revoke`, { csrf: await h.csrf(ada.cookie) }, ada.cookie)
   assert.equal(revoked.status, 200)
   assert.equal((await h.mcp(made.key, 'ping')).status, 401)

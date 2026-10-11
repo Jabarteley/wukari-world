@@ -12,8 +12,7 @@ import { viewLife } from '../../src/life.ts';
 import { lagosTime } from '../../src/game/clock.ts';
 import { spotsOf } from '../../src/game/systems/activities.ts';
 import { NEEDS } from '../../src/game/systems/needs.ts';
-import { hash53, venueRoomKey } from '../protocol.ts';
-import { UUID_PATTERN } from '../protocol.ts';
+import { UUID_PATTERN, hash53, venueRoomKey } from '../protocol.ts';
 import { screenText } from '../moderation/text.ts';
 import { transactWithCityContent } from '../prepared-city-transaction.ts';
 import { executeCommand, outcomeKey } from '../routes/core.ts';
@@ -266,7 +265,7 @@ const eat_or_rest: ToolDefinition = {
       let elsewhereSpot: { spot: string; id: string } | undefined;
       if (!here) {
         for (const spot of spotsOf(state.location, c.agent.cityId)) {
-          const found = spot.activities.find((def) => !def.choices && gain(def.effects, need) > 0 && (def.cost ?? 0) <= state.cash && !def.unavailable && !def.requiresJob);
+          const found = spot.activities.find((def) => !def.choices && gain(def.effects, need) > 0 && (def.cost ?? 0) <= state.cash && !def.unavailable && !def.requiresJob && (view.travel.cooldowns[def.id] ?? 0) <= 0);
           if (found) { elsewhereSpot = { spot: spot.id, id: found.id }; break; }
         }
       }
@@ -274,7 +273,7 @@ const eat_or_rest: ToolDefinition = {
       if (!here && !elsewhereSpot) {
         for (const place of placeCards(view).filter((p) => !p.here && p.open)) {
           const trip = bestMode(place, undefined);
-          const spot = trip ? spotsOf(place.id, c.agent.cityId).flatMap((s) => s.activities).find((def) => !def.choices && gain(def.effects, need) > 0 && (def.cost ?? 0) + (trip.fare) <= state.cash && !def.unavailable && !def.requiresJob) : undefined;
+          const spot = trip ? spotsOf(place.id, c.agent.cityId).flatMap((s) => s.activities).find((def) => !def.choices && gain(def.effects, need) > 0 && (def.cost ?? 0) + (trip.fare) <= state.cash && !def.unavailable && !def.requiresJob && (view.travel.cooldowns[def.id] ?? 0) <= 0) : undefined;
           if (trip && spot && (!go || (trip.fare < (go.fare ?? Infinity)))) go = { place: place.id, label: place.label, activity: spot.label, fare: trip.fare };
         }
       }
@@ -304,7 +303,8 @@ const work: ToolDefinition = {
     const { career, step } = seen.value;
     const life = brief(c, seen.state, seen.view);
     if (!career.employed) return { ok: true, code: 'jobs', data: { employed: false, jobs: career.jobs.slice(0, 12).map((job) => ({ id: job.id, label: job.label, paysPerShift: job.pay, schedule: job.schedule, hours: job.hours })), next: 'Call work with apply set to a job id.', life } };
-    if (step.kind === 'go') return { ok: false, code: 'go_first', refused: true, data: { ok: false, code: 'go_first', result: step.text, next: { tool: 'travel', place: step.venue, then: 'work' }, life } };
+    // At the workplace's venue but not at its work spot is not a trip: the spot is chosen below.
+    if (step.kind === 'go' && step.venue !== seen.state.location) return { ok: false, code: 'go_first', refused: true, data: { ok: false, code: 'go_first', result: step.text, next: { tool: 'travel', place: step.venue, then: 'work' }, life } };
     if (!career.today.canWork) return { ok: false, code: career.today.code, refused: true, data: { ok: false, code: career.today.code, result: wordsFor(career.today.code, career.today.text, undefined), life } };
     if (!career.shift) return { ok: false, code: 'no_shift', refused: true, data: { ok: false, code: 'no_shift', result: 'There is no shift to start right now.', life } };
     if (seen.view.activities.spot !== career.workplace?.spot && career.workplace) {

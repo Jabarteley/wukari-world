@@ -1,9 +1,11 @@
+import { loadCityContent as preloadCityContent } from '../../src/game/cities/registry.ts';
+await preloadCityContent('lagos');
 // AI agent access (docs/AGENTS.md): the MCP endpoint, agent keys, what a key may do, the limits, the safety valves and the marks other players see.
 // A real server on a random port with a fake clock and the sign-in stand-in of server/accounts/test-tokens.ts. The Worker's run: deploy/agents.edge.test.ts.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { randomUUID } from 'node:crypto';
-import { world, OPERATOR, HOUR } from './test-world.ts';
+import { world, agentKeys, OPERATOR, HOUR } from './test-world.ts';
 import type { Json, World } from './test-world.ts';
 import { AGENT_ACTIONS, AGENT_LIMITS, agentMark, agentMarked, scopeAllows } from './policy.ts';
 import { hashOfKey, newKeySecret, bearerKey } from './service.ts';
@@ -142,7 +144,7 @@ test('scope: the allow-list is deny by default; a key narrowed in storage is ref
   for (const type of denied) { assert.ok(actionTypes().includes(type), `${type} exists`); assert.equal(scopeAllows([...AGENT_ACTIONS], type), false, type); }
   const { w, key, id } = await ownerWithKey(t);
   assert.equal((await w.tool(key, 'list_actions_here')).ok, true);
-  await w.change((db) => { for (const record of Object.values(db.agents?.keys ?? {})) (record as { scopes: string[] }).scopes = ['spot']; });
+  await w.change((db) => { for (const record of agentKeys(db)) (record as { scopes: string[] }).scopes = ['spot']; });
   const refused = await w.tool(key, 'do_activity', { id: 'anything' });
   assert.equal(refused.ok, false);
   assert.equal(refused.data.code, 'not_allowed');
@@ -161,7 +163,7 @@ test('limits: calls per minute and per day are refused in words and cost the gam
   assert.match(String(over.data.result), /calls a minute/);
   w.f.advance(61000);
   assert.equal((await w.tool(key, 'get_my_life')).ok, true, 'the minute passed');
-  await w.change((db) => { for (const record of Object.values(db.agents?.keys ?? {})) { const key2 = record as { day: number; today: number }; key2.day = Math.floor(w.f.now() / 86400000); key2.today = AGENT_LIMITS.callsPerDay; } });
+  await w.change((db) => { for (const record of agentKeys(db)) { const key2 = record as { day: number; today: number }; key2.day = Math.floor(w.f.now() / 86400000); key2.today = AGENT_LIMITS.callsPerDay; } });
   const capped = await w.tool(key, 'get_my_life');
   assert.equal(capped.data.code, 'daily_cap');
   assert.match(String(capped.data.result), /midnight UTC/);
@@ -195,13 +197,16 @@ test('chat: agents message only friends and people who messaged first, no links 
   assert.equal((await w.tool(key, 'send_message', { to: chi.id, text: 'Hi Chi' })).data.code, 'not_allowed_to_message');
   assert.equal((await w.json('/api/social/messages', { to: ada.id, body: 'Hi Ada, are you there?', clientId: `chi-hello-${randomUUID()}` }, chi.cookie)).ok, true);
   const inbox = await w.tool(key, 'read_messages');
-  assert.equal(((inbox.data.chats as Json[])[0]?.unread), 1);
+  const chiChat = (inbox.data.chats as { with: { id: string }; unread: number }[]).find((chat) => chat.with.id === chi.id);
+  assert.equal(chiChat?.unread, 1);
   const read = await w.tool(key, 'read_messages', { with: chi.id });
   assert.equal(((read.data.lines as Json[])[0] as Json).text, 'Hi Ada, are you there?');
   assert.equal((await w.tool(key, 'send_message', { to: chi.id, text: 'Hi Chi, yes!' })).ok, true);
   // Groups and strangers' ids are not reachable by id; the daily cap holds.
   assert.equal((await w.tool(key, 'send_message', { to: randomUUID(), text: 'hello' })).ok, false);
-  await w.change((db) => { for (const record of Object.values(db.agents?.keys ?? {})) { const k = record as { msgDay: number; msgToday: number }; k.msgDay = Math.floor(w.f.now() / 86400000); k.msgToday = AGENT_LIMITS.messagesPerDay; } });
+  assert.equal((await w.tool(key, 'send_message', { to: bola.id, text: 'Too many' })).data.code, 'rate_limited', 'four messages a minute');
+  w.f.advance(61000);
+  await w.change((db) => { for (const record of agentKeys(db)) { const k = record as { msgDay: number; msgToday: number }; k.msgDay = Math.floor(w.f.now() / 86400000); k.msgToday = AGENT_LIMITS.messagesPerDay; } });
   assert.equal((await w.tool(key, 'send_message', { to: bola.id, text: 'One more' })).data.code, 'message_cap');
 });
 
@@ -229,7 +234,7 @@ test('honesty: a key that acted marks its character AI-played for a few minutes;
   room.ws.send(JSON.stringify({ type: 'join', cityId: 'lagos', venueId: 'park' }));
   const first = await room.next();
   assert.equal(first.type, 'presence');
-  assert.equal(((first as { members: Json[] }).members.find((member) => member.id === ada.id) as Json).agent, true);
+  assert.equal(((first as unknown as { members: Json[] }).members.find((member) => member.id === ada.id) as Json).agent, true);
 });
 
 test('modes: an own-character key plays the account\'s character; an agent character is a separate, marked life owned by the account, two at most, phone check required', async (t) => {
@@ -319,7 +324,7 @@ test('safety valves: the operator switch ends all agent access at once and back;
   assert.equal(listed?.suspended, 'refusals');
   assert.equal((await w.tool(key, 'get_my_life')).ok, true, 'the other key is not affected');
   // Reports about the character an agent plays.
-  const reporters = await Promise.all(['R1', 'R2', 'R3'].map(async (name) => { const p = await w.guest(name); await w.f.request('/api/social/me', null, p.cookie); return p; }));
+  const reporters = await Promise.all(['Rita1', 'Rita2', 'Rita3'].map(async (name) => { const p = await w.guest(name); await w.f.request('/api/social/me', null, p.cookie); return p; }));
   await w.tool(key, 'get_my_life');
   for (const reporter of reporters) assert.equal((await w.json('/api/social/reports', { id: ada.id, reason: 'spam' }, reporter.cookie)).code, 'reported');
   w.f.advance(61000);

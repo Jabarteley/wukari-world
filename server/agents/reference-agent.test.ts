@@ -2,7 +2,7 @@
 // language model: it must earn, eat, never loop on a refusal, and never be suspended. Time is the server's fake clock, which the agent's sleeps advance.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { world } from './test-world.ts';
+import { world, agentKeys } from './test-world.ts';
 import type { World, Owner } from './test-world.ts';
 import { playOnce } from '../../scripts/agents/reference-agent.ts';
 import type { AgentReport } from '../../scripts/agents/reference-agent.ts';
@@ -15,7 +15,7 @@ async function play(w: World, key: string, publicId: string): Promise<Played> {
   const log: string[] = [];
   const report = await playOnce({ url: `${w.f.base}/mcp`, key, minutes: HOURS * 60, sleep: async (ms) => { w.f.advance(ms); }, now: () => w.f.now(), log: (line) => log.push(line) });
   const state = await w.stored((db) => { const session = Object.values(db.sessions).find((item) => item.publicId === publicId); return session?.cities.lagos?.state; });
-  const suspended = await w.stored((db) => Object.values(db.agents?.keys ?? {}).some((item) => Boolean((item as { suspended?: unknown }).suspended)));
+  const suspended = await w.stored((db) => agentKeys(db).some((item) => Boolean(item.suspended)));
   return { report, earned: state?.social.earned ?? 0, hunger: state?.needs.hunger ?? 0, suspended, log };
 }
 function check(label: string, played: Played): void {
@@ -28,7 +28,7 @@ function check(label: string, played: Played): void {
   assert.ok(report.longestRefusalRun <= 4, `no refusal loop. ${said}`);
   assert.ok(report.refusals <= report.calls * 0.35, `few refusals. ${said}`);
   assert.equal(played.suspended, false, 'the key was never suspended');
-  assert.equal(report.errors.length, 0);
+  assert.deepEqual(report.errors, [], said);
 }
 
 test('reference agent, own-character mode: plays three game hours, earns, eats, never loops on a refusal', { timeout: 120000 }, async (t) => {

@@ -67,4 +67,6 @@ export async function world(t: TestContext, options: FixtureOptions = {}) {
   }
   return { f, call, json, post, guest, owner, makeAgentKey, mcp, tool, stored, change, accountOf, checkPhone, token, csrf };
 }
+/** The stored agent keys of a document, as plain records a test may read and change. */
+export const agentKeys = (db: object): Record<string, unknown>[] => Object.values((db as { agents?: { keys?: Record<string, unknown> } }).agents?.keys ?? {}) as Record<string, unknown>[];
 export type World = Awaited<ReturnType<typeof world>>;

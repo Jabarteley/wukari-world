@@ -23,6 +23,8 @@ export interface AgentOptions {
   log?: (line: string) => void
   /** Say hello to a friend now and then (default true). */
   greet?: boolean
+  /** The least game time, in ms, one round of decisions takes. A polite agent does not spend its daily allowance of calls on 20-second tasks (default 90 s). */
+  paceMs?: number
 }
 export interface AgentReport { calls: number; refusals: number; longestRefusalRun: number; started: number; stopped: number; startCash: number; endCash: number; actions: Record<string, number>; greeted: number; errors: string[] }
 
@@ -45,13 +47,17 @@ export async function playOnce(options: AgentOptions): Promise<AgentReport> {
     if (isRecord(body.error)) throw new Error(`${String(body.error.message)}${isRecord(body.error.data) ? ` (${String(body.error.data.code)})` : ''}`);
     return isRecord(body.result) ? body.result : {};
   }
-  /** One tool call. A refusal is data, not an exception: the rules decide what to do next. */
-  async function tool(name: string, args: Json = {}): Promise<Answer> {
+  let busyUntil = 0, finished = false;
+  /** One tool call. A refusal is data, not an exception: the rules decide what to do next. A rate limit is waited out once; the daily cap ends the run. */
+  async function tool(name: string, args: Json = {}, retry = true): Promise<Answer> {
     report.calls += 1;
     const result = await rpc('tools/call', { name, arguments: args });
     const data = isRecord(result.structuredContent) ? result.structuredContent : {};
     const ok = result.isError !== true;
     report.actions[name] = (report.actions[name] ?? 0) + 1;
+    if (!ok && data.code === 'rate_limited' && retry) { log('  slowing down: rate limited'); await sleep(31000); return tool(name, args, false); }
+    if (!ok && data.code === 'daily_cap') { finished = true; report.errors.push('daily cap reached'); }
+    if (typeof data.endsInSeconds === 'number') busyUntil = now() + data.endsInSeconds * 1000;
     if (ok) run = 0; else { report.refusals += 1; run += 1; report.longestRefusalRun = Math.max(report.longestRefusalRun, run); log(`  refused ${name}: ${String(data.result ?? data.code ?? '')}`); }
     return { ok, data };
   }
@@ -60,40 +66,56 @@ export async function playOnce(options: AgentOptions): Promise<AgentReport> {
   await rpc('initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'allworld-reference-agent', version: '1' } });
   const lastGreeting = new Map<string, number>();
   let lastGreetAt = now(), lastGoalsAt = 0, backoff = 0, step = 0;
+  const quiet = new Map<string, number>();
   const first = life(await tool('get_my_life'));
   report.startCash = num(first.cash);
   report.endCash = report.startCash;
   const deadline = report.started + minutes * 60000;
 
-  while (now() < deadline) {
+  const pace = options.paceMs ?? 90000;
+  let lastRoundAt = 0;
+  while (now() < deadline && !finished) {
+    const roundStart = now();
     step += 1;
     if (backoff > 0) { await sleep(backoff); backoff = 0; }
+    // A round takes at least `pace`; what was started takes real time: wait it out without asking.
+    if (step > 1 && roundStart - lastRoundAt < pace) await sleep(pace - (roundStart - lastRoundAt));
+    lastRoundAt = now();
+    // What was started takes real time: wait it out without asking.
+    if (busyUntil > now()) { await sleep(Math.min(busyUntil - now(), 300000) + 1500); }
     const me = life(await tool('get_my_life'));
     report.endCash = num(me.cash);
     const needs = isRecord(me.needs) ? me.needs : {};
     const doing = isRecord(me.doing) ? me.doing : null;
-    if (doing) { const left = num(doing.secondsLeft, 5); log(`doing ${String(doing.id ?? doing.kind)} for ${left}s`); await sleep(Math.min(left, 120) * 1000 + 1500); continue; }
+    if (doing) { const left = num(doing.secondsLeft, 5); log(`doing ${String(doing.id ?? doing.kind)} for ${left}s`); busyUntil = now() + left * 1000; continue; }
 
-    // 1. look after needs
+    // 1. look after needs (a need that could not be met is not asked about again for a while)
     for (const [need, below] of [['hunger', 40], ['energy', 30]] as const) {
-      if (num(needs[need], 100) >= below) continue;
+      if (num(needs[need], 100) >= below || now() < (quiet.get(need) ?? 0)) continue;
       const answer = await tool('eat_or_rest', { need });
       if (answer.ok) { log(`restoring ${need}`); break; }
       const next = isRecord(answer.data.next) ? answer.data.next : null;
-      if (next?.tool === 'travel' && typeof next.place === 'string') { log(`going to ${next.place} for ${need}`); await tool('travel', { place: next.place }); }
+      if (next?.tool === 'travel' && typeof next.place === 'string') { log(`going to ${next.place} for ${need}`); await tool('travel', { place: next.place }); break; }
+      quiet.set(need, now() + 15 * 60000);
     }
-    if (isRecord((await tool('get_my_life', { since: 'never' })).data.doing)) continue;
+    if (busyUntil > now()) continue;
 
     // 2. a job: work it, or apply for one
-    const worked = await tool('work');
-    if (worked.ok && isRecord(worked.data.life) && isRecord(worked.data.life.doing)) { log('working a shift'); continue; }
-    if (worked.data.code === 'jobs' || worked.data.employed === false) {
-      const jobs = Array.isArray(worked.data.jobs) ? worked.data.jobs.filter(isRecord) : [];
-      const pick = jobs[0];
-      if (pick && typeof pick.id === 'string') { log(`applying for ${pick.id}`); await tool('work', { apply: pick.id }); continue; }
+    if (now() >= (quiet.get('work') ?? 0)) {
+      const worked = await tool('work');
+      if (worked.ok && busyUntil > now()) { log('working a shift'); continue; }
+      if (worked.data.employed === false) {
+        const jobs = Array.isArray(worked.data.jobs) ? worked.data.jobs.filter(isRecord) : [];
+        const pick = jobs[0];
+        if (pick && typeof pick.id === 'string') { log(`applying for ${pick.id}`); await tool('work', { apply: pick.id }); continue; }
+        quiet.set('work', now() + 30 * 60000);
+      } else {
+        const next = isRecord(worked.data.next) ? worked.data.next : null;
+        if (worked.data.code === 'go_first' && next && typeof next.place === 'string') { log(`going to work at ${next.place}`); await tool('travel', { place: next.place }); continue; }
+        // No shift today, or it is done, or something to fix first: do other things and try again later.
+        quiet.set('work', now() + 20 * 60000);
+      }
     }
-    const next = isRecord(worked.data.next) ? worked.data.next : null;
-    if (worked.data.code === 'go_first' && next && typeof next.place === 'string') { log(`going to work at ${next.place}`); await tool('travel', { place: next.place }); continue; }
 
     // 3. missions ready to collect, looked at now and then
     if (now() - lastGoalsAt > 20 * 60000) {
@@ -123,7 +145,7 @@ export async function playOnce(options: AgentOptions): Promise<AgentReport> {
     const best = actions.sort((a, b) => (num(b.pays) - num(b.cost)) / Math.max(1, num(b.minutes, 1)) - (num(a.pays) - num(a.cost)) / Math.max(1, num(a.minutes, 1)))[0];
     if (best && typeof best.id === 'string' && (num(best.pays) > 0 || Object.keys(isRecord(best.needs) ? best.needs : {}).length > 0)) {
       const done = await tool('do_activity', { id: best.id });
-      if (done.ok) { log(`did ${best.id}`); continue; }
+      if (done.ok) { log(`did ${String(best.id)}`); continue; }
     }
     const places = (await tool('list_places', { onlyOpen: true })).data.places;
     const options2 = (Array.isArray(places) ? places.filter(isRecord) : []).filter((place) => isRecord(place.cheapest) && num((place.cheapest as Json).fare) <= num(me.cash));

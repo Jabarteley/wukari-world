@@ -60,7 +60,7 @@ export interface AgentsCollection { v: 1; off?: { at: number }; keys: Record<str
 export const refusal = (ctx: Pick<RouteContext, 'fail'>, status: number, code: string, reason: string): Error => Object.assign(ctx.fail(status, code), { reason });
 
 const KEY_PREFIX = 'awk_';
-const record = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
+const isObject = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
 const own = <T>(map: Record<string, T> | undefined, key: string): T | undefined => {
   const value = map && key !== '__proto__' ? map[key] : undefined;
   return value !== null && typeof value === 'object' ? value : undefined;
@@ -90,16 +90,16 @@ export function agentService(ctx: RouteContext) {
   /** The collection for a write, created and repaired in place. */
   function col(db: Db): AgentsCollection {
     const found = ctx.collection(db, 'agents', { v: 1, keys: {}, owners: {}, chars: {} }) as Partial<AgentsCollection>;
-    if (!record(found.keys)) found.keys = {};
-    if (!record(found.owners)) found.owners = {};
-    if (!record(found.chars)) found.chars = {};
+    if (!isObject(found.keys)) found.keys = {};
+    if (!isObject(found.owners)) found.owners = {};
+    if (!isObject(found.chars)) found.chars = {};
     found.v = 1;
     return found as AgentsCollection;
   }
   /** The collection as a read sees it: nothing is created. */
   const peek = (db: Db): AgentsCollection | null => {
     const found: unknown = db.agents;
-    return record(found) && record(found.keys) && record(found.owners) && record(found.chars) ? found as unknown as AgentsCollection : null;
+    return isObject(found) && isObject(found.keys) && isObject(found.owners) && isObject(found.chars) ? found as unknown as AgentsCollection : null;
   };
   const switchedOff = (db: Db): boolean => Boolean(peek(db)?.off);
   const ownerOf = (a: AgentsCollection, account: string): AgentOwner => (a.owners[account] ??= { keys: [], chars: [] });
@@ -248,7 +248,8 @@ export function agentService(ctx: RouteContext) {
     if (!ctx.allow(`agent:min:${key.id}`, AGENT_LIMITS.callsPerMinute, 60000)) throw Object.assign(refusal(ctx, 429, 'rate_limited', `That is more than ${AGENT_LIMITS.callsPerMinute} calls a minute. Wait a little and carry on.`), { retryAfter: 30 });
     if (key.day === today && key.today >= AGENT_LIMITS.callsPerDay) throw refusal(ctx, 429, 'daily_cap', `This key has used its ${AGENT_LIMITS.callsPerDay} calls for today. It starts again at midnight UTC.`);
     if (message) {
-      if (!ctx.allow(`agent:msg:${key.id}`, AGENT_LIMITS.messagesPerMinute, 60000)) throw refusal(ctx, 429, 'rate_limited', 'You are messaging too fast for an agent. Wait a minute.');
+      // Only messages that were sent count towards the minute (see `record`): a refused one costs nothing.
+      if (ctx.peek ? !ctx.peek(`agent:msg:${key.id}`, AGENT_LIMITS.messagesPerMinute) : false) throw refusal(ctx, 429, 'rate_limited', 'You are messaging too fast for an agent. Wait a minute.');
       if (key.msgDay === today && key.msgToday >= AGENT_LIMITS.messagesPerDay) throw refusal(ctx, 429, 'message_cap', `Agents may send ${AGENT_LIMITS.messagesPerDay} messages a day. Try again tomorrow.`);
     }
   }
@@ -261,7 +262,7 @@ export function agentService(ctx: RouteContext) {
     if (key.day !== today) { key.day = today; key.today = 0; }
     if (key.msgDay !== today) { key.msgDay = today; key.msgToday = 0; }
     key.today += 1; key.calls += 1; key.lastUsedAt = t;
-    if (outcome.sent) key.msgToday += 1;
+    if (outcome.sent) { key.msgToday += 1; ctx.allow(`agent:msg:${key.id}`, AGENT_LIMITS.messagesPerMinute, 60000); }
     key.refusals = outcome.refused ? key.refusals + 1 : 0;
     if (key.refusals >= AGENT_LIMITS.refusalsToSuspend) key.suspended = { at: t, reason: 'refusals' };
     const entry: AuditEntry = { at: t, tool: outcome.tool, ok: outcome.ok, code: outcome.code.slice(0, 40), ...(outcome.rid ? { rid: outcome.rid } : {}), ...(outcome.aid ? { aid: outcome.aid } : {}) };

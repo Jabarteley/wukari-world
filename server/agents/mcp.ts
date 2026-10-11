@@ -118,7 +118,7 @@ export function mcpRoutes(ctx: RouteContext, svc: AgentService): Record<RouteKey
 
   async function handle(request: RouteRequest, message: unknown, agent: Agent) {
     if (!isRecord(message) || message.jsonrpc !== '2.0' || typeof message.method !== 'string') return fault(isRecord(message) ? (message.id as Rpc['id']) : null, -32600, 'Send one JSON-RPC 2.0 request object.');
-    const rpc = message as unknown as Rpc, id = rpc.id;
+    const rpc = message as unknown as Rpc & { method: string }, id = rpc.id;
     const notification = id === undefined;
     switch (rpc.method) {
       case 'initialize': {

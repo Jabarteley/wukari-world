@@ -11,7 +11,7 @@ if (mode === 'plan') {
     if (!/^[a-z0-9-]+$/.test(batch.id) || ids.has(batch.id)) fail('Invalid or duplicate batch id');
     ids.add(batch.id);
     for (const key of ['appSha', 'driverSha']) if (!/^[a-f0-9]{40}$/.test(batch[key])) fail(`Invalid ${key}`);
-    if (!Array.isArray(batch.cities) || batch.cities.length < 1 || batch.cities.length > 5 || new Set(batch.cities).size !== batch.cities.length || batch.cities.some(city => !/^[a-z0-9-]+$/.test(city))) fail('Batch must contain one to five unique city ids');
+    if (!Array.isArray(batch.cities) || batch.cities.length < 1 || batch.cities.length > 10 || new Set(batch.cities).size !== batch.cities.length || batch.cities.some(city => !/^[a-z0-9-]+$/.test(city))) fail('Batch must contain one to ten unique city ids');
   }
   // Queue only new work. Completed/current batches are removed by the operator, never inferred or rerun here.
   const batch = config.queue[0];

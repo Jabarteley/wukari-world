@@ -2,11 +2,20 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "batch2-final",
-      "appSha": "03b10fd2b7c030b884e8d384326d19f732e69186",
-      "driverSha": "34a47b814b42f2c5522e7c8628fd814bb957d175",
+      "id": "cities-ten-final",
+      "appSha": "9aa1f5b4d7c8d584a7cb5cbf2072d638198988c8",
+      "driverSha": "3569fe9123e7139f0fbf84402e321df8984e8f49",
       "cities": [
-        "lilongwe"
+        "tripoli",
+        "bamako",
+        "ouagadougou",
+        "maseru",
+        "lilongwe",
+        "dar-es-salaam",
+        "brazzaville",
+        "tunis",
+        "libreville",
+        "mbabane"
       ]
     }
   ]

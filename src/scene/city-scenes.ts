@@ -26,6 +26,8 @@ export interface ScenePart { kinds?: Readonly<Record<string, SceneDef>>; variant
 
 const FETCH = {
   ibadan: async (): Promise<ScenePart> => { const [own, variants] = await Promise.all([import('./venues-ibadan-a.ts'), import('./venues-ibadan-b.ts')]); return { kinds: own.SCENES, variants: variants.VARIANTS }; },
+  campus: async (): Promise<ScenePart> => ({ kinds: (await import('./venues-campus.ts')).SCENES }),
+  viewpoint: async (): Promise<ScenePart> => ({ kinds: (await import('./venues-viewpoint.ts')).SCENES }),
   'ogun-signature': async (): Promise<ScenePart> => ({ variants: (await import('./venues-ogun-a.ts')).VARIANTS }),
   'ogun-everyday': async (): Promise<ScenePart> => ({ variants: (await import('./venues-ogun-b.ts')).VARIANTS }),
   'port-harcourt': async (): Promise<ScenePart> => ({ variants: (await import('./venues-rivers.ts')).VARIANTS }),
@@ -46,14 +48,17 @@ const CITY_PARTS: Readonly<Record<string, readonly PartId[]>> = Object.freeze({
 export const CITY_KINDS: Readonly<Record<string, string>> = Object.freeze({ quad: 'ibadan', hilltop: 'ibadan', lakeside: 'ibadan' });
 
 const loaded = new Map<PartId, ScenePart>(), pending = new Map<PartId, Promise<ScenePart>>();
+const hasKind = (cityId: string, kind: string): boolean => cachedCityContent(cityId)?.venues.some((venue) => venue.definition.scene.kind === kind) === true;
 const hasParametricVenues = (cityId: string): boolean => cachedCityContent(cityId)?.venues.some((venue) => venue.definition.scene.design !== undefined) === true;
 const partsOf = (cityId: string): readonly PartId[] => [
   ...(Object.hasOwn(CITY_PARTS, cityId) ? CITY_PARTS[cityId]! : []),
+  ...(hasKind(cityId, 'quad') ? ['campus' as const] : []),
+  ...(hasKind(cityId, 'hilltop') ? ['viewpoint' as const] : []),
   ...(hasParametricVenues(cityId) ? ['parametric' as const] : []),
 ];
 
 /** Cities with scenes of their own. */
-export const sceneCityIds = (): readonly string[] => [...new Set([...Object.keys(CITY_PARTS), ...playableCityIds().filter(hasParametricVenues)])];
+export const sceneCityIds = (): readonly string[] => [...new Set([...Object.keys(CITY_PARTS), ...playableCityIds().filter((cityId) => hasKind(cityId, 'quad') || hasKind(cityId, 'hilltop') || hasParametricVenues(cityId))])];
 export const cityScenesReady = (cityId: string): boolean => partsOf(cityId).every((part) => loaded.has(part));
 
 function loadPart(part: PartId): Promise<ScenePart> {

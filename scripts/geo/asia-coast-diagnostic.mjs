@@ -236,31 +236,81 @@ try {
   const anchorSeam = '  for (const at of marked) if (barrier[at]) for (const next of [at - 1, at + 1, at - cols, at + cols]) if (next >= 0 && next < region.length && region[next]! >= 0) hasLand[region[next]!] = true;';
   const directedClassification = `  const coastVotes = hasLand.map((_, id) => ({ id, land: 0, water: 0, cells: 0, evidence: [] }));
   for (const id of region) if (id >= 0) coastVotes[id].cells++;
+  const rejected = { outsideGrid: 0, barrierCell: 0, wrongLocalSide: 0, closerSourceSegment: 0, obstructedPath: 0, missingPair: 0, sameComponentPair: 0, indexedSegments: 0, unindexedSegments: 0, acceptedPairs: 0 };
+  const rejectedExamples = [], segmentIndex = new Map(), sourceSegments = [], binSize = cell * 8;
+  const binX = x => Math.floor((x - wide[1]) / binSize), binY = y => Math.floor((y - wide[0]) / binSize);
+  const binKey = (x, y) => x + ',' + y;
+  for (let wayIndex = 0; wayIndex < shore.length; wayIndex++) for (let i = 1; i < shore[wayIndex].length; i++) {
+    const a = shore[wayIndex][i - 1], b = shore[wayIndex][i], id = sourceSegments.length;
+    sourceSegments.push({ a, b, wayIndex, segmentIndex: i - 1 });
+    const x0 = binX(Math.min(a[0], b[0])), x1 = binX(Math.max(a[0], b[0])), y0 = binY(Math.min(a[1], b[1])), y1 = binY(Math.max(a[1], b[1]));
+    if ((x1 - x0 + 1) * (y1 - y0 + 1) > 4096) { rejected.unindexedSegments++; continue; }
+    rejected.indexedSegments++;
+    for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) {
+      const key = binKey(x, y), bucket = segmentIndex.get(key);
+      if (bucket) bucket.push(id); else segmentIndex.set(key, [id]);
+    }
+  }
+  const nearby = (x0, y0, x1, y1) => {
+    const ids = new Set();
+    for (let x = binX(x0); x <= binX(x1); x++) for (let y = binY(y0); y <= binY(y1); y++) for (const id of segmentIndex.get(binKey(x, y)) ?? []) ids.add(id);
+    return [...ids].map(id => sourceSegments[id]);
+  };
+  const cross = (ax, ay, bx, by) => ax * by - ay * bx;
+  const distanceSquared = (px, py, a, b) => {
+    const dx = b[0] - a[0], dy = b[1] - a[1], lengthSquared = dx * dx + dy * dy;
+    const t = lengthSquared ? Math.max(0, Math.min(1, ((px - a[0]) * dx + (py - a[1]) * dy) / lengthSquared)) : 0;
+    return (px - a[0] - t * dx) ** 2 + (py - a[1] - t * dy) ** 2;
+  };
+  const obstructs = (x, y, px, py, segment) => {
+    const rx = px - x, ry = py - y, sx = segment.b[0] - segment.a[0], sy = segment.b[1] - segment.a[1];
+    const denominator = cross(rx, ry, sx, sy);
+    if (Math.abs(denominator) < 1e-18) return false;
+    const qx = segment.a[0] - x, qy = segment.a[1] - y;
+    const t = cross(qx, qy, sx, sy) / denominator, u = cross(qx, qy, rx, ry) / denominator;
+    return t > 1e-9 && t <= 1 + 1e-9 && u >= -1e-9 && u <= 1 + 1e-9;
+  };
+  const reject = (reason, detail) => { rejected[reason]++; if (rejectedExamples.length < 24) rejectedExamples.push({ reason, ...detail }); };
   let missingSideSamples = 0;
   for (let wayIndex = 0; wayIndex < shore.length; wayIndex++) {
     const way = shore[wayIndex];
     for (let i = 1; i < way.length; i++) {
       const a = way[i - 1], b = way[i], dx = b[0] - a[0], dy = b[1] - a[1], length = Math.hypot(dx, dy);
       if (!length) continue;
-      // Source direction alone gives the sides. Use the nearest sampled non-barrier
-      // cell on each side; no venue or neighbourhood can relabel a component.
+      // A vote is cast only as a validated opposite-side pair. A sample cannot
+      // jump another shoreline or be closer to a different source segment.
       const count = Math.max(1, Math.ceil(length / (cell * 2)));
       for (let sample = 0; sample < count; sample++) {
         const t = (sample + 0.5) / count, x = a[0] + t * dx, y = a[1] + t * dy;
+        const pair = [];
         for (const side of [1, -1]) {
-          let assigned = false;
+          let accepted = null;
           for (const offset of [0.6, 0.9, 1.25, 1.75, 2.5, 4]) {
             const px = x - side * dy / length * cell * offset, py = y + side * dx / length * cell * offset;
             const c = colOf(px), r = rowOf(py);
-            if (c < 0 || r < 0 || c >= cols || r >= rows) continue;
+            const detail = { wayIndex, segmentIndex: i - 1, side, offsetCells: offset, point: [px, py] };
+            if (c < 0 || r < 0 || c >= cols || r >= rows) { reject('outsideGrid', detail); continue; }
             const at = r * cols + c, id = region[at];
-            if (barrier[at] || id < 0) continue;
-            const vote = coastVotes[id], kind = side === 1 ? 'land' : 'water';
-            vote[kind]++;
-            if (vote.evidence.filter(e => e.kind === kind).length < 4) vote.evidence.push({ wayIndex, segmentIndex: i - 1, kind, offsetCells: offset, point: [px, py] });
-            assigned = true; break;
+            if (barrier[at] || id < 0) { reject('barrierCell', detail); continue; }
+            if (cross(dx, dy, px - a[0], py - a[1]) * side <= 0) { reject('wrongLocalSide', detail); continue; }
+            const radius = cell * offset + cell * 0.01, intendedDistance = distanceSquared(px, py, a, b);
+            const neighbours = nearby(Math.min(x, px) - radius, Math.min(y, py) - radius, Math.max(x, px) + radius, Math.max(y, py) + radius);
+            const closer = neighbours.find(s => distanceSquared(px, py, s.a, s.b) < intendedDistance - 1e-16);
+            if (closer) { reject('closerSourceSegment', { ...detail, competingWayIndex: closer.wayIndex, competingSegmentIndex: closer.segmentIndex }); continue; }
+            const blocker = neighbours.find(s => !(s.wayIndex === wayIndex && s.segmentIndex === i - 1) && obstructs(x, y, px, py, s));
+            if (blocker) { reject('obstructedPath', { ...detail, competingWayIndex: blocker.wayIndex, competingSegmentIndex: blocker.segmentIndex }); continue; }
+            accepted = { ...detail, id, kind: side === 1 ? 'land' : 'water' }; break;
           }
-          if (!assigned) missingSideSamples++;
+          if (!accepted) missingSideSamples++;
+          pair.push(accepted);
+        }
+        if (!pair[0] || !pair[1]) { reject('missingPair', { wayIndex, segmentIndex: i - 1, point: [x, y] }); continue; }
+        if (pair[0].id === pair[1].id) { reject('sameComponentPair', { wayIndex, segmentIndex: i - 1, point: [x, y], region: pair[0].id }); continue; }
+        rejected.acceptedPairs++;
+        for (const evidence of pair) {
+          const vote = coastVotes[evidence.id];
+          vote[evidence.kind]++;
+          if (vote.evidence.filter(e => e.kind === evidence.kind).length < 4) vote.evidence.push({ ...evidence, pairedRegion: pair.find(other => other.id !== evidence.id).id, segmentPoint: [x, y], validation: 'Distinct opposite-side components; intended segment nearest; source ray unobstructed' });
         }
       }
     }
@@ -270,7 +320,7 @@ try {
     // The report holds them explicitly rather than accepting invented water.
     hasLand[vote.id] = !(vote.water > 0 && vote.land === 0);
   }
-  COAST_CLASSIFICATION_VOTES = { components: coastVotes, missingSideSamples, unresolvedLargeThresholdCells: 40 };`;
+  COAST_CLASSIFICATION_VOTES = { components: coastVotes, missingSideSamples, unresolvedLargeThresholdCells: 40, samplerCorrection: 'Validated paired sides with spatially indexed nearest-segment/path checks', counters: rejected, rejectedExamples };`;
   candidateSource = replaceOnce(candidateSource, anchorSeam, directedClassification);
   candidateSource += '\nexport let COAST_CLASSIFICATION_VOTES = null;\n';
   const candidatePath = join(app, 'scripts/geo/destination-detail/geometry-tools-coast-prototype.ts');
@@ -278,7 +328,7 @@ try {
   const candidateTools = await imported(candidatePath);
   candidateTools.COAST_DIAGNOSTIC_INPUT.anchors = anchors;
   candidateTools.COAST_DIAGNOSTIC_INPUT.samples = [...anchors.map(p => ({ ...p, role: 'land-anchor' })), ...sampleProbes];
-  report.candidate = { status: 'INCOMPLETE', sourceSHA256: hash(candidatePath), method: 'Directed OSM coastline: land left, water right; includes closed coastline barriers; nearest non-barrier side samples vote for connected components. Anchors never classify land.', unresolvedLargeThresholdCells: 40 };
+  report.candidate = { status: 'INCOMPLETE', sourceSHA256: hash(candidatePath), method: 'Directed OSM coastline: land left, water right; closed coastline barriers retained. Only paired samples with distinct components, intended nearest source segment and unobstructed source ray cast votes. Anchors never classify land.', correctionReferenceRun: 38181382131, unresolvedLargeThresholdCells: 40 };
   save();
   console.log('[DEBUG-dubai-coast] directed candidate shoreWater start');
   const candidateStart = performance.now();
@@ -310,7 +360,7 @@ try {
   });
   report.candidate.sourceWaterAnchorsToReject = report.candidate.anchors.filter(p => p.componentSourceWater || p.rawFar.length || p.safeFar.length);
   report.candidate.probes = sampleProbes.map(p => ({ ...p, originalRawFar: hits([p.lon, p.lat], raw.far), originalSafeFar: hits([p.lon, p.lat], safe.far), candidateRawFar: hits([p.lon, p.lat], candidateRaw.far), candidateSafeFar: hits([p.lon, p.lat], candidateSafe.far) }));
-  report.candidate.status = conflicts.length || unresolvedLarge.length ? 'HOLD_SOURCE_CLASSIFICATION' : 'CANDIDATE_CLASSIFICATION_ONLY_NOT_ACCEPTANCE';
+  report.candidate.status = conflicts.length || unresolvedLarge.length || votes.counters.unindexedSegments ? 'HOLD_SOURCE_CLASSIFICATION' : 'CANDIDATE_CLASSIFICATION_ONLY_NOT_ACCEPTANCE';
   const features = [];
   for (const [stage, polygons] of [['raw-far', candidateRaw.far], ['safe-far', candidateSafe.far], ['safe-band', candidateSafe.band]]) polygons.forEach((polygon, index) => features.push({ type: 'Feature', properties: { stage, index, acceptance: report.candidate.status }, geometry: { type: 'Polygon', coordinates: polygon } }));
   writeFileSync(join(out, 'dubai-coast-candidate.geojson'), JSON.stringify({ type: 'FeatureCollection', features }) + '\n');

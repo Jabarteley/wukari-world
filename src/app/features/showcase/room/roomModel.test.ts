@@ -73,7 +73,7 @@ test('more than twelve items go on pages of twelve, the counter and rail first, 
   assert.equal(first.length, 12); assert.deepEqual(first.map((entry) => entry.index), Array.from({ length: 12 }, (_, at) => at))
   assert.deepEqual(first.map((entry) => entry.slot.name), SLOT_ORDER.map((at) => SLOTS[at]!.name), 'the counter and the rail fill first, then the shelves')
   assert.deepEqual([...SLOT_ORDER].sort((a, b) => a - b), SLOTS.map((_, at) => at), 'every slot is used once')
-  assert.deepEqual(first.slice(0, 4).map((entry) => entry.slot.kind), ['counter', 'counter', 'rail', 'rail'])
+  assert.deepEqual(first.slice(0, 6).map((entry) => entry.slot.kind), ['counter', 'counter', 'shelf', 'shelf', 'shelf', 'shelf'])
   assert.deepEqual(second.map((entry) => [entry.item, entry.index, entry.slot.name]), [['item 12', 12, 'slot_09'], ['item 13', 13, 'slot_10']])
   assert.deepEqual(pageOf([], 0), [], 'an empty shop has no cards')
   assert.equal(clampPage(5, 14), 1); assert.equal(clampPage(-3, 14), 0); assert.equal(clampPage(Number.NaN, 14), 0); assert.equal(clampPage(2, 0), 0)

@@ -47,7 +47,7 @@ export const SLOT_ORDER: readonly number[] = Object.freeze([8, 9, 1, 5, 3, 7, 10
 /** What the shelves are drawn with: the card sizes in room units (the shelf slots read small against their shelves, so the cards are larger than the slots). */
 export const CARD_SIZE: Readonly<Record<SlotSpec['kind'], { w: number; h: number }>> = Object.freeze({ shelf: { w: 0.6, h: 0.56 }, counter: { w: 0.42, h: 0.5 }, rail: { w: 0.5, h: 0.55 } })
 /** Where the shopkeeper stands, and how far to each side of that nothing is hung or stood (so no card hides the face from the door). */
-export const KEEPER = Object.freeze({ x: -0.05, z: -1.2, clear: 0.4 })
+export const KEEPER = Object.freeze({ x: -0.05, z: -1.2, clear: 0.3 })
 /** The slots whose cards are moved sideways from the model's place, clear of the shopkeeper: both counter cards to the right of her (the till is on the left), the rail cards further apart. */
 const SIDEWAYS: Readonly<Record<string, number>> = Object.freeze({ slot_09: 0.55, slot_10: 1.0, slot_11: -1.1, slot_12: 1.1 })
 /** Rail cards hang higher than the model's rail, so they clear the counter cards from the entry view. */

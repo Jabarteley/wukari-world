@@ -62,6 +62,7 @@ def extract(args):
         timestamp = reader.header().get('osmosis_replication_timestamp')
     require(timestamp and timestamp.startswith(args.dataset_date), 'PBF header date mismatch')
     candidates = []
+    args.diagnostic['stage'] = 'admin0-relation-selection'
 
     class Relations(osmium.SimpleHandler):
         def relation(self, relation):
@@ -77,17 +78,29 @@ def extract(args):
                                'members': [{'type': m.type, 'ref': m.ref, 'role': m.role} for m in relation.members]})
 
     Relations().apply_file(str(pbf))
+    args.diagnostic['candidateRelations'] = [{key: candidate[key] for key in ('id', 'version', 'timestamp', 'tags')} for candidate in candidates]
     require(len(candidates) == 1, f'expected one ISO admin-0 relation, found {len(candidates)}; HOLD')
     relation = candidates[0]
     boundary_members = {}
+    excluded, unsupported, boundary_records = [], [], []
     for member in relation['members']:
-        if member['type'] == 'n' and member['role'] in {'admin_centre', 'label'}:
-            continue
-        require(member['type'] == 'w' and member['role'] in {'', 'outer', 'inner'},
-                'unsupported/nested country boundary member; refusing incomplete assembly')
+        # OSM Relation:boundary defines subarea relations as hierarchy references.
+        if (member['type'] == 'n' and member['role'] in {'admin_centre', 'label'}) or (member['type'] == 'r' and member['role'] == 'subarea'):
+            excluded.append(member)
+        elif member['type'] == 'w' and member['role'] in {'', 'outer', 'inner'}:
+            boundary_records.append(member)
+        else:
+            unsupported.append(member)
+    args.diagnostic.update({'stage': 'boundary-member-classification',
+                            'relation': {key: relation[key] for key in ('id', 'version', 'timestamp', 'tags')},
+                            'unsupportedMembers': unsupported, 'excludedNonBoundaryMembers': excluded,
+                            'boundaryMemberCount': len(boundary_records)})
+    require(not unsupported, 'unsupported/nested country boundary member; refusing incomplete assembly')
+    for member in boundary_records:
         require(member['ref'] not in boundary_members, 'duplicate country boundary way member')
         boundary_members[member['ref']] = member['role']
     require(boundary_members, 'country relation has no boundary ways')
+    args.diagnostic['stage'] = 'boundary-member-way-resolution'
     way_records, expected_edges = {}, Counter()
 
     class Ways(osmium.SimpleHandler):
@@ -107,6 +120,7 @@ def extract(args):
     Ways().apply_file(str(pbf), locations=True)
     require(set(way_records) == set(boundary_members), 'country boundary member ways absent from PBF')
     require(all(count == 1 for count in expected_edges.values()), 'repeated country boundary segment; HOLD')
+    args.diagnostic['stage'] = 'area-assembly'
     factory = osmium.geom.GeoJSONFactory()
     geometries = []
     country_tags = osmium.filter.TagFilter(('ISO3166-1:alpha2', args.country), ('ISO3166-1', args.country))
@@ -131,7 +145,9 @@ def extract(args):
             coordinates = list(ring.coords)
             for a, b in zip(coordinates, coordinates[1:]):
                 actual_edges[edge(a, b)] += 1
+    args.diagnostic['stage'] = 'complete-segment-proof'
     require(actual_edges == expected_edges, 'assembled rings did not preserve every source member segment exactly; HOLD')
+    args.diagnostic['stage'] = 'fixture-membership'
     fixture_results = []
     if args.fixture:
         fixture = json.loads(Path(args.fixture).read_text())
@@ -157,7 +173,8 @@ def extract(args):
     receipt = {'schemaVersion': 1, 'status': 'OSM_COUNTRY_BOUNDARY_CANDIDATE', 'countryISO': args.country,
                'source': {'url': args.dataset_url, 'date': args.dataset_date, 'headerTimestamp': timestamp,
                           'bytes': args.expected_bytes, 'sha256': args.expected_sha256, 'license': 'ODbL-1.0'},
-               'relation': relation, 'memberWays': [way_records[key] for key in sorted(way_records)],
+               'relation': relation, 'memberRolePolicy': {'sourceUrl': 'https://wiki.openstreetmap.org/wiki/Relation:boundary',
+                   'excludedNonBoundaryMembers': excluded, 'unsupportedMembers': []}, 'memberWays': [way_records[key] for key in sorted(way_records)],
                'assembly': {'method': 'pyosmium-area-assembly', 'completeMemberSegments': sum(expected_edges.values()),
                             'polygonCount': len(polygons), 'holeCount': sum(len(p.interiors) for p in polygons),
                             'sourceMemberEdgesSha256': value_hash(sorted(expected_edges.items()))},
@@ -182,6 +199,7 @@ def main():
     parser.add_argument('--fixture')
     parser.add_argument('--out', required=True, help='New separate output directory')
     args = parser.parse_args()
+    args.diagnostic = {}
     out = Path(args.out)
     if out.exists():
         raise SystemExit('Output exists; use a new private folder')
@@ -196,7 +214,7 @@ def main():
         geometry, receipt = extract(args)
     except Exception as error:
         out.mkdir(parents=True)
-        result = {'status': 'HOLD', 'reason': str(error), 'countryISO': args.country, 'scriptSha256': digest(__file__)}
+        result = {'status': 'HOLD', 'reason': str(error), 'countryISO': args.country, 'scriptSha256': digest(__file__), 'diagnostic': args.diagnostic}
         (out / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
         print(json.dumps(result))
         return 1

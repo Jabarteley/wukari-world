@@ -72,6 +72,8 @@ export interface DetailConfig {
   source: string
   outlineTolerance: number
   waterTolerance: number
+  /** Far shore water simplification in degrees; default 0.0008. Does not change the playable band or road tolerances. */
+  farWaterTolerance?: number
   farTolerance: number
   coreTolerance: number
   places: readonly PlacePick[]

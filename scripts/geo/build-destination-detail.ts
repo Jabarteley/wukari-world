@@ -128,8 +128,9 @@ if (shoreSide && config.sea?.kind === 'coast') {
   if (invalid.length) throw new Error(`HOLD_SOURCE_ANCHORS: ${JSON.stringify({ invalid, sourceWaterAnchors: shoreSide.sourceWaterAnchors })}`);
 }
 const sea = shoreSide ? safePolygons(shoreSide.band, config.waterTolerance, project) : [];
-// The sea carried far beyond the play box is drawn at a coarser tolerance (about 130 m): nobody reads a shore that far out to the metre, and the file stays small.
-const farSea = shoreSide ? safePolygons(shoreSide.far, 0.0008, project) : [];
+// Far water uses a separate tolerance: 0.0008 degrees by default, or a reviewed city override.
+// Dubai uses 0.0012 degrees (about 130 m) to reduce distant-water triangles while retaining checked rings and holes.
+const farSea = shoreSide ? safePolygons(shoreSide.far, config.farWaterTolerance ?? 0.0008, project) : [];
 // Only what the source tags as water: the answer may also hold wetland, islet and wall ways that are members of the lake's relation.
 const inland = waterAnswer.elements.filter((element) => !isShore(element) && (element.tags?.natural === 'water' || element.tags?.waterway === 'riverbank' || element.type === 'relation'));
 // What the outline is traced round (the shore band and the inland water inside the box: the map's declared water), and what is drawn (the same, carried on to the edge of the ground).

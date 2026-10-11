@@ -131,7 +131,9 @@ const reachInland = inland.flatMap((element) => {
   if (safe.length === clipped.length) return safe;
   // A hole clipped at the wide box can touch the clipped outer ring and make the whole polygon unsafe. Fill the source rings first,
   // then trace the clipped result; this turns an edge-touching hole into a bank indentation and keeps interior islands as holes.
-  const rastered = big(rasterArea(rings, wide, Math.max(config.cell / config.split, 0.0004)));
+  // Keep the fallback grid fine enough to retain narrow mapped island tips in the city. At 0.0003 degrees the Rhoda Island shore
+  // at Cairo's Nilometer closes over the sourced land point; 0.00025 degrees preserves that source geometry.
+  const rastered = big(rasterArea(rings, wide, Math.min(config.cell / config.split, 0.00025)));
   const repaired = safePolygons(rastered, 0.0008, project);
   console.log(`water ${element.type}/${element.id}: raster repaired ${clipped.length - safe.length} rejected polygon(s) into ${repaired.length}`);
   return repaired;

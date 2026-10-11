@@ -1,5 +1,5 @@
 // Rebuilds a generated character on the animation skeleton the clip pack plays on, keeping its texture.
-//   node --experimental-strip-types scripts/body/proof/meshy_assemble.ts <parts.glb> <joints.json> <out.glb> <colour.jpg> --skeleton <female|male> [--normal <normal.jpg>] [--rough <0..1>]
+//   node --experimental-strip-types scripts/body/proof/assemble_figure.ts <parts.glb> <joints.json> <out.glb> <colour.jpg> --skeleton <female|male> [--normal <normal.jpg>] [--rough <0..1>]
 // The skeleton has the shipped bones, hierarchy and rest rotations (the clips are authored against those); only root and pelvis keep their
 // shipped positions, every other joint is moved to where this body's joint is. The mesh must already be in the skeleton's rest pose
 // (arms out sideways) with its weights on the 23 bone names; meshy_rig.py writes such a file.
@@ -13,7 +13,7 @@ import { exportGlb } from './glb-export.ts';
 const argv = process.argv.slice(2);
 const flag = (n: string): string | undefined => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : undefined; };
 const [partsPath, jointsPath, outPath, colourPath] = argv.filter((a, i) => !a.startsWith('--') && !(i > 0 && argv[i - 1]!.startsWith('--')));
-if (!partsPath || !jointsPath || !outPath || !colourPath) throw new Error('usage: meshy_assemble.ts <parts.glb> <joints.json> <out.glb> <colour.jpg> --skeleton <female|male> [--normal n.jpg]');
+if (!partsPath || !jointsPath || !outPath || !colourPath) throw new Error('usage: assemble_figure.ts <parts.glb> <joints.json> <out.glb> <colour.jpg> --skeleton <female|male> [--normal n.jpg]');
 const skeleton = flag('--skeleton');
 if (skeleton !== 'female' && skeleton !== 'male') throw new Error('--skeleton female|male is required');
 const key: BodyKey = skeleton;

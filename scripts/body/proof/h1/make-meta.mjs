@@ -1,3 +1,4 @@
+// @ts-nocheck -- offline build helper for the figure proof, run by hand; reads untyped JSON
 // Writes the metadata the gallery page reads next to a packed figure: node make-meta.mjs <face.json> <joints-parts.json> <skeleton> <out.json> [mask-file] [skin-ref r,g,b]
 import { readFileSync, writeFileSync } from 'node:fs';
 const [face, parts, skeleton, out, mask, skinRef] = process.argv.slice(2);

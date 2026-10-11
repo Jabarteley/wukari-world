@@ -26,12 +26,12 @@ BL() { local script=$1; shift; blender --background --disable-autoexec --python-
 for V in hero crowd; do
   NORMAL=; if [[ $V = hero ]]; then TRIS=13000; PX=1024; [[ -n ${NORMALMAP:-} ]] && NORMAL=--normal; else TRIS=2800; PX=512; fi
   reduce=("$IN" "$WORK/$NAME-$V.blend" "$WORK" "$NAME-$V" "$TRIS" "$PX"); [[ -n $NORMAL ]] && reduce+=("$NORMAL")
-  [[ -n ${SKIP_REDUCE:-} ]] || BL "$B/meshy_reduce.py" -- "${reduce[@]}"
+  [[ -n ${SKIP_REDUCE:-} ]] || BL "$B/reduce_figure.py" -- "${reduce[@]}"
   rig=("$WORK/$NAME-$V.blend" "$B/skeleton-$SKELETON.json" "$WORK/$NAME-$V-parts.glb" "$WORK/$NAME-$V-joints.json" "$KIND" "$LM" --hem "$HEM" --vendor "$VENDOR")
   [[ $V = hero && -n ${FACE:-} ]] && rig+=(--face "$FACE")
   BL "$B/meshy_rig.py" -- "${rig[@]}"
   assemble=("$WORK/$NAME-$V-parts.glb" "$WORK/$NAME-$V-joints.json" "$WORK/$NAME-$V.raw.glb" "$WORK/$NAME-$V-color.jpg" --skeleton "$SKELETON"); [[ -n $NORMAL ]] && assemble+=(--normal "$WORK/$NAME-$V-normal.jpg")
-  node --experimental-strip-types "$HERE/meshy_assemble.ts" "${assemble[@]}"
+  node --experimental-strip-types "$HERE/assemble_figure.ts" "${assemble[@]}"
   npx -y gltfpack@1.3.0 -i "$WORK/$NAME-$V.raw.glb" -o "$OUT/$NAME-$V.glb" -cc -kn -km -kv -vtf -vpf >/dev/null
   node -e 'const f=require("fs"),b=f.readFileSync(process.argv[1]),n=b.readUInt32LE(12),d=JSON.parse(b.subarray(20,20+n));if(b.length>2097152)throw Error(`over 2 MiB: ${b.length}`);if(d.animations?.length)throw Error("model contains animations");if(d.skins?.length!==1||d.skins[0].joints.length!==23)throw Error("model must contain one 23-joint skin")' "$OUT/$NAME-$V.glb"
   node -e 'const f=require("fs"),[joints,face,out,version,skeleton,vendor]=process.argv.slice(1),j=JSON.parse(f.readFileSync(joints,"utf8")),o={height:j.height,skeleton,sourceRig:vendor};if(version==="hero"&&face)o.face=JSON.parse(f.readFileSync(face,"utf8"));f.writeFileSync(out,JSON.stringify(o))' "$WORK/$NAME-$V-joints.json" "${FACE:-}" "$OUT/$NAME-$V.json" "$V" "$SKELETON" "$VENDOR"

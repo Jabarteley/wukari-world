@@ -1,4 +1,4 @@
-"""Binds a reduced character (from pose_high.py and meshy_reduce.py) to the game's 23-bone skeleton.
+"""Binds a reduced character (from pose_high.py and reduce_figure.py) to the game's 23-bone skeleton.
 
   blender --background --disable-autoexec --python rig_game.py -- <reduced.blend> <skeleton.json> <joints.json> <out-parts.glb> <out-parts-joints.json> [--wrapper 0|1] [--hem 0.13] [--face face.json]
 

@@ -7,7 +7,7 @@
 * realistic: no skeleton in the file, so one is built from the landmarks file (fractions of the character's height) and weighted automatically.
 Then, for both: the A-pose is applied to the mesh (arms raised to the game skeleton's rest pose, not left as an offset), the character is scaled so the
 pelvis sits at the game skeleton's pelvis height, the wrapper (skirt) is re-weighted so both thighs move it and the centre follows the pelvis,
-weights are smoothed, limited to four influences and normalised, and the parts file plus the joint positions are written for meshy_assemble.ts.
+weights are smoothed, limited to four influences and normalised, and the parts file plus the joint positions are written for assemble_figure.ts.
 Every path is an argument.
 """
 import json

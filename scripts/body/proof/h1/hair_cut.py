@@ -82,9 +82,13 @@ info = {"trianglesBefore": n0, "triangles": len(me.polygons), "keptMin": pts.min
         "removedFaces": len(drop), "islands": len(islands)}
 json.dump(info, open(out_info, "w"), indent=1)
 print("HAIRCUT", info)
-# the base colour at a small size on the piece's own layout
-small_img = img.copy(); small_img.scale(px_out, px_out)
+# the base colour at a small size on the piece's own layout (block average)
+k = W // px_out
+small = px.reshape(px_out, k, px_out, k, 3).mean(axis=(1, 3))
+buf = np.concatenate([small, np.ones((px_out, px_out, 1))], axis=2).astype(np.float32)
+simg = bpy.data.images.new("small", px_out, px_out, alpha=False)
+simg.colorspace_settings.name = "Non-Color"
+simg.pixels.foreach_set(buf.ravel())
 bpy.context.scene.render.image_settings.file_format = "JPEG"; bpy.context.scene.render.image_settings.quality = 80
-img.colorspace_settings.name = "sRGB"; small_img.colorspace_settings.name = "sRGB"
-small_img.save_render(out_jpg, scene=bpy.context.scene)
+simg.save_render(out_jpg, scene=bpy.context.scene)
 bpy.ops.wm.save_as_mainfile(filepath=out_blend)

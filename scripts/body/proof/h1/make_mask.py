@@ -77,7 +77,10 @@ skin_ref = np.median(px[lab == 1], axis=0)
 counts = {k: int((lab == v).sum()) for k, v in (("other", 0), ("skin", 1), ("top", 2), ("bottom", 3), ("shoes", 4))}
 print("MASK COUNTS", counts, "skin ref", skin_ref)
 if opts.get("--half", "1") == "1":
-    lab = lab[::2, ::2]; H, W = lab.shape      # the labels need half the resolution of the colour map
+    # the labels need half the resolution of the colour map: each block takes skin when two of its four texels are skin, otherwise the label of its first texel
+    blocks = [lab[i::2, j::2] for i in (0, 1) for j in (0, 1)]
+    skin_votes = sum((b_ == 1).astype(int) for b_ in blocks)
+    lab = np.where(skin_votes >= 2, 1, blocks[0]).astype(np.uint8); H, W = lab.shape
 buf = np.zeros((H, W, 4), dtype=np.float32)
 v = (lab.astype(np.float32) * 51.0) / 255.0
 buf[:, :, 0] = v; buf[:, :, 1] = v; buf[:, :, 2] = v; buf[:, :, 3] = 1.0

@@ -2,5 +2,5 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": { "lib": ["ES2023"], "types": ["node"] },
   "include": ["../server/**/*", "../scripts/**/*", "../vite.config.ts", "../deploy/local.ts"],
-  "exclude": ["../**/*.test.js", "../**/*.test.ts", "../scripts/body/proof/page/**", "../scripts/body/proof/page2/**", "../scripts/body/proof/page3/**", "../scripts/body/proof/page4/**"]
+  "exclude": ["../**/*.test.js", "../**/*.test.ts", "../scripts/body/proof/page/**", "../scripts/body/proof/page2/**", "../scripts/body/proof/page3/**", "../scripts/body/proof/page4/**", "../scripts/body/proof/page-pro/**", "../scripts/body/proof/page-h1/**", "../scripts/body/proof/page-h1g/**"]
 }

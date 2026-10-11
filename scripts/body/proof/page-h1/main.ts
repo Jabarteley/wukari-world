@@ -44,7 +44,7 @@ async function show(spec: Spec): Promise<void> {
     holder.position.copy(right.clone().multiplyScalar(it.x ?? (i - (n - 1) / 2) * 1.5)); holder.rotation.y = it.ry ?? 0;
     // feet on the floor for stand poses
     if (!it.clip || !/sit|lie|sleep/.test(it.clip)) holder.position.y = -box.min.y;
-    scene.add(holder); shown.push(holder);
+    scene.add(holder); shown.push(holder); (holder as any).userData.obj = obj;
     const tag = document.createElement('div'); tag.className = 'tag'; tag.textContent = it.label ?? it.src.split('/').pop()!; labels.appendChild(tag);
   }
   const span = Math.max(1.8, n * 1.5), dist = spec.dist ?? span / 2 / Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2) / Math.min(1, camera.aspect) * 1.0;
@@ -53,5 +53,11 @@ async function show(spec: Spec): Promise<void> {
   camera.position.set(t[0] + Math.sin(ang) * dist, t[1] + (spec.lift ?? 0.25), t[2] + Math.cos(ang) * dist); camera.lookAt(t[0], t[1], t[2]);
   sun.position.set(Math.sin(ang) * 3 + 2, 5, Math.cos(ang) * 4);
 }
-const api = { show, render: () => renderer.render(scene, camera), ready: true };
+const api = {
+  show, render: () => renderer.render(scene, camera), ready: true,
+  /** World positions (relative to each figure's own feet) of the named bones, for checking two skeletons against each other. */
+  bones(names: string[]): Record<string, number[]>[] {
+    return shown.map((h) => { const out: Record<string, number[]> = {}; const o = h.userData.obj as THREE.Object3D; o.updateMatrixWorld(true); o.traverse((b) => { if ((b as THREE.Bone).isBone && names.includes(b.name)) { const p = new THREE.Vector3().setFromMatrixPosition(b.matrixWorld); out[b.name] = [p.x - h.position.x, p.y - h.position.y, p.z - h.position.z].map((v) => +v.toFixed(3)); } }); return out; });
+  },
+};
 (window as unknown as { h1: typeof api }).h1 = api;

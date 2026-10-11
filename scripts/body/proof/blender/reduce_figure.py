@@ -1,7 +1,7 @@
 """Reduces a generated character to a game-ready mesh: welds it, decimates it (keeping more triangles on the face and hands),
 unwraps a fresh UV layout and bakes the base colour (and a tangent normal map) from the full-detail mesh.
 
-  blender --background --disable-autoexec --python meshy_reduce.py -- <in.glb> <out.blend> <out-dir> <name> <triangles> <texture-px> [--normal] [--no-protect]
+  blender --background --disable-autoexec --python reduce_figure.py -- <in.glb> <out.blend> <out-dir> <name> <triangles> <texture-px> [--normal] [--no-protect]
 
 Writes <out.blend> (the reduced mesh as "Low", the full mesh as "High", the armature if the file has one),
 <out-dir>/<name>-color.jpg and, with --normal, <out-dir>/<name>-normal.jpg, and <out-dir>/<name>-reduce.json with the counts.

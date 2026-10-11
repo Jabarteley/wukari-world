@@ -165,19 +165,18 @@ function poseNew(slot: Slot, item: Item, spec: Spec): void {
   for (let i = 0; i < 12; i++) driver.update(1 / 30);
   if (settle > 0) { for (let i = 0; i < Math.round(settle * 30); i++) driver.update(1 / 30); }
   const w = driver.faceWeights;
-  slot.figure?.eyes(Math.max(w['blinkL'] ?? 0, w['blinkR'] ?? 0), w['gazeX'] ?? 0, w['gazeY'] ?? 0);
-  slot.figure?.eyes(Math.max(w['blinkL'] ?? 0, w['blinkR'] ?? 0), w['gazeX'] ?? 0, w['gazeY'] ?? 0);
+  for (let i = 0; i < 10; i++) slot.figure?.eyes(Math.max(w['blinkL'] ?? 0, w['blinkR'] ?? 0), w['gazeX'] ?? 0, w['gazeY'] ?? 0);   // the overlay eases in over a few frames
 }
 
 function addToday(item: Item, spec: Spec, index: number, count: number): void {
   const pose = item.pose ?? spec.pose, phase = item.phase ?? spec.phase ?? 0.28, look = LOOK[item.who];
   const holder = new THREE.Group();
-  const avatar = buildAvatar(kit, oldLookOf(look), { detail: 'medium', pose: (pose === 'idle' ? 'stand' : pose) as 'stand', stride: phase, seat: spec.furniture === 'bench' ? target.seat : (item.seat ?? 0.47), appearanceFit: true });
+  const avatar = buildAvatar(kit, oldLookOf(look), { detail: 'medium', pose: (pose === 'idle' ? 'stand' : pose) as 'stand', stride: phase, seat: spec.furniture === 'bench' ? target.seat : (item.seat ?? 0.6), appearanceFit: true });
   holder.add(avatar);
   const x = item.x ?? (index - (count - 1) / 2) * (spec.spacing ?? 2.35);
   holder.rotation.y = item.ry ?? 0;
   if (spec.furniture === 'bench') holder.position.set(0, 0, 0);
-  else holder.position.set(x, pose === 'sit' ? (item.seat ?? 0.6) - 0.47 : 0.06, item.z ?? 0);
+  else holder.position.set(x, pose === 'sit' ? 0 : 0.06, item.z ?? 0);   // a seated figure of today's body is drawn at the seat height it is given
   slots.push({ holder, label: item.label ?? 'Today', dispose: avatar.userData.dispose, facts: factsOf(avatar) }); scene.add(holder);
 }
 

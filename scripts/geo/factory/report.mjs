@@ -4,7 +4,7 @@ import { createHash } from 'node:crypto';
 
 export function machineFailed(catalogue, rows) {
   return !catalogue || rows.some(row =>
-    ['generation', 'acceptance', 'proofGround', 'proofCity', 'receipt']
+    ['generation', 'sourceScene', 'acceptance', 'proofGround', 'proofCity', 'receipt']
       .some(stage => row.machineStages[stage] !== true));
 }
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { inspectSourceScene, assertSourceScene } from './factory/source-scene.mjs';
 /** Generate one city from pinned extracts and return evidence for an external importer. */
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -170,33 +171,11 @@ async function generate(item, appSha, app, extractRoot, out) {
       assert.ok(png.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])), `${view} PNG signature mismatch`);
       assert.ok(png.readUInt32BE(16) === 1600 && png.readUInt32BE(20) === 1100, `${view} PNG dimensions mismatch`);
     }
-    const [{ city }, { PLACES }, { KINDS }, { CITY_KINDS }, { buildCity, CITY_TRIANGLE_BUDGET }, { buildNetwork }, { createKit }, { CITY_DRAW_CALLS }] = await Promise.all([
-      moduleAt(app, `${relativeCity}/index.ts`), moduleAt(app, `${relativeCity}/places.ts`), moduleAt(app, 'src/scene/venue-scenes.ts'), moduleAt(app, 'src/scene/city-scenes.ts'), moduleAt(app, 'src/map3d/city-build.ts'), moduleAt(app, 'src/map3d/roads.ts'), moduleAt(app, 'src/scene/kit.ts'), moduleAt(app, 'src/budgets.ts'),
-    ]);
-    const sourceElements = new Map([...bundle.answers.places.elements, ...bundle.answers.extras.elements].map(element => [`${element.type}/${element.id}`, element]));
-    const sourceProblems = [];
-    for (const place of PLACES) {
-      const element = sourceElements.get(place.osm), choice = CONFIG.places.find(candidate => candidate.ref === place.osm);
-      if (!element || !choice) { sourceProblems.push({ ref: place.osm, problem: 'missing source or recipe reference' }); continue; }
-      const expectedName = choice.label ?? (element.tags['name:en'] ?? element.tags['name:fr'] ?? element.tags.name ?? '').replace(/\s+/g, ' ').trim();
-      const point = element.type === 'node' ? element : element.center;
-      if (place.name !== expectedName || !point || Math.abs(place.lon - point.lon) > 0.00000051 || Math.abs(place.lat - point.lat) > 0.00000051) sourceProblems.push({ ref: place.osm, problem: 'name or point mismatch' });
-    }
-    const content = await registry.loadCityContent(item.city);
-    const venues = content.venues.filter(venue => venue.id !== 'home');
-    const unknownKinds = venues.filter(venue => !KINDS.includes(venue.definition.scene.kind)).map(venue => ({ id: venue.id, kind: venue.definition.scene.kind }));
-    const pack = await (await city.loadMap()).loadScene();
-    const built = buildCity(createKit(), pack, buildNetwork(pack), { venues: {}, soon: {} });
-    const drawCalls = built.group.children.filter(child => Reflect.get(child, 'isMesh') === true).length;
-    const [factsWest, factsSouth, factsEast, factsNorth] = FACTS.bounds;
-    const margin = Math.min((FACTS.airport.lon - factsWest) * 111320 * Math.cos(FACTS.airport.lat * Math.PI / 180), (factsEast - FACTS.airport.lon) * 111320 * Math.cos(FACTS.airport.lat * Math.PI / 180), (FACTS.airport.lat - factsSouth) * 111320, (factsNorth - FACTS.airport.lat) * 111320);
-    const scene = { sourceProblems, unknownKinds, sharedCityKinds: [...new Set(venues.map(venue => venue.definition.scene.kind).filter(kind => Object.hasOwn(CITY_KINDS, kind)))], places: PLACES.length, uniqueNames: new Set(PLACES.map(place => place.name)).size, venues: venues.length, airportMinimumBoxMarginMetres: margin, triangles: built.triangles, triangleLimit: CITY_TRIANGLE_BUDGET, drawCalls, drawCallLimit: CITY_DRAW_CALLS.value };
+    const scene = await inspectSourceScene(app, item.city, extractDir, item);
     write(join(out, 'proof/scene-source.json'), scene);
     result.counts.scene = scene;
     for (const view of ['ground', 'city']) result.counts[view] = json(join(out, 'proof', view, `${item.city}-proof.json`));
-    assert.ok(!sourceProblems.length && !unknownKinds.length, 'source reference or scene-kind proof failed');
-    assert.ok(PLACES.length >= 20 && margin >= 900, 'places or airport margin below city acceptance bar');
-    assert.ok(built.triangles < CITY_TRIANGLE_BUDGET && drawCalls <= CITY_DRAW_CALLS.value, 'scene budget exceeded');
+    assertSourceScene(scene);
     result.status = 'passed';
   } catch (error) {
     result.status = 'failed';

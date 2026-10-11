@@ -54,7 +54,7 @@
         "airport": {
           "record": "tunis-airport",
           "sourceUrl": "https://ourairports.com/airports/DTTA/",
-          "verification": "primary-coordinate review pending"
+          "verification": "Coordinates and country match OurAirports DTTA row 2133; cached CSV SHA-256 79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906"
         }
       },
       "geometryPreset": "standard",
@@ -83,5 +83,5 @@
       }
     }
   ],
-  "executionRevision": 3
+  "executionRevision": 4
 }

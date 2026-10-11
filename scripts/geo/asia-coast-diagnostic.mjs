@@ -51,7 +51,9 @@ try {
   assert.equal(plan.pins.sourceGitSHA, APP_SHA); assert.equal(plan.pins.sourceWorkingTreeClean, true);
   const manifest = json(join(download, 'evidence/selection/dubai-manifest.json'));
   assert.deepEqual(manifest.extract.sha256, target.extractSha256);
-  assert.deepEqual(manifest.facts, target.facts);
+  const { names: generatedNames, ...generatedFacts } = manifest.facts;
+  assert.deepEqual(generatedFacts, { ...target.facts, sourceUrl: target.metadataSources.pbf.url });
+  assert.equal(generatedNames.area, target.name);
   const source = Object.fromEntries(['places', 'extras', 'water', 'landuse', 'roads'].map(layer => {
     const path = join(sandbox, 'extracts/dubai', layer + '.json');
     assert.equal(hash(path), target.extractSha256[layer], `${layer} pinned extract mismatch`);
@@ -79,6 +81,8 @@ try {
   });
   const anchors = [...PLACES.map(p => ({ ref: p.osm, name: p.name, lon: p.lon, lat: p.lat })), ...labels];
   assert.equal(PLACES.length, 24); assert.equal(labels.length, 18);
+  assert.equal(generatedNames.roadHub, PLACES.find(place => place.slot === 'transit')?.name);
+  assert.deepEqual(FACTS, manifest.facts);
   const coast = source.water.elements.filter(e => e.type === 'way' && e.tags?.natural === 'coastline' && e.geometry);
   assert.equal(coast.length, 833);
   const [south, west, north, east] = CONFIG.box, reach = tools.reachFor(CONFIG.box);

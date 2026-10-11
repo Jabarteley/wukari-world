@@ -3,30 +3,30 @@
   "repository": "kromate/joinallworld",
   "cities": [
     {
-      "id": "tripoli",
+      "id": "lilongwe",
       "runId": 38169589307,
-      "artifactName": "city-browser-tripoli-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
+      "artifactName": "city-browser-lilongwe-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
     },
     {
-      "id": "bamako",
+      "id": "dar-es-salaam",
       "runId": 38169589307,
-      "artifactName": "city-browser-bamako-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
+      "artifactName": "city-browser-dar-es-salaam-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
     },
     {
-      "id": "ouagadougou",
+      "id": "tunis",
       "runId": 38169589307,
-      "artifactName": "city-browser-ouagadougou-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
+      "artifactName": "city-browser-tunis-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
     },
     {
-      "id": "maseru",
+      "id": "brazzaville",
       "runId": 38169589307,
-      "artifactName": "city-browser-maseru-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
+      "artifactName": "city-browser-brazzaville-8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "appSha": "8fbd9e1f72ca8a9e28a35eb1cb91070d34b33c4b",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
     }

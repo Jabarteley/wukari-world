@@ -51,4 +51,22 @@ const syntax = spawnSync(process.execPath, ['--check', '--input-type=module', '-
 assert.equal(syntax.status, 0, `Patched city selector is invalid: ${syntax.stderr}`);
 const dryRun = args.includes('--dry-run');
 if (dryRun) assert.equal(args.at(-1), '--dry-run'); else writeFileSync(file, patched);
-console.log(JSON.stringify({ policySha256: digest(readFileSync(resolve(args[3]))), patchedBatchSha256: digest(patched), baseBatchSha256: digest(source), dryRun, policy }));
+const sceneFile = join(root, 'scripts/geo/factory/source-scene.mjs'), sceneSource = readFileSync(sceneFile, 'utf8');
+assert.equal(digest(sceneSource), '3ee12ce238c35780adbc43a2922dd92ba484b1a8e2f78fca45f63fc1a0d3656e');
+const sceneReturn = '  return { sourceProblems, unknownKinds, sharedCityKinds: [...new Set(venues.map(venue => venue.definition.scene.kind).filter(kind => Object.hasOwn(CITY_KINDS, kind)))], places: PLACES.length, uniqueNames: new Set(PLACES.map(place => place.name)).size, venues: venues.length, airportMinimumBoxMarginMetres: margin, triangles: built.triangles, triangleLimit: CITY_TRIANGLE_BUDGET, drawCalls, drawCallLimit: CITY_DRAW_CALLS.value };';
+assert.equal(sceneSource.split(sceneReturn).length, 2, 'Expected exact source-scene receipt seam');
+const sceneReplacement = `  const triangleMeshes = [];
+  built.group.traverse(child => {
+    if (!Reflect.get(child, 'isMesh')) return;
+    const indexCount = child.geometry.index?.count ?? child.geometry.attributes.position?.count ?? 0;
+    const multiplier = Reflect.get(child, 'isInstancedMesh') ? child.count : 1;
+    triangleMeshes.push({ name: child.name, visible: child.visible, triangles: indexCount / 3 * multiplier });
+  });
+  triangleMeshes.sort((a, b) => b.triangles - a.triangles || a.name.localeCompare(b.name));
+  return { sourceProblems, unknownKinds, sharedCityKinds: [...new Set(venues.map(venue => venue.definition.scene.kind).filter(kind => Object.hasOwn(CITY_KINDS, kind)))], places: PLACES.length, uniqueNames: new Set(PLACES.map(place => place.name)).size, venues: venues.length, airportMinimumBoxMarginMetres: margin, triangles: built.triangles, triangleLimit: CITY_TRIANGLE_BUDGET, triangleMeshes, drawCalls, drawCallLimit: CITY_DRAW_CALLS.value };`;
+const instrumentedScene = sceneSource.replace(sceneReturn, sceneReplacement);
+const sceneSyntax = spawnSync(process.execPath, ['--check', '--input-type=module', '-'], { encoding: 'utf8', input: instrumentedScene });
+assert.equal(sceneSyntax.status, 0, `Instrumented source-scene is invalid: ${sceneSyntax.stderr}`);
+if (!dryRun) writeFileSync(sceneFile, instrumentedScene);
+const sceneOutputSha256 = digest(instrumentedScene);
+console.log(JSON.stringify({ policySha256: digest(readFileSync(resolve(args[3]))), patchedBatchSha256: digest(patched), sceneOutputSha256, baseBatchSha256: digest(source), dryRun, policy }));

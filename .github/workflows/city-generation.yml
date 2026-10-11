@@ -87,7 +87,7 @@ jobs:
         with:
           github-token: ${{ github.token }}
           repository: ${{ github.repository }}
-          run-id: ${{ matrix.sourceRunId }}
+          run-id: ${{ matrix.coastSupplement.sourceRunId || matrix.sourceRunId }}
           name: ${{ matrix.coastSupplement.sourceArtifact }}
           path: ${{ runner.temp }}/coast-supplement
       - name: Merge the pinned original coastline ways

@@ -31,8 +31,12 @@ function job(value) {
     assert.ok(typeof coast.city === 'string' && CITY.test(coast.city), `${value.city}: invalid supplement city`);
     assert.ok(HASH.test(coast.waterSha256), `${value.city}: supplement water hash is required`);
     for (const label of LABELS) assert.ok(HASH.test(coast.primaryExtractSha256?.[label]), `${value.city}: original primary ${label} hash is required`);
-    // The supplement artifact is downloaded from the primary's verified run and producer.
-    assert.ok(coast.sourceRunId === undefined && coast.sourceSha === undefined, `${value.city}: supplement inherits sourceRunId and sourceSha`);
+    const hasRun = coast.sourceRunId !== undefined, hasSha = coast.sourceSha !== undefined;
+    assert.equal(hasRun, hasSha, `${value.city}: supplement sourceRunId and sourceSha must be paired`);
+    if (hasRun) {
+      assert.ok(Number.isSafeInteger(coast.sourceRunId) && coast.sourceRunId > 0, `${value.city}: invalid supplement sourceRunId`);
+      assert.ok(SHA.test(coast.sourceSha), `${value.city}: invalid supplement sourceSha`);
+    }
   }
   return value;
 }
@@ -55,17 +59,28 @@ function matrix(file) {
 async function sourceRun(item, out) {
   const repository = process.env.GITHUB_REPOSITORY;
   assert.ok(repository && /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository), 'missing repository');
-  const endpoint = `${process.env.GITHUB_API_URL ?? 'https://api.github.com'}/repos/${repository}/actions/runs/${item.sourceRunId}`;
-  const response = await fetch(endpoint, { signal: AbortSignal.timeout(30_000), headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } });
-  assert.ok(response.ok, `source run lookup failed: HTTP ${response.status}`);
-  const run = await response.json();
-  assert.equal(run.head_sha, item.sourceSha, 'source run producer SHA mismatch');
-  assert.equal(run.status, 'completed', 'source run has not completed');
-  assert.equal(run.repository?.full_name, repository, 'source run repository mismatch');
-  const record = { repository, runId: run.id, sourceSha: run.head_sha, status: run.status, conclusion: run.conclusion, url: run.html_url, artifact: item.sourceArtifact, ...(item.coastSupplement ? { coastSupplement: { ...item.coastSupplement, sourceRunId: item.sourceRunId, sourceSha: item.sourceSha } } : {}) };
+  const verify = async (producer, receipt) => {
+    const endpoint = `${process.env.GITHUB_API_URL ?? 'https://api.github.com'}/repos/${repository}/actions/runs/${producer.sourceRunId}`;
+    const response = await fetch(endpoint, { signal: AbortSignal.timeout(30_000), headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' } });
+    assert.ok(response.ok, `source run lookup failed: HTTP ${response.status}`);
+    const run = await response.json();
+    assert.equal(run.head_sha, producer.sourceSha, 'source run producer SHA mismatch');
+    assert.equal(run.status, 'completed', 'source run has not completed');
+    assert.equal(run.repository?.full_name, repository, 'source run repository mismatch');
+    const record = { repository, runId: run.id, sourceSha: run.head_sha, status: run.status, conclusion: run.conclusion, url: run.html_url, artifact: producer.sourceArtifact };
+    write(join(out, receipt), record);
+    console.log(JSON.stringify(record));
+    return record;
+  };
   // A country matrix can fail while another country's hash-pinned artifact is valid.
-  write(join(out, 'input/source-run.json'), record);
-  console.log(JSON.stringify(record));
+  const record = await verify(item, 'input/source-run.json');
+  if (item.coastSupplement) {
+    const coast = item.coastSupplement;
+    const producer = { sourceArtifact: coast.sourceArtifact, sourceRunId: coast.sourceRunId ?? item.sourceRunId, sourceSha: coast.sourceSha ?? item.sourceSha };
+    await verify(producer, 'input/coast-supplement-source-run.json');
+    record.coastSupplement = { ...coast, sourceRunId: producer.sourceRunId, sourceSha: producer.sourceSha };
+    write(join(out, 'input/source-run.json'), record);
+  }
 }
 
 function mergeCoastline(item) {

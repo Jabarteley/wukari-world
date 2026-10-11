@@ -34,7 +34,7 @@ const { city } = await import(importFile('index.ts'))
 const valid = validateDestinationFacts(FACTS)
 const origin = valid.mapOrigin
 const project = point => toLocal(origin, point[0], point[1])
-const layers = { land: GEOMETRY.land, playArea: GEOMETRY.playArea ?? [], water: TERRAIN.water, reachWater: TERRAIN.reachWater ?? [] }
+const layers = { land: GEOMETRY.land, playArea: GEOMETRY.playArea ?? (GEOMETRY.playAreaFromSurfaces ? [...GEOMETRY.land, ...TERRAIN.water] : []), water: TERRAIN.water, reachWater: TERRAIN.reachWater ?? [] }
 const polygonProof = Object.fromEntries(Object.entries(layers).map(([name, polygons]) => {
   const problem = firstPolygonProblem(polygons)
   const triangulation = firstTriangulationProblem(polygons, project)

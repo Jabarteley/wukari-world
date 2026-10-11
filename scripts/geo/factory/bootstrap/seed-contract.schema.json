@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Source bootstrap seed",
+  "description": "Explicit selectors remain source candidates. Provenance URL content requires separate review; no invented city, airport or timezone defaults.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "countryISO"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "name": {"type": "string", "minLength": 1, "description": "Must contain a name after Unicode alphanumeric normalization and match a source city/town name or name:en."},
+    "countryISO": {"type": "string", "pattern": "^[A-Z]{2}$"},
+    "cityOsmRef": {"type": "string", "pattern": "^node/[1-9][0-9]*$", "description": "Selects only among matching named city/town nodes in the verified PBF."},
+    "airport": {
+      "type": "object", "additionalProperties": false, "required": ["ident", "sourceUrl"],
+      "properties": {
+        "ident": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Exact unique pinned CSV ident; same-country named airport with scheduled_service=yes required. Municipality may differ."},
+        "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this airport serves the selected city."}
+      }
+    },
+    "timezone": {
+      "type": "object", "additionalProperties": false, "required": ["id", "sourceUrl"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Exact unique IANA zone.tab id among rows for countryISO."},
+        "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this city's timezone selection."}
+      }
+    }
+  },
+  "$defs": {
+    "provenanceUrl": {"type": "string", "format": "uri", "pattern": "^https://[^\\s/?#@]+(?:[/?#][^\\s]*)?$", "description": "Runtime additionally requires a hostname and rejects embedded credentials."}
+  }
+}

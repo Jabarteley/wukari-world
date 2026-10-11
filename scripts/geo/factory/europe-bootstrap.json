@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "geometrySourceSha": "81b993bbfb9afe96b5e5d0457ed090dbd7bd9214",
+  "seed": {
+    "id": "london",
+    "name": "London",
+    "countryISO": "GB",
+    "airportIdent": "EGLL",
+    "timezone": "Europe/London"
+  },
+  "countrySource": {
+    "url": "https://download.geofabrik.de/europe/united-kingdom-261008.osm.pbf",
+    "bytes": 2267678857,
+    "md5": "176bfe1ffdf139aa4dfbe27305e88fb0",
+    "snapshotDate": "2026-10-08"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/ecead39624006017b34acf27a4b098c9cc8a4635/airports.csv",
+    "commit": "ecead39624006017b34acf27a4b098c9cc8a4635",
+    "snapshotDate": "2026-10-11",
+    "commitTimestamp": "2026-10-11T01:53:12Z"
+  }
+}

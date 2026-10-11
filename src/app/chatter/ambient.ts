@@ -39,8 +39,9 @@ function nextEvent(cityId: string, now: number): { title: string; when: string; 
   try {
     const found = eventsBetween(now, now + 36 * 3_600_000, cityId)[0]
     if (!found) return null
-    const day = lagosTime(found.start), today = lagosTime(now)
-    const when = day.day === today.day ? `today at ${formatHour(day.hour + day.minute / 60)}` : `tomorrow at ${formatHour(day.hour + day.minute / 60)}`
+    const day = lagosTime(found.start), today = lagosTime(now), at = formatHour(day.hour + day.minute / 60)
+    // An event that has begun is going on now; one that has not is today's or tomorrow's.
+    const when = found.live ? 'going on now' : day.day === today.day ? `today at ${at}` : `tomorrow at ${at}`
     return { title: found.title, when, where: found.venueLabel }
   } catch { return null }
 }

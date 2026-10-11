@@ -94,7 +94,7 @@ export const BARKS: readonly Bark[] = Object.freeze([
   bark('place-7', 'Boarding soon. Check your gate again.', { kinds: ['airport'], who: ['walker', 'caller'] }),
   // what is on
   bark('news-1', 'They say there is {event} {when}. Will you go?', { needs: 'event', weight: 2 }),
-  bark('news-2', 'Have you heard about {event}? {when}, I think.', { needs: 'event', weight: 2 }),
+  bark('news-2', 'Everybody is talking about {event}, {when}.', { needs: 'event', weight: 2 }),
 ])
 
 export interface VoiceContext {
@@ -104,7 +104,7 @@ export interface VoiceContext {
   kind: string
   band: TimeBand
   raining: boolean
-  /** The next calendar event in the city and how it is said ("today at 6 PM"), if any. */
+  /** The next calendar event in the city and how it is said ("today at 6 PM", "going on now"), if any. */
   event?: { title: string; when: string }
   record?: PublicRecord | null
 }

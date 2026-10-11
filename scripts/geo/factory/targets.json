@@ -1,6 +1,7 @@
 {
-  "expectedSourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "expectedSourceGitSHA": "db0fa91fca7868c8a1e6c6b4cf7eb25c5fd876a8",
   "geometryPreset": "standard",
+  "root": null,
   "targets": [
     {
       "id": "ndjamena",
@@ -299,6 +300,226 @@
           "landuse": "7e08d6716253b75993e3fb645c5206c7d29ccd0dfa3b9afac00708a7d93d969b",
           "roads": "0621b3fd6c52d4b9bb1a1d544fc4a5170de94ad25b10d29250135c280ea05804"
         }
+      }
+    },
+    {
+      "id": "bujumbura",
+      "name": "Bujumbura",
+      "country": "bi",
+      "facts": {
+        "id": "bujumbura",
+        "name": "Bujumbura",
+        "country": {
+          "idISOlower": "bi",
+          "name": "Burundi"
+        },
+        "state": {
+          "idunique": "bi-starter",
+          "name": "Bujumbura"
+        },
+        "timezone": "Africa/Bujumbura",
+        "centre": {
+          "lon": 29.36,
+          "lat": -3.38
+        },
+        "airport": {
+          "id": "bujumbura-airport",
+          "name": "Bujumbura Melchior Ndadaye International Airport",
+          "lon": 29.318501,
+          "lat": -3.32402,
+          "sourceUrl": "https://ourairports.com/airports/HBBA/"
+        },
+        "sourceLabel": "Natural Earth, OpenStreetMap contributors via Geofabrik Burundi 2026-10-09, and OurAirports dataset",
+        "sourceUrl": "https://www.openstreetmap.org/copyright",
+        "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "bounds": [
+          29.24,
+          -3.48,
+          29.48,
+          -3.28
+        ],
+        "coverageNote": "Bujumbura: built-up ground traced from mapped land use, actual Lake Tanganyika and river polygons, roads and named places in the dated Burundi OpenStreetMap PBF. Airport coordinates are an OurAirports dataset point, not proof of operations or schedules. Visitor services and homes are fictional game content at real places.",
+        "names": {
+          "area": "Bujumbura",
+          "unit": "district",
+          "roadHub": "Bujumbura Bus Station (Siyoni)"
+        }
+      },
+      "metadataSources": {
+        "centre": {
+          "sourceUrl": "https://www.openstreetmap.org/copyright",
+          "sourceRecord": {
+            "lon": 29.36,
+            "lat": -3.38
+          },
+          "evidenceStatus": "existing draft FACTS.ts value; primary centre verification not supplied in pinned latest-main inputs"
+        },
+        "airport": {
+          "sourceUrl": "https://ourairports.com/airports/HBBA/",
+          "sourceRecord": {
+            "id": "bujumbura-airport",
+            "name": "Bujumbura Melchior Ndadaye International Airport",
+            "lon": 29.318501,
+            "lat": -3.32402
+          },
+          "evidenceStatus": "existing draft FACTS.ts value; source row not included in boundary/source artifact"
+        },
+        "timezone": {
+          "sourceRecord": "Africa/Bujumbura",
+          "evidenceStatus": "existing draft FACTS.ts value; no independent source-row pin included"
+        }
+      },
+      "extractKey": "bujumbura",
+      "extractSha256": {
+        "places": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
+        "extras": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
+        "water": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
+        "landuse": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
+        "roads": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4"
+      },
+      "sourceJob": {
+        "city": "bujumbura",
+        "sourceRunId": 38151719739,
+        "sourceArtifact": "offline-city-layers-burundi-d888f91e86268d442093b8ab22a03193220b108f",
+        "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
+        "datasetSha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
+        "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+        "extractSha256": {
+          "places": "4e3863b354d041fdf504b9a3ff193c13f85aca04ae2698d4fef4feaa7327e576",
+          "extras": "f597b28e7bfafc5a908892e498ac6de873ce15535b6205477e6303f168788d4f",
+          "water": "259f76b2391e92d58aa307b7a2098a0d40fb58cd89c5a6a6931c99d8447934ff",
+          "landuse": "1d6d92e66c03ec0b27b33d3f0a1ab13a82d1cb531e5ee1e6213bff577684bf15",
+          "roads": "03aee1f856cab9eda183921815e9fcfacae19ba92c625eb0f1a9fb145ebb28a4"
+        }
+      },
+      "countryScope": {
+        "kind": "osm-admin0-boundary-v1",
+        "countryISO": "BI",
+        "datasetSha256": "0165414322206ba9377020e9b6f677593c0d799cf29f38ca3e82140a2eb72f98",
+        "receiptSha256": "c0933a5a3aea59e818de9f7903d856bab8a87428e294364d6dfc34cfa4cf7e09",
+        "receiptBytes": 94307,
+        "geometrySha256": "e2babebab5466e74af9c00686d5f03254059641baa3ae1f4e61166f235a13f58",
+        "geometryBytes": 381577,
+        "relationId": 195269,
+        "scriptSha256": "77aba50a07d455d546c8c1f33d96cff84d62c685188729e01983c7d867cac992",
+        "boundaryKey": "bi",
+        "boundaryJob": {
+          "sourceRunId": 38178785159,
+          "sourceArtifact": "country-boundary-BI-ca33c22078f38e5ba951741801657f7b63d25721",
+          "sourceSha": "ca33c22078f38e5ba951741801657f7b63d25721",
+          "jobName": "boundary (BI)"
+        },
+        "sourceUrl": "https://download.geofabrik.de/africa/burundi-261009.osm.pbf"
+      }
+    },
+    {
+      "id": "antananarivo",
+      "name": "Antananarivo",
+      "country": "mg",
+      "facts": {
+        "id": "antananarivo",
+        "name": "Antananarivo",
+        "country": {
+          "idISOlower": "mg",
+          "name": "Madagascar"
+        },
+        "state": {
+          "idunique": "mg-starter",
+          "name": "Analamanga"
+        },
+        "timezone": "Indian/Antananarivo",
+        "centre": {
+          "lon": 47.52,
+          "lat": -18.91
+        },
+        "airport": {
+          "id": "FMMI",
+          "name": "Ivato International Airport",
+          "lon": 47.478802,
+          "lat": -18.7969,
+          "sourceUrl": "https://ourairports.com/airports/FMMI/"
+        },
+        "sourceLabel": "Natural Earth, OpenStreetMap contributors and OurAirports dataset",
+        "sourceUrl": "https://www.openstreetmap.org/copyright",
+        "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "bounds": [
+          47.39,
+          -19.01,
+          47.63,
+          -18.76
+        ],
+        "coverageNote": "A broad play area from the mapped suburbs west of Ivato through central Antananarivo and south toward Mandroseza: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), water bodies mapped as lakes, marshes and river banks, primary roads and named places from a dated OpenStreetMap country extract. The airport point is from the OurAirports dataset, not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at real named places.",
+        "names": {
+          "area": "Antananarivo",
+          "unit": "neighbourhood",
+          "roadHub": "Soarano"
+        }
+      },
+      "metadataSources": {
+        "centre": {
+          "sourceUrl": "https://www.openstreetmap.org/copyright",
+          "sourceRecord": {
+            "lon": 47.52,
+            "lat": -18.91
+          },
+          "evidenceStatus": "existing draft FACTS.ts value; primary centre verification not supplied in pinned latest-main inputs"
+        },
+        "airport": {
+          "sourceUrl": "https://ourairports.com/airports/FMMI/",
+          "sourceRecord": {
+            "id": "FMMI",
+            "name": "Ivato International Airport",
+            "lon": 47.478802,
+            "lat": -18.7969
+          },
+          "evidenceStatus": "existing draft FACTS.ts value; source row not included in boundary/source artifact"
+        },
+        "timezone": {
+          "sourceRecord": "Indian/Antananarivo",
+          "evidenceStatus": "existing draft FACTS.ts value; no independent source-row pin included"
+        }
+      },
+      "extractKey": "antananarivo",
+      "extractSha256": {
+        "places": "10a6d0683ccf3085db1879c01381ef46ad4f90c78db30bb942343e444bc10603",
+        "extras": "7c987b0826dea6f7fe30d11f0b7dd540cc831d7b51fa09dc670faa17f7f09ec7",
+        "water": "b11e3f08b901901daa48104c095be6ea683341eb1ed478656198b8e1e16ec24e",
+        "landuse": "c1c53bb64440dbb3fed338e5fa23fe1c071c9e26cae5a50066d0477e35b746b4",
+        "roads": "a05848ecabf99ea9d12100b8b39da61a48cfdce6f7ad20506acb0ce6212824f9"
+      },
+      "sourceJob": {
+        "city": "antananarivo",
+        "sourceRunId": 38151719739,
+        "sourceArtifact": "offline-city-layers-madagascar-d888f91e86268d442093b8ab22a03193220b108f",
+        "sourceSha": "d888f91e86268d442093b8ab22a03193220b108f",
+        "datasetSha256": "f52ca1cde05cf21b0c9df28a2d7d2b769da1305a85a631e27fd388c8913e26e9",
+        "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+        "extractSha256": {
+          "places": "10a6d0683ccf3085db1879c01381ef46ad4f90c78db30bb942343e444bc10603",
+          "extras": "7c987b0826dea6f7fe30d11f0b7dd540cc831d7b51fa09dc670faa17f7f09ec7",
+          "water": "b11e3f08b901901daa48104c095be6ea683341eb1ed478656198b8e1e16ec24e",
+          "landuse": "c1c53bb64440dbb3fed338e5fa23fe1c071c9e26cae5a50066d0477e35b746b4",
+          "roads": "a05848ecabf99ea9d12100b8b39da61a48cfdce6f7ad20506acb0ce6212824f9"
+        }
+      },
+      "countryScope": {
+        "kind": "osm-admin0-boundary-v1",
+        "countryISO": "MG",
+        "datasetSha256": "f52ca1cde05cf21b0c9df28a2d7d2b769da1305a85a631e27fd388c8913e26e9",
+        "receiptSha256": "fcb135d6c2f52e88862075f9c8881c1d4b8b291daba7ca374735acc0e88d7ea1",
+        "receiptBytes": 14495,
+        "geometrySha256": "e45035d94e95a9575f1666fe580a6e76180e6ddd2623eca81afe0bc0f99fa0cd",
+        "geometryBytes": 75202,
+        "relationId": 447325,
+        "scriptSha256": "77aba50a07d455d546c8c1f33d96cff84d62c685188729e01983c7d867cac992",
+        "boundaryKey": "mg",
+        "boundaryJob": {
+          "sourceRunId": 38178785159,
+          "sourceArtifact": "country-boundary-MG-ca33c22078f38e5ba951741801657f7b63d25721",
+          "sourceSha": "ca33c22078f38e5ba951741801657f7b63d25721",
+          "jobName": "boundary (MG)"
+        },
+        "sourceUrl": "https://download.geofabrik.de/africa/madagascar-261009.osm.pbf"
       }
     }
   ],

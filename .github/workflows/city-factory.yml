@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     env:
-      APP_SHA: 7a57e756a10b35a0eec9ec5928f083580fb9e7a9
+      APP_SHA: db0fa91fca7868c8a1e6c6b4cf7eb25c5fd876a8
     steps:
       - name: Set execution directory
         run: |
@@ -35,7 +35,7 @@ jobs:
         run: node scripts/geo/factory/cloud-inputs.mjs scripts/geo/factory/targets.json
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: 7a57e756a10b35a0eec9ec5928f083580fb9e7a9
+          ref: db0fa91fca7868c8a1e6c6b4cf7eb25c5fd876a8
           path: baseline
           persist-credentials: false
       - name: Verify producers and download unique pinned artifacts

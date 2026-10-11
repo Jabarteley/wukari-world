@@ -20,8 +20,31 @@ export function validateCountryScopePolicy(policy, country, datasetSha256) {
     assert.ok(Number.isSafeInteger(job.sourceRunId) && job.sourceRunId > 0);
     assert.match(job.sourceSha ?? '', /^[a-f0-9]{40}$/);
     assert.match(job.sourceArtifact ?? '', /^[A-Za-z0-9._-]+$/);
+    if (job.jobName !== undefined) assert.ok(typeof job.jobName === 'string' && job.jobName.trim() === job.jobName && job.jobName.length > 0 && job.jobName.length <= 256 && !/[\u0000-\u001f\u007f]/.test(job.jobName), 'invalid boundary producer jobName pin');
   }
   return policy;
+}
+
+
+/** Failed matrix runs require proof of the exact pinned successful sibling job. */
+export function verifyBoundaryProducer(producer, pin, repository, jobs = []) {
+  assert.equal(producer.repository?.full_name, repository);
+  assert.equal(producer.id, pin.sourceRunId);
+  assert.equal(producer.head_sha, pin.sourceSha);
+  assert.equal(producer.status, 'completed', 'boundary producer not completed');
+  assert.ok(['success', 'failure'].includes(producer.conclusion), 'boundary producer conclusion unsupported');
+  if (producer.conclusion === 'failure') assert.ok(pin.jobName, 'failed boundary matrix requires exact jobName pin');
+  let job = null;
+  if (pin.jobName !== undefined) {
+    const matches = jobs.filter(candidate => candidate.name === pin.jobName);
+    assert.equal(matches.length, 1, 'boundary producer jobName missing or ambiguous');
+    job = matches[0];
+    assert.equal(job.run_id, pin.sourceRunId, 'boundary job run mismatch');
+    assert.equal(job.head_sha, pin.sourceSha, 'boundary job producer SHA mismatch');
+    assert.equal(job.status, 'completed', 'boundary producer job not completed');
+    assert.equal(job.conclusion, 'success', 'boundary producer job failed');
+  }
+  return job ? { id: job.id, name: job.name, runId: job.run_id, sourceSha: job.head_sha, status: job.status, conclusion: job.conclusion } : null;
 }
 
 function ringState([x, y], ring) {

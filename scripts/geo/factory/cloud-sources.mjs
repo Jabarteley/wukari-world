@@ -1,4 +1,4 @@
-import { loadCountryScope } from './country-scope.mjs';
+import { loadCountryScope, verifyBoundaryProducer } from './country-scope.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, mkdirSync, cpSync, existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -81,15 +81,20 @@ if (args.includes('--collect')) {
     mkdirSync(directory, { recursive: true });
     const producerLog = join(out, key + '-producer.json');
     const producerOk = run('gh', ['api', `repos/${repository}/actions/runs/${group.sourceRunId}`], {}, producerLog);
-    let producer;
+    let producer, verifiedJob;
     try {
       assert.ok(producerOk, 'boundary producer lookup failed');
       producer = JSON.parse(readFileSync(producerLog));
-      assert.equal(producer.repository?.full_name, repository);
-      assert.equal(producer.id, group.sourceRunId);
-      assert.equal(producer.head_sha, group.sourceSha);
-      assert.equal(producer.status, 'completed');
-      assert.equal(producer.conclusion, 'success', 'country boundary proof producer failed');
+      let jobs = [];
+      if (group.jobName !== undefined) {
+        const jobsLog = join(out, key + '-jobs.json');
+        const jobsOk = run('gh', ['api', '--paginate', '--slurp', `repos/${repository}/actions/runs/${group.sourceRunId}/jobs?filter=latest&per_page=100`], {}, jobsLog);
+        assert.ok(jobsOk, 'boundary producer jobs lookup failed');
+        const pages = JSON.parse(readFileSync(jobsLog));
+        assert.ok(Array.isArray(pages) && pages.every(page => Array.isArray(page.jobs)), 'invalid boundary producer jobs response');
+        jobs = pages.flatMap(page => page.jobs);
+      }
+      verifiedJob = verifyBoundaryProducer(producer, group, repository, jobs);
     } catch (error) {
       for (const target of input.table.targets.filter(target => {
         const job = (target.countryScope ?? input.table.countryScope).boundaryJob;
@@ -111,7 +116,7 @@ if (args.includes('--collect')) {
         if (!copied.has(destination)) {
           mkdirSync(destination, { recursive: true });
           for (const file of ['receipt.json', 'boundary.geojson']) writeFileSync(join(destination, file), readFileSync(join(directory, file)), { flag: 'wx' });
-          writeFileSync(join(destination, 'producer.json'), JSON.stringify({ repository, runId: producer.id, sourceSha: producer.head_sha, artifact: group.sourceArtifact, status: producer.status, conclusion: producer.conclusion }, null, 2));
+          writeFileSync(join(destination, 'producer.json'), JSON.stringify({ repository, runId: producer.id, sourceSha: producer.head_sha, artifact: group.sourceArtifact, status: producer.status, conclusion: producer.conclusion, verifiedJob }, null, 2));
           copied.add(destination);
         }
         loadCountryScope(destination, { ...policy, directory: destination }, target.country, target.sourceJob.datasetSha256);

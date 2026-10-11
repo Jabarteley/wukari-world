@@ -1,0 +1,150 @@
+name: North America Mexico City source bootstrap
+on:
+  push:
+    branches: ['codex/world-north-america-20261011']
+    paths: ['scripts/geo/north-america-source/mexico-city.json']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: north-america-bootstrap-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Set source output directory
+        run: echo "BOOTSTRAP_OUT=$RUNNER_TEMP/city-source-bootstrap" >> "$GITHUB_ENV"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+          path: source-tooling
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: f4d268cf0852fba533cf6bc9ccefb39833022b70
+          path: seed-tooling
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 7a57e756a10b35a0eec9ec5928f083580fb9e7a9
+          path: geometry-source
+          persist-credentials: false
+      - name: Apply only committed shared seed adaptation
+        run: |
+          for file in metadata.py run.py seed-contract.schema.json; do
+            cp "seed-tooling/scripts/geo/factory/bootstrap/$file" "source-tooling/scripts/geo/factory/bootstrap/$file"
+          done
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Install pinned source and geometry dependencies
+        run: |
+          python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1'
+          npm ci --prefix geometry-source --ignore-scripts --no-audit --no-fund
+      - name: Derive source metadata and five layers with shared runner
+        run: |
+          python source-tooling/scripts/geo/factory/bootstrap/run.py \
+            --table scripts/geo/north-america-source/mexico-city.json \
+            --geometry-source "$GITHUB_WORKSPACE/geometry-source" \
+            --outdir "$BOOTSTRAP_OUT"
+      - name: Assert known source hashes and record effective tooling provenance
+        if: always()
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          out = Path(os.environ['BOOTSTRAP_OUT'])
+          receipts = out / 'publish/receipts'
+          receipts.mkdir(parents=True, exist_ok=True)
+          files = ['metadata.py', 'run.py', 'seed-contract.schema.json']
+          tooling = Path('source-tooling/scripts/geo/factory/bootstrap')
+          proof = {
+              'schemaVersion': 1,
+              'sourceToolingRevision': '0786c00510f2827d6495a53fc3299f3112d0d6b4',
+              'seedToolingRevision': 'f4d268cf0852fba533cf6bc9ccefb39833022b70',
+              'geometrySourceRevision': '7a57e756a10b35a0eec9ec5928f083580fb9e7a9',
+              'effectiveBootstrapSha256': {name: hashlib.sha256((tooling / name).read_bytes()).hexdigest() for name in files},
+              'tableSha256': hashlib.sha256(Path('scripts/geo/north-america-source/mexico-city.json').read_bytes()).hexdigest(),
+              'status': 'HOLD',
+          }
+          try:
+              downloads = json.loads((receipts / 'downloads.json').read_text())
+              expected_pbf = '63c3a934fd9372b6921f3938871ccc821da4e7d49bc4f042cd26835aa66985c0'
+              expected_csv = 'bee4e45e2f3b3acb463af0b2bf7bd2fa5abbb324cb9519766fcab0acb33ecaaf'
+              if downloads['pbf']['sha256'] != expected_pbf or downloads['airports']['sha256'] != expected_csv:
+                  raise ValueError('known PBF/airport CSV SHA256 mismatch')
+              proof.update(status='SOURCE_HASHES_VERIFIED', pbfSha256=expected_pbf, airportsSha256=expected_csv)
+          except Exception as error:
+              proof['reason'] = str(error)
+              result_path = receipts / 'result.json'
+              result = json.loads(result_path.read_text()) if result_path.exists() else {}
+              result.update(status='HOLD', reason='source provenance check: ' + str(error))
+              result_path.write_text(json.dumps(result, indent=2) + '\n')
+          (receipts / 'tooling-provenance.json').write_text(json.dumps(proof, indent=2) + '\n')
+          if proof['status'] != 'SOURCE_HASHES_VERIFIED':
+              raise SystemExit(proof['reason'])
+          PY
+      - name: Retrieve the proven same-source Mexico boundary artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/kromate/joinallworld/actions/runs/38178237869 > "$RUNNER_TEMP/boundary-producer.json"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          producer = json.loads((Path(os.environ['RUNNER_TEMP']) / 'boundary-producer.json').read_text())
+          if (producer['head_sha'] != '5a18d51e420b24d58c1647be9cf5cb807b0e406e'
+              or producer['status'] != 'completed' or producer['conclusion'] != 'success'):
+              raise SystemExit('pinned boundary producer is not the expected successful run')
+          PY
+          gh run download 38178237869 --repo kromate/joinallworld \
+            --name north-america-source-5a18d51e420b24d58c1647be9cf5cb807b0e406e \
+            --dir "$RUNNER_TEMP/pinned-boundary"
+      - name: Verify exact boundary bytes and link the bootstrap source
+        run: |
+          python - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP'])
+          boundary = root / 'pinned-boundary/boundary'
+          pins = {
+              'receipt.json': (174066, 'dcd1e13c5071cba9af9c5e5cb2877fc0292e400685922ebf3743dee287da25d2'),
+              'boundary.geojson': (1739360, 'b2a67ea5becf94524ca4a6c19b970148b0fae567578864691a185b91ff25e9fa'),
+          }
+          for name, (size, digest) in pins.items():
+              data = (boundary / name).read_bytes()
+              if len(data) != size or hashlib.sha256(data).hexdigest() != digest:
+                  raise SystemExit('pinned boundary bytes/SHA256 mismatch: ' + name)
+          receipt = json.loads((boundary / 'receipt.json').read_text())
+          downloads = json.loads((Path(os.environ['BOOTSTRAP_OUT']) / 'publish/receipts/downloads.json').read_text())
+          if (receipt['countryISO'] != 'MX' or receipt['source']['sha256'] != downloads['pbf']['sha256']
+              or receipt['status'] != 'OSM_COUNTRY_BOUNDARY_CANDIDATE'):
+              raise SystemExit('boundary country/status/same-PBF linkage mismatch')
+          producer = json.loads((root / 'boundary-producer.json').read_text())
+          compact = {key: producer[key] for key in ('id', 'head_sha', 'status', 'conclusion', 'html_url')}
+          compact.update(artifact='north-america-source-5a18d51e420b24d58c1647be9cf5cb807b0e406e',
+                         boundaryPins={name: {'bytes': size, 'sha256': digest} for name, (size, digest) in pins.items()},
+                         pbfSha256=downloads['pbf']['sha256'], bootstrapSha=os.environ['GITHUB_SHA'])
+          (boundary / 'upstream-producer.json').write_text(json.dumps(compact, indent=2) + '\n')
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: country-boundary-mx-${{ github.sha }}
+          path: ${{ runner.temp }}/pinned-boundary/boundary
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: city-bootstrap-mexico-city-${{ github.sha }}
+          path: ${{ runner.temp }}/city-source-bootstrap/publish
+          if-no-files-found: error
+          retention-days: 14

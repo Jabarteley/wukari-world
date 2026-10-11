@@ -16,51 +16,57 @@
       "sourceDisputes": [
         {
           "ref": "way/386918478",
-          "status": "current-use-unverified",
-          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "status": "operator-reported-demolished-during-2025-26-season",
+          "reason": "BAS 6 March 2026 says six legacy buildings were down; BAS 8 June 2026 season closeout confirms the legacy decommissioning phase complete. The exact source-to-building name crosswalk remains to verify, so keep this mapped footprint out of the active scene.",
           "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
           "sourcePublicationDate": "2026-06-08",
-          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed",
+          "crosswalk": "Derived from Oct2026 OSM names vs the BAS 2019 legacy building register and2025/26 closure reports; ID-by-ID survey matching not yet complete."
         },
         {
           "ref": "way/1450652233",
-          "status": "current-use-unverified",
-          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "status": "operator-reported-demolished-during-2025-26-season",
+          "reason": "BAS 6 March 2026 says six legacy buildings were down; BAS 8 June 2026 season closeout confirms the legacy decommissioning phase complete. The exact source-to-building name crosswalk remains to verify, so keep this mapped footprint out of the active scene.",
           "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
           "sourcePublicationDate": "2026-06-08",
-          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed",
+          "crosswalk": "Derived from Oct2026 OSM names vs the BAS 2019 legacy building register and2025/26 closure reports; ID-by-ID survey matching not yet complete."
         },
         {
           "ref": "way/1450652234",
-          "status": "current-use-unverified",
-          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "status": "operator-reported-demolished-during-2025-26-season",
+          "reason": "BAS 6 March 2026 says six legacy buildings were down; BAS 8 June 2026 season closeout confirms the legacy decommissioning phase complete. The exact source-to-building name crosswalk remains to verify, so keep this mapped footprint out of the active scene.",
           "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
           "sourcePublicationDate": "2026-06-08",
-          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed",
+          "crosswalk": "Derived from Oct2026 OSM names vs the BAS 2019 legacy building register and2025/26 closure reports; ID-by-ID survey matching not yet complete."
         },
         {
           "ref": "way/1450652230",
-          "status": "current-use-unverified",
-          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "status": "operator-reported-demolished-during-2025-26-season",
+          "reason": "BAS 6 March 2026 says six legacy buildings were down; BAS 8 June 2026 season closeout confirms the legacy decommissioning phase complete. The exact source-to-building name crosswalk remains to verify, so keep this mapped footprint out of the active scene.",
           "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
           "sourcePublicationDate": "2026-06-08",
-          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed",
+          "crosswalk": "Derived from Oct2026 OSM names vs the BAS 2019 legacy building register and2025/26 closure reports; ID-by-ID survey matching not yet complete."
         },
         {
           "ref": "way/1450652232",
-          "status": "current-use-unverified",
-          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "status": "operator-reported-demolished-during-2025-26-season",
+          "reason": "BAS 6 March 2026 says six legacy buildings were down; BAS 8 June 2026 season closeout confirms the legacy decommissioning phase complete. The exact source-to-building name crosswalk remains to verify, so keep this mapped footprint out of the active scene.",
           "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
           "sourcePublicationDate": "2026-06-08",
-          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed",
+          "crosswalk": "Derived from Oct2026 OSM names vs the BAS 2019 legacy building register and2025/26 closure reports; ID-by-ID survey matching not yet complete."
         },
         {
           "ref": "way/1450652231",
-          "status": "current-use-unverified",
-          "reason": "BAS 2026 modernisation reports the six legacy structures have been dismantled during the 2025/26 season; exact object-by-object demolition status remains source crosswalk work. Do not render these October2026 OSM footprints as active facilities.",
+          "status": "operator-reported-demolished-during-2025-26-season",
+          "reason": "BAS 6 March 2026 says six legacy buildings were down; BAS 8 June 2026 season closeout confirms the legacy decommissioning phase complete. The exact source-to-building name crosswalk remains to verify, so keep this mapped footprint out of the active scene.",
           "sourceUrl": "https://www.bas.ac.uk/news/rothera-construction-season-upgrades-safeguard-future-polar-science/",
           "sourcePublicationDate": "2026-06-08",
-          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed"
+          "evidenceLevel": "primary operator current season closeout; per-building crosswalk not yet reviewed",
+          "crosswalk": "Derived from Oct2026 OSM names vs the BAS 2019 legacy building register and2025/26 closure reports; ID-by-ID survey matching not yet complete."
         },
         {
           "ref": "way/1450652235",

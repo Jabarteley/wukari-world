@@ -133,7 +133,7 @@ const big = (polygons: P[][][]): P[][][] => polygons.filter((polygon) => km2(pol
 const wet = [...sea, ...inland.flatMap((element) => big(polygonsOf(areaRings(element), outlineBox, config.waterTolerance)))];
 const reachInland = inland.flatMap((element) => {
   const rings = areaRings(element);
-  const clipped = big(polygonsOf(rings, wide, Math.max(config.waterTolerance, 0.0008)));
+  const clipped = big(polygonsOf(rings, wide, 0));
   const safe = safePolygons(clipped, 0.0008, project);
   if (safe.length === clipped.length) return safe;
   // A hole clipped at the wide box can touch the clipped outer ring and make the whole polygon unsafe. Fill the source rings first,

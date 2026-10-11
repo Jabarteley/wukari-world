@@ -1,0 +1,14 @@
+{
+ "m1": {"sex": "male", "look": "T-shirt and jeans", "skin": true, "ok": true},
+ "m2": {"sex": "male", "look": "Senator", "skin": true, "ok": true},
+ "m3": {"sex": "male", "look": "Agbada", "skin": true, "ok": true},
+ "m4": {"sex": "male", "look": "Hoodie and joggers", "skin": true, "ok": true},
+ "m5": {"sex": "male", "look": "Shirt and trousers", "skin": true, "ok": true},
+ "m6": {"sex": "male", "look": "Ankara shirt and chinos", "skin": true, "ok": true},
+ "w1": {"sex": "female", "look": "Ankara wrapper and blouse", "skin": false, "ok": true},
+ "w2": {"sex": "female", "look": "Aso-ebi", "skin": false, "ok": true},
+ "w3": {"sex": "female", "look": "Crop top and jeans", "skin": true, "ok": true},
+ "w4": {"sex": "female", "look": "Two-piece", "skin": true, "ok": true},
+ "w5": {"sex": "female", "look": "Iro and buba", "skin": true, "ok": true},
+ "w6": {"sex": "female", "look": "Bubu", "skin": true, "ok": true}
+}

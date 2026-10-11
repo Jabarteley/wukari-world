@@ -190,6 +190,24 @@ bpy.ops.object.select_all(action="DESELECT"); low.select_set(True); bpy.context.
 bpy.ops.object.mode_set(mode="EDIT")
 # --- UVs and textures: a fresh automatic unwrap of the cleaned, decimated surface, then the full mesh's base colour (and tangent normals) baked onto it
 bpy.ops.mesh.normals_make_consistent(inside=False)
+# slivers inside folds of loose cloth can come out with a winding opposite to their neighbours' (they show as black triangles or see-through holes): they are removed and the gap is closed
+# again with faces that agree with the surface round them
+import bmesh as _fl
+for _pass in range(4):
+    bmf = _fl.from_edit_mesh(low.data); bmf.faces.ensure_lookup_table()
+    badf = []
+    for f_ in bmf.faces:
+        nb_ = [g for e_ in f_.edges for g in e_.link_faces if g is not f_]
+        if nb_ and sum(f_.normal.dot(g.normal) for g in nb_) / len(nb_) < -0.12:
+            badf.append(f_)
+    if not badf:
+        break
+    _fl.ops.delete(bmf, geom=badf, context="FACES")
+    _fl.update_edit_mesh(low.data)
+    bpy.ops.mesh.select_all(action="SELECT")
+    bpy.ops.mesh.fill_holes(sides=8)
+    bpy.ops.mesh.normals_make_consistent(inside=False)
+    print("FLIPPED", len(badf))
 bpy.ops.mesh.select_all(action="SELECT")
 bpy.ops.uv.smart_project(angle_limit=math.radians(float(os.environ.get("REDUCE_ANGLE", "66"))), island_margin=0.003, area_weight=0.6, correct_aspect=True, scale_to_bounds=True)
 if os.environ.get("REDUCE_HEADSCALE") and FROM_BLEND:
@@ -234,6 +252,49 @@ if os.environ.get("REDUCE_UV") == "front":
             for l in f.loops:
                 u, v = l[uvl].uv; l[uvl].uv = (0.65 + u * 0.34, 0.01 + v * 0.98)
     _bm.update_edit_mesh(low.data)
+if os.environ.get("REDUCE_FACEATLAS") and FROM_BLEND:
+    # a crowd figure's colour map is small, so the face is not left to the automatic unwrap (which cuts it into many islands with a handful of texels each).  The front of the head becomes one planar island
+    # in a block of its own at the top left (a bit under half the map's width and 40% of its height: the eyes and mouth keep several texels each even at 512), the rest of the head (back and sides,
+    # hats) gets the block beside it, and the body is packed into the lower part of the map.  Each group is unwrapped and packed as a copy of its own so the operators cannot touch the others.
+    neck_f = json.load(open(os.environ["REDUCE_JOINTS"]))["joints"]["neck"][2]
+    bpy.ops.object.mode_set(mode="OBJECT")
+    me_ = low.data; uvd = me_.uv_layers.active.data
+    cz = [p.center for p in me_.polygons]
+    head_ids = {i for i, c in enumerate(cz) if c.z > neck_f - 0.01}
+    cen_f = sum((cz[i] for i in head_ids), Vector((0, 0, 0))) / max(len(head_ids), 1)
+    front_ids = {i for i in head_ids if (cz[i] - cen_f).normalized().y < -0.30}
+    back_ids = head_ids - front_ids; body_ids = set(range(len(cz))) - head_ids
+    vv = [me_.vertices[v].co for i in front_ids for v in me_.polygons[i].vertices]
+    fx0 = min(c.x for c in vv); fx1 = max(c.x for c in vv); fz0 = min(c.z for c in vv); fz1 = max(c.z for c in vv)
+    FW, FH = 0.42, 0.40
+    for i in front_ids:
+        for li in me_.polygons[i].loop_indices:
+            co_ = me_.vertices[me_.loops[li].vertex_index].co
+            uvd[li].uv = (0.005 + (co_.x - fx0) / (fx1 - fx0) * (FW - 0.01), 1.0 - FH + 0.005 + (co_.z - fz0) / (fz1 - fz0) * (FH - 0.01))
+
+    def repack(face_ids, u0, v0, w, h):
+        import bmesh as _bq
+        dme = low.data.copy(); dob = bpy.data.objects.new("uvtmp", dme); bpy.context.collection.objects.link(dob)
+        bmq = _bq.new(); bmq.from_mesh(dme); lay = bmq.faces.layers.int.new("orig"); bmq.faces.ensure_lookup_table()
+        for f in bmq.faces:
+            f[lay] = f.index
+        _bq.ops.delete(bmq, geom=[f for f in bmq.faces if f.index not in face_ids], context="FACES")
+        bmq.to_mesh(dme); bmq.free()
+        bpy.ops.object.select_all(action="DESELECT"); dob.select_set(True); bpy.context.view_layer.objects.active = dob
+        bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.select_all(action="SELECT")
+        bpy.ops.uv.smart_project(angle_limit=math.radians(66), island_margin=0.004, area_weight=0.6, correct_aspect=True, scale_to_bounds=True)
+        bpy.ops.uv.select_all(action="SELECT"); bpy.ops.uv.pack_islands(rotate=False, margin=0.004)
+        bpy.ops.object.mode_set(mode="OBJECT")
+        du = dme.uv_layers.active.data; orig = dme.attributes["orig"].data
+        for p in dme.polygons:
+            tgt = low.data.polygons[orig[p.index].value]
+            for la, lb in zip(p.loop_indices, tgt.loop_indices):
+                u_, v_ = du[la].uv; uvd[lb].uv = (u0 + u_ * w, v0 + v_ * h)
+        bpy.data.objects.remove(dob); bpy.data.meshes.remove(dme)
+    repack(back_ids, FW + 0.005, 1.0 - FH, 1.0 - FW - 0.01, FH - 0.005)
+    repack(body_ids, 0.0, 0.0, 1.0, 1.0 - FH - 0.01)
+    bpy.ops.object.select_all(action="DESELECT"); low.select_set(True); bpy.context.view_layer.objects.active = low
+    print("FACEATLAS", len(front_ids), len(back_ids), len(body_ids))
 bpy.ops.object.mode_set(mode="OBJECT")
 bpy.ops.object.shade_smooth()
 low_tris = len(low.data.polygons)

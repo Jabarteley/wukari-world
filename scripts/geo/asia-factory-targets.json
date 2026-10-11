@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "e6e7b6c240874ba83398ef4c73072072589610cd",
+  "expectedSourceGitSHA": "a29a52bb39eae79a0dc65a444aa62d4c7e2437ba",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -23,6 +23,9 @@
       "id": "dubai",
       "name": "Dubai",
       "country": "ae",
+      "geometryOverrides": {
+        "farWaterTolerance": 0.0012
+      },
       "facts": {
         "id": "dubai",
         "name": "Dubai",

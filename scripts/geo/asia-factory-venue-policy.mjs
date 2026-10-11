@@ -10,7 +10,15 @@ assert.deepEqual(args.filter((_, index) => index % 2 === 0), ['--factory-source'
 const root = resolve(args[1]), policy = JSON.parse(readFileSync(resolve(args[3]), 'utf8')), table = JSON.parse(readFileSync(resolve(args[5]), 'utf8'));
 assert.equal(policy.schemaVersion, 1);
 const policyOverrides = policy.venueOverrides ?? {};
-for (const target of table.targets) assert.deepEqual(target.sourceVenueOverrides ?? {}, policyOverrides[target.id] ?? {}, `Unreviewed source venue overrides for ${target.id}`);
+for (const target of table.targets) {
+    assert.deepEqual(target.sourceVenueOverrides ?? {}, policyOverrides[target.id] ?? {}, `Unreviewed source venue overrides for ${target.id}`);
+    const overrides = target.geometryOverrides ?? {};
+    assert.ok(overrides && typeof overrides === 'object' && !Array.isArray(overrides), `Invalid geometry overrides for ${target.id}`);
+    for (const [key, value] of Object.entries(overrides)) {
+        assert.equal(key, 'farWaterTolerance', `Unsupported geometry override for ${target.id}`);
+        assert.ok(typeof value === 'number' && Number.isFinite(value) && value >= 0.0008 && value <= 0.0015, `farWaterTolerance outside 0.0008..0.0015 for ${target.id}`);
+    }
+}
 const actual = spawnSync('git', ['-C', root, 'rev-parse', 'HEAD'], { encoding: 'utf8' });
 assert.equal(actual.status, 0); assert.equal(actual.stdout.trim(), '0786c00510f2827d6495a53fc3299f3112d0d6b4');
 const file = join(root, 'scripts/geo/factory/batch.mjs'), source = readFileSync(file, 'utf8');
@@ -46,7 +54,17 @@ const newSelection = `            const eligible = rank(pool.filter(el => predic
                 const receipt = { slot, ref: ref(el), name: name(el), point: point(el), sourceTags: el.tags, reason: override.reason };
                 (row.sourceVenueOverridesApplied ??= []).push(receipt);
             }`;
-const patched = sourceAfterAvailability.replace(oldSelection, newSelection);
+const sourceAfterSelection = sourceAfterAvailability.replace(oldSelection, newSelection);
+const oldConfig = '        const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names };';
+assert.equal(sourceAfterSelection.split(oldConfig).length, 2, 'Expected one exact generated CONFIG seam');
+const newConfig = `        const geometryOverrides = target.geometryOverrides ?? {};
+        if (!geometryOverrides || typeof geometryOverrides !== 'object' || Array.isArray(geometryOverrides)) throw new Error('Invalid geometry overrides for ' + target.id);
+        for (const [key, value] of Object.entries(geometryOverrides)) {
+            if (key !== 'farWaterTolerance' || typeof value !== 'number' || !Number.isFinite(value) || value < 0.0008 || value > 0.0015)
+                throw new Error('Unsupported geometry override or farWaterTolerance outside 0.0008..0.0015 for ' + target.id);
+        }
+        const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names, ...geometryOverrides };`;
+const patched = sourceAfterSelection.replace(oldConfig, newConfig);
 const syntax = spawnSync(process.execPath, ['--check', '--input-type=module', '-'], { encoding: 'utf8', input: patched });
 assert.equal(syntax.status, 0, `Patched city selector is invalid: ${syntax.stderr}`);
 const dryRun = args.includes('--dry-run');

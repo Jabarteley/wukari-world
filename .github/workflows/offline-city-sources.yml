@@ -4,10 +4,7 @@ on:
   push:
     branches: ['codex/astra-factory-qa-20261011']
     paths:
-      - '.github/workflows/offline-city-sources.yml'
-      - 'scripts/geo/offline-extract.py'
       - 'scripts/geo/offline-source-batch.json'
-      - 'scripts/geo/offline-source-batch.schema.json'
 
 permissions:
   contents: read

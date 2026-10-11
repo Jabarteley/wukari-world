@@ -4,10 +4,7 @@ on:
   push:
     branches: ['codex/astra-factory-qa-20261011']
     paths:
-      - '.github/workflows/city-generation.yml'
-      - 'scripts/geo/city-generation*.mjs'
       - 'scripts/geo/city-generation-batch.json'
-      - 'scripts/geo/merge-coastline-extract.mjs'
 
 permissions:
   actions: read

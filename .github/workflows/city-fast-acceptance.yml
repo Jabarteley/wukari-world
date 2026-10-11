@@ -1,0 +1,279 @@
+name: Parallel city acceptance
+on:
+  push:
+    branches: ['codex/astra-factory-qa-20261011']
+    paths:
+      - 'scripts/geo/city-acceptance-batch.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: city-fast-${{ github.sha }}-${{ github.run_id }}
+  cancel-in-progress: false
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      active: ${{ steps.plan.outputs.active }}
+      app: ${{ steps.plan.outputs.app }}
+      driver: ${{ steps.plan.outputs.driver }}
+      batch: ${{ steps.plan.outputs.batch }}
+      cities: ${{ steps.plan.outputs.cities }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - id: plan
+        run: node scripts/geo/city-acceptance-plan.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: acceptance-plan
+          path: acceptance-plan.json
+  build:
+    needs: plan
+    if: ${{ needs.plan.outputs.active == 'true' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.plan.outputs.app }}
+          path: app
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Initialize evidence
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: |
+          set -euo pipefail
+          echo "ACCEPTANCE_LOGS=$RUNNER_TEMP/acceptance" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/acceptance"
+          test "$(git -C app rev-parse HEAD)" = "$APP_SHA"
+          git -C app rev-parse HEAD > "$RUNNER_TEMP/acceptance/app-sha.txt"
+          node --version > "$RUNNER_TEMP/acceptance/node-version.txt"
+      - working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Typecheck
+        working-directory: app
+        run: set -o pipefail; npm run typecheck 2>&1 | tee "$ACCEPTANCE_LOGS/typecheck.log"
+      - name: Build once
+        working-directory: app
+        run: set -o pipefail; npm run build 2>&1 | tee "$ACCEPTANCE_LOGS/build.log"
+      - name: Download size
+        working-directory: app
+        run: set -o pipefail; npm run size:download 2>&1 | tee "$ACCEPTANCE_LOGS/download.log"
+      - name: Hash exact build
+        working-directory: app
+        run: find dist -type f -print0 | sort -z | xargs -0 sha256sum > dist-sha256.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: city-dist-${{ needs.plan.outputs.app }}
+          path: |
+            app/dist/
+            app/dist-sha256.txt
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: city-build-${{ needs.plan.outputs.app }}
+          path: ${{ env.ACCEPTANCE_LOGS }}/
+          if-no-files-found: error
+  node:
+    needs: [plan, build]
+    if: ${{ needs.plan.outputs.active == 'true' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.plan.outputs.app }}
+          path: app
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Initialize evidence
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: |
+          set -euo pipefail
+          echo "ACCEPTANCE_LOGS=$RUNNER_TEMP/acceptance" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/acceptance"
+          test "$(git -C app rev-parse HEAD)" = "$APP_SHA"
+          git -C app rev-parse HEAD > "$RUNNER_TEMP/acceptance/app-sha.txt"
+          node --version > "$RUNNER_TEMP/acceptance/node-version.txt"
+      - working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: city-dist-${{ needs.plan.outputs.app }}
+          path: app
+      - name: Verify shared build
+        working-directory: app
+        run: set -o pipefail; sha256sum -c dist-sha256.txt 2>&1 | tee "$ACCEPTANCE_LOGS/dist-verification.log"
+      - name: Record and apply native full-suite shard
+        run: node scripts/geo/city-acceptance-plan.mjs shard app '${{ matrix.shard }}'
+      - name: Full Node suite shard
+        working-directory: app
+        run: set -o pipefail; npm test 2>&1 | tee "$ACCEPTANCE_LOGS/node.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: city-node-${{ matrix.shard }}-${{ needs.plan.outputs.app }}
+          path: ${{ env.ACCEPTANCE_LOGS }}/
+          if-no-files-found: error
+  edge:
+    needs: [plan, build]
+    if: ${{ needs.plan.outputs.active == 'true' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.plan.outputs.app }}
+          path: app
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Initialize evidence
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: |
+          set -euo pipefail
+          echo "ACCEPTANCE_LOGS=$RUNNER_TEMP/acceptance" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/acceptance"
+          test "$(git -C app rev-parse HEAD)" = "$APP_SHA"
+          git -C app rev-parse HEAD > "$RUNNER_TEMP/acceptance/app-sha.txt"
+          node --version > "$RUNNER_TEMP/acceptance/node-version.txt"
+      - working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: city-dist-${{ needs.plan.outputs.app }}
+          path: app
+      - name: Verify shared build
+        working-directory: app
+        run: set -o pipefail; sha256sum -c dist-sha256.txt 2>&1 | tee "$ACCEPTANCE_LOGS/dist-verification.log"
+      - working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund --prefix deploy/tooling
+      - name: Full Worker suite
+        working-directory: app
+        run: set -o pipefail; npm run test:edge 2>&1 | tee "$ACCEPTANCE_LOGS/edge.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: city-edge-${{ needs.plan.outputs.app }}
+          path: ${{ env.ACCEPTANCE_LOGS }}/
+          if-no-files-found: error
+  browser:
+    needs: [plan, build]
+    if: ${{ needs.plan.outputs.active == 'true' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        city: ${{ fromJSON(needs.plan.outputs.cities) }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.plan.outputs.app }}
+          path: app
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Initialize evidence
+        env:
+          APP_SHA: ${{ needs.plan.outputs.app }}
+        run: |
+          set -euo pipefail
+          echo "ACCEPTANCE_LOGS=$RUNNER_TEMP/acceptance" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/acceptance"
+          test "$(git -C app rev-parse HEAD)" = "$APP_SHA"
+          git -C app rev-parse HEAD > "$RUNNER_TEMP/acceptance/app-sha.txt"
+          node --version > "$RUNNER_TEMP/acceptance/node-version.txt"
+      - working-directory: app
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ needs.plan.outputs.driver }}
+          path: driver
+          persist-credentials: false
+      - name: Pin diagnostic drivers
+        env:
+          DRIVER_SHA: ${{ needs.plan.outputs.driver }}
+        run: |
+          set -euo pipefail
+          test "$(git -C driver rev-parse HEAD)" = "$DRIVER_SHA"
+          git -C driver rev-parse HEAD > "$ACCEPTANCE_LOGS/driver-sha.txt"
+          mkdir -p app/scripts/journeys
+          cp driver/scripts/journeys/{map-shots,serve-maps,cdp-map-qa}.ts app/scripts/journeys/
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: city-dist-${{ needs.plan.outputs.app }}
+          path: app
+      - name: Verify shared build
+        working-directory: app
+        run: set -o pipefail; sha256sum -c dist-sha256.txt 2>&1 | tee "$ACCEPTANCE_LOGS/dist-verification.log"
+      - name: Native desktop and strict phone journeys
+        working-directory: app
+        env:
+          CITY: ${{ matrix.city }}
+        run: |
+          set -euo pipefail
+          export CHROME_BIN="$(command -v google-chrome)"
+          node --experimental-strip-types scripts/journeys/map-shots.ts             --out "$ACCEPTANCE_LOGS" --port 4423 --debug-port 4424             --cities "$CITY" --phone-cities "$CITY" --phones 390x844,320x568             --short '' --lean --clock-hour 12 --label-audit --phone-ui-audit             2>&1 | tee "$ACCEPTANCE_LOGS/browser.log"
+          node --input-type=module -e 'import {readFileSync} from "node:fs"; const r=JSON.parse(readFileSync(process.env.ACCEPTANCE_LOGS+"/timings.json","utf8")); if(r.aborted || r.consoleErrors?.length) throw Error(JSON.stringify({aborted:r.aborted,errors:r.consoleErrors}));'
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: city-browser-${{ matrix.city }}-${{ needs.plan.outputs.app }}
+          path: ${{ env.ACCEPTANCE_LOGS }}/
+          if-no-files-found: error
+  complete:
+    needs: [plan, build, node, edge, browser]
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Require every acceptance gate
+        env:
+          PLAN: ${{ needs.plan.result }}
+          ACTIVE: ${{ needs.plan.outputs.active }}
+          BUILD: ${{ needs.build.result }}
+          NODE: ${{ needs.node.result }}
+          EDGE: ${{ needs.edge.result }}
+          BROWSER: ${{ needs.browser.result }}
+        run: |
+          set -euo pipefail
+          test "$PLAN" = success
+          if [ "$ACTIVE" != true ]; then
+            echo 'No acceptance queued; no cities accepted.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          for result in "$BUILD" "$NODE" "$EDGE" "$BROWSER"; do test "$result" = success; done
+          echo 'All four full-suite shards, full Worker suite, shared build, size budget, and every city journey passed.' >> "$GITHUB_STEP_SUMMARY"

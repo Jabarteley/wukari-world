@@ -1,0 +1,102 @@
+name: Pinned offline city generation
+
+on:
+  push:
+    branches: ['codex/astra-factory-qa-20261011']
+    paths:
+      - '.github/workflows/city-generation.yml'
+      - 'scripts/geo/city-generation*.mjs'
+      - 'scripts/geo/city-generation-batch.json'
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: city-generation-${{ github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      app_sha: ${{ steps.read.outputs.app_sha }}
+      matrix: ${{ steps.read.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - id: read
+        run: node scripts/geo/city-generation.mjs --matrix
+
+  generate:
+    needs: plan
+    if: ${{ needs.plan.outputs.matrix != '[]' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    env:
+      APP_SHA: ${{ needs.plan.outputs.app_sha }}
+      TOOL_SHA: ${{ github.sha }}
+      JOB_JSON: ${{ toJSON(matrix) }}
+      APP_DIR: ${{ github.workspace }}/app
+      EXTRACT_ROOT: ${{ runner.temp }}/city-generation/extract
+      OUT_DIR: ${{ runner.temp }}/city-generation/output
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ env.APP_SHA }}
+          path: app
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Verify source producer and record checkout pins
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$OUT_DIR/logs"
+          test "$(git -C app rev-parse HEAD)" = "$APP_SHA"
+          test "$(git rev-parse HEAD)" = "$TOOL_SHA"
+          node scripts/geo/city-generation.mjs --source-run 2>&1 | tee "$OUT_DIR/logs/source-run.log"
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ matrix.sourceRunId }}
+          name: ${{ matrix.sourceArtifact }}
+          path: ${{ env.EXTRACT_ROOT }}
+      - name: Install exact application dependencies
+        working-directory: app
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund 2>&1 | tee "$OUT_DIR/logs/npm-ci.log"
+      - name: Install Linux SVG renderer
+        run: |
+          set -euo pipefail
+          sudo apt-get update 2>&1 | tee "$OUT_DIR/logs/svg-install.log"
+          sudo apt-get install --no-install-recommends -y librsvg2-bin 2>&1 | tee -a "$OUT_DIR/logs/svg-install.log"
+      - name: Generate, test and render the pinned city
+        run: |
+          set -euo pipefail
+          node --experimental-strip-types --import "$APP_DIR/scripts/node-scene-css.ts" \
+            scripts/geo/city-generation.mjs --run 2>&1 | tee "$OUT_DIR/logs/driver.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ always() }}
+        with:
+          name: generated-city-${{ matrix.city }}-${{ env.APP_SHA }}-${{ github.sha }}
+          path: ${{ env.OUT_DIR }}/
+          if-no-files-found: error
+          retention-days: 7

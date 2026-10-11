@@ -34,6 +34,7 @@ import PathIntro from './PathIntro.vue'
 import type { PathIntent } from '../../../paths.ts'
 import StepHome from './StepHome.vue'
 import { lgasOf } from '../../../game/content/world.ts'
+import { CITY_CATALOGUE } from '../../../game/cities/catalogue.ts'
 import { cachedCityContent, isDefaultName, loadCityContent } from '../../../game/cities/registry.ts'
 import StepLook from './StepLook.vue'
 import StepReady from './StepReady.vue'
@@ -159,6 +160,8 @@ const progress = computed(() => progressOf(steps.value, cr.step))
 const def = computed(() => stepDef(cr.step))
 const title = computed(() => (isNew && cr.step === 'who' ? (campusEntry ? 'Explore UNILAG' : 'Welcome to Allworld') : def.value.title))
 const lead = computed(() => (isNew && cr.step === 'who' ? (campusEntry ? 'Create your Sim and enter the University of Lagos through Main Gate.' : 'A digital world you can live in, with your friends. Choose who you are to begin; you can play in seconds.') : def.value.lead))
+// What is open, read from the catalogue the page already has: no number is written here to go stale.
+const pitch = computed(() => `${CITY_CATALOGUE.filter((city) => city.open).length} real cities across Africa, and more opening. Free, in your browser, no download.`)
 const homePending = computed(() => cr.step === 'home' && !homeReady.value)
 const blocked = computed(() => homePending.value ? 'Load this city before continuing.' : stepBlocked(cr.step, { nameProblem: nameProblem(draft.value.name.trim()), area: draft.value.area, traits: draft.value.traits.length }))
 const last = computed(() => nextStep(steps.value, cr.step) === null)
@@ -379,6 +382,7 @@ onBeforeUnmount(() => {
       </header>
 
       <div ref="scroller" class="cr-scroll">
+        <p v-if="isNew && cr.step === 'who' && !campusEntry" class="cr-pitch">{{ pitch }}</p>
         <p v-if="intro" class="cr-banner is-info"><span aria-hidden="true"><GameIcon :name="intro.kind === 'why' ? 'home' : 'star'" inline /></span><span><strong>{{ intro.strong }}</strong> {{ intro.text }}</span></p>
         <PathIntro v-if="isNew && playable && cr.step === 'who' && !invited()" :intent="waiting" :busy="Boolean(cr.pending) || play.sending" @start="startIn" @signup="openSignUp" @login="openSignIn" />
         <p v-if="isNew && invited()" class="cr-banner is-good" role="status"><span aria-hidden="true"><GameIcon name="invite" inline /></span><span><strong>{{ invitedNote.title }}</strong> {{ inviter ? `Start your life and you land where ${inviter} is.` : 'Start your life and you land where they are.' }}</span></p>

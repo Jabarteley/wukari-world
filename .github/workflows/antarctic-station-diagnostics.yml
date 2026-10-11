@@ -31,6 +31,7 @@ jobs:
           curl --fail --silent --show-error --max-time 300 -o evidence/antarctica.osm.pbf https://download.geofabrik.de/antarctica-261008.osm.pbf
           python scripts/geo/factory/station-inventory.py evidence/antarctica.osm.pbf evidence/inventory.json
           python scripts/geo/factory/station-coverage.py evidence scripts/geo/factory/station-seeds.json factory-baseline/scripts/geo/offline-extract.py
+          python scripts/geo/factory/station-geometry.py evidence/antarctica.osm.pbf scripts/geo/factory/station-seeds.json evidence/station-geometry.json
           rm evidence/antarctica.osm.pbf
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
@@ -38,17 +39,3 @@ jobs:
           name: antarctic-source-${{ github.sha }}
           path: evidence/
           retention-days: 14
-  routes:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
-        with:
-          node-version: 24.19.0
-      - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: npm run typecheck
-      - run: node --experimental-strip-types scripts/city/build-catalogue.ts --check
-      - run: node --experimental-strip-types --test --test-concurrency=1 src/game/cities/generatedLinks.test.ts

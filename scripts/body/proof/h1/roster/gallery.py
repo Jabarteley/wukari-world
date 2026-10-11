@@ -29,7 +29,7 @@ def shots(kind, manifest=None):
             for tag, ry, face in (("h-face", 0, None), ("i-tq", 0.7, None), ("j-side", 1.5, None), ("k-blink", 0, {"blink": 1}), ("l-happy", 0, {"mood": "happy"}), ("m-uneasy", 0, {"mood": "uneasy"})):
                 out.append({"name": f"{i}-{tag}", "spec": spec({"id": i}, "idle", 0, ry, 340, 340, fc, face)})
         elif kind == "faces":
-            fc2 = cam([0, top, 0], 0.55, 0, 0, 28)
+            fc2 = cam([0, top, 0], 0.8, 0, 0, 28)
             for tag, ry in (("front", 0), ("tq", 0.7), ("side", 1.5)):
                 out.append({"name": f"face-{i}-{tag}", "spec": spec({"id": i}, "idle", 0, ry, 600, 600, fc2)})
         elif kind == "skin":

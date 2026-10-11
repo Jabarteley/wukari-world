@@ -119,7 +119,7 @@ test('the page, the manifest and the readme say which cities are open, and say i
     assert.ok(!/Nigeria|nine|Explore/.test(text), `no stale country, count or repeated verb in: ${text}`);
   }
   assert.ok(description.length <= 155 && ((/<title>([^<]*)<\/title>/.exec(head)?.[1] ?? '').length <= 60), 'title at most 60 and description at most 155 characters');
-  assert.match(html, /<noscript>[^]*real cities across Africa and more opening[^]*<\/noscript>/);
+  assert.match(html, /<noscript>[^]*real cities across Africa, from Lagos to Cape Town, and more opening[^]*<\/noscript>/);
   for (const [name, text] of [['index.html', html], ['manifest', manifest], ['README.md', await read('README.md')], ['CONTRIBUTING.md', await read('CONTRIBUTING.md')]] as const) {
     assert.ok(!/two cities|Lagos and Ibadan are open|first two cities|more cities (are )?coming/i.test(text), `${name} does not claim only two cities are open`);
   }

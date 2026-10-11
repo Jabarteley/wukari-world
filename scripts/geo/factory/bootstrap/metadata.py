@@ -150,6 +150,13 @@ def main():
                         raise Hold('matching city node has no valid location')
                     candidates.append({'ref': f'node/{node.id}', 'tags': tags, **coordinate(node.location.lon, node.location.lat)})
         CityNodes().apply_file(str(pbf))
+        candidate_records = sorted(candidates, key=lambda node: int(node['ref'].split('/')[1]))
+        (out / 'city-candidates.json').write_text(json.dumps({
+            'seed': seed, 'datasetSha256': args.expected_pbf_sha256,
+            'matchingCount': len(candidate_records), 'limit': 100,
+            'truncated': len(candidate_records) > 100, 'candidates': candidate_records[:100],
+            'scope': 'Matching source city/town nodes for identity review; not acceptance or selected facts',
+        }, indent=2))
         city = choose_city(candidates, seed)
         with Path(args.airports_csv).open(newline='') as stream:
             reader = csv.DictReader(stream)

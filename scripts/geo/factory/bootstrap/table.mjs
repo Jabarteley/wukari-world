@@ -4,8 +4,9 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 
-const [input, output, boundaryPolicyFile] = process.argv.slice(2);
-if (!input || !output) throw Error('Usage: table.mjs BOOTSTRAP_ARTIFACT TARGET_TABLE [BOUNDARY_POLICY_JSON]');
+const [input, output, boundaryPolicyFile, generationSourceSHA] = process.argv.slice(2);
+if (!input || !output || !generationSourceSHA) throw Error('Usage: table.mjs BOOTSTRAP_ARTIFACT TARGET_TABLE BOUNDARY_POLICY_JSON_OR_DASH GENERATION_SOURCE_SHA');
+assert.match(generationSourceSHA, /^[0-9a-f]{40}$/, 'explicit generation baseline required');
 const root = resolve(input), read = file => JSON.parse(readFileSync(join(root, file), 'utf8'));
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const hex = /^[0-9a-f]{64}$/, cityId = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -71,7 +72,7 @@ if (batch) {
 }
 
 const targets = [];
-let expectedSourceGitSHA;
+let boundsSourceGitSHA;
 for (const city of candidates) {
   assert.match(city.id, cityId);
   const metadata = read(batch ? `metadata/${city.id}/candidate/metadata.json` : 'metadata/candidate/metadata.json');
@@ -130,15 +131,15 @@ for (const city of candidates) {
   }
   validateCountryScopePolicy(countryScope, facts.country.idISOlower, job.datasetSha256);
   if (batch) assertCountryFacts(loadCountryScope(root, countryScope, metadata.country, job.datasetSha256), facts);
-  if (expectedSourceGitSHA === undefined) expectedSourceGitSHA = sources.bounds.geometrySourceGitSHA;
-  assert.equal(sources.bounds.geometrySourceGitSHA, expectedSourceGitSHA);
+  if (boundsSourceGitSHA === undefined) boundsSourceGitSHA = sources.bounds.geometrySourceGitSHA;
+  assert.equal(sources.bounds.geometrySourceGitSHA, boundsSourceGitSHA);
   targets.push({ id: metadata.id, name: metadata.name, country: metadata.country, facts,
     metadataSources: { ...sources, airport: { ...sources.airport, sourceUrl: facts.airport.sourceUrl } },
     extractKey: metadata.id, extractSha256: job.extractSha256, sourceJob: job });
 }
-assert.match(expectedSourceGitSHA, /^[0-9a-f]{40}$/);
-const table = { expectedSourceGitSHA, geometryPreset: 'standard', countryScope, targets };
+assert.match(boundsSourceGitSHA, /^[0-9a-f]{40}$/);
+const table = { expectedSourceGitSHA: generationSourceSHA, geometryPreset: 'standard', countryScope, targets };
 writeFileSync(resolve(output), JSON.stringify(table, null, 2) + '\n');
 console.log(JSON.stringify({ cities: targets.map(target => target.id), excludedHeldIds: excluded,
   sourceRun: countryScope.boundaryJob?.sourceRunId ?? targets[0].sourceJob.sourceRunId,
-  sourceSha: targets[0].sourceJob.sourceSha, geometrySource: expectedSourceGitSHA }));
+  sourceSha: targets[0].sourceJob.sourceSha, boundsSource: boundsSourceGitSHA, generationSource: generationSourceSHA }));

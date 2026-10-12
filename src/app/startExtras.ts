@@ -11,6 +11,7 @@ import { isNewDevice } from './features/start/warmLanding.ts'
 
 export function startExtras(diagnostics: boolean): void {
   if (diagnostics) void import('./diagnostics.ts').then(({ showDiagnostics }) => { showDiagnostics() })
+  if (location.search.includes('claim-agent=')) void import('./features/agents/claimEntry.ts').then(({ startClaim }) => { startClaim() })
   const startPaths = (): void => { void import('./features/paths/arrive.ts').then((module) => { module.startPaths() }) }
   if (location.pathname === '/') return
   // A new visitor on an address of the entry page keeps it as it is until they act (the entry page starts the paths then). A visitor whose

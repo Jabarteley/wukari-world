@@ -5,7 +5,10 @@
 import { lagosTime } from '../../src/game/clock.ts';
 import { cityCatalogueEntry } from '../../src/game/cities/registry.ts';
 import type { BoardMeasure, BoardRow, BoardScope, BoardYou, BoardsResponse } from '../../src/types/civic.ts';
-import type { CivicCityRecord, CivicCollection, PrideWeek, ResidentRecord } from '../types.ts';
+import type { CivicCityRecord, CivicCollection, PrideTally, PrideWeek, ResidentRecord } from '../types.ts';
+
+/** The two families of boards: people, and AI agents. A character an agent played during the ranking week is on the agents' boards for that week. */
+export type BoardFamily = 'humans' | 'agents';
 
 /** A place shows numbers and is ranked only when this many residents live there and this many opened the game this week. */
 export const BOARD_MIN = 5;
@@ -23,19 +26,35 @@ const count = (value: unknown): number => (typeof value === 'number' && Number.i
  * thereafter only the change in what they earned, so a repeated check-in changes nothing and a resident that was never
  * added (a record from before the tally) is added in full the first time.
  */
-export function addToTally(city: CivicCityRecord, resident: ResidentRecord, now: number): void {
+export function addToTally(city: CivicCityRecord, resident: ResidentRecord, now: number, family: BoardFamily = 'humans'): void {
   const week = lagosTime(now).week;
-  let tally = city.pride;
-  if (!tally || !Number.isSafeInteger(tally.week)) tally = city.pride = { week, active: 0, earned: 0 };
-  if (tally.week > week) return;
-  if (tally.week < week) {
-    const before = tally;
-    tally = city.pride = { week, active: 0, earned: 0, ...(before.week === week - 1 ? { prev: { week: before.week, active: count(before.active), earned: count(before.earned), residents: Object.keys(city.residents).length } } : {}) };
+  // Two tallies, one per family of boards (humans and agents). A resident is in exactly one of them for a week: if an agent plays a character
+  // part-way through the week, what it had earned so far is MOVED to the agents' tally (nothing is dropped), and the same the other way.
+  const key = (f: BoardFamily): 'pride' | 'prideAi' => (f === 'agents' ? 'prideAi' : 'pride');
+  const tallyOf = (f: BoardFamily): PrideTally | undefined => {
+    let tally = city[key(f)];
+    if (!tally || !Number.isSafeInteger(tally.week)) tally = city[key(f)] = { week, active: 0, earned: 0 };
+    if (tally.week > week) return undefined;
+    if (tally.week < week) {
+      const before = tally;
+      tally = city[key(f)] = { week, active: 0, earned: 0, ...(before.week === week - 1 ? { prev: { week: before.week, active: count(before.active), earned: count(before.earned), residents: Object.keys(city.residents).length } } : {}) };
+    }
+    return tally;
+  };
+  const mine = resident.week === week ? count(resident.earned) : 0;
+  const was: BoardFamily = resident.tf === 'a' ? 'agents' : 'humans';
+  if (resident.tw === week && was !== family) {
+    const old = tallyOf(was);
+    if (old) { old.active = Math.max(0, count(old.active) - 1); old.earned = Math.max(0, count(old.earned) - count(resident.te)); }
+    resident.tw = undefined as unknown as number;
   }
-  const added = resident.tw === week ? count(resident.te) : 0, mine = resident.week === week ? count(resident.earned) : 0;
+  const tally = tallyOf(family);
+  if (!tally) return;
+  const added = resident.tw === week ? count(resident.te) : 0;
   if (resident.tw !== week) tally.active = count(tally.active) + 1;
   tally.earned = Math.max(0, count(tally.earned) + mine - added);
   resident.tw = week; resident.te = mine;
+  if (family === 'agents') resident.tf = 'a'; else delete resident.tf;
 }
 
 interface Totals { residents: number; active: number; earned: number }
@@ -54,13 +73,15 @@ interface Built {
 }
 
 const pride = (totals: Totals): number => (totals.residents > 0 ? Math.round(totals.earned / totals.residents) : 0);
-const enough = (totals: Totals): boolean => totals.residents >= BOARD_MIN && totals.active >= BOARD_MIN;
+const enough = (totals: Totals, min = BOARD_MIN): boolean => totals.residents >= min && totals.active >= min;
 /** The order of a board: more first; equal places by id, so the same data always gives the same ranks. */
 const order = (measure: BoardMeasure) => (a: Ranked, b: Ranked): number => b[measure] - a[measure] || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
 /** Foreign catalogue entries have a placeholder "starter" district for a state: they are in no state ranking. */
 const stateOf = (state: { id: string; name: string }): { id: string; name: string } | null => (state.id.endsWith('-starter') ? null : state);
 
-function build(civic: CivicCollection, now: number): Built {
+function build(civic: CivicCollection, now: number, family: BoardFamily = 'humans'): Built {
+  // The agents' boards rank from the first agent: there are few of them, and the point is to compare them.
+  const min = family === 'agents' ? 1 : BOARD_MIN;
   const week = lagosTime(now).week;
   const homes: Built['homes'] = new Map();
   const here = { city: new Map<string, Place>(), state: new Map<string, Place>(), country: new Map<string, Place>() };
@@ -74,7 +95,7 @@ function build(civic: CivicCollection, now: number): Built {
     if (!entry || !record || typeof record.residents !== 'object' || record.residents === null) continue;
     const state = stateOf(entry.state), country = { id: entry.countryISO ?? 'ng', name: entry.countryName ?? 'Nigeria' };
     homes.set(cityId, { state, country });
-    const tally = record.pride, residents = Object.keys(record.residents).length;
+    const tally = family === 'agents' ? record.prideAi : record.pride, residents = family === 'agents' ? count(tally?.week === week ? tally.active : 0) : Object.keys(record.residents).length;
     const current: PrideWeek | null = tally?.week === week ? tally : null;
     // The week before is the tally itself while no one has checked in since the week turned, else the copy taken then.
     const past = tally?.week === week - 1 ? { ...tally, residents } : tally?.prev?.week === week - 1 ? tally.prev : null;
@@ -86,7 +107,7 @@ function build(civic: CivicCollection, now: number): Built {
       add(into.country, country.id, country.name, null, totals);
     }
   }
-  const rank = (places: Map<string, Place>, measure: BoardMeasure): Ranked[] => [...places.values()].filter(enough).map((place) => ({ ...place, pride: pride(place) })).sort(order(measure));
+  const rank = (places: Map<string, Place>, measure: BoardMeasure): Ranked[] => [...places.values()].filter((place) => enough(place, min)).map((place) => ({ ...place, pride: pride(place) })).sort(order(measure));
   const ranked = {} as Built['ranked'], last = {} as Built['last'], unranked = {} as Built['unranked'];
   for (const scope of BOARD_SCOPES) {
     ranked[scope] = { pride: rank(here[scope], 'pride'), earned: rank(here[scope], 'earned'), active: rank(here[scope], 'active'), residents: rank(here[scope], 'residents') };
@@ -98,13 +119,15 @@ function build(civic: CivicCollection, now: number): Built {
 
 /** Builds the boards at most once per `BOARD_TTL_MS` (and once per Lagos week); `builds` counts the passes over the cities. */
 export function createBoards(ttlMs = BOARD_TTL_MS) {
-  let held: Built | null = null;
+  const held: Record<BoardFamily, Built | null> = { humans: null, agents: null };
   const stats = { builds: 0 };
   return {
     stats,
-    get(civic: CivicCollection, now: number): Built {
-      if (!held || held.week !== lagosTime(now).week || now < held.at || now - held.at > ttlMs) { stats.builds += 1; held = build(civic, now); }
-      return held;
+    get(civic: CivicCollection, now: number, family: BoardFamily = 'humans'): Built {
+      const kept = held[family];
+      if (kept && kept.week === lagosTime(now).week && now >= kept.at && now - kept.at <= ttlMs) return kept;
+      stats.builds += 1;
+      return (held[family] = build(civic, now, family));
     },
   };
 }
@@ -122,7 +145,7 @@ function placeOf(built: Built, scope: BoardScope, cityId: string | null): { id: 
 }
 
 /** One page of a board, the viewer's place, and last week's winner. `after` is the rank of the last row held. Null: not one of our cursors. */
-export function boardView(built: Built, scope: BoardScope, by: BoardMeasure, viewerCity: string | null, after: string | null, limit: number): BoardsResponse | null {
+export function boardView(built: Built, scope: BoardScope, by: BoardMeasure, viewerCity: string | null, after: string | null, limit: number, family: BoardFamily = 'humans'): BoardsResponse | null {
   let from = 0;
   if (after !== null) {
     if (!/^\d{1,6}$/.test(after)) return null;
@@ -135,6 +158,6 @@ export function boardView(built: Built, scope: BoardScope, by: BoardMeasure, vie
   const you: BoardYou | null = mine ? { id: mine.id, name: mine.name, rank: index >= 0 ? index + 1 : null,
     behind: above && own ? { id: above.id, name: above.name, amount: above[by] - own[by] } : null } : null;
   const winner = built.last[scope][0];
-  return { scope, by, week: built.week, min: BOARD_MIN, rows, next: from + rows.length < list.length && rows.length ? String(from + rows.length) : null,
+  return { scope, by, week: built.week, min: family === 'agents' ? 1 : BOARD_MIN, ...(family === 'agents' ? { family } : {}), rows, next: from + rows.length < list.length && rows.length ? String(from + rows.length) : null,
     total: list.length, unranked: built.unranked[scope], you, lastWeek: { week: built.week - 1, winner: winner ? { id: winner.id, name: winner.name } : null } };
 }

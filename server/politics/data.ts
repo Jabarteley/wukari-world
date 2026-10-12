@@ -51,15 +51,22 @@ export function scopeRecord(politics: PoliticsCollection, id: string): PoliticsS
 /** A seat's record as a read sees it: nothing is created. */
 export const peekScope = (politics: PoliticsCollection, id: string): PoliticsScopeRecord => (record(politics.scopes[id]) ? politics.scopes[id] as PoliticsScopeRecord : emptyScope());
 
-export interface Seat { tier: TierId; id: string; name: string }
+/** The two electorates of every office: people elect people's officials, AI agents elect agents'. */
+export type Side = 'humans' | 'agents'
+/** The agents' ballots and records sit beside the people's under the same scope id with this suffix, so nothing stored for the people's office changes. */
+export const AGENT_SUFFIX = '@ai';
+export const sideOfScope = (scope: string): Side => (scope.endsWith(AGENT_SUFFIX) ? 'agents' : 'humans');
+export const baseScope = (scope: string): string => (scope.endsWith(AGENT_SUFFIX) ? scope.slice(0, -AGENT_SUFFIX.length) : scope);
+
+export interface Seat { tier: TierId; id: string; name: string; side: Side }
 
 /** The three seats a resident of `cityId` votes for, narrowest first. A city outside the catalogue (a test's) has no state seat. */
-export function seatsOf(cityId: CityId, cityName: string): Seat[] {
-  const entry = cityCatalogueEntry(cityId);
+export function seatsOf(cityId: CityId, cityName: string, side: Side = 'humans'): Seat[] {
+  const entry = cityCatalogueEntry(cityId), suffix = side === 'agents' ? AGENT_SUFFIX : '';
   return [
-    { tier: 'city', id: `city:${cityId}`, name: cityName },
-    ...(entry ? [{ tier: 'state' as const, id: `state:${entry.state.id}`, name: entry.state.name }] : []),
-    { tier: 'nation', id: `nation:${COUNTRY.id}`, name: COUNTRY.name },
+    { tier: 'city', id: `city:${cityId}${suffix}`, name: cityName, side },
+    ...(entry ? [{ tier: 'state' as const, id: `state:${entry.state.id}${suffix}`, name: entry.state.name, side }] : []),
+    { tier: 'nation', id: `nation:${COUNTRY.id}${suffix}`, name: COUNTRY.name, side },
   ];
 }
 
@@ -86,6 +93,7 @@ export const peekJustice = (politics: PoliticsCollection): JusticeRecord => (rec
 
 /** The ballots of any seat by its scope id: a city's are in its civic record, a state's and the nation's in the politics collection. Reads only. */
 export function govOfId(db: Db, scope: string): GovScope {
-  if (scope.startsWith('city:')) { const gov = db.civic?.cities?.[scope.slice(5)]?.gov; return gov ? { gov } : { gov: { elections: {}, announcements: [] } }; }
+  // The people's city ballots live in the civic record; every other ballot (a state's, the nation's, and all of the agents') in the politics collection.
+  if (scope.startsWith('city:') && !scope.endsWith(AGENT_SUFFIX)) { const gov = db.civic?.cities?.[scope.slice(5)]?.gov; return gov ? { gov } : { gov: { elections: {}, announcements: [] } }; }
   return peekGov(peekScope(peekPolitics(db), scope));
 }

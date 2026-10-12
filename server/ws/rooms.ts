@@ -191,21 +191,100 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     return venue && found ? { here: found.players.size, total: venue.where.size, groups: venue.groups.size, cap: limits.max } : null;
   };
   /** One entry per player of a set of sockets: a player with two sockets is one member, in voice if either is. */
-  function membersOf(list: Iterable<WsConnection>): Map<string, PresenceMember> {
+  function membersOf(list: Iterable<WsConnection>, room?: string, group?: string | null): Map<string, PresenceMember> {
     const members = new Map<string, PresenceMember>();
     for (const ws of list) {
       const old = members.get(ws.session.id);
       members.set(ws.session.id, { ...ws.session, position: { ...ws.position }, enabled: (old?.enabled || ws.voice.enabled), muted: old ? old.muted && ws.voice.muted : ws.voice.muted });
     }
+    // AI agents present in this group without a socket (see VIRTUAL MEMBERS below).
+    if (room !== undefined) for (const v of virtuals.values()) if (v.room === room && (v.group ?? null) === (group ?? null) && !members.has(v.id)) members.set(v.id, virtualMember(v));
     return members;
   }
+  // ---- VIRTUAL MEMBERS ----------------------------------------------------------------------------------------------------------------
+  // An AI agent holds no socket, so it would never stand in a venue. While a key has acted lately the room module keeps a virtual member for its
+  // character: seated in the venue's groups like any player (so group sizes and merges count it), listed in the group's presence with the
+  // AI-played mark, moved when the character travels or picks a spot, and dropped when the key goes quiet. It is never a socket: nothing is sent to it.
+  interface Virtual { id: string; name: string; mark: { agent?: true; agentUntil?: number }; room: string; group: string | null; position: { x: number; z: number }; doing: string | null; look: WsConnection['look']; until: number }
+  const virtuals = new Map<string, Virtual>();
+  const virtualMember = (v: Virtual): PresenceMember => ({ id: v.id, name: v.name, ...v.mark, position: { ...v.position }, enabled: false, muted: true, ...(v.doing ? { doing: v.doing } : {}) });
+  interface Line { seq: number; at: number; from: { id: string; name: string; agent?: true }; body: string }
+  const lineBooks = new Map<string, { seq: number; lines: Line[] }>(); // `${room}#${group}` → the recent public lines of that group
+  const LINES_KEPT = 60;
+  function pushLine(room: string, group: string | null, line: Omit<Line, 'seq'>): number {
+    const key = group ? gkey(room, group) : room;
+    const book = lineBooks.get(key) ?? { seq: 0, lines: [] };
+    lineBooks.set(key, book);
+    book.lines.push({ ...line, seq: ++book.seq });
+    if (book.lines.length > LINES_KEPT) book.lines.splice(0, book.lines.length - LINES_KEPT);
+    if (lineBooks.size > 2000) for (const [k, b] of lineBooks) { if (now() - (b.lines.at(-1)?.at ?? 0) > 3600000) lineBooks.delete(k); }
+    return book.seq;
+  }
+  function dropVirtual(id: string, quiet = false): void {
+    const v = virtuals.get(id);
+    if (!v) return;
+    virtuals.delete(id);
+    const venue = venues.get(v.room);
+    if (v.group && venue) { forget(v.room, v.group, id); }
+    if (!quiet) { announce(v.room, v.group, { left: [id], causes: [id] }); roomChanged(v.room, v.group, id); if (v.group) tidy(v.room); }
+  }
+  if (ctx.checks) ctx.checks.agentRoom = {
+    present(m) {
+      const old = virtuals.get(m.id);
+      if (old && old.room !== m.room) dropVirtual(m.id);
+      const kept = virtuals.get(m.id);
+      const position = m.position ?? kept?.position ?? initialVenuePosition(m.room.split(':')[1] ?? '');
+      if (kept) {
+        const moved = kept.position.x !== position.x || kept.position.z !== position.z;
+        kept.name = m.name; kept.mark = m.mark; kept.doing = m.doing; kept.look = m.look as WsConnection['look']; kept.until = m.until;
+        if (moved) { kept.position = position; queueMoveFor(kept.room, kept.group, kept.id, position); }
+        else announce(kept.room, kept.group, { joined: [kept.id], causes: [kept.id] });
+        return;
+      }
+      let venue = venues.get(m.room);
+      if (!venue) { venue = newVenue(); venues.set(m.room, venue); }
+      const placement = place(venue, limits, { player: m.id, friends: new Set(), follow: null, previous: null, blocked: hidden });
+      const group = seat(venue, m.id, placement.group).id;
+      dirty.add(m.room);
+      const v: Virtual = { id: m.id, name: m.name, mark: m.mark, room: m.room, group, position, doing: m.doing, look: m.look as WsConnection['look'], until: m.until };
+      virtuals.set(m.id, v);
+      announce(m.room, group, { joined: [m.id], causes: [m.id] });
+      roomChanged(m.room, group, null, m.id);
+    },
+    absent(id) { dropVirtual(id); },
+    async say(from, room, body, clientId) {
+      const v = virtuals.get(from.id);
+      if (!v || v.room !== room) return { ok: false as const, code: 'not_present', reason: 'You are not standing in that place right now. Act in the place first (list_actions_here), then speak.' };
+      const text = typeof body === 'string' ? body.trim() : '';
+      if (!text || text.length > 500 || /[\u0000-\u0008\u000b-\u001f\u007f]/.test(text)) return { ok: false as const, code: 'invalid_chat', reason: 'Say something between 1 and 500 characters.' };
+      if (!allow(`chat:${from.id}`, 30)) return { ok: false as const, code: 'rate_limited', reason: 'You are talking too fast. Wait a moment.' };
+      // The same refusals as a person's venue line: muted, fee requests, links and contact details.
+      const refusal = ctx.checks?.muted?.(from.id) ?? screenFee(text) ?? screenText(text, { contact: true, what: 'Your message' });
+      if (refusal) return { ok: false as const, code: refusal.code, reason: refusal.reason };
+      const chat: ChatFrame = { type: 'chat', id: core.newId(), ...(clientId ? { clientId } : {}), from: { id: from.id, name: from.name, ...from.mark }, body: text, at: now(), speaker: 'agent', voiceSeed: voiceSeedOf(from.id) };
+      chatAt.set(from.id, now());
+      sendAll([...audience(room, v.group)].filter(peer => !hidden(from.id, peer.session.id)), chat);
+      return { ok: true as const, seq: pushLine(room, v.group, { at: now(), from: { id: from.id, name: from.name, ...(from.mark.agent ? { agent: true as const } : {}) }, body: text }) };
+    },
+    lines(id, room, since, limit) {
+      const v = virtuals.get(id);
+      if (!v || v.room !== room) return [];
+      const book = lineBooks.get(v.group ? gkey(room, v.group) : room);
+      return (book?.lines ?? []).filter(line => line.seq > since).slice(-limit).map(line => ({ ...line, mine: line.from.id === id }));
+    },
+    members(room) { return [...virtuals.values()].filter(v => v.room === room).map(v => ({ id: v.id, name: v.name, look: v.look ?? null, mark: v.mark, doing: v.doing, group: v.group })); },
+    count() { return virtuals.size; },
+  };
+  ctx.on?.('heartbeat', () => { for (const v of [...virtuals.values()]) if (v.until <= now()) dropVirtual(v.id); });
+  /** A stable voice seed for a player: the same for the same player, so a client can give an agent one voice. */
+  const voiceSeedOf = (id: string): number => { let h = 2166136261; for (let i = 0; i < id.length; i++) { h ^= id.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
   /** A way to ask "can this recipient not see that player?", or null while nobody has blocked anybody (then one list serves everyone). */
   const blockFilter = (): ((a: string, b: string) => boolean) | null => (ctx.checks?.anyBlocks?.() === true ? hidden : null);
   /** The group as one socket sees it, whole: its first `presence` on joining, and again whenever what it can see is rebuilt. */
   function snapshot(ws: WsConnection): void {
     if (!ws.room) return;
     const hide = blockFilter(), me = ws.session.id;
-    const all = [...membersOf(audience(ws.room, ws.group)).values()];
+    const all = [...membersOf(audience(ws.room, ws.group), ws.room, ws.group).values()];
     const members = hide ? all.filter(member => member.id === me || !hide(me, member.id)) : all;
     const counts = deltaOf(ws) && ws.group ? countsOf(ws.room, ws.group) : null;
     send(ws, counts ? { type: 'presence', members, counts, delta: true } : { type: 'presence', members });
@@ -227,7 +306,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     const whole: WsConnection[] = [], fresh: WsConnection[] = [];
     for (const ws of sockets) (deltaOf(ws) ? (change.snapshotted?.includes(ws) ? [] : fresh) : whole).push(ws);
     if (whole.length) {
-      const everyone = [...membersOf(sockets).values()];
+      const everyone = [...membersOf(sockets, room, group).values()];
       if (!hide) sendAll(whole, { type: 'presence', members: everyone });
       else for (const ws of whole) {
         if (causes.length && causes.every(cause => cause !== ws.session.id && hide(ws.session.id, cause))) continue;
@@ -235,7 +314,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       }
     }
     if (!fresh.length) return;
-    const members = membersOf(sockets);
+    const members = membersOf(sockets, room, group);
     const counts = group && (change.joined || change.left) ? countsOf(room, group) ?? undefined : undefined;
     const frameFor = (seen: (id: string) => boolean): PresenceDeltaFrame | null => {
       const joined = (change.joined ?? []).filter(id => seen(id)).flatMap(id => { const member = members.get(id); return member ? [member] : []; });
@@ -249,14 +328,14 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
     for (const ws of fresh) { const frame = frameFor(id => id === ws.session.id || !hide(ws.session.id, id)); if (frame) send(ws, frame); }
   }
   /** A member moved: gathered with the group's other moves and sent at most every ROOM_MOVE_FLUSH_MS (the first one at once). */
-  function queueMove(ws: WsConnection, room: string, position: { x: number; z: number }): void {
-    const gk = ws.group ? gkey(room, ws.group) : room;
+  function queueMove(ws: WsConnection, room: string, position: { x: number; z: number }): void { queueMoveFor(room, ws.group ?? null, ws.session.id, position); }
+  function queueMoveFor(room: string, group: string | null, id: string, position: { x: number; z: number }): void {
+    const gk = group ? gkey(room, group) : room;
     const entry = pendingMoves.get(gk) ?? { moves: new Map<string, { x: number; z: number }>(), timer: null, last: 0 };
     pendingMoves.set(gk, entry);
-    entry.moves.set(ws.session.id, position);
+    entry.moves.set(id, position);
     if (entry.timer !== null) return;
     const wait = ROOM_MOVE_FLUSH_MS - (now() - entry.last);
-    const group = ws.group ?? null;
     const flush = (): void => { entry.timer = null; if (entry.moves.size) announce(room, group); };
     if (wait <= 0) { flush(); return; }
     const timer: unknown = setTimeout(flush, Math.min(wait, ROOM_MOVE_FLUSH_MS));
@@ -805,6 +884,7 @@ export default function roomSocket(ctx: RouteContext): WsHandlers {
       }
       chatAt.set(ws.session.id, now());
       sendAll([...audience(room, ws.group)].filter(peer => !hidden(ws.session.id, peer.session.id)), chat);
+      pushLine(room, ws.group ?? null, { at: now(), from: { id: ws.session.id, name: ws.session.name, ...(ws.session.agent === true ? { agent: true as const } : {}) }, body });
     }),
   };
 

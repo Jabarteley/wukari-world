@@ -170,6 +170,10 @@ export interface LeverView {
 export interface SeatView {
   tier: TierId
   id: string
+  /** Which electorate's office this is: the people's or the agents' (same title, terms, quorum and rules, run in parallel). */
+  side?: 'humans' | 'agents'
+  /** The sitting officeholder, with the AI-played mark when an agent plays them. */
+  holder?: { id: string; name: string; agent?: true; agentUntil?: number } | null
   name: string
   title: string
   /** Naira, not refunded. */
@@ -230,8 +234,10 @@ export interface PoliticsResponse {
   /** Where the weekly cycle is, the same for all three seats: nominations, voting, results. */
   cycle: { phase: 'nominations' | 'voting' | 'results'; endsAt: number; week: number }
   seats: SeatView[]
+  /** The same offices on the agents' side. */
+  agentSeats?: SeatView[]
   parties: PartyView[]
-  you: { party: string | null; canFound: boolean } | null
+  you: { party: string | null; canFound: boolean; /** The side this character is on this election cycle. */ electorate?: 'humans' | 'agents' } | null
   partyRules: { fee: number; nameMin: number; nameMax: number; mottoMin: number; mottoMax: number; colours: string[] }
 }
 export interface PoliticsWriteResponse { ok: boolean; code: string; reason?: string; duplicate?: true; state?: LifeState; politics: PoliticsResponse }

@@ -31,6 +31,9 @@ export interface Candidate {
   votes: number
   /** This candidate is the viewer. */
   you: boolean
+  /** An AI agent plays this character (or it is one): shown as the AI-played mark. */
+  agent?: true
+  agentUntil?: number
 }
 /** The sitting Governor (elections.js governorAt()). */
 export interface Governor {
@@ -41,6 +44,8 @@ export interface Governor {
   week: number
   termStartedAt: number
   termEndsAt: number
+  agent?: true
+  agentUntil?: number
 }
 export interface ElectionResult {
   week: number
@@ -123,12 +128,15 @@ export interface GovResponse extends GovView {
   rules: GovRules
   /** null when signed out. */
   you: GovYou | null
+  /** Which electorate's ballot this is, and the viewer's own for this election cycle. */
+  side?: 'humans' | 'agents'
+  electorate?: 'humans' | 'agents'
 }
 
 /** `tier` names the seat (docs/POLITICS.md); the city seat when absent. */
-export interface RunBody { cityId: CityId; slogan: string; requestId: TimedId; tier?: TierId }
-export interface VoteBody { cityId: CityId; candidate: string; tier?: TierId }
-export interface AnnounceBody { cityId: CityId; text: string; tier?: TierId }
+export interface RunBody { cityId: CityId; slogan: string; requestId: TimedId; tier?: TierId; side?: 'humans' | 'agents' }
+export interface VoteBody { cityId: CityId; candidate: string; tier?: TierId; side?: 'humans' | 'agents' }
+export interface AnnounceBody { cityId: CityId; text: string; tier?: TierId; side?: 'humans' | 'agents' }
 
 /** cleanLine() refusals (server/civic/text.ts). */
 export type LineRefusal = 'text_required' | 'text_too_short' | 'text_too_long' | 'text_blocked' | 'links_not_allowed' | 'contact_not_allowed'
@@ -287,7 +295,7 @@ export type ShoutoutResponse =
 
 // ---- rich list and preferences -------------------------------------------------------------------
 
-export interface RichRow { rank: number; id: string; name: string; amount: number; you: boolean }
+export interface RichRow { rank: number; id: string; name: string; amount: number; you: boolean; /** An AI agent plays (or played this week) this character: it is on the agents' boards, with the mark. */ agent?: true }
 export interface RichListResponse {
   city: CityId
   week: number
@@ -332,6 +340,8 @@ export interface BoardYou {
   behind: { id: string; name: string; amount: number } | null
 }
 export interface BoardsResponse {
+  /** Which family of boards this is: people (the default) or AI agents. */
+  family?: 'humans' | 'agents'
   scope: BoardScope
   by: BoardMeasure
   /** Lagos week the board counts. */
@@ -383,7 +393,7 @@ export interface CivicHttpRoutes {
 // ---- runtime key lists (protocol.test.ts) --------------------------------------------------------
 
 export const PULSE_RESPONSE_KEYS = ['checkedIn', 'city', 'counters', 'gov', 'hunt', 'notices', 'radio', 'serverTime'] as const satisfies readonly (keyof PulseResponse | keyof ApiEnvelope)[]
-export const GOV_RESPONSE_KEYS = ['announcements', 'city', 'election', 'governor', 'lastResult', 'phase', 'phaseEndsAt', 'rules', 'serverTime', 'you'] as const satisfies readonly (keyof GovResponse | keyof ApiEnvelope)[]
+export const GOV_RESPONSE_KEYS = ['announcements', 'city', 'election', 'electorate', 'governor', 'lastResult', 'phase', 'phaseEndsAt', 'rules', 'serverTime', 'side', 'you'] as const satisfies readonly (keyof GovResponse | keyof ApiEnvelope)[]
 export const GOV_RULES_KEYS = [
   'announcementMax', 'announcementsPerDay', 'beta', 'filingFee', 'maxCandidates', 'minDaysToRun', 'minDaysToVote', 'minWorkDays', 'pollingVenue',
   'sloganMax', 'sloganMin', 'votesPerAddress',

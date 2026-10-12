@@ -74,6 +74,7 @@ import { readTelemetryConfig } from '../server/telemetry/config.ts';
 import { appHeaders, apiHeaders, pageHeaders, inlineScriptHashes, telemetryOrigins, factsOfUrl } from '../server/security-headers.ts';
 import telemetryRoutes from '../server/telemetry/routes.ts';
 import { capacityConfig, type CapacityConfig, envReader, outboundFetch, sessionArchiver, lifeAuthority, lifeAnnouncer, routeHeaders, pageFor, cleanOrigin, cleanHost, absolutePreviewImage, validOperatorToken, bearerToken, accountsConfig, founderEmailHash, sessionCookie, isStrictOrigin, presentedSession, mayBind, addressBucket } from '../server/host-context.ts';
+import { MCP_PATH, MCP_ROUTE } from '../server/agents/mcp.ts';
 import { SESSION_TTL_MS, ACTION_WINDOW_MS, UUID_PATTERN, protocolError, publicSession, isSameOrigin, renewSession, renewResolved, sessionOfCookie, collection, canOccupyVenue, STUN_ONLY_CONFIG, validateVoiceConfig, SOCKET_BUSY_CODE } from '../server/protocol.ts';
 import type { CityId, HeartbeatFrame, ServerFrame, SocketErrorCode } from '../src/types/protocol.ts';
 import type { AccountDeviceRecord, Db, HttpError, ImageStore, VoiceStore, IncomingFrame, PageHandler, RouteContext, RouteResult, RouteTable, ServerEvents, SessionRecord, ShardStore, WsDispatch } from '../server/types.ts';
@@ -92,7 +93,7 @@ const ACK_CHECK_MS = 60000;
 /** How often expired sessions are looked for after start-up (expiredSessions below). */
 const EXPIRY_SWEEP_MS = 60000;
 /** Path prefixes outside /api/ that a module may serve as an HTML page (ctx.pages). The Worker sends these to the object. */
-const PAGE_PREFIXES = ['/s/', '/e/', '/shop/'];
+const PAGE_PREFIXES = ['/s/', '/e/', '/shop/', '/agents/'];
 /** A socket's attachment may hold 2,048 bytes. */
 const ATTACHMENT_BYTES = 2000;
 /** The limiter's STORED classes, one table each (server/limiter.ts). The short class is kept in memory and has no table. */
@@ -181,6 +182,8 @@ async function respond(request: Request, env: WorkerEnv): Promise<Response> {
   if (adminKind === 'robots') return new Response(request.method === 'HEAD' ? null : ADMIN_ROBOTS, { status: 200, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=3600', 'x-content-type-options': 'nosniff' } });
   if (adminKind === null && /^\/adminshell(\.html)?$/.test(url.pathname)) return json(404, { error: 'not_found' });
   if (adminKind === 'shell') return adminShell(request, env, url);
+  // The MCP endpoint (server/agents/mcp.ts): a bearer key, no cookie and no page origin; the object serves it as the agents route.
+  if (url.pathname === MCP_PATH) return state().fetch(request);
   if (url.pathname.startsWith('/api/') || url.pathname === '/socket') {
     // Operator routes authenticate with a bearer token in a header, which a browser never attaches by itself, so
     // they are not tied to the page's origin. Every other route keeps the origin check.
@@ -661,7 +664,9 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
   override async fetch(raw: Request): Promise<Response> {
     await this.ready;
     const url = new URL(raw.url);
-    if (!url.pathname.startsWith('/api/') && url.pathname !== '/socket') return this.page(raw, url);
+    if (!url.pathname.startsWith('/api/') && url.pathname !== '/socket' && url.pathname !== MCP_PATH) return this.page(raw, url);
+    const mcp = url.pathname === MCP_PATH;
+    if (mcp) url.pathname = MCP_ROUTE;
     this.meter.from('http (before routing)');
     let at: { key: string; request: WorkerRequest; began: number } | undefined;
     try {
@@ -669,7 +674,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       const address = addressBucket(raw.headers.get('cf-connecting-ip') || 'unknown');
       const ip = await digest(isAdminHost(url.host, adminNameOf(this.env)) ? adminAddress(address) : address);
       const operator = url.pathname.startsWith('/api/mod/');
-      if (!operator && !isSameOrigin(raw.headers.get('origin'), url.host, { requireOrigin: url.pathname === '/socket', secure: overHttps(url) })) throw protocolError(403, 'origin_rejected');
+      if (!operator && !mcp && !isSameOrigin(raw.headers.get('origin'), url.host, { requireOrigin: url.pathname === '/socket', secure: overHttps(url) })) throw protocolError(403, 'origin_rejected');
       // True only for a request carrying the operator's bearer token (never a cookie or a query value).
       const bearer = this.operatorDigest ? bearerToken(raw.headers.get('authorization')) : null;
       const moderator = bearer !== null && sameDigest(await digest(bearer), await this.operatorDigest);
@@ -683,7 +688,8 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
       if (url.pathname === '/socket') return await this.upgrade(raw, request);
       // A request carrying the operator's token has its own budget (routes/moderation.js); everyone else is limited per
       // session once they have one, and per address before that.
-      if (!(operator && moderator)) {
+      if (mcp) { if (!this.allow(`http-ip:mcp:${ip}`, 300)) throw protocolError(429, 'rate_limited'); }
+      else if (!(operator && moderator)) {
         const id = await this.store.read(db => request.session(db)?.publicId);
         if (!this.allow(id ? `http:session:${id}` : `http-ip:${ip}`, id ? 600 : 60)) throw protocolError(429, 'rate_limited');
       }
@@ -702,7 +708,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
         return new Response(result.file.bytes, { status, headers: headersOf({ 'content-type': result.file.type, 'cache-control': result.file.cache ?? 'private, max-age=300', 'x-content-type-options': 'nosniff', 'content-disposition': 'inline', 'cross-origin-resource-policy': 'same-origin' }) });
       }
       this.telemetry.http({ method: raw.method, route: route.key, status, ms: performance.now() - at.began, publicId: request.publicId, body: result.body, action: { type: request.body?.['type'], code: (result.body as { code?: unknown } | undefined)?.code } });
-      const plain = result.body && typeof result.body === 'object' && !Array.isArray(result.body);
+      const plain = result.bare !== true && result.body && typeof result.body === 'object' && !Array.isArray(result.body);
       const body: Record<string, unknown> = status < 300 && (plain || result.body === undefined) ? { ...(result.body as object || {}), serverTime: Date.now(), ...(this.context.core.storageFailing() ? { storage: 'failing' } : {}) } : (result.body ?? {}) as Record<string, unknown>;
       if (url.pathname === '/api/health') Object.assign(body, { transport: 'cloudflare', buildId: this.context.config.buildId });
       if (result.renew === true) for (const ws of this.held.bySecret.get(request.secret ?? '') ?? []) { ws.expiresAt = now + SESSION_TTL_MS; ws.lastSessionRenewedAt = now; }

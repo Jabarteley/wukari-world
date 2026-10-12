@@ -187,6 +187,8 @@ export interface CrowdPerson extends DrawnPerson {
   spot?: string | null
   /** A friend of the player (src/scene/crowd.ts): they stand and look at the player as a friend does, not as a stranger. */
   friend?: boolean
+  /** An AI agent plays this character (the server's `agent` mark): its name tag says so. */
+  ai?: boolean
   /** Set by the scene: a player with a reported position, drawn as a figure of their own. */
   live?: boolean
 }

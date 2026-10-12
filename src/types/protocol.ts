@@ -44,6 +44,7 @@ import type { BusinessHttpRoutes } from './business.ts'
 import type { PoliticsHttpRoutes } from './politics.ts'
 import type { RecordsHttpRoutes } from './records.ts'
 import type { LivingWorldHttpRoutes } from './living-world.ts'
+import type { AgentsHttpRoutes } from './agents-http.ts'
 import type { LivingWorldBarberRoutes } from './living-world-barber.ts'
 import type { LivingWorldClerkRoutes } from './living-world-clerk.ts'
 import type { LivingWorldJusticeRoutes } from './living-world-justice.ts'
@@ -61,6 +62,10 @@ export type CityId = import('../game/cities/ids.ts').CityId
 export interface PublicSession {
   id: string
   name: string
+  /** An AI agent plays this character: always for an agent character, for a few minutes after a key last acted for a player's own (server/agents/). */
+  agent?: true
+  /** Server ms the mark lapses; absent for an agent character, which is marked for good. */
+  agentUntil?: number
 }
 /**
  * The caller's OWN session, as the session routes answer it (server/routes/core.ts ownSession):
@@ -273,7 +278,7 @@ export interface CoreHttpRoutes {
  * telemetry endpoints are added beside them by server/server.ts: growth.ts TelemetryHttpRoutes.)
  */
 export interface HttpRoutes extends CoreHttpRoutes, SocialHttpRoutes, CivicHttpRoutes, SupportHttpRoutes, ModerationHttpRoutes, WorldHttpRoutes,
-  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, BusinessHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes {
+  GrowthHttpRoutes, GrowthModerationHttpRoutes, CampusHttpRoutes, AccountHttpRoutes, PingHttpRoutes, VisitHttpRoutes, BusinessHttpRoutes, CommerceHttpRoutes, NoticeHttpRoutes, CompanionHttpRoutes, AdminHttpRoutes, StoreHttpRoutes, PoliticsHttpRoutes, RecordsHttpRoutes, TrustHttpRoutes, RealValueHttpRoutes, ShowcaseHttpRoutes, StreetHttpRoutes, LivingWorldHttpRoutes, AgentsHttpRoutes, LivingWorldBarberRoutes, LivingWorldClerkRoutes, LivingWorldJusticeRoutes, LivingWorldAssessmentRoutes {
   'GET /api/world/land': { query: { city: CityId }; response: Ok<LandView>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | 'invalid_city' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' }
   'POST /api/world/land/buy': { body: LandBuyRequest; response: Ok<{ ok: boolean; code: string; duplicate?: true; pending?: true }>; errors: HostErrorCode | SessionErrorCode | StorageErrorCode | JsonBodyErrorCode | OnceErrorCode | 'invalid_city' | 'invalid_land_purchase' | 'land_rate_limited' | 'world_unavailable' | 'land_recovery_required' | 'land_pending' | 'not_owned_home' | 'land_price_changed' | 'land_intent_changed' }
 }
@@ -360,6 +365,8 @@ export interface GroupJoinFrame { type: 'group-join'; group?: string; friend?: s
 export type RoomClientFrame = JoinFrame | MoveFrame | VoiceStateFrame | SignalFrame | ChatSendFrame | GroupsFrame | GroupJoinFrame
 
 export interface PresenceMember extends PublicSession {
+  /** What an AI agent is doing now, in a few words (only agents carry it). */
+  doing?: string
   position: { x: number; z: number }
   /** In voice (any of the player's sockets in this room). */
   enabled: boolean
@@ -411,6 +418,10 @@ export interface ChatFrame {
   from: PublicSession
   body: string
   at: number
+  /** Who is speaking, when it is not a person: an AI agent's line, so a client can voice it. Absent on a person's line. */
+  speaker?: 'agent'
+  /** A stable number for the speaker (the same every time for the same player) from which a client picks one voice. Only on lines with a `speaker`. */
+  voiceSeed?: number
 }
 export interface SignalRelayFrame {
   type: 'signal'
@@ -488,7 +499,7 @@ export interface LifeChangedFrame { type: 'life-changed'; rev: number; by?: stri
  * The counts of the header pill (server/pulse.ts), pushed to every open socket when a socket opens and then whenever they
  * changed (at most about every two seconds). The same numbers GET /api/world/pulse answers, which stays as the fallback.
  */
-export interface PulseFrame { type: 'pulse'; online: number; visits: number; today: number; cities: Record<string, number> }
+export interface PulseFrame { type: 'pulse'; online: number; visits: number; today: number; cities: Record<string, number>; /** AI agents present now (never counted in `online`). */ ai?: number }
 
 /**
  * Everything a server may send. Clients must ignore types they do not know: the community panel's
@@ -782,6 +793,9 @@ export const HTTP_ROUTE_KEYS = [
   'POST /api/showcase/mine', 'POST /api/showcase/mine/photos', 'POST /api/showcase/mine/photos/arrange', 'POST /api/showcase/mine/photos/remove', 'POST /api/showcase/mine/submit', 'POST /api/showcase/mine/share',
   'POST /api/showcase/mine/hide', 'POST /api/showcase/mine/remove', 'POST /api/showcase/:id/go', 'POST /api/showcase/:id/report',
   'GET /api/mod/showcase', 'POST /api/mod/showcase', 'GET /api/mod/showcase/photo/:id',
+  'POST /api/agents/mcp', 'GET /api/agents/mcp', 'DELETE /api/agents/mcp', 'GET /api/agents', 'POST /api/agents/keys', 'POST /api/agents/keys/:id/revoke', 'GET /api/agents/keys/:id/audit',
+  'POST /api/agents/characters/:id/remove', 'GET /api/agents/board', 'GET /api/mod/agents', 'POST /api/mod/agents/switch',
+  'POST /api/agents/claim', 'GET /api/agents/claim/:token', 'POST /api/agents/keys/:id/rename', 'POST /api/agents/characters/:id/takeover', 'GET /api/agents/league', 'POST /api/mod/agents/settings',
   'POST /api/trust/phone/complete',
   'POST /api/trust/dojah/webhook',
   'POST /api/trust/id/start',

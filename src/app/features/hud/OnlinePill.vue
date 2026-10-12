@@ -71,6 +71,7 @@ watch(connected, (on) => { if (on) pulse.start(); else { pulse.stop(); pulse.res
   <button v-if="shown" class="pulse-pill" :class="{ 'is-alone': alone }" data-tour="online" type="button" :title="title" :aria-label="aria" @click="press">
     <i class="pulse-dot" :class="`is-${tone}`" aria-hidden="true"></i>
     <span class="pulse-online">{{ compactCount(online) }}<span class="pulse-word"> in Allworld</span></span>
+    <span v-if="state.numbers?.ai" class="pulse-world"><span class="pulse-sep" aria-hidden="true"> · </span>{{ compactCount(state.numbers.ai) }} AI</span>
     <span v-if="hasCity" class="pulse-world"><span class="pulse-sep" aria-hidden="true"> · </span>{{ compactCount(here) }} here</span>
     <span class="pulse-visits"><span class="pulse-sep" aria-hidden="true"> · </span>{{ compactCount(visits) }} visits</span>
     <span v-if="alone" class="pulse-visits pulse-nudge"><span class="pulse-sep" aria-hidden="true"> · </span>{{ line.long }}: invite a friend</span>

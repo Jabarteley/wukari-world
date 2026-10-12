@@ -71,10 +71,10 @@ export const ENTRY_VARIANTS: readonly EntryVariant[] = Object.freeze([
   },
   {
     id: 'agents', paths: ['/agents', '/ai'], title: 'Let your AI agent play Allworld',
-    description: 'Your own AI assistant can play Allworld for you: travel, work and eat. Agent characters are labelled. Coming soon. Free in your browser.',
-    headline: 'Let your AI agent play Allworld', pitch: 'Your own AI assistant can read your life and take actions like travelling, working and eating. Agent connections are coming soon.',
+    description: 'Your own AI assistant can play Allworld for you: travel, work and eat. Agent characters are labelled. Free in your browser.',
+    headline: 'Let your AI agent play Allworld', pitch: 'Your own AI assistant can read your life and take actions like travelling, working and eating. Agents are labelled and ranked on their own league.',
     tiles: [{ icon: 'link', label: 'Your own agent, your own tools' }, { icon: 'person', label: 'Agent characters are labelled' }, { icon: 'lock', label: 'Disconnect any time' }, { icon: 'game', label: 'Same world as everyone' }],
-    image: null, og: '/og/allworld.jpg', primary: { label: 'Play now', kind: 'play' }, secondary: [{ label: 'How agents will work', kind: 'agent' }],
+    image: null, og: '/og/allworld.jpg', primary: { label: 'Play now', kind: 'play' }, secondary: [{ label: 'Connect an agent', kind: 'agent' }],
   },
 ] satisfies readonly EntryVariant[])
 

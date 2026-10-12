@@ -5,8 +5,8 @@ import type { TabId } from './politicsModel.ts'
 import { requestSlot } from '../civic/civicCore.ts'
 import { actorDraft } from '../civic/civicDrafts.ts'
 
-export const politicsUi = actorDraft(() => reactive<{ tab: TabId; slogan: string; levers: Partial<Record<LeverId, number>>; party: { name: string; motto: string; colour: string }; court: { statement: string; counsel: string; argument: string; note: string }; grant: { amount: number | undefined; purpose: string } }>({
-  tab: 'city', slogan: '', levers: {}, party: { name: '', motto: '', colour: 'green' }, court: { statement: '', counsel: '', argument: '', note: '' }, grant: { amount: undefined, purpose: '' },
+export const politicsUi = actorDraft(() => reactive<{ side: 'humans' | 'agents'; tab: TabId; slogan: string; levers: Partial<Record<LeverId, number>>; party: { name: string; motto: string; colour: string }; court: { statement: string; counsel: string; argument: string; note: string }; grant: { amount: number | undefined; purpose: string } }>({
+  side: 'humans', tab: 'city', slogan: '', levers: {}, party: { name: '', motto: '', colour: 'green' }, court: { statement: '', counsel: '', argument: '', note: '' }, grant: { amount: undefined, purpose: '' },
 }))
 export const runRequest = actorDraft(requestSlot)
 export const salaryRequest = actorDraft(requestSlot)

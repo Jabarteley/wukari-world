@@ -87,6 +87,7 @@ import { clip, glyphs } from './clip.ts';
 import { DIRECTORY_SCAN, PAGE_MAX, byNameOrder, cursorOf, directoryCache, firstAfter, newestFirst, pageLimit, readCursor } from './pages.ts';
 import type { Directory, DirectoryRow } from './pages.ts';
 import { playerIsAdmin } from '../admin/gate.ts';
+import { agentMark } from '../agents/policy.ts';
 import { characterCity } from '../character.ts';
 import { forEachValue, scanKeys } from '../keyed.ts';
 import { FOUNDER_EMAIL_SHA256, FOUNDER_PAGE, welcomeNote, autoFriend, emailHash, friendsIn, friendsSince } from './founder.ts';
@@ -170,6 +171,8 @@ function buildService(ctx: RouteContext) {
   if (ctx.checks) {
     ctx.checks.blocked = blocked;
     ctx.checks.anyBlocks = () => blockIndex.size > 0;
+    ctx.checks.agentActive = (db, session, at, character) => service.markAgent(db, session, at, character);
+    ctx.checks.agentClear = (db, id) => { const p = col(db).players[id]; if (p) delete p.agent; };
   }
   // Who blocked whom, read from the players' index (server/keyed.ts: a player's blocked ids are kept beside the record), not from every record.
   ctx.startup?.push(ctx.store.read((db): [string, string[]][] => (db.social?.players ? scanKeys(db.social.players, 'socialPlayer', { hasJ: true }).flatMap((hit): [string, string[]][] => { const blocked = hit.j ? (JSON.parse(hit.j) as { b?: string[] }).b : undefined; return blocked?.length ? [[hit.key, blocked]] : []; }) : []))
@@ -369,7 +372,7 @@ function buildService(ctx: RouteContext) {
     notify: { text: p.notify?.hide !== true, groups: p.notify?.all ? 'all' : 'mentions', pausedUntil: p.notify?.until && p.notify.until > now() ? p.notify.until : null, quietDm: p.notify?.quietDm === true, quietGroups: p.notify?.noQuiet !== true } });
   const bodyOf = (message: MessageRecord): string => (message.deletedAt ? 'Message deleted' : message.auto ? welcomeNote(message.start) : message.body || (message.voice ? 'Voice note' : ''));
 
-  const pub = (s: SocialCollection, id: string): PlayerRef => ({ id, name: s.players[id]?.name ?? 'Former player', ...(founderId(s) === id ? { founder: true as const } : {}) });
+  const pub = (s: SocialCollection, id: string): PlayerRef => ({ id, name: s.players[id]?.name ?? 'Former player', ...(founderId(s) === id ? { founder: true as const } : {}), ...agentMark(s.players[id]?.agent) });
   const blockedEither = (s: SocialCollection, a: string, b: string): boolean => Boolean(s.players[a]?.blocked[b] || s.players[b]?.blocked[a]);
   const areFriends = (s: SocialCollection, a: string, b: string): boolean => friendsIn(s.players, a, b);
 
@@ -1274,7 +1277,7 @@ function buildService(ctx: RouteContext) {
       const inRoom = new Map((mates ? presence.among(mates, room) : presence.inRoom(room)).map((member) => [member.id, member]));
       const counts = mates ? ctx.checks?.venueCounts?.(room) ?? null : null;
       const card = (member: string) => ({ ...pub(s, member), friend: areFriends(s, id, member), requested: Boolean(p.out[member]), incoming: Boolean(p.in[member]),
-        look: inRoom.get(member)?.look ?? null, here: inRoom.has(member) });
+        look: inRoom.get(member)?.look ?? null, here: inRoom.has(member), ...(inRoom.get(member)?.doing ? { doing: inRoom.get(member)?.doing } : {}) });
       let players: ReturnType<typeof card>[] = [];
       if (state.location === 'home') players = Object.keys(pruneHouse(s, id)?.guests || {}).map(card);
       else if (joined) players = [...inRoom.values()].filter((member) => member.id !== id && s.players[member.id] && !blockedEither(s, id, member.id)).map((member) => card(member.id));
@@ -1293,6 +1296,11 @@ function buildService(ctx: RouteContext) {
       return yes('ok', { cityId, venue: state.location, self: travelling ? 'travelling' as const : joined ? 'joined' as const : 'not_joined' as const, players, count: players.length,
         ...(introduction ? { introduction } : {}),
         ...(mates && counts ? { here: mates.length, total: counts.total, groups: counts.groups } : {}) });
+    },
+    /** An AI agent just acted for this character: kept with the player's social record, which is what chat and the lists show (server/agents/). */
+    markAgent(db: Db, session: SessionRecord, at: number, character: boolean): void {
+      const { p } = enter(db, session);
+      if (character ? p.agent?.char !== true : p.agent?.at === undefined || at - p.agent.at >= 60000) p.agent = { ...(character ? { char: true as const } : {}), at };
     },
     search(db: Db, session: SessionRecord, query: unknown) {
       const { s, id } = enter(db, session);
@@ -1469,6 +1477,7 @@ function buildService(ctx: RouteContext) {
         evidence: (dm?.messages || []).filter((message) => message.from === about).slice(-5).map(bodyOf) };
       s.reports.push(report);
       if (s.reports.length > LIMITS.reports) s.reports.splice(0, s.reports.length - LIMITS.reports);
+      ctx.checks?.agentReported?.(db, about);
       const receipt: PlayerReportReceipt = { id: report.id, about, name: report.aboutName, reason: report.reason, at: report.at, status: report.status };
       p.reports.push(receipt);
       if (p.reports.length > LIMITS.ownReports) p.reports.shift();
@@ -2013,6 +2022,7 @@ function buildService(ctx: RouteContext) {
       const report: PlayerReportRecord = { id: `R-${++s.seq}`, by: id, about, aboutName, reason, text: detail, at: now(), status: 'received', evidence, ...(picture ? { image: picture, conv: conv.id } : {}) };
       s.reports.push(report);
       if (s.reports.length > LIMITS.reports) s.reports.splice(0, s.reports.length - LIMITS.reports);
+      if (picture) ctx.checks?.agentReported?.(db, about);
       const receipt: PlayerReportReceipt = { id: report.id, about, name: aboutName, reason, at: report.at, status: report.status };
       p.reports.push(receipt);
       if (p.reports.length > LIMITS.ownReports) p.reports.shift();

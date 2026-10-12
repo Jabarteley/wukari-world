@@ -42,6 +42,7 @@ import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName,
 import { withPathMeta } from './path-meta.ts';
 import { createMemoryLimiter } from './limiter.ts';
 import telemetryRoutes from './telemetry/routes.ts';
+import { MCP_PATH, MCP_ROUTE } from './agents/mcp.ts';
 import { ACTION_WINDOW_MS, UUID_PATTERN as uuid, protocolError as fail, publicSession, isSameOrigin, renewSession, renewResolved, sessionOfCookie, collection, canOccupyVenue, isSharedAddress, SOCKET_BUSY_CODE } from './protocol.ts';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Duplex } from 'node:stream';
@@ -363,6 +364,10 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
     let at: Matched | null = null; // the matched route and its request, for telemetry (a template and codes, never the URL or the body)
     try {
       const url = new URL(req.url ?? '/', 'http://localhost');
+      // The MCP endpoint (server/agents/mcp.ts): /mcp is served by the agents route. Agents are programs with a bearer key, not pages, so the
+      // origin check does not apply to it (the route itself refuses any request that carries an Origin header).
+      const mcp = url.pathname === MCP_PATH;
+      if (mcp) url.pathname = MCP_ROUTE;
       // On the admin address only a handful of paths exist; everything else is a 404 (a wrong method, a 405).
       const adminKind = onAdminHost(req) ? adminHostRoute(method, url.pathname) : null;
       if (adminKind === 'notfound') throw fail(404, 'not_found');
@@ -372,7 +377,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
         // Operator routes authenticate with a bearer token in a header, which a browser never attaches
         // by itself, so they are not tied to the page's origin. Every other route keeps the origin check.
         const operator = url.pathname.startsWith('/api/mod/');
-        if (!operator && !sameOrigin(req)) throw fail(403, 'origin_rejected');
+        if (!operator && !mcp && !sameOrigin(req)) throw fail(403, 'origin_rejected');
         const ip = addressOf(req);
         // A request carrying the operator's token has its own budget (routes/moderation.js), so other
         // clients behind the same address cannot use up the operator's share of the general limit.
@@ -414,7 +419,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
         }
         // While the data file cannot be written, every success says so: what the player sees is what
         // is stored, and nothing new is being saved.
-        const payload = status < 300 && result.body && typeof result.body === 'object' && !Array.isArray(result.body)
+        const payload = status < 300 && result.bare !== true && result.body && typeof result.body === 'object' && !Array.isArray(result.body)
           ? { ...result.body, serverTime: now(), ...(storageFailing() ? { storage: 'failing' } : {}) } : result.body ?? {};
         const sent = reply(res, status, payload, { ...(result.renew === true || upgradesCookie(req, request) ? renewedHeaders(req, request.secret) : {}), ...routeHeaders(result.headers) });
         telemetry.http({ method, route: route.key, status, ms: performance.now() - at.began, publicId: request.publicId, body: result.body, action: { type: request.body?.type, code: fieldOf(result.body, 'code') } });

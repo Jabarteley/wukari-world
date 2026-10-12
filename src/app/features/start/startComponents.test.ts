@@ -148,14 +148,16 @@ test('the entry page offers sign up and log in on a server with accounts, and no
   } finally { Object.assign(lite.state, { loaded: false, enabled: false, account: null }) }
 })
 
-test('the agent sheet explains, shows both choices as coming soon, and leaves a slot for the real controls', async () => {
+test('the agent sheet explains, shows both choices with a real button each, and links to the Agent league', async () => {
   const html = await render('AgentSheet')
   const words = text(html)
   assert.match(html, /role="dialog" aria-modal="true"/)
   assert.ok(words.includes('Connect an AI agent') && words.includes('Your own AI assistant can play Allworld for you'))
   assert.ok(words.includes('labelled') && words.includes('disconnect'))
   assert.ok(words.includes('Let an agent play my character') && words.includes('Give an agent its own character'))
-  assert.equal((html.match(/data-agent-soon/g) ?? []).length, 2)
+  assert.equal((html.match(/data-agent-go=/g) ?? []).length, 2)
+  assert.ok(!html.includes('data-agent-soon'))
+  assert.match(html, /href="\/agents\/league"/)
   assert.match(html, /href="https:\/\/github.com\/kromate\/joinallworld\/blob\/main\/docs\/AGENTS.md"/)
 })
 

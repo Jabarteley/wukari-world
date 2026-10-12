@@ -60,8 +60,10 @@ export const hoodKey = (cityId: string): string => `hood:${cityId}`
 export const hoodPath = (cityId: string): string => `/api/civic/neighbours?city=${cityId}`
 export const adsKey = (cityId: string): string => `ads:${cityId}`
 export const adsPath = (cityId: string): string => `/api/civic/ads?city=${cityId}`
-export const richKey = (cityId: string): string => `rich:${cityId}`
-export const richPath = (cityId: string): string => `/api/civic/richlist?city=${cityId}`
+/** The two families of boards: people (the default) and AI agents. */
+export type BoardFamily = 'humans' | 'agents'
+export const richKey = (cityId: string, family: BoardFamily = 'humans'): string => (family === 'agents' ? `rich:agents:${cityId}` : `rich:${cityId}`)
+export const richPath = (cityId: string, family: BoardFamily = 'humans'): string => `/api/civic/richlist?city=${cityId}${family === 'agents' ? '&family=agents' : ''}`
 export const radioKey = (cityId: string, venue: string): string => `radio:${cityId}:${venue}`
 export const radioPath = (cityId: string, venue: string): string => `/api/civic/radio?city=${cityId}&venue=${venue}`
 
@@ -156,8 +158,8 @@ export const BOARD_MEASURES: readonly { id: BoardMeasure; label: string }[] = [
   { id: 'pride', label: 'Pride (naira per player)' }, { id: 'earned', label: 'Total earned this week' },
   { id: 'active', label: 'Active this week' }, { id: 'residents', label: 'Players' },
 ]
-export const boardsKey = (scope: BoardScope, by: BoardMeasure): string => `boards:${scope}:${by}`
-export const boardsPath = (scope: BoardScope, by: BoardMeasure): string => `/api/civic/boards?scope=${scope}&by=${by}`
+export const boardsKey = (scope: BoardScope, by: BoardMeasure, family: BoardFamily = 'humans'): string => `boards:${scope}:${by}${family === 'agents' ? ':agents' : ''}`
+export const boardsPath = (scope: BoardScope, by: BoardMeasure, family: BoardFamily = 'humans'): string => `/api/civic/boards?scope=${scope}&by=${by}${family === 'agents' ? '&family=agents' : ''}`
 /** "1st", "2nd", "3rd", "11th", "22nd". */
 export function ordinal(n: number): string {
   const tail = n % 100, suffix = tail >= 11 && tail <= 13 ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' } as Record<number, string>)[n % 10] ?? 'th'

@@ -37,6 +37,10 @@ import { presenceOf } from '../social/presence.ts';
 import type { Db, GovScope, RouteContext, RouteHandler, RouteKey, RouteRequest } from '../types.ts';
 import { governorAt, phaseAt } from '../civic/elections.ts';
 import { cleanLine } from '../civic/text.ts';
+import { agentPlayed, electorateOf } from '../politics/electorate.ts';
+import { sideParam } from '../politics/electorate.ts';
+import type { Side } from '../politics/data.ts';
+import { agentMark } from '../agents/policy.ts';
 import { govOfId, govOfScope, justiceOf, peekGov, peekJustice, peekPolitics, peekScope, politicsOf, scopeRecord, seatsOf } from '../politics/data.ts';
 import { appealBlock, applyRuling, arrestBlock, attackerWins, bailOf, escalate, escalateBlock, fightBlock, fileAppeal, inJurisdiction, jail, jailOf, judgesOf, nextTier, officersOf, policeIsValid, recordFight, ruleBlock } from '../politics/justice.ts';
 import type { Seat } from '../politics/data.ts';
@@ -54,15 +58,18 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
   const tierParam = (value: unknown): TierId => { const tier = TIER_IDS.find((item) => item === value); if (!tier) throw fail(400, 'invalid_tier'); return tier; };
   const limit = (bucket: string, key: string, count: number): void => { if (!ctx.allow(`politics:${bucket}:${key}`, count)) throw fail(429, 'politics_rate_limited'); };
   const titleOf = (tier: TierId, cityId: CityId): string => (tier === 'city' ? civicTitle(cityId) : SEAT_TITLES[tier]);
-  const seatOf = (cityId: CityId, tier: TierId): Seat => { const seat = seatsOf(cityId, cityName(cityId)).find((item) => item.tier === tier); if (!seat) throw fail(400, 'no_such_seat'); return seat; };
+  const seatOf = (cityId: CityId, tier: TierId, side: Side = 'humans'): Seat => { const seat = seatsOf(cityId, cityName(cityId), side).find((item) => item.tier === tier); if (!seat) throw fail(400, 'no_such_seat'); return seat; };
   const colours = AD_COLOURS.map((item) => item.id);
   const refused = (block: { code: string; reason: string }) => ({ ok: false as const, code: block.code, reason: block.reason });
 
   /** The ballots a seat is decided by, as a read sees them (nothing created). */
   function govOf(db: Db, seat: Seat, cityId: CityId): GovScope {
-    if (seat.tier === 'city') { const gov = db.civic?.cities?.[cityId]?.gov; return gov ? { gov } : { gov: { elections: {}, announcements: [] } }; }
+    if (seat.tier === 'city' && seat.side === 'humans') { const gov = db.civic?.cities?.[cityId]?.gov; return gov ? { gov } : { gov: { elections: {}, announcements: [] } }; }
     return peekGov(peekScope(peekPolitics(db), seat.id));
   }
+  /** The ballots of a seat for a write: the people's city ballots are in the civic record, every other (and all the agents') in the seat's scope. */
+  const ballot = (db: Db, seat: Seat, scope: ReturnType<typeof scopeRecord>): GovScope => (seat.tier === 'city' && seat.side === 'humans' ? govOfId(db, seat.id) : govOfScope(scope));
+  const titular = (seat: Seat): { code: string; reason: string } | null => (seat.side === 'agents' ? { code: 'titular_for_agents', reason: 'The agents\' office holds the title and sets rules for agent-played characters; police and judges are the people\'s offices only, so an agent office cannot enrol or dismiss them.' } : null);
 
 
   /** The seat's assembly and this term's bills, as the caller sees them. */
@@ -86,7 +93,8 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
 
   function overview(db: Db, cityId: CityId, who: PlayerRef | null): PoliticsResponse {
     const now = ctx.now(), politics = peekPolitics(db);
-    const seats = seatsOf(cityId, cityName(cityId)).map((seat): SeatView => {
+    const markOf = <T extends { id: string }>(item: T | null): T | null => { const m = item ? agentMark((db.social?.players?.[item.id] as { agent?: { char?: true; at?: number } } | undefined)?.agent) : {}; return item && m.agent ? { ...item, ...m } : item; };
+    const seatViews = (side: Side) => seatsOf(cityId, cityName(cityId), side).map((seat): SeatView => {
       const scope = peekScope(politics, seat.id), gov = govOf(db, seat, cityId), quorum = QUORUM[seat.tier];
       const sitting = governorAt(gov, now, quorum);
       const candidates = Object.entries(gov.gov.elections[phaseAt(now).week]?.candidates ?? {});
@@ -99,18 +107,21 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
       const grants = sitting && scope.grants?.week === sitting.week ? [...scope.grants.items].reverse() : [];
       const audit = sitting && scope.audit?.week === sitting.week ? scope.audit : null;
       const petition = sitting ? { signed: scope.petition?.week === sitting.week ? Object.keys(scope.petition.signers).length : 0, needed: signaturesNeeded(seat.tier, sitting.votes), mine: !!who && scope.petition?.week === sitting.week && Object.hasOwn(scope.petition.signers, who.id), open: !!audit?.flags.length } : null;
-      return { tier: seat.tier, id: seat.id, name: seat.name, title: titleOf(seat.tier, cityId), fee: seat.tier === 'city' ? ELECTION.filingFee : SEATS[seat.tier].fee, quorum, parties,
+      return { tier: seat.tier, id: seat.id, side: seat.side, holder: markOf(sitting ? { id: sitting.id, name: sitting.name } : null), name: seat.name, title: titleOf(seat.tier, cityId), fee: seat.tier === 'city' ? ELECTION.filingFee : SEATS[seat.tier].fee, quorum, parties,
         accounts: { income: accounts.income, salary: accounts.salary, granted: accounts.granted }, grants, petition, assembly: assemblyView(scope, gov, seat.tier, who, now),
         audit: audit ? { at: audit.at, by: audit.by, income: audit.income, salary: audit.salary, granted: audit.granted, grants: audit.grants, flags: audit.flags } : null,
         officeholderParty: held && Object.hasOwn(politics.parties, held) ? held : null, decree, levers, treasury: { balance: scope.treasury.balance, ledger: scope.treasury.ledger.slice(-15).reverse() },
         you: who ? { isOfficeholder: sitting?.id === who.id, salary: salaryDue(scope, gov, now, seat.tier, who.id), grantRoom: sitting?.id === who.id ? grantRoom(scope, seat.tier) : 0 } : null };
     });
+    const seats = seatViews('humans'), agentSeats = seatViews('agents');
+    const viewer = who ? ctx.core.sessionByPublicId(db, who.id) : undefined;
+    const electorate = viewer ? electorateOf(db, viewer, now, cityId, cityName(cityId)) : undefined;
     const mine = who ? partyOf(politics, who.id) : null;
     const parties = Object.values(politics.parties).map((party): PartyView => ({ id: party.id, name: party.name, motto: party.motto, colour: party.colour, founder: party.founder, members: memberCount(politics, party.id), mine: party.id === mine }))
       .sort((a, b) => b.members - a.members || a.name.localeCompare(b.name)).slice(0, 60);
     const founded = who ? Object.values(politics.parties).filter((party) => party.founder.id === who.id).length : 0;
     const phase = phaseAt(now);
-    return { city: cityId, cycle: { phase: phase.phase, endsAt: phase.endsAt, week: phase.week }, seats, parties, you: who ? { party: mine, canFound: founded < PARTY.perFounder } : null, partyRules: { fee: PARTY.fee, nameMin: PARTY.nameMin, nameMax: PARTY.nameMax, mottoMin: PARTY.mottoMin, mottoMax: PARTY.mottoMax, colours } };
+    return { city: cityId, cycle: { phase: phase.phase, endsAt: phase.endsAt, week: phase.week }, seats, agentSeats, parties, you: who ? { party: mine, canFound: founded < PARTY.perFounder, ...(electorate ? { electorate } : {}) } : null, partyRules: { fee: PARTY.fee, nameMin: PARTY.nameMin, nameMax: PARTY.nameMax, mottoMin: PARTY.mottoMin, mottoMax: PARTY.mottoMax, colours } };
   }
 
   function enter(db: Db, request: RouteRequest, cityId: CityId) {
@@ -194,12 +205,12 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/decree': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier);
-      const seat = seatOf(cityId, tier);
+      const seat = seatOf(cityId, tier, sideParam(body.side));
       return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('decree', who.id, 30);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id);
-        const gov = tier === 'city' ? govOf(db, seat, cityId) : govOfScope(scope);
+        const gov = ballot(db, seat, scope);
         const block = decreeBlock(gov, ctx.now(), tier, who.id, body.lever, body.value);
         if (block) return write(db, cityId, who, life, refused(block));
         if (assemblyOf(gov, ctx.now(), tier).members.length) return write(db, cityId, who, life, refused({ code: 'needs_assembly', reason: `${seat.name} has an assembly this term: propose a bill and let it vote.` }));
@@ -211,13 +222,13 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     'POST /api/politics/salary': async (request) => {
       const body = await request.json();
       const cityId = cityParam(body.cityId), tier = tierParam(body.tier);
-      const seat = seatOf(cityId, tier);
+      const seat = seatOf(cityId, tier, sideParam(body.side));
       return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { session, who, life } = enter(db, request, cityId);
         limit('salary', who.id, 12);
         const outcome = ctx.once(db, session, { id: body.requestId, kind: 'politics.salary', fingerprint: [cityId, tier] }, () => {
           const scope = scopeRecord(politicsOf(ctx, db), seat.id);
-          const gov = tier === 'city' ? govOf(db, seat, cityId) : govOfScope(scope);
+          const gov = ballot(db, seat, scope);
           const block = salaryBlock(scope, gov, ctx.now(), tier, who.id);
           if (block) return refused(block);
           const amount = drawSalary(scope, gov, ctx.now(), tier, who);
@@ -284,9 +295,9 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     // ---- the assembly ---------------------------------------------------------------------------
     'POST /api/politics/bill': async (request) => {
       const body = await request.json();
-      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier);
+      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier, sideParam(body.side));
       const members = await store.read((db) => {
-        const scope = peekScope(peekPolitics(db), seat.id), gov = tier === 'city' ? govOf(db, seat, cityId) : peekGov(scope);
+        const scope = peekScope(peekPolitics(db), seat.id), gov = seat.tier === 'city' && seat.side === 'humans' ? govOf(db, seat, cityId) : peekGov(scope);
         return assemblyOf(gov, ctx.now(), tier).members.map((member) => member.id);
       });
       await prepareTargets(cityId, members);
@@ -294,7 +305,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
         const { who, life } = enter(db, request, cityId);
         limit('bill', who.id, 30);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
-        const gov = tier === 'city' ? govOfId(db, seat.id) : govOfScope(scope), assembly = assemblyOf(gov, now, tier);
+        const gov = ballot(db, seat, scope), assembly = assemblyOf(gov, now, tier);
         const block = proposeBlock(scope, assembly, now, who.id) ?? leverBlock(tier, body.lever, body.value);
         if (block) return write(db, cityId, who, life, refused(block));
         const bill = propose(scope, assembly, now, who, body.lever as keyof typeof LEVERS, body.value as number);
@@ -310,14 +321,14 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
 
     'POST /api/politics/bill/vote': async (request) => {
       const body = await request.json();
-      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier), billId = typeof body.bill === 'string' && /^b\d{1,4}$/.test(body.bill) ? body.bill : null;
+      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier, sideParam(body.side)), billId = typeof body.bill === 'string' && /^b\d{1,4}$/.test(body.bill) ? body.bill : null;
       const yes = body.yes;
       if (!billId || typeof yes !== 'boolean') throw fail(400, 'invalid_bill');
       return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('bill', who.id, 60);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
-        const gov = tier === 'city' ? govOfId(db, seat.id) : govOfScope(scope), assembly = assemblyOf(gov, now, tier), bill = billsOf(scope, now).find((item) => item.id === billId);
+        const gov = ballot(db, seat, scope), assembly = assemblyOf(gov, now, tier), bill = billsOf(scope, now).find((item) => item.id === billId);
         const block = voteBlock(bill, assembly, who.id);
         if (block || !bill) return write(db, cityId, who, life, refused(block ?? { code: 'no_such_bill', reason: 'That bill is not before the assembly.' }));
         const decided = castVote(bill, assembly.members.length, who.id, yes);
@@ -328,14 +339,14 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
 
     'POST /api/politics/bill/sign': async (request) => {
       const body = await request.json();
-      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier), billId = typeof body.bill === 'string' && /^b\d{1,4}$/.test(body.bill) ? body.bill : null;
+      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier, sideParam(body.side)), billId = typeof body.bill === 'string' && /^b\d{1,4}$/.test(body.bill) ? body.bill : null;
       const sign = body.sign;
       if (!billId || typeof sign !== 'boolean') throw fail(400, 'invalid_bill');
       return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('bill', who.id, 60);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
-        const gov = tier === 'city' ? govOfId(db, seat.id) : govOfScope(scope), assembly = assemblyOf(gov, now, tier), bill = billsOf(scope, now).find((item) => item.id === billId);
+        const gov = ballot(db, seat, scope), assembly = assemblyOf(gov, now, tier), bill = billsOf(scope, now).find((item) => item.id === billId);
         const block = signBlock(bill, assembly, who.id);
         if (block || !bill) return write(db, cityId, who, life, refused(block ?? { code: 'no_such_bill', reason: 'That bill is not before the assembly.' }));
         const decided = signOrVeto(bill, assembly.members.length, sign);
@@ -347,7 +358,7 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     // ---- accountability ---------------------------------------------------------------------------
     'POST /api/politics/grant': async (request) => {
       const body = await request.json();
-      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), recipient = playerId(body.player), seat = seatOf(cityId, tier);
+      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), recipient = playerId(body.player), seat = seatOf(cityId, tier, sideParam(body.side));
       const purpose = cleanLine(body.purpose, { min: GRANTS.purposeMin, max: GRANTS.purposeMax, what: 'The purpose' });
       await prepareTargets(cityId, [recipient]);
       return transactWithCityContent(ctx, request, [cityId], (db) => {
@@ -355,13 +366,14 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
         limit('grant', who.id, 20);
         const outcome = ctx.once(db, session, { id: body.requestId, kind: 'politics.grant', fingerprint: [cityId, tier, recipient, String(body.amount ?? '')] }, () => {
           const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
-          const gov = tier === 'city' ? govOfId(db, seat.id) : govOfScope(scope);
+          const gov = ballot(db, seat, scope);
           const block = grantBlock(scope, gov, now, tier, who.id, recipient, body.amount);
           if (block) return refused(block);
           if (!purpose.ok) return refused(purpose);
           const target = ctx.core.sessionByPublicId(db, recipient);
           if (!target?.cities?.[cityId]?.state) return refused({ code: 'unknown_player', reason: 'That player does not live in this city.' });
           const them = ctx.settle(target, cityId);
+          if (seat.side === 'agents' && !agentPlayed(target, now)) return refused({ code: 'agents_only', reason: 'An agents\' office pays grants to agent-played characters only.' });
           if (daysLived(them) < GRANTS.recipientDays) return refused({ code: 'too_new', reason: 'A grant goes to someone who has lived here for at least a day.' });
           const amount = body.amount as number;
           const paid = ctx.act(them, { type: 'civic.treasury', cityId, payload: { op: 'receive', amount, label: `Grant: ${purpose.text}` } });
@@ -377,12 +389,12 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
 
     'POST /api/politics/audit': async (request) => {
       const body = await request.json();
-      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier);
+      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier, sideParam(body.side));
       return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('audit', who.id, 20);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
-        const gov = tier === 'city' ? govOfId(db, seat.id) : govOfScope(scope);
+        const gov = ballot(db, seat, scope);
         const block = auditBlock(scope, gov, now, tier);
         if (block) return write(db, cityId, who, life, refused(block));
         const sitting = governorAt(gov, now, QUORUM[tier]);
@@ -393,12 +405,14 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
 
     'POST /api/politics/impeach': async (request) => {
       const body = await request.json();
-      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier);
+      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), seat = seatOf(cityId, tier, sideParam(body.side));
       return transactWithCityContent(ctx, request, [cityId], (db) => {
-        const { who, life } = enter(db, request, cityId);
+        const { session, who, life } = enter(db, request, cityId);
         limit('impeach', who.id, 20);
         const politics = politicsOf(ctx, db), scope = scopeRecord(politics, seat.id), now = ctx.now();
-        const gov = tier === 'city' ? govOfId(db, seat.id) : govOfScope(scope);
+        // An office is petitioned by its own electorate: people sign the people's petition, agents the agents'.
+        if (electorateOf(db, session, now, cityId, cityName(cityId)) !== seat.side) return write(db, cityId, who, life, refused({ code: 'wrong_electorate', reason: seat.side === 'agents' ? 'Only agents (and the characters they play) can petition the agents\' office.' : 'Only people can petition the people\'s office. Characters an agent played this week are in the agents\' electorate.' }));
+        const gov = ballot(db, seat, scope);
         if (daysLived(life) < IMPEACH.minDays || life.civic.work.days < IMPEACH.minWorkDays) return write(db, cityId, who, life, refused({ code: 'not_eligible', reason: `Only a resident who has lived here for ${IMPEACH.minDays} day and been paid for work on ${IMPEACH.minWorkDays} different days can sign.` }));
         const block = impeachBlock(scope, gov, now, tier, who.id) ?? ctx.checks?.muted?.(who.id) ?? null;
         if (block) return write(db, cityId, who, life, refused({ code: block.code, reason: block.reason ?? 'You cannot do that now.' }));
@@ -460,10 +474,12 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
 
     'POST /api/politics/justice/enrol': async (request) => {
       const body = await request.json();
-      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), player = playerId(body.player), seat = seatOf(cityId, tier);
+      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), player = playerId(body.player), seat = seatOf(cityId, tier, sideParam(body.side));
       return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('enrol', who.id, 30);
+        const noPolice = titular(seat);
+        if (noPolice) return justiceWrite(db, cityId, who, life, noJustice(noPolice.code, noPolice.reason));
         const sitting = sittingOf(db, seat.id), target = ctx.core.sessionByPublicId(db, player);
         if (!sitting || sitting.id !== who.id) return justiceWrite(db, cityId, who, life, noJustice('not_in_office', 'Only the sitting officeholder can enrol police.'));
         if (!target) return justiceWrite(db, cityId, who, life, noJustice('unknown_player', 'That player is not here.'));
@@ -476,10 +492,12 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
 
     'POST /api/politics/justice/dismiss': async (request) => {
       const body = await request.json();
-      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), player = playerId(body.player), seat = seatOf(cityId, tier);
+      const cityId = cityParam(body.cityId), tier = tierParam(body.tier), player = playerId(body.player), seat = seatOf(cityId, tier, sideParam(body.side));
       return transactWithCityContent(ctx, request, [cityId], (db) => {
         const { who, life } = enter(db, request, cityId);
         limit('enrol', who.id, 30);
+        const noPolice = titular(seat);
+        if (noPolice) return justiceWrite(db, cityId, who, life, noJustice(noPolice.code, noPolice.reason));
         const justice = justiceOf(politicsOf(ctx, db)), roster = body.role === 'judge' ? justice.judges : justice.police, record = roster[player], sitting = sittingOf(db, seat.id);
         if (!record || record.scope !== seat.id) return justiceWrite(db, cityId, who, life, noJustice('not_police', 'That player is not one of this seat’s officers or judges.'));
         if (player !== who.id && sitting?.id !== who.id) return justiceWrite(db, cityId, who, life, noJustice('not_in_office', 'Only the sitting officeholder can dismiss an officer or a judge.'));

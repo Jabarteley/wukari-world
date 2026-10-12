@@ -38,7 +38,7 @@ export async function harness(t: Parameters<typeof fixture>[0]) {
     return device;
   }
   /** Seat `device` in a seat's current term as if it had won with `votes` votes last week. `rivals` also stood and got the votes listed: they are its assembly. */
-  const elect = (device: Device, scope: 'city:lagos' | 'state:lagos' | 'nation:ng', votes: number, rivals: readonly (readonly [Device, number])[] = []) => f.server.store.transact((db) => {
+  const elect = (device: Device, scope: 'city:lagos' | 'state:lagos' | 'nation:ng' | 'city:lagos@ai' | 'state:lagos@ai' | 'nation:ng@ai', votes: number, rivals: readonly (readonly [Device, number])[] = []) => f.server.store.transact((db) => {
     const week = lagosTime(f.now()).week - 1;
     const candidates: Record<string, { name: string; slogan: string; at: number }> = { [device.id]: { name: 'Winner', slogan: 'Fair deal', at: JOURNEY_TIME - 8 * DAY } };
     const ballots: Record<string, string> = Object.fromEntries(Array.from({ length: votes }, (_, index) => [`voter-${index}`, device.id]));
@@ -52,8 +52,14 @@ export async function harness(t: Parameters<typeof fixture>[0]) {
     const record = (politics.scopes[scope] ||= { treasury: { balance: 0, ledger: [] } });
     (record.gov ||= { elections: {}, announcements: [] }).elections[week] = election;
   });
+  /** Mark a player's character as played by an AI agent: for good (an agent character) or for this election week (an agent drove their own). */
+  const agentize = (device: Device, how: 'character' | 'week') => f.server.store.transact((db) => {
+    const session = db.sessions[device.cookie.slice(4)]; assert.ok(session);
+    session.agent = how === 'character' ? { char: true, unclaimed: true } : { at: f.now(), week: lagosTime(f.now()).week };
+    const social = db.social?.players?.[device.id]; if (social) social.agent = { ...(how === 'character' ? { char: true as const } : {}), at: f.now() };
+  });
   const overview = async (device?: Device): Promise<PoliticsResponse> => (await get('/api/politics/overview?city=lagos', device)) as unknown as PoliticsResponse;
   const stored = async (): Promise<Database> => { await f.flush(); return f.server.store.read((db) => snapshot(db)); };
-  return { f, post, get, edit, player, elect, overview, stored };
+  return { f, post, get, edit, player, elect, agentize, overview, stored };
 }
 

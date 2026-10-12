@@ -81,18 +81,19 @@ function buildRegistry(ctx: RouteContext) {
       // A player who left since this server started carries the time their last connection closed.
       return { state: closedAt !== undefined && ctx.now() - closedAt < RECONNECT_GRACE_MS ? 'reconnecting' : 'offline', rooms: [], ...(closedAt !== undefined ? { seenAt: closedAt } : {}) };
     },
-    isIn: (id: string, room: string): boolean => live(id).some((ws) => ws.room === room),
+    isIn: (id: string, room: string): boolean => live(id).some((ws) => ws.room === room) || ctx.checks?.agentRoom?.members(room).some((m) => m.id === id) === true,
     /**
      * Everyone the foundation currently has in `room`, one entry per player. `look` is the
      * appearance the room module recorded from that player's server-held life when they joined
      * (eight option ids, or null) — never anything a client supplied.
      */
     /** The same for the named players only (a group of a venue): one lookup each, never a walk over every player. */
-    among(ids: readonly string[], room: string): { id: string; name: string; look: LookIds | null }[] {
-      const members: { id: string; name: string; look: LookIds | null }[] = [];
+    among(ids: readonly string[], room: string): { id: string; name: string; look: LookIds | null; doing?: string }[] {
+      const members: { id: string; name: string; look: LookIds | null; doing?: string }[] = [];
       for (const id of ids) {
         const ws = live(id).find((socket) => socket.room === room);
         if (ws) members.push({ id, name: ws.session.name, look: ws.look ?? null });
+        else { const v = ctx.checks?.agentRoom?.members(room).find((m) => m.id === id); if (v) members.push({ id, name: v.name, look: (v.look ?? null) as LookIds | null, ...(v.doing ? { doing: v.doing } : {}) }); }
       }
       return members;
     },
@@ -102,12 +103,13 @@ function buildRegistry(ctx: RouteContext) {
       for (const id of sockets.keys()) if (live(id).length) ids.push(id);
       return ids;
     },
-    inRoom(room: string): { id: string; name: string; look: LookIds | null }[] {
-      const members: { id: string; name: string; look: LookIds | null }[] = [];
+    inRoom(room: string): { id: string; name: string; look: LookIds | null; doing?: string }[] {
+      const members: { id: string; name: string; look: LookIds | null; doing?: string }[] = [];
       for (const id of sockets.keys()) {
         const ws = live(id).find((socket) => socket.room === room);
         if (ws) members.push({ id, name: ws.session.name, look: ws.look ?? null });
       }
+      for (const v of ctx.checks?.agentRoom?.members(room) ?? []) members.push({ id: v.id, name: v.name, look: (v.look ?? null) as LookIds | null, ...(v.doing ? { doing: v.doing } : {}) });
       return members;
     },
   };

@@ -86,6 +86,12 @@ async function openCreator(): Promise<void> {
   emit('creator')
 }
 function openAgent(): void { agentOpen.value = true }
+/** A card of the agent sheet: the game starts as for Play now, and Settings opens at the AI agents section once it is up. */
+function chooseAgent(id: 'mine' | 'own'): void {
+  agentOpen.value = false
+  void import('../agents/claimEntry.ts').then((module) => { module.wantAgentSetup(id) }, () => undefined)
+  play(null, false)
+}
 
 async function loadOnline(): Promise<void> {
   if (document.visibilityState === 'hidden') return
@@ -164,7 +170,7 @@ onBeforeUnmount(() => { if (poll !== null) clearInterval(poll) })
         <a class="en-link" :href="SOURCE_URL" target="_blank" rel="noopener noreferrer">Source code · AGPL</a>
       </nav>
     </main>
-    <AgentSheet v-if="agentOpen" @close="agentOpen = false" />
+    <AgentSheet v-if="agentOpen" @close="agentOpen = false" @choose="chooseAgent" />
   </div>
 </template>
 

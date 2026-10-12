@@ -1,11 +1,11 @@
 <script setup lang="ts">
-// "Connect an AI agent": what it will be, and that it is not open yet. Two choices are shown as cards; each has a `controls-<id>` slot
-// where the real controls (create a key, copy the connection address, revoke) go when they exist, and until then it says "Coming soon".
-// Nothing here talks to a server. The same words are in docs/AGENTS.md.
+// "Connect an AI agent": what it is, and two choices shown as cards. Each card's button asks the page to start the game and open Settings at the
+// AI agents section (where the key is made, copied and revoked); the card's `controls-<id>` slot can still carry other controls. A link goes to the
+// public Agent league. Nothing here talks to a server. The same words are in docs/AGENTS.md.
 import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-import { AGENT_CHOICES, AGENT_DOCS_URL, AGENT_WORDS } from './entryModel.ts'
+import { AGENT_CHOICES, AGENT_DOCS_URL, AGENT_LEAGUE_PATH, AGENT_WORDS } from './entryModel.ts'
 
-const emit = defineEmits<{ close: [] }>()
+const emit = defineEmits<{ close: []; choose: [id: 'mine' | 'own'] }>()
 const sheet = ref<HTMLElement | null>(null)
 const closer = ref<HTMLButtonElement | null>(null)
 let before: Element | null = null
@@ -37,10 +37,11 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', onKey, true); if (
           <article v-for="choice in AGENT_CHOICES" :key="choice.id" class="ag-card" :data-agent-choice="choice.id">
             <h3>{{ choice.title }}</h3>
             <p>{{ choice.text }}</p>
-            <slot :name="`controls-${choice.id}`" :choice="choice"><span class="ag-soon" data-agent-soon>{{ AGENT_WORDS.soon }}</span></slot>
+            <slot :name="`controls-${choice.id}`" :choice="choice"><button type="button" class="ag-go" :data-key="`agent-${choice.id}`" :data-agent-go="choice.id" @click="emit('choose', choice.id)">{{ AGENT_WORDS.start }}</button></slot>
           </article>
         </div>
-        <p class="ag-note">{{ AGENT_WORDS.soonText }}</p>
+        <p class="ag-note">{{ AGENT_WORDS.startText }}</p>
+        <a class="ag-docs" :href="AGENT_LEAGUE_PATH" data-agent-league>{{ AGENT_WORDS.league }}</a>
         <a class="ag-docs" :href="AGENT_DOCS_URL" target="_blank" rel="noopener noreferrer" data-agent-docs>{{ AGENT_WORDS.docs }}</a>
       </div>
     </section>
@@ -61,7 +62,8 @@ h2 { margin: 0; font-size: 20px; letter-spacing: -.3px; }
 .ag-card { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; border: 1px solid var(--c-line); border-radius: 16px; background: var(--c-canvas); }
 .ag-card h3 { font-size: 15px; line-height: 1.25; }
 .ag-card p { color: var(--c-ink-2); font-size: 13.5px; }
-.ag-soon { margin-top: auto; padding: 4px 10px; border-radius: var(--r-pill); background: var(--c-amber-soft); color: var(--c-amber-dark); font-size: 12px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; }
+.ag-go { margin-top: auto; min-height: var(--tap); padding: 0 16px; border: 0; border-radius: var(--r-pill); background: var(--c-green-dark); color: #fff; font: inherit; font-weight: 800; cursor: pointer; }
+.ag-go:focus-visible { outline: var(--focus); outline-offset: 2px; }
 .ag-note { color: var(--c-muted); font-size: 13.5px; }
 .ag-docs { display: inline-flex; align-items: center; align-self: flex-start; min-height: var(--tap); color: var(--c-green-dark); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 600px) {

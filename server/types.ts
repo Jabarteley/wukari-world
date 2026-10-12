@@ -112,12 +112,18 @@ export interface SessionRecord {
    * answers its devices are given (docs/DEVICES.md). Absent on a record stored before it existed, which reads as 0.
    */
   rev?: number
+  /**
+   * AI agent access (server/agents/). `char`: an agent character, marked as agent-played for good, with `owner` the account that owns it. `at`: when an
+   * agent key last acted for this character (the "AI-played" mark is shown for a few minutes after it). `week`: the Lagos week an agent last played this
+   * account's own character, which leaves that week's earnings out of the rankings.
+   */
+  agent?: { char?: true; owner?: string; at?: number; week?: number; unclaimed?: true }
 }
 /**
  * WORKER: what deploy/cloudflare-worker.ts stores in its `sessions` table. Action receipts live
  * in their own SQL table (without `type`), and there is no `once` and no `onboarding`.
  */
-export type WorkerSessionRecord = Pick<SessionRecord, 'secret' | 'publicId' | 'name' | 'expiresAt' | 'cities' | 'character' | 'legacyLives' | 'legacyLifeCities'>
+export type WorkerSessionRecord = Pick<SessionRecord, 'secret' | 'publicId' | 'name' | 'expiresAt' | 'cities' | 'character' | 'legacyLives' | 'legacyLifeCities' | 'agent'>
 
 /** An expired session's lives, kept without the secret (protocol.js archivedLife). Keyed by public id. */
 export interface ArchivedLife {
@@ -212,6 +218,8 @@ export interface AccountsConfig { projectId: string; apiKey: string; googleClien
 export interface SocialPlayerRecord {
   /** Consented in-game family roles; absent for existing players. */
   familyLinks?: FamilyBook
+  /** AI agent play (server/agents/): `char` an agent character (marked for good), `at` when a key last acted for the character. Read by pub(), so chat and lists carry the mark. */
+  agent?: { char?: true; at?: number }
   name: string
   /** First and latest social request, server ms. */
   first: number
@@ -529,6 +537,12 @@ export interface ResidentRecord {
   /** Lagos week this resident was last added to the city's weekly tally, and what they added then (server/civic/boards.ts). */
   tw?: number
   te?: number
+  /** Lagos week in which an AI agent played this resident's character (server/agents/): that week it is ranked on the AGENTS boards, with everything it earned. */
+  ag?: number
+  /** An agent character: always on the agents boards. */
+  ac?: true
+  /** 'a' when this resident's `te` was last added to the agents' place tally (absent: the humans'). */
+  tf?: 'a'
 }
 /** A city's weekly totals, kept as residents check in so the place boards never read the residents. */
 export interface PrideWeek { week: number; active: number; earned: number }
@@ -563,6 +577,8 @@ export interface CivicCityRecord {
   residents: Record<string, ResidentRecord>
   /** This week's totals and the last week's; absent until a resident checks in. */
   pride?: PrideTally
+  /** The same tally for the agents' boards (server/civic/boards.ts): a character an AI agent played in the week is counted here, not in `pride`. */
+  prideAi?: PrideTally
   gov: { elections: Record<string, ElectionRecord>; announcements: AnnouncementRecord[] }
   ads: { billboard: Record<string, AdRecord>; sea: Record<string, AdRecord> }
   hunt: { found: number; claims: number; byDay: Record<string, number> }
@@ -942,6 +958,8 @@ export interface RouteResult {
   renew?: boolean
   /** Runs once the answer is out; a throw is logged and goes no further. */
   after?: () => void | Promise<void>
+  /** Send `body` exactly as given: no `serverTime` or other field added (the MCP endpoint answers JSON-RPC, which has no room for one). */
+  bare?: true
   /** Instead of `body`: bytes to send as they are, with their content type. Always sent `private`, `nosniff` and `inline`. */
   file?: { bytes: Uint8Array; type: string; cache?: 'no-store' }
 }
@@ -1037,6 +1055,32 @@ export interface ContextChecks {
    * that has no character yet, the new record becomes that account's character (and is returned re-keyed).
    */
   adoptSession?: (db: Db, binding: string | undefined, session: SessionRecord) => SessionRecord
+  /** Social: an AI agent just acted for this character (server/agents/): the public mark is kept with the player's social record. */
+  agentActive?: (db: Db, session: SessionRecord, at: number, character: boolean) => void
+  /** Accounts, inside a transaction: make this live record the signed-in caller's active character (the one in play is set aside). */
+  takeOver?: (db: Db, request: RouteRequest, record: SessionRecord) => { closeKeys: string[]; closeDevices: string[] }
+  /** Rooms: AI agents present in venues without a socket, and venue chat for them (server/ws/rooms.ts). */
+  agentRoom?: AgentRoom
+  /** Social: forget the agent marks of a player (an agent character taken over by its owner). */
+  agentClear?: (db: Db, publicId: string) => void
+  /** Agents: a player was reported; enough reports about a character an agent plays suspend its keys. */
+  agentReported?: (db: Db, aboutId: string) => void
+}
+
+/** What the room module offers the agent tools: a virtual member of a venue room, and the venue's public chat. */
+export interface AgentRoom {
+  /** The character is present in `room` (a venue room key) until `until` (server ms); moving to `position` and showing what it is doing. Idempotent. */
+  present(member: { id: string; name: string; mark: { agent?: true; agentUntil?: number }; room: string; position?: { x: number; z: number }; doing: string | null; look: unknown; until: number }): void
+  /** The character is no longer present anywhere. */
+  absent(id: string): void
+  /** Say a line to the venue the character is in, as a player does (same filters and limits). Resolves { ok: false, code, reason } for a refusal. */
+  say(from: { id: string; name: string; mark: { agent?: true; agentUntil?: number } }, room: string, body: string, clientId: string | null): Promise<{ ok: true; seq: number } | { ok: false; code: string; reason: string }>
+  /** The public lines of the group the character is in after `since`, oldest first. */
+  lines(id: string, room: string, since: number, limit: number): { seq: number; at: number; from: { id: string; name: string; agent?: true }; body: string; mine: boolean }[]
+  /** The virtual members of a room, for the people list and presence. */
+  members(room: string): { id: string; name: string; look: unknown; mark: { agent?: true; agentUntil?: number }; doing: string | null; group: string | null }[]
+  /** How many virtual members there are, for the pulse. */
+  count(): number
 }
 
 export interface ServerConfig {
@@ -1223,6 +1267,8 @@ export interface RouteContext {
   /** Read-only: that player's stored life is at Home in that city. */
   atHome(db: Db, publicId: string, cityId: string): boolean
   checks: ContextChecks
+  /** The built route table, set by buildRoutes: the agent tools call a player's route in-process through it (server/agents/tools.ts call_api). */
+  routeTable?: RouteTable
   config: ServerConfig
   /** Promises the host awaits before it takes requests. */
   startup: Promise<unknown>[]

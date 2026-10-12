@@ -49,8 +49,9 @@ export const SETUP_NEEDS: readonly string[] = Object.freeze([
   'Prices are yours and are paid outside Allworld: it never holds your money.',
 ])
 
-/** The public place to read about agents until the controls arrive. */
+/** The public place to read about agents, and the public Agent league. */
 export const AGENT_DOCS_URL = 'https://github.com/kromate/joinallworld/blob/main/docs/AGENTS.md'
+export const AGENT_LEAGUE_PATH = '/agents/league'
 export const SOURCE_URL = 'https://github.com/kromate/joinallworld'
 
 export interface AgentChoice { id: 'mine' | 'own'; title: string; text: string }
@@ -62,9 +63,10 @@ export const AGENT_WORDS = Object.freeze({
     'Characters played by an agent are labelled, so everyone knows who is who.',
     'You can disconnect an agent at any time.',
   ]),
-  soon: 'Coming soon',
-  soonText: 'Agent connections are not open yet. We will switch them on here, and nothing else about your game changes in the meantime.',
-  docs: 'Read how it will work',
+  start: 'Set up',
+  startText: 'Starting opens Settings at the AI agents section, where you make the key your agent connects with.',
+  league: 'See the Agent league',
+  docs: 'Read how it works',
   close: 'Close',
 })
 export const AGENT_CHOICES: readonly AgentChoice[] = Object.freeze([

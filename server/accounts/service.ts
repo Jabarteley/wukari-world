@@ -41,6 +41,7 @@ import type { AccountAuditRecord, AccountDeviceRecord, AccountEvent, AccountLogC
 import type { VerifiedIdentity } from './token.ts';
 import { eraseRealValue, exportRealValue } from '../real-value/privacy.ts';
 import { eraseShowcase, exportShowcase } from '../showcase/privacy.ts';
+import { eraseAgents, exportAgents } from '../agents/privacy.ts';
 import { eraseLivingWorldProgress, exportLivingWorldProgress, rebindBarberAccount, rebindClerkAccount, rebindJusticePracticeAccount, rebindAssessmentAccount, rebindParcelAccount } from '../living-world/privacy.ts';
 import type { LivingWorldPrivacyExport } from '../living-world/privacy.ts';
 
@@ -297,6 +298,25 @@ function prove(db: Db, deps: AccountDeps, caller: Caller, identity: VerifiedIden
   return bound;
 }
 
+/**
+ * Make a live session record (an agent character the account has claimed) the account's active character. The character in play is set
+ * aside as in switchCharacter, nothing is deleted. The record keeps its key and becomes the account's own. The caller is signed in.
+ */
+export function takeOverCharacter(db: Db, deps: AccountDeps, caller: Caller, record: SessionRecord): AfterChange {
+  const { account } = requireAccount(db, deps, caller);
+  const after: AfterChange = { closeKeys: [], closeDevices: [] };
+  const mine = activeCharacter(db, deps, account);
+  if (mine) {
+    after.closeKeys.push(mine.secret);
+    if (hasLife(mine)) park(db, deps, account, mine); else delete db.sessions[mine.secret];
+    account.sessionKey = null;
+  }
+  record.account = account.id;
+  account.sessionKey = record.secret; account.publicId = record.publicId;
+  audit(db, deps, 'switched', account, record.publicId);
+  return after;
+}
+
 /** Bring a set-aside (or expired and archived) character back as the account's active one. Undefined when the archive has none this account may take. */
 function fromArchive(db: Db, deps: AccountDeps, account: AccountRecord, publicId: string): SessionRecord | undefined {
   const archive = db.archivedLives, entry = own(archive, publicId);
@@ -526,6 +546,7 @@ export function deleteAccount(db: Db, deps: AccountDeps, input: Caller & { ident
     eraseLivingWorldProgress(db, livingWorldIds.filter(id => id !== retainedId), account.id);
   }
   eraseRealValue(db, publicIds);
+  eraseAgents(db, account.id, (d, id) => { const key = d.$store ? d.$store.sessionKeyByPublicId(id) : Object.keys(d.sessions).find(item => d.sessions[item]?.publicId === id); return key === undefined ? undefined : d.sessions[key]; }, deps.archive);
   const showcasePhotos = eraseShowcase(db, publicIds);
   if (db.social) for (const id of publicIds) if (input.erase || id !== account.publicId) clearPlayerFamily(db.social.players, id);
   for (const id of publicIds) if (db.street && (input.erase || id !== account.publicId)) delete db.street.journeys[id];
@@ -587,6 +608,7 @@ export function exportAccount(db: Db, deps: AccountDeps, caller: Caller, identit
     ...(db.showcase ? { showcase: exportShowcase(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)]) } : {}),
     ...(db.realValue ? { realValue: exportRealValue(db, [...(account.publicId ? [account.publicId] : []), ...account.parked.map(item => item.id)], now) } : {}),
     ...(livingWorld ? { livingWorld } : {}),
+    ...(db.agents ? { aiAgents: exportAgents(db, account.id) } : {}),
     ...(db.trustChecks ? { identityChecks: Object.values(db.trustChecks.checks).filter(check => check.account === account.id).map(check => ({ ref: check.ref, player: check.player, at: check.at, expiresAt: check.expiresAt, status: check.status, environment: check.environment, adultVerified: check.adult === true })) } : {}),
     history: (log?.audit ?? []).filter(line => line.ref === ref).map(line => ({ at: line.at, event: line.event, ...(line.life ? { character: line.life } : {}) })),
   };

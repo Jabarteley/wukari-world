@@ -185,3 +185,9 @@ test('the Node host: the page for /games, /abuja and an unknown path, with the s
   const sitemap = await fetch(`${f.base}/sitemap.xml`);
   assert.ok((await sitemap.text()).includes('<loc>https://play.example/abuja</loc>'));
 })
+
+test('the entry page\'s /agents address is an exact match: the public agent pages under it keep their own handling', () => {
+  assert.equal(metaFor('/agents')?.canonical, '/agents');
+  assert.equal(metaFor('/agents/')?.canonical, '/agents');
+  for (const page of ['/agents/league', '/agents/robo-ada', '/agents/claim/awc_x']) assert.notEqual(metaFor(page)?.canonical, '/agents', page);
+});

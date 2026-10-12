@@ -10,7 +10,7 @@ export const POLL_MS = 30000
 export type PulseTone = 'live' | 'stale'
 
 /** What GET /api/world/pulse answers (server/pulse.ts). */
-export interface PulseNumbers { online: number; visits: number; /** Distinct players seen today (0 from a server that does not say). */ today?: number; cities: Record<string, number> }
+export interface PulseNumbers { online: number; visits: number; /** Distinct players seen today (0 from a server that does not say). */ today?: number; cities: Record<string, number>; /** AI agents present now, counted apart from the people. */ ai?: number }
 
 const whole = (value: number): number => (Number.isFinite(value) && value > 0 ? Math.floor(value) : 0)
 const trim = (value: number): string => String(value).replace(/\.0$/, '')

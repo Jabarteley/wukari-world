@@ -8,7 +8,7 @@ import { REPLY_DELAY_MS, newChatter } from '../../game/chatter/index.ts'
 import type { Chosen, Regular } from '../../game/chatter/index.ts'
 import { isDeparting } from '../../life.ts'
 import { useApp } from '../state/app.ts'
-import { clearBubbles, say, tagOf } from './bubbles.ts'
+import { clearBubbles, say, sayTag, tagOf } from './bubbles.ts'
 import { heard, heardStop } from '../../audio/voice/emit.ts'
 
 /** How often the visit asks the picker. An exchange stays due for 20 s, so this never misses one. */
@@ -62,6 +62,11 @@ export function startChatter(): void {
     if (chosen) play(chosen, `${cityId}|${state.location}`)
   }
 
+  // An AI agent's line in the venue chat (community.ts raises the event): the same bubble over its character, labelled AI.
+  globalThis.addEventListener('jaw:agent-say', (event) => {
+    const detail = (event as CustomEvent<{ id?: string; name?: string; text?: string }>).detail
+    if (detail?.id && detail.text) sayTag(detail.id, `${detail.name ?? 'Agent'} · AI`, detail.text)
+  })
   // Leaving a venue ends its talk at once.
   watch(() => `${game.view.value.cityId}|${game.state.value.location}`, () => { chatter.reset(); stop() })
   globalThis.setInterval(tick, POLL_MS)

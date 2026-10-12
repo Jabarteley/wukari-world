@@ -43,6 +43,7 @@ test('the variant table: every address resolves to its row, aliases included, an
   assert.equal(variantOf('/SERVICES?utm_source=x')?.id, 'services')
   assert.equal(variantOf('/world')?.id, 'cities')
   assert.equal(variantOf('/ai')?.id, 'agents')
+  for (const page of ['/agents/league', '/agents/robo-ada', '/agents/claim/awc_x']) { assert.equal(variantOf(page), null, `${page} is a public page, not the entry variant`); assert.equal(entryVariantId(page), null) }
   assert.equal(variantOf('/games/chess'), null)
   assert.equal(variantOf('/abuja'), null)
   assert.deepEqual([...ENTRY_WORDS].sort(), VARIANT_PATHS.map((path) => path.slice(1)).sort())

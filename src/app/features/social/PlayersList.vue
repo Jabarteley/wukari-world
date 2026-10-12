@@ -13,6 +13,7 @@ import LazyList from '../../ui/LazyList.vue'
 import { createLazyList, keptList } from '../../ui/lazyList.ts'
 import PersonCallButton from '../calls/PersonCallButton.vue'
 import FounderTag from './FounderTag.vue'
+import AiTag from './AiTag.vue'
 import PlayerAvatar from './PlayerAvatar.vue'
 import { personUi } from './socialState.ts'
 import { fetchPlayers, openChatWith, sendToMany } from './socialPages.ts'
@@ -114,7 +115,7 @@ async function sendMany(): Promise<void> {
             <label class="players-pickbox"><input type="checkbox" :checked="picked.has(item.id)" :disabled="!picked.has(item.id) && picked.size >= PICK_MAX" :aria-label="`Select ${item.name}`" @change="toggle(item, ($event.target as HTMLInputElement).checked)"></label>
             <PlayerAvatar :name="item.name" :seed="item.id" :status="item.status" />
             <div class="players-body">
-              <strong>{{ item.name }}<FounderTag v-if="item.founder" /></strong>
+              <strong>{{ item.name }}<FounderTag v-if="item.founder" /><AiTag :who="item" /></strong>
               <small class="social-presence" :class="`is-${presenceClass(item.status)}`">{{ line(item) }}</small>
               <span class="social-actions">
                 <button type="button" class="social-btn is-primary" @click="message(item)">Message</button>

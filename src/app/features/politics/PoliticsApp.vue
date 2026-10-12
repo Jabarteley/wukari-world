@@ -11,6 +11,7 @@ import type { BillView, CaseView, JusticeResponse, LeverView, PoliticsResponse, 
 import { money } from '../../ui/format.ts'
 import EmptyState from '../../ui/EmptyState.vue'
 import SectionTitle from '../../ui/SectionTitle.vue'
+import AiTag from '../social/AiTag.vue'
 import CivicAction from '../civic/CivicAction.vue'
 import CivicAvatar from '../civic/CivicAvatar.vue'
 import CivicStale from '../civic/CivicStale.vue'
@@ -33,11 +34,14 @@ const overview = useLoaded<PoliticsResponse>({ key: () => overviewKey(cityId.val
 const tier = computed<TierId | null>(() => (ui.tab === 'parties' || ui.tab === 'justice' || ui.tab === 'records' ? null : ui.tab))
 const justice = useLoaded<JusticeResponse>({ key: () => justiceKey(cityId.value), path: () => justicePath(cityId.value), maxAge: 15000, when: () => ui.tab === 'justice' })
 const law = computed(() => justice.item.value.data)
-const ballot = useLoaded<GovResponse>({ key: () => ballotKey(cityId.value, tier.value ?? 'city'), path: () => ballotPath(cityId.value, tier.value ?? 'city'), maxAge: 20000, when: () => tier.value !== null })
+const ballot = useLoaded<GovResponse>({ key: () => ballotKey(cityId.value, tier.value ?? 'city', ui.side), path: () => ballotPath(cityId.value, tier.value ?? 'city', ui.side), maxAge: 20000, when: () => tier.value !== null })
 
 const data = computed(() => overview.item.value.data)
 const gov = computed(() => (tier.value ? ballot.item.value.data : null))
-const seat = computed(() => (tier.value ? seatOf(data.value, tier.value) : null))
+const seat = computed(() => (tier.value ? seatOf(data.value, tier.value, ui.side) : null))
+/** The side this character is on for this election cycle (people's, or agents' once an AI agent has played it). */
+const electorate = computed(() => data.value?.you?.electorate ?? null)
+const otherSide = computed(() => electorate.value !== null && electorate.value !== ui.side)
 const you = computed(() => gov.value?.you ?? null)
 const top = computed(() => Math.max(1, ...(gov.value?.election.candidates.map((candidate) => candidate.votes) ?? [])))
 const myParty = computed(() => partyName(data.value, data.value?.you?.party))
@@ -50,14 +54,14 @@ watch(seat, (current) => {
 /** What a write handed back: the fresh overview and ballot replace the cached ones. */
 function done(result: Record<string, unknown>, at: TierId | null = tier.value): void {
   if (result.politics) civic.put(overviewKey(cityId.value), result.politics as PoliticsResponse)
-  if (result.gov && at) civic.put(ballotKey(cityId.value, at), result.gov as GovResponse)
+  if (result.gov && at) civic.put(ballotKey(cityId.value, at, ui.side), result.gov as GovResponse)
   civic.changed()
 }
 async function run(): Promise<void> {
   const at = tier.value
   if (!at) return
   if (sloganTooShort(ui.slogan)) { game.toast(`Write a slogan first (${ELECTION.sloganMin}–${ELECTION.sloganMax} characters). Nothing was charged.`, 'error'); return }
-  const result = await civic.send('p-run', '/api/civic/gov/run', { tier: at, slogan: ui.slogan, requestId: civic.requestId(runRequest, [cityId.value, at, ui.slogan]) }, { success: 'You are on the ballot.' })
+  const result = await civic.send('p-run', '/api/civic/gov/run', { tier: at, side: ui.side, slogan: ui.slogan, requestId: civic.requestId(runRequest, [cityId.value, at, ui.side, ui.slogan]) }, { success: 'You are on the ballot.' })
   civic.requestDone(runRequest, result)
   if (result.ok) { ui.slogan = ''; overview.reload() }
   done(result, at)
@@ -65,35 +69,35 @@ async function run(): Promise<void> {
 async function vote(candidate: string): Promise<void> {
   const at = tier.value
   if (!at) return
-  done(await civic.send(`p-vote:${candidate}`, '/api/civic/gov/vote', { tier: at, candidate }, { success: 'Your vote was counted.' }), at)
+  done(await civic.send(`p-vote:${candidate}`, '/api/civic/gov/vote', { tier: at, side: ui.side, candidate }, { success: 'Your vote was counted.' }), at)
 }
 async function decree(lever: LeverView): Promise<void> {
   const at = tier.value, value = ui.levers[lever.id]
   if (!at) return
-  const result = await civic.send(`p-decree:${lever.id}`, '/api/politics/decree', { tier: at, lever: lever.id, value }, { success: `${lever.label} is now ${leverText(lever, value ?? lever.base)}.` })
+  const result = await civic.send(`p-decree:${lever.id}`, '/api/politics/decree', { tier: at, side: ui.side, lever: lever.id, value }, { success: `${lever.label} is now ${leverText(lever, value ?? lever.base)}.` })
   done(result)
 }
 async function proposeBill(lever: LeverView): Promise<void> {
   const at = tier.value, value = ui.levers[lever.id]
   if (!at) return
-  done(await civic.send(`p-bill:${lever.id}`, '/api/politics/bill', { tier: at, lever: lever.id, value }, { success: `A bill to set ${lever.label} is before the assembly.` }))
+  done(await civic.send(`p-bill:${lever.id}`, '/api/politics/bill', { tier: at, side: ui.side, lever: lever.id, value }, { success: `A bill to set ${lever.label} is before the assembly.` }))
 }
 async function voteBill(bill: BillView, yes: boolean): Promise<void> {
   const at = tier.value
   if (!at) return
-  const result = await civic.send(`p-billvote:${bill.id}`, '/api/politics/bill/vote', { tier: at, bill: bill.id, yes }, { success: yes ? 'You voted for the bill.' : 'You voted against the bill.' })
+  const result = await civic.send(`p-billvote:${bill.id}`, '/api/politics/bill/vote', { tier: at, side: ui.side, bill: bill.id, yes }, { success: yes ? 'You voted for the bill.' : 'You voted against the bill.' })
   if (result.ok && result.code === 'passed') game.toast('The bill passed: it is law for the week.', 'good')
   done(result)
 }
 async function signBill(bill: BillView, signIt: boolean): Promise<void> {
   const at = tier.value
   if (!at) return
-  done(await civic.send(`p-billsign:${bill.id}`, '/api/politics/bill/sign', { tier: at, bill: bill.id, sign: signIt }, { success: signIt ? 'You signed the bill.' : 'You vetoed the bill.' }))
+  done(await civic.send(`p-billsign:${bill.id}`, '/api/politics/bill/sign', { tier: at, side: ui.side, bill: bill.id, sign: signIt }, { success: signIt ? 'You signed the bill.' : 'You vetoed the bill.' }))
 }
 async function drawSalary(): Promise<void> {
   const at = tier.value
   if (!at) return
-  const result = await civic.send('p-salary', '/api/politics/salary', { tier: at, requestId: civic.requestId(salaryRequest, [cityId.value, at]) }, { success: 'Your salary was paid.' })
+  const result = await civic.send('p-salary', '/api/politics/salary', { tier: at, side: ui.side, requestId: civic.requestId(salaryRequest, [cityId.value, at]) }, { success: 'Your salary was paid.' })
   civic.requestDone(salaryRequest, result)
   done(result)
 }
@@ -184,6 +188,11 @@ const dateOf = (at: number): string => new Date(at).toLocaleDateString('en-NG', 
 
 <template>
   <div class="politics">
+    <nav class="politics-tabs" role="group" aria-label="Whose elections" data-politics-side>
+      <button type="button" :class="{ 'is-on': ui.side === 'humans' }" :aria-pressed="ui.side === 'humans'" @click="ui.side = 'humans'">Humans</button>
+      <button type="button" :class="{ 'is-on': ui.side === 'agents' }" :aria-pressed="ui.side === 'agents'" @click="ui.side = 'agents'">Agents</button>
+    </nav>
+    <p v-if="data" class="politics-note" data-politics-electorate>{{ ui.side === 'agents' ? 'The agents\' ballot: AI agents and the characters they play elect agent officials, with the same terms and rules. An agent office sets rules only for agent-played characters.' : 'The people\' ballot: characters played by people elect people\'s officials.' }}<template v-if="otherSide"> You are on the <b>{{ electorate === 'agents' ? 'agents\'' : 'people\'s' }}</b> side this election week{{ electorate === 'agents' ? ' (an AI agent has played your character)' : '' }}, so standing and voting here are closed to you.</template></p>
     <nav class="politics-tabs" role="tablist" aria-label="Politics">
       <button v-for="tab in TABS" :key="tab.id" type="button" role="tab" :aria-selected="ui.tab === tab.id" :class="{ 'is-on': ui.tab === tab.id }" @click="ui.tab = tab.id">{{ tab.label }}</button>
     </nav>
@@ -192,7 +201,8 @@ const dateOf = (at: number): string => new Date(at).toLocaleDateString('en-NG', 
 
     <template v-if="data && seat && tier">
       <section class="ui-card politics-seat">
-        <strong>{{ seat.title }} of {{ seat.name }}</strong>
+        <strong>{{ seat.title }} of {{ seat.name }}<span v-if="ui.side === 'agents'" class="politics-side"> · agents' office</span></strong>
+        <p v-if="seat.holder" data-politics-holder>Held by {{ seat.holder.name }}<AiTag :who="seat.holder" /></p>
         <p v-if="gov">{{ officeLine(seat, gov, officeParty) }}</p>
         <p class="politics-treasury">Treasury <b>{{ money(seat.treasury.balance) }}</b></p>
       </section>
@@ -212,7 +222,7 @@ const dateOf = (at: number): string => new Date(at).toLocaleDateString('en-NG', 
           <div v-for="candidate in gov.election.candidates" :key="candidate.id" class="politics-candidate" :class="{ 'is-chosen': gov.election.yourVote === candidate.id }">
             <div class="politics-who">
               <CivicAvatar :name="candidate.name" :seed="candidate.id" />
-              <strong>{{ candidate.name }}{{ candidate.you ? ' (you)' : '' }}</strong>
+              <strong>{{ candidate.name }}{{ candidate.you ? ' (you)' : '' }}</strong><AiTag :who="candidate" />
               <span v-if="gov.phase !== 'nominations'">{{ votes(candidate.votes) }}</span>
             </div>
             <span v-if="partyName(data, seat.parties[candidate.id])" class="politics-party"><i :style="{ background: bgOf(seat.parties[candidate.id] ? partyName(data, seat.parties[candidate.id])?.colour ?? '' : '') }" />{{ partyName(data, seat.parties[candidate.id])?.name }}</span>

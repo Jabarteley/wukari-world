@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/australia-oceania/papua-new-guinea-261011.osm.pbf",
+    "bytes": 54368277,
+    "md5": "1c33cb31283cef0ebdc230e44b52c654",
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/australia-oceania/australia/queensland-261011.osm.pbf",
+        "bytes": 198626406,
+        "md5": "6dabcc6cb419e080720ff8060b2a5e23",
+        "snapshotDate": "2026-10-11",
+        "reason": "ways 623239245, 623239249, 934762256, 934762261 (Torres Strait PNG-Australia maritime border, relation 307866 members) lie in the Geofabrik queensland polygon and not in indonesia or solomon-islands"
+      }
+    ]
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "port-moresby",
+      "name": "Port Moresby",
+      "countryISO": "PG",
+      "airport": {
+        "ident": "AYPY",
+        "sourceUrl": "https://ourairports.com/airports/AYPY/"
+      },
+      "timezone": {
+        "id": "Pacific/Port_Moresby",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

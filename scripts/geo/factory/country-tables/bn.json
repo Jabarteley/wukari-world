@@ -15,7 +15,7 @@
   },
   "seeds": [
     {
-      "id": "bandar-seri-begawan",
+      "id": "bsb",
       "name": "Bandar Seri Begawan",
       "countryISO": "BN",
       "airport": {

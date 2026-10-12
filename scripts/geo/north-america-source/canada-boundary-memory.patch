@@ -1,0 +1,51 @@
+--- a/scripts/geo/factory/bootstrap/country-boundary.py
++++ b/scripts/geo/factory/bootstrap/country-boundary.py
+@@ -103,0 +104,2 @@
++    location_indexes = pbf.parent / 'boundary-location-indexes'
++    location_indexes.mkdir(parents=True, exist_ok=True)
+@@ -120 +122,7 @@
+-    Ways().apply_file(str(pbf), locations=True)
++    ways_location_index = location_indexes / 'ways.sparse'
++    ways_location_index.unlink(missing_ok=True)
++    try:
++        Ways().apply_file(str(pbf), locations=True,
++                          idx=f'sparse_file_array,{ways_location_index}')
++    finally:
++        ways_location_index.unlink(missing_ok=True)
+@@ -127,12 +135,24 @@
+-    processor = osmium.FileProcessor(str(pbf)).with_areas(country_tags).with_filter(osmium.filter.EntityFilter(osmium.osm.AREA))
+-    for area in processor:
+-        if area.from_way() or area.orig_id() != relation['id']:
+-            continue
+-        area_tags = dict(area.tags)
+-        for key in ('boundary', 'admin_level', 'ISO3166-1:alpha2', 'ISO3166-1'):
+-            if key in relation['tags']:
+-                require(area_tags.get(key) == relation['tags'][key], 'assembled country identity tags differ from source relation')
+-        geometry = shape(json.loads(factory.create_multipolygon(area)))
+-        require(geometry.geom_type in {'Polygon', 'MultiPolygon'} and not geometry.is_empty and geometry.is_valid,
+-                'country area assembly yielded empty/invalid/nonpolygon geometry')
+-        geometries.append(geometry)
++    areas_location_index = location_indexes / 'areas.sparse'
++    areas_location_index.unlink(missing_ok=True)
++    processor = None
++    try:
++        processor = (
++            osmium.FileProcessor(str(pbf))
++            .with_locations(storage=f'sparse_file_array,{areas_location_index}')
++            .with_areas(country_tags)
++            .with_filter(osmium.filter.EntityFilter(osmium.osm.AREA))
++        )
++        for area in processor:
++            if area.from_way() or area.orig_id() != relation['id']:
++                continue
++            area_tags = dict(area.tags)
++            for key in ('boundary', 'admin_level', 'ISO3166-1:alpha2', 'ISO3166-1'):
++                if key in relation['tags']:
++                    require(area_tags.get(key) == relation['tags'][key], 'assembled country identity tags differ from source relation')
++            geometry = shape(json.loads(factory.create_multipolygon(area)))
++            require(geometry.geom_type in {'Polygon', 'MultiPolygon'} and not geometry.is_empty and geometry.is_valid,
++                    'country area assembly yielded empty/invalid/nonpolygon geometry')
++            geometries.append(geometry)
++    finally:
++        processor = None
++        areas_location_index.unlink(missing_ok=True)

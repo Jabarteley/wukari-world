@@ -2,7 +2,7 @@ name: North America Canada boundary resource diagnostic
 on:
   push:
     branches: ['codex/world-north-america-20261011']
-    paths: ['scripts/geo/north-america-source/canada-boundary.json', 'scripts/geo/north-america-source/canada-boundary-rerun.md', 'scripts/geo/north-america-source/canada-highest-point.patch', 'scripts/geo/north-america-source/boundary-run-monitor.py']
+    paths: ['scripts/geo/north-america-source/canada-boundary.json', 'scripts/geo/north-america-source/canada-boundary-rerun.md', 'scripts/geo/north-america-source/canada-highest-point.patch', 'scripts/geo/north-america-source/canada-boundary-memory.patch', 'scripts/geo/north-america-source/boundary-run-monitor.py']
 permissions:
   contents: read
 concurrency:
@@ -25,12 +25,16 @@ jobs:
           ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
           path: boundary-tooling
           persist-credentials: false
-      - name: Apply exact two-file, role-scoped boundary correction
+      - name: Apply reviewed member correction and Canada disk-backed location caches
         run: |
           set -euo pipefail
           echo "99a7f9bb4934dd648e7843112fb7eb0d5e5194ae3417434e5d13aa7bbb5ea584  scripts/geo/north-america-source/canada-highest-point.patch" | sha256sum --check
+          echo "49e59d8bcd3827002463520c1b83facf91b2fc3a094bea3a8a1fa46ce5dce8fa  scripts/geo/north-america-source/canada-boundary-memory.patch" | sha256sum --check
           test "$(git -C boundary-tooling rev-parse HEAD)" = "0786c00510f2827d6495a53fc3299f3112d0d6b4"
+          git -C boundary-tooling apply "$GITHUB_WORKSPACE/scripts/geo/north-america-source/canada-boundary-memory.patch"
           git -C boundary-tooling apply "$GITHUB_WORKSPACE/scripts/geo/north-america-source/canada-highest-point.patch"
+          grep -Fq "idx=f'sparse_file_array,{ways_location_index}'" boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py
+          grep -Fq ".with_locations(storage=f'sparse_file_array,{areas_location_index}')" boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py
           grep -Fq "(args.country == 'CA' and relation['id'] == 1428125 and member['ref'] == 618700710) or (args.country == 'US' and relation['id'] == 148838 and member['ref'] == 2748929230)" boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py
           grep -Fq "iso === 'CA' && relation.id === 1428125 && member.ref === 618700710 || iso === 'US' && relation.id === 148838 && member.ref === 2748929230" boundary-tooling/scripts/geo/factory/country-scope.mjs
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -43,7 +47,7 @@ jobs:
           df -B1 "$RUNNER_TEMP" > "$RUNNER_TEMP/canada-boundary/publish/resources/disk-before.txt"
           free -b > "$RUNNER_TEMP/canada-boundary/publish/resources/memory-before.txt"
           python - <<'PY'
-          import hashlib, json, os, shutil, subprocess
+          import hashlib, json, osmium, os, shutil, subprocess
           from pathlib import Path
           root = Path(os.environ['RUNNER_TEMP']) / 'canada-boundary'
           publish = root / 'publish'
@@ -57,12 +61,15 @@ jobs:
               tooling = subprocess.check_output(['git', '-C', 'boundary-tooling', 'rev-parse', 'HEAD'], text=True).strip()
               if tooling != '0786c00510f2827d6495a53fc3299f3112d0d6b4':
                   raise ValueError('boundary tooling checkout mismatch')
+              index_types = osmium.index.map_types()
+              if 'sparse_file_array' not in index_types:
+                  raise ValueError('pinned pyosmium does not provide sparse_file_array')
               disk = shutil.disk_usage(root)
-              reserve = 3 * 1024 ** 3
-              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': hashlib.sha256(Path('scripts/geo/north-america-source/canada-highest-point.patch').read_bytes()).hexdigest(), 'assembledHelperSha256': hashlib.sha256((Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py')).read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'boundaryBudgetSeconds': 1500}
+              reserve = 24 * 1024 ** 3
+              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': hashlib.sha256(Path('scripts/geo/north-america-source/canada-highest-point.patch').read_bytes()).hexdigest(), 'memoryPatchSha256': hashlib.sha256(Path('scripts/geo/north-america-source/canada-boundary-memory.patch').read_bytes()).hexdigest(), 'locationIndexType': 'sparse_file_array', 'availableLocationIndexTypes': index_types, 'assembledHelperSha256': hashlib.sha256((Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py')).read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'boundaryBudgetSeconds': 2700}
               (publish / 'resources/preflight.json').write_text(json.dumps(proof, indent=2) + '\n')
               if disk.free < request['bytes'] + reserve:
-                  raise ValueError(f'insufficient free disk: {disk.free}; require {request["bytes"] + reserve} bytes including 3GiB reserve')
+                  raise ValueError(f'insufficient free disk: {disk.free}; require {request["bytes"] + reserve} bytes including 24GiB location-index reserve')
               result.update(status='PREFLIGHT_PASSED', reason='Exact pins/tooling and measured disk preflight passed')
           except Exception as error:
               result['reason'] = str(error)
@@ -134,7 +141,7 @@ jobs:
           path: ${{ runner.temp }}/canada-boundary/pre-boundary
           if-no-files-found: error
           retention-days: 14
-      - name: Prove exact same-source boundary within 25 minutes
+      - name: Prove exact same-source boundary within 45 minutes
         id: boundary
         if: steps.download.outcome == 'success'
         continue-on-error: true
@@ -155,7 +162,7 @@ jobs:
           trap 'capture_signal SIGINT' INT
           source_sha=$(python -c 'import json,os; from pathlib import Path; print(json.loads((Path(os.environ["RUNNER_TEMP"])/"canada-boundary/publish/source-receipt.json").read_text())["sha256"])')
           printf 'DIAG_BOUNDARY_START utc=%s bash_pid=%s source_sha256=%s\n' "$(date -u +%FT%TZ)" "$$" "$source_sha"
-          /usr/bin/time -v -o "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-time.txt" timeout --signal=TERM --kill-after=30s 25m \
+          /usr/bin/time -v -o "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-time.txt" timeout --signal=TERM --kill-after=30s 45m \
             python boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py \
             --pbf "$RUNNER_TEMP/canada-boundary/country.osm.pbf" --country CA \
             --expected-sha256 "$source_sha" --expected-bytes 6521324534 \
@@ -192,7 +199,7 @@ jobs:
                       raise ValueError(stage + ' stage was not executed or did not finish')
                   code = int(exit_path.read_text())
                   if code:
-                      detail = ('30-minute download budget' if stage == 'download' else '25-minute boundary budget') + ' exceeded' if code == 124 else f'{stage} exited {code}; inspect resources/{stage}.log'
+                      detail = ('30-minute download budget' if stage == 'download' else '45-minute boundary budget') + ' exceeded' if code == 124 else f'{stage} exited {code}; inspect resources/{stage}.log'
                       if stage == 'boundary' and (publish / 'boundary/result.json').exists():
                           detail += ': ' + json.loads((publish / 'boundary/result.json').read_text()).get('reason', 'boundary HOLD')
                       elif stage == 'download' and result['status'] == 'HOLD':

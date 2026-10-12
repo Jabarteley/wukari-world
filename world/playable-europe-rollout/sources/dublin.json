@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dublin",
+  "countryIso2": "IE",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Dublin",
+    "coordinatesWgs84": [
+      -6.2605593,
+      53.3493795
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/ireland-and-northern-ireland-261008.osm.pbf"
+  },
+  "airport": {
+    "id": "dublin-airport",
+    "name": "Dublin Airport",
+    "lon": -6.262121,
+    "lat": 53.428713,
+    "sourceUrl": "https://ourairports.com/airports/EIDW/"
+  },
+  "boxes": {
+    "play": [
+      53.16849861006602,
+      -6.562818373934496,
+      53.53026038993398,
+      -5.958300226065504
+    ],
+    "core": [
+      53.304159277516504,
+      -6.335882992901229,
+      53.39459972248349,
+      -6.185235607098771
+    ],
+    "outline": [
+      53.11849861006602,
+      -6.612818373934496,
+      53.580260389933976,
+      -5.908300226065504
+    ],
+    "wide": [
+      52.568498610066015,
+      -7.1628183739344955,
+      54.13026038993398,
+      -5.358300226065504
+    ],
+    "water": [
+      52.568498610066015,
+      -7.1628183739344955,
+      54.13026038993398,
+      -5.358300226065504
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/ireland-and-northern-ireland-261008.osm.pbf",
+    "datasetSha256": "27debc861b7b168891b1e7f59da29043312e175161b19d619065da67fbdf6ca4",
+    "pbfHeaderTimestamp": "2026-10-08T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "fd96565945c73236cecc15b0aca1456070c84ed688b4b35077358c8101785790",
+        "elements": 3197
+      },
+      {
+        "file": "extras.json",
+        "sha256": "40a009954e789797bfb4a1ecfb3c0563c6dc286cba3905eb146025031610865d",
+        "elements": 773
+      },
+      {
+        "file": "water.json",
+        "sha256": "c62fbe4c78d7269473a06e64031187ae12d3e87bc24f71e44a17a9f349ccbe62",
+        "elements": 2434
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "92f546b6d7f6fe6b2d7091c72de6fda7e2bc89fc9628e637a73bedb159660530",
+        "elements": 14399
+      },
+      {
+        "file": "roads.json",
+        "sha256": "14d70d7d3a3c8307954e1d86c79f1fb8d592bc7a0abd0d1a971db4935a1f1428",
+        "elements": 3936
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Adamstown",
+      "osm": "node/252821911",
+      "coordinatesWgs84": [
+        -6.469232,
+        53.336002
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bon Appétit",
+      "osm": "node/1752476235",
+      "coordinatesWgs84": [
+        -6.151819,
+        53.451613
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dublin Business School",
+      "osm": "node/651804747",
+      "coordinatesWgs84": [
+        -6.265439,
+        53.340516
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Connolly Hospital",
+      "osm": "way/12219521",
+      "coordinatesWgs84": [
+        -6.367596,
+        53.389163
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tymon Park",
+      "osm": "relation/7222370",
+      "coordinatesWgs84": [
+        -6.342282,
+        53.297445
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Donaghmede Shopping Centre",
+      "osm": "way/28008541",
+      "coordinatesWgs84": [
+        -6.16256,
+        53.394961
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kill o' the Grange",
+      "osm": "way/73561110",
+      "coordinatesWgs84": [
+        -6.162455,
+        53.27865
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mayor Square",
+      "osm": "way/12359723",
+      "coordinatesWgs84": [
+        -6.243431,
+        53.349239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Presidential Residence",
+      "osm": "way/26636056",
+      "coordinatesWgs84": [
+        -6.317299,
+        53.359846
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "RCSI Reservoir House",
+      "osm": "way/228188022",
+      "coordinatesWgs84": [
+        -6.209762,
+        53.278514
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Morton Stadium",
+      "osm": "way/26778663",
+      "coordinatesWgs84": [
+        -6.24502,
+        53.400813
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Seefin Cairn",
+      "osm": "way/541772649",
+      "coordinatesWgs84": [
+        -6.394835,
+        53.18626
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Raheen-a-Cluig",
+      "osm": "way/769452904",
+      "coordinatesWgs84": [
+        -6.090531,
+        53.193797
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Seachnall's Church",
+      "osm": "way/1136285120",
+      "coordinatesWgs84": [
+        -6.539292,
+        53.514247
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Corkagh Park",
+      "osm": "way/325933039",
+      "coordinatesWgs84": [
+        -6.415107,
+        53.312043
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Enda's Park",
+      "osm": "way/23565036",
+      "coordinatesWgs84": [
+        -6.28238,
+        53.28413
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St David's Church",
+      "osm": "way/312566450",
+      "coordinatesWgs84": [
+        -6.318195,
+        53.476423
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of the Assumption",
+      "osm": "way/227972923",
+      "coordinatesWgs84": [
+        -6.064761,
+        53.384851
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cherry Orchard Hospital",
+      "osm": "way/29504327",
+      "coordinatesWgs84": [
+        -6.377917,
+        53.343062
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Columcille's Hospital",
+      "osm": "way/51680291",
+      "coordinatesWgs84": [
+        -6.132896,
+        53.242361
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "UCD Bowl",
+      "osm": "way/40585926",
+      "coordinatesWgs84": [
+        -6.22811,
+        53.310451
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parnell Park",
+      "osm": "way/562581062",
+      "coordinatesWgs84": [
+        -6.216207,
+        53.373003
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Square Towncentre",
+      "osm": "relation/14714515",
+      "coordinatesWgs84": [
+        -6.371972,
+        53.286834
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kylemore College",
+      "osm": "way/255385171",
+      "coordinatesWgs84": [
+        -6.351334,
+        53.344907
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1301,
+      "sha256": "cacbab7845e2166a8c0ff64bc30c8e3b6735ec65ddfd5c32d46938de1fd71d36"
+    },
+    "geometry.ts": {
+      "bytes": 92466,
+      "sha256": "5ea0c64caeb12ec0bcf75348eea3c4941d7579f90854e0870a6331ebe7a81126"
+    },
+    "places.ts": {
+      "bytes": 9705,
+      "sha256": "718037fe44a69d9add22075fde160b8761bfd5bd82d42193f59f61ea91ca5470"
+    },
+    "terrain.ts": {
+      "bytes": 243650,
+      "sha256": "683399c0d9eb085e1de4d2ec5bee44974333e1001bfa6136f5101edf9cd322d6"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "1dab0be07c8b28aa54bb55950b48a9fada4799d3adf202d3d413e019b888edaf"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

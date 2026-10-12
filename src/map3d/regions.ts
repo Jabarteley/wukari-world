@@ -1,3 +1,5 @@
+import { ATLAS_LEVEL_METADATA, countryAtlasLevel } from '../game/cities/atlasMetadata.ts';
+export { countryAtlasLevel } from '../game/cities/atlasMetadata.ts';
 import { relLon } from './geo/projection.ts';
 import { knownCityIds, cityRules, cityCatalogue, cityCatalogueEntry, loadCityMap, catalogueCitiesInState } from '../game/cities/registry.ts';
 /**
@@ -252,15 +254,6 @@ export interface RegionInfo extends RegionEntry { status: RegionStatus }
 // Each loaded continent replaces its fallback with the complete decoded source geometry extent.
 // Existing focused atlas checks require this metadata to match WORLD when its producer changes.
 // Polygon data stays behind the existing lazy import; all source components are retained.
-const continentCountries: Readonly<Record<ContinentId, ReadonlySet<string>>> = {
-  af: new Set(["ao","bf","bi","bj","bw","cd","cf","cg","ci","cm","cv","dj","dz","eg","eh","er","et","ga","gh","gm","gn","gq","gw","ke","km","lr","ls","ly","ma","mg","ml","mr","mu","mw","mz","na","ne","ng","rw","sc","sd","sh","sl","sn","so","sol","ss","st","sz","td","tg","tn","tz","ug","za","zm","zw"]),
-  eu: new Set(["ad","al","at","ax","ba","be","bg","by","ch","cz","de","dk","ee","es","fi","fo","fr","gb","gg","gr","hr","hu","ie","im","is","it","je","li","lt","lu","lv","mc","md","me","mk","mt","nl","no","pl","pt","ro","rs","ru","se","si","sk","sm","ua","xk"]),
-  as: new Set(["ae","af","am","az","bd","bh","bn","bt","cn","cy","cyn","ge","hk","id","il","in","io","ioa","iq","ir","jo","jp","kas","kg","kh","kp","kr","kw","kz","la","lb","lk","mm","mn","mo","mv","my","np","om","ph","pk","ps","qa","sa","sg","sy","th","tj","tl","tm","tr","tw","uz","vn","ye"]),
-  na: new Set(["ag","ai","aw","bb","bl","bm","bs","bz","ca","cr","cu","cw","dm","do","gd","gl","gt","hn","ht","jm","kn","ky","lc","mf","ms","mx","ni","pa","pm","pr","sv","sx","tc","tt","us","vc","vg","vi"]),
-  sa: new Set(["ar","bo","br","cl","co","ec","fk","gy","pe","py","sr","uy","ve"]),
-  oc: new Set(["as","atc","au","ck","fj","fm","gu","ki","mh","mp","nc","nf","nr","nu","nz","pf","pg","pn","pw","sb","to","tv","vu","wf","ws"]),
-  an: new Set(["aq","gs","hm","tf"]),
-};
 const continentFrames: Readonly<Partial<Record<ContinentId, Box4>>> = {
   eu: [-18.7,35.9,44.7,65.9],
   as: [33.1,-10.5,138.4,49.1],
@@ -292,22 +285,17 @@ async function loadWorldContinent(continent: ContinentId): Promise<typeof import
 }
 
 export const ATLAS_LEVELS: readonly AtlasLevel[] = Object.freeze<AtlasLevel[]>([
-  { id: 'world', name: 'World', pitch: 1.5, kind: 'country', frame: [-169, -58, 191, 80], data: () => import('./geo/data/world.ts') },
-  { id: 'africa', name: 'Africa', parent: 'world', pitch: 1.44, kind: 'country', continent: 'af', frame: [-18.5, -35.5, 52, 38], data: () => import('./geo/data/africa.ts') },
+  { ...ATLAS_LEVEL_METADATA[0]!, id: 'world', pitch: 1.5, kind: 'country', frame: [-169, -58, 191, 80], data: () => import('./geo/data/world.ts') },
+  { ...ATLAS_LEVEL_METADATA[1]!, id: 'africa', pitch: 1.44, kind: 'country', continent: 'af', frame: [-18.5, -35.5, 52, 38], data: () => import('./geo/data/africa.ts') },
   // `around`: the neighbouring countries the level draws itself, as flat land (ISO codes; the same list as the data module's AROUND).
-  { id: 'nigeria', name: 'Nigeria', parent: 'africa', pitch: 1.04, kind: 'state', country: 'ng', frame: [2.6, 4.1, 14.8, 14], around: ['bf', 'bj', 'cf', 'cm', 'ga', 'gh', 'gq', 'ne', 'ng', 'st', 'td', 'tg'], data: () => import('./geo/data/nigeria.ts') },
-  { id: 'europe', name: CONTINENTS.eu.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'eu', frame: continentFrames.eu!, data: () => loadWorldContinent('eu') },
-  { id: 'asia', name: CONTINENTS.as.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'as', frame: continentFrames.as!, data: () => loadWorldContinent('as') },
-  { id: 'north-america', name: CONTINENTS.na.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'na', frame: continentFrames.na!, data: () => loadWorldContinent('na') },
-  { id: 'south-america', name: CONTINENTS.sa.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'sa', frame: continentFrames.sa!, data: () => loadWorldContinent('sa') },
-  { id: 'oceania', name: CONTINENTS.oc.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'oc', frame: continentFrames.oc!, data: () => loadWorldContinent('oc') },
-  { id: 'antarctica', name: CONTINENTS.an.name, parent: 'world', pitch: 1.44, kind: 'country', continent: 'an', frame: continentFrames.an!, data: () => loadWorldContinent('an') },
+  { ...ATLAS_LEVEL_METADATA[2]!, id: 'nigeria', pitch: 1.04, kind: 'state', country: 'ng', frame: [2.6, 4.1, 14.8, 14], around: ['bf', 'bj', 'cf', 'cm', 'ga', 'gh', 'gq', 'ne', 'ng', 'st', 'td', 'tg'], data: () => import('./geo/data/nigeria.ts') },
+  { ...ATLAS_LEVEL_METADATA[3]!, id: 'europe', pitch: 1.44, kind: 'country', continent: 'eu', frame: continentFrames.eu!, data: () => loadWorldContinent('eu') },
+  { ...ATLAS_LEVEL_METADATA[4]!, id: 'asia', pitch: 1.44, kind: 'country', continent: 'as', frame: continentFrames.as!, data: () => loadWorldContinent('as') },
+  { ...ATLAS_LEVEL_METADATA[5]!, id: 'north-america', pitch: 1.44, kind: 'country', continent: 'na', frame: continentFrames.na!, data: () => loadWorldContinent('na') },
+  { ...ATLAS_LEVEL_METADATA[6]!, id: 'south-america', pitch: 1.44, kind: 'country', continent: 'sa', frame: continentFrames.sa!, data: () => loadWorldContinent('sa') },
+  { ...ATLAS_LEVEL_METADATA[7]!, id: 'oceania', pitch: 1.44, kind: 'country', continent: 'oc', frame: continentFrames.oc!, data: () => loadWorldContinent('oc') },
+  { ...ATLAS_LEVEL_METADATA[8]!, id: 'antarctica', pitch: 1.44, kind: 'country', continent: 'an', frame: continentFrames.an!, data: () => loadWorldContinent('an') },
 ]);
-
-export function countryAtlasLevel(id: string): AtlasLevelId | null {
-  if (id === 'ng') return 'nigeria';
-  return ATLAS_LEVELS.find(level => level.continent && continentCountries[level.continent].has(id))?.id ?? null;
-}
 
 /** @param {RegionKind} kind @param {string} id @returns {RegionEntry & { status: RegionStatus }} the registry entry, with the default status filled in */
 export function regionEntry(kind: RegionKind, id: string): RegionInfo {

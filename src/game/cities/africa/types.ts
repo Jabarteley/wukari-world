@@ -13,6 +13,8 @@ export interface DestinationFacts {
   readonly sourceLabel: string
   readonly sourceUrl: string
   readonly licence: string
+  /** Player-facing city introduction; source scope and caveats stay in coverageNote. */
+  readonly playerIntro?: string
   /** WGS84 [west, south, east, north] bounds of this starter play area. */
   readonly bounds: readonly [west: number, south: number, east: number, north: number]
   /** Explains the scope and limits of the starter play area. */
@@ -96,6 +98,7 @@ export function validateDestinationFacts(facts: DestinationFacts): ValidatedDest
   text(facts.sourceUrl, 'source URL')
   text(facts.airport.sourceUrl, 'airport source URL')
   text(facts.licence, 'source licence')
+  if (facts.playerIntro !== undefined) text(facts.playerIntro, 'player introduction')
   text(facts.coverageNote, 'coverage note')
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(facts.id)) throw new TypeError('destination id must be a lowercase hyphenated id')
   if (!/^[a-z]{2}$/u.test(facts.country.idISOlower)) throw new TypeError('country ISO id must be two lowercase letters')

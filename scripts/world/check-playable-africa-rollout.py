@@ -12,6 +12,7 @@ ASSETS = frozenset(('facts.ts', 'geometry.ts', 'index.ts', 'content.ts', 'map.ts
 CITY_ID = re.compile(r'[a-z0-9]+(?:-[a-z0-9]+)*\Z')
 SHA256 = re.compile(r'[0-9a-f]{64}\Z')
 ROOT = Path(__file__).absolute().parents[2]
+ROLLOUTS = ('playable-africa-rollout', 'playable-europe-rollout')
 
 
 def require(condition, message):
@@ -81,7 +82,14 @@ def facts_object(data):
 
 
 def check_city(root, city):
-    receipt_bytes = read_bounded(root, ('world', 'playable-africa-rollout', 'receipts', city + '.json'), 256 * 1024)
+    receipts = []
+    for rollout in ROLLOUTS:
+        try:
+            receipts.append(read_bounded(root, ('world', rollout, 'receipts', city + '.json'), 256 * 1024))
+        except FileNotFoundError:
+            continue
+    require(len(receipts) == 1, 'city requires exactly one canonical rollout receipt')
+    receipt_bytes = receipts[0]
     receipt = DECODER.decode(receipt_bytes.decode('utf-8'))
     require(isinstance(receipt, dict) and receipt.get('cityId') == city, 'receipt city mismatch')
     assets = receipt.get('assets')

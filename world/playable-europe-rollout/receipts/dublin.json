@@ -7,7 +7,7 @@
     "stateId": "ie-dublin",
     "stateName": "Dublin"
   },
-  "inventorySha256": "0f55d100fc3397634180613fa6c145454bc232e00b08404e2019e814e20fc922",
+  "inventorySha256": "dc76be14c547d940f740465cbfa95a3555690cb136d28d5b4201aebd8aa585e0",
   "inventoryPath": "world/playable-europe-rollout/sources/dublin.json",
   "admission": {
     "registered": true,
@@ -81,8 +81,8 @@
   },
   "assets": {
     "facts.ts": {
-      "bytes": 1272,
-      "sha256": "f34d409654c76361b569083fe41e2a9db9a739927aba9769c768ef378246c538"
+      "bytes": 1301,
+      "sha256": "cacbab7845e2166a8c0ff64bc30c8e3b6735ec65ddfd5c32d46938de1fd71d36"
     },
     "geometry.ts": {
       "bytes": 92466,

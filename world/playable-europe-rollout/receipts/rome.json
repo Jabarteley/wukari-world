@@ -7,7 +7,7 @@
     "stateId": "it-rome",
     "stateName": "Rome"
   },
-  "inventorySha256": "d6ca53c0dc8ff5ff4d294d90c6843116ea65b175afd3569c8c674b96cbf34dc4",
+  "inventorySha256": "67b4ba59db10a9eab126a7820d6cc69e349e5478501d07c5e685c23973000d52",
   "inventoryPath": "world/playable-europe-rollout/sources/rome.json",
   "admission": {
     "registered": true,
@@ -81,8 +81,8 @@
   },
   "assets": {
     "facts.ts": {
-      "bytes": 1279,
-      "sha256": "0e33d6263b0fd875186b734af90cdb9498b42a746edb87e434d9f701992f7451"
+      "bytes": 1304,
+      "sha256": "c93bf2fb2c093062dc563de72956add90b156a80ae0e247124a8689a7fe69d07"
     },
     "geometry.ts": {
       "bytes": 168857,

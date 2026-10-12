@@ -23,6 +23,13 @@ export const GENERATED_LINKS = Object.freeze({
   minAirKm: 250,
   road: Object.freeze({ base: 1500, perKm: 16, step: 500 }),
   air: Object.freeze({ base: 20000, perKm: 80, step: 1000 }),
+  /**
+   * Ceiling for one generated ticket. The existing ticket and homeward-credit cap is ₦1,000,000 for a whole journey, and a
+   * city without an airport reaches a far-flung one by road then air (then road again). Leaving ₦100,000 under the ceiling
+   * keeps up to three feeder bus legs (the dearest generated bus is ₦28,000) inside it, so every pair of open cities still has a
+   * bookable homeward quote and a ₦1m starting balance can pay for the whole trip.
+   */
+  maxAirFare: 900_000,
 })
 
 export interface LinkableCity {
@@ -50,8 +57,8 @@ export function greatCircleKm(a: Pick<LinkableCity, 'lon' | 'lat'>, b: Pick<Link
 
 const rounded = (value: number, step: number): number => Math.max(step, Math.round(value / step) * step)
 export const generatedRoadFare = (roadKm: number): number => rounded(GENERATED_LINKS.road.base + GENERATED_LINKS.road.perKm * roadKm, GENERATED_LINKS.road.step)
-/** Generated tickets respect the existing lifetime/homeward ticket ceiling and remain buyable at the default ₦1m start balance. */
-export const generatedAirFare = (airKm: number): number => Math.min(1_000_000, rounded(GENERATED_LINKS.air.base + GENERATED_LINKS.air.perKm * airKm, GENERATED_LINKS.air.step))
+/** Generated tickets stay under the journey ceiling less a feeder-bus allowance (see `maxAirFare`) and remain buyable at the default ₦1m start balance. */
+export const generatedAirFare = (airKm: number): number => Math.min(GENERATED_LINKS.maxAirFare, rounded(GENERATED_LINKS.air.base + GENERATED_LINKS.air.perKm * airKm, GENERATED_LINKS.air.step))
 
 const pairKey = (a: string, b: string, mode: string): string => `${[a, b].sort().join('|')}|${mode}`
 

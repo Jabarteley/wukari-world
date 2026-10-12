@@ -580,13 +580,16 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
       if (!visible) { if (!node.hidden) node.hidden = true; continue; }
       const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 };
       // A name that would sit on top of a more important one shrinks to its icon; it is still a button with its full name.
-      const lift = labelShift(full, piece), moved = lift ? { l: full.l, r: full.r, t: full.t + lift, b: full.b + lift } : full, fitted = label.priority >= 70 ? fitLabel(at, label.width + 6, label.height + 4, bounds, piece ? [...taken, piece] : taken) : null;
-      const wantsName = label.priority >= NAMED_FROM || named < allowed, compact = fitted ? false : !wantsName || hits(moved), small = { l: at.x - 15 * uz, r: at.x + 15 * uz, t: at.y - 30 * uz, b: at.y };
+      const lift = labelShift(full, piece), moved = lift ? { l: full.l, r: full.r, t: full.t + lift, b: full.b + lift } : full;
+      const wantsName = label.priority >= NAMED_FROM || named < allowed, outside = moved.l < bounds.l || moved.r > bounds.r || moved.t < bounds.t || moved.b > bounds.b;
+      const fitted = label.priority >= 70 || (wantsName && outside) ? fitLabel(at, label.width + 6, label.height + 4, bounds, piece ? [...taken, piece] : taken) : null;
+      const compact = fitted ? false : !wantsName || hits(moved) || outside, small = { l: at.x - 15 * uz, r: at.x + 15 * uz, t: at.y - 30 * uz, b: at.y };
       // It steps clear of the player's piece: up on a longer stalk, or down over its own roof (src/map3d/labels.ts).
       const shift = fitted ? 0 : compact ? labelShift(small, piece) : lift, x = fitted?.x ?? at.x, y = (fitted?.y ?? at.y) + shift;
       const used = fitted?.box ?? (compact ? { l: small.l - 2, r: small.r + 2, t: small.t + shift - 2, b: small.b + shift + 2 } : moved);
       // Level of detail: an icon that would still sit on a more important label or icon is left out; it returns as the view comes closer.
-      if (compact && label.priority < 70 && hits(used)) { if (!node.hidden) node.hidden = true; continue; }
+      const iconOutside = compact && (used.l < bounds.l || used.r > bounds.r || used.t < bounds.t || used.b > bounds.b);
+      if (iconOutside || (compact && label.priority < 70 && hits(used))) { if (!node.hidden) node.hidden = true; continue; }
       if (node.hidden) node.hidden = false;
       taken.push(used);
       if (!compact && label.priority < NAMED_FROM) named += 1;

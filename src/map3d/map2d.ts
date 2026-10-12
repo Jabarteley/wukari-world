@@ -402,10 +402,14 @@ export function createMap2D(container: HTMLElement, { ladder = NO_PORT, pack, ci
       const node = label.node;
       if (node.hidden === visible) node.hidden = !visible;
       if (!visible) continue;
-      const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 }, fitted = label.priority >= 70 ? fitLabel(at, label.width + 6, label.height + 4, bounds, taken) : null, compact = fitted ? false : (label.priority < NAMED_FROM && named >= allowed) || hits(full);
+      const full = { l: at.x - label.width / 2 - 3, r: at.x + label.width / 2 + 3, t: at.y - label.height - 2, b: at.y + 2 };
+      const wantsName = label.priority >= NAMED_FROM || named < allowed, outside = full.l < bounds.l || full.r > bounds.r || full.t < bounds.t || full.b > bounds.b;
+      const fitted = label.priority >= 70 || (wantsName && outside) ? fitLabel(at, label.width + 6, label.height + 4, bounds, taken) : null;
+      const compact = fitted ? false : !wantsName || hits(full) || outside;
       const used = fitted?.box ?? (compact ? { l: at.x - 17, r: at.x + 17, t: at.y - 32, b: at.y + 2 } : full), x = fitted?.x ?? at.x, y = fitted?.y ?? at.y;
       // Level of detail: an icon that would still sit on a more important label or icon is left out until the view is closer.
-      if (compact && label.priority < 70 && hits(used)) { if (!node.hidden) node.hidden = true; continue; }
+      const iconOutside = compact && (used.l < bounds.l || used.r > bounds.r || used.t < bounds.t || used.b > bounds.b);
+      if (iconOutside || (compact && label.priority < 70 && hits(used))) { if (!node.hidden) node.hidden = true; continue; }
       if (node.hidden) node.hidden = false;
       taken.push(used);
       if (!compact && label.priority < NAMED_FROM) named += 1;

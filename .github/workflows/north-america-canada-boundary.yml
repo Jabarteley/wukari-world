@@ -2,7 +2,7 @@ name: North America Canada boundary resource diagnostic
 on:
   push:
     branches: ['codex/world-north-america-20261011']
-    paths: ['scripts/geo/north-america-source/canada-boundary.json']
+    paths: ['scripts/geo/north-america-source/canada-boundary.json', 'scripts/geo/north-america-source/canada-boundary-rerun.md', 'scripts/geo/north-america-source/canada-highest-point.patch']
 permissions:
   contents: read
 concurrency:
@@ -25,6 +25,14 @@ jobs:
           ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
           path: boundary-tooling
           persist-credentials: false
+      - name: Apply exact two-file, role-scoped boundary correction
+        run: |
+          set -euo pipefail
+          echo "99a7f9bb4934dd648e7843112fb7eb0d5e5194ae3417434e5d13aa7bbb5ea584  scripts/geo/north-america-source/canada-highest-point.patch" | sha256sum --check
+          test "$(git -C boundary-tooling rev-parse HEAD)" = "0786c00510f2827d6495a53fc3299f3112d0d6b4"
+          git -C boundary-tooling apply "$GITHUB_WORKSPACE/scripts/geo/north-america-source/canada-highest-point.patch"
+          grep -Fq "(args.country == 'CA' and relation['id'] == 1428125 and member['ref'] == 618700710) or (args.country == 'US' and relation['id'] == 148838 and member['ref'] == 2748929230)" boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py
+          grep -Fq "iso === 'CA' && relation.id === 1428125 && member.ref === 618700710 || iso === 'US' && relation.id === 148838 && member.ref === 2748929230" boundary-tooling/scripts/geo/factory/country-scope.mjs
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
@@ -51,7 +59,7 @@ jobs:
                   raise ValueError('boundary tooling checkout mismatch')
               disk = shutil.disk_usage(root)
               reserve = 3 * 1024 ** 3
-              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'boundaryBudgetSeconds': 1500}
+              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': hashlib.sha256(Path('scripts/geo/north-america-source/canada-highest-point.patch').read_bytes()).hexdigest(), 'assembledHelperSha256': hashlib.sha256((Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py')).read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'boundaryBudgetSeconds': 1500}
               (publish / 'resources/preflight.json').write_text(json.dumps(proof, indent=2) + '\n')
               if disk.free < request['bytes'] + reserve:
                   raise ValueError(f'insufficient free disk: {disk.free}; require {request["bytes"] + reserve} bytes including 3GiB reserve')

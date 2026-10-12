@@ -1,0 +1,24 @@
+--- a/scripts/geo/factory/bootstrap/country-boundary.py
++++ b/scripts/geo/factory/bootstrap/country-boundary.py
+@@ -85,7 +85,8 @@
+     excluded, unsupported, boundary_records = [], [], []
+     for member in relation['members']:
+         # OSM Relation:boundary defines subarea relations as hierarchy references.
+-        if (member['type'] == 'n' and member['role'] in {'admin_centre', 'label'}) or (member['type'] == 'r' and member['role'] == 'subarea'):
++        known_highest_point = member['type'] == 'n' and member['role'] == 'highest_point' and ((args.country == 'CA' and relation['id'] == 1428125 and member['ref'] == 618700710) or (args.country == 'US' and relation['id'] == 148838 and member['ref'] == 2748929230))
++        if (member['type'] == 'n' and member['role'] in {'admin_centre', 'label'}) or (member['type'] == 'r' and member['role'] == 'subarea') or known_highest_point:
+             excluded.append(member)
+         elif member['type'] == 'w' and member['role'] in {'', 'outer', 'inner'}:
+             boundary_records.append(member)
+--- a/scripts/geo/factory/country-scope.mjs
++++ b/scripts/geo/factory/country-scope.mjs
+@@ -61,7 +61,8 @@
+   assert.ok(['boundary', 'multipolygon'].includes(relation.tags.type));
+   const codes = ['ISO3166-1:alpha2', 'ISO3166-1'].filter(key => key in relation.tags).map(key => relation.tags[key]);
+   assert.ok(codes.length && codes.every(code => code === iso), 'missing/conflicting country ISO tags');
+-  const nonBoundary = member => member.type === 'n' && ['admin_centre', 'label'].includes(member.role) || member.type === 'r' && member.role === 'subarea';
++  const knownHighestPoint = member => member.type === 'n' && member.role === 'highest_point' && (iso === 'CA' && relation.id === 1428125 && member.ref === 618700710 || iso === 'US' && relation.id === 148838 && member.ref === 2748929230);
++  const nonBoundary = member => member.type === 'n' && ['admin_centre', 'label'].includes(member.role) || member.type === 'r' && member.role === 'subarea' || knownHighestPoint(member);
+   const members = relation.members.filter(member => !nonBoundary(member));
+   assert.ok(members.length && members.every(member => member.type === 'w' && ['', 'outer', 'inner'].includes(member.role)), 'unsupported country boundary geometry member');
+   assert.equal(new Set(members.map(member => member.ref)).size, members.length);

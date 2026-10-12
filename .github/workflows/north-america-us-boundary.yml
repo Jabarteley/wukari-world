@@ -1,0 +1,189 @@
+name: North America US boundary resource diagnostic
+on:
+  push:
+    branches: ['codex/world-north-america-20261011']
+    paths: ['scripts/geo/north-america-source/us-boundary.json', 'scripts/geo/north-america-source/canada-highest-point.patch', '.github/workflows/north-america-us-boundary.yml']
+permissions:
+  contents: read
+concurrency:
+  group: north-america-us-boundary-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  us-boundary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Initialize compact diagnostic artifact
+        run: |
+          mkdir -p "$RUNNER_TEMP/us-boundary/publish/resources"
+          printf '%s\n' '{"status":"HOLD","stage":"setup","reason":"Diagnostic has not completed"}' > "$RUNNER_TEMP/us-boundary/publish/result.json"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+          path: boundary-tooling
+          persist-credentials: false
+      - name: Apply the reviewed auxiliary-node role rule
+        run: |
+          set -euo pipefail
+          echo "99a7f9bb4934dd648e7843112fb7eb0d5e5194ae3417434e5d13aa7bbb5ea584  scripts/geo/north-america-source/canada-highest-point.patch" | sha256sum --check
+          test "$(git -C boundary-tooling rev-parse HEAD)" = "0786c00510f2827d6495a53fc3299f3112d0d6b4"
+          git -C boundary-tooling apply "$GITHUB_WORKSPACE/scripts/geo/north-america-source/canada-highest-point.patch"
+          grep -Fq "(args.country == 'CA' and relation['id'] == 1428125 and member['ref'] == 618700710) or (args.country == 'US' and relation['id'] == 148838 and member['ref'] == 2748929230)" boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py
+          grep -Fq "iso === 'CA' && relation.id === 1428125 && member.ref === 618700710 || iso === 'US' && relation.id === 148838 && member.ref === 2748929230" boundary-tooling/scripts/geo/factory/country-scope.mjs
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install pinned geometry dependencies
+        run: python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1' 'shapely==2.1.2'
+      - name: Verify pins and measure available runner resources
+        run: |
+          df -B1 "$RUNNER_TEMP" > "$RUNNER_TEMP/us-boundary/publish/resources/disk-before.txt"
+          free -b > "$RUNNER_TEMP/us-boundary/publish/resources/memory-before.txt"
+          python - <<'PY'
+          import hashlib, json, os, shutil, subprocess
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']) / 'us-boundary'
+          publish = root / 'publish'
+          result = {'status': 'HOLD', 'stage': 'preflight'}
+          try:
+              path = Path('scripts/geo/north-america-source/us-boundary.json')
+              request = json.loads(path.read_text())
+              expected = {'schemaVersion': 1, 'countryISO': 'US', 'sourceUrl': 'https://download.geofabrik.de/north-america/us-261009.osm.pbf', 'snapshotDate': '2026-10-09', 'bytes': 12196456372, 'md5': '0befc76d07878c8a68f1ed85948ea7a9'}
+              if request != expected:
+                  raise ValueError('US request differs from the exact reviewed source pins')
+              tooling = subprocess.check_output(['git', '-C', 'boundary-tooling', 'rev-parse', 'HEAD'], text=True).strip()
+              if tooling != '0786c00510f2827d6495a53fc3299f3112d0d6b4':
+                  raise ValueError('boundary tooling checkout mismatch')
+              patch_path = Path('scripts/geo/north-america-source/canada-highest-point.patch')
+              patch_sha = hashlib.sha256(patch_path.read_bytes()).hexdigest()
+              if patch_sha != '99a7f9bb4934dd648e7843112fb7eb0d5e5194ae3417434e5d13aa7bbb5ea584':
+                  raise ValueError('auxiliary-node role patch digest mismatch')
+              disk = shutil.disk_usage(root)
+              reserve = 3 * 1024 ** 3
+              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': patch_sha, 'assembledHelperSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py').read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'availableMemoryBytes': None, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'boundaryBudgetSeconds': 2700}
+              memory = Path(publish / 'resources/memory-before.txt').read_text()
+              for line in memory.splitlines():
+                  if line.startswith('Mem:'):
+                      parts = line.split()
+                      if len(parts) >= 7:
+                          proof['availableMemoryBytes'] = int(parts[6])
+                      break
+              (publish / 'resources/preflight.json').write_text(json.dumps(proof, indent=2) + '\n')
+              if disk.free < request['bytes'] + reserve:
+                  raise ValueError(f'insufficient free disk: {disk.free}; require {request["bytes"] + reserve} bytes including 3 GiB reserve')
+              result.update(status='PREFLIGHT_PASSED', reason='Exact pins/tooling and measured disk preflight passed')
+          except Exception as error:
+              result['reason'] = str(error)
+          (publish / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
+          if result['status'] != 'PREFLIGHT_PASSED':
+              raise SystemExit(result['reason'])
+          PY
+      - name: Download once and verify source within 30 minutes
+        id: download
+        continue-on-error: true
+        run: |
+          set +e
+          /usr/bin/time -v -o "$RUNNER_TEMP/us-boundary/publish/resources/download-time.txt" timeout --signal=TERM --kill-after=30s 30m python - <<'PY' > "$RUNNER_TEMP/us-boundary/publish/resources/download.log" 2>&1
+          import hashlib, json, os, time
+          from pathlib import Path
+          from urllib.request import urlopen
+          root = Path(os.environ['RUNNER_TEMP']) / 'us-boundary'
+          publish = root / 'publish'
+          request = json.loads(Path('scripts/geo/north-america-source/us-boundary.json').read_text())
+          result = {'status': 'HOLD', 'stage': 'download', 'reason': 'Download/hash verification did not complete'}
+          (publish / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
+          started = time.monotonic()
+          try:
+              md5, sha, size = hashlib.md5(), hashlib.sha256(), 0
+              with urlopen(request['sourceUrl'], timeout=90) as response, (root / 'country.osm.pbf').open('wb') as output:
+                  http = {'requestedUrl': request['sourceUrl'], 'resolvedUrl': response.url, 'lastModified': response.headers.get('Last-Modified')}
+                  while True:
+                      block = response.read(1024 * 1024)
+                      if not block:
+                          break
+                      size += len(block)
+                      if size > request['bytes']:
+                          raise ValueError('download exceeds pinned byte count')
+                      output.write(block)
+                      md5.update(block)
+                      sha.update(block)
+              if size != request['bytes'] or md5.hexdigest() != request['md5']:
+                  raise ValueError(f'PBF byte/MD5 mismatch: bytes={size}, md5={md5.hexdigest()}')
+              receipt = {**request, 'status': 'SOURCE_VERIFIED', 'actualBytes': size, 'actualMd5': md5.hexdigest(), 'sha256': sha.hexdigest(), 'http': http, 'elapsedSeconds': time.monotonic() - started}
+              (publish / 'source-receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+              result.update(status='SOURCE_VERIFIED', reason='Exact downloaded bytes/MD5 verified and SHA-256 computed')
+          except Exception as error:
+              result['reason'] = str(error)
+          (publish / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
+          if result['status'] != 'SOURCE_VERIFIED':
+              raise SystemExit(result['reason'])
+          PY
+          diagnostic_rc=$?
+          printf '%s\n' "$diagnostic_rc" > "$RUNNER_TEMP/us-boundary/publish/resources/download-exit.txt"
+          exit "$diagnostic_rc"
+      - name: Assemble only the same-source US boundary within 45 minutes
+        id: boundary
+        if: steps.download.outcome == 'success'
+        continue-on-error: true
+        run: |
+          source_sha=$(python -c 'import json,os; from pathlib import Path; print(json.loads((Path(os.environ["RUNNER_TEMP"])/"us-boundary/publish/source-receipt.json").read_text())["sha256"])')
+          set +e
+          /usr/bin/time -v -o "$RUNNER_TEMP/us-boundary/publish/resources/boundary-time.txt" timeout --signal=TERM --kill-after=30s 45m \
+            python boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py \
+            --pbf "$RUNNER_TEMP/us-boundary/country.osm.pbf" --country US \
+            --expected-sha256 "$source_sha" --expected-bytes 12196456372 \
+            --dataset-url https://download.geofabrik.de/north-america/us-261009.osm.pbf \
+            --dataset-date 2026-10-09 --out "$RUNNER_TEMP/us-boundary/publish/boundary" \
+            > "$RUNNER_TEMP/us-boundary/publish/resources/boundary.log" 2>&1
+          diagnostic_rc=$?
+          printf '%s\n' "$diagnostic_rc" > "$RUNNER_TEMP/us-boundary/publish/resources/boundary-exit.txt"
+          exit "$diagnostic_rc"
+      - name: Preserve measured result and precise HOLD on failure
+        if: always()
+        run: |
+          df -B1 "$RUNNER_TEMP" > "$RUNNER_TEMP/us-boundary/publish/resources/disk-after.txt"
+          free -b > "$RUNNER_TEMP/us-boundary/publish/resources/memory-after.txt"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          publish = Path(os.environ['RUNNER_TEMP']) / 'us-boundary/publish'
+          result_path = publish / 'result.json'
+          result = json.loads(result_path.read_text())
+          try:
+              for stage in ('download', 'boundary'):
+                  exit_path = publish / 'resources' / (stage + '-exit.txt')
+                  if not exit_path.exists():
+                      if result['status'] == 'HOLD':
+                          raise ValueError(result['reason'])
+                      raise ValueError(stage + ' stage was not executed or did not finish')
+                  code = int(exit_path.read_text())
+                  if code:
+                      budget = '30-minute download budget' if stage == 'download' else '45-minute boundary budget'
+                      detail = budget + ' exceeded' if code == 124 else f'{stage} exited {code}; inspect resources/{stage}.log'
+                      if stage == 'boundary' and (publish / 'boundary/result.json').exists():
+                          detail += ': ' + json.loads((publish / 'boundary/result.json').read_text()).get('reason', 'boundary HOLD')
+                      elif stage == 'download' and result['status'] == 'HOLD':
+                          detail += ': ' + result['reason']
+                      result['stage'] = stage
+                      raise ValueError(detail)
+              receipt = json.loads((publish / 'boundary/receipt.json').read_text())
+              source = json.loads((publish / 'source-receipt.json').read_text())
+              if receipt['status'] != 'OSM_COUNTRY_BOUNDARY_CANDIDATE' or receipt['countryISO'] != 'US' or receipt['source']['sha256'] != source['sha256'] or receipt['source']['bytes'] != source['actualBytes']:
+                  raise ValueError('boundary candidate country/status/same-PBF linkage mismatch')
+              result.update(status='OSM_COUNTRY_BOUNDARY_CANDIDATE', stage='complete', reason='Measured same-source boundary diagnostic completed', pbfSha256=source['sha256'], limitations=['No fixtures, city extraction, or airport/centre checks executed', 'Country-scoped city acceptance, browser, and live state remain unproved'])
+          except Exception as error:
+              result.update(status='HOLD', reason=str(error))
+          result_path.write_text(json.dumps(result, indent=2) + '\n')
+          if result['status'] == 'HOLD':
+              raise SystemExit(result['reason'])
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: north-america-us-boundary-${{ github.sha }}
+          path: ${{ runner.temp }}/us-boundary/publish
+          if-no-files-found: error
+          retention-days: 14

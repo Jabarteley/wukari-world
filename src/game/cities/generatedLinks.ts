@@ -50,7 +50,8 @@ export function greatCircleKm(a: Pick<LinkableCity, 'lon' | 'lat'>, b: Pick<Link
 
 const rounded = (value: number, step: number): number => Math.max(step, Math.round(value / step) * step)
 export const generatedRoadFare = (roadKm: number): number => rounded(GENERATED_LINKS.road.base + GENERATED_LINKS.road.perKm * roadKm, GENERATED_LINKS.road.step)
-export const generatedAirFare = (airKm: number): number => rounded(GENERATED_LINKS.air.base + GENERATED_LINKS.air.perKm * airKm, GENERATED_LINKS.air.step)
+/** Generated tickets respect the existing lifetime/homeward ticket ceiling and remain buyable at the default ₦1m start balance. */
+export const generatedAirFare = (airKm: number): number => Math.min(1_000_000, rounded(GENERATED_LINKS.air.base + GENERATED_LINKS.air.perKm * airKm, GENERATED_LINKS.air.step))
 
 const pairKey = (a: string, b: string, mode: string): string => `${[a, b].sort().join('|')}|${mode}`
 

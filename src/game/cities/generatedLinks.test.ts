@@ -85,6 +85,7 @@ test('the generator keeps authored ways and needs land evidence for roads while 
   assert.ok(ocean.length >= 3 && ocean.every(link => link.mode === 'air' && link.seconds <= 20), 'another continent is reached by air only, and quickly')
   assert.equal(once.some(link => link.mode === 'rail'), false)
   assert.ok(generatedRoadFare(GENERATED_LINKS.maxRoadKm) > generatedRoadFare(100) && generatedAirFare(8000) > generatedAirFare(300))
+  assert.equal(generatedAirFare(100_000), 1_000_000, 'synthetic long-haul fare respects the existing ticket and homeward-credit cap')
   assert.ok(Math.abs(greatCircleKm({ lon: 3.38, lat: 6.52 }, { lon: 7.49, lat: 9.06 }) - 534) < 3)
 })
 

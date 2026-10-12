@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "TN",
+  "datasetSha256": "8bea4a9f2a86cce8ca198d9bad50dd1103239bbcb55669058fa50042c767f51b",
+  "checks": [
+    {
+      "ref": "way/29993446",
+      "point": [
+        10.180582000000001,
+        36.795245300000005
+      ],
+      "expected": "inside",
+      "sourceLayer": "places",
+      "layerSha256": "49b0eebcf507983645bc81ca80639334c88d959c157133c199605abc2a8a9bf7"
+    },
+    {
+      "ref": "airport/DTTA",
+      "point": [
+        10.2272,
+        36.851002
+      ],
+      "expected": "inside",
+      "source": "Tunis Carthage International Airport, OurAirports record; https://ourairports.com/airports/DTTA/",
+      "coordinateCaveat": "Dataset point, not an official aerodrome reference point or evidence of current operations."
+    }
+  ]
+}

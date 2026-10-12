@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 2,
+  "countries": [
+    {
+      "countryISO": "TN",
+      "sourceUrl": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
+      "bytes": 84194711,
+      "sha256": "8bea4a9f2a86cce8ca198d9bad50dd1103239bbcb55669058fa50042c767f51b",
+      "snapshotDate": "2026-10-09",
+      "fixture": "boundary-fixture-tn.json"
+    }
+  ]
+}

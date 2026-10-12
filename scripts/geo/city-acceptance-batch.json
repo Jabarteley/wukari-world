@@ -2,20 +2,20 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-c-eu-asia-4",
+      "id": "release-c-asia-5",
       "appSha": "35d29fa68b02e128194a9f1e24385cfee697c4d1",
       "driverSha": "05840d84c453f1d60d6d8ecac0a5b6ade60841e8",
       "cities": [
-        "skopje",
-        "bucharest",
-        "belgrade",
-        "bratislava",
-        "ljubljana",
-        "larnaca",
-        "yerevan",
-        "baku",
-        "manama",
-        "bsb"
+        "phnom-penh",
+        "tbilisi",
+        "amman",
+        "kuwait-city",
+        "bishkek",
+        "vientiane",
+        "beirut",
+        "kuala-lumpur",
+        "ulaanbaatar",
+        "kathmandu"
       ],
       "roundtrip": true
     }

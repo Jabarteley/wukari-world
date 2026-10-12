@@ -5,7 +5,7 @@ import { reactive, shallowRef } from 'vue'
 import type { QuickDraft } from './startBoundary.ts'
 import { quickDraft } from './startBoundary.ts'
 
-export const qs = reactive({ more: false, error: '', taps: 0, landed: false })
+export const qs = reactive({ more: false, error: '', taps: 0, landed: false, creator: false })
 /** The data-key of the control to put the keyboard on after a tap ('' = Play). */
 export const focus = { key: '' }
 /** The draft being edited, mirrored here so the screen redraws when it changes (the device keeps the truth, in startBoundary.ts). */

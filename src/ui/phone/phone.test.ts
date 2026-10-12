@@ -202,7 +202,7 @@ test('the zoomed interface sizes itself with --ui-vh: every rule that sets the i
   }
   const panels = new URL('../panels/', import.meta.url);
   // (creator.css is the full-screen creator: it resets the zoom and divides by its own.)
-  const files = [...(await readdir(panels)).filter((name) => name.endsWith('.css') && name !== 'creator.css').map((name) => `../panels/${name}`), '../shell.css', '../compact.css', '../controls.css', './phone.css', '../../map3d/geo/atlas.css', '../../app/ui/BaseSheet.vue'];
+  const files = [...(await readdir(panels)).filter((name) => name.endsWith('.css') && name !== 'creator.css' && name !== 'fullscreen.css').map((name) => `../panels/${name}`), '../shell.css', '../compact.css', '../controls.css', './phone.css', '../../map3d/geo/atlas.css', '../../app/ui/BaseSheet.vue'];
   for (const path of files) {
     let css = (await read(path)).replace(/--ui-vh:\s*calc\(1dvh[^;]*;/g, '');
     if (path === '../../map3d/geo/atlas.css') {

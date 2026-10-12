@@ -52,6 +52,14 @@ test('the atlas levels and the panels', () => {
   for (const panel of PANEL_WORDS) assert.deepEqual(parsePath(`/${panel}`), { kind: 'panel', panel })
 })
 
+test('the entry-page words: /shops and /sell, /services, /cities', () => {
+  assert.deepEqual(parsePath('/shops'), { kind: 'panel', panel: 'shops' })
+  assert.deepEqual(parsePath('/sell'), { kind: 'panel', panel: 'shops' })
+  assert.deepEqual(parsePath('/services'), { kind: 'panel', panel: 'services' })
+  assert.deepEqual(parsePath('/cities'), { kind: 'atlas', level: 'world' })
+  assert.equal(parsePath('/agents'), null, 'agents has no place to go to once the life exists')
+})
+
 test('a city page and a venue under it', () => {
   assert.deepEqual(parsePath('/abuja/games'), city('abuja', { page: 'games' }))
   assert.deepEqual(parsePath('/abuja/some-venue'), city('abuja', { venue: 'some-venue' }))

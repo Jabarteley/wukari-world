@@ -10,10 +10,13 @@
 import { useApp } from '../../state/app.ts'
 import { openLogin, openSignup } from '../account/accountOpen.ts'
 import { useAccountLite } from '../account/useAccountLite.ts'
+import type { SignupWhere } from '../account/accountTrack.ts'
 
 export interface AccountEntry {
   /** Accounts are configured on this server. */
   readonly available: boolean
+  /** The server has answered whether accounts exist (until then the buttons' room is kept, so nothing moves under a finger). */
+  readonly loaded: boolean
   /** Signed in on this device already (the creator then offers none of the choices). */
   readonly signedIn: boolean
   /** "Sign up free — keep your character": create an account; the character being made is kept with it. */
@@ -24,14 +27,16 @@ export interface AccountEntry {
   openSave(): void
 }
 
-export function useAccountEntry(): AccountEntry {
+/** `where` is the screen the buttons are on (reported with the funnel event): the creator by default. */
+export function useAccountEntry(where: SignupWhere = 'creator'): AccountEntry {
   const account = useAccountLite(), { shell } = useApp()
   void account.load()
   return {
+    get loaded() { return account.state.loaded },
     get available() { return account.state.loaded && account.state.enabled },
     get signedIn() { return account.state.account !== null },
-    openSignUp() { openSignup(shell, 'creator', account.state.guest) },
-    openSignIn() { openLogin(shell, 'creator') },
+    openSignUp() { openSignup(shell, where, account.state.guest) },
+    openSignIn() { openLogin(shell, where) },
     openSave() { openSignup(shell, 'ready', account.state.guest) },
   }
 }

@@ -147,6 +147,8 @@ export interface WorldHttpRoutes {
   'GET /api/world/me': { query: { city: CityId }; response: Ok<WorldMeResponse>; errors: WorldCommon | StorageErrorCode | 'city_moved' }
   /** Who is online now and how many visits there have been (server/pulse.ts); `cities` counts the online players whose character is in that city (visitors too); the caller is always counted. */
   'GET /api/world/pulse': { query: Record<string, never>; response: Ok<WorldPulseResponse>; errors: HostErrorCode | SessionErrorCode | 'pulse_rate_limited' }
+  /** Public: only how many players are online (at least 1), for a visitor who has no session yet. No visit is counted. */
+  'GET /api/world/pulse/online': { query: Record<string, never>; response: Ok<{ online: number }>; errors: HostErrorCode | 'pulse_rate_limited' }
   'GET /api/world/city': { query: { city: CityId; v?: string }; response: Ok<WorldCityResponse>; errors: WorldCommon }
   'GET /api/world/lga/:id': { params: { id: LgaId }; query: { city: CityId }; response: Ok<WorldLgaResponse>; errors: WorldLga }
   /** `from` 0…511, `count` 0…128 (default 128); 400 `invalid_number` otherwise. */

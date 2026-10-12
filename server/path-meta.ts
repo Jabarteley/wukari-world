@@ -11,6 +11,8 @@ import { cityCatalogue } from '../src/game/cities/registry.ts';
 import { GAME_SLUGS, knownStateIds, openCitiesOf, openCityIds, parsePath, pathOf, placeFacts } from '../src/paths.ts';
 import type { GameSlug, PathIntent } from '../src/paths.ts';
 import { SITE_ORIGIN } from './host-context.ts';
+import { ENTRY_VARIANTS, variantOf, withFigures } from '../src/entry-variants.ts';
+import { worldFigures } from '../src/app/features/start/entryModel.ts';
 
 export interface PathMeta {
   title: string
@@ -19,6 +21,8 @@ export interface PathMeta {
   canonical: string | null
   /** An address worth showing in search. */
   index: boolean
+  /** The link-preview picture (a path on the site), or null to keep the default. */
+  image?: string | null
 }
 
 const BRAND = 'Allworld';
@@ -68,6 +72,12 @@ function metaOf(intent: PathIntent): PathMeta | null {
 /** The head for an address, or null for the home page (`/`), which keeps index.html's own head. An unknown address gets the default head with noindex. */
 export function metaFor(pathname: string): PathMeta | null {
   if (pathname === '/' || pathname === '') return null;
+  // An address of the entry page (src/entry-variants.ts): its own words and its own picture, the same on both hosts. Fixed text: nothing a visitor typed.
+  const variant = variantOf(pathname);
+  if (variant && variant.id !== 'home') {
+    const figures = worldFigures(cityCatalogue());
+    return { title: variant.title, description: clip(withFigures(variant.description, figures)), canonical: variant.paths[0] ?? null, index: true, image: variant.og };
+  }
   const intent = parsePath(pathname);
   return (intent ? metaOf(intent) : null) ?? { title: '', description: '', canonical: null, index: false };
 }
@@ -95,11 +105,16 @@ export function withPathMeta(html: string, pathname: string, origin = ''): strin
     page = page.replace(/(<link rel="canonical" href=")[^"]*(")/, (_all, open: string, close: string) => `${open}${escapeHtml(url)}${close}`);
     page = setMeta(page, 'og:url', url);
   }
+  if (meta.image) {
+    const picture = `${origin || SITE_ORIGIN}${meta.image}`;
+    for (const key of ['og:image', 'twitter:image']) page = setMeta(page, key, picture);
+    for (const key of ['og:image:alt', 'twitter:image:alt']) page = setMeta(page, key, meta.title);
+  }
   return page;
 }
 
 /** The addresses worth listing in the sitemap, from the registry: the games, every open city, every state with several open cities. */
 export function sitemapPaths(): string[] {
   const states = knownStateIds().filter((state) => openCitiesOf(state).length > 1);
-  return ['/games', ...GAME_SLUGS.map((game) => `/games/${game}`), ...openCityIds().map((id) => `/${id}`), ...states.map((state) => `/${state}`)];
+  return ['/games', ...ENTRY_VARIANTS.flatMap((variant) => (variant.id === 'home' || variant.id === 'games' ? [] : [variant.paths[0] ?? ''])), ...GAME_SLUGS.map((game) => `/games/${game}`), ...openCityIds().map((id) => `/${id}`), ...states.map((state) => `/${state}`)];
 }

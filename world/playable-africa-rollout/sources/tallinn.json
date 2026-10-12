@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tallinn",
+  "countryIso2": "EE",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tallinn",
+    "coordinatesWgs84": [
+      24.7572693,
+      59.437242
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/estonia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tallinn-airport",
+    "name": "Lennart Meri Tallinn Airport",
+    "lon": 24.83264,
+    "lat": 59.413246,
+    "sourceUrl": "https://ourairports.com/airports/EETN/"
+  },
+  "boxes": {
+    "play": [
+      59.25636111006602,
+      24.402037752620263,
+      59.61812288993398,
+      25.11250084737974
+    ],
+    "core": [
+      59.392021777516504,
+      24.668818384201817,
+      59.48246222248349,
+      24.845720215798185
+    ],
+    "outline": [
+      59.20636111006602,
+      24.352037752620262,
+      59.668122889933976,
+      25.16250084737974
+    ],
+    "wide": [
+      58.656361110066015,
+      23.80203775262026,
+      60.21812288993398,
+      25.71250084737974
+    ],
+    "water": [
+      58.656361110066015,
+      23.80203775262026,
+      60.21812288993398,
+      25.71250084737974
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/estonia-261011.osm.pbf",
+    "datasetSha256": "6861220c1f7356f73f7a77046a795aa3a26d42c27a8b73bcbfa8425d99f1c2e2",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "1e4548b6ab8ca9d316545eff12ccbd34247fa68c758ee831768ca2801ca463de",
+        "elements": 1498
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c9871198f232734e4ba270fed6e1529706ab073b472ceb6bcaee527403e3e45e",
+        "elements": 372
+      },
+      {
+        "file": "water.json",
+        "sha256": "f6bcf409f0e46498bb96c6df56d37bf8f3c4019ab8f2e65a46b40469c54f3455",
+        "elements": 741
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "80cad7865093e628494e3462777443fc9f92e31d734e18d2f22d3e3255bac5c4",
+        "elements": 2766
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c8383607ef9763b32c0a6785acafe6f422f30cdbf97de78a76d495b908817906",
+        "elements": 2483
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Saue",
+      "osm": "node/29163264",
+      "coordinatesWgs84": [
+        24.547698,
+        59.324821
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Olde Hansa",
+      "osm": "node/436193431",
+      "coordinatesWgs84": [
+        24.745981,
+        59.436682
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sisekaitseakadeemia",
+      "osm": "way/484178253",
+      "coordinatesWgs84": [
+        24.843773,
+        59.455921
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wismari Haigla",
+      "osm": "way/810780801",
+      "coordinatesWgs84": [
+        24.73227,
+        59.432096
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Keila keskpark",
+      "osm": "way/60576469",
+      "coordinatesWgs84": [
+        24.41937,
+        59.308404
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nõmme turuhoone",
+      "osm": "way/26874481",
+      "coordinatesWgs84": [
+        24.683642,
+        59.388712
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jüri kirik",
+      "osm": "way/26846095",
+      "coordinatesWgs84": [
+        24.922727,
+        59.359822
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Islandi väljak",
+      "osm": "way/43735045",
+      "coordinatesWgs84": [
+        24.753519,
+        59.432959
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "European Union Agency for the Operational Management of Large-Scale IT Systems in the Area of Freedom, Security and Justice",
+      "osm": "node/10633411729",
+      "coordinatesWgs84": [
+        24.736077,
+        59.450848
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tallinna Tehnikaülikool",
+      "osm": "relation/1205174",
+      "coordinatesWgs84": [
+        24.664658,
+        59.395409
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pirita Velodroom",
+      "osm": "way/25822425",
+      "coordinatesWgs84": [
+        24.831565,
+        59.463235
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kabelikivi",
+      "osm": "node/638572868",
+      "coordinatesWgs84": [
+        24.948135,
+        59.486929
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Metsanurme Local Lore Museum",
+      "osm": "node/687057209",
+      "coordinatesWgs84": [
+        24.663712,
+        59.26765
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Aruküla rändrahn",
+      "osm": "node/1606298155",
+      "coordinatesWgs84": [
+        25.080481,
+        59.361139
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rannamõisa kirik",
+      "osm": "way/81647511",
+      "coordinatesWgs84": [
+        24.500926,
+        59.438695
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "EEVK Nabala vennastekoguduse palvemaja",
+      "osm": "way/722994268",
+      "coordinatesWgs84": [
+        24.836497,
+        59.26799
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kurna mõisa park",
+      "osm": "way/1213651720",
+      "coordinatesWgs84": [
+        24.84649,
+        59.338854
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Peetri park",
+      "osm": "way/227571444",
+      "coordinatesWgs84": [
+        24.808251,
+        59.393264
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Järve keskus",
+      "osm": "way/26908368",
+      "coordinatesWgs84": [
+        24.719732,
+        59.393384
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tallinn University",
+      "osm": "way/951559494",
+      "coordinatesWgs84": [
+        24.772263,
+        59.439335
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "A. Le Coq Arena",
+      "osm": "way/230751799",
+      "coordinatesWgs84": [
+        24.732434,
+        59.42091
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tallinna Tehnikakõrgkool",
+      "osm": "way/26895161",
+      "coordinatesWgs84": [
+        24.741211,
+        59.425993
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Põhjakonn Stairs",
+      "osm": "node/11071633601",
+      "coordinatesWgs84": [
+        24.83879,
+        59.51043
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rocca al Mare Shopping Centre",
+      "osm": "way/26846079",
+      "coordinatesWgs84": [
+        24.651587,
+        59.426647
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1203,
+      "sha256": "e3c090645fac87d0e8323a6ff7f4f86a1b1d19ff3d1ab3e98a5d9c9a172bf4d0"
+    },
+    "geometry.ts": {
+      "bytes": 151553,
+      "sha256": "ddb7b5e40f5081fea89d5560d83e64422af1fbc405774d0ae79558130960c4e4"
+    },
+    "places.ts": {
+      "bytes": 9898,
+      "sha256": "c1b0cc1a1ffb5d819d0e4f7689bc2c5de9b1e0c5dbdadca3b1a5d0bc165496e7"
+    },
+    "terrain.ts": {
+      "bytes": 334571,
+      "sha256": "84a0ec911658a9038c1d56108003b3118e361962df636084c37b646b42a936e5"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "4552fabea4cac742a51ab9378f6b3faa53402b094a34a5a48591138ff1e00773"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "reykjavik",
+  "countryIso2": "IS",
+  "generationIdentity": {
+    "cityId": "reykjavik",
+    "stateId": "is-reykjavik",
+    "stateName": "Reykjavik"
+  },
+  "inventorySha256": "8d2cc7ba28c7a0446d4dd70ded39d7febfc3584c0a5217fadea2e28b3b58548c",
+  "inventoryPath": "world/playable-africa-rollout/sources/reykjavik.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "reykjavik-airport",
+    "name": "Keflavik International Airport",
+    "lon": -22.6056,
+    "lat": 63.985001,
+    "sourceUrl": "https://ourairports.com/airports/BIKF/"
+  },
+  "bounds": [
+    63.965100110066025,
+    -22.626087657575244,
+    64.32686188993398,
+    -21.527538956024504
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/iceland-261011.osm.pbf",
+      "datasetSha256": "8b5fda4a80f06b6b2a86208b58c50f84185d76ac47d4d3693fa9ab1c8a0e8465",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "0ec92b20ef1350a3aeb9dc00f1ba49676cf9c51d399cf56c651bba0d4918dea4",
+          "elements": 823
+        },
+        {
+          "file": "extras.json",
+          "sha256": "41712cef4d77db2d6c9983ec22ebc58e5e8eb37f62ed28edd3e08ef9bd000c90",
+          "elements": 180
+        },
+        {
+          "file": "water.json",
+          "sha256": "7e3a0339e54ea49c205ab1fc3f15b9a56b5a300f71655bfcc92e9fc8f4627843",
+          "elements": 2579
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "a3cc0be0b9585e7cc77dcbe916c8944a8fedf7e0171ca133d521203e32ee3074",
+          "elements": 603
+        },
+        {
+          "file": "roads.json",
+          "sha256": "d726cdacde4d30844b60061f1978ce5f680b70569e908bae3aaafbd373b0428e",
+          "elements": 1614
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 363,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 10,
+    "waterPolygons": 24,
+    "reachWaterPolygons": 48
+  },
+  "observed": {
+    "places": 823,
+    "extras": 180,
+    "water": 2579,
+    "landuse": 603,
+    "roads": 1614
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1234,
+      "sha256": "3ff989351b269d6d55499317e1d6d4bd07ca1229d43b7d63ca470c115c89b7f9"
+    },
+    "geometry.ts": {
+      "bytes": 87409,
+      "sha256": "c69075f18c9aae9f005417e26418651505c59c51455cbe04fee0273ab69cff8e"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "53d02b9d5667498fad119e651f26bd25fb77d0e135c7be850b03fd1fdca8ad1f"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/reykjavik.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

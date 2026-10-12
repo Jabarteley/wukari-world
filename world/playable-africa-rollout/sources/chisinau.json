@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "chisinau",
+  "countryIso2": "MD",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Chișinău",
+    "coordinatesWgs84": [
+      28.8322923,
+      47.0245117
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/moldova-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "chisinau-airport",
+    "name": "Chişinău International Airport",
+    "lon": 28.931704,
+    "lat": 46.92774,
+    "sourceUrl": "https://ourairports.com/airports/LUKK/"
+  },
+  "boxes": {
+    "play": [
+      46.84363081006602,
+      28.56783899526906,
+      47.20539258993398,
+      29.096745604730938
+    ],
+    "core": [
+      46.979291477516504,
+      28.766347435780926,
+      47.06973192248349,
+      28.898237164219072
+    ],
+    "outline": [
+      46.79363081006602,
+      28.51783899526906,
+      47.255392589933976,
+      29.14674560473094
+    ],
+    "wide": [
+      46.243630810066016,
+      27.96783899526906,
+      47.80539258993398,
+      29.69674560473094
+    ],
+    "water": [
+      46.84363081006602,
+      28.56783899526906,
+      47.20539258993398,
+      29.096745604730938
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/moldova-261011.osm.pbf",
+    "datasetSha256": "c39c28a9d1e7e44b24a0bab5b9b4471687e37fd162ec0786322d5b258718bd1c",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "219f8db5a05791dcd6f4065e7e54dfcc71e7b7c85a2d9090f47201d7c45e6cec",
+        "elements": 1665
+      },
+      {
+        "file": "extras.json",
+        "sha256": "bec4a793fec17acdfad8a73dbfa898b18276fdb73552d7743f6ebf0024bfea36",
+        "elements": 493
+      },
+      {
+        "file": "water.json",
+        "sha256": "24c9e0177ba6be99f879466835c3c21ae02fa9a21540fade6197748bb73102d7",
+        "elements": 751
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "1e95d527309474a100977ff240c9732de9a276c27dcf62126f70ee77c44b3090",
+        "elements": 6139
+      },
+      {
+        "file": "roads.json",
+        "sha256": "833609e3b42aafbe7eff0cc131e6cae5d90582cb9bcc88c8b6d00cc86d5f4875",
+        "elements": 2012
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Chisinau",
+      "osm": "node/415964911",
+      "coordinatesWgs84": [
+        28.8602,
+        47.013054
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Praga",
+      "osm": "node/502443860",
+      "coordinatesWgs84": [
+        28.774134,
+        46.949223
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universitatea Pedagogică de Stat „Ion Creangă”",
+      "osm": "way/96545864",
+      "coordinatesWgs84": [
+        28.807724,
+        47.039977
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Timofei Moşneaga Republican Clinical Hospital",
+      "osm": "relation/12863292",
+      "coordinatesWgs84": [
+        28.834232,
+        46.993421
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Botanical Garden",
+      "osm": "relation/12339249",
+      "coordinatesWgs84": [
+        28.885281,
+        46.974236
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Central Market",
+      "osm": "way/25195025",
+      "coordinatesWgs84": [
+        28.842824,
+        47.019496
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Capela în memoria voluntarilor bulgari",
+      "osm": "way/32766730",
+      "coordinatesWgs84": [
+        28.863442,
+        47.037772
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marea Adunare Națională Square",
+      "osm": "relation/9818520",
+      "coordinatesWgs84": [
+        28.832163,
+        47.024498
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministry of Health",
+      "osm": "relation/8299511",
+      "coordinatesWgs84": [
+        28.82737,
+        47.006694
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Academia de Poliție „Ștefan cel Mare“",
+      "osm": "way/115891944",
+      "coordinatesWgs84": [
+        28.784607,
+        46.995627
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dinamo Stadium",
+      "osm": "way/32890479",
+      "coordinatesWgs84": [
+        28.819175,
+        47.026624
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monument in memory of those killed in between 1941-1945",
+      "osm": "way/1457886531",
+      "coordinatesWgs84": [
+        28.693894,
+        47.07289
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Technical University of Moldova",
+      "osm": "relation/8257226",
+      "coordinatesWgs84": [
+        28.868728,
+        47.061675
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grădina Zoologică din Chișinău",
+      "osm": "relation/13320660",
+      "coordinatesWgs84": [
+        28.869205,
+        46.972518
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rose Valley Park",
+      "osm": "relation/13721147",
+      "coordinatesWgs84": [
+        28.847543,
+        46.997265
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Valea Morilor Park",
+      "osm": "relation/9892239",
+      "coordinatesWgs84": [
+        28.813654,
+        47.014055
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Biserica „Acoperământul Maicii Domnului”",
+      "osm": "way/145671580",
+      "coordinatesWgs84": [
+        28.848993,
+        47.030985
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monument to Nizami Ganjavi",
+      "osm": "node/855102025",
+      "coordinatesWgs84": [
+        28.852992,
+        47.04375
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Biserica Buna Vestire",
+      "osm": "way/166980133",
+      "coordinatesWgs84": [
+        28.838782,
+        47.035673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadionul „Rapid Ghidighici”",
+      "osm": "way/1546886425",
+      "coordinatesWgs84": [
+        28.771583,
+        47.088935
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Moldova State University",
+      "osm": "way/26426519",
+      "coordinatesWgs84": [
+        28.824474,
+        47.018902
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Institute of Emergency Medicine",
+      "osm": "way/38690601",
+      "coordinatesWgs84": [
+        28.818525,
+        47.029257
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zimbru Stadium",
+      "osm": "relation/6675955",
+      "coordinatesWgs84": [
+        28.867594,
+        46.981074
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Coffe Ponty",
+      "osm": "node/662713481",
+      "coordinatesWgs84": [
+        29.079557,
+        47.087648
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1225,
+      "sha256": "2a377b8834f721e38cbd8c2cca6cabd11dfa24b4f669ae4d132172e3258bdf9b"
+    },
+    "geometry.ts": {
+      "bytes": 145597,
+      "sha256": "95aed590ba361ddf9ba31c791827e59d18a3da1b366b41842da54c58bfc8a8aa"
+    },
+    "places.ts": {
+      "bytes": 10163,
+      "sha256": "e28bfa7ecb4aa2c8c5ab23aef9be166a33924e841db6993f395d121f8f211e89"
+    },
+    "terrain.ts": {
+      "bytes": 250394,
+      "sha256": "9d3b274154d6e8669d899dfb72d3c607d0bd7d59df2e0bd81ba5680c671a47ad"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "6169ab9f321a95b136f63ea8ad921a4096a10914615ea46a65bd7f92348ebd7b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "belgrade",
+  "countryIso2": "RS",
+  "generationIdentity": {
+    "cityId": "belgrade",
+    "stateId": "rs-belgrade",
+    "stateName": "Belgrade"
+  },
+  "inventorySha256": "5859972665ae306af925d5db0f94fc0feea219d6a97f3f293f3c9d9a43187af9",
+  "inventoryPath": "world/playable-africa-rollout/sources/belgrade.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "belgrade-airport",
+    "name": "Belgrade Nikola Tesla Airport",
+    "lon": 20.309099,
+    "lat": 44.818401,
+    "sourceUrl": "https://ourairports.com/airports/LYBE/"
+  },
+  "bounds": [
+    44.63693221006602,
+    20.202822421982965,
+    44.99869398993398,
+    20.710972378017033
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/serbia-261011.osm.pbf",
+      "datasetSha256": "e08d2547e41b1b9da2b70eee5ec0b3fe41988a1759cbcbcb4d8d72d15992ad34",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "9cb8eb12e14c9365cd6228871889caac3f11b7cc5d60c8353ba8746dc70c6ed3",
+          "elements": 3415
+        },
+        {
+          "file": "extras.json",
+          "sha256": "c881beb7f3151169efeeb60f4b0832254cce57863f9f4a0687b6001ae91577a5",
+          "elements": 656
+        },
+        {
+          "file": "water.json",
+          "sha256": "496b32f65235b94cc9ae72b036ae9d67a39b00cfd770be8104c80d81b16b609c",
+          "elements": 71
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "acbe46bb1336122f0bee2b88d677c8c884420e6e1e46da4d9d578f4703a614c5",
+          "elements": 5001
+        },
+        {
+          "file": "roads.json",
+          "sha256": "8f9cff6ca6d934691f7a28cccab12bf0f558a1bc6758123151a0865aa613b714",
+          "elements": 4168
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 43,
+    "waterPolygons": 16,
+    "reachWaterPolygons": 22
+  },
+  "observed": {
+    "places": 3415,
+    "extras": 656,
+    "water": 71,
+    "landuse": 5001,
+    "roads": 4168
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1214,
+      "sha256": "93b8c3687a169d9dfadea63a90dd9772d1315eb57bc55461facee3c96ecd5760"
+    },
+    "geometry.ts": {
+      "bytes": 145337,
+      "sha256": "53752231273e38830239cc2c1e26dc043c3669d88868069e5d713e7cd963ca40"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "8d4a05d88575ac1309d79e6ee0fab0219a774091f561166b2fcc1e65f319a6b2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/belgrade.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

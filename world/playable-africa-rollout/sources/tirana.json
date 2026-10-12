@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tirana",
+  "countryIso2": "AL",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tirana",
+    "coordinatesWgs84": [
+      19.8184435,
+      41.3281482
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/albania-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tirana-airport",
+    "name": "Tirana International Airport Mother Teresa",
+    "lon": 19.7206,
+    "lat": 41.4147,
+    "sourceUrl": "https://ourairports.com/airports/LATI/"
+  },
+  "boxes": {
+    "play": [
+      41.14726731006602,
+      19.578526393401457,
+      41.50902908993398,
+      20.058360606598544
+    ],
+    "core": [
+      41.28292797751651,
+      19.758589476672363,
+      41.373368422483495,
+      19.87829752332764
+    ],
+    "outline": [
+      41.09726731006602,
+      19.528526393401457,
+      41.55902908993398,
+      20.108360606598545
+    ],
+    "wide": [
+      40.54726731006602,
+      18.978526393401456,
+      42.10902908993398,
+      20.658360606598546
+    ],
+    "water": [
+      40.54726731006602,
+      18.978526393401456,
+      42.10902908993398,
+      20.658360606598546
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/albania-261011.osm.pbf",
+    "datasetSha256": "60f17d4f11cf29beda0e51654e9e5b8377d17d76c53c3077134cdc69a6954264",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "c9c99b5e63cdcdf613650c8cf9deea4e619ec0370e5c293417ffcd6d5a632b03",
+        "elements": 1561
+      },
+      {
+        "file": "extras.json",
+        "sha256": "40bd88418df9183634552fe461ee2be79cde06b2ef74bbbbae4e11373a140df7",
+        "elements": 336
+      },
+      {
+        "file": "water.json",
+        "sha256": "ef842e555ed29c5078dd373c11104bbd029847c654cd6c479f96553a282ad4bf",
+        "elements": 1069
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3e7b00a2b0a6985776c911a456c6ae2cdd6b5c5c92e367a992fe72e320dfb81c",
+        "elements": 2961
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5c3d14ed19adf64b94ac921b8bcd9271f53658be522454d9c4c7c72d676a9a10",
+        "elements": 2002
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Tirana International Airport",
+      "osm": "node/13770105810",
+      "coordinatesWgs84": [
+        19.7133,
+        41.411528
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sarajet",
+      "osm": "way/405351517",
+      "coordinatesWgs84": [
+        19.821287,
+        41.327066
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universiteti POLIS",
+      "osm": "way/1266341118",
+      "coordinatesWgs84": [
+        19.75056,
+        41.352732
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American Hospital 3",
+      "osm": "way/1230008819",
+      "coordinatesWgs84": [
+        19.7843,
+        41.320758
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tirana Zoo",
+      "osm": "way/233519313",
+      "coordinatesWgs84": [
+        19.809509,
+        41.307222
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "TEG - Tirana East Gate",
+      "osm": "way/293898197",
+      "coordinatesWgs84": [
+        19.857204,
+        41.283155
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baitul Awwal Mosque",
+      "osm": "way/747943456",
+      "coordinatesWgs84": [
+        19.764279,
+        41.344797
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mother Teresa Square",
+      "osm": "way/1292145197",
+      "coordinatesWgs84": [
+        19.821308,
+        41.317864
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "General Directorate of Prisons",
+      "osm": "way/1174012234",
+      "coordinatesWgs84": [
+        19.848437,
+        41.35502
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sports University",
+      "osm": "way/1123601207",
+      "coordinatesWgs84": [
+        19.802608,
+        41.330928
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadiumi \"Selman Stermasi\"",
+      "osm": "way/174803482",
+      "coordinatesWgs84": [
+        19.811252,
+        41.318984
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cave of Pëllumbas",
+      "osm": "node/4687241329",
+      "coordinatesWgs84": [
+        19.968168,
+        41.257104
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kalaja e Dorëzit",
+      "osm": "node/4753627987",
+      "coordinatesWgs84": [
+        19.743433,
+        41.226325
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bodini Castle",
+      "osm": "node/10049694706",
+      "coordinatesWgs84": [
+        19.879391,
+        41.164148
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Citypark",
+      "osm": "way/282299241",
+      "coordinatesWgs84": [
+        19.687157,
+        41.367804
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Spitali Amerikan 2",
+      "osm": "way/457216792",
+      "coordinatesWgs84": [
+        19.832463,
+        41.342107
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Agricultural University of Tirana",
+      "osm": "way/835368320",
+      "coordinatesWgs84": [
+        19.768226,
+        41.362812
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Spitali Amerikan 1",
+      "osm": "way/463111184",
+      "coordinatesWgs84": [
+        19.795829,
+        41.343577
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universiteti Barleti",
+      "osm": "way/1273961691",
+      "coordinatesWgs84": [
+        19.796994,
+        41.315769
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Evangelical Brotherhood of Albania",
+      "osm": "way/744868434",
+      "coordinatesWgs84": [
+        19.77398,
+        41.326942
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kisha Katolike \"Zemra e Krishtit\"",
+      "osm": "way/237087572",
+      "coordinatesWgs84": [
+        19.809562,
+        41.327257
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Park of Tirana",
+      "osm": "relation/3351946",
+      "coordinatesWgs84": [
+        19.824728,
+        41.311501
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The New Bazaar",
+      "osm": "way/480510821",
+      "coordinatesWgs84": [
+        19.824583,
+        41.330247
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rinia Park",
+      "osm": "way/248355618",
+      "coordinatesWgs84": [
+        19.818217,
+        41.324798
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "350b6e0dfc610aff7b0cdc723d9614f89a144b33653dc8ab5f5889e11d1b2d1f"
+    },
+    "geometry.ts": {
+      "bytes": 213550,
+      "sha256": "1a8c3080c84847b01de7a25658f8d9b0e66f348dac62214dcdc202857c52fd80"
+    },
+    "places.ts": {
+      "bytes": 9850,
+      "sha256": "787a0ccd170f34e9875620d45c46c66c9b5acaad680f619f1a471e82a248f8a2"
+    },
+    "terrain.ts": {
+      "bytes": 435152,
+      "sha256": "db7270abebfb607ab37c374f5a2d157aa7e4f2b916539ffe6da6a4e493382845"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "4b2e9e810053f53b960266714e6753d9db08979937510d244527a4c1d267eec0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

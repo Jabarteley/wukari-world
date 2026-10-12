@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "valletta",
+  "countryIso2": "MT",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Valletta",
+    "coordinatesWgs84": [
+      14.5136607,
+      35.8989979
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/malta-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "valletta-airport",
+    "name": "Malta International Airport",
+    "lon": 14.491546,
+    "lat": 35.845932,
+    "sourceUrl": "https://ourairports.com/airports/LMML/"
+  },
+  "boxes": {
+    "play": [
+      35.71811701006602,
+      14.291360579078136,
+      36.07987878993398,
+      14.735960820921866
+    ],
+    "core": [
+      35.853777677516504,
+      14.458181232984794,
+      35.94421812248349,
+      14.569140167015208
+    ],
+    "outline": [
+      35.66811701006602,
+      14.241360579078135,
+      36.129878789933976,
+      14.785960820921867
+    ],
+    "wide": [
+      35.118117010066015,
+      13.691360579078136,
+      36.67987878993398,
+      15.335960820921866
+    ],
+    "water": [
+      35.118117010066015,
+      13.691360579078136,
+      36.67987878993398,
+      15.335960820921866
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/malta-261011.osm.pbf",
+    "datasetSha256": "e88bb257898bdeae8e82489fe5812b38df1dfda84eb792a318abf467857d8206",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6774543b0b77ed616641ae35198cebf392720c77880a95c71f7943ef856ca55f",
+        "elements": 1668
+      },
+      {
+        "file": "extras.json",
+        "sha256": "0d1deb25fc3af428f0e61f2de03d41c27935330e222c56e6300ccea66fce4678",
+        "elements": 466
+      },
+      {
+        "file": "water.json",
+        "sha256": "3cc3fe97acd6d4e841bb59e372fb8d1f107b25bc1215f8b57ae946afcdd913ad",
+        "elements": 1112
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "ff2db4063534dc6fa5145cfb6eedff0ceb698bf2fd1b8976489d12bea8c349e7",
+        "elements": 3931
+      },
+      {
+        "file": "roads.json",
+        "sha256": "9ddb58ddb19676be62b6369860501df94ef8025fb978c5bd6b6df2edede116c2",
+        "elements": 2459
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Valletta Cruise Port",
+      "osm": "node/9091705487",
+      "coordinatesWgs84": [
+        14.510055,
+        35.891873
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Point de Vue",
+      "osm": "node/2320552957",
+      "coordinatesWgs84": [
+        14.403664,
+        35.883348
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Malta",
+      "osm": "way/169100030",
+      "coordinatesWgs84": [
+        14.482822,
+        35.90211
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mount Carmel Hospital",
+      "osm": "way/15801317",
+      "coordinatesWgs84": [
+        14.432144,
+        35.884434
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sant' Antnin Family Park",
+      "osm": "way/277496981",
+      "coordinatesWgs84": [
+        14.553678,
+        35.861888
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bay Street Shopping Complex",
+      "osm": "relation/21102330",
+      "coordinatesWgs84": [
+        14.487652,
+        35.92469
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chapel of Our Lady's Return from Egypt",
+      "osm": "way/136199373",
+      "coordinatesWgs84": [
+        14.335812,
+        36.015063
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal Opera House",
+      "osm": "way/55064405",
+      "coordinatesWgs84": [
+        14.510329,
+        35.896466
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "European Union Agency for Asylum",
+      "osm": "way/245713083",
+      "coordinatesWgs84": [
+        14.501832,
+        35.886094
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American University of Malta",
+      "osm": "way/329689901",
+      "coordinatesWgs84": [
+        14.519753,
+        35.882084
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "il-Grawnd taċ-Ċentinarju",
+      "osm": "way/26441204",
+      "coordinatesWgs84": [
+        14.415395,
+        35.896557
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Torri tal-Wardija",
+      "osm": "way/171895544",
+      "coordinatesWgs84": [
+        14.473096,
+        35.819304
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Manikata Church",
+      "osm": "way/138969519",
+      "coordinatesWgs84": [
+        14.353097,
+        35.941562
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Malta Classic Car Museum",
+      "osm": "node/1742953661",
+      "coordinatesWgs84": [
+        14.420635,
+        35.95524
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fort Bengħisa",
+      "osm": "way/46780543",
+      "coordinatesWgs84": [
+        14.532334,
+        35.808368
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Mary Magdalene Chapel",
+      "osm": "way/33556227",
+      "coordinatesWgs84": [
+        14.385644,
+        35.851705
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint James Hospital",
+      "osm": "way/33426681",
+      "coordinatesWgs84": [
+        14.503225,
+        35.913025
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Victor Tedesco Stadium",
+      "osm": "way/92244977",
+      "coordinatesWgs84": [
+        14.492616,
+        35.887371
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Balluta Buildings",
+      "osm": "way/224009613",
+      "coordinatesWgs84": [
+        14.494405,
+        35.913834
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lower Barracca Gardens",
+      "osm": "way/27462446",
+      "coordinatesWgs84": [
+        14.517577,
+        35.897552
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tony Bezzina Stadium",
+      "osm": "way/60088300",
+      "coordinatesWgs84": [
+        14.513064,
+        35.882847
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mater Dei Hospital",
+      "osm": "way/24063943",
+      "coordinatesWgs84": [
+        14.47658,
+        35.901869
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hastings Garden",
+      "osm": "way/243915139",
+      "coordinatesWgs84": [
+        14.50782,
+        35.897758
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Gabriel Band Club",
+      "osm": "relation/14484752",
+      "coordinatesWgs84": [
+        14.450847,
+        35.898773
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1221,
+      "sha256": "91a7895a17d48823fad9e5395cdb5ffb0c9c2789639c3153b1a37344e78581db"
+    },
+    "geometry.ts": {
+      "bytes": 177231,
+      "sha256": "4e146a95f6b9977cd0e85a1e470a09e4db613362a773c572ff2850527cbf854b"
+    },
+    "places.ts": {
+      "bytes": 9968,
+      "sha256": "6240ba3aa848245f4263517fa67aaebf96a1cf17e4ad8df62758637d9aba23a5"
+    },
+    "terrain.ts": {
+      "bytes": 420520,
+      "sha256": "cb5c045b3c62f7ee29684eafda07f46a48d15e5a9aa9182a2f5b52728928256e"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "33b890b38f157ff7ec612aefe059ccd825b70f0712bbd9d2132c3b09571900b1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

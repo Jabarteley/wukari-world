@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bucharest",
+  "countryIso2": "RO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bucharest",
+    "coordinatesWgs84": [
+      26.102684,
+      44.4361414
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/romania-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "bucharest-airport",
+    "name": "Bucharest Henri Coandă International Airport",
+    "lon": 26.103285,
+    "lat": 44.571792,
+    "sourceUrl": "https://ourairports.com/airports/LROP/"
+  },
+  "boxes": {
+    "play": [
+      44.255260510066016,
+      25.850284672761397,
+      44.61702228993398,
+      26.355083327238603
+    ],
+    "core": [
+      44.3909211775165,
+      26.03973106740877,
+      44.48136162248349,
+      26.16563693259123
+    ],
+    "outline": [
+      44.20526051006602,
+      25.800284672761396,
+      44.667022289933975,
+      26.405083327238604
+    ],
+    "wide": [
+      43.655260510066014,
+      25.250284672761396,
+      45.21702228993398,
+      26.955083327238604
+    ],
+    "water": [
+      44.255260510066016,
+      25.850284672761397,
+      44.61702228993398,
+      26.355083327238603
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/romania-261011.osm.pbf",
+    "datasetSha256": "54f6b063f14a484dc9efc2246820f2db7dbb6a0a9908e6ad537d12bdbc9d8d76",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "145f0b6993e6d9e5033a125d35f52d548942fd1339bfda09d46264511f97aaea",
+        "elements": 3152
+      },
+      {
+        "file": "extras.json",
+        "sha256": "760bfc2859273dec4c65d8d08d0bfa9c6af534ed830b42862c81d8a9472c2851",
+        "elements": 730
+      },
+      {
+        "file": "water.json",
+        "sha256": "aa598d80e43c108415a47bd778bdc4d01c73e1e3222fe10622b68636e5e578fe",
+        "elements": 229
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "79ccd9eb457fac491b973c8295bcef1a5f8d8b0645b0671e4f2cdddafafcc7cb",
+        "elements": 1952
+      },
+      {
+        "file": "roads.json",
+        "sha256": "f4bfaaad08c390398f8ab00cb61d83db641fddaaf0a75d7952da1f3754fad565",
+        "elements": 5363
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Chitila",
+      "osm": "node/122236985",
+      "coordinatesWgs84": [
+        25.984589,
+        44.501989
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Caru' cu Bere",
+      "osm": "node/916075216",
+      "coordinatesWgs84": [
+        26.098106,
+        44.432001
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The International School of Bucharest",
+      "osm": "way/242092560",
+      "coordinatesWgs84": [
+        26.214719,
+        44.430929
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fundeni Hospital",
+      "osm": "way/23737371",
+      "coordinatesWgs84": [
+        26.155171,
+        44.464759
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parcul Tudor Arghezi",
+      "osm": "way/1054221333",
+      "coordinatesWgs84": [
+        26.124389,
+        44.365023
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Băneasa Shopping City",
+      "osm": "way/241256765",
+      "coordinatesWgs84": [
+        26.08965,
+        44.507071
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Biserica „Adormirea Maicii Domnului”",
+      "osm": "way/1088260518",
+      "coordinatesWgs84": [
+        26.311459,
+        44.583711
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "District 1 City Hall",
+      "osm": "way/156815213",
+      "coordinatesWgs84": [
+        26.073845,
+        44.453843
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Serviciul de Protecție și Pază",
+      "osm": "way/284997385",
+      "coordinatesWgs84": [
+        26.057413,
+        44.431446
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Intelligence Academy",
+      "osm": "way/1073541452",
+      "coordinatesWgs84": [
+        26.044085,
+        44.529258
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadionul Concordia",
+      "osm": "way/847208795",
+      "coordinatesWgs84": [
+        25.975516,
+        44.462818
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MiG-21",
+      "osm": "node/13348629880",
+      "coordinatesWgs84": [
+        25.933638,
+        44.36124
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fostul conac Oteteleșanu",
+      "osm": "way/538963326",
+      "coordinatesWgs84": [
+        26.029554,
+        44.347386
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Balotesti Victim Memorial",
+      "osm": "node/7192273754",
+      "coordinatesWgs84": [
+        26.105607,
+        44.592592
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Biserica „Sfinții Împărați Constantin și Elena”",
+      "osm": "way/497380799",
+      "coordinatesWgs84": [
+        26.07674,
+        44.329464
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Biserica Sfânta Fecioară Maria Regină din Cioplea",
+      "osm": "way/79128894",
+      "coordinatesWgs84": [
+        26.143972,
+        44.414182
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parcul Obor",
+      "osm": "way/23705733",
+      "coordinatesWgs84": [
+        26.126789,
+        44.448239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Promenada Mall",
+      "osm": "way/240694437",
+      "coordinatesWgs84": [
+        26.103413,
+        44.478189
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Polyvalent Hall",
+      "osm": "way/13860708",
+      "coordinatesWgs84": [
+        26.110215,
+        44.405339
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parcul Drumul Taberei",
+      "osm": "way/21802163",
+      "coordinatesWgs84": [
+        26.031499,
+        44.420252
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jumbo Center",
+      "osm": "way/46256608",
+      "coordinatesWgs84": [
+        26.079967,
+        44.415045
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Arena",
+      "osm": "way/13450166",
+      "coordinatesWgs84": [
+        26.15248,
+        44.437191
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Floreasca Hospital",
+      "osm": "way/1227559971",
+      "coordinatesWgs84": [
+        26.101545,
+        44.45388
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "“Prof. Dr. Alexandru Obregia” Clinical Hospital of Psychiatry",
+      "osm": "way/23574618",
+      "coordinatesWgs84": [
+        26.124863,
+        44.386076
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "c280805dd18f5ae966c7284a0c00f67acc9b7973758e32929b69c58c71b1393e"
+    },
+    "geometry.ts": {
+      "bytes": 177769,
+      "sha256": "5eab2827dd2ca479fc98c9f4d0416af1ef9ad4bee404557221f1da769a508cf7"
+    },
+    "places.ts": {
+      "bytes": 10080,
+      "sha256": "b58b67d3252677a49c76a208d5afa5aed4adfa855ca6182b8d9c1a3b1430e9c1"
+    },
+    "terrain.ts": {
+      "bytes": 69508,
+      "sha256": "58ca8533ba37ed0433fd7a08a39c0cb5b564af26df4ad0bb9329498dde5c02d5"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "ee0b37d46296b8c8629449bcb512c488c391f92dc0c9d68087d9a4f1cf1aa5ac"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ljubljana",
+  "countryIso2": "SI",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Ljubljana",
+    "coordinatesWgs84": [
+      14.5069289,
+      46.0500268
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "ljubljana-airport",
+    "name": "Ljubljana Jože Pučnik Airport",
+    "lon": 14.4576,
+    "lat": 46.223701,
+    "sourceUrl": "https://ourairports.com/airports/LJLJ/"
+  },
+  "boxes": {
+    "play": [
+      45.86914591006602,
+      14.247208961813255,
+      46.232745044496696,
+      14.766648838186745
+    ],
+    "core": [
+      46.004806577516504,
+      14.442158826507974,
+      46.09524702248349,
+      14.571698973492026
+    ],
+    "outline": [
+      45.81914591006602,
+      14.197208961813255,
+      46.28274504449669,
+      14.816648838186746
+    ],
+    "wide": [
+      45.269145910066015,
+      13.647208961813256,
+      46.8327450444967,
+      15.366648838186745
+    ],
+    "water": [
+      45.269145910066015,
+      13.647208961813256,
+      46.8327450444967,
+      15.366648838186745
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf",
+    "datasetSha256": "7d4a51d3b7f027abeae0e00fc9d8a2c5127bde43d31f8936babe1e6b759b5db9",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 313640878,
+        "md5": "781a1fdb13a4d2540ee74b38daf3f7be",
+        "sha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/europe/italy/nord-est-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 625244513,
+        "md5": "5c0ebb731629669395f29835013c363f",
+        "sha256": "b6f06220b9b7ece9c6bbdb61c9f25b11bb0b3c57bbb128b24f61be7466b460c4",
+        "reason": "The Slovenian coast chain starts at node 447676493 (Punta Aquila, Muggia, Italy); the Italian coastline way that ends at that node (way/860393119) is absent from the Slovenia clip, so the coast cannot close; the Italy north-east extract supplies it (only the Muggia/Trieste coast inside the Ljubljana water box is used)"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "1f389767c6d31f88401f47ec6e5876e229af5818f661b57a788a40c98ea7b254",
+        "elements": 2674
+      },
+      {
+        "file": "extras.json",
+        "sha256": "0bc376cd2945f39ee2ee8fcaa3d0d88ede67139b83831a97641a8f50fb0cdbd2",
+        "elements": 340
+      },
+      {
+        "file": "water.json",
+        "sha256": "d4e4d5503e7263ba51e22ed1ae404365825e2e54d3c5c7b1ce7c59f3087166c1",
+        "elements": 920
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "657023fc50d600730bac32166b1fd639e38af6429347b80cfe7eb4b6bf34015d",
+        "elements": 3779
+      },
+      {
+        "file": "roads.json",
+        "sha256": "044c8afc17e1d2702b8cd5f2dd93385854e5178e5a50af3afa9dccdef3f4696c",
+        "elements": 2870
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Trzin",
+      "osm": "node/46350571",
+      "coordinatesWgs84": [
+        14.567638,
+        46.132752
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "AHotel",
+      "osm": "way/181308219",
+      "coordinatesWgs84": [
+        14.491769,
+        46.03026
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Knjižnica Medvode",
+      "osm": "relation/18841258",
+      "coordinatesWgs84": [
+        14.414634,
+        46.139776
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Univerzitetni rehabilitacijski inštitut Republike Slovenije - Soča",
+      "osm": "relation/2226607",
+      "coordinatesWgs84": [
+        14.524767,
+        46.067814
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park slovenske reformacije",
+      "osm": "relation/15045329",
+      "coordinatesWgs84": [
+        14.502872,
+        46.054331
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Aleja",
+      "osm": "way/785816151",
+      "coordinatesWgs84": [
+        14.483655,
+        46.078238
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Župnijska cerkev svetega Vida",
+      "osm": "way/175985094",
+      "coordinatesWgs84": [
+        14.416914,
+        45.953785
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Krekov trg",
+      "osm": "way/1036984484",
+      "coordinatesWgs84": [
+        14.510237,
+        46.050473
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Selo Mansion",
+      "osm": "way/197202761",
+      "coordinatesWgs84": [
+        14.538006,
+        46.056658
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Academy of Fine Arts and Design",
+      "osm": "way/1561472443",
+      "coordinatesWgs84": [
+        14.530167,
+        46.03222
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion Domžale",
+      "osm": "way/1119457186",
+      "coordinatesWgs84": [
+        14.601805,
+        46.136912
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museum of Post and Telecommunications",
+      "osm": "node/7930305265",
+      "coordinatesWgs84": [
+        14.313998,
+        46.067363
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kunstljeva vila",
+      "osm": "way/106674045",
+      "coordinatesWgs84": [
+        14.296405,
+        45.963878
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Boštanjski grad",
+      "osm": "way/166770310",
+      "coordinatesWgs84": [
+        14.678629,
+        45.934657
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cerkev svete Marjete",
+      "osm": "way/301226113",
+      "coordinatesWgs84": [
+        14.554702,
+        45.914057
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Župnijska cerkev svetega Jakoba",
+      "osm": "way/244860591",
+      "coordinatesWgs84": [
+        14.306925,
+        46.166115
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Planinski dom Komenda",
+      "osm": "way/122905766",
+      "coordinatesWgs84": [
+        14.539888,
+        46.213384
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion ŽAK",
+      "osm": "relation/15822689",
+      "coordinatesWgs84": [
+        14.499851,
+        46.069709
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arena Stožice",
+      "osm": "way/173167317",
+      "coordinatesWgs84": [
+        14.521472,
+        46.081384
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shopping Center Citypark",
+      "osm": "way/23057646",
+      "coordinatesWgs84": [
+        14.546069,
+        46.067679
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Šlajmer Park",
+      "osm": "way/200914350",
+      "coordinatesWgs84": [
+        14.522977,
+        46.053034
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Academy of Fine Arts and Design - Tobacna",
+      "osm": "node/14208096624",
+      "coordinatesWgs84": [
+        14.49201,
+        46.047941
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bolnica Dr. Petra Držaja",
+      "osm": "way/23061342",
+      "coordinatesWgs84": [
+        14.487143,
+        46.067615
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park Gradaščica",
+      "osm": "relation/13216937",
+      "coordinatesWgs84": [
+        14.4999,
+        46.043646
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1224,
+      "sha256": "9f633e9c81be172eb069d0e8a9860775058fd47a1ba139ef7913cd2581216531"
+    },
+    "geometry.ts": {
+      "bytes": 88328,
+      "sha256": "1626a1d93294c16b2e41adc36c071dbef022ec107c57de8ad42838fc29286bc2"
+    },
+    "places.ts": {
+      "bytes": 9934,
+      "sha256": "9dc0dd206cf2fda089879ebcaca0e97232d87afec2e08729b98963a3f539da1b"
+    },
+    "terrain.ts": {
+      "bytes": 310015,
+      "sha256": "d3e246f1beeb6044dfb7648eb09cdc0043c66a5322cb73a15d5d2bec14fee490"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "30f45831df524aa54525569c86b588cc1ea61ff1be86fa7c10bd88e3ffe72c20"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

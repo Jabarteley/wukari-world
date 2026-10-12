@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "sarajevo",
+  "countryIso2": "BA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Sarajevo",
+    "coordinatesWgs84": [
+      18.4126147,
+      43.8570713
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/bosnia-herzegovina-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "sarajevo-airport",
+    "name": "Sarajevo International Airport",
+    "lon": 18.331499,
+    "lat": 43.8246,
+    "sourceUrl": "https://ourairports.com/airports/LQSA/"
+  },
+  "boxes": {
+    "play": [
+      43.67619041006602,
+      18.16269488288968,
+      44.03795218993398,
+      18.662534517110316
+    ],
+    "core": [
+      43.81185107751651,
+      18.350277293507478,
+      43.902291522483495,
+      18.47495210649252
+    ],
+    "outline": [
+      43.62619041006602,
+      18.11269488288968,
+      44.08795218993398,
+      18.712534517110317
+    ],
+    "wide": [
+      43.07619041006602,
+      17.56269488288968,
+      44.63795218993398,
+      19.262534517110318
+    ],
+    "water": [
+      43.67619041006602,
+      18.16269488288968,
+      44.03795218993398,
+      18.662534517110316
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/bosnia-herzegovina-261011.osm.pbf",
+    "datasetSha256": "3fa04936a49c67cbc48cb678c205681c84e8826aa3a4205c9df03ac026b97237",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "53c1f08df4389d82cae867a80e13c4ea5743cf85fec0120b798a63f49a17211a",
+        "elements": 1097
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9601351d23fa68ca07a1475de959f0ee81ea0c46669481c50600e6f333b94021",
+        "elements": 321
+      },
+      {
+        "file": "water.json",
+        "sha256": "65c57c597f5d7fcc5bb402536835e3d30714e8a733352da9916ade500dd725b9",
+        "elements": 74
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "19bafcdf8d337a559a622bb32b9ef4b42d3a8a132001dbf8d31db5407bb84fb3",
+        "elements": 2124
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c556d637211a4c880a956864ac64b7ecefdf619a5553253f5e0e2b4a74c15757",
+        "elements": 1203
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Sarajevo",
+      "osm": "node/942406094",
+      "coordinatesWgs84": [
+        18.39895,
+        43.860459
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Inat kuća",
+      "osm": "way/191388836",
+      "coordinatesWgs84": [
+        18.43425,
+        43.858559
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "International University in Sarajevo",
+      "osm": "way/793104957",
+      "coordinatesWgs84": [
+        18.309434,
+        43.821545
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Klinički centar Univerziteta u Sarajevu",
+      "osm": "way/375862791",
+      "coordinatesWgs84": [
+        18.415965,
+        43.869731
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bike Park Evolution",
+      "osm": "node/10933440915",
+      "coordinatesWgs84": [
+        18.363966,
+        43.798883
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ARIA",
+      "osm": "node/7909276377",
+      "coordinatesWgs84": [
+        18.416533,
+        43.858336
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Crkva Svetog Pantelejmona",
+      "osm": "way/778627920",
+      "coordinatesWgs84": [
+        18.521253,
+        43.919366
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Municipality of Novi Grad Sarajevo",
+      "osm": "way/44788668",
+      "coordinatesWgs84": [
+        18.354814,
+        43.846704
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Administrativni centar grada Istočno Sarajevo",
+      "osm": "way/183545337",
+      "coordinatesWgs84": [
+        18.365947,
+        43.822455
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Muzička akademija Sarajevo",
+      "osm": "node/6368640905",
+      "coordinatesWgs84": [
+        18.424987,
+        43.860469
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Grbavica Stadium",
+      "osm": "way/140482805",
+      "coordinatesWgs84": [
+        18.387506,
+        43.846559
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Visoki",
+      "osm": "way/181388997",
+      "coordinatesWgs84": [
+        18.176331,
+        43.976838
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cekovića kuća",
+      "osm": "way/224740343",
+      "coordinatesWgs84": [
+        18.568156,
+        43.819293
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dubrovnik Castle",
+      "osm": "way/588118276",
+      "coordinatesWgs84": [
+        18.335882,
+        43.993135
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vrelo Bosne",
+      "osm": "way/28784587",
+      "coordinatesWgs84": [
+        18.272191,
+        43.82197
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Crkva Svetog sveštenomučenika Petra Dabrobosanskog",
+      "osm": "way/777985963",
+      "coordinatesWgs84": [
+        18.349522,
+        43.79801
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vraca Memorial Park",
+      "osm": "way/23697320",
+      "coordinatesWgs84": [
+        18.399097,
+        43.843538
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Saint-Joseph",
+      "osm": "way/118942247",
+      "coordinatesWgs84": [
+        18.406965,
+        43.856501
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Olimpijski stadion Koševo – Asim Ferhatović-Hase",
+      "osm": "way/23480568",
+      "coordinatesWgs84": [
+        18.408582,
+        43.873749
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Univerzitet u Istočnom Sarajevu",
+      "osm": "way/840206905",
+      "coordinatesWgs84": [
+        18.374073,
+        43.823952
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "City Stadium SRC Slavija",
+      "osm": "way/27298226",
+      "coordinatesWgs84": [
+        18.367134,
+        43.829359
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Sarajevo Campus",
+      "osm": "way/622818140",
+      "coordinatesWgs84": [
+        18.396382,
+        43.85667
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Morića Han",
+      "osm": "relation/8425673",
+      "coordinatesWgs84": [
+        18.430107,
+        43.859672
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gazi Husrev Bey's Bezistan",
+      "osm": "way/188836329",
+      "coordinatesWgs84": [
+        18.42807,
+        43.858819
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "3d83b5bae5f1f23c69fd705c1e61b5424ec32e6154497457c3360d420a86558b"
+    },
+    "geometry.ts": {
+      "bytes": 41538,
+      "sha256": "35355fb74d66170281785dd30b7676d932acf9befa64f04b12e426136b9bf12e"
+    },
+    "places.ts": {
+      "bytes": 10093,
+      "sha256": "3c0c85e28432a75487df2e807cc2d79fb210ed82bbf96b2c20c3adbbd8879765"
+    },
+    "terrain.ts": {
+      "bytes": 21446,
+      "sha256": "8365badef8313138dccfcdfef8aff087705096ae1df51989b39b9d51a94d3753"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "2460092c52022ab4728708bc54ce930c72d547021bd9b8e98e2f6e4c4cf73b0d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "vilnius",
+  "countryIso2": "LT",
+  "generationIdentity": {
+    "cityId": "vilnius",
+    "stateId": "lt-vilnius",
+    "stateName": "Vilnius"
+  },
+  "inventorySha256": "0a800f1811dd091a9dd3f93e2c4d7beef3cad005876108efaacb8747e9b7f13b",
+  "inventoryPath": "world/playable-africa-rollout/sources/vilnius.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "vilnius-airport",
+    "name": "Vilnius International Airport",
+    "lon": 25.285801,
+    "lat": 54.634102,
+    "sourceUrl": "https://ourairports.com/airports/EYVI/"
+  },
+  "bounds": [
+    54.50616491006602,
+    24.970706513008302,
+    54.86792668993398,
+    25.595115686991697
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/lithuania-261011.osm.pbf",
+      "datasetSha256": "e814e2b9f0616b87ebbc4b397664a01a4665ef632bcbd88fbe3e9c957c8e6298",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6be57c73f87231ed905e760737c8f78be972cd1135080c31c54aefd5fcf3aa7c",
+          "elements": 1612
+        },
+        {
+          "file": "extras.json",
+          "sha256": "bc8a3a7b17cf3fc988ef49042f1f1929c1feba57901b2924fc618a21107fdc3a",
+          "elements": 376
+        },
+        {
+          "file": "water.json",
+          "sha256": "b50265ddfda22dd0454ea3fa9ff013e124b9802187d302adbde0441300a4947d",
+          "elements": 506
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "a1bea10ffc4c4373797af5909b9674b33a32b60d7b80a357bcfe10fcdb2c879f",
+          "elements": 9147
+        },
+        {
+          "file": "roads.json",
+          "sha256": "4b32266bd2136031d8bdb3f9705350401e9ac2ad3343f25291bc13e8da7d379b",
+          "elements": 3188
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 45,
+    "waterPolygons": 14,
+    "reachWaterPolygons": 16
+  },
+  "observed": {
+    "places": 1612,
+    "extras": 376,
+    "water": 506,
+    "landuse": 9147,
+    "roads": 3188
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1216,
+      "sha256": "9a5e32ee70801aa272c282eaa03a9533299dc7d428d0bf22f5569a9a6d59739a"
+    },
+    "geometry.ts": {
+      "bytes": 168708,
+      "sha256": "ab44d86c490e29dbde0752e449d1752cc4c531ea06559f4a7188daaa8cfea718"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "d3d8d3f279de39053c897be257f1efbe669d4e2fb9a41507144bc984647c451b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/vilnius.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

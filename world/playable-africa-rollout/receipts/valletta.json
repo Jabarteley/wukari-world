@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "valletta",
+  "countryIso2": "MT",
+  "generationIdentity": {
+    "cityId": "valletta",
+    "stateId": "mt-valletta",
+    "stateName": "Valletta"
+  },
+  "inventorySha256": "43f5b6527a4352c6b2a3ace3da014133b4b160692d7b9f69e4c33a881be49f46",
+  "inventoryPath": "world/playable-africa-rollout/sources/valletta.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "valletta-airport",
+    "name": "Malta International Airport",
+    "lon": 14.491546,
+    "lat": 35.845932,
+    "sourceUrl": "https://ourairports.com/airports/LMML/"
+  },
+  "bounds": [
+    35.71811701006602,
+    14.291360579078136,
+    36.07987878993398,
+    14.735960820921866
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/malta-261011.osm.pbf",
+      "datasetSha256": "e88bb257898bdeae8e82489fe5812b38df1dfda84eb792a318abf467857d8206",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6774543b0b77ed616641ae35198cebf392720c77880a95c71f7943ef856ca55f",
+          "elements": 1668
+        },
+        {
+          "file": "extras.json",
+          "sha256": "0d1deb25fc3af428f0e61f2de03d41c27935330e222c56e6300ccea66fce4678",
+          "elements": 466
+        },
+        {
+          "file": "water.json",
+          "sha256": "3cc3fe97acd6d4e841bb59e372fb8d1f107b25bc1215f8b57ae946afcdd913ad",
+          "elements": 1112
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ff2db4063534dc6fa5145cfb6eedff0ceb698bf2fd1b8976489d12bea8c349e7",
+          "elements": 3931
+        },
+        {
+          "file": "roads.json",
+          "sha256": "9ddb58ddb19676be62b6369860501df94ef8025fb978c5bd6b6df2edede116c2",
+          "elements": 2459
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 3,
+    "waterPolygons": 8,
+    "reachWaterPolygons": 9
+  },
+  "observed": {
+    "places": 1668,
+    "extras": 466,
+    "water": 1112,
+    "landuse": 3931,
+    "roads": 2459
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1221,
+      "sha256": "91a7895a17d48823fad9e5395cdb5ffb0c9c2789639c3153b1a37344e78581db"
+    },
+    "geometry.ts": {
+      "bytes": 177231,
+      "sha256": "4e146a95f6b9977cd0e85a1e470a09e4db613362a773c572ff2850527cbf854b"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "33b890b38f157ff7ec612aefe059ccd825b70f0712bbd9d2132c3b09571900b1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/valletta.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

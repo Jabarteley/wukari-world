@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "podgorica",
+  "countryIso2": "ME",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Podgorica",
+    "coordinatesWgs84": [
+      19.2621081,
+      42.4415238
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/montenegro-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "podgorica-airport",
+    "name": "Podgorica Airport / Podgorica Golubovci Airbase",
+    "lon": 19.2519,
+    "lat": 42.359402,
+    "sourceUrl": "https://ourairports.com/airports/LYPG/"
+  },
+  "boxes": {
+    "play": [
+      42.26064291006602,
+      19.017946185363805,
+      42.62240468993398,
+      19.506270014636193
+    ],
+    "core": [
+      42.396303577516505,
+      19.201200165490835,
+      42.48674402248349,
+      19.323016034509163
+    ],
+    "outline": [
+      42.21064291006602,
+      18.967946185363804,
+      42.67240468993398,
+      19.556270014636194
+    ],
+    "wide": [
+      41.66064291006602,
+      18.417946185363803,
+      43.22240468993398,
+      20.106270014636195
+    ],
+    "water": [
+      41.66064291006602,
+      18.417946185363803,
+      43.22240468993398,
+      20.106270014636195
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/montenegro-261011.osm.pbf",
+    "datasetSha256": "d04b17e63f01bde90ab90300dcabc5368cfbbf1be7ca374fdd7f5093f4881693",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/europe/montenegro-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 34534458,
+        "md5": "676da304b9d8a357b1e559dd1de15b5e",
+        "sha256": "43d280ed43d751f33088ea4681ba47a6ad5c91f3118b7a96a282478d38475ea2"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/europe/croatia-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 200686156,
+        "md5": "d98e7e7c547e3e214fad6bcae2eb9967",
+        "sha256": "f14bd6221f95867aaf8b45edadfc30d88f56ff4140520f4f5eb2cc6b9a1c1a7e",
+        "reason": "The Montenegrin coast way/669064261 starts near the Croatian border (Konavle) and continues as the Croatian coast way/215108613 (node 2245250921), absent from the Montenegro clip, so the coast cannot close; the Croatia extract supplies it"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "35568940b506e375b35a7b0a154e5200be2c49e12ba1b8cba484d43573ace265",
+        "elements": 625
+      },
+      {
+        "file": "extras.json",
+        "sha256": "5b7488bb9b0a7251e12e5f150e5604566099a40d5b970f9728c31936b42e743f",
+        "elements": 85
+      },
+      {
+        "file": "water.json",
+        "sha256": "6e1695120a839b31a58f53d06e91ab779a6f023a3a367ea1922ab12be8d53b87",
+        "elements": 1125
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "ccdfd9c51ecb59b4e0b5f44b29054d31dc4ef4c2a282309b4ab43f66c9296d2a",
+        "elements": 1044
+      },
+      {
+        "file": "roads.json",
+        "sha256": "942e058aaecaf17b81da4f0be4d08dd3d7f5241ffed74045d31d330bb13f13ac",
+        "elements": 2087
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Bioče",
+      "osm": "node/418346188",
+      "coordinatesWgs84": [
+        19.367311,
+        42.527794
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Studentska menza",
+      "osm": "node/308048952",
+      "coordinatesWgs84": [
+        19.237293,
+        42.44194
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Univerzitet Donja Gorica",
+      "osm": "way/312760420",
+      "coordinatesWgs84": [
+        19.203208,
+        42.417551
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dom zdravlja Konik",
+      "osm": "node/309274533",
+      "coordinatesWgs84": [
+        19.281903,
+        42.437135
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Njegošev park",
+      "osm": "way/28130532",
+      "coordinatesWgs84": [
+        19.259384,
+        42.44203
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mall of Montenegro",
+      "osm": "node/5409350621",
+      "coordinatesWgs84": [
+        19.263052,
+        42.431829
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Manastir Vranjina",
+      "osm": "relation/15487672",
+      "coordinatesWgs84": [
+        19.143725,
+        42.271203
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Trg nezavisnosti",
+      "osm": "way/27557242",
+      "coordinatesWgs84": [
+        19.26291,
+        42.441271
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Agencija za Nacionalnu Bezbjednost",
+      "osm": "way/185576903",
+      "coordinatesWgs84": [
+        19.250458,
+        42.439082
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faculty of Political Science",
+      "osm": "node/4345473682",
+      "coordinatesWgs84": [
+        19.256375,
+        42.446024
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stadion Trešnjica",
+      "osm": "way/923891668",
+      "coordinatesWgs84": [
+        19.240685,
+        42.328614
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Memorial to the Fallen of the Lješanska Nahija Region",
+      "osm": "node/4751745100",
+      "coordinatesWgs84": [
+        19.141622,
+        42.393801
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Manastir Piperska Celija",
+      "osm": "way/331572836",
+      "coordinatesWgs84": [
+        19.22156,
+        42.546456
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Braća Velašević Stadium",
+      "osm": "way/273450355",
+      "coordinatesWgs84": [
+        19.102988,
+        42.554066
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Žabljak Crnojevića",
+      "osm": "relation/15505766",
+      "coordinatesWgs84": [
+        19.156549,
+        42.317005
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion Ljajkovići",
+      "osm": "way/239484551",
+      "coordinatesWgs84": [
+        19.216698,
+        42.365468
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lesendro",
+      "osm": "way/170592633",
+      "coordinatesWgs84": [
+        19.119681,
+        42.271602
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathedral of the Resurrection of Christ",
+      "osm": "way/175501033",
+      "coordinatesWgs84": [
+        19.248243,
+        42.445709
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Karađorđev park",
+      "osm": "way/28130522",
+      "coordinatesWgs84": [
+        19.264776,
+        42.438771
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Univerzitet Crne Gore",
+      "osm": "way/185576891",
+      "coordinatesWgs84": [
+        19.240298,
+        42.442754
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ramada Podgorica",
+      "osm": "way/134769445",
+      "coordinatesWgs84": [
+        19.262943,
+        42.432103
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Poslednja Luka",
+      "osm": "node/2242615494",
+      "coordinatesWgs84": [
+        19.031673,
+        42.35665
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cemi holiday resort",
+      "osm": "node/9896999137",
+      "coordinatesWgs84": [
+        19.457819,
+        42.424649
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gushing Water Tree",
+      "osm": "way/1333029322",
+      "coordinatesWgs84": [
+        19.336523,
+        42.418382
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1244,
+      "sha256": "ca4cf66a65d036e7ed2bc4a7b825afbb723651aefa18d96832469bad225504bf"
+    },
+    "geometry.ts": {
+      "bytes": 261572,
+      "sha256": "9fedc54113eca91f8f4a48da1b6438881c7272b783c7e49fd108203c781cef99"
+    },
+    "places.ts": {
+      "bytes": 9770,
+      "sha256": "66eba0467f2cc6bf961cbffa1ab8a5e8ea04125029e66ebf29dcc921283ba996"
+    },
+    "terrain.ts": {
+      "bytes": 364404,
+      "sha256": "5bf532b546c4c490e1a0e4ad2a0f2e3575a7ae8d7c5a20741bc91f0abe8397fa"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "9ae67f342f747115be858484d0163a6f9ba1eabf5fb29b11424a55c59a2af0bc"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

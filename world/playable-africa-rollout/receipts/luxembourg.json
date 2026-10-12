@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "luxembourg",
+  "countryIso2": "LU",
+  "generationIdentity": {
+    "cityId": "luxembourg",
+    "stateId": "lu-luxembourg",
+    "stateName": "Luxembourg"
+  },
+  "inventorySha256": "c15aa08959a4ef88234758f1a4c64a1da4ef7d00788474a058add3d93051c37c",
+  "inventoryPath": "world/playable-africa-rollout/sources/luxembourg.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "luxembourg-airport",
+    "name": "Luxembourg-Findel International Airport",
+    "lon": 6.212134,
+    "lat": 49.626845,
+    "sourceUrl": "https://ourairports.com/airports/ELLX/"
+  },
+  "bounds": [
+    49.43039591006602,
+    5.851495487379748,
+    49.79215768993398,
+    6.408102512620252
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/luxembourg-261011.osm.pbf",
+      "datasetSha256": "5669cebe95a49c194044d333df057685c3c9c9e61f7dcc137709cdddd37aca9a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "b5bed7940e06edaeb238450e86e47eb58933c8758de484f1917fcb50ba9c81c1",
+          "elements": 3129
+        },
+        {
+          "file": "extras.json",
+          "sha256": "ad619814fbcc2da14dd21890a3f243a0a6fd4fd05e4ad4485221d661bef2b3cc",
+          "elements": 623
+        },
+        {
+          "file": "water.json",
+          "sha256": "77ebf860a4a69974b75300107e1b49e61334c66bf91579a5372734d36784c345",
+          "elements": 711
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "e33ff3a12ba984803102ff35df01e6ea704b0b757eea3fd6daf2153d3c60f765",
+          "elements": 2724
+        },
+        {
+          "file": "roads.json",
+          "sha256": "151c0fe8c92c6776721a8b334b83d142041530272e848d12c3a35777c8f83ead",
+          "elements": 5300
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 41,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 1
+  },
+  "observed": {
+    "places": 3129,
+    "extras": 623,
+    "water": 711,
+    "landuse": 2724,
+    "roads": 5300
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1243,
+      "sha256": "25a1e7a63923be74f881f4da378ba8b2ea512646a91df08f0c861f53cdbf7397"
+    },
+    "geometry.ts": {
+      "bytes": 118294,
+      "sha256": "fdcf05e409b9e7a8969e6351dcd28e4eaf45b786999258aa951fa5f7ac473338"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "c9f06c5dfabd6bcaf8c97ffc546ff6e35de02fec845d2977e631c13e13d7dcd5"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/luxembourg.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

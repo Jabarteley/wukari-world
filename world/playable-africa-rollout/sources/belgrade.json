@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "belgrade",
+  "countryIso2": "RS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Belgrade",
+    "coordinatesWgs84": [
+      20.4568974,
+      44.8178131
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/serbia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "belgrade-airport",
+    "name": "Belgrade Nikola Tesla Airport",
+    "lon": 20.309099,
+    "lat": 44.818401,
+    "sourceUrl": "https://ourairports.com/airports/LYBE/"
+  },
+  "boxes": {
+    "play": [
+      44.63693221006602,
+      20.202822421982965,
+      44.99869398993398,
+      20.710972378017033
+    ],
+    "core": [
+      44.77259287751651,
+      20.393528511011297,
+      44.863033322483496,
+      20.5202662889887
+    ],
+    "outline": [
+      44.586932210066024,
+      20.152822421982965,
+      45.04869398993398,
+      20.760972378017033
+    ],
+    "wide": [
+      44.03693221006602,
+      19.602822421982964,
+      45.598693989933984,
+      21.310972378017034
+    ],
+    "water": [
+      44.63693221006602,
+      20.202822421982965,
+      44.99869398993398,
+      20.710972378017033
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/serbia-261011.osm.pbf",
+    "datasetSha256": "e08d2547e41b1b9da2b70eee5ec0b3fe41988a1759cbcbcb4d8d72d15992ad34",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "9cb8eb12e14c9365cd6228871889caac3f11b7cc5d60c8353ba8746dc70c6ed3",
+        "elements": 3415
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c881beb7f3151169efeeb60f4b0832254cce57863f9f4a0687b6001ae91577a5",
+        "elements": 656
+      },
+      {
+        "file": "water.json",
+        "sha256": "496b32f65235b94cc9ae72b036ae9d67a39b00cfd770be8104c80d81b16b609c",
+        "elements": 71
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "acbe46bb1336122f0bee2b88d677c8c884420e6e1e46da4d9d578f4703a614c5",
+        "elements": 5001
+      },
+      {
+        "file": "roads.json",
+        "sha256": "8f9cff6ca6d934691f7a28cccab12bf0f558a1bc6758123151a0865aa613b714",
+        "elements": 4168
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Ripanj",
+      "osm": "node/259997361",
+      "coordinatesWgs84": [
+        20.50655,
+        44.66265
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Aleksandar club Ski staza",
+      "osm": "node/465243125",
+      "coordinatesWgs84": [
+        20.427308,
+        44.778116
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Public Library \"Milutin Bojić\"",
+      "osm": "node/7041829486",
+      "coordinatesWgs84": [
+        20.536479,
+        44.888187
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Дом здравља Земун",
+      "osm": "way/409829311",
+      "coordinatesWgs84": [
+        20.386924,
+        44.845607
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Барутана",
+      "osm": "way/68321074",
+      "coordinatesWgs84": [
+        20.65918,
+        44.86626
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "BIG Fashion Shopping Center",
+      "osm": "way/503379357",
+      "coordinatesWgs84": [
+        20.508682,
+        44.816689
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Црква Свете Петке",
+      "osm": "way/253990537",
+      "coordinatesWgs84": [
+        20.216321,
+        44.722831
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Republic Square",
+      "osm": "node/6760759093",
+      "coordinatesWgs84": [
+        20.460295,
+        44.816222
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Security Information Agency",
+      "osm": "way/675620894",
+      "coordinatesWgs84": [
+        20.468306,
+        44.759692
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vinca Institute of Nuclear Sciences",
+      "osm": "way/370226754",
+      "coordinatesWgs84": [
+        20.599685,
+        44.758552
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ФК БСК Борча",
+      "osm": "way/1387911268",
+      "coordinatesWgs84": [
+        20.444396,
+        44.87549
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monument to Nikola Tesla",
+      "osm": "node/5589378733",
+      "coordinatesWgs84": [
+        20.290095,
+        44.818567
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Споменик палим борцима Сремчице",
+      "osm": "node/11425530815",
+      "coordinatesWgs84": [
+        20.391048,
+        44.676903
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Црква Свете Тројице",
+      "osm": "way/1444519027",
+      "coordinatesWgs84": [
+        20.655903,
+        44.676941
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Црква светих арханђела Михаила и Гаврила",
+      "osm": "way/474077436",
+      "coordinatesWgs84": [
+        20.27474,
+        44.906397
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Споменик палим борцима Црвене армије 1944.",
+      "osm": "node/3017515469",
+      "coordinatesWgs84": [
+        20.656949,
+        44.736733
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "FZk Resnik",
+      "osm": "way/93145927",
+      "coordinatesWgs84": [
+        20.451371,
+        44.703048
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ОШ Алекса Шантић",
+      "osm": "way/438907241",
+      "coordinatesWgs84": [
+        20.556674,
+        44.764478
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Стадион Бежанија",
+      "osm": "way/371964365",
+      "coordinatesWgs84": [
+        20.373858,
+        44.808142
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Мегатренд универзитет",
+      "osm": "node/12869419136",
+      "coordinatesWgs84": [
+        20.422003,
+        44.819761
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jajinci Memorial Park",
+      "osm": "way/482462319",
+      "coordinatesWgs84": [
+        20.488984,
+        44.730665
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faculty of Security Studies, University of Belgrade",
+      "osm": "way/1350045138",
+      "coordinatesWgs84": [
+        20.478492,
+        44.791111
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Дом здравља Раковица",
+      "osm": "way/392169933",
+      "coordinatesWgs84": [
+        20.44134,
+        44.745381
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Хотел „Авала”",
+      "osm": "way/715373965",
+      "coordinatesWgs84": [
+        20.513545,
+        44.691144
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1214,
+      "sha256": "93b8c3687a169d9dfadea63a90dd9772d1315eb57bc55461facee3c96ecd5760"
+    },
+    "geometry.ts": {
+      "bytes": 145337,
+      "sha256": "53752231273e38830239cc2c1e26dc043c3669d88868069e5d713e7cd963ca40"
+    },
+    "places.ts": {
+      "bytes": 10475,
+      "sha256": "23350c44436e8fcbd7773c176c881561702b0cfeba0cd1634ebe82be195bad86"
+    },
+    "terrain.ts": {
+      "bytes": 76495,
+      "sha256": "1c261d9a4060978a59291495e79e9a95ebcec09fe653588f59087414b0774657"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "8d4a05d88575ac1309d79e6ee0fab0219a774091f561166b2fcc1e65f319a6b2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

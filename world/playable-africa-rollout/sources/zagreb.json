@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "zagreb",
+  "countryIso2": "HR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Zagreb",
+    "coordinatesWgs84": [
+      15.9772795,
+      45.8130967
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/croatia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "zagreb-airport",
+    "name": "Zagreb Franjo Tuđman International Airport",
+    "lon": 16.0688,
+    "lat": 45.742901,
+    "sourceUrl": "https://ourairports.com/airports/LDZA/"
+  },
+  "boxes": {
+    "play": [
+      45.63221581006602,
+      15.718673701335272,
+      45.99397758993398,
+      16.235885298664726
+    ],
+    "core": [
+      45.76787647751651,
+      15.91278596470878,
+      45.858316922483496,
+      16.04177303529122
+    ],
+    "outline": [
+      45.582215810066025,
+      15.66867370133527,
+      46.04397758993398,
+      16.285885298664727
+    ],
+    "wide": [
+      45.03221581006602,
+      15.118673701335272,
+      46.593977589933985,
+      16.835885298664728
+    ],
+    "water": [
+      45.63221581006602,
+      15.718673701335272,
+      45.99397758993398,
+      16.235885298664726
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/croatia-261011.osm.pbf",
+    "datasetSha256": "f14bd6221f95867aaf8b45edadfc30d88f56ff4140520f4f5eb2cc6b9a1c1a7e",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "df59a4174894f8e7ac5e659fd8620eb156f6cb149f11c048cd0d112f45468833",
+        "elements": 2656
+      },
+      {
+        "file": "extras.json",
+        "sha256": "4927a58e0bec4d8963d6913a9737e0a3c10c33496d3af9be5a47d3b58c517d76",
+        "elements": 840
+      },
+      {
+        "file": "water.json",
+        "sha256": "35264862fddb74cdbedbeb563310c0551a03b41fe917402f0cfb0776b53e5485",
+        "elements": 151
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "77f144b42fb39c0cfce82903678b75ecffeee02da5170faf5da99ad04e5c9062",
+        "elements": 9408
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5ab6d2dcfe577ed861ba461c774ff516e3f4a4371916528818bdcdf597bea8e8",
+        "elements": 2801
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Zagreb Zapadni kolodvor",
+      "osm": "node/5627130421",
+      "coordinatesWgs84": [
+        15.954226,
+        45.809113
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Noel",
+      "osm": "node/2164248255",
+      "coordinatesWgs84": [
+        15.988276,
+        45.810991
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kineziološki fakultet",
+      "osm": "way/320797178",
+      "coordinatesWgs84": [
+        15.944147,
+        45.78603
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University Psychiatric Hospital Vrapče",
+      "osm": "way/77485340",
+      "coordinatesWgs84": [
+        15.897714,
+        45.816829
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Novi dvori",
+      "osm": "way/940677492",
+      "coordinatesWgs84": [
+        15.805671,
+        45.872001
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King Cross Jankomir",
+      "osm": "way/29281136",
+      "coordinatesWgs84": [
+        15.855758,
+        45.796585
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "kapela svete Terezije od Djeteta Isusa u Trnju",
+      "osm": "node/13304771994",
+      "coordinatesWgs84": [
+        16.109824,
+        45.828281
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Općina Stubičke Toplice",
+      "osm": "way/584600486",
+      "coordinatesWgs84": [
+        15.930065,
+        45.977438
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Općina Kraljevec na Sutli",
+      "osm": "way/609611254",
+      "coordinatesWgs84": [
+        15.72776,
+        45.985135
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faculty of Economics and Business",
+      "osm": "way/880362547",
+      "coordinatesWgs84": [
+        16.011509,
+        45.816365
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gradski stadion Velika Gorica",
+      "osm": "way/30014192",
+      "coordinatesWgs84": [
+        16.073092,
+        45.723963
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "kapelica Uzvišenja Svetog Križa",
+      "osm": "way/713274174",
+      "coordinatesWgs84": [
+        16.029734,
+        45.928736
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "crkva Presvetog Trojstva",
+      "osm": "way/676820357",
+      "coordinatesWgs84": [
+        16.168143,
+        45.937152
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "kapela svetog Roka",
+      "osm": "way/761095793",
+      "coordinatesWgs84": [
+        15.748984,
+        45.743969
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dvorac Lukavec",
+      "osm": "relation/2086542",
+      "coordinatesWgs84": [
+        16.000367,
+        45.701702
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dvorac Brezovica",
+      "osm": "way/151506756",
+      "coordinatesWgs84": [
+        15.908841,
+        45.730244
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion Lučko",
+      "osm": "way/296100147",
+      "coordinatesWgs84": [
+        15.867818,
+        45.76048
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stjepan Spajić",
+      "osm": "way/261119216",
+      "coordinatesWgs84": [
+        15.972165,
+        45.771133
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Klinička bolnica Dubrava",
+      "osm": "way/78326996",
+      "coordinatesWgs84": [
+        16.035409,
+        45.834625
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bundek",
+      "osm": "way/29023160",
+      "coordinatesWgs84": [
+        15.9908,
+        45.784811
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fakultet strojarstva i brodogradnje",
+      "osm": "relation/2680527",
+      "coordinatesWgs84": [
+        15.972146,
+        45.796392
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zdravstveno veleučilište",
+      "osm": "way/350664499",
+      "coordinatesWgs84": [
+        15.977759,
+        45.827344
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Klinička bolnica Merkur",
+      "osm": "way/589021801",
+      "coordinatesWgs84": [
+        15.997019,
+        45.820442
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park mladenaca",
+      "osm": "way/875744638",
+      "coordinatesWgs84": [
+        15.966955,
+        45.773654
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "96e82382a41e239d9f605880bf834d709751a0e02abf4902a4e70d5eb1cf925f"
+    },
+    "geometry.ts": {
+      "bytes": 138768,
+      "sha256": "f3fb0633cc352e543ce78f26fa39f8bc327d449c15690f38cc7ff95d8c31e13c"
+    },
+    "places.ts": {
+      "bytes": 9940,
+      "sha256": "2d111dcca293bf26f5c69eda503d5d4e7184b80c5f2846f883723a2e6b6ed374"
+    },
+    "terrain.ts": {
+      "bytes": 55847,
+      "sha256": "fdc5a494c0d35fdece16373452e3bad2a1934bfe6ac01dc6813f01df9af43395"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "5c0087e9793dc885db3326cfcc7943822210d15d43b316fd448f4ac533cbe802"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

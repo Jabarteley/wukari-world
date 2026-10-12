@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "budapest",
+  "countryIso2": "HU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Budapest",
+    "coordinatesWgs84": [
+      19.0402383,
+      47.4978789
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/hungary-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "budapest-airport",
+    "name": "Budapest Liszt Ferenc International Airport",
+    "lon": 19.262393,
+    "lat": 47.43018,
+    "sourceUrl": "https://ourairports.com/airports/LHBP/"
+  },
+  "boxes": {
+    "play": [
+      47.31699801006602,
+      18.773394700609295,
+      47.678759789933984,
+      19.307081899390703
+    ],
+    "core": [
+      47.45265867751651,
+      18.97370022306515,
+      47.5430991224835,
+      19.106776376934846
+    ],
+    "outline": [
+      47.266998010066025,
+      18.723394700609294,
+      47.72875978993398,
+      19.357081899390703
+    ],
+    "wide": [
+      46.71699801006602,
+      18.173394700609293,
+      48.278759789933986,
+      19.907081899390704
+    ],
+    "water": [
+      47.31699801006602,
+      18.773394700609295,
+      47.678759789933984,
+      19.307081899390703
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/hungary-261011.osm.pbf",
+    "datasetSha256": "e1141f633cd6f67552a14daef083629bcca5eb25db4944c732b74fdb770a090f",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "898d299852b2aa62773b2972a8aa3d7716cb3900dd820008b59d667e7ff76485",
+        "elements": 5442
+      },
+      {
+        "file": "extras.json",
+        "sha256": "a79c5f262ae299f52f3425fe67d5ff4ccd065d2225944494e17286bfb0a059e4",
+        "elements": 1573
+      },
+      {
+        "file": "water.json",
+        "sha256": "764e6d913716bf8468b6c6af50648b05b5127e538a2164f88b0161109f9558ea",
+        "elements": 346
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "f8044a78d1b6ebd68e83c33e104d99381dace93964699ee5907b9bc4fb097a0a",
+        "elements": 3431
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a83c28e7158473c4dc6473b28190731a26de489b5e19ddd72210baedd2836943",
+        "elements": 5994
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Érd, autóbusz-állomás",
+      "osm": "node/158341222",
+      "coordinatesWgs84": [
+        18.925341,
+        47.379503
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gerbeaud Confectionary",
+      "osm": "node/276510449",
+      "coordinatesWgs84": [
+        19.050339,
+        47.497007
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vécsey Lakótelepi Könyvtár",
+      "osm": "node/650854022",
+      "coordinatesWgs84": [
+        19.128702,
+        47.429339
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bajcsy-Zsilinszky Kórház és Rendelőintézet",
+      "osm": "way/550331255",
+      "coordinatesWgs84": [
+        19.162151,
+        47.478491
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hősök tere",
+      "osm": "relation/2453420",
+      "coordinatesWgs84": [
+        19.25971,
+        47.490184
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Campona",
+      "osm": "way/105668758",
+      "coordinatesWgs84": [
+        19.017501,
+        47.407172
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Keresztelő Szent János-templom",
+      "osm": "way/75922434",
+      "coordinatesWgs84": [
+        19.075652,
+        47.668217
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Városháza",
+      "osm": "relation/1764049",
+      "coordinatesWgs84": [
+        19.089758,
+        47.562189
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Információs Hivatal",
+      "osm": "relation/3937951",
+      "coordinatesWgs84": [
+        18.958794,
+        47.526999
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Budapest University of Economics, Faculty of Finance and Accounting",
+      "osm": "way/1522779060",
+      "coordinatesWgs84": [
+        19.124449,
+        47.508309
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nagy-Kevély",
+      "osm": "node/3266194398",
+      "coordinatesWgs84": [
+        18.984602,
+        47.622715
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Veresegyház Bear Sanctuary",
+      "osm": "way/106940773",
+      "coordinatesWgs84": [
+        19.255042,
+        47.631216
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barcza-kastély",
+      "osm": "way/178875079",
+      "coordinatesWgs84": [
+        18.787472,
+        47.404496
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zsíros-hegyi Turistaház romja",
+      "osm": "node/1996688188",
+      "coordinatesWgs84": [
+        18.900798,
+        47.590265
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nepomuki Szent János-kápolna",
+      "osm": "way/353853403",
+      "coordinatesWgs84": [
+        19.139221,
+        47.624081
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Szeplőtelen Fogantatás kápolna",
+      "osm": "way/115967431",
+      "coordinatesWgs84": [
+        18.956547,
+        47.465073
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Szent Imre tér",
+      "osm": "way/117107475",
+      "coordinatesWgs84": [
+        19.06909,
+        47.431248
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mátyás király tér",
+      "osm": "way/742639578",
+      "coordinatesWgs84": [
+        19.201569,
+        47.511857
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guckler Károly-kilátópont",
+      "osm": "way/376863655",
+      "coordinatesWgs84": [
+        18.998864,
+        47.555541
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Szent László Kórház",
+      "osm": "relation/17929549",
+      "coordinatesWgs84": [
+        19.09181,
+        47.473558
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Szent János Kórház",
+      "osm": "relation/7883285",
+      "coordinatesWgs84": [
+        19.004948,
+        47.509691
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Flórián Üzletközpont",
+      "osm": "way/24254652",
+      "coordinatesWgs84": [
+        19.040715,
+        47.542428
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Magyar Táncművészeti Főiskola",
+      "osm": "way/246472477",
+      "coordinatesWgs84": [
+        19.092473,
+        47.520318
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shopmark",
+      "osm": "way/26763446",
+      "coordinatesWgs84": [
+        19.129124,
+        47.463099
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1249,
+      "sha256": "d8e3687aedb0f0a81975b043b7cb254d4b28e5fc2a468ae2377fb1137ece5d30"
+    },
+    "geometry.ts": {
+      "bytes": 188258,
+      "sha256": "0edc615452a3ffdc9e9ff5d8ae899a3e28da483621e8e91105b23b027c9def89"
+    },
+    "places.ts": {
+      "bytes": 10164,
+      "sha256": "55a5903df444e5f5e51f055957e72f996c99068d90a089749895c792e7083632"
+    },
+    "terrain.ts": {
+      "bytes": 118668,
+      "sha256": "d46debcc7057d58138aa1dbced86658677c454b6dee2be102c65eef8707c584d"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "ac5639bdc609d9956cf7dfdeec91429165a8aa6bc0af6bffd2876f2b4703ff55"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

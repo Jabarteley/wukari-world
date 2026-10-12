@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tirana",
+  "countryIso2": "AL",
+  "generationIdentity": {
+    "cityId": "tirana",
+    "stateId": "al-tirana",
+    "stateName": "Tirana"
+  },
+  "inventorySha256": "721fc8820af6a42baee53bf41717fa4616202e0bb8e17d5ef4ababc867ffbe5a",
+  "inventoryPath": "world/playable-africa-rollout/sources/tirana.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "tirana-airport",
+    "name": "Tirana International Airport Mother Teresa",
+    "lon": 19.7206,
+    "lat": 41.4147,
+    "sourceUrl": "https://ourairports.com/airports/LATI/"
+  },
+  "bounds": [
+    41.14726731006602,
+    19.578526393401457,
+    41.50902908993398,
+    20.058360606598544
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/albania-261011.osm.pbf",
+      "datasetSha256": "60f17d4f11cf29beda0e51654e9e5b8377d17d76c53c3077134cdc69a6954264",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "c9c99b5e63cdcdf613650c8cf9deea4e619ec0370e5c293417ffcd6d5a632b03",
+          "elements": 1561
+        },
+        {
+          "file": "extras.json",
+          "sha256": "40bd88418df9183634552fe461ee2be79cde06b2ef74bbbbae4e11373a140df7",
+          "elements": 336
+        },
+        {
+          "file": "water.json",
+          "sha256": "ef842e555ed29c5078dd373c11104bbd029847c654cd6c479f96553a282ad4bf",
+          "elements": 1069
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "3e7b00a2b0a6985776c911a456c6ae2cdd6b5c5c92e367a992fe72e320dfb81c",
+          "elements": 2961
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5c3d14ed19adf64b94ac921b8bcd9271f53658be522454d9c4c7c72d676a9a10",
+          "elements": 2002
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 599,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 13,
+    "waterPolygons": 9,
+    "reachWaterPolygons": 51
+  },
+  "observed": {
+    "places": 1561,
+    "extras": 336,
+    "water": 1069,
+    "landuse": 2961,
+    "roads": 2002
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "350b6e0dfc610aff7b0cdc723d9614f89a144b33653dc8ab5f5889e11d1b2d1f"
+    },
+    "geometry.ts": {
+      "bytes": 213550,
+      "sha256": "1a8c3080c84847b01de7a25658f8d9b0e66f348dac62214dcdc202857c52fd80"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "4b2e9e810053f53b960266714e6753d9db08979937510d244527a4c1d267eec0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/tirana.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

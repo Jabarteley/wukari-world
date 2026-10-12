@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "sarajevo",
+  "countryIso2": "BA",
+  "generationIdentity": {
+    "cityId": "sarajevo",
+    "stateId": "ba-sarajevo",
+    "stateName": "Sarajevo"
+  },
+  "inventorySha256": "b27148c7f2f41b33930bee5435dd3737bed345638a98347c8c84b33c8881a91d",
+  "inventoryPath": "world/playable-africa-rollout/sources/sarajevo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "sarajevo-airport",
+    "name": "Sarajevo International Airport",
+    "lon": 18.331499,
+    "lat": 43.8246,
+    "sourceUrl": "https://ourairports.com/airports/LQSA/"
+  },
+  "bounds": [
+    43.67619041006602,
+    18.16269488288968,
+    44.03795218993398,
+    18.662534517110316
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/bosnia-herzegovina-261011.osm.pbf",
+      "datasetSha256": "3fa04936a49c67cbc48cb678c205681c84e8826aa3a4205c9df03ac026b97237",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "53c1f08df4389d82cae867a80e13c4ea5743cf85fec0120b798a63f49a17211a",
+          "elements": 1097
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9601351d23fa68ca07a1475de959f0ee81ea0c46669481c50600e6f333b94021",
+          "elements": 321
+        },
+        {
+          "file": "water.json",
+          "sha256": "65c57c597f5d7fcc5bb402536835e3d30714e8a733352da9916ade500dd725b9",
+          "elements": 74
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "19bafcdf8d337a559a622bb32b9ef4b42d3a8a132001dbf8d31db5407bb84fb3",
+          "elements": 2124
+        },
+        {
+          "file": "roads.json",
+          "sha256": "c556d637211a4c880a956864ac64b7ecefdf619a5553253f5e0e2b4a74c15757",
+          "elements": 1203
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 210,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 9,
+    "waterPolygons": 10,
+    "reachWaterPolygons": 1
+  },
+  "observed": {
+    "places": 1097,
+    "extras": 321,
+    "water": 74,
+    "landuse": 2124,
+    "roads": 1203
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "3d83b5bae5f1f23c69fd705c1e61b5424ec32e6154497457c3360d420a86558b"
+    },
+    "geometry.ts": {
+      "bytes": 41538,
+      "sha256": "35355fb74d66170281785dd30b7676d932acf9befa64f04b12e426136b9bf12e"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "2460092c52022ab4728708bc54ce930c72d547021bd9b8e98e2f6e4c4cf73b0d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/sarajevo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "skopje",
+  "countryIso2": "MK",
+  "generationIdentity": {
+    "cityId": "skopje",
+    "stateId": "mk-skopje",
+    "stateName": "Skopje"
+  },
+  "inventorySha256": "a24bdad81c0d62a44a0c43028a41cace8d7c480556e4ef0a829392d78ebd0a16",
+  "inventoryPath": "world/playable-africa-rollout/sources/skopje.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "skopje-airport",
+    "name": "Skopje International Airport",
+    "lon": 21.622581,
+    "lat": 41.958087,
+    "sourceUrl": "https://ourairports.com/airports/LWSK/"
+  },
+  "bounds": [
+    41.81532451006602,
+    21.18945288314154,
+    42.17708628993398,
+    21.674323316858455
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/macedonia-261011.osm.pbf",
+      "datasetSha256": "c751a8b42c203f417a990fb492cb68bca3ecd98f6bc744ab58af93439f52409d",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "8bd87e2114d87e150d2aa97eaf6705dcd792d4cfab2a3b8c8a00cad86e5224d7",
+          "elements": 936
+        },
+        {
+          "file": "extras.json",
+          "sha256": "0ea4f8d8302516bf9efea7d77fa562beb44e036c61bebee487f09fb943d5d961",
+          "elements": 216
+        },
+        {
+          "file": "water.json",
+          "sha256": "84cf1b2fef39052084079af69f7da3497dd60efccf38199c9238939b367b0d6b",
+          "elements": 60
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "56eff6c6e6d6d4bb560306fb266e0f16215be070d498c10cb742e121391a30f5",
+          "elements": 1005
+        },
+        {
+          "file": "roads.json",
+          "sha256": "8603bb2988294a76c5901095eff6007704951f52e4023290d57a909aff0d2035",
+          "elements": 601
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 392,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 24,
+    "waterPolygons": 6,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 936,
+    "extras": 216,
+    "water": 60,
+    "landuse": 1005,
+    "roads": 601
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1217,
+      "sha256": "11b06cfe2eebeb1856423fa0cd392cd8e2135cadfcecfbf51c3bb241da0b4892"
+    },
+    "geometry.ts": {
+      "bytes": 66669,
+      "sha256": "20aff8f991981b7648031632eba781bb20f0c399ff634b4caef4886113d7bcbc"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "4b0a9b99d8a959680f54e4bf5e9fd3bab1ad61b7f57738ef80c740f8de5905af"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/skopje.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

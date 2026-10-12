@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "zagreb",
+  "countryIso2": "HR",
+  "generationIdentity": {
+    "cityId": "zagreb",
+    "stateId": "hr-zagreb",
+    "stateName": "Zagreb"
+  },
+  "inventorySha256": "9885ae79996cdddee8b6fecab1108ca4d12b7c3de4dfbd38719576d8793e13bb",
+  "inventoryPath": "world/playable-africa-rollout/sources/zagreb.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "zagreb-airport",
+    "name": "Zagreb Franjo Tuđman International Airport",
+    "lon": 16.0688,
+    "lat": 45.742901,
+    "sourceUrl": "https://ourairports.com/airports/LDZA/"
+  },
+  "bounds": [
+    45.63221581006602,
+    15.718673701335272,
+    45.99397758993398,
+    16.235885298664726
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/croatia-261011.osm.pbf",
+      "datasetSha256": "f14bd6221f95867aaf8b45edadfc30d88f56ff4140520f4f5eb2cc6b9a1c1a7e",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "df59a4174894f8e7ac5e659fd8620eb156f6cb149f11c048cd0d112f45468833",
+          "elements": 2656
+        },
+        {
+          "file": "extras.json",
+          "sha256": "4927a58e0bec4d8963d6913a9737e0a3c10c33496d3af9be5a47d3b58c517d76",
+          "elements": 840
+        },
+        {
+          "file": "water.json",
+          "sha256": "35264862fddb74cdbedbeb563310c0551a03b41fe917402f0cfb0776b53e5485",
+          "elements": 151
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "77f144b42fb39c0cfce82903678b75ecffeee02da5170faf5da99ad04e5c9062",
+          "elements": 9408
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5ab6d2dcfe577ed861ba461c774ff516e3f4a4371916528818bdcdf597bea8e8",
+          "elements": 2801
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 528,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 35,
+    "waterPolygons": 9,
+    "reachWaterPolygons": 7
+  },
+  "observed": {
+    "places": 2656,
+    "extras": 840,
+    "water": 151,
+    "landuse": 9408,
+    "roads": 2801
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "96e82382a41e239d9f605880bf834d709751a0e02abf4902a4e70d5eb1cf925f"
+    },
+    "geometry.ts": {
+      "bytes": 138768,
+      "sha256": "f3fb0633cc352e543ce78f26fa39f8bc327d449c15690f38cc7ff95d8c31e13c"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "5c0087e9793dc885db3326cfcc7943822210d15d43b316fd448f4ac533cbe802"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/zagreb.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -20,6 +20,10 @@ on:
 permissions:
   contents: read
 
+env:
+  # The production build needs more than Node's default heap (about 4 GB): peak use is about 5 GB with the 86-city set.
+  NODE_OPTIONS: --max-old-space-size=8192
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -70,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      NODE_OPTIONS: --max-old-space-size=3072
+      NODE_OPTIONS: --max-old-space-size=8192
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

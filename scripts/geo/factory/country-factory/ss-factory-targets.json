@@ -1,0 +1,354 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "SS",
+    "datasetSha256": "b0d3bc0a280f77313d0d5cedc03ea990dbb57d1e701ad85a1b67d816332e45c8",
+    "receiptSha256": "88c810225b6f79cfb420b79142d0e3745fdbc7c8ad1045a727a8b766440abc31",
+    "receiptBytes": 110518,
+    "geometrySha256": "8622a407303983f2f6f28c7eb9b6b30246c1f18bd3b89e4582b1cb67221ba384",
+    "geometryBytes": 664427,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 1656678,
+    "boundaryKey": "ss",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38278543615,
+      "sourceSha": "8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+      "sourceArtifact": "city-bootstrap-ss-8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "juba",
+      "name": "Juba",
+      "country": "ss",
+      "facts": {
+        "id": "juba",
+        "name": "Juba",
+        "country": {
+          "idISOlower": "ss",
+          "name": "South Sudan"
+        },
+        "state": {
+          "idunique": "ss-juba",
+          "name": "Juba"
+        },
+        "timezone": "Africa/Juba",
+        "centre": {
+          "lon": 31.5959173,
+          "lat": 4.8459246
+        },
+        "airport": {
+          "id": "juba-airport",
+          "name": "Juba International Airport",
+          "lon": 31.601101,
+          "lat": 4.87201,
+          "sourceUrl": "https://ourairports.com/airports/HJJJ/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/97922073",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          31.415561382556415,
+          4.665043710066022,
+          31.776273217443585,
+          5.026805489933978
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/97922073",
+          "sourceUrl": "https://www.openstreetmap.org/node/97922073",
+          "sourceRecord": {
+            "ref": "node/97922073",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "is_capital": "country",
+              "name": "Juba",
+              "name:ab": "Џуба",
+              "name:af": "Joeba",
+              "name:am": "ጁባ",
+              "name:an": "Juba",
+              "name:ar": "جوبا",
+              "name:ast": "Juba",
+              "name:av": "Джуба",
+              "name:avk": "Juba",
+              "name:az": "Cuba",
+              "name:be": "Джуба",
+              "name:bg": "Джуба",
+              "name:bn": "জুবা",
+              "name:br": "Juba",
+              "name:bs": "Juba",
+              "name:ca": "Juba",
+              "name:ce": "Джуба",
+              "name:ceb": "Juba",
+              "name:ckb": "جووبا",
+              "name:cs": "Džuba",
+              "name:cy": "Juba",
+              "name:da": "Juba",
+              "name:de": "Dschuba",
+              "name:din": "Juba",
+              "name:el": "Τζούμπα",
+              "name:en": "Juba",
+              "name:eo": "Ĵubo",
+              "name:es": "Yuba",
+              "name:et": "Juba",
+              "name:eu": "Juba",
+              "name:fa": "جوبا",
+              "name:fi": "Juba",
+              "name:fr": "Djouba",
+              "name:frr": "Juba",
+              "name:fy": "Jûba",
+              "name:ga": "Juba",
+              "name:gd": "Juba",
+              "name:gl": "Juba",
+              "name:gn": "Júva",
+              "name:ha": "Juba",
+              "name:hak": "Juba",
+              "name:he": "ג'ובה",
+              "name:hi": "जुबा",
+              "name:hr": "Juba",
+              "name:hsb": "Juba",
+              "name:hu": "Juba",
+              "name:hy": "Ջուբա",
+              "name:ia": "Juba",
+              "name:id": "Juba",
+              "name:ie": "Juba",
+              "name:io": "Juba",
+              "name:is": "Júba",
+              "name:it": "Giuba",
+              "name:ja": "ジュバ",
+              "name:jv": "Juba",
+              "name:ka": "ჯუბა",
+              "name:kab": "Juba",
+              "name:kg": "Juba",
+              "name:kk": "Джуба",
+              "name:ko": "주바",
+              "name:koi": "Джуба",
+              "name:ku": "Cuba",
+              "name:la": "Iuba",
+              "name:lb": "Dschuba",
+              "name:lfn": "Juba",
+              "name:lij": "Juba",
+              "name:lt": "Džuba",
+              "name:lv": "Džūba",
+              "name:mdf": "Джуба",
+              "name:mk": "Џуба",
+              "name:ml": "ജൂബ",
+              "name:mn": "Жуба",
+              "name:mr": "जुबा",
+              "name:mrj": "Джуба",
+              "name:ms": "Juba",
+              "name:mt": "Ġuba",
+              "name:my": "ဂျူဘာမြို့",
+              "name:nah": "Yuba",
+              "name:nl": "Djoeba",
+              "name:no": "Juba",
+              "name:oc": "Juba",
+              "name:os": "Джубæ",
+              "name:pa": "ਜੂਬਾ",
+              "name:pam": "Juba",
+              "name:pap": "Juba",
+              "name:pl": "Dżuba",
+              "name:pms": "Juba",
+              "name:ps": "جوبا",
+              "name:pt": "Juba",
+              "name:ro": "Juba",
+              "name:ru": "Джуба",
+              "name:sc": "Juba",
+              "name:scn": "Juba",
+              "name:sco": "Juba",
+              "name:sd": "جوبا",
+              "name:sh": "Džuba",
+              "name:sk": "Džúbá",
+              "name:sl": "Džuba",
+              "name:smn": "Juba",
+              "name:sn": "Juba",
+              "name:so": "Juba",
+              "name:sq": "Xhuba",
+              "name:sr": "Џуба",
+              "name:sv": "Juba",
+              "name:sw": "Juba",
+              "name:ta": "யூபா",
+              "name:th": "จูบา",
+              "name:tl": "Juba",
+              "name:tr": "Cuba",
+              "name:udm": "Джуба",
+              "name:uk": "Джуба",
+              "name:ur": "جوبا",
+              "name:uz": "Juba",
+              "name:vec": "Juba",
+              "name:vep": "Džub",
+              "name:vi": "Juba",
+              "name:wal": "Juba",
+              "name:war": "Juba",
+              "name:wuu": "朱巴",
+              "name:xmf": "ჯუბა",
+              "name:yi": "דזשובא",
+              "name:zh": "朱巴",
+              "name:zu": "Juba",
+              "place": "city",
+              "population": "372410",
+              "wikidata": "Q1947",
+              "wikipedia": "en:Juba"
+            },
+            "lon": 31.5959173,
+            "lat": 4.8459246
+          },
+          "pbfSha256": "b0d3bc0a280f77313d0d5cedc03ea990dbb57d1e701ad85a1b67d816332e45c8"
+        },
+        "airport": {
+          "rowNumber": 30841,
+          "row": {
+            "id": "3247",
+            "ident": "HJJJ",
+            "type": "large_airport",
+            "name": "Juba International Airport",
+            "latitude_deg": "4.87201",
+            "longitude_deg": "31.601101",
+            "elevation_ft": "1513",
+            "continent": "AF",
+            "iso_country": "SS",
+            "iso_region": "SS-EC",
+            "municipality": "Juba",
+            "scheduled_service": "yes",
+            "icao_code": "HJJJ",
+            "iata_code": "JUB",
+            "gps_code": "HJJJ",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Juba_Airport",
+            "keywords": "JIA, HSSJ"
+          },
+          "rowSha256": "92c30e828306ca92c457706cddb329f3caf6fa9f9bb199ac953bceff44d129c0",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "HJJJ",
+            "sourceUrl": "https://ourairports.com/airports/HJJJ/",
+            "matchedIdent": "HJJJ",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/HJJJ/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "SS",
+              "+0451+03137",
+              "Africa/Juba"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Africa/Juba",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "SS",
+              "+0451+03137",
+              "Africa/Juba"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/south-sudan-261011.osm.pbf",
+          "bytes": 278484886,
+          "sha256": "b0d3bc0a280f77313d0d5cedc03ea990dbb57d1e701ad85a1b67d816332e45c8",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              4.665043710066022,
+              31.415561382556415,
+              5.026805489933978,
+              31.776273217443585
+            ],
+            "core": [
+              4.800704377516506,
+              31.550837582813326,
+              4.891144822483494,
+              31.640997017186674
+            ],
+            "outline": [
+              4.615043710066022,
+              31.365561382556415,
+              5.076805489933978,
+              31.826273217443585
+            ],
+            "wide": [
+              4.065043710066022,
+              30.815561382556414,
+              5.626805489933978,
+              32.37627321744358
+            ]
+          },
+          "airportMarginMetres": 17115.73732199993,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "juba",
+      "extractSha256": {
+        "places": "630e9a7fc192f655c03bc8c4a87e158a0b1cb140944148baf834afa9755a30c9",
+        "extras": "d9705de6a0191e05ec3a4d2eaaefdd224b5f3a6393ca4c0828ce342c8c1fe907",
+        "water": "2841f04d628c54a38f0e491ce94a9fa89906f02c2a943fcdff01c719235473c6",
+        "landuse": "9d2256440609f76195e6250bd29dec36ccf982bea24309da3a6be22a00d88c12",
+        "roads": "8aa75b09ad0cbdcc19918e9ccee8024667e271973a71307a4e1528ede21e042b"
+      },
+      "sourceJob": {
+        "city": "juba",
+        "sourceRunId": 38278543615,
+        "sourceArtifact": "city-bootstrap-ss-8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+        "sourceSha": "8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+        "datasetSha256": "b0d3bc0a280f77313d0d5cedc03ea990dbb57d1e701ad85a1b67d816332e45c8",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "630e9a7fc192f655c03bc8c4a87e158a0b1cb140944148baf834afa9755a30c9",
+          "extras": "d9705de6a0191e05ec3a4d2eaaefdd224b5f3a6393ca4c0828ce342c8c1fe907",
+          "water": "2841f04d628c54a38f0e491ce94a9fa89906f02c2a943fcdff01c719235473c6",
+          "landuse": "9d2256440609f76195e6250bd29dec36ccf982bea24309da3a6be22a00d88c12",
+          "roads": "8aa75b09ad0cbdcc19918e9ccee8024667e271973a71307a4e1528ede21e042b"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/africa/south-sudan-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 138967350,
+            "md5": "5d0ecb2580e19d097a408b5a4845af74",
+            "sha256": "d2f6ca11d4a4959ca6d97704f898e7b947d317fd616f32043f3eceb280b65756"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/africa/ethiopia-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 139964339,
+            "md5": "775bc09e447fa511b4115ce20fcae6ce",
+            "sha256": "cea44aff375902dd97c6d67eb28db505bac9ac901ddde2a2e64183a2d7f40806",
+            "reason": "admin-0 relation/1656678 member way/144197399 (South Sudan - Ethiopia border, 42 nodes) is absent from the South Sudan clip; all its nodes lie inside the Ethiopia clip"
+          }
+        ]
+      }
+    }
+  ]
+}

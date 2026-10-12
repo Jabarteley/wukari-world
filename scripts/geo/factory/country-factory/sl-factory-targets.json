@@ -4,19 +4,19 @@
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "SL",
-    "datasetSha256": "4ccc60f04b418741406d77e0f720e8e42b1dca7aa7e79709252a06dc1be200a1",
-    "receiptSha256": "efa4021a5a0d17854bb3b0647ad94ad9a5a134c9d25109caabd2783df629b137",
-    "receiptBytes": 43466,
+    "datasetSha256": "8c2ea703a2c4925bd9396adb9ac1122c6166ca70ea9178253d2f2794c741d631",
+    "receiptSha256": "ca53890232b10f37fe19d48c5f8110f6283393751352c14ad7ce5a4d523d3c57",
+    "receiptBytes": 44388,
     "geometrySha256": "13e8c1ceecdf41eab276cb564392066c5e53a825bac9f16b3323da0d622efa93",
     "geometryBytes": 193093,
-    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
     "relationId": 192777,
     "boundaryKey": "sl",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38246543314,
-      "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
-      "sourceArtifact": "city-bootstrap-sl-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "sourceRunId": 38278543615,
+      "sourceSha": "8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+      "sourceArtifact": "city-bootstrap-sl-8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -150,7 +150,7 @@
             "lon": -13.26795,
             "lat": 8.479004
           },
-          "pbfSha256": "4ccc60f04b418741406d77e0f720e8e42b1dca7aa7e79709252a06dc1be200a1"
+          "pbfSha256": "8c2ea703a2c4925bd9396adb9ac1122c6166ca70ea9178253d2f2794c741d631"
         },
         "airport": {
           "rowNumber": 30298,
@@ -210,8 +210,8 @@
         },
         "pbf": {
           "url": "https://download.geofabrik.de/africa/sierra-leone-261011.osm.pbf",
-          "bytes": 46314557,
-          "sha256": "4ccc60f04b418741406d77e0f720e8e42b1dca7aa7e79709252a06dc1be200a1",
+          "bytes": 162804423,
+          "sha256": "8c2ea703a2c4925bd9396adb9ac1122c6166ca70ea9178253d2f2794c741d631",
           "headerTimestamp": "2026-10-11T20:21:06Z"
         },
         "coastlineRefsWithinWide": [
@@ -327,6 +327,9 @@
           "way/274394640",
           "way/274394645",
           "way/274394653",
+          "way/288487025",
+          "way/288487026",
+          "way/288487029",
           "way/289503374",
           "way/289503380",
           "way/289503381",
@@ -440,9 +443,15 @@
           "way/309394658",
           "way/311465679",
           "way/311498621",
+          "way/333366601",
+          "way/333366628",
           "way/333409893",
           "way/333409899",
           "way/374916414",
+          "way/490990709",
+          "way/490990718",
+          "way/490990719",
+          "way/490990721",
           "way/505858302",
           "way/688534395",
           "way/688854018",
@@ -451,17 +460,26 @@
           "way/689795833",
           "way/689795834",
           "way/689795835",
+          "way/690391994",
           "way/693439547",
           "way/693494056",
           "way/693494057",
           "way/974001576",
           "way/1009719797",
           "way/1009719798",
+          "way/1275723297",
+          "way/1275742904",
+          "way/1275742905",
+          "way/1275742911",
+          "way/1275742914",
+          "way/1275742923",
           "way/1278569036",
           "way/1278569040",
           "way/1283917434",
           "way/1283917435",
+          "way/1283923027",
           "way/1283923028",
+          "way/1284112283",
           "way/1329001353",
           "way/1415654389",
           "way/1416304367",
@@ -482,14 +500,21 @@
           "way/1540077497",
           "way/1540077506",
           "way/1540077508",
+          "way/1540083695",
+          "way/1540083696",
+          "way/1540083703",
+          "way/1540083704",
           "way/1542916575",
           "way/1546377884",
           "way/1547025991",
           "way/1547025993",
           "way/1547025996",
-          "way/1547025999"
+          "way/1547025999",
+          "way/1547026019",
+          "way/1547026022",
+          "way/1547026023"
         ],
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -531,26 +556,45 @@
       },
       "extractKey": "freetown",
       "extractSha256": {
-        "places": "9b70b5abc01400f7f3e8667398efe46bf1a58a63ac3d00e292aaca1cc280f23d",
-        "extras": "a27e80602afabe265af925bd7e0bf112af2165fcf2d9654ddadbecd2eafa3547",
-        "water": "dd76a5bd879bf0ad460d9f16f344ff273e14e2dfe6ec1cfc53e309a3bc91bef5",
-        "landuse": "699001e199a34633a355e6b0db698a969cf66914e7dfcf0b66ed8623810d12b6",
-        "roads": "07c19ae2dca3500dc3304c5223b66d9aa6818d3031e74689ea7b03f125c077ab"
+        "places": "7b57a564038348c9b6fd586d9ae94bdeb6fc10b51ae10f54ea525a677b5a7822",
+        "extras": "bd84ceeac5a816254c19ec8689f64051b4d991b84e8bceb2c96b469a1d3056ba",
+        "water": "23cc0e48d53a76294b9df4cf297c60b4eb8002fe06048c6b47a8a5ca9b0892e8",
+        "landuse": "a66ca232c0c755b223d1130aa566c0ae1a251b138e965331186dc2cf9044e497",
+        "roads": "1211d0180290f2311d19da4d501f7098960dbcdb673dca39c57af80c96f64b4b"
       },
       "sourceJob": {
         "city": "freetown",
-        "sourceRunId": 38246543314,
-        "sourceArtifact": "city-bootstrap-sl-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
-        "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
-        "datasetSha256": "4ccc60f04b418741406d77e0f720e8e42b1dca7aa7e79709252a06dc1be200a1",
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "sourceRunId": 38278543615,
+        "sourceArtifact": "city-bootstrap-sl-8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+        "sourceSha": "8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+        "datasetSha256": "8c2ea703a2c4925bd9396adb9ac1122c6166ca70ea9178253d2f2794c741d631",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "extractSha256": {
-          "places": "9b70b5abc01400f7f3e8667398efe46bf1a58a63ac3d00e292aaca1cc280f23d",
-          "extras": "a27e80602afabe265af925bd7e0bf112af2165fcf2d9654ddadbecd2eafa3547",
-          "water": "dd76a5bd879bf0ad460d9f16f344ff273e14e2dfe6ec1cfc53e309a3bc91bef5",
-          "landuse": "699001e199a34633a355e6b0db698a969cf66914e7dfcf0b66ed8623810d12b6",
-          "roads": "07c19ae2dca3500dc3304c5223b66d9aa6818d3031e74689ea7b03f125c077ab"
-        }
+          "places": "7b57a564038348c9b6fd586d9ae94bdeb6fc10b51ae10f54ea525a677b5a7822",
+          "extras": "bd84ceeac5a816254c19ec8689f64051b4d991b84e8bceb2c96b469a1d3056ba",
+          "water": "23cc0e48d53a76294b9df4cf297c60b4eb8002fe06048c6b47a8a5ca9b0892e8",
+          "landuse": "a66ca232c0c755b223d1130aa566c0ae1a251b138e965331186dc2cf9044e497",
+          "roads": "1211d0180290f2311d19da4d501f7098960dbcdb673dca39c57af80c96f64b4b"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/africa/sierra-leone-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 46314557,
+            "md5": "e84c9fcdca83c67d4f5ffacf167faa90",
+            "sha256": "4ccc60f04b418741406d77e0f720e8e42b1dca7aa7e79709252a06dc1be200a1"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/africa/guinea-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 118414412,
+            "md5": "75d2b1170796f575ed47de93056f2b80",
+            "sha256": "f838e08a0fef6b67973f565e40e5a106de8e87c51c87a57295903090064468ec",
+            "reason": "Freetown water box reaches 9.26N: the coastline across the Great Scarcies mouth continues into Guinea past the Sierra Leone clip; Sierra Leone and Guinea clips together cover the whole box"
+          }
+        ]
       }
     }
   ]

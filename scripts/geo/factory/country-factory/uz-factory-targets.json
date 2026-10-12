@@ -1,0 +1,382 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "UZ",
+    "datasetSha256": "5a68df01ff91b653c7d5c193cc2fd611cc949e5f7f1daf1fef5e240fc000bc06",
+    "receiptSha256": "88c2e9f9f8e6f000c326a0fe2c592850cdbe3f6328e22f34eb71c9db19a692ad",
+    "receiptBytes": 270715,
+    "geometrySha256": "294bdbeace8a9e4a8457cc61acce8d0f7618e772e5ec609f4400ff91649250cb",
+    "geometryBytes": 602452,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 196240,
+    "boundaryKey": "uz",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38278543615,
+      "sourceSha": "8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+      "sourceArtifact": "city-bootstrap-uz-8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "tashkent",
+      "name": "Tashkent",
+      "country": "uz",
+      "facts": {
+        "id": "tashkent",
+        "name": "Tashkent",
+        "country": {
+          "idISOlower": "uz",
+          "name": "Uzbekistan"
+        },
+        "state": {
+          "idunique": "uz-tashkent",
+          "name": "Tashkent"
+        },
+        "timezone": "Asia/Tashkent",
+        "centre": {
+          "lon": 69.2787079,
+          "lat": 41.3123363
+        },
+        "airport": {
+          "id": "tashkent-airport",
+          "name": "Tashkent International Airport",
+          "lon": 69.281197,
+          "lat": 41.2579,
+          "sourceUrl": "https://ourairports.com/airports/UTTT/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/27524773",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          69.03884936609705,
+          41.13145541006602,
+          69.51856643390295,
+          41.49321718993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/27524773",
+          "sourceUrl": "https://www.openstreetmap.org/node/27524773",
+          "sourceRecord": {
+            "ref": "node/27524773",
+            "tags": {
+              "ISO3166-2": "UZ-TK",
+              "addr:country": "UZ",
+              "addr:postcode": "100128",
+              "admin_level": "2",
+              "alt_name:ru": "Ташкентъ",
+              "alt_name:uz": "Тошкент",
+              "alt_name:vi": "Toshkent",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "455",
+              "image": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Milliy_bog.jpg",
+              "int_name": "Tashkent",
+              "name": "Toshkent",
+              "name:ab": "Ташкент",
+              "name:ace": "Tashkent",
+              "name:af": "Tasjkent",
+              "name:am": "ታሽኬንት",
+              "name:an": "Tashkent",
+              "name:ar": "طشقند",
+              "name:av": "Ташкент",
+              "name:az": "Daşkənd",
+              "name:ba": "Ташкент",
+              "name:be": "Ташкент",
+              "name:be-tarask": "Ташкент",
+              "name:bg": "Ташкент",
+              "name:bn": "তাশখন্দ",
+              "name:bo": "ཐ་ཧྲི་ཀན།",
+              "name:br": "Tochkent",
+              "name:bs": "Taškent",
+              "name:ca": "Taixkent",
+              "name:ce": "Ташкент",
+              "name:ckb": "تاشکەند",
+              "name:crh": "Taşkent",
+              "name:cs": "Taškent",
+              "name:cv": "Ташкент",
+              "name:cy": "Tashkent",
+              "name:da": "Tasjkent",
+              "name:de": "Taschkent",
+              "name:el": "Τασκένδη",
+              "name:en": "Tashkent",
+              "name:eo": "Taŝkento",
+              "name:es": "Taskent",
+              "name:et": "Taškent",
+              "name:eu": "Taxkent",
+              "name:fa": "تاشکند",
+              "name:fi": "Taškent",
+              "name:fr": "Tachkent",
+              "name:fy": "Tasjkent",
+              "name:ga": "Tashkent",
+              "name:gd": "Tashkent",
+              "name:gl": "Tashkent",
+              "name:gn": "Taskent",
+              "name:he": "טשקנט",
+              "name:hi": "ताशकंद",
+              "name:hif": "Tashkent",
+              "name:hr": "Taškent",
+              "name:hsb": "Taškent",
+              "name:ht": "Tachkènt",
+              "name:hu": "Taskent",
+              "name:hy": "Տաշքենդ",
+              "name:ia": "Tashkent",
+              "name:id": "Tashkent",
+              "name:ie": "Tashkent",
+              "name:io": "Tashkent",
+              "name:is": "Taskent",
+              "name:it": "Tashkent",
+              "name:ja": "タシュケント",
+              "name:ka": "ტაშკენტი",
+              "name:kaa": "Tashkent",
+              "name:ki": "Tashkent",
+              "name:kk": "Ташкент",
+              "name:kn": "ತಾಷ್ಕೆಂಟ್",
+              "name:ko": "타슈켄트",
+              "name:ku": "Taşkent",
+              "name:kv": "Ташкент",
+              "name:ky": "Ташкен",
+              "name:la": "Lithopolis",
+              "name:lb": "Taschkent",
+              "name:lmo": "Taškent",
+              "name:lo": "ຕັສ​ເກັນ",
+              "name:lt": "Taškentas",
+              "name:lv": "Taškenta",
+              "name:mg": "Tashkent",
+              "name:mhr": "Ташкент",
+              "name:mk": "Ташкент",
+              "name:ml": "താഷ്കന്ദ്",
+              "name:mn": "Ташкент",
+              "name:mr": "ताश्कंद",
+              "name:ms": "Tashkent",
+              "name:mt": "Tashkent",
+              "name:my": "တာ့ရှ်ကန့်မြို့",
+              "name:myv": "Ташкент",
+              "name:mzn": "تاشکند",
+              "name:nan": "Tashkent",
+              "name:nb": "Tasjkent",
+              "name:ne": "तास्केन्त",
+              "name:nl": "Tasjkent",
+              "name:nn": "Tasjkent",
+              "name:no": "Tasjkent",
+              "name:nov": "Tashkent",
+              "name:nv": "Tsébeekin Haalʼáhí",
+              "name:ny": "Tashkent",
+              "name:oc": "Tashkent",
+              "name:os": "Ташкент",
+              "name:pa": "ਤਾਸ਼ਕੰਤ",
+              "name:pl": "Taszkent",
+              "name:pms": "Tashkent",
+              "name:pnb": "تاشقند",
+              "name:ps": "تاشكند",
+              "name:pt": "Tashkent",
+              "name:ro": "Tașkent",
+              "name:ru": "Ташкент",
+              "name:sah": "Ташкент",
+              "name:sc": "Tashkent",
+              "name:sco": "Tashkent",
+              "name:sd": "تاشقند",
+              "name:sh": "Taškent",
+              "name:simple": "Tashkent",
+              "name:sk": "Taškent",
+              "name:sl": "Taškent",
+              "name:sn": "Tashkent",
+              "name:sq": "Tashkenti",
+              "name:sr": "Ташкент",
+              "name:sv": "Tasjkent",
+              "name:sw": "Tashkent",
+              "name:ta": "தாஷ்கந்து",
+              "name:te": "తాష్కెంట్",
+              "name:tg": "Тошканд",
+              "name:th": "ทาชเคนต์",
+              "name:tk": "Daşkent",
+              "name:tl": "Tashkent",
+              "name:tlh": "mIw'a'",
+              "name:tr": "Taşkent",
+              "name:tt": "Ташкәнт",
+              "name:udm": "Ташкент",
+              "name:ug": "Tashkent",
+              "name:uk": "Ташкент",
+              "name:ur": "تاشقند",
+              "name:uz": "Toshkent",
+              "name:vec": "Taškent",
+              "name:vep": "Taškent",
+              "name:vi": "Tashkent",
+              "name:vo": "Toshkent",
+              "name:war": "Tashkent",
+              "name:yi": "טאשקענט",
+              "name:yo": "Tashkent",
+              "name:zh": "塔什干",
+              "old_name": "Chach",
+              "old_name:ru": "Ташкентъ;Чач;Шаш;Джадж;Бинкент",
+              "old_name:uz": "Тошкент",
+              "old_name:vi": "Khang Cư",
+              "place": "city",
+              "population": "2956384",
+              "short_name": "TAS",
+              "wikidata": "Q269",
+              "wikimedia_commons": "Category:Tashkent",
+              "wikipedia": "uz:Toshkent"
+            },
+            "lon": 69.2787079,
+            "lat": 41.3123363
+          },
+          "pbfSha256": "5a68df01ff91b653c7d5c193cc2fd611cc949e5f7f1daf1fef5e240fc000bc06"
+        },
+        "airport": {
+          "rowNumber": 80598,
+          "row": {
+            "id": "26392",
+            "ident": "UTTT",
+            "type": "large_airport",
+            "name": "Tashkent International Airport",
+            "latitude_deg": "41.2579",
+            "longitude_deg": "69.281197",
+            "elevation_ft": "1417",
+            "continent": "AS",
+            "iso_country": "UZ",
+            "iso_region": "UZ-TO",
+            "municipality": "Tashkent",
+            "scheduled_service": "yes",
+            "icao_code": "UZTT",
+            "iata_code": "TAS",
+            "gps_code": "UZTT",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Tashkent_International_Airport",
+            "keywords": "UTTT"
+          },
+          "rowSha256": "d5f6081a625ef49b0e1a33beb7923ff51a64126efe3cc652f6d3d587adbd7aff",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "UTTT",
+            "sourceUrl": "https://ourairports.com/airports/UTTT/",
+            "matchedIdent": "UTTT",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/UTTT/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "UZ",
+              "+4120+06918",
+              "Asia/Tashkent",
+              "Uzbekistan (east)"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Tashkent",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "UZ",
+              "+4120+06918",
+              "Asia/Tashkent",
+              "Uzbekistan (east)"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf",
+          "bytes": 199223222,
+          "sha256": "5a68df01ff91b653c7d5c193cc2fd611cc949e5f7f1daf1fef5e240fc000bc06",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              41.13145541006602,
+              69.03884936609705,
+              41.49321718993398,
+              69.51856643390295
+            ],
+            "core": [
+              41.267116077516505,
+              69.21886841970478,
+              41.35755652248349,
+              69.33854738029522
+            ],
+            "outline": [
+              41.08145541006602,
+              68.98884936609706,
+              41.543217189933976,
+              69.56856643390294
+            ],
+            "wide": [
+              40.531455410066016,
+              68.43884936609706,
+              42.09321718993398,
+              70.11856643390294
+            ]
+          },
+          "airportMarginMetres": 13980.978309000377,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "tashkent",
+      "extractSha256": {
+        "places": "370e9f5598b5d0b245e2a62a22a013c1ae6d5238ce25a6124a9c2b399a6bdb1a",
+        "extras": "aba7eda47250e7d1ea898f4902e4854683156fd197ac3561b5f24355fc007157",
+        "water": "e81cced0ea2c361c58e18aafca116aa50effac01dc4ba4e7e72627cb876222fa",
+        "landuse": "035303358838d7cc0b4ceecab0580989a94f751af5a076a8abedf8d186159298",
+        "roads": "b2a60e778fed81756f8a229a72a3a1b554691b174b05a6053f92204d21ace4ab"
+      },
+      "sourceJob": {
+        "city": "tashkent",
+        "sourceRunId": 38278543615,
+        "sourceArtifact": "city-bootstrap-uz-8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+        "sourceSha": "8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+        "datasetSha256": "5a68df01ff91b653c7d5c193cc2fd611cc949e5f7f1daf1fef5e240fc000bc06",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "370e9f5598b5d0b245e2a62a22a013c1ae6d5238ce25a6124a9c2b399a6bdb1a",
+          "extras": "aba7eda47250e7d1ea898f4902e4854683156fd197ac3561b5f24355fc007157",
+          "water": "e81cced0ea2c361c58e18aafca116aa50effac01dc4ba4e7e72627cb876222fa",
+          "landuse": "035303358838d7cc0b4ceecab0580989a94f751af5a076a8abedf8d186159298",
+          "roads": "b2a60e778fed81756f8a229a72a3a1b554691b174b05a6053f92204d21ace4ab"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 124850362,
+            "md5": "209c1cbfd62eb80c0072a6fcfd197cf3",
+            "sha256": "2c2c68f3eb1459ea362c163582255d32699fbab2b304e5150d43aafb84c328fc"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 76910383,
+            "md5": "43d2c655c19545b266950bd80bb775b0",
+            "sha256": "ccaaf1d348d4742e542fded95c43304ed6e3fa2d1eeea124fb9b8cb2d747ecf1",
+            "reason": "admin-0 relation/196240 member way/133066430 (Shohimardon exclave ring, 256 nodes) is absent from the Uzbekistan clip; all its nodes lie inside the Kyrgyzstan clip"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -8,6 +8,46 @@
   {
    "id": "me",
    "table": "scripts/geo/factory/country-factory/me-factory-targets.json"
+  },
+  {
+   "id": "am",
+   "table": "scripts/geo/factory/country-factory/am-factory-targets.json"
+  },
+  {
+   "id": "az",
+   "table": "scripts/geo/factory/country-factory/az-factory-targets.json"
+  },
+  {
+   "id": "bz",
+   "table": "scripts/geo/factory/country-factory/bz-factory-targets.json"
+  },
+  {
+   "id": "hn",
+   "table": "scripts/geo/factory/country-factory/hn-factory-targets.json"
+  },
+  {
+   "id": "kg",
+   "table": "scripts/geo/factory/country-factory/kg-factory-targets.json"
+  },
+  {
+   "id": "pa",
+   "table": "scripts/geo/factory/country-factory/pa-factory-targets.json"
+  },
+  {
+   "id": "sl",
+   "table": "scripts/geo/factory/country-factory/sl-factory-targets.json"
+  },
+  {
+   "id": "sr",
+   "table": "scripts/geo/factory/country-factory/sr-factory-targets.json"
+  },
+  {
+   "id": "ss",
+   "table": "scripts/geo/factory/country-factory/ss-factory-targets.json"
+  },
+  {
+   "id": "uz",
+   "table": "scripts/geo/factory/country-factory/uz-factory-targets.json"
   }
  ]
 }

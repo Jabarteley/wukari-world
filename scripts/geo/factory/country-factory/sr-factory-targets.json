@@ -1,0 +1,315 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "SR",
+    "datasetSha256": "1acfd87f06b3a5fa908365c06983919404fd70e12b673ba6a2bd22d1a8e87af3",
+    "receiptSha256": "af5fa1bf96e4749e8180e23e12b32b9e025547eef0e6650680236a9ac5b4b813",
+    "receiptBytes": 89809,
+    "geometrySha256": "8c4e424c720c07afbd07bfdf84ab4573600305ae2607aa67c6e94349b2b7f835",
+    "geometryBytes": 614928,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 287082,
+    "boundaryKey": "sr",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38278543615,
+      "sourceSha": "8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+      "sourceArtifact": "city-bootstrap-sr-8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "paramaribo",
+      "name": "Paramaribo",
+      "country": "sr",
+      "facts": {
+        "id": "paramaribo",
+        "name": "Paramaribo",
+        "country": {
+          "idISOlower": "sr",
+          "name": "Suriname"
+        },
+        "state": {
+          "idunique": "sr-paramaribo",
+          "name": "Paramaribo"
+        },
+        "timezone": "America/Paramaribo",
+        "centre": {
+          "lon": -55.1703941,
+          "lat": 5.8247628
+        },
+        "airport": {
+          "id": "paramaribo-airport",
+          "name": "Johan Adolf Pengel International Airport",
+          "lon": -55.187801,
+          "lat": 5.45283,
+          "sourceUrl": "https://ourairports.com/airports/SMJP/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/281537750",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -55.35104783597648,
+          5.443785955503301,
+          -54.989740364023525,
+          6.0056436899339785
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/281537750",
+          "sourceUrl": "https://www.openstreetmap.org/node/281537750",
+          "sourceRecord": {
+            "ref": "node/281537750",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "is_capital": "country",
+              "name": "Paramaribo",
+              "name:ace": "Paramaribô",
+              "name:am": "ፓራማሪቦ",
+              "name:ar": "باراماريبو",
+              "name:ba": "Парамарибо",
+              "name:be": "Парамарыба",
+              "name:be-tarask": "Парамарыба",
+              "name:bg": "Парамарибо",
+              "name:bh": "पारामारिबो",
+              "name:bn": "পারামারিবো",
+              "name:bo": "པེ་ར་མེ་རི་བོ།",
+              "name:br": "Paramaribo",
+              "name:ca": "Paramaribo",
+              "name:ce": "Парамарибо",
+              "name:ckb": "پاراماریبۆ",
+              "name:cv": "Парамарибо",
+              "name:da": "Paramaribo",
+              "name:de": "Paramaribo",
+              "name:el": "Παραμαρίμπο",
+              "name:en": "Paramaribo",
+              "name:es": "Paramaribo",
+              "name:fa": "پاراماریبو",
+              "name:fr": "Paramaribo",
+              "name:gu": "પારામારિબો",
+              "name:he": "פרמריבו",
+              "name:hi": "पारामरीबो",
+              "name:hu": "Paramaribo",
+              "name:hy": "Պարամարիբո",
+              "name:is": "Paramaríbó",
+              "name:ja": "パラマリボ",
+              "name:ka": "პარამარიბო",
+              "name:kk": "Парамарибо",
+              "name:kn": "ಪಾರಮಾರಿಬೋ",
+              "name:ko": "파라마리보",
+              "name:ku": "Paramarîbo",
+              "name:ky": "Парамарибо",
+              "name:lt": "Paramaribas",
+              "name:mk": "Парамарибо",
+              "name:ml": "പരമാരിബൊ",
+              "name:mr": "पारामारिबो",
+              "name:nl": "Paramaribo",
+              "name:no": "Paramaribo",
+              "name:oc": "Paramaribo",
+              "name:os": "Парамарибо",
+              "name:pa": "ਪਾਰਾਮਾਰੀਬੋ",
+              "name:pl": "Paramaribo",
+              "name:ps": "پاراماریبو",
+              "name:ru": "Парамарибо",
+              "name:sd": "پاراماريبو",
+              "name:si": "පැරමරිබෝ",
+              "name:sr": "Парамарибо",
+              "name:sv": "Paramaribo",
+              "name:ta": "பரமரிபொ",
+              "name:tg": "Парамарибо",
+              "name:th": "ปารามาริโบ",
+              "name:tt": "Парамарибо",
+              "name:uk": "Парамарибо",
+              "name:ur": "پاراماریبو",
+              "name:yi": "פאראמאריבא",
+              "name:yue": "巴拉馬利波",
+              "name:zh": "帕拉马里博",
+              "name:zh-Hans": "帕拉马里博",
+              "name:zh-Hant": "帕拉馬里博",
+              "place": "city",
+              "population": "242946",
+              "ref:LOCODE": "SRPBM",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q3001",
+              "wikipedia": "de:Paramaribo"
+            },
+            "lon": -55.1703941,
+            "lat": 5.8247628
+          },
+          "pbfSha256": "1acfd87f06b3a5fa908365c06983919404fd70e12b673ba6a2bd22d1a8e87af3"
+        },
+        "airport": {
+          "rowNumber": 62408,
+          "row": {
+            "id": "6195",
+            "ident": "SMJP",
+            "type": "large_airport",
+            "name": "Johan Adolf Pengel International Airport",
+            "latitude_deg": "5.45283",
+            "longitude_deg": "-55.187801",
+            "elevation_ft": "59",
+            "continent": "SA",
+            "iso_country": "SR",
+            "iso_region": "SR-PR",
+            "municipality": "Paramaribo",
+            "scheduled_service": "yes",
+            "icao_code": "SMJP",
+            "iata_code": "PBM",
+            "gps_code": "SMJP",
+            "local_code": "",
+            "home_link": "http://www.japi-airport.com",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Johan_Adolf_Pengel_International_Airport",
+            "keywords": "Zandery, Zanderij, JAP International Airport, JAPI Airport, JAPIA, ZY Airport"
+          },
+          "rowSha256": "38e5a61beef4dbfb56530628b2b023c75f2e4463a4c0a2ee7e9e349434e70737",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "SMJP",
+            "sourceUrl": "https://cadsur.sr/ais/index.php/contact/",
+            "matchedIdent": "SMJP",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/SMJP/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "SR",
+              "+0550-05510",
+              "America/Paramaribo"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Paramaribo",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "SR",
+              "+0550-05510",
+              "America/Paramaribo"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/south-america/suriname-261011.osm.pbf",
+          "bytes": 36164770,
+          "sha256": "1acfd87f06b3a5fa908365c06983919404fd70e12b673ba6a2bd22d1a8e87af3",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/12566979",
+          "way/12568736",
+          "way/22738894",
+          "way/147022204",
+          "way/406820205",
+          "way/696645148",
+          "way/860577522",
+          "way/965950304",
+          "way/966831104",
+          "way/967343429",
+          "way/967343430",
+          "way/967871716",
+          "way/967871717",
+          "way/967957137",
+          "way/967962785",
+          "way/967962786",
+          "way/967972995",
+          "way/1330347052"
+        ],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              5.443785955503301,
+              -55.35104783597648,
+              6.0056436899339785,
+              -54.989740364023525
+            ],
+            "core": [
+              5.779542577516506,
+              -55.21554641340975,
+              5.869983022483495,
+              -55.12524178659026
+            ],
+            "outline": [
+              5.393785955503301,
+              -55.40104783597648,
+              6.055643689933978,
+              -54.93974036402353
+            ],
+            "wide": [
+              4.843785955503301,
+              -55.95104783597648,
+              6.605643689933978,
+              -54.389740364023524
+            ]
+          },
+          "airportMarginMetres": 1000.0000000000133,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "paramaribo",
+      "extractSha256": {
+        "places": "898b33b32c6f7a005682115a43fba4569e01f89cfb37ad3c7218db5f7c547a19",
+        "extras": "ee422f2e5d7d00b3fa879cf4e87b6a9c37874c465cc958ba67697a365640710d",
+        "water": "6a8822fd119dab0602f7d6d83f846de0d3b2206dae57d9417ae8051ca03d9b69",
+        "landuse": "7ce8a91b83f38d63cbd03809a43a21d2f18ec215565df0f9e8232c235fc0056b",
+        "roads": "2987108beb8a2c2f82ba3f5c7a65be27a16d5bd3e6b9ba98482f3081ce6a49a7"
+      },
+      "sourceJob": {
+        "city": "paramaribo",
+        "sourceRunId": 38278543615,
+        "sourceArtifact": "city-bootstrap-sr-8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+        "sourceSha": "8a8b89f1c15e5f56807a15bda0f5dc4ddcd54925",
+        "datasetSha256": "1acfd87f06b3a5fa908365c06983919404fd70e12b673ba6a2bd22d1a8e87af3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "898b33b32c6f7a005682115a43fba4569e01f89cfb37ad3c7218db5f7c547a19",
+          "extras": "ee422f2e5d7d00b3fa879cf4e87b6a9c37874c465cc958ba67697a365640710d",
+          "water": "6a8822fd119dab0602f7d6d83f846de0d3b2206dae57d9417ae8051ca03d9b69",
+          "landuse": "7ce8a91b83f38d63cbd03809a43a21d2f18ec215565df0f9e8232c235fc0056b",
+          "roads": "2987108beb8a2c2f82ba3f5c7a65be27a16d5bd3e6b9ba98482f3081ce6a49a7"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/south-america/suriname-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 21402790,
+            "md5": "3751335c967af8cb914986acd0b85782",
+            "sha256": "d47d39a5ba954a5a5bbf645be41e5c074e512b4c23f21a24b5d5738b2d6c019a"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/south-america/guyana-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 15554318,
+            "md5": "73aca8d8e775563d49a971ed9dd79c20",
+            "sha256": "2d89476a2cfed68506b3c759c898b54afd0c9996269c7dd8b73f4c2b7f45e8d4",
+            "reason": "admin-0 relation/287082 member way/143451568 (Guyana - Suriname, Corantijn mouth, 60 nodes) is absent from the Suriname clip; all its nodes lie inside the Guyana clip"
+          }
+        ]
+      }
+    }
+  ]
+}

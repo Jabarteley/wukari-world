@@ -60,7 +60,9 @@ export function cityWords(names: readonly string[]): string {
 }
 /** The travel step: only cities that are open are named, and nothing is promised as open that is not. */
 function travelText(context: StepContext): string {
-  const { cities, country } = context.world ?? { cities: [], country: 'Nigeria' }
+  const { cities, country: named } = context.world ?? { cities: [], country: 'Nigeria' }
+  // Country names with abbreviations ("Central African Rep.") read as a sentence end in a two-sentence card: spell them out.
+  const country = named.replace(/\bRep\./g, 'Republic').replace(/\bDem\./g, 'Democratic').replace(/\bSt\./g, 'Saint').replace(/\bIs\./g, 'Islands').replace(/\bEq\./g, 'Equatorial').replace(/\bHerz\./g, 'Herzegovina').replace(/\./g, '')
   if (!cities.length) return `Allworld is the real world, one city at a time, and you will travel between them to see what there is to do in each. ${country} comes first, and more of Africa and the world are coming.`
   return `Choose World, select ${cityWords(cities)}, then pick a bus, train or flight. Your home stays yours while you visit; cities in ${country} are open now, with more of Africa and the world coming.`
 }

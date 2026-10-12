@@ -2,10 +2,10 @@
   "schemaVersion": 2,
   "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
   "countrySource": {
-    "url": "https://download.geofabrik.de/asia/india-261009.osm.pbf",
-    "bytes": 1709857118,
-    "md5": "a1e9720123241631de3767807857fd96",
-    "snapshotDate": "2026-10-09"
+    "url": "https://download.geofabrik.de/asia/india-261011.osm.pbf",
+    "bytes": 1710064705,
+    "md5": "95615ee3bb02b3748905024da46137b7",
+    "snapshotDate": "2026-10-11"
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/ecead39624006017b34acf27a4b098c9cc8a4635/airports.csv",

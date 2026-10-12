@@ -98,7 +98,7 @@ A ping is asked for by a friend and is worth something only in the next hour, so
 * The caps in the table. They are counted in a ledger of their own (`growth.comeback[id].pings`), **apart from** the one-a-day, three-a-week ledger of the automatic mails. Shared, a friend who pings often would use up the mails about a player's needs and milestones, and a milestone mail would silence a friend for a day. Apart, each kind is bounded by its own promise: the footer of a ping mail says "at most 2 times a day, never at night". The worst week for one player is three automatic mails and five pings.
 * The operator's e-mail switch and `EMAIL_DAILY_CAP` apply. The counters of the operator view have a `ping` row.
 
-The mail has the look of the account welcome message: who pinged, where they are, one button "Join Ada" (the join link), that they land right where their friend is, how long it is good for, and the footer. No image, nothing fetched when it is read, no pixel, no redirect: the only thing the server learns is that the join link was used, by the signed-in player it was made for.
+The mail has the look of the account welcome message: who pinged, where they are, one button "Join Ada" (the join link), that they land right where their friend is, how long it is good for, and the footer. The one picture is a static file of the game itself (the same frame as every mail); no pixel, no redirect: the only thing the server learns is that the join link was used, by the signed-in player it was made for.
 
 ### The join link
 
@@ -153,3 +153,7 @@ The e-mail "away" message that used to go to anyone away a day is replaced by th
 * Ping: numbers and the mail decision `src/game/ping.ts`; the ping and the join `server/social/ping.ts`, routes `server/routes/ping.ts`; what leaves the game `server/growth/ping-mail.ts`, the mail `server/growth/email/ping.ts`; the life's side of a join `src/game/systems/social.ts` (`join`); the browser `src/app/features/ping`.
 * Client: the switches in `TouchApp.vue`, the nudge and Ping on `PlayerCard.vue`, the allow-listed `?go=` link in `src/quick-start/entry.ts` and `src/app/features/landing/landingStore.ts`.
 * A link in a mail opens `/?go=<panel>` (needs, messages, people, career, houses, events, governor, tables, bank, touch). Anything else is ignored.
+
+## The look of every mail
+
+One frame for all of them (`server/growth/email/frame.ts`): the logo bar, a picture from the game's own 3D art at the top (a different scene for each kind: `confirm`, `welcome`, `ping`, `update` for announcements, `home` for comeback, away and weekly mail), one headline, a few short lines, one large button and a quiet footer with the reason and the links the rules require. The pictures are static files in `public/mail/` (1200x600 and a 600x300 fallback, each under about 90 kB), served by the game at `<public origin>/mail/<scene>.jpg`; a mail built without a public origin has no picture and is otherwise whole. Table layout, inline colours, system fonts, dark colours for readers that honour them, no script, no form, no pixel; every mail stays under 60 kB.

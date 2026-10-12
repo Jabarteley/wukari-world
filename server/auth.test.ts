@@ -935,16 +935,18 @@ test('welcome: the message — short, about the account, text and HTML saying th
   assert.ok(open.length > 1 && open.slice(0, 12).every(name => name && text.includes(name) && seen.includes(name)), 'the open cities are named from the registry');
   assert.ok(!open.some(name => `${mail.subject}\n${text.split('\n').slice(0, 3).join('\n')}`.includes(name)), 'it presents a world, not one city');
   assert.match(html, /<html lang="en">/); assert.match(html, /<meta name="color-scheme" content="light dark">/); assert.ok((html.match(/<table /g) ?? []).length === (html.match(/<table role="presentation"/g) ?? []).length, 'every layout table is marked as layout');
-  assert.ok(!/@import|@font-face|\bsrc=|background=/i.test(html), 'no font, no source and no background picture');
-  assert.ok(html.length < 16000 && text.length < 2500 && text.split('\n').every(line => line.length < 400), 'short enough to be read, and never clipped');
+  assert.ok(!/@import|@font-face|background="?https?:|url\(/i.test(html), 'no web font and no background picture');
+  assert.ok(html.length < 60000 && text.length < 2500 && text.split('\n').every(line => line.length < 400), 'short enough to be read, and never clipped');
   assert.ok(text.includes('Open Allworld: https://play.example/')); assert.match(html, /<a href="https:\/\/play\.example\/"[^>]*>Open Allworld<\/a>/);
-  assert.ok(!/<img|<script|<link|<iframe|url\(|http:\/\//i.test(html), 'no image, no script, nothing fetched when it is opened');
-  assert.deepEqual([...new Set([...html.matchAll(/https?:\/\/[^"'\s<)]+/g)].map(match => match[0]))], ['https://play.example/'], 'the only address in it is the game’s own');
+  assert.ok(!/<script|<link|<iframe|<form|<input|url\(|http:\/\//i.test(html), 'no script, no form, no frame, no stylesheet link');
+  // One picture, the game's own, from its own static files, at the public origin: never inline data, never another host, never a pixel.
+  assert.deepEqual([...html.matchAll(/<img [^>]*>/g)].length, 1); assert.match(html, /<img src="https:\/\/play\.example\/mail\/welcome-600\.jpg" srcset="https:\/\/play\.example\/mail\/welcome\.jpg 2x" width="600" height="300" alt="[^"]+" style="display:block;/); assert.ok(!/data:/i.test(html));
+  assert.deepEqual([...new Set([...html.matchAll(/https?:\/\/[^"'\s<)]+/g)].map(match => match[0]))].sort(), ['https://play.example/', 'https://play.example/mail/welcome-600.jpg', 'https://play.example/mail/welcome.jpg'], 'the only addresses in it are the game’s own: the button and its picture');
   assert.equal(mail.headers, undefined, 'no list headers: it is not a subscription');
   // A hostile character name is text in both parts. (The name filter would refuse this one; the template must not rely on that.)
   const { accountWelcomeMail } = await import('./growth/email/templates.ts');
   const hostile = accountWelcomeMail({ name: '<img src=x onerror=alert(1)>"\'&\r\nBcc: x@evil.example', playUrl: 'https://play.example/', contact: '<b>contact</b>' });
-  assert.ok(!/<img|<b>|onerror=alert\(1\)>/.test(hostile.html)); assert.ok(hostile.html.includes('&lt;img src=x onerror=alert(1)&gt;&quot;&#39;&amp;') && hostile.html.includes('&lt;b&gt;contact&lt;/b&gt;'));
+  assert.ok(!/<b>|onerror=alert\(1\)>/.test(hostile.html) && (hostile.html.match(/<img /g) ?? []).length === 1); assert.ok(hostile.html.includes('&lt;img src=x onerror=alert(1)&gt;&quot;&#39;&amp;') && hostile.html.includes('&lt;b&gt;contact&lt;/b&gt;'));
   assert.equal(hostile.subject, 'Welcome to Allworld: your character is saved', 'the subject carries nothing a person chose');
   assert.ok(!/[\r\n]Bcc:/.test(hostile.text.split('\n')[0] ?? ''), 'a name cannot start a new line of its own in the heading');
   const bare = accountWelcomeMail({ playUrl: 'https://play.example/' });

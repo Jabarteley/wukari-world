@@ -71,7 +71,7 @@ export function announceMailService(ctx: RouteContext, mailing: PingMailing, com
           const origin = mailing.origin(), unsub = await mailing.token('unsub', target.id, target.email.nonce, now() + 400 * 86400000), unsubscribeUrl = `${origin}/e/unsub?t=${unsub}`;
           const contact = mailing.contactLine();
           const why = 'You get this because you asked for Allworld e-mails in the game (Events).';
-          const mail = build(content.title, { heading: content.title, intro: content.body, button: { label: 'Open Allworld', url: origin || '/' },
+          const mail = build(content.title, { heading: content.title, intro: content.body, button: { label: 'Open Allworld', url: origin || '/' }, hero: 'update',
             foot: `${esc(why)} <a href="${esc(unsubscribeUrl)}" style="color:#5b6472">Unsubscribe with one tap</a>.${contact ? `<br>${esc(contact)}` : ''}`, footText: `${why}\nUnsubscribe with one tap: ${unsubscribeUrl}${contact ? `\n${contact}` : ''}` });
           const result = await mailing.deliverMail(target.id, 'announce', target.email.to, { ...mail, headers: { 'List-Unsubscribe': `<${unsubscribeUrl}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' } });
           if (result.ok) sent += 1; else failed += 1;

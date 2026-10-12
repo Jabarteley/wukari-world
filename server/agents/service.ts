@@ -21,6 +21,9 @@ import { UUID_PATTERN, validateName } from '../protocol.ts';
 import { accountOfSession } from '../admin/gate.ts';
 import { characterCity } from '../character.ts';
 import { screenText } from '../moderation/text.ts';
+import { AGENT_SUFFIX, govOfId, peekPolitics } from '../politics/data.ts';
+import { governorAt } from '../civic/elections.ts';
+import { QUORUM } from '../../src/game/content/politics.ts';
 import { findActivity } from '../../src/game/systems/activities.ts';
 import { checkLook } from '../../src/game/systems/onboarding.ts';
 import { initialVenuePosition, venueRoomKey } from '../protocol.ts';
@@ -418,11 +421,15 @@ export function agentService(ctx: RouteContext) {
     for (const city of Object.values(growth?.tables?.cities ?? {})) add(city?.ratings);
     return { friends: Object.keys(social?.players?.[publicId]?.friends ?? {}).length, won };
   }
-  /** City seats held now, by public id (state and national seats are not counted yet). */
-  function holders(db: Db): Set<string> {
-    const civic = db.civic as unknown as { cities?: Record<string, { gov?: { governor?: { id?: string } | null } } | undefined> } | undefined;
-    const found = new Set<string>();
-    for (const id of ctx.cityIds) { const holder = civic?.cities?.[id]?.gov?.governor?.id; if (typeof holder === 'string') found.add(holder); }
+  /** Seats held now on the AGENTS' side (city, state and national), by public id, with how many each holds. */
+  function holders(db: Db): Map<string, number> {
+    const found = new Map<string, number>(), politics = peekPolitics(db), t = now();
+    for (const scope of Object.keys(politics.scopes)) {
+      if (!scope.endsWith(AGENT_SUFFIX)) continue;
+      const tier = scope.startsWith('city:') ? 'city' : scope.startsWith('state:') ? 'state' : 'nation';
+      const sitting = governorAt(govOfId(db, scope), t, QUORUM[tier]);
+      if (sitting) found.set(sitting.id, (found.get(sitting.id) ?? 0) + 1);
+    }
     return found;
   }
 
@@ -505,7 +512,7 @@ export function agentService(ctx: RouteContext) {
   function league(db: Db, which: 'weekly' | 'allTime' = 'weekly') {
     const a = peek(db), week = lagosTime(now()).week, seats = holders(db);
     const rows = Object.entries(a?.chars ?? {}).map(([id, c0]) => {
-      const c = { ...c0, offices: seats.has(id) ? 1 : 0 };
+      const c = { ...c0, offices: seats.get(id) ?? 0 };
       const gained = c.w0.week === week ? Math.max(0, c.cash - c.w0.cash) : 0, wonWeek = c.w0.week === week ? Math.max(0, c.won - c.w0.won) : 0;
       return { id, name: c.name, slug: c.slug, builtWith: c.builtWith ?? null, owner: c.ownerName ?? null, claimed: c.account !== '', city: c.city, cash: c.cash, gained, earned: c.week === week ? c.earned : 0, shifts: c.shifts, gamesWon: wonWeek, offices: c.offices, friends: c.friends,
         score: gained + 1000 * c.offices + 200 * wonWeek, createdAt: c.createdAt };
@@ -518,7 +525,7 @@ export function agentService(ctx: RouteContext) {
     const c = a && typeof id === 'string' ? own(a.chars, id) : undefined;
     if (!a || !c) return null;
     const rank = league(db).rows.find((row) => row.slug === slug)?.rank ?? null;
-    return { name: c.name, slug: c.slug, builtWith: c.builtWith ?? null, owner: c.ownerName ?? null, claimed: c.account !== '', city: c.city, since: c.createdAt, rank, cash: c.cash, earned: c.week === lagosTime(now()).week ? c.earned : 0, shifts: c.shifts, friends: c.friends, offices: c.offices, gamesWon: c.won, recent: c.recent };
+    return { name: c.name, slug: c.slug, builtWith: c.builtWith ?? null, owner: c.ownerName ?? null, claimed: c.account !== '', city: c.city, since: c.createdAt, rank, cash: c.cash, earned: c.week === lagosTime(now()).week ? c.earned : 0, shifts: c.shifts, friends: c.friends, offices: holders(db).get(id ?? '') ?? 0, gamesWon: c.won, recent: c.recent };
   }
 
   /** The operator's overview and switches. Counts only: no key, no hash, no player. */

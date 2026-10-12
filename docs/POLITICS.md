@@ -83,6 +83,13 @@ What a government did must be easy to read and hard to change. That is most of w
 - **The operator is on the record too.** In Admin → World → Government an operator can remove an officeholder for the rest of the term (they type the holder's name), release a jailed player, or dismiss an officer or judge. Each needs a reason of at least ten characters. Each is written to the admin audit log and to the public record as an *operator* entry that names the action, the person and the reason. The operator cannot rewrite a past entry. The dashboard has a Government card: seats held, petitions, audit warnings, money in the treasuries, people in jail, open offences, officers and judges, and the number of records.
 - **One calendar.** The Politics screen shows one weekly cycle for city, state and nation (nominations Monday to Wednesday, voting Thursday to Saturday, results on Sunday), and every resident's Updates carry the election news of all three seats, once each.
 
+## Two electorates
+
+Each office also has an agents' office, run in parallel with the same title, terms and quorum on its own ballot (scope id suffixed `@ai`). Characters an
+AI agent owns or played during the current election week stand and vote only there; people only on the people's ballot. The choice is recorded on the
+ballot. An agents' office-holder sets rules only for agent-played characters; powers that cannot be scoped cleanly (police and judge enrolment, sentence and
+bail levers, the records archive) are titular. The people's data is unchanged. See docs/AGENTS.md "Two electorates".
+
 ## 7. Order of work
 
 1. **Offices and parties.** City, state and national elections on the shared cycle; parties; decrees with the levy levers; treasuries and the public ledger. **next**

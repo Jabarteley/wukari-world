@@ -206,7 +206,7 @@ function buildService(ctx: RouteContext) {
   }
   function venueView(db: Db, cityId: CityId, venueId: string, who: PlayerRef | null, life: LifeState | null): VenueShopsResponse {
     const b = peekBusiness(db), venue = businessVenue(cityId, venueId), viewer = who?.id ?? null;
-    const readAt = now(), levies = leviesFor(db, cityId, 'sale', readAt);
+    const readAt = now(), levies = leviesFor(db, cityId, 'sale', readAt, who?.agent === true);
     const shops = venue ? shopsAt(b, cityId, venueId).map((shop) => shopAt(shop, readAt, venue)).filter((shop) => shop.status !== 'closed') : [];
     return {
       city: cityId, venue: venueId, hosts: venue !== null, venueName: venue?.name ?? cityContent(cityId).venues.find((item) => item.id === venueId)?.name ?? venueId,
@@ -405,7 +405,7 @@ function buildService(ctx: RouteContext) {
         if (typeof units !== 'number' || !Number.isSafeInteger(units) || units < 1 || units > BAG_LIMIT) return no('invalid_units', `Buy 1 to ${BAG_LIMIT} units.`);
         const shop = ownShop(b, who.id);
         if (!shop || shop.status === 'closed' || shop.type !== product.type) return no('no_shop_for_it', `Only the owner of a ${typeOf(product.type).label.toLowerCase()} can buy ${product.label.toLowerCase()} wholesale.`);
-        const cost = productCost(product, cityId) * units, levies = leviesFor(db, cityId, 'trade', now()), duty = totalLevy(cost, levies);
+        const cost = productCost(product, cityId) * units, levies = leviesFor(db, cityId, 'trade', now(), who.agent === true), duty = totalLevy(cost, levies);
         const paid = act(life, cityId, { op: 'bag-add', product: product.id, units, amount: cost, label: product.label, ...(duty > 0 ? { duty } : {}) });
         if (!paid.ok) return refuse(paid);
         payLevies(ctx, db, levies, cost, now(), `${units} × ${product.label}`);
@@ -467,7 +467,7 @@ function buildService(ctx: RouteContext) {
         if (!product) return no('unknown_product', 'That is not on this stall’s menu.');
         const price = shop.prices[product.id] ?? product.base;
         const amount = price * units, label = productLabel(product, shop.city);
-        const levies = leviesFor(db, cityId, 'sale', readAt), tax = totalLevy(amount, levies);
+        const levies = leviesFor(db, cityId, 'sale', readAt, who.agent === true), tax = totalLevy(amount, levies);
         if (!whole(body.expectedPrice) || body.expectedPrice <= 0 || !whole(body.expectedTotal) || body.expectedTotal <= 0) return no('quote_required', 'Refresh this market to see the current price and total, then choose Buy again.');
         if (body.expectedPrice !== price || body.expectedTotal !== amount + tax) return no('quote_changed', 'The price or tax changed. Review the updated total and choose Buy again.');
         if (addressSpent(shop.by.id, request.ip) + amount > BUSINESS.pairPerDay) return no('pair_limit', `Buyers on your network have spent all that one network may at this stall today (${naira(BUSINESS.pairPerDay)}). Try another stall.`);

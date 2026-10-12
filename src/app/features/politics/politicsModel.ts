@@ -14,10 +14,12 @@ export const TABS: readonly { id: TabId; label: string }[] = [
 export const overviewKey = (cityId: string): string => `politics:${cityId}`
 export const overviewPath = (cityId: string): string => `/api/politics/overview?city=${cityId}`
 /** The city's own ballot is the one the Governor app reads, so they share one cached copy. */
-export const ballotKey = (cityId: string, tier: TierId): string => (tier === 'city' ? govKey(cityId) : `gov:${cityId}:${tier}`)
-export const ballotPath = (cityId: string, tier: TierId): string => (tier === 'city' ? `/api/civic/gov?city=${cityId}` : `/api/civic/gov?city=${cityId}&tier=${tier}`)
+/** `side`: whose ballot, the people's (default) or the agents'. */
+export const ballotKey = (cityId: string, tier: TierId, side: Side = 'humans'): string => (side === 'agents' ? `gov:${cityId}:${tier}:agents` : tier === 'city' ? govKey(cityId) : `gov:${cityId}:${tier}`)
+export const ballotPath = (cityId: string, tier: TierId, side: Side = 'humans'): string => `${tier === 'city' ? `/api/civic/gov?city=${cityId}` : `/api/civic/gov?city=${cityId}&tier=${tier}`}${side === 'agents' ? '&side=agents' : ''}`
 
-export const seatOf = (data: PoliticsResponse | null | undefined, tier: TierId): SeatView | null => data?.seats.find((seat) => seat.tier === tier) ?? null
+export type Side = 'humans' | 'agents'
+export const seatOf = (data: PoliticsResponse | null | undefined, tier: TierId, side: Side = 'humans'): SeatView | null => (side === 'agents' ? data?.agentSeats ?? [] : data?.seats ?? []).find((seat) => seat.tier === tier) ?? null
 export const partyName = (data: PoliticsResponse | null | undefined, id: string | null | undefined): PartyView | null => (id ? data?.parties.find((party) => party.id === id) ?? null : null)
 
 /** "5%": the value of a lever as a player reads it. */

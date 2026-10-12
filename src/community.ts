@@ -69,7 +69,7 @@ type Incoming =
   | { type: 'presence-delta'; joined?: RoomMember[]; left?: string[]; moved?: { id: string; x: number; z: number }[]; voice?: { id: string; enabled: boolean; muted?: boolean }[]; counts?: GroupCounts }
   | { type: 'group'; event?: string; here?: number; text?: string; friend?: { id: string; name: string } }
   | { type: 'groups'; total?: number; more?: number; groups?: { id: string; no: number; size: number; open: boolean; mine: boolean; friends?: { id: string; name: string }[] }[] }
-  | { type: 'chat'; id: string; clientId?: string; from?: PublicSession; body: string }
+  | { type: 'chat'; id: string; clientId?: string; from?: PublicSession; body: string; speaker?: 'agent' }
   | { type: 'signal'; from: string; data?: unknown }
   | { type: 'error'; error?: string; code?: string; message?: string; clientId?: string; to?: string }
 
@@ -489,6 +489,7 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
       // A delivery label is about the player's own messages only: a message that arrived from someone else has none.
       else appendChat(message, message.from?.id === session?.id ? 'Sent' : '')
       if (!chatNoted && counts) { chatNoted = true; groupNote = GROUP_CHAT_NOTE; emit() }
+      if (message.speaker === 'agent') globalThis.dispatchEvent(new CustomEvent('jaw:agent-say', { detail: { id: message.from?.id, name: message.from?.name, text: message.body } }))
     } else if (message.type === 'signal') void receiveSignal(message)
     else if (message.type === 'error') {
       const refused = message.error || message.code

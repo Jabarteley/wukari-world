@@ -28,14 +28,15 @@ function ensureStyle(): void {
 }
 
 /** The scene's tag node of this regular, or null when the scene is not drawing them. */
-export function tagOf(npcId: string): HTMLElement | null {
-  for (const node of document.querySelectorAll<HTMLElement>('.scene-tags [data-tag]')) if (node.dataset.tag === `npc:${npcId}`) return node
+export function tagOf(npcId: string): HTMLElement | null { return tagByKey(`npc:${npcId}`) }
+function tagByKey(key: string): HTMLElement | null {
+  for (const node of document.querySelectorAll<HTMLElement>('.scene-tags [data-tag]')) if (node.dataset.tag === key) return node
   return null
 }
 
 function place(): void {
   for (const item of live) {
-    if (!item.tag?.isConnected) item.tag = tagOf(item.npcId)
+    if (!item.tag?.isConnected) item.tag = tagByKey(item.npcId)
     const tag = item.tag
     const hidden = !tag || tag.hidden || !tag.style.left
     item.node.hidden = hidden
@@ -57,16 +58,22 @@ function drop(item: Live): void {
 
 /** Show one regular's line over their tag. False when the scene is not drawing that regular (nothing is shown then). */
 export function say(npcId: string, name: string, text: string, beta: boolean, ms: number = BUBBLE_MS): boolean {
-  const tag = tagOf(npcId)
+  return sayTag(`npc:${npcId}`, beta ? `${npcTitle(name)} · beta` : npcTitle(name), text, ms)
+}
+
+/** The same bubble over any scene tag by its key (an AI agent's character: its player id), with the label as given. */
+export function sayTag(key: string, label: string, text: string, ms: number = BUBBLE_MS): boolean {
+  const npcId = key
+  const tag = tagByKey(key)
   const layer = tag?.parentElement?.parentElement
   if (!tag || !layer) return false
   ensureStyle()
   const node = document.createElement('div')
   node.className = 'chatter-bubble'
   node.setAttribute('aria-hidden', 'true')
-  node.dataset.chatter = npcId
+  node.dataset.chatter = npcId.startsWith('npc:') ? npcId.slice(4) : npcId
   const who = document.createElement('small')
-  who.textContent = beta ? `${npcTitle(name)} · beta` : npcTitle(name)
+  who.textContent = label
   const words = document.createElement('span')
   words.textContent = text
   node.append(who, words)

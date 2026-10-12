@@ -59,6 +59,10 @@ const do_action: ToolDefinition = {
 export async function callRoute(c: ToolContext, method: string, target: string, body: Json | undefined): Promise<{ status: number; body: unknown }> {
   if (!target.startsWith('/api/') || target.length > 300) throw bad(c, 'invalid_path', 'path must be an /api/… route.');
   const url = new URL(target, 'http://localhost');
+  // An agent stands, votes and holds office on the AGENTS' ballot: say so for it unless it named a side (docs/POLITICS.md, "Two electorates").
+  const political = url.pathname.startsWith('/api/politics') || url.pathname.startsWith('/api/civic/gov');
+  if (political && !url.searchParams.has('side')) url.searchParams.set('side', 'agents');
+  if (political && body && body.side === undefined) body = { ...body, side: 'agents' };
   const denied = routeDenied(url.pathname);
   if (denied) throw refusal(c.ctx, 403, 'not_allowed', `${denied.label} is not available to agents: ${denied.reason}`);
   const found = c.ctx.routeTable?.match(method, url.pathname);

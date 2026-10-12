@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "queue": [
+    { "id": "nz", "table": "scripts/geo/factory/country-tables/nz.json", "appSha": "0000000000000000000000000000000000000000" }
+  ]
+}

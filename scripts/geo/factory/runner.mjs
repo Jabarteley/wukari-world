@@ -71,7 +71,7 @@ for (const t of table.targets)
             throw Error(`${t.id}: actual extract ${layer} hash mismatch`);
 const identity = hash(JSON.stringify(pins)), node = process.execPath, command = (...args) => [node, '--experimental-strip-types', ...args];
 const cityPlan = table.targets.map(t => ({ id: t.id, scaffoldFiles: ['facts', 'index', 'content', 'map'].map(n => `src/game/cities/${t.id}/${n}.ts`).concat(`scripts/geo/destination-detail/${t.id}.ts`), generatedFiles: ['places', 'geometry', 'terrain'].map(n => `src/game/cities/${t.id}/${n}.ts`), generation: command('scripts/geo/build-destination-detail.ts', t.id, '--extract-dir', t.extractDirectory, '--country-boundary', join(loadCountryScope(table.root, t.countryScope ?? table.countryScope, t.country, t.sourceJob?.datasetSha256).policy.directory, 'boundary.geojson')), acceptance: command('--test', '--test-concurrency=1', `src/game/cities/${t.id}/map.test.ts`, `src/game/cities/${t.id}/journey.test.ts`), proofs: Object.fromEntries(['ground', 'city'].map(view => [view, command(proof, '--worktree', workspace, '--city', t.id, '--outdir', join(out, t.id, 'proof', view), '--view', view)])), sourceScene: command('--import', './scripts/node-scene-css.ts', join(home, 'source-scene.mjs'), '--workspace', workspace, '--city', t.id, '--extract-dir', t.extractDirectory, '--expected', join(out, `${t.id}-source-expected.json`), '--out', join(out, t.id, 'proof', 'scene-source.json')), genericAcceptance: 'emit proven map/journey wrappers only when absent; preserve existing stricter files', holds: ['metadata coordinates need primary record review', 'auto-bounds/re-extraction unverified; pinned boxes preserved', 'rendered visual and browser acceptance pending'] }));
-const plan = { mode: execute ? 'execute' : 'plan', identity, pins, workspace, selection: command(join(home, 'batch.mjs'), '--table', join(out, 'execution-table.json'), '--out', join(out, 'selection'), '--sandbox-root', sandbox), cities: cityPlan, catalogueOnce: command('scripts/city/build-catalogue.ts'), receipts: command(receipt, workspace, 'PER_CITY_PRIVATE_RECEIPT_MANIFEST'), cloudNeeds: ['clean committed source baseline plus separately marked disposable clone', 'Node strip-types runtime and repository dependencies', 'pinned five-layer extracts reachable at table paths', 'existing Linux proof helper needs rsvg-convert on Linux or sips on macOS', 'generic map/journey wrappers emitted only when absent; preserve stricter existing tests', 'metadata/visual/browser review after machine artifacts'] };
+const plan = { mode: execute ? 'execute' : 'plan', identity, pins, workspace, selection: command(join(home, 'batch.mjs'), '--table', join(out, 'execution-table.json'), '--out', join(out, 'selection'), '--sandbox-root', sandbox), cities: cityPlan, catalogueOnce: command('scripts/city/build-catalogue.ts'), receipts: command(receipt, workspace, 'PER_CITY_PRIVATE_RECEIPT_MANIFEST', table.receiptRoot ?? 'world/playable-africa-rollout'), cloudNeeds: ['clean committed source baseline plus separately marked disposable clone', 'Node strip-types runtime and repository dependencies', 'pinned five-layer extracts reachable at table paths', 'existing Linux proof helper needs rsvg-convert on Linux or sips on macOS', 'generic map/journey wrappers emitted only when absent; preserve stricter existing tests', 'metadata/visual/browser review after machine artifacts'] };
 mkdirSync(out, { recursive: true });
 const planPath = join(out, 'plan.json');
 if (existsSync(planPath)) {
@@ -157,7 +157,7 @@ for (const row of rows) {
         row.reasons.push('source/geometry/PNG proof incomplete or failed');
     const t = table.targets.find(t => t.id === row.id), manifest = join(out, `${row.id}-receipt-manifest.json`);
     writeFileSync(manifest, JSON.stringify({ cities: [{ id: row.id, extract: t.extractDirectory }] }));
-    row.machineStages.receipt = run(`${row.id}/receipt`, command(receipt, workspace, manifest));
+    row.machineStages.receipt = run(`${row.id}/receipt`, command(receipt, workspace, manifest, table.receiptRoot ?? 'world/playable-africa-rollout'));
     if (!row.machineStages.receipt)
         row.reasons.push('receipt creation failed');
 }
@@ -165,6 +165,6 @@ const failed = machineFailed(catalogue, rows);
 writeFileSync(join(out, 'contact-sheet-inputs.json'), JSON.stringify(contactSheetInputs(out, rows), null, 2));
 writeFileSync(join(out, 'machine-holds.json'), JSON.stringify({ identity, catalogue, machineFailed: failed, rows }, null, 2));
 writeReviewPage(out, rows);
-console.log(JSON.stringify({ identity, rows, receiptRoot: join(workspace, 'world/playable-africa-rollout'), approval: 'none' }, null, 2));
+console.log(JSON.stringify({ identity, rows, receiptRoot: join(workspace, table.receiptRoot ?? 'world/playable-africa-rollout'), approval: 'none' }, null, 2));
 
 process.exitCode = failed ? 1 : 0;

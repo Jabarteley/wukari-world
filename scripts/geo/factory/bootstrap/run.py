@@ -1,6 +1,7 @@
 """One seed source bootstrap, with candidate-only receipts and explicit holds."""
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -8,12 +9,16 @@ import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 from urllib.request import urlopen
 
 BASELINE = '7a57e756a10b35a0eec9ec5928f083580fb9e7a9'
 HERE = Path(__file__).resolve().parent
 EXTRACTOR = HERE.parents[1] / 'offline-extract.py'
+_metadata_spec = importlib.util.spec_from_file_location('bootstrap_metadata', HERE / 'metadata.py')
+_metadata = importlib.util.module_from_spec(_metadata_spec)
+_metadata_spec.loader.exec_module(_metadata)
 
 def digest(path, algorithm='sha256'):
     result = hashlib.new(algorithm)
@@ -24,9 +29,8 @@ def digest(path, algorithm='sha256'):
 def validate(table):
     if table.get('schemaVersion') != 1 or table.get('geometrySourceSha') != BASELINE: raise ValueError('unsupported schema or geometry baseline')
     seed, source, airports = table['seed'], table['countrySource'], table['airports']
-    if seed.get('id') != 'ndjamena' or seed.get('countryISO') != 'TD': raise ValueError("this bounded workflow accepts only N'Djamena, TD")
-    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', seed.get('id', '')) or not seed.get('name', '').strip() or not re.fullmatch(r'[A-Z]{2}', seed.get('countryISO', '')): raise ValueError('invalid seed')
-    if not re.fullmatch(r'https://download\.geofabrik\.de/africa/[a-z-]+-\d{6}\.osm\.pbf', source.get('url', '')): raise ValueError('dated official country PBF URL required')
+    _metadata.validate_seed(seed)
+    _metadata.validate_dataset_url(source.get('url'))
     if not isinstance(source.get('bytes'), int) or isinstance(source['bytes'], bool) or source['bytes'] <= 0 or not re.fullmatch(r'[0-9a-f]{32}', source.get('md5', '')): raise ValueError('invalid source byte/MD5 pins')
     if not re.fullmatch(r'[0-9a-f]{40}', airports.get('commit', '')) or airports['url'] != 'https://raw.githubusercontent.com/davidmegginson/ourairports-data/' + airports['commit'] + '/airports.csv': raise ValueError('airport CSV must use its exact pinned source commit')
     for date in (source.get('snapshotDate', ''), airports.get('snapshotDate', '')):
@@ -35,18 +39,77 @@ def validate(table):
 
 def download(url, destination):
     for attempt in range(3):
+        started = time.monotonic()
+        downloaded = 0
+        total = None
+        stopped = threading.Event()
+        def heartbeat():
+            while not stopped.wait(30):
+                elapsed = time.monotonic() - started
+                size = total if total is not None else 'unknown'
+                rate = downloaded / max(elapsed, 0.001) / (1024 * 1024)
+                print(f'[download] {destination.name} active: {downloaded}/{size} bytes; elapsed={elapsed:.0f}s; rate={rate:.2f} MiB/s', flush=True)
+        reporter = threading.Thread(target=heartbeat, daemon=True)
+        reporter.start()
+        print(f'[download] {destination.name} attempt {attempt + 1}/3 started', flush=True)
         try:
             with urlopen(url, timeout=90) as response, destination.open('wb') as output:
-                shutil.copyfileobj(response, output, 1024 * 1024)
-                return {'requestedUrl': url, 'resolvedUrl': response.url, 'lastModified': response.headers.get('Last-Modified')}
-        except Exception:
+                length = response.headers.get('Content-Length')
+                total = int(length) if length and length.isdigit() else None
+                print(f'[download] {destination.name} Content-Length={total if total is not None else "unknown"} bytes', flush=True)
+                last_reported_bytes = 0
+                while block := response.read(1024 * 1024):
+                    output.write(block)
+                    downloaded += len(block)
+                    now = time.monotonic()
+                    if downloaded - last_reported_bytes >= 64 * 1024 * 1024:
+                        elapsed = now - started
+                        print(f'[download] {destination.name} {downloaded}/{total if total is not None else "unknown"} bytes; elapsed={elapsed:.0f}s; rate={downloaded / elapsed / (1024 * 1024):.2f} MiB/s', flush=True)
+                        last_reported_bytes = downloaded
+                elapsed = time.monotonic() - started
+                print(f'[download] {destination.name} complete: {downloaded}/{total if total is not None else "unknown"} bytes; elapsed={elapsed:.0f}s; rate={downloaded / max(elapsed, 0.001) / (1024 * 1024):.2f} MiB/s', flush=True)
+                source_http = {'requestedUrl': url, 'resolvedUrl': response.url, 'lastModified': response.headers.get('Last-Modified')}
+        except Exception as error:
+            print(f'[download] {destination.name} attempt {attempt + 1}/3 failed after {downloaded} bytes and {time.monotonic() - started:.0f}s: {type(error).__name__}: {error}', flush=True)
             if attempt == 2: raise
             time.sleep(2)
+            continue
+        finally:
+            stopped.set()
+            reporter.join()
+        return source_http
+
+def forward_metadata_phases(logfile, offset, pending=b'', final=False):
+    with logfile.open('rb') as source:
+        source.seek(offset)
+        appended = source.read()
+    offset += len(appended)
+    lines = (pending + appended).split(b'\n')
+    pending = lines.pop()
+    if final and pending:
+        lines.append(pending)
+        pending = b''
+    for raw_line in lines:
+        line = raw_line.decode('utf-8', errors='replace')
+        if line.startswith('[metadata-phase] '):
+            print(line, flush=True)
+    return offset, pending
 
 def stage(arguments, logfile):
-    result = subprocess.run(arguments, capture_output=True, text=True)
-    logfile.write_text(result.stdout + result.stderr)
-    if result.returncode: raise ValueError('stage failed: ' + logfile.name)
+    started = time.monotonic()
+    phase_offset, phase_pending = 0, b''
+    print(f'[stage] {logfile.name} started', flush=True)
+    with logfile.open('w') as output, subprocess.Popen(arguments, stdout=output, stderr=subprocess.STDOUT) as process:
+        while True:
+            try:
+                returncode = process.wait(timeout=30)
+                break
+            except subprocess.TimeoutExpired:
+                phase_offset, phase_pending = forward_metadata_phases(logfile, phase_offset, phase_pending)
+                print(f'[stage] {logfile.name} still running; elapsed={time.monotonic() - started:.0f}s', flush=True)
+        phase_offset, phase_pending = forward_metadata_phases(logfile, phase_offset, phase_pending, final=True)
+    print(f'[stage] {logfile.name} finished; elapsed={time.monotonic() - started:.0f}s; exit={returncode}', flush=True)
+    if returncode: raise ValueError('stage failed: ' + logfile.name)
 
 def main():
     parser = argparse.ArgumentParser()

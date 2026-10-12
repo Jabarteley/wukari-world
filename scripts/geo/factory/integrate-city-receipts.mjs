@@ -2,12 +2,12 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
-const [rootArg, manifestArg] = process.argv.slice(2);
-if (!rootArg || !manifestArg) throw Error('Usage: node --experimental-strip-types integrate-city-receipts.mjs <worktree> <private manifest>');
+const [rootArg, manifestArg, receiptRootArg = 'world/playable-africa-rollout'] = process.argv.slice(2);
+if (!rootArg || !manifestArg || !/^world\/playable-[a-z-]+-rollout$/.test(receiptRootArg)) throw Error('Usage: node --experimental-strip-types integrate-city-receipts.mjs <worktree> <private manifest> [world/playable-<region>-rollout]');
 const root = resolve(rootArg), manifest = JSON.parse(readFileSync(manifestArg, 'utf8'));
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const readModule = path => import(pathToFileURL(join(root, path)).href);
-const outputRoot = join(root, 'world/playable-africa-rollout');
+const outputRoot = join(root, receiptRootArg);
 for (const sub of ['sources', 'receipts']) mkdirSync(join(outputRoot, sub), { recursive: true });
 for (const { id, extract } of manifest.cities) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) throw Error('Invalid city id');
@@ -46,7 +46,7 @@ for (const { id, extract } of manifest.cities) {
   const receipt = {
     schemaVersion: 1, cityId: id, countryIso2: inventory.countryIso2,
     generationIdentity: { cityId: id, stateId: FACTS.state.idunique, stateName: FACTS.state.name },
-    inventorySha256: hash(inventoryText), inventoryPath: `world/playable-africa-rollout/sources/${id}.json`, admission,
+    inventorySha256: hash(inventoryText), inventoryPath: `${receiptRootArg}/sources/${id}.json`, admission,
     airportCandidate: FACTS.airport, bounds: CONFIG.box, sources: { geometryInput },
     kept: { places: PLACES.length, roads: TERRAIN.roads.length, neighbourhoodLabels: TERRAIN.names.filter(label => label.kind === 'neighbourhood').length, landPolygons: GEOMETRY.land.length, waterPolygons: TERRAIN.water?.length ?? 0, reachWaterPolygons: TERRAIN.reachWater?.length ?? 0 },
     observed: Object.fromEntries(layers.map(({ label, parsed }) => [label, parsed.elements.length])),

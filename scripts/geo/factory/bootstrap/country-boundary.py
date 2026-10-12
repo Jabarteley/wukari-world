@@ -118,7 +118,11 @@ def extract(args):
                                    'geometrySha256': value_hash(coordinates)}
 
     Ways().apply_file(str(pbf), locations=True)
-    require(set(way_records) == set(boundary_members), 'country boundary member ways absent from PBF')
+    missing_member_ways = sorted(set(boundary_members) - set(way_records))
+    args.diagnostic.update({'presentBoundaryMemberWayCount': len(way_records),
+                            'missingMemberWayIds': missing_member_ways})
+    require(not missing_member_ways,
+            f'country boundary member ways absent from PBF: {missing_member_ways}')
     require(all(count == 1 for count in expected_edges.values()), 'repeated country boundary segment; HOLD')
     args.diagnostic['stage'] = 'area-assembly'
     factory = osmium.geom.GeoJSONFactory()

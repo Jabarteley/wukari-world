@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "queue": [
+    { "id": "nz", "table": "scripts/geo/factory/country-factory/nz-factory-targets.json" }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Oceania source bootstrap seed",
+  "description": "Oceania batch seed contract. It preserves the shared identity and source selectors while allowing Oceania-owned map and place-selection policy fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "countryISO"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "name": {"type": "string", "minLength": 1, "description": "Must contain a name after Unicode alphanumeric normalization and match a source city/town name or name:en."},
+    "countryISO": {"type": "string", "pattern": "^[A-Z]{2}$"},
+    "cityOsmRef": {"type": "string", "pattern": "^node/[1-9][0-9]*$", "description": "Selects only among matching named city/town nodes in the verified PBF."},
+    "airport": {
+      "type": "object", "additionalProperties": false, "required": ["ident", "sourceUrl"],
+      "properties": {
+        "ident": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Exact unique pinned CSV ident; same-country named airport with scheduled_service=yes required. Municipality may differ."},
+        "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this airport serves the selected city."}
+      }
+    },
+    "timezone": {
+      "type": "object", "additionalProperties": false, "required": ["id", "sourceUrl"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Exact unique IANA zone.tab id among rows for countryISO."},
+        "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this city's timezone selection."}
+      }
+    },
+    "sceneWaterExtent": {"enum": ["play", "reach"], "description": "Oceania-owned runtime scene-water selection."},
+    "namesUnit": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Unit label used when presenting local place names."},
+    "selectionExclusions": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["ref", "reason"],
+        "properties": {
+          "ref": {"type": "string", "pattern": "^(?:node|way|relation)/[1-9][0-9]*$"},
+          "reason": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$"}
+        }
+      },
+      "description": "Explicit source-derived elements excluded from the generated venue pool. Runtime validation also rejects repeated refs."
+    }
+  },
+  "$defs": {
+    "provenanceUrl": {"type": "string", "format": "uri", "pattern": "^https://[^\\s/?#@]+(?:[/?#][^\\s]*)?$", "description": "Runtime additionally requires a hostname and rejects embedded credentials."}
+  }
+}

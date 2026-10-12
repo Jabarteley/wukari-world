@@ -34,8 +34,9 @@ if (args.includes('--collect')) {
       if (existsSync(directory)) cpSync(directory, join(out, 'cities', target.id), { recursive: true });
       if (existsSync(recipe)) { mkdirSync(join(out, 'recipes'), { recursive: true }); cpSync(recipe, join(out, 'recipes', target.id + '.ts')); }
     }
-    const receipts = join(app, 'world/playable-africa-rollout');
-    if (existsSync(receipts)) cpSync(receipts, join(out, 'playable-africa-rollout'), { recursive: true });
+    const receiptRoot = input.table.receiptRoot ?? 'world/playable-africa-rollout';
+    const receipts = join(app, receiptRoot);
+    if (existsSync(receipts)) cpSync(receipts, join(out, receiptRoot.split('/').at(-1)), { recursive: true });
   }
 } else {
   for (const flag of ['--download-root', '--extract-root', '--boundary-root', '--helper']) if (!args.includes(flag)) throw Error(`Missing ${flag}`);
@@ -77,8 +78,12 @@ if (args.includes('--collect')) {
   }
   const copied = new Set();
   for (const group of input.boundaryGroups) {
-    const key = 'boundary-' + groupKey(group), directory = join(downloadRoot, key);
-    mkdirSync(directory, { recursive: true });
+    const key = 'boundary-' + groupKey(group);
+    // Country batches publish the boundary inside the shared source artifact (artifactSubdirectory); reuse that download.
+    const sharedSource = input.groups.some(source => groupKey(source) === groupKey(group));
+    const artifactDirectory = join(downloadRoot, sharedSource ? groupKey(group) : key);
+    const directory = group.artifactSubdirectory ? join(artifactDirectory, group.artifactSubdirectory) : artifactDirectory;
+    mkdirSync(artifactDirectory, { recursive: true });
     const producerLog = join(out, key + '-producer.json');
     const producerOk = run('gh', ['api', `repos/${repository}/actions/runs/${group.sourceRunId}`], {}, producerLog);
     let producer, verifiedJob;
@@ -94,7 +99,10 @@ if (args.includes('--collect')) {
         assert.ok(Array.isArray(pages) && pages.every(page => Array.isArray(page.jobs)), 'invalid boundary producer jobs response');
         jobs = pages.flatMap(page => page.jobs);
       }
-      verifiedJob = verifyBoundaryProducer(producer, group, repository, jobs);
+      // A country batch may conclude failure because a sibling city is HOLD; the pinned boundary receipt hashes are verified below.
+      verifiedJob = group.artifactSubdirectory
+        ? (assert.equal(producer.repository?.full_name, repository), assert.equal(producer.id, group.sourceRunId), assert.equal(producer.head_sha, group.sourceSha), assert.equal(producer.status, 'completed'), null)
+        : verifyBoundaryProducer(producer, group, repository, jobs);
     } catch (error) {
       for (const target of input.table.targets.filter(target => {
         const job = (target.countryScope ?? input.table.countryScope).boundaryJob;
@@ -102,7 +110,7 @@ if (args.includes('--collect')) {
       })) { const row = rows.find(row => row.id === target.id); row.status = 'HOLD'; row.reasons.push(error.message); }
       continue;
     }
-    const ok = run('gh', ['run', 'download', String(group.sourceRunId), '--repo', repository, '--name', group.sourceArtifact, '--dir', directory], {}, join(out, key + '-download.log'));
+    const ok = sharedSource || run('gh', ['run', 'download', String(group.sourceRunId), '--repo', repository, '--name', group.sourceArtifact, '--dir', artifactDirectory], {}, join(out, key + '-download.log'));
     for (const target of input.table.targets.filter(target => {
       const job = (target.countryScope ?? input.table.countryScope).boundaryJob;
       return job.sourceRunId === group.sourceRunId && job.sourceArtifact === group.sourceArtifact;

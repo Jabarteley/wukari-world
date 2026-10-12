@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "release": "2026e",
+  "files": {
+    "zone1970": {
+      "path": "timezone-data/zone1970.tab",
+      "url": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+      "bytes": 17592,
+      "sha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+      "license": "public domain"
+    },
+    "iso3166": {
+      "path": "timezone-data/iso3166.tab",
+      "url": "https://data.iana.org/time-zones/tzdb-2026e/iso3166.tab",
+      "bytes": 4841,
+      "sha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+      "license": "public domain"
+    }
+  }
+}

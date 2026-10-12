@@ -17,12 +17,37 @@ insideSandbox(out, sandbox);
 if (existsSync(out))
     throw Error('Use a new folder beneath factory sandbox');
 mkdirSync(out);
+const selectionExclusionsFor = target => {
+    const exclusions = target.selectionExclusions === undefined ? [] : target.selectionExclusions;
+    if (!Array.isArray(exclusions))
+        throw new TypeError(`${target.id}: selectionExclusions must be an array`);
+    const refs = new Set();
+    for (const exclusion of exclusions) {
+        if (!exclusion || typeof exclusion !== 'object' || Array.isArray(exclusion) ||
+            Object.keys(exclusion).sort().join(',') !== 'reason,ref')
+            throw new TypeError(`${target.id}: each selection exclusion must contain only ref and reason`);
+        if (typeof exclusion.ref !== 'string' || !/^(node|way|relation)\/[1-9][0-9]*$/.test(exclusion.ref))
+            throw new TypeError(`${target.id}: selection exclusion ref must be a canonical OSM element ref`);
+        if (refs.has(exclusion.ref))
+            throw new TypeError(`${target.id}: duplicate selection exclusion ref ${exclusion.ref}`);
+        if (typeof exclusion.reason !== 'string' || !exclusion.reason.trim())
+            throw new TypeError(`${target.id}: selection exclusion ${exclusion.ref} requires a non-empty reason`);
+        refs.add(exclusion.ref);
+    }
+    return exclusions;
+};
 const rows = [], contacts = [];
 for (const target of table.targets) {
     const row = { id: target.id, status: 'MACHINEHOLD', errors: [], metadataReviewRequired: true, metadataSources: target.metadataSources ?? null };
     rows.push(row);
     try {
         const root = resolve(table.root), load = file => import(pathToFileURL(join(root, file)).href);
+        const selectionExclusions = selectionExclusionsFor(target);
+        row.selectionExclusions = selectionExclusions;
+        if (target.namesUnit !== undefined && (typeof target.namesUnit !== 'string' || !target.namesUnit.trim()))
+            throw new TypeError(`${target.id}: namesUnit must be a non-empty string`);
+        if (target.sceneWaterExtent !== undefined && !['play', 'reach'].includes(target.sceneWaterExtent))
+            throw new TypeError(`${target.id}: sceneWaterExtent must be 'play' or 'reach'`);
         const prior = await factsForTarget(table, target), old = geometryPolicy(table, target);
                 const raw = JSON.parse(readFileSync(join(target.extractDirectory, 'places.json'))), boxes = raw.source.boxes;
         const { loadPbfExtract } = await load('scripts/geo/destination-detail/pbf-extract.ts'), { inBox, inRing, areaRings, polygonsOf, ringArea } = await load('scripts/geo/destination-detail/geometry-tools.ts'), { waterLabelPoint } = await load('scripts/geo/destination-detail/water-label.ts');
@@ -40,7 +65,11 @@ for (const target of table.targets) {
         const closedWater = ex.answers.water.elements.filter(el => el.tags.natural === 'water' || el.tags.waterway === 'riverbank').flatMap(el => polygonsOf(areaRings(el), boxes.wide, Math.max(old.waterTolerance, .0008))).filter(p => ringArea(p[0]) * 111.32 * Math.cos(p[0][0][1] * Math.PI / 180) * 110.57 >= (old.minWaterKm2 ?? .4));
         const onWater = p => closedWater.some(poly => inRing(p, poly[0]) && !poly.slice(1).some(hole => inRing(p, hole)));
         row.countryRejected = [...unique.values()].filter(el => countryScope.classify(point(el)) !== 'inside').map(el => ({ ref: ref(el), point: point(el), classification: countryScope.classify(point(el)) }));
-        const pool = [...unique.values()].filter(el => countryScope.classify(point(el)) === 'inside' && name(el) && inBox([s + .008, w + .008, n - .008, e - .008], point(el)) && !onWater(point(el)));
+        for (const exclusion of selectionExclusions)
+            if (!unique.has(exclusion.ref))
+                throw new Error(`${target.id}: requested selection exclusion ${exclusion.ref} is absent from the source candidate set`);
+        const excludedRefs = new Set(selectionExclusions.map(exclusion => exclusion.ref));
+        const pool = [...unique.values()].filter(el => !excludedRefs.has(ref(el)) && countryScope.classify(point(el)) === 'inside' && name(el) && inBox([s + .008, w + .008, n - .008, e - .008], point(el)) && !onWater(point(el)));
         const slots = { transit: t => t.railway === 'station' || t.amenity === 'bus_station' || t.public_transport === 'station', meal: t => ['restaurant', 'cafe'].includes(t.amenity), community: t => ['university', 'college', 'library', 'community_centre', 'conference_centre'].includes(t.amenity), clinic: t => ['hospital', 'clinic'].includes(t.amenity), recreation: t => t.leisure === 'park', market: t => t.amenity === 'marketplace' || t.shop === 'mall', worship: t => t.amenity === 'place_of_worship', polling: t => t.place === 'square' || t.amenity === 'townhall', government: t => ['townhall', 'courthouse', 'parliament'].includes(t.amenity) || t.office === 'government' || t.building === 'government' };
         const used = new Set(), usedNames = new Set(), choices = [], selected = [];
         const score = el => { const p = point(el), spread = selected.length ? Math.min(...selected.map(q => Math.hypot(p[0] - q[0], p[1] - q[1]))) : 0; return (el.tags.wikidata ? 20 : 0) + (el.tags.wikipedia ? 5 : 0) + Math.min(10, spread * 100); };
@@ -115,7 +144,8 @@ for (const target of table.targets) {
             }
             catch { }
         }
-        const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names };
+        const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names,
+            ...(target.sceneWaterExtent === undefined ? {} : { sceneWaterExtent: target.sceneWaterExtent }) };
         for (const key of ['discovery', 'water', 'landuse', 'roads', 'sea', 'wideWater'])
             delete config[key];
         if (policy.kind !== 'inland') {
@@ -123,6 +153,7 @@ for (const target of table.targets) {
             config.sea = { kind: policy.kind, bandMetres: raw.source.waterRecipe?.sea?.bandMetres ?? 40000 };
         }
         facts.names = destinationNames(facts, target.name, name(unique.get(choices.find(p => p.slot === 'transit')?.ref) ?? { tags: {} }));
+        if (target.namesUnit !== undefined) facts.names = { ...facts.names, unit: target.namesUnit };
         const manifest = { root, facts, config, countryScope: countryScope.policy, countryScopeReceipt: countryScope.receipt, queryPolicy: policy, extract: { directory: target.extractDirectory, sha256: Object.fromEntries(Object.entries(ex.answers).map(([key, v]) => [key, v.sha256])) } };
         const manifestPath = join(out, `${target.id}-manifest.json`);
         writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), { flag: 'wx' });

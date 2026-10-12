@@ -3,10 +3,10 @@ import type { CityLink } from '../../types/content.ts'
 
 /**
  * Links between cities that nobody wrote by hand. A pure function of the open cities, so a city opened later
- * (anywhere in the world) is connected to every other city the moment it is registered.
+ * Air links may connect new cities immediately; generated roads require matching known source land components.
  *
  * THE RULE
- *   road  every pair in the same country, or within `maxRoadKm`, unless a road link is authored. Road distance is
+ *   road  known same-land-component pairs in the same country, or within `maxRoadKm`, unless authored. Road distance is
  *         the great-circle distance between the two atlas positions times `roadFactor`.
  *   air   every pair of cities that both have an air hub, from `minAirKm` up, unless an air link is authored.
  *         An airport must be declared at both ends; distance alone never creates an airfield.
@@ -36,6 +36,9 @@ export interface LinkableCity {
   countryId?: string
 }
 
+/** Exact catalogue endpoints and pinned-source land identity; null means unresolved source membership. */
+export type CityLandComponentRow = readonly [id: string, lon: number, lat: number, countryId: string, component: string | null]
+
 const EARTH_RADIUS_KM = 6371
 const rad = (degrees: number): number => (degrees * Math.PI) / 180
 
@@ -47,19 +50,26 @@ export function greatCircleKm(a: Pick<LinkableCity, 'lon' | 'lat'>, b: Pick<Link
 
 const rounded = (value: number, step: number): number => Math.max(step, Math.round(value / step) * step)
 export const generatedRoadFare = (roadKm: number): number => rounded(GENERATED_LINKS.road.base + GENERATED_LINKS.road.perKm * roadKm, GENERATED_LINKS.road.step)
-export const generatedAirFare = (airKm: number): number => rounded(GENERATED_LINKS.air.base + GENERATED_LINKS.air.perKm * airKm, GENERATED_LINKS.air.step)
+/** Generated tickets respect the existing lifetime/homeward ticket ceiling and remain buyable at the default ₦1m start balance. */
+export const generatedAirFare = (airKm: number): number => Math.min(1_000_000, rounded(GENERATED_LINKS.air.base + GENERATED_LINKS.air.perKm * airKm, GENERATED_LINKS.air.step))
 
 const pairKey = (a: string, b: string, mode: string): string => `${[a, b].sort().join('|')}|${mode}`
 
 /** The links missing between `cities`, given the `authored` ones. Pairs are listed once, ids in alphabetical order. */
-export function generateCityLinks(cities: readonly LinkableCity[], authored: readonly Pick<CityLink, 'a' | 'b' | 'mode'>[]): readonly CityLink[] {
+export function generateCityLinks(cities: readonly LinkableCity[], authored: readonly Pick<CityLink, 'a' | 'b' | 'mode'>[], land: readonly CityLandComponentRow[] = []): readonly CityLink[] {
   const have = new Set(authored.map(link => pairKey(link.a, link.b, link.mode)))
   const usable = cities.filter(city => Number.isFinite(city.lon) && Number.isFinite(city.lat)).sort((x, y) => (x.id < y.id ? -1 : x.id > y.id ? 1 : 0))
+  const components = new Map(land.map(row => [row[0], row]))
+  const componentOf = (city: LinkableCity): string | null => {
+    const row = components.get(city.id)
+    return row && row[1] === city.lon && row[2] === city.lat && row[3] === city.countryId ? row[4] : null
+  }
   const made: CityLink[] = []
   for (let i = 0; i < usable.length; i++) for (let j = i + 1; j < usable.length; j++) {
     const a = usable[i]!, b = usable[j]!, air = Math.round(greatCircleKm(a, b)), road = Math.round(air * GENERATED_LINKS.roadFactor)
     const domestic = Boolean(a.countryId && a.countryId === b.countryId)
-    if ((domestic || road <= GENERATED_LINKS.maxRoadKm) && !have.has(pairKey(a.id, b.id, 'road'))) {
+    const component = componentOf(a), connectedLand = component !== null && component === componentOf(b)
+    if (connectedLand && (domestic || road <= GENERATED_LINKS.maxRoadKm) && !have.has(pairKey(a.id, b.id, 'road'))) {
       made.push(timedLink({ a: a.id, b: b.id, mode: 'road', beta: true, label: `Bus between ${a.name} and ${b.name}`, icon: '🚌', fare: generatedRoadFare(road), km: road }))
     }
     const bothAirports = a.airport && b.airport && air >= GENERATED_LINKS.minAirKm

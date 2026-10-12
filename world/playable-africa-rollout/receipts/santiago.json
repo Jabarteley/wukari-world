@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "santiago",
+  "countryIso2": "CL",
+  "generationIdentity": {
+    "cityId": "santiago",
+    "stateId": "cl-santiago",
+    "stateName": "Santiago"
+  },
+  "inventorySha256": "919e99376c79fa6b3647dc52cebf9e1d1d07dce0fb33c19801af9a4062b9619d",
+  "inventoryPath": "world/playable-africa-rollout/sources/santiago.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "santiago-airport",
+    "name": "Comodoro Arturo Merino Benítez International Airport",
+    "lon": -70.78579711914062,
+    "lat": -33.393001556396484,
+    "sourceUrl": "https://ourairports.com/airports/SCEL/"
+  },
+  "bounds": [
+    -33.61858038993398,
+    -70.86681494446434,
+    -33.25681861006602,
+    -70.43531925553567
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/chile-261010.osm.pbf",
+      "datasetSha256": "d40a6aaf6149305a57e141b5d7c5ac8240aca1c32d9bc1182d83b7fabbf04d65",
+      "pbfHeaderTimestamp": "2026-10-10T20:21:21Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "fd41d03fc79b7e705505e92325633977d47805618346f4a5ab4382f0bed0c84c",
+          "elements": 7169
+        },
+        {
+          "file": "extras.json",
+          "sha256": "e5a352ebd800bbf4d6402ee494389028f8c668edbbf1d139f6e7e98e4bfa560b",
+          "elements": 2740
+        },
+        {
+          "file": "water.json",
+          "sha256": "e54e957f552afd4483a34bb7ce2e5240f3b0d2c3b43325be2c20ba618660afc9",
+          "elements": 2536
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "cea68197d78b05133694144258b7bc907c345cbd5df792c61f68fdaacc567388",
+          "elements": 6198
+        },
+        {
+          "file": "roads.json",
+          "sha256": "00dfeb022d31e4b331e00c7a9d325761522277915668b0b321ebd40d0d4ecfad",
+          "elements": 10083
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 22,
+    "waterPolygons": 55,
+    "reachWaterPolygons": 36
+  },
+  "observed": {
+    "places": 7169,
+    "extras": 2740,
+    "water": 2536,
+    "landuse": 6198,
+    "roads": 10083
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1267,
+      "sha256": "c20f1c8b3a69013791b212acda40278715631f80ddc6fc08868ca3be152ca463"
+    },
+    "geometry.ts": {
+      "bytes": 128000,
+      "sha256": "0a9747ddff0bbc0542bade726193f437a29b9467b855782fa407bec37293a498"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "b8e4a77d4245934ab149ccc607546286b58ce45f73b2c01f259a0149586492d0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/santiago.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

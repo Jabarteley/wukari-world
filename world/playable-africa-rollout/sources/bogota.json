@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bogota",
+  "countryIso2": "CO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bogota",
+    "coordinatesWgs84": [
+      -74.0836331,
+      4.6533817
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/colombia-261010.osm.pbf"
+  },
+  "airport": {
+    "id": "bogota-airport",
+    "name": "El Dorado International Airport",
+    "lon": -74.1469,
+    "lat": 4.70159,
+    "sourceUrl": "https://ourairports.com/airports/SKBO/"
+  },
+  "boxes": {
+    "play": [
+      4.4725008100660215,
+      -74.26393673956612,
+      4.834262589933978,
+      -73.90332946043388
+    ],
+    "core": [
+      4.608161477516505,
+      -74.12870011158378,
+      4.698601922483494,
+      -74.03856608841622
+    ],
+    "outline": [
+      4.422500810066022,
+      -74.31393673956612,
+      4.884262589933978,
+      -73.85332946043388
+    ],
+    "wide": [
+      3.8725008100660214,
+      -74.86393673956611,
+      5.434262589933978,
+      -73.30332946043389
+    ],
+    "water": [
+      4.4725008100660215,
+      -74.26393673956612,
+      4.834262589933978,
+      -73.90332946043388
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/colombia-261010.osm.pbf",
+    "datasetSha256": "8a353cd88fbfcb0e0d07bcd39cfadcbff80af7051feb58148b0670d0f0c127a8",
+    "pbfHeaderTimestamp": "2026-10-10T20:21:21Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e58fb1a85791166d3d5ea0ec79c72642282109f9c03d90b47a3bbb093be04454",
+        "elements": 8106
+      },
+      {
+        "file": "extras.json",
+        "sha256": "989574e3472f459cba5c88a19005f8e9d95b3907b98e28db6c0592d9e5fe1031",
+        "elements": 1937
+      },
+      {
+        "file": "water.json",
+        "sha256": "f3865a6d6a2b862ce69da72b93688d835f3919041cb69587d2d324f2986d0aa5",
+        "elements": 158
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "433c6f9f2f41d6fc5f675501b5657b8ff50d551a5ee3dd8c638229a63a04bccf",
+        "elements": 8111
+      },
+      {
+        "file": "roads.json",
+        "sha256": "def828d9b6e9ae5ae7a71edd7de02d5d51ded8a9c7c4a3845f91806852e494eb",
+        "elements": 7503
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Estación Intermedia Bicentenario",
+      "osm": "node/12750496827",
+      "coordinatesWgs84": [
+        -74.081465,
+        4.593633
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cafeteria La Central",
+      "osm": "way/409391089",
+      "coordinatesWgs84": [
+        -74.064651,
+        4.628177
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "UDR UNAD Soacha",
+      "osm": "node/13076585113",
+      "coordinatesWgs84": [
+        -74.214373,
+        4.60531
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Clínica Nuestra Señora del Rosario",
+      "osm": "node/322779022",
+      "coordinatesWgs84": [
+        -73.968995,
+        4.715414
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Humedal Santa María Del Lago",
+      "osm": "way/28299384",
+      "coordinatesWgs84": [
+        -74.094267,
+        4.694487
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Comercial Santafé",
+      "osm": "way/28551320",
+      "coordinatesWgs84": [
+        -74.046416,
+        4.762241
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Misión Carismática Internacional sede Mosquera",
+      "osm": "way/1224832137",
+      "coordinatesWgs84": [
+        -74.22058,
+        4.708534
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plaza de Soacha",
+      "osm": "way/322751201",
+      "coordinatesWgs84": [
+        -74.219736,
+        4.582152
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fiscalía Montevideo",
+      "osm": "relation/18995838",
+      "coordinatesWgs84": [
+        -74.121437,
+        4.647385
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Industrial y de Desarrollo Empresarial",
+      "osm": "way/675058435",
+      "coordinatesWgs84": [
+        -74.251467,
+        4.498846
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Alfonso López Pumarejo de la Ciudad Universitaria",
+      "osm": "way/24410567",
+      "coordinatesWgs84": [
+        -74.086479,
+        4.640342
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo del Chicó",
+      "osm": "way/663327841",
+      "coordinatesWgs84": [
+        -74.043965,
+        4.673974
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Metropolitano El Tunal",
+      "osm": "way/1377259992",
+      "coordinatesWgs84": [
+        -74.134133,
+        4.571889
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Externado de Colombia sede El Alcázar",
+      "osm": "way/398077902",
+      "coordinatesWgs84": [
+        -74.035208,
+        4.810299
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monumento Ángeles Agustinianos",
+      "osm": "node/1194775794",
+      "coordinatesWgs84": [
+        -74.075084,
+        4.732818
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Iglesia Santiago Apóstol",
+      "osm": "way/177256716",
+      "coordinatesWgs84": [
+        -74.143902,
+        4.67296
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mundo Aventura",
+      "osm": "way/26930352",
+      "coordinatesWgs84": [
+        -74.135312,
+        4.622839
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Estadio Olaya Herrera",
+      "osm": "way/24152211",
+      "coordinatesWgs84": [
+        -74.107161,
+        4.583295
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro de Tecnologías para la Construcción y la Madera (SENA)",
+      "osm": "way/86369735",
+      "coordinatesWgs84": [
+        -74.190378,
+        4.591891
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Compensar",
+      "osm": "way/1008418546",
+      "coordinatesWgs84": [
+        -74.101059,
+        4.661211
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basílica del Señor de Monserrate",
+      "osm": "way/99625014",
+      "coordinatesWgs84": [
+        -74.055424,
+        4.605629
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Comercial Portal 80",
+      "osm": "relation/19135828",
+      "coordinatesWgs84": [
+        -74.112159,
+        4.710846
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mallplaza NQS",
+      "osm": "way/24421901",
+      "coordinatesWgs84": [
+        -74.08599,
+        4.618153
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plaza de Toros La Santamaría",
+      "osm": "relation/19012716",
+      "coordinatesWgs84": [
+        -74.068122,
+        4.613108
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1239,
+      "sha256": "ed910e42f2bde0583d99d3c42f6750bba4dba76bdb8ea67cc90f1741ccb7a061"
+    },
+    "geometry.ts": {
+      "bytes": 86708,
+      "sha256": "26c7000fc948ece8347887d2f36098dbdd52cb3e33938dd006d4dc151f07570e"
+    },
+    "places.ts": {
+      "bytes": 10319,
+      "sha256": "001957e26a1fbf068a38ceba742c2502e39691dc31cd003ea7fba6d9c3479ad6"
+    },
+    "terrain.ts": {
+      "bytes": 62018,
+      "sha256": "3cbff7cf73887692fcd7a7d939e495b7208e52ca4ef2fe32dd2aa5bd40557d91"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "a79f1fbc6f40d664550c747158143aea0dfdbd1263dfd4a84c72c90b814757f1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

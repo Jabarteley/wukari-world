@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { INTERCITY_TIME, TRIP_SKIP, intercitySeconds, tripSkipFee } from '../content/travel.ts'
 import { GENERATED_LINKS, generateCityLinks, generatedAirFare, generatedRoadFare, greatCircleKm } from './generatedLinks.ts'
-import type { LinkableCity } from './generatedLinks.ts'
+import type { CityLandComponentRow, LinkableCity } from './generatedLinks.ts'
 import { CITY_LINKS, allCityLinks, cityModule, cityRules, linksFrom, playableCityIds, loadCityLinks, loadCityRules } from './registry.ts'
 import type { CityLink } from '../../types/content.ts'
 
@@ -64,31 +64,40 @@ test('the examples: Abeokuta–Kano, Ibadan–Port Harcourt, Sagamu–Abuja, Ije
   assert.deepEqual(modes('ijebu-ode', 'kano'), ['road'])
 })
 
-const at = (id: string, lon: number, lat: number, airport = false): LinkableCity => ({ id, name: id, lon, lat, airport })
+const at = (id: string, lon: number, lat: number, airport = false): LinkableCity => ({ id, name: id, lon, lat, airport, countryId: 'fixture' })
 
-test('the generator is pure, keeps authored ways, and connects a city opened later anywhere in the world', () => {
+test('the generator keeps authored ways and needs land evidence for roads while connecting new airports', () => {
   const cities = [at('a', 3.4, 6.5, true), at('b', 8.5, 12, true), at('far-away', -74, 40.7, true), at('near', 3.5, 6.6, true)]
   const authored = [{ a: 'a', b: 'b', mode: 'road' as const }]
-  const once = generateCityLinks(cities, authored), twice = generateCityLinks([...cities].reverse(), authored)
+  const land: CityLandComponentRow[] = cities.map(city => [city.id, city.lon, city.lat, city.countryId!, city.id === 'far-away' ? 'test-island' : 'test-mainland'])
+  const once = generateCityLinks(cities, authored, land), twice = generateCityLinks([...cities].reverse(), authored, land)
   assert.deepEqual(once, twice, 'the order of the cities does not matter')
   assert.equal(once.some(link => link.a === 'a' && link.b === 'b' && link.mode === 'road'), false, 'an authored road is kept, not replaced')
   assert.equal(once.some(link => link.a === 'a' && link.b === 'b' && link.mode === 'air'), true)
   for (const x of cities) for (const y of cities) if (x !== y) assert.ok([...once, ...authored].some(link => [link.a, link.b].sort().join() === [x.id, y.id].sort().join()), `${x.id}-${y.id} reachable`)
+  assert.equal(generateCityLinks(cities, authored, []).some(link => link.mode === 'road'), false, 'unknown land cannot create a road')
+  const stale = land.map(row => row[0] === 'near' ? [row[0], row[1] + 1, row[2], row[3], row[4]] as const : row)
+  assert.equal(generateCityLinks(cities, authored, stale).some(link => link.mode === 'road' && (link.a === 'near' || link.b === 'near')), false, 'changed coordinates invalidate land evidence')
+  const future = at('future', 3.6, 6.7, true)
+  const futureLinks = generateCityLinks([...cities, future], authored, land).filter(link => link.a === 'future' || link.b === 'future')
+  assert.ok(futureLinks.length > 0 && futureLinks.every(link => link.mode === 'air'), 'an unclassified new city receives airport-backed air only')
   const ocean = once.filter(link => link.a === 'far-away' || link.b === 'far-away')
   assert.ok(ocean.length >= 3 && ocean.every(link => link.mode === 'air' && link.seconds <= 20), 'another continent is reached by air only, and quickly')
   assert.equal(once.some(link => link.mode === 'rail'), false)
   assert.ok(generatedRoadFare(GENERATED_LINKS.maxRoadKm) > generatedRoadFare(100) && generatedAirFare(8000) > generatedAirFare(300))
+  assert.equal(generatedAirFare(100_000), 1_000_000, 'synthetic long-haul fare respects the existing ticket and homeward-credit cap')
   assert.ok(Math.abs(greatCircleKm({ lon: 3.38, lat: 6.52 }, { lon: 7.49, lat: 9.06 }) - 534) < 3)
 })
 
 test('long domestic journeys remain reachable by bus without inventing airports', () => {
   const southwest = { ...at('southwest', 3.4, 6.5), countryId: 'ng' }
   const northeast = { ...at('northeast', 13.15, 11.85), countryId: 'ng' }
-  const links = generateCityLinks([southwest, northeast], [])
+  const land: CityLandComponentRow[] = [southwest, northeast].map(city => [city.id, city.lon, city.lat, city.countryId, 'test-mainland'])
+  const links = generateCityLinks([southwest, northeast], [], land)
   assert.equal(links.length, 1)
   assert.equal(links[0]?.mode, 'road')
   assert.ok(links[0]!.km > GENERATED_LINKS.maxRoadKm)
-  assert.deepEqual(generateCityLinks([southwest, at('overseas', -74, 40.7, true)], []), [], 'an unverified airfield is never a route')
+  assert.deepEqual(generateCityLinks([southwest, at('overseas', -74, 40.7, true)], [], land), [], 'an unverified airfield is never a route')
 })
 
 test('the fitted fares stay near the hand-written ones', () => {

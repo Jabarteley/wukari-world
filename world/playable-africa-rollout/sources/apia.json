@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "apia",
+  "countryIso2": "WS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Apia",
+    "coordinatesWgs84": [
+      -171.7630955,
+      -13.8345235
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/samoa-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "apia-airport",
+    "name": "Faleolo International Airport",
+    "lon": -172.007996,
+    "lat": -13.83,
+    "sourceUrl": "https://ourairports.com/airports/NSFA/"
+  },
+  "boxes": {
+    "play": [
+      -14.015404389933979,
+      -172.01724767390576,
+      -13.65364261006602,
+      -171.57792073229658
+    ],
+    "core": [
+      -13.879743722483495,
+      -171.8093619773912,
+      -13.789303277516504,
+      -171.71682902260878
+    ],
+    "outline": [
+      -14.06540438993398,
+      -172.06724767390577,
+      -13.60364261006602,
+      -171.52792073229656
+    ],
+    "wide": [
+      -14.615404389933978,
+      -172.61724767390575,
+      -13.05364261006602,
+      -170.97792073229658
+    ],
+    "water": [
+      -14.615404389933978,
+      -172.61724767390575,
+      -13.05364261006602,
+      -170.97792073229658
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/samoa-261009.osm.pbf",
+    "datasetSha256": "d66e6df7efb4583623ff51791d3013f42faac73b4d48571cf574eedce8cc16a2",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "291e87b261fe6f153e0b4409e478fdd06bbd19ab994bd6154fec88f33fe6b297",
+        "elements": 144
+      },
+      {
+        "file": "extras.json",
+        "sha256": "975a05ab021b0d739cca29a45c632e9b8908a07519a7aa17a5653341900980fc",
+        "elements": 99
+      },
+      {
+        "file": "water.json",
+        "sha256": "41ca4398870be3b973bb2de5c070e96d48bd97b156042d51b6460024b4a8528c",
+        "elements": 186
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "33f306726042b61b336e73a2e1d8de899ad915cb41bd89bdfb9026895d88a70d",
+        "elements": 496
+      },
+      {
+        "file": "roads.json",
+        "sha256": "6d72f3a24ca75aad8b151d3697a9514e4ef9a172d115a27f790c329f8c9d9bfa",
+        "elements": 205
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Apia Ferry Terminal",
+      "osm": "way/142609045",
+      "coordinatesWgs84": [
+        -171.759898,
+        -13.827244
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Restaurant and Bar",
+      "osm": "way/1388403945",
+      "coordinatesWgs84": [
+        -171.897289,
+        -13.801392
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mulivai Primary School Library and Technology Center",
+      "osm": "way/139537638",
+      "coordinatesWgs84": [
+        -171.799005,
+        -14.003013
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faleolo District Hospital",
+      "osm": "way/1386013126",
+      "coordinatesWgs84": [
+        -171.99673,
+        -13.836617
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vaitele Park",
+      "osm": "way/1445626446",
+      "coordinatesWgs84": [
+        -171.804801,
+        -13.820577
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Satui Fleamarket",
+      "osm": "way/1433132284",
+      "coordinatesWgs84": [
+        -171.945189,
+        -13.814905
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Apia Samoa Temple",
+      "osm": "way/190324852",
+      "coordinatesWgs84": [
+        -171.783043,
+        -13.838128
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sagaga 3 District Office",
+      "osm": "way/1489966432",
+      "coordinatesWgs84": [
+        -171.872966,
+        -13.79878
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fale Fono (Parliament House)",
+      "osm": "way/191009596",
+      "coordinatesWgs84": [
+        -171.778586,
+        -13.819362
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wesley College",
+      "osm": "node/994447379",
+      "coordinatesWgs84": [
+        -171.822581,
+        -13.799673
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fuipisia Waterfalls",
+      "osm": "node/5586769194",
+      "coordinatesWgs84": [
+        -171.590874,
+        -13.977543
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Robert Louis Stevenson's Museum",
+      "osm": "way/374404905",
+      "coordinatesWgs84": [
+        -171.765615,
+        -13.866614
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bahá'í House of Worship",
+      "osm": "way/141190639",
+      "coordinatesWgs84": [
+        -171.778275,
+        -13.896564
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sopo'aga Waterfalls",
+      "osm": "node/1550608240",
+      "coordinatesWgs84": [
+        -171.586496,
+        -14.007334
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Museum of Samoa",
+      "osm": "node/687792042",
+      "coordinatesWgs84": [
+        -171.762695,
+        -13.839718
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lefaga District Medical Centre",
+      "osm": "way/1446121761",
+      "coordinatesWgs84": [
+        -171.939896,
+        -13.94422
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Anoamaa District Hospital",
+      "osm": "way/1459400895",
+      "coordinatesWgs84": [
+        -171.600608,
+        -13.874047
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lanoto'o Viewing Platform",
+      "osm": "node/6593037804",
+      "coordinatesWgs84": [
+        -171.825828,
+        -13.910436
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Papapapaitai-falls",
+      "osm": "node/689554231",
+      "coordinatesWgs84": [
+        -171.775693,
+        -13.942487
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Western Samoa Trust Estates Corporation Park",
+      "osm": "way/1124777338",
+      "coordinatesWgs84": [
+        -171.724472,
+        -13.848584
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Farmer Joes Tanumapua",
+      "osm": "way/1418195769",
+      "coordinatesWgs84": [
+        -171.812855,
+        -13.848625
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "USP School of Agriculture & Food Technology",
+      "osm": "way/1408954851",
+      "coordinatesWgs84": [
+        -171.793009,
+        -13.862666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SMDA Restaurant",
+      "osm": "way/142503177",
+      "coordinatesWgs84": [
+        -171.743229,
+        -13.838519
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Laumua O Tumua Farmers Market",
+      "osm": "node/12898274696",
+      "coordinatesWgs84": [
+        -171.854677,
+        -13.79966
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1226,
+      "sha256": "6de7ff0d0ebf767a7582ea8639768aa55ea33b8b240c8a09607bf95c6e88950d"
+    },
+    "geometry.ts": {
+      "bytes": 103618,
+      "sha256": "19ae1997949ded70a8aaa90f85ba412c77f173fd65caba5bf86f610d2e33b31c"
+    },
+    "places.ts": {
+      "bytes": 9533,
+      "sha256": "1672cf39d431ac0c23093a798cd834549a0eac42133d1092fc749d425001b178"
+    },
+    "terrain.ts": {
+      "bytes": 331952,
+      "sha256": "86e033fefd724686a76926a815ef8713145087dd0e558fd00bf624b1a24e52cf"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "137edaa01345dd216fc0118d5d6ac3c9cd29ae34a348d76fe9357c0b4c30766a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

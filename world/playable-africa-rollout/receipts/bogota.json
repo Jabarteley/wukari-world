@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bogota",
+  "countryIso2": "CO",
+  "generationIdentity": {
+    "cityId": "bogota",
+    "stateId": "co-bogota",
+    "stateName": "Bogota"
+  },
+  "inventorySha256": "c01ad9687d916d000913523129f6e8d70ecfcad0852586c97158a57b699c759a",
+  "inventoryPath": "world/playable-africa-rollout/sources/bogota.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bogota-airport",
+    "name": "El Dorado International Airport",
+    "lon": -74.1469,
+    "lat": 4.70159,
+    "sourceUrl": "https://ourairports.com/airports/SKBO/"
+  },
+  "bounds": [
+    4.4725008100660215,
+    -74.26393673956612,
+    4.834262589933978,
+    -73.90332946043388
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/colombia-261010.osm.pbf",
+      "datasetSha256": "8a353cd88fbfcb0e0d07bcd39cfadcbff80af7051feb58148b0670d0f0c127a8",
+      "pbfHeaderTimestamp": "2026-10-10T20:21:21Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "e58fb1a85791166d3d5ea0ec79c72642282109f9c03d90b47a3bbb093be04454",
+          "elements": 8106
+        },
+        {
+          "file": "extras.json",
+          "sha256": "989574e3472f459cba5c88a19005f8e9d95b3907b98e28db6c0592d9e5fe1031",
+          "elements": 1937
+        },
+        {
+          "file": "water.json",
+          "sha256": "f3865a6d6a2b862ce69da72b93688d835f3919041cb69587d2d324f2986d0aa5",
+          "elements": 158
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "433c6f9f2f41d6fc5f675501b5657b8ff50d551a5ee3dd8c638229a63a04bccf",
+          "elements": 8111
+        },
+        {
+          "file": "roads.json",
+          "sha256": "def828d9b6e9ae5ae7a71edd7de02d5d51ded8a9c7c4a3845f91806852e494eb",
+          "elements": 7503
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 32,
+    "reachWaterPolygons": 7
+  },
+  "observed": {
+    "places": 8106,
+    "extras": 1937,
+    "water": 158,
+    "landuse": 8111,
+    "roads": 7503
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1239,
+      "sha256": "ed910e42f2bde0583d99d3c42f6750bba4dba76bdb8ea67cc90f1741ccb7a061"
+    },
+    "geometry.ts": {
+      "bytes": 86708,
+      "sha256": "26c7000fc948ece8347887d2f36098dbdd52cb3e33938dd006d4dc151f07570e"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "a79f1fbc6f40d664550c747158143aea0dfdbd1263dfd4a84c72c90b814757f1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bogota.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

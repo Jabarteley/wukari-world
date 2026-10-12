@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "suva",
+  "countryIso2": "FJ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Suva",
+    "coordinatesWgs84": [
+      178.4421662,
+      -18.1415884
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/fiji-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "suva-airport",
+    "name": "Nausori International Airport",
+    "lon": 178.561486,
+    "lat": -18.044226,
+    "sourceUrl": "https://ourairports.com/airports/NFNA/"
+  },
+  "boxes": {
+    "play": [
+      -18.322469289933977,
+      178.25290905716855,
+      -17.960707510066023,
+      178.63142334283145
+    ],
+    "core": [
+      -18.186808622483493,
+      178.394888850984,
+      -18.096368177516506,
+      178.48944354901602
+    ],
+    "outline": [
+      -18.372469289933978,
+      178.20290905716854,
+      -17.910707510066022,
+      178.68142334283147
+    ],
+    "wide": [
+      -18.92246928993398,
+      177.65290905716856,
+      -17.36070751006602,
+      179.23142334283145
+    ],
+    "water": [
+      -18.92246928993398,
+      177.65290905716856,
+      -17.36070751006602,
+      179.23142334283145
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/fiji-261009.osm.pbf",
+    "datasetSha256": "5f18897baf960347783dc3f4731e54afdf1a7618066548edef34da17674f642b",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "10759987f4d2b42c26dee0df59991255a87e07aa32650dede48581afa5e2da51",
+        "elements": 173
+      },
+      {
+        "file": "extras.json",
+        "sha256": "82dddc33c9144b55dbe8e481c34dadc284b993fe8e2b534e1e0476458011416d",
+        "elements": 123
+      },
+      {
+        "file": "water.json",
+        "sha256": "f5df0434d4409306f3612e5c67bb51e5bae55d3032988e0c9a71b5d853c3f381",
+        "elements": 296
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "9eb6a747fc0405a122c4f3e62fa34f5fe8e4f6c1b5b29b2ec7d36f8677eea4f9",
+        "elements": 471
+      },
+      {
+        "file": "roads.json",
+        "sha256": "1a4319ecdbf885c050153454488a122fa174d7eab10f2a41a9f8ce03a15a7ba8",
+        "elements": 369
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Narain Jetty",
+      "osm": "node/1526025926",
+      "coordinatesWgs84": [
+        178.428397,
+        -18.125929
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Garib Store",
+      "osm": "node/4646246778",
+      "coordinatesWgs84": [
+        178.547433,
+        -18.021557
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Montfort Boys Town Fiji",
+      "osm": "way/1303203230",
+      "coordinatesWgs84": [
+        178.330026,
+        -18.11699
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Makoi Health Center",
+      "osm": "node/2784602059",
+      "coordinatesWgs84": [
+        178.499631,
+        -18.075455
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Thurston Gardens",
+      "osm": "way/23706912",
+      "coordinatesWgs84": [
+        178.424646,
+        -18.14901
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hexagon",
+      "osm": "way/730227260",
+      "coordinatesWgs84": [
+        178.530736,
+        -18.042874
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Naililili Cathedral",
+      "osm": "way/656339144",
+      "coordinatesWgs84": [
+        178.55257,
+        -18.104516
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ACS Hall",
+      "osm": "node/9523922651",
+      "coordinatesWgs84": [
+        178.469764,
+        -18.02412
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bau District School",
+      "osm": "node/4960702121",
+      "coordinatesWgs84": [
+        178.61477,
+        -17.972712
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "AOG Secondary School",
+      "osm": "way/226445953",
+      "coordinatesWgs84": [
+        178.472598,
+        -18.103477
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ANZ National Stadium",
+      "osm": "way/666132415",
+      "coordinatesWgs84": [
+        178.449199,
+        -18.15015
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fiji Museum",
+      "osm": "way/1309951782",
+      "coordinatesWgs84": [
+        178.425691,
+        -18.149666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ratu Cakobau Park",
+      "osm": "way/24281973",
+      "coordinatesWgs84": [
+        178.535679,
+        -18.031564
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vodafone Arena",
+      "osm": "way/23708350",
+      "coordinatesWgs84": [
+        178.450063,
+        -18.14693
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wainibokasi Hospital",
+      "osm": "way/1015760632",
+      "coordinatesWgs84": [
+        178.573512,
+        -18.070095
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mokani Health Center",
+      "osm": "way/931639205",
+      "coordinatesWgs84": [
+        178.599415,
+        -18.008343
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Novotel Lami Restaurant",
+      "osm": "node/895373703",
+      "coordinatesWgs84": [
+        178.396388,
+        -18.10802
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Batiwinai",
+      "osm": "way/1067790146",
+      "coordinatesWgs84": [
+        178.457222,
+        -18.05791
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Biukota",
+      "osm": "node/4500791362",
+      "coordinatesWgs84": [
+        178.44741,
+        -18.108401
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "CJS Supermarket Nakasi",
+      "osm": "way/724184460",
+      "coordinatesWgs84": [
+        178.516682,
+        -18.061826
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "School of Applied Sciences FNU",
+      "osm": "node/4461947007",
+      "coordinatesWgs84": [
+        178.464515,
+        -18.119931
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Seventh Day Adventist College",
+      "osm": "way/506437485",
+      "coordinatesWgs84": [
+        178.41742,
+        -18.112341
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Natural Pools and Waterfalls",
+      "osm": "node/4551574653",
+      "coordinatesWgs84": [
+        178.473033,
+        -18.057843
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Old Raiwaqa Market",
+      "osm": "way/292559681",
+      "coordinatesWgs84": [
+        178.450802,
+        -18.131549
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1208,
+      "sha256": "a473223c3ecacc1aa85d6ac9a5fe6e284a3991cc4e37ca7b3093059c332e5417"
+    },
+    "geometry.ts": {
+      "bytes": 443179,
+      "sha256": "23d0c455986d4ef290494f9fc017212cc5b73b52c5644da1c365a83f05d71650"
+    },
+    "places.ts": {
+      "bytes": 9182,
+      "sha256": "c3e3d47dfc5c0fc8c62c4c860d3cca5964286e1ec9a63ee8a96a959fae7fa33d"
+    },
+    "terrain.ts": {
+      "bytes": 1717589,
+      "sha256": "fde90deab067fbb32e054a8874e130b3fb46167ae0c00f1872c7ba5ecf3cfdc3"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "66272c749821c2580ece00e536bf009d70b8feeeacc30524ef4f3ef326eaf64c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

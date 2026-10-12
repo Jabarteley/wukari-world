@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mexico-city",
+  "countryIso2": "MX",
+  "generationIdentity": {
+    "cityId": "mexico-city",
+    "stateId": "mx-mexico-city",
+    "stateName": "Mexico City"
+  },
+  "inventorySha256": "0521bfd786c64fa4bd567e811072e4b2dd00c82c06b1af2ffa267dc9af73ef93",
+  "inventoryPath": "world/playable-africa-rollout/sources/mexico-city.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "mexico-city-airport",
+    "name": "Mexico City Benito Juárez International Airport",
+    "lon": -99.07033,
+    "lat": 19.435822,
+    "sourceUrl": "https://ourairports.com/airports/MMMX/"
+  },
+  "bounds": [
+    19.25174871006602,
+    -99.32390712929879,
+    19.613510489933976,
+    -98.94244987070121
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/north-america/mexico-261009.osm.pbf",
+      "datasetSha256": "63c3a934fd9372b6921f3938871ccc821da4e7d49bc4f042cd26835aa66985c0",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "a17d959d59b55cf527e4516379cb5f102a0b5870deca1014c8e987a632572158",
+          "elements": 8946
+        },
+        {
+          "file": "extras.json",
+          "sha256": "1610578777481728e44def1498e23f9c820247de2fffa2b776e55078e828ff1a",
+          "elements": 2836
+        },
+        {
+          "file": "water.json",
+          "sha256": "7d687bc19a19e8729755b7b85c28bd4becb2d48f00ed60101583e51fc5dec3da",
+          "elements": 113
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "a8b3b487385fef3830e2c556f0c83b18b1ec407e3113d8a40d9ebf0324c0bf61",
+          "elements": 5071
+        },
+        {
+          "file": "roads.json",
+          "sha256": "bde94a9365743a89cacc828d555594524643e42433999b816abdd7a197628f5d",
+          "elements": 8320
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 32,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 11
+  },
+  "observed": {
+    "places": 8946,
+    "extras": 2836,
+    "water": 113,
+    "landuse": 5071,
+    "roads": 8320
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1271,
+      "sha256": "b35583a193dcf19097799984796e6b6c2806fb3be71833a99522f1a799cf4049"
+    },
+    "geometry.ts": {
+      "bytes": 127361,
+      "sha256": "10846d954423ef492b613a143c64ff489b56e7eb29d078e3fb2f4a33b3cf3e8e"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "c876e04454d5404ff2817e528bf8de3c9ed8d96c27d1b67334a2691602b808fa"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/mexico-city.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

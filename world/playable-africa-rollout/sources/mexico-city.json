@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mexico-city",
+  "countryIso2": "MX",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Mexico City",
+    "coordinatesWgs84": [
+      -99.1331785,
+      19.4326296
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/north-america/mexico-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "mexico-city-airport",
+    "name": "Mexico City Benito Juárez International Airport",
+    "lon": -99.07033,
+    "lat": 19.435822,
+    "sourceUrl": "https://ourairports.com/airports/MMMX/"
+  },
+  "boxes": {
+    "play": [
+      19.25174871006602,
+      -99.32390712929879,
+      19.613510489933976,
+      -98.94244987070121
+    ],
+    "core": [
+      19.387409377516505,
+      -99.1808205934508,
+      19.477849822483492,
+      -99.0855364065492
+    ],
+    "outline": [
+      19.20174871006602,
+      -99.37390712929879,
+      19.663510489933977,
+      -98.89244987070121
+    ],
+    "wide": [
+      18.65174871006602,
+      -99.92390712929878,
+      20.213510489933977,
+      -98.34244987070122
+    ],
+    "water": [
+      19.25174871006602,
+      -99.32390712929879,
+      19.613510489933976,
+      -98.94244987070121
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/north-america/mexico-261009.osm.pbf",
+    "datasetSha256": "63c3a934fd9372b6921f3938871ccc821da4e7d49bc4f042cd26835aa66985c0",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "a17d959d59b55cf527e4516379cb5f102a0b5870deca1014c8e987a632572158",
+        "elements": 8946
+      },
+      {
+        "file": "extras.json",
+        "sha256": "1610578777481728e44def1498e23f9c820247de2fffa2b776e55078e828ff1a",
+        "elements": 2836
+      },
+      {
+        "file": "water.json",
+        "sha256": "7d687bc19a19e8729755b7b85c28bd4becb2d48f00ed60101583e51fc5dec3da",
+        "elements": 113
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "a8b3b487385fef3830e2c556f0c83b18b1ec407e3113d8a40d9ebf0324c0bf61",
+        "elements": 5071
+      },
+      {
+        "file": "roads.json",
+        "sha256": "bde94a9365743a89cacc828d555594524643e42433999b816abdd7a197628f5d",
+        "elements": 8320
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "General Anaya",
+      "osm": "node/30384902",
+      "coordinatesWgs84": [
+        -99.144962,
+        19.353341
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sanborns Café",
+      "osm": "node/3536369648",
+      "coordinatesWgs84": [
+        -99.164755,
+        19.418249
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Anáhuac del Sur",
+      "osm": "way/371751495",
+      "coordinatesWgs84": [
+        -99.244572,
+        19.334368
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Nacional de Ciencias Médicas y Nutrición Salvador Zubirán",
+      "osm": "way/217109092",
+      "coordinatesWgs84": [
+        -99.156423,
+        19.28813
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bosque de San Juan de Aragón",
+      "osm": "relation/20008211",
+      "coordinatesWgs84": [
+        -99.071557,
+        19.459078
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Toreo Parque Central",
+      "osm": "way/1140049541",
+      "coordinatesWgs84": [
+        -99.218916,
+        19.454156
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Capilla de San Juan Bautista",
+      "osm": "way/336891067",
+      "coordinatesWgs84": [
+        -99.106222,
+        19.265743
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Torres de Satélite",
+      "osm": "way/432636761",
+      "coordinatesWgs84": [
+        -99.236853,
+        19.499178
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Secretaria de Hacienda",
+      "osm": "node/5583089123",
+      "coordinatesWgs84": [
+        -99.215892,
+        19.397316
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Autónoma Metropolitana Unidad Iztapalapa",
+      "osm": "way/970515008",
+      "coordinatesWgs84": [
+        -99.072617,
+        19.362042
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Wilfrido Massieu",
+      "osm": "way/168081622",
+      "coordinatesWgs84": [
+        -99.138496,
+        19.501976
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Six Flags Mexico",
+      "osm": "way/25103113",
+      "coordinatesWgs84": [
+        -99.210054,
+        19.295226
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Proyecto Ecológico Lago de Texcoco (PELT)",
+      "osm": "way/1411608827",
+      "coordinatesWgs84": [
+        -98.983763,
+        19.479976
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Velódromo Olímpico Agustín Melgar",
+      "osm": "way/1173762984",
+      "coordinatesWgs84": [
+        -99.103383,
+        19.409798
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Autónoma de la Ciudad de México",
+      "osm": "way/175507039",
+      "coordinatesWgs84": [
+        -99.057337,
+        19.312115
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo de arte Carrillo Gil",
+      "osm": "way/28932424",
+      "coordinatesWgs84": [
+        -99.190305,
+        19.3493
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zona Arqueológica de Tlatelolco",
+      "osm": "way/146024228",
+      "coordinatesWgs84": [
+        -99.137372,
+        19.451332
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Alameda del Sur",
+      "osm": "way/526045165",
+      "coordinatesWgs84": [
+        -99.122361,
+        19.309536
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Santa Fe",
+      "osm": "way/30291947",
+      "coordinatesWgs84": [
+        -99.273455,
+        19.361306
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tecmilenio",
+      "osm": "way/290432518",
+      "coordinatesWgs84": [
+        -99.175543,
+        19.499693
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Ciudad de los Deportes",
+      "osm": "way/25337335",
+      "coordinatesWgs84": [
+        -99.178261,
+        19.383441
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Nacional de Perinatología",
+      "osm": "way/199148896",
+      "coordinatesWgs84": [
+        -99.205695,
+        19.423024
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Nacional de Pediatria",
+      "osm": "node/739036171",
+      "coordinatesWgs84": [
+        -99.185196,
+        19.30613
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Basilica of Our Lady of Guadalupe",
+      "osm": "way/120733641",
+      "coordinatesWgs84": [
+        -99.117857,
+        19.484845
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1271,
+      "sha256": "b35583a193dcf19097799984796e6b6c2806fb3be71833a99522f1a799cf4049"
+    },
+    "geometry.ts": {
+      "bytes": 127361,
+      "sha256": "10846d954423ef492b613a143c64ff489b56e7eb29d078e3fb2f4a33b3cf3e8e"
+    },
+    "places.ts": {
+      "bytes": 10392,
+      "sha256": "ffff082f32e8941064ab8c9b877d77a195e8035556cab041c879ee80d9ed5bc1"
+    },
+    "terrain.ts": {
+      "bytes": 71269,
+      "sha256": "38ae4a506bee88d4b74dbcef7701501de7dfbdba60b6b2338fdc05ebef3d68d2"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "c876e04454d5404ff2817e528bf8de3c9ed8d96c27d1b67334a2691602b808fa"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

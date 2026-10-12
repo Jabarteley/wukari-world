@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "buenos-aires",
+  "countryIso2": "AR",
+  "generationIdentity": {
+    "cityId": "buenos-aires",
+    "stateId": "ar-buenos-aires",
+    "stateName": "Buenos Aires"
+  },
+  "inventorySha256": "57bf04400b24a162cf80c2e0ab3f2231a1e53fbdb56127c78bc7363ca94a5cc0",
+  "inventoryPath": "world/playable-africa-rollout/sources/buenos-aires.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "buenos-aires-airport",
+    "name": "Ezeiza International Airport - Ministro Pistarini",
+    "lon": -58.5358,
+    "lat": -34.8222,
+    "sourceUrl": "https://ourairports.com/airports/SAEZ/"
+  },
+  "bounds": [
+    -34.8312440444967,
+    -58.6075586829576,
+    -34.42867701006602,
+    -58.17002211704239
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/argentina-261009.osm.pbf",
+      "datasetSha256": "a02df37ffa520d151c105fed101ecbb054b4f9ec3d325617a9e47d824e53172a",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "ea63c4e0ef4960dff398464aee1dd9fc65585663038e7277cad1700f59b6e13b",
+          "elements": 8644
+        },
+        {
+          "file": "extras.json",
+          "sha256": "8601f8ef144d9936bae1f39d5522e879fb69de9ce6300f904ec64ff2bfd4c991",
+          "elements": 2833
+        },
+        {
+          "file": "water.json",
+          "sha256": "4160c82f6c27890c1baceb10b466f65f58704c1026691af0e080d19d4acfcbfe",
+          "elements": 667
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d83ffb3380adc3c0535012f76c29fb70601f686710062dbcb88c0f0c5df1aa10",
+          "elements": 9953
+        },
+        {
+          "file": "roads.json",
+          "sha256": "e420f696bd09686ee73e119b373b4c85ddade3d1b38108fa00ef27e20cd9c625",
+          "elements": 7259
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 15,
+    "reachWaterPolygons": 39
+  },
+  "observed": {
+    "places": 8644,
+    "extras": 2833,
+    "water": 667,
+    "landuse": 9953,
+    "roads": 7259
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1296,
+      "sha256": "945474a3e72c3db27d525bce69f74b25a9674cd01309529c5ab0bc08afa505bd"
+    },
+    "geometry.ts": {
+      "bytes": 101496,
+      "sha256": "3869a321f762fb8310a6b8a5261b3c21ba5cee0e3ef2e85556b7cb1f0e844528"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "b280ef2a001e7d7a008244e279df4d4e797b8e5e102304c6aae489c59f916b66"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/buenos-aires.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

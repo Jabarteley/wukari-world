@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "santiago",
+  "countryIso2": "CL",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Santiago",
+    "coordinatesWgs84": [
+      -70.6510671,
+      -33.4376995
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/chile-261010.osm.pbf"
+  },
+  "airport": {
+    "id": "santiago-airport",
+    "name": "Comodoro Arturo Merino Benítez International Airport",
+    "lon": -70.78579711914062,
+    "lat": -33.393001556396484,
+    "sourceUrl": "https://ourairports.com/airports/SCEL/"
+  },
+  "boxes": {
+    "play": [
+      -33.61858038993398,
+      -70.86681494446434,
+      -33.25681861006602,
+      -70.43531925553567
+    ],
+    "core": [
+      -33.482919722483494,
+      -70.70491943672432,
+      -33.39247927751651,
+      -70.59721476327569
+    ],
+    "outline": [
+      -33.66858038993398,
+      -70.91681494446433,
+      -33.20681861006602,
+      -70.38531925553568
+    ],
+    "wide": [
+      -34.21858038993398,
+      -71.46681494446433,
+      -32.65681861006602,
+      -69.83531925553568
+    ],
+    "water": [
+      -34.21858038993398,
+      -71.46681494446433,
+      -32.65681861006602,
+      -69.83531925553568
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/chile-261010.osm.pbf",
+    "datasetSha256": "d40a6aaf6149305a57e141b5d7c5ac8240aca1c32d9bc1182d83b7fabbf04d65",
+    "pbfHeaderTimestamp": "2026-10-10T20:21:21Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "fd41d03fc79b7e705505e92325633977d47805618346f4a5ab4382f0bed0c84c",
+        "elements": 7169
+      },
+      {
+        "file": "extras.json",
+        "sha256": "e5a352ebd800bbf4d6402ee494389028f8c668edbbf1d139f6e7e98e4bfa560b",
+        "elements": 2740
+      },
+      {
+        "file": "water.json",
+        "sha256": "e54e957f552afd4483a34bb7ce2e5240f3b0d2c3b43325be2c20ba618660afc9",
+        "elements": 2536
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "cea68197d78b05133694144258b7bc907c345cbd5df792c61f68fdaacc567388",
+        "elements": 6198
+      },
+      {
+        "file": "roads.json",
+        "sha256": "00dfeb022d31e4b331e00c7a9d325761522277915668b0b321ebd40d0d4ecfad",
+        "elements": 10083
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Toesca",
+      "osm": "node/141096340",
+      "coordinatesWgs84": [
+        -70.658585,
+        -33.452975
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pizza Pizza",
+      "osm": "way/338969590",
+      "coordinatesWgs84": [
+        -70.728756,
+        -33.351655
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Escuela de Especialidades Sargento 1.º Adolfo Menadier Rojas",
+      "osm": "node/9689186988",
+      "coordinatesWgs84": [
+        -70.678526,
+        -33.556747
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Air Force Clinical Hospital General Doctor Raúl Yazigi",
+      "osm": "way/23393396",
+      "coordinatesWgs84": [
+        -70.547121,
+        -33.396435
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plaza Elvira Matte",
+      "osm": "way/30359747",
+      "coordinatesWgs84": [
+        -70.576374,
+        -33.585878
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mall Plaza Vespucio",
+      "osm": "way/25448975",
+      "coordinatesWgs84": [
+        -70.597727,
+        -33.517557
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Templo Votivo de Maipú",
+      "osm": "way/175940910",
+      "coordinatesWgs84": [
+        -70.766162,
+        -33.510804
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ilustre Municipalidad de La Pintana",
+      "osm": "way/192294478",
+      "coordinatesWgs84": [
+        -70.629623,
+        -33.584804
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Consejo Nacional de Televisión",
+      "osm": "way/264762579",
+      "coordinatesWgs84": [
+        -70.606817,
+        -33.432778
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Campus Peñalolén Universidad Adolfo Ibáñez",
+      "osm": "way/229040812",
+      "coordinatesWgs84": [
+        -70.514474,
+        -33.488414
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hipódromo Chile",
+      "osm": "way/38622709",
+      "coordinatesWgs84": [
+        -70.666407,
+        -33.404051
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Un lugar para la memoria (Memorial Tres Sillas)",
+      "osm": "node/3372723745",
+      "coordinatesWgs84": [
+        -70.781191,
+        -33.404657
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parque Metropolitano Sur Cerro Chena",
+      "osm": "way/259812380",
+      "coordinatesWgs84": [
+        -70.721862,
+        -33.602482
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Nacional de Arte Contemporáneo de Los Cerrillos",
+      "osm": "way/446732086",
+      "coordinatesWgs84": [
+        -70.703996,
+        -33.495041
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo de la Vivienda Tradicional Local",
+      "osm": "node/6938501880",
+      "coordinatesWgs84": [
+        -70.605876,
+        -33.373687
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Iglesia de Santa Rosa de Lo Barnechea",
+      "osm": "way/1494357523",
+      "coordinatesWgs84": [
+        -70.504846,
+        -33.361726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Mapocho Río Tramo 3",
+      "osm": "way/195112800",
+      "coordinatesWgs84": [
+        -70.727764,
+        -33.413187
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Academia Politécnica Militar del General de Ejército René Schneider Chereau",
+      "osm": "way/103593737",
+      "coordinatesWgs84": [
+        -70.534438,
+        -33.447118
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad de Los Andes",
+      "osm": "way/570065671",
+      "coordinatesWgs84": [
+        -70.507092,
+        -33.404226
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clínica RedSalud Santiago",
+      "osm": "node/7009112985",
+      "coordinatesWgs84": [
+        -70.701814,
+        -33.457119
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parroquia la Natividad del Señor",
+      "osm": "way/450296536",
+      "coordinatesWgs84": [
+        -70.570896,
+        -33.449099
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pista Atlética Estadio La Cisterna",
+      "osm": "relation/9951085",
+      "coordinatesWgs84": [
+        -70.673127,
+        -33.520698
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Velódromo Sergio Tormen Méndez",
+      "osm": "way/236844639",
+      "coordinatesWgs84": [
+        -70.607628,
+        -33.469131
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Padre Hurtado",
+      "osm": "way/193760181",
+      "coordinatesWgs84": [
+        -70.635079,
+        -33.552331
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1267,
+      "sha256": "c20f1c8b3a69013791b212acda40278715631f80ddc6fc08868ca3be152ca463"
+    },
+    "geometry.ts": {
+      "bytes": 128000,
+      "sha256": "0a9747ddff0bbc0542bade726193f437a29b9467b855782fa407bec37293a498"
+    },
+    "places.ts": {
+      "bytes": 10596,
+      "sha256": "a3ac9783849d0a9cae93066e4dc4baafa5afa73d277645286ba60a2288c1d805"
+    },
+    "terrain.ts": {
+      "bytes": 641456,
+      "sha256": "d3ab9d79d4ce41831b92b08df0bc8b60365e4f032d5700661da50cc78fcda091"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "b8e4a77d4245934ab149ccc607546286b58ce45f73b2c01f259a0149586492d0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

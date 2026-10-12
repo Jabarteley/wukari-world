@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "buenos-aires",
+  "countryIso2": "AR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Buenos Aires",
+    "coordinatesWgs84": [
+      -58.3887904,
+      -34.6095579
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/argentina-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "buenos-aires-airport",
+    "name": "Ezeiza International Airport - Ministro Pistarini",
+    "lon": -58.5358,
+    "lat": -34.8222,
+    "sourceUrl": "https://ourairports.com/airports/SAEZ/"
+  },
+  "boxes": {
+    "play": [
+      -34.8312440444967,
+      -58.6075586829576,
+      -34.42867701006602,
+      -58.17002211704239
+    ],
+    "core": [
+      -34.65477812248349,
+      -58.44339280150393,
+      -34.564337677516505,
+      -58.33418799849606
+    ],
+    "outline": [
+      -34.8812440444967,
+      -58.6575586829576,
+      -34.37867701006602,
+      -58.120022117042396
+    ],
+    "wide": [
+      -35.4312440444967,
+      -59.207558682957604,
+      -33.828677010066016,
+      -57.57002211704239
+    ],
+    "water": [
+      -35.4312440444967,
+      -59.207558682957604,
+      -33.828677010066016,
+      -57.57002211704239
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/argentina-261009.osm.pbf",
+    "datasetSha256": "a02df37ffa520d151c105fed101ecbb054b4f9ec3d325617a9e47d824e53172a",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "ea63c4e0ef4960dff398464aee1dd9fc65585663038e7277cad1700f59b6e13b",
+        "elements": 8644
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8601f8ef144d9936bae1f39d5522e879fb69de9ce6300f904ec64ff2bfd4c991",
+        "elements": 2833
+      },
+      {
+        "file": "water.json",
+        "sha256": "4160c82f6c27890c1baceb10b466f65f58704c1026691af0e080d19d4acfcbfe",
+        "elements": 667
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d83ffb3380adc3c0535012f76c29fb70601f686710062dbcb88c0f0c5df1aa10",
+        "elements": 9953
+      },
+      {
+        "file": "roads.json",
+        "sha256": "e420f696bd09686ee73e119b373b4c85ddade3d1b38108fa00ef27e20cd9c625",
+        "elements": 7259
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Avenida La Plata",
+      "osm": "node/256241985",
+      "coordinatesWgs84": [
+        -58.426404,
+        -34.626968
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cafe de Garcia",
+      "osm": "node/2359629110",
+      "coordinatesWgs84": [
+        -58.510654,
+        -34.606382
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Biblioteca Popular Antonio Mentruyt",
+      "osm": "node/1942196695",
+      "coordinatesWgs84": [
+        -58.40104,
+        -34.761138
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital Posadas",
+      "osm": "way/129852442",
+      "coordinatesWgs84": [
+        -58.574791,
+        -34.628943
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque General José de San Martín",
+      "osm": "way/711562796",
+      "coordinatesWgs84": [
+        -58.25435,
+        -34.720019
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Unicenter Shopping",
+      "osm": "way/122963275",
+      "coordinatesWgs84": [
+        -58.525334,
+        -34.507896
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Comunidad Amijai",
+      "osm": "way/1302631309",
+      "coordinatesWgs84": [
+        -58.451683,
+        -34.555446
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Buenos Aires City Hall",
+      "osm": "way/23633883",
+      "coordinatesWgs84": [
+        -58.373964,
+        -34.608207
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dirección Nacional de Vialidad - Distrito 1º Buenos Aires",
+      "osm": "way/396339546",
+      "coordinatesWgs84": [
+        -58.522671,
+        -34.657567
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of San Andrés",
+      "osm": "relation/7447545",
+      "coordinatesWgs84": [
+        -58.530429,
+        -34.446042
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Norberto “Tito” Tomaghello",
+      "osm": "way/53012324",
+      "coordinatesWgs84": [
+        -58.286544,
+        -34.821755
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Avión de los Vuelos de la Muerte",
+      "osm": "way/1312245862",
+      "coordinatesWgs84": [
+        -58.497801,
+        -34.73767
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Ciudad de Laferrere",
+      "osm": "way/173109152",
+      "coordinatesWgs84": [
+        -58.592561,
+        -34.752552
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Julio Humberto Grondona",
+      "osm": "way/161797198",
+      "coordinatesWgs84": [
+        -58.340606,
+        -34.678346
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National University of Lomas de Zamora",
+      "osm": "relation/14618378",
+      "coordinatesWgs84": [
+        -58.455831,
+        -34.774945
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Torre Espacial",
+      "osm": "way/159783339",
+      "coordinatesWgs84": [
+        -58.449816,
+        -34.672849
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Nacional Arturo Jauretche",
+      "osm": "relation/3087274",
+      "coordinatesWgs84": [
+        -58.267946,
+        -34.775025
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Bosque Alegre",
+      "osm": "relation/6788507",
+      "coordinatesWgs84": [
+        -58.403613,
+        -34.569935
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Presidente Sarmiento",
+      "osm": "way/294261998",
+      "coordinatesWgs84": [
+        -58.499737,
+        -34.558183
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital General de Agudos Doctor Teodoro Alvarez",
+      "osm": "way/297407589",
+      "coordinatesWgs84": [
+        -58.469626,
+        -34.623828
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital General de Agudos Doctor Enrique Tornú",
+      "osm": "way/205037220",
+      "coordinatesWgs84": [
+        -58.472818,
+        -34.586464
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia de Dios",
+      "osm": "way/1387673826",
+      "coordinatesWgs84": [
+        -58.537272,
+        -34.580405
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo Histórico Municipal Brig. Gral. Juan M. Pueyrredón",
+      "osm": "way/517109240",
+      "coordinatesWgs84": [
+        -58.502426,
+        -34.469941
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "San Francisco Javier",
+      "osm": "node/455754665",
+      "coordinatesWgs84": [
+        -58.427241,
+        -34.587121
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1296,
+      "sha256": "945474a3e72c3db27d525bce69f74b25a9674cd01309529c5ab0bc08afa505bd"
+    },
+    "geometry.ts": {
+      "bytes": 101496,
+      "sha256": "3869a321f762fb8310a6b8a5261b3c21ba5cee0e3ef2e85556b7cb1f0e844528"
+    },
+    "places.ts": {
+      "bytes": 10449,
+      "sha256": "bb1e74502076c47d29a3eef712139a3630fcdf11b869622e921c25ec6afbd1be"
+    },
+    "terrain.ts": {
+      "bytes": 185070,
+      "sha256": "49fec45d35ae2c5ada2417259b595f88bceb9753b59a942a12c231e5ccfac883"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "b280ef2a001e7d7a008244e279df4d4e797b8e5e102304c6aae489c59f916b66"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

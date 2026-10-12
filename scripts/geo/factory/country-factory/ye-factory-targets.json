@@ -1,0 +1,342 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "YE",
+    "datasetSha256": "20819e25ceae12738209a60f0e6b19f174d5422350b6706020ac8bced75f26b8",
+    "receiptSha256": "35133e908060e01ec9b5a55f5ac9feacb88e3ab4a7c0f0bd77629f2c386c7217",
+    "receiptBytes": 42861,
+    "geometrySha256": "885d4cbf4504d0cded1c9fb329ffec84af2b976b7cbf8567b09404616fe7fce3",
+    "geometryBytes": 35259,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 305092,
+    "boundaryKey": "ye",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38307668383,
+      "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+      "sourceArtifact": "city-bootstrap-ye-28439a3230520b77094d69937eefd9c9b5857b46",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "sanaa",
+      "name": "Sana'a",
+      "country": "ye",
+      "facts": {
+        "id": "sanaa",
+        "name": "Sana'a",
+        "country": {
+          "idISOlower": "ye",
+          "name": "Yemen"
+        },
+        "state": {
+          "idunique": "ye-sanaa",
+          "name": "Sana'a"
+        },
+        "timezone": "Asia/Riyadh",
+        "centre": {
+          "lon": 44.2058841,
+          "lat": 15.3538569
+        },
+        "airport": {
+          "id": "sanaa-airport",
+          "name": "Sanaa International Airport",
+          "lon": 44.2197,
+          "lat": 15.4763,
+          "sourceUrl": "https://ourairports.com/airports/OYSN/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/258013552",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          44.01940962662008,
+          15.172976010066021,
+          44.392358573379916,
+          15.53473778993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/258013552",
+          "sourceUrl": "https://www.openstreetmap.org/node/258013552",
+          "sourceRecord": {
+            "ref": "node/258013552",
+            "tags": {
+              "GNS:dsg_code": "PPLC",
+              "GNS:dsg_name": "captial of a country (pcld, pclf, pcli, pcls)",
+              "GNS:id": "-3191442",
+              "admin_level": "2",
+              "alt_name": "San’ah;San'ah;Şan‘ā’",
+              "capital": "yes",
+              "name": "صنعاء",
+              "name:af": "Sanaa",
+              "name:am": "ሳና",
+              "name:an": "Sana",
+              "name:ar": "صنعاء",
+              "name:arz": "صنعا",
+              "name:az": "Səna",
+              "name:azb": "صنعا",
+              "name:ba": "Сана",
+              "name:be": "Сана",
+              "name:be-tarask": "Сана",
+              "name:bg": "Сана",
+              "name:bn": "সানা",
+              "name:bo": "ས་ནཱ།",
+              "name:br": "Sana'a",
+              "name:bs": "Sana'a",
+              "name:ca": "Sanà",
+              "name:ce": "Сана",
+              "name:ckb": "سەنعا",
+              "name:cs": "San'á",
+              "name:cy": "Sana'a",
+              "name:da": "Sanaá",
+              "name:de": "Sanaa",
+              "name:el": "Σαναά",
+              "name:en": "Sana'a",
+              "name:eo": "Sanao",
+              "name:es": "Saná",
+              "name:et": "Sanaa",
+              "name:eu": "Sana",
+              "name:fa": "صنعا",
+              "name:fi": "Sanaa",
+              "name:fr": "Sanaa",
+              "name:fy": "Sana'a",
+              "name:ga": "San’a",
+              "name:gd": "Ṣan'ā'",
+              "name:gl": "Sana",
+              "name:ha": "Sanaa",
+              "name:he": "צנעא",
+              "name:hi": "साना",
+              "name:hif": "Sana‘a",
+              "name:hr": "Sana",
+              "name:ht": "Sanaa",
+              "name:hu": "Szanaa",
+              "name:hy": "Սանաա",
+              "name:id": "Sana'a",
+              "name:ie": "Saná",
+              "name:io": "Sanaa",
+              "name:is": "Sana",
+              "name:it": "San’a",
+              "name:ja": "サヌア",
+              "name:ka": "სანა",
+              "name:kab": "Ṣenɛa",
+              "name:ki": "Sana'a",
+              "name:kk": "Сана",
+              "name:kl": "Sana'a",
+              "name:kn": "ಸನಾ",
+              "name:ko": "사나",
+              "name:ks": "صنعاء",
+              "name:ku": "Sana",
+              "name:ky": "Сана",
+              "name:la": "Sana",
+              "name:lb": "Sana´a",
+              "name:lmo": "San'a",
+              "name:lrc": "سٱنعا",
+              "name:lt": "Sana",
+              "name:lv": "Sana",
+              "name:mg": "Sana'a",
+              "name:mk": "Сана",
+              "name:ml": "സനാ",
+              "name:mn": "Санаа хот",
+              "name:mr": "साना",
+              "name:ms": "Sana'a",
+              "name:mt": "Sana'a",
+              "name:nan": "Sana'a",
+              "name:nb": "Sana",
+              "name:ne": "साना",
+              "name:nl": "Sanaa",
+              "name:nn": "San'a",
+              "name:no": "Sanaá",
+              "name:nov": "Sana",
+              "name:nv": "Bis Bee Kin Łání",
+              "name:oc": "Sanaa",
+              "name:os": "Санæ",
+              "name:pa": "ਸਨਾ",
+              "name:pl": "Sana",
+              "name:pms": "San'a",
+              "name:pnb": "صنعا",
+              "name:ps": "صنعا",
+              "name:pt": "Sana",
+              "name:qu": "Sana'a",
+              "name:ro": "Sana'a",
+              "name:ru": "Сана",
+              "name:sc": "Sana'a",
+              "name:sco": "Sana'a",
+              "name:sh": "Sana",
+              "name:simple": "Sana'a",
+              "name:sk": "Saná",
+              "name:sl": "Sana",
+              "name:sn": "Sana'a",
+              "name:so": "Sanca",
+              "name:sq": "Sana",
+              "name:sr": "Сана",
+              "name:sv": "Sana",
+              "name:sw": "Sana'a",
+              "name:ta": "சன்ஆ",
+              "name:tg": "Санъо",
+              "name:th": "ซานา",
+              "name:tl": "Sanaa",
+              "name:tr": "San'a",
+              "name:tt": "Сәнга",
+              "name:tw": "Sanaa",
+              "name:ug": "سەنئا",
+              "name:uk": "Сана",
+              "name:ur": "صنعاء",
+              "name:uz": "Sano",
+              "name:vi": "Sana’a",
+              "name:war": "Sana'a",
+              "name:yi": "סאנא",
+              "name:yo": "Sana'a",
+              "name:zh": "萨那",
+              "name:zh-Hans": "萨那",
+              "name:zh-Hant": "薩那",
+              "place": "city",
+              "population": "1527861",
+              "population:date": "2004-12-17",
+              "source:name": "GNS",
+              "source:name:oc": "Lo Congrès",
+              "source:population": "YCSO2004:13-(1-9)",
+              "wikidata": "Q2471",
+              "wikipedia": "ar:صنعاء"
+            },
+            "lon": 44.2058841,
+            "lat": 15.3538569
+          },
+          "pbfSha256": "20819e25ceae12738209a60f0e6b19f174d5422350b6706020ac8bced75f26b8"
+        },
+        "airport": {
+          "rowNumber": 52615,
+          "row": {
+            "id": "5318",
+            "ident": "OYSN",
+            "type": "large_airport",
+            "name": "Sanaa International Airport",
+            "latitude_deg": "15.4763",
+            "longitude_deg": "44.2197",
+            "elevation_ft": "7216",
+            "continent": "AS",
+            "iso_country": "YE",
+            "iso_region": "YE-SA",
+            "municipality": "Sanaa",
+            "scheduled_service": "yes",
+            "icao_code": "OYSN",
+            "iata_code": "SAH",
+            "gps_code": "OYSN",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Sanaa_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "f67aafb467ea7eb1dd3681dfb3181c7f5aa1adb227f2e7c4d0b6392a8ca6edce",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "OYSN",
+            "sourceUrl": "https://ourairports.com/airports/OYSN/",
+            "matchedIdent": "OYSN",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/OYSN/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "SA,AQ,KW,YE",
+              "+2438+04643",
+              "Asia/Riyadh",
+              "Syowa"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Riyadh",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "SA,AQ,KW,YE",
+              "+2438+04643",
+              "Asia/Riyadh",
+              "Syowa"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/yemen-261011.osm.pbf",
+          "bytes": 43387503,
+          "sha256": "20819e25ceae12738209a60f0e6b19f174d5422350b6706020ac8bced75f26b8",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              15.172976010066021,
+              44.01940962662008,
+              15.53473778993398,
+              44.392358573379916
+            ],
+            "core": [
+              15.308636677516505,
+              44.15929601412881,
+              15.399077122483495,
+              44.252472185871184
+            ],
+            "outline": [
+              15.12297601006602,
+              43.969409626620084,
+              15.58473778993398,
+              44.44235857337991
+            ],
+            "wide": [
+              14.572976010066022,
+              43.41940962662008,
+              16.13473778993398,
+              44.99235857337992
+            ]
+          },
+          "airportMarginMetres": 6461.466433000079,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "sanaa",
+      "extractSha256": {
+        "places": "653077d6d005490d804cce94aca97e056df5ab236dec3be354b407b3d4d0e021",
+        "extras": "c5fb7d398aa52680c52e144cda0cc4187285ceaee11865a15c4a00bb0d6baf58",
+        "water": "4d4ef7a8d5a71c1abb65b2e76240d25faf24d4493b40aa5fa943f94c9d91aac9",
+        "landuse": "1e8eb59d7b225cb40cac2c0f0f3b804a952829ab42e0faf40a1d292cfae16b51",
+        "roads": "637f38d3f75afef33d6ead4109543c66b32f5a78db33928d25547ec193691695"
+      },
+      "sourceJob": {
+        "city": "sanaa",
+        "sourceRunId": 38307668383,
+        "sourceArtifact": "city-bootstrap-ye-28439a3230520b77094d69937eefd9c9b5857b46",
+        "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+        "datasetSha256": "20819e25ceae12738209a60f0e6b19f174d5422350b6706020ac8bced75f26b8",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "653077d6d005490d804cce94aca97e056df5ab236dec3be354b407b3d4d0e021",
+          "extras": "c5fb7d398aa52680c52e144cda0cc4187285ceaee11865a15c4a00bb0d6baf58",
+          "water": "4d4ef7a8d5a71c1abb65b2e76240d25faf24d4493b40aa5fa943f94c9d91aac9",
+          "landuse": "1e8eb59d7b225cb40cac2c0f0f3b804a952829ab42e0faf40a1d292cfae16b51",
+          "roads": "637f38d3f75afef33d6ead4109543c66b32f5a78db33928d25547ec193691695"
+        }
+      }
+    }
+  ]
+}

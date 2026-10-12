@@ -1,0 +1,350 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "AF",
+    "datasetSha256": "e76b44ea1520b09112ec6e45c80906f48d4494850fc1f1247b30a9e757a5a05e",
+    "receiptSha256": "c50dfd930825e7402225051b051165788238ea8425830972c6a5893defc8ecd2",
+    "receiptBytes": 204836,
+    "geometrySha256": "4d9da19af6977769486e72963d17a9495717a022a5ca2ec8e6e1d5f96644e1ac",
+    "geometryBytes": 1066105,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 303427,
+    "boundaryKey": "af",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38307668383,
+      "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+      "sourceArtifact": "city-bootstrap-af-28439a3230520b77094d69937eefd9c9b5857b46",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "kabul",
+      "name": "Kabul",
+      "country": "af",
+      "facts": {
+        "id": "kabul",
+        "name": "Kabul",
+        "country": {
+          "idISOlower": "af",
+          "name": "Afghanistan"
+        },
+        "state": {
+          "idunique": "af-kabul",
+          "name": "Kabul"
+        },
+        "timezone": "Asia/Kabul",
+        "centre": {
+          "lon": 69.1850584,
+          "lat": 34.5269503
+        },
+        "airport": {
+          "id": "kabul-airport",
+          "name": "Kabul International Airport",
+          "lon": 69.212303,
+          "lat": 34.565899,
+          "sourceUrl": "https://ourairports.com/airports/OAKB/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/21716195",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          68.9665088115245,
+          34.34606941006602,
+          69.4036079884755,
+          34.707831189933984
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/21716195",
+          "sourceUrl": "https://www.openstreetmap.org/node/21716195",
+          "sourceRecord": {
+            "ref": "node/21716195",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "1790",
+              "name": "کابل",
+              "name:af": "Kaboel",
+              "name:am": "ካቡል",
+              "name:an": "Kabul",
+              "name:ar": "كابل",
+              "name:arc": "ܩܐܒܘܠ",
+              "name:ast": "Kabul",
+              "name:az": "Kabil",
+              "name:azb": "کابل",
+              "name:ba": "Кабул",
+              "name:be": "Кабул",
+              "name:be-tarask": "Кабул",
+              "name:bg": "Кабул",
+              "name:bn": "কাবুল",
+              "name:bo": "ཁ་པུལ།",
+              "name:br": "Kaboul",
+              "name:bs": "Kabul",
+              "name:ca": "Kabul",
+              "name:ce": "Кабул",
+              "name:ckb": "کابول",
+              "name:cs": "Kábul",
+              "name:cv": "Кабул",
+              "name:cy": "Kabul",
+              "name:da": "Kabul",
+              "name:de": "Kabul",
+              "name:diq": "Kabil",
+              "name:el": "Καμπούλ",
+              "name:en": "Kabul",
+              "name:eo": "Kabulo",
+              "name:es": "Kabul",
+              "name:et": "Kabul",
+              "name:eu": "Kabul",
+              "name:fa": "كابل ښار",
+              "name:fi": "Kabul",
+              "name:fo": "Kabul",
+              "name:fr": "Kaboul",
+              "name:frp": "Caboul",
+              "name:fy": "Kabûl",
+              "name:ga": "Cabúl",
+              "name:gd": "Kabul",
+              "name:gl": "Cabul - کابل",
+              "name:grc": "Καβούλη",
+              "name:gu": "કાબુલ",
+              "name:gv": "Kabul",
+              "name:ha": "Kabul",
+              "name:he": "קאבול",
+              "name:hi": "काबुल",
+              "name:hr": "Kabul",
+              "name:ht": "Kaboul",
+              "name:hu": "Kabul",
+              "name:hy": "Քաբուլ",
+              "name:ia": "Kabul",
+              "name:id": "Kabul",
+              "name:ie": "Kabul",
+              "name:io": "Kabul",
+              "name:is": "Kabúl",
+              "name:it": "Kabul",
+              "name:ja": "カーブル",
+              "name:ka": "ქაბული",
+              "name:kab": "Kabul",
+              "name:ki": "Kabul",
+              "name:kk": "Кабул",
+              "name:km": "ទីក្រុងកាបូល",
+              "name:kn": "ಕಾಬುಲ್",
+              "name:ko": "카불",
+              "name:ks": "کابل",
+              "name:ku": "Kabûl",
+              "name:ky": "Кабул",
+              "name:la": "Cabura",
+              "name:lb": "Kabul",
+              "name:ln": "Kabul",
+              "name:lo": "ຄາບູລ",
+              "name:lrc": "کابول",
+              "name:lt": "Kabulas",
+              "name:lv": "Kabula",
+              "name:mdf": "Кабул",
+              "name:mg": "Kabul",
+              "name:mhr": "Кабул",
+              "name:mi": "Kapūru",
+              "name:mk": "Кабул",
+              "name:ml": "കാബുൽ",
+              "name:mn": "Кабул",
+              "name:mr": "काबुल",
+              "name:ms": "Kabul",
+              "name:mt": "Kabul",
+              "name:my": "ကဘူးလ်မြို့",
+              "name:nah": "Cabul",
+              "name:nb": "Kabul",
+              "name:ne": "काबुल",
+              "name:nl": "Kaboel",
+              "name:nn": "Kabul",
+              "name:oc": "Kabol",
+              "name:or": "କାବୁଲ",
+              "name:os": "Кабул",
+              "name:ota": "کابل",
+              "name:pa": "ਕਾਬੁਲ",
+              "name:pl": "Kabul",
+              "name:pnb": "کابل",
+              "name:ps": "کابل",
+              "name:pt": "Cabul",
+              "name:qu": "Kawul",
+              "name:ro": "Kabul",
+              "name:ru": "Кабул",
+              "name:rw": "Kabul",
+              "name:sc": "Kabul",
+              "name:sd": "ڪابل",
+              "name:se": "Kabul",
+              "name:si": "කාබුල්",
+              "name:sk": "Kábul",
+              "name:sl": "Kabul",
+              "name:sn": "Kabul",
+              "name:so": "Kabul",
+              "name:sq": "Kabuli",
+              "name:sr": "Кабул",
+              "name:su": "Kabul",
+              "name:sv": "Kabul",
+              "name:sw": "Kabul",
+              "name:syc": "ܩܐܒܘܠ",
+              "name:ta": "காபூல்",
+              "name:te": "కాబూల్",
+              "name:tg": "Кобул",
+              "name:th": "คาบูล",
+              "name:tl": "Kabul",
+              "name:tr": "Kâbil",
+              "name:tt": "Кабул",
+              "name:ug": "كابۇل",
+              "name:uk": "Кабул",
+              "name:ur": "کابل",
+              "name:uz": "Kobul",
+              "name:vi": "Kabul",
+              "name:vo": "Kabol",
+              "name:yi": "קאבול",
+              "name:yo": "Kabul",
+              "name:yue": "喀布爾",
+              "name:zh": "喀布尔",
+              "name:zh-Hans": "喀布尔",
+              "name:zh-Hant": "喀布爾",
+              "place": "city",
+              "population": "3289000",
+              "population:date": "2013",
+              "wikidata": "Q5838",
+              "wikipedia": "ps:کابل"
+            },
+            "lon": 69.1850584,
+            "lat": 34.5269503
+          },
+          "pbfSha256": "e76b44ea1520b09112ec6e45c80906f48d4494850fc1f1247b30a9e757a5a05e"
+        },
+        "airport": {
+          "rowNumber": 51736,
+          "row": {
+            "id": "5072",
+            "ident": "OAKB",
+            "type": "large_airport",
+            "name": "Kabul International Airport",
+            "latitude_deg": "34.565899",
+            "longitude_deg": "69.212303",
+            "elevation_ft": "5877",
+            "continent": "AS",
+            "iso_country": "AF",
+            "iso_region": "AF-KAB",
+            "municipality": "Kabul",
+            "scheduled_service": "yes",
+            "icao_code": "OAKB",
+            "iata_code": "KBL",
+            "gps_code": "OAKB",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Kabul_International_Airport",
+            "keywords": "Hamid Karzai International Airport, Khwaja Rawash Airport"
+          },
+          "rowSha256": "fb715635ae4ca4ec9506b6089a0e28fd784ecf74aebd2bec9c40cd1ed3e5f228",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "OAKB",
+            "sourceUrl": "https://ourairports.com/airports/OAKB/",
+            "matchedIdent": "OAKB",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/OAKB/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "AF",
+              "+3431+06912",
+              "Asia/Kabul"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Kabul",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "AF",
+              "+3431+06912",
+              "Asia/Kabul"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/afghanistan-261011.osm.pbf",
+          "bytes": 112581186,
+          "sha256": "e76b44ea1520b09112ec6e45c80906f48d4494850fc1f1247b30a9e757a5a05e",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              34.34606941006602,
+              68.9665088115245,
+              34.707831189933984,
+              69.4036079884755
+            ],
+            "core": [
+              34.48173007751651,
+              69.13051030710811,
+              34.572170522483496,
+              69.2396064928919
+            ],
+            "outline": [
+              34.296069410066025,
+              68.91650881152451,
+              34.75783118993398,
+              69.4536079884755
+            ],
+            "wide": [
+              33.74606941006602,
+              68.36650881152451,
+              35.307831189933985,
+              70.0036079884755
+            ]
+          },
+          "airportMarginMetres": 15693.442241000395,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "kabul",
+      "extractSha256": {
+        "places": "454ebad30199f340b3c0b0b64c052d176f4cab37c79d3e09b53ba0c9c07fc57c",
+        "extras": "f4d0c9a867d141279716c457f6db34ae8f6ff7cd28cf79e0e77584ad76da2206",
+        "water": "5481df87a99bfe5aac9e9aba2e39f572020b630ebdf1286ab12e571e7706bce2",
+        "landuse": "1a78f9433d652067bbfb9fed92c94c040b830ca04e6bdcdd26c4886adb595685",
+        "roads": "5e50caf0159a673b74fc78489c760d574f363e6d66fbf7e44312f5626ab64a7d"
+      },
+      "sourceJob": {
+        "city": "kabul",
+        "sourceRunId": 38307668383,
+        "sourceArtifact": "city-bootstrap-af-28439a3230520b77094d69937eefd9c9b5857b46",
+        "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+        "datasetSha256": "e76b44ea1520b09112ec6e45c80906f48d4494850fc1f1247b30a9e757a5a05e",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "454ebad30199f340b3c0b0b64c052d176f4cab37c79d3e09b53ba0c9c07fc57c",
+          "extras": "f4d0c9a867d141279716c457f6db34ae8f6ff7cd28cf79e0e77584ad76da2206",
+          "water": "5481df87a99bfe5aac9e9aba2e39f572020b630ebdf1286ab12e571e7706bce2",
+          "landuse": "1a78f9433d652067bbfb9fed92c94c040b830ca04e6bdcdd26c4886adb595685",
+          "roads": "5e50caf0159a673b74fc78489c760d574f363e6d66fbf7e44312f5626ab64a7d"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,349 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "CH",
+    "datasetSha256": "56e1c44ae1c9302cd6fe3692cc32cd477d8f40439e28614ea9a6e95d86120ec3",
+    "receiptSha256": "0308c46953d188c5675f65881159d4a6f9050a3f4f4da8a9042a01998e9e8d93",
+    "receiptBytes": 293648,
+    "geometrySha256": "d9d2374b7badc6e0e41a650ab77e5a7508d2354857fdedf6118b5c8dd14f8655",
+    "geometryBytes": 1202706,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 51701,
+    "boundaryKey": "ch",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38307668383,
+      "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+      "sourceArtifact": "city-bootstrap-ch-28439a3230520b77094d69937eefd9c9b5857b46",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "zurich",
+      "name": "Zurich",
+      "country": "ch",
+      "facts": {
+        "id": "zurich",
+        "name": "Zurich",
+        "country": {
+          "idISOlower": "ch",
+          "name": "Switzerland"
+        },
+        "state": {
+          "idunique": "ch-zurich",
+          "name": "Zurich"
+        },
+        "timezone": "Europe/Zurich",
+        "centre": {
+          "lon": 8.5410422,
+          "lat": 47.3744489
+        },
+        "airport": {
+          "id": "zurich-airport",
+          "name": "Zürich Airport",
+          "lon": 8.548056,
+          "lat": 47.458056,
+          "sourceUrl": "https://ourairports.com/airports/LSZH/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/240025182",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          8.274827776048742,
+          47.193568010066016,
+          8.807256623951258,
+          47.55532978993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/240025182",
+          "sourceUrl": "https://www.openstreetmap.org/node/240025182",
+          "sourceRecord": {
+            "ref": "node/240025182",
+            "tags": {
+              "admin_centre:4": "yes",
+              "check_date": "2026-07-20",
+              "ele": "408",
+              "name": "Zürich",
+              "name:af": "Zürich",
+              "name:als": "Zürich",
+              "name:am": "ዙሪክ",
+              "name:an": "Zúrich",
+              "name:ar": "زيورخ",
+              "name:arc": "ܬܣܝܪܝܟ",
+              "name:arz": "زوريخ",
+              "name:az": "Sürix",
+              "name:bar": "Zirich",
+              "name:be": "Цюрых",
+              "name:be-tarask": "Цюрых",
+              "name:bg": "Цюрих",
+              "name:bn": "জুরিখ",
+              "name:br": "Zürich",
+              "name:bs": "Zürich",
+              "name:ca": "Zúric",
+              "name:ce": "Цуьрих",
+              "name:cs": "Curych",
+              "name:cv": "Цюрих",
+              "name:cy": "Zürich",
+              "name:da": "Zürich",
+              "name:de": "Zürich",
+              "name:el": "Ζυρίχη",
+              "name:en": "Zurich",
+              "name:eo": "Zuriko",
+              "name:es": "Zúrich",
+              "name:et": "Zürich",
+              "name:eu": "Zürich",
+              "name:fa": "زوریخ",
+              "name:fi": "Zürich",
+              "name:fj": "Zuriki",
+              "name:fr": "Zurich",
+              "name:frp": "Tsurique",
+              "name:frr": "Zürich",
+              "name:fur": "Zurich",
+              "name:fy": "Zürich",
+              "name:ga": "Zürich",
+              "name:gd": "Zürich",
+              "name:gl": "Zúric",
+              "name:gsw": "Züri",
+              "name:he": "ציריך",
+              "name:hi": "ज़्यूरिख़",
+              "name:hr": "Zürich",
+              "name:hsb": "Zürich",
+              "name:ht": "Zirik",
+              "name:hu": "Zürich",
+              "name:hy": "Ցյուրիխ",
+              "name:ia": "Zurich",
+              "name:id": "Zürich",
+              "name:ie": "Zúrich",
+              "name:ilo": "Zürich",
+              "name:io": "Zürich",
+              "name:is": "Zürich",
+              "name:it": "Zurigo",
+              "name:ja": "チューリッヒ",
+              "name:jv": "Zürich",
+              "name:ka": "ციურიხი",
+              "name:kk": "Цюрих",
+              "name:kn": "ಝ್ಯೂರಿಖ್",
+              "name:ko": "취리히",
+              "name:ku": "Zurîx",
+              "name:la": "Turicum",
+              "name:lb": "Zürech",
+              "name:li": "Zeurich",
+              "name:lmo": "Zürigh",
+              "name:ln": "Tsúri",
+              "name:lt": "Ciurichas",
+              "name:lv": "Cīrihe",
+              "name:mk": "Цирих",
+              "name:ml": "സൂറിച്ച്",
+              "name:mn": "Цюрих",
+              "name:mr": "झ्युरिक",
+              "name:ms": "Zürich",
+              "name:mt": "Zurich",
+              "name:my": "ဇူးရစ်ချ်မြို့",
+              "name:na": "Zürich",
+              "name:nah": "Zurich",
+              "name:nan": "Zürich",
+              "name:nds": "Zürich",
+              "name:nl": "Zürich",
+              "name:nn": "Zürich",
+              "name:no": "Zürich",
+              "name:nv": "Beʼekʼid Hóneezíbąąh",
+              "name:oc": "Zuric",
+              "name:os": "Цюрих",
+              "name:pa": "ਜ਼ਿਊਰਿਖ",
+              "name:pdc": "Zurich",
+              "name:pfl": "Zirich",
+              "name:pl": "Zurych",
+              "name:pms": "Zurigh",
+              "name:pnb": "زیورچ",
+              "name:ps": "څوریخ",
+              "name:pt": "Zurique",
+              "name:qu": "Zürich",
+              "name:rm": "Turitg",
+              "name:rn": "Zurich",
+              "name:ro": "Zürich",
+              "name:ru": "Цюрих",
+              "name:scn": "Zurìcu",
+              "name:sd": "زيورخ",
+              "name:sh": "Zürich",
+              "name:sk": "Zürich",
+              "name:sl": "Zürich",
+              "name:sq": "Cyrihu",
+              "name:sr": "Цирих",
+              "name:sv": "Zürich",
+              "name:sw": "Zürich",
+              "name:ta": "சூரிக்",
+              "name:tg": "Тсюрих",
+              "name:th": "ซูริก",
+              "name:tl": "Zürich",
+              "name:tr": "Zürih",
+              "name:tt": "Tsürix",
+              "name:ug": "سيۇرىخ",
+              "name:uk": "Цюрих",
+              "name:ur": "زیورخ",
+              "name:uz": "Syurix",
+              "name:vec": "Zurigo",
+              "name:vi": "Zürich",
+              "name:vo": "Zürich",
+              "name:war": "Zürich",
+              "name:wo": "Zurich",
+              "name:wuu": "苏黎世",
+              "name:yi": "ציריך",
+              "name:yo": "Zürich",
+              "name:yue": "蘇黎世",
+              "name:zh": "蘇黎世",
+              "name:zh-Hans": "苏黎世",
+              "name:zh-Hant": "蘇黎世",
+              "openGeoDB:license_plate_code": "ZH",
+              "openGeoDB:loc_id": "32325",
+              "openGeoDB:postal_codes": "8000–8099",
+              "panoramax": "569c8b62-8d86-4715-b567-82d922a117b7",
+              "place": "city",
+              "population": "443037",
+              "population:date": "2022-12-31",
+              "website": "https://www.stadt-zuerich.ch/",
+              "wikidata": "Q72",
+              "wikipedia": "de:Zürich"
+            },
+            "lon": 8.5410422,
+            "lat": 47.3744489
+          },
+          "pbfSha256": "56e1c44ae1c9302cd6fe3692cc32cd477d8f40439e28614ea9a6e95d86120ec3"
+        },
+        "airport": {
+          "rowNumber": 45165,
+          "row": {
+            "id": "4505",
+            "ident": "LSZH",
+            "type": "large_airport",
+            "name": "Zürich Airport",
+            "latitude_deg": "47.458056",
+            "longitude_deg": "8.548056",
+            "elevation_ft": "1417",
+            "continent": "EU",
+            "iso_country": "CH",
+            "iso_region": "CH-ZH",
+            "municipality": "Zurich",
+            "scheduled_service": "yes",
+            "icao_code": "LSZH",
+            "iata_code": "ZRH",
+            "gps_code": "LSZH",
+            "local_code": "",
+            "home_link": "http://www.zurich-airport.com/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Zurich_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "8c77b428bff0e1ab9585bfaf898ab8c07aa52c2be6513f248ac47610f4675522",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LSZH",
+            "sourceUrl": "https://ourairports.com/airports/LSZH/",
+            "matchedIdent": "LSZH",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LSZH/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "CH,DE,LI",
+              "+4723+00832",
+              "Europe/Zurich",
+              "Büsingen"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Zurich",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "CH,DE,LI",
+              "+4723+00832",
+              "Europe/Zurich",
+              "Büsingen"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/switzerland-261011.osm.pbf",
+          "bytes": 548248538,
+          "sha256": "56e1c44ae1c9302cd6fe3692cc32cd477d8f40439e28614ea9a6e95d86120ec3",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              47.193568010066016,
+              8.274827776048742,
+              47.55532978993398,
+              8.807256623951258
+            ],
+            "core": [
+              47.329228677516504,
+              8.474660266199539,
+              47.41966912248349,
+              8.60742413380046
+            ],
+            "outline": [
+              47.14356801006602,
+              8.224827776048741,
+              47.605329789933975,
+              8.857256623951258
+            ],
+            "wide": [
+              46.593568010066015,
+              7.674827776048742,
+              48.15532978993398,
+              9.407256623951257
+            ]
+          },
+          "airportMarginMetres": 10755.562953000064,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "zurich",
+      "extractSha256": {
+        "places": "6d3783528874380367ec1e04a480336c93099d1fd129376b7b84b087781de227",
+        "extras": "22aaf1a569c42be14082f3c6904de55ba1de576375271d484a3e8aa937e5f0b2",
+        "water": "153f49fbe7b2a4e9397050ff73806361acec35e592a0c8148bcf8f78928a35f6",
+        "landuse": "9ff907e90a2ceb76b6fe53ac611705ac73d51402a5ed4d0e51a384e172ca12d2",
+        "roads": "4c44fc3715cc42100f252a4015473970bae2415735e3bfbff167da81b6a6c581"
+      },
+      "sourceJob": {
+        "city": "zurich",
+        "sourceRunId": 38307668383,
+        "sourceArtifact": "city-bootstrap-ch-28439a3230520b77094d69937eefd9c9b5857b46",
+        "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+        "datasetSha256": "56e1c44ae1c9302cd6fe3692cc32cd477d8f40439e28614ea9a6e95d86120ec3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "6d3783528874380367ec1e04a480336c93099d1fd129376b7b84b087781de227",
+          "extras": "22aaf1a569c42be14082f3c6904de55ba1de576375271d484a3e8aa937e5f0b2",
+          "water": "153f49fbe7b2a4e9397050ff73806361acec35e592a0c8148bcf8f78928a35f6",
+          "landuse": "9ff907e90a2ceb76b6fe53ac611705ac73d51402a5ed4d0e51a384e172ca12d2",
+          "roads": "4c44fc3715cc42100f252a4015473970bae2415735e3bfbff167da81b6a6c581"
+        }
+      }
+    }
+  ]
+}

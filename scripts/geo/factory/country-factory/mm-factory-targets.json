@@ -1,0 +1,337 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "MM",
+    "datasetSha256": "9ff926b35db2209c43b162dabcc50fb6d133341ed2f34a629e6cc31e598dbfa9",
+    "receiptSha256": "78fe71ed85da38fe8f984c86af4dde648e08f6994c5ae9db00bd9e7889ceb234",
+    "receiptBytes": 213855,
+    "geometrySha256": "1390a39b88ef09eeda8c8749d985920950fbc1c8b5f8b45d07c4782d5bd296c5",
+    "geometryBytes": 1261116,
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "relationId": 50371,
+    "boundaryKey": "mm",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38307668383,
+      "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+      "sourceArtifact": "city-bootstrap-mm-28439a3230520b77094d69937eefd9c9b5857b46",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "yangon",
+      "name": "Yangon",
+      "country": "mm",
+      "facts": {
+        "id": "yangon",
+        "name": "Yangon",
+        "country": {
+          "idISOlower": "mm",
+          "name": "Myanmar (Burma)"
+        },
+        "state": {
+          "idunique": "mm-yangon",
+          "name": "Yangon"
+        },
+        "timezone": "Asia/Yangon",
+        "centre": {
+          "lon": 96.1609916,
+          "lat": 16.7967129
+        },
+        "airport": {
+          "id": "yangon-airport",
+          "name": "Yangon International Airport",
+          "lon": 96.1332015991,
+          "lat": 16.907300949099998,
+          "sourceUrl": "https://ourairports.com/airports/VYYY/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/26576175",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          95.97314272669976,
+          16.615832010066022,
+          96.34884047330024,
+          16.977593789933977
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/26576175",
+          "sourceUrl": "https://www.openstreetmap.org/node/26576175",
+          "sourceRecord": {
+            "ref": "node/26576175",
+            "tags": {
+              "alt_name:fr": "Yangoun",
+              "capital": "4",
+              "int_name": "Rangoon",
+              "loc_name": "ရန်ကုန်",
+              "name": "ရန်ကုန်",
+              "name:af": "Yangon",
+              "name:am": "ያንጎን",
+              "name:ar": "يانغون",
+              "name:az": "Yanqon",
+              "name:ba": "Янгон",
+              "name:be": "Янгон",
+              "name:bg": "Янгон",
+              "name:bn": "ইয়াঙ্গুন",
+              "name:bo": "ཡང་ཀོང་།",
+              "name:br": "Yangon",
+              "name:ca": "Yangon",
+              "name:ce": "Янгон",
+              "name:cs": "Yangon",
+              "name:cv": "Янгон",
+              "name:cy": "Yangon",
+              "name:da": "Rangoon",
+              "name:de": "Yangon",
+              "name:el": "Γιανγκόν",
+              "name:en": "Yangon",
+              "name:eo": "Jangono",
+              "name:es": "Rangún",
+              "name:et": "Yangon",
+              "name:eu": "Yangon",
+              "name:fa": "یانگون",
+              "name:fi": "Yangon",
+              "name:fr": "Rangoun",
+              "name:fy": "Rangoon",
+              "name:ga": "Rangún",
+              "name:gl": "Yangon",
+              "name:ha": "Yangon",
+              "name:he": "יאנגון",
+              "name:hi": "यांगून",
+              "name:hr": "Yangon",
+              "name:ht": "Yangon",
+              "name:hu": "Jangon",
+              "name:hy": "Յանգոն",
+              "name:id": "Yangon",
+              "name:ie": "Yangon",
+              "name:io": "Yangon",
+              "name:is": "Jangún",
+              "name:it": "Yangon",
+              "name:ja": "ヤンゴン",
+              "name:jv": "Yangon",
+              "name:ka": "იანგონი",
+              "name:kk": "Янгон",
+              "name:km": "រ៉ន់កុន់",
+              "name:kn": "ಯಂಗೊನ್",
+              "name:ko": "양곤",
+              "name:ku": "Yangon",
+              "name:ky": "Рангун",
+              "name:la": "Rangunum",
+              "name:lb": "Rangun",
+              "name:lo": "ຢ່າງກຸ້ງ",
+              "name:lt": "Rangūnas",
+              "name:lv": "Jangona",
+              "name:mg": "Rangun",
+              "name:mk": "Јангон",
+              "name:ml": "യംഗോൺ",
+              "name:mn": "Янгон",
+              "name:mr": "यांगून",
+              "name:ms": "Yangon",
+              "name:my": "ရန်ကုန်",
+              "name:nb": "Yangon",
+              "name:ne": "रङ्गुन",
+              "name:nl": "Yangon",
+              "name:nn": "Yangon",
+              "name:nv": "Anaʼí Ádaadinii",
+              "name:oc": "Rangon",
+              "name:or": "ୟାଂଗୋନ",
+              "name:os": "Янгон",
+              "name:pa": "ਯਾਂਗੋਨ",
+              "name:pl": "Yangon",
+              "name:pt": "Rangum",
+              "name:ro": "Yangon",
+              "name:ru": "Янгон",
+              "name:sa": "रङ्गून",
+              "name:sc": "Rangoon",
+              "name:sd": "يانگون",
+              "name:shn": "တႃႈၵုင်ႈ",
+              "name:sk": "Rangún",
+              "name:sl": "Jangon",
+              "name:sq": "Yangon",
+              "name:sr": "Рангун",
+              "name:sv": "Rangoon",
+              "name:sw": "Yangon",
+              "name:ta": "யங்கோன்",
+              "name:te": "యాంగోన్",
+              "name:tg": "Янгон",
+              "name:th": "ย่างกุ้ง",
+              "name:tk": "Ýangon",
+              "name:tl": "Yangon",
+              "name:tr": "Yangon",
+              "name:ug": "Ran'gon",
+              "name:uk": "Янгон",
+              "name:ur": "یانگون",
+              "name:uz": "Yangon",
+              "name:vi": "Ngưỡng Quang",
+              "name:za": "Yangjgvangh",
+              "name:zh": "仰光",
+              "old_name:bn": "রেঙ্গুন",
+              "place": "city",
+              "population": "5160512",
+              "population:date": "2014",
+              "source": "geonames.org",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q37995",
+              "wikipedia": "en:Yangon"
+            },
+            "lon": 96.1609916,
+            "lat": 16.7967129
+          },
+          "pbfSha256": "9ff926b35db2209c43b162dabcc50fb6d133341ed2f34a629e6cc31e598dbfa9"
+        },
+        "airport": {
+          "rowNumber": 82231,
+          "row": {
+            "id": "26744",
+            "ident": "VYYY",
+            "type": "large_airport",
+            "name": "Yangon International Airport",
+            "latitude_deg": "16.907300949099998",
+            "longitude_deg": "96.1332015991",
+            "elevation_ft": "109",
+            "continent": "AS",
+            "iso_country": "MM",
+            "iso_region": "MM-06",
+            "municipality": "Yangon",
+            "scheduled_service": "yes",
+            "icao_code": "VYYY",
+            "iata_code": "RGN",
+            "gps_code": "VYYY",
+            "local_code": "",
+            "home_link": "http://www.yangonairportonline.com",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Yangon_International_Airport",
+            "keywords": "Rangoon"
+          },
+          "rowSha256": "d79666011832ecd6fd76640709c7c19693c2210ae52dbf798bf0eccdc0801627",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "VYYY",
+            "sourceUrl": "https://ourairports.com/airports/VYYY/",
+            "matchedIdent": "VYYY",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/VYYY/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "MM,CC",
+              "+1647+09610",
+              "Asia/Yangon"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Yangon",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "MM,CC",
+              "+1647+09610",
+              "Asia/Yangon"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/myanmar-261011.osm.pbf",
+          "bytes": 285338385,
+          "sha256": "9ff926b35db2209c43b162dabcc50fb6d133341ed2f34a629e6cc31e598dbfa9",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/4362297",
+          "way/24315046",
+          "way/24315093",
+          "way/902655369",
+          "way/952641176",
+          "way/952641177",
+          "way/953270902",
+          "way/953270903",
+          "way/1328708658",
+          "way/1328708660",
+          "way/1328708666",
+          "way/1328708667",
+          "way/1328708668",
+          "way/1328708669",
+          "way/1328708670",
+          "way/1329603756",
+          "way/1329603758",
+          "way/1329616596",
+          "way/1329616598",
+          "way/1329616600"
+        ],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              16.615832010066022,
+              95.97314272669976,
+              16.977593789933977,
+              96.34884047330024
+            ],
+            "core": [
+              16.751492677516506,
+              96.11406317343565,
+              16.841933122483493,
+              96.20792002656435
+            ],
+            "outline": [
+              16.56583201006602,
+              95.92314272669977,
+              17.027593789933977,
+              96.39884047330024
+            ],
+            "wide": [
+              16.01583201006602,
+              95.37314272669977,
+              17.577593789933978,
+              96.94884047330024
+            ]
+          },
+          "airportMarginMetres": 7772.2794110130235,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "yangon",
+      "extractSha256": {
+        "places": "6a3b9d7da80ff74626e86322efe8f9c5f77b40956b83475978758d1732c8203e",
+        "extras": "6c19ba22c0defe4eea87708f4115c01dd702d76c7f32afc29c712f6bc92f4d3e",
+        "water": "9ea0df45d793e0023da8f1d8d6bdcf1e053b5dceddcbfbfb4fa56102bb3bc727",
+        "landuse": "524d2a2e78f53982bd2ee71a62eccde8ee77f5297c6a489da8114ee243ccd655",
+        "roads": "518bcf97802f91023c5d622c168ebe5bb43748a7feceb6b9a1f92cf3afb9f54d"
+      },
+      "sourceJob": {
+        "city": "yangon",
+        "sourceRunId": 38307668383,
+        "sourceArtifact": "city-bootstrap-mm-28439a3230520b77094d69937eefd9c9b5857b46",
+        "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+        "datasetSha256": "9ff926b35db2209c43b162dabcc50fb6d133341ed2f34a629e6cc31e598dbfa9",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "6a3b9d7da80ff74626e86322efe8f9c5f77b40956b83475978758d1732c8203e",
+          "extras": "6c19ba22c0defe4eea87708f4115c01dd702d76c7f32afc29c712f6bc92f4d3e",
+          "water": "9ea0df45d793e0023da8f1d8d6bdcf1e053b5dceddcbfbfb4fa56102bb3bc727",
+          "landuse": "524d2a2e78f53982bd2ee71a62eccde8ee77f5297c6a489da8114ee243ccd655",
+          "roads": "518bcf97802f91023c5d622c168ebe5bb43748a7feceb6b9a1f92cf3afb9f54d"
+        }
+      }
+    }
+  ]
+}

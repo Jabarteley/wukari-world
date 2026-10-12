@@ -379,7 +379,7 @@ The Worker runs the same flows in `deploy/cloudflare.test.ts` ("Cloudflare: acco
 
 ## 12. The welcome message
 
-A new account is sent **one** e-mail, to the address its owner has confirmed, through the game's existing mailer. It is a message about the account the person has just made — not a subscription — so it needs no marketing consent, carries no unsubscribe link (nothing follows it) and is never sent again. It has a text part and an HTML part that say the same thing, one button to the game, no image and nothing that reports whether it was opened; every value written into it is escaped, and its subject carries nothing a person chose.
+A new account is sent **one** e-mail, to the address its owner has confirmed, through the game's existing mailer. It is a message about the account the person has just made — not a subscription — so it needs no marketing consent, carries no unsubscribe link (nothing follows it) and is never sent again. It has a text part and an HTML part that say the same thing, one button to the game, one picture that is a static file of the game itself (public/mail/, shown at the public origin) and nothing that reports whether it was opened; every value written into it is escaped, and its subject carries nothing a person chose.
 
 - **Owed** from the transaction that *creates* the account (`welcome: 'pending'`, and an entry in a queue of at most 500). An account is created by a verified token only; a guest, an unverified address, a later sign-in, another device and a restore create nothing and so owe nothing.
 - **Claimed** in a saved transaction before each attempt. Only the claimant sends, so two requests — or a request and the retry — can never both send it.

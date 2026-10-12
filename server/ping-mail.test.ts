@@ -54,7 +54,7 @@ test('the text part says what the HTML part says', () => {
 test('a hostile name or place is only ever text', () => {
   const name = '<img src=x onerror=alert(1)>"\'&', place = 'at <script>fetch("//evil.example")</script> & "Co", Lagos';
   const mail = make({ from: name, place });
-  assert.ok(!/<img|<script|onerror=alert\(1\)>/i.test(mail.html.replace(/<style>[\s\S]*?<\/style>/, '')), 'no markup from a name or a place');
+  assert.ok(!/<script|onerror=alert\(1\)>/i.test(mail.html.replace(/<style>[\s\S]*?<\/style>/, '')) && (mail.html.match(/<img /g) ?? []).length === 1, 'no markup from a name or a place: the one picture is the game’s own');
   assert.ok(mail.html.includes('&lt;img src=x onerror=alert'), 'the name is escaped');
   assert.ok(mail.html.includes('&lt;script&gt;fetch(&quot;//evil.example&quot;)&lt;/script&gt; &amp; &quot;Co&quot;'));
   assert.equal((mail.html.match(/<a /g) ?? []).length, 4, 'the button and the three footer links: a name cannot add one');
@@ -68,21 +68,22 @@ test('a hostile name or place is only ever text', () => {
 
 test('nothing is fetched when it is read, nothing reports back, and every address in it is one it was given', () => {
   for (const mail of [make(), make({ source: 'account', contact: '' }), make({ from: '<b>x</b>', place: 'at "x", <y>' })]) {
-    assert.ok(!/<img|<picture|<video|<audio|<iframe|<object|<embed|<link|<script|<form|<input|<svg|background=|srcset=|\bsrc=|url\(|@import|@font-face/i.test(mail.html), 'no image, no script, no form, nothing loaded');
+    assert.ok(!/<picture|<video|<audio|<iframe|<object|<embed|<link|<script|<form|<input|<svg|background=|url\(|@import|@font-face|data:/i.test(mail.html), 'no script, no form, nothing loaded but the one picture');
+    assert.deepEqual([...mail.html.matchAll(/<img [^>]*>/g)].length, 1); assert.ok(mail.html.includes(`src="${ORIGIN}/mail/ping-600.jpg" srcset="${ORIGIN}/mail/ping.jpg 2x"`), 'the picture is a static file of the game at its own origin');
     const hrefs = [...mail.html.matchAll(/href="([^"]*)"/g)].map((match) => (match[1] ?? '').replace(/&amp;/g, '&'));
     assert.deepEqual(hrefs.sort(), [JOIN, links.stopUrl, links.unsubscribeUrl, `${ORIGIN}/?go=touch`].sort());
     const urls = [...`${mail.html}\n${mail.text}`.matchAll(/https?:\/\/[^\s"'<>)]+/g)].map((match) => match[0].replace(/&amp;/g, '&'));
-    for (const url of urls) assert.ok([JOIN, links.stopUrl, links.unsubscribeUrl, `${ORIGIN}/?go=touch`].includes(url), `an address it was not given: ${url}`);
+    for (const url of urls) assert.ok([JOIN, links.stopUrl, links.unsubscribeUrl, `${ORIGIN}/?go=touch`, `${ORIGIN}/mail/ping-600.jpg`, `${ORIGIN}/mail/ping.jpg`].includes(url), `an address it was not given: ${url}`);
     // The join link is the plain address: no redirect, no counter, no identifier beside the token.
     assert.ok(!/[?&](utm_|track|open|click|pixel|mid|rid)=/i.test(`${mail.html}${mail.text}`));
   }
 });
 
-test('it has the look of the welcome message: the same header, card, button and dark colours', () => {
+test('it is in the frame of the welcome message: the same header, picture row, card, button and dark colours', () => {
   const mail = make().html, welcome = accountWelcomeMail({ name: 'Ada', playUrl: `${ORIGIN}/` }).html;
   const style = (html: string): string => /<style>([\s\S]*?)<\/style>/.exec(html)?.[1] ?? '';
   assert.equal(style(mail), style(welcome));
-  for (const piece of ['background-image:linear-gradient(135deg,#2f8055 0%,#256b45 55%,#1b5235 100%)', 'max-width:560px', 'class="aw-card" bgcolor="#ffffff"', 'padding:14px 34px', '<meta name="color-scheme" content="light dark">', 'The whole world, to live in']) {
+  for (const piece of ['background-image:linear-gradient(135deg,#2f8055 0%,#256b45 55%,#1b5235 100%)', 'max-width:600px', 'class="aw-card aw-pad" bgcolor="#ffffff"', 'display:block;padding:16px 24px', 'display:block;width:100%;max-width:600px;height:auto', '<meta name="color-scheme" content="light dark">', 'The whole world, to live in']) {
     assert.ok(mail.includes(piece) && welcome.includes(piece), piece);
   }
 });

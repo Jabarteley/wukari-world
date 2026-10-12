@@ -1,7 +1,7 @@
 /**
  * OWNER: growth
- * The comeback e-mails (docs/COMEBACK-MAIL.md), as a pure function of plain data: { subject, text, html } in the layout
- * of ./templates.ts. One button, no image, no tracking pixel, no third-party asset. Every value written into HTML is
+ * The comeback e-mails (docs/COMEBACK-MAIL.md), as a pure function of plain data: { subject, text, html } in the frame
+ * of ./frame.ts. One button, one picture that is a static file of the game itself, no tracking pixel, no third-party asset. Every value written into HTML is
  * escaped; the only player-chosen text is a display name or an event title, both of which passed the text filter.
  * The footer says why the mail was sent and carries three links that need no sign-in: stop this kind, unsubscribe from
  * everything, and the preferences in the game.
@@ -29,5 +29,5 @@ export function comebackMail({ plan, name, now, links, contact, source = 'contac
     : `You get this because you asked ${BRAND}, a digital world you can live in, to e-mail you about your character. A few a week at most.`;
   const foot = `${esc(why)}<br><a href="${esc(links.stopUrl)}" style="color:#5b6472">${esc(stop)}</a> · <a href="${esc(links.unsubscribeUrl)}" style="color:#5b6472">Unsubscribe from everything</a> · <a href="${esc(prefsUrl)}" style="color:#5b6472">Change what I get</a>${contact ? `<br>${esc(contact)}` : ''}`;
   const footText = `${why}\n${stop}: ${links.stopUrl}\nUnsubscribe from everything: ${links.unsubscribeUrl}\nChange what I get: ${prefsUrl}${contact ? `\n${contact}` : ''}`;
-  return build(words.subject, { heading: words.heading, intro: words.intro, lines: words.lines, button: { label: words.button.label, url: goUrl(links.origin, words.button.go) }, foot, footText });
+  return build(words.subject, { heading: words.heading, intro: words.intro, lines: words.lines, button: { label: words.button.label, url: goUrl(links.origin, words.button.go) }, hero: 'home', foot, footText });
 }

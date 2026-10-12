@@ -115,7 +115,8 @@ test('a need alert: the worst need only, in the character’s voice, with one bu
   assert.equal(mail.headers['List-Unsubscribe-Post'], 'List-Unsubscribe=One-Click');
   assert.match(must(mail.headers['List-Unsubscribe']), /^<https:\/\/play\.example\/e\/unsub\?t=[A-Za-z0-9_.-]+>$/);
   assert.equal((html.match(/<a /g) ?? []).length, 4, 'one button and three footer links');
-  assert.equal(/<img|<script|<link|url\(|http:\/\//i.test(html), false, 'no image, tracking pixel or third-party asset');
+  assert.equal(/<script|<link|<form|url\(|http:\/\//i.test(html), false, 'no script, form, stylesheet or third-party asset');
+  assert.deepEqual([...html.matchAll(/<img [^>]*>/g)].map(match => /^<img src="https:\/\/play\.example\/mail\/home-600\.jpg" srcset="https:\/\/play\.example\/mail\/home\.jpg 2x" width="600" height="300" alt="[^"]+" style="display:block;/.test(match[0])), [true], 'one picture, the game’s own, at its own origin: no pixel, no inline data');
   assert.equal(/example\.com/.test(text + html), false, 'no address in the body');
   // Asked again, and an hour on: nothing (claimed), and the cooldown holds for three days.
   for (let i = 0; i < 3; i++) { await h.run(); h.f.advance(HOUR); }
@@ -419,7 +420,8 @@ test('templates: a hostile name or title is escaped, and every type reads well',
   ];
   for (const plan of plans) {
     const mail = comebackMail({ plan, name: hostile, now: 100000, links, contact: 'Allworld <x>' });
-    assert.equal(/<img|<x>/.test(mail.html), false, `${plan.type}: nothing a player wrote is HTML`);
+    assert.equal((mail.html.match(/<img /g) ?? []).length, 1, `${plan.type}: the one picture is the game’s own`);
+    assert.equal(/<x>/.test(mail.html), false, `${plan.type}: nothing a player wrote is HTML`);
     assert.equal(mail.html.includes('&lt;'), true, plan.type);
     assert.match(mail.text, /https:\/\/play\.example\/\?go=/);
   }

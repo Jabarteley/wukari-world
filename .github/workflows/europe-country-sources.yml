@@ -5,7 +5,9 @@ on:
     branches: ['codex/world-europe-20261011']
     paths:
       - 'scripts/geo/factory/europe-ie.json'
+      - 'scripts/geo/factory/europe-gr.json'
       - 'scripts/geo/factory/europe-nl.json'
+      - 'scripts/geo/factory/europe-it-naples.json'
       - '.github/workflows/europe-country-sources.yml'
 
 permissions:
@@ -51,6 +53,10 @@ jobs:
                   selected.append('nl')
               if 'scripts/geo/factory/europe-ie.json' in paths:
                   selected.append('ie')
+              if 'scripts/geo/factory/europe-gr.json' in paths:
+                  selected.append('gr')
+              if 'scripts/geo/factory/europe-it-naples.json' in paths:
+                  selected.append('it-naples')
               countries = json.dumps(selected, separators=(',', ':'))
 
           print(f'Source countries: {countries}')

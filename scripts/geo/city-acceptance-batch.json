@@ -2,10 +2,21 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-a-prior-six",
-      "appSha": "d0696c6eb157d8b1e33a7cbb49d8f784fa72ec6b",
+      "id": "release-c-africa-1",
+      "appSha": "35d29fa68b02e128194a9f1e24385cfee697c4d1",
       "driverSha": "05840d84c453f1d60d6d8ecac0a5b6ade60841e8",
-      "cities": ["bogota","buenos-aires","dubai","mexico-city","santiago","suva"],
+      "cities": [
+        "bissau",
+        "praia",
+        "monrovia",
+        "nouakchott",
+        "niamey",
+        "conakry",
+        "sao-tome",
+        "malabo",
+        "djibouti",
+        "moroni"
+      ],
       "roundtrip": true
     }
   ]

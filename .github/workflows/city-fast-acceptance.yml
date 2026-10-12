@@ -65,11 +65,13 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Typecheck
         working-directory: app
+        env:
+          NODE_OPTIONS: --max-old-space-size=14336
         run: set -o pipefail; npm run typecheck 2>&1 | tee "$ACCEPTANCE_LOGS/typecheck.log"
       - name: Build once
         working-directory: app
         env:
-          NODE_OPTIONS: --max-old-space-size=8192
+          NODE_OPTIONS: --max-old-space-size=14336
         run: set -o pipefail; npm run build 2>&1 | tee "$ACCEPTANCE_LOGS/build.log"
       - name: Download size
         working-directory: app

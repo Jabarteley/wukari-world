@@ -36,54 +36,72 @@ export const CONFIG = {
     {
       "slot": "transit",
       "kind": "hub",
+      "category": "civic",
+      "icon": "train",
       "ref": "node/252821911",
       "line": "Adamstown, a mapped place for the game."
     },
     {
       "slot": "meal",
       "kind": "buka",
+      "category": "food",
+      "icon": "food",
       "ref": "node/1752476235",
       "line": "Bon Appétit, a mapped place for the game."
     },
     {
       "slot": "community",
       "kind": "office",
+      "category": "work",
+      "icon": "school",
       "ref": "node/651804747",
       "line": "Dublin Business School, a mapped place for the game."
     },
     {
       "slot": "clinic",
       "kind": "hospital",
+      "category": "care",
+      "icon": "health",
       "ref": "way/12219521",
       "line": "Connolly Hospital, a mapped place for the game."
     },
     {
       "slot": "recreation",
       "kind": "park",
+      "category": "fun",
+      "icon": "park",
       "ref": "relation/7222370",
       "line": "Tymon Park, a mapped place for the game."
     },
     {
       "slot": "market",
       "kind": "market",
+      "category": "work",
+      "icon": "market",
       "ref": "way/28008541",
       "line": "Donaghmede Shopping Centre, a mapped place for the game."
     },
     {
       "slot": "worship",
       "kind": "worship",
+      "category": "fun",
+      "icon": "worship",
       "ref": "way/73561110",
       "line": "Kill o' the Grange, a mapped place for the game."
     },
     {
       "slot": "polling",
       "kind": "polling",
+      "category": "civic",
+      "icon": "poll",
       "ref": "way/12359723",
       "line": "Mayor Square; voting here is a fictional game activity."
     },
     {
       "slot": "government",
       "kind": "statehouse",
+      "category": "civic",
+      "icon": "civic",
       "ref": "way/26636056",
       "line": "The Presidential Residence, a mapped place for the game."
     },

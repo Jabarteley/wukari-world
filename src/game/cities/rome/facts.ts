@@ -36,6 +36,7 @@ export const FACTS = {
   ],
   "names": {
     "area": "Rome",
+    "unit": "quartiere",
     "roadHub": "Roma Prenestina"
   }
 } satisfies DestinationFacts

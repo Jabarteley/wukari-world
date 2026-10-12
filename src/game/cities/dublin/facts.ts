@@ -36,6 +36,7 @@ export const FACTS = {
   ],
   "names": {
     "area": "Dublin",
+    "unit": "neighbourhood",
     "roadHub": "Adamstown"
   }
 } satisfies DestinationFacts

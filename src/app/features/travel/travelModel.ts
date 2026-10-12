@@ -1,7 +1,7 @@
 import { civicTitle, civicOffice, cityUnit } from '../../../game/cities/terminology.ts'
 import { cityCatalogueEntry } from '../../../game/cities/registry.ts'
-import { ATLAS_LEVELS, countryAtlasLevel } from '../../../map3d/regions.ts'
-import type { AtlasLevelId } from '../../../map3d/types.ts'
+import { ATLAS_LEVEL_METADATA, countryAtlasLevel } from '../../../game/cities/atlasMetadata.ts'
+import type { AtlasLevelId } from '../../../game/cities/atlasMetadata.ts'
 // Getting around without a DOM: the one place that decides what a trip costs, why Go is off, what
 // the trip bar says, which places the Map lists and what each Ride row offers. It is the typed
 // port of src/ui/panels/world-ui.js (the helpers the Map card and the Ride app shared, so the two
@@ -134,13 +134,13 @@ export function mapLevels(cityName: string, layer: 'city' | 'world', atlasLevel 
   const country = foreign ? catalogue?.countryName || catalogue?.countryISO?.toUpperCase() || 'Country' : 'Nigeria'
   const countryISO = foreign ? catalogue!.countryISO! : 'ng'
   const countryAtlasId = countryAtlasLevel(countryISO)
-  const foundCountryAtlasIndex = ATLAS_LEVELS.findIndex((level) => level.id === countryAtlasId)
+  const foundCountryAtlasIndex = ATLAS_LEVEL_METADATA.findIndex((level) => level.id === countryAtlasId)
   const countryAtlasIndex = foundCountryAtlasIndex < 0 ? 1 : foundCountryAtlasIndex
-  const countryAtlas = ATLAS_LEVELS[countryAtlasIndex]!
+  const countryAtlas = ATLAS_LEVEL_METADATA[countryAtlasIndex]!
   const continentAtlas = countryAtlas.continent
     ? countryAtlas
-    : ATLAS_LEVELS.find((level) => level.id === countryAtlas.parent) ?? ATLAS_LEVELS[1]!
-  const continentAtlasIndex = ATLAS_LEVELS.findIndex((level) => level.id === continentAtlas.id)
+    : ATLAS_LEVEL_METADATA.find((level) => level.id === countryAtlas.parent) ?? ATLAS_LEVEL_METADATA[1]!
+  const continentAtlasIndex = ATLAS_LEVEL_METADATA.findIndex((level) => level.id === continentAtlas.id)
   const wide: MapLevel[] = [
     { id: 'world', label: 'World', atlas: 0, current: layer === 'world' && atlasLevel === 0 },
     { id: continentAtlas.id, label: continentAtlas.name, atlas: continentAtlasIndex, current: layer === 'world' && atlasLevel === continentAtlasIndex && continentAtlasIndex !== countryAtlasIndex },

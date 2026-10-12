@@ -36,54 +36,72 @@ export const CONFIG = {
     {
       "slot": "transit",
       "kind": "hub",
+      "category": "civic",
+      "icon": "train",
       "ref": "node/24694686",
       "line": "Roma Prenestina, a mapped place for the game."
     },
     {
       "slot": "meal",
       "kind": "buka",
+      "category": "food",
+      "icon": "food",
       "ref": "node/2138753806",
       "line": "Cencio la Parolaccia, a mapped place for the game."
     },
     {
       "slot": "community",
       "kind": "office",
+      "category": "work",
+      "icon": "school",
       "ref": "relation/5763542",
       "line": "Villa Mondragone, a mapped place for the game."
     },
     {
       "slot": "clinic",
       "kind": "hospital",
+      "category": "care",
+      "icon": "health",
       "ref": "relation/14312289",
       "line": "Ospedale Sant'Andrea, a mapped place for the game."
     },
     {
       "slot": "recreation",
       "kind": "park",
+      "category": "fun",
+      "icon": "park",
       "ref": "relation/2426556",
       "line": "Parco Centrale del Lago, a mapped place for the game."
     },
     {
       "slot": "market",
       "kind": "market",
+      "category": "work",
+      "icon": "market",
       "ref": "way/204398096",
       "line": "Porta di Roma, a mapped place for the game."
     },
     {
       "slot": "worship",
       "kind": "worship",
+      "category": "fun",
+      "icon": "worship",
       "ref": "node/6861964837",
       "line": "Chiesa di Sant'Ippolito e Lucia a Porto, a mapped place for the game."
     },
     {
       "slot": "polling",
       "kind": "polling",
+      "category": "civic",
+      "icon": "poll",
       "ref": "way/431374177",
       "line": "Municipio Roma VI; voting here is a fictional game activity."
     },
     {
       "slot": "government",
       "kind": "statehouse",
+      "category": "civic",
+      "icon": "civic",
       "ref": "way/186037229",
       "line": "Palazzo Orsini, a mapped place for the game."
     },

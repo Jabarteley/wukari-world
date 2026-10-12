@@ -1,5 +1,6 @@
 """Pinned same-country source bootstrap, with candidate receipts and explicit holds."""
 import argparse
+import hashlib
 import importlib.util
 import json
 import os
@@ -7,6 +8,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import time
 from datetime import date
 
 HERE = Path(__file__).resolve().parent
@@ -34,6 +36,24 @@ def validate(table):
         raise ValueError('dated PBF URL and snapshot date disagree')
     return seeds, source, airports
 
+def digest_many(path, algorithms):
+    hashes = {algorithm: hashlib.new(algorithm) for algorithm in algorithms}
+    started = time.monotonic()
+    size = Path(path).stat().st_size
+    read = 0
+    last_reported = 0
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            for checksum in hashes.values(): checksum.update(block)
+            read += len(block)
+            if read - last_reported >= 64 * 1024 * 1024:
+                elapsed = time.monotonic() - started
+                print(f'[digest] {Path(path).name} {read}/{size} bytes; elapsed={elapsed:.0f}s; rate={read / max(elapsed, 0.001) / (1024 * 1024):.2f} MiB/s', flush=True)
+                last_reported = read
+    elapsed = time.monotonic() - started
+    print(f'[digest] {Path(path).name} complete: {read}/{size} bytes; elapsed={elapsed:.0f}s; rate={read / max(elapsed, 0.001) / (1024 * 1024):.2f} MiB/s', flush=True)
+    return {algorithm: checksum.hexdigest() for algorithm, checksum in hashes.items()}
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--table', required=True)
@@ -52,8 +72,10 @@ def main():
         if sha != BASELINE: raise ValueError('geometry checkout SHA mismatch')
         pbf, csv = out / 'downloads/country.osm.pbf', out / 'downloads/airports.csv'
         source_http, csv_http = download(source['url'], pbf), download(airports['url'], csv)
-        if pbf.stat().st_size != source['bytes'] or digest(pbf, 'md5') != source['md5']: raise ValueError('PBF byte count/MD5 mismatch')
-        pbf_sha, csv_sha = digest(pbf), digest(csv)
+        if pbf.stat().st_size != source['bytes']: raise ValueError('PBF byte count mismatch')
+        pbf_digests = digest_many(pbf, ('md5', 'sha256'))
+        if pbf_digests['md5'] != source['md5']: raise ValueError('PBF MD5 mismatch')
+        pbf_sha, csv_sha = pbf_digests['sha256'], digest(csv)
         receipts = {'pbf': {**source, 'sha256': pbf_sha, 'http': source_http}, 'airports': {**airports, 'sha256': csv_sha, 'http': csv_http}, 'geometrySourceSha': sha, 'extractorSha256': digest(EXTRACTOR)}
         (out / 'receipts/downloads.json').write_text(json.dumps(receipts, indent=2))
         zone, countries = Path('/usr/share/zoneinfo/zone.tab'), Path('/usr/share/zoneinfo/iso3166.tab')

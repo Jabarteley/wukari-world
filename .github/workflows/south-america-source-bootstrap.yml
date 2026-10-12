@@ -3,7 +3,7 @@ name: South America pinned country source batches
 on:
   push:
     branches: ['codex/world-south-america-20261011']
-    paths: ['scripts/geo/factory/south-america-br.json', '.github/workflows/south-america-source-bootstrap.yml']
+    paths: ['scripts/geo/factory/south-america-br.json', 'scripts/geo/factory/bootstrap/**', '.github/workflows/south-america-source-bootstrap.yml']
 
 permissions:
   contents: read
@@ -15,7 +15,7 @@ concurrency:
 jobs:
   source:
     runs-on: ubuntu-24.04
-    timeout-minutes: 240
+    timeout-minutes: 360
     strategy:
       fail-fast: false
       max-parallel: 1

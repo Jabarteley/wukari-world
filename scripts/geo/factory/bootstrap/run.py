@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+import threading
 import time
 from urllib.request import urlopen
 
@@ -38,18 +39,58 @@ def validate(table):
 
 def download(url, destination):
     for attempt in range(3):
+        started = time.monotonic()
+        downloaded = 0
+        total = None
+        stopped = threading.Event()
+        def heartbeat():
+            while not stopped.wait(30):
+                elapsed = time.monotonic() - started
+                size = total if total is not None else 'unknown'
+                rate = downloaded / max(elapsed, 0.001) / (1024 * 1024)
+                print(f'[download] {destination.name} active: {downloaded}/{size} bytes; elapsed={elapsed:.0f}s; rate={rate:.2f} MiB/s', flush=True)
+        reporter = threading.Thread(target=heartbeat, daemon=True)
+        reporter.start()
+        print(f'[download] {destination.name} attempt {attempt + 1}/3 started', flush=True)
         try:
             with urlopen(url, timeout=90) as response, destination.open('wb') as output:
-                shutil.copyfileobj(response, output, 1024 * 1024)
-                return {'requestedUrl': url, 'resolvedUrl': response.url, 'lastModified': response.headers.get('Last-Modified')}
-        except Exception:
+                length = response.headers.get('Content-Length')
+                total = int(length) if length and length.isdigit() else None
+                print(f'[download] {destination.name} Content-Length={total if total is not None else "unknown"} bytes', flush=True)
+                last_reported_bytes = 0
+                while block := response.read(1024 * 1024):
+                    output.write(block)
+                    downloaded += len(block)
+                    now = time.monotonic()
+                    if downloaded - last_reported_bytes >= 64 * 1024 * 1024:
+                        elapsed = now - started
+                        print(f'[download] {destination.name} {downloaded}/{total if total is not None else "unknown"} bytes; elapsed={elapsed:.0f}s; rate={downloaded / elapsed / (1024 * 1024):.2f} MiB/s', flush=True)
+                        last_reported_bytes = downloaded
+                elapsed = time.monotonic() - started
+                print(f'[download] {destination.name} complete: {downloaded}/{total if total is not None else "unknown"} bytes; elapsed={elapsed:.0f}s; rate={downloaded / max(elapsed, 0.001) / (1024 * 1024):.2f} MiB/s', flush=True)
+                source_http = {'requestedUrl': url, 'resolvedUrl': response.url, 'lastModified': response.headers.get('Last-Modified')}
+        except Exception as error:
+            print(f'[download] {destination.name} attempt {attempt + 1}/3 failed after {downloaded} bytes and {time.monotonic() - started:.0f}s: {type(error).__name__}: {error}', flush=True)
             if attempt == 2: raise
             time.sleep(2)
+            continue
+        finally:
+            stopped.set()
+            reporter.join()
+        return source_http
 
 def stage(arguments, logfile):
-    result = subprocess.run(arguments, capture_output=True, text=True)
-    logfile.write_text(result.stdout + result.stderr)
-    if result.returncode: raise ValueError('stage failed: ' + logfile.name)
+    started = time.monotonic()
+    print(f'[stage] {logfile.name} started', flush=True)
+    with logfile.open('w') as output, subprocess.Popen(arguments, stdout=output, stderr=subprocess.STDOUT) as process:
+        while True:
+            try:
+                returncode = process.wait(timeout=30)
+                break
+            except subprocess.TimeoutExpired:
+                print(f'[stage] {logfile.name} still running; elapsed={time.monotonic() - started:.0f}s', flush=True)
+    print(f'[stage] {logfile.name} finished; elapsed={time.monotonic() - started:.0f}s; exit={returncode}', flush=True)
+    if returncode: raise ValueError('stage failed: ' + logfile.name)
 
 def main():
     parser = argparse.ArgumentParser()

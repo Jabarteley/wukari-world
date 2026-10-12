@@ -223,6 +223,8 @@ async function atlasPick(b: Browser, value: string, prefix: string): Promise<voi
   await b.waitFor(shownNow('[data-atlas-search]'), 15000, 'search');
   await b.type('[data-atlas-search]', '');
   const pick = `[data-atlas-pick="${value}"]`;
+  // The level chip changes before the new level's sheet has loaded and its rows are drawn: wait for the entry itself (up to 30 s) before judging it.
+  await b.waitFor(`!!document.querySelector(${JSON.stringify(pick)})`, 30000, `atlas entry ${value}`).catch(() => undefined);
   const row = await b.eval<{ name: string; tag: string; open: boolean }>(`(() => { const r = document.querySelector(${JSON.stringify(pick)}); return {name:r?.querySelector('b')?.textContent?.trim() || '',tag:r?.querySelector('em')?.textContent?.trim() || '',open:!!r && (r.classList.contains('is-open') || r.classList.contains('is-here'))}; })()`);
   if (!row.name || !row.open) throw new Error(`Missing or not-open atlas entry ${value}: ${JSON.stringify(row)}`);
   await b.type('[data-atlas-search]', row.name);
@@ -283,7 +285,14 @@ async function openMap(b: Browser, key: string): Promise<void> {
   await b.eval(`window.__rafs = 0; (function tick(){ window.__rafs++; requestAnimationFrame(tick); })(); true`);
   const t0 = Date.now();
   await b.click('[data-nav="map"]');
-  if (!(await b.waitFor<boolean>(shownNow('.map-handle'), 8000, 'the map panel').catch(() => false))) {
+  let shown = await b.waitFor<boolean>(shownNow('.map-handle'), 8000, 'the map panel').catch(() => false);
+  // A touch tap can be dropped while a freshly reloaded page is still busy (the Map tab then never becomes current). Tap again, natively, once;
+  // if the tab did become current the map is only slow, so just wait longer. A truly dead tab still fails after 25 s in total.
+  if (!shown) {
+    if (!(await b.eval<boolean>(`document.querySelector('[data-nav="map"]')?.getAttribute('aria-current') === 'page'`))) { notes.push(`${key}: first touch tap on the Map tab was not taken; tapped again`); await b.click('[data-nav="map"]'); }
+    shown = await b.waitFor<boolean>(shownNow('.map-handle'), 17000, 'the map panel').catch(() => false);
+  }
+  if (!shown) {
     if (!allowScriptedFallback) throw new Error(`${key}: native-touch-map-entry failed`);
     // A touch tap on the tab did not open the map: use the explicitly enabled scripted fallback.
     notes.push(`${key}: the touch tap on the Map tab did not open the map; opened with a scripted click`);

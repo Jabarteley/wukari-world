@@ -42,11 +42,12 @@ export class Browser {
   /** Connects to the page of a Chrome already listening on the port. */
   static async attach(debugPort: number, child: ChildProcess, profile: string): Promise<Browser> {
     const browser = new Browser(child, profile);
-    let targets: any[] | undefined;
-    for (let i = 0; i < 100 && !targets; i++) {
-      try { targets = await (await fetch(`http://127.0.0.1:${debugPort}/json`)).json() as any[]; } catch { await sleep(150); }
+    // A shared CI runner can take well over 15 s to bring Chrome up (passing jobs took up to 11 s): wait for the page target itself, up to 90 s.
+    let page: any;
+    for (let end = Date.now() + 90000; Date.now() < end && !page; ) {
+      try { page = ((await (await fetch(`http://127.0.0.1:${debugPort}/json`)).json()) as any[]).find((target) => target.type === 'page'); } catch { /* not listening yet */ }
+      if (!page) await sleep(150);
     }
-    const page = targets?.find((target) => target.type === 'page');
     if (!page) { browser.close(); throw new Error('Chrome did not start a page'); }
     browser.ws = new WebSocket(page.webSocketDebuggerUrl);
     await new Promise<void>((done, fail) => { browser.ws.onopen = () => done(); browser.ws.onerror = () => fail(new Error('DevTools socket failed')); });

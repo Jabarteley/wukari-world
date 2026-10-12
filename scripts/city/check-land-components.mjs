@@ -16,6 +16,7 @@ try {
   assert.equal(provenance.catalogueSha256, hashFile('../../src/game/cities/catalogue.generated.ts'), 'City catalogue changed');
   assert.equal(provenance.generatorSha256, hashFile('./build-land-components.py'), 'Land component generator changed');
   assert.equal(GENERATED_CITY_LAND_COMPONENTS.length, GENERATED_CITY_CATALOGUE_ROWS.length, 'City land table is incomplete');
+  /** @type {Map<string, import('../../src/game/cities/generatedLinks.ts').CityLandComponentRow>} */
   const land = new Map(GENERATED_CITY_LAND_COMPONENTS.map(row => [row[0], row]));
   assert.equal(land.size, GENERATED_CITY_LAND_COMPONENTS.length, 'Duplicate city land row');
   for (const row of GENERATED_CITY_CATALOGUE_ROWS) {

@@ -5,18 +5,18 @@
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "KI",
     "datasetSha256": "56ef5269f39bb35fa03fc7b99b8641845d629695e237ced5fd21ae1b136047a8",
-    "receiptSha256": "392cc6475ff17b7123bfaadc39c73bbe9a680fae402f895e66d13263149eb282",
-    "receiptBytes": 22786,
+    "receiptSha256": "2088102af13443930ec4cc9644204bad9c81ea41b4149721a79590ca7ad687bf",
+    "receiptBytes": 22816,
     "geometrySha256": "66150a6ca9a078ae1b954b422d02a73eba494d69fff287ad0f7bb7f981062b55",
     "geometryBytes": 161059,
-    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "scriptSha256": "f3604ee7c62cd447b762da7dd913e4686aac6ea6027e90c9ecc7fa07b0149e52",
     "relationId": 571178,
     "boundaryKey": "ki",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38248346879,
-      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-      "sourceArtifact": "city-bootstrap-ki-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceRunId": 38263512554,
+      "sourceSha": "d91c7d3902664d4573b426f757c71addbcbdfe24",
+      "sourceArtifact": "city-bootstrap-ki-d91c7d3902664d4573b426f757c71addbcbdfe24",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -321,7 +321,7 @@
           "way/924383156",
           "way/924392440"
         ],
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -363,25 +363,25 @@
       },
       "extractKey": "tarawa",
       "extractSha256": {
-        "places": "4f4ce6f1daf612e5150f24ab573a09d4ac45484f9975ff22923574fd5e6d4180",
-        "extras": "cf8b17e86c78bac51637e8af90ea808204292f498953bd1bb1505626a565a64e",
-        "water": "3a2060acdeb07d4b721b3c4a2a0b9d21293e53c9c958ba55a2a411025c928e41",
-        "landuse": "870f738c0a1cc5badd0fc7feaba08aac26264daa7da9f02518c3e305c0cbd830",
-        "roads": "6b55ffca1bb367acfe7ba9475849eea6d0cdd435d6ee7123fa7cb5fa6154ce76"
+        "places": "c19bd7a61a78e4b7b3360612fe94c1bfa678e1da4972445192eab6360f876180",
+        "extras": "e7198b37ec9a7b21442d5f44c63b7b2c2b2358c02ab57b8ef5f3e96bc1cf890e",
+        "water": "1bcab95f16b4aab7d6f2ba1b0f0ee6846cdd079abcb6a07f771a93119079e5ad",
+        "landuse": "b0264d90d75eca87cc03fb51ab62c6ae6fc87b6646cbcfa5ac2ccd137304fd32",
+        "roads": "1e933a9341a975fb0544f2a4f52a232165b072eaef36c5cab126197b7329446f"
       },
       "sourceJob": {
         "city": "tarawa",
-        "sourceRunId": 38248346879,
-        "sourceArtifact": "city-bootstrap-ki-06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceRunId": 38263512554,
+        "sourceArtifact": "city-bootstrap-ki-d91c7d3902664d4573b426f757c71addbcbdfe24",
+        "sourceSha": "d91c7d3902664d4573b426f757c71addbcbdfe24",
         "datasetSha256": "56ef5269f39bb35fa03fc7b99b8641845d629695e237ced5fd21ae1b136047a8",
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "extractSha256": {
-          "places": "4f4ce6f1daf612e5150f24ab573a09d4ac45484f9975ff22923574fd5e6d4180",
-          "extras": "cf8b17e86c78bac51637e8af90ea808204292f498953bd1bb1505626a565a64e",
-          "water": "3a2060acdeb07d4b721b3c4a2a0b9d21293e53c9c958ba55a2a411025c928e41",
-          "landuse": "870f738c0a1cc5badd0fc7feaba08aac26264daa7da9f02518c3e305c0cbd830",
-          "roads": "6b55ffca1bb367acfe7ba9475849eea6d0cdd435d6ee7123fa7cb5fa6154ce76"
+          "places": "c19bd7a61a78e4b7b3360612fe94c1bfa678e1da4972445192eab6360f876180",
+          "extras": "e7198b37ec9a7b21442d5f44c63b7b2c2b2358c02ab57b8ef5f3e96bc1cf890e",
+          "water": "1bcab95f16b4aab7d6f2ba1b0f0ee6846cdd079abcb6a07f771a93119079e5ad",
+          "landuse": "b0264d90d75eca87cc03fb51ab62c6ae6fc87b6646cbcfa5ac2ccd137304fd32",
+          "roads": "1e933a9341a975fb0544f2a4f52a232165b072eaef36c5cab126197b7329446f"
         }
       }
     }

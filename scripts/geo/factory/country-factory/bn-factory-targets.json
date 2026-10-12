@@ -5,35 +5,35 @@
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "BN",
     "datasetSha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
-    "receiptSha256": "47b5f55835cdbfa07c59b02dfa2ecf64c9c6e0b1ae98adcb7d7357d378fd04d9",
-    "receiptBytes": 47156,
+    "receiptSha256": "75bf157c93327c765f3c82c0347e9afa22dc53acd553c20d7ef1909c3279909f",
+    "receiptBytes": 47186,
     "geometrySha256": "f676c90427ded65099dc811e64fed8fa85d83b312abd188d974e02880d4fd3b7",
     "geometryBytes": 83099,
-    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "scriptSha256": "f3604ee7c62cd447b762da7dd913e4686aac6ea6027e90c9ecc7fa07b0149e52",
     "relationId": 2103120,
     "boundaryKey": "bn",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38248346879,
-      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-      "sourceArtifact": "city-bootstrap-bn-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceRunId": 38263512554,
+      "sourceSha": "d91c7d3902664d4573b426f757c71addbcbdfe24",
+      "sourceArtifact": "city-bootstrap-bn-d91c7d3902664d4573b426f757c71addbcbdfe24",
       "artifactSubdirectory": "country-boundary"
     }
   },
   "targets": [
     {
-      "id": "bandar-seri-begawan",
+      "id": "bsb",
       "name": "Bandar Seri Begawan",
       "country": "bn",
       "facts": {
-        "id": "bandar-seri-begawan",
+        "id": "bsb",
         "name": "Bandar Seri Begawan",
         "country": {
           "idISOlower": "bn",
           "name": "Brunei"
         },
         "state": {
-          "idunique": "bn-bandar-seri-begawan",
+          "idunique": "bn-bsb",
           "name": "Bandar Seri Begawan"
         },
         "timezone": "Asia/Kuching",
@@ -42,7 +42,7 @@
           "lat": 4.8895453
         },
         "airport": {
-          "id": "bandar-seri-begawan-airport",
+          "id": "bsb-airport",
           "name": "Brunei International Airport",
           "lon": 114.928001,
           "lat": 4.9442,
@@ -387,7 +387,7 @@
           "way/1322511813",
           "way/1326166615"
         ],
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -427,27 +427,27 @@
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         }
       },
-      "extractKey": "bandar-seri-begawan",
+      "extractKey": "bsb",
       "extractSha256": {
-        "places": "28052d5a4f792c14246c44a639a40a297709bb2e5efe52ff5aed11db8ee30587",
-        "extras": "0ceb04c2da766fa9716077680e132c641a2aaf0bd1f1bfee2f4db3aa50b020a0",
-        "water": "2bebcc1e8e8a7a3f048cd399066bc6718c84e075236192a02d21a60ab14e7d91",
-        "landuse": "97d541909a1f1bd793ccb8f2616011ec3a34c0e6b29b1ca2f525008adf6d4726",
-        "roads": "d394b093749d55764fac27b98ae416c2a2c2bdca10be35a30ae8b6dc40a16f2c"
+        "places": "947e335a7e43627ab6b6c737bfac118f4732b95e347b187f90eab362a5b24f2b",
+        "extras": "8bdb83af4f820dde1bebdef2ad74f3d3b32562ccad63525e912ecb8fe72fad2f",
+        "water": "018d6c1636219db5716ca2183aa418f673277b741d24b582bd5831c02e53f25c",
+        "landuse": "7196208285c89ed54c911e52d68f89a6a7aaa4b8f92ea4aeec8bb22bbe280874",
+        "roads": "a1ad14a9fd85bcdcb5dbd468696d08dc05c7f52253690b8fdef8162ccdd01da3"
       },
       "sourceJob": {
-        "city": "bandar-seri-begawan",
-        "sourceRunId": 38248346879,
-        "sourceArtifact": "city-bootstrap-bn-06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "city": "bsb",
+        "sourceRunId": 38263512554,
+        "sourceArtifact": "city-bootstrap-bn-d91c7d3902664d4573b426f757c71addbcbdfe24",
+        "sourceSha": "d91c7d3902664d4573b426f757c71addbcbdfe24",
         "datasetSha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "extractSha256": {
-          "places": "28052d5a4f792c14246c44a639a40a297709bb2e5efe52ff5aed11db8ee30587",
-          "extras": "0ceb04c2da766fa9716077680e132c641a2aaf0bd1f1bfee2f4db3aa50b020a0",
-          "water": "2bebcc1e8e8a7a3f048cd399066bc6718c84e075236192a02d21a60ab14e7d91",
-          "landuse": "97d541909a1f1bd793ccb8f2616011ec3a34c0e6b29b1ca2f525008adf6d4726",
-          "roads": "d394b093749d55764fac27b98ae416c2a2c2bdca10be35a30ae8b6dc40a16f2c"
+          "places": "947e335a7e43627ab6b6c737bfac118f4732b95e347b187f90eab362a5b24f2b",
+          "extras": "8bdb83af4f820dde1bebdef2ad74f3d3b32562ccad63525e912ecb8fe72fad2f",
+          "water": "018d6c1636219db5716ca2183aa418f673277b741d24b582bd5831c02e53f25c",
+          "landuse": "7196208285c89ed54c911e52d68f89a6a7aaa4b8f92ea4aeec8bb22bbe280874",
+          "roads": "a1ad14a9fd85bcdcb5dbd468696d08dc05c7f52253690b8fdef8162ccdd01da3"
         }
       }
     }

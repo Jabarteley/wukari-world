@@ -1,0 +1,322 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "SK",
+    "datasetSha256": "54542ce82198459fb4d156d01f96d6e3cdab4e9f82f40f63f20d59e00bc62ae5",
+    "receiptSha256": "5c0d4426818dc9cfce0a366ebc05ada8f2de841de2b927ea7567fee84626ac64",
+    "receiptBytes": 434314,
+    "geometrySha256": "1bdaa4f97eb878c025006c7e9bbcd7d586b6017ce8e3092a99330223a41dc3dc",
+    "geometryBytes": 925805,
+    "scriptSha256": "f3604ee7c62cd447b762da7dd913e4686aac6ea6027e90c9ecc7fa07b0149e52",
+    "relationId": 14296,
+    "boundaryKey": "sk",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38263512554,
+      "sourceSha": "d91c7d3902664d4573b426f757c71addbcbdfe24",
+      "sourceArtifact": "city-bootstrap-sk-d91c7d3902664d4573b426f757c71addbcbdfe24",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "bratislava",
+      "name": "Bratislava",
+      "country": "sk",
+      "facts": {
+        "id": "bratislava",
+        "name": "Bratislava",
+        "country": {
+          "idISOlower": "sk",
+          "name": "Slovakia"
+        },
+        "state": {
+          "idunique": "sk-bratislava",
+          "name": "Bratislava"
+        },
+        "timezone": "Europe/Prague",
+        "centre": {
+          "lon": 17.1082867,
+          "lat": 48.1435026
+        },
+        "airport": {
+          "id": "bratislava-airport",
+          "name": "M. R. Štefánik Airport",
+          "lon": 17.2127,
+          "lat": 48.1702,
+          "sourceUrl": "https://ourairports.com/airports/LZIB/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/530544342",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          16.838082391051863,
+          47.96262171006602,
+          17.37849100894814,
+          48.32438348993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/530544342",
+          "sourceUrl": "https://www.openstreetmap.org/node/530544342",
+          "sourceRecord": {
+            "ref": "node/530544342",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:de": "Preßburg",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "city_id": "582000",
+              "contact:facebook": "Bratislava.sk",
+              "contact:instagram": "bratislava.sk",
+              "contact:website": "https://bratislava.sk",
+              "int_name": "Bratislava",
+              "name": "Bratislava",
+              "name:am": "ብራቲስላቫ",
+              "name:ar": "براتيسلافا",
+              "name:arc": "ܒܪܛܝܣܠܐܒܐ",
+              "name:av": "Братислава",
+              "name:azb": "براتیسلاوا",
+              "name:ba": "Братислава",
+              "name:bar": "Pressburg",
+              "name:be": "Браціслава",
+              "name:be-tarask": "Браціслава",
+              "name:bg": "Братислава",
+              "name:bn": "ব্রাতিস্লাভা",
+              "name:bo": "བ་ར་ཏིསི་ལ་བ།",
+              "name:br": "Bratislava",
+              "name:ca": "Bratislava",
+              "name:ce": "Братислава",
+              "name:ckb": "براتسیلاڤا",
+              "name:cs": "Bratislava",
+              "name:cu": "Братислава",
+              "name:cv": "Братислава",
+              "name:de": "Bratislava",
+              "name:diq": "Bratislawa",
+              "name:el": "Μπρατισλάβα",
+              "name:en": "Bratislava",
+              "name:eo": "Bratislavo",
+              "name:es": "Bratislava",
+              "name:fa": "براتیسلاوا",
+              "name:fr": "Bratislava",
+              "name:ga": "An Bhratasláiv",
+              "name:grc": "Ἰστρόπολις",
+              "name:he": "ברטיסלאבה",
+              "name:hi": "ब्रातिस्लावा",
+              "name:hr": "Bratislava",
+              "name:hu": "Pozsony",
+              "name:hy": "Բրատիսլավա",
+              "name:it": "Bratislava",
+              "name:ja": "ブラチスラヴァ",
+              "name:ka": "ბრატისლავა",
+              "name:kk": "Братислава",
+              "name:kn": "ಬ್ರಾಟಿಸ್ಲಾವಾ",
+              "name:ko": "브라티슬라바",
+              "name:koi": "Братислава",
+              "name:ku": "Bratîslava",
+              "name:kv": "Братислава",
+              "name:ky": "Братислава",
+              "name:la": "Posonium",
+              "name:lt": "Bratislava",
+              "name:mk": "Братислава",
+              "name:ml": "ബ്രാട്ടിസ്ലാവ",
+              "name:mn": "Братислав",
+              "name:mr": "ब्रातिस्लाव्हा",
+              "name:nds": "Pressburg",
+              "name:ne": "ब्रातिस्लाभा",
+              "name:nl": "Bratislava",
+              "name:no": "Bratislava",
+              "name:oc": "Bratislava",
+              "name:os": "Братиславæ",
+              "name:pa": "ਬ੍ਰਾਤਿਸਲਾਵਾ",
+              "name:pl": "Bratysława",
+              "name:pnb": "براتسلاوا",
+              "name:ps": "براتیسلاوا",
+              "name:pt": "Bratislava",
+              "name:ro": "Bratislava",
+              "name:ru": "Братислава",
+              "name:rue": "Братїслава",
+              "name:sah": "Братислава",
+              "name:sd": "براٽيسلاوا",
+              "name:sk": "Bratislava",
+              "name:sq": "Bratisllava",
+              "name:sr": "Братислава",
+              "name:sv": "Bratislava",
+              "name:syc": "ܒܪܛܝܣܠܐܒܐ",
+              "name:ta": "பிராத்திஸ்லாவா",
+              "name:tg": "Братислава",
+              "name:th": "บราติสลาวา",
+              "name:tr": "Bratislava",
+              "name:tt": "Братислава",
+              "name:tw": "Bratislawa",
+              "name:udm": "Братислава",
+              "name:ug": "براتىسلاۋا",
+              "name:uk": "Братислава",
+              "name:ur": "براٹیسلاوا",
+              "name:vep": "Bratislav",
+              "name:wo": "Baratislawa",
+              "name:yi": "בראטיסלאווא",
+              "name:yue": "布拉迪斯拉發",
+              "name:zh": "布拉迪斯拉發",
+              "name:zh-Hans": "布拉迪斯拉发",
+              "name:zh-Hant": "布拉迪斯拉發",
+              "old_name:bar": "Preßburg",
+              "old_name:cs": "Prešpurk",
+              "old_name:de": "Preßburg",
+              "old_name:el": "Istropolis",
+              "old_name:en": "Pressburg",
+              "old_name:es": "Presburgo",
+              "old_name:hr": "Požun",
+              "old_name:hu": "Pozsony",
+              "old_name:la": "Posonium",
+              "old_name:nds": "Preßburg",
+              "old_name:pl": "Preszburg;Pożoń",
+              "old_name:sk": "Prešporok",
+              "place": "city",
+              "population": "432801",
+              "reg_name:de": "Pressburg",
+              "source:name": "http://www.statistics.sk",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q1780",
+              "wikipedia": "sk:Bratislava"
+            },
+            "lon": 17.1082867,
+            "lat": 48.1435026
+          },
+          "pbfSha256": "54542ce82198459fb4d156d01f96d6e3cdab4e9f82f40f63f20d59e00bc62ae5"
+        },
+        "airport": {
+          "rowNumber": 45475,
+          "row": {
+            "id": "4617",
+            "ident": "LZIB",
+            "type": "large_airport",
+            "name": "M. R. Štefánik Airport",
+            "latitude_deg": "48.1702",
+            "longitude_deg": "17.2127",
+            "elevation_ft": "436",
+            "continent": "EU",
+            "iso_country": "SK",
+            "iso_region": "SK-BL",
+            "municipality": "Bratislava",
+            "scheduled_service": "yes",
+            "icao_code": "LZIB",
+            "iata_code": "BTS",
+            "gps_code": "LZIB",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/M._R._%C5%A0tef%C3%A1nik_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "e4b86a6cf9cabb72eb72fe0bc6f6c6e49b800dacafa3a7fa44df6762621a9f92",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LZIB",
+            "sourceUrl": "https://ourairports.com/airports/LZIB/",
+            "matchedIdent": "LZIB",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LZIB/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "CZ,SK",
+              "+5005+01426",
+              "Europe/Prague"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Prague",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "CZ,SK",
+              "+5005+01426",
+              "Europe/Prague"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/slovakia-261011.osm.pbf",
+          "bytes": 345732948,
+          "sha256": "54542ce82198459fb4d156d01f96d6e3cdab4e9f82f40f63f20d59e00bc62ae5",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              47.96262171006602,
+              16.838082391051863,
+              48.32438348993398,
+              17.37849100894814
+            ],
+            "core": [
+              48.098282377516504,
+              17.04091462693609,
+              48.18872282248349,
+              17.175658773063912
+            ],
+            "outline": [
+              47.91262171006602,
+              16.788082391051862,
+              48.374383489933976,
+              17.42849100894814
+            ],
+            "wide": [
+              47.362621710066016,
+              16.23808239105186,
+              48.92438348993398,
+              17.97849100894814
+            ]
+          },
+          "airportMarginMetres": 12308.580890917487,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "bratislava",
+      "extractSha256": {
+        "places": "f2bff45841c7dacfdcd06a4f4ffb635312e3aaaf92454d299a42b86864d73f7e",
+        "extras": "c463770b942512419ff6e57f2ad11bcee56686db38ce32e91a13132fa83dec92",
+        "water": "b993e67e8f1e29a7edcd6225ca65857aee876d5a4f020b7d16594720aea35668",
+        "landuse": "09a0547770f8f48ee118b9faeb34d5d2456404ff1e527ced852cddff6ba9391d",
+        "roads": "f76f0882da6b2bf7a14714d549f507516a0983f447d48b35960c793c1e726a43"
+      },
+      "sourceJob": {
+        "city": "bratislava",
+        "sourceRunId": 38263512554,
+        "sourceArtifact": "city-bootstrap-sk-d91c7d3902664d4573b426f757c71addbcbdfe24",
+        "sourceSha": "d91c7d3902664d4573b426f757c71addbcbdfe24",
+        "datasetSha256": "54542ce82198459fb4d156d01f96d6e3cdab4e9f82f40f63f20d59e00bc62ae5",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "f2bff45841c7dacfdcd06a4f4ffb635312e3aaaf92454d299a42b86864d73f7e",
+          "extras": "c463770b942512419ff6e57f2ad11bcee56686db38ce32e91a13132fa83dec92",
+          "water": "b993e67e8f1e29a7edcd6225ca65857aee876d5a4f020b7d16594720aea35668",
+          "landuse": "09a0547770f8f48ee118b9faeb34d5d2456404ff1e527ced852cddff6ba9391d",
+          "roads": "f76f0882da6b2bf7a14714d549f507516a0983f447d48b35960c793c1e726a43"
+        }
+      }
+    }
+  ]
+}

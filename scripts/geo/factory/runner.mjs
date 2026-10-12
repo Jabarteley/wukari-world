@@ -111,17 +111,38 @@ if (cache.selectionHashes && JSON.stringify(cache.selectionHashes) !== JSON.stri
     throw Error('Private selection artifacts changed: refuse cache reuse');
 cache.selectionHashes = selectionHashes;
 writeFileSync(cachePath, JSON.stringify(cache, null, 2));
+const requiredBrowserViewports = [[1536, 864], [390, 844], [320, 720]];
 for (const c of cityPlan) {
     const chosen = selected.find(r => r.id === c.id), boundsProven = chosen?.boundsProof?.status === 'PASS';
     const metadataReview = chosen?.boundsProof?.checks?.metadataReview ?? {};
     const metadataReviewed = metadataReview.status === 'PASS';
+    const target = table.targets.find(target => target.id === c.id), browserReview = target?.browserReview ?? {};
+    const viewports = Array.isArray(browserReview.viewports) ? browserReview.viewports : [];
+    const viewportKeys = viewports.map(viewport => viewport && typeof viewport === 'object' ? `${viewport.width}x${viewport.height}` : '');
+    const expectedViewportKeys = requiredBrowserViewports.map(([width, height]) => `${width}x${height}`);
+    const browserReviewChecks = {
+        status: browserReview.status === 'REVIEWED',
+        evidenceSha256: typeof browserReview.evidenceSha256 === 'string' && /^[0-9a-f]{64}$/.test(browserReview.evidenceSha256),
+        cityId: browserReview.cityId === c.id,
+        mapPlacesOpen: Number.isSafeInteger(browserReview.mapPlacesOpen) && browserReview.mapPlacesOpen >= 25,
+        reloadPersisted: browserReview.reloadPersisted === true,
+        viewports: viewports.length === requiredBrowserViewports.length
+            && new Set(viewportKeys).size === requiredBrowserViewports.length
+            && expectedViewportKeys.every(key => viewportKeys.includes(key))
+            && viewports.every(viewport => viewport && typeof viewport === 'object' && viewport.noHorizontalOverflow === true),
+    };
+    const browserReviewed = Object.values(browserReviewChecks).every(Boolean);
     const holds = c.holds.filter(hold =>
         (hold !== 'auto-bounds/re-extraction unverified; pinned boxes preserved' || !boundsProven)
-        && (hold !== 'metadata coordinates need primary record review' || !metadataReviewed));
+        && (hold !== 'metadata coordinates need primary record review' || !metadataReviewed)
+        && (hold !== 'rendered visual and browser acceptance pending' || !browserReviewed));
     const row = {
         id: c.id, status: 'HOLD', reasons: [...holds],
         metadataReviewEvidenceSha256: metadataReview.evidenceSha256 ?? null,
-        machineStages: { boundsProof: boundsProven, metadataReview: metadataReviewed },
+        browserReviewStatus: browserReview.status ?? null,
+        browserReviewEvidenceSha256: browserReview.evidenceSha256 ?? null,
+        browserReviewChecks,
+        machineStages: { boundsProof: boundsProven, metadataReview: metadataReviewed, browserReview: browserReviewed },
     };
     rows.push(row);
     if (chosen?.status !== 'PRIVATE_SCAFFOLD_ONLY') {
@@ -172,6 +193,7 @@ for (const row of rows) {
         row.reasons.push('receipt creation failed');
 }
 const failed = machineFailed(catalogue, rows);
+for (const row of rows) if (row.reasons.length === 0) row.status = 'CANDIDATE_REVIEWED';
 writeFileSync(join(out, 'contact-sheet-inputs.json'), JSON.stringify(contactSheetInputs(out, rows), null, 2));
 writeFileSync(join(out, 'machine-holds.json'), JSON.stringify({ identity, catalogue, machineFailed: failed, rows }, null, 2));
 writeReviewPage(out, rows);

@@ -511,6 +511,30 @@
           "id": "Europe/Rome",
           "zoneTabSha256": "7cc78ea166261b3dedf951cdd721051460851e6fcd96c12b8e3194cf25677f21"
         }
+      },
+      "browserReview": {
+        "status": "REVIEWED",
+        "evidenceSha256": "0d1e9e17f35dd4066778f74d6da26d44d198bb74f6a4d2f28fa7731c56eb88dd",
+        "cityId": "rome",
+        "mapPlacesOpen": 25,
+        "reloadPersisted": true,
+        "viewports": [
+          {
+            "width": 1536,
+            "height": 864,
+            "noHorizontalOverflow": true
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "noHorizontalOverflow": true
+          },
+          {
+            "width": 320,
+            "height": 720,
+            "noHorizontalOverflow": true
+          }
+        ]
       }
     },
     {
@@ -1563,6 +1587,30 @@
           "id": "Europe/Dublin",
           "zoneTabSha256": "7cc78ea166261b3dedf951cdd721051460851e6fcd96c12b8e3194cf25677f21"
         }
+      },
+      "browserReview": {
+        "status": "REVIEWED",
+        "evidenceSha256": "0d1e9e17f35dd4066778f74d6da26d44d198bb74f6a4d2f28fa7731c56eb88dd",
+        "cityId": "dublin",
+        "mapPlacesOpen": 25,
+        "reloadPersisted": true,
+        "viewports": [
+          {
+            "width": 1536,
+            "height": 864,
+            "noHorizontalOverflow": true
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "noHorizontalOverflow": true
+          },
+          {
+            "width": 320,
+            "height": 720,
+            "noHorizontalOverflow": true
+          }
+        ]
       }
     }
   ],

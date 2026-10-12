@@ -24,8 +24,10 @@ export interface DestinationTerrain {
   readonly state?: readonly LonLatPolygon[]
   /** Rivers, lakes and sea inside the play area, as polygons. */
   readonly water: readonly LonLatPolygon[]
-  /** The same water carried on beyond the play area, to the edge of the ground that is drawn (rivers and the shore of a sea or lake do not stop at the play area). It is drawn only; the declared water stays `water`. */
+  /** Source water carried beyond the play area for the 3D reach view. It stays available even when the scene renders only `water`. */
   readonly reachWater?: readonly LonLatPolygon[]
+  /** Water extent rendered by the 3D scene. Omit to use reachWater when present, preserving current behavior. */
+  readonly sceneWaterExtent?: 'play' | 'reach'
   /** Main roads in the compact row format of `RoadRows`. */
   readonly roads: RoadRows
   /** Names of the strongest roads. */
@@ -59,7 +61,8 @@ export function createDestinationMap(facts: DestinationFacts, geometry: Destinat
       if (terrain) {
         // City-wide geography: the shared module renderer draws the outline, water, roads and labels, as for the Nigerian cities.
         const labels = terrain.names.map(name => ({ id: name.id, name: name.name, lon: name.lon, lat: name.lat, kind: name.kind }))
-        return createModulePack(module, { spread: true, landmarks: labels, roads: terrain.roads, character: { extent: 'city', trunkRoads: terrain.trunkRoads }, ...(terrain.surround ? { surround: terrain.surround } : {}), ...(terrain.reachWater ? { reachWater: terrain.reachWater } : {}) })
+        const sceneWater = terrain.sceneWaterExtent === 'play' ? terrain.water : terrain.reachWater
+        return createModulePack(module, { spread: true, landmarks: labels, roads: terrain.roads, character: { extent: 'city', trunkRoads: terrain.trunkRoads }, ...(terrain.surround ? { surround: terrain.surround } : {}), ...(sceneWater ? { reachWater: sceneWater } : {}) })
       }
       const pack = await createModulePack(module, { spread: true, character: { extent: 'city' } })
       const origin = valid.mapOrigin

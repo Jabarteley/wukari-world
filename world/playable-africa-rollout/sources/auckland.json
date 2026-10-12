@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "auckland",
+  "countryIso2": "NZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Auckland",
+    "coordinatesWgs84": [
+      174.7631803,
+      -36.852095
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/new-zealand-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "auckland-airport",
+    "name": "Auckland International Airport",
+    "lon": 174.786331,
+    "lat": -37.01199,
+    "sourceUrl": "https://ourairports.com/airports/NZAA/"
+  },
+  "boxes": {
+    "play": [
+      -37.03297588993398,
+      174.5381211639701,
+      -36.67121411006602,
+      174.9882394360299
+    ],
+    "core": [
+      -36.89731522248349,
+      174.70701568792143,
+      -36.806874777516505,
+      174.81934491207855
+    ],
+    "outline": [
+      -37.08297588993398,
+      174.48812116397008,
+      -36.62121411006602,
+      175.0382394360299
+    ],
+    "wide": [
+      -37.63297588993398,
+      173.9381211639701,
+      -36.071214110066016,
+      175.58823943602988
+    ],
+    "water": [
+      -37.63297588993398,
+      173.9381211639701,
+      -36.071214110066016,
+      175.58823943602988
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/new-zealand-261009.osm.pbf",
+    "datasetSha256": "000e8817cb3cfe38e45599187a5a292a596a89ce193872374868213087f913de",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6c24c4d3aac68ca3a82b8169e0a5107f68937a6ac4e4d50a3191ae615e6e05c2",
+        "elements": 4062
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f9fd49fe667ddd8b2f2ad126e94917398244166a12226761845110b0bb4e546a",
+        "elements": 2253
+      },
+      {
+        "file": "water.json",
+        "sha256": "16d846e7beed374a997671d890565c93db73b27331d75c43427d9214f57b514f",
+        "elements": 2221
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "89bfe03c107ea3037907cd52e2b98f7677888a6d2a8521e5b5b46c33e3661214",
+        "elements": 16429
+      },
+      {
+        "file": "roads.json",
+        "sha256": "072dcdfa596a757c4ff38194c5504a4f42a45a1fd6f569d5fdd18f4e82a12c02",
+        "elements": 7745
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Glen Eden",
+      "osm": "node/746319586",
+      "coordinatesWgs84": [
+        174.652834,
+        -36.910251
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cornwall Park Bistro",
+      "osm": "way/24010567",
+      "coordinatesWgs84": [
+        174.783639,
+        -36.897823
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Massey University",
+      "osm": "way/51949995",
+      "coordinatesWgs84": [
+        174.703182,
+        -36.732841
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Middlemore Hospital",
+      "osm": "relation/13239497",
+      "coordinatesWgs84": [
+        174.841351,
+        -36.964104
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stockade Hill",
+      "osm": "way/9796353",
+      "coordinatesWgs84": [
+        174.927712,
+        -36.892203
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ormiston Town Centre",
+      "osm": "relation/21254287",
+      "coordinatesWgs84": [
+        174.912811,
+        -36.964889
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Mary's Old Convent Chapel",
+      "osm": "way/396119569",
+      "coordinatesWgs84": [
+        174.748347,
+        -36.845849
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Freyberg Place",
+      "osm": "relation/19951542",
+      "coordinatesWgs84": [
+        174.766798,
+        -36.847845
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Inland Revenue North Shore - Takapuna Office (IRD)",
+      "osm": "node/9725967957",
+      "coordinatesWgs84": [
+        174.771903,
+        -36.790507
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Auckland Institute of Studies",
+      "osm": "relation/16177458",
+      "coordinatesWgs84": [
+        174.722453,
+        -36.873538
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barfoot & Thompson Stadium",
+      "osm": "way/33871472",
+      "coordinatesWgs84": [
+        174.836879,
+        -36.862001
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "HMS Orpheus Graves",
+      "osm": "node/4258039707",
+      "coordinatesWgs84": [
+        174.596313,
+        -37.003562
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fred Taylor Park",
+      "osm": "way/68312672",
+      "coordinatesWgs84": [
+        174.594172,
+        -36.799647
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ōtuataua Stonefields Historic Reserve",
+      "osm": "way/97144423",
+      "coordinatesWgs84": [
+        174.753103,
+        -36.982958
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Toroa",
+      "osm": "way/680869064",
+      "coordinatesWgs84": [
+        174.631081,
+        -36.846794
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nathan Homestead",
+      "osm": "way/339310375",
+      "coordinatesWgs84": [
+        174.902382,
+        -37.015269
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Glenfield Mall",
+      "osm": "way/11019403",
+      "coordinatesWgs84": [
+        174.722336,
+        -36.782197
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sylvia Park",
+      "osm": "relation/9089456",
+      "coordinatesWgs84": [
+        174.841165,
+        -36.915964
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parkinsons Lookout",
+      "osm": "node/2006136519",
+      "coordinatesWgs84": [
+        174.566908,
+        -36.924398
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St Barnabas Anglican Church",
+      "osm": "way/336630313",
+      "coordinatesWgs84": [
+        174.761177,
+        -36.875529
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Go Media Stadium / Mount Smart Stadium",
+      "osm": "way/26155148",
+      "coordinatesWgs84": [
+        174.813855,
+        -36.917839
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Auckland New Zealand Temple",
+      "osm": "way/930842670",
+      "coordinatesWgs84": [
+        174.890213,
+        -36.993207
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "North Shore Hospital",
+      "osm": "way/58379525",
+      "coordinatesWgs84": [
+        174.756777,
+        -36.781904
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Auckland City Hospital",
+      "osm": "way/32868818",
+      "coordinatesWgs84": [
+        174.770482,
+        -36.859739
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1231,
+      "sha256": "38fc69ea39e230226ac4cf1b4bcd52e500a82ff15c1d6681e9998d85af55621e"
+    },
+    "geometry.ts": {
+      "bytes": 2792148,
+      "sha256": "4f5a2bdf1954741f747fd9debdc819503f47cd0b5727ffe9f2101d4263ad3a22"
+    },
+    "places.ts": {
+      "bytes": 10052,
+      "sha256": "ced065668be04ccfd3c0042a94d08770deafa98e368d1554d86491fed0701dfc"
+    },
+    "terrain.ts": {
+      "bytes": 3477926,
+      "sha256": "9e7dffdc76c112ebeefd5408561a1f6cca872ba19c45e83f3fb7ed0a8daec207"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "3c401ec9d46bb1bf9b6e972f674e02f07a82bfcab13d4944ed31f117bbe7a171"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

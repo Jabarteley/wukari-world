@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "auckland",
+  "countryIso2": "NZ",
+  "generationIdentity": {
+    "cityId": "auckland",
+    "stateId": "nz-auckland",
+    "stateName": "Auckland"
+  },
+  "inventorySha256": "9a0977eac0d256d072fd95679b3694d56606982914f12b7f8544f0f0552bf46f",
+  "inventoryPath": "world/playable-africa-rollout/sources/auckland.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "auckland-airport",
+    "name": "Auckland International Airport",
+    "lon": 174.786331,
+    "lat": -37.01199,
+    "sourceUrl": "https://ourairports.com/airports/NZAA/"
+  },
+  "bounds": [
+    -37.03297588993398,
+    174.5381211639701,
+    -36.67121411006602,
+    174.9882394360299
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/new-zealand-261009.osm.pbf",
+      "datasetSha256": "000e8817cb3cfe38e45599187a5a292a596a89ce193872374868213087f913de",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6c24c4d3aac68ca3a82b8169e0a5107f68937a6ac4e4d50a3191ae615e6e05c2",
+          "elements": 4062
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f9fd49fe667ddd8b2f2ad126e94917398244166a12226761845110b0bb4e546a",
+          "elements": 2253
+        },
+        {
+          "file": "water.json",
+          "sha256": "16d846e7beed374a997671d890565c93db73b27331d75c43427d9214f57b514f",
+          "elements": 2221
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "89bfe03c107ea3037907cd52e2b98f7677888a6d2a8521e5b5b46c33e3661214",
+          "elements": 16429
+        },
+        {
+          "file": "roads.json",
+          "sha256": "072dcdfa596a757c4ff38194c5504a4f42a45a1fd6f569d5fdd18f4e82a12c02",
+          "elements": 7745
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 666,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 18,
+    "waterPolygons": 19,
+    "reachWaterPolygons": 81
+  },
+  "observed": {
+    "places": 4062,
+    "extras": 2253,
+    "water": 2221,
+    "landuse": 16429,
+    "roads": 7745
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1231,
+      "sha256": "38fc69ea39e230226ac4cf1b4bcd52e500a82ff15c1d6681e9998d85af55621e"
+    },
+    "geometry.ts": {
+      "bytes": 2792148,
+      "sha256": "4f5a2bdf1954741f747fd9debdc819503f47cd0b5727ffe9f2101d4263ad3a22"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "3c401ec9d46bb1bf9b6e972f674e02f07a82bfcab13d4944ed31f117bbe7a171"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/auckland.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

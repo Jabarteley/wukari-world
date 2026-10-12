@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/south-america/guyana-261011.osm.pbf",
+    "bytes": 15554318,
+    "md5": "73aca8d8e775563d49a971ed9dd79c20",
+    "snapshotDate": "2026-10-11"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "georgetown",
+      "name": "Georgetown",
+      "countryISO": "GY",
+      "airport": {
+        "ident": "SYCJ",
+        "sourceUrl": "https://portal.gov.gy/agencies/cheddi-jagan-international-airport-corporation"
+      },
+      "timezone": {
+        "id": "America/Guyana",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

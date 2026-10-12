@@ -10,7 +10,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-export const MAX_QUEUE = 24;
+export const MAX_QUEUE = 80;
 const KINDS = {
   source: { dir: 'scripts/geo/factory/country-tables/', suffix: '.json', keys: ['appSha', 'id', 'table'] },
   factory: { dir: 'scripts/geo/factory/country-factory/', suffix: '-factory-targets.json', keys: ['id', 'table'] },

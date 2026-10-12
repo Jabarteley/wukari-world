@@ -43,13 +43,13 @@
         "airport": {
           "id": "mexico-city-airport",
           "name": "Mexico City Benito Juárez International Airport",
-          "lon": -99.07033,
-          "lat": 19.435822,
-          "sourceUrl": "https://ourairports.com/airports/MMMX/"
+          "lon": -99.07339375,
+          "lat": 19.435968333,
+          "sourceUrl": "https://aipmexico.seneam.gob.mx/AIP/doc/AD/AD_2/38_MMMX/AD_2-MMMX-2.pdf?1599195905="
         },
-        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceLabel": "OpenStreetMap country PBF and SICT-AFAC-SENEAM AIP; OurAirports cross-check",
         "sourceUrl": "https://www.openstreetmap.org/node/62270270",
-        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain cross-check; SICT-AFAC-SENEAM AIP coordinate cited (reuse terms not established)",
         "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
         "bounds": [
           -99.32390712929879,
@@ -288,7 +288,35 @@
             "municipalityMatchesCity": true,
             "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
           },
-          "sourceUrl": "https://ourairports.com/airports/MMMX/"
+          "sourceUrl": "https://ourairports.com/airports/MMMX/",
+          "arpReferencePoint": {
+            "authority": "SICT-AFAC-SENEAM",
+            "document": "AIP México AD 2-1 MMMX",
+            "sourceUrl": "https://aipmexico.seneam.gob.mx/AIP/doc/AD/AD_2/38_MMMX/AD_2-MMMX-2.pdf?1599195905=",
+            "effectiveDate": "2026-02-19",
+            "amendment": "SICT-AFAC-SENEAM AMDT AIRAC 02/26",
+            "field": "Coordenadas del ARP y emplazamiento en el AD",
+            "publishedCoordinate": "192609.4860N 0990424.2145W",
+            "decimalLonLat": [
+              -99.07339375,
+              19.435968333
+            ],
+            "semantics": "Aerodrome reference point, described as between runways 05L/23R and 05R/23L",
+            "retrievalStatus": "Search-indexed AIP row was inspected; direct PDF retrieval returned HTTP 503; no PDF bytes or hash are claimed.",
+            "reuseTerms": "Not established from the inspected source."
+          },
+          "crossCheck": {
+            "role": "OurAirports record retained as a coordinate cross-check; not the selected ARP source.",
+            "sourceUrl": "https://ourairports.com/airports/MMMX/",
+            "csvSha256": "bee4e45e2f3b3acb463af0b2bf7bd2fa5abbb324cb9519766fcab0acb33ecaaf",
+            "rowNumber": 46267,
+            "rowSha256": "86918a2324bd7d019867a57b6509579e76572519faa8999cca5079f743175aa5",
+            "coordinateLonLat": [
+              -99.07033,
+              19.435822
+            ],
+            "distanceFromSelectedArpMetersApprox": 321.7
+          }
         },
         "timezone": {
           "rows": [
@@ -355,7 +383,7 @@
               -98.34244987070122
             ]
           },
-          "airportMarginMetres": 13424.396605171136,
+          "airportMarginMetres": 13730.6,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         }

@@ -120,16 +120,14 @@ async function settle(b: Browser): Promise<string> {
   console.log('settle step 2');
   await b.waitFor(`!!document.querySelector('[data-entry-play], [data-qs-name]')`, 60000, 'the start screen');
   await sleep(600);
-  // Current accounts see the new landing card; legacy preview routes still open the creator quick-start.
+  // Use the current one-tap guest entry when present, then finish the same settlement steps as the legacy creator route.
   if (await b.eval<boolean>(`!!document.querySelector('[data-entry-play]')`)) {
     console.log('settle: native landing Play now');
     await b.click('[data-entry-play]');
-    await gameShown(b); await dismiss(b);
-    await until(async () => { const state = await lifeRaw(b, 'lagos'); return state.status === 200 && !!state.state?.onboarding?.done; }, 60000, 'entry Play now to settle the life');
-    return b.eval<string>(`fetch('/api/session').then((r) => r.json()).then((j) => j.session.id)`);
+  } else {
+    await b.type('[data-qs-name]', 'Map Checker');
+    await b.click('[data-key="play-now"]');
   }
-  await b.type('[data-qs-name]', 'Map Checker');
-  await b.click('[data-key="play-now"]');
   await gameShown(b); await dismiss(b);
   console.log('settle step 5');
   await until(async () => {

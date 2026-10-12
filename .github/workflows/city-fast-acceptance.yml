@@ -68,6 +68,8 @@ jobs:
         run: set -o pipefail; npm run typecheck 2>&1 | tee "$ACCEPTANCE_LOGS/typecheck.log"
       - name: Build once
         working-directory: app
+        env:
+          NODE_OPTIONS: --max-old-space-size=8192
         run: set -o pipefail; npm run build 2>&1 | tee "$ACCEPTANCE_LOGS/build.log"
       - name: Download size
         working-directory: app

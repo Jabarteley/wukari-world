@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "wave2-apia-rerun",
-      "appSha": "64f5f997f429aa7c9f3a8aa81a2c78cad12c8300",
+      "id": "release-a-new-six",
+      "appSha": "d0696c6eb157d8b1e33a7cbb49d8f784fa72ec6b",
       "driverSha": "05840d84c453f1d60d6d8ecac0a5b6ade60841e8",
-      "cities": ["apia"],
+      "cities": ["lima","rome","dublin","auckland","wellington","apia"],
       "roundtrip": true
     }
   ]

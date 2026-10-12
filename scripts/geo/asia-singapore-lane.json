@@ -66,5 +66,14 @@
     "Nested relation 15421122 must remain in source provenance",
     "Existing factory source/semantic/geometry gates must pass without lowering minimum venue counts",
     "Source, factory, browser acceptance and release are separate gates"
-  ]
+  ],
+  "farWaterRenderPolicy": {
+    "kind": "singapore-far-water-render-only-v1",
+    "factoryBatchSha256": "c81564790e70c3bb978c66e7530f0c869c0f46d5291092c440cca818a2f63b0f",
+    "geometryOverrides": {
+      "farWaterTolerance": 0.0012
+    },
+    "scope": "Singleton Singapore private candidate; final CONFIG composition only. Preserve source selection, land masks, inland water, anchors and all gates.",
+    "precedent": "Existing documented Dubai farWaterTolerance 0.0012; candidate measurement required."
+  }
 }

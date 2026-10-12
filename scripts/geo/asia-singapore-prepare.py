@@ -156,7 +156,7 @@ def prepare_table(pin, artifact, extracts, run_id, source_sha, preparation):
     scope = {'kind': 'osm-admin0-boundary-v1', 'countryISO': 'SG', 'datasetSha256': pin['pbf']['sha256'], 'receiptSha256': pin['files']['country-boundary/receipt.json'], 'geometrySha256': pin['files']['country-boundary/boundary.geojson'], 'scriptSha256': receipt['scriptSha256'], 'receiptBytes': (artifact / 'country-boundary/receipt.json').stat().st_size, 'geometryBytes': receipt['geometry']['bytes'], 'relationId': 536780, 'boundaryKey': 'sg', 'boundaryJob': {'sourceRunId': run_id, 'sourceSha': source_sha, 'sourceArtifact': 'asia-singapore-boundary-' + source_sha}}
     sources = {**metadata['metadataSources'], 'adapterSha256': pin['adapterSha256']}
     sources['priorCandidateAdapterSha256'] = metadata['metadataSources']['adapterSha256']
-    return {'expectedSourceGitSHA': pin['appSha'], 'geometryPreset': 'standard', 'targets': [{'id': 'singapore', 'name': 'Singapore', 'country': 'sg', 'extractKey': 'singapore', 'facts': metadata['facts'], 'metadataSources': sources, 'sourceJob': producer, 'extractSha256': hashes, 'countryScope': scope, 'arrivalPolicy': pin['arrivalPolicy']}]}
+    return {'expectedSourceGitSHA': pin['appSha'], 'geometryPreset': 'standard', 'targets': [{'id': 'singapore', 'name': 'Singapore', 'country': 'sg', 'extractKey': 'singapore', 'facts': metadata['facts'], 'metadataSources': sources, 'sourceJob': producer, 'extractSha256': hashes, 'countryScope': scope, 'arrivalPolicy': pin['arrivalPolicy'], 'geometryOverrides': pin['farWaterRenderPolicy']['geometryOverrides']}]}
 
 
 def main():
@@ -190,6 +190,7 @@ def main():
     provenance = root / 'provenance'
     provenance.mkdir()
     write(provenance / 'lane-manifest.json', pin)
+    write(provenance / 'far-water-render-policy.json', pin['farWaterRenderPolicy'])
     old = pin['priorFailedBoundaryArtifact']
     run = json.loads(command(['gh', 'api', f"repos/{pin['repository']}/actions/runs/{old['runId']}"]))
     job = json.loads(command(['gh', 'api', f"repos/{pin['repository']}/actions/jobs/{old['jobId']}"]))
@@ -253,7 +254,7 @@ def main():
     for file in ('receipt.json', 'boundary.geojson'):
         shutil.copy2(artifact / 'country-boundary' / file, boundary_publish / file)
     write(provenance / 'source-job.json', table['targets'][0]['sourceJob'])
-    write(provenance / 'source-result.json', {'status': 'SOURCE_CANDIDATE', 'holds': pin['holds'], 'arrivalPolicy': pin['arrivalPolicy'], 'priorFailedRelation': old['failedRelation']})
+    write(provenance / 'source-result.json', {'status': 'SOURCE_CANDIDATE', 'holds': pin['holds'], 'arrivalPolicy': pin['arrivalPolicy'], 'priorFailedRelation': old['failedRelation'], 'farWaterRenderPolicy': pin['farWaterRenderPolicy']})
 
 
 if __name__ == '__main__':

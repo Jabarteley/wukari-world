@@ -97,6 +97,14 @@ jobs:
             --factory-source "$GITHUB_WORKSPACE/factory" \
             --sandbox-root "$FACTORY_SANDBOX" \
             --provenance-dir "$FACTORY_SANDBOX/provenance"
+      - name: Apply reviewed Singapore far-water render policy
+        run: |
+          set -euo pipefail
+          node scripts/geo/asia-singapore-far-water-policy.mjs \
+            --factory-source "$GITHUB_WORKSPACE/factory" \
+            --manifest scripts/geo/asia-singapore-lane.json \
+            --table "$FACTORY_SANDBOX/targets.json" \
+            --receipt "$FACTORY_SANDBOX/provenance/far-water-policy-receipt.json"
       - name: Run pinned factory with unchanged semantic and geometry gates
         run: |
           set -euo pipefail
@@ -112,6 +120,33 @@ jobs:
             --sandbox-root "$FACTORY_SANDBOX" \
             --outdir "$FACTORY_SANDBOX/evidence" \
             --execute 2>&1 | tee "$FACTORY_SANDBOX/runner.log"
+      - name: Compare protected geometry with pre-override candidate
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if ! test -f "$FACTORY_SANDBOX/evidence/selection/singapore-manifest.json" || ! test -f "$FACTORY_SANDBOX/app/src/game/cities/singapore/terrain.ts"; then
+            exit 0
+          fi
+          gh api repos/kromate/joinallworld/actions/artifacts/11728512149/zip > "$FACTORY_SANDBOX/baseline-candidate.zip"
+          python - <<'PY'
+          import os, zipfile
+          from pathlib import Path
+          root = Path(os.environ['FACTORY_SANDBOX'])
+          baseline = root / 'baseline-comparison'
+          baseline.mkdir()
+          with zipfile.ZipFile(root / 'baseline-candidate.zip') as archive:
+              for name in ('geometry', 'terrain', 'places'):
+                  (baseline / (name + '.ts')).write_bytes(archive.read('delivery/cities/singapore/' + name + '.ts'))
+              (baseline / 'manifest.json').write_bytes(archive.read('evidence/selection/singapore-manifest.json'))
+          (root / 'baseline-candidate.zip').unlink()
+          PY
+          node --experimental-strip-types scripts/geo/asia-singapore-geometry-comparison.mjs \
+            --baseline "$FACTORY_SANDBOX/baseline-comparison" \
+            --workspace "$FACTORY_SANDBOX/app" \
+            --evidence "$FACTORY_SANDBOX/evidence" \
+            --out "$FACTORY_SANDBOX/provenance/protected-geometry-comparison.json"
       - name: Collect candidate source and diff
         if: always()
         run: |

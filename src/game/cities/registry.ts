@@ -252,7 +252,25 @@ export function allCityLinks(): readonly CityLink[] {
   if (ready) linkCache = links
   return links
 }
-export const cityLinks = (cityId: string): readonly CityLink[] => allCityLinks().filter((link) => link.a === cityId || link.b === cityId)
+// With ~160 open cities the merged list holds thousands of links and every route search asks for the links of many cities:
+// index the (cached, frozen) list by city once instead of filtering all of it per call. Order is the list's order.
+const linksByCity = new WeakMap<readonly CityLink[], Map<string, CityLink[]>>()
+export const cityLinks = (cityId: string): readonly CityLink[] => {
+  const all = allCityLinks()
+  let index = linksByCity.get(all)
+  if (!index) {
+    index = new Map()
+    for (const link of all) {
+      for (const end of link.a === link.b ? [link.a] : [link.a, link.b]) {
+        const list = index.get(end)
+        if (list) list.push(link)
+        else index.set(end, [link])
+      }
+    }
+    linksByCity.set(all, index)
+  }
+  return [...(index.get(cityId) ?? [])]
+}
 export const linksFrom = (cityId: string): CityLinkFrom[] => cityLinks(cityId).map(({ a, b, ...link }) => ({ ...link, to: a === cityId ? b : a }))
 
 async function readCityContent(cityId: string): Promise<CityContent> {

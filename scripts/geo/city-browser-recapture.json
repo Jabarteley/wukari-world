@@ -1,14 +1,15 @@
 {
   "schemaVersion": 1,
   "repository": "kromate/joinallworld",
-  "buildRunId": 38192568518,
-  "buildProducerSha": "1dbb8cfac941151c7fff2c2beec876de748e4bb6",
+  "buildRunId": 38198998287,
+  "buildProducerSha": "c64968b77bc1c5c764dde63f5b85c8623a16aa86",
   "buildWorkflow": ".github/workflows/city-fast-acceptance.yml",
-  "artifactId": 11722136331,
-  "appSha": "0db0d9e8154aa3b4e0c0dff087b8c83907546dc4",
-  "driverSha": "9b5673c6cb527b3fbe8e70bf761cb396f8ada843",
+  "artifactId": 11724103809,
+  "appSha": "44a691363f53821a8e1bd96c8bddd1749c5b0e9a",
+  "driverSha": "bf67fbdccac897cbda885c86494a34294113ee0d",
   "cities": [
-    "apia",
-    "dubai"
+    "ndjamena",
+    "bujumbura",
+    "antananarivo"
   ]
 }

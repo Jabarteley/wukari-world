@@ -2,14 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "africa-three-current-main",
-      "appSha": "59b8057c0e02503f3156ca8679de3367f72873bf",
-      "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc",
+      "id": "africa-three-entry-driver-current-main",
+      "appSha": "44a691363f53821a8e1bd96c8bddd1749c5b0e9a",
+      "driverSha": "3a69438b5754bd22c3f520af452984b93e030763",
       "cities": [
         "ndjamena",
         "bujumbura",
         "antananarivo"
-      ]
+      ],
+      "roundtrip": true
     }
   ]
 }

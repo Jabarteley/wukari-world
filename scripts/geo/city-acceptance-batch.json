@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "wave2-on-startup-scale-seven",
+      "id": "wave2-apia-rerun",
       "appSha": "64f5f997f429aa7c9f3a8aa81a2c78cad12c8300",
-      "driverSha": "313e1cfc5a5df2204e28c135a5574df91491d252",
-      "cities": ["apia", "bogota", "buenos-aires", "dubai", "mexico-city", "santiago", "suva"],
+      "driverSha": "05840d84c453f1d60d6d8ecac0a5b6ade60841e8",
+      "cities": ["apia"],
       "roundtrip": true
     }
   ]

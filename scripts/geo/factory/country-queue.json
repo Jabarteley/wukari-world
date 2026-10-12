@@ -1,1 +1,60 @@
-{"schemaVersion": 1, "queue": []}
+{
+ "schemaVersion": 1,
+ "queue": [
+  {
+   "id": "ss",
+   "table": "scripts/geo/factory/country-tables/ss.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "sl",
+   "table": "scripts/geo/factory/country-tables/sl.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "dj",
+   "table": "scripts/geo/factory/country-tables/dj.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "kg",
+   "table": "scripts/geo/factory/country-tables/kg.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "sr",
+   "table": "scripts/geo/factory/country-tables/sr.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "am",
+   "table": "scripts/geo/factory/country-tables/am.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "az",
+   "table": "scripts/geo/factory/country-tables/az.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "uz",
+   "table": "scripts/geo/factory/country-tables/uz.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "hn",
+   "table": "scripts/geo/factory/country-tables/hn.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "pa",
+   "table": "scripts/geo/factory/country-tables/pa.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "bz",
+   "table": "scripts/geo/factory/country-tables/bz.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  }
+ ]
+}

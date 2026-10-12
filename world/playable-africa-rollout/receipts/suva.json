@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "suva",
+  "countryIso2": "FJ",
+  "generationIdentity": {
+    "cityId": "suva",
+    "stateId": "fj-suva",
+    "stateName": "Suva"
+  },
+  "inventorySha256": "8c225b504403ca81ea84d7797694a98d0dab08c56a0b884270acfdb3e2c8a2dc",
+  "inventoryPath": "world/playable-africa-rollout/sources/suva.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "suva-airport",
+    "name": "Nausori International Airport",
+    "lon": 178.561486,
+    "lat": -18.044226,
+    "sourceUrl": "https://ourairports.com/airports/NFNA/"
+  },
+  "bounds": [
+    -18.322469289933977,
+    178.25290905716855,
+    -17.960707510066023,
+    178.63142334283145
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/fiji-261009.osm.pbf",
+      "datasetSha256": "5f18897baf960347783dc3f4731e54afdf1a7618066548edef34da17674f642b",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "10759987f4d2b42c26dee0df59991255a87e07aa32650dede48581afa5e2da51",
+          "elements": 173
+        },
+        {
+          "file": "extras.json",
+          "sha256": "82dddc33c9144b55dbe8e481c34dadc284b993fe8e2b534e1e0476458011416d",
+          "elements": 123
+        },
+        {
+          "file": "water.json",
+          "sha256": "f5df0434d4409306f3612e5c67bb51e5bae55d3032988e0c9a71b5d853c3f381",
+          "elements": 296
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "9eb6a747fc0405a122c4f3e62fa34f5fe8e4f6c1b5b29b2ec7d36f8677eea4f9",
+          "elements": 471
+        },
+        {
+          "file": "roads.json",
+          "sha256": "1a4319ecdbf885c050153454488a122fa174d7eab10f2a41a9f8ce03a15a7ba8",
+          "elements": 369
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 177,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 6,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 14213
+  },
+  "observed": {
+    "places": 173,
+    "extras": 123,
+    "water": 296,
+    "landuse": 471,
+    "roads": 369
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1208,
+      "sha256": "a473223c3ecacc1aa85d6ac9a5fe6e284a3991cc4e37ca7b3093059c332e5417"
+    },
+    "geometry.ts": {
+      "bytes": 443179,
+      "sha256": "23d0c455986d4ef290494f9fc017212cc5b73b52c5644da1c365a83f05d71650"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "66272c749821c2580ece00e536bf009d70b8feeeacc30524ef4f3ef326eaf64c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/suva.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

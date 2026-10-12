@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dubai",
+  "countryIso2": "AE",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Dubai",
+    "coordinatesWgs84": [
+      55.2924146,
+      25.2647227
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/gcc-states-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "dubai-airport",
+    "name": "Dubai International Airport",
+    "lon": 55.370992,
+    "lat": 25.24979,
+    "sourceUrl": "https://ourairports.com/airports/OMDB/"
+  },
+  "boxes": {
+    "play": [
+      25.083841810066023,
+      55.09345169001182,
+      25.445603589933977,
+      55.49137750998818
+    ],
+    "core": [
+      25.219502477516507,
+      55.24272970763253,
+      25.309942922483494,
+      55.342099492367474
+    ],
+    "outline": [
+      25.033841810066022,
+      55.04345169001182,
+      25.495603589933978,
+      55.54137750998818
+    ],
+    "wide": [
+      24.48384181006602,
+      54.49345169001182,
+      26.04560358993398,
+      56.091377509988185
+    ],
+    "water": [
+      24.48384181006602,
+      54.49345169001182,
+      26.04560358993398,
+      56.091377509988185
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/gcc-states-261009.osm.pbf",
+    "datasetSha256": "bd4e70a7b6ffb8313a963bf52313e8e80e065288c65454b7f81efeafac8a29d3",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "569364758c4cc6348fa5eb0b18074863c5625103b3721b6973c09d37be5d1fec",
+        "elements": 4981
+      },
+      {
+        "file": "extras.json",
+        "sha256": "e4dcf7368309395203b4dff2a0859822624a551ad7cd148f26610a1ac83b8517",
+        "elements": 655
+      },
+      {
+        "file": "water.json",
+        "sha256": "79f8ebf0e3ec52fa6cfb6e532543c133adf957c74149b7ff81a6f0ab33467e02",
+        "elements": 1173
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "e0010f3c865473dd96b46f9f4878e660fbce4c6c6405073b8ded96b7a90d1d02",
+        "elements": 2336
+      },
+      {
+        "file": "roads.json",
+        "sha256": "256079f8d90642912376460e35ce7e828cb6d4a674f0c2751a7a43ab9fe6b712",
+        "elements": 4066
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Burj Khalifa / Dubai Mall",
+      "osm": "node/604304348",
+      "coordinatesWgs84": [
+        55.269545,
+        25.201437
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pizza Hut",
+      "osm": "node/641812240",
+      "coordinatesWgs84": [
+        55.383466,
+        25.227997
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "I.A.U - Islamic Azad University",
+      "osm": "node/3275135389",
+      "coordinatesWgs84": [
+        55.164979,
+        25.104673
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dubai Hospital",
+      "osm": "way/98642909",
+      "coordinatesWgs84": [
+        55.321549,
+        25.284803
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al Wasl Park",
+      "osm": "way/230622240",
+      "coordinatesWgs84": [
+        55.265921,
+        25.222593
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dubai Hills Mall",
+      "osm": "way/797700047",
+      "coordinatesWgs84": [
+        55.239682,
+        25.101599
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dubai Grand Masjid",
+      "osm": "relation/7214752",
+      "coordinatesWgs84": [
+        55.296809,
+        25.264373
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arts Square",
+      "osm": "node/4770571328",
+      "coordinatesWgs84": [
+        55.386582,
+        25.361283
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ministry of Human Resources & Emiratisation",
+      "osm": "way/1115201459",
+      "coordinatesWgs84": [
+        55.411398,
+        25.253488
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Dubai",
+      "osm": "relation/13303178",
+      "coordinatesWgs84": [
+        55.41439,
+        25.107742
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Maktoum Stadium",
+      "osm": "way/202564429",
+      "coordinatesWgs84": [
+        55.312816,
+        25.239914
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dubai Safari Zoo Park",
+      "osm": "way/551627055",
+      "coordinatesWgs84": [
+        55.451618,
+        25.179585
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University Of Sharjah",
+      "osm": "way/376417463",
+      "coordinatesWgs84": [
+        55.479084,
+        25.287903
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "City University College of Ajman",
+      "osm": "way/238918057",
+      "coordinatesWgs84": [
+        55.444438,
+        25.388584
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jumeirah Beach",
+      "osm": "way/89654734",
+      "coordinatesWgs84": [
+        55.224175,
+        25.184798
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barjeel Art Foundation",
+      "osm": "node/3272826588",
+      "coordinatesWgs84": [
+        55.376589,
+        25.321791
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Silicon Oasis Park",
+      "osm": "way/364819836",
+      "coordinatesWgs84": [
+        55.378486,
+        25.126277
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mushrif National Park",
+      "osm": "way/311254501",
+      "coordinatesWgs84": [
+        55.452679,
+        25.217921
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mall of The Emirates",
+      "osm": "way/175115425",
+      "coordinatesWgs84": [
+        55.200511,
+        25.117941
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palm Jumeirah Mall",
+      "osm": "way/104655711",
+      "coordinatesWgs84": [
+        55.138533,
+        25.114026
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maktoum Bin Rashid Al Maktoum Stadium",
+      "osm": "way/201292184",
+      "coordinatesWgs84": [
+        55.348144,
+        25.290821
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Latifa Hospital Women and Children",
+      "osm": "relation/2844942",
+      "coordinatesWgs84": [
+        55.318409,
+        25.222656
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iranian Hospital Dubai",
+      "osm": "way/230629140",
+      "coordinatesWgs84": [
+        55.269416,
+        25.230276
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Marys Catholic Church",
+      "osm": "node/1532272198",
+      "coordinatesWgs84": [
+        55.317606,
+        25.240233
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1223,
+      "sha256": "3d9515f5d0747c40e7a25c329a2a2185be0a10de07c7c4bd69a64452b1fb034e"
+    },
+    "geometry.ts": {
+      "bytes": 134311,
+      "sha256": "f94762d4e8be3299c33a598dc56d50e94d85666eac3c0680aefa635e549ebc06"
+    },
+    "places.ts": {
+      "bytes": 9872,
+      "sha256": "636ffaa980d23ca43392c9ec7be84410b0be63bf4af2dd062c9c378e3d3c00a5"
+    },
+    "terrain.ts": {
+      "bytes": 172337,
+      "sha256": "babf93b1a4fe0098e9b72c045c052845de6071b02f01965f300e3c6e86ab91af"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "42881d04f0d6c7b7ff7e0cb88351973c3ad4c55745bb19ed8c5d1d1105002d7f"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

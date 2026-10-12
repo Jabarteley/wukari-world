@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "apia",
+  "countryIso2": "WS",
+  "generationIdentity": {
+    "cityId": "apia",
+    "stateId": "ws-apia",
+    "stateName": "Apia"
+  },
+  "inventorySha256": "9b6e34c394e7ee710d5d198db78ca9b31f6b1bba90d75631fe14844bbdc37cf8",
+  "inventoryPath": "world/playable-africa-rollout/sources/apia.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "apia-airport",
+    "name": "Faleolo International Airport",
+    "lon": -172.007996,
+    "lat": -13.83,
+    "sourceUrl": "https://ourairports.com/airports/NSFA/"
+  },
+  "bounds": [
+    -14.015404389933979,
+    -172.01724767390576,
+    -13.65364261006602,
+    -171.57792073229658
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/samoa-261009.osm.pbf",
+      "datasetSha256": "d66e6df7efb4583623ff51791d3013f42faac73b4d48571cf574eedce8cc16a2",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "291e87b261fe6f153e0b4409e478fdd06bbd19ab994bd6154fec88f33fe6b297",
+          "elements": 144
+        },
+        {
+          "file": "extras.json",
+          "sha256": "975a05ab021b0d739cca29a45c632e9b8908a07519a7aa17a5653341900980fc",
+          "elements": 99
+        },
+        {
+          "file": "water.json",
+          "sha256": "41ca4398870be3b973bb2de5c070e96d48bd97b156042d51b6460024b4a8528c",
+          "elements": 186
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "33f306726042b61b336e73a2e1d8de899ad915cb41bd89bdfb9026895d88a70d",
+          "elements": 496
+        },
+        {
+          "file": "roads.json",
+          "sha256": "6d72f3a24ca75aad8b151d3697a9514e4ef9a172d115a27f790c329f8c9d9bfa",
+          "elements": 205
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 43,
+    "neighbourhoodLabels": 5,
+    "landPolygons": 13,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 144,
+    "extras": 99,
+    "water": 186,
+    "landuse": 496,
+    "roads": 205
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1226,
+      "sha256": "6de7ff0d0ebf767a7582ea8639768aa55ea33b8b240c8a09607bf95c6e88950d"
+    },
+    "geometry.ts": {
+      "bytes": 103618,
+      "sha256": "19ae1997949ded70a8aaa90f85ba412c77f173fd65caba5bf86f610d2e33b31c"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "137edaa01345dd216fc0118d5d6ac3c9cd29ae34a348d76fe9357c0b4c30766a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/apia.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

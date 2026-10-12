@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "wave2-world-entry-seven",
-      "appSha": "c9341e2013aa840c2634c4445c8772a77ee9506b",
-      "driverSha": "05df5f4e1469c287f2175432f06278edd20388da",
+      "id": "wave2-on-startup-scale-seven",
+      "appSha": "64f5f997f429aa7c9f3a8aa81a2c78cad12c8300",
+      "driverSha": "313e1cfc5a5df2204e28c135a5574df91491d252",
       "cities": ["apia", "bogota", "buenos-aires", "dubai", "mexico-city", "santiago", "suva"],
       "roundtrip": true
     }

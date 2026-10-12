@@ -9,6 +9,7 @@ import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { factsForTarget, geometryPolicy } from './inputs.mjs';
 import { pickForSlot } from './slot-fallback.mjs';
+import { fitCatalogueBudget, CATALOGUE_LIMIT } from './catalogue-budget.mjs';
 const args = process.argv.slice(2), get = flag => args[args.indexOf(flag) + 1];
 if (!args.includes('--table') || !args.includes('--out'))
     throw Error('Usage: batch.mjs --table TARGETS_JSON --out NEW_PRIVATE_FOLDER');
@@ -49,7 +50,11 @@ for (const target of table.targets) {
             throw new TypeError(`${target.id}: namesUnit must be a non-empty string`);
         if (target.sceneWaterExtent !== undefined && !['play', 'reach'].includes(target.sceneWaterExtent))
             throw new TypeError(`${target.id}: sceneWaterExtent must be 'play' or 'reach'`);
-        const prior = await factsForTarget(table, target), old = geometryPolicy(table, target);
+        const fitted = fitCatalogueBudget(await factsForTarget(table, target)), prior = fitted.facts, old = geometryPolicy(table, target);
+        row.catalogueBytes = fitted.bytes;
+        if (fitted.compacted) row.catalogueCompaction = fitted.compacted;
+        if (fitted.bytes > CATALOGUE_LIMIT)
+            (row.warnings ??= []).push(`catalogue row would add ${fitted.bytes} raw bytes; the app baseline limit is ${CATALOGUE_LIMIT} (scripts/city/build-catalogue.ts): needs an app change or a shorter city id`);
                 const raw = JSON.parse(readFileSync(join(target.extractDirectory, 'places.json'))), boxes = raw.source.boxes;
         const { loadPbfExtract } = await load('scripts/geo/destination-detail/pbf-extract.ts'), { inBox, inRing, areaRings, polygonsOf, ringArea } = await load('scripts/geo/destination-detail/geometry-tools.ts'), { waterLabelPoint } = await load('scripts/geo/destination-detail/water-label.ts');
         const ex = loadPbfExtract(target.extractDirectory, target.id, boxes), { buildDestinationContent } = await load('src/game/cities/africa/contentBuilder.ts'), { destinationVenueIds } = await load('src/game/cities/africa/types.ts');

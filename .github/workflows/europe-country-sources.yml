@@ -1,9 +1,12 @@
-name: Europe pinned country source batches
+name: Europe priority major-city source batches
 
 on:
   push:
     branches: ['codex/world-europe-20261011']
-    paths: ['scripts/geo/factory/europe-es.json', 'scripts/geo/factory/europe-it.json']
+    paths:
+      - 'scripts/geo/factory/europe-ie.json'
+      - 'scripts/geo/factory/europe-nl.json'
+      - '.github/workflows/europe-country-sources.yml'
 
 permissions:
   contents: read
@@ -20,7 +23,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        country: [es, it]
+        country: [nl, ie]
     steps:
       - name: Set source output directory
         run: echo "BOOTSTRAP_OUT=$RUNNER_TEMP/city-source-bootstrap" >> "$GITHUB_ENV"
@@ -44,10 +47,19 @@ jobs:
           npm ci --prefix geometry-source --ignore-scripts --no-audit --no-fund
       - name: Download verified country source and derive metadata and layers
         run: |
-          /usr/bin/time -v python scripts/geo/factory/bootstrap/batch-run.py \
+          /usr/bin/time -v -o "$RUNNER_TEMP/source-resource.txt" python scripts/geo/factory/bootstrap/batch-run.py \
             --table scripts/geo/factory/europe-${{ matrix.country }}.json \
             --geometry-source "$GITHUB_WORKSPACE/geometry-source" \
             --outdir "$BOOTSTRAP_OUT"
+      - name: Preserve resource receipt
+        if: always()
+        run: |
+          mkdir -p "$RUNNER_TEMP/city-source-bootstrap/publish"
+          if test -s "$RUNNER_TEMP/source-resource.txt"; then
+            cp "$RUNNER_TEMP/source-resource.txt" "$RUNNER_TEMP/city-source-bootstrap/publish/source-resource.txt"
+          else
+            printf '%s\n' 'GNU time resource report was not produced or was empty.' > "$RUNNER_TEMP/city-source-bootstrap/publish/source-resource.txt"
+          fi
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

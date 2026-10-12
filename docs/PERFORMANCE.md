@@ -108,7 +108,7 @@ From `scripts/perf/session.ts`: one settled player, five rounds through the venu
    context: one more context, eight textures and a program were held after every round (3 contexts after settling in, 10 after
    five rounds). A browser gives a page about sixteen and then takes the oldest away, whichever screen it is drawing. Fixed: every
    scene that makes its renderer now gives the context back when it closes (the venue and home host, the campus, the street, the
-   atlas, the guide, the driving scene; the city map, the avatar preview and the showcase room already did).
+   atlas and the guide; the city map, the avatar preview and the showcase room already did).
 2. **Two things draw while nothing is touched, on purpose.** The guide in the corner draws 30 times a second for as long as it is on
    screen (a 124-pixel canvas, about 5 ms of script a second), and a venue with its crowd draws every frame (20 to 35 ms of script a
    second on this computer, so roughly a tenth of a slow phone's core). The city map, the shop, the phone and home (apart from the
@@ -116,7 +116,7 @@ From `scripts/perf/session.ts`: one settled player, five rounds through the venu
 3. **Walking the street recompiled its shaders every few steps.** The street's buildings swap between near and far models as the
    camera moves, and each swap threw the layer's materials away and made them again, which makes the browser compile and link the
    same shader programs again: 490 ms of 3 s spent waiting for the link, 200 to 245 ms of script a second, frames of 33 to 117 ms.
-   It also kept every discarded material in the list of lit windows for as long as the street was open. Fixed: the layer keeps its
+   After the fix: 40 ms of script a second, every frame under 17 ms. It also kept every discarded material in the list of lit windows for as long as the street was open. Fixed: the layer keeps its
    materials until it is closed (`src/scene/models/scene-models.ts`).
 4. **Every other screen held 60 frames a second** on this computer, still, dragged and zoomed. Two first-time costs stood out: the first zoom
    of the city map (one task of 260 ms) and the first opening of the Politics app (270 ms); neither repeats.
@@ -124,7 +124,7 @@ From `scripts/perf/session.ts`: one settled player, five rounds through the venu
    already read a page at a time (`docs/LISTS.md`).
 6. **First load on the phone profile** (CPU slowed four times, 1.6 Mbit/s): first paint 0.9 s, the entry page usable at 6.0 s, 75 ms of
    blocking time, 48 requests, 869 kB of which 641 kB is script.
-7. **Nothing else grew**: after the first round the heap stayed at 36 to 38 MB, DOM nodes at 3,800, listeners at about 410, buffers at 277.
+7. **Nothing else grew much**: after the fixes the page held 3 WebGL contexts, about 3,480 DOM nodes and 392 listeners after every round. The heap went from 37.1 to 39.3 MB over four rounds (about half a megabyte a round), which is worth a longer run.
 
 ### The server
 
@@ -190,6 +190,7 @@ not grow without bound. An agent call wrote 1.1 to 3 rows.
 | The pulse answer names only cities with someone in them | About 300 cities: the answer is then 3 kB to every page every 30 s | Sparse `cities`; the client already treats a missing city as zero |
 | One socket per page; one object per city | Above about 3,000 players connected at once (CAPACITY.md) | CAPACITY.md, "One object per city, in outline" |
 | The venue crowd and the guide at a lower rate when nothing else moves | When phones report heat or battery drain: both keep a GPU awake | Draw the crowd at 30 a second while the camera is still; let the guide rest between gestures as it already does under reduced motion |
+| The driving practice scene gives its context back too | With the others fixed it is one context per lesson opened; it matters after about a dozen lessons in one sitting | One line in `drivingScene.ts`, made together with the geometry evidence that pins that file by hash |
 | The first zoom of the city map (260 ms once) | If it is noticed | Build the closer level of detail in an idle callback after the map opens |
 
 ## Not measured

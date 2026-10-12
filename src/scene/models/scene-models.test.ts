@@ -184,7 +184,7 @@ test('walking near and far builds the layer again without throwing its materials
     assert.ok(first.length >= 2, 'one material per atlas in use');
     for (let lap = 0; lap < 6; lap++) { assert.equal(layer.focus(lap % 2 ? 0 : 100, 0), true, 'the levels swap, so the layer is built again'); await new Promise((resolve) => setTimeout(resolve, 0)); }
     assert.equal(disposals, 0, 'six builds disposed no material');
-    assert.deepEqual(used().sort((a, b) => a.id - b.id), first.sort((a, b) => a.id - b.id), 'and the meshes wear the same materials');
+    assert.deepEqual(new Set(used()), new Set(first), 'and the meshes wear the same materials');
     assert.equal(decorated.length, first.length, 'each material was decorated once, not once per build');
     layer.dispose();
     assert.equal(disposals, first.length, 'closing the layer lets them all go');

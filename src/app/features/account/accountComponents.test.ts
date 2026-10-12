@@ -66,7 +66,7 @@ test('on a server without accounts nothing about them is shown, anywhere', async
   assert.equal(sheet, 'Accounts are not available here Your progress is saved to this device. Close')
   const html = await render('AccountSignIn')
   assert.ok(!/<input|<form|data-account-google/.test(html), 'no form, no field, no Google button')
-  const { useAccountEntry } = await load<{ useAccountEntry: () => { available: boolean; signedIn: boolean; openSignIn(): void; openSignUp(): void; openSave(): void } }>('/src/app/features/start/accountEntry.ts')
+  const { useAccountEntry } = await load<{ useAccountEntry: () => { available: boolean; loaded: boolean; signedIn: boolean; openSignIn(): void; openSignUp(): void; openSave(): void } }>('/src/app/features/start/accountEntry.ts')
   assert.equal(useAccountEntry().available, false)
   // And the Settings tab as a whole still explains the device session.
   const settings = text(await renderToString(createSSRApp({ render: () => h(awaitedSettings) })))
@@ -75,10 +75,10 @@ test('on a server without accounts nothing about them is shown, anywhere', async
 
 test('the start screens’ entry: available once the server says so, and it opens the two screens', async () => {
   await given(CONFIGURED)
-  const { useAccountEntry } = await load<{ useAccountEntry: () => { available: boolean; signedIn: boolean; openSignIn(): void; openSignUp(): void; openSave(): void } }>('/src/app/features/start/accountEntry.ts')
+  const { useAccountEntry } = await load<{ useAccountEntry: () => { available: boolean; loaded: boolean; signedIn: boolean; openSignIn(): void; openSignUp(): void; openSave(): void } }>('/src/app/features/start/accountEntry.ts')
   const entry = useAccountEntry()
   assert.equal(entry.available, true)
-  assert.deepEqual(Object.keys(entry).sort(), ['available', 'openSave', 'openSignIn', 'openSignUp', 'signedIn'])
+  assert.deepEqual(Object.keys(entry).sort(), ['available', 'loaded', 'openSave', 'openSignIn', 'openSignUp', 'signedIn'])
   assert.equal(entry.signedIn, false)
   entry.openSave()
   assert.deepEqual(app.shell.sheet.value, { kind: 'panel', id: 'account-sign-in', params: { intent: 'save', mode: 'create', where: 'ready' }, from: null })

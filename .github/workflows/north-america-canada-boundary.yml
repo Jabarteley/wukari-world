@@ -2,7 +2,7 @@ name: North America Canada boundary resource diagnostic
 on:
   push:
     branches: ['codex/world-north-america-20261011']
-    paths: ['scripts/geo/north-america-source/canada-boundary.json', 'scripts/geo/north-america-source/canada-boundary-rerun.md', 'scripts/geo/north-america-source/canada-highest-point.patch']
+    paths: ['scripts/geo/north-america-source/canada-boundary.json', 'scripts/geo/north-america-source/canada-boundary-rerun.md', 'scripts/geo/north-america-source/canada-highest-point.patch', 'scripts/geo/north-america-source/boundary-run-monitor.py']
 permissions:
   contents: read
 concurrency:
@@ -112,21 +112,62 @@ jobs:
           diagnostic_rc=$?
           printf '%s\n' "$diagnostic_rc" > "$RUNNER_TEMP/canada-boundary/publish/resources/download-exit.txt"
           exit "$diagnostic_rc"
+      - name: Preserve verified-source pre-boundary snapshot
+        if: steps.download.outcome == 'success'
+        run: |
+          set -euo pipefail
+          python scripts/geo/north-america-source/boundary-run-monitor.py \
+            --root "$RUNNER_TEMP/canada-boundary" \
+            --output "$RUNNER_TEMP/canada-boundary/publish/resources/pre-boundary.jsonl"
+          mkdir -p "$RUNNER_TEMP/canada-boundary/pre-boundary"
+          cp "$RUNNER_TEMP/canada-boundary/publish/result.json" "$RUNNER_TEMP/canada-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/canada-boundary/publish/source-receipt.json" "$RUNNER_TEMP/canada-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/canada-boundary/publish/resources/preflight.json" "$RUNNER_TEMP/canada-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/canada-boundary/publish/resources/disk-before.txt" "$RUNNER_TEMP/canada-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/canada-boundary/publish/resources/memory-before.txt" "$RUNNER_TEMP/canada-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/canada-boundary/publish/resources/download-time.txt" "$RUNNER_TEMP/canada-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/canada-boundary/publish/resources/pre-boundary.jsonl" "$RUNNER_TEMP/canada-boundary/pre-boundary/"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: steps.download.outcome == 'success'
+        with:
+          name: north-america-canada-pre-boundary-${{ github.sha }}
+          path: ${{ runner.temp }}/canada-boundary/pre-boundary
+          if-no-files-found: error
+          retention-days: 14
       - name: Prove exact same-source boundary within 25 minutes
         id: boundary
         if: steps.download.outcome == 'success'
         continue-on-error: true
         run: |
+          set -uo pipefail
+          monitor_pid=''
+          boundary_pid=''
+          capture_signal() {
+            signal_name="$1"
+            printf '%s\n' "$signal_name" > "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-signal.txt"
+            printf 'utc=%s bash_pid=%s boundary_pid=%s monitor_pid=%s\n' "$(date -u +%FT%TZ)" "$$" "${boundary_pid:-}" "${monitor_pid:-}" \
+              > "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-signal-context.txt"
+            if [[ -n "$monitor_pid" ]]; then kill -TERM "$monitor_pid" 2>/dev/null || true; fi
+            if [[ -n "$boundary_pid" ]]; then kill -TERM "$boundary_pid" 2>/dev/null || true; fi
+          }
+          trap 'capture_signal SIGTERM' TERM
+          trap 'capture_signal SIGINT' INT
           source_sha=$(python -c 'import json,os; from pathlib import Path; print(json.loads((Path(os.environ["RUNNER_TEMP"])/"canada-boundary/publish/source-receipt.json").read_text())["sha256"])')
-          set +e
           /usr/bin/time -v -o "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-time.txt" timeout --signal=TERM --kill-after=30s 25m \
             python boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py \
             --pbf "$RUNNER_TEMP/canada-boundary/country.osm.pbf" --country CA \
             --expected-sha256 "$source_sha" --expected-bytes 6521324534 \
             --dataset-url https://download.geofabrik.de/north-america/canada-261009.osm.pbf \
             --dataset-date 2026-10-09 --out "$RUNNER_TEMP/canada-boundary/publish/boundary" \
-            > "$RUNNER_TEMP/canada-boundary/publish/resources/boundary.log" 2>&1
+            > "$RUNNER_TEMP/canada-boundary/publish/resources/boundary.log" 2>&1 &
+          boundary_pid=$!
+          python scripts/geo/north-america-source/boundary-run-monitor.py \
+            --root "$RUNNER_TEMP/canada-boundary" --pid "$boundary_pid" --interval 5 \
+            --output "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-samples.jsonl" &
+          monitor_pid=$!
+          wait "$boundary_pid"
           diagnostic_rc=$?
+          wait "$monitor_pid" || true
           printf '%s\n' "$diagnostic_rc" > "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-exit.txt"
           exit "$diagnostic_rc"
       - name: Preserve measured result and precise HOLD on failure

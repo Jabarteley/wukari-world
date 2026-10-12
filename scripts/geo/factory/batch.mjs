@@ -111,7 +111,7 @@ for (const target of table.targets) {
             });
         };
         const semanticKinds = [...new Set(pool.map(element => addedKind(element.tags)).filter(Boolean))].sort();
-        const maximumPerKind = 3, relaxedMaximumPerKind = 5;
+        const maximumPerKind = 3, relaxedCaps = [5, 6, 7, 8];
         row.eligibleKindCounts = Object.fromEntries(semanticKinds.map(kind => [kind, new Set(pool.filter(element => addedKind(element.tags) === kind).map(element => normal(name(element)))).size]));
         row.semanticPolicy = { maximumPerKind, targetPlaces: 24, minimumPlaces: 20 };
         const unavailableSemanticKinds = [];
@@ -133,9 +133,11 @@ for (const target of table.targets) {
         };
         fill(maximumPerKind);
         // Only when the cap leaves fewer than the 20 venues the acceptance contract needs (PLACES.length >= 20 in acceptance.mjs; nothing there limits a kind).
-        if (choices.length < 20) {
-            fill(relaxedMaximumPerKind);
-            row.semanticPolicy.relaxedMaximumPerKind = relaxedMaximumPerKind;
+        // One step at a time (5, 6, 7, 8 per kind), stopping at the first cap that reaches 20, so the smallest sufficient relaxation is used.
+        for (const cap of relaxedCaps) {
+            if (choices.length >= 20) break;
+            fill(cap);
+            row.semanticPolicy.relaxedMaximumPerKind = cap;
         }
         row.semanticCoverage = semanticKinds.map(kind => ({ kind, refs: choices.filter(choice => choice.kind === kind).map(choice => choice.ref) }));
         row.unavailableSemanticKinds = unavailableSemanticKinds;

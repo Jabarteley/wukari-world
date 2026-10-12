@@ -59,7 +59,16 @@
           -17.560616310066024
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "node/1078699438",
+          "reason": "Erakor Island: the exact source-coast stage classes this source anchor as water (25.9 m from the coast; offline replica of the batch 3 artifact, exact-coastwater.py: Source anchors are not dry land)"
+        },
+        {
+          "ref": "node/1078805085",
+          "reason": "Elluk Plateau: the exact source-coast stage classes this source anchor as water (offline replica of the batch 3 artifact, exact-coastwater.py: Source anchors are not dry land)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/115622916",

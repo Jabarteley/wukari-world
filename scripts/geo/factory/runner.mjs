@@ -3,12 +3,13 @@ import { writeReviewPage } from './gallery.mjs';
 import { machineFailed, contactSheetInputs } from './report.mjs';
 import { insideSandbox, remapTable } from './paths.mjs';
 /** Plan by default. Execution requires a marked disposable clone; no live approval. */
-import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, realpathSync, readdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, existsSync, cpSync, copyFileSync, realpathSync, readdirSync } from 'node:fs';
 import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { ensureAcceptance } from './acceptance.mjs';
+import { dropWaterLabels, unlabellableWaterRefs } from './water-label-skip.mjs';
 const a = process.argv.slice(2), get = k => a[a.indexOf(k) + 1], home = dirname(fileURLToPath(import.meta.url));
 if (!['--table', '--workspace', '--outdir'].every(k => a.includes(k)))
     throw Error('Usage: runner.mjs --table JSON --workspace DISPOSABLE_CLONE --outdir PRIVATE_EVIDENCE [--plan|--execute]');
@@ -17,7 +18,7 @@ const sandbox = a.includes('--sandbox-root') ? resolve(get('--sandbox-root')) : 
 insideSandbox(out, sandbox);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex'), readhash = path => hash(readFileSync(path));
 const shared = ['scripts/geo/build-destination-detail.ts', 'scripts/geo/destination-detail/geometry-tools.ts', 'scripts/geo/destination-detail/pbf-extract.ts', 'scripts/geo/destination-detail/queries.ts', 'scripts/geo/destination-detail/water-label.ts', 'scripts/city/build-catalogue.ts', 'src/game/cities/africa/contentBuilder.ts', 'src/game/cities/africa/types.ts', 'src/game/cities/africa/map.ts', 'src/game/cities/africa/module.ts', 'src/game/cities/cityContractTest.test.ts', 'package.json', 'package-lock.json'];
-const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs', 'gallery.mjs', 'country-scope.mjs', 'destination-contract.mjs', 'exact-coastwater.py', 'coast-triangulation.mjs'].map(n => join(home, n));
+const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs', 'gallery.mjs', 'country-scope.mjs', 'destination-contract.mjs', 'exact-coastwater.py', 'coast-triangulation.mjs', 'slot-fallback.mjs', 'catalogue-budget.mjs', 'district-labels.mjs', 'water-label-skip.mjs'].map(n => join(home, n));
 if (!a.includes('--proof-helper') || !a.includes('--receipt-helper')) throw Error('Explicit --proof-helper and --receipt-helper are required');
 const proof = resolve(get('--proof-helper')), receipt = resolve(get('--receipt-helper'));
 tools.push(proof, receipt);
@@ -126,6 +127,18 @@ for (const c of cityPlan) {
             cpSync(join(out, 'selection', `${c.id}-stage`, path), dest);
         }
         row.machineStages.generation = run(`${c.id}/generation`, c.generation, c.generatedFiles.map(p => join(workspace, p)));
+        // A named water label with no interior point in the rendered water is optional: drop exactly that label, record it, generate again (at most three times).
+        for (let attempt = 1; !row.machineStages.generation && attempt <= 3; attempt += 1) {
+            const logPath = join(out, `${c.id}-generation.log`), recipePath = join(workspace, `scripts/geo/destination-detail/${c.id}.ts`);
+            const dropped = existsSync(logPath) ? dropWaterLabels(readFileSync(recipePath, 'utf8'), unlabellableWaterRefs(readFileSync(logPath, 'utf8'))) : { removed: [] };
+            if (!dropped.removed.length)
+                break;
+            writeFileSync(recipePath, dropped.text);
+            copyFileSync(logPath, join(out, `${c.id}-generation-attempt-${attempt}.log`));
+            (row.warnings ??= []).push(...dropped.removed.map(label => `water label ${label.ref} skipped: no interior point in the rendered water (generator error; the label is optional)`));
+            (row.skippedWaterLabels ??= []).push(...dropped.removed.map(label => label.ref));
+            row.machineStages.generation = run(`${c.id}/generation`, c.generation, c.generatedFiles.map(p => join(workspace, p)));
+        }
         if (!row.machineStages.generation)
             row.reasons.push('geometry generation failed');
     }

@@ -184,9 +184,17 @@ async function atlasLevel(b: Browser, id: string, prefix: string): Promise<void>
     return chip?.querySelector(':scope > span')?.textContent?.trim() === ${JSON.stringify(entry.name)} && !!chip.closest('.level-menu')?.querySelector('[data-atlas-level="${entry.index}"][aria-current="true"]');
   })()`;
   const choose = async (index: number): Promise<void> => {
-    await b.click('[data-atlas-levels]');
-    await b.click(`[data-atlas-level="${index}"]`);
+    // Choosing a country from a continent makes the app go to that country's level by itself once its sheet has loaded; if that happens
+    // while the menu is being opened the menu is gone and the option never shows. The level being reached is the goal, so look again.
+    try {
+      await b.click('[data-atlas-levels]');
+      await b.click(`[data-atlas-level="${index}"]`, undefined, 8000);
+    } catch (error) {
+      if (!(await b.waitFor(atLevel, 15000, `${entry.name} level`).then(() => true, () => false))) throw error;
+    }
   };
+  // The app may already be on its way to this level (a country picked from its continent): give it a moment before opening the menu.
+  if (!(await b.eval<boolean>(atLevel)) && entry.index > 1) await b.waitFor(atLevel, 6000, `${entry.name} level`).catch(() => undefined);
   if (!(await b.eval<boolean>(atLevel))) {
     await choose(entry.index);
     // A continent level other than Africa, chosen while the atlas is at World: the app's own level settling can put the choice back to

@@ -45,7 +45,8 @@ jobs:
           set -euo pipefail
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends osmium-tool=1.16.0-1build1
-          test "$(osmium --version)" = 'osmium version 1.16.0'
+          osmium --version > "$RUNNER_TEMP/us-boundary/publish/resources/osmium-version.txt"
+          test "$(head -n 1 "$RUNNER_TEMP/us-boundary/publish/resources/osmium-version.txt")" = 'osmium version 1.16.0'
       - name: Install pinned geometry dependencies
         run: python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1' 'shapely==2.1.2'
       - name: Verify pins and measure available runner resources
@@ -78,12 +79,14 @@ jobs:
               index_types = osmium.index.map_types()
               if 'sparse_file_array' not in index_types:
                   raise ValueError('pinned pyosmium does not provide sparse_file_array')
-              osmium_version = subprocess.check_output(['osmium', '--version'], text=True).strip()
+              osmium_version_output = subprocess.check_output(['osmium', '--version'], text=True).strip()
+              osmium_version_lines = osmium_version_output.splitlines()
+              osmium_version = osmium_version_lines[0] if osmium_version_lines else ''
               if osmium_version != 'osmium version 1.16.0':
-                  raise ValueError(f'Osmium Tool version mismatch: {osmium_version}')
+                  raise ValueError(f'Osmium Tool version mismatch: {osmium_version_output}')
               disk = shutil.disk_usage(root)
               reserve = 24 * 1024 ** 3
-              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': patch_sha, 'memoryPatchSha256': memory_patch_sha, 'osmiumToolVersion': osmium_version, 'closureExtractorSha256': hashlib.sha256(Path('scripts/geo/north-america-source/extract-boundary-closure.py').read_bytes()).hexdigest(), 'receiptAdapterSha256': hashlib.sha256(Path('scripts/geo/north-america-source/rebind-boundary-closure-receipt.py').read_bytes()).hexdigest(), 'locationIndexType': 'sparse_file_array', 'availableLocationIndexTypes': index_types, 'assembledHelperSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py').read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'availableMemoryBytes': None, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'closureBudgetSeconds': 2100, 'boundaryBudgetSeconds': 900}
+              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': patch_sha, 'memoryPatchSha256': memory_patch_sha, 'osmiumToolVersion': osmium_version, 'osmiumToolVersionOutput': osmium_version_output, 'closureExtractorSha256': hashlib.sha256(Path('scripts/geo/north-america-source/extract-boundary-closure.py').read_bytes()).hexdigest(), 'receiptAdapterSha256': hashlib.sha256(Path('scripts/geo/north-america-source/rebind-boundary-closure-receipt.py').read_bytes()).hexdigest(), 'locationIndexType': 'sparse_file_array', 'availableLocationIndexTypes': index_types, 'assembledHelperSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py').read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'availableMemoryBytes': None, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'closureBudgetSeconds': 2100, 'boundaryBudgetSeconds': 900}
               memory = Path(publish / 'resources/memory-before.txt').read_text()
               for line in memory.splitlines():
                   if line.startswith('Mem:'):

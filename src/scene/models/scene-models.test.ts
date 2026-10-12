@@ -167,3 +167,26 @@ test('moving the focus reads the file a placement now needs, and keeps its other
     layer.dispose();
   } finally { kit.dispose(); }
 });
+
+test('walking near and far builds the layer again without throwing its materials away (a material takes its compiled shader with it)', async () => {
+  const cache = createModelCache(source({ n: model('n', 'x', 4), f: model('f', 'x-far', 1) }));
+  const kit = createKit();
+  try {
+    const decorated: THREE.Material[] = [];
+    const layer = createModelLayer(kit, cache, { nearRadius: 50, focus: { x: 0, z: 0 }, decorate: (material) => { decorated.push(material); } });
+    layer.add({ near: 'n', far: 'f', x: 0, z: 0 }); layer.add({ near: 'n', far: 'f', x: 100, z: 0 });
+    layer.build();
+    await layer.load(() => undefined);
+    const used = (): THREE.Material[] => { const found = new Set<THREE.Material>(); layer.group.traverse((object) => { const material = (object as THREE.Mesh).material; if (material && !Array.isArray(material)) found.add(material); }); return [...found]; };
+    const first = used();
+    let disposals = 0;
+    for (const material of first) material.addEventListener('dispose', () => { disposals += 1; });
+    assert.ok(first.length >= 2, 'one material per atlas in use');
+    for (let lap = 0; lap < 6; lap++) { assert.equal(layer.focus(lap % 2 ? 0 : 100, 0), true, 'the levels swap, so the layer is built again'); await new Promise((resolve) => setTimeout(resolve, 0)); }
+    assert.equal(disposals, 0, 'six builds disposed no material');
+    assert.deepEqual(new Set(used()), new Set(first), 'and the meshes wear the same materials');
+    assert.equal(decorated.length, first.length, 'each material was decorated once, not once per build');
+    layer.dispose();
+    assert.equal(disposals, first.length, 'closing the layer lets them all go');
+  } finally { kit.dispose(); }
+});

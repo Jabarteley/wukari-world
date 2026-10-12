@@ -188,7 +188,9 @@ export const cityCatalogueEntry = (value: unknown): CityCatalogueEntry | null =>
 export const catalogueCitiesInState = (stateId: unknown): readonly CityCatalogueEntry[] => typeof stateId === 'string' ? cityCatalogue().filter((city) => city.state.id === stateId) : []
 // The id readers below use the startup index only: they never need the network.
 export const knownCityIds = (): readonly string[] => Object.freeze([...INDEX_IDS, ...fixtures.keys()].filter((id, index, all) => all.indexOf(id) === index))
-export const registeredCityIds = (): readonly CityId[] => Object.freeze([...INDEX_IDS.filter((id) => OPEN_IDS.has(id)), ...fixtures.keys()].filter((id, index, all) => all.indexOf(id) === index))
+/** Asked on every request and for every stored life: the list is made once and again only when a test adds or removes a city. */
+let registeredIds: readonly CityId[] | null = null
+export const registeredCityIds = (): readonly CityId[] => registeredIds ??= Object.freeze([...INDEX_IDS.filter((id) => OPEN_IDS.has(id)), ...fixtures.keys()].filter((id, index, all) => all.indexOf(id) === index))
 export const playableCityIds = (): readonly CityId[] => {
   const open = new Set(INDEX_IDS.filter((id) => OPEN_IDS.has(id)))
   const ordered = PLAYABLE_ORDER.filter((id) => open.delete(id))
@@ -308,12 +310,12 @@ export function registerCityForTest(module: CityModule, { replaceClosed = false 
   const replacesReserved = replaceClosed && cityCatalogueEntry(module.id)?.open === false && !cityModule(module.id)
   if (!module.id.startsWith('test-') && !replacesReserved) throw new Error('Test city ids must start with test- or replace a closed reserved city')
   if (isKnownCityId(module.id) && !replacesReserved) throw new Error(`City id is already registered: ${module.id}`)
-  fixtures.set(module.id, module); mutableCityRules[module.id] = publicRules(module.rules); linkCache = null
+  fixtures.set(module.id, module); mutableCityRules[module.id] = publicRules(module.rules); linkCache = null; registeredIds = null
   let disposed = false
   return Object.freeze({ dispose: () => {
     if (disposed) return
     disposed = true
-    if (fixtures.get(module.id) === module) { fixtures.delete(module.id); delete mutableCityRules[module.id]; linkCache = null }
+    if (fixtures.get(module.id) === module) { fixtures.delete(module.id); delete mutableCityRules[module.id]; linkCache = null; registeredIds = null }
     pendingModules.delete(module.id); pendingContent.delete(module.id); pendingMaps.delete(module.id)
     loadedModules.delete(module.id); loadedRules.delete(module.id); loadedContent.delete(module.id); loadedMaps.delete(module.id)
   } })

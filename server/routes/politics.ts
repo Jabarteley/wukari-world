@@ -47,7 +47,7 @@ import type { Seat } from '../politics/data.ts';
 import { archiveCity } from '../records/city.ts';
 import { assemblyOf, billsOf, castVote, count, enact, leverBlock, needed, propose, proposeBlock, signBlock, signOrVeto, voteBlock } from '../politics/assembly.ts';
 import { append, recordsOf } from '../records/store.ts';
-import { auditBlock, credit, decreeBlock, drawSalary, found, foundBlock, grantBlock, grantRoom, impeachBlock, join, joinBlock, leave, leverValue, memberCount, partyOf, payGrant, runAudit, salaryBlock, salaryDue, setDecree, signPetition, signaturesNeeded, termAccounts } from '../politics/rules.ts';
+import { auditBlock, credit, decreeBlock, drawSalary, found, foundBlock, grantBlock, grantRoom, impeachBlock, join, joinBlock, leave, leverValue, memberCount, memberCounts, partyOf, payGrant, runAudit, salaryBlock, salaryDue, setDecree, signPetition, signaturesNeeded, termAccounts } from '../politics/rules.ts';
 import { prepareStoredCityContent } from '../request-city-content.ts';
 import { transactWithCityContent } from '../prepared-city-transaction.ts';
 
@@ -117,7 +117,8 @@ export default function politicsRoutes(ctx: RouteContext): Record<RouteKey, Rout
     const viewer = who ? ctx.core.sessionByPublicId(db, who.id) : undefined;
     const electorate = viewer ? electorateOf(db, viewer, now, cityId, cityName(cityId)) : undefined;
     const mine = who ? partyOf(politics, who.id) : null;
-    const parties = Object.values(politics.parties).map((party): PartyView => ({ id: party.id, name: party.name, motto: party.motto, colour: party.colour, founder: party.founder, members: memberCount(politics, party.id), mine: party.id === mine }))
+    const counts = memberCounts(politics);
+    const parties = Object.values(politics.parties).map((party): PartyView => ({ id: party.id, name: party.name, motto: party.motto, colour: party.colour, founder: party.founder, members: counts.get(party.id) ?? 0, mine: party.id === mine }))
       .sort((a, b) => b.members - a.members || a.name.localeCompare(b.name)).slice(0, 60);
     const founded = who ? Object.values(politics.parties).filter((party) => party.founder.id === who.id).length : 0;
     const phase = phaseAt(now);

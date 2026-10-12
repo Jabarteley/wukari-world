@@ -493,6 +493,7 @@ export function createCampusHost(container: HTMLElement, {
       canvas.removeEventListener('pointerdown', pointerDown); canvas.removeEventListener('pointermove', pointerMove);
       canvas.removeEventListener('pointerup', pointerUp); canvas.removeEventListener('pointercancel', pointerUp); canvas.removeEventListener('wheel', wheel);
       campus.dispose(); shuttle.dispose(); kit.dispose(); renderer.dispose();
+      if (!providedRenderer) { try { renderer.forceContextLoss?.(); } catch { /* the context is already gone */ } }
       canvas.remove(); tagLayer.remove(); miniMap.remove(); zoneLabel.remove(); controls.remove(); attribution.remove();
       container.classList.remove('campus-host'); container.style.removeProperty('--campus-top'); container.style.removeProperty('--campus-bottom');
     },

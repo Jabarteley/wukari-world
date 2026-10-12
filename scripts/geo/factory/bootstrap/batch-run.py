@@ -1,5 +1,6 @@
 """Pinned same-country source bootstrap, with candidate receipts and explicit holds."""
 import argparse
+import hashlib
 import importlib.util
 import json
 import os
@@ -54,6 +55,13 @@ def _write_phase_receipt(path, phases):
         if os.path.exists(temporary):
             os.unlink(temporary)
 
+def digest_many(path, algorithms):
+    hashes = {algorithm: hashlib.new(algorithm) for algorithm in algorithms}
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            for checksum in hashes.values(): checksum.update(block)
+    return {algorithm: checksum.hexdigest() for algorithm, checksum in hashes.items()}
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--table', required=True)
@@ -98,10 +106,12 @@ def main():
         pbf, csv = out / 'downloads/country.osm.pbf', out / 'downloads/airports.csv'
         source_http = phase('pbf-download', lambda: download(source['url'], pbf))
         csv_http = phase('airport-csv-download', lambda: download(airports['url'], csv))
-        def validate_pbf():
-            if pbf.stat().st_size != source['bytes'] or digest(pbf, 'md5') != source['md5']: raise ValueError('PBF byte count/MD5 mismatch')
-        phase('pbf-md5-size-validation', validate_pbf)
-        pbf_sha = phase('pbf-sha256', lambda: digest(pbf))
+        def validate_pbf_and_hash():
+            if pbf.stat().st_size != source['bytes']: raise ValueError('PBF byte count mismatch')
+            checksums = digest_many(pbf, ('md5', 'sha256'))
+            if checksums['md5'] != source['md5']: raise ValueError('PBF MD5 mismatch')
+            return checksums['sha256']
+        pbf_sha = phase('pbf-size-md5-sha256-validation', validate_pbf_and_hash)
         csv_sha = phase('airport-csv-hash', lambda: digest(csv))
         receipts = {'pbf': {**source, 'sha256': pbf_sha, 'http': source_http}, 'airports': {**airports, 'sha256': csv_sha, 'http': csv_http}, 'geometrySourceSha': sha, 'extractorSha256': digest(EXTRACTOR)}
         (out / 'receipts/downloads.json').write_text(json.dumps(receipts, indent=2))

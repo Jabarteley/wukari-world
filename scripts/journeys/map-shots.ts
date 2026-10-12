@@ -168,12 +168,24 @@ let current = 'lagos';
 /** Native menus only: indexes and displayed names come from the copied app's registry. */
 async function atlasLevel(b: Browser, id: string, prefix: string): Promise<void> {
   const entry = atlasLevelFor(id);
-  const atLevel = `document.querySelector('[data-atlas-levels] span')?.textContent?.trim() === ${JSON.stringify(entry.name)}`;
+  // Match the same visible chip as Browser.click; retained hidden atlas DOM is not the active view.
+  const atLevel = `(() => {
+    const chip = [...document.querySelectorAll('[data-atlas-levels]')].find(node => { const r = node.getBoundingClientRect(), style = getComputedStyle(node); return r.width > 1 && r.height > 1 && style.display !== 'none' && style.visibility !== 'hidden'; });
+    return chip?.querySelector(':scope > span')?.textContent?.trim() === ${JSON.stringify(entry.name)} && !!chip.closest('.level-menu')?.querySelector('[data-atlas-level="${entry.index}"][aria-current="true"]');
+  })()`;
   if (!(await b.eval<boolean>(atLevel))) {
     await b.click('[data-atlas-levels]');
     await b.click(`[data-atlas-level="${entry.index}"]`);
   }
-  await b.waitFor(`${shownNow('[data-atlas-levels]')} && ${atLevel}`, 30000, `${entry.name} level`);
+  try {
+    await b.waitFor(atLevel, 30000, `${entry.name} level`);
+  } catch (error) {
+    const state = await b.eval(`(() => ({ chips:[...document.querySelectorAll('[data-atlas-levels]')].map(node => ({label:node.textContent?.trim(),expanded:node.getAttribute('aria-expanded'),box:{width:node.getBoundingClientRect().width,height:node.getBoundingClientRect().height},display:getComputedStyle(node).display,visibility:getComputedStyle(node).visibility})), current:[...document.querySelectorAll('[data-atlas-level][aria-current="true"]')].map(node => ({index:node.getAttribute('data-atlas-level'),label:node.textContent?.trim()})), wait:[...document.querySelectorAll('.atlas-wait')].map(node => node.textContent?.trim()) }))()`);
+    const diagnostic = { requested:entry, state, consoleErrors:b.consoleErrors.slice(-20) };
+    timings[`${prefix}-atlas-level-failure`] = diagnostic;
+    console.error('atlas level failure:', JSON.stringify(diagnostic));
+    throw error;
+  }
   notes.push(`${prefix}: native atlas level ${entry.id}/${entry.index}, displayed ${await b.eval<string>(`document.querySelector('[data-atlas-levels]')?.textContent?.trim() || ''`)}`);
 }
 

@@ -131,8 +131,10 @@ a city's residents.
 
 ## The three layouts
 
-`STORE_LAYOUT` (an environment variable of the Node host, a variable of the Worker) and, once set by the operator, the store's own
-`layout` row:
+On the Worker the layout is the store's own `layout` row. A build moves the store towards the word in `deploy/store-release.ts`
+(or the Worker variable `STORE_LAYOUT`, which stands in its place when set), only forwards and with the checks described in
+[STORE-MIGRATION.md](STORE-MIGRATION.md); the operator can set it by hand with the routes below, and what the operator set is then
+left alone by every build. On the Node host `STORE_LAYOUT` is an environment variable:
 
 | Layout | Truth | What else | Use |
 | --- | --- | --- | --- |
@@ -146,16 +148,17 @@ the way back is to unset the variable. `shadow` is `legacy` there.
 
 ## Moving an existing store (Worker)
 
-The store is moved by the operator, at run time, with the routes below; the code ships with `STORE_LAYOUT` unset, which
-changes nothing. The layout lives in the store itself (`store_meta`): once the operator has set it, a restart with another
-`STORE_LAYOUT` value does NOT change it. The variable is only the starting point of a store that has never been told.
+The live store is moved by releases, one step each: [STORE-MIGRATION.md](STORE-MIGRATION.md) has the path, the checks and the
+stop conditions. The routes below are the operator's own tools for the same move, and the way back. The layout lives in the store
+itself (`store_meta`): a build never moves a store backwards, and once the operator has set a layout, a restart with any other word
+does NOT change it.
 
 | Route (operator token) | What it does |
 | --- | --- |
-| `GET /api/mod/store` | the layout, per collection: mode, synced, whether a legacy row exists, entries stored, any error; the shadow counters (`mismatches`, `checks`, `errors`, the first differences) |
-| `GET /api/mod/store/compare` | each collection's entry rows against its legacy value: equal or not, and the first differences |
+| `GET /api/mod/store` | the layout, per collection: mode, synced, whether a legacy row exists and how long it is, entries stored, when its copy was made, any error; the shadow counters (`mismatches`, `errors` and the first differences are kept in the store; `checks`, `compared` and `applied` count since the object started); `release`: what the build asks for, who chose the stored layout, what is left to copy, why a switch was refused |
+| `GET /api/mod/store/compare` | each collection's entry rows against its legacy value: equal or not, the entries counted on each side, a fingerprint of each side, and the first differences |
 | `GET /api/mod/store/hashes` | a fingerprint of each collection's whole text, to compare two stores or a store before and after |
-| `POST /api/mod/store/migrate` `{collections?}` | make the entry rows from the legacy values and read them back; one SQLite transaction per collection |
+| `POST /api/mod/store/migrate` `{collections?}` | make the entry rows from the legacy values and read them back; one SQLite transaction per collection. With no collection named every copy is made afresh, and what shadow had found against the old copies is cleared |
 | `POST /api/mod/store/layout` `{layout, force?}` | `shadow`, `entries` or `legacy`; refuses with 409 and a code (`shadow_mismatch`, `not_equal`, `migration_failed`) when it would lose or mismatch anything |
 | `POST /api/mod/store/safety` `{action: 'drop' \| 'restore', force?}` | after the switch: delete the legacy rows (not before 14 days, `SAFETY_DAYS`, unless `force`), or go back to them |
 

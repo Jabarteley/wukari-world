@@ -23,10 +23,13 @@ export function testStorage(existing?: DatabaseSync): TestStorage {
   return { db, storage, fail, changes: () => Number((db.prepare('SELECT total_changes() AS n').get() as { n: number }).n), close: () => db.close() };
 }
 
-/** The `STORE_LAYOUT` binding the edge tests hand the Worker when the run asks for one (`STORE_LAYOUT=entries npm run test:edge`). */
+/**
+ * The `STORE_LAYOUT` binding the edge tests hand the Worker when the run asks for one (`STORE_LAYOUT=entries npm run test:edge`).
+ * With none asked for, the Worker goes by the build's own word (deploy/store-release.ts), as the released one does.
+ */
 export function layoutBindings(): Record<string, string> {
   const layout = process.env['STORE_LAYOUT'];
-  return layout === 'entries' || layout === 'shadow' ? { STORE_LAYOUT: layout } : {};
+  return layout === 'entries' || layout === 'shadow' || layout === 'legacy' ? { STORE_LAYOUT: layout } : {};
 }
 
 /** What an edge test reads and writes stored collections through: an async `exec` over the object's storage (rows as plain objects). */

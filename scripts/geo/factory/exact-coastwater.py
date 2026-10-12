@@ -13,6 +13,7 @@ import time
 
 ALGORITHM = 'osm-directed-coast-closed-land-v3'
 WATER_TOLERANCES_DEGREES = [0.00001, 0.00002]
+COARSE_STEPS = [0.000015, 0.00002]
 WATER_TOLERANCE_DEGREES = WATER_TOLERANCES_DEGREES[0]
 # Water vertices of the play layer and the reach layer together. A city scene is limited to 90000 triangles (budgets.ts CITY_TRIANGLE_BUDGET); measured on
 # Port Louis, 14450 vertices gave 86701 triangles and 16400 gave about 94000. The shore is first simplified to 1 m; a coast too long for the budget to 2 m.
@@ -29,6 +30,11 @@ class FinerWater(ValueError):
     pass
 MAX_RING_VERTICES = 6000
 MAX_SERIALIZATION_AREA_FRACTION = 1e-12
+MAX_GAP_SLIVER_M2 = 5000
+# Width of a gap sliver (area over half its perimeter) that is filled: at most this many shore-simplification tolerances (the shore of the water moves by up to one).
+MAX_GAP_SLIVER_TOLERANCES = 4
+# A triangle thinner than this (square degrees; about 1e-3 m2) has a signed area that rounds to zero in the renderer's ring check.
+MIN_TRIANGLE_AREA_DEGREES2 = 1e-13
 MAX_SIMPLIFICATION_AREA_FRACTION = 0.0001
 SCHEMA = 'exact-coastwater-report-v2'
 LIMIT = 5 * 1024 * 1024
@@ -102,6 +108,44 @@ def main():
     coast = [e for e in extracts['water']['elements'] if e.get('tags', {}).get('natural') == 'coastline' and e['type'] == 'way']
     if not coast:
         raise ValueError('No source coast')
+    # A country extract is cut along Geofabrik's polygon, a little beyond the border, so it can hold short fragments of the neighbour's coast (a way of 2 or 3 vertices cut
+    # at that polygon). A chain of coast ways that lies wholly outside the pinned country and ends in the open farther than BORDER_END_TOLERANCE_METRES from the border
+    # is not part of this country's shore and can be neither continued nor closed; it is dropped and reported. A chain that touches the country, or whose open ends are
+    # all within the tolerance, is handled by the border extension below as before.
+    foreign_fragments = []
+    if args.country_boundary:
+        from shapely.geometry import shape
+        country_early = shape(json.loads(args.country_boundary.read_bytes()))
+        open_ways = [e for e in coast if e['geometry'][0] != e['geometry'][-1]]
+        ends_of = {}
+        for e in open_ways:
+            for p in (e['geometry'][0], e['geometry'][-1]):
+                ends_of.setdefault((p['lon'], p['lat']), []).append(e['id'])
+        parent = {e['id']: e['id'] for e in open_ways}
+        def find(i):
+            while parent[i] != i:
+                parent[i] = parent[parent[i]]
+                i = parent[i]
+            return i
+        for ids in ends_of.values():
+            for other in ids[1:]:
+                parent[find(other)] = find(ids[0])
+        chains = {}
+        for e in open_ways:
+            chains.setdefault(find(e['id']), []).append(e)
+        border_early = country_early.boundary
+        dropped_ids = set()
+        for ways in chains.values():
+            if any(country_early.intersects(Point(p['lon'], p['lat'])) for e in ways for p in e['geometry']):
+                continue
+            far_open_ends = [(p['lon'], p['lat']) for e in ways for p in (e['geometry'][0], e['geometry'][-1]) if len(ends_of[(p['lon'], p['lat'])]) % 2 == 1 and Point(p['lon'], p['lat']).distance(border_early) * 111320 > BORDER_END_TOLERANCE_METRES]
+            if far_open_ends:
+                dropped_ids.update(e['id'] for e in ways)
+                foreign_fragments.append({'ways': ['way/' + str(e['id']) for e in ways], 'openEnds': [list(c) for c in far_open_ends]})
+        coast = [e for e in coast if e['id'] not in dropped_ids]
+        if not coast:
+            raise ValueError('No source coast inside the country scope')
+    report['foreignCoastFragmentsDropped'] = foreign_fragments
     lines, segments, closed = [], [], []
     for e in coast:
         cs = [(p['lon'], p['lat']) for p in e.get('geometry', [])]
@@ -187,6 +231,16 @@ def main():
         distance = ((a + u[:, None] * v - xy) ** 2).sum(axis=1)
         i = int(distance.argmin())
         cross = v[i, 0] * (xy[1] - a[i, 1]) - v[i, 1] * (xy[0] - a[i, 0])
+        # When the nearest point of the shore is a vertex (a point far from the shore is nearest to a corner of it), two segments tie and the sign of either one alone
+        # can be wrong (the point lies in the corner's outer wedge). The left normals of all the tied segments are added (the vertex's angle-weighted normal) and the point
+        # is tested against that.
+        tied = np.flatnonzero(distance <= distance[i] * (1 + 1e-9) + 1e-12)
+        if len(tied) > 1:
+            normals = np.stack([-v[tied, 1], v[tied, 0]], axis=1) / np.sqrt(v2[tied])[:, None]
+            nearest = a[i] + u[i] * v[i]
+            vertex_cross = float(((xy - nearest) * normals.sum(axis=0)).sum())
+            if vertex_cross != 0:
+                return bool(vertex_cross > 0), float(math.sqrt(distance[i]))
         if cross == 0:
             # Exactly on a coastline segment (a shore place): the shoreline itself belongs to land; the sampled face side is never used for it.
             return True, float(math.sqrt(distance[i]))
@@ -417,6 +471,13 @@ def main():
                 raise ValueError('Fixture anchor is not dry: ' + json.dumps(row))
     exact_play_water = water.intersection(bounds(play))
     tile_union = unary_union([development_land, exact_play_water])
+    # Where the generated land and the source water meet along a shore, a hair-thin gap (a few shore-simplification tolerances wide) can be left between them, and a triangulation of
+    # that gap makes triangles with no area. Such a gap is filled (it is in neither layer, and is at most a few metres of shore); a larger hole is a real gap and stays. Reported.
+    gap_slivers = [Polygon(r) for part in area_polygons(tile_union) for r in part.interiors]
+    gap_slivers = [h for h in gap_slivers if h.area * scale[0] * scale[1] <= MAX_GAP_SLIVER_M2 and h.area * scale[0] * scale[1] / (h.length * scale[1] / 2) <= MAX_GAP_SLIVER_TOLERANCES * WATER_TOLERANCE_DEGREES * 111320]
+    if gap_slivers:
+        tile_union = unary_union([tile_union] + gap_slivers)
+    report['gapSliversFilled'] = {'count': len(gap_slivers), 'areaM2': sum(h.area for h in gap_slivers) * scale[0] * scale[1]}
     if not water.is_valid or not tile_union.is_valid:
         raise ValueError('Invalid canonical land/water union')
     def ring_contacts(p):
@@ -425,6 +486,33 @@ def main():
     def topology(g):
         counts = water_counts(g)
         return {'components': counts['polygons'], 'holes': counts['holes']}
+
+    def merge_flat_triangles(triangles):
+        # The triangulation of a face with point contacts can return a triangle of (nearly) collinear vertices; the renderer rejects a ring with no area. Such a triangle is
+        # merged with the neighbour it shares the longest edge with (the union covers exactly the same area, so no coast moves).
+        flat = [i for i, t in enumerate(triangles) if t.area < MIN_TRIANGLE_AREA_DEGREES2]
+        if not flat:
+            return triangles
+        tree = shapely.STRtree(triangles)
+        gone, extra = set(), []
+        for i in flat:
+            if i in gone:
+                continue
+            best, best_length = None, 0
+            for j in tree.query(triangles[i]):
+                if j == i or j in gone:
+                    continue
+                shared = triangles[i].intersection(triangles[j]).length
+                if shared > best_length:
+                    best, best_length = int(j), shared
+            if best is None:
+                raise ValueError('A flat triangle has no neighbour to merge with')
+            merged = unary_union([triangles[i], triangles[best]])
+            if merged.geom_type != 'Polygon':
+                raise ValueError('Flat triangle merge is not one polygon')
+            gone.update([i, best])
+            extra.append(merged)
+        return [t for k, t in enumerate(triangles) if k not in gone] + extra
 
     def serializeNoRingContacts(g):
         faces, cuts, dangles, invalid = polygonize_full(unary_union(g.boundary))
@@ -438,7 +526,7 @@ def main():
             if ring_contacts(face):
                 # Exact constrained triangles separate point contacts without moving a coast.
                 contact_splits += 1
-                queue.extend(shapely.constrained_delaunay_triangles(face).geoms)
+                queue.extend(merge_flat_triangles(list(shapely.constrained_delaunay_triangles(face).geoms)))
                 continue
             largest_ring = max(len(r.coords) for r in [face.exterior, *face.interiors])
             if largest_ring <= MAX_RING_VERTICES:
@@ -552,7 +640,8 @@ def main():
         represented = unary_union([Polygon(p[0], p[1:]) for p in arrays])
         fraction = baseline.symmetric_difference(represented).area / baseline.area
         if fraction > maximum_fraction or (same_topology and topology(baseline) != topology(represented)):
-            raise ValueError('Serialized ' + key + ' changed source coverage/topology beyond tolerance: ' + json.dumps({'areaFraction': fraction, 'maximum': maximum_fraction, 'baselineTopology': topology(baseline), 'representedTopology': topology(represented)}))
+            # The play-box water is serialized from the simplified shore: a coarser shore that misses the limit is retried with a finer one (drive); the reach layer tries its own ladder.
+            raise (FinerWater if key == 'water' else ValueError)('Serialized ' + key + ' changed source coverage/topology beyond tolerance: ' + json.dumps({'areaFraction': fraction, 'maximum': maximum_fraction, 'baselineTopology': topology(baseline), 'representedTopology': topology(represented)}))
         checked = protected if key == 'water' else [pt for pt in protected if not dropped['islets'].covers(pt)]
         newly_wet = sum(not baseline.covers(point) and represented.covers(point) for point in checked)
         if newly_wet:
@@ -640,7 +729,7 @@ def main():
     # Reserve a new report before generated-source mutations.
     water_vertices = stats['water']['vertices'] + stats['reachWater']['vertices']
     report['waterVertices'] = water_vertices
-    if water_vertices > TOTAL_WATER_VERTEX_BUDGET and WATER_TOLERANCE_DEGREES == WATER_TOLERANCES_DEGREES[0]:
+    if water_vertices > TOTAL_WATER_VERTEX_BUDGET and COARSE_STEPS:
         raise CoarserWater()
     with args.report.open('x') as f:
         terrain_path.write_bytes(raw_after)
@@ -652,7 +741,8 @@ def main():
 def drive():
     # Shore simplification: 1 m first; 2 m when the water is too big for the scene budget; finer (0.5, 0.2, 0.1 m) when a guard rejects the simplified shore.
     global WATER_TOLERANCE_DEGREES
-    coarse, fine = [0.00002], [0.000005, 0.000002, 0.000001]
+    # 1.5 m before 2 m: a 2 m shore can miss the 0.01% source-area limit on a small play box by a hair (Doha: 0.0100060% against 0.0100000%).
+    coarse, fine = list(COARSE_STEPS), [0.000005, 0.000002, 0.000001]
     tolerance = WATER_TOLERANCES_DEGREES[0]
     while True:
         WATER_TOLERANCE_DEGREES = tolerance
@@ -660,11 +750,13 @@ def drive():
             return main()
         except CoarserWater:
             tolerance = coarse.pop(0)
+            COARSE_STEPS[:] = coarse
         except FinerWater:
             if not fine:
                 raise
             tolerance = fine.pop(0)
             coarse.clear()
+            COARSE_STEPS.clear()
 
 
 if __name__ == '__main__':

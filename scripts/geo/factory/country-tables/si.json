@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf",
     "bytes": 313640878,
     "md5": "781a1fdb13a4d2540ee74b38daf3f7be",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/europe/italy/nord-est-261011.osm.pbf",
+        "bytes": 625244513,
+        "md5": "5c0ebb731629669395f29835013c363f",
+        "snapshotDate": "2026-10-11",
+        "reason": "The Slovenian coast chain starts at node 447676493 (Punta Aquila, Muggia, Italy); the Italian coastline way that ends at that node (way/860393119) is absent from the Slovenia clip, so the coast cannot close; the Italy north-east extract supplies it (only the Muggia/Trieste coast inside the Ljubljana water box is used)"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

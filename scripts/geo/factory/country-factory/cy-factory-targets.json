@@ -59,7 +59,12 @@
           35.10449038993398
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "node/5021578905",
+          "reason": "Zenobia shipwreck (offshore wreck): lies in the sea of the exact coast, so the source anchors are not dry land (hosted factory run 38263512544)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/1939509422",

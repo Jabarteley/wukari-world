@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/europe/montenegro-261011.osm.pbf",
     "bytes": 34534458,
     "md5": "676da304b9d8a357b1e559dd1de15b5e",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/europe/croatia-261011.osm.pbf",
+        "bytes": 200686156,
+        "md5": "d98e7e7c547e3e214fad6bcae2eb9967",
+        "snapshotDate": "2026-10-11",
+        "reason": "The Montenegrin coast way/669064261 starts near the Croatian border (Konavle) and continues as the Croatian coast way/215108613 (node 2245250921), absent from the Montenegro clip, so the coast cannot close; the Croatia extract supplies it"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

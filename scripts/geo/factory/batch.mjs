@@ -11,6 +11,9 @@ import { factsForTarget, geometryPolicy } from './inputs.mjs';
 import { pickForSlot } from './slot-fallback.mjs';
 import { fitCatalogueBudget, CATALOGUE_LIMIT } from './catalogue-budget.mjs';
 import { districtLabels } from './district-labels.mjs';
+
+// Less coastline than this in the wide box is not a sea shore (mis-tagged creek or pond rings).
+const MINIMUM_COASTLINE_METRES = 3000;
 const args = process.argv.slice(2), get = flag => args[args.indexOf(flag) + 1];
 if (!args.includes('--table') || !args.includes('--out'))
     throw Error('Usage: batch.mjs --table TARGETS_JSON --out NEW_PRIVATE_FOLDER');
@@ -146,7 +149,10 @@ for (const target of table.targets) {
         const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre }), names = [...districts.labels];
         row.districtLabelPlaceTags = districts.placeTags;
         if (districts.fallback) row.districtLabelFallback = 'fewer than five suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended';
-        const waterElements = ex.answers.water.elements, coast = waterElements.some(el => el.tags.natural === 'coastline');
+        // A coast is a shore a city can stand beside, not one mis-tagged ring: Asuncion's extract holds a single closed natural=coastline way of 976 m (the creek
+        // "Zanja Soro" in landlocked Paraguay), which made the recipe a sea city and sent every dry place to the wrong side of the exact-coast stage.
+        const coastlineMetres = el => (el.geometry ?? []).slice(1).reduce((sum, p, i) => sum + Math.hypot((p.lon - el.geometry[i].lon) * 111320 * Math.cos(p.lat * Math.PI / 180), (p.lat - el.geometry[i].lat) * 111320), 0);
+        const waterElements = ex.answers.water.elements, coast = waterElements.filter(el => el.tags.natural === 'coastline').reduce((sum, el) => sum + coastlineMetres(el), 0) >= MINIMUM_COASTLINE_METRES;
         let policy = { kind: coast ? 'coast' : 'inland' };
         if (!coast && raw.source.waterRecipe?.kind === 'lake') {
             const lake = waterElements.find(el => el.tags.natural === 'water' && el.tags.water === 'lake' && name(el));

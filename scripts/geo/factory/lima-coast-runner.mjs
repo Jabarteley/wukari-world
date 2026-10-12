@@ -16,7 +16,7 @@ const tablePath = resolve(get('--table')), rawTable = JSON.parse(readFileSync(ta
 const sandbox = a.includes('--sandbox-root') ? resolve(get('--sandbox-root')) : home;
 insideSandbox(out, sandbox);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex'), readhash = path => hash(readFileSync(path));
-const shared = ['scripts/geo/build-destination-detail.ts', 'scripts/geo/destination-detail/geometry-tools.ts', 'scripts/geo/destination-detail/pbf-extract.ts', 'scripts/geo/destination-detail/queries.ts', 'scripts/geo/destination-detail/water-label.ts', 'scripts/city/build-catalogue.ts', 'src/game/cities/africa/contentBuilder.ts', 'src/game/cities/africa/types.ts', 'src/game/cities/africa/map.ts', 'src/game/cities/africa/module.ts', 'src/game/cities/cityContractTest.test.ts', 'package.json', 'package-lock.json'];
+const shared = ['src/map3d/city-build.ts'];
 const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'lima-coast-runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs', 'gallery.mjs', 'country-scope.mjs', 'destination-contract.mjs', 'exact-coastwater.py', 'lima-coast-linear-water-fixture.json'].map(n => join(home, n));
 if (!a.includes('--proof-helper') || !a.includes('--receipt-helper')) throw Error('Explicit --proof-helper and --receipt-helper are required');
 const proof = resolve(get('--proof-helper')), receipt = resolve(get('--receipt-helper'));
@@ -50,13 +50,15 @@ const sourceStatus = spawnSync('git', ['status', '--porcelain', '--untracked-fil
 if (sourceStatus.status !== 0) throw Error('Cannot establish source baseline cleanliness');
 const sourceDirty = Boolean(sourceStatus.stdout.trim());
 if (execute && sourceDirty) throw Error('Dirty source baseline cannot execute; use the exact clean committed checkout');
-const proofRoot = a.includes('--helper-root') ? resolve(get('--helper-root')) : table.root;
+const helperRoot = a.includes('--helper-root') ? resolve(get('--helper-root')) : null;
+const proofRoot = helperRoot ?? table.root;
 const pins = {
     table: readhash(tablePath),
     sourceGitSHA: sourceGit.stdout.trim(),
     sourceWorkingTreeClean: !sourceDirty,
     sourceDependencyTree: dependencyTree(table.root),
     helperDependencyTree: dependencyTree(proofRoot),
+    sharedFiles: Object.fromEntries(shared.map(path => [path, readhash(join(proofRoot, path))])),
     tools: Object.fromEntries(tools.map(path => [path === proof ? 'city-generation-proof.mjs' : path === receipt ? 'integrate-city-receipts.mjs' : path.slice(home.length + 1), readhash(path)])),
     cityInputs: Object.fromEntries(table.targets.map(target => [target.id, {
             metadata: target.facts ? hash(JSON.stringify({ facts: target.facts, metadataSources: target.metadataSources })) : readhash(join(table.root, target.factsRecordRef)),
@@ -86,6 +88,15 @@ if (!execute) {
 }
 if (realpathSync(workspace) === realpathSync(table.root) || !existsSync(join(workspace, '.factory-disposable.json')) || JSON.parse(readFileSync(join(workspace, '.factory-disposable.json'))).disposable !== true)
     throw Error('Execute requires a separately cloned, explicitly marked disposable workspace');
+if (!helperRoot) throw Error('Execute requires --helper-root to pin shared candidate files');
+for (const path of shared) {
+    const source = join(proofRoot, path), destination = join(workspace, path);
+    mkdirSync(dirname(destination), { recursive: true });
+    cpSync(source, destination);
+    if (readhash(destination) !== pins.sharedFiles[path])
+        throw Error(`Shared candidate file was not applied exactly: ${path}`);
+    console.log(`[shared] applied ${path} sha256=${pins.sharedFiles[path]}`);
+}
 const cachePath = join(out, 'step-cache.json'), cache = existsSync(cachePath) ? JSON.parse(readFileSync(cachePath)) : { identity, steps: {} };
 if (cache.identity !== identity)
     throw Error('Cache identity mismatch');

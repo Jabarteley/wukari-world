@@ -3,7 +3,7 @@ name: Lima exact coast factory candidate
 on:
   push:
     branches: ['codex/world-south-america-20261011']
-    paths: ['scripts/geo/factory/lima-coast-factory-targets.json']
+    paths: ['scripts/geo/factory/lima-coast-factory-targets.json', 'scripts/geo/factory/lima-coast-runner.mjs', 'src/map3d/city-build.ts', '.github/workflows/lima-coast-city-factory.yml']
 
 permissions:
   actions: read

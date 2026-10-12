@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "HT",
+  "datasetSha256": "382fce54511c45b98806b27fb7afeb2df6fb52a723d936449962a5e305c3fe74",
+  "source": "https://api.openstreetmap.org/api/0.6/ways.json?ways=296777074",
+  "retrievedAt": "2026-10-12",
+  "note": "Maritime=yes admin_level=2 ways that form whole rings of their own and lie wholly outside the Geofabrik clip (no node inside the published .poly, checked 2026-10-12). Valid only for the PBF named by datasetSha256 (Geofabrik snapshot 2026-10-11, run 38248346879).",
+  "ways": [
+    {
+      "id": 296777074,
+      "version": 6,
+      "timestamp": "2026-04-08T18:24:14Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "disputed": "yes",
+        "maritime": "yes",
+        "name": "United States of America (Minor Outlying Islands), Navassa Island (Disputed area USA-HAITI)",
+        "source": "12 nm buffer around coastline"
+      },
+      "firstNode": 3005876536,
+      "lastNode": 3005876536
+    }
+  ]
+}

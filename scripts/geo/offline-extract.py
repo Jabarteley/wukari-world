@@ -42,6 +42,11 @@ class ExtractionError(RuntimeError):
     pass
 
 
+class IncompleteRelation(ExtractionError):
+    """A candidate relation whose members are nested or lie outside the pinned extract (invalid multipolygon, or a
+    cross-border route/region cut by the Geofabrik clip). Only that candidate is skipped, and the skip is recorded."""
+
+
 def progress(stage: str, **counts: int | str | None) -> None:
     print(json.dumps({"stage": stage, **counts}, separators=(",", ":")), file=sys.stderr, flush=True)
 
@@ -102,7 +107,7 @@ def relation_categories(tags: dict[str, str], coast: bool) -> set[str]:
         categories.add("extras")
     if matches_water(tags, "relation", coast):
         categories.add("water")
-    if tags.get("landuse") in LANDUSE_RELATIONS:
+    if tags.get("type") == "multipolygon" and tags.get("landuse") in LANDUSE_RELATIONS:
         categories.add("landuse")
     return categories
 
@@ -267,6 +272,7 @@ class GeometryPass(osmium.SimpleHandler):
         self.member_ways: dict[int, list[dict[str, float]]] = {}
         self.member_nodes: dict[int, dict[str, float]] = {}
         self.output: dict[str, list[dict[str, Any]]] = {label: [] for label in ("places", "extras", "water", "landuse", "roads")}
+        self.skipped_relations: list[dict[str, Any]] = []
 
     def node(self, node: Any) -> None:
         if node.id in self.relations.needed_nodes:
@@ -344,10 +350,10 @@ def complete_relation_parts(candidate: dict[str, Any], geometry: GeometryPass, *
         kind, ref = member["type"], member["ref"]
         if kind == "r":
             if not allow_nested:
-                raise ExtractionError(f"relation/{candidate['id']} has a nested relation member; polygon geometry is unsupported")
+                raise IncompleteRelation(f"relation/{candidate['id']} has a nested relation member; polygon geometry is unsupported")
             child = geometry.relations.candidates.get(ref) or geometry.relations.dependencies.get(ref)
             if child is None:
-                raise ExtractionError(f"relation/{candidate['id']} member r/{ref} is absent from the PBF; refusing truncated geometry")
+                raise IncompleteRelation(f"relation/{candidate['id']} member r/{ref} is absent from the PBF; refusing truncated geometry")
             child_parts = complete_relation_parts(child, geometry, allow_nested=True, ancestry=ancestry, validated=validated)
             has_geometry = True
             parts.extend(child_parts)
@@ -360,7 +366,7 @@ def complete_relation_parts(candidate: dict[str, Any], geometry: GeometryPass, *
         else:
             raise ExtractionError(f"relation/{candidate['id']} has unsupported member type {kind!r}")
         if member_geometry is None:
-            raise ExtractionError(f"relation/{candidate['id']} member {kind}/{ref} is absent from the PBF; refusing truncated geometry")
+            raise IncompleteRelation(f"relation/{candidate['id']} member {kind}/{ref} is absent from the PBF; refusing truncated geometry")
         parts.append(member_geometry)
         has_geometry = has_geometry or bool(member_geometry)
     if allow_nested and not has_geometry:
@@ -375,7 +381,7 @@ def raw_relation(candidate: dict[str, Any], geometry: GeometryPass) -> dict[str,
     for member in candidate["members"]:
         kind, ref = member["type"], member["ref"]
         if kind == "r":
-            raise ExtractionError(f"relation/{candidate['id']} has a nested relation member; polygon geometry is unsupported")
+            raise IncompleteRelation(f"relation/{candidate['id']} has a nested relation member; polygon geometry is unsupported")
         if kind == "w":
             member_geometry = geometry.member_ways.get(ref)
         elif kind == "n":
@@ -384,27 +390,35 @@ def raw_relation(candidate: dict[str, Any], geometry: GeometryPass) -> dict[str,
         else:
             raise ExtractionError(f"relation/{candidate['id']} has unsupported member type {kind!r}")
         if member_geometry is None:
-            raise ExtractionError(f"relation/{candidate['id']} member {kind}/{ref} is absent from the PBF; refusing truncated geometry")
+            raise IncompleteRelation(f"relation/{candidate['id']} member {kind}/{ref} is absent from the PBF; refusing truncated geometry")
         members.append({"type": TYPE_NAME[kind], "ref": ref, "role": member["role"], "geometry": member_geometry})
     return {"type": "relation", "id": candidate["id"], "tags": candidate["tags"], "members": members}
 
 
+def add_relation_category(candidate: dict[str, Any], category: str, geometry: GeometryPass, boxes: dict[str, list[float]]) -> None:
+    if category in {"places", "extras"}:
+        parts = relation_parts(candidate, geometry, allow_nested=True)
+        if any(geometry_intersects_box(part, boxes["play"]) for part in parts):
+            complete = complete_relation_parts(candidate, geometry, allow_nested=True)
+            complete_center = geometry_center(complete)
+            if complete_center is None:
+                raise ExtractionError(f"relation/{candidate['id']} has no geometry; refusing a fabricated centre")
+            geometry.output[category].append({"type": "relation", "id": candidate["id"], "tags": candidate["tags"], "center": complete_center})
+        return
+    parts = relation_parts(candidate, geometry)
+    target = boxes["water"] if category == "water" else boxes["outline"]
+    if any(geometry_intersects_box(part, target) for part in parts):
+        geometry.output[category].append(raw_relation(candidate, geometry))
+
+
 def add_relations(relations: RelationPass, geometry: GeometryPass, boxes: dict[str, list[float]]) -> None:
     for candidate in relations.candidates.values():
-        for category in candidate["categories"]:
-            if category in {"places", "extras"}:
-                parts = relation_parts(candidate, geometry, allow_nested=True)
-                if any(geometry_intersects_box(part, boxes["play"]) for part in parts):
-                    complete = complete_relation_parts(candidate, geometry, allow_nested=True)
-                    complete_center = geometry_center(complete)
-                    if complete_center is None:
-                        raise ExtractionError(f"relation/{candidate['id']} has no geometry; refusing a fabricated centre")
-                    geometry.output[category].append({"type": "relation", "id": candidate["id"], "tags": candidate["tags"], "center": complete_center})
-                continue
-            parts = relation_parts(candidate, geometry)
-            target = boxes["water"] if category == "water" else boxes["outline"]
-            if any(geometry_intersects_box(part, target) for part in parts):
-                geometry.output[category].append(raw_relation(candidate, geometry))
+        for category in sorted(candidate["categories"]):
+            try:
+                add_relation_category(candidate, category, geometry, boxes)
+            except IncompleteRelation as error:
+                geometry.skipped_relations.append({"id": candidate["id"], "category": category, "reason": str(error),
+                                                   "tags": {key: candidate["tags"][key] for key in ("type", "name", "landuse", "boundary", "route") if key in candidate["tags"]}})
 
 
 def validate_box(value: Any, label: str) -> list[float]:
@@ -489,6 +503,7 @@ def source_record(
     recipe: dict[str, Any],
     relations: RelationPass,
     elements: list[dict[str, Any]],
+    skipped: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     water_kind = recipe["kind"]
     filters = {
@@ -532,6 +547,9 @@ def source_record(
             nested_sources.append({"id": element["id"], "method": "complete-descendant-bbox-centre", "relations": [records[ref] for ref in sorted(records)]})
         if nested_sources:
             source["nestedCenterRelations"] = nested_sources
+    skipped_here = [record for record in (skipped or []) if record["category"] == label]
+    if skipped_here:
+        source["skippedRelations"] = skipped_here
     return source
 
 
@@ -590,7 +608,7 @@ def main() -> int:
         atomic_json(destination / f"{label}.json", {
             "version": 1,
             "generator": "Allworld offline PBF adapter prototype",
-            "source": source_record(args, metadata_path, city_id, label, boxes, pbf_timestamp, adapter_sha256, recipe, relations, elements),
+            "source": source_record(args, metadata_path, city_id, label, boxes, pbf_timestamp, adapter_sha256, recipe, relations, elements, geometry.skipped_relations),
             "elements": elements,
         })
     counts = {label: len(elements) for label, elements in geometry.output.items()}

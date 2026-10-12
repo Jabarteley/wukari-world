@@ -85,8 +85,25 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   assert.ok(['boundary', 'multipolygon'].includes(relation.tags.type));
   const codes = ['ISO3166-1:alpha2', 'ISO3166-1'].filter(key => key in relation.tags).map(key => relation.tags[key]);
   assert.ok(codes.length && codes.every(code => code === iso), 'missing/conflicting country ISO tags');
-  const nonBoundary = member => member.type === 'n' && ['admin_centre', 'label'].includes(member.role) || member.type === 'r' && member.role === 'subarea';
-  const members = relation.members.filter(member => !nonBoundary(member));
+  // A node cannot be a boundary edge: every node member (admin_centre, label, capital, highest_point, ...) is a non-boundary reference.
+  const nonBoundary = member => member.type === 'n' || member.type === 'r' && member.role === 'subarea';
+  const relationMembers = relation.members.filter(member => !nonBoundary(member));
+  // Reviewed absent-member policy: maritime=yes ways wholly outside the Geofabrik clip, listed with the evidence file SHA-256.
+  const absentPolicy = receipt.absentMemberPolicy ?? null;
+  const omitted = new Map();
+  if (absentPolicy) {
+    assert.match(absentPolicy.evidenceSha256 ?? '', hex, 'absent-member evidence pin required');
+    assert.ok(Array.isArray(absentPolicy.omittedAbsentMaritimeWays) && absentPolicy.omittedAbsentMaritimeWays.length > 0);
+    for (const way of absentPolicy.omittedAbsentMaritimeWays) {
+      assert.ok(Number.isSafeInteger(way.id) && !omitted.has(way.id), 'duplicate omitted absent way');
+      assert.equal(way.tags?.maritime, 'yes', 'only maritime=yes ways may be omitted');
+      assert.equal(way.tags.boundary, 'administrative');
+      assert.equal(way.tags.admin_level, '2');
+      assert.ok(relationMembers.some(member => member.type === 'w' && member.ref === way.id), 'omitted way is not a member of the country relation');
+      omitted.set(way.id, way);
+    }
+  }
+  const members = relationMembers.filter(member => !(member.type === 'w' && omitted.has(member.ref)));
   assert.ok(members.length && members.every(member => member.type === 'w' && ['', 'outer', 'inner'].includes(member.role)), 'unsupported country boundary geometry member');
   assert.equal(new Set(members.map(member => member.ref)).size, members.length);
   assert.deepEqual(receipt.memberRolePolicy.unsupportedMembers, []);
@@ -142,7 +159,7 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
     return inside ? 'inside' : 'outside';
   };
   for (const check of receipt.fixtureResults) assert.equal(classify(check.point), check.actual, `country fixture ${check.ref} does not match geometry`);
-  const proof = { kind: policy.kind, iso, source: receipt.source, relation: { id: relation.id, version: relation.version, timestamp: relation.timestamp }, receiptSha256: policy.receiptSha256, geometrySha256: policy.geometrySha256, geometryBytes: policy.geometryBytes, scriptSha256: receipt.scriptSha256, assembly: receipt.assembly, fixtureSha256: receipt.fixtureSha256, boundaryJob: policy.boundaryJob ?? null, limitation: 'OSM mapped national boundary; not legal jurisdiction or municipal membership' };
+  const proof = { kind: policy.kind, iso, source: receipt.source, relation: { id: relation.id, version: relation.version, timestamp: relation.timestamp }, receiptSha256: policy.receiptSha256, geometrySha256: policy.geometrySha256, geometryBytes: policy.geometryBytes, scriptSha256: receipt.scriptSha256, assembly: receipt.assembly, ...(absentPolicy ? { absentMemberPolicy: absentPolicy } : {}), fixtureSha256: receipt.fixtureSha256, boundaryJob: policy.boundaryJob ?? null, limitation: 'OSM mapped national boundary; not legal jurisdiction or municipal membership' };
   return { policy: { ...policy, directory }, receipt: proof, classify, assertPoint(point, label) { assert.equal(classify(point), 'inside', `${label}: outside/on OSM country boundary ${iso}; HOLD`); } };
 }
 

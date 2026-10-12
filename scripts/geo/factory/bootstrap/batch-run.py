@@ -240,7 +240,7 @@ def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, l
                             'version': 1,
                             'generator': 'Allworld offline PBF adapter prototype',
                             'source': adapter.source_record(args, metadata_path, city_id, label, boxes,
-                                                            timestamp, adapter_sha, recipe, relations, elements),
+                                                            timestamp, adapter_sha, recipe, relations, elements, geometry.skipped_relations),
                             'elements': elements,
                         })
                     counts = {label: len(elements) for label, elements in geometry.output.items()}
@@ -332,8 +332,9 @@ def main():
         (out / 'receipts/timezones.json').write_text(json.dumps(tz, indent=2))
         boundary = out / 'country-boundary'
         boundary_error = None
+        evidence = HERE / 'boundary-evidence' / (seeds[0]['countryISO'].lower() + '.json')
         try:
-            stage([sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(pbf), '--country', seeds[0]['countryISO'], '--expected-sha256', pbf_sha, '--expected-bytes', str(source['bytes']), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--out', str(boundary)], out / 'logs/country-boundary.log')
+            stage([sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(pbf), '--country', seeds[0]['countryISO'], '--expected-sha256', pbf_sha, '--expected-bytes', str(source['bytes']), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--out', str(boundary), *(['--absent-evidence', str(evidence)] if evidence.is_file() else [])], out / 'logs/country-boundary.log')
             boundary_receipt = {'countryISO': seeds[0]['countryISO'], 'path': 'country-boundary/boundary.geojson', 'sha256': digest(boundary / 'boundary.geojson'), 'receiptPath': 'country-boundary/receipt.json', 'receiptSha256': digest(boundary / 'receipt.json')}
             result['countryBoundary'] = boundary_receipt
         except Exception as error:

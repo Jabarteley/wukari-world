@@ -10,7 +10,9 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
 import sys
+import tempfile
 from urllib.parse import urlparse
 
 
@@ -51,6 +53,55 @@ def edge(a, b):
     return tuple(sorted((a, b)))
 
 
+def load_absent_evidence(args, timestamp):
+    """Evidence that member ways absent from the clipped PBF are maritime sea-limit ways (see README-batch.md).
+
+    The PBF cannot describe a way it does not contain, so the tags come from a reviewed file pinned by SHA-256 in the
+    receipt, and the evidence must name the PBF by SHA-256. Only maritime=yes admin-0 ways recorded at a version no newer
+    than the PBF that form whole rings of their own, touching no present boundary way, may be omitted.
+    """
+    require(args.absent_evidence, 'country boundary member ways absent from PBF and no --absent-evidence file')
+    path = Path(args.absent_evidence)
+    evidence = json.loads(path.read_text())
+    require(evidence.get('schemaVersion') == 1 and evidence.get('countryISO') == args.country
+            and evidence.get('datasetSha256') == args.expected_sha256, 'absent-way evidence schema/country/PBF mismatch')
+    ways = evidence.get('ways')
+    require(isinstance(ways, list) and ways, 'absent-way evidence has no ways')
+    records = {}
+    for way in ways:
+        tags = way.get('tags') or {}
+        require(isinstance(way.get('id'), int) and way['id'] not in records, 'absent-way evidence ids must be unique integers')
+        require(tags.get('boundary') == 'administrative' and tags.get('admin_level') == '2' and tags.get('maritime') == 'yes',
+                f"absent way {way['id']} is not a maritime=yes admin_level=2 boundary way; HOLD")
+        require(isinstance(way.get('version'), int) and isinstance(way.get('timestamp'), str) and way['timestamp'] <= timestamp,
+                f"absent way {way['id']} evidence is newer than the PBF snapshot")
+        require(isinstance(way.get('firstNode'), int) and isinstance(way.get('lastNode'), int),
+                f"absent way {way['id']} evidence has no firstNode/lastNode")
+        records[way['id']] = {'id': way['id'], 'version': way['version'], 'timestamp': way['timestamp'], 'tags': tags,
+                              'firstNode': way['firstNode'], 'lastNode': way['lastNode']}
+    # Only whole separate rings may be omitted: every endpoint node must be shared in pairs among the absent ways themselves
+    # (a closed way pairs with itself), so the absent ways close on their own and no gap is left in another ring.
+    endpoints = Counter(node for record in records.values() for node in (record['firstNode'], record['lastNode']))
+    require(all(count % 2 == 0 for count in endpoints.values()),
+            'absent ways do not close into rings of their own (a gap in a land or maritime ring would remain); HOLD')
+    return records, digest(path), set(endpoints)
+
+
+def write_without_absent_members(osmium, pbf, out, relation_id, absent, way_ids, node_refs):
+    """Derived mini-PBF: the pinned relation minus the evidence-listed absent ways, plus the present ways and their nodes."""
+    with osmium.SimpleWriter(str(out)) as writer:
+        for obj in osmium.FileProcessor(str(pbf)):
+            if obj.is_node():
+                if obj.id in node_refs:
+                    writer.add_node(obj)
+            elif obj.is_way():
+                if obj.id in way_ids:
+                    writer.add_way(obj)
+            elif obj.is_relation() and obj.id == relation_id:
+                writer.add_relation(obj.replace(members=[(m.type, m.ref, m.role) for m in obj.members
+                                                         if not (m.type == 'w' and m.ref in absent)]))
+
+
 def extract(args):
     import osmium
     from shapely.geometry import Point, mapping, shape
@@ -84,8 +135,9 @@ def extract(args):
     boundary_members = {}
     excluded, unsupported, boundary_records = [], [], []
     for member in relation['members']:
-        # OSM Relation:boundary defines subarea relations as hierarchy references.
-        if (member['type'] == 'n' and member['role'] in {'admin_centre', 'label'}) or (member['type'] == 'r' and member['role'] == 'subarea'):
+        # OSM Relation:boundary defines subarea relations as hierarchy references. A node cannot be a boundary edge, so
+        # every node member (admin_centre, label, capital, highest_point, ...) is a non-boundary reference, listed in the receipt.
+        if member['type'] == 'n' or (member['type'] == 'r' and member['role'] == 'subarea'):
             excluded.append(member)
         elif member['type'] == 'w' and member['role'] in {'', 'outer', 'inner'}:
             boundary_records.append(member)
@@ -101,7 +153,7 @@ def extract(args):
         boundary_members[member['ref']] = member['role']
     require(boundary_members, 'country relation has no boundary ways')
     args.diagnostic['stage'] = 'boundary-member-way-resolution'
-    way_records, expected_edges = {}, Counter()
+    way_records, expected_edges, node_refs = {}, Counter(), set()
 
     class Ways(osmium.SimpleHandler):
         def way(self, way):
@@ -111,6 +163,7 @@ def extract(args):
             require(len(way.nodes) >= 2, 'country boundary way has fewer than two nodes')
             require(all(node.location.valid() for node in way.nodes), 'country boundary way has unresolved node')
             coordinates = [[node.lon, node.lat] for node in way.nodes]
+            node_refs.update(node.ref for node in way.nodes)
             for a, b in zip(coordinates, coordinates[1:]):
                 expected_edges[edge(a, b)] += 1
             way_records[way.id] = {**metadata(way), 'role': boundary_members[way.id],
@@ -121,14 +174,27 @@ def extract(args):
     missing_member_ways = sorted(set(boundary_members) - set(way_records))
     args.diagnostic.update({'presentBoundaryMemberWayCount': len(way_records),
                             'missingMemberWayIds': missing_member_ways})
-    require(not missing_member_ways,
-            f'country boundary member ways absent from PBF: {missing_member_ways}')
+    absent_policy, area_source = None, pbf
+    if missing_member_ways:
+        absent, evidence_sha, absent_endpoints = load_absent_evidence(args, timestamp)
+        require(not absent_endpoints & node_refs,
+                'an absent way ends on a node of a present boundary way, so it belongs to the main ring; HOLD')
+        require(set(absent) == set(missing_member_ways),
+                f'country boundary member ways absent from PBF {missing_member_ways} differ from evidence {sorted(absent)}; HOLD')
+        workdir = Path(tempfile.mkdtemp(prefix='country-boundary-'))
+        args.cleanup.append(workdir)
+        derived = workdir / 'derived.osm.pbf'
+        write_without_absent_members(osmium, pbf, derived, relation['id'], set(absent), set(way_records), node_refs)
+        area_source = derived
+        absent_policy = {'rule': 'maritime=yes admin_level=2 member ways absent from the clipped PBF are omitted; every other member must be present and the remaining rings must assemble and match every present segment',
+                         'evidenceSha256': evidence_sha, 'omittedAbsentMaritimeWays': [absent[key] for key in sorted(absent)],
+                         'derivedFile': 'same pinned PBF; relation member list reduced; present ways and their nodes copied unchanged'}
     require(all(count == 1 for count in expected_edges.values()), 'repeated country boundary segment; HOLD')
     args.diagnostic['stage'] = 'area-assembly'
     factory = osmium.geom.GeoJSONFactory()
     geometries = []
     country_tags = osmium.filter.TagFilter(('ISO3166-1:alpha2', args.country), ('ISO3166-1', args.country))
-    processor = osmium.FileProcessor(str(pbf)).with_areas(country_tags).with_filter(osmium.filter.EntityFilter(osmium.osm.AREA))
+    processor = osmium.FileProcessor(str(area_source)).with_areas(country_tags).with_filter(osmium.filter.EntityFilter(osmium.osm.AREA))
     for area in processor:
         if area.from_way() or area.orig_id() != relation['id']:
             continue
@@ -184,10 +250,11 @@ def extract(args):
                             'sourceMemberEdgesSha256': value_hash(sorted(expected_edges.items()))},
                'geometry': {'path': 'boundary.geojson', 'bytes': len(geometry_bytes),
                             'sha256': hashlib.sha256(geometry_bytes).hexdigest()},
-               'scriptSha256': digest(__file__), 'fixtureSha256': digest(args.fixture) if args.fixture else None,
+               'absentMemberPolicy': absent_policy, 'scriptSha256': digest(__file__), 'fixtureSha256': digest(args.fixture) if args.fixture else None,
                'fixtureResults': fixture_results,
                'limitations': ['OSM mapped administrative boundary, not legal-border authority',
                                'fixture points are caller-supplied pinned source samples; their origin remains in fixture receipts',
+                               *(['maritime sea-limit member ways lying wholly outside the Geofabrik clip are omitted (see absentMemberPolicy); nothing inside the clip is affected'] if absent_policy else []),
                                'no city limits, selection/scaffold integration, or browser acceptance proved']}
     return geometry_bytes, receipt
 
@@ -201,9 +268,10 @@ def main():
     parser.add_argument('--dataset-url', required=True)
     parser.add_argument('--dataset-date', required=True)
     parser.add_argument('--fixture')
+    parser.add_argument('--absent-evidence', help='JSON evidence for maritime=yes member ways absent from the clipped PBF')
     parser.add_argument('--out', required=True, help='New separate output directory')
     args = parser.parse_args()
-    args.diagnostic = {}
+    args.diagnostic, args.cleanup = {}, []
     out = Path(args.out)
     if out.exists():
         raise SystemExit('Output exists; use a new private folder')
@@ -222,6 +290,9 @@ def main():
         (out / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
         print(json.dumps(result))
         return 1
+    finally:
+        for folder in args.cleanup:
+            shutil.rmtree(folder, ignore_errors=True)
     out.mkdir(parents=True)
     (out / 'boundary.geojson').write_bytes(geometry)
     (out / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')

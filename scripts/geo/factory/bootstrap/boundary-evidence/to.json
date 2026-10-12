@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "TO",
+  "datasetSha256": "2ae5440179b1246286d659a5dc8672d0bf8ae1c32f386b7be274d028fad6eddd",
+  "source": "https://api.openstreetmap.org/api/0.6/ways.json?ways=1021489684",
+  "retrievedAt": "2026-10-12",
+  "note": "Maritime=yes admin_level=2 ways that form whole rings of their own and lie wholly outside the Geofabrik clip (no node inside the published .poly, checked 2026-10-12). Valid only for the PBF named by datasetSha256 (Geofabrik snapshot 2026-10-11, run 38248346879).",
+  "ways": [
+    {
+      "id": 1021489684,
+      "version": 1,
+      "timestamp": "2022-01-15T19:29:49Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "source": "computed by reef data, 12 nm"
+      },
+      "firstNode": 9421201734,
+      "lastNode": 9421201734
+    }
+  ]
+}

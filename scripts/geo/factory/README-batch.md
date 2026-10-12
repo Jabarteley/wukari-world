@@ -66,6 +66,23 @@ Seed (`bootstrap/seed-contract.schema.json`; unknown keys are rejected): `id` (k
 - Europe `boundsProof`/`metadataReview`/`browserReview` gating in `runner.mjs`.
 - Coast supplements (neighbour-country sea) stay rejected by `cloud-inputs.mjs`.
 
+## Reviewed boundary evidence and skipped relations
+
+Two rules added after the 2026-10-12 source holds (run 38248346879; diagnosis in the world ledger). Both change `country-boundary.py` / `offline-extract.py` and therefore the boundary script hash and the adapter hash: they apply to NEW source runs only. Receipts and pins of already accepted countries and cities are unaffected.
+
+Country boundary, absent member ways (`bootstrap/country-boundary.py`):
+- Default is unchanged: every `w` member of the admin-0 relation must be in the clipped PBF, otherwise HOLD.
+- Exception: `bootstrap/boundary-evidence/<cc>.json` (picked up by `batch-run.py`, passed as `--absent-evidence`). The file lists exactly the absent way ids with version, timestamp (not newer than the PBF header), tags and first/last node, and `datasetSha256`, which must equal the SHA-256 of the PBF of that run. Evidence therefore cannot be reused on another snapshot, and a way set that differs from the actually absent set HOLDs.
+- Only `maritime=yes`, `boundary=administrative`, `admin_level=2` ways qualify, and only whole separate rings: the absent ways' endpoints must pair up among themselves (a closed way pairs with itself) and no endpoint may be a node of a present boundary way. An absent way that belongs to the main ring (bz, hn, pa, kg, sr) still HOLDs, as do the land exclaves am, az, uz (no evidence is added for them).
+- The omitted ways are listed in the receipt (`absentMemberPolicy`: ids, versions, tags, evidence SHA-256). A derived mini-PBF (relation minus those ways, present ways and nodes unchanged) goes through the unmodified osmium area assembler and the existing complete-segment proof, so the remaining rings must still assemble and match every present segment. `country-scope.mjs` reads the policy and carries it into the scope proof.
+- Node members of any role (admin_centre, label, capital, highest_point, ...) are non-boundary references listed in the receipt (sk).
+- Evidence now: `ht`, `my`, `to` (Navassa, Sabah/Spratly and Minerva Reef territorial rings), each pinned to the PBF of run 38248346879.
+
+City extraction, incomplete relations (`scripts/geo/offline-extract.py`, also used by `batch-run.py`):
+- A candidate relation (places, extras, water or landuse category) whose members are nested relations, absent from the PBF or otherwise invalid is skipped for that category only, instead of failing the city. Nothing is emitted for it.
+- Each skip is recorded in that layer's `source.skippedRelations` (id, category, reason, a few tags). Cycles, depth limits, empty geometry and ways without node locations stay fatal.
+- The landuse category now needs `type=multipolygon` (the 534d01ec filter), so `type=boundary` landuse relations are not candidates.
+
 ## Still Chad/Africa-shaped
 
 - The bootstrap stage is generic (the `ndjamena`/`TD`/`africa/` check in `run.py` is gone; the legacy `city-source-bootstrap.yml` and `bootstrap-targets.json` still serve Chad on the QA branch and are untouched).

@@ -105,6 +105,16 @@
    "id": "id",
    "table": "scripts/geo/factory/country-tables/id.json",
    "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "ad",
+   "table": "scripts/geo/factory/country-tables/ad.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "li",
+   "table": "scripts/geo/factory/country-tables/li.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
   }
  ]
 }

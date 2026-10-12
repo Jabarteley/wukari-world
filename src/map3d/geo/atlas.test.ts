@@ -923,3 +923,53 @@ test('zoom ladder: the city under the closest zoom is found, and the player\'s o
     assert.deepEqual(other && { id: other.id, own: other.own }, { id: 'lagos', own: false });
   } finally { atlas.destroy(); }
 });
+
+async function continentTrip(ids: string[], reducedMotion: boolean) {
+  const { atlas, settle } = harness({ reducedMotion });
+  const reached: Record<string, string> = {};
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    for (const id of ids) {
+      atlas.goLevel(0); await settle();
+      assert.equal(atlas.diagnostics().levelId, 'world');
+      atlas.goLevel(ATLAS_LEVELS.findIndex((entry) => entry.id === id)); await settle();
+      reached[id] = atlas.diagnostics().levelId;
+    }
+  } finally { atlas.destroy(); }
+  return reached;
+}
+
+test('choosing a continent other than Africa from World goes there, with and without motion: the country under the World view does not pull the branch back to Nigeria', async () => {
+  const ids = ['europe', 'asia', 'south-america', 'antarctica'];
+  for (const reducedMotion of [false, true]) {
+    assert.deepEqual(await continentTrip(ids, reducedMotion), Object.fromEntries(ids.map((id) => [id, id])), `reduced motion ${reducedMotion}`);
+  }
+});
+
+test('a continent chosen from World stays chosen while its data is still loading, and arrives once it is here', async () => {
+  let release = () => {};
+  const waiting = new Promise<void>((resolve) => { release = resolve; });
+  const { atlas, settle, run } = harness({ width: 1280, height: 800, waitFor: (id) => id === 'europe' ? waiting : Promise.resolve() });
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    atlas.goLevel(0); await settle();
+    const europe = ATLAS_LEVELS.findIndex((entry) => entry.id === 'europe');
+    atlas.goLevel(europe); run();
+    assert.equal(atlas.diagnostics().levelId, 'world', 'its data has not arrived: the level on screen stays');
+    release(); await settle();
+    assert.equal(atlas.diagnostics().levelId, 'europe');
+  } finally { atlas.destroy(); }
+});
+
+test('continents whose source geometry spans the seam (North America, Oceania) are still framed closer in than the world, so they can be chosen from World', async () => {
+  const ids = ['north-america', 'oceania'];
+  assert.deepEqual(await continentTrip(ids, false), Object.fromEntries(ids.map((id) => [id, id])));
+  assert.deepEqual(await continentTrip(ids, true), Object.fromEntries(ids.map((id) => [id, id])));
+  const { atlas, settle } = harness({ width: 390, height: 844 });
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    for (const id of ids) { atlas.goLevel(ATLAS_LEVELS.findIndex((entry) => entry.id === id)); await settle(); }
+    const fits = atlas.diagnostics().fits!;
+    for (let i = 1; i < fits.length; i++) assert.ok(fits[i]! < fits[0]!, `${ATLAS_LEVELS[i]!.id} is framed closer in than the world`);
+  } finally { atlas.destroy(); }
+});

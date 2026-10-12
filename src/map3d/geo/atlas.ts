@@ -221,6 +221,8 @@ const WORLD = 0, AFRICA = 1, NIGERIA = 2;
 const countryLevel = (index: number) => Boolean(ATLAS_LEVELS[index]?.continent);
 /** Camera tilt per level, radians above the horizon: flat-on for the world, leaning in over Nigeria. */
 const PITCHES = ATLAS_LEVELS.map(entry => entry.pitch);
+/** The farthest any level below the world is framed, as a share of the world's own distance. */
+const WIDEST_SHARE = 0.8;
 const FADE = 0.36;
 const HEIGHT = { around: 0.02, state: 0.08, open: 0.13, country: 0.45, openCountry: 0.95 };
 const INK = {
@@ -251,6 +253,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   /** Each level's frame: where the camera stands, and how far, when that level fills the free part of the screen (null until measured). */
   let fits: { x: number; z: number; distance: number }[] | null = null;
   let branch = NIGERIA;
+  /** The level a goLevel() is on its way to: while it is, the country under the view centre does not choose the branch (World sits over Africa, and would pull a chosen continent back to Nigeria). Cleared on arrival, by the user's own pan or zoom, or if the level cannot be loaded. */
+  let heading: number | null = null;
   const activePath = () => levelPath(ATLAS_LEVELS, branch);
   const pathPitches = () => activePath().map(index => PITCHES[index]!);
   const rig = createRig(THREE, camera, { minX: EXTENT.minX, maxX: EXTENT.maxX, minZ: -EXTENT.maxY, maxZ: -EXTENT.minY, minDistance: 0.4, leash: (distance) => (fits ? leashAt(distance, Math.min(...activePath().map(index => fits![index]!.distance)), fits[WORLD]!.distance) : 1) });
@@ -503,7 +507,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (index > NIGERIA && fits) computeFits();
       syncResolution(); settleLevel(); drawChrome(); drawHighlights(); request();
       return built;
-    }).catch((error: unknown) => { pending[index] = null; failed = ATLAS_LEVELS[index]!.name; console.error(`The map of ${ATLAS_LEVELS[index]!.name} could not be loaded:`, error); showWait(); return null; });
+    }).catch((error: unknown) => { pending[index] = null; if (heading === index) heading = null; failed = ATLAS_LEVELS[index]!.name; console.error(`The map of ${ATLAS_LEVELS[index]!.name} could not be loaded:`, error); showWait(); return null; });
     return pending[index]!;
   }
 
@@ -516,7 +520,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const country = sheets[AFRICA]?.picker.pick(lon, lat) ?? sheets[NIGERIA]?.around?.picker.pick(lon, lat) ?? sheets[WORLD]?.picker.pick(lon, lat);
     const registered = country ? countryAtlasLevel(country.id) : null;
     const registeredIndex = ATLAS_LEVELS.findIndex(entry => entry.id === registered);
-    if (!rig.moving && level === WORLD && registeredIndex > WORLD && selected?.kind !== 'country') branch = registeredIndex === AFRICA ? NIGERIA : registeredIndex;
+    if (!rig.moving && heading === null && level === WORLD && registeredIndex > WORLD && selected?.kind !== 'country') branch = registeredIndex === AFRICA ? NIGERIA : registeredIndex;
     const path = activePath(), pathLevels = path.map(index => ATLAS_LEVELS[index]!);
     cuts = thresholds(path.map(index => fits![index]!.distance));
     const local = levelAt(rig.view.distance, cuts, path.indexOf(wanted));
@@ -536,6 +540,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       else if (level !== NIGERIA && selected?.kind === 'state') select(null);
       drawChrome(); drawHighlights();
     }
+    if (heading !== null && level === heading && !rig.moving) heading = null;
     showWait();
     for (const entry of layers) if (reducedMotion || !raf) { entry.alpha = entry.levels.includes(level) ? 1 : 0; applyLayer(entry); }
   }
@@ -576,6 +581,9 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (i !== NIGERIA) { measuring(); rig.setViewport(size.width, size.height, insets); }
       return fit;
     });
+    // A level must be closer in than the world, or it can never be told from it (the thresholds sit half-way between fits): a continent whose frame
+    // spans the seam, as North America's and Oceania's source geometry does, is held inside the world's distance, far enough in to clear the hysteresis at the threshold.
+    for (let i = WORLD + 1; i < fits.length; i++) fits[i] = fits[i]!.distance > fits[WORLD]!.distance * WIDEST_SHARE ? { ...fits[i]!, distance: fits[WORLD]!.distance * WIDEST_SHARE } : fits[i]!;
     rig.jump(saved);
     cuts = thresholds(activePath().map(index => fits![index]!.distance));
   }
@@ -592,6 +600,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
   /** Zoom by a factor about a point of the screen (NDC), keeping the ground under it where it is. The map is always north-up. */
   function zoomBy(factor: number, nx: number | null = null, ny: number | null = null) {
+    heading = null;
     const wanted = rig.view.distance * factor, distance = clamp(wanted, minDistance(), maxDistance()), edge: Edge = factor < 1 ? 'in' : 'out';
     ladder.intent(edge, Math.abs(Math.log(factor)));
     // Zoom the camera cannot take builds up against the limit: enough of it, in one go, hands over to the next map.
@@ -1110,7 +1119,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
         ? `<div class="atlas-way-ask" role="group" aria-label="Confirm the ride on credit"><p>${naira(owed.fare)} is advanced for the ticket and you owe it: it comes out of what you earn. No skipping the trip.</p><div><button type="button" class="atlas-go is-small" data-atlas-credit="${esc(owed.to)}:${esc(owed.mode)}" data-atlas-sure>Ride home on credit</button><button type="button" class="atlas-chip" data-atlas-cancel>Not now</button></div></div>`
         : `<button type="button" class="atlas-way" data-atlas-credit="${esc(owed.to)}:${esc(owed.mode)}"><span class="atlas-way-mode" aria-hidden="true">${ICON(GLYPH.bus)}</span><b>Ride home on credit</b><span>${naira(owed.fare)} owed</span></button>`}</li>` : '';
     const owing = debt(), debtRow = debtHtml(owing, cash);
-    const travelCard = ways.length ? `<section class="atlas-travel" aria-label="Travel to ${esc(info.city!.name)}"><h3>Go to ${esc(info.city!.name)}</h3>${debtRow}${shared && !owing ? `<p class="atlas-way-why" role="${settle ? 'alert' : 'status'}">${esc(shared)}</p>${settle ? '<button type="button" class="atlas-go is-small" data-atlas-settle="${esc(info.city!.id)}">Settle in now</button>' : ''}` : ''}<ul>${ways.map(wayRow).join('')}${creditRow}</ul></section>`
+    const travelCard = ways.length ? `<section class="atlas-travel" aria-label="Travel to ${esc(info.city!.name)}"><h3>Go to ${esc(info.city!.name)}</h3>${debtRow}${shared && !owing ? `<p class="atlas-way-why" role="${settle ? 'alert' : 'status'}">${esc(shared)}</p>${settle ? `<button type="button" class="atlas-go is-small" data-atlas-settle="${esc(info.city!.id)}">Settle in now</button>` : ''}` : ''}<ul>${ways.map(wayRow).join('')}${creditRow}</ul></section>`
       : choosing ? `<p class="atlas-travel atlas-way-why">${esc(info.name)} has ${openHere.length} open cities. Choose one to go there.</p>` : '';
     const more = Boolean(overviewCity || info.preview || info.routes.length || info.soon.length || info.planned || info.wait || guide?.length);
     ui.sheet.className = `atlas-sheet is-${info.tone}${sheetOpen ? ' is-expanded' : ''}`;
@@ -1215,6 +1224,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const next = index;
     if (next === WORLD) select(null);
     if (countryLevel(next) && next === level) select(null);
+    heading = next === WORLD ? null : next;
     if (next !== WORLD) branch = next === AFRICA ? NIGERIA : next;
     const loadingSheet = !sheets[next];
     void ensure(next).then(sheet => { if (sheet && loadingSheet && next > NIGERIA && branch === next && !selected && fits) fly(levelView(next), 0.9); });
@@ -1345,6 +1355,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const point = local(event);
     pointers.set(event.pointerId, point);
     canvas.setPointerCapture?.(event.pointerId);
+    heading = null;
     rig.hold();
     if (pointers.size === 1) {
       flick.clear();

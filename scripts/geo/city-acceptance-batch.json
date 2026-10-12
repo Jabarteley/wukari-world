@@ -2,17 +2,20 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-c-americas-pacific-8",
-      "appSha": "35d29fa68b02e128194a9f1e24385cfee697c4d1",
-      "driverSha": "05840d84c453f1d60d6d8ecac0a5b6ade60841e8",
+      "id": "release-c-rerun-1",
+      "appSha": "1bb37f688d7180bf52d4228b07ed1fc7c2b047b3",
+      "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "montevideo",
-        "caracas",
-        "tarawa",
-        "majuro",
-        "koror",
-        "honiara",
-        "nukualofa"
+        "monrovia",
+        "port-louis",
+        "manama",
+        "managua",
+        "budapest",
+        "ulaanbaatar",
+        "ljubljana",
+        "bratislava",
+        "guatemala-city",
+        "kuala-lumpur"
       ],
       "roundtrip": true
     }

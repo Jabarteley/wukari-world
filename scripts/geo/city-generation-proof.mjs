@@ -13,6 +13,34 @@ import { execFileSync } from 'node:child_process'
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
+// Conservative screen boxes, shared by both diagnostic views. Source/marker positions never move.
+function layoutDiagnosticLabels(labels, markers, viewport) {
+  const placed = [], omitted = []
+  const intersects = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top
+  const occupied = markers.map(marker => ({ markerId: marker.id, left: marker.x - 6, right: marker.x + 6, top: marker.y - 6, bottom: marker.y + 6 }))
+  for (const label of [...labels].sort((a, b) => b.priority - a.priority || a.id.localeCompare(b.id))) {
+    const width = Math.max(label.fontSize, [...label.name].length * label.fontSize * 0.8), height = label.fontSize * 1.3
+    const { x, y } = label
+    const positions = label.kind === 'venue'
+      ? [[x + 6, y - 6], [x - width - 6, y - 6], [x + 6, y + height + 6], [x - width - 6, y + height + 6], [x - width / 2, y - 18], [x - width / 2, y + height + 18], ...(label.priority >= 100 ? [[x - width / 2, y - 36], [x - width / 2, y + height + 36], [x - width / 2, y - 54], [x - width / 2, y + height + 54]] : [])]
+      : [[x - width / 2, y], [x - width / 2, y - 18], [x - width / 2, y + height + 18], [x + 10, y - 8], [x - width - 10, y - 8]]
+    const choice = positions.map(([left, baseline]) => ({ left, baseline, box: { left: left - 3, right: left + width + 3, top: baseline - height - 3, bottom: baseline + 4 } }))
+      .find(candidate => candidate.box.left >= viewport.x && candidate.box.right <= viewport.x + viewport.width && candidate.box.top >= viewport.y && candidate.box.bottom <= viewport.y + viewport.height && !occupied.some(box => box.markerId !== label.id && intersects(candidate.box, box)))
+    if (!choice) { omitted.push({ id: label.id, name: label.name, kind: label.kind, anchor: [x, y], reason: 'no clear text box inside viewport', attemptedPositions: positions.length }); continue }
+    occupied.push(choice.box)
+    placed.push({ ...label, textX: choice.left, textY: choice.baseline, box: choice.box, displaced: choice.left !== positions[0][0] || choice.baseline !== positions[0][1] })
+  }
+  return { placed, omitted, measurement: 'conservative character-width estimate, not browser font measurement', gapPixels: 3 }
+}
+
+function diagnosticTextParts(layout, escape) {
+  return layout.placed.map(label => {
+    const endpointX = Math.max(label.box.left + 3, Math.min(label.x, label.box.right - 3)), endpointY = Math.max(label.box.top + 3, Math.min(label.y, label.box.bottom - 4))
+    const leader = label.displaced ? `<path d="M${label.x.toFixed(2)} ${label.y.toFixed(2)} L${endpointX.toFixed(2)} ${endpointY.toFixed(2)}" fill="none" stroke="${label.colour}" stroke-width="0.6" opacity="0.6"/>` : ''
+    return `${leader}<text x="${label.textX.toFixed(2)}" y="${label.textY.toFixed(2)}" text-anchor="start" font-family="sans-serif" font-size="${label.fontSize}"${label.kind === 'district' ? ' font-weight="700"' : ''} fill="${label.colour}">${escape(label.name)}</text>`
+  }).join('')
+}
+
 const arg = (name, fallback = undefined) => {
   const index = process.argv.indexOf(`--${name}`)
   return index >= 0 ? process.argv[index + 1] : fallback
@@ -130,8 +158,15 @@ const polygonPath = rings => rings.map(ring => `${lineFor(ring)} Z`).join(' ')
 const fixedLandParts = pack.land.map(entry => `<path d="${polygonPath([entry.points, ...(entry.holes ?? [])])}" fill="#bcd596" fill-rule="evenodd" stroke="#788d61" stroke-width="1"/>`).join('')
 const waterParts = pack.water.map(entry => `<path d="${polygonPath([entry.points, ...(entry.holes ?? [])])}" fill="#4faacb" fill-rule="evenodd" stroke="#267f9e" stroke-width="1"/>`).join('')
 const roadParts = pack.roads.map(road => `<path d="${lineFor(road.points)}" fill="none" stroke="${road.major ? '#454b52' : '#727983'}" stroke-width="${road.major ? 2.4 : 1.1}" stroke-linecap="round"/>`).join('')
-const nameParts = pack.districts.map(district => { const [x, y] = svgPoint(district.x, district.z); return `<text x="${x.toFixed(2)}" y="${y.toFixed(2)}" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#1f4d2d">${esc(district.name)}</text>` }).join('')
-const placeParts = Object.entries(pack.sites).map(([id, point]) => { const [x, y] = svgPoint(point.x, point.z); return `<g><circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="4" fill="#c0392b" stroke="#fff" stroke-width="1"/><text x="${(x + 6).toFixed(2)}" y="${(y - 6).toFixed(2)}" font-family="sans-serif" font-size="10" fill="#5b1d16">${esc(venueNames.get(id) ?? id)}</text></g>` }).join('')
+const markers = Object.entries(pack.sites).map(([id, point]) => { const [x, y] = svgPoint(point.x, point.z); return { id, x, y } })
+const labels = [
+  ...markers.map(marker => ({ ...marker, name: venueNames.get(marker.id) ?? marker.id, kind: 'venue', priority: marker.id.includes('-airport-') ? 100 : 80, fontSize: 10, colour: '#5b1d16' })),
+  ...pack.districts.map((district, index) => { const [x, y] = svgPoint(district.x, district.z); return { id: `district-${index}`, name: district.name, kind: 'district', x, y, priority: district.water ? 60 : 40, fontSize: 14, colour: '#1f4d2d' } }),
+]
+const labelLayout = layoutDiagnosticLabels(labels, markers, plotRect)
+diagnostics.render.labels = { input: labels.length, placed: labelLayout.placed.length, omitted: labelLayout.omitted, decisions: labelLayout.placed.map(({ id, name, kind, x, y, textX, textY, box, displaced }) => ({ id, name, kind, anchor: [x, y], text: [textX, textY], box, displaced })), measurement: labelLayout.measurement, gapPixels: labelLayout.gapPixels }
+const nameParts = diagnosticTextParts(labelLayout, esc)
+const placeParts = markers.map(marker => `<circle cx="${marker.x.toFixed(2)}" cy="${marker.y.toFixed(2)}" r="4" fill="#c0392b" stroke="#fff" stroke-width="1"/>`).join('')
 const neutral = '#f3efe5'
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><defs><clipPath id="map-viewport"><rect x="${plotRect.x.toFixed(2)}" y="${plotRect.y.toFixed(2)}" width="${plotRect.width.toFixed(2)}" height="${plotRect.height.toFixed(2)}"/></clipPath></defs><rect x="0" y="0" width="${width}" height="${height}" fill="${neutral}"/><rect x="${plotRect.x.toFixed(2)}" y="${plotRect.y.toFixed(2)}" width="${plotRect.width.toFixed(2)}" height="${plotRect.height.toFixed(2)}" fill="#ff00ff"/><g clip-path="url(#map-viewport)"><rect x="${groundRect.x.toFixed(2)}" y="${groundRect.y.toFixed(2)}" width="${groundRect.width.toFixed(2)}" height="${groundRect.height.toFixed(2)}" fill="${pack.surround ?? '#bcd596'}"/><g>${fixedLandParts}</g><g>${waterParts}</g><g>${roadParts}</g><g>${nameParts}</g><g>${placeParts}</g></g><text x="${margin}" y="24" font-family="sans-serif" font-size="18" font-weight="700" fill="#20232c">${esc(FACTS.name)} diagnostic flat map — ${viewMode} view, ground, land holes, water, roads, names, places</text></svg>`
 mkdirSync(outdir, { recursive: true })
@@ -140,6 +175,6 @@ writeFileSync(svgPath, svg)
 if (process.platform === 'darwin') execFileSync('/usr/bin/sips', ['-s', 'format', 'png', svgPath, '--out', pngPath], { stdio: 'ignore' })
 else execFileSync('rsvg-convert', ['--width', String(width), '--height', String(height), '--output', pngPath, svgPath], { stdio: 'inherit' })
 writeFileSync(jsonPath, `${JSON.stringify(diagnostics, null, 2)}\n`)
-console.log(JSON.stringify({ city: cityId, json: jsonPath, svg: svgPath, png: pngPath, polygonProblems: Object.values(polygonProof).filter(layer => layer.polygonProblem || layer.triangulationProblem).length, outsidePlaces: diagnostics.sourcePoints.places.outsideBounds.length, wetPlaces: diagnostics.sourcePoints.places.wet.length, roadCoverage: roadCoverage }, null, 2))
+console.log(JSON.stringify({ city: cityId, json: jsonPath, svg: svgPath, png: pngPath, labelsPlaced: labelLayout.placed.length, labelsOmitted: labelLayout.omitted.length, polygonProblems: Object.values(polygonProof).filter(layer => layer.polygonProblem || layer.triangulationProblem).length, outsidePlaces: diagnostics.sourcePoints.places.outsideBounds.length, wetPlaces: diagnostics.sourcePoints.places.wet.length, roadCoverage: roadCoverage }, null, 2))
 
 process.exitCode = Object.values(polygonProof).some(layer => layer.polygonProblem || layer.triangulationProblem) || Object.entries(diagnostics.sourcePoints).some(([kind, points]) => points.outsideBounds.length || (kind !== 'waterLabels' && points.wet.length)) || roadCoverage < 1 ? 1 : 0

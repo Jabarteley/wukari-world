@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 2,
+  "countries": [
+    {
+      "countryISO": "TZ",
+      "sourceUrl": "https://download.geofabrik.de/africa/tanzania-261009.osm.pbf",
+      "bytes": 706320953,
+      "sha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
+      "snapshotDate": "2026-10-09",
+      "fixture": "boundary-fixture-tz.json"
+    }
+  ]
+}

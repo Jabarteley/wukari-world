@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "TZ",
+  "datasetSha256": "f32db3eefb206aa832ad426c4be9710e7104dabc62aeae2bba2419fdbf2fa86f",
+  "checks": [
+    {
+      "ref": "node/440137926",
+      "point": [
+        39.2450325,
+        -6.8464084
+      ],
+      "expected": "inside",
+      "sourceLayer": "places",
+      "layerSha256": "8ef94d66458a9ae829efefdd9dacd4cb7f43c3f1350c242605000bf0049486f7"
+    },
+    {
+      "ref": "airport/HTDA",
+      "point": [
+        39.207288,
+        -6.873499
+      ],
+      "expected": "inside",
+      "source": "OurAirports record 3251, HTDA/DAR; existing pinned airport metadata in relay city-queue v3 Dar inputs.",
+      "coordinateCaveat": "Dataset point; not an official aerodrome reference point or evidence of current operations."
+    }
+  ]
+}

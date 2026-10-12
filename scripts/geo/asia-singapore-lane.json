@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "repository": "kromate/joinallworld",
+  "appSha": "4ed6badd8ee580791cd379afb3587941bc10541e",
+  "factorySha": "0786c00510f2827d6495a53fc3299f3112d0d6b4",
+  "adapterSha256": "224ec1e3a46f0c4cef4c02d8a35c16d60b13bf151b801f4d81277e9035d22dc9",
+  "pbf": {
+    "url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261010.osm.pbf",
+    "bytes": 251839414,
+    "md5": "f54b88a68ecbbf4655561dba83a65207",
+    "sha256": "574c6b4ea65cade8388cb61a8bbd7344242f46f2ea447a103288b8cd327cc0cd"
+  },
+  "priorFailedBoundaryArtifact": {
+    "id": 11720216186,
+    "name": "city-bootstrap-sg-7951dabf624138c996ac5316c3b93625f5ee9071",
+    "bytes": 31101,
+    "digest": "sha256:05372036ae3f1af6130e11a1701f89ac6e6f9a084e495bbc3e10caf7c781e733",
+    "runId": 38180070790,
+    "jobId": 114590552084,
+    "sourceSha": "7951dabf624138c996ac5316c3b93625f5ee9071",
+    "failedRelation": 15421122,
+    "reusePolicy": "Exact boundary and metadata bytes only. The failed job produced no usable five-layer extract; rerun all five layers with the pinned nested-relation adapter. Keep failure provenance.",
+    "runConclusion": "cancelled",
+    "jobConclusion": "failure"
+  },
+  "files": {
+    "country-boundary/boundary.geojson": "e84f2c68da8f29dc68a41dc6141d788198d0022648fae51359fde4bdfb8980b1",
+    "country-boundary/receipt.json": "d2f814a585ac67af387898cbe24b9c039f63ad9f442d8ac8c807937d891da858",
+    "metadata/singapore/candidate/metadata.json": "175fa29688bde2313f4fcb0a730af8caf5df1bd0211391c3e55a0e977073c0c9",
+    "metadata/singapore/candidate/source-input.json": "0e6f539c0bef1997ad0f023f7e88a7db486f5cb9878bbddc0b66fff4d6d4d61c"
+  },
+  "arrivalPolicy": {
+    "kind": "contextual-airport-arrival",
+    "minimumBoxMarginMetres": 1000,
+    "observedBoxMarginMetres": 4187.324059056783,
+    "walkableAirportGround": false,
+    "note": "The country boundary contains Changi. Current built-up-land geometry does not contain its point; arrival uses contextual surround. Factory geometry changes require renewed visual and browser acceptance."
+  },
+  "holds": [
+    "Boundary receipt has zero independent fixture assertions",
+    "Nested relation 15421122 must remain in source provenance",
+    "Existing factory source/semantic/geometry gates must pass without lowering minimum venue counts",
+    "Source, factory, browser acceptance and release are separate gates"
+  ]
+}

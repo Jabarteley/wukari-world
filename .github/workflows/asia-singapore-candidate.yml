@@ -1,0 +1,150 @@
+name: Singapore exact-source and factory candidate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: asia-singapore-candidate
+  cancel-in-progress: false
+
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      APP_SHA: 4ed6badd8ee580791cd379afb3587941bc10541e
+      FACTORY_SHA: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+      FACTORY_SANDBOX: ${{ runner.temp }}/asia-singapore-candidate
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+          path: factory
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 4ed6badd8ee580791cd379afb3587941bc10541e
+          path: baseline
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Verify baselines and install pinned extraction dependency
+        run: |
+          set -euo pipefail
+          test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
+          test "$(git -C factory rev-parse HEAD)" = "$FACTORY_SHA"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1'
+      - name: Reuse exact SG boundary and extract only Singapore from exact PBF
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python scripts/geo/asia-singapore-prepare.py \
+            --manifest scripts/geo/asia-singapore-lane.json \
+            --factory-source "$GITHUB_WORKSPACE/factory" \
+            --sandbox-root "$FACTORY_SANDBOX"
+      - name: Validate source table and exact country membership
+        run: |
+          set -euo pipefail
+          node factory/scripts/geo/factory/cloud-inputs.mjs "$FACTORY_SANDBOX/targets.json"
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { loadCountryScope, assertCountryFacts } from './factory/scripts/geo/factory/country-scope.mjs';
+          const root = process.env.FACTORY_SANDBOX;
+          const table = JSON.parse(readFileSync(`${root}/targets.json`));
+          assert.equal(table.expectedSourceGitSHA, process.env.APP_SHA);
+          assert.equal(table.targets.length, 1);
+          const target = table.targets[0];
+          assert.equal(target.id, 'singapore');
+          const scope = loadCountryScope(root, {...target.countryScope, directory: 'boundaries/sg'}, 'sg', target.sourceJob.datasetSha256);
+          assertCountryFacts(scope, target.facts);
+          writeFileSync(`${root}/provenance/country-membership.json`, JSON.stringify({status:'COUNTRY_BOUNDARY_AND_FACTS_VALIDATED', receipt:scope.receipt, fixtureLimitation:'Zero independent fixture assertions; not legal border authority'}, null, 2));
+          JS
+      - name: Prepare disposable factory app
+        run: |
+          set -euo pipefail
+          git clone --shared baseline "$FACTORY_SANDBOX/app"
+          git -C "$FACTORY_SANDBOX/app" checkout --detach "$APP_SHA"
+          printf '%s\n' '{"disposable":true}' > "$FACTORY_SANDBOX/app/.factory-disposable.json"
+          npm ci --prefix "$FACTORY_SANDBOX/app" --ignore-scripts --no-audit --no-fund
+          ln -s "$FACTORY_SANDBOX/app/node_modules" baseline/node_modules
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y librsvg2-bin
+      - name: Run pinned factory with unchanged semantic and geometry gates
+        run: |
+          set -euo pipefail
+          node --experimental-strip-types factory/scripts/geo/factory/runner.mjs \
+            --table "$FACTORY_SANDBOX/targets.json" \
+            --source "$GITHUB_WORKSPACE/baseline" \
+            --extract-root "$FACTORY_SANDBOX/extracts" \
+            --boundary-root "$FACTORY_SANDBOX/boundaries" \
+            --proof-helper "$GITHUB_WORKSPACE/factory/scripts/geo/city-generation-proof.mjs" \
+            --receipt-helper "$GITHUB_WORKSPACE/factory/scripts/geo/factory/integrate-city-receipts.mjs" \
+            --helper-root "$GITHUB_WORKSPACE/factory" \
+            --workspace "$FACTORY_SANDBOX/app" \
+            --sandbox-root "$FACTORY_SANDBOX" \
+            --outdir "$FACTORY_SANDBOX/evidence" \
+            --execute 2>&1 | tee "$FACTORY_SANDBOX/runner.log"
+      - name: Collect candidate source and diff
+        if: always()
+        run: |
+          if test -f "$FACTORY_SANDBOX/targets.json" && test -d "$FACTORY_SANDBOX/app"; then
+            node factory/scripts/geo/factory/cloud-sources.mjs \
+              --table "$FACTORY_SANDBOX/targets.json" --collect \
+              --workspace "$FACTORY_SANDBOX/app" \
+              --outdir "$FACTORY_SANDBOX/delivery" \
+              --sandbox-root "$FACTORY_SANDBOX"
+          fi
+      - name: Verify exact cloud-source publication roots
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          root = Path(os.environ['FACTORY_SANDBOX'])
+          source = root / 'source-publish'
+          boundary = root / 'boundary-publish'
+          assert sorted(path.relative_to(source).as_posix() for path in source.rglob('*') if path.is_file()) == [
+              'singapore/extras.json', 'singapore/landuse.json', 'singapore/places.json',
+              'singapore/roads.json', 'singapore/water.json',
+          ]
+          assert sorted(path.name for path in boundary.iterdir() if path.is_file()) == ['boundary.geojson', 'receipt.json']
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: asia-singapore-source-${{ github.sha }}
+          path: ${{ runner.temp }}/asia-singapore-candidate/source-publish
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: asia-singapore-boundary-${{ github.sha }}
+          path: ${{ runner.temp }}/asia-singapore-candidate/boundary-publish
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: asia-singapore-candidate-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/asia-singapore-candidate/targets.json
+            ${{ runner.temp }}/asia-singapore-candidate/extracts
+            ${{ runner.temp }}/asia-singapore-candidate/boundaries
+            ${{ runner.temp }}/asia-singapore-candidate/prior-source
+            ${{ runner.temp }}/asia-singapore-candidate/provenance
+            ${{ runner.temp }}/asia-singapore-candidate/evidence
+            ${{ runner.temp }}/asia-singapore-candidate/delivery
+            ${{ runner.temp }}/asia-singapore-candidate/runner.log
+          if-no-files-found: error

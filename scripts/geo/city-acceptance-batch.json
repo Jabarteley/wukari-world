@@ -2,16 +2,11 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-c-rerun-2",
+      "id": "release-c-manama-solo",
       "appSha": "1bb37f688d7180bf52d4228b07ed1fc7c2b047b3",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "kathmandu",
-        "beirut",
-        "ashgabat",
-        "freetown",
-        "juba",
-        "serrekunda"
+        "manama"
       ],
       "roundtrip": true
     }

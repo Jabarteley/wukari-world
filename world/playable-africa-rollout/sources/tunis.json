@@ -1,0 +1,324 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tunis",
+  "countryIso2": "TN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tunis",
+    "coordinatesWgs84": [
+      10.179678,
+      36.802778
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "tunis-airport",
+    "name": "Tunis Carthage International Airport",
+    "lon": 10.2272,
+    "lat": 36.851002,
+    "sourceUrl": "https://ourairports.com/airports/DTTA/"
+  },
+  "boxes": {
+    "play": [
+      36.74,
+      10.08,
+      36.93,
+      10.32
+    ],
+    "core": [
+      36.755,
+      10.115,
+      36.855,
+      10.245
+    ],
+    "outline": [
+      36.69,
+      10.03,
+      36.98,
+      10.37
+    ],
+    "wide": [
+      36.18,
+      9.52,
+      37.49,
+      10.88
+    ],
+    "water": [
+      36.18,
+      9.52,
+      37.49,
+      10.88
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
+    "datasetSha256": "8bea4a9f2a86cce8ca198d9bad50dd1103239bbcb55669058fa50042c767f51b",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "9f6099b3b15db3e6b59316914d55b427efd650d802f80ffd32bdf94ba5efd7d3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "49b0eebcf507983645bc81ca80639334c88d959c157133c199605abc2a8a9bf7",
+        "elements": 1677
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8e6222e613813d1569ea354eebded7325fe6eef2f5fe8c08c4eedaf685e6131b",
+        "elements": 518
+      },
+      {
+        "file": "water.json",
+        "sha256": "83a217c86a0861d5b431e2dcb918447b1c51dfa9c6a520a55deb1d7cca84b901",
+        "elements": 382
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "1e0515fbdaecdb68d977fcf983ca26e807210c087c7a1a1887fe138b891b88fe",
+        "elements": 1085
+      },
+      {
+        "file": "roads.json",
+        "sha256": "bbfb1ac8638f95aa827b42cfeeb1208548ab0c05fcd58d56e247826e1c5f3b12",
+        "elements": 1266
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Tunis Station",
+      "osm": "way/29993446",
+      "coordinatesWgs84": [
+        10.180582,
+        36.795245
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Capitole",
+      "osm": "node/330182866",
+      "coordinatesWgs84": [
+        10.181893,
+        36.799459
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Faculty of Economic Sciences and Management of Tunis",
+      "osm": "way/34613596",
+      "coordinatesWgs84": [
+        10.152065,
+        36.832104
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Charles Nicolle Hospital",
+      "osm": "way/95130049",
+      "coordinatesWgs84": [
+        10.160736,
+        36.802716
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Central Park",
+      "osm": "way/94346632",
+      "coordinatesWgs84": [
+        10.183309,
+        36.801867
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Tunis",
+      "osm": "way/95130058",
+      "coordinatesWgs84": [
+        10.17732,
+        36.797406
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zaytuna Mosque",
+      "osm": "relation/1552764",
+      "coordinatesWgs84": [
+        10.171252,
+        36.797314
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place Mohamed Ali",
+      "osm": "node/3123807845",
+      "coordinatesWgs84": [
+        10.176582,
+        36.80011
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tunis City Hall",
+      "osm": "way/95130064",
+      "coordinatesWgs84": [
+        10.16512,
+        36.797102
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bardo National Museum",
+      "osm": "relation/2401476",
+      "coordinatesWgs84": [
+        10.134246,
+        36.80932
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort La Goulette",
+      "osm": "relation/1354798",
+      "coordinatesWgs84": [
+        10.303638,
+        36.814443
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade El Menzah",
+      "osm": "relation/5405848",
+      "coordinatesWgs84": [
+        10.185231,
+        36.83984
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Medina of Tunis",
+      "osm": "way/95197171",
+      "coordinatesWgs84": [
+        10.171065,
+        36.7986
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bab el Bhar",
+      "osm": "way/109465243",
+      "coordinatesWgs84": [
+        10.175618,
+        36.799177
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Synagogue of Tunis",
+      "osm": "way/95134307",
+      "coordinatesWgs84": [
+        10.180111,
+        36.81038
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dar Ben Abdallah",
+      "osm": "relation/1552763",
+      "coordinatesWgs84": [
+        10.173814,
+        36.794
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dar el Bey",
+      "osm": "relation/1465965",
+      "coordinatesWgs84": [
+        10.16922,
+        36.797571
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palais Kheireddine",
+      "osm": "way/380570838",
+      "coordinatesWgs84": [
+        10.168466,
+        36.801677
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bardo Centre",
+      "osm": "way/102831449",
+      "coordinatesWgs84": [
+        10.137744,
+        36.809596
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palmarium",
+      "osm": "way/95130038",
+      "coordinatesWgs84": [
+        10.181063,
+        36.798859
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "La Cité des sciences",
+      "osm": "way/105557781",
+      "coordinatesWgs84": [
+        10.188841,
+        36.848257
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1293,
+      "sha256": "7ea09ef014af0fd05d0bc125bff444453e9f7b86e471e9d7ef343dfe611c1f8b"
+    },
+    "geometry.ts": {
+      "bytes": 55391,
+      "sha256": "e7308e1b193eae0d43e56da05488d02e88996dfde15b64dbcd282cc8fe315819"
+    },
+    "places.ts": {
+      "bytes": 8409,
+      "sha256": "9fad1bf505991f48a280aead690f5b82463a953b883be53ac9f0aef08b800eeb"
+    },
+    "terrain.ts": {
+      "bytes": 72163,
+      "sha256": "63a82ca160668cf0ed4be82e3314fcd2da5b03c9dcec8b8d5b4c06351445f8c0"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "5228d215e3710201fbf64254883803b673cda71f910f8fea0e0b8ac9cf8d5ea0"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Tunis: a mapped land-use outline with the Gulf of Tunis coast and Lac de Tunis water, main roads, and named places selected from the dated Tunisia Geofabrik PBF. The arrival airport point is from OurAirports and is not an official aerodrome reference point or evidence of current operations or schedules."
+}

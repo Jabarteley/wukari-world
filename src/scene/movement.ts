@@ -63,8 +63,12 @@ const TURN_RATE = 14; // radians per second the avatar turns towards where it is
  *           goes round behind it. Parts are never camera solids: a hidden wall hides nothing.
  */
 export const WALL_REACH = 0.75;
+/** A place to sit: where the hips go, the way the person faces, and the seat's height. */
+export interface SeatPlace { x: number; z: number; ry: number; seat: number }
 export type FootprintSolid = [number, number, number, number, number, number];
 export interface FootprintShapes {
+  /** Every seat the props drew (chairs, stools, benches, sofas), in venue coordinates. */
+  seats: SeatPlace[];
   floor: WalkRect | null;
   block: WalkRect[];
   solids: FootprintSolid[];
@@ -74,7 +78,7 @@ export interface FootprintShapes {
 export interface FootprintRecorder { batch: Batch; shapes(): FootprintShapes }
 
 export function footprintRecorder(inner: Batch, { low = 0.34, high = 1.2 }: { low?: number; high?: number } = {}): FootprintRecorder {
-  const block: WalkRect[] = [], solids: FootprintSolid[] = [];
+  const block: WalkRect[] = [], solids: FootprintSolid[] = [], seats: SeatPlace[] = [];
   let floor: WalkRect | null = null, floorArea = 0, walls: { backZ: number; leftX: number } | null = null;
   /** Records one primitive's footprint; returns the options to draw it with (the same, or with its wall part). */
   function note(x: number, y: number, z: number, hx: number, hy: number, hz: number, o: BatchOptions | undefined, flat = false): BatchOptions | undefined {
@@ -116,11 +120,17 @@ export function footprintRecorder(inner: Batch, { low = 0.34, high = 1.2 }: { lo
     light(x, y, z, colour, intensity, distance) { inner.light(x, y, z, colour, intensity, distance); return batch; },
     /** The builder's room: a back wall along z = −d / 2 and a left wall along x = −w / 2 (props.js room()). */
     walls({ w, d }: { w?: number; d?: number } = {}) { if (Number.isFinite(w) && Number.isFinite(d)) walls = { backZ: -d! / 2, leftX: -w! / 2 }; return batch; },
+    seat(x, z, ry, height = 0.6) {
+      // Local to wherever the prop is drawn: take it and a point one unit ahead to the venue's frame, and the way is the line between them.
+      const here = inner.world(x, 0, z), ahead = inner.world(x + Math.sin(ry), 0, z + Math.cos(ry));
+      if (seats.length < 80) seats.push({ x: here.x, z: here.z, ry: Math.atan2(ahead.x - here.x, ahead.z - here.z), seat: height });
+      return batch;
+    },
     world: (x, y, z) => inner.world(x, y, z),
     get triangles() { return inner.triangles; },
     build: (materials) => inner.build(materials),
   };
-  return { batch, shapes: () => ({ floor, block, solids, walls }) };
+  return { batch, shapes: () => ({ seats, floor, block, solids, walls }) };
 }
 
 /** Shortest signed turn from one heading to another. */

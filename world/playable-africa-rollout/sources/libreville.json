@@ -1,0 +1,333 @@
+{
+  "schemaVersion": 1,
+  "cityId": "libreville",
+  "countryIso2": "GA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Libreville",
+    "coordinatesWgs84": [
+      9.46,
+      0.39
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "airport": {
+    "id": "libreville-airport",
+    "name": "Libreville Leon M'ba International Airport",
+    "lon": 9.41214,
+    "lat": 0.458951,
+    "sourceUrl": "https://ourairports.com/airports/FOOL/"
+  },
+  "boxes": {
+    "play": [
+      0.29,
+      9.34,
+      0.49,
+      9.58
+    ],
+    "core": [
+      0.355,
+      9.415,
+      0.425,
+      9.505
+    ],
+    "outline": [
+      0.24,
+      9.29,
+      0.54,
+      9.63
+    ],
+    "wide": [
+      -0.27,
+      8.78,
+      1.05,
+      10.14
+    ],
+    "water": [
+      -0.27,
+      8.78,
+      1.05,
+      10.14
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/gabon-261009.osm.pbf",
+    "datasetSha256": "afd0165c7d2698ecd670bfbdd6d462f1270c85a7f2253fe3ea01db48a63306f1",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "2d64b4973cf7c687beaa90a253dec178896d7ce3bca37d9341a5550e6e6a8893",
+        "elements": 382
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9cba2d4df0f56cdb34786b9d9861e42297110d1dbb02321e8eeeaeba9ab7ed55",
+        "elements": 110
+      },
+      {
+        "file": "water.json",
+        "sha256": "adfbd094815b1ad4caebdf22ba7d509008ea12cdaa43d10446ad2fbccaad4e42",
+        "elements": 175
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "70792216ac52904dc41277ab285db358d33e16b27bbad4220a5ae600167f15eb",
+        "elements": 167
+      },
+      {
+        "file": "roads.json",
+        "sha256": "d5c7093524e37a249307ba289ea6970af71629032a39e4049915c77693371e95",
+        "elements": 482
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Gare Routière",
+      "osm": "node/1827907509",
+      "coordinatesWgs84": [
+        9.451249,
+        0.403235
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Club House",
+      "osm": "node/602115307",
+      "coordinatesWgs84": [
+        9.417201,
+        0.437891
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Omar Bongo University",
+      "osm": "way/251369723",
+      "coordinatesWgs84": [
+        9.445312,
+        0.418564
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre Hospitalier Universitaire de Libreville",
+      "osm": "way/410356077",
+      "coordinatesWgs84": [
+        9.447968,
+        0.392003
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Les Jardins de la Peyrie",
+      "osm": "way/251363804",
+      "coordinatesWgs84": [
+        9.455706,
+        0.401383
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché Mont-Bouët",
+      "osm": "node/14082088074",
+      "coordinatesWgs84": [
+        9.451915,
+        0.401251
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cathédrale Notre-Dame de L'Assomption",
+      "osm": "way/168570176",
+      "coordinatesWgs84": [
+        9.436296,
+        0.402826
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mémorial du Président Léon Mba",
+      "osm": "way/455714475",
+      "coordinatesWgs84": [
+        9.445744,
+        0.391055
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hôtel de Ville",
+      "osm": "relation/2804205",
+      "coordinatesWgs84": [
+        9.444561,
+        0.41047
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée National des Arts et Traditions du Gabon",
+      "osm": "way/456350870",
+      "coordinatesWgs84": [
+        9.446487,
+        0.383868
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palais de Justice",
+      "osm": "relation/3381838",
+      "coordinatesWgs84": [
+        9.45236,
+        0.425814
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Omnisports",
+      "osm": "way/47294817",
+      "coordinatesWgs84": [
+        9.452659,
+        0.392117
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arboretum de Sibang",
+      "osm": "way/322816664",
+      "coordinatesWgs84": [
+        9.489817,
+        0.415901
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bibliothèque Nationale",
+      "osm": "way/531996409",
+      "coordinatesWgs84": [
+        9.427284,
+        0.414227
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Galeries Tsika",
+      "osm": "node/1252103887",
+      "coordinatesWgs84": [
+        9.438082,
+        0.408038
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mairie de Nzeng Ayong",
+      "osm": "way/1348678391",
+      "coordinatesWgs84": [
+        9.47159,
+        0.423986
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché Municipal de Nkembo",
+      "osm": "way/270078850",
+      "coordinatesWgs84": [
+        9.454863,
+        0.411846
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tsunami Parc",
+      "osm": "way/652865991",
+      "coordinatesWgs84": [
+        9.443913,
+        0.405143
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Beach Park",
+      "osm": "node/12092129930",
+      "coordinatesWgs84": [
+        9.422304,
+        0.423826
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Palais des Congrès Omar Bongo Ondimba",
+      "osm": "way/1435653903",
+      "coordinatesWgs84": [
+        9.453336,
+        0.433616
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché GRAINE-Lac Bleu",
+      "osm": "node/11414890074",
+      "coordinatesWgs84": [
+        9.446203,
+        0.430331
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marché Graine-Cité Damas",
+      "osm": "node/11415014848",
+      "coordinatesWgs84": [
+        9.477481,
+        0.3883
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1484,
+      "sha256": "0cef0ff68f026b66eb36bfc6780214ca864e77fbaebd7e76bb691f3f96d93769"
+    },
+    "geometry.ts": {
+      "bytes": 32458,
+      "sha256": "c0fa1ac0bcf2b1dd43ab18e6cf80e83a6f0d12cd0779660b5997a9cb0688fdc8"
+    },
+    "places.ts": {
+      "bytes": 9105,
+      "sha256": "1359a8c28cc7107120ef0199fd230262ae516b21ba6f86af9a9e85c687de24c5"
+    },
+    "terrain.ts": {
+      "bytes": 216042,
+      "sha256": "712f1ffdff04217d9097f6eab5cfb5a04d9868941f06dcc60f471a4e72ae3f4f"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "97ac8d8991e697597541980b5891e8b5da818ea0f97eb3d73b4f30b3817df050"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Libreville: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), the Gulf of Guinea coast, estuary and inland water, main roads and named places mapped in OpenStreetMap. The arrival airport is Libreville Leon M'ba International Airport (LBV/FOOL); its coordinates are a cached OurAirports dataset point, not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places."
+}

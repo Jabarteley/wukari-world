@@ -85,6 +85,8 @@ import { createWalkGrid, footprintRecorder, turnTowards } from './movement.ts';
 import { FIGURE_GAP, gapFor, tieOf, newGaze, stepGaze, watch, gazing } from './space.ts';
 import type { GazeState } from './space.ts';
 import { spotMarker, gameTable } from './props.ts';
+import { createAmbientHub } from './ambient/hub.ts';
+import type { Ident } from './ambient/plan.ts';
 import { tablesAt, GAME_LABELS } from '../tables/city-places.ts';
 import { CITY_RULES, DEFAULT_CITY_ID } from '../game/cities/registry.ts';
 import { CLEAR_LOOK, adjustLighting, lookAt, lookKey } from '../game/conditions/look.ts';
@@ -429,7 +431,24 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   const marks: Record<'ring' | 'near' | 'goal', THREE.Mesh | null> = { ring: null, near: null, goal: null };
   /** The game tables that stand here: [{ id, kind: 'table', table, game, x, z, top, r, label }] (see TABLE_PLACES). */
   const tableList: SceneThing[] = [];
+  // The background people (src/scene/ambient): nothing exists until a host asks for them with setAmbient(), so a scene without it is exactly what it was.
+  let ambientChanged: ((ready: boolean) => void) | null = null;
+  const ambient = createAmbientHub({
+    kit, parent: group, grid: () => grid, shapes: () => footprints, entrance: () => (entrance ? [entrance.x, entrance.z] as const : null), open: () => walkSpec().open, offMarkers: (x, z) => offMarkers(x, z),
+    heightAt: (x, z) => walk.heightAt(x, z), avatar: () => ({ x: avatar.position.x, z: avatar.position.z }), spent: () => spentWithoutAmbient(), live: () => live, changed: () => ambientChanged?.(false), ready: () => { batchKey = null; buildActors(); ambientChanged?.(true); },
+  });
 
+  /** What the scene draws now without its background people: triangles and draw calls (a solid mesh is drawn twice, once for the sun's shadow). */
+  function spentWithoutAmbient() {
+    const people = group.getObjectByName('ambient');
+    let triangles = 0, drawCalls = 0;
+    group.traverseVisible((child) => {
+      if (!(child as THREE.Mesh).isMesh) return;
+      for (let up: THREE.Object3D | null = child; up; up = up.parent) if (up === people) return;
+      triangles += triangleCount(child as THREE.Mesh); drawCalls += 1 + (child.castShadow ? 1 : 0);
+    });
+    return { triangles, drawCalls };
+  }
   function drawStatic() {
     const recorder = footprintRecorder(createBatch(THREE));
     const batch = recorder.batch;
@@ -779,7 +798,10 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   }
   function buildActors() {
     const placed = placeCrowd(view.crowd);
-    const merged = placed.filter((person) => !person.live);
+    // The regulars (up to a few) are drawn by the ambient layer when it is on, so that they glance, shift and talk; the rest stay in the merged batch.
+    const residents = placed.filter((person) => person.kind === 'npc' && !person.live && Number.isFinite(person.x) && Number.isFinite(person.z));
+    const drawnHere = new Set(ambient.setResidents(residents.map((person) => ({ id: String(person.id), seed: String(person.seed ?? person.id), x: person.x!, z: person.z!, ry: person.ry ?? 0 }))));
+    const merged = placed.filter((person) => !person.live && !drawnHere.has(String(person.id)));
     // The merged batch holds NPCs and players without a reported position: rebuilt only when THEY change.
     const key = JSON.stringify(merged);
     if (key !== batchKey) {
@@ -796,8 +818,9 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     for (const peer of [...peers.values()]) if (!kept.has(peer.id)) dropPeer(peer);
     // Tags and tap targets in the order the crowd was given.
     let next = 0;
-    crowdTags = placed.map((person) => (person.live ? peers.get(String(person.id))!.tag : mergedTags[next++])).filter((tag): tag is SceneTag => Boolean(tag));
+    crowdTags = placed.map((person) => (person.live ? peers.get(String(person.id))!.tag : drawnHere.has(String(person.id)) ? ambient.residentTag(String(person.id), String(person.name ?? '')) : mergedTags[next++])).filter((tag): tag is SceneTag => Boolean(tag));
     peopleList = crowdTags.map((tag) => peers.get(tag.id)?.tag === tag ? peers.get(tag.id)!.at : { id: tag.id, kind: tag.kind, x: tag.position.x, z: tag.position.z, top: tag.position.y });
+    ambient.rebudget();
   }
   function applyLighting() {
     const preset = lit();
@@ -823,6 +846,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     buildMarks();
     prebuild();
     live = true;
+    ambient.attach();
     buildActors();
     settle();
     applyLighting();
@@ -835,6 +859,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     releaseObjects(staticObjects);
     releaseObjects(actorObjects);
     releaseObjects(markObjects);
+    ambient.release();
     marks.ring = null; marks.near = null; marks.goal = null;
     clearFigures();
     avatar.parent?.remove(avatar);
@@ -1014,6 +1039,30 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     /** True while another player's figure is on its way to a newly reported position. */
     get easing() { return easing; },
     stepCrowd, settleCrowd,
+    /**
+     * The background people of this place (src/scene/ambient): who is here, by the hour and the sky, is decided from the place and the time alone,
+     * so everyone in it sees the same people. null switches them off. True when the scene changed and wants a frame.
+     */
+    setAmbient(ident: Ident | null) {
+      const changed = ambient.configure(ident);
+      if (changed && live) { batchKey = null; buildActors(); }
+      return changed;
+    },
+    /** One step of the people (their own window of frames: src/scene/ambient/layer.ts). True while the window is open. */
+    stepAmbient(dt: number) { return ambient.layer?.step(dt) ?? false; },
+    /** Open the window: the host draws frames for a few seconds so the people can be seen walking. False when there is nobody to see. */
+    wakeAmbient() { return ambient.layer?.wake() ?? false; },
+    /** Place the people as they are and stand them still (reduced motion, no frame loop). */
+    settleAmbient() { ambient.layer?.settle(); },
+    get ambientAwake() { return ambient.layer?.awake ?? false; },
+    get ambientFrames() { return ambient.layer?.frames ?? 0; },
+    ambientPeople() { return ambient.people(); },
+    ambientCaps() { return ambient.caps(); },
+    /** A line over a background person or a regular; true when they are in the scene. */
+    say(id: string, text: string, ms?: number) { return ambient.layer?.speak(id, text, ms) ?? false; },
+    /** Two regulars face each other for a while. */
+    talk(a: string, b: string, ms?: number) { return ambient.layer?.talk(a, b, ms) ?? false; },
+    set onAmbient(fn: ((ready: boolean) => void) | null) { ambientChanged = fn; },
     /** The camera is at (x, z): hide whichever wall it has gone behind, with what hangs on it. */
     look(x: number, z: number) {
       const zone = footprints?.walls;
@@ -1026,7 +1075,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     },
     /** Which walls are showing right now: { back, left } (true = shown), or null for a scene without walls. */
     get walls() { return footprints?.walls ? { back: wallParts.wallBack.every((mesh) => mesh.visible), left: wallParts.wallLeft.every((mesh) => mesh.visible) } : null; },
-    tags: () => (selfTag ? [selfTag, ...crowdTags] : [...crowdTags]),
+    tags: () => (selfTag ? [selfTag, ...crowdTags, ...ambient.tags()] : [...crowdTags, ...ambient.tags()]),
     stats() {
       const meshes: THREE.Mesh[] = [];
       group.traverseVisible((child) => { if ((child as THREE.Mesh).isMesh) meshes.push(child as THREE.Mesh); });

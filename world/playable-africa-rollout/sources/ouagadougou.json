@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ouagadougou",
+  "countryIso2": "BF",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Ouagadougou",
+    "coordinatesWgs84": [
+      -1.53,
+      12.37
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://www.openstreetmap.org/copyright"
+  },
+  "airport": {
+    "id": "ouagadougou-airport",
+    "name": "Ouagadougou Thomas Sankara International Airport",
+    "lon": -1.51242,
+    "lat": 12.3532,
+    "sourceUrl": "https://ourairports.com/airports/DFFD/"
+  },
+  "boxes": {
+    "play": [
+      12.27,
+      -1.64,
+      12.47,
+      -1.41
+    ],
+    "core": [
+      12.335,
+      -1.575,
+      12.405,
+      -1.485
+    ],
+    "outline": [
+      12.22,
+      -1.69,
+      12.52,
+      -1.36
+    ],
+    "wide": [
+      11.725,
+      -2.185,
+      13.015,
+      -0.865
+    ],
+    "water": [
+      12.27,
+      -1.64,
+      12.47,
+      -1.41
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/burkina-faso-261009.osm.pbf",
+    "datasetSha256": "9a69dffbde52ecd7e60031f9606b5a2f4b2b3a6f236300447abd390315912b9d",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "pbf-extract-v2.py/v2-explicit-water",
+    "adapterSha256": "efc08117dac8ab80baf92024ed42ccc6cd3ed1ad0ac97515eccd2bc37530af10",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "b297c8ad7a4432c87e8acc244a08423a141769b881481b2ef4667572b4fab36a",
+        "elements": 520
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9aa69500c7dbd58b7d73ca83a2d75b7c343d1969698d9978654099ffdacfd47e",
+        "elements": 290
+      },
+      {
+        "file": "water.json",
+        "sha256": "02658e17977693ee16bd81bc795e9746a65531f774ba11579ba5991cf0ee8384",
+        "elements": 19
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d683d2328bddb0b14ee4e9d19ef5553ab597d3c29e3db140c1b2f21f5e622b7a",
+        "elements": 9461
+      },
+      {
+        "file": "roads.json",
+        "sha256": "7ee74c75ba192486801766cc54883bdce640047dbaad86ae74a916ff246292a6",
+        "elements": 708
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Gare Routière Ouaga-Inter",
+      "osm": "way/28068278",
+      "coordinatesWgs84": [
+        -1.516272,
+        12.333774
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Café de Vienne",
+      "osm": "node/430323652",
+      "coordinatesWgs84": [
+        -1.510304,
+        12.367948
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University Joseph Ki-Zerbo",
+      "osm": "way/27895270",
+      "coordinatesWgs84": [
+        -1.500762,
+        12.379349
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CHU Yalgado Ouédraogo",
+      "osm": "way/377333389",
+      "coordinatesWgs84": [
+        -1.506631,
+        12.383565
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jardin du 8 Mars",
+      "osm": "way/359610506",
+      "coordinatesWgs84": [
+        -1.527669,
+        12.359239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Marché",
+      "osm": "way/305366553",
+      "coordinatesWgs84": [
+        -1.523503,
+        12.36829
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ouagadougou Cathedral",
+      "osm": "way/30917161",
+      "coordinatesWgs84": [
+        -1.527006,
+        12.361966
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place des Cineastes",
+      "osm": "node/3430336957",
+      "coordinatesWgs84": [
+        -1.527527,
+        12.368535
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mairie centrale de Ouagadougou",
+      "osm": "way/156022890",
+      "coordinatesWgs84": [
+        -1.526964,
+        12.367828
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place Naaba Koom",
+      "osm": "node/3430336956",
+      "coordinatesWgs84": [
+        -1.526277,
+        12.372975
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Monument to National Heroes",
+      "osm": "node/1482784214",
+      "coordinatesWgs84": [
+        -1.502617,
+        12.312187
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Place des Artistes",
+      "osm": "way/151687160",
+      "coordinatesWgs84": [
+        -1.494664,
+        12.359124
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée de la Musique de Ouagadougou",
+      "osm": "way/312542890",
+      "coordinatesWgs84": [
+        -1.516835,
+        12.373513
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée National",
+      "osm": "way/28811290",
+      "coordinatesWgs84": [
+        -1.471457,
+        12.379274
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Panafrican Film and Television Festival of Ouagadougou",
+      "osm": "way/30818292",
+      "coordinatesWgs84": [
+        -1.5356,
+        12.364436
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade du 4-Août",
+      "osm": "way/312382966",
+      "coordinatesWgs84": [
+        -1.55375,
+        12.368695
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Docteur Issoufou Joseph Conombo",
+      "osm": "way/385566809",
+      "coordinatesWgs84": [
+        -1.529407,
+        12.36065
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grande Mosquée",
+      "osm": "way/55377047",
+      "coordinatesWgs84": [
+        -1.521389,
+        12.366216
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université Aube Nouvelle",
+      "osm": "node/4395508219",
+      "coordinatesWgs84": [
+        -1.498142,
+        12.36053
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "2iE",
+      "osm": "way/30917496",
+      "coordinatesWgs84": [
+        -1.503551,
+        12.379131
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Sankariaré",
+      "osm": "way/30950063",
+      "coordinatesWgs84": [
+        -1.528222,
+        12.377944
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Zogona",
+      "osm": "way/28068129",
+      "coordinatesWgs84": [
+        -1.494257,
+        12.379738
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rond-Point des Nations Unis",
+      "osm": "way/479618281",
+      "coordinatesWgs84": [
+        -1.519625,
+        12.371403
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mairie de l'arrondissement de Bogodogo",
+      "osm": "way/37213144",
+      "coordinatesWgs84": [
+        -1.488787,
+        12.352133
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hôpital pédiatrique Charles de Gaulles",
+      "osm": "way/28811175",
+      "coordinatesWgs84": [
+        -1.471534,
+        12.374785
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ISIG",
+      "osm": "way/29066343",
+      "coordinatesWgs84": [
+        -1.498381,
+        12.360185
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1416,
+      "sha256": "27f52e5010315b06168c98e88fc0730e4a156e515e9cfb981143cba61796ea8f"
+    },
+    "geometry.ts": {
+      "bytes": 47032,
+      "sha256": "e144f9822366516a1e18e2a884c49227179c3db929d7c3268fefeae88d569495"
+    },
+    "places.ts": {
+      "bytes": 10354,
+      "sha256": "143a0015d4b04bf1382d47c2fc343a72c64d88eac7a0508711fe32723c19b568"
+    },
+    "terrain.ts": {
+      "bytes": 28730,
+      "sha256": "5be645d0c783cbaf848fe96919aad3062d0648ac1726c15d88976c24b77c6b25"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "216616fb50b33e17ec85818ca5f72fe7ba880097a270c2934590bb1d607417dc"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Ouagadougou: a sketch of the built-up extent traced from mapped land use (not an administrative boundary), mapped inland water, main roads and named places mapped in OpenStreetMap. The airport coordinates are an OurAirports dataset point, not an official reference point or evidence of current operations or schedules. Visitor services and homes are fictional game content set at the real named places."
+}

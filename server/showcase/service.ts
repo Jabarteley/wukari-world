@@ -76,7 +76,8 @@ export function showcaseService(ctx: RouteContext) {
   function view(db: Db, shop: ShowcaseShop): ShowcaseView | null {
     const base = card(db, shop);
     if (!base) return null;
-    return { ...base, about: shop.about, photos: shop.photos.filter((photo) => photo.approved && !photo.hidden).map((photo) => ({ id: photo.id, w: photo.w, h: photo.h, ...(photo.caption ? { caption: photo.caption } : {}) })), serviceList: shop.services,
+    const shown = new Set(shop.photos.filter((photo) => photo.approved && !photo.hidden).map((photo) => photo.id));
+    return { ...base, about: shop.about, photos: shop.photos.filter((photo) => photo.approved && !photo.hidden).map((photo) => ({ id: photo.id, w: photo.w, h: photo.h, ...(photo.caption ? { caption: photo.caption } : {}) })), serviceList: shop.services.map(({ photo, ...rest }) => (photo !== undefined && shown.has(photo) ? { ...rest, photo } : rest)),
       payNotice: shop.pay && shop.payChangedAt !== undefined && shop.payChangedAt + SHOWCASE.payNoticeMs > now() ? PAY_NOTICE : null, priceLabel: PRICE_LABEL };
   }
   function get(db: Db, id: string, viewer?: string): ShowcaseShop {
@@ -175,7 +176,7 @@ export function showcaseService(ctx: RouteContext) {
       const payChanged = approved && (current?.pay?.url ?? null) !== (input.pay?.url ?? null);
       const next: ShowcaseShop = {
         v: 1, id, owner: session.publicId, city: input.city, venue: input.venue, slot, name: input.name, category: input.category, template: input.template, colours: input.colours, sign: input.sign, logo: input.logo,
-        about: input.about, services: input.services, hours: input.hours, chat: input.chat, pay: input.pay, photos: current?.photos ?? [],
+        about: input.about, services: input.services.map(({ photo, ...rest }) => (photo !== undefined && current?.photos.some((own) => own.id === photo) ? { ...rest, photo } : rest)), hours: input.hours, chat: input.chat, pay: input.pay, photos: current?.photos ?? [],
         status: current?.status ?? 'draft', ...(current?.reviewedAt !== undefined ? { reviewedAt: current.reviewedAt } : {}),
         ...(input.pay && payChanged ? { payChangedAt: at } : input.pay && current?.payChangedAt !== undefined ? { payChangedAt: current.payChangedAt } : {}),
         ...(current?.reapprove || (approved && changed) ? { reapprove: true as const } : {}),
@@ -256,6 +257,7 @@ export function showcaseService(ctx: RouteContext) {
       const at = shop.photos.findIndex((item) => item.id === photo);
       if (at < 0) throw ctx.fail(404, 'unknown_photo');
       gone.push(...shop.photos.splice(at, 1).map((item) => item.id));
+      shop.services = shop.services.map(({ photo: used, ...rest }) => (used === photo ? rest : { ...rest, ...(used !== undefined ? { photo: used } : {}) }));
       // Under the minimum a live shop is no longer a complete one: it goes back to a draft to be submitted again.
       if (shop.photos.length < SHOWCASE.photosMin && (shop.status === 'live' || shop.status === 'review')) shop.status = 'draft';
       shop.updatedAt = now(); shop.revision += 1;

@@ -128,17 +128,18 @@ test('an e-mail button opens one panel from the list, once, with no request; an 
   assert.equal(offline.keep.go, 'needs', 'kept until the connection is there')
 })
 
-test('a shop link opens that shop in the Services app, by the id the server gives for its public address', async () => {
-  const { landing, calls, log, keep, answers } = setup({}, { go: 'shop', shop: 'k3x9m2q7' })
-  answers['/api/showcase/entry/k3x9m2q7'] = { ok: true, id: 'SC-12' }
+test('a shop link walks the visitor into that shop in 3D, by the token of its public address, and never opens the Services app', async () => {
+  const entered: string[] = []
+  const { landing, calls, log, keep } = setup({ openShop: (token) => { entered.push(token) } }, { go: 'shop', shop: 'k3x9m2q7' })
   await landing.land()
-  assert.deepEqual(calls, [{ path: '/api/showcase/entry/k3x9m2q7', body: undefined }])
-  assert.ok(log.includes(`open:showcase:${JSON.stringify({ shop: 'SC-12' })}`))
+  assert.deepEqual(entered, ['k3x9m2q7'])
+  assert.deepEqual(calls, [], 'the room asks for the shop itself')
+  assert.ok(!log.some((line) => line.startsWith('open:')), 'no phone sheet is opened over the room')
   assert.equal(keep.go, null); assert.equal(keep.shop, null)
 })
 
-test('a shop link whose shop is gone says so and opens nothing', async () => {
-  const { landing, log } = setup({ fetchJson: (async () => { throw Object.assign(new Error('gone'), { status: 404 }) }) as LandingDeps['fetchJson'] }, { go: 'shop', shop: 'k3x9m2q7' })
+test('a shop link whose room cannot be opened says so', async () => {
+  const { landing, log } = setup({ openShop: () => { throw new Error('chunk') } }, { go: 'shop', shop: 'k3x9m2q7' })
   await landing.land()
   assert.ok(log.includes('toast:That shop is not available.'))
   assert.ok(!log.some((line) => line.startsWith('open:')))

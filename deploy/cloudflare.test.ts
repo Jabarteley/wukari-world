@@ -75,14 +75,15 @@ interface Peer { who: Device; send(message: object): void; next(): Promise<Frame
 
 /**
  * `clockShiftMs`: the object's clock runs this far ahead (a test of something that depends on the hour of the day cannot wait for it).
+ * `fixedNowMs`: hold the object's clock at this time across hibernation for rate-window assertions.
  * `sleeps`: the object may sleep while sockets are connected (SLEEP_BETWEEN_BEATS) — for a test that puts it to sleep
  * (`hibernate`). By default it stays in memory while anyone is connected, and an eviction would wait for it for ever.
  */
-async function fixture(t: TestContext, { clockShiftMs = 0, sleeps = false, ...overrides }: Record<string, unknown> & { clockShiftMs?: number; sleeps?: boolean } = {}) {
+async function fixture(t: TestContext, { clockShiftMs = 0, fixedNowMs, sleeps = false, ...overrides }: Record<string, unknown> & { clockShiftMs?: number; fixedNowMs?: number; sleeps?: boolean } = {}) {
   const folder = await mkdtemp(join(tmpdir(), 'joinallworld-do-test-'));
   const bundle = join(folder, 'worker.mjs');
   await build({ entryPoints: [new URL('./cloudflare-worker.ts', import.meta.url).pathname], outfile: bundle, bundle: true, format: 'esm', platform: 'neutral', external: ['cloudflare:workers'] });
-  const options = { name: 'joinallworld-conformance', script: (clockShiftMs ? `Date.now = ((real) => () => real() + ${Math.round(clockShiftMs)})(Date.now.bind(Date));\n` : '') + await readFile(bundle, 'utf8'), modules: true, compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(folder, 'storage'), bindings: { ...layoutBindings(), BUILD_ID: 'local-conformance' } as Record<string, string>, assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } }, ...overrides };
+  const options = { name: 'joinallworld-conformance', script: (fixedNowMs !== undefined ? `Date.now = () => ${Math.round(fixedNowMs)};\n` : clockShiftMs ? `Date.now = ((real) => () => real() + ${Math.round(clockShiftMs)})(Date.now.bind(Date));\n` : '') + await readFile(bundle, 'utf8'), modules: true, compatibilityDate: '2026-10-01', durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(folder, 'storage'), bindings: { ...layoutBindings(), BUILD_ID: 'local-conformance' } as Record<string, string>, assets: { directory: new URL('../dist', import.meta.url).pathname, binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } }, ...overrides };
   options.bindings = { ...layoutBindings(), ...options.bindings };
   if (sleeps) options.bindings = { ...options.bindings, SLEEP_BETWEEN_BEATS: '1' };
   // What the object wrote to its console is kept (and still shown): a test can say what must never be logged.
@@ -347,7 +348,7 @@ test('Cloudflare: a flood of hour-long rows cannot erase the operator guard or a
 });
 
 test('Cloudflare: proximity survives hibernation, movement avoids SQL writes and private homes stay isolated', async t => {
-  const f = await fixture(t, { sleeps: true }), a = await f.device('Ada'), b = await f.device('Bola');
+  const f = await fixture(t, { sleeps: true, fixedNowMs: Date.now() }), a = await f.device('Ada'), b = await f.device('Bola');
   const x = await f.socket(a), y = await f.socket(b);
   x.send({ type: 'join', cityId: 'lagos', venueId: 'park' }); await x.next();
   y.send({ type: 'join', cityId: 'lagos', venueId: 'park' }); await x.next(); await y.next();

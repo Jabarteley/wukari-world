@@ -34,6 +34,11 @@ const note = ref('')
 const busy = ref('')
 const view = ref<'edit' | 'preview'>('edit')
 const confirmRemove = ref(false)
+/** The seller walks into their own saved shop, published or not. Leaving brings them back to My shop. */
+function see3d(): void {
+  shell.close()
+  void import('./room/openRoom.ts').then((room) => room.openShopRoom({ by: 'mine' }, { back: () => shell.open('showcase', { mine: true }) }))
+}
 const errors = reactive<Record<string, string>>({})
 const summary = ref<Problem[]>([])
 const stale = ref<{ latest: ShowcaseMine; clash: (keyof ShopDraft)[] } | null>(null)
@@ -275,6 +280,9 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
         <button type="button" :class="{ 'is-on': view === 'preview' }" :aria-pressed="view === 'preview'" @click="view = 'preview'">Preview my shop</button>
       </div>
 
+      <button v-if="shop" type="button" class="ui-button is-block" data-see-3d @click="see3d">See my shop in 3D</button>
+      <p v-if="shop" class="se-help">The room your visitors step into, with your saved items and photos. Save your changes first to see them.</p>
+
       <div class="se-grid">
         <div class="se-edit">
           <nav class="se-steps" aria-label="Steps">
@@ -314,6 +322,9 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
                 <FieldRow v-slot="a" :field="`service-${at}-label`" :label="`Service ${at + 1}`" :error="errors[`service-${at}-label`]"><input v-bind="a" v-model="item.label" :maxlength="SHOWCASE.label" autocomplete="off"></FieldRow>
                 <FieldRow v-slot="a" :field="`service-${at}-price`" label="Your price (₦)" :error="errors[`service-${at}-price`]"><input v-bind="a" v-model="item.price" inputmode="numeric" autocomplete="off"></FieldRow>
                 <FieldRow v-slot="a" :field="`service-${at}-note`" label="A line about it (optional)" :error="errors[`service-${at}-note`]"><input v-bind="a" v-model="item.note" :maxlength="SHOWCASE.note" autocomplete="off"></FieldRow>
+                <label v-if="photos.length" class="se-itemphoto">Picture in the 3D shop (optional)
+                  <select v-model="item.photo"><option value="">No picture</option><option v-for="(own, n) in photos" :key="own.id" :value="own.id">{{ own.caption || `Photo ${n + 1}` }}</option></select>
+                </label>
                 <button type="button" class="ui-button is-quiet is-small se-remove" :aria-label="`Remove service ${at + 1}`" @click="draft.services.splice(at, 1)">Remove</button>
               </div>
               <button v-if="draft.services.length < SHOWCASE.services" type="button" class="ui-button" @click="draft.services.push(emptyService())">Add a service</button>
@@ -380,6 +391,8 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
 </template>
 
 <style scoped>
+.se-itemphoto { display: grid; gap: 2px; font-size: 12px; }
+.se-itemphoto select { min-height: 40px; font: inherit; }
 .se { display: grid; gap: var(--s-3); container-type: inline-size; min-width: 0; }
 .se-status { margin: 0; padding: 8px 10px; border-radius: var(--r-sm); background: var(--c-fill); font-weight: 600; font-size: 14px; }
 .se-block { padding: 10px; border-radius: var(--r-sm); background: var(--c-amber-soft); color: var(--c-amber-dark); display: grid; gap: 8px; }

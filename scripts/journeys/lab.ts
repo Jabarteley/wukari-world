@@ -25,12 +25,15 @@ export interface Lab {
   founder: string;
   admin(path: string, body?: unknown): Promise<Record<string, any>>;
   mod(path: string, body?: unknown): Promise<Record<string, any>>;
+  /** A new signed-in account made over HTTP (stand-in provider): its cookie, for `call`. */
+  account(email: string, name: string): Promise<string>;
   /** Signs the page in as an account (stand-in provider); returns nothing, the page keeps the new cookie. */
   signIn(page: Browser, email: string): Promise<void>;
   stop(): Promise<void>;
 }
 
-export async function startLab(port: number, extraEnv: Record<string, string> = {}): Promise<Lab> {
+/** `publicPort`: the port the pages are reached on when something else (a dev server that proxies the API) stands in front of this one. */
+export async function startLab(port: number, extraEnv: Record<string, string> = {}, publicPort = port): Promise<Lab> {
   const dir = mkdtempSync(join(tmpdir(), 'journey-lab-'));
   const dataDir = join(dir, 'data'); mkdirSync(dataDir);
   let offset = 0;
@@ -42,13 +45,13 @@ export async function startLab(port: number, extraEnv: Record<string, string> = 
   const key = await makeKey('journey-local-key');
   const provider = fakeProvider([key]);
   const server = await createServer({
-    dataDir, distDir: resolve(process.env['JOURNEY_DIST'] ?? 'dist'), env, publicOrigin: `http://127.0.0.1:${port}`, moderatorToken: OPERATOR, now,
+    dataDir, distDir: resolve(process.env['JOURNEY_DIST'] ?? 'dist'), env, publicOrigin: `http://127.0.0.1:${publicPort}`, moderatorToken: OPERATOR, now,
     telemetry: createServerTelemetry({ env: {}, now }),
     fetch: (url, init) => provider.fetch(url, init as { body?: unknown }),
   });
   server.listen(port, '127.0.0.1');
   await once(server, 'listening');
-  const base = `http://127.0.0.1:${port}`;
+  const base = `http://127.0.0.1:${publicPort}`;
   const call: Lab['call'] = async (path, body, cookie, headers = {}) => {
     const res = await fetch(base + path, { method: body ? 'POST' : 'GET', headers: { Origin: base, ...(body ? { 'Content-Type': 'application/json' } : {}), ...(cookie ? { Cookie: cookie } : {}), ...headers }, ...(body ? { body: JSON.stringify(body) } : {}) });
     const text = await res.text();
@@ -69,6 +72,14 @@ export async function startLab(port: number, extraEnv: Record<string, string> = 
     base, dir, port, advance: (ms) => { offset += ms; }, now, offset: () => offset, call, founder,
     admin: (path, body) => call(path, body, founder),
     mod: (path, body) => call(path, body, undefined, { Authorization: `Bearer ${OPERATOR}` }),
+    async account(email, name) {
+      const guest = await call('/api/session', { name });
+      await call('/api/life?city=lagos', undefined, guest.setCookie);
+      const acct = await call('/api/account', undefined, guest.setCookie);
+      const signed = await call('/api/account/sign-in', { csrf: acct['csrf'], idToken: await token(email) }, guest.setCookie);
+      if (signed.status !== 200) throw new Error(`${email} could not sign in (${signed.status}).`);
+      return (signed['setCookie'] as string) || guest.setCookie;
+    },
     async signIn(page, email) {
       const idToken = await token(email);
       const out = await page.eval<number>(`(async () => { const a = await fetch('/api/account').then((r) => r.json()); const r = await fetch('/api/account/sign-in', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ csrf: a.csrf, idToken: ${JSON.stringify(idToken)} }) }); return r.status; })()`);

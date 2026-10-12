@@ -23,7 +23,7 @@ const digest = (value: unknown, path: string): string => /^[0-9a-f]{64}$/.test(t
 const tags = (value: unknown, path: string): Record<string, string> => {
   if (!record(value)) fail(`${path} must be an object`);
   const out: Record<string, string> = {};
-  for (const [key, item] of Object.entries(value)) out[key] = text(item, `${path}.${key}`);
+  for (const [key, item] of Object.entries(value)) out[key] = typeof item === 'string' ? item : fail(`${path}.${key} must be a string`);
   return out;
 };
 const sameBox = (actual: unknown, expected: Box, path: string): void => {

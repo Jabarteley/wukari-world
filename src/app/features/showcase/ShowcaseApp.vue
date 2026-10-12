@@ -38,6 +38,7 @@ watch(() => props.params, (params) => {
   seen = params
   const wanted = (params as { setup?: unknown }).setup
   if (typeof wanted === 'string') { setup.value = wanted; tab.value = 'mine'; return }
+  if ((params as { mine?: unknown }).mine === true) { tab.value = 'mine'; return }
   const shop = (params as { shop?: unknown }).shop
   // Opened from a shop's public link: that shop's page first.
   if (typeof shop === 'string' && /^SC-\d{1,16}$/.test(shop)) { selected.value = shop; return }

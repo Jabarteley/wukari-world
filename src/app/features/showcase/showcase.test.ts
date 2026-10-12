@@ -20,7 +20,7 @@ const FILES = ['ShowcaseApp.vue', 'ShopPage.vue', 'ShopEditor.vue', 'ShopFront.v
 const filled = () => {
   const draft = emptyDraft('market')
   Object.assign(draft, { name: 'Ada Braids', sign: 'Braids by Ada', about: 'Neat braids.', chat: 'https://wa.me/2348012345678' })
-  draft.services = [{ label: 'Knotless braids', price: '25000', note: ' about four hours ' }, { label: '', price: '5', note: '' }, { label: 'Wash', price: '', note: '' }]
+  draft.services = [{ label: 'Knotless braids', price: '25000', note: ' about four hours ', photo: '' }, { label: '', price: '5', note: '', photo: '' }, { label: 'Wash', price: '', note: '', photo: '' }]
   return draft
 }
 
@@ -54,7 +54,7 @@ test('the draft becomes the body the server takes: trimmed, whole naira, empty s
 })
 
 test('the editor says what is missing, in the order of the form', () => {
-  assert.equal(draftIssues(emptyDraft('')).length, 6)
+  assert.equal(draftIssues(emptyDraft('')).length, 5, 'a shop may open with no items')
   const draft = filled()
   draft.name = 'Hi'; assert.match(draftIssues(draft)[0] ?? '', /name of 3 to 40/)
   draft.name = 'Ada Braids'; draft.venue = ''; assert.match(draftIssues(draft)[0] ?? '', /market/)
@@ -69,7 +69,7 @@ test('a saved shop fills the draft again', () => {
     hours: [{ open: '08:00', close: '12:00' }, null, null, null, null, null, null], chat: { kind: 'whatsapp', url: 'https://wa.me/1' }, pay: null, photos: [], status: 'draft', revision: 2, createdAt: 1, updatedAt: 1,
   }
   const draft = draftOf(shop)
-  assert.deepEqual([draft.slot, draft.name, draft.template, draft.services, draft.hours[0], draft.hours[1]?.open, draft.chat, draft.pay], ['4', 'Ada Braids', 'bold', [{ label: 'Braids', price: '9000', note: 'n' }], { open: true, from: '08:00', to: '12:00' }, false, 'https://wa.me/1', ''])
+  assert.deepEqual([draft.slot, draft.name, draft.template, draft.services, draft.hours[0], draft.hours[1]?.open, draft.chat, draft.pay], ['4', 'Ada Braids', 'bold', [{ label: 'Braids', price: '9000', note: 'n', photo: '' }], { open: true, from: '08:00', to: '12:00' }, false, 'https://wa.me/1', ''])
   assert.deepEqual(inputOf(draft, 'lagos').services, shop.services)
 })
 
@@ -176,7 +176,7 @@ test('an approval changes only what the server owns: no clash, so the revision i
 
 test('a refusal is tied to the field it is about, in the order of the form, and the rest go to the About box', () => {
   const draft = filled()
-  assert.deepEqual(draftProblems(emptyDraft('')).map((item) => item.field), ['name', 'venue', 'sign', 'about', 'service-0-label', 'chat'])
+  assert.deepEqual(draftProblems(emptyDraft('')).map((item) => item.field), ['name', 'venue', 'sign', 'about', 'chat'])
   draft.services[0]!.price = '12.5'; draft.hours[2]!.to = '08:00'
   assert.deepEqual(draftProblems(draft).map((item) => item.field), ['service-0-price', 'hours-2'])
   assert.match(draftProblems(draft)[1]?.message ?? '', /^Wednesday: closing time/)

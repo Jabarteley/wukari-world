@@ -69,9 +69,9 @@ import { cityRules, linksFrom } from '../content/world.ts';
 import { venueLabel } from '../content/venues.ts';
 import { NPC_ACTIONS, PLAYER_ACTIONS, TIERS, BAE_TIER, BAE_UNLOCK, MAX_CLOSENESS, DAILY_INTERACTIONS, MAX_RELATIONSHIPS,
   JOKE_FORMULA, FAMILY, FAMILY_CALL, TRANSFER_LIMITS, COUPON_MAX_SAVING, MAX_RELATIONSHIP_TAGS } from '../content/npcs.ts';
-import { FOLLOW_UPS_KEPT, cleanMemory } from '../memory/facts.ts';
-import { AWAY_DAYS, DEED_POINTS, FAVOUR_AFTER, FAVOUR_NEEDS, TEASE_AFTER, gainFactor, isBadDeed, knows, recall, remember, reputation, schedule, settle, startRumour } from '../memory/mind.ts';
-import { awayLine, factLine, followUpLine, recollectionLine } from '../memory/lines.ts';
+import { FOLLOW_UPS_KEPT, VISITS_KEPT, cleanMemory } from '../memory/facts.ts';
+import { AWAY_DAYS, DEED_POINTS, FAVOUR_AFTER, FAVOUR_NEEDS, LOYALTY_PERCENT, TEASE_AFTER, gainFactor, isBadDeed, knows, loyaltyDue, recall, remember, reputation, schedule, settle, standingOf, startRumour } from '../memory/mind.ts';
+import { awayLine, factLine, followUpLine, recollectionLine, standingLine } from '../memory/lines.ts';
 
 export const MAX_NOTICES = 20;
 const FRIEND_INDEX = TIERS.findIndex((tier) => tier.id === 'friend');
@@ -234,7 +234,18 @@ function meet(state: LifeState, npc: NpcDefinition, ctx: LifeContext): { say: st
   if (!say && deed) say = factLine({ k: 'deed', v: deed, day }, day);
   if (!say) {
     const where = districtAt(ctx.cityId), teller = (venue: string) => regularsFor(ctx.cityId).find((item) => item.venue === venue && item.id !== npc.id)?.name;
-    say = recollectionLine(recall(rel?.m, book.rumours, where(npc.venue), where, day), day, (venue) => venueLabel(venue, ctx.cityId), teller);
+    // A bare "we have met" is the least they remember: how they stand with you says more, so it is read instead.
+    const memo = recall(rel?.m, book.rumours, where(npc.venue), where, day);
+    say = memo && !(memo.from === 'fact' && memo.fact.k === 'met') ? recollectionLine(memo, day, (venue) => venueLabel(venue, ctx.cityId), teller) : '';
+  }
+  if (!say) {
+    const standing = standingOf(rel, day, TIERS[FRIEND_INDEX]!.min, TIERS[1]!.min), name = (state.name || '').split(/\s+/)[0] ?? '';
+    say = standingLine(standing, name, day, npc.id.length);
+    // A regular customer is treated now and then: a small discount on the next grocery order, one at a time, never stacked.
+    if (standing === 'regular' && loyaltyDue(rel?.v ?? 1) && !(book.coupon && book.coupon.day >= day)) {
+      book.coupon = { pct: LOYALTY_PERCENT, day };
+      extra += ` ${npc.name} knocked ${LOYALTY_PERCENT}% off your next grocery order today (up to ${naira(COUPON_MAX_SAVING)}).`;
+    }
   }
   return { say, extra };
 }
@@ -527,13 +538,15 @@ const play = PLAYS ? {
       if (!def?.social) return;
       const npc = regularFor(ctx.cityId, def.social.npc) ?? npcOf(def.social.npc), action: NpcAction | PlaceAction | undefined = NPC_ACTIONS.find((item) => item.id === def.social?.action) ?? dilemmaKit()?.placeActionById(def.social.action);
       if (!action) throw new TypeError(`No NPC action ${def.social.action}`); // the original read a property of undefined
-      const first = !state.social.rel[npc.id], { say, extra } = meet(state, npc, ctx);
+      const first = !state.social.rel[npc.id], newDay = state.social.rel[npc.id]?.d !== dayOf(state, ctx), { say, extra } = meet(state, npc, ctx);
       const { landed, result } = interact(state, npc.id, action, { npc: true, npcDefinition: npc, cityId: ctx.cityId }, ctx, false);
       const quote = npc.quotes[Math.floor(ctx.rng() * npc.quotes.length)];
       const found = dilemmaKit()?.placeActionById(action.id);
       const place = found && found === action ? found : null;
       const granted = landed && place ? grantPlace(state, npc.id, place, ctx) : '';
       observe(state, npc, action, place, landed, first, ctx);
+      const met = state.social.rel[npc.id];
+      if (met) { if (newDay) met.v = Math.min(VISITS_KEPT, (met.v ?? (first ? 0 : 1)) + 1); if (place && landed) met.b = Math.min(VISITS_KEPT, (met.b ?? 0) + 1); }
       state.message = landed
         ? `${npc.name} (NPC): “${say || quote}”${result?.tierUp ? ` You and ${npc.name} are now ${result.tier.label}.` : ''}${granted}${extra}`
         : `${say ? `${npc.name} (NPC): “${say}” ` : ''}${place ? `${place.label}: ${npc.name} was not moved this time.` : `Your joke did not land. ${npc.name} just blinked at you.`}${extra}`;
@@ -590,6 +603,8 @@ export default {
       next.rel[id] = { p: clamp(round1(rel.p), 0, MAX_CLOSENESS), d: safeCount(rel.d) ? rel.d : 0, n: safeCount(rel.n) ? Math.min(rel.n, DAILY_INTERACTIONS) : 0,
         npc: isNpc, at: finite(rel.at) ? rel.at : 0,
         ...(tags.length ? { tags } : {}),
+        ...(isNpc && safeCount(rel.v) && rel.v > 0 ? { v: Math.min(rel.v, VISITS_KEPT) } : {}),
+        ...(isNpc && safeCount(rel.b) && rel.b > 0 ? { b: Math.min(rel.b, VISITS_KEPT) } : {}),
         ...(memory.length ? { m: memory } : {}),
         ...(isNpc && canonicalSnapshot ? { npcSnapshot: canonicalSnapshot } : {}),
         ...(!isNpc ? { name: cleanText(rel.name, 24, 'Player') } : {}), ...(!isNpc && rel.friend === true ? { friend: true } : {}) };

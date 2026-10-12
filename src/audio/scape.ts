@@ -18,15 +18,15 @@ export interface Bed {
   /** Level multiplier at night (default 1). */
   night?: number
 }
-/** A one-shot recipe at random intervals: [recipe, min s, max s, level, only 'day' | 'night']. */
-export type Shot = readonly [string, number, number, number, ('day' | 'night')?]
+/** A one-shot recipe at random intervals: [recipe, min s, max s, level, only 'day' | 'night', tuned]. A tuned shot (a melody in the key of the place) keeps its pitch; the others vary a little. */
+export type Shot = readonly [string, number, number, number, ('day' | 'night')?, boolean?]
 /** A pattern that repeats on the beat, exactly and without the random level, pan and pitch of a shot (music): [recipe, length s, level, only 'day' | 'night']. */
 export type Loop = readonly [string, number, number, ('day' | 'night')?]
 export interface ScapeSpec { beds?: readonly Bed[]; shots?: readonly Shot[]; loops?: readonly Loop[] }
 
 /** Beds sit well under the interface sounds: they are the room, not the event. */
-const BED_GAIN = 0.3
-const DRIFT_STEP = 2.2
+export const BED_GAIN = 0.3
+const DRIFT_STEP = 6
 const rand = (a: number, b: number): number => a + Math.random() * (b - a)
 
 export class Scape {
@@ -67,9 +67,10 @@ export class Scape {
     src.connect(filter); filter.connect(gain); gain.connect(this.out); this.nodes.push(filter, gain)
     if (bed.lfo) {
       const lfo = c.createOscillator(), depth = c.createGain()
-      lfo.frequency.value = bed.lfo[0]; depth.gain.value = base * bed.lfo[1]
+      // The swing is +-depth/2 around the middle, so the level never goes below zero (a negative gain would flip the phase and crackle).
+      lfo.frequency.value = bed.lfo[0]; depth.gain.value = base * Math.min(1, bed.lfo[1]) * 0.5
       lfo.connect(depth); depth.connect(gain.gain); lfo.start(now); this.sources.push(lfo); this.nodes.push(lfo, depth)
-      gain.gain.value = base * (1 - bed.lfo[1] * 0.5)
+      gain.gain.value = base * (1 - Math.min(1, bed.lfo[1]) * 0.5)
     }
     this.beds.push({ gain, filter, base, hz: bed.fl[1], bed })
   }
@@ -79,10 +80,10 @@ export class Scape {
     if (this.stopped) return
     while (this.driftAt < until) {
       for (const b of this.beds) {
-        const v = b.bed.v ?? 0
+        const v = Math.min(0.5, b.bed.v ?? 0)
         if (!v || b.bed.lfo) continue
-        b.gain.gain.setTargetAtTime(b.base * (1 + (Math.random() * 2 - 1) * v * 0.6), this.driftAt, DRIFT_STEP * 0.5)
-        b.filter?.frequency.setTargetAtTime(b.hz * (1 + (Math.random() * 2 - 1) * v * 0.35), this.driftAt, DRIFT_STEP * 0.5)
+        b.gain.gain.setTargetAtTime(b.base * (1 + (Math.random() * 2 - 1) * v * 0.5), this.driftAt, DRIFT_STEP * 0.5)
+        b.filter?.frequency.setTargetAtTime(b.hz * (1 + (Math.random() * 2 - 1) * v * 0.2), this.driftAt, DRIFT_STEP * 0.5)
       }
       this.driftAt += DRIFT_STEP
     }
@@ -93,7 +94,9 @@ export class Scape {
         const at = this.next[i] as number
         this.next[i] = at + rand(shot[1], shot[2])
         if (when && (when === 'night') !== this.night) continue
-        this.synth.play(shot[0], { at, vel: shot[3] * rand(0.6, 1), pan: rand(-0.6, 0.6), pitch: rand(0.94, 1.06), dest: this.out })
+        // Shots that fell due while the context was suspended are dropped, not played all at once on waking.
+        if (at < this.synth.ctx.currentTime - 0.05) continue
+        this.synth.play(shot[0], { at, vel: shot[3] * rand(0.6, 1), pan: rand(-0.6, 0.6), pitch: shot[5] ? 1 : rand(0.94, 1.06), dest: this.out })
       }
     }
     const loops = this.spec.loops ?? []

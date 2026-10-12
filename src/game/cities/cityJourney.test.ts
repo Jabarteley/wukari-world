@@ -60,7 +60,8 @@ test('one character can settle, work, make a local friend and return from anothe
       finish(state)
     }
     assert.equal(state.social.rel['test-fictional-one']?.p, 20, 'the local NPC is now a friend')
-    assert.match(state.message, /Hello from One/)
+    // A regular met several times greets by standing, not with a fixed line: the city's own NPC must still be the speaker.
+    assert.match(state.message, /^One \(NPC\): .+You and One are now Friend\.$/)
 
     const cashBeforeTravel = state.cash
     const skillsBeforeTravel = structuredClone(state.skills)

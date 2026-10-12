@@ -12,10 +12,12 @@ export interface SoundSettings {
   calls: number
   /** Quiet: no ambience and softer effects, for public places. */
   quiet: boolean
+  /** Spoken voices: off, the soft talk sounds, or the device's own speech where it has a voice. */
+  voices: 'off' | 'sounds' | 'speech'
   /** The one-line "Sound is on" toast has been shown on this device. */
   told: boolean
 }
-export const SOUND_DEFAULTS: Readonly<SoundSettings> = { on: true, master: 0.8, effects: 0.6, ambience: 0.35, calls: 0.8, quiet: false, told: false }
+export const SOUND_DEFAULTS: Readonly<SoundSettings> = { on: true, master: 0.8, effects: 0.6, ambience: 0.35, calls: 0.8, quiet: false, voices: 'sounds', told: false }
 
 type Store = Pick<Storage, 'getItem'> | null | undefined
 /** The saved preferences; a value of the wrong kind or range is replaced by its default. */
@@ -25,6 +27,7 @@ export function readSound(storage: Store): SoundSettings {
   const out: Record<string, unknown> = { ...SOUND_DEFAULTS }
   for (const key of Object.keys(SOUND_DEFAULTS) as (keyof SoundSettings)[]) {
     const value = saved[key], fallback = SOUND_DEFAULTS[key]
+    if (key === 'voices') { if (value === 'off' || value === 'sounds' || value === 'speech') out[key] = value; continue }
     if (typeof value === typeof fallback && (typeof value === 'boolean' || (value as number) >= 0 && (value as number) <= 1)) out[key] = value
   }
   return out as unknown as SoundSettings

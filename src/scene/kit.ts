@@ -28,6 +28,8 @@ export interface Kit {
   onDispose(fn: () => void): () => boolean;
   /** Run `fn(material)` on every material the kit has made and on each one it makes from now on (the host's see-through patch). */
   eachMaterial(fn: (material: THREE.Material) => void): void;
+  /** Give a material made elsewhere (a textured one) the same treatment: the see-through patch. The caller frees it. */
+  adopt(material: THREE.Material): void;
   /** box(x, y, z, width, height, depth, colour, parent, glow?) */
   box(x: number, y: number, z: number, w: number, h: number, d: number, c: Colour, p: THREE.Object3D, glow?: boolean): THREE.Mesh;
   /** round(x, y, z, radius, height, colour, parent, glow?) — an upright cylinder */
@@ -71,6 +73,8 @@ export function createKit({ matte = false }: { matte?: boolean } = {}): Kit {
     onDispose(fn: () => void) { cleanups.add(fn); return () => cleanups.delete(fn); },
     /** Run `fn(material)` on every material the kit has made and on each one it makes from now on (the host's see-through patch). */
     eachMaterial(fn: (material: THREE.Material) => void) { prepare = fn; materials.forEach((item) => fn(item)); },
+    /** Give a material made elsewhere (a textured one) the same treatment: the see-through patch. The caller frees it. */
+    adopt(material: THREE.Material) { prepare?.(material); },
     /** box(x, y, z, width, height, depth, colour, parent, glow?) */
     box: (x, y, z, w, h, d, c, p, glow) => mesh(boxGeometry, x, y, z, w, h, d, c, p, glow),
     /** round(x, y, z, radius, height, colour, parent, glow?) — an upright cylinder */

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mbabane",
+  "countryIso2": "SZ",
+  "generationIdentity": {
+    "cityId": "mbabane",
+    "stateId": "sz-hhohho",
+    "stateName": "Hhohho"
+  },
+  "inventorySha256": "e0f578058ed43b0c3c1bd5caeba84874b493211535ea344564d930bafef4f58c",
+  "inventoryPath": "world/playable-africa-rollout/sources/mbabane.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "mbabane-airport",
+    "name": "King Mswati III International Airport",
+    "lon": 31.716944,
+    "lat": -26.358611,
+    "sourceUrl": "https://ourairports.com/airports/FDSK/"
+  },
+  "bounds": [
+    -26.43,
+    31.02,
+    -26.22,
+    31.75
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/swaziland-261009.osm.pbf",
+      "datasetSha256": "e1498eda53a3085095e6c3135ff3f6d9fc56b9d6940e4bdc1ae69cbc0096c22c",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "pbf-extract-v2.py/v2-explicit-water",
+      "adapterSha256": "7f0cda38d9996dc0246157a44c044f27f8729a64a383cce5e1fa52a37935ca4f",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "074f61e9c6d18a3ea0d5af4f0fd1d5e0709d637198bd5e2ac999fc6004efb2bc",
+          "elements": 64
+        },
+        {
+          "file": "extras.json",
+          "sha256": "22e2ceb083163e0500ae8c80848df2b606fabf06459fcc11d95f80fa4c5e7b19",
+          "elements": 11
+        },
+        {
+          "file": "water.json",
+          "sha256": "dddc03f1326f2b1a15f257e06c68eccb173952b1d69e3eb720c394a1d5fe46a9",
+          "elements": 24
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "121fb8a4995e5017377ae009e4cabacc9566b79e03e9c3a62373d15a97d68fda",
+          "elements": 112
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5b86fab4e772f90b915a865d459efff7d1ee5a5626f57bda62acb4906f4ec9d1",
+          "elements": 223
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 22,
+    "roads": 47,
+    "neighbourhoodLabels": 12,
+    "landPolygons": 7,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 64,
+    "extras": 11,
+    "water": 24,
+    "landuse": 112,
+    "roads": 223
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1352,
+      "sha256": "de96d94ae7cf8c6449bb38272eda0f38fd23417539fd3623113bad14918e138e"
+    },
+    "geometry.ts": {
+      "bytes": 22769,
+      "sha256": "a245292716b1a0d4fbbe6e659c09800f84b2aca5f3b473c0c7553faa47357a92"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "f66f421b27b0f715bb2bc21f4bce8f663867cc505024a4911313dbd119c45ea0"
+    },
+    "content.ts": {
+      "bytes": 205,
+      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+    },
+    "map.ts": {
+      "bytes": 290,
+      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/mbabane.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

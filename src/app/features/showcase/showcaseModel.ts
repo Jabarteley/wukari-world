@@ -114,7 +114,8 @@ export interface ShopFace {
 export const photoAlt = (name: string, photo: { caption?: string }, at: number, count: number): string => photo.caption || `${name}, photo ${at + 1} of ${count}`
 
 // ---- the editor's draft ------------------------------------------------------------------------------------------------
-export interface ServiceDraft { label: string; price: string; note: string }
+/** `photo`: the id of one of the shop's photos, or '' for none. */
+export interface ServiceDraft { label: string; price: string; note: string; photo: string }
 export interface HoursDraft { open: boolean; from: string; to: string }
 export interface ShopDraft {
   venue: string
@@ -131,7 +132,7 @@ export interface ShopDraft {
   chat: string
   pay: string
 }
-export const emptyService = (): ServiceDraft => ({ label: '', price: '', note: '' })
+export const emptyService = (): ServiceDraft => ({ label: '', price: '', note: '', photo: '' })
 export function emptyDraft(venue = ''): ShopDraft {
   const spec = TEMPLATES.classic
   return {
@@ -142,13 +143,13 @@ export function emptyDraft(venue = ''): ShopDraft {
 export function draftOf(shop: NonNullable<ShowcaseMine['shop']>): ShopDraft {
   return {
     venue: shop.venue, slot: String(shop.slot), name: shop.name, category: shop.category, template: shop.template, colours: [...shop.colours], sign: shop.sign, logo: shop.logo, about: shop.about,
-    services: shop.services.map((item) => ({ label: item.label, price: String(item.priceNaira), note: item.note })), hours: WEEKDAYS.map((_, at) => { const item = shop.hours[at]; return { open: item !== null && item !== undefined, from: item?.open ?? '09:00', to: item?.close ?? '18:00' } }),
+    services: shop.services.map((item) => ({ label: item.label, price: String(item.priceNaira), note: item.note, photo: item.photo ?? '' })), hours: WEEKDAYS.map((_, at) => { const item = shop.hours[at]; return { open: item !== null && item !== undefined, from: item?.open ?? '09:00', to: item?.close ?? '18:00' } }),
     chat: shop.chat.url, pay: shop.pay?.url ?? '',
   }
 }
 /** The body to send. Prices are whole naira; an empty price is 0 ("ask the seller"). */
 export function inputOf(draft: ShopDraft, city: string): ShowcaseInput {
-  const services: ShowcaseService[] = draft.services.filter((item) => item.label.trim() !== '').map((item) => ({ label: item.label.trim(), priceNaira: Math.max(0, Math.round(Number(item.price) || 0)), note: item.note.trim() }))
+  const services: ShowcaseService[] = draft.services.filter((item) => item.label.trim() !== '').map((item) => ({ label: item.label.trim(), priceNaira: Math.max(0, Math.round(Number(item.price) || 0)), note: item.note.trim(), ...(item.photo ? { photo: item.photo } : {}) }))
   const slot = Number(draft.slot)
   return {
     city, venue: draft.venue, ...(Number.isInteger(slot) && slot > 0 ? { slot } : {}), name: draft.name.trim(), category: draft.category, template: draft.template, colours: [draft.colours[0], draft.colours[1]], sign: draft.sign.trim(), logo: draft.logo,
@@ -166,7 +167,6 @@ export function draftProblems(draft: ShopDraft): Problem[] {
   if (!draft.venue) found.push({ field: 'venue', message: 'Choose the market your shop is in.' })
   if (!draft.sign.trim()) found.push({ field: 'sign', message: 'Write a short sign for the front of the shop.' })
   if (!draft.about.trim()) found.push({ field: 'about', message: 'Say a little about the shop.' })
-  if (!draft.services.some((item) => item.label.trim())) found.push({ field: 'service-0-label', message: 'Add at least one service.' })
   draft.services.forEach((item, at) => { if (item.label.trim() && item.price.trim() !== '' && !(Number.isInteger(Number(item.price)) && Number(item.price) >= 0 && Number(item.price) <= SHOWCASE.priceMax)) found.push({ field: `service-${at}-price`, message: `The price of ${item.label.trim()} must be a whole number of naira.` }) })
   draft.hours.forEach((day, at) => { if (day.open && day.to <= day.from) found.push({ field: `hours-${at}`, message: `${WEEKDAYS[at]}: closing time must be after opening time.` }) })
   if (!draft.chat.trim()) found.push({ field: 'chat', message: 'Add the link where people can chat with you.' })

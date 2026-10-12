@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "81b993bbfb9afe96b5e5d0457ed090dbd7bd9214",
+  "expectedSourceGitSHA": "88ed8c4d5605dc8073119e28083e3fa5d2aab570",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -51,6 +51,7 @@
         "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
         "sourceUrl": "https://www.openstreetmap.org/node/72959652",
         "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "playerIntro": "Explore Rome through its mapped neighborhoods, roads, and local places.",
         "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
         "bounds": [
           12.239945277277313,
@@ -523,6 +524,7 @@
         "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
         "sourceUrl": "https://www.openstreetmap.org/node/3473474851",
         "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "playerIntro": "Explore Dublin through its mapped neighborhoods, roads, and local places.",
         "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
         "bounds": [
           -6.562818373934496,

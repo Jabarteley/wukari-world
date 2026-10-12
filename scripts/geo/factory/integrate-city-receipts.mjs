@@ -49,6 +49,7 @@ for (const { id, extract } of manifest.cities) {
     inventorySha256: hash(inventoryText), inventoryPath: `${receiptRootArg}/sources/${id}.json`, admission,
     airportCandidate: FACTS.airport, bounds: CONFIG.box, sources: { geometryInput },
     kept: { places: PLACES.length, roads: TERRAIN.roads.length, neighbourhoodLabels: TERRAIN.names.filter(label => label.kind === 'neighbourhood').length, landPolygons: GEOMETRY.land.length, waterPolygons: TERRAIN.water?.length ?? 0, reachWaterPolygons: TERRAIN.reachWater?.length ?? 0 },
+    ...(CONFIG.places.some(place => place.slotFallback) ? { selection: { slotFallbacks: CONFIG.places.filter(place => place.slotFallback).map(place => place.slotFallback) } } : {}),
     observed: Object.fromEntries(layers.map(({ label, parsed }) => [label, parsed.elements.length])),
     assets: Object.fromEntries(['facts.ts', 'geometry.ts', 'index.ts', 'content.ts', 'map.ts'].map(name => [name, generatedAssets[name]])),
     cityDetail: { tier: 'detailed', generator: 'scripts/geo/build-destination-detail.ts', recipe: `scripts/geo/destination-detail/${id}.ts`, input: 'Geofabrik PBF extract', attribution: '© OpenStreetMap contributors', licence: 'ODbL-1.0' },

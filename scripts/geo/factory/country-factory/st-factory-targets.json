@@ -59,7 +59,11 @@
           0.5198050899339784
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        { "ref": "node/2323324374", "reason": "Lagoa Azul: Lies inside the generated sea band polygon (hosted factory run 38248292627, proof wetPlaces); a coastal feature the proof counts as water" },
+        { "ref": "node/2848219674", "reason": "Boca do Inferno: Lies inside the generated sea band polygon (hosted factory run 38248292627, proof wetPlaces); a coastal feature the proof counts as water" },
+        { "ref": "relation/15094487", "reason": "Sao Sebastiao Museum: Lies inside the generated sea band polygon (hosted factory run 38248292627, proof wetPlaces); a coastal feature the proof counts as water" }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/295342933",

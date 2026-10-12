@@ -16,11 +16,20 @@ writeFileSync(join(out, 'source-holds.json'), JSON.stringify(input.holds, null, 
 if (input.holds.length) throw Error('Invalid/unsupported rows; inspect source-holds.json');
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const groupKey = group => hash(`${group.sourceRunId}:${group.sourceArtifact}`);
-const run = (command, argumentsList, env, logfile) => {
-  const result = spawnSync(command, argumentsList, { encoding: 'utf8', env: { ...process.env, ...env }, timeout: 900000, maxBuffer: 16 * 1024 * 1024 });
-  const log = (result.stdout ?? '') + (result.stderr ?? '') + (result.error?.message ?? '');
+// GitHub's API and artifact endpoints answer HTTP 5xx now and then (run 38248292627: er, gn, km, sd HELD on HTTP 502 within seconds).
+// Retry only calls that go to GitHub (gh, or the producer-verification helper) with a short back-off; a deterministic failure still fails after the last attempt.
+const ATTEMPTS = Number(process.env.FACTORY_GITHUB_ATTEMPTS ?? 4), BACKOFF_MS = Number(process.env.FACTORY_GITHUB_BACKOFF_MS ?? 5000);
+const sleep = ms => { if (ms > 0) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms); };
+const run = (command, argumentsList, env, logfile, retry = command === 'gh') => {
+  let log = '', ok = false;
+  for (let attempt = 1; attempt <= (retry ? ATTEMPTS : 1) && !ok; attempt++) {
+    if (attempt > 1) sleep(BACKOFF_MS * 2 ** (attempt - 2));
+    const result = spawnSync(command, argumentsList, { encoding: 'utf8', env: { ...process.env, ...env }, timeout: 900000, maxBuffer: 16 * 1024 * 1024 });
+    ok = result.status === 0 && !result.error;
+    log = (retry && attempt > 1 ? `[attempt ${attempt}]\n` : '') + (result.stdout ?? '') + (result.stderr ?? '') + (result.error?.message ?? '');
+  }
   writeFileSync(logfile, log.replace(/https?:\/\/[^\s"'<>]+/g, url => url.includes('?') ? url.slice(0, url.indexOf('?')) + '?[redacted]' : url));
-  return result.status === 0 && !result.error;
+  return ok;
 };
 
 if (args.includes('--collect')) {
@@ -49,7 +58,7 @@ if (args.includes('--collect')) {
   const rows = [], verified = new Set();
   for (const target of input.table.targets) {
     const receiptDir = join(out, target.id); mkdirSync(receiptDir, { recursive: true });
-    const ok = run(process.execPath, [resolve(get('--helper')), '--source-run'], { JOB_JSON: JSON.stringify(target.sourceJob), OUT_DIR: receiptDir }, join(receiptDir, 'source-run.log'));
+    const ok = run(process.execPath, [resolve(get('--helper')), '--source-run'], { JOB_JSON: JSON.stringify(target.sourceJob), OUT_DIR: receiptDir }, join(receiptDir, 'source-run.log'), true);
     rows.push({ id: target.id, status: ok ? 'PRODUCER_VERIFIED' : 'HOLD', reasons: ok ? [] : ['source producer validation failed'] });
     if (ok) verified.add(target.id);
   }

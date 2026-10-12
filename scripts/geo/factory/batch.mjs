@@ -8,6 +8,7 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { factsForTarget, geometryPolicy } from './inputs.mjs';
+import { pickForSlot } from './slot-fallback.mjs';
 const args = process.argv.slice(2), get = flag => args[args.indexOf(flag) + 1];
 if (!args.includes('--table') || !args.includes('--out'))
     throw Error('Usage: batch.mjs --table TARGETS_JSON --out NEW_PRIVATE_FOLDER');
@@ -76,12 +77,13 @@ for (const target of table.targets) {
         const rank = items => items.filter(el => !used.has(ref(el)) && !usedNames.has(normal(name(el)))).sort((a, b) => score(b) - score(a) || ref(a).localeCompare(ref(b), 'en', { numeric: true }));
         const choose = (el, choice) => { used.add(ref(el)); usedNames.add(normal(name(el))); selected.push(point(el)); choices.push({ ...choice, ref: ref(el), line: choice.slot === 'polling' ? `${name(el)}; voting here is a fictional game activity.` : `${name(el)}, a mapped place for the game.` }); };
         for (const [slot, predicate] of Object.entries(slots)) {
-            const el = rank(pool.filter(el => predicate(el.tags)))[0];
+            const { el, slotFallback } = pickForSlot({ slot, predicate, pool, rank, ref });
             if (!el) {
                 row.errors.push(`no eligible unique source for ${slot}`);
                 continue;
             }
-            choose(el, { slot, ...slotPresentation(base, ids, slot) });
+            if (slotFallback) (row.slotFallbacks ??= []).push(slotFallback);
+            choose(el, { slot, ...slotPresentation(base, ids, slot), ...(slotFallback ? { slotFallback } : {}) });
         }
         const addedKind = tags => {
             if (['university', 'college'].includes(tags.amenity)) return 'quad';
@@ -144,6 +146,11 @@ for (const target of table.targets) {
             }
             catch { }
         }
+        // The generated map test (acceptance.mjs) demands five source-backed neighbourhood labels; fail at selection with the exact count instead of after generation.
+        const neighbourhoodLabels = names.filter(label => label.kind === 'neighbourhood').length;
+        row.neighbourhoodLabels = neighbourhoodLabels;
+        if (neighbourhoodLabels < 5)
+            row.errors.push(`only ${neighbourhoodLabels} source-backed neighbourhood labels (place=suburb|neighbourhood|quarter nodes inside the eligible pool); five are required`);
         const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names,
             ...(target.sceneWaterExtent === undefined ? {} : { sceneWaterExtent: target.sceneWaterExtent }) };
         for (const key of ['discovery', 'water', 'landuse', 'roads', 'sea', 'wideWater'])

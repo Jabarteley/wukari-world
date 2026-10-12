@@ -1,0 +1,73 @@
+{
+ "note": "Trimmed from the Monrovia (lr) bootstrap places.json, run 38243701651, artifact city-bootstrap-lr-26c36fc1da9ead52b91eef4bf2c28dab0ea1c49e: the two real named leisure=stadium elements (the pool has no leisure=park) plus a few other real elements, tags verbatim.",
+ "source": {
+  "cityId": "monrovia",
+  "datasetSha256": "ad24c4adb4f2576b5b9c45d7bd29c42910c5ce95c29acc6aa248e08e0e5d0ac1"
+ },
+ "elements": [
+  {
+   "type": "way",
+   "id": 143040548,
+   "tags": {
+    "addr:street": "Carey Street",
+    "amenity": "place_of_worship",
+    "building": "church",
+    "check_date": "2026-03-18",
+    "denomination": "episcopal",
+    "name": "Episcopal Church",
+    "religion": "christian",
+    "wikidata": "Q4834252"
+   },
+   "center": {
+    "lat": 6.31758685,
+    "lon": -10.80909135
+   }
+  },
+  {
+   "type": "way",
+   "id": 143040580,
+   "tags": {
+    "alt_name": "Antoinette Tubman Stadium",
+    "gns:ufi": "-2129768",
+    "leisure": "stadium",
+    "name": "Antoinette Tubman Stadium",
+    "sport": "soccer",
+    "wikidata": "Q587515"
+   },
+   "center": {
+    "lat": 6.30891705,
+    "lon": -10.8041163
+   }
+  },
+  {
+   "type": "way",
+   "id": 157273329,
+   "tags": {
+    "leisure": "stadium",
+    "name": "Samuel Kanyon Doe Sports Stadium"
+   },
+   "center": {
+    "lat": 6.25703775,
+    "lon": -10.702077150000001
+   }
+  },
+  {
+   "type": "way",
+   "id": 299927206,
+   "tags": {
+    "amenity": "place_of_worship",
+    "building": "cathedral",
+    "check_date": "2026-03-18",
+    "denomination": "roman_catholic",
+    "name": "Sacred Heart Cathedral Church",
+    "religion": "christian",
+    "source": "Website of Church",
+    "wikidata": "Q23928968"
+   },
+   "center": {
+    "lat": 6.3190971000000005,
+    "lon": -10.810207649999999
+   }
+  }
+ ]
+}

@@ -20,6 +20,8 @@ test('JavaScript is limited to the service worker, release shims and exact revie
   const javascript = files(root).filter((file) => /\.(?:js|mjs|cjs)$/.test(file)).sort();
   assert.deepEqual(javascript, ['deploy/cloudflare-worker.js', 'deploy/cloudflare.test.mjs', 'public/sw.js',
     'scripts/check-joinallworld-source.mjs', 'scripts/check-workflows.mjs',
+    // Reviewed generated-travel gate: proves the committed land-components table matches the catalogue.
+    'scripts/city/check-land-components.mjs',
     'scripts/guard-joinallworld-package.mjs', 'scripts/guard-joinallworld-package.test.mjs',
     // Bounded, typechecked browser QA with isolated synthetic fixtures and native input.
     'scripts/living-world-browser-qa.mjs',

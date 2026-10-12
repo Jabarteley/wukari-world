@@ -16,14 +16,58 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  changes:
+    runs-on: ubuntu-24.04
+    outputs:
+      countries: ${{ steps.matrix.outputs.countries }}
+    steps:
+      - name: Compute changed country source matrix
+        id: matrix
+        env:
+          COMMITS_JSON: ${{ toJSON(github.event.commits) }}
+          EVENT_SIZE: ${{ github.event.size }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+
+          try:
+              commits = json.loads(os.environ['COMMITS_JSON'])
+              event_size = int(os.environ['EVENT_SIZE'])
+              if not isinstance(commits, list) or event_size != len(commits):
+                  raise ValueError('push payload is missing commits')
+          except (KeyError, TypeError, ValueError, json.JSONDecodeError):
+              countries = '[]'
+              print('No source countries selected: incomplete push commit list; skipping to avoid duplicate acquisition.')
+          else:
+              paths = {
+                  path
+                  for commit in commits
+                  for field in ('added', 'modified')
+                  for path in commit.get(field, [])
+              }
+              selected = []
+              if 'scripts/geo/factory/europe-nl.json' in paths:
+                  selected.append('nl')
+              if 'scripts/geo/factory/europe-ie.json' in paths:
+                  selected.append('ie')
+              countries = json.dumps(selected, separators=(',', ':'))
+
+          print(f'Source countries: {countries}')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+              output.write(f'countries={countries}\n')
+          PY
+
   source:
+    needs: changes
+    if: ${{ needs.changes.outputs.countries != '[]' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     strategy:
       fail-fast: false
       max-parallel: 1
       matrix:
-        country: [nl, ie]
+        country: ${{ fromJSON(needs.changes.outputs.countries) }}
     steps:
       - name: Set source output directory
         run: echo "BOOTSTRAP_OUT=$RUNNER_TEMP/city-source-bootstrap" >> "$GITHUB_ENV"

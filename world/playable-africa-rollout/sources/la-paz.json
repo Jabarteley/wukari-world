@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "la-paz",
+  "countryIso2": "BO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "La Paz",
+    "coordinatesWgs84": [
+      -68.1336229,
+      -16.4955455
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/bolivia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "la-paz-airport",
+    "name": "El Alto International Airport",
+    "lon": -68.189416,
+    "lat": -16.510272,
+    "sourceUrl": "https://ourairports.com/airports/SLLP/"
+  },
+  "boxes": {
+    "play": [
+      -16.676426389933976,
+      -68.32117338762112,
+      -16.31466461006602,
+      -67.9460724123789
+    ],
+    "core": [
+      -16.540765722483492,
+      -68.18047741983405,
+      -16.450325277516505,
+      -68.08676838016596
+    ],
+    "outline": [
+      -16.726426389933977,
+      -68.37117338762111,
+      -16.26466461006602,
+      -67.8960724123789
+    ],
+    "wide": [
+      -17.276426389933977,
+      -68.92117338762111,
+      -15.714664610066022,
+      -67.3460724123789
+    ],
+    "water": [
+      -16.676426389933976,
+      -68.32117338762112,
+      -16.31466461006602,
+      -67.9460724123789
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/bolivia-261011.osm.pbf",
+    "datasetSha256": "1d5ed56d9e1fcbbcaa28d51d0de8ce273dc83bc2dbcf02f21acd63689f5ac0e1",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "dcc1c8c68521f3fdff346a732d89ba5379413f377ef9b383d7f0d4e65815b0fb",
+        "elements": 2364
+      },
+      {
+        "file": "extras.json",
+        "sha256": "5756325852f16d2bb440210b602cd732e06eefc382b83bced52a09671f2528f5",
+        "elements": 891
+      },
+      {
+        "file": "water.json",
+        "sha256": "e6b343022c6a896ab5c2b1a27f4f073de3e4367012795f900de144949012ca5b",
+        "elements": 284
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "ac13d12f2f52995cced91243e2a9d08c10fa58cffe5d40b1e3f35c5af225c2ec",
+        "elements": 1005
+      },
+      {
+        "file": "roads.json",
+        "sha256": "0dcadc83a814c1418da99de3e55500dae651545a466948994fed24eab8c4e0f9",
+        "elements": 2937
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Terminal de Buses La Paz",
+      "osm": "way/252576497",
+      "coordinatesWgs84": [
+        -68.141769,
+        -16.488711
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Il Portico",
+      "osm": "node/3368870285",
+      "coordinatesWgs84": [
+        -68.076295,
+        -16.586303
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Instituto Tecnológico Bolivia Mar",
+      "osm": "way/442076963",
+      "coordinatesWgs84": [
+        -68.196713,
+        -16.577611
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Municipal Viacha",
+      "osm": "node/5649767923",
+      "coordinatesWgs84": [
+        -68.287608,
+        -16.650573
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parque Laguna de Cota Cota",
+      "osm": "way/46177387",
+      "coordinatesWgs84": [
+        -68.064466,
+        -16.541695
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Lanza",
+      "osm": "way/194362248",
+      "coordinatesWgs84": [
+        -68.137462,
+        -16.4947
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Catedral Metropolitana",
+      "osm": "way/125225477",
+      "coordinatesWgs84": [
+        -68.134199,
+        -16.496317
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo de Arte Antonio Paredes Candia",
+      "osm": "way/389268305",
+      "coordinatesWgs84": [
+        -68.151398,
+        -16.519689
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estación Terrena Amachuma",
+      "osm": "way/460691417",
+      "coordinatesWgs84": [
+        -68.129979,
+        -16.622295
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Católica Boliviana San Pablo",
+      "osm": "way/105617730",
+      "coordinatesWgs84": [
+        -68.111818,
+        -16.522791
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Municipal de El Alto",
+      "osm": "way/1313884277",
+      "coordinatesWgs84": [
+        -68.201464,
+        -16.47283
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Combate de Mecapaca",
+      "osm": "node/2145197042",
+      "coordinatesWgs84": [
+        -68.022225,
+        -16.663738
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estadio Olímpico Los Andes Cosmos 79",
+      "osm": "way/114037395",
+      "coordinatesWgs84": [
+        -68.231829,
+        -16.535186
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Valle de las Agujas",
+      "osm": "node/5354864623",
+      "coordinatesWgs84": [
+        -68.016176,
+        -16.540091
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Batalla de Ingavi",
+      "osm": "node/2145192906",
+      "coordinatesWgs84": [
+        -68.252748,
+        -16.639451
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Moon Valley",
+      "osm": "relation/11730900",
+      "coordinatesWgs84": [
+        -68.094368,
+        -16.565922
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Rafael Mendoza Castellón",
+      "osm": "way/105592750",
+      "coordinatesWgs84": [
+        -68.063765,
+        -16.515387
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jardín Botánico",
+      "osm": "way/44166578",
+      "coordinatesWgs84": [
+        -68.116517,
+        -16.503596
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Mayor de San Andrès",
+      "osm": "node/5273668603",
+      "coordinatesWgs84": [
+        -68.130038,
+        -16.504896
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Basílica de San Francisco",
+      "osm": "way/526897787",
+      "coordinatesWgs84": [
+        -68.137397,
+        -16.496482
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basílica María Auxiliadora",
+      "osm": "way/1331129474",
+      "coordinatesWgs84": [
+        -68.131082,
+        -16.503211
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Trucha frita",
+      "osm": "node/5376703910",
+      "coordinatesWgs84": [
+        -67.955238,
+        -16.327525
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Facultad de Medicina Veterinaria y Zootecnia",
+      "osm": "way/872831587",
+      "coordinatesWgs84": [
+        -68.308684,
+        -16.523973
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "EL RICOLIN",
+      "osm": "node/12194828333",
+      "coordinatesWgs84": [
+        -68.272311,
+        -16.464557
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1234,
+      "sha256": "2d97c2527fdca14fb44769831f215df55e84006ace230ff199f76dddbe8a8447"
+    },
+    "geometry.ts": {
+      "bytes": 38790,
+      "sha256": "9fed02b2e11a9cf29ba0c39206adae673599f132e97e44764fa6ff4259f5d761"
+    },
+    "places.ts": {
+      "bytes": 10052,
+      "sha256": "eb1d0fddd089fc5b81874517ac15891facee1e63b169b945575c569f668310dc"
+    },
+    "terrain.ts": {
+      "bytes": 28099,
+      "sha256": "c8aac779331ed00602ef93e51f4e5a5c072a5768996f549b3c59305a8fa382a8"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "b8a492288f3d2f7df088f87133265f7647a5dc1e68c8c0770a6d12c360f75077"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

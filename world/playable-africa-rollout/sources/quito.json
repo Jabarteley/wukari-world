@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "quito",
+  "countryIso2": "EC",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Quito",
+    "coordinatesWgs84": [
+      -78.5123274,
+      -0.2201641
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/ecuador-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "quito-airport",
+    "name": "Mariscal Sucre International Airport",
+    "lon": -78.354306,
+    "lat": -0.125399,
+    "sourceUrl": "https://ourairports.com/airports/SEQM/"
+  },
+  "boxes": {
+    "play": [
+      -0.40104498993397847,
+      -78.69199403625385,
+      -0.039283210066021534,
+      -78.33266076374616
+    ],
+    "core": [
+      -0.26538432248349464,
+      -78.55724344055972,
+      -0.1749438775165054,
+      -78.46741135944029
+    ],
+    "outline": [
+      -0.45104498993397846,
+      -78.74199403625384,
+      0.010716789933978468,
+      -78.28266076374616
+    ],
+    "wide": [
+      -1.0010449899339784,
+      -79.29199403625384,
+      0.5607167899339784,
+      -77.73266076374617
+    ],
+    "water": [
+      -0.40104498993397847,
+      -78.69199403625385,
+      -0.039283210066021534,
+      -78.33266076374616
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/ecuador-261011.osm.pbf",
+    "datasetSha256": "e0c343e3f095444e33c83070783fa2d258ab3a3710b8068831ae2d5a82c75708",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "abed21a9a5124bb48fd861c5a97624c63e625db48871a66fa378181d5891dfcd",
+        "elements": 4467
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c9deb56a99af4bf1438746043665060679621ad42e9e34044f804605f9626517",
+        "elements": 837
+      },
+      {
+        "file": "water.json",
+        "sha256": "7b57fc5f3507e972572e9124bad290f986a1cda5bdd44a41ae7c443d36b0259e",
+        "elements": 22
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "05d3a2f37f4d1c0f605430eeb5d84f00e31e90011344a83d988c414e37c6fdf6",
+        "elements": 1467
+      },
+      {
+        "file": "roads.json",
+        "sha256": "ef460f707c8472cb269003a41195a304570dd31a89a419bdadf7ce94dfaeaafd",
+        "elements": 4047
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "TelefériQo",
+      "osm": "node/783649627",
+      "coordinatesWgs84": [
+        -78.537087,
+        -0.186835
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "California",
+      "osm": "node/499513295",
+      "coordinatesWgs84": [
+        -78.421004,
+        -0.189242
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ESCUELA POLITECNICA DEL EJERCITO",
+      "osm": "node/4150084999",
+      "coordinatesWgs84": [
+        -78.443692,
+        -0.314536
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital Carlos Andrade Marin",
+      "osm": "way/1101691224",
+      "coordinatesWgs84": [
+        -78.504798,
+        -0.205139
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque La Carolina",
+      "osm": "way/31133611",
+      "coordinatesWgs84": [
+        -78.484353,
+        -0.183621
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palacio Arzobispal",
+      "osm": "way/424993603",
+      "coordinatesWgs84": [
+        -78.511569,
+        -0.219638
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cimborio \"Virgen Del Cisne\"",
+      "osm": "node/4858916958",
+      "coordinatesWgs84": [
+        -78.440545,
+        -0.076444
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ESPE",
+      "osm": "node/1855823883",
+      "coordinatesWgs84": [
+        -78.444701,
+        -0.314484
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Palacio de Carondelet",
+      "osm": "way/381053952",
+      "coordinatesWgs84": [
+        -78.512608,
+        -0.21974
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Colegio Academia Cotopaxi",
+      "osm": "way/341560247",
+      "coordinatesWgs84": [
+        -78.460371,
+        -0.159706
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Gonzalo Pozo Ripalda",
+      "osm": "way/26216680",
+      "coordinatesWgs84": [
+        -78.546161,
+        -0.278872
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo Capilla del Hombre",
+      "osm": "way/31152844",
+      "coordinatesWgs84": [
+        -78.469469,
+        -0.190814
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Rodrigo Paz Delgado",
+      "osm": "relation/4104543",
+      "coordinatesWgs84": [
+        -78.489071,
+        -0.107716
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Banco Guayaquil",
+      "osm": "way/1077119324",
+      "coordinatesWgs84": [
+        -78.470582,
+        -0.349332
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Quito Ecuador Temple",
+      "osm": "way/1090509480",
+      "coordinatesWgs84": [
+        -78.441195,
+        -0.214096
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad UTE",
+      "osm": "way/161111197",
+      "coordinatesWgs84": [
+        -78.50647,
+        -0.179638
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vulqano Park",
+      "osm": "way/63058770",
+      "coordinatesWgs84": [
+        -78.516975,
+        -0.192596
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad San Francisco de Quito",
+      "osm": "way/463806835",
+      "coordinatesWgs84": [
+        -78.435745,
+        -0.196861
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Batalla de Pichincha",
+      "osm": "node/2137276238",
+      "coordinatesWgs84": [
+        -78.52755,
+        -0.218714
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Casa de la Cultura Ecuatoriana",
+      "osm": "way/31281127",
+      "coordinatesWgs84": [
+        -78.495388,
+        -0.210136
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "La Alameda",
+      "osm": "way/24680928",
+      "coordinatesWgs84": [
+        -78.502433,
+        -0.214731
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia de Santo Domingo",
+      "osm": "way/673325435",
+      "coordinatesWgs84": [
+        -78.512507,
+        -0.224306
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Las Palmas",
+      "osm": "node/899994089",
+      "coordinatesWgs84": [
+        -78.650714,
+        -0.220167
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cevichería y Delicia Manabita",
+      "osm": "node/6124047644",
+      "coordinatesWgs84": [
+        -78.344817,
+        -0.050693
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1228,
+      "sha256": "83774522376df4f0a527487deb23154870f0fc2e3fde32f59d4a830c5332dbb0"
+    },
+    "geometry.ts": {
+      "bytes": 47804,
+      "sha256": "b8049097ac4be332942748b55ef4c3151016b64cb8163a5843de21e43d39ef57"
+    },
+    "places.ts": {
+      "bytes": 9740,
+      "sha256": "958c0b4cd3565b80b143052a8cb8ee682b0784920faf80d5ece27729df836782"
+    },
+    "terrain.ts": {
+      "bytes": 25491,
+      "sha256": "4e6703a9e0d56dc25a58b0f0d8758199519bba76f037e9d222aac4e174f0db23"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "d0f278936b3a54f23bb63d1f1751a485db6074b0d18a3ca727200c2536431e93"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

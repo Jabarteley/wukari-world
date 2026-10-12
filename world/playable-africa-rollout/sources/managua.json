@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "managua",
+  "countryIso2": "NI",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Managua",
+    "coordinatesWgs84": [
+      -86.273725,
+      12.1547116
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/nicaragua-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "managua-airport",
+    "name": "Augusto C. Sandino (Managua) International Airport",
+    "lon": -86.168198,
+    "lat": 12.1415,
+    "sourceUrl": "https://ourairports.com/airports/MNMG/"
+  },
+  "boxes": {
+    "play": [
+      11.973830710066022,
+      -86.45763311236715,
+      12.33559248993398,
+      -86.08981688763285
+    ],
+    "core": [
+      12.109491377516505,
+      -86.31967836279748,
+      12.199931822483496,
+      -86.22777163720252
+    ],
+    "outline": [
+      11.92383071006602,
+      -86.50763311236715,
+      12.38559248993398,
+      -86.03981688763285
+    ],
+    "wide": [
+      11.373830710066022,
+      -87.05763311236714,
+      12.93559248993398,
+      -85.48981688763286
+    ],
+    "water": [
+      11.373830710066022,
+      -87.05763311236714,
+      12.93559248993398,
+      -85.48981688763286
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/nicaragua-261011.osm.pbf",
+    "datasetSha256": "2becf476304b4c2b3dc651fb1c901cb1131e1eb42f7a844c1bd1aa259704c922",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "4f5190cf054a6291e4a82b54c46788755c24bb4a02c581ed8a33218ac594a239",
+        "elements": 1944
+      },
+      {
+        "file": "extras.json",
+        "sha256": "32cf775ebd8a978f02c2d333e1bc3289da17821fc9e4b5069f668a1e88e14155",
+        "elements": 333
+      },
+      {
+        "file": "water.json",
+        "sha256": "53fec44b02553886d0c5f98cedd73253c9e24c87159f6d7a861ba6b52e920473",
+        "elements": 1202
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "44c0d440d03d4b425a927af13d05b897c9eec8b9f25a91312e3fd0c368899d8e",
+        "elements": 1198
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a537c1012230c4ecb7d73e2523f9e7527754de407715a305cf0a5d5505549c8a",
+        "elements": 1776
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "TICABUS Central Managua.",
+      "osm": "way/769169058",
+      "coordinatesWgs84": [
+        -86.280313,
+        12.143641
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Papa John's & Narcy's Chicken",
+      "osm": "node/1258848143",
+      "coordinatesWgs84": [
+        -86.102954,
+        11.992713
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Católica Nicaragua",
+      "osm": "relation/20105503",
+      "coordinatesWgs84": [
+        -86.230342,
+        12.082779
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Carlos Marx Hospital",
+      "osm": "way/239002175",
+      "coordinatesWgs84": [
+        -86.218737,
+        12.146779
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Polideportivo España",
+      "osm": "way/225062335",
+      "coordinatesWgs84": [
+        -86.248226,
+        12.122961
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Municipal de Ciudad Sandino",
+      "osm": "way/113063248",
+      "coordinatesWgs84": [
+        -86.358253,
+        12.164784
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia Santa María de Guadalupe",
+      "osm": "node/4832005830",
+      "coordinatesWgs84": [
+        -86.299741,
+        12.097105
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Plaza de la Fe Juan Pablo II",
+      "osm": "relation/21161414",
+      "coordinatesWgs84": [
+        -86.274397,
+        12.159383
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MARENA (Ministerio del Ambiente y los Recursos Naturales)",
+      "osm": "way/306044446",
+      "coordinatesWgs84": [
+        -86.157421,
+        12.150121
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Nacional Casimiro Sotelo Montenegro",
+      "osm": "way/38578925",
+      "coordinatesWgs84": [
+        -86.270745,
+        12.125843
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Nacional de fútbol de Nicaragua",
+      "osm": "way/160261758",
+      "coordinatesWgs84": [
+        -86.273271,
+        12.109167
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Busto José Martí",
+      "osm": "node/497371428",
+      "coordinatesWgs84": [
+        -86.267676,
+        12.138922
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estadio Olímpico del IND",
+      "osm": "node/14225260759",
+      "coordinatesWgs84": [
+        -86.284671,
+        12.131435
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Metrocentro",
+      "osm": "way/38578726",
+      "coordinatesWgs84": [
+        -86.264856,
+        12.128014
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zoológico Nacional",
+      "osm": "node/2355682005",
+      "coordinatesWgs84": [
+        -86.192939,
+        12.040838
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Monumento a los Mártires",
+      "osm": "node/1787488316",
+      "coordinatesWgs84": [
+        -86.326676,
+        12.152028
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mercado de Mayoreo",
+      "osm": "relation/21143410",
+      "coordinatesWgs84": [
+        -86.194414,
+        12.135113
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Las Piedrecitas",
+      "osm": "relation/5844843",
+      "coordinatesWgs84": [
+        -86.311747,
+        12.131899
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia El Carmen",
+      "osm": "node/4001705843",
+      "coordinatesWgs84": [
+        -86.232619,
+        12.112187
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Americana (UAM)",
+      "osm": "way/70193885",
+      "coordinatesWgs84": [
+        -86.257363,
+        12.107956
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Nicaragüense de Ciencia y Tecnología",
+      "osm": "way/241368647",
+      "coordinatesWgs84": [
+        -86.229489,
+        12.135958
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia Santo Domingo",
+      "osm": "node/889552361",
+      "coordinatesWgs84": [
+        -86.240664,
+        12.08423
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parque Luis Alfonso Velásquez Flores",
+      "osm": "relation/20576117",
+      "coordinatesWgs84": [
+        -86.271821,
+        12.152372
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Militar Escuela Dr. Alejandro Dávila Bolaños",
+      "osm": "way/363530474",
+      "coordinatesWgs84": [
+        -86.27943,
+        12.133022
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1262,
+      "sha256": "9c5a9de9618b80fc795953ce99f0ad7155839395c9d96f35752a76cbd9873018"
+    },
+    "geometry.ts": {
+      "bytes": 81651,
+      "sha256": "8e903028241314c3fbeabc9d02d36d6b31a7420db0170a54f688c2d57bcb6bbe"
+    },
+    "places.ts": {
+      "bytes": 10498,
+      "sha256": "e7f8876d83428ef2b78b4c409f1f174aa590a567f374a975364c36a92fae9592"
+    },
+    "terrain.ts": {
+      "bytes": 334694,
+      "sha256": "06174e4cebf5d57bfe007ea95f4683dce1cbc45dc606737818e61556414b256a"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "7b3e2761fa8a15776441c19a3a48f4adb4b47902d2cd656f0cfe44a7e6c8b0f5"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "georgetown",
+  "countryIso2": "GY",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Georgetown",
+    "coordinatesWgs84": [
+      -58.1455403,
+      6.8032561
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/guyana-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "georgetown-airport",
+    "name": "Cheddi Jagan International Airport",
+    "lon": -58.254101,
+    "lat": 6.49855,
+    "sourceUrl": "https://ourairports.com/airports/SYCJ/"
+  },
+  "boxes": {
+    "play": [
+      6.489505955503301,
+      -58.32654562080386,
+      6.984136989933978,
+      -57.96453497919614
+    ],
+    "core": [
+      6.758035877516505,
+      -58.19077863542629,
+      6.848476322483494,
+      -58.10030196457371
+    ],
+    "outline": [
+      6.439505955503301,
+      -58.37654562080386,
+      7.034136989933978,
+      -57.91453497919614
+    ],
+    "wide": [
+      5.889505955503301,
+      -58.926545620803864,
+      7.5841369899339774,
+      -57.36453497919614
+    ],
+    "water": [
+      5.889505955503301,
+      -58.926545620803864,
+      7.5841369899339774,
+      -57.36453497919614
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/guyana-261011.osm.pbf",
+    "datasetSha256": "2d89476a2cfed68506b3c759c898b54afd0c9996269c7dd8b73f4c2b7f45e8d4",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6751e002b42ab7643ae56d3a3a8e67e983ad0900c9320e96e71850af1332f70f",
+        "elements": 487
+      },
+      {
+        "file": "extras.json",
+        "sha256": "64ac00df23d620ef7133d68686da74a97b7e5414aec9a41283441a3fb2d11ce4",
+        "elements": 167
+      },
+      {
+        "file": "water.json",
+        "sha256": "77ffd301fb0bb2e6e28ceae50a0fdb4271bb1ecc9aaa25b0457d734a475b71c3",
+        "elements": 180
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "ce92743a3f790308f6b1f6247881822c78de6671bbf1a2e2887bbbd404eab282",
+        "elements": 162
+      },
+      {
+        "file": "roads.json",
+        "sha256": "0e648a6306974ac452d254f8a591dab4ba4f6871d4a968e9868ff8498d279deb",
+        "elements": 455
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "West Bank Bus Park",
+      "osm": "node/364120892",
+      "coordinatesWgs84": [
+        -58.168485,
+        6.808625
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Madinah Halaal Restaurant",
+      "osm": "node/3248663257",
+      "coordinatesWgs84": [
+        -58.315166,
+        6.87988
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Guyana",
+      "osm": "way/816669649",
+      "coordinatesWgs84": [
+        -58.116957,
+        6.81245
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Joseph Mercy Hosptial",
+      "osm": "way/817011409",
+      "coordinatesWgs84": [
+        -58.160403,
+        6.822492
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "foulis play ground",
+      "osm": "node/5231005383",
+      "coordinatesWgs84": [
+        -57.998137,
+        6.750249
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stabroek Market",
+      "osm": "way/108178345",
+      "coordinatesWgs84": [
+        -58.167803,
+        6.809868
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathedral of Immaculate Conception",
+      "osm": "way/222811604",
+      "coordinatesWgs84": [
+        -58.162007,
+        6.807437
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Georgetown City Hall",
+      "osm": "way/402568917",
+      "coordinatesWgs84": [
+        -58.164987,
+        6.811108
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parliament of the Republic of Guyana",
+      "osm": "relation/6601628",
+      "coordinatesWgs84": [
+        -58.166621,
+        6.808616
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guyana School of Agriculture",
+      "osm": "way/818881326",
+      "coordinatesWgs84": [
+        -58.05862,
+        6.786289
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guyana National Stadium",
+      "osm": "way/576678606",
+      "coordinatesWgs84": [
+        -58.177828,
+        6.757767
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guyana Zoo",
+      "osm": "way/30765532",
+      "coordinatesWgs84": [
+        -58.14626,
+        6.807406
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Georgetown Public Hospital Corporation",
+      "osm": "relation/11213168",
+      "coordinatesWgs84": [
+        -58.156358,
+        6.816392
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Castalaney House",
+      "osm": "way/405708710",
+      "coordinatesWgs84": [
+        -58.149591,
+        6.805942
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Umana Yana",
+      "osm": "way/403108105",
+      "coordinatesWgs84": [
+        -58.162535,
+        6.824511
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. George's Cathedral",
+      "osm": "way/215619747",
+      "coordinatesWgs84": [
+        -58.163643,
+        6.812665
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queenstown Mosque",
+      "osm": "way/405722320",
+      "coordinatesWgs84": [
+        -58.151105,
+        6.810161
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Lotus",
+      "osm": "node/4179922366",
+      "coordinatesWgs84": [
+        -58.253051,
+        6.50467
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Farm land",
+      "osm": "node/8060672985",
+      "coordinatesWgs84": [
+        -58.170539,
+        6.539189
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "2",
+      "osm": "node/8773177618",
+      "coordinatesWgs84": [
+        -58.235633,
+        6.847659
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Joe Chinese",
+      "osm": "way/408614791",
+      "coordinatesWgs84": [
+        -58.230701,
+        6.764914
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Eve Leary Sports Ground",
+      "osm": "way/403113847",
+      "coordinatesWgs84": [
+        -58.159052,
+        6.821887
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Diamond Market",
+      "osm": "way/790600904",
+      "coordinatesWgs84": [
+        -58.182967,
+        6.708098
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Happy Acres Reserve",
+      "osm": "way/479572609",
+      "coordinatesWgs84": [
+        -58.079085,
+        6.815936
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1248,
+      "sha256": "fb3f8d6c1485fd3a3875121440ccda1ad2825250a43d39a57f3fdffd49315360"
+    },
+    "geometry.ts": {
+      "bytes": 27875,
+      "sha256": "f4fac46bf2ec43b557f28d97081ec6b1f9fe326e3ee34b9d5e9e94acb9d98baa"
+    },
+    "places.ts": {
+      "bytes": 9529,
+      "sha256": "5a7e6092cf638fc959ef51a172ac80756d7bac6da89960127059f084f24e4878"
+    },
+    "terrain.ts": {
+      "bytes": 191289,
+      "sha256": "294840facf08bbc61bd500b6fd25c5a6f37f9b90a9fe5f473cd0c855644a648b"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "06338c89d2a5e85be7fc67d1bd581d4cb6d1cbffc739b3cfe2b437a53f525192"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

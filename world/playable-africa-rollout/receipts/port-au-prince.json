@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-au-prince",
+  "countryIso2": "HT",
+  "generationIdentity": {
+    "cityId": "port-au-prince",
+    "stateId": "ht",
+    "stateName": "Port-au-Prince"
+  },
+  "inventorySha256": "5ccae2a654234b71666c221b76e2cc5f78563f48d8ce178ff43571e08fdf2473",
+  "inventoryPath": "world/playable-africa-rollout/sources/port-au-prince.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "port-au-prince-airport",
+    "name": "Toussaint Louverture International Airport",
+    "lon": -72.292596,
+    "lat": 18.580023,
+    "sourceUrl": "https://ourairports.com/airports/MTPP/"
+  },
+  "bounds": [
+    18.366446110066022,
+    -72.5292995685392,
+    18.728207889933977,
+    -72.14988603146081
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/haiti-and-domrep-261011.osm.pbf",
+      "datasetSha256": "382fce54511c45b98806b27fb7afeb2df6fb52a723d936449962a5e305c3fe74",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6628e0cb5c89de221964fb597d4bedd0398d1d22faa64aba95da2373e1f7455d",
+          "elements": 1251
+        },
+        {
+          "file": "extras.json",
+          "sha256": "82e7c95f906cd7ad7d880242647bdcb569a04d3cd5994bdaddb04755438e3b35",
+          "elements": 220
+        },
+        {
+          "file": "water.json",
+          "sha256": "6fe7221cdb8b9e148e6153fc3d8ed1667d73ae4773117086eb9bdf33eaadf341",
+          "elements": 428
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "34d477fd28b87e79d645b1afecac4aaaa34fb7281b8ecfb1e6a9bda886ef0ab3",
+          "elements": 2547
+        },
+        {
+          "file": "roads.json",
+          "sha256": "0ce7afef004901d0970da21bce9fa3d52932033e78e7f24cea968fe7fc289d8f",
+          "elements": 389
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 57,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 9,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 22
+  },
+  "observed": {
+    "places": 1251,
+    "extras": 220,
+    "water": 428,
+    "landuse": 2547,
+    "roads": 389
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1286,
+      "sha256": "b574b5d91c5e05110c3afa19ec1b42de54a92ccbdfac95bb4f7c3a0cc39ac952"
+    },
+    "geometry.ts": {
+      "bytes": 501501,
+      "sha256": "44ab008923767b7dba164e42986d7cf30431b7793ec14b353c040daf1aff4041"
+    },
+    "index.ts": {
+      "bytes": 265,
+      "sha256": "2f3cb437013cb7255847f4e6e3d6303c687818a123d423f20cc0c1546fd11880"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/port-au-prince.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

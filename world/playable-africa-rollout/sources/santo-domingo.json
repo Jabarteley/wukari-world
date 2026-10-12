@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "santo-domingo",
+  "countryIso2": "DO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Santo Domingo",
+    "coordinatesWgs84": [
+      -69.8918436,
+      18.4713858
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/haiti-and-domrep-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "santo-domingo-airport",
+    "name": "Las Américas International Airport",
+    "lon": -69.668899536133,
+    "lat": 18.42970085144,
+    "sourceUrl": "https://ourairports.com/airports/MDSD/"
+  },
+  "boxes": {
+    "play": [
+      18.290504910066023,
+      -70.08146532695397,
+      18.652266689933978,
+      -69.65943029578544
+    ],
+    "core": [
+      18.426165577516507,
+      -69.93921130672038,
+      18.516606022483494,
+      -69.84447589327962
+    ],
+    "outline": [
+      18.240504910066022,
+      -70.13146532695397,
+      18.70226668993398,
+      -69.60943029578544
+    ],
+    "wide": [
+      17.69050491006602,
+      -70.68146532695397,
+      19.25226668993398,
+      -69.05943029578545
+    ],
+    "water": [
+      17.69050491006602,
+      -70.68146532695397,
+      19.25226668993398,
+      -69.05943029578545
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/haiti-and-domrep-261011.osm.pbf",
+    "datasetSha256": "382fce54511c45b98806b27fb7afeb2df6fb52a723d936449962a5e305c3fe74",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6f0c87f022ce0d7eceed14e5ebbc86a617b1238a47fbc7104b2ad0920bfc8b36",
+        "elements": 2121
+      },
+      {
+        "file": "extras.json",
+        "sha256": "1479fec9852e23e0cd17292c1c77d85bf1d570573ff9653806333afb67e7fd96",
+        "elements": 549
+      },
+      {
+        "file": "water.json",
+        "sha256": "6d3d61aa3f7df2515b4ce69ca3a1658197c5a4f17db5be0fde11fb4696591ae8",
+        "elements": 231
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "a0bd614c1d6fd689602495c7fa5400c7eaa7f5c0568913980b7b16a45f6d94ba",
+        "elements": 937
+      },
+      {
+        "file": "roads.json",
+        "sha256": "97037f153e07f8fae72ca760221e873aac7a3bf7c3840fbff952bdc17df343ab",
+        "elements": 1386
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Amín Abel Hasbún",
+      "osm": "node/12643051616",
+      "coordinatesWgs84": [
+        -69.916332,
+        18.459195
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Club Nautico Haina",
+      "osm": "node/1743869202",
+      "coordinatesWgs84": [
+        -70.011165,
+        18.427337
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Instituto Tecnológico de Santo Domingo",
+      "osm": "way/30087660",
+      "coordinatesWgs84": [
+        -69.962197,
+        18.487663
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plaza de la Salud",
+      "osm": "way/164695925",
+      "coordinatesWgs84": [
+        -69.922865,
+        18.488398
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Colón",
+      "osm": "way/28101419",
+      "coordinatesWgs84": [
+        -69.884013,
+        18.473472
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parador Ejecutivo",
+      "osm": "node/3493437574",
+      "coordinatesWgs84": [
+        -70.039165,
+        18.554901
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ministerios Casa De Zion",
+      "osm": "node/3566463694",
+      "coordinatesWgs84": [
+        -69.962516,
+        18.470502
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Junta Distrito Municipal La Victoria",
+      "osm": "node/6525597885",
+      "coordinatesWgs84": [
+        -69.845875,
+        18.58963
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ministerio de Relaciones Exteriores",
+      "osm": "way/327261539",
+      "coordinatesWgs84": [
+        -69.919237,
+        18.454393
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad del Caribe",
+      "osm": "way/410061868",
+      "coordinatesWgs84": [
+        -69.951036,
+        18.433782
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Autódromo Internacional de Las Américas",
+      "osm": "way/250861349",
+      "coordinatesWgs84": [
+        -69.748435,
+        18.468925
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faro a Colón",
+      "osm": "way/53622354",
+      "coordinatesWgs84": [
+        -69.867493,
+        18.478587
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo del Hombre Dominicano",
+      "osm": "way/80445127",
+      "coordinatesWgs84": [
+        -69.908062,
+        18.472336
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Nacional Pedro Heriquez Urena - UNPHU",
+      "osm": "way/250877911",
+      "coordinatesWgs84": [
+        -69.948877,
+        18.485963
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pabellón de la Fama del Deporte Dominicano",
+      "osm": "way/300113579",
+      "coordinatesWgs84": [
+        -69.919815,
+        18.475488
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Católica Santo Domingo (UCSD)",
+      "osm": "way/338342953",
+      "coordinatesWgs84": [
+        -69.923259,
+        18.462796
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Templo de Santo Domingo",
+      "osm": "way/316141824",
+      "coordinatesWgs84": [
+        -69.916971,
+        18.466673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Olímpico Félix Sánchez",
+      "osm": "way/28809979",
+      "coordinatesWgs84": [
+        -69.918704,
+        18.480488
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Quisqueya",
+      "osm": "way/111187823",
+      "coordinatesWgs84": [
+        -69.92618,
+        18.488426
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basílica Catedral Metropolitana Santa María de la Encarnación Primada de América",
+      "osm": "way/41565898",
+      "coordinatesWgs84": [
+        -69.883949,
+        18.47299
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro de Medicina Avanzada Dr. Abel González",
+      "osm": "way/378243851",
+      "coordinatesWgs84": [
+        -69.934429,
+        18.474519
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Infantil Robert Reid Cabral",
+      "osm": "way/222941453",
+      "coordinatesWgs84": [
+        -69.923818,
+        18.452492
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Olímpico Juan Pablo Duarte",
+      "osm": "way/358599439",
+      "coordinatesWgs84": [
+        -69.917203,
+        18.477804
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Central de San Antonio de Guerra",
+      "osm": "way/1170357043",
+      "coordinatesWgs84": [
+        -69.699835,
+        18.55817
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1300,
+      "sha256": "00858b6c4534c006c559c043e614eedf470a618059c8e6ed19bd521ba689dcef"
+    },
+    "geometry.ts": {
+      "bytes": 59640,
+      "sha256": "9d1a2d4b5672f83b1673e4722e7e60ac6d3d9cdd31904c0ea6a9a7450de00d78"
+    },
+    "places.ts": {
+      "bytes": 10497,
+      "sha256": "d43265ea4cc6424d4df12309376fad9982ce83ab8b6a26e02e06de52308b6966"
+    },
+    "terrain.ts": {
+      "bytes": 87618,
+      "sha256": "3ea50c74f78a2de3ca6019f2c5db817129f072b9b286d6935588b20c066c553d"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "b3bb2b99977808a481cf60121ddc0068fdc6a75b47ef3c01eebfb61caad5438b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

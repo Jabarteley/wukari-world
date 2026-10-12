@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-au-prince",
+  "countryIso2": "HT",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Port-au-Prince",
+    "coordinatesWgs84": [
+      -72.3395928,
+      18.547327
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/haiti-and-domrep-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "port-au-prince-airport",
+    "name": "Toussaint Louverture International Airport",
+    "lon": -72.292596,
+    "lat": 18.580023,
+    "sourceUrl": "https://ourairports.com/airports/MTPP/"
+  },
+  "boxes": {
+    "play": [
+      18.366446110066022,
+      -72.5292995685392,
+      18.728207889933977,
+      -72.14988603146081
+    ],
+    "core": [
+      18.502106777516506,
+      -72.38698158459303,
+      18.592547222483493,
+      -72.29220401540698
+    ],
+    "outline": [
+      18.31644611006602,
+      -72.5792995685392,
+      18.778207889933977,
+      -72.09988603146081
+    ],
+    "wide": [
+      17.76644611006602,
+      -73.1292995685392,
+      19.328207889933978,
+      -71.54988603146082
+    ],
+    "water": [
+      17.76644611006602,
+      -73.1292995685392,
+      19.328207889933978,
+      -71.54988603146082
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/haiti-and-domrep-261011.osm.pbf",
+    "datasetSha256": "382fce54511c45b98806b27fb7afeb2df6fb52a723d936449962a5e305c3fe74",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6628e0cb5c89de221964fb597d4bedd0398d1d22faa64aba95da2373e1f7455d",
+        "elements": 1251
+      },
+      {
+        "file": "extras.json",
+        "sha256": "82e7c95f906cd7ad7d880242647bdcb569a04d3cd5994bdaddb04755438e3b35",
+        "elements": 220
+      },
+      {
+        "file": "water.json",
+        "sha256": "6fe7221cdb8b9e148e6153fc3d8ed1667d73ae4773117086eb9bdf33eaadf341",
+        "elements": 428
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "34d477fd28b87e79d645b1afecac4aaaa34fb7281b8ecfb1e6a9bda886ef0ab3",
+        "elements": 2547
+      },
+      {
+        "file": "roads.json",
+        "sha256": "0ce7afef004901d0970da21bce9fa3d52932033e78e7f24cea968fe7fc289d8f",
+        "elements": 389
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Portail Léogâne",
+      "osm": "node/375734791",
+      "coordinatesWgs84": [
+        -72.346573,
+        18.536002
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôtel Montana",
+      "osm": "node/1103239497",
+      "coordinatesWgs84": [
+        -72.2976,
+        18.527374
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Université de Port-au-Prince",
+      "osm": "node/5236861122",
+      "coordinatesWgs84": [
+        -72.320605,
+        18.537387
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hopital la Trinite",
+      "osm": "node/629092104",
+      "coordinatesWgs84": [
+        -72.310785,
+        18.554464
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Champs de Mars",
+      "osm": "relation/8929056",
+      "coordinatesWgs84": [
+        -72.335535,
+        18.54328
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché en Fer",
+      "osm": "way/643630634",
+      "coordinatesWgs84": [
+        -72.34316,
+        18.551546
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Temple of Port-au-Prince",
+      "osm": "way/1328919400",
+      "coordinatesWgs84": [
+        -72.2682,
+        18.528999
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Annexe de la Mairie de Thomazeau",
+      "osm": "node/2481734890",
+      "coordinatesWgs84": [
+        -72.231981,
+        18.660809
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Annexe Mairie Croix des Bouquets",
+      "osm": "node/3953648814",
+      "coordinatesWgs84": [
+        -72.317499,
+        18.686442
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Université Quisqueya",
+      "osm": "way/310210009",
+      "coordinatesWgs84": [
+        -72.32141,
+        18.526428
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mc-Intosh",
+      "osm": "node/4842345826",
+      "coordinatesWgs84": [
+        -72.28237,
+        18.587518
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Musée National d'Art d'Haïti",
+      "osm": "way/48277658",
+      "coordinatesWgs84": [
+        -72.336034,
+        18.539111
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Port-au-Prince Cathedral",
+      "osm": "way/27937322",
+      "coordinatesWgs84": [
+        -72.338676,
+        18.549025
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Haiti National Palace",
+      "osm": "way/48215560",
+      "coordinatesWgs84": [
+        -72.338855,
+        18.543154
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Trinity Cathedral",
+      "osm": "way/48279480",
+      "coordinatesWgs84": [
+        -72.338599,
+        18.546726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Marron Inconnu",
+      "osm": "node/2753138714",
+      "coordinatesWgs84": [
+        -72.338161,
+        18.545136
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôpital Saint-Damien",
+      "osm": "relation/13545105",
+      "coordinatesWgs84": [
+        -72.253348,
+        18.570818
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université de technologie d'Haïti",
+      "osm": "node/883450377",
+      "coordinatesWgs84": [
+        -72.333243,
+        18.530741
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôpital de l'Université d'État d'Haïti",
+      "osm": "way/380648401",
+      "coordinatesWgs84": [
+        -72.339875,
+        18.539746
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rustik",
+      "osm": "node/1584933011",
+      "coordinatesWgs84": [
+        -72.305223,
+        18.417624
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ajoupas Beach Club",
+      "osm": "node/1929227554",
+      "coordinatesWgs84": [
+        -72.46497,
+        18.546742
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Petit Marché de Canaan",
+      "osm": "node/4217575341",
+      "coordinatesWgs84": [
+        -72.281361,
+        18.6502
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marche de Fermathe",
+      "osm": "node/1323785127",
+      "coordinatesWgs84": [
+        -72.293176,
+        18.466275
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre d’Enseignement des Techniques Appliquées",
+      "osm": "node/6356671168",
+      "coordinatesWgs84": [
+        -72.31432,
+        18.617457
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1286,
+      "sha256": "b574b5d91c5e05110c3afa19ec1b42de54a92ccbdfac95bb4f7c3a0cc39ac952"
+    },
+    "geometry.ts": {
+      "bytes": 501501,
+      "sha256": "44ab008923767b7dba164e42986d7cf30431b7793ec14b353c040daf1aff4041"
+    },
+    "places.ts": {
+      "bytes": 9880,
+      "sha256": "3f2dba20d3745e258395561dc208e716ef74216b6e96a5ab4d391a34ce01479f"
+    },
+    "terrain.ts": {
+      "bytes": 300388,
+      "sha256": "97bde8ee3c21420bc8a8c512705ce31e5b7fd7130cfbd9d3287db2dcc1861de8"
+    },
+    "index.ts": {
+      "bytes": 265,
+      "sha256": "2f3cb437013cb7255847f4e6e3d6303c687818a123d423f20cc0c1546fd11880"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "georgetown",
+  "countryIso2": "GY",
+  "generationIdentity": {
+    "cityId": "georgetown",
+    "stateId": "gy-georgetown",
+    "stateName": "Georgetown"
+  },
+  "inventorySha256": "033d6ae504e1adb15d746410089f505ab5ea4933ef7f5ccef54804d2b1cbb6d9",
+  "inventoryPath": "world/playable-africa-rollout/sources/georgetown.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "georgetown-airport",
+    "name": "Cheddi Jagan International Airport",
+    "lon": -58.254101,
+    "lat": 6.49855,
+    "sourceUrl": "https://ourairports.com/airports/SYCJ/"
+  },
+  "bounds": [
+    6.489505955503301,
+    -58.32654562080386,
+    6.984136989933978,
+    -57.96453497919614
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/guyana-261011.osm.pbf",
+      "datasetSha256": "2d89476a2cfed68506b3c759c898b54afd0c9996269c7dd8b73f4c2b7f45e8d4",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6751e002b42ab7643ae56d3a3a8e67e983ad0900c9320e96e71850af1332f70f",
+          "elements": 487
+        },
+        {
+          "file": "extras.json",
+          "sha256": "64ac00df23d620ef7133d68686da74a97b7e5414aec9a41283441a3fb2d11ce4",
+          "elements": 167
+        },
+        {
+          "file": "water.json",
+          "sha256": "77ffd301fb0bb2e6e28ceae50a0fdb4271bb1ecc9aaa25b0457d734a475b71c3",
+          "elements": 180
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ce92743a3f790308f6b1f6247881822c78de6671bbf1a2e2887bbbd404eab282",
+          "elements": 162
+        },
+        {
+          "file": "roads.json",
+          "sha256": "0e648a6306974ac452d254f8a591dab4ba4f6871d4a968e9868ff8498d279deb",
+          "elements": 455
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 72,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 15,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 37
+  },
+  "observed": {
+    "places": 487,
+    "extras": 167,
+    "water": 180,
+    "landuse": 162,
+    "roads": 455
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1248,
+      "sha256": "fb3f8d6c1485fd3a3875121440ccda1ad2825250a43d39a57f3fdffd49315360"
+    },
+    "geometry.ts": {
+      "bytes": 27875,
+      "sha256": "f4fac46bf2ec43b557f28d97081ec6b1f9fe326e3ee34b9d5e9e94acb9d98baa"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "06338c89d2a5e85be7fc67d1bd581d4cb6d1cbffc739b3cfe2b437a53f525192"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/georgetown.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

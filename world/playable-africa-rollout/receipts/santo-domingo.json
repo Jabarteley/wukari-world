@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "santo-domingo",
+  "countryIso2": "DO",
+  "generationIdentity": {
+    "cityId": "santo-domingo",
+    "stateId": "do",
+    "stateName": "Santo Domingo"
+  },
+  "inventorySha256": "9249e0aab5c35c711b3dd9ca39b9f8ca1ce5268f8d6474b5af783f896d26bc66",
+  "inventoryPath": "world/playable-africa-rollout/sources/santo-domingo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "santo-domingo-airport",
+    "name": "Las Américas International Airport",
+    "lon": -69.668899536133,
+    "lat": 18.42970085144,
+    "sourceUrl": "https://ourairports.com/airports/MDSD/"
+  },
+  "bounds": [
+    18.290504910066023,
+    -70.08146532695397,
+    18.652266689933978,
+    -69.65943029578544
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/haiti-and-domrep-261011.osm.pbf",
+      "datasetSha256": "382fce54511c45b98806b27fb7afeb2df6fb52a723d936449962a5e305c3fe74",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6f0c87f022ce0d7eceed14e5ebbc86a617b1238a47fbc7104b2ad0920bfc8b36",
+          "elements": 2121
+        },
+        {
+          "file": "extras.json",
+          "sha256": "1479fec9852e23e0cd17292c1c77d85bf1d570573ff9653806333afb67e7fd96",
+          "elements": 549
+        },
+        {
+          "file": "water.json",
+          "sha256": "6d3d61aa3f7df2515b4ce69ca3a1658197c5a4f17db5be0fde11fb4696591ae8",
+          "elements": 231
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "a0bd614c1d6fd689602495c7fa5400c7eaa7f5c0568913980b7b16a45f6d94ba",
+          "elements": 937
+        },
+        {
+          "file": "roads.json",
+          "sha256": "97037f153e07f8fae72ca760221e873aac7a3bf7c3840fbff952bdc17df343ab",
+          "elements": 1386
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 617,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 9,
+    "reachWaterPolygons": 18
+  },
+  "observed": {
+    "places": 2121,
+    "extras": 549,
+    "water": 231,
+    "landuse": 937,
+    "roads": 1386
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1300,
+      "sha256": "00858b6c4534c006c559c043e614eedf470a618059c8e6ed19bd521ba689dcef"
+    },
+    "geometry.ts": {
+      "bytes": 59640,
+      "sha256": "9d1a2d4b5672f83b1673e4722e7e60ac6d3d9cdd31904c0ea6a9a7450de00d78"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "b3bb2b99977808a481cf60121ddc0068fdc6a75b47ef3c01eebfb61caad5438b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/santo-domingo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

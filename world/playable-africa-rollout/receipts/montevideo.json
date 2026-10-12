@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "montevideo",
+  "countryIso2": "UY",
+  "generationIdentity": {
+    "cityId": "montevideo",
+    "stateId": "uy-montevideo",
+    "stateName": "Montevideo"
+  },
+  "inventorySha256": "f5a97ee200ee085ece881f643d1ebb4a5e26f57de430c323391ad2798bb64fad",
+  "inventoryPath": "world/playable-africa-rollout/sources/montevideo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "montevideo-airport",
+    "name": "Carrasco General Cesáreo L. Berisso International Airport",
+    "lon": -56.026497,
+    "lat": -34.835647,
+    "sourceUrl": "https://ourairports.com/airports/SUMU/"
+  },
+  "bounds": [
+    -35.08677248993398,
+    -56.4108696731972,
+    -34.725010710066016,
+    -55.97174932680281
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/uruguay-261011.osm.pbf",
+      "datasetSha256": "d3fe25c76cbc3fdc6265424e56733d2f54ccab4f3be0421b752c4aa815ed38f4",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "4f64dd70b5901c747cdcee00f00cf957c1372dea59d168207aadfcd02278d128",
+          "elements": 1398
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d23d32fbc6dba243c56d3d1f53d24b6dada532af8784b94bf779c9431d2a9d9e",
+          "elements": 301
+        },
+        {
+          "file": "water.json",
+          "sha256": "69f5ab471e896626279212c1c4a6ea09adb90f4f093c1ba8080d103317308b6d",
+          "elements": 364
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "8ad69e732e11aec373cd903abe37c750a03a7938dd1974d3e2da5925dffa7b89",
+          "elements": 2523
+        },
+        {
+          "file": "roads.json",
+          "sha256": "4456d25c40098c85d381b0f3f4eee9826bce6cd5400d73dc9a90511e56412248",
+          "elements": 1915
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 602,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 8,
+    "reachWaterPolygons": 12
+  },
+  "observed": {
+    "places": 1398,
+    "extras": 301,
+    "water": 364,
+    "landuse": 2523,
+    "roads": 1915
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1287,
+      "sha256": "771abe9cd872cb785229bdaeef4545f42b0a52fd8d24dda9700be3aad2cea5ac"
+    },
+    "geometry.ts": {
+      "bytes": 71882,
+      "sha256": "a1e29fb7c6f47ae0d222ce97ff73f7f13d99f6d928ceae38af557ba929775e0d"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "615b0fd92e4dfad4d34ae16f79e873e9544e47e24843e765a16d45916ad70444"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/montevideo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

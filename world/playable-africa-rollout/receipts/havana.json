@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "havana",
+  "countryIso2": "CU",
+  "generationIdentity": {
+    "cityId": "havana",
+    "stateId": "cu-havana",
+    "stateName": "Havana"
+  },
+  "inventorySha256": "c2d7a1a8b522cb8bb4e24dd433ab22db56368b392b28b9eaae6be7b3ba6bc343",
+  "inventoryPath": "world/playable-africa-rollout/sources/havana.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "havana-airport",
+    "name": "José Martí International Airport",
+    "lon": -82.40910339355469,
+    "lat": 22.989200592041016,
+    "sourceUrl": "https://ourairports.com/airports/MUHA/"
+  },
+  "bounds": [
+    22.95442411006602,
+    -82.5546022865957,
+    23.316185889933976,
+    -82.1633239134043
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/cuba-261011.osm.pbf",
+      "datasetSha256": "a2b6b33698a850d2445a162a6b4728ab09392f1618370f680046a9f6f4762595",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "af379944803aeed347610a5e89895ccb1e061ddde3b1d55f654f53efb7b0513e",
+          "elements": 2401
+        },
+        {
+          "file": "extras.json",
+          "sha256": "8b7f90d43c4824fb44d24c0ea4cc58e397144507db054d808e55aaac899dbdb0",
+          "elements": 820
+        },
+        {
+          "file": "water.json",
+          "sha256": "426f5fe8c46d31f478c1747745e047870f60bafef98a3734357f0235b1191183",
+          "elements": 691
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "c99036055c2abf425c8196e24fb49d158828017bd32d02695f90b5d78e38c3bf",
+          "elements": 2501
+        },
+        {
+          "file": "roads.json",
+          "sha256": "3eac02e5b2b896e7a97346b15e358979dc448e65f62fa5bfccffa0543f79d00a",
+          "elements": 2908
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 17,
+    "waterPolygons": 7,
+    "reachWaterPolygons": 25
+  },
+  "observed": {
+    "places": 2401,
+    "extras": 820,
+    "water": 691,
+    "landuse": 2501,
+    "roads": 2908
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1228,
+      "sha256": "15973008cdaaa0623d30404352aa7137fbcaf7e41c9808b1a9118f25e628b4da"
+    },
+    "geometry.ts": {
+      "bytes": 79250,
+      "sha256": "54c2582ca4d4887feadc2f8e5adde665417cd5f4ab09ab507d3ff62c563c4e6f"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "bfa410a335a777d7353330ebde09c898fa109853c033a2d9cfcfc2d76359f123"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/havana.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

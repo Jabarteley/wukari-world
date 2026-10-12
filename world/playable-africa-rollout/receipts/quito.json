@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "quito",
+  "countryIso2": "EC",
+  "generationIdentity": {
+    "cityId": "quito",
+    "stateId": "ec-quito",
+    "stateName": "Quito"
+  },
+  "inventorySha256": "f0993ef47e36b5ffb03a2872904c16ab52cfa22dbd55c971620053c9e40d9f3d",
+  "inventoryPath": "world/playable-africa-rollout/sources/quito.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "quito-airport",
+    "name": "Mariscal Sucre International Airport",
+    "lon": -78.354306,
+    "lat": -0.125399,
+    "sourceUrl": "https://ourairports.com/airports/SEQM/"
+  },
+  "bounds": [
+    -0.40104498993397847,
+    -78.69199403625385,
+    -0.039283210066021534,
+    -78.33266076374616
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/ecuador-261011.osm.pbf",
+      "datasetSha256": "e0c343e3f095444e33c83070783fa2d258ab3a3710b8068831ae2d5a82c75708",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "abed21a9a5124bb48fd861c5a97624c63e625db48871a66fa378181d5891dfcd",
+          "elements": 4467
+        },
+        {
+          "file": "extras.json",
+          "sha256": "c9deb56a99af4bf1438746043665060679621ad42e9e34044f804605f9626517",
+          "elements": 837
+        },
+        {
+          "file": "water.json",
+          "sha256": "7b57fc5f3507e972572e9124bad290f986a1cda5bdd44a41ae7c443d36b0259e",
+          "elements": 22
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "05d3a2f37f4d1c0f605430eeb5d84f00e31e90011344a83d988c414e37c6fdf6",
+          "elements": 1467
+        },
+        {
+          "file": "roads.json",
+          "sha256": "ef460f707c8472cb269003a41195a304570dd31a89a419bdadf7ce94dfaeaafd",
+          "elements": 4047
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 353,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 14,
+    "waterPolygons": 0,
+    "reachWaterPolygons": 0
+  },
+  "observed": {
+    "places": 4467,
+    "extras": 837,
+    "water": 22,
+    "landuse": 1467,
+    "roads": 4047
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1228,
+      "sha256": "83774522376df4f0a527487deb23154870f0fc2e3fde32f59d4a830c5332dbb0"
+    },
+    "geometry.ts": {
+      "bytes": 47804,
+      "sha256": "b8049097ac4be332942748b55ef4c3151016b64cb8163a5843de21e43d39ef57"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "d0f278936b3a54f23bb63d1f1751a485db6074b0d18a3ca727200c2536431e93"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/quito.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

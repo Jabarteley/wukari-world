@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "guatemala-city",
+  "countryIso2": "GT",
+  "generationIdentity": {
+    "cityId": "guatemala-city",
+    "stateId": "gt",
+    "stateName": "Guatemala City"
+  },
+  "inventorySha256": "6cc68ec6e7c8234801f9bdbbd36b726b9159dec95020e4c127b328e7cfe72e71",
+  "inventoryPath": "world/playable-africa-rollout/sources/guatemala-city.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "guatemala-city-airport",
+    "name": "La Aurora International Airport",
+    "lon": -90.527515,
+    "lat": 14.582896,
+    "sourceUrl": "https://ourairports.com/airports/MGGT/"
+  },
+  "bounds": [
+    14.46073331006602,
+    -90.69913024974917,
+    14.822495089933978,
+    -90.32743695025081
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/guatemala-261011.osm.pbf",
+      "datasetSha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "948cecf86a7fa1cd1ffd1ae73d41ece736895e5175abd9e4192a75a1f718a3a6",
+          "elements": 2793
+        },
+        {
+          "file": "extras.json",
+          "sha256": "52f91162a177727f3a8361ab707a111e384e188882612d297bb573052ab6a4eb",
+          "elements": 577
+        },
+        {
+          "file": "water.json",
+          "sha256": "d7ff9a11dfacdcdb76ad2eb92108d7ea305e0a71a9cde24cda63570ed1cf10c6",
+          "elements": 282
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "2c8297e9f33b93e5b0f3c42ec3d347f88bda3c021fc2077dacde65e833a54c14",
+          "elements": 2007
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f6e7b3c16ef68df3c3c31f7db976b95033de162e5c1c20d2718256f7acb794be",
+          "elements": 2622
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 25,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 34
+  },
+  "observed": {
+    "places": 2793,
+    "extras": 577,
+    "water": 282,
+    "landuse": 2007,
+    "roads": 2622
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1275,
+      "sha256": "904ada23c8d924cbd8dbec87d1f3a5b0f53cff73a4dd23881722859f75481170"
+    },
+    "geometry.ts": {
+      "bytes": 103879,
+      "sha256": "4f95b78487f7009b6619bebe32974360cb1d0f3a54f4b36a6ac5e36a6da5de9e"
+    },
+    "index.ts": {
+      "bytes": 265,
+      "sha256": "3cfece8599219799a9a80138f111945f5920583237d67dca89bb7b147f73b732"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/guatemala-city.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

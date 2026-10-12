@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tegucigalpa",
+  "countryIso2": "HN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tegucigalpa",
+    "coordinatesWgs84": [
+      -87.2047053,
+      14.1058135
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/honduras-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tegucigalpa-airport",
+    "name": "Toncontín Airport",
+    "lon": -87.217201,
+    "lat": 14.0609,
+    "sourceUrl": "https://ourairports.com/airports/MHTG/"
+  },
+  "boxes": {
+    "play": [
+      13.924932610066021,
+      -87.39010126391533,
+      14.286694389933979,
+      -87.01930933608467
+    ],
+    "core": [
+      14.060593277516505,
+      -87.25102649194308,
+      14.151033722483495,
+      -87.15838410805692
+    ],
+    "outline": [
+      13.87493261006602,
+      -87.44010126391532,
+      14.33669438993398,
+      -86.96930933608468
+    ],
+    "wide": [
+      13.324932610066021,
+      -87.99010126391532,
+      14.886694389933979,
+      -86.41930933608468
+    ],
+    "water": [
+      13.324932610066021,
+      -87.99010126391532,
+      14.886694389933979,
+      -86.41930933608468
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/honduras-261011.osm.pbf",
+    "datasetSha256": "7a8a880925436d295415541b59b910c053aa72c0c5ea4076539e668e2c550f13",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/central-america/honduras-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 74361797,
+        "md5": "cf179f59d76fc954be528e08653f80f0",
+        "sha256": "a84cc8eb53ae591a877c299d762332ed28d3204823efae765369801b0fdd8d3d"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/central-america/guatemala-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 131359417,
+        "md5": "4f8618c6854e76083ca5dad916fea8da",
+        "sha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa",
+        "reason": "admin-0 relation/287670 member way/384124908 (maritime territorial closing line) is absent from the Honduras clip; both nodes lie inside the Guatemala clip"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/central-america/nicaragua-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 61743316,
+        "md5": "8d9aa0ab379bb698df5b80181882a2d7",
+        "sha256": "2becf476304b4c2b3dc651fb1c901cb1131e1eb42f7a844c1bd1aa259704c922",
+        "reason": "admin-0 relation/287670 member way/1456597332 (Honduras - Nicaragua sea limit, Gulf of Fonseca) is absent from the Honduras clip; both nodes lie inside the Nicaragua clip"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "b6294d8fa6d59b923866c7a605e84f3c50882ae7d9afc20c0a850bf3dd1f3416",
+        "elements": 1186
+      },
+      {
+        "file": "extras.json",
+        "sha256": "3caa8d29fcc01cfcc9462c0478b7babb59d2478c107223ff6e49570e45f5b8a1",
+        "elements": 333
+      },
+      {
+        "file": "water.json",
+        "sha256": "798a46925e817620c5f6d66598fbc42a08c1ef608c25860e54383b9e163241ad",
+        "elements": 872
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "f5b8deb307c4466e1acec10c27435989444ac5ec923c62fcea575083a4fd79ba",
+        "elements": 475
+      },
+      {
+        "file": "roads.json",
+        "sha256": "44fcc03fd2f2b2e32faa329c6a832ddc001ce7a899ab084e978b64020b2e1a5e",
+        "elements": 725
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Empresa Aurora",
+      "osm": "node/2339342433",
+      "coordinatesWgs84": [
+        -87.210197,
+        14.097125
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Espresso Americano",
+      "osm": "node/11965383438",
+      "coordinatesWgs84": [
+        -87.168196,
+        14.082276
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "UNITEC",
+      "osm": "way/33918120",
+      "coordinatesWgs84": [
+        -87.17431,
+        14.048821
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Escuela Universitario",
+      "osm": "way/961803937",
+      "coordinatesWgs84": [
+        -87.197241,
+        14.089154
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque España",
+      "osm": "way/32406022",
+      "coordinatesWgs84": [
+        -87.182914,
+        14.094874
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Municipal",
+      "osm": "way/761273404",
+      "coordinatesWgs84": [
+        -87.294147,
+        13.936019
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tegucigalpa Honduras Temple",
+      "osm": "way/373853817",
+      "coordinatesWgs84": [
+        -87.238066,
+        14.052169
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Municipalidad de Cantarranas",
+      "osm": "node/8677909851",
+      "coordinatesWgs84": [
+        -87.027655,
+        14.262349
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Corte Suprema de Justicia",
+      "osm": "way/312607114",
+      "coordinatesWgs84": [
+        -87.201706,
+        14.072454
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Nacional Autónoma de Honduras",
+      "osm": "way/33908433",
+      "coordinatesWgs84": [
+        -87.164972,
+        14.086605
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Nacional José de la Paz Herrera Uclés",
+      "osm": "way/637292919",
+      "coordinatesWgs84": [
+        -87.203933,
+        14.098475
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo del Aire",
+      "osm": "way/545966016",
+      "coordinatesWgs84": [
+        -87.216317,
+        14.053895
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Expresso Americano",
+      "osm": "way/421304389",
+      "coordinatesWgs84": [
+        -87.184966,
+        14.085461
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cristo del Picacho",
+      "osm": "node/388490985",
+      "coordinatesWgs84": [
+        -87.197836,
+        14.118721
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Católica de Honduras - Campus Sagrado Corazón de Jesús",
+      "osm": "way/309332039",
+      "coordinatesWgs84": [
+        -87.195437,
+        14.108159
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo de Historia Republicana Villa Roy",
+      "osm": "way/1203375623",
+      "coordinatesWgs84": [
+        -87.206334,
+        14.112395
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Pedagógica Nacional Francisco Morazán",
+      "osm": "way/406969067",
+      "coordinatesWgs84": [
+        -87.18774,
+        14.075779
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basílica de Nuestra Señora de Suyapa",
+      "osm": "way/1207066140",
+      "coordinatesWgs84": [
+        -87.157274,
+        14.080413
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia San Francisco",
+      "osm": "way/132362943",
+      "coordinatesWgs84": [
+        -87.202311,
+        14.105505
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Adventista",
+      "osm": "node/472563369",
+      "coordinatesWgs84": [
+        -87.047405,
+        14.156771
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurante Revilla",
+      "osm": "node/3887643459",
+      "coordinatesWgs84": [
+        -87.03013,
+        14.006099
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "CODEL AMARATECA",
+      "osm": "node/12184570445",
+      "coordinatesWgs84": [
+        -87.370266,
+        14.218606
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "CODEL ALDEA COFRADIA",
+      "osm": "node/12184594653",
+      "coordinatesWgs84": [
+        -87.17285,
+        14.226295
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Torre",
+      "osm": "node/11872479469",
+      "coordinatesWgs84": [
+        -87.104606,
+        14.206331
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1248,
+      "sha256": "987cf51ec82426c3fa7764f8b39b5ae71c3c9eacd37431ae95143302ecb6000d"
+    },
+    "geometry.ts": {
+      "bytes": 46424,
+      "sha256": "09bba6141c3033917bb084be8615cc66e2eed4d1281c5e7debfbf4d6a8e4452f"
+    },
+    "places.ts": {
+      "bytes": 10129,
+      "sha256": "62c6ffca3cf6fb41c4dc5c73d4b49e9bfa6b5f8b5d58a6a2674e724ccc382bbc"
+    },
+    "terrain.ts": {
+      "bytes": 296528,
+      "sha256": "60f1cc8f1a496c108cef9e29bfd01404557298a45a27a2c4fda4f1837c07e1c8"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "e0ba3e6beb68c3302ee020bab540778044e7a62b2c712fbcee5e928f9e6e0504"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

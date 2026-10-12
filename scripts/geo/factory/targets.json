@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "db0fa91fca7868c8a1e6c6b4cf7eb25c5fd876a8",
+  "expectedSourceGitSHA": "2e0d538f79d9ad74075d80cc3de89e39002b78b9",
   "geometryPreset": "standard",
   "root": null,
   "targets": [
@@ -600,6 +600,132 @@
           "jobName": "boundary (MG)"
         },
         "sourceUrl": "https://download.geofabrik.de/africa/madagascar-261009.osm.pbf"
+      }
+    },
+    {
+      "id": "kinshasa",
+      "name": "Kinshasa",
+      "country": "cd",
+      "facts": {
+        "id": "kinshasa",
+        "name": "Kinshasa",
+        "country": {
+          "idISOlower": "cd",
+          "name": "Democratic Republic of the Congo"
+        },
+        "state": {
+          "idunique": "cd-starter",
+          "name": "Kinshasa"
+        },
+        "timezone": "Africa/Kinshasa",
+        "centre": {
+          "lon": 15.30845475,
+          "lat": -4.3063016
+        },
+        "airport": {
+          "id": "kinshasa-airport",
+          "name": "Ndjili International Airport",
+          "lon": 15.4446,
+          "lat": -4.38575,
+          "sourceUrl": "https://ourairports.com/airports/FZAA/"
+        },
+        "sourceLabel": "OpenStreetMap contributors via Geofabrik Democratic Republic of the Congo 2026-10-09 PBF; OurAirports dataset",
+        "sourceUrl": "https://www.openstreetmap.org/copyright",
+        "licence": "Natural Earth public domain; OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "bounds": [
+          15.15,
+          -4.55,
+          15.6,
+          -4.2
+        ],
+        "coverageNote": "Kinshasa built-up extent from mapped land use, inland water, main roads and named places in the dated Geofabrik DRC PBF. This is not an administrative boundary. The centre is the mapped Town Hall point used as a representative civic-core anchor, not an administrative centroid. Airport coordinates are the OurAirports dataset point, not an official aerodrome reference point or evidence of operations. Visitor services and homes are fictional game content at real named places.",
+        "names": {
+          "area": "Kinshasa",
+          "unit": "district",
+          "roadHub": "Arr\u00eat Zando"
+        }
+      },
+      "metadataSources": {
+        "centre": {
+          "osmRef": "way/361351442",
+          "sourceUrl": "https://www.openstreetmap.org/way/361351442",
+          "sourceRecord": {
+            "ref": "way/361351442",
+            "tags": {
+              "addr:city": "Kinshasa",
+              "amenity": "townhall",
+              "building": "yes",
+              "building:levels": "3",
+              "check_date": "2023-05-13",
+              "name": "H\u00f4tel de ville de Kinshasa",
+              "name:de": "Rathaus von Kinshasa",
+              "name:en": "Kinshasa Town Hall",
+              "name:nl": "Stadhuis van Kinshasa"
+            },
+            "lon": 15.30845475,
+            "lat": -4.3063016,
+            "timestamp": null
+          },
+          "pbfSha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91",
+          "sourceLayerSha256": "40d434ef2c69d84e471f4ed5254d2c281114fbb7bcf710bab107201bc72b4495",
+          "evidenceStatus": "Pinned dated city extract record; Town Hall point is a representative civic-core anchor, not an administrative centroid."
+        },
+        "airport": {
+          "recordId": 3040,
+          "ident": "FZAA",
+          "iata": "FIH",
+          "name": "Ndjili International Airport",
+          "lon": 15.4446,
+          "lat": -4.38575,
+          "elevationFt": 1027,
+          "sourceUrl": "https://ourairports.com/airports/FZAA/",
+          "datasetUrl": "https://ourairports.com/data/",
+          "csvSha256": "79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906",
+          "snapshotDate": "2026-10-11",
+          "coordinateCaveat": "OurAirports dataset coordinate point, not an official aerodrome reference point or evidence of current operations or schedules."
+        }
+      },
+      "extractKey": "kinshasa",
+      "extractSha256": {
+        "places": "40d434ef2c69d84e471f4ed5254d2c281114fbb7bcf710bab107201bc72b4495",
+        "extras": "c5b52a67b30896ce04c8da2bab0bdfff0ca808ee1b9e396935dc562fb9907964",
+        "water": "41898a88c23d40a4d7b69b38bfa679f0a57febb38a27108cb77a865be50796b1",
+        "landuse": "359e9389fe894042450e852b780acc6b623335e7289c35c5350d4c1c2c4bdf77",
+        "roads": "5941c159ea442e1ad737fcd8bb00111a90d9c4d29fd23709d1295a81571fa84d"
+      },
+      "sourceJob": {
+        "city": "kinshasa",
+        "sourceRunId": 38153961179,
+        "sourceArtifact": "offline-city-layers-congo-democratic-republic-8308f1f824bfd687590b6cc4dd1c7d3524e45468",
+        "sourceSha": "8308f1f824bfd687590b6cc4dd1c7d3524e45468",
+        "datasetSha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "40d434ef2c69d84e471f4ed5254d2c281114fbb7bcf710bab107201bc72b4495",
+          "extras": "c5b52a67b30896ce04c8da2bab0bdfff0ca808ee1b9e396935dc562fb9907964",
+          "water": "41898a88c23d40a4d7b69b38bfa679f0a57febb38a27108cb77a865be50796b1",
+          "landuse": "359e9389fe894042450e852b780acc6b623335e7289c35c5350d4c1c2c4bdf77",
+          "roads": "5941c159ea442e1ad737fcd8bb00111a90d9c4d29fd23709d1295a81571fa84d"
+        }
+      },
+      "countryScope": {
+        "kind": "osm-admin0-boundary-v1",
+        "countryISO": "CD",
+        "datasetSha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91",
+        "receiptSha256": "ce7d3965de6ed65bf004ccab00998b190dbf9d8deb8acd9dcc7c084951408ab3",
+        "receiptBytes": 391179,
+        "geometrySha256": "15706359475d039830d9552a05974502c94f01442bb6dd27a8fa5f6e1e82320d",
+        "geometryBytes": 1809753,
+        "relationId": 192795,
+        "scriptSha256": "77aba50a07d455d546c8c1f33d96cff84d62c685188729e01983c7d867cac992",
+        "boundaryKey": "cd",
+        "boundaryJob": {
+          "sourceRunId": 38214533775,
+          "sourceArtifact": "country-boundary-CD-4625deb0c0b1bc35ca65d8ac591f2a754d6eb474",
+          "sourceSha": "4625deb0c0b1bc35ca65d8ac591f2a754d6eb474",
+          "jobName": "boundary (CD)"
+        },
+        "sourceUrl": "https://download.geofabrik.de/africa/congo-democratic-republic-261009.osm.pbf"
       }
     }
   ],

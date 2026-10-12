@@ -1620,6 +1620,9 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       kit.dispose();
       lights.dispose();
       renderer.dispose();
+      // dispose() frees what the renderer made but keeps the WebGL context: a browser holds only so many, and takes the oldest away
+      // (which may be one still on screen) when a scene too many has been opened. A renderer made here gives its context back.
+      if (!providedRenderer) { try { renderer.forceContextLoss?.(); } catch { /* the context is already gone */ } }
       renderer.domElement.remove?.();
       tagLayer?.remove();
     },

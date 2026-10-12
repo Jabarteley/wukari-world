@@ -333,6 +333,6 @@ export async function createDrivingScene(canvas: HTMLCanvasElement, route: Drivi
     },
     setVisible(on) { visible = on; if (on) { lastDraw = 0; schedule() } else { if (frame) cancelAnimationFrame(frame); frame = 0; lastDraw = 0 } },
     resize: fit,
-    dispose() { if (disposed) return; disposed = true; ready = null; if (frame) cancelAnimationFrame(frame); frame = 0; standIn.dispose(); car.userData.dispose(); avatar.userData.dispose(); kit.dispose(); renderer.dispose(); scene.clear() },
+    dispose() { if (disposed) return; disposed = true; ready = null; if (frame) cancelAnimationFrame(frame); frame = 0; standIn.dispose(); car.userData.dispose(); avatar.userData.dispose(); kit.dispose(); renderer.dispose(); try { renderer.forceContextLoss() } catch { /* the context is already gone */ } scene.clear() },
   }
 }

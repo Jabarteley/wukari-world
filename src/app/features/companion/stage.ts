@@ -74,6 +74,6 @@ export async function createStage(canvas: HTMLCanvasElement, px: number, reduced
       if (on) { last = 0; if (!still) start(); else { poke(); start() } } else { running = false; if (frame) { cancelAnimationFrame(frame); frame = 0 } }
     },
     reduced(on) { still = on; rig.setReduced(on); if (!on) start(); else poke() },
-    dispose() { disposed = true; running = false; if (frame) cancelAnimationFrame(frame); rig.dispose(); renderer.dispose() },
+    dispose() { disposed = true; running = false; if (frame) cancelAnimationFrame(frame); rig.dispose(); renderer.dispose(); try { renderer.forceContextLoss() } catch { /* the context is already gone */ } },
   }
 }

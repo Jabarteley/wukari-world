@@ -288,17 +288,30 @@ export function createModelLayer(kit: Kit, cache: ModelCache, options: LayerOpti
     return material;
   }
 
+  /**
+   * Take down what the last build drew. The materials stay: a layer is built again every few steps of a walk (near and far models
+   * follow the camera), and a material thrown away takes its compiled shader with it, so each of those builds stalled the frame
+   * while the same shaders were compiled again. They are let go of when the layer is.
+   */
   function clearBuilt(): void {
     for (const object of meshes) { object.parent?.remove(object); (object as THREE.Mesh).geometry?.dispose?.(); }
     meshes = [];
     releaseObjects(standMeshes);
+    labelTexture?.dispose(); labelTexture = null;
+  }
+  function clearMaterials(): void {
     for (const material of materials.values()) material.dispose();
     materials = new Map();
-    labelTexture?.dispose(); labelTexture = null;
   }
 
   function rebuild(): void {
     clearBuilt();
+    // A kept material follows its atlas: one whose picture arrived (or went) since it was made is made again.
+    for (const [atlas, material] of materials) {
+      if (atlas === 'label') continue;
+      const map = atlas ? cache.source.texture(atlas) : null, held = material as THREE.Material & { map?: THREE.Texture | null };
+      if (Boolean(held.map) === Boolean(map)) held.map = map; else { material.dispose(); materials.delete(atlas); }
+    }
     levels = placements.map((placement, i) => levelFor(placement, i));
     const items: BudgetItem[] = [], itemOf: number[] = [];
     const missing: number[] = [];
@@ -319,6 +332,9 @@ export function createModelLayer(kit: Kit, cache: ModelCache, options: LayerOpti
     for (const i of drawn) for (const text of Object.values(placements[i]!.labels ?? {})) labelTexts.add(text);
     const { cell, rows } = labelCells(labelTexts);
     if (labelTexts.size) labelTexture = paintLabels(THREE, cell, rows, style);
+    // The label sheet is painted again with each build: the material that shows it is kept, unless it gained or lost its sheet.
+    const labelMaterial = materials.get('label') as (THREE.Material & { map?: THREE.Texture | null }) | undefined;
+    if (labelMaterial) { if (Boolean(labelMaterial.map) === Boolean(labelTexture)) labelMaterial.map = labelTexture; else { labelMaterial.dispose(); materials.delete('label'); } }
     const labelled = Boolean(labelTexture);
 
     // Gather merge groups.
@@ -469,6 +485,6 @@ export function createModelLayer(kit: Kit, cache: ModelCache, options: LayerOpti
     },
     stats: () => stats,
     anchors: (prefix) => lights.filter((light) => light.model.split(':').pop()!.startsWith(prefix)),
-    dispose() { disposed = true; clearBuilt(); for (const g of instanceGeometry.values()) g.dispose(); instanceGeometry.clear(); group.parent?.remove(group); placements.length = 0; },
+    dispose() { disposed = true; clearBuilt(); clearMaterials(); for (const g of instanceGeometry.values()) g.dispose(); instanceGeometry.clear(); group.parent?.remove(group); placements.length = 0; },
   };
 }

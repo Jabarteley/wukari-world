@@ -357,7 +357,7 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     this.sleeps = env.SLEEP_BETWEEN_BEATS === '1';
     // Where the store is taken to is this build's own word (store-release.ts); the variables are for tests and for an operator who must overrule it.
     const stepChars = Number(env.STORE_STEP_CHARS);
-    this.store = createSqliteStore(storage, { barrier, lazyFlushMs: this.sleeps ? 0 : LAZY_FLUSH_MS, target: parseLayout(env.STORE_LAYOUT) ?? RELEASE_STORE_LAYOUT, ...(Number.isSafeInteger(stepChars) && stepChars > 0 ? { stepChars } : {}), log });
+    this.store = createSqliteStore(storage, { barrier, lazyFlushMs: this.sleeps ? 0 : LAZY_FLUSH_MS, target: parseLayout(env.STORE_LAYOUT) ?? RELEASE_STORE_LAYOUT, ...(Number.isSafeInteger(stepChars) && stepChars > 0 ? { stepChars } : {}), ready: () => this.booted, log });
     this.images = createSqliteImages(storage);
     this.showcaseImages = keepAlways(createSqliteImages(storage, 'showcase_images'));
     this.voices = createSqliteVoices(storage);

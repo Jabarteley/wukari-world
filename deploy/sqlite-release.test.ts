@@ -359,3 +359,33 @@ test('a text longer than a row is never cut in the middle of a character: every 
     assert.equal(await shards.read('lagos'), line + line, `shard, ${pad}`);
   }
 });
+
+test('nothing is copied while the host says the object is still starting, and a copy that was cut off twice is left to the operator', async () => {
+  const t = testStorage(); seed(t, 60);
+  let started = false;
+  const store = open(t.storage, { target: 'entries', ready: () => started });
+  await store.transact((db) => change(db, 0.1, 0.4, 1));
+  let now = await status(store);
+  assert.equal(now.release.pending.length, KEYED.length); assert.equal(now.stored, null);
+  assert.equal((t.db.prepare('SELECT COUNT(*) AS n FROM entries').get() as { n: number }).n, 0);
+  started = true;
+  await store.read(() => undefined);
+  assert.equal((await status(store)).stored, 'entries');
+
+  // Two starts died while copying `social` (each wrote its try down first): the third start leaves it alone and says so.
+  const cut = testStorage(); seed(cut, 60);
+  open(cut.storage);
+  cut.db.prepare("INSERT INTO store_meta(key,value) VALUES('copying:social','2')").run();
+  const third = open(cut.storage, { target: 'entries' });
+  await third.read(() => undefined);
+  now = await status(third);
+  assert.match(now.collections['social']?.error ?? '', /cut off 2 times/);
+  assert.deepEqual(now.release.pending, ['social']); assert.equal(now.stored, null);
+  await third.transact((db) => change(db, 0.1, 0.4, 2));
+  // The operator copies it at a moment of their choosing; the next start goes on.
+  await third.layout.migrate(['social']);
+  assert.equal(meta(cut, 'copying:social'), undefined);
+  const fourth = open(cut.storage, { target: 'entries' });
+  await fourth.read(() => undefined);
+  assert.equal((await status(fourth)).stored, 'entries');
+});

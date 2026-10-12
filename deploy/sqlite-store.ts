@@ -89,12 +89,19 @@ export interface SqliteStoreOptions {
   stepChars?: number
   /** A collection longer than this is not copied by the store itself: it stays as it was and the status says so. */
   maxStepChars?: number
+  /**
+   * May the store move itself now? The host answers false while the object is starting: a start must never wait for a copy, and
+   * the writes of a start are not confirmed one by one, so a copy made then would be neither bounded nor resumable.
+   */
+  ready?: () => boolean
 }
 export type { StoreLayout };
 /** How long the legacy rows are kept after the switch to `entries`. */
 export const SAFETY_DAYS = 14;
 /** What the store copies before one transaction while it moves itself, and the longest collection it will copy unasked (three times its text is held while it is cut and read back; the object has 128 MB). */
 export const STEP_CHARS = 4000000, MAX_STEP_CHARS = 24000000;
+/** How many times the store starts the copy of one collection by itself. */
+export const COPY_TRIES = 2;
 const RANK: Readonly<Record<StoreLayout, number>> = { legacy: 0, shadow: 1, entries: 2 };
 /** A short fingerprint of a text (FNV-1a over its characters, 53 bits), for comparing stores without moving them. */
 function hashOf(text: string | undefined): string | null {
@@ -105,8 +112,8 @@ function hashOf(text: string | undefined): string | null {
 }
 /**
  * Where a part of `text` that starts at `start` ends: `chunk` characters on, or one fewer when that would cut a character outside
- * the basic plane in two (an emoji is two units of a JavaScript string). Half a character cannot be stored: the storage would keep
- * U+FFFD in its place, twice, and the text read back would no longer be the text written.
+ * the basic plane in two (an emoji is two units of a JavaScript string). Half a character cannot be stored: the storage keeps
+ * U+FFFD in place of each half, and the text read back is no longer the text written.
  */
 export function cutAt(text: string, start: number, chunk: number): number {
   const end = start + chunk;
@@ -126,7 +133,7 @@ const toStorageError = storageError as (error: unknown) => Error;
 type Cache<T> = Map<string, T | undefined>;
 interface ReceiptEntry<R extends ReceiptRecord> { cache: Cache<R>; original: Map<string, string | undefined>; map: Record<string, R | undefined> }
 
-export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk = CHUNK, barrier = () => storage.sync(), lazyFlushMs = 0, layout: wantedLayout = 'legacy', log = () => {}, shadowSample = 50, target, stepChars = STEP_CHARS, maxStepChars = MAX_STEP_CHARS }: SqliteStoreOptions = {}): SqliteStore {
+export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk = CHUNK, barrier = () => storage.sync(), lazyFlushMs = 0, layout: wantedLayout = 'legacy', log = () => {}, shadowSample = 50, target, stepChars = STEP_CHARS, maxStepChars = MAX_STEP_CHARS, ready = () => true }: SqliteStoreOptions = {}): SqliteStore {
   const sql = storage.sql;
   migrateSqliteSchema(storage);
   const openedEpoch = mainStoreAuthority(storage).epoch;
@@ -358,6 +365,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
         if (count !== entries) throw new Error(`The entries of ${coll} number ${count}, not ${entries}`);
       }
       metaPut(`synced:${coll}`, JSON.stringify({ at: Date.now(), entries, rows, chars }));
+      sql.exec('DELETE FROM store_meta WHERE key = ?', `copying:${coll}`);
     });
     synced.add(coll);
     const ms = Date.now() - began;
@@ -472,6 +480,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
   async function prepare(): Promise<void> {
     if (!writableNow()) { if (flushTimer !== null) { clearTimeout(flushTimer); flushTimer = null; } return; }
     if (layout === 'legacy') return;
+    if (target !== undefined && !ready()) return;
     let copied = 0, more = false;
     for (const coll of Object.keys(KEYED_SPECS)) {
       if (synced.has(coll) || migrationErrors.has(coll)) continue;
@@ -484,6 +493,17 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
         continue;
       }
       if (target !== undefined && copied > 0 && copied + chars > stepChars) { more = true; break; }
+      if (target !== undefined && chars > 0) {
+        // A copy that takes the object down with it (out of memory, out of time) would do so again at every start. Each try is
+        // written down first, and a collection whose copy was cut off twice is left as it is until the operator asks for it.
+        const tries = Number(metaGet(`copying:${coll}`) ?? 0) || 0;
+        if (tries >= COPY_TRIES) {
+          migrationErrors.set(coll, `its copy was cut off ${tries} times and is not tried again unasked`);
+          log(`Store: ${coll} stays as it was: ${migrationErrors.get(coll)}`);
+          continue;
+        }
+        try { await commitTools(() => { metaPut(`copying:${coll}`, String(tries + 1)); }); } catch (error) { migrationErrors.set(coll, error instanceof Error ? error.message : String(error)); continue; }
+      }
       try {
         const result = await commitTools(() => backfill(coll), true);
         copied += chars;
@@ -887,7 +907,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
         pending: layout === 'legacy' ? [] : keyedNames().filter(name => !synced.has(name)), refusal: switchRefusal,
         stepChars, maxStepChars, steps: { ...steps },
       },
-      collections: Object.fromEntries(keyedNames().map(name => [name, { mode: isLayered(name) ? 'entries' : 'legacy', synced: synced.has(name), legacyRow: legacyRow(name), legacyChars: legacyChars(name), entries: entryCount(name), copied: copyRecord(name), error: migrationErrors.get(name) ?? null }])),
+      collections: Object.fromEntries(keyedNames().map(name => [name, { mode: isLayered(name) ? 'entries' : 'legacy', synced: synced.has(name), legacyRow: legacyRow(name), legacyChars: legacyChars(name), entries: entryCount(name), copied: copyRecord(name), copyTries: Number(metaGet(`copying:${name}`) ?? 0) || 0, error: migrationErrors.get(name) ?? null }])),
     };
   }
   /** Every layered collection's whole text as the entry rows hold it, or as the legacy value holds it. */

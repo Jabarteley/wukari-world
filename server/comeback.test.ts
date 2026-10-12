@@ -90,10 +90,11 @@ test('consent: confirming starts the preference on with the sentence; without an
   assert.equal(h.comebackMails().filter((mail) => /Bola/.test(mail.subject)).length, 0, 'no need alert: that type is off until they turn it on');
   h.go(3, 12); await h.run(); await h.run();
   assert.deepEqual(h.comebackMails().map((mail) => mail.subject), ['Your world is still here'], 'exactly one away mail, three days on');
-  const lastSent = (await h.hello(bola)).contact.comeback.lastSent;
-  assert.ok(lastSent > 0 && lastSent <= h.f.now(), 'the player\u2019s own view says when the last mail went');
+  // The player's own view says when the last mail went (read without a visit, which would change the schedule); another player's mail is not in it.
+  const lastSent = (await h.post('/api/growth/comeback', { cityId: 'lagos' }, bola)).comeback.lastSent;
+  assert.ok(lastSent > 0 && lastSent <= h.f.now());
   assert.equal(old.lastSent, 0, 'and 0 before any');
-  assert.equal((await h.hello(ada)).contact.comeback.lastSent, 0, 'one player\u2019s mail is not another\u2019s');
+  assert.equal((await h.post('/api/growth/comeback', { cityId: 'lagos' }, ada)).comeback.lastSent, 0);
   // Unsubscribing from everything still ends it, and the master switch is the player's to turn on again.
   const everything = must(/^<https:\/\/play\.example(\/e\/unsub\?t=[^>]+)>$/.exec(must(must(h.mails().at(-1)).headers['List-Unsubscribe'])))[1] ?? '';
   assert.equal((await h.page(everything, 'POST', 'List-Unsubscribe=One-Click')).status, 200);

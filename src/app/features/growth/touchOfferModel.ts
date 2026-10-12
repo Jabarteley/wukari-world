@@ -2,7 +2,7 @@
 // Made once per account: the sign-in that creates it leaves a mark on this device, and the mark is taken away when the
 // offer is answered or closed. The offer never switches anything on; the Stay in touch app has every question.
 export const TOUCH_OFFER_KEY = 'allworld-touch-offer'
-export const TOUCH_OFFER_WORDS = Object.freeze({ title: 'Stay in touch', text: 'Hear when a friend is waiting or your character needs you. Optional, and off until you say so.', action: 'Open Stay in touch' })
+export const TOUCH_OFFER_WORDS = Object.freeze({ title: 'Stay in touch', text: 'Hear when a friend is waiting. Optional, off until you say so.', action: 'Set up' })
 
 type Reader = Pick<Storage, 'getItem'> | null | undefined
 type Writer = Pick<Storage, 'setItem' | 'removeItem'> | null | undefined

@@ -10,7 +10,7 @@ const emit = defineEmits<{ open: []; dismiss: [] }>()
 <template>
   <section class="toff" role="region" aria-label="Stay in touch" data-touch-offer>
     <p><span class="toff-lead">{{ TOUCH_OFFER_WORDS.title }}</span><span class="toff-dot" aria-hidden="true"> · </span><span class="toff-ask">{{ TOUCH_OFFER_WORDS.text }}</span></p>
-    <button type="button" class="toff-go" data-touch-offer-open @click="emit('open')">{{ TOUCH_OFFER_WORDS.action }}</button>
+    <button type="button" class="toff-go" data-touch-offer-open aria-label="Open Stay in touch" @click="emit('open')">{{ TOUCH_OFFER_WORDS.action }}</button>
     <button type="button" class="toff-x" data-touch-offer-dismiss aria-label="Not now" title="Not now" @click="emit('dismiss')"><GameIcon name="close" :size="16" /></button>
   </section>
 </template>

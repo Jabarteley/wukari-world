@@ -20,6 +20,7 @@ jobs:
       driver: ${{ steps.plan.outputs.driver }}
       batch: ${{ steps.plan.outputs.batch }}
       cities: ${{ steps.plan.outputs.cities }}
+      roundtrip: ${{ steps.plan.outputs.roundtrip }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -262,10 +263,13 @@ jobs:
         working-directory: app
         env:
           CITY: ${{ matrix.city }}
+          ROUNDTRIP: ${{ needs.plan.outputs.roundtrip }}
         run: |
           set -euo pipefail
           export CHROME_BIN="$(command -v google-chrome)"
-          node --experimental-strip-types scripts/journeys/map-shots.ts             --out "$ACCEPTANCE_LOGS" --port 4423 --debug-port 4424             --cities "$CITY" --phone-cities "$CITY" --phones 390x844,320x568             --short '' --lean --clock-hour 12 --label-audit --phone-ui-audit             2>&1 | tee "$ACCEPTANCE_LOGS/browser.log"
+          journey_flags=()
+          if [ "$ROUNDTRIP" = true ]; then journey_flags+=(--roundtrip); fi
+          node --experimental-strip-types scripts/journeys/map-shots.ts             --out "$ACCEPTANCE_LOGS" --port 4423 --debug-port 4424             --cities "$CITY" --phone-cities "$CITY" --phones 390x844,320x568             --short '' --lean --clock-hour 12 --label-audit --phone-ui-audit "${journey_flags[@]}"             2>&1 | tee "$ACCEPTANCE_LOGS/browser.log"
           node --input-type=module -e 'import {readFileSync} from "node:fs"; const r=JSON.parse(readFileSync(process.env.ACCEPTANCE_LOGS+"/timings.json","utf8")); if(r.aborted || r.consoleErrors?.length) throw Error(JSON.stringify({aborted:r.aborted,errors:r.consoleErrors}));'
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: ${{ always() }}

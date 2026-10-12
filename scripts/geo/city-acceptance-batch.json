@@ -2,13 +2,18 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "africa-three-valid-roundtrips",
-      "appSha": "a6cde9a39ec211f60a16fd6f97301e884298f538",
-      "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc",
+      "id": "world-entry-seven",
+      "appSha": "0c639c329135cd8351d11e4613454c3a6c77c023",
+      "driverSha": "9b5673c6cb527b3fbe8e70bf761cb396f8ada843",
+      "roundtrip": true,
       "cities": [
-        "ndjamena",
-        "bujumbura",
-        "antananarivo"
+        "apia",
+        "suva",
+        "dubai",
+        "mexico-city",
+        "buenos-aires",
+        "bogota",
+        "santiago"
       ]
     }
   ]

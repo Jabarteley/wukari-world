@@ -10,12 +10,13 @@ if (mode === 'plan') {
   for (const batch of config.queue) {
     if (!/^[a-z0-9-]+$/.test(batch.id) || ids.has(batch.id)) fail('Invalid or duplicate batch id');
     ids.add(batch.id);
+    if (batch.roundtrip !== undefined && typeof batch.roundtrip !== 'boolean') fail('Invalid roundtrip flag');
     for (const key of ['appSha', 'driverSha']) if (!/^[a-f0-9]{40}$/.test(batch[key])) fail(`Invalid ${key}`);
     if (!Array.isArray(batch.cities) || batch.cities.length < 1 || batch.cities.length > 10 || new Set(batch.cities).size !== batch.cities.length || batch.cities.some(city => !/^[a-z0-9-]+$/.test(city))) fail('Batch must contain one to ten unique city ids');
   }
   // Queue only new work. Completed/current batches are removed by the operator, never inferred or rerun here.
   const batch = config.queue[0];
-  const output = { active: String(Boolean(batch)), app: batch?.appSha ?? '', driver: batch?.driverSha ?? '', batch: batch?.id ?? '', cities: JSON.stringify(batch?.cities ?? []) };
+  const output = { active: String(Boolean(batch)), app: batch?.appSha ?? '', driver: batch?.driverSha ?? '', batch: batch?.id ?? '', roundtrip: String(batch?.roundtrip === true), cities: JSON.stringify(batch?.cities ?? []) };
   writeFileSync('acceptance-plan.json', JSON.stringify({ nodeVersion: '24.19.0', shards: 4, ...output, queue: config.queue }, null, 2));
   if (process.env.GITHUB_OUTPUT) for (const [key, value] of Object.entries(output)) appendFileSync(process.env.GITHUB_OUTPUT, `${key}=${value}\n`);
   console.log(JSON.stringify(output));

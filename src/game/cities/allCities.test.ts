@@ -217,7 +217,7 @@ test('each playable city can settle, work, eat, rest, travel to three cities, re
     const targets = [...new Set(linksFrom(module.id).filter((link) => link.status !== 'coming').map((link) => link.to))].slice(0, 3)
     assert.equal(targets.length, 3, `${module.id}: three reachable cities`)
     let current = module.id
-    for (const target of [...targets, module.id]) {
+    for (const target of targets.flatMap(target => [target, module.id])) {
       const link = linksFrom(current).find((candidate) => candidate.to === target && candidate.status !== 'coming')
       assert.ok(link, `${current}: route to ${target}`)
       state.cash = Math.max(state.cash, (link!.fare * 4) + 1000)

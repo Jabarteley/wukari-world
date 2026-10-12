@@ -2,7 +2,7 @@ name: North America US boundary resource diagnostic
 on:
   push:
     branches: ['codex/world-north-america-20261011']
-    paths: ['scripts/geo/north-america-source/us-boundary.json', 'scripts/geo/north-america-source/canada-highest-point.patch', '.github/workflows/north-america-us-boundary.yml']
+    paths: ['scripts/geo/north-america-source/us-boundary.json', 'scripts/geo/north-america-source/canada-highest-point.patch', 'scripts/geo/north-america-source/canada-boundary-memory.patch', 'scripts/geo/north-america-source/boundary-run-monitor.py', '.github/workflows/north-america-us-boundary.yml']
 permissions:
   contents: read
 concurrency:
@@ -25,12 +25,16 @@ jobs:
           ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
           path: boundary-tooling
           persist-credentials: false
-      - name: Apply the reviewed auxiliary-node role rule
+      - name: Apply the reviewed auxiliary-node role rule and disk-backed location indexes
         run: |
           set -euo pipefail
           echo "99a7f9bb4934dd648e7843112fb7eb0d5e5194ae3417434e5d13aa7bbb5ea584  scripts/geo/north-america-source/canada-highest-point.patch" | sha256sum --check
+          echo "dc235572e3e3bbfbcfffd44739b778af26e60dadb63a74b8702f375259c45ebb  scripts/geo/north-america-source/canada-boundary-memory.patch" | sha256sum --check
           test "$(git -C boundary-tooling rev-parse HEAD)" = "0786c00510f2827d6495a53fc3299f3112d0d6b4"
+          git -C boundary-tooling apply "$GITHUB_WORKSPACE/scripts/geo/north-america-source/canada-boundary-memory.patch"
           git -C boundary-tooling apply "$GITHUB_WORKSPACE/scripts/geo/north-america-source/canada-highest-point.patch"
+          grep -Fq "idx=f'sparse_file_array,{ways_location_index}'" boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py
+          grep -Fq ".with_locations(storage=f'sparse_file_array,{areas_location_index}')" boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py
           grep -Fq "(args.country == 'CA' and relation['id'] == 1428125 and member['ref'] == 618700710) or (args.country == 'US' and relation['id'] == 148838 and member['ref'] == 2748929230)" boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py
           grep -Fq "iso === 'CA' && relation.id === 1428125 && member.ref === 618700710 || iso === 'US' && relation.id === 148838 && member.ref === 2748929230" boundary-tooling/scripts/geo/factory/country-scope.mjs
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -43,7 +47,7 @@ jobs:
           df -B1 "$RUNNER_TEMP" > "$RUNNER_TEMP/us-boundary/publish/resources/disk-before.txt"
           free -b > "$RUNNER_TEMP/us-boundary/publish/resources/memory-before.txt"
           python - <<'PY'
-          import hashlib, json, os, shutil, subprocess
+          import hashlib, json, osmium, os, shutil, subprocess
           from pathlib import Path
           root = Path(os.environ['RUNNER_TEMP']) / 'us-boundary'
           publish = root / 'publish'
@@ -61,9 +65,16 @@ jobs:
               patch_sha = hashlib.sha256(patch_path.read_bytes()).hexdigest()
               if patch_sha != '99a7f9bb4934dd648e7843112fb7eb0d5e5194ae3417434e5d13aa7bbb5ea584':
                   raise ValueError('auxiliary-node role patch digest mismatch')
+              memory_patch_path = Path('scripts/geo/north-america-source/canada-boundary-memory.patch')
+              memory_patch_sha = hashlib.sha256(memory_patch_path.read_bytes()).hexdigest()
+              if memory_patch_sha != 'dc235572e3e3bbfbcfffd44739b778af26e60dadb63a74b8702f375259c45ebb':
+                  raise ValueError('disk-backed location-index patch digest mismatch')
+              index_types = osmium.index.map_types()
+              if 'sparse_file_array' not in index_types:
+                  raise ValueError('pinned pyosmium does not provide sparse_file_array')
               disk = shutil.disk_usage(root)
-              reserve = 3 * 1024 ** 3
-              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': patch_sha, 'assembledHelperSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py').read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'availableMemoryBytes': None, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'boundaryBudgetSeconds': 2700}
+              reserve = 24 * 1024 ** 3
+              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': patch_sha, 'memoryPatchSha256': memory_patch_sha, 'locationIndexType': 'sparse_file_array', 'availableLocationIndexTypes': index_types, 'assembledHelperSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py').read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'availableMemoryBytes': None, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'boundaryBudgetSeconds': 2700}
               memory = Path(publish / 'resources/memory-before.txt').read_text()
               for line in memory.splitlines():
                   if line.startswith('Mem:'):
@@ -73,7 +84,7 @@ jobs:
                       break
               (publish / 'resources/preflight.json').write_text(json.dumps(proof, indent=2) + '\n')
               if disk.free < request['bytes'] + reserve:
-                  raise ValueError(f'insufficient free disk: {disk.free}; require {request["bytes"] + reserve} bytes including 3 GiB reserve')
+                  raise ValueError(f'insufficient free disk: {disk.free}; require {request["bytes"] + reserve} bytes including 24 GiB for one sequential location-index sidecar')
               result.update(status='PREFLIGHT_PASSED', reason='Exact pins/tooling and measured disk preflight passed')
           except Exception as error:
               result['reason'] = str(error)
@@ -124,21 +135,64 @@ jobs:
           diagnostic_rc=$?
           printf '%s\n' "$diagnostic_rc" > "$RUNNER_TEMP/us-boundary/publish/resources/download-exit.txt"
           exit "$diagnostic_rc"
+      - name: Preserve verified-source pre-boundary snapshot
+        if: steps.download.outcome == 'success'
+        run: |
+          set -euo pipefail
+          python scripts/geo/north-america-source/boundary-run-monitor.py \
+            --root "$RUNNER_TEMP/us-boundary" \
+            --output "$RUNNER_TEMP/us-boundary/publish/resources/pre-boundary.jsonl"
+          mkdir -p "$RUNNER_TEMP/us-boundary/pre-boundary"
+          cp "$RUNNER_TEMP/us-boundary/publish/result.json" "$RUNNER_TEMP/us-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/us-boundary/publish/source-receipt.json" "$RUNNER_TEMP/us-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/us-boundary/publish/resources/preflight.json" "$RUNNER_TEMP/us-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/us-boundary/publish/resources/disk-before.txt" "$RUNNER_TEMP/us-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/us-boundary/publish/resources/memory-before.txt" "$RUNNER_TEMP/us-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/us-boundary/publish/resources/download-time.txt" "$RUNNER_TEMP/us-boundary/pre-boundary/"
+          cp "$RUNNER_TEMP/us-boundary/publish/resources/pre-boundary.jsonl" "$RUNNER_TEMP/us-boundary/pre-boundary/"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: steps.download.outcome == 'success'
+        with:
+          name: north-america-us-pre-boundary-${{ github.sha }}
+          path: ${{ runner.temp }}/us-boundary/pre-boundary
+          if-no-files-found: error
+          retention-days: 14
       - name: Assemble only the same-source US boundary within 45 minutes
         id: boundary
         if: steps.download.outcome == 'success'
         continue-on-error: true
         run: |
+          set -uo pipefail
+          monitor_pid=''
+          boundary_pid=''
+          capture_signal() {
+            signal_name="$1"
+            printf '%s\n' "$signal_name" > "$RUNNER_TEMP/us-boundary/publish/resources/boundary-signal.txt"
+            printf 'utc=%s bash_pid=%s boundary_pid=%s monitor_pid=%s\n' "$(date -u +%FT%TZ)" "$$" "${boundary_pid:-}" "${monitor_pid:-}" \
+              > "$RUNNER_TEMP/us-boundary/publish/resources/boundary-signal-context.txt"
+            printf 'DIAG_SIGNAL signal=%s utc=%s bash_pid=%s boundary_pid=%s monitor_pid=%s\n' "$signal_name" "$(date -u +%FT%TZ)" "$$" "${boundary_pid:-}" "${monitor_pid:-}"
+            if [[ -n "$monitor_pid" ]]; then kill -TERM "$monitor_pid" 2>/dev/null || true; fi
+            if [[ -n "$boundary_pid" ]]; then kill -TERM "$boundary_pid" 2>/dev/null || true; fi
+          }
+          trap 'capture_signal SIGTERM' TERM
+          trap 'capture_signal SIGINT' INT
           source_sha=$(python -c 'import json,os; from pathlib import Path; print(json.loads((Path(os.environ["RUNNER_TEMP"])/"us-boundary/publish/source-receipt.json").read_text())["sha256"])')
-          set +e
+          printf 'DIAG_BOUNDARY_START utc=%s bash_pid=%s source_sha256=%s\n' "$(date -u +%FT%TZ)" "$$" "$source_sha"
           /usr/bin/time -v -o "$RUNNER_TEMP/us-boundary/publish/resources/boundary-time.txt" timeout --signal=TERM --kill-after=30s 45m \
             python boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py \
             --pbf "$RUNNER_TEMP/us-boundary/country.osm.pbf" --country US \
             --expected-sha256 "$source_sha" --expected-bytes 12196456372 \
             --dataset-url https://download.geofabrik.de/north-america/us-261009.osm.pbf \
             --dataset-date 2026-10-09 --out "$RUNNER_TEMP/us-boundary/publish/boundary" \
-            > "$RUNNER_TEMP/us-boundary/publish/resources/boundary.log" 2>&1
+            > "$RUNNER_TEMP/us-boundary/publish/resources/boundary.log" 2>&1 &
+          boundary_pid=$!
+          python scripts/geo/north-america-source/boundary-run-monitor.py \
+            --root "$RUNNER_TEMP/us-boundary" --pid "$boundary_pid" --interval 5 \
+            --output "$RUNNER_TEMP/us-boundary/publish/resources/boundary-samples.jsonl" --mirror-stdout &
+          monitor_pid=$!
+          wait "$boundary_pid"
           diagnostic_rc=$?
+          wait "$monitor_pid" || true
           printf '%s\n' "$diagnostic_rc" > "$RUNNER_TEMP/us-boundary/publish/resources/boundary-exit.txt"
           exit "$diagnostic_rc"
       - name: Preserve measured result and precise HOLD on failure

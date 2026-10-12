@@ -63,6 +63,51 @@ async function boundsProof(target, facts, root) {
             && facts.airport.lat === Number(airport.latitude_deg)
             && facts.country.idISOlower.toUpperCase() === airport.iso_country;
     });
+    await check('metadataReview', () => {
+        const review = target.metadataReview ?? {}, centre = provenance.centre ?? {}, airport = provenance.airport ?? {},
+            timezone = provenance.timezone ?? {}, airportRow = airport.row;
+        const expected = {
+            centre: { osmRef: centre.osmRef, pbfSha256: centre.pbfSha256 },
+            airport: { ident: airportRow?.ident, csvSha256: airport.csvSha256 },
+            timezone: { id: facts.timezone, zoneTabSha256: timezone.zoneTabSha256 },
+        };
+        const matches = {
+            centreOsmRef: review.centre?.osmRef === expected.centre.osmRef
+                && expected.centre.osmRef === centre.sourceRecord?.ref
+                && typeof expected.centre.osmRef === 'string'
+                && facts.sourceUrl === `https://www.openstreetmap.org/${expected.centre.osmRef}`,
+            centreName: review.centre?.name === (centre.sourceRecord?.tags?.['name:en'] ?? centre.sourceRecord?.tags?.name)
+                && facts.name === (centre.sourceRecord?.tags?.['name:en'] ?? centre.sourceRecord?.tags?.name),
+            centrePbfSha256: review.centre?.pbfSha256 === expected.centre.pbfSha256
+                && expected.centre.pbfSha256 === provenance.pbf?.sha256
+                && expected.centre.pbfSha256 === target.sourceJob?.datasetSha256
+                && typeof expected.centre.pbfSha256 === 'string' && /^[0-9a-f]{64}$/.test(expected.centre.pbfSha256),
+            airportIdent: review.airport?.ident === expected.airport.ident
+                && typeof expected.airport.ident === 'string'
+                && facts.airport.sourceUrl === `https://ourairports.com/airports/${expected.airport.ident}/`,
+            countryISO: review.countryISO === facts.country.idISOlower.toUpperCase()
+                && review.countryISO === airportRow?.iso_country,
+            airportScheduledService: review.airport?.scheduledService === airportRow?.scheduled_service
+                && airportRow?.scheduled_service === 'yes',
+            airportCsvSha256: review.airport?.csvSha256 === expected.airport.csvSha256
+                && typeof expected.airport.csvSha256 === 'string' && /^[0-9a-f]{64}$/.test(expected.airport.csvSha256),
+            timezoneId: review.timezone?.id === expected.timezone.id
+                && timezone.rows?.length === 1 && timezone.rows[0]?.[2] === expected.timezone.id
+                && timezone.rows[0]?.[0]?.split(',').includes(facts.country.idISOlower.toUpperCase()),
+            timezoneZoneTabSha256: review.timezone?.zoneTabSha256 === expected.timezone.zoneTabSha256
+                && typeof expected.timezone.zoneTabSha256 === 'string' && /^[0-9a-f]{64}$/.test(expected.timezone.zoneTabSha256),
+        };
+        const evidenceSha256 = review.evidenceSha256;
+        checks.metadataReview = {
+            reviewStatus: review.status ?? null,
+            evidenceSha256: typeof evidenceSha256 === 'string' ? evidenceSha256 : null,
+            expected,
+            matches,
+        };
+        return review.status === 'REVIEWED'
+            && typeof evidenceSha256 === 'string' && /^[0-9a-f]{64}$/.test(evidenceSha256)
+            && Object.values(matches).every(Boolean);
+    });
     await check('appGeometryFunctions', () => {
         const source = readFileSync(join(root, 'scripts/geo/destination-detail/geometry-tools.ts'), 'utf8');
         const actual = [

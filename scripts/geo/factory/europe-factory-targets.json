@@ -492,6 +492,25 @@
           "landuse": "411b6a02b6325c0345348accc005c46373aa284bd9c7ac900a25d65f66a49096",
           "roads": "a66d79f0586de8826f2e0c62364582e5e70cbadca6e237d983704e25fc7a9c94"
         }
+      },
+      "metadataReview": {
+        "status": "REVIEWED",
+        "evidenceSha256": "6a6f763b148d74e0033d4ad8b28fa7ea8c97d3a3625f04cdd2dbcb5bf69bd719",
+        "countryISO": "IT",
+        "centre": {
+          "name": "Rome",
+          "osmRef": "node/72959652",
+          "pbfSha256": "3569e9ea04b4cac92d3859630f2ca672d732c1f1f3a7ee8f7c931d9d8d817c4c"
+        },
+        "airport": {
+          "ident": "LIRF",
+          "csvSha256": "bee4e45e2f3b3acb463af0b2bf7bd2fa5abbb324cb9519766fcab0acb33ecaaf",
+          "scheduledService": "yes"
+        },
+        "timezone": {
+          "id": "Europe/Rome",
+          "zoneTabSha256": "7cc78ea166261b3dedf951cdd721051460851e6fcd96c12b8e3194cf25677f21"
+        }
       }
     },
     {
@@ -1524,6 +1543,25 @@
           "sourceSha": "a19c28b0c98e3ac25d1a01679c289bd419ef1760",
           "sourceArtifact": "city-bootstrap-ie-a19c28b0c98e3ac25d1a01679c289bd419ef1760",
           "artifactSubdirectory": "country-boundary"
+        }
+      },
+      "metadataReview": {
+        "status": "REVIEWED",
+        "evidenceSha256": "6a6f763b148d74e0033d4ad8b28fa7ea8c97d3a3625f04cdd2dbcb5bf69bd719",
+        "countryISO": "IE",
+        "centre": {
+          "name": "Dublin",
+          "osmRef": "node/3473474851",
+          "pbfSha256": "27debc861b7b168891b1e7f59da29043312e175161b19d619065da67fbdf6ca4"
+        },
+        "airport": {
+          "ident": "EIDW",
+          "csvSha256": "bee4e45e2f3b3acb463af0b2bf7bd2fa5abbb324cb9519766fcab0acb33ecaaf",
+          "scheduledService": "yes"
+        },
+        "timezone": {
+          "id": "Europe/Dublin",
+          "zoneTabSha256": "7cc78ea166261b3dedf951cdd721051460851e6fcd96c12b8e3194cf25677f21"
         }
       }
     }

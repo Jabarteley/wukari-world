@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue';
 import { mkdirSync, readFileSync, readdirSync, renameSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import type { Plugin } from 'vite';
+import { createContext, runInContext } from 'node:vm';
+import { DATA_MODULE, splitDataModule } from './scripts/typecheck-data-stubs.ts';
 
 const wantMaps = process.env.SOURCEMAPS === '1';
 const MAPS_DIR = 'dist-maps';
@@ -111,6 +113,45 @@ function leaveOutProvenance(): Plugin {
 }
 
 /**
+ * A city's generated terrain, geometry and places modules are one typed literal of up to several megabytes of coordinates
+ * (scripts/typecheck-data-stubs.ts). Parsed as code, every number is a syntax node that Rollup holds for the whole build and the
+ * minifier walks three times; at 163 cities that took the build past 8 GB of heap. Here such a module is handed over as the same
+ * constant made by `JSON.parse` of one string, which Rollup and the minifier pass over as a single token. The value is checked to
+ * survive JSON exactly (numbers by Object.is, so -0 or NaN would keep the module as written); the chunk keeps its name and place.
+ */
+function cityDataAsJson(): Plugin {
+  const same = (a: unknown, b: unknown): boolean => {
+    if (typeof a === 'number' || typeof b === 'number') return Object.is(a, b)
+    if (a === null || b === null || typeof a !== 'object' || typeof b !== 'object') return a === b && (typeof a === 'string' || typeof a === 'boolean' || a === null)
+    if (Array.isArray(a) !== Array.isArray(b) || Object.getPrototypeOf(a) !== Object.getPrototypeOf(b)) return false
+    if (Array.isArray(a) && Array.isArray(b)) {
+      if (a.length !== b.length) return false
+      for (let index = 0; index < a.length; index += 1) if (!(index in a) || !same(a[index], b[index])) return false
+      return true
+    }
+    const keys = Object.keys(a), other = Object.keys(b)
+    return keys.length === other.length && keys.every((key, index) => key === other[index] && same((a as Record<string, unknown>)[key], (b as Record<string, unknown>)[key]))
+  }
+  return {
+    name: 'allworld:city-data-as-json',
+    apply: 'build',
+    enforce: 'pre',
+    load(id) {
+      if (!DATA_MODULE.test(id)) return null
+      const parts = splitDataModule(readFileSync(id, 'utf8'))
+      if (!parts) return null
+      const context = createContext(Object.create(null))
+      const value: unknown = runInContext(`(${parts.literal.trim().replace(/;$/, '')})`, context, { timeout: 30_000 })
+      const json = JSON.stringify(value)
+      // The value was made in another realm: compare it with its JSON copy made in that realm, so the prototypes match.
+      const parse = (runInContext('JSON', context) as JSON).parse
+      if (typeof json !== 'string' || !same(value, parse(json))) { this.warn(`${id} does not survive JSON exactly: bundled as written`); return null }
+      return `${parts.head}export const ${parts.name}: ${parts.type} = JSON.parse('${json.replace(/[\\']/g, '\\$&')}')\n`
+    },
+  }
+}
+
+/**
  * In a production browser build a synchronous reader of the world city network called before it loaded reports once instead of
  * throwing (src/game/cities/registry.ts); the development server, the tests, Node and the Worker throw.
  */
@@ -178,7 +219,7 @@ function lazyCityLoaders(): Plugin {
 
 export default defineConfig({
   // The page is a Vue 3 + TypeScript application: index.html → src/app/main.ts (docs/MIGRATION-VUE-TS.md).
-  plugins: [browserSystems(), skipSpecValidation(), leaveOutProvenance(), lazyCityLoaders(), cityNetworkMode(), vue(), ...(wantMaps ? [moveMaps()] : [])],
+  plugins: [browserSystems(), skipSpecValidation(), leaveOutProvenance(), cityDataAsJson(), lazyCityLoaders(), cityNetworkMode(), vue(), ...(wantMaps ? [moveMaps()] : [])],
   // Every shipped component uses Composition API; omit the unused Options API runtime.
   define: { __VUE_OPTIONS_API__: false },
   server: {

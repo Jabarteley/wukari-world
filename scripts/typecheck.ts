@@ -22,7 +22,7 @@
 import { spawn } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const baselinePath = join(root, 'tsconfig', 'baseline.json')
@@ -50,7 +50,9 @@ const isLegacy = (file: string): boolean => /\.(js|mjs)$/.test(file)
 function run(project: string): Promise<RunResult> {
   return new Promise((done) => {
     const bin = join(root, 'node_modules', 'vue-tsc', 'bin', 'vue-tsc.js')
-    const child = spawn(process.execPath, [bin, '--noEmit', '--pretty', 'false', '-p', join('tsconfig', `${project}.json`)], { cwd: root })
+    // Each city's generated terrain, geometry and places literals reach the compiler as their declarations only (see that file).
+    const stubs = pathToFileURL(join(root, 'scripts', 'typecheck-data-stubs.ts')).href
+    const child = spawn(process.execPath, ['--experimental-strip-types', '--import', stubs, bin, '--noEmit', '--pretty', 'false', '-p', join('tsconfig', `${project}.json`)], { cwd: root, env: { ...process.env, ALLWORLD_TYPECHECK_DATA_STUBS: '1' } })
     let out = ''
     child.stdout.on('data', (chunk: Buffer) => { out += chunk })
     child.stderr.on('data', (chunk: Buffer) => { out += chunk })

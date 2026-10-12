@@ -207,9 +207,27 @@ async function openMap(b: Browser, key: string): Promise<void> {
   must(!(await b.eval<boolean>(`document.querySelector('[data-nav="map"]')?.getAttribute('aria-current') === 'page'`)), `${key}: Map was already open before native entry`);
   await b.eval(`window.__rafs = 0; (function tick(){ window.__rafs++; requestAnimationFrame(tick); })(); true`);
   const t0 = Date.now();
+  await b.eval(`(() => {
+    const nav = document.querySelector('[data-nav="map"]');
+    if (!nav) throw new Error('Map tab absent before touch');
+    const r = nav.getBoundingClientRect(), point = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+    const label = (el) => el instanceof Element ? String(el.tagName) + '.' + String(typeof el.className === 'string' ? el.className : el.className?.baseVal ?? '') : null;
+    const state = () => {
+      const rect = nav.getBoundingClientRect(), hit = document.elementFromPoint(point.x, point.y), style = getComputedStyle(nav);
+      return { mode: document.querySelector('#life-overlay')?.dataset.mode ?? null, selected: nav.getAttribute('aria-current'), disabled: nav.getAttribute('aria-disabled'), rect: { x: rect.x, y: rect.y, width: rect.width, height: rect.height }, hit: label(hit), navPointerEvents: style.pointerEvents, handle: !!document.querySelector('.map-handle'), visualViewport: { width: visualViewport?.width, height: visualViewport?.height, scale: visualViewport?.scale } };
+    };
+    const probe = { point, before: state(), events: [], modeChanges: [], state };
+    const record = (e) => { const t = e.changedTouches?.[0] ?? e; probe.events.push({ at: performance.now(), type: e.type, target: label(e.target), onMap: e.composedPath().includes(nav), trusted: e.isTrusted, x: t.clientX, y: t.clientY, prevented: e.defaultPrevented, mode: state().mode, selected: state().selected }); };
+    for (const type of ['pointerdown','pointerup','pointercancel','touchstart','touchend','touchcancel','click','jaw:mode']) window.addEventListener(type, record, { capture: true, passive: true });
+    const overlay = document.querySelector('#life-overlay');
+    if (overlay) new MutationObserver(() => probe.modeChanges.push({ at: performance.now(), mode: overlay.dataset.mode ?? null, selected: nav.getAttribute('aria-current') })).observe(overlay, { attributes: true, attributeFilter: ['data-mode'] });
+    window.__mapTapProbe = probe;
+    return true;
+  })()`);
   await b.click('[data-nav="map"]');
   if (!(await b.waitFor<boolean>(shownNow('.map-handle'), 8000, 'the map panel').catch(() => false))) {
-    if (!allowScriptedFallback) throw new Error(`${key}: native-touch-map-entry failed`);
+    const diagnostic = await b.eval(`(() => { const p = window.__mapTapProbe, nav = document.querySelector('[data-nav="map"]'); return { before: p?.before, events: p?.events, modeChanges: p?.modeChanges, after: p?.state?.(), selected: nav?.getAttribute('aria-current'), handle: !!document.querySelector('.map-handle') }; })()`);
+    if (!allowScriptedFallback) throw new Error(`${key}: native-touch-map-entry failed; diagnostic=${JSON.stringify(diagnostic)}`);
     // A touch tap on the tab did not open the map: use the explicitly enabled scripted fallback.
     notes.push(`${key}: the touch tap on the Map tab did not open the map; opened with a scripted click`);
     await b.eval(`document.querySelector('[data-nav="map"]').click(); true`);

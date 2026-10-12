@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "serekunda",
+  "countryIso2": "GM",
+  "generationIdentity": {
+    "cityId": "serekunda",
+    "stateId": "gm-serekunda",
+    "stateName": "Serrekunda"
+  },
+  "inventorySha256": "bad3cb72d0f74142c7b965216361ba4b39b1537e6bf32b289e5dcc95f91b769c",
+  "inventoryPath": "world/playable-africa-rollout/sources/serekunda.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "serekunda-airport",
+    "name": "Banjul International Airport",
+    "lon": -16.652201,
+    "lat": 13.338,
+    "sourceUrl": "https://ourairports.com/airports/GBYD/"
+  },
+  "bounds": [
+    13.257881110066021,
+    -16.85966745004166,
+    13.61964288993398,
+    -16.489946549958344
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/senegal-and-gambia-261011.osm.pbf",
+      "datasetSha256": "6d2b1dd1b614efc49736188f595cd03c1c0820972b5b45c538d2a13e461508ef",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "1e885c2619ba84caf7a8575e71fe1e735773fc1b1b7f6f5827231a8272b1b4be",
+          "elements": 333
+        },
+        {
+          "file": "extras.json",
+          "sha256": "8b0d7f2f4ec4edfca6a5a780cf7763ca2c0560b1108a263706d49269907944aa",
+          "elements": 61
+        },
+        {
+          "file": "water.json",
+          "sha256": "2d222e2f5136f98d943714eaffcd662f57f556ba9dd43aa44565ed2819e0dde2",
+          "elements": 783
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "949e0f861a38a7482290288f5f0a047f427e5edb3f25b8be8ea7c4a15c0e55af",
+          "elements": 379
+        },
+        {
+          "file": "roads.json",
+          "sha256": "c9232e2a64a4d511c29f33bd3e91aae0903f14e2e1d7e89c823b2cb7c31ed32e",
+          "elements": 152
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 83,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 16,
+    "reachWaterPolygons": 122
+  },
+  "observed": {
+    "places": 333,
+    "extras": 61,
+    "water": 783,
+    "landuse": 379,
+    "roads": 152
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1239,
+      "sha256": "ddbef50bba613d8476c1b3265cebf77f4aad5373b38460e824223825dd11b2f8"
+    },
+    "geometry.ts": {
+      "bytes": 1556379,
+      "sha256": "f783b24cd76e3d4688ce7f2151b3d5acb6e1bc3e7d816fa497127e771969d781"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "28ae1b34023c2cecae355e0a58de1d92e3cf0040f356713a750ada20e4b57083"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/serekunda.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

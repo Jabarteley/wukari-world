@@ -16,7 +16,7 @@
   "seeds": [
     {
       "id": "serekunda",
-      "name": "Serekunda",
+      "name": "Serrekunda",
       "countryISO": "GM",
       "airport": {
         "ident": "GBYD",

@@ -1,0 +1,33 @@
+{
+  "repository": "kromate/joinallworld",
+  "branch": "codex/world-asia-20261011",
+  "runtimeSha": "2e0d538f79d9ad74075d80cc3de89e39002b78b9",
+  "factorySha": "0786c00510f2827d6495a53fc3299f3112d0d6b4",
+  "generationAppSha": "04e0cf1d96a35b1fe57c520d174c41fc2a9eec48",
+  "generation": {
+    "runId": 38196806616,
+    "headSha": "4ed6badd8ee580791cd379afb3587941bc10541e",
+    "artifactId": 11724140313,
+    "artifactName": "asia-lahore-factory-4ed6badd8ee580791cd379afb3587941bc10541e",
+    "artifactBytes": 676866,
+    "artifactDigest": "sha256:260848c8f7f179a9519444f5009d1f51aef58d603b0bcff196926878bc0e6a0b"
+  },
+  "source": {
+    "runId": 38194120672,
+    "headSha": "57b0817b73e522f4e244eebc8f7a27f6337db07c",
+    "artifactId": 11722749267,
+    "pbfSha256": "6536081804ecf3fc312f7b60909288f48beac6dbcf3828dc7e8eecb4962c4c82"
+  },
+  "limits": {
+    "trianglesExclusive": 90000,
+    "drawCallsInclusive": 40
+  },
+  "acceptance": "CANDIDATE_ONLY/NOT_ACCEPTED",
+  "holds": [
+    "metadata primary-record review pending",
+    "Pakistan boundary receipt has zero fixtureResults",
+    "Astra cold visual review pending",
+    "browser acceptance pending",
+    "release approval and production verification pending"
+  ]
+}

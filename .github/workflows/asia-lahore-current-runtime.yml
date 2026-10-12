@@ -1,0 +1,123 @@
+name: Asia Lahore retained generation on current runtime
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: asia-lahore-current-runtime
+  cancel-in-progress: false
+
+jobs:
+  candidate:
+    if: github.ref == 'refs/heads/codex/world-asia-20261011'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - name: Create cloud sandbox
+        run: |
+          set -euo pipefail
+          echo "LAHORE_SANDBOX=$RUNNER_TEMP/asia-lahore-current-runtime" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/asia-lahore-current-runtime/evidence"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+          path: factory
+          persist-credentials: false
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 2e0d538f79d9ad74075d80cc3de89e39002b78b9
+          path: current-runtime
+          persist-credentials: false
+      - name: Prepare original small source and boundary artifacts
+        run: |
+          set -euo pipefail
+          node scripts/geo/asia-lahore-factory-prepare.mjs \
+            --table scripts/geo/asia-factory-lahore-targets.json \
+            --factory-source "$GITHUB_WORKSPACE/factory" \
+            --sandbox-root "$LAHORE_SANDBOX"
+          mv current-runtime "$LAHORE_SANDBOX/app"
+      - name: Verify retained generation and transfer only Lahore city and recipe
+        run: |
+          set -euo pipefail
+          node scripts/geo/asia-lahore-current-runtime.mjs \
+            --phase prepare --config scripts/geo/asia-lahore-current-runtime.json \
+            --sandbox "$LAHORE_SANDBOX" --factory "$GITHUB_WORKSPACE/factory"
+          printf '%s\n' '{"disposable":true}' > "$LAHORE_SANDBOX/app/.factory-disposable.json"
+      - name: Install current runtime dependencies and Linux proof renderer
+        run: |
+          set -euo pipefail
+          npm ci --prefix "$LAHORE_SANDBOX/app" --ignore-scripts --no-audit --no-fund
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y librsvg2-bin
+      - name: Build current runtime catalogue and validate preserved source against real scene
+        run: |
+          set -euo pipefail
+          cd "$LAHORE_SANDBOX/app"
+          node --experimental-strip-types scripts/city/build-catalogue.ts
+          node --experimental-strip-types --import ./scripts/node-scene-css.ts \
+            "$GITHUB_WORKSPACE/scripts/geo/asia-lahore-current-runtime.mjs" \
+            --phase validate --config "$GITHUB_WORKSPACE/scripts/geo/asia-lahore-current-runtime.json" \
+            --sandbox "$LAHORE_SANDBOX" --factory "$GITHUB_WORKSPACE/factory"
+      - name: Run retained focused checks and fresh current runtime flat proofs
+        run: |
+          set -euo pipefail
+          cd "$LAHORE_SANDBOX/app"
+          node --experimental-strip-types --test --test-concurrency=1 \
+            src/game/cities/lahore/map.test.ts src/game/cities/lahore/journey.test.ts
+          for view in ground city; do
+            node --experimental-strip-types "$GITHUB_WORKSPACE/factory/scripts/geo/city-generation-proof.mjs" \
+              --worktree "$LAHORE_SANDBOX/app" --city lahore \
+              --outdir "$LAHORE_SANDBOX/evidence/proof/$view" --view "$view"
+          done
+          node --experimental-strip-types "$GITHUB_WORKSPACE/factory/scripts/geo/factory/integrate-city-receipts.mjs" \
+            "$LAHORE_SANDBOX/app" "$LAHORE_SANDBOX/evidence/receipt-manifest.json"
+          npm run typecheck
+          npm run build
+      - name: Verify protected inventory and emit machine candidate with holds
+        run: |
+          set -euo pipefail
+          cd "$LAHORE_SANDBOX/app"
+          node --experimental-strip-types "$GITHUB_WORKSPACE/scripts/geo/asia-lahore-current-runtime.mjs" \
+            --phase finish --config "$GITHUB_WORKSPACE/scripts/geo/asia-lahore-current-runtime.json" \
+            --sandbox "$LAHORE_SANDBOX" --factory "$GITHUB_WORKSPACE/factory"
+      - name: Collect candidate files and cloud diff
+        if: always()
+        run: |
+          set -euo pipefail
+          if test -d "$LAHORE_SANDBOX/app/.git"; then
+            git -C "$LAHORE_SANDBOX/app" status --short > "$LAHORE_SANDBOX/evidence/runtime-status.txt"
+            git -C "$LAHORE_SANDBOX/app" diff --binary HEAD > "$LAHORE_SANDBOX/evidence/runtime.patch"
+            mkdir -p "$LAHORE_SANDBOX/delivery"
+            if test -d "$LAHORE_SANDBOX/app/src/game/cities/lahore"; then
+              cp -R "$LAHORE_SANDBOX/app/src/game/cities/lahore" "$LAHORE_SANDBOX/delivery/lahore"
+              cp "$LAHORE_SANDBOX/app/scripts/geo/destination-detail/lahore.ts" "$LAHORE_SANDBOX/delivery/lahore-recipe.ts"
+            fi
+            if test -d "$LAHORE_SANDBOX/app/world/playable-africa-rollout"; then
+              cp -R "$LAHORE_SANDBOX/app/world/playable-africa-rollout" "$LAHORE_SANDBOX/delivery/receipts"
+            fi
+            if test -d "$LAHORE_SANDBOX/app/dist"; then
+              cp -R "$LAHORE_SANDBOX/app/dist" "$LAHORE_SANDBOX/delivery/browser-dist"
+            fi
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: asia-lahore-current-runtime-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/asia-lahore-current-runtime/evidence
+            ${{ runner.temp }}/asia-lahore-current-runtime/provenance
+            ${{ runner.temp }}/asia-lahore-current-runtime/generation
+            ${{ runner.temp }}/asia-lahore-current-runtime/delivery
+          if-no-files-found: error

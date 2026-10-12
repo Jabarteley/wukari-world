@@ -20,6 +20,7 @@ import type { LadderPort } from '../zoom-ladder.ts';
 import { DENSITY, NAMED_FROM, atlasNamesAt, countChips, densityFor, namedCities, shorten, venueNamesAt } from './density.ts';
 import * as THREE from 'three';
 import { createRig } from '../camera.ts';
+import { MAP_PIXELS, pixelRatioFor } from '../pixels.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
 import { ATLAS, ATLAS_LEVELS, countryAtlasLevel, sourceGeometryFrame, ZONES, AFRICA_GROUPS, canEnter, cityAccess, cityEntry, plannedRoutes, regionEntry, regionStatus, stateOfCity, MORE_REGIONS } from '../regions.ts';
 import { allCityLinks, cityCatalogue, cityCatalogueEntry, cityName, isOpenCityId, loadCityLinks, playableCityIds } from '../../game/cities/registry.ts';
@@ -346,12 +347,12 @@ test('routes: the roads pass real towns in Nigeria, every link has a line, and a
 });
 
 // ---- the view: a fake renderer and a hand-cranked frame queue, as in ../map3d.test.ts ----
-function harness({ reducedMotion = false, width = 1280, height = 800, delay = 0, waitFor, failures = new Set<string>(), countryDetail, ladder }: { ladder?: LadderPort; reducedMotion?: boolean; width?: number; height?: number; delay?: number; waitFor?: (id: string) => Promise<void>; failures?: Set<string>; countryDetail?: CountryDetailService } = {}) {
+function harness({ reducedMotion = false, width = 1280, height = 800, delay = 0, waitFor, failures = new Set<string>(), countryDetail, ladder, routes }: { ladder?: LadderPort; reducedMotion?: boolean; width?: number; height?: number; delay?: number; waitFor?: (id: string) => Promise<void>; failures?: Set<string>; countryDetail?: CountryDetailService; routes?: () => null } = {}) {
   const queue: (() => void)[] = [], env = { now: 1000, hidden: false, loads: [] as string[], opened: [] as string[], entered: [] as string[] }, calls = { render: 0, routeVisible: false };
   const renderer = { calls, domElement: {} as HTMLCanvasElement, info: { render: {} }, setPixelRatio() {}, setSize() {}, setClearColor() {}, dispose() {}, render(scene: THREE.Scene) { calls.render += 1; calls.routeVisible = scene.children.some((object) => object.renderOrder === 9 && object.visible && object instanceof THREE.Mesh && object.geometry.getAttribute('position').count > 0); } };
   const container = { hidden: false, getBoundingClientRect: () => ({ left: 0, top: 0, right: width, bottom: height, width, height }) };
   const load = async (id: string) => { env.loads.push(id); if (delay) await new Promise((done) => setTimeout(done, delay)); if (waitFor) await waitFor(id); if (failures.has(id)) throw new Error(`Unavailable test level: ${id}`); return ATLAS_LEVELS.find((level) => level.id === id)!.data(); };
-  const atlas = createAtlas(container as unknown as HTMLElement, { renderer, reducedMotion, load, countryDetail, ...(ladder ? { ladder } : {}), raf: (fn) => { queue.push(fn); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden,
+  const atlas = createAtlas(container as unknown as HTMLElement, { renderer, reducedMotion, load, countryDetail, ...(ladder ? { ladder } : {}), ...(routes ? { routes } : {}), raf: (fn) => { queue.push(fn); return queue.length; }, caf: () => { queue.length = 0; }, now: () => env.now, tabHidden: () => env.hidden,
     onOpenCity: (id) => env.opened.push(id), onEnterCity: (id) => env.entered.push(id) });
   /** Run frames until nothing asks for another (or the limit). Returns how many ran. */
   const run = (limit = 2000, step = 16) => { let frames = 0; while (queue.length && frames < limit) { env.now += step; queue.shift()!(); frames += 1; } return frames; };
@@ -972,4 +973,123 @@ test('continents whose source geometry spans the seam (North America, Oceania) a
     const fits = atlas.diagnostics().fits!;
     for (let i = 1; i < fits.length; i++) assert.ok(fits[i]! < fits[0]!, `${ATLAS_LEVELS[i]!.id} is framed closer in than the world`);
   } finally { atlas.destroy(); }
+});
+
+// ---- cost: what keeps the atlas smooth as the world fills up (scripts/perf/atlas.ts measures the same things in a browser) ----
+test('cost: each level stays within its budget of draws, triangles and vertices', async () => {
+  const { atlas, settle } = harness();
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    // [draws, triangles, vertices]: about a third above what each level holds today. A level that passes its line needs simpler shapes, not a higher line.
+    const budget: Record<string, [number, number, number]> = { world: [16, 24000, 50000], africa: [16, 54000, 88000], nigeria: [16, 216000, 396000] };
+    for (const index of [2, 1, 0]) {
+      atlas.goLevel(index); await settle(); atlas.select(null); await settle();
+      const d = atlas.diagnostics(), [draws, triangles, vertices] = budget[d.levelId]!;
+      assert.equal(d.levelId, ATLAS_LEVELS[index]!.id);
+      assert.ok(d.scene.draws > 3 && d.scene.draws <= draws, `${d.levelId}: ${d.scene.draws} draws (at most ${draws}): regions are merged meshes, never one each`);
+      assert.ok(d.scene.triangles <= triangles, `${d.levelId}: ${d.scene.triangles} triangles (at most ${triangles})`);
+      assert.ok(d.scene.vertices <= vertices, `${d.levelId}: ${d.scene.vertices} vertices (at most ${vertices})`);
+    }
+  } finally { atlas.destroy(); }
+});
+
+test('cost: moving the camera builds nothing, names are placed only when the view changed, and a level is built once', async () => {
+  const { atlas, settle, run } = harness();
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    for (const index of [1, 0]) { atlas.goLevel(index); await settle(); }
+    atlas.select(null); await settle();
+    const start = atlas.diagnostics();
+    assert.equal(start.levelId, 'world');
+    let frames = 0;
+    for (let i = 0; i < 30; i++) { atlas.zoomBy(i < 15 ? 0.99 : 1.01); frames += run(); }
+    let d = atlas.diagnostics();
+    assert.equal(d.levelId, 'world');
+    assert.equal(d.work.builds, start.work.builds, 'thirty camera moves built no geometry');
+    assert.ok(d.work.labelPasses - start.work.labelPasses >= 1 && d.work.labelPasses - start.work.labelPasses <= frames, `names placed ${d.work.labelPasses - start.work.labelPasses} times in ${frames} frames`);
+    // A frame in which the view is the same (a badge changed, a highlight) places no names.
+    const passes = d.work.labelPasses;
+    atlas.setFriends(null); assert.equal(run(), 1);
+    assert.equal(atlas.diagnostics().work.labelPasses, passes, 'a redraw of the same view leaves the names alone');
+    // Down to Nigeria and back out: every level is already built.
+    atlas.goLevel(2); await settle(); atlas.goLevel(0); await settle();
+    d = atlas.diagnostics();
+    assert.equal(d.work.builds, start.work.builds, 'crossing levels builds nothing either');
+  } finally { atlas.destroy(); }
+});
+
+test('cost: the wheel moves the camera once a frame however many events arrive, and at once when there is no frame to wait for', async () => {
+  const { atlas, settle, run, queue, calls, env } = harness();
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    atlas.goLevel(0); await settle();
+    const before = atlas.diagnostics(), renders = calls.render;
+    for (let i = 0; i < 12; i++) atlas.wheelBy(0.98, [0.2, -0.1]);
+    assert.equal(atlas.diagnostics().view.distance, before.view.distance, 'the camera waits for the frame');
+    const waiting = (): number => queue.length;
+    assert.equal(waiting(), 1, 'twelve events ask for one frame');
+    assert.equal(run(), 1, 'and that frame asks for no other');
+    const after = atlas.diagnostics();
+    assert.equal(after.work.wheelMoves, before.work.wheelMoves + 1);
+    assert.equal(calls.render, renders + 1);
+    assert.ok(Math.abs(after.view.distance / before.view.distance - 0.98 ** 12) < 1e-9, 'the one move is the sum of what was asked');
+    env.hidden = true;
+    atlas.wheelBy(1.1, [0, 0]);
+    assert.ok(atlas.diagnostics().view.distance > after.view.distance && waiting() === 0, 'out of sight it is taken at once and nothing is scheduled');
+    env.hidden = false;
+  } finally { atlas.destroy(); }
+});
+
+test('cost: the host is asked what the player may ride once a turn, and only in one place', async () => {
+  let asked = 0;
+  const { atlas, settle } = harness({ routes: () => { asked += 1; return null; } });
+  try {
+    await atlas.ready; atlas.resize(); await settle();
+    atlas.goLevel(0); await settle();
+    asked = 0;
+    for (const id of ['ir', 'br', 'ca', 'in']) assert.ok(atlas.select({ kind: 'country', id }));
+    assert.equal(asked, 1, 'four cards in one turn read the routes once');
+    await settle();
+    assert.ok(atlas.select({ kind: 'country', id: 'au' }));
+    assert.equal(asked, 2, 'a later turn asks again, so the answer is never stale');
+    assert.equal(atlas.diagnostics().work.hostReads >= 2, true);
+  } finally { atlas.destroy(); }
+  // The answer is the whole life view: a read per row of the list was a tenth of a second per click with seventy cities open.
+  const source = readFileSync(here('./atlas.ts'), 'utf8');
+  assert.equal(source.match(/\broutes\(\)/g)?.length, 1, 'routes() is read in context() and nowhere else');
+  assert.equal(source.match(/\bheld\(\)/g)?.length, 1, 'held() likewise');
+  assert.match(source, /routes: null, cityId: selectedCity, feature/, 'the rows of the list are made without the routes');
+});
+
+test('cost: a pick reads a handful of polygons through the grid, at every level', () => {
+  const vertices = (feature: { rings: Float64Array[][] }) => feature.rings.reduce((sum, poly) => sum + poly.reduce((part, ring) => part + ring.length / 2, 0), 0);
+  // The grids the atlas makes (see buildWorld, buildAfrica, buildNigeria): [topology, options, most features in a cell, most vertices behind one pick].
+  const sheets: [string, typeof world | typeof africa | typeof nigeria, { cells?: number; slack: number }, number, number][] = [['world', world, { cells: 72, slack: 0.8 }, 14, 2600], ['africa', africa, { slack: 0.3 }, 8, 1300], ['nigeria', nigeria, { slack: 0.05 }, 7, 8400]];
+  for (const [name, topology, options, cell, most] of sheets) {
+    const picker = createPicker(topology as typeof world, options), features = topology.features as readonly (typeof world.features)[number][];
+    const all = features.reduce((sum, feature) => sum + vertices(feature), 0);
+    let west = Infinity, east = -Infinity, south = Infinity, north = -Infinity, seed = 7, worst = 0, total = 0;
+    for (const { bounds } of features) { west = Math.min(west, bounds.minLon); east = Math.max(east, bounds.maxLon); south = Math.min(south, bounds.minLat); north = Math.max(north, bounds.maxLat); }
+    const random = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < 5000; i++) {
+      const read = picker.candidates(west + random() * (east - west), south + random() * (north - south)).reduce((sum, feature) => sum + vertices(feature), 0);
+      worst = Math.max(worst, read); total += read;
+    }
+    assert.ok(picker.cells.largest <= cell, `${name}: ${picker.cells.largest} features in the fullest cell (at most ${cell})`);
+    assert.ok(worst <= most, `${name}: a pick reads at most ${worst} vertices (limit ${most}) of ${all}`);
+    assert.ok(total / 5000 < all / 8, `${name}: a pick reads ${Math.round(total / 5000)} vertices on average, of ${all}`);
+  }
+});
+
+test('cost: a map canvas keeps the screen\'s own pixels up to a 3840 by 2160 screen\'s worth, and never fewer than one per CSS pixel', () => {
+  const budget = { maxRatio: 2, maxPixels: MAP_PIXELS };
+  assert.equal(pixelRatioFor(1920, 1080, 2, budget), 2, 'a 1920 by 1080 window at double density is drawn in full');
+  assert.equal(pixelRatioFor(3440, 1440, 1, budget), 1, 'an ultra-wide window at ordinary density is drawn at its own size');
+  const wide = pixelRatioFor(3440, 1440, 2, budget);
+  assert.ok(wide > 1.25 && wide < 1.35 && 3440 * 1440 * wide * wide <= MAP_PIXELS * 1.0001, `an ultra-wide window at double density is drawn at ${wide.toFixed(2)}, not 2 (twenty million pixels)`);
+  assert.equal(pixelRatioFor(5120, 2880, 2, budget), 1, 'no screen is drawn below its CSS size');
+  assert.equal(pixelRatioFor(390, 844, 3, { maxRatio: 1.75, maxPixels: MAP_PIXELS }), 1.75, 'a phone keeps its own cap');
+  assert.equal(pixelRatioFor(0, 0, 2, budget), 2);
+  assert.equal(pixelRatioFor(1280, 800, Number.NaN, budget), 1);
+  for (const file of ['./atlas.ts', '../map3d.ts']) assert.match(readFileSync(here(file), 'utf8'), /setPixelRatio\??\.?\(pixelRatioFor\(/, `${file} sizes its canvas through the budget`);
 });

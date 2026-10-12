@@ -3,13 +3,14 @@
   "queue": [
     {
       "id": "africa-five-city-current-main-browser",
-      "appSha": "2cb300ce9225c95c959092a9e0b71fe0c016fceb",
-      "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc",
+      "appSha": "4a054eed0b84c44bbb3c0649d1aebed3b5ba909a",
+      "driverSha": "34de2299d31958ba6dc9b8651325a73c579b9c2d",
       "cities": [
         "ndjamena",
         "bujumbura",
         "antananarivo",
         "kinshasa",
+        "brazzaville",
         "tunis"
       ],
       "roundtrip": true

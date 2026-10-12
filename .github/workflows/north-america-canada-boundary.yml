@@ -29,7 +29,7 @@ jobs:
         run: |
           set -euo pipefail
           echo "99a7f9bb4934dd648e7843112fb7eb0d5e5194ae3417434e5d13aa7bbb5ea584  scripts/geo/north-america-source/canada-highest-point.patch" | sha256sum --check
-          echo "49e59d8bcd3827002463520c1b83facf91b2fc3a094bea3a8a1fa46ce5dce8fa  scripts/geo/north-america-source/canada-boundary-memory.patch" | sha256sum --check
+          echo "dc235572e3e3bbfbcfffd44739b778af26e60dadb63a74b8702f375259c45ebb  scripts/geo/north-america-source/canada-boundary-memory.patch" | sha256sum --check
           test "$(git -C boundary-tooling rev-parse HEAD)" = "0786c00510f2827d6495a53fc3299f3112d0d6b4"
           git -C boundary-tooling apply "$GITHUB_WORKSPACE/scripts/geo/north-america-source/canada-boundary-memory.patch"
           git -C boundary-tooling apply "$GITHUB_WORKSPACE/scripts/geo/north-america-source/canada-highest-point.patch"

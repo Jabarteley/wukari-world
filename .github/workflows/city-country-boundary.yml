@@ -2,7 +2,9 @@ name: Pinned country boundary proof
 on:
   push:
     branches: ['codex/astra-factory-qa-20261011']
-    paths: ['scripts/geo/factory/bootstrap/boundary-request.json']
+    paths:
+      - 'scripts/geo/factory/bootstrap/boundary-request.json'
+      - 'scripts/geo/factory/bootstrap/boundary-request-*.json'
 permissions:
   contents: read
 jobs:
@@ -10,14 +12,65 @@ jobs:
     runs-on: ubuntu-24.04
     outputs:
       matrix: ${{ steps.plan.outputs.matrix }}
+      request: ${{ steps.plan.outputs.request }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
       - id: plan
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          PUSH_SHA: ${{ github.sha }}
+          REPOSITORY: ${{ github.repository }}
         run: |
-          matrix=$(python scripts/geo/factory/bootstrap/boundary-job.py --request scripts/geo/factory/bootstrap/boundary-request.json --plan)
-          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          repository = os.environ['REPOSITORY']
+          before = os.environ['PUSH_BEFORE']
+          after = os.environ['PUSH_SHA']
+          if not re.fullmatch(r'[0-9a-f]{40}', before) or before == '0' * 40:
+              raise SystemExit('push base SHA is missing or invalid; refusing a boundary selection')
+          if not re.fullmatch(r'[0-9a-f]{40}', after):
+              raise SystemExit('push head SHA is missing or invalid; refusing a boundary selection')
+          comparison = subprocess.check_output(
+              ['gh', 'api', f'repos/{repository}/compare/{before}...{after}'], text=True)
+          changed = json.loads(comparison).get('files')
+          if not isinstance(changed, list) or len(changed) >= 300:
+              raise SystemExit('commit-file list is missing or may be truncated; refusing a boundary selection')
+          paths = {row.get('filename') for row in changed if isinstance(row, dict)}
+          batch = 'scripts/geo/factory/bootstrap/boundary-request.json'
+          country_requests = sorted(path for path in paths
+                                    if isinstance(path, str) and re.fullmatch(
+                                        r'scripts/geo/factory/bootstrap/boundary-request-[a-z]{2}\.json', path))
+          if batch in paths and not country_requests:
+              request = batch
+          elif batch not in paths and len(country_requests) == 1:
+              request = country_requests[0]
+              country = request.rsplit('-', 1)[1][:2].upper()
+              table = json.loads(Path(request).read_text())
+              countries = table.get('countries')
+              if not isinstance(countries, list) or len(countries) != 1 or countries[0].get('countryISO') != country:
+                  raise SystemExit('single-country request filename and pinned country disagree')
+          else:
+              raise SystemExit('push must change exactly one boundary request; refusing ambiguous selection')
+          matrix = subprocess.check_output([
+              sys.executable, 'scripts/geo/factory/bootstrap/boundary-job.py',
+              '--request', request, '--plan'], text=True).strip()
+          plan = json.loads(matrix)
+          if not isinstance(plan.get('include'), list) or not plan['include']:
+              raise SystemExit('boundary request produced an empty matrix')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+              output.write(f'matrix={matrix}\n')
+              output.write(f'request={request}\n')
+          PY
   boundary:
     needs: plan
     strategy:
@@ -36,7 +89,9 @@ jobs:
       - name: Install pinned geometry dependencies
         run: python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1' 'shapely==2.1.2'
       - name: Verify and assemble country boundary
-        run: python scripts/geo/factory/bootstrap/boundary-job.py --request scripts/geo/factory/bootstrap/boundary-request.json --country "${{ matrix.country }}" --out "$RUNNER_TEMP/country-boundary"
+        env:
+          REQUEST_PATH: ${{ needs.plan.outputs.request }}
+        run: python scripts/geo/factory/bootstrap/boundary-job.py --request "$REQUEST_PATH" --country "${{ matrix.country }}" --out "$RUNNER_TEMP/country-boundary"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

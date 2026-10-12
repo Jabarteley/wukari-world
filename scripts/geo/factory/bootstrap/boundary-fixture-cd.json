@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "CD",
+  "datasetSha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91",
+  "checks": [
+    {
+      "ref": "way/361351442",
+      "point": [15.30845475, -4.3063016],
+      "expected": "inside",
+      "sourceLayer": "places",
+      "layerSha256": "40d434ef2c69d84e471f4ed5254d2c281114fbb7bcf710bab107201bc72b4495"
+    },
+    {
+      "ref": "airport/FZAA",
+      "point": [15.4446, -4.38575],
+      "expected": "inside",
+      "source": "OurAirports row 3040, pinned CSV SHA-256 79dd7db7228a12199839aa6acbc2dc1f1e50a4604f14d7f60dceb6983de91906",
+      "coordinateCaveat": "Dataset coordinate point, not an official aerodrome reference point"
+    }
+  ]
+}

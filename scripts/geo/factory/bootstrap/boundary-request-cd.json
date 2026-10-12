@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 2,
+  "countries": [
+    {
+      "countryISO": "CD",
+      "sourceUrl": "https://download.geofabrik.de/africa/congo-democratic-republic-261009.osm.pbf",
+      "bytes": 416300671,
+      "sha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91",
+      "snapshotDate": "2026-10-09",
+      "fixture": "boundary-fixture-cd.json"
+    }
+  ]
+}

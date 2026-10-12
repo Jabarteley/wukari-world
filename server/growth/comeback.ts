@@ -176,7 +176,7 @@ export function comebackService(ctx: RouteContext, mailing: Mailing) {
     const record = recordOf(g, id, false), player = playerOf(g, id, { create: false }), t = now(), recipient = recipientOf(db, g, id, session);
     const nudged = Object.fromEntries(Object.entries(player?.nudged ?? {}).filter(([, at]) => t - at < COMEBACK.nudge.perFriendDays * DAY));
     const usable = record !== null && recipient !== null;
-    return { source: recipient?.source ?? null, ...(recipient?.source === 'account' ? { address: maskEmail(recipient.email) } : {}), on: usable && (record.on || record.legacy), pausedUntil: usable && record.pausedUntil > t ? record.pausedUntil : 0, types: record ? { ...record.types } : defaultPrefs().types, nudged };
+    return { source: recipient?.source ?? null, ...(recipient?.source === 'account' ? { address: maskEmail(recipient.email) } : {}), on: usable && (record.on || record.legacy), pausedUntil: usable && record.pausedUntil > t ? record.pausedUntil : 0, types: record ? { ...record.types } : defaultPrefs().types, nudged, lastSent: record ? Math.max(0, ...record.sent.map((entry) => entry.at), ...(record.pings ?? []).map((entry) => entry.at)) : 0 };
   }
   /** The player's choices from Stay in touch. Switching anything on needs a confirmed address. */
   function setPrefs(db: Db, g: GrowthCollection, id: string, body: Record<string, unknown>, session?: SessionRecord) {

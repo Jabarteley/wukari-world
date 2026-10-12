@@ -1123,7 +1123,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       <p class="atlas-teaser">${esc(choosing ? regionEntry('state', hit.id).teaser || info.teaser : info.teaser)}</p>
       ${hit.kind === 'country' && hit.id !== 'ng' ? '<button type="button" class="atlas-chip atlas-country-cta" data-country-open="' + esc(hit.id) + '">Geographic detail</button>' : ''}
       ${travelCard}
-      ${countryLevel(level) && selectedCity && info.city ? `<button type="button" class="atlas-go" data-atlas-city="${esc(selectedCity)}">Enter ${esc(info.city.name)}</button>` : ''}
+      ${countryLevel(level) && selectedCity && info.city && !info.action ? `<button type="button" class="atlas-go" data-atlas-city="${esc(selectedCity)}">Enter ${esc(info.city.name)}</button>` : ''}
       ${info.action ? `<button type="button" class="atlas-go" data-atlas-action>${esc(info.action.label)}<span aria-hidden="true"> →</span></button>` : ''}
       ${more ? `<button type="button" class="atlas-more" data-atlas-expand aria-expanded="${sheetOpen}">${sheetOpen ? 'Less' : guide?.length && info.city ? `Things to do in ${esc(info.city.name)}` : info.routes.length ? 'Routes and details' : 'More'}</button>` : ''}
       ${guide?.length ? `<section class="atlas-guide"><h3>Things to do in ${esc(info.city!.name)}</h3><ul>${guide.map(place => `<li><b>${esc(place.name)}</b> · ${esc(place.line)}</li>`).join('')}</ul></section>` : ''}

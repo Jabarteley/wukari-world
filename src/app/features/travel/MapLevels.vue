@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// The level control at the top of the city map: one chip with the level the player is in (World › Africa › Nigeria › the city), opening
+// The level control at the top of the city map: one chip with the level the player is in (World › continent › country › city), opening
 // a small list of the whole trail. One tap on a wider level swaps the backdrop to the atlas at that level (the atlas has the same control, with
 // the level in view marked). It is always on screen while the city map is, so the world is never further than one tap from the Map.
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
@@ -24,7 +24,8 @@ const chip = ref<HTMLButtonElement | null>(null)
 function go(level: MapLevel): void {
   open.value = false
   if (level.atlas !== null) {
-    if (level.id === 'country') showMapLayer('world', { level: 1, city: cityId.value })
+    if (level.id === 'country' && level.atlas === 1) showMapLayer('world', { level: 1, city: cityId.value })
+    else if (level.id === 'country') showMapLayer('world', { level: level.atlas, city: cityId.value })
     else showMapLayer('world', { level: level.atlas })
   }
 }

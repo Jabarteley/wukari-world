@@ -12,6 +12,8 @@ export function buildDestinationRules(facts: DestinationFacts): DestinationRules
   const venues = destinationVenueIds(valid.id, valid.airport.id)
   const hubs = destinationHubIds(valid.id)
   const homeId = `${valid.id}-centre-home`
+  const intro = valid.playerIntro ?? valid.coverageNote
+  const locationLabel = valid.state.name === valid.name ? valid.country.name : valid.state.name
   const area = valid.names?.area ?? 'Starter play zone', unit = valid.names?.unit ?? 'starter play zone', roadHub = valid.names?.roadHub ?? 'City transit stop (game venue)'
   const airKm = Math.round(greatCircleKm(valid.centre, { lon: 3.4, lat: 6.45 }))
   // A beta game connection, not a claim about commercial routes or schedules.
@@ -35,7 +37,7 @@ export function buildDestinationRules(facts: DestinationFacts): DestinationRules
     country: Object.freeze({ id: valid.country.idISOlower, name: valid.country.name }),
     timezone: valid.timezone,
     defaultName: 'New arrival',
-    atlas: Object.freeze({ lon: valid.centre.lon, lat: valid.centre.lat, teaser: `${valid.name}, ${valid.state.name}. ${valid.coverageNote}`, preview: Object.freeze([valid.coverageNote]) }),
+    atlas: Object.freeze({ lon: valid.centre.lon, lat: valid.centre.lat, teaser: `${valid.name}, ${locationLabel}. ${intro}`, preview: Object.freeze([intro]) }),
     mapOrigin: valid.mapOrigin,
     rentedHomeIds: Object.freeze([homeId]),
     defaultRentedHome: homeId,

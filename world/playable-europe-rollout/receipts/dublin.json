@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dublin",
+  "countryIso2": "IE",
+  "generationIdentity": {
+    "cityId": "dublin",
+    "stateId": "ie-dublin",
+    "stateName": "Dublin"
+  },
+  "inventorySha256": "dc76be14c547d940f740465cbfa95a3555690cb136d28d5b4201aebd8aa585e0",
+  "inventoryPath": "world/playable-europe-rollout/sources/dublin.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "dublin-airport",
+    "name": "Dublin Airport",
+    "lon": -6.262121,
+    "lat": 53.428713,
+    "sourceUrl": "https://ourairports.com/airports/EIDW/"
+  },
+  "bounds": [
+    53.16849861006602,
+    -6.562818373934496,
+    53.53026038993398,
+    -5.958300226065504
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/ireland-and-northern-ireland-261008.osm.pbf",
+      "datasetSha256": "27debc861b7b168891b1e7f59da29043312e175161b19d619065da67fbdf6ca4",
+      "pbfHeaderTimestamp": "2026-10-08T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "fd96565945c73236cecc15b0aca1456070c84ed688b4b35077358c8101785790",
+          "elements": 3197
+        },
+        {
+          "file": "extras.json",
+          "sha256": "40a009954e789797bfb4a1ecfb3c0563c6dc286cba3905eb146025031610865d",
+          "elements": 773
+        },
+        {
+          "file": "water.json",
+          "sha256": "c62fbe4c78d7269473a06e64031187ae12d3e87bc24f71e44a17a9f349ccbe62",
+          "elements": 2434
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "92f546b6d7f6fe6b2d7091c72de6fda7e2bc89fc9628e637a73bedb159660530",
+          "elements": 14399
+        },
+        {
+          "file": "roads.json",
+          "sha256": "14d70d7d3a3c8307954e1d86c79f1fb8d592bc7a0abd0d1a971db4935a1f1428",
+          "elements": 3936
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 16,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 26
+  },
+  "observed": {
+    "places": 3197,
+    "extras": 773,
+    "water": 2434,
+    "landuse": 14399,
+    "roads": 3936
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1301,
+      "sha256": "cacbab7845e2166a8c0ff64bc30c8e3b6735ec65ddfd5c32d46938de1fd71d36"
+    },
+    "geometry.ts": {
+      "bytes": 92466,
+      "sha256": "5ea0c64caeb12ec0bcf75348eea3c4941d7579f90854e0870a6331ebe7a81126"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "1dab0be07c8b28aa54bb55950b48a9fada4799d3adf202d3d413e019b888edaf"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/dublin.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

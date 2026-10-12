@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "rome",
+  "countryIso2": "IT",
+  "generationIdentity": {
+    "cityId": "rome",
+    "stateId": "it-rome",
+    "stateName": "Rome"
+  },
+  "inventorySha256": "67b4ba59db10a9eab126a7820d6cc69e349e5478501d07c5e685c23973000d52",
+  "inventoryPath": "world/playable-europe-rollout/sources/rome.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "rome-airport",
+    "name": "Rome–Fiumicino Leonardo da Vinci International Airport",
+    "lon": 12.251998,
+    "lat": 41.804532,
+    "sourceUrl": "https://ourairports.com/airports/LIRF/"
+  },
+  "bounds": [
+    41.71243941006602,
+    12.239945277277313,
+    42.07420118993398,
+    12.724973924975998
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/italy-261010.osm.pbf",
+      "datasetSha256": "3569e9ea04b4cac92d3859630f2ca672d732c1f1f3a7ee8f7c931d9d8d817c4c",
+      "pbfHeaderTimestamp": "2026-10-10T20:21:21Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "bdefe1bb5b4c3c0d3206992fcba2831c4d9f3888f6b22ba0731a62ef14ccaaf8",
+          "elements": 8067
+        },
+        {
+          "file": "extras.json",
+          "sha256": "49f2035b4061e0e3b9589e70bd96af3c637119f244ba7e492d9aa6fa1cc19ea0",
+          "elements": 2440
+        },
+        {
+          "file": "water.json",
+          "sha256": "e2321de0e7b115f630b82b7cf4b0524bc1976fa7e0ad8c407491a275a97d865b",
+          "elements": 836
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "411b6a02b6325c0345348accc005c46373aa284bd9c7ac900a25d65f66a49096",
+          "elements": 9640
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a66d79f0586de8826f2e0c62364582e5e70cbadca6e237d983704e25fc7a9c94",
+          "elements": 6200
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 34,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 29
+  },
+  "observed": {
+    "places": 8067,
+    "extras": 2440,
+    "water": 836,
+    "landuse": 9640,
+    "roads": 6200
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1304,
+      "sha256": "c93bf2fb2c093062dc563de72956add90b156a80ae0e247124a8689a7fe69d07"
+    },
+    "geometry.ts": {
+      "bytes": 168857,
+      "sha256": "e52bb112c712cd9a8b6d79414aaeede174ace1f1a6af31df3b2f5a5e68efc291"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "120ed2d33f36f388d5bcf739226b5ec82a522a2356b6daf89fe93b1ec4782905"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/rome.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -18,7 +18,7 @@ import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { Browser, sleep } from './cdp-map-qa.ts';
 import { cityCatalogueEntry } from '../../src/game/cities/registry.ts';
-import { ATLAS_LEVELS, countryAtlasLevel } from '../../src/map3d/regions.ts';
+import { ATLAS_LEVELS, regionEntry } from '../../src/map3d/regions.ts';
 
 const arg = (name: string, fallback?: string): string => {
   const at = process.argv.indexOf(`--${name}`);
@@ -41,11 +41,9 @@ const atlasLevelFor = (id: string) => {
 const rowFor = (id: string) => {
   const city = cityCatalogueEntry(id);
   if (!city?.open) throw new Error(`Unknown or closed city in acceptance set: ${id}`);
-  const country = city.countryISO ?? 'ng', levelId = countryAtlasLevel(country);
-  if (!levelId) throw new Error(`No current-app country atlas level for ${id}/${country}`);
+  const country = city.countryISO ?? 'ng', levelId = regionEntry('country', country).level ?? 'africa';
   const level = atlasLevelFor(levelId);
-  const definition = ATLAS_LEVELS[level.index]!;
-  const continent = definition.country ? atlasLevelFor(definition.parent ?? '') : level;
+  const continent = atlasLevelFor('africa');
   return { name: city.name, pick: country === 'ng' ? `state:${city.state.id}` : `country:${country}`, countryPick: `country:${country}`, level, continent };
 };
 const PLACE_TO_OPEN: Record<string, string> = { cairo: 'Khan El Khalili', kigali: '', lagos: '' };
@@ -130,18 +128,16 @@ async function settle(b: Browser): Promise<string> {
   console.log('settle step 1');
   await b.goto(base + '/');
   console.log('settle step 2');
-  await b.waitFor(`!!document.querySelector('[data-entry-play], [data-qs-name]')`, 60000, 'the start screen');
+  await b.waitFor(`!!document.querySelector('[data-entry-play], [data-key="play-now"], [data-qs-name]')`, 60000, 'the start screen');
   await sleep(600);
   // Current accounts see the new landing card; legacy preview routes still open the creator quick-start.
-  if (await b.eval<boolean>(`!!document.querySelector('[data-entry-play]')`)) {
+  if (await b.eval<boolean>(`!!document.querySelector('[data-entry-play]') || (!document.querySelector('[data-qs-name]') && !!document.querySelector('[data-key="play-now"]'))`)) {
     console.log('settle: native landing Play now');
-    await b.click('[data-entry-play]');
-    await gameShown(b); await dismiss(b);
-    await until(async () => { const state = await lifeRaw(b, 'lagos'); return state.status === 200 && !!state.state?.onboarding?.done; }, 60000, 'entry Play now to settle the life');
-    return b.eval<string>(`fetch('/api/session').then((r) => r.json()).then((j) => j.session.id)`);
+    await b.click('[data-entry-play], [data-key="play-now"]');
+  } else {
+    await b.type('[data-qs-name]', 'Map Checker');
+    await b.click('[data-key="play-now"]');
   }
-  await b.type('[data-qs-name]', 'Map Checker');
-  await b.click('[data-key="play-now"]');
   await gameShown(b); await dismiss(b);
   console.log('settle step 5');
   await until(async () => {

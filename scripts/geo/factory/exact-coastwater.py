@@ -38,7 +38,8 @@ MIN_TRIANGLE_AREA_DEGREES2 = 1e-13
 MAX_SIMPLIFICATION_AREA_FRACTION = 0.0001
 SCHEMA = 'exact-coastwater-report-v2'
 LIMIT = 5 * 1024 * 1024
-ANCHOR_CLEARANCE_METRES = 12
+# A ferry terminal, jetty or promenade is often mapped on a pier a few tens of metres off the shore (Nassau: 24 m, 15 m): the shore is cleared around such an anchor.
+ANCHOR_CLEARANCE_METRES = 30
 BORDER_END_TOLERANCE_METRES = 10000
 BORDER_END_DIRECTION_METRES = 300
 BORDER_EXTENSION_MAX_INSIDE_METRES = 200
@@ -694,7 +695,9 @@ def main():
             kept.append(part.difference(unary_union(merge)) if merge else part)
         dropped['islets'] = unary_union(small)
         return unary_union(kept)
-    for key, b in [('water', play), ('reachWater', wide)]:
+    # config.sceneWaterExtent 'play': the scene draws only the water inside the play box, so the reach layer is written as a copy of the play layer (no backdrop beyond it).
+    play_scene = config.get('sceneWaterExtent') == 'play'
+    for key, b in [('water', play)] + ([] if play_scene else [('reachWater', wide)]):
         baseline = exact_water.intersection(bounds(b))
         fine = water.intersection(bounds(b))
         if key == 'water':
@@ -726,6 +729,12 @@ def main():
         json.loads(h.group(1))
         edits.append((h.start(1), h.end(1), encoded))
         stats[key] = {**serialization, 'polygons': len(arrays), 'rings': sum(len(p) for p in arrays), 'holes': sum(len(p) - 1 for p in arrays), 'vertices': sum(len(r) for p in arrays for r in p), 'rawTsBytes': len(encoded.encode())}
+        if play_scene:
+            copies = list(re.finditer(r'(?m)^  reachWater: (\[.*\]),$', before))
+            if len(copies) != 1:
+                raise ValueError('Ambiguous TERRAIN.reachWater')
+            edits.append((copies[0].start(1), copies[0].end(1), encoded))
+            stats['reachWater'] = {**stats[key], 'sceneWaterExtent': 'play'}
     after = before
     for start, end, encoded in sorted(edits, reverse=True):
         after = after[:start] + encoded + after[end:]
@@ -737,7 +746,7 @@ def main():
             raise ValueError('Output exceeds 5 MiB: ' + str(path))
     report.update({'status': 'passed', 'sourceHashes': hashes, 'selectedWaterRefs': selected_water, 'selectedWaterRefCount': len(coast) + len(selected_water), 'coastCount': len(coast), 'closedCoastCount': len(closed), 'islands': island_rows, 'anchors': anchor_rows, 'generatedAnchors': generated_anchors, 'fixtureAnchors': fixture_anchors, 'geometry': stats, 'simplification': simplification, 'tiling': tiling, 'outputFiles': [{'path': str(terrain_path), 'bytes': len(raw_after), 'sha256Before': sha(before.encode()), 'sha256After': sha(raw_after)}, {'path': str(geometry_path), 'bytes': len(geometry_raw), 'sha256Before': sha(geometry_before.encode()), 'sha256After': sha(geometry_raw)}], 'preferred2MiB': max(len(raw_after), len(geometry_raw)) <= 2 * 1024 * 1024, 'elapsedSeconds': time.perf_counter() - started})
     # Reserve a new report before generated-source mutations.
-    water_vertices = stats['water']['vertices'] + stats['reachWater']['vertices']
+    water_vertices = stats['water']['vertices'] + (0 if play_scene else stats['reachWater']['vertices'])
     report['waterVertices'] = water_vertices
     if water_vertices > TOTAL_WATER_VERTEX_BUDGET and COARSE_STEPS:
         raise CoarserWater()

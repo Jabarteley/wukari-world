@@ -1735,7 +1735,8 @@
           "landuse": "42da057cf0eb358977524aa1d1895a896dfe1165c9acffc5ff557d6619009f55",
           "roads": "af2c594c401f80a60deea80a2552d947bb12a967f67bed45102a7b406c00b27b"
         }
-      }
+      },
+      "sceneWaterExtent": "play"
     }
   ]
 }

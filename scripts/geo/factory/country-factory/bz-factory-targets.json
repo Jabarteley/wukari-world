@@ -59,7 +59,12 @@
           17.68115768993398
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "way/376113860",
+          "reason": "Seashore Promenade: source anchor is directed water, 53.7 m from the exact coast (hosted run 38292258618 exact stage)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/282297046",
@@ -1846,7 +1851,8 @@
             "reason": "admin-0 relation/287827 member way/194198510 (Mexico - Belize maritime limit closing line) is absent from the Belize clip; both nodes lie inside the Mexico clip and in no smaller neighbour"
           }
         ]
-      }
+      },
+      "sceneWaterExtent": "play"
     }
   ]
 }

@@ -58,8 +58,11 @@ def validate_seed(seed):
         if key not in seed:
             continue
         selector = seed[key]
-        if not isinstance(selector, dict) or set(selector) != {field, 'sourceUrl'} or not isinstance(selector.get(field), str) or not selector[field].strip() or selector[field] != selector[field].strip():
+        allowed = {field, 'sourceUrl'} | ({'hubWaiver'} if key == 'airport' else set())
+        if not isinstance(selector, dict) or not {field, 'sourceUrl'} <= set(selector) <= allowed or not isinstance(selector.get(field), str) or not selector[field].strip() or selector[field] != selector[field].strip():
             raise Hold(key + ' selection requires ' + field + ' and sourceUrl')
+        if 'hubWaiver' in selector and (not isinstance(selector['hubWaiver'], str) or len(selector['hubWaiver'].strip()) < 20):
+            raise Hold('airport hubWaiver needs a written reason (at least 20 characters)')
         validate_source_url(selector['sourceUrl'])
     return seed
 
@@ -92,8 +95,13 @@ def choose_airport(rows, seed, selector=None):
         if len(matches) != 1:
             raise Hold('explicit airport ident is missing or ambiguous in pinned CSV')
         number, row = matches[0]
-        if row.get('iso_country') != seed['countryISO'] or row.get('type') not in types or row.get('scheduled_service') != 'yes' or not row.get('name'):
-            raise Hold('explicit airport must be a named same-country scheduled-service airport')
+        # hubWaiver (a country with no scheduled-service airport: Monaco, Liechtenstein, Andorra, San Marino): the country's own named heliport or airfield in the pinned CSV is the game's air hub.
+        # Airport records never establish operations (facts.coverageNote), so the venue stays a game hub; the written reason is kept in the receipts.
+        waived = 'hubWaiver' in selection
+        if row.get('iso_country') != seed['countryISO'] or row.get('type') not in ({**types, 'heliport': 0, 'seaplane_base': 0} if waived else types) or (row.get('scheduled_service') != 'yes' and not waived) or not row.get('name'):
+            raise Hold('explicit airport must be a named same-country scheduled-service airport (or carry a hubWaiver)')
+        if waived and any(r.get('iso_country') == seed['countryISO'] and r.get('scheduled_service') == 'yes' and r.get('type') in types for _, r in rows):
+            raise Hold('hubWaiver refused: the country has a scheduled-service airport')
         return number, row
     matches = [(number, row) for number, row in rows if row.get('iso_country') == seed['countryISO'] and normalized(row.get('municipality', '')) == normalized(seed['name']) and row.get('type') in types]
     if not matches:

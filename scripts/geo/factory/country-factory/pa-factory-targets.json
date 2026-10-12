@@ -1717,7 +1717,8 @@
             "reason": "admin-0 relation/287668 member way/542342990 (maritime closing line) is absent from the Panama clip; both nodes lie inside the Colombia clip and not the Costa Rica clip"
           }
         ]
-      }
+      },
+      "sceneWaterExtent": "play"
     }
   ]
 }

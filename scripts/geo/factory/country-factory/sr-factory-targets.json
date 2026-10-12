@@ -59,7 +59,12 @@
           6.0056436899339785
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "way/360099412",
+          "reason": "Etembe Rainforest Restaurant: centre falls in generated water on the Suriname River bank (hosted run 38292258618 proof: wetPlaces 1, the only one)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/281537750",

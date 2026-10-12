@@ -14,7 +14,8 @@
       "type": "object", "additionalProperties": false, "required": ["ident", "sourceUrl"],
       "properties": {
         "ident": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Exact unique pinned CSV ident; same-country named airport with scheduled_service=yes required. Municipality may differ."},
-        "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this airport serves the selected city."}
+        "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this airport serves the selected city."},
+        "hubWaiver": {"type": "string", "minLength": 20, "description": "Only for a country with no scheduled-service airport: allows its own named heliport or airfield (any scheduled_service) as the game air hub; written reason kept in the receipts."}
       }
     },
     "timezone": {

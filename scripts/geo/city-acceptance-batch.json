@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-a-new-six",
+      "id": "release-a-prior-six",
       "appSha": "d0696c6eb157d8b1e33a7cbb49d8f784fa72ec6b",
       "driverSha": "05840d84c453f1d60d6d8ecac0a5b6ade60841e8",
-      "cities": ["lima","rome","dublin","auckland","wellington","apia"],
+      "cities": ["bogota","buenos-aires","dubai","mexico-city","santiago","suva"],
       "roundtrip": true
     }
   ]

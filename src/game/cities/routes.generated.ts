@@ -311,5 +311,10 @@ export const AUTHORED_CITY_LINKS = Object.freeze([
     compactLagosFlight("dubai","Dubai",5888,491000,20),
     compactLagosFlight("mexico-city","Mexico City",11070,900000,20),
     compactLagosFlight("santiago","Santiago",8945,736000,20),
-    compactLagosFlight("suva","Suva",18608,900000,20)
+    compactLagosFlight("suva","Suva",18608,900000,20),
+    compactLagosFlight("lima","Lima",9125,750000,20),
+    compactLagosFlight("auckland","Auckland",16523,900000,20),
+    compactLagosFlight("dublin","Dublin",5288,443000,20),
+    compactLagosFlight("rome","Rome",4042,343000,20),
+    compactLagosFlight("wellington","Wellington",16048,900000,20)
   ] satisfies readonly CityLink[])

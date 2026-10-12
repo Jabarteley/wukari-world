@@ -90,6 +90,13 @@ jobs:
           test -f "$FACTORY_SANDBOX/app/node_modules/three/package.json"
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y librsvg2-bin
+      - name: Add hash-guarded per-mesh scene diagnostics
+        run: |
+          set -euo pipefail
+          node scripts/geo/asia-factory-scene-diagnostics.mjs \
+            --factory-source "$GITHUB_WORKSPACE/factory" \
+            --sandbox-root "$FACTORY_SANDBOX" \
+            --provenance-dir "$FACTORY_SANDBOX/provenance"
       - name: Run pinned factory with unchanged semantic and geometry gates
         run: |
           set -euo pipefail

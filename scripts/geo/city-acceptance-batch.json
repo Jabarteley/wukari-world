@@ -2,13 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "africa-three-entry-driver-current-main",
-      "appSha": "44a691363f53821a8e1bd96c8bddd1749c5b0e9a",
+      "id": "africa-five-city-current-main-browser",
+      "appSha": "2cb300ce9225c95c959092a9e0b71fe0c016fceb",
       "driverSha": "3a69438b5754bd22c3f520af452984b93e030763",
       "cities": [
         "ndjamena",
         "bujumbura",
-        "antananarivo"
+        "antananarivo",
+        "kinshasa",
+        "tunis"
       ],
       "roundtrip": true
     }

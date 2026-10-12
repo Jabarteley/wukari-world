@@ -334,3 +334,28 @@ test('a build of before that meets copies half made drops their marks, so no sta
   assert.ok(await equalCopies(b));
   assert.equal(await logical(b), truth);
 });
+
+test('a text longer than a row is never cut in the middle of a character: every emoji is read back as it was written, in every layout and in the world shards', async () => {
+  const { sqliteShardBackend } = await import('./sqlite-shards.ts');
+  for (const layout of ['legacy', 'shadow', 'entries'] as const) {
+    const t = testStorage();
+    let store = open(t.storage, { layout, chunk: 100, shadowSample: 1 });
+    for (let pad = 80; pad < 104; pad += 1) {
+      // The cut falls on each unit of four two-unit characters in turn, in a whole collection, in a root and in one long entry.
+      const body = `${'x'.repeat(pad)}${'\u{1F600}'.repeat(4)}\u{1F469}‍\u{1F4BB}tail`;
+      await store.transact((db) => { db['support'] = { note: body }; db['social'] = { players: { a: { name: body, seen: pad } }, convs: {}, houses: {}, pending: {}, seq: pad, note: body }; });
+      store = open(t.storage, { layout, chunk: 100, shadowSample: 1 });
+      assert.equal(await store.read((db) => (db['support'] as { note: string }).note), body, `${layout}, a whole collection, ${pad}`);
+      assert.equal(await store.read((db) => (db['social'] as { players: Record<string, { name: string }> }).players['a']?.name), body, `${layout}, an entry, ${pad}`);
+      assert.equal(await store.read((db) => (db['social'] as { note: string }).note), body, `${layout}, a root, ${pad}`);
+    }
+    assert.equal((t.db.prepare("SELECT COUNT(*) AS n FROM collection_parts WHERE instr(value, char(65533)) > 0").get() as { n: number }).n, 0);
+    if (layout === 'shadow') { const now = await status(store); assert.equal(now.shadow.mismatches, 0); assert.ok(await equalCopies(store)); }
+  }
+  const t = testStorage(), shards = sqliteShardBackend(t.storage, { chunk: 50 });
+  for (let pad = 40; pad < 54; pad += 1) {
+    const line = `${'y'.repeat(pad)}${'\u{1F1F3}\u{1F1EC}'.repeat(3)}end`;
+    await shards.replace('lagos', line); await shards.append('lagos', line);
+    assert.equal(await shards.read('lagos'), line + line, `shard, ${pad}`);
+  }
+});

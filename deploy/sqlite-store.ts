@@ -103,6 +103,17 @@ function hashOf(text: string | undefined): string | null {
   for (let i = 0; i < text.length; i += 1) { a = Math.imul(a ^ text.charCodeAt(i), 0x01000193) >>> 0; b = (Math.imul(b + text.charCodeAt(i), 0x85ebca6b) ^ (b >>> 13)) >>> 0; }
   return `${text.length}:${a.toString(16)}${b.toString(16)}`;
 }
+/**
+ * Where a part of `text` that starts at `start` ends: `chunk` characters on, or one fewer when that would cut a character outside
+ * the basic plane in two (an emoji is two units of a JavaScript string). Half a character cannot be stored: the storage would keep
+ * U+FFFD in its place, twice, and the text read back would no longer be the text written.
+ */
+export function cutAt(text: string, start: number, chunk: number): number {
+  const end = start + chunk;
+  if (end >= text.length) return text.length;
+  const last = text.charCodeAt(end - 1);
+  return last >= 0xd800 && last <= 0xdbff && chunk > 1 ? end - 1 : end;
+}
 /** A change held in memory: the text to store, and the text the row holds now. */
 interface Held { text: string; stored: string }
 /** The head a row holds in place of a text that was split over rows of collection_parts. */
@@ -143,8 +154,9 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
   function writeParts(name: string, text: string): number {
     const old = new Map(sql.exec<{ part: number; value: string }>('SELECT part,value FROM collection_parts WHERE name = ?', name).toArray().map(row => [Number(row.part), row.value]));
     let parts = 0;
-    for (let start = 0; start < text.length; start += chunk) {
-      const value = text.slice(start, start + chunk);
+    for (let start = 0, end = 0; start < text.length; start = end) {
+      end = cutAt(text, start, chunk);
+      const value = text.slice(start, end);
       if (old.get(parts) !== value) sql.exec('INSERT INTO collection_parts(name,part,value) VALUES(?,?,?) ON CONFLICT(name,part) DO UPDATE SET value=excluded.value', name, parts, value);
       parts += 1;
     }
@@ -305,7 +317,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
   // On the way, the legacy value stays the truth and each collection's copy is kept from the moment it is made (shadow, in memory until every copy exists).
   if (goal && layout === 'legacy') layout = 'shadow';
   /** The copies this start made: how many, and the largest. */
-  const steps = { count: 0, chars: 0, rows: 0, ms: 0, largest: null as null | { collection: string; chars: number; rows: number; entries: number; ms: number } };
+  const steps = { count: 0, chars: 0, rows: 0, ms: 0, largest: null as null | { collection: string; chars: number; rows: number; entries: number; ms: number }, switchMs: null as number | null };
   /** The collections whose rows in `entries` hold everything the legacy value holds (and are kept so while the layout is `entries`). */
   const synced = new Set<string>(sql.exec<{ key: string }>("SELECT key FROM store_meta WHERE key LIKE 'synced:%'").toArray().map(row => row.key.slice(7)));
   // The entry rows are only kept up to date while the layout is `entries`: after any other start they may be old.
@@ -512,7 +524,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
       const bad = keyedNames().flatMap(name => shadowDiff(name, collectionText(name)));
       if (bad.length) throw refuse('not_equal', bad[0] as string);
       await commitTools(() => { metaPut('layout', 'entries'); metaPut('layout-by', 'release'); metaPut('cutover', String(Date.now())); sql.exec("DELETE FROM store_meta WHERE key = 'safety-dropped'"); });
-      layout = 'entries'; persisted = 'entries'; goal = null;
+      layout = 'entries'; persisted = 'entries'; goal = null; steps.switchMs = Date.now() - began;
       log(`Store: now read and written per entry (every copy compared equal, ${Date.now() - began} ms); the stored values of before are kept as they were`);
     } catch (error) {
       const code = typeof error === 'object' && error !== null ? Reflect.get(error, 'code') : undefined;

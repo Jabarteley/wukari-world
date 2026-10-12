@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tarawa",
+  "countryIso2": "KI",
+  "generationIdentity": {
+    "cityId": "tarawa",
+    "stateId": "ki-tarawa",
+    "stateName": "South Tarawa"
+  },
+  "inventorySha256": "5d80162d070b6fea9fa2e53e124df5f02c00c7bede2884716b1741cafb513b1e",
+  "inventoryPath": "world/playable-africa-rollout/sources/tarawa.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "tarawa-airport",
+    "name": "Bonriki International Airport",
+    "lon": 173.147003,
+    "lat": 1.38164,
+    "sourceUrl": "https://ourairports.com/airports/NGTA/"
+  },
+  "bounds": [
+    1.1681969100660217,
+    172.858924892749,
+    1.5299586899339785,
+    173.218377507251
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/kiribati-261011.osm.pbf",
+      "datasetSha256": "56ef5269f39bb35fa03fc7b99b8641845d629695e237ced5fd21ae1b136047a8",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "c19bd7a61a78e4b7b3360612fe94c1bfa678e1da4972445192eab6360f876180",
+          "elements": 89
+        },
+        {
+          "file": "extras.json",
+          "sha256": "e7198b37ec9a7b21442d5f44c63b7b2c2b2358c02ab57b8ef5f3e96bc1cf890e",
+          "elements": 55
+        },
+        {
+          "file": "water.json",
+          "sha256": "1bcab95f16b4aab7d6f2ba1b0f0ee6846cdd079abcb6a07f771a93119079e5ad",
+          "elements": 152
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b0264d90d75eca87cc03fb51ab62c6ae6fc87b6646cbcfa5ac2ccd137304fd32",
+          "elements": 40
+        },
+        {
+          "file": "roads.json",
+          "sha256": "1e933a9341a975fb0544f2a4f52a232165b072eaef36c5cab126197b7329446f",
+          "elements": 29
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 11,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 12
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "neighbourhood": 1,
+      "village": 17
+    }
+  },
+  "observed": {
+    "places": 89,
+    "extras": 55,
+    "water": 152,
+    "landuse": 40,
+    "roads": 29
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1246,
+      "sha256": "29fd2c7c92643c6137670b31fcf8f5aee11a82406ef5196971afe6aeaf39c21c"
+    },
+    "geometry.ts": {
+      "bytes": 51488,
+      "sha256": "00dbfeda922f6659fbe6b343aa3bff303abac61ce0f2255552476ca393dfaf6c"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "11d0fb3281d68f42cf341d1b07f05f8d6372a5183ce746edef8356101f11abce"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/tarawa.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

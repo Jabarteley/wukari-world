@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "nukualofa",
+  "countryIso2": "TO",
+  "generationIdentity": {
+    "cityId": "nukualofa",
+    "stateId": "to-nukualofa",
+    "stateName": "Nuku'alofa"
+  },
+  "inventorySha256": "e5342edd49646caa1faf20e14cefa20eefb023b507490d829a011249a8702f4b",
+  "inventoryPath": "world/playable-africa-rollout/sources/nukualofa.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "nukualofa-airport",
+    "name": "Fua'amotu International Airport",
+    "lon": -175.149164,
+    "lat": -21.241438,
+    "sourceUrl": "https://ourairports.com/airports/NFTF/"
+  },
+  "bounds": [
+    -21.315220989933977,
+    -175.39466250638603,
+    -20.953459210066022,
+    -175.00895349361397
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/tonga-261011.osm.pbf",
+      "datasetSha256": "2ae5440179b1246286d659a5dc8672d0bf8ae1c32f386b7be274d028fad6eddd",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "31f5189456735d4257e409f7222dea76f4690970ab22e4007634bf43136a8e39",
+          "elements": 219
+        },
+        {
+          "file": "extras.json",
+          "sha256": "36921b1baade21b23b1c9a61b4f21b17040b3f396396e27b863baefd4b6102a6",
+          "elements": 33
+        },
+        {
+          "file": "water.json",
+          "sha256": "2ede1fb969cf8441b87d3123b7b0dc7ba2c093e63810120f7a8fcac4a46b57c8",
+          "elements": 785
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "cf71dd10f3391a651350b7837d1f4af9e50a4a4eb9983bc0d919d3750e9ec54b",
+          "elements": 1177
+        },
+        {
+          "file": "roads.json",
+          "sha256": "4d73e224e6c992cac184c6cd148f0d268f838a50dbdbbec21b43dc6953cc700b",
+          "elements": 67
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 20,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 14,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 5
+  },
+  "observed": {
+    "places": 219,
+    "extras": 33,
+    "water": 785,
+    "landuse": 1177,
+    "roads": 67
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1257,
+      "sha256": "dbfc49f107086a2eaf3af4fbdff0627859664f133cf4fac98cfe6dc39063359e"
+    },
+    "geometry.ts": {
+      "bytes": 772428,
+      "sha256": "6af9ac5fbfd010c73a36cf31d02df6aa16530acb7bb0f49a3a434d62eb863997"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "bb994919ff75ed83778f6fda5a54890c323822579cadb6c639977ffc77aa3bce"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/nukualofa.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

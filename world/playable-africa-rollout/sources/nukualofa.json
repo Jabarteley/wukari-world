@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "nukualofa",
+  "countryIso2": "TO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Nuku'alofa",
+    "coordinatesWgs84": [
+      -175.201808,
+      -21.1343401
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/tonga-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "nukualofa-airport",
+    "name": "Fua'amotu International Airport",
+    "lon": -175.149164,
+    "lat": -21.241438,
+    "sourceUrl": "https://ourairports.com/airports/NFTF/"
+  },
+  "boxes": {
+    "play": [
+      -21.315220989933977,
+      -175.39466250638603,
+      -20.953459210066022,
+      -175.00895349361397
+    ],
+    "core": [
+      -21.179560322483493,
+      -175.2499772599003,
+      -21.089119877516506,
+      -175.1536387400997
+    ],
+    "outline": [
+      -21.365220989933977,
+      -175.44466250638604,
+      -20.90345921006602,
+      -174.95895349361396
+    ],
+    "wide": [
+      -21.915220989933978,
+      -175.99466250638602,
+      -20.35345921006602,
+      -174.40895349361398
+    ],
+    "water": [
+      -21.915220989933978,
+      -175.99466250638602,
+      -20.35345921006602,
+      -174.40895349361398
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/tonga-261011.osm.pbf",
+    "datasetSha256": "2ae5440179b1246286d659a5dc8672d0bf8ae1c32f386b7be274d028fad6eddd",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "31f5189456735d4257e409f7222dea76f4690970ab22e4007634bf43136a8e39",
+        "elements": 219
+      },
+      {
+        "file": "extras.json",
+        "sha256": "36921b1baade21b23b1c9a61b4f21b17040b3f396396e27b863baefd4b6102a6",
+        "elements": 33
+      },
+      {
+        "file": "water.json",
+        "sha256": "2ede1fb969cf8441b87d3123b7b0dc7ba2c093e63810120f7a8fcac4a46b57c8",
+        "elements": 785
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "cf71dd10f3391a651350b7837d1f4af9e50a4a4eb9983bc0d919d3750e9ec54b",
+        "elements": 1177
+      },
+      {
+        "file": "roads.json",
+        "sha256": "4d73e224e6c992cac184c6cd148f0d268f838a50dbdbbec21b43dc6953cc700b",
+        "elements": 67
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Ferry to Islands",
+      "osm": "node/3123610897",
+      "coordinatesWgs84": [
+        -175.183389,
+        -21.138798
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "'Oholei",
+      "osm": "node/3187993645",
+      "coordinatesWgs84": [
+        -175.099063,
+        -21.23738
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kolovai Community Public Library",
+      "osm": "way/317154071",
+      "coordinatesWgs84": [
+        -175.339161,
+        -21.100323
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mu'a Hospital",
+      "osm": "way/319055128",
+      "coordinatesWgs84": [
+        -175.12296,
+        -21.184981
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tukingapahu",
+      "osm": "way/380697400",
+      "coordinatesWgs84": [
+        -175.209304,
+        -21.132398
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Prison Market",
+      "osm": "way/314822748",
+      "coordinatesWgs84": [
+        -175.16217,
+        -21.201076
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nuku'alofa Tonga Temple",
+      "osm": "way/313663820",
+      "coordinatesWgs84": [
+        -175.272322,
+        -21.162609
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Makatolo a Maui Community Hall",
+      "osm": "way/318689869",
+      "coordinatesWgs84": [
+        -175.10472,
+        -21.204835
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MAFF",
+      "osm": "node/5466637492",
+      "coordinatesWgs84": [
+        -175.142414,
+        -21.240454
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The University of the South Pacific Tonga Campus",
+      "osm": "relation/5274828",
+      "coordinatesWgs84": [
+        -175.21945,
+        -21.185086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Teufaiva Stadium",
+      "osm": "way/307249636",
+      "coordinatesWgs84": [
+        -175.207413,
+        -21.141481
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ha'amonga 'a Maui",
+      "osm": "way/687265667",
+      "coordinatesWgs84": [
+        -175.04808,
+        -21.13659
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal Palace",
+      "osm": "way/307399349",
+      "coordinatesWgs84": [
+        -175.200605,
+        -21.131395
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Siasi 'o Tonga",
+      "osm": "way/314371836",
+      "coordinatesWgs84": [
+        -175.201097,
+        -21.138752
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Loto-Tonga Soka Centre",
+      "osm": "relation/5274827",
+      "coordinatesWgs84": [
+        -175.220767,
+        -21.190226
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathedral of the Immaculate Conception of Mary",
+      "osm": "way/320590185",
+      "coordinatesWgs84": [
+        -175.181744,
+        -21.140823
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal Sunset",
+      "osm": "node/6441638780",
+      "coordinatesWgs84": [
+        -175.257707,
+        -21.056676
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fishing pigs (on low tide)",
+      "osm": "node/12072562069",
+      "coordinatesWgs84": [
+        -175.121651,
+        -21.138815
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pupu'a puhi",
+      "osm": "node/1234123401",
+      "coordinatesWgs84": [
+        -175.308473,
+        -21.174115
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vainī Hosptial",
+      "osm": "way/300336346",
+      "coordinatesWgs84": [
+        -175.182438,
+        -21.191758
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fale Kai",
+      "osm": "way/319048856",
+      "coordinatesWgs84": [
+        -175.158068,
+        -21.224997
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maketi Talamahu",
+      "osm": "way/323956968",
+      "coordinatesWgs84": [
+        -175.220487,
+        -21.157221
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fa'onelua Park",
+      "osm": "way/338584633",
+      "coordinatesWgs84": [
+        -175.196376,
+        -21.134301
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maketi Siamelie",
+      "osm": "node/3230856831",
+      "coordinatesWgs84": [
+        -175.187345,
+        -21.138635
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1257,
+      "sha256": "dbfc49f107086a2eaf3af4fbdff0627859664f133cf4fac98cfe6dc39063359e"
+    },
+    "geometry.ts": {
+      "bytes": 772428,
+      "sha256": "6af9ac5fbfd010c73a36cf31d02df6aa16530acb7bb0f49a3a434d62eb863997"
+    },
+    "places.ts": {
+      "bytes": 9389,
+      "sha256": "06cb15b59c568eddd8d50216147fd75e007830bde370c74c7fe7eb28a6eb9768"
+    },
+    "terrain.ts": {
+      "bytes": 363155,
+      "sha256": "20d9a0bd71b91fb57e8f5ffb954037319fae92a7388351a8f0c142b597d5360a"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "bb994919ff75ed83778f6fda5a54890c323822579cadb6c639977ffc77aa3bce"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

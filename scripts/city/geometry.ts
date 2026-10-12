@@ -210,15 +210,28 @@ function properIntersection(a: Point, b: Point, c: Point, d: Point): boolean {
 
 interface PolygonBounds { readonly minLon: number; readonly maxLon: number; readonly minLat: number; readonly maxLat: number }
 
+const boundsCache = new WeakMap<Polygon, PolygonBounds>()
+
+// Each polygon is compared with every other city's polygons (about N^2/2 pairs): measure it once, without spreading
+// thousands of coordinates into Math.min/Math.max arguments on every pair.
 const boundsFor = (polygon: Polygon): PolygonBounds => {
+  const known = boundsCache.get(polygon)
+  if (known) return known
   const outer = polygon[0]
   if (!outer?.length) throw new Error('A polygon has no outer ring')
-  return {
-    minLon: Math.min(...outer.map(([lon]) => lon)),
-    maxLon: Math.max(...outer.map(([lon]) => lon)),
-    minLat: Math.min(...outer.map(([, lat]) => lat)),
-    maxLat: Math.max(...outer.map(([, lat]) => lat)),
+  let minLon = Infinity
+  let maxLon = -Infinity
+  let minLat = Infinity
+  let maxLat = -Infinity
+  for (const [lon, lat] of outer) {
+    if (lon < minLon) minLon = lon
+    if (lon > maxLon) maxLon = lon
+    if (lat < minLat) minLat = lat
+    if (lat > maxLat) maxLat = lat
   }
+  const bounds = { minLon, maxLon, minLat, maxLat }
+  boundsCache.set(polygon, bounds)
+  return bounds
 }
 
 const boxesOverlap = (left: PolygonBounds, right: PolygonBounds): boolean =>

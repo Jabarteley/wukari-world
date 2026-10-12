@@ -18,6 +18,7 @@ import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { Browser, sleep } from './cdp-map-qa.ts';
 import { cityCatalogueEntry } from '../../src/game/cities/registry.ts';
+import { ATLAS_LEVELS, countryAtlasLevel } from '../../src/map3d/regions.ts';
 
 const arg = (name: string, fallback?: string): string => {
   const at = process.argv.indexOf(`--${name}`);
@@ -32,11 +33,20 @@ const base = `http://127.0.0.1:${port}`;
 mkdirSync(out, { recursive: true });
 const work = mkdtempSync(join(tmpdir(), 'mapshots-'));
 const dataDir = join(work, 'data'), cookieFile = join(work, 'founder.cookie');
-const rowFor = (id: string): { name: string; pick: string; level: 'africa' | 'nigeria' } => {
+const atlasLevelFor = (id: string) => {
+  const index = ATLAS_LEVELS.findIndex(level => level.id === id);
+  if (index < 0) throw new Error(`Missing current-app atlas level: ${id}`);
+  return { id: ATLAS_LEVELS[index]!.id, index, name: ATLAS_LEVELS[index]!.name };
+};
+const rowFor = (id: string) => {
   const city = cityCatalogueEntry(id);
-  if (!city) throw new Error(`Unknown city in acceptance set: ${id}`);
-  if (city.countryISO && city.countryISO !== 'ng') return { name: city.name, pick: `country:${city.countryISO}`, level: 'africa' };
-  return { name: city.name, pick: `state:${city.state.id}`, level: 'nigeria' };
+  if (!city?.open) throw new Error(`Unknown or closed city in acceptance set: ${id}`);
+  const country = city.countryISO ?? 'ng', levelId = countryAtlasLevel(country);
+  if (!levelId) throw new Error(`No current-app country atlas level for ${id}/${country}`);
+  const level = atlasLevelFor(levelId);
+  const definition = ATLAS_LEVELS[level.index]!;
+  const continent = definition.country ? atlasLevelFor(definition.parent ?? '') : level;
+  return { name: city.name, pick: country === 'ng' ? `state:${city.state.id}` : `country:${country}`, countryPick: `country:${country}`, level, continent };
 };
 const PLACE_TO_OPEN: Record<string, string> = { cairo: 'Khan El Khalili', kigali: '', lagos: '' };
 // --water "cairo=0.5,0.5;rabat=0.2,0.5": where on the screen (fractions of width, height, from the whole-city view) to zoom in on the main water.
@@ -48,6 +58,8 @@ const waterOnly = process.argv.includes('--water-only');
 // --lean: the 15-city sweep: default, whole city, centre zoom, water, list top, simple map, plus a zoomed-out and rotated shot at the view limits.
 const lean = process.argv.includes('--lean');
 const allowScriptedFallback = process.argv.includes('--allow-scripted-fallback');
+const roundtrip = process.argv.includes('--roundtrip');
+if (roundtrip && allowScriptedFallback) throw new Error('--roundtrip requires native controls; scripted fallback is not allowed');
 // --phones 390x844,320x568 (empty for none): the last city is reloaded at each phone size.
 // --phone-cities dakar,kampala: these cities also get the phone sets (each reloaded from the venue view); --phones lists the sizes.
 const phoneCities = new Set(arg('phone-cities', '').split(',').filter(Boolean));
@@ -153,34 +165,58 @@ async function settle(b: Browser): Promise<string> {
 }
 
 let current = 'lagos';
-async function fly(b: Browser, city: string): Promise<void> {
+/** Native menus only: indexes and displayed names come from the copied app's registry. */
+async function atlasLevel(b: Browser, id: string, prefix: string): Promise<void> {
+  const entry = atlasLevelFor(id);
+  const atLevel = `document.querySelector('[data-atlas-levels] span')?.textContent?.trim() === ${JSON.stringify(entry.name)}`;
+  if (!(await b.eval<boolean>(atLevel))) {
+    await b.click('[data-atlas-levels]');
+    await b.click(`[data-atlas-level="${entry.index}"]`);
+  }
+  await b.waitFor(`${shownNow('[data-atlas-levels]')} && ${atLevel}`, 30000, `${entry.name} level`);
+  notes.push(`${prefix}: native atlas level ${entry.id}/${entry.index}, displayed ${await b.eval<string>(`document.querySelector('[data-atlas-levels]')?.textContent?.trim() || ''`)}`);
+}
+
+async function atlasPick(b: Browser, value: string, prefix: string): Promise<void> {
+  if (!(await b.eval<boolean>(shownNow('[data-atlas-search]')))) await b.click('[data-atlas-list]');
+  await b.waitFor(shownNow('[data-atlas-search]'), 15000, 'search');
+  await b.type('[data-atlas-search]', '');
+  const pick = `[data-atlas-pick="${value}"]`;
+  const row = await b.eval<{ name: string; tag: string; open: boolean }>(`(() => { const r = document.querySelector(${JSON.stringify(pick)}); return {name:r?.querySelector('b')?.textContent?.trim() || '',tag:r?.querySelector('em')?.textContent?.trim() || '',open:!!r && (r.classList.contains('is-open') || r.classList.contains('is-here'))}; })()`);
+  if (!row.name || !row.open) throw new Error(`Missing or not-open atlas entry ${value}: ${JSON.stringify(row)}`);
+  await b.type('[data-atlas-search]', row.name);
+  await b.locate(pick);
+  notes.push(`${prefix}: atlas entry ${value}, displayed ${row.name}; ${row.tag}`);
+  await b.screenshot(join(out, `${prefix}-00-${value.startsWith('country:') ? 'country-list' : 'state-list'}.png`));
+  await b.click(pick);
+  await b.waitFor(shownNow('.atlas-sheet'), 30000, `${row.name} focus sheet`);
+}
+
+async function fly(b: Browser, city: string, prefix = city): Promise<void> {
   const t = rowFor(city);
   if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]'))) && !(await b.eval<boolean>(shownNow('.map-levels-cur')))) await b.click('[data-nav="map"]');
   await b.waitFor(`${shownNow('.map-levels-cur')} || ${shownNow('[data-atlas-levels]')}`, 30000, 'the map');
-  const level = t.level ?? 'africa', wanted = level === 'africa' ? 1 : 2;
   if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]')))) {
     await b.click('.map-levels-cur');
-    const initialLevel = await b.eval<boolean>(`!!document.querySelector('[data-map-level="${level}"]')`) ? level : 'africa';
-    await b.click(`[data-map-level="${initialLevel}"]`);
-    await b.waitFor(shownNow('[data-atlas-levels]'), 30000, 'the Africa atlas');
+    await b.click('[data-map-level="world"]');
+    await b.waitFor(shownNow('[data-atlas-levels]'), 30000, 'the World atlas');
   }
-  const atlasLevel = await b.eval<string>(`document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase()`);
-  if (!atlasLevel.startsWith(level)) { await b.click('[data-atlas-levels]'); await b.click(`[data-atlas-level="${wanted}"]`); }
-  await b.waitFor(`${shownNow('[data-atlas-levels]')} && document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase().startsWith(${JSON.stringify(level)})`, 30000, `${level} level`);
-  if (!(await b.eval<boolean>(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`))) await b.click('[data-atlas-list]').catch(() => undefined);
-  await b.waitFor(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`, 15000, 'search');
-  await b.type('[data-atlas-search]', '');
-  const pick = `[data-atlas-pick="${t.pick}"]`;
-  const rowName = await b.eval<string>(`document.querySelector(${JSON.stringify(pick + ' b')})?.textContent?.trim() || ''`);
-  if (!rowName) throw new Error(`Missing atlas entry ${t.pick} for ${city}`);
-  await b.type('[data-atlas-search]', rowName);
-  await b.locate(pick);
-  await b.screenshot(join(out, `${city}-00-country-list.png`));
-  await b.click(pick);
+  await atlasLevel(b, 'world', prefix);
+  await b.screenshot(join(out, `${prefix}-00-world.png`));
+  await atlasLevel(b, t.continent.id, prefix);
+  await b.screenshot(join(out, `${prefix}-00-continent.png`));
+  await atlasPick(b, t.countryPick, prefix);
+  await b.screenshot(join(out, `${prefix}-00-country-focus.png`));
+  if (t.pick !== t.countryPick) {
+    await atlasLevel(b, t.level.id, prefix);
+    await atlasPick(b, t.pick, prefix);
+  }
   const cityChoice = `[data-atlas-inspect-city="${city}"]`;
   if (await b.eval<boolean>(`!!document.querySelector(${JSON.stringify(cityChoice)})`)) await b.click(cityChoice);
   await b.waitFor(`document.querySelector('[data-atlas-go="${city}:air"]')`, 30000, 'flight line');
-  await b.screenshot(join(out, `${city}-00-flight.png`));
+  await b.screenshot(join(out, `${prefix}-00-flight.png`));
+  const travelReadout = await b.eval<string>(`document.querySelector('.atlas-sheet')?.innerText || ''`);
+  notes.push(`${prefix}: observed travel card from ${current} to ${city}: ${travelReadout.replace(/\s+/g, ' ').trim()}`);
   await b.click(`[data-atlas-go="${city}:air"]`);
   if (await b.waitFor<string>(`document.querySelector('[data-atlas-sure]') ? 'ask' : ''`, 4000, 'confirm').catch(() => '')) await b.click('[data-atlas-sure]');
   await until(async () => {
@@ -190,6 +226,8 @@ async function fly(b: Browser, city: string): Promise<void> {
   }, 360000, `arrival in ${t.name}`);
   await until(async () => !(await lifeRaw(b, city)).state?.activeAction, 60000, 'the action to end');
   current = city;
+  const arrivalReadout = await b.eval<string>(`[...document.querySelectorAll('[data-clock], .hud-clock, .hud-time, .hud-cash')].map(node => node.textContent?.trim()).filter(Boolean).join(' · ')`);
+  notes.push(`${prefix}: native arrival verified in ${t.name}; observed HUD ${arrivalReadout || 'no clock/cash selector readout'}`);
   await gameShown(b);
   await b.waitFor(`(() => { const nav = document.querySelector('[data-nav="map"]'); return !!nav && nav.getAttribute('aria-current') !== 'page'; })()`, 60000, 'the arrived city to leave the travel map');
   await dismiss(b);
@@ -445,6 +483,13 @@ try {
       }
       await b.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
       await b.goto(base + '/'); await gameShown(b); await dismiss(b);
+    }
+    if (roundtrip && current !== 'lagos') {
+      await b.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
+      await fly(b, 'lagos', `${city}-return-lagos`);
+      await gameShown(b); await dismiss(b);
+      await b.screenshot(join(out, `${city}-return-lagos-arrived-home.png`));
+      notes.push(`${city}: roundtrip completed through native flight controls; arrived Lagos after destination desktop/phone map sets`);
     }
   }
   const errors = b.consoleErrors.filter((e) => !/401|409/.test(e));

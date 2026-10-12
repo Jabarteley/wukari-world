@@ -104,7 +104,24 @@ function verifyCity({ artifact, delivery, id, row, manifest }) {
   // Manifest check: every pinned output of this city that was delivered must match; a pinned app file that is missing is a refusal.
   let checked = 0
   if (manifest) {
-    for (const [tail, { hash, step }] of manifest) {
+    // The exact-coast stage rewrites app files (terrain.ts, geometry.ts) after earlier steps pinned their hashes and
+    // step-cache.json does not always carry the new hash for every rewritten file. Its own log records sha256After
+    // for each rewritten file: accept that hash (the delivered file must still match it) when the stage passed.
+    const coastLog = join(artifact, 'evidence', `${id}-exact-coast.log`)
+    let coastRewrites = []
+    if (isFile(coastLog)) {
+      try {
+        const log = JSON.parse(readFileSync(coastLog, 'utf8'))
+        if (log.status === 'passed' && Array.isArray(log.outputFiles)) coastRewrites = log.outputFiles
+      } catch { /* an unreadable log leaves the cache hashes in force */ }
+    }
+    const rewritten = new Map()
+    for (const f of coastRewrites) {
+      const at = typeof f?.path === 'string' ? f.path.indexOf('/city-factory/') : -1
+      if (at >= 0 && typeof f.sha256After === 'string' && /^[0-9a-f]{64}$/.test(f.sha256After)) rewritten.set(f.path.slice(at + '/city-factory/'.length), f.sha256After)
+    }
+    for (const [tail, { hash: cached, step }] of manifest) {
+      const hash = rewritten.get(tail) ?? cached
       let file = null
       if (tail.startsWith(`app/src/game/cities/${id}/`)) file = join(delivery, 'cities', id, tail.slice(`app/src/game/cities/${id}/`.length))
       else if (tail === `app/scripts/geo/destination-detail/${id}.ts`) file = recipe

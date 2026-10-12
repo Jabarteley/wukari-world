@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kinshasa",
+  "countryIso2": "CD",
+  "generationIdentity": {
+    "cityId": "kinshasa",
+    "stateId": "cd",
+    "stateName": "Kinshasa"
+  },
+  "inventorySha256": "be20abea607cfffaf51ef3811bfcda3f7fa62a97ae29cebb87e0e7e3bb3b678d",
+  "inventoryPath": "world/playable-africa-rollout/sources/kinshasa.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "kinshasa-airport",
+    "name": "Ndjili International Airport",
+    "lon": 15.4446,
+    "lat": -4.38575,
+    "sourceUrl": "https://ourairports.com/airports/FZAA/"
+  },
+  "bounds": [
+    -4.55,
+    15.15,
+    -4.2,
+    15.6
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/congo-democratic-republic-261009.osm.pbf",
+      "datasetSha256": "dc45309faee3af3df99a2025dc0fe481ec5dfe52c8b672b9905b0a4524c4cc91",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "40d434ef2c69d84e471f4ed5254d2c281114fbb7bcf710bab107201bc72b4495",
+          "elements": 786
+        },
+        {
+          "file": "extras.json",
+          "sha256": "c5b52a67b30896ce04c8da2bab0bdfff0ca808ee1b9e396935dc562fb9907964",
+          "elements": 256
+        },
+        {
+          "file": "water.json",
+          "sha256": "41898a88c23d40a4d7b69b38bfa679f0a57febb38a27108cb77a865be50796b1",
+          "elements": 526
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "359e9389fe894042450e852b780acc6b623335e7289c35c5350d4c1c2c4bdf77",
+          "elements": 1299
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5941c159ea442e1ad737fcd8bb00111a90d9c4d29fd23709d1295a81571fa84d",
+          "elements": 587
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 286,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 13,
+    "waterPolygons": 43,
+    "reachWaterPolygons": 6
+  },
+  "observed": {
+    "places": 786,
+    "extras": 256,
+    "water": 526,
+    "landuse": 1299,
+    "roads": 587
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1582,
+      "sha256": "db249fafd55fbaeaae34bae368efd9ddba7b391f3f5574da0a776d3b92a4aa2c"
+    },
+    "geometry.ts": {
+      "bytes": 129715,
+      "sha256": "c9f5c249c3e23739818539fbd83e8d37cfff3038ba584592e6efdb1889bf5a60"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "aa81812d067ee8bca68cc5c6957345bd1ed430c437b4f1d01b8023ed994559bb"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/kinshasa.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

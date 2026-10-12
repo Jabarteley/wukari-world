@@ -109,67 +109,58 @@
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Le Capitole",
-      "osm": "node/330182866",
+      "name": "Lucullus",
+      "osm": "node/567484227",
       "coordinatesWgs84": [
-        10.181893,
-        36.799459
+        10.30531,
+        36.81709
       ],
       "accuracy": "mapped-feature"
     },
     {
-      "name": "Faculty of Economic Sciences and Management of Tunis",
-      "osm": "way/34613596",
+      "name": "Mediterranean School of Business",
+      "osm": "node/2613810514",
       "coordinatesWgs84": [
-        10.152065,
-        36.832104
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Charles Nicolle Hospital",
-      "osm": "way/95130049",
-      "coordinatesWgs84": [
-        10.160736,
-        36.802716
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Central Park",
-      "osm": "way/94346632",
-      "coordinatesWgs84": [
-        10.183309,
-        36.801867
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Marché de Tunis",
-      "osm": "way/95130058",
-      "coordinatesWgs84": [
-        10.17732,
-        36.797406
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Zaytuna Mosque",
-      "osm": "relation/1552764",
-      "coordinatesWgs84": [
-        10.171252,
-        36.797314
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Place Mohamed Ali",
-      "osm": "node/3123807845",
-      "coordinatesWgs84": [
-        10.176582,
-        36.80011
+        10.230431,
+        36.8315
       ],
       "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital Mongi Slim",
+      "osm": "way/93674308",
+      "coordinatesWgs84": [
+        10.291253,
+        36.867059
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Belvedere Park",
+      "osm": "way/48720329",
+      "coordinatesWgs84": [
+        10.169075,
+        36.82338
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tunis City",
+      "osm": "way/34392127",
+      "coordinatesWgs84": [
+        10.123161,
+        36.900277
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mosque",
+      "osm": "way/95132593",
+      "coordinatesWgs84": [
+        10.166604,
+        36.80763
+      ],
+      "accuracy": "feature-centroid"
     },
     {
       "name": "Tunis City Hall",
@@ -181,6 +172,51 @@
       "accuracy": "feature-centroid"
     },
     {
+      "name": "Centre Nationnal de la cartographie et de la Télédétection",
+      "osm": "way/93721724",
+      "coordinatesWgs84": [
+        10.25873,
+        36.848012
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "INSAT - Institut National des Sciences Appliquées et de Technologies",
+      "osm": "way/105588055",
+      "coordinatesWgs84": [
+        10.196194,
+        36.842916
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Ali-Belhouane",
+      "osm": "way/96994557",
+      "coordinatesWgs84": [
+        10.153128,
+        36.799228
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée de la Mémoire Nationale",
+      "osm": "way/179953386",
+      "coordinatesWgs84": [
+        10.171835,
+        36.772221
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "IPEIEM Institut Prépartoire des études d'ingénieur El Manar",
+      "osm": "node/483108304",
+      "coordinatesWgs84": [
+        10.143632,
+        36.82933
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
       "name": "Bardo National Museum",
       "osm": "relation/2401476",
       "coordinatesWgs84": [
@@ -190,11 +226,20 @@
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Fort La Goulette",
-      "osm": "relation/1354798",
+      "name": "Université libre de Tunis",
+      "osm": "node/7713167960",
       "coordinatesWgs84": [
-        10.303638,
-        36.814443
+        10.187144,
+        36.820475
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Grand Synagogue of Tunis",
+      "osm": "way/95134307",
+      "coordinatesWgs84": [
+        10.180111,
+        36.81038
       ],
       "accuracy": "feature-centroid"
     },
@@ -208,115 +253,97 @@
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Medina of Tunis",
-      "osm": "way/95197171",
+      "name": "Hôpital Militaire Principal d'Instruction de Tunis",
+      "osm": "way/95199308",
       "coordinatesWgs84": [
-        10.171065,
-        36.7986
+        10.178562,
+        36.785902
       ],
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Bab el Bhar",
-      "osm": "way/109465243",
+      "name": "Ministère du Tourisme",
+      "osm": "relation/1431423",
       "coordinatesWgs84": [
-        10.175618,
-        36.799177
+        10.186919,
+        36.801283
       ],
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Grand Synagogue of Tunis",
-      "osm": "way/95134307",
+      "name": "Place Pasteur",
+      "osm": "way/104343343",
       "coordinatesWgs84": [
-        10.180111,
-        36.81038
+        10.178686,
+        36.821761
       ],
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Dar Ben Abdallah",
-      "osm": "relation/1552763",
+      "name": "Institut Salah-Azaïz",
+      "osm": "way/180268053",
       "coordinatesWgs84": [
-        10.173814,
-        36.794
+        10.158348,
+        36.807191
       ],
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Dar el Bey",
-      "osm": "relation/1465965",
+      "name": "Mosquée khelloua de Sidi Mahrez",
+      "osm": "node/5669470129",
       "coordinatesWgs84": [
-        10.16922,
-        36.797571
+        10.171649,
+        36.792682
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stade Chedli Zouiten",
+      "osm": "way/34573429",
+      "coordinatesWgs84": [
+        10.170186,
+        36.828882
       ],
       "accuracy": "feature-centroid"
     },
     {
-      "name": "Palais Kheireddine",
-      "osm": "way/380570838",
+      "name": "Place de Barcelone",
+      "osm": "way/109431591",
       "coordinatesWgs84": [
-        10.168466,
-        36.801677
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Bardo Centre",
-      "osm": "way/102831449",
-      "coordinatesWgs84": [
-        10.137744,
-        36.809596
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "Palmarium",
-      "osm": "way/95130038",
-      "coordinatesWgs84": [
-        10.181063,
-        36.798859
-      ],
-      "accuracy": "feature-centroid"
-    },
-    {
-      "name": "La Cité des sciences",
-      "osm": "way/105557781",
-      "coordinatesWgs84": [
-        10.188841,
-        36.848257
+        10.180421,
+        36.796547
       ],
       "accuracy": "feature-centroid"
     }
   ],
   "generatedAssets": {
     "facts.ts": {
-      "bytes": 1293,
-      "sha256": "7ea09ef014af0fd05d0bc125bff444453e9f7b86e471e9d7ef343dfe611c1f8b"
+      "bytes": 1309,
+      "sha256": "665a13dc148f316b30f5a50827541f615abb4536872e524a90f958bac68ab37e"
     },
     "geometry.ts": {
-      "bytes": 55391,
-      "sha256": "e7308e1b193eae0d43e56da05488d02e88996dfde15b64dbcd282cc8fe315819"
+      "bytes": 56452,
+      "sha256": "b60218f2470a04b75301c0f63016439b3a4b0d99c4699a7a74072e09d03c2da6"
     },
     "places.ts": {
-      "bytes": 8409,
-      "sha256": "9fad1bf505991f48a280aead690f5b82463a953b883be53ac9f0aef08b800eeb"
+      "bytes": 10114,
+      "sha256": "b36382cf61dc7746487ba05576dfed0d67448c9121c85b469611377d6238558d"
     },
     "terrain.ts": {
-      "bytes": 72163,
-      "sha256": "63a82ca160668cf0ed4be82e3314fcd2da5b03c9dcec8b8d5b4c06351445f8c0"
+      "bytes": 72979,
+      "sha256": "dfbe5f70ca7c04413741d94b9e5970eea600633931e8f6fd09311770ea99e1ba"
     },
     "index.ts": {
-      "bytes": 257,
-      "sha256": "5228d215e3710201fbf64254883803b673cda71f910f8fea0e0b8ac9cf8d5ea0"
+      "bytes": 256,
+      "sha256": "d9d95add331676cba390b448ef3c1f29640d9bcc47f29886ea06c36dc4291939"
     },
     "content.ts": {
-      "bytes": 205,
-      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
     },
     "map.ts": {
-      "bytes": 290,
-      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
     }
   },
   "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",

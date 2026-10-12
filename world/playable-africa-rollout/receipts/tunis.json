@@ -7,7 +7,7 @@
     "stateId": "tn-tunis",
     "stateName": "Tunis"
   },
-  "inventorySha256": "c57491d89e5db5ff0d031a1f0972df4c766007993d4e7f0c6739c520485155ab",
+  "inventorySha256": "c52e55bd72efdb2dec72782b6dd6942a2fab98392448753111994ad98d9c38bc",
   "inventoryPath": "world/playable-africa-rollout/sources/tunis.json",
   "admission": {
     "registered": true,
@@ -65,9 +65,9 @@
     }
   },
   "kept": {
-    "places": 21,
+    "places": 24,
     "roads": 700,
-    "neighbourhoodLabels": 13,
+    "neighbourhoodLabels": 18,
     "landPolygons": 9,
     "waterPolygons": 5,
     "reachWaterPolygons": 24
@@ -81,24 +81,24 @@
   },
   "assets": {
     "facts.ts": {
-      "bytes": 1293,
-      "sha256": "7ea09ef014af0fd05d0bc125bff444453e9f7b86e471e9d7ef343dfe611c1f8b"
+      "bytes": 1309,
+      "sha256": "665a13dc148f316b30f5a50827541f615abb4536872e524a90f958bac68ab37e"
     },
     "geometry.ts": {
-      "bytes": 55391,
-      "sha256": "e7308e1b193eae0d43e56da05488d02e88996dfde15b64dbcd282cc8fe315819"
+      "bytes": 56452,
+      "sha256": "b60218f2470a04b75301c0f63016439b3a4b0d99c4699a7a74072e09d03c2da6"
     },
     "index.ts": {
-      "bytes": 257,
-      "sha256": "5228d215e3710201fbf64254883803b673cda71f910f8fea0e0b8ac9cf8d5ea0"
+      "bytes": 256,
+      "sha256": "d9d95add331676cba390b448ef3c1f29640d9bcc47f29886ea06c36dc4291939"
     },
     "content.ts": {
-      "bytes": 205,
-      "sha256": "0f702db981ac03f177e0c33a71be49b0295f9876b821d06f1c41f6b2657588cb"
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
     },
     "map.ts": {
-      "bytes": 290,
-      "sha256": "77d91d6db0a92cdeaa682c2656968cd0e3d9d2f8f3987c7c544a271eb707e984"
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
     }
   },
   "cityDetail": {

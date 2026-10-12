@@ -23,7 +23,7 @@ export const FACTS = {
     "lat": 36.851002,
     "sourceUrl": "https://ourairports.com/airports/DTTA/"
   },
-  "sourceLabel": "OpenStreetMap contributors via Geofabrik PBF and OurAirports dataset",
+  "sourceLabel": "OpenStreetMap contributors via Geofabrik Tunisia 2026-10-09 PBF; OurAirports dataset",
   "sourceUrl": "https://download.geofabrik.de/africa/tunisia-261009.osm.pbf",
   "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
   "bounds": [

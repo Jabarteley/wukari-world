@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "africa-three-final-source",
-      "appSha": "bafec6b0e0c1a7431fd7d0599fe0a0752ed7d758",
+      "id": "africa-three-valid-roundtrips",
+      "appSha": "a6cde9a39ec211f60a16fd6f97301e884298f538",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc",
       "cities": [
         "ndjamena",

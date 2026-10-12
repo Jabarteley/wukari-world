@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "CG",
+  "datasetSha256": "90ac645057fbbda85ae179fbca057b4e994c07db5dbd4265684b957cc64c58ed",
+  "checks": [
+    {
+      "ref": "node/1539417629",
+      "point": [
+        15.2883763,
+        -4.2693862
+      ],
+      "expected": "inside",
+      "sourceLayer": "places",
+      "layerSha256": "5f273c4ad6310c69087d242e57df1edefbc1243e5b1d1c2f9538ce22a0279fba"
+    },
+    {
+      "ref": "airport/FCBB",
+      "point": [
+        15.253,
+        -4.2517
+      ],
+      "expected": "inside",
+      "source": "Maya-Maya International Airport, OurAirports dataset point; https://ourairports.com/airports/FCBB/",
+      "coordinateCaveat": "Dataset point, not an official aerodrome reference point or evidence of current operations."
+    }
+  ]
+}

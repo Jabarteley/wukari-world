@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 2,
+  "countries": [
+    {
+      "countryISO": "CG",
+      "sourceUrl": "https://download.geofabrik.de/africa/congo-brazzaville-261009.osm.pbf",
+      "bytes": 32635893,
+      "sha256": "90ac645057fbbda85ae179fbca057b4e994c07db5dbd4265684b957cc64c58ed",
+      "snapshotDate": "2026-10-09",
+      "fixture": "boundary-fixture-cg.json"
+    }
+  ]
+}

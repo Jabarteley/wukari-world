@@ -14,4 +14,4 @@
  */
 import type { StoreLayout } from '../server/keyed.ts';
 
-export const RELEASE_STORE_LAYOUT: StoreLayout = 'legacy';
+export const RELEASE_STORE_LAYOUT: StoreLayout = 'shadow';

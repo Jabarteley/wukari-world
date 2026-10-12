@@ -163,7 +163,7 @@ Stored as one value each in every layout. A request that touches one still reads
 | One **conversation** | 200 messages | about 30 KB, 400 KB at the very worst | By design one row |
 | A city's **election** of one week | voters | one entry per week (114 KB at 10,000 players) | When one city passes about 50,000 voters |
 
-## The follow-ups the audit asked for
+## The follow-ups named in PERFORMANCE.md
 
 ### A rate for agents as a whole (done in this change)
 
@@ -214,7 +214,7 @@ on the same machine. The times compare one layout with another; they are not pro
   made 24 tool calls each (audit trails full), then aged with what a store a few weeks old holds and a run of minutes cannot
   make through the routes: 2,000 players who came and went, long conversations, gifts waiting, shops, two more cities with
   residents and an election each, 1,500 receipts and 1,200 wallet rows.
-- `npm run capacity`, the audit's load model (busy players, 40 s a step), in each layout.
+- `npm run capacity`, the load model of PERFORMANCE.md (busy players, 40 s a step), in each layout.
 
 ### The store that was moved
 
@@ -276,7 +276,7 @@ turn, by: A, the live build, A, the live build, A, B, A, the live build, B, the 
 
 So: shadow costs about a seventh more CPU than today and does not make the agent problem better (it is the same whole-collection
 write plus the copy); entries takes two fifths off the CPU of players alone and turns the swarm from seconds into tens of
-milliseconds. The audit measured 11 / 117 / 205 at 0.77 of a core for the last cell earlier the same day on a quieter machine; this
+milliseconds. PERFORMANCE.md has 11 / 117 / 205 at 0.77 of a core for the last cell, measured earlier the same day on a quieter machine; this
 run was slower, and at 0.91 of a core it says the same thing more loudly: 1,000 agents at the ceiling nearly fill the thread even
 per entry.
 

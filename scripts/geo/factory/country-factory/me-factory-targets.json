@@ -4,19 +4,19 @@
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "ME",
-    "datasetSha256": "43d280ed43d751f33088ea4681ba47a6ad5c91f3118b7a96a282478d38475ea2",
-    "receiptSha256": "559ca883bd32b10b1094d79a587839b3d113770d5a9ad7d2a5832c6e946f9615",
-    "receiptBytes": 89435,
+    "datasetSha256": "d04b17e63f01bde90ab90300dcabc5368cfbbf1be7ca374fdd7f5093f4881693",
+    "receiptSha256": "1df7df054967d6c53a02ff2709e03c80394298a9a95cc0606b5e445b54052d90",
+    "receiptBytes": 90406,
     "geometrySha256": "2b217875e1d0dcabb77fcdd2c7ea8501b0930e67709931bcfe562e73161f7eb5",
     "geometryBytes": 317120,
-    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
     "relationId": 53296,
     "boundaryKey": "me",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38248346879,
-      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-      "sourceArtifact": "city-bootstrap-me-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceRunId": 38280475239,
+      "sourceSha": "c91cf8f6ba4123ad69c8ed6fbbc59276b1258655",
+      "sourceArtifact": "city-bootstrap-me-c91cf8f6ba4123ad69c8ed6fbbc59276b1258655",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -59,12 +59,7 @@
           42.62240468993398
         ]
       },
-      "selectionExclusions": [
-        {
-          "ref": "way/170592633",
-          "reason": "Lesendro (walk): lies inside generated water; the proof counts it as a wet place (hosted factory run 38254156784, proof wetPlaces 1)"
-        }
-      ],
+      "selectionExclusions": [],
       "metadataSources": {
         "centre": {
           "osmRef": "node/123860883",
@@ -221,7 +216,7 @@
             "lon": 19.2621081,
             "lat": 42.4415238
           },
-          "pbfSha256": "43d280ed43d751f33088ea4681ba47a6ad5c91f3118b7a96a282478d38475ea2"
+          "pbfSha256": "d04b17e63f01bde90ab90300dcabc5368cfbbf1be7ca374fdd7f5093f4881693"
         },
         "airport": {
           "rowNumber": 45458,
@@ -281,13 +276,14 @@
         },
         "pbf": {
           "url": "https://download.geofabrik.de/europe/montenegro-261011.osm.pbf",
-          "bytes": 34534458,
-          "sha256": "43d280ed43d751f33088ea4681ba47a6ad5c91f3118b7a96a282478d38475ea2",
+          "bytes": 235736780,
+          "sha256": "d04b17e63f01bde90ab90300dcabc5368cfbbf1be7ca374fdd7f5093f4881693",
           "headerTimestamp": "2026-10-11T20:21:06Z"
         },
         "coastlineRefsWithinWide": [
           "way/6022640",
           "way/6022847",
+          "way/6191167",
           "way/10228375",
           "way/35446698",
           "way/35446735",
@@ -299,6 +295,7 @@
           "way/93099780",
           "way/96996701",
           "way/137882974",
+          "way/147599415",
           "way/163224689",
           "way/163228910",
           "way/163228914",
@@ -311,7 +308,13 @@
           "way/173629366",
           "way/173629371",
           "way/204863251",
+          "way/215108611",
+          "way/215108612",
+          "way/215108613",
           "way/220137437",
+          "way/221366345",
+          "way/221366346",
+          "way/221366347",
           "way/223324743",
           "way/223324744",
           "way/223324746",
@@ -354,6 +357,12 @@
           "way/739438342",
           "way/742023547",
           "way/743082038",
+          "way/743092697",
+          "way/743092698",
+          "way/743092699",
+          "way/743092700",
+          "way/743092704",
+          "way/743092705",
           "way/743444507",
           "way/743444508",
           "way/743444509",
@@ -475,6 +484,9 @@
           "way/1155614382",
           "way/1155614383",
           "way/1155638887",
+          "way/1176595502",
+          "way/1176595503",
+          "way/1176607335",
           "way/1182500806",
           "way/1182500807",
           "way/1259786544",
@@ -550,7 +562,7 @@
           "way/1550162900",
           "way/1550162901"
         ],
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -592,26 +604,45 @@
       },
       "extractKey": "podgorica",
       "extractSha256": {
-        "places": "ccd007fd03c626be974ecebdc377aa89cdab7857e7258aaed9db4ab3005890b6",
-        "extras": "2450db40b8ddda4ad2ac305cdb95bcf327c42f2d90a79f708c07181246eaa595",
-        "water": "64a5e2f22285274f01b1b0ecad3c5b9ab705fc72ed25f381667b57e4656b6b57",
-        "landuse": "f0ac5a90d9ffc8327bf008e670b94dc972659eaa7893c846327154232457f442",
-        "roads": "b331498437a5dfb6e1b6f327b9e18defd15c11fcf2c54774f1880bcbb6f4d19c"
+        "places": "35568940b506e375b35a7b0a154e5200be2c49e12ba1b8cba484d43573ace265",
+        "extras": "5b7488bb9b0a7251e12e5f150e5604566099a40d5b970f9728c31936b42e743f",
+        "water": "6e1695120a839b31a58f53d06e91ab779a6f023a3a367ea1922ab12be8d53b87",
+        "landuse": "ccdfd9c51ecb59b4e0b5f44b29054d31dc4ef4c2a282309b4ab43f66c9296d2a",
+        "roads": "942e058aaecaf17b81da4f0be4d08dd3d7f5241ffed74045d31d330bb13f13ac"
       },
       "sourceJob": {
         "city": "podgorica",
-        "sourceRunId": 38248346879,
-        "sourceArtifact": "city-bootstrap-me-06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "datasetSha256": "43d280ed43d751f33088ea4681ba47a6ad5c91f3118b7a96a282478d38475ea2",
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "sourceRunId": 38280475239,
+        "sourceArtifact": "city-bootstrap-me-c91cf8f6ba4123ad69c8ed6fbbc59276b1258655",
+        "sourceSha": "c91cf8f6ba4123ad69c8ed6fbbc59276b1258655",
+        "datasetSha256": "d04b17e63f01bde90ab90300dcabc5368cfbbf1be7ca374fdd7f5093f4881693",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "extractSha256": {
-          "places": "ccd007fd03c626be974ecebdc377aa89cdab7857e7258aaed9db4ab3005890b6",
-          "extras": "2450db40b8ddda4ad2ac305cdb95bcf327c42f2d90a79f708c07181246eaa595",
-          "water": "64a5e2f22285274f01b1b0ecad3c5b9ab705fc72ed25f381667b57e4656b6b57",
-          "landuse": "f0ac5a90d9ffc8327bf008e670b94dc972659eaa7893c846327154232457f442",
-          "roads": "b331498437a5dfb6e1b6f327b9e18defd15c11fcf2c54774f1880bcbb6f4d19c"
-        }
+          "places": "35568940b506e375b35a7b0a154e5200be2c49e12ba1b8cba484d43573ace265",
+          "extras": "5b7488bb9b0a7251e12e5f150e5604566099a40d5b970f9728c31936b42e743f",
+          "water": "6e1695120a839b31a58f53d06e91ab779a6f023a3a367ea1922ab12be8d53b87",
+          "landuse": "ccdfd9c51ecb59b4e0b5f44b29054d31dc4ef4c2a282309b4ab43f66c9296d2a",
+          "roads": "942e058aaecaf17b81da4f0be4d08dd3d7f5241ffed74045d31d330bb13f13ac"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/europe/montenegro-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 34534458,
+            "md5": "676da304b9d8a357b1e559dd1de15b5e",
+            "sha256": "43d280ed43d751f33088ea4681ba47a6ad5c91f3118b7a96a282478d38475ea2"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/europe/croatia-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 200686156,
+            "md5": "d98e7e7c547e3e214fad6bcae2eb9967",
+            "sha256": "f14bd6221f95867aaf8b45edadfc30d88f56ff4140520f4f5eb2cc6b9a1c1a7e",
+            "reason": "The Montenegrin coast way/669064261 starts near the Croatian border (Konavle) and continues as the Croatian coast way/215108613 (node 2245250921), absent from the Montenegro clip, so the coast cannot close; the Croatia extract supplies it"
+          }
+        ]
       }
     }
   ]

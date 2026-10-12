@@ -4,19 +4,19 @@
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "SI",
-    "datasetSha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7",
-    "receiptSha256": "5a0145396b913e4b5c32d38b08c4652112b6b77a8a43542dcbcc6a9c3a270716",
-    "receiptBytes": 325508,
+    "datasetSha256": "7d4a51d3b7f027abeae0e00fc9d8a2c5127bde43d31f8936babe1e6b759b5db9",
+    "receiptSha256": "6c79d196e636ab69d279cbeea85a338e1dc04a79b17e5088af85bd44ccbb968f",
+    "receiptBytes": 326565,
     "geometrySha256": "ec9158885eed32a131c4e0127bb6babfe1087f2ac4f26ac6e2d76cc82b6a7db6",
     "geometryBytes": 1347003,
-    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
     "relationId": 218657,
     "boundaryKey": "si",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38248346879,
-      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-      "sourceArtifact": "city-bootstrap-si-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceRunId": 38280475239,
+      "sourceSha": "c91cf8f6ba4123ad69c8ed6fbbc59276b1258655",
+      "sourceArtifact": "city-bootstrap-si-c91cf8f6ba4123ad69c8ed6fbbc59276b1258655",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -198,7 +198,7 @@
             "lon": 14.5069289,
             "lat": 46.0500268
           },
-          "pbfSha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7"
+          "pbfSha256": "7d4a51d3b7f027abeae0e00fc9d8a2c5127bde43d31f8936babe1e6b759b5db9"
         },
         "airport": {
           "rowNumber": 44554,
@@ -258,11 +258,12 @@
         },
         "pbf": {
           "url": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf",
-          "bytes": 313640878,
-          "sha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7",
+          "bytes": 937390400,
+          "sha256": "7d4a51d3b7f027abeae0e00fc9d8a2c5127bde43d31f8936babe1e6b759b5db9",
           "headerTimestamp": "2026-10-11T20:21:06Z"
         },
         "coastlineRefsWithinWide": [
+          "way/41886332",
           "way/72613414",
           "way/72613448",
           "way/118944619",
@@ -271,18 +272,37 @@
           "way/121220336",
           "way/143751510",
           "way/148450579",
+          "way/150332046",
           "way/159080384",
+          "way/257957481",
           "way/461366544",
           "way/461366545",
+          "way/498109736",
           "way/766674764",
           "way/766674765",
+          "way/786256648",
+          "way/786256649",
+          "way/786256650",
+          "way/786256651",
+          "way/786256652",
+          "way/786256653",
+          "way/786256654",
+          "way/786256655",
           "way/830744504",
+          "way/833571003",
+          "way/836928597",
+          "way/838283457",
+          "way/848897684",
+          "way/848897686",
+          "way/860393119",
+          "way/860393126",
+          "way/948678491",
           "way/1070992146",
           "way/1217777173",
           "way/1217806428",
           "way/1217971786"
         ],
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -324,26 +344,45 @@
       },
       "extractKey": "ljubljana",
       "extractSha256": {
-        "places": "4e45af729d367c682f5ce1b83a887cbb922d25b3b0a7fc79e624aff260a6f818",
-        "extras": "5f83d5cefe757f3967c6aa9c67a730c7c6576e8994acc4c4f151a16b37b92ec4",
-        "water": "00c94ea7db5c3d90b9428cf2a51d126feb1aae28d6ac25ac836bb93a3f50bbcb",
-        "landuse": "c83dd3842070e330227080a855dc928aa3a21958e02d03dc72a67edf61a05ea5",
-        "roads": "9291e5ecab120bb991e6e3b44f1109457552e0803ec88f10b146b2de34349320"
+        "places": "1f389767c6d31f88401f47ec6e5876e229af5818f661b57a788a40c98ea7b254",
+        "extras": "0bc376cd2945f39ee2ee8fcaa3d0d88ede67139b83831a97641a8f50fb0cdbd2",
+        "water": "d4e4d5503e7263ba51e22ed1ae404365825e2e54d3c5c7b1ce7c59f3087166c1",
+        "landuse": "657023fc50d600730bac32166b1fd639e38af6429347b80cfe7eb4b6bf34015d",
+        "roads": "044c8afc17e1d2702b8cd5f2dd93385854e5178e5a50af3afa9dccdef3f4696c"
       },
       "sourceJob": {
         "city": "ljubljana",
-        "sourceRunId": 38248346879,
-        "sourceArtifact": "city-bootstrap-si-06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "datasetSha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7",
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "sourceRunId": 38280475239,
+        "sourceArtifact": "city-bootstrap-si-c91cf8f6ba4123ad69c8ed6fbbc59276b1258655",
+        "sourceSha": "c91cf8f6ba4123ad69c8ed6fbbc59276b1258655",
+        "datasetSha256": "7d4a51d3b7f027abeae0e00fc9d8a2c5127bde43d31f8936babe1e6b759b5db9",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
         "extractSha256": {
-          "places": "4e45af729d367c682f5ce1b83a887cbb922d25b3b0a7fc79e624aff260a6f818",
-          "extras": "5f83d5cefe757f3967c6aa9c67a730c7c6576e8994acc4c4f151a16b37b92ec4",
-          "water": "00c94ea7db5c3d90b9428cf2a51d126feb1aae28d6ac25ac836bb93a3f50bbcb",
-          "landuse": "c83dd3842070e330227080a855dc928aa3a21958e02d03dc72a67edf61a05ea5",
-          "roads": "9291e5ecab120bb991e6e3b44f1109457552e0803ec88f10b146b2de34349320"
-        }
+          "places": "1f389767c6d31f88401f47ec6e5876e229af5818f661b57a788a40c98ea7b254",
+          "extras": "0bc376cd2945f39ee2ee8fcaa3d0d88ede67139b83831a97641a8f50fb0cdbd2",
+          "water": "d4e4d5503e7263ba51e22ed1ae404365825e2e54d3c5c7b1ce7c59f3087166c1",
+          "landuse": "657023fc50d600730bac32166b1fd639e38af6429347b80cfe7eb4b6bf34015d",
+          "roads": "044c8afc17e1d2702b8cd5f2dd93385854e5178e5a50af3afa9dccdef3f4696c"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 313640878,
+            "md5": "781a1fdb13a4d2540ee74b38daf3f7be",
+            "sha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/europe/italy/nord-est-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 625244513,
+            "md5": "5c0ebb731629669395f29835013c363f",
+            "sha256": "b6f06220b9b7ece9c6bbdb61c9f25b11bb0b3c57bbb128b24f61be7466b460c4",
+            "reason": "The Slovenian coast chain starts at node 447676493 (Punta Aquila, Muggia, Italy); the Italian coastline way that ends at that node (way/860393119) is absent from the Slovenia clip, so the coast cannot close; the Italy north-east extract supplies it (only the Muggia/Trieste coast inside the Ljubljana water box is used)"
+          }
+        ]
       }
     }
   ]

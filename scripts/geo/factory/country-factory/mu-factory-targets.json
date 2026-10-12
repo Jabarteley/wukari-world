@@ -59,7 +59,9 @@
           -19.981571310066023
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        { "ref": "way/435950440", "reason": "Crystal Coral rock: a bare rock about 590 m offshore; lies in the sea of the exact source coast (offline factory replica, exact-coastwater dry-anchor check), so it cannot be a walkable place" }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/243819778",

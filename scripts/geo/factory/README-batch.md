@@ -62,7 +62,7 @@ Seed (`bootstrap/seed-contract.schema.json`; unknown keys are rejected): `id` (k
 ## Not adopted (known gaps)
 
 - South America's adapter patch (`offline-extract.py --city-inputs`, landuse relations restricted to `type=multipolygon`, uncommitted; HEAD has only the filter). It changes the pinned adapter hash and is unproven on Brazil. Very large countries (BR, US, DE, FR, ES, GB, NL: extraction limits, timeouts above 5 h) will HOLD or time out on this lane; split or fix the adapter first.
-- Oceania `exact-coastwater.py` runner stage (uncommitted in its checkout): island/coast cities rely on it for exact coast water; not wired.
+- Oceania `exact-coastwater.py` (read-only copy of the modified working file, 2026-10-12): now a runner stage here (see "Exact coast stage").
 - Europe `boundsProof`/`metadataReview`/`browserReview` gating in `runner.mjs`.
 - Coast supplements (neighbour-country sea) stay rejected by `cloud-inputs.mjs`.
 
@@ -92,3 +92,11 @@ City extraction, incomplete relations (`scripts/geo/offline-extract.py`, also us
 ## Unverified
 
 Nothing here has run on a hosted runner. Verified offline: seed tables from the Oceania, South America and Europe checkouts through `--validate-only` (negative cases rejected), `table.mjs` + `cloud-inputs.mjs` against three real fork artifacts (NZ, AR, FJ), `cloud-sources.mjs` shared-artifact boundary path with a mocked `gh`, queue planner, `py_compile`, `node --check`, workflow YAML parse. Not verified: osmium extraction on this tree (no osmium locally), `runner.mjs --execute`, whether a first push of a new branch honours `paths:` (the queue files are deliberately not committed so it cannot match).
+
+## Exact coast stage (exact-coastwater.py, runner stage `exactCoast`)
+
+Why: the app generator (baseline `build-destination-detail.ts`, `shoreWater`) finds the sea by a grid flood fill and calls a region land when a place of the game lies in it. A place that lies on the shore or offshore (a port node, a rock in the sea) marks the sea as land, and a coast way that the country extract cuts at the border leaves a gap the fill leaks through: the sea comes out as land (Praia, Djibouti, Port Louis, Freetown) or islands are drowned (Bissau).
+What it does, per city after generation (inland cities report `not-applicable`; the generator's own files are untouched then): builds land and sea from the SAME pinned `water.json` coastline ways (OSM direction: land on the left), compares that with the generator's sea, and
+- `generator-validated`: the generated sea agrees (under 1% of the ground box differs, ignoring 150 m round the shore): nothing is rewritten;
+- `passed`: otherwise terrain.ts `water`/`reachWater` and geometry.ts `playArea` are rewritten from the exact sea (play box simplified at 1 m, 2 m if the scene budget needs it; the backdrop beyond the play box coarser and without sub-2000 m2 islets; rings re-started so the renderer's ear clipping is faithful; all reported in `<id>/coast-water.json`). Coast ways cut at the country border (outside the pinned admin-0 polygon, within 10 km) continue along their last direction to the edge of the ground box (the neighbour's land is never drawn); every other open end fails with its coordinates.
+It fails (HOLD) rather than draw wrong: an unclosed coast, a wet source place (all listed at once: add them to `selectionExclusions`), an offshore place. Needs `shapely==2.1.2` (installed in country-factory.yml) and node.

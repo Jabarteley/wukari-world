@@ -111,11 +111,21 @@ function leaveOutProvenance(): Plugin {
 }
 
 /**
+ * In a production browser build a synchronous reader of the world city network called before it loaded reports once instead of
+ * throwing (src/game/cities/registry.ts); the development server, the tests, Node and the Worker throw.
+ */
+function cityNetworkMode(): Plugin {
+  return { name: 'allworld:city-network-mode', apply: 'build', config: () => ({ define: { __CITY_NETWORK_LENIENT__: 'true' } }) };
+}
+
+/**
  * The checked-in loader table uses literal dynamic imports so Node and the Worker bundler can resolve it. In the browser build,
- * emit those same entry modules as Rollup chunks and keep only compact [URL, export] rows plus one shared importer in startup.
+ * emit those same entry modules as Rollup chunks and keep, per city, only the content hash of its rules chunk (the file is
+ * `city-<id>-rules-<hash>.js` beside the importer; any other name is kept whole), the few export names that are not `city`, and one
+ * shared importer in startup.
  */
 function lazyCityLoaders(): Plugin {
-  const emitted = new Set<string>();
+  const emitted = new Map<string, string>();
   return {
     name: 'allworld:lazy-city-loaders',
     apply: 'build',
@@ -129,27 +139,46 @@ function lazyCityLoaders(): Plugin {
       const catalogueIds = [...readFileSync(id.replace(/loaders\.generated\.ts$/, 'catalogue.generated.ts'), 'utf8').matchAll(/^  \["([^"]+)"/gm)].flatMap((match) => typeof match[1] === 'string' ? [match[1]] : []);
       const loaderIds = declarations.map((match) => stringLiteral(match[1], 'Generated city loader path').replace(/^\.\//, '').replace(/\/index\.ts$/, ''));
       if (JSON.stringify(loaderIds) !== JSON.stringify(catalogueIds)) throw new Error('Generated city catalogue and browser loader rows differ');
-      const rows: string[] = [];
+      // The startup index (each open city's id and name) is kept as written: it is the only per-city table of the first download.
+      const index = /^export const GENERATED_CITY_INDEX: readonly CityIndexRow\[\] = Object\.freeze\(\[\n((?: {2}\[.*\],\n)*)\]\)$/m.exec(code);
+      const indexIds = [...(index?.[1] ?? '').matchAll(/^ {2}\["([^"]+)"/gm)].map((match) => match[1]);
+      if (!index || JSON.stringify(indexIds) !== JSON.stringify(catalogueIds)) throw new Error('Generated city catalogue and startup index rows differ');
+      const figures = /^export const GENERATED_CITY_FIGURES = Object\.freeze\(\{ cities: \d+, countries: \d+ \}\)$/m.exec(code);
+      if (!figures) throw new Error('Generated city figures are missing');
+      const rows: string[] = [], names: Record<number, string> = {};
       for (let index = 0; index < declarations.length; index += 1) {
         const match = declarations[index]!, specifier = stringLiteral(match[1], 'Generated city loader path'), exportName = match[2]!;
         const resolved = await this.resolve(specifier, id, { skipSelf: true });
         if (!resolved) throw new Error(`Could not resolve generated city loader ${specifier}`);
         const referenceId = this.emitFile({ type: 'chunk', id: resolved.id, name: `city-${catalogueIds[index]}-rules`, preserveSignature: 'strict' });
-        emitted.add(referenceId);
-        rows.push(`[import.meta.ROLLUP_FILE_URL_${referenceId},${JSON.stringify(exportName)}]`);
+        emitted.set(referenceId, catalogueIds[index]!);
+        rows.push(`import.meta.ROLLUP_FILE_URL_${referenceId}`);
+        if (exportName !== 'city') names[index] = exportName;
       }
-      return { code: `import type { CityModule } from '../../types/content.ts'\nimport type { CityModuleLoader } from './catalogue.ts'\nconst rows = [${rows.join(',')}] as const\nconst load = ([path,name]: readonly [string,string]): Promise<CityModule> => import(/* @vite-ignore */ path).then((namespace: Record<string, CityModule>) => { const city = namespace[name]; if (!city) throw new Error('City module export is missing'); return city })\nexport const GENERATED_CITY_LOADERS: readonly CityModuleLoader[] = Object.freeze(rows.map((row) => async() => load(row)))\n`, map: null };
+      return { code: `import type { CityModule } from '../../types/content.ts'\nimport type { CityIndexRow, CityModuleLoader } from './catalogue.ts'\n${index[0]}\n${figures[0]}\nconst rows: readonly string[] = [${rows.join(',')}]\nconst names: Readonly<Record<number, string>> = ${JSON.stringify(names)}\nconst load = (index: number): Promise<CityModule> => { const row = rows[index]!, name = names[index] ?? 'city', path = row.startsWith('.') ? row : './city-' + GENERATED_CITY_INDEX[index]![0] + '-rules-' + row + '.js'; return import(/* @vite-ignore */ path).then((namespace: Record<string, CityModule>) => { const city = namespace[name]; if (!city) throw new Error('City module export is missing'); return city }) }\nexport const GENERATED_CITY_LOADERS: readonly CityModuleLoader[] = Object.freeze(rows.map((_row, index) => async() => load(index)))\n`, map: null };
     },
     resolveFileUrl({ referenceId, relativePath }) {
-      if (!emitted.has(referenceId)) return null;
-      return JSON.stringify(relativePath.startsWith('.') ? relativePath : `./${relativePath}`);
+      const cityId = emitted.get(referenceId);
+      if (cityId === undefined) return null;
+      const path = relativePath.startsWith('.') ? relativePath : `./${relativePath}`;
+      // The usual name is rebuilt from the city id in the startup index, so only its hash is kept (here still Rollup's placeholder
+      // for it, replaced in the final code; generateBundle checks every final name has that shape).
+      const prefix = `./city-${cityId}-rules-`;
+      const hash = path.startsWith(prefix) && path.endsWith('.js') ? path.slice(prefix.length, -'.js'.length) : '';
+      return JSON.stringify(hash && !/[/.'"\\]/.test(hash) ? hash : path);
+    },
+    generateBundle() {
+      for (const [referenceId, cityId] of emitted) {
+        const fileName = this.getFileName(referenceId);
+        if (fileName !== `assets/city-${cityId}-rules-${fileName.slice(-11, -3)}.js` || !/^[0-9a-f]{8}$/.test(fileName.slice(-11, -3))) throw new Error(`City rules chunk ${fileName} is not named assets/city-${cityId}-rules-<8 hex>.js, which the startup loader rebuilds`);
+      }
     },
   };
 }
 
 export default defineConfig({
   // The page is a Vue 3 + TypeScript application: index.html → src/app/main.ts (docs/MIGRATION-VUE-TS.md).
-  plugins: [browserSystems(), skipSpecValidation(), leaveOutProvenance(), lazyCityLoaders(), vue(), ...(wantMaps ? [moveMaps()] : [])],
+  plugins: [browserSystems(), skipSpecValidation(), leaveOutProvenance(), lazyCityLoaders(), cityNetworkMode(), vue(), ...(wantMaps ? [moveMaps()] : [])],
   // Every shipped component uses Composition API; omit the unused Options API runtime.
   define: { __VUE_OPTIONS_API__: false },
   server: {
@@ -187,7 +216,9 @@ export default defineConfig({
     if (/\/src\/types\/avatar\.ts$/.test(id)) return 'engine'
     const city = id.match(/\/src\/game\/cities\/([^/]+)\/(content|map)\.ts$/)
     if (city) return `city-${city[1]}-${city[2]}`
-    if (/\/src\/game\/cities\/routes\.generated\.ts$/.test(id)) return 'city-routes'
+    // The world network (every city's catalogue facts, land components and authored routes): one lazy chunk, fetched when the game is
+    // idle after it is ready and awaited by whatever reads other cities. A resident's startup carries only the index (catalogue.ts).
+    if (/\/src\/game\/cities\/(network|catalogue\.generated|land-components\.generated|routes\.generated)\.ts$/.test(id)) return 'city-network'
     if (/\/src\/game\/cities\/(spec|specValidation)\.ts$/.test(id)) return 'city-spec'
     if (/\/src\/game\/cities\/contentBuilder\.ts$/.test(id)) return 'city-content-builder'
     if (/\/src\/game\/cities\/ogun\/(contentBuilder)\.ts$/.test(id)) return 'city-ogun-content'

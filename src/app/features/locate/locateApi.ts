@@ -1,6 +1,7 @@
 // The typed boundary to the lazy modules the location check needs: the main home's city pack (its real boundaries) and the
 // point-in-polygon test (src/map3d/residence.ts). Both arrive with a dynamic import the first time the player presses the button,
 // never with a panel and never in the first download. Only the city of the main home is loaded.
+import { loadCityNetwork } from '../../../game/cities/registry.ts'
 import type { CityPack } from './../world/cityPack.ts'
 
 /** What of a city pack the judgement reads (the boundaries and the frame they are drawn in). */
@@ -21,6 +22,8 @@ export async function loadLocateApi(): Promise<LocateApi> {
   const [regions, residence] = await Promise.all([
     import('../../../map3d/regions.ts') as unknown as Promise<RegionsModule>,
     import('../../../map3d/residence.ts') as unknown as Promise<ResidenceModule>,
+    // regions.ts answers from the world city network (src/game/cities/registry.ts): it is in before the functions are handed out.
+    loadCityNetwork(),
   ])
   return { has: regions.hasCityPack, load: regions.loadCityPack, judge: residence.judgeResidence }
 }

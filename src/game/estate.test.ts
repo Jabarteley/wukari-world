@@ -227,7 +227,7 @@ test('cities connect as data, and the Kaduna reservation follows its catalogue s
   assert.equal(act(state, 'estate.relocate', { to: 'lagos', mode: 'road' }).code, 'invalid_city');
   assert.equal(state.cash, startingCash); assert.equal(state.activeAction, null);
   const links = viewLife(state, at()).estate.links;
-  assert.ok(links.length >= 14)
+  assert.ok(links && links.length >= 14)
   assert.deepEqual(links.filter((link) => link.to === 'ibadan').map((link) => [link.mode, link.open, link.blocked]), [['road', true, null], ['rail', true, null]])
   assert.equal(links.every((link) => link.open === isOpenCityId(link.to)), true);
   assert.equal(links.filter((link) => !link.open).every((link) => /not open yet/.test(found(link.blocked, 'a blocked reason'))), true);

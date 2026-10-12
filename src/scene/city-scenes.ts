@@ -15,7 +15,7 @@
  *
  * This module reads the already-loaded city content catalogue to decide whether the shared parametric adapter is needed.
  */
-import { cachedCityContent, loadCityContent, playableCityIds } from '../game/cities/registry.ts';
+import { cachedCityContent, cityNetworkReady, loadCityContent, loadCityNetwork, playableCityIds } from '../game/cities/registry.ts';
 import type { SceneDef } from './types.ts';
 
 /** VARIANTS[kind][variant] of a scene file. */
@@ -59,7 +59,8 @@ const partsOf = (cityId: string): readonly PartId[] => [
 
 /** Cities with scenes of their own. */
 export const sceneCityIds = (): readonly string[] => [...new Set([...Object.keys(CITY_PARTS), ...playableCityIds().filter((cityId) => hasKind(cityId, 'quad') || hasKind(cityId, 'hilltop') || hasParametricVenues(cityId))])];
-export const cityScenesReady = (cityId: string): boolean => partsOf(cityId).every((part) => loaded.has(part));
+// Transport venues draw their departure boards from the world network (src/scene/venues-transport.ts): a scene waits for it.
+export const cityScenesReady = (cityId: string): boolean => cityNetworkReady() && partsOf(cityId).every((part) => loaded.has(part));
 
 function loadPart(part: PartId): Promise<ScenePart> {
   const ready = loaded.get(part);
@@ -71,7 +72,7 @@ function loadPart(part: PartId): Promise<ScenePart> {
   return work;
 }
 /** Fetch a city's own scenes. Content comes first because it declares the shared lazy parts this city needs. */
-export async function loadCityScenes(cityId: string): Promise<void> { await loadCityContent(cityId); await Promise.all(partsOf(cityId).map(loadPart)); }
+export async function loadCityScenes(cityId: string): Promise<void> { await Promise.all([loadCityContent(cityId), loadCityNetwork()]); await Promise.all(partsOf(cityId).map(loadPart)); }
 /** Fetch the shared parametric adapter explicitly (unit scene probes that construct a design without city content). */
 export async function loadParametricScenes(): Promise<void> { await loadPart('parametric'); }
 /** Every city's scenes (the scene viewer and the tests), including parts discovered only after content loads. */

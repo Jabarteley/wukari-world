@@ -2,6 +2,7 @@
 // (src/map3d/regions.ts: the city packs, src/map3d/lga.ts: which box a position falls in).
 // Both are fetched with a dynamic import the first time they are asked for, never with the
 // panel: a player who picks from the list never downloads them.
+import { loadCityNetwork } from '../../../game/cities/registry.ts'
 import type { LgaId } from '../../../types/life.ts'
 
 /** A local government the device's position fell in. `sure` is false when it is only the nearest. */
@@ -24,6 +25,8 @@ export async function loadCityPackApi(): Promise<CityPackApi> {
   const [regions, lga] = await Promise.all([
     import('../../../map3d/regions.ts') as unknown as Promise<RegionsModule>,
     import('../../../map3d/lga.ts') as unknown as Promise<LgaModule>,
+    // regions.ts answers from the world city network (src/game/cities/registry.ts): it is in before the functions are handed out.
+    loadCityNetwork(),
   ])
   return { has: regions.hasCityPack, load: regions.loadCityPack, resolve: lga.resolveLga }
 }

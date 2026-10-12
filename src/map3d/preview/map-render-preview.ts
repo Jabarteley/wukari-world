@@ -2,7 +2,7 @@ import { createMap3D, webglAvailable } from '../map3d.ts';
 import type { MapState } from '../map3d.ts';
 import type { TimeOfDay } from '../city-build.ts';
 import { loadCityPack } from '../regions.ts';
-import { loadCityContent } from '../../game/cities/registry.ts';
+import { loadCityContent, loadCityNetwork } from '../../game/cities/registry.ts';
 import '../../city-map.css';
 import '../map3d.css';
 
@@ -74,6 +74,7 @@ async function mountCity(cityId: CityId): Promise<void> {
   setStatus(`Loading ${cityNames[cityId]} production city pack…`);
   try {
     if (!webglAvailable()) throw new Error('WebGL is unavailable in this browser; no renderer was mounted.');
+    await loadCityNetwork(); // regions.ts reads the world city network
     const [pack] = await Promise.all([loadCityPack(cityId), loadCityContent(cityId)]);
     if (ticket !== generation) return;
     if (!pack) throw new Error(`${cityNames[cityId]} has no production city pack.`);

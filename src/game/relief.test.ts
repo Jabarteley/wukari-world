@@ -113,7 +113,7 @@ test('limits of the ride on credit: main home only, only when cash is short, one
   const refused = l.run('estate.relocate', { to: 'ibadan', mode: 'road' })
   assert.equal(refused.code, 'ride_debt')
   assert.match(String(refused.reason), /You owe ₦12,000 for your ride home/)
-  assert.ok(l.view().estate.links.filter((link) => link.open && link.status !== 'coming').every((link) => /You owe/.test(link.blocked ?? '')), 'every open link says why')
+  assert.ok(l.view().estate.links?.filter((link) => link.open && link.status !== 'coming').every((link) => /You owe/.test(link.blocked ?? '')), 'every open link says why')
   assert.equal(l.run('estate.relocate', { to: 'ibadan', mode: 'road', credit: true }).code, 'ride_debt')
   for (const cash of [251999, 252000, 265000, 289999, 290000]) {
     const foreign = life()

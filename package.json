@@ -16,6 +16,12 @@
       "node": "./src/game/cities/loaders.generated.ts",
       "default": "./src/game/cities/host-loaders.ts"
     },
+    "#city-network": {
+      "types": "./src/game/cities/network-static.ts",
+      "browser": "./src/game/cities/network-lazy.ts",
+      "node": "./src/game/cities/network-static.ts",
+      "default": "./src/game/cities/network-static.ts"
+    },
     "#word-dictionary": {
       "types": "./src/words/dictionary-source.ts",
       "browser": "./src/words/dictionary-source.ts",

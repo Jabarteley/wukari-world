@@ -658,7 +658,8 @@ export interface EstateView {
   /** The cheapest upgrade there is in the city. */
   cheapest: { lga: LgaId; tier: HouseTierId; total: number; lgaName: string; label: string } | null
   rules: { beta: true; housesPerLife: number; cooldownDays: number }
-  links: CityLinkCard[]
+  /** The trips from this city. Null while the world city network has not loaded (the browser, before loadCityNetwork(); src/game/cities/registry.ts). */
+  links: CityLinkCard[] | null
   /** Homes kept in other cities; `tier` is the tier's LABEL. */
   away: { city: WorldCityId; name: string; tier: string; living: 'own' | 'rent' }[]
   /** The main home: its city, and whether that is the city the life is in. Null for a life with no home anywhere yet. */

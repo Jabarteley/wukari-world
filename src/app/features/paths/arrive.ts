@@ -7,7 +7,7 @@
 //
 // Reserved addresses (the API, the build, invite and share links, files) are never touched; an unknown address is quietly replaced by `/`.
 import { watch } from 'vue'
-import { cachedCityContent } from '../../../game/cities/registry.ts'
+import { cachedCityContent, cityNetworkReady, loadCityNetwork } from '../../../game/cities/registry.ts'
 import { isReservedPath, parsePath, pathOf } from '../../../paths.ts'
 import { openAccount, openLogin, openSignup } from '../account/accountOpen.ts'
 import { useAccountLite } from '../account/useAccountLite.ts'
@@ -58,6 +58,8 @@ function envOf(app: App): Env {
 
 /** The Games app was opened from inside the game: show `/games` (a Back closes it). */
 export function enterGames(): void {
+  // Opened before the world network is in (see startPaths): the same steps, in the same order, once it is.
+  if (!cityNetworkReady()) { void loadCityNetwork().then(enterGames, () => undefined); return }
   const app = useApp()
   startPaths() // Back, and the address going back to `/` when the app closes, are handled from here on
   if (views.held() !== null || !globalThis.history) return
@@ -65,10 +67,18 @@ export function enterGames(): void {
   views.watch(gamesOpen(app))
 }
 
-/** Once per page, after the game has mounted. */
+/**
+ * Once per page, after the game has mounted. An address names a city, a state or an alias from the world city network (src/paths.ts),
+ * so the paths start once it is in: every reading of the address, now or on a later Back, finds it.
+ */
 export function startPaths(): void {
   if (started) return
   started = true
+  if (cityNetworkReady()) { startReadingPaths(); return }
+  void loadCityNetwork().then(startReadingPaths, () => { started = false })
+}
+
+function startReadingPaths(): void {
   const app = useApp()
   const { game, shell } = app
   const here = address.path()

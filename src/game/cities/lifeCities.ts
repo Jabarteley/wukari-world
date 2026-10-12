@@ -1,5 +1,5 @@
 /** Discover every city reference in a saved life and load its full rules before reconstruction. */
-import { isCityId, isKnownCityId, loadCityContent, loadCityLinks, loadCityRules, registeredCityIds } from './registry.ts'
+import { isCityId, isKnownCityId, loadCityContent, loadCityNetwork, loadCityRules, registeredCityIds } from './registry.ts'
 
 const record = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value)
 const MAX_RELATIONSHIPS = 200
@@ -54,12 +54,35 @@ export function lifeCities(raw: unknown, extra: readonly unknown[] = []): string
 }
 
 /**
- * Load every referenced city's full rules, the shared authored routes, and the current city's content. A failure rejects;
- * callers must retain the saved value and avoid rebuilding it with partial rules.
+ * Whether rebuilding this saved life reads the world city network (registry.ts loadCityNetwork): anything but a life at home in
+ * its own city, or not yet housed anywhere, with no trip under way and no ride debt. A visitor's homeward quote and ride credit,
+ * and the timetable check of a trip under way, read other cities' routes; a resident's life reads only its own city's rules.
+ * Anything it cannot read counts as needing the network.
+ */
+export function lifeNeedsCityNetwork(raw: unknown): boolean {
+  if (!record(raw) || !record(raw.estate)) return true
+  const estate = raw.estate, here = estate.city, home = estate.home
+  if (typeof here !== 'string') return true
+  if (home !== null && home !== undefined && home !== here) return true
+  if (raw.activeAction !== null && raw.activeAction !== undefined) {
+    if (!record(raw.activeAction)) return true
+    if (raw.activeAction.kind === 'intercity' || raw.activeAction.kind === 'homeward') return true
+  }
+  if (raw.travel !== null && raw.travel !== undefined) {
+    if (!record(raw.travel)) return true
+    const debt = raw.travel.rideDebt
+    if (debt !== undefined && debt !== null && debt !== 0) return true
+  }
+  return false
+}
+
+/**
+ * Load every referenced city's full rules, the world network when the life needs it (lifeNeedsCityNetwork), and the current city's
+ * content. A failure rejects; callers must retain the saved value and avoid rebuilding it with partial rules.
  */
 export async function loadLifeCities(raw: unknown, extra: readonly unknown[] = []): Promise<string[]> {
   const cities = lifeCities(raw, extra)
-  await Promise.all([loadCityLinks(), ...cities.map(loadCityRules)])
+  await Promise.all([...(lifeNeedsCityNetwork(raw) ? [loadCityNetwork()] : []), ...cities.map(loadCityRules)])
   const state = record(raw) ? raw : {}
   const estate = record(state.estate) ? state.estate : {}
   const current = typeof estate.city === 'string' && isCityId(estate.city)

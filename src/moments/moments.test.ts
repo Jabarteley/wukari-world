@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { CITY_CATALOGUE } from '../game/cities/catalogue.ts'
+import { CITY_CATALOGUE } from '../game/cities/network.ts'
 import { SCENE_KINDS } from '../game/content/venues.ts'
 import { bandSpan } from '../game/world-time.ts'
 import { ANYWHERE, CONDITIONED } from './common.ts'

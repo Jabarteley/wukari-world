@@ -480,7 +480,7 @@ function checkView(state: LifeState, ctx: LifeContext, what: string): LifeView {
   assert.deepEqual(keys(estate.cheapest), ['label', 'lga', 'lgaName', 'tier', 'total'], `${what}: estate.cheapest`)
   assert.equal(typeof estate.cheapest.total, 'number')
   assert.deepEqual(keys(estate.rules), ['beta', 'cooldownDays', 'housesPerLife'], `${what}: estate.rules`)
-  assert.ok(estate.links.length > 0)
+  assert.ok(estate.links && estate.links.length > 0)
   for (const link of estate.links) assert.deepEqual(keys(link), ['beta', 'blocked', 'fare', 'hub', 'icon', 'km', 'label', 'mode', 'name', 'open', 'seconds', ...(link.status ? ['status'] : []), 'to'], `${what}: city link`)
   for (const home of estate.away) assert.deepEqual(keys(home), ['city', 'living', 'name', 'tier'], `${what}: a home in another city`)
   for (const row of [...shown.missions.daily, ...shown.missions.weekly]) assert.deepEqual(keys(row), ['cash', 'claimed', 'count', 'done', 'go', 'hint', 'id', 'kind', 'label', 'n', 'open'], `${what}: mission row`)

@@ -1,7 +1,9 @@
-import { CITY_CATALOGUE, CITY_LOADERS } from './catalogue.ts'
+import { CITY_INDEX, CITY_LOADERS, CLOSED_RESERVED_CITIES } from './catalogue.ts'
 import { generateCityLinks } from './generatedLinks.ts'
-import { GENERATED_CITY_LAND_COMPONENTS } from './land-components.generated.ts'
+import { CITY_NETWORK_AT_START, fetchCityNetwork } from '#city-network'
 import type { CityCatalogueEntry } from './catalogue.ts'
+import type { CityLandComponentRow } from './generatedLinks.ts'
+import type { CityNetwork } from './network.ts'
 import type { CityId } from './ids.ts'
 import type { CityAtlasMarker, CityContent, CityCountry, CityDistrict, CityHub, CityLink, CityLinkFrom, CityMapOrigin, CityMapPack, CityModule, CityRouteGeometry, CityRules, CityState } from '../../types/content.ts'
 
@@ -25,13 +27,80 @@ export interface CataloguedCityRules extends CityRules {
   hubs: readonly CityHub[]
 }
 
-const catalogueById: ReadonlyMap<string, CityCatalogueEntry> = new Map(CITY_CATALOGUE.map((city) => [city.id, city]))
 const PLAYABLE_ORDER = ['lagos', 'ibadan', 'abeokuta', 'ota', 'ijebu-ode', 'sagamu', 'port-harcourt', 'abuja', 'kano'] as const
-export const KNOWN_CITIES: Readonly<Record<string, KnownCity | undefined>> = Object.freeze(Object.fromEntries(CITY_CATALOGUE.map((catalogue) => [catalogue.id, Object.freeze({
-  catalogue,
-  serverKnown: catalogue.open,
-  compatibility: Object.freeze({ acceptStoredLives: catalogue.open, allowNewLives: catalogue.open, contentSource: catalogue.open ? catalogue.id : null, note: catalogue.open ? 'Open and playable.' : 'Reserved for future city content.' }),
-})])))
+
+// ---- The startup index and the world network ------------------------------------------------------------------------------------
+// The first download carries only the startup index (catalogue.ts CITY_INDEX: each open city's id and name, plus its rules loader):
+// enough to know which cities exist and are open, to name them and to load any city's rules. Everything about where cities are and
+// how they connect (the full catalogue, the land components, the authored routes, and so the generated links) is the world network
+// (network.ts), a lazy chunk in the browser and part of the module graph in Node and the Worker (#city-network).
+// The synchronous readers of the network refuse to answer before it is in: a caller that needs it awaits loadCityNetwork() first.
+
+/** Open cities from the startup index, then the reserved closed ones. Known ids never need the network. */
+const OPEN_IDS: ReadonlySet<string> = new Set(CITY_INDEX.map((city) => city.id))
+const INDEX_NAMES: ReadonlyMap<string, string> = new Map([...CITY_INDEX, ...CLOSED_RESERVED_CITIES].map((city) => [city.id, city.name]))
+const INDEX_IDS: readonly string[] = Object.freeze([...CITY_INDEX.slice(0, 4).map((city) => city.id), ...CLOSED_RESERVED_CITIES.map((city) => city.id), ...CITY_INDEX.slice(4).map((city) => city.id)])
+
+interface ReadyNetwork { catalogue: readonly CityCatalogueEntry[]; byId: ReadonlyMap<string, CityCatalogueEntry>; land: readonly CityLandComponentRow[]; known: Readonly<Record<string, KnownCity | undefined>> }
+let network: ReadyNetwork | null = null
+let pendingNetwork: Promise<void> | null = null
+
+/** Thrown by a synchronous reader of the world network called before loadCityNetwork() settled. */
+export class CityNetworkNotReadyError extends Error {
+  readonly code = 'city_network_not_ready'
+  constructor(reader: string) { super(`${reader} reads the world city network, which has not loaded yet: await loadCityNetwork() before calling it`) }
+}
+
+// A production browser build defines this (vite.config.ts): there a missed await is reported once instead of breaking the page.
+declare const __CITY_NETWORK_LENIENT__: boolean | undefined
+const lenient = typeof __CITY_NETWORK_LENIENT__ !== 'undefined' && __CITY_NETWORK_LENIENT__ === true
+let reported = false
+/** The network, or (only in a production browser build, after one console report) null; everywhere else a missed await throws. */
+function networkFor(reader: string): ReadyNetwork | null {
+  if (network) return network
+  const error = new CityNetworkNotReadyError(reader)
+  if (!lenient) throw error
+  if (!reported) { reported = true; (globalThis as { console?: { error(value: unknown): void } }).console?.error(error) }
+  return null
+}
+
+function installNetwork(loaded: CityNetwork): void {
+  const byId = new Map(loaded.catalogue.map((city) => [city.id, city]))
+  const known = Object.freeze(Object.fromEntries(loaded.catalogue.map((catalogue) => [catalogue.id, Object.freeze({
+    catalogue,
+    serverKnown: catalogue.open,
+    compatibility: Object.freeze({ acceptStoredLives: catalogue.open, allowNewLives: catalogue.open, contentSource: catalogue.open ? catalogue.id : null, note: catalogue.open ? 'Open and playable.' : 'Reserved for future city content.' }),
+  })])))
+  network = { catalogue: loaded.catalogue, byId, land: loaded.land, known }
+  authoredCityLinks = loaded.authoredLinks
+  CITY_LINKS = authoredCityLinks
+  linkCache = null
+}
+
+/** Whether the world network is in (always in Node and the Worker; in the browser once loadCityNetwork() settled). */
+export const cityNetworkReady = (): boolean => network !== null
+
+/** Fetch the world network once; every caller that reads other cities' places or routes awaits this. */
+export function loadCityNetwork(): Promise<void> {
+  if (network) return Promise.resolve()
+  if (pendingNetwork) return pendingNetwork
+  const work: Promise<void> = fetchCityNetwork().then((loaded) => { if (!network) installNetwork(loaded) }).finally(() => { if (pendingNetwork === work) pendingNetwork = null })
+  pendingNetwork = work
+  return work
+}
+
+/**
+ * Test only: behave as the browser does before the world network has loaded (Node and the Worker have it from the start), so a test
+ * can prove a path works with the startup index alone. dispose() puts the network back.
+ */
+export function unloadCityNetworkForTest(): { dispose: () => void } {
+  const kept = { network, authoredCityLinks, links: CITY_LINKS }
+  network = null; authoredCityLinks = null; CITY_LINKS = Object.freeze([]); linkCache = null; pendingNetwork = null
+  return Object.freeze({ dispose: () => { network = kept.network; authoredCityLinks = kept.authoredCityLinks; CITY_LINKS = kept.links; linkCache = null; pendingNetwork = null } })
+}
+
+/** Every catalogued city (open and reserved), keyed by id, with how stored lives treat it. Reads the world network. */
+export const knownCities = (): Readonly<Record<string, KnownCity | undefined>> => networkFor('knownCities()')?.known ?? Object.freeze({})
 
 const fixtures = new Map<string, CityModule>()
 const loadedModules = new Map<string, CityModule>()
@@ -48,10 +117,10 @@ export function installCityModuleLoader(loader: (id: string) => Promise<CityModu
   hostModuleLoader = loader
 }
 let authoredCityLinks: readonly CityLink[] | null = null
-/** Loaded authored routes only. loadCityLinks fills this live binding. */
+/** Loaded authored routes only. loadCityLinks (or loadCityNetwork) fills this live binding. */
 export let CITY_LINKS: readonly CityLink[] = Object.freeze([])
-let pendingLinks: Promise<readonly CityLink[]> | null = null
 let linkCache: readonly CityLink[] | null = null
+if (CITY_NETWORK_AT_START) installNetwork(CITY_NETWORK_AT_START)
 
 /** Full rules that have actually loaded. This compatibility table never invents partial city rules. */
 const mutableCityRules: Record<string, CityRules> = Object.create(null)
@@ -101,27 +170,32 @@ const catalogueOfModule = (module: CityModule): CityCatalogueEntry => Object.fre
   ...(module.rules.atlas.preview ? { preview: module.rules.atlas.preview } : {}),
 })
 
+/** Every catalogued city with its place, state and country. Reads the world network: await loadCityNetwork() first. */
 export const cityCatalogue = (): readonly CityCatalogueEntry[] => {
-  if (!fixtures.size) return CITY_CATALOGUE
-  const catalogue = new Map(CITY_CATALOGUE.map((city) => [city.id, city]))
+  const all = networkFor('cityCatalogue()')?.catalogue ?? []
+  if (!fixtures.size) return all
+  const catalogue = new Map(all.map((city) => [city.id, city]))
   for (const module of fixtures.values()) catalogue.set(module.id, catalogueOfModule(module))
   return Object.freeze([...catalogue.values()])
 }
+/** One city's place, state and country, or null for an unknown id. Reads the world network (except for a test fixture). */
 export const cityCatalogueEntry = (value: unknown): CityCatalogueEntry | null => {
   if (typeof value !== 'string') return null
   const fixture = fixtures.get(value)
-  return fixture ? catalogueOfModule(fixture) : catalogueById.get(value) ?? null
+  if (fixture) return catalogueOfModule(fixture)
+  return networkFor(`cityCatalogueEntry(${JSON.stringify(value)})`)?.byId.get(value) ?? null
 }
 export const catalogueCitiesInState = (stateId: unknown): readonly CityCatalogueEntry[] => typeof stateId === 'string' ? cityCatalogue().filter((city) => city.state.id === stateId) : []
-export const knownCityIds = (): readonly string[] => Object.freeze([...CITY_CATALOGUE.map((city) => city.id), ...fixtures.keys()].filter((id, index, all) => all.indexOf(id) === index))
-export const registeredCityIds = (): readonly CityId[] => Object.freeze([...CITY_CATALOGUE.filter((city) => city.open).map((city) => city.id), ...fixtures.keys()].filter((id, index, all) => all.indexOf(id) === index))
+// The id readers below use the startup index only: they never need the network.
+export const knownCityIds = (): readonly string[] => Object.freeze([...INDEX_IDS, ...fixtures.keys()].filter((id, index, all) => all.indexOf(id) === index))
+export const registeredCityIds = (): readonly CityId[] => Object.freeze([...INDEX_IDS.filter((id) => OPEN_IDS.has(id)), ...fixtures.keys()].filter((id, index, all) => all.indexOf(id) === index))
 export const playableCityIds = (): readonly CityId[] => {
-  const open = new Set(CITY_CATALOGUE.filter((city) => city.open).map((city) => city.id))
+  const open = new Set(INDEX_IDS.filter((id) => OPEN_IDS.has(id)))
   const ordered = PLAYABLE_ORDER.filter((id) => open.delete(id))
   return Object.freeze([...ordered, ...open, ...fixtures.keys()].filter((id, index, all) => all.indexOf(id) === index))
 }
-export const isKnownCityId = (value: unknown): value is string => typeof value === 'string' && (catalogueById.has(value) || fixtures.has(value))
-export const isCityId = (value: unknown): value is CityId => typeof value === 'string' && (catalogueById.get(value)?.open === true || fixtures.has(value))
+export const isKnownCityId = (value: unknown): value is string => typeof value === 'string' && (INDEX_NAMES.has(value) || fixtures.has(value))
+export const isCityId = (value: unknown): value is CityId => typeof value === 'string' && (OPEN_IDS.has(value) || fixtures.has(value))
 export const isOpenCityId = isCityId
 
 /** Loaded modules and full rules only. Hosts await a loader before synchronous engine work. */
@@ -135,11 +209,13 @@ export async function loadCityRules(cityId: unknown): Promise<CataloguedCityRule
 export async function loadAllCityRules(): Promise<readonly CataloguedCityRules[]> { return Promise.all(playableCityIds().map(loadCityRules)) }
 export async function loadStateOverviewCity(stateId: unknown): Promise<string | null> {
   if (typeof stateId !== 'string') return null
+  await loadCityNetwork()
   for (const city of catalogueCitiesInState(stateId).filter((item) => item.open)) if ((await loadCityRules(city.id)).hasStateOverview) return city.id
   return null
 }
 
-export const cityName = (value: unknown): string | null => cityRules(value)?.name ?? cityCatalogueEntry(value)?.name ?? null
+/** A city's display name from its loaded rules, else the startup index (never the network). */
+export const cityName = (value: unknown): string | null => cityRules(value)?.name ?? (typeof value === 'string' ? INDEX_NAMES.get(value) ?? null : null)
 export const cityDefaultName = (value: unknown): string => cityRules(value)?.defaultName ?? 'New Lagosian'
 export const isDefaultName = (name: unknown): boolean => name === 'New Lagosian' || [...loadedRules.values(), ...[...fixtures.values()].map((value) => value.rules)].some((rules) => rules.defaultName === name)
 /** Loaded full rules in a state. Catalogue-only marker callers use catalogueCitiesInState. */
@@ -150,17 +226,16 @@ export const citiesInState = (stateId: unknown): readonly CataloguedCityRules[] 
 const linkKey = (link: Pick<CityLink, 'a' | 'b' | 'mode'>): string => `${[link.a, link.b].sort().join('|')}|${link.mode}`
 const sameLink = (a: CityLink, b: CityLink): boolean => a.a === b.a && a.b === b.b && a.mode === b.mode && (a.status ?? 'open') === (b.status ?? 'open') && a.label === b.label && a.icon === b.icon && a.fare === b.fare && a.seconds === b.seconds && a.km === b.km && a.beta === b.beta
 
-/** Load the authored route catalogue. Hosts await this before synchronous travel views are built. */
-export function loadCityLinks(): Promise<readonly CityLink[]> {
-  if (authoredCityLinks) return Promise.resolve(authoredCityLinks)
-  if (pendingLinks) return pendingLinks
-  pendingLinks = import('./routes.generated.ts').then((module) => { authoredCityLinks = module.AUTHORED_CITY_LINKS; CITY_LINKS = authoredCityLinks; linkCache = null; return authoredCityLinks }).finally(() => { pendingLinks = null })
-  return pendingLinks
+/** Load the world network and return its authored routes. Hosts await this before synchronous travel views are built. */
+export async function loadCityLinks(): Promise<readonly CityLink[]> {
+  await loadCityNetwork()
+  return authoredCityLinks ?? CITY_LINKS
 }
 
-/** Authored routes win over generated road and air routes. Rail is never generated. */
+/** Authored routes win over generated road and air routes. Rail is never generated. Reads the world network. */
 export function allCityLinks(): readonly CityLink[] {
   if (linkCache) return linkCache
+  const ready = networkFor('allCityLinks()')
   const merged = new Map<string, CityLink>()
   for (const link of authoredCityLinks ?? [...loadedModules.values()].flatMap((module) => module.rules.links)) merged.set(linkKey(link), link)
   const fixtureLinks = new Map<string, CityLink>()
@@ -169,9 +244,11 @@ export function allCityLinks(): readonly CityLink[] {
     if (existing && !sameLink(existing, link)) throw new Error(`Conflicting fixtures city link ${key}`)
     fixtureLinks.set(key, link); merged.set(key, link)
   }
-  const open = CITY_CATALOGUE.filter((city) => city.open).map((city) => ({ id: city.id, name: city.name, lon: city.lon, lat: city.lat, airport: city.airport, countryId: city.countryISO ?? 'ng' }))
-  for (const link of generateCityLinks(open, [...merged.values()], GENERATED_CITY_LAND_COMPONENTS)) merged.set(linkKey(link), link)
-  return linkCache = Object.freeze([...merged.values()])
+  const open = (ready?.catalogue ?? []).filter((city) => city.open).map((city) => ({ id: city.id, name: city.name, lon: city.lon, lat: city.lat, airport: city.airport, countryId: city.countryISO ?? 'ng' }))
+  for (const link of generateCityLinks(open, [...merged.values()], ready?.land ?? [])) merged.set(linkKey(link), link)
+  const links = Object.freeze([...merged.values()])
+  if (ready) linkCache = links
+  return links
 }
 export const cityLinks = (cityId: string): readonly CityLink[] => allCityLinks().filter((link) => link.a === cityId || link.b === cityId)
 export const linksFrom = (cityId: string): CityLinkFrom[] => cityLinks(cityId).map(({ a, b, ...link }) => ({ ...link, to: a === cityId ? b : a }))
@@ -179,7 +256,8 @@ export const linksFrom = (cityId: string): CityLinkFrom[] => cityLinks(cityId).m
 async function readCityContent(cityId: string): Promise<CityContent> {
   const cached = loadedContent.get(cityId)
   if (cached) return cached
-  const [module] = await Promise.all([loadCityModule(cityId), loadCityLinks()])
+  // A city's content never reads the world network: a resident's startup is its rules and content only.
+  const module = await loadCityModule(cityId)
   const content = await module.loadContent()
   if (content.cityId !== module.id) throw new Error(`City content id ${content.cityId} does not match ${module.id}`)
   if (cityModule(module.id) === module) loadedContent.set(module.id, content)
@@ -204,7 +282,8 @@ export const cachedCityContent = (cityId: unknown): CityContent | null => typeof
 async function readCityMap(cityId: string): Promise<CityMapPack> {
   const cached = loadedMaps.get(cityId)
   if (cached) return cached
-  const module = await loadCityModule(cityId), map = await module.loadMap()
+  // A map draws the cities and states around it (src/map3d, a city's map pack): the world network is in before its code runs.
+  const [module] = await Promise.all([loadCityModule(cityId), loadCityNetwork()]), map = await module.loadMap()
   if (map.cityId !== module.id) throw new Error(`City map id ${map.cityId} does not match ${module.id}`)
   if (cityModule(module.id) === module) loadedMaps.set(module.id, map)
   return map

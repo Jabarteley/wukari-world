@@ -6,6 +6,7 @@
 // registry's own coordinates and the city packs fetched to this device, and what comes out is a city id and a name. It is never
 // stored, logged, put in an event or sent: no request is made with it.
 import { nearestCities, nearestCity } from '../../../paths.ts'
+import { loadCityNetwork } from '../../../game/cities/registry.ts'
 import type { NearCity } from '../../../paths.ts'
 import { loadCityPackApi } from '../world/cityPack.ts'
 import type { CityPackApi } from '../world/cityPack.ts'
@@ -41,7 +42,8 @@ export async function findCity(deps: FindCityDeps = { geolocation: globalThis.na
     const at = await new Promise<{ lat: number; lon: number }>((resolve, reject) => geolocation.getCurrentPosition(
       (position) => resolve({ lat: position.coords.latitude, lon: position.coords.longitude }),
       (error) => reject(error), { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 }))
-    const packs = await (deps.packs ?? loadCityPackApi)()
+    // The nearest cities are worked out from the world network's coordinates.
+    const [packs] = await Promise.all([(deps.packs ?? loadCityPackApi)(), loadCityNetwork()])
     for (const near of nearestCities(at.lat, at.lon, LOOKED_INTO)) {
       if (!packs.has(near.id)) continue
       const pack = await packs.load(near.id)

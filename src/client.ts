@@ -31,6 +31,12 @@ function rebuildClientLife(raw: unknown, context: LifeContextInit): LifeState {
   return state
 }
 export function clientCity(id: string): City {
+  // The played city's rules are loaded before its life is shown, so this reads them; the world network is only a fallback.
+  const rules = cityRules(id);
+  if (rules) {
+    if (rules.status !== 'open' || !isCityId(id)) throw new TypeError(`Unknown city ${id}`);
+    return { id, name: rules.name, region: rules.state.name };
+  }
   const city = cityCatalogueEntry(id);
   if (!city?.open) throw new TypeError(`Unknown city ${id}`);
   return { id, name: city.name, region: city.state.name };

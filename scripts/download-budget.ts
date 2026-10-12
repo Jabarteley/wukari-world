@@ -10,8 +10,11 @@
 // a CDN can do, so the figure is a ceiling on what is sent.
 //
 //   first paint  index.html, the stylesheet and script tags it names, and every chunk those import statically (the preload set)
-//   startup      first paint plus the game shell, authored routes and ONE city's rules and content (what src/app/entry.test.ts
-//                measures); the figure is the largest over every city, because any of them can be the one played
+//   startup      first paint plus the game shell and ONE city's rules and content, with everything they import statically (what
+//                src/app/entry.test.ts measures); the figure is the largest over every city, because any of them can be the one played.
+//                The world city network (`city-network`: every city's catalogue facts, land components and routes) is not in it: a
+//                resident's startup does without it and the page fetches it when idle after the game is ready (src/game/cities/registry.ts);
+//                it is reported with the lazy groups, and a static import of it from startup would put it back in the closure.
 //   lazy groups  every other chunk, by name without its hash; `city-<id>-<kind>` is one group per kind across cities
 //
 // Budgets with no artifact yet (base body, clip pack, wardrobe items, street tiles) are listed as "not measured": the file name
@@ -103,13 +106,13 @@ export function cityIds(dist: Dist): string[] {
   return [...count].filter(([, row]) => row.rules === 1 && row.content === 1).map(([id]) => id).sort()
 }
 
-/** First paint plus the shell, the authored routes and one city's rules and content; null when the build lacks one of them. */
+/** First paint plus the shell and one city's rules and content, and their static imports; null when the build lacks one of them. */
 export function startupFiles(dist: Dist, city: string): Set<string> | null {
   const only = (pattern: RegExp): string | null => {
     const found = [...dist.keys()].filter((name) => pattern.test(name))
     return found.length === 1 ? found[0] as string : null
   }
-  const parts = [only(/^assets\/startApp-[\w-]{8}\.js$/), only(/^assets\/city-routes-[\w-]{8}\.js$/), only(new RegExp(`^assets/city-${city}-rules-[\\w-]{8}\\.js$`)), only(new RegExp(`^assets/city-${city}-content-[\\w-]{8}\\.js$`))]
+  const parts = [only(/^assets\/startApp-[\w-]{8}\.js$/), only(new RegExp(`^assets/city-${city}-rules-[\\w-]{8}\\.js$`)), only(new RegExp(`^assets/city-${city}-content-[\\w-]{8}\\.js$`))]
   if (parts.some((part) => part === null)) return null
   return closure(dist, [...pageAssets(text(dist, 'index.html')), ...(parts as string[])]).add('index.html')
 }

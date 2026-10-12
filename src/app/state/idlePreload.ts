@@ -7,6 +7,9 @@
 type Loader = () => Promise<unknown>
 
 const NEXT: Loader[] = [
+  // The world city network (every city's place, the land links and the routes: src/game/cities/network.ts): the travel list, the Map,
+  // the city pickers, the airport desk and a trip read it, and a resident's startup does without it. Fetched first, once the game is ready.
+  () => import('../../game/cities/registry.ts').then((registry) => registry.loadCityNetwork()),
   // The rules of the city's conditions (the grid, the go-slow; src/game/conditions/pack.ts): the Home, the Map and the Bank show what the server applies once they are in.
   () => import('../../game/conditions/pack.ts'),
   // The Community aside, so opening it the first time does not wait for its code.

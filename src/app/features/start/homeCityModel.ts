@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import type { ComputedRef, Ref } from 'vue'
-import { cachedCityContent, cityCatalogueEntry, loadCityContent } from '../../../game/cities/registry.ts'
+import { cachedCityContent, cityName, loadCityContent } from '../../../game/cities/registry.ts'
 import { lgasOf } from '../../../game/content/world.ts'
 import type { LgaDefinition } from '../../../types/content.ts'
 import type { AreaChoice } from './onboardingModel.ts'
@@ -45,7 +45,7 @@ export function useHomeCity(initialCity: string, onReady: (ready: boolean) => vo
     } catch {
       if (load !== latestLoad) return false
       readyCityId.value = null
-      error.value = `We could not load ${cityCatalogueEntry(id)?.name ?? 'that city'}. Check your connection and try again.`
+      error.value = `We could not load ${cityName(id) ?? 'that city'}. Check your connection and try again.`
       return false
     } finally {
       if (load === latestLoad) loading.value = false

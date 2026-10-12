@@ -28,7 +28,8 @@ export function helpOf(state: LifeState, ctx: LifeContext): ReliefHelp | null {
   const e = state.estate, name = cityRules(e.city)?.name ?? e.city;
   if (unsettled(state) || state.activeAction) return null;
   const away = visitingHere(state), homeName = cityRules(e.home)?.name ?? 'home';
-  const fares = e.home ? linksFrom(e.city).filter((item) => item.to === e.home && !routeUnavailable(item)).map((item) => item.fare) : [];
+  // No link runs from a city to itself, so a life at home has no fare home and never reads the world network (loadLifeCities loads it for a life away).
+  const fares = e.home && e.home !== e.city ? linksFrom(e.city).filter((item) => item.to === e.home && !routeUnavailable(item)).map((item) => item.fare) : [];
   const cheapest = fares.length ? Math.min(...fares) : null;
   const quote = homewardQuote(state, ctx);
   const journey = quote && state.cash < quote.totalFare ? quote : null;

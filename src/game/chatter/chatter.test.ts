@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import { CITY_CATALOGUE } from '../cities/catalogue.ts'
+import { CITY_CATALOGUE } from '../cities/network.ts'
 import { EXCHANGE_BANK, SETTLE_MS, SLOT_MS, SPEAK_RATE, START_WINDOW_MS, VISIT_CAP, createChatter, exchangeAt, exchangesFromMoments } from './index.ts'
 import type { ChatterContext, Exchange } from './index.ts'
 import { BETA_CHATTER_LANGS } from './types.ts'

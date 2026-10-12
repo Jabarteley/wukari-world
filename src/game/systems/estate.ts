@@ -95,7 +95,7 @@ import { isOpen as openAt, lagosTime } from '../clock.ts';
 import { arrive, canAfford, changeNeeds, credit, debit } from '../api.ts';
 import { rideDebtOf, rideDebtReason, rideDebtText, setRideDebt } from '../relief.ts';
 import { houseFor, housesFor, housingFor, defaultHouseFor } from '../cities/housingRuntime.ts';
-import { cityCatalogueEntry, cityName, isCityId, isOpenCityId } from '../cities/registry.ts';
+import { cityCatalogueEntry, cityName, cityNetworkReady, isCityId, isOpenCityId } from '../cities/registry.ts';
 import { CITY_RULES, DEFAULT_STYLE, HOUSE_STYLE, HOUSE_TIERS, LGA_RULES, LODGING, OWNING, SECOND_HOME, STYLE_FIELDS, TIER_ORDER, addressKey, addressLabel, cheapestUpgrade, cityRules, cleanStyle,
   lgaOf, lgaOfDistrict, lgasOf, linksFrom, moveLevy, packStyle, stylePrice, tierCost, tierOf, validPlot } from '../content/world.ts';
 import { cityUnit, cityUnitArticle } from '../cities/terminology.ts';
@@ -596,7 +596,8 @@ function view(state: LifeState, ctx: LifeContext): EstateView {
     living: e.living, arrears: e.ground.arrears,
     cheapest: cheapest ? { ...cheapest, total: cheapest.total ?? 0, lgaName: lgaName(e.city, cheapest.lga), label: HOUSE_TIERS[cheapest.tier].label } : null,
     rules: { beta: true, housesPerLife: OWNING.housesPerLife, cooldownDays: LGA_RULES.changeCooldownDays },
-    links: linksFrom(e.city).map((link) => ({ ...link, name: cityName(link.to) ?? link.to, open: isOpenCityId(link.to), hub: city?.hub?.[link.mode] ?? null,
+    // The travel list reads the world network; until it is in (a resident's startup in the browser) the list is null, not partial.
+    links: !cityNetworkReady() ? null : linksFrom(e.city).map((link) => ({ ...link, name: cityName(link.to) ?? link.to, open: isOpenCityId(link.to), hub: city?.hub?.[link.mode] ?? null,
       blocked: (unsettled(state) ? SETTLE_FIRST : null) ?? relocateBlock(state, link.to, link.mode, ctx)?.reason
         ?? (state.activeAction?.kind === 'intercity' ? `You are on the way to ${cityName(state.activeAction.id) ?? 'another city'}. Arrive first.` : state.activeAction ? 'Finish what you are doing first (or cancel it), then travel.' : null) })),
     // Object.entries widens the keys of the city table.

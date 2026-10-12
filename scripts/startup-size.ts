@@ -5,8 +5,8 @@
 //   node --experimental-strip-types scripts/startup-size.ts --all      every chunk of the build, not only the startup ones
 //   node --experimental-strip-types scripts/startup-size.ts --city kano  startup with another selected city
 //
-// "Startup" is what src/app/entry.test.ts measures: the entry, game shell, selected city rules and content, authored routes,
-// and their static dependencies. The build runs in memory (nothing is written to dist/). A module's size is its share
+// "Startup" is what src/app/entry.test.ts measures: the entry, game shell, selected city rules and content, and their static
+// dependencies (the world city network, `city-network`, is lazy: src/game/cities/registry.ts). The build runs in memory (nothing is written to dist/). A module's size is its share
 // of its chunk's minified bytes, in proportion to the length Rollup rendered for it before minification, so the module
 // figures are estimates and the chunk figures are exact.
 import { build } from 'vite'
@@ -34,7 +34,7 @@ const html = outputs.find((item) => item.type === 'asset' && item.fileName === '
 const page = html && html.type === 'asset' ? String(html.source) : ''
 const queue = [...page.matchAll(/<(?:script|link)\b[^>]*\b(?:src|href)="\/(assets\/[^"]+\.js)"/g)].map((match) => match[1] as string)
 queue.push(...[...chunks.keys()].filter((name) => /^assets\/startApp-[\w-]+\.js$/.test(name)))
-for (const prefix of [`city-${city}-rules`, `city-${city}-content`, 'city-routes']) {
+for (const prefix of [`city-${city}-rules`, `city-${city}-content`]) {
   const matches = [...chunks.keys()].filter(name => new RegExp(`^assets/${prefix}-[\\w-]+\\.js$`).test(name))
   if (matches.length !== 1) throw new Error(`Expected one startup chunk for ${prefix}, found ${matches.length}`)
   queue.push(...matches)
@@ -53,7 +53,7 @@ const label = (id: string): string => id.includes('node_modules/') ? id.slice(id
 
 // What the startup needs by its own static imports: anything else in a startup chunk was put there by a chunk rule.
 const needed = new Set<string>()
-const cityRoots = new Set([resolve(root, 'src/game/cities', city, 'index.ts'), resolve(root, 'src/game/cities', city, 'content.ts'), resolve(root, 'src/game/cities/routes.generated.ts')])
+const cityRoots = new Set([resolve(root, 'src/game/cities', city, 'index.ts'), resolve(root, 'src/game/cities', city, 'content.ts')])
 const walk = [...edges.keys()].filter((id) => /\/src\/app\/(main|startApp)\.ts$/.test(id) || cityRoots.has(id))
 while (walk.length) {
   const id = walk.pop() as string

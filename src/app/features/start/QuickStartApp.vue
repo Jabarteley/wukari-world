@@ -12,12 +12,13 @@ import { computed, defineAsyncComponent } from 'vue'
 import { cr } from './creatorState.ts'
 import EntryPage from './EntryPage.vue'
 import { entryShown } from './entryModel.ts'
+import { loadCreatorApp } from './loadCreator.ts'
 import { isPathAddress } from './pathAddress.ts'
 import { problemOf } from './quickStartModel.ts'
 import { qs } from './quickStartState.ts'
 import { quickDraft } from './startBoundary.ts'
 
-const CreatorApp = defineAsyncComponent(() => import('./CreatorApp.vue'))
+const CreatorApp = defineAsyncComponent(loadCreatorApp)
 // The creator is the first screen (a short address, a refusal, an edited character): its preview is asked for at once, as the landing always did.
 const warmPreview = (): void => { void import('./lookPreview.ts').then((module) => module.warmLookPreview()).catch(() => undefined) }
 const props = defineProps<{ params?: unknown }>()

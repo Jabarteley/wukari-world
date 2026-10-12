@@ -6,8 +6,8 @@
 // GET /api/world/pulse/online. Returning players never reach this: the quick-start gate only opens for a device with no life.
 import '../../../ui/panels/fullscreen.css'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { CITY_CATALOGUE } from '../../../game/cities/catalogue.ts'
-import { loadCityContent } from '../../../game/cities/registry.ts'
+import { CITY_WORLD_FIGURES } from '../../../game/cities/catalogue.ts'
+import { loadCityContent, loadCityNetwork } from '../../../game/cities/registry.ts'
 import { qs } from './quickStartState.ts'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
@@ -17,7 +17,8 @@ import { useAccountEntry } from './accountEntry.ts'
 import AgentSheet from './AgentSheet.vue'
 import { ENTRY_VARIANTS, variantOf, withFigures } from '../../../entry-variants.ts'
 import type { EntryAction } from '../../../entry-variants.ts'
-import { SETUP_NEEDS, SETUP_STEPS, SOURCE_URL, liveLine, worldFigures } from './entryModel.ts'
+import { SETUP_NEEDS, SETUP_STEPS, SOURCE_URL, liveLine } from './entryModel.ts'
+import { loadCreatorApp } from './loadCreator.ts'
 import { invitedNow, playFromEntry } from './entryPlay.ts'
 import { cleanAddress, store } from '../../../quick-start/entry.ts'
 import { firstLanding, pendingRef, track } from './startBoundary.ts'
@@ -28,7 +29,8 @@ const emit = defineEmits<{ creator: [] }>()
 const { game, shell } = useApp()
 const view = game.view
 const account = useAccountEntry('entry')
-const figures = worldFigures(CITY_CATALOGUE)
+// The figures are generated with the startup index: the entry page never waits for the world network.
+const figures = CITY_WORLD_FIGURES
 const online = ref<number | null>(null)
 const line = computed(() => liveLine(online.value, figures))
 const variant = variantOf(props.path ?? globalThis.location?.pathname ?? '/') ?? ENTRY_VARIANTS[0]!
@@ -64,7 +66,8 @@ function act(action: EntryAction): void {
 function signUp(): void { armPaths(); account.openSignUp() }
 function logIn(): void { armPaths(); account.openSignIn() }
 async function startIn(city: string): Promise<void> {
-  try { await loadCityContent(city); (await import('../paths/intent.ts')).markLanding() } catch { play(null); return }
+  // The kept address is read against the world city network (src/paths.ts), so it is in before the landing is marked.
+  try { await Promise.all([loadCityContent(city), loadCityNetwork()]); (await import('../paths/intent.ts')).markLanding() } catch { play(null); return }
   play(city)
 }
 async function find(): Promise<void> {
@@ -73,7 +76,7 @@ async function find(): Promise<void> {
 }
 /** The creator's code is asked for when the visitor shows interest in it, so it is ready by the time the link is pressed. */
 function warmCreator(): void {
-  void import('./CreatorApp.vue').catch(() => undefined)
+  void loadCreatorApp().catch(() => undefined)
   void import('./lookPreview.ts').then((module) => module.warmLookPreview()).catch(() => undefined)
 }
 const opening = ref(false)
@@ -82,7 +85,7 @@ async function openCreator(): Promise<void> {
   if (opening.value) return
   opening.value = true
   armPaths()
-  try { await import('./CreatorApp.vue') } catch { /* the creator's own loader asks again */ }
+  try { await loadCreatorApp() } catch { /* the creator's own loader asks again */ }
   emit('creator')
 }
 function openAgent(): void { agentOpen.value = true }

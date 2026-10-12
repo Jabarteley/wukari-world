@@ -7,6 +7,7 @@ import { definePanel } from '../../state/panels.ts'
 import type { VuePanel } from '../../types/panel.ts'
 import { play } from '../../../quick-start/entry.ts'
 import { quickStartRequired } from './startGate.ts'
+import { loadOnboardingApp } from './loadCreator.ts'
 import { sessionRequired } from './sessionModel.ts'
 
 /** The landing screen of a new device; it replaces the nickname form as the session gate. */
@@ -19,7 +20,7 @@ export const quickStart = definePanel({
 /** Settling in is offered, never required: a new life starts from the landing screen. */
 export const onboarding = definePanel({
   id: 'onboarding', title: 'Make this life yours', placement: 'modal', live: false, fullscreen: true,
-  component: defineAsyncComponent(() => import('./OnboardingApp.vue')),
+  component: defineAsyncComponent(loadOnboardingApp),
 })
 export const session = definePanel({
   id: 'session', title: 'Your city life', placement: 'modal', role: 'session-gate', live: false,

@@ -28,7 +28,7 @@ test('coming routes refuse both directions before fare checks and cannot be open
       assert.equal(state.cash, 0)
       assert.deepEqual(state.ledger, ledger)
       assert.equal(state.activeAction, null)
-      assert.match(viewLife(state, ctx).estate.links.find(link => link.to === to)?.blocked ?? '', /coming soon/)
+      assert.match(viewLife(state, ctx).estate.links?.find(link => link.to === to)?.blocked ?? '', /coming soon/)
       const route = regionInfo({ kind: 'state', id: 'test-state' }, { cityId: to, current: from, routes: [{ to, mode: 'road' }] }).routes[0]
       assert.equal(route?.live, false)
       assert.match(route?.why ?? '', /coming soon/)

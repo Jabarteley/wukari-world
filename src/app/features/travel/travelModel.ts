@@ -1,5 +1,5 @@
 import { civicTitle, civicOffice, cityUnit } from '../../../game/cities/terminology.ts'
-import { cityCatalogueEntry } from '../../../game/cities/registry.ts'
+import { cityCatalogueEntry, cityRules } from '../../../game/cities/registry.ts'
 // Getting around without a DOM: the one place that decides what a trip costs, why Go is off, what
 // the trip bar says, which places the Map lists and what each Ride row offers. It is the typed
 // port of src/ui/panels/world-ui.js (the helpers the Map card and the Ride app shared, so the two
@@ -127,7 +127,9 @@ export interface MapLevel { id: 'world' | 'africa' | 'nigeria' | 'country' | 'ci
  * The bar's steps. `layer` is what the Map shows ('city' or the atlas); on the atlas the level in view is `atlasLevel`.
  */
 export function mapLevels(cityName: string, layer: 'city' | 'world', atlasLevel = 2, cityId?: string): MapLevel[] {
-  const catalogue = cityCatalogueEntry(cityId)
+  // The played city's rules are loaded (they name its country as the catalogue does); the world network is only a fallback.
+  const rules = cityRules(cityId), ruled = rules ? { countryISO: rules.country.id === 'ng' || rules.country.id === 'nigeria' ? undefined : rules.country.id, countryName: rules.country.name } : null
+  const catalogue = ruled ?? cityCatalogueEntry(cityId)
   const foreign = Boolean(catalogue?.countryISO && catalogue.countryISO !== 'ng')
   const country = foreign ? catalogue?.countryName || catalogue?.countryISO?.toUpperCase() || 'Country' : 'Nigeria'
   const wide: MapLevel[] = [

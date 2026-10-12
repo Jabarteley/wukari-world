@@ -59,7 +59,12 @@
           12.33559248993398
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "relation/21224312",
+          "reason": "Malecon (park): lies inside generated water; the proof counts it as a wet place (hosted factory run 38254156784, proof wetPlaces 1)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/13230029220",

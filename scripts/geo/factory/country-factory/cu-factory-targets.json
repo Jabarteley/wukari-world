@@ -59,7 +59,12 @@
           23.316185889933976
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "way/331475438",
+          "reason": "Escuela Latinoamericana de Medicina (campus, kind quad): lies inside generated water; the proof counts it as a wet place (hosted factory run 38254156784, proof wetPlaces 1)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/26396457",

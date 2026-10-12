@@ -59,7 +59,12 @@
           42.62240468993398
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        {
+          "ref": "way/170592633",
+          "reason": "Lesendro (walk): lies inside generated water; the proof counts it as a wet place (hosted factory run 38254156784, proof wetPlaces 1)"
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/123860883",

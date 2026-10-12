@@ -53,6 +53,7 @@ jobs:
           set -euo pipefail
           python scripts/geo/asia-singapore-prepare.py \
             --manifest scripts/geo/asia-singapore-lane.json \
+            --app-source "$GITHUB_WORKSPACE/baseline" \
             --factory-source "$GITHUB_WORKSPACE/factory" \
             --sandbox-root "$FACTORY_SANDBOX"
       - name: Validate source table and exact country membership
@@ -69,6 +70,10 @@ jobs:
           assert.equal(table.targets.length, 1);
           const target = table.targets[0];
           assert.equal(target.id, 'singapore');
+          const preparation = JSON.parse(readFileSync(`${root}/provenance/source-preparation.json`));
+          const hash = (await import('node:crypto')).createHash('sha256').update(readFileSync(`${root}/provenance/source-preparation.json`)).digest('hex');
+          assert.equal(target.sourceJob.preparationReceipt.sha256, hash);
+          assert.equal(preparation.candidatePool.nonLandAfter, 0);
           const scope = loadCountryScope(root, {...target.countryScope, directory: 'boundaries/sg'}, 'sg', target.sourceJob.datasetSha256);
           assertCountryFacts(scope, target.facts);
           writeFileSync(`${root}/provenance/country-membership.json`, JSON.stringify({status:'COUNTRY_BOUNDARY_AND_FACTS_VALIDATED', receipt:scope.receipt, fixtureLimitation:'Zero independent fixture assertions; not legal border authority'}, null, 2));
@@ -120,7 +125,7 @@ jobs:
           boundary = root / 'boundary-publish'
           assert sorted(path.relative_to(source).as_posix() for path in source.rglob('*') if path.is_file()) == [
               'singapore/extras.json', 'singapore/landuse.json', 'singapore/places.json',
-              'singapore/roads.json', 'singapore/water.json',
+              'singapore/roads.json', 'singapore/source-preparation.json', 'singapore/water.json',
           ]
           assert sorted(path.name for path in boundary.iterdir() if path.is_file()) == ['boundary.geojson', 'receipt.json']
           PY

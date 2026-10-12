@@ -3,16 +3,9 @@
   "repository": "kromate/joinallworld",
   "cities": [
     {
-      "id": "bujumbura",
+      "id": "ndjamena",
       "runId": 38185467691,
-      "artifactName": "city-browser-bujumbura-a381b80261b459253be17e8ffef21e92aee91695",
-      "appSha": "a381b80261b459253be17e8ffef21e92aee91695",
-      "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
-    },
-    {
-      "id": "antananarivo",
-      "runId": 38185467691,
-      "artifactName": "city-browser-antananarivo-a381b80261b459253be17e8ffef21e92aee91695",
+      "artifactName": "city-browser-ndjamena-a381b80261b459253be17e8ffef21e92aee91695",
       "appSha": "a381b80261b459253be17e8ffef21e92aee91695",
       "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc"
     }

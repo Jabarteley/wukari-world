@@ -7,7 +7,9 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
-from datetime import date
+import time
+from datetime import date, datetime, timezone
+import tempfile
 
 HERE = Path(__file__).resolve().parent
 _shared_spec = importlib.util.spec_from_file_location('shared_source_bootstrap', HERE / 'run.py')
@@ -34,6 +36,24 @@ def validate(table):
         raise ValueError('dated PBF URL and snapshot date disagree')
     return seeds, source, airports
 
+def _utc_now():
+    return datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+
+def _write_phase_receipt(path, phases):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {'phases': phases}
+    fd, temporary = tempfile.mkstemp(prefix='.phase-timings-', dir=str(path.parent))
+    try:
+        with os.fdopen(fd, 'w') as stream:
+            json.dump(payload, stream, indent=2)
+            stream.write('\n')
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--table', required=True)
@@ -43,6 +63,25 @@ def main():
     out = Path(args.outdir)
     if out.exists(): raise ValueError('execution output must be new')
     for name in ('downloads', 'metadata', 'extract', 'receipts', 'logs'): (out / name).mkdir(parents=True, exist_ok=True)
+    phase_receipt = out / 'receipts/phase-timings.json'
+    phases = []
+    def phase(name, action):
+        started_at, started = _utc_now(), time.monotonic()
+        record = {'phase': name, 'start': started_at, 'status': 'running'}
+        phases.append(record)
+        _write_phase_receipt(phase_receipt, phases)
+        print('PHASE_START ' + json.dumps({'phase': name, 'start': started_at}), flush=True)
+        try:
+            value = action()
+        except Exception as error:
+            record.update(end=_utc_now(), elapsedSeconds=round(time.monotonic() - started, 3), status='failed', error=str(error))
+            _write_phase_receipt(phase_receipt, phases)
+            print('PHASE_END ' + json.dumps(record), flush=True)
+            raise
+        record.update(end=_utc_now(), elapsedSeconds=round(time.monotonic() - started, 3), status='completed')
+        _write_phase_receipt(phase_receipt, phases)
+        print('PHASE_END ' + json.dumps(record), flush=True)
+        return value
     result = {'status': 'HOLD', 'scope': 'source candidate only; no factory generation or browser acceptance'}
     try:
         table = json.loads(Path(args.table).read_text())
@@ -51,9 +90,13 @@ def main():
         sha = subprocess.check_output(['git', '-C', str(geometry), 'rev-parse', 'HEAD'], text=True).strip()
         if sha != BASELINE: raise ValueError('geometry checkout SHA mismatch')
         pbf, csv = out / 'downloads/country.osm.pbf', out / 'downloads/airports.csv'
-        source_http, csv_http = download(source['url'], pbf), download(airports['url'], csv)
-        if pbf.stat().st_size != source['bytes'] or digest(pbf, 'md5') != source['md5']: raise ValueError('PBF byte count/MD5 mismatch')
-        pbf_sha, csv_sha = digest(pbf), digest(csv)
+        source_http = phase('pbf-download', lambda: download(source['url'], pbf))
+        csv_http = phase('airport-csv-download', lambda: download(airports['url'], csv))
+        def validate_pbf():
+            if pbf.stat().st_size != source['bytes'] or digest(pbf, 'md5') != source['md5']: raise ValueError('PBF byte count/MD5 mismatch')
+        phase('pbf-md5-size-validation', validate_pbf)
+        pbf_sha = phase('pbf-sha256', lambda: digest(pbf))
+        csv_sha = phase('airport-csv-hash', lambda: digest(csv))
         receipts = {'pbf': {**source, 'sha256': pbf_sha, 'http': source_http}, 'airports': {**airports, 'sha256': csv_sha, 'http': csv_http}, 'geometrySourceSha': sha, 'extractorSha256': digest(EXTRACTOR)}
         (out / 'receipts/downloads.json').write_text(json.dumps(receipts, indent=2))
         zone, countries = Path('/usr/share/zoneinfo/zone.tab'), Path('/usr/share/zoneinfo/iso3166.tab')
@@ -64,7 +107,7 @@ def main():
         boundary = out / 'country-boundary'
         boundary_error = None
         try:
-            stage([sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(pbf), '--country', seeds[0]['countryISO'], '--expected-sha256', pbf_sha, '--expected-bytes', str(source['bytes']), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--out', str(boundary)], out / 'logs/country-boundary.log')
+            phase('country-boundary-derivation', lambda: stage([sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(pbf), '--country', seeds[0]['countryISO'], '--expected-sha256', pbf_sha, '--expected-bytes', str(source['bytes']), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--out', str(boundary)], out / 'logs/country-boundary.log'))
             boundary_receipt = {'countryISO': seeds[0]['countryISO'], 'path': 'country-boundary/boundary.geojson', 'sha256': digest(boundary / 'boundary.geojson'), 'receiptPath': 'country-boundary/receipt.json', 'receiptSha256': digest(boundary / 'receipt.json')}
             result['countryBoundary'] = boundary_receipt
         except Exception as error:
@@ -78,9 +121,9 @@ def main():
                 seed_file = city_metadata / 'seed.json'
                 seed_file.write_text(json.dumps(seed))
                 candidate = city_metadata / 'candidate'
-                stage([sys.executable, str(HERE / 'metadata.py'), '--seed', str(seed_file), '--pbf', str(pbf), '--airports-csv', str(csv), '--airports-date', airports['snapshotDate'], '--zone-tab', str(zone), '--countries-tab', str(countries), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--expected-pbf-sha256', pbf_sha, '--dataset-bytes', str(source['bytes']), '--source-verified', '--geometry-source', str(geometry), '--adapter', str(EXTRACTOR), '--out', str(candidate)], out / 'logs' / (seed['id'] + '-metadata.log'))
-                stage([sys.executable, str(EXTRACTOR), str(pbf), str(candidate / 'source-input.json'), '--dataset-url', source['url'], '--dataset-bytes', str(source['bytes']), '--dataset-md5', source['md5'], '--dataset-sha256', pbf_sha, '--output-root', str(out / 'extract')], out / 'logs' / (seed['id'] + '-extraction.log'))
-                hashes = {label: digest(out / 'extract' / seed['id'] / (label + '.json')) for label in ('places','extras','water','landuse','roads')}
+                phase(seed['id'] + '-metadata', lambda: stage([sys.executable, str(HERE / 'metadata.py'), '--seed', str(seed_file), '--pbf', str(pbf), '--airports-csv', str(csv), '--airports-date', airports['snapshotDate'], '--zone-tab', str(zone), '--countries-tab', str(countries), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--expected-pbf-sha256', pbf_sha, '--dataset-bytes', str(source['bytes']), '--source-verified', '--geometry-source', str(geometry), '--adapter', str(EXTRACTOR), '--out', str(candidate)], out / 'logs' / (seed['id'] + '-metadata.log')))
+                phase(seed['id'] + '-extraction', lambda: stage([sys.executable, str(EXTRACTOR), str(pbf), str(candidate / 'source-input.json'), '--dataset-url', source['url'], '--dataset-bytes', str(source['bytes']), '--dataset-md5', source['md5'], '--dataset-sha256', pbf_sha, '--output-root', str(out / 'extract')], out / 'logs' / (seed['id'] + '-extraction.log')))
+                hashes = phase(seed['id'] + '-layer-hashes', lambda: {label: digest(out / 'extract' / seed['id'] / (label + '.json')) for label in ('places','extras','water','landuse','roads')})
                 producer = {'city': seed['id'], 'sourceRunId': int(os.environ['GITHUB_RUN_ID']), 'sourceArtifact': 'city-bootstrap-' + seeds[0]['countryISO'].lower() + '-' + os.environ['GITHUB_SHA'], 'sourceSha': os.environ['GITHUB_SHA'], 'datasetSha256': pbf_sha, 'adapterSha256': digest(EXTRACTOR), 'extractSha256': hashes}
                 job_file = out / 'receipts' / (seed['id'] + '-source-job.json')
                 job_file.write_text(json.dumps(producer, indent=2))
@@ -102,13 +145,16 @@ def main():
         result['reason'] = str(error)
     (out / 'receipts/result.json').write_text(json.dumps(result, indent=2))
     publish = out / 'publish'
-    publish.mkdir()
-    for name in ('metadata', 'receipts', 'logs'):
-        shutil.copytree(out / name, publish / name)
-    if (out / 'country-boundary').exists():
-        shutil.copytree(out / 'country-boundary', publish / 'country-boundary')
-    for city in (out / 'extract').iterdir():
-        if city.is_dir(): shutil.copytree(city, publish / city.name)
+    def publish_copy():
+        publish.mkdir()
+        for name in ('metadata', 'receipts', 'logs'):
+            shutil.copytree(out / name, publish / name)
+        if (out / 'country-boundary').exists():
+            shutil.copytree(out / 'country-boundary', publish / 'country-boundary')
+        for city in (out / 'extract').iterdir():
+            if city.is_dir(): shutil.copytree(city, publish / city.name)
+    phase('publish-copy', publish_copy)
+    shutil.copyfile(out / 'receipts/phase-timings.json', publish / 'receipts/phase-timings.json')
     print(json.dumps(result))
     return 0 if result['status'] == 'SOURCE_CANDIDATE' else 1
 

@@ -1,0 +1,5 @@
+{"schemaVersion":1,"queue":[
+{"id":"lr","table":"scripts/geo/factory/country-tables/lr.json","appSha":"31e7799ce9f87c6afe0f7697e0089747e43896d2"},
+{"id":"gw","table":"scripts/geo/factory/country-tables/gw.json","appSha":"31e7799ce9f87c6afe0f7697e0089747e43896d2"},
+{"id":"cv","table":"scripts/geo/factory/country-tables/cv.json","appSha":"31e7799ce9f87c6afe0f7697e0089747e43896d2"}
+]}

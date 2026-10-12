@@ -64,22 +64,28 @@ def main():
     if out.exists(): raise ValueError('execution output must be new')
     for name in ('downloads', 'metadata', 'extract', 'receipts', 'logs'): (out / name).mkdir(parents=True, exist_ok=True)
     phase_receipt = out / 'receipts/phase-timings.json'
+    publish = out / 'publish'
+    publish.mkdir(parents=True, exist_ok=True)
+    publish_phase_receipt = publish / 'phase-timings.json'
     phases = []
     def phase(name, action):
         started_at, started = _utc_now(), time.monotonic()
         record = {'phase': name, 'start': started_at, 'status': 'running'}
         phases.append(record)
         _write_phase_receipt(phase_receipt, phases)
+        _write_phase_receipt(publish_phase_receipt, phases)
         print('PHASE_START ' + json.dumps({'phase': name, 'start': started_at}), flush=True)
         try:
             value = action()
         except Exception as error:
             record.update(end=_utc_now(), elapsedSeconds=round(time.monotonic() - started, 3), status='failed', error=str(error))
             _write_phase_receipt(phase_receipt, phases)
+            _write_phase_receipt(publish_phase_receipt, phases)
             print('PHASE_END ' + json.dumps(record), flush=True)
             raise
         record.update(end=_utc_now(), elapsedSeconds=round(time.monotonic() - started, 3), status='completed')
         _write_phase_receipt(phase_receipt, phases)
+        _write_phase_receipt(publish_phase_receipt, phases)
         print('PHASE_END ' + json.dumps(record), flush=True)
         return value
     result = {'status': 'HOLD', 'scope': 'source candidate only; no factory generation or browser acceptance'}
@@ -144,9 +150,8 @@ def main():
     except Exception as error:
         result['reason'] = str(error)
     (out / 'receipts/result.json').write_text(json.dumps(result, indent=2))
-    publish = out / 'publish'
     def publish_copy():
-        publish.mkdir()
+        publish.mkdir(exist_ok=True)
         for name in ('metadata', 'receipts', 'logs'):
             shutil.copytree(out / name, publish / name)
         if (out / 'country-boundary').exists():

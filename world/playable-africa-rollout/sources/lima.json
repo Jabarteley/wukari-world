@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "lima",
+  "countryIso2": "PE",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Lima",
+    "coordinatesWgs84": [
+      -77.0305912,
+      -12.0459808
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/peru-261010.osm.pbf"
+  },
+  "airport": {
+    "id": "lima-airport",
+    "name": "Jorge Chávez International Airport",
+    "lon": -77.114305,
+    "lat": -12.0219,
+    "sourceUrl": "https://ourairports.com/airports/SPIM/"
+  },
+  "boxes": {
+    "play": [
+      -12.22686168993398,
+      -77.21442335255911,
+      -11.865099910066021,
+      -76.8467590474409
+    ],
+    "core": [
+      -12.091201022483496,
+      -77.07652579868561,
+      -12.000760577516505,
+      -76.9846566013144
+    ],
+    "outline": [
+      -12.27686168993398,
+      -77.2644233525591,
+      -11.81509991006602,
+      -76.7967590474409
+    ],
+    "wide": [
+      -12.82686168993398,
+      -77.8144233525591,
+      -11.265099910066022,
+      -76.2467590474409
+    ],
+    "water": [
+      -12.82686168993398,
+      -77.8144233525591,
+      -11.265099910066022,
+      -76.2467590474409
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/peru-261010.osm.pbf",
+    "datasetSha256": "6c6310865234c8a4a8f55633f56088af4fd8c366acbcae7337b85dd24130149b",
+    "pbfHeaderTimestamp": "2026-10-10T20:21:21Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "20a539ab5ee5cccc552a3fe8ca195a362cf196acd9c53cec4ea3b5512d35c7d6",
+        "elements": 8462
+      },
+      {
+        "file": "extras.json",
+        "sha256": "7e633802b2cae986e599d03a0f43f150c561adce00821723c00f3f121628f098",
+        "elements": 2755
+      },
+      {
+        "file": "water.json",
+        "sha256": "e44d6f84d9af23ec93d0ec49588758f0c4c73c2015f1b4a5a062a873264bc9b3",
+        "elements": 814
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "9b45e9f859ee28e10edcdfbb5458078f526a1f38c0befdcd879c62dccc44ee29",
+        "elements": 2153
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5587d319de8e784f561f5cfb647dfbae47fc6f643251158607ab56034d6b47ab",
+        "elements": 6807
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Estación Estadio Nacional",
+      "osm": "node/1278915817",
+      "coordinatesWgs84": [
+        -77.032139,
+        -12.06853
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Central",
+      "osm": "node/6228532187",
+      "coordinatesWgs84": [
+        -77.02254,
+        -12.152571
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Technological University of South Lima",
+      "osm": "way/126861408",
+      "coordinatesWgs84": [
+        -76.93242,
+        -12.213363
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Nacional Daniel Alcides Carrión",
+      "osm": "way/777346012",
+      "coordinatesWgs84": [
+        -77.124118,
+        -12.063268
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Capilla Santa Rosa",
+      "osm": "way/320407571",
+      "coordinatesWgs84": [
+        -76.929763,
+        -12.051159
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Real Plaza Pro",
+      "osm": "way/285826118",
+      "coordinatesWgs84": [
+        -77.069766,
+        -11.940093
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Islamic Association of Peru",
+      "osm": "way/1315440869",
+      "coordinatesWgs84": [
+        -77.072127,
+        -12.093876
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Municipalidad de San Juan de Miraflores",
+      "osm": "way/271265001",
+      "coordinatesWgs84": [
+        -76.963579,
+        -12.163239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Geofísico del Perú",
+      "osm": "way/1239679416",
+      "coordinatesWgs84": [
+        -76.966507,
+        -12.069555
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National University of Engineering",
+      "osm": "relation/12280616",
+      "coordinatesWgs84": [
+        -77.04832,
+        -12.01832
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Municipal de la Molina",
+      "osm": "way/375577634",
+      "coordinatesWgs84": [
+        -76.890506,
+        -12.085233
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cajamarquilla",
+      "osm": "node/1728415463",
+      "coordinatesWgs84": [
+        -76.896667,
+        -11.981111
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Huaca Templo Con Con",
+      "osm": "node/10294326057",
+      "coordinatesWgs84": [
+        -77.022272,
+        -11.879346
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "San Juan Bautista Penitentiary Center",
+      "osm": "way/808110260",
+      "coordinatesWgs84": [
+        -77.181966,
+        -12.112505
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Comercial Caminos del Inca",
+      "osm": "way/401854468",
+      "coordinatesWgs84": [
+        -76.991553,
+        -12.11328
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad San Juan Bautista",
+      "osm": "way/437330220",
+      "coordinatesWgs84": [
+        -77.007059,
+        -12.196512
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ciudad Universitaria de la Universidad Nacional Mayor de San Marcos",
+      "osm": "relation/6252388",
+      "coordinatesWgs84": [
+        -77.083835,
+        -12.056448
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia Evangelica Coreana",
+      "osm": "way/436738985",
+      "coordinatesWgs84": [
+        -77.026816,
+        -12.109497
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Atlético de la Villa Deportiva Nacional",
+      "osm": "way/401294974",
+      "coordinatesWgs84": [
+        -76.998414,
+        -12.081632
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal Plaza",
+      "osm": "way/68674787",
+      "coordinatesWgs84": [
+        -77.062677,
+        -11.990603
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Santo Cristo",
+      "osm": "node/1459528357",
+      "coordinatesWgs84": [
+        -77.012217,
+        -12.044988
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Plaza Ramón Castilla",
+      "osm": "way/76554673",
+      "coordinatesWgs84": [
+        -77.042987,
+        -12.04337
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Municipal de Chorrillos",
+      "osm": "way/379394923",
+      "coordinatesWgs84": [
+        -77.027565,
+        -12.172132
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Love Park",
+      "osm": "way/76738820",
+      "coordinatesWgs84": [
+        -77.03642,
+        -12.126805
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1187,
+      "sha256": "40ca0654add7f80b3dbab4233e1a716f753364ce924528eb84124cdb7265c892"
+    },
+    "geometry.ts": {
+      "bytes": 88971,
+      "sha256": "fba1866cc80a46fe0e806d321e2e4ab785567be0db6e67dc73af74ad4c662c1c"
+    },
+    "places.ts": {
+      "bytes": 9807,
+      "sha256": "ca9c82c8209e906f6d64314617c2eb890dcd9547ea04ee9888b3a9d136cf914d"
+    },
+    "terrain.ts": {
+      "bytes": 66314,
+      "sha256": "2eeecd21355db5a61fd41bf7163f8d514ebb8d78038584a8fe6d6bcea6e46fa2"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "bd1b48ec39bc279208db65c5a72af153c99741d615230b7f66d2dcd80d72da06"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

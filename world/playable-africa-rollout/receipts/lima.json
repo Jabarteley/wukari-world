@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "lima",
+  "countryIso2": "PE",
+  "generationIdentity": {
+    "cityId": "lima",
+    "stateId": "pe-lima",
+    "stateName": "Lima"
+  },
+  "inventorySha256": "999249b0b58718bedbdabf139b6314abed948c3a39bd2f856a16301facbd7654",
+  "inventoryPath": "world/playable-africa-rollout/sources/lima.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "lima-airport",
+    "name": "Jorge Chávez International Airport",
+    "lon": -77.114305,
+    "lat": -12.0219,
+    "sourceUrl": "https://ourairports.com/airports/SPIM/"
+  },
+  "bounds": [
+    -12.22686168993398,
+    -77.21442335255911,
+    -11.865099910066021,
+    -76.8467590474409
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/peru-261010.osm.pbf",
+      "datasetSha256": "6c6310865234c8a4a8f55633f56088af4fd8c366acbcae7337b85dd24130149b",
+      "pbfHeaderTimestamp": "2026-10-10T20:21:21Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "20a539ab5ee5cccc552a3fe8ca195a362cf196acd9c53cec4ea3b5512d35c7d6",
+          "elements": 8462
+        },
+        {
+          "file": "extras.json",
+          "sha256": "7e633802b2cae986e599d03a0f43f150c561adce00821723c00f3f121628f098",
+          "elements": 2755
+        },
+        {
+          "file": "water.json",
+          "sha256": "e44d6f84d9af23ec93d0ec49588758f0c4c73c2015f1b4a5a062a873264bc9b3",
+          "elements": 814
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "9b45e9f859ee28e10edcdfbb5458078f526a1f38c0befdcd879c62dccc44ee29",
+          "elements": 2153
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5587d319de8e784f561f5cfb647dfbae47fc6f643251158607ab56034d6b47ab",
+          "elements": 6807
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 5,
+    "waterPolygons": 36,
+    "reachWaterPolygons": 37
+  },
+  "observed": {
+    "places": 8462,
+    "extras": 2755,
+    "water": 814,
+    "landuse": 2153,
+    "roads": 6807
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1220,
+      "sha256": "ee1becdf5b0049bcb09df1b532731643fa38c698a79dd572ffeb660e23b1daa9"
+    },
+    "geometry.ts": {
+      "bytes": 157355,
+      "sha256": "a48acafaccd7af6b8a974e1477422e77920f356d38784481fd9b91a2cfaadee3"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "bd1b48ec39bc279208db65c5a72af153c99741d615230b7f66d2dcd80d72da06"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/lima.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

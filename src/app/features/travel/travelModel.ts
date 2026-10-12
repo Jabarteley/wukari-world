@@ -1,5 +1,7 @@
 import { civicTitle, civicOffice, cityUnit } from '../../../game/cities/terminology.ts'
 import { cityCatalogueEntry } from '../../../game/cities/registry.ts'
+import { ATLAS_LEVELS, countryAtlasLevel } from '../../../map3d/regions.ts'
+import type { AtlasLevelId } from '../../../map3d/types.ts'
 // Getting around without a DOM: the one place that decides what a trip costs, why Go is off, what
 // the trip bar says, which places the Map lists and what each Ride row offers. It is the typed
 // port of src/ui/panels/world-ui.js (the helpers the Map card and the Ride app shared, so the two
@@ -120,9 +122,9 @@ export interface TripMode { id: string; label: string; icon?: string | null }
 /** The ways between cities, as the trip bar and the travel card name them. */
 export const INTERCITY_MODES: Readonly<Record<string, TripMode>> = { road: { id: 'danfo', label: 'Bus', icon: '🚌' }, rail: { id: 'rail', label: 'Train', icon: '🚆' }, air: { id: 'air', label: 'Flight', icon: '✈️' } }
 
-// ---- the levels of the Map: the city, its country, the world ------------------------------------
-/** One step of the bar at the top of the Map: World › Africa › the home country › the city. */
-export interface MapLevel { id: 'world' | 'africa' | 'nigeria' | 'country' | 'city'; label: string; /** The atlas level it opens (widest first), or null for the city map. */ atlas: number | null; current: boolean }
+// ---- the levels of the Map: the city, its continent, its country, and the world -------------------
+/** One step of the bar at the top of the Map: World › the continent › the home country › the city. */
+export interface MapLevel { id: AtlasLevelId | 'country' | 'city'; label: string; /** The atlas level it opens (widest first), or null for the city map. */ atlas: number | null; current: boolean }
 /**
  * The bar's steps. `layer` is what the Map shows ('city' or the atlas); on the atlas the level in view is `atlasLevel`.
  */
@@ -130,14 +132,23 @@ export function mapLevels(cityName: string, layer: 'city' | 'world', atlasLevel 
   const catalogue = cityCatalogueEntry(cityId)
   const foreign = Boolean(catalogue?.countryISO && catalogue.countryISO !== 'ng')
   const country = foreign ? catalogue?.countryName || catalogue?.countryISO?.toUpperCase() || 'Country' : 'Nigeria'
+  const countryISO = foreign ? catalogue!.countryISO! : 'ng'
+  const countryAtlasId = countryAtlasLevel(countryISO)
+  const foundCountryAtlasIndex = ATLAS_LEVELS.findIndex((level) => level.id === countryAtlasId)
+  const countryAtlasIndex = foundCountryAtlasIndex < 0 ? 1 : foundCountryAtlasIndex
+  const countryAtlas = ATLAS_LEVELS[countryAtlasIndex]!
+  const continentAtlas = countryAtlas.continent
+    ? countryAtlas
+    : ATLAS_LEVELS.find((level) => level.id === countryAtlas.parent) ?? ATLAS_LEVELS[1]!
+  const continentAtlasIndex = ATLAS_LEVELS.findIndex((level) => level.id === continentAtlas.id)
   const wide: MapLevel[] = [
     { id: 'world', label: 'World', atlas: 0, current: layer === 'world' && atlasLevel === 0 },
-    { id: 'africa', label: 'Africa', atlas: 1, current: layer === 'world' && atlasLevel === 1 && !foreign },
-    { id: foreign ? 'country' : 'nigeria', label: country, atlas: foreign ? 1 : 2, current: layer === 'world' && atlasLevel === (foreign ? 1 : 2) },
+    { id: continentAtlas.id, label: continentAtlas.name, atlas: continentAtlasIndex, current: layer === 'world' && atlasLevel === continentAtlasIndex && continentAtlasIndex !== countryAtlasIndex },
+    { id: foreign ? 'country' : 'nigeria', label: country, atlas: countryAtlasIndex, current: layer === 'world' && atlasLevel === countryAtlasIndex },
   ]
   return [...wide, { id: 'city', label: cityName, atlas: null, current: layer === 'city' }]
 }
-/** "World › Africa › Nigeria › Lagos": where the player is, as words. */
+/** "World › Europe › Ireland › Dublin": where the player is, as words. */
 export const mapCrumbText = (cityName: string, cityId?: string): string => mapLevels(cityName, 'city', 2, cityId).map((level) => level.label).join(' › ')
 export interface TripInfo {
   from: { id: string; label: string }

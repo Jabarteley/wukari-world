@@ -18,6 +18,7 @@
       "id": "athens",
       "name": "Athens",
       "countryISO": "GR",
+      "cityOsmRef": "node/441183",
       "airport": {
         "ident": "LGAV",
         "sourceUrl": "https://www.aia.gr/getmedia/ea1b09f6-444f-4836-afa7-bc87ec1b7cc1/asr-2023.pdf"

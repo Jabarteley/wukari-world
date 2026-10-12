@@ -27,7 +27,6 @@ jobs:
         id: matrix
         env:
           COMMITS_JSON: ${{ toJSON(github.event.commits) }}
-          EVENT_SIZE: ${{ github.event.size }}
         run: |
           python3 - <<'PY'
           import json
@@ -35,9 +34,8 @@ jobs:
 
           try:
               commits = json.loads(os.environ['COMMITS_JSON'])
-              event_size = int(os.environ['EVENT_SIZE'])
-              if not isinstance(commits, list) or event_size != len(commits):
-                  raise ValueError('push payload is missing commits')
+              if not isinstance(commits, list) or len(commits) >= 2048:
+                  raise ValueError('push commit list is missing or may be truncated')
           except (KeyError, TypeError, ValueError, json.JSONDecodeError):
               countries = '[]'
               print('No source countries selected: incomplete push commit list; skipping to avoid duplicate acquisition.')

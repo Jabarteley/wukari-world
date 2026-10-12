@@ -1,0 +1,122 @@
+name: Asia pinned Lahore factory candidate
+
+on:
+  push:
+    branches: ['codex/world-asia-20261011']
+    paths:
+      - '.github/workflows/asia-lahore-factory.yml'
+      - 'scripts/geo/asia-lahore-factory-prepare.mjs'
+      - 'scripts/geo/asia-factory-lahore-targets.json'
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: asia-lahore-factory
+  cancel-in-progress: false
+
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      APP_SHA: 04e0cf1d96a35b1fe57c520d174c41fc2a9eec48
+      FACTORY_SHA: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+    steps:
+      - name: Set execution directory
+        run: |
+          mkdir -p "$RUNNER_TEMP/asia-lahore-factory/evidence" \
+            "$RUNNER_TEMP/asia-lahore-factory/provenance"
+          echo "FACTORY_SANDBOX=$RUNNER_TEMP/asia-lahore-factory" >> "$GITHUB_ENV"
+          printf '%s\n' '{"status":"PREPARATION_STARTED","city":"lahore","acceptance":"none"}' \
+            > "$RUNNER_TEMP/asia-lahore-factory/provenance/preparation-started.json"
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24.19.0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
+          path: factory
+          persist-credentials: false
+      - id: input
+        name: Validate Lahore target table and exact source pins
+        run: node factory/scripts/geo/factory/cloud-inputs.mjs scripts/geo/asia-factory-lahore-targets.json
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.ref }}
+          path: baseline
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Verify baselines and prepare Lahore source artifact
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          test "${{ steps.input.outputs.app_sha }}" = "$APP_SHA"
+          git -C baseline checkout --detach "$APP_SHA"
+          test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git -C factory rev-parse HEAD)" = "$FACTORY_SHA"
+          node scripts/geo/asia-lahore-factory-prepare.mjs \
+            --table scripts/geo/asia-factory-lahore-targets.json \
+            --factory-source "$GITHUB_WORKSPACE/factory" \
+            --sandbox-root "$FACTORY_SANDBOX"
+      - name: Apply pinned source availability policy
+        run: |
+          set -euo pipefail
+          node scripts/geo/asia-factory-venue-policy.mjs \
+            --factory-source "$GITHUB_WORKSPACE/factory" \
+            --policy scripts/geo/asia-factory-venue-policy.json \
+            --table scripts/geo/asia-factory-lahore-targets.json
+      - name: Prepare separate disposable app
+        run: |
+          set -euo pipefail
+          git clone --shared baseline "$FACTORY_SANDBOX/app"
+          git -C "$FACTORY_SANDBOX/app" checkout --detach "$APP_SHA"
+          printf '%s\n' '{"disposable":true}' > "$FACTORY_SANDBOX/app/.factory-disposable.json"
+          npm ci --prefix "$FACTORY_SANDBOX/app" --ignore-scripts --no-audit --no-fund
+          ln -s "$FACTORY_SANDBOX/app/node_modules" baseline/node_modules
+      - name: Install Linux SVG renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y librsvg2-bin
+      - name: Execute pinned Lahore factory candidate
+        run: |
+          set -euo pipefail
+          node --experimental-strip-types factory/scripts/geo/factory/runner.mjs \
+            --table scripts/geo/asia-factory-lahore-targets.json \
+            --source "$GITHUB_WORKSPACE/baseline" \
+            --extract-root "$FACTORY_SANDBOX/extracts" \
+            --boundary-root "$FACTORY_SANDBOX/boundaries" \
+            --proof-helper "$GITHUB_WORKSPACE/factory/scripts/geo/city-generation-proof.mjs" \
+            --receipt-helper "$GITHUB_WORKSPACE/factory/scripts/geo/factory/integrate-city-receipts.mjs" \
+            --helper-root "$GITHUB_WORKSPACE/factory" \
+            --workspace "$FACTORY_SANDBOX/app" \
+            --sandbox-root "$FACTORY_SANDBOX" \
+            --outdir "$FACTORY_SANDBOX/evidence" \
+            --execute 2>&1 | tee "$FACTORY_SANDBOX/runner.log"
+      - name: Collect generated source and diff
+        if: always()
+        run: |
+          node factory/scripts/geo/factory/cloud-sources.mjs \
+            --table scripts/geo/asia-factory-lahore-targets.json \
+            --collect \
+            --workspace "$FACTORY_SANDBOX/app" \
+            --outdir "$FACTORY_SANDBOX/delivery" \
+            --sandbox-root "$FACTORY_SANDBOX"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: asia-lahore-factory-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/asia-lahore-factory/evidence
+            ${{ runner.temp }}/asia-lahore-factory/provenance
+            ${{ runner.temp }}/asia-lahore-factory/delivery
+            ${{ runner.temp }}/asia-lahore-factory/runner.log
+          if-no-files-found: error

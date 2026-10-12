@@ -2,6 +2,9 @@ name: Asia Lahore retained generation on current runtime
 
 on:
   workflow_dispatch:
+  push:
+    branches: ['codex/world-asia-20261011']
+    paths: ['.github/workflows/asia-lahore-current-runtime.yml']
 
 permissions:
   contents: read
@@ -13,7 +16,7 @@ concurrency:
 
 jobs:
   candidate:
-    if: github.ref == 'refs/heads/codex/world-asia-20261011'
+    if: github.ref == 'refs/heads/codex/world-asia-20261011' && (github.event_name == 'workflow_dispatch' || github.event.head_commit.message == 'Bootstrap Lahore current-runtime candidate')
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:

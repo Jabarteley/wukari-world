@@ -15,6 +15,67 @@ const files = root => readdirSync(root, { withFileTypes: true }).flatMap(entry =
   return entry.isDirectory() ? files(path) : (assert.ok(entry.isFile(), `Nonregular file: ${path}`), [path]);
 });
 const tree = root => Object.fromEntries(files(root).map(path => [relative(root, path), hash(readFileSync(path))]));
+
+// Only JSON literal data is adapted; imports, query functions and geographic data remain intact.
+function jsonLiteral(text, start, end) {
+  const from = text.indexOf(start);
+  assert.ok(from >= 0 && text.indexOf(start, from + 1) < 0, 'Unique JSON literal start required');
+  const offset = from + start.length, until = text.indexOf(end, offset);
+  assert.ok(until >= offset, 'JSON literal end required');
+  return { data: JSON.parse(text.slice(offset, until)), replace(data) { return text.slice(0, offset) + JSON.stringify(data, null, 2) + text.slice(until); } };
+}
+function uiFieldsFromStarter(source) {
+  const mapping = {};
+  for (const match of source.matchAll(/id: ids\.([a-z]+),[^\n]*category: '([^']+)', icon: '([^']+)'/g)) {
+    assert.ok(!mapping[match[1]], `Ambiguous starter slot ${match[1]}`);
+    mapping[match[1]] = { category: match[2], icon: match[3] };
+  }
+  for (const slot of ['transit', 'meal', 'community', 'clinic', 'recreation', 'market', 'worship', 'polling', 'government']) assert.ok(mapping[slot], `Missing current starter slot ${slot}`);
+  return mapping;
+}
+function adaptUiMetadata(factsText, placesText, recipeText, mapping) {
+  const facts = jsonLiteral(factsText, 'export const FACTS = ', ' satisfies DestinationFacts');
+  // The generated array is multiline; its final bracket is followed by a newline.
+  const placeStart = placesText.indexOf('export const PLACES: readonly DestinationPlace[] = ');
+  assert.ok(placeStart >= 0);
+  const arrayStart = placeStart + 'export const PLACES: readonly DestinationPlace[] = '.length;
+  const arrayEnd = placesText.lastIndexOf(']\n');
+  assert.ok(arrayEnd >= arrayStart);
+  const originalPlaces = JSON.parse(placesText.slice(arrayStart, arrayEnd + 1));
+  const recipe = jsonLiteral(recipeText, 'export const CONFIG = {\n...', ',\ndiscovery:');
+  const originalFacts = structuredClone(facts.data), originalConfig = structuredClone(recipe.data);
+  const fields = [];
+  assert.ok(facts.data.names && !Object.hasOwn(facts.data.names, 'unit'), 'Adapter requires the known missing names.unit');
+  facts.data.names.unit = 'neighbourhood';
+  fields.push({ file: 'facts.ts', path: 'names.unit', value: 'neighbourhood', provenance: 'Generic interface label; no administrative boundary claim' });
+  const add = (entry, file, index) => {
+    const missing = ['category', 'icon'].filter(key => !Object.hasOwn(entry, key));
+    if (!missing.length) return entry;
+    assert.deepEqual(missing, ['category', 'icon'], 'Partial UI metadata requires review');
+    assert.ok(entry.slot && mapping[entry.slot], `No authoritative slot metadata for ${entry.osm ?? entry.ref}`);
+    for (const key of missing) fields.push({ file, index, ref: entry.osm ?? entry.ref, slot: entry.slot, field: key, value: mapping[entry.slot][key] });
+    return { ...entry, ...mapping[entry.slot] };
+  };
+  const adaptedPlaces = originalPlaces.map((entry, index) => add(entry, 'places.ts', index));
+  recipe.data.places = recipe.data.places.map((entry, index) => add(entry, 'recipe.ts', index));
+  for (const entry of adaptedPlaces.filter(entry => entry.slot)) {
+    const choice = recipe.data.places.find(choice => choice.ref === entry.osm);
+    assert.ok(choice, 'Generated place has no recipe pick');
+    assert.equal(choice.category, entry.category); assert.equal(choice.icon, entry.icon);
+  }
+  const strippedFacts = structuredClone(facts.data); delete strippedFacts.names.unit;
+  assert.deepEqual(strippedFacts, originalFacts, 'Geographic facts changed');
+  const strip = (entries, file) => entries.map((entry, index) => {
+    const copy = { ...entry };
+    for (const field of fields.filter(field => field.file === file && field.index === index)) delete copy[field.field];
+    return copy;
+  });
+  assert.deepEqual(strip(adaptedPlaces, 'places.ts'), originalPlaces, 'Protected place data changed');
+  const strippedConfig = { ...recipe.data, places: strip(recipe.data.places, 'recipe.ts') };
+  assert.deepEqual(strippedConfig, originalConfig, 'Protected recipe data changed');
+  return { facts: facts.replace(facts.data), places: placesText.slice(0, arrayStart) + JSON.stringify(adaptedPlaces, null, 2) + placesText.slice(arrayEnd + 1), recipe: recipe.replace(recipe.data), fields };
+}
+
 const args = process.argv.slice(2);
 assert.equal(args.length, 8, 'Usage: --phase prepare|validate|finish --config JSON --sandbox DIR --factory DIR');
 assert.deepEqual(args.filter((_, i) => i % 2 === 0), ['--phase', '--config', '--sandbox', '--factory']);
@@ -81,11 +142,30 @@ async function execute() {
     }
     assert.ok(!existsSync(runtimeCity) && !existsSync(runtimeRecipe), 'Lahore already exists in runtime; review required');
     cpSync(retainedCity, runtimeCity, { recursive: true }); cpSync(retainedRecipe, runtimeRecipe);
+    const starterPath = join(app, 'src/game/cities/africa/contentBuilder.ts');
+    const starter = readFileSync(starterPath, 'utf8'), mapping = uiFieldsFromStarter(starter);
+    const adapted = adaptUiMetadata(readFileSync(join(retainedCity, 'facts.ts'), 'utf8'), readFileSync(join(retainedCity, 'places.ts'), 'utf8'), readFileSync(retainedRecipe, 'utf8'), mapping);
+    writeFileSync(join(runtimeCity, 'facts.ts'), adapted.facts);
+    writeFileSync(join(runtimeCity, 'places.ts'), adapted.places);
+    writeFileSync(runtimeRecipe, adapted.recipe);
+    const donorHashes = tree(retainedCity), adaptedHashes = tree(runtimeCity);
+    for (const [name, digest] of Object.entries(donorHashes)) if (!['facts.ts', 'places.ts'].includes(name)) assert.equal(adaptedHashes[name], digest, `Protected ${name} changed`);
+    write('ui-adapter.json', { kind: 'retained-lahore-current-runtime-ui-metadata-v1', runtimeSha: config.runtimeSha, mappingSource: 'src/game/cities/africa/contentBuilder.ts', mappingSourceSha256: hash(Buffer.from(starter)), effectiveSlotMapping: mapping, fields: adapted.fields, donorCityHashes: donorHashes, adaptedCityHashes: adaptedHashes, donorRecipeSha256: hash(readFileSync(retainedRecipe)), adaptedRecipeSha256: hash(readFileSync(runtimeRecipe)), protectedSemanticEquality: true, allowedChanges: ['facts.names.unit', 'missing slot category/icon in PLACES and recipe picks'] });
+
     write('transfer.json', { generationAppSha: config.generationAppSha, generationHeadSha: pin.headSha, runtimeSha: config.runtimeSha, factorySha: config.factorySha, artifact: pin, cityHashes: tree(retainedCity), recipeSha256: hash(readFileSync(retainedRecipe)), acceptance: config.acceptance, holds: config.holds });
   } else {
     assert.equal(command('git', ['rev-parse', 'HEAD'], app).trim(), config.runtimeSha);
-    assert.deepEqual(tree(runtimeCity), tree(retainedCity), 'Transferred city bytes changed');
-    assert.deepEqual(readFileSync(runtimeRecipe), readFileSync(retainedRecipe), 'Transferred recipe bytes changed');
+    const adapter = json(join(evidence, 'ui-adapter.json'));
+    assert.deepEqual(tree(runtimeCity), adapter.adaptedCityHashes, 'Adapted city bytes changed');
+    assert.equal(hash(readFileSync(runtimeRecipe)), adapter.adaptedRecipeSha256, 'Adapted recipe bytes changed');
+    assert.deepEqual(tree(retainedCity), adapter.donorCityHashes, 'Donor city bytes changed');
+    assert.equal(hash(readFileSync(retainedRecipe)), adapter.donorRecipeSha256, 'Donor recipe bytes changed');
+    const starter = readFileSync(join(app, adapter.mappingSource), 'utf8');
+    assert.equal(hash(Buffer.from(starter)), adapter.mappingSourceSha256, 'Current starter metadata changed');
+    const adapted = adaptUiMetadata(readFileSync(join(retainedCity, 'facts.ts'), 'utf8'), readFileSync(join(retainedCity, 'places.ts'), 'utf8'), readFileSync(retainedRecipe, 'utf8'), uiFieldsFromStarter(starter));
+    for (const [path, expected] of [[join(runtimeCity, 'facts.ts'), adapted.facts], [join(runtimeCity, 'places.ts'), adapted.places], [runtimeRecipe, adapted.recipe]]) assert.equal(readFileSync(path, 'utf8'), expected, 'UI-only adaptation changed');
+    assert.deepEqual(adapted.fields, adapter.fields);
+
     // Import the CURRENT runtime box policy and source loader without running any generator.
     const { CONFIG } = await moduleAt(app, 'scripts/geo/destination-detail/lahore.ts');
     const tools = await moduleAt(app, 'scripts/geo/destination-detail/geometry-tools.ts');
@@ -110,7 +190,14 @@ async function execute() {
     } else {
       const old = json(join(generation, 'delivery/playable-africa-rollout/sources/lahore.json'));
       const current = json(join(app, 'world/playable-africa-rollout/sources/lahore.json'));
-      for (const key of ['selectedPlaces', 'generatedAssets', 'geometryInput', 'boxes', 'waterRecipe']) assert.deepEqual(current[key], old[key], `Protected inventory ${key} changed`);
+      for (const key of ['selectedPlaces', 'geometryInput', 'boxes', 'waterRecipe']) assert.deepEqual(current[key], old[key], `Protected inventory ${key} changed`);
+      for (const [name, asset] of Object.entries(current.generatedAssets)) {
+        const bytes = readFileSync(join(runtimeCity, name));
+        assert.equal(asset.sha256, hash(bytes)); assert.equal(asset.bytes, bytes.length);
+        assert.equal(asset.sha256, adapter.adaptedCityHashes[name]);
+        if (!['facts.ts', 'places.ts'].includes(name)) assert.deepEqual(asset, old.generatedAssets[name], `Protected inventory asset ${name} changed`);
+      }
+      assert.deepEqual(Object.keys(current.generatedAssets), Object.keys(old.generatedAssets));
       assert.equal(current.admission.accepted, false);
       write('result.json', { status: 'CURRENT_RUNTIME_MACHINE_CANDIDATE', generationAppSha: config.generationAppSha, generationHeadSha: config.generation.headSha, runtimeSha: config.runtimeSha, acceptance: config.acceptance, holds: config.holds });
     }

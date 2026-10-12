@@ -79,10 +79,23 @@ export interface SqliteStoreOptions {
   log?: (line: string) => void
   /** In `shadow`, compare the entry copy with the legacy value on one in this many loads of a collection (1: every load). */
   shadowSample?: number
+  /**
+   * The layout this build takes the store TO, by itself (docs/STORE-MIGRATION.md). Given, it stands in place of `layout`. The store
+   * only ever moves forwards this way (legacy, then shadow, then entries), a bounded step before each transaction, and writes down
+   * where it has got to; a layout the operator chose is left alone.
+   */
+  target?: StoreLayout
+  /** The most characters of stored collections copied before one transaction while the store moves itself (a collection is copied whole, so the largest one is the least a step can be). */
+  stepChars?: number
+  /** A collection longer than this is not copied by the store itself: it stays as it was and the status says so. */
+  maxStepChars?: number
 }
 export type { StoreLayout };
 /** How long the legacy rows are kept after the switch to `entries`. */
 export const SAFETY_DAYS = 14;
+/** What the store copies before one transaction while it moves itself, and the longest collection it will copy unasked (three times its text is held while it is cut and read back; the object has 128 MB). */
+export const STEP_CHARS = 4000000, MAX_STEP_CHARS = 24000000;
+const RANK: Readonly<Record<StoreLayout, number>> = { legacy: 0, shadow: 1, entries: 2 };
 /** A short fingerprint of a text (FNV-1a over its characters, 53 bits), for comparing stores without moving them. */
 function hashOf(text: string | undefined): string | null {
   if (text === undefined) return null;
@@ -102,7 +115,7 @@ const toStorageError = storageError as (error: unknown) => Error;
 type Cache<T> = Map<string, T | undefined>;
 interface ReceiptEntry<R extends ReceiptRecord> { cache: Cache<R>; original: Map<string, string | undefined>; map: Record<string, R | undefined> }
 
-export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk = CHUNK, barrier = () => storage.sync(), lazyFlushMs = 0, layout: wantedLayout = 'legacy', log = () => {}, shadowSample = 50 }: SqliteStoreOptions = {}): SqliteStore {
+export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk = CHUNK, barrier = () => storage.sync(), lazyFlushMs = 0, layout: wantedLayout = 'legacy', log = () => {}, shadowSample = 50, target, stepChars = STEP_CHARS, maxStepChars = MAX_STEP_CHARS }: SqliteStoreOptions = {}): SqliteStore {
   const sql = storage.sql;
   migrateSqliteSchema(storage);
   const openedEpoch = mainStoreAuthority(storage).epoch;
@@ -279,9 +292,20 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
   // ---- which layout is the truth ------------------------------------------------------------------------------------------
   const metaGet = (key: string): string | undefined => sql.exec<{ value: string }>('SELECT value FROM store_meta WHERE key = ?', key).toArray()[0]?.value;
   const metaPut = (key: string, value: string): void => { sql.exec('INSERT INTO store_meta(key,value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value', key, value); };
-  let layout: StoreLayout = wantedLayout;
   const storedLayout = parseLayout(metaGet('layout'));
-  if (storedLayout) layout = storedLayout;
+  /** The layout written in the store, as far as this start knows. */
+  let persisted: StoreLayout | undefined = storedLayout;
+  /** A layout the operator chose stays until the operator chooses another: only a store that was never told, or one a build moved, is moved by a build. */
+  const pinned = storedLayout !== undefined && metaGet('layout-by') !== 'release';
+  let layout: StoreLayout = storedLayout ?? (target === undefined ? wantedLayout : 'legacy');
+  /** Where this build is taking the store, while that is further on than where it is. */
+  let goal: 'shadow' | 'entries' | null = target !== undefined && target !== 'legacy' && !pinned && RANK[target] > RANK[layout] ? target : null;
+  /** Why the step to `entries` was not taken at this start (it is tried once a start). */
+  let switchRefusal: string | null = null;
+  // On the way, the legacy value stays the truth and each collection's copy is kept from the moment it is made (shadow, in memory until every copy exists).
+  if (goal && layout === 'legacy') layout = 'shadow';
+  /** The copies this start made: how many, and the largest. */
+  const steps = { count: 0, chars: 0, rows: 0, ms: 0, largest: null as null | { collection: string; chars: number; rows: number; entries: number; ms: number } };
   /** The collections whose rows in `entries` hold everything the legacy value holds (and are kept so while the layout is `entries`). */
   const synced = new Set<string>(sql.exec<{ key: string }>("SELECT key FROM store_meta WHERE key LIKE 'synced:%'").toArray().map(row => row.key.slice(7)));
   // The entry rows are only kept up to date while the layout is `entries`: after any other start they may be old.
@@ -299,7 +323,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
    */
   function backfill(coll: string): { entries: number; rows: number; ms: number } {
     const began = Date.now();
-    let entries = 0, rows = 0;
+    let entries = 0, rows = 0, chars = 0;
     storage.transactionSync(() => {
       assertWritable();
       sql.exec('DELETE FROM entries WHERE coll = ?', coll);
@@ -307,6 +331,7 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
       sql.exec('DELETE FROM collections WHERE name = ?', `root:${coll}`); sql.exec('DELETE FROM collection_parts WHERE name = ?', `root:${coll}`);
       const legacy = collectionText(coll);
       if (legacy !== undefined) {
+        chars = legacy.length;
         const split = splitText(coll, legacy);
         writeCollection(`root:${coll}`, split.rootText); rows += 1;
         for (const map of split.maps) {
@@ -320,13 +345,39 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
         const count = Number(sql.exec<{ n: number }>('SELECT COUNT(*) AS n FROM entries WHERE coll = ?', coll).toArray()[0]?.n ?? 0);
         if (count !== entries) throw new Error(`The entries of ${coll} number ${count}, not ${entries}`);
       }
-      metaPut(`synced:${coll}`, JSON.stringify({ at: Date.now(), entries }));
+      metaPut(`synced:${coll}`, JSON.stringify({ at: Date.now(), entries, rows, chars }));
     });
     synced.add(coll);
-    return { entries, rows, ms: Date.now() - began };
+    const ms = Date.now() - began;
+    steps.count += 1; steps.chars += chars; steps.rows += rows; steps.ms += ms;
+    if (!steps.largest || chars > steps.largest.chars) steps.largest = { collection: coll, chars, rows, entries, ms };
+    return { entries, rows, ms };
   }
   // ---- shadow: the legacy value is the truth, the entry rows follow it ------------------------------------------------------
-  const shadow = { mismatches: 0, checks: 0, errors: 0, first: [] as string[], applied: 0 };
+  const shadow = { mismatches: 0, checks: 0, compared: 0, errors: 0, first: [] as string[], applied: 0, lastAt: null as number | null };
+  // What was found wrong is written down: the object is restarted many times a day, and the answer to "has the copy ever differed" must outlive that.
+  try {
+    const kept = JSON.parse(metaGet('shadow-found') ?? '{}') as { mismatches?: unknown; errors?: unknown; first?: unknown; at?: unknown };
+    if (typeof kept.mismatches === 'number') shadow.mismatches = kept.mismatches;
+    if (typeof kept.errors === 'number') shadow.errors = kept.errors;
+    if (Array.isArray(kept.first)) shadow.first = kept.first.filter((line): line is string => typeof line === 'string').slice(0, 20);
+    if (typeof kept.at === 'number') shadow.lastAt = kept.at;
+  } catch { /* an unreadable note is no finding */ }
+  /** Write down what shadow has found so far (one small row, and only when something was found). */
+  function keepShadowFound(): void {
+    shadow.lastAt = Date.now();
+    try { if (writableNow()) metaPut('shadow-found', JSON.stringify({ mismatches: shadow.mismatches, errors: shadow.errors, first: shadow.first, at: shadow.lastAt })); } catch { /* the count in memory still stands */ }
+  }
+  /** A copy that was made again from the stored values has nothing held against it. */
+  function clearShadowFound(): void {
+    shadow.mismatches = 0; shadow.errors = 0; shadow.first = []; shadow.lastAt = null;
+    sql.exec("DELETE FROM store_meta WHERE key = 'shadow-found'");
+  }
+  /** The copy of a collection is not to be trusted: stop keeping it, so that it is made again from the stored value before the next transaction. */
+  function distrust(coll: string): void {
+    synced.delete(coll);
+    try { if (writableNow()) sql.exec('DELETE FROM store_meta WHERE key = ?', `synced:${coll}`); } catch { /* it is made again at the next start instead */ }
+  }
   let sampleEvery = Math.max(1, Math.floor(shadowSample));
   /** Write a legacy collection value; when the layout is `shadow` the entry rows are brought to the same state in the same SQLite transaction. */
   function writeLegacy(name: string, text: string, old: string | undefined): void {
@@ -339,6 +390,8 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
     catch (error) {
       // The entry rows are only a copy: whatever went wrong, the player's write stands, and the copy is rebuilt (backfill) at the next start.
       shadow.errors += 1; synced.delete(name); sql.exec('DELETE FROM store_meta WHERE key = ?', `synced:${name}`); migrationErrors.set(name, `shadow write failed: ${error instanceof Error ? error.message : String(error)}`);
+      if (shadow.first.length < 20) shadow.first.push(`${name}: ${migrationErrors.get(name)}`);
+      keepShadowFound();
       log(`Store: the entry copy of ${name} stopped being kept and will be made again: ${migrationErrors.get(name)}`);
     }
   }
@@ -392,25 +445,80 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
     if (layout !== 'shadow' || !synced.has(coll)) return;
     shadow.checks += 1;
     if (shadow.checks % sampleEvery !== 0) return;
+    shadow.compared += 1;
     try {
       const lines = shadowDiff(coll, stored);
-      if (lines.length) { shadow.mismatches += 1; for (const line of lines) if (shadow.first.length < 20) shadow.first.push(line); log(`Store: the entry copy of ${coll} differs from the stored value (${lines[0]})`); }
-    } catch (error) { shadow.errors += 1; log(`Store: comparing the entry copy of ${coll} failed: ${error instanceof Error ? error.message : String(error)}`); }
+      if (lines.length) {
+        shadow.mismatches += 1; for (const line of lines) if (shadow.first.length < 20) shadow.first.push(line);
+        log(`Store: the entry copy of ${coll} differs from the stored value (${lines[0]}); it will be made again`);
+        // The stored value is the truth: the copy is made again, and the finding stays on the record.
+        distrust(coll); keepShadowFound();
+      }
+    } catch (error) { shadow.errors += 1; keepShadowFound(); log(`Store: comparing the entry copy of ${coll} failed: ${error instanceof Error ? error.message : String(error)}`); }
   }
   /** Before a transaction runs: bring every collection the layout asks for into it. A failure leaves that collection legacy and is tried again at the next start. */
   async function prepare(): Promise<void> {
     if (!writableNow()) { if (flushTimer !== null) { clearTimeout(flushTimer); flushTimer = null; } return; }
     if (layout === 'legacy') return;
+    let copied = 0, more = false;
     for (const coll of Object.keys(KEYED_SPECS)) {
       if (synced.has(coll) || migrationErrors.has(coll)) continue;
       if (!isKeyedCollection(coll)) continue;
+      // A store that moves itself copies a bounded amount before each transaction, so no request waits behind the whole move.
+      const chars = target === undefined ? 0 : legacyChars(coll);
+      if (target !== undefined && chars > maxStepChars) {
+        migrationErrors.set(coll, `too large to copy unasked (${chars} characters, the limit is ${maxStepChars})`);
+        log(`Store: ${coll} stays as it was: ${migrationErrors.get(coll)}`);
+        continue;
+      }
+      if (target !== undefined && copied > 0 && copied + chars > stepChars) { more = true; break; }
       try {
         const result = await commitTools(() => backfill(coll), true);
+        copied += chars;
         log(`Store: ${coll} now kept per entry (${result.entries} entries, ${result.ms} ms)`);
       } catch (error) {
         migrationErrors.set(coll, error instanceof Error ? error.message : String(error));
         log(`Store: ${coll} could not be moved to per-entry storage and stays as it was: ${migrationErrors.get(coll)}`);
       }
+    }
+    if (goal && !more) await advance();
+  }
+  /** The length of a collection's stored legacy text, without reading it. */
+  function legacyChars(name: string): number {
+    const row = sql.exec<{ n: number; head: string }>('SELECT LENGTH(value) AS n, substr(value, 1, 24) AS head FROM collections WHERE name = ?', name).toArray()[0];
+    if (!row) return 0;
+    if (Number(row.n) > 24 || !PARTS_HEAD.test(row.head)) return Number(row.n);
+    return Number(sql.exec<{ n: number }>('SELECT COALESCE(SUM(LENGTH(value)), 0) AS n FROM collection_parts WHERE name = ?', name).toArray()[0]?.n ?? 0);
+  }
+  /**
+   * The store moving itself (`target`), once every collection has its copy: write down that the store is in shadow, and, when the
+   * build asks for `entries`, take that step if nothing was ever found wrong and every copy equals its stored value now. A
+   * refusal changes nothing: the stored values stay the truth, the reason is in the status, and the step is tried at the next start.
+   */
+  async function advance(): Promise<void> {
+    if (!goal || keyedNames().some(name => !synced.has(name))) return;
+    try {
+      if (persisted === undefined || persisted === 'legacy') {
+        await commitTools(() => { metaPut('layout', 'shadow'); metaPut('layout-by', 'release'); metaPut('shadow-since', String(Date.now())); });
+        persisted = 'shadow';
+        log(`Store: every collection has its per-entry copy (${steps.count} copied at this start, ${steps.chars} characters); the stored values stay the truth`);
+      }
+      if (goal === 'shadow') { goal = null; return; }
+      if (switchRefusal !== null) return;
+      const began = Date.now();
+      // What is held in memory is written first (both ways, as every shadow write is); then the compare and the step are one run with nothing between them.
+      if (holding()) await commitTools(() => undefined);
+      if (shadow.mismatches > 0 || shadow.errors > 0) throw refuse('shadow_mismatch', 'the per-entry copy has differed from the stored value since it was made');
+      const bad = keyedNames().flatMap(name => shadowDiff(name, collectionText(name)));
+      if (bad.length) throw refuse('not_equal', bad[0] as string);
+      await commitTools(() => { metaPut('layout', 'entries'); metaPut('layout-by', 'release'); metaPut('cutover', String(Date.now())); sql.exec("DELETE FROM store_meta WHERE key = 'safety-dropped'"); });
+      layout = 'entries'; persisted = 'entries'; goal = null;
+      log(`Store: now read and written per entry (every copy compared equal, ${Date.now() - began} ms); the stored values of before are kept as they were`);
+    } catch (error) {
+      const code = typeof error === 'object' && error !== null ? Reflect.get(error, 'code') : undefined;
+      switchRefusal = `${typeof code === 'string' ? code : 'failed'}: ${error instanceof Error ? error.message : String(error)}`.slice(0, 300);
+      if (code === 'not_equal') { shadow.mismatches += 1; if (shadow.first.length < 20) shadow.first.push(switchRefusal); keepShadowFound(); }
+      log(`Store: not switched to per-entry reads, the stored values stay the truth (${switchRefusal})`);
     }
   }
   /** Write one session row. One that exists under the same public id is updated by its key, so no index entry is rewritten. */
@@ -754,11 +862,20 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
   const legacyRow = (name: string): boolean => sql.exec<{ n: number }>('SELECT COUNT(*) AS n FROM collections WHERE name = ?', name).toArray()[0]?.n === 1;
   const entryCount = (coll: string): number => Number(sql.exec<{ n: number }>('SELECT COUNT(*) AS n FROM entries WHERE coll = ?', coll).toArray()[0]?.n ?? 0);
   const metaNumber = (key: string): number | null => { const value = metaGet(key); return value === undefined ? null : Number(value); };
+  /** What was written down when a collection's copy was made: when, how many entries and rows, from how many characters. */
+  const copyRecord = (name: string): unknown => { try { return JSON.parse(metaGet(`synced:${name}`) ?? 'null') as unknown; } catch { return null; } };
   function layoutStatus() {
     return {
       requested: layout, stored: metaGet('layout') ?? null, safetyDays: SAFETY_DAYS, cutoverAt: metaNumber('cutover'), safetyDroppedAt: metaNumber('safety-dropped'),
-      shadow: { mismatches: shadow.mismatches, checks: shadow.checks, sampleEvery, errors: shadow.errors, applied: shadow.applied, first: shadow.first },
-      collections: Object.fromEntries(keyedNames().map(name => [name, { mode: isLayered(name) ? 'entries' : 'legacy', synced: synced.has(name), legacyRow: legacyRow(name), entries: entryCount(name), error: migrationErrors.get(name) ?? null }])),
+      // `mismatches`, `errors`, `first` and `lastAt` are kept in the store; `checks`, `compared` and `applied` count since this start.
+      shadow: { mismatches: shadow.mismatches, checks: shadow.checks, compared: shadow.compared, sampleEvery, errors: shadow.errors, applied: shadow.applied, first: shadow.first, lastAt: shadow.lastAt, since: metaNumber('shadow-since') },
+      // The store moving itself (docs/STORE-MIGRATION.md): what this build asks for, who chose the stored layout, what is left to copy.
+      release: {
+        target: target ?? null, by: metaGet('layout-by') ?? (metaGet('layout') === undefined ? null : 'operator'), moving: goal,
+        pending: layout === 'legacy' ? [] : keyedNames().filter(name => !synced.has(name)), refusal: switchRefusal,
+        stepChars, maxStepChars, steps: { ...steps },
+      },
+      collections: Object.fromEntries(keyedNames().map(name => [name, { mode: isLayered(name) ? 'entries' : 'legacy', synced: synced.has(name), legacyRow: legacyRow(name), legacyChars: legacyChars(name), entries: entryCount(name), copied: copyRecord(name), error: migrationErrors.get(name) ?? null }])),
     };
   }
   /** Every layered collection's whole text as the entry rows hold it, or as the legacy value holds it. */
@@ -771,7 +888,10 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
   function compare() {
     return Object.fromEntries(keyedNames().map(name => {
       const legacy = collectionText(name), entries = synced.has(name) ? wholeText(name, 'entries') : undefined;
-      return [name, { synced: synced.has(name), legacy: legacy !== undefined, equal: synced.has(name) && legacy === entries, differences: synced.has(name) && legacy !== entries && layout !== 'entries' ? shadowDiff(name, legacy) : [], legacyChars: legacy?.length ?? 0, entryChars: entries?.length ?? 0 }];
+      // How many entries the stored value holds (counted by cutting its text) against the rows kept, and a fingerprint of each side's whole text.
+      const expected = legacy === undefined ? 0 : splitText(name, legacy).maps.reduce((sum, map) => sum + map.entries.length, 0);
+      return [name, { synced: synced.has(name), legacy: legacy !== undefined, equal: synced.has(name) && legacy === entries, differences: synced.has(name) && legacy !== entries && layout !== 'entries' ? shadowDiff(name, legacy) : [], legacyChars: legacy?.length ?? 0, entryChars: entries?.length ?? 0,
+        legacyEntries: expected, entryRows: entryCount(name), legacyHash: hashOf(legacy), entryHash: hashOf(entries) }];
     }));
   }
   /** Put the legacy value of every synced collection back in step with the entry rows (the way back from `entries`). */
@@ -799,17 +919,19 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
   }
   const refuse = (code: string, reason: string): Error => Object.assign(new Error(reason), { status: 409, code });
   async function setLayout(next: StoreLayout, force: boolean): Promise<ReturnType<typeof layoutStatus>> {
-    if (next === layout) return layoutStatus();
+    // What the operator chooses stands until the operator chooses again: the build stops moving the store.
+    goal = null;
+    if (next === layout && persisted === next) { if (metaGet('layout-by') !== 'operator') await commitTools(() => { metaPut('layout-by', 'operator'); }); return layoutStatus(); }
     if (next !== 'legacy') for (const name of keyedNames()) if (!synced.has(name)) { migrationErrors.delete(name); try { await commitTools(() => backfill(name), true); } catch (error) { throw refuse('migration_failed', `${name}: ${error instanceof Error ? error.message : String(error)}`); } }
     if (next === 'entries') {
       if (layout === 'shadow' && !force && (shadow.mismatches > 0 || shadow.errors > 0)) throw refuse('shadow_mismatch', 'The entry copy has differed from the stored value. Look at the first differences in the status, or pass force.');
       if (layout !== 'entries') { const bad = keyedNames().flatMap(name => shadowDiff(name, collectionText(name))); if (bad.length) throw refuse('not_equal', `The entry copy does not equal the stored value: ${bad[0]}`); }
-      await commitTools(() => { metaPut('layout', 'entries'); metaPut('cutover', String(Date.now())); sql.exec("DELETE FROM store_meta WHERE key = 'safety-dropped'"); });
-      layout = 'entries'; shadow.mismatches = 0; shadow.first = [];
+      await commitTools(() => { metaPut('layout', 'entries'); metaPut('layout-by', 'operator'); metaPut('cutover', String(Date.now())); sql.exec("DELETE FROM store_meta WHERE key = 'safety-dropped'"); clearShadowFound(); });
+      layout = 'entries'; persisted = 'entries';
     } else {
-      await commitTools(() => { if (layout === 'entries') reverse(); metaPut('layout', next); sql.exec("DELETE FROM store_meta WHERE key = 'cutover'"); if (next === 'legacy') sql.exec("DELETE FROM store_meta WHERE key LIKE 'synced:%'"); });
+      await commitTools(() => { if (layout === 'entries') reverse(); metaPut('layout', next); metaPut('layout-by', 'operator'); sql.exec("DELETE FROM store_meta WHERE key = 'cutover'"); if (next === 'legacy') sql.exec("DELETE FROM store_meta WHERE key LIKE 'synced:%'"); });
       if (next === 'legacy') synced.clear();
-      layout = next;
+      layout = next; persisted = next;
     }
     return layoutStatus();
   }
@@ -822,8 +944,8 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
       await commitTools(() => { for (const name of keyedNames()) { sql.exec('DELETE FROM collections WHERE name = ?', name); sql.exec('DELETE FROM collection_parts WHERE name = ?', name); } metaPut('safety-dropped', String(Date.now())); });
     } else {
       if (metaGet('safety-dropped') !== undefined) throw refuse('dropped', 'The safety copy was deleted.');
-      await commitTools(() => { metaPut('layout', 'legacy'); sql.exec("DELETE FROM store_meta WHERE key IN ('cutover') OR key LIKE 'synced:%'"); });
-      synced.clear(); layout = 'legacy';
+      await commitTools(() => { metaPut('layout', 'legacy'); metaPut('layout-by', 'operator'); sql.exec("DELETE FROM store_meta WHERE key IN ('cutover') OR key LIKE 'synced:%'"); });
+      synced.clear(); layout = 'legacy'; persisted = 'legacy'; goal = null;
     }
     return layoutStatus();
   }
@@ -872,7 +994,13 @@ export function createSqliteStore(storage: SqliteStorage, { beforeCommit, chunk 
     layout: {
       status: () => exclusive(layoutStatus),
       logical: () => exclusive(logical),
-      migrate: (names) => exclusive(async () => { const done: Record<string, { entries: number; rows: number; ms: number }> = {}; for (const name of names ?? keyedNames()) { if (!isKeyedCollection(name)) throw refuse('unknown_collection', name); migrationErrors.delete(name); done[name] = await commitTools(() => backfill(name), true); } return done; }).then(r => r),
+      migrate: (names) => exclusive(async () => {
+        const done: Record<string, { entries: number; rows: number; ms: number }> = {};
+        for (const name of names ?? keyedNames()) { if (!isKeyedCollection(name)) throw refuse('unknown_collection', name); migrationErrors.delete(name); done[name] = await commitTools(() => backfill(name), true); }
+        // Every copy made again from the stored values: what was found against the old copies no longer holds, and the step to `entries` may be tried again.
+        if (!names && layout !== 'entries') { await commitTools(clearShadowFound); switchRefusal = null; }
+        return done;
+      }).then(r => r),
       compare: () => exclusive(compare),
       setLayout: (next, force = false) => exclusive(() => setLayout(next, force)).then(r => r),
       safety: (action, force = false) => exclusive(() => safety(action, force)).then(r => r),

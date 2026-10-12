@@ -7,7 +7,12 @@
  *        `online` is distinct players online (a live socket, or one lost a moment ago), `visits` distinct player-days,
  *        `today` distinct players of this day; all are defined in server/pulse.ts. The caller is always counted, in the
  *        city their character is in. A signed-in device session is required (the call also counts the caller's visit for today).
+ *
+ *   GET /api/world/pulse/online
+ *        { online }   PUBLIC, for the entry page of a visitor who has no session yet: only the number of players online, nothing
+ *        about anyone, no visit counted. At least 1 (the reader is on the way in); cached for 10 seconds; limited per address.
  */
+import { addressBucket } from '../host-context.ts';
 import { characterCity } from '../character.ts';
 import { pulseOf } from '../pulse.ts';
 import type { RouteContext, RouteHandler, RouteKey } from '../types.ts';
@@ -15,6 +20,10 @@ import type { RouteContext, RouteHandler, RouteKey } from '../types.ts';
 export default function pulseRoutes(ctx: RouteContext): Record<RouteKey, RouteHandler> {
   const service = pulseOf(ctx);
   return {
+    'GET /api/world/pulse/online': async (request) => {
+      if (!ctx.allow(`pulse:open:${addressBucket(request.ip)}`, 60, 60000)) throw Object.assign(ctx.fail(429, 'pulse_rate_limited'), { reason: 'You are doing that too quickly. Wait a minute and try again.' });
+      return { body: { online: Math.max(1, service.pulse(null).online) }, headers: { 'Cache-Control': 'public, max-age=10' } };
+    },
     'GET /api/world/pulse': async (request) => {
       const viewer = await ctx.store.read((db) => { const session = request.requireSession(db); return { id: session.publicId, city: characterCity(session) }; });
       const id = viewer.id;

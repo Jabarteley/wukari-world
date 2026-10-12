@@ -25,7 +25,8 @@ import ResidenceCard from '../locate/ResidenceCard.vue'
 import { useAccount } from '../account/useAccount.ts'
 import { COACH_KEY, coachHints } from '../hud/coachModel.ts'
 import { NOT_SAVED, SESSION_RULES, WALLPAPER_NOT_SAVED } from './settingsOptions.ts'
-import { SOUND_NOT_SAVED, SOUND_SLIDERS, SOUND_SWITCHES, change, percent, soundSummary } from './soundSettingsModel.ts'
+import { SOUND_NOT_SAVED, SOUND_SLIDERS, SOUND_SWITCHES, VOICES_HINT, VOICE_CHOICES, change, percent, soundSummary, voicesChange } from './soundSettingsModel.ts'
+import { browserSpeech, pickVoice } from '../../../audio/voice/speech.ts'
 import { getSound, onSoundChange, setSound } from '../../../audio/settings.ts'
 import { play } from '../../../audio/play.ts'
 import { useSection } from '../kit/section.ts'
@@ -41,7 +42,13 @@ function store(): Storage | null { try { return window.localStorage } catch { re
 
 const sound = reactive({ ...getSound() })
 const stopSound = onSoundChange(() => { Object.assign(sound, getSound()) })
-onBeforeUnmount(stopSound)
+// Whether this device has a voice of its own (the Speech choice is offered either way; with none it plays the Sounds).
+const haveVoices = ref(false)
+const found = browserSpeech()
+const checkVoices = (): void => { haveVoices.value = pickVoice(found?.api.getVoices() ?? [], 'ng') !== null }
+const stopVoices = found?.onVoices(checkVoices)
+onMounted(checkVoices)
+onBeforeUnmount(() => { stopSound(); stopVoices?.() })
 function changeSound(id: Parameters<typeof change>[0], value: boolean | number | string): void {
   warning.value = setSound(change(id, value)) ? '' : SOUND_NOT_SAVED
 }
@@ -123,6 +130,8 @@ onMounted(() => { void growth.load(); void loadOlderLives() })
       <label v-for="option in SOUND_SLIDERS" :key="option.id" class="ui-row settings-slider"><span class="ui-row-body"><b>{{ option.label }}</b><small>{{ option.hint }}</small>
         <input type="range" min="0" max="100" step="5" :value="percent(sound[option.id])" :aria-label="option.label" :disabled="!sound.on" @input="changeSound(option.id, ($event.target as HTMLInputElement).value)" @change="play('tap')"></span>
         <span class="settings-state">{{ percent(sound[option.id]) }}%</span></label>
+      <label class="ui-row settings-row"><span class="ui-row-body"><b>Spoken voices</b><small>{{ VOICES_HINT }}{{ sound.voices === 'speech' && !haveVoices ? ' This device has no voice for it, so you hear the Sounds.' : '' }}</small></span>
+        <select :value="sound.voices" aria-label="Spoken voices" :disabled="!sound.on" @change="warning = setSound(voicesChange(($event.target as HTMLSelectElement).value)) ? '' : SOUND_NOT_SAVED"><option v-for="choice in VOICE_CHOICES" :key="choice.id" :value="choice.id">{{ choice.label }}</option></select></label>
     </div>
     <p class="settings-note">Saved on this device only. Sounds are made on your phone as you play; nothing is downloaded.</p>
     <p v-if="warning" class="ui-error" role="alert">{{ warning }}</p>

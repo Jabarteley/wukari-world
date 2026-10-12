@@ -10,6 +10,10 @@ import { SHOWCASE } from '../../../types/showcase.ts'
 import type { ShowcaseMine } from '../../../types/showcase.ts'
 import { cachedCityContent } from '../../../game/cities/registry.ts'
 import SkeletonRows from '../../ui/SkeletonRows.vue'
+import { openSignup } from '../account/accountOpen.ts'
+import { useAccountLite } from '../account/useAccountLite.ts'
+import SetupChecklist from './SetupChecklist.vue'
+import { SHOWCASE_CATEGORIES } from '../../../types/showcase.ts'
 import { newClientId } from '../social/useSocial.ts'
 import FieldRow from './FieldRow.vue'
 import PhotoManager from './PhotoManager.vue'
@@ -18,8 +22,11 @@ import ShopFront from './ShopFront.vue'
 import { CODE_WORDS, DRAFT_PARTS, PRICE_NOTE, TEMPLATES, WEEKDAYS, WEEKDAYS_SHORT, adultConsentBody, categoryList, draftClashes, draftOf, draftProblems, emptyDraft, emptyService, iconList, inputOf, mergeDraft, refusalProblem, statusWords, templateList, wordsFor } from './showcaseModel.ts'
 import type { Problem, ShopDraft, ShopFace } from './showcaseModel.ts'
 
-const props = defineProps<{ city: string; venue?: string }>()
+const props = defineProps<{ city: string; venue?: string; setup?: string }>()
 const { game, shell } = useApp()
+const account = useAccountLite()
+/** A guest cannot open a shop: the server answers `account_required`. From /shops or /services the editor then shows the checklist and the sign-up button. */
+const needsAccount = ref(false)
 const mine = ref<ShowcaseMine | null>(null)
 const draft = reactive(emptyDraft(props.venue ?? ''))
 const failed = ref('')
@@ -72,13 +79,20 @@ function setBase(next: ShopDraft): void { base = clone(next) }
 /** Take the server's shop as the form: used when nothing here is unsaved, or after a save. */
 function adopt(next: ShowcaseMine): void {
   mine.value = next
-  if (next.shop) { Object.assign(draft, draftOf(next.shop)); setBase(draft) } else if (!draft.venue) { draft.venue = markets.value[0]?.id ?? ''; setBase(draft) }
+  needsAccount.value = false
+  if (next.shop) { Object.assign(draft, draftOf(next.shop)); setBase(draft) } else {
+    const kind = SHOWCASE_CATEGORIES.find((item) => item === props.setup)
+    if (kind && !dirty.value) draft.category = kind
+    if (!draft.venue) draft.venue = markets.value[0]?.id ?? ''
+    setBase(draft)
+  }
 }
 async function fetchMine(): Promise<ShowcaseMine> { return game.fetchJson<ShowcaseMine>('/api/showcase/mine') }
 async function load(): Promise<void> {
   failed.value = ''
   try { adopt(await fetchMine()) } catch (error) {
     const code = codeOf(error)
+    needsAccount.value = code === 'account_required' && Boolean(props.setup)
     failed.value = code === 'account_required' ? CODE_WORDS.account_required ?? '' : wordsFor(code, error instanceof Error ? error.message : 'Your shop could not load.')
   }
 }
@@ -89,7 +103,7 @@ async function load(): Promise<void> {
 async function refresh(): Promise<boolean> {
   let latest: ShowcaseMine
   try { latest = await fetchMine() } catch { return true }
-  if (!latest.shop) { mine.value = latest; return true }
+  if (!latest.shop) { if (needsAccount.value || failed.value) { failed.value = ''; adopt(latest) } else mine.value = latest; return true }
   const next = draftOf(latest.shop)
   const clash = draftClashes(base, draft, next)
   if (clash.length) { stale.value = { latest, clash }; return false }
@@ -125,6 +139,7 @@ function useOther(): void {
 }
 
 function onFocus(): void { if (shop.value && !busy.value && document.visibilityState !== 'hidden') void refresh() }
+watch(() => account.state.account, (now) => { if (now && needsAccount.value) void load() })
 onMounted(() => { void load(); window.addEventListener('focus', onFocus); document.addEventListener('visibilitychange', onFocus) })
 onBeforeUnmount(() => { window.removeEventListener('focus', onFocus); document.removeEventListener('visibilitychange', onFocus) })
 
@@ -243,9 +258,10 @@ const STEPS = [['look', 'Look'], ['about', 'About'], ['services', 'Services'], [
 
 <template>
   <div class="se" :data-view="view" data-showcase-editor>
-    <p v-if="failed" class="ui-error" role="alert">{{ failed }}</p>
-    <SkeletonRows v-else-if="!mine" :rows="3" label="Loading your shop" />
-    <template v-else>
+    <SetupChecklist v-if="setup && (needsAccount || (mine && !shop))" :guest="needsAccount" @signup="openSignup(shell, 'shop', true)" />
+    <p v-if="failed && !needsAccount" class="ui-error" role="alert">{{ failed }}</p>
+    <SkeletonRows v-else-if="!mine && !needsAccount" :rows="3" label="Loading your shop" />
+    <template v-else-if="mine">
       <p v-if="shop" class="se-status" role="status" data-status>{{ statusWords(shop.status, photoCount, shop.note) }}</p>
       <ShareShop v-if="shop" :shop="shop" :photos="photoCount" :blocked="mine.blocked" />
       <section v-if="mine.blocked" class="se-block" aria-label="Before you can publish">

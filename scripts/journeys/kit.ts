@@ -67,10 +67,22 @@ export async function dismiss(b: Browser, waitMs = 5000): Promise<void> {
 }
 export async function gameShown(b: Browser): Promise<void> { await b.waitFor(`!!document.querySelector('.hud-cash') && !document.querySelector('[data-cr-root]')`, 60000, 'the game screen with the wallet'); }
 
-/** A new guest through the landing screen ("Play now"). */
+/**
+ * The first screen of a new visitor is the entry page; the character creator (its name field) is one tap behind "Make my character first".
+ * Waits for whichever is up and, on the entry page, opens the creator.
+ */
+export async function toCreator(b: Browser, timeoutMs = 60000): Promise<void> {
+  await b.waitFor(`!!document.querySelector('[data-qs-name], [data-entry-creator]')`, timeoutMs, 'the entry page or the start screen');
+  if (await b.eval<boolean>(`!!document.querySelector('[data-entry-creator]')`)) await b.click('[data-entry-creator]');
+  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 120000, 'the start screen');
+  // The harness scrolled the entry card's link into view (which can also move the dialog around it): the creator is looked at from the top.
+  await b.eval(`(() => { for (const el of document.querySelectorAll('#life-dialog, #life-dialog-content, .cr-host')) { el.scrollTop = 0; el.scrollLeft = 0; } window.scrollTo(0, 0); })()`);
+}
+
+/** A new guest through the creator ("Make my character first", a name, "Play now"). */
 export async function playNow(b: Browser, base: string, name: string): Promise<void> {
   await b.goto(base + '/');
-  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 60000, 'the start screen');
+  await toCreator(b);
   await sleep(600);
   await b.type('[data-qs-name]', name);
   await b.click('[data-key="play-now"]');

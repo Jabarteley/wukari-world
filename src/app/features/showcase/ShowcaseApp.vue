@@ -18,6 +18,8 @@ const { game } = useApp()
 const view = game.view
 const tab = ref<'browse' | 'mine'>('browse')
 const selected = ref<string | null>(null)
+/** Opened from /shops or /services: My shop, with this kind of shop chosen for a new shop. */
+const setup = ref('')
 const scope = ref<'here' | 'all'>('all')
 const venue = ref('')
 const category = ref('')
@@ -34,6 +36,8 @@ let seen: unknown = null
 watch(() => props.params, (params) => {
   if (!params || params === seen) return
   seen = params
+  const wanted = (params as { setup?: unknown }).setup
+  if (typeof wanted === 'string') { setup.value = wanted; tab.value = 'mine'; return }
   if ((params as { mine?: unknown }).mine === true) { tab.value = 'mine'; return }
   const shop = (params as { shop?: unknown }).shop
   // Opened from a shop's public link: that shop's page first.
@@ -88,7 +92,7 @@ const heading = computed(() => (venue.value ? 'Services at this market' : scope.
         <button type="button" role="tab" :aria-selected="tab === 'browse'" :class="{ 'is-on': tab === 'browse' }" @click="tab = 'browse'">Browse</button>
         <button type="button" role="tab" :aria-selected="tab === 'mine'" :class="{ 'is-on': tab === 'mine' }" @click="tab = 'mine'">My shop</button>
       </div>
-      <ShopEditor v-if="tab === 'mine'" :city="view.cityId" :venue="venue" />
+      <ShopEditor v-if="tab === 'mine'" :city="view.cityId" :venue="venue" :setup="setup" />
       <template v-else>
         <div class="sc-head"><h2 class="sc-title">{{ heading }}</h2><button type="button" class="ui-button is-quiet is-small" :disabled="loading" aria-label="Refresh the list" @click="load(true)">{{ loading ? 'Refreshing…' : 'Refresh' }}</button></div>
         <p class="sc-lead">Real people show real skills and services here. You chat and pay them outside Allworld, with their own links. Allworld never holds your money.</p>

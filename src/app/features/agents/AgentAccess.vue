@@ -4,6 +4,7 @@
 // address and a ready-to-paste configuration, lists keys with when they were last used, revokes them, and removes agent characters.
 // The server decides everything (who may make a key, the caps, what an agent may do); this only asks and tells.
 import { onMounted, ref } from 'vue'
+import { takeAgentSetup } from './claimEntry.ts'
 import { useApp } from '../../state/app.ts'
 import { useAccountLite } from '../account/useAccountLite.ts'
 import { AGENT_EXPLAINER, SUSPENDED_WORDS, mcpSnippet, since } from './agentsModel.ts'
@@ -64,11 +65,16 @@ const remove = (id: string): Promise<void> => run(async () => { await post(`/api
 async function copy(what: string, text: string): Promise<void> {
   try { await navigator.clipboard.writeText(text); copied.value = what } catch { copied.value = ''; said.value = 'Copy did not work here: select the text and copy it yourself.' }
 }
-onMounted(() => { void load(); void loadClaim() })
+const root = ref<HTMLElement | null>(null)
+onMounted(() => {
+  void load(); void loadClaim()
+  const chosen = takeAgentSetup()
+  if (chosen) { mode.value = chosen === 'mine' ? 'own' : 'agent'; setTimeout(() => { root.value?.scrollIntoView({ block: 'start' }) }, 300) }
+})
 </script>
 
 <template>
-  <div class="agent-access" data-agent-access>
+  <div ref="root" class="agent-access" data-agent-access>
     <h3 class="ui-section">AI agents</h3>
     <p v-for="line in AGENT_EXPLAINER" :key="line" class="settings-note">{{ line }}</p>
     <p v-if="failed" class="settings-note">This section could not be loaded. <button type="button" class="ui-button" @click="load">Try again</button></p>

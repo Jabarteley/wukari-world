@@ -4,10 +4,25 @@
 // scene is shown, the venue card's local moment lines (./moments.ts) and the kit of work dilemmas and place actions (src/game/dilemma-pack.ts,
 // a chunk of its own: the page lists place actions once it is in).
 // The regulars talking to each other (./chatter/start.ts, REALISM R12) start here too, in a chunk of their own.
+import { isEntryAddress } from './features/start/pathAddress.ts'
+import { watch } from 'vue'
+import { useApp } from './state/app.ts'
+import { isNewDevice } from './features/start/warmLanding.ts'
+
 export function startExtras(diagnostics: boolean): void {
   if (diagnostics) void import('./diagnostics.ts').then(({ showDiagnostics }) => { showDiagnostics() })
   if (location.search.includes('claim-agent=')) void import('./features/agents/claimEntry.ts').then(({ startClaim }) => { startClaim() })
-  if (location.pathname !== '/') void import('./features/paths/arrive.ts').then(({ startPaths }) => { startPaths() })
+  const startPaths = (): void => { void import('./features/paths/arrive.ts').then((module) => { module.startPaths() }) }
+  if (location.pathname === '/') return
+  // A new visitor on an address of the entry page keeps it as it is until they act (the entry page starts the paths then). A visitor whose
+  // session already has a life never sees the entry page: the paths start as soon as the life is there, if the address is still the one they came on.
+  if (!(isEntryAddress(location.pathname) && isNewDevice(globalThis.localStorage))) { startPaths(); return }
+  const { game } = useApp()
+  const stop = watch(() => game.connected.value && game.view.value.onboarding?.required !== true, (ready) => {
+    if (!ready) return
+    stop()
+    if (isEntryAddress(location.pathname)) startPaths()
+  }, { immediate: true })
 }
 
 export function startAfterReady(): void {

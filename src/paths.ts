@@ -15,7 +15,7 @@ export type GameSlug = typeof GAME_SLUGS[number]
 /** The Phone table a board game opens (a private game against the computer). Oro is the daily puzzle, not a table. */
 export const PHONE_TABLE: Readonly<Record<Exclude<GameSlug, 'oro'>, string>> = Object.freeze({ chess: 'phone-chess', weave: 'phone-weave', whot: 'phone-whot', penalties: 'phone-penalty' });
 
-export const PANEL_WORDS = ['messages', 'friends', 'invite', 'business', 'jobs', 'help', 'sound', 'politics', 'records', 'signup', 'login'] as const
+export const PANEL_WORDS = ['messages', 'friends', 'invite', 'business', 'jobs', 'help', 'sound', 'politics', 'records', 'signup', 'login', 'shops', 'services'] as const
 export type PanelWord = typeof PANEL_WORDS[number]
 
 /** What an address asks for. */
@@ -33,7 +33,8 @@ const games = (game: GameSlug | null): PathIntent => ({ kind: 'games', game });
 /** The words that always mean what they say, whatever the registry holds. */
 const FIXED: Readonly<Record<string, PathIntent>> = Object.freeze({
   games: games(null), play: games(null), chess: games('chess'), word: games('oro'),
-  nigeria: { kind: 'atlas', level: 'nigeria' }, world: { kind: 'atlas', level: 'world' }, map: { kind: 'atlas', level: 'world' },
+  nigeria: { kind: 'atlas', level: 'nigeria' }, world: { kind: 'atlas', level: 'world' }, cities: { kind: 'atlas', level: 'world' }, map: { kind: 'atlas', level: 'world' },
+  sell: { kind: 'panel', panel: 'shops' },
   ...Object.fromEntries(PANEL_WORDS.map((panel): [string, PathIntent] => [panel, { kind: 'panel', panel }])),
 });
 /** Every word a path may start with that is not a place. */

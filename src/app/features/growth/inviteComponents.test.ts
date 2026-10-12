@@ -135,7 +135,7 @@ test('Landing banner: the inviter’s name is text, never markup; Knock only whe
 })
 
 test('First screen: a link with a share code says an invitation is waiting', async () => {
-  const html = await render('/src/app/features/start/QuickStartApp.vue', { params: { reason: 'new' } })
+  const html = await render('/src/app/features/start/QuickStartApp.vue', { params: { reason: 'new', creator: true } })
   assert.match(html, /<p[^>]*class="cr-banner is-good"[^>]*role="status"/)
   assert.ok(text(html).includes('A friend invited you. Start your life and you land where they are.'))
 })

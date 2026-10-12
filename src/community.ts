@@ -26,6 +26,7 @@ import { reconnectDelay, STABLE_CONNECTION_MS } from './reconnect.ts'
 import { cityName } from './game/cities/registry.ts'
 import { fetchIceConfig } from './voice-config.ts'
 import { GROUP_CHAT_NOTE, groupHeader } from './community-words.ts'
+import { heard as heardLine } from './audio/voice/emit.ts'
 import type { IceConfig } from './voice-config.ts'
 import { STREET_NETWORK_SCALE } from './game/neighbourhood-space.ts'
 import type {
@@ -488,6 +489,9 @@ export async function createCommunity(options: CommunityOptions = {}): Promise<C
       if (local && message.clientId && message.from?.id === session?.id) { local.line.delivery = 'Sent'; local.line.canRetry = false; pending.delete(message.clientId); emit() }
       // A delivery label is about the player's own messages only: a message that arrived from someone else has none.
       else appendChat(message, message.from?.id === session?.id ? 'Sent' : '')
+      // Another person's or an agent's line in this place is heard as a soft talk sound (src/audio/voice); the player's own is not. The server may mark the
+      // speaker's kind and a voice seed on the public view; without them the public id is the seed.
+      if (message.from && message.from.id !== session?.id) { const who = message.from as { id: string; kind?: string; voice?: string }; heardLine({ id: who.id, text: message.body, kind: who.kind === 'agent' ? 'agent' : 'player', ...(typeof who.voice === 'string' ? { seed: who.voice } : {}) }) }
       if (!chatNoted && counts) { chatNoted = true; groupNote = GROUP_CHAT_NOTE; emit() }
       if (message.speaker === 'agent') globalThis.dispatchEvent(new CustomEvent('jaw:agent-say', { detail: { id: message.from?.id, name: message.from?.name, text: message.body } }))
     } else if (message.type === 'signal') void receiveSignal(message)

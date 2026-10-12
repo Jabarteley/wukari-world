@@ -21,6 +21,7 @@ import { bodyAllowed } from '../../scene/body/gate.ts'
 import { isDeparting } from '../../life.ts'
 import { useApp } from '../state/app.ts'
 import { say as sayAbove, tagOf } from './bubbles.ts'
+import { heard, heardScene, heardStop } from '../../audio/voice/emit.ts'
 
 /** How often the driver looks at the clock. A slot of the voice is nine seconds, so this never misses one. */
 export const AMBIENT_POLL_MS = 4_000
@@ -86,7 +87,7 @@ export function startAmbient(): void {
   const tick = (): void => {
     if (globalThis.document.hidden) return
     const world = scene.venue.value, state = game.state.value
-    if (!world || state.location === 'home' || isDeparting(state) || social.me?.visiting) { voice.reset(); lastKey = ''; return }
+    if (!world || state.location === 'home' || isDeparting(state) || social.me?.visiting) { voice.reset(); lastKey = ''; heardStop(); return }
     const now = Date.now(), cityId = game.view.value.cityId
     const key = `${cityId}|${state.location}`
     const quarter = Math.floor(now / QUARTER_MS)
@@ -100,6 +101,10 @@ export function startAmbient(): void {
     try { for (const npc of regularsFor(cityId)) if (npc.venue === state.location) names.set(`npc:${npc.id}`, npc.name) } catch { /* the regulars are not loaded yet */ }
     const speakers: Candidate[] = world.ambientPeople().map((person) => ({ id: person.id, role: (names.has(person.id) ? 'regular' : person.role) as Speaker, ...(names.has(person.id) ? { name: names.get(person.id) as string } : {}) }))
     if (!speakers.length) return
+    const country = cityRules(cityId)?.country?.id
+    // Who is in the place and what they do: the voices make a laugh, a call, a hum or footsteps of it (src/audio/voice).
+    const people = world.ambientPeople()
+    heardScene({ kind, ...(country ? { country } : {}), people: people.map((person) => ({ id: person.id, role: person.role, x: person.x, z: person.z, sitting: person.sitting })) })
     const context: VoiceContext = {
       cityId, cityName: cityRules(cityId)?.name ?? '', venueId: state.location, kind, band: timeBand(now), raining: raining(cityId, now),
       ...(nextEvent(cityId, now) ? { event: nextEvent(cityId, now) as { title: string; when: string } } : {}), record: record(cityId, now),
@@ -110,9 +115,11 @@ export function startAmbient(): void {
     // A regular's line is a bubble over their name tag (with the NPC word); anyone else's is a bubble over their figure in the scene itself.
     if (name && tagOf(line.speaker.slice(4))) sayAbove(line.speaker.slice(4), name, line.text, false)
     else world.say(line.speaker, line.text)
+    const at = people.find((person) => person.id === line.speaker)
+    heard({ id: line.speaker, text: line.text, kind: name ? 'regular' : 'npc', place: kind, ...(country ? { country } : {}), ...(at ? { x: at.x, z: at.z } : {}) })
     world.wakeAmbient()
   }
 
-  watch(() => `${game.view.value.cityId}|${game.state.value.location}`, () => { voice.reset(); lastKey = '' })
+  watch(() => `${game.view.value.cityId}|${game.state.value.location}`, () => { voice.reset(); lastKey = ''; heardStop() })
   globalThis.setInterval(tick, AMBIENT_POLL_MS)
 }

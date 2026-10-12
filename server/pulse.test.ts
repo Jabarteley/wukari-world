@@ -36,6 +36,18 @@ test('a signed-in device is required, and the answer is the documented shape', a
   assert.deepEqual(Object.keys(body).sort(), ['cities', 'online', 'serverTime', 'today', 'visits']);
 });
 
+test('the public online count needs no session, says only how many, and counts no visit', async (t) => {
+  const f = await fixture(t);
+  const res = await f.request('/api/world/pulse/online');
+  assert.equal(res.status, 200);
+  assert.match(res.headers.get('cache-control') ?? '', /public, max-age=10/);
+  const body = await res.json() as Record<string, unknown>;
+  assert.deepEqual(Object.keys(body).sort(), ['online', 'serverTime']);
+  assert.ok(typeof body['online'] === 'number' && body['online'] >= 1);
+  const ada = await f.device('Ada');
+  assert.equal((await look(f, ada)).visits, 1, 'only the signed-in call counted a visit');
+});
+
 test('the viewer is always counted, in the world and in their own city: nobody is shown 0', async (t) => {
   const f = await fixture(t);
   const ada = await f.device('Ada');

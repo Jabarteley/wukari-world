@@ -14,7 +14,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Browser, sleep } from './cdp.ts';
 import { startLab } from './lab.ts';
-import { Journey, arg, desktop, dismiss, gameShown, must, pageCall, phone, playNow, realErrors, sessionId, syncClock, text, visible } from './kit.ts';
+import { Journey, arg, desktop, dismiss, gameShown, must, pageCall, phone, playNow, realErrors, sessionId, syncClock, text, toCreator, visible } from './kit.ts';
 import { shopPageHtml } from '../../server/showcase/page.ts';
 import type { ShowcaseShop } from '../../src/types/showcase.ts';
 
@@ -171,7 +171,7 @@ try {
     await phone(V, 390, 844);
     await V.goto(state.url); await V.waitFor(`document.querySelector('.inside .btn')`, 20000, 'Step inside');
     await V.click('.inside .btn', 'Step inside');
-    await V.waitFor(`!!document.querySelector('[data-qs-name]')`, 60000, 'the start screen');
+    await V.waitFor(`!!document.querySelector('[data-entry]')`, 60000, 'the entry page'); await j.shot(V, 'step-inside-entry'); await toCreator(V);
     detail['entryUrl'] = await V.eval<string>(`location.href`);
     await sleep(600); await j.shot(V, 'step-inside-start');
     await V.type('[data-qs-name]', 'Visitor Vera');

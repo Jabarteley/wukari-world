@@ -30,6 +30,7 @@ import { signal } from './signal.ts'
 import { heard, takeLine } from './say.ts'
 import type { Say } from './say.ts'
 import type { CompanionAction, CompanionContext } from './types.ts'
+import { heard as heardLine } from '../../../audio/voice/emit.ts'
 
 const CompanionSheet = defineAsyncComponent(() => import('./CompanionSheet.vue'))
 
@@ -125,6 +126,7 @@ function say(mode: 'happy' | 'think' | 'wave' | 'nod' | 'celebrate' | 'point' | 
     mood.value = 'idle'
   }, ms)
   signal('speak', { mood: pose })
+  heardLine({ id: 'companion', text, kind: 'companion' })
 }
 function look(event: PointerEvent): void {
   const actor = activeStage()

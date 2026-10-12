@@ -36,12 +36,39 @@ test('the games pages: title, description, canonical, Open Graph and Twitter tag
   assert.deepEqual([hub.ogDescription, hub.twDescription], [hub.description, hub.description]);
   assert.equal(hub.ogUrl, `${SITE_ORIGIN}/games`);
   assert.equal(hub.robots, 'index,follow');
-  assert.equal(hub.image, `${SITE_ORIGIN}/og/allworld.jpg`, 'the existing preview image is reused');
+  assert.equal(hub.image, `${SITE_ORIGIN}/og/entry-games.jpg`, 'the games page has its own preview picture');
   for (const game of GAME_SLUGS) { const page = head(withPathMeta(INDEX, `/games/${game}`)); assert.equal(page.canonical, `${SITE_ORIGIN}/games/${game}`); assert.notEqual(page.title, hub.title, game); assert.match(page.title ?? '', /— Allworld$/) }
   // Aliases are one page under one address.
   for (const alias of ['/play', '/Games/']) assert.equal(head(withPathMeta(INDEX, alias)).canonical, `${SITE_ORIGIN}/games`, alias);
   assert.equal(head(withPathMeta(INDEX, '/word')).canonical, `${SITE_ORIGIN}/games/oro`);
   assert.equal(head(withPathMeta(INDEX, '/chess')).canonical, `${SITE_ORIGIN}/games/chess`);
+})
+
+test('the entry-page variants: each address has its own title, description, preview picture and canonical, from the one table', () => {
+  const cases: [string, string, string][] = [['/shops', '/shops', 'entry-shops'], ['/sell', '/shops', 'entry-shops'], ['/services', '/services', 'entry-services'], ['/games', '/games', 'entry-games'], ['/cities', '/cities', 'entry-cities'], ['/world', '/cities', 'entry-cities'], ['/agents', '/agents', 'allworld'], ['/ai', '/agents', 'allworld']];
+  const titles = new Set<string>();
+  for (const [path, canonicalPath, image] of cases) {
+    const page = head(withPathMeta(INDEX, path));
+    assert.equal(page.canonical, `${SITE_ORIGIN}${canonicalPath}`, path);
+    assert.equal(page.ogUrl, `${SITE_ORIGIN}${canonicalPath}`, path);
+    assert.equal(page.image, `${SITE_ORIGIN}/og/${image}.jpg`, path);
+    assert.equal(tag(withPathMeta(INDEX, path), 'twitter:image'), `${SITE_ORIGIN}/og/${image}.jpg`, path);
+    assert.deepEqual([page.ogTitle, page.twTitle], [page.title, page.title], path);
+    assert.deepEqual([page.ogDescription, page.twDescription], [page.description, page.description], path);
+    assert.equal(page.robots, 'index,follow', path);
+    assert.ok((page.description ?? '').length > 40 && (page.description ?? '').length <= 155, path);
+    assert.ok(!/\{cities\}|\{countries\}/.test(`${page.title}${page.description}`), 'the figures are filled in');
+    titles.add(page.title ?? '');
+  }
+  assert.equal(titles.size, 5, 'five different pages');
+  assert.match(head(withPathMeta(INDEX, '/cities')).description ?? '', /\d+ real cities in \d+ countries/);
+  assert.match(head(withPathMeta(INDEX, '/shops')).description ?? '', /never holds your money/);
+  assert.equal(head(withPathMeta(INDEX, '/shops', 'https://play.example')).image, 'https://play.example/og/entry-shops.jpg', 'the picture is on the page\'s own origin');
+  // The query (an advert's utm words) never reaches the head, and the home page and unknown addresses are as before.
+  assert.equal(withPathMeta(INDEX, '/shops'), withPathMeta(INDEX, '/shops/'));
+  assert.equal(head(withPathMeta(INDEX, '/')).title, head(INDEX).title);
+  assert.equal(head(withPathMeta(INDEX, '/shopz')).robots, 'noindex,follow');
+  for (const path of ['/shops', '/services', '/cities', '/agents']) assert.ok(sitemapPaths().includes(path), path);
 })
 
 test('every open city: "Live in <City> — Allworld", a description from the city, a canonical of its own', () => {
@@ -147,7 +174,7 @@ test('the Node host: the page for /games, /abuja and an unknown path, with the s
     assert.equal(response.headers.get('content-security-policy'), homePolicy, `${path}: the policy is the home page's`);
     assert.equal(response.headers.get('cache-control'), 'no-cache');
     assert.match(canonical(body) ?? '', /^https:\/\/play\.example\/[a-z/]+$/);
-    assert.equal(tag(body, 'og:image'), 'https://play.example/og/allworld.jpg');
+    assert.equal(tag(body, 'og:image'), path === '/games' ? 'https://play.example/og/entry-games.jpg' : 'https://play.example/og/allworld.jpg');
   }
   const head = await fetch(`${f.base}/abuja`, { method: 'HEAD' });
   assert.equal(head.headers.get('content-security-policy'), homePolicy, 'HEAD gets the same policy');
@@ -158,3 +185,9 @@ test('the Node host: the page for /games, /abuja and an unknown path, with the s
   const sitemap = await fetch(`${f.base}/sitemap.xml`);
   assert.ok((await sitemap.text()).includes('<loc>https://play.example/abuja</loc>'));
 })
+
+test('the entry page\'s /agents address is an exact match: the public agent pages under it keep their own handling', () => {
+  assert.equal(metaFor('/agents')?.canonical, '/agents');
+  assert.equal(metaFor('/agents/')?.canonical, '/agents');
+  for (const page of ['/agents/league', '/agents/robo-ada', '/agents/claim/awc_x']) assert.notEqual(metaFor(page)?.canonical, '/agents', page);
+});

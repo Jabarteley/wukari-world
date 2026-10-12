@@ -17,6 +17,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { Browser, sleep } from './cdp.ts';
+import { toCreator } from './kit.ts';
 
 const arg = (name: string, fallback?: string): string => {
   const at = process.argv.indexOf(`--${name}`);
@@ -78,7 +79,7 @@ async function chooseIkeja(b: Browser): Promise<void> {
 /** Play now, then settle through Sim > Profile into Ikeja, Lagos. */
 async function settle(b: Browser): Promise<void> {
   await b.goto(base + '/');
-  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 60000, 'the start screen');
+  await toCreator(b);
   await sleep(600);
   await b.type('[data-qs-name]', 'Zoom Checker');
   await b.click('[data-key="play-now"]');

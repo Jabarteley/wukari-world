@@ -45,6 +45,7 @@
 import type { Look } from '../types/life.ts';
 import { nudgeMemory, joinIdFrom, linkParts } from './model.ts';
 import { goFrom, shopFrom } from '../game/go-links.ts';
+import { entryVariantId } from '../app/features/start/pathAddress.ts';
 import type { GoTarget } from '../game/go-links.ts';
 import type { Draft, NudgeMemory } from './model.ts';
 
@@ -114,7 +115,7 @@ export function captureLink(): CapturedLink {
   const found: CapturedLink = captured = { join: null, ref: null, table: null, go: null, campus: false };
   if (typeof location === 'undefined') return found;
   // Where this visit came from: the four utm_ words, raw, for this browser session only (cleaned and counted by the growth chunk).
-  try { if (!sessionStorage.getItem('aw-src')) { const q = new URLSearchParams(location.search); sessionStorage.setItem('aw-src', JSON.stringify(['source', 'medium', 'campaign', 'content'].map((k) => (q.get(`utm_${k}`) ?? '').slice(0, 60)))) } } catch { /* no session storage: the visit counts as direct */ }
+  try { if (!sessionStorage.getItem('aw-src')) { const q = new URLSearchParams(location.search); const words = ['source', 'medium', 'campaign', 'content'].map((k) => (q.get(`utm_${k}`) ?? '').slice(0, 60)); if (!words[3]) words[3] = entryVariantId(location.pathname) ?? ''; sessionStorage.setItem('aw-src', JSON.stringify(words)) } } catch { /* no session storage: the visit counts as direct */ }
   found.join = joinIdFrom(location.pathname, location.search);
   if (found.join) write(KEYS.join, found.join);
   const link = linkParts(location.pathname, location.search);

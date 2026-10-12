@@ -10,6 +10,7 @@ import { spawnSync } from 'node:child_process';
 import { factsForTarget, geometryPolicy } from './inputs.mjs';
 import { pickForSlot } from './slot-fallback.mjs';
 import { fitCatalogueBudget, CATALOGUE_LIMIT } from './catalogue-budget.mjs';
+import { districtLabels } from './district-labels.mjs';
 const args = process.argv.slice(2), get = flag => args[args.indexOf(flag) + 1];
 if (!args.includes('--table') || !args.includes('--out'))
     throw Error('Usage: batch.mjs --table TARGETS_JSON --out NEW_PRIVATE_FOLDER');
@@ -140,7 +141,9 @@ for (const target of table.targets) {
         row.unavailableSemanticKinds = unavailableSemanticKinds;
         if (choices.length < 20)
             row.errors.push(`only ${choices.length} eligible unique named venues`);
-        const names = pool.filter(el => el.type === 'node' && ['suburb', 'neighbourhood', 'quarter'].includes(el.tags.place)).sort((a, b) => (b.tags.wikidata ? 1 : 0) - (a.tags.wikidata ? 1 : 0) || ref(a).localeCompare(ref(b))).filter((el, i, all) => all.findIndex(x => normal(name(x)) === normal(name(el))) === i).slice(0, 18).map(el => ({ id: `district-${el.id}`, ref: ref(el), kind: 'neighbourhood' }));
+        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre }), names = [...districts.labels];
+        row.districtLabelPlaceTags = districts.placeTags;
+        if (districts.fallback) row.districtLabelFallback = 'fewer than five suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended';
         const waterElements = ex.answers.water.elements, coast = waterElements.some(el => el.tags.natural === 'coastline');
         let policy = { kind: coast ? 'coast' : 'inland' };
         if (!coast && raw.source.waterRecipe?.kind === 'lake') {
@@ -163,7 +166,7 @@ for (const target of table.targets) {
         const neighbourhoodLabels = names.filter(label => label.kind === 'neighbourhood').length;
         row.neighbourhoodLabels = neighbourhoodLabels;
         if (neighbourhoodLabels < 5)
-            row.errors.push(`only ${neighbourhoodLabels} source-backed neighbourhood labels (place=suburb|neighbourhood|quarter nodes inside the eligible pool); five are required`);
+            row.errors.push(`only ${neighbourhoodLabels} source-backed neighbourhood labels (place=suburb|neighbourhood|quarter nodes, then village|hamlet|locality|subdivision nodes, inside the eligible pool); five are required`);
         const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names,
             ...(target.sceneWaterExtent === undefined ? {} : { sceneWaterExtent: target.sceneWaterExtent }) };
         for (const key of ['discovery', 'water', 'landuse', 'roads', 'sea', 'wideWater'])

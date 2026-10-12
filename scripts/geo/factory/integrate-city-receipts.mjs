@@ -43,13 +43,22 @@ for (const { id, extract } of manifest.cities) {
   };
   const inventoryText = JSON.stringify(inventory, null, 2) + '\n';
   writeFileSync(join(outputRoot, 'sources', `${id}.json`), inventoryText);
+  // Which place tags supplied the neighbourhood labels, recorded only when a label came from the lower-priority village|hamlet|locality|subdivision list.
+  const placeElements = new Map(layers[0].parsed.elements.map(element => [`${element.type}/${element.id}`, element]));
+  const labelTags = CONFIG.names.filter(label => label.kind === 'neighbourhood').map(label => placeElements.get(label.ref)?.tags?.place);
+  const fallbackLabels = labelTags.some(tag => ['village', 'hamlet', 'locality', 'subdivision'].includes(tag));
+  const slotFallbacks = CONFIG.places.filter(place => place.slotFallback).map(place => place.slotFallback);
+  const selection = slotFallbacks.length || fallbackLabels ? {
+    ...(slotFallbacks.length ? { slotFallbacks } : {}),
+    ...(fallbackLabels ? { districtLabelPlaceTags: Object.fromEntries([...new Set(labelTags)].sort().map(tag => [tag, labelTags.filter(item => item === tag).length])) } : {}),
+  } : undefined;
   const receipt = {
     schemaVersion: 1, cityId: id, countryIso2: inventory.countryIso2,
     generationIdentity: { cityId: id, stateId: FACTS.state.idunique, stateName: FACTS.state.name },
     inventorySha256: hash(inventoryText), inventoryPath: `${receiptRootArg}/sources/${id}.json`, admission,
     airportCandidate: FACTS.airport, bounds: CONFIG.box, sources: { geometryInput },
     kept: { places: PLACES.length, roads: TERRAIN.roads.length, neighbourhoodLabels: TERRAIN.names.filter(label => label.kind === 'neighbourhood').length, landPolygons: GEOMETRY.land.length, waterPolygons: TERRAIN.water?.length ?? 0, reachWaterPolygons: TERRAIN.reachWater?.length ?? 0 },
-    ...(CONFIG.places.some(place => place.slotFallback) ? { selection: { slotFallbacks: CONFIG.places.filter(place => place.slotFallback).map(place => place.slotFallback) } } : {}),
+    ...(selection ? { selection } : {}),
     observed: Object.fromEntries(layers.map(({ label, parsed }) => [label, parsed.elements.length])),
     assets: Object.fromEntries(['facts.ts', 'geometry.ts', 'index.ts', 'content.ts', 'map.ts'].map(name => [name, generatedAssets[name]])),
     cityDetail: { tier: 'detailed', generator: 'scripts/geo/build-destination-detail.ts', recipe: `scripts/geo/destination-detail/${id}.ts`, input: 'Geofabrik PBF extract', attribution: '© OpenStreetMap contributors', licence: 'ODbL-1.0' },

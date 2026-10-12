@@ -27,6 +27,8 @@ except ImportError as error:
 PLACE_AMENITIES = {"university", "college", "hospital", "marketplace", "townhall", "courthouse", "restaurant", "cafe"}
 PLACE_TOURISM = {"museum", "attraction", "zoo", "theme_park", "viewpoint"}
 PLACE_DISTRICTS = {"suburb", "neighbourhood", "quarter"}
+# Lower-priority district labels, used by the factory only when a city has fewer than five PLACE_DISTRICTS nodes (district-labels.mjs keeps both lists equal).
+PLACE_DISTRICT_FALLBACKS = {"village", "hamlet", "locality", "subdivision"}
 EXTRA_RAIL = {"station", "halt"}
 EXTRA_WORSHIP_BUILDINGS = {"cathedral", "mosque", "basilica", "temple", "synagogue"}
 EXTRA_AMENITIES = {"parliament", "conference_centre", "library", "theatre"}
@@ -66,7 +68,7 @@ def matches_places(tags: dict[str, str]) -> bool:
         return True
     if tags.get("leisure") == "stadium" or tags.get("railway") == "station" or tags.get("shop") == "mall":
         return True
-    if tags.get("tourism") == "museum" or tags.get("place") in PLACE_DISTRICTS:
+    if tags.get("tourism") == "museum" or tags.get("place") in PLACE_DISTRICTS or tags.get("place") in PLACE_DISTRICT_FALLBACKS:
         return True
     if tags.get("amenity") == "place_of_worship" and has(tags, "wikidata"):
         return True

@@ -31,7 +31,7 @@ import { agentMark } from './policy.ts';
 import type { LifeState } from '../../src/types/life.ts';
 import type { RouteRequest } from '../types.ts';
 import { eraseAgents } from './privacy.ts';
-import { AGENT_ACCOUNT_MIN_AGE_MS, AGENT_LIMITS, UNCLAIMED } from './policy.ts';
+import { AGENT_ACCOUNT_MIN_AGE_MS, AGENT_LIMITS, AGENT_RATE, UNCLAIMED } from './policy.ts';
 import type { AgentMode } from './policy.ts';
 
 export interface AuditEntry { at: number; tool: string; ok: boolean; code: string; rid?: string; aid?: string }
@@ -87,7 +87,7 @@ export interface AgentsCollection {
   /** The operator's creation switch: while set, no agent can sign itself up (play is unaffected). */
   createOff?: { at: number }
   /** Operator settings that change without a release. */
-  settings?: { ceiling?: number; createCap?: number }
+  settings?: { ceiling?: number; createCap?: number; rate?: number }
   /** New self-made agent accounts counted on `day`. */
   created?: { day: number; n: number }
   keys: Record<string, AgentKey>; owners: Record<string, AgentOwner>; chars: Record<string, AgentCharacter>
@@ -134,7 +134,10 @@ export function bearerKey(header: string | null | undefined): string | null {
   return match?.[1] ?? null;
 }
 
-export interface Agent { hash: string; key: AgentKey; session: SessionRecord; cityId: CityId; character: boolean; ceiling?: number }
+export interface Agent { hash: string; key: AgentKey; session: SessionRecord; cityId: CityId; character: boolean; ceiling?: number; rate?: number }
+/** The server-wide budget of agent tool calls (AGENT_RATE): one bucket a server, in memory, whoever asks through whichever route module. */
+interface CallBucket { tokens: number; at: number; refused: number }
+const BUCKETS = new WeakMap<object, CallBucket>();
 
 export function agentService(ctx: RouteContext) {
   const now = (): number => ctx.now();
@@ -399,7 +402,23 @@ export function agentService(ctx: RouteContext) {
     const pinned = session.character?.city, made = ctx.cityIds.find((id) => id === pinned);
     const cityId = characterCity(session) ?? made ?? ctx.cityIds.find((id) => session.cities[id]) ?? ctx.cityIds[0];
     if (!cityId) throw refusal(ctx, 503, 'city_unavailable', 'No city is open right now.');
-    return { hash, key, session, cityId, character: key.mode === 'agent', ...(a.settings?.ceiling !== undefined ? { ceiling: a.settings.ceiling } : {}) };
+    return { hash, key, session, cityId, character: key.mode === 'agent', ...(a.settings?.ceiling !== undefined ? { ceiling: a.settings.ceiling } : {}), ...(a.settings?.rate !== undefined ? { rate: a.settings.rate } : {}) };
+  }
+
+  /**
+   * The rate for agents as a whole (AGENT_RATE, or the number an operator set without a release): a token for each tool call, refilled
+   * every second. With none left the call is refused here, before the tool and before the write that records a call, so a refused
+   * call costs the server the one read that found its key and nothing else.
+   */
+  function throttle(agent: Agent): void {
+    const rate = agent.rate ?? AGENT_RATE.callsPerSecond, most = Math.max(1, rate * AGENT_RATE.burstSeconds), t = now();
+    let bucket = BUCKETS.get(ctx);
+    if (!bucket) { bucket = { tokens: most, at: t, refused: 0 }; BUCKETS.set(ctx, bucket); }
+    bucket.tokens = Math.min(most, bucket.tokens + Math.max(0, t - bucket.at) * rate / 1000); bucket.at = t;
+    if (bucket.tokens >= 1) { bucket.tokens -= 1; return; }
+    bucket.refused += 1;
+    const wait = Math.max(1, Math.ceil((1 - bucket.tokens) / rate));
+    throw Object.assign(refusal(ctx, 429, 'agents_busy', `Allworld is answering as many agent calls as it can right now. Wait ${wait} second${wait === 1 ? '' : 's'}, then send the same call again. Nothing was done, and nothing was counted against your key.`), { retryAfter: wait });
   }
 
   /**
@@ -534,7 +553,9 @@ export function agentService(ctx: RouteContext) {
     const keys = Object.values(a?.keys ?? {});
     return { off: Boolean(a?.off), createOff: Boolean(a?.createOff), keys: keys.length, unclaimed: keys.filter((key) => key.unclaimed).length, suspended: keys.filter((key) => key.suspended).length, characters: Object.keys(a?.chars ?? {}).length,
       callsToday: keys.reduce((sum, key) => sum + (key.day === dayOf(now()) ? key.today : 0), 0), createdToday: a?.created?.day === dayOf(now()) ? a.created.n : 0,
-      ceiling: a?.settings?.ceiling ?? AGENT_LIMITS.callsPerDay, createCap: a?.settings?.createCap ?? UNCLAIMED.createDailyCap };
+      ceiling: a?.settings?.ceiling ?? AGENT_LIMITS.callsPerDay, createCap: a?.settings?.createCap ?? UNCLAIMED.createDailyCap,
+      // Tool calls a second for all agents together, and how many calls were told to wait since this server started.
+      rate: a?.settings?.rate ?? AGENT_RATE.callsPerSecond, busyRefusals: BUCKETS.get(ctx)?.refused ?? 0 };
   }
   function setSwitch(db: Db, input: { off?: unknown; createOff?: unknown }) {
     const a = col(db);
@@ -543,9 +564,9 @@ export function agentService(ctx: RouteContext) {
     return overview(db);
   }
   /** The operator's numbers, changed without a release: the per-key ceiling and the day's cap on new self-made agent accounts. */
-  function setSettings(db: Db, input: { ceiling?: unknown; createCap?: unknown }) {
+  function setSettings(db: Db, input: { ceiling?: unknown; createCap?: unknown; rate?: unknown }) {
     const a = col(db), settings = (a.settings ??= {});
-    for (const [name, value] of [['ceiling', input.ceiling], ['createCap', input.createCap]] as const) {
+    for (const [name, value] of [['ceiling', input.ceiling], ['createCap', input.createCap], ['rate', input.rate]] as const) {
       if (value === undefined) continue;
       if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < 1 || value > 10000000) throw ctx.fail(400, 'invalid_setting');
       settings[name] = value;
@@ -556,6 +577,6 @@ export function agentService(ctx: RouteContext) {
   const eraseAccount = (db: Db, accountId: string): void => eraseAgents(db, accountId, (d, id) => ctx.core.sessionByPublicId(d, id), (d, secret, session) => ctx.core.archiveSession(d, secret, session));
   const isPublicId = (value: unknown): value is string => typeof value === 'string' && UUID_PATTERN.test(value);
 
-  return { col, peek, switchedOff, view, createKey, createSelf, claimStatus, claim, rename, takeOver, revoke, removeCharacter, authenticate, admit, record, presenceFor, reported, auditOf, league, profile, overview, setSwitch, setSettings, eraseAccount, isPublicId };
+  return { col, peek, switchedOff, view, createKey, createSelf, claimStatus, claim, rename, takeOver, revoke, removeCharacter, authenticate, admit, throttle, record, presenceFor, reported, auditOf, league, profile, overview, setSwitch, setSettings, eraseAccount, isPublicId };
 }
 export type AgentService = ReturnType<typeof agentService>;

@@ -36,6 +36,19 @@ export const AGENT_LIMITS = Object.freeze({
   answerChars: 14000,
 });
 
+/**
+ * What ALL agents together may ask of the server, beside each key's own day: the server is one thread, and it is the players' too.
+ * A tool call costs about seven times a player's request, so some 100 calls a second would fill the thread by themselves
+ * (docs/PERFORMANCE.md, docs/STORE-MIGRATION.md). A call over the rate is refused before anything is read or written, told how
+ * long to wait, and not counted against its key.
+ */
+export const AGENT_RATE = Object.freeze({
+  /** Tool calls a second, all keys together, until an operator sets another number. */
+  callsPerSecond: 40,
+  /** How many seconds' worth of calls may arrive at once after a quiet spell. */
+  burstSeconds: 2,
+});
+
 /** An agent that signs itself up, and the account-less character it gets until a person claims it. */
 export const UNCLAIMED = Object.freeze({
   /** New agent accounts one network address may make a day. */

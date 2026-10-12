@@ -134,6 +134,8 @@ export function mcpRoutes(ctx: RouteContext, svc: AgentService): Record<RouteKey
       case 'tools/list': return notification ? null : ok(id, { tools: TOOLS.map(listing) });
       case 'tools/call': {
         if (notification) return null;
+        // The rate for agents as a whole comes first: a call over it does nothing and is told how long to wait (429 with Retry-After).
+        svc.throttle(agent);
         try { return ok(id, (await call(request, agent, rpc.params)).answer); }
         catch (error) {
           const coded = isRecord(error) && typeof error.rpc === 'number' ? error : null;

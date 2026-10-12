@@ -6,7 +6,8 @@
  *
  *   GET  /api/mod/agents          counts only: whether access is off, keys, suspended keys, agent characters, calls today. No key, hash or player.
  *   POST /api/mod/agents/switch   { off?: boolean, createOff?: boolean }   the kill switches: `off` refuses every agent call and every new key; `createOff` alone stops agents signing themselves up
- *   POST /api/mod/agents/settings { ceiling?: number, createCap?: number }   the per-key daily ceiling and the day's cap on new self-made agent accounts, changed without a release
+ *   POST /api/mod/agents/settings { ceiling?: number, createCap?: number, rate?: number }   the per-key daily ceiling, the day's cap on new self-made agent accounts and the tool calls a second all agents
+ *                                 together may make (AGENT_RATE), changed without a release
  */
 import { agentService } from '../agents/service.ts';
 import { operatorGuard } from './growth-mod.ts';

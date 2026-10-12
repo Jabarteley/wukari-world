@@ -1,0 +1,352 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "SD",
+    "datasetSha256": "3e5a2e1854c6245ff25494cba09dffc12bbe5be596f518518d25a2a258c1dff3",
+    "receiptSha256": "c2e2e6db9fdf361acdb3517ecd7eedee62998c90f385f6060fd2a9dd5dec4ba8",
+    "receiptBytes": 87872,
+    "geometrySha256": "ace06841110d32aab9e478a67304fbb21c71aa796adc13fa19c529f78c3a3c1f",
+    "geometryBytes": 281720,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 192789,
+    "boundaryKey": "sd",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38246543314,
+      "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "sourceArtifact": "city-bootstrap-sd-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "khartoum",
+      "name": "Khartoum",
+      "country": "sd",
+      "facts": {
+        "id": "khartoum",
+        "name": "Khartoum",
+        "country": {
+          "idISOlower": "sd",
+          "name": "Sudan"
+        },
+        "state": {
+          "idunique": "sd-khartoum",
+          "name": "Khartoum"
+        },
+        "timezone": "Africa/Khartoum",
+        "centre": {
+          "lon": 32.5349123,
+          "lat": 15.5635972
+        },
+        "airport": {
+          "id": "khartoum-airport",
+          "name": "Khartoum International Airport",
+          "lon": 32.5532,
+          "lat": 15.5895,
+          "sourceUrl": "https://ourairports.com/airports/HSSK/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/27565117",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          32.34824662889724,
+          15.382716310066021,
+          32.72157797110276,
+          15.74447808993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/27565117",
+          "sourceUrl": "https://www.openstreetmap.org/node/27565117",
+          "sourceRecord": {
+            "ref": "node/27565117",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "الخرطوم",
+              "alt_name:din": "Khartoum",
+              "capital": "yes",
+              "ele": "382",
+              "is_capital": "country",
+              "name": "الخرطوم",
+              "name:ace": "Khartoum",
+              "name:af": "Khartoem",
+              "name:ak": "Khartoum",
+              "name:am": "ካርቱም",
+              "name:ar": "الخرطوم",
+              "name:arz": "الخرطوم",
+              "name:ast": "Ḥartum",
+              "name:avk": "Khartoum",
+              "name:az": "Xartum",
+              "name:bcl": "Khartoum",
+              "name:be": "Хартум",
+              "name:bg": "Хартум",
+              "name:bo": "ཁར་ཏུམ།",
+              "name:br": "C'hartoum",
+              "name:bs": "Kartum",
+              "name:ca": "Khartum",
+              "name:ce": "Хартум",
+              "name:ceb": "Khartoum",
+              "name:ckb": "خەرتووم",
+              "name:co": "Khartoum",
+              "name:cs": "Chartúm",
+              "name:cv": "Хартум",
+              "name:cy": "Khartoum",
+              "name:da": "Khartoum",
+              "name:de": "Khartum",
+              "name:din": "Kaartuɔ̈m",
+              "name:el": "Χαρτούμ",
+              "name:en": "Khartoum",
+              "name:eo": "Ĥartumo",
+              "name:es": "Jartum",
+              "name:et": "Hartum",
+              "name:eu": "Khartum",
+              "name:fa": "خارطوم",
+              "name:fi": "Khartum",
+              "name:fo": "Khartoum",
+              "name:fr": "Khartoum",
+              "name:frr": "Chartuum",
+              "name:fy": "Kartûm",
+              "name:ga": "Cartúm",
+              "name:gd": "Khartoum",
+              "name:gl": "Khartún - الخرطوم",
+              "name:ha": "Khartoum",
+              "name:hak": "Khartoum",
+              "name:he": "חרטום",
+              "name:hi": "खार्तूम",
+              "name:hif": "Khartoum",
+              "name:hr": "Kartum",
+              "name:ht": "Kartoum",
+              "name:hu": "Kartúm",
+              "name:hy": "Խարթում",
+              "name:ia": "Khartum",
+              "name:id": "Khartoum",
+              "name:ie": "Cartum",
+              "name:io": "Khartoum",
+              "name:is": "Kartúm",
+              "name:it": "Khartum",
+              "name:ja": "ハルツーム",
+              "name:jv": "Khartoum",
+              "name:ka": "ხარტუმი",
+              "name:kab": "Xerṭum",
+              "name:kg": "Khartoum",
+              "name:kn": "ಖಾರ್ತೂಮ್",
+              "name:ko": "하르툼",
+              "name:ku": "Xertûm",
+              "name:ky": "Хартум",
+              "name:la": "Khartumensis Urbs",
+              "name:lb": "Khartum",
+              "name:lfn": "Khartoum",
+              "name:lij": "Khartum",
+              "name:lmo": "Khartum",
+              "name:lt": "Chartumas",
+              "name:lv": "Hartūma",
+              "name:mg": "Khartoum",
+              "name:mk": "Картум",
+              "name:ml": "ഖർത്തൂം",
+              "name:mr": "खार्टूम",
+              "name:mrj": "Хартум",
+              "name:ms": "Khartoum",
+              "name:my": "ခါတွမ်းမြို့",
+              "name:nah": "Cartun",
+              "name:nan": "Khartoum",
+              "name:nds": "Khartum",
+              "name:nl": "Khartoem",
+              "name:nn": "Khartoum",
+              "name:no": "Khartoum",
+              "name:nov": "Kartum",
+              "name:nv": "Ahidiilíinii",
+              "name:oc": "Khartom",
+              "name:om": "Kaartum",
+              "name:os": "Хартум",
+              "name:pa": "ਖ਼ਰਤੂਮ",
+              "name:pap": "Kartum",
+              "name:pl": "Chartum",
+              "name:pms": "Khartoum",
+              "name:pnb": "خرطوم",
+              "name:ps": "خرطوم",
+              "name:pt": "Cartum",
+              "name:qu": "Khartum",
+              "name:ro": "Khartoum",
+              "name:ru": "Хартум",
+              "name:sc": "Khartum",
+              "name:sco": "Khartoum",
+              "name:sh": "Kartum",
+              "name:simple": "Khartoum",
+              "name:sk": "Chartúm",
+              "name:sl": "Kartum",
+              "name:smn": "Khartum",
+              "name:sn": "Khartoum",
+              "name:so": "Khartuum",
+              "name:sq": "Hartum",
+              "name:sr": "Картум",
+              "name:sv": "Khartoum",
+              "name:sw": "Khartoum",
+              "name:szl": "Chartům",
+              "name:ta": "கர்த்தூம்",
+              "name:tg": "Хартум",
+              "name:th": "คาร์ทูม",
+              "name:tl": "Khartoum",
+              "name:tr": "Hartum",
+              "name:tt": "Хартум",
+              "name:udm": "Хартум",
+              "name:ug": "خارتۇم",
+              "name:uk": "Хартум",
+              "name:ur": "خرطوم",
+              "name:uz": "Xartum",
+              "name:vec": "Khartoum",
+              "name:vep": "Hartum",
+              "name:vi": "Khartoum",
+              "name:wal": "Karttume",
+              "name:war": "Khartoum",
+              "name:wo": "Xartum",
+              "name:wuu": "Al-Khartoum",
+              "name:xmf": "ხარტუმი",
+              "name:yo": "Khartoum",
+              "name:zh": "喀土穆",
+              "name:zu": "Khartoum",
+              "place": "city",
+              "population": "2682431",
+              "population:date": "2012",
+              "wikidata": "Q1963",
+              "wikipedia": "ar:الخرطوم"
+            },
+            "lon": 32.5349123,
+            "lat": 15.5635972
+          },
+          "pbfSha256": "3e5a2e1854c6245ff25494cba09dffc12bbe5be596f518518d25a2a258c1dff3"
+        },
+        "airport": {
+          "rowNumber": 31238,
+          "row": {
+            "id": "3249",
+            "ident": "HSSK",
+            "type": "large_airport",
+            "name": "Khartoum International Airport",
+            "latitude_deg": "15.5895",
+            "longitude_deg": "32.5532",
+            "elevation_ft": "1265",
+            "continent": "AF",
+            "iso_country": "SD",
+            "iso_region": "SD-03",
+            "municipality": "Khartoum",
+            "scheduled_service": "yes",
+            "icao_code": "HSSK",
+            "iata_code": "KRT",
+            "gps_code": "HSSK",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Khartoum_International_Airport",
+            "keywords": "HSSS"
+          },
+          "rowSha256": "66c824f68cc2682c69e27dfbb46dc19b48eee4a1617067581756b0719334a6ce",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "HSSK",
+            "sourceUrl": "https://ourairports.com/airports/HSSK/",
+            "matchedIdent": "HSSK",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/HSSK/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "SD",
+              "+1536+03232",
+              "Africa/Khartoum"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Africa/Khartoum",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "SD",
+              "+1536+03232",
+              "Africa/Khartoum"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/sudan-261011.osm.pbf",
+          "bytes": 204649840,
+          "sha256": "3e5a2e1854c6245ff25494cba09dffc12bbe5be596f518518d25a2a258c1dff3",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              15.382716310066021,
+              32.34824662889724,
+              15.74447808993398,
+              32.72157797110276
+            ],
+            "core": [
+              15.518376977516505,
+              32.48827688160687,
+              15.608817422483495,
+              32.58154771839313
+            ],
+            "outline": [
+              15.33271631006602,
+              32.298246628897246,
+              15.79447808993398,
+              32.77157797110276
+            ],
+            "wide": [
+              14.782716310066021,
+              31.748246628897242,
+              16.34447808993398,
+              33.32157797110276
+            ]
+          },
+          "airportMarginMetres": 17135.92740400018,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "khartoum",
+      "extractSha256": {
+        "places": "826e6e0a84a806e1019b698e505e89d2d450e1065637e533096bb8e8d584fe85",
+        "extras": "5ba680012a33d5c43b2a0fe1c58f3a6d2a6fbf82e3758281b552bc069de985b9",
+        "water": "24268d5db7f72f9cfc610df477ce89a53e8f83da2105764089baa6e6865bca0d",
+        "landuse": "90f99b3bf2704ae5267e2caca2d368bafcbb15a33901d39c43bb01662e6e4008",
+        "roads": "730196878654214d6248c10ccd155d6617c3d720c455319db2b00efc4b39cb93"
+      },
+      "sourceJob": {
+        "city": "khartoum",
+        "sourceRunId": 38246543314,
+        "sourceArtifact": "city-bootstrap-sd-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "datasetSha256": "3e5a2e1854c6245ff25494cba09dffc12bbe5be596f518518d25a2a258c1dff3",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "826e6e0a84a806e1019b698e505e89d2d450e1065637e533096bb8e8d584fe85",
+          "extras": "5ba680012a33d5c43b2a0fe1c58f3a6d2a6fbf82e3758281b552bc069de985b9",
+          "water": "24268d5db7f72f9cfc610df477ce89a53e8f83da2105764089baa6e6865bca0d",
+          "landuse": "90f99b3bf2704ae5267e2caca2d368bafcbb15a33901d39c43bb01662e6e4008",
+          "roads": "730196878654214d6248c10ccd155d6617c3d720c455319db2b00efc4b39cb93"
+        }
+      }
+    }
+  ]
+}

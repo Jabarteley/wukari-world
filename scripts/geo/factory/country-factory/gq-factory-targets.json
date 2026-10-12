@@ -1,0 +1,350 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "GQ",
+    "datasetSha256": "4990daf7a617ea9dcbff50bb8edcfaa435fa84c15c8d1fd58beff22acd15eb01",
+    "receiptSha256": "637b47c7abd96b8f9d82f888ddbdb1d4d845b7a698d8d4eb57ac7a478bc71a6f",
+    "receiptBytes": 54628,
+    "geometrySha256": "798afdbdef9299ba670ca8a0017e305bae2b556c636ae8229dc43f33c7c0af6e",
+    "geometryBytes": 43400,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 192791,
+    "boundaryKey": "gq",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38246543314,
+      "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "sourceArtifact": "city-bootstrap-gq-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "malabo",
+      "name": "Malabo",
+      "country": "gq",
+      "facts": {
+        "id": "malabo",
+        "name": "Malabo",
+        "country": {
+          "idISOlower": "gq",
+          "name": "Equatorial Guinea"
+        },
+        "state": {
+          "idunique": "gq-malabo",
+          "name": "Malabo"
+        },
+        "timezone": "Africa/Lagos",
+        "centre": {
+          "lon": 8.7740663,
+          "lat": 3.741877
+        },
+        "airport": {
+          "id": "malabo-airport",
+          "name": "Malabo International Airport",
+          "lon": 8.70872,
+          "lat": 3.75527,
+          "sourceUrl": "https://ourairports.com/airports/FGSL/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/292521364",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          8.593982161081565,
+          3.5609961100660215,
+          8.954150438918434,
+          3.922757889933979
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/292521364",
+          "sourceUrl": "https://www.openstreetmap.org/node/292521364",
+          "sourceRecord": {
+            "ref": "node/292521364",
+            "tags": {
+              "capital": "4",
+              "ele": "0",
+              "name": "Malabo",
+              "name:am": "ማላቦ",
+              "name:ar": "مالابو",
+              "name:be": "Малаба",
+              "name:be-tarask": "Маляба",
+              "name:bg": "Малабо",
+              "name:bn": "মালাবো",
+              "name:bo": "མ་ལ་བོ།",
+              "name:br": "Malabo",
+              "name:ca": "Malabo",
+              "name:ce": "Малабо",
+              "name:ckb": "مالابۆ",
+              "name:cs": "Malabo",
+              "name:de": "Malabo",
+              "name:el": "Μαλάμπο",
+              "name:en": "Malabo",
+              "name:es": "Malabo",
+              "name:fa": "مالابو",
+              "name:fr": "Malabo",
+              "name:he": "מלאבו",
+              "name:hi": "मालाबो",
+              "name:hu": "Malabo",
+              "name:hy": "Մալաբո",
+              "name:is": "Malabó",
+              "name:it": "Malabo",
+              "name:ja": "マラボ",
+              "name:ka": "მალაბო",
+              "name:kk": "Малабо",
+              "name:ko": "말라보",
+              "name:ky": "Малабо",
+              "name:lt": "Malabas",
+              "name:mi": "Marapo",
+              "name:mk": "Малабо",
+              "name:ml": "മലാബോ",
+              "name:mr": "मलाबो",
+              "name:mrj": "Малабо",
+              "name:my": "မာလာဘိုမြို့",
+              "name:nl": "Malabo",
+              "name:no": "Malabo",
+              "name:oc": "Malabo",
+              "name:os": "Малабо",
+              "name:pa": "ਮਲਾਬੋ",
+              "name:pl": "Malabo",
+              "name:pnb": "مالابو",
+              "name:ps": "مالابو",
+              "name:pt": "Malabo",
+              "name:qu": "Malabu",
+              "name:ru": "Малабо",
+              "name:sd": "ملابو",
+              "name:sr": "Малабо",
+              "name:sv": "Malabo",
+              "name:ta": "மலாபோ",
+              "name:tg": "Малабо",
+              "name:th": "มาลาโบ",
+              "name:tr": "Malabo",
+              "name:udm": "Малабо",
+              "name:uk": "Малабо",
+              "name:ur": "ملابو",
+              "name:wal": "Malabo",
+              "name:yue": "馬拉博",
+              "name:zh": "马拉博",
+              "name:zh-Hans": "马拉博",
+              "name:zh-Hant": "馬拉博",
+              "old_name": "Santa Isabel",
+              "old_name2": "Port Clarence",
+              "place": "city",
+              "population": "297000",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q3818",
+              "wikipedia": "en:Malabo"
+            },
+            "lon": 8.7740663,
+            "lat": 3.741877
+          },
+          "pbfSha256": "4990daf7a617ea9dcbff50bb8edcfaa435fa84c15c8d1fd58beff22acd15eb01"
+        },
+        "airport": {
+          "rowNumber": 26335,
+          "row": {
+            "id": "2876",
+            "ident": "FGSL",
+            "type": "large_airport",
+            "name": "Malabo International Airport",
+            "latitude_deg": "3.75527",
+            "longitude_deg": "8.70872",
+            "elevation_ft": "76",
+            "continent": "AF",
+            "iso_country": "GQ",
+            "iso_region": "GQ-BN",
+            "municipality": "Malabo",
+            "scheduled_service": "yes",
+            "icao_code": "FGSL",
+            "iata_code": "SSG",
+            "gps_code": "FGSL",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Malabo_International_Airport",
+            "keywords": "Fernando Poo"
+          },
+          "rowSha256": "f732feb5c4423b4559025f879a542db3eb75f81b6e8b2906fff1a0767cd381d4",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "FGSL",
+            "sourceUrl": "https://ourairports.com/airports/FGSL/",
+            "matchedIdent": "FGSL",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/FGSL/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "NG,AO,BJ,CD,CF,CG,CM,GA,GQ,NE",
+              "+0627+00324",
+              "Africa/Lagos",
+              "West Africa Time"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Africa/Lagos",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "NG,AO,BJ,CD,CF,CG,CM,GA,GQ,NE",
+              "+0627+00324",
+              "Africa/Lagos",
+              "West Africa Time"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/equatorial-guinea-261011.osm.pbf",
+          "bytes": 6545340,
+          "sha256": "4990daf7a617ea9dcbff50bb8edcfaa435fa84c15c8d1fd58beff22acd15eb01",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/20205176",
+          "way/22669335",
+          "way/22669339",
+          "way/22669341",
+          "way/22669344",
+          "way/22669347",
+          "way/22669350",
+          "way/22669353",
+          "way/233148451",
+          "way/248449687",
+          "way/288003411",
+          "way/292030201",
+          "way/292408763",
+          "way/691982517",
+          "way/691982520",
+          "way/691982522",
+          "way/691982524",
+          "way/756031443",
+          "way/756251732",
+          "way/756251733",
+          "way/908214064",
+          "way/908214065",
+          "way/908390050",
+          "way/1009054500",
+          "way/1009155783",
+          "way/1009623643",
+          "way/1009623644",
+          "way/1191289555",
+          "way/1191289568",
+          "way/1191289570",
+          "way/1191289574",
+          "way/1360384173",
+          "way/1360879246",
+          "way/1361137218",
+          "way/1361137222",
+          "way/1361137226",
+          "way/1361137227",
+          "way/1361137228",
+          "way/1361137229",
+          "way/1361137230",
+          "way/1361137231",
+          "way/1361137232",
+          "way/1361137233",
+          "way/1361137234",
+          "way/1361137235",
+          "way/1361137236",
+          "way/1361137237",
+          "way/1361137238",
+          "way/1361137239",
+          "way/1361137240",
+          "way/1362030221",
+          "way/1362030222",
+          "way/1362030223",
+          "way/1362030224",
+          "way/1362030225",
+          "way/1364477101",
+          "way/1365311717",
+          "way/1367313004",
+          "way/1367313005",
+          "way/1367313007",
+          "way/1367313009",
+          "way/1367313013",
+          "way/1367313017",
+          "way/1367313018",
+          "way/1383889052",
+          "way/1383889055",
+          "way/1383889058",
+          "way/1383889059",
+          "way/1383889061",
+          "way/1384157811"
+        ],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              3.5609961100660215,
+              8.593982161081565,
+              3.922757889933979,
+              8.954150438918434
+            ],
+            "core": [
+              3.6966567775165053,
+              8.729052447544005,
+              3.787097222483495,
+              8.819080152455994
+            ],
+            "outline": [
+              3.5109961100660216,
+              8.543982161081564,
+              3.9727578899339786,
+              9.004150438918435
+            ],
+            "wide": [
+              2.9609961100660214,
+              7.993982161081565,
+              4.522757889933978,
+              9.554150438918434
+            ]
+          },
+          "airportMarginMetres": 12745.192186410564,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "malabo",
+      "extractSha256": {
+        "places": "db34af52ae3bbbbb0154e3b3d27693925303074c9dcccce4d5af292da728e2e4",
+        "extras": "d67f1cc708ed314b45b2f815b4602003bc1a8a6ea3aa837646135238a3981f9e",
+        "water": "2b254610c1f52d55bacf3f95466da3e4a23579aec1338e2b02611d5aae486134",
+        "landuse": "c0c674187437d22526e4427c375facc82e3e8e23f033adacf6dcfa33a37b4f54",
+        "roads": "62b1988ed4264c82d0025f9fb774d02104114f24e309f183eb13000d5c544891"
+      },
+      "sourceJob": {
+        "city": "malabo",
+        "sourceRunId": 38246543314,
+        "sourceArtifact": "city-bootstrap-gq-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "datasetSha256": "4990daf7a617ea9dcbff50bb8edcfaa435fa84c15c8d1fd58beff22acd15eb01",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "db34af52ae3bbbbb0154e3b3d27693925303074c9dcccce4d5af292da728e2e4",
+          "extras": "d67f1cc708ed314b45b2f815b4602003bc1a8a6ea3aa837646135238a3981f9e",
+          "water": "2b254610c1f52d55bacf3f95466da3e4a23579aec1338e2b02611d5aae486134",
+          "landuse": "c0c674187437d22526e4427c375facc82e3e8e23f033adacf6dcfa33a37b4f54",
+          "roads": "62b1988ed4264c82d0025f9fb774d02104114f24e309f183eb13000d5c544891"
+        }
+      }
+    }
+  ]
+}

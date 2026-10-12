@@ -1,0 +1,288 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "NE",
+    "datasetSha256": "e0c88053bc4ad460ab0839e1806b0fc0a38be20e6808f6e488c4b332e349ae82",
+    "receiptSha256": "a902715d127fcb41087820425ccb97e5654cc5f90ead298811a1b9ffc9dbd148",
+    "receiptBytes": 82320,
+    "geometrySha256": "e49e5e1a685caea651854b5ecc3e9c4f6dd858616a14860818d899b99d28307d",
+    "geometryBytes": 393159,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 192786,
+    "boundaryKey": "ne",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38246543314,
+      "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "sourceArtifact": "city-bootstrap-ne-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "niamey",
+      "name": "Niamey",
+      "country": "ne",
+      "facts": {
+        "id": "niamey",
+        "name": "Niamey",
+        "country": {
+          "idISOlower": "ne",
+          "name": "Niger"
+        },
+        "state": {
+          "idunique": "ne-niamey",
+          "name": "Niamey"
+        },
+        "timezone": "Africa/Lagos",
+        "centre": {
+          "lon": 2.109823,
+          "lat": 13.524834
+        },
+        "airport": {
+          "id": "niamey-airport",
+          "name": "Diori Hamani International Airport",
+          "lon": 2.18361,
+          "lat": 13.4815,
+          "sourceUrl": "https://ourairports.com/airports/DRRN/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/27564937",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          1.9248950321127272,
+          13.343953110066021,
+          2.294750967887273,
+          13.70571488993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/27564937",
+          "sourceUrl": "https://www.openstreetmap.org/node/27564937",
+          "sourceRecord": {
+            "ref": "node/27564937",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "Niamey",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "is_capital": "country",
+              "label": "city",
+              "name": "Niamey",
+              "name:am": "ኒያሜ",
+              "name:ar": "نيامي",
+              "name:arc": "ܢܝܐܡܝ",
+              "name:ba": "Ниамей",
+              "name:be": "Ніямей",
+              "name:be-tarask": "Ніамэі",
+              "name:ber": "ⵏⵉⵢⴰⵎⵉ",
+              "name:bg": "Ниамей",
+              "name:bm": "Ɲamɛ",
+              "name:bn": "নিয়ামে",
+              "name:bo": "ནི་ཡ་མེ།",
+              "name:br": "Niamey",
+              "name:ca": "Niamey",
+              "name:ce": "Ниамей",
+              "name:ckb": "نیامەی",
+              "name:de": "Niamey",
+              "name:el": "Νιαμέυ",
+              "name:en": "Niamey",
+              "name:eo": "Niameo",
+              "name:es": "Niamey",
+              "name:eu": "Niamei",
+              "name:fa": "نیامی",
+              "name:fr": "Niamey",
+              "name:gn": "Niaméi",
+              "name:he": "ניאמיי",
+              "name:hi": "नियामे",
+              "name:ht": "Niamè",
+              "name:hu": "Niamey",
+              "name:hy": "Նիամեյ",
+              "name:is": "Níamey",
+              "name:it": "Niamey",
+              "name:ja": "ニアメ",
+              "name:ka": "ნიამეი",
+              "name:kab": "Niamey",
+              "name:kk": "Ниамей",
+              "name:ko": "니아메",
+              "name:ky": "Ниамей",
+              "name:lt": "Niamėjus",
+              "name:lv": "Niameja",
+              "name:mk": "Нијамеј",
+              "name:ml": "നയാമെ",
+              "name:mr": "नियामे",
+              "name:mrj": "Ниамей",
+              "name:nl": "Niamey",
+              "name:oc": "Niamey",
+              "name:os": "Ниамей",
+              "name:pa": "ਨਿਆਮੀ",
+              "name:pnb": "نیامی",
+              "name:ps": "نیامی",
+              "name:pt": "Niamey",
+              "name:ru": "Ниамей",
+              "name:sd": "نيامي",
+              "name:si": "නියාමි දිස්ත්‍රික්කය",
+              "name:sq": "Niamej",
+              "name:sr": "Нијамеј",
+              "name:sv": "Niamey",
+              "name:ta": "நியாமி",
+              "name:tg": "Ниамей",
+              "name:th": "นีอาเม",
+              "name:udm": "Ниамей",
+              "name:uk": "Ніамей",
+              "name:ur": "نیامی",
+              "name:wal": "Niyamii",
+              "name:yi": "ניאמיי",
+              "name:zh": "尼亞美",
+              "official_name": "Communauté Urbaine de Niamey",
+              "old_name": "Niamé",
+              "place": "city",
+              "population": "1026848",
+              "postal_code": "8001",
+              "short_name": "NY",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q3674",
+              "wikipedia": "en:Niamey"
+            },
+            "lon": 2.109823,
+            "lat": 13.524834
+          },
+          "pbfSha256": "e0c88053bc4ad460ab0839e1806b0fc0a38be20e6808f6e488c4b332e349ae82"
+        },
+        "airport": {
+          "rowNumber": 23181,
+          "row": {
+            "id": "2125",
+            "ident": "DRRN",
+            "type": "large_airport",
+            "name": "Diori Hamani International Airport",
+            "latitude_deg": "13.4815",
+            "longitude_deg": "2.18361",
+            "elevation_ft": "732",
+            "continent": "AF",
+            "iso_country": "NE",
+            "iso_region": "NE-8",
+            "municipality": "Niamey",
+            "scheduled_service": "yes",
+            "icao_code": "DRRN",
+            "iata_code": "NIM",
+            "gps_code": "DRRN",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Diori_Hamani_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "340897495af55a6ff6dcaf03b12da9b6cba57a6c86d500bfeddd240d5f99868f",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "DRRN",
+            "sourceUrl": "https://ourairports.com/airports/DRRN/",
+            "matchedIdent": "DRRN",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/DRRN/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "NG,AO,BJ,CD,CF,CG,CM,GA,GQ,NE",
+              "+0627+00324",
+              "Africa/Lagos",
+              "West Africa Time"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Africa/Lagos",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "NG,AO,BJ,CD,CF,CG,CM,GA,GQ,NE",
+              "+0627+00324",
+              "Africa/Lagos",
+              "West Africa Time"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/niger-261011.osm.pbf",
+          "bytes": 78457259,
+          "sha256": "e0c88053bc4ad460ab0839e1806b0fc0a38be20e6808f6e488c4b332e349ae82",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              13.343953110066021,
+              1.9248950321127272,
+              13.70571488993398,
+              2.294750967887273
+            ],
+            "core": [
+              13.479613777516505,
+              2.0636175593294976,
+              13.570054222483495,
+              2.1560284406705024
+            ],
+            "outline": [
+              13.29395311006602,
+              1.8748950321127271,
+              13.75571488993398,
+              2.344750967887273
+            ],
+            "wide": [
+              12.743953110066021,
+              1.3248950321127273,
+              14.305714889933979,
+              2.894750967887273
+            ]
+          },
+          "airportMarginMetres": 12031.299271202986,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "niamey",
+      "extractSha256": {
+        "places": "112e338127106a00ea4a88e7b20c4c19d8b5e21e0d1a6d0fc6af889cae595b9c",
+        "extras": "ddf5e81a722c64b641ad484b78d0d1219d2b053eb1712ff16b42437df531eb9b",
+        "water": "a514429a99eb1570c102ca96a075aaa4b66cfaf9e86cd8e75e3e00a025d789e3",
+        "landuse": "545efb94eb316a4fdbf1b577d9e89e8a3dd0f6918ad06115862f43f28c435925",
+        "roads": "7c6e3208e7fcb1c79502b67f181a9ab8928e0e36301b41d8009a315e4572c789"
+      },
+      "sourceJob": {
+        "city": "niamey",
+        "sourceRunId": 38246543314,
+        "sourceArtifact": "city-bootstrap-ne-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "datasetSha256": "e0c88053bc4ad460ab0839e1806b0fc0a38be20e6808f6e488c4b332e349ae82",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "112e338127106a00ea4a88e7b20c4c19d8b5e21e0d1a6d0fc6af889cae595b9c",
+          "extras": "ddf5e81a722c64b641ad484b78d0d1219d2b053eb1712ff16b42437df531eb9b",
+          "water": "a514429a99eb1570c102ca96a075aaa4b66cfaf9e86cd8e75e3e00a025d789e3",
+          "landuse": "545efb94eb316a4fdbf1b577d9e89e8a3dd0f6918ad06115862f43f28c435925",
+          "roads": "7c6e3208e7fcb1c79502b67f181a9ab8928e0e36301b41d8009a315e4572c789"
+        }
+      }
+    }
+  ]
+}

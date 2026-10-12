@@ -1,0 +1,276 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "CF",
+    "datasetSha256": "11142236b32f638a1f5d82674c238bb78a114a9d51340813f6699dbd3cc333cc",
+    "receiptSha256": "7b9133f53b646ba09ad9d6ffcfb4f6898d4cee5631ebe688ed85d313cb201337",
+    "receiptBytes": 95719,
+    "geometrySha256": "b3da5950161b0206fa0e4a19f2942fc07b6d4e7b1284889a83a9333886cd1d80",
+    "geometryBytes": 766226,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 192790,
+    "boundaryKey": "cf",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38246543314,
+      "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "sourceArtifact": "city-bootstrap-cf-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "bangui",
+      "name": "Bangui",
+      "country": "cf",
+      "facts": {
+        "id": "bangui",
+        "name": "Bangui",
+        "country": {
+          "idISOlower": "cf",
+          "name": "Central African Rep."
+        },
+        "state": {
+          "idunique": "cf-bangui",
+          "name": "Bangui"
+        },
+        "timezone": "Africa/Lagos",
+        "centre": {
+          "lon": 18.5835913,
+          "lat": 4.3635118
+        },
+        "airport": {
+          "id": "bangui-airport",
+          "name": "Bangui M'Poko International Airport",
+          "lon": 18.518801,
+          "lat": 4.39848,
+          "sourceUrl": "https://ourairports.com/airports/FEFF/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/27564988",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          18.403362469626906,
+          4.182630910066022,
+          18.76382013037309,
+          4.544392689933979
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/27564988",
+          "sourceUrl": "https://www.openstreetmap.org/node/27564988",
+          "sourceRecord": {
+            "ref": "node/27564988",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "370",
+              "is_capital": "country",
+              "name": "Bangui",
+              "name:ar": "بانغي",
+              "name:azb": "بانقی",
+              "name:be": "Бангі",
+              "name:be-tarask": "Бангі",
+              "name:bg": "Банги",
+              "name:bo": "བང་གུའི།",
+              "name:br": "Bangui",
+              "name:ca": "Bangui",
+              "name:ckb": "بانگی",
+              "name:da": "Bangui",
+              "name:de": "Bangui",
+              "name:el": "Μπανγκί",
+              "name:en": "Bangui",
+              "name:eo": "Bangio",
+              "name:es": "Bangui",
+              "name:eu": "Bangi",
+              "name:fa": "بانگوئی",
+              "name:fr": "Bangui",
+              "name:gl": "Bangui",
+              "name:grc": "Βαγγυῖον",
+              "name:he": "בנגי",
+              "name:ht": "Bangiy",
+              "name:hu": "Bangui",
+              "name:hy": "Բանգի",
+              "name:is": "Bangví",
+              "name:it": "Bangui",
+              "name:ja": "バンギ",
+              "name:ka": "ბანგი",
+              "name:ko": "방기",
+              "name:ky": "Банги",
+              "name:lij": "Bangui",
+              "name:ln": "Bangi",
+              "name:lt": "Bangis",
+              "name:lv": "Bangi",
+              "name:mk": "Банги",
+              "name:mr": "बांगुई",
+              "name:nl": "Bangui",
+              "name:no": "Bangui",
+              "name:oc": "Bangui",
+              "name:pa": "ਬਾਂਗੀ",
+              "name:pl": "Bangi",
+              "name:pnb": "بنگوئی",
+              "name:ps": "بانګویی",
+              "name:pt": "Bangui",
+              "name:ru": "Банги",
+              "name:sg": "Kötä gbätä tî Bangî",
+              "name:sr": "Банги",
+              "name:sv": "Bangui",
+              "name:ta": "பாங்கி",
+              "name:tg": "Банги",
+              "name:th": "บังกี",
+              "name:tr": "Bangui",
+              "name:udm": "Банги",
+              "name:uk": "Банґі",
+              "name:ur": "بانگوئی",
+              "name:wal": "Banggiwu",
+              "name:wo": "Bangi",
+              "name:zh": "班基",
+              "place": "city",
+              "population": "734350",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q3832",
+              "wikipedia": "en:Bangui"
+            },
+            "lon": 18.5835913,
+            "lat": 4.3635118
+          },
+          "pbfSha256": "11142236b32f638a1f5d82674c238bb78a114a9d51340813f6699dbd3cc333cc"
+        },
+        "airport": {
+          "rowNumber": 26302,
+          "row": {
+            "id": "2873",
+            "ident": "FEFF",
+            "type": "large_airport",
+            "name": "Bangui M'Poko International Airport",
+            "latitude_deg": "4.39848",
+            "longitude_deg": "18.518801",
+            "elevation_ft": "1208",
+            "continent": "AF",
+            "iso_country": "CF",
+            "iso_region": "CF-MP",
+            "municipality": "Bangui",
+            "scheduled_service": "yes",
+            "icao_code": "FEFF",
+            "iata_code": "BGF",
+            "gps_code": "FEFF",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Bangui_M'Poko_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "4d0407f48326166b6fbc723b7d39a4677720e95fd5a53d85a7c96a802a435aac",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "FEFF",
+            "sourceUrl": "https://ourairports.com/airports/FEFF/",
+            "matchedIdent": "FEFF",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/FEFF/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "NG,AO,BJ,CD,CF,CG,CM,GA,GQ,NE",
+              "+0627+00324",
+              "Africa/Lagos",
+              "West Africa Time"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Africa/Lagos",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "NG,AO,BJ,CD,CF,CG,CM,GA,GQ,NE",
+              "+0627+00324",
+              "Africa/Lagos",
+              "West Africa Time"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/central-african-republic-261011.osm.pbf",
+          "bytes": 99341795,
+          "sha256": "11142236b32f638a1f5d82674c238bb78a114a9d51340813f6699dbd3cc333cc",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              4.182630910066022,
+              18.403362469626906,
+              4.544392689933979,
+              18.76382013037309
+            ],
+            "core": [
+              4.318291577516506,
+              18.538542443868806,
+              4.408732022483495,
+              18.62864015613119
+            ],
+            "outline": [
+              4.132630910066022,
+              18.353362469626905,
+              4.594392689933978,
+              18.81382013037309
+            ],
+            "wide": [
+              3.582630910066022,
+              17.803362469626904,
+              5.144392689933978,
+              19.363820130373092
+            ]
+          },
+          "airportMarginMetres": 12812.7693982925,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "bangui",
+      "extractSha256": {
+        "places": "cd88a5f2eed1c8aaa9b6f3178b4b102df038dd32880536ce8effb259b8067bca",
+        "extras": "25d4236c06a365112bbee8a29f7cab5fbd73938ba946b1d925a7cf05eff863f0",
+        "water": "375fc9f52dbe0d4edd0a47b1d0259eef429a9acbe787106e02bf013ea6e00890",
+        "landuse": "0d399995aec70b2d4f0d2873ecdacbf3aac93b5f810956290e245785c56f496b",
+        "roads": "73a0c51dae7cfd454e3a5c571a43d6e507c9aff1e4ec3f288d7e7d0692a2c2a1"
+      },
+      "sourceJob": {
+        "city": "bangui",
+        "sourceRunId": 38246543314,
+        "sourceArtifact": "city-bootstrap-cf-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "datasetSha256": "11142236b32f638a1f5d82674c238bb78a114a9d51340813f6699dbd3cc333cc",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "cd88a5f2eed1c8aaa9b6f3178b4b102df038dd32880536ce8effb259b8067bca",
+          "extras": "25d4236c06a365112bbee8a29f7cab5fbd73938ba946b1d925a7cf05eff863f0",
+          "water": "375fc9f52dbe0d4edd0a47b1d0259eef429a9acbe787106e02bf013ea6e00890",
+          "landuse": "0d399995aec70b2d4f0d2873ecdacbf3aac93b5f810956290e245785c56f496b",
+          "roads": "73a0c51dae7cfd454e3a5c571a43d6e507c9aff1e4ec3f288d7e7d0692a2c2a1"
+        }
+      }
+    }
+  ]
+}

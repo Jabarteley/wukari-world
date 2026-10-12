@@ -1,0 +1,357 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "ST",
+    "datasetSha256": "e464a14fb7f49472a4ffc5042232d4e29aaad5c64fcb154309e46b2bf637fc5e",
+    "receiptSha256": "0f5814e3785ed1761845509fbe746dd51296ebf68945ada1516bd2379a7e9a1e",
+    "receiptBytes": 9059,
+    "geometrySha256": "e1cb028a8d1aa32fbc3ec3a58ebec04c51442753942b5b273b8489e49a25bc26",
+    "geometryBytes": 1619,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 535880,
+    "boundaryKey": "st",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38246543314,
+      "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "sourceArtifact": "city-bootstrap-st-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "sao-tome",
+      "name": "São Tomé",
+      "country": "st",
+      "facts": {
+        "id": "sao-tome",
+        "name": "São Tomé",
+        "country": {
+          "idISOlower": "st",
+          "name": "Sao Tome & Principe"
+        },
+        "state": {
+          "idunique": "st-sao-tome",
+          "name": "São Tomé"
+        },
+        "timezone": "Africa/Sao_Tome",
+        "centre": {
+          "lon": 6.7313031,
+          "lat": 0.3389242
+        },
+        "airport": {
+          "id": "sao-tome-airport",
+          "name": "São Tomé International Airport",
+          "lon": 6.71215,
+          "lat": 0.378175,
+          "sourceUrl": "https://ourairports.com/airports/FPST/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/295342933",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          6.5516334710351485,
+          0.15804331006602154,
+          6.910972728964851,
+          0.5198050899339784
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/295342933",
+          "sourceUrl": "https://www.openstreetmap.org/node/295342933",
+          "sourceRecord": {
+            "ref": "node/295342933",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "Saint-Thomas",
+              "alt_name:fr": "Saint-Thomas",
+              "capital": "yes",
+              "is_capital": "country",
+              "name": "São Tomé",
+              "name:am": "ሳን ቶሜ",
+              "name:an": "Sant Tomé",
+              "name:ar": "ساو تومي",
+              "name:az": "San Tome",
+              "name:ba": "Сан-Томе",
+              "name:be": "Сан-Тамэ",
+              "name:bg": "Сао Томе",
+              "name:bn": "সাঁউ তুমে",
+              "name:bo": "སའོ་ཊོ་མེ།",
+              "name:bpy": "সাও টোমে",
+              "name:br": "São Tomé",
+              "name:ca": "São Tomé",
+              "name:ce": "Сан-Томе",
+              "name:ckb": "سائۆتۆمێ",
+              "name:cy": "São Tomé",
+              "name:de": "São Tomé",
+              "name:el": "Σάο Τομέ",
+              "name:en": "São Tomé",
+              "name:eo": "Sao-Tomeo",
+              "name:es": "Santo Tomé",
+              "name:eu": "Sao Tome",
+              "name:fa": "سائوتومه",
+              "name:fr": "Sao Tomé",
+              "name:fy": "Sao Tomee",
+              "name:ga": "São Tomé",
+              "name:gl": "San Tomé",
+              "name:grc": "Ἅγιος Θωμᾶς",
+              "name:ha": "Sao Tomé",
+              "name:he": "סאו טומה",
+              "name:hi": "साओ टोमे",
+              "name:hr": "São Tomé",
+              "name:ht": "Sao Tome",
+              "name:hu": "São Tomé",
+              "name:hy": "Սան Տոմե",
+              "name:io": "Sao Tome",
+              "name:is": "São Tomé",
+              "name:ja": "サントメ",
+              "name:ka": "სან-ტომე",
+              "name:kg": "Sao Tome",
+              "name:kk": "Сан-Томе",
+              "name:ko": "상투메",
+              "name:ku": "Sao Tome",
+              "name:ky": "Сан-Томе",
+              "name:la": "Urbs Sancti Thomae",
+              "name:lb": "São Tomé",
+              "name:lt": "San Tomė",
+              "name:lv": "Santome",
+              "name:mk": "Сао Томе",
+              "name:ml": "സാവോ ടോം",
+              "name:mr": "साओ टोमे",
+              "name:mrj": "Сан-Томе",
+              "name:nl": "Sao Tomé",
+              "name:nov": "Sao Tome",
+              "name:os": "Сан-Томе",
+              "name:pa": "ਸਾਓ ਤੋਮੇ",
+              "name:pap": "Santo Tomé",
+              "name:pl": "São Tomé",
+              "name:pnb": "ساو ٹومے",
+              "name:ps": "سایوتومه",
+              "name:ro": "São Tomé",
+              "name:ru": "Сан-Томе",
+              "name:sk": "Svätý Tomáš",
+              "name:so": "Sao Tome",
+              "name:sq": "Sao Tome",
+              "name:sr": "Сао Томе",
+              "name:sv": "São Tomé",
+              "name:sw": "Sao Tome",
+              "name:ta": "சாவோ தொமே",
+              "name:tg": "Сан-Томе",
+              "name:th": "เซาตูเม",
+              "name:tl": "San Tomas",
+              "name:tt": "Сан-Томе",
+              "name:udm": "Сан-Томе",
+              "name:uk": "Сан-Томе",
+              "name:ur": "ساؤ ٹومے",
+              "name:uz": "San-Tome",
+              "name:wal": "Sa'o Toome",
+              "name:war": "Sao Tome",
+              "name:zh": "圣多美 / 聖多美",
+              "name:zh-Hans": "圣多美",
+              "name:zh-Hant": "聖多美",
+              "place": "city",
+              "population": "53300",
+              "wikidata": "Q3932",
+              "wikipedia": "en:São Tomé"
+            },
+            "lon": 6.7313031,
+            "lat": 0.3389242
+          },
+          "pbfSha256": "e464a14fb7f49472a4ffc5042232d4e29aaad5c64fcb154309e46b2bf637fc5e"
+        },
+        "airport": {
+          "rowNumber": 26766,
+          "row": {
+            "id": "2969",
+            "ident": "FPST",
+            "type": "large_airport",
+            "name": "São Tomé International Airport",
+            "latitude_deg": "0.378175",
+            "longitude_deg": "6.71215",
+            "elevation_ft": "33",
+            "continent": "AF",
+            "iso_country": "ST",
+            "iso_region": "ST-01",
+            "municipality": "São Tomé",
+            "scheduled_service": "yes",
+            "icao_code": "FPST",
+            "iata_code": "TMS",
+            "gps_code": "FPST",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/S%C3%A3o_Tom%C3%A9_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "d770af5469cd60d91e38b13abe697357218699e218d0d7ea6a6135a4602285d2",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "FPST",
+            "sourceUrl": "https://ourairports.com/airports/FPST/",
+            "matchedIdent": "FPST",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/FPST/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "ST",
+              "+0020+00644",
+              "Africa/Sao_Tome"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Africa/Sao_Tome",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "ST",
+              "+0020+00644",
+              "Africa/Sao_Tome"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/africa/sao-tome-and-principe-261011.osm.pbf",
+          "bytes": 1268569,
+          "sha256": "e464a14fb7f49472a4ffc5042232d4e29aaad5c64fcb154309e46b2bf637fc5e",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/14373353",
+          "way/14375237",
+          "way/14375487",
+          "way/14375752",
+          "way/14376030",
+          "way/14376318",
+          "way/14376333",
+          "way/14376352",
+          "way/14377407",
+          "way/14377430",
+          "way/14378040",
+          "way/146849673",
+          "way/229263497",
+          "way/284215396",
+          "way/284215398",
+          "way/284215401",
+          "way/298356552",
+          "way/298570789",
+          "way/298570820",
+          "way/298575615",
+          "way/333266374",
+          "way/333266377",
+          "way/337934933",
+          "way/337936656",
+          "way/337944439",
+          "way/340654100",
+          "way/353941105",
+          "way/353941106",
+          "way/463462585",
+          "way/463462586",
+          "way/463462758",
+          "way/554766584",
+          "way/656713492",
+          "way/656713495",
+          "way/656731154",
+          "way/656731155",
+          "way/656733789",
+          "way/657001223",
+          "way/657039224",
+          "way/908217395",
+          "way/908217397",
+          "way/908396622",
+          "way/908396623",
+          "way/1015442966",
+          "way/1015742739",
+          "way/1015910740",
+          "way/1015979291",
+          "way/1015979293",
+          "way/1015979294",
+          "way/1015979295",
+          "way/1015979296",
+          "way/1015979297",
+          "way/1125376542",
+          "way/1125376583",
+          "way/1125621435",
+          "way/1125624428",
+          "way/1125634145",
+          "way/1125644680",
+          "way/1125644685",
+          "way/1125655168",
+          "way/1125662026"
+        ],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              0.15804331006602154,
+              6.5516334710351485,
+              0.5198050899339784,
+              6.910972728964851
+            ],
+            "core": [
+              0.2937039775165054,
+              6.686386531721577,
+              0.3841444224834946,
+              6.776219668278423
+            ],
+            "outline": [
+              0.10804331006602154,
+              6.501633471035149,
+              0.5698050899339785,
+              6.960972728964851
+            ],
+            "wide": [
+              -0.4419566899339784,
+              5.951633471035149,
+              1.1198050899339784,
+              7.510972728964851
+            ]
+          },
+          "airportMarginMetres": 15660.039044,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "sao-tome",
+      "extractSha256": {
+        "places": "f5ec9286f13350ff2414b99e7310c00160124eab9ea1150c92646b3b46a5a9c1",
+        "extras": "fcbcd88390215825dee79c201bac7a2bd14e6471be310cfba78e821c51f47821",
+        "water": "6fe1cd99a855af982d382b10266005467cf4d58d2f2326ef94f46f06cfc97edb",
+        "landuse": "32aee240bc14ee85f6a8a094ce7d4be1ef729c3dce7b455470e36caa6b5ab51c",
+        "roads": "18520fc1192b1b96ebe9aea5bfdfa0e9d38f07d57cfd1c53cec3794a9e245276"
+      },
+      "sourceJob": {
+        "city": "sao-tome",
+        "sourceRunId": 38246543314,
+        "sourceArtifact": "city-bootstrap-st-cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "sourceSha": "cf29e1f7c9a0dce8ce1ea177424b4d67eb2d2491",
+        "datasetSha256": "e464a14fb7f49472a4ffc5042232d4e29aaad5c64fcb154309e46b2bf637fc5e",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "f5ec9286f13350ff2414b99e7310c00160124eab9ea1150c92646b3b46a5a9c1",
+          "extras": "fcbcd88390215825dee79c201bac7a2bd14e6471be310cfba78e821c51f47821",
+          "water": "6fe1cd99a855af982d382b10266005467cf4d58d2f2326ef94f46f06cfc97edb",
+          "landuse": "32aee240bc14ee85f6a8a094ce7d4be1ef729c3dce7b455470e36caa6b5ab51c",
+          "roads": "18520fc1192b1b96ebe9aea5bfdfa0e9d38f07d57cfd1c53cec3794a9e245276"
+        }
+      }
+    }
+  ]
+}

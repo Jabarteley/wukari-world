@@ -28,6 +28,12 @@ A failed or timed-out entry ends its own job; the lane is free for the next matr
 
 After a run, reset the queue to `{"schemaVersion":1,"queue":[]}` (a push of an empty queue only runs the 15 s plan job). Two queue pushes in quick succession: GitHub keeps only the newest pending run, so put several countries in one queue.
 
+## Importing a delivery (import-delivery.mjs)
+
+`node scripts/geo/factory/import-delivery.mjs --app <app worktree> --deliveries <dir> [--cities a,b,c] [--replace]`
+
+`<dir>` holds one sub-folder per downloaded artifact (`gh run download <run> -R kromate/joinallworld -n city-factory-<cc>-<N>targets-<sha> -D <dir>/city-factory-<cc>-<N>targets-<sha>`). Per city it checks `evidence/machine-holds.json` (`machineFailed:false`, `catalogue:true`, every `machineStages` true), the receipt (`cityId`, `inventoryPath`, `inventorySha256` against the delivered sources file) and every output hash pinned in `evidence/step-cache.json` that maps to a delivered file (module files, proof JSON/PNG). It refuses a city already present in the app (module folder, recipe, receipt or sources) unless `--replace`. Then it copies `delivery/cities/<id>` to `src/game/cities/<id>`, `delivery/recipes/<id>.ts` to `scripts/geo/destination-detail/<id>.ts`, and `delivery/<receiptRoot>/{receipts,sources}/<id>.json` to `world/<receiptRoot>/...`. Other cities' receipts in the delivered rollout folder are ignored. It never applies `generated.patch`, never runs npm, and writes no generated file. It prints a per-city IMPORTED/REFUSED report plus the follow-up commands (`npm run cities:catalogue`, `npm run cities:assets`, `check-playable-africa-rollout.py <ids>`, typecheck, the city tests) and exits 1 on any refusal. Rehearsed on gw/bissau and cv/praia (run 38246543387): catalogue, typecheck, rollout checker and 10 node tests passed. Machine PASS is not acceptance: look at the flat PNGs, review centre and airport, then commit and use the SHA as `appSha`.
+
 ## Generating a table (make-country-table.mjs)
 
 `node scripts/geo/factory/make-country-table.mjs --spec <spec.json|inline-json> --out <dir> [--airports-commit <40hex>] [--max-km 60]` writes `<out>/<cc>.json` (the table) and `<out>/<cc>-notes.json` (what was proposed or checked, sources, retrieval times). Node only, no dependencies; needs network (Geofabrik, GitHub API, raw.githubusercontent.com). Always run `batch-run.py --table <file> --validate-only` on the result.

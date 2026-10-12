@@ -7,7 +7,7 @@
     "stateId": "cd",
     "stateName": "Kinshasa"
   },
-  "inventorySha256": "be20abea607cfffaf51ef3811bfcda3f7fa62a97ae29cebb87e0e7e3bb3b678d",
+  "inventorySha256": "c0434e15af4e85d158b97c43d9f65714f2b089d22c75643907ac44592d17857f",
   "inventoryPath": "world/playable-africa-rollout/sources/kinshasa.json",
   "admission": {
     "registered": true,
@@ -85,8 +85,8 @@
       "sha256": "db249fafd55fbaeaae34bae368efd9ddba7b391f3f5574da0a776d3b92a4aa2c"
     },
     "geometry.ts": {
-      "bytes": 129715,
-      "sha256": "c9f5c249c3e23739818539fbd83e8d37cfff3038ba584592e6efdb1889bf5a60"
+      "bytes": 93559,
+      "sha256": "152f15cc368b120799129519ff34c61ed9b638a4d6dcfd21eb4c6521ae15ce65"
     },
     "index.ts": {
       "bytes": 259,

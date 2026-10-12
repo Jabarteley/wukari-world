@@ -318,16 +318,16 @@
       "sha256": "db249fafd55fbaeaae34bae368efd9ddba7b391f3f5574da0a776d3b92a4aa2c"
     },
     "geometry.ts": {
-      "bytes": 129715,
-      "sha256": "c9f5c249c3e23739818539fbd83e8d37cfff3038ba584592e6efdb1889bf5a60"
+      "bytes": 93559,
+      "sha256": "152f15cc368b120799129519ff34c61ed9b638a4d6dcfd21eb4c6521ae15ce65"
     },
     "places.ts": {
       "bytes": 9825,
       "sha256": "c0b994fbb234a9cabeb1d1f8cec2a7d116369e65d0ec50f036ff3c178bfcf5db"
     },
     "terrain.ts": {
-      "bytes": 300838,
-      "sha256": "f984c2f796ff79dfc9397839ea461ab5a5aee64925b9436481c0fdef0580b149"
+      "bytes": 264763,
+      "sha256": "3d342324192e1daa9b06f03089ba8a26a69dcbacca029dfa407b5fc4777509c1"
     },
     "index.ts": {
       "bytes": 259,

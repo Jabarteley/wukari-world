@@ -7,7 +7,7 @@
     "stateId": "cg-starter",
     "stateName": "Brazzaville"
   },
-  "inventorySha256": "d9803899c47b41aaed585ff4c64ce7db3bcbbae373a1f276100a8d66d407023e",
+  "inventorySha256": "73531960cbe5a4cfd45a0f3ef6013fcc7a554ae301d500904a6f48d46768e092",
   "inventoryPath": "world/playable-africa-rollout/sources/brazzaville.json",
   "admission": {
     "registered": true,
@@ -85,8 +85,8 @@
       "sha256": "2486a5a541e64e88db2be7b1f1193bfd9353a74e69fbdccdda154c70178a72bd"
     },
     "geometry.ts": {
-      "bytes": 59430,
-      "sha256": "ef97f141b5c3b6703bcda2af79b2196fd1f8ba96859d618503be8abd7ae4532a"
+      "bytes": 46195,
+      "sha256": "29dd9c7cc005cf0123be31a451d9b1873a2585420872b0818470dba365c7602f"
     },
     "index.ts": {
       "bytes": 262,

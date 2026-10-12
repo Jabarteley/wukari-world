@@ -8,6 +8,8 @@ export function cloudInputs(path) {
   const table = JSON.parse(readFileSync(path, 'utf8'));
   assert.ok(Array.isArray(table.targets) && table.targets.length >= 1 && table.targets.length <= 5, 'workflow accepts one to five targets');
   assert.match(table.expectedSourceGitSHA, /^[0-9a-f]{40}$/);
+  const receiptRoot = table.receiptRoot ?? 'world/playable-africa-rollout';
+  assert.match(receiptRoot, /^world\/playable-[a-z-]+-rollout$/, 'receiptRoot must be a namespaced world rollout directory');
   const holds = [], groups = new Map(), boundaryGroups = new Map(), seen = new Set();
   for (const target of table.targets) {
     try {
@@ -35,7 +37,7 @@ export function cloudInputs(path) {
       else groups.set(key, { sourceRunId: job.sourceRunId, sourceArtifact: job.sourceArtifact, sourceSha: job.sourceSha });
     } catch (error) { holds.push({ id: target.id, status: 'HOLD', reason: error.message }); }
   }
-  return { table, holds, groups: [...groups.values()], boundaryGroups: [...boundaryGroups.values()] };
+  return { table: { ...table, receiptRoot }, holds, groups: [...groups.values()], boundaryGroups: [...boundaryGroups.values()] };
 }
 
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {

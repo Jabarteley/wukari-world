@@ -34,8 +34,9 @@ if (args.includes('--collect')) {
       if (existsSync(directory)) cpSync(directory, join(out, 'cities', target.id), { recursive: true });
       if (existsSync(recipe)) { mkdirSync(join(out, 'recipes'), { recursive: true }); cpSync(recipe, join(out, 'recipes', target.id + '.ts')); }
     }
-    const receipts = join(app, 'world/playable-africa-rollout');
-    if (existsSync(receipts)) cpSync(receipts, join(out, 'playable-africa-rollout'), { recursive: true });
+    const receiptRoot = input.table.receiptRoot ?? 'world/playable-africa-rollout';
+    const receipts = join(app, receiptRoot);
+    if (existsSync(receipts)) cpSync(receipts, join(out, receiptRoot.split('/').at(-1)), { recursive: true });
   }
 } else {
   for (const flag of ['--download-root', '--extract-root', '--boundary-root', '--helper']) if (!args.includes(flag)) throw Error(`Missing ${flag}`);

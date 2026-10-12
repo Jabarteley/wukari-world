@@ -45,6 +45,8 @@ jobs:
           test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
           test "$(git -C factory rev-parse HEAD)" = "$FACTORY_SHA"
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          npm ci --prefix baseline --ignore-scripts --no-audit --no-fund
+          test -f baseline/node_modules/three/package.json
           python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1'
       - name: Reuse exact SG boundary and extract only Singapore from exact PBF
         env:
@@ -84,8 +86,8 @@ jobs:
           git clone --shared baseline "$FACTORY_SANDBOX/app"
           git -C "$FACTORY_SANDBOX/app" checkout --detach "$APP_SHA"
           printf '%s\n' '{"disposable":true}' > "$FACTORY_SANDBOX/app/.factory-disposable.json"
-          npm ci --prefix "$FACTORY_SANDBOX/app" --ignore-scripts --no-audit --no-fund
-          ln -s "$FACTORY_SANDBOX/app/node_modules" baseline/node_modules
+          ln -s "$GITHUB_WORKSPACE/baseline/node_modules" "$FACTORY_SANDBOX/app/node_modules"
+          test -f "$FACTORY_SANDBOX/app/node_modules/three/package.json"
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y librsvg2-bin
       - name: Run pinned factory with unchanged semantic and geometry gates

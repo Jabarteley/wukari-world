@@ -6,10 +6,8 @@
   "buildWorkflow": ".github/workflows/city-fast-acceptance.yml",
   "artifactId": 11724103809,
   "appSha": "44a691363f53821a8e1bd96c8bddd1749c5b0e9a",
-  "driverSha": "cafa6d866246933657189ed7251b6ee3aaa1389c",
+  "driverSha": "bf67fbdccac897cbda885c86494a34294113ee0d",
   "cities": [
-    "ndjamena",
-    "bujumbura",
-    "antananarivo"
+    "ndjamena"
   ]
 }

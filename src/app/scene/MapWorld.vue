@@ -12,6 +12,7 @@ import { viewLife } from '../../life.ts'
 import { telemetry } from '../../telemetry/index.ts'
 import { noteChunkFailure } from '../state/updateNotice.ts'
 import type { CityLinkMode, WorldCityId } from '../../types/life.ts'
+import type { TripRoutes } from '../../map3d/geo/atlas.ts'
 import { openSettleFlow } from '../state/settleRefusal.ts'
 
 const props = defineProps<{ initialUi?: Record<string, unknown>; initialWorld?: Record<string, unknown> | null }>()
@@ -78,6 +79,20 @@ async function keepFriends(): Promise<void> {
 }
 
 const mapOpen = (): boolean => game.mode.value === 'map'
+/**
+ * The life's own view of its links, for the atlas's cards. It is worked out from the whole life, so it is worked out once for each
+ * state the server sends (and each city looked at, and each change of guest), not each time a card or a row of the list asks.
+ */
+let routesFor: { state: unknown; city: string; guest: boolean } | null = null
+let routesNow: TripRoutes | null = null
+function tripRoutes(): TripRoutes | null {
+  const state = game.state.value, city = game.cityId.value, guest = Boolean(game.view.value.onboarding.guest)
+  if (routesFor?.state !== state || routesFor.city !== city || routesFor.guest !== guest) {
+    routesFor = { state, city, guest }
+    routesNow = viewLife(state, { now: state.t, cityId: city }).estate?.links?.map((link) => ({ ...link, skipFree: state.travel.skipped !== true, ...(guest ? { settle: true } : {}) })) ?? null
+  }
+  return routesNow
+}
 function show(): void {
   const city = scene.city.value
   // Told after the shell has drawn, so the map measures the panel it shares the screen with.
@@ -107,7 +122,7 @@ function load(): Promise<void> {
       onTravel: (to, mode, credit) => { void command('estate.relocate', { to: to as WorldCityId, mode: mode as CityLinkMode, ...(credit ? { credit: true } : {}) }) },
       credit: () => game.view.value.estate?.ride.offer ?? null, // (the Atlas names the ids; the server validates them)
       // Each route also says what arriving at once would add to its fare ('travel.skip'): free for a character that has never skipped.
-      routes: () => viewLife(game.state.value, { now: game.state.value.t, cityId: game.cityId.value }).estate?.links?.map((link) => ({ ...link, skipFree: game.state.value.travel.skipped !== true, ...(game.view.value.onboarding.guest ? { settle: true } : {}) })) ?? null,
+      routes: tripRoutes,
       wallet: () => game.state.value.cash,
       // A ride home on credit blocks every trip: the card pays it in place (the existing repayment action) or sends a player who cannot to the help card.
       debt: () => game.view.value.estate?.ride.debt ?? 0,

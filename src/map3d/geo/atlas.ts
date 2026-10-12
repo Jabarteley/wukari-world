@@ -38,18 +38,27 @@ import { cachedCityContent, loadCityContent, loadCityRoutes, loadCityMap, loadSt
  * city, or a trip (the server's timer, or the preview). diagnostics().renderCount is the proof
  * (./atlas.test.js). `prefers-reduced-motion`: levels and views cut instead of flying, and a trip
  * is a marker moved when the server reports progress.
+ *
+ * COST RULES (./atlas.test.ts keeps them; scripts/perf/atlas.ts measures them in a browser).
+ *   - Nothing is built when the camera moves: a level's meshes are made once, a highlight when what it shows changes.
+ *   - The wheel moves the camera once a frame, however many events the device sends in it.
+ *   - The host is asked what the player holds and may ride once a turn, never once per row: that answer is the whole life view.
+ *   - The list is built when its rows or the search change; choosing a row restyles two rows.
+ *   - Names are placed again only when the view, the level or what is chosen changed, and a name's style is written only when it moved.
+ *   - The canvas never fills more device pixels than MAP_PIXELS (../pixels.ts).
  */
 import * as THREE from 'three';
 import { allCityLinks, cityCatalogue } from '../../game/cities/registry.ts';
-import type { AfricaGroupId, Box4, RegionKind } from '../types.ts';
+import type { AfricaGroupId, Box4, RegionKind, RegionStatus } from '../types.ts';
 import { createRig } from '../camera.ts';
+import { MAP_PIXELS, pixelRatioFor } from '../pixels.ts';
 import { NO_PORT, entryDistance } from '../zoom-ladder.ts';
 import type { Edge, LadderPort } from '../zoom-ladder.ts';
 import { createFlick, isDrag, isTap } from '../../scene/gesture.ts';
 import type { RigInsets, RigView } from '../camera.ts';
 import { createTripClock } from '../trip.ts';
 import { AFRICA_GROUPS, ATLAS_LEVELS, CONTINENTS, ZONES, cityEntry, plannedRoutes, regionEntry, stateOfCity } from '../regions.ts';
-import type { AtlasLevel } from '../regions.ts';
+import type { AtlasLevel, RegionInfo as RegionRecord } from '../regions.ts';
 import { EXTENT, project, relLon, unproject } from './projection.ts';
 import { decodeTopology } from './topo.ts';
 import type { AfricaFeature, Feature, FeatureData, NigeriaFeature, Topology, WorldFeature } from './topo.ts';
@@ -171,7 +180,12 @@ export interface AtlasDiagnostics {
   cityLabels: { id: string; text: string; note: string | null }[]; markers: NigeriaMarkerDetail;
   trip: { progress: number; preview: boolean; mode: string } | null;
   view: { x: number; z: number; yaw: number; pitch: number; distance: number }; fits: number[] | null; cuts: number[]; layers: number[];
+  /** What is in the scene now: the meshes drawn (one draw each), and their triangles and vertices. */
+  scene: { draws: number; triangles: number; vertices: number };
+  /** Work counted since the atlas was made, for the cost rules: meshes built, camera moves taken from the wheel, host reads, list builds, label passes. */
+  work: AtlasWork;
 }
+export interface AtlasWork { builds: number; wheelMoves: number; hostReads: number; rowSets: number; listBuilds: number; labelPasses: number }
 export interface AtlasApi {
   ready: Promise<boolean>;
   setCity(id: string): void;
@@ -186,6 +200,8 @@ export interface AtlasApi {
   selectCity(cityId: string): boolean;
   select(ref: RegionRef | null, options?: SelectOptions): boolean;
   zoomBy(factor: number): void;
+  /** What the wheel handler calls: zoom about a point of the screen (NDC), taken once with the next frame however many times it is asked. */
+  wheelBy(factor: number, at: readonly [number, number]): void;
   /** The city a zoom in at `at` (NDC, or the middle) would reach: where the closest zoom leads. `own` is the player's city (entered); another open city is only looked at. */
   ladderTarget(at?: readonly [number, number] | null): { id: string; name: string; own: boolean } | null;
   /** Fly over another city as close as the atlas goes and open its card: a look, never a move. */
@@ -285,13 +301,14 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   let size = { width: 0, height: 0 }, insets: Insets = { left: 0, top: 0, right: 0, bottom: 0 }, cuts = [1, 1], lastLabels = 0, labelKey = '';
   /** Where each shown name is on the screen, for taps. */
   const lastPlaced = new Map<string, LabelBox>();
-  let rafId = 0, renderCount = 0, lastTick = 0, loading = '', failed = '';
+  let rafId = 0, renderCount = 0, lastTick = 0, loading = '', failed = '', waitSaid = '';
   const clock = createTripClock();
   /** One per level, filled when its data arrives: { topology, picker, layers… }. */
   const sheets: Sheets = [null, null, null], pending: (Promise<LevelSheet | null> | null)[] = [null, null, null];
   /** Everything that fades with a level: { object, levels, alpha, extrude, opacity, materials }. */
   const layers: Layer[] = [];
   const shown = () => !destroyed && !container.hidden && !pageHidden() && size.width > 0;
+  const work: AtlasWork = { builds: 0, wheelMoves: 0, hostReads: 0, rowSets: 0, listBuilds: 0, labelPasses: 0 };
 
   // ---- DOM ----------------------------------------------------------------------------------------
   let root: HTMLElement | null = null;
@@ -324,11 +341,29 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
 
   // ---- data: one module per level, fetched when first wanted ---------------------------------------
-  const statusOf = (kind: RegionKind, id: string) => regionEntry(kind, id).status;
+  // The registry answers from the city catalogue, which it searches on every call. The catalogue does not change while the game runs
+  // (only a test adds to it, and then it is a new list each time), so its answers are kept for as long as the list is the same one.
+  let catalogueSeen: readonly unknown[] | null = null, catalogueEpoch = 0;
+  const entries = new Map<string, RegionRecord>(), citiesByState = new Map<string, ReturnType<typeof catalogueCitiesInState>>();
+  const sameCatalogue = () => { const catalogue = cityCatalogue(); if (catalogue !== catalogueSeen) { catalogueSeen = catalogue; catalogueEpoch += 1; entries.clear(); citiesByState.clear(); } };
+  function entryOf(kind: RegionKind, id: string): RegionRecord {
+    sameCatalogue();
+    const key = `${kind}:${id}`;
+    let entry = entries.get(key);
+    if (!entry) { entry = regionEntry(kind, id); entries.set(key, entry); }
+    return entry;
+  }
+  function citiesIn(stateId: string): ReturnType<typeof catalogueCitiesInState> {
+    sameCatalogue();
+    let cities = citiesByState.get(stateId);
+    if (!cities) { cities = catalogueCitiesInState(stateId); citiesByState.set(stateId, cities); }
+    return cities;
+  }
+  const statusOf = (kind: RegionKind, id: string): RegionStatus => entryOf(kind, id).status;
   const grey = (list: readonly string[], feature: Feature): string => list[feature.index % list.length]!;
   const mix = (a: string, b: string, k: number): string => `#${new THREE.Color(a).lerp(new THREE.Color(b), k).getHexString()}`;
   function stateColour(feature: Feature): string {
-    const entry = regionEntry('state', feature.id);
+    const entry = entryOf('state', feature.id);
     if (entry.status === 'open') return INK.open;
     const base = entry.status === 'planned' ? INK.planned : grey(INK.soon, feature);
     return tintOn && ZONES[entry.zone!] ? mix(base, ZONES[entry.zone!].tint, 0.62) : base;
@@ -342,6 +377,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
   const addLayer = <O extends LayerObject>(object: O, levels: readonly number[], { extrude = false, opacity = 1, materials = [object.material], detail = null }: { extrude?: boolean; opacity?: number; materials?: THREE.Material[]; detail?: NigeriaMarkerDetail | null } = {}): Layer<O> => {
     const alpha = levels.includes(level) ? 1 : 0;
+    work.builds += 1;
     object.visible = alpha > 0; scene.add(object);
     const entry: Layer<O> = { object, levels, alpha, extrude, opacity, materials, detail };
     layers.push(entry); applyLayer(entry);
@@ -511,8 +547,11 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
   function showWait() {
     const name = failed || (!sheets[wanted] ? ATLAS_LEVELS[wanted]!.name : '');
+    const said = `${failed ? 'failed' : 'wait'}:${name}`;
     loading = name;
-    if (!ui.wait) return;
+    // Asked on every camera move: the pill is written only when what it says changes.
+    if (!ui.wait || said === waitSaid) return;
+    waitSaid = said;
     ui.wait.hidden = !name;
     ui.wait.innerHTML = failed ? `The map of ${esc(failed)} could not be loaded. <button type="button" data-atlas-retry>Try again</button>` : name ? `Loading the map of ${esc(name)}…` : '';
   }
@@ -631,7 +670,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   const selectLine = new THREE.Mesh(new THREE.BufferGeometry(), ribbonMaterial(1, 0.0008)), routeLine = new THREE.Mesh(new THREE.BufferGeometry(), ribbonMaterial(1, 0.001));
   hoverMesh.renderOrder = 7; selectMesh.renderOrder = 7; selectLine.renderOrder = 8; routeLine.renderOrder = 9;
   for (const object of [hoverMesh, selectMesh, selectLine, routeLine]) { object.visible = false; object.frustumCulled = false; scene.add(object); }
-  const swap = (object: THREE.Mesh, geometry: THREE.BufferGeometry | null) => { object.geometry.dispose(); object.geometry = geometry || new THREE.BufferGeometry(); object.visible = Boolean(geometry); };
+  const swap = (object: THREE.Mesh, geometry: THREE.BufferGeometry | null) => { if (geometry) work.builds += 1; object.geometry.dispose(); object.geometry = geometry || new THREE.BufferGeometry(); object.visible = Boolean(geometry); };
   /** Is this sheet's ground what the current level shows? A state is not lit up from the Africa level. */
   const inView = (hit: Hit | null): Hit | null => (hit && ((level === NIGERIA ? [sheets[NIGERIA], sheets[NIGERIA]?.around, sheets[WORLD]] : level === AFRICA ? [sheets[AFRICA], sheets[WORLD]] : [sheets[WORLD]]) as (Sheet | null | undefined)[]).includes(hit.sheet) ? hit : null);
   function drawHighlights() {
@@ -654,6 +693,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   function tick() {
     rafId = 0;
     if (!shown()) { lastTick = 0; return; }
+    takeWheel();
     const t = now(), dt = lastTick ? clamp((t - lastTick) / 1000, 0, 0.1) : 0;
     let moving = rig.step(dt);
     if (moving || entering) settleLevel();
@@ -668,6 +708,17 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     renderer.render(scene, camera);
     renderCount += 1;
     drawLabels(); drawMarker(); drawFriends();
+  }
+  /** What the scene holds now: each visible mesh is one draw. */
+  function sceneCost(): AtlasDiagnostics['scene'] {
+    let draws = 0, triangles = 0, vertices = 0;
+    for (const object of [...layers.map((entry) => entry.object), hoverMesh, selectMesh, selectLine, routeLine]) {
+      const count = object.geometry.getAttribute('position')?.count ?? 0;
+      if (!object.visible || !count) continue;
+      draws += 1; vertices += count;
+      if (object instanceof THREE.Mesh) triangles += (object.geometry.index?.count ?? count) / 3;
+    }
+    return { draws, triangles, vertices };
   }
   function syncResolution() {
     for (const material of ribbonMaterials) material.uniforms.resolution!.value.set(size.width, size.height);
@@ -776,16 +827,24 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   /** How wide a feature's box is on screen. */
   function roomOf(feature: Feature, y: number) { const b = feature.bounds, a = at(b.minLon, (b.minLat + b.maxLat) / 2, y), c = at(b.maxLon, (b.minLat + b.maxLat) / 2, y); return Math.abs(c.x - a.x); }
   /** The reader's text scale: the root font size against the browser default of 16px. */
-  const textScale = () => { const px = doc?.defaultView ? parseFloat(doc.defaultView.getComputedStyle(doc.documentElement).fontSize) : 16; return Number.isFinite(px) && px > 0 ? px / 16 : 1; };
+  let scaleRead = -Infinity, scaleNow = 1;
+  function textScale(): number {
+    // Reading a computed style makes the browser settle every style written since the last frame: twice a second is often enough for a setting.
+    const t = now();
+    if (t - scaleRead < 500 && t >= scaleRead) return scaleNow;
+    const px = doc?.defaultView ? parseFloat(doc.defaultView.getComputedStyle(doc.documentElement).fontSize) : 16;
+    scaleRead = t; scaleNow = Number.isFinite(px) && px > 0 ? px / 16 : 1;
+    return scaleNow;
+  }
   function candidates(): LabelCandidate[] {
     const out: LabelCandidate[] = [], dn = densityFor(size.width, textScale());
     const push = (id: string, where: { x: number; y: number; behind: boolean }, text: string, more: Partial<LabelCandidate>) => { if (!where.behind) out.push({ id, x: where.x, y: where.y, text, priority: 10, size: 11, ...more }); };
     if (level === NIGERIA && sheets[NIGERIA]) {
       const sheet = sheets[NIGERIA], close = markerDetail() === 'cities';
       for (const feature of sheet.topology.features) {
-        const entry = regionEntry('state', feature.id), top = sheet.top(feature), city = entry.city ? cityEntry(entry.city) : null;
+        const entry = entryOf('state', feature.id), top = sheet.top(feature), city = entry.city ? cityEntry(entry.city) : null;
         // The whole-country view names states; close in, each open city is named, and the crowding rule below keeps only the most important names and counts the rest.
-        if (close) for (const openCity of catalogueCitiesInState(feature.id)) {
+        if (close) for (const openCity of citiesIn(feature.id)) {
           if (openCity.open) push(`city:${openCity.id}`, at(openCity.lon, openCity.lat, top + 0.02), openCity.name, { priority: openCity.id === current ? 2000 : selected?.kind === 'state' && selected.id === feature.id ? 1200 : 200, size: dn.city, compact: true, anchor: 'above', alts: ['right', 'left', 'below', 'far-above', 'far-below', 'far-right', 'far-left'], fixed: openCity.id === current, cls: `is-city is-open${openCity.id === current ? ' is-you' : ''}`, note: openCity.id === current ? 'You are here' : 'Open' });
         }
         if (!close || entry.status !== 'open') push(`state:${feature.id}`, at(feature.at[0], feature.at[1], top), feature.name === 'Federal Capital Territory' ? 'FCT' : feature.name, { short: feature.id === 'fct' ? 'FCT' : feature.ab, room: roomOf(feature, top) * 0.86, priority: entry.status === 'open' ? 80 : city ? 44 : 50, size: dn.other, cls: 'is-region' });
@@ -824,7 +883,17 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     }
     return out;
   }
+  /** Everything the names and their places depend on. While it is the same, the names on screen are already right. */
+  function labelsKey(): string {
+    const view = rig.view;
+    return `${view.x}|${view.z}|${view.distance}|${view.pitch}|${view.yaw}|${size.width}x${size.height}|${insets.left},${insets.top},${insets.right},${insets.bottom}|${level}|${selected ? `${selected.kind}:${selected.id}` : ''}|${current}|${sheets.map(Boolean).join()}|${catalogueEpoch}|${textScale()}`;
+  }
+  const labelSpots = new Map<string, string>();
+  let leaderLayer: SVGSVGElement | null = null, leadersDrawn = '';
   function drawLabels() {
+    const key = labelsKey();
+    if (key === labelKey) return;
+    labelKey = key; work.labelPasses += 1;
     if (!ui.labels) { lastLabels = Math.min(LABEL_CAP, candidates().length); return; }
     const placed = placeLabels(candidates(), { width: size.width, height: size.height });
     lastLabels = placed.length;
@@ -836,9 +905,10 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (!node) { node = doc!.createElement('span'); labelNodes.set(label.id, node); ui.labels.appendChild(node); }
       const key = `${label.cls}|${label.shown}|${label.note || ''}|${label.anchor || ''}|${label.compact || ''}`;
       if (node.dataset.key !== key) { node.dataset.key = key; node.className = `atlas-label ${label.cls || ''} at-${label.anchor || 'centre'}`; node.innerHTML = `<b>${esc(label.shown)}</b>${label.note && !label.compact ? `<small>${esc(label.note)}</small>` : ''}`; const tip = label.title ?? (label.compact ? label.note : undefined); if (tip) node.title = tip; else node.removeAttribute('title'); }
-      node.style.transform = `translate(${label.x.toFixed(1)}px,${label.y.toFixed(1)}px)`;
+      const spot = `translate(${label.x.toFixed(1)}px,${label.y.toFixed(1)}px)`;
+      if (labelSpots.get(label.id) !== spot) { labelSpots.set(label.id, spot); node.style.transform = spot; }
     }
-    for (const [id, node] of labelNodes) if (!keep.has(id)) { node.remove(); labelNodes.delete(id); }
+    for (const [id, node] of labelNodes) if (!keep.has(id)) { node.remove(); labelNodes.delete(id); labelSpots.delete(id); }
     drawLeaders(placed);
   }
   /** A thin line from each displaced label to the dot it names, drawn under the labels. */
@@ -848,10 +918,13 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       const { box, home } = label, x = Math.min(Math.max(home.x, box.left), box.right), y = Math.min(Math.max(home.y, box.top), box.bottom);
       return Math.hypot(x - home.x, y - home.y) > 6 ? [`<line x1="${home.x.toFixed(1)}" y1="${home.y.toFixed(1)}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/><circle cx="${home.x.toFixed(1)}" cy="${home.y.toFixed(1)}" r="2.5"/>`] : [];
     });
-    let layer = ui.labels!.querySelector<SVGSVGElement>('.atlas-leaders');
-    if (!lines.length) { layer?.remove(); return; }
-    if (!layer) { layer = doc!.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGSVGElement; layer.setAttribute('class', 'atlas-leaders'); layer.setAttribute('aria-hidden', 'true'); ui.labels!.prepend(layer); }
-    layer.innerHTML = lines.join('');
+    const drawn = lines.join('');
+    if (drawn === leadersDrawn) return;
+    leadersDrawn = drawn;
+    if (!drawn) { leaderLayer?.remove(); return; }
+    if (!leaderLayer) { leaderLayer = doc!.createElementNS('http://www.w3.org/2000/svg', 'svg') as SVGSVGElement; leaderLayer.setAttribute('class', 'atlas-leaders'); leaderLayer.setAttribute('aria-hidden', 'true'); }
+    if (!leaderLayer.isConnected) ui.labels!.prepend(leaderLayer);
+    leaderLayer.innerHTML = drawn;
   }
 
   // ---- travel between cities: the server's timer, or the preview --------------------------------------
@@ -896,7 +969,20 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   }
 
   // ---- the chrome: breadcrumb, list, sheet -------------------------------------------------------------
-  const context = () => ({ current, held: held() || [], routes: routes() });
+  /**
+   * What the player holds and may ride. The host works both out from the whole life, so it is asked once a turn: a list of two hundred
+   * rows and the card beside it read the one answer. It is forgotten when the turn ends, and at once when the city changes.
+   */
+  let contextNow: { current: string; held: string[]; routes: TripRoutes | null } | null = null;
+  const forgetContext = () => { contextNow = null; };
+  function context() {
+    if (!contextNow) {
+      contextNow = { current, held: held() || [], routes: routes() };
+      work.hostReads += 1;
+      void Promise.resolve().then(forgetContext);
+    }
+    return contextNow;
+  }
   const infoOf = (hit: Pick<Hit, 'kind' | 'id' | 'feature'>): RegionInfo => regionInfo({ kind: hit.kind, id: hit.id }, { ...context(), cityId: selectedCity, feature: hit.feature });
   let countryDetailModel: CountryDetailPanelModel | null = null;
   let countryPanelReturnFocus: HTMLElement | null = null;
@@ -985,11 +1071,20 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     root!.dataset.level = ATLAS_LEVELS[level]!.id;
   }
   /** The rows of the list: every region of the level in view, open first. */
-  function rows() {
+  let rowsKey = '', rowsNow: RegionInfo[] = [];
+  function rows(): RegionInfo[] {
     const sheet = sheets[level];
     if (!sheet) return [];
-    return sheet.topology.features.map((feature) => infoOf({ kind: sheet.kind, id: feature.id, feature })).sort(listOrder);
+    sameCatalogue();
+    // A row says a place's name, its status and its city: none of that depends on the fares, so the rows outlive a change of selection.
+    const { held: mine } = context(), key = `${level}|${current}|${selectedCity ?? ''}|${mine.join()}|${catalogueEpoch}`;
+    if (key !== rowsKey) {
+      rowsKey = key; work.rowSets += 1;
+      rowsNow = sheet.topology.features.map((feature) => regionInfo({ kind: sheet.kind, id: feature.id }, { current, held: mine, routes: null, cityId: selectedCity, feature })).sort(listOrder);
+    }
+    return rowsNow;
   }
+  let railDrawn = '';
   function drawRail() {
     if (!ui.rail) return;
     const all = rows(), needle = query.trim().toLowerCase();
@@ -997,13 +1092,24 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const noun = level === NIGERIA ? 'states' : 'countries', openCount = all.filter((item) => item.status === 'open').length;
     const head = ui.rail.querySelector('.atlas-search');
     if (!head) {
+      railDrawn = '';
       ui.rail.innerHTML = `<label class="atlas-search">${ICON('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>')}<span class="atlas-sr">Find a place</span><input type="search" autocomplete="off" spellcheck="false" data-atlas-search></label><p class="atlas-count" aria-live="polite"></p><ul class="atlas-list"></ul>`;
     }
+    root!.classList.toggle('is-list', listOpen);
+    // The list is written when its rows or the search change. Choosing a place only marks its row.
+    const drawn = `${level}|${sheets[level] ? rowsKey : ''}|${query}`;
+    if (drawn === railDrawn) {
+      for (const row of ui.rail.querySelectorAll<HTMLElement>('.atlas-row')) {
+        const on = Boolean(selected) && row.dataset.atlasPick === `${selected!.kind}:${selected!.id}`;
+        if (row.classList.contains('is-selected') !== on) { row.classList.toggle('is-selected', on); row.setAttribute('aria-pressed', String(on)); }
+      }
+      return;
+    }
+    railDrawn = drawn; work.listBuilds += 1;
     ui.rail.querySelector<HTMLInputElement>('[data-atlas-search]')!.placeholder = `Find in ${level === WORLD ? 'the world' : ATLAS_LEVELS[level]!.name}`;
     ui.rail.querySelector('.atlas-count')!.textContent = needle ? `${list.length} of ${all.length} ${noun}` : `${all.length} ${noun} · ${openCount} open · the rest coming soon`;
     ui.rail.querySelector('.atlas-list')!.innerHTML = list.length ? list.map((item) => `<li><button type="button" class="atlas-row is-${item.tone}${same(selected, item) ? ' is-selected' : ''}" data-atlas-pick="${esc(item.kind)}:${esc(item.id)}" aria-pressed="${same(selected, item)}"><i aria-hidden="true"></i><span><b>${esc(item.name)}</b><small>${esc(item.city && item.city.name !== item.name ? item.city.name : item.capital || item.type)}</small></span><em>${esc(item.tag)}</em></button></li>`).join('')
       : `<li class="atlas-none">Nothing called “${esc(query)}” at this level. Zoom out to look wider.</li>`;
-    root!.classList.toggle('is-list', listOpen);
   }
   /** What the state view draws of the travel links: the links between open cities where one end is in this state, and the places outside it they leave for. */
   function stateLinks(inState: readonly { id: string }[]): OverviewExtras {
@@ -1122,7 +1228,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   function cityNear(point: Point): string | null {
     if (level !== NIGERIA || !sheets[NIGERIA] || markerDetail() !== 'cities') return null;
     const sheet = sheets[NIGERIA], targets: CityTarget[] = [];
-    for (const feature of sheet.topology.features) for (const city of catalogueCitiesInState(feature.id)) {
+    for (const feature of sheet.topology.features) for (const city of citiesIn(feature.id)) {
       if (!city.open) continue;
       const where = at(city.lon, city.lat, sheet.top(feature) + 0.02);
       if (!where.behind) targets.push({ id: city.id, x: where.x, y: where.y, state: feature.id, label: lastPlaced.get(`city:${city.id}`) ?? null });
@@ -1228,7 +1334,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     const rect = container.getBoundingClientRect(), visible = !container.hidden && rect.width > 0;
     size = visible ? { width: rect.width, height: rect.height } : { width: 0, height: 0 };
     if (!visible) { wasShown = false; stop(); return; }
-    renderer.setPixelRatio?.(Math.min(globalThis.devicePixelRatio || 1, size.width <= 720 ? 1.75 : 2));
+    renderer.setPixelRatio?.(pixelRatioFor(size.width, size.height, globalThis.devicePixelRatio || 1, { maxRatio: size.width <= 720 ? 1.75 : 2, maxPixels: MAP_PIXELS }));
+    scaleRead = -Infinity;
     renderer.setSize?.(size.width, size.height, false);
     layout(); syncResolution();
     if (!opened || (resetView && !wasShown)) {
@@ -1352,13 +1459,33 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
     drawHighlights(); request();
   }
   const hover = (point: Point) => { if (!gesture && fits) setHover(pickAt(point.x, point.y)); };
+  /** The wheel since the last frame: the zoom its events add up to, and where the pointer was at the last of them. */
+  let wheelFactor = 1, wheelAt: readonly [number, number] | null = null;
+  /** Move the camera by what the wheel asked for since the last frame. Called by the frame, so a fast wheel or trackpad moves it once. */
+  function takeWheel() {
+    const factor = wheelFactor, at = wheelAt;
+    wheelFactor = 1; wheelAt = null;
+    if (!at || factor === 1 || entering || !fits) return;
+    work.wheelMoves += 1;
+    const asked = rafId;
+    zoomBy(factor, at[0], at[1]);
+    // Inside a frame the move is drawn by that frame: the one it asked for would draw the same picture again.
+    if (!asked && rafId) { caf?.(rafId); rafId = 0; }
+  }
+  /** Zoom from the wheel (or a trackpad pinch) about a point of the screen (NDC). It is taken with the next frame. */
+  function wheelBy(factor: number, at: readonly [number, number]) {
+    if (entering || !fits || !(factor > 0)) return;
+    rig.hold();
+    wheelFactor *= factor; wheelAt = at;
+    // With no frame to wait for (out of sight, or nothing to schedule one) it is taken now.
+    request();
+    if (!rafId) takeWheel();
+  }
   function onWheel(event: WheelEvent) {
     event.preventDefault();
-    if (entering || !fits) return;
     const delta = event.deltaY * (event.deltaMode === 1 ? 32 : event.deltaMode === 2 ? 320 : 1);
-    rig.hold();
     // A trackpad pinch arrives as a wheel with Ctrl held, in much smaller steps.
-    zoomBy(Math.exp(clamp(delta, -240, 240) * (event.ctrlKey ? 0.01 : 0.0016)), ...ndc(local(event)));
+    wheelBy(Math.exp(clamp(delta, -240, 240) * (event.ctrlKey ? 0.01 : 0.0016)), ndc(local(event)));
   }
   function onClick(event: MouseEvent) {
     const hit = (name: string) => (event.target as Element).closest?.<HTMLElement>(`[data-atlas-${name}]`);
@@ -1467,7 +1594,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
   return {
     ready,
     /** The city the player is in: its state is "You are here" and the default selection. */
-    setCity(id) { if (!cityEntry(id)) return; countryDetailModel?.close(); current = id; selected = cityRegion(id); routeShown = null; resetView = true; drawChrome(); request(); },
+    setCity(id) { if (!cityEntry(id)) return; countryDetailModel?.close(); forgetContext(); current = id; selected = cityRegion(id); routeShown = null; resetView = true; drawChrome(); request(); },
     /** The life's state: a trip between cities is shown where the server's timer says it is. */
     setState(state) {
       const next = interCityTripOf(state);
@@ -1480,8 +1607,8 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       request();
     },
     /** The held cities or the links may have changed. */
-    refresh() { drawRail(); drawSheet(); },
-    resize, goLevel, previewTrip, selectCity, setFriends, openFriends, openCountries, closeCountries,
+    refresh() { forgetContext(); drawRail(); drawSheet(); },
+    resize, goLevel, previewTrip, selectCity, setFriends, openFriends, openCountries, closeCountries, wheelBy,
     warm() { void ensure(WORLD).then(() => ensure(AFRICA)); },
     select: (ref, options) => select(ref, options),
     zoomBy: (factor) => { if (fits) zoomBy(factor); },
@@ -1498,7 +1625,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
         triangles: info.triangles ?? 0, calls: info.calls ?? 0, labels: lastLabels, reducedMotion, selected, hovered, routeShown, tint: tintOn,
         cityLabels: candidates().filter(label => label.id.startsWith('city:')).map(({ id, text, note }) => ({ id, text, note: note ?? null })), markers: markerDetail(),
         trip: trip || preview ? { progress: (trip || preview)!.progress, preview: Boolean(preview && !trip), mode: (trip || preview)!.path.mode } : null,
-        view: { ...rig.view }, fits: fits ? distances() : null, cuts: [...cuts], layers: layers.map((entry) => entry.alpha) };
+        view: { ...rig.view }, fits: fits ? distances() : null, cuts: [...cuts], layers: layers.map((entry) => entry.alpha), scene: sceneCost(), work: { ...work } };
     },
     destroy() {
       destroyed = true; countryDetailModel?.destroy(); stop(); watcher?.disconnect();

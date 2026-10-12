@@ -41,6 +41,7 @@
 import type * as THREE from 'three';
 import type { CityPack, PackLga, Point2 } from './types.ts';
 import type { RigView } from './camera.ts';
+import { MAP_PIXELS, pixelRatioFor } from './pixels.ts';
 import type { ScreenBox } from './labels.ts';
 import type { PlotAddress } from '../types/life.ts';
 import type { WorldData } from './world-data.ts';
@@ -696,7 +697,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     const oldZoom = uz; readZoom(); if (uz !== oldZoom) labelsDirty = true;
     if (changed) {
       size = { width: rect.width, height: rect.height }; insets = next; labelsDirty = true;
-      renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, size.width <= 720 ? 1.75 : 2));
+      renderer.setPixelRatio(pixelRatioFor(size.width, size.height, globalThis.devicePixelRatio || 1, { maxRatio: size.width <= 720 ? 1.75 : 2, maxPixels: MAP_PIXELS }));
       renderer.setSize(size.width, size.height, false);
       rig.setViewport(size.width, size.height, insets);
       wholeFrom = Math.max(WHOLE_FROM, rig.core().distance * 1.5);

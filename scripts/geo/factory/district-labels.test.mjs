@@ -24,11 +24,11 @@ test('fewer than five primary labels: villages, hamlets, localities and subdivis
   assert.deepEqual(Object.values(placeTags), ['suburb', 'village', 'village', 'hamlet', 'locality', 'subdivision']);
 });
 
-test('fallback ranks wikidata first, then nearest to the city; ways, islets and duplicate names never qualify', () => {
+test('fallback ranks wikidata first, then nearest to the city; islets and duplicate names never qualify; an area is only a last top-up after every node', () => {
   const far = node(10, 'village', {}, 100.5), near = node(11, 'village', {}, 100.01), famous = node(12, 'village', { wikidata: 'Q1' }, 100.9);
   const duplicate = node(13, 'village', { name: 'P11' }, 100.02), islet = node(14, 'islet'), way = { type: 'way', id: 15, center: { lon: 100, lat: 10 }, tags: { name: 'W', place: 'village' } };
   const { labels } = run([far, near, famous, duplicate, islet, way]);
-  assert.deepEqual(labels.map(label => label.ref), ['node/12', 'node/11', 'node/10']);
+  assert.deepEqual(labels.map(label => label.ref), ['node/12', 'node/11', 'node/10', 'way/15']);
   assert.ok(!FALLBACK_DISTRICT_PLACES.includes('islet') && !FALLBACK_DISTRICT_PLACES.includes('island'));
 });
 
@@ -40,4 +40,17 @@ test('the tag lists match the extractor', async () => {
     assert.ok(match, constant);
     assert.deepEqual([...match[1].matchAll(/"([a-z]+)"/g)].map(item => item[1]).sort(), [...values].sort());
   }
+});
+
+test('areas top the list up to five only when nodes are not enough: primary tags first, then fallback tags, nearest first, centre point of the area', () => {
+  const area = (id, place, lon) => ({ type: 'way', id, center: { lon, lat: 10 }, tags: { name: `A${id}`, place } });
+  const pool = [node(1, 'neighbourhood'), node(2, 'locality'), area(20, 'subdivision', 100.001), area(21, 'neighbourhood', 100.5), area(22, 'subdivision', 100.002), area(23, 'subdivision', 100.003), area(24, 'subdivision', 100.004)];
+  const { labels, fallback, areaRefs } = run(pool);
+  assert.equal(fallback, true);
+  assert.deepEqual(labels.map(label => label.ref), ['node/1', 'node/2', 'way/21', 'way/20', 'way/22']);
+  assert.deepEqual(areaRefs, ['way/21', 'way/20', 'way/22']);
+  const enough = run([1, 2, 3, 4, 5].map(id => node(id, 'quarter')).concat(area(30, 'neighbourhood', 100)));
+  assert.equal(enough.labels.length, 5);
+  assert.ok(enough.labels.every(label => label.ref.startsWith('node/')));
+  assert.deepEqual(enough.areaRefs, []);
 });

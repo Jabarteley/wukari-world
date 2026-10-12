@@ -47,13 +47,15 @@ for (const { id, extract, sourceInputs } of manifest.cities) {
   };
   const inventoryText = JSON.stringify(inventory, null, 2) + '\n';
   writeFileSync(join(outputRoot, 'sources', `${id}.json`), inventoryText);
-  // Which place tags supplied the neighbourhood labels, recorded only when a label came from the lower-priority village|hamlet|locality|subdivision list.
+  // Which place tags supplied the neighbourhood labels, recorded only when a label came from the lower-priority village|hamlet|locality|subdivision list or from a way/relation area (districtLabelAreas lists those OSM refs).
   const placeElements = new Map(layers[0].parsed.elements.map(element => [`${element.type}/${element.id}`, element]));
   const labelTags = CONFIG.names.filter(label => label.kind === 'neighbourhood').map(label => placeElements.get(label.ref)?.tags?.place);
-  const fallbackLabels = labelTags.some(tag => ['village', 'hamlet', 'locality', 'subdivision'].includes(tag));
+  const areaLabels = CONFIG.names.filter(label => label.kind === 'neighbourhood' && !label.ref.startsWith('node/')).map(label => ({ ref: label.ref, place: placeElements.get(label.ref)?.tags?.place, name: placeElements.get(label.ref)?.tags?.name }));
+  const fallbackLabels = labelTags.some(tag => ['village', 'hamlet', 'locality', 'subdivision'].includes(tag)) || areaLabels.length > 0;
   const slotFallbacks = CONFIG.places.filter(place => place.slotFallback).map(place => place.slotFallback);
   const selection = slotFallbacks.length || fallbackLabels ? {
     ...(slotFallbacks.length ? { slotFallbacks } : {}),
+    ...(areaLabels.length ? { districtLabelAreas: areaLabels } : {}),
     ...(fallbackLabels ? { districtLabelPlaceTags: Object.fromEntries([...new Set(labelTags)].sort().map(tag => [tag, labelTags.filter(item => item === tag).length])) } : {}),
   } : undefined;
   const receipt = {

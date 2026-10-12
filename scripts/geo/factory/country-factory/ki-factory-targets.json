@@ -59,7 +59,9 @@
           1.5299586899339785
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        { "ref": "node/4888551323", "reason": "Broken Bridge: A causeway gap in the lagoon of the exact coast; a source anchor that is not dry land (hosted factory batch-5 run 38276426241, exactCoast)" }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/703437318",

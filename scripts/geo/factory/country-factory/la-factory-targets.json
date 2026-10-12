@@ -59,7 +59,9 @@
           18.144979689933976
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        { "ref": "node/4700693192", "reason": "Floating Restaurants: Floating restaurants on the water at the Mekong shore; the proof counts the point as wet (hosted factory batch-5 run 38276426241, proof wetPlaces)" }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/122739684",

@@ -148,7 +148,8 @@ for (const target of table.targets) {
             row.errors.push(`only ${choices.length} eligible unique named venues`);
         const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre }), names = [...districts.labels];
         row.districtLabelPlaceTags = districts.placeTags;
-        if (districts.fallback) row.districtLabelFallback = 'fewer than five suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended';
+        if (districts.areaRefs.length) row.districtLabelAreaRefs = districts.areaRefs;
+        if (districts.fallback) row.districtLabelFallback = 'fewer than five suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended' + (districts.areaRefs.length ? `; still short of five nodes, so place areas at their centre points: ${districts.areaRefs.join(', ')}` : '');
         // A coast is a shore a city can stand beside, not one mis-tagged ring: Asuncion's extract holds a single closed natural=coastline way of 976 m (the creek
         // "Zanja Soro" in landlocked Paraguay), which made the recipe a sea city and sent every dry place to the wrong side of the exact-coast stage.
         const coastlineMetres = el => (el.geometry ?? []).slice(1).reduce((sum, p, i) => sum + Math.hypot((p.lon - el.geometry[i].lon) * 111320 * Math.cos(p.lat * Math.PI / 180), (p.lat - el.geometry[i].lat) * 111320), 0);
@@ -174,7 +175,7 @@ for (const target of table.targets) {
         const neighbourhoodLabels = names.filter(label => label.kind === 'neighbourhood').length;
         row.neighbourhoodLabels = neighbourhoodLabels;
         if (neighbourhoodLabels < 5)
-            row.errors.push(`only ${neighbourhoodLabels} source-backed neighbourhood labels (place=suburb|neighbourhood|quarter nodes, then village|hamlet|locality|subdivision nodes, inside the eligible pool); five are required`);
+            row.errors.push(`only ${neighbourhoodLabels} source-backed neighbourhood labels (place=suburb|neighbourhood|quarter nodes, then village|hamlet|locality|subdivision nodes, then the same tags as way/relation areas at their centre, inside the eligible pool); five are required`);
         const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names,
             ...(target.sceneWaterExtent === undefined ? {} : { sceneWaterExtent: target.sceneWaterExtent }) };
         for (const key of ['discovery', 'water', 'landuse', 'roads', 'sea', 'wideWater'])

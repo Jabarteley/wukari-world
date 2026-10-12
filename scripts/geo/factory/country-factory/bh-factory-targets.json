@@ -59,7 +59,9 @@
           26.404384989933977
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        { "ref": "node/314719555", "reason": "Bahrain Financial Harbor: A harbour basin on reclaimed land, in directed water 63 m from the exact coast; a source anchor that is not dry land (hosted factory batch-5 run 38276426241, exactCoast)" }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/38903284",

@@ -253,6 +253,7 @@ def main():
     inland = []
     selected_water = []
     skipped_inland = []
+    repaired_inland = []
     def area_polygons(g):
         if g.is_empty:
             return []
@@ -293,7 +294,15 @@ def main():
         else:
             continue
         if not geom.is_valid:
-            raise ValueError('Invalid inland water')
+            # A self-intersecting water ring (a mis-drawn bow-tie: Playa Cabo Rojo, Haiti, way/1532112219) is repaired with the GEOS rule (each lobe kept as its own
+            # polygon, nothing added) and listed in the report; anything that does not repair into polygons is still a failure.
+            from shapely.validation import make_valid
+            fixed = make_valid(geom)
+            parts = [q for g in getattr(fixed, 'geoms', [fixed]) if g.geom_type in ('Polygon', 'MultiPolygon') for q in area_polygons(g)]
+            if not parts or not unary_union(parts).is_valid:
+                raise ValueError('Invalid inland water')
+            geom = unary_union(parts)
+            repaired_inland.append(e['type'] + '/' + str(e['id']))
         kept = [p for p in area_polygons(geom.intersection(clip)) if p.area * scale[0] * scale[1] >= config.get('minWaterKm2', .4) * 1e6]
         if kept:
             inland.extend(kept)
@@ -354,6 +363,7 @@ def main():
         raise ValueError('Invalid water/land after shoreline anchor clearance')
     report['shorelineAnchorClearances'] = clearances
     report['skippedInlandWater'] = skipped_inland
+    report['repairedInlandWater'] = repaired_inland
     if not water.is_valid:
         raise ValueError('Invalid combined water')
     geometry_path = args.city_directory / 'geometry.ts'

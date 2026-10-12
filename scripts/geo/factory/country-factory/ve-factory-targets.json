@@ -59,7 +59,9 @@
           10.686974289933978
         ]
       },
-      "selectionExclusions": [],
+      "selectionExclusions": [
+        { "ref": "way/316792849", "reason": "Coliseo Hugo Chavez: Centre point falls inside the generated water at the La Guaira shore (hosted factory batch-5 run 38276426241, proof wetPlaces)" }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/914310439",

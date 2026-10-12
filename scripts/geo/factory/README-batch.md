@@ -28,6 +28,18 @@ A failed or timed-out entry ends its own job; the lane is free for the next matr
 
 After a run, reset the queue to `{"schemaVersion":1,"queue":[]}` (a push of an empty queue only runs the 15 s plan job). Two queue pushes in quick succession: GitHub keeps only the newest pending run, so put several countries in one queue.
 
+## Generating a table (make-country-table.mjs)
+
+`node scripts/geo/factory/make-country-table.mjs --spec <spec.json|inline-json> --out <dir> [--airports-commit <40hex>] [--max-km 60]` writes `<out>/<cc>.json` (the table) and `<out>/<cc>-notes.json` (what was proposed or checked, sources, retrieval times). Node only, no dependencies; needs network (Geofabrik, GitHub API, raw.githubusercontent.com). Always run `batch-run.py --table <file> --validate-only` on the result.
+
+Spec (one object, an array, or `{"countries":[...]}`): `{"iso":"LR","country":"Liberia","geofabrik":"africa/liberia","cities":[{"id":"monrovia","name":"Monrovia","lat":6.31,"lon":-10.80,"centreSource":"Wikidata Q3748 P625","airportIdent":"GLRB"}]}`. Optional per city: `timezone` (IANA id), `airportSourceUrl`, and the pass-through seed fields `cityOsmRef`, `sceneWaterExtent`, `namesUnit`, `selectionExclusions`.
+
+- PBF pin: HEAD on `<path>-latest.osm.pbf`, follows the redirect to the dated file, bytes from `content-length`, md5 from the `.md5` sidecar, snapshot date from the YYMMDD in the name. The table never contains `-latest`.
+- Airports pin: latest commit touching `airports.csv` in `davidmegginson/ourairports-data` (GitHub API), raw URL by that commit. Pass `--airports-commit` to reuse one pin across batches (also avoids the unauthenticated API rate limit; `GITHUB_TOKEN` is used if set and never printed). The CSV is downloaded to check the ident: large or medium airport, same country, `scheduled_service=yes`, within `--max-km` (default 60) of the spec lat/lon. If `airportIdent` is omitted the nearest such airport is written as a proposal: the notes file says `"proposal": true` with alternatives, the run prints `AIRPORT PROPOSED`, and a human or helper must review it before queueing. The default `airport.sourceUrl` is the OurAirports page; set `airportSourceUrl` for a better provenance link.
+- Timezone: from the pinned `bootstrap/timezone-data` (hash-checked against `timezone-source.json`) by ISO. One zone1970 row for the country is used automatically; several rows refuse unless the city sets `timezone`.
+- No guessing: `lat`, `lon` and `centreSource` are mandatory per city. Helpers take the coordinates from an authoritative source (GeoNames or Wikidata P625) and cite it in `centreSource`. They are used only for the airport distance check and recorded in the notes; the pipeline still derives the real centre from the OSM node.
+- Any failure (redirect missing, bad md5 sidecar, unknown ident, wrong type, no scheduled service, too far, ambiguous timezone) prints `REFUSED - <reason>`, writes nothing for that country and exits 1; other countries in the same spec file are still written.
+
 ## Table fields (schemaVersion 2)
 
 Top level: `geometrySourceSha` (must be `7a57e756a10b35a0eec9ec5928f083580fb9e7a9`), `countrySource{url,bytes,md5,snapshotDate}`, `airports{url,commit,snapshotDate,commitTimestamp}` (url must be the raw githubusercontent URL of that exact commit), `seeds[1..6]`.

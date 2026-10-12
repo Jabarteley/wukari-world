@@ -18,7 +18,6 @@ jobs:
     env:
       APP_SHA: 4ed6badd8ee580791cd379afb3587941bc10541e
       FACTORY_SHA: 0786c00510f2827d6495a53fc3299f3112d0d6b4
-      FACTORY_SANDBOX: ${{ runner.temp }}/asia-singapore-candidate
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -42,6 +41,7 @@ jobs:
       - name: Verify baselines and install pinned extraction dependency
         run: |
           set -euo pipefail
+          echo "FACTORY_SANDBOX=$RUNNER_TEMP/asia-singapore-candidate" >> "$GITHUB_ENV"
           test "$(git -C baseline rev-parse HEAD)" = "$APP_SHA"
           test "$(git -C factory rev-parse HEAD)" = "$FACTORY_SHA"
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"

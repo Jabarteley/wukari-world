@@ -1,4 +1,5 @@
 import { validateCountryScopePolicy, loadCountryScope, assertCountryFacts } from '../country-scope.mjs';
+import { validateSourceInputs } from '../source-inputs.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -71,6 +72,9 @@ if (batch) {
   assert.equal(receipt.source.bytes, downloads.pbf.bytes);
   assert.equal(receipt.source.url, downloads.pbf.url);
   assert.equal(receipt.source.date, downloads.pbf.snapshotDate);
+  // Neighbour merge: one dataset hash (the merged file) everywhere; the inputs must agree between downloads and boundary receipts.
+  if (downloads.pbf.sourceInputs !== undefined) validateSourceInputs(downloads.pbf.sourceInputs, { url: downloads.pbf.url, date: downloads.pbf.snapshotDate });
+  assert.deepEqual(receipt.source.sourceInputs, downloads.pbf.sourceInputs, 'boundary and download source inputs differ');
   assert.equal(receipt.geometry.sha256, summary.sha256);
   const job = candidates[0].sourceJob;
   countryScope = {
@@ -115,6 +119,7 @@ for (const city of candidates) {
   for (const point of [facts.centre, facts.airport]) assert.ok(Number.isFinite(point.lon) && Number.isFinite(point.lat) && Math.abs(point.lon) <= 180 && Math.abs(point.lat) <= 90);
   if (batch) {
     assert.equal(job.datasetSha256, downloads.pbf.sha256);
+    assert.deepEqual(job.sourceInputs, downloads.pbf.sourceInputs, 'city source job and download source inputs differ');
     assert.equal(job.adapterSha256, downloads.extractorSha256);
     assert.equal(sources.adapterSha256, job.adapterSha256);
     assert.equal(sources.pbf.url, downloads.pbf.url);

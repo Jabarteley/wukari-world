@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/africa/sierra-leone-261011.osm.pbf",
     "bytes": 46314557,
     "md5": "e84c9fcdca83c67d4f5ffacf167faa90",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/africa/guinea-261011.osm.pbf",
+        "bytes": 118414412,
+        "md5": "75d2b1170796f575ed47de93056f2b80",
+        "snapshotDate": "2026-10-11",
+        "reason": "Freetown water box reaches 9.26N: the coastline across the Great Scarcies mouth continues into Guinea past the Sierra Leone clip; Sierra Leone and Guinea clips together cover the whole box"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { createHash } from 'node:crypto';
+import { validateSourceInputs } from './source-inputs.mjs';
 
 export const COUNTRY_SCOPE_KIND = 'osm-admin0-boundary-v1';
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
@@ -76,6 +77,8 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   assert.ok(receipt.source.headerTimestamp.startsWith(receipt.source.date));
   const url = new URL(receipt.source.url);
   assert.ok(url.protocol === 'https:' && url.hostname === 'download.geofabrik.de' && url.pathname.endsWith('.osm.pbf') && !url.search && !url.hash);
+  // A merged primary+neighbour PBF (source-merge.py): source.sha256/bytes are the merged file's, sourceInputs names the dated files.
+  if (receipt.source.sourceInputs !== undefined) validateSourceInputs(receipt.source.sourceInputs, { url: receipt.source.url, date: receipt.source.date });
   assert.equal(receipt.scriptSha256, policy.scriptSha256, 'country assembler script pin mismatch');
   const relation = receipt.relation;
   assert.equal(relation.id, policy.relationId);

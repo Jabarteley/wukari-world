@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/south-america/suriname-261011.osm.pbf",
     "bytes": 21402790,
     "md5": "3751335c967af8cb914986acd0b85782",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/south-america/guyana-261011.osm.pbf",
+        "bytes": 15554318,
+        "md5": "73aca8d8e775563d49a971ed9dd79c20",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/287082 member way/143451568 (Guyana - Suriname, Corantijn mouth, 60 nodes) is absent from the Suriname clip; all its nodes lie inside the Guyana clip"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

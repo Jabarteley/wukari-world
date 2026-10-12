@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/africa/djibouti-261011.osm.pbf",
     "bytes": 7026666,
     "md5": "d36fbb9c3597b00ac6b133c09d7740f2",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+        "bytes": 164734467,
+        "md5": "639481b935c9ebe395758c417d7f6dab",
+        "snapshotDate": "2026-10-11",
+        "reason": "Djibouti water box: coastline way/255708656 ends 2.9 km past the Somaliland border at the Djibouti clip; the coast beyond it lies inside the Somalia clip"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

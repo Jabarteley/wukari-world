@@ -68,6 +68,8 @@ jobs:
           npm ci --prefix geometry-source --ignore-scripts --no-audit --no-fund
       - id: batch
         name: Download once, build boundary, extract all cities from the shared scans
+        # Tables with countrySource.neighbours also download those same-snapshot Geofabrik extracts, verify bytes/MD5 and
+        # merge them with the pinned pyosmium into one PBF before the boundary stage (bootstrap/source-merge.py, README-batch.md).
         run: |
           set +e
           python scripts/geo/factory/bootstrap/batch-run.py \

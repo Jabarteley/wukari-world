@@ -129,6 +129,7 @@ if (args.includes('--collect')) {
         assert.ok(ok && row.status === 'PINNED_SOURCE_READY', 'boundary artifact or city source not ready');
         const policy = target.countryScope ?? input.table.countryScope;
         const scope = loadCountryScope(directory, { ...policy, directory }, target.country, target.sourceJob.datasetSha256);
+        assert.deepEqual(target.sourceJob.sourceInputs, scope.receipt.source.sourceInputs, 'city source job and boundary receipt source inputs differ');
         const destination = join(boundaryRoot, policy.boundaryKey);
         if (!copied.has(destination)) {
           mkdirSync(destination, { recursive: true });

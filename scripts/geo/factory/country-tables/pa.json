@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/central-america/panama-261011.osm.pbf",
     "bytes": 36299876,
     "md5": "68c5d6bced6c09f6ff334dc0914b53d0",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/south-america/colombia-261011.osm.pbf",
+        "bytes": 331664518,
+        "md5": "7c2308a7282a4cb192c15cdc987f0ccd",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/287668 member way/542342990 (maritime closing line) is absent from the Panama clip; both nodes lie inside the Colombia clip and not the Costa Rica clip"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

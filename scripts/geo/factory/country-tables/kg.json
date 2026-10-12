@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
     "bytes": 76910383,
     "md5": "43d2c655c19545b266950bd80bb775b0",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+        "bytes": 224167699,
+        "md5": "7ba3914ae712a63ab97e92adbefa4cf4",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/178009 member way/1463718683 (Kyrgyzstan - Kazakhstan border segment, 12 nodes) is absent from the Kyrgyzstan clip; all its nodes lie inside the Kazakhstan clip"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

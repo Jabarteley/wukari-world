@@ -87,6 +87,26 @@ def load_absent_evidence(args, timestamp):
     return records, digest(path), set(endpoints)
 
 
+def load_source_inputs(args):
+    """Inputs of a merged primary+neighbour PBF (batch-run.py, source-merge.py), recorded in the receipt's source.
+
+    The PBF itself is pinned by --expected-sha256 (the merged file); this list names the dated Geofabrik files it was
+    merged from, all of the snapshot date, the primary first and equal to --dataset-url.
+    """
+    if not args.source_inputs:
+        return None
+    inputs = json.loads(Path(args.source_inputs).read_text())
+    require(isinstance(inputs, list) and len(inputs) >= 2, 'source inputs must list the primary and at least one neighbour')
+    require(inputs[0].get('role') == 'primary' and inputs[0].get('url') == args.dataset_url, 'first source input must be the primary dataset URL')
+    for item in inputs:
+        require(item.get('role') in ({'primary'} if item is inputs[0] else {'neighbour'}), 'source input roles must be primary then neighbours')
+        require(item.get('snapshotDate') == args.dataset_date, 'every source input must be of the dataset snapshot date')
+        require(re.fullmatch(r'[a-f0-9]{64}', item.get('sha256', '')) and re.fullmatch(r'[a-f0-9]{32}', item.get('md5', ''))
+                and isinstance(item.get('bytes'), int) and item['bytes'] > 0, 'source input pins required')
+    require(len({item['url'] for item in inputs}) == len(inputs), 'duplicate source input URL')
+    return inputs
+
+
 def write_without_absent_members(osmium, pbf, out, relation_id, absent, way_ids, node_refs):
     """Derived mini-PBF: the pinned relation minus the evidence-listed absent ways, plus the present ways and their nodes."""
     with osmium.SimpleWriter(str(out)) as writer:
@@ -107,6 +127,7 @@ def extract(args):
     from shapely.geometry import Point, mapping, shape
 
     pbf = Path(args.pbf)
+    args.source_inputs_record = load_source_inputs(args)
     require(pbf.stat().st_size == args.expected_bytes, 'PBF byte pin mismatch')
     require(digest(pbf) == args.expected_sha256, 'PBF SHA-256 mismatch')
     with osmium.io.Reader(str(pbf), osmium.osm.NOTHING) as reader:
@@ -242,7 +263,8 @@ def extract(args):
     geometry_bytes = (canonical(output_geometry) + '\n').encode()
     receipt = {'schemaVersion': 1, 'status': 'OSM_COUNTRY_BOUNDARY_CANDIDATE', 'countryISO': args.country,
                'source': {'url': args.dataset_url, 'date': args.dataset_date, 'headerTimestamp': timestamp,
-                          'bytes': args.expected_bytes, 'sha256': args.expected_sha256, 'license': 'ODbL-1.0'},
+                          'bytes': args.expected_bytes, 'sha256': args.expected_sha256, 'license': 'ODbL-1.0',
+                          **({'sourceInputs': args.source_inputs_record} if args.source_inputs_record else {})},
                'relation': relation, 'memberRolePolicy': {'sourceUrl': 'https://wiki.openstreetmap.org/wiki/Relation:boundary',
                    'excludedNonBoundaryMembers': excluded, 'unsupportedMembers': []}, 'memberWays': [way_records[key] for key in sorted(way_records)],
                'assembly': {'method': 'pyosmium-area-assembly', 'completeMemberSegments': sum(expected_edges.values()),
@@ -269,6 +291,7 @@ def main():
     parser.add_argument('--dataset-date', required=True)
     parser.add_argument('--fixture')
     parser.add_argument('--absent-evidence', help='JSON evidence for maritime=yes member ways absent from the clipped PBF')
+    parser.add_argument('--source-inputs', help='JSON list of the dated Geofabrik files a merged --pbf was built from (primary first)')
     parser.add_argument('--out', required=True, help='New separate output directory')
     args = parser.parse_args()
     args.diagnostic, args.cleanup = {}, []

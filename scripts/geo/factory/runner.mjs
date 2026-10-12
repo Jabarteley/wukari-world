@@ -172,7 +172,7 @@ for (const row of rows) {
     if (!row.machineStages.proof)
         row.reasons.push('source/geometry/PNG proof incomplete or failed');
     const t = table.targets.find(t => t.id === row.id), manifest = join(out, `${row.id}-receipt-manifest.json`);
-    writeFileSync(manifest, JSON.stringify({ cities: [{ id: row.id, extract: t.extractDirectory }] }));
+    writeFileSync(manifest, JSON.stringify({ cities: [{ id: row.id, extract: t.extractDirectory, ...(t.sourceJob?.sourceInputs ? { sourceInputs: t.sourceJob.sourceInputs } : {}) }] }));
     row.machineStages.receipt = run(`${row.id}/receipt`, command(receipt, workspace, manifest, table.receiptRoot ?? 'world/playable-africa-rollout'));
     if (!row.machineStages.receipt)
         row.reasons.push('receipt creation failed');

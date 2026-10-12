@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/africa/south-sudan-261011.osm.pbf",
     "bytes": 138967350,
     "md5": "5d0ecb2580e19d097a408b5a4845af74",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/africa/ethiopia-261011.osm.pbf",
+        "bytes": 139964339,
+        "md5": "775bc09e447fa511b4115ce20fcae6ce",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/1656678 member way/144197399 (South Sudan - Ethiopia border, 42 nodes) is absent from the South Sudan clip; all its nodes lie inside the Ethiopia clip"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

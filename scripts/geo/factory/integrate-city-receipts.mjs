@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
+import { validateSourceInputs } from './source-inputs.mjs';
 const [rootArg, manifestArg, receiptRootArg = 'world/playable-africa-rollout'] = process.argv.slice(2);
 if (!rootArg || !manifestArg || !/^world\/playable-[a-z-]+-rollout$/.test(receiptRootArg)) throw Error('Usage: node --experimental-strip-types integrate-city-receipts.mjs <worktree> <private manifest> [world/playable-<region>-rollout]');
 const root = resolve(rootArg), manifest = JSON.parse(readFileSync(manifestArg, 'utf8'));
@@ -9,7 +10,7 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const readModule = path => import(pathToFileURL(join(root, path)).href);
 const outputRoot = join(root, receiptRootArg);
 for (const sub of ['sources', 'receipts']) mkdirSync(join(outputRoot, sub), { recursive: true });
-for (const { id, extract } of manifest.cities) {
+for (const { id, extract, sourceInputs } of manifest.cities) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) throw Error('Invalid city id');
   const directory = `src/game/cities/${id}`;
   const [{ FACTS }, { PLACES }, { TERRAIN }, { GEOMETRY }, { CONFIG }] = await Promise.all([
@@ -24,6 +25,8 @@ for (const { id, extract } of manifest.cities) {
     if (layer.parsed.source[key] !== provenance[key]) throw Error(`${id}: inconsistent ${key}`);
   }
   if (provenance.cityId !== id || PLACES.length < 20) throw Error(`${id}: source identity or place minimum failed`);
+  // Merged primary+neighbour source: datasetSha256 is the merged file's; the dated inputs are recorded beside it.
+  if (sourceInputs !== undefined) validateSourceInputs(sourceInputs, { url: provenance.datasetUrl });
   const generatedAssets = Object.fromEntries(['facts.ts', 'geometry.ts', 'places.ts', 'terrain.ts', 'index.ts', 'content.ts', 'map.ts'].map(name => {
     const raw = readFileSync(join(root, directory, name)); return [name, { bytes: raw.length, sha256: hash(raw) }];
   }));
@@ -32,6 +35,7 @@ for (const { id, extract } of manifest.cities) {
     kind: provenance.kind, datasetUrl: provenance.datasetUrl, datasetSha256: provenance.datasetSha256,
     pbfHeaderTimestamp: provenance.pbfHeaderTimestamp, adapter: provenance.adapter, adapterSha256: provenance.adapterSha256,
     ...(provenance.coastSupplement ? { coastSupplement: provenance.coastSupplement } : {}),
+    ...(sourceInputs ? { sourceInputs } : {}),
     extracts: layers.map(({ label, raw, parsed }) => ({ file: `${label}.json`, sha256: hash(raw), elements: parsed.elements.length })),
   };
   const inventory = {

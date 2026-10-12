@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf",
     "bytes": 124850362,
     "md5": "209c1cbfd62eb80c0072a6fcfd197cf3",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+        "bytes": 76910383,
+        "md5": "43d2c655c19545b266950bd80bb775b0",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/196240 member way/133066430 (Shohimardon exclave ring, 256 nodes) is absent from the Uzbekistan clip; all its nodes lie inside the Kyrgyzstan clip"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/asia/armenia-261011.osm.pbf",
     "bytes": 53320660,
     "md5": "bf23dcd87be07b97c8c2390dbb7ab931",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/azerbaijan-261011.osm.pbf",
+        "bytes": 46486421,
+        "md5": "ee4d30a613ee5180200661bc7bbbfd36",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/364066 members way/1551643524, way/1551798504, way/1551798687 (Armenian exclave ring inside Azerbaijan) are absent from the Armenia clip; all their nodes lie inside the Azerbaijan clip"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

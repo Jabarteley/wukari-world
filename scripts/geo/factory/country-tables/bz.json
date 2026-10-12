@@ -5,7 +5,23 @@
     "url": "https://download.geofabrik.de/central-america/belize-261011.osm.pbf",
     "bytes": 18272673,
     "md5": "d91b7238d1917141515817e0d7422d5f",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/central-america/guatemala-261011.osm.pbf",
+        "bytes": 131359417,
+        "md5": "4f8618c6854e76083ca5dad916fea8da",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/287827 member way/384124908 (maritime territorial closing line) is absent from the Belize clip; both nodes lie inside the Guatemala clip"
+      },
+      {
+        "url": "https://download.geofabrik.de/north-america/mexico-261011.osm.pbf",
+        "bytes": 646670065,
+        "md5": "823f85852e7a49a61974d19f40b7361b",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/287827 member way/194198510 (Mexico - Belize maritime limit closing line) is absent from the Belize clip; both nodes lie inside the Mexico clip and in no smaller neighbour"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

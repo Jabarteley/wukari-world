@@ -19,6 +19,9 @@ _shared = importlib.util.module_from_spec(_shared_spec)
 _shared_spec.loader.exec_module(_shared)
 BASELINE, EXTRACTOR = _shared.BASELINE, _shared.EXTRACTOR
 digest, download, stage = _shared.digest, _shared.download, _shared.stage
+_merge_spec = importlib.util.spec_from_file_location('source_merge', HERE / 'source-merge.py')
+_merge = importlib.util.module_from_spec(_merge_spec)
+_merge_spec.loader.exec_module(_merge)
 
 SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions'}
 
@@ -88,6 +91,10 @@ def validate(table):
         date.fromisoformat(snapshot)
     if source['url'].rsplit('/', 1)[1][-14:-8] != source['snapshotDate'][2:].replace('-', ''):
         raise ValueError('dated PBF URL and snapshot date disagree')
+    unknown_source = set(source) - {'url', 'bytes', 'md5', 'snapshotDate', 'neighbours'}
+    if unknown_source:
+        raise ValueError(f'unsupported countrySource fields: {sorted(unknown_source)}')
+    _merge.validate_neighbours(source)
     return seeds, source, airports
 
 def scene_water_policy(seed):
@@ -134,7 +141,10 @@ def check_seeds_offline(seeds, zone, countries):
     return report
 
 def extract_batch(pbf, candidates, source, pbf_sha, verified_md5, output_root, logs):
-    """Reuse the pinned adapter's handlers and writers over one country scan."""
+    """Reuse the pinned adapter's handlers and writers over one country scan.
+
+    source is the dataset actually scanned: the primary URL, with the merged file's bytes/MD5 when neighbours are merged.
+    """
     spec = importlib.util.spec_from_file_location('batch_offline_extract', EXTRACTOR)
     adapter = importlib.util.module_from_spec(spec)
     try:
@@ -261,8 +271,11 @@ def validate_only(table_path):
         seeds, source, airports = validate(table)
         manifest, files = timezone_source_files()
         seed_report = check_seeds_offline(seeds, files['zone1970'][0], files['iso3166'][0])
+        neighbours = _merge.validate_neighbours(source)
         report.update(ids=[seed['id'] for seed in seeds], countryISO=seeds[0]['countryISO'],
-                      source={'url': source['url'], 'bytes': source['bytes'], 'md5': source['md5'], 'snapshotDate': source['snapshotDate']},
+                      source={'url': source['url'], 'bytes': source['bytes'], 'md5': source['md5'], 'snapshotDate': source['snapshotDate'],
+                              **({'neighbours': [{key: item[key] for key in ('url', 'bytes', 'md5', 'snapshotDate')} for item in neighbours],
+                                  'downloadBytesTotal': source['bytes'] + sum(item['bytes'] for item in neighbours)} if neighbours else {})},
                       timezoneRelease=manifest['release'], seeds=seed_report)
         held = [row for row in seed_report if row['status'] != 'OK']
         report['status'] = 'HOLD' if held else 'VALID'
@@ -318,7 +331,34 @@ def main():
         pbf_hashes = observed('country-checksums', verify_country_checksums, pbf, source['bytes'], source['md5'])
         pbf_sha = pbf_hashes['sha256']
         csv_sha = observed('airport-sha256', digest, csv)
-        receipts = {'pbf': {**source, 'sha256': pbf_sha, 'http': source_http}, 'airports': {**airports, 'sha256': csv_sha, 'http': csv_http}, 'geometrySourceSha': sha, 'extractorSha256': digest(EXTRACTOR)}
+        neighbours = _merge.validate_neighbours(source)
+        # dataset: the one PBF every later stage reads. Without neighbours it is the primary file, unchanged.
+        dataset = {'url': source['url'], 'bytes': source['bytes'], 'md5': source['md5'], 'snapshotDate': source['snapshotDate']}
+        source_inputs, primary_box = None, None
+        if neighbours:
+            # Same-snapshot neighbour extracts complete what the primary clip omits (README-batch.md, Neighbour extracts).
+            source_inputs = [{'role': 'primary', 'url': source['url'], 'snapshotDate': source['snapshotDate'], 'bytes': source['bytes'], 'md5': source['md5'], 'sha256': pbf_sha}]
+            input_http, input_paths = [source_http], [pbf]
+            for index, neighbour in enumerate(neighbours, 1):
+                path = out / 'downloads' / f'neighbour-{index}.osm.pbf'
+                input_http.append(observed(f'neighbour-{index}-download', download, neighbour['url'], path))
+                hashes = observed(f'neighbour-{index}-checksums', verify_country_checksums, path, neighbour['bytes'], neighbour['md5'])
+                source_inputs.append({'role': 'neighbour', 'url': neighbour['url'], 'snapshotDate': neighbour['snapshotDate'], 'bytes': neighbour['bytes'], 'md5': neighbour['md5'], 'sha256': hashes['sha256'], 'reason': neighbour['reason']})
+                input_paths.append(path)
+            merged = out / 'downloads/merged.osm.pbf'
+            merge_record = observed('source-merge', _merge.merge_sources, input_paths, merged, source['snapshotDate'])
+            primary_box = merge_record['primaryBox']
+            merged_hashes = observed('merged-checksums', digest_many, merged, 'md5', 'sha256')
+            dataset.update(bytes=merged.stat().st_size, md5=merged_hashes['md5'])
+            pbf, pbf_sha, pbf_hashes = merged, merged_hashes['sha256'], merged_hashes
+            for path in input_paths:
+                path.unlink()
+            (out / 'receipts/source-inputs.json').write_text(json.dumps(source_inputs, indent=2))
+            pbf_receipt = {**dataset, 'sha256': pbf_sha, 'http': source_http, 'sourceInputs': source_inputs,
+                           'inputHttp': input_http, 'merge': {**merge_record, 'scriptSha256': digest(HERE / 'source-merge.py')}}
+        else:
+            pbf_receipt = {**source, 'sha256': pbf_sha, 'http': source_http}
+        receipts = {'pbf': pbf_receipt, 'airports': {**airports, 'sha256': csv_sha, 'http': csv_http}, 'geometrySourceSha': sha, 'extractorSha256': digest(EXTRACTOR)}
         (out / 'receipts/downloads.json').write_text(json.dumps(receipts, indent=2))
         timezone_manifest, timezone_files = timezone_source_files()
         zone, zone_record = timezone_files['zone1970']
@@ -334,7 +374,7 @@ def main():
         boundary_error = None
         evidence = HERE / 'boundary-evidence' / (seeds[0]['countryISO'].lower() + '.json')
         try:
-            stage([sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(pbf), '--country', seeds[0]['countryISO'], '--expected-sha256', pbf_sha, '--expected-bytes', str(source['bytes']), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--out', str(boundary), *(['--absent-evidence', str(evidence)] if evidence.is_file() else [])], out / 'logs/country-boundary.log')
+            stage([sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(pbf), '--country', seeds[0]['countryISO'], '--expected-sha256', pbf_sha, '--expected-bytes', str(dataset['bytes']), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--out', str(boundary), *(['--absent-evidence', str(evidence)] if evidence.is_file() else []), *(['--source-inputs', str(out / 'receipts/source-inputs.json')] if source_inputs else [])], out / 'logs/country-boundary.log')
             boundary_receipt = {'countryISO': seeds[0]['countryISO'], 'path': 'country-boundary/boundary.geojson', 'sha256': digest(boundary / 'boundary.geojson'), 'receiptPath': 'country-boundary/receipt.json', 'receiptSha256': digest(boundary / 'receipt.json')}
             result['countryBoundary'] = boundary_receipt
         except Exception as error:
@@ -361,7 +401,7 @@ def main():
             seed_manifest.parent.mkdir(parents=True, exist_ok=True)
             seed_manifest.write_text(json.dumps(seed_files))
             metadata_arguments = [sys.executable, str(HERE / 'metadata-batch.py'), '--seed-files', str(seed_manifest), '--out-root', str(out / 'metadata'),
-                                  '--pbf', str(pbf), '--airports-csv', str(csv), '--airports-date', airports['snapshotDate'], '--zone-tab', str(zone), '--countries-tab', str(countries), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--expected-pbf-sha256', pbf_sha, '--dataset-bytes', str(source['bytes']), '--source-verified', '--geometry-source', str(geometry), '--adapter', str(EXTRACTOR)]
+                                  '--pbf', str(pbf), '--airports-csv', str(csv), '--airports-date', airports['snapshotDate'], '--zone-tab', str(zone), '--countries-tab', str(countries), '--dataset-url', source['url'], '--dataset-date', source['snapshotDate'], '--expected-pbf-sha256', pbf_sha, '--dataset-bytes', str(dataset['bytes']), '--source-verified', '--geometry-source', str(geometry), '--adapter', str(EXTRACTOR)]
             metadata_batch_error = None
             try:
                 stage(metadata_arguments, out / 'logs/batch-metadata.log')
@@ -382,6 +422,15 @@ def main():
                     metadata_file.write_text(json.dumps(metadata_result, indent=2))
                 if metadata_batch_error and metadata_result.get('status') == 'METADATA_CANDIDATE':
                     metadata_result = {'status': 'HOLD', 'reason': metadata_batch_error}
+                if metadata_result.get('status') == 'METADATA_CANDIDATE' and source_inputs:
+                    # The merged file reaches into the neighbour: the city itself must stay in the primary country.
+                    try:
+                        scope = _merge.primary_scope(seed['id'], metadata_result['facts']['centre'],
+                                                     json.loads((candidate / 'source-input.json').read_text())['boxes'],
+                                                     boundary / 'boundary.geojson', primary_box)
+                        (out / 'receipts' / (seed['id'] + '-primary-scope.json')).write_text(json.dumps(scope, indent=2))
+                    except Exception as error:
+                        metadata_result = {'status': 'HOLD', 'reason': str(error)}
                 if metadata_result.get('status') == 'METADATA_CANDIDATE':
                     candidates[seed['id']] = candidate / 'source-input.json'
                 else:
@@ -396,7 +445,7 @@ def main():
         extraction_errors = {}
         if candidates:
             try:
-                extraction_errors = observed('batch-extraction', extract_batch, pbf, candidates, source, pbf_sha, pbf_hashes['md5'], out / 'extract', out / 'logs')
+                extraction_errors = observed('batch-extraction', extract_batch, pbf, candidates, dataset, pbf_sha, pbf_hashes['md5'], out / 'extract', out / 'logs')
             except Exception as error:
                 extraction_errors = {city_id: str(error) for city_id in candidates}
                 for city_id in candidates:
@@ -408,7 +457,7 @@ def main():
                 if seed['id'] in extraction_errors:
                     raise ValueError('stage failed: ' + seed['id'] + '-extraction.log')
                 hashes = {label: digest(out / 'extract' / seed['id'] / (label + '.json')) for label in ('places','extras','water','landuse','roads')}
-                producer = {'city': seed['id'], 'sourceRunId': int(os.environ['GITHUB_RUN_ID']), 'sourceArtifact': 'city-bootstrap-' + seeds[0]['countryISO'].lower() + '-' + os.environ['GITHUB_SHA'], 'sourceSha': os.environ['GITHUB_SHA'], 'datasetSha256': pbf_sha, 'adapterSha256': digest(EXTRACTOR), 'extractSha256': hashes}
+                producer = {'city': seed['id'], 'sourceRunId': int(os.environ['GITHUB_RUN_ID']), 'sourceArtifact': 'city-bootstrap-' + seeds[0]['countryISO'].lower() + '-' + os.environ['GITHUB_SHA'], 'sourceSha': os.environ['GITHUB_SHA'], 'datasetSha256': pbf_sha, 'adapterSha256': digest(EXTRACTOR), 'extractSha256': hashes, **({'sourceInputs': source_inputs} if source_inputs else {})}
                 job_file = out / 'receipts' / (seed['id'] + '-source-job.json')
                 job_file.write_text(json.dumps(producer, indent=2))
                 producers.append(producer)

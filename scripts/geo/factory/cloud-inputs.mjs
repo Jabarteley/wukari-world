@@ -1,4 +1,5 @@
 import { validateCountryScopePolicy } from './country-scope.mjs';
+import { validateSourceInputs } from './source-inputs.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
@@ -29,6 +30,7 @@ export function cloudInputs(path) {
       assert.deepEqual(job.extractSha256, target.extractSha256);
       assert.deepEqual(Object.keys(job.extractSha256).sort(), ['extras','landuse','places','roads','water']);
       for (const value of [job.datasetSha256, job.adapterSha256, ...Object.values(job.extractSha256)]) assert.match(value, /^[0-9a-f]{64}$/);
+      if (job.sourceInputs !== undefined) validateSourceInputs(job.sourceInputs);
       const boundaryJob = policy.boundaryJob, boundaryKey = `${boundaryJob.sourceRunId}:${boundaryJob.sourceArtifact}`;
       if (boundaryGroups.has(boundaryKey)) assert.deepEqual(boundaryGroups.get(boundaryKey), boundaryJob, 'shared boundary artifact producer disagrees');
       else boundaryGroups.set(boundaryKey, boundaryJob);

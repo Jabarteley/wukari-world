@@ -5,7 +5,23 @@
     "url": "https://download.geofabrik.de/central-america/honduras-261011.osm.pbf",
     "bytes": 74361797,
     "md5": "cf179f59d76fc954be528e08653f80f0",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/central-america/guatemala-261011.osm.pbf",
+        "bytes": 131359417,
+        "md5": "4f8618c6854e76083ca5dad916fea8da",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/287670 member way/384124908 (maritime territorial closing line) is absent from the Honduras clip; both nodes lie inside the Guatemala clip"
+      },
+      {
+        "url": "https://download.geofabrik.de/central-america/nicaragua-261011.osm.pbf",
+        "bytes": 61743316,
+        "md5": "8d9aa0ab379bb698df5b80181882a2d7",
+        "snapshotDate": "2026-10-11",
+        "reason": "admin-0 relation/287670 member way/1456597332 (Honduras - Nicaragua sea limit, Gulf of Fonseca) is absent from the Honduras clip; both nodes lie inside the Nicaragua clip"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

@@ -41,9 +41,17 @@ const atlasLevelFor = (id: string) => {
 const rowFor = (id: string) => {
   const city = cityCatalogueEntry(id);
   if (!city?.open) throw new Error(`Unknown or closed city in acceptance set: ${id}`);
-  const country = city.countryISO ?? 'ng', levelId = regionEntry('country', country).level ?? 'africa';
+  const country = city.countryISO ?? 'ng', levelId = regionEntry('country', country).level ?? (country === 'ng' ? 'nigeria' : undefined);
+  if (!levelId) throw new Error(`No atlas level registered for country ${country} (city ${id}); the app registry has no regionEntry level`);
   const level = atlasLevelFor(levelId);
-  const continent = atlasLevelFor('africa');
+  // The continent view is the level directly under World on this level's own parent chain (Africa for Nigeria, the level itself for a country level).
+  let continentId = levelId;
+  for (let hops = 0; hops < 8; hops++) {
+    const parent = ATLAS_LEVELS.find(entry => entry.id === continentId)?.parent;
+    if (!parent || parent === 'world') break;
+    continentId = parent;
+  }
+  const continent = atlasLevelFor(continentId);
   return { name: city.name, pick: country === 'ng' ? `state:${city.state.id}` : `country:${country}`, countryPick: `country:${country}`, level, continent };
 };
 const PLACE_TO_OPEN: Record<string, string> = { cairo: 'Khan El Khalili', kigali: '', lagos: '' };
@@ -175,9 +183,20 @@ async function atlasLevel(b: Browser, id: string, prefix: string): Promise<void>
     const chip = [...document.querySelectorAll('[data-atlas-levels]')].find(node => { const r = node.getBoundingClientRect(), style = getComputedStyle(node); return r.width > 1 && r.height > 1 && style.display !== 'none' && style.visibility !== 'hidden'; });
     return chip?.querySelector(':scope > span')?.textContent?.trim() === ${JSON.stringify(entry.name)} && !!chip.closest('.level-menu')?.querySelector('[data-atlas-level="${entry.index}"][aria-current="true"]');
   })()`;
-  if (!(await b.eval<boolean>(atLevel))) {
+  const choose = async (index: number): Promise<void> => {
     await b.click('[data-atlas-levels]');
-    await b.click(`[data-atlas-level="${entry.index}"]`);
+    await b.click(`[data-atlas-level="${index}"]`);
+  };
+  if (!(await b.eval<boolean>(atLevel))) {
+    await choose(entry.index);
+    // A continent level other than Africa, chosen while the atlas is at World: the app's own level settling can put the choice back to
+    // the Africa path (the view centre of the whole world lies over an African country), so the chip stays on World. That is an app
+    // finding, recorded in the notes; the journey then goes through Africa (a level the app does switch from) and chooses the continent again.
+    if (entry.index > 2 && !(await b.waitFor(atLevel, 8000, `${entry.name} level`).then(() => true, () => false)) && await b.eval<boolean>(`!!document.querySelector('[data-atlas-level="0"][aria-current="true"]')`)) {
+      notes.push(`${prefix}: APP FINDING: choosing ${entry.name} from the World level left the atlas on World after 8 s; chose it again through Africa`);
+      await atlasLevel(b, 'africa', prefix);
+      await choose(entry.index);
+    }
   }
   try {
     await b.waitFor(atLevel, 30000, `${entry.name} level`);

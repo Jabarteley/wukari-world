@@ -18,6 +18,7 @@ import { join, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { Browser, sleep } from './cdp-map-qa.ts';
 import { cityCatalogueEntry } from '../../src/game/cities/registry.ts';
+import { ATLAS_LEVELS, regionEntry } from '../../src/map3d/regions.ts';
 
 const arg = (name: string, fallback?: string): string => {
   const at = process.argv.indexOf(`--${name}`);
@@ -32,11 +33,18 @@ const base = `http://127.0.0.1:${port}`;
 mkdirSync(out, { recursive: true });
 const work = mkdtempSync(join(tmpdir(), 'mapshots-'));
 const dataDir = join(work, 'data'), cookieFile = join(work, 'founder.cookie');
-const rowFor = (id: string): { name: string; pick: string; level: 'africa' | 'nigeria' } => {
+const atlasLevelFor = (id: string) => {
+  const index = ATLAS_LEVELS.findIndex(level => level.id === id);
+  if (index < 0) throw new Error(`Missing current-app atlas level: ${id}`);
+  return { id: ATLAS_LEVELS[index]!.id, index, name: ATLAS_LEVELS[index]!.name };
+};
+const rowFor = (id: string) => {
   const city = cityCatalogueEntry(id);
-  if (!city) throw new Error(`Unknown city in acceptance set: ${id}`);
-  if (city.countryISO && city.countryISO !== 'ng') return { name: city.name, pick: `country:${city.countryISO}`, level: 'africa' };
-  return { name: city.name, pick: `state:${city.state.id}`, level: 'nigeria' };
+  if (!city?.open) throw new Error(`Unknown or closed city in acceptance set: ${id}`);
+  const country = city.countryISO ?? 'ng', levelId = regionEntry('country', country).level ?? 'africa';
+  const level = atlasLevelFor(levelId);
+  const continent = atlasLevelFor('africa');
+  return { name: city.name, pick: country === 'ng' ? `state:${city.state.id}` : `country:${country}`, countryPick: `country:${country}`, level, continent };
 };
 const PLACE_TO_OPEN: Record<string, string> = { cairo: 'Khan El Khalili', kigali: '', lagos: '' };
 // --water "cairo=0.5,0.5;rabat=0.2,0.5": where on the screen (fractions of width, height, from the whole-city view) to zoom in on the main water.
@@ -48,8 +56,10 @@ const waterOnly = process.argv.includes('--water-only');
 // --lean: the 15-city sweep: default, whole city, centre zoom, water, list top, simple map, plus a zoomed-out and rotated shot at the view limits.
 const lean = process.argv.includes('--lean');
 const allowScriptedFallback = process.argv.includes('--allow-scripted-fallback');
+const roundtrip = process.argv.includes('--roundtrip');
+if (roundtrip && allowScriptedFallback) throw new Error('--roundtrip requires native controls; scripted fallback is not allowed');
 // --phones 390x844,320x568 (empty for none): the last city is reloaded at each phone size.
-// --phone-cities dakar,kampala: these cities also get the phone sets (each with its browser storage cleared first, so no saved view is restored); --phones lists the sizes.
+// --phone-cities dakar,kampala: these cities also get the phone sets (each reloaded from the venue view); --phones lists the sizes.
 const phoneCities = new Set(arg('phone-cities', '').split(',').filter(Boolean));
 const phones = arg('phones', '390x844').split(',').filter(Boolean).map((p) => p.split('x').map(Number) as [number, number]);
 
@@ -118,12 +128,16 @@ async function settle(b: Browser): Promise<string> {
   console.log('settle step 1');
   await b.goto(base + '/');
   console.log('settle step 2');
-  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 60000, 'the start screen');
+  await b.waitFor(`!!document.querySelector('[data-entry-play], [data-key="play-now"], [data-qs-name]')`, 60000, 'the start screen');
   await sleep(600);
-  console.log('settle step 3');
-  await b.type('[data-qs-name]', 'Map Checker');
-  console.log('settle step 4');
-  await b.click('[data-key="play-now"]');
+  // Current accounts see the new landing card; legacy preview routes still open the creator quick-start.
+  if (await b.eval<boolean>(`!!document.querySelector('[data-entry-play]') || (!document.querySelector('[data-qs-name]') && !!document.querySelector('[data-key="play-now"]'))`)) {
+    console.log('settle: native landing Play now');
+    await b.click('[data-entry-play], [data-key="play-now"]');
+  } else {
+    await b.type('[data-qs-name]', 'Map Checker');
+    await b.click('[data-key="play-now"]');
+  }
   await gameShown(b); await dismiss(b);
   console.log('settle step 5');
   await until(async () => {
@@ -153,31 +167,70 @@ async function settle(b: Browser): Promise<string> {
 }
 
 let current = 'lagos';
-async function fly(b: Browser, city: string): Promise<void> {
+/** Native menus only: indexes and displayed names come from the copied app's registry. */
+async function atlasLevel(b: Browser, id: string, prefix: string): Promise<void> {
+  const entry = atlasLevelFor(id);
+  // Match the same visible chip as Browser.click; retained hidden atlas DOM is not the active view.
+  const atLevel = `(() => {
+    const chip = [...document.querySelectorAll('[data-atlas-levels]')].find(node => { const r = node.getBoundingClientRect(), style = getComputedStyle(node); return r.width > 1 && r.height > 1 && style.display !== 'none' && style.visibility !== 'hidden'; });
+    return chip?.querySelector(':scope > span')?.textContent?.trim() === ${JSON.stringify(entry.name)} && !!chip.closest('.level-menu')?.querySelector('[data-atlas-level="${entry.index}"][aria-current="true"]');
+  })()`;
+  if (!(await b.eval<boolean>(atLevel))) {
+    await b.click('[data-atlas-levels]');
+    await b.click(`[data-atlas-level="${entry.index}"]`);
+  }
+  try {
+    await b.waitFor(atLevel, 30000, `${entry.name} level`);
+  } catch (error) {
+    const state = await b.eval(`(() => ({ chips:[...document.querySelectorAll('[data-atlas-levels]')].map(node => ({label:node.textContent?.trim(),expanded:node.getAttribute('aria-expanded'),box:{width:node.getBoundingClientRect().width,height:node.getBoundingClientRect().height},display:getComputedStyle(node).display,visibility:getComputedStyle(node).visibility})), current:[...document.querySelectorAll('[data-atlas-level][aria-current="true"]')].map(node => ({index:node.getAttribute('data-atlas-level'),label:node.textContent?.trim()})), wait:[...document.querySelectorAll('.atlas-wait')].map(node => node.textContent?.trim()) }))()`);
+    const diagnostic = { requested:entry, state, consoleErrors:b.consoleErrors.slice(-20) };
+    timings[`${prefix}-atlas-level-failure`] = diagnostic;
+    console.error('atlas level failure:', JSON.stringify(diagnostic));
+    throw error;
+  }
+  notes.push(`${prefix}: native atlas level ${entry.id}/${entry.index}, displayed ${await b.eval<string>(`document.querySelector('[data-atlas-levels]')?.textContent?.trim() || ''`)}`);
+}
+
+async function atlasPick(b: Browser, value: string, prefix: string): Promise<void> {
+  if (!(await b.eval<boolean>(shownNow('[data-atlas-search]')))) await b.click('[data-atlas-list]');
+  await b.waitFor(shownNow('[data-atlas-search]'), 15000, 'search');
+  await b.type('[data-atlas-search]', '');
+  const pick = `[data-atlas-pick="${value}"]`;
+  const row = await b.eval<{ name: string; tag: string; open: boolean }>(`(() => { const r = document.querySelector(${JSON.stringify(pick)}); return {name:r?.querySelector('b')?.textContent?.trim() || '',tag:r?.querySelector('em')?.textContent?.trim() || '',open:!!r && (r.classList.contains('is-open') || r.classList.contains('is-here'))}; })()`);
+  if (!row.name || !row.open) throw new Error(`Missing or not-open atlas entry ${value}: ${JSON.stringify(row)}`);
+  await b.type('[data-atlas-search]', row.name);
+  await b.locate(pick);
+  notes.push(`${prefix}: atlas entry ${value}, displayed ${row.name}; ${row.tag}`);
+  await b.screenshot(join(out, `${prefix}-00-${value.startsWith('country:') ? 'country-list' : 'state-list'}.png`));
+  await b.click(pick);
+  await b.waitFor(shownNow('.atlas-sheet'), 30000, `${row.name} focus sheet`);
+}
+
+async function fly(b: Browser, city: string, prefix = city): Promise<void> {
   const t = rowFor(city);
   if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]'))) && !(await b.eval<boolean>(shownNow('.map-levels-cur')))) await b.click('[data-nav="map"]');
   await b.waitFor(`${shownNow('.map-levels-cur')} || ${shownNow('[data-atlas-levels]')}`, 30000, 'the map');
-  const level = t.level ?? 'africa', wanted = level === 'africa' ? 1 : 2;
   if (!(await b.eval<boolean>(shownNow('[data-atlas-levels]')))) {
     await b.click('.map-levels-cur');
-    await b.click('[data-map-level="africa"]');
-    await b.waitFor(shownNow('[data-atlas-levels]'), 30000, 'the Africa atlas');
+    await b.click('[data-map-level="world"]');
+    await b.waitFor(shownNow('[data-atlas-levels]'), 30000, 'the World atlas');
   }
-  const atlasLevel = await b.eval<string>(`document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase()`);
-  if (!atlasLevel.startsWith(level)) { await b.click('[data-atlas-levels]'); await b.click(`[data-atlas-level="${wanted}"]`); }
-  await b.waitFor(`${shownNow('[data-atlas-levels]')} && document.querySelector('[data-atlas-levels]').textContent.trim().toLowerCase().startsWith(${JSON.stringify(level)})`, 30000, `${level} level`);
-  if (!(await b.eval<boolean>(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`))) await b.click('[data-atlas-list]').catch(() => undefined);
-  await b.waitFor(`!!document.querySelector('[data-atlas-search]') && document.querySelector('[data-atlas-search]').getBoundingClientRect().width > 1`, 15000, 'search');
-  await b.type('[data-atlas-search]', '');
-  const pick = `[data-atlas-pick="${t.pick}"]`;
-  const rowName = await b.eval<string>(`document.querySelector(${JSON.stringify(pick + ' b')})?.textContent?.trim() || ''`);
-  if (!rowName) throw new Error(`Missing atlas entry ${t.pick} for ${city}`);
-  await b.type('[data-atlas-search]', rowName);
-  await b.locate(pick);
-  await b.screenshot(join(out, `${city}-00-country-list.png`));
-  await b.click(pick);
+  await atlasLevel(b, 'world', prefix);
+  await b.screenshot(join(out, `${prefix}-00-world.png`));
+  await atlasLevel(b, t.continent.id, prefix);
+  await b.screenshot(join(out, `${prefix}-00-continent.png`));
+  await atlasPick(b, t.countryPick, prefix);
+  await b.screenshot(join(out, `${prefix}-00-country-focus.png`));
+  if (t.pick !== t.countryPick) {
+    await atlasLevel(b, t.level.id, prefix);
+    await atlasPick(b, t.pick, prefix);
+  }
+  const cityChoice = `[data-atlas-inspect-city="${city}"]`;
+  if (await b.eval<boolean>(`!!document.querySelector(${JSON.stringify(cityChoice)})`)) await b.click(cityChoice);
   await b.waitFor(`document.querySelector('[data-atlas-go="${city}:air"]')`, 30000, 'flight line');
-  await b.screenshot(join(out, `${city}-00-flight.png`));
+  await b.screenshot(join(out, `${prefix}-00-flight.png`));
+  const travelReadout = await b.eval<string>(`document.querySelector('.atlas-sheet')?.innerText || ''`);
+  notes.push(`${prefix}: observed travel card from ${current} to ${city}: ${travelReadout.replace(/\s+/g, ' ').trim()}`);
   await b.click(`[data-atlas-go="${city}:air"]`);
   if (await b.waitFor<string>(`document.querySelector('[data-atlas-sure]') ? 'ask' : ''`, 4000, 'confirm').catch(() => '')) await b.click('[data-atlas-sure]');
   await until(async () => {
@@ -187,7 +240,11 @@ async function fly(b: Browser, city: string): Promise<void> {
   }, 360000, `arrival in ${t.name}`);
   await until(async () => !(await lifeRaw(b, city)).state?.activeAction, 60000, 'the action to end');
   current = city;
-  await gameShown(b); await dismiss(b);
+  const arrivalReadout = await b.eval<string>(`[...document.querySelectorAll('[data-clock], .hud-clock, .hud-time, .hud-cash')].map(node => node.textContent?.trim()).filter(Boolean).join(' · ')`);
+  notes.push(`${prefix}: native arrival verified in ${t.name}; observed HUD ${arrivalReadout || 'no clock/cash selector readout'}`);
+  await gameShown(b);
+  await b.waitFor(`(() => { const nav = document.querySelector('[data-nav="map"]'); return !!nav && nav.getAttribute('aria-current') !== 'page'; })()`, 60000, 'the arrived city to leave the travel map');
+  await dismiss(b);
 }
 
 const timings: Record<string, unknown> = {};
@@ -195,6 +252,7 @@ const notes: string[] = [];
 
 /** Opens the map and measures: ms from the tap to a first full render (the map element built and labels drawn, two frames after). */
 async function openMap(b: Browser, key: string): Promise<void> {
+  must(!(await b.eval<boolean>(`document.querySelector('[data-nav="map"]')?.getAttribute('aria-current') === 'page'`)), `${key}: Map was already open before native entry`);
   await b.eval(`window.__rafs = 0; (function tick(){ window.__rafs++; requestAnimationFrame(tick); })(); true`);
   const t0 = Date.now();
   await b.click('[data-nav="map"]');
@@ -279,29 +337,61 @@ async function simpleMap(b: Browser, shot: (l: string) => Promise<void>, label: 
   await sleep(3000);
 }
 
-async function auditLabels(b: Browser, prefix: string): Promise<void> {
+async function auditLabels(b: Browser, prefix: string, listState: 'top' | 'bottom' | false = false, allowFindMe = false): Promise<void> {
   const result = await b.eval<{ critical: number; failures: string[]; labels: unknown[] }>(`(() => {
     const box = (node) => { const r = node.getBoundingClientRect(); return { l:r.left, r:r.right, t:r.top, b:r.bottom }; };
     const visible = (node) => !node.hidden && node.getBoundingClientRect().width > 0 && node.getBoundingClientRect().height > 0;
-    const controls = [...document.querySelectorAll('.m3-controls button')].filter(visible).map(box);
+    const controls = [...document.querySelectorAll(${JSON.stringify(process.argv.includes('--phone-ui-audit') ? '.m3-controls button,.map-levels-cur,.map-credit' : '.m3-controls button')})].filter(visible).map(box);
     const failures = [], labels = []; let critical = 0;
     for (const node of [...document.querySelectorAll('.m3-label')].filter(visible)) {
       const r = box(node), important = node.matches('.is-here,.is-selected,.is-going');
       const overlap = controls.some(c => r.l < c.r && r.r > c.l && r.t < c.b && r.b > c.t);
-      labels.push({venue:node.dataset.venue, text:node.textContent, box:r, important, overlap});
-      if (important) { critical++; if (r.l < 0 || r.r > innerWidth || r.t < 0 || r.b > innerHeight) failures.push('critical label outside viewport: '+node.dataset.venue); }
+      const outside = r.l < 0 || r.r > innerWidth || r.t < 0 || r.b > innerHeight;
+      labels.push({venue:node.dataset.venue, text:node.textContent, box:r, important, overlap, outside});
+      if (important) critical++;
+      if (outside) failures.push((important ? 'critical ' : '')+'label outside viewport: '+node.dataset.venue);
       if (overlap) failures.push('label under controls: '+node.dataset.venue);
     }
-    if (!critical) failures.push('no current/selected/trip label visible');
-    return {critical, failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
+    const reachable = node => {
+      if (!node || !visible(node) || node.disabled || node.getAttribute('aria-disabled') === 'true') return false;
+      const r = box(node), x = (r.l + r.r) / 2, y = (r.t + r.b) / 2;
+      return x >= 0 && x < innerWidth && y >= 0 && y < innerHeight && node.contains(document.elementFromPoint(x, y));
+    };
+    const list = document.querySelector('#map-list');
+    const listLocation = ${listState == 'top'} && list && !list.hidden && (reachable(list.querySelector('.ll-row button.is-here')) || reachable(document.querySelector('[data-m3="me"]')));
+    const listExit = ${listState == 'bottom'} && list && !list.hidden && reachable(document.querySelector('.map-handle'));
+    const findMeRecovery = ${allowFindMe} && reachable(document.querySelector('[data-m3="me"]'));
+    if (!critical && !listLocation && !listExit && !findMeRecovery) failures.push('no current location label or reachable list recovery control');
+    return {critical, listLocation: Boolean(listLocation), listExit: Boolean(listExit), findMeRecovery: Boolean(findMeRecovery), failures, labels, controls, viewport: {width: innerWidth, height: innerHeight}};
   })()`);
   writeFileSync(join(out, `${prefix}-labels.json`), JSON.stringify(result, null, 2));
   must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
 }
 
+
+async function auditPlaceList(b: Browser, prefix: string): Promise<void> {
+  const result = await b.eval<{ visibleRows: number; failures: string[] }>(`(() => {
+    const root = document.querySelector('#map-list'), failures = [];
+    const rows = [...(root?.querySelectorAll('.ll-row button') ?? [])];
+    const visible = rows.filter(node => {
+      const r = node.getBoundingClientRect(), x = (r.left + r.right) / 2, y = (r.top + r.bottom) / 2;
+      return r.height >= 40 && x >= 0 && x < innerWidth && y >= 0 && y < innerHeight && node.contains(document.elementFromPoint(x, y));
+    });
+    if (!visible.length) failures.push('opened place list has no visible usable place row');
+    const jump = root?.querySelector('.ll-top'), last = rows.at(-1);
+    if (jump && last) {
+      const a = jump.getBoundingClientRect(), z = last.getBoundingClientRect();
+      if (a.width && a.height && a.left < z.right && a.right > z.left && a.top < z.bottom && a.bottom > z.top) failures.push('Jump to top overlaps final place row');
+    }
+    return { visibleRows: visible.length, failures };
+  })()`);
+  writeFileSync(join(out, `${prefix}-list-audit.json`), JSON.stringify(result, null, 2));
+  must(!result.failures.length, `${prefix}: ${result.failures.join('; ')}`);
+}
+
 async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?: boolean } = {}): Promise<void> {
   if (opts.phone) await dismiss(b, 3000);
-  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`); };
+  const shot = async (label: string): Promise<void> => { await sleep(700); await dismiss(b, 800); must(!(await b.eval<boolean>(shownNow('button.tour-skip'))), `${prefix}-${label}: tour obscures the map`); await b.screenshot(join(out, `${prefix}-${label}.png`)); console.log(`shot ${prefix}-${label}`); if (process.argv.includes('--label-audit') && opts.phone && (process.argv.includes('--phone-ui-audit') || label === '04-whole-city' || label === '08-simple-map')) await auditLabels(b, `${prefix}-${label}`, label === '02-list' ? 'top' : label === '03-list-bottom' ? 'bottom' : false, label === '01-default' || label === '01b-after-6s'); if (process.argv.includes('--phone-ui-audit') && opts.phone && (label === '02-list' || label === '03-list-bottom')) await auditPlaceList(b, `${prefix}-${label}`); };
   await openMap(b, prefix);
   if (waterOnly) {
     const w = waterAt[prefix];
@@ -313,8 +403,17 @@ async function mapSet(b: Browser, prefix: string, place: string, opts: { phone?:
   await shot('01-default');
   if (opts.phone) { await sleep(6000); await shot('01b-after-6s'); await dismiss(b, 6000); }
   if (opts.phone) { await listOpen(b); await shot('02-list'); await scrollList(b, 'bottom'); await shot('03-list-bottom'); }
+  if (opts.phone) {
+    if (await b.eval<boolean>(`document.querySelector('.map-handle')?.getAttribute('aria-expanded') === 'true'`)) await b.click('.map-handle');
+    await b.waitFor(`document.querySelector('#map-list')?.hidden === true`, 5000, 'closed place list');
+    if (process.argv.includes('--phone-ui-audit')) {
+      await b.waitFor(`(() => { const n = document.querySelector('[data-m3="me"]'); if (!n || n.disabled) return false; const r = n.getBoundingClientRect(); return r.width > 0 && r.height > 0 && n.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)); })()`, 5000, 'reachable Find me after hiding list');
+      await b.click('[data-m3="me"]');
+      await shot('03b-location-recovered');
+    }
+    await sleep(600);
+  }
   await pan(b, prefix);
-  if (opts.phone) { await b.click('.map-handle').catch(() => undefined); await sleep(600); }
   await click3(b, 'fit', 1); await sleep(1500);
   if (short.has(prefix) && !opts.phone) { await simpleMap(b, shot, '08-simple-map', prefix); return; }
   await shot(opts.phone ? '04-whole-city' : '02-whole-city');
@@ -380,20 +479,33 @@ try {
   await fund(id, 9000000);
   await until(async () => ((await lifeRaw(b!, 'lagos')).state?.cash ?? 0) >= 9000000, 30000, 'funded wallet');
   await dismiss(b, 1000);
-  await mapSet(b, 'lagos', '');
+  if (!cities.includes('lagos')) await mapSet(b, 'lagos', '');
   for (const city of cities) {
     if (city !== current) await fly(b, city);
     await mapSet(b, city, PLACE_TO_OPEN[city] ?? '');
     if (phoneCities.has(city)) {
       for (const [pw, ph] of phones) {
         await b.setViewport({ width: pw, height: ph, scale: 3, mobile: true });
-        await b.send('Storage.clearDataForOrigin', { origin: base, storageTypes: 'local_storage,session_storage,indexeddb,cache_storage,service_workers' });
+        if (await b.eval<boolean>(`document.querySelector('[data-nav="map"]')?.getAttribute('aria-current') === 'page'`)) await b.click('[data-nav="map"]');
+        await b.waitFor(`(() => {
+          const nav = document.querySelector('[data-nav="map"]');
+          const saved = JSON.parse(sessionStorage.getItem('joinallworld-view') || 'null');
+          return !!nav && nav.getAttribute('aria-current') !== 'page' && saved?.mode === 'venue' && saved.camera === null;
+        })()`, 20000, 'the venue view to be saved without a map camera');
+        await b.goto('about:blank');
         await b.goto(base + '/');
         await gameShown(b); await dismiss(b, 12000);
         await mapSet(b, `${city}-phone${pw}`, '', { phone: true });
       }
       await b.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
       await b.goto(base + '/'); await gameShown(b); await dismiss(b);
+    }
+    if (roundtrip && current !== 'lagos') {
+      await b.setViewport({ width: 1280, height: 800, scale: 1, mobile: false });
+      await fly(b, 'lagos', `${city}-return-lagos`);
+      await gameShown(b); await dismiss(b);
+      await b.screenshot(join(out, `${city}-return-lagos-arrived-home.png`));
+      notes.push(`${city}: roundtrip completed through native flight controls; arrived Lagos after destination desktop/phone map sets`);
     }
   }
   const errors = b.consoleErrors.filter((e) => !/401|409/.test(e));

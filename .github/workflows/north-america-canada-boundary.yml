@@ -147,12 +147,14 @@ jobs:
             printf '%s\n' "$signal_name" > "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-signal.txt"
             printf 'utc=%s bash_pid=%s boundary_pid=%s monitor_pid=%s\n' "$(date -u +%FT%TZ)" "$$" "${boundary_pid:-}" "${monitor_pid:-}" \
               > "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-signal-context.txt"
+            printf 'DIAG_SIGNAL signal=%s utc=%s bash_pid=%s boundary_pid=%s monitor_pid=%s\n' "$signal_name" "$(date -u +%FT%TZ)" "$$" "${boundary_pid:-}" "${monitor_pid:-}"
             if [[ -n "$monitor_pid" ]]; then kill -TERM "$monitor_pid" 2>/dev/null || true; fi
             if [[ -n "$boundary_pid" ]]; then kill -TERM "$boundary_pid" 2>/dev/null || true; fi
           }
           trap 'capture_signal SIGTERM' TERM
           trap 'capture_signal SIGINT' INT
           source_sha=$(python -c 'import json,os; from pathlib import Path; print(json.loads((Path(os.environ["RUNNER_TEMP"])/"canada-boundary/publish/source-receipt.json").read_text())["sha256"])')
+          printf 'DIAG_BOUNDARY_START utc=%s bash_pid=%s source_sha256=%s\n' "$(date -u +%FT%TZ)" "$$" "$source_sha"
           /usr/bin/time -v -o "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-time.txt" timeout --signal=TERM --kill-after=30s 25m \
             python boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py \
             --pbf "$RUNNER_TEMP/canada-boundary/country.osm.pbf" --country CA \
@@ -163,7 +165,7 @@ jobs:
           boundary_pid=$!
           python scripts/geo/north-america-source/boundary-run-monitor.py \
             --root "$RUNNER_TEMP/canada-boundary" --pid "$boundary_pid" --interval 5 \
-            --output "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-samples.jsonl" &
+            --output "$RUNNER_TEMP/canada-boundary/publish/resources/boundary-samples.jsonl" --mirror-stdout &
           monitor_pid=$!
           wait "$boundary_pid"
           diagnostic_rc=$?

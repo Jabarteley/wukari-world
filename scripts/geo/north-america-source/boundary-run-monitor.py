@@ -203,6 +203,7 @@ def main():
     parser.add_argument('--pid', type=int, help='Sample this process and descendants until it exits')
     parser.add_argument('--interval', type=float, default=5.0, help='Sampling interval in seconds (default: 5)')
     parser.add_argument('--output', type=Path, help='JSONL destination; stdout when omitted')
+    parser.add_argument('--mirror-stdout', action='store_true', help='Also stream each sample to stdout when --output is set')
     args = parser.parse_args()
     if not args.root.is_dir():
         parser.error('--root must be an existing directory')
@@ -222,8 +223,12 @@ def main():
     try:
         while True:
             record = snapshot(args.root, args.pid, stopped['signal'])
-            output.write(json.dumps(record, separators=(',', ':'), allow_nan=False) + '\n')
+            line = json.dumps(record, separators=(',', ':'), allow_nan=False) + '\n'
+            output.write(line)
             output.flush()
+            if args.mirror_stdout and output is not sys.stdout:
+                sys.stdout.write(line)
+                sys.stdout.flush()
             if args.pid is None or stopped['signal'] or not record['processTree']:
                 break
             time.sleep(args.interval)

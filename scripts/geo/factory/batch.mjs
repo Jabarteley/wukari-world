@@ -110,7 +110,7 @@ for (const target of table.targets) {
             });
         };
         const semanticKinds = [...new Set(pool.map(element => addedKind(element.tags)).filter(Boolean))].sort();
-        const maximumPerKind = 3;
+        const maximumPerKind = 3, relaxedMaximumPerKind = 5;
         row.eligibleKindCounts = Object.fromEntries(semanticKinds.map(kind => [kind, new Set(pool.filter(element => addedKind(element.tags) === kind).map(element => normal(name(element)))).size]));
         row.semanticPolicy = { maximumPerKind, targetPlaces: 24, minimumPlaces: 20 };
         const unavailableSemanticKinds = [];
@@ -120,13 +120,21 @@ for (const target of table.targets) {
             if (element) add(element);
             else unavailableSemanticKinds.push(kind);
         }
-        while (choices.length < 24) {
-            const element = rank(pool.filter(element => {
-                const kind = addedKind(element.tags);
-                return kind && choices.filter(choice => choice.kind === kind).length < maximumPerKind;
-            }))[0];
-            if (!element) break;
-            add(element);
+        const fill = cap => {
+            while (choices.length < 24) {
+                const element = rank(pool.filter(element => {
+                    const kind = addedKind(element.tags);
+                    return kind && choices.filter(choice => choice.kind === kind).length < cap;
+                }))[0];
+                if (!element) break;
+                add(element);
+            }
+        };
+        fill(maximumPerKind);
+        // Only when the cap leaves fewer than the 20 venues the acceptance contract needs (PLACES.length >= 20 in acceptance.mjs; nothing there limits a kind).
+        if (choices.length < 20) {
+            fill(relaxedMaximumPerKind);
+            row.semanticPolicy.relaxedMaximumPerKind = relaxedMaximumPerKind;
         }
         row.semanticCoverage = semanticKinds.map(kind => ({ kind, refs: choices.filter(choice => choice.kind === kind).map(choice => choice.ref) }));
         row.unavailableSemanticKinds = unavailableSemanticKinds;

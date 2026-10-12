@@ -3,7 +3,9 @@ name: Europe city factory
 on:
   push:
     branches: ['codex/world-europe-20261011']
-    paths: ['scripts/geo/factory/europe-factory-targets.json']
+    paths:
+      - 'scripts/geo/factory/europe-factory-targets.json'
+      - '.github/workflows/europe-city-factory.yml'
 
 permissions:
   actions: read
@@ -55,6 +57,11 @@ jobs:
             --boundary-root "$FACTORY_SANDBOX/boundaries" \
             --outdir "$FACTORY_SANDBOX/provenance" \
             --sandbox-root "$FACTORY_SANDBOX"
+      - name: Verify generation and runtime compatibility
+        run: |
+          node --experimental-strip-types scripts/geo/factory/runtime-contract.mjs \
+            --source "$GITHUB_WORKSPACE/baseline" \
+            --out "$FACTORY_SANDBOX/provenance/runtime-contract.json"
       - name: Prepare separate disposable app
         run: |
           set -euo pipefail
@@ -63,11 +70,6 @@ jobs:
           printf '%s\n' '{"disposable":true}' > "$FACTORY_SANDBOX/app/.factory-disposable.json"
           npm ci --prefix "$FACTORY_SANDBOX/app" --ignore-scripts --no-audit --no-fund
           ln -s "$FACTORY_SANDBOX/app/node_modules" baseline/node_modules
-      - name: Verify generation and runtime compatibility
-        run: |
-          node --experimental-strip-types scripts/geo/factory/runtime-contract.mjs \
-            --source "$GITHUB_WORKSPACE/baseline" \
-            --out "$FACTORY_SANDBOX/provenance/runtime-contract.json"
       - name: Install Linux SVG renderer
         run: |
           sudo apt-get update

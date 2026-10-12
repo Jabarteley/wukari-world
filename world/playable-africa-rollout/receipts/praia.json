@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "praia",
+  "countryIso2": "CV",
+  "generationIdentity": {
+    "cityId": "praia",
+    "stateId": "cv-praia",
+    "stateName": "Praia"
+  },
+  "inventorySha256": "326bfbc4188780ac8baa28590a05667656a3f970080b57186b786225e14829f5",
+  "inventoryPath": "world/playable-africa-rollout/sources/praia.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "praia-airport",
+    "name": "Nelson Mandela International Airport",
+    "lon": -23.484728,
+    "lat": 14.941126,
+    "sourceUrl": "https://ourairports.com/airports/GVNP/"
+  },
+  "bounds": [
+    14.735400210066022,
+    -23.695594354538553,
+    15.09716198993398,
+    -23.323424645461447
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/cape-verde-261011.osm.pbf",
+      "datasetSha256": "7ff55801c3e64c9f1e3f0be4de3f2353df744deddafdb2dbdf19936fba929fdf",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "7659121961c482c3479b77c8f6dbd072d941f165be1e0761049d9feb5d93dbb2",
+          "elements": 209
+        },
+        {
+          "file": "extras.json",
+          "sha256": "15cac9644aab288cd58cc50eb095b68cafdc77b5793f9f13e7fd43cf443559a6",
+          "elements": 38
+        },
+        {
+          "file": "water.json",
+          "sha256": "5dc58e2339002bf84548dda962e25e2eba7b696655f639c575794c163a3f95d9",
+          "elements": 980
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "982904942924de08d719bb66c5b82048ad3544c1ffa47da684b35b265889e2da",
+          "elements": 131
+        },
+        {
+          "file": "roads.json",
+          "sha256": "7526430647ec9ee1e6863472c7e2bee813bf49340262a27b027c6adc1c7de511",
+          "elements": 283
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 50,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 12,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 209,
+    "extras": 38,
+    "water": 980,
+    "landuse": 131,
+    "roads": 283
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1228,
+      "sha256": "8531906641e2be9078acba0fc073e84ed36cdb0a03730e5cc4925ada4827cfea"
+    },
+    "geometry.ts": {
+      "bytes": 119196,
+      "sha256": "5c96e150f659528de8828bf21e5ede160198f643976d2171b227f0bd0cc3fb8d"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "070389c82ed438db076dd94d5b49d9519c5e53c8f1885b24f9d5122a28610178"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/praia.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

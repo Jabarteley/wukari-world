@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "niamey",
+  "countryIso2": "NE",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Niamey",
+    "coordinatesWgs84": [
+      2.109823,
+      13.524834
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/niger-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "niamey-airport",
+    "name": "Diori Hamani International Airport",
+    "lon": 2.18361,
+    "lat": 13.4815,
+    "sourceUrl": "https://ourairports.com/airports/DRRN/"
+  },
+  "boxes": {
+    "play": [
+      13.343953110066021,
+      1.9248950321127272,
+      13.70571488993398,
+      2.294750967887273
+    ],
+    "core": [
+      13.479613777516505,
+      2.0636175593294976,
+      13.570054222483495,
+      2.1560284406705024
+    ],
+    "outline": [
+      13.29395311006602,
+      1.8748950321127271,
+      13.75571488993398,
+      2.344750967887273
+    ],
+    "wide": [
+      12.743953110066021,
+      1.3248950321127273,
+      14.305714889933979,
+      2.894750967887273
+    ],
+    "water": [
+      13.343953110066021,
+      1.9248950321127272,
+      13.70571488993398,
+      2.294750967887273
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/niger-261011.osm.pbf",
+    "datasetSha256": "e0c88053bc4ad460ab0839e1806b0fc0a38be20e6808f6e488c4b332e349ae82",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "112e338127106a00ea4a88e7b20c4c19d8b5e21e0d1a6d0fc6af889cae595b9c",
+        "elements": 473
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ddf5e81a722c64b641ad484b78d0d1219d2b053eb1712ff16b42437df531eb9b",
+        "elements": 248
+      },
+      {
+        "file": "water.json",
+        "sha256": "a514429a99eb1570c102ca96a075aaa4b66cfaf9e86cd8e75e3e00a025d789e3",
+        "elements": 192
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "545efb94eb316a4fdbf1b577d9e89e8a3dd0f6918ad06115862f43f28c435925",
+        "elements": 1969
+      },
+      {
+        "file": "roads.json",
+        "sha256": "7c6e3208e7fcb1c79502b67f181a9ab8928e0e36301b41d8009a315e4572c789",
+        "elements": 575
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Sonef Tranport Voyageurs",
+      "osm": "node/2750057668",
+      "coordinatesWgs84": [
+        2.110019,
+        13.530901
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurant Banodo",
+      "osm": "node/7468674723",
+      "coordinatesWgs84": [
+        2.169751,
+        13.429116
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Abdou Moumouni University",
+      "osm": "relation/13527816",
+      "coordinatesWgs84": [
+        2.090059,
+        13.50101
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hôpital de Gawèye",
+      "osm": "way/789361639",
+      "coordinatesWgs84": [
+        2.107007,
+        13.487411
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zen Espace",
+      "osm": "way/699097345",
+      "coordinatesWgs84": [
+        1.96618,
+        13.594749
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Bougoum",
+      "osm": "way/687861467",
+      "coordinatesWgs84": [
+        1.985851,
+        13.433995
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Great Mosque of Niamey",
+      "osm": "way/38758638",
+      "coordinatesWgs84": [
+        2.13289,
+        13.52212
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rond point Tolle",
+      "osm": "node/11104852426",
+      "coordinatesWgs84": [
+        2.048109,
+        13.576465
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "SONIDEP Dépôt de Sorey",
+      "osm": "node/11962382179",
+      "coordinatesWgs84": [
+        2.250861,
+        13.438112
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "AGRHYMET Regional Center",
+      "osm": "node/2454056091",
+      "coordinatesWgs84": [
+        2.100806,
+        13.497918
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stade Général Seyni Kountché",
+      "osm": "way/611735693",
+      "coordinatesWgs84": [
+        2.108939,
+        13.527216
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Boubou Hama National Museum",
+      "osm": "node/1684101906",
+      "coordinatesWgs84": [
+        2.10822,
+        13.512039
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Hospital of Niamey",
+      "osm": "way/308752310",
+      "coordinatesWgs84": [
+        2.101281,
+        13.512975
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Notre-Dame du Perpétuel Secours",
+      "osm": "way/380017757",
+      "coordinatesWgs84": [
+        2.110649,
+        13.517765
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place Djibo Bakary",
+      "osm": "node/2715713022",
+      "coordinatesWgs84": [
+        2.109249,
+        13.514066
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Institut National de la Jeunesse, des Sports et de la Culture",
+      "osm": "node/11419918096",
+      "coordinatesWgs84": [
+        2.096338,
+        13.504903
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "École des Mines de l'industrie et de la Geologie",
+      "osm": "node/4491536811",
+      "coordinatesWgs84": [
+        2.087807,
+        13.501355
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "MATERNITE",
+      "osm": "way/1186878593",
+      "coordinatesWgs84": [
+        2.199327,
+        13.537442
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kangaweydo",
+      "osm": "node/7444882086",
+      "coordinatesWgs84": [
+        2.120458,
+        13.59591
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parc d'Attraction Aéroport",
+      "osm": "way/1160782464",
+      "coordinatesWgs84": [
+        2.176227,
+        13.473248
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché Kalley Plateau",
+      "osm": "way/1013753293",
+      "coordinatesWgs84": [
+        2.150004,
+        13.56284
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc d'agrément",
+      "osm": "way/628422326",
+      "coordinatesWgs84": [
+        2.068227,
+        13.536705
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Restaurant Soniloga",
+      "osm": "node/10770891720",
+      "coordinatesWgs84": [
+        2.211975,
+        13.455965
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurant Bani Bani",
+      "osm": "way/921259734",
+      "coordinatesWgs84": [
+        2.163959,
+        13.509341
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "15a7ea86ad0f37e26e4b318b9471d83129f1dfb1a63d90b53f57a41accd8bf72"
+    },
+    "geometry.ts": {
+      "bytes": 48582,
+      "sha256": "2889137c8018686acb019392bffd29059ca9b578bcf07c3ae315faf8a7af1335"
+    },
+    "places.ts": {
+      "bytes": 9628,
+      "sha256": "9c643c7d6af7f81826fbefd315b3d9f9eda5b4a83f996db10094b2dab0cfbb10"
+    },
+    "terrain.ts": {
+      "bytes": 73169,
+      "sha256": "23461c503dc04f361a80c0bda032e88b901654b265761fe9fb8a86292bff091d"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "77d937c998bb633a9065021df37b4d9b8df0d162b5fe7dcff188fee4dab84580"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -17,6 +17,8 @@ export interface PlacePick {
   label?: string
   /** Only for a place that must stand within a kilometre of the play box edge (it keeps its real point). */
   atEdge?: true
+  /** Audit record when the slot's primary tag had no eligible source and a documented fallback feature was used (factory/slot-fallback.mjs). */
+  slotFallback?: { slot: NonNullable<DestinationPlace['slot']>; used: string; ref: string }
 }
 
 export interface NamePick {

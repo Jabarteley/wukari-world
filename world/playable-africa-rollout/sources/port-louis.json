@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-louis",
+  "countryIso2": "MU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Port Louis",
+    "coordinatesWgs84": [
+      57.5028044,
+      -20.1624522
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/mauritius-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "port-louis-airport",
+    "name": "Sir Seewoosagur Ramgoolam International Airport",
+    "lon": 57.683601,
+    "lat": -20.430201,
+    "sourceUrl": "https://ourairports.com/airports/FIMP/"
+  },
+  "boxes": {
+    "play": [
+      -20.439245044496698,
+      57.31119049223443,
+      -19.981571310066023,
+      57.694418307765574
+    ],
+    "core": [
+      -20.207672422483494,
+      57.454942805812735,
+      -20.117231977516507,
+      57.55066599418727
+    ],
+    "outline": [
+      -20.4892450444967,
+      57.261190492234434,
+      -19.931571310066023,
+      57.74441830776557
+    ],
+    "wide": [
+      -21.0392450444967,
+      56.71119049223443,
+      -19.381571310066022,
+      58.294418307765575
+    ],
+    "water": [
+      -21.0392450444967,
+      56.71119049223443,
+      -19.381571310066022,
+      58.294418307765575
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/mauritius-261011.osm.pbf",
+    "datasetSha256": "cbbaa7acf21b3b4d16cb75e6b8a74fd4a28c301a36b44112777f840ba06225c9",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "8e26c032a3f2eecf91dd98caede0a9cb16bf6c30d9e87b22c0c1ea0e64002a9b",
+        "elements": 1189
+      },
+      {
+        "file": "extras.json",
+        "sha256": "30d4cf49fd7f6834197f47a1d8ab7cabfa692fa0077d80c049341a2404d904f8",
+        "elements": 170
+      },
+      {
+        "file": "water.json",
+        "sha256": "c35afc6d2428011fcbbce110ac03bbad5431a6dfb77feb8218c7b744dccbd364",
+        "elements": 335
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "bf7271f8719bc78e014277b153ea3f0ff5160f2000347e75ca1e58de12d1b625",
+        "elements": 1006
+      },
+      {
+        "file": "roads.json",
+        "sha256": "92b100b418d22a768e552f0c494cc97d4cb8df7f61595735cff63e9a00d4dcaa",
+        "elements": 1734
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Port Louis Victoria",
+      "osm": "node/7158546294",
+      "coordinatesWgs84": [
+        57.497979,
+        -20.162591
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pakbo",
+      "osm": "node/4981968897",
+      "coordinatesWgs84": [
+        57.369612,
+        -20.276988
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Royal College Curepipe",
+      "osm": "way/223523808",
+      "coordinatesWgs84": [
+        57.523209,
+        -20.318144
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clinique du Nord",
+      "osm": "node/2153376271",
+      "coordinatesWgs84": [
+        57.559853,
+        -20.008509
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Curepipe Botanic Gardens",
+      "osm": "way/126227132",
+      "coordinatesWgs84": [
+        57.513023,
+        -20.325118
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dr James Burty David Marketplace",
+      "osm": "way/1149966482",
+      "coordinatesWgs84": [
+        57.597759,
+        -20.404166
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Francois D'Assise",
+      "osm": "way/170358867",
+      "coordinatesWgs84": [
+        57.576831,
+        -20.107626
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Camp-Levieux",
+      "osm": "node/5981672043",
+      "coordinatesWgs84": [
+        57.456425,
+        -20.247734
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le château du Réduit",
+      "osm": "way/1006065313",
+      "coordinatesWgs84": [
+        57.487508,
+        -20.228639
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université de technologie, Île Maurice",
+      "osm": "way/305142563",
+      "coordinatesWgs84": [
+        57.467527,
+        -20.176939
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Anjalay Stadium",
+      "osm": "way/296191237",
+      "coordinatesWgs84": [
+        57.600462,
+        -20.078722
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Adélaïde",
+      "osm": "way/33142632",
+      "coordinatesWgs84": [
+        57.510254,
+        -20.163729
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Germain Comarmond",
+      "osm": "way/287506166",
+      "coordinatesWgs84": [
+        57.420446,
+        -20.246031
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sir Gaetan Duval Stadium",
+      "osm": "way/154287619",
+      "coordinatesWgs84": [
+        57.476502,
+        -20.246586
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Paul Octave Wiehe Auditorium",
+      "osm": "way/471868507",
+      "coordinatesWgs84": [
+        57.497531,
+        -20.233416
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "L'Aventure du Sucre",
+      "osm": "way/170362036",
+      "coordinatesWgs84": [
+        57.57418,
+        -20.097686
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mosquée Djoumâ",
+      "osm": "way/495476854",
+      "coordinatesWgs84": [
+        57.505068,
+        -20.159666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "New Eton College",
+      "osm": "way/475489173",
+      "coordinatesWgs84": [
+        57.472248,
+        -20.243039
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée d'Histoire Naturelle",
+      "osm": "relation/14750287",
+      "coordinatesWgs84": [
+        57.502458,
+        -20.163252
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Louis Cathedral",
+      "osm": "way/158575993",
+      "coordinatesWgs84": [
+        57.506496,
+        -20.164533
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "L a marmite mauricienne",
+      "osm": "node/5558934330",
+      "coordinatesWgs84": [
+        57.364767,
+        -20.283784
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Chamarel",
+      "osm": "node/1793110377",
+      "coordinatesWgs84": [
+        57.38614,
+        -20.422067
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Primary School",
+      "osm": "node/3753991177",
+      "coordinatesWgs84": [
+        57.684076,
+        -20.1484
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Health Center Montagne Blanche",
+      "osm": "way/445169724",
+      "coordinatesWgs84": [
+        57.661722,
+        -20.283763
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1269,
+      "sha256": "baa3db3b3bbd3b3509198376efb3ecf1b16a54dcba52487b66c8e900dbe21736"
+    },
+    "geometry.ts": {
+      "bytes": 809773,
+      "sha256": "06df0bccdbdb8f77d9d6111811d1fad709dc2b5f1875abe2f0b5eeb46186cef6"
+    },
+    "places.ts": {
+      "bytes": 9820,
+      "sha256": "8d4d353c248ecc3b602042565f50709117e4f410d0878c9fba8bda9c906d95d3"
+    },
+    "terrain.ts": {
+      "bytes": 408483,
+      "sha256": "d9bc881638a62c243ece6a5275ed9b93732f182b93339e83a669a65271c09769"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "4d2073daa71792cf52de0649e097a573514a7322b41ab6d0ee38c77cfe5b122c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

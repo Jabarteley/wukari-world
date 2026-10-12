@@ -316,5 +316,21 @@ export const AUTHORED_CITY_LINKS = Object.freeze([
     compactLagosFlight("auckland","Auckland",16523,900000,20),
     compactLagosFlight("dublin","Dublin",5288,443000,20),
     compactLagosFlight("rome","Rome",4042,343000,20),
-    compactLagosFlight("wellington","Wellington",16048,900000,20)
+    compactLagosFlight("wellington","Wellington",16048,900000,20),
+    compactLagosFlight("asmara","Asmara",3997,340000,20),
+    compactLagosFlight("bangui","Bangui",1697,156000,20),
+    compactLagosFlight("bissau","Bissau",2168,193000,20),
+    compactLagosFlight("conakry","Conakry",1913,173000,20),
+    compactLagosFlight("djibouti","Djibouti",4399,372000,20),
+    compactLagosFlight("khartoum","Khartoum",3333,287000,20),
+    compactLagosFlight("malabo","Malabo",667,73000,18),
+    compactLagosFlight("mogadishu","Mogadishu",4675,394000,20),
+    compactLagosFlight("monrovia","Monrovia",1570,146000,20),
+    compactLagosFlight("moroni","Moroni",4848,408000,20),
+    compactLagosFlight("niamey","Niamey",799,84000,19),
+    compactLagosFlight("nouakchott","Nouakchott",2467,217000,20),
+    compactLagosFlight("port-louis","Port Louis",6611,549000,20),
+    compactLagosFlight("praia","Praia",3084,267000,20),
+    compactLagosFlight("sao-tome","São Tomé",774,82000,19),
+    compactLagosFlight("victoria","Victoria",5908,493000,20)
   ] satisfies readonly CityLink[])

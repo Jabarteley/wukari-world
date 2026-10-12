@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "cityId": "victoria",
+  "countryIso2": "SC",
+  "generationIdentity": {
+    "cityId": "victoria",
+    "stateId": "sc-victoria",
+    "stateName": "Victoria"
+  },
+  "inventorySha256": "339d0980a2a6e00f60096687979b0e765771b87fc134053ba48a00472b4d3a64",
+  "inventoryPath": "world/playable-africa-rollout/sources/victoria.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "victoria-airport",
+    "name": "Seychelles International Airport",
+    "lon": 55.521801,
+    "lat": -4.67434,
+    "sourceUrl": "https://ourairports.com/airports/FSIA/"
+  },
+  "bounds": [
+    -4.804089389933978,
+    55.272063365586185,
+    -4.442327610066021,
+    55.63265463441382
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/seychelles-261011.osm.pbf",
+      "datasetSha256": "0ee67d96b0add787af8e65d408fb640b77fedc67fcbfa3c20a3c30017b99bab1",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5bc50c1fc61716c2d8bb71e7ccc3ef1430e268117a362251f6dd1a8c7e6464a1",
+          "elements": 200
+        },
+        {
+          "file": "extras.json",
+          "sha256": "fe0f999e74ac1e3b261b8e16e67a5b99aa67153650f052e26544529b0ae48346",
+          "elements": 41
+        },
+        {
+          "file": "water.json",
+          "sha256": "282d264197893a666b6e684dcbc649e6b201922baf550783d5fa5ac0394f631b",
+          "elements": 148
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "2e3d280fe9334c9465e28bd847bf24a9d37a45578e469415f10493fa51c49e7b",
+          "elements": 70
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a21600783c5e3c95f771ce6cc665516e70976e6a70534b9c32a65a1614770680",
+          "elements": 280
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 49,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 9,
+    "reachWaterPolygons": 8
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "village": 18
+    }
+  },
+  "observed": {
+    "places": 200,
+    "extras": 41,
+    "water": 148,
+    "landuse": 70,
+    "roads": 280
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1238,
+      "sha256": "5c8b6866b7480fa950523b9cd13b878631166dca04d0c7bee5a2f9065bcf6960"
+    },
+    "geometry.ts": {
+      "bytes": 315641,
+      "sha256": "9aaf675c1336c70c32421bd018e225578124fb72ed8a5ccb611a53844f891ca9"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "7e19aab477c83404abe535a303d7c9f74a1926451c485630edd2506208070916"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/victoria.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

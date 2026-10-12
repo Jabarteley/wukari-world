@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "khartoum",
+  "countryIso2": "SD",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Khartoum",
+    "coordinatesWgs84": [
+      32.5349123,
+      15.5635972
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/sudan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "khartoum-airport",
+    "name": "Khartoum International Airport",
+    "lon": 32.5532,
+    "lat": 15.5895,
+    "sourceUrl": "https://ourairports.com/airports/HSSK/"
+  },
+  "boxes": {
+    "play": [
+      15.382716310066021,
+      32.34824662889724,
+      15.74447808993398,
+      32.72157797110276
+    ],
+    "core": [
+      15.518376977516505,
+      32.48827688160687,
+      15.608817422483495,
+      32.58154771839313
+    ],
+    "outline": [
+      15.33271631006602,
+      32.298246628897246,
+      15.79447808993398,
+      32.77157797110276
+    ],
+    "wide": [
+      14.782716310066021,
+      31.748246628897242,
+      16.34447808993398,
+      33.32157797110276
+    ],
+    "water": [
+      15.382716310066021,
+      32.34824662889724,
+      15.74447808993398,
+      32.72157797110276
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/sudan-261011.osm.pbf",
+    "datasetSha256": "3e5a2e1854c6245ff25494cba09dffc12bbe5be596f518518d25a2a258c1dff3",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "826e6e0a84a806e1019b698e505e89d2d450e1065637e533096bb8e8d584fe85",
+        "elements": 1966
+      },
+      {
+        "file": "extras.json",
+        "sha256": "5ba680012a33d5c43b2a0fe1c58f3a6d2a6fbf82e3758281b552bc069de985b9",
+        "elements": 459
+      },
+      {
+        "file": "water.json",
+        "sha256": "24268d5db7f72f9cfc610df477ce89a53e8f83da2105764089baa6e6865bca0d",
+        "elements": 35
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "90f99b3bf2704ae5267e2caca2d368bafcbb15a33901d39c43bb01662e6e4008",
+        "elements": 1298
+      },
+      {
+        "file": "roads.json",
+        "sha256": "730196878654214d6248c10ccd155d6617c3d720c455319db2b00efc4b39cb93",
+        "elements": 514
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "صينية القندول",
+      "osm": "node/35462161",
+      "coordinatesWgs84": [
+        32.523449,
+        15.598574
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "كفتريا حاتيكم",
+      "osm": "node/2142312829",
+      "coordinatesWgs84": [
+        32.482969,
+        15.468936
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "International University of Africa",
+      "osm": "way/294267503",
+      "coordinatesWgs84": [
+        32.566694,
+        15.531178
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "AL-Huda Medical Center",
+      "osm": "node/7726686414",
+      "coordinatesWgs84": [
+        32.561687,
+        15.722313
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Children Area",
+      "osm": "way/1559424933",
+      "coordinatesWgs84": [
+        32.426077,
+        15.621052
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "سوق سته",
+      "osm": "node/5786075353",
+      "coordinatesWgs84": [
+        32.641193,
+        15.61578
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "مسجد ابو نخيلة",
+      "osm": "node/5243098751",
+      "coordinatesWgs84": [
+        32.483595,
+        15.678972
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ميدان قلب الاسد",
+      "osm": "node/8280144066",
+      "coordinatesWgs84": [
+        32.425517,
+        15.55133
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ministry of Energy and Oil",
+      "osm": "way/344160930",
+      "coordinatesWgs84": [
+        32.551439,
+        15.563244
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Khartoum",
+      "osm": "way/309577358",
+      "coordinatesWgs84": [
+        32.541528,
+        15.610946
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al Merrikh Stadium",
+      "osm": "way/5775815",
+      "coordinatesWgs84": [
+        32.471585,
+        15.641287
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Museum of Sudan",
+      "osm": "way/303334100",
+      "coordinatesWgs84": [
+        32.508348,
+        15.606077
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Hilal Stadium",
+      "osm": "way/5772972",
+      "coordinatesWgs84": [
+        32.474978,
+        15.647238
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ahfad University for Women",
+      "osm": "way/1007170590",
+      "coordinatesWgs84": [
+        32.470101,
+        15.644714
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "كلية الشرطة والقانون",
+      "osm": "node/7095798160",
+      "coordinatesWgs84": [
+        32.664188,
+        15.477688
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Local Market",
+      "osm": "way/1450938789",
+      "coordinatesWgs84": [
+        32.365541,
+        15.721084
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Usine pharmaceutique Al Shifa",
+      "osm": "way/108830728",
+      "coordinatesWgs84": [
+        32.561693,
+        15.645859
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "أراضي القماراب صالحة",
+      "osm": "node/6207175685",
+      "coordinatesWgs84": [
+        32.367527,
+        15.488849
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "مطعم مودة",
+      "osm": "node/7079529828",
+      "coordinatesWgs84": [
+        32.516186,
+        15.398063
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "مطعم العطبراوي للمأكولات",
+      "osm": "node/7039345257",
+      "coordinatesWgs84": [
+        32.494064,
+        15.533813
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "AL- Rajhi Hospital",
+      "osm": "way/788773933",
+      "coordinatesWgs84": [
+        32.369221,
+        15.648806
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "مسجد الاندلس مربع 7",
+      "osm": "node/7079627016",
+      "coordinatesWgs84": [
+        32.545311,
+        15.453188
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "مستشفى شرق النيل",
+      "osm": "way/815520727",
+      "coordinatesWgs84": [
+        32.652994,
+        15.555611
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "منزل ضياء",
+      "osm": "node/7161280085",
+      "coordinatesWgs84": [
+        32.452784,
+        15.724641
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1227,
+      "sha256": "215e85bb9804ebe7f1700ed69215ad1d25bef7964bb800744e90dc3b91c289f0"
+    },
+    "geometry.ts": {
+      "bytes": 109770,
+      "sha256": "d2ed3e51dc7e090b8f6ef35d92832b00d898575398ff9f9c0a15a2a32ee61f7c"
+    },
+    "places.ts": {
+      "bytes": 9579,
+      "sha256": "59b77c4d4164ac3bd9a9d6bbf45862656160475d57d77d9aaa3d467cf59f11f4"
+    },
+    "terrain.ts": {
+      "bytes": 48893,
+      "sha256": "3654e09abb1ec601d68869e365098053b92341b135610e117377e5e73c867134"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "0cec2896b7dad7044dff28cd9b6e0840205c59969c1195202ba43f275ec03892"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mogadishu",
+  "countryIso2": "SO",
+  "generationIdentity": {
+    "cityId": "mogadishu",
+    "stateId": "so-mogadishu",
+    "stateName": "Mogadishu"
+  },
+  "inventorySha256": "a73230a5f201d4f4ce2fe39e5c2ee2861acd8983002e1f2cd07c5157c31ace29",
+  "inventoryPath": "world/playable-africa-rollout/sources/mogadishu.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "mogadishu-airport",
+    "name": "Aden Adde International Airport",
+    "lon": 45.304699,
+    "lat": 2.01444,
+    "sourceUrl": "https://ourairports.com/airports/HCMM/"
+  },
+  "bounds": [
+    1.8540503100660215,
+    45.162121628217974,
+    2.2158120899339786,
+    45.52171497178203
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+      "datasetSha256": "c8405db8aa5b4c3d012bfaf159cf6a55216b406da4fb53de74a2270a2e102351",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "bb299807c5802ed0dbbe3240aa028add04eb32848ea3452b520ef0d9580a9db1",
+          "elements": 121
+        },
+        {
+          "file": "extras.json",
+          "sha256": "5874939d254284f7a2fb9c7e33570a8deb66572949886abecbed75abd645c855",
+          "elements": 82
+        },
+        {
+          "file": "water.json",
+          "sha256": "cf55246408ef233ca03ea37c3d9bca9617ac81f3148e740cda5e827e1858ae47",
+          "elements": 5961
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "8428405c4fce18ec7bf7cf5ae99a3aebb804ccc2ee48477735961258b287ed2f",
+          "elements": 1446
+        },
+        {
+          "file": "roads.json",
+          "sha256": "fbaad0f7251161d96b7192b81d127afcca02ff3c43180c080922fa099dac96be",
+          "elements": 120
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 64,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 5,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 7
+  },
+  "observed": {
+    "places": 121,
+    "extras": 82,
+    "water": 5961,
+    "landuse": 1446,
+    "roads": 120
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1229,
+      "sha256": "ca058908ce32f3fd98114a951775983e48a777171323731516faef017b9bf5a4"
+    },
+    "geometry.ts": {
+      "bytes": 22343,
+      "sha256": "1bc9fd7e4984fa9272ff1d68ebc91461f02a71f856bf2a4946f83f96d2b34233"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "cbac699db6c5b657252c56e77bc35e54744a936231abe5c22a093180bb841396"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/mogadishu.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

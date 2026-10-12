@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bissau",
+  "countryIso2": "GW",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bissau",
+    "coordinatesWgs84": [
+      -15.583055,
+      11.861324
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/guinea-bissau-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "bissau-airport",
+    "name": "Osvaldo Vieira International Airport",
+    "lon": -15.653596,
+    "lat": 11.894262,
+    "sourceUrl": "https://ourairports.com/airports/GGOV/"
+  },
+  "boxes": {
+    "play": [
+      11.68044311006602,
+      -15.766759809105654,
+      12.042204889933979,
+      -15.399350190894346
+    ],
+    "core": [
+      11.816103777516505,
+      -15.628958145346646,
+      11.906544222483495,
+      -15.537151854653354
+    ],
+    "outline": [
+      11.63044311006602,
+      -15.816759809105655,
+      12.09220488993398,
+      -15.349350190894345
+    ],
+    "wide": [
+      11.080443110066021,
+      -16.366759809105655,
+      12.642204889933979,
+      -14.799350190894346
+    ],
+    "water": [
+      11.080443110066021,
+      -16.366759809105655,
+      12.642204889933979,
+      -14.799350190894346
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/guinea-bissau-261011.osm.pbf",
+    "datasetSha256": "0accc6917c6a02f9d556f5dce0c89dc83b16180b527ed99957d0b06a435e15c6",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "a6a65b8823f8f5c1d7f21409b8476c2ef800372e1c0a170c572ee2a7a10631a8",
+        "elements": 96
+      },
+      {
+        "file": "extras.json",
+        "sha256": "a3aadc3caa6d555cf6ce1c0558baace7bd7893b1f0475eeda48fcb9595cb9203",
+        "elements": 41
+      },
+      {
+        "file": "water.json",
+        "sha256": "99f501bd13897fffe7196220edbef6d438b048d74c797a28d7a18ad99837092c",
+        "elements": 1127
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b7aac89a046eba69ceb1d0dd7bba476c0ef5e65ef662b61a32effc36857fbce7",
+        "elements": 353
+      },
+      {
+        "file": "roads.json",
+        "sha256": "0844bcaa3a7f289a9e47545971d17c06735030538053195e8b1c6ec302216f80",
+        "elements": 47
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Paragem Central",
+      "osm": "node/2025537675",
+      "coordinatesWgs84": [
+        -15.632979,
+        11.862436
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pelicano",
+      "osm": "way/600923366",
+      "coordinatesWgs84": [
+        -15.578047,
+        11.85906
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidade Lusofona",
+      "osm": "way/796880343",
+      "coordinatesWgs84": [
+        -15.610232,
+        11.855631
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Nacional Simão Mendes",
+      "osm": "relation/5637352",
+      "coordinatesWgs84": [
+        -15.580573,
+        11.863639
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça dos Heróis Nacionais",
+      "osm": "way/378151929",
+      "coordinatesWgs84": [
+        -15.584324,
+        11.863219
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado de Bandim",
+      "osm": "node/2084166768",
+      "coordinatesWgs84": [
+        -15.593419,
+        11.857507
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bissau Cathedral",
+      "osm": "way/130123261",
+      "coordinatesWgs84": [
+        -15.581168,
+        11.860034
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça da Alfândega",
+      "osm": "way/596236052",
+      "coordinatesWgs84": [
+        -15.577282,
+        11.860254
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministério das Finanças",
+      "osm": "node/4494349991",
+      "coordinatesWgs84": [
+        -15.581158,
+        11.858543
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "GEARUFI-SC M Gabinete de Estudos",
+      "osm": "node/13648547577",
+      "coordinatesWgs84": [
+        -15.58718,
+        11.872159
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estadio Lino Correia",
+      "osm": "way/729707869",
+      "coordinatesWgs84": [
+        -15.586084,
+        11.860406
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monumento a Teixeira Pinto",
+      "osm": "node/5711301327",
+      "coordinatesWgs84": [
+        -15.590087,
+        11.858949
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Monumento a Diogo Gomes",
+      "osm": "node/5680620456",
+      "coordinatesWgs84": [
+        -15.577275,
+        11.860192
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Monumento aos Heróis da Independência",
+      "osm": "node/2084171134",
+      "coordinatesWgs84": [
+        -15.58436,
+        11.863196
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centro de Saúde de Prábis",
+      "osm": "node/9108219424",
+      "coordinatesWgs84": [
+        -15.739986,
+        11.799985
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôpital de Cumura (lèpre et tuberculose)",
+      "osm": "relation/9659980",
+      "coordinatesWgs84": [
+        -15.686832,
+        11.830813
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estádio Nacional 24 de Setembro",
+      "osm": "way/112723869",
+      "coordinatesWgs84": [
+        -15.590979,
+        11.843402
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "rasoi resturant",
+      "osm": "node/4810103621",
+      "coordinatesWgs84": [
+        -15.593845,
+        11.875494
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Coqueiros",
+      "osm": "node/4965931451",
+      "coordinatesWgs84": [
+        -15.587487,
+        11.865188
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parque Europa - Lagoa de M´batonha",
+      "osm": "way/572352190",
+      "coordinatesWgs84": [
+        -15.583839,
+        11.856915
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça Titina Silá",
+      "osm": "way/1288347449",
+      "coordinatesWgs84": [
+        -15.58788,
+        11.862513
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Feira de Artesanato e Ateliers / Mercado dos Coqueiros",
+      "osm": "node/4719996189",
+      "coordinatesWgs84": [
+        -15.585352,
+        11.866331
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Faculdade de Direito",
+      "osm": "way/130194162",
+      "coordinatesWgs84": [
+        -15.611162,
+        11.856654
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Central",
+      "osm": "node/2082479562",
+      "coordinatesWgs84": [
+        -15.584031,
+        11.857657
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "e22ecbca3a663b51fd9c67ffd52d386460cc080d93eae04ef4e88d565950b25c"
+    },
+    "geometry.ts": {
+      "bytes": 194541,
+      "sha256": "cc91695889975473a4f4fcb8624f46c7cf81c1dfa03ad52a3af704c2ad3c716f"
+    },
+    "places.ts": {
+      "bytes": 9691,
+      "sha256": "28b024cdd61557f09ed738e437d331e24d9a8ef9c4fbbff0a08f15308d271ccd"
+    },
+    "terrain.ts": {
+      "bytes": 763703,
+      "sha256": "b85098e2730dfe4661752aaaab3db178b51c2ef1176800d4ae5c9d1947ed49ab"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "f7f5f46b07e08090a406fe60053563bed551e2bcac0fe614302fbfe4d7887702"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

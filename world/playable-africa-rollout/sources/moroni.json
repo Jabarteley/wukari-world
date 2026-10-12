@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "moroni",
+  "countryIso2": "KM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Moroni",
+    "coordinatesWgs84": [
+      43.251909,
+      -11.7040306
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/comores-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "moroni-airport",
+    "name": "Prince Said Ibrahim International Airport",
+    "lon": 43.2719,
+    "lat": -11.5337,
+    "sourceUrl": "https://ourairports.com/airports/FMCH/"
+  },
+  "boxes": {
+    "play": [
+      -11.884911489933979,
+      43.068311021747114,
+      -11.52314971006602,
+      43.43550697825288
+    ],
+    "core": [
+      -11.749250822483495,
+      43.2060322375229,
+      -11.658810377516504,
+      43.2977857624771
+    ],
+    "outline": [
+      -11.93491148993398,
+      43.01831102174712,
+      -11.47314971006602,
+      43.48550697825288
+    ],
+    "wide": [
+      -12.484911489933978,
+      42.46831102174711,
+      -10.92314971006602,
+      44.03550697825288
+    ],
+    "water": [
+      -12.484911489933978,
+      42.46831102174711,
+      -10.92314971006602,
+      44.03550697825288
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/comores-261011.osm.pbf",
+    "datasetSha256": "f2512ec1482b2976017b871065180805a1d996bf6c6acfc046c2d889540d36ad",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "46e249a7b25c0065de1bd1fa0ce8f9c162d970cb61b594fecaca7fd48407b308",
+        "elements": 171
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f3e4f979b6b6f6274620a69e40ef9d68a74e69c7b3320d48e7873c8f45592d85",
+        "elements": 94
+      },
+      {
+        "file": "water.json",
+        "sha256": "c4a0a4631ff6ca1f02453ada2cc4fa14448d91be53b57c72f5dca05aaea4956a",
+        "elements": 95
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "42d02bf91dbdf766909a3c278bbbb5f918d36c336d0cf8f604ebed7dca96f158",
+        "elements": 182
+      },
+      {
+        "file": "roads.json",
+        "sha256": "6f22f275eb7262139b494da30474a37e4753f024463861f695e4d76a8162f197",
+        "elements": 98
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Gare du Nord",
+      "osm": "node/4002400944",
+      "coordinatesWgs84": [
+        43.260073,
+        -11.686233
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "le voyageur",
+      "osm": "node/2716274465",
+      "coordinatesWgs84": [
+        43.276611,
+        -11.537296
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "bibliothèque",
+      "osm": "node/4109090605",
+      "coordinatesWgs84": [
+        43.349887,
+        -11.852577
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre de santé de Mitsoudjé",
+      "osm": "way/370308263",
+      "coordinatesWgs84": [
+        43.279655,
+        -11.804115
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ancien terrain de foot",
+      "osm": "way/1423001401",
+      "coordinatesWgs84": [
+        43.326081,
+        -11.56038
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "2éme marché",
+      "osm": "way/1426824415",
+      "coordinatesWgs84": [
+        43.277427,
+        -11.589679
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ancienne Mosquée du Vendredi",
+      "osm": "way/432094417",
+      "coordinatesWgs84": [
+        43.251572,
+        -11.703731
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hotel de Ville Bambao Ya djou",
+      "osm": "way/405414129",
+      "coordinatesWgs84": [
+        43.26434,
+        -11.729304
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Bangoi",
+      "osm": "way/437275265",
+      "coordinatesWgs84": [
+        43.289437,
+        -11.843286
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université des Comores, Faculté des Lettres et Sciences Humaines",
+      "osm": "way/392920702",
+      "coordinatesWgs84": [
+        43.278167,
+        -11.732314
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Olympique DeIkoni-Malouzini",
+      "osm": "way/646081451",
+      "coordinatesWgs84": [
+        43.240765,
+        -11.724316
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "End of the 4x4 road (1580 m)",
+      "osm": "node/6360028085",
+      "coordinatesWgs84": [
+        43.328715,
+        -11.73495
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Chez Bruno",
+      "osm": "node/8804811617",
+      "coordinatesWgs84": [
+        43.395231,
+        -11.644604
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Karthala Crater Viewpoint",
+      "osm": "node/4784675163",
+      "coordinatesWgs84": [
+        43.359042,
+        -11.762932
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Plais Trambwe",
+      "osm": "way/390008871",
+      "coordinatesWgs84": [
+        43.366717,
+        -11.625815
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "zainaba said",
+      "osm": "way/452194135",
+      "coordinatesWgs84": [
+        43.272192,
+        -11.657839
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Boeni Bambao",
+      "osm": "node/13885184807",
+      "coordinatesWgs84": [
+        43.255723,
+        -11.757845
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "marché public",
+      "osm": "way/1430217861",
+      "coordinatesWgs84": [
+        43.299387,
+        -11.554437
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Poste de Santé",
+      "osm": "way/1426392579",
+      "coordinatesWgs84": [
+        43.271908,
+        -11.565416
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Restau Maman Choureik",
+      "osm": "node/12222798279",
+      "coordinatesWgs84": [
+        43.233454,
+        -11.747796
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stade Omni Sport",
+      "osm": "node/13076688783",
+      "coordinatesWgs84": [
+        43.273327,
+        -11.703583
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Université des Comores, Direction et Administration",
+      "osm": "way/485209014",
+      "coordinatesWgs84": [
+        43.260441,
+        -11.719845
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université des Comores, Faculté des Sciences et Technologies",
+      "osm": "way/397444369",
+      "coordinatesWgs84": [
+        43.252321,
+        -11.694326
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Starting Point Road to Karthala (380 m)",
+      "osm": "node/6360018986",
+      "coordinatesWgs84": [
+        43.275659,
+        -11.724271
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1220,
+      "sha256": "95d1e834378c4c4cd4a8cf03b7be87b663bfdb9b8b50658be6210846025276f9"
+    },
+    "geometry.ts": {
+      "bytes": 31681,
+      "sha256": "260ec65271d59a407f5b5c0863242d2b744499e3d32b7f3b86c5b73094ae0d0f"
+    },
+    "places.ts": {
+      "bytes": 9495,
+      "sha256": "c05f426df2b0218dd334b6013724662228edacd58ae1eb80eb8cba0e6f4cf68d"
+    },
+    "terrain.ts": {
+      "bytes": 18828,
+      "sha256": "5435b161c4e5e64a30b47a93c51ec62fe2a21145da08ddcaf3732bc0725c6338"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "907707fe1f19c5655cbddf07293327304afb64ac8bfd69a5c9ca512fec797934"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

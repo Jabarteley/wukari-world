@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "cityId": "asmara",
+  "countryIso2": "ER",
+  "generationIdentity": {
+    "cityId": "asmara",
+    "stateId": "er-asmara",
+    "stateName": "Asmara"
+  },
+  "inventorySha256": "bc559e92255d4225c23de1ec4c79d7b7d32e98d05cad61a78c139f6cb121cf9c",
+  "inventoryPath": "world/playable-africa-rollout/sources/asmara.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "asmara-airport",
+    "name": "Asmara International Airport",
+    "lon": 38.910702,
+    "lat": 15.2919,
+    "sourceUrl": "https://ourairports.com/airports/HHAS/"
+  },
+  "bounds": [
+    15.158085810066021,
+    38.746215290574156,
+    15.51984758993398,
+    39.11913730942584
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/eritrea-261011.osm.pbf",
+      "datasetSha256": "640e6c28aac30ad1b313ef36d402b7161cb095444b3f7b503d0f224ed5c9f902",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "cd9afdb9d08d7a91b5096abd5e619126a76103b15c16ece0aa3091c2d1c97031",
+          "elements": 171
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9983d72750f81f05c759fb40a03f0bad7077aeebdb65fdd0adf6677eb76e449c",
+          "elements": 61
+        },
+        {
+          "file": "water.json",
+          "sha256": "5a8e01aee4e051cc3ff3a631b1d15948cf35669a0aeb3c81bcbfbf0ba29035be",
+          "elements": 461
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "cd7e261388761f81055b0f0d7d95fc6eddadc056100914390af62ed844b5e004",
+          "elements": 275
+        },
+        {
+          "file": "roads.json",
+          "sha256": "46015a552ac72e8499c30436ff2b805eaf80593404a0668c14531b1898233be6",
+          "elements": 263
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 132,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 27,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 13
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "village": 18
+    }
+  },
+  "observed": {
+    "places": 171,
+    "extras": 61,
+    "water": 461,
+    "landuse": 275,
+    "roads": 263
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1200,
+      "sha256": "21ce5754ffb9f6be48260857cb439c14a891bd25320f002d28d7a49a8605b09b"
+    },
+    "geometry.ts": {
+      "bytes": 55672,
+      "sha256": "0148841df61bfb1cb42da0629b6875b77b1f37807307ab5017d78197d4924d76"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "b65cc149279e2d35a1c143cea861ac01ea071ca6ecdea78d10728302e9bddfd0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/asmara.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

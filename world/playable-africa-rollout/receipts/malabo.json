@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "malabo",
+  "countryIso2": "GQ",
+  "generationIdentity": {
+    "cityId": "malabo",
+    "stateId": "gq-malabo",
+    "stateName": "Malabo"
+  },
+  "inventorySha256": "9215d4d5dae684e69ade0a14073f66bdfbca827b0f46026be0108d36654f770e",
+  "inventoryPath": "world/playable-africa-rollout/sources/malabo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "malabo-airport",
+    "name": "Malabo International Airport",
+    "lon": 8.70872,
+    "lat": 3.75527,
+    "sourceUrl": "https://ourairports.com/airports/FGSL/"
+  },
+  "bounds": [
+    3.5609961100660215,
+    8.593982161081565,
+    3.922757889933979,
+    8.954150438918434
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/equatorial-guinea-261011.osm.pbf",
+      "datasetSha256": "4990daf7a617ea9dcbff50bb8edcfaa435fa84c15c8d1fd58beff22acd15eb01",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "db34af52ae3bbbbb0154e3b3d27693925303074c9dcccce4d5af292da728e2e4",
+          "elements": 92
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d67f1cc708ed314b45b2f815b4602003bc1a8a6ea3aa837646135238a3981f9e",
+          "elements": 27
+        },
+        {
+          "file": "water.json",
+          "sha256": "2b254610c1f52d55bacf3f95466da3e4a23579aec1338e2b02611d5aae486134",
+          "elements": 84
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "c0c674187437d22526e4427c375facc82e3e8e23f033adacf6dcfa33a37b4f54",
+          "elements": 236
+        },
+        {
+          "file": "roads.json",
+          "sha256": "62b1988ed4264c82d0025f9fb774d02104114f24e309f183eb13000d5c544891",
+          "elements": 244
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 60,
+    "neighbourhoodLabels": 9,
+    "landPolygons": 5,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "observed": {
+    "places": 92,
+    "extras": 27,
+    "water": 84,
+    "landuse": 236,
+    "roads": 244
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1222,
+      "sha256": "cb80d011548cb467b7c81a96c6bbcff559346874d643ba6cb44ef46000327ad5"
+    },
+    "geometry.ts": {
+      "bytes": 358381,
+      "sha256": "a5d6688415c5fcc7294f02fd6f80ccf1bc4fc1506e2e1fc25c2d5481c2da423c"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "bba2802ca00d67166e890bbacc5cba77fb00cf218b8904b4bdb941ef279b6621"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/malabo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bangui",
+  "countryIso2": "CF",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bangui",
+    "coordinatesWgs84": [
+      18.5835913,
+      4.3635118
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/central-african-republic-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "bangui-airport",
+    "name": "Bangui M'Poko International Airport",
+    "lon": 18.518801,
+    "lat": 4.39848,
+    "sourceUrl": "https://ourairports.com/airports/FEFF/"
+  },
+  "boxes": {
+    "play": [
+      4.182630910066022,
+      18.403362469626906,
+      4.544392689933979,
+      18.76382013037309
+    ],
+    "core": [
+      4.318291577516506,
+      18.538542443868806,
+      4.408732022483495,
+      18.62864015613119
+    ],
+    "outline": [
+      4.132630910066022,
+      18.353362469626905,
+      4.594392689933978,
+      18.81382013037309
+    ],
+    "wide": [
+      3.582630910066022,
+      17.803362469626904,
+      5.144392689933978,
+      19.363820130373092
+    ],
+    "water": [
+      4.182630910066022,
+      18.403362469626906,
+      4.544392689933979,
+      18.76382013037309
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/central-african-republic-261011.osm.pbf",
+    "datasetSha256": "11142236b32f638a1f5d82674c238bb78a114a9d51340813f6699dbd3cc333cc",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "b0d0121e54e08566f4b1ff40ebaace9413a0c11b0b10c9f93816ed8eb13bc623",
+        "elements": 139
+      },
+      {
+        "file": "extras.json",
+        "sha256": "e5802216fd2a681fef11866e35fba84ac676af903df8103ae8e56273722e212f",
+        "elements": 42
+      },
+      {
+        "file": "water.json",
+        "sha256": "c3ef7f8c941d5e551c81f4c493ba5507c0b19ec5ace21cf578a924b9fac94329",
+        "elements": 29
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "0cfdcb10590e7d1a404a25fd27941907880d7d81494c42486fdf3c05a88697e1",
+        "elements": 585
+      },
+      {
+        "file": "roads.json",
+        "sha256": "674c08b4c51a7297968dca27e918c1264574f441750e6429a29cf7ec387aa2f4",
+        "elements": 121
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Terminal Nord",
+      "osm": "node/4637748533",
+      "coordinatesWgs84": [
+        18.575782,
+        4.368775
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Chinese restaurant",
+      "osm": "node/5636195222",
+      "coordinatesWgs84": [
+        18.557818,
+        4.396462
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Groupe Elite Formation",
+      "osm": "way/802512689",
+      "coordinatesWgs84": [
+        18.558336,
+        4.37319
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Donatien",
+      "osm": "way/1005223767",
+      "coordinatesWgs84": [
+        18.52177,
+        4.323351
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "parco",
+      "osm": "way/400792235",
+      "coordinatesWgs84": [
+        18.562194,
+        4.383248
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché Miskine",
+      "osm": "way/596757623",
+      "coordinatesWgs84": [
+        18.548736,
+        4.393086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathédrale Notre-Dame de l’Immaculée Conception",
+      "osm": "way/188769617",
+      "coordinatesWgs84": [
+        18.578004,
+        4.369944
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "La ville de Bégoua",
+      "osm": "way/212710100",
+      "coordinatesWgs84": [
+        18.533806,
+        4.453022
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Société de Distribution d’Eau de Centrafrique",
+      "osm": "node/4637140696",
+      "coordinatesWgs84": [
+        18.587425,
+        4.36563
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Faculté de la Théologie Biblique",
+      "osm": "way/800392634",
+      "coordinatesWgs84": [
+        18.563878,
+        4.372535
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Barthélémy Boganda",
+      "osm": "way/235317733",
+      "coordinatesWgs84": [
+        18.56431,
+        4.374381
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Museum Barthelemy Boganda",
+      "osm": "way/188492702",
+      "coordinatesWgs84": [
+        18.577001,
+        4.364096
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre de Santé Urbain de Ouango Bangui",
+      "osm": "node/2225615058",
+      "coordinatesWgs84": [
+        18.62047,
+        4.366422
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre de Santé Guitangola",
+      "osm": "node/2225267665",
+      "coordinatesWgs84": [
+        18.530791,
+        4.352866
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "La Brasserie",
+      "osm": "node/2381567443",
+      "coordinatesWgs84": [
+        18.582172,
+        4.360745
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurante",
+      "osm": "node/4733960505",
+      "coordinatesWgs84": [
+        18.560948,
+        4.367197
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Bangui",
+      "osm": "way/405889132",
+      "coordinatesWgs84": [
+        18.56313,
+        4.378423
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Bonga Bonga",
+      "osm": "way/188497852",
+      "coordinatesWgs84": [
+        18.571995,
+        4.368839
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jardin de Mairie",
+      "osm": "way/316073499",
+      "coordinatesWgs84": [
+        18.573588,
+        4.365093
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Institut New Tech",
+      "osm": "node/4637219536",
+      "coordinatesWgs84": [
+        18.558965,
+        4.369621
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Salle omnisports",
+      "osm": "node/5369227121",
+      "coordinatesWgs84": [
+        18.563557,
+        4.376024
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marché d'Artisanat",
+      "osm": "node/4637748534",
+      "coordinatesWgs84": [
+        18.576525,
+        4.367998
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "cf87d09a1b76952f8c51171f91dc0deb6cab192ad941795dab319eebec1eba12"
+    },
+    "geometry.ts": {
+      "bytes": 41976,
+      "sha256": "2dcc07287b3c7d06f12820d2499863b7c9c47751c6e8cce6c123bd260022d551"
+    },
+    "places.ts": {
+      "bytes": 8685,
+      "sha256": "8f196160f73a4f304fa1e06b3dac0d27fab8cb5ea86c60eaabc1d9eaef953971"
+    },
+    "terrain.ts": {
+      "bytes": 54173,
+      "sha256": "c5f34b7ef08c7023a745b1de1b8d123fabc4df630c04ef4961359e2631f3fafb"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "1233652cf4ec0c5be7acb990bce9fbe3ca10bd6b90d237c1a5522648b54059d1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

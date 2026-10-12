@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "khartoum",
+  "countryIso2": "SD",
+  "generationIdentity": {
+    "cityId": "khartoum",
+    "stateId": "sd-khartoum",
+    "stateName": "Khartoum"
+  },
+  "inventorySha256": "374b99311030a0381026ab9bcec6e40230ad48d0cd0d8a64eeb32d24227413c8",
+  "inventoryPath": "world/playable-africa-rollout/sources/khartoum.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "khartoum-airport",
+    "name": "Khartoum International Airport",
+    "lon": 32.5532,
+    "lat": 15.5895,
+    "sourceUrl": "https://ourairports.com/airports/HSSK/"
+  },
+  "bounds": [
+    15.382716310066021,
+    32.34824662889724,
+    15.74447808993398,
+    32.72157797110276
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/sudan-261011.osm.pbf",
+      "datasetSha256": "3e5a2e1854c6245ff25494cba09dffc12bbe5be596f518518d25a2a258c1dff3",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "826e6e0a84a806e1019b698e505e89d2d450e1065637e533096bb8e8d584fe85",
+          "elements": 1966
+        },
+        {
+          "file": "extras.json",
+          "sha256": "5ba680012a33d5c43b2a0fe1c58f3a6d2a6fbf82e3758281b552bc069de985b9",
+          "elements": 459
+        },
+        {
+          "file": "water.json",
+          "sha256": "24268d5db7f72f9cfc610df477ce89a53e8f83da2105764089baa6e6865bca0d",
+          "elements": 35
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "90f99b3bf2704ae5267e2caca2d368bafcbb15a33901d39c43bb01662e6e4008",
+          "elements": 1298
+        },
+        {
+          "file": "roads.json",
+          "sha256": "730196878654214d6248c10ccd155d6617c3d720c455319db2b00efc4b39cb93",
+          "elements": 514
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 302,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 23,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 5
+  },
+  "observed": {
+    "places": 1966,
+    "extras": 459,
+    "water": 35,
+    "landuse": 1298,
+    "roads": 514
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1227,
+      "sha256": "215e85bb9804ebe7f1700ed69215ad1d25bef7964bb800744e90dc3b91c289f0"
+    },
+    "geometry.ts": {
+      "bytes": 109770,
+      "sha256": "d2ed3e51dc7e090b8f6ef35d92832b00d898575398ff9f9c0a15a2a32ee61f7c"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "0cec2896b7dad7044dff28cd9b6e0840205c59969c1195202ba43f275ec03892"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/khartoum.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

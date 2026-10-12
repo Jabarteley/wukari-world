@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "nouakchott",
+  "countryIso2": "MR",
+  "generationIdentity": {
+    "cityId": "nouakchott",
+    "stateId": "mr-nouakchott",
+    "stateName": "Nouakchott"
+  },
+  "inventorySha256": "3c1f3095b22db2ad4e1d04683d0cb70aef36f707febb755e6525b45cfaa9d97b",
+  "inventoryPath": "world/playable-africa-rollout/sources/nouakchott.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "nouakchott-airport",
+    "name": "Nouakchott–Oumtounsy International Airport",
+    "lon": -15.969722,
+    "lat": 18.31,
+    "sourceUrl": "https://ourairports.com/airports/GQNO/"
+  },
+  "bounds": [
+    17.89835701006602,
+    -16.167196177109663,
+    18.319044044496696,
+    -15.788818022890336
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/mauritania-261011.osm.pbf",
+      "datasetSha256": "b03285602f90d786ffa759dd3c349e3ef0d503a97fd15879237f0eefa6189f02",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "b30e7214f772ae5242fe462af868e6f581a94b5092f4c2fb84b941d915959f87",
+          "elements": 285
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9d0671091f7c552d281049b687e8cc26a9b16573d96c6a2a77a141189b4dffc8",
+          "elements": 94
+        },
+        {
+          "file": "water.json",
+          "sha256": "7e59206825a72a3a06e665305c1d75d0cdd9e92ad4886c9ae2d82d2dc7de9a8b",
+          "elements": 37
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "55f820e5bef9e08004839786a7567bac0d9c02debf6789e9b55b3d9072bb8ee1",
+          "elements": 960
+        },
+        {
+          "file": "roads.json",
+          "sha256": "27570b3e295d6c14c0ce12974647581565a96823eb10a688ff0963f2011f55a9",
+          "elements": 230
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 194,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 6,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 285,
+    "extras": 94,
+    "water": 37,
+    "landuse": 960,
+    "roads": 230
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1256,
+      "sha256": "01c633fa3926d9d54df9e1d7f671626da53ad21d48c7ccfcb844e526ee026102"
+    },
+    "geometry.ts": {
+      "bytes": 24992,
+      "sha256": "3abf885d61b9d2968ff0f0716a4b9080c580f24562218332c3f749d627507b0b"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "b16d6d8d4cae05083e163c1f2ca3a60779c5d48e6f40914a93b64fac44ab4968"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/nouakchott.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

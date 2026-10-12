@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "cityId": "monrovia",
+  "countryIso2": "LR",
+  "generationIdentity": {
+    "cityId": "monrovia",
+    "stateId": "lr-monrovia",
+    "stateName": "Monrovia"
+  },
+  "inventorySha256": "211b0a02108350b55a7d32d21890d04fafb71408969cf15b3ef0f54fef6afd2a",
+  "inventoryPath": "world/playable-africa-rollout/sources/monrovia.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "monrovia-airport",
+    "name": "Roberts International Airport",
+    "lon": -10.3623,
+    "lat": 6.23379,
+    "sourceUrl": "https://ourairports.com/airports/GLRB/"
+  },
+  "bounds": [
+    6.139475310066022,
+    -10.986874246509581,
+    6.501237089933978,
+    -10.3532633001353
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/liberia-261011.osm.pbf",
+      "datasetSha256": "ad24c4adb4f2576b5b9c45d7bd29c42910c5ce95c29acc6aa248e08e0e5d0ac1",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "57c9b719799cd41c5e3c5e30e7eb09ac853a8bdcdffc4ae8237f60a0fe70f2ac",
+          "elements": 312
+        },
+        {
+          "file": "extras.json",
+          "sha256": "6f60c38c6ebf6f1b454d17ba75b12513a8bfa7f050424a7df64763f0c3444162",
+          "elements": 39
+        },
+        {
+          "file": "water.json",
+          "sha256": "2b1dbcb4e68d07e2a090f9f845bb977bd92b4e9bedbd23a7c49ce0ef408b290e",
+          "elements": 207
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "adc82305d66ed597341019fbc05c31040b9827ceaaa23dbfc2822c16ba16853d",
+          "elements": 1824
+        },
+        {
+          "file": "roads.json",
+          "sha256": "91d5f46f3a9ebe7ea91b835389e067bfacabd08fb1d87fcdaefc08d0549eb768",
+          "elements": 111
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 80,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 16,
+    "waterPolygons": 8,
+    "reachWaterPolygons": 9
+  },
+  "selection": {
+    "slotFallbacks": [
+      {
+        "slot": "recreation",
+        "used": "leisure=stadium",
+        "ref": "way/143040580"
+      }
+    ]
+  },
+  "observed": {
+    "places": 312,
+    "extras": 39,
+    "water": 207,
+    "landuse": 1824,
+    "roads": 111
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1242,
+      "sha256": "b539ebbf03739ae9c83ab1132c6c53854eb4fbe03d5becfad80202e2b43c1639"
+    },
+    "geometry.ts": {
+      "bytes": 398781,
+      "sha256": "f2ed7a6710395b0205bf75ed1e3d3d635bd3db47797b669de992729df0fabbcb"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "dec1d901db5c20eced12fc58bca648e1cd4202e7e7e15bde3348526a851aff7e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/monrovia.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

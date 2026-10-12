@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-louis",
+  "countryIso2": "MU",
+  "generationIdentity": {
+    "cityId": "port-louis",
+    "stateId": "mu-port-louis",
+    "stateName": "Port Louis"
+  },
+  "inventorySha256": "302824c648c2e7aa119b84bbec412bf64f07469393e9c7fa178d4e701512b4f0",
+  "inventoryPath": "world/playable-africa-rollout/sources/port-louis.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "port-louis-airport",
+    "name": "Sir Seewoosagur Ramgoolam International Airport",
+    "lon": 57.683601,
+    "lat": -20.430201,
+    "sourceUrl": "https://ourairports.com/airports/FIMP/"
+  },
+  "bounds": [
+    -20.439245044496698,
+    57.31119049223443,
+    -19.981571310066023,
+    57.694418307765574
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/mauritius-261011.osm.pbf",
+      "datasetSha256": "cbbaa7acf21b3b4d16cb75e6b8a74fd4a28c301a36b44112777f840ba06225c9",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "8e26c032a3f2eecf91dd98caede0a9cb16bf6c30d9e87b22c0c1ea0e64002a9b",
+          "elements": 1189
+        },
+        {
+          "file": "extras.json",
+          "sha256": "30d4cf49fd7f6834197f47a1d8ab7cabfa692fa0077d80c049341a2404d904f8",
+          "elements": 170
+        },
+        {
+          "file": "water.json",
+          "sha256": "c35afc6d2428011fcbbce110ac03bbad5431a6dfb77feb8218c7b744dccbd364",
+          "elements": 335
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "bf7271f8719bc78e014277b153ea3f0ff5160f2000347e75ca1e58de12d1b625",
+          "elements": 1006
+        },
+        {
+          "file": "roads.json",
+          "sha256": "92b100b418d22a768e552f0c494cc97d4cb8df7f61595735cff63e9a00d4dcaa",
+          "elements": 1734
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 629,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 39,
+    "waterPolygons": 9,
+    "reachWaterPolygons": 7
+  },
+  "observed": {
+    "places": 1189,
+    "extras": 170,
+    "water": 335,
+    "landuse": 1006,
+    "roads": 1734
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1269,
+      "sha256": "baa3db3b3bbd3b3509198376efb3ecf1b16a54dcba52487b66c8e900dbe21736"
+    },
+    "geometry.ts": {
+      "bytes": 809773,
+      "sha256": "06df0bccdbdb8f77d9d6111811d1fad709dc2b5f1875abe2f0b5eeb46186cef6"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "4d2073daa71792cf52de0649e097a573514a7322b41ab6d0ee38c77cfe5b122c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/port-louis.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

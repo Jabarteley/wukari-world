@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "cityId": "sao-tome",
+  "countryIso2": "ST",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "São Tomé",
+    "coordinatesWgs84": [
+      6.7313031,
+      0.3389242
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/sao-tome-and-principe-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "sao-tome-airport",
+    "name": "São Tomé International Airport",
+    "lon": 6.71215,
+    "lat": 0.378175,
+    "sourceUrl": "https://ourairports.com/airports/FPST/"
+  },
+  "boxes": {
+    "play": [
+      0.15804331006602154,
+      6.5516334710351485,
+      0.5198050899339784,
+      6.910972728964851
+    ],
+    "core": [
+      0.2937039775165054,
+      6.686386531721577,
+      0.3841444224834946,
+      6.776219668278423
+    ],
+    "outline": [
+      0.10804331006602154,
+      6.501633471035149,
+      0.5698050899339785,
+      6.960972728964851
+    ],
+    "wide": [
+      -0.4419566899339784,
+      5.951633471035149,
+      1.1198050899339784,
+      7.510972728964851
+    ],
+    "water": [
+      -0.4419566899339784,
+      5.951633471035149,
+      1.1198050899339784,
+      7.510972728964851
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/sao-tome-and-principe-261011.osm.pbf",
+    "datasetSha256": "e464a14fb7f49472a4ffc5042232d4e29aaad5c64fcb154309e46b2bf637fc5e",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "f5ec9286f13350ff2414b99e7310c00160124eab9ea1150c92646b3b46a5a9c1",
+        "elements": 99
+      },
+      {
+        "file": "extras.json",
+        "sha256": "fcbcd88390215825dee79c201bac7a2bd14e6471be310cfba78e821c51f47821",
+        "elements": 31
+      },
+      {
+        "file": "water.json",
+        "sha256": "6fe1cd99a855af982d382b10266005467cf4d58d2f2326ef94f46f06cfc97edb",
+        "elements": 77
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "32aee240bc14ee85f6a8a094ce7d4be1ef729c3dce7b455470e36caa6b5ab51c",
+        "elements": 369
+      },
+      {
+        "file": "roads.json",
+        "sha256": "18520fc1192b1b96ebe9aea5bfdfa0e9d38f07d57cfd1c53cec3794a9e245276",
+        "elements": 106
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Comunidade local",
+      "osm": "node/7684580114",
+      "coordinatesWgs84": [
+        6.710519,
+        0.303464
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Celva’s",
+      "osm": "node/6564990506",
+      "coordinatesWgs84": [
+        6.638192,
+        0.377207
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidade de São Tomé and Príncipe, Instituto Superior Politécnico",
+      "osm": "way/561552891",
+      "coordinatesWgs84": [
+        6.730006,
+        0.326399
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro hospitalar de São Tomé (CHST)",
+      "osm": "way/206524513",
+      "coordinatesWgs84": [
+        6.722413,
+        0.356557
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça da Juventude",
+      "osm": "way/304819796",
+      "coordinatesWgs84": [
+        6.737327,
+        0.345162
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado de Cova Água Santana",
+      "osm": "way/433100614",
+      "coordinatesWgs84": [
+        6.742002,
+        0.260086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Our Lady of Grace Cathedral",
+      "osm": "way/1126946640",
+      "coordinatesWgs84": [
+        6.732686,
+        0.338362
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "EMAE - Direção das Águas",
+      "osm": "node/2242418968",
+      "coordinatesWgs84": [
+        6.731949,
+        0.334351
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Presidential Palace",
+      "osm": "way/198310275",
+      "coordinatesWgs84": [
+        6.73331,
+        0.339046
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estádio 12 de Julho",
+      "osm": "way/1126988143",
+      "coordinatesWgs84": [
+        6.737522,
+        0.335064
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cascata de Bombaim",
+      "osm": "node/2401213448",
+      "coordinatesWgs84": [
+        6.630062,
+        0.254991
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Onda Leve bar / restaurant",
+      "osm": "node/12343335801",
+      "coordinatesWgs84": [
+        6.705799,
+        0.201665
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital de Santa Margarida",
+      "osm": "way/231363988",
+      "coordinatesWgs84": [
+        6.658354,
+        0.322263
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Posto de Saude Uba Budu",
+      "osm": "way/224647304",
+      "coordinatesWgs84": [
+        6.70317,
+        0.262299
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Botanical Garden",
+      "osm": "node/938537793",
+      "coordinatesWgs84": [
+        6.61216,
+        0.289047
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mercado do Cruzeiro",
+      "osm": "way/1387886871",
+      "coordinatesWgs84": [
+        6.680673,
+        0.290307
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hosana",
+      "osm": "node/12875245959",
+      "coordinatesWgs84": [
+        6.645185,
+        0.407732
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Coffe Museum",
+      "osm": "way/280771623",
+      "coordinatesWgs84": [
+        6.640265,
+        0.299754
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Bobo Forro",
+      "osm": "way/1311130312",
+      "coordinatesWgs84": [
+        6.70582,
+        0.32421
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Roça Agostinho Neto ( Roça de Cinco mil)",
+      "osm": "node/1600956613",
+      "coordinatesWgs84": [
+        6.644974,
+        0.368656
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Campo de Futebol Santana FC",
+      "osm": "node/5414397476",
+      "coordinatesWgs84": [
+        6.741821,
+        0.256241
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parque Popular",
+      "osm": "way/206543431",
+      "coordinatesWgs84": [
+        6.736558,
+        0.341613
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça de Independência",
+      "osm": "way/1126943996",
+      "coordinatesWgs84": [
+        6.730586,
+        0.339422
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1258,
+      "sha256": "df1413cf4b6e67062c8ad649fe32b100420ceada44ce8bb59ca3e6ba1b996c19"
+    },
+    "geometry.ts": {
+      "bytes": 29517,
+      "sha256": "e633bd2907929d871a0682213e25baab8c12e961244e070d1999b9cb58c865b9"
+    },
+    "places.ts": {
+      "bytes": 9133,
+      "sha256": "7fab8148dabe2bb00ce9e1352e2c5b3ae1169abbfd93447be082e3b13f9d2801"
+    },
+    "terrain.ts": {
+      "bytes": 22403,
+      "sha256": "7ac21efe5e745b187d8b81d64bddd96bbf3622a542dbaefd81a8e0bd7dd5b6ac"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "43ad09e64a85c0c96fa48b2350a338a669ba1732fde4bd3601e07909b44efac1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

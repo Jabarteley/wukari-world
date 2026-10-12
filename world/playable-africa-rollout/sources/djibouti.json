@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "djibouti",
+  "countryIso2": "DJ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Djibouti",
+    "coordinatesWgs84": [
+      43.1472724,
+      11.5936903
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/djibouti-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "djibouti-airport",
+    "name": "Djibouti-Ambouli Airport",
+    "lon": 43.1595,
+    "lat": 11.5473,
+    "sourceUrl": "https://ourairports.com/airports/HDAM/"
+  },
+  "boxes": {
+    "play": [
+      11.412809410066021,
+      42.96374846370639,
+      11.77457118993398,
+      43.33079633629361
+    ],
+    "core": [
+      11.548470077516505,
+      43.101413920675924,
+      11.638910522483496,
+      43.19313087932407
+    ],
+    "outline": [
+      11.36280941006602,
+      42.91374846370639,
+      11.82457118993398,
+      43.380796336293606
+    ],
+    "wide": [
+      10.812809410066022,
+      42.363748463706386,
+      12.37457118993398,
+      43.93079633629361
+    ],
+    "water": [
+      10.812809410066022,
+      42.363748463706386,
+      12.37457118993398,
+      43.93079633629361
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/djibouti-261011.osm.pbf",
+    "datasetSha256": "89f2d0d4bf61c86be1e941c1215db3205e75e605259912c9a960a2378a5f5101",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "442269473f00ad6da5895d6e812e1129dc9074c2891a17f867b461763728c8d1",
+        "elements": 162
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9e708a7eb076057d636a038fca37d05c03ecdc28543cc35161cb0b3c4e523327",
+        "elements": 46
+      },
+      {
+        "file": "water.json",
+        "sha256": "2f6bec5e1a46a31edc8c5d998c38883e9def7e90a3b91aac143b35e46f038847",
+        "elements": 185
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "45d71dc19b48e5cce0b64aed434d5a555c0ea6d4ae65b604d9a5e2bfe18444f5",
+        "elements": 267
+      },
+      {
+        "file": "roads.json",
+        "sha256": "baf27bbf3480627909f6692a13d804d9e58a04a412016525f14d010caff6c894",
+        "elements": 199
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Nagad Station",
+      "osm": "way/568000828",
+      "coordinatesWgs84": [
+        43.128169,
+        11.523444
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kiosque Lac-Abbé",
+      "osm": "node/4958783931",
+      "coordinatesWgs84": [
+        43.14767,
+        11.616152
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Collège de Hayel Saïd",
+      "osm": "node/5417133614",
+      "coordinatesWgs84": [
+        43.110158,
+        11.548085
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôpital Militaire",
+      "osm": "way/550937696",
+      "coordinatesWgs84": [
+        43.149888,
+        11.556245
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rond-point du Progrès",
+      "osm": "way/754578032",
+      "coordinatesWgs84": [
+        43.130788,
+        11.568158
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Djiba Djibouti",
+      "osm": "node/7270748069",
+      "coordinatesWgs84": [
+        43.247749,
+        11.465025
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cathédrale Notre-Dame du Bon-Pasteur",
+      "osm": "way/228251516",
+      "coordinatesWgs84": [
+        43.151303,
+        11.60009
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place cheick Moussa",
+      "osm": "node/8091941734",
+      "coordinatesWgs84": [
+        43.115226,
+        11.562207
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Poste frontière 1184 entre Djibouti et la Somalie",
+      "osm": "way/778712166",
+      "coordinatesWgs84": [
+        43.255214,
+        11.461327
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American Institute",
+      "osm": "node/5345093773",
+      "coordinatesWgs84": [
+        43.151968,
+        11.588248
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "El-Hadj Hassan Gouled Aptidon Stadium",
+      "osm": "way/1051274500",
+      "coordinatesWgs84": [
+        43.131972,
+        11.574149
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Air Ops",
+      "osm": "node/4787069324",
+      "coordinatesWgs84": [
+        43.148235,
+        11.543866
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre de santé communautaire Tora-Dora",
+      "osm": "node/5380475275",
+      "coordinatesWgs84": [
+        43.080766,
+        11.553842
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pizzaiolo Haramous",
+      "osm": "node/4932312785",
+      "coordinatesWgs84": [
+        43.164731,
+        11.565651
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Café Gourmand",
+      "osm": "node/5351742924",
+      "coordinatesWgs84": [
+        43.132976,
+        11.591049
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Al-Rahma Hospital",
+      "osm": "way/711138844",
+      "coordinatesWgs84": [
+        43.095441,
+        11.558436
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Hayableh",
+      "osm": "node/3789244393",
+      "coordinatesWgs84": [
+        43.103826,
+        11.567316
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Université de Djibouti - Campus de Balbala",
+      "osm": "way/575079686",
+      "coordinatesWgs84": [
+        43.116337,
+        11.538564
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mémorial du Barrage de Djibouti EEGA",
+      "osm": "node/14221742154",
+      "coordinatesWgs84": [
+        43.125391,
+        11.558421
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "maché wahle",
+      "osm": "node/5313235263",
+      "coordinatesWgs84": [
+        43.105485,
+        11.557207
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jardin",
+      "osm": "way/383773335",
+      "coordinatesWgs84": [
+        43.141491,
+        11.575572
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mosquée Nouri",
+      "osm": "way/114934833",
+      "coordinatesWgs84": [
+        43.145268,
+        11.593508
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ARKAM",
+      "osm": "way/549877936",
+      "coordinatesWgs84": [
+        43.117044,
+        11.550158
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université de Djibouti",
+      "osm": "way/266382353",
+      "coordinatesWgs84": [
+        43.15128,
+        11.59357
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1214,
+      "sha256": "45fbca32498450d5c3ccd002475b6b5c791e3599cecbe6248d599ae839139159"
+    },
+    "geometry.ts": {
+      "bytes": 114984,
+      "sha256": "3efe925579ba4456180d9a304ee1d49db48a16ca38a053842b7deae086605b90"
+    },
+    "places.ts": {
+      "bytes": 9412,
+      "sha256": "ef908d7148e6d0f3925b5beda774c8ff0a1a0291d54313918a85442a60badc1f"
+    },
+    "terrain.ts": {
+      "bytes": 253620,
+      "sha256": "5cd822bf38023160f8d60ce98b4f35d9eefd812b77ec767d89209a3a51f5e64f"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "a7503d7c38a93f981c8fb785151a76f649ca2bff46e2ea5627d764999e541393"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -153,9 +153,9 @@ test('the travel step names only cities that are open, three at most, and promis
   assert.equal(cityWords(['A', 'B', 'C', 'D', 'E']), 'A, B, C and more')
   const travel = STEPS.find((step) => step.id === 'travel')!
   const say = (cities: string[], country = 'Nigeria'): string => wordsOf(travel, context(ALL, { world: { cities, country } }), false).text
-  assert.match(say(['Ibadan', 'Abeokuta', 'Ota', 'Sagamu']), /Tap the level chip, choose World, a city like Ibadan, Abeokuta, Ota and more, then the bus, train or flight: you are on your way, and your home stays yours while you visit\. Cities in Nigeria are open now, and more of Africa and the world are coming\./)
+  assert.match(say(['Ibadan', 'Abeokuta', 'Ota', 'Sagamu']), /Choose World, select Ibadan, Abeokuta, Ota and more, then pick a bus, train or flight\. Your home stays yours while you visit; cities in Nigeria are open now, with more of Africa and the world coming\./)
   assert.doesNotMatch(say(['Ibadan', 'Abeokuta', 'Ota', 'Sagamu']), /Sagamu/)
-  assert.match(say(['Ibadan']), /a city like Ibadan, then the bus/)
+  assert.match(say(['Ibadan']), /select Ibadan, then pick a bus/)
   for (const alone of [say([]), wordsOf(travel, context(ALL), false).text]) {
     assert.match(alone, /one city at a time.*more of Africa and the world are coming/)
     assert.doesNotMatch(alone, /open now|cities like|Ibadan|map,/)
@@ -173,7 +173,7 @@ test('the travel step names only cities that are open, three at most, and promis
       for (const name of closedNames) assert.ok(!said.includes(name), `${step.id} names ${name}, which is not open`)
       if (step.id !== 'travel') for (const name of openNames) assert.ok(!said.includes(name), `${step.id} names a city`)
     }
-    const destinations = wordsOf(travel, context(ALL, { world }), false).text.split('a city like ')[1]?.split(', then the bus')[0]?.split(/, | and /) ?? []
+    const destinations = wordsOf(travel, context(ALL, { world }), false).text.split('select ')[1]?.split(', then pick a bus')[0]?.split(/, | and /) ?? []
     const named = openNames.filter((name) => destinations.includes(name))
     assert.ok(named.length === Math.min(3, world.cities.length) && !named.includes(own), `${id}: ${named.join(', ')}`)
   }

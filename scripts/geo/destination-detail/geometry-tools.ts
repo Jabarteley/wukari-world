@@ -127,6 +127,47 @@ export const OUTLINE_MARGIN = 0.05;
 /** Water is asked for, and drawn, this far (degrees) beyond the play box: the ground reaches 1.5 times the city's width past the traced land (at most 60 km), which is the play box plus the outline margin. */
 export const reachFor = (box: Box): number => Math.min(0.6, Math.max(0.4, 1.5 * Math.max(box[2] - box[0], box[3] - box[1]) + 0.2));
 
+/** Parse the pinned country geometry at the generator boundary; unsupported seam crossings fail closed. */
+export function countryPolygons(value: unknown): Ring[][] {
+  if (!value || typeof value !== 'object' || !('type' in value) || !('coordinates' in value)) throw new Error('Country boundary must be GeoJSON Polygon or MultiPolygon');
+  const polygons = value.type === 'Polygon' ? [value.coordinates] : value.type === 'MultiPolygon' ? value.coordinates : null;
+  if (!Array.isArray(polygons) || !polygons.length) throw new Error('Country boundary has no polygons');
+  return polygons.map((polygon: unknown) => {
+    if (!Array.isArray(polygon) || !polygon.length) throw new Error('Country polygon has no rings');
+    return polygon.map((ring: unknown) => {
+      if (!Array.isArray(ring) || ring.length < 4) throw new Error('Country ring is incomplete');
+      const points = ring.map((point: unknown): P => {
+        if (!Array.isArray(point) || point.length !== 2 || typeof point[0] !== 'number' || typeof point[1] !== 'number' || !Number.isFinite(point[0]) || !Number.isFinite(point[1]) || Math.abs(point[0]) > 180 || Math.abs(point[1]) > 90) throw new Error('Country point is outside WGS84');
+        return [point[0], point[1]];
+      });
+      if (points[0]![0] !== points.at(-1)![0] || points[0]![1] !== points.at(-1)![1] || points.slice(1).some((point, i) => Math.abs(point[0] - points[i]![0]) > 180)) throw new Error('Country ring is unclosed or crosses the antimeridian');
+      return points;
+    });
+  });
+}
+
+/** Keep a three-cell inset so raster fill, smoothing, simplification and rounding cannot claim a neighbouring country. */
+function countryMask(polygons: readonly Ring[][], cols: number, rows: number, box: Box, cell: number): Uint8Array {
+  let owned = new Uint8Array(cols * rows);
+  for (const polygon of polygons) {
+    const shell = clipRing(polygon[0]!, box);
+    if (!shell.length) continue;
+    const part = new Uint8Array(owned.length), holes = new Uint8Array(owned.length);
+    fillRings([shell], cols, rows, box, cell, part);
+    fillRings(polygon.slice(1).map(ring => clipRing(ring, box)).filter(ring => ring.length), cols, rows, box, cell, holes);
+    for (let i = 0; i < owned.length; i++) if (part[i] && !holes[i]) owned[i] = 1;
+  }
+  for (let pass = 0; pass < 3; pass++) {
+    const inset = new Uint8Array(owned.length);
+    for (let r = 1; r < rows - 1; r++) for (let c = 1; c < cols - 1; c++) {
+      const i = r * cols + c;
+      if (owned[i] && owned[i - 1] && owned[i + 1] && owned[i - cols] && owned[i + cols] && owned[i - cols - 1] && owned[i - cols + 1] && owned[i + cols - 1] && owned[i + cols + 1]) inset[i] = 1;
+    }
+    owned = inset;
+  }
+  return owned;
+}
+
 /** Fill closed rings onto a grid (`value` 1 where covered). Every ring is filled on its own, so overlapping areas join instead of cancelling. Three scan lines per row, so a thin stream still lands in a cell. */
 function fillRings(rings: readonly Ring[], cols: number, rows: number, box: Box, cell: number, into: Uint8Array): void {
   const byRow: number[][] = Array.from({ length: rows }, () => []);
@@ -182,7 +223,7 @@ function tidyMask(mask: Uint8Array, cols: number, rows: number, minIsland: numbe
  * follows the real edge of the mapped blocks as a smooth curve, and a coast, a lake shore or a river bank is the water polygons' own edge. Regions under `minIslandKm2`
  * are dropped and pockets under `minHoleKm2` are filled. Each polygon is an outer ring followed by its holes.
  */
-export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metres: number }[], roads: readonly P[][], water: readonly Ring[][], box: Box, options: { cell: number; split: number; closeMetres: number; minIslandKm2: number; minHoleKm2: number; shore: number; joinMetres: number }): { play: Ring[][]; land: Ring[][]; water: Ring[][] } {
+export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metres: number }[], roads: readonly P[][], water: readonly Ring[][], box: Box, options: { cell: number; split: number; closeMetres: number; minIslandKm2: number; minHoleKm2: number; shore: number; joinMetres: number; country?: readonly Ring[][] }): { play: Ring[][]; land: Ring[][]; water: Ring[][] } {
   const { cell, split, closeMetres, minIslandKm2, minHoleKm2, shore, joinMetres } = options;
   const fine = cell / split, fc = Math.ceil((box[3] - box[1]) / fine), fr = Math.ceil((box[2] - box[0]) / fine);
   const metresPerCell = fine * 111_000, cellKm2 = (metresPerCell / 1000) ** 2 * Math.cos(((box[0] + box[2]) / 2) * Math.PI / 180);
@@ -232,6 +273,10 @@ export function builtUp(areas: readonly Ring[], anchors: readonly { at: P; metre
   const islands = new Uint8Array(fc * fr);
   fillRings(water.flatMap((polygon) => polygon.slice(1)), fc, fr, box, fine, islands);
   for (let i = 0; i < wet.length; i++) if (islands[i]) wet[i] = 0;
+  if (options.country) {
+    const owned = countryMask(options.country, fc, fr, box, fine);
+    for (let i = 0; i < wet.length; i++) if (!owned[i]) { wet[i] = 0; joined[i] = 0; }
+  }
   const play = new Uint8Array(fc * fr), land = new Uint8Array(fc * fr);
   for (let i = 0; i < play.length; i++) if (joined[i] || wet[i]) play[i] = 1;
   // The declared water is the water one cell in from its raster edge, so that it lies inside the play area whatever each outline's simplification does.

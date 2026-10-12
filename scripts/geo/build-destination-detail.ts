@@ -14,19 +14,29 @@
  * Four requests at most, one at a time, 30 seconds apart; every answer is cached outside the repository (overpass.ts).
  */
 import { createHash } from 'node:crypto';
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { ask } from './destination-detail/overpass.ts';
 import type { Element } from './destination-detail/overpass.ts';
 import { loadPbfExtract } from './destination-detail/pbf-extract.ts';
 import { validateDestinationFacts } from '../../src/game/cities/africa/types.ts';
 import { toLocal } from '../../src/geo/frame.ts';
 import type { DetailConfig } from './destination-detail/config.ts';
-import { OUTLINE_MARGIN, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
+import { OUTLINE_MARGIN, countryPolygons, safePolygons, areaRings, reachFor, builtUp, ringArea, coverage, inBox, polygonsOf, rasterArea, round, roundRing, shoreWater, simplify, simplifyRing } from './destination-detail/geometry-tools.ts';
 import type { Box, P } from './destination-detail/geometry-tools.ts';
 import { waterLabelPoint } from './destination-detail/water-label.ts';
 
-const args = process.argv.slice(2), id = args[0], extractDir = args[1] === '--extract-dir' && args.length === 3 ? args[2] : null;
-if (!id || (args.length !== 1 && !extractDir)) throw new Error('Usage: build-destination-detail.ts <city id> [--extract-dir <directory>]');
+const args = process.argv.slice(2), id = args[0];
+const flags = new Map<string, string>();
+for (let i = 1; i < args.length; i += 2) {
+  const flag = args[i], value = args[i + 1];
+  if (!flag || !['--extract-dir', '--country-boundary'].includes(flag) || !value || value.startsWith('--') || flags.has(flag)) throw new Error('Usage: build-destination-detail.ts <city id> [--extract-dir directory] [--country-boundary GeoJSON]');
+  flags.set(flag, value);
+}
+if (!id) throw new Error('A city id is required');
+const extractDir = flags.get('--extract-dir');
+const countryBytes = flags.has('--country-boundary') ? readFileSync(flags.get('--country-boundary')!) : null;
+const country = countryBytes ? countryPolygons(JSON.parse(countryBytes.toString('utf8'))) : undefined;
+const countryProof = countryBytes ? `Playable surfaces masked to country GeoJSON sha256 ${createHash('sha256').update(countryBytes).digest('hex')}, inset three fine grid cells; full mapped water backdrop retained.` : '';
 const config = (await import(`./destination-detail/${id}.ts`) as { CONFIG: DetailConfig }).CONFIG;
 const { FACTS } = await import(`../../src/game/cities/${id}/facts.ts`) as { FACTS: Parameters<typeof validateDestinationFacts>[0] };
 const origin = validateDestinationFacts(FACTS).mapOrigin;
@@ -150,10 +160,10 @@ console.log(`water ${wet.length} polygons, ${reachWater.length} carried to the e
 
 const landuse = await recorded('landuse', config.landuse(outlineBbox));
 const useRings = landuse.elements.flatMap((element) => areaRings(element).outer);
-const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 }))];
+const anchors = [...places.map((place) => ({ at: [place.lon, place.lat] as P, metres: 450 })), ...labelled.map((label) => ({ at: label.at, metres: 900 })), { at: [FACTS.airport.lon, FACTS.airport.lat] as P, metres: 450 }];
 const roadsEarly = await recorded('roads', config.roads(bbox, `${config.core.join(',')}`));
 const roadLines = roadsEarly.elements.filter((way) => way.type === 'way' && way.geometry && way.tags?.highway).map((way) => way.geometry!.map((g): P => [g.lon, g.lat]));
-const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500 });
+const traced = builtUp(useRings, anchors, roadLines, wet, outlineBox, { cell: config.cell, split: config.split, closeMetres: config.closeMetres ?? 600, minIslandKm2: 0.6, minHoleKm2: 0.4, shore: config.shore, joinMetres: config.joinMetres ?? 1500, country });
 const tidy = (polygons: P[][][]): P[][][] => safePolygons(polygons, Math.min(config.outlineTolerance, 0.00015), project);
 const land = tidy(traced.land);
 // The water the map declares is what the grid holds one cell in from the water's edge (see builtUp); the drawn water, `reachWater`, keeps the mapped shape.
@@ -176,8 +186,9 @@ console.log(`labels ${labels.length}`);
 const lonLat = (polygons: P[][][]): string => JSON.stringify(polygons.map((polygon) => polygon.map(roundRing)));
 
 writeFileSync(out('geometry.ts'), `/**
+ * ${countryProof}
  * The play-area outline of ${config.name}: ${config.boundaryNote}. Land-use areas: ${useRings.length}, filled on a ${config.cell / config.split} degree grid
- * with a disc round every place of the game and every labelled neighbourhood, closed by ${config.closeMetres ?? 600} m and smoothed, the water taken out of the land
+ * with a disc round every place of the game, every labelled neighbourhood and the airport point in the city facts, closed by ${config.closeMetres ?? 600} m and smoothed, the water taken out of the land
  * (the play area keeps it), over the play box plus ${OUTLINE_MARGIN} degrees, and simplified (Douglas-Peucker, ${config.outlineTolerance} degrees). A sketch at the grid's size, not a surveyed edge. © OpenStreetMap contributors, ODbL 1.0. Generated by scripts/geo/build-destination-detail.ts
  * ${pbfPublic ? `from ${pbfPublic}; raw landuse extract sha256 ${landuse.sha256}` : `from the Overpass interpreter; source sha256 ${landuse.sha256}`}. Loaded only with this city's map.
  */
@@ -230,6 +241,7 @@ const trunk = [...new Set(roadsAnswer.elements.filter((way) => way.tags?.highway
 const terrainSha = sha(landuse.sha256, waterAnswer.sha256, roadsAnswer.sha256);
 const terrainProvenance = pbfPublic ? `from ${pbfPublic}; raw source sha256 ${terrainSha} (land use ${landuse.sha256}, water ${waterAnswer.sha256}, roads ${roadsAnswer.sha256}, places ${discoverySha.join(', ')})` : `from the Overpass interpreter;\n * source sha256 ${terrainSha} (land use ${landuse.sha256}, water ${waterAnswer.sha256}, roads ${roadsAnswer.sha256}, places ${discoverySha.join(', ')})`;
 writeFileSync(out('terrain.ts'), `/**
+ * ${countryProof}
  * Water, main roads and ground labels of ${config.name}: ${config.terrainNote} © OpenStreetMap contributors, ODbL 1.0
  * (https://www.openstreetmap.org/copyright). Generated by scripts/geo/build-destination-detail.ts ${terrainProvenance}.
  * Roads: Douglas-Peucker ${config.farTolerance} degrees (${config.coreTolerance} in the core ${config.core.join(', ')}), quantised to 0.0001 degrees;

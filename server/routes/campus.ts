@@ -25,8 +25,14 @@ export default function campusRoutes(ctx: RouteContext): Record<RouteKey, RouteH
     const saved=ctx.collection(db,'campus',{}).election;
     return typeof saved==='object'&&saved!==null&&'week' in saved&&saved.week===week?sanitizeCampusElection(saved):emptyCampusElection(week);
   }
-  function summary(db: Db, family: 'humans'|'agents'='humans') {
-    const now=ctx.now(),phase=electionPhaseAt(now),records: {lifeId:string,studentId:string|null|undefined,faculty:string|undefined,hall:string|null|undefined,day:number,game:string,score:number|undefined}[]=[],names=new Map<string,string>(),contributions=new Set<string>();
+  /** The week's game records of every stored life: a pass over all sessions, so it is kept for a few seconds and shared by every reader. */
+  const SCAN_TTL_MS=10000;
+  type Scan={at:number,week:number|null,records:{lifeId:string,studentId:string|null|undefined,faculty:string|undefined,hall:string|null|undefined,day:number,game:string,score:number|undefined}[],names:Map<string,string>,contributions:number};
+  const scans=new Map<string,Scan>();
+  function scan(db: Db, family: 'humans'|'agents', now: number, week: number|null): Scan {
+    const held=scans.get(family);
+    if(held&&held.week===week&&now>=held.at&&now-held.at<SCAN_TTL_MS)return held;
+    const records: Scan['records']=[],names=new Map<string,string>(),contributions=new Set<string>();
     // Current-week per-life records are already bounded and server-settled by the game engine.
     // Reading this projection cannot grant points or advance another player's life.
     for(const session of Object.values(db.sessions)) {
@@ -36,7 +42,7 @@ export default function campusRoutes(ctx: RouteContext): Record<RouteKey, RouteH
       const state=session.cities?.lagos?.state;if(!state)continue;
       const person=authority(session,state);names.set(person.id,person.name);
       for(const day of state.unilagCommunity?.days??[]) {
-        if(!Number.isSafeInteger(day.day)||day.day>lagosTime(now).day||lagosTime(lagosDayStart(day.day)).week!==phase.week)continue;
+        if(!Number.isSafeInteger(day.day)||day.day>lagosTime(now).day||lagosTime(lagosDayStart(day.day)).week!==week)continue;
         if(day.volunteered)contributions.add(`${person.id}:${day.day}`);
         for(const [game,score] of Object.entries(day.games??{})) {
           const team=day.teams?.[game as CampusGameId]??person;
@@ -44,11 +50,17 @@ export default function campusRoutes(ctx: RouteContext): Record<RouteKey, RouteH
         }
       }
     }
+    const made={at:now,week,records,names,contributions:contributions.size};
+    scans.set(family,made);
+    return made;
+  }
+  function summary(db: Db, family: 'humans'|'agents'='humans') {
+    const now=ctx.now(),phase=electionPhaseAt(now),{records,names,contributions}=scan(db,family,now,phase.week);
     const leaderboard=sanitizeCampusLeaderboard({week:phase.week,records},now),election=electionOf(db);
     return {available:true,city:'lagos',
       election:{...phase,candidates:electionStandings(election),winner:phase.phase==='results'?electionWinner(election):null},
       leaderboards:{faculty:campusTeamStandings(leaderboard,now,'faculty'),hall:campusTeamStandings(leaderboard,now,'hall'),players:campusLeaderboardStandings(leaderboard,now).map(p=>({...p,name:names.get(p.id)||'Student'}))},
-      goal:{progress:Math.min(200,contributions.size),target:200,complete:contributions.size>=200},
+      goal:{progress:Math.min(200,contributions),target:200,complete:contributions>=200},
     };
   }
   function write(type: 'unilag.election.nominate'|'unilag.election.vote',operation: 'nominate'|'vote'): RouteHandler { return async request => {

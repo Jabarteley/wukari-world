@@ -1,4 +1,4 @@
-import { registeredCityIds } from '../src/game/cities/registry.ts';
+import { isCityId } from '../src/game/cities/registry.ts';
 // Portable protocol rules shared by the Node server and the Cloudflare worker.
 // No Node-only imports here (no node:*, ws or fs): the worker bundles this file as-is.
 import { hasAction, isDeparting, occupiesVenue } from '../src/life.ts';
@@ -95,7 +95,7 @@ export function canonicalJson(value: unknown): string {
 export function validateActionPayload(body: unknown, now: number, windowMs = ACTION_WINDOW_MS): number {
   if (!body || typeof body !== 'object') throw protocolError(400, 'invalid_action');
   const fields: Record<string, unknown> = { ...body };
-  if (!registeredCityIds().some(city => city === fields.cityId) || !hasAction(fields.type)) throw protocolError(400, 'invalid_action');
+  if (!isCityId(fields.cityId) || !hasAction(fields.type)) throw protocolError(400, 'invalid_action');
   if (fields.payload !== undefined) {
     let size = Infinity;
     try { if (isPlainObject(fields.payload)) size = JSON.stringify(fields.payload).length; } catch {}

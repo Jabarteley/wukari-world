@@ -121,6 +121,16 @@ def main():
             result['countryBoundary'] = {'status': 'HOLD', 'diagnosticPath': 'country-boundary/result.json', 'reason': boundary_error}
         producers, city_results = [], []
         for seed in seeds:
+            if boundary_error:
+                city_result = {
+                    'id': seed['id'],
+                    'status': 'HOLD',
+                    'reason': 'exact same-source country boundary is HOLD; city metadata and extraction were skipped',
+                }
+                city_results.append(city_result)
+                (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
+                print('CITY_SKIPPED ' + json.dumps({'city': seed['id'], 'reason': 'country-boundary-hold'}), flush=True)
+                continue
             try:
                 city_metadata = out / 'metadata' / seed['id']
                 city_metadata.mkdir(parents=True, exist_ok=True)

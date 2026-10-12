@@ -47,3 +47,29 @@ test('the fallback only reads the already-filtered pool; other slots and non-lei
   const stadiumOnly = [el(3, { leisure: 'stadium' })];
   assert.equal(pickForSlot({ slot: 'meal', predicate: t => t.amenity === 'restaurant', pool: stadiumOnly, rank, ref }).el, undefined);
 });
+
+const polling = tags => tags.place === 'square' || tags.amenity === 'townhall';
+
+test('polling: a square or town hall wins; otherwise courthouse, office=government, building=government|public, community_centre in that order', () => {
+  assert.deepEqual(SLOT_FALLBACKS.polling.map(f => f.used), ['amenity=courthouse', 'office=government', 'building=government', 'building=public', 'amenity=community_centre']);
+  const square = pickForSlot({ slot: 'polling', predicate: polling, pool: [el(1, { amenity: 'courthouse' }), el(2, { place: 'square' })], rank, ref });
+  assert.equal(square.el.id, 2);
+  assert.equal(square.slotFallback, undefined);
+  const order = [{ amenity: 'community_centre' }, { building: 'public' }, { building: 'government' }, { office: 'government' }, { amenity: 'courthouse' }];
+  let remaining = order.map((tags, i) => el(20 + i, tags));
+  const seen = [];
+  while (remaining.length) {
+    const { el: picked, slotFallback } = pickForSlot({ slot: 'polling', predicate: polling, pool: remaining, rank, ref });
+    seen.push(slotFallback.used);
+    assert.equal(slotFallback.slot, 'polling');
+    assert.equal(slotFallback.ref, ref(picked));
+    remaining = remaining.filter(x => x !== picked);
+  }
+  assert.deepEqual(seen, SLOT_FALLBACKS.polling.map(f => f.used));
+});
+
+test('polling: unrelated features are not a fallback and an empty pool stays empty', () => {
+  const pool = [el(1, { amenity: 'restaurant' }), el(2, { amenity: 'place_of_worship' }), el(3, { office: 'ngo' })];
+  assert.equal(pickForSlot({ slot: 'polling', predicate: polling, pool, rank, ref }).el, undefined);
+  assert.equal(pickForSlot({ slot: 'polling', predicate: polling, pool: [], rank, ref }).el, undefined);
+});

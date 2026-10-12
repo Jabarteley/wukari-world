@@ -9,6 +9,16 @@
 export const SLOT_FALLBACKS = Object.freeze({
   // Order is the order tried. A named leisure=park always wins; these are only used when the pool has none.
   recreation: Object.freeze(['garden', 'stadium', 'sports_centre', 'pitch', 'nature_reserve', 'playground'].map(value => Object.freeze({ used: `leisure=${value}`, matches: tags => tags.leisure === value }))),
+  // Polling keeps scene kind 'polling', category 'civic', icon 'poll' and the line "<name>; voting here is a fictional game activity."
+  // A square or town hall always wins; otherwise a named civic building from the same pool, in this order. The government slot is
+  // chosen after polling and the batch drops used refs and names, so the two slots never share an element.
+  polling: Object.freeze([
+    { used: 'amenity=courthouse', matches: tags => tags.amenity === 'courthouse' },
+    { used: 'office=government', matches: tags => tags.office === 'government' },
+    { used: 'building=government', matches: tags => tags.building === 'government' },
+    { used: 'building=public', matches: tags => tags.building === 'public' },
+    { used: 'amenity=community_centre', matches: tags => tags.amenity === 'community_centre' },
+  ].map(item => Object.freeze(item))),
 });
 
 /**

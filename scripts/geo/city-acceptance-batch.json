@@ -2,20 +2,20 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-c-africa-1",
+      "id": "release-c-mix-2",
       "appSha": "35d29fa68b02e128194a9f1e24385cfee697c4d1",
       "driverSha": "05840d84c453f1d60d6d8ecac0a5b6ade60841e8",
       "cities": [
-        "bissau",
-        "praia",
-        "monrovia",
-        "nouakchott",
-        "niamey",
-        "conakry",
-        "sao-tome",
-        "malabo",
-        "djibouti",
-        "moroni"
+        "port-louis",
+        "mogadishu",
+        "khartoum",
+        "victoria",
+        "bangui",
+        "asmara",
+        "tirana",
+        "minsk",
+        "sarajevo",
+        "sofia"
       ],
       "roundtrip": true
     }

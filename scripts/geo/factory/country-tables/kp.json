@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf",
     "bytes": 92633737,
     "md5": "613c91f099220dd867b1a64c69e8422b",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/china/liaoning-261011.osm.pbf",
+        "bytes": 28455093,
+        "md5": "df8325731a4290986a88056ee867e4e0",
+        "snapshotDate": "2026-10-11",
+        "reason": "ways 218452189 (48 nodes) and 1032769161 (3 nodes), the Yalu River (Amnok) KP-CN border at 124.508-124.529E 40.215-40.231N (river mouth), absent from the North Korea clip; all nodes inside the Liaoning poly"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

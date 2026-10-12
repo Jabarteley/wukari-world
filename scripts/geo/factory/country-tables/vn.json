@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/asia/vietnam-261011.osm.pbf",
     "bytes": 330311486,
     "md5": "b60a6365bffe82cd391e2b6a3bc94e78",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+        "bytes": 609760908,
+        "md5": "89aea1627157097ce61c3234dc63b001",
+        "snapshotDate": "2026-10-11",
+        "reason": "16 maritime Spratly-region ways of relation 49915 absent from the Vietnam clip (1120240923,925,927,928,930,931,932,934,941,942,947,954,955,1199677144,1319181446,1368675506); ways 941+942 are part of the main ring; all nodes inside the Philippines poly, and 942, 1368675506, 1120240932 are present in the Philippines PBF"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

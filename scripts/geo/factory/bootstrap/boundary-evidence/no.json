@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "NO",
+  "datasetSha256": "cfeef17cee2bb377160c8e4323dde02b9d651d21bf82a9ed79a389e0c888c829",
+  "source": "https://api.openstreetmap.org/api/0.6/ways.json?ways=189509731",
+  "retrievedAt": "2026-10-12",
+  "note": "Maritime=yes admin_level=2 closed ring (Bouvetoya 12 nm territorial sea, 2.94-3.78E 54.65-54.19S) wholly outside the Norway clip, touching no present boundary way. Valid only for the PBF named by datasetSha256 (Geofabrik 2026-10-11, run 38307668383).",
+  "ways": [
+    {
+      "id": 189509731,
+      "version": 5,
+      "timestamp": "2024-12-31T12:27:57Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "note": "robot-generated-12nm-border computed from baseline"
+      },
+      "firstNode": 2001126579,
+      "lastNode": 2001126579
+    }
+  ]
+}

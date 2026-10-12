@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "IR",
+  "datasetSha256": "ee9e7823482d6e5ba42be9b0c02f556da565fb89593292250c9e2868b5594aff",
+  "source": "https://api.openstreetmap.org/api/0.6/ways.json?ways=305917632,305917633,305917647",
+  "retrievedAt": "2026-10-12",
+  "note": "Maritime=yes admin_level=2 ways (Farsi/Arabiyah islands 12 nm and median line, 49.95-50.40E 27.88-28.20N) that form one whole ring of their own, touch no present boundary way, and lie outside the Iran clip (not inside iran poly; inside gcc-states poly). Valid only for the PBF named by datasetSha256 (Geofabrik 2026-10-11, run 38307668383).",
+  "ways": [
+    {
+      "id": 305917632,
+      "version": 5,
+      "timestamp": "2022-07-12T08:22:01Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "source": "12 nm measured from island coastline"
+      },
+      "firstNode": 3106159960,
+      "lastNode": 3106160004
+    },
+    {
+      "id": 305917633,
+      "version": 6,
+      "timestamp": "2024-03-07T15:34:25Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "is_in:state": "Bushehr",
+        "maritime": "yes",
+        "source": "12 nm measured from island coastline"
+      },
+      "firstNode": 3106160004,
+      "lastNode": 3106159964
+    },
+    {
+      "id": 305917647,
+      "version": 3,
+      "timestamp": "2022-01-19T15:42:42Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes",
+        "source": "median line between two islands"
+      },
+      "firstNode": 3106159964,
+      "lastNode": 3106159960
+    }
+  ]
+}

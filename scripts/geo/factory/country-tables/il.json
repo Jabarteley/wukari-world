@@ -16,7 +16,7 @@
   "seeds": [
     {
       "id": "tel-aviv-yafo",
-      "name": "Tel Aviv-Yafo",
+      "name": "Tel Aviv",
       "countryISO": "IL",
       "airport": {
         "ident": "LLBG",

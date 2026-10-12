@@ -59,7 +59,7 @@ const history = async (h: Awaited<ReturnType<typeof host>>, who: Device, conv: s
 
 test('on the Worker: shadow, the switch, a restart, the way back and the safety copy, on persisted storage', async (t) => {
   const h = await host(t);
-  await h.start();
+  await h.start({ STORE_LAYOUT: 'legacy' });
   const ada = await h.player('Ada'), bola = await h.player('Bola');
   await befriend(h, ada, bola);
   const first = await say(h, ada, bola, 'before the move');
@@ -107,6 +107,48 @@ test('on the Worker: shadow, the switch, a restart, the way back and the safety 
   await h.start();
   assert.deepEqual(await history(h, bola, conv), ['before the move', 'legacy cost', 'in shadow', 'after the switch', 'counted']);
   assert.equal((await h.operator('/api/mod/store')).json['requested'], 'legacy');
+});
+
+test('on the Worker: one release asks for shadow, the next for entries; the store moves itself, writes down each step, and no later build takes it back', async (t) => {
+  const h = await host(t);
+  interface Status { requested: string; stored: string | null; cutoverAt: number | null; shadow: { mismatches: number; errors: number }; release: { target: string; by: string | null; moving: string | null; pending: string[]; refusal: string | null; steps: { count: number } }; collections: Record<string, { mode: string; synced: boolean }> }
+  const status = async (): Promise<Status> => (await h.operator('/api/mod/store')).json as unknown as Status;
+  type Compared = Record<string, { equal: boolean; legacyEntries: number; entryRows: number; legacyHash: string | null; entryHash: string | null }>;
+  // The build of before: one stored value per collection.
+  await h.start({ STORE_LAYOUT: 'legacy' });
+  const ada = await h.player('Ada'), bola = await h.player('Bola');
+  await befriend(h, ada, bola);
+  const conv = (await say(h, ada, bola, 'written by the build of before')).conv?.id as string;
+  assert.equal((await status()).stored, null);
+  // Release A, with steps small enough that the copies take several requests.
+  await h.start({ STORE_LAYOUT: 'shadow', STORE_STEP_CHARS: '1' });
+  assert.deepEqual(await history(h, bola, conv), ['written by the build of before']);
+  for (let i = 0; i < 20 && (await status()).release.pending.length; i += 1) await (await h.get('/api/social/me', ada)).arrayBuffer();
+  const a = await status();
+  assert.equal(a.requested, 'shadow'); assert.equal(a.stored, 'shadow'); assert.equal(a.release.by, 'release'); assert.deepEqual(a.release.pending, []);
+  assert.ok(Object.values(a.collections).every((c) => c.mode === 'legacy' && c.synced), 'reads still come from the stored values');
+  await say(h, bola, ada, 'written in shadow');
+  const compared = (await h.operator('/api/mod/store/compare')).json['collections'] as Compared;
+  assert.ok(Object.values(compared).every((row) => row.equal && row.legacyEntries === row.entryRows && row.legacyHash === row.entryHash), JSON.stringify(compared));
+  // The build of before takes the object back for a while (the overlap of a deploy): it goes on in shadow, because the store says so.
+  await h.start({});
+  await h.start({ STORE_LAYOUT: 'legacy' });
+  assert.equal((await status()).requested, 'shadow');
+  await say(h, ada, bola, 'written in the overlap');
+  // Release B.
+  await h.start({ STORE_LAYOUT: 'entries' });
+  assert.deepEqual(await history(h, ada, conv), ['written by the build of before', 'written in shadow', 'written in the overlap']);
+  const b = await status();
+  assert.equal(b.requested, 'entries'); assert.equal(b.stored, 'entries'); assert.equal(b.release.by, 'release'); assert.equal(b.release.refusal, null); assert.ok(b.cutoverAt);
+  assert.equal(b.shadow.mismatches, 0); assert.equal(b.shadow.errors, 0);
+  assert.ok(Object.values(b.collections).every((c) => c.mode === 'entries'));
+  await say(h, bola, ada, 'written per entry');
+  // No later build takes it back, whatever word it carries.
+  for (const word of ['legacy', 'shadow'] as const) {
+    await h.start({ STORE_LAYOUT: word });
+    assert.equal((await status()).requested, 'entries');
+    assert.deepEqual(await history(h, bola, conv), ['written by the build of before', 'written in shadow', 'written in the overlap', 'written per entry']);
+  }
 });
 
 test('on the Worker: the operator routes refuse a bad request and a request without the token', async (t) => {

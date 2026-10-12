@@ -13,6 +13,7 @@
  * The city summary (derived data) is one row of `world_meta`.
  */
 import type { SqliteStorage } from './cf-types.ts';
+import { cutAt } from './sqlite-store.ts';
 
 export const SHARD_CHUNK = 400000;
 
@@ -31,7 +32,8 @@ export function sqliteShardBackend(storage: SqliteStorage, { chunk = SHARD_CHUNK
   sql.exec('CREATE TABLE IF NOT EXISTS world_shards (seq INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, text TEXT NOT NULL)');
   sql.exec('CREATE INDEX IF NOT EXISTS world_shard_name ON world_shards(name, seq)');
   sql.exec('CREATE TABLE IF NOT EXISTS world_meta (key TEXT PRIMARY KEY, value TEXT NOT NULL)');
-  const insert = (name: string, text: string): void => { for (let start = 0; start < text.length; start += chunk) sql.exec('INSERT INTO world_shards(name,text) VALUES(?,?)', name, text.slice(start, start + chunk)); };
+  // A row never ends half way through a character outside the basic plane (two units of a JavaScript string): half a character cannot be stored.
+  const insert = (name: string, text: string): void => { for (let start = 0, end = 0; start < text.length; start = end) { end = cutAt(text, start, chunk); sql.exec('INSERT INTO world_shards(name,text) VALUES(?,?)', name, text.slice(start, end)); } };
   return {
     async read(name: string) { return sql.exec<{ text: string }>('SELECT text FROM world_shards WHERE name = ? ORDER BY seq', name).toArray().map(row => row.text).join(''); },
     async append(name: string, text: string) { storage.transactionSync(() => { beforeWrite(); insert(name, text); }); await barrier(); },

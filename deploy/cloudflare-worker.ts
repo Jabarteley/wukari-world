@@ -48,6 +48,7 @@ import { ADMIN_HOST_ENV, ADMIN_ROBOTS, ADMIN_SHELL, adminAddress, adminHostName,
 import { withPathMeta } from '../server/path-meta.ts';
 import { createSqliteStore } from './sqlite-store.ts';
 import { parseLayout } from '../server/keyed.ts';
+import { RELEASE_STORE_LAYOUT } from './store-release.ts';
 import { createSqliteVoices } from './sqlite-voices.ts';
 import { createSqliteImages } from './sqlite-images.ts';
 import { keepAlways } from '../server/showcase/image-files.ts';
@@ -288,6 +289,8 @@ export interface WorkerEnv {
   SLEEP_BETWEEN_BEATS?: string
   /** How the big collections are stored: `legacy` (default), `shadow` or `entries` (docs/STORAGE.md). */
   STORE_LAYOUT?: string
+  /** The most characters of stored collections the store copies before one transaction while it moves itself (deploy/sqlite-store.ts STEP_CHARS). */
+  STORE_STEP_CHARS?: string
   /** Replaces the built-in founder hash; empty: no founder (server/host-context.ts founderEmailHash). */
   FOUNDER_EMAIL_SHA256?: string
   [name: string]: unknown
@@ -352,7 +355,9 @@ export class JoinAllworldState extends DurableObject<WorkerEnv> {
     // Every table is written through the meter (write-meter.ts): the same storage, with its rows counted.
     const storage: SqliteStorage = { sql: this.sql, transactionSync: fn => ctx.storage.transactionSync(fn), sync: () => ctx.storage.sync() };
     this.sleeps = env.SLEEP_BETWEEN_BEATS === '1';
-    this.store = createSqliteStore(storage, { barrier, lazyFlushMs: this.sleeps ? 0 : LAZY_FLUSH_MS, layout: parseLayout(env.STORE_LAYOUT) ?? 'legacy', log });
+    // Where the store is taken to is this build's own word (store-release.ts); the variables are for tests and for an operator who must overrule it.
+    const stepChars = Number(env.STORE_STEP_CHARS);
+    this.store = createSqliteStore(storage, { barrier, lazyFlushMs: this.sleeps ? 0 : LAZY_FLUSH_MS, target: parseLayout(env.STORE_LAYOUT) ?? RELEASE_STORE_LAYOUT, ...(Number.isSafeInteger(stepChars) && stepChars > 0 ? { stepChars } : {}), ready: () => this.booted, log });
     this.images = createSqliteImages(storage);
     this.showcaseImages = keepAlways(createSqliteImages(storage, 'showcase_images'));
     this.voices = createSqliteVoices(storage);

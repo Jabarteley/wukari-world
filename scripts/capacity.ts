@@ -24,7 +24,8 @@
  *   everyone who came by in the last weeks, which is many times the number connected at once.
  *   `--agents N` adds N AI agents before the first step: each signs itself up at POST /mcp (the day's cap on new agent accounts is
  *   raised for the test through the operator's settings route) and then calls a tool every `--agent-ms` (14,400 ms is a key that
- *   spends its whole 6,000 calls a day), turning through the tools an agent reads and acts with.
+ *   spends its whole 6,000 calls a day), turning through the tools an agent reads and acts with. The server-wide rate of agent calls is lifted
+ *   for the run so that the calls themselves are measured; `--agent-rate 0` leaves the server's own rate on, `--agent-rate N` sets N a second.
  *   `--boards-ms` makes every player also open, in turn, the lists a person looks at now and then and that are worked out from
  *   everybody: the rich list, the neighbours, the boards, the politics overview and the people here. Off unless given.
  *   `--venue-share` of the players stand in public venues, spread over `--venues`; the rest go home, where a room
@@ -60,6 +61,10 @@ interface Settings {
   sleepers: number
   /** AI agents made before the first step, each calling a tool every `agentMs`. */
   agents: number; agentMs: number
+  /** The server-wide rate of agent calls set for the run (calls a second); 0 leaves the server's own (server/agents/policy.ts AGENT_RATE). */
+  agentRate: number
+  /** The port the Worker host listens on (0: any free one). */
+  workerPort: number
   /** Each player opens one of the lists worked out from everybody this often (0: never). */
   boardsMs: number
   /** Write a CPU profile of the host during the LAST step here (a .cpuprofile file), and print where the time went. */
@@ -178,7 +183,7 @@ interface MiniflareTooling { Miniflare: new (options: Record<string, unknown>) =
 interface EsbuildTooling { build(options: Record<string, unknown>): Promise<unknown> }
 
 /** The Worker host as deploy/local.ts runs it, reached on the runtime's own port (no forwarding process in between). */
-async function startWorker(dataDir: string, token: string, env: Record<string, string>, inspect: number | null): Promise<RunningHost> {
+async function startWorker(dataDir: string, token: string, env: Record<string, string>, inspect: number | null, port = 0): Promise<RunningHost> {
   const require = createRequire(resolve(process.env.JOINALLWORLD_TOOLS || join(root, 'deploy/tooling'), 'package.json'));
   let miniflare: MiniflareTooling, esbuild: EsbuildTooling;
   try { miniflare = require('miniflare') as MiniflareTooling; esbuild = require('esbuild') as EsbuildTooling; }
@@ -189,7 +194,7 @@ async function startWorker(dataDir: string, token: string, env: Record<string, s
   const options: Record<string, unknown> = { name: 'allworld-capacity', script: await readFile(bundle, 'utf8'), modules: true, compatibilityDate: '2026-10-01',
     durableObjects: { JOINALLWORLD: { className: 'JoinAllworldState', useSQLite: true } }, durableObjectsPersist: join(dataDir, 'storage'), bindings: { BUILD_ID: 'capacity', MODERATOR_TOKEN: token, ...env },
     assets: { directory: join(root, 'dist'), binding: 'ASSETS', run_worker_first: true, routerConfig: { has_user_worker: true }, assetConfig: { not_found_handling: 'single-page-application' } } };
-  const mf = new miniflare.Miniflare({ ...miniflare.convertV4MiniflareOptions(options), resourcePersistencePath: join(dataDir, 'storage'), host: '127.0.0.1', port: 0, handleStructuredLogs: () => {}, ...(inspect ? { inspectorPort: inspect } : {}) });
+  const mf = new miniflare.Miniflare({ ...miniflare.convertV4MiniflareOptions(options), resourcePersistencePath: join(dataDir, 'storage'), host: '127.0.0.1', port, handleStructuredLogs: () => {}, ...(inspect ? { inspectorPort: inspect } : {}) });
   const url = await mf.ready;
   const runtime = childrenOf(process.pid).find((child) => child.command.includes('workerd'));
   return { base: `http://127.0.0.1:${url.port}`, pid: runtime?.pid ?? 0, token, profiler: inspect ? inspectorProfiler(inspect) : null, stop: () => mf.dispose() };
@@ -209,7 +214,7 @@ export async function runCapacity(settings: Settings, log: (line: string) => voi
   const dataDir = await mkdtemp(join(tmpdir(), 'allworld-capacity-'));
   const token = `capacity-${randomUUID()}`;
   const inspect = settings.profile ? settings.port + 1 : null;
-  const host = settings.host === 'node' ? await startNode(settings.port, dataDir, token, settings.env, inspect) : await startWorker(dataDir, token, settings.env, inspect);
+  const host = settings.host === 'node' ? await startNode(settings.port, dataDir, token, settings.env, inspect) : await startWorker(dataDir, token, settings.env, inspect, settings.workerPort);
   const players: Player[] = [], results: StepResult[] = [];
   let latency: Record<string, number[]> = {}, errors: Record<string, number> = {}, refusals: Record<string, number> = {};
   let requests = 0, framesIn = 0, framesOut = 0, bytesIn = 0, measuring = false;
@@ -325,7 +330,7 @@ export async function runCapacity(settings: Settings, log: (line: string) => voi
     } catch (error) { bump(errors, `${kind}: ${error instanceof Error ? error.name : 'failed'}`); return null; }
   }
   async function makeAgents(count: number): Promise<void> {
-    await fetch(`${host.base}/api/mod/agents/settings`, { method: 'POST', headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json', origin: host.base, 'cf-connecting-ip': '45.0.0.1', 'x-forwarded-for': '45.0.0.1' }, body: JSON.stringify({ createCap: count + 1000 }) }).catch(() => undefined);
+    await fetch(`${host.base}/api/mod/agents/settings`, { method: 'POST', headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json', origin: host.base, 'cf-connecting-ip': '45.0.0.1', 'x-forwarded-for': '45.0.0.1' }, body: JSON.stringify({ createCap: count + 1000, ...(settings.agentRate > 0 ? { rate: settings.agentRate } : {}) }) }).catch(() => undefined);
     const one = async (index: number): Promise<void> => {
       const address = `46.${(index >> 16) & 255}.${(index >> 8) & 255}.${index & 255}`;
       const made = await mcp('setup: agent account', null, address, 'create_agent_account', { name: `Load Agent ${index + 1}` });
@@ -458,7 +463,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     actionMs: Number(option('action-ms', '30000')), moveMs: Number(option('move-ms', '10000')), chatMs: Number(option('chat-ms', '120000')), socialMs: Number(option('social-ms', '120000')),
     venueShare: Number(option('venue-share', '0.5')), venues: option('venues', 'park,library,shrine,market,beach,palms,cchub,rooftop').split(','), friends: Number(option('friends', '3')),
     setupConcurrency: Number(option('setup-concurrency', '8')), json: args.includes('--json') ? option('json', '') : null, profile: args.includes('--profile') ? option('profile', '') : null, sleepers: Number(option('sleepers', '0')), env,
-    agents: Number(option('agents', '0')), agentMs: Number(option('agent-ms', '14400')), boardsMs: Number(option('boards-ms', '0')),
+    agents: Number(option('agents', '0')), agentMs: Number(option('agent-ms', '14400')), agentRate: Number(option('agent-rate', '1000000')), workerPort: args.includes('--port') ? Number(option('port', '0')) : 0, boardsMs: Number(option('boards-ms', '0')),
   };
   await runCapacity(settings);
   process.exit(0);

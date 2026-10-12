@@ -6,7 +6,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { world, agentKeys, OPERATOR, HOUR } from './test-world.ts';
 import type { Json, World } from './test-world.ts';
-import { AGENT_LIMITS, UNCLAIMED } from './policy.ts';
+import { AGENT_LIMITS, AGENT_RATE, UNCLAIMED } from './policy.ts';
 import { AGENT_DENY, actionList, allowedActionTypes, mayRunAction, routeDenied } from './access.ts';
 import { ACTION_CATALOGUE } from './action-catalogue.generated.ts';
 import { agentPageHtml, claimPageHtml, esc, leaguePageHtml } from './pages.ts';
@@ -392,6 +392,34 @@ test('operator settings change the per-key ceiling without a release', async (t)
   await op(w, '/api/mod/agents/settings', { ceiling: AGENT_LIMITS.callsPerDay });
   assert.equal((await w.tool(key, 'get_my_life')).ok, true);
   assert.equal(AGENT_LIMITS.callsPerDay, 6000);
+});
+
+test('all agents together have a rate: a call over it does nothing, costs the key nothing, and is told how long to wait', async (t) => {
+  const { w, key } = await ownerWithKey(t);
+  assert.deepEqual([AGENT_RATE.callsPerSecond, AGENT_RATE.burstSeconds], [40, 2]);
+  const set = (await (await op(w, '/api/mod/agents/settings', { rate: 2 })).json()) as Json;
+  assert.equal(set.rate, 2);
+  w.f.advance(60000);
+  // Two seconds' worth at once, then no more until time has passed.
+  for (let i = 0; i < 4; i += 1) assert.equal((await w.tool(key, 'get_my_life')).ok, true, `call ${i}`);
+  const counted = async (): Promise<unknown> => w.stored((db) => agentKeys(db).map((item) => [item['today'], item['calls'], (item['audit'] as unknown[]).length]));
+  const before = await counted();
+  const over = await w.mcp(key, 'tools/call', { name: 'get_my_life', arguments: {} });
+  assert.equal(over.status, 429);
+  assert.equal(over.headers.get('retry-after'), '1');
+  assert.equal(((over.json.error as Json).data as Json).code, 'agents_busy');
+  assert.match(String((over.json.error as Json).message), /Wait 1 second, then send the same call again/);
+  assert.deepEqual(await counted(), before, 'a call told to wait is not counted and leaves no trace on the key');
+  // Listing the tools and the handshake are not tool calls and are never held back.
+  assert.equal((await w.mcp(key, 'tools/list')).status, 200);
+  assert.equal(((await (await op(w, '/api/mod/agents')).json()) as Json).busyRefusals, 1);
+  w.f.advance(1000);
+  for (let i = 0; i < 2; i += 1) assert.equal((await w.tool(key, 'get_my_life')).ok, true);
+  assert.equal((await w.mcp(key, 'tools/call', { name: 'get_my_life', arguments: {} })).status, 429);
+  // The operator lifts it without a release.
+  await op(w, '/api/mod/agents/settings', { rate: 1000 });
+  w.f.advance(1000);
+  for (let i = 0; i < 20; i += 1) assert.equal((await w.tool(key, 'get_my_life')).ok, true);
 });
 
 test('modes: an own-character key plays the account\'s character; a key for a new agent character makes a separate marked life owned by the account, with no phone check, two at most', async (t) => {

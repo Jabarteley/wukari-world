@@ -105,6 +105,12 @@ export const partyOf = (politics: PoliticsCollection, playerId: string): string 
   return typeof id === 'string' && Object.hasOwn(politics.parties, id) ? id : null;
 };
 export const memberCount = (politics: PoliticsCollection, partyId: string): number => Object.values(politics.members).filter((id) => id === partyId).length;
+/** Every party's members in one pass over the membership (a list of parties asks for all of them). */
+export function memberCounts(politics: PoliticsCollection): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const id of Object.values(politics.members)) counts.set(id, (counts.get(id) ?? 0) + 1);
+  return counts;
+}
 
 /** Why `who` cannot found a party with this name, or null. The text is checked by the route. */
 export function foundBlock(politics: PoliticsCollection, who: PlayerRef, name: string): Block | null {

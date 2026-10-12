@@ -5,7 +5,7 @@ import { lagosDayStart, lagosTime } from '../../src/game/clock.ts';
 import { LEVERS, QUORUM, SALARY_SHARE, SEATS } from '../../src/game/content/politics.ts';
 import { declare, governorAt, vote } from '../civic/elections.ts';
 import { emptyPolitics, scopeRecord } from './data.ts';
-import { credit, decreeBlock, drawSalary, found, foundBlock, join, joinBlock, leave, leverValue, levyOn, memberCount, partyOf, salaryBlock, salaryDue, setDecree, totalLevy } from './rules.ts';
+import { credit, decreeBlock, drawSalary, found, foundBlock, join, joinBlock, leave, leverValue, levyOn, memberCount, memberCounts, partyOf, salaryBlock, salaryDue, setDecree, totalLevy } from './rules.ts';
 import type { GovScope } from '../types.ts';
 
 const DAY = 86400000;
@@ -97,6 +97,7 @@ test('parties: one per founder, unique names, one membership each', () => {
   assert.equal(joinBlock(politics, 'bola', id), null);
   join(politics, 'bola', id);
   assert.equal(memberCount(politics, id), 2);
+  assert.deepEqual([...memberCounts(politics)], [[id, 2]], 'every party is counted in one pass over the members, with the same answer');
   assert.equal(leave(politics, 'bola'), true); assert.equal(leave(politics, 'bola'), false);
   assert.equal(memberCount(politics, id), 1);
 });

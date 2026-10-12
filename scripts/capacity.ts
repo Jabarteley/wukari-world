@@ -22,6 +22,11 @@
  *       every other time.
  *   `--sleepers N` adds N players before the first step who played once and are not connected: what a host carries of
  *   everyone who came by in the last weeks, which is many times the number connected at once.
+ *   `--agents N` adds N AI agents before the first step: each signs itself up at POST /mcp (the day's cap on new agent accounts is
+ *   raised for the test through the operator's settings route) and then calls a tool every `--agent-ms` (14,400 ms is a key that
+ *   spends its whole 6,000 calls a day), turning through the tools an agent reads and acts with.
+ *   `--boards-ms` makes every player also open, in turn, the lists a person looks at now and then and that are worked out from
+ *   everybody: the rich list, the neighbours, the boards, the politics overview and the people here. Off unless given.
  *   `--venue-share` of the players stand in public venues, spread over `--venues`; the rest go home, where a room
  *   holds one player.
  *   Every player presents its own network address (X-Forwarded-For on Node, CF-Connecting-IP on the Worker), so the
@@ -53,6 +58,10 @@ interface Settings {
   venueShare: number; venues: string[]; friends: number; setupConcurrency: number; json: string | null
   /** Players made before the first step who then stay away: they are in every stored collection and hold no socket. */
   sleepers: number
+  /** AI agents made before the first step, each calling a tool every `agentMs`. */
+  agents: number; agentMs: number
+  /** Each player opens one of the lists worked out from everybody this often (0: never). */
+  boardsMs: number
   /** Write a CPU profile of the host during the LAST step here (a .cpuprofile file), and print where the time went. */
   profile: string | null
   env: Record<string, string>
@@ -298,13 +307,42 @@ export async function runCapacity(settings: Settings, log: (line: string) => voi
     await rest(Math.random() * ms);
     while (performance.now() < until && !stopping) { await work(); await rest(jitter(ms)); }
   }
+  // ---- AI agents: self-made accounts at POST /mcp, one tool call at a time ----------------------------------------------------
+  const agentKeys: { key: string; address: string }[] = [];
+  const AGENT_TOOLS: [string, object][] = [['get_my_life', {}], ['list_actions_here', {}], ['list_places', {}], ['list_people_here', {}], ['get_goals', {}], ['read_messages', {}], ['do_activity', { id: 'chill' }], ['list_friends', {}]];
+  async function mcp(kind: string, agent: { key: string; address: string } | null, address: string, name: string, args: object): Promise<Record<string, unknown> | null> {
+    const started = performance.now();
+    requests += 1;
+    try {
+      const response = await fetch(`${host.base}/mcp`, { method: 'POST', signal: AbortSignal.timeout(40000),
+        headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', 'x-forwarded-for': address, 'cf-connecting-ip': address, ...(agent ? { authorization: `Bearer ${agent.key}` } : {}) },
+        body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name, arguments: args } }) });
+      const json = await response.json() as { result?: { isError?: boolean; structuredContent?: Record<string, unknown> }; error?: { message?: string } };
+      note(kind, performance.now() - started);
+      if (response.status !== 200 || json.error) bump(errors, `${kind}: ${response.status} ${json.error?.message ?? ''}`.trim().slice(0, 80));
+      else if (json.result?.isError) bump(refusals, `${kind}: ${String(json.result.structuredContent?.['code'] ?? name)}`);
+      return json.result?.structuredContent ?? null;
+    } catch (error) { bump(errors, `${kind}: ${error instanceof Error ? error.name : 'failed'}`); return null; }
+  }
+  async function makeAgents(count: number): Promise<void> {
+    await fetch(`${host.base}/api/mod/agents/settings`, { method: 'POST', headers: { authorization: `Bearer ${token}`, 'content-type': 'application/json', origin: host.base, 'cf-connecting-ip': '45.0.0.1', 'x-forwarded-for': '45.0.0.1' }, body: JSON.stringify({ createCap: count + 1000 }) }).catch(() => undefined);
+    const one = async (index: number): Promise<void> => {
+      const address = `46.${(index >> 16) & 255}.${(index >> 8) & 255}.${index & 255}`;
+      const made = await mcp('setup: agent account', null, address, 'create_agent_account', { name: `Load Agent ${index + 1}` });
+      if (typeof made?.['key'] === 'string') agentKeys.push({ key: made['key'], address });
+    };
+    for (let at = 0; at < count; at += settings.setupConcurrency) await Promise.all(Array.from({ length: Math.min(settings.setupConcurrency, count - at) }, (_, i) => one(at + i)));
+  }
+  const agentLife = (agent: { key: string; address: string }, index: number): Promise<void> => { let turn = index; return every(settings.agentMs, () => { const [name, args] = AGENT_TOOLS[turn++ % AGENT_TOOLS.length]!; return mcp('agent call', agent, agent.address, name, args); }); };
+  const BOARDS = ['/api/civic/richlist?city=lagos', '/api/civic/neighbours?city=lagos', '/api/civic/boards?city=lagos', '/api/politics/overview?city=lagos', '/api/social/people?city=lagos'];
   const VENUE_STEPS: [string, object?][] = [['spot', { id: 'trees' }], ['activity', { id: 'chill' }], ['cancel'], ['civic.refresh']];
   function live(player: Player): Promise<void>[] {
-    let step = player.index, turn = 0;
+    let step = player.index, turn = 0, board = player.index;
     return [
       every(60000, () => call('poll: life', player, '/api/life?city=lagos')),
       every(30000, () => call('poll: world pulse', player, '/api/world/pulse')),
       every(60000, () => call('poll: civic pulse', player, '/api/civic/pulse?city=lagos')),
+      ...(settings.boardsMs > 0 ? [every(settings.boardsMs, () => { const path = BOARDS[board++ % BOARDS.length]!; return call(`board: ${path.split('?')[0]!.replace('/api/', '')}`, player, path); })] : []),
       every(settings.actionMs, () => { const [type, payload] = (player.location === 'park' ? VENUE_STEPS[step++ % VENUE_STEPS.length] : undefined) ?? ['civic.refresh']; return act(player, type, payload); }),
       every(settings.moveMs, () => { send(player.game, { type: 'move', x: Math.round((Math.random() * 30 - 15) * 10) / 10 || 0.1, z: Math.round((Math.random() * 30 - 15) * 10) / 10 || 0.1 }); }),
       every(settings.chatMs, () => { const clientId = randomUUID(); if (send(player.game, { type: 'chat', body: `Hello from player ${player.index + 1}`, clientId })) player.waiting.set(clientId, performance.now()); }),
@@ -332,6 +370,12 @@ export async function runCapacity(settings: Settings, log: (line: string) => voi
       const made = summary(latency['setup: session'] ?? []), social = summary(latency['setup: social overview'] ?? []);
       log(`${settings.sleepers} players who are not connected were made in ${Math.round((performance.now() - started) / 1000)}s · new session p50/p95 ${made.p50}/${made.p95} ms · social overview ${social.p50}/${social.p95} ms`);
     }
+    if (settings.agents > 0) {
+      const started = performance.now();
+      await makeAgents(settings.agents);
+      const made = summary(latency['setup: agent account'] ?? []);
+      log(`${agentKeys.length} of ${settings.agents} AI agents signed themselves up in ${Math.round((performance.now() - started) / 1000)}s · p50/p95 ${made.p50}/${made.p95} ms${Object.keys(errors).length ? ` · ${Object.entries(errors).map(([code, count]) => `${code} ×${count}`).join(', ')}` : ''}`);
+    }
     for (const target of settings.steps) {
       latency = {}; errors = {}; refusals = {};
       const setupStarted = performance.now();
@@ -351,7 +395,7 @@ export async function runCapacity(settings: Settings, log: (line: string) => voi
       const profiling = target === settings.steps.at(-1) ? host.profiler : null;
       await profiling?.start().catch((error: unknown) => { log(`  (no profile: ${error instanceof Error ? error.message : 'the inspector did not answer'})`); });
       measuring = true; until = performance.now() + settings.seconds * 1000;
-      await Promise.all(players.flatMap((player) => live(player)));
+      await Promise.all([...players.flatMap((player) => live(player)), ...agentKeys.map(agentLife)]);
       measuring = false;
       const profile = await profiling?.stop().catch(() => null) ?? null;
       const heapMb = await host.profiler?.heapMb() ?? null;
@@ -377,6 +421,8 @@ export async function runCapacity(settings: Settings, log: (line: string) => voi
       const show = (kind: string): string => { const s = result.latency[kind]; return s ? `${s.p50}/${s.p95}/${s.p99}` : '-'; };
       log(`\n${result.players} players · set up in ${result.setupSeconds}s · ${result.requestsPerSecond} requests/s · ${Math.round(framesOut / elapsed)} frames in/s, ${Math.round(framesIn / elapsed)} out/s (${result.megabytesOutPerSecond} MB/s) · this script ${result.generatorCpuShare} of a core · host ${result.rssMb} MB${result.heapMb === null ? '' : ` (JavaScript heap ${result.heapMb} MB)`}, ${result.cpuShare} of a core, ${result.cpuMsPerRequest} ms CPU per request or frame`);
       log(`  p50/p95/p99 ms — action ${show('action')} · life poll ${show('poll: life')} · world pulse ${show('poll: world pulse')} · civic pulse ${show('poll: civic pulse')} · social overview ${show('social overview')} · chat echo ${show('frame: chat echo')} · message ${show('frame: message sent')}`);
+      const extra = Object.keys(result.latency).filter((kind) => kind === 'agent call' || kind.startsWith('board: '));
+      if (extra.length) log(`  p50/p95/p99 ms — ${extra.map((kind) => `${kind} ${show(kind)} (${result.latency[kind]!.count})`).join(' · ')}`);
       log(`  set-up p50/p95 ms — session ${setup['setup: session']?.p50}/${setup['setup: session']?.p95} · social overview ${setup['setup: social overview']?.p50}/${setup['setup: social overview']?.p95} · friend answer ${setup['setup: friend answer']?.p50}/${setup['setup: friend answer']?.p95}`);
       if (result.rowsWritten !== null) log(`  rows written ${result.rowsWritten} (${result.rowsPerPlayerHour} per player-hour: ${Object.entries(rowsByTable).sort((a, b) => b[1] - a[1]).map(([table, rows]) => `${table} ${rows}`).join(', ')}) · sessions ${result.sessions}`);
       if (Object.keys(rowsBySource).length) log(`  rows by kind of work: ${Object.entries(rowsBySource).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([source, rows]) => `${source} ${rows}`).join(', ')}`);
@@ -412,6 +458,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     actionMs: Number(option('action-ms', '30000')), moveMs: Number(option('move-ms', '10000')), chatMs: Number(option('chat-ms', '120000')), socialMs: Number(option('social-ms', '120000')),
     venueShare: Number(option('venue-share', '0.5')), venues: option('venues', 'park,library,shrine,market,beach,palms,cchub,rooftop').split(','), friends: Number(option('friends', '3')),
     setupConcurrency: Number(option('setup-concurrency', '8')), json: args.includes('--json') ? option('json', '') : null, profile: args.includes('--profile') ? option('profile', '') : null, sleepers: Number(option('sleepers', '0')), env,
+    agents: Number(option('agents', '0')), agentMs: Number(option('agent-ms', '14400')), boardsMs: Number(option('boards-ms', '0')),
   };
   await runCapacity(settings);
   process.exit(0);

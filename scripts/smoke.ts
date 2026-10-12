@@ -189,6 +189,16 @@ async function main(): Promise<void> {
   else {
     let fetched = 0;
     const texts = [...scripts], got = new Set<string>();
+    // The page's startup scripts no longer name each city's chunks: they hold the ordered city index (id and name) and an equally long,
+    // equally ordered table of the 8-hex content hashes of the rules files, and the loader builds `city-<id>-rules-<hash>.js` at run
+    // time. Read both from the page's own scripts, rebuild the names the browser would ask for, and treat them as referenced.
+    const source = scripts.join('\n');
+    const indexIds = [...(/\[(?:\["[a-z0-9-]+","[^"\]]*"\],?){10,}\]/.exec(source)?.[0] ?? '').matchAll(/\["([a-z0-9-]+)","/g)].map((found) => found[1] as string);
+    const hashes = [...(/\[(?:"[0-9a-f]{8}",?){10,}\]/.exec(source)?.[0] ?? '').matchAll(/"([0-9a-f]{8})"/g)].map((found) => found[1] as string);
+    if (!indexIds.length || indexIds.length !== hashes.length) fail(`the page's city index has ${indexIds.length} rows but its rules table ${hashes.length}`);
+    const named: string[] = [];
+    for (const [row, id] of indexIds.entries()) named.push(`city-${id}-rules-${hashes[row]}.js`);
+    texts.push(named.join('\n'));
     for (const city of cities) {
       // A city's files name each other (its rules name its map, a recipe names its content), so follow the names from the page's scripts
       // until no new file of this city turns up. Lagos's rules may be part of the rules chunk the page loads.

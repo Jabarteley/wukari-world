@@ -1721,7 +1721,7 @@ export function createAtlas(container: HTMLElement, { ladder = NO_PORT, onFriend
       if (doc) { window.removeEventListener('jaw:key', onKey); window.removeEventListener('jaw:atlas-escape', onEscape); doc.removeEventListener('pointerdown', onAway); root!.remove(); }
       for (const entry of layers) { entry.object.geometry.dispose(); for (const material of entry.materials) material.dispose(); }
       for (const object of [hoverMesh, selectMesh, selectLine, routeLine]) { object.geometry.dispose(); object.material.dispose(); }
-      if (!providedRenderer) renderer.dispose();
+      if (!providedRenderer) { renderer.dispose(); try { (renderer as THREE.WebGLRenderer).forceContextLoss?.(); } catch { /* the context is already gone */ } }
     },
   };
 }

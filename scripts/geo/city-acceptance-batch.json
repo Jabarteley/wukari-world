@@ -2,18 +2,13 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "world-entry-seven-fare-cap",
-      "appSha": "c4454b77b15b87f225eb3a58a9add7d18fbcd32e",
-      "driverSha": "9b5673c6cb527b3fbe8e70bf761cb396f8ada843",
-      "roundtrip": true,
+      "id": "africa-three-current-main",
+      "appSha": "59b8057c0e02503f3156ca8679de3367f72873bf",
+      "driverSha": "de92e4156db16d8f9a3eb5b949765c9f8a88c1fc",
       "cities": [
-        "apia",
-        "suva",
-        "dubai",
-        "mexico-city",
-        "buenos-aires",
-        "bogota",
-        "santiago"
+        "ndjamena",
+        "bujumbura",
+        "antananarivo"
       ]
     }
   ]

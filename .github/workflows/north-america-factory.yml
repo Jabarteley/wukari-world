@@ -3,7 +3,7 @@ name: North America city factory
 on:
   push:
     branches: ['codex/world-north-america-20261011']
-    paths: ['scripts/geo/north-america-source/factory-targets.json']
+    paths: ['scripts/geo/north-america-source/factory-targets.json', 'scripts/geo/north-america-source/city-generation-proof.mjs']
 
 permissions:
   actions: read
@@ -32,6 +32,12 @@ jobs:
           ref: 0786c00510f2827d6495a53fc3299f3112d0d6b4
           path: factory-tooling
           persist-credentials: false
+      - name: Use the revised cold-review proof renderer
+        run: |
+          set -euo pipefail
+          cp scripts/geo/north-america-source/city-generation-proof.mjs factory-tooling/scripts/geo/city-generation-proof.mjs
+          node --check factory-tooling/scripts/geo/city-generation-proof.mjs
+          sha256sum factory-tooling/scripts/geo/city-generation-proof.mjs
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24.19.0

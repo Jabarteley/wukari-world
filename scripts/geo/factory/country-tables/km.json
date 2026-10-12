@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/africa/comores-261011.osm.pbf",
+    "bytes": 3991390,
+    "md5": "18a373bd18509bcc952cff5c9f76284e",
+    "snapshotDate": "2026-10-11"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "moroni",
+      "name": "Moroni",
+      "countryISO": "KM",
+      "airport": {
+        "ident": "FMCH",
+        "sourceUrl": "https://ourairports.com/airports/FMCH/"
+      },
+      "timezone": {
+        "id": "Africa/Nairobi",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

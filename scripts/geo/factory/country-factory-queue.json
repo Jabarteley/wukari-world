@@ -1,0 +1,17 @@
+{
+ "schemaVersion": 1,
+ "queue": [
+  {
+   "id": "lr",
+   "table": "scripts/geo/factory/country-factory/lr-factory-targets.json"
+  },
+  {
+   "id": "gw",
+   "table": "scripts/geo/factory/country-factory/gw-factory-targets.json"
+  },
+  {
+   "id": "cv",
+   "table": "scripts/geo/factory/country-factory/cv-factory-targets.json"
+  }
+ ]
+}

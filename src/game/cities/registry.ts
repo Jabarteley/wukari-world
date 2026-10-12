@@ -1,5 +1,6 @@
 import { CITY_CATALOGUE, CITY_LOADERS } from './catalogue.ts'
 import { generateCityLinks } from './generatedLinks.ts'
+import { GENERATED_CITY_LAND_COMPONENTS } from './land-components.generated.ts'
 import type { CityCatalogueEntry } from './catalogue.ts'
 import type { CityId } from './ids.ts'
 import type { CityAtlasMarker, CityContent, CityCountry, CityDistrict, CityHub, CityLink, CityLinkFrom, CityMapOrigin, CityMapPack, CityModule, CityRouteGeometry, CityRules, CityState } from '../../types/content.ts'
@@ -169,7 +170,7 @@ export function allCityLinks(): readonly CityLink[] {
     fixtureLinks.set(key, link); merged.set(key, link)
   }
   const open = CITY_CATALOGUE.filter((city) => city.open).map((city) => ({ id: city.id, name: city.name, lon: city.lon, lat: city.lat, airport: city.airport, countryId: city.countryISO ?? 'ng' }))
-  for (const link of generateCityLinks(open, [...merged.values()])) merged.set(linkKey(link), link)
+  for (const link of generateCityLinks(open, [...merged.values()], GENERATED_CITY_LAND_COMPONENTS)) merged.set(linkKey(link), link)
   return linkCache = Object.freeze([...merged.values()])
 }
 export const cityLinks = (cityId: string): readonly CityLink[] => allCityLinks().filter((link) => link.a === cityId || link.b === cityId)

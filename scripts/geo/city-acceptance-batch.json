@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "world-entry-seven",
-      "appSha": "0db0d9e8154aa3b4e0c0dff087b8c83907546dc4",
+      "id": "world-entry-seven-fare-cap",
+      "appSha": "c4454b77b15b87f225eb3a58a9add7d18fbcd32e",
       "driverSha": "9b5673c6cb527b3fbe8e70bf761cb396f8ada843",
       "roundtrip": true,
       "cities": [

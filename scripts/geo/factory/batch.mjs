@@ -1,3 +1,4 @@
+import { slotPresentation, destinationNames } from './destination-contract.mjs';
 import { loadCountryScope, assertCountryFacts } from './country-scope.mjs';
 import { insideSandbox } from './paths.mjs';
 /** One table, deterministic actual-source selection, private candidate scaffolds only. */
@@ -51,8 +52,7 @@ for (const target of table.targets) {
                 row.errors.push(`no eligible unique source for ${slot}`);
                 continue;
             }
-            const venue = base.venues.find(v => v.id === ids[slot]);
-            choose(el, { slot, kind: venue.kind, category: venue.category, icon: venue.icon });
+            choose(el, { slot, ...slotPresentation(base, ids, slot) });
         }
         const addedKind = tags => {
             if (['university', 'college'].includes(tags.amenity)) return 'quad';
@@ -122,7 +122,7 @@ for (const target of table.targets) {
             config.wideWater = true;
             config.sea = { kind: policy.kind, bandMetres: raw.source.waterRecipe?.sea?.bandMetres ?? 40000 };
         }
-        facts.names = { ...facts.names, area: target.name, roadHub: name(unique.get(choices.find(p => p.slot === 'transit')?.ref) ?? { tags: {} }) };
+        facts.names = destinationNames(facts, target.name, name(unique.get(choices.find(p => p.slot === 'transit')?.ref) ?? { tags: {} }));
         const manifest = { root, facts, config, countryScope: countryScope.policy, countryScopeReceipt: countryScope.receipt, queryPolicy: policy, extract: { directory: target.extractDirectory, sha256: Object.fromEntries(Object.entries(ex.answers).map(([key, v]) => [key, v.sha256])) } };
         const manifestPath = join(out, `${target.id}-manifest.json`);
         writeFileSync(manifestPath, JSON.stringify(manifest, null, 2), { flag: 'wx' });

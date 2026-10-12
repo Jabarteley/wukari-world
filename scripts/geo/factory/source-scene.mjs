@@ -1,3 +1,4 @@
+import { assertDestinationOutput } from './destination-contract.mjs';
 import { loadCountryScope, assertCountryFacts } from './country-scope.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -78,6 +79,7 @@ export async function inspectFactorySourceScene(app, cityId, extractDir, expecte
     moduleAt(app, `src/game/cities/${cityId}/places.ts`), moduleAt(app, `src/game/cities/${cityId}/facts.ts`), moduleAt(app, `scripts/geo/destination-detail/${cityId}.ts`),
   ]);
   const bundle = await loadSourceBundle(app, cityId, extractDir, CONFIG, expected);
+  assertDestinationOutput(FACTS, PLACES);
   const scope = loadCountryScope(app, expected.countryScope, FACTS.country.idISOlower, bundle.source.datasetSha256);
   assertCountryFacts(scope, FACTS);
   assert.deepEqual(scope.receipt, expected.countryScopeReceipt, 'country receipt changed since selection');

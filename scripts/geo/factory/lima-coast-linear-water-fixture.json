@@ -1,0 +1,26 @@
+{
+  "schema": "source-linear-water-exclusion-v1",
+  "city": "lima",
+  "waterSha256": "e44d6f84d9af23ec93d0ec49588758f0c4c73c2015f1b4a5a062a873264bc9b3",
+  "excluded": [
+    {
+      "ref": "way/1193670382",
+      "tags": {
+        "natural": "water",
+        "water": "river"
+      },
+      "geometry": [
+        {
+          "lat": -11.7749933,
+          "lon": -76.9818862
+        },
+        {
+          "lat": -11.7756895,
+          "lon": -76.9820869
+        }
+      ],
+      "vertices": 2,
+      "reason": "Pinned extract contains a clipped two-point linear river, not a closed water area polygon; no fill synthesized."
+    }
+  ]
+}

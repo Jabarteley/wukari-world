@@ -2,7 +2,7 @@ name: North America US boundary resource diagnostic
 on:
   push:
     branches: ['codex/world-north-america-20261011']
-    paths: ['scripts/geo/north-america-source/us-boundary.json', 'scripts/geo/north-america-source/canada-highest-point.patch', 'scripts/geo/north-america-source/canada-boundary-memory.patch', 'scripts/geo/north-america-source/boundary-run-monitor.py', '.github/workflows/north-america-us-boundary.yml']
+    paths: ['scripts/geo/north-america-source/us-boundary.json', 'scripts/geo/north-america-source/canada-highest-point.patch', 'scripts/geo/north-america-source/canada-boundary-memory.patch', 'scripts/geo/north-america-source/boundary-run-monitor.py', 'scripts/geo/north-america-source/extract-boundary-closure.py', 'scripts/geo/north-america-source/rebind-boundary-closure-receipt.py', '.github/workflows/north-america-us-boundary.yml']
 permissions:
   contents: read
 concurrency:
@@ -40,6 +40,12 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
+      - name: Install pinned Osmium Tool from Ubuntu Noble
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends osmium-tool=1.16.0-1build1
+          test "$(osmium --version)" = 'osmium version 1.16.0'
       - name: Install pinned geometry dependencies
         run: python -m pip install --disable-pip-version-check --no-input 'osmium==4.3.1' 'shapely==2.1.2'
       - name: Verify pins and measure available runner resources
@@ -72,9 +78,12 @@ jobs:
               index_types = osmium.index.map_types()
               if 'sparse_file_array' not in index_types:
                   raise ValueError('pinned pyosmium does not provide sparse_file_array')
+              osmium_version = subprocess.check_output(['osmium', '--version'], text=True).strip()
+              if osmium_version != 'osmium version 1.16.0':
+                  raise ValueError(f'Osmium Tool version mismatch: {osmium_version}')
               disk = shutil.disk_usage(root)
               reserve = 24 * 1024 ** 3
-              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': patch_sha, 'memoryPatchSha256': memory_patch_sha, 'locationIndexType': 'sparse_file_array', 'availableLocationIndexTypes': index_types, 'assembledHelperSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py').read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'availableMemoryBytes': None, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'boundaryBudgetSeconds': 2700}
+              proof = {'schemaVersion': 1, 'runnerOS': os.environ.get('RUNNER_OS'), 'runnerArch': os.environ.get('RUNNER_ARCH'), 'imageOS': os.environ.get('ImageOS'), 'imageVersion': os.environ.get('ImageVersion'), 'runId': os.environ['GITHUB_RUN_ID'], 'producerSha': os.environ['GITHUB_SHA'], 'toolingSha': tooling, 'rolePatchSha256': patch_sha, 'memoryPatchSha256': memory_patch_sha, 'osmiumToolVersion': osmium_version, 'closureExtractorSha256': hashlib.sha256(Path('scripts/geo/north-america-source/extract-boundary-closure.py').read_bytes()).hexdigest(), 'receiptAdapterSha256': hashlib.sha256(Path('scripts/geo/north-america-source/rebind-boundary-closure-receipt.py').read_bytes()).hexdigest(), 'locationIndexType': 'sparse_file_array', 'availableLocationIndexTypes': index_types, 'assembledHelperSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py').read_bytes()).hexdigest(), 'receiptVerifierSha256': hashlib.sha256(Path('boundary-tooling/scripts/geo/factory/country-scope.mjs').read_bytes()).hexdigest(), 'requestSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'diskTotalBytes': disk.total, 'diskFreeBytes': disk.free, 'availableMemoryBytes': None, 'requiredSourceBytes': request['bytes'], 'reserveBytes': reserve, 'downloadBudgetSeconds': 1800, 'closureBudgetSeconds': 2100, 'boundaryBudgetSeconds': 900}
               memory = Path(publish / 'resources/memory-before.txt').read_text()
               for line in memory.splitlines():
                   if line.startswith('Mem:'):
@@ -84,7 +93,7 @@ jobs:
                       break
               (publish / 'resources/preflight.json').write_text(json.dumps(proof, indent=2) + '\n')
               if disk.free < request['bytes'] + reserve:
-                  raise ValueError(f'insufficient free disk: {disk.free}; require {request["bytes"] + reserve} bytes including 24 GiB for one sequential location-index sidecar')
+                  raise ValueError(f'insufficient free disk: {disk.free}; require {request["bytes"] + reserve} bytes including 24 GiB for source and closure extraction')
               result.update(status='PREFLIGHT_PASSED', reason='Exact pins/tooling and measured disk preflight passed')
           except Exception as error:
               result['reason'] = str(error)
@@ -157,77 +166,189 @@ jobs:
           path: ${{ runner.temp }}/us-boundary/pre-boundary
           if-no-files-found: error
           retention-days: 14
-      - name: Assemble only the same-source US boundary within 45 minutes
-        id: boundary
+      - name: Extract the exact US boundary member closure within 35 minutes
+        id: closure
         if: steps.download.outcome == 'success'
         continue-on-error: true
         run: |
-          set -uo pipefail
+          set -euo pipefail
           monitor_pid=''
-          boundary_pid=''
+          stage_pid=''
+          stage=closure
+          printf '%s\n' "$(date -u +%FT%TZ)" > "$RUNNER_TEMP/us-boundary/publish/resources/closure-start.txt"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path(os.environ['RUNNER_TEMP']) / 'us-boundary/publish/result.json'
+          result = json.loads(path.read_text())
+          result.update(status='HOLD', stage='closure', reason='Exact boundary member closure has not completed')
+          path.write_text(json.dumps(result, indent=2) + '\n')
+          PY
+          record_exit() {
+            code=$?
+            printf '%s\n' "$code" > "$RUNNER_TEMP/us-boundary/publish/resources/${stage}-exit.txt"
+          }
+          trap record_exit EXIT
           capture_signal() {
             signal_name="$1"
-            printf '%s\n' "$signal_name" > "$RUNNER_TEMP/us-boundary/publish/resources/boundary-signal.txt"
-            printf 'utc=%s bash_pid=%s boundary_pid=%s monitor_pid=%s\n' "$(date -u +%FT%TZ)" "$$" "${boundary_pid:-}" "${monitor_pid:-}" \
-              > "$RUNNER_TEMP/us-boundary/publish/resources/boundary-signal-context.txt"
-            printf 'DIAG_SIGNAL signal=%s utc=%s bash_pid=%s boundary_pid=%s monitor_pid=%s\n' "$signal_name" "$(date -u +%FT%TZ)" "$$" "${boundary_pid:-}" "${monitor_pid:-}"
+            printf '%s\n' "$signal_name" > "$RUNNER_TEMP/us-boundary/publish/resources/${stage}-signal.txt"
+            printf 'utc=%s bash_pid=%s stage_pid=%s monitor_pid=%s\n' "$(date -u +%FT%TZ)" "$$" "${stage_pid:-}" "${monitor_pid:-}" \
+              > "$RUNNER_TEMP/us-boundary/publish/resources/${stage}-signal-context.txt"
+            printf 'DIAG_SIGNAL stage=%s signal=%s utc=%s bash_pid=%s stage_pid=%s monitor_pid=%s\n' "$stage" "$signal_name" "$(date -u +%FT%TZ)" "$$" "${stage_pid:-}" "${monitor_pid:-}"
             if [[ -n "$monitor_pid" ]]; then kill -TERM "$monitor_pid" 2>/dev/null || true; fi
-            if [[ -n "$boundary_pid" ]]; then kill -TERM "$boundary_pid" 2>/dev/null || true; fi
+            if [[ -n "$stage_pid" ]]; then kill -TERM "$stage_pid" 2>/dev/null || true; fi
+            exit 143
           }
           trap 'capture_signal SIGTERM' TERM
           trap 'capture_signal SIGINT' INT
           source_sha=$(python -c 'import json,os; from pathlib import Path; print(json.loads((Path(os.environ["RUNNER_TEMP"])/"us-boundary/publish/source-receipt.json").read_text())["sha256"])')
-          printf 'DIAG_BOUNDARY_START utc=%s bash_pid=%s source_sha256=%s\n' "$(date -u +%FT%TZ)" "$$" "$source_sha"
-          /usr/bin/time -v -o "$RUNNER_TEMP/us-boundary/publish/resources/boundary-time.txt" timeout --signal=TERM --kill-after=30s 45m \
-            python boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py \
-            --pbf "$RUNNER_TEMP/us-boundary/country.osm.pbf" --country US \
+          printf 'DIAG_CLOSURE_START utc=%s bash_pid=%s source_sha256=%s\n' "$(date -u +%FT%TZ)" "$$" "$source_sha"
+          /usr/bin/time -v -o "$RUNNER_TEMP/us-boundary/publish/resources/closure-time.txt" timeout --signal=TERM --kill-after=30s 35m \
+            python scripts/geo/north-america-source/extract-boundary-closure.py \
+            --source "$RUNNER_TEMP/us-boundary/country.osm.pbf" --country-iso US \
             --expected-sha256 "$source_sha" --expected-bytes 12196456372 \
-            --dataset-url https://download.geofabrik.de/north-america/us-261009.osm.pbf \
-            --dataset-date 2026-10-09 --out "$RUNNER_TEMP/us-boundary/publish/boundary" \
-            > "$RUNNER_TEMP/us-boundary/publish/resources/boundary.log" 2>&1 &
-          boundary_pid=$!
+            --expected-root-relation-id 148838 --highest-point-node-id 2748929230 \
+            --dataset-date 2026-10-09 --out "$RUNNER_TEMP/us-boundary/publish/closure" \
+            > "$RUNNER_TEMP/us-boundary/publish/resources/closure.log" 2>&1 &
+          stage_pid=$!
           python scripts/geo/north-america-source/boundary-run-monitor.py \
-            --root "$RUNNER_TEMP/us-boundary" --pid "$boundary_pid" --interval 5 \
+            --root "$RUNNER_TEMP/us-boundary" --pid "$stage_pid" --interval 5 \
+            --output "$RUNNER_TEMP/us-boundary/publish/resources/closure-samples.jsonl" --mirror-stdout &
+          monitor_pid=$!
+          if wait "$stage_pid"; then diagnostic_rc=0; else diagnostic_rc=$?; fi
+          wait "$monitor_pid" || true
+          exit "$diagnostic_rc"
+      - name: Assemble the closure and rebind its receipt within 15 minutes
+        id: boundary
+        if: steps.closure.outcome == 'success'
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          monitor_pid=''
+          stage_pid=''
+          stage=boundary
+          printf '%s\n' "$(date -u +%FT%TZ)" > "$RUNNER_TEMP/us-boundary/publish/resources/boundary-start.txt"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          path = Path(os.environ['RUNNER_TEMP']) / 'us-boundary/publish/result.json'
+          result = json.loads(path.read_text())
+          result.update(status='HOLD', stage='boundary', reason='Closure polygon assembly and source receipt rebinding have not completed')
+          path.write_text(json.dumps(result, indent=2) + '\n')
+          PY
+          record_exit() {
+            code=$?
+            printf '%s\n' "$code" > "$RUNNER_TEMP/us-boundary/publish/resources/${stage}-exit.txt"
+          }
+          trap record_exit EXIT
+          capture_signal() {
+            signal_name="$1"
+            printf '%s\n' "$signal_name" > "$RUNNER_TEMP/us-boundary/publish/resources/${stage}-signal.txt"
+            printf 'utc=%s bash_pid=%s stage_pid=%s monitor_pid=%s\n' "$(date -u +%FT%TZ)" "$$" "${stage_pid:-}" "${monitor_pid:-}" \
+              > "$RUNNER_TEMP/us-boundary/publish/resources/${stage}-signal-context.txt"
+            printf 'DIAG_SIGNAL stage=%s signal=%s utc=%s bash_pid=%s stage_pid=%s monitor_pid=%s\n' "$stage" "$signal_name" "$(date -u +%FT%TZ)" "$$" "${stage_pid:-}" "${monitor_pid:-}"
+            if [[ -n "$monitor_pid" ]]; then kill -TERM "$monitor_pid" 2>/dev/null || true; fi
+            if [[ -n "$stage_pid" ]]; then kill -TERM "$stage_pid" 2>/dev/null || true; fi
+            exit 143
+          }
+          trap 'capture_signal SIGTERM' TERM
+          trap 'capture_signal SIGINT' INT
+          subset_sha=$(python -c 'import json,os; from pathlib import Path; p=Path(os.environ["RUNNER_TEMP"])/"us-boundary/publish/closure/receipt.json"; print(json.loads(p.read_text())["outputs"]["boundary-closure.pbf"]["sha256"])')
+          subset_bytes=$(python -c 'import json,os; from pathlib import Path; p=Path(os.environ["RUNNER_TEMP"])/"us-boundary/publish/closure/receipt.json"; print(json.loads(p.read_text())["outputs"]["boundary-closure.pbf"]["bytes"])')
+          printf 'DIAG_BOUNDARY_START utc=%s bash_pid=%s closure_sha256=%s\n' "$(date -u +%FT%TZ)" "$$" "$subset_sha"
+          /usr/bin/time -v -o "$RUNNER_TEMP/us-boundary/publish/resources/boundary-time.txt" timeout --signal=TERM --kill-after=30s 15m \
+            python boundary-tooling/scripts/geo/factory/bootstrap/country-boundary.py \
+            --pbf "$RUNNER_TEMP/us-boundary/publish/closure/boundary-closure.pbf" --country US \
+            --expected-sha256 "$subset_sha" --expected-bytes "$subset_bytes" \
+            --dataset-url https://download.geofabrik.de/north-america/us-261009.osm.pbf \
+            --dataset-date 2026-10-09 --out "$RUNNER_TEMP/us-boundary/publish/subset-boundary" \
+            > "$RUNNER_TEMP/us-boundary/publish/resources/boundary.log" 2>&1 &
+          stage_pid=$!
+          python scripts/geo/north-america-source/boundary-run-monitor.py \
+            --root "$RUNNER_TEMP/us-boundary" --pid "$stage_pid" --interval 5 \
             --output "$RUNNER_TEMP/us-boundary/publish/resources/boundary-samples.jsonl" --mirror-stdout &
           monitor_pid=$!
-          wait "$boundary_pid"
-          diagnostic_rc=$?
+          if wait "$stage_pid"; then diagnostic_rc=0; else diagnostic_rc=$?; fi
           wait "$monitor_pid" || true
-          printf '%s\n' "$diagnostic_rc" > "$RUNNER_TEMP/us-boundary/publish/resources/boundary-exit.txt"
-          exit "$diagnostic_rc"
+          if [[ "$diagnostic_rc" -ne 0 ]]; then exit "$diagnostic_rc"; fi
+          python scripts/geo/north-america-source/rebind-boundary-closure-receipt.py \
+            "$RUNNER_TEMP/us-boundary/publish/source-receipt.json" \
+            "$RUNNER_TEMP/us-boundary/publish/closure/receipt.json" \
+            "$RUNNER_TEMP/us-boundary/publish/subset-boundary/receipt.json" \
+            --subset-pbf "$RUNNER_TEMP/us-boundary/publish/closure/boundary-closure.pbf" \
+            --out "$RUNNER_TEMP/us-boundary/publish/boundary/receipt.json" \
+            > "$RUNNER_TEMP/us-boundary/publish/resources/receipt-rebind.log" 2>&1
+          cp "$RUNNER_TEMP/us-boundary/publish/subset-boundary/boundary.geojson" "$RUNNER_TEMP/us-boundary/publish/boundary/boundary.geojson"
       - name: Preserve measured result and precise HOLD on failure
         if: always()
         run: |
           df -B1 "$RUNNER_TEMP" > "$RUNNER_TEMP/us-boundary/publish/resources/disk-after.txt"
           free -b > "$RUNNER_TEMP/us-boundary/publish/resources/memory-after.txt"
           python - <<'PY'
-          import json, os
+          import hashlib, json, os
           from pathlib import Path
           publish = Path(os.environ['RUNNER_TEMP']) / 'us-boundary/publish'
           result_path = publish / 'result.json'
           result = json.loads(result_path.read_text())
           try:
-              for stage in ('download', 'boundary'):
+              budgets = {'download': '30-minute download budget', 'closure': '35-minute closure budget', 'boundary': '15-minute boundary budget'}
+              for stage in ('download', 'closure', 'boundary'):
                   exit_path = publish / 'resources' / (stage + '-exit.txt')
+                  start_path = publish / 'resources' / (stage + '-start.txt')
+                  time_path = publish / 'resources' / (stage + '-time.txt')
                   if not exit_path.exists():
-                      if result['status'] == 'HOLD':
+                      if stage == 'download' and result['status'] == 'HOLD':
                           raise ValueError(result['reason'])
-                      raise ValueError(stage + ' stage was not executed or did not finish')
+                      result['stage'] = stage
+                      if time_path.exists() and 'Exit status: 124' in time_path.read_text():
+                          raise ValueError(budgets[stage] + ' exceeded; exit sentinel was not written')
+                      if start_path.exists():
+                          raise ValueError(stage + ' started but did not write an exit sentinel; inspect resources/' + stage + '-time.txt and ' + stage + '-signal.txt')
+                      raise ValueError(stage + ' stage did not start')
                   code = int(exit_path.read_text())
                   if code:
-                      budget = '30-minute download budget' if stage == 'download' else '45-minute boundary budget'
-                      detail = budget + ' exceeded' if code == 124 else f'{stage} exited {code}; inspect resources/{stage}.log'
-                      if stage == 'boundary' and (publish / 'boundary/result.json').exists():
-                          detail += ': ' + json.loads((publish / 'boundary/result.json').read_text()).get('reason', 'boundary HOLD')
+                      detail = budgets[stage] + ' exceeded' if code == 124 else f'{stage} exited {code}; inspect resources/{stage}.log'
+                      if stage == 'boundary' and code != 124:
+                          helper_result = publish / 'subset-boundary/result.json'
+                          rebind_log = publish / 'resources/receipt-rebind.log'
+                          if helper_result.exists():
+                              helper_status = json.loads(helper_result.read_text())
+                              if helper_status.get('status') == 'HOLD':
+                                  detail += ': ' + helper_status.get('reason', 'boundary HOLD')
+                              elif rebind_log.exists():
+                                  detail += '; inspect resources/receipt-rebind.log'
                       elif stage == 'download' and result['status'] == 'HOLD':
                           detail += ': ' + result['reason']
                       result['stage'] = stage
                       raise ValueError(detail)
               receipt = json.loads((publish / 'boundary/receipt.json').read_text())
               source = json.loads((publish / 'source-receipt.json').read_text())
-              if receipt['status'] != 'OSM_COUNTRY_BOUNDARY_CANDIDATE' or receipt['countryISO'] != 'US' or receipt['source']['sha256'] != source['sha256'] or receipt['source']['bytes'] != source['actualBytes']:
-                  raise ValueError('boundary candidate country/status/same-PBF linkage mismatch')
-              result.update(status='OSM_COUNTRY_BOUNDARY_CANDIDATE', stage='complete', reason='Measured same-source boundary diagnostic completed', pbfSha256=source['sha256'], limitations=['No fixtures, city extraction, or airport/centre checks executed', 'Country-scoped city acceptance, browser, and live state remain unproved'])
+              closure_path = publish / 'closure/receipt.json'
+              closure = json.loads(closure_path.read_text())
+              closure_source = closure['source']
+              subset = closure['outputs']['boundary-closure.pbf']
+              processing = receipt.get('processingInput', {})
+              geometry = publish / 'boundary/boundary.geojson'
+              geometry_proof = receipt['geometry']
+              if source['status'] != 'SOURCE_VERIFIED' or receipt['status'] != 'OSM_COUNTRY_BOUNDARY_CANDIDATE' or receipt['countryISO'] != 'US' or receipt['source']['sha256'] != source['sha256'] or receipt['source']['bytes'] != source['actualBytes']:
+                  raise ValueError('boundary candidate country/status/full-source SHA-256/byte linkage mismatch')
+              if closure['status'] != 'BOUNDARY_CLOSURE_EXTRACTED' or closure['countryISO'] != 'US' or closure['relation']['id'] != 148838 or closure['relation']['highestPointNodeId'] != 2748929230:
+                  raise ValueError('closure receipt country/relation/highest-point proof mismatch')
+              if closure_source.get('sha256') != source['sha256'] or closure_source.get('bytes') != source['actualBytes'] or closure_source.get('headerDate') != source['snapshotDate']:
+                  raise ValueError('closure receipt is not linked to the verified full source')
+              if processing.get('kind') != 'exact-member-way-closure' or processing.get('sha256') != subset['sha256'] or processing.get('bytes') != subset['bytes'] or processing.get('closureReceiptSha256') != hashlib.sha256(closure_path.read_bytes()).hexdigest():
+                  raise ValueError('rebound receipt closure processing-input linkage mismatch')
+              if processing.get('sourceReceiptSha256') != hashlib.sha256((publish / 'source-receipt.json').read_bytes()).hexdigest():
+                  raise ValueError('rebound receipt full-source proof linkage mismatch')
+              helper_receipt = publish / 'boundary/subset-receipt.json'
+              if not helper_receipt.is_file() or receipt.get('subsetReceipt', {}).get('path') != helper_receipt.name or receipt['subsetReceipt'].get('sha256') != hashlib.sha256(helper_receipt.read_bytes()).hexdigest():
+                  raise ValueError('rebound receipt does not preserve the exact helper-generated subset receipt')
+              if geometry.stat().st_size != geometry_proof['bytes'] or hashlib.sha256(geometry.read_bytes()).hexdigest() != geometry_proof['sha256']:
+                  raise ValueError('rebound boundary geometry bytes/hash mismatch')
+              preflight = json.loads((publish / 'resources/preflight.json').read_text())
+              if receipt['scriptSha256'] != preflight['assembledHelperSha256']:
+                  raise ValueError('rebound candidate helper script hash differs from preflight')
+              result.update(status='OSM_COUNTRY_BOUNDARY_CANDIDATE', stage='complete', reason='Verified full-source boundary member closure assembled and receipt rebound', pbfSha256=source['sha256'], pbfBytes=source['actualBytes'], processingInputSha256=subset['sha256'], closureReceiptSha256=processing['closureReceiptSha256'], closureExtractorSha256=preflight['closureExtractorSha256'], receiptAdapterSha256=preflight['receiptAdapterSha256'], osmiumToolVersion=preflight['osmiumToolVersion'], limitations=['No fixtures, city extraction, or airport/centre checks executed', 'Country-scoped city acceptance, browser, and live state remain unproved'])
           except Exception as error:
               result.update(status='HOLD', reason=str(error))
           result_path.write_text(json.dumps(result, indent=2) + '\n')

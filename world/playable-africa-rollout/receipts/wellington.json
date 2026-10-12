@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "wellington",
+  "countryIso2": "NZ",
+  "generationIdentity": {
+    "cityId": "wellington",
+    "stateId": "nz-wellington",
+    "stateName": "Wellington"
+  },
+  "inventorySha256": "add7013ab2e5a3d90a7beb49a206555873e505a286b9accecba94b4d6eec15b6",
+  "inventoryPath": "world/playable-africa-rollout/sources/wellington.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "wellington-airport",
+    "name": "Wellington International Airport",
+    "lon": 174.806862,
+    "lat": -41.326839,
+    "sourceUrl": "https://ourairports.com/airports/NZWN/"
+  },
+  "bounds": [
+    -41.46967618993398,
+    174.53743998323975,
+    -41.107914410066016,
+    175.01698281676025
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/new-zealand-261009.osm.pbf",
+      "datasetSha256": "000e8817cb3cfe38e45599187a5a292a596a89ce193872374868213087f913de",
+      "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "43665d1530bcde6a4d8c83211d1111ac62dc747d2ce332e66767af464b0a89f6",
+          "elements": 1077
+        },
+        {
+          "file": "extras.json",
+          "sha256": "c14cc009620bfe87f424bc3eaa53ff4d004f4e230641276098928a741aa63c6e",
+          "elements": 396
+        },
+        {
+          "file": "water.json",
+          "sha256": "643baa17420d5db81248d90af9446a4ce3b0c8c2fadde080b3d9645234a1e3ad",
+          "elements": 1372
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "f4f0504ad75340757cde95f09f143d930fe1f8b98268de0d0db6aff9b385f53d",
+          "elements": 4313
+        },
+        {
+          "file": "roads.json",
+          "sha256": "dff9dd5aa43f7b6ed09c10cc95bd6eed8d733fd52efd3250df8903d33d55c180",
+          "elements": 1385
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 429,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 6,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 41110
+  },
+  "observed": {
+    "places": 1077,
+    "extras": 396,
+    "water": 1372,
+    "landuse": 4313,
+    "roads": 1385
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1254,
+      "sha256": "95400fe9846dcd6ccb30fbf18715a39c792ef6f9ff60b13b611cb160d8189544"
+    },
+    "geometry.ts": {
+      "bytes": 740086,
+      "sha256": "ed7a3aac7ff63561ea3abd40477c1390ee7dd13d871bdca2756702a032f37760"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "8cf3a46c3d81929dd3e5f0440c3592beee0161cee3f8b82762afc654d7f11935"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/wellington.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

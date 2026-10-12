@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "wellington",
+  "countryIso2": "NZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Wellington",
+    "coordinatesWgs84": [
+      174.7772114,
+      -41.2887953
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/new-zealand-261009.osm.pbf"
+  },
+  "airport": {
+    "id": "wellington-airport",
+    "name": "Wellington International Airport",
+    "lon": 174.806862,
+    "lat": -41.326839,
+    "sourceUrl": "https://ourairports.com/airports/NZWN/"
+  },
+  "boxes": {
+    "play": [
+      -41.46967618993398,
+      174.53743998323975,
+      -41.107914410066016,
+      175.01698281676025
+    ],
+    "core": [
+      -41.33401552248349,
+      174.71739355006903,
+      -41.2435750775165,
+      174.83702924993096
+    ],
+    "outline": [
+      -41.519676189933975,
+      174.48743998323974,
+      -41.05791441006602,
+      175.06698281676026
+    ],
+    "wide": [
+      -42.06967618993398,
+      173.93743998323976,
+      -40.507914410066014,
+      175.61698281676024
+    ],
+    "water": [
+      -42.06967618993398,
+      173.93743998323976,
+      -40.507914410066014,
+      175.61698281676024
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/new-zealand-261009.osm.pbf",
+    "datasetSha256": "000e8817cb3cfe38e45599187a5a292a596a89ce193872374868213087f913de",
+    "pbfHeaderTimestamp": "2026-10-09T20:21:04Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "43665d1530bcde6a4d8c83211d1111ac62dc747d2ce332e66767af464b0a89f6",
+        "elements": 1077
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c14cc009620bfe87f424bc3eaa53ff4d004f4e230641276098928a741aa63c6e",
+        "elements": 396
+      },
+      {
+        "file": "water.json",
+        "sha256": "643baa17420d5db81248d90af9446a4ce3b0c8c2fadde080b3d9645234a1e3ad",
+        "elements": 1372
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "f4f0504ad75340757cde95f09f143d930fe1f8b98268de0d0db6aff9b385f53d",
+        "elements": 4313
+      },
+      {
+        "file": "roads.json",
+        "sha256": "dff9dd5aa43f7b6ed09c10cc95bd6eed8d733fd52efd3250df8903d33d55c180",
+        "elements": 1385
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Crofton Downs",
+      "osm": "node/1566551335",
+      "coordinatesWgs84": [
+        174.766494,
+        -41.255046
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Logan Brown",
+      "osm": "node/2189566949",
+      "coordinatesWgs84": [
+        174.77469,
+        -41.294833
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Royal New Zealand Police College",
+      "osm": "way/18880232",
+      "coordinatesWgs84": [
+        174.860053,
+        -41.120205
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hutt Hospital",
+      "osm": "way/203229384",
+      "coordinatesWgs84": [
+        174.924298,
+        -41.204785
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Oku Street Reserve",
+      "osm": "way/26585828",
+      "coordinatesWgs84": [
+        174.764992,
+        -41.345243
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queensgate Shopping Centre",
+      "osm": "way/1137992012",
+      "coordinatesWgs84": [
+        174.906428,
+        -41.209942
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Matthias Anglican Church",
+      "osm": "way/326476205",
+      "coordinatesWgs84": [
+        174.704581,
+        -41.269325
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wellington Town Hall",
+      "osm": "way/190555301",
+      "coordinatesWgs84": [
+        174.777424,
+        -41.289367
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ngā Taonga Sound & Vision",
+      "osm": "relation/13348428",
+      "coordinatesWgs84": [
+        174.944174,
+        -41.187155
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Otago School of Medicine",
+      "osm": "node/5417751534",
+      "coordinatesWgs84": [
+        174.780991,
+        -41.309743
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hnry Stadium / Wellington Regional Stadium",
+      "osm": "way/1021590430",
+      "coordinatesWgs84": [
+        174.785866,
+        -41.273029
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Old Pencarrow Lighthouse",
+      "osm": "node/1907945529",
+      "coordinatesWgs84": [
+        174.850037,
+        -41.358903
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Silver Stream Railway Museum",
+      "osm": "way/709886856",
+      "coordinatesWgs84": [
+        174.994936,
+        -41.151024
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Ballance",
+      "osm": "way/895400049",
+      "coordinatesWgs84": [
+        174.834506,
+        -41.294703
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Seton Nossiter Park",
+      "osm": "way/220331294",
+      "coordinatesWgs84": [
+        174.823817,
+        -41.21416
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Williams Park",
+      "osm": "way/395210275",
+      "coordinatesWgs84": [
+        174.907154,
+        -41.279913
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basin Reserve",
+      "osm": "way/288996918",
+      "coordinatesWgs84": [
+        174.780249,
+        -41.300372
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Mary of the Angels",
+      "osm": "way/256656474",
+      "coordinatesWgs84": [
+        174.773925,
+        -41.288766
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Trinity Anglican Church",
+      "osm": "way/844548436",
+      "coordinatesWgs84": [
+        174.780768,
+        -41.198312
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Open Polytechnic of New Zealand",
+      "osm": "way/18043662",
+      "coordinatesWgs84": [
+        174.931556,
+        -41.218721
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wakefield Hospital",
+      "osm": "way/222118929",
+      "coordinatesWgs84": [
+        174.779053,
+        -41.317096
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Southern Cross Wellington Hospital",
+      "osm": "way/221801422",
+      "coordinatesWgs84": [
+        174.775535,
+        -41.309434
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Victoria University Coastal Ecology Laboratory",
+      "osm": "way/762386613",
+      "coordinatesWgs84": [
+        174.764828,
+        -41.347929
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "James Smith Corner",
+      "osm": "way/260864068",
+      "coordinatesWgs84": [
+        174.777396,
+        -41.291049
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1254,
+      "sha256": "95400fe9846dcd6ccb30fbf18715a39c792ef6f9ff60b13b611cb160d8189544"
+    },
+    "geometry.ts": {
+      "bytes": 740086,
+      "sha256": "ed7a3aac7ff63561ea3abd40477c1390ee7dd13d871bdca2756702a032f37760"
+    },
+    "places.ts": {
+      "bytes": 10087,
+      "sha256": "82eaee9914a7005bffb3491418163cffcff85398ba1918324f7afd0195e69623"
+    },
+    "terrain.ts": {
+      "bytes": 4911156,
+      "sha256": "e61c3f4972326a37b6160240c50b31c650eae0529764a4e2439000a8cc2fbaf9"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "8cf3a46c3d81929dd3e5f0440c3592beee0161cee3f8b82762afc654d7f11935"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

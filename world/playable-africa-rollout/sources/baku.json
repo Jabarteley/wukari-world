@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "baku",
+  "countryIso2": "AZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Baku",
+    "coordinatesWgs84": [
+      49.8328009,
+      40.3755885
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/azerbaijan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "baku-airport",
+    "name": "Heydar Aliyev International Airport",
+    "lon": 50.050931,
+    "lat": 40.47278,
+    "sourceUrl": "https://ourairports.com/airports/UBBB/"
+  },
+  "boxes": {
+    "play": [
+      40.19470761006602,
+      49.59633026354774,
+      40.55646938993398,
+      50.06927153645226
+    ],
+    "core": [
+      40.330368277516506,
+      49.77380262170338,
+      40.42080872248349,
+      49.89179917829662
+    ],
+    "outline": [
+      40.14470761006602,
+      49.546330263547745,
+      40.60646938993398,
+      50.11927153645226
+    ],
+    "wide": [
+      39.59470761006602,
+      48.99633026354774,
+      41.15646938993398,
+      50.669271536452264
+    ],
+    "water": [
+      39.59470761006602,
+      48.99633026354774,
+      41.15646938993398,
+      50.669271536452264
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/azerbaijan-261011.osm.pbf",
+    "datasetSha256": "2e0dd46eca9b011fde60f29e2b1fd2cc739b43c02b420a5d66641d02f7cfd042",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/azerbaijan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 46486421,
+        "md5": "ee4d30a613ee5180200661bc7bbbfd36",
+        "sha256": "96d110a1790b57b23de14d6ce60986547783ff79ef3058ec7f9bf338fc46c60d"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/armenia-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 53320660,
+        "md5": "bf23dcd87be07b97c8c2390dbb7ab931",
+        "sha256": "570772f080234b6389ed2c17dd63f3a1eb83d13800e387646a84d5eb2de1784b",
+        "reason": "admin-0 relation/364110 member way/1551645398 (closed Azerbaijani exclave ring inside Armenia, 45 nodes) is absent from the Azerbaijan clip; all its nodes lie inside the Armenia clip"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "338b8390f4509d6a7988a3dd8df4a58373033387dc8e5382c4ee3f3c34dd62bc",
+        "elements": 3466
+      },
+      {
+        "file": "extras.json",
+        "sha256": "49617387591b262d4acc06a2bd6e8ee32c4803188b81ea33be913fb7e85b7af4",
+        "elements": 788
+      },
+      {
+        "file": "water.json",
+        "sha256": "47c6345c0cf8ac2d175d22e937e8400c3b59b43689aae1ec98f4f813090d1d41",
+        "elements": 200
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d31faea4f8756ab9ada2ad86d2c2e89d2a24c50663e178f552bf88399a669fdb",
+        "elements": 2351
+      },
+      {
+        "file": "roads.json",
+        "sha256": "bc3da401bb07bfbbb0124165d1a4036ddca551e0ba593b41c9b0e58b1b83b253",
+        "elements": 2894
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Shah Ismail Khatai",
+      "osm": "node/670199298",
+      "coordinatesWgs84": [
+        49.872143,
+        40.383263
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Buta Palace Baku",
+      "osm": "node/13847210164",
+      "coordinatesWgs84": [
+        50.022959,
+        40.437412
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Baku Engineering University",
+      "osm": "way/32720577",
+      "coordinatesWgs84": [
+        49.727443,
+        40.474301
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nationa Center of Oncology",
+      "osm": "node/3796901116",
+      "coordinatesWgs84": [
+        49.805225,
+        40.399929
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Botanical Gardens, Baku",
+      "osm": "way/152322861",
+      "coordinatesWgs84": [
+        49.817422,
+        40.357667
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "28 Mall",
+      "osm": "way/188605211",
+      "coordinatesWgs84": [
+        49.846729,
+        40.379037
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cümə Məscidi",
+      "osm": "node/7815953638",
+      "coordinatesWgs84": [
+        49.91944,
+        40.462386
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Freedom Square",
+      "osm": "way/1328471295",
+      "coordinatesWgs84": [
+        49.852771,
+        40.373762
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Daşınmaz Əmlakın Reyestri İdarəsi",
+      "osm": "node/10977608956",
+      "coordinatesWgs84": [
+        49.748181,
+        40.450387
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Heydər Əliyev adına Ali Hərbi Məktəb",
+      "osm": "way/323398478",
+      "coordinatesWgs84": [
+        49.967341,
+        40.344503
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palms Sports Arena",
+      "osm": "way/663814207",
+      "coordinatesWgs84": [
+        49.943931,
+        40.400167
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mud Volcano Lokbatan",
+      "osm": "node/5320172364",
+      "coordinatesWgs84": [
+        49.709007,
+        40.304451
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bibi Heybat Mosque",
+      "osm": "node/2947442051",
+      "coordinatesWgs84": [
+        49.8203,
+        40.308664
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Yanar Dag Burning Mountain",
+      "osm": "node/2768993504",
+      "coordinatesWgs84": [
+        49.891201,
+        40.501835
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ramana Castle",
+      "osm": "node/10119666141",
+      "coordinatesWgs84": [
+        49.979905,
+        40.456159
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Moskva Dövlət Universitetinin Bakı Filialı",
+      "osm": "way/1204756170",
+      "coordinatesWgs84": [
+        49.760374,
+        40.403749
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Heydar Mosque",
+      "osm": "node/12766646790",
+      "coordinatesWgs84": [
+        49.824244,
+        40.429137
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Baku Olympic Stadium",
+      "osm": "way/357033239",
+      "coordinatesWgs84": [
+        49.919531,
+        40.429982
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dövlət Sərhəd Xidmətinin Akademiyası",
+      "osm": "way/271983522",
+      "coordinatesWgs84": [
+        49.957719,
+        40.36933
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ASCO Arena",
+      "osm": "way/323751981",
+      "coordinatesWgs84": [
+        49.817739,
+        40.332197
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Izmir Garden",
+      "osm": "way/178593266",
+      "coordinatesWgs84": [
+        49.823714,
+        40.386439
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ganjlik Mall",
+      "osm": "way/674677959",
+      "coordinatesWgs84": [
+        49.852835,
+        40.399893
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sabir Park",
+      "osm": "way/299424032",
+      "coordinatesWgs84": [
+        49.835005,
+        40.368818
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sharg Bazaar",
+      "osm": "way/384863335",
+      "coordinatesWgs84": [
+        49.855824,
+        40.387097
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1205,
+      "sha256": "5db81b1d351e97997812b3ef8be898898b7ef9fad72606d6fef2c4ff008ee713"
+    },
+    "geometry.ts": {
+      "bytes": 96662,
+      "sha256": "018dc4227140df7bc7761bfc26be65272f1dba38e2c67d79b3da0cd7381eae48"
+    },
+    "places.ts": {
+      "bytes": 9829,
+      "sha256": "cd57908df10e017b3c5a0608b503a09fd4cd71d3197a24ab20bbee7f74d0437f"
+    },
+    "terrain.ts": {
+      "bytes": 65330,
+      "sha256": "554c597f07e0f99f6a30b85878d85542ec14e047ffae080de474f5095a700660"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "739ac84a81a2dfb187f9f4cb3aef5609bbc2e579bafe47d7fe82bede4bd96f5e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

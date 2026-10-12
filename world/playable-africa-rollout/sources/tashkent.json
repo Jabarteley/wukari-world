@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tashkent",
+  "countryIso2": "UZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tashkent",
+    "coordinatesWgs84": [
+      69.2787079,
+      41.3123363
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tashkent-airport",
+    "name": "Tashkent International Airport",
+    "lon": 69.281197,
+    "lat": 41.2579,
+    "sourceUrl": "https://ourairports.com/airports/UTTT/"
+  },
+  "boxes": {
+    "play": [
+      41.13145541006602,
+      69.03884936609705,
+      41.49321718993398,
+      69.51856643390295
+    ],
+    "core": [
+      41.267116077516505,
+      69.21886841970478,
+      41.35755652248349,
+      69.33854738029522
+    ],
+    "outline": [
+      41.08145541006602,
+      68.98884936609706,
+      41.543217189933976,
+      69.56856643390294
+    ],
+    "wide": [
+      40.531455410066016,
+      68.43884936609706,
+      42.09321718993398,
+      70.11856643390294
+    ],
+    "water": [
+      41.13145541006602,
+      69.03884936609705,
+      41.49321718993398,
+      69.51856643390295
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf",
+    "datasetSha256": "5a68df01ff91b653c7d5c193cc2fd611cc949e5f7f1daf1fef5e240fc000bc06",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 124850362,
+        "md5": "209c1cbfd62eb80c0072a6fcfd197cf3",
+        "sha256": "2c2c68f3eb1459ea362c163582255d32699fbab2b304e5150d43aafb84c328fc"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 76910383,
+        "md5": "43d2c655c19545b266950bd80bb775b0",
+        "sha256": "ccaaf1d348d4742e542fded95c43304ed6e3fa2d1eeea124fb9b8cb2d747ecf1",
+        "reason": "admin-0 relation/196240 member way/133066430 (Shohimardon exclave ring, 256 nodes) is absent from the Uzbekistan clip; all its nodes lie inside the Kyrgyzstan clip"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "370e9f5598b5d0b245e2a62a22a013c1ae6d5238ce25a6124a9c2b399a6bdb1a",
+        "elements": 3690
+      },
+      {
+        "file": "extras.json",
+        "sha256": "aba7eda47250e7d1ea898f4902e4854683156fd197ac3561b5f24355fc007157",
+        "elements": 826
+      },
+      {
+        "file": "water.json",
+        "sha256": "e81cced0ea2c361c58e18aafca116aa50effac01dc4ba4e7e72627cb876222fa",
+        "elements": 68
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "035303358838d7cc0b4ceecab0580989a94f751af5a076a8abedf8d186159298",
+        "elements": 3648
+      },
+      {
+        "file": "roads.json",
+        "sha256": "b2a60e778fed81756f8a229a72a3a1b554691b174b05a6053f92204d21ace4ab",
+        "elements": 4330
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Novza (Hamza)",
+      "osm": "node/563751850",
+      "coordinatesWgs84": [
+        69.223617,
+        41.291872
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Blue domes",
+      "osm": "way/141676147",
+      "coordinatesWgs84": [
+        69.266957,
+        41.306834
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tashkent International University of Education",
+      "osm": "way/103133045",
+      "coordinatesWgs84": [
+        69.364841,
+        41.29033
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Отделение хирургии",
+      "osm": "way/105820896",
+      "coordinatesWgs84": [
+        69.301813,
+        41.310594
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "\"Yangi Uzbekistan\" park",
+      "osm": "way/968053066",
+      "coordinatesWgs84": [
+        69.43777,
+        41.32867
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chorsu Bazaar",
+      "osm": "way/174498975",
+      "coordinatesWgs84": [
+        69.236526,
+        41.326172
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of the Holy Equal-to-the-Apostles Grand Duke Vladimir",
+      "osm": "node/12423118883",
+      "coordinatesWgs84": [
+        69.183461,
+        41.256204
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Independence Square",
+      "osm": "node/1857704645",
+      "coordinatesWgs84": [
+        69.267438,
+        41.31539
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ministry of Defense of the Republic of Uzbekistan (МО РУз)",
+      "osm": "way/87902526",
+      "coordinatesWgs84": [
+        69.335193,
+        41.333104
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tashkent Higher Military Technical School of the Ministry of Internal Affairs of the Republic of Uzbekistan",
+      "osm": "relation/9423158",
+      "coordinatesWgs84": [
+        69.166211,
+        41.355866
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lokomotiv",
+      "osm": "relation/6805138",
+      "coordinatesWgs84": [
+        69.394827,
+        41.361186
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Khabadtepa",
+      "osm": "way/1213517675",
+      "coordinatesWgs84": [
+        69.271382,
+        41.222278
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kulaktepa",
+      "osm": "way/394577950",
+      "coordinatesWgs84": [
+        69.267764,
+        41.378157
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kugaittepa",
+      "osm": "way/107158839",
+      "coordinatesWgs84": [
+        69.221302,
+        41.254422
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tashkent Tower",
+      "osm": "way/325125766",
+      "coordinatesWgs84": [
+        69.284787,
+        41.345565
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tashkent State Transport University",
+      "osm": "way/89407157",
+      "coordinatesWgs84": [
+        69.282803,
+        41.277312
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Uzbekistan State University of World Languages",
+      "osm": "relation/2712835",
+      "coordinatesWgs84": [
+        69.192793,
+        41.287001
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Memorial complex \"Victory Park\"",
+      "osm": "way/908354621",
+      "coordinatesWgs84": [
+        69.223098,
+        41.353587
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Koh Аta",
+      "osm": "way/143446111",
+      "coordinatesWgs84": [
+        69.258775,
+        41.336269
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rakat",
+      "osm": "way/982206779",
+      "coordinatesWgs84": [
+        69.245794,
+        41.289993
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Milliy stadioni",
+      "osm": "way/173258737",
+      "coordinatesWgs84": [
+        69.212607,
+        41.279749
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tashkent City Park",
+      "osm": "way/749136173",
+      "coordinatesWgs84": [
+        69.248409,
+        41.316542
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Полина",
+      "osm": "node/4246680743",
+      "coordinatesWgs84": [
+        69.449545,
+        41.187737
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Курица гриль",
+      "osm": "node/4792118722",
+      "coordinatesWgs84": [
+        69.356563,
+        41.469561
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1222,
+      "sha256": "1c4a2376686ef124b1f78f5ad8393446f09da9f859e0289c39f6ddae029d5d24"
+    },
+    "geometry.ts": {
+      "bytes": 144368,
+      "sha256": "c77bb5baba21e66868e99f6054fa6d45017fd534701512f86963ec2382dacf89"
+    },
+    "places.ts": {
+      "bytes": 10170,
+      "sha256": "fa6fd8b3135b158a3b76d185ec7ef15ae43fed1fab9bab319e77eefd198c1e13"
+    },
+    "terrain.ts": {
+      "bytes": 247863,
+      "sha256": "ab654654a406359eb20a1d87a2d5413671967c1f778ddf9b5bf79feb3b2808f7"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "5806708d6bd003acd20c028385859d792d78f44745a3edd564810fd42d5473ca"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

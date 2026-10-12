@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "cityId": "vientiane",
+  "countryIso2": "LA",
+  "generationIdentity": {
+    "cityId": "vientiane",
+    "stateId": "la-vientiane",
+    "stateName": "Vientiane"
+  },
+  "inventorySha256": "d3a006411f50fa76703d56376c31e7aee8a4f858c7dad98bc619c23527f3c01e",
+  "inventoryPath": "world/playable-africa-rollout/sources/vientiane.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "vientiane-airport",
+    "name": "Wattay International Airport",
+    "lon": 102.566692,
+    "lat": 17.985052,
+    "sourceUrl": "https://ourairports.com/airports/VLVT/"
+  },
+  "bounds": [
+    17.78321791006602,
+    102.42430659921996,
+    18.144979689933976,
+    102.80243480078005
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/laos-261011.osm.pbf",
+      "datasetSha256": "a293dc200e82f7b971cec9ad54953461015a3e6943dd6da20fea123e18f058c6",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "79e30035a64f05399cf969b3f067b03952226a6cd120e1d3f616315db4f5a7fe",
+          "elements": 1236
+        },
+        {
+          "file": "extras.json",
+          "sha256": "4353d9fe78725226748599e921c8b0842715f2aae0d6c045512e90a73adeb028",
+          "elements": 162
+        },
+        {
+          "file": "water.json",
+          "sha256": "88c5b8f35b204f4beb361eec893a503bfa5a4e186e83c434cb4cfa1438e2741e",
+          "elements": 128
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "8f85e803664fb405c6e3f4d48df9fea2df79897a400e2773742dd5ec12177d21",
+          "elements": 699
+        },
+        {
+          "file": "roads.json",
+          "sha256": "000c9a225978e3af0b41a54150f2dbfc3c85eb73f5de64a32ead7c2c3b353d1d",
+          "elements": 277
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 136,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 25,
+    "waterPolygons": 19,
+    "reachWaterPolygons": 7
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "village": 18
+    }
+  },
+  "observed": {
+    "places": 1236,
+    "extras": 162,
+    "water": 128,
+    "landuse": 699,
+    "roads": 277
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1216,
+      "sha256": "448277ea45e06ffe67101a719fc152c099846b401210bd89fc605d7ef41df7f0"
+    },
+    "geometry.ts": {
+      "bytes": 73918,
+      "sha256": "5ad94728d71a1894c2f397d001a71cf561b05838d2cf072ae2361262248e27a9"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "a2c939b6a5a785ff7a3ac2d46d5ef7aac6acc2faa1b106684a11c318e8ab8fc4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/vientiane.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "colombo",
+  "countryIso2": "LK",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Colombo",
+    "coordinatesWgs84": [
+      79.8542005,
+      6.9388614
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/sri-lanka-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "colombo-airport",
+    "name": "Bandaranaike International Colombo Airport",
+    "lon": 79.88410186767578,
+    "lat": 7.180759906768799,
+    "sourceUrl": "https://ourairports.com/airports/VCBI/"
+  },
+  "boxes": {
+    "play": [
+      6.757980510066022,
+      79.67314217675448,
+      7.189803951265498,
+      80.03525882324553
+    ],
+    "core": [
+      6.893641177516506,
+      79.8089491751559,
+      6.984081622483495,
+      79.8994518248441
+    ],
+    "outline": [
+      6.707980510066022,
+      79.62314217675448,
+      7.239803951265498,
+      80.08525882324552
+    ],
+    "wide": [
+      6.1579805100660225,
+      79.07314217675449,
+      7.7898039512654975,
+      80.63525882324552
+    ],
+    "water": [
+      6.1579805100660225,
+      79.07314217675449,
+      7.7898039512654975,
+      80.63525882324552
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/sri-lanka-261011.osm.pbf",
+    "datasetSha256": "ba8ac6d693aa468301afe9003c9c455c77fa72b78c61c4f4d45771de64e2f8e3",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "76272adc80c37aad85cb47c76fa5aef29bf318e9fb0f03c7816cd8201d44ec21",
+        "elements": 1687
+      },
+      {
+        "file": "extras.json",
+        "sha256": "523c171f43816523d525abdfc53ee9306bc1d2d4b9823ecca5eef77313b0ddf3",
+        "elements": 727
+      },
+      {
+        "file": "water.json",
+        "sha256": "12dd88f1168e12331af7e7fedf95135d5ec03e1e847a4144d8f96c2984b6d7d8",
+        "elements": 1810
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "583402a2ed320ea08d7d3ee6068e6da94c15f77598410d80c3a70a0ccc7e8452",
+        "elements": 2052
+      },
+      {
+        "file": "roads.json",
+        "sha256": "18db80ffdf4b0f5058d448f6120a2e6a03e49eb067c64c3648392484d3a9c4a4",
+        "elements": 2902
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Maradana Railway Station",
+      "osm": "node/5847983789",
+      "coordinatesWgs84": [
+        79.865796,
+        6.929237
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jade Restaurant",
+      "osm": "node/913095573",
+      "coordinatesWgs84": [
+        79.930577,
+        6.845094
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Institute of Engineering Technology",
+      "osm": "node/4237557729",
+      "coordinatesWgs84": [
+        79.873937,
+        7.156486
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "North Colombo Teaching Hospital",
+      "osm": "way/287215555",
+      "coordinatesWgs84": [
+        79.924966,
+        7.02965
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Weras Ganga Park",
+      "osm": "way/594531505",
+      "coordinatesWgs84": [
+        79.894152,
+        6.841527
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Majestic City Shopping Mall",
+      "osm": "way/208814352",
+      "coordinatesWgs84": [
+        79.854684,
+        6.893968
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sumatipāla Nā Himi Hermitage",
+      "osm": "way/1105378926",
+      "coordinatesWgs84": [
+        80.026243,
+        6.975149
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Town Hall, Colombo",
+      "osm": "relation/13887429",
+      "coordinatesWgs84": [
+        79.863702,
+        6.9158
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parliament of Sri Lanka",
+      "osm": "way/330906531",
+      "coordinatesWgs84": [
+        79.91866,
+        6.886726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Buddhist & Pali University of Sri Lanka",
+      "osm": "way/193287676",
+      "coordinatesWgs84": [
+        80.024428,
+        6.844728
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "P.Saravanamuththu Stadium",
+      "osm": "way/51208063",
+      "coordinatesWgs84": [
+        79.884276,
+        6.918898
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Zoological Gardens",
+      "osm": "way/48893708",
+      "coordinatesWgs84": [
+        79.8742,
+        6.857177
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pearl Residences",
+      "osm": "way/235938853",
+      "coordinatesWgs84": [
+        79.97464,
+        6.915109
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Sebastian College",
+      "osm": "way/98391431",
+      "coordinatesWgs84": [
+        79.880686,
+        6.782171
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "President's House",
+      "osm": "way/441724047",
+      "coordinatesWgs84": [
+        79.842701,
+        6.936112
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lanka Hospital",
+      "osm": "way/102650989",
+      "coordinatesWgs84": [
+        79.875778,
+        6.889679
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sugathadasa Stadium",
+      "osm": "way/51193146",
+      "coordinatesWgs84": [
+        79.868866,
+        6.948025
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Matthias Church",
+      "osm": "node/1252487341",
+      "coordinatesWgs84": [
+        79.878052,
+        6.799385
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Lawrence Church",
+      "osm": "way/1023143295",
+      "coordinatesWgs84": [
+        79.863341,
+        6.870756
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Independence Memorial Hall",
+      "osm": "way/303909847",
+      "coordinatesWgs84": [
+        79.867583,
+        6.904133
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Galle Face Green",
+      "osm": "way/27712165",
+      "coordinatesWgs84": [
+        79.844575,
+        6.924778
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "R. Premadasa International Cricket Stadium",
+      "osm": "way/665919418",
+      "coordinatesWgs84": [
+        79.872288,
+        6.939968
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Colombo City Center",
+      "osm": "way/666495757",
+      "coordinatesWgs84": [
+        79.855417,
+        6.917602
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Western Hospital",
+      "osm": "node/618557052",
+      "coordinatesWgs84": [
+        79.885636,
+        6.911705
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1253,
+      "sha256": "78e11dcfa5e05cc5ccabcf18205001a994e8bb85ae727cb662143d89e304871a"
+    },
+    "geometry.ts": {
+      "bytes": 93522,
+      "sha256": "52b9c3683834b7aa399c92d4b703463ea533ebaefff30e7d1e70f46bad9b5c4a"
+    },
+    "places.ts": {
+      "bytes": 10020,
+      "sha256": "586d529cf888fddfd1615ad3881fe5556fe5173a0371db7ecb50980ac9e52c5c"
+    },
+    "terrain.ts": {
+      "bytes": 179563,
+      "sha256": "ddc8d026dd5ab26aa9f912f27f15e3a09ea4876d9b54a9b6f6d34759de77839d"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "140b121de1c91982152c49556246671dbbb9cdacedbd898eaa2b37cd521100e4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

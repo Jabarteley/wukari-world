@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kathmandu",
+  "countryIso2": "NP",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Kathmandu",
+    "coordinatesWgs84": [
+      85.3205817,
+      27.708317
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/nepal-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "kathmandu-airport",
+    "name": "Tribhuvan International Airport",
+    "lon": 85.3591,
+    "lat": 27.6966,
+    "sourceUrl": "https://ourairports.com/airports/VNKT/"
+  },
+  "boxes": {
+    "play": [
+      27.527436110066024,
+      85.11731026752476,
+      27.88919788993398,
+      85.52385313247525
+    ],
+    "core": [
+      27.663096777516508,
+      85.26982729860245,
+      27.753537222483494,
+      85.37133610139756
+    ],
+    "outline": [
+      27.477436110066023,
+      85.06731026752476,
+      27.93919788993398,
+      85.57385313247525
+    ],
+    "wide": [
+      26.927436110066022,
+      84.51731026752476,
+      28.48919788993398,
+      86.12385313247525
+    ],
+    "water": [
+      27.527436110066024,
+      85.11731026752476,
+      27.88919788993398,
+      85.52385313247525
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/nepal-261011.osm.pbf",
+    "datasetSha256": "2bbcffba2f91e4a4d3afa363c0a33dc97215c5ce1f20c8f70013ba3567bcd71e",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "94259b68abffcf511e16f3050114c4aa7b74ffd483dd4b0f88363aba9db13e1b",
+        "elements": 5377
+      },
+      {
+        "file": "extras.json",
+        "sha256": "cfa464f386e9878a4fecbc83ce49bc4041bbff997386ab26bb454b0828db3808",
+        "elements": 804
+      },
+      {
+        "file": "water.json",
+        "sha256": "2183ddbad551ccae6179455d091015be15a2d5fad4117df946af32e4c9796b59",
+        "elements": 123
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "edabb8d0c60520710b50158e8d9483a0bbcaa108013b98e36f067a682af04a47",
+        "elements": 4471
+      },
+      {
+        "file": "roads.json",
+        "sha256": "61eab3fe8a7c4edd361e682ef83742477c54a5535e0dadf4569e17608d00639d",
+        "elements": 1017
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Pasang Lhamu Ticket Counter - Trishuli, Dhunche, Syabrubeshi, Chilime, Timure",
+      "osm": "node/268310351",
+      "coordinatesWgs84": [
+        85.305724,
+        27.735352
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dakshinkali Resort",
+      "osm": "node/564125542",
+      "coordinatesWgs84": [
+        85.262014,
+        27.628363
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Khwopa Engineering College",
+      "osm": "node/10971613623",
+      "coordinatesWgs84": [
+        85.439689,
+        27.670884
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Civil Service Hospital",
+      "osm": "relation/10953876",
+      "coordinatesWgs84": [
+        85.3392,
+        27.686443
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ratna Park",
+      "osm": "way/28523872",
+      "coordinatesWgs84": [
+        85.315225,
+        27.706037
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Matatirtha Mall & Mart",
+      "osm": "node/9702970921",
+      "coordinatesWgs84": [
+        85.243029,
+        27.679676
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Changu Narayan Temple",
+      "osm": "way/186264410",
+      "coordinatesWgs84": [
+        85.427897,
+        27.716347
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bhaktapur Durbar Square",
+      "osm": "way/1192827651",
+      "coordinatesWgs84": [
+        85.428104,
+        27.672194
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Department of Health Services",
+      "osm": "node/2441253902",
+      "coordinatesWgs84": [
+        85.305834,
+        27.695355
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "NMC white hostel",
+      "osm": "way/231049690",
+      "coordinatesWgs84": [
+        85.379554,
+        27.734529
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Surya Chaur",
+      "osm": "node/4213646591",
+      "coordinatesWgs84": [
+        85.31057,
+        27.823206
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tusha Hiti",
+      "osm": "node/10034234966",
+      "coordinatesWgs84": [
+        85.325134,
+        27.672722
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Thapagaun",
+      "osm": "node/3079586714",
+      "coordinatesWgs84": [
+        85.277514,
+        27.692798
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maitighar Mandala",
+      "osm": "way/120106732",
+      "coordinatesWgs84": [
+        85.320347,
+        27.694503
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kasthamandap",
+      "osm": "way/183558418",
+      "coordinatesWgs84": [
+        85.305779,
+        27.703934
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "शहीदगेट",
+      "osm": "way/193705373",
+      "coordinatesWgs84": [
+        85.314973,
+        27.699586
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dasharath Rangasala",
+      "osm": "node/11300416091",
+      "coordinatesWgs84": [
+        85.314876,
+        27.695028
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Basantapur Durbar Square",
+      "osm": "relation/21498033",
+      "coordinatesWgs84": [
+        85.307668,
+        27.704305
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kantipur Engineering College",
+      "osm": "node/2055477614",
+      "coordinatesWgs84": [
+        85.333431,
+        27.637138
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kathmandu Medical College",
+      "osm": "way/221217814",
+      "coordinatesWgs84": [
+        85.40779,
+        27.687345
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Garden of Dreams",
+      "osm": "way/85650618",
+      "coordinatesWgs84": [
+        85.314827,
+        27.714105
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dashrath Rangasala Stadium",
+      "osm": "way/16232252",
+      "coordinatesWgs84": [
+        85.314898,
+        27.695011
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Red Cross",
+      "osm": "node/1417852753",
+      "coordinatesWgs84": [
+        85.513491,
+        27.584006
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shyam Staff Hotel",
+      "osm": "node/4413371489",
+      "coordinatesWgs84": [
+        85.139733,
+        27.726662
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1282,
+      "sha256": "15b8b52cf91340b70710e7dd9a190c27ea35fc9ce4a8830c6e00f0b506e01b43"
+    },
+    "geometry.ts": {
+      "bytes": 36625,
+      "sha256": "559acee252f63bf54e42721ea8943baecbc5a991693ee59abf728c75bedd1bd5"
+    },
+    "places.ts": {
+      "bytes": 9760,
+      "sha256": "50d940e1c1ff4fbe1b0cd5a11878e79ece02de1e1d2654aafc829b234e2b078d"
+    },
+    "terrain.ts": {
+      "bytes": 32366,
+      "sha256": "d071c33b3324dd5850a4be53f6d9fa391f664d28521dcc15f8e1896dad85cb84"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "9c269503fa80e016ea8ff4eed4780f9eea3654b0a97c8fa48c225dd218c17aec"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

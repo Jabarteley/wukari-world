@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bishkek",
+  "countryIso2": "KG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bishkek",
+    "coordinatesWgs84": [
+      74.6036724,
+      42.8761424
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "bishkek-airport",
+    "name": "Manas International Airport",
+    "lon": 74.4776,
+    "lat": 43.061298,
+    "sourceUrl": "https://ourairports.com/airports/UAFM/"
+  },
+  "boxes": {
+    "play": [
+      42.69526151006602,
+      74.35778696922806,
+      43.0703420444967,
+      74.84955783077193
+    ],
+    "core": [
+      42.830922177516506,
+      74.54233656653902,
+      42.92136262248349,
+      74.66500823346097
+    ],
+    "outline": [
+      42.64526151006602,
+      74.30778696922806,
+      43.120342044496695,
+      74.89955783077193
+    ],
+    "wide": [
+      42.09526151006602,
+      73.75778696922806,
+      43.6703420444967,
+      75.44955783077192
+    ],
+    "water": [
+      42.69526151006602,
+      74.35778696922806,
+      43.0703420444967,
+      74.84955783077193
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+    "datasetSha256": "a62fc4da05ada8a5d8ea52cd766448f08e94498749d7d31018eeaa7316448608",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 76910383,
+        "md5": "43d2c655c19545b266950bd80bb775b0",
+        "sha256": "ccaaf1d348d4742e542fded95c43304ed6e3fa2d1eeea124fb9b8cb2d747ecf1"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 224167699,
+        "md5": "7ba3914ae712a63ab97e92adbefa4cf4",
+        "sha256": "53a639fc0cfdb786089050ba4c18c8a25ed91f7758ec71d934a0257a7d056495",
+        "reason": "admin-0 relation/178009 member way/1463718683 (Kyrgyzstan - Kazakhstan border segment, 12 nodes) is absent from the Kyrgyzstan clip; all its nodes lie inside the Kazakhstan clip"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "3f878666da2bca73d7033c06d1aeabb3e593f101cf4e4096dde4bca2e3e3cfc0",
+        "elements": 1541
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8c84d6e0f89ea6c7dfafeb50952dcfde1aec17d4bd11aa3aeac001b3494ccaf0",
+        "elements": 268
+      },
+      {
+        "file": "water.json",
+        "sha256": "a25e0e17f11c1604ec5df71b51a71cb523bdc1b02f0223eb8e00f419f8b78e96",
+        "elements": 58
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d5e0750b2939735ab8797cf6ed2cb2b05ec78a79113bda2ac14b4e4b5fbee069",
+        "elements": 1102
+      },
+      {
+        "file": "roads.json",
+        "sha256": "b4060a5eeba46f34c57f88edaee27e4d209bb3d898613a0d19fc2902d440a138",
+        "elements": 853
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Bishkek 2",
+      "osm": "node/240449433",
+      "coordinatesWgs84": [
+        74.605704,
+        42.863832
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Royal Fish",
+      "osm": "node/3105696426",
+      "coordinatesWgs84": [
+        74.65172,
+        42.727334
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ala-Too International University",
+      "osm": "way/341105734",
+      "coordinatesWgs84": [
+        74.679039,
+        42.856585
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Амбулатория",
+      "osm": "node/3423325424",
+      "coordinatesWgs84": [
+        74.438369,
+        42.995502
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Panfilov Park",
+      "osm": "way/25487201",
+      "coordinatesWgs84": [
+        74.599557,
+        42.879145
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dordoi Bazaar",
+      "osm": "way/25491570",
+      "coordinatesWgs84": [
+        74.618496,
+        42.938386
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Resurrection Cathedral",
+      "osm": "way/177274786",
+      "coordinatesWgs84": [
+        74.597467,
+        42.884165
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Байтик акимиаты",
+      "osm": "node/4406838990",
+      "coordinatesWgs84": [
+        74.544795,
+        42.736492
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Кантский энергосбыт",
+      "osm": "node/4704895397",
+      "coordinatesWgs84": [
+        74.83407,
+        42.880954
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kyrgyz-Turkish Manas University Campus",
+      "osm": "way/769141527",
+      "coordinatesWgs84": [
+        74.5763,
+        42.83514
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dolen Omurzakov Stadium",
+      "osm": "way/25487169",
+      "coordinatesWgs84": [
+        74.597972,
+        42.880071
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Найманбай манасчы",
+      "osm": "node/11865797560",
+      "coordinatesWgs84": [
+        74.587043,
+        42.877198
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "УНПК Международный Университет Кыргызстана Центральный Кампус",
+      "osm": "node/6786453658",
+      "coordinatesWgs84": [
+        74.57066,
+        42.866373
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kyrgyz-Russian Slavic University",
+      "osm": "way/329702889",
+      "coordinatesWgs84": [
+        74.614083,
+        42.87359
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Osh Bazaar",
+      "osm": "relation/4775068",
+      "coordinatesWgs84": [
+        74.568669,
+        42.875163
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mikhail Frunze Museum",
+      "osm": "way/49130695",
+      "coordinatesWgs84": [
+        74.60542,
+        42.880459
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Кара-Жыгач багы",
+      "osm": "way/165833844",
+      "coordinatesWgs84": [
+        74.621072,
+        42.905825
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Зоологический музей",
+      "osm": "node/4085389965",
+      "coordinatesWgs84": [
+        74.580347,
+        42.877482
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sultan Hall",
+      "osm": "node/9805150731",
+      "coordinatesWgs84": [
+        74.448222,
+        42.873563
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Obryv Artura",
+      "osm": "node/11758597705",
+      "coordinatesWgs84": [
+        74.76665,
+        42.732443
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Овощной сектор",
+      "osm": "way/1448008187",
+      "coordinatesWgs84": [
+        74.504815,
+        42.919625
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Панорама",
+      "osm": "node/1224398024",
+      "coordinatesWgs84": [
+        74.645529,
+        42.79859
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "FIELD",
+      "osm": "node/12617822550",
+      "coordinatesWgs84": [
+        74.388951,
+        42.972028
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "стадион",
+      "osm": "way/1025447782",
+      "coordinatesWgs84": [
+        74.512432,
+        42.780071
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1207,
+      "sha256": "63015e6063af301c05b9dcb88f6fecfe06dc11c54a2a317e9508dab51d6f3509"
+    },
+    "geometry.ts": {
+      "bytes": 118286,
+      "sha256": "85ef616e7ae479f0f4362be4e0164fb418ba1703c27092804bc4a376a4ff9264"
+    },
+    "places.ts": {
+      "bytes": 9971,
+      "sha256": "5fb1f05a34e0f1e343fe60a0621a4ee4f3dd45b02123ef1fa60a4c5ab6efe7b9"
+    },
+    "terrain.ts": {
+      "bytes": 29882,
+      "sha256": "5463b145064fba3fedbbbf489ac35f7e62a5c37a4aab956653caf040f0603552"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "0798868a166628046bc63d6ace7987d54b7f377f72a4c2f2adf2e6318872b59d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

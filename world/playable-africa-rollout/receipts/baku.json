@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "baku",
+  "countryIso2": "AZ",
+  "generationIdentity": {
+    "cityId": "baku",
+    "stateId": "az-baku",
+    "stateName": "Baku"
+  },
+  "inventorySha256": "d9209e671b7344f9e6fad852b2d5f79a7adeb74b5b1c92e488a512826420d2cb",
+  "inventoryPath": "world/playable-africa-rollout/sources/baku.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "baku-airport",
+    "name": "Heydar Aliyev International Airport",
+    "lon": 50.050931,
+    "lat": 40.47278,
+    "sourceUrl": "https://ourairports.com/airports/UBBB/"
+  },
+  "bounds": [
+    40.19470761006602,
+    49.59633026354774,
+    40.55646938993398,
+    50.06927153645226
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/azerbaijan-261011.osm.pbf",
+      "datasetSha256": "2e0dd46eca9b011fde60f29e2b1fd2cc739b43c02b420a5d66641d02f7cfd042",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/azerbaijan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 46486421,
+          "md5": "ee4d30a613ee5180200661bc7bbbfd36",
+          "sha256": "96d110a1790b57b23de14d6ce60986547783ff79ef3058ec7f9bf338fc46c60d"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/armenia-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 53320660,
+          "md5": "bf23dcd87be07b97c8c2390dbb7ab931",
+          "sha256": "570772f080234b6389ed2c17dd63f3a1eb83d13800e387646a84d5eb2de1784b",
+          "reason": "admin-0 relation/364110 member way/1551645398 (closed Azerbaijani exclave ring inside Armenia, 45 nodes) is absent from the Azerbaijan clip; all its nodes lie inside the Armenia clip"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "338b8390f4509d6a7988a3dd8df4a58373033387dc8e5382c4ee3f3c34dd62bc",
+          "elements": 3466
+        },
+        {
+          "file": "extras.json",
+          "sha256": "49617387591b262d4acc06a2bd6e8ee32c4803188b81ea33be913fb7e85b7af4",
+          "elements": 788
+        },
+        {
+          "file": "water.json",
+          "sha256": "47c6345c0cf8ac2d175d22e937e8400c3b59b43689aae1ec98f4f813090d1d41",
+          "elements": 200
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d31faea4f8756ab9ada2ad86d2c2e89d2a24c50663e178f552bf88399a669fdb",
+          "elements": 2351
+        },
+        {
+          "file": "roads.json",
+          "sha256": "bc3da401bb07bfbbb0124165d1a4036ddca551e0ba593b41c9b0e58b1b83b253",
+          "elements": 2894
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 14,
+    "landPolygons": 7,
+    "waterPolygons": 9,
+    "reachWaterPolygons": 11
+  },
+  "observed": {
+    "places": 3466,
+    "extras": 788,
+    "water": 200,
+    "landuse": 2351,
+    "roads": 2894
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1205,
+      "sha256": "5db81b1d351e97997812b3ef8be898898b7ef9fad72606d6fef2c4ff008ee713"
+    },
+    "geometry.ts": {
+      "bytes": 96662,
+      "sha256": "018dc4227140df7bc7761bfc26be65272f1dba38e2c67d79b3da0cd7381eae48"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "739ac84a81a2dfb187f9f4cb3aef5609bbc2e579bafe47d7fe82bede4bd96f5e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/baku.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

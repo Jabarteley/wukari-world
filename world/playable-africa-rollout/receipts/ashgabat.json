@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ashgabat",
+  "countryIso2": "TM",
+  "generationIdentity": {
+    "cityId": "ashgabat",
+    "stateId": "tm-ashgabat",
+    "stateName": "Ashgabat"
+  },
+  "inventorySha256": "aa5dc42e9087cc944d40356cd37fe8855128c023fb701718f234c06a32145d34",
+  "inventoryPath": "world/playable-africa-rollout/sources/ashgabat.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "ashgabat-airport",
+    "name": "Ashgabat International Airport",
+    "lon": 58.361,
+    "lat": 37.986801,
+    "sourceUrl": "https://ourairports.com/airports/UTAA/"
+  },
+  "bounds": [
+    37.75958391006602,
+    58.15397565716856,
+    38.12134568993398,
+    58.610721742831444
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/turkmenistan-261011.osm.pbf",
+      "datasetSha256": "49332379f06caaead638b59813e7ea0ffc9f10c3113e7718f19489e224381bde",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "b3d8052279da6e0290b961fa1416de559197c47c7b35c3943331de69cf5d1e9c",
+          "elements": 543
+        },
+        {
+          "file": "extras.json",
+          "sha256": "b3be50d0062834c9c072c6e6d63089ed8ef320603f23a785c4d29263f6250fd1",
+          "elements": 234
+        },
+        {
+          "file": "water.json",
+          "sha256": "46195b757080a81fad7ea6fbb79209e66e5830a3e4dd592bc6c31d2b53ede014",
+          "elements": 43
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "eb6a1a8650632c6833e94e8e5e7e01d8b1bb8be3a8dacfc519cea59397b1c213",
+          "elements": 1320
+        },
+        {
+          "file": "roads.json",
+          "sha256": "6c7737eb68e49a9c48b5b43603544bf01fb0a3927a3736dcd91a8291816cdc2d",
+          "elements": 790
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 280,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 22,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 543,
+    "extras": 234,
+    "water": 43,
+    "landuse": 1320,
+    "roads": 790
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1221,
+      "sha256": "3daae0e78dce341b880ee4115ce24b7ffee9b354b971de44c4dcb193ad05dbcf"
+    },
+    "geometry.ts": {
+      "bytes": 67514,
+      "sha256": "9299e0b2addc8fcfa3629a50c23adb79a93d90363cbc0b493787fdd3d3d55393"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "b9e8337c9d8db445c512132162efd384d4ed8da61d60642be941e863a34e5966"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/ashgabat.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

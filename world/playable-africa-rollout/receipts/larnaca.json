@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "larnaca",
+  "countryIso2": "CY",
+  "generationIdentity": {
+    "cityId": "larnaca",
+    "stateId": "cy-larnaca",
+    "stateName": "Larnaca"
+  },
+  "inventorySha256": "98aec4d1e40eb9d3000f3a03c61585c686d0bb3117ba610df9117c7a74f83960",
+  "inventoryPath": "world/playable-africa-rollout/sources/larnaca.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "larnaca-airport",
+    "name": "Larnaca International Airport",
+    "lon": 33.624901,
+    "lat": 34.875099,
+    "sourceUrl": "https://ourairports.com/airports/LCLK/"
+  },
+  "bounds": [
+    34.74272861006602,
+    33.40401051135458,
+    35.10449038993398,
+    33.84322628864542
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/cyprus-261011.osm.pbf",
+      "datasetSha256": "65fe2b12d863fb1136fec15db21bfc13d4efc5ed89cfaab981cf55818e5dd0a5",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "0f4a76aa38fcbc024e264cc9aea020d9a64c4dbf9c36dd12f3d3832922dc7568",
+          "elements": 514
+        },
+        {
+          "file": "extras.json",
+          "sha256": "fd501f326aac83d2cdf262dcb0382536d1e0b0b000d7af6d5d31bc9dcfe6ba59",
+          "elements": 92
+        },
+        {
+          "file": "water.json",
+          "sha256": "0fd4829d3ded5b64c4bff8cac59caa82337a238a9a5f8d7088349770d42f8864",
+          "elements": 800
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "7f8f165d9751db3deb7d76d15859501015ceb5a2d0baca1224522d696170a2cd",
+          "elements": 756
+        },
+        {
+          "file": "roads.json",
+          "sha256": "13571a5c8895e1daab2567a28836ac9c98b2b510a1cd93aaf9581e850c2250d4",
+          "elements": 1447
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 388,
+    "neighbourhoodLabels": 15,
+    "landPolygons": 34,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 17
+  },
+  "observed": {
+    "places": 514,
+    "extras": 92,
+    "water": 800,
+    "landuse": 756,
+    "roads": 1447
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1220,
+      "sha256": "c4310120d4cbb8ae5e52acdbc273038a11bcbcf3506825162570e8ab73e3766d"
+    },
+    "geometry.ts": {
+      "bytes": 59789,
+      "sha256": "c6de257071c790d6c38b1428a2f7b7de61e020a31cbefbacf76a06af950252e8"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "bfa58c287caa54724843f9adf49425014d51f629d8feb91e0c9ada7c0a0e2a7c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/larnaca.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

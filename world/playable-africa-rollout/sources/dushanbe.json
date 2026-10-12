@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dushanbe",
+  "countryIso2": "TJ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Dushanbe",
+    "coordinatesWgs84": [
+      68.785433,
+      38.5767045
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/tajikistan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "dushanbe-airport",
+    "name": "Dushanbe International Airport",
+    "lon": 68.822977,
+    "lat": 38.543746,
+    "sourceUrl": "https://ourairports.com/airports/UTDD/"
+  },
+  "boxes": {
+    "play": [
+      38.39582361006602,
+      68.55503820132188,
+      38.75758538993398,
+      69.01582779867812
+    ],
+    "core": [
+      38.531484277516505,
+      68.72794341619667,
+      38.62192472248349,
+      68.84292258380333
+    ],
+    "outline": [
+      38.34582361006602,
+      68.50503820132188,
+      38.807585389933976,
+      69.06582779867811
+    ],
+    "wide": [
+      37.795823610066016,
+      67.95503820132188,
+      39.35758538993398,
+      69.61582779867811
+    ],
+    "water": [
+      38.39582361006602,
+      68.55503820132188,
+      38.75758538993398,
+      69.01582779867812
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/tajikistan-261011.osm.pbf",
+    "datasetSha256": "6f321470e0e97e816447e6cac064c2c0f9e529a08d12a1d9c17a048b1638d73a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "83267c63e3c6d700134388e438b2c41084bbb0f3d94edc30a6073ebf0cce29f5",
+        "elements": 723
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9cab48fd4e1c0cc9dd07f62cabebed89c24463e18bd525266cdbf43136c294a9",
+        "elements": 155
+      },
+      {
+        "file": "water.json",
+        "sha256": "fecbee94a10e3d7bbe776e9fc581d614df1dbda2d399176b7ee00f0ca1ff5f56",
+        "elements": 37
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "25adaacaf60b8619b5eb9802bf850c3500f6e11d2474a1fe9a703df53fcda75d",
+        "elements": 521
+      },
+      {
+        "file": "roads.json",
+        "sha256": "6d4ff7d6072f0763bc115ca51084770c47d0be905fc5a6f7461dd35c311c5de9",
+        "elements": 497
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Dushanbe",
+      "osm": "node/252791512",
+      "coordinatesWgs84": [
+        68.799684,
+        38.556879
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Алмос",
+      "osm": "node/2357110559",
+      "coordinatesWgs84": [
+        69.004456,
+        38.557624
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tajik Agrarian University Shirinsho Shotemur",
+      "osm": "way/993587672",
+      "coordinatesWgs84": [
+        68.787333,
+        38.610879
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "роддом рудаки",
+      "osm": "node/9027926117",
+      "coordinatesWgs84": [
+        68.790094,
+        38.441334
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rudaki Park",
+      "osm": "way/520892162",
+      "coordinatesWgs84": [
+        68.781547,
+        38.575552
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Darvoz",
+      "osm": "node/13526286670",
+      "coordinatesWgs84": [
+        68.743465,
+        38.513828
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Nicholas Orthodox Cathedral",
+      "osm": "way/610952154",
+      "coordinatesWgs84": [
+        68.816718,
+        38.566417
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "МВД",
+      "osm": "node/13526356871",
+      "coordinatesWgs84": [
+        68.730308,
+        38.592212
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Supreme Assembly",
+      "osm": "way/528417507",
+      "coordinatesWgs84": [
+        68.787949,
+        38.573651
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tajik State University of Commerce",
+      "osm": "way/247152234",
+      "coordinatesWgs84": [
+        68.758211,
+        38.531761
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "climbing place",
+      "osm": "node/9655730217",
+      "coordinatesWgs84": [
+        68.756846,
+        38.712804
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hisar Fortress",
+      "osm": "way/42488771",
+      "coordinatesWgs84": [
+        68.592496,
+        38.484837
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park Khayyam",
+      "osm": "way/521097387",
+      "coordinatesWgs84": [
+        68.771928,
+        38.598523
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Victory Park",
+      "osm": "node/405093878",
+      "coordinatesWgs84": [
+        68.814074,
+        38.581596
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tajik State Pedagogical University named after S. Aini",
+      "osm": "way/486297646",
+      "coordinatesWgs84": [
+        68.785513,
+        38.593449
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tajik National University",
+      "osm": "way/574403086",
+      "coordinatesWgs84": [
+        68.77318,
+        38.589865
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mevlana Yakub Charki Mosque",
+      "osm": "way/105572713",
+      "coordinatesWgs84": [
+        68.784058,
+        38.587831
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Майдони вазишӣ",
+      "osm": "way/486255310",
+      "coordinatesWgs84": [
+        68.901365,
+        38.623451
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "stadium",
+      "osm": "way/482515768",
+      "coordinatesWgs84": [
+        68.93839,
+        38.509448
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Панҷ дег",
+      "osm": "node/12064585531",
+      "coordinatesWgs84": [
+        68.873291,
+        38.552027
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ошхонаи Оби шифо",
+      "osm": "node/5563662637",
+      "coordinatesWgs84": [
+        68.732505,
+        38.442629
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Маркази саломати",
+      "osm": "node/4467243189",
+      "coordinatesWgs84": [
+        68.788203,
+        38.492927
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Бозори Балх",
+      "osm": "way/623245028",
+      "coordinatesWgs84": [
+        68.720861,
+        38.540932
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "РКТБ №3 \"Мачитон\"",
+      "osm": "way/27154229",
+      "coordinatesWgs84": [
+        68.975519,
+        38.572434
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "af11de8c1fe8250afd2ec8737214ac8d3b22d4f3cbd3fdc648c11731c50ba285"
+    },
+    "geometry.ts": {
+      "bytes": 98313,
+      "sha256": "3f29dc9e42705e1c66f56414c00e6a22504673312667bbfa071a0cdc72c0f296"
+    },
+    "places.ts": {
+      "bytes": 9726,
+      "sha256": "c2f8270e2742375b0b682e6bfe5b9e762500eb4ccee8c416e9da1128047434c5"
+    },
+    "terrain.ts": {
+      "bytes": 137049,
+      "sha256": "6a152b676338c18fac0715205eccb48074d56b4b42cc47be53937d1102e869d0"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "4fe500912ab26033fea2cf6042451d9f018a8f9c47603c83ed40d3ce41a73317"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

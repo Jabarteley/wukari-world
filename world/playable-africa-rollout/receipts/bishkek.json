@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bishkek",
+  "countryIso2": "KG",
+  "generationIdentity": {
+    "cityId": "bishkek",
+    "stateId": "kg-bishkek",
+    "stateName": "Bishkek"
+  },
+  "inventorySha256": "4ae6cce7c7ca37029624014da6f9dde97cc02eba39f81ce8d47520d357e824a3",
+  "inventoryPath": "world/playable-africa-rollout/sources/bishkek.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bishkek-airport",
+    "name": "Manas International Airport",
+    "lon": 74.4776,
+    "lat": 43.061298,
+    "sourceUrl": "https://ourairports.com/airports/UAFM/"
+  },
+  "bounds": [
+    42.69526151006602,
+    74.35778696922806,
+    43.0703420444967,
+    74.84955783077193
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+      "datasetSha256": "a62fc4da05ada8a5d8ea52cd766448f08e94498749d7d31018eeaa7316448608",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 76910383,
+          "md5": "43d2c655c19545b266950bd80bb775b0",
+          "sha256": "ccaaf1d348d4742e542fded95c43304ed6e3fa2d1eeea124fb9b8cb2d747ecf1"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 224167699,
+          "md5": "7ba3914ae712a63ab97e92adbefa4cf4",
+          "sha256": "53a639fc0cfdb786089050ba4c18c8a25ed91f7758ec71d934a0257a7d056495",
+          "reason": "admin-0 relation/178009 member way/1463718683 (Kyrgyzstan - Kazakhstan border segment, 12 nodes) is absent from the Kyrgyzstan clip; all its nodes lie inside the Kazakhstan clip"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "3f878666da2bca73d7033c06d1aeabb3e593f101cf4e4096dde4bca2e3e3cfc0",
+          "elements": 1541
+        },
+        {
+          "file": "extras.json",
+          "sha256": "8c84d6e0f89ea6c7dfafeb50952dcfde1aec17d4bd11aa3aeac001b3494ccaf0",
+          "elements": 268
+        },
+        {
+          "file": "water.json",
+          "sha256": "a25e0e17f11c1604ec5df71b51a71cb523bdc1b02f0223eb8e00f419f8b78e96",
+          "elements": 58
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d5e0750b2939735ab8797cf6ed2cb2b05ec78a79113bda2ac14b4e4b5fbee069",
+          "elements": 1102
+        },
+        {
+          "file": "roads.json",
+          "sha256": "b4060a5eeba46f34c57f88edaee27e4d209bb3d898613a0d19fc2902d440a138",
+          "elements": 853
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 245,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 67,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 3
+  },
+  "observed": {
+    "places": 1541,
+    "extras": 268,
+    "water": 58,
+    "landuse": 1102,
+    "roads": 853
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1207,
+      "sha256": "63015e6063af301c05b9dcb88f6fecfe06dc11c54a2a317e9508dab51d6f3509"
+    },
+    "geometry.ts": {
+      "bytes": 118286,
+      "sha256": "85ef616e7ae479f0f4362be4e0164fb418ba1703c27092804bc4a376a4ff9264"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "0798868a166628046bc63d6ace7987d54b7f377f72a4c2f2adf2e6318872b59d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bishkek.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

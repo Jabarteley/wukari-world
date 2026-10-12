@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ulaanbaatar",
+  "countryIso2": "MN",
+  "generationIdentity": {
+    "cityId": "ulaanbaatar",
+    "stateId": "mn-ulaanbaatar",
+    "stateName": "Ulaanbaatar"
+  },
+  "inventorySha256": "b4fedac2ef49348303d85a2f1b05068b03565824cc646fb79acd6160222e35de",
+  "inventoryPath": "world/playable-africa-rollout/sources/ulaanbaatar.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "ulaanbaatar-airport",
+    "name": "Ulaanbaatar Chinggis Khaan International Airport",
+    "lon": 106.819833,
+    "lat": 47.646916,
+    "sourceUrl": "https://ourairports.com/airports/ZMCK/"
+  },
+  "bounds": [
+    47.6378719555033,
+    106.64868213295743,
+    48.09934848993398,
+    107.18672106704257
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/mongolia-261011.osm.pbf",
+      "datasetSha256": "0f09f78c7eb226a5c69cd55907edbbc8d4cad44f13e2728a9b23dc9828a7e3c3",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "dd57a38028382a78a21e849e41969de7af7193106957d735c2dd28caf7f9e8ce",
+          "elements": 1158
+        },
+        {
+          "file": "extras.json",
+          "sha256": "8d3e546cf28cf9ca80fa028ee0aae4d62d2d72b1d1a73f6ddfd88a9c17377874",
+          "elements": 282
+        },
+        {
+          "file": "water.json",
+          "sha256": "be47663212338ccef2511cd82b1ae6df0de67fc34d53cbab5d5a3932cd3289f1",
+          "elements": 48
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "490d212a45c476ddcbc442ffbcedfc475a17dd25797ee72381b01a274fd955e1",
+          "elements": 374
+        },
+        {
+          "file": "roads.json",
+          "sha256": "3212e2eaf56ee75faaeadd99a4e6c49c00c55938bf14e2c91e84edbfc6e85d38",
+          "elements": 903
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 362,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 12,
+    "waterPolygons": 15,
+    "reachWaterPolygons": 1
+  },
+  "observed": {
+    "places": 1158,
+    "extras": 282,
+    "water": 48,
+    "landuse": 374,
+    "roads": 903
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1259,
+      "sha256": "7b4341451988ca2682df992c39ad5ee4c678c02e0d74f62e34c90df027a1f310"
+    },
+    "geometry.ts": {
+      "bytes": 73069,
+      "sha256": "8c1889f57441370eaf2613554669843b6a272b4627534cc2bdcc180214ebae90"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "30eb415b95581bc17cc595e007b79f113707b45ed582d9a3207b8009215cef93"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/ulaanbaatar.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

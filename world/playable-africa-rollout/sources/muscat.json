@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "muscat",
+  "countryIso2": "OM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Muscat",
+    "coordinatesWgs84": [
+      58.5938134,
+      23.6123628
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "muscat-airport",
+    "name": "Muscat International Airport",
+    "lon": 58.285268,
+    "lat": 23.600218,
+    "sourceUrl": "https://ourairports.com/airports/OOMS/"
+  },
+  "boxes": {
+    "play": [
+      23.431481910066022,
+      58.27546429885594,
+      23.793243689933977,
+      58.790164014151664
+    ],
+    "core": [
+      23.567142577516506,
+      58.544776801101335,
+      23.657583022483493,
+      58.64284999889867
+    ],
+    "outline": [
+      23.38148191006602,
+      58.22546429885594,
+      23.843243689933978,
+      58.84016401415166
+    ],
+    "wide": [
+      22.83148191006602,
+      57.675464298855935,
+      24.39324368993398,
+      59.390164014151665
+    ],
+    "water": [
+      22.83148191006602,
+      57.675464298855935,
+      24.39324368993398,
+      59.390164014151665
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+    "datasetSha256": "146b0eee40cd3e5d36f497dc834eff9cc62cead909308eb14c6f9ba7db6aa400",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "2c08316138635ead38fc75c8425b3a3ce326e31c3d87e1c238b7ae60d4243acd",
+        "elements": 981
+      },
+      {
+        "file": "extras.json",
+        "sha256": "82bd183a9840c7fb1a791202e85c40f8b040aabdb93196117f733b29e60745b0",
+        "elements": 160
+      },
+      {
+        "file": "water.json",
+        "sha256": "ce9febe36343260ee11859723c327543100b35e9187cdc7f816cfaf2ffb7bcaa",
+        "elements": 196
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "cb0c2ed8c8da218bb521dcb643d345acb9bb101888c0a354dd2682491d242be4",
+        "elements": 261
+      },
+      {
+        "file": "roads.json",
+        "sha256": "27ca24796c2f9360df1e4166ac019b807aeb5c0ebc3871166d1e7ff0d5894dd0",
+        "elements": 773
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "desert king llc",
+      "osm": "node/4269798290",
+      "coordinatesWgs84": [
+        58.543176,
+        23.596403
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Meknas",
+      "osm": "node/462253537",
+      "coordinatesWgs84": [
+        58.426555,
+        23.596558
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Oman Convention and Exhibition Center",
+      "osm": "way/550202124",
+      "coordinatesWgs84": [
+        58.325532,
+        23.566822
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal Hospital Oman",
+      "osm": "way/231701392",
+      "coordinatesWgs84": [
+        58.387289,
+        23.5763
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al Qurm Natural Park",
+      "osm": "way/257266841",
+      "coordinatesWgs84": [
+        58.489535,
+        23.618847
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Oman Avenues Mall",
+      "osm": "way/354859522",
+      "coordinatesWgs84": [
+        58.410897,
+        23.589788
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Temple de Shiva",
+      "osm": "node/4394766924",
+      "coordinatesWgs84": [
+        58.58816,
+        23.60979
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Al Amerat Muncipality",
+      "osm": "way/244925887",
+      "coordinatesWgs84": [
+        58.49659,
+        23.474686
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Consultative Council of Oman",
+      "osm": "node/7949837286",
+      "coordinatesWgs84": [
+        58.604635,
+        23.567224
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Oman Medical College",
+      "osm": "way/243025679",
+      "coordinatesWgs84": [
+        58.398879,
+        23.552363
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal Oman Police Stadium",
+      "osm": "way/286215978",
+      "coordinatesWgs84": [
+        58.506651,
+        23.608574
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bait Al Baranda Museum",
+      "osm": "way/273893092",
+      "coordinatesWgs84": [
+        58.560691,
+        23.62292
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museum of Omani Heritage",
+      "osm": "way/339873291",
+      "coordinatesWgs84": [
+        58.470485,
+        23.609837
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Oil and Gas Exhibition Center مكتب نفط عمان",
+      "osm": "node/571119169",
+      "coordinatesWgs84": [
+        58.508852,
+        23.625209
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Majan university",
+      "osm": "way/993559976",
+      "coordinatesWgs84": [
+        58.546965,
+        23.615316
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sultan Qaboos Sports Complex",
+      "osm": "way/20147882",
+      "coordinatesWgs84": [
+        58.399837,
+        23.573039
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sultan Qaboos Grand Mosque",
+      "osm": "node/1721989476",
+      "coordinatesWgs84": [
+        58.388518,
+        23.583787
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Al Zawawi Mosque",
+      "osm": "way/224449131",
+      "coordinatesWgs84": [
+        58.422176,
+        23.596172
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Muntaza.h Qantab",
+      "osm": "node/1719812351",
+      "coordinatesWgs84": [
+        58.640795,
+        23.549086
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Al Amerat Public Park",
+      "osm": "way/287310284",
+      "coordinatesWgs84": [
+        58.503165,
+        23.511216
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Caribou Coffee",
+      "osm": "node/10252459505",
+      "coordinatesWgs84": [
+        58.286932,
+        23.603039
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Juice shop",
+      "osm": "node/6258430359",
+      "coordinatesWgs84": [
+        58.662046,
+        23.507595
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Al-Ansab",
+      "osm": "node/2559425023",
+      "coordinatesWgs84": [
+        58.351676,
+        23.534561
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "مركز الريم الطبي",
+      "osm": "node/3703217884",
+      "coordinatesWgs84": [
+        58.349168,
+        23.595683
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1206,
+      "sha256": "6d925f34348e2a03c1ab484a179b9e0067db58baeb0b66773870095f8e175d94"
+    },
+    "geometry.ts": {
+      "bytes": 62745,
+      "sha256": "67a79e7553553520a97b56f8e1e0669989b59b6cd865fc441b1a95537d309cc0"
+    },
+    "places.ts": {
+      "bytes": 9693,
+      "sha256": "beb5a76f898361d610344725e1a438892453332139f311c1af37429eab76ac38"
+    },
+    "terrain.ts": {
+      "bytes": 43017,
+      "sha256": "aed182d536da690035f6bc899d75e08d58451b5f052daf1321253d4651bf126c"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "2796ea9119715a50dd36f1a1951e9c23b8b2315a9b2d4b9206e4a3ee0e90fcd6"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

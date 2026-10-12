@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tashkent",
+  "countryIso2": "UZ",
+  "generationIdentity": {
+    "cityId": "tashkent",
+    "stateId": "uz-tashkent",
+    "stateName": "Tashkent"
+  },
+  "inventorySha256": "bc14fa3947dfcbc10b0ef4f18ab798064b69075966b81ecf94556c568a45d9f9",
+  "inventoryPath": "world/playable-africa-rollout/sources/tashkent.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "tashkent-airport",
+    "name": "Tashkent International Airport",
+    "lon": 69.281197,
+    "lat": 41.2579,
+    "sourceUrl": "https://ourairports.com/airports/UTTT/"
+  },
+  "bounds": [
+    41.13145541006602,
+    69.03884936609705,
+    41.49321718993398,
+    69.51856643390295
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf",
+      "datasetSha256": "5a68df01ff91b653c7d5c193cc2fd611cc949e5f7f1daf1fef5e240fc000bc06",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/uzbekistan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 124850362,
+          "md5": "209c1cbfd62eb80c0072a6fcfd197cf3",
+          "sha256": "2c2c68f3eb1459ea362c163582255d32699fbab2b304e5150d43aafb84c328fc"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/kyrgyzstan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 76910383,
+          "md5": "43d2c655c19545b266950bd80bb775b0",
+          "sha256": "ccaaf1d348d4742e542fded95c43304ed6e3fa2d1eeea124fb9b8cb2d747ecf1",
+          "reason": "admin-0 relation/196240 member way/133066430 (Shohimardon exclave ring, 256 nodes) is absent from the Uzbekistan clip; all its nodes lie inside the Kyrgyzstan clip"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "370e9f5598b5d0b245e2a62a22a013c1ae6d5238ce25a6124a9c2b399a6bdb1a",
+          "elements": 3690
+        },
+        {
+          "file": "extras.json",
+          "sha256": "aba7eda47250e7d1ea898f4902e4854683156fd197ac3561b5f24355fc007157",
+          "elements": 826
+        },
+        {
+          "file": "water.json",
+          "sha256": "e81cced0ea2c361c58e18aafca116aa50effac01dc4ba4e7e72627cb876222fa",
+          "elements": 68
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "035303358838d7cc0b4ceecab0580989a94f751af5a076a8abedf8d186159298",
+          "elements": 3648
+        },
+        {
+          "file": "roads.json",
+          "sha256": "b2a60e778fed81756f8a229a72a3a1b554691b174b05a6053f92204d21ace4ab",
+          "elements": 4330
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 33,
+    "waterPolygons": 23,
+    "reachWaterPolygons": 10
+  },
+  "observed": {
+    "places": 3690,
+    "extras": 826,
+    "water": 68,
+    "landuse": 3648,
+    "roads": 4330
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1222,
+      "sha256": "1c4a2376686ef124b1f78f5ad8393446f09da9f859e0289c39f6ddae029d5d24"
+    },
+    "geometry.ts": {
+      "bytes": 144368,
+      "sha256": "c77bb5baba21e66868e99f6054fa6d45017fd534701512f86963ec2382dacf89"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "5806708d6bd003acd20c028385859d792d78f44745a3edd564810fd42d5473ca"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/tashkent.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

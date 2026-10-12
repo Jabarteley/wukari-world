@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "larnaca",
+  "countryIso2": "CY",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Larnaca",
+    "coordinatesWgs84": [
+      33.6236184,
+      34.9236095
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/cyprus-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "larnaca-airport",
+    "name": "Larnaca International Airport",
+    "lon": 33.624901,
+    "lat": 34.875099,
+    "sourceUrl": "https://ourairports.com/airports/LCLK/"
+  },
+  "boxes": {
+    "play": [
+      34.74272861006602,
+      33.40401051135458,
+      35.10449038993398,
+      33.84322628864542
+    ],
+    "core": [
+      34.878389277516504,
+      33.56880749822611,
+      34.96882972248349,
+      33.67842930177389
+    ],
+    "outline": [
+      34.69272861006602,
+      33.35401051135458,
+      35.154490389933976,
+      33.893226288645415
+    ],
+    "wide": [
+      34.142728610066015,
+      32.804010511354576,
+      35.70449038993398,
+      34.44322628864542
+    ],
+    "water": [
+      34.142728610066015,
+      32.804010511354576,
+      35.70449038993398,
+      34.44322628864542
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/cyprus-261011.osm.pbf",
+    "datasetSha256": "65fe2b12d863fb1136fec15db21bfc13d4efc5ed89cfaab981cf55818e5dd0a5",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "0f4a76aa38fcbc024e264cc9aea020d9a64c4dbf9c36dd12f3d3832922dc7568",
+        "elements": 514
+      },
+      {
+        "file": "extras.json",
+        "sha256": "fd501f326aac83d2cdf262dcb0382536d1e0b0b000d7af6d5d31bc9dcfe6ba59",
+        "elements": 92
+      },
+      {
+        "file": "water.json",
+        "sha256": "0fd4829d3ded5b64c4bff8cac59caa82337a238a9a5f8d7088349770d42f8864",
+        "elements": 800
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "7f8f165d9751db3deb7d76d15859501015ceb5a2d0baca1224522d696170a2cd",
+        "elements": 756
+      },
+      {
+        "file": "roads.json",
+        "sha256": "13571a5c8895e1daab2567a28836ac9c98b2b510a1cd93aaf9581e850c2250d4",
+        "elements": 1447
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Larnaca Central Station",
+      "osm": "node/3216499349",
+      "coordinatesWgs84": [
+        33.637797,
+        34.919344
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Coast of India",
+      "osm": "node/1615700362",
+      "coordinatesWgs84": [
+        33.580327,
+        34.828785
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Central Lancashire Cyprus",
+      "osm": "way/1465359719",
+      "coordinatesWgs84": [
+        33.696559,
+        35.00806
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Larnaca General Hospital",
+      "osm": "way/91496088",
+      "coordinatesWgs84": [
+        33.605018,
+        34.921149
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fountain & Statue of Artemis",
+      "osm": "way/558250319",
+      "coordinatesWgs84": [
+        33.627281,
+        34.915339
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sunday Market",
+      "osm": "node/5125803724",
+      "coordinatesWgs84": [
+        33.632909,
+        34.964901
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Church of Saint Euphemianos",
+      "osm": "way/190662188",
+      "coordinatesWgs84": [
+        33.66472,
+        35.085713
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Europe square",
+      "osm": "way/26958238",
+      "coordinatesWgs84": [
+        33.637852,
+        34.917029
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Beyarmudu Border Gate",
+      "osm": "way/453895869",
+      "coordinatesWgs84": [
+        33.707046,
+        35.038466
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Alexander College",
+      "osm": "way/536939636",
+      "coordinatesWgs84": [
+        33.597735,
+        34.932491
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chalkanoras Stadium",
+      "osm": "way/186575346",
+      "coordinatesWgs84": [
+        33.418294,
+        35.02689
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stavrovouni Monastery",
+      "osm": "way/256609297",
+      "coordinatesWgs84": [
+        33.436052,
+        34.886371
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Avgorou Community Stadium",
+      "osm": "way/1033582203",
+      "coordinatesWgs84": [
+        33.828261,
+        35.020811
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hala Sultan Tekke",
+      "osm": "way/1492777202",
+      "coordinatesWgs84": [
+        33.60994,
+        34.885361
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kamares Aqueduct",
+      "osm": "relation/20507958",
+      "coordinatesWgs84": [
+        33.589408,
+        34.901809
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Panagia Aggeloktisti",
+      "osm": "way/149466626",
+      "coordinatesWgs84": [
+        33.570987,
+        34.847587
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Catholic Church of The Virgin Mary of The Graces",
+      "osm": "way/513962296",
+      "coordinatesWgs84": [
+        33.626309,
+        34.923215
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Old GSZ Stadium",
+      "osm": "way/493412494",
+      "coordinatesWgs84": [
+        33.62841,
+        34.914334
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Larnaca College",
+      "osm": "way/513953442",
+      "coordinatesWgs84": [
+        33.635606,
+        34.910611
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Girokomio Athienou",
+      "osm": "node/4401051294",
+      "coordinatesWgs84": [
+        33.535054,
+        35.064698
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Beach Restaurant",
+      "osm": "node/9852870606",
+      "coordinatesWgs84": [
+        33.461103,
+        34.774029
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ayia Anna taverna",
+      "osm": "node/4361248690",
+      "coordinatesWgs84": [
+        33.480227,
+        34.942151
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Park of Georgia Kyriakidou",
+      "osm": "way/1251246319",
+      "coordinatesWgs84": [
+        33.501285,
+        34.865463
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Akıncılar Sağlık Merkezi",
+      "osm": "way/759244399",
+      "coordinatesWgs84": [
+        33.465957,
+        35.015616
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1220,
+      "sha256": "c4310120d4cbb8ae5e52acdbc273038a11bcbcf3506825162570e8ab73e3766d"
+    },
+    "geometry.ts": {
+      "bytes": 59789,
+      "sha256": "c6de257071c790d6c38b1428a2f7b7de61e020a31cbefbacf76a06af950252e8"
+    },
+    "places.ts": {
+      "bytes": 9727,
+      "sha256": "4617d4cf8fb6e613ef1448e18a8acc108420e5bdc7eb11fa066925f4ab88681f"
+    },
+    "terrain.ts": {
+      "bytes": 53165,
+      "sha256": "ca87c077b713d9eaa011d050b6f301da33bdbefff9bd68d8863853cc7d7e905f"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "bfa58c287caa54724843f9adf49425014d51f629d8feb91e0c9ada7c0a0e2a7c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

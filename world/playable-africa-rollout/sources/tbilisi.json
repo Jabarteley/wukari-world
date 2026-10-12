@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tbilisi",
+  "countryIso2": "GE",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tbilisi",
+    "coordinatesWgs84": [
+      44.8014495,
+      41.6934591
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/georgia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tbilisi-airport",
+    "name": "Tbilisi International Airport",
+    "lon": 44.9547,
+    "lat": 41.669201,
+    "sourceUrl": "https://ourairports.com/airports/UGTB/"
+  },
+  "boxes": {
+    "play": [
+      41.51257821006602,
+      44.560166009960646,
+      41.87433998993398,
+      45.04273299003935
+    ],
+    "core": [
+      41.648238877516505,
+      44.741256220393886,
+      41.73867932248349,
+      44.86164277960611
+    ],
+    "outline": [
+      41.46257821006602,
+      44.51016600996065,
+      41.924339989933976,
+      45.092732990039345
+    ],
+    "wide": [
+      40.912578210066016,
+      43.960166009960645,
+      42.47433998993398,
+      45.64273299003935
+    ],
+    "water": [
+      41.51257821006602,
+      44.560166009960646,
+      41.87433998993398,
+      45.04273299003935
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/georgia-261011.osm.pbf",
+    "datasetSha256": "96a81945842026f33593615e5ccff2ea38bd187fb9371edc16db64db5819ab20",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6e43f58dd720036ff25a89b54380ff2e184ab88057f5cdec7bbbb9d29ddcc242",
+        "elements": 2410
+      },
+      {
+        "file": "extras.json",
+        "sha256": "107647ce40e8fa6ceb3441b4d27723e4d87abcffb0aa0f89e0afc351e1830e60",
+        "elements": 454
+      },
+      {
+        "file": "water.json",
+        "sha256": "fa44328d2852a2acec43cd51f7a7627487c183ac5cebb5a2b09c62c8f6fe6835",
+        "elements": 58
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "92259e80187e7713325c066c3af14b96122f688e31f14f43628b297f60d8ac77",
+        "elements": 7328
+      },
+      {
+        "file": "roads.json",
+        "sha256": "f5e4dc7305b884de497d3060bdd43e9c2665795202357b069a7a6ff7fdd9f3c1",
+        "elements": 2787
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "300 Aragveli",
+      "osm": "node/288584312",
+      "coordinatesWgs84": [
+        44.826233,
+        41.687995
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kiwi",
+      "osm": "node/4032003789",
+      "coordinatesWgs84": [
+        44.799929,
+        41.691831
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Free and Agricultural Universities of Georgia",
+      "osm": "way/161757318",
+      "coordinatesWgs84": [
+        44.768306,
+        41.805911
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jo Ann University Hospital",
+      "osm": "way/479934981",
+      "coordinatesWgs84": [
+        44.774681,
+        41.783768
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tbilisi Open Air Museum of Ethnography",
+      "osm": "relation/14141290",
+      "coordinatesWgs84": [
+        44.743692,
+        41.701824
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Merani Shopping Gallery",
+      "osm": "way/242179594",
+      "coordinatesWgs84": [
+        44.793079,
+        41.702224
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rustavi Sioni",
+      "osm": "way/401580108",
+      "coordinatesWgs84": [
+        44.981998,
+        41.563297
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zurab Zhvania Square",
+      "osm": "way/1167702410",
+      "coordinatesWgs84": [
+        44.767628,
+        41.731408
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Georgian Intelligence Service",
+      "osm": "relation/19575502",
+      "coordinatesWgs84": [
+        44.808599,
+        41.763195
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sokhumi State University",
+      "osm": "relation/18294000",
+      "coordinatesWgs84": [
+        44.706441,
+        41.721131
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shevardeni Stadium",
+      "osm": "way/194271283",
+      "coordinatesWgs84": [
+        44.860014,
+        41.674735
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monastery of Shiomghvime",
+      "osm": "relation/17883776",
+      "coordinatesWgs84": [
+        44.640411,
+        41.862442
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Betania Monastery of the Nativity of the Mother of God",
+      "osm": "way/1321501893",
+      "coordinatesWgs84": [
+        44.611405,
+        41.689949
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Man and Sun",
+      "osm": "way/551386185",
+      "coordinatesWgs84": [
+        44.952726,
+        41.691761
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of Saint Barbare",
+      "osm": "way/1136546674",
+      "coordinatesWgs84": [
+        44.714152,
+        41.844139
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Marine Church",
+      "osm": "way/1429264291",
+      "coordinatesWgs84": [
+        44.747434,
+        41.541234
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Poladi Stadium",
+      "osm": "relation/3941505",
+      "coordinatesWgs84": [
+        45.006788,
+        41.540978
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Georgian Technical University",
+      "osm": "relation/16507696",
+      "coordinatesWgs84": [
+        44.776251,
+        41.75731
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ivane Javakhishvili Tbilisi State University",
+      "osm": "relation/16510616",
+      "coordinatesWgs84": [
+        44.767905,
+        41.70479
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dinamo Arena named after Boris Paichadze",
+      "osm": "relation/17823425",
+      "coordinatesWgs84": [
+        44.789795,
+        41.723018
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mtatsminda Park",
+      "osm": "relation/13443464",
+      "coordinatesWgs84": [
+        44.781202,
+        41.693048
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tbilisi Zoo",
+      "osm": "way/104122415",
+      "coordinatesWgs84": [
+        44.776915,
+        41.713033
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chachava Clinic",
+      "osm": "way/38326853",
+      "coordinatesWgs84": [
+        44.784958,
+        41.708176
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Center for Tuberculosis and Lung Disease",
+      "osm": "way/1079090317",
+      "coordinatesWgs84": [
+        44.810821,
+        41.721559
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1210,
+      "sha256": "e58c07317ee7ee16560f8dd8b950f72afb38465a567415a06806f1a0d7f5d2b1"
+    },
+    "geometry.ts": {
+      "bytes": 121636,
+      "sha256": "1ca0eafac6944bcd322b66889f580fc90a5419568d8f501a108e11a0a16effb9"
+    },
+    "places.ts": {
+      "bytes": 10202,
+      "sha256": "321fb39d561dc08aaec2eaf7d1360d273faf0539522ec7c21a642f4faa0545b7"
+    },
+    "terrain.ts": {
+      "bytes": 245501,
+      "sha256": "227be769a3f9e04f2c8d76d132e30bd4b362af7c7cd1c5fde13b2660f438b8c1"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "3c88764fc27f3c8d032647b91eb9aa85f9969e8f99900a88e40d8a7d90f8e50b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

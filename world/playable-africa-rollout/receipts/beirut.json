@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "beirut",
+  "countryIso2": "LB",
+  "generationIdentity": {
+    "cityId": "beirut",
+    "stateId": "lb-beirut",
+    "stateName": "Beirut"
+  },
+  "inventorySha256": "869fb754e50477071e00d84e2667aa24501ed21c8f20075ce90dc46e8eec5120",
+  "inventoryPath": "world/playable-africa-rollout/sources/beirut.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "beirut-airport",
+    "name": "Beirut Rafic Hariri International Airport",
+    "lon": 35.487443,
+    "lat": 33.819833,
+    "sourceUrl": "https://ourairports.com/airports/OLBA/"
+  },
+  "bounds": [
+    33.71503941006602,
+    35.261521878683276,
+    34.07680118993398,
+    35.69533812131673
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/lebanon-261011.osm.pbf",
+      "datasetSha256": "04389a1c0f1ee8679c8b571af631501817745ae2d753d04e18783bcfa2fb6828",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "f0e672ae266a52abf0ba8b8a71298a6b6f80629f327fd7e4639e4f28b7800fb7",
+          "elements": 1465
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f77e8bc40176611995e78af88c235d4ba64ecdff5184dc00fc0a2733603c8e63",
+          "elements": 285
+        },
+        {
+          "file": "water.json",
+          "sha256": "368fe225fc43672c2cdc5904323966fe92a4db7886e510e9891f48d163a26853",
+          "elements": 768
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "996d72c5ade6a2e66287486b67b22afedad33ac2e6f1eb5fdd168bd49b3c1683",
+          "elements": 957
+        },
+        {
+          "file": "roads.json",
+          "sha256": "231ff22b791eebfbe6c0424625ba6eb97fd323e9698c4da0a1ee8e13eb67a80f",
+          "elements": 1367
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 20,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 1465,
+    "extras": 285,
+    "water": 768,
+    "landuse": 957,
+    "roads": 1367
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1227,
+      "sha256": "5df518532325f8112e1e341d68589ec717ef233a59e099e5160f1e8aad1517e2"
+    },
+    "geometry.ts": {
+      "bytes": 90776,
+      "sha256": "b33148a10733d65b4746fc75b18cee074c75b47776a3537794ad1cc59e32da3c"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "61cfedccdca6352fe29c77654efd1e427caa7ab73139517935576811bd6e7cc0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/beirut.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

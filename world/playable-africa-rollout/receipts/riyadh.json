@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "riyadh",
+  "countryIso2": "SA",
+  "generationIdentity": {
+    "cityId": "riyadh",
+    "stateId": "sa-riyadh",
+    "stateName": "Riyadh"
+  },
+  "inventorySha256": "708b96f6e07bb783be43ef63f2c009e0cedb2a1149eac1566ae23d316f8af128",
+  "inventoryPath": "world/playable-africa-rollout/sources/riyadh.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "riyadh-airport",
+    "name": "King Khalid International Airport",
+    "lon": 46.698799,
+    "lat": 24.9576,
+    "sourceUrl": "https://ourairports.com/airports/OERK/"
+  },
+  "bounds": [
+    24.45803511006602,
+    46.51806438549398,
+    24.966644044496697,
+    46.913956414506025
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+      "datasetSha256": "146b0eee40cd3e5d36f497dc834eff9cc62cead909308eb14c6f9ba7db6aa400",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5476847e1cb3c0d798f97602e124d8aa7048719adb9d8c85ca92f5ec15fb294b",
+          "elements": 1535
+        },
+        {
+          "file": "extras.json",
+          "sha256": "942a232040d3afde022439b927ff44ce69d56ed6661234e266d0816fafbc099c",
+          "elements": 452
+        },
+        {
+          "file": "water.json",
+          "sha256": "16db367da1b29b6a7733ed649dbc8bb4967a34a7b627e02c62bb066a324cda3d",
+          "elements": 17
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "3972c11b1e3ae3f3490e2ad7a9cb4e9adc0a163cac364df12e78bcff94d008ef",
+          "elements": 3104
+        },
+        {
+          "file": "roads.json",
+          "sha256": "7b82b13f6d59e75df25df732e7edbd14282bcf3fd1a585bd043a82279c0096e2",
+          "elements": 2572
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 20,
+    "waterPolygons": 0,
+    "reachWaterPolygons": 0
+  },
+  "observed": {
+    "places": 1535,
+    "extras": 452,
+    "water": 17,
+    "landuse": 3104,
+    "roads": 2572
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1223,
+      "sha256": "0a8d203850d9875a3c612ff52628f43bc86c4ce1034dd2d7bb57527e147c4f05"
+    },
+    "geometry.ts": {
+      "bytes": 174707,
+      "sha256": "46da00dbf8c544facbc9b8c860a6bca15fb9015c7aa826872a408d30aea4d63d"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "98b03c5102f5cd85cff6b74801a86440421d4283e3202f2d659da3d2b7cf65ca"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/riyadh.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

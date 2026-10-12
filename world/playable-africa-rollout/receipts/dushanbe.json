@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dushanbe",
+  "countryIso2": "TJ",
+  "generationIdentity": {
+    "cityId": "dushanbe",
+    "stateId": "tj-dushanbe",
+    "stateName": "Dushanbe"
+  },
+  "inventorySha256": "f1f23e9c055df5cbb6a5e2193a260c973f3539343be2f58e3576d0f0b39353c9",
+  "inventoryPath": "world/playable-africa-rollout/sources/dushanbe.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "dushanbe-airport",
+    "name": "Dushanbe International Airport",
+    "lon": 68.822977,
+    "lat": 38.543746,
+    "sourceUrl": "https://ourairports.com/airports/UTDD/"
+  },
+  "bounds": [
+    38.39582361006602,
+    68.55503820132188,
+    38.75758538993398,
+    69.01582779867812
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/tajikistan-261011.osm.pbf",
+      "datasetSha256": "6f321470e0e97e816447e6cac064c2c0f9e529a08d12a1d9c17a048b1638d73a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "83267c63e3c6d700134388e438b2c41084bbb0f3d94edc30a6073ebf0cce29f5",
+          "elements": 723
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9cab48fd4e1c0cc9dd07f62cabebed89c24463e18bd525266cdbf43136c294a9",
+          "elements": 155
+        },
+        {
+          "file": "water.json",
+          "sha256": "fecbee94a10e3d7bbe776e9fc581d614df1dbda2d399176b7ee00f0ca1ff5f56",
+          "elements": 37
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "25adaacaf60b8619b5eb9802bf850c3500f6e11d2474a1fe9a703df53fcda75d",
+          "elements": 521
+        },
+        {
+          "file": "roads.json",
+          "sha256": "6d4ff7d6072f0763bc115ca51084770c47d0be905fc5a6f7461dd35c311c5de9",
+          "elements": 497
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 267,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 26,
+    "waterPolygons": 84,
+    "reachWaterPolygons": 10
+  },
+  "observed": {
+    "places": 723,
+    "extras": 155,
+    "water": 37,
+    "landuse": 521,
+    "roads": 497
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "af11de8c1fe8250afd2ec8737214ac8d3b22d4f3cbd3fdc648c11731c50ba285"
+    },
+    "geometry.ts": {
+      "bytes": 98313,
+      "sha256": "3f29dc9e42705e1c66f56414c00e6a22504673312667bbfa071a0cdc72c0f296"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "4fe500912ab26033fea2cf6042451d9f018a8f9c47603c83ed40d3ce41a73317"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/dushanbe.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

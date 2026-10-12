@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ulaanbaatar",
+  "countryIso2": "MN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Ulaanbaatar",
+    "coordinatesWgs84": [
+      106.9177016,
+      47.9184676
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/mongolia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "ulaanbaatar-airport",
+    "name": "Ulaanbaatar Chinggis Khaan International Airport",
+    "lon": 106.819833,
+    "lat": 47.646916,
+    "sourceUrl": "https://ourairports.com/airports/ZMCK/"
+  },
+  "boxes": {
+    "play": [
+      47.6378719555033,
+      106.64868213295743,
+      48.09934848993398,
+      107.18672106704257
+    ],
+    "core": [
+      47.873247377516506,
+      106.85062355145108,
+      47.96368782248349,
+      106.98477964854892
+    ],
+    "outline": [
+      47.5878719555033,
+      106.59868213295744,
+      48.14934848993398,
+      107.23672106704257
+    ],
+    "wide": [
+      47.0378719555033,
+      106.04868213295744,
+      48.69934848993398,
+      107.78672106704256
+    ],
+    "water": [
+      47.6378719555033,
+      106.64868213295743,
+      48.09934848993398,
+      107.18672106704257
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/mongolia-261011.osm.pbf",
+    "datasetSha256": "0f09f78c7eb226a5c69cd55907edbbc8d4cad44f13e2728a9b23dc9828a7e3c3",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "dd57a38028382a78a21e849e41969de7af7193106957d735c2dd28caf7f9e8ce",
+        "elements": 1158
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8d3e546cf28cf9ca80fa028ee0aae4d62d2d72b1d1a73f6ddfd88a9c17377874",
+        "elements": 282
+      },
+      {
+        "file": "water.json",
+        "sha256": "be47663212338ccef2511cd82b1ae6df0de67fc34d53cbab5d5a3932cd3289f1",
+        "elements": 48
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "490d212a45c476ddcbc442ffbcedfc475a17dd25797ee72381b01a274fd955e1",
+        "elements": 374
+      },
+      {
+        "file": "roads.json",
+        "sha256": "3212e2eaf56ee75faaeadd99a4e6c49c00c55938bf14e2c91e84edbfc6e85d38",
+        "elements": 903
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Ulan Bator",
+      "osm": "node/566997277",
+      "coordinatesWgs84": [
+        106.883858,
+        47.908199
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Castle",
+      "osm": "way/236503062",
+      "coordinatesWgs84": [
+        106.920841,
+        47.909111
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mongolian International University",
+      "osm": "way/241407940",
+      "coordinatesWgs84": [
+        106.974168,
+        47.9144
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Хавдар судлалын үндэсний төв",
+      "osm": "way/1021984771",
+      "coordinatesWgs84": [
+        106.942019,
+        47.913894
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Үндэсний Цэцэрлэгт Хүрээлэн ᠦᠨᠳᠦᠰᠦᠨ ᠦ ᠴᠡᠴᠡᠷᠯᠢᠭ᠍ᠲᠤ ᠬᠦᠷᠢᠶᠡᠯᠡᠩ",
+      "osm": "way/669481264",
+      "coordinatesWgs84": [
+        106.978741,
+        47.897513
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Хүннү молл",
+      "osm": "way/894732836",
+      "coordinatesWgs84": [
+        106.851199,
+        47.878621
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tolgoit Mosque",
+      "osm": "way/894883931",
+      "coordinatesWgs84": [
+        106.791102,
+        47.926192
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sukhbaatar Square",
+      "osm": "relation/15638347",
+      "coordinatesWgs84": [
+        106.917627,
+        47.918809
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministry of Health",
+      "osm": "node/3846205757",
+      "coordinatesWgs84": [
+        106.920848,
+        47.915974
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mongolian State University of Agriculture",
+      "osm": "way/977856902",
+      "coordinatesWgs84": [
+        106.909493,
+        47.88519
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tsetsee Gun",
+      "osm": "node/2355050258",
+      "coordinatesWgs84": [
+        107.002694,
+        47.808379
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Manjusri Monastery",
+      "osm": "way/271049504",
+      "coordinatesWgs84": [
+        106.99311,
+        47.763491
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Natural History Museum",
+      "osm": "node/2293321279",
+      "coordinatesWgs84": [
+        106.943076,
+        47.883464
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Caffe Bene",
+      "osm": "node/9832193961",
+      "coordinatesWgs84": [
+        106.895999,
+        47.898607
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Holy Trinity Orthodox Church",
+      "osm": "node/1367931400",
+      "coordinatesWgs84": [
+        106.959421,
+        47.916452
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Natural History Museum of Mongolia",
+      "osm": "way/129230039",
+      "coordinatesWgs84": [
+        106.905827,
+        47.923435
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MFF Football Centre",
+      "osm": "way/961119183",
+      "coordinatesWgs84": [
+        106.91623,
+        47.900136
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Coffee Felows",
+      "osm": "node/2321962180",
+      "coordinatesWgs84": [
+        106.906489,
+        47.913835
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dashchoilin Monastery",
+      "osm": "node/2317267389",
+      "coordinatesWgs84": [
+        106.920602,
+        47.927533
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National University of Mongolia",
+      "osm": "relation/21094827",
+      "coordinatesWgs84": [
+        106.921002,
+        47.925476
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Central Stadium",
+      "osm": "way/108195289",
+      "coordinatesWgs84": [
+        106.916296,
+        47.902166
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ach Medical University",
+      "osm": "node/3083953775",
+      "coordinatesWgs84": [
+        106.809643,
+        47.909829
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Intermed hospital",
+      "osm": "way/972441327",
+      "coordinatesWgs84": [
+        106.905625,
+        47.898248
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ulaanbaatar Park",
+      "osm": "way/1495767145",
+      "coordinatesWgs84": [
+        106.916489,
+        47.91073
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1259,
+      "sha256": "7b4341451988ca2682df992c39ad5ee4c678c02e0d74f62e34c90df027a1f310"
+    },
+    "geometry.ts": {
+      "bytes": 73069,
+      "sha256": "8c1889f57441370eaf2613554669843b6a272b4627534cc2bdcc180214ebae90"
+    },
+    "places.ts": {
+      "bytes": 10255,
+      "sha256": "8fff9b59c235b1b7cac6ce6dfc030a4d211fadc6432d989cb846689721f9a2c0"
+    },
+    "terrain.ts": {
+      "bytes": 35388,
+      "sha256": "515cf79a06eb169dcae4bf385045372897e58d4c8e2e6b22391e63d352fb96e9"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "30eb415b95581bc17cc595e007b79f113707b45ed582d9a3207b8009215cef93"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

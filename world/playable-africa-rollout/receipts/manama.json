@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "manama",
+  "countryIso2": "BH",
+  "generationIdentity": {
+    "cityId": "manama",
+    "stateId": "bh-manama",
+    "stateName": "Manama"
+  },
+  "inventorySha256": "b66f8d86d808e7344cd777ad13be07c9ee497019a2db373e16be0ab1ec1f29a5",
+  "inventoryPath": "world/playable-africa-rollout/sources/manama.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "manama-airport",
+    "name": "Bahrain International Airport",
+    "lon": 50.63764,
+    "lat": 26.267295,
+    "sourceUrl": "https://ourairports.com/airports/OBBI/"
+  },
+  "bounds": [
+    26.042623210066022,
+    50.381655565634965,
+    26.404384989933977,
+    50.78283163436503
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+      "datasetSha256": "146b0eee40cd3e5d36f497dc834eff9cc62cead909308eb14c6f9ba7db6aa400",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5e26d644e9fd26f973b310067ef5e0bad97a443e67c7cd4bbfe4676fd9d26c25",
+          "elements": 1570
+        },
+        {
+          "file": "extras.json",
+          "sha256": "69e82b6d83983e55f315f6a0a9764f3ed1056188f3a8cf0eb47a3a2b6219a9f5",
+          "elements": 742
+        },
+        {
+          "file": "water.json",
+          "sha256": "13a60ff5cfc8e084aef3b869a7e5de168f779ff3458af8b157d8fc5d2e16bce8",
+          "elements": 781
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "f9bca62c73640cc20c1d5ec876535e81d5d145c98bdf01ab8b016d871de8afeb",
+          "elements": 1823
+        },
+        {
+          "file": "roads.json",
+          "sha256": "824c199c52f7bb9182620a238137b3c51d0f1d1482bb1605d76e58f48a2abab8",
+          "elements": 1361
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 224,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 18,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 21
+  },
+  "observed": {
+    "places": 1570,
+    "extras": 742,
+    "water": 781,
+    "landuse": 1823,
+    "roads": 1361
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "b224067d5c9b0f4e6a29e2272b59862c98158bc2f5f743d81d279bed4b32d7f2"
+    },
+    "geometry.ts": {
+      "bytes": 60224,
+      "sha256": "a626a0a69d1858abc1d1bd0986afdad4be88d99023136d52376c4e31a9905158"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "0cc1d2b498eaffc45caae669a14875337ef69d768ce6b22f9e6209d0dfe7f736"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/manama.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

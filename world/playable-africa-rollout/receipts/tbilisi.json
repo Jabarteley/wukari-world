@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tbilisi",
+  "countryIso2": "GE",
+  "generationIdentity": {
+    "cityId": "tbilisi",
+    "stateId": "ge-tbilisi",
+    "stateName": "Tbilisi"
+  },
+  "inventorySha256": "3e45009163dac3406e6194ed3ede53b0bf0a7a8609f3537b287cb98b1ab15b8e",
+  "inventoryPath": "world/playable-africa-rollout/sources/tbilisi.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "tbilisi-airport",
+    "name": "Tbilisi International Airport",
+    "lon": 44.9547,
+    "lat": 41.669201,
+    "sourceUrl": "https://ourairports.com/airports/UGTB/"
+  },
+  "bounds": [
+    41.51257821006602,
+    44.560166009960646,
+    41.87433998993398,
+    45.04273299003935
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/georgia-261011.osm.pbf",
+      "datasetSha256": "96a81945842026f33593615e5ccff2ea38bd187fb9371edc16db64db5819ab20",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6e43f58dd720036ff25a89b54380ff2e184ab88057f5cdec7bbbb9d29ddcc242",
+          "elements": 2410
+        },
+        {
+          "file": "extras.json",
+          "sha256": "107647ce40e8fa6ceb3441b4d27723e4d87abcffb0aa0f89e0afc351e1830e60",
+          "elements": 454
+        },
+        {
+          "file": "water.json",
+          "sha256": "fa44328d2852a2acec43cd51f7a7627487c183ac5cebb5a2b09c62c8f6fe6835",
+          "elements": 58
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "92259e80187e7713325c066c3af14b96122f688e31f14f43628b297f60d8ac77",
+          "elements": 7328
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f5e4dc7305b884de497d3060bdd43e9c2665795202357b069a7a6ff7fdd9f3c1",
+          "elements": 2787
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 673,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 45,
+    "waterPolygons": 39,
+    "reachWaterPolygons": 10
+  },
+  "observed": {
+    "places": 2410,
+    "extras": 454,
+    "water": 58,
+    "landuse": 7328,
+    "roads": 2787
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1210,
+      "sha256": "e58c07317ee7ee16560f8dd8b950f72afb38465a567415a06806f1a0d7f5d2b1"
+    },
+    "geometry.ts": {
+      "bytes": 121636,
+      "sha256": "1ca0eafac6944bcd322b66889f580fc90a5419568d8f501a108e11a0a16effb9"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "3c88764fc27f3c8d032647b91eb9aa85f9969e8f99900a88e40d8a7d90f8e50b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/tbilisi.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

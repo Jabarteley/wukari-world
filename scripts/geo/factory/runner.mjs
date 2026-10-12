@@ -112,7 +112,9 @@ if (cache.selectionHashes && JSON.stringify(cache.selectionHashes) !== JSON.stri
 cache.selectionHashes = selectionHashes;
 writeFileSync(cachePath, JSON.stringify(cache, null, 2));
 for (const c of cityPlan) {
-    const chosen = selected.find(r => r.id === c.id), row = { id: c.id, status: 'HOLD', reasons: [...c.holds], machineStages: {} };
+    const chosen = selected.find(r => r.id === c.id), boundsProven = chosen?.boundsProof?.status === 'PASS';
+    const holds = boundsProven ? c.holds.filter(hold => hold !== 'auto-bounds/re-extraction unverified; pinned boxes preserved') : c.holds;
+    const row = { id: c.id, status: 'HOLD', reasons: [...holds], machineStages: { boundsProof: boundsProven } };
     rows.push(row);
     if (chosen?.status !== 'PRIVATE_SCAFFOLD_ONLY') {
         row.reasons.push(...(chosen?.errors ?? ['selection missing']));

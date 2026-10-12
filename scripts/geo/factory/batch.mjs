@@ -6,12 +6,128 @@ import { resolve, join, dirname } from 'node:path';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
+import assert from 'node:assert/strict';
 import { factsForTarget, geometryPolicy } from './inputs.mjs';
+import { proposeBounds } from './bootstrap/bounds-policy.mjs';
 const args = process.argv.slice(2), get = flag => args[args.indexOf(flag) + 1];
 if (!args.includes('--table') || !args.includes('--out'))
     throw Error('Usage: batch.mjs --table TARGETS_JSON --out NEW_PRIVATE_FOLDER');
 const table = JSON.parse(readFileSync(resolve(get('--table')), 'utf8')), out = resolve(get('--out')), home = dirname(fileURLToPath(import.meta.url));
 const sandbox = args.includes('--sandbox-root') ? resolve(get('--sandbox-root')) : home;
+const layers = ['places', 'extras', 'water', 'landuse', 'roads'];
+const PINNED_GEOMETRY_SOURCE_SHA = '7a57e756a10b35a0eec9ec5928f083580fb9e7a9';
+const PINNED_GEOMETRY_TOOLS_SHA256 = '2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641';
+const PINNED_GEOMETRY_FUNCTIONS = [
+    'export const OUTLINE_MARGIN = 0.05;',
+    'export const reachFor = (box: Box): number => Math.min(0.6, Math.max(0.4, 1.5 * Math.max(box[2] - box[0], box[3] - box[1]) + 0.2));',
+];
+const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+const equal = (actual, expected) => {
+    try { assert.deepStrictEqual(actual, expected); return true; }
+    catch { return false; }
+};
+async function boundsProof(target, facts, root) {
+    const failures = [], checks = {};
+    const check = async (name, action) => {
+        try {
+            const passed = await action(), details = checks[name] ?? {};
+            checks[name] = { ...details, status: passed ? 'PASS' : 'FAIL' };
+        }
+        catch (error) { checks[name] = { ...checks[name], status: 'FAIL', detail: error.message }; }
+        if (checks[name].status !== 'PASS') failures.push(name);
+    };
+    const provenance = target.metadataSources ?? {}, recorded = provenance.bounds ?? {};
+    let proposal;
+    await check('boundsPolicyPin', () => {
+        const actual = hash(readFileSync(join(home, 'bootstrap/bounds-policy.mjs')));
+        checks.boundsPolicyPin = { sha256: actual, expectedSha256: provenance.boundsPolicySha256 };
+        return actual === provenance.boundsPolicySha256;
+    });
+    await check('geometrySourcePin', () => {
+        checks.geometrySourcePin = { sourceGitSHA: recorded.geometrySourceGitSHA, geometryToolsSha256: recorded.geometryToolsSha256 };
+        return recorded.geometrySourceGitSHA === PINNED_GEOMETRY_SOURCE_SHA
+            && recorded.geometryToolsSha256 === PINNED_GEOMETRY_TOOLS_SHA256;
+    });
+    await check('factSources', () => {
+        const centre = provenance.centre?.sourceRecord, airport = provenance.airport?.row;
+        checks.factSources = {
+            centreOsmRef: provenance.centre?.osmRef,
+            airportIdent: airport?.ident,
+            datasetSha256: provenance.centre?.pbfSha256,
+        };
+        return Boolean(centre && airport)
+            && provenance.centre.pbfSha256 === target.sourceJob?.datasetSha256
+            && provenance.pbf?.sha256 === target.sourceJob?.datasetSha256
+            && facts.centre.lon === centre.lon && facts.centre.lat === centre.lat
+            && facts.airport.lon === Number(airport.longitude_deg)
+            && facts.airport.lat === Number(airport.latitude_deg)
+            && facts.country.idISOlower.toUpperCase() === airport.iso_country;
+    });
+    await check('appGeometryFunctions', () => {
+        const source = readFileSync(join(root, 'scripts/geo/destination-detail/geometry-tools.ts'), 'utf8');
+        const actual = [
+            source.match(/export const OUTLINE_MARGIN\s*=\s*[^;]+;/)?.[0],
+            source.match(/export const reachFor\s*=\s*\(box: Box\): number => [^;]+;/)?.[0],
+        ];
+        checks.appGeometryFunctions = { sha256: hash(Buffer.from(actual.filter(Boolean).join('\n'))) };
+        return equal(actual, PINNED_GEOMETRY_FUNCTIONS);
+    });
+    await check('derivedBounds', async () => {
+        const geometry = await import(pathToFileURL(join(root, 'scripts/geo/destination-detail/geometry-tools.ts')).href);
+        proposal = proposeBounds(facts, {}, geometry);
+        checks.derivedBounds = { ...checks.derivedBounds, policy: proposal.policy, boxes: proposal.boxes, airportMarginMetres: proposal.airportMarginMetres };
+        return equal(recorded.policy, proposal.policy)
+            && equal(recorded.boxes, proposal.boxes)
+            && equal(facts.bounds, [proposal.boxes.play[1], proposal.boxes.play[0], proposal.boxes.play[3], proposal.boxes.play[2]]);
+    });
+    const extracts = {};
+    if (!proposal) {
+        await check('extracts', () => { throw Error('derived bounds are unavailable'); });
+    } else {
+        let placesSource;
+        try { placesSource = JSON.parse(readFileSync(join(target.extractDirectory, 'places.json'), 'utf8')).source; }
+        catch (error) { checks.extracts = { status: 'FAIL', detail: error.message }; failures.push('extracts'); }
+        if (placesSource) {
+            const coast = Array.isArray(provenance.coastlineRefsWithinWide) && provenance.coastlineRefsWithinWide.length > 0;
+            const expectedRecipe = coast
+                ? { kind: 'coast', wideWater: true, sea: { kind: 'coast', bandMetres: 40000 } }
+                : { kind: 'inland', wideWater: false };
+            const expectedBoxes = { ...proposal.boxes, water: coast ? proposal.boxes.wide : proposal.boxes.play };
+            for (const layer of layers) {
+                await check(`extract:${layer}`, () => {
+                    const path = join(target.extractDirectory, layer + '.json'), bytes = readFileSync(path), data = JSON.parse(bytes), source = data.source;
+                    const sha256 = hash(bytes), selectionBounds = layer === 'places' || layer === 'extras' ? proposal.boxes.play
+                        : layer === 'water' ? expectedBoxes.water : layer === 'landuse' ? proposal.boxes.outline
+                            : { major: proposal.boxes.play, namedSecondary: proposal.boxes.core };
+                    const result = {
+                        sha256,
+                        tableSha256: target.extractSha256?.[layer],
+                        producerSha256: target.sourceJob?.extractSha256?.[layer],
+                        datasetSha256: source.datasetSha256,
+                        pbfHeaderTimestamp: source.pbfHeaderTimestamp,
+                        adapterSha256: source.adapterSha256,
+                        sourceBoxesMatch: equal(source.boxes, expectedBoxes),
+                        selectionBoundsMatch: equal(source.selectionBounds, selectionBounds),
+                        waterRecipeMatch: equal(source.waterRecipe, expectedRecipe),
+                    };
+                    extracts[layer] = result;
+                    return sha256 === target.extractSha256?.[layer]
+                        && sha256 === target.sourceJob?.extractSha256?.[layer]
+                        && source.cityId === target.id
+                        && source.datasetSha256 === target.sourceJob?.datasetSha256
+                        && source.datasetSha256 === provenance.pbf?.sha256
+                        && source.datasetUrl === provenance.pbf?.url
+                        && source.pbfHeaderTimestamp === provenance.pbf?.headerTimestamp
+                        && source.adapterSha256 === target.sourceJob?.adapterSha256
+                        && source.adapterSha256 === provenance.adapterSha256
+                        && result.sourceBoxesMatch && result.selectionBoundsMatch && result.waterRecipeMatch;
+                });
+            }
+        }
+    }
+    checks.extracts = { ...(checks.extracts ?? {}), layers: extracts };
+    return { status: failures.length ? 'HOLD' : 'PASS', checks, failures };
+}
 insideSandbox(out, sandbox);
 if (existsSync(out))
     throw Error('Use a new folder beneath factory sandbox');
@@ -23,7 +139,10 @@ for (const target of table.targets) {
     try {
         const root = resolve(table.root), load = file => import(pathToFileURL(join(root, file)).href);
         const prior = await factsForTarget(table, target), old = geometryPolicy(table, target);
-                const raw = JSON.parse(readFileSync(join(target.extractDirectory, 'places.json'))), boxes = raw.source.boxes;
+        row.boundsProof = await boundsProof(target, prior, root);
+        row.bounds = row.boundsProof.status === 'PASS' ? 'derived bounds match pinned same-source extracts' : 'bounds proof failed';
+        if (row.boundsProof.status !== 'PASS') row.errors.push(`bounds proof failed: ${row.boundsProof.failures.join(', ')}`);
+        const raw = JSON.parse(readFileSync(join(target.extractDirectory, 'places.json'))), boxes = raw.source.boxes;
         const { loadPbfExtract } = await load('scripts/geo/destination-detail/pbf-extract.ts'), { inBox, inRing, areaRings, polygonsOf, ringArea } = await load('scripts/geo/destination-detail/geometry-tools.ts'), { waterLabelPoint } = await load('scripts/geo/destination-detail/water-label.ts');
         const ex = loadPbfExtract(target.extractDirectory, target.id, boxes), { buildDestinationContent } = await load('src/game/cities/africa/contentBuilder.ts'), { destinationVenueIds } = await load('src/game/cities/africa/types.ts');
         for (const [layer, answer] of Object.entries(ex.answers))
@@ -130,7 +249,6 @@ for (const target of table.targets) {
         row.venues = choices.length;
         row.labels = names.length;
         row.queryPolicy = policy;
-        row.bounds = 'pinned extract; auto-bounds/re-extraction pending';
         if (!row.errors.length) {
             const child = spawnSync(process.execPath, ['--experimental-strip-types', join(home, 'scaffold.mjs'), '--manifest', manifestPath, '--out', join(out, `${target.id}-stage`), '--sandbox-root', sandbox], { encoding: 'utf8' });
             let report;

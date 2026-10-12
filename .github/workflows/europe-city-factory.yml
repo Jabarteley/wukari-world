@@ -5,6 +5,9 @@ on:
     branches: ['codex/world-europe-20261011']
     paths:
       - 'scripts/geo/factory/europe-factory-targets.json'
+      - 'scripts/geo/factory/batch.mjs'
+      - 'scripts/geo/factory/runner.mjs'
+      - 'scripts/geo/factory/bootstrap/bounds-policy.mjs'
       - '.github/workflows/europe-city-factory.yml'
 
 permissions:

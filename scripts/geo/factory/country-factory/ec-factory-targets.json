@@ -1,0 +1,295 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "EC",
+    "datasetSha256": "e0c343e3f095444e33c83070783fa2d258ab3a3710b8068831ae2d5a82c75708",
+    "receiptSha256": "de77cbb00877c6cec20d9a5a6d462741724b9620b21640d94fcd80a511948c59",
+    "receiptBytes": 109198,
+    "geometrySha256": "113f84bcb79abbd6109800358334dd5dab21cfbced25a7574edf7fbfee52ede1",
+    "geometryBytes": 571986,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 108089,
+    "boundaryKey": "ec",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-ec-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "quito",
+      "name": "Quito",
+      "country": "ec",
+      "facts": {
+        "id": "quito",
+        "name": "Quito",
+        "country": {
+          "idISOlower": "ec",
+          "name": "Ecuador"
+        },
+        "state": {
+          "idunique": "ec-quito",
+          "name": "Quito"
+        },
+        "timezone": "America/Guayaquil",
+        "centre": {
+          "lon": -78.5123274,
+          "lat": -0.2201641
+        },
+        "airport": {
+          "id": "quito-airport",
+          "name": "Mariscal Sucre International Airport",
+          "lon": -78.354306,
+          "lat": -0.125399,
+          "sourceUrl": "https://ourairports.com/airports/SEQM/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/58950371",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -78.69199403625385,
+          -0.40104498993397847,
+          -78.33266076374616,
+          -0.039283210066021534
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/58950371",
+          "sourceUrl": "https://www.openstreetmap.org/node/58950371",
+          "sourceRecord": {
+            "ref": "node/58950371",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "contact:email": "serviciosciudadanos@quito.gob.ec",
+              "contact:instagram": "https://www.instagram.com/municipioquito",
+              "contact:phone": "+593 2 3952300",
+              "contact:website": "https://www.quito.gob.ec",
+              "ele": "2850",
+              "is_capital": "country",
+              "name": "Quito",
+              "name:am": "ኪቶ",
+              "name:ar": "كيتو",
+              "name:ay": "Kitu",
+              "name:az": "Kito",
+              "name:ba": "Кито",
+              "name:be": "Кіта",
+              "name:be-tarask": "Кіта",
+              "name:bg": "Кито",
+              "name:bn": "কিতো",
+              "name:bo": "ཁེ་ཐོ།",
+              "name:ca": "Quito",
+              "name:ce": "Кито",
+              "name:crh": "Kito",
+              "name:cv": "Кито",
+              "name:de": "Quito",
+              "name:el": "Κίτο",
+              "name:en": "Quito",
+              "name:eo": "Kito",
+              "name:es": "Quito",
+              "name:ext": "Quitu",
+              "name:fa": "کیتو",
+              "name:fr": "Quito",
+              "name:fy": "Kito",
+              "name:gn": "Kíto",
+              "name:he": "קיטו",
+              "name:hi": "क्वीटो",
+              "name:hr": "Quito",
+              "name:ht": "Kito",
+              "name:hu": "Quito",
+              "name:hy": "Կիտո",
+              "name:is": "Quito",
+              "name:ja": "キト",
+              "name:ka": "კიტო",
+              "name:kk": "Кито",
+              "name:ko": "키토",
+              "name:ky": "Кито",
+              "name:la": "Quitum",
+              "name:lt": "Kitas",
+              "name:lv": "Kito",
+              "name:mk": "Кито",
+              "name:ml": "ക്വിറ്റോ",
+              "name:mr": "क्वितो",
+              "name:my": "ကီတိုမြို့",
+              "name:nl": "Quito",
+              "name:nov": "Kito",
+              "name:oc": "Quito",
+              "name:os": "Кито",
+              "name:pa": "ਕੀਤੋ",
+              "name:pl": "Quito",
+              "name:pnb": "کوئتو",
+              "name:ps": "کیتو",
+              "name:qu": "Kitu",
+              "name:ru": "Кито",
+              "name:sd": "ڪيوٽو",
+              "name:si": "ක්විටෝ",
+              "name:sl": "Quito",
+              "name:sq": "Kuito",
+              "name:sr": "Кито",
+              "name:sv": "Quito",
+              "name:ta": "கித்தோ",
+              "name:tg": "Кито",
+              "name:th": "กีโต",
+              "name:tt": "Кито",
+              "name:ug": "كىتو",
+              "name:uk": "Кіто",
+              "name:ur": "کیٹو",
+              "name:uz": "Kito",
+              "name:wal": "Kiito",
+              "name:yi": "קיטא",
+              "name:zh": "基多",
+              "official_name": "San Francisco de Quito",
+              "place": "city",
+              "population": "2671191",
+              "source": "GNS",
+              "source:name:oc": "Lo Congrès",
+              "source:population": "INEC 2010",
+              "wikidata": "Q2900",
+              "wikimedia_commons": "File:FACHADA ASAMBLEA NACIONAL. QUITO, 20 DE FEBRERO 2020. 01.jpg",
+              "wikipedia": "es:Quito"
+            },
+            "lon": -78.5123274,
+            "lat": -0.2201641
+          },
+          "pbfSha256": "e0c343e3f095444e33c83070783fa2d258ab3a3710b8068831ae2d5a82c75708"
+        },
+        "airport": {
+          "rowNumber": 59435,
+          "row": {
+            "id": "308273",
+            "ident": "SEQM",
+            "type": "large_airport",
+            "name": "Mariscal Sucre International Airport",
+            "latitude_deg": "-0.125399",
+            "longitude_deg": "-78.354306",
+            "elevation_ft": "7841",
+            "continent": "SA",
+            "iso_country": "EC",
+            "iso_region": "EC-P",
+            "municipality": "Quito",
+            "scheduled_service": "yes",
+            "icao_code": "SEQM",
+            "iata_code": "UIO",
+            "gps_code": "SEQM",
+            "local_code": "UIO",
+            "home_link": "https://www.aeropuertoquito.aero/?lang=en",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Mariscal_Sucre_International_Airport",
+            "keywords": "Nuevo Aeropuerto Internacional Mariscal Sucre"
+          },
+          "rowSha256": "1e579ea9a70643242e40fc64abba8fc16e127e2df32ee26b2d51d426aab6f86c",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "SEQM",
+            "sourceUrl": "https://www.ais.aviacioncivil.gob.ec/ifis3/aip/AD%202%20SEQM",
+            "matchedIdent": "SEQM",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/SEQM/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "EC",
+              "-0210-07950",
+              "America/Guayaquil",
+              "Ecuador (mainland)"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Guayaquil",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "EC",
+              "-0210-07950",
+              "America/Guayaquil",
+              "Ecuador (mainland)"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/south-america/ecuador-261011.osm.pbf",
+          "bytes": 125609993,
+          "sha256": "e0c343e3f095444e33c83070783fa2d258ab3a3710b8068831ae2d5a82c75708",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -0.40104498993397847,
+              -78.69199403625385,
+              -0.039283210066021534,
+              -78.33266076374616
+            ],
+            "core": [
+              -0.26538432248349464,
+              -78.55724344055972,
+              -0.1749438775165054,
+              -78.46741135944029
+            ],
+            "outline": [
+              -0.45104498993397846,
+              -78.74199403625384,
+              0.010716789933978468,
+              -78.28266076374616
+            ],
+            "wide": [
+              -1.0010449899339784,
+              -79.29199403625384,
+              0.5607167899339784,
+              -77.73266076374617
+            ]
+          },
+          "airportMarginMetres": 2409.541928814229,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "quito",
+      "extractSha256": {
+        "places": "abed21a9a5124bb48fd861c5a97624c63e625db48871a66fa378181d5891dfcd",
+        "extras": "c9deb56a99af4bf1438746043665060679621ad42e9e34044f804605f9626517",
+        "water": "7b57fc5f3507e972572e9124bad290f986a1cda5bdd44a41ae7c443d36b0259e",
+        "landuse": "05d3a2f37f4d1c0f605430eeb5d84f00e31e90011344a83d988c414e37c6fdf6",
+        "roads": "ef460f707c8472cb269003a41195a304570dd31a89a419bdadf7ce94dfaeaafd"
+      },
+      "sourceJob": {
+        "city": "quito",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-ec-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "e0c343e3f095444e33c83070783fa2d258ab3a3710b8068831ae2d5a82c75708",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "abed21a9a5124bb48fd861c5a97624c63e625db48871a66fa378181d5891dfcd",
+          "extras": "c9deb56a99af4bf1438746043665060679621ad42e9e34044f804605f9626517",
+          "water": "7b57fc5f3507e972572e9124bad290f986a1cda5bdd44a41ae7c443d36b0259e",
+          "landuse": "05d3a2f37f4d1c0f605430eeb5d84f00e31e90011344a83d988c414e37c6fdf6",
+          "roads": "ef460f707c8472cb269003a41195a304570dd31a89a419bdadf7ce94dfaeaafd"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "PY",
+    "datasetSha256": "6222f1a832471179ba3571383051d87db2e05898623be4e3f17cb567c345a02a",
+    "receiptSha256": "8cd6344b75ebe591ec0b4c0709d58e7b798262eb4ba13f335e9af52f638f4d89",
+    "receiptBytes": 225213,
+    "geometrySha256": "1a48f378a6934e430c235bd99ba21bc31e1264baae5d9a686167ae84f4074a6f",
+    "geometryBytes": 917831,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 287077,
+    "boundaryKey": "py",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-py-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "asuncion",
+      "name": "Asuncion",
+      "country": "py",
+      "facts": {
+        "id": "asuncion",
+        "name": "Asuncion",
+        "country": {
+          "idISOlower": "py",
+          "name": "Paraguay"
+        },
+        "state": {
+          "idunique": "py-asuncion",
+          "name": "Asuncion"
+        },
+        "timezone": "America/Asuncion",
+        "centre": {
+          "lon": -57.6343814,
+          "lat": -25.2800459
+        },
+        "airport": {
+          "id": "asuncion-airport",
+          "name": "Silvio Pettirossi International Airport",
+          "lon": -57.519227,
+          "lat": -25.240156,
+          "sourceUrl": "https://ourairports.com/airports/SGAS/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/249854726",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -57.83336963854545,
+          -25.46092678993398,
+          -57.435393161454556,
+          -25.099165010066024
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/249854726",
+          "sourceUrl": "https://www.openstreetmap.org/node/249854726",
+          "sourceRecord": {
+            "ref": "node/249854726",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "Nuestra Señora Santa María de la Asunción",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "89",
+              "name": "Asunción",
+              "name:am": "አሱንሲዮን",
+              "name:ar": "أسونسيون",
+              "name:ay": "Asunsyun",
+              "name:az": "Asunson",
+              "name:bat-smg": "Asunsjuons",
+              "name:be": "Асунсьён",
+              "name:be-tarask": "Асунсьён",
+              "name:bg": "Асунсион",
+              "name:bn": "আসুনসিওন",
+              "name:bo": "ཨ་སུན་སི་འན།",
+              "name:br": "Asunción",
+              "name:ca": "Asunción",
+              "name:ce": "Асунсьон",
+              "name:de": "Asunción",
+              "name:el": "Ασουνσιόν",
+              "name:en": "Asuncion",
+              "name:eo": "Asunciono",
+              "name:es": "Asunción",
+              "name:eu": "Asuncion",
+              "name:fa": "آسونسیون",
+              "name:fr": "Asuncion",
+              "name:gl": "Asunción",
+              "name:gn": "Paraguaŷ",
+              "name:he": "אסונסיון",
+              "name:hi": "असुन्सियोन",
+              "name:ht": "Asounsyòn",
+              "name:hu": "Asunción",
+              "name:hy": "Ասունսյոն",
+              "name:io": "Asuncion",
+              "name:is": "Asúnsjón",
+              "name:it": "Asunción",
+              "name:ja": "アスンシオン",
+              "name:ka": "ასუნსიონი",
+              "name:kab": "Asuncion",
+              "name:kg": "Asuncion",
+              "name:kk": "Асунсьон",
+              "name:kn": "ಅಸೂನ್‌ಸಿಯಾನ್",
+              "name:ko": "아순시온",
+              "name:ky": "Асунсьон",
+              "name:la": "Assumptio",
+              "name:lt": "Asunsjonas",
+              "name:lv": "Asunsjona",
+              "name:mk": "Асунсион",
+              "name:ml": "അസുൻസിയോൺ",
+              "name:mn": "Асунсион",
+              "name:mr": "आसुन्सियोन",
+              "name:ms": "Asuncion",
+              "name:my": "အာဆွန်စီယွန်မြို့",
+              "name:mzn": "آسونسیون",
+              "name:nl": "Asuncion",
+              "name:no": "Asunción",
+              "name:nov": "Asunsion",
+              "name:oc": "Asunción",
+              "name:os": "Асунсьон",
+              "name:pa": "ਅਸੂੰਸੀਓਨ",
+              "name:pap": "Assuncion",
+              "name:pl": "Asunción",
+              "name:pnb": "اسنشن",
+              "name:pt": "Assunção",
+              "name:qu": "Asunsiyun",
+              "name:ru": "Асунсьон",
+              "name:sd": "اسانشيون",
+              "name:si": "අසුන්සියොන්",
+              "name:sq": "Asunsioni",
+              "name:sr": "Асунсион",
+              "name:sv": "Asunción",
+              "name:sw": "Asuncion",
+              "name:ta": "அசுன்சியோன்",
+              "name:tet": "Asunsaun",
+              "name:tg": "Асунсион",
+              "name:th": "อะซุนซิออง",
+              "name:tl": "Asuncion",
+              "name:tr": "Asunción",
+              "name:tt": "Асунсьон",
+              "name:ty": "Asuncion",
+              "name:ug": "ئاسۇنسىئون",
+              "name:uk": "Асунсьйон",
+              "name:ur": "اسونسیون",
+              "name:uz": "Asunsion",
+              "name:yi": "אסונסיאן",
+              "name:yue": "亞松森",
+              "name:zh": "亞松森",
+              "official_name": "La Muy Noble y Leal Ciudad de Nuestra Señora Santa María de la Asunción",
+              "place": "city",
+              "population": "742023",
+              "ref:LOCODE": "PYASU",
+              "source": "wikidata,2020",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q2933",
+              "wikipedia": "es:Asunción"
+            },
+            "lon": -57.6343814,
+            "lat": -25.2800459
+          },
+          "pbfSha256": "6222f1a832471179ba3571383051d87db2e05898623be4e3f17cb567c345a02a"
+        },
+        "airport": {
+          "rowNumber": 59530,
+          "row": {
+            "id": "6088",
+            "ident": "SGAS",
+            "type": "large_airport",
+            "name": "Silvio Pettirossi International Airport",
+            "latitude_deg": "-25.240156",
+            "longitude_deg": "-57.519227",
+            "elevation_ft": "292",
+            "continent": "SA",
+            "iso_country": "PY",
+            "iso_region": "PY-11",
+            "municipality": "Asunción",
+            "scheduled_service": "yes",
+            "icao_code": "SGAS",
+            "iata_code": "ASU",
+            "gps_code": "SGAS",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Silvio_Pettirossi_International_Airport",
+            "keywords": "Luque, Stroessner, Aeropuerto Internacional Silvio Pettirossi"
+          },
+          "rowSha256": "911d9129a96a5b9809ef117021d9afdb60ddb18aa7e2df1d18e4d86e0a6370ff",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "SGAS",
+            "sourceUrl": "https://ourairports.com/airports/SGAS/",
+            "matchedIdent": "SGAS",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/SGAS/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "PY",
+              "-2516-05740",
+              "America/Asuncion"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Asuncion",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "PY",
+              "-2516-05740",
+              "America/Asuncion"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/south-america/paraguay-261011.osm.pbf",
+          "bytes": 154453126,
+          "sha256": "6222f1a832471179ba3571383051d87db2e05898623be4e3f17cb567c345a02a",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/1553432748"
+        ],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -25.46092678993398,
+              -57.83336963854545,
+              -25.099165010066024,
+              -57.435393161454556
+            ],
+            "core": [
+              -25.325266122483495,
+              -57.684072578847854,
+              -25.234825677516508,
+              -57.58469022115215
+            ],
+            "outline": [
+              -25.51092678993398,
+              -57.883369638545446,
+              -25.049165010066023,
+              -57.38539316145456
+            ],
+            "wide": [
+              -26.06092678993398,
+              -58.43336963854545,
+              -24.499165010066022,
+              -56.835393161454554
+            ]
+          },
+          "airportMarginMetres": 8441.405574649092,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "asuncion",
+      "extractSha256": {
+        "places": "63b5750650a9cb300214d29a9b3c48e5d230cf2cb65ba1e7602f86ca9bd37578",
+        "extras": "1cb173299ff8d718d80225c3ffae3cdf0e245b611d72ec6f4708bece3d10d045",
+        "water": "f1d4e791f03accb0afcd3d5c4bcaab9fe228319033a01ccf053542d43e4995bc",
+        "landuse": "227670b0225f329d8c51eea530f5722b48cbf2827adf9697bab51af4470c638a",
+        "roads": "c04824768c52161faf9d64d35b678ab5048ecff1599b5572d2b80eb818f20db2"
+      },
+      "sourceJob": {
+        "city": "asuncion",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-py-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "6222f1a832471179ba3571383051d87db2e05898623be4e3f17cb567c345a02a",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "63b5750650a9cb300214d29a9b3c48e5d230cf2cb65ba1e7602f86ca9bd37578",
+          "extras": "1cb173299ff8d718d80225c3ffae3cdf0e245b611d72ec6f4708bece3d10d045",
+          "water": "f1d4e791f03accb0afcd3d5c4bcaab9fe228319033a01ccf053542d43e4995bc",
+          "landuse": "227670b0225f329d8c51eea530f5722b48cbf2827adf9697bab51af4470c638a",
+          "roads": "c04824768c52161faf9d64d35b678ab5048ecff1599b5572d2b80eb818f20db2"
+        }
+      }
+    }
+  ]
+}

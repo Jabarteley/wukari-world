@@ -1,0 +1,317 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "TL",
+    "datasetSha256": "ed503ce335b087fe3fb37934fcc1980dcdc7c75e8f359f0a880963cb86c7a74a",
+    "receiptSha256": "af859e1a8b0c6284e1b3278fd5f7807ac7edecbf7fd06f85f200aed9e8a487f7",
+    "receiptBytes": 32810,
+    "geometrySha256": "6bdfa435907c4ccf321cba2c0dd63c2c10af20b15f8de5b4b25466b93efbe42e",
+    "geometryBytes": 246489,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 305142,
+    "boundaryKey": "tl",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-tl-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "dili",
+      "name": "Dili",
+      "country": "tl",
+      "facts": {
+        "id": "dili",
+        "name": "Dili",
+        "country": {
+          "idISOlower": "tl",
+          "name": "East Timor"
+        },
+        "state": {
+          "idunique": "tl-dili",
+          "name": "Dili"
+        },
+        "timezone": "Asia/Dili",
+        "centre": {
+          "lon": 125.5784093,
+          "lat": -8.5536809
+        },
+        "airport": {
+          "id": "dili-airport",
+          "name": "Presidente Nicolau Lobato International Airport",
+          "lon": 125.524507,
+          "lat": -8.546562,
+          "sourceUrl": "https://ourairports.com/airports/WPDL/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/262310617",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          125.39663897711469,
+          -8.734561789933979,
+          125.76017962288532,
+          -8.37280001006602
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/262310617",
+          "sourceUrl": "https://www.openstreetmap.org/node/262310617",
+          "sourceRecord": {
+            "ref": "node/262310617",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "name": "Dili",
+              "name:am": "ዲሊ",
+              "name:ar": "ديلي",
+              "name:ba": "Дили",
+              "name:be": "Дылі",
+              "name:bg": "Дили",
+              "name:bn": "দিলি",
+              "name:bo": "དྷི་ལི།",
+              "name:ca": "Dili",
+              "name:ce": "Дили",
+              "name:de": "Dili",
+              "name:el": "Ντίλι",
+              "name:en": "Dili",
+              "name:eo": "Dilo",
+              "name:es": "Dili",
+              "name:fa": "دیلی",
+              "name:fr": "Dili",
+              "name:he": "דילי",
+              "name:hi": "दिली",
+              "name:hu": "Dili",
+              "name:hy": "Դիլի",
+              "name:ja": "ディリ",
+              "name:ka": "დილი",
+              "name:kk": "Дили",
+              "name:km": "ឌីលី",
+              "name:kn": "ಡಿಲಿ",
+              "name:ko": "딜리",
+              "name:ky": "Дили",
+              "name:lo": "ດີລີ",
+              "name:lt": "Dilis",
+              "name:mk": "Дили",
+              "name:ml": "ദിലി",
+              "name:mn": "Дили",
+              "name:mr": "दिली",
+              "name:my": "ဒီလီမြို့",
+              "name:ne": "डिली",
+              "name:nl": "Dili",
+              "name:os": "Дили",
+              "name:pa": "ਦੀਲੀ",
+              "name:pl": "Dili",
+              "name:ps": "دیلی",
+              "name:pt": "Díli",
+              "name:ru": "Дили",
+              "name:sd": "ڊيلي",
+              "name:sk": "Dili",
+              "name:sr": "Дили",
+              "name:sv": "Dili",
+              "name:ta": "டிலி",
+              "name:tg": "Дилӣ",
+              "name:th": "ดิลี",
+              "name:tt": "Дили",
+              "name:ug": "دىلى",
+              "name:uk": "Ділі",
+              "name:ur": "دیلی",
+              "name:zh": "帝力",
+              "place": "city",
+              "population": "222323",
+              "source:population": "wikipedia",
+              "wikidata": "Q9310",
+              "wikipedia": "pt:Díli",
+              "wikipedia:en": "en:Dili"
+            },
+            "lon": 125.5784093,
+            "lat": -8.5536809
+          },
+          "pbfSha256": "ed503ce335b087fe3fb37934fcc1980dcdc7c75e8f359f0a880963cb86c7a74a"
+        },
+        "airport": {
+          "rowNumber": 82884,
+          "row": {
+            "id": "26881",
+            "ident": "WPDL",
+            "type": "large_airport",
+            "name": "Presidente Nicolau Lobato International Airport",
+            "latitude_deg": "-8.546562",
+            "longitude_deg": "125.524507",
+            "elevation_ft": "154",
+            "continent": "AS",
+            "iso_country": "TL",
+            "iso_region": "TL-DI",
+            "municipality": "Dili",
+            "scheduled_service": "yes",
+            "icao_code": "WPDL",
+            "iata_code": "DIL",
+            "gps_code": "WPDL",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Presidente_Nicolau_Lobato_International_Airport",
+            "keywords": "Komoro, Comoro Airport"
+          },
+          "rowSha256": "f203ce9e843f11a71593ea6bd8844c2112c286db7c183487b782444899d9cca2",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "WPDL",
+            "sourceUrl": "https://ourairports.com/airports/WPDL/",
+            "matchedIdent": "WPDL",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/WPDL/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TL",
+              "-0833+12535",
+              "Asia/Dili"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Dili",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "TL",
+              "-0833+12535",
+              "Asia/Dili"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/east-timor-261011.osm.pbf",
+          "bytes": 17784685,
+          "sha256": "ed503ce335b087fe3fb37934fcc1980dcdc7c75e8f359f0a880963cb86c7a74a",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/25870829",
+          "way/25870922",
+          "way/25870968",
+          "way/157314311",
+          "way/167919246",
+          "way/168520516",
+          "way/204893986",
+          "way/252581814",
+          "way/252581815",
+          "way/350683466",
+          "way/350683486",
+          "way/556689386",
+          "way/557516220",
+          "way/612386938",
+          "way/612386939",
+          "way/612386942",
+          "way/612386943",
+          "way/680993755",
+          "way/710509420",
+          "way/719136554",
+          "way/719235196",
+          "way/719252125",
+          "way/910852257",
+          "way/910852258",
+          "way/910852259",
+          "way/910852260",
+          "way/910852261",
+          "way/910852289",
+          "way/910852290",
+          "way/910852291",
+          "way/910852292",
+          "way/910852293",
+          "way/910852294",
+          "way/910852295",
+          "way/910852296",
+          "way/910852297",
+          "way/910852327",
+          "way/910852328",
+          "way/910852353",
+          "way/910852354",
+          "way/910852355",
+          "way/1070870898",
+          "way/1070870899",
+          "way/1070870902",
+          "way/1071034658",
+          "way/1071034660",
+          "way/1071034661",
+          "way/1254308925",
+          "way/1254308926"
+        ],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -8.734561789933979,
+              125.39663897711469,
+              -8.37280001006602,
+              125.76017962288532
+            ],
+            "core": [
+              -8.598901122483495,
+              125.53298311682782,
+              -8.508460677516505,
+              125.62383548317219
+            ],
+            "outline": [
+              -8.78456178993398,
+              125.3466389771147,
+              -8.32280001006602,
+              125.81017962288531
+            ],
+            "wide": [
+              -9.334561789933979,
+              124.7966389771147,
+              -7.772800010066021,
+              126.36017962288531
+            ]
+          },
+          "airportMarginMetres": 14076.202707496339,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "dili",
+      "extractSha256": {
+        "places": "c8ccc5201a43e06155220b554a1f042870893dae387e5adb461b670b67457a7e",
+        "extras": "79415365388e39caac24f1353787fcbfd79527c46b221798a406295b7b1129c8",
+        "water": "25db7f3c11cdfa80b2d79ddd0add04821ccfee50ce6d1eca5501d856139b9ce1",
+        "landuse": "792c1ec22516ea26113a8c88ecf7f0d59da074682f4daeeea3e74c223c236e49",
+        "roads": "fe6d33f0d5f13f0e31ab2de639f384a433b70841c04015eababb019947f8edb1"
+      },
+      "sourceJob": {
+        "city": "dili",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-tl-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "ed503ce335b087fe3fb37934fcc1980dcdc7c75e8f359f0a880963cb86c7a74a",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "c8ccc5201a43e06155220b554a1f042870893dae387e5adb461b670b67457a7e",
+          "extras": "79415365388e39caac24f1353787fcbfd79527c46b221798a406295b7b1129c8",
+          "water": "25db7f3c11cdfa80b2d79ddd0add04821ccfee50ce6d1eca5501d856139b9ce1",
+          "landuse": "792c1ec22516ea26113a8c88ecf7f0d59da074682f4daeeea3e74c223c236e49",
+          "roads": "fe6d33f0d5f13f0e31ab2de639f384a433b70841c04015eababb019947f8edb1"
+        }
+      }
+    }
+  ]
+}

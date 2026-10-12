@@ -1,0 +1,316 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "BA",
+    "datasetSha256": "3fa04936a49c67cbc48cb678c205681c84e8826aa3a4205c9df03ac026b97237",
+    "receiptSha256": "0a8c1f1099b18e4c8c1e6f6ea4855f50b8ac88eeda41bae8cf045c21dabdf415",
+    "receiptBytes": 304107,
+    "geometrySha256": "7dc391b239f278debfbaae11980d91f83d5ead1d4b15411dab52f798c60be3ce",
+    "geometryBytes": 645386,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 2528142,
+    "boundaryKey": "ba",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-ba-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "sarajevo",
+      "name": "Sarajevo",
+      "country": "ba",
+      "facts": {
+        "id": "sarajevo",
+        "name": "Sarajevo",
+        "country": {
+          "idISOlower": "ba",
+          "name": "Bosnia & Herzegovina"
+        },
+        "state": {
+          "idunique": "ba-sarajevo",
+          "name": "Sarajevo"
+        },
+        "timezone": "Europe/Belgrade",
+        "centre": {
+          "lon": 18.4126147,
+          "lat": 43.8570713
+        },
+        "airport": {
+          "id": "sarajevo-airport",
+          "name": "Sarajevo International Airport",
+          "lon": 18.331499,
+          "lat": 43.8246,
+          "sourceUrl": "https://ourairports.com/airports/LQSA/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/2021709163",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          18.16269488288968,
+          43.67619041006602,
+          18.662534517110316,
+          44.03795218993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/2021709163",
+          "sourceUrl": "https://www.openstreetmap.org/node/2021709163",
+          "sourceRecord": {
+            "ref": "node/2021709163",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:gl": "Saraievo",
+              "alt_name:la": "Saraglium",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "int_name": "Sarajevo",
+              "name": "Sarajevo",
+              "name:am": "ሳራዬቮ",
+              "name:ang": "Saragefo",
+              "name:ar": "سراييفو",
+              "name:ast": "Sarayevu",
+              "name:av": "Сараево",
+              "name:az": "Sarayevo",
+              "name:ba": "Сараево",
+              "name:ban": "Sarajévo",
+              "name:be": "Сараева",
+              "name:bg": "Сараево",
+              "name:bn": "সারায়েভো",
+              "name:br": "Sarajevo",
+              "name:bs": "Sarajevo",
+              "name:ca": "Sarajevo",
+              "name:ce": "Сараево",
+              "name:ckb": "سارایێڤۆ",
+              "name:crh": "Sarayevo",
+              "name:cu": "Сараѥво",
+              "name:cv": "Сараево",
+              "name:de": "Sarajevo",
+              "name:dsb": "Sarajewo",
+              "name:el": "Σαράγεβο",
+              "name:en": "Sarajevo",
+              "name:es": "Sarajevo",
+              "name:ext": "Sarajevu",
+              "name:fa": "سارایوو",
+              "name:ff": "Sarayevo",
+              "name:fr": "Sarajevo",
+              "name:ga": "Sairéavó",
+              "name:gl": "Saraxevo",
+              "name:he": "סרייבו",
+              "name:hi": "साराजेवो",
+              "name:hr": "Sarajevo",
+              "name:hsb": "Sarajewo",
+              "name:ht": "Sarayevo",
+              "name:hu": "Szarajevó",
+              "name:hy": "Սարաևո",
+              "name:is": "Sarajevó",
+              "name:it": "Saraievo",
+              "name:ja": "サラエヴォ",
+              "name:ka": "სარაევო",
+              "name:kaa": "Saraevo",
+              "name:kk": "Сараево",
+              "name:kn": "ಸಾರಯೇವೊ",
+              "name:ko": "사라예보",
+              "name:ku": "Sarayevo",
+              "name:ky": "Сараево",
+              "name:la": "Seraium",
+              "name:lij": "Sarajêvo",
+              "name:lrc": "سارایاٛ ڤو",
+              "name:lt": "Sarajevas",
+              "name:lv": "Sarajeva",
+              "name:mdf": "Сараево",
+              "name:mk": "Сараево",
+              "name:ml": "സരയേവോ",
+              "name:mn": "Сараево",
+              "name:mr": "सारायेव्हो",
+              "name:my": "ဆာရာယေဗိုမြို့",
+              "name:myv": "Сараево ош",
+              "name:nl": "Sarajevo",
+              "name:no": "Sarajevo",
+              "name:nv": "Naatʼáaniikin",
+              "name:oc": "Sarajevo",
+              "name:os": "Сараево",
+              "name:pa": "ਸਾਰਾਯੇਵੋ",
+              "name:pl": "Sarajewo",
+              "name:pnb": "سرائیڡو",
+              "name:ro": "Sarajevo",
+              "name:ru": "Сараево",
+              "name:sah": "Сараево",
+              "name:scn": "Sarajevu",
+              "name:sgs": "Sarajevs",
+              "name:sl": "Sarajevo",
+              "name:sq": "Sarajeva",
+              "name:sr": "Сарајево",
+              "name:sr-Latn": "Sarajevo",
+              "name:sv": "Sarajevo",
+              "name:sw": "Sarayevo",
+              "name:szl": "Sarajewo",
+              "name:ta": "சாரயேவோ",
+              "name:tg": "Сараево",
+              "name:th": "ซาราเยโว",
+              "name:tr": "Saraybosna",
+              "name:tt": "Сараево",
+              "name:udm": "Сараево",
+              "name:ug": "سارايېۋو",
+              "name:uk": "Сараєво",
+              "name:ur": "سرائیوو",
+              "name:uz": "Sarayevo",
+              "name:wo": "Saarayego",
+              "name:wuu": "萨拉热窝",
+              "name:xmf": "სარაევო",
+              "name:yi": "סאראיעווא",
+              "name:yue": "薩拉熱窩",
+              "name:zh-Hans": "萨拉热窝",
+              "name:zh-Hant": "塞拉耶佛",
+              "old_name:az": "Saraybosna",
+              "old_name:de": "Sarajewo",
+              "place": "city",
+              "population": "271194",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "website": "https://www.sarajevo.ba/",
+              "wikidata": "Q11194",
+              "wikimedia_commons": "Category:Sarajevo",
+              "wikipedia": "bs:Sarajevo"
+            },
+            "lon": 18.4126147,
+            "lat": 43.8570713
+          },
+          "pbfSha256": "3fa04936a49c67cbc48cb678c205681c84e8826aa3a4205c9df03ac026b97237"
+        },
+        "airport": {
+          "rowNumber": 44970,
+          "row": {
+            "id": "4469",
+            "ident": "LQSA",
+            "type": "large_airport",
+            "name": "Sarajevo International Airport",
+            "latitude_deg": "43.8246",
+            "longitude_deg": "18.331499",
+            "elevation_ft": "1708",
+            "continent": "EU",
+            "iso_country": "BA",
+            "iso_region": "BA-BIH",
+            "municipality": "Sarajevo",
+            "scheduled_service": "yes",
+            "icao_code": "LQSA",
+            "iata_code": "SJJ",
+            "gps_code": "LQSA",
+            "local_code": "",
+            "home_link": "http://www.sarajevo-airport.ba/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Sarajevo_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "264e5868cf1a7d63e8641361e69c8b196358dafd5eccaa05f838a067649a8b21",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LQSA",
+            "sourceUrl": "https://ourairports.com/airports/LQSA/",
+            "matchedIdent": "LQSA",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LQSA/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "RS,BA,HR,ME,MK,SI",
+              "+4450+02030",
+              "Europe/Belgrade"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Belgrade",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "RS,BA,HR,ME,MK,SI",
+              "+4450+02030",
+              "Europe/Belgrade"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/bosnia-herzegovina-261011.osm.pbf",
+          "bytes": 161777449,
+          "sha256": "3fa04936a49c67cbc48cb678c205681c84e8826aa3a4205c9df03ac026b97237",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              43.67619041006602,
+              18.16269488288968,
+              44.03795218993398,
+              18.662534517110316
+            ],
+            "core": [
+              43.81185107751651,
+              18.350277293507478,
+              43.902291522483495,
+              18.47495210649252
+            ],
+            "outline": [
+              43.62619041006602,
+              18.11269488288968,
+              44.08795218993398,
+              18.712534517110317
+            ],
+            "wide": [
+              43.07619041006602,
+              17.56269488288968,
+              44.63795218993398,
+              19.262534517110318
+            ]
+          },
+          "airportMarginMetres": 13557.208939812446,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "sarajevo",
+      "extractSha256": {
+        "places": "53c1f08df4389d82cae867a80e13c4ea5743cf85fec0120b798a63f49a17211a",
+        "extras": "9601351d23fa68ca07a1475de959f0ee81ea0c46669481c50600e6f333b94021",
+        "water": "65c57c597f5d7fcc5bb402536835e3d30714e8a733352da9916ade500dd725b9",
+        "landuse": "19bafcdf8d337a559a622bb32b9ef4b42d3a8a132001dbf8d31db5407bb84fb3",
+        "roads": "c556d637211a4c880a956864ac64b7ecefdf619a5553253f5e0e2b4a74c15757"
+      },
+      "sourceJob": {
+        "city": "sarajevo",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-ba-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "3fa04936a49c67cbc48cb678c205681c84e8826aa3a4205c9df03ac026b97237",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "53c1f08df4389d82cae867a80e13c4ea5743cf85fec0120b798a63f49a17211a",
+          "extras": "9601351d23fa68ca07a1475de959f0ee81ea0c46669481c50600e6f333b94021",
+          "water": "65c57c597f5d7fcc5bb402536835e3d30714e8a733352da9916ade500dd725b9",
+          "landuse": "19bafcdf8d337a559a622bb32b9ef4b42d3a8a132001dbf8d31db5407bb84fb3",
+          "roads": "c556d637211a4c880a956864ac64b7ecefdf619a5553253f5e0e2b4a74c15757"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "BO",
+    "datasetSha256": "1d5ed56d9e1fcbbcaa28d51d0de8ce273dc83bc2dbcf02f21acd63689f5ac0e1",
+    "receiptSha256": "f4b586efa1f5a1c0b635e72b6650fe4aaa6c470c1bd064f7d9f06b49042cddea",
+    "receiptBytes": 207421,
+    "geometrySha256": "7509e8e164fe10d6b4221d97006b792f513db4b7f82d2a1822f31a122418e802",
+    "geometryBytes": 1181978,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 252645,
+    "boundaryKey": "bo",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-bo-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "la-paz",
+      "name": "La Paz",
+      "country": "bo",
+      "facts": {
+        "id": "la-paz",
+        "name": "La Paz",
+        "country": {
+          "idISOlower": "bo",
+          "name": "Bolivia"
+        },
+        "state": {
+          "idunique": "bo-la-paz",
+          "name": "La Paz"
+        },
+        "timezone": "America/La_Paz",
+        "centre": {
+          "lon": -68.1336229,
+          "lat": -16.4955455
+        },
+        "airport": {
+          "id": "la-paz-airport",
+          "name": "El Alto International Airport",
+          "lon": -68.189416,
+          "lat": -16.510272,
+          "sourceUrl": "https://ourairports.com/airports/SLLP/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/1975648720",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -68.32117338762112,
+          -16.676426389933976,
+          -67.9460724123789,
+          -16.31466461006602
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/1975648720",
+          "sourceUrl": "https://www.openstreetmap.org/node/1975648720",
+          "sourceRecord": {
+            "ref": "node/1975648720",
+            "tags": {
+              "admin_level": "2",
+              "capital": "4",
+              "ele": "3640",
+              "name": "La Paz",
+              "name:am": "ላፓዝ",
+              "name:ar": "لاباز",
+              "name:ay": "Chuquiago Marka",
+              "name:az": "La Pas",
+              "name:be": "Ла-Пас",
+              "name:bg": "Ла Пас",
+              "name:br": "La Paz",
+              "name:ca": "La Paz",
+              "name:ckb": "لاپاز",
+              "name:de": "La Paz",
+              "name:el": "Λα Παζ",
+              "name:en": "La Paz",
+              "name:eo": "La-Pazo",
+              "name:fa": "لاپاز",
+              "name:fr": "La Paz",
+              "name:gl": "La Paz",
+              "name:he": "לה פאס",
+              "name:hi": "ला पास",
+              "name:hy": "Լա Պաս",
+              "name:id": "La Paz",
+              "name:is": "La Paz",
+              "name:it": "La Paz",
+              "name:ja": "ラパス",
+              "name:ka": "ლა-პასი",
+              "name:ko": "라파스",
+              "name:ku": "Lapaz",
+              "name:la": "Paxia",
+              "name:lt": "La Pasas",
+              "name:lv": "Lapasa",
+              "name:mi": "La Paz",
+              "name:mk": "Ла Паз",
+              "name:mr": "ला पाझ",
+              "name:nl": "La Paz",
+              "name:no": "La Paz",
+              "name:oc": "La Paz",
+              "name:os": "Ла-Пас",
+              "name:pl": "La Paz",
+              "name:pt": "La Paz",
+              "name:qu": "Chuqiyapu",
+              "name:ru": "Ла-Пас",
+              "name:sr": "Ла Паз",
+              "name:sv": "La Paz",
+              "name:ta": "லா பாஸ்",
+              "name:th": "ลาปาซ",
+              "name:tr": "La Paz",
+              "name:uk": "Ла-Пас",
+              "name:ur": "لا پاز",
+              "name:yi": "לא פאז",
+              "name:zh": "拉巴斯",
+              "official_name": "Nuestra Señora de La Paz",
+              "place": "city",
+              "population": "758845",
+              "source:name:oc": "Lo Congrès",
+              "source:population": "ine.gob.bo;2016",
+              "start_date": "1548-10-20",
+              "website": "https://www.lapaz.bo",
+              "wikidata": "Q1491",
+              "wikipedia": "es:La Paz"
+            },
+            "lon": -68.1336229,
+            "lat": -16.4955455
+          },
+          "pbfSha256": "1d5ed56d9e1fcbbcaa28d51d0de8ce273dc83bc2dbcf02f21acd63689f5ac0e1"
+        },
+        "airport": {
+          "rowNumber": 62287,
+          "row": {
+            "id": "6184",
+            "ident": "SLLP",
+            "type": "large_airport",
+            "name": "El Alto International Airport",
+            "latitude_deg": "-16.510272",
+            "longitude_deg": "-68.189416",
+            "elevation_ft": "13355",
+            "continent": "SA",
+            "iso_country": "BO",
+            "iso_region": "BO-L",
+            "municipality": "La Paz / El Alto",
+            "scheduled_service": "yes",
+            "icao_code": "SLLP",
+            "iata_code": "LPB",
+            "gps_code": "SLLP",
+            "local_code": "",
+            "home_link": "https://naabol.gob.bo/aeropuerto-internacional-el-alto/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/El_Alto_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "7df54add09997b562ad980106f17cd263257b9707baefcb802f5dddd4c0bb1ab",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "SLLP",
+            "sourceUrl": "https://ourairports.com/airports/SLLP/",
+            "matchedIdent": "SLLP",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/SLLP/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "BO",
+              "-1630-06809",
+              "America/La_Paz"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/La_Paz",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "BO",
+              "-1630-06809",
+              "America/La_Paz"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/south-america/bolivia-261011.osm.pbf",
+          "bytes": 174158599,
+          "sha256": "1d5ed56d9e1fcbbcaa28d51d0de8ce273dc83bc2dbcf02f21acd63689f5ac0e1",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -16.676426389933976,
+              -68.32117338762112,
+              -16.31466461006602,
+              -67.9460724123789
+            ],
+            "core": [
+              -16.540765722483492,
+              -68.18047741983405,
+              -16.450325277516505,
+              -68.08676838016596
+            ],
+            "outline": [
+              -16.726426389933977,
+              -68.37117338762111,
+              -16.26466461006602,
+              -67.8960724123789
+            ],
+            "wide": [
+              -17.276426389933977,
+              -68.92117338762111,
+              -15.714664610066022,
+              -67.3460724123789
+            ]
+          },
+          "airportMarginMetres": 14062.484814378653,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "la-paz",
+      "extractSha256": {
+        "places": "dcc1c8c68521f3fdff346a732d89ba5379413f377ef9b383d7f0d4e65815b0fb",
+        "extras": "5756325852f16d2bb440210b602cd732e06eefc382b83bced52a09671f2528f5",
+        "water": "e6b343022c6a896ab5c2b1a27f4f073de3e4367012795f900de144949012ca5b",
+        "landuse": "ac13d12f2f52995cced91243e2a9d08c10fa58cffe5d40b1e3f35c5af225c2ec",
+        "roads": "0dcadc83a814c1418da99de3e55500dae651545a466948994fed24eab8c4e0f9"
+      },
+      "sourceJob": {
+        "city": "la-paz",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-bo-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "1d5ed56d9e1fcbbcaa28d51d0de8ce273dc83bc2dbcf02f21acd63689f5ac0e1",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "dcc1c8c68521f3fdff346a732d89ba5379413f377ef9b383d7f0d4e65815b0fb",
+          "extras": "5756325852f16d2bb440210b602cd732e06eefc382b83bced52a09671f2528f5",
+          "water": "e6b343022c6a896ab5c2b1a27f4f073de3e4367012795f900de144949012ca5b",
+          "landuse": "ac13d12f2f52995cced91243e2a9d08c10fa58cffe5d40b1e3f35c5af225c2ec",
+          "roads": "0dcadc83a814c1418da99de3e55500dae651545a466948994fed24eab8c4e0f9"
+        }
+      }
+    }
+  ]
+}

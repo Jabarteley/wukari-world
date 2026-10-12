@@ -1,0 +1,341 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "TJ",
+    "datasetSha256": "6f321470e0e97e816447e6cac064c2c0f9e529a08d12a1d9c17a048b1638d73a",
+    "receiptSha256": "93a57d580ffb276f1e0eeae8164f023e7bf00bddc51b25f67bec9e3ff9b95508",
+    "receiptBytes": 130408,
+    "geometrySha256": "07a79d311fb5ec79836c8cfc221f86e90dfcb79fd2474ab8ecb8ec2e67eb643f",
+    "geometryBytes": 484133,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 214626,
+    "boundaryKey": "tj",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-tj-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "dushanbe",
+      "name": "Dushanbe",
+      "country": "tj",
+      "facts": {
+        "id": "dushanbe",
+        "name": "Dushanbe",
+        "country": {
+          "idISOlower": "tj",
+          "name": "Tajikistan"
+        },
+        "state": {
+          "idunique": "tj-dushanbe",
+          "name": "Dushanbe"
+        },
+        "timezone": "Asia/Dushanbe",
+        "centre": {
+          "lon": 68.785433,
+          "lat": 38.5767045
+        },
+        "airport": {
+          "id": "dushanbe-airport",
+          "name": "Dushanbe International Airport",
+          "lon": 68.822977,
+          "lat": 38.543746,
+          "sourceUrl": "https://ourairports.com/airports/UTDD/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/27547977",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          68.55503820132188,
+          38.39582361006602,
+          69.01582779867812,
+          38.75758538993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/27547977",
+          "sourceUrl": "https://www.openstreetmap.org/node/27547977",
+          "sourceRecord": {
+            "ref": "node/27547977",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:hi": "दुशांबे",
+              "capital": "yes",
+              "int_name": "Dushanbe",
+              "name": "Душанбе",
+              "name:ace": "Dushanbe",
+              "name:af": "Doesjanbe",
+              "name:am": "ዱሻንቤ",
+              "name:an": "Duxanbe",
+              "name:ar": "دوشنبه",
+              "name:az": "Düşənbə",
+              "name:ba": "Дүшәнбе",
+              "name:be": "Душанбэ",
+              "name:bg": "Душанбе",
+              "name:bn": "দুশান্‌বে",
+              "name:bo": "དུ་ཤང་པེ།",
+              "name:br": "Douchanbe",
+              "name:bs": "Dušanbe",
+              "name:ca": "Duixanbe",
+              "name:ckb": "دوشەنبە",
+              "name:cs": "Dušanbe",
+              "name:cu": "Доушанбє",
+              "name:cy": "Dushanbe",
+              "name:da": "Dusjanbe",
+              "name:de": "Duschanbe",
+              "name:el": "Ντουσαμπέ",
+              "name:en": "Dushanbe",
+              "name:eo": "Duŝanbeo",
+              "name:es": "Dusambé",
+              "name:et": "Dušanbe",
+              "name:eu": "Dushanbe",
+              "name:fa": "دوشنبه",
+              "name:fi": "Dušanbe",
+              "name:fr": "Douchanbé",
+              "name:fy": "Doesjanbe",
+              "name:ga": "Dushanbe",
+              "name:gag": "Duşanbe",
+              "name:gd": "Dushanbe",
+              "name:gl": "Dushanbe",
+              "name:gn": "Dusambe",
+              "name:ha": "Dushanbe",
+              "name:he": "דושנבה",
+              "name:hi": "दोशंबा",
+              "name:hif": "Dushanbe",
+              "name:hr": "Dušanbe",
+              "name:hsb": "Dušanbe",
+              "name:ht": "Douchanbe",
+              "name:hu": "Dusanbe",
+              "name:hy": "Դուշանբե",
+              "name:ia": "Dushanbe",
+              "name:id": "Dushanbe",
+              "name:ie": "Dushanbe",
+              "name:io": "Dushanbe",
+              "name:is": "Dúshanbe",
+              "name:it": "Dušanbe",
+              "name:ja": "ドゥシャンベ",
+              "name:jv": "Dushanbe",
+              "name:ka": "დუშანბე",
+              "name:kab": "Ducambi",
+              "name:kk": "Душанбе",
+              "name:kn": "ದುಶಾಂಬೆ",
+              "name:ko": "두샨베",
+              "name:ku": "Duşenbe",
+              "name:kv": "Душанбе",
+              "name:ky": "Душанбе",
+              "name:la": "Dušanbe",
+              "name:lad": "Dushanbe",
+              "name:lb": "Duschanbe",
+              "name:lmo": "Dušanbe",
+              "name:lo": "ດູຊານເບ",
+              "name:lt": "Dušanbė",
+              "name:lv": "Dušanbe",
+              "name:mhr": "Душанбе",
+              "name:mk": "Душанбе",
+              "name:ml": "ദുഷാൻബെ",
+              "name:mn": "Душанбе",
+              "name:mr": "दुशांबे",
+              "name:ms": "Dushanbe",
+              "name:my": "ဒူရှန်ဘဲမြို့",
+              "name:nan": "Dushanbe",
+              "name:nb": "Dusjanbe",
+              "name:ne": "दुसान्बे",
+              "name:nl": "Doesjanbe",
+              "name:nn": "Dusjanbe",
+              "name:no": "Dusjanbe",
+              "name:nov": "Dushanbe",
+              "name:nv": "Daʼiiniih Łání",
+              "name:oc": "Doshambe",
+              "name:os": "Душанбе",
+              "name:pa": "ਦੁਸ਼ਾਂਬੇ",
+              "name:pap": "Dusjanbe",
+              "name:pl": "Duszanbe",
+              "name:pms": "Dušanbe",
+              "name:ps": "دوشنبه",
+              "name:pt": "Duchambe",
+              "name:ro": "Dușanbe",
+              "name:ru": "Душанбе",
+              "name:sah": "Душанбе",
+              "name:sc": "Dushanbe",
+              "name:sco": "Dushanbe",
+              "name:sd": "دوشنبي",
+              "name:sh": "Dušanbe",
+              "name:simple": "Dushanbe",
+              "name:sk": "Dušanbe",
+              "name:sl": "Dušanbej",
+              "name:sn": "Dushanbe",
+              "name:sq": "Dushanbe",
+              "name:sr": "Душанбе",
+              "name:sv": "Dusjanbe",
+              "name:sw": "Dushanbe",
+              "name:ta": "துசான்பே",
+              "name:tg": "Душанбе",
+              "name:th": "ดูชานเบ",
+              "name:tk": "Duşanbe",
+              "name:tl": "Dushanbe",
+              "name:tr": "Duşanbe",
+              "name:tt": "Дүшәнбе",
+              "name:udm": "Душанбе",
+              "name:ug": "Düshenbe",
+              "name:uk": "Душанбе",
+              "name:ur": "دوشنبہ",
+              "name:uz": "Dushanbe",
+              "name:vi": "Dushanbe",
+              "name:vo": "Dujanbe",
+              "name:war": "Dushanbe",
+              "name:yi": "דושאנבע",
+              "name:yo": "Dushanbe",
+              "name:zh": "杜尚别",
+              "old_name": "Stalinabad",
+              "old_name:ru": "Сталинабад",
+              "place": "city",
+              "population": "1178251",
+              "population:date": "2020",
+              "postal_code": "734000",
+              "wikidata": "Q9365",
+              "wikimedia_commons": "Category:Dushanbe",
+              "wikipedia": "de:Duschanbe"
+            },
+            "lon": 68.785433,
+            "lat": 38.5767045
+          },
+          "pbfSha256": "6f321470e0e97e816447e6cac064c2c0f9e529a08d12a1d9c17a048b1638d73a"
+        },
+        "airport": {
+          "rowNumber": 80574,
+          "row": {
+            "id": "26385",
+            "ident": "UTDD",
+            "type": "large_airport",
+            "name": "Dushanbe International Airport",
+            "latitude_deg": "38.543746",
+            "longitude_deg": "68.822977",
+            "elevation_ft": "2575",
+            "continent": "AS",
+            "iso_country": "TJ",
+            "iso_region": "TJ-DU",
+            "municipality": "Dushanbe",
+            "scheduled_service": "yes",
+            "icao_code": "UTDD",
+            "iata_code": "DYU",
+            "gps_code": "UTDD",
+            "local_code": "",
+            "home_link": "https://airport.tj/index.php/en",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Dushanbe_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "43e1ef18b40e7f7e96bf520f50f988cd9c71e1ed449cd954d2fba039d29b5606",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "UTDD",
+            "sourceUrl": "https://ourairports.com/airports/UTDD/",
+            "matchedIdent": "UTDD",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/UTDD/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TJ",
+              "+3835+06848",
+              "Asia/Dushanbe"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Dushanbe",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "TJ",
+              "+3835+06848",
+              "Asia/Dushanbe"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/tajikistan-261011.osm.pbf",
+          "bytes": 48601139,
+          "sha256": "6f321470e0e97e816447e6cac064c2c0f9e529a08d12a1d9c17a048b1638d73a",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              38.39582361006602,
+              68.55503820132188,
+              38.75758538993398,
+              69.01582779867812
+            ],
+            "core": [
+              38.531484277516505,
+              68.72794341619667,
+              38.62192472248349,
+              68.84292258380333
+            ],
+            "outline": [
+              38.34582361006602,
+              68.50503820132188,
+              38.807585389933976,
+              69.06582779867811
+            ],
+            "wide": [
+              37.795823610066016,
+              67.95503820132188,
+              39.35758538993398,
+              69.61582779867811
+            ]
+          },
+          "airportMarginMetres": 16355.778655000327,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "dushanbe",
+      "extractSha256": {
+        "places": "83267c63e3c6d700134388e438b2c41084bbb0f3d94edc30a6073ebf0cce29f5",
+        "extras": "9cab48fd4e1c0cc9dd07f62cabebed89c24463e18bd525266cdbf43136c294a9",
+        "water": "fecbee94a10e3d7bbe776e9fc581d614df1dbda2d399176b7ee00f0ca1ff5f56",
+        "landuse": "25adaacaf60b8619b5eb9802bf850c3500f6e11d2474a1fe9a703df53fcda75d",
+        "roads": "6d4ff7d6072f0763bc115ca51084770c47d0be905fc5a6f7461dd35c311c5de9"
+      },
+      "sourceJob": {
+        "city": "dushanbe",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-tj-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "6f321470e0e97e816447e6cac064c2c0f9e529a08d12a1d9c17a048b1638d73a",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "83267c63e3c6d700134388e438b2c41084bbb0f3d94edc30a6073ebf0cce29f5",
+          "extras": "9cab48fd4e1c0cc9dd07f62cabebed89c24463e18bd525266cdbf43136c294a9",
+          "water": "fecbee94a10e3d7bbe776e9fc581d614df1dbda2d399176b7ee00f0ca1ff5f56",
+          "landuse": "25adaacaf60b8619b5eb9802bf850c3500f6e11d2474a1fe9a703df53fcda75d",
+          "roads": "6d4ff7d6072f0763bc115ca51084770c47d0be905fc5a6f7461dd35c311c5de9"
+        }
+      }
+    }
+  ]
+}

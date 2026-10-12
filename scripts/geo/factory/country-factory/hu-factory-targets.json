@@ -1,0 +1,344 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "HU",
+    "datasetSha256": "e1141f633cd6f67552a14daef083629bcca5eb25db4944c732b74fdb770a090f",
+    "receiptSha256": "63875109cc748c79a7d2d482dd13b966f2f8d8c6088e9fd8409e116f4bf9dafd",
+    "receiptBytes": 387132,
+    "geometrySha256": "e42843838c740a8d9baf63ad60c78e0e1fc8e9c369dbfcdcfe1cb8331c296c41",
+    "geometryBytes": 826724,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 21335,
+    "boundaryKey": "hu",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-hu-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "budapest",
+      "name": "Budapest",
+      "country": "hu",
+      "facts": {
+        "id": "budapest",
+        "name": "Budapest",
+        "country": {
+          "idISOlower": "hu",
+          "name": "Hungary"
+        },
+        "state": {
+          "idunique": "hu-budapest",
+          "name": "Budapest"
+        },
+        "timezone": "Europe/Budapest",
+        "centre": {
+          "lon": 19.0402383,
+          "lat": 47.4978789
+        },
+        "airport": {
+          "id": "budapest-airport",
+          "name": "Budapest Liszt Ferenc International Airport",
+          "lon": 19.262393,
+          "lat": 47.43018,
+          "sourceUrl": "https://ourairports.com/airports/LHBP/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/85788293",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          18.773394700609295,
+          47.31699801006602,
+          19.307081899390703,
+          47.678759789933984
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/85788293",
+          "sourceUrl": "https://www.openstreetmap.org/node/85788293",
+          "sourceRecord": {
+            "ref": "node/85788293",
+            "tags": {
+              "ISO3166-2": "HU-BU",
+              "admin_level": "2",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "102",
+              "ksh_ref": "13578",
+              "name": "Budapest",
+              "name:ace": "Budapèst",
+              "name:af": "Boedapest",
+              "name:am": "ቡዳፔስት",
+              "name:ar": "بودابست",
+              "name:arz": "بودابست",
+              "name:ast": "Budapest",
+              "name:av": "Будапешт",
+              "name:az": "Budapeşt",
+              "name:azb": "بوداپست",
+              "name:ba": "Будапешт",
+              "name:bat-smg": "Budapešts",
+              "name:be": "Будапешт",
+              "name:be-tarask": "Будапэшт",
+              "name:bg": "Будапеща",
+              "name:bn": "বুদাপেস্ট",
+              "name:bo": "བུ་ད་ཕེ་སིད།",
+              "name:br": "Budapest",
+              "name:bs": "Budimpešta",
+              "name:ca": "Budapest",
+              "name:ce": "Будапешт",
+              "name:ckb": "بوداپێست",
+              "name:crh": "Budapeşt",
+              "name:cs": "Budapešť",
+              "name:csb": "Bùdapeszt",
+              "name:cu": "Боудапєщь",
+              "name:cv": "Будапешт",
+              "name:de": "Budapest",
+              "name:diq": "Budapeşt",
+              "name:el": "Βουδαπέστη",
+              "name:en": "Budapest",
+              "name:eo": "Budapeŝto",
+              "name:es": "Budapest",
+              "name:fa": "بوداپست",
+              "name:fr": "Budapest",
+              "name:frp": "Budapèst",
+              "name:fy": "Boedapest",
+              "name:ga": "Búdaipeist",
+              "name:gag": "Budapeşt",
+              "name:grc": "Βουδαπέστη",
+              "name:gu": "બુડાપેસ્ટ",
+              "name:he": "בודפשט",
+              "name:hi": "बुडापेस्ट",
+              "name:hr": "Budimpešta",
+              "name:ht": "Boudapès",
+              "name:hu": "Budapest",
+              "name:hy": "Բուդապեշտ",
+              "name:hyw": "Պուտափեսթ",
+              "name:is": "Búdapest",
+              "name:it": "Budapest",
+              "name:ja": "ブダペスト",
+              "name:ka": "ბუდაპეშტი",
+              "name:kk": "Будапешт",
+              "name:kn": "ಬುಡಾಪೆಸ್ಟ್",
+              "name:ko": "부다페스트",
+              "name:koi": "Будапешт",
+              "name:krc": "Будапешт",
+              "name:ku": "Budapeşt",
+              "name:kv": "Будапешт",
+              "name:ky": "Будапешт",
+              "name:la": "Budapestinum",
+              "name:li": "Boedapes",
+              "name:lt": "Budapeštas",
+              "name:lv": "Budapešta",
+              "name:mdf": "Будапешт",
+              "name:mhr": "Будапешт",
+              "name:mk": "Будимпешта",
+              "name:ml": "ബുഡാപെസ്റ്റ്",
+              "name:mn": "Будапешт",
+              "name:mr": "बुडापेस्ट",
+              "name:mrj": "Будапешт",
+              "name:my": "ဗူးဒပက်မြို့",
+              "name:myv": "Будапешт ош",
+              "name:ne": "बुडापेस्ट",
+              "name:nl": "Boedapest",
+              "name:no": "Budapest",
+              "name:nov": "Budapesht",
+              "name:nv": "Naaki Bineʼ Naʼadziʼii",
+              "name:oc": "Budapèst",
+              "name:or": "ବୁଦାପେଷ୍ଟ",
+              "name:os": "Будапешт",
+              "name:pa": "ਬੁਦਾਪੈਸਤ",
+              "name:pdc": "Budapescht",
+              "name:pl": "Budapeszt",
+              "name:pms": "Bùdapest",
+              "name:pnb": "بوداپست",
+              "name:pnt": "Βουδαπέστη",
+              "name:ps": "بوډاپسټ",
+              "name:pt": "Budapeste",
+              "name:ro": "Budapesta",
+              "name:ru": "Будапешт",
+              "name:sa": "बुद्धप्रस्थ",
+              "name:sah": "Будапешт",
+              "name:sd": "بوڊاپيسٽ",
+              "name:sh": "Budimpešta",
+              "name:sk": "Budapešť",
+              "name:sl": "Budimpešta",
+              "name:sn": "Bhudhapesti",
+              "name:sq": "Budapesti",
+              "name:sr": "Будимпешта",
+              "name:sv": "Budapest",
+              "name:szl": "Budapeszt",
+              "name:ta": "புடாபெஸ்ட்",
+              "name:te": "బుడాపెస్ట్",
+              "name:tg": "Будапешт",
+              "name:th": "บูดาเปสต์",
+              "name:tr": "Budapeşte",
+              "name:tt": "Будапешт",
+              "name:tw": "Budapεst",
+              "name:udm": "Будапешт",
+              "name:ug": "Budapésht",
+              "name:uk": "Будапешт",
+              "name:ur": "بوداپست",
+              "name:uz": "Budapesht",
+              "name:vep": "Budapešt",
+              "name:wa": "Budapesse",
+              "name:wal": "Budaapestte",
+              "name:yi": "בודאפעשט",
+              "name:yue": "布達佩斯",
+              "name:zea": "Boedapest",
+              "name:zh": "布達佩斯",
+              "name:zh-Hans": "布达佩斯",
+              "name:zh-Hant": "布達佩斯",
+              "place": "city",
+              "place:hu": "főváros",
+              "population": "1686222",
+              "population:date": "2024-01-01",
+              "postal_code": "1000",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:population": "KSH (www.ksh.hu)",
+              "source:population:date": "2024-01-01",
+              "wikidata": "Q1781",
+              "wikimedia_commons": "Category:Budapest",
+              "wikipedia": "hu:Budapest"
+            },
+            "lon": 19.0402383,
+            "lat": 47.4978789
+          },
+          "pbfSha256": "e1141f633cd6f67552a14daef083629bcca5eb25db4944c732b74fdb770a090f"
+        },
+        "airport": {
+          "rowNumber": 44353,
+          "row": {
+            "id": "4296",
+            "ident": "LHBP",
+            "type": "large_airport",
+            "name": "Budapest Liszt Ferenc International Airport",
+            "latitude_deg": "47.43018",
+            "longitude_deg": "19.262393",
+            "elevation_ft": "495",
+            "continent": "EU",
+            "iso_country": "HU",
+            "iso_region": "HU-BU",
+            "municipality": "Budapest",
+            "scheduled_service": "yes",
+            "icao_code": "LHBP",
+            "iata_code": "BUD",
+            "gps_code": "LHBP",
+            "local_code": "",
+            "home_link": "http://www.bud.hu/english",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Budapest_Ferenc_Liszt_International_Airport",
+            "keywords": "Ferihegyi nemzetközi repülőtér, Budapest Liszt Ferenc international Airport"
+          },
+          "rowSha256": "4a629ac692c6a71aa765a471e4f80e9ef1e4c42fe55069709f40115ee07040b3",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LHBP",
+            "sourceUrl": "https://ourairports.com/airports/LHBP/",
+            "matchedIdent": "LHBP",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LHBP/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "HU",
+              "+4730+01905",
+              "Europe/Budapest"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Budapest",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "HU",
+              "+4730+01905",
+              "Europe/Budapest"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/hungary-261011.osm.pbf",
+          "bytes": 326894052,
+          "sha256": "e1141f633cd6f67552a14daef083629bcca5eb25db4944c732b74fdb770a090f",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              47.31699801006602,
+              18.773394700609295,
+              47.678759789933984,
+              19.307081899390703
+            ],
+            "core": [
+              47.45265867751651,
+              18.97370022306515,
+              47.5430991224835,
+              19.106776376934846
+            ],
+            "outline": [
+              47.266998010066025,
+              18.723394700609294,
+              47.72875978993398,
+              19.357081899390703
+            ],
+            "wide": [
+              46.71699801006602,
+              18.173394700609293,
+              48.278759789933986,
+              19.907081899390704
+            ]
+          },
+          "airportMarginMetres": 3365.3717594327104,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "budapest",
+      "extractSha256": {
+        "places": "898d299852b2aa62773b2972a8aa3d7716cb3900dd820008b59d667e7ff76485",
+        "extras": "a79c5f262ae299f52f3425fe67d5ff4ccd065d2225944494e17286bfb0a059e4",
+        "water": "764e6d913716bf8468b6c6af50648b05b5127e538a2164f88b0161109f9558ea",
+        "landuse": "f8044a78d1b6ebd68e83c33e104d99381dace93964699ee5907b9bc4fb097a0a",
+        "roads": "a83c28e7158473c4dc6473b28190731a26de489b5e19ddd72210baedd2836943"
+      },
+      "sourceJob": {
+        "city": "budapest",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-hu-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "e1141f633cd6f67552a14daef083629bcca5eb25db4944c732b74fdb770a090f",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "898d299852b2aa62773b2972a8aa3d7716cb3900dd820008b59d667e7ff76485",
+          "extras": "a79c5f262ae299f52f3425fe67d5ff4ccd065d2225944494e17286bfb0a059e4",
+          "water": "764e6d913716bf8468b6c6af50648b05b5127e538a2164f88b0161109f9558ea",
+          "landuse": "f8044a78d1b6ebd68e83c33e104d99381dace93964699ee5907b9bc4fb097a0a",
+          "roads": "a83c28e7158473c4dc6473b28190731a26de489b5e19ddd72210baedd2836943"
+        }
+      }
+    }
+  ]
+}

@@ -2,24 +2,216 @@
  "schemaVersion": 1,
  "queue": [
   {
-   "id": "lr",
-   "table": "scripts/geo/factory/country-factory/lr-factory-targets.json"
+   "id": "al",
+   "table": "scripts/geo/factory/country-factory/al-factory-targets.json"
   },
   {
-   "id": "gn",
-   "table": "scripts/geo/factory/country-factory/gn-factory-targets.json"
+   "id": "ba",
+   "table": "scripts/geo/factory/country-factory/ba-factory-targets.json"
   },
   {
-   "id": "km",
-   "table": "scripts/geo/factory/country-factory/km-factory-targets.json"
+   "id": "bg",
+   "table": "scripts/geo/factory/country-factory/bg-factory-targets.json"
   },
   {
-   "id": "sd",
-   "table": "scripts/geo/factory/country-factory/sd-factory-targets.json"
+   "id": "bh",
+   "table": "scripts/geo/factory/country-factory/bh-factory-targets.json"
   },
   {
-   "id": "st",
-   "table": "scripts/geo/factory/country-factory/st-factory-targets.json"
+   "id": "bn",
+   "table": "scripts/geo/factory/country-factory/bn-factory-targets.json"
+  },
+  {
+   "id": "bo",
+   "table": "scripts/geo/factory/country-factory/bo-factory-targets.json"
+  },
+  {
+   "id": "bs",
+   "table": "scripts/geo/factory/country-factory/bs-factory-targets.json"
+  },
+  {
+   "id": "by",
+   "table": "scripts/geo/factory/country-factory/by-factory-targets.json"
+  },
+  {
+   "id": "cr",
+   "table": "scripts/geo/factory/country-factory/cr-factory-targets.json"
+  },
+  {
+   "id": "cu",
+   "table": "scripts/geo/factory/country-factory/cu-factory-targets.json"
+  },
+  {
+   "id": "cy",
+   "table": "scripts/geo/factory/country-factory/cy-factory-targets.json"
+  },
+  {
+   "id": "do",
+   "table": "scripts/geo/factory/country-factory/do-factory-targets.json"
+  },
+  {
+   "id": "ec",
+   "table": "scripts/geo/factory/country-factory/ec-factory-targets.json"
+  },
+  {
+   "id": "ee",
+   "table": "scripts/geo/factory/country-factory/ee-factory-targets.json"
+  },
+  {
+   "id": "fm",
+   "table": "scripts/geo/factory/country-factory/fm-factory-targets.json"
+  },
+  {
+   "id": "gt",
+   "table": "scripts/geo/factory/country-factory/gt-factory-targets.json"
+  },
+  {
+   "id": "gy",
+   "table": "scripts/geo/factory/country-factory/gy-factory-targets.json"
+  },
+  {
+   "id": "hr",
+   "table": "scripts/geo/factory/country-factory/hr-factory-targets.json"
+  },
+  {
+   "id": "hu",
+   "table": "scripts/geo/factory/country-factory/hu-factory-targets.json"
+  },
+  {
+   "id": "is",
+   "table": "scripts/geo/factory/country-factory/is-factory-targets.json"
+  },
+  {
+   "id": "jm",
+   "table": "scripts/geo/factory/country-factory/jm-factory-targets.json"
+  },
+  {
+   "id": "jo",
+   "table": "scripts/geo/factory/country-factory/jo-factory-targets.json"
+  },
+  {
+   "id": "kh",
+   "table": "scripts/geo/factory/country-factory/kh-factory-targets.json"
+  },
+  {
+   "id": "ki",
+   "table": "scripts/geo/factory/country-factory/ki-factory-targets.json"
+  },
+  {
+   "id": "la",
+   "table": "scripts/geo/factory/country-factory/la-factory-targets.json"
+  },
+  {
+   "id": "lb",
+   "table": "scripts/geo/factory/country-factory/lb-factory-targets.json"
+  },
+  {
+   "id": "lk",
+   "table": "scripts/geo/factory/country-factory/lk-factory-targets.json"
+  },
+  {
+   "id": "lt",
+   "table": "scripts/geo/factory/country-factory/lt-factory-targets.json"
+  },
+  {
+   "id": "lv",
+   "table": "scripts/geo/factory/country-factory/lv-factory-targets.json"
+  },
+  {
+   "id": "md",
+   "table": "scripts/geo/factory/country-factory/md-factory-targets.json"
+  },
+  {
+   "id": "me",
+   "table": "scripts/geo/factory/country-factory/me-factory-targets.json"
+  },
+  {
+   "id": "mh",
+   "table": "scripts/geo/factory/country-factory/mh-factory-targets.json"
+  },
+  {
+   "id": "mk",
+   "table": "scripts/geo/factory/country-factory/mk-factory-targets.json"
+  },
+  {
+   "id": "mn",
+   "table": "scripts/geo/factory/country-factory/mn-factory-targets.json"
+  },
+  {
+   "id": "mt",
+   "table": "scripts/geo/factory/country-factory/mt-factory-targets.json"
+  },
+  {
+   "id": "mv",
+   "table": "scripts/geo/factory/country-factory/mv-factory-targets.json"
+  },
+  {
+   "id": "ni",
+   "table": "scripts/geo/factory/country-factory/ni-factory-targets.json"
+  },
+  {
+   "id": "np",
+   "table": "scripts/geo/factory/country-factory/np-factory-targets.json"
+  },
+  {
+   "id": "om",
+   "table": "scripts/geo/factory/country-factory/om-factory-targets.json"
+  },
+  {
+   "id": "pw",
+   "table": "scripts/geo/factory/country-factory/pw-factory-targets.json"
+  },
+  {
+   "id": "py",
+   "table": "scripts/geo/factory/country-factory/py-factory-targets.json"
+  },
+  {
+   "id": "qa",
+   "table": "scripts/geo/factory/country-factory/qa-factory-targets.json"
+  },
+  {
+   "id": "ro",
+   "table": "scripts/geo/factory/country-factory/ro-factory-targets.json"
+  },
+  {
+   "id": "sa",
+   "table": "scripts/geo/factory/country-factory/sa-factory-targets.json"
+  },
+  {
+   "id": "sb",
+   "table": "scripts/geo/factory/country-factory/sb-factory-targets.json"
+  },
+  {
+   "id": "si",
+   "table": "scripts/geo/factory/country-factory/si-factory-targets.json"
+  },
+  {
+   "id": "sv",
+   "table": "scripts/geo/factory/country-factory/sv-factory-targets.json"
+  },
+  {
+   "id": "tj",
+   "table": "scripts/geo/factory/country-factory/tj-factory-targets.json"
+  },
+  {
+   "id": "tl",
+   "table": "scripts/geo/factory/country-factory/tl-factory-targets.json"
+  },
+  {
+   "id": "tm",
+   "table": "scripts/geo/factory/country-factory/tm-factory-targets.json"
+  },
+  {
+   "id": "tv",
+   "table": "scripts/geo/factory/country-factory/tv-factory-targets.json"
+  },
+  {
+   "id": "uy",
+   "table": "scripts/geo/factory/country-factory/uy-factory-targets.json"
+  },
+  {
+   "id": "vu",
+   "table": "scripts/geo/factory/country-factory/vu-factory-targets.json"
   }
  ]
 }

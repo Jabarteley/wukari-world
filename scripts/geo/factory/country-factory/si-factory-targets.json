@@ -1,0 +1,350 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "SI",
+    "datasetSha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7",
+    "receiptSha256": "5a0145396b913e4b5c32d38b08c4652112b6b77a8a43542dcbcc6a9c3a270716",
+    "receiptBytes": 325508,
+    "geometrySha256": "ec9158885eed32a131c4e0127bb6babfe1087f2ac4f26ac6e2d76cc82b6a7db6",
+    "geometryBytes": 1347003,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 218657,
+    "boundaryKey": "si",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-si-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "ljubljana",
+      "name": "Ljubljana",
+      "country": "si",
+      "facts": {
+        "id": "ljubljana",
+        "name": "Ljubljana",
+        "country": {
+          "idISOlower": "si",
+          "name": "Slovenia"
+        },
+        "state": {
+          "idunique": "si-ljubljana",
+          "name": "Ljubljana"
+        },
+        "timezone": "Europe/Belgrade",
+        "centre": {
+          "lon": 14.5069289,
+          "lat": 46.0500268
+        },
+        "airport": {
+          "id": "ljubljana-airport",
+          "name": "Ljubljana Jože Pučnik Airport",
+          "lon": 14.4576,
+          "lat": 46.223701,
+          "sourceUrl": "https://ourairports.com/airports/LJLJ/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/6968827",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          14.247208961813255,
+          45.86914591006602,
+          14.766648838186745,
+          46.232745044496696
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/6968827",
+          "sourceUrl": "https://www.openstreetmap.org/node/6968827",
+          "sourceRecord": {
+            "ref": "node/6968827",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:gl": "Ljubljana",
+              "alt_name:la": "Aemona",
+              "capital": "yes",
+              "name": "Ljubljana",
+              "name:am": "ልዩብልያና",
+              "name:ar": "ليوبليانا",
+              "name:arz": "ليوبليانا",
+              "name:ast": "Liubliana",
+              "name:av": "Любляна",
+              "name:az": "Lyublyana",
+              "name:ba": "Любляна",
+              "name:bar": "Laiboch",
+              "name:bat-smg": "Liublijana",
+              "name:be": "Любляна",
+              "name:be-tarask": "Любляна",
+              "name:bg": "Любляна",
+              "name:bn": "লিউব্লিয়ানা",
+              "name:bo": "ལི་པོ་ཡ་ན།",
+              "name:br": "Ljubljana",
+              "name:ca": "Ljubljana",
+              "name:ce": "Любляна",
+              "name:ckb": "لیوبلیانا",
+              "name:crh": "Lüblâna",
+              "name:cs": "Lublaň",
+              "name:cu": "Люблꙗна",
+              "name:cv": "Любляна",
+              "name:da": "Ljubljana",
+              "name:de": "Laibach",
+              "name:el": "Λιουμπλιάνα",
+              "name:en": "Ljubljana",
+              "name:eo": "Ljubljano",
+              "name:es": "Liubliana",
+              "name:et": "Ljubljana",
+              "name:ext": "Liubliana",
+              "name:fa": "لیوبلیانا",
+              "name:fi": "Ljubljana",
+              "name:fr": "Ljubljana",
+              "name:fur": "Lubiane",
+              "name:ga": "Liúibleána",
+              "name:gag": "L'yublyana",
+              "name:gl": "Liubliana",
+              "name:gsw": "Laibach",
+              "name:he": "ליובליאנה",
+              "name:hi": "लुब्लियाना",
+              "name:ht": "Lyoubyana",
+              "name:hu": "Ljubljana",
+              "name:hy": "Լյուբլյանա",
+              "name:is": "Ljubljana",
+              "name:it": "Lubiana",
+              "name:ja": "リュブリャナ",
+              "name:ka": "ლიუბლიანა",
+              "name:kaa": "Lyublyana",
+              "name:kab": "Lyubyana",
+              "name:kk": "Любляна",
+              "name:ko": "류블랴나",
+              "name:ks": "لیٛوبلیانا",
+              "name:ku": "Ljubljana",
+              "name:ky": "Любляна",
+              "name:la": "Labacum",
+              "name:lij": "Lubiann-a",
+              "name:lmo": "Lübiana",
+              "name:ln": "Lyublyana",
+              "name:lt": "Liubliana",
+              "name:lv": "Ļubļana",
+              "name:mk": "Љубљана",
+              "name:ml": "ലുബ്ലിയാന",
+              "name:mn": "Любляна",
+              "name:mr": "लियुब्लियाना",
+              "name:myv": "Любляна",
+              "name:nah": "Liubliana",
+              "name:nl": "Ljubljana",
+              "name:no": "Ljubljana",
+              "name:nrm": "Liublianne",
+              "name:oc": "Ljubljana",
+              "name:os": "Люблянæ",
+              "name:pa": "ਲਿਊਬਲਿਆਨਾ",
+              "name:pl": "Lublana",
+              "name:pms": "Lubian-a",
+              "name:pnb": "لیوبلیانا",
+              "name:ps": "لیوبلیانا",
+              "name:pt": "Liubliana",
+              "name:ro": "Ljubljana",
+              "name:ru": "Любляна",
+              "name:rue": "Любляна",
+              "name:sah": "Любляна",
+              "name:sc": "Lubiana",
+              "name:sd": "ليوبليانا",
+              "name:sgs": "Liublijana",
+              "name:sk": "Ľubľana",
+              "name:sl": "Ljubljana",
+              "name:sq": "Lubjana",
+              "name:sr": "Љубљана",
+              "name:sr-Latn": "Ljubljana",
+              "name:sv": "Ljubljana",
+              "name:sw": "Lyublyana",
+              "name:ta": "லியுப்லியானா",
+              "name:tg": "Любляна",
+              "name:th": "ลูบลิยานา",
+              "name:tl": "Liubliana",
+              "name:tr": "Lübliyana",
+              "name:tt": "Любляна",
+              "name:udm": "Любляна",
+              "name:ug": "ليۇبليانا",
+              "name:uk": "Любляна",
+              "name:ur": "لیوبلیانا",
+              "name:uz": "Lyublyana",
+              "name:vec": "Łubiana",
+              "name:vep": "Lüblän",
+              "name:vi": "Ljubljana",
+              "name:wo": "Jubaljana",
+              "name:wuu": "卢布尔雅那",
+              "name:xmf": "ლიუბლიანა",
+              "name:yi": "ליובליאנא",
+              "name:yue": "盧布爾雅那",
+              "name:zh": "盧布爾雅那",
+              "name:zh-Hans": "卢布尔雅那",
+              "old_name:el": "Λάιμπαχ",
+              "place": "city",
+              "population": "285604",
+              "postal_code": "1000",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "Lo Congrès",
+              "source:population": "https://pxweb.stat.si/SiStatData/pxweb/en/Data/-/H232S.px/",
+              "website": "https://www.ljubljana.si/",
+              "wikidata": "Q437",
+              "wikipedia": "sl:Ljubljana"
+            },
+            "lon": 14.5069289,
+            "lat": 46.0500268
+          },
+          "pbfSha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7"
+        },
+        "airport": {
+          "rowNumber": 44554,
+          "row": {
+            "id": "4386",
+            "ident": "LJLJ",
+            "type": "large_airport",
+            "name": "Ljubljana Jože Pučnik Airport",
+            "latitude_deg": "46.223701",
+            "longitude_deg": "14.4576",
+            "elevation_ft": "1273",
+            "continent": "EU",
+            "iso_country": "SI",
+            "iso_region": "SI-012",
+            "municipality": "Zgornji Brnik",
+            "scheduled_service": "yes",
+            "icao_code": "LJLJ",
+            "iata_code": "LJU",
+            "gps_code": "LJLJ",
+            "local_code": "",
+            "home_link": "http://www.lju-airport.si/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Ljubljana_Jo%C5%BEe_Pu%C4%8Dnik_Airport",
+            "keywords": "Ljubljana, Kranj"
+          },
+          "rowSha256": "d1850645136ab96edcebf1ab556df1f8c1fd7145197848130cbe661c8e04c200",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LJLJ",
+            "sourceUrl": "https://ourairports.com/airports/LJLJ/",
+            "matchedIdent": "LJLJ",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LJLJ/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "RS,BA,HR,ME,MK,SI",
+              "+4450+02030",
+              "Europe/Belgrade"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Belgrade",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "RS,BA,HR,ME,MK,SI",
+              "+4450+02030",
+              "Europe/Belgrade"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf",
+          "bytes": 313640878,
+          "sha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/72613414",
+          "way/72613448",
+          "way/118944619",
+          "way/118944620",
+          "way/121220335",
+          "way/121220336",
+          "way/143751510",
+          "way/148450579",
+          "way/159080384",
+          "way/461366544",
+          "way/461366545",
+          "way/766674764",
+          "way/766674765",
+          "way/830744504",
+          "way/1070992146",
+          "way/1217777173",
+          "way/1217806428",
+          "way/1217971786"
+        ],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              45.86914591006602,
+              14.247208961813255,
+              46.232745044496696,
+              14.766648838186745
+            ],
+            "core": [
+              46.004806577516504,
+              14.442158826507974,
+              46.09524702248349,
+              14.571698973492026
+            ],
+            "outline": [
+              45.81914591006602,
+              14.197208961813255,
+              46.28274504449669,
+              14.816648838186746
+            ],
+            "wide": [
+              45.269145910066015,
+              13.647208961813256,
+              46.8327450444967,
+              15.366648838186745
+            ]
+          },
+          "airportMarginMetres": 999.9999999998169,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "ljubljana",
+      "extractSha256": {
+        "places": "4e45af729d367c682f5ce1b83a887cbb922d25b3b0a7fc79e624aff260a6f818",
+        "extras": "5f83d5cefe757f3967c6aa9c67a730c7c6576e8994acc4c4f151a16b37b92ec4",
+        "water": "00c94ea7db5c3d90b9428cf2a51d126feb1aae28d6ac25ac836bb93a3f50bbcb",
+        "landuse": "c83dd3842070e330227080a855dc928aa3a21958e02d03dc72a67edf61a05ea5",
+        "roads": "9291e5ecab120bb991e6e3b44f1109457552e0803ec88f10b146b2de34349320"
+      },
+      "sourceJob": {
+        "city": "ljubljana",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-si-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "4e45af729d367c682f5ce1b83a887cbb922d25b3b0a7fc79e624aff260a6f818",
+          "extras": "5f83d5cefe757f3967c6aa9c67a730c7c6576e8994acc4c4f151a16b37b92ec4",
+          "water": "00c94ea7db5c3d90b9428cf2a51d126feb1aae28d6ac25ac836bb93a3f50bbcb",
+          "landuse": "c83dd3842070e330227080a855dc928aa3a21958e02d03dc72a67edf61a05ea5",
+          "roads": "9291e5ecab120bb991e6e3b44f1109457552e0803ec88f10b146b2de34349320"
+        }
+      }
+    }
+  ]
+}

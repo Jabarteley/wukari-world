@@ -1,0 +1,335 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "LA",
+    "datasetSha256": "a293dc200e82f7b971cec9ad54953461015a3e6943dd6da20fea123e18f058c6",
+    "receiptSha256": "0f97224b9ae44fd884dcc15d8522b4c0796b4b94a24f8e7a4f5c5946c66339a3",
+    "receiptBytes": 178858,
+    "geometrySha256": "716b08e7aa6415871ae0316828e3a0f6a8cc59212273e8aab22310ae5db3d9b3",
+    "geometryBytes": 926923,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 49903,
+    "boundaryKey": "la",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-la-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "vientiane",
+      "name": "Vientiane",
+      "country": "la",
+      "facts": {
+        "id": "vientiane",
+        "name": "Vientiane",
+        "country": {
+          "idISOlower": "la",
+          "name": "Laos"
+        },
+        "state": {
+          "idunique": "la-vientiane",
+          "name": "Vientiane"
+        },
+        "timezone": "Asia/Bangkok",
+        "centre": {
+          "lon": 102.6133707,
+          "lat": 17.9640988
+        },
+        "airport": {
+          "id": "vientiane-airport",
+          "name": "Wattay International Airport",
+          "lon": 102.566692,
+          "lat": 17.985052,
+          "sourceUrl": "https://ourairports.com/airports/VLVT/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/122739684",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          102.42430659921996,
+          17.78321791006602,
+          102.80243480078005,
+          18.144979689933976
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/122739684",
+          "sourceUrl": "https://www.openstreetmap.org/node/122739684",
+          "sourceRecord": {
+            "ref": "node/122739684",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:ko": "위앙짠",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "name": "ວຽງຈັນ",
+              "name:af": "Vientiane",
+              "name:am": "ቭየንትዬን",
+              "name:an": "Vientiane",
+              "name:ar": "فيينتيان",
+              "name:as": "ভিয়েনটিয়েন",
+              "name:az": "Vyentyan",
+              "name:ba": "Вьентьян",
+              "name:be": "В'енцьян",
+              "name:be-tarask": "Віенцьян",
+              "name:bg": "Виентян",
+              "name:bjn": "Wiangcan",
+              "name:bn": "ভিয়েনতিয়েন",
+              "name:bo": "ཝིན་ཆིའང་",
+              "name:br": "Vientiane",
+              "name:bs": "Vientiane",
+              "name:ca": "Vientiane",
+              "name:ce": "Вьентьян",
+              "name:ckb": "ڤیەنتیان",
+              "name:cs": "Vientiane",
+              "name:cv": "Вьентьян",
+              "name:cy": "Vientiane",
+              "name:da": "Vientiane",
+              "name:de": "Vientiane",
+              "name:el": "Βιεντιάν",
+              "name:en": "Vientiane",
+              "name:eo": "Vjentiano",
+              "name:es": "Vientián",
+              "name:et": "Vientiane",
+              "name:eu": "Vientian",
+              "name:fa": "وینتیان",
+              "name:fi": "Vientiane",
+              "name:fj": "Vientiane",
+              "name:fr": "Vientiane",
+              "name:fy": "Wiën Tsjan",
+              "name:ga": "Vientiane",
+              "name:gd": "Vientiane",
+              "name:gl": "Vientiane",
+              "name:gn": "Vientiã",
+              "name:ha": "Vientiane",
+              "name:he": "ויינטיאן",
+              "name:hi": "विअंग् चन्",
+              "name:hr": "Vientiane",
+              "name:ht": "Vyantyàn",
+              "name:hu": "Vientián",
+              "name:hy": "Վյենտյան",
+              "name:id": "Vientiane",
+              "name:ie": "Vientiane",
+              "name:io": "Vientiane",
+              "name:is": "Vientiane",
+              "name:it": "Vientiane",
+              "name:ja": "ヴィエンチャン",
+              "name:ka": "ვიენტიანი",
+              "name:kk": "Вьентьян",
+              "name:km": "វៀងច័ន្ទន៍",
+              "name:kn": "ವಿಅಂಗ್ ಚನ್",
+              "name:ko": "비엔티안",
+              "name:ku": "Vientiane",
+              "name:ky": "Вьентьян",
+              "name:la": "Vientiana",
+              "name:lb": "Vientiane",
+              "name:ln": "Vientiane",
+              "name:lo": "ວຽງຈັນ",
+              "name:lt": "Vientianas",
+              "name:lv": "Vjenčana",
+              "name:mg": "Vientiane",
+              "name:mk": "Виентијан",
+              "name:ml": "വിയാങ്ചാൻ",
+              "name:mn": "Вьентьян",
+              "name:mr": "व्हिआंतियान",
+              "name:ms": "Vientiane",
+              "name:mt": "Vientiane",
+              "name:my": "ဗီယင်ကျန်းမြို့",
+              "name:nah": "Vianchan",
+              "name:nb": "Vientiane",
+              "name:ne": "भियनटियान",
+              "name:nl": "Vientiane",
+              "name:nn": "Vientiane",
+              "name:nv": "Tsinłání Bináʼátłʼinii",
+              "name:ny": "Vientiane",
+              "name:oc": "Viengchan",
+              "name:os": "Вьентьян",
+              "name:pa": "ਵਿਆਂਗ ਚਾਨ",
+              "name:pl": "Wientian",
+              "name:ps": "وینتیان",
+              "name:pt": "Vienciana",
+              "name:ro": "Vientiane",
+              "name:ru": "Вьентьян",
+              "name:sc": "Vientiane",
+              "name:sd": "ويانچان",
+              "name:sk": "Vientian",
+              "name:sl": "Vientjan",
+              "name:sn": "Vientiane",
+              "name:sq": "Vientiane",
+              "name:sr": "Вијентијан",
+              "name:sv": "Vientiane",
+              "name:sw": "Vientiane",
+              "name:ta": "வியஞ்சான்",
+              "name:tg": "Вентян",
+              "name:th": "เวียงจันทน์",
+              "name:tl": "Vientian",
+              "name:tr": "Vientiane",
+              "name:udm": "Вьентьян",
+              "name:ug": "Wyéntyan",
+              "name:uk": "В'єнтьян",
+              "name:ur": "وینتیان",
+              "name:uz": "Ventyan",
+              "name:vi": "Viêng Chăn",
+              "name:vo": "Viengtjan",
+              "name:wuu": "万象",
+              "name:yo": "Vientiane",
+              "name:yue": "永珍",
+              "name:za": "Fanhyiengh",
+              "name:zh": "万象;永珍",
+              "name:zh-Hans": "万象",
+              "name:zh-Hans-CN": "万象",
+              "name:zh-Hans-TW": "永珍",
+              "name:zh-Hant": "永珍",
+              "name:zh-Hant-CN": "萬象",
+              "name:zh-Hant-TW": "永珍",
+              "old_name:vi": "Vạn Tượng",
+              "place": "city",
+              "population": "783000",
+              "wikidata": "Q9326",
+              "wikipedia": "en:Vientiane"
+            },
+            "lon": 102.6133707,
+            "lat": 17.9640988
+          },
+          "pbfSha256": "a293dc200e82f7b971cec9ad54953461015a3e6943dd6da20fea123e18f058c6"
+        },
+        "airport": {
+          "rowNumber": 81804,
+          "row": {
+            "id": "26588",
+            "ident": "VLVT",
+            "type": "large_airport",
+            "name": "Wattay International Airport",
+            "latitude_deg": "17.985052",
+            "longitude_deg": "102.566692",
+            "elevation_ft": "564",
+            "continent": "AS",
+            "iso_country": "LA",
+            "iso_region": "LA-VT",
+            "municipality": "Vientiane",
+            "scheduled_service": "yes",
+            "icao_code": "VLVT",
+            "iata_code": "VTE",
+            "gps_code": "VLVT",
+            "local_code": "",
+            "home_link": "http://www.vientianeairport.com/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Wattay_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "1c86893775c7e2eb0fe47386b2bfac52dcbed87f365dba1bda4c80d665e262fc",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "VLVT",
+            "sourceUrl": "https://ourairports.com/airports/VLVT/",
+            "matchedIdent": "VLVT",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/VLVT/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TH,CX,KH,LA,VN",
+              "+1345+10031",
+              "Asia/Bangkok",
+              "north Vietnam"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Bangkok",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "TH,CX,KH,LA,VN",
+              "+1345+10031",
+              "Asia/Bangkok",
+              "north Vietnam"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/laos-261011.osm.pbf",
+          "bytes": 53884201,
+          "sha256": "a293dc200e82f7b971cec9ad54953461015a3e6943dd6da20fea123e18f058c6",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              17.78321791006602,
+              102.42430659921996,
+              18.144979689933976,
+              102.80243480078005
+            ],
+            "core": [
+              17.918878577516505,
+              102.56614119011199,
+              18.009319022483492,
+              102.66060020988802
+            ],
+            "outline": [
+              17.73321791006602,
+              102.37430659921996,
+              18.194979689933977,
+              102.85243480078005
+            ],
+            "wide": [
+              17.18321791006602,
+              101.82430659921997,
+              18.744979689933977,
+              103.40243480078004
+            ]
+          },
+          "airportMarginMetres": 15075.849161241196,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "vientiane",
+      "extractSha256": {
+        "places": "22611c4602ba6b49f70c2d03c7e5e86efb3c42ff28ff30dafc150dfc53fe21e0",
+        "extras": "f9aa6ce5dbfb54cfde97a748ae7ad914285d029319fc8c61b459f62e98273a46",
+        "water": "1ac1bdf0240d3fbb62401ba459b947a2afcd348b627e9e0abc898bbd13bc94ac",
+        "landuse": "d98a8af39f334cf4ebf51bf30b0e6c390c3b6b91f73aa845bbcf07affb677ed6",
+        "roads": "caf6ce12f1d4aab59348bc51d8a6699276d25d4c3bddd2822594a6339de445eb"
+      },
+      "sourceJob": {
+        "city": "vientiane",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-la-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "a293dc200e82f7b971cec9ad54953461015a3e6943dd6da20fea123e18f058c6",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "22611c4602ba6b49f70c2d03c7e5e86efb3c42ff28ff30dafc150dfc53fe21e0",
+          "extras": "f9aa6ce5dbfb54cfde97a748ae7ad914285d029319fc8c61b459f62e98273a46",
+          "water": "1ac1bdf0240d3fbb62401ba459b947a2afcd348b627e9e0abc898bbd13bc94ac",
+          "landuse": "d98a8af39f334cf4ebf51bf30b0e6c390c3b6b91f73aa845bbcf07affb677ed6",
+          "roads": "caf6ce12f1d4aab59348bc51d8a6699276d25d4c3bddd2822594a6339de445eb"
+        }
+      }
+    }
+  ]
+}

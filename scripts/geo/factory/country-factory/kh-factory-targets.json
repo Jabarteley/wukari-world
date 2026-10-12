@@ -1,0 +1,334 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "KH",
+    "datasetSha256": "3ba981fb87c3d9d6c4b0c5cd0785319d82631a7a936a70d01dbcc75e1bbba8c8",
+    "receiptSha256": "9f11f5f1edfce60a79d7b8b7376a6c07fbda56139f600be9e96e239e10eaca4b",
+    "receiptBytes": 137879,
+    "geometrySha256": "18a94cdda8555c552906d39be1bc0f7ad9044b58d1ab6ef1e5cceedee4ce2e69",
+    "geometryBytes": 1117876,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 49898,
+    "boundaryKey": "kh",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-kh-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "phnom-penh",
+      "name": "Phnom Penh",
+      "country": "kh",
+      "facts": {
+        "id": "phnom-penh",
+        "name": "Phnom Penh",
+        "country": {
+          "idISOlower": "kh",
+          "name": "Cambodia"
+        },
+        "state": {
+          "idunique": "kh-phnom-penh",
+          "name": "Phnom Penh"
+        },
+        "timezone": "Asia/Bangkok",
+        "centre": {
+          "lon": 104.9224426,
+          "lat": 11.568271
+        },
+        "airport": {
+          "id": "phnom-penh-airport",
+          "name": "Techo International Airport",
+          "lon": 104.921272,
+          "lat": 11.359987,
+          "sourceUrl": "https://ourairports.com/airports/KH-0002/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/560229438",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          104.73893561599425,
+          11.350942955503301,
+          105.10594958400574,
+          11.749151889933978
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/560229438",
+          "sourceUrl": "https://www.openstreetmap.org/node/560229438",
+          "sourceRecord": {
+            "ref": "node/560229438",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:vi": "Nam Vang",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "12",
+              "int_name": "Phnom Penh",
+              "name": "រាជធានីភ្នំពេញ",
+              "name:af": "Phnom Penh",
+              "name:am": "ፕኖም ፔን",
+              "name:an": "Phnom Penh",
+              "name:ar": "بنوم بنه",
+              "name:az": "Pnompen",
+              "name:ba": "Пномпень",
+              "name:be": "Пнампень",
+              "name:be-tarask": "Пномпэнь",
+              "name:bg": "Пном Пен",
+              "name:bjn": "Phnum Pény",
+              "name:bn": "নম পেন",
+              "name:bo": "ཕོམ་ཕེན།",
+              "name:br": "Phnom Penh",
+              "name:bs": "Phnom Penh",
+              "name:ca": "Phnom Penh",
+              "name:ce": "Пномпень",
+              "name:ckb": "پنۆم پێن",
+              "name:cs": "Phnompenh",
+              "name:cy": "Phnom Penh",
+              "name:da": "Phnom Penh",
+              "name:de": "Phnom Penh",
+              "name:el": "Πνομ Πενχ",
+              "name:en": "Phnom Penh",
+              "name:eo": "Pnom-Peno",
+              "name:es": "Nom Pen",
+              "name:et": "Phnom Penh",
+              "name:eu": "Phnom Penh",
+              "name:fa": "پنوم‌پن",
+              "name:fi": "Phnom Penh",
+              "name:fr": "Phnom Penh",
+              "name:fy": "Pnom Pen",
+              "name:ga": "Phnom Penh",
+              "name:gd": "Phnom Penh",
+              "name:gl": "Phnom Penh",
+              "name:gn": "Nom Pen",
+              "name:ha": "Phnom Penh",
+              "name:he": "פנום פן",
+              "name:hi": "नामपेन्ह",
+              "name:hr": "Phnom Penh",
+              "name:ht": "Phnom Penh",
+              "name:hu": "Phnompen",
+              "name:hy": "Պնոմպեն",
+              "name:ia": "Phnom Penh",
+              "name:id": "Phnom Penh",
+              "name:ie": "Phnom Penh",
+              "name:io": "Phnom Penh",
+              "name:is": "Phnom Penh",
+              "name:it": "Phnom Penh",
+              "name:ja": "プノンペン",
+              "name:ka": "პნომპენი",
+              "name:kab": "Pnum Pin",
+              "name:kk": "Пномпень",
+              "name:km": "រាជធានីភ្នំពេញ",
+              "name:km:IPA": "riəc.tʰiə.niː pʰnum pɨɲ",
+              "name:kn": "ಫ್ನೊಮ್ ಪೆನ್",
+              "name:ko": "프놈펜",
+              "name:kw": "Phnom Penh",
+              "name:ky": "Пномпень",
+              "name:la": "Phnom Penh",
+              "name:lb": "Phnom Penh",
+              "name:lo": "ພະນົມເປັນ",
+              "name:lt": "Pnompenis",
+              "name:lv": "Pnompeņa",
+              "name:lzh": "金邊",
+              "name:mg": "Phnom Penh",
+              "name:mk": "Пном Пен",
+              "name:ml": "നോം പെൻ",
+              "name:mn": "Пномпень",
+              "name:mr": "पनॉम पेन",
+              "name:ms": "Phnom Penh",
+              "name:mt": "Phnom Penh",
+              "name:my": "ဖနွမ်းပင်မြို့",
+              "name:nb": "Phnom Penh",
+              "name:ne": "पेनोम पेन्ह",
+              "name:nl": "Pnom Penh",
+              "name:nn": "Phnom Penh",
+              "name:nv": "Hókʼą́ągi Kin Heetsʼózí",
+              "name:oc": "Phnom Penh",
+              "name:os": "Пномпень",
+              "name:pa": "ਪਨਾਮ ਪੈਨ",
+              "name:pl": "Phnom Penh",
+              "name:pnb": "فنوم پن",
+              "name:ps": "پنوم پن",
+              "name:pt": "Phnom Penh",
+              "name:qu": "Phnom Penh",
+              "name:ro": "Phnom Penh",
+              "name:ru": "Пномпень",
+              "name:sah": "Пном Пэнь",
+              "name:sc": "Phnom Penh",
+              "name:sd": "پيهنوم پين",
+              "name:sk": "Phnom Pénh",
+              "name:sl": "Phnom Penh",
+              "name:sn": "Phnom Penh",
+              "name:so": "Phnom Penh",
+              "name:sq": "Phnom Penh",
+              "name:sr": "Пном Пен",
+              "name:sv": "Phnom Penh",
+              "name:sw": "Phnom Penh",
+              "name:ta": "புனோம் பென்",
+              "name:tg": "Пномпен",
+              "name:th": "พนมเปญ",
+              "name:tl": "Nom Pen",
+              "name:tr": "Punom Pen",
+              "name:tt": "Pnompen",
+              "name:ug": "فنوم پېن",
+              "name:uk": "Пномпень",
+              "name:ur": "پنوم پن",
+              "name:uz": "Pnompen",
+              "name:vi": "Phnôm Pênh",
+              "name:vo": "Phnum Pénh",
+              "name:wuu": "金边",
+              "name:yo": "Phnom Penh",
+              "name:zh": "金边",
+              "name:zh-Hans": "金边",
+              "name:zh-Hant": "金邊",
+              "place": "city",
+              "population": "2009264",
+              "source:name:oc": "Lo Congrès",
+              "wikidata": "Q1850",
+              "wikipedia": "km:ភ្នំពេញ",
+              "wikivoyage": "en:Phnom Penh"
+            },
+            "lon": 104.9224426,
+            "lat": 11.568271
+          },
+          "pbfSha256": "3ba981fb87c3d9d6c4b0c5cd0785319d82631a7a936a70d01dbcc75e1bbba8c8"
+        },
+        "airport": {
+          "rowNumber": 40174,
+          "row": {
+            "id": "342098",
+            "ident": "KH-0002",
+            "type": "large_airport",
+            "name": "Techo International Airport",
+            "latitude_deg": "11.359987",
+            "longitude_deg": "104.921272",
+            "elevation_ft": "20",
+            "continent": "AS",
+            "iso_country": "KH",
+            "iso_region": "KH-8",
+            "municipality": "Phnom Penh (Boeng Khyang)",
+            "scheduled_service": "yes",
+            "icao_code": "VDTI",
+            "iata_code": "KTI",
+            "gps_code": "VDTI",
+            "local_code": "",
+            "home_link": "https://www.techoairport.com.kh/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Techo_International_Airport_(Cambodia)",
+            "keywords": ""
+          },
+          "rowSha256": "6e5048f0351a0bc7555e38f7c80e65ad0c0f12a540fad0d06defd4ffd1773957",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "KH-0002",
+            "sourceUrl": "https://ourairports.com/airports/KH-0002/",
+            "matchedIdent": "KH-0002",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/KH-0002/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TH,CX,KH,LA,VN",
+              "+1345+10031",
+              "Asia/Bangkok",
+              "north Vietnam"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Bangkok",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "TH,CX,KH,LA,VN",
+              "+1345+10031",
+              "Asia/Bangkok",
+              "north Vietnam"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/cambodia-261011.osm.pbf",
+          "bytes": 41079738,
+          "sha256": "3ba981fb87c3d9d6c4b0c5cd0785319d82631a7a936a70d01dbcc75e1bbba8c8",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              11.350942955503301,
+              104.73893561599425,
+              11.749151889933978,
+              105.10594958400574
+            ],
+            "core": [
+              11.523050777516504,
+              104.87658830643825,
+              11.613491222483495,
+              104.96829689356174
+            ],
+            "outline": [
+              11.3009429555033,
+              104.68893561599425,
+              11.79915188993398,
+              105.15594958400574
+            ],
+            "wide": [
+              10.750942955503302,
+              104.13893561599426,
+              12.349151889933978,
+              105.70594958400574
+            ]
+          },
+          "airportMarginMetres": 1000.0000000000133,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "phnom-penh",
+      "extractSha256": {
+        "places": "aa6fd03353316cff93b515117247ca4c7355aa339856e213854a24ba4996041c",
+        "extras": "11be9c0df827236290bd4c489a275b6efdad82fe36c9f9703c7de81ca6494716",
+        "water": "23405422564ed56df37ad1709a3482321e04afe190dd5bb09a529d2ac63042f0",
+        "landuse": "132a2e13ee4329d9dea40931e0a4ee991ba6d92ab26bde550ec98294875889c3",
+        "roads": "5e420d76411f12fd51403b15f0202ff0190373d769ddf77969ea0e4daf853cd4"
+      },
+      "sourceJob": {
+        "city": "phnom-penh",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-kh-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "3ba981fb87c3d9d6c4b0c5cd0785319d82631a7a936a70d01dbcc75e1bbba8c8",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "aa6fd03353316cff93b515117247ca4c7355aa339856e213854a24ba4996041c",
+          "extras": "11be9c0df827236290bd4c489a275b6efdad82fe36c9f9703c7de81ca6494716",
+          "water": "23405422564ed56df37ad1709a3482321e04afe190dd5bb09a529d2ac63042f0",
+          "landuse": "132a2e13ee4329d9dea40931e0a4ee991ba6d92ab26bde550ec98294875889c3",
+          "roads": "5e420d76411f12fd51403b15f0202ff0190373d769ddf77969ea0e4daf853cd4"
+        }
+      }
+    }
+  ]
+}

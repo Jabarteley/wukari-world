@@ -1,0 +1,344 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "NP",
+    "datasetSha256": "2bbcffba2f91e4a4d3afa363c0a33dc97215c5ce1f20c8f70013ba3567bcd71e",
+    "receiptSha256": "1e96409233253b96fb38913c7c271d4783d43841ad918e5128e4549187b885ad",
+    "receiptBytes": 291163,
+    "geometrySha256": "f557851681f7007f8c006b6f454c5906e0bfc2eab20220db102a476a268d85b8",
+    "geometryBytes": 565419,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 184633,
+    "boundaryKey": "np",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-np-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "kathmandu",
+      "name": "Kathmandu",
+      "country": "np",
+      "facts": {
+        "id": "kathmandu",
+        "name": "Kathmandu",
+        "country": {
+          "idISOlower": "np",
+          "name": "Nepal"
+        },
+        "state": {
+          "idunique": "np-kathmandu",
+          "name": "Kathmandu"
+        },
+        "timezone": "Asia/Kathmandu",
+        "centre": {
+          "lon": 85.3205817,
+          "lat": 27.708317
+        },
+        "airport": {
+          "id": "kathmandu-airport",
+          "name": "Tribhuvan International Airport",
+          "lon": 85.3591,
+          "lat": 27.6966,
+          "sourceUrl": "https://ourairports.com/airports/VNKT/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/67157058",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          85.11731026752476,
+          27.527436110066024,
+          85.52385313247525,
+          27.88919788993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/67157058",
+          "sourceUrl": "https://www.openstreetmap.org/node/67157058",
+          "sourceRecord": {
+            "ref": "node/67157058",
+            "tags": {
+              "admin_level": "2",
+              "alt_name": "य",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "1355",
+              "int_name": "Kathmandu",
+              "name": "काठमाडौं",
+              "name:af": "Katmandoe",
+              "name:am": "ካትማንዱ",
+              "name:an": "Katmandú",
+              "name:ar": "كاثماندو",
+              "name:as": "কাঠমাণ্ডু",
+              "name:az": "Katmandu",
+              "name:ba": "Катманду",
+              "name:bat-smg": "Katmandū",
+              "name:be": "Катманду",
+              "name:be-tarask": "Катманду",
+              "name:bg": "Катманду",
+              "name:bh": "काठमाडौं",
+              "name:bn": "কাঠমান্ডু",
+              "name:bo": "ཀ་ཏ་མན་ཏུ།",
+              "name:br": "Kathmandu",
+              "name:bs": "Katmandu",
+              "name:ca": "Katmandú",
+              "name:ce": "Катманду",
+              "name:ckb": "کاتماندوو",
+              "name:cs": "Káthmándú",
+              "name:cy": "Kathmandu",
+              "name:da": "Katmandu",
+              "name:de": "Kathmandu",
+              "name:dz": "ཀཊི་མཱན་ཌུ",
+              "name:el": "Κατμαντού",
+              "name:en": "Kathmandu",
+              "name:eo": "Katmanduo",
+              "name:es": "Katmandú",
+              "name:et": "Katmandu",
+              "name:eu": "Katmandu",
+              "name:fa": "کاتماندو",
+              "name:fi": "Kathmandu",
+              "name:fj": "Kathmandu",
+              "name:fr": "Katmandou",
+              "name:fy": "Katmandû",
+              "name:ga": "Katmandu",
+              "name:gd": "Kathmandu",
+              "name:gl": "Katmandu - काठमांडौ",
+              "name:gn": "Katemandu",
+              "name:gu": "કાઠમંડુ",
+              "name:ha": "Kathmandu",
+              "name:he": "קטמנדו",
+              "name:hi": "काठमांडू",
+              "name:hr": "Katmandu",
+              "name:hsb": "Katmandu",
+              "name:ht": "Katmandou",
+              "name:hu": "Katmandu",
+              "name:hy": "Կատմանդու",
+              "name:ia": "Kathmandu",
+              "name:id": "Kathmandu",
+              "name:ie": "Kathmandu",
+              "name:io": "Katmandu",
+              "name:is": "Katmandú",
+              "name:it": "Katmandu",
+              "name:ja": "カトマンズ",
+              "name:jv": "Kathmandu",
+              "name:ka": "კატმანდუ",
+              "name:kab": "Katmandu",
+              "name:kk": "Катманду",
+              "name:kn": "ಕಾಠ್ಮಂಡು",
+              "name:ko": "카트만두",
+              "name:ks": "کاٹھمنڈوٗ",
+              "name:ku": "Kathmandu",
+              "name:ky": "Катманду",
+              "name:la": "Catmandum",
+              "name:lb": "Katmandu",
+              "name:li": "Kathmandu",
+              "name:lij": "Katmandu",
+              "name:lo": "ກາດມານດຸ",
+              "name:lt": "Katmandu",
+              "name:lv": "Katmandu",
+              "name:mg": "Kathmandu",
+              "name:mk": "Катманду",
+              "name:ml": "കാഠ്മണ്ഡു",
+              "name:mn": "Катманду",
+              "name:mr": "काठमांडू",
+              "name:ms": "Kathmandu",
+              "name:mt": "Kathmandu",
+              "name:my": "ခတ္တမန္ဒုမြို့",
+              "name:nb": "Katmandu",
+              "name:ne": "काठमाडौं",
+              "name:new": "येँ",
+              "name:nl": "Kathmandu",
+              "name:nn": "Katmandu",
+              "name:no": "Katmandu",
+              "name:nov": "Katmandu",
+              "name:oc": "Katmandó",
+              "name:or": "କାଠମାଣ୍ଡୁ",
+              "name:os": "Катманду",
+              "name:pa": "ਕਠਮੰਡੂ",
+              "name:pl": "Katmandu",
+              "name:pnb": "کھٹمنڈو",
+              "name:ps": "کاتماندو",
+              "name:pt": "Catmandu",
+              "name:ro": "Kathmandu",
+              "name:ru": "Катманду",
+              "name:sa": "काट्मण्डू",
+              "name:sc": "Katmandù",
+              "name:sd": "کٽمنڊو",
+              "name:se": "Kathmandu",
+              "name:sh": "Katmandu",
+              "name:si": "කත්මන්ඩු",
+              "name:sk": "Káthmandu",
+              "name:sl": "Katmandu",
+              "name:sn": "Kathmandu",
+              "name:sq": "Kathmandu",
+              "name:sr": "Катманду",
+              "name:sv": "Katmandu",
+              "name:sw": "Kathmandu",
+              "name:ta": "காட்மாண்டூ",
+              "name:te": "ఖాట్మండు",
+              "name:tg": "Катманду",
+              "name:th": "กาฐมาณฑุ",
+              "name:tl": "Katmandu",
+              "name:tr": "Katmandu",
+              "name:tt": "Катманду",
+              "name:ug": "كاتماندۇ",
+              "name:uk": "Катманду",
+              "name:ur": "کھٹمنڈو",
+              "name:uz": "Katmandu",
+              "name:vi": "Kathmandu",
+              "name:vo": "Kathmandau",
+              "name:yi": "קאטמאנדו",
+              "name:yo": "Kathmandu",
+              "name:yue": "加德滿都",
+              "name:zh": "加德满都",
+              "name:zh-Hans": "加德满都",
+              "nat_name": "काठमांडौ",
+              "place": "city",
+              "population": "975000",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "wikidata": "Q3037",
+              "wikipedia": "en:Kathmandu"
+            },
+            "lon": 85.3205817,
+            "lat": 27.708317
+          },
+          "pbfSha256": "2bbcffba2f91e4a4d3afa363c0a33dc97215c5ce1f20c8f70013ba3567bcd71e"
+        },
+        "airport": {
+          "rowNumber": 81897,
+          "row": {
+            "id": "26596",
+            "ident": "VNKT",
+            "type": "large_airport",
+            "name": "Tribhuvan International Airport",
+            "latitude_deg": "27.6966",
+            "longitude_deg": "85.3591",
+            "elevation_ft": "4390",
+            "continent": "AS",
+            "iso_country": "NP",
+            "iso_region": "NP-P3",
+            "municipality": "Kathmandu",
+            "scheduled_service": "yes",
+            "icao_code": "VNKT",
+            "iata_code": "KTM",
+            "gps_code": "VNKT",
+            "local_code": "",
+            "home_link": "https://www.tiairport.com.np/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Tribhuvan_International_Airport",
+            "keywords": "gaucharan, Bagmati"
+          },
+          "rowSha256": "51fb87a03aaef80776989f5b2933f3be1e9385a7c63613a7ea4c9ca945126a9f",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "VNKT",
+            "sourceUrl": "https://ourairports.com/airports/VNKT/",
+            "matchedIdent": "VNKT",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/VNKT/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "NP",
+              "+2743+08519",
+              "Asia/Kathmandu"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Kathmandu",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "NP",
+              "+2743+08519",
+              "Asia/Kathmandu"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/nepal-261011.osm.pbf",
+          "bytes": 414594213,
+          "sha256": "2bbcffba2f91e4a4d3afa363c0a33dc97215c5ce1f20c8f70013ba3567bcd71e",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              27.527436110066024,
+              85.11731026752476,
+              27.88919788993398,
+              85.52385313247525
+            ],
+            "core": [
+              27.663096777516508,
+              85.26982729860245,
+              27.753537222483494,
+              85.37133610139756
+            ],
+            "outline": [
+              27.477436110066023,
+              85.06731026752476,
+              27.93919788993398,
+              85.57385313247525
+            ],
+            "wide": [
+              26.927436110066022,
+              84.51731026752476,
+              28.48919788993398,
+              86.12385313247525
+            ]
+          },
+          "airportMarginMetres": 16238.90715354822,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "kathmandu",
+      "extractSha256": {
+        "places": "94259b68abffcf511e16f3050114c4aa7b74ffd483dd4b0f88363aba9db13e1b",
+        "extras": "cfa464f386e9878a4fecbc83ce49bc4041bbff997386ab26bb454b0828db3808",
+        "water": "2183ddbad551ccae6179455d091015be15a2d5fad4117df946af32e4c9796b59",
+        "landuse": "edabb8d0c60520710b50158e8d9483a0bbcaa108013b98e36f067a682af04a47",
+        "roads": "61eab3fe8a7c4edd361e682ef83742477c54a5535e0dadf4569e17608d00639d"
+      },
+      "sourceJob": {
+        "city": "kathmandu",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-np-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "2bbcffba2f91e4a4d3afa363c0a33dc97215c5ce1f20c8f70013ba3567bcd71e",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "94259b68abffcf511e16f3050114c4aa7b74ffd483dd4b0f88363aba9db13e1b",
+          "extras": "cfa464f386e9878a4fecbc83ce49bc4041bbff997386ab26bb454b0828db3808",
+          "water": "2183ddbad551ccae6179455d091015be15a2d5fad4117df946af32e4c9796b59",
+          "landuse": "edabb8d0c60520710b50158e8d9483a0bbcaa108013b98e36f067a682af04a47",
+          "roads": "61eab3fe8a7c4edd361e682ef83742477c54a5535e0dadf4569e17608d00639d"
+        }
+      }
+    }
+  ]
+}

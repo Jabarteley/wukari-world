@@ -1,0 +1,356 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "GT",
+    "datasetSha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa",
+    "receiptSha256": "dcc95f110840e6b64ed12331906e278b2f945295fbb7a2bdd26ba4b891131494",
+    "receiptBytes": 134191,
+    "geometrySha256": "cec6ec1025a4b49531a2b74d001a2950ef69f0d564812a29752a5bf9c6dd32f0",
+    "geometryBytes": 273717,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 1521463,
+    "boundaryKey": "gt",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-gt-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "guatemala-city",
+      "name": "Guatemala City",
+      "country": "gt",
+      "facts": {
+        "id": "guatemala-city",
+        "name": "Guatemala City",
+        "country": {
+          "idISOlower": "gt",
+          "name": "Guatemala"
+        },
+        "state": {
+          "idunique": "gt-guatemala-city",
+          "name": "Guatemala City"
+        },
+        "timezone": "America/Guatemala",
+        "centre": {
+          "lon": -90.5132836,
+          "lat": 14.6416142
+        },
+        "airport": {
+          "id": "guatemala-city-airport",
+          "name": "La Aurora International Airport",
+          "lon": -90.527515,
+          "lat": 14.582896,
+          "sourceUrl": "https://ourairports.com/airports/MGGT/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/472114145",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -90.69913024974917,
+          14.46073331006602,
+          -90.32743695025081,
+          14.822495089933978
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/472114145",
+          "sourceUrl": "https://www.openstreetmap.org/node/472114145",
+          "sourceRecord": {
+            "ref": "node/472114145",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "ele": "1500",
+              "name": "Ciudad de Guatemala",
+              "name:ace": "Banda Guatemala",
+              "name:af": "Guatemala-stad",
+              "name:am": "ጓቴማላ ከተማ",
+              "name:an": "Ciudat de Guatemala",
+              "name:ar": "مدينة غواتيمالا",
+              "name:ay": "Watimala marka",
+              "name:az": "Qvatemala",
+              "name:be": "Гватэмала",
+              "name:bg": "Гватемала",
+              "name:bn": "গুয়াতেমালা সিটি",
+              "name:bo": "གུ་ཝེ་ཐི་མ་ལ་གྲོང་ཁྱེར།",
+              "name:br": "Ciudad de Guatemala",
+              "name:bs": "Guatemala City",
+              "name:ca": "Ciutat de Guatemala",
+              "name:ce": "Гватемала",
+              "name:cs": "Ciudad de Guatemala",
+              "name:cy": "Dinas Guatemala",
+              "name:da": "Guatamala City",
+              "name:de": "Guatemala-Stadt",
+              "name:el": "Πόλη της Γουατεμάλας",
+              "name:en": "Guatemala City",
+              "name:eo": "Gvatemalurbo",
+              "name:es": "Ciudad de Guatemala",
+              "name:et": "Guatemala",
+              "name:eu": "Guatemalako Hiria",
+              "name:fa": "گواتمالاسیتی",
+              "name:fi": "Guatemala",
+              "name:fr": "Ciudad de Guatemala",
+              "name:fy": "Gûatemala-Stêd",
+              "name:ga": "Cathair Ghuatamala",
+              "name:gd": "Baile Guatemala",
+              "name:gl": "Cidade de Guatemala - Ciudad de Guatemala",
+              "name:ha": "Guatemala",
+              "name:he": "גואטמלה סיטי",
+              "name:hi": "ग्वाटेमाला नगर",
+              "name:hif": "Guatemala City",
+              "name:hr": "Guatemala",
+              "name:ht": "Siwdad",
+              "name:hu": "Guatemalaváros",
+              "name:hy": "Գվատեմալա",
+              "name:ia": "Citate de Guatemala",
+              "name:id": "Kota Guatemala",
+              "name:ie": "Guatemala Cité",
+              "name:io": "Guatemala-Urbo",
+              "name:is": "Gvatemalaborg",
+              "name:it": "Città del Guatemala",
+              "name:ja": "グアテマラシティ",
+              "name:ka": "გვატემალა",
+              "name:ki": "Guatemala City",
+              "name:kk": "Гватемала",
+              "name:kn": "ಗ್ವಾಟೆಮಾಲ ನಗರ",
+              "name:ko": "과테말라시티",
+              "name:ku": "Guatemala",
+              "name:ky": "Гватемала",
+              "name:la": "Urbs Guatimalensis",
+              "name:lb": "Guatemala-Stad",
+              "name:lmo": "Cità del Guatemala",
+              "name:lt": "Gvatemala",
+              "name:lv": "Gvatemala",
+              "name:mk": "Гватемала",
+              "name:ml": "ഗ്വാട്ടിമാല സിറ്റി",
+              "name:mr": "ग्वातेमाला सिटी",
+              "name:ms": "Bandar Raya Guatemala",
+              "name:nah": "Āltepētl Cuauhtēmallān",
+              "name:nan": "Guatemala Chhī",
+              "name:nb": "Guatemala by",
+              "name:nl": "Guatemala-Stad",
+              "name:nn": "Guatemala by",
+              "name:no": "Guatemala by",
+              "name:nov": "Guatemala Urbe",
+              "name:nv": "Tsinłánítah Kin Haalʼá",
+              "name:oc": "Ciutat de Guatemala",
+              "name:os": "Гватемалæ",
+              "name:pa": "ਗੁਆਤੇਮਾਲਾ ਸ਼ਹਿਰ",
+              "name:pap": "Siudad di Guatemala",
+              "name:pl": "Gwatemala",
+              "name:pms": "Sità ëd Guatemala",
+              "name:ps": "ګواتیمالا سیټي",
+              "name:pt": "Cidade da Guatemala",
+              "name:qu": "Watimala llaqta",
+              "name:ro": "Ciudad de Guatemala",
+              "name:roa-rup": "Guatemala casaba",
+              "name:ru": "Гватемала",
+              "name:sah": "Гуатемала",
+              "name:sc": "Tzitade de Guatemala",
+              "name:sco": "Guatemala Ceety",
+              "name:sd": "گواتيمالا شهر",
+              "name:se": "Ciudad de Guatemala",
+              "name:sk": "Guatemala",
+              "name:sl": "Ciudad Guatemala",
+              "name:sn": "Guatemala City",
+              "name:sq": "Guatemala",
+              "name:sr": "Град Гватемала",
+              "name:sv": "Guatemala City",
+              "name:sw": "Guatemala City",
+              "name:ta": "குவாத்தமாலா நகரம்",
+              "name:tg": "Гватемала",
+              "name:th": "กัวเตมาลาซิตี",
+              "name:tl": "Lungsod ng Guwatemala",
+              "name:tr": "Guatemala",
+              "name:tt": "Гватемала",
+              "name:udm": "Гватемала",
+              "name:ug": "گۋاتېمالا شەھىرى",
+              "name:uk": "Ґватемала",
+              "name:ur": "گوئٹے مالا شہر",
+              "name:uz": "Gvatemala",
+              "name:vi": "Thành phố Guatemala",
+              "name:vo": "Ciudad de Guatemala",
+              "name:war": "Syudad han Guatemala",
+              "name:yi": "גוואטעמאלע שטאט",
+              "name:yo": "Ìlú Guatẹmálà",
+              "name:zh": "危地马拉城;瓜地馬拉市;危地馬拉城",
+              "name:zh-Hans": "危地马拉城",
+              "name:zh-Hant": "瓜地馬拉市;危地馬拉城",
+              "name:zh-Hant-CN": "危地馬拉城",
+              "name:zh-Hant-HK": "危地馬拉城",
+              "name:zh-Hant-TW": "瓜地馬拉市",
+              "official_name": "Nueva Guatemala de la Asunción",
+              "place": "city",
+              "population": "2450212",
+              "ref:LOCODE": "GTGUA",
+              "short_name": "Guate",
+              "website": "https://www.muniguate.com/",
+              "wikidata": "Q1555",
+              "wikipedia": "es:Ciudad de Guatemala"
+            },
+            "lon": -90.5132836,
+            "lat": 14.6416142
+          },
+          "pbfSha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa"
+        },
+        "airport": {
+          "rowNumber": 45871,
+          "row": {
+            "id": "4644",
+            "ident": "MGGT",
+            "type": "large_airport",
+            "name": "La Aurora International Airport",
+            "latitude_deg": "14.582896",
+            "longitude_deg": "-90.527515",
+            "elevation_ft": "4952",
+            "continent": "NA",
+            "iso_country": "GT",
+            "iso_region": "GT-GU",
+            "municipality": "Guatemala City",
+            "scheduled_service": "yes",
+            "icao_code": "MGGT",
+            "iata_code": "GUA",
+            "gps_code": "MGGT",
+            "local_code": "",
+            "home_link": "https://theguatemalaairport.com",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/La_Aurora_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "0c677380d7c39df40f6cd0341c1ffd624ee5557456c88611031c35cc2861d7d5",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "MGGT",
+            "sourceUrl": "https://ourairports.com/airports/MGGT/",
+            "matchedIdent": "MGGT",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/MGGT/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "GT",
+              "+1438-09031",
+              "America/Guatemala"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Guatemala",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "GT",
+              "+1438-09031",
+              "America/Guatemala"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/central-america/guatemala-261011.osm.pbf",
+          "bytes": 131359417,
+          "sha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/21253017",
+          "way/21253362",
+          "way/270898534",
+          "way/295438903",
+          "way/320724837",
+          "way/320724838",
+          "way/320975048",
+          "way/321018390",
+          "way/688524433",
+          "way/689337945",
+          "way/1154421900",
+          "way/1270494242",
+          "way/1270494244",
+          "way/1270494245",
+          "way/1270644715",
+          "way/1270644726",
+          "way/1270644730",
+          "way/1270644731",
+          "way/1270644735",
+          "way/1270644736",
+          "way/1270644737",
+          "way/1270647127"
+        ],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              14.46073331006602,
+              -90.69913024974917,
+              14.822495089933978,
+              -90.32743695025081
+            ],
+            "core": [
+              14.596393977516504,
+              -90.55971629906786,
+              14.686834422483495,
+              -90.46685090093213
+            ],
+            "outline": [
+              14.41073331006602,
+              -90.74913024974917,
+              14.87249508993398,
+              -90.27743695025082
+            ],
+            "wide": [
+              13.86073331006602,
+              -91.29913024974917,
+              15.422495089933978,
+              -89.72743695025082
+            ]
+          },
+          "airportMarginMetres": 13507.528626000125,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "guatemala-city",
+      "extractSha256": {
+        "places": "948cecf86a7fa1cd1ffd1ae73d41ece736895e5175abd9e4192a75a1f718a3a6",
+        "extras": "52f91162a177727f3a8361ab707a111e384e188882612d297bb573052ab6a4eb",
+        "water": "d7ff9a11dfacdcdb76ad2eb92108d7ea305e0a71a9cde24cda63570ed1cf10c6",
+        "landuse": "2c8297e9f33b93e5b0f3c42ec3d347f88bda3c021fc2077dacde65e833a54c14",
+        "roads": "f6e7b3c16ef68df3c3c31f7db976b95033de162e5c1c20d2718256f7acb794be"
+      },
+      "sourceJob": {
+        "city": "guatemala-city",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-gt-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "948cecf86a7fa1cd1ffd1ae73d41ece736895e5175abd9e4192a75a1f718a3a6",
+          "extras": "52f91162a177727f3a8361ab707a111e384e188882612d297bb573052ab6a4eb",
+          "water": "d7ff9a11dfacdcdb76ad2eb92108d7ea305e0a71a9cde24cda63570ed1cf10c6",
+          "landuse": "2c8297e9f33b93e5b0f3c42ec3d347f88bda3c021fc2077dacde65e833a54c14",
+          "roads": "f6e7b3c16ef68df3c3c31f7db976b95033de162e5c1c20d2718256f7acb794be"
+        }
+      }
+    }
+  ]
+}

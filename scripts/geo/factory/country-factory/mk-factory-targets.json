@@ -1,0 +1,349 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "MK",
+    "datasetSha256": "c751a8b42c203f417a990fb492cb68bca3ecd98f6bc744ab58af93439f52409d",
+    "receiptSha256": "95b615144e83e256575b227b94b7ab908e884733eba55c4830a52256446ae6a4",
+    "receiptBytes": 155371,
+    "geometrySha256": "ffc1b9e5216dba2958dc119c6e8dbd51dc53311198d2a537a4ecd68a6ecbaa56",
+    "geometryBytes": 474637,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 53293,
+    "boundaryKey": "mk",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-mk-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "skopje",
+      "name": "Skopje",
+      "country": "mk",
+      "facts": {
+        "id": "skopje",
+        "name": "Skopje",
+        "country": {
+          "idISOlower": "mk",
+          "name": "North Macedonia"
+        },
+        "state": {
+          "idunique": "mk-skopje",
+          "name": "Skopje"
+        },
+        "timezone": "Europe/Belgrade",
+        "centre": {
+          "lon": 21.4318881,
+          "lat": 41.9962054
+        },
+        "airport": {
+          "id": "skopje-airport",
+          "name": "Skopje International Airport",
+          "lon": 21.622581,
+          "lat": 41.958087,
+          "sourceUrl": "https://ourairports.com/airports/LWSK/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/170792214",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          21.18945288314154,
+          41.81532451006602,
+          21.674323316858455,
+          42.17708628993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/170792214",
+          "sourceUrl": "https://www.openstreetmap.org/node/170792214",
+          "sourceRecord": {
+            "ref": "node/170792214",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:ar": "سكوبيه;سكوبجي",
+              "alt_name:fa": "اسکوپیا",
+              "alt_name:vi": "Xcốp-pi-ê",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "ele": "245",
+              "int_name": "Skopje",
+              "name": "Скопје",
+              "name:ab": "Скопие",
+              "name:af": "Skopje",
+              "name:am": "ስኮፕዬ",
+              "name:an": "Scopia",
+              "name:ar": "إسكوبية",
+              "name:ast": "Skopie",
+              "name:az": "Skopye",
+              "name:azb": "ایسکوپیه",
+              "name:ba": "Скопье",
+              "name:be": "Скоп'е",
+              "name:be-tarask": "Скоп'е",
+              "name:bg": "Скопие",
+              "name:bh": "स्कोप्ये",
+              "name:bn": "স্কপিয়ে",
+              "name:bo": "སི་ཀོཔ་ཇི།",
+              "name:br": "Skopje",
+              "name:bs": "Skoplje",
+              "name:ca": "Skopje",
+              "name:ce": "Скопье",
+              "name:crh": "Üsküp",
+              "name:cs": "Skopje",
+              "name:cu": "Съкопиѥ",
+              "name:cv": "Скопйе",
+              "name:cy": "Skopje",
+              "name:da": "Skopje",
+              "name:de": "Skopje",
+              "name:el": "Σκόπια",
+              "name:en": "Skopje",
+              "name:eo": "Skopjo",
+              "name:es": "Skopie",
+              "name:et": "Skopje",
+              "name:eu": "Skopje",
+              "name:fa": "اسکوپیه",
+              "name:fi": "Skopje",
+              "name:fo": "Skopje",
+              "name:fr": "Skopje",
+              "name:fy": "Skopje",
+              "name:ga": "Scóipé",
+              "name:gd": "Skopje",
+              "name:gl": "Skopje",
+              "name:grc": "Σκοῦποι",
+              "name:gv": "Skopje",
+              "name:ha": "Skopje",
+              "name:he": "סקופיה",
+              "name:hi": "स्कोपिये",
+              "name:hr": "Skoplje",
+              "name:ht": "Skopje",
+              "name:hu": "Szkopje",
+              "name:hy": "Սկոպյե",
+              "name:ia": "Skopje",
+              "name:id": "Skopje",
+              "name:ie": "Skopje",
+              "name:io": "Skopje",
+              "name:is": "Skopje",
+              "name:it": "Skopje",
+              "name:ja": "スコピエ",
+              "name:jv": "Skopje",
+              "name:ka": "სკოპიე",
+              "name:kab": "Skopje",
+              "name:kg": "Skopje",
+              "name:kk": "Скопье",
+              "name:ko": "스코페",
+              "name:ku": "Skopye",
+              "name:kv": "Скопье",
+              "name:kw": "Skopje",
+              "name:la": "Scupi",
+              "name:lad": "Skopia",
+              "name:lb": "Skopje",
+              "name:ln": "Skopye",
+              "name:lt": "Skopjė",
+              "name:lv": "Skopje",
+              "name:mg": "Skopje",
+              "name:mi": "Skopje",
+              "name:mk": "Скопје",
+              "name:ml": "സ്കൊപ്യെ",
+              "name:mn": "Скопье",
+              "name:mr": "स्कोप्ये",
+              "name:ms": "Skopje",
+              "name:mt": "Skopje",
+              "name:mzn": "اسکوپیه",
+              "name:nb": "Skopje",
+              "name:nl": "Skopje",
+              "name:nn": "Skopje",
+              "name:no": "Skopje",
+              "name:oc": "Skopje",
+              "name:os": "Скопье",
+              "name:pa": "ਸਕੋਪੀਏ",
+              "name:pl": "Skopje",
+              "name:pnb": "سکوپ جے",
+              "name:ps": "اسکوپیه",
+              "name:pt": "Escópia",
+              "name:qu": "Skopje",
+              "name:rmy": "Skopiye",
+              "name:ro": "Skopje",
+              "name:roa-rup": "Scopia",
+              "name:ru": "Скопье",
+              "name:sc": "Skopje",
+              "name:sd": "اسڪوپجي",
+              "name:se": "Skopje",
+              "name:sh": "Skoplje",
+              "name:sk": "Skopje",
+              "name:sl": "Skopje",
+              "name:sn": "Skopje",
+              "name:sq": "Shkup",
+              "name:sr": "Скопље",
+              "name:sv": "Skopje",
+              "name:sw": "Skopje",
+              "name:ta": "ஸ்கோப்ஜே",
+              "name:tg": "Скопе",
+              "name:th": "สโกเปีย",
+              "name:tl": "Skopje",
+              "name:tr": "Üsküp",
+              "name:tt": "Өскеп",
+              "name:udm": "Скопье",
+              "name:ug": "سكوپليې",
+              "name:uk": "Скоп'є",
+              "name:ur": "اسکوپیہ",
+              "name:uz": "Skopye",
+              "name:vi": "Skopje",
+              "name:vo": "Skopje",
+              "name:wo": "Skopje",
+              "name:yi": "סקאפיע",
+              "name:yo": "Skopje",
+              "name:zh": "斯科普里",
+              "name:zh-Hans": "斯科普里",
+              "name:zh-Hant": "史高比耶",
+              "place": "city",
+              "population": "422540",
+              "population:date": "2021",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "source:name:oc": "Lo Congrès",
+              "source:population": "https://www.stat.gov.mk/Aktivnosti.aspx?rbra=331",
+              "website": "https://skopje.gov.mk/",
+              "wikidata": "Q384",
+              "wikimedia_commons": "Category:Skopje",
+              "wikipedia": "mk:Скопје"
+            },
+            "lon": 21.4318881,
+            "lat": 41.9962054
+          },
+          "pbfSha256": "c751a8b42c203f417a990fb492cb68bca3ecd98f6bc744ab58af93439f52409d"
+        },
+        "airport": {
+          "rowNumber": 45413,
+          "row": {
+            "id": "4573",
+            "ident": "LWSK",
+            "type": "large_airport",
+            "name": "Skopje International Airport",
+            "latitude_deg": "41.958087",
+            "longitude_deg": "21.622581",
+            "elevation_ft": "781",
+            "continent": "EU",
+            "iso_country": "MK",
+            "iso_region": "MK-008",
+            "municipality": "Ilinden",
+            "scheduled_service": "yes",
+            "icao_code": "LWSK",
+            "iata_code": "SKP",
+            "gps_code": "LWSK",
+            "local_code": "",
+            "home_link": "http://skp.airports.com.mk/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Skopje_Airport",
+            "keywords": "Petrovec"
+          },
+          "rowSha256": "8520e48869072063be7debb25a6e2533289d1ba8140dd96b4feb20c19a83db3c",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "LWSK",
+            "sourceUrl": "https://ourairports.com/airports/LWSK/",
+            "matchedIdent": "LWSK",
+            "municipalityMatchesCity": false,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/LWSK/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "RS,BA,HR,ME,MK,SI",
+              "+4450+02030",
+              "Europe/Belgrade"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Europe/Belgrade",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "RS,BA,HR,ME,MK,SI",
+              "+4450+02030",
+              "Europe/Belgrade"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/europe/macedonia-261011.osm.pbf",
+          "bytes": 29805486,
+          "sha256": "c751a8b42c203f417a990fb492cb68bca3ecd98f6bc744ab58af93439f52409d",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              41.81532451006602,
+              21.18945288314154,
+              42.17708628993398,
+              21.674323316858455
+            ],
+            "core": [
+              41.95098517751651,
+              21.371408866033246,
+              42.041425622483494,
+              21.49236733396675
+            ],
+            "outline": [
+              41.76532451006602,
+              21.13945288314154,
+              42.22708628993398,
+              21.724323316858456
+            ],
+            "wide": [
+              41.21532451006602,
+              20.58945288314154,
+              42.77708628993398,
+              22.274323316858457
+            ]
+          },
+          "airportMarginMetres": 4283.298790173197,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "skopje",
+      "extractSha256": {
+        "places": "8bd87e2114d87e150d2aa97eaf6705dcd792d4cfab2a3b8c8a00cad86e5224d7",
+        "extras": "0ea4f8d8302516bf9efea7d77fa562beb44e036c61bebee487f09fb943d5d961",
+        "water": "84cf1b2fef39052084079af69f7da3497dd60efccf38199c9238939b367b0d6b",
+        "landuse": "56eff6c6e6d6d4bb560306fb266e0f16215be070d498c10cb742e121391a30f5",
+        "roads": "8603bb2988294a76c5901095eff6007704951f52e4023290d57a909aff0d2035"
+      },
+      "sourceJob": {
+        "city": "skopje",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-mk-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "c751a8b42c203f417a990fb492cb68bca3ecd98f6bc744ab58af93439f52409d",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "8bd87e2114d87e150d2aa97eaf6705dcd792d4cfab2a3b8c8a00cad86e5224d7",
+          "extras": "0ea4f8d8302516bf9efea7d77fa562beb44e036c61bebee487f09fb943d5d961",
+          "water": "84cf1b2fef39052084079af69f7da3497dd60efccf38199c9238939b367b0d6b",
+          "landuse": "56eff6c6e6d6d4bb560306fb266e0f16215be070d498c10cb742e121391a30f5",
+          "roads": "8603bb2988294a76c5901095eff6007704951f52e4023290d57a909aff0d2035"
+        }
+      }
+    }
+  ]
+}

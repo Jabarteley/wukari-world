@@ -1,0 +1,348 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "TM",
+    "datasetSha256": "49332379f06caaead638b59813e7ea0ffc9f10c3113e7718f19489e224381bde",
+    "receiptSha256": "9f938493f73df0d5e7a65455693fc69f5f18185a2d464f3b4ae751c3814416d5",
+    "receiptBytes": 105555,
+    "geometrySha256": "ca0bf4351f03e69e9f602679d97d971292cc7bac2eea09f56627cc42c20a0e3d",
+    "geometryBytes": 456242,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 223026,
+    "boundaryKey": "tm",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-tm-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "ashgabat",
+      "name": "Ashgabat",
+      "country": "tm",
+      "facts": {
+        "id": "ashgabat",
+        "name": "Ashgabat",
+        "country": {
+          "idISOlower": "tm",
+          "name": "Turkmenistan"
+        },
+        "state": {
+          "idunique": "tm-ashgabat",
+          "name": "Ashgabat"
+        },
+        "timezone": "Asia/Ashgabat",
+        "centre": {
+          "lon": 58.3823487,
+          "lat": 37.9404648
+        },
+        "airport": {
+          "id": "ashgabat-airport",
+          "name": "Ashgabat International Airport",
+          "lon": 58.361,
+          "lat": 37.986801,
+          "sourceUrl": "https://ourairports.com/airports/UTAA/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/1811650017",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          58.15397565716856,
+          37.75958391006602,
+          58.610721742831444,
+          38.12134568993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/1811650017",
+          "sourceUrl": "https://www.openstreetmap.org/node/1811650017",
+          "sourceRecord": {
+            "ref": "node/1811650017",
+            "tags": {
+              "addr:country": "TM",
+              "admin_level": "6",
+              "capital": "yes",
+              "ele": "273",
+              "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Neutrality-Road-Ashgabat-2015.JPG",
+              "is_in:country": "Turkmenistan",
+              "is_in:country_code": "TM",
+              "name": "Aşgabat",
+              "name:ace": "Ashgabat",
+              "name:af": "Asjchabat",
+              "name:am": "አሽጋባት",
+              "name:ar": "عشق آباد",
+              "name:arz": "عشق اباد",
+              "name:av": "ГӀашкъабад",
+              "name:ay": "Ashgabat",
+              "name:az": "Aşqabad",
+              "name:azb": "عاشق‌آباد",
+              "name:ba": "Ашхабад",
+              "name:be": "Ашхабад",
+              "name:be-tarask": "Ашгабад",
+              "name:bg": "Ашхабад",
+              "name:bn": "আশখাবাদ",
+              "name:bo": "ཨ་ཧྲི་ཁ་པད​།",
+              "name:br": "Ashgabat",
+              "name:bs": "Ashgabat",
+              "name:ca": "Aşgabat",
+              "name:ce": "Ашхабад",
+              "name:ckb": "عیشقاباد",
+              "name:crh": "Aşğabat",
+              "name:cs": "Ašchabad",
+              "name:cv": "Ашхабад",
+              "name:cy": "Ashgabat",
+              "name:da": "Asjkhabad",
+              "name:de": "Aschgabat",
+              "name:dsb": "Ašchabad",
+              "name:el": "Ασγκαμπάτ",
+              "name:en": "Ashgabat",
+              "name:eo": "Aŝgabato",
+              "name:es": "Asjabad",
+              "name:eu": "Asgabat",
+              "name:fa": "عشق آباد",
+              "name:fi": "Ašgabat",
+              "name:fr": "Achgabat",
+              "name:fy": "Asjchabad",
+              "name:ga": "Ashgabat",
+              "name:gd": "Ashgabat",
+              "name:gl": "Achkhabad - Aşgabat",
+              "name:gn": "Achagaváte",
+              "name:ha": "Ashgabat",
+              "name:he": "אשגאבט",
+              "name:hi": "अश्क़ाबाद",
+              "name:hif": "Ashgabat",
+              "name:hr": "Ašgabat",
+              "name:hsb": "Ašchabad",
+              "name:ht": "Achgabat",
+              "name:hu": "Asgabat",
+              "name:hy": "Աշխաբադ",
+              "name:ia": "Ashgabat",
+              "name:id": "Ashgabat",
+              "name:ie": "Ashgabat",
+              "name:io": "Ashgabat",
+              "name:is": "Asgabat",
+              "name:ja": "アシガバート",
+              "name:ka": "აშხაბადი",
+              "name:kab": "Acgabad",
+              "name:kk": "Ашхабад",
+              "name:kn": "ಅಶ್ಗಾಬಾತ್",
+              "name:ko": "아시가바트",
+              "name:koi": "Ашхабад",
+              "name:ku": "Aşgabad",
+              "name:kv": "Ашхабад",
+              "name:ky": "Ашхабад",
+              "name:lb": "Aschchabad",
+              "name:lo": "ອາສກາບັດ",
+              "name:lt": "Ašchabadas",
+              "name:lv": "Ašgabata",
+              "name:mhr": "Ашхабад",
+              "name:mk": "Ашхабад",
+              "name:ml": "അഷ്ഗാബാദ്",
+              "name:mn": "Ашгабат",
+              "name:mr": "अश्गाबाद",
+              "name:ms": "Ashgabat",
+              "name:my": "အက်ရှ်ဂါဘတ်မြို့",
+              "name:myv": "Ашхабад ош",
+              "name:nan": "Ashgabat",
+              "name:nb": "Asjkhabad",
+              "name:ne": "अस्गाबत",
+              "name:nl": "Asjchabad",
+              "name:nn": "Asjkhabad",
+              "name:no": "Asjkhabad",
+              "name:nov": "Ashgabat",
+              "name:nv": "Séíbąąh Kin",
+              "name:oc": "Ashgabat",
+              "name:os": "Ашхабад",
+              "name:pa": "ਇਸ਼ਕ਼ਾਬਾਦ",
+              "name:pl": "Aszchabad",
+              "name:pms": "Ashgabat",
+              "name:ps": "عشق آباد",
+              "name:pt": "Asgabate",
+              "name:ro": "Așgabat",
+              "name:roa-rup": "Ashgabat",
+              "name:ru": "Ашхабад",
+              "name:sah": "Ашгабат",
+              "name:sc": "Ashgabat",
+              "name:sco": "Ashgabat",
+              "name:sd": "اشڪ آباد",
+              "name:sk": "Ašchabad",
+              "name:sl": "Ašhabad",
+              "name:sn": "Ashgabat",
+              "name:sq": "Aschgabat",
+              "name:sr": "Ашхабад",
+              "name:sv": "Asjchabad",
+              "name:sw": "Ashgabat",
+              "name:ta": "அசுகாபாத்",
+              "name:tg": "Ишқобод",
+              "name:th": "อาชกาบัต",
+              "name:tk": "Aşgabat",
+              "name:tk-Arab": "آشغابات",
+              "name:tl": "Ashgabat",
+              "name:tr": "Aşkabat",
+              "name:tt": "Ашкабад",
+              "name:udm": "Ашхабад",
+              "name:ug": "ئاشخاباد",
+              "name:uk": "Ашгабат",
+              "name:ur": "اشک آباد",
+              "name:uz": "Ashxobod",
+              "name:uz-Arab": "عشق آباد",
+              "name:uz-Cyrl": "Ашхобод",
+              "name:uz-Latn": "Ashxobod",
+              "name:vep": "Ašhabad",
+              "name:vi": "Ashgabat",
+              "name:war": "Ashgabat",
+              "name:wuu": "阿什哈巴德",
+              "name:yi": "אשגאבאט",
+              "name:yo": "Ashgabat",
+              "name:zh": "阿什哈巴德",
+              "old_name:ru": "Асхабад;Полторацк;",
+              "place": "city",
+              "population": "1030063",
+              "population:date": "2022",
+              "start_date": "1881",
+              "wikidata": "Q23438",
+              "wikimedia_commons": "Category:Aşgabat",
+              "wikipedia": "tk:Aşgabat"
+            },
+            "lon": 58.3823487,
+            "lat": 37.9404648
+          },
+          "pbfSha256": "49332379f06caaead638b59813e7ea0ffc9f10c3113e7718f19489e224381bde"
+        },
+        "airport": {
+          "rowNumber": 80568,
+          "row": {
+            "id": "26380",
+            "ident": "UTAA",
+            "type": "large_airport",
+            "name": "Ashgabat International Airport",
+            "latitude_deg": "37.986801",
+            "longitude_deg": "58.361",
+            "elevation_ft": "692",
+            "continent": "AS",
+            "iso_country": "TM",
+            "iso_region": "TM-S",
+            "municipality": "Ashgabat",
+            "scheduled_service": "yes",
+            "icao_code": "UTAA",
+            "iata_code": "ASB",
+            "gps_code": "UTAA",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Ashgabat_International_Airport",
+            "keywords": "Saparmurat Turkmenbashy International Airport"
+          },
+          "rowSha256": "21a8208dd72a9a02770fe979805fd086ec0e481d8f0be2b8c7f3c37f1456e045",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "UTAA",
+            "sourceUrl": "https://ourairports.com/airports/UTAA/",
+            "matchedIdent": "UTAA",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/UTAA/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "TM",
+              "+3757+05823",
+              "Asia/Ashgabat"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Ashgabat",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "TM",
+              "+3757+05823",
+              "Asia/Ashgabat"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/turkmenistan-261011.osm.pbf",
+          "bytes": 24976328,
+          "sha256": "49332379f06caaead638b59813e7ea0ffc9f10c3113e7718f19489e224381bde",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              37.75958391006602,
+              58.15397565716856,
+              38.12134568993398,
+              58.610721742831444
+            ],
+            "core": [
+              37.89524457751651,
+              58.32536115994601,
+              37.985685022483494,
+              58.43933624005399
+            ],
+            "outline": [
+              37.70958391006602,
+              58.10397565716856,
+              38.17134568993398,
+              58.66072174283144
+            ],
+            "wide": [
+              37.15958391006602,
+              57.55397565716856,
+              38.72134568993398,
+              59.210721742831446
+            ]
+          },
+          "airportMarginMetres": 14876.606366000384,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "ashgabat",
+      "extractSha256": {
+        "places": "b3d8052279da6e0290b961fa1416de559197c47c7b35c3943331de69cf5d1e9c",
+        "extras": "b3be50d0062834c9c072c6e6d63089ed8ef320603f23a785c4d29263f6250fd1",
+        "water": "46195b757080a81fad7ea6fbb79209e66e5830a3e4dd592bc6c31d2b53ede014",
+        "landuse": "eb6a1a8650632c6833e94e8e5e7e01d8b1bb8be3a8dacfc519cea59397b1c213",
+        "roads": "6c7737eb68e49a9c48b5b43603544bf01fb0a3927a3736dcd91a8291816cdc2d"
+      },
+      "sourceJob": {
+        "city": "ashgabat",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-tm-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "49332379f06caaead638b59813e7ea0ffc9f10c3113e7718f19489e224381bde",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "b3d8052279da6e0290b961fa1416de559197c47c7b35c3943331de69cf5d1e9c",
+          "extras": "b3be50d0062834c9c072c6e6d63089ed8ef320603f23a785c4d29263f6250fd1",
+          "water": "46195b757080a81fad7ea6fbb79209e66e5830a3e4dd592bc6c31d2b53ede014",
+          "landuse": "eb6a1a8650632c6833e94e8e5e7e01d8b1bb8be3a8dacfc519cea59397b1c213",
+          "roads": "6c7737eb68e49a9c48b5b43603544bf01fb0a3927a3736dcd91a8291816cdc2d"
+        }
+      }
+    }
+  ]
+}

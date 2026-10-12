@@ -1,0 +1,337 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "JO",
+    "datasetSha256": "9e1c3d5342221dfa3947ea764ce63855778213edf158d616ac895cfb13e1b08e",
+    "receiptSha256": "95eee2922060c5976644450dc8de4b687b6a7b51af45681f9f37e656ebc3f114",
+    "receiptBytes": 46108,
+    "geometrySha256": "3079dfbcad0a6c395c9505aac82f90f9e015be917a943662447810d6a917a09b",
+    "geometryBytes": 354887,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 184818,
+    "boundaryKey": "jo",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-jo-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "amman",
+      "name": "Amman",
+      "country": "jo",
+      "facts": {
+        "id": "amman",
+        "name": "Amman",
+        "country": {
+          "idISOlower": "jo",
+          "name": "Jordan"
+        },
+        "state": {
+          "idunique": "jo-amman",
+          "name": "Amman"
+        },
+        "timezone": "Asia/Amman",
+        "centre": {
+          "lon": 35.9239625,
+          "lat": 31.9515694
+        },
+        "airport": {
+          "id": "amman-airport",
+          "name": "Queen Alia International Airport",
+          "lon": 35.9931983948,
+          "lat": 31.7226009369,
+          "sourceUrl": "https://ourairports.com/airports/OJAI/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/1643504896",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          35.71180163823021,
+          31.713556892403304,
+          36.13612336176979,
+          32.13245028993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/1643504896",
+          "sourceUrl": "https://www.openstreetmap.org/node/1643504896",
+          "sourceRecord": {
+            "ref": "node/1643504896",
+            "tags": {
+              "admin_level": "2",
+              "alt_name:ar": "عمّان",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "int_name": "Amman",
+              "is_capital": "country",
+              "name": "عمان",
+              "name:af": "Amman",
+              "name:am": "አማን",
+              "name:an": "Ammán",
+              "name:ar": "عمان",
+              "name:arc": "ܥܡܐܢ",
+              "name:az": "Amman",
+              "name:ba": "Амман",
+              "name:bat-smg": "Amans",
+              "name:be": "Аман",
+              "name:ber": "ⵄⴰⵎⵎⴰⵏ",
+              "name:bg": "Аман",
+              "name:bn": "আম্মান",
+              "name:bo": "ཨམ་མན།",
+              "name:br": "Amman",
+              "name:bs": "Aman",
+              "name:ca": "Amman",
+              "name:ce": "Ӏамман",
+              "name:ckb": "عەممان",
+              "name:cs": "Ammán",
+              "name:cv": "Амман",
+              "name:cy": "Amman",
+              "name:da": "Amman",
+              "name:de": "Amman",
+              "name:el": "Αμμάν",
+              "name:en": "Amman",
+              "name:eo": "Amano",
+              "name:es": "Amán",
+              "name:et": "Amman",
+              "name:eu": "Amman",
+              "name:fa": "امان",
+              "name:fi": "Amman",
+              "name:fr": "Amman",
+              "name:fy": "Amman",
+              "name:ga": "Amman",
+              "name:gd": "Amman",
+              "name:gl": "Amán - عمان",
+              "name:gn": "Amã",
+              "name:ha": "Amman",
+              "name:he": "רבת עמון",
+              "name:hi": "अम्मान",
+              "name:hr": "Amman",
+              "name:ht": "Amàn",
+              "name:hu": "Ammán",
+              "name:hy": "Ամման",
+              "name:ia": "Amman",
+              "name:id": "Amman",
+              "name:ie": "Amman",
+              "name:io": "Amman",
+              "name:is": "Amman",
+              "name:it": "Amman",
+              "name:ja": "アンマン",
+              "name:jv": "Amman",
+              "name:ka": "ამანი",
+              "name:kab": "Ɛemman",
+              "name:kg": "Amman",
+              "name:kk": "Амман",
+              "name:kn": "ಅಮ್ಮಾನ್",
+              "name:ko": "암만",
+              "name:ks": "عمان",
+              "name:ku": "Amman",
+              "name:ky": "Амман",
+              "name:la": "Philadelphia",
+              "name:lb": "Amman",
+              "name:lt": "Amanas",
+              "name:lv": "Ammāna",
+              "name:mg": "Amman",
+              "name:mk": "Аман",
+              "name:ml": "അമ്മാൻ",
+              "name:mn": "Амман",
+              "name:mr": "अम्मान",
+              "name:ms": "Amman",
+              "name:my": "အမ်မန်မြို့",
+              "name:mzn": "امان",
+              "name:nah": "Ammān",
+              "name:nb": "Amman",
+              "name:ne": "अम्मान",
+              "name:nl": "Amman",
+              "name:nn": "Amman",
+              "name:no": "Amman",
+              "name:nov": "Aman",
+              "name:oc": "Amman",
+              "name:os": "Амман",
+              "name:pa": "ਅਮਾਨ",
+              "name:pl": "Amman",
+              "name:pnb": "عمان شہر",
+              "name:ps": "آمان",
+              "name:pt": "Amã",
+              "name:qu": "Amman",
+              "name:ro": "Amman",
+              "name:ru": "Амман",
+              "name:sc": "Amman",
+              "name:sd": "عمان، اردن",
+              "name:si": "අම්මාන්",
+              "name:sk": "Ammán",
+              "name:sl": "Aman",
+              "name:sn": "Amman",
+              "name:sq": "Amani",
+              "name:sr": "Аман",
+              "name:sv": "Amman",
+              "name:sw": "Amman",
+              "name:ta": "அம்மான்",
+              "name:te": "అమ్మాన్",
+              "name:tg": "Аммон",
+              "name:th": "อัมมาน",
+              "name:tl": "Aman",
+              "name:tr": "Amman",
+              "name:tt": "Амман",
+              "name:ug": "ئاممان",
+              "name:uk": "Амман",
+              "name:ur": "عمان",
+              "name:uz": "Amman",
+              "name:vi": "Amman",
+              "name:vo": "Amman",
+              "name:wo": "Amman",
+              "name:wuu": "安曼",
+              "name:yi": "אמאן",
+              "name:yo": "Amman",
+              "name:zh": "安曼",
+              "name:zh-Hans": "安曼",
+              "name:zh-Hant": "安曼",
+              "place": "city",
+              "population": "4000000",
+              "source:name:br": "ofis publik ar brezhoneg",
+              "website": "https://www.ammancity.gov.jo/",
+              "wikidata": "Q3805",
+              "wikipedia": "ar:عمان (مدينة)"
+            },
+            "lon": 35.9239625,
+            "lat": 31.9515694
+          },
+          "pbfSha256": "9e1c3d5342221dfa3947ea764ce63855778213edf158d616ac895cfb13e1b08e"
+        },
+        "airport": {
+          "rowNumber": 52140,
+          "row": {
+            "id": "5212",
+            "ident": "OJAI",
+            "type": "large_airport",
+            "name": "Queen Alia International Airport",
+            "latitude_deg": "31.7226009369",
+            "longitude_deg": "35.9931983948",
+            "elevation_ft": "2395",
+            "continent": "AS",
+            "iso_country": "JO",
+            "iso_region": "JO-AM",
+            "municipality": "Amman",
+            "scheduled_service": "yes",
+            "icao_code": "OJAI",
+            "iata_code": "AMM",
+            "gps_code": "OJAI",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Queen_Alia_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "98ae2f0695b999c63ddb70ab21fb3465d82d3005a0fb5d46b40a27d06a44ae40",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "OJAI",
+            "sourceUrl": "https://ourairports.com/airports/OJAI/",
+            "matchedIdent": "OJAI",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/OJAI/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "JO",
+              "+3157+03556",
+              "Asia/Amman"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Asia/Amman",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "JO",
+              "+3157+03556",
+              "Asia/Amman"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/asia/jordan-261011.osm.pbf",
+          "bytes": 31035813,
+          "sha256": "9e1c3d5342221dfa3947ea764ce63855778213edf158d616ac895cfb13e1b08e",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              31.713556892403304,
+              35.71180163823021,
+              32.13245028993398,
+              36.13612336176979
+            ],
+            "core": [
+              31.906349177516507,
+              35.871000897380746,
+              31.996789622483494,
+              35.97692410261926
+            ],
+            "outline": [
+              31.663556892403303,
+              35.661801638230216,
+              32.182450289933975,
+              36.18612336176979
+            ],
+            "wide": [
+              31.113556892403302,
+              35.11180163823021,
+              32.73245028993398,
+              36.73612336176979
+            ]
+          },
+          "airportMarginMetres": 999.9999999998169,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "amman",
+      "extractSha256": {
+        "places": "dd68168f368e2ba7b6c482a1aab6f992970f562f6dbe7d9473d49ac96044ad82",
+        "extras": "c1fd26eccad8e3e5b1bfe6fb1be56db2ada5acc6cdb1289c40f11848977548a0",
+        "water": "b2f13b30d578b1aa3391dc74ce1aebc08658209cf1eb11373f1a704d553c96d1",
+        "landuse": "f062b35d51194a9aa3dc1948b52c082e4d72d4b18159736bb23be9e8c65b395a",
+        "roads": "548991e35194a67cefc727f09e67de7ee64ff8b4d7ca6f9bf5527b566829b049"
+      },
+      "sourceJob": {
+        "city": "amman",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-jo-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "9e1c3d5342221dfa3947ea764ce63855778213edf158d616ac895cfb13e1b08e",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "dd68168f368e2ba7b6c482a1aab6f992970f562f6dbe7d9473d49ac96044ad82",
+          "extras": "c1fd26eccad8e3e5b1bfe6fb1be56db2ada5acc6cdb1289c40f11848977548a0",
+          "water": "b2f13b30d578b1aa3391dc74ce1aebc08658209cf1eb11373f1a704d553c96d1",
+          "landuse": "f062b35d51194a9aa3dc1948b52c082e4d72d4b18159736bb23be9e8c65b395a",
+          "roads": "548991e35194a67cefc727f09e67de7ee64ff8b4d7ca6f9bf5527b566829b049"
+        }
+      }
+    }
+  ]
+}

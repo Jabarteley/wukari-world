@@ -1,0 +1,317 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "TV",
+    "datasetSha256": "ecdc3668e7b0f0f3a96d8febfd2d8bd6fc56e51f56880cd96c9072000bf203a6",
+    "receiptSha256": "0f8e1b75cfead5508bd535a5a3b382e4d4bbadb4939f0875f884e242e41e9aff",
+    "receiptBytes": 18488,
+    "geometrySha256": "5cb4ab407920875ab5e703f00470717663d7b4b232078ee25fada255a7d36779",
+    "geometryBytes": 69048,
+    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "relationId": 2177266,
+    "boundaryKey": "tv",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38248346879,
+      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceArtifact": "city-bootstrap-tv-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "funafuti",
+      "name": "Funafuti",
+      "country": "tv",
+      "facts": {
+        "id": "funafuti",
+        "name": "Funafuti",
+        "country": {
+          "idISOlower": "tv",
+          "name": "Tuvalu"
+        },
+        "state": {
+          "idunique": "tv-funafuti",
+          "name": "Funafuti"
+        },
+        "timezone": "Pacific/Tarawa",
+        "centre": {
+          "lon": 179.1982548,
+          "lat": -8.5199633
+        },
+        "airport": {
+          "id": "funafuti-airport",
+          "name": "Funafuti International Airport",
+          "lon": 179.196976,
+          "lat": -8.523885,
+          "sourceUrl": "https://ourairports.com/airports/NGFU/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/3376265049",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          179.01650087872326,
+          -8.70084418993398,
+          179.38000872127674,
+          -8.339082410066021
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/3376265049",
+          "sourceUrl": "https://www.openstreetmap.org/node/3376265049",
+          "sourceRecord": {
+            "ref": "node/3376265049",
+            "tags": {
+              "admin_level": "2",
+              "capital": "yes",
+              "capital_ISO3166-1": "yes",
+              "is_capital": "country",
+              "name": "Funafuti",
+              "name:am": "ፉናፉቲ",
+              "name:ar": "فونافوتي",
+              "name:ba": "Фунафути",
+              "name:be": "Фунафуці",
+              "name:bg": "Фунафути",
+              "name:bn": "ফুনাফুতি",
+              "name:bo": "ཕུ་ན་ཕུ་ཊི།",
+              "name:ca": "Funafuti",
+              "name:el": "Φουναφούτι",
+              "name:en": "Funafuti",
+              "name:eo": "Funafutio",
+              "name:fa": "فونافوتی",
+              "name:he": "פונאפוטי",
+              "name:hi": "फुनाफुति",
+              "name:ht": "Founafouti",
+              "name:hu": "Funafuti",
+              "name:hy": "Ֆունաֆուտի",
+              "name:is": "Fúnafútí",
+              "name:ja": "フナフティ島",
+              "name:ka": "ფუნაფუტი",
+              "name:kk": "Фунафути",
+              "name:ko": "푸나푸티",
+              "name:lt": "Funafutis",
+              "name:mk": "Фунафути",
+              "name:ml": "ഫ്യൂനഫ്യൂടി",
+              "name:mr": "फुनाफुती",
+              "name:os": "Фунафути",
+              "name:pa": "ਫ਼ੁਨਾਫ਼ੁਤੀ",
+              "name:ps": "فونافوتي",
+              "name:ru": "Фунафути",
+              "name:sr": "Фунафути",
+              "name:ta": "ஃபுனஃபூட்டி",
+              "name:tg": "Фунафути",
+              "name:th": "ฟูนาฟูตี",
+              "name:tt": "Фунафути",
+              "name:uk": "Фунафуті",
+              "name:ur": "فونافوتی",
+              "name:zh": "富纳富提",
+              "place": "town",
+              "wikidata": "Q34126",
+              "wikipedia": "en:Funafuti"
+            },
+            "lon": 179.1982548,
+            "lat": -8.5199633
+          },
+          "pbfSha256": "ecdc3668e7b0f0f3a96d8febfd2d8bd6fc56e51f56880cd96c9072000bf203a6"
+        },
+        "airport": {
+          "rowNumber": 50411,
+          "row": {
+            "id": "44571",
+            "ident": "NGFU",
+            "type": "medium_airport",
+            "name": "Funafuti International Airport",
+            "latitude_deg": "-8.523885",
+            "longitude_deg": "179.196976",
+            "elevation_ft": "9",
+            "continent": "OC",
+            "iso_country": "TV",
+            "iso_region": "TV-FUN",
+            "municipality": "Funafuti",
+            "scheduled_service": "yes",
+            "icao_code": "NGFU",
+            "iata_code": "FUN",
+            "gps_code": "NGFU",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Funafuti_International_Airport",
+            "keywords": ""
+          },
+          "rowSha256": "568739b5ef2ef78ee640fb0610a89cbae99b3d1907d17db5d24274a5e8bb0aec",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "NGFU",
+            "sourceUrl": "https://ourairports.com/airports/NGFU/",
+            "matchedIdent": "NGFU",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/NGFU/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "KI,MH,TV,UM,WF",
+              "+0125+17300",
+              "Pacific/Tarawa",
+              "Gilberts, Marshalls, Wake"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Tarawa",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "KI,MH,TV,UM,WF",
+              "+0125+17300",
+              "Pacific/Tarawa",
+              "Gilberts, Marshalls, Wake"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/tuvalu-261011.osm.pbf",
+          "bytes": 369519,
+          "sha256": "ecdc3668e7b0f0f3a96d8febfd2d8bd6fc56e51f56880cd96c9072000bf203a6",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/14481936",
+          "way/14481938",
+          "way/14483884",
+          "way/14483885",
+          "way/14483886",
+          "way/14483887",
+          "way/14483888",
+          "way/14483889",
+          "way/14483890",
+          "way/14483892",
+          "way/14483893",
+          "way/14483953",
+          "way/14483954",
+          "way/50943264",
+          "way/51049449",
+          "way/91079817",
+          "way/91079825",
+          "way/91079827",
+          "way/91079840",
+          "way/91079845",
+          "way/91079854",
+          "way/136814818",
+          "way/136832963",
+          "way/136832964",
+          "way/136832968",
+          "way/136832971",
+          "way/136832972",
+          "way/136832973",
+          "way/136832976",
+          "way/136832977",
+          "way/136832978",
+          "way/136832986",
+          "way/136832994",
+          "way/136832995",
+          "way/136833002",
+          "way/136841669",
+          "way/136841678",
+          "way/136841679",
+          "way/136841680",
+          "way/136841684",
+          "way/136841685",
+          "way/136841686",
+          "way/136848777",
+          "way/136848780",
+          "way/136848781",
+          "way/136848790",
+          "way/136848791",
+          "way/136848792",
+          "way/136848793",
+          "way/136848798",
+          "way/136848800",
+          "way/136848823",
+          "way/136848824",
+          "way/136858990",
+          "way/264339309",
+          "way/267333836",
+          "way/267333837",
+          "way/295619623",
+          "way/295619624",
+          "way/846886768",
+          "way/1391573914",
+          "way/1391573915",
+          "way/1391573916",
+          "way/1391573917"
+        ],
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -8.70084418993398,
+              179.01650087872326,
+              -8.339082410066021,
+              179.38000872127674
+            ],
+            "core": [
+              -8.565183522483496,
+              179.152832650996,
+              -8.474743077516505,
+              179.243676949004
+            ],
+            "outline": [
+              -8.75084418993398,
+              178.96650087872325,
+              -8.28908241006602,
+              179.43000872127675
+            ],
+            "wide": [
+              -9.30084418993398,
+              178.41650087872327,
+              -7.739082410066022,
+              179.98000872127673
+            ]
+          },
+          "airportMarginMetres": 19566.37763100014,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "funafuti",
+      "extractSha256": {
+        "places": "f2a8126130f45388758082bb47715dfa2e734d58009a14941e35620fe6d4078b",
+        "extras": "f4802eb1ef90755be650a8536c279413a658d19f47716e5d1249225f9f613851",
+        "water": "b492b25490e902eb78b38909a510215b3ad30f691fabd623bfbe4e692d9450d0",
+        "landuse": "f25f5d61ae543a8da17c34156b78fc7df12e4e27faf8f1758c7b15e26be100d1",
+        "roads": "c01a02ad3755131e8c3d97f40179e6ee063d7379371e9a33469267fc533b0d55"
+      },
+      "sourceJob": {
+        "city": "funafuti",
+        "sourceRunId": 38248346879,
+        "sourceArtifact": "city-bootstrap-tv-06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "datasetSha256": "ecdc3668e7b0f0f3a96d8febfd2d8bd6fc56e51f56880cd96c9072000bf203a6",
+        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "extractSha256": {
+          "places": "f2a8126130f45388758082bb47715dfa2e734d58009a14941e35620fe6d4078b",
+          "extras": "f4802eb1ef90755be650a8536c279413a658d19f47716e5d1249225f9f613851",
+          "water": "b492b25490e902eb78b38909a510215b3ad30f691fabd623bfbe4e692d9450d0",
+          "landuse": "f25f5d61ae543a8da17c34156b78fc7df12e4e27faf8f1758c7b15e26be100d1",
+          "roads": "c01a02ad3755131e8c3d97f40179e6ee063d7379371e9a33469267fc533b0d55"
+        }
+      }
+    }
+  ]
+}

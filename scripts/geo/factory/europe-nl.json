@@ -18,6 +18,7 @@
       "id": "amsterdam",
       "name": "Amsterdam",
       "countryISO": "NL",
+      "cityOsmRef": "node/268396336",
       "airport": {
         "ident": "EHAM",
         "sourceUrl": "https://www.schiphol.nl/en/schiphol-group/amsterdam-airport-schiphol/"

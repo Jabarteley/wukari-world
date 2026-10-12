@@ -213,7 +213,6 @@ class RelationPass(osmium.SimpleHandler):
 
     def collect_center_dependencies(self, pbf: Path) -> None:
         pending = {member["ref"] for candidate in self.candidates.values()
-                   if candidate["categories"] & {"places", "extras"}
                    for member in candidate["members"] if member["type"] == "r"}
         visited: set[int] = set()
         for depth in range(MAX_RELATION_DEPTH):
@@ -238,9 +237,9 @@ class RelationPass(osmium.SimpleHandler):
                         self.needed_nodes.add(member["ref"])
                     elif member["type"] == "r":
                         pending.add(member["ref"])
-            progress("center-relation-dependencies", depth=depth + 1, relations=len(self.dependencies))
+            progress("relation-dependencies", depth=depth + 1, relations=len(self.dependencies))
         if pending - visited:
-            raise ExtractionError(f"place/extra relation nesting exceeds {MAX_RELATION_DEPTH}; refusing incomplete geometry")
+            raise ExtractionError(f"relation nesting exceeds {MAX_RELATION_DEPTH}; refusing incomplete geometry")
 
 
 class RelationDependencyPass(osmium.SimpleHandler):
@@ -306,7 +305,7 @@ class GeometryPass(osmium.SimpleHandler):
                 self.output[category].append(way_element(way.id, tags, geometry, center_only=False))
 
 
-def relation_parts(candidate: dict[str, Any], geometry: GeometryPass, *, allow_nested: bool = False) -> list[list[dict[str, float]]]:
+def relation_parts(candidate: dict[str, Any], geometry: GeometryPass, *, allow_nested: bool = False, require_nested: bool = False) -> list[list[dict[str, float]]]:
     parts: list[list[dict[str, float]]] = []
     pending = [candidate]
     visited: set[int] = set()
@@ -324,6 +323,8 @@ def relation_parts(candidate: dict[str, Any], geometry: GeometryPass, *, allow_n
                 child = geometry.relations.candidates.get(member["ref"]) or geometry.relations.dependencies.get(member["ref"])
                 if child is not None:
                     pending.append(child)
+                elif require_nested:
+                    raise ExtractionError(f"relation/{record['id']} member r/{member['ref']} is absent from the PBF; refusing truncated geometry")
     return parts
 
 
@@ -370,22 +371,43 @@ def complete_relation_parts(candidate: dict[str, Any], geometry: GeometryPass, *
 
 
 def raw_relation(candidate: dict[str, Any], geometry: GeometryPass) -> dict[str, Any]:
-    complete_relation_parts(candidate, geometry)
-    members = []
-    for member in candidate["members"]:
-        kind, ref = member["type"], member["ref"]
-        if kind == "r":
-            raise ExtractionError(f"relation/{candidate['id']} has a nested relation member; polygon geometry is unsupported")
-        if kind == "w":
-            member_geometry = geometry.member_ways.get(ref)
-        elif kind == "n":
-            point = geometry.member_nodes.get(ref)
-            member_geometry = [point] if point is not None else None
-        else:
-            raise ExtractionError(f"relation/{candidate['id']} has unsupported member type {kind!r}")
-        if member_geometry is None:
-            raise ExtractionError(f"relation/{candidate['id']} member {kind}/{ref} is absent from the PBF; refusing truncated geometry")
-        members.append({"type": TYPE_NAME[kind], "ref": ref, "role": member["role"], "geometry": member_geometry})
+    members: list[dict[str, Any]] = []
+
+    def expand(record: dict[str, Any], ancestry: tuple[int, ...], inverted: bool) -> None:
+        if record["id"] in ancestry:
+            chain = " -> ".join(f"relation/{ref}" for ref in (*ancestry, record["id"]))
+            raise ExtractionError(f"relation member cycle: {chain}; refusing incomplete geometry")
+        if len(ancestry) >= MAX_RELATION_DEPTH:
+            raise ExtractionError(f"relation/{record['id']} nesting exceeds {MAX_RELATION_DEPTH}; refusing incomplete geometry")
+        ancestry = (*ancestry, record["id"])
+        if not record["members"]:
+            raise ExtractionError(f"relation/{record['id']} has no members; refusing incomplete polygon geometry")
+        for member in record["members"]:
+            kind, ref, role = member["type"], member["ref"], member["role"]
+            if kind not in {"w", "r", "n"}:
+                raise ExtractionError(f"relation/{record['id']} has unsupported member type {kind!r}")
+            if kind in {"w", "r"} and role not in {"", "outer", "inner"}:
+                raise ExtractionError(f"relation/{record['id']} member {kind}/{ref} has unsupported polygon role {role!r}")
+            if kind == "r":
+                child = geometry.relations.candidates.get(ref) or geometry.relations.dependencies.get(ref)
+                if child is None:
+                    raise ExtractionError(f"relation/{record['id']} member r/{ref} is absent from the PBF; refusing truncated geometry")
+                expand(child, ancestry, inverted != (role == "inner"))
+                continue
+            if kind == "w":
+                member_geometry = geometry.member_ways.get(ref)
+                effective_role = ("outer" if role == "inner" else "inner") if inverted else role
+            else:
+                point = geometry.member_nodes.get(ref)
+                member_geometry = [point] if point is not None else None
+                effective_role = role
+            if member_geometry is None:
+                raise ExtractionError(f"relation/{record['id']} member {kind}/{ref} is absent from the PBF; refusing truncated geometry")
+            if kind == "w" and not member_geometry:
+                raise ExtractionError(f"relation/{record['id']} member w/{ref} has no geometry; refusing incomplete polygon geometry")
+            members.append({"type": TYPE_NAME[kind], "ref": ref, "role": effective_role, "geometry": member_geometry})
+
+    expand(candidate, (), False)
     return {"type": "relation", "id": candidate["id"], "tags": candidate["tags"], "members": members}
 
 
@@ -401,7 +423,7 @@ def add_relations(relations: RelationPass, geometry: GeometryPass, boxes: dict[s
                         raise ExtractionError(f"relation/{candidate['id']} has no geometry; refusing a fabricated centre")
                     geometry.output[category].append({"type": "relation", "id": candidate["id"], "tags": candidate["tags"], "center": complete_center})
                 continue
-            parts = relation_parts(candidate, geometry)
+            parts = relation_parts(candidate, geometry, allow_nested=True, require_nested=True)
             target = boxes["water"] if category == "water" else boxes["outline"]
             if any(geometry_intersects_box(part, target) for part in parts):
                 geometry.output[category].append(raw_relation(candidate, geometry))
@@ -494,8 +516,8 @@ def source_record(
     filters = {
         "places": "queries.ts placesQuery tag predicates; nodes inside play; way geometry intersecting play; relation available descendant geometry intersecting play followed by complete member validation with cycle checks and bounded nesting; way/relation output uses all validated geometry's bbox centre",
         "extras": "queries.ts extrasQuery tag predicates; nodes inside play; way geometry intersecting play; relation available descendant geometry intersecting play followed by complete member validation with cycle checks and bounded nesting; way/relation output uses all validated geometry's bbox centre",
-        "water": f"queries.ts {'coastWaterQuery' if water_kind == 'coast' else 'inlandWaterQuery'} tag predicates; way geometry intersecting {'wide' if water_kind == 'coast' or recipe['wideWater'] else 'play'}; relation available-member geometry intersecting the same bounds followed by complete non-nested member validation; no lake inference; PBF selection is not claimed byte-equivalent to Overpass bbox selection",
-        "landuse": "queries.ts landuseQuery tag predicates; way geometry intersecting outline; relation available-member geometry intersecting outline followed by complete non-nested member validation; PBF selection is not claimed byte-equivalent to Overpass bbox selection",
+        "water": f"queries.ts {'coastWaterQuery' if water_kind == 'coast' else 'inlandWaterQuery'} tag predicates; way geometry intersecting {'wide' if water_kind == 'coast' or recipe['wideWater'] else 'play'}; relation available descendant geometry intersecting the same bounds followed by complete member validation and role-composed polygon flattening; no lake inference; PBF selection is not claimed byte-equivalent to Overpass bbox selection",
+        "landuse": "queries.ts landuseQuery tag predicates; way geometry intersecting outline; relation available descendant geometry intersecting outline followed by complete member validation and role-composed polygon flattening; PBF selection is not claimed byte-equivalent to Overpass bbox selection",
         "roads": "queries.ts roadsQuery tag predicates; major-road geometry intersecting play plus named-secondary geometry intersecting core; PBF geometry intersection is not claimed byte-equivalent to Overpass bbox selection",
     }
     source: dict[str, Any] = {
@@ -508,7 +530,7 @@ def source_record(
         "boxes": boxes,
         "selectionBounds": boxes["water"] if label == "water" else boxes["play"] if label in {"places", "extras"} else boxes["outline"] if label == "landuse" else {"major": boxes["play"], "namedSecondary": boxes["core"]},
         "waterRecipe": {"kind": water_kind, "wideWater": recipe["wideWater"], **({"sea": recipe["sea"]} if water_kind == "coast" else {})},
-        "adapter": "offline-extract.py/v3-nested-centres",
+        "adapter": "offline-extract.py/v4-nested-polygons",
         "adapterSha256": adapter_sha256,
     }
     if label in {"places", "extras"}:

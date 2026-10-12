@@ -49,8 +49,8 @@ test('every open city: "Live in <City> — Allworld", a description from the cit
     const rules = placeFacts(id);
     assert.ok(rules);
     const page = head(withPathMeta(INDEX, `/${id}`));
-    assert.equal(page.title, `Live in ${rules.name} — Allworld`);
-    assert.ok((page.description ?? '').startsWith(rules.teaser.slice(0, 40)), id);
+    assert.equal(page.title, escapeHtml(`Live in ${rules.name} — Allworld`));
+    assert.ok((page.description ?? '').startsWith(escapeHtml(rules.teaser.slice(0, 40))), id);
     assert.equal(page.canonical, `${SITE_ORIGIN}/${id}`);
     assert.equal(page.ogUrl, `${SITE_ORIGIN}/${id}`);
     assert.equal(page.robots, 'index,follow');

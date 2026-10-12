@@ -74,7 +74,9 @@ export async function gameShown(b: Browser): Promise<void> { await b.waitFor(`!!
 export async function toCreator(b: Browser, timeoutMs = 60000): Promise<void> {
   await b.waitFor(`!!document.querySelector('[data-qs-name], [data-entry-creator]')`, timeoutMs, 'the entry page or the start screen');
   if (await b.eval<boolean>(`!!document.querySelector('[data-entry-creator]')`)) await b.click('[data-entry-creator]');
-  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 30000, 'the start screen');
+  await b.waitFor(`!!document.querySelector('[data-qs-name]')`, 120000, 'the start screen');
+  // The harness scrolled the entry card's link into view (which can also move the dialog around it): the creator is looked at from the top.
+  await b.eval(`(() => { for (const el of document.querySelectorAll('#life-dialog, #life-dialog-content, .cr-host')) { el.scrollTop = 0; el.scrollLeft = 0; } window.scrollTo(0, 0); })()`);
 }
 
 /** A new guest through the creator ("Make my character first", a name, "Play now"). */

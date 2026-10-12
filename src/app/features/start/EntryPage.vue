@@ -133,7 +133,8 @@ onBeforeUnmount(() => { if (poll !== null) clearInterval(poll) })
         <div v-if="variant.secondary.some((item) => item.kind !== 'find')" class="en-pair">
           <button v-for="action in variant.secondary.filter((item) => item.kind !== 'find')" :key="action.label" type="button" class="en-btn" :data-entry-secondary="action.kind" :disabled="sending && action.kind !== 'agent'" @click="act(action)">{{ action.label }}</button>
         </div>
-        <div v-if="account.available && !account.signedIn" class="en-pair">
+        <div v-if="!account.loaded" class="en-pair en-hold" aria-hidden="true" />
+        <div v-else-if="account.available && !account.signedIn" class="en-pair">
           <button type="button" class="en-btn" data-key="sign-up" data-entry-signup @click="signUp">Sign up free</button>
           <button type="button" class="en-btn" data-key="sign-in" data-entry-login @click="logIn">Log in</button>
         </div>
@@ -142,10 +143,10 @@ onBeforeUnmount(() => { if (poll !== null) clearInterval(poll) })
         <summary>What publishing needs</summary>
         <ul><li v-for="need in SETUP_NEEDS" :key="need">{{ need }}</li></ul>
       </details>
-      <BonusLine v-if="account.available && !account.signedIn" />
       <p class="en-fine">No password, no e-mail to start.
         <button type="button" class="en-link" data-key="make-character" data-entry-creator @pointerenter="warmCreator" @focus="warmCreator" @touchstart.passive="warmCreator" @click="openCreator">{{ opening ? 'Opening…' : 'Make my character first' }}</button>
       </p>
+      <BonusLine v-if="account.available && !account.signedIn" />
 
       <ul class="en-tiles" aria-label="What you can do">
         <li v-for="tile in variant.tiles" :key="tile.label"><i aria-hidden="true"><GameIcon :name="tile.icon" :size="20" /></i><span>{{ tile.label }}</span></li>
@@ -192,6 +193,7 @@ h1:focus { outline: none; }
 .en-pitch { color: var(--c-ink-2); text-wrap: pretty; }
 .en-invite { padding: 10px 12px; border-radius: 12px; background: var(--c-amber-soft); color: var(--c-amber-dark); font-size: 14px; }
 .en-actions { display: grid; gap: 10px; }
+.en-hold { min-height: 48px; }
 .en-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .en-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 10px 16px; border: 1.5px solid var(--c-line); border-radius: var(--r-pill); background: #fff; color: var(--c-ink); font: inherit; font-weight: 700; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .en-btn:hover:enabled { background: var(--c-fill); }

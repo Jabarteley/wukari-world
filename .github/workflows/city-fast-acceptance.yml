@@ -1,7 +1,7 @@
 name: Parallel city acceptance
 on:
   push:
-    branches: ['codex/astra-factory-qa-20261011']
+    branches: ['codex/astra-factory-qa-20261011', 'claude/qa-20261012']
     paths:
       - 'scripts/geo/city-acceptance-batch.json'
   workflow_dispatch:

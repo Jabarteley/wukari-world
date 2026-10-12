@@ -2,17 +2,10 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "africa-six-city-release-candidate",
-      "appSha": "4fcfcfdaba2ec88ceadf955d5152e7e2cc85eded",
+      "id": "wave2-world-entry-seven",
+      "appSha": "c9341e2013aa840c2634c4445c8772a77ee9506b",
       "driverSha": "05df5f4e1469c287f2175432f06278edd20388da",
-      "cities": [
-        "ndjamena",
-        "bujumbura",
-        "antananarivo",
-        "kinshasa",
-        "brazzaville",
-        "tunis"
-      ],
+      "cities": ["apia", "bogota", "buenos-aires", "dubai", "mexico-city", "santiago", "suva"],
       "roundtrip": true
     }
   ]

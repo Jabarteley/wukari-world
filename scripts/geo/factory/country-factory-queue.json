@@ -2,56 +2,36 @@
  "schemaVersion": 1,
  "queue": [
   {
-   "id": "ca",
-   "table": "scripts/geo/factory/country-factory/ca-factory-targets.json"
-  },
-  {
-   "id": "de",
-   "table": "scripts/geo/factory/country-factory/de-factory-targets.json"
-  },
-  {
-   "id": "il",
-   "table": "scripts/geo/factory/country-factory/il-factory-targets.json"
-  },
-  {
-   "id": "ir",
-   "table": "scripts/geo/factory/country-factory/ir-factory-targets.json"
-  },
-  {
-   "id": "kp",
-   "table": "scripts/geo/factory/country-factory/kp-factory-targets.json"
-  },
-  {
-   "id": "no",
-   "table": "scripts/geo/factory/country-factory/no-factory-targets.json"
-  },
-  {
-   "id": "ph",
-   "table": "scripts/geo/factory/country-factory/ph-factory-targets.json"
-  },
-  {
-   "id": "ru",
-   "table": "scripts/geo/factory/country-factory/ru-factory-targets.json"
-  },
-  {
    "id": "sg",
    "table": "scripts/geo/factory/country-factory/sg-factory-targets.json"
-  },
-  {
-   "id": "us",
-   "table": "scripts/geo/factory/country-factory/us-factory-targets.json"
-  },
-  {
-   "id": "vn",
-   "table": "scripts/geo/factory/country-factory/vn-factory-targets.json"
   },
   {
    "id": "au",
    "table": "scripts/geo/factory/country-factory/au-factory-targets.json"
   },
   {
-   "id": "nl",
-   "table": "scripts/geo/factory/country-factory/nl-factory-targets.json"
+   "id": "ca",
+   "table": "scripts/geo/factory/country-factory/ca-factory-targets.json"
+  },
+  {
+   "id": "us",
+   "table": "scripts/geo/factory/country-factory/us-factory-targets.json"
+  },
+  {
+   "id": "il",
+   "table": "scripts/geo/factory/country-factory/il-factory-targets.json"
+  },
+  {
+   "id": "vn",
+   "table": "scripts/geo/factory/country-factory/vn-factory-targets.json"
+  },
+  {
+   "id": "ph",
+   "table": "scripts/geo/factory/country-factory/ph-factory-targets.json"
+  },
+  {
+   "id": "no",
+   "table": "scripts/geo/factory/country-factory/no-factory-targets.json"
   }
  ]
 }

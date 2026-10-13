@@ -8,7 +8,7 @@ import { estateLayout } from './estates.ts';
 import { ESTATE, PLOTS_PER_ESTATE, packStyle } from '../game/content/world.ts';
 import { HOUSES_DRAW_CALLS } from '../budgets.ts';
 import { createBatch } from '../scene/build.ts';
-import { drawHouse, tone } from '../scene/street/street-standins.ts';
+import { drawDanfo, drawHouse, drawKeke, drawPole, drawWires, standInFor, tone } from '../scene/street/street-standins.ts';
 
 const kit = createKit(), front = estateLayout(pack, 'ikeja')!.cells[0]!;
 function close(count: number, pixels: number) {
@@ -39,4 +39,15 @@ test('the procedural street house: windows, bars, plinth, awning and a roof, and
   assert.ok(small.triangles > 150 && small.triangles < 1200, `${small.triangles} triangles for a bungalow`);
   assert.ok(tall.triangles > small.triangles && tall.triangles < 2500, `${tall.triangles} triangles for flats`);
   assert.equal(tone('#808080', 0.5), '#404040'); assert.equal(tone('#000000', 2), '#ffffff'); assert.equal(tone('#ffffff', 1), '#ffffff');
+});
+
+test('street furniture and shopfronts: danfo, keke, poles with wires, and buildings with a door, windows and a lit sign', () => {
+  const b = createBatch(kit.THREE);
+  drawDanfo(b, 0, 0); drawKeke(b, 10, 0); drawPole(b, 20, 0, true); drawWires(b, 20, 46, 0);
+  assert.ok(b.triangles > 150 && b.triangles < 1200, `${b.triangles} triangles`);
+  const shop = standInFor({ asset: 'shoprow', x: 0, z: 0, ry: 0, scale: 1 } as never)!, shopBatch = createBatch(kit.THREE);
+  shop(shopBatch);
+  const built = shopBatch.build({ solid: new kit.THREE.MeshBasicMaterial(), glow: new kit.THREE.MeshBasicMaterial(), glass: new kit.THREE.MeshBasicMaterial() });
+  assert.ok(built.meshes.length >= 2, 'the sign and the lit windows are on the glow layer');
+  assert.ok(shopBatch.triangles > 100, `${shopBatch.triangles} triangles for a shopfront`);
 });

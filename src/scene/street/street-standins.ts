@@ -90,6 +90,32 @@ export function drawHouse(b: Batch, x: number, front: number, width: number, dep
   }
 }
 
+/** A utility pole: a timber post, a crossarm with insulators, and on some a pole transformer. */
+export function drawPole(b: Batch, x: number, z: number, transformer: boolean): void {
+  b.cyl(x, 3.6, z, 0.14, 7.2, '#6d5a45', { seg: 6 }); b.box(x, 6.9, z, 0.12, 0.12, 1.9, '#5d5142');
+  for (const dz of [-0.8, 0, 0.8]) b.box(x, 7.05, z + dz, 0.08, 0.16, 0.08, '#3f6f8f');
+  if (transformer) { b.cyl(x + 0.38, 5.9, z, 0.3, 0.8, '#8d9399', { seg: 8 }); b.box(x + 0.25, 6.3, z, 0.1, 0.08, 0.5, BARS); }
+}
+/** The wires between two poles, as slim boxes (three lines on the crossarm). */
+export function drawWires(b: Batch, x0: number, x1: number, z: number): void {
+  const length = x1 - x0, cx = (x0 + x1) / 2;
+  for (const dz of [-0.8, 0, 0.8]) { b.box(cx - length / 4, 7.0, z + dz, length / 2, 0.04, 0.04, BARS, { rz: 0.012 }); b.box(cx + length / 4, 7.0, z + dz, length / 2, 0.04, 0.04, BARS, { rz: -0.012 }); }
+}
+/** A parked danfo: the yellow Lagos minibus with its black band, a row of windows, a roof rack and lamps. Along x, facing +x. */
+export function drawDanfo(b: Batch, x: number, z: number): void {
+  b.box(x, 1.25, z, 5.0, 1.7, 2.0, '#e5b52b'); b.box(x, 1.3, z, 5.04, 0.35, 2.04, '#26282b'); b.box(x, 0.45, z, 5.0, 0.5, 2.0, '#26282b');
+  for (let i = 0; i < 4; i++) for (const side of [-1, 1]) b.quad(x - 1.6 + i * 1.05, 1.9, z + side * 1.011, 0.85, 0.65, PANE, { ry: side > 0 ? 0 : Math.PI });
+  b.quad(x + 2.505, 1.7, z, 1.6, 0.8, PANE, { ry: Math.PI / 2 }); b.box(x - 0.2, 2.15, z, 3.6, 0.1, 1.7, '#8d9399');
+  for (const side of [-1, 1]) { b.quad(x + 2.51, 0.85, z + side * 0.7, 0.3, 0.2, LIT, { ry: Math.PI / 2, layer: 'glow' }); for (const wx of [-1.6, 1.5]) b.cyl(x + wx, 0.4, z + side * 0.95, 0.4, 0.3, '#17181a', { rx: Math.PI / 2, seg: 8 }); }
+}
+/** A keke napep: a three-wheeled green and yellow cab with a canopy. Along x, facing +x. */
+export function drawKeke(b: Batch, x: number, z: number): void {
+  b.box(x, 0.85, z, 2.3, 0.9, 1.3, '#e5b52b'); b.box(x - 0.2, 1.75, z, 1.7, 0.1, 1.3, '#2c6b3a'); b.box(x - 0.2, 1.3, z, 1.7, 0.1, 1.3, '#2c6b3a');
+  for (const dz of [-0.62, 0.62]) b.box(x - 1.0, 1.52, z + dz, 0.06, 0.5, 0.06, '#2c6b3a');
+  b.box(x + 0.7, 1.45, z, 0.6, 0.6, 1.0, '#2c6b3a'); b.quad(x + 1.16, 0.9, z, 0.22, 0.14, LIT, { ry: Math.PI / 2, layer: 'glow' });
+  for (const [wx, wz] of [[-0.8, -0.65], [-0.8, 0.65], [1.0, 0]] as const) b.cyl(x + wx, 0.3, z + wz, 0.3, 0.2, '#17181a', { rx: Math.PI / 2, seg: 8 });
+}
+
 const SAND = '#d9c9a6', GREEN = '#3f8a57', DARK = '#3b3f46';
 
 /** The stand-in for a piece, drawn in the model's own frame (the layer applies the piece's position, turn and scale). */
@@ -103,7 +129,13 @@ export function standInFor(item: PlanPiece): ((b: Batch) => void) | undefined {
       return (b) => drawHouse(b, 0, maxZ, width * 0.92, depth * 0.62, paint.wall, paint.roof, paint.door, floors);
     }
     case 'shops': case 'shoprow': case 'church': case 'mosque': case 'school': case 'clinic': case 'filling': case 'bank': case 'unfinished':
-      return (b) => { b.box(midX, height * 0.4, midZ, width * 0.94, height * 0.8, depth * 0.9, '#e2d3b0'); b.box(midX, height * 0.84, midZ, width, height * 0.1, depth * 1.02, '#a85c40'); b.box(0, 1.1, maxZ - 0.1, 1.5, 2.2, 0.2, '#6b4a2b'); };
+      return (b) => {
+        const face = midZ + depth * 0.45, wall = '#e2d3b0', rows = Math.max(1, Math.round(height / 3.8));
+        b.box(midX, height * 0.4, midZ, width * 0.94, height * 0.8, depth * 0.9, wall); b.box(midX, height * 0.84, midZ, width, height * 0.1, depth * 1.02, '#a85c40'); b.box(midX, 0.2, midZ, width * 0.97, 0.4, depth * 0.93, tone(wall, 0.66));
+        // A door, a signboard over it (lit at night), and at least two windows a floor.
+        b.box(midX, 1.1, face + 0.04, 1.5, 2.2, 0.12, '#6b4a2b'); b.box(midX, 2.75, face + 0.1, Math.min(width * 0.5, 5), 0.7, 0.12, '#1f5a3a'); b.quad(midX, 2.75, face + 0.17, Math.min(width * 0.5, 5) - 0.3, 0.4, LIT, { layer: 'glow' });
+        for (let row = 0; row < rows; row++) for (const side of [-1, 1]) drawWindow(b, midX + side * Math.min(width * 0.3, 3.4), 2.0 + row * 3.4 + (row ? 0.4 : 0), face, (row + (side > 0 ? 1 : 0)) % 2 === 0, row === 0);
+      };
     case 'fencegate':
       // Two piers with caps, and the leaves of the gate swung open against the yard: dark steel with a bar rail.
       return (b) => { for (const side of [-1, 1]) {
@@ -114,11 +146,12 @@ export function standInFor(item: PlanPiece): ((b: Batch) => void) | undefined {
       const meter = Math.round(item.x / 12) % 2 ? 1 : -1;
       b.box(meter * 1.65, 1.15, 0.31, 0.34, 0.46, 0.12, '#cfd1cc'); b.quad(meter * 1.65, 1.18, 0.38, 0.22, 0.2, '#2c3a46'); b.quad(meter * 1.65, 0.98, 0.38, 0.05, 0.05, '#d8473a', { layer: 'glow' }); };
     case 'lamp':
-      return (b) => { b.cyl(0, 2.6, 0, 0.12, 5.2, '#5d5142'); b.box(0.7, 5.3, 0, 1.5, 0.12, 0.2, '#5d5142'); b.cyl(1.4, 5.2, 0, 0.3, 0.3, '#e9c97c', { seg: 8 }); };
+      return (b) => { b.cyl(0, 2.6, 0, 0.12, 5.2, '#5d5142'); b.box(0.7, 5.3, 0, 1.5, 0.12, 0.2, '#5d5142'); b.cyl(1.4, 5.2, 0, 0.3, 0.3, LIT, { seg: 8, layer: 'glow' }); };
     case 'busstop':
       return (b) => { for (const side of [-1, 1]) b.box(side * 1.9, 1.2, -0.7, 0.14, 2.4, 0.14, DARK); b.box(0, 2.5, 0, 4.4, 0.14, 2.1, '#8d9399'); b.box(0, 0.5, -0.7, 3.4, 0.1, 0.5, '#73553b'); };
     case 'kiosk': case 'stall':
-      return (b) => { b.box(midX, 1.1, midZ, width * 0.8, 2.2, depth * 0.8, '#c69a4e'); b.box(midX, 2.35, midZ, width, 0.18, depth, '#b5483f'); };
+      // A kiosk or stall: a timber box with a serving window lit from inside, a striped awning and a signboard.
+      return (b) => { b.box(midX, 1.1, midZ, width * 0.8, 2.2, depth * 0.8, '#c69a4e'); b.box(midX, 2.35, midZ, width, 0.18, depth, '#b5483f'); b.quad(midX, 1.3, midZ + depth * 0.4 + 0.02, width * 0.5, 0.8, LIT, { layer: 'glow' }); b.box(midX, 0.55, midZ + depth * 0.4 + 0.15, width * 0.6, 0.1, 0.35, '#73553b'); b.box(midX, 2.75, midZ + depth * 0.4, width * 0.6, 0.45, 0.1, '#1f5a3a'); };
     case 'shadetree': case 'palm': case 'pawpaw': case 'plantain':
       return (b) => { b.cyl(0, height * 0.3, 0, 0.3, height * 0.6, '#73553b'); b.ico(0, height * 0.72, 0, width * 0.42, height * 0.26, depth * 0.42, GREEN); };
     case 'hedge':

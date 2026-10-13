@@ -24,7 +24,7 @@ import type { ModelCache, ModelLayer } from './models/scene-models.ts';
 import { fileKey, familyOf, hasFar, WINDOW_TILES } from './street/street-kit.ts';
 import { BOUNDS, BUS_STOP, Z, planStreet, sceneryMix } from './street/street-plan.ts';
 import type { PlanHouse, StreetPlan } from './street/street-plan.ts';
-import { standInFor, tone } from './street/street-standins.ts';
+import { drawDanfo, drawKeke, drawPole, drawWires, standInFor, tone } from './street/street-standins.ts';
 
 const HOME_DOOR = { x: 0, z: -6.25, ry: Math.PI, direction: 'inside' as const };
 const ENTRANCE = { x: 0, y: 0, z: -3.25, ry: 0 };
@@ -145,6 +145,11 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
       // A painted band at the foot of a block wall, and a coping on top.
       if (wall.fence !== 1) { b.box(x, 0.16, z, x1 - x0 + 0.08, 0.32, z1 - z0 + 0.08, tone(colour, 0.7)); b.box(x, wall.height + 0.06, z, x1 - x0 + 0.06, 0.12, z1 - z0 + 0.06, '#efe6cf'); }
     }
+    // Utility poles with their wires along the far pavement, a pole transformer on every third, and the road's parked traffic.
+    const poleZ = Z.farKerb + 0.7, poles: number[] = [];
+    for (let x = -ROW_HALF_WIDTH + 10; x <= ROW_HALF_WIDTH - 6; x += 26) poles.push(x);
+    poles.forEach((x, i) => { drawPole(b, x, poleZ, i % 3 === 1); if (i) drawWires(b, poles[i - 1]!, x, poleZ); });
+    drawDanfo(b, -ROW_HALF_WIDTH + 30, Z.road1 - 1.6); drawKeke(b, ROW_HALF_WIDTH - 40, Z.road1 - 1.4); drawDanfo(b, 8, Z.road0 + 1.5);
     for (const [x, y, z] of plan.lights) b.light(x, y, z, '#ffe3a0', 4, 7);
     void width; void deep;
     const built = b.build(sceneMaterials(kit));

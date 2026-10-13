@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "basseterre",
+  "countryIso2": "KN",
+  "generationIdentity": {
+    "cityId": "basseterre",
+    "stateId": "kn-basseterre",
+    "stateName": "Basseterre"
+  },
+  "inventorySha256": "e13dd3afbfbe3967cee58a96ae29bcbb40c4e110c376e19f8d912670cad03f59",
+  "inventoryPath": "world/playable-africa-rollout/sources/basseterre.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "basseterre-airport",
+    "name": "Robert L. Bradshaw International Airport",
+    "lon": -62.719117,
+    "lat": 17.310845,
+    "sourceUrl": "https://ourairports.com/airports/TKPK/"
+  },
+  "bounds": [
+    17.115211010066023,
+    -62.91065823289697,
+    17.476972789933978,
+    -62.53394376710303
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "05e841ca1bd3c1180c03af52ab21fd02b0d8adcd5fe922756292135bdf118807",
+          "elements": 233
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d365edd16a581a990e306add3cc6e40f3b4535ac81893df1ebc1015f567e6a51",
+          "elements": 59
+        },
+        {
+          "file": "water.json",
+          "sha256": "11594e3cc2d4719694a9a364f4af7bb9abcaccd4adb8e1e3112b00991aa4c350",
+          "elements": 336
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "30b49edd979c978926ad846801f0c570f93c1bd6f036751c09e9141de5a3068c",
+          "elements": 951
+        },
+        {
+          "file": "roads.json",
+          "sha256": "35ec9f24fbf26bd2b70290fd896819cad905a4ea1e759c28f0d3bde2b742b2f0",
+          "elements": 227
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 34,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 233,
+    "extras": 59,
+    "water": 336,
+    "landuse": 951,
+    "roads": 227
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1259,
+      "sha256": "a0c4cd80f707e03cb6847c2b9506e1c355b05969efcf8e3dafabccb93ae12f5f"
+    },
+    "geometry.ts": {
+      "bytes": 78564,
+      "sha256": "16022d5424276ad85525b630986538ac47b89da706ca4521df0263863ad343b7"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "7015e9add38927eafa6ddd104420268877ae24d07d0e122d49d0fa874882f4f4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/basseterre.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

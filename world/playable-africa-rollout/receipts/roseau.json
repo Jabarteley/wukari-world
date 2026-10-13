@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "roseau",
+  "countryIso2": "DM",
+  "generationIdentity": {
+    "cityId": "roseau",
+    "stateId": "dm-roseau",
+    "stateName": "Roseau"
+  },
+  "inventorySha256": "6af3d3ab7de32190a598c8e0f9d35b7d3bcb8e74364f421449434b6c32c1052b",
+  "inventoryPath": "world/playable-africa-rollout/sources/roseau.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "roseau-airport",
+    "name": "Douglas-Charles Airport",
+    "lon": -61.301082,
+    "lat": 15.546673,
+    "sourceUrl": "https://ourairports.com/airports/TDPD/"
+  },
+  "bounds": [
+    15.11831141006602,
+    -61.573711916042896,
+    15.5557170444967,
+    -61.2008616839571
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "bec55104c0aab2f1d833925b85ea90e2cc9dca660332deec8f71489d6dd042ec",
+          "elements": 773
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9c52807f4871785ade49738e79f8d9d14636de9722dfdd1e0f6290ebab353ab3",
+          "elements": 26
+        },
+        {
+          "file": "water.json",
+          "sha256": "6d77cee8941795651238549dfa89a53fa5faa83e10164dcd560092629782b58d",
+          "elements": 814
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "858579c67a35b489986df066b38a44f18f827887b42d44432051a1a79ded2bd5",
+          "elements": 126
+        },
+        {
+          "file": "roads.json",
+          "sha256": "b44c9dc70c56a1a0d5a0fa20d3781d27e1ff1c19d05d3f452edfe618de4981a1",
+          "elements": 207
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 17,
+    "neighbourhoodLabels": 13,
+    "landPolygons": 10,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 10
+  },
+  "observed": {
+    "places": 773,
+    "extras": 26,
+    "water": 814,
+    "landuse": 126,
+    "roads": 207
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1205,
+      "sha256": "29581a8c55faab0556721a43f311eb605d19c62e1af841a4d2328f816f000b76"
+    },
+    "geometry.ts": {
+      "bytes": 109179,
+      "sha256": "12492b1e87a6d02d5582b093ee208cf6c2458b64931828f9d320b47e10b4db5e"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "13c003d07846146246472c40f04ff21f1d2ac50f8dea3120721ff0d3011a9fe5"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/roseau.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "castries",
+  "countryIso2": "LC",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Castries",
+    "coordinatesWgs84": [
+      -60.9902359,
+      14.0095966
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "castries-airport",
+    "name": "Hewanorra International Airport",
+    "lon": -60.952599,
+    "lat": 13.7332,
+    "sourceUrl": "https://ourairports.com/airports/TLPL/"
+  },
+  "boxes": {
+    "play": [
+      13.724155955503301,
+      -61.17555287753564,
+      14.19047748993398,
+      -60.80491892246437
+    ],
+    "core": [
+      13.964376377516505,
+      -61.03653755302984,
+      14.054816822483495,
+      -60.943934246970166
+    ],
+    "outline": [
+      13.6741559555033,
+      -61.225552877535634,
+      14.24047748993398,
+      -60.75491892246437
+    ],
+    "wide": [
+      13.124155955503301,
+      -61.77555287753564,
+      14.790477489933979,
+      -60.204918922464365
+    ],
+    "water": [
+      13.124155955503301,
+      -61.77555287753564,
+      14.790477489933979,
+      -60.204918922464365
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "40a2068358e36800c50679d1087da2e3069100e33bb0581c6c204a861c88875b",
+        "elements": 868
+      },
+      {
+        "file": "extras.json",
+        "sha256": "138684e337675a9075dfd6b07dac54d835d618107b554a693f32dbdb361f4493",
+        "elements": 161
+      },
+      {
+        "file": "water.json",
+        "sha256": "7405e90f6fc7b04bb3020f01322dc8f58f57a5ed41b9debe3d79fb5a78e8e95c",
+        "elements": 760
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "c3bc87c16498e5b3e274725e9c050501a6c70d24a7ec7631a41cf3c109e17370",
+        "elements": 529
+      },
+      {
+        "file": "roads.json",
+        "sha256": "0ab9c34aae974d3176fa6dedc194a91fd44f00b535ed307962d6fad932e9be20",
+        "elements": 184
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Castries Ferry Terminal",
+      "osm": "node/1402576576",
+      "coordinatesWgs84": [
+        -60.992742,
+        14.011358
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hummingbird Beach Resort",
+      "osm": "node/1224753145",
+      "coordinatesWgs84": [
+        -61.062209,
+        13.85836
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Spartan Health Science University",
+      "osm": "node/5204803061",
+      "coordinatesWgs84": [
+        -60.971573,
+        13.747934
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Victoria Hospital",
+      "osm": "way/527244013",
+      "coordinatesWgs84": [
+        -60.998652,
+        14.009676
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Derek Walcott Square",
+      "osm": "way/114732971",
+      "coordinatesWgs84": [
+        -60.990813,
+        14.008855
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rising Sun",
+      "osm": "node/4026130545",
+      "coordinatesWgs84": [
+        -60.887228,
+        13.912119
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Minor Basilica of the Immaculate Conception",
+      "osm": "way/255580407",
+      "coordinatesWgs84": [
+        -60.990123,
+        14.008879
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Local Village Council Office",
+      "osm": "way/396114466",
+      "coordinatesWgs84": [
+        -61.042439,
+        13.940059
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Government House",
+      "osm": "way/115572297",
+      "coordinatesWgs84": [
+        -60.997939,
+        14.005718
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American International Medical University",
+      "osm": "way/434000880",
+      "coordinatesWgs84": [
+        -60.942297,
+        14.077912
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rainforest Adventures",
+      "osm": "node/10649346505",
+      "coordinatesWgs84": [
+        -60.921169,
+        13.985667
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Oldest Baobab Tree",
+      "osm": "node/10017170962",
+      "coordinatesWgs84": [
+        -60.914843,
+        13.809232
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Choiseul Fish Market",
+      "osm": "way/399244147",
+      "coordinatesWgs84": [
+        -61.050393,
+        13.774748
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sulphur Springs",
+      "osm": "way/257640501",
+      "coordinatesWgs84": [
+        -61.04647,
+        13.838658
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barre de L'Isle rainforest trail",
+      "osm": "node/6322922716",
+      "coordinatesWgs84": [
+        -60.957638,
+        13.927
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Daren Sammy Cricket Ground",
+      "osm": "way/576357922",
+      "coordinatesWgs84": [
+        -60.932032,
+        14.070299
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Owen King EU Hospital",
+      "osm": "way/396954377",
+      "coordinatesWgs84": [
+        -61.009385,
+        14.001387
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Village Inn",
+      "osm": "way/353009951",
+      "coordinatesWgs84": [
+        -60.906111,
+        13.862771
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Savannes Bay",
+      "osm": "way/353723748",
+      "coordinatesWgs84": [
+        -60.929808,
+        13.765051
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Canaries Village Square",
+      "osm": "way/1479934483",
+      "coordinatesWgs84": [
+        -61.068028,
+        13.905628
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Morne Le Blanc Heritage Site",
+      "osm": "node/4027985616",
+      "coordinatesWgs84": [
+        -61.007218,
+        13.770354
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Grand Rivere Playing Field",
+      "osm": "way/1430525424",
+      "coordinatesWgs84": [
+        -60.952996,
+        14.034627
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grande Riviere Secondary School",
+      "osm": "node/5221676738",
+      "coordinatesWgs84": [
+        -60.929801,
+        13.933752
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St Lucia's farmer market",
+      "osm": "node/7084016329",
+      "coordinatesWgs84": [
+        -61.02023,
+        13.956419
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1242,
+      "sha256": "fe731fbc707e98f9a726e52b3fe5291a4aaa2e5be49a361f310de2bb761cdf7b"
+    },
+    "geometry.ts": {
+      "bytes": 545797,
+      "sha256": "0bd16d582b87aa683459b1ad277b1b4206da9ffc5e0a6b179b86fc144e5211ad"
+    },
+    "places.ts": {
+      "bytes": 9523,
+      "sha256": "f7ac0f8faf6889274642249dcabca6bc760ca5f21d722c7d9e67324789631890"
+    },
+    "terrain.ts": {
+      "bytes": 254549,
+      "sha256": "c01e686acba08103b0e1c7f8fe11e677633d259171f0f601696eaf2818a58539"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "2537dd1447276379993e4f4f5940af3f90607f0da3907153690c101677577b21"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

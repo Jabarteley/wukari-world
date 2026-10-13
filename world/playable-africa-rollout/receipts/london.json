@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "london",
+  "countryIso2": "GB",
+  "generationIdentity": {
+    "cityId": "london",
+    "stateId": "gb-london",
+    "stateName": "London"
+  },
+  "inventorySha256": "e852ce48d2e3148c982aec888dfd800ce7d9d3a9bd12efb6985b0d811304cb89",
+  "inventoryPath": "world/playable-africa-rollout/sources/london.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "london-airport",
+    "name": "London Heathrow Airport",
+    "lon": -0.459909,
+    "lat": 51.470748,
+    "sourceUrl": "https://ourairports.com/airports/EGLL/"
+  },
+  "bounds": [
+    51.326564710066016,
+    -0.4743329676367383,
+    51.68832648993398,
+    0.16204105356569867
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/united-kingdom-261011.osm.pbf",
+      "datasetSha256": "1aa0be524f45c60270f96cdd898c34f3d7ad06b3a5b110191ae2ce600c7adbe0",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "802ecbb52a55e63c9e51fd47302e8c28fb8923ee3979e1c282de5d14aee26d1b",
+          "elements": 22378
+        },
+        {
+          "file": "extras.json",
+          "sha256": "8c7c83f6adc91653a4d27fd4d48438388e1795302467f84513509c016b13e9d9",
+          "elements": 4213
+        },
+        {
+          "file": "water.json",
+          "sha256": "73530095e9beea93b7d42bef249145a21c6b4284722b5e9959fe47028e24c35b",
+          "elements": 4761
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "0c67a7140558da5ac65fb5c3193a236f8ce8b38ff15e21990b3dea1dd6fd115f",
+          "elements": 35396
+        },
+        {
+          "file": "roads.json",
+          "sha256": "066fa2c5a3f933501be8bf520202e6e0219c881c9dcf59512dc7f5b3cd96c085",
+          "elements": 36160
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 19,
+    "waterPolygons": 31,
+    "reachWaterPolygons": 64
+  },
+  "observed": {
+    "places": 22378,
+    "extras": 4213,
+    "water": 4761,
+    "landuse": 35396,
+    "roads": 36160
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1221,
+      "sha256": "8cfd66e5c31cc033aec01237e6d574a35d376b20309ab995dcd29af5ede988af"
+    },
+    "geometry.ts": {
+      "bytes": 34618,
+      "sha256": "9e53a2c295f6708e1236cdbf8fdeeacba8cf9f52d0363ebb7e1effcd2720d715"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "8ca007e26816b065817fe0add35ed2861500a3dc589683532ab448460d856f26"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/london.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

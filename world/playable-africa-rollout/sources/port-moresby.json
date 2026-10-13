@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-moresby",
+  "countryIso2": "PG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Port Moresby",
+    "coordinatesWgs84": [
+      147.1599504,
+      -9.4743301
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/papua-new-guinea-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "port-moresby-airport",
+    "name": "Port Moresby Jacksons International Airport",
+    "lon": 147.22000122070312,
+    "lat": -9.443380355834961,
+    "sourceUrl": "https://ourairports.com/airports/AYPY/"
+  },
+  "boxes": {
+    "play": [
+      -9.655210989933979,
+      146.97770666032244,
+      -9.29344921006602,
+      147.3421941396776
+    ],
+    "core": [
+      -9.519550322483495,
+      147.1144076828301,
+      -9.429109877516504,
+      147.20549311716994
+    ],
+    "outline": [
+      -9.70521098993398,
+      146.92770666032243,
+      -9.24344921006602,
+      147.3921941396776
+    ],
+    "wide": [
+      -10.255210989933978,
+      146.37770666032245,
+      -8.69344921006602,
+      147.94219413967758
+    ],
+    "water": [
+      -10.255210989933978,
+      146.37770666032245,
+      -8.69344921006602,
+      147.94219413967758
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/papua-new-guinea-261011.osm.pbf",
+    "datasetSha256": "27fa4ed1b51b13ec2ab3fe944a9d0f501f23e0711106c0a2304344c37c7f021f",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/australia-oceania/papua-new-guinea-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 54368277,
+        "md5": "1c33cb31283cef0ebdc230e44b52c654",
+        "sha256": "4b49e49b008819e9affdcb4e7a1bfba80e32adfa5971a87894e85ff377e31046"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/australia-oceania/australia/queensland-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 198626406,
+        "md5": "6dabcc6cb419e080720ff8060b2a5e23",
+        "sha256": "62a5954d7a5b5419ad53c44732c34896c1f6f401a1b7bf9c4e23a67689d423b4",
+        "reason": "ways 623239245, 623239249, 934762256, 934762261 (Torres Strait PNG-Australia maritime border, relation 307866 members) lie in the Geofabrik queensland polygon and not in indonesia or solomon-islands"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "4c10d28122f91f6f82c73731e391ce67b3c280c701447efe1e9bfd28bcc85f1a",
+        "elements": 265
+      },
+      {
+        "file": "extras.json",
+        "sha256": "6a32eebd686bef35a01f7e079e81f5d4d8d357bf688ae15b6cf566f2f45e6019",
+        "elements": 72
+      },
+      {
+        "file": "water.json",
+        "sha256": "3fe3294e95342d865492829b85ed0793d5c4076ce599edf3fe4c90479debba4a",
+        "elements": 178
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "57874a232106d0cfcdda73d01d059f524e3a69f85b98dfae0e8a52e5eb3218a9",
+        "elements": 343
+      },
+      {
+        "file": "roads.json",
+        "sha256": "cfc0f5f8213b40ef1e7dec0d34dafc721e89f484d91a741f7f68172ef17269d3",
+        "elements": 554
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Boroko",
+      "osm": "node/5125689323",
+      "coordinatesWgs84": [
+        147.193556,
+        -9.466209
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Brews & Berries Café",
+      "osm": "node/13684912394",
+      "coordinatesWgs84": [
+        147.078807,
+        -9.420113
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Papua New Guinea, Waigani Campus",
+      "osm": "way/25396668",
+      "coordinatesWgs84": [
+        147.172922,
+        -9.409837
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Laloki Psychiatric Hospital",
+      "osm": "way/793402380",
+      "coordinatesWgs84": [
+        147.224593,
+        -9.363726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Koiri Park",
+      "osm": "way/301418557",
+      "coordinatesWgs84": [
+        147.274797,
+        -9.392544
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "JF Betlenut Market",
+      "osm": "way/1493413574",
+      "coordinatesWgs84": [
+        147.305585,
+        -9.509765
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Mary’s Cathedral",
+      "osm": "way/895502854",
+      "coordinatesWgs84": [
+        147.149496,
+        -9.480857
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Port Moresby City Hall",
+      "osm": "way/942762390",
+      "coordinatesWgs84": [
+        147.179824,
+        -9.440137
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "PNG National Weather Services",
+      "osm": "node/12825984935",
+      "coordinatesWgs84": [
+        147.210212,
+        -9.441567
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Metago Bible College",
+      "osm": "way/1475514064",
+      "coordinatesWgs84": [
+        147.028167,
+        -9.313295
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sir John Guise Stadium",
+      "osm": "way/525253713",
+      "coordinatesWgs84": [
+        147.185384,
+        -9.440927
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Canoe coffee",
+      "osm": "node/6038606685",
+      "coordinatesWgs84": [
+        147.25039,
+        -9.528341
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sir Hubert Murray Stadium",
+      "osm": "way/25178323",
+      "coordinatesWgs84": [
+        147.156864,
+        -9.466978
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Santos National Football Stadium",
+      "osm": "way/615731680",
+      "coordinatesWgs84": [
+        147.198531,
+        -9.469399
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Water's Cafe",
+      "osm": "way/1493439301",
+      "coordinatesWgs84": [
+        147.026847,
+        -9.390267
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Eliseo Makana Plaza",
+      "osm": "way/1495472122",
+      "coordinatesWgs84": [
+        147.23843,
+        -9.412884
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bunka Café",
+      "osm": "way/1497930259",
+      "coordinatesWgs84": [
+        147.13557,
+        -9.417146
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Porebada Health Centre",
+      "osm": "way/1481698449",
+      "coordinatesWgs84": [
+        147.042506,
+        -9.417286
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vabukori Women's Market",
+      "osm": "way/1497997106",
+      "coordinatesWgs84": [
+        147.186507,
+        -9.497651
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Port Moresby Technical College",
+      "osm": "way/25178550",
+      "coordinatesWgs84": [
+        147.145386,
+        -9.44293
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bomana Police College",
+      "osm": "way/1495585405",
+      "coordinatesWgs84": [
+        147.245723,
+        -9.38791
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gerehu Sports Centre",
+      "osm": "way/25601717",
+      "coordinatesWgs84": [
+        147.161936,
+        -9.388835
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "PNG National Museum and Art Gallery",
+      "osm": "way/25598649",
+      "coordinatesWgs84": [
+        147.190127,
+        -9.425593
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Unagi Park",
+      "osm": "way/1445648071",
+      "coordinatesWgs84": [
+        147.1954,
+        -9.449053
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1294,
+      "sha256": "24a988d1cf31dfd9f3174665d2fc64f9056d56068acb38f634848ab20f41e6c9"
+    },
+    "geometry.ts": {
+      "bytes": 122660,
+      "sha256": "a250717dc0913674ec9fa0d94cdec2e86565286062ab1e29046d39875f27d310"
+    },
+    "places.ts": {
+      "bytes": 9453,
+      "sha256": "901497dde4fb3e59f8c3f2a7725b8d9dfa0174f12770cacff6e5ede43773dfa6"
+    },
+    "terrain.ts": {
+      "bytes": 285885,
+      "sha256": "754ec42f0ed315ef82524c39fc92a3d74086480f40f066b6b3e05c077be099db"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "60538697b760d4b08493eda522ee2c87eb173f8402657b70a24d48b89b8b7d0b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

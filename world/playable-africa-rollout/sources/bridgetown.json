@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bridgetown",
+  "countryIso2": "BB",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bridgetown",
+    "coordinatesWgs84": [
+      -59.6184184,
+      13.0977832
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "bridgetown-airport",
+    "name": "Grantley Adams International Airport",
+    "lon": -59.491034,
+    "lat": 13.074667,
+    "sourceUrl": "https://ourairports.com/airports/TBPB/"
+  },
+  "boxes": {
+    "play": [
+      12.916902310066021,
+      -59.803015947974664,
+      13.27866408993398,
+      -59.43382085202534
+    ],
+    "core": [
+      13.052562977516505,
+      -59.66454214348014,
+      13.143003422483496,
+      -59.572294656519865
+    ],
+    "outline": [
+      12.86690231006602,
+      -59.85301594797466,
+      13.32866408993398,
+      -59.383820852025345
+    ],
+    "wide": [
+      12.316902310066022,
+      -60.403015947974666,
+      13.878664089933979,
+      -58.83382085202534
+    ],
+    "water": [
+      12.316902310066022,
+      -60.403015947974666,
+      13.878664089933979,
+      -58.83382085202534
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "ab4433225c4f70c97516716e071360d130d1faaa3351e3ccf152296b68fb2db3",
+        "elements": 1253
+      },
+      {
+        "file": "extras.json",
+        "sha256": "92e3b8a5d276e7e24d3a99d738f6db98b5e161896929c75274a187ebc1f84695",
+        "elements": 165
+      },
+      {
+        "file": "water.json",
+        "sha256": "2bd1e65713dc5c4e4aa0903cbf37ee2b2b352dca6d49d02e82214f9dc0ac4a6c",
+        "elements": 95
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "fe74361795ea2dc10d02386995b90d00b46245fb7f7df91d35e1cb7b64f54e0b",
+        "elements": 383
+      },
+      {
+        "file": "roads.json",
+        "sha256": "7bec8e31980b86e14232969296f79e73eeded03c898c11a34d943cf6f37824c0",
+        "elements": 1015
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Speightstown Bus Terminal",
+      "osm": "relation/12724653",
+      "coordinatesWgs84": [
+        -59.6425,
+        13.252015
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Round House Restaurant",
+      "osm": "node/608405858",
+      "coordinatesWgs84": [
+        -59.525159,
+        13.214992
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Samuel Jackman Prescod Institute of Technology",
+      "osm": "way/231339988",
+      "coordinatesWgs84": [
+        -59.577269,
+        13.096386
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen Elizabeth Hospital",
+      "osm": "way/440523260",
+      "coordinatesWgs84": [
+        -59.606732,
+        13.095629
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Farley Hill National Park",
+      "osm": "way/471281496",
+      "coordinatesWgs84": [
+        -59.59495,
+        13.264811
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sheraton Mall",
+      "osm": "way/95179441",
+      "coordinatesWgs84": [
+        -59.567124,
+        13.083437
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Philip's Parish Church",
+      "osm": "way/741736399",
+      "coordinatesWgs84": [
+        -59.488566,
+        13.13696
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barbados Supreme Court Complex",
+      "osm": "way/235142705",
+      "coordinatesWgs84": [
+        -59.613814,
+        13.102086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Caribbean Examinations Council (CXC)",
+      "osm": "way/479780102",
+      "coordinatesWgs84": [
+        -59.594249,
+        13.094657
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen's College",
+      "osm": "way/385052120",
+      "coordinatesWgs84": [
+        -59.623618,
+        13.14578
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Stadium and Sports Center",
+      "osm": "way/1137316499",
+      "coordinatesWgs84": [
+        -59.604875,
+        13.12012
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gun Hill Signal Station",
+      "osm": "way/864190108",
+      "coordinatesWgs84": [
+        -59.55758,
+        13.143235
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. James Parish Church",
+      "osm": "way/384916728",
+      "coordinatesWgs84": [
+        -59.638404,
+        13.190826
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Margaret's Anglican Church",
+      "osm": "way/440434642",
+      "coordinatesWgs84": [
+        -59.501593,
+        13.1997
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Charles",
+      "osm": "way/255443003",
+      "coordinatesWgs84": [
+        -59.612523,
+        13.078651
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Joseph Hospital",
+      "osm": "way/1432859122",
+      "coordinatesWgs84": [
+        -59.632917,
+        13.261754
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barbados Community College (BCC)",
+      "osm": "way/480461489",
+      "coordinatesWgs84": [
+        -59.58855,
+        13.1051
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kensington Oval",
+      "osm": "way/576678586",
+      "coordinatesWgs84": [
+        -59.622622,
+        13.105307
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Erdiston Teachers' Training College",
+      "osm": "way/1042768231",
+      "coordinatesWgs84": [
+        -59.599844,
+        13.097224
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Heroes Square",
+      "osm": "way/37935746",
+      "coordinatesWgs84": [
+        -59.614001,
+        13.096757
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen's Park",
+      "osm": "way/93917192",
+      "coordinatesWgs84": [
+        -59.609304,
+        13.099138
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "mamu's cafe",
+      "osm": "node/11686666569",
+      "coordinatesWgs84": [
+        -59.507234,
+        13.052541
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "L'Azure Restaurant",
+      "osm": "node/8393535458",
+      "coordinatesWgs84": [
+        -59.444675,
+        13.105415
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Franz Phillips Memorial Picture Hole",
+      "osm": "node/13686266671",
+      "coordinatesWgs84": [
+        -59.550713,
+        13.24093
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1261,
+      "sha256": "7cac02bd1ded9b9e651fb90793d458e0aeb2baba1d20c8cf17d14495afae362a"
+    },
+    "geometry.ts": {
+      "bytes": 211147,
+      "sha256": "ce46b08f40342227e7d4ec12ccf4ee9604b488ea5e3f25d2562a0994791e737b"
+    },
+    "places.ts": {
+      "bytes": 9918,
+      "sha256": "dfdfa547907c4cdc50368fb8cd890911911e86964840cae275a4b05ada05cdb9"
+    },
+    "terrain.ts": {
+      "bytes": 132135,
+      "sha256": "6383cbde4a5d7c486bf90a62c384664155e924e7d89661c7d6cfeed268e9c6e9"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "c61838d96244892a763e6c394038fc73148ae841c862fd7f62f638534d7ebffc"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

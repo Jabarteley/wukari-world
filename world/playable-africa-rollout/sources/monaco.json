@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "monaco",
+  "countryIso2": "MC",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Monaco",
+    "coordinatesWgs84": [
+      7.4209592,
+      43.7310164
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "monaco-airport",
+    "name": "Monaco Heliport",
+    "lon": 7.419673,
+    "lat": 43.725798,
+    "sourceUrl": "https://ourairports.com/airports/LNMC/"
+  },
+  "boxes": {
+    "play": [
+      43.55013551006602,
+      7.171569331894352,
+      43.91189728993398,
+      7.670349068105649
+    ],
+    "core": [
+      43.68579617751651,
+      7.358753354219005,
+      43.776236622483495,
+      7.4831650457809955
+    ],
+    "outline": [
+      43.50013551006602,
+      7.121569331894352,
+      43.96189728993398,
+      7.720349068105649
+    ],
+    "wide": [
+      42.95013551006602,
+      6.571569331894352,
+      44.511897289933984,
+      8.270349068105649
+    ],
+    "water": [
+      42.95013551006602,
+      6.571569331894352,
+      44.511897289933984,
+      8.270349068105649
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-261011.osm.pbf",
+    "datasetSha256": "4cb9d70fd09569514f1f841bbe5fed3c3044d7fd4bca374780c2ad1a5efc8f3b",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 390353249,
+        "md5": "0631573b7a595b332063e0ed4d43e752",
+        "sha256": "e1fb8efe9e9ca41cd62cc2e33dea5c218890fc27483817b6e7a293bf764b1b6a"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/europe/italy/nord-ovest-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 592676030,
+        "md5": "a520172bbe60706b14391f91b22ea30a",
+        "sha256": "5972f9aaadfafde02653731683f114fcac72e5783eb4e7aa0f3dd4b6e4f5692f",
+        "reason": "The coast east of Monaco continues into Italy (Liguria, Italy nord-ovest); same snapshot, complete ways, so the sea closes without any splice. The primary extract (PACA) ends at the Italian border."
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "ee24b2de235117915de747dea5fe54a933bab0043d6b7218f80aba223c70b51f",
+        "elements": 3281
+      },
+      {
+        "file": "extras.json",
+        "sha256": "052b4345f428191d020144587f8d95ee6f26c03938e07d2e5547837d11188c0a",
+        "elements": 517
+      },
+      {
+        "file": "water.json",
+        "sha256": "b6986e44d59211be879ea4d4f9c276f893375793200ae6fd3c14672807bc1f21",
+        "elements": 1894
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b0bbecbf9075d54c52ff0df09da6bb0c6d8c71f35412e19c658b9fcd0658b7dd",
+        "elements": 1180
+      },
+      {
+        "file": "roads.json",
+        "sha256": "bc6a8ee051dcfc7992aa0ac5da5382e02011ab0bc8b2da7c44aa66db574eadac",
+        "elements": 2698
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Monaco - Monte Carlo",
+      "osm": "node/9952646938",
+      "coordinatesWgs84": [
+        7.419498,
+        43.738262
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Café de Paris",
+      "osm": "node/4316767531",
+      "coordinatesWgs84": [
+        7.42786,
+        43.739587
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "International University of Monaco",
+      "osm": "node/6865960209",
+      "coordinatesWgs84": [
+        7.417878,
+        43.734468
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre Cardio Thoracique de Monaco",
+      "osm": "way/94252399",
+      "coordinatesWgs84": [
+        7.424841,
+        43.737703
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fontvieille Park",
+      "osm": "relation/16250182",
+      "coordinatesWgs84": [
+        7.41895,
+        43.726648
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Monte-Carlo",
+      "osm": "way/1106783860",
+      "coordinatesWgs84": [
+        7.426619,
+        43.742263
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église des Carmes",
+      "osm": "way/334846659",
+      "coordinatesWgs84": [
+        7.434805,
+        43.748799
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Casino Square",
+      "osm": "relation/11144655",
+      "coordinatesWgs84": [
+        7.427687,
+        43.739357
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palais de Justice",
+      "osm": "way/49209608",
+      "coordinatesWgs84": [
+        7.422144,
+        43.730282
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Louis II Stadium",
+      "osm": "way/49209155",
+      "coordinatesWgs84": [
+        7.415472,
+        43.727553
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée des Timbres et des Monnaies",
+      "osm": "node/5919288520",
+      "coordinatesWgs84": [
+        7.417584,
+        43.730872
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Japanese Garden",
+      "osm": "way/157719658",
+      "coordinatesWgs84": [
+        7.431074,
+        43.742274
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Oceanographic Museum of Monaco",
+      "osm": "way/23715051",
+      "coordinatesWgs84": [
+        7.425534,
+        43.730663
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "New National Museum of Monaco",
+      "osm": "relation/13453960",
+      "coordinatesWgs84": [
+        7.422422,
+        43.738585
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chapelle Sainte-Dévote",
+      "osm": "way/94399398",
+      "coordinatesWgs84": [
+        7.420924,
+        43.737517
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chapelle de la Miséricorde",
+      "osm": "way/49209644",
+      "coordinatesWgs84": [
+        7.423412,
+        43.731204
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Grill",
+      "osm": "node/4893574386",
+      "coordinatesWgs84": [
+        7.427577,
+        43.738532
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pavyllon",
+      "osm": "node/7857077111",
+      "coordinatesWgs84": [
+        7.425641,
+        43.737864
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Princess Grace Hospital",
+      "osm": "way/49209406",
+      "coordinatesWgs84": [
+        7.411136,
+        43.730288
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fondation Hector Ott",
+      "osm": "node/7930513065",
+      "coordinatesWgs84": [
+        7.414525,
+        43.734737
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jardin exotique - allée louis Barral",
+      "osm": "node/6461009225",
+      "coordinatesWgs84": [
+        7.414561,
+        43.731293
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Halles du marché de la Condamine",
+      "osm": "way/201286353",
+      "coordinatesWgs84": [
+        7.420065,
+        43.732597
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Métropole",
+      "osm": "node/4354597820",
+      "coordinatesWgs84": [
+        7.428257,
+        43.741055
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jardins de la Petite Afrique",
+      "osm": "way/157719659",
+      "coordinatesWgs84": [
+        7.426682,
+        43.740382
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1222,
+      "sha256": "cd042a38b43ff90e363ce4ff600fd6c99cf484990384dfcf364fa578acb32b12"
+    },
+    "geometry.ts": {
+      "bytes": 161056,
+      "sha256": "d2849458716380307b5511b1f53a8c8838eea3ffa4fa237c2c83df76564db079"
+    },
+    "places.ts": {
+      "bytes": 9895,
+      "sha256": "cb9b57be0006a062d5e3e461c76f18badc3feb1e9d0d7cccbbd0aab8eb0be56e"
+    },
+    "terrain.ts": {
+      "bytes": 405499,
+      "sha256": "65f3b7441f7d495e2e1653f51e5179702fee336a07682366e67c10fa831431cf"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "5b3f640a5d28c3e89cab3035f1d02069fcaf9d45178c84beec2b7a74f9bc448a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

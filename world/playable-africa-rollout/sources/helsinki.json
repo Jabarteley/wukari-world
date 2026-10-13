@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "helsinki",
+  "countryIso2": "FI",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Helsinki",
+    "coordinatesWgs84": [
+      24.9435408,
+      60.1666204
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/finland-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "helsinki-airport",
+    "name": "Helsinki Vantaa Airport",
+    "lon": 24.963341,
+    "lat": 60.318363,
+    "sourceUrl": "https://ourairports.com/airports/EFHK/"
+  },
+  "boxes": {
+    "play": [
+      60.07617995503301,
+      24.762469653099558,
+      60.327407044496695,
+      25.124611946900444
+    ],
+    "core": [
+      60.121400177516506,
+      24.853130081057834,
+      60.21184062248349,
+      25.033951518942168
+    ],
+    "outline": [
+      60.026179955033015,
+      24.712469653099557,
+      60.37740704449669,
+      25.174611946900445
+    ],
+    "wide": [
+      59.47617995503301,
+      24.162469653099556,
+      60.9274070444967,
+      25.724611946900446
+    ],
+    "water": [
+      59.47617995503301,
+      24.162469653099556,
+      60.9274070444967,
+      25.724611946900446
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/finland-261011.osm.pbf",
+    "datasetSha256": "033dca9c34f00b56a76b0f647203953904466c2255424d68523d36e2312d736d",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5bbac234c1d3aa04f5c2beef38866b56029cb5c3c581cb5128e79996e567ac5f",
+        "elements": 3870
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d897cd4ab09fba05904e655293453d73b468c053708387f3c757ede021e10414",
+        "elements": 2164
+      },
+      {
+        "file": "water.json",
+        "sha256": "7d6917b85ccd90b3cf30dcde05572356299e0d6f59025b8db648161388dbca65",
+        "elements": 6457
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d23740ee7f197c6be8eaefc3e93a18c148d2e623eacfa628dae86e2e1b39b421",
+        "elements": 11414
+      },
+      {
+        "file": "roads.json",
+        "sha256": "ee2d61d6c4f1c16c673328747512f9899e61fc6030a8ee5b4a4c5e7a93a3c4d0",
+        "elements": 6278
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Helsinki",
+      "osm": "node/25474663",
+      "coordinatesWgs84": [
+        24.941249,
+        60.172097
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Robert's Coffee",
+      "osm": "node/5679165168",
+      "coordinatesWgs84": [
+        24.964857,
+        60.292189
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Roihuvuoren kirjasto",
+      "osm": "node/50821497",
+      "coordinatesWgs84": [
+        25.052814,
+        60.194521
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Malmi Hospital",
+      "osm": "way/333579518",
+      "coordinatesWgs84": [
+        24.999337,
+        60.253403
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Silkkiniitty",
+      "osm": "way/4820257",
+      "coordinatesWgs84": [
+        24.805151,
+        60.181144
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre commercial de Vantaanpuisto",
+      "osm": "way/27518041",
+      "coordinatesWgs84": [
+        24.856375,
+        60.301283
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vaaralan kappeli",
+      "osm": "way/119591025",
+      "coordinatesWgs84": [
+        25.095812,
+        60.263811
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arabianaukio",
+      "osm": "relation/9935906",
+      "coordinatesWgs84": [
+        24.97281,
+        60.2064
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Finnish Institute for Health and Welfare",
+      "osm": "node/11438211295",
+      "coordinatesWgs84": [
+        24.898061,
+        60.201297
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Metropolia University of Applied Sciences, Myyrmäki Campus",
+      "osm": "way/985184377",
+      "coordinatesWgs84": [
+        24.844256,
+        60.258088
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Veikkaus Arena",
+      "osm": "way/4254163",
+      "coordinatesWgs84": [
+        24.929184,
+        60.205501
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Viipurinkivi",
+      "osm": "way/240369113",
+      "coordinatesWgs84": [
+        25.10817,
+        60.15149
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Linnaisten Rautakaivos",
+      "osm": "way/378932257",
+      "coordinatesWgs84": [
+        24.776968,
+        60.256039
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vantaan vapaaseurakunta",
+      "osm": "way/320921828",
+      "coordinatesWgs84": [
+        25.040466,
+        60.305367
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vesikko",
+      "osm": "way/123034962",
+      "coordinatesWgs84": [
+        24.989602,
+        60.14256
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Merikylpylänpuisto",
+      "osm": "way/404325219",
+      "coordinatesWgs84": [
+        24.87254,
+        60.153865
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Puotilan kappeli",
+      "osm": "way/58253939",
+      "coordinatesWgs84": [
+        25.105039,
+        60.211388
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kulosaaren Casino",
+      "osm": "way/17038654",
+      "coordinatesWgs84": [
+        25.006416,
+        60.180759
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Defence University of Finland",
+      "osm": "way/23704046",
+      "coordinatesWgs84": [
+        25.054848,
+        60.153619
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Leppävaaran urheilupuisto",
+      "osm": "way/218286514",
+      "coordinatesWgs84": [
+        24.801777,
+        60.226056
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Friends & Brgrs",
+      "osm": "node/9712397575",
+      "coordinatesWgs84": [
+        24.891432,
+        60.237443
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Länsiviitta",
+      "osm": "way/852039737",
+      "coordinatesWgs84": [
+        24.775923,
+        60.162917
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Viikki campus",
+      "osm": "way/115770414",
+      "coordinatesWgs84": [
+        25.016968,
+        60.226654
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kauppakeskus Ruoholahti",
+      "osm": "way/91765309",
+      "coordinatesWgs84": [
+        24.910399,
+        60.163731
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "ba52f7002e68c5c5eefe25d4e8c3ea119a555dd609b0b356211c4909aa3ab705"
+    },
+    "geometry.ts": {
+      "bytes": 930871,
+      "sha256": "ad383ea3a52dc18ec481fab6fd6ad36a234d03b574c1f545e3b9426e25aa6318"
+    },
+    "places.ts": {
+      "bytes": 9893,
+      "sha256": "f5d7e0d1efce65e4b49c7b659160debfeafb0a2f8f554de0402e08c2d78b0f5e"
+    },
+    "terrain.ts": {
+      "bytes": 1828781,
+      "sha256": "10996aeb6c37f95beba370e9d243a22d04848baa928fbc45da0f45d6291ae001"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "1e360532ed62950edb639e36c0c1ba62c2dbcbfbb55e704625072016fa74c9e2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "monaco",
+  "countryIso2": "MC",
+  "generationIdentity": {
+    "cityId": "monaco",
+    "stateId": "mc-monaco",
+    "stateName": "Monaco"
+  },
+  "inventorySha256": "5f34165b95a907e2277bf8cabaa034d3428cb2db1d643b499628da0a0da03008",
+  "inventoryPath": "world/playable-africa-rollout/sources/monaco.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "monaco-airport",
+    "name": "Monaco Heliport",
+    "lon": 7.419673,
+    "lat": 43.725798,
+    "sourceUrl": "https://ourairports.com/airports/LNMC/"
+  },
+  "bounds": [
+    43.55013551006602,
+    7.171569331894352,
+    43.91189728993398,
+    7.670349068105649
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-261011.osm.pbf",
+      "datasetSha256": "4cb9d70fd09569514f1f841bbe5fed3c3044d7fd4bca374780c2ad1a5efc8f3b",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 390353249,
+          "md5": "0631573b7a595b332063e0ed4d43e752",
+          "sha256": "e1fb8efe9e9ca41cd62cc2e33dea5c218890fc27483817b6e7a293bf764b1b6a"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/europe/italy/nord-ovest-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 592676030,
+          "md5": "a520172bbe60706b14391f91b22ea30a",
+          "sha256": "5972f9aaadfafde02653731683f114fcac72e5783eb4e7aa0f3dd4b6e4f5692f",
+          "reason": "The coast east of Monaco continues into Italy (Liguria, Italy nord-ovest); same snapshot, complete ways, so the sea closes without any splice. The primary extract (PACA) ends at the Italian border."
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "ee24b2de235117915de747dea5fe54a933bab0043d6b7218f80aba223c70b51f",
+          "elements": 3281
+        },
+        {
+          "file": "extras.json",
+          "sha256": "052b4345f428191d020144587f8d95ee6f26c03938e07d2e5547837d11188c0a",
+          "elements": 517
+        },
+        {
+          "file": "water.json",
+          "sha256": "b6986e44d59211be879ea4d4f9c276f893375793200ae6fd3c14672807bc1f21",
+          "elements": 1894
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b0bbecbf9075d54c52ff0df09da6bb0c6d8c71f35412e19c658b9fcd0658b7dd",
+          "elements": 1180
+        },
+        {
+          "file": "roads.json",
+          "sha256": "bc6a8ee051dcfc7992aa0ac5da5382e02011ab0bc8b2da7c44aa66db574eadac",
+          "elements": 2698
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 1,
+    "neighbourhoodLabels": 9,
+    "landPolygons": 1,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 18
+  },
+  "observed": {
+    "places": 3281,
+    "extras": 517,
+    "water": 1894,
+    "landuse": 1180,
+    "roads": 2698
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1222,
+      "sha256": "cd042a38b43ff90e363ce4ff600fd6c99cf484990384dfcf364fa578acb32b12"
+    },
+    "geometry.ts": {
+      "bytes": 161056,
+      "sha256": "d2849458716380307b5511b1f53a8c8838eea3ffa4fa237c2c83df76564db079"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "5b3f640a5d28c3e89cab3035f1d02069fcaf9d45178c84beec2b7a74f9bc448a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/monaco.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

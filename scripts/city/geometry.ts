@@ -272,11 +272,53 @@ function polygonsOverlap(left: readonly Polygon[], right: readonly Polygon[]): b
   return false
 }
 
+/**
+ * Real enclaves: an open city whose whole play area lies inside another open city's. Each entry is [outer, inner, reason].
+ * The exception applies ONLY while the inner polygons are fully contained in the outer ones (see polygonsContainedIn),
+ * so any partial overlap, and any overlap between cities not listed here, still fails.
+ */
+export const OPEN_CITY_ENCLAVES: readonly (readonly [outer: string, inner: string, reason: string])[] = [
+  ['rome', 'vatican-city', 'The Vatican City State is a sovereign enclave wholly surrounded by Rome; both are open cities and the outer city keeps its full live geometry.'],
+]
+
+const boxesContain = (outer: PolygonBounds, inner: PolygonBounds): boolean =>
+  outer.minLon <= inner.minLon && outer.maxLon >= inner.maxLon && outer.minLat <= inner.minLat && outer.maxLat >= inner.maxLat
+
+/** True when every polygon of `inner` lies inside one polygon of `outer`: no edge crosses, no vertex falls outside or in a hole. */
+export function polygonsContainedIn(inner: readonly Polygon[], outer: readonly Polygon[]): boolean {
+  if (!inner.length) return false
+  return inner.every((innerPolygon) => outer.some((outerPolygon) => {
+    const ring = innerPolygon[0] ?? []
+    if (!ring.length || !boxesContain(boundsFor(outerPolygon), boundsFor(innerPolygon))) return false
+    const insideOrOn = (point: Point): boolean => pointOnPolygonBoundary(point, outerPolygon) || strictlyInsidePolygon(point, outerPolygon)
+    if (!ring.every(insideOrOn) || !insideOrOn(interiorPoint([innerPolygon]))) return false
+    for (const outerRing of outerPolygon) {
+      for (let index = 0; index < ring.length; index += 1) {
+        for (let outerIndex = 0; outerIndex < outerRing.length; outerIndex += 1) {
+          if (properIntersection(ring[index]!, ring[(index + 1) % ring.length]!, outerRing[outerIndex]!, outerRing[(outerIndex + 1) % outerRing.length]!)) return false
+        }
+      }
+    }
+    return true
+  }))
+}
+
+/** True when the two cities are a declared enclave pair AND the inner one is fully contained in the outer one. */
+export function isDeclaredEnclave(
+  left: { readonly cityId: string; readonly polygons: readonly Polygon[] },
+  right: { readonly cityId: string; readonly polygons: readonly Polygon[] },
+): boolean {
+  return OPEN_CITY_ENCLAVES.some(([outer, inner]) =>
+    (left.cityId === outer && right.cityId === inner && polygonsContainedIn(right.polygons, left.polygons))
+    || (right.cityId === outer && left.cityId === inner && polygonsContainedIn(left.polygons, right.polygons)))
+}
+
 export function assertNoOpenCityGeometryOverlap(
   cities: readonly { readonly cityId: string; readonly polygons: readonly Polygon[] }[],
 ): void {
   for (let left = 0; left < cities.length; left += 1) {
     for (let right = left + 1; right < cities.length; right += 1) {
+      if (isDeclaredEnclave(cities[left]!, cities[right]!)) continue
       if (polygonsOverlap(cities[left]!.polygons, cities[right]!.polygons)) {
         throw new Error(`${cities[left]!.cityId} and ${cities[right]!.cityId} have overlapping open-city geometry`)
       }

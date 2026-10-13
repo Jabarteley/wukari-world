@@ -1,0 +1,392 @@
+{
+  "schemaVersion": 1,
+  "cityId": "shanghai",
+  "countryIso2": "CN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Shanghai",
+    "coordinatesWgs84": [
+      121.4691024,
+      31.2323437
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/china/shanghai-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "shanghai-airport",
+    "name": "Shanghai Pudong International Airport",
+    "lon": 121.805,
+    "lat": 31.1434,
+    "sourceUrl": "https://ourairports.com/airports/ZSPD/"
+  },
+  "boxes": {
+    "play": [
+      31.051462810066024,
+      121.25858469409144,
+      31.41322458993398,
+      121.81549681636386
+    ],
+    "core": [
+      31.187123477516508,
+      121.41654881945573,
+      31.277563922483495,
+      121.52165598054427
+    ],
+    "outline": [
+      31.001462810066023,
+      121.20858469409144,
+      31.46322458993398,
+      121.86549681636386
+    ],
+    "wide": [
+      30.451462810066023,
+      120.65858469409145,
+      32.01322458993398,
+      122.41549681636386
+    ],
+    "water": [
+      30.451462810066023,
+      120.65858469409145,
+      32.01322458993398,
+      122.41549681636386
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/china/shanghai-261011.osm.pbf",
+    "datasetSha256": "b6d45e81c52dc0016143c19817fce0783875f6b482042090b37897589d29535a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/china-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 1606894482,
+        "md5": "d8ea2e9d574773bd57f20b9b7b0d9adf",
+        "sha256": "0f8510a389bf9e35ae059879a8e385526a7034cd62e7fe76f3982f81e40b7a17"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/taiwan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 327517851,
+        "md5": "7bb79f0c8bc05d2d67497eb62734735b",
+        "sha256": "8d7b21385c34f4d0af57610ac0fa53799d77f245b5e670ebc9a9b2f5f63acf54",
+        "reason": "admin-0 relation/270056 (China) member ways around Kinmen, Matsu and the Taiwan Strait islets (e.g. 9411252, 151689648, 277652512, 884030133) are absent from the China clip; their nodes lie inside the Taiwan clip. Owner decision 2026-10-13: China proceeds as a game venue map (no real-operation claims); the neighbour extract only supplies the nodes of these ways for the admin-0 boundary."
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 23618779,
+        "md5": "1ca3f314308ebc51d36febcf5b074943",
+        "sha256": "ded95c6492c9f3f77ad528e5dd25255a99fec83a94113914b9b93c5ac8574d30",
+        "reason": "admin-0 relation/270056 (China) 'China's claimed border' / Bhutan - China ways at 89.1E 27.4N (e.g. 298158655, 589204000, 1337681673) are absent from the China clip; their nodes lie inside the Bhutan clip. Owner decision 2026-10-13: China proceeds as a game venue map (no real-operation claims); the neighbour extract only supplies the nodes of these ways for the admin-0 boundary."
+      },
+      {
+        "role": "city-extract",
+        "url": "https://download.geofabrik.de/asia/china/shanghai-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 25946863,
+        "md5": "e8be5994618ca23e53eabda64c309e57",
+        "sha256": "b6d45e81c52dc0016143c19817fce0783875f6b482042090b37897589d29535a",
+        "reason": "China (1.61 GB) is read only for the admin-0 boundary; Shanghai's metadata and layers come from the official Geofabrik Shanghai extract (26 MB, same 2026-10-11T20:21:06Z replication timestamp). ZSPD (31.14N 121.81E) and the city centre lie inside shanghai.poly (120.85-123.68E, 30.64-31.89N)",
+        "polyUrl": "https://download.geofabrik.de/asia/china/shanghai.poly",
+        "polySha256": "c34d551f02a2d42f327e2f123fd2f28399fd914b36ab46f0c099e15b68ae0f59",
+        "primaryPolyUrl": "https://download.geofabrik.de/asia/china.poly",
+        "primaryPolySha256": "c8b52c737100026700c6503c0a09169f455d83db565e341af9ac0e8e073cf8eb"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5bbe4991387d7a1e6c8f31de038aefa4d205a041b79ec32250fe6401ec9b488e",
+        "elements": 6667
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d7baa5a9a23dd7e07b999281728b1f1ded41626d4cc590a7d53a165c17172b64",
+        "elements": 1634
+      },
+      {
+        "file": "water.json",
+        "sha256": "6fa3e0b887c9e04f05ccab6fff77d4b14618765cca4c980bbbf8fa366b0072f4",
+        "elements": 1209
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "e87995af3243ef2e4649079c1743d50ca111eb66880e56fee93f23d48fc48c6d",
+        "elements": 13445
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a5f32bd04ab59c07454f7c22914177ba06074a5b3b65c7ba578696484d5f4e12",
+        "elements": 13890
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "East Nanjing Road",
+      "osm": "node/468916502",
+      "coordinatesWgs84": [
+        121.479229,
+        31.239124
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "沙县小吃",
+      "osm": "node/12862593135",
+      "coordinatesWgs84": [
+        121.597459,
+        31.276061
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shanghai University (Baoshan Campus)",
+      "osm": "relation/13058054",
+      "coordinatesWgs84": [
+        121.389173,
+        31.316504
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fudan University Children Hospital",
+      "osm": "way/242365340",
+      "coordinatesWgs84": [
+        121.390259,
+        31.141176
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Binjiang Forest Park",
+      "osm": "way/74590795",
+      "coordinatesWgs84": [
+        121.524376,
+        31.385238
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Global Harbor",
+      "osm": "way/375224849",
+      "coordinatesWgs84": [
+        121.407946,
+        31.235091
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jiangwan Mosque",
+      "osm": "way/463240119",
+      "coordinatesWgs84": [
+        121.511196,
+        31.311374
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shanghai Municipal People's Government",
+      "osm": "way/178801539",
+      "coordinatesWgs84": [
+        121.469029,
+        31.232431
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pudong New District Government",
+      "osm": "node/1889448661",
+      "coordinatesWgs84": [
+        121.539926,
+        31.223438
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ShanghaiTech University (Zhangjiang Campus)",
+      "osm": "relation/5390610",
+      "coordinatesWgs84": [
+        121.59029,
+        31.179281
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shanghai Stadium",
+      "osm": "way/15783341",
+      "coordinatesWgs84": [
+        121.43737,
+        31.183336
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shanghai Disney Resort",
+      "osm": "way/328312304",
+      "coordinatesWgs84": [
+        121.662109,
+        31.143422
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guyi Garden",
+      "osm": "way/183944730",
+      "coordinatesWgs84": [
+        121.312336,
+        31.29383
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shanghai Zoo",
+      "osm": "way/462007561",
+      "coordinatesWgs84": [
+        121.358864,
+        31.195155
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "蔓趣公园",
+      "osm": "way/712187766",
+      "coordinatesWgs84": [
+        121.496166,
+        31.176334
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shanghai Sanda University",
+      "osm": "way/474607998",
+      "coordinatesWgs84": [
+        121.654504,
+        31.271156
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "上海市江桥批发市场",
+      "osm": "way/1363229598",
+      "coordinatesWgs84": [
+        121.356221,
+        31.2587
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shanghai Tenth People's Hospital",
+      "osm": "way/51051520",
+      "coordinatesWgs84": [
+        121.448889,
+        31.273829
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of Jesus, Xinzhuang",
+      "osm": "way/279318210",
+      "coordinatesWgs84": [
+        121.36601,
+        31.103723
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Xinhua Hospital",
+      "osm": "way/192206043",
+      "coordinatesWgs84": [
+        121.513189,
+        31.275066
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tongji University (Huxi Campus)",
+      "osm": "relation/18781565",
+      "coordinatesWgs84": [
+        121.384627,
+        31.273595
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shanghai Children Museum",
+      "osm": "node/4880999164",
+      "coordinatesWgs84": [
+        121.408483,
+        31.195953
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jade Buddha Temple",
+      "osm": "way/404699628",
+      "coordinatesWgs84": [
+        121.439848,
+        31.243592
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hongkou Football Stadium",
+      "osm": "way/24448592",
+      "coordinatesWgs84": [
+        121.476339,
+        31.27331
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1234,
+      "sha256": "e9cda9ae58510c0b00b72feb3a6d1682da09fb2bb6142973da4e3e765c39c200"
+    },
+    "geometry.ts": {
+      "bytes": 1022067,
+      "sha256": "b0d256f5f2678b27434a0fde27b52d2e669b6a65a812fe0a4d09142a5dad3e49"
+    },
+    "places.ts": {
+      "bytes": 10016,
+      "sha256": "61493ea547c8e456679386b09bda5759f9e021881ebd87de199a00538e5eee22"
+    },
+    "terrain.ts": {
+      "bytes": 314683,
+      "sha256": "3f01e338423b8c2fab820cfe2c1326e117b37a48a66ce166b346277563e6fdf9"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "0062d8fcf8bc9818071da02f127532a6d8a115a89f14d0c3e756e0d85da68aec"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

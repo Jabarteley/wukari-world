@@ -164,7 +164,15 @@ def main():
                 foreign_fragments.append({'ways': ['way/' + str(e['id']) for e in ways], 'openEnds': [list(c) for c in far_open_ends]})
         coast = [e for e in coast if e['id'] not in dropped_ids]
         if not coast:
-            raise ValueError('No source coast inside the country scope')
+            # Every coastline way of the wide box is a chain of the neighbouring country that never comes within BORDER_END_TOLERANCE_METRES of the pinned country
+            # (San Marino: the Adriatic shore of Rimini, 10.7 km away): the country has no shore, so the stage reports not-applicable like an inland city (the ground is
+            # masked to the country; nothing of that sea can be drawn).
+            report['status'] = 'not-applicable'
+            report['reason'] = 'every source coastline way lies in a neighbouring country, none within the border tolerance of the pinned country'
+            report['foreignCoastFragmentsDropped'] = foreign_fragments
+            with args.report.open('x') as f:
+                json.dump(report, f, indent=2)
+            return
     report['foreignCoastFragmentsDropped'] = foreign_fragments
     lines, segments, closed = [], [], []
     for e in coast:

@@ -2,48 +2,16 @@
  "schemaVersion": 1,
  "queue": [
   {
-   "id": "fm",
-   "table": "scripts/geo/factory/country-factory/fm-factory-targets.json"
-  },
-  {
    "id": "kr",
    "table": "scripts/geo/factory/country-factory/kr-factory-targets.json"
-  },
-  {
-   "id": "mv",
-   "table": "scripts/geo/factory/country-factory/mv-factory-targets.json"
-  },
-  {
-   "id": "nr",
-   "table": "scripts/geo/factory/country-factory/nr-factory-targets.json"
-  },
-  {
-   "id": "ps",
-   "table": "scripts/geo/factory/country-factory/ps-factory-targets.json"
-  },
-  {
-   "id": "ua",
-   "table": "scripts/geo/factory/country-factory/ua-factory-targets.json"
-  },
-  {
-   "id": "ag",
-   "table": "scripts/geo/factory/country-factory/ag-factory-targets.json"
-  },
-  {
-   "id": "sm",
-   "table": "scripts/geo/factory/country-factory/sm-factory-targets.json"
   },
   {
    "id": "id",
    "table": "scripts/geo/factory/country-factory/id-factory-targets.json"
   },
   {
-   "id": "sg",
-   "table": "scripts/geo/factory/country-factory/sg-factory-targets.json"
-  },
-  {
-   "id": "ca",
-   "table": "scripts/geo/factory/country-factory/ca-factory-targets.json"
+   "id": "sm",
+   "table": "scripts/geo/factory/country-factory/sm-factory-targets.json"
   }
  ]
 }

@@ -202,7 +202,7 @@ const play_game_move: ToolDefinition = {
       else if (action === 'move') await service.move(sink.ws, frame({ n: num(args.n) ?? 0, move: args.move }) as never);
       else if (action === 'leave') await service.leave(sink.ws, frame({}) as never);
       else if (action === 'again') service.again(sink.ws, frame({}) as never);
-      else service.watch(sink.ws, frame({}) as never);
+      else await service.watch(sink.ws, frame({}) as never);
     } catch (error) {
       const reason = isRecord(error) && typeof error.reason === 'string' ? error.reason : isRecord(error) && typeof error.message === 'string' ? error.message : 'The table refused that.';
       const code = isRecord(error) && typeof error.code === 'string' ? error.code : 'table_refused';

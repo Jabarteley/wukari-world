@@ -38,11 +38,11 @@ const withState = (patch: Partial<TablesClientState>): void => { Object.assign(T
 const here = (): string => app.game.state.value.location
 
 const summary = (patch: Partial<TableSummary> = {}): TableSummary => ({
-  id: 'park-bench', venue: here(), venueLabel: 'The Park', game: 'whot', gameLabel: 'Whot', label: 'Bench under the trees', status: 'open', max: 4, min: 2, options: { stack: true }, seats: [], watching: 0, ...patch,
+  id: 'park-bench', venue: here(), venueLabel: 'The Park', game: 'whot', gameLabel: 'Whot', label: 'Bench under the trees', status: 'open', max: 4, min: 2, options: { stack: true }, seats: [], watching: 0, stake: 0, ...patch,
 })
 const frame = (patch: Partial<TableStateFrame> & { table?: TableSummary } = {}): TableStateFrame => ({
   type: 'table-state', cityId: 'lagos', table: summary(), you: null, host: false, n: 0, view: null, log: [], toMove: [], clock: null, result: null,
-  optionList: [{ name: 'stack', label: 'Stacking picks', values: [true, false], names: ['Allowed', 'Not allowed'], value: true }], ...patch,
+  optionList: [{ name: 'stack', label: 'Stacking picks', values: [true, false], names: ['Allowed', 'Not allowed'], value: true }], stakes: { amount: 0, pot: 0, allowed: true, note: '', why: null, code: null, choices: [] }, ...patch,
 })
 const card = (s: string, n: number) => ({ s, n })
 const whotView = (patch: Record<string, unknown> = {}) => ({
@@ -83,10 +83,10 @@ test('list: the tables where you are first with their buttons, the others under 
   const html = await tablesApp()
   const words = text(html)
   assert.match(words, /Game tables 2 tables where you are/)
-  assert.ok(words.includes('Whot · Bench under the trees The Park · Ada waiting for players Sit'))
-  assert.ok(words.includes('Game on · Ola, Mama Put · 1 watching Watch'))
+  assert.ok(words.includes('Whot · Bench under the trees Free The Park · Ada waiting for players Sit'))
+  assert.ok(words.includes('Game on · Ola, Mama Put · 1 watching Watch') && words.includes('Free The Park · Game on'))
   assert.ok(words.includes('Elsewhere in the city'))
-  assert.ok(words.includes('Penalties · Goalposts in the sand The Beach · Empty: sit down and start Look'))
+  assert.ok(words.includes('Penalties · Goalposts in the sand Free The Beach · Empty: sit down and start Look'))
   assert.ok(words.includes('Your Whot rating: 1212 (provisional) · 3 won of 6 rated games.'))
   assert.match(words, /A win against a real player pays ₦[\d,]+ · \d+ of \d+ paid wins left today/)
   assert.match(html, /<summary>How it works<\/summary>/)
@@ -258,4 +258,93 @@ test('the HUD chip: shown in a venue with tables, opening the first; renders not
     assert.equal(text(none), '')
     assert.ok(!none.includes('<'.concat('button')), 'no element at all')
   } finally { app.game.state.value = original }
+})
+
+// ---- stakes: game naira only (docs/GAMES.md, "Stakes") ----------------------------------------------------------------------
+
+const stakesOf = (patch: Partial<TableStateFrame['stakes']> = {}): TableStateFrame['stakes'] => ({ amount: 0, pot: 0, allowed: true, note: '', why: null, code: null, choices: [], ...patch })
+const PICKS = [100, 500, 1000, 2000].map((amount) => ({ amount, why: null as string | null }))
+
+test('stakes, the list: every table carries a chip, free or the stake each player puts in', async () => {
+  withState({ list: [summary({ id: 'a' }), summary({ id: 'b', stake: 500 }), summary({ id: 'c', venue: 'elsewhere', venueLabel: 'The Beach', stake: 2000 })] })
+  const words = text(await tablesApp())
+  assert.ok(words.includes('Whot · Bench under the trees Free The Park'))
+  assert.ok(words.includes('Whot · Bench under the trees ₦500 each The Park'))
+  assert.ok(words.includes('Whot · Bench under the trees ₦2,000 each The Beach'))
+  assert.match(words, /A stake is game naira only, never real money/)
+  assert.ok(!words.includes('There are no stakes'))
+})
+
+test('stakes, the host alone at an open table picks what each player puts in, with a reason on every stake she cannot pick', async () => {
+  const seats = [{ name: 'Ada', bot: false }]
+  withState({ tableId: 'park-bench', state: frame({ you: 0, host: true, table: summary({ seats }), stakes: stakesOf({ choices: PICKS.map((pick) => (pick.amount > 500 ? { ...pick, why: 'You can only play for money you have worked for and not given away or spent at players’ shops. You can still stake ₦500.' } : pick)) }) }) })
+  const html = await tablesApp()
+  const words = text(html)
+  assert.ok(words.includes('Stake Free game'))
+  assert.ok(words.includes('Play money only — game naira, never real money.'))
+  assert.match(html, /role="group" aria-label="Choose the stake"/)
+  assert.match(html, /<button[^>]*class="base-button is-selected"[^>]*>Free<\/button>/, 'the chosen stake is shown as chosen, in words as well as colour')
+  assert.match(html, /<button class="base-button is-default"[^>]*>₦500<\/button>/)
+  assert.match(html, /<button[^>]*disabled[^>]*title="You can only play for money you have worked for[^"]*You can still stake ₦500\."[^>]*>₦1,000<\/button>/)
+  assert.ok(words.includes('the stake is fixed once two players sit'))
+  // Chosen: the line says what the winner takes, and Start names the stake; there are no bots at a staked table.
+  withState({ state: frame({ you: 0, host: true, table: summary({ seats: [{ name: 'Ada', bot: false }, { name: 'Bola', bot: false }], stake: 500, max: 2 }), stakes: stakesOf({ amount: 500, pot: 1000 }) }) })
+  const chosen = text(await tablesApp())
+  assert.ok(chosen.includes('Play for ₦500 each — winner takes ₦1,000'))
+  assert.ok(chosen.includes('Start: play for ₦500 each'))
+  assert.ok(chosen.includes('Starting takes ₦500 from each of you, and the winner takes ₦1,000.'))
+  assert.ok(!/\+ \d bots?/.test(chosen), 'no bot buttons at a staked table')
+  assert.ok(chosen.includes('Play money only — game naira, never real money.'))
+})
+
+test('stakes, a player who has not sat sees exactly what sitting accepts, and why they cannot when they cannot', async () => {
+  const seats = [{ name: 'Ada', bot: false }]
+  withState({ tableId: 'park-bench', state: frame({ table: summary({ seats, stake: 500, max: 2 }), stakes: stakesOf({ amount: 500, pot: 1000 }) }) })
+  const open = await tablesApp()
+  assert.ok(text(open).includes('Play for ₦500 each — winner takes ₦1,000'))
+  assert.ok(text(open).includes('Sitting down accepts it; both stakes are taken when the game starts and the winner takes the pot.'))
+  assert.ok(text(open).includes('Play money only — game naira, never real money.'))
+  assert.match(open, /<button[^>]*class="base-button is-primary"[^>]*>Sit down and play for ₦500<\/button>/)
+  // Under 18, or not said: the button is disabled with the sentence, and the age answer is one tap away; free tables stay open.
+  const why = 'Playing for a stake is for players who are 18 or older. Say you are 18 or older in Stay in touch on your Phone. Free games are open to everyone.'
+  withState({ state: frame({ table: summary({ seats, stake: 500, max: 2 }), stakes: stakesOf({ amount: 500, pot: 1000, why, code: 'adults_only' }) }) })
+  const blocked = await tablesApp()
+  assert.match(blocked, new RegExp(`<button[^>]*disabled[^>]*title="Playing for a stake is for players who are 18 or older[^"]*"[^>]*>Sit down and play for ₦500</button>`))
+  assert.ok(text(blocked).includes(why))
+  assert.match(blocked, /<button[^>]*>I am 18 or older<\/button>/)
+  withState({ state: frame({ table: summary({ seats, stake: 500, max: 2 }), stakes: stakesOf({ amount: 500, pot: 1000, why: 'Work paid shifts first.', code: 'work_first' }) }) })
+  const work = await tablesApp()
+  assert.ok(!/I am 18 or older<\/button>/.test(work), 'the age answer is offered only when age is the reason')
+  assert.ok(text(work).includes('Work paid shifts first.'))
+  // A Phone table is the computer's: no stake card at all.
+  withState({ tableId: 'phone-chess', state: frame({ you: 0, host: true, table: summary({ id: 'phone-chess', venue: 'phone', seats }), stakes: stakesOf({ allowed: false, note: 'Tables on your Phone are against the computer: nothing can be staked there.' }) }) })
+  assert.ok(!text(await tablesApp()).includes('Play money only'))
+})
+
+test('stakes, in play and at the end: the stake and the play-money line stay on screen, and the result says what happened to the stake', async () => {
+  const seats = [{ name: 'Ada', bot: false }, { name: 'Ola', bot: false }]
+  withState({ tableId: 'park-bench', state: frame({ you: 0, n: 3, table: summary({ status: 'playing', seats, stake: 500, max: 2 }), toMove: [0], view: whotView(), stakes: stakesOf({ amount: 500, pot: 1000 }) }) })
+  const playing = text(await tablesApp())
+  assert.ok(playing.includes('Play for ₦500 each — winner takes ₦1,000. Play money only — game naira, never real money.'))
+  const stake = (outcome: 'won' | 'lost' | 'refunded') => ({ amount: 500, pot: 1000, outcome })
+  const over = (outcome: 'won' | 'lost' | 'refunded', won: boolean, draw = false) => frame({ you: 0, table: summary({ status: 'over', seats, stake: 500, max: 2 }), stakes: stakesOf({ amount: 500, pot: 1000 }),
+    result: { text: 'Ada wins.', calledOff: false, winners: won ? [0] : [], mine: { won, draw, human: true, counted: false, stake: stake(outcome) } } })
+  withState({ state: over('won', true) })
+  const won = text(await tablesApp())
+  assert.ok(won.includes('You won the pot: ₦1,000 (your ₦500 back and ₦500 from the other player).'))
+  assert.ok(won.includes('To play for a stake again, get up and sit down again: a stake is agreed each time.'))
+  assert.ok(!won.includes('paid.') && !won.includes('Collecting your win'), 'a staked game pays no win reward')
+  withState({ state: over('lost', false) })
+  assert.ok(text(await tablesApp()).includes('You lost your ₦500 stake. The pot went to the winner.'))
+  withState({ state: over('refunded', false, true) })
+  assert.ok(text(await tablesApp()).includes('Your ₦500 stake came back. Nobody won or lost.'))
+})
+
+test('stakes, the words: none of a betting site’s, and the rules text says what a stake is', async () => {
+  const model = await load<typeof import('./tablesModel.ts')>('/src/app/features/tables/tablesModel.ts')
+  const table = await load<typeof import('../../../game/table-stakes.ts')>('/src/game/table-stakes.ts')
+  const sentences = [...model.LIST_RULES, model.pickNote, model.acceptNote(500), model.AGAIN_STAKE_NOTE, model.startNote({ min: 2, stake: 500, seats: [1] }), model.startNote({ min: 2, stake: 500, seats: [1, 2] }), model.sitLabel({ stake: 100 }, 1),
+    model.outcomeNote({ calledOff: false, mine: { won: true, draw: false, human: true, counted: false, stake: { amount: 500, pot: 1000, outcome: 'won' } } }, null, 150) ?? '']
+  assert.ok(sentences.every(Boolean))
+  for (const sentence of sentences) assert.equal(table.FORBIDDEN_WORDS.test(sentence), false, sentence)
 })

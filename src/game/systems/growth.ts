@@ -5,7 +5,8 @@
  * server (server/growth/**); this system only ever credits a life and keeps the per-life caps.
  *
  * STATE — state.growth
- *   tables    { day, paid, bots, played, won } — today's paid wins and bot credits; lifetime games and wins
+ *   tables    { day, paid, bots, played, won, staked } — today's paid wins and bot credits; lifetime games and wins; `staked` is the
+ *             naira of this life's own stakes that has not come back: held on a table now, or lost (counted in passedOn)
  *   welcomed  boolean — this life has received its one referral welcome gift
  *   referrals { week, paid, total } — referral rewards paid this Lagos week and for life
  *
@@ -19,17 +20,30 @@
  *   'growth.referral' { kind: 'welcome' | 'reward', name }
  *       'welcome': REFERRAL.welcome to a referred newcomer, once per life.
  *       'reward':  REFERRAL.reward and stars to the inviter, within the weekly and lifetime caps.
+ *   'tables.server' { op, amount, label?, stake? }   (docs/GAMES.md, "Stakes"; rules in ../table-stakes.ts)
+ *       The life's half of a staked table game, run by server/growth/tables.ts in the transaction that holds the pot, so the
+ *       two are saved together and a player can never call it.
+ *         stake   { amount, label }          take one player's stake (the wallet says "Table stake: Whot with Ada"); refused unless
+ *                                            the money is within the gift rule's allowance (stakeBlock). `staked` rises by it.
+ *         pot     { amount, label, stake }   the winner takes the whole pot ("Won the pot: …"); their own stake leaves `staked`.
+ *                                            A win is never "worked for": social.earned is untouched, so it cannot be given onward.
+ *         refund  { amount, label }          a drawn or cancelled game: the stake comes back ("Table stake returned: …"), `staked` falls.
+ *       A lost stake is never paid back, so it stays in `staked` and keeps counting against the allowance, like shop spending.
  * EMITS  'table.played' { game, won, human, paid }   'stars.granted'   'notice.posted'
  */
 import { LEFT_OUT, PLAYS } from '../profile.ts';
 import { emit } from '../registry.ts';
 import { cleanText, fail, finite, isId, isRecord, naira, ok, safeCount } from '../util.ts';
 import { lagosTime } from '../clock.ts';
-import { canCredit, credit } from '../api.ts';
+import { canAfford, canCredit, credit, debit } from '../api.ts';
 import { REFERRAL, TABLE_REWARDS } from '../content/growth.ts';
+import { stakeBlock } from '../table-stakes.ts';
 import type { ActionType } from '../../types/actions.ts';
 import type { LifeContext, LifeState } from '../../types/life.ts';
 import type { ServerOnlyAction, SystemDefinition, TypedActionHandler } from '../../types/registry.ts';
+
+/** Naira of earnings this life has passed to other players or put at risk: gifts, shop spending, and stakes held or lost. One allowance for all three. */
+export const passedOn = (state: LifeState): number => (state.social?.transfer?.total ?? 0) + (state.business?.spent ?? 0) + (state.growth?.tables?.staked ?? 0);
 
 const nowOf = (state: LifeState, ctx: LifeContext): number => (finite(ctx?.now) && ctx.now > 0 ? ctx.now : state.t);
 const serverOnly = <T extends ActionType>(run: TypedActionHandler<T>, where: string): ServerOnlyAction<T> => ({ serverOnly: true, run, refusal: `This is completed by the server ${where}. Nothing was changed.` });
@@ -86,6 +100,31 @@ export const referralGift: TypedActionHandler<'growth.referral'> = (state, paylo
   return fail(state, 'invalid_gift', 'Unknown referral step.');
 };
 
+const whole = (value: unknown): value is number => safeCount(value) && value > 0;
+/** The body of 'tables.server' (exported for tests). */
+export const tablesOp: TypedActionHandler<'tables.server'> = (state, payload, ctx) => {
+  const op = payload?.op, amount = payload?.amount, label = cleanText(payload?.label, 40, 'a table game');
+  if (op !== 'stake' && op !== 'pot' && op !== 'refund') return fail(state, 'invalid_operation', 'That table operation does not exist.');
+  if (!whole(amount)) return fail(state, 'invalid_amount', 'That amount is not a whole number of naira.');
+  const book = state.growth.tables;
+  if (op === 'stake') {
+    // The same allowance as a gift: money worked for and not passed on. The server has checked age and the day's limits.
+    const block = stakeBlock({ earned: state.social.earned, passed: passedOn(state), cash: state.cash }, amount);
+    if (block) return fail(state, block.code, block.reason);
+    if (!canAfford(state, amount) || !debit(state, amount, `Table stake: ${label}`, ctx)) return fail(state, 'insufficient_funds', `You need ${naira(amount)} to play for this; you have ${naira(state.cash)}.`);
+    book.staked = Math.min(Number.MAX_SAFE_INTEGER, book.staked + amount);
+    state.message = `You put ${naira(amount)} on the table: ${label}. The winner takes the pot.`;
+    return ok(state, 'staked');
+  }
+  if (!canCredit(state, amount)) return fail(state, 'balance_limit', 'Your saved balance has reached its supported limit.');
+  // A refund is the stake itself; a pot holds the winner's own stake too, and that part is no longer at risk. Neither is "worked for".
+  const own = op === 'refund' ? amount : Math.min(amount, safeCount(payload?.stake) ? payload.stake : 0);
+  credit(state, amount, op === 'pot' ? `Won the pot: ${label}` : `Table stake returned: ${label}`, ctx);
+  book.staked = Math.max(0, book.staked - own);
+  state.message = op === 'pot' ? `You won the pot at ${label}: +${naira(amount)}.` : `Your ${naira(amount)} stake came back: ${label}.`;
+  return ok(state, op === 'pot' ? 'won' : 'refunded');
+};
+
 /**
  * What only a host that plays the game runs: player actions, settling time and event listeners. The browser reads lives, it never plays them,
  * so its build leaves this out (PLAYS is false there: src/game/profile.ts).
@@ -94,6 +133,7 @@ const play = PLAYS ? {
   actions: {
     'growth.table-result': serverOnly<'growth.table-result'>(tableResult, 'when a table game ends'),
     'growth.referral': serverOnly<'growth.referral'>(referralGift, 'when a referral counts'),
+    'tables.server': serverOnly<'tables.server'>(tablesOp, 'when a staked table game starts or ends'),
   },
 } satisfies Pick<SystemDefinition<'growth'>, 'actions'> : LEFT_OUT;
 
@@ -104,7 +144,7 @@ export default {
     const saved = isRecord(input.growth) ? input.growth : {}, tables = isRecord(saved.tables) ? saved.tables : {}, refs = isRecord(saved.referrals) ? saved.referrals : {};
     const count = (value: unknown, max = Number.MAX_SAFE_INTEGER): number => (safeCount(value) && value <= max ? value : 0);
     state.growth = {
-      tables: { day: count(tables.day), paid: count(tables.paid, TABLE_REWARDS.paidWinsPerDay), bots: count(tables.bots, TABLE_REWARDS.botCreditsPerDay), played: count(tables.played), won: count(tables.won) },
+      tables: { day: count(tables.day), paid: count(tables.paid, TABLE_REWARDS.paidWinsPerDay), bots: count(tables.bots, TABLE_REWARDS.botCreditsPerDay), played: count(tables.played), won: count(tables.won), staked: count(tables.staked) },
       welcomed: saved.welcomed === true,
       referrals: { week: count(refs.week), paid: count(refs.paid, REFERRAL.paidPerWeek), total: count(refs.total, REFERRAL.paidLifetime) },
     };

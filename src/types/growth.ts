@@ -19,6 +19,7 @@ import type { GrowthView } from './view.ts'
 import type { CityId, HostErrorCode, JsonBodyErrorCode, Ok, PlayerRef, Refusal, SessionErrorCode, StorageErrorCode } from './protocol.ts'
 import type { Done, Repeat } from './social.ts'
 import type { PrefKey } from '../game/comeback-prefs.ts'
+import type { StakeCode } from '../game/table-stakes.ts'
 import type { SourceEvent } from '../game/attribution.ts'
 
 // ---- shares and the events calendar ---------------------------------------------------------------
@@ -569,6 +570,8 @@ export interface TableSummary {
   seats: TableSeat[]
   /** People attached to the table who are not seated. */
   watching: number
+  /** Naira each player puts in, in game naira (0: a free game). Whoever sits has accepted it; it cannot change once two players sit. */
+  stake: number
 }
 
 /** What a finished game recorded for one player; `rating` and `change` only in a two-player game between two real players that counted. */
@@ -581,6 +584,8 @@ export interface TableResultMine {
   counted: boolean
   rating?: number
   change?: number
+  /** Present when the game was played for a stake: what happened to this player's. `amount` is their stake, `pot` what the winner took. */
+  stake?: { amount: number; pot: number; outcome: 'won' | 'lost' | 'refunded' }
 }
 
 /** Ask for a venue's tables (every table of the city without `venue`); the socket is then nudged when one of them changes. */
@@ -589,8 +594,11 @@ export interface TableListFrame { type: 'table-list'; cityId: CityId; venue?: st
 export interface TableWatchFrame { type: 'table-watch'; cityId: CityId; table: string }
 export interface TableUnwatchFrame { type: 'table-unwatch' }
 /** Take a seat; the caller's stored life must be in the table's venue. */
-export interface TableSitFrame { type: 'table-sit'; cityId: CityId; table: string }
+/** `stake` is the stake the player saw (0 when none): a table whose stake is not that one refuses the seat. */
+export interface TableSitFrame { type: 'table-sit'; cityId: CityId; table: string; stake?: number }
 /** The first to sit sets the table's rules, before a game. Unknown names and values are ignored. */
+/** The first to sit sets the stake, alone at the table and before a game (one of TABLE_STAKES.choices, 0 for none). */
+export interface TableStakeFrame { type: 'table-stake'; cityId: CityId; table: string; stake: number }
 export interface TableOptionsFrame { type: 'table-options'; cityId: CityId; table: string; options: Record<string, TableOptionValue> }
 /** Start with the people seated, plus `bots` house players. */
 export interface TableStartFrame { type: 'table-start'; cityId: CityId; table: string; bots?: number }
@@ -601,11 +609,25 @@ export interface TableLeaveFrame { type: 'table-leave'; cityId: CityId; table: s
 /** After a game: open the table again. */
 export interface TableAgainFrame { type: 'table-again'; cityId: CityId; table: string }
 export type TableClientFrame =
-  | TableListFrame | TableWatchFrame | TableUnwatchFrame | TableSitFrame | TableOptionsFrame | TableStartFrame | TableMoveFrame
+  | TableListFrame | TableWatchFrame | TableUnwatchFrame | TableSitFrame | TableStakeFrame | TableOptionsFrame | TableStartFrame | TableMoveFrame
   | TableLeaveFrame | TableAgainFrame
 
 /** The answer to `table-list`. */
 export interface TablesFrame { type: 'tables'; cityId: CityId; venue: string | null; tables: TableSummary[] }
+/** Stakes (docs/GAMES.md): game naira only, skill games, two real players, 18+. Sentences are for this viewer alone. */
+export interface TableStakes {
+  /** Naira each player puts in (0: free) and what the winner takes. */
+  amount: number
+  pot: number
+  /** Can this table be played for a stake at all? When not, `note` says why (a Phone table is against the computer). */
+  allowed: boolean
+  note: string
+  /** Why this viewer cannot play for the table's stake (null: they can, or it is free), and a code to act on ('adults_only' …). */
+  why: string | null
+  code: string | null
+  /** For the host, alone at an open table: every stake they could pick and why they cannot pick it (null: they can). Empty otherwise. */
+  choices: { amount: number; why: string | null }[]
+}
 /**
  * A table as ONE player (or a watcher) may see it; sent to every socket attached to the table,
  * each with its own `view`. `view` is the game's own (src/tables/<game>.js view): it never holds
@@ -630,6 +652,8 @@ export interface TableStateFrame {
   clock: { deadline: number; now: number; seconds: number } | null
   result: { text: string; calledOff: boolean; winners: number[]; mine: TableResultMine | null } | null
   optionList: { name: string; label: string; values: TableOptionValue[]; names: string[]; value: TableOptionValue }[]
+  /** The table's stake, and what THIS viewer may do about it. */
+  stakes: TableStakes
   /** Present (true) only on the answer to a retry of the move just made: nothing was applied again. */
   repeat?: true
 }
@@ -642,6 +666,7 @@ export type TableErrorCode =
   | 'invalid_city' | 'unknown_table' | 'rate_limited' | 'table_crowded' | 'game_on' | 'already_seated' | 'table_full' | 'table_closed'
   | 'not_here' | 'table_changed' | 'not_host' | 'not_seated' | 'need_players' | 'no_game' | 'invalid_move' | 'stale_move'
   | 'not_your_turn' | 'illegal_move'
+  | 'stake_changed' | 'stake_locked' | 'no_stake_here' | 'stake_refused' | 'stake_needs_players' | StakeCode
 
 // ---- runtime key lists (compared with the running server by protocol.test.ts) -------------------
 
@@ -656,10 +681,10 @@ export const SHARE_FACTS_KEYS = [
 ] as const satisfies readonly (keyof ShareFacts)[]
 export const CONSENT_VIEW_KEYS = ['age', 'at', 'email', 'push'] as const satisfies readonly (keyof ConsentView)[]
 export const TABLE_SUMMARY_KEYS = [
-  'game', 'gameLabel', 'id', 'label', 'max', 'min', 'options', 'seats', 'status', 'venue', 'venueLabel', 'watching',
+  'game', 'gameLabel', 'id', 'label', 'max', 'min', 'options', 'seats', 'stake', 'status', 'venue', 'venueLabel', 'watching',
 ] as const satisfies readonly (keyof TableSummary)[]
 export const TABLE_STATE_FRAME_KEYS = [
-  'clock', 'cityId', 'host', 'log', 'n', 'optionList', 'result', 'table', 'toMove', 'type', 'view', 'you',
+  'clock', 'cityId', 'host', 'log', 'n', 'optionList', 'result', 'stakes', 'table', 'toMove', 'type', 'view', 'you',
 ] as const satisfies readonly (keyof TableStateFrame)[]
 export const GROWTH_METRICS_RESPONSE_KEYS = [
   'analytics', 'campaigns', 'cohorts', 'days', 'funnel', 'generatedAt', 'retention', 'serverTime', 'source', 'sources', 'timezone', 'totals', 'tracked',

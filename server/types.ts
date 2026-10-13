@@ -699,11 +699,34 @@ export type GrowthCityMetricsRecord = Omit<GrowthMetricsRecord, 'cities' | 'sour
 export interface GrowthCityTablesRecord {
   ratings?: Record<string, Partial<Record<TableGameId, { rating: number; played: number; won: number }>>>
 }
-/** server/growth/tables.ts: ratings per player per game, and how often two players' games counted today. */
+/**
+ * A staked game's pot, held here from the moment both stakes are taken until the game is settled: the winner is paid the whole pot,
+ * or both stakes go back, in the one transaction that deletes this record. So a pot is paid out once, and a restart in between
+ * leaves it here for the next start to refund (server/growth/tables.ts).
+ */
+export interface TablePotRecord {
+  cityId: CityId
+  table: string
+  game: TableGameId
+  /** The game's label, for the wallet lines ("Whot"). */
+  label: string
+  /** Naira each player put in; the pot is twice this. */
+  stake: number
+  /** Lagos day the stakes were counted on. */
+  day: number
+  at: number
+  /** The two players, in seat order. */
+  seats: { id: string; name: string }[]
+}
+/** server/growth/tables.ts: ratings per player per game, how often two players' games counted today, and the pots of staked games in play. */
 export interface GrowthTablesRecord {
   cities?: Partial<Record<CityId, GrowthCityTablesRecord>>
   ratings?: Record<string, Partial<Record<TableGameId, { rating: number; played: number; won: number }>>>
   pairs?: { day: number; counts: Record<string, number> }
+  /** Pots of staked games in play, by match id. Empty when nothing is staked. */
+  pots?: Record<string, TablePotRecord>
+  /** Naira staked on Lagos day `day`: per player, and per pair of players (`a|b`, ids sorted). */
+  stakes?: { day: number; players: Record<string, number>; pairs: Record<string, number> }
 }
 /** What a channel last sent per period: the Lagos day of the last 'away' message and the Lagos week of the last 'week' one. */
 export interface OutreachPeriods { away?: number; week?: number }

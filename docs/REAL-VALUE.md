@@ -116,6 +116,7 @@ Sellers abroad use their own Payoneer, Grey or Wise accounts. Allworld only link
 - Market holdings are never cashed out, gifted outside the transfer rules, or sold off-platform.
 - No cash-value prizes for Market ranks.
 - No "earn", "invest" or "profit" copy about the Market.
+- Table stakes (docs/GAMES.md, "Stakes") are game naira only: never bought with real money, never cashed out, never paid in or out by a payment provider. Skill games only, between two real players, never against a bot and never a game of chance. 18+ only, by the age answer. Within the gift allowance and the day's limits, so a stake cannot move money a player did not work for. No "bet", "gamble", "earn", "invest" or "profit" copy: say stake, play for, pot and winner takes the pot.
 
 ## Real-money trading
 

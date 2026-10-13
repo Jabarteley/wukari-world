@@ -28,14 +28,14 @@ async function render(props: Record<string, unknown>): Promise<string> {
 }
 
 const seats = [{ name: 'Ada', bot: false }, { name: 'Mama Put', bot: true }]
-const summary = (): TableSummary => ({ id: 't', venue: 'park', venueLabel: 'The Park', game: 'weave', gameLabel: 'Weave', label: 'Cloth', status: 'playing', max: 4, min: 2, options: {}, seats, watching: 0 })
+const summary = (): TableSummary => ({ id: 't', venue: 'park', venueLabel: 'The Park', game: 'weave', gameLabel: 'Weave', label: 'Cloth', status: 'playing', max: 4, min: 2, options: {}, seats, watching: 0, stake: 0 })
 const view = (patch: Partial<WeaveView> = {}): WeaveView => ({
   game: 'weave', options: { speed: 'relaxed' }, board: placeTiles(emptyBoard(), [{ r: 6, c: 5, l: 's' }, { r: 6, c: 6, l: 'o', blank: true }]), scores: [12, 30], bagCount: 40,
   history: [{ seat: 1, kind: 'play', words: [{ w: 'so', p: 30 }], points: 30, tiles: 2 }, { seat: 0, kind: 'pass', words: [], points: 0, tiles: 0 }],
   rack: ['q', 'e', 'a', '?', 'r', 'i', 'z'], counts: [7, 6], turn: 0, out: [false, false], scoreless: 0, over: null, racks: null, ...patch,
 })
 const frame = (patch: Partial<TableStateFrame> = {}, v: WeaveView = view()): TableStateFrame => ({
-  type: 'table-state', cityId: 'lagos', table: summary(), you: 0, host: true, n: 4, view: v as unknown as Record<string, unknown>, log: [], toMove: [0], clock: null, result: null, optionList: [], ...patch,
+  type: 'table-state', cityId: 'lagos', table: summary(), you: 0, host: true, n: 4, view: v as unknown as Record<string, unknown>, log: [], toMove: [0], clock: null, result: null, optionList: [], stakes: { amount: 0, pot: 0, allowed: true, note: '', why: null, code: null, choices: [] }, ...patch,
 })
 const buttonOf = (html: string, label: RegExp): string => html.match(new RegExp(`<button[^>]*>\\s*${label.source}\\s*</button>`))?.[0] ?? ''
 

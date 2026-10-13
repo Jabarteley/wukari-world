@@ -62,6 +62,7 @@ import { emit, modify } from '../registry.ts';
 import { busy, clamp, cleanText, fail, finite, isId, isRecord, naira, ok, safeCount } from '../util.ts';
 import { lagosTime } from '../clock.ts';
 import { freeOf, spendFree } from './wallet.ts';
+import { passedOn } from './growth.ts';
 import { addMoodlet, addSkillXp, arrive, canAfford, canCredit, changeNeeds, credit, debit, skillLevel } from '../api.ts';
 import { repayFromEarnings } from '../relief.ts';
 import { arriveInCity } from './estate.ts';
@@ -409,7 +410,7 @@ const serverOps: ServerOps = {
 export function giftRoom(state: LifeState, ctx: LifeContext): number {
   const L = TRANSFER_LIMITS, book = state.social.transfer, today = book.day === dayOf(state, ctx) ? book : { sent: 0, count: 0 };
   if (state.social.earned < L.minEarned || today.count >= L.dailyCount) return 0;
-  const room = Math.min(L.maxPerTransfer, L.dailyAmount - today.sent, state.social.earned - (book.total + (state.business?.spent ?? 0)));
+  const room = Math.min(L.maxPerTransfer, L.dailyAmount - today.sent, state.social.earned - passedOn(state));
   return room >= L.min ? room : 0;
 }
 /** The most one gift can be now: the unrestricted part plus the ordinary room, never more than the cash held. */
@@ -429,8 +430,8 @@ function transferBlock(state: LifeState, payload: Record<string, unknown>, ctx: 
   if (ordinary > 0) {
     if (ordinary > L.maxPerTransfer) return refuse('amount_too_large', `The largest single gift is ${naira(L.maxPerTransfer)}${free > 0 ? ' beyond what has no limits' : ''}.`);
     if (state.social.earned < L.minEarned) return refuse('earn_first', `Earn at least ${naira(L.minEarned)} from paid work before sending more (you have earned ${naira(state.social.earned)}).`);
-    // What was spent at other players' shops (systems/business.ts) came out of the same allowance: money earned from work passes to another player once.
-    const passed = book.total + (state.business?.spent ?? 0);
+    // What was spent at other players' shops (systems/business.ts) and what was staked at a table (systems/growth.ts) came out of the same allowance: money earned from work passes to another player once.
+    const passed = passedOn(state);
     if (passed + ordinary > state.social.earned) return refuse('gift_exceeds_earned', `You can only give away money you have earned from work. You can still give ${naira(Math.max(0, state.social.earned - passed))}.`);
     const today = book.day === dayOf(state, ctx) ? book : { sent: 0, count: 0 };
     if (today.count >= L.dailyCount) return refuse('daily_transfer_limit', `You have sent ${L.dailyCount} gifts today. The limit resets at midnight, Nigerian time.`);
@@ -687,7 +688,7 @@ export default {
       streak: book.streak.day >= day - 1 ? book.streak.count : 0,
       calling: state.activeAction?.kind === 'call' ? state.activeAction.id : null,
       transfer: { ...L, earned: book.earned, sentToday: today.sent, countToday: today.count,
-        leftToday: Math.max(0, Math.min(L.dailyAmount - today.sent, book.earned - book.transfer.total - (state.business?.spent ?? 0))), giftsLeftToday: Math.max(0, L.dailyCount - today.count),
+        leftToday: Math.max(0, Math.min(L.dailyAmount - today.sent, book.earned - passedOn(state))), giftsLeftToday: Math.max(0, L.dailyCount - today.count),
         free: freeOf(state) },
       notices: book.notices.slice().reverse(),
     };

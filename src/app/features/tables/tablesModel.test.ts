@@ -8,12 +8,12 @@ import test from 'node:test'
 import type { TableStateFrame, TableSummary } from './tablesBoundary.ts'
 import {
   botCounts, botLabel, clockBar, heroFigure, heroNote, hostNote, leavesOnBack, listIsStale, nameAt, openLabel, optionKey, outcomeNote, outcomeTitle,
-  parseOption, partition, ratingLine, rowSub, rowWho, startNote, tableParam, tableTitle,
+  AGAIN_STAKE_NOTE, PLAY_MONEY, acceptNote, adultAnswer, parseOption, partition, pickNote, ratingLine, rowStake, rowSub, rowWho, showsStake, sitLabel, sitReason, stakeLine, startNote, tableParam, tableTitle,
 } from './tablesModel.ts'
 import { chipGames } from './tablesChipModel.ts'
 
 const table = (patch: Partial<TableSummary> = {}): TableSummary => ({
-  id: 'buka-corner', venue: 'amala-shitta', venueLabel: 'Amala Shitta', game: 'whot', gameLabel: 'Whot', label: 'Corner table', status: 'open', max: 4, min: 2, options: {}, seats: [], watching: 0, ...patch,
+  id: 'buka-corner', venue: 'amala-shitta', venueLabel: 'Amala Shitta', game: 'whot', gameLabel: 'Whot', label: 'Corner table', status: 'open', max: 4, min: 2, options: {}, seats: [], watching: 0, stake: 0, ...patch,
 })
 
 test('a row says who is at the table, whether a game is on and how many watch', () => {
@@ -47,8 +47,8 @@ test('the start buttons: bots up to the free seats, and the note that goes with 
   assert.deepEqual(botCounts(4), [1, 2, 3])
   assert.equal(botLabel(1), '+ 1 bot')
   assert.equal(botLabel(3), '+ 3 bots')
-  assert.match(startNote({ min: 2, seats: [{}] }), /Nobody else here yet/)
-  assert.match(startNote({ min: 2, seats: [{}, {}] }), /Everyone seated plays/)
+  assert.match(startNote({ min: 2, stake: 0, seats: [{}] }), /Nobody else here yet/)
+  assert.match(startNote({ min: 2, stake: 0, seats: [{}, {}] }), /Everyone seated plays/)
   assert.equal(hostNote(true), 'You sat down first, so you choose.')
 })
 
@@ -101,4 +101,26 @@ test('the turn clock starts where the turn really is and is absent when no game 
   assert.equal(nameAt([{ name: 'Ada' }], 0), 'Ada')
   assert.equal(nameAt([{ name: 'Ada' }], null, 'Next'), 'Next')
   assert.equal(chipGames([{ game: 'whot' }, { game: 'penalty' }, { game: 'whot' }]), 'Whot, Penalties')
+})
+
+test('stakes: the chip, the sit button, why it is disabled, when the Stake card shows, and the outcome lines', () => {
+  assert.deepEqual([rowStake({ stake: 0 }), rowStake({ stake: 500 })], [{ text: 'Free', tone: 'neutral' }, { text: '₦500 each', tone: 'warn' }])
+  assert.deepEqual([sitLabel({ stake: 0 }, 2), sitLabel({ stake: 1000 }, 1), sitLabel({ stake: 1000 }, 0)], ['Sit down', 'Sit down and play for ₦1,000', 'Table full'])
+  const why = 'Playing for a stake is for players who are 18 or older.'
+  const stakes = { amount: 500, pot: 1000, allowed: true, note: '', why, code: 'adults_only', choices: [] }
+  assert.deepEqual([sitReason(0, false, stakes), sitReason(1, true, stakes), sitReason(1, false, stakes), sitReason(1, false, { why: null }), sitReason(1, false, null)], ['The table is full.', 'Waiting for the table to answer.', why, null, null])
+  assert.deepEqual([showsStake(null, 0), showsStake(stakes, 500), showsStake({ ...stakes, choices: [{ amount: 100, why: null }] }, 0), showsStake({ ...stakes, allowed: false, choices: [{ amount: 100, why: null }] }, 500), showsStake({ ...stakes, choices: [] }, 0)], [false, true, true, false, false])
+  assert.equal(stakeLine(500), 'Play for ₦500 each — winner takes ₦1,000')
+  assert.equal(PLAY_MONEY, 'Play money only — game naira, never real money.')
+  assert.ok(acceptNote(500).startsWith('Play for ₦500 each — winner takes ₦1,000. Sitting down accepts it'))
+  assert.ok(pickNote.includes('fixed once two players sit') && AGAIN_STAKE_NOTE.includes('agreed each time'))
+  assert.deepEqual(adultAnswer('lagos'), { cityId: 'lagos', age: 'adult' })
+  assert.match(startNote({ min: 2, stake: 500, seats: [{}] }), /needs a second real player.*no bots at a staked table/)
+  assert.match(startNote({ min: 2, stake: 500, seats: [{}, {}] }), /Starting takes ₦500 from each of you, and the winner takes ₦1,000\./)
+  // The result of a staked game says what happened to the stake, whatever the table's other counts say.
+  const mine = (outcome: 'won' | 'lost' | 'refunded') => ({ calledOff: false, mine: { won: outcome === 'won', draw: outcome === 'refunded', human: true, counted: false, stake: { amount: 500, pot: 1000, outcome } } })
+  assert.equal(outcomeNote(mine('won'), null, 150), 'You won the pot: ₦1,000 (your ₦500 back and ₦500 from the other player).')
+  assert.equal(outcomeNote(mine('lost'), null, 150), 'You lost your ₦500 stake. The pot went to the winner.')
+  assert.equal(outcomeNote(mine('refunded'), null, 150), 'Your ₦500 stake came back. Nobody won or lost.')
+  assert.equal(outcomeNote({ ...mine('refunded'), calledOff: true }, null, 150), 'Your ₦500 stake came back. Nobody won or lost.', 'a game called off before a move gives the stake back')
 })

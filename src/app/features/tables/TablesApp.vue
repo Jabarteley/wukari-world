@@ -28,10 +28,11 @@ const WeaveBoard = defineAsyncComponent(() => import('./WeaveBoard.vue'))
 const AyoBoard = defineAsyncComponent(() => import('./AyoBoard.vue'))
 import { GAME_LABELS, ayoRules, chessRules, isAyoState, isChessState, isPenaltyState, isWeaveState, isWhotState, penaltyRules, tableById, weaveRules, whotRules } from './tablesBoundary.ts'
 import {
-  LIST_RULES, NO_TABLE_HERE, botCounts, botLabel, heroFigure, heroNote, hostNote, leavesOnBack, openLabel, optionKey, outcomeNote, outcomeTitle,
-  parseOption, partition, ratingLine, rowSub, seatLabel, startNote, tableParam, tableTitle,
+  AGAIN_STAKE_NOTE, LIST_RULES, NO_TABLE_HERE, PLAY_MONEY, acceptNote, adultAnswer, botCounts, botLabel, heroFigure, heroNote, hostNote, leavesOnBack, openLabel, optionKey, outcomeNote, outcomeTitle,
+  parseOption, partition, pickNote, ratingLine, rowStake, rowSub, seatLabel, showsStake, sitLabel, sitReason, stakeLine, startNote, tableParam, tableTitle,
 } from './tablesModel.ts'
 import { useTables } from './useTables.ts'
+import { money } from '../../ui/format.ts'
 
 const props = defineProps<{ params?: unknown }>()
 const { game, shell, goTo } = useApp()
@@ -65,6 +66,14 @@ const weave = computed(() => (s.value && isWeaveState(s.value) ? s.value : null)
 const ayo = computed(() => (s.value && isAyoState(s.value) ? s.value : null))
 const result = computed(() => (table.value?.status === 'over' ? s.value?.result ?? null : null))
 const outcome = computed(() => (result.value ? { title: outcomeTitle(result.value), note: outcomeNote(result.value, t.value.claimed, paid.value?.win ?? 0) } : null))
+// Stakes: game naira only. The server says what this player may do about the table's stake; nothing here decides it.
+const stakes = computed(() => s.value?.stakes ?? null)
+const staked = computed(() => (table.value?.stake ?? 0) > 0)
+const stakeCard = computed(() => showsStake(stakes.value, table.value?.stake ?? 0))
+const sitWhy = computed(() => sitReason(free.value, t.value.pending, stakes.value))
+const answering = ref(false)
+/** The second player sat down for these rules and this stake: neither moves afterwards (the server refuses it too). */
+const rulesLocked = computed(() => staked.value && (table.value?.seats.length ?? 0) > 1)
 
 // Opened on a table (a link, the venue chip): go straight to it, once per params object.
 let handled: unknown = null
@@ -86,7 +95,12 @@ function back(): void {
   if (leavesOnBack(t.value.state)) tables.leave()
   tables.closeTable()
 }
-function forfeit(): void { if (window.confirm('Leave the game? You forfeit it.')) tables.leave() }
+function forfeit(): void { if (window.confirm(staked.value ? 'Leave the game? You forfeit it, and the other player takes the pot.' : 'Leave the game? You forfeit it.')) tables.leave() }
+/** "I am 18 or older": the same answer Stay in touch records (POST /api/growth/consent), then the table is asked about again. */
+async function sayAdult(): Promise<void> {
+  answering.value = true
+  try { await game.fetchJson('/api/growth/consent', { method: 'POST', body: adultAnswer(view.value.cityId) }); tables.refreshTable() } catch (error) { game.toast(error instanceof Error ? error.message : 'That could not be saved.', 'error') } finally { answering.value = false }
+}
 function goToVenue(venue: string): void { shell.close(); void goTo(venue) }
 function invite(): void { void growth.share('table', t.value.tableId ? { table: t.value.tableId, surface: 'table' } : { surface: 'table' }) }
 function onOption(name: string, raw: string): void {
@@ -109,7 +123,7 @@ function onOption(name: string, raw: string): void {
         <ul v-if="lists.mine.length" class="ui-rows">
           <li v-for="row in lists.mine" :key="row.id" class="ui-row">
             <span class="ui-row-icon" aria-hidden="true"><GameIcon name="tables" inline /></span>
-            <span class="ui-row-body"><b>{{ tableTitle(row) }}</b><small>{{ rowSub(row) }}</small></span>
+            <span class="ui-row-body"><b>{{ tableTitle(row) }} <BaseChip :tone="rowStake(row).tone">{{ rowStake(row).text }}</BaseChip></b><small>{{ rowSub(row) }}</small></span>
             <span class="ui-row-end"><BaseButton variant="primary" @click="tables.openTable(row.id)">{{ openLabel(row, true) }}</BaseButton></span>
           </li>
         </ul>
@@ -120,7 +134,7 @@ function onOption(name: string, raw: string): void {
             <template #row="{ item: row }">
               <div class="ui-row">
                 <span class="ui-row-icon" aria-hidden="true"><GameIcon name="tables" inline /></span>
-                <span class="ui-row-body"><b>{{ tableTitle(row) }}</b><small>{{ rowSub(row) }}</small></span>
+                <span class="ui-row-body"><b>{{ tableTitle(row) }} <BaseChip :tone="rowStake(row).tone">{{ rowStake(row).text }}</BaseChip></b><small>{{ rowSub(row) }}</small></span>
                 <span class="ui-row-end"><BaseButton @click="tables.openTable(row.id)">{{ openLabel(row, false) }}</BaseButton></span>
               </div>
             </template>
@@ -143,7 +157,7 @@ function onOption(name: string, raw: string): void {
     <!-- The table -->
     <template v-else>
       <button class="gr-swap tb-back" type="button" @click="back">‹ All tables</button>
-      <h3 class="tb-title">{{ tableTitle(table) }}<small>{{ table.venueLabel }}{{ table.watching ? ` · ${table.watching} watching` : '' }}</small></h3>
+      <h3 class="tb-title">{{ tableTitle(table) }} <BaseChip :tone="rowStake(table).tone">{{ rowStake(table).text }}</BaseChip><small>{{ table.venueLabel }}{{ table.watching ? ` · ${table.watching} watching` : '' }}</small></h3>
       <p v-if="t.socket !== 'open'" class="ui-error" role="alert">Reconnecting to the table… your seat is kept. <button class="gr-swap" type="button" @click="tables.reconnect()">Try now</button></p>
 
       <template v-if="table.status === 'open'">
@@ -154,7 +168,7 @@ function onOption(name: string, raw: string): void {
             <span v-else class="gr-note">Nobody is sitting yet.</span>
           </p>
           <BaseButton v-if="seated" @click="tables.leave()">Get up</BaseButton>
-          <BaseButton v-else-if="atVenue" variant="primary" :reason="!free ? 'The table is full.' : t.pending ? 'Waiting for the table to answer.' : null" @click="tables.sit()">{{ free ? 'Sit down' : 'Table full' }}</BaseButton>
+          <BaseButton v-else-if="atVenue" variant="primary" :reason="sitWhy" @click="tables.sit()">{{ sitLabel(table, free) }}</BaseButton>
           <template v-else>
             <p>You can watch from here. To sit, go to {{ table.venueLabel }}.</p>
             <BaseButton variant="primary" @click="goToVenue(table.venue)">Go to {{ table.venueLabel }}</BaseButton>
@@ -163,10 +177,27 @@ function onOption(name: string, raw: string): void {
         <div v-if="onPhone && !seated" class="tb-start">
           <BaseButton variant="primary" :reason="t.pending ? 'Waiting for the table to answer.' : null" @click="playBots(1)">Play the computer</BaseButton>
         </div>
+        <!-- The stake -->
+        <div v-if="stakeCard && stakes" class="gr-card tb-stake">
+          <h3>Stake</h3>
+          <p><b>{{ stakeLine(table.stake) }}</b></p>
+          <p v-if="staked" class="gr-note tb-playmoney">{{ PLAY_MONEY }}</p>
+          <template v-if="stakes.choices.length">
+            <div class="tb-start" role="group" aria-label="Choose the stake">
+              <BaseButton :variant="table.stake === 0 ? 'selected' : 'default'" :reason="t.pending ? 'Waiting for the table to answer.' : null" @click="tables.setStake(0)">Free</BaseButton>
+              <BaseButton v-for="choice in stakes.choices" :key="choice.amount" :variant="table.stake === choice.amount ? 'selected' : 'default'" :reason="t.pending ? 'Waiting for the table to answer.' : choice.why" @click="tables.setStake(choice.amount)">{{ money(choice.amount) }}</BaseButton>
+            </div>
+            <p class="gr-note">{{ pickNote }}</p>
+            <p v-if="!staked" class="gr-note tb-playmoney">{{ PLAY_MONEY }}</p>
+          </template>
+          <p v-else-if="staked && !seated" class="gr-note">{{ acceptNote(table.stake) }}</p>
+          <p v-if="stakes.why" class="ui-error" role="status">{{ stakes.why }}</p>
+          <BaseButton v-if="stakes.code === 'adults_only'" :disabled="answering" @click="sayAdult">{{ answering ? 'Saving…' : 'I am 18 or older' }}</BaseButton>
+        </div>
         <template v-if="seated">
           <div class="tb-start">
-            <BaseButton v-if="table.seats.length >= table.min" variant="primary" :reason="t.pending ? 'Waiting for the table to answer.' : null" @click="tables.begin(0)">Start with {{ table.seats.length }}</BaseButton>
-            <BaseButton v-for="count in botCounts(free)" :key="count" :variant="table.seats.length < table.min && count === 1 ? 'primary' : 'default'" :reason="t.pending ? 'Waiting for the table to answer.' : null" @click="tables.begin(count)">{{ botLabel(count) }}</BaseButton>
+            <BaseButton v-if="table.seats.length >= table.min" variant="primary" :reason="t.pending ? 'Waiting for the table to answer.' : null" @click="tables.begin(0)">{{ staked ? `Start: play for ${money(table.stake)} each` : `Start with ${table.seats.length}` }}</BaseButton>
+            <BaseButton v-for="count in botCounts(staked ? 0 : free)" :key="count" :variant="table.seats.length < table.min && count === 1 ? 'primary' : 'default'" :reason="t.pending ? 'Waiting for the table to answer.' : null" @click="tables.begin(count)">{{ botLabel(count) }}</BaseButton>
           </div>
           <p class="gr-note">{{ startNote(table) }}</p>
         </template>
@@ -174,7 +205,7 @@ function onOption(name: string, raw: string): void {
         <div class="gr-card">
           <h3>Table rules</h3>
           <label v-for="option in s.optionList" :key="option.name" class="tb-option">{{ option.label }}
-            <select :disabled="!s.host" :title="s.host ? undefined : hostNote(false)" @change="onOption(option.name, ($event.target as HTMLSelectElement).value)">
+            <select :disabled="!s.host || rulesLocked" :title="rulesLocked ? 'The rules are fixed once two players have sat down for a stake.' : s.host ? undefined : hostNote(false)" @change="onOption(option.name, ($event.target as HTMLSelectElement).value)">
               <option v-for="(value, index) in option.values" :key="optionKey(value)" :value="optionKey(value)" :selected="value === option.value">{{ option.names[index] }}</option>
             </select>
           </label>
@@ -184,10 +215,12 @@ function onOption(name: string, raw: string): void {
       </template>
 
       <template v-else>
+        <p v-if="staked && !outcome" class="gr-note tb-playmoney"><b>{{ stakeLine(table.stake) }}.</b> {{ PLAY_MONEY }}</p>
         <div v-if="outcome && result" class="gr-card tb-result" :class="{ 'is-won': result.mine?.won }">
           <h3>{{ outcome.title }}</h3>
           <p>{{ result.text }}</p>
           <p v-if="outcome.note">{{ outcome.note }}</p>
+          <p v-if="result.mine?.stake" class="gr-note tb-playmoney">{{ PLAY_MONEY }} {{ AGAIN_STAKE_NOTE }}</p>
           <BaseButton variant="primary" @click="tables.again()">Play again</BaseButton>
           <BaseButton v-if="result.mine?.won" :reason="busyWhy" @click="growth.share('table')">Share the win</BaseButton>
           <BaseButton @click="back">Leave the table</BaseButton>
@@ -222,4 +255,5 @@ function onOption(name: string, raw: string): void {
 .tb-option { display: grid; gap: 4px; font-size: 13px; margin: 8px 0; }
 .tb-option select { min-height: var(--tap, 44px); border-radius: 12px; border: 1px solid var(--c-line); padding: 0 10px; font: inherit; background: #fff; }
 .tb-result.is-won { background: var(--c-green-soft); }
+.tb-playmoney { font-weight: 600; }
 </style>

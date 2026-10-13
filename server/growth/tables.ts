@@ -31,12 +31,25 @@
  * `tables.pairs` (how often two players' games counted today). A game that ends by someone
  * leaving before every human has moved twice is CALLED OFF: nothing is recorded for anyone.
  *
- * NO STAKES. Nothing is wagered. A win against a real player is paid by the game, inside the
- * caps of src/game/content/growth.ts; the same two players' games count three times a day.
+ * STAKES (docs/GAMES.md, "Stakes"; the rules are src/game/table-stakes.ts). A table may be played for game naira: the player
+ * who sits first picks the stake (table-stake), alone at the table; anyone who sits has accepted it (sit names the stake they
+ * saw), and it cannot change once two players sit. Only skill games, only two real players (never a bot), only players who said
+ * they are 18 or older, not players who have blocked each other or share a device, and only within the gift rule's allowance
+ * and the day's limits (TABLE_STAKES). A staked game does not also pay the table win reward.
+ *   MONEY, EXACTLY ONCE. When the game starts, ONE transaction takes both stakes from both lives (the server-only life action
+ *   'tables.server', op stake) and writes the pot in growth `tables.pots[matchId]`. When the game ends, ONE transaction pays the
+ *   whole pot to the winner (op pot) or returns both stakes (op refund) and deletes that record: the record is the receipt, so a
+ *   pot is paid out once. Draws, and games nobody moved in, refund; a player who leaves or forfeits after play began has lost.
+ *   RESTART SAFETY. The pot is in the saved record, not only in memory. A game in memory has its id in `owned`; any pot whose game
+ *   is not owned (a restart or a failed write ended it) is refunded by sweepPots, at start-up and on every heartbeat.
  */
 import { lagosTime } from '../../src/game/clock.ts';
-import { makeRng } from '../../src/game/util.ts';
-import { TABLE_REWARDS } from '../../src/game/content/growth.ts';
+import { makeRng, naira } from '../../src/game/util.ts';
+import { TABLE_REWARDS, TABLE_STAKES } from '../../src/game/content/growth.ts';
+import { STAKE_CHOICES, isStake, pairKey, potOf, settlement, stakeBlock, stakeLabel, stakeable, theyCannot } from '../../src/game/table-stakes.ts';
+import type { Settlement, StakeFacts, StakeRefusal } from '../../src/game/table-stakes.ts';
+import { passedOn } from '../../src/game/systems/growth.ts';
+import { characterCity } from '../character.ts';
 import { venueLabel } from '../../src/game/content/venues.ts';
 import { cityContent } from '../../src/game/cities/index.ts';
 import { BOT_NAMES } from '../../src/tables/places.ts';
@@ -52,8 +65,8 @@ import { growthOf, playerOf } from './data.ts';
 import { count } from './metrics.ts';
 import type { CityId } from '../../src/types/protocol.ts';
 import type { LifeState } from '../../src/types/life.ts';
-import type { ResultGameId, TableGameId, TableOptionValue, TableRating, TableResultMine, TableStateFrame, TableSummary, TablesFrame } from '../../src/types/growth.ts';
-import type { GrowthCityTablesRecord, GrowthCollection, GrowthPlayerRecord, PendingTableResult, RouteContext, SessionRecord, WsConnection } from '../types.ts';
+import type { ResultGameId, TableGameId, TableOptionValue, TableRating, TableResultMine, TableStakes, TableStateFrame, TableSummary, TablesFrame } from '../../src/types/growth.ts';
+import type { Db, GrowthCityTablesRecord, GrowthCollection, GrowthPlayerRecord, PendingTableResult, RouteContext, SessionRecord, WsConnection } from '../types.ts';
 
 /** The venue id of a table that is on the Phone: it is not in any venue. */
 export const PHONE_VENUE = 'phone';
@@ -194,8 +207,12 @@ interface Match {
   allowedMs: number
   botAt: number | null
   engine: Engine
+  /** Naira each player put in; 0 for a free game. The pot is held in the growth record under this match's id until it is settled. */
+  staked: number
 }
 interface TableResult { text: string; calledOff: boolean; winners: number[]; per: Record<string, TableResultMine> }
+/** What one player is told about the table's stake: why they cannot play for it (null: they can), and what a host could pick. Refreshed from the store (refreshEligibility); the frames are sent synchronously. */
+interface Eligibility { code: string | null; why: string | null; choices: { amount: number; why: string | null }[] }
 interface Table {
   key: string
   cityId: CityId
@@ -210,6 +227,11 @@ interface Table {
   result: TableResult | null
   endedAt: number
   pumping?: boolean
+  /** Naira each player puts in at this table (0: free). Set by the host alone at an open table; back to 0 when the table opens again. */
+  stake: number
+  /** The stakes are being taken: seats and the stake are fixed until the game starts or the start is refused. */
+  starting?: boolean
+  eligible: Map<string, Eligibility>
 }
 /** The seat at an index the rules named; a state that names a seat the table does not have is a bug and throws. */
 function seatOf(table: Table, index: number): Seat {
@@ -269,7 +291,7 @@ function buildService(ctx: RouteContext) {
     let table = tables.get(key);
     if (!table) {
       const game = GAME_OF[place.game];
-      table = { key, cityId: city, place, game, status: 'open', seats: [], options: game.cleanOptions({}), match: null, sockets: new Set(), timer: null, result: null, endedAt: 0 };
+      table = { key, cityId: city, place, game, status: 'open', seats: [], options: game.cleanOptions({}), match: null, sockets: new Set(), timer: null, result: null, endedAt: 0, stake: 0, eligible: new Map() };
       tables.set(key, table);
     }
     return table;
@@ -277,11 +299,132 @@ function buildService(ctx: RouteContext) {
   const seatIndex = (table: Table, id: string) => table.seats.findIndex((seat) => !seat.bot && seat.id === id);
   const names = (table: Table) => table.seats.map((seat) => seat.name);
   const connected = (table: Table, id: string) => [...table.sockets].some((ws) => ws.session.id === id && ctx.core.isOpen(ws));
+  const sitting = (table: Table) => table.seats.filter((seat) => !seat.bot);
+
+  // ---- stakes: who may, and the pot ---------------------------------------------------------------
+  /** Ids of the matches in memory whose pot is held in the growth record. A pot that is not in here belongs to no live game (sweepPots). */
+  const owned = new Set<string>();
+  /** A pot may be waiting to be swept (start-up, a failed write): the heartbeat looks only then, so a quiet server reads nothing. */
+  let sweepDue = true;
+  const blocked = (a: string, b: string): boolean => ctx.checks?.blocked?.(a, b) === true;
+  /** The two players have used one device (the growth module keeps salted hashes of device tokens; read only). Copied from server/business/service.ts. */
+  function sharedDevice(db: Db, a: string, b: string): boolean {
+    const mine = db.growth?.players?.[a]?.devices, theirs = db.growth?.players?.[b]?.devices;
+    return Array.isArray(mine) && Array.isArray(theirs) && mine.some((hash) => theirs.includes(hash));
+  }
+  /** Why this table cannot be played for a stake at all, or ''. */
+  const stakeNote = (table: Table): string => (table.place.venue === PHONE_VENUE ? 'Tables on your Phone are against the computer: nothing can be staked there.'
+    : !stakeable(table.place.game) ? `${table.game.label} cannot be played for a stake.` : '');
+  /** The most seats a table takes: a staked table is for two players. */
+  const capacity = (table: Table): number => Math.min(table.stake > 0 ? 2 : Infinity, table.place.seats, table.game.seats.max);
+  const storedLife = (db: Db, id: string, cityId: CityId): LifeState | undefined => ctx.core.sessionByPublicId(db, id)?.cities?.[cityId]?.state;
+  /** What the stake rules need to know about a player, from a stored or settled life. Null: there is no life ready to play. */
+  function factsOf(db: Db, id: string, state: LifeState | undefined, other: string | null, t: number): StakeFacts | null {
+    if (!ready(state)) return null;
+    const book = growthOf(ctx, db).tables.stakes, today = book?.day === lagosTime(t).day ? book : null;
+    return { earned: state.social?.earned ?? 0, passed: passedOn(state), cash: state.cash, adult: ctx.checks?.adult?.(db, id) === true,
+      playerToday: today?.players[id] ?? 0, pairToday: other ? today?.pairs[pairKey(id, other)] ?? 0 : 0 };
+  }
+  /** Why this player may not put `amount` on a table beside `others` (the other real players seated), in a sentence to them, or null. */
+  function stakeWhy(db: Db, id: string, state: LifeState | undefined, others: readonly string[], amount: number, t: number): { code: string; reason: string } | null {
+    if (others.some((other) => blocked(id, other) || sharedDevice(db, id, other))) return { code: 'stake_refused', reason: 'You cannot play for a stake against this player.' };
+    const facts = factsOf(db, id, state, others[0] ?? null, t);
+    return facts ? stakeBlock(facts, amount) : { code: 'not_ready', reason: 'Finish creating your character first.' };
+  }
+  /** What one player is told about the stake of a table: read from the store. */
+  function eligibility(db: Db, table: Table, id: string): Eligibility {
+    const t = now(), others = sitting(table).map((seat) => seat.id).filter((other) => other !== id), state = storedLife(db, id, table.cityId);
+    const why = table.stake > 0 ? stakeWhy(db, id, state, others, table.stake, t) : null;
+    return { code: why?.code ?? null, why: why?.reason ?? null, choices: STAKE_CHOICES.filter((amount) => amount > 0).map((amount) => ({ amount, why: stakeWhy(db, id, state, others, amount, t)?.reason ?? null })) };
+  }
+  /** Read what each player at (or watching) a table may do about its stake, and send it. Frames are built without waiting on the store, so this runs after the change that needs it. */
+  async function refreshEligibility(table: Table): Promise<void> {
+    if (stakeNote(table)) return;
+    const ids = new Set(sitting(table).map((seat) => seat.id));
+    if (table.stake > 0) for (const ws of table.sockets) ids.add(ws.session.id);
+    if (!ids.size) { table.eligible = new Map(); return; }
+    // A read that fails leaves the sentences as they were: the server still refuses a stake it should, whatever the screen says.
+    try { table.eligible = new Map(await ctx.store.read((db) => [...ids].map((id): [string, Eligibility] => [id, eligibility(db, table, id)]))); } catch (error) { ctx.core.log?.(`Table stake sentences not read: ${String(messageOf(error) ?? error).split('\n')[0]?.slice(0, 120)}`); return; }
+    broadcast(table);
+  }
+
+  /** A player's life for settling a pot: in the city of the game, or wherever the character has gone since (it is in one city at a time). */
+  function lifeOf(db: Db, id: string, cityId: CityId): { life: LifeState; city: CityId } | null {
+    const session = ctx.core.sessionByPublicId(db, id);
+    if (!session) return null;
+    const city = session.cities?.[cityId] ? cityId : characterCity(session);
+    return city && session.cities?.[city] ? { life: ctx.settle(session, city), city } : null;
+  }
+  const lifeAct = (found: { life: LifeState; city: CityId }, payload: Record<string, unknown>) => ctx.act(found.life, { type: 'tables.server', cityId: found.city, payload,
+    stateGuard: 'the pot record is created or deleted in this same transaction, so a stake or a pot is applied once' });
+  /**
+   * Pay a pot out, inside the caller's transaction, and delete its record. Returns false when there is no such pot (it was settled
+   * already), so a second settlement of the same game pays nothing. A refund that `release`s gives the stakes back to the day's limits too.
+   */
+  function settlePot(db: Db, g: GrowthCollection, id: string, plan: Settlement, release: boolean): boolean {
+    const pots = g.tables.pots, pot = pots?.[id];
+    if (!pots || !pot || !Object.hasOwn(pots, id)) return false;
+    pot.seats.forEach((seat, index) => {
+      const found = lifeOf(db, seat.id, pot.cityId), other = pot.seats[1 - index];
+      if (!found) { ctx.core.log?.(`Table pot ${id}: a player has no life left to pay`); return; }
+      const label = stakeLabel(pot.label, other?.name ?? 'a player');
+      // The loser is paid nothing: the stake is already in the pot, and stays counted against their allowance.
+      const paid = plan.kind === 'refund' ? lifeAct(found, { op: 'refund', amount: pot.stake, label }) : plan.seat === index ? lifeAct(found, { op: 'pot', amount: potOf(pot.stake), stake: pot.stake, label }) : null;
+      if (paid && !paid.ok) ctx.core.log?.(`Table pot ${id}: ${paid.code}`);
+    });
+    delete pots[id];
+    const book = g.tables.stakes;
+    if (release && book && book.day === pot.day) {
+      for (const seat of pot.seats) book.players[seat.id] = Math.max(0, (book.players[seat.id] ?? 0) - pot.stake);
+      const [a, b] = pot.seats, key = a && b ? pairKey(a.id, b.id) : '';
+      if (key) book.pairs[key] = Math.max(0, (book.pairs[key] ?? 0) - pot.stake);
+    }
+    return true;
+  }
+  /** Return every pot that belongs to no live game: what a restart or a failed write left behind. Each is its own transaction. */
+  async function sweepPots(): Promise<void> {
+    const orphans = await ctx.store.read((db) => Object.keys(db.growth?.tables?.pots ?? {}).filter((id) => !owned.has(id)));
+    for (const id of orphans) {
+      try {
+        await ctx.store.transact((db) => { if (!owned.has(id) && settlePot(db, growthOf(ctx, db), id, { kind: 'refund' }, true)) ctx.core.log?.(`Table pot ${id} returned to both players`); });
+      } catch (error) { sweepDue = true; ctx.core.log?.(`Table pot ${id} could not be returned yet: ${String(messageOf(error) ?? error).split('\n')[0]?.slice(0, 120)}`); }
+    }
+  }
+  /**
+   * Take both stakes and record the pot, in ONE transaction: both lives are charged and the pot is written, or nothing changes.
+   * Everything is checked again here, on the settled lives: age, blocks, shared devices, the allowance and the day's limits.
+   */
+  async function takeStakes(table: Table, matchId: string, caller: string): Promise<void> {
+    await prepareTableParticipants(table);
+    const stake = table.stake, seats = sitting(table).map((seat) => ({ id: seat.id, name: seat.name }));
+    await ctx.store.transact((db) => {
+      const t = now(), day = lagosTime(t).day, g = growthOf(ctx, db), [first, second] = seats;
+      if (seats.length !== 2 || !first || !second) throw refuse('need_players', 'A game for a stake is played by two players.');
+      const found = seats.map((seat) => {
+        const mine = lifeOf(db, seat.id, table.cityId), other = seats.find((item) => item !== seat);
+        if (!mine || mine.city !== table.cityId) throw refuse('stake_refused', seat.id === caller ? 'Your character is not here to play.' : theyCannot(seat.name));
+        const why = stakeWhy(db, seat.id, mine.life, other ? [other.id] : [], stake, t);
+        if (why) throw refuse(why.code, seat.id === caller ? why.reason : theyCannot(seat.name));
+        return mine;
+      });
+      found.forEach((mine, index) => {
+        const seat = seats[index], other = seats[1 - index];
+        const taken = lifeAct(mine, { op: 'stake', amount: stake, label: stakeLabel(table.game.label, other?.name ?? 'a player') });
+        // Checked above, so this is a bug if it happens; refusing undoes the whole transaction, the first stake included.
+        if (!taken.ok) throw refuse(taken.code, seat?.id === caller ? taken.reason ?? 'That stake was refused.' : theyCannot(seat?.name ?? 'The other player'));
+      });
+      const book = g.tables.stakes?.day === day ? g.tables.stakes : (g.tables.stakes = { day, players: {}, pairs: {} }), key = pairKey(first.id, second.id);
+      for (const seat of seats) book.players[seat.id] = (book.players[seat.id] ?? 0) + stake;
+      book.pairs[key] = (book.pairs[key] ?? 0) + stake;
+      (g.tables.pots ||= {})[matchId] = { cityId: table.cityId, table: table.place.id, game: table.place.game, label: table.game.label, stake, day, at: t, seats };
+      count(g, t, table.cityId, `table.staked.${table.place.game}`);
+    });
+  }
 
   /** What anyone may know about a table: who sits, whether a game is on. Never a card. */
   function summary(table: Table): TableSummary {
     return { id: table.place.id, venue: table.place.venue, venueLabel: table.place.venue === PHONE_VENUE ? 'Your Phone' : venueName(table.cityId, table.place.venue), game: table.place.game, gameLabel: table.game.label, label: table.place.label,
-      status: table.status, max: Math.min(table.place.seats, table.game.seats.max), min: table.game.seats.min, options: table.options,
+      status: table.status, max: capacity(table), min: table.game.seats.min, options: table.options, stake: table.stake,
       seats: table.seats.map((seat) => ({ name: seat.name, bot: seat.bot, ...(seat.bot ? {} : { id: seat.id, away: seat.away > 0 }), ...(seat.left ? { left: true as const } : {}) })),
       watching: new Set([...table.sockets].map((ws) => ws.session.id).filter((id) => seatIndex(table, id) < 0)).size };
   }
@@ -292,7 +435,13 @@ function buildService(ctx: RouteContext) {
       n: match?.n ?? 0, view: match ? match.engine.view(seat >= 0 ? seat : null) : null, log: match?.log ?? [],
       toMove: match && table.status === 'playing' ? match.engine.toMove() : [], clock: match && table.status === 'playing' ? { deadline: match.deadline, now: now(), seconds: Math.ceil(match.allowedMs / 1000) } : null,
       result: table.result ? { text: table.result.text, calledOff: table.result.calledOff, winners: table.result.winners, mine: table.result.per[id] ?? null } : null,
-      optionList: table.game.optionSpecs().map(([name, option]) => ({ name, label: option.label, values: [...option.values], names: option.names ? [...option.names] : option.values.map(String), value: table.options[name] as TableOptionValue })) };
+      optionList: table.game.optionSpecs().map(([name, option]) => ({ name, label: option.label, values: [...option.values], names: option.names ? [...option.names] : option.values.map(String), value: table.options[name] as TableOptionValue })),
+      stakes: stakesFor(table, id) };
+  }
+  /** The table's stake and what this viewer may do about it, from what refreshEligibility last read. */
+  function stakesFor(table: Table, id: string): TableStakes {
+    const note = stakeNote(table), mine = table.eligible.get(id), alone = table.status === 'open' && !table.starting && sitting(table).length === 1 && sitting(table)[0]?.id === id;
+    return { amount: table.stake, pot: potOf(table.stake), allowed: note === '', note, why: table.stake > 0 ? mine?.why ?? null : null, code: table.stake > 0 ? mine?.code ?? null : null, choices: alone && !note ? mine?.choices ?? [] : [] };
   }
   function broadcast(table: Table): void {
     for (const ws of table.sockets) { if (ctx.core.isOpen(ws)) ctx.send(ws, stateFor(table, ws.session.id)); else table.sockets.delete(ws); }
@@ -387,7 +536,10 @@ function buildService(ctx: RouteContext) {
   function reset(table: Table): void {
     for (const seat of table.seats) if (!seat.bot && (seat.left || !connected(table, seat.id))) seated.delete(seat.id);
     table.seats = table.seats.filter((seat) => !seat.bot && !seat.left && connected(table, seat.id)).map((seat) => ({ id: seat.id, name: seat.name, bot: false, away: 0 }));
-    table.status = 'open'; table.match = null; table.result = null; table.endedAt = 0;
+    // A pot still held (the game was cleared, not finished) is returned by the sweep: the table never keeps one.
+    if (table.match && table.match.staked > 0 && owned.delete(table.match.id)) { sweepDue = true; void sweepPots(); }
+    // A new game is a new agreement: the stake is chosen again, by whoever sits first.
+    table.status = 'open'; table.match = null; table.result = null; table.endedAt = 0; table.stake = 0; table.eligible = new Map();
   }
 
   /** A finished table that nobody is playing at any more: the next people who come may sit at once instead of waiting for the reset. */
@@ -407,7 +559,11 @@ function buildService(ctx: RouteContext) {
     if (!outcome) throw new Error(`Table ${table.key} finished without an outcome`);
     const humans = table.seats.map((seat, index) => ({ seat, index })).filter(({ seat }) => !seat.bot);
     // Moves a player really made: one the clock made for them does not count as playing.
-    const calledOff = ['forfeit', 'resign', 'time'].includes(outcome.reason) && humans.some(({ seat }) => (seat.moves ?? 0) < TUNING.minMovesEach);
+    const staked = match.staked, moved = humans.reduce((sum, { seat }) => sum + (seat.moves ?? 0), 0), left = ['forfeit', 'resign', 'time'].includes(outcome.reason);
+    // A staked game is called off only if nobody had moved: after that, a player who leaves has lost it (the pot is settled below by the same rule).
+    const calledOff = left && (staked > 0 ? moved === 0 : humans.some(({ seat }) => (seat.moves ?? 0) < TUNING.minMovesEach));
+    const plan = staked > 0 ? settlement(outcome, moved) : null;
+    const stakeOf = (index: number): TableResultMine['stake'] => (plan ? { amount: staked, pot: potOf(staked), outcome: plan.kind === 'refund' ? 'refunded' : plan.seat === index ? 'won' : 'lost' } : undefined);
     const per: Record<string, TableResultMine> = {};
     const result: TableResult = { text: calledOff ? 'The game was called off before it really began. Nothing counts.' : withNames(outcome.text, names(table)), calledOff, winners: calledOff ? [] : outcome.winners, per };
     table.result = result;
@@ -417,6 +573,11 @@ function buildService(ctx: RouteContext) {
       await ctx.store.transact((db) => {
         const g = growthOf(ctx, db), book = g.tables, day = lagosTime(t).day;
         count(g, t, table.cityId, `table.${calledOff ? 'abandoned' : 'finished'}.${game}`);
+        // The pot is paid (or both stakes returned) in THIS transaction, with the result: the record's deletion is the receipt. A drawn or called-off game is a refund.
+        if (plan) {
+          settlePot(db, g, match.id, plan, calledOff);
+          for (const { seat, index } of humans) per[seat.id] = { won: false, draw: outcome.draw, human: true, counted: false, stake: stakeOf(index) };
+        }
         if (calledOff) return;
         if (!isRecord(book.pairs) || book.pairs.day !== day) book.pairs = { day, counts: {} };
         const ratings = ratingsForCity(g, table.cityId), pairs = book.pairs;
@@ -443,9 +604,10 @@ function buildService(ctx: RouteContext) {
         }
         humans.forEach(({ seat, index }, i) => {
           const player = playerOf(g, seat.id), won = outcome.winners.includes(index);
-          const entry = { cityId: table.cityId, id: match.id, game, label, won, human: humans.length > 1, counted: counted[seat.id] === true };
-          const change = changes?.[i], rated = ratings[seat.id]?.[game];
-          per[seat.id] = { won, draw: outcome.draw, human: entry.human, counted: entry.counted, ...(changes && rated && change !== undefined ? { rating: rated.rating, change } : {}) };
+          // A staked game pays no table win reward and counts for no mission: the pot is the stake of the other player (the rating still moves).
+          const entry = { cityId: table.cityId, id: match.id, game, label, won, human: humans.length > 1, counted: counted[seat.id] === true && staked === 0 };
+          const change = changes?.[i], rated = ratings[seat.id]?.[game], stake = stakeOf(index);
+          per[seat.id] = { won, draw: outcome.draw, human: entry.human, counted: entry.counted, ...(changes && rated && change !== undefined ? { rating: rated.rating, change } : {}), ...(stake ? { stake } : {}) };
           if (!player) return;
           player.table = { cityId: table.cityId, game, label, won, at: t };
           if (!Array.isArray(player.wins)) player.wins = [];
@@ -453,9 +615,12 @@ function buildService(ctx: RouteContext) {
         });
         count(g, t, table.cityId, humans.length > 1 ? 'table.human' : 'table.bot');
       });
+      owned.delete(match.id);
     } catch (error) {
-      // The write failed, so nothing was recorded: the table says so instead of promising a reward.
-      table.result = { ...result, text: `${result.text} (The result could not be saved, so it does not count.)`, per: {} };
+      // The write failed, so nothing was recorded: the table says so instead of promising a reward. A staked game's pot is still held, and
+      // both stakes go back (the sweep): a result that cannot be saved is never paid out.
+      if (staked > 0 && owned.delete(match.id)) { sweepDue = true; void sweepPots(); }
+      table.result = { ...result, text: `${result.text} (The result could not be saved, so it does not count${staked > 0 ? ' and both stakes are returned' : ''}.)`, per: {} };
       ctx.core.log?.(`Table result not saved: ${String(messageOf(error) ?? error).split('\n')[0]?.slice(0, 120)}`);
     }
   }
@@ -472,8 +637,9 @@ function buildService(ctx: RouteContext) {
   function settleAway(table: Table, id: string): void {
     const index = seatIndex(table, id);
     if (index < 0 || connected(table, id)) return;
-    if (table.status === 'playing') { seatOf(table, index).away = now(); schedule(table); }
-    else { table.seats.splice(index, 1); seated.delete(id); if (abandoned(table)) reset(table); }
+    // While the stakes are being taken the seat is kept too: the game that starts then finds the player away and forfeits them in time.
+    if (table.status === 'playing' || table.starting) { seatOf(table, index).away = now(); schedule(table); }
+    else { table.seats.splice(index, 1); seated.delete(id); if (!sitting(table).length) table.stake = 0; if (abandoned(table)) reset(table); }
     broadcast(table);
   }
   /** Is this player's stored life standing in the table's venue right now? Read-only. */
@@ -492,11 +658,12 @@ function buildService(ctx: RouteContext) {
       ws.tablesVenue = venue ? `${cityId}:${venue}` : null;
       return { type: 'tables', cityId, venue, tables: places(cityId).filter((place) => !venue || place.venue === venue).map((place) => summary(tableOf(cityId, place.id, ws.session.id))) };
     },
-    watch(ws: WsConnection, message: Frame): void {
+    async watch(ws: WsConnection, message: Frame): Promise<void> {
       limit(ws);
       const table = tableOf(message.cityId, message.table, ws.session.id);
       attach(ws, table);
       broadcast(table);
+      await refreshEligibility(table);
     },
     unwatch(ws: WsConnection): void { for (const table of tables.values()) if (table.sockets.delete(ws)) settleAway(table, ws.session.id); },
     async sit(ws: WsConnection, message: Frame): Promise<void> {
@@ -504,22 +671,54 @@ function buildService(ctx: RouteContext) {
       const table = tableOf(message.cityId, message.table, ws.session.id), id = ws.session.id;
       if (seatIndex(table, id) >= 0) { attach(ws, table); broadcast(table); return; } // coming back to your own seat
       if (abandoned(table)) reset(table);
-      if (table.status !== 'open') throw refuse('game_on', 'A game is on at this table. Watch it, or sit when it ends.');
+      if (table.status !== 'open' || table.starting) throw refuse('game_on', 'A game is on at this table. Watch it, or sit when it ends.');
       if (seated.has(id)) throw refuse('already_seated', 'You are sitting at another table. Leave it first.');
-      if (table.seats.length >= Math.min(table.place.seats, table.game.seats.max)) throw refuse('table_full', 'Every seat at this table is taken.');
+      // Sitting is accepting the stake: the player names the one they saw, and a table whose stake has since changed refuses them (no stake named is none).
+      const saw = typeof message.stake === 'number' ? message.stake : 0, stake = table.stake;
+      if (saw !== stake) throw refuse('stake_changed', stake > 0 ? 'The stake at this table changed. Look at it again before you sit.' : 'This table is no longer played for a stake. Look at it again before you sit.');
+      if (table.seats.length >= capacity(table)) throw refuse('table_full', 'Every seat at this table is taken.');
       if (table.seats.some((seat) => ctx.checks?.blocked?.(id, seat.id) === true)) throw refuse('table_closed', 'You cannot sit at this table right now.');
       if (table.place.venue !== PHONE_VENUE && !(await atVenue(ws, table))) throw refuse('not_here', `Go to ${venueName(table.cityId, table.place.venue)} to sit at this table. You can watch from anywhere.`);
-      if (table.status !== 'open' || seatIndex(table, id) >= 0 || seated.has(id) || table.seats.length >= Math.min(table.place.seats, table.game.seats.max)) throw refuse('table_changed', 'The table changed while you were sitting down. Try again.');
+      // A staked seat is checked now, so the refusal comes when sitting, not when the game is about to start (and again, authoritatively, at the start).
+      if (stake > 0) {
+        const others = sitting(table).map((seat) => seat.id), state = ctx.store.read((db) => stakeWhy(db, id, storedLife(db, id, table.cityId), others, stake, now()));
+        const why = await state;
+        if (why) throw refuse(why.code, why.reason);
+      }
+      if (table.status !== 'open' || table.starting || table.stake !== stake || seatIndex(table, id) >= 0 || seated.has(id) || table.seats.length >= capacity(table)) throw refuse('table_changed', 'The table changed while you were sitting down. Try again.');
       attach(ws, table);
       table.seats.push({ id, name: ws.session.name, bot: false, away: 0 });
       seated.set(id, table.key);
       broadcast(table);
+      await refreshEligibility(table);
+    },
+    /** The first to sit sets the stake, alone at the table and before a game. Whoever sits afterwards has accepted it; it never changes once two players sit. */
+    async stake(ws: WsConnection, message: Frame): Promise<void> {
+      limit(ws);
+      const table = tableOf(message.cityId, message.table, ws.session.id), id = ws.session.id, stake = message.stake;
+      if (table.status !== 'open' || table.starting) throw refuse('game_on', 'The stake cannot change during a game.');
+      if (sitting(table)[0]?.id !== id) throw refuse('not_host', 'Whoever sat down first chooses the stake.');
+      if (sitting(table).length > 1 || table.seats.length > 1) throw refuse('stake_locked', 'The stake is fixed once two players have sat down. Get up and sit again to choose another.');
+      const note = stakeNote(table);
+      if (note) throw refuse('no_stake_here', note);
+      if (!isStake(stake)) throw refuse('invalid_stake', `Choose one of ${TABLE_STAKES.choices.map((value) => (value ? `₦${value}` : 'free')).join(', ')}.`);
+      if (stake > 0) {
+        const why = await ctx.store.read((db) => stakeWhy(db, id, storedLife(db, id, table.cityId), [], stake, now()));
+        if (why) throw refuse(why.code, why.reason);
+      }
+      // Someone may have sat while the store was read.
+      if (table.status !== 'open' || table.starting || sitting(table).length > 1 || sitting(table)[0]?.id !== id) throw refuse('table_changed', 'The table changed. Try again.');
+      table.stake = stake;
+      broadcast(table);
+      await refreshEligibility(table);
     },
     options(ws: WsConnection, message: Frame): void {
       limit(ws);
       const table = tableOf(message.cityId, message.table, ws.session.id);
-      if (table.status !== 'open') throw refuse('game_on', 'The rules cannot change during a game.');
+      if (table.status !== 'open' || table.starting) throw refuse('game_on', 'The rules cannot change during a game.');
       if (table.seats.find((seat) => !seat.bot)?.id !== ws.session.id) throw refuse('not_host', 'Whoever sat down first chooses the table’s rules.');
+      // The second player sat down for these rules and this stake: neither moves afterwards.
+      if (table.stake > 0 && sitting(table).length > 1) throw refuse('stake_locked', 'The rules are fixed once two players have sat down for a stake.');
       table.options = table.game.cleanOptions({ ...table.options, ...(isRecord(message.options) ? message.options : {}) });
       broadcast(table);
     },
@@ -528,24 +727,34 @@ function buildService(ctx: RouteContext) {
       // Weave looks words up synchronously, so its word list is unpacked (once) before anything else is decided.
       if (tableOf(message.cityId, message.table, ws.session.id).place.game === 'weave') await warmWeave();
       const table = tableOf(message.cityId, message.table, ws.session.id), id = ws.session.id;
-      if (table.status === 'playing') throw refuse('game_on', 'A game is already on.');
+      if (table.status === 'playing' || table.starting) throw refuse('game_on', 'A game is already on.');
       // A finished or called-off match does not hold the table: whoever is still seated may start the next one without leaving.
       const mine = table.seats[seatIndex(table, id)];
       if (!mine || (table.status === 'over' && mine.left)) throw refuse('not_seated', 'Sit down first.');
       if (table.status === 'over') { attach(ws, table); reset(table); }
-      const max = Math.min(table.place.seats, table.game.seats.max);
-      const bots = typeof message.bots === 'number' && Number.isInteger(message.bots) ? Math.max(0, Math.min(message.bots, max - table.seats.length, BOT_NAMES.length)) : 0;
+      const max = capacity(table);
+      const asked = typeof message.bots === 'number' && Number.isInteger(message.bots) ? Math.max(0, Math.min(message.bots, max - table.seats.length, BOT_NAMES.length)) : 0;
+      // A game for a stake is between two real players: never against a bot, and never with fewer or more.
+      const bots = table.stake > 0 ? 0 : asked;
+      if (table.stake > 0 && typeof message.bots === 'number' && message.bots > 0) throw refuse('stake_needs_players', 'A game played for a stake is between two real players, never against a bot.');
+      if (table.stake > 0 && sitting(table).length !== 2) throw refuse('need_players', 'A game played for a stake needs two players. Wait for someone to sit, or start a free game.');
       if (table.seats.length + bots < table.game.seats.min) throw refuse('need_players', `This game needs ${table.game.seats.min} players. Wait for someone, or play with a bot.`);
+      const matchId = ctx.randomId();
+      if (table.stake > 0) {
+        // Both stakes are taken in one transaction before the game exists. While it runs nobody can sit, leave or change the stake (`starting`),
+        // and the match's id is `owned` so the sweep does not return the pot of a game that is about to begin.
+        table.starting = true; owned.add(matchId);
+        try { await takeStakes(table, matchId, id); } catch (error) { owned.delete(matchId); void refreshEligibility(table); throw error; } finally { table.starting = false; }
+      }
       for (let i = 0; i < bots; i++) table.seats.push({ id: `bot-${i}`, name: `${BOT_NAMES[i]} (bot)`, bot: true, away: 0 });
       const seed = `${ctx.randomId()}${ctx.randomId()}`;
-      const matchId = ctx.randomId();
       const engine = table.game.start(table.seats.length, makeRng(`${seed}|deal`), table.options);
-      const match: Match = { id: matchId, seed, n: 0, log: [], last: null, deadline: 0, turnStart: 0, allowedMs: 0, botAt: null, engine };
+      const match: Match = { id: matchId, seed, n: 0, log: [], last: null, deadline: 0, turnStart: 0, allowedMs: 0, botAt: null, engine, staked: table.stake };
       startTurn(table, match);
       table.match = match; table.status = 'playing'; table.result = null;
       for (const seat of table.seats) { seat.misses = 0; seat.moves = 0; seat.left = false; }
       match.botAt = engine.toMove().some((index) => seatOf(table, index).bot) ? now() + TUNING.botDelayMs : null;
-      log(table, `${table.game.label} begins: ${names(table).join(', ')}.`);
+      log(table, table.stake > 0 ? `${table.game.label} begins, for ${naira(table.stake)} each: ${names(table).join(', ')}.` : `${table.game.label} begins: ${names(table).join(', ')}.`);
       const humans = table.seats.filter((seat) => !seat.bot).length;
       ctx.store.transact((db) => count(growthOf(ctx, db), now(), table.cityId, `table.started.${table.place.game}`), { durable: false }).catch(() => {});
       broadcast(table);
@@ -584,8 +793,9 @@ function buildService(ctx: RouteContext) {
     async leave(ws: WsConnection, message: Frame): Promise<void> {
       const table = tableOf(message.cityId, message.table, ws.session.id), id = ws.session.id, seat = seatIndex(table, id);
       if (seat < 0) { table.sockets.delete(ws); return; }
+      if (table.starting) throw refuse('game_on', 'The game is starting. Try again in a moment.');
       if (table.status === 'playing' && !seatOf(table, seat).left) { forfeitSeat(table, seat, 'left the table'); broadcast(table); await pump(table); }
-      else if (table.status === 'open') { table.seats.splice(seat, 1); seated.delete(id); broadcast(table); }
+      else if (table.status === 'open') { table.seats.splice(seat, 1); seated.delete(id); if (!sitting(table).length) table.stake = 0; broadcast(table); await refreshEligibility(table); }
       else { seated.delete(id); seatOf(table, seat).left = true; if (abandoned(table)) reset(table); broadcast(table); }
     },
     /** Play again: the table opens with the people still here. */
@@ -600,6 +810,7 @@ function buildService(ctx: RouteContext) {
     drop(ws: WsConnection): void { for (const table of tables.values()) if (table.sockets.delete(ws)) settleAway(table, ws.session.id); },
     /** Everything due now, at every table. Run on the server's heartbeat and by tests. */
     async pumpAll(): Promise<void> {
+      if (sweepDue) { sweepDue = false; await sweepPots(); }
       for (const [key, table] of tables) {
         if (table.status !== 'open') await pump(table);
         // A Phone table nobody sits at or watches is forgotten, so the map holds only tables someone is using.
@@ -626,5 +837,7 @@ function buildService(ctx: RouteContext) {
     },
   };
   ctx.on?.('heartbeat', () => { void api.pumpAll(); });
+  // A restart left no game in memory: a pot still in the record belongs to nobody, and both stakes go back before the host takes requests.
+  ctx.startup?.push(sweepPots().then(() => { sweepDue = false; }, (error: unknown) => { ctx.core.log?.(`Table pots could not be checked at start-up: ${String(messageOf(error) ?? error).split('\n')[0]?.slice(0, 120)}`); }));
   return api;
 }

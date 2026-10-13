@@ -90,6 +90,7 @@ export const ACTION_CATALOGUE: readonly (readonly [string, string, string])[] = 
   [ "events.spray", "At a live event that allows it: pay `amount` (one of SPRAY.amounts) for Social and Fun.", "{ amount: number }" ],
   [ "growth.table-result", "", "{ game: string; label: string; won: boolean; human: boolean; counted: boolean }" ],
   [ "growth.referral", "", "{ kind: 'welcome' | 'reward'; name?: string }" ],
+  [ "tables.server", "", "{ op: TablesServerOp; amount: number; label?: string; stake?: number }" ],
   [ "business.server", "", "{ op: BusinessServerOp; [field: string]: unknown }" ],
   [ "living-world.server", "", "{ op: 'barber-reward'; lessonId: 'basic' | 'advanced' } | { op: 'barber-tool' } | { op: 'clerk-reward' } | { op: 'npc-restock-wage' }" ],
   [ "market.server", "", "{ op: MarketServerOp; amount: number }" ],

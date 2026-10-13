@@ -21,8 +21,8 @@
  *   bag-take    { items: { [productId]: units } }   put carried goods on the shelves
  *   bag-return  { amount }                       sell the whole bag back to a supplier
  * A PURCHASE FOLLOWS THE GIFT RULE (content/npcs.ts TRANSFER_LIMITS): only a life that has earned TRANSFER_LIMITS.minEarned
- * from paid work may buy from a player, and gifts and purchases draw on ONE allowance — what the life has earned from
- * work, less what it already gave away or spent at players' shops (systems/social.ts transferBlock counts `spent` too).
+ * from paid work may buy from a player, and gifts, purchases and table stakes draw on ONE allowance — what the life has earned from
+ * work, less what it already gave away, spent at players' shops or lost at a table (systems/social.ts transferBlock counts `spent` and `staked` too).
  * So money a life did not work for can reach another player by neither road. A day's spending is capped as well
  * (content/business-limits.ts). Takings are not "earned from work".
  * EMITS  'business.opened' { city, venue }   'business.sale' {}   'business.bought' { amount }
@@ -34,6 +34,7 @@ import { lagosTime } from '../clock.ts';
 import { addMoodlet, canAfford, canCredit, changeNeeds, credit, debit, NEEDS } from '../api.ts';
 import { repayFromEarnings } from '../relief.ts';
 import { freeOf, spendFree } from './wallet.ts';
+import { passedOn } from './growth.ts';
 import { TRANSFER_LIMITS } from '../content/npcs.ts';
 import { BAG_LIMIT, BUSINESS_BUYING, SALES_COUNTED_PER_COLLECT } from '../content/business-limits.ts';
 import type { BusinessBlockCode } from '../../types/actions.ts';
@@ -50,8 +51,8 @@ const today = (state: LifeState, ctx: LifeContext): { spent: number; count: numb
   return buys.day === day ? buys : { spent: 0, count: 0 };
 };
 
-/** Naira of this life's earnings from work not yet passed to another player, by gift or by purchase: one allowance for both. */
-export const allowance = (state: LifeState): number => Math.max(0, state.social.earned - state.social.transfer.total - state.business.spent);
+/** Naira of this life's earnings from work not yet passed to another player, by gift, purchase or stake at a table (systems/growth.ts passedOn): one allowance for all three. */
+export const allowance = (state: LifeState): number => Math.max(0, state.social.earned - passedOn(state));
 /** Why this life may not buy at players' shops at all, in one sentence; '' when it may. Pure. */
 export function buyingWhy(state: LifeState): string {
   if (freeOf(state) > 0) return '' // an admin's credit has no earned-from-work rule

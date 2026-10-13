@@ -1,6 +1,6 @@
 import { readFileSync, existsSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { profileFor } from './profile.mjs';
+import { profileFor, allowsNoRoads } from './profile.mjs';
 /**
  * `options` = { profile, emptySlots } of the selected city (profile.mjs); without a profile the emitted map test is exactly the standard one
  * (20 places, every slot sourced, five labels). A profile only lowers the numbers and lists the slots the selection documented as empty.
@@ -41,10 +41,16 @@ test('${cityId}: generated map and content contracts', async () => {
     assert.ok(content.venues.some(v => v.id === id))
 ${slotCheck}
   }
-${emptyChecks}${roadHub}
+${emptyChecks}${roadHub}${profileFor(profile).authoredLinks ? `
+  // ${profile} profile: travel is restricted to the authored links (charter, ship) plus the Lagos connection.
+  assert.equal(FACTS.generatedLinkPolicy, 'authored-only')
+  assert.equal(city.rules.generatedLinkPolicy, 'authored-only')
+  assert.equal(city.rules.links.length, (FACTS.links?.length ?? 0) + 1)
+` : ''}
   assert.ok(GEOMETRY.land.length > 0)
-  assert.ok(TERRAIN.roads.length > 0)
-  assert.ok(TERRAIN.names.filter(n => n.kind === 'neighbourhood').length >= ${rules.minimumNeighbourhoodLabels}, '${rules.minimumNeighbourhoodLabels === 5 ? 'five' : String(rules.minimumNeighbourhoodLabels)} source-backed neighbourhood labels remain required')
+${allowsNoRoads(profile) ? `  // ${profile} profile: a place with no mapped road is allowed (offline-extract.py road ladder down to tracks; none is required).
+` : `  assert.ok(TERRAIN.roads.length > 0)
+`}  assert.ok(TERRAIN.names.filter(n => n.kind === 'neighbourhood').length >= ${rules.minimumNeighbourhoodLabels}, '${rules.minimumNeighbourhoodLabels === 5 ? 'five' : String(rules.minimumNeighbourhoodLabels)} source-backed neighbourhood labels remain required')
 })
 `;
 }

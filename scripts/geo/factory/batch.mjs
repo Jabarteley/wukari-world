@@ -13,7 +13,7 @@ import { fillSlots } from './slot-fallback.mjs';
 import { fitCatalogueBudget, CATALOGUE_LIMIT } from './catalogue-budget.mjs';
 import { districtLabels } from './district-labels.mjs';
 import { nearCoastlineMetres } from './coast-near-play.mjs';
-import { profileFor, emptySlotReason } from './profile.mjs';
+import { profileFor, emptySlotReason, slotPredicatesFor, profileAddedKind, sensitiveTags, excludesSensitive, authoredLinkFacts } from './profile.mjs';
 
 // Less coastline than this in the wide box is not a sea shore (mis-tagged creek or pond rings).
 const MINIMUM_COASTLINE_METRES = 3000;
@@ -79,7 +79,17 @@ for (const target of table.targets) {
         // `profile` (seed field, table-level data) sets the minimums and whether a slot may stay empty; absent means standard. See profile.mjs.
         const profile = profileFor(target.profile);
         if (target.profile !== undefined) row.profile = target.profile;
-        const fitted = fitCatalogueBudget(await factsForTarget(table, target)), prior = fitted.facts, old = geometryPolicy(table, target);
+        const targetFacts = await factsForTarget(table, target);
+        // Outpost and wilderness (profiles.json authoredLinks): the authored links with km and names from the app catalogue, travel restricted to them.
+        if (profile.authoredLinks) {
+            const [{ CITY_CATALOGUE }, { greatCircleKm }] = await Promise.all([load('src/game/cities/network.ts'), load('src/game/cities/generatedLinks.ts')]);
+            targetFacts.generatedLinkPolicy = 'authored-only';
+            targetFacts.links = authoredLinkFacts(targetFacts, target.links, CITY_CATALOGUE, greatCircleKm);
+            row.authoredLinks = targetFacts.links;
+            // The app's own rules decide the fares and refuse an outpost without a surface leg the feeder allowance pays (rules.ts).
+            (await load('src/game/cities/africa/rules.ts')).buildDestinationRules(targetFacts);
+        } else if (target.links !== undefined) throw new TypeError(`${target.id}: links need a profile with authored links`);
+        const fitted = fitCatalogueBudget(targetFacts), prior = fitted.facts, old = geometryPolicy(table, target);
         row.catalogueBytes = fitted.bytes;
         if (fitted.compacted) row.catalogueCompaction = fitted.compacted;
         if (fitted.bytes > CATALOGUE_LIMIT)
@@ -104,13 +114,17 @@ for (const target of table.targets) {
             if (!unique.has(exclusion.ref))
                 throw new Error(`${target.id}: requested selection exclusion ${exclusion.ref} is absent from the source candidate set`);
         const excludedRefs = new Set(selectionExclusions.map(exclusion => exclusion.ref));
-        const pool = [...unique.values()].filter(el => !excludedRefs.has(ref(el)) && countryScope.classify(point(el)) === 'inside' && name(el) && inBox([s + .008, w + .008, n - .008, e - .008], point(el)) && !onWater(point(el)));
-        const slots = { transit: t => t.railway === 'station' || t.amenity === 'bus_station' || t.public_transport === 'station', meal: t => ['restaurant', 'cafe'].includes(t.amenity), community: t => ['university', 'college', 'library', 'community_centre', 'conference_centre'].includes(t.amenity), clinic: t => ['hospital', 'clinic'].includes(t.amenity), recreation: t => t.leisure === 'park', market: t => t.amenity === 'marketplace' || t.shop === 'mall', worship: t => t.amenity === 'place_of_worship', polling: t => t.place === 'square' || t.amenity === 'townhall', government: t => ['townhall', 'courthouse', 'parliament'].includes(t.amenity) || t.office === 'government' || t.building === 'government' };
+        // A profile that excludes sensitive features (outpost, wilderness) never selects or labels a military or aviation feature, whatever the extract holds.
+        const sensitive = excludesSensitive(target.profile);
+        const pool = [...unique.values()].filter(el => !excludedRefs.has(ref(el)) && !(sensitive && sensitiveTags(el.tags)) && countryScope.classify(point(el)) === 'inside' && name(el) && inBox([s + .008, w + .008, n - .008, e - .008], point(el)) && !onWater(point(el)));
+        const standardSlots = { transit: t => t.railway === 'station' || t.amenity === 'bus_station' || t.public_transport === 'station', meal: t => ['restaurant', 'cafe'].includes(t.amenity), community: t => ['university', 'college', 'library', 'community_centre', 'conference_centre'].includes(t.amenity), clinic: t => ['hospital', 'clinic'].includes(t.amenity), recreation: t => t.leisure === 'park', market: t => t.amenity === 'marketplace' || t.shop === 'mall', worship: t => t.amenity === 'place_of_worship', polling: t => t.place === 'square' || t.amenity === 'townhall', government: t => ['townhall', 'courthouse', 'parliament'].includes(t.amenity) || t.office === 'government' || t.building === 'government' };
+        // profiles.json slotExtras (outpost: a ferry terminal for transit, a research station for community); every other profile keeps the standard predicates.
+        const slots = slotPredicatesFor(target.profile, standardSlots);
         const used = new Set(), usedNames = new Set(), choices = [], selected = [], emptySlots = [];
         const score = el => { const p = point(el), spread = selected.length ? Math.min(...selected.map(q => Math.hypot(p[0] - q[0], p[1] - q[1]))) : 0; return (el.tags.wikidata ? 20 : 0) + (el.tags.wikipedia ? 5 : 0) + Math.min(10, spread * 100); };
         const rank = items => items.filter(el => !used.has(ref(el)) && !usedNames.has(normal(name(el)))).sort((a, b) => score(b) - score(a) || ref(a).localeCompare(ref(b), 'en', { numeric: true }));
         const choose = (el, choice) => { used.add(ref(el)); usedNames.add(normal(name(el))); selected.push(point(el)); choices.push({ ...choice, ref: ref(el), line: choice.slot === 'polling' ? `${name(el)}; voting here is a fictional game activity.` : `${name(el)}, a mapped place for the game.` }); };
-        const filled = fillSlots({ slots, pool, rank, ref, allowEmpty: profile.maximumEmptySlots > 0, emptyReason: emptySlotReason, take: (slot, el, slotFallback) => {
+        const filled = fillSlots({ slots, pool, rank, ref, allowEmpty: profile.maximumEmptySlots > 0, emptyReason: slot => emptySlotReason(slot, target.profile), take: (slot, el, slotFallback) => {
             if (slotFallback) (row.slotFallbacks ??= []).push(slotFallback);
             choose(el, { slot, ...slotPresentation(base, ids, slot), ...(slotFallback ? { slotFallback } : {}) });
         } });
@@ -131,7 +145,7 @@ for (const target of table.targets) {
             if (tags.amenity === 'marketplace' || tags.shop === 'mall') return 'market';
             if (tags.leisure === 'stadium' || tags.tourism === 'viewpoint') return 'viewing';
             if (tags.tourism || tags.historic) return 'walk';
-            return null;
+            return profileAddedKind(tags, target.profile);
         };
         const add = element => {
             const kind = addedKind(element.tags);
@@ -174,7 +188,8 @@ for (const target of table.targets) {
         row.unavailableSemanticKinds = unavailableSemanticKinds;
         if (choices.length < profile.minimumPlaces)
             row.errors.push(`only ${choices.length} eligible unique named venues (the ${profile.name} profile needs ${profile.minimumPlaces})`);
-        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre, minimumLabels: profile.minimumNeighbourhoodLabels, islandPlaces: profile.districtIslandPlaces, squarePlaces: profile.districtSquarePlaces ?? [] }), names = [...districts.labels];
+        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre, minimumLabels: profile.minimumNeighbourhoodLabels, islandPlaces: profile.districtIslandPlaces, squarePlaces: profile.districtSquarePlaces ?? [], naturalLabels: profile.districtNaturalLabels ?? [] }), names = [...districts.labels];
+        if (districts.naturalRefs.length) row.districtLabelNatural = districts.naturalRefs;
         row.districtLabelPlaceTags = districts.placeTags;
         if (districts.areaRefs.length) row.districtLabelAreaRefs = districts.areaRefs;
         // Microstate last resort (profiles.json `districtSquarePlaces`): the named squares that were taken as labels, with refs and names, for the receipt and the check table.

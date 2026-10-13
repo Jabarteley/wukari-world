@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "City selection profiles. A seed names at most one with `profile`; a seed without it is `standard`. Read by profile.mjs (selection, preflight, source scene, acceptance, receipts) and by metadata.py (which place tags may name the city node). The documented empty slot is a feature of the profile, never of a single run: a slot without an honest source keeps the game's own fictional venue, and the selection records why.",
+  "description": "City selection profiles. A seed names at most one with `profile`; a seed without it is `standard`. Read by profile.mjs (selection, preflight, source scene, acceptance, receipts) and by metadata.py (which place tags may name the city node). The documented empty slot is a feature of the profile, never of a single run: a slot without an honest source keeps the game's own fictional venue, and the selection records why. `outpost` (a research station or a settlement of a few houses) and `wilderness` (a place with no settlement: a glacier, a reef) are for the uninhabited and station-only entries (OUTPOST-PLAN 13 Oct 2026): they may name a mapped `gateway` instead of an airport, need authored `links` (travel is authored-only), take the profile-only `extraction` filters of offline-extract.py, and never select, label or draw military or aviation features.",
   "profiles": {
     "standard": {
       "minimumPlaces": 20,
@@ -34,6 +34,111 @@
       "districtSquarePlaces": [
         "square"
       ]
+    },
+    "outpost": {
+      "minimumPlaces": 3,
+      "minimumNeighbourhoodLabels": 2,
+      "maximumEmptySlots": 9,
+      "cityPlaceTags": [
+        "city",
+        "town",
+        "village",
+        "hamlet",
+        "locality",
+        "isolated_dwelling"
+      ],
+      "capitalPlaceTags": [],
+      "districtIslandPlaces": [
+        "island",
+        "islet"
+      ],
+      "hubGateway": true,
+      "authoredLinks": true,
+      "slotExtras": {
+        "transit": [
+          "amenity=ferry_terminal"
+        ],
+        "community": [
+          "office=research",
+          "amenity=research_institute"
+        ]
+      },
+      "extraction": {
+        "extraPlaces": [
+          "post_office",
+          "hut",
+          "research",
+          "historic",
+          "ferry"
+        ],
+        "roadLadder": [
+          "secondary",
+          "tertiary",
+          "unclassified",
+          "residential",
+          "service",
+          "track"
+        ],
+        "allowNoRoads": true,
+        "excludeSensitive": true
+      }
+    },
+    "wilderness": {
+      "minimumPlaces": 0,
+      "minimumNeighbourhoodLabels": 2,
+      "maximumEmptySlots": 9,
+      "cityPlaceTags": [
+        "hamlet",
+        "locality",
+        "isolated_dwelling",
+        "island",
+        "islet"
+      ],
+      "capitalPlaceTags": [],
+      "cityNaturalTags": [
+        "glacier",
+        "peak",
+        "saddle",
+        "reef",
+        "mountain_pass"
+      ],
+      "requiresCityOsmRef": true,
+      "districtIslandPlaces": [
+        "island",
+        "islet"
+      ],
+      "districtNaturalLabels": [
+        "peak",
+        "saddle",
+        "glacier",
+        "ridge",
+        "valley",
+        "volcano",
+        "cape",
+        "bay",
+        "reef",
+        "beach",
+        "mountain_pass"
+      ],
+      "hubGateway": true,
+      "authoredLinks": true,
+      "extraction": {
+        "extraPlaces": [
+          "natural",
+          "hut",
+          "historic"
+        ],
+        "roadLadder": [
+          "secondary",
+          "tertiary",
+          "unclassified",
+          "residential",
+          "service",
+          "track"
+        ],
+        "allowNoRoads": true,
+        "excludeSensitive": true
+      }
     }
   }
 }

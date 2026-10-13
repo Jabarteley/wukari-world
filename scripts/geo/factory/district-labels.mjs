@@ -17,6 +17,8 @@ export const ISLAND_PLACES = Object.freeze(['island', 'islet']);
 export const SQUARE_PLACES = Object.freeze(['square']);
 export const MINIMUM_LABELS = 5;
 export const MAXIMUM_LABELS = 18;
+const isNatural = (el, naturalLabels) => naturalLabels.length > 0 && el.tags.place === undefined
+    && (naturalLabels.includes(el.tags.natural) || (naturalLabels.includes('mountain_pass') && el.tags.mountain_pass === 'yes'));
 
 /**
  * @param pool    eligible elements (already named, in country, inside the play box, not on water)
@@ -32,7 +34,7 @@ export const MAXIMUM_LABELS = 18;
  *                       (primary, fallback tags, islands, areas) and still short of the minimum, wikidata first, then nearest to the city. A standard city never passes them.
  * @returns { labels: [{id, ref, kind:'neighbourhood'}], placeTags: { [ref]: place tag }, fallback: boolean, areaRefs: string[], squareRefs: string[] }
  */
-export function districtLabels({ pool, name, ref, normal, centre, minimumLabels = MINIMUM_LABELS, islandPlaces = [], squarePlaces = [] }) {
+export function districtLabels({ pool, name, ref, normal, centre, minimumLabels = MINIMUM_LABELS, islandPlaces = [], squarePlaces = [], naturalLabels = [] }) {
     const nodes = tags => pool.filter(el => el.type === 'node' && tags.includes(el.tags.place));
     const areas = tags => pool.filter(el => el.type !== 'node' && el.center && tags.includes(el.tags.place));
     const lonLat = el => (el.type === 'node' ? el : el.center);
@@ -52,6 +54,13 @@ export function districtLabels({ pool, name, ref, normal, centre, minimumLabels 
                 .sort((a, b) => wikidata(b) - wikidata(a) || distance(a) - distance(b) || ref(a).localeCompare(ref(b))), taken1);
             chosen = [...chosen, ...islands].slice(0, MAXIMUM_LABELS);
         }
+        if (chosen.length < minimumLabels && naturalLabels.length) {
+            // Wilderness profile (profiles.json `districtNaturalLabels`): named peaks, passes, glaciers, capes and reefs, wikidata first, then nearest.
+            const taken4 = new Set(chosen.map(el => normal(name(el))));
+            const natural = dedupe(pool.filter(el => isNatural(el, naturalLabels) && (el.type === 'node' || el.center))
+                .sort((a, b) => wikidata(b) - wikidata(a) || distance(a) - distance(b) || ref(a).localeCompare(ref(b))), taken4);
+            chosen = [...chosen, ...natural].slice(0, MAXIMUM_LABELS);
+        }
         if (chosen.length < minimumLabels) {
             // Areas only after every node, and never more than the minimum is topped up: primary tags first, then the fallback tags in tier order, nearest first.
             const areaTier = el => (PRIMARY_DISTRICT_PLACES.includes(el.tags.place) ? -1 : tier(el));
@@ -69,10 +78,12 @@ export function districtLabels({ pool, name, ref, normal, centre, minimumLabels 
     }
     return {
         labels: chosen.map(el => ({ id: `district-${el.id}`, ref: ref(el), kind: 'neighbourhood' })),
-        placeTags: Object.fromEntries(chosen.map(el => [ref(el), el.tags.place])),
+        placeTags: Object.fromEntries(chosen.map(el => [ref(el), el.tags.place ?? (el.tags.natural ? `natural=${el.tags.natural}` : 'mountain_pass=yes')])),
         fallback,
         // way/relation places that topped the list up (empty unless the nodes were fewer than MINIMUM_LABELS): the receipt and check table show these OSM refs.
-        areaRefs: chosen.filter(el => el.type !== 'node' && !squarePlaces.includes(el.tags.place)).map(el => ref(el)),
+        areaRefs: chosen.filter(el => el.type !== 'node' && !squarePlaces.includes(el.tags.place) && !isNatural(el, naturalLabels)).map(el => ref(el)),
+        // wilderness: the natural names taken as labels (refs).
+        naturalRefs: chosen.filter(el => isNatural(el, naturalLabels)).map(el => ref(el)),
         // microstate last resort: the named squares that were taken as labels (refs; the receipt adds their names).
         squareRefs: chosen.filter(el => squarePlaces.includes(el.tags.place)).map(el => ref(el)),
     };

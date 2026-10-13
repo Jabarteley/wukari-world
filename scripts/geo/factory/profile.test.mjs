@@ -24,7 +24,7 @@ test('standard is the default and unchanged; microstate relaxes exactly the docu
   assert.deepEqual(micro.districtIslandPlaces, ['island', 'islet']);
   assert.deepEqual(micro.districtSquarePlaces, ['square']);
   assert.equal(profileFor(undefined).districtSquarePlaces, undefined, 'the standard profile carries no square list');
-  assert.deepEqual(PROFILE_NAMES, ['microstate']);
+  assert.deepEqual(PROFILE_NAMES, ['microstate', 'outpost', 'wilderness']);
   assert.throws(() => profileFor('standard'), /default/);
   assert.throws(() => profileFor('tiny'), /unknown profile/);
 });

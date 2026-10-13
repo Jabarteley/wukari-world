@@ -37,7 +37,7 @@ const GROUPS: Record<string, string> = {
   jobs: '💼👔', invest: '📈📊💹', statement: '📋🗂📄🧾📰🗞🖨🪪📇', pen: '✍🖋', megaphone: '📣📢', phone: '📱📞', wifi: '📶📡',
   bank: '🏦🏧', coin: '🪙💸💰👛🏷', gift: '🎁', ship: '🚢⛵🛥⛴', scissors: '💇✂💅', broom: '🧹', health: '🩺🏥', pill: '💊',
   clock: '⏳⏰🕘', calendar: '🗓', search: '🔎🔍👀', ballot: '🗳', governor: '🏛', scales: '⚖', shield: '🚓🛡🥋', boot: '🥾',
-  building: '🏢🛗🏭', home: '🏠🏡', houses: '🏘🏚', church: '⛪', mosque: '🕌', barrier: '🚧🚦🛣', boutique: '🧵🧶👗👕', buy: '🛍',
+  building: '🏢🛗🏭🧱', home: '🏠🏡', houses: '🏘🏚', church: '⛪', mosque: '🕌', barrier: '🚧🚦🛣', boutique: '🧵🧶👗👕', buy: '🛍',
   tree: '🌳🌴', umbrella: '⛱🏖', wave: '🌊🏊', sunset: '🌇🌅', bridge: '🌉', compass: '🧭', walk: '🚶🏃',
   keke: '🛺', bus: '🚌🚐', bike: '🏍', ride: '🚕', cars: '🚗🚙🏎🛞', plane: '✈', globe: '🌍🌎🌐', pin: '📍', map: '🗺',
   sun: '🌤☀', rain: '🌧', moon: '🌙', lock: '🔒', key: '🔑', link: '🔗', bell: '🔔🛎', hunt: '💎', good: '✅✔', error: '⚠',

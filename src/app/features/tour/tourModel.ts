@@ -68,33 +68,29 @@ function travelText(context: StepContext): string {
 }
 
 export const STEPS: readonly TourStep[] = [
-  { id: 'welcome', title: 'Welcome to Allworld', text: `Hi, I am ${COMPANION_NAME}, the world’s guide. Let me show you around. It takes about two minutes, and you can skip any time.` },
-  { id: 'needs', title: 'Your needs', targets: ['needs'], prefer: 'bottom', text: 'These bars show how you are doing: energy, food and more. They fall slowly as time passes. The line under them always says what to do next: tap it and it takes you there.' },
-  { id: 'hud', title: 'Time, mood and cash', targets: ['hud'], prefer: 'bottom', text: 'The clock shows the day and the hour, with your mood beside it. Your cash is on the right: tap it to open your Bank.' },
-  { id: 'signup', title: 'Save your progress', targets: ['signup'], needs: ['signup'], prefer: 'bottom', text: 'You are playing as a guest, which is fine. Sign up free to keep your character and play on from any device. Log in is next to it if you have an account already.' },
+  { id: 'welcome', title: 'Welcome to Allworld', text: `Hi, I am ${COMPANION_NAME}, the world’s guide. Let me show you around. It takes a minute, and you can skip any time.` },
+  { id: 'needs', title: 'Your needs', targets: ['needs'], prefer: 'bottom', text: 'These bars show how you are doing: energy, food and more. They fall slowly. The line under them says what to do next.' },
+  { id: 'hud', title: 'Time, mood and cash', targets: ['hud'], prefer: 'bottom', text: 'The clock shows the day and hour, with your mood beside it. Tap your cash on the right to open your Bank.' },
+  { id: 'signup', title: 'Save your progress', targets: ['signup'], needs: ['signup'], prefer: 'bottom', text: 'You are playing as a guest. Sign up free to keep your character and play from any device, or log in if you have an account.' },
   { id: 'place', title: 'Spots and activities', targets: ['place'], expand: true, wait: 'activity', advance: true, prefer: 'top',
-    text: text('Your home has spots too. Pick one, then tap something to do. Each one runs on a timer and finishes even if you close the tab.', 'Every place has spots to stand at. Pick one, then tap an activity. Each one runs on a timer and finishes even if you close the tab.'),
+    text: text('Pick a spot at home, then tap something to do. Each one runs on a timer, even if you close the tab.', 'Pick a spot to stand at, then tap an activity. Each one runs on a timer, even if you close the tab.'),
     task: 'Try one now: tap an activity.' },
   { id: 'move', title: 'Getting around', prefer: 'center',
     text: (context) => {
       const keys = context.keys ?? !context.touch
-      if (context.touch && keys) return 'Walk with the keys or the stick, or click or tap where you want to go. Drag to look around; scroll or pinch to zoom.'
-      return context.touch ? 'Drag the stick to walk, or tap where you want to go. Drag anywhere to look around and pinch to zoom.' : 'Walk with the keys, or click where you want to go. Drag to look around and scroll to zoom.'
+      if (context.touch && keys) return 'Walk with the keys or the stick, or tap where you want to go. Drag to look around; scroll or pinch to zoom.'
+      return context.touch ? 'Drag the stick to walk, or tap where you want to go. Drag to look around; pinch to zoom.' : 'Walk with the keys, or click where you want to go. Drag to look around; scroll to zoom.'
     },
     keys: (context) => ((context.keys ?? !context.touch) ? [{ caps: ['walk:up', 'walk:left', 'walk:down', 'walk:right'].map(capOf), text: 'Walk' }, { caps: [capOf('walk:jog')], text: 'Hold to jog' }, { caps: ['Click'], text: 'Walk there' }, { caps: ['Drag'], text: 'Look around' }, { caps: ['Scroll'], text: 'Zoom' }] : []) },
   { id: 'map', title: 'The Map', targets: ['nav-map'], doneTargets: ['map-card'], wait: 'map',
-    text: (context) => `Travel from here to anywhere in the city. Drag to move the map, and ${context.touch ? 'twist two fingers' : 'right-drag'} to turn it.`, task: 'Tap Map to open it.',
-    doneText: 'Pick a place to see the trip first: how long it takes, and what each way of travelling costs.' },
+    text: (context) => `Travel anywhere in the city. Drag to move the map, ${context.touch ? 'twist two fingers' : 'right-drag'} to turn it.`, task: 'Tap Map to open it.',
+    doneText: 'Pick a place to see the trip first: how long it takes and what each way costs.' },
   { id: 'travel', title: 'Travel the world', targets: ['map-world', 'nav-map'], keeps: 'map', text: travelText },
   { id: 'phone', title: 'Your phone', targets: ['nav-phone'], doneTargets: ['phone-apps'], wait: 'phone', allows: 'phone',
-    text: 'Jobs, Bank, Messages, Missions and more are apps in your phone.', task: 'Tap Phone to open it.',
-    doneText: 'These are your apps. Jobs finds you work, Bank keeps your money, Messages keeps you in touch and Missions gives you something to aim for.' },
-  { id: 'work', title: 'Work and business', targets: ['phone-dock', 'nav-phone'], allows: 'phone', keeps: 'phone',
-    text: 'Jobs pays you for every shift, and a Career moves you up. Rent a stall in Business to sell for yourself, keep your money in Bank, grow it in Invest and rent Billboards to advertise.' },
+    text: 'Jobs, Bank, Messages and more are apps in your phone.', task: 'Tap Phone to open it.',
+    doneText: 'These are your apps. Jobs pays you for every shift, Bank keeps your money, Messages keeps you in touch and Missions gives you goals.' },
   { id: 'people', title: 'Talk to people', targets: ['online', 'invite'], needs: ['online', 'invite', 'call'],
     text: (context) => `${context.has('online') ? 'Tap the green count to see who is online, then a player to chat or press Call to ring them; they choose whether to answer.' : 'Other people live here too: find one in People in your phone, then chat or press Call to ring them; they choose whether to answer.'} ${context.has('invite') ? 'Messages keeps your chats and groups, and Invite brings a friend in with your link.' : 'Messages in your phone keeps your chats and groups.'}` },
-  { id: 'community', title: 'Community', targets: ['community'], needs: ['community'],
-    text: 'This opens the chat of the place you are in, for everyone who is here. Join the voice circle there to talk out loud with people nearby.' },
   { id: 'done', title: 'You’re set', text: 'Need this again? Open Phone, then Help, then Take the tour. Press ? any time for the shortcuts.', action: { label: 'See the shortcuts', run: 'shortcuts' } },
 ]
 

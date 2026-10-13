@@ -7,7 +7,8 @@ import GameIcon from '../../ui/GameIcon.vue'
 import type { CityFind } from './findCity.ts'
 import { introFor, offersFind } from './pathIntroModel.ts'
 
-const props = defineProps<{ intent: PathIntent | null; busy: boolean }>()
+// `pitch`: a quiet line of what is open, shown with Find my city when no address asked for anything (it used to sit above the heading).
+const props = defineProps<{ intent: PathIntent | null; busy: boolean; pitch?: string }>()
 const emit = defineEmits<{ start: [city: string | null]; signup: []; login: [] }>()
 const line = computed(() => introFor(props.intent))
 const finder = computed(() => offersFind(props.intent))
@@ -34,6 +35,7 @@ async function find(): Promise<void> {
     <template v-if="finder">
       <p v-if="found" class="cr-banner is-info" role="status" data-cr-found><span aria-hidden="true"><GameIcon name="pin" inline /></span><span>{{ found.line }}</span></p>
       <div v-if="found && found.kind !== 'none'" class="cr-actions"><button type="button" class="cr-btn is-primary" data-key="found-start" :disabled="busy" @click="emit('start', found.city)">Start in {{ found.name }}</button></div>
+      <p v-if="pitch && !found" class="cr-note cr-path-pitch">{{ pitch }}</p>
       <button v-if="!found || found.kind === 'none'" type="button" class="cr-link" data-key="find-city" :disabled="finding" @click="find">{{ finding ? 'Finding…' : 'Find my city' }}</button>
       <p v-if="!found" class="cr-note">Worked out on this device. Your position is never sent or stored.</p>
     </template>

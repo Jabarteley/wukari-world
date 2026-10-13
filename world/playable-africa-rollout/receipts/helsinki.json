@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "helsinki",
+  "countryIso2": "FI",
+  "generationIdentity": {
+    "cityId": "helsinki",
+    "stateId": "fi-helsinki",
+    "stateName": "Helsinki"
+  },
+  "inventorySha256": "d4b39574056ea7ac715de35b69f85c5fa80c83734d84cfecd30fbf813e96ad18",
+  "inventoryPath": "world/playable-africa-rollout/sources/helsinki.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "helsinki-airport",
+    "name": "Helsinki Vantaa Airport",
+    "lon": 24.963341,
+    "lat": 60.318363,
+    "sourceUrl": "https://ourairports.com/airports/EFHK/"
+  },
+  "bounds": [
+    60.07617995503301,
+    24.762469653099558,
+    60.327407044496695,
+    25.124611946900444
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/finland-261011.osm.pbf",
+      "datasetSha256": "033dca9c34f00b56a76b0f647203953904466c2255424d68523d36e2312d736d",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5bbac234c1d3aa04f5c2beef38866b56029cb5c3c581cb5128e79996e567ac5f",
+          "elements": 3870
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d897cd4ab09fba05904e655293453d73b468c053708387f3c757ede021e10414",
+          "elements": 2164
+        },
+        {
+          "file": "water.json",
+          "sha256": "7d6917b85ccd90b3cf30dcde05572356299e0d6f59025b8db648161388dbca65",
+          "elements": 6457
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d23740ee7f197c6be8eaefc3e93a18c148d2e623eacfa628dae86e2e1b39b421",
+          "elements": 11414
+        },
+        {
+          "file": "roads.json",
+          "sha256": "ee2d61d6c4f1c16c673328747512f9899e61fc6030a8ee5b4a4c5e7a93a3c4d0",
+          "elements": 6278
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 350,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 27,
+    "waterPolygons": 54,
+    "reachWaterPolygons": 54
+  },
+  "observed": {
+    "places": 3870,
+    "extras": 2164,
+    "water": 6457,
+    "landuse": 11414,
+    "roads": 6278
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "ba52f7002e68c5c5eefe25d4e8c3ea119a555dd609b0b356211c4909aa3ab705"
+    },
+    "geometry.ts": {
+      "bytes": 930871,
+      "sha256": "ad383ea3a52dc18ec481fab6fd6ad36a234d03b574c1f545e3b9426e25aa6318"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "1e360532ed62950edb639e36c0c1ba62c2dbcbfbb55e704625072016fa74c9e2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/helsinki.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

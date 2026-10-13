@@ -12,6 +12,7 @@ import { getSound, onSoundChange, setSound } from './settings.ts'
 import { COMPANION_SOUNDS, TABLE_SOUNDS } from './data.ts'
 import { VOICE_EVENT, VOICE_SCENE_EVENT, VOICE_STOP_EVENT, type HeardLine, type SceneNote } from './voice/types.ts'
 import type { Voices } from './voice/index.ts'
+import { promptsOnScreen, quietNow } from './told.ts'
 
 export interface Engine {
   play(name: string): void
@@ -92,7 +93,7 @@ export function createEngine(): Engine | null {
     void voices.then(made => { if (made) run(made) })
   }
   const running = (): boolean => ctx.state === 'running'
-  const tell = (): void => { if (!getSound().told && running() && getSound().on) { setSound({ told: true }); toast(TOLD) } }
+  const tell = (): void => { if (!getSound().told && running() && getSound().on && quietNow(promptsOnScreen(document))) { setSound({ told: true }); toast(TOLD) } }
   const play = (name: string): void => { if (running() && director.play(name)) tell() }
   const unlock = (): void => {
     director.touch()

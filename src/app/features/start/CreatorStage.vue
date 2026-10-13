@@ -64,7 +64,7 @@ function turn(radians: number): void { markSpun(); turnPreview(radians) }
       <AvatarFigure :look="look" :size="220" :label="mode === '2d' ? alt : ''" />
     </div>
     <p v-if="caption" class="cr-caption" data-cr-caption>{{ caption }}</p>
-    <div ref="tools" class="cr-stage-tools">
+    <div ref="tools" class="cr-stage-tools" :aria-busy="mode === 'loading' ? 'true' : undefined">
       <div class="cr-turn" role="group" aria-label="Turn the character">
         <button type="button" class="cr-round" data-key="turn-left" aria-label="Turn left" title="Turn left" :disabled="mode !== '3d'" @click="turn(-QUARTER)"><GameIcon name="back" :size="22" /></button>
         <button type="button" class="cr-round is-wide" data-key="turn-around" aria-label="Turn around" title="Turn around" :disabled="mode !== '3d'" @click="turn(Math.PI)"><GameIcon name="refresh" :size="20" /><span class="cr-lbl">Turn around</span></button>
@@ -75,5 +75,6 @@ function turn(radians: number): void { markSpun(); turnPreview(radians) }
       </div>
     </div>
     <p v-if="mode === '3d' && !lookUi.spun" class="cr-hint" aria-hidden="true">Drag to turn</p>
+    <p v-else-if="mode === 'loading'" class="cr-hint is-loading" role="status">Getting your character ready…</p>
   </div>
 </template>

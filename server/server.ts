@@ -484,7 +484,7 @@ export async function createServer({ dataDir = process.env.DATA_DIR || resolve('
       const isShell = adminKind === 'shell';
       const isIndex = path === resolve(root, 'index.html');
       // A short address (/games, /abuja, …) gets its own title, description and link-preview tags; the page's scripts are untouched.
-      const html = isShell ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req))) : '';
+      const html = isShell ? await readFile(path, 'utf8') : isIndex ? (open ? open.page : (page: string) => page)(withPathMeta(await serveIndex(req, path), url.pathname, publicOrigin(req), url.search)) : '';
       const bytes = isIndex || isShell ? Buffer.from(html) : await readFile(path);
       if (res.headersSent || res.writableEnded) return;
       // The game's page carries the full set of security headers; its inline scripts are admitted by hash, from the page as served.

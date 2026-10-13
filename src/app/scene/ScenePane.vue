@@ -13,7 +13,7 @@
 // Three.js and every scene module are fetched after the HUD is on screen. A device that cannot
 // draw the scene still gets the whole game.
 import '../../ui/scene-loading.css'
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { useApp } from '../state/app.ts'
 import { cityScenesHere, loadSceneWorld, warmCityScenes } from './loaders.ts'
 import type { ScenesState } from '../types/scene.ts'
@@ -38,6 +38,10 @@ const waiting = ref(true)
 const phase = ref('Preparing your world…')
 /** The city's own scenes are not here: the fetch is waiting to try again, or has stopped until the player asks. */
 const stuck = ref<ScenesState | null>(null)
+/** While the city downloads (a long wait on 3G) the card rotates through short facts about the game (loadingTips.ts, fetched with the card and never part of the startup download). */
+const tips = shallowRef<readonly string[] | null>(null)
+const tip = ref(0)
+let tipTimer = 0
 let drawn = false
 let observer: ResizeObserver | null = null
 let disposed = false
@@ -58,7 +62,7 @@ function hostUp(): void {
   const box = container.value
   if (!box) return
   if (waiting.value) { box.classList.remove('is-arriving'); void box.offsetWidth; box.classList.add('is-arriving') }
-  waiting.value = false; stuck.value = null
+  waiting.value = false; stuck.value = null; clearTimeout(tipTimer)
   if (!drawn) { drawn = true; telemetry.sceneReady(true, box.querySelector('canvas')) }
 }
 function onScenes(next: ScenesState): void {
@@ -77,9 +81,15 @@ const waitLine = (): string => {
   if (stuck.value?.status === 'failed') return 'This place could not be loaded. Check your connection, then try again. Everything else still works.'
   return phase.value
 }
+// The arrival fade scales the container (1.035 → 1): a resize measured during it sizes the canvas too big, and the host draws no frame of its own while idle.
+// So when the fade ends the scene is measured and drawn once more at its settled size.
 const onResize = (): void => { if (game.mode.value !== 'map') scene.venue.value?.resize() }
 
 onMounted(() => {
+  // One slow timer, only while the card is up (cleared when the scene is drawn): a timeout chain, since no scene or shell source holds an interval.
+  const nextTip = (): void => { tipTimer = window.setTimeout(() => { tip.value++; nextTip() }, 4500) }
+  nextTip()
+  void import('./loadingTips.ts').then((m) => { tips.value = m.TIPS }, () => {})
   // After the first paint: the scene starts downloading with the HUD already on screen and usable.
   setTimeout(async () => {
     try {
@@ -151,6 +161,7 @@ watch(scene.arrivals, () => {
 watch(() => props.hidden, (hidden) => { if (!hidden) { onResize(); layout() } }, { flush: 'post' })
 onBeforeUnmount(() => {
   disposed = true
+  clearTimeout(tipTimer)
   window.removeEventListener('resize', onResize)
   observer?.disconnect()
   scene.venue.value?.dispose()
@@ -160,11 +171,11 @@ defineExpose({ layout })
 </script>
 
 <template>
-  <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden">
+  <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden" @animationend.self="onResize">
     <div v-if="waiting" class="scene-wait" :class="{ 'is-stuck': failed || stuck }" role="status">
       <img src="/icons/world-loader.webp" width="96" height="96" alt="" />
       <strong>{{ waitLine() }}</strong>
-      <small v-if="!failed && !stuck">Your next chapter is almost here.</small>
+      <small v-if="!failed && !stuck" :key="tip">{{ tip && tips ? tips[(tip - 1) % tips.length] : 'Your next chapter is almost here.' }}</small>
       <button v-if="stuck && !failed" type="button" class="scene-retry" @click="scene.venue.value?.retryScenes()">Try again</button>
     </div>
   </div>

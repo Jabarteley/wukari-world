@@ -6,7 +6,8 @@ import type { FurnitureDefinition } from '../../../types/content.ts'
 import type { LifeState, PlacedItem } from '../../../types/life.ts'
 import type { PanelView } from '../../types/panel.ts'
 import { FURNITURE, SELL_REFUND_RATE } from '../../../game/content/furniture.ts'
-import { checkPlacement, findFreeSpot, frontDoorBlocked, plotOf } from '../../../game/home-layout.ts'
+import { checkPlacement, frontDoorBlocked, plotOf } from '../../../game/home-layout.ts'
+import { suggestSpot } from '../../../scene/home-zones.ts'
 import { nudge } from './ghostMoves.ts'
 import { houseOf } from './houseOf.ts'
 import type { Plot, PlacementBlock as Refusal, Placement as Spot } from '../../../game/home-layout.ts'
@@ -30,7 +31,7 @@ export const whyNot = (state: LifeState, ghost: Ghost): Refusal | null => {
   return def ? frontDoorBlocked(plotIn(state).grid, def, ghost, ghost.floor ?? 0) ?? checkPlacement(plotIn(state), itemsOf(state), def, ghost.x, ghost.y, ghost.rot, ghost.objectId ?? null, ghost.floor ?? 0) : null
 }
 
-/** The ghost for a piece: where the object already stands (a move), else the first free spot on the floor in view, else the middle of it. */
+/** The ghost for a piece: where the object already stands (a move), else the spot its zone offers (suggestSpot), else the first free one on the floor in view, else the middle of it. */
 export function startGhost(state: LifeState, source: GhostSource, itemId: string, objectId?: string, floor = 0): Ghost | null {
   const def = defOf(itemId)
   if (!def) return null
@@ -38,7 +39,7 @@ export function startGhost(state: LifeState, source: GhostSource, itemId: string
   const placed = objectId ? objectOf(state, objectId) : undefined
   const on = placed ? placed.floor ?? 0 : Math.min(floor, plot.floors - 1)
   const at: Spot = placed ? { x: placed.x, y: placed.y, rot: placed.rot }
-    : findFreeSpot(plot, itemsOf(state), def, null, on) ?? nudge(plot, def, { x: Math.floor(plot.w / 2), y: Math.floor(plot.d / 2), rot: 0 }, 0, 0)
+    : suggestSpot(plot, itemsOf(state), def, on) ?? nudge(plot, def, { x: Math.floor(plot.w / 2), y: Math.floor(plot.d / 2), rot: 0 }, 0, 0)
   return { source, itemId, ...(objectId ? { objectId } : {}), ...at, floor: on }
 }
 

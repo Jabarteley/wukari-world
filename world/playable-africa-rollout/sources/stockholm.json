@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "stockholm",
+  "countryIso2": "SE",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Stockholm",
+    "coordinatesWgs84": [
+      18.0710935,
+      59.3251172
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/sweden-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "stockholm-airport",
+    "name": "Stockholm-Arlanda Airport",
+    "lon": 17.928829,
+    "lat": 59.64849,
+    "sourceUrl": "https://ourairports.com/airports/ESSA/"
+  },
+  "boxes": {
+    "play": [
+      59.21658866603961,
+      17.85911761747465,
+      59.6575340444967,
+      18.28306938252535
+    ],
+    "core": [
+      59.27989697751651,
+      17.982935093400606,
+      59.370337422483495,
+      18.159251906599394
+    ],
+    "outline": [
+      59.166588666039615,
+      17.809117617474648,
+      59.7075340444967,
+      18.333069382525352
+    ],
+    "wide": [
+      58.61658866603961,
+      17.259117617474647,
+      60.2575340444967,
+      18.883069382525353
+    ],
+    "water": [
+      58.61658866603961,
+      17.259117617474647,
+      60.2575340444967,
+      18.883069382525353
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/sweden-261011.osm.pbf",
+    "datasetSha256": "f062b7c4cb20a3e62d964bfe60d02b0a173cd470906bf070311f120aac42b0de",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "a5170ba7da6e6728cbc05dba08578167e74bb960d775a3bb37e6e9ec7570aaf2",
+        "elements": 5376
+      },
+      {
+        "file": "extras.json",
+        "sha256": "7b5f39bc7d277f15ba8a335ce741c223192f13cb5e44cd8ea3a364d19c93e197",
+        "elements": 1337
+      },
+      {
+        "file": "water.json",
+        "sha256": "3d1a4a6cd3876e08a37ffa1cb931d03da9de479a49236e80c929ef7ec7b693d5",
+        "elements": 23309
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "e3558b2e6d8dd60a9c19f4dfd3230865655617b29e7b4889940d1d17e67bb53f",
+        "elements": 9105
+      },
+      {
+        "file": "roads.json",
+        "sha256": "728884a06882b70248b0031a7f782c16656240d6583521c56a31e505c7da3fef",
+        "elements": 2916
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Huddinge",
+      "osm": "node/312051",
+      "coordinatesWgs84": [
+        17.978725,
+        59.23624
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kvarnen",
+      "osm": "node/277145122",
+      "coordinatesWgs84": [
+        18.074229,
+        59.314833
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Polishögskolan",
+      "osm": "way/165847212",
+      "coordinatesWgs84": [
+        17.997239,
+        59.395328
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bromma Hospital",
+      "osm": "way/400152301",
+      "coordinatesWgs84": [
+        17.900052,
+        59.358993
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fågelöuddebadet",
+      "osm": "way/235092467",
+      "coordinatesWgs84": [
+        18.231613,
+        59.376384
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Täby Centrum",
+      "osm": "way/120864772",
+      "coordinatesWgs84": [
+        18.072199,
+        59.444805
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fresta kyrka",
+      "osm": "way/24340484",
+      "coordinatesWgs84": [
+        17.956874,
+        59.517804
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Solna stadshus",
+      "osm": "way/496669866",
+      "coordinatesWgs84": [
+        18.002783,
+        59.359031
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gillingebanan",
+      "osm": "node/3822327232",
+      "coordinatesWgs84": [
+        18.176266,
+        59.508007
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Konstfack University of Arts, Crafts and Design",
+      "osm": "node/1314052",
+      "coordinatesWgs84": [
+        17.99421,
+        59.299773
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stockholms stadion",
+      "osm": "relation/11095283",
+      "coordinatesWgs84": [
+        18.079151,
+        59.345435
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Granby Runestone",
+      "osm": "node/5094765075",
+      "coordinatesWgs84": [
+        18.099305,
+        59.595175
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fittja moské",
+      "osm": "way/130648288",
+      "coordinatesWgs84": [
+        17.867994,
+        59.251185
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tacksägelsekyrkan",
+      "osm": "way/133975840",
+      "coordinatesWgs84": [
+        18.130411,
+        59.225981
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jumbo Hostel",
+      "osm": "way/174125986",
+      "coordinatesWgs84": [
+        17.938687,
+        59.640009
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "U 347",
+      "osm": "node/6673446413",
+      "coordinatesWgs84": [
+        18.184606,
+        59.631201
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stinsen",
+      "osm": "way/6616471",
+      "coordinatesWgs84": [
+        17.938367,
+        59.436724
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fjäderholmarnas krog",
+      "osm": "way/161917128",
+      "coordinatesWgs84": [
+        18.177906,
+        59.329155
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Einar Forseths park",
+      "osm": "way/345758266",
+      "coordinatesWgs84": [
+        17.942874,
+        59.323609
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gubbängsparken",
+      "osm": "way/374377103",
+      "coordinatesWgs84": [
+        18.091364,
+        59.26452
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tyresö Centrum",
+      "osm": "way/1103013221",
+      "coordinatesWgs84": [
+        18.230161,
+        59.243726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "AIRA",
+      "osm": "way/34838648",
+      "coordinatesWgs84": [
+        18.12371,
+        59.320821
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stockholms sjukhem",
+      "osm": "way/499678529",
+      "coordinatesWgs84": [
+        18.025571,
+        59.33273
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Frescati Hage",
+      "osm": "way/221105651",
+      "coordinatesWgs84": [
+        18.052803,
+        59.361314
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1212,
+      "sha256": "f9f6a4f7a79e54773c32d60ac501d57310db0fe5808e19a81ef022a265974902"
+    },
+    "geometry.ts": {
+      "bytes": 2993217,
+      "sha256": "4edc9a5c70b4deeb7ae8cd35d91c11e2f85c51c5762cbbe8b3dccd8f53ad72a4"
+    },
+    "places.ts": {
+      "bytes": 9606,
+      "sha256": "eeb1aa683698923fc23e0962d1ab23b2cc43f5e61e249023adb09f930f74bdba"
+    },
+    "terrain.ts": {
+      "bytes": 1511045,
+      "sha256": "fcc5c4736959ad4cf53e0565e41921560ffc5b4d2db69353e6af07f411d95a0c"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "3ccc249a69d668d121c96acc5473707f6e8a0fba26cd7c382832051c6938e56d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

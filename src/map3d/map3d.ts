@@ -1024,7 +1024,7 @@ export function createMap3D(container: HTMLElement, { pack, cityId = pack?.id, t
     setPeople(next: MapPeople | null | undefined, clock?: () => number) { people = next ?? EMPTY_PEOPLE; if (clock) peopleNow = clock; if (shown()) { placePeople(); if (peopleMoving) requestPins(); } },
     /** Fly to an estate so that its houses can be told apart. */
     focusEstate(lga: string, estate: number) { const cell = estateLayout(pack, lga)?.cells[estate]; if (!cell) return; grab(); motion({ x: cell.x, z: cell.z, distance: clamp(cell.size * 3.4, CLOSEST, 90) }, 0.7); },
-    focusPlot(plot: PlotRef | null | undefined) { if (!plot || !pack.lgas?.some((lga) => lga.id === plot.lga)) return; const at = plotPoint(plot), cell = estateLayout(pack, plot.lga)!.cells[plot.estate]!; grab(); motion({ x: at.x, z: at.z, distance: clamp(cell.size * 2.2, CLOSEST, 60) }, 0.7); },
+    focusPlot(plot: PlotRef | null | undefined) { if (!plot || !pack.lgas?.some((lga) => lga.id === plot.lga)) return; const at = plotPoint(plot), layout = estateLayout(pack, plot.lga)!, cell = layout.cells[Math.min(plot.estate, layout.count - 1)]!; grab(); motion({ x: at.x, z: at.z, distance: clamp(cell.size * 2.2, CLOSEST, 60) }, 0.7); },
     focusLga(id: string) { const lga = pack.lgas?.find((item) => item.id === id); if (!lga) return; grab(); motion(rig.framing(lga.polygon.map(([x, z]) => ({ x, z, y: 0 })).filter((point) => point.x >= pack.bounds.fit.minX - 4 && point.x <= pack.bounds.fit.maxX + 4), { pad: 1.05, min: 50 }), 0.7); },
     houses,
     setPlayer(player: ActorPlayer | null | undefined) { if (actor.setPlayer(player)) { if (!trip && state) standHere(); request(); } },

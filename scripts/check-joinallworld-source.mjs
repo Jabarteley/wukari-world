@@ -8,7 +8,9 @@ const OPEN_SETTING = 'ALLWORLD_OPEN_DEV';
 const OPEN_ALLOWED = /^(?:server\/server\.ts|server\/open-dev\/[^/]+|server\/open-dev\.test\.ts|scripts\/dev\.ts|scripts\/open-dev\.ts|deploy\/open-dev-refusal\.ts|deploy\/local\.ts|scripts\/check-joinallworld-source\.mjs|scripts\/guard-joinallworld-package\.test\.mjs|docs\/[^/]+\.md|README\.md|CONTRIBUTING\.md)$/;
 /** Production configuration: where a deployment's settings live. The open-mode setting must never appear in any of it. */
 const PRODUCTION_CONFIG = /^(?:wrangler\.jsonc?|package\.json|\.env(?:\..*)?|Dockerfile.*|docker-compose.*|\.github\/.+|deploy\/.+\.(?:json|jsonc|toml|ya?ml)|deploy\/tooling\/.+)$/;
-const SKIP_DIRS = new Set(['.git', 'node_modules', 'dist', '.data', '.data-open', 'coverage']);
+// new-source: the release workflow checks the game out into new-source/ inside its own policy checkout; that copy is checked on its own
+// (checkSource below, with new-source as the root, so its paths match the allowlists), not as nested files of the policy repository.
+const SKIP_DIRS = new Set(['.git', 'node_modules', 'dist', '.data', '.data-open', 'coverage', 'new-source']);
 /** @param {string} root @returns {string[]} */
 function walk(root, dir = root) {
   return readdirSync(dir, { withFileTypes: true }).flatMap(entry => {

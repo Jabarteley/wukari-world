@@ -1,0 +1,576 @@
+{
+  "frozen": [
+    {
+      "blink": 0,
+      "pairs": [
+        {
+          "lid": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 33
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 12
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 134
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 16
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 100
+        },
+        {
+          "lid": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 37
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 4
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 160
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 26
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 116
+        }
+      ]
+    },
+    {
+      "blink": 0.5,
+      "pairs": [
+        {
+          "lid": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 33
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 20
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 106
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 8
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 82
+        },
+        {
+          "lid": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 37
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 8
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 114
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 24
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 90
+        }
+      ]
+    },
+    {
+      "blink": 1,
+      "pairs": [
+        {
+          "lid": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 33
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 28
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 111
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 74
+        },
+        {
+          "lid": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 37
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 16
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 108
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 14
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 74
+        }
+      ]
+    }
+  ],
+  "v2": [
+    {
+      "blink": 0,
+      "pairs": [
+        {
+          "lid": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 33
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 127
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 10
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 93
+        },
+        {
+          "lid": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 37
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 154
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 12
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 106
+        }
+      ]
+    },
+    {
+      "blink": 0.5,
+      "pairs": [
+        {
+          "lid": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 33
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 10
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 117
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 10
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 85
+        },
+        {
+          "lid": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 37
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 8
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 122
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 14
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 89
+        }
+      ]
+    },
+    {
+      "blink": 1,
+      "pairs": [
+        {
+          "lid": "Eye_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 33
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 18
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 113
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Eye_Left",
+          "trianglePairs": 10
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Left",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 80
+        },
+        {
+          "lid": "Eye_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 37
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 14
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "UpperLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 106
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Eye_Right",
+          "trianglePairs": 24
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Pupil_Right",
+          "trianglePairs": 0
+        },
+        {
+          "lid": "LowerLid_Right",
+          "other": "Head_continuous_anatomy",
+          "trianglePairs": 79
+        }
+      ]
+    }
+  ]
+}

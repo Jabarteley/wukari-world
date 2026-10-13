@@ -1,0 +1,12 @@
+{
+  "skinCommit": "f504d2f450a95d5f411abca6f63b9401f1401fc5",
+  "reportPath": "experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/receipts/morph-fit.json",
+  "reportSha256": "7a3c13b3c999fff894ae684b214abaf18cdf1a6047a2aaed31387d92413b7151",
+  "reportedCases": 23,
+  "reportedOriginalEyeLidPairs": 1336,
+  "reportedNewCorneaPairs": 34,
+  "corneaOwnership": "Skin owner retains cap correction; no cap imported or edited by this task.",
+  "frozenMasterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "previousEyeDerivativeCommit": "f00a004c2372e1f4ce9305c283be9632c0f238e3",
+  "scope": "Four existing eyelid meshes and their UV/morph data only. Other 27 original meshes remain exact. New immutable candidate requires review; no rebind request."
+}

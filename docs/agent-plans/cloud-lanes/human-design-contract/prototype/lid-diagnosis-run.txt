@@ -1,0 +1,8 @@
+HEAD_BOUNDARY 40 edges 40 vertices
+frozen [{'blink': 0, 'eyeLidPairs': 58, 'headLidPairs': 510, 'eyeHeadPairs': 70}, {'blink': 0.5, 'eyeLidPairs': 60, 'headLidPairs': 392, 'eyeHeadPairs': 70}, {'blink': 1, 'eyeLidPairs': 58, 'headLidPairs': 367, 'eyeHeadPairs': 70}]
+v2 [{'blink': 0, 'eyeLidPairs': 22, 'headLidPairs': 480, 'eyeHeadPairs': 70}, {'blink': 0.5, 'eyeLidPairs': 42, 'headLidPairs': 413, 'eyeHeadPairs': 70}, {'blink': 1, 'eyeLidPairs': 66, 'headLidPairs': 378, 'eyeHeadPairs': 70}]
+Blender 4.3.2
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.blend"
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/eye-refinement-v2/eye-refinement-v2.blend"
+
+Blender quit

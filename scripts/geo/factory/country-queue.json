@@ -2,8 +2,13 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "aq",
-      "table": "scripts/geo/factory/country-tables/aq.json",
+      "id": "gs",
+      "table": "scripts/geo/factory/country-tables/gs.json",
+      "appSha": "48d36a0ffa0025c6506b455220b72a8e781939b2"
+    },
+    {
+      "id": "hm",
+      "table": "scripts/geo/factory/country-tables/hm.json",
       "appSha": "48d36a0ffa0025c6506b455220b72a8e781939b2"
     }
   ]

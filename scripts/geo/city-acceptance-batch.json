@@ -2,16 +2,18 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-g-1",
-      "appSha": "47ba227f976f23928c58679cc39ca8294cde7d76",
+      "id": "release-h-1",
+      "appSha": "c8e8cf2adf8859845226ed3da5d6aa9146e536f8",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "ho-chi-minh-city",
-        "tel-aviv-yafo",
-        "new-york",
-        "sydney",
-        "oslo",
-        "manila"
+        "male",
+        "toronto",
+        "palikir",
+        "kyiv",
+        "singapore",
+        "yaren",
+        "st-johns",
+        "ramallah"
       ],
       "roundtrip": true
     }

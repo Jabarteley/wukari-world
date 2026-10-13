@@ -15,3 +15,8 @@ test('a game with no places is won or lost', () => {
   assert.equal(placeHeadline(undefined, true, 2), 'You won!')
   assert.equal(placeHeadline(undefined, false, 2), 'You lost')
 })
+
+test('a car that did not finish says so', () => {
+  assert.equal(placeHeadline(0, false, 4), 'You did not finish')
+  assert.equal(placeHeadline(0, true, 4), 'You did not finish')
+})

@@ -201,7 +201,7 @@ onBeforeUnmount(() => {
 .fg-play { position: relative; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 6px; }
 .fg-stage { position: relative; flex: 1 1 auto; min-height: 150px; background: #1b2559; border-radius: 12px; overflow: hidden; }
 .fg-stage canvas { position: absolute; left: 0; top: 0; display: block; touch-action: none; }
-@media (orientation: portrait) { .fg-stage { max-height: min(100vw, 62vh); } }
+
 .fg-card { display: grid; gap: 10px; padding: 14px; background: #f3efe8; border-radius: 14px; }
 .fg-card p { margin: 0; font-size: 14px; line-height: 1.45; }
 .fg-small { font-size: 12px; color: var(--c-muted); } .fg-note { margin: 0; color: #a33; font-size: 13px; }

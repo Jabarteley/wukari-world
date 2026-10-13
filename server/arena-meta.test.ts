@@ -23,3 +23,15 @@ test('the title comes from the registry, never from the link', () => {
   const meta = roomMeta('/', '?table=g-fight-k7m2qp&name=<script>');
   assert.equal(meta?.title, 'Join my Fight match on Allworld');
 });
+
+import { resultPlaces } from './growth/arena.ts';
+
+test('result places: kept as the rules give them (0 = did not finish), derived only for a full ranking', () => {
+  assert.deepEqual(resultPlaces({ winners: [2, 0], draw: false, places: [2, 0, 1, 0] }, 4), [2, 0, 1, 0]);
+  assert.equal(resultPlaces({ winners: [0], draw: false, places: [1, 2] }, 3), undefined, 'one place per seat');
+  assert.equal(resultPlaces({ winners: [0], draw: false, places: [1, -1] }, 2), undefined, 'no negative places');
+  assert.deepEqual(resultPlaces({ winners: [1, 0, 2], draw: false }, 3), [2, 1, 3]);
+  assert.equal(resultPlaces({ winners: [0], draw: false }, 2), undefined, 'a fight has a winner and a loser only');
+  assert.equal(resultPlaces({ winners: [1, 1], draw: false }, 2), undefined, 'a repeated seat is not a ranking');
+  assert.equal(resultPlaces({ winners: [0, 1], draw: true }, 2), undefined, 'a draw has no places');
+});

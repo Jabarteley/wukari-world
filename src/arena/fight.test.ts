@@ -51,7 +51,7 @@ test('intro counts down, then the fight starts with full health at fixed places'
 test('inputs are ignored during the intro', () => {
   const s = begin()
   tick(s, press(BTN.right), idle, 10)
-  assert.equal(s.f[0].x, 300)
+  assert.equal(s.f[0].x, 360)
 })
 
 test('walking moves, walls hold, bodies cannot overlap', () => {

@@ -82,6 +82,19 @@ export function arenaService(ctx: RouteContext) {
   return api;
 }
 
+/**
+ * Each seat's finishing place for a result, or undefined when the game has none. Places the rules supply are kept as given
+ * (1 = first; 0 = did not finish) once they are one whole number per seat. Otherwise a game whose `winners` lists EVERY seat best to
+ * worst is read as a ranking.
+ */
+export function resultPlaces(outcome: { winners: number[]; draw: boolean; places?: number[] }, seats: number): number[] | undefined {
+  const given = outcome.places;
+  if (given) return given.length === seats && given.every((place) => Number.isInteger(place) && place >= 0) ? given.slice() : undefined;
+  if (outcome.draw || outcome.winners.length !== seats || seats < 2) return undefined;
+  const derived = Array.from({ length: seats }, (_, seat) => outcome.winners.indexOf(seat) + 1);
+  return derived.every((place) => place > 0) ? derived : undefined;
+}
+
 function newCode(game: string, taken: (code: string) => boolean): string {
   for (let attempt = 0; attempt < 20; attempt++) {
     const bytes = crypto.getRandomValues(new Uint8Array(6));
@@ -248,8 +261,8 @@ function buildService(ctx: RouteContext) {
     room.status = 'over'; room.since = clock();
     if (room.timer) { clearTimeout(room.timer); room.timer = null; }
     const names = room.seats.map((s) => s.name);
-    const ranked = outcome.places ?? (!outcome.draw && outcome.winners.length === room.seats.length && room.seats.length > 1 ? room.seats.map((_, seat) => outcome.winners.indexOf(seat) + 1) : undefined);
-    room.result = { text: withNames(outcome.text, names), winners: outcome.winners, draw: outcome.draw, reason: outcome.reason, scores: outcome.scores, ...(ranked && ranked.every((place) => place > 0) ? { places: ranked } : {}), names };
+    const ranked = resultPlaces(outcome, room.seats.length);
+    room.result = { text: withNames(outcome.text, names), winners: outcome.winners, draw: outcome.draw, reason: outcome.reason, scores: outcome.scores, ...(ranked ? { places: ranked } : {}), names };
     room.snap = room.rules.snapshot(room.state);
     for (const seat of room.seats) seat.again = false;
     sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });

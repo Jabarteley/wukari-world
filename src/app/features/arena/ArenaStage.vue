@@ -65,8 +65,8 @@ onBeforeUnmount(() => {
         <b class="as-title">{{ title }}</b>
         <span v-if="chip" class="as-chip" :class="{ off }">{{ chip }}</span>
         <span class="as-mid"><slot name="bar" /></span>
-        <button type="button" class="as-ico" :aria-label="soundOn ? 'Mute sound' : 'Turn sound on'" @click="toggleSound">{{ soundOn ? '&#128266;' : '&#128263;' }}</button>
-        <button v-if="canFull" type="button" class="as-ico" :aria-label="full ? 'Exit full screen' : 'Full screen'" data-testid="arena-full" @click="toggleFull">{{ full ? '&#10006;' : '&#9974;' }}</button>
+        <button type="button" class="as-ico" :aria-label="soundOn ? 'Mute sound' : 'Turn sound on'" @click="toggleSound"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" stroke="none" /><template v-if="soundOn"><path d="M16 9a4 4 0 0 1 0 6" /><path d="M18.5 6.5a8 8 0 0 1 0 11" /></template><template v-else><path d="M16 9l5 6M21 9l-5 6" /></template></svg></button>
+        <button v-if="canFull" type="button" class="as-ico" :aria-label="full ? 'Exit full screen' : 'Full screen'" data-testid="arena-full" @click="toggleFull"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path v-if="!full" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" /><path v-else d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" /></svg></button>
       </header>
       <p v-if="hint" class="as-hint">Rotate your phone sideways for a bigger arena.</p>
       <div class="as-body"><slot /></div>
@@ -88,7 +88,7 @@ html.arena-open, html.arena-open body { overflow: hidden; }
 .as-mid { flex: 1; min-width: 0; text-align: center; font-weight: 700; }
 .as-btn, .as-ico { border: 0; background: none; font: inherit; font-size: 14px; min-height: 44px; min-width: 44px; padding: 0 6px; cursor: pointer; color: inherit; }
 .as-btn { text-decoration: underline; color: var(--c-muted, #5b6270); font-size: 13px; }
-.as-ico { font-size: 18px; }
+.as-ico { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; }
 .as-hint { flex: none; margin: 0; padding: 6px 10px; font-size: 12px; text-align: center; background: #fff0d1; color: #8a4b0a; }
 .as-body { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 8px; -webkit-overflow-scrolling: touch; }
 .as-body :deep(.arena-fill) { flex: 1 1 auto; min-height: 140px; }

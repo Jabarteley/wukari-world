@@ -103,7 +103,7 @@ function fresh(x: number, face: 1 | -1): Fighter {
   return { x, y: 0, vx: 0, vy: 0, face, hp: MAX_HP, a: ACT.none, at: 0, done: false, stun: 0, air: false, blk: false }
 }
 function resetRound(s: FightState): void {
-  s.f = [fresh(300, 1), fresh(700, -1)]
+  s.f = [fresh(360, 1), fresh(640, -1)]
   s.clock = s.options.seconds * HZ
   s.rw = -1; s.why = ''; s.phase = PHASE.intro; s.pt = 0
 }
@@ -111,7 +111,7 @@ function resetRound(s: FightState): void {
 const clampX = (x: number): number => Math.max(WALL_L, Math.min(WALL_R, x))
 
 function start(_seats: number, _rng: () => number, options: FightOptions): FightState {
-  const s: FightState = { options, tick: 0, phase: PHASE.intro, pt: 0, round: 1, wins: [0, 0], clock: 0, rw: -1, why: '', left: -1, f: [fresh(300, 1), fresh(700, -1)], ev: [] }
+  const s: FightState = { options, tick: 0, phase: PHASE.intro, pt: 0, round: 1, wins: [0, 0], clock: 0, rw: -1, why: '', left: -1, f: [fresh(360, 1), fresh(640, -1)], ev: [] }
   resetRound(s)
   return s
 }

@@ -10,24 +10,28 @@ import { lerp } from './interp.ts'
 
 export interface FighterColors { skin: string; hair: string; top: string; bottoms: string }
 export interface Spark { x: number; y: number; vx: number; vy: number; life: number; max: number; color: string; size: number }
-export interface Fx { sparks: Spark[]; shake: number; flash: [number, number]; lastTick: number; /** white KO flash 0..1 and zoom 0..1 */ ko: number }
+export interface Ring { x: number; y: number; life: number; strong: boolean }
+export interface Fx { rings: Ring[]; sparks: Spark[]; shake: number; flash: [number, number]; lastTick: number; /** white KO flash 0..1 and zoom 0..1 */ ko: number }
 export interface Meta { names: [string, string]; colors: [FighterColors, FighterColors]; you: number | null; rounds: number; reduced: boolean; /** performance.now() */ time: number; /** the seat that won the match once it is over, 2 for a draw, else -1 */ winner: number; /** the fighter to draw for `you` instead of the blended snapshot (client prediction) */ own?: FighterSnap | null }
 
-export const newFx = (): Fx => ({ sparks: [], shake: 0, flash: [0, 0], lastTick: -1, ko: 0 })
+export const newFx = (): Fx => ({ rings: [], sparks: [], shake: 0, flash: [0, 0], lastTick: -1, ko: 0 })
 
 /** Spawn the sparks, shake and flash for this tick's hits (`events` of a snapshot). Call once per snapshot. */
 export function spawnHits(fx: Fx, snap: FightSnap, reduced: boolean): void {
   for (const [seat, blocked, strong, x, y] of snap.e as [number, number, number, number, number][]) {
-    const n = reduced ? 4 : blocked ? 6 : strong ? 16 : 10
+    fx.rings.push({ x, y, life: 0, strong: strong === 1 })
+    const n = reduced ? 5 : blocked ? 8 : strong ? 22 : 14
     for (let i = 0; i < n; i++) {
       const a = Math.random() * Math.PI * 2, v = (blocked ? 2 : 4) + Math.random() * (strong ? 7 : 5)
-      fx.sparks.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v + 2, life: 0, max: 8 + Math.random() * 8, color: blocked ? '#9ad0ff' : i % 2 ? '#ffe27a' : '#ff7a3d', size: 2 + Math.random() * 3 })
+      fx.sparks.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v + 2, life: 0, max: 8 + Math.random() * 8, color: blocked ? '#9ad0ff' : i % 2 ? '#ffe27a' : '#ff7a3d', size: 3 + Math.random() * 4 })
     }
     if (!reduced) { fx.shake = Math.max(fx.shake, blocked ? 2 : strong ? 9 : 5); fx.flash[seat as 0 | 1] = 4 }
   }
   if (fx.sparks.length > 80) fx.sparks.splice(0, fx.sparks.length - 80)
 }
 
+/** How much bigger the fighters are DRAWN than their hit boxes (so they read on a phone); reach and body are in world units. */
+const VS = 1.6
 const mix = (a: FighterSnap, b: FighterSnap, t: number): FighterSnap => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), b[2], b[3], b[4], b[5], b[6]]
 
 function skyline(ctx: CanvasRenderingContext2D, w: number, ground: number, cam: number, scale: number): void {
@@ -107,7 +111,7 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
   const loser = b.f[0][5] <= 0 ? f0[0] : b.f[1][5] <= 0 ? f1[0] : null
   const zoom = b.p === PHASE.ko && loser !== null && !meta.reduced ? Math.max(0, 1 - b.c / 30) : 0
   const gap = Math.abs(f1[0] - f0[0])
-  const viewW = Math.max(420, Math.min(ARENA_W, gap + 300)) * (1 - 0.22 * zoom)
+  const viewW = Math.max(380, Math.min(ARENA_W, gap + 280)) * (1 - 0.22 * zoom)
   const mid = loser !== null && zoom > 0 ? lerp((f0[0] + f1[0]) / 2, loser, zoom) : (f0[0] + f1[0]) / 2
   const camX = Math.max(0, Math.min(ARENA_W - viewW, mid - viewW / 2))
   const scale = w / viewW, ground = h * 0.84
@@ -125,22 +129,30 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
     const f = seat ? f1 : f0
     const bob = f[3] === ACT.none && f[1] === 0 && (f[6] & 1) === 0 ? Math.sin(meta.time / 240 + seat * 2) * 1.6 * scale : 0
     const px = sx(f[0]), py = ground - f[1] * scale + bob
-    ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(px, ground + 4, 20 * scale * (1 - Math.min(0.5, f[1] / 260)), 5 * scale, 0, 0, Math.PI * 2); ctx.fill()
-    ctx.save(); ctx.translate(px, py); ctx.scale((f[2] ? 1 : -1) * scale * 1.0, scale)
+    ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(px, ground + 4, 20 * scale * VS * (1 - Math.min(0.5, f[1] / 260)), 5 * scale * VS, 0, 0, Math.PI * 2); ctx.fill()
+    ctx.save(); ctx.translate(px, py); ctx.scale((f[2] ? 1 : -1) * scale * VS, scale * VS)
     person(ctx, f, meta.colors[seat as 0 | 1], f[0] * 0.14, fx.flash[seat as 0 | 1] > 0 && f[3] === ACT.hurt)
     ctx.restore()
-    if (meta.you === seat && b.p !== PHASE.over) { ctx.fillStyle = '#ffe27a'; const ty = py - (BODY_H + 24) * scale; ctx.beginPath(); ctx.moveTo(px - 6, ty - 8); ctx.lineTo(px + 6, ty - 8); ctx.lineTo(px, ty); ctx.fill() }
+    if (meta.you === seat && b.p !== PHASE.over) { ctx.fillStyle = '#ffe27a'; const ty = py - (BODY_H + 24) * scale * VS; ctx.beginPath(); ctx.moveTo(px - 6, ty - 8); ctx.lineTo(px + 6, ty - 8); ctx.lineTo(px, ty); ctx.fill() }
   }
   for (const s of fx.sparks) {
     ctx.globalAlpha = Math.max(0, 1 - s.life / s.max); ctx.fillStyle = s.color
     ctx.fillRect(sx(s.x + s.vx * s.life * 0.6) - s.size / 2, ground - (s.y + s.vy * s.life * 0.6 - s.life * s.life * 0.12) * scale, s.size, s.size)
   }
   ctx.globalAlpha = 1
+  // An impact ring at every hit: a white burst that grows and fades, so a landed blow reads at a glance.
+  for (const r of fx.rings) {
+    const k = r.life / 9
+    ctx.strokeStyle = `rgba(255,255,255,${(1 - k).toFixed(2)})`; ctx.lineWidth = (r.strong ? 6 : 4) * (1 - k * 0.6)
+    ctx.beginPath(); ctx.arc(sx(r.x), ground - r.y * scale * VS, (10 + k * (r.strong ? 52 : 36)) * scale * VS * 0.7, 0, Math.PI * 2); ctx.stroke()
+  }
   ctx.restore()
   if (fx.ko > 0.01) { ctx.fillStyle = `rgba(255,255,255,${(fx.ko * 0.75).toFixed(3)})`; ctx.fillRect(0, 0, w, h) }
   // advance effects once per drawn frame (in 60 fps frames)
   for (const s of fx.sparks) s.life += dtFrames * 0.75
   fx.sparks = fx.sparks.filter((s) => s.life < s.max)
+  for (const r of fx.rings) r.life += dtFrames * 0.9
+  fx.rings = fx.rings.filter((r) => r.life < 9)
   fx.ko *= Math.pow(0.9, dtFrames); if (b.p !== PHASE.ko) fx.ko = 0
   fx.shake *= Math.pow(0.82, dtFrames)
   fx.flash[0] = Math.max(0, fx.flash[0] - dtFrames); fx.flash[1] = Math.max(0, fx.flash[1] - dtFrames)

@@ -45,6 +45,7 @@ const ORDINAL = ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th']
 /** The result line for a player: first "You won!", second and third "2nd place", the rest "You finished 4th"; without places, won or lost. */
 export function placeHeadline(place: number | undefined, won: boolean, seats: number): string {
   if (place === undefined) return won ? 'You won!' : 'You lost'
+  if (place === 0) return 'You did not finish'
   if (place === 1) return 'You won!'
   const word = ORDINAL[place] ?? `${place}th`
   return place <= 3 && place < seats ? `${word} place` : `You finished ${word}`

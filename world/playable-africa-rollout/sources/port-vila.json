@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-vila",
+  "countryIso2": "VU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Port Vila",
+    "coordinatesWgs84": [
+      168.3150163,
+      -17.7414972
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/vanuatu-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "port-vila-airport",
+    "name": "Bauerfield International Airport",
+    "lon": 168.320007,
+    "lat": -17.699301,
+    "sourceUrl": "https://ourairports.com/airports/NVVV/"
+  },
+  "boxes": {
+    "play": [
+      -17.92237808993398,
+      168.1261911919271,
+      -17.560616310066024,
+      168.5038414080729
+    ],
+    "core": [
+      -17.786717422483495,
+      168.2678460125918,
+      -17.696276977516508,
+      168.3621865874082
+    ],
+    "outline": [
+      -17.97237808993398,
+      168.07619119192708,
+      -17.510616310066023,
+      168.5538414080729
+    ],
+    "wide": [
+      -18.52237808993398,
+      167.5261911919271,
+      -16.960616310066023,
+      169.1038414080729
+    ],
+    "water": [
+      -18.52237808993398,
+      167.5261911919271,
+      -16.960616310066023,
+      169.1038414080729
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/vanuatu-261011.osm.pbf",
+    "datasetSha256": "d8b25bac6a96ebc4e94e525615bb1d9a51e052ce5368e674ce6c9a5dcfd7c6ef",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "d625ca3eadea59d8a6190872807710d24a057e94404b1a1274df10c8753e12e6",
+        "elements": 133
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d905c0dbf0aa29559657219c4937916141ca7b17d47f46a1d3296c3881065c30",
+        "elements": 53
+      },
+      {
+        "file": "water.json",
+        "sha256": "ff15dee70fd697a29b1cbd4e2effa8ee1c557bc3abc26a950cd2a2896bb85ec0",
+        "elements": 99
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "7d16aa299c3ee88b16d01e723f303048c0f2a3fb5524fb42c52150981a1d0145",
+        "elements": 241
+      },
+      {
+        "file": "roads.json",
+        "sha256": "33c2b9d41d97e1093dbf7ea3f30accfb634bcea558575eb10270320e57ac5597",
+        "elements": 29
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Local Bus",
+      "osm": "node/6424702385",
+      "coordinatesWgs84": [
+        168.318614,
+        -17.70118
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Life Resort",
+      "osm": "node/5341011539",
+      "coordinatesWgs84": [
+        168.46957,
+        -17.571897
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vanuatu Institute of Technology",
+      "osm": "node/3643490182",
+      "coordinatesWgs84": [
+        168.31532,
+        -17.727482
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Port Vila Central Hospital",
+      "osm": "way/307095157",
+      "coordinatesWgs84": [
+        168.321706,
+        -17.742737
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "prima park",
+      "osm": "way/435756621",
+      "coordinatesWgs84": [
+        168.293529,
+        -17.693035
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Manples",
+      "osm": "way/868937789",
+      "coordinatesWgs84": [
+        168.309968,
+        -17.715143
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathédrale du Sacré-Cœur",
+      "osm": "way/319762684",
+      "coordinatesWgs84": [
+        168.315158,
+        -17.734645
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Supreme Court",
+      "osm": "node/519912836",
+      "coordinatesWgs84": [
+        168.316844,
+        -17.735324
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Quarantine control",
+      "osm": "node/4896949621",
+      "coordinatesWgs84": [
+        168.300455,
+        -17.757077
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lifechanger Christian College",
+      "osm": "node/6283844727",
+      "coordinatesWgs84": [
+        168.292159,
+        -17.700385
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Korman Stadium",
+      "osm": "way/164077407",
+      "coordinatesWgs84": [
+        168.336794,
+        -17.734195
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chief's Nakamal",
+      "osm": "way/319784751",
+      "coordinatesWgs84": [
+        168.318653,
+        -17.746285
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Port Vila Stadium",
+      "osm": "way/331209807",
+      "coordinatesWgs84": [
+        168.315777,
+        -17.730881
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée National de Vanuatu",
+      "osm": "node/1208562570",
+      "coordinatesWgs84": [
+        168.317467,
+        -17.745317
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "WW II Museum",
+      "osm": "node/5341017574",
+      "coordinatesWgs84": [
+        168.259773,
+        -17.56867
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Summit",
+      "osm": "node/6366258638",
+      "coordinatesWgs84": [
+        168.205051,
+        -17.719937
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Coco De Mer",
+      "osm": "node/10297629756",
+      "coordinatesWgs84": [
+        168.24694,
+        -17.687033
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Francesca’s Beach Club Bar",
+      "osm": "node/6536259685",
+      "coordinatesWgs84": [
+        168.244999,
+        -17.598617
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "PortVila Physio Sport Clinic",
+      "osm": "way/332907165",
+      "coordinatesWgs84": [
+        168.316817,
+        -17.756447
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kam Pusum Hed Klinik",
+      "osm": "way/424853171",
+      "coordinatesWgs84": [
+        168.307396,
+        -17.705936
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "belle-vue rodeo park",
+      "osm": "way/864040553",
+      "coordinatesWgs84": [
+        168.330885,
+        -17.729383
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of the South Pacific",
+      "osm": "way/41958385",
+      "coordinatesWgs84": [
+        168.323956,
+        -17.73394
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Port Vila Central Market",
+      "osm": "way/105052376",
+      "coordinatesWgs84": [
+        168.313971,
+        -17.740166
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fatumaru Bay Park",
+      "osm": "way/307398428",
+      "coordinatesWgs84": [
+        168.310983,
+        -17.733345
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1242,
+      "sha256": "c2955e3ca9b20ff466a522f2cc463adb0b15d0da89ab665f6e26a7346a3fa292"
+    },
+    "geometry.ts": {
+      "bytes": 132120,
+      "sha256": "f01600e2f635c43b435a98c1c31d69b0862f3657267c84e6bcb4d78b1cbf1a6f"
+    },
+    "places.ts": {
+      "bytes": 9390,
+      "sha256": "7b90fd954210025a089ebf4a41af9f96c24e897e7cfc23788544c930039f7f9c"
+    },
+    "terrain.ts": {
+      "bytes": 276944,
+      "sha256": "43ba7fd139d9aa5a72285b52ccb674430430cd24e13ab15f281e49b23cc262ba"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "416182c9f9abb07754248b7a1ac0e027de313773c26f34f5b9c6bfd8d918c6f3"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

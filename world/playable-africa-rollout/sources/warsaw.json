@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "warsaw",
+  "countryIso2": "PL",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Warsaw",
+    "coordinatesWgs84": [
+      21.0067249,
+      52.2319581
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/poland-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "warsaw-airport",
+    "name": "Warsaw Chopin Airport",
+    "lon": 20.9671,
+    "lat": 52.165699,
+    "sourceUrl": "https://ourairports.com/airports/EPWA/"
+  },
+  "boxes": {
+    "play": [
+      52.05107721006602,
+      20.712181006214685,
+      52.41283898993398,
+      21.30126879378531
+    ],
+    "core": [
+      52.18673787751651,
+      20.933314529370627,
+      52.27717832248349,
+      21.08013527062937
+    ],
+    "outline": [
+      52.00107721006602,
+      20.662181006214684,
+      52.46283898993398,
+      21.351268793785312
+    ],
+    "wide": [
+      51.45107721006602,
+      20.112181006214684,
+      53.01283898993398,
+      21.901268793785313
+    ],
+    "water": [
+      52.05107721006602,
+      20.712181006214685,
+      52.41283898993398,
+      21.30126879378531
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/poland-261011.osm.pbf",
+    "datasetSha256": "f74cd09957bf8188fff8e7629087a11b575bac4c3ff192346d36f8ee98e46342",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "76c55a44941fc7344e9c783d64a97aa8db34891fc26a3628eb6193c2857f66cb",
+        "elements": 6375
+      },
+      {
+        "file": "extras.json",
+        "sha256": "62208261c0b643383764949f79c2a8aa8f4c8fbbea765a156a5963274e83341f",
+        "elements": 1728
+      },
+      {
+        "file": "water.json",
+        "sha256": "eeeab0a09412fbbbb61de273953747321ba5f07333ed5f0bcd0cdcacb4babed8",
+        "elements": 1341
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "8f03e80ca824ecc8a5c90ca33b5d7b3e34fda573cf286e51b8b4a66f78fc5528",
+        "elements": 58041
+      },
+      {
+        "file": "roads.json",
+        "sha256": "248668249fd40aee875d0fffb9741cc7c957042ca2ebbad3f6e9e67902775f4d",
+        "elements": 5096
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Warsaw East",
+      "osm": "node/33210583",
+      "coordinatesWgs84": [
+        21.052368,
+        52.251589
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jeff's",
+      "osm": "way/226544896",
+      "coordinatesWgs84": [
+        20.989114,
+        52.210978
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Miejska Biblioteka Publiczna w Legionowie",
+      "osm": "node/1945019192",
+      "coordinatesWgs84": [
+        20.940869,
+        52.401155
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centrum Zdrowia Dziecka",
+      "osm": "way/40370104",
+      "coordinatesWgs84": [
+        21.192409,
+        52.206008
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park przy Bażantarni",
+      "osm": "way/22987815",
+      "coordinatesWgs84": [
+        21.065656,
+        52.137058
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nowa Stacja",
+      "osm": "way/695633081",
+      "coordinatesWgs84": [
+        20.79289,
+        52.165327
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kościół pw. Świętej Trójcy",
+      "osm": "way/131905205",
+      "coordinatesWgs84": [
+        21.195518,
+        52.339808
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plac Konfederacji",
+      "osm": "way/1083027481",
+      "coordinatesWgs84": [
+        20.946645,
+        52.2798
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Agencja Restrukturyzacji i Modernizacji Rolnictwa",
+      "osm": "way/558576563",
+      "coordinatesWgs84": [
+        21.278484,
+        52.098869
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Polska Akademia Nauk Centrum Badań Ekologicznych",
+      "osm": "way/110020158",
+      "coordinatesWgs84": [
+        20.857133,
+        52.345253
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ząbki Dozbud Arena",
+      "osm": "way/256477802",
+      "coordinatesWgs84": [
+        21.122034,
+        52.292663
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cmentarz Palmiry",
+      "osm": "way/5111535",
+      "coordinatesWgs84": [
+        20.744574,
+        52.333795
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kościół pw. Chrystusa Najwyższego Kapłana",
+      "osm": "way/401557317",
+      "coordinatesWgs84": [
+        21.045422,
+        52.363359
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pałac w Falentach",
+      "osm": "way/124771239",
+      "coordinatesWgs84": [
+        20.919778,
+        52.139555
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dwór Wielopolskich i Potulickich",
+      "osm": "way/173534115",
+      "coordinatesWgs84": [
+        21.144813,
+        52.085214
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kościół pw. św. Rocha",
+      "osm": "way/271202947",
+      "coordinatesWgs84": [
+        20.804691,
+        52.280047
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park Kombatantów",
+      "osm": "way/23771865",
+      "coordinatesWgs84": [
+        20.912717,
+        52.207239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion GOS-u w Nadarzynie",
+      "osm": "way/1025962496",
+      "coordinatesWgs84": [
+        20.792191,
+        52.097475
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CEZAMAT",
+      "osm": "way/693882871",
+      "coordinatesWgs84": [
+        21.008075,
+        52.15348
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "War Studies University",
+      "osm": "way/339846775",
+      "coordinatesWgs84": [
+        21.176787,
+        52.268698
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park Fosa",
+      "osm": "way/326736657",
+      "coordinatesWgs84": [
+        20.998878,
+        52.26473
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "G City Targówek",
+      "osm": "way/24924674",
+      "coordinatesWgs84": [
+        21.057986,
+        52.303976
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Targowisko na Szembeka",
+      "osm": "way/24279875",
+      "coordinatesWgs84": [
+        21.102179,
+        52.240921
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tor Stegny",
+      "osm": "way/23498828",
+      "coordinatesWgs84": [
+        21.043451,
+        52.186883
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1194,
+      "sha256": "e65baa7730d3f0f5971f09f8eb4eaa0a44818cb015784f98b5f8b299b57993ff"
+    },
+    "geometry.ts": {
+      "bytes": 196510,
+      "sha256": "854bb803ca4f223cd5d0be3e3ce827c6c2f098de287ac8691ca4a91a31003f1c"
+    },
+    "places.ts": {
+      "bytes": 9951,
+      "sha256": "f10ee3023631e73be64f1b1b0f4738daead4ddc2be1e2a0c89509ccb985121f7"
+    },
+    "terrain.ts": {
+      "bytes": 141335,
+      "sha256": "248a13d274a824f79ee36c786ea2403356a11f27a7a75523c73f3e75daba07fb"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "f0cb2982eb5a30623b9650a330f9223dfb8164570c5f424ab2c4cb78e829f3a8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

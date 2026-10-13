@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kuwait-city",
+  "countryIso2": "KW",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Kuwait City",
+    "coordinatesWgs84": [
+      47.9734174,
+      29.3796532
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "kuwait-city-airport",
+    "name": "Kuwait International Airport",
+    "lon": 47.969813,
+    "lat": 29.224487,
+    "sourceUrl": "https://ourairports.com/airports/OKKK/"
+  },
+  "boxes": {
+    "play": [
+      29.198772310066023,
+      47.766869900506066,
+      29.560534089933977,
+      48.17996489949394
+    ],
+    "core": [
+      29.334432977516506,
+      47.9218496308093,
+      29.424873422483493,
+      48.02498516919071
+    ],
+    "outline": [
+      29.148772310066022,
+      47.71686990050607,
+      29.610534089933978,
+      48.229964899493936
+    ],
+    "wide": [
+      28.59877231006602,
+      47.166869900506065,
+      30.16053408993398,
+      48.77996489949394
+    ],
+    "water": [
+      28.59877231006602,
+      47.166869900506065,
+      30.16053408993398,
+      48.77996489949394
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+    "datasetSha256": "146b0eee40cd3e5d36f497dc834eff9cc62cead909308eb14c6f9ba7db6aa400",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "b075b985434550c9d9652b920e50205a13c0b3d3f9152d023eae39b1fe0e162e",
+        "elements": 1535
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f0c2e1d84ebc8954fb7915b21ae543f7ee42779a3164c668de45489ae2c0cb9f",
+        "elements": 1195
+      },
+      {
+        "file": "water.json",
+        "sha256": "6f75b636d6827702c8617b6e522f976f8d6683df271fe2d64e2d1e88ca07b89b",
+        "elements": 168
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "4a47eb1dafb592440a6af594d2dd7b3cb078e690eb2284c7383d5a132684e058",
+        "elements": 188
+      },
+      {
+        "file": "roads.json",
+        "sha256": "84afcb4e6c4fa3e7d40c3d41792b5ef7ec53e32566d90bbbe9a9cda2a75179eb",
+        "elements": 2082
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Hassawi",
+      "osm": "node/1281235473",
+      "coordinatesWgs84": [
+        47.913015,
+        29.262161
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Johnny Carino's",
+      "osm": "way/452185124",
+      "coordinatesWgs84": [
+        48.02982,
+        29.354109
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gulf University for Science & Technology",
+      "osm": "way/992647941",
+      "coordinatesWgs84": [
+        48.052909,
+        29.273897
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Amiri Hospital",
+      "osm": "way/154721776",
+      "coordinatesWgs84": [
+        47.987703,
+        29.387924
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Northwest Sulaibikhat Public Park",
+      "osm": "way/937507535",
+      "coordinatesWgs84": [
+        47.802825,
+        29.327264
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "A5 Mall",
+      "osm": "node/11185097754",
+      "coordinatesWgs84": [
+        47.939925,
+        29.329637
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Imam Zayn Al-Aabideen Mosque",
+      "osm": "way/316759515",
+      "coordinatesWgs84": [
+        48.079834,
+        29.326301
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Mailam Hall",
+      "osm": "way/608671337",
+      "coordinatesWgs84": [
+        47.985411,
+        29.328696
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "warba disabled sport club",
+      "osm": "node/9667134917",
+      "coordinatesWgs84": [
+        47.824386,
+        29.267123
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "American University of Kuwait",
+      "osm": "way/336814876",
+      "coordinatesWgs84": [
+        48.083414,
+        29.344071
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Thamir Stadium",
+      "osm": "way/159761965",
+      "coordinatesWgs84": [
+        48.088575,
+        29.341107
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kuwait National Museum",
+      "osm": "node/5284460222",
+      "coordinatesWgs84": [
+        47.966852,
+        29.373311
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kuwait Towers",
+      "osm": "way/627399824",
+      "coordinatesWgs84": [
+        48.003287,
+        29.389878
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Liberation Tower",
+      "osm": "way/1456434409",
+      "coordinatesWgs84": [
+        47.975007,
+        29.368239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Sadaqua Walsalam Stadium",
+      "osm": "way/616859990",
+      "coordinatesWgs84": [
+        47.987643,
+        29.329022
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sabah al-Salem Stadium",
+      "osm": "way/47393892",
+      "coordinatesWgs84": [
+        47.999842,
+        29.357509
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Australian University",
+      "osm": "node/10211965934",
+      "coordinatesWgs84": [
+        48.052674,
+        29.276469
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "يوسف يعقوب المطوع وموضي يوسف المطوع",
+      "osm": "way/698737981",
+      "coordinatesWgs84": [
+        48.101745,
+        29.208583
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "الدعوة",
+      "osm": "way/360268449",
+      "coordinatesWgs84": [
+        47.99974,
+        29.227105
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "وزارة الصحة",
+      "osm": "node/4365886397",
+      "coordinatesWgs84": [
+        47.880963,
+        29.320345
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Al-Dabbus Shopping Mall",
+      "osm": "way/457096707",
+      "coordinatesWgs84": [
+        47.96658,
+        29.271953
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Shayeb Karak",
+      "osm": "node/10178336317",
+      "coordinatesWgs84": [
+        48.089642,
+        29.24906
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hardees",
+      "osm": "node/14177476101",
+      "coordinatesWgs84": [
+        48.010339,
+        29.295795
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sahah Al Nasser Mall Society",
+      "osm": "way/456447601",
+      "coordinatesWgs84": [
+        47.875651,
+        29.26965
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1231,
+      "sha256": "7d4b93d2049f6e88fdbabe28f5e10199c07a63ffe76bbc2b075d79997839a823"
+    },
+    "geometry.ts": {
+      "bytes": 465495,
+      "sha256": "da33c311ab5baf164c3cc009614b17e41312b21c03f1eb04aa5b424d0f71c243"
+    },
+    "places.ts": {
+      "bytes": 9555,
+      "sha256": "2fb3fae010a7e1c5e05f1a663477e66a841ef36af5c831d813a2423e64e96544"
+    },
+    "terrain.ts": {
+      "bytes": 260800,
+      "sha256": "942a9e97d18aced47d2e4f56b3ffb190e017b1f87ac3db4013040dd2639f64cb"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "3f7cf1446b3abb25362a6847d7a80b876bd0690469ba5c88ca8b2d0fcdae9c2f"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

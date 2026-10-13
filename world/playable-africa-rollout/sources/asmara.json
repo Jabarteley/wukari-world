@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "asmara",
+  "countryIso2": "ER",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Asmara",
+    "coordinatesWgs84": [
+      38.9326763,
+      15.3389667
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/eritrea-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "asmara-airport",
+    "name": "Asmara International Airport",
+    "lon": 38.910702,
+    "lat": 15.2919,
+    "sourceUrl": "https://ourairports.com/airports/HHAS/"
+  },
+  "boxes": {
+    "play": [
+      15.158085810066021,
+      38.746215290574156,
+      15.51984758993398,
+      39.11913730942584
+    ],
+    "core": [
+      15.293746477516505,
+      38.88609154705522,
+      15.384186922483496,
+      38.97926105294477
+    ],
+    "outline": [
+      15.10808581006602,
+      38.69621529057416,
+      15.56984758993398,
+      39.169137309425835
+    ],
+    "wide": [
+      14.558085810066022,
+      38.146215290574155,
+      16.11984758993398,
+      39.71913730942584
+    ],
+    "water": [
+      14.558085810066022,
+      38.146215290574155,
+      16.11984758993398,
+      39.71913730942584
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/eritrea-261011.osm.pbf",
+    "datasetSha256": "640e6c28aac30ad1b313ef36d402b7161cb095444b3f7b503d0f224ed5c9f902",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "cd9afdb9d08d7a91b5096abd5e619126a76103b15c16ece0aa3091c2d1c97031",
+        "elements": 171
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9983d72750f81f05c759fb40a03f0bad7077aeebdb65fdd0adf6677eb76e449c",
+        "elements": 61
+      },
+      {
+        "file": "water.json",
+        "sha256": "5a8e01aee4e051cc3ff3a631b1d15948cf35669a0aeb3c81bcbfbf0ba29035be",
+        "elements": 461
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "cd7e261388761f81055b0f0d7d95fc6eddadc056100914390af62ed844b5e004",
+        "elements": 275
+      },
+      {
+        "file": "roads.json",
+        "sha256": "46015a552ac72e8499c30436ff2b805eaf80593404a0668c14531b1898233be6",
+        "elements": 263
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Asmara",
+      "osm": "node/1092407340",
+      "coordinatesWgs84": [
+        38.949346,
+        15.338864
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Wide Hiyab Snack Bar",
+      "osm": "node/5152477752",
+      "coordinatesWgs84": [
+        39.089359,
+        15.445279
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Eritrea Institute of Technology",
+      "osm": "way/529703008",
+      "coordinatesWgs84": [
+        38.773851,
+        15.240672
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Mary's Psychiatric Hospital Sembel",
+      "osm": "way/319528084",
+      "coordinatesWgs84": [
+        38.899364,
+        15.301387
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ኮመሰራታ ሓማሴን",
+      "osm": "node/6261029019",
+      "coordinatesWgs84": [
+        38.938092,
+        15.334897
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Medeber Market",
+      "osm": "way/278140690",
+      "coordinatesWgs84": [
+        38.945354,
+        15.344181
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kidane Meheret Church",
+      "osm": "way/120666025",
+      "coordinatesWgs84": [
+        38.936816,
+        15.340953
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Asmara Muncipality",
+      "osm": "way/120789690",
+      "coordinatesWgs84": [
+        38.941298,
+        15.336062
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministry of Education",
+      "osm": "way/278141933",
+      "coordinatesWgs84": [
+        38.935855,
+        15.336014
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Asmara",
+      "osm": "way/145347060",
+      "coordinatesWgs84": [
+        38.92799,
+        15.343179
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cicero Stadium",
+      "osm": "way/355197149",
+      "coordinatesWgs84": [
+        38.921208,
+        15.349273
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dem Sebai",
+      "osm": "way/457538564",
+      "coordinatesWgs84": [
+        38.76776,
+        15.412423
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fiat Tagliero",
+      "osm": "way/278139357",
+      "coordinatesWgs84": [
+        38.925974,
+        15.328439
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nation Museum of Eritrea",
+      "osm": "way/278139845",
+      "coordinatesWgs84": [
+        38.927201,
+        15.33349
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Joseph's Cathedral",
+      "osm": "way/93787841",
+      "coordinatesWgs84": [
+        38.937907,
+        15.33674
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Restaurant with view over 2 valleys",
+      "osm": "node/6360893186",
+      "coordinatesWgs84": [
+        39.035432,
+        15.330371
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St Mariam",
+      "osm": "way/120789231",
+      "coordinatesWgs84": [
+        38.944426,
+        15.339853
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bar Durfo",
+      "osm": "node/1834089661",
+      "coordinatesWgs84": [
+        38.989238,
+        15.357634
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Godaif Community Hospital",
+      "osm": "way/783951928",
+      "coordinatesWgs84": [
+        38.92307,
+        15.306021
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Halibet Referral Hospital",
+      "osm": "way/790417508",
+      "coordinatesWgs84": [
+        38.939066,
+        15.313146
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Teachers' Institute",
+      "osm": "way/714628474",
+      "coordinatesWgs84": [
+        38.917621,
+        15.350747
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion",
+      "osm": "node/7075366286",
+      "coordinatesWgs84": [
+        39.085722,
+        15.444231
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Covered Market for fruits",
+      "osm": "way/120789247",
+      "coordinatesWgs84": [
+        38.939519,
+        15.339455
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Covered Market - fruits, vegetables, bags",
+      "osm": "way/120789704",
+      "coordinatesWgs84": [
+        38.941652,
+        15.340136
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1200,
+      "sha256": "21ce5754ffb9f6be48260857cb439c14a891bd25320f002d28d7a49a8605b09b"
+    },
+    "geometry.ts": {
+      "bytes": 55672,
+      "sha256": "0148841df61bfb1cb42da0629b6875b77b1f37807307ab5017d78197d4924d76"
+    },
+    "places.ts": {
+      "bytes": 9388,
+      "sha256": "f253fc444753b6149fc4918ab6330a20b50cbd476f8a77f2c34ba6fdaac55d71"
+    },
+    "terrain.ts": {
+      "bytes": 32172,
+      "sha256": "58d53acaec461890fed81e5959bee1bd3b10202975544df1c3101e15529c8d3a"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "b65cc149279e2d35a1c143cea861ac01ea071ca6ecdea78d10728302e9bddfd0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

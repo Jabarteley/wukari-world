@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "cityId": "manila",
+  "countryIso2": "PH",
+  "generationIdentity": {
+    "cityId": "manila",
+    "stateId": "ph-manila",
+    "stateName": "Manila"
+  },
+  "inventorySha256": "5f791359aa2c6c6c9fe0b60a2cb258b20057be0a2542924c186bcbd3259f567a",
+  "inventoryPath": "world/playable-africa-rollout/sources/manila.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "manila-airport",
+    "name": "Ninoy Aquino International Airport",
+    "lon": 121.019997,
+    "lat": 14.5086,
+    "sourceUrl": "https://ourairports.com/airports/RPLL/"
+  },
+  "bounds": [
+    14.409568310066021,
+    120.7945592842074,
+    14.77133008993398,
+    121.16616491579259
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+      "datasetSha256": "26c8148f78776ccf071e270d8a4bef623fe2d2763bec6601f6b03c38cc9eaa74",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/sea-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 3674081750,
+          "md5": "dd6f4ce32d6270ffd97e18fca760a24b",
+          "sha256": "5037f132a80dbd5493fb7af012b1203e1e678858ea395833ab8475da2110f93b"
+        },
+        {
+          "role": "city-extract",
+          "url": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 609760908,
+          "md5": "89aea1627157097ce61c3234dc63b001",
+          "sha256": "26c8148f78776ccf071e270d8a4bef623fe2d2763bec6601f6b03c38cc9eaa74",
+          "reason": "asia/sea (3.67 GB) is the only same-snapshot Geofabrik file holding way 1149528892 (Malaysia-Philippines closing line of relation/443174), so it is the admin-0 boundary source; Manila's metadata and layers come from philippines (610 MB) instead of a 4.3 GB merge",
+          "polyUrl": "https://download.geofabrik.de/asia/philippines.poly",
+          "polySha256": "616ec9c77bbfbdef08f091d3e67d4379bbc7d26e8d959294200f838d8a20f991",
+          "primaryPolyUrl": "https://download.geofabrik.de/asia/sea.poly",
+          "primaryPolySha256": "46790d4b133a6efb62334c54339f2196d45f4d97460a5e93b1c79cdcef7867fc"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "a5e49322b9668a47f3316b0ed37704d46cff7be729ecf15fbf20d1673729b044",
+          "elements": 13348
+        },
+        {
+          "file": "extras.json",
+          "sha256": "fa969f58d815dc801c4c5bad0c185ebbc3e37f256e579d03308c5efddf8eda50",
+          "elements": 2409
+        },
+        {
+          "file": "water.json",
+          "sha256": "2e26383540d126a6e050016f349f2518137d9f977ce5955d78d9ea62011aa153",
+          "elements": 2021
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "805a8d6c4a4be80131dff928b76803a717c9fc77ebf25a1c6b63a8eea92cd913",
+          "elements": 14681
+        },
+        {
+          "file": "roads.json",
+          "sha256": "20bf6dd03785eaa0ce251325104233ed0cdff6a20c21a14dcf6d0f824593e113",
+          "elements": 7641
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 15,
+    "waterPolygons": 93,
+    "reachWaterPolygons": 93
+  },
+  "observed": {
+    "places": 13348,
+    "extras": 2409,
+    "water": 2021,
+    "landuse": 14681,
+    "roads": 7641
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1214,
+      "sha256": "5c71ce07068259b05db38a4edd4c40939e41370eddfc603cb4bae9e41c12b348"
+    },
+    "geometry.ts": {
+      "bytes": 156481,
+      "sha256": "13e9ccc5ee76221a6b1b9856ab08cda0fb7f10445ff23970ffaaa8b91accbd5a"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "25046e1752c74cac21dfd514119af8967abb7eb4f564e1b766fbf3480cfcb9a2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/manila.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

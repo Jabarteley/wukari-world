@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "delhi",
+  "countryIso2": "IN",
+  "generationIdentity": {
+    "cityId": "delhi",
+    "stateId": "in-delhi",
+    "stateName": "Delhi"
+  },
+  "inventorySha256": "f790376479abe60d6d9a322158e0b14e9963a53bbf71be2e4d963ed749cb55c2",
+  "inventoryPath": "world/playable-africa-rollout/sources/delhi.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "delhi-airport",
+    "name": "Indira Gandhi International Airport",
+    "lon": 77.09519,
+    "lat": 28.55563,
+    "sourceUrl": "https://ourairports.com/airports/VIDP/"
+  },
+  "bounds": [
+    28.485572610066022,
+    77.01186277269433,
+    28.847334389933977,
+    77.42209342730568
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/india-261011.osm.pbf",
+      "datasetSha256": "049caddee45b07e0398e1f065079f53df1f605412a91063e2aec12cbc88fcf88",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/india-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 1710064705,
+          "md5": "95615ee3bb02b3748905024da46137b7",
+          "sha256": "796ba81472207c34bdebf67e632cc1484fb67fe91235998e0f99ff3d95316aba"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/myanmar-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 285338385,
+          "md5": "194b10c143529e40a9ea7d6b469161ee",
+          "sha256": "9ff926b35db2209c43b162dabcc50fb6d133341ed2f34a629e6cc31e598dbfa9",
+          "reason": "admin-0 relation/304716 (India, v1422) member way 727377954 (Myanmar - India border, 11 nodes, 95.41E 26.69N) is absent from the India clip; all 11 nodes lie inside the Myanmar clip; with both clips all 1,534 way members are present"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "3076ee0f78eb1050aaab323517453a81ea721502cb38bd879bd9bbc5dc9d791a",
+          "elements": 4381
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f263df0ee57e715095948bf9a9f4e9fd407a661ca337c7c935991908286b4903",
+          "elements": 1995
+        },
+        {
+          "file": "water.json",
+          "sha256": "3d756da2c6a73cbff10ca36cbbf334125e668132a1e91fb815d8a3212eaa6af4",
+          "elements": 218
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "8fc38c100d3e3d4ca36bbd0b0e4818421d2389de5e48aeb3e284e34054f0a657",
+          "elements": 4674
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a7fac452e4f4122001843dd402eff084cf0b4ead8d10bbd302c9b2516ea4ace0",
+          "elements": 3412
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 28,
+    "waterPolygons": 25,
+    "reachWaterPolygons": 18
+  },
+  "observed": {
+    "places": 4381,
+    "extras": 1995,
+    "water": 218,
+    "landuse": 4674,
+    "roads": 3412
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1199,
+      "sha256": "02f1b9d2ab6f09273c76ff600a47ded92b466a7248503b1f2f7f65643d64c745"
+    },
+    "geometry.ts": {
+      "bytes": 159048,
+      "sha256": "926d0820a79b0e726f928f98242b61fdedfa92b58e7dbbec7e3f239905072685"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "a2d8f6ad3244d39b215dd0be24962019224bd1d1c6fc00294cae5579b2151dfb"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/delhi.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

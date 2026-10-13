@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kingstown",
+  "countryIso2": "VC",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Kingstown",
+    "coordinatesWgs84": [
+      -61.2279621,
+      13.1561864
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "kingstown-airport",
+    "name": "Argyle International Airport",
+    "lon": -61.148801,
+    "lat": 13.159725,
+    "sourceUrl": "https://ourairports.com/airports/TVSA/"
+  },
+  "boxes": {
+    "play": [
+      12.97530551006602,
+      -61.41260416105407,
+      13.337067289933978,
+      -61.04332003894593
+    ],
+    "core": [
+      13.110966177516504,
+      -61.27409684805649,
+      13.201406622483495,
+      -61.18182735194351
+    ],
+    "outline": [
+      12.92530551006602,
+      -61.46260416105407,
+      13.387067289933979,
+      -60.99332003894593
+    ],
+    "wide": [
+      12.37530551006602,
+      -62.01260416105407,
+      13.937067289933978,
+      -60.44332003894593
+    ],
+    "water": [
+      12.37530551006602,
+      -62.01260416105407,
+      13.937067289933978,
+      -60.44332003894593
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5707c265e87710e8f0a4e8ea44591fcc420f4111849b8ecd59ea226e2e1547bf",
+        "elements": 188
+      },
+      {
+        "file": "extras.json",
+        "sha256": "cd8c01b5bab4b0c1774ab43a89177443df62e60ffc87d680e623992b98e9f29d",
+        "elements": 54
+      },
+      {
+        "file": "water.json",
+        "sha256": "d32b55dfde21b1ef1a97ee5c4dd8a559b3746e018061d35a95e68cf0a161faf5",
+        "elements": 242
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "695ff0a19f2f36ca2471f2657cba31ed6165ad6b2575bf2f53032012f6b6e6ac",
+        "elements": 124
+      },
+      {
+        "file": "roads.json",
+        "sha256": "324f6067f78bb16422b81cb7efb57ca17759aa1be52b929a97538200ea56024c",
+        "elements": 116
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Kingstown",
+      "osm": "node/1150190965",
+      "coordinatesWgs84": [
+        -61.223766,
+        13.149127
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cumberland Beach & Recreation Park",
+      "osm": "node/1229595118",
+      "coordinatesWgs84": [
+        -61.259596,
+        13.266126
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Layou Learning Resource Center",
+      "osm": "way/396950917",
+      "coordinatesWgs84": [
+        -61.270394,
+        13.201262
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Georgetown Health Centre",
+      "osm": "way/388297417",
+      "coordinatesWgs84": [
+        -61.121635,
+        13.281486
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rawacou",
+      "osm": "way/384984933",
+      "coordinatesWgs84": [
+        -61.148523,
+        13.149344
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bayshore Mall",
+      "osm": "way/509093673",
+      "coordinatesWgs84": [
+        -61.235695,
+        13.011176
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Assumption Cathedral",
+      "osm": "way/386076226",
+      "coordinatesWgs84": [
+        -61.229038,
+        13.157609
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kingstown Magistrate Court",
+      "osm": "node/5480716454",
+      "coordinatesWgs84": [
+        -61.225837,
+        13.157905
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Customs and Immigration",
+      "osm": "node/13625739901",
+      "coordinatesWgs84": [
+        -61.240998,
+        13.290796
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "American University of St Vincent School of Medicine",
+      "osm": "way/386078993",
+      "coordinatesWgs84": [
+        -61.228914,
+        13.165326
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mount Peggy",
+      "osm": "node/10601836368",
+      "coordinatesWgs84": [
+        -61.251916,
+        12.991774
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Moonhole",
+      "osm": "node/1228341374",
+      "coordinatesWgs84": [
+        -61.27516,
+        12.99167
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fort Charlotte",
+      "osm": "way/850584945",
+      "coordinatesWgs84": [
+        -61.242266,
+        13.157974
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St George's Cathedral",
+      "osm": "way/384773635",
+      "coordinatesWgs84": [
+        -61.228284,
+        13.157387
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vermont Nature trail",
+      "osm": "way/385029457",
+      "coordinatesWgs84": [
+        -61.216094,
+        13.214223
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bamboo Range La Soufriere",
+      "osm": "node/5484802021",
+      "coordinatesWgs84": [
+        -61.152528,
+        13.316474
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cafe Sole’",
+      "osm": "node/4451006141",
+      "coordinatesWgs84": [
+        -61.190522,
+        13.127676
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rock-Side Cafe",
+      "osm": "node/10723229405",
+      "coordinatesWgs84": [
+        -61.274177,
+        13.245015
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Black Point Tunnel",
+      "osm": "way/385029456",
+      "coordinatesWgs84": [
+        -61.115987,
+        13.262016
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Spring View Park",
+      "osm": "node/4694400714",
+      "coordinatesWgs84": [
+        -61.228026,
+        13.029689
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Arnos Vale Medical Center",
+      "osm": "way/386242566",
+      "coordinatesWgs84": [
+        -61.208103,
+        13.140882
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Volcano Oservatory",
+      "osm": "node/11690643469",
+      "coordinatesWgs84": [
+        -61.250306,
+        13.274665
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Argyle Isolation Center",
+      "osm": "node/11400861069",
+      "coordinatesWgs84": [
+        -61.145511,
+        13.159279
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Georgetown Mall",
+      "osm": "way/573635160",
+      "coordinatesWgs84": [
+        -61.116866,
+        13.285218
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1235,
+      "sha256": "78564432540993d5c149f3ecfce2adb4e77f728ed5882b0b73a4cf36e315d80b"
+    },
+    "geometry.ts": {
+      "bytes": 70693,
+      "sha256": "c477c52ae6bc1c34926a58d5bba4fe7684d9d0229bd19d22d6e32618619d674c"
+    },
+    "places.ts": {
+      "bytes": 9332,
+      "sha256": "7287d9269af9bf73a45e19297ed79700a5c3ea2c8991d1cd14608b37706e1dab"
+    },
+    "terrain.ts": {
+      "bytes": 173180,
+      "sha256": "c2cde4b4ed3aa1606d96e7498e3175cfb6fd46057eaf620b6ae6f87a9d19b0aa"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "4281945f958bba7f8042e1f6b621aa636f326105ee60a0fba37fc0aefe3a0fd6"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

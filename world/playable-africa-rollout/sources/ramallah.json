@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ramallah",
+  "countryIso2": "PS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Ramallah",
+    "coordinatesWgs84": [
+      35.1952255,
+      31.9030543
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "ramallah-airport",
+    "name": "Ramallah Heliport",
+    "lon": 35.20756,
+    "lat": 31.91123,
+    "sourceUrl": "https://ourairports.com/airports/ZDM/"
+  },
+  "boxes": {
+    "play": [
+      31.722173410066024,
+      34.983177336342926,
+      32.08393518993398,
+      35.40727366365707
+    ],
+    "core": [
+      31.857834077516507,
+      35.142291882457826,
+      31.948274522483494,
+      35.24815911754217
+    ],
+    "outline": [
+      31.672173410066023,
+      34.93317733634293,
+      32.13393518993398,
+      35.45727366365707
+    ],
+    "wide": [
+      31.122173410066022,
+      34.383177336342925,
+      32.68393518993398,
+      36.007273663657074
+    ],
+    "water": [
+      31.122173410066022,
+      34.383177336342925,
+      32.68393518993398,
+      36.007273663657074
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf",
+    "datasetSha256": "dfabb9741932fd776d7c29b32693c9a8adf8530b2c73690948a38b992ba330f0",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6d66b3c78a9d8053cdfb647899d968b350040568df373a65920c2c6a9cf861cf",
+        "elements": 2267
+      },
+      {
+        "file": "extras.json",
+        "sha256": "2db7820d8ac7b8b751ebd456562d609231f711b0bc330fd561ed2ed3d55a5622",
+        "elements": 611
+      },
+      {
+        "file": "water.json",
+        "sha256": "a4092713b2398ad08e53b5de04e8568ba02a5e083fbd28df335654d00629b437",
+        "elements": 961
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "311af1164e1243d50068c574400203d48166118ba0537ae2efee1a4e484c3df1",
+        "elements": 2122
+      },
+      {
+        "file": "roads.json",
+        "sha256": "d38a3dd1d57b07ee4e52f3645b2b494386007505b022747d964b67a84091432f",
+        "elements": 1728
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Ramallah Bus And Taxi Center Station",
+      "osm": "node/432275909",
+      "coordinatesWgs84": [
+        35.205619,
+        31.904871
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Yafa Cafe",
+      "osm": "node/432261211",
+      "coordinatesWgs84": [
+        35.25927,
+        31.761692
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Birzeit University",
+      "osm": "way/193255177",
+      "coordinatesWgs84": [
+        35.182041,
+        31.959978
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "مستشفى الشهيد ياسر عرفات الحكومي",
+      "osm": "way/684825570",
+      "coordinatesWgs84": [
+        35.173652,
+        32.073837
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mahmoud Darwish Museum (Al-Birweh Park)",
+      "osm": "way/231308770",
+      "coordinatesWgs84": [
+        35.191351,
+        31.890725
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "abu khalid market",
+      "osm": "node/9038402171",
+      "coordinatesWgs84": [
+        35.124302,
+        32.017265
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Basilique de la Manifestation du Seigneur",
+      "osm": "way/1177037502",
+      "coordinatesWgs84": [
+        35.13526,
+        31.840354
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al Manara Square",
+      "osm": "way/1005833414",
+      "coordinatesWgs84": [
+        35.204425,
+        31.904944
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palestinian Pension Authority",
+      "osm": "node/4294364595",
+      "coordinatesWgs84": [
+        35.207023,
+        31.92134
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Al Quds Open University",
+      "osm": "node/432281542",
+      "coordinatesWgs84": [
+        35.199767,
+        31.913366
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Faisal Al-Husseini International Stadium",
+      "osm": "way/41819706",
+      "coordinatesWgs84": [
+        35.230225,
+        31.847573
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Khirbet Tel Ai",
+      "osm": "node/4753096643",
+      "coordinatesWgs84": [
+        35.261228,
+        31.916419
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tel A-Nasbe",
+      "osm": "node/2675850287",
+      "coordinatesWgs84": [
+        35.216472,
+        31.88578
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lazarus Tomb",
+      "osm": "node/432267397",
+      "coordinatesWgs84": [
+        35.25568,
+        31.771538
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Yasser Arafat",
+      "osm": "way/701954745",
+      "coordinatesWgs84": [
+        35.208863,
+        31.91125
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Istishari Arab Hospital",
+      "osm": "way/253373054",
+      "coordinatesWgs84": [
+        35.163039,
+        31.93392
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "latin church",
+      "osm": "way/257319379",
+      "coordinatesWgs84": [
+        35.199164,
+        31.970594
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Quds University",
+      "osm": "way/345024242",
+      "coordinatesWgs84": [
+        35.261014,
+        31.755111
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "مجمع فلسطين الطبي",
+      "osm": "node/5133731942",
+      "coordinatesWgs84": [
+        35.206037,
+        31.898752
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Abo Maysar",
+      "osm": "node/432262059",
+      "coordinatesWgs84": [
+        35.01956,
+        31.945439
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Turmus Ayaa Sweet",
+      "osm": "node/432274045",
+      "coordinatesWgs84": [
+        35.287026,
+        32.035759
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Selwad Park",
+      "osm": "node/432260801",
+      "coordinatesWgs84": [
+        35.262372,
+        31.980229
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Aboud Gardens",
+      "osm": "way/419484958",
+      "coordinatesWgs84": [
+        35.065054,
+        32.017528
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadium",
+      "osm": "node/432286032",
+      "coordinatesWgs84": [
+        35.097575,
+        31.966559
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "a242ae83b650a29d518d957fdbe2cf9c14548a55f643ec36abcdd661dcaf2922"
+    },
+    "geometry.ts": {
+      "bytes": 79833,
+      "sha256": "4c4332e2f80d18b5305b5e59735fba6adc0c62da4f89e5b25843785169ecbb57"
+    },
+    "places.ts": {
+      "bytes": 9730,
+      "sha256": "171613e4c64c92dc6fe9656a53b4409b73f36e960748a8867b9a9f68af0e7ddd"
+    },
+    "terrain.ts": {
+      "bytes": 37136,
+      "sha256": "84234ff2b89ae7d2773dab916a0d1131676bf8c0129e93885633d985a099b573"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "6ebe4a7b71bd37860c7559e510450d12c104381e5ebd816a683bc393827f8bb4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

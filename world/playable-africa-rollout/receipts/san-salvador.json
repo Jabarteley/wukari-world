@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "san-salvador",
+  "countryIso2": "SV",
+  "generationIdentity": {
+    "cityId": "san-salvador",
+    "stateId": "sv-san-salvador",
+    "stateName": "San Salvador"
+  },
+  "inventorySha256": "08fcd8186f45cff9e8a779712d7b6308c2be48ba667fc94e9fda3b69aa38742d",
+  "inventoryPath": "world/playable-africa-rollout/sources/san-salvador.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "san-salvador-airport",
+    "name": "El Salvador International Airport Saint Óscar Arnulfo Romero y Galdámez",
+    "lon": -89.055784,
+    "lat": 13.44447,
+    "sourceUrl": "https://ourairports.com/airports/MSLP/"
+  },
+  "bounds": [
+    13.435425955503302,
+    -89.37622092484835,
+    13.878509889933978,
+    -89.00609107515166
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/el-salvador-261011.osm.pbf",
+      "datasetSha256": "c8a79cfda11b165737780e2071792ae7c602fabbda2d16cc558da95d9fcf9e8e",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "18d2566e7e1e0f5ffc1a1865ca2acfaf00ac57938e3aa071bd096450d5948b20",
+          "elements": 3005
+        },
+        {
+          "file": "extras.json",
+          "sha256": "14803c9dd5f85eac12074ee1b5f583165a81f918b163760cb464f957b3434a80",
+          "elements": 658
+        },
+        {
+          "file": "water.json",
+          "sha256": "8632818d95ef8fad007e42081ef8ca898db2eba91c5b394b250df69f6608c54e",
+          "elements": 612
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "2278e30a81515970ea21d5d9f0840bf725b1d6b15b5e4c781d6fff06dbec452e",
+          "elements": 1342
+        },
+        {
+          "file": "roads.json",
+          "sha256": "fb1f69886a3854babbeb3b67e479426cec530365040b31a0b463d08701acb7cd",
+          "elements": 1814
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 545,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 10,
+    "waterPolygons": 27,
+    "reachWaterPolygons": 46
+  },
+  "observed": {
+    "places": 3005,
+    "extras": 658,
+    "water": 612,
+    "landuse": 1342,
+    "roads": 1814
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1327,
+      "sha256": "0c52261166da463290647eb1926fb839fec17330d991b2b94a9fad538eabd962"
+    },
+    "geometry.ts": {
+      "bytes": 58716,
+      "sha256": "c3e3be712cce3ac9fc2d6f5ef6c5cece321d56b5c84d2c899ce29d4022f186db"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "ba1a8c84d64e9c43ab474438890c9e16c325273478600c250f7c7d00fadbb8a8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/san-salvador.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

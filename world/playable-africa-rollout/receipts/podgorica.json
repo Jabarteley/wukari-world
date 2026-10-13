@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "podgorica",
+  "countryIso2": "ME",
+  "generationIdentity": {
+    "cityId": "podgorica",
+    "stateId": "me-podgorica",
+    "stateName": "Podgorica"
+  },
+  "inventorySha256": "286651ece48a3464f12918bd392bffcebd6b4bbe14172afce8c106f77a2070cf",
+  "inventoryPath": "world/playable-africa-rollout/sources/podgorica.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "podgorica-airport",
+    "name": "Podgorica Airport / Podgorica Golubovci Airbase",
+    "lon": 19.2519,
+    "lat": 42.359402,
+    "sourceUrl": "https://ourairports.com/airports/LYPG/"
+  },
+  "bounds": [
+    42.26064291006602,
+    19.017946185363805,
+    42.62240468993398,
+    19.506270014636193
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/montenegro-261011.osm.pbf",
+      "datasetSha256": "d04b17e63f01bde90ab90300dcabc5368cfbbf1be7ca374fdd7f5093f4881693",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/europe/montenegro-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 34534458,
+          "md5": "676da304b9d8a357b1e559dd1de15b5e",
+          "sha256": "43d280ed43d751f33088ea4681ba47a6ad5c91f3118b7a96a282478d38475ea2"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/europe/croatia-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 200686156,
+          "md5": "d98e7e7c547e3e214fad6bcae2eb9967",
+          "sha256": "f14bd6221f95867aaf8b45edadfc30d88f56ff4140520f4f5eb2cc6b9a1c1a7e",
+          "reason": "The Montenegrin coast way/669064261 starts near the Croatian border (Konavle) and continues as the Croatian coast way/215108613 (node 2245250921), absent from the Montenegro clip, so the coast cannot close; the Croatia extract supplies it"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "35568940b506e375b35a7b0a154e5200be2c49e12ba1b8cba484d43573ace265",
+          "elements": 625
+        },
+        {
+          "file": "extras.json",
+          "sha256": "5b7488bb9b0a7251e12e5f150e5604566099a40d5b970f9728c31936b42e743f",
+          "elements": 85
+        },
+        {
+          "file": "water.json",
+          "sha256": "6e1695120a839b31a58f53d06e91ab779a6f023a3a367ea1922ab12be8d53b87",
+          "elements": 1125
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ccdfd9c51ecb59b4e0b5f44b29054d31dc4ef4c2a282309b4ab43f66c9296d2a",
+          "elements": 1044
+        },
+        {
+          "file": "roads.json",
+          "sha256": "942e058aaecaf17b81da4f0be4d08dd3d7f5241ffed74045d31d330bb13f13ac",
+          "elements": 2087
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 52,
+    "neighbourhoodLabels": 17,
+    "landPolygons": 11,
+    "waterPolygons": 20,
+    "reachWaterPolygons": 40
+  },
+  "observed": {
+    "places": 625,
+    "extras": 85,
+    "water": 1125,
+    "landuse": 1044,
+    "roads": 2087
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1244,
+      "sha256": "ca4cf66a65d036e7ed2bc4a7b825afbb723651aefa18d96832469bad225504bf"
+    },
+    "geometry.ts": {
+      "bytes": 261572,
+      "sha256": "9fedc54113eca91f8f4a48da1b6438881c7272b783c7e49fd108203c781cef99"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "9ae67f342f747115be858484d0163a6f9ba1eabf5fb29b11424a55c59a2af0bc"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/podgorica.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

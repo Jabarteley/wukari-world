@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "cityId": "juba",
+  "countryIso2": "SS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Juba",
+    "coordinatesWgs84": [
+      31.5959173,
+      4.8459246
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/south-sudan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "juba-airport",
+    "name": "Juba International Airport",
+    "lon": 31.601101,
+    "lat": 4.87201,
+    "sourceUrl": "https://ourairports.com/airports/HJJJ/"
+  },
+  "boxes": {
+    "play": [
+      4.665043710066022,
+      31.415561382556415,
+      5.026805489933978,
+      31.776273217443585
+    ],
+    "core": [
+      4.800704377516506,
+      31.550837582813326,
+      4.891144822483494,
+      31.640997017186674
+    ],
+    "outline": [
+      4.615043710066022,
+      31.365561382556415,
+      5.076805489933978,
+      31.826273217443585
+    ],
+    "wide": [
+      4.065043710066022,
+      30.815561382556414,
+      5.626805489933978,
+      32.37627321744358
+    ],
+    "water": [
+      4.665043710066022,
+      31.415561382556415,
+      5.026805489933978,
+      31.776273217443585
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/south-sudan-261011.osm.pbf",
+    "datasetSha256": "b0d3bc0a280f77313d0d5cedc03ea990dbb57d1e701ad85a1b67d816332e45c8",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/africa/south-sudan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 138967350,
+        "md5": "5d0ecb2580e19d097a408b5a4845af74",
+        "sha256": "d2f6ca11d4a4959ca6d97704f898e7b947d317fd616f32043f3eceb280b65756"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/africa/ethiopia-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 139964339,
+        "md5": "775bc09e447fa511b4115ce20fcae6ce",
+        "sha256": "cea44aff375902dd97c6d67eb28db505bac9ac901ddde2a2e64183a2d7f40806",
+        "reason": "admin-0 relation/1656678 member way/144197399 (South Sudan - Ethiopia border, 42 nodes) is absent from the South Sudan clip; all its nodes lie inside the Ethiopia clip"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "630e9a7fc192f655c03bc8c4a87e158a0b1cb140944148baf834afa9755a30c9",
+        "elements": 255
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d9705de6a0191e05ec3a4d2eaaefdd224b5f3a6393ca4c0828ce342c8c1fe907",
+        "elements": 41
+      },
+      {
+        "file": "water.json",
+        "sha256": "2841f04d628c54a38f0e491ce94a9fa89906f02c2a943fcdff01c719235473c6",
+        "elements": 35
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "9d2256440609f76195e6250bd29dec36ccf982bea24309da3a6be22a00d88c12",
+        "elements": 524
+      },
+      {
+        "file": "roads.json",
+        "sha256": "8aa75b09ad0cbdcc19918e9ccee8024667e271973a71307a4e1528ede21e042b",
+        "elements": 231
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Customs Bus Depot",
+      "osm": "node/3836194057",
+      "coordinatesWgs84": [
+        31.578378,
+        4.847499
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sunrise Restaurant",
+      "osm": "node/2086918124",
+      "coordinatesWgs84": [
+        31.638275,
+        4.797283
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Juba",
+      "osm": "way/206932868",
+      "coordinatesWgs84": [
+        31.590847,
+        4.841088
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kwerjik Luri PHCU",
+      "osm": "node/8003574774",
+      "coordinatesWgs84": [
+        31.587222,
+        4.932778
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "#Nr143",
+      "osm": "way/312829137",
+      "coordinatesWgs84": [
+        31.560408,
+        4.809301
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gudele Market",
+      "osm": "way/1012825296",
+      "coordinatesWgs84": [
+        31.534506,
+        4.866787
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Theresa Cathedral",
+      "osm": "way/192610317",
+      "coordinatesWgs84": [
+        31.600321,
+        4.827336
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Juba City Council - Mayor's Office",
+      "osm": "relation/13562765",
+      "coordinatesWgs84": [
+        31.60808,
+        4.836782
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "PABX",
+      "osm": "node/6977650248",
+      "coordinatesWgs84": [
+        31.59562,
+        4.87005
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St Mary's College",
+      "osm": "node/3713157073",
+      "coordinatesWgs84": [
+        31.606243,
+        4.846156
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Juba Stadium",
+      "osm": "relation/2893806",
+      "coordinatesWgs84": [
+        31.615837,
+        4.843071
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Back side gate",
+      "osm": "node/7290956786",
+      "coordinatesWgs84": [
+        31.614913,
+        4.701981
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mobil -Bori",
+      "osm": "node/5765453653",
+      "coordinatesWgs84": [
+        31.634723,
+        4.974666
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Good Shepherd",
+      "osm": "node/7290956785",
+      "coordinatesWgs84": [
+        31.609803,
+        4.750058
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nyakuron PHCC",
+      "osm": "node/8003564619",
+      "coordinatesWgs84": [
+        31.564648,
+        4.891069
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "DMI Nursery",
+      "osm": "way/786546062",
+      "coordinatesWgs84": [
+        31.528521,
+        4.810156
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rajaf training centre.",
+      "osm": "node/7250053086",
+      "coordinatesWgs84": [
+        31.595027,
+        4.726425
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rock City Restaurant",
+      "osm": "node/3830429174",
+      "coordinatesWgs84": [
+        31.55507,
+        4.851486
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Munuki Mosque",
+      "osm": "way/822146512",
+      "coordinatesWgs84": [
+        31.576267,
+        4.868322
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Curry & Hurry",
+      "osm": "node/3453472489",
+      "coordinatesWgs84": [
+        31.559435,
+        4.833719
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "BOFA",
+      "osm": "node/11847004207",
+      "coordinatesWgs84": [
+        31.55467,
+        4.877356
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gabat Market",
+      "osm": "way/320299511",
+      "coordinatesWgs84": [
+        31.614243,
+        4.860087
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nya ying",
+      "osm": "node/5719627126",
+      "coordinatesWgs84": [
+        31.602156,
+        4.881886
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Upper Nile University",
+      "osm": "node/14022544197",
+      "coordinatesWgs84": [
+        31.564787,
+        4.863318
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1201,
+      "sha256": "db15eadb2d74816d602e46e92c635ae1bb02c08612e49fb7e0bed1d253bef8ad"
+    },
+    "geometry.ts": {
+      "bytes": 47020,
+      "sha256": "cc71ff64e2c87190ad24bacfbf7fc2d92e92ee003e11b3e6f2cece00c991ef09"
+    },
+    "places.ts": {
+      "bytes": 9007,
+      "sha256": "dea54202a07325ec7699efe6e9ddfec2e9115ea66be5da081f2e4aa6a4323c88"
+    },
+    "terrain.ts": {
+      "bytes": 157730,
+      "sha256": "bd61928de4d4234731dbc1120cb2f6cbc96c08dd7a4538f4fb37bcf87256e2ed"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "cd8ffc1b636a5a85f3afcc2843ef969dc0c08e762298fb752abc9f5ca7c389c0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

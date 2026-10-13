@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "serekunda",
+  "countryIso2": "GM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Serrekunda",
+    "coordinatesWgs84": [
+      -16.674807,
+      13.438762
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/senegal-and-gambia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "serekunda-airport",
+    "name": "Banjul International Airport",
+    "lon": -16.652201,
+    "lat": 13.338,
+    "sourceUrl": "https://ourairports.com/airports/GBYD/"
+  },
+  "boxes": {
+    "play": [
+      13.257881110066021,
+      -16.85966745004166,
+      13.61964288993398,
+      -16.489946549958344
+    ],
+    "core": [
+      13.393541777516505,
+      -16.72099574479911,
+      13.483982222483496,
+      -16.62861825520089
+    ],
+    "outline": [
+      13.20788111006602,
+      -16.90966745004166,
+      13.66964288993398,
+      -16.439946549958343
+    ],
+    "wide": [
+      12.657881110066022,
+      -17.45966745004166,
+      14.21964288993398,
+      -15.889946549958344
+    ],
+    "water": [
+      12.657881110066022,
+      -17.45966745004166,
+      14.21964288993398,
+      -15.889946549958344
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/senegal-and-gambia-261011.osm.pbf",
+    "datasetSha256": "6d2b1dd1b614efc49736188f595cd03c1c0820972b5b45c538d2a13e461508ef",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "1e885c2619ba84caf7a8575e71fe1e735773fc1b1b7f6f5827231a8272b1b4be",
+        "elements": 333
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8b0d7f2f4ec4edfca6a5a780cf7763ca2c0560b1108a263706d49269907944aa",
+        "elements": 61
+      },
+      {
+        "file": "water.json",
+        "sha256": "2d222e2f5136f98d943714eaffcd662f57f556ba9dd43aa44565ed2819e0dde2",
+        "elements": 783
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "949e0f861a38a7482290288f5f0a047f427e5edb3f25b8be8ea7c4a15c0e55af",
+        "elements": 379
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c9232e2a64a4d511c29f33bd3e91aae0903f14e2e1d7e89c823b2cb7c31ed32e",
+        "elements": 152
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Garage Brufut",
+      "osm": "node/1170998865",
+      "coordinatesWgs84": [
+        -16.692122,
+        13.435375
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tao",
+      "osm": "node/619473209",
+      "coordinatesWgs84": [
+        -16.721962,
+        13.440849
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bibliothèque nationale de Gambie",
+      "osm": "way/255713471",
+      "coordinatesWgs84": [
+        -16.584978,
+        13.459588
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Edward Francis Small Teaching Hospital",
+      "osm": "way/249740590",
+      "coordinatesWgs84": [
+        -16.577227,
+        13.457523
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Methodist Mission",
+      "osm": "way/113756823",
+      "coordinatesWgs84": [
+        -16.654017,
+        13.272657
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché Albert",
+      "osm": "way/255666858",
+      "coordinatesWgs84": [
+        -16.571786,
+        13.454114
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pipeline Mosque",
+      "osm": "way/370185031",
+      "coordinatesWgs84": [
+        -16.685138,
+        13.457628
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Banjul City Council",
+      "osm": "way/255612628",
+      "coordinatesWgs84": [
+        -16.578612,
+        13.45791
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Assemblée nationale de Gambie",
+      "osm": "way/378674902",
+      "coordinatesWgs84": [
+        -16.585598,
+        13.460987
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American International University",
+      "osm": "way/374017688",
+      "coordinatesWgs84": [
+        -16.673392,
+        13.463134
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Independence Stadium",
+      "osm": "way/816348601",
+      "coordinatesWgs84": [
+        -16.678187,
+        13.468746
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Abuko Nature Reserve",
+      "osm": "way/110043106",
+      "coordinatesWgs84": [
+        -16.652145,
+        13.389906
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Bullen",
+      "osm": "way/263258266",
+      "coordinatesWgs84": [
+        -16.548669,
+        13.48749
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bijilo Forest Park",
+      "osm": "way/166695422",
+      "coordinatesWgs84": [
+        -16.728552,
+        13.431525
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Serrekunda West",
+      "osm": "way/249687879",
+      "coordinatesWgs84": [
+        -16.678113,
+        13.447056
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MRC Unit The Gambia at LSHTM",
+      "osm": "way/370186566",
+      "coordinatesWgs84": [
+        -16.688453,
+        13.473726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King George V Stadium",
+      "osm": "way/255647292",
+      "coordinatesWgs84": [
+        -16.575762,
+        13.446052
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathedral of Our Lady of the Assumption",
+      "osm": "way/255649417",
+      "coordinatesWgs84": [
+        -16.574411,
+        13.451063
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Sainte-Marie",
+      "osm": "way/255647179",
+      "coordinatesWgs84": [
+        -16.575148,
+        13.454713
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Campbeach Bar & Restaurant",
+      "osm": "node/6300945109",
+      "coordinatesWgs84": [
+        -16.804846,
+        13.325505
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Youna Clinic",
+      "osm": "node/12025767906",
+      "coordinatesWgs84": [
+        -16.729167,
+        13.348879
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fabulous Restaurant",
+      "osm": "node/9080250964",
+      "coordinatesWgs84": [
+        -16.7631,
+        13.268435
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mama Mini Market",
+      "osm": "node/9158275429",
+      "coordinatesWgs84": [
+        -16.588012,
+        13.280835
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "International Trypanotolerance Centre (ITC)",
+      "osm": "way/255895814",
+      "coordinatesWgs84": [
+        -16.724574,
+        13.434131
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1239,
+      "sha256": "ddbef50bba613d8476c1b3265cebf77f4aad5373b38460e824223825dd11b2f8"
+    },
+    "geometry.ts": {
+      "bytes": 1556379,
+      "sha256": "f783b24cd76e3d4688ce7f2151b3d5acb6e1bc3e7d816fa497127e771969d781"
+    },
+    "places.ts": {
+      "bytes": 9790,
+      "sha256": "ade4df7388c024aefff5f7dd1e34ccc179fcae6d5da2f5fa516923d0a1111349"
+    },
+    "terrain.ts": {
+      "bytes": 1313650,
+      "sha256": "d9a0b54c7c6a3c31f99962dd636b1ce2e58fd93933ad9853c5713cf40931e6e8"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "28ae1b34023c2cecae355e0a58de1d92e3cf0040f356713a750ada20e4b57083"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

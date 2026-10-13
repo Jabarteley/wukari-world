@@ -74,12 +74,19 @@ export function planHomewardRoute(
 ): HomewardQuote | null {
   if (!from || !to || from === to || !isOpen(from) || !isOpen(to)) return null
 
+  // The search keeps, per leg count and city, the best state under a strict total order (fare, seconds, key), and the best
+  // quote under the same order, so the answer does not depend on the order links or states are visited in. That is what
+  // allows the two savings below (with ~160 open cities the search is run for every pair, and used to allocate a path and a
+  // visited set for each of about 4 x N x N candidates):
+  //  - a state is expanded only if some completion of it can still beat the best quote: every leg adds a positive fare, so
+  //    a state whose fare already reaches the best quote's fare can only lose;
+  //  - a candidate's path and visited set are built only when it is going to be kept (its fare or time beats the stored
+  //    state, or ties and then the key decides).
   const outgoing = new Map<string, readonly CityLinkFrom[]>()
   const getLinks = (city: string): readonly CityLinkFrom[] => {
     const cached = outgoing.get(city)
     if (cached) return cached
-    const links = [...linksFrom(city)].sort((left, right) =>
-      left.fare - right.fare || left.seconds - right.seconds || String(left.to).localeCompare(String(right.to)) || String(left.mode).localeCompare(String(right.mode)))
+    const links = [...linksFrom(city)]
     outgoing.set(city, links)
     return links
   }
@@ -89,8 +96,8 @@ export function planHomewardRoute(
   let best: HomewardQuote | null = null
 
   for (let legCount = 0; legCount < MAX_HOMEWARD_LEGS; legCount += 1) {
-    const states = [...layers[legCount]!.values()].sort((a, b) => a.city.localeCompare(b.city))
-    for (const state of states) {
+    for (const state of layers[legCount]!.values()) {
+      if (best !== null && state.totalFare >= best.totalFare) continue
       for (const link of getLinks(state.city)) {
         const next = link.to
         if (typeof next !== 'string' || !next || state.visited.has(next) || !isOpen(next) || routeUnavailable(link)) continue
@@ -99,6 +106,18 @@ export function planHomewardRoute(
         const totalSeconds = state.totalSeconds + link.seconds
         if (!Number.isSafeInteger(totalFare) || totalFare > RIDE_CREDIT.max || !Number.isSafeInteger(totalSeconds) || totalSeconds > MAX_HOMEWARD_SECONDS) continue
 
+        if (next === to) {
+          if (best !== null && totalFare > best.totalFare) continue
+          const leg: HomewardLeg = { from: state.city, to: next, mode: link.mode, fare: link.fare, seconds: link.seconds }
+          const path = Object.freeze([...state.legs, leg].map(item => Object.freeze({ ...item })))
+          const quote: HomewardQuote = Object.freeze({ version: VERSION, from, to, legs: path, totalFare, totalSeconds, key: homewardQuoteKey(from, to, path) })
+          if (better(quote, best)) best = quote
+          continue
+        }
+        if (best !== null && totalFare >= best.totalFare) continue
+        const layer = layers[legCount + 1]!
+        const stored = layer.get(next)
+        if (stored !== undefined && (totalFare > stored.totalFare || (totalFare === stored.totalFare && totalSeconds > stored.totalSeconds))) continue
         const leg: HomewardLeg = { from: state.city, to: next, mode: link.mode, fare: link.fare, seconds: link.seconds }
         const candidate: SearchState = {
           city: next,
@@ -107,14 +126,7 @@ export function planHomewardRoute(
           legs: [...state.legs, leg],
           visited: new Set([...state.visited, next]),
         }
-        if (next === to) {
-          const path = Object.freeze(candidate.legs.map(item => Object.freeze({ ...item })))
-          const quote: HomewardQuote = Object.freeze({ version: VERSION, from, to, legs: path, totalFare, totalSeconds, key: homewardQuoteKey(from, to, path) })
-          if (better(quote, best)) best = quote
-          continue
-        }
-        const layer = layers[legCount + 1]!
-        if (betterState(candidate, layer.get(next), from, to)) layer.set(next, candidate)
+        if (betterState(candidate, stored, from, to)) layer.set(next, candidate)
       }
     }
   }

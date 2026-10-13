@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "niamey",
+  "countryIso2": "NE",
+  "generationIdentity": {
+    "cityId": "niamey",
+    "stateId": "ne-niamey",
+    "stateName": "Niamey"
+  },
+  "inventorySha256": "df320ccb9df6e257174ad7f9953809e06e404a7bc27757455117c6d81351869e",
+  "inventoryPath": "world/playable-africa-rollout/sources/niamey.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "niamey-airport",
+    "name": "Diori Hamani International Airport",
+    "lon": 2.18361,
+    "lat": 13.4815,
+    "sourceUrl": "https://ourairports.com/airports/DRRN/"
+  },
+  "bounds": [
+    13.343953110066021,
+    1.9248950321127272,
+    13.70571488993398,
+    2.294750967887273
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/niger-261011.osm.pbf",
+      "datasetSha256": "e0c88053bc4ad460ab0839e1806b0fc0a38be20e6808f6e488c4b332e349ae82",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "112e338127106a00ea4a88e7b20c4c19d8b5e21e0d1a6d0fc6af889cae595b9c",
+          "elements": 473
+        },
+        {
+          "file": "extras.json",
+          "sha256": "ddf5e81a722c64b641ad484b78d0d1219d2b053eb1712ff16b42437df531eb9b",
+          "elements": 248
+        },
+        {
+          "file": "water.json",
+          "sha256": "a514429a99eb1570c102ca96a075aaa4b66cfaf9e86cd8e75e3e00a025d789e3",
+          "elements": 192
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "545efb94eb316a4fdbf1b577d9e89e8a3dd0f6918ad06115862f43f28c435925",
+          "elements": 1969
+        },
+        {
+          "file": "roads.json",
+          "sha256": "7c6e3208e7fcb1c79502b67f181a9ab8928e0e36301b41d8009a315e4572c789",
+          "elements": 575
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 234,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 13,
+    "waterPolygons": 23,
+    "reachWaterPolygons": 14
+  },
+  "observed": {
+    "places": 473,
+    "extras": 248,
+    "water": 192,
+    "landuse": 1969,
+    "roads": 575
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "15a7ea86ad0f37e26e4b318b9471d83129f1dfb1a63d90b53f57a41accd8bf72"
+    },
+    "geometry.ts": {
+      "bytes": 48582,
+      "sha256": "2889137c8018686acb019392bffd29059ca9b578bcf07c3ae315faf8a7af1335"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "77d937c998bb633a9065021df37b4d9b8df0d162b5fe7dcff188fee4dab84580"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/niamey.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

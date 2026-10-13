@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "budapest",
+  "countryIso2": "HU",
+  "generationIdentity": {
+    "cityId": "budapest",
+    "stateId": "hu-budapest",
+    "stateName": "Budapest"
+  },
+  "inventorySha256": "cc56ce5d9912c7d0fb9f370b4048705b8ddd610eace4b96f8e0a6fe7e76be2df",
+  "inventoryPath": "world/playable-africa-rollout/sources/budapest.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "budapest-airport",
+    "name": "Budapest Liszt Ferenc International Airport",
+    "lon": 19.262393,
+    "lat": 47.43018,
+    "sourceUrl": "https://ourairports.com/airports/LHBP/"
+  },
+  "bounds": [
+    47.31699801006602,
+    18.773394700609295,
+    47.678759789933984,
+    19.307081899390703
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/hungary-261011.osm.pbf",
+      "datasetSha256": "e1141f633cd6f67552a14daef083629bcca5eb25db4944c732b74fdb770a090f",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "898d299852b2aa62773b2972a8aa3d7716cb3900dd820008b59d667e7ff76485",
+          "elements": 5442
+        },
+        {
+          "file": "extras.json",
+          "sha256": "a79c5f262ae299f52f3425fe67d5ff4ccd065d2225944494e17286bfb0a059e4",
+          "elements": 1573
+        },
+        {
+          "file": "water.json",
+          "sha256": "764e6d913716bf8468b6c6af50648b05b5127e538a2164f88b0161109f9558ea",
+          "elements": 346
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "f8044a78d1b6ebd68e83c33e104d99381dace93964699ee5907b9bc4fb097a0a",
+          "elements": 3431
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a83c28e7158473c4dc6473b28190731a26de489b5e19ddd72210baedd2836943",
+          "elements": 5994
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 45,
+    "waterPolygons": 19,
+    "reachWaterPolygons": 11
+  },
+  "observed": {
+    "places": 5442,
+    "extras": 1573,
+    "water": 346,
+    "landuse": 3431,
+    "roads": 5994
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1249,
+      "sha256": "d8e3687aedb0f0a81975b043b7cb254d4b28e5fc2a468ae2377fb1137ece5d30"
+    },
+    "geometry.ts": {
+      "bytes": 188258,
+      "sha256": "0edc615452a3ffdc9e9ff5d8ae899a3e28da483621e8e91105b23b027c9def89"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "ac5639bdc609d9956cf7dfdeec91429165a8aa6bc0af6bffd2876f2b4703ff55"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/budapest.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

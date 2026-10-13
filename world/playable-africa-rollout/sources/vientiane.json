@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "vientiane",
+  "countryIso2": "LA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Vientiane",
+    "coordinatesWgs84": [
+      102.6133707,
+      17.9640988
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/laos-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "vientiane-airport",
+    "name": "Wattay International Airport",
+    "lon": 102.566692,
+    "lat": 17.985052,
+    "sourceUrl": "https://ourairports.com/airports/VLVT/"
+  },
+  "boxes": {
+    "play": [
+      17.78321791006602,
+      102.42430659921996,
+      18.144979689933976,
+      102.80243480078005
+    ],
+    "core": [
+      17.918878577516505,
+      102.56614119011199,
+      18.009319022483492,
+      102.66060020988802
+    ],
+    "outline": [
+      17.73321791006602,
+      102.37430659921996,
+      18.194979689933977,
+      102.85243480078005
+    ],
+    "wide": [
+      17.18321791006602,
+      101.82430659921997,
+      18.744979689933977,
+      103.40243480078004
+    ],
+    "water": [
+      17.78321791006602,
+      102.42430659921996,
+      18.144979689933976,
+      102.80243480078005
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/laos-261011.osm.pbf",
+    "datasetSha256": "a293dc200e82f7b971cec9ad54953461015a3e6943dd6da20fea123e18f058c6",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "79e30035a64f05399cf969b3f067b03952226a6cd120e1d3f616315db4f5a7fe",
+        "elements": 1236
+      },
+      {
+        "file": "extras.json",
+        "sha256": "4353d9fe78725226748599e921c8b0842715f2aae0d6c045512e90a73adeb028",
+        "elements": 162
+      },
+      {
+        "file": "water.json",
+        "sha256": "88c5b8f35b204f4beb361eec893a503bfa5a4e186e83c434cb4cfa1438e2741e",
+        "elements": 128
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "8f85e803664fb405c6e3f4d48df9fea2df79897a400e2773742dd5ec12177d21",
+        "elements": 699
+      },
+      {
+        "file": "roads.json",
+        "sha256": "000c9a225978e3af0b41a54150f2dbfc3c85eb73f5de64a32ead7c2c3b353d1d",
+        "elements": 277
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Vientiane",
+      "osm": "node/6892516159",
+      "coordinatesWgs84": [
+        102.690742,
+        18.047051
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Chokdee Cafe & Beer Bar",
+      "osm": "node/476448255",
+      "coordinatesWgs84": [
+        102.605821,
+        17.963088
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National University of Laos",
+      "osm": "way/1009004302",
+      "coordinatesWgs84": [
+        102.635633,
+        18.03799
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mahosot Hospital",
+      "osm": "way/39528312",
+      "coordinatesWgs84": [
+        102.611837,
+        17.96021
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "North Lake Park",
+      "osm": "way/1315886164",
+      "coordinatesWgs84": [
+        102.759111,
+        18.02114
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Talat Sao Mall",
+      "osm": "way/202129577",
+      "coordinatesWgs84": [
+        102.614065,
+        17.964722
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "That Luang",
+      "osm": "relation/273288",
+      "coordinatesWgs84": [
+        102.636496,
+        17.976661
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ban Phosy Village Office",
+      "osm": "node/5652012052",
+      "coordinatesWgs84": [
+        102.629602,
+        17.84394
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Institut Pasteur du Laos",
+      "osm": "node/8840596415",
+      "coordinatesWgs84": [
+        102.615103,
+        17.962637
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National University of Laos, Faculty of water resource",
+      "osm": "node/6978079256",
+      "coordinatesWgs84": [
+        102.505479,
+        17.990091
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "New Laos National Stadium",
+      "osm": "way/665451513",
+      "coordinatesWgs84": [
+        102.703974,
+        18.062086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Patuxai",
+      "osm": "way/41566774",
+      "coordinatesWgs84": [
+        102.618614,
+        17.970634
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Anouvong Stadium",
+      "osm": "way/613407768",
+      "coordinatesWgs84": [
+        102.608221,
+        17.968591
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wat Si Muang",
+      "osm": "way/42389632",
+      "coordinatesWgs84": [
+        102.617109,
+        17.957959
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jamia Masjid",
+      "osm": "node/523575544",
+      "coordinatesWgs84": [
+        102.608998,
+        17.964691
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lao National Museum",
+      "osm": "way/549654627",
+      "coordinatesWgs84": [
+        102.64529,
+        18.00768
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kualao",
+      "osm": "node/524296626",
+      "coordinatesWgs84": [
+        102.610616,
+        17.964811
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dane Soung Viewpoint",
+      "osm": "node/2244979473",
+      "coordinatesWgs84": [
+        102.43856,
+        18.121737
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vongphone Grilled",
+      "osm": "node/3645511715",
+      "coordinatesWgs84": [
+        102.732434,
+        17.887778
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Houaychiam Health Center (Palai)",
+      "osm": "node/12114176243",
+      "coordinatesWgs84": [
+        102.789125,
+        18.125511
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Xaithani District Hospital",
+      "osm": "node/11486599694",
+      "coordinatesWgs84": [
+        102.625739,
+        18.130626
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Naxatythong Market",
+      "osm": "node/2340078795",
+      "coordinatesWgs84": [
+        102.533517,
+        18.073566
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tat Vang-Nong",
+      "osm": "node/4384724640",
+      "coordinatesWgs84": [
+        102.446186,
+        18.027406
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kan Ngeun Dông Kam Xang",
+      "osm": "node/5036948326",
+      "coordinatesWgs84": [
+        102.665513,
+        17.912043
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1216,
+      "sha256": "448277ea45e06ffe67101a719fc152c099846b401210bd89fc605d7ef41df7f0"
+    },
+    "geometry.ts": {
+      "bytes": 73918,
+      "sha256": "5ad94728d71a1894c2f397d001a71cf561b05838d2cf072ae2361262248e27a9"
+    },
+    "places.ts": {
+      "bytes": 9571,
+      "sha256": "4ad90d882750055fcf9a1afd841d9b40b28a8ee9e9e9d69cf5c6beb1be4bba23"
+    },
+    "terrain.ts": {
+      "bytes": 52472,
+      "sha256": "8ab435beca4c5a5d405ce37903689620dd25b33e937cd7df9bfadc0f70d08e61"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "a2c939b6a5a785ff7a3ac2d46d5ef7aac6acc2faa1b106684a11c318e8ab8fc4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

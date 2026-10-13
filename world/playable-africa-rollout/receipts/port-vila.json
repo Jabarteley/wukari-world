@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-vila",
+  "countryIso2": "VU",
+  "generationIdentity": {
+    "cityId": "port-vila",
+    "stateId": "vu-port-vila",
+    "stateName": "Port Vila"
+  },
+  "inventorySha256": "07051f85b5f9faae0a7d794110546ff4c0abc002ebc66cc1bae2689f144a0bbe",
+  "inventoryPath": "world/playable-africa-rollout/sources/port-vila.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "port-vila-airport",
+    "name": "Bauerfield International Airport",
+    "lon": 168.320007,
+    "lat": -17.699301,
+    "sourceUrl": "https://ourairports.com/airports/NVVV/"
+  },
+  "bounds": [
+    -17.92237808993398,
+    168.1261911919271,
+    -17.560616310066024,
+    168.5038414080729
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/vanuatu-261011.osm.pbf",
+      "datasetSha256": "d8b25bac6a96ebc4e94e525615bb1d9a51e052ce5368e674ce6c9a5dcfd7c6ef",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "d625ca3eadea59d8a6190872807710d24a057e94404b1a1274df10c8753e12e6",
+          "elements": 133
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d905c0dbf0aa29559657219c4937916141ca7b17d47f46a1d3296c3881065c30",
+          "elements": 53
+        },
+        {
+          "file": "water.json",
+          "sha256": "ff15dee70fd697a29b1cbd4e2effa8ee1c557bc3abc26a950cd2a2896bb85ec0",
+          "elements": 99
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "7d16aa299c3ee88b16d01e723f303048c0f2a3fb5524fb42c52150981a1d0145",
+          "elements": 241
+        },
+        {
+          "file": "roads.json",
+          "sha256": "33c2b9d41d97e1093dbf7ea3f30accfb634bcea558575eb10270320e57ac5597",
+          "elements": 29
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 6,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 6,
+    "waterPolygons": 11,
+    "reachWaterPolygons": 7
+  },
+  "selection": {
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "node/519912836"
+      }
+    ]
+  },
+  "observed": {
+    "places": 133,
+    "extras": 53,
+    "water": 99,
+    "landuse": 241,
+    "roads": 29
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1242,
+      "sha256": "c2955e3ca9b20ff466a522f2cc463adb0b15d0da89ab665f6e26a7346a3fa292"
+    },
+    "geometry.ts": {
+      "bytes": 132120,
+      "sha256": "f01600e2f635c43b435a98c1c31d69b0862f3657267c84e6bcb4d78b1cbf1a6f"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "416182c9f9abb07754248b7a1ac0e027de313773c26f34f5b9c6bfd8d918c6f3"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/port-vila.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

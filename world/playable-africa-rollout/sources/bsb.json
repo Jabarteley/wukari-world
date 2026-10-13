@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bsb",
+  "countryIso2": "BN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bandar Seri Begawan",
+    "coordinatesWgs84": [
+      114.9417574,
+      4.8895453
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "bsb-airport",
+    "name": "Brunei International Airport",
+    "lon": 114.928001,
+    "lat": 4.9442,
+    "sourceUrl": "https://ourairports.com/airports/WBSB/"
+  },
+  "boxes": {
+    "play": [
+      4.708664410066022,
+      114.76138935172006,
+      5.070426189933978,
+      115.12212544827995
+    ],
+    "core": [
+      4.844325077516506,
+      114.89667473261095,
+      4.934765522483494,
+      114.98684006738905
+    ],
+    "outline": [
+      4.658664410066022,
+      114.71138935172006,
+      5.120426189933978,
+      115.17212544827994
+    ],
+    "wide": [
+      4.108664410066022,
+      114.16138935172006,
+      5.670426189933978,
+      115.72212544827994
+    ],
+    "water": [
+      4.108664410066022,
+      114.16138935172006,
+      5.670426189933978,
+      115.72212544827994
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf",
+    "datasetSha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "947e335a7e43627ab6b6c737bfac118f4732b95e347b187f90eab362a5b24f2b",
+        "elements": 1485
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8bdb83af4f820dde1bebdef2ad74f3d3b32562ccad63525e912ecb8fe72fad2f",
+        "elements": 202
+      },
+      {
+        "file": "water.json",
+        "sha256": "018d6c1636219db5716ca2183aa418f673277b741d24b582bd5831c02e53f25c",
+        "elements": 438
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "7196208285c89ed54c911e52d68f89a6a7aaa4b8f92ea4aeec8bb22bbe280874",
+        "elements": 234
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a1ad14a9fd85bcdcb5dbd468696d08dc05c7f52253690b8fdef8162ccdd01da3",
+        "elements": 1520
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Serasa Ferry Terminal",
+      "osm": "way/376623464",
+      "coordinatesWgs84": [
+        115.065919,
+        5.014887
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Raziqin Restaurant",
+      "osm": "node/1002632491",
+      "coordinatesWgs84": [
+        114.915829,
+        4.916297
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lambak Kanan Library",
+      "osm": "way/548051510",
+      "coordinatesWgs84": [
+        114.975055,
+        4.983836
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jerudong Park Medical Centre",
+      "osm": "way/310970830",
+      "coordinatesWgs84": [
+        114.830443,
+        4.948904
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Golden Jubilee Crown Park",
+      "osm": "way/532442991",
+      "coordinatesWgs84": [
+        114.938534,
+        4.888648
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pasar Serbaneka Kampong Masin dan Kampong Bebatik",
+      "osm": "way/316233200",
+      "coordinatesWgs84": [
+        114.843417,
+        4.848495
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ash-Shaliheen Mosque",
+      "osm": "way/321333285",
+      "coordinatesWgs84": [
+        114.936009,
+        4.918086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bandar Seri Begawan Royal Wharf",
+      "osm": "way/512363094",
+      "coordinatesWgs84": [
+        114.943013,
+        4.886752
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministry of Religious Affairs",
+      "osm": "way/521756870",
+      "coordinatesWgs84": [
+        114.946628,
+        4.917351
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Brunei Darussalam",
+      "osm": "way/428761669",
+      "coordinatesWgs84": [
+        114.892866,
+        4.976004
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hassanal Bolkiah National Stadium",
+      "osm": "way/506728677",
+      "coordinatesWgs84": [
+        114.945086,
+        4.929084
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Brunei Museum",
+      "osm": "way/438282545",
+      "coordinatesWgs84": [
+        114.968725,
+        4.88533
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nurul Iman Palace",
+      "osm": "way/430464616",
+      "coordinatesWgs84": [
+        114.920819,
+        4.871512
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjid Hassanal Bolkiah",
+      "osm": "way/525946664",
+      "coordinatesWgs84": [
+        115.030033,
+        4.966755
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lapau",
+      "osm": "way/45984870",
+      "coordinatesWgs84": [
+        114.942887,
+        4.892518
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sultan Omar 'Ali Saifuddien Mosque",
+      "osm": "way/45840473",
+      "coordinatesWgs84": [
+        114.939195,
+        4.889423
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maktab Duli Pengiran Muda Al-Muhtadee Billah",
+      "osm": "way/313407023",
+      "coordinatesWgs84": [
+        114.912947,
+        4.902572
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Taman Jubli Perak Sultan Haji Hassanal Bolkiah",
+      "osm": "way/265532229",
+      "coordinatesWgs84": [
+        114.93526,
+        4.898799
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Seri Begawan Religious Teachers University College",
+      "osm": "way/45897644",
+      "coordinatesWgs84": [
+        114.929492,
+        4.885939
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Raja Isteri Pengiran Anak Saleha Hospital",
+      "osm": "way/45895096",
+      "coordinatesWgs84": [
+        114.932399,
+        4.893197
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gleneagles JPMC",
+      "osm": "node/4723539711",
+      "coordinatesWgs84": [
+        114.830224,
+        4.948472
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Peliunan Park",
+      "osm": "way/936719394",
+      "coordinatesWgs84": [
+        115.103972,
+        4.718322
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Diana Berudin",
+      "osm": "node/4844890304",
+      "coordinatesWgs84": [
+        114.819769,
+        4.756289
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mono",
+      "osm": "node/4758981105",
+      "coordinatesWgs84": [
+        114.793655,
+        4.840586
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1258,
+      "sha256": "ddf897477c369750d67bfdc70677d223977a85eeb995e813dbe731a27f6e8ce3"
+    },
+    "geometry.ts": {
+      "bytes": 381661,
+      "sha256": "264483b75532d031d317b9d20394697a04f79a4afb91b18e4d27e6fa724239e6"
+    },
+    "places.ts": {
+      "bytes": 10097,
+      "sha256": "411e75fa5ca3208773f87fd1099226a08557ab4a3065edf1de5df4b97b554554"
+    },
+    "terrain.ts": {
+      "bytes": 1513606,
+      "sha256": "a1fda1dee9af374cdd413a45814bceabbcf8bc676956e8625e7c49118a9d60c7"
+    },
+    "index.ts": {
+      "bytes": 254,
+      "sha256": "43b09c22f7089d086f3fbde642e10b66eddee15d351948bb2743f25aad1123ba"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "san-jose",
+  "countryIso2": "CR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "San José",
+    "coordinatesWgs84": [
+      -84.0796683,
+      9.9327373
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/costa-rica-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "san-jose-airport",
+    "name": "Juan Santamaría International Airport",
+    "lon": -84.208801,
+    "lat": 9.99386,
+    "sourceUrl": "https://ourairports.com/airports/MROC/"
+  },
+  "boxes": {
+    "play": [
+      9.75185641006602,
+      -84.26216628530693,
+      10.113618189933979,
+      -83.89717031469306
+    ],
+    "core": [
+      9.887517077516504,
+      -84.12527366335782,
+      9.977957522483495,
+      -84.03406293664217
+    ],
+    "outline": [
+      9.70185641006602,
+      -84.31216628530693,
+      10.16361818993398,
+      -83.84717031469306
+    ],
+    "wide": [
+      9.15185641006602,
+      -84.86216628530693,
+      10.713618189933978,
+      -83.29717031469306
+    ],
+    "water": [
+      9.15185641006602,
+      -84.86216628530693,
+      10.713618189933978,
+      -83.29717031469306
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/costa-rica-261011.osm.pbf",
+    "datasetSha256": "c896a9c3c7dbc86ba2c98ce5aa71e79459590628e29e62a22507c746f24f1c54",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "1c711bdf37790a01982ad22ce550626effeba1847b3cd0264e29811fd1b3dafb",
+        "elements": 5021
+      },
+      {
+        "file": "extras.json",
+        "sha256": "7f3a19d53ae4abe1a44af942a07b694728af08ca405eb93701d8927651529a02",
+        "elements": 2492
+      },
+      {
+        "file": "water.json",
+        "sha256": "b25c125f718923a0214764763cb74641966f4ecdf6f540e9d799ef2cea20d618",
+        "elements": 773
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "778db6181097757fcc9cb9f1e7b9a54d06ac0a5bf2c3f3c8710a9b6822ac975e",
+        "elements": 4264
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a795e4763962115443596aa77ecc156ca63d1ef6d0d572524ec18dca66a912d9",
+        "elements": 2010
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Atlántico",
+      "osm": "way/31420765",
+      "coordinatesWgs84": [
+        -84.068881,
+        9.934675
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Isla Verde",
+      "osm": "way/381272433",
+      "coordinatesWgs84": [
+        -84.12802,
+        9.944028
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Tecnológico de Costa Rica",
+      "osm": "way/40819609",
+      "coordinatesWgs84": [
+        -83.908807,
+        9.853517
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital San Rafael",
+      "osm": "relation/6742258",
+      "coordinatesWgs84": [
+        -84.210831,
+        10.007038
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Metropolitano La Sabana",
+      "osm": "way/12657481",
+      "coordinatesWgs84": [
+        -84.104057,
+        9.935531
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Central de San José",
+      "osm": "way/264040874",
+      "coordinatesWgs84": [
+        -84.082007,
+        9.93471
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "San José Costa Rica Temple",
+      "osm": "way/1301409416",
+      "coordinatesWgs84": [
+        -84.184883,
+        9.986405
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plaza de la Cultura",
+      "osm": "relation/6275464",
+      "coordinatesWgs84": [
+        -84.076979,
+        9.933562
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Archivo Nacional",
+      "osm": "relation/13964947",
+      "coordinatesWgs84": [
+        -84.048192,
+        9.922307
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Nacional",
+      "osm": "relation/10650174",
+      "coordinatesWgs84": [
+        -84.108857,
+        10.000328
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Ecológico",
+      "osm": "way/1001557950",
+      "coordinatesWgs84": [
+        -84.043997,
+        9.944644
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Accidente aeréo Vuelo 32 de SANSA",
+      "osm": "node/10186229658",
+      "coordinatesWgs84": [
+        -84.149496,
+        9.858914
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Monumento al Pacto del Jocote",
+      "osm": "node/1945457564",
+      "coordinatesWgs84": [
+        -84.239895,
+        10.008718
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estadio ST Center",
+      "osm": "way/76579523",
+      "coordinatesWgs84": [
+        -84.082689,
+        9.864048
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital San Vicente de Paúl",
+      "osm": "way/201513043",
+      "coordinatesWgs84": [
+        -84.121846,
+        9.990409
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque de Diversiones",
+      "osm": "way/30173401",
+      "coordinatesWgs84": [
+        -84.129671,
+        9.960069
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital México",
+      "osm": "way/25400008",
+      "coordinatesWgs84": [
+        -84.115257,
+        9.952352
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Alejandro Morera Soto",
+      "osm": "way/617155310",
+      "coordinatesWgs84": [
+        -84.209158,
+        10.021813
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basílica de Nuestra Señora de Los Ángeles",
+      "osm": "way/102243517",
+      "coordinatesWgs84": [
+        -83.912884,
+        9.864104
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plaza Cleto González Víquez",
+      "osm": "way/305168533",
+      "coordinatesWgs84": [
+        -84.074167,
+        9.92467
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Catedral Metropolitana de San José",
+      "osm": "way/264042444",
+      "coordinatesWgs84": [
+        -84.078757,
+        9.932783
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bomberos de Costa Rica - Academia Nacional",
+      "osm": "way/301278166",
+      "coordinatesWgs84": [
+        -84.045149,
+        9.896306
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Okayama",
+      "osm": "way/415630885",
+      "coordinatesWgs84": [
+        -84.056814,
+        9.904948
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Latina de Costa Rica",
+      "osm": "relation/17706739",
+      "coordinatesWgs84": [
+        -84.043757,
+        9.933386
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1249,
+      "sha256": "642622df4e10ad2c0ad0899059a49333193c49f1aa671575aeb3df564840eb60"
+    },
+    "geometry.ts": {
+      "bytes": 77194,
+      "sha256": "4b1e340cb232899b8386e5e0a7c6ce7024f294dc48a058b1236784933f82763c"
+    },
+    "places.ts": {
+      "bytes": 10183,
+      "sha256": "f03205c792878c2bfd311be3d1a76768fb9b123cafea2365c34059fa2ab87afc"
+    },
+    "terrain.ts": {
+      "bytes": 277969,
+      "sha256": "96baccb25e9e8ea6331ffb0cdf57139b62a4535ad482f93d0f55e0b8fba21203"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "4db5258c85bba37ad78115d6d61ce4e60acf0f6ff34baedcf4d08f567afbe9b8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

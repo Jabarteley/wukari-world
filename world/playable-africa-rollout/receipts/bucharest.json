@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bucharest",
+  "countryIso2": "RO",
+  "generationIdentity": {
+    "cityId": "bucharest",
+    "stateId": "ro-bucharest",
+    "stateName": "Bucharest"
+  },
+  "inventorySha256": "d6538e4566f0f37b3690d9ae6010d85e6ed1fcd908ee5a1fedefae114eb8254c",
+  "inventoryPath": "world/playable-africa-rollout/sources/bucharest.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bucharest-airport",
+    "name": "Bucharest Henri Coandă International Airport",
+    "lon": 26.103285,
+    "lat": 44.571792,
+    "sourceUrl": "https://ourairports.com/airports/LROP/"
+  },
+  "bounds": [
+    44.255260510066016,
+    25.850284672761397,
+    44.61702228993398,
+    26.355083327238603
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/romania-261011.osm.pbf",
+      "datasetSha256": "54f6b063f14a484dc9efc2246820f2db7dbb6a0a9908e6ad537d12bdbc9d8d76",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "145f0b6993e6d9e5033a125d35f52d548942fd1339bfda09d46264511f97aaea",
+          "elements": 3152
+        },
+        {
+          "file": "extras.json",
+          "sha256": "760bfc2859273dec4c65d8d08d0bfa9c6af534ed830b42862c81d8a9472c2851",
+          "elements": 730
+        },
+        {
+          "file": "water.json",
+          "sha256": "aa598d80e43c108415a47bd778bdc4d01c73e1e3222fe10622b68636e5e578fe",
+          "elements": 229
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "79ccd9eb457fac491b973c8295bcef1a5f8d8b0645b0671e4f2cdddafafcc7cb",
+          "elements": 1952
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f4bfaaad08c390398f8ab00cb61d83db641fddaaf0a75d7952da1f3754fad565",
+          "elements": 5363
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 43,
+    "waterPolygons": 15,
+    "reachWaterPolygons": 9
+  },
+  "observed": {
+    "places": 3152,
+    "extras": 730,
+    "water": 229,
+    "landuse": 1952,
+    "roads": 5363
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "c280805dd18f5ae966c7284a0c00f67acc9b7973758e32929b69c58c71b1393e"
+    },
+    "geometry.ts": {
+      "bytes": 177769,
+      "sha256": "5eab2827dd2ca479fc98c9f4d0416af1ef9ad4bee404557221f1da769a508cf7"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "ee0b37d46296b8c8629449bcb512c488c391f92dc0c9d68087d9a4f1cf1aa5ac"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bucharest.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

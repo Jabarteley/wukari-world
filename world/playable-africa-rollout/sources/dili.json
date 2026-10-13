@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dili",
+  "countryIso2": "TL",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Dili",
+    "coordinatesWgs84": [
+      125.5784093,
+      -8.5536809
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/east-timor-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "dili-airport",
+    "name": "Presidente Nicolau Lobato International Airport",
+    "lon": 125.524507,
+    "lat": -8.546562,
+    "sourceUrl": "https://ourairports.com/airports/WPDL/"
+  },
+  "boxes": {
+    "play": [
+      -8.734561789933979,
+      125.39663897711469,
+      -8.37280001006602,
+      125.76017962288532
+    ],
+    "core": [
+      -8.598901122483495,
+      125.53298311682782,
+      -8.508460677516505,
+      125.62383548317219
+    ],
+    "outline": [
+      -8.78456178993398,
+      125.3466389771147,
+      -8.32280001006602,
+      125.81017962288531
+    ],
+    "wide": [
+      -9.334561789933979,
+      124.7966389771147,
+      -7.772800010066021,
+      126.36017962288531
+    ],
+    "water": [
+      -9.334561789933979,
+      124.7966389771147,
+      -7.772800010066021,
+      126.36017962288531
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/east-timor-261011.osm.pbf",
+    "datasetSha256": "ed503ce335b087fe3fb37934fcc1980dcdc7c75e8f359f0a880963cb86c7a74a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "c8ccc5201a43e06155220b554a1f042870893dae387e5adb461b670b67457a7e",
+        "elements": 349
+      },
+      {
+        "file": "extras.json",
+        "sha256": "79415365388e39caac24f1353787fcbfd79527c46b221798a406295b7b1129c8",
+        "elements": 187
+      },
+      {
+        "file": "water.json",
+        "sha256": "25db7f3c11cdfa80b2d79ddd0add04821ccfee50ce6d1eca5501d856139b9ce1",
+        "elements": 288
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "792c1ec22516ea26113a8c88ecf7f0d59da074682f4daeeea3e74c223c236e49",
+        "elements": 2143
+      },
+      {
+        "file": "roads.json",
+        "sha256": "fe6d33f0d5f13f0e31ab2de639f384a433b70841c04015eababb019947f8edb1",
+        "elements": 269
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Porto de Dili",
+      "osm": "node/503732325",
+      "coordinatesWgs84": [
+        125.575201,
+        -8.553697
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tibar Restaurant",
+      "osm": "node/4341933867",
+      "coordinatesWgs84": [
+        125.474421,
+        -8.575723
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidade da Paz",
+      "osm": "node/4664458119",
+      "coordinatesWgs84": [
+        125.548202,
+        -8.564992
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital Nacional Guido Valadares",
+      "osm": "node/11644985043",
+      "coordinatesWgs84": [
+        125.593427,
+        -8.555029
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jardim Colmera",
+      "osm": "way/166662133",
+      "coordinatesWgs84": [
+        125.569527,
+        -8.556279
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Timor Plaza",
+      "osm": "way/254293086",
+      "coordinatesWgs84": [
+        125.541538,
+        -8.553721
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pura Girinatha",
+      "osm": "way/1188788805",
+      "coordinatesWgs84": [
+        125.595665,
+        -8.564939
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parlamento Nacional",
+      "osm": "way/28904880",
+      "coordinatesWgs84": [
+        125.578748,
+        -8.554701
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sede Suco Seloi Craic",
+      "osm": "way/1083634999",
+      "coordinatesWgs84": [
+        125.52151,
+        -8.711099
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National University of Timor Leste",
+      "osm": "node/4188634589",
+      "coordinatesWgs84": [
+        125.578692,
+        -8.555485
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estadium Cafe Gleno",
+      "osm": "way/558964564",
+      "coordinatesWgs84": [
+        125.434301,
+        -8.722646
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palácio de Lahane",
+      "osm": "way/166301201",
+      "coordinatesWgs84": [
+        125.584454,
+        -8.574296
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dili Harbor Lighthouse",
+      "osm": "way/999353312",
+      "coordinatesWgs84": [
+        125.568757,
+        -8.548323
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Motael Church",
+      "osm": "node/2595285980",
+      "coordinatesWgs84": [
+        125.570714,
+        -8.55094
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Igreza Catedral da Imaculada Conceição (Díli)",
+      "osm": "way/154331114",
+      "coordinatesWgs84": [
+        125.567824,
+        -8.558318
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bereleu",
+      "osm": "node/1777614913",
+      "coordinatesWgs84": [
+        125.678785,
+        -8.72125
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centru Saude Tulataqeu",
+      "osm": "node/5225733660",
+      "coordinatesWgs84": [
+        125.730801,
+        -8.631198
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Wild Timor Coffee",
+      "osm": "node/6846547213",
+      "coordinatesWgs84": [
+        125.56725,
+        -8.65151
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jardim Remexio",
+      "osm": "way/1084644387",
+      "coordinatesWgs84": [
+        125.643218,
+        -8.621722
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faculdade Engenharia UNTL",
+      "osm": "way/1122811001",
+      "coordinatesWgs84": [
+        125.660596,
+        -8.550679
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monumentu Nicolau Lobato",
+      "osm": "way/1084202931",
+      "coordinatesWgs84": [
+        125.574231,
+        -8.725383
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Fahi - Soi",
+      "osm": "way/1084635480",
+      "coordinatesWgs84": [
+        125.642281,
+        -8.665421
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dolok Oan Beach",
+      "osm": "node/7371972885",
+      "coordinatesWgs84": [
+        125.611552,
+        -8.521324
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Market Lakbo",
+      "osm": "way/1084644386",
+      "coordinatesWgs84": [
+        125.547374,
+        -8.684812
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "45c689ef9ed10d58fa82b252bb161a399024aedb23525377c95108e3711e608c"
+    },
+    "geometry.ts": {
+      "bytes": 342132,
+      "sha256": "d52598babe0be06a0ab1412244fd33a8d6997008bceda3450f75738223ae64ef"
+    },
+    "places.ts": {
+      "bytes": 9456,
+      "sha256": "dd737a2ff05257c83831a4383c366bb9adec2380bd4664873db57088554dfb6c"
+    },
+    "terrain.ts": {
+      "bytes": 379733,
+      "sha256": "e3b2edb34240c31c714b6c10b36d8f51ffffdc20c2e06fce3c55b114661f00fb"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "a02d4ed6f4dc5d38b0dd5afa0d55d5b793bf276bcc35b871fe5fae038332ccb3"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bangui",
+  "countryIso2": "CF",
+  "generationIdentity": {
+    "cityId": "bangui",
+    "stateId": "cf-bangui",
+    "stateName": "Bangui"
+  },
+  "inventorySha256": "76626c0edb7468dfc46bbe22a18418dd81dec6e482b2703ab7d2720862b1ccd5",
+  "inventoryPath": "world/playable-africa-rollout/sources/bangui.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bangui-airport",
+    "name": "Bangui M'Poko International Airport",
+    "lon": 18.518801,
+    "lat": 4.39848,
+    "sourceUrl": "https://ourairports.com/airports/FEFF/"
+  },
+  "bounds": [
+    4.182630910066022,
+    18.403362469626906,
+    4.544392689933979,
+    18.76382013037309
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/central-african-republic-261011.osm.pbf",
+      "datasetSha256": "11142236b32f638a1f5d82674c238bb78a114a9d51340813f6699dbd3cc333cc",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "b0d0121e54e08566f4b1ff40ebaace9413a0c11b0b10c9f93816ed8eb13bc623",
+          "elements": 139
+        },
+        {
+          "file": "extras.json",
+          "sha256": "e5802216fd2a681fef11866e35fba84ac676af903df8103ae8e56273722e212f",
+          "elements": 42
+        },
+        {
+          "file": "water.json",
+          "sha256": "c3ef7f8c941d5e551c81f4c493ba5507c0b19ec5ace21cf578a924b9fac94329",
+          "elements": 29
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "0cfdcb10590e7d1a404a25fd27941907880d7d81494c42486fdf3c05a88697e1",
+          "elements": 585
+        },
+        {
+          "file": "roads.json",
+          "sha256": "674c08b4c51a7297968dca27e918c1264574f441750e6429a29cf7ec387aa2f4",
+          "elements": 121
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 22,
+    "roads": 27,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 16,
+    "waterPolygons": 16,
+    "reachWaterPolygons": 6
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "neighbourhood": 3,
+      "village": 15
+    }
+  },
+  "observed": {
+    "places": 139,
+    "extras": 42,
+    "water": 29,
+    "landuse": 585,
+    "roads": 121
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "cf87d09a1b76952f8c51171f91dc0deb6cab192ad941795dab319eebec1eba12"
+    },
+    "geometry.ts": {
+      "bytes": 41976,
+      "sha256": "2dcc07287b3c7d06f12820d2499863b7c9c47751c6e8cce6c123bd260022d551"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "1233652cf4ec0c5be7acb990bce9fbe3ca10bd6b90d237c1a5522648b54059d1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bangui.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -299,7 +299,7 @@ On excess: `429 account_rate_limited`.
 
 After a sign-in went through the cookie is new, so the page starts again with it; when the character in play is a different one, the copy of the old life this device kept is dropped first.
 
-Tokens live in the store's closure, in memory: an ID token for one step, a sign-in's refresh token until the page starts again (so the choice that may follow can be proved). Nothing is written to browser storage. Nothing typed on these screens is logged or sent to telemetry, and the telemetry scrubber replaces any signed token in any text it sees.
+Tokens live in the store's closure, in memory: an ID token for one step, a sign-in's refresh token until the page starts again (so the choice that may follow can be proved). The one thing written to browser storage is a flag, left by a sign-in that created the account, that owes the player a single offer of Stay in touch (it holds no value about the person and is removed when the offer is answered). Nothing typed on these screens is logged or sent to telemetry, and the telemetry scrubber replaces any signed token in any text it sees.
 
 The start screens reach all this through one small interface, `useAccountEntry(): { available, openSignIn(), openSave() }`. `available` is false until the server has said accounts are configured.
 

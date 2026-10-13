@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "juba",
+  "countryIso2": "SS",
+  "generationIdentity": {
+    "cityId": "juba",
+    "stateId": "ss-juba",
+    "stateName": "Juba"
+  },
+  "inventorySha256": "a241631b110a1d2ebc340f9691821641b088605ca1c4ab0afbc3ef158dc0c7a6",
+  "inventoryPath": "world/playable-africa-rollout/sources/juba.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "juba-airport",
+    "name": "Juba International Airport",
+    "lon": 31.601101,
+    "lat": 4.87201,
+    "sourceUrl": "https://ourairports.com/airports/HJJJ/"
+  },
+  "bounds": [
+    4.665043710066022,
+    31.415561382556415,
+    5.026805489933978,
+    31.776273217443585
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/south-sudan-261011.osm.pbf",
+      "datasetSha256": "b0d3bc0a280f77313d0d5cedc03ea990dbb57d1e701ad85a1b67d816332e45c8",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/africa/south-sudan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 138967350,
+          "md5": "5d0ecb2580e19d097a408b5a4845af74",
+          "sha256": "d2f6ca11d4a4959ca6d97704f898e7b947d317fd616f32043f3eceb280b65756"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/africa/ethiopia-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 139964339,
+          "md5": "775bc09e447fa511b4115ce20fcae6ce",
+          "sha256": "cea44aff375902dd97c6d67eb28db505bac9ac901ddde2a2e64183a2d7f40806",
+          "reason": "admin-0 relation/1656678 member way/144197399 (South Sudan - Ethiopia border, 42 nodes) is absent from the South Sudan clip; all its nodes lie inside the Ethiopia clip"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "630e9a7fc192f655c03bc8c4a87e158a0b1cb140944148baf834afa9755a30c9",
+          "elements": 255
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d9705de6a0191e05ec3a4d2eaaefdd224b5f3a6393ca4c0828ce342c8c1fe907",
+          "elements": 41
+        },
+        {
+          "file": "water.json",
+          "sha256": "2841f04d628c54a38f0e491ce94a9fa89906f02c2a943fcdff01c719235473c6",
+          "elements": 35
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "9d2256440609f76195e6250bd29dec36ccf982bea24309da3a6be22a00d88c12",
+          "elements": 524
+        },
+        {
+          "file": "roads.json",
+          "sha256": "8aa75b09ad0cbdcc19918e9ccee8024667e271973a71307a4e1528ede21e042b",
+          "elements": 231
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 95,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 15,
+    "waterPolygons": 50,
+    "reachWaterPolygons": 6
+  },
+  "observed": {
+    "places": 255,
+    "extras": 41,
+    "water": 35,
+    "landuse": 524,
+    "roads": 231
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1201,
+      "sha256": "db15eadb2d74816d602e46e92c635ae1bb02c08612e49fb7e0bed1d253bef8ad"
+    },
+    "geometry.ts": {
+      "bytes": 47020,
+      "sha256": "cc71ff64e2c87190ad24bacfbf7fc2d92e92ee003e11b3e6f2cece00c991ef09"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "cd8ffc1b636a5a85f3afcc2843ef969dc0c08e762298fb752abc9f5ca7c389c0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/juba.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

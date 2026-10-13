@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "honiara",
+  "countryIso2": "SB",
+  "generationIdentity": {
+    "cityId": "honiara",
+    "stateId": "sb-honiara",
+    "stateName": "Honiara"
+  },
+  "inventorySha256": "d84d301a372169e67cd705d65d143a1833009288f7e3980bbfea46cf27430332",
+  "inventoryPath": "world/playable-africa-rollout/sources/honiara.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "honiara-airport",
+    "name": "Honiara International Airport",
+    "lon": 160.054993,
+    "lat": -9.428,
+    "sourceUrl": "https://ourairports.com/airports/AGGH/"
+  },
+  "bounds": [
+    -9.61195778993398,
+    159.77303481132108,
+    -9.250196010066022,
+    160.13747558867894
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/solomon-islands-261011.osm.pbf",
+      "datasetSha256": "cda55d01cef9ad45a266a315841f1f22d6afa78ffda27a0c6b0762d1f0b72361",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "255cc25501ef7b46505bc2fba9b2397709eb93aa5f43e69f3126757cf73e89b4",
+          "elements": 77
+        },
+        {
+          "file": "extras.json",
+          "sha256": "3ccac4d8cc345b234ca59f2a48e762c474c993f427bc58f60b1eeecf60eb8777",
+          "elements": 15
+        },
+        {
+          "file": "water.json",
+          "sha256": "add23216c0c30709294579000afc394090773e85d73631da66312e5ef07d9347",
+          "elements": 823
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "e630f2a817543032af33ccc3589a4db8b01e67bf52b9894dc451b9c2833147ea",
+          "elements": 153
+        },
+        {
+          "file": "roads.json",
+          "sha256": "d87fca22d0799dd31fed4bcbf572881fd1792fb8f9ab6c6bd1aba7fc00b60f98",
+          "elements": 14
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 23,
+    "roads": 8,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 5,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 6
+  },
+  "observed": {
+    "places": 77,
+    "extras": 15,
+    "water": 823,
+    "landuse": 153,
+    "roads": 14
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "7d38bc3f236ad9bb772cad27f6b98aac4bd15c8747fc25b3f27f348b11fbd553"
+    },
+    "geometry.ts": {
+      "bytes": 31577,
+      "sha256": "325586ffbf59ec244a8760c9f55a4becb1a6b5e9575d908ea638692c7066cf3b"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "e23b83849a45c29996302ddbed35c2a47ed02c17b41420d9e3223db7748170c2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/honiara.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

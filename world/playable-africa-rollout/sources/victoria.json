@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "victoria",
+  "countryIso2": "SC",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Victoria",
+    "coordinatesWgs84": [
+      55.452359,
+      -4.6232085
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/seychelles-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "victoria-airport",
+    "name": "Seychelles International Airport",
+    "lon": 55.521801,
+    "lat": -4.67434,
+    "sourceUrl": "https://ourairports.com/airports/FSIA/"
+  },
+  "boxes": {
+    "play": [
+      -4.804089389933978,
+      55.272063365586185,
+      -4.442327610066021,
+      55.63265463441382
+    ],
+    "core": [
+      -4.668428722483494,
+      55.4072939327296,
+      -4.577988277516505,
+      55.4974240672704
+    ],
+    "outline": [
+      -4.854089389933978,
+      55.22206336558619,
+      -4.392327610066022,
+      55.682654634413815
+    ],
+    "wide": [
+      -5.4040893899339775,
+      54.67206336558618,
+      -3.8423276100660213,
+      56.23265463441382
+    ],
+    "water": [
+      -5.4040893899339775,
+      54.67206336558618,
+      -3.8423276100660213,
+      56.23265463441382
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/seychelles-261011.osm.pbf",
+    "datasetSha256": "0ee67d96b0add787af8e65d408fb640b77fedc67fcbfa3c20a3c30017b99bab1",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5bc50c1fc61716c2d8bb71e7ccc3ef1430e268117a362251f6dd1a8c7e6464a1",
+        "elements": 200
+      },
+      {
+        "file": "extras.json",
+        "sha256": "fe0f999e74ac1e3b261b8e16e67a5b99aa67153650f052e26544529b0ae48346",
+        "elements": 41
+      },
+      {
+        "file": "water.json",
+        "sha256": "282d264197893a666b6e684dcbc649e6b201922baf550783d5fa5ac0394f631b",
+        "elements": 148
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "2e3d280fe9334c9465e28bd847bf24a9d37a45578e469415f10493fa51c49e7b",
+        "elements": 70
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a21600783c5e3c95f771ce6cc665516e70976e6a70534b9c32a65a1614770680",
+        "elements": 280
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Port Launay Turning Point",
+      "osm": "node/770076850",
+      "coordinatesWgs84": [
+        55.401198,
+        -4.652685
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Anchor Cafe",
+      "osm": "node/391846396",
+      "coordinatesWgs84": [
+        55.490514,
+        -4.738981
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Seychelles",
+      "osm": "way/363504575",
+      "coordinatesWgs84": [
+        55.515021,
+        -4.740283
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Euromedical Family Clinic (Providence branch)",
+      "osm": "node/4397223784",
+      "coordinatesWgs84": [
+        55.483885,
+        -4.651253
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parc de la Paix",
+      "osm": "way/466330196",
+      "coordinatesWgs84": [
+        55.455642,
+        -4.622253
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Enjoy Supermarket",
+      "osm": "way/616299522",
+      "coordinatesWgs84": [
+        55.480657,
+        -4.752083
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathédrale Saint-Paul",
+      "osm": "way/518099006",
+      "coordinatesWgs84": [
+        55.451963,
+        -4.622652
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Beau Vallon District Administration",
+      "osm": "way/458812934",
+      "coordinatesWgs84": [
+        55.428743,
+        -4.61711
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "State House",
+      "osm": "node/4176627383",
+      "coordinatesWgs84": [
+        55.450947,
+        -4.62457
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Basen Diri",
+      "osm": "node/9694888508",
+      "coordinatesWgs84": [
+        55.522771,
+        -4.791785
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Seychelles Youth Village",
+      "osm": "node/769201090",
+      "coordinatesWgs84": [
+        55.381743,
+        -4.642448
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Venn's Town",
+      "osm": "node/2387375448",
+      "coordinatesWgs84": [
+        55.444377,
+        -4.654877
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cascade Sauzier",
+      "osm": "node/1198043911",
+      "coordinatesWgs84": [
+        55.415,
+        -4.657632
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cathédrale de l'Immaculée Conception",
+      "osm": "way/616378214",
+      "coordinatesWgs84": [
+        55.451637,
+        -4.619777
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lorizon",
+      "osm": "way/1017469211",
+      "coordinatesWgs84": [
+        55.453373,
+        -4.566539
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Point de vue Sainte-Anne",
+      "osm": "node/9454112784",
+      "coordinatesWgs84": [
+        55.509386,
+        -4.618201
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre de Santé d'Anse Boileau",
+      "osm": "relation/8526443",
+      "coordinatesWgs84": [
+        55.478079,
+        -4.704621
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Green House",
+      "osm": "node/10223564817",
+      "coordinatesWgs84": [
+        55.520635,
+        -4.709563
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Eureka Specialist Medical Clinic",
+      "osm": "node/3092794671",
+      "coordinatesWgs84": [
+        55.455655,
+        -4.593989
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Красивый вид на залив",
+      "osm": "node/8757739017",
+      "coordinatesWgs84": [
+        55.43441,
+        -4.566492
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Eden plaza",
+      "osm": "way/276438928",
+      "coordinatesWgs84": [
+        55.476072,
+        -4.640714
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "STC Hypermarket",
+      "osm": "node/4547496634",
+      "coordinatesWgs84": [
+        55.460448,
+        -4.629386
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parc Bazar Victoria",
+      "osm": "way/504513920",
+      "coordinatesWgs84": [
+        55.456525,
+        -4.626608
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc Éden",
+      "osm": "way/699263049",
+      "coordinatesWgs84": [
+        55.479954,
+        -4.64095
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1238,
+      "sha256": "5c8b6866b7480fa950523b9cd13b878631166dca04d0c7bee5a2f9065bcf6960"
+    },
+    "geometry.ts": {
+      "bytes": 315641,
+      "sha256": "9aaf675c1336c70c32421bd018e225578124fb72ed8a5ccb611a53844f891ca9"
+    },
+    "places.ts": {
+      "bytes": 9487,
+      "sha256": "0f5ce68237a38accd7ff45e830970532e0787adefb8018f33630ab49dd4ba774"
+    },
+    "terrain.ts": {
+      "bytes": 212859,
+      "sha256": "1d2d529f1ee1accc59a44f3fc190b1c945e6513dfcc78fe08a71cc23f6154695"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "7e19aab477c83404abe535a303d7c9f74a1926451c485630edd2506208070916"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

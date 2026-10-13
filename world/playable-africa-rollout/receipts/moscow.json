@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "cityId": "moscow",
+  "countryIso2": "RU",
+  "generationIdentity": {
+    "cityId": "moscow",
+    "stateId": "ru-moscow",
+    "stateName": "Moscow"
+  },
+  "inventorySha256": "9903b49f8d4ba0339864cab3d2d0e6bdec208d8c5373ff1da958b00239cbc826",
+  "inventoryPath": "world/playable-africa-rollout/sources/moscow.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "moscow-airport",
+    "name": "Sheremetyevo International Airport",
+    "lon": 37.386677,
+    "lat": 55.977486,
+    "sourceUrl": "https://ourairports.com/airports/UUEE/"
+  },
+  "bounds": [
+    55.56966031006602,
+    37.29675860998793,
+    55.986530044496696,
+    37.93819779001207
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/russia/central-fed-district-261011.osm.pbf",
+      "datasetSha256": "e67c8d1d95f4e7578473cbec44f10599a7eccffd4f17410dc841d0bb9b5d287f",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/russia-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 4177162962,
+          "md5": "0686cfd0421551d55d9cb077dc7c1008",
+          "sha256": "96ec7a9889c547c3745c8fafb765b39b2071091c60526c2199720204ac0e5a54"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 224167699,
+          "md5": "7ba3914ae712a63ab97e92adbefa4cf4",
+          "sha256": "53a639fc0cfdb786089050ba4c18c8a25ed91f7758ec71d934a0257a7d056495",
+          "reason": "admin-0 relation/60189 (Russia) member ways 1491044267 and 1491046685 (Caspian Sea, 52.5E 45.9N, one ring together) are absent from the Russia clip; their nodes lie inside the Kazakhstan clip"
+        },
+        {
+          "role": "city-extract",
+          "url": "https://download.geofabrik.de/russia/central-fed-district-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 880557310,
+          "md5": "248628020800fdc3c3e736add07c237f",
+          "sha256": "e67c8d1d95f4e7578473cbec44f10599a7eccffd4f17410dc841d0bb9b5d287f",
+          "reason": "Russia (4.18 GB) is read only for the admin-0 boundary; Moscow's metadata and layers come from central-fed-district (881 MB), which holds the centre, Sheremetyevo and all three boxes",
+          "polyUrl": "https://download.geofabrik.de/russia/central-fed-district.poly",
+          "polySha256": "2757e10f1c016c4343469309460ebeae248ff713b28908a142174eb377f01bd1",
+          "primaryPolyUrl": "https://download.geofabrik.de/russia.poly",
+          "primaryPolySha256": "94313a5b13fd2afef4d12998e36488f10100162f48e2df06758317ce27972c46"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "9a7bc5d5ac9777fac25141fb54f5dc8a33798ad0faa33a59ea1912ca66b883c8",
+          "elements": 13565
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d9f9cd5aac9fce1f530e2c0089e555a88e42a1dcdbb19671aaa2b8cc0999052a",
+          "elements": 3582
+        },
+        {
+          "file": "water.json",
+          "sha256": "a6916d2b7892558e28a069068f22a1e936073f06ebfe2b959174d562b1958c20",
+          "elements": 333
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "fac1524544864289b5b834e5bc8186dfebf0fe7a06f0e6ca165587d48248a9ea",
+          "elements": 15822
+        },
+        {
+          "file": "roads.json",
+          "sha256": "d91d6c3b6074ad0ff0cde49f0ec0c7f80b838664e08fb0f714f65f9165c94bef",
+          "elements": 8993
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 24,
+    "waterPolygons": 7,
+    "reachWaterPolygons": 18
+  },
+  "observed": {
+    "places": 13565,
+    "extras": 3582,
+    "water": 333,
+    "landuse": 15822,
+    "roads": 8993
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1230,
+      "sha256": "742beb5cda41dc82cafa7a80d36c2bada91dbe9498c9a7a7b97e846a17cf8262"
+    },
+    "geometry.ts": {
+      "bytes": 261547,
+      "sha256": "a2c6044256671a64a149466e405b87c614cd0cce1c1e793a993fa1bee8043bc3"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "c1963522b117d966c3701da02b692dc635f80bc22af3142a295d1a80de82fd40"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/moscow.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

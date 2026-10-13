@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tegucigalpa",
+  "countryIso2": "HN",
+  "generationIdentity": {
+    "cityId": "tegucigalpa",
+    "stateId": "hn-tegucigalpa",
+    "stateName": "Tegucigalpa"
+  },
+  "inventorySha256": "971e261ee5ea357ec602af5471dbf8466e16a4d48b40446d5e09ffbb00e96812",
+  "inventoryPath": "world/playable-africa-rollout/sources/tegucigalpa.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "tegucigalpa-airport",
+    "name": "Toncontín Airport",
+    "lon": -87.217201,
+    "lat": 14.0609,
+    "sourceUrl": "https://ourairports.com/airports/MHTG/"
+  },
+  "bounds": [
+    13.924932610066021,
+    -87.39010126391533,
+    14.286694389933979,
+    -87.01930933608467
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/honduras-261011.osm.pbf",
+      "datasetSha256": "7a8a880925436d295415541b59b910c053aa72c0c5ea4076539e668e2c550f13",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/central-america/honduras-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 74361797,
+          "md5": "cf179f59d76fc954be528e08653f80f0",
+          "sha256": "a84cc8eb53ae591a877c299d762332ed28d3204823efae765369801b0fdd8d3d"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/central-america/guatemala-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 131359417,
+          "md5": "4f8618c6854e76083ca5dad916fea8da",
+          "sha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa",
+          "reason": "admin-0 relation/287670 member way/384124908 (maritime territorial closing line) is absent from the Honduras clip; both nodes lie inside the Guatemala clip"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/central-america/nicaragua-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 61743316,
+          "md5": "8d9aa0ab379bb698df5b80181882a2d7",
+          "sha256": "2becf476304b4c2b3dc651fb1c901cb1131e1eb42f7a844c1bd1aa259704c922",
+          "reason": "admin-0 relation/287670 member way/1456597332 (Honduras - Nicaragua sea limit, Gulf of Fonseca) is absent from the Honduras clip; both nodes lie inside the Nicaragua clip"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "b6294d8fa6d59b923866c7a605e84f3c50882ae7d9afc20c0a850bf3dd1f3416",
+          "elements": 1186
+        },
+        {
+          "file": "extras.json",
+          "sha256": "3caa8d29fcc01cfcc9462c0478b7babb59d2478c107223ff6e49570e45f5b8a1",
+          "elements": 333
+        },
+        {
+          "file": "water.json",
+          "sha256": "798a46925e817620c5f6d66598fbc42a08c1ef608c25860e54383b9e163241ad",
+          "elements": 872
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "f5b8deb307c4466e1acec10c27435989444ac5ec923c62fcea575083a4fd79ba",
+          "elements": 475
+        },
+        {
+          "file": "roads.json",
+          "sha256": "44fcc03fd2f2b2e32faa329c6a832ddc001ce7a899ab084e978b64020b2e1a5e",
+          "elements": 725
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 200,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 7,
+    "waterPolygons": 6,
+    "reachWaterPolygons": 27
+  },
+  "observed": {
+    "places": 1186,
+    "extras": 333,
+    "water": 872,
+    "landuse": 475,
+    "roads": 725
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1248,
+      "sha256": "987cf51ec82426c3fa7764f8b39b5ae71c3c9eacd37431ae95143302ecb6000d"
+    },
+    "geometry.ts": {
+      "bytes": 46424,
+      "sha256": "09bba6141c3033917bb084be8615cc66e2eed4d1281c5e7debfbf4d6a8e4452f"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "e0ba3e6beb68c3302ee020bab540778044e7a62b2c712fbcee5e928f9e6e0504"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/tegucigalpa.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

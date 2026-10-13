@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "san-marino",
+  "countryIso2": "SM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "City of San Marino",
+    "coordinatesWgs84": [
+      12.4466991,
+      43.9363996
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/italy-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "san-marino-airport",
+    "name": "Torraccia Airfield",
+    "lon": 12.511411,
+    "lat": 43.948895,
+    "sourceUrl": "https://ourairports.com/airports/LIKD/"
+  },
+  "boxes": {
+    "play": [
+      43.75551871006602,
+      12.196443999539392,
+      44.11728048993398,
+      12.696954200460608
+    ],
+    "core": [
+      43.89117937751651,
+      12.38427845949435,
+      43.981619822483495,
+      12.50911974050565
+    ],
+    "outline": [
+      43.70551871006602,
+      12.146443999539391,
+      44.16728048993398,
+      12.746954200460609
+    ],
+    "wide": [
+      43.15551871006602,
+      11.596443999539392,
+      44.717280489933984,
+      13.296954200460608
+    ],
+    "water": [
+      43.15551871006602,
+      11.596443999539392,
+      44.717280489933984,
+      13.296954200460608
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/italy-261011.osm.pbf",
+    "datasetSha256": "09787737b88c2e4f125ae279fad0b12365c50daabbe1f632f5995748f7661042",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "a75e5589268d080555c447b86658e861e049d30bb7a8a441de6e3b6fa574f12e",
+        "elements": 2362
+      },
+      {
+        "file": "extras.json",
+        "sha256": "627ecf3381dca7278f57c89e744d2dc57ece792aec537b139ff3ef7d961b16b7",
+        "elements": 435
+      },
+      {
+        "file": "water.json",
+        "sha256": "900acf6bc583d56d1b0e5a4d33f870977c646cb4d3dcd1a6e01d303baf37863a",
+        "elements": 3364
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "53b2d4801df3576f172577d6d42d5ec57bf8230e77a5d392cf31746dd8e0c835",
+        "elements": 3436
+      },
+      {
+        "file": "roads.json",
+        "sha256": "9ec5bd33e83dbdc796d3190e45099357433da3e14542b8a9036b52d163b3a90b",
+        "elements": 1381
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "San Marino - Rimini",
+      "osm": "node/4167919194",
+      "coordinatesWgs84": [
+        12.446734,
+        43.934929
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Amici",
+      "osm": "node/4594496993",
+      "coordinatesWgs84": [
+        12.512785,
+        43.989717
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Università della Repubblica di San Marino",
+      "osm": "node/7190476762",
+      "coordinatesWgs84": [
+        12.444915,
+        43.93769
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ospedale di Stato - Istituto per la Sicurezza Sociale",
+      "osm": "way/86953828",
+      "coordinatesWgs84": [
+        12.455513,
+        43.950255
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parco delle Fontane Azzurre",
+      "osm": "way/770370670",
+      "coordinatesWgs84": [
+        12.407124,
+        43.951647
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Azzurro",
+      "osm": "way/32476610",
+      "coordinatesWgs84": [
+        12.483754,
+        43.970962
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basilica di San Marino",
+      "osm": "way/59305134",
+      "coordinatesWgs84": [
+        12.446713,
+        43.937133
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palazzo Pubblico",
+      "osm": "way/59305139",
+      "coordinatesWgs84": [
+        12.446266,
+        43.936797
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Casa del Castello di Domagnano",
+      "osm": "node/2094173919",
+      "coordinatesWgs84": [
+        12.468811,
+        43.947809
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dipartimento Scienze Umane",
+      "osm": "node/11495475848",
+      "coordinatesWgs84": [
+        12.449706,
+        43.932535
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stadio di Baseball di Serravalle",
+      "osm": "way/364803296",
+      "coordinatesWgs84": [
+        12.474274,
+        43.970041
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Torre del Montale",
+      "osm": "way/59329675",
+      "coordinatesWgs84": [
+        12.452474,
+        43.92999
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadio Serravalle B",
+      "osm": "way/228380042",
+      "coordinatesWgs84": [
+        12.480736,
+        43.97276
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "San Marino Stadium",
+      "osm": "way/59965584",
+      "coordinatesWgs84": [
+        12.477028,
+        43.971511
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guaita Castle",
+      "osm": "way/59305144",
+      "coordinatesWgs84": [
+        12.449286,
+        43.935224
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "De La Fratta Castle",
+      "osm": "way/59329686",
+      "coordinatesWgs84": [
+        12.451383,
+        43.932629
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sanmarino Shinto Shrine",
+      "osm": "node/7194430374",
+      "coordinatesWgs84": [
+        12.48213,
+        43.958113
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Santuario della Beata Vergine della Consolazione",
+      "osm": "way/59316453",
+      "coordinatesWgs84": [
+        12.447424,
+        43.940522
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Street Bar",
+      "osm": "node/12903309263",
+      "coordinatesWgs84": [
+        12.500962,
+        43.923394
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ci vediamo da Mario",
+      "osm": "node/10718518174",
+      "coordinatesWgs84": [
+        12.42068,
+        43.905989
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parco Montelupo",
+      "osm": "way/614075300",
+      "coordinatesWgs84": [
+        12.505652,
+        43.953099
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parco Marino Nicolini 1° Maestro",
+      "osm": "way/770859631",
+      "coordinatesWgs84": [
+        12.419058,
+        43.945416
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Atlante",
+      "osm": "way/32476612",
+      "coordinatesWgs84": [
+        12.486487,
+        43.977269
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Università degli studi",
+      "osm": "node/5840181047",
+      "coordinatesWgs84": [
+        12.448248,
+        43.935445
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1251,
+      "sha256": "3805e4c1c7db8d3a3b7f92495149873f3db2025ddba1ff7fee91f8c459f41221"
+    },
+    "geometry.ts": {
+      "bytes": 11100,
+      "sha256": "274612aca1e60090234acb5d8967ba8d7b5ff2f0b44c947ec2664e39fec2878a"
+    },
+    "places.ts": {
+      "bytes": 9707,
+      "sha256": "2a12f84d44e26cf54232e6556d6b04bd7c61662e0ee78513e3309acf3a6a29ac"
+    },
+    "terrain.ts": {
+      "bytes": 34050,
+      "sha256": "2a9e23b1b08cba4c896c78c0c5721031c0054b6fa7eb2d4f2c09f0fb3016edaf"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "a900218fe4812ddd0612836e8a4f866d33c659a51164775bbbf940ece60138e9"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

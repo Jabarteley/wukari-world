@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "st-georges",
+  "countryIso2": "GD",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "St. George's",
+    "coordinatesWgs84": [
+      -61.751805,
+      12.0535331
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "st-georges-airport",
+    "name": "Maurice Bishop International Airport",
+    "lon": -61.785302,
+    "lat": 12.003996,
+    "sourceUrl": "https://ourairports.com/airports/TGPY/"
+  },
+  "boxes": {
+    "play": [
+      11.87265221006602,
+      -61.93564240520758,
+      12.234413989933978,
+      -61.567967594792414
+    ],
+    "core": [
+      12.008312877516504,
+      -61.79774089617561,
+      12.098753322483494,
+      -61.705869103824384
+    ],
+    "outline": [
+      11.82265221006602,
+      -61.98564240520758,
+      12.284413989933979,
+      -61.51796759479242
+    ],
+    "wide": [
+      11.27265221006602,
+      -62.53564240520758,
+      12.834413989933978,
+      -60.96796759479241
+    ],
+    "water": [
+      11.27265221006602,
+      -62.53564240520758,
+      12.834413989933978,
+      -60.96796759479241
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "335cfb6d05f7359359c77a7782a1053b670159e47e47094c6e1dfbbd3439b939",
+        "elements": 301
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d7b1de5ed6bf95399af88c06017c4ed8b269ef31edb40a07b1f692d119b147cf",
+        "elements": 31
+      },
+      {
+        "file": "water.json",
+        "sha256": "f1558bbe6444563b6a4de208a4db73a652988bb6d68ac86b5eacb39a926405c4",
+        "elements": 139
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "304cf45b4f9eb6b827e8f173cc7cd7660ec0addbd3ef0d057b73623e85b53953",
+        "elements": 161
+      },
+      {
+        "file": "roads.json",
+        "sha256": "d47ee5e96e40980624c2a97900a768947f2aeb7245f43abab4df31446e7a4052",
+        "elements": 267
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "St George's Bus Terminus",
+      "osm": "node/617899602",
+      "coordinatesWgs84": [
+        -61.754795,
+        12.053585
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "By the Sea",
+      "osm": "node/5148288522",
+      "coordinatesWgs84": [
+        -61.609795,
+        12.14097
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St George's University Grand Anse Campus",
+      "osm": "way/383802717",
+      "coordinatesWgs84": [
+        -61.762696,
+        12.023032
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "New Hampshire Medical Centre",
+      "osm": "way/487428150",
+      "coordinatesWgs84": [
+        -61.721338,
+        12.085436
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Camerhogne Park",
+      "osm": "way/383803426",
+      "coordinatesWgs84": [
+        -61.759838,
+        12.023946
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gouyave Fish Friday",
+      "osm": "node/2440883294",
+      "coordinatesWgs84": [
+        -61.729028,
+        12.167739
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cathedrale of the Immaculate Conception",
+      "osm": "way/383927620",
+      "coordinatesWgs84": [
+        -61.752099,
+        12.053428
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grenville Magistrates Court",
+      "osm": "way/385939410",
+      "coordinatesWgs84": [
+        -61.623241,
+        12.121996
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parliament of Grenada",
+      "osm": "way/877684637",
+      "coordinatesWgs84": [
+        -61.745366,
+        12.05385
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "McDonald College",
+      "osm": "way/435187821",
+      "coordinatesWgs84": [
+        -61.640774,
+        12.222947
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Point of Fort Jeudy",
+      "osm": "node/278214972",
+      "coordinatesWgs84": [
+        -61.708802,
+        11.993855
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Concord Waterfalls",
+      "osm": "node/640501899",
+      "coordinatesWgs84": [
+        -61.718889,
+        12.117731
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mt. Rich Petroglyphs",
+      "osm": "node/11159744805",
+      "coordinatesWgs84": [
+        -61.643083,
+        12.193648
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Grand Etang Lake",
+      "osm": "way/25532699",
+      "coordinatesWgs84": [
+        -61.696033,
+        12.097164
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kirani James Athletic Stadium",
+      "osm": "node/9858873098",
+      "coordinatesWgs84": [
+        -61.753647,
+        12.060029
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Explorer",
+      "osm": "node/5976587886",
+      "coordinatesWgs84": [
+        -61.658076,
+        12.031353
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Gazo",
+      "osm": "node/11183191376",
+      "coordinatesWgs84": [
+        -61.708156,
+        12.042254
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Aggie's Restaurant and Bar",
+      "osm": "way/435911842",
+      "coordinatesWgs84": [
+        -61.610937,
+        12.212282
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Princess Alice Hospital",
+      "osm": "way/439102912",
+      "coordinatesWgs84": [
+        -61.652532,
+        12.132245
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "WINDREF Research Institute",
+      "osm": "way/154050153",
+      "coordinatesWgs84": [
+        -61.773635,
+        11.998167
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mt. Hartman National Park and Dove Sanctuary",
+      "osm": "node/3752214509",
+      "coordinatesWgs84": [
+        -61.746395,
+        12.004093
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "LaBorie Medical Station",
+      "osm": "way/456252083",
+      "coordinatesWgs84": [
+        -61.72809,
+        12.045187
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Public access to L'Anse Aux Epines Beach",
+      "osm": "way/451481996",
+      "coordinatesWgs84": [
+        -61.758107,
+        12.001088
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Excel Plaza",
+      "osm": "way/383799104",
+      "coordinatesWgs84": [
+        -61.758718,
+        12.018412
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1267,
+      "sha256": "9cdd3694e2fc56552fc6d185a3a7b471a04dda87fc0a0795731ee023a28e271a"
+    },
+    "geometry.ts": {
+      "bytes": 133049,
+      "sha256": "641352528af189833973cd1cc8e55470c559ec459cb785fdcbdabf2b94c87607"
+    },
+    "places.ts": {
+      "bytes": 9629,
+      "sha256": "c04e3afb1512ee086dfc46aa025db1f475d21d86b060ddf00a8cffbbc17724b5"
+    },
+    "terrain.ts": {
+      "bytes": 262290,
+      "sha256": "a4edbb2b619fc8b8e05f622ee0c1ee47f844bd4cffd7911c7079632f88df98ec"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "0189c7ca87f600da6c80904bc1f8e8946897914b9e9e77a35e5c9c568f43dda2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

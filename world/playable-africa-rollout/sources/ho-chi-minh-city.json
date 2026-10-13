@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ho-chi-minh-city",
+  "countryIso2": "VN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Ho Chi Minh City",
+    "coordinatesWgs84": [
+      106.7166008,
+      10.7737261
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/vietnam-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "ho-chi-minh-city-airport",
+    "name": "Tan Son Nhat International Airport",
+    "lon": 106.652,
+    "lat": 10.8188,
+    "sourceUrl": "https://ourairports.com/airports/VVTS/"
+  },
+  "boxes": {
+    "play": [
+      10.59284521006602,
+      106.53360400569034,
+      10.954606989933978,
+      106.89959759430965
+    ],
+    "core": [
+      10.728505877516504,
+      106.6708724302041,
+      10.818946322483495,
+      106.76232916979589
+    ],
+    "outline": [
+      10.54284521006602,
+      106.48360400569034,
+      11.00460698993398,
+      106.94959759430965
+    ],
+    "wide": [
+      9.99284521006602,
+      105.93360400569034,
+      11.554606989933978,
+      107.49959759430965
+    ],
+    "water": [
+      9.99284521006602,
+      105.93360400569034,
+      11.554606989933978,
+      107.49959759430965
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/vietnam-261011.osm.pbf",
+    "datasetSha256": "fe2968d88ed99518b3efa77b402ed9915b1647c162383ce59af9374cc582b5fd",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/vietnam-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 330311486,
+        "md5": "b60a6365bffe82cd391e2b6a3bc94e78",
+        "sha256": "d954e09b891079520bf13799377a9cf783cb1d9fe2745ef11864cb8d2a5b2048"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 609760908,
+        "md5": "89aea1627157097ce61c3234dc63b001",
+        "sha256": "26c8148f78776ccf071e270d8a4bef623fe2d2763bec6601f6b03c38cc9eaa74",
+        "reason": "16 maritime Spratly-region ways of relation 49915 absent from the Vietnam clip (1120240923,925,927,928,930,931,932,934,941,942,947,954,955,1199677144,1319181446,1368675506); ways 941+942 are part of the main ring; all nodes inside the Philippines poly, and 942, 1368675506, 1120240932 are present in the Philippines PBF"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "97322165a984292b3cbe904b0d77f279ba0a12955aff2b226738b63804adf5d2",
+        "elements": 7517
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f8ffc1f8fa2026c63456753bda4153aa8531266dd5357e1c5274a8883b75c81b",
+        "elements": 863
+      },
+      {
+        "file": "water.json",
+        "sha256": "3f9a3d715c2cad429dc904b90c8e92b0d806ef87c64b7f45b099ad1270ed3e83",
+        "elements": 2968
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b691cec6c387da9cbd53386c0f335a7ec5da562102ecd1798af221b2a878e585",
+        "elements": 2388
+      },
+      {
+        "file": "roads.json",
+        "sha256": "259d80f6a2cbc877881f6fba9720d7a1eb6709023bbafe3260fd2cbe83f3ab84",
+        "elements": 6478
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Gò Vấp",
+      "osm": "node/2893771497",
+      "coordinatesWgs84": [
+        106.684675,
+        10.815869
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cà Phê 39A",
+      "osm": "node/2672490173",
+      "coordinatesWgs84": [
+        106.832798,
+        10.816985
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ton Duc Thang University",
+      "osm": "way/290134801",
+      "coordinatesWgs84": [
+        106.698079,
+        10.731803
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CI Hospital",
+      "osm": "way/493155228",
+      "coordinatesWgs84": [
+        106.607758,
+        10.740353
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tao Dan Park",
+      "osm": "way/500888743",
+      "coordinatesWgs84": [
+        106.693086,
+        10.774789
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ben Thanh Market",
+      "osm": "way/39514795",
+      "coordinatesWgs84": [
+        106.698017,
+        10.772571
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hoang Phap Temple",
+      "osm": "way/366069915",
+      "coordinatesWgs84": [
+        106.581813,
+        10.900216
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ho Chi Minh City Hall",
+      "osm": "way/341504305",
+      "coordinatesWgs84": [
+        106.700955,
+        10.776596
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "UBND phường Dĩ An",
+      "osm": "node/4545131791",
+      "coordinatesWgs84": [
+        106.767974,
+        10.90393
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Saigon International University",
+      "osm": "way/306440163",
+      "coordinatesWgs84": [
+        106.772702,
+        10.844956
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Thong Nhat Stadium",
+      "osm": "way/665450065",
+      "coordinatesWgs84": [
+        106.663276,
+        10.760701
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Khu du lịch Suối Tiên",
+      "osm": "way/463548000",
+      "coordinatesWgs84": [
+        106.80379,
+        10.861912
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Trường Đại học Lao động - Xã hội (cơ sở 2)",
+      "osm": "way/516639172",
+      "coordinatesWgs84": [
+        106.617411,
+        10.866573
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ho Chi Minh City University of Culture",
+      "osm": "way/1023330892",
+      "coordinatesWgs84": [
+        106.730846,
+        10.805406
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bệnh viện Thống Nhất",
+      "osm": "way/198047671",
+      "coordinatesWgs84": [
+        106.653542,
+        10.791079
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Công viên Văn hóa Đầm Sen",
+      "osm": "way/32735046",
+      "coordinatesWgs84": [
+        106.638533,
+        10.764334
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chùa Linh Phước",
+      "osm": "way/503561771",
+      "coordinatesWgs84": [
+        106.766935,
+        10.882289
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vinh Nghiem Pagoda",
+      "osm": "way/494789249",
+      "coordinatesWgs84": [
+        106.682294,
+        10.790363
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Quân khu 7 Stadium",
+      "osm": "way/613756783",
+      "coordinatesWgs84": [
+        106.667354,
+        10.801849
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital for Tropical Diseases",
+      "osm": "way/1529292331",
+      "coordinatesWgs84": [
+        106.678487,
+        10.75321
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saigon Zoo and Botanical Gardens",
+      "osm": "way/32735038",
+      "coordinatesWgs84": [
+        106.706457,
+        10.787808
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Van Tam Park",
+      "osm": "way/32735082",
+      "coordinatesWgs84": [
+        106.693757,
+        10.788241
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ho Chi Minh Museum",
+      "osm": "way/808022726",
+      "coordinatesWgs84": [
+        106.706807,
+        10.768251
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dan Sinh market",
+      "osm": "way/806860787",
+      "coordinatesWgs84": [
+        106.698165,
+        10.766543
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1252,
+      "sha256": "ef059dd04840b87e71774ac017a20005bf9d9f0fb09a4fc313f4858e753f0d8f"
+    },
+    "geometry.ts": {
+      "bytes": 228377,
+      "sha256": "605210b49e5cfc19ecf5d36a86d87c30026d93d4b2e01ceef28586cb0c3ea94d"
+    },
+    "places.ts": {
+      "bytes": 10110,
+      "sha256": "0c768988153f2e81a4d3b80ac62df35fe287ecf8e0055838572801c46243a0ed"
+    },
+    "terrain.ts": {
+      "bytes": 255416,
+      "sha256": "ba1e2f00f7cfbe43c853866e7e7ed1ef48b20ccb5ac0b2207417e9be07d7d560"
+    },
+    "index.ts": {
+      "bytes": 267,
+      "sha256": "d3db50d6e8d6deb8ce0959a916a8b5b6c40357c7242806503f434e840650a634"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

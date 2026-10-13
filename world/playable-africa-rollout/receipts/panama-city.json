@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "panama-city",
+  "countryIso2": "PA",
+  "generationIdentity": {
+    "cityId": "panama-city",
+    "stateId": "pa-panama-city",
+    "stateName": "Panama City"
+  },
+  "inventorySha256": "01f2386b0a5ba5b91c07e16c801ea7b652ccbfda02d971982e541ce68cab0840",
+  "inventoryPath": "world/playable-africa-rollout/sources/panama-city.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "panama-city-airport",
+    "name": "Tocumen International Airport",
+    "lon": -79.383499,
+    "lat": 9.07136,
+    "sourceUrl": "https://ourairports.com/airports/MPTO/"
+  },
+  "bounds": [
+    8.79056841006602,
+    -79.71615922013568,
+    9.152330189933979,
+    -79.35220117986431
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/panama-261011.osm.pbf",
+      "datasetSha256": "18fa63477a7a53c2828d3978a9cec897f67ebb3d4fab2c6b424d6af93100e1b8",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/central-america/panama-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 36299876,
+          "md5": "68c5d6bced6c09f6ff334dc0914b53d0",
+          "sha256": "3e923f66271c8fb6e4a164391792d26d57f3d8782f2d0b47311a07407fa40893"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/south-america/colombia-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 331664518,
+          "md5": "7c2308a7282a4cb192c15cdc987f0ccd",
+          "sha256": "54bf72e2880c7973984df5b78fe7564e59b35184fb4208bc5f03f1d9359c03ea",
+          "reason": "admin-0 relation/287668 member way/542342990 (maritime closing line) is absent from the Panama clip; both nodes lie inside the Colombia clip and not the Costa Rica clip"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "e4dd07f6665dfa7d25da67e24982f35c543758afecbc3534bf9d7d7578f88b9f",
+          "elements": 1741
+        },
+        {
+          "file": "extras.json",
+          "sha256": "c18537579277854fc2d5dc00cc7103873e1a4647018ebcd20104f70f700b374f",
+          "elements": 499
+        },
+        {
+          "file": "water.json",
+          "sha256": "d3b5b2c6076501597eaaaab98f009162e1e98d33119b2a73a31bf61f8e5283b9",
+          "elements": 1540
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "1c5ae95effc84b217c211ecf1dfbf9fcd8d54fb7cfbeb9543ad9c1a3bedbde2c",
+          "elements": 1734
+        },
+        {
+          "file": "roads.json",
+          "sha256": "dbba8ab6b480dba2370263d2775d913f29f13d43f53041d905aafb1e5c0818d3",
+          "elements": 1517
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 521,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 23,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 3
+  },
+  "observed": {
+    "places": 1741,
+    "extras": 499,
+    "water": 1540,
+    "landuse": 1734,
+    "roads": 1517
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1241,
+      "sha256": "7ef0cdca8b61243314087f7710b18d80b8e489133717a29d48696ecb663531b2"
+    },
+    "geometry.ts": {
+      "bytes": 858756,
+      "sha256": "59da1933dedce176f568af274dfd3014d5f304c2310f785ff339179144d665d6"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "2ba25a2cf6d8900a31fdcb669fd4825f6ed8ec346296e4ef6749703805d5cedd"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/panama-city.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

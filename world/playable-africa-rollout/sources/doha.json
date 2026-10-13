@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "doha",
+  "countryIso2": "QA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Doha",
+    "coordinatesWgs84": [
+      51.5264162,
+      25.2856329
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "doha-airport",
+    "name": "Hamad International Airport",
+    "lon": 51.608056,
+    "lat": 25.273056,
+    "sourceUrl": "https://ourairports.com/airports/OTHH/"
+  },
+  "boxes": {
+    "play": [
+      25.104752010066022,
+      51.32741872125049,
+      25.466513789933977,
+      51.72541367874951
+    ],
+    "core": [
+      25.240412677516506,
+      51.476722727755174,
+      25.330853122483493,
+      51.576109672244826
+    ],
+    "outline": [
+      25.05475201006602,
+      51.27741872125049,
+      25.516513789933978,
+      51.77541367874951
+    ],
+    "wide": [
+      24.50475201006602,
+      50.72741872125049,
+      26.06651378993398,
+      52.32541367874951
+    ],
+    "water": [
+      24.50475201006602,
+      50.72741872125049,
+      26.06651378993398,
+      52.32541367874951
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+    "datasetSha256": "146b0eee40cd3e5d36f497dc834eff9cc62cead909308eb14c6f9ba7db6aa400",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "cd06b82154c3859528eb67c160f6a9260a258dedd6582bbeb4789a06510f01c0",
+        "elements": 1335
+      },
+      {
+        "file": "extras.json",
+        "sha256": "575bc654c34c24470365c8a9e058c6c2b3b49cf90c26bf7cb1702fa939867fa2",
+        "elements": 233
+      },
+      {
+        "file": "water.json",
+        "sha256": "c0b14794535e8bfd2dffdb2f8b73278c2100d9266189c61a7eeaf39cb049c721",
+        "elements": 890
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "77768d2a2304bd19af02453ab3fd9afdb12b42508953df563de624f06675c9e2",
+        "elements": 1236
+      },
+      {
+        "file": "roads.json",
+        "sha256": "bbcb5f4ec1fcded73333b378e3c99ca88c366e53dab79a35b744af564c0d2ca6",
+        "elements": 4104
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "National Museum",
+      "osm": "node/9960498797",
+      "coordinatesWgs84": [
+        51.549337,
+        25.284693
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Levantine Doha",
+      "osm": "node/6785051839",
+      "coordinatesWgs84": [
+        51.539912,
+        25.374877
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Qatar National Convention Center",
+      "osm": "relation/10725661",
+      "coordinatesWgs84": [
+        51.437355,
+        25.321921
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al Ahli Hospital",
+      "osm": "way/247909086",
+      "coordinatesWgs84": [
+        51.500078,
+        25.307719
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al Bidda Park",
+      "osm": "relation/12719187",
+      "coordinatesWgs84": [
+        51.514097,
+        25.300878
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mall of Qatar",
+      "osm": "way/463697424",
+      "coordinatesWgs84": [
+        51.349878,
+        25.32666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of Our Lady of the Rosary",
+      "osm": "way/239713638",
+      "coordinatesWgs84": [
+        51.52192,
+        25.212673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Katara Square",
+      "osm": "way/154195867",
+      "coordinatesWgs84": [
+        51.524901,
+        25.360919
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Embassy of India",
+      "osm": "way/490598248",
+      "coordinatesWgs84": [
+        51.517317,
+        25.329561
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Qatar University",
+      "osm": "way/154525758",
+      "coordinatesWgs84": [
+        51.489112,
+        25.37305
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saoud bin Abdulrahman Al-Thani Stadium",
+      "osm": "way/155039774",
+      "coordinatesWgs84": [
+        51.596219,
+        25.180313
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barzan Towers",
+      "osm": "way/256250988",
+      "coordinatesWgs84": [
+        51.413188,
+        25.418085
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "West End Park International Cricket Stadium",
+      "osm": "way/239171216",
+      "coordinatesWgs84": [
+        51.460279,
+        25.189394
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Aspire Tower",
+      "osm": "way/770633250",
+      "coordinatesWgs84": [
+        51.444747,
+        25.262525
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Site of the 2022 FIFA World Cup Final",
+      "osm": "node/13278587089",
+      "coordinatesWgs84": [
+        51.491171,
+        25.421967
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jassim bin Hamad Stadium",
+      "osm": "way/154923131",
+      "coordinatesWgs84": [
+        51.483973,
+        25.267369
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Landmark Shopping Mall",
+      "osm": "way/103002122",
+      "coordinatesWgs84": [
+        51.466375,
+        25.334174
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Souq Waqif",
+      "osm": "node/3424940793",
+      "coordinatesWgs84": [
+        51.532861,
+        25.287058
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Northwestern University in Qatar",
+      "osm": "way/684144291",
+      "coordinatesWgs84": [
+        51.445643,
+        25.317852
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Virginia Commonwealth University - Qatar",
+      "osm": "way/684407873",
+      "coordinatesWgs84": [
+        51.432865,
+        25.314746
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fanar Qatar Islamic Cultural Center",
+      "osm": "relation/10664399",
+      "coordinatesWgs84": [
+        51.535659,
+        25.288976
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hamad Medical City",
+      "osm": "way/238026555",
+      "coordinatesWgs84": [
+        51.502167,
+        25.293767
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "NCCCR (Al Amal Hospital)",
+      "osm": "relation/13338453",
+      "coordinatesWgs84": [
+        51.510959,
+        25.292954
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Kitchen Doha",
+      "osm": "node/6785101974",
+      "coordinatesWgs84": [
+        51.540058,
+        25.374797
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1193,
+      "sha256": "5cb43b400f8dd37f540ad62b7c1dbed7738cfc0d9d08490f466a84fc5dc0fc31"
+    },
+    "geometry.ts": {
+      "bytes": 727855,
+      "sha256": "299a6a8c493f3143ba0e2ea75f162c7bdc5715c0b3caf152fc44853b97664370"
+    },
+    "places.ts": {
+      "bytes": 9971,
+      "sha256": "feac8c8b98e9fd4aef1c687c8d2edb9848d96c096ae67a21f13a72178d55fd1b"
+    },
+    "terrain.ts": {
+      "bytes": 368147,
+      "sha256": "28333e8b3c0f57f38ac3ec35cbfa8e51ca0191bfa34160a0d726badd01553b38"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "3517686a0aea8e3bbacbac3f0656d4e5010e50e2fc795a1872dbeb3ad635784b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

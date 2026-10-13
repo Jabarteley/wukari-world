@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "djibouti",
+  "countryIso2": "DJ",
+  "generationIdentity": {
+    "cityId": "djibouti",
+    "stateId": "dj-djibouti",
+    "stateName": "Djibouti"
+  },
+  "inventorySha256": "1d5b48e91df425b59c2d7cbf26b56e221ea6fc0f7af05213da837e8e98789f5e",
+  "inventoryPath": "world/playable-africa-rollout/sources/djibouti.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "djibouti-airport",
+    "name": "Djibouti-Ambouli Airport",
+    "lon": 43.1595,
+    "lat": 11.5473,
+    "sourceUrl": "https://ourairports.com/airports/HDAM/"
+  },
+  "bounds": [
+    11.412809410066021,
+    42.96374846370639,
+    11.77457118993398,
+    43.33079633629361
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/djibouti-261011.osm.pbf",
+      "datasetSha256": "89f2d0d4bf61c86be1e941c1215db3205e75e605259912c9a960a2378a5f5101",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "442269473f00ad6da5895d6e812e1129dc9074c2891a17f867b461763728c8d1",
+          "elements": 162
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9e708a7eb076057d636a038fca37d05c03ecdc28543cc35161cb0b3c4e523327",
+          "elements": 46
+        },
+        {
+          "file": "water.json",
+          "sha256": "2f6bec5e1a46a31edc8c5d998c38883e9def7e90a3b91aac143b35e46f038847",
+          "elements": 185
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "45d71dc19b48e5cce0b64aed434d5a555c0ea6d4ae65b604d9a5e2bfe18444f5",
+          "elements": 267
+        },
+        {
+          "file": "roads.json",
+          "sha256": "baf27bbf3480627909f6692a13d804d9e58a04a412016525f14d010caff6c894",
+          "elements": 199
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 81,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 12
+  },
+  "observed": {
+    "places": 162,
+    "extras": 46,
+    "water": 185,
+    "landuse": 267,
+    "roads": 199
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1214,
+      "sha256": "45fbca32498450d5c3ccd002475b6b5c791e3599cecbe6248d599ae839139159"
+    },
+    "geometry.ts": {
+      "bytes": 114984,
+      "sha256": "3efe925579ba4456180d9a304ee1d49db48a16ca38a053842b7deae086605b90"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "a7503d7c38a93f981c8fb785151a76f649ca2bff46e2ea5627d764999e541393"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/djibouti.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

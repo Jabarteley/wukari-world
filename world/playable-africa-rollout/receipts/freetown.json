@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "freetown",
+  "countryIso2": "SL",
+  "generationIdentity": {
+    "cityId": "freetown",
+    "stateId": "sl-freetown",
+    "stateName": "Freetown"
+  },
+  "inventorySha256": "f1ef8650cf99aaea99c317397df5ee6569da6407a23b35d43000402731f6bd4f",
+  "inventoryPath": "world/playable-africa-rollout/sources/freetown.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "freetown-airport",
+    "name": "Lungi International Airport",
+    "lon": -13.1955,
+    "lat": 8.61644,
+    "sourceUrl": "https://ourairports.com/airports/GFLL/"
+  },
+  "bounds": [
+    8.29812311006602,
+    -13.44968408564828,
+    8.659884889933979,
+    -13.08621591435172
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/sierra-leone-261011.osm.pbf",
+      "datasetSha256": "8c2ea703a2c4925bd9396adb9ac1122c6166ca70ea9178253d2f2794c741d631",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/africa/sierra-leone-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 46314557,
+          "md5": "e84c9fcdca83c67d4f5ffacf167faa90",
+          "sha256": "4ccc60f04b418741406d77e0f720e8e42b1dca7aa7e79709252a06dc1be200a1"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/africa/guinea-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 118414412,
+          "md5": "75d2b1170796f575ed47de93056f2b80",
+          "sha256": "f838e08a0fef6b67973f565e40e5a106de8e87c51c87a57295903090064468ec",
+          "reason": "Freetown water box reaches 9.26N: the coastline across the Great Scarcies mouth continues into Guinea past the Sierra Leone clip; Sierra Leone and Guinea clips together cover the whole box"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "7b57a564038348c9b6fd586d9ae94bdeb6fc10b51ae10f54ea525a677b5a7822",
+          "elements": 538
+        },
+        {
+          "file": "extras.json",
+          "sha256": "bd84ceeac5a816254c19ec8689f64051b4d991b84e8bceb2c96b469a1d3056ba",
+          "elements": 100
+        },
+        {
+          "file": "water.json",
+          "sha256": "23cc0e48d53a76294b9df4cf297c60b4eb8002fe06048c6b47a8a5ca9b0892e8",
+          "elements": 395
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "a66ca232c0c755b223d1130aa566c0ae1a251b138e965331186dc2cf9044e497",
+          "elements": 505
+        },
+        {
+          "file": "roads.json",
+          "sha256": "1211d0180290f2311d19da4d501f7098960dbcdb673dca39c57af80c96f64b4b",
+          "elements": 213
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 75,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 5,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 13
+  },
+  "observed": {
+    "places": 538,
+    "extras": 100,
+    "water": 395,
+    "landuse": 505,
+    "roads": 213
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1219,
+      "sha256": "e70faf97144dbd17766edc2eb98955508f027a4ff06c1b6e0b707b2fbe0d443d"
+    },
+    "geometry.ts": {
+      "bytes": 67933,
+      "sha256": "f78428ecfb392b7314f78bdb9112861faa91ffa9a1d94842f63c9b72128c3dfc"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "44c3cf12520ff95028e796407ee1dbde46a8bbc0f184b7f44948a184b74e1473"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/freetown.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

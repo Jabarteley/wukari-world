@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "chisinau",
+  "countryIso2": "MD",
+  "generationIdentity": {
+    "cityId": "chisinau",
+    "stateId": "md-chisinau",
+    "stateName": "Chișinău"
+  },
+  "inventorySha256": "dfa91e4441594c459187ac9bbf87bb322e353b90a3a1029ce2952aad4121a5fe",
+  "inventoryPath": "world/playable-africa-rollout/sources/chisinau.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "chisinau-airport",
+    "name": "Chişinău International Airport",
+    "lon": 28.931704,
+    "lat": 46.92774,
+    "sourceUrl": "https://ourairports.com/airports/LUKK/"
+  },
+  "bounds": [
+    46.84363081006602,
+    28.56783899526906,
+    47.20539258993398,
+    29.096745604730938
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/moldova-261011.osm.pbf",
+      "datasetSha256": "c39c28a9d1e7e44b24a0bab5b9b4471687e37fd162ec0786322d5b258718bd1c",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "219f8db5a05791dcd6f4065e7e54dfcc71e7b7c85a2d9090f47201d7c45e6cec",
+          "elements": 1665
+        },
+        {
+          "file": "extras.json",
+          "sha256": "bec4a793fec17acdfad8a73dbfa898b18276fdb73552d7743f6ebf0024bfea36",
+          "elements": 493
+        },
+        {
+          "file": "water.json",
+          "sha256": "24c9e0177ba6be99f879466835c3c21ae02fa9a21540fade6197748bb73102d7",
+          "elements": 751
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "1e95d527309474a100977ff240c9732de9a276c27dcf62126f70ee77c44b3090",
+          "elements": 6139
+        },
+        {
+          "file": "roads.json",
+          "sha256": "833609e3b42aafbe7eff0cc131e6cae5d90582cb9bcc88c8b6d00cc86d5f4875",
+          "elements": 2012
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 507,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 56,
+    "waterPolygons": 11,
+    "reachWaterPolygons": 9
+  },
+  "observed": {
+    "places": 1665,
+    "extras": 493,
+    "water": 751,
+    "landuse": 6139,
+    "roads": 2012
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1225,
+      "sha256": "2a377b8834f721e38cbd8c2cca6cabd11dfa24b4f669ae4d132172e3258bdf9b"
+    },
+    "geometry.ts": {
+      "bytes": 145597,
+      "sha256": "95aed590ba361ddf9ba31c791827e59d18a3da1b366b41842da54c58bfc8a8aa"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "6169ab9f321a95b136f63ea8ad921a4096a10914615ea46a65bd7f92348ebd7b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/chisinau.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

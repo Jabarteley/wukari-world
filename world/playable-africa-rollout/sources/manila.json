@@ -1,0 +1,374 @@
+{
+  "schemaVersion": 1,
+  "cityId": "manila",
+  "countryIso2": "PH",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Manila",
+    "coordinatesWgs84": [
+      120.9803621,
+      14.5904492
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "manila-airport",
+    "name": "Ninoy Aquino International Airport",
+    "lon": 121.019997,
+    "lat": 14.5086,
+    "sourceUrl": "https://ourairports.com/airports/RPLL/"
+  },
+  "boxes": {
+    "play": [
+      14.409568310066021,
+      120.7945592842074,
+      14.77133008993398,
+      121.16616491579259
+    ],
+    "core": [
+      14.545228977516505,
+      120.93394024765352,
+      14.635669422483495,
+      121.02678395234646
+    ],
+    "outline": [
+      14.35956831006602,
+      120.7445592842074,
+      14.82133008993398,
+      121.21616491579259
+    ],
+    "wide": [
+      13.809568310066021,
+      120.1945592842074,
+      15.371330089933979,
+      121.76616491579259
+    ],
+    "water": [
+      13.809568310066021,
+      120.1945592842074,
+      15.371330089933979,
+      121.76616491579259
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+    "datasetSha256": "26c8148f78776ccf071e270d8a4bef623fe2d2763bec6601f6b03c38cc9eaa74",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/sea-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 3674081750,
+        "md5": "dd6f4ce32d6270ffd97e18fca760a24b",
+        "sha256": "5037f132a80dbd5493fb7af012b1203e1e678858ea395833ab8475da2110f93b"
+      },
+      {
+        "role": "city-extract",
+        "url": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 609760908,
+        "md5": "89aea1627157097ce61c3234dc63b001",
+        "sha256": "26c8148f78776ccf071e270d8a4bef623fe2d2763bec6601f6b03c38cc9eaa74",
+        "reason": "asia/sea (3.67 GB) is the only same-snapshot Geofabrik file holding way 1149528892 (Malaysia-Philippines closing line of relation/443174), so it is the admin-0 boundary source; Manila's metadata and layers come from philippines (610 MB) instead of a 4.3 GB merge",
+        "polyUrl": "https://download.geofabrik.de/asia/philippines.poly",
+        "polySha256": "616ec9c77bbfbdef08f091d3e67d4379bbc7d26e8d959294200f838d8a20f991",
+        "primaryPolyUrl": "https://download.geofabrik.de/asia/sea.poly",
+        "primaryPolySha256": "46790d4b133a6efb62334c54339f2196d45f4d97460a5e93b1c79cdcef7867fc"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "a5e49322b9668a47f3316b0ed37704d46cff7be729ecf15fbf20d1673729b044",
+        "elements": 13348
+      },
+      {
+        "file": "extras.json",
+        "sha256": "fa969f58d815dc801c4c5bad0c185ebbc3e37f256e579d03308c5efddf8eda50",
+        "elements": 2409
+      },
+      {
+        "file": "water.json",
+        "sha256": "2e26383540d126a6e050016f349f2518137d9f977ce5955d78d9ea62011aa153",
+        "elements": 2021
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "805a8d6c4a4be80131dff928b76803a717c9fc77ebf25a1c6b63a8eea92cd913",
+        "elements": 14681
+      },
+      {
+        "file": "roads.json",
+        "sha256": "20bf6dd03785eaa0ce251325104233ed0cdff6a20c21a14dcf6d0f824593e113",
+        "elements": 7641
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Katipunan",
+      "osm": "node/5377269277",
+      "coordinatesWgs84": [
+        121.072774,
+        14.631064
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Zus Coffee",
+      "osm": "node/12647066223",
+      "coordinatesWgs84": [
+        120.99578,
+        14.578695
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "San Beda College Alabang",
+      "osm": "way/23378044",
+      "coordinatesWgs84": [
+        121.025324,
+        14.433037
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Luke's Medical Center Global City",
+      "osm": "way/29353952",
+      "coordinatesWgs84": [
+        121.048116,
+        14.555134
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Valenzuela People's Park",
+      "osm": "relation/16132673",
+      "coordinatesWgs84": [
+        120.969865,
+        14.691496
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SM Center Angono",
+      "osm": "way/261385828",
+      "coordinatesWgs84": [
+        121.154455,
+        14.530863
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Mary Magdalene Parish Church",
+      "osm": "way/168831685",
+      "coordinatesWgs84": [
+        120.903573,
+        14.44468
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rodriguez Municipal Hall",
+      "osm": "way/233133013",
+      "coordinatesWgs84": [
+        121.145478,
+        14.732449
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Batasang Pambansa Complex",
+      "osm": "way/36691595",
+      "coordinatesWgs84": [
+        121.094535,
+        14.693387
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "La Consolacion College of Novaliches",
+      "osm": "way/165717167",
+      "coordinatesWgs84": [
+        121.027125,
+        14.743495
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SM Mall of Asia Arena",
+      "osm": "way/368600427",
+      "coordinatesWgs84": [
+        120.98374,
+        14.532248
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Battle of Zapote River",
+      "osm": "node/1782932802",
+      "coordinatesWgs84": [
+        120.966555,
+        14.464045
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Taguig City University",
+      "osm": "way/70411261",
+      "coordinatesWgs84": [
+        121.055497,
+        14.490506
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Our Lady of the Annunciation Parish",
+      "osm": "way/41374806",
+      "coordinatesWgs84": [
+        121.031667,
+        14.678765
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cainta Church",
+      "osm": "way/28921378",
+      "coordinatesWgs84": [
+        121.115485,
+        14.577957
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musoleo De Los Veteranos De La Revolucion",
+      "osm": "way/1234015855",
+      "coordinatesWgs84": [
+        120.989745,
+        14.633022
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MCCID College of Technology",
+      "osm": "way/223179404",
+      "coordinatesWgs84": [
+        121.135321,
+        14.664847
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Old Meycauayan Station",
+      "osm": "way/308687760",
+      "coordinatesWgs84": [
+        120.960786,
+        14.738726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Playtime Filoil Centre",
+      "osm": "way/108541189",
+      "coordinatesWgs84": [
+        121.032891,
+        14.605603
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Medical City",
+      "osm": "way/1435976373",
+      "coordinatesWgs84": [
+        121.069306,
+        14.589951
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Felix Y. Manalo National Historical Landmark",
+      "osm": "way/280162481",
+      "coordinatesWgs84": [
+        121.079435,
+        14.533593
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "168 Shopping Mall",
+      "osm": "way/319524305",
+      "coordinatesWgs84": [
+        120.971753,
+        14.604809
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SM City Fairview",
+      "osm": "way/51549859",
+      "coordinatesWgs84": [
+        121.058309,
+        14.733474
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Philippine Children's Medical Center",
+      "osm": "way/231404558",
+      "coordinatesWgs84": [
+        121.041444,
+        14.647587
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1214,
+      "sha256": "5c71ce07068259b05db38a4edd4c40939e41370eddfc603cb4bae9e41c12b348"
+    },
+    "geometry.ts": {
+      "bytes": 156481,
+      "sha256": "13e9ccc5ee76221a6b1b9856ab08cda0fb7f10445ff23970ffaaa8b91accbd5a"
+    },
+    "places.ts": {
+      "bytes": 10048,
+      "sha256": "b09b73689181edfc18011dda008fe1063effb736b29aa457443c2fb94752d445"
+    },
+    "terrain.ts": {
+      "bytes": 145075,
+      "sha256": "6be401187d59cda1184cacd8bab081a646db135946556751bdb68600a5c0e8ed"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "25046e1752c74cac21dfd514119af8967abb7eb4f564e1b766fbf3480cfcb9a2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

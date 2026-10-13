@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "cityId": "honiara",
+  "countryIso2": "SB",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Honiara",
+    "coordinatesWgs84": [
+      159.9552552,
+      -9.4310769
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/solomon-islands-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "honiara-airport",
+    "name": "Honiara International Airport",
+    "lon": 160.054993,
+    "lat": -9.428,
+    "sourceUrl": "https://ourairports.com/airports/AGGH/"
+  },
+  "boxes": {
+    "play": [
+      -9.61195778993398,
+      159.77303481132108,
+      -9.250196010066022,
+      160.13747558867894
+    ],
+    "core": [
+      -9.476297122483496,
+      159.90971823454024,
+      -9.385856677516506,
+      160.00079216545979
+    ],
+    "outline": [
+      -9.66195778993398,
+      159.72303481132107,
+      -9.200196010066021,
+      160.18747558867895
+    ],
+    "wide": [
+      -10.21195778993398,
+      159.1730348113211,
+      -8.650196010066022,
+      160.73747558867893
+    ],
+    "water": [
+      -10.21195778993398,
+      159.1730348113211,
+      -8.650196010066022,
+      160.73747558867893
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/solomon-islands-261011.osm.pbf",
+    "datasetSha256": "cda55d01cef9ad45a266a315841f1f22d6afa78ffda27a0c6b0762d1f0b72361",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "255cc25501ef7b46505bc2fba9b2397709eb93aa5f43e69f3126757cf73e89b4",
+        "elements": 77
+      },
+      {
+        "file": "extras.json",
+        "sha256": "3ccac4d8cc345b234ca59f2a48e762c474c993f427bc58f60b1eeecf60eb8777",
+        "elements": 15
+      },
+      {
+        "file": "water.json",
+        "sha256": "add23216c0c30709294579000afc394090773e85d73631da66312e5ef07d9347",
+        "elements": 823
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "e630f2a817543032af33ccc3589a4db8b01e67bf52b9894dc451b9c2833147ea",
+        "elements": 153
+      },
+      {
+        "file": "roads.json",
+        "sha256": "d87fca22d0799dd31fed4bcbf572881fd1792fb8f9ab6c6bd1aba7fc00b60f98",
+        "elements": 14
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Lunga",
+      "osm": "node/4960849349",
+      "coordinatesWgs84": [
+        160.029694,
+        -9.427915
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Ofis",
+      "osm": "node/4245819491",
+      "coordinatesWgs84": [
+        159.919855,
+        -9.423745
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Library Area",
+      "osm": "way/726022073",
+      "coordinatesWgs84": [
+        159.964463,
+        -9.436874
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Referal Hospital",
+      "osm": "way/730959655",
+      "coordinatesWgs84": [
+        159.970413,
+        -9.435222
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Children's Park",
+      "osm": "way/330742477",
+      "coordinatesWgs84": [
+        159.942378,
+        -9.428194
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Panatina Plaza",
+      "osm": "way/281733741",
+      "coordinatesWgs84": [
+        159.993643,
+        -9.431134
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Cross Cathedral",
+      "osm": "way/271790885",
+      "coordinatesWgs84": [
+        159.963417,
+        -9.43624
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Honiara City Council",
+      "osm": "node/5256850143",
+      "coordinatesWgs84": [
+        159.962721,
+        -9.435086
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Parliament of Solomon Islands",
+      "osm": "way/55093093",
+      "coordinatesWgs84": [
+        159.955996,
+        -9.433689
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Solomon Islands National University - Panatina Campus",
+      "osm": "way/730970978",
+      "coordinatesWgs84": [
+        160.010569,
+        -9.431657
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lawson Tama Stadium",
+      "osm": "way/613190463",
+      "coordinatesWgs84": [
+        159.971399,
+        -9.436237
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vilu War Museum",
+      "osm": "node/4959354922",
+      "coordinatesWgs84": [
+        159.793544,
+        -9.318983
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ranadi Campus",
+      "osm": "way/1370454204",
+      "coordinatesWgs84": [
+        160.000043,
+        -9.42857
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Solomon Islands National University",
+      "osm": "node/1958150211",
+      "coordinatesWgs84": [
+        159.989028,
+        -9.432929
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Red Beach",
+      "osm": "node/5591435621",
+      "coordinatesWgs84": [
+        160.121561,
+        -9.426502
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sinking ship",
+      "osm": "node/5834144885",
+      "coordinatesWgs84": [
+        159.870254,
+        -9.379076
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hells Point",
+      "osm": "node/5489888721",
+      "coordinatesWgs84": [
+        160.069888,
+        -9.428824
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cozy Cove Café",
+      "osm": "node/12097880001",
+      "coordinatesWgs84": [
+        160.04748,
+        -9.426466
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jina Resturant",
+      "osm": "node/1958123258",
+      "coordinatesWgs84": [
+        159.979069,
+        -9.432471
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ausmart",
+      "osm": "node/7138527971",
+      "coordinatesWgs84": [
+        159.949636,
+        -9.430355
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Stadium",
+      "osm": "way/1204579380",
+      "coordinatesWgs84": [
+        160.014453,
+        -9.427357
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bulkshop",
+      "osm": "way/730970960",
+      "coordinatesWgs84": [
+        159.984234,
+        -9.432301
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Referral Hospital",
+      "osm": "node/1958123256",
+      "coordinatesWgs84": [
+        159.970313,
+        -9.435347
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "7d38bc3f236ad9bb772cad27f6b98aac4bd15c8747fc25b3f27f348b11fbd553"
+    },
+    "geometry.ts": {
+      "bytes": 31577,
+      "sha256": "325586ffbf59ec244a8760c9f55a4becb1a6b5e9575d908ea638692c7066cf3b"
+    },
+    "places.ts": {
+      "bytes": 8954,
+      "sha256": "3ff8dbc22a2e0b6b1961276831fd4293ece0c6fca966152a195eafdcea3db6aa"
+    },
+    "terrain.ts": {
+      "bytes": 150119,
+      "sha256": "e03486271b01aa1875d7a7fa66f4dbdaac927f94923202d284b590c0dcb0f966"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "e23b83849a45c29996302ddbed35c2a47ed02c17b41420d9e3223db7748170c2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

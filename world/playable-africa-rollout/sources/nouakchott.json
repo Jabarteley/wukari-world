@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "nouakchott",
+  "countryIso2": "MR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Nouakchott",
+    "coordinatesWgs84": [
+      -15.9780071,
+      18.0792379
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/mauritania-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "nouakchott-airport",
+    "name": "Nouakchott–Oumtounsy International Airport",
+    "lon": -15.969722,
+    "lat": 18.31,
+    "sourceUrl": "https://ourairports.com/airports/GQNO/"
+  },
+  "boxes": {
+    "play": [
+      17.89835701006602,
+      -16.167196177109663,
+      18.319044044496696,
+      -15.788818022890336
+    ],
+    "core": [
+      18.034017677516506,
+      -16.025267580841156,
+      18.124458122483492,
+      -15.930746619158842
+    ],
+    "outline": [
+      17.84835701006602,
+      -16.217196177109663,
+      18.369044044496697,
+      -15.738818022890335
+    ],
+    "wide": [
+      17.29835701006602,
+      -16.767196177109664,
+      18.919044044496697,
+      -15.188818022890336
+    ],
+    "water": [
+      17.29835701006602,
+      -16.767196177109664,
+      18.919044044496697,
+      -15.188818022890336
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/mauritania-261011.osm.pbf",
+    "datasetSha256": "b03285602f90d786ffa759dd3c349e3ef0d503a97fd15879237f0eefa6189f02",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "b30e7214f772ae5242fe462af868e6f581a94b5092f4c2fb84b941d915959f87",
+        "elements": 285
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9d0671091f7c552d281049b687e8cc26a9b16573d96c6a2a77a141189b4dffc8",
+        "elements": 94
+      },
+      {
+        "file": "water.json",
+        "sha256": "7e59206825a72a3a06e665305c1d75d0cdd9e92ad4886c9ae2d82d2dc7de9a8b",
+        "elements": 37
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "55f820e5bef9e08004839786a7567bac0d9c02debf6789e9b55b3d9072bb8ee1",
+        "elements": 960
+      },
+      {
+        "file": "roads.json",
+        "sha256": "27570b3e295d6c14c0ce12974647581565a96823eb10a688ff0963f2011f55a9",
+        "elements": 230
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Vans to Kiffa",
+      "osm": "node/4717072589",
+      "coordinatesWgs84": [
+        -15.976337,
+        18.07749
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Mirador",
+      "osm": "node/9669148230",
+      "coordinatesWgs84": [
+        -16.02757,
+        18.160861
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lebanese International University",
+      "osm": "way/390393455",
+      "coordinatesWgs84": [
+        -15.966651,
+        18.091048
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clinique Chiva",
+      "osm": "way/325739083",
+      "coordinatesWgs84": [
+        -15.984603,
+        18.100592
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc Ehel Limame",
+      "osm": "way/374443931",
+      "coordinatesWgs84": [
+        -15.914374,
+        18.147884
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché el Bechair",
+      "osm": "node/8725384451",
+      "coordinatesWgs84": [
+        -15.893004,
+        18.06355
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Airport Mosque",
+      "osm": "way/535692984",
+      "coordinatesWgs84": [
+        -15.962073,
+        18.309005
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mairie Dar Naim",
+      "osm": "way/230061010",
+      "coordinatesWgs84": [
+        -15.924178,
+        18.09699
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "État civil",
+      "osm": "way/238469031",
+      "coordinatesWgs84": [
+        -15.96297,
+        18.045346
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nouakchott University",
+      "osm": "way/94938496",
+      "coordinatesWgs84": [
+        -15.96764,
+        18.089341
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Olympique de Nouakchott",
+      "osm": "way/142062875",
+      "coordinatesWgs84": [
+        -15.985455,
+        18.104715
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée National de la Mauritanie",
+      "osm": "way/94938531",
+      "coordinatesWgs84": [
+        -15.974798,
+        18.085523
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre de santé",
+      "osm": "way/334308412",
+      "coordinatesWgs84": [
+        -15.96544,
+        17.967673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "École Normale Supérieure de Nouakchott",
+      "osm": "way/228858570",
+      "coordinatesWgs84": [
+        -15.960532,
+        18.099929
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dream Land Ocean",
+      "osm": "way/1276090644",
+      "coordinatesWgs84": [
+        -16.0173,
+        18.210625
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mosquée AL Tawba",
+      "osm": "node/6555685946",
+      "coordinatesWgs84": [
+        -15.978327,
+        18.006682
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fish Market",
+      "osm": "way/453601079",
+      "coordinatesWgs84": [
+        -16.026046,
+        18.103343
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faculté de Médécine",
+      "osm": "way/428023202",
+      "coordinatesWgs84": [
+        -15.990277,
+        18.14889
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Bonto",
+      "osm": "node/8706615379",
+      "coordinatesWgs84": [
+        -15.949889,
+        18.133032
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maternité Suisse",
+      "osm": "way/231168874",
+      "coordinatesWgs84": [
+        -15.997348,
+        18.053074
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Restaurant el Hamd",
+      "osm": "node/8708819578",
+      "coordinatesWgs84": [
+        -15.930196,
+        18.06597
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lemina Mall",
+      "osm": "node/8696420174",
+      "coordinatesWgs84": [
+        -16.002236,
+        18.123449
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mosquée Cheikh Sidya",
+      "osm": "node/4406868798",
+      "coordinatesWgs84": [
+        -15.933055,
+        18.124693
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ehel Diddah Baiba",
+      "osm": "node/5171076923",
+      "coordinatesWgs84": [
+        -15.932554,
+        18.146181
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1256,
+      "sha256": "01c633fa3926d9d54df9e1d7f671626da53ad21d48c7ccfcb844e526ee026102"
+    },
+    "geometry.ts": {
+      "bytes": 24992,
+      "sha256": "3abf885d61b9d2968ff0f0716a4b9080c580f24562218332c3f749d627507b0b"
+    },
+    "places.ts": {
+      "bytes": 9278,
+      "sha256": "e11440e4201c30269d2cdf4e9679eb951273999666732b6beb8acee39c057335"
+    },
+    "terrain.ts": {
+      "bytes": 28225,
+      "sha256": "a164b875e8fb5413a8e5920ed44839938da08459515548e4a08e3c032da7179c"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "b16d6d8d4cae05083e163c1f2ca3a60779c5d48e6f40914a93b64fac44ab4968"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

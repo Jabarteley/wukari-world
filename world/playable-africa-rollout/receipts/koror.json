@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "cityId": "koror",
+  "countryIso2": "PW",
+  "generationIdentity": {
+    "cityId": "koror",
+    "stateId": "pw-koror",
+    "stateName": "Koror"
+  },
+  "inventorySha256": "7727115b932dee3f3681fe018d7122f287f69410bb5cd505e8e2fd0f684b2e48",
+  "inventoryPath": "world/playable-africa-rollout/sources/koror.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "koror-airport",
+    "name": "Roman Tmetuchl International Airport",
+    "lon": 134.544085,
+    "lat": 7.366965,
+    "sourceUrl": "https://ourairports.com/airports/PTRO/"
+  },
+  "bounds": [
+    7.162394110066022,
+    134.29545409185195,
+    7.524155889933978,
+    134.65789930814807
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/palau-261011.osm.pbf",
+      "datasetSha256": "1b5f1f629c982f6880edc285489e7022375666e56cbc655e9e5eb357c93353db",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "aad6e3e08fdc314e10f32e8f3cbeba935ea83f232c8ac7c493d1f3f492b05c35",
+          "elements": 98
+        },
+        {
+          "file": "extras.json",
+          "sha256": "3ab26820eb032bfe0b0d38e5b631439be03260471d304e8e4d1271c12c8dcc78",
+          "elements": 19
+        },
+        {
+          "file": "water.json",
+          "sha256": "b63b4fedc2cd7b1d71ddc6d1482e2c3f00e5d6e562c749ad0236648041599bc3",
+          "elements": 893
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b201e922cea978b599e68019ae59b32a1b35012b381c6884251f973d2077f5e0",
+          "elements": 172
+        },
+        {
+          "file": "roads.json",
+          "sha256": "0a97c879c2bb7c1b406c97e67f1e1dcb1486dce5e53fc314994aa546e169686b",
+          "elements": 24
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 23,
+    "roads": 2,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 7,
+    "waterPolygons": 22,
+    "reachWaterPolygons": 24
+  },
+  "selection": {
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "node/367695820"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "hamlet": 7,
+      "village": 11
+    }
+  },
+  "observed": {
+    "places": 98,
+    "extras": 19,
+    "water": 893,
+    "landuse": 172,
+    "roads": 24
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "5a7b0175a2afbeee2a434481ae9d420c3467474c67d7dc1af6ce404b4e62f3e5"
+    },
+    "geometry.ts": {
+      "bytes": 1295857,
+      "sha256": "947986c8c6d07e1fcbab49c34575dac6ae3036cf071ddfe86742d8056678e8ca"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "9f62f85b0cefeb8def092add9922fa2fc7576930df3810e2e5268f15bfbff553"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/koror.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

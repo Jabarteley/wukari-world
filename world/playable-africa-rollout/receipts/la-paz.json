@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "la-paz",
+  "countryIso2": "BO",
+  "generationIdentity": {
+    "cityId": "la-paz",
+    "stateId": "bo-la-paz",
+    "stateName": "La Paz"
+  },
+  "inventorySha256": "49c0c78569d52393db8cc1bc38b7b345b11ee4317b0aa4cf48b535ff76078df4",
+  "inventoryPath": "world/playable-africa-rollout/sources/la-paz.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "la-paz-airport",
+    "name": "El Alto International Airport",
+    "lon": -68.189416,
+    "lat": -16.510272,
+    "sourceUrl": "https://ourairports.com/airports/SLLP/"
+  },
+  "bounds": [
+    -16.676426389933976,
+    -68.32117338762112,
+    -16.31466461006602,
+    -67.9460724123789
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/bolivia-261011.osm.pbf",
+      "datasetSha256": "1d5ed56d9e1fcbbcaa28d51d0de8ce273dc83bc2dbcf02f21acd63689f5ac0e1",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "dcc1c8c68521f3fdff346a732d89ba5379413f377ef9b383d7f0d4e65815b0fb",
+          "elements": 2364
+        },
+        {
+          "file": "extras.json",
+          "sha256": "5756325852f16d2bb440210b602cd732e06eefc382b83bced52a09671f2528f5",
+          "elements": 891
+        },
+        {
+          "file": "water.json",
+          "sha256": "e6b343022c6a896ab5c2b1a27f4f073de3e4367012795f900de144949012ca5b",
+          "elements": 284
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ac13d12f2f52995cced91243e2a9d08c10fa58cffe5d40b1e3f35c5af225c2ec",
+          "elements": 1005
+        },
+        {
+          "file": "roads.json",
+          "sha256": "0dcadc83a814c1418da99de3e55500dae651545a466948994fed24eab8c4e0f9",
+          "elements": 2937
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 276,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 14,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 5
+  },
+  "observed": {
+    "places": 2364,
+    "extras": 891,
+    "water": 284,
+    "landuse": 1005,
+    "roads": 2937
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1234,
+      "sha256": "2d97c2527fdca14fb44769831f215df55e84006ace230ff199f76dddbe8a8447"
+    },
+    "geometry.ts": {
+      "bytes": 38790,
+      "sha256": "9fed02b2e11a9cf29ba0c39206adae673599f132e97e44764fa6ff4259f5d761"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "b8a492288f3d2f7df088f87133265f7647a5dc1e68c8c0770a6d12c360f75077"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/la-paz.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

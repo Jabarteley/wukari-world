@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "baghdad",
+  "countryIso2": "IQ",
+  "generationIdentity": {
+    "cityId": "baghdad",
+    "stateId": "iq-baghdad",
+    "stateName": "Baghdad"
+  },
+  "inventorySha256": "1a09bfe89c947c714c22316a916dee08722d72831d9560cb00573db14d8c6b91",
+  "inventoryPath": "world/playable-africa-rollout/sources/baghdad.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "baghdad-airport",
+    "name": "Baghdad International Airport / New Al Muthana Air Base",
+    "lon": 44.2346,
+    "lat": 33.262501,
+    "sourceUrl": "https://ourairports.com/airports/ORBI/"
+  },
+  "bounds": [
+    33.12528921006602,
+    44.17180167835458,
+    33.487050989933984,
+    44.60264092164542
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/iraq-261011.osm.pbf",
+      "datasetSha256": "3eec83a3dce299c90def45afd0dc7d3ac839fb3dd1a7e28f7d5774133c914b16",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5b1c3977e62fc1fa17475baec479432835c04163d0d339c41c5d55df2b81c3ab",
+          "elements": 3564
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9217dc83bd4581124bed72cb9f1aa938236a2316f0986ae6f39eab01b91b780b",
+          "elements": 960
+        },
+        {
+          "file": "water.json",
+          "sha256": "5342f242e2d0f96af1acce540ab49447a1459d9e96a5a2788721379ccf31f893",
+          "elements": 170
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "71b8e5cd32df5f3bc4ace0797dafd79fc0e65f718df78dfedc6fb4283e883276",
+          "elements": 1832
+        },
+        {
+          "file": "roads.json",
+          "sha256": "8c32047bcb52b05771fe3fefd8b9865c57aaa077848e93091f991e8837660823",
+          "elements": 2110
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 28,
+    "waterPolygons": 13,
+    "reachWaterPolygons": 16
+  },
+  "observed": {
+    "places": 3564,
+    "extras": 960,
+    "water": 170,
+    "landuse": 1832,
+    "roads": 2110
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1234,
+      "sha256": "4678a6360fde7c273f58fa3f728ca87803ceb5a3a122899d3b04493bf2e61912"
+    },
+    "geometry.ts": {
+      "bytes": 107071,
+      "sha256": "5624196927354e28eb0d80a3c87a4f656ee898d383acd9e3296cacf41f59b8f7"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "4a79af4b0699322b407581ef2548d01b0e5ba93a86a46d8969e53ef7fa743070"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/baghdad.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

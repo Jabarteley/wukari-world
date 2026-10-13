@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "cityId": "vaduz",
+  "countryIso2": "LI",
+  "generationIdentity": {
+    "cityId": "vaduz",
+    "stateId": "li-vaduz",
+    "stateName": "Vaduz"
+  },
+  "inventorySha256": "1ca1f5a36b26dada3c7422185b2fed427dfa3881896ce4eeb3e223309602af4f",
+  "inventoryPath": "world/playable-africa-rollout/sources/vaduz.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "vaduz-airport",
+    "name": "Balzers Heliport",
+    "lon": 9.480774,
+    "lat": 47.067908,
+    "sourceUrl": "https://ourairports.com/airports/LSXB/"
+  },
+  "bounds": [
+    46.95840531006602,
+    9.257768935005949,
+    47.32016708993398,
+    9.787823464994052
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/liechtenstein-261011.osm.pbf",
+      "datasetSha256": "1553f7ae4a04687861946b19ef2e6e32df92e6062d954cd34297787f692deb52",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "7dcb684efb993f89b2182610d94b6b55587a2187de2303b9bf504de5d3709f89",
+          "elements": 267
+        },
+        {
+          "file": "extras.json",
+          "sha256": "eafe3f602e986ada76d7ed4bfbaff45c6627af184730186e876fd2240864e5bc",
+          "elements": 53
+        },
+        {
+          "file": "water.json",
+          "sha256": "8f06c194748739a711ba727afa063c0bdcd355d4446a6986d85cfa169d31f6aa",
+          "elements": 34
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "cf4cf8cd0db8377f77919b2dd4028349911935d585bfdd5e5eeecf92c6de4459",
+          "elements": 423
+        },
+        {
+          "file": "roads.json",
+          "sha256": "33866bf3ced304f9dff57fd6d7f8bd6208c486711d2c887d60cd595d727bb66a",
+          "elements": 434
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 10,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 2,
+    "waterPolygons": 0,
+    "reachWaterPolygons": 2
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "neighbourhood": 3,
+      "village": 15
+    }
+  },
+  "observed": {
+    "places": 267,
+    "extras": 53,
+    "water": 34,
+    "landuse": 423,
+    "roads": 434
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1192,
+      "sha256": "a889a18f7c02ebb1f701fa668279cea11a1dee9c90327c86502c3e78502652fa"
+    },
+    "geometry.ts": {
+      "bytes": 13056,
+      "sha256": "9b7cd75f31c7f8daa84b5ba98fa9206f6bbc1489317ee8ed9bfe5995c3eeb3dc"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "64b961660b69d2be760a6ab24454300703dc1c99991257925a3c7f179b00f068"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/vaduz.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

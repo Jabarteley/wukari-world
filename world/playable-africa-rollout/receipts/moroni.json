@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "moroni",
+  "countryIso2": "KM",
+  "generationIdentity": {
+    "cityId": "moroni",
+    "stateId": "km-moroni",
+    "stateName": "Moroni"
+  },
+  "inventorySha256": "3d22dff64d17235dd560e9554bdbc6aef83d99e890f994b9cbe83f9d9ac1dea9",
+  "inventoryPath": "world/playable-africa-rollout/sources/moroni.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "moroni-airport",
+    "name": "Prince Said Ibrahim International Airport",
+    "lon": 43.2719,
+    "lat": -11.5337,
+    "sourceUrl": "https://ourairports.com/airports/FMCH/"
+  },
+  "bounds": [
+    -11.884911489933979,
+    43.068311021747114,
+    -11.52314971006602,
+    43.43550697825288
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/comores-261011.osm.pbf",
+      "datasetSha256": "f2512ec1482b2976017b871065180805a1d996bf6c6acfc046c2d889540d36ad",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "46e249a7b25c0065de1bd1fa0ce8f9c162d970cb61b594fecaca7fd48407b308",
+          "elements": 171
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f3e4f979b6b6f6274620a69e40ef9d68a74e69c7b3320d48e7873c8f45592d85",
+          "elements": 94
+        },
+        {
+          "file": "water.json",
+          "sha256": "c4a0a4631ff6ca1f02453ada2cc4fa14448d91be53b57c72f5dca05aaea4956a",
+          "elements": 95
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "42d02bf91dbdf766909a3c278bbbb5f918d36c336d0cf8f604ebed7dca96f158",
+          "elements": 182
+        },
+        {
+          "file": "roads.json",
+          "sha256": "6f22f275eb7262139b494da30474a37e4753f024463861f695e4d76a8162f197",
+          "elements": 98
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 29,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 10,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 1
+  },
+  "observed": {
+    "places": 171,
+    "extras": 94,
+    "water": 95,
+    "landuse": 182,
+    "roads": 98
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1220,
+      "sha256": "95d1e834378c4c4cd4a8cf03b7be87b663bfdb9b8b50658be6210846025276f9"
+    },
+    "geometry.ts": {
+      "bytes": 31681,
+      "sha256": "260ec65271d59a407f5b5c0863242d2b744499e3d32b7f3b86c5b73094ae0d0f"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "907707fe1f19c5655cbddf07293327304afb64ac8bfd69a5c9ca512fec797934"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/moroni.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "vilnius",
+  "countryIso2": "LT",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Vilnius",
+    "coordinatesWgs84": [
+      25.2829111,
+      54.6870458
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/lithuania-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "vilnius-airport",
+    "name": "Vilnius International Airport",
+    "lon": 25.285801,
+    "lat": 54.634102,
+    "sourceUrl": "https://ourairports.com/airports/EYVI/"
+  },
+  "boxes": {
+    "play": [
+      54.50616491006602,
+      24.970706513008302,
+      54.86792668993398,
+      25.595115686991697
+    ],
+    "core": [
+      54.64182557751651,
+      25.205121491296982,
+      54.73226602248349,
+      25.360700708703018
+    ],
+    "outline": [
+      54.45616491006602,
+      24.9207065130083,
+      54.91792668993398,
+      25.645115686991698
+    ],
+    "wide": [
+      53.90616491006602,
+      24.3707065130083,
+      55.46792668993398,
+      26.1951156869917
+    ],
+    "water": [
+      54.50616491006602,
+      24.970706513008302,
+      54.86792668993398,
+      25.595115686991697
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/lithuania-261011.osm.pbf",
+    "datasetSha256": "e814e2b9f0616b87ebbc4b397664a01a4665ef632bcbd88fbe3e9c957c8e6298",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6be57c73f87231ed905e760737c8f78be972cd1135080c31c54aefd5fcf3aa7c",
+        "elements": 1612
+      },
+      {
+        "file": "extras.json",
+        "sha256": "bc8a3a7b17cf3fc988ef49042f1f1929c1feba57901b2924fc618a21107fdc3a",
+        "elements": 376
+      },
+      {
+        "file": "water.json",
+        "sha256": "b50265ddfda22dd0454ea3fa9ff013e124b9802187d302adbde0441300a4947d",
+        "elements": 506
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "a1bea10ffc4c4373797af5909b9674b33a32b60d7b80a357bcfe10fcdb2c879f",
+        "elements": 9147
+      },
+      {
+        "file": "roads.json",
+        "sha256": "4b32266bd2136031d8bdb3f9705350401e9ac2ad3343f25291bc13e8da7d379b",
+        "elements": 3188
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Lentvaris",
+      "osm": "node/31451531",
+      "coordinatesWgs84": [
+        25.047061,
+        54.644997
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Neringa Restoranas",
+      "osm": "node/31453209",
+      "coordinatesWgs84": [
+        25.275767,
+        54.687965
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vilniaus technologijų, verslo ir žemės ūkio mokykla",
+      "osm": "way/66631698",
+      "coordinatesWgs84": [
+        25.18825,
+        54.600528
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Respublikinė Vilniaus psichiatrijos ligoninė",
+      "osm": "way/25892959",
+      "coordinatesWgs84": [
+        25.417767,
+        54.683699
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Žalgiris 600",
+      "osm": "way/396356286",
+      "coordinatesWgs84": [
+        25.529263,
+        54.801349
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gariūnai Market",
+      "osm": "way/9054286",
+      "coordinatesWgs84": [
+        25.156551,
+        54.659645
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sudervės Švč. Trejybės bažnyčia",
+      "osm": "way/85627567",
+      "coordinatesWgs84": [
+        25.084703,
+        54.780235
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tibeto skveras",
+      "osm": "way/1485530707",
+      "coordinatesWgs84": [
+        25.294023,
+        54.681479
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vilniaus miškų urėdija",
+      "osm": "way/281802201",
+      "coordinatesWgs84": [
+        25.525532,
+        54.702753
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vilniaus Gedimino technikos universiteto Elektronikos fakultetas",
+      "osm": "node/267533451",
+      "coordinatesWgs84": [
+        25.348838,
+        54.727978
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Papiškių piliakalnis",
+      "osm": "node/1758423764",
+      "coordinatesWgs84": [
+        25.394278,
+        54.597583
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mažosios Riešės piliakalnis",
+      "osm": "node/1764384946",
+      "coordinatesWgs84": [
+        25.202028,
+        54.808306
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Liubavas Manor",
+      "osm": "node/2788684638",
+      "coordinatesWgs84": [
+        25.34087,
+        54.85185
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mūrininkų piliakalnis",
+      "osm": "node/2964272255",
+      "coordinatesWgs84": [
+        25.552113,
+        54.588918
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parudaminio Kristaus Atsimainymo bažnyčia",
+      "osm": "way/275916982",
+      "coordinatesWgs84": [
+        25.263183,
+        54.525058
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rykantų Švč. Trejybės bažnyčia",
+      "osm": "way/93867305",
+      "coordinatesWgs84": [
+        24.982119,
+        54.715237
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "TV Tower",
+      "osm": "node/4515277514",
+      "coordinatesWgs84": [
+        25.214721,
+        54.687147
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vilniaus universiteto Matematikos ir informatikos fakultetas",
+      "osm": "way/877412367",
+      "coordinatesWgs84": [
+        25.26356,
+        54.729673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vilniaus miesto klinikinė ligoninė",
+      "osm": "relation/8140496",
+      "coordinatesWgs84": [
+        25.317153,
+        54.70932
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pūčkorių atodanga",
+      "osm": "node/738082549",
+      "coordinatesWgs84": [
+        25.352825,
+        54.692175
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Panerių skulptūrų parkas",
+      "osm": "way/581534617",
+      "coordinatesWgs84": [
+        25.144925,
+        54.632246
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vingis Park",
+      "osm": "relation/3662657",
+      "coordinatesWgs84": [
+        25.240916,
+        54.683026
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vilniaus dizaino kolegija",
+      "osm": "way/38883021",
+      "coordinatesWgs84": [
+        25.262824,
+        54.670344
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Republican Vilnius University Hospital",
+      "osm": "way/630196432",
+      "coordinatesWgs84": [
+        25.207598,
+        54.668266
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1216,
+      "sha256": "9a5e32ee70801aa272c282eaa03a9533299dc7d428d0bf22f5569a9a6d59739a"
+    },
+    "geometry.ts": {
+      "bytes": 168708,
+      "sha256": "ab44d86c490e29dbde0752e449d1752cc4c531ea06559f4a7188daaa8cfea718"
+    },
+    "places.ts": {
+      "bytes": 10259,
+      "sha256": "bd953b9796162bbe13bab3b1730b4b0ea0b6c09a1e9ee740b7e743db00384dfd"
+    },
+    "terrain.ts": {
+      "bytes": 92219,
+      "sha256": "29560d6110ec24add714dea126de66100710995a78773674c33eb6ee4e5427f0"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "d3d8d3f279de39053c897be257f1efbe669d4e2fb9a41507144bc984647c451b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

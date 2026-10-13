@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tel-aviv-yafo",
+  "countryIso2": "IL",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tel Aviv",
+    "coordinatesWgs84": [
+      34.7818064,
+      32.0852997
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tel-aviv-yafo-airport",
+    "name": "Ben Gurion International Airport",
+    "lon": 34.8867,
+    "lat": 32.011398,
+    "sourceUrl": "https://ourairports.com/airports/LLBG/"
+  },
+  "boxes": {
+    "play": [
+      31.904418810066023,
+      34.56933347881145,
+      32.26618058993398,
+      34.99427932118855
+    ],
+    "core": [
+      32.04007947751651,
+      34.728767306892586,
+      32.130519922483494,
+      34.834845493107416
+    ],
+    "outline": [
+      31.854418810066022,
+      34.519333478811454,
+      32.31618058993398,
+      35.04427932118855
+    ],
+    "wide": [
+      31.30441881006602,
+      33.96933347881145,
+      32.86618058993398,
+      35.59427932118855
+    ],
+    "water": [
+      31.30441881006602,
+      33.96933347881145,
+      32.86618058993398,
+      35.59427932118855
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf",
+    "datasetSha256": "dfabb9741932fd776d7c29b32693c9a8adf8530b2c73690948a38b992ba330f0",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "ef3f9681d2762e7afe42f45d44faeef2ce8cce80ac78f8832d969ecfecdb8ce7",
+        "elements": 2710
+      },
+      {
+        "file": "extras.json",
+        "sha256": "2acfafe6b8b63a4131cf795388163bfea88e4772bd0dfefaed5e40aa9049804c",
+        "elements": 1293
+      },
+      {
+        "file": "water.json",
+        "sha256": "cbb4193ddd6c066a9c3e5bbe854383743ffdcb3df45e124e6d18e44b4fa00359",
+        "elements": 1060
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "12279b980aaaf76260976bd7f58a31b520840b7bb8708a1b41fde5e236d04647",
+        "elements": 1143
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c28edd6e2c41ca6dee303dbc0f856b52e8001cce17a8774da1eabee6d62f022c",
+        "elements": 2872
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Kfar Chabad",
+      "osm": "node/461613375",
+      "coordinatesWgs84": [
+        34.853323,
+        31.992896
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mul-Yam",
+      "osm": "node/558702490",
+      "coordinatesWgs84": [
+        34.774621,
+        32.100349
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Open University",
+      "osm": "way/77161070",
+      "coordinatesWgs84": [
+        34.887673,
+        32.188018
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rabin Medical Center – Beilinson Campus",
+      "osm": "way/30750762",
+      "coordinatesWgs84": [
+        34.867396,
+        32.088938
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hosmasa \"yad la Haganah\" Musuem",
+      "osm": "way/107456924",
+      "coordinatesWgs84": [
+        34.785488,
+        32.007219
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shuk HaPishpeshim",
+      "osm": "way/84092298",
+      "coordinatesWgs84": [
+        34.75635,
+        32.053461
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nabi Rubin",
+      "osm": "node/1262192646",
+      "coordinatesWgs84": [
+        34.733638,
+        31.929132
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Drom HaSharon Regional Council",
+      "osm": "way/494477045",
+      "coordinatesWgs84": [
+        34.911091,
+        32.133552
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bituach Leumi",
+      "osm": "node/683209656",
+      "coordinatesWgs84": [
+        34.869317,
+        31.928031
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Beit Berl Academic college",
+      "osm": "way/84530824",
+      "coordinatesWgs84": [
+        34.926424,
+        32.201402
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tel Hadid",
+      "osm": "node/4172995826",
+      "coordinatesWgs84": [
+        34.95083,
+        31.964159
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mazor",
+      "osm": "way/932979208",
+      "coordinatesWgs84": [
+        34.946152,
+        32.046618
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sidna Ali Mosque",
+      "osm": "relation/13435489",
+      "coordinatesWgs84": [
+        34.805824,
+        32.187829
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "בית הכנסת הגדול",
+      "osm": "way/228281988",
+      "coordinatesWgs84": [
+        34.795722,
+        31.926904
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Izbet Sartah",
+      "osm": "node/1443153708",
+      "coordinatesWgs84": [
+        34.964471,
+        32.104671
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tel Zureikya",
+      "osm": "node/8312911961",
+      "coordinatesWgs84": [
+        34.875081,
+        32.246572
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "HaPark HaLeumi",
+      "osm": "way/45556106",
+      "coordinatesWgs84": [
+        34.823049,
+        32.049413
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Memorial of the 8th Brigade",
+      "osm": "node/2467107746",
+      "coordinatesWgs84": [
+        34.902709,
+        31.990713
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Haberfeld Stadium",
+      "osm": "way/80798213",
+      "coordinatesWgs84": [
+        34.752713,
+        31.974967
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ayalon Mall",
+      "osm": "way/294635033",
+      "coordinatesWgs84": [
+        34.826732,
+        32.100317
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Raanana Park",
+      "osm": "way/762309552",
+      "coordinatesWgs84": [
+        34.849415,
+        32.188524
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sarona Market",
+      "osm": "way/284108856",
+      "coordinatesWgs84": [
+        34.787061,
+        32.071107
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yitzhak Shamir Medical Center – Assaf HaRofeh Campus",
+      "osm": "way/48949522",
+      "coordinatesWgs84": [
+        34.839812,
+        31.966215
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Seminar HaKibuzzim",
+      "osm": "way/95215506",
+      "coordinatesWgs84": [
+        34.791168,
+        32.101017
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1245,
+      "sha256": "03432cef15b1f59e59a3049603da94356dc33e91ed1b405d1300f2a625066437"
+    },
+    "geometry.ts": {
+      "bytes": 263786,
+      "sha256": "80d7888efff644a0a6b5cc1df7d8ac7e7e9df09c7ffbf34e23eb5b49729253c3"
+    },
+    "places.ts": {
+      "bytes": 9821,
+      "sha256": "9822f170307fefe53c3719c3366231de562508a5b0a4bcc8a526f7242dd9c543"
+    },
+    "terrain.ts": {
+      "bytes": 173412,
+      "sha256": "b8b7a192c68cf3b7bcc99388e6a7112fae45ba3664505ca3c193eec9f65dba64"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "27a887de09e021718ffe0925e25089fafe795727ee4cb69059c355acf91cb000"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

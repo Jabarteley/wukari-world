@@ -1,4 +1,4 @@
-> **Ready for local testing — 13 October 2026.** Food data is compacted; both remaining Ayo expectations are fixed. All 150 focused checks, full typecheck (5 projects, zero errors), production build and all measured download budgets pass. The shared scene bundle is 188,216 bytes raw / 70,633 gzip, below the unchanged 192,000 / 71,000 limits. Preview: http://127.0.0.1:5173/. No deployment was performed. The old allowance continuation remains paused.
+> **Ready for local testing — 13 October 2026.** Food data is compacted; both remaining Ayo expectations are fixed. All 150 focused checks, full typecheck (5 projects, zero errors), production build and all measured download budgets pass. The shared scene bundle is 188,216 bytes raw / 70,638 gzip, below the unchanged 192,000 / 71,000 limits. Preview: http://127.0.0.1:5173/. No deployment was performed. The old allowance continuation remains paused.
 
 # Test the local Allworld improvements
 
@@ -76,3 +76,9 @@ These are stylized characters, not photorealistic replacements. One downloaded C
 The requested food-size and Ayo-expectation fixes are complete and accepted for local testing. Character and NPC appearance passed the browser checks above. Physical low-end-phone performance and deployed behavior remain unverified; no promise of zero lag on every device is implied. Other downloaded assets and physics-engine adoption remain research, outside this finished batch.
 
 Final screenshots: `evidence/character-face-final.png`, `male-glasses-final.png`, `glasses-side-before-final.png`, `glasses-side-after-final.png`, `npc-face-final.png`, `profile-final.png`, `ayo-final-reload.png`, and `buka-compact-final.png`.
+
+## Main integration before push
+
+Merged `origin/main` at `2cb356d4020d95923007a2e2945d6909c89b4d43`, preserving all 229 city entries. The generated Lagos content combines the authored NPC appearances with the expanded airport destinations. Remote account-mail view fields and the Ayo game type are both retained.
+
+The combined source passes full typechecking (5 projects, zero errors), the production build, and all measured download budgets. Shared scene: 188,216 raw / 70,638 gzip bytes. Largest city startup: 611,187 raw / 221,724 gzip / 194,025 Brotli bytes, within the unchanged limits. Existing hand geometry edits remain local and excluded from this batch.

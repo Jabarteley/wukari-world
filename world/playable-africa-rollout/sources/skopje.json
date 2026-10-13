@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "skopje",
+  "countryIso2": "MK",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Skopje",
+    "coordinatesWgs84": [
+      21.4318881,
+      41.9962054
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/macedonia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "skopje-airport",
+    "name": "Skopje International Airport",
+    "lon": 21.622581,
+    "lat": 41.958087,
+    "sourceUrl": "https://ourairports.com/airports/LWSK/"
+  },
+  "boxes": {
+    "play": [
+      41.81532451006602,
+      21.18945288314154,
+      42.17708628993398,
+      21.674323316858455
+    ],
+    "core": [
+      41.95098517751651,
+      21.371408866033246,
+      42.041425622483494,
+      21.49236733396675
+    ],
+    "outline": [
+      41.76532451006602,
+      21.13945288314154,
+      42.22708628993398,
+      21.724323316858456
+    ],
+    "wide": [
+      41.21532451006602,
+      20.58945288314154,
+      42.77708628993398,
+      22.274323316858457
+    ],
+    "water": [
+      41.81532451006602,
+      21.18945288314154,
+      42.17708628993398,
+      21.674323316858455
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/macedonia-261011.osm.pbf",
+    "datasetSha256": "c751a8b42c203f417a990fb492cb68bca3ecd98f6bc744ab58af93439f52409d",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "8bd87e2114d87e150d2aa97eaf6705dcd792d4cfab2a3b8c8a00cad86e5224d7",
+        "elements": 936
+      },
+      {
+        "file": "extras.json",
+        "sha256": "0ea4f8d8302516bf9efea7d77fa562beb44e036c61bebee487f09fb943d5d961",
+        "elements": 216
+      },
+      {
+        "file": "water.json",
+        "sha256": "84cf1b2fef39052084079af69f7da3497dd60efccf38199c9238939b367b0d6b",
+        "elements": 60
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "56eff6c6e6d6d4bb560306fb266e0f16215be070d498c10cb742e121391a30f5",
+        "elements": 1005
+      },
+      {
+        "file": "roads.json",
+        "sha256": "8603bb2988294a76c5901095eff6007704951f52e4023290d57a909aff0d2035",
+        "elements": 601
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Kadina Reka",
+      "osm": "node/482156739",
+      "coordinatesWgs84": [
+        21.639886,
+        41.832181
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pelister",
+      "osm": "node/309894643",
+      "coordinatesWgs84": [
+        21.43149,
+        41.99534
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ФОН Универзитет",
+      "osm": "way/179091097",
+      "coordinatesWgs84": [
+        21.474013,
+        41.992916
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ГОБ 8-ми Септември",
+      "osm": "way/28212201",
+      "coordinatesWgs84": [
+        21.403784,
+        42.005764
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monastery of Shishevo",
+      "osm": "way/1330252489",
+      "coordinatesWgs84": [
+        21.304246,
+        41.951773
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bit pazar",
+      "osm": "way/32813170",
+      "coordinatesWgs84": [
+        21.439588,
+        42.003616
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Манастир Св. Ѓорѓија",
+      "osm": "node/470409981",
+      "coordinatesWgs84": [
+        21.300179,
+        42.069091
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Град Скопје",
+      "osm": "way/1367341315",
+      "coordinatesWgs84": [
+        21.420452,
+        42.003948
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Bank of the Republic of North Macedonia",
+      "osm": "way/174464032",
+      "coordinatesWgs84": [
+        21.442717,
+        41.993948
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University \"Mother Teresa\"",
+      "osm": "way/1486501468",
+      "coordinatesWgs84": [
+        21.428588,
+        42.012969
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Стадион Борис Трајковски",
+      "osm": "way/38071327",
+      "coordinatesWgs84": [
+        21.502909,
+        42.000268
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tauresium",
+      "osm": "way/1521621170",
+      "coordinatesWgs84": [
+        21.613463,
+        41.900027
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Peter & St. Paul",
+      "osm": "way/1395332286",
+      "coordinatesWgs84": [
+        21.614204,
+        42.008509
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sveto Prepolovenie Rusa Sreda",
+      "osm": "way/481402867",
+      "coordinatesWgs84": [
+        21.495351,
+        41.916808
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Millennium Cross",
+      "osm": "way/229939246",
+      "coordinatesWgs84": [
+        21.394421,
+        41.96502
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Markovi Kuli",
+      "osm": "node/3951819342",
+      "coordinatesWgs84": [
+        21.431409,
+        41.968224
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Парк Бановина",
+      "osm": "way/414650719",
+      "coordinatesWgs84": [
+        21.486491,
+        41.974154
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Avtokomanda Stadium",
+      "osm": "way/35778021",
+      "coordinatesWgs84": [
+        21.461235,
+        42.006657
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Рајски парк",
+      "osm": "way/231098674",
+      "coordinatesWgs84": [
+        21.486834,
+        41.986009
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Todor Proeski National Arena",
+      "osm": "way/174495088",
+      "coordinatesWgs84": [
+        21.425565,
+        42.005708
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "South East European University",
+      "osm": "way/1559869019",
+      "coordinatesWgs84": [
+        21.435201,
+        41.999186
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ss. Cyril and Methodius University",
+      "osm": "way/16669251",
+      "coordinatesWgs84": [
+        21.442997,
+        42.000157
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Етно кујна Вила Елена",
+      "osm": "node/4110147399",
+      "coordinatesWgs84": [
+        21.444887,
+        42.138244
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Caffe \"Te Sevda\"",
+      "osm": "node/9896205907",
+      "coordinatesWgs84": [
+        21.595604,
+        42.140845
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1217,
+      "sha256": "11b06cfe2eebeb1856423fa0cd392cd8e2135cadfcecfbf51c3bb241da0b4892"
+    },
+    "geometry.ts": {
+      "bytes": 66669,
+      "sha256": "20aff8f991981b7648031632eba781bb20f0c399ff634b4caef4886113d7bcbc"
+    },
+    "places.ts": {
+      "bytes": 9988,
+      "sha256": "3cf9e12a7c3fff431ecbbf2d4acfaf558f3d22d19547799ccba75545ce5f0b70"
+    },
+    "terrain.ts": {
+      "bytes": 246117,
+      "sha256": "ec760a4b3575d1ac6b7ab6a64765ee9c2f2a79b7077e38495c0b92ad1d03770d"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "4b0a9b99d8a959680f54e4bf5e9fd3bab1ad61b7f57738ef80c740f8de5905af"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

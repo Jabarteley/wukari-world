@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "singapore",
+  "countryIso2": "SG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Singapore",
+    "coordinatesWgs84": [
+      103.8519072,
+      1.2899175
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "singapore-airport",
+    "name": "Singapore Changi Airport",
+    "lon": 103.994003,
+    "lat": 1.35019,
+    "sourceUrl": "https://ourairports.com/airports/WSSS/"
+  },
+  "boxes": {
+    "play": [
+      1.1090366100660216,
+      103.67218575336207,
+      1.4707983899339785,
+      104.03162864663793
+    ],
+    "core": [
+      1.2446972775165055,
+      103.80697944371889,
+      1.3351377224834946,
+      103.89683495628111
+    ],
+    "outline": [
+      1.0590366100660216,
+      103.62218575336207,
+      1.5207983899339785,
+      104.08162864663792
+    ],
+    "wide": [
+      0.5090366100660216,
+      103.07218575336208,
+      2.0707983899339784,
+      104.63162864663792
+    ],
+    "water": [
+      0.5090366100660216,
+      103.07218575336208,
+      2.0707983899339784,
+      104.63162864663792
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf",
+    "datasetSha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "9b427ac56d5a32a3751772f8476fdf01292e65bd536221d65d63026b40936a55",
+        "elements": 9225
+      },
+      {
+        "file": "extras.json",
+        "sha256": "b17fc7b9d21d543c1530f61124ce3321879cec5a2d2232f0da10bdc7b99d97b9",
+        "elements": 1442
+      },
+      {
+        "file": "water.json",
+        "sha256": "363563d2899f479c779134933e1200240f6b99331ba17a475e240eeafe2169b9",
+        "elements": 1078
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3d0b162169d471384752938d4901639d7517211ea794f288084fc4f7ea801902",
+        "elements": 6410
+      },
+      {
+        "file": "roads.json",
+        "sha256": "643da3f15e576fa80f071478b60ce52109ce4b5001347e84a9349a043ace10e1",
+        "elements": 18655
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Aljunied",
+      "osm": "node/206477134",
+      "coordinatesWgs84": [
+        103.882909,
+        1.316452
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Alkaff Mansion",
+      "osm": "way/54032319",
+      "coordinatesWgs84": [
+        103.813257,
+        1.278879
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Woodlands Regional Library",
+      "osm": "node/1847853715",
+      "coordinatesWgs84": [
+        103.787193,
+        1.434907
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St Luke’s Hospital",
+      "osm": "way/162644392",
+      "coordinatesWgs84": [
+        103.742109,
+        1.349467
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Punggol Waterway Park",
+      "osm": "way/180909686",
+      "coordinatesWgs84": [
+        103.90489,
+        1.409409
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jewel Changi Airport",
+      "osm": "way/744520551",
+      "coordinatesWgs84": [
+        103.989683,
+        1.360219
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Kusu Kramats",
+      "osm": "node/3280252625",
+      "coordinatesWgs84": [
+        103.861591,
+        1.222963
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ang Mo Kio Town Council (Avenue 1 Office)",
+      "osm": "node/9457446345",
+      "coordinatesWgs84": [
+        103.848485,
+        1.364651
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Istana",
+      "osm": "way/41895536",
+      "coordinatesWgs84": [
+        103.842881,
+        1.307096
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nanyang Technological University",
+      "osm": "way/115105262",
+      "coordinatesWgs84": [
+        103.68304,
+        1.348321
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bedok Stadium",
+      "osm": "way/677411847",
+      "coordinatesWgs84": [
+        103.939327,
+        1.326511
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chek Jawa Wetlands",
+      "osm": "node/4300422591",
+      "coordinatesWgs84": [
+        103.990768,
+        1.408688
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Yishun Park",
+      "osm": "way/33175767",
+      "coordinatesWgs84": [
+        103.842632,
+        1.42449
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clementi Woods",
+      "osm": "way/175550316",
+      "coordinatesWgs84": [
+        103.767711,
+        1.299795
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tampines Meridian Junior College",
+      "osm": "way/34583847",
+      "coordinatesWgs84": [
+        103.937828,
+        1.376216
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjid En-Naeem",
+      "osm": "way/35096650",
+      "coordinatesWgs84": [
+        103.892527,
+        1.36098
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjid Al-Iman",
+      "osm": "way/232204347",
+      "coordinatesWgs84": [
+        103.772762,
+        1.378117
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Steps of Syonan Jinja",
+      "osm": "way/890591248",
+      "coordinatesWgs84": [
+        103.813811,
+        1.347828
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ngee Ann Polytechnic",
+      "osm": "relation/2535118",
+      "coordinatesWgs84": [
+        103.774176,
+        1.333094
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Singapore Zoo",
+      "osm": "way/262885931",
+      "coordinatesWgs84": [
+        103.794422,
+        1.403707
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Icon Village",
+      "osm": "way/152598430",
+      "coordinatesWgs84": [
+        103.844535,
+        1.275164
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lot One Shoppers' Mall",
+      "osm": "way/173131856",
+      "coordinatesWgs84": [
+        103.745025,
+        1.385156
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parkway East Hospital",
+      "osm": "way/397219610",
+      "coordinatesWgs84": [
+        103.908981,
+        1.315122
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mount Alvernia Hospital",
+      "osm": "way/74715098",
+      "coordinatesWgs84": [
+        103.837931,
+        1.342202
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1237,
+      "sha256": "867a272059d9a1611e4f2c19c052d0ebabd4775fc11ce6fddf6cf73bc199fa6a"
+    },
+    "geometry.ts": {
+      "bytes": 1106640,
+      "sha256": "6827cf503d18ae1cafaa9a3d4345431dbc750388961b4b86a91059f525ee671f"
+    },
+    "places.ts": {
+      "bytes": 9821,
+      "sha256": "d7bb66fe39a55cef690cdf032861a525e885b53b42e207428f4acf574a23bfc5"
+    },
+    "terrain.ts": {
+      "bytes": 551422,
+      "sha256": "b90bc7e9d5349d774350a1a30a3e48995c9e67bf4fdd5fc99e2675e8f9105e57"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "3490b8612f6e38c5aba17f782612082e033b4c0243206b36cd91ee2202179a99"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

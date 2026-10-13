@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "phnom-penh",
+  "countryIso2": "KH",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Phnom Penh",
+    "coordinatesWgs84": [
+      104.9224426,
+      11.568271
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/cambodia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "phnom-penh-airport",
+    "name": "Techo International Airport",
+    "lon": 104.921272,
+    "lat": 11.359987,
+    "sourceUrl": "https://ourairports.com/airports/KH-0002/"
+  },
+  "boxes": {
+    "play": [
+      11.350942955503301,
+      104.73893561599425,
+      11.749151889933978,
+      105.10594958400574
+    ],
+    "core": [
+      11.523050777516504,
+      104.87658830643825,
+      11.613491222483495,
+      104.96829689356174
+    ],
+    "outline": [
+      11.3009429555033,
+      104.68893561599425,
+      11.79915188993398,
+      105.15594958400574
+    ],
+    "wide": [
+      10.750942955503302,
+      104.13893561599426,
+      12.349151889933978,
+      105.70594958400574
+    ],
+    "water": [
+      11.350942955503301,
+      104.73893561599425,
+      11.749151889933978,
+      105.10594958400574
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/cambodia-261011.osm.pbf",
+    "datasetSha256": "3ba981fb87c3d9d6c4b0c5cd0785319d82631a7a936a70d01dbcc75e1bbba8c8",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "aa6fd03353316cff93b515117247ca4c7355aa339856e213854a24ba4996041c",
+        "elements": 1632
+      },
+      {
+        "file": "extras.json",
+        "sha256": "11be9c0df827236290bd4c489a275b6efdad82fe36c9f9703c7de81ca6494716",
+        "elements": 197
+      },
+      {
+        "file": "water.json",
+        "sha256": "23405422564ed56df37ad1709a3482321e04afe190dd5bb09a529d2ac63042f0",
+        "elements": 90
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "132a2e13ee4329d9dea40931e0a4ee991ba6d92ab26bde550ec98294875889c3",
+        "elements": 630
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5e420d76411f12fd51403b15f0202ff0190373d769ddf77969ea0e4daf853cd4",
+        "elements": 1499
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Phnom Penh",
+      "osm": "node/11519736545",
+      "coordinatesWgs84": [
+        104.916038,
+        11.572456
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ហាងកាហ្វេ",
+      "osm": "node/2749419343",
+      "coordinatesWgs84": [
+        104.816273,
+        11.592631
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Royal University of Agriculture (RUA)",
+      "osm": "way/44675931",
+      "coordinatesWgs84": [
+        104.901075,
+        11.511745
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Khmer-Soviet Friendship Hospital",
+      "osm": "way/171309629",
+      "coordinatesWgs84": [
+        104.90383,
+        11.545343
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "EM Park",
+      "osm": "node/5208926669",
+      "coordinatesWgs84": [
+        104.766817,
+        11.465888
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sorya Mall",
+      "osm": "way/377373520",
+      "coordinatesWgs84": [
+        104.920889,
+        11.567634
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Joseph Catholic Church",
+      "osm": "node/1991809911",
+      "coordinatesWgs84": [
+        104.917803,
+        11.592042
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Svay Rolum Commune Hall",
+      "osm": "way/916803502",
+      "coordinatesWgs84": [
+        104.988172,
+        11.456296
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministry of Water Resource & Meteorology",
+      "osm": "way/404360044",
+      "coordinatesWgs84": [
+        104.924487,
+        11.567875
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal University of Phnom Penh (RUPP)",
+      "osm": "way/252392612",
+      "coordinatesWgs84": [
+        104.891153,
+        11.568447
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Olympic Stadium",
+      "osm": "way/445148651",
+      "coordinatesWgs84": [
+        104.912189,
+        11.558348
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Phnom Penh Safari",
+      "osm": "way/594151269",
+      "coordinatesWgs84": [
+        104.871663,
+        11.701242
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Choeung Ek Genocidal Center",
+      "osm": "way/182972997",
+      "coordinatesWgs84": [
+        104.90225,
+        11.484212
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cambodian University for Specialties",
+      "osm": "way/640462136",
+      "coordinatesWgs84": [
+        104.89957,
+        11.59127
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cambodia-Vietnam Friendship Monument",
+      "osm": "way/311065474",
+      "coordinatesWgs84": [
+        104.932772,
+        11.558703
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American University of Phnom Penh",
+      "osm": "node/4531138920",
+      "coordinatesWgs84": [
+        104.894378,
+        11.578155
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Calmette Hospital",
+      "osm": "way/165927974",
+      "coordinatesWgs84": [
+        104.915695,
+        11.581356
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wat Phnom Pagoda",
+      "osm": "way/175005909",
+      "coordinatesWgs84": [
+        104.923207,
+        11.576132
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Pediatric Hospital",
+      "osm": "way/171309638",
+      "coordinatesWgs84": [
+        104.896826,
+        11.568357
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ounalom Pagoda",
+      "osm": "way/1116381668",
+      "coordinatesWgs84": [
+        104.929632,
+        11.56788
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Old Stadium",
+      "osm": "way/445146746",
+      "coordinatesWgs84": [
+        104.91511,
+        11.586466
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Central Market",
+      "osm": "way/377373297",
+      "coordinatesWgs84": [
+        104.921081,
+        11.569601
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sok Leng",
+      "osm": "node/5036806682",
+      "coordinatesWgs84": [
+        104.970291,
+        11.730476
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Coffee Plus",
+      "osm": "node/11648298737",
+      "coordinatesWgs84": [
+        104.747088,
+        11.366374
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "88437ba0b6edc2c67c174f9f6f0b6d479dbaeba23bfbeeadee2b1f948e5a2a6b"
+    },
+    "geometry.ts": {
+      "bytes": 102447,
+      "sha256": "bf19f3139d8f235c23e3b774b743a94dff6ad67e9ad95bb54cfd0b4a9a40a194"
+    },
+    "places.ts": {
+      "bytes": 9869,
+      "sha256": "b11844e5c880cea5c85e816c59324ff04307e531b43371307ce4605cf5a8a649"
+    },
+    "terrain.ts": {
+      "bytes": 83537,
+      "sha256": "4086baad8e5aca1aac3bf3babd6d6b48a3f29c01415ce02e2a38760c168eeadf"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "83cf23f3a7ab463c065d1aff82ce8b0445971024d8d99cc2736e07d4da60561f"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

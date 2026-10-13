@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kabul",
+  "countryIso2": "AF",
+  "generationIdentity": {
+    "cityId": "kabul",
+    "stateId": "af-kabul",
+    "stateName": "Kabul"
+  },
+  "inventorySha256": "42129fa4b52c6edfdb71c27188770d20cbffc602f9800b084997abe84de8b5ce",
+  "inventoryPath": "world/playable-africa-rollout/sources/kabul.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "kabul-airport",
+    "name": "Kabul International Airport",
+    "lon": 69.212303,
+    "lat": 34.565899,
+    "sourceUrl": "https://ourairports.com/airports/OAKB/"
+  },
+  "bounds": [
+    34.34606941006602,
+    68.9665088115245,
+    34.707831189933984,
+    69.4036079884755
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/afghanistan-261011.osm.pbf",
+      "datasetSha256": "e76b44ea1520b09112ec6e45c80906f48d4494850fc1f1247b30a9e757a5a05e",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "454ebad30199f340b3c0b0b64c052d176f4cab37c79d3e09b53ba0c9c07fc57c",
+          "elements": 380
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f4d0c9a867d141279716c457f6db34ae8f6ff7cd28cf79e0e77584ad76da2206",
+          "elements": 154
+        },
+        {
+          "file": "water.json",
+          "sha256": "5481df87a99bfe5aac9e9aba2e39f572020b630ebdf1286ab12e571e7706bce2",
+          "elements": 31
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "1a78f9433d652067bbfb9fed92c94c040b830ca04e6bdcdd26c4886adb595685",
+          "elements": 2132
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5e50caf0159a673b74fc78489c760d574f363e6d66fbf7e44312f5626ab64a7d",
+          "elements": 477
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 291,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 6,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 380,
+    "extras": 154,
+    "water": 31,
+    "landuse": 2132,
+    "roads": 477
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1207,
+      "sha256": "e300cd63f6affbe1f7f79d6b269875ae43009f1ddea61a5bf929b7ab5cf6a783"
+    },
+    "geometry.ts": {
+      "bytes": 50055,
+      "sha256": "ae0c8ba533b684349ea6ff5e52d66d754fab0c3cb54b5c3f37595c9e1abad701"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "09299f39ba7667ee06bae3fbe2b5816922b63105b9d6601e369f4f28631c3296"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/kabul.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

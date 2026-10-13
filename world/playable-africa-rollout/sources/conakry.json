@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "conakry",
+  "countryIso2": "GN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Conakry",
+    "coordinatesWgs84": [
+      -13.6998434,
+      9.5170602
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/guinea-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "conakry-airport",
+    "name": "Ahmed Sékou Touré International Airport",
+    "lon": -13.612,
+    "lat": 9.57689,
+    "sourceUrl": "https://ourairports.com/airports/GUCY/"
+  },
+  "boxes": {
+    "play": [
+      9.33617931006602,
+      -13.882110316157231,
+      9.697941089933979,
+      -13.51757648384277
+    ],
+    "core": [
+      9.471839977516504,
+      -13.745391826238123,
+      9.562280422483495,
+      -13.654294973761878
+    ],
+    "outline": [
+      9.28617931006602,
+      -13.932110316157232,
+      9.74794108993398,
+      -13.46757648384277
+    ],
+    "wide": [
+      8.73617931006602,
+      -14.48211031615723,
+      10.297941089933978,
+      -12.91757648384277
+    ],
+    "water": [
+      8.73617931006602,
+      -14.48211031615723,
+      10.297941089933978,
+      -12.91757648384277
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/guinea-261011.osm.pbf",
+    "datasetSha256": "f838e08a0fef6b67973f565e40e5a106de8e87c51c87a57295903090064468ec",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "1ee652422f1a564dd868e219a813def0e2253c9600e3d5157de8ab4f7086b145",
+        "elements": 408
+      },
+      {
+        "file": "extras.json",
+        "sha256": "07128afb0b79bddfe4b21584a24dd2a3fe88de5731e5831a185c3fd2260f434d",
+        "elements": 161
+      },
+      {
+        "file": "water.json",
+        "sha256": "32c014132fffb6cf46d5f526c71898e30cb214f51e2976bf13fab0542d425d62",
+        "elements": 433
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "fdb38de2352ab4510174fda6c19f9d9c8c4317076393f18d8b97bef7ccf9ebb7",
+        "elements": 558
+      },
+      {
+        "file": "roads.json",
+        "sha256": "cc3501c88d2c6032357389f481d44e6173333097d0869beb4bae7a140706d89c",
+        "elements": 212
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Simbaya",
+      "osm": "node/3457242829",
+      "coordinatesWgs84": [
+        -13.601861,
+        9.618035
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "L'Avenue",
+      "osm": "node/2272771392",
+      "coordinatesWgs84": [
+        -13.686136,
+        9.523854
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Université Kofi Annan de Guinée",
+      "osm": "way/338945649",
+      "coordinatesWgs84": [
+        -13.637968,
+        9.615801
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ignace Deen Hospital",
+      "osm": "way/549652805",
+      "coordinatesWgs84": [
+        -13.705006,
+        9.506883
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "forêt classé de Dabompa",
+      "osm": "way/38662471",
+      "coordinatesWgs84": [
+        -13.546077,
+        9.659176
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché de Bonfi",
+      "osm": "way/505452428",
+      "coordinatesWgs84": [
+        -13.642841,
+        9.559246
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathédrale Sainte-Marie",
+      "osm": "way/549242648",
+      "coordinatesWgs84": [
+        -13.715444,
+        9.510176
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maison des jeunes",
+      "osm": "node/7020605620",
+      "coordinatesWgs84": [
+        -13.793429,
+        9.463222
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Palais Roi Mohamed V",
+      "osm": "way/552008196",
+      "coordinatesWgs84": [
+        -13.715622,
+        9.505428
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "UNC",
+      "osm": "way/504460776",
+      "coordinatesWgs84": [
+        -13.633856,
+        9.615712
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade de la mission",
+      "osm": "way/550010888",
+      "coordinatesWgs84": [
+        -13.703667,
+        9.512227
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monument du 22 novembre 1970",
+      "osm": "way/39240323",
+      "coordinatesWgs84": [
+        -13.69052,
+        9.521498
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Donka Hospital",
+      "osm": "way/338977493",
+      "coordinatesWgs84": [
+        -13.682228,
+        9.535944
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clinique Ambroise Paré",
+      "osm": "way/291396458",
+      "coordinatesWgs84": [
+        -13.690115,
+        9.529476
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade du 28 septembre",
+      "osm": "way/338672791",
+      "coordinatesWgs84": [
+        -13.673954,
+        9.545933
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Général Lansana Conté",
+      "osm": "relation/7829658",
+      "coordinatesWgs84": [
+        -13.626771,
+        9.624417
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée national de Guinée",
+      "osm": "way/552008098",
+      "coordinatesWgs84": [
+        -13.70911,
+        9.504614
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université Gamal Abdel Nasser de Conakry",
+      "osm": "way/217953079",
+      "coordinatesWgs84": [
+        -13.676967,
+        9.544306
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plage Soro",
+      "osm": "node/6813943851",
+      "coordinatesWgs84": [
+        -13.76732,
+        9.50375
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurant SansFrancisco",
+      "osm": "node/10024259768",
+      "coordinatesWgs84": [
+        -13.592905,
+        9.664699
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "restaurant",
+      "osm": "node/8007052060",
+      "coordinatesWgs84": [
+        -13.598265,
+        9.582314
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Alimentation Générale DIALLO et Frère",
+      "osm": "node/7289060001",
+      "coordinatesWgs84": [
+        -13.572472,
+        9.634382
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Keyce Academy - Ecole Française de Guinée",
+      "osm": "way/504471379",
+      "coordinatesWgs84": [
+        -13.65713,
+        9.593577
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre commercial poukou",
+      "osm": "way/616434324",
+      "coordinatesWgs84": [
+        -13.62427,
+        9.591704
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1216,
+      "sha256": "b9cee378b78921631901337bbf4d689a3f3978aa995b4f431e6a67df432f919b"
+    },
+    "geometry.ts": {
+      "bytes": 425539,
+      "sha256": "1e77b0fb46a319b205dea31255ddcba1da0029a7a0b47ed50e04bbd94e6453e1"
+    },
+    "places.ts": {
+      "bytes": 9600,
+      "sha256": "dcbf7178bb420838c183996cff291afaa9bd6024fd5713d2a1920334300baaf6"
+    },
+    "terrain.ts": {
+      "bytes": 342859,
+      "sha256": "f653fc79fefe7bdd0e581a18bdbf1cac0c7522f99a6c0158ab095395780f10f1"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "4be5cc7e584e3f0b185e70dd8169563e312ba6cde1826cd2c38e841a360b92b6"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

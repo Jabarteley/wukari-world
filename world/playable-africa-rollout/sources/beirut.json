@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "beirut",
+  "countryIso2": "LB",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Beirut",
+    "coordinatesWgs84": [
+      35.47843,
+      33.8959203
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/lebanon-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "beirut-airport",
+    "name": "Beirut Rafic Hariri International Airport",
+    "lon": 35.487443,
+    "lat": 33.819833,
+    "sourceUrl": "https://ourairports.com/airports/OLBA/"
+  },
+  "boxes": {
+    "play": [
+      33.71503941006602,
+      35.261521878683276,
+      34.07680118993398,
+      35.69533812131673
+    ],
+    "core": [
+      33.85070007751651,
+      35.42428953314378,
+      33.941140522483494,
+      35.53257046685623
+    ],
+    "outline": [
+      33.66503941006602,
+      35.21152187868328,
+      34.12680118993398,
+      35.74533812131673
+    ],
+    "wide": [
+      33.11503941006602,
+      34.661521878683274,
+      34.67680118993398,
+      36.29533812131673
+    ],
+    "water": [
+      33.11503941006602,
+      34.661521878683274,
+      34.67680118993398,
+      36.29533812131673
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/lebanon-261011.osm.pbf",
+    "datasetSha256": "04389a1c0f1ee8679c8b571af631501817745ae2d753d04e18783bcfa2fb6828",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "f0e672ae266a52abf0ba8b8a71298a6b6f80629f327fd7e4639e4f28b7800fb7",
+        "elements": 1465
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f77e8bc40176611995e78af88c235d4ba64ecdff5184dc00fc0a2733603c8e63",
+        "elements": 285
+      },
+      {
+        "file": "water.json",
+        "sha256": "368fe225fc43672c2cdc5904323966fe92a4db7886e510e9891f48d163a26853",
+        "elements": 768
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "996d72c5ade6a2e66287486b67b22afedad33ac2e6f1eb5fdd168bd49b3c1683",
+        "elements": 957
+      },
+      {
+        "file": "roads.json",
+        "sha256": "231ff22b791eebfbe6c0424625ba6eb97fd323e9698c4da0a1ee8e13eb67a80f",
+        "elements": 1367
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Charles Hélou Bus Station",
+      "osm": "node/2112088835",
+      "coordinatesWgs84": [
+        35.513589,
+        33.896814
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Attic",
+      "osm": "node/1683112947",
+      "coordinatesWgs84": [
+        35.647516,
+        33.997715
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Antonine University Baabda",
+      "osm": "way/1257223554",
+      "coordinatesWgs84": [
+        35.536379,
+        33.838028
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Bhannes",
+      "osm": "way/802992023",
+      "coordinatesWgs84": [
+        35.656311,
+        33.905211
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Horsh Beirut",
+      "osm": "way/5037938",
+      "coordinatesWgs84": [
+        35.510394,
+        33.87149
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Obied",
+      "osm": "node/8279251362",
+      "coordinatesWgs84": [
+        35.545146,
+        33.749966
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maghen Abraham Synagogue",
+      "osm": "way/487152382",
+      "coordinatesWgs84": [
+        35.500165,
+        33.897472
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Martyrs Square",
+      "osm": "relation/7113313",
+      "coordinatesWgs84": [
+        35.507035,
+        33.895927
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lebanese Football Association",
+      "osm": "node/4757645722",
+      "coordinatesWgs84": [
+        35.484196,
+        33.891429
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Notre Dame University-Louaize",
+      "osm": "way/338095207",
+      "coordinatesWgs84": [
+        35.613709,
+        33.950779
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Balcony of Aley",
+      "osm": "node/4406724595",
+      "coordinatesWgs84": [
+        35.603576,
+        33.808119
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Site of Tel Al-Zaatar massacre",
+      "osm": "node/13321742673",
+      "coordinatesWgs84": [
+        35.54411,
+        33.876656
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Silk Museum",
+      "osm": "node/2932843969",
+      "coordinatesWgs84": [
+        35.572282,
+        33.817898
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Holy Spirit University of Kaslik",
+      "osm": "way/743280529",
+      "coordinatesWgs84": [
+        35.618731,
+        33.982861
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lower Grotto",
+      "osm": "node/4504613689",
+      "coordinatesWgs84": [
+        35.644108,
+        33.943906
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bellevue Medical Center",
+      "osm": "way/994902555",
+      "coordinatesWgs84": [
+        35.559473,
+        33.848304
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rafic Hariri University Hospital",
+      "osm": "way/993570500",
+      "coordinatesWgs84": [
+        35.49135,
+        33.863657
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American University of Science and Technology",
+      "osm": "way/261481055",
+      "coordinatesWgs84": [
+        35.522689,
+        33.884857
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathedral of St Elias and St Gregory the Illuminator",
+      "osm": "way/483174171",
+      "coordinatesWgs84": [
+        35.507577,
+        33.892895
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Evangelical Church of Beirut",
+      "osm": "way/479475562",
+      "coordinatesWgs84": [
+        35.501422,
+        33.894753
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kabsseh",
+      "osm": "node/4589295511",
+      "coordinatesWgs84": [
+        35.468559,
+        33.771377
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "la ronda samer",
+      "osm": "node/8317853057",
+      "coordinatesWgs84": [
+        35.680878,
+        33.799021
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Eco 101",
+      "osm": "node/6064724358",
+      "coordinatesWgs84": [
+        35.581899,
+        33.912031
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bchamoun Garden",
+      "osm": "node/12928075501",
+      "coordinatesWgs84": [
+        35.513797,
+        33.777753
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1227,
+      "sha256": "5df518532325f8112e1e341d68589ec717ef233a59e099e5160f1e8aad1517e2"
+    },
+    "geometry.ts": {
+      "bytes": 90776,
+      "sha256": "b33148a10733d65b4746fc75b18cee074c75b47776a3537794ad1cc59e32da3c"
+    },
+    "places.ts": {
+      "bytes": 9680,
+      "sha256": "cff212b9784b25db2da7d089fcaf057ebdbe820fbce6e51223887b77ac32901b"
+    },
+    "terrain.ts": {
+      "bytes": 57672,
+      "sha256": "ce10f45270c863afea13452bfce13887bff5e41323cc65504ef3b6a7ab89789c"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "61cfedccdca6352fe29c77654efd1e427caa7ab73139517935576811bd6e7cc0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

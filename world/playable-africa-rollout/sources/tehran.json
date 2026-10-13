@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tehran",
+  "countryIso2": "IR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tehran",
+    "coordinatesWgs84": [
+      51.3896004,
+      35.6892523
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/iran-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tehran-airport",
+    "name": "Imam Khomeini International Airport",
+    "lon": 51.152198791503906,
+    "lat": 35.416099548339844,
+    "sourceUrl": "https://ourairports.com/airports/OIIE/"
+  },
+  "boxes": {
+    "play": [
+      35.40705550384315,
+      51.14117485750729,
+      35.87013318993398,
+      51.6113105965208
+    ],
+    "core": [
+      35.644032077516506,
+      51.334267429433744,
+      35.73447252248349,
+      51.444933370566254
+    ],
+    "outline": [
+      35.35705550384315,
+      51.09117485750729,
+      35.92013318993398,
+      51.6613105965208
+    ],
+    "wide": [
+      34.807055503843145,
+      50.541174857507286,
+      36.47013318993398,
+      52.2113105965208
+    ],
+    "water": [
+      34.807055503843145,
+      50.541174857507286,
+      36.47013318993398,
+      52.2113105965208
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/iran-261011.osm.pbf",
+    "datasetSha256": "ee9e7823482d6e5ba42be9b0c02f556da565fb89593292250c9e2868b5594aff",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "33c8622402bb766818345907587bbeef9ddef21a9c7a967b94933899dadb424d",
+        "elements": 6010
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ffab037741e01df5c88a6719db77c209e270b19249057d97f89afd4536c2623f",
+        "elements": 3900
+      },
+      {
+        "file": "water.json",
+        "sha256": "fcd7b45e03b3462ee4a36d131f87853b706140eaf78f8b5c8d874c50d5ca4895",
+        "elements": 733
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "5e633f2d70a7843ae233c3ddbb5730fcba5f822b59be312920e54063004f011e",
+        "elements": 2932
+      },
+      {
+        "file": "roads.json",
+        "sha256": "eced8dadbfde95300e39e33f19cf13505badc16989bc7a29561a4ab794810a60",
+        "elements": 5886
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Shahid Hemmat",
+      "osm": "node/660658572",
+      "coordinatesWgs84": [
+        51.426298,
+        35.748886
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gol-e Rezaieh",
+      "osm": "node/4647512822",
+      "coordinatesWgs84": [
+        51.414163,
+        35.693895
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "West Tehran Islamic Azad University College of Engineering",
+      "osm": "way/616050822",
+      "coordinatesWgs84": [
+        51.337243,
+        35.746928
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iran Neurology Sciences Hospital",
+      "osm": "way/437662365",
+      "coordinatesWgs84": [
+        51.210222,
+        35.762517
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jamshidieh Park",
+      "osm": "way/206925858",
+      "coordinatesWgs84": [
+        51.464598,
+        35.826132
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "فروشگاه شهروند",
+      "osm": "way/471736211",
+      "coordinatesWgs84": [
+        51.47947,
+        35.665876
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "امامزاده شعیب",
+      "osm": "way/526888092",
+      "coordinatesWgs84": [
+        51.488287,
+        35.544555
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Azadi Square",
+      "osm": "relation/7790807",
+      "coordinatesWgs84": [
+        51.337666,
+        35.699734
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parliament of Iran",
+      "osm": "way/182083848",
+      "coordinatesWgs84": [
+        51.43543,
+        35.690444
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iran University of Science and Technology (IUSIT)",
+      "osm": "way/112376927",
+      "coordinatesWgs84": [
+        51.507396,
+        35.742728
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Azadi Stadium",
+      "osm": "way/119376034",
+      "coordinatesWgs84": [
+        51.275549,
+        35.724417
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tomb of Imam Khomeini",
+      "osm": "node/13416585667",
+      "coordinatesWgs84": [
+        51.366338,
+        35.548783
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "امامزاده هادی و زینب خاتون",
+      "osm": "node/10214246553",
+      "coordinatesWgs84": [
+        51.445258,
+        35.60358
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shahid Beheshti University of Tehran (SBU)",
+      "osm": "way/222107363",
+      "coordinatesWgs84": [
+        51.39288,
+        35.802346
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "vellayat park",
+      "osm": "way/1193089813",
+      "coordinatesWgs84": [
+        51.38136,
+        35.645124
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "شهرک سینمایی و تلویزیونی ایران",
+      "osm": "way/1067538666",
+      "coordinatesWgs84": [
+        51.167188,
+        35.731105
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "پارک الهیه",
+      "osm": "way/458252915",
+      "coordinatesWgs84": [
+        51.168616,
+        35.527522
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "مجتمع کوی دانشگاه تهران",
+      "osm": "way/425887188",
+      "coordinatesWgs84": [
+        51.385858,
+        35.730224
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "تکیه تجریش",
+      "osm": "way/572366884",
+      "coordinatesWgs84": [
+        51.432176,
+        35.80453
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Farhikhtegan Hospital",
+      "osm": "way/600451203",
+      "coordinatesWgs84": [
+        51.317222,
+        35.779206
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "حسینیه جوانان قمر بنی هاشم",
+      "osm": "way/1527989327",
+      "coordinatesWgs84": [
+        51.459429,
+        35.718998
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "بیمارستان روزبه (تخصصی اعصاب و روان)",
+      "osm": "way/312296275",
+      "coordinatesWgs84": [
+        51.392921,
+        35.679169
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "بازار خانات",
+      "osm": "relation/6957011",
+      "coordinatesWgs84": [
+        51.430006,
+        35.667012
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iran Mall",
+      "osm": "relation/8129683",
+      "coordinatesWgs84": [
+        51.192666,
+        35.753746
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1220,
+      "sha256": "6e5e5f2d6e5c3ae36acc621830a57ab4022244fe46e03b2a4bc9465109359a23"
+    },
+    "geometry.ts": {
+      "bytes": 178158,
+      "sha256": "69bad9665b16133c7eebebb3500d056609707deebd20e43c994408d009821f16"
+    },
+    "places.ts": {
+      "bytes": 10269,
+      "sha256": "f958639c8c610e5d51d530c864f101698f821c930511648b510a376ec87c289a"
+    },
+    "terrain.ts": {
+      "bytes": 66890,
+      "sha256": "46ff58897161ea03267ced0b055b0992fd670c933bef036533587c707aaf5bc2"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "d00c3ebf9d2eb14ba5c5e1a5ce57a233782e30c5751f42d29d1fc33a2ad84104"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "cityId": "yerevan",
+  "countryIso2": "AM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Yerevan",
+    "coordinatesWgs84": [
+      44.5126233,
+      40.1777112
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/armenia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "yerevan-airport",
+    "name": "Zvartnots International Airport",
+    "lon": 44.397887,
+    "lat": 40.148941,
+    "sourceUrl": "https://ourairports.com/airports/UDYZ/"
+  },
+  "boxes": {
+    "play": [
+      39.99683031006602,
+      44.2768481023053,
+      40.35859208993398,
+      44.7483984976947
+    ],
+    "core": [
+      40.132490977516504,
+      44.453797701115455,
+      40.22293142248349,
+      44.57144889888455
+    ],
+    "outline": [
+      39.94683031006602,
+      44.226848102305304,
+      40.408592089933975,
+      44.7983984976947
+    ],
+    "wide": [
+      39.396830310066015,
+      43.6768481023053,
+      40.95859208993398,
+      45.3483984976947
+    ],
+    "water": [
+      39.99683031006602,
+      44.2768481023053,
+      40.35859208993398,
+      44.7483984976947
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/armenia-261011.osm.pbf",
+    "datasetSha256": "749e42e86d6bd7c23e6ce2a882ce804958ead92000164b51220425939a9eae36",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/armenia-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 53320660,
+        "md5": "bf23dcd87be07b97c8c2390dbb7ab931",
+        "sha256": "570772f080234b6389ed2c17dd63f3a1eb83d13800e387646a84d5eb2de1784b"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/azerbaijan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 46486421,
+        "md5": "ee4d30a613ee5180200661bc7bbbfd36",
+        "sha256": "96d110a1790b57b23de14d6ce60986547783ff79ef3058ec7f9bf338fc46c60d",
+        "reason": "admin-0 relation/364066 members way/1551643524, way/1551798504, way/1551798687 (Armenian exclave ring inside Azerbaijan) are absent from the Armenia clip; all their nodes lie inside the Azerbaijan clip"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e5b720bec131f5867201adc0825bfa52ea2101a8349952116d4479be8c32bb53",
+        "elements": 2012
+      },
+      {
+        "file": "extras.json",
+        "sha256": "edd1d84d0634ba0b5009ece65f2a1cf3ec6cd3670970d7afeb520943ba07445d",
+        "elements": 273
+      },
+      {
+        "file": "water.json",
+        "sha256": "2ee47d92731e584f3f7a1da61f4be78eef6fef5b6984bc08a5d5f2bfb4b95e41",
+        "elements": 111
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "011a296a1965a99ae2d6a276a1253f4647cb2b5d3e89c3c10ca5001504c0894f",
+        "elements": 3082
+      },
+      {
+        "file": "roads.json",
+        "sha256": "882b7d814e5575b0554feeea7dc3788395edc690403b9f3190cdab2930a20e64",
+        "elements": 2833
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Sasuntsi David",
+      "osm": "node/5332867819",
+      "coordinatesWgs84": [
+        44.507154,
+        40.154604
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tavern Yerevan",
+      "osm": "node/3651477802",
+      "coordinatesWgs84": [
+        44.521388,
+        40.188956
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gevorgyan Seminary",
+      "osm": "way/386440931",
+      "coordinatesWgs84": [
+        44.293572,
+        40.16192
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Izmirlian Medical Center",
+      "osm": "node/4882148342",
+      "coordinatesWgs84": [
+        44.534637,
+        40.205368
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jrvezh Forest Park",
+      "osm": "way/277036723",
+      "coordinatesWgs84": [
+        44.623768,
+        40.179901
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dalma Garden Mall",
+      "osm": "way/116719155",
+      "coordinatesWgs84": [
+        44.488001,
+        40.1794
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hovhannavank",
+      "osm": "way/121823299",
+      "coordinatesWgs84": [
+        44.38871,
+        40.339552
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Alexander Myasnikyan Square",
+      "osm": "way/1201853729",
+      "coordinatesWgs84": [
+        44.505732,
+        40.174612
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Parliament",
+      "osm": "relation/1267676",
+      "coordinatesWgs84": [
+        44.509214,
+        40.189902
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Russian-Armenian State University",
+      "osm": "relation/15349086",
+      "coordinatesWgs84": [
+        44.503411,
+        40.210661
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yerevan velodrome",
+      "osm": "relation/18398590",
+      "coordinatesWgs84": [
+        44.46287,
+        40.156844
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Garni Pagan Temple;Garni Temple",
+      "osm": "way/108255791",
+      "coordinatesWgs84": [
+        44.730219,
+        40.112342
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Mesrop Mashtots church",
+      "osm": "way/224162673",
+      "coordinatesWgs84": [
+        44.315647,
+        40.25859
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kaptavanq",
+      "osm": "node/2261309386",
+      "coordinatesWgs84": [
+        44.696063,
+        40.328456
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Georgi Dimitrov",
+      "osm": "node/11059334139",
+      "coordinatesWgs84": [
+        44.489542,
+        40.007621
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tiknuni castle",
+      "osm": "way/842206349",
+      "coordinatesWgs84": [
+        44.581941,
+        40.042711
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park aft. Tatul Krpeyan",
+      "osm": "relation/16558688",
+      "coordinatesWgs84": [
+        44.562788,
+        40.204919
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lyon Park",
+      "osm": "way/32402461",
+      "coordinatesWgs84": [
+        44.527431,
+        40.153862
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vazgen Sargsyan Republican Stadium",
+      "osm": "way/31620404",
+      "coordinatesWgs84": [
+        44.525549,
+        40.171942
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vernissage",
+      "osm": "way/31662730",
+      "coordinatesWgs84": [
+        44.518357,
+        40.17586
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yerevan Mall",
+      "osm": "way/33771226",
+      "coordinatesWgs84": [
+        44.499108,
+        40.155647
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yerevan State Institute of Theatre and Cinematography",
+      "osm": "node/2269341279",
+      "coordinatesWgs84": [
+        44.50625,
+        40.182466
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hrazdan stadium",
+      "osm": "way/31662997",
+      "coordinatesWgs84": [
+        44.49465,
+        40.180392
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American University of Armenia",
+      "osm": "relation/16017332",
+      "coordinatesWgs84": [
+        44.503952,
+        40.193433
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1211,
+      "sha256": "8bdef26df6c20b3f94777a24aed43bcbdd4131aeab75543415b8c0c396eb5896"
+    },
+    "geometry.ts": {
+      "bytes": 135898,
+      "sha256": "3e1dc79def7e2d9a2e855aaa7d37439bd15e7ffe1c7f0d1905136712b2ef156b"
+    },
+    "places.ts": {
+      "bytes": 9895,
+      "sha256": "ac9a257477e186c6b619e7aa3220ef2f8370523dd9f9ecbe0fbe2a2b25cbfb10"
+    },
+    "terrain.ts": {
+      "bytes": 53181,
+      "sha256": "91ba4329aeb91cfb46ae969bb50ba0501f057e9792ce835e150c70e84d67aafe"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "a92038531002075e108b4cb9a7ef4c5e4cc65a2c6777e79a952db900486dc439"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

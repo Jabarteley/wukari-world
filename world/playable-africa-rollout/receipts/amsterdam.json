@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "amsterdam",
+  "countryIso2": "NL",
+  "generationIdentity": {
+    "cityId": "amsterdam",
+    "stateId": "nl-amsterdam",
+    "stateName": "Amsterdam"
+  },
+  "inventorySha256": "46e963bdaae61e973ad7b56ddce02856991854abda8bb4b75eab50089effc142",
+  "inventoryPath": "world/playable-africa-rollout/sources/amsterdam.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "amsterdam-airport",
+    "name": "Amsterdam Airport Schiphol",
+    "lon": 4.76389,
+    "lat": 52.308601,
+    "sourceUrl": "https://ourairports.com/airports/EHAM/"
+  },
+  "bounds": [
+    52.192198710066016,
+    4.596963101338747,
+    52.55396048993398,
+    5.187943698661253
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/netherlands-261011.osm.pbf",
+      "datasetSha256": "ff7b1b3dc661956c22d0b88f81ae308c0c5075b03c10f65c74831f9110979562",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/europe/netherlands-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 1406054203,
+          "md5": "3901033f6c758df048a7ca830b0ca255",
+          "sha256": "5c7cb006e22f4ac5791f58c770ddbcdd67dc2a61e7e1024d3c9c70a25dd095f3"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 791507843,
+          "md5": "22475549b5596a792a479757da5f1d9e",
+          "sha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+          "reason": "admin-0 relation/2323309 (Netherlands, v308) lists 475 way members; 38 (Caribbean Netherlands: Bonaire, Saba, Sint Eustatius territorial and coast limits; ways 53561045 ... 1527662536, 35 maritime=yes) are absent from the Netherlands clip; all 2,449 nodes of the 38 ways lie inside the Central America clip (checked against the published .poly, 2026-10-12); with both clips all 475 ways are present and the relation closes with 0 loose endpoints"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "7894cbbc69732799dc1a70ef4997117d47412edb71ab3973bb6e3882479e8f60",
+          "elements": 6189
+        },
+        {
+          "file": "extras.json",
+          "sha256": "63de4f47c94d8b4220211721d8c4e099cf69af1b44a161b7b10e33798300adbc",
+          "elements": 1027
+        },
+        {
+          "file": "water.json",
+          "sha256": "926d7b2476bd2ac2b0440ad8635e57b13d504ccef12c1964e8d08d3438febca3",
+          "elements": 2105
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d461386ac32bf58f6c095ee8b389d81550f83a3f87f3739d8581e3499bcee4e3",
+          "elements": 4128
+        },
+        {
+          "file": "roads.json",
+          "sha256": "bb9da9b5bf4065338494b51909970e37190d4fb2a560049f8fc36437366a021b",
+          "elements": 8425
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 53,
+    "waterPolygons": 33,
+    "reachWaterPolygons": 33
+  },
+  "observed": {
+    "places": 6189,
+    "extras": 1027,
+    "water": 2105,
+    "landuse": 4128,
+    "roads": 8425
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1229,
+      "sha256": "69b54aa344265a1ce2afd82807efcff4cd1fe61dd601b6475436f214b92b569a"
+    },
+    "geometry.ts": {
+      "bytes": 1882883,
+      "sha256": "502824a08e5d354f3a9ffdc310e38175abdeb5e016df93ada2684ff23a21ea41"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "65fbb3792eaffbbbb1baf288415e830f269d0dc4ff27f8667f6ca73f6160367f"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/amsterdam.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

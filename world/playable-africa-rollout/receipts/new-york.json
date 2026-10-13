@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "cityId": "new-york",
+  "countryIso2": "US",
+  "generationIdentity": {
+    "cityId": "new-york",
+    "stateId": "us-new-york",
+    "stateName": "New York"
+  },
+  "inventorySha256": "1115b0acee1e6274e827e5c220a5619dc745c60af88be959ecf3c1ef5dfe151e",
+  "inventoryPath": "world/playable-africa-rollout/sources/new-york.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "new-york-airport",
+    "name": "John F. Kennedy International Airport",
+    "lon": -73.779317,
+    "lat": 40.639447,
+    "sourceUrl": "https://ourairports.com/airports/KJFK/"
+  },
+  "bounds": [
+    40.53184721006602,
+    -74.24368676689816,
+    40.89360898993398,
+    -73.76747717952446
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/north-america/us-northeast-261011.osm.pbf",
+      "datasetSha256": "132ba0faa6062f0cdeff79a9b859aafcf29a9870c630966cd1e453ce7b395538",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/north-america/us-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 12199919524,
+          "md5": "f9a56ae3ef76583cf892e5bfe23a18d4",
+          "sha256": "de48784f65c1160eec691abf47821c7d8deab685c8cc984ba3720ce410c8b5df"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/north-america/canada/yukon-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 83641633,
+          "md5": "8993af0c9518defcea8ff46cc9d4e985",
+          "sha256": "197967a770eaf5fa28c2e942813883eb83c3f70aedbc913baac4159294e17adb",
+          "reason": "admin-0 relation/148838 (United States) member way 1232724301 (Bering Sea territorial waters, 3 nodes, 140.75W 69.83N) is absent from the US clip and ends on present boundary ways; all 3 nodes lie inside the Canada/Yukon clip. The other 38 absent ways are maritime=yes territorial rings of US territories, covered by bootstrap/boundary-evidence/us.json"
+        },
+        {
+          "role": "city-extract",
+          "url": "https://download.geofabrik.de/north-america/us-northeast-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 1803685482,
+          "md5": "0629f2fe95ee55f48d961b2cd33611d3",
+          "sha256": "132ba0faa6062f0cdeff79a9b859aafcf29a9870c630966cd1e453ce7b395538",
+          "reason": "The US file (12.2 GB) is read only for the admin-0 boundary. New York's play/core/outline boxes include the New Jersey side (Jersey City, Newark, Elizabeth), outside new-york.poly; us-northeast (1.80 GB, NY NJ PA and New England) holds all three boxes and the centre",
+          "polyUrl": "https://download.geofabrik.de/north-america/us-northeast.poly",
+          "polySha256": "d78f03a533f3bb0bb4a98319b1b2083dc28a1e30f29f46fb164d40f2fee40e30",
+          "primaryPolyUrl": "https://download.geofabrik.de/north-america/us.poly",
+          "primaryPolySha256": "5b36ffe960cba918b5b33bd998bca090ce4279828590dab382d097d4a3b7a2f3"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "94967bb381df06acd787696dffe884e7532b06072737fd5af355e5f214765e81",
+          "elements": 15928
+        },
+        {
+          "file": "extras.json",
+          "sha256": "709001743080742875e23e432badf1ce1a9998cf05138801c03782a3c0776489",
+          "elements": 3913
+        },
+        {
+          "file": "water.json",
+          "sha256": "ad40e9026d729b775bb3a1ed1054f0e670d834485970bca60acd2762ce7a64a5",
+          "elements": 5452
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "61778e78a2a0095fcaf11d17d7435f030bdfa91dbf306b749386b78bfa2a38d8",
+          "elements": 6398
+        },
+        {
+          "file": "roads.json",
+          "sha256": "8304e6fdb5448f462001fcfeef9eac238b6843f894b67debc70c5bc485104719",
+          "elements": 18871
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 600,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 44,
+    "waterPolygons": 27,
+    "reachWaterPolygons": 27
+  },
+  "observed": {
+    "places": 15928,
+    "extras": 3913,
+    "water": 5452,
+    "landuse": 6398,
+    "roads": 18871
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1251,
+      "sha256": "e1ec175afcc40b7d3f343dba9f2858b0910b34222e19d69bdf3ad09b52493a42"
+    },
+    "geometry.ts": {
+      "bytes": 2483715,
+      "sha256": "c599d42d7331b74529d9e17505d116acaa5706a6e62c7ab5f80d5aae61e71555"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "c7750df5d82565b9b8a6a48c6240fd7ef6f0bf8d63d7a44b4f6695c98d8e9094"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/new-york.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

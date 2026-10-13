@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "cityId": "toronto",
+  "countryIso2": "CA",
+  "generationIdentity": {
+    "cityId": "toronto",
+    "stateId": "ca-toronto",
+    "stateName": "Toronto"
+  },
+  "inventorySha256": "58828e35d68611e944729e4bdb929ca16988fb122bb63d19b6109224ef3e7a3f",
+  "inventoryPath": "world/playable-africa-rollout/sources/toronto.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "toronto-airport",
+    "name": "Toronto Pearson International Airport",
+    "lon": -79.629421,
+    "lat": 43.675935,
+    "sourceUrl": "https://ourairports.com/airports/CYYZ/"
+  },
+  "bounds": [
+    43.47260081006602,
+    -79.64184322710955,
+    43.83436258993398,
+    -79.13486908374745
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf",
+      "datasetSha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/north-america/canada-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 6524280859,
+          "md5": "6294f9930c1e8e2aaf1aed16cf1cc5d1",
+          "sha256": "e9cf194b3965dafc4d985e3a5085297525bfda589af39b00ee097d402fbb1a50"
+        },
+        {
+          "role": "city-extract",
+          "url": "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 1032522521,
+          "md5": "0f003eb450a5d76de312331dd0c38542",
+          "sha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+          "reason": "Canada (6.52 GB) is read only for the admin-0 boundary; Toronto's metadata and layers come from ontario (1.03 GB). 1.5% of the outline box (Lake Ontario, US waters, 43.42-43.49N 79.19-79.09W) lies outside ontario.poly and also outside canada.poly, so neither file holds data there",
+          "polyUrl": "https://download.geofabrik.de/north-america/canada/ontario.poly",
+          "polySha256": "fa7d70729c3b5cdf4b9b32485444b2ac2df86dc56c52435e39e14c6e61d7bdea",
+          "primaryPolyUrl": "https://download.geofabrik.de/north-america/canada.poly",
+          "primaryPolySha256": "55e4d85f9755035288437f4debf4612016c00279dbf67291494ad7e9e0b13dd3"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "8e7a2ab4cce421143170be75c4b7f30ee91f37bf4665e95ea0377c7f6d03ca3f",
+          "elements": 7391
+        },
+        {
+          "file": "extras.json",
+          "sha256": "8663f95995e59d05e7b2b487a27e1760202e60c69fc39c03b5b5be5dcedf9790",
+          "elements": 2378
+        },
+        {
+          "file": "water.json",
+          "sha256": "5aba186318a3725e6dce7154e5c76406012dc494cb12f71fa1b0381a2af1dc6c",
+          "elements": 271
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b70913a91054d82471916b8b4185d75427600066c3d37bd35d44ee3d43352845",
+          "elements": 12775
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f0d1ddd957733b6e86420c3af7ed21e9e29d121c10341c26fb16873aac5cf2a7",
+          "elements": 7327
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 3,
+    "waterPolygons": 9,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 7391,
+    "extras": 2378,
+    "water": 271,
+    "landuse": 12775,
+    "roads": 7327
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1230,
+      "sha256": "b0fa71ec6082d189fed419790ffb197e5cb44ba47d995e7f814a3a95e3bf1705"
+    },
+    "geometry.ts": {
+      "bytes": 63920,
+      "sha256": "9fe77cb344f9cfadf18a46376131a6a412d989cbd5d5322782cdb426f19c1eb4"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "5e87cd16273c77d319f51cc18ae023ad46078ace147313f82ac6afa1ca14b724"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/toronto.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

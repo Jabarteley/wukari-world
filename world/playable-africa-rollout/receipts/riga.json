@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "riga",
+  "countryIso2": "LV",
+  "generationIdentity": {
+    "cityId": "riga",
+    "stateId": "lv-riga",
+    "stateName": "Riga"
+  },
+  "inventorySha256": "421e1c3ad227491b2acb4648bcd97620eb3de283aaf5c94dc5b87693357543c5",
+  "inventoryPath": "world/playable-africa-rollout/sources/riga.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "riga-airport",
+    "name": "Riga International Airport",
+    "lon": 23.970711,
+    "lat": 56.920752,
+    "sourceUrl": "https://ourairports.com/airports/EVRA/"
+  },
+  "bounds": [
+    56.76851681006602,
+    23.77415072686342,
+    57.13027858993398,
+    24.43621847313658
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/latvia-261011.osm.pbf",
+      "datasetSha256": "5360942ced94f18fa9b9f196c4c8f3147558ab2340fbfea6d7cf54308549b5b5",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "bdae8bafeba49dc06019a33df1029cf8ff926254f18267057d71a663bb45c6ed",
+          "elements": 1703
+        },
+        {
+          "file": "extras.json",
+          "sha256": "37cc1dd9f388a4aaf4c94d7701c0f768dc3d9da9cfe88aada96405019d5830ef",
+          "elements": 528
+        },
+        {
+          "file": "water.json",
+          "sha256": "a8666459537bbdafef2c3c023ee93bea11e2957d2fce0992d84cda3a92e3430d",
+          "elements": 2145
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "9d9fdec2b299dd78902443204f6717ed17669a1c5cfe0fa8ed84a0838fec0a3c",
+          "elements": 10225
+        },
+        {
+          "file": "roads.json",
+          "sha256": "28962d9ea4e995eb45160d7e8c660986594d2964f6bf3522171fde5270c2d8fb",
+          "elements": 3350
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 42,
+    "waterPolygons": 30,
+    "reachWaterPolygons": 56
+  },
+  "observed": {
+    "places": 1703,
+    "extras": 528,
+    "water": 2145,
+    "landuse": 10225,
+    "roads": 3350
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1183,
+      "sha256": "e0c3ed33b4a06d0ad833f40d520243ee6dad658a89bf9f3bff1631255f089905"
+    },
+    "geometry.ts": {
+      "bytes": 179731,
+      "sha256": "89b382129f0a23b832a3c49974fa338febf1ee29cabf5392a8116939906225a4"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "cf94a8fb93a0146f73fa562d78eb007597e8ead769f4e63a53e63fcb6176557e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/riga.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

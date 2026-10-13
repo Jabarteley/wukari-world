@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "cityId": "majuro",
+  "countryIso2": "MH",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Majuro",
+    "coordinatesWgs84": [
+      171.3816354,
+      7.0909924
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/marshall-islands-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "majuro-airport",
+    "name": "Marshall Islands International Airport",
+    "lon": 171.271656,
+    "lat": 7.06511,
+    "sourceUrl": "https://ourairports.com/airports/PKMJ/"
+  },
+  "boxes": {
+    "play": [
+      6.910111510066022,
+      171.20051637022945,
+      7.271873289933978,
+      171.56275442977054
+    ],
+    "core": [
+      7.045772177516506,
+      171.33636919199816,
+      7.1362126224834945,
+      171.42690160800183
+    ],
+    "outline": [
+      6.860111510066022,
+      171.15051637022944,
+      7.321873289933978,
+      171.61275442977055
+    ],
+    "wide": [
+      6.310111510066022,
+      170.60051637022946,
+      7.871873289933978,
+      172.16275442977053
+    ],
+    "water": [
+      6.310111510066022,
+      170.60051637022946,
+      7.871873289933978,
+      172.16275442977053
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/marshall-islands-261011.osm.pbf",
+    "datasetSha256": "f65227c2f4db95424d705c11912784971f820730a1bc9ecb437e1150f6f1b86a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "3962a427984bb14679e71f946f3bc722c1052747be6be55532eb7e903892f5ab",
+        "elements": 26
+      },
+      {
+        "file": "extras.json",
+        "sha256": "e7ad40b5c1439f24c7ca8ce17d7730bdad4985452992aeb6f58fbed8d43b75c3",
+        "elements": 13
+      },
+      {
+        "file": "water.json",
+        "sha256": "cd9050061970c203cf9921818cea11f480fdbf6857f77df24f2f6bd8f8569051",
+        "elements": 141
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "f5b54af3285231d8a52930a98f296b2fb9a5993d259474af03e9588795319450",
+        "elements": 41
+      },
+      {
+        "file": "roads.json",
+        "sha256": "24ee0a80e646a4d196fca407bed477d08b7f724eaf977c050b7c86a70687e711",
+        "elements": 6
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "CMI Bus Stop",
+      "osm": "node/11598607812",
+      "coordinatesWgs84": [
+        171.377516,
+        7.102799
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jay's Restaurant",
+      "osm": "node/3261641988",
+      "coordinatesWgs84": [
+        171.371665,
+        7.085369
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "USP",
+      "osm": "way/259725395",
+      "coordinatesWgs84": [
+        171.325259,
+        7.076406
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Leroij Atama Zedkeia Medical Center",
+      "osm": "relation/3884917",
+      "coordinatesWgs84": [
+        171.381988,
+        7.090075
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iakwe Katoj Park",
+      "osm": "way/842953154",
+      "coordinatesWgs84": [
+        171.29,
+        7.068915
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wei Wei Store",
+      "osm": "node/3261643275",
+      "coordinatesWgs84": [
+        171.371577,
+        7.085326
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cathedral of the Assumption",
+      "osm": "way/259721827",
+      "coordinatesWgs84": [
+        171.378148,
+        7.101866
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "RMI courts",
+      "osm": "node/3993101946",
+      "coordinatesWgs84": [
+        171.373985,
+        7.107553
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "M.I.V.A",
+      "osm": "node/3983257906",
+      "coordinatesWgs84": [
+        171.380123,
+        7.095156
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of the South Pacific (USP)",
+      "osm": "node/1583072058",
+      "coordinatesWgs84": [
+        171.325777,
+        7.076514
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Majuro Track and Field Stadium",
+      "osm": "way/1333499846",
+      "coordinatesWgs84": [
+        171.370279,
+        7.11192
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Majuro Bridge",
+      "osm": "way/87621879",
+      "coordinatesWgs84": [
+        171.355023,
+        7.082993
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tide Table Restaurant & Lounge",
+      "osm": "node/2698631328",
+      "coordinatesWgs84": [
+        171.371011,
+        7.10928
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Seagull",
+      "osm": "node/9956412121",
+      "coordinatesWgs84": [
+        171.380085,
+        7.088433
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "NDES",
+      "osm": "node/11103492901",
+      "coordinatesWgs84": [
+        171.381508,
+        7.091104
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marshall Islands War Memorial Park",
+      "osm": "way/977982606",
+      "coordinatesWgs84": [
+        171.371552,
+        7.086012
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Alele National Museum",
+      "osm": "node/3993102171",
+      "coordinatesWgs84": [
+        171.373581,
+        7.107641
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Enra Restaurant",
+      "osm": "node/1563948641",
+      "coordinatesWgs84": [
+        171.373437,
+        7.086649
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "DAR Coffee Corner",
+      "osm": "node/2698631329",
+      "coordinatesWgs84": [
+        171.372572,
+        7.109765
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Island Cafe",
+      "osm": "node/3261641985",
+      "coordinatesWgs84": [
+        171.372913,
+        7.085747
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1246,
+      "sha256": "0f86128d651d997a986bcfbcae29147be9ef181ac148bada7d97ed48275fe4b6"
+    },
+    "geometry.ts": {
+      "bytes": 28626,
+      "sha256": "11dd0792bf03a1683202a080b3b458a82f8b313188898fd116e5440e20a45804"
+    },
+    "places.ts": {
+      "bytes": 7735,
+      "sha256": "4b5bb8fee0530b47d1fccb6fed12c5d05c463de356d5b0c2045fc4c39a5aee85"
+    },
+    "terrain.ts": {
+      "bytes": 152453,
+      "sha256": "448870c393c0cf240343ef56f2153acd0b71e0387c22e4394e61a7b15accdcbd"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "86853973f18f3fcd7239ff64f90b15f0ec13b2c349122ebd1712b214ada662c4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

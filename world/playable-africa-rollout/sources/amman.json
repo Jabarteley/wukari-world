@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "amman",
+  "countryIso2": "JO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Amman",
+    "coordinatesWgs84": [
+      35.9239625,
+      31.9515694
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/jordan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "amman-airport",
+    "name": "Queen Alia International Airport",
+    "lon": 35.9931983948,
+    "lat": 31.7226009369,
+    "sourceUrl": "https://ourairports.com/airports/OJAI/"
+  },
+  "boxes": {
+    "play": [
+      31.713556892403304,
+      35.71180163823021,
+      32.13245028993398,
+      36.13612336176979
+    ],
+    "core": [
+      31.906349177516507,
+      35.871000897380746,
+      31.996789622483494,
+      35.97692410261926
+    ],
+    "outline": [
+      31.663556892403303,
+      35.661801638230216,
+      32.182450289933975,
+      36.18612336176979
+    ],
+    "wide": [
+      31.113556892403302,
+      35.11180163823021,
+      32.73245028993398,
+      36.73612336176979
+    ],
+    "water": [
+      31.713556892403304,
+      35.71180163823021,
+      32.13245028993398,
+      36.13612336176979
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/jordan-261011.osm.pbf",
+    "datasetSha256": "9e1c3d5342221dfa3947ea764ce63855778213edf158d616ac895cfb13e1b08e",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "dd68168f368e2ba7b6c482a1aab6f992970f562f6dbe7d9473d49ac96044ad82",
+        "elements": 1142
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c1fd26eccad8e3e5b1bfe6fb1be56db2ada5acc6cdb1289c40f11848977548a0",
+        "elements": 322
+      },
+      {
+        "file": "water.json",
+        "sha256": "b2f13b30d578b1aa3391dc74ce1aebc08658209cf1eb11373f1a704d553c96d1",
+        "elements": 23
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "f062b35d51194a9aa3dc1948b52c082e4d72d4b18159736bb23be9e8c65b395a",
+        "elements": 1252
+      },
+      {
+        "file": "roads.json",
+        "sha256": "548991e35194a67cefc727f09e67de7ee64ff8b4d7ca6f9bf5527b566829b049",
+        "elements": 2166
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Qasr Station",
+      "osm": "node/798905112",
+      "coordinatesWgs84": [
+        35.936737,
+        31.907084
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hekayet Nebo Restaurant",
+      "osm": "node/1193976556",
+      "coordinatesWgs84": [
+        35.740058,
+        31.767245
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Jordan",
+      "osm": "way/179944869",
+      "coordinatesWgs84": [
+        35.872955,
+        32.013483
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arab Medical Center",
+      "osm": "way/276753162",
+      "coordinatesWgs84": [
+        35.878335,
+        31.959639
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hada'iq al-Malik Hussein",
+      "osm": "way/153915077",
+      "coordinatesWgs84": [
+        35.826611,
+        31.986346
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Taj Mall",
+      "osm": "way/263470895",
+      "coordinatesWgs84": [
+        35.888048,
+        31.941219
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Great Mosque of Salt",
+      "osm": "way/696170482",
+      "coordinatesWgs84": [
+        35.725322,
+        32.039181
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hashemite Plaza",
+      "osm": "way/651678324",
+      "coordinatesWgs84": [
+        35.939168,
+        31.952411
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Zarqaa Manucipality",
+      "osm": "node/3987031215",
+      "coordinatesWgs84": [
+        36.087518,
+        32.062378
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "جامعة عمان العربية",
+      "osm": "way/1532937257",
+      "coordinatesWgs84": [
+        35.881388,
+        32.115875
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Prince Mohammed Stadium",
+      "osm": "way/98868798",
+      "coordinatesWgs84": [
+        36.112923,
+        32.099914
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Qasr Mshatta",
+      "osm": "way/164106288",
+      "coordinatesWgs84": [
+        36.01022,
+        31.737943
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tell Hesban",
+      "osm": "way/695615687",
+      "coordinatesWgs84": [
+        35.809048,
+        31.800755
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tall al-Umayri",
+      "osm": "way/956954592",
+      "coordinatesWgs84": [
+        35.887966,
+        31.868662
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjid Fatima Alzahraa",
+      "osm": "node/1789652385",
+      "coordinatesWgs84": [
+        35.990859,
+        31.976561
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "King Abdullah I Mosque",
+      "osm": "way/333946090",
+      "coordinatesWgs84": [
+        35.912844,
+        31.96112
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Petra University",
+      "osm": "way/200734506",
+      "coordinatesWgs84": [
+        35.875022,
+        31.893066
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "German Jordanian University",
+      "osm": "way/588418001",
+      "coordinatesWgs84": [
+        35.801288,
+        31.777018
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mount Nebo",
+      "osm": "node/547993845",
+      "coordinatesWgs84": [
+        35.725269,
+        31.768168
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "شارع الستين ٦٠",
+      "osm": "node/6593897285",
+      "coordinatesWgs84": [
+        36.054254,
+        31.83904
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "مزرعة اليازوري",
+      "osm": "node/13128408649",
+      "coordinatesWgs84": [
+        35.946341,
+        32.059223
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Abood Coffee",
+      "osm": "node/13391032813",
+      "coordinatesWgs84": [
+        35.812948,
+        32.059427
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "my resaurant",
+      "osm": "node/12395982125",
+      "coordinatesWgs84": [
+        35.976337,
+        31.848359
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Baby Cord",
+      "osm": "node/4201615774",
+      "coordinatesWgs84": [
+        35.940667,
+        31.747647
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1205,
+      "sha256": "3bbf8c203d9060b6258991a8ea8768c772cf9f0897186e2787376d8f754a5873"
+    },
+    "geometry.ts": {
+      "bytes": 102126,
+      "sha256": "9f2ad9dea60566ad008146aead0b8570b748247659d5c9eb8be462267f34769b"
+    },
+    "places.ts": {
+      "bytes": 9512,
+      "sha256": "51c674edc21932bcc7795ba5f849cd3ef63fa4ccfd01a208bed6086700e12ba9"
+    },
+    "terrain.ts": {
+      "bytes": 45345,
+      "sha256": "2b44e7b40f7d0a55b1002c2dc0a23da9dac4c34fd66c25fd9423d1a97ec38396"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "a8f6eb2dac6614595f550b9e829f1a9ecdd4157e9658e611174669fd548d6062"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

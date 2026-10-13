@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "san-jose",
+  "countryIso2": "CR",
+  "generationIdentity": {
+    "cityId": "san-jose",
+    "stateId": "cr-san-jose",
+    "stateName": "San José"
+  },
+  "inventorySha256": "b1516295b7092e90c5be6eedf2778f64ef2ae3c06ebbba0801ad9d4e5a4a1d9c",
+  "inventoryPath": "world/playable-africa-rollout/sources/san-jose.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "san-jose-airport",
+    "name": "Juan Santamaría International Airport",
+    "lon": -84.208801,
+    "lat": 9.99386,
+    "sourceUrl": "https://ourairports.com/airports/MROC/"
+  },
+  "bounds": [
+    9.75185641006602,
+    -84.26216628530693,
+    10.113618189933979,
+    -83.89717031469306
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/costa-rica-261011.osm.pbf",
+      "datasetSha256": "c896a9c3c7dbc86ba2c98ce5aa71e79459590628e29e62a22507c746f24f1c54",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "1c711bdf37790a01982ad22ce550626effeba1847b3cd0264e29811fd1b3dafb",
+          "elements": 5021
+        },
+        {
+          "file": "extras.json",
+          "sha256": "7f3a19d53ae4abe1a44af942a07b694728af08ca405eb93701d8927651529a02",
+          "elements": 2492
+        },
+        {
+          "file": "water.json",
+          "sha256": "b25c125f718923a0214764763cb74641966f4ecdf6f540e9d799ef2cea20d618",
+          "elements": 773
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "778db6181097757fcc9cb9f1e7b9a54d06ac0a5bf2c3f3c8710a9b6822ac975e",
+          "elements": 4264
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a795e4763962115443596aa77ecc156ca63d1ef6d0d572524ec18dca66a912d9",
+          "elements": 2010
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 26,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 79
+  },
+  "observed": {
+    "places": 5021,
+    "extras": 2492,
+    "water": 773,
+    "landuse": 4264,
+    "roads": 2010
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1249,
+      "sha256": "642622df4e10ad2c0ad0899059a49333193c49f1aa671575aeb3df564840eb60"
+    },
+    "geometry.ts": {
+      "bytes": 77194,
+      "sha256": "4b1e340cb232899b8386e5e0a7c6ce7024f294dc48a058b1236784933f82763c"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "4db5258c85bba37ad78115d6d61ce4e60acf0f6ff34baedcf4d08f567afbe9b8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/san-jose.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

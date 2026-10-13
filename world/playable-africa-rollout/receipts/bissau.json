@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bissau",
+  "countryIso2": "GW",
+  "generationIdentity": {
+    "cityId": "bissau",
+    "stateId": "gw-bissau",
+    "stateName": "Bissau"
+  },
+  "inventorySha256": "21a547de007c866ecd4c4088bd717a5969e7d11274917cfa56907dc4c3905325",
+  "inventoryPath": "world/playable-africa-rollout/sources/bissau.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bissau-airport",
+    "name": "Osvaldo Vieira International Airport",
+    "lon": -15.653596,
+    "lat": 11.894262,
+    "sourceUrl": "https://ourairports.com/airports/GGOV/"
+  },
+  "bounds": [
+    11.68044311006602,
+    -15.766759809105654,
+    12.042204889933979,
+    -15.399350190894346
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/guinea-bissau-261011.osm.pbf",
+      "datasetSha256": "0accc6917c6a02f9d556f5dce0c89dc83b16180b527ed99957d0b06a435e15c6",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "a6a65b8823f8f5c1d7f21409b8476c2ef800372e1c0a170c572ee2a7a10631a8",
+          "elements": 96
+        },
+        {
+          "file": "extras.json",
+          "sha256": "a3aadc3caa6d555cf6ce1c0558baace7bd7893b1f0475eeda48fcb9595cb9203",
+          "elements": 41
+        },
+        {
+          "file": "water.json",
+          "sha256": "99f501bd13897fffe7196220edbef6d438b048d74c797a28d7a18ad99837092c",
+          "elements": 1127
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b7aac89a046eba69ceb1d0dd7bba476c0ef5e65ef662b61a32effc36857fbce7",
+          "elements": 353
+        },
+        {
+          "file": "roads.json",
+          "sha256": "0844bcaa3a7f289a9e47545971d17c06735030538053195e8b1c6ec302216f80",
+          "elements": 47
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 20,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 9,
+    "waterPolygons": 9,
+    "reachWaterPolygons": 32
+  },
+  "observed": {
+    "places": 96,
+    "extras": 41,
+    "water": 1127,
+    "landuse": 353,
+    "roads": 47
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "e22ecbca3a663b51fd9c67ffd52d386460cc080d93eae04ef4e88d565950b25c"
+    },
+    "geometry.ts": {
+      "bytes": 194541,
+      "sha256": "cc91695889975473a4f4fcb8624f46c7cf81c1dfa03ad52a3af704c2ad3c716f"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "f7f5f46b07e08090a406fe60053563bed551e2bcac0fe614302fbfe4d7887702"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bissau.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "seoul",
+  "countryIso2": "KR",
+  "generationIdentity": {
+    "cityId": "seoul",
+    "stateId": "kr-seoul",
+    "stateName": "Seoul"
+  },
+  "inventorySha256": "0f5cb48e142c5b5514c1744c8499269a47fd0f3c24fd6b0f4d9cc40386d9c463",
+  "inventoryPath": "world/playable-africa-rollout/sources/seoul.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "seoul-airport",
+    "name": "Incheon International Airport",
+    "lon": 126.450996,
+    "lat": 37.469101,
+    "sourceUrl": "https://ourairports.com/airports/RKSI/"
+  },
+  "bounds": [
+    37.38579821006602,
+    126.43967634777182,
+    37.74755998993398,
+    127.2055061214048
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf",
+      "datasetSha256": "3d7370bd43b198d5c67bbae966d14831804162c863cf92d2660cae5f40587fdc",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 289058579,
+          "md5": "df6f9430a975f927c08f4afddade7f97",
+          "sha256": "a856bb1e43c968612b2339af0e01da8bb972e10ba21ca86b9d91aac4d1d64505"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 92633737,
+          "md5": "613c91f099220dd867b1a64c69e8422b",
+          "sha256": "35b29765950cd53bd39166955c93b6d5f4934d8a5ac5891f5c9334187ab20374",
+          "reason": "Seoul water box reaches 38.35N and 125.84E: the Yellow Sea coast north and west of Ganghwa (Han estuary, Yeonan and Haeju coast) is cut at the border and continues in North Korea; the Korea and North Korea clips together cover the whole box"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "7d390228c9e8ddaffd84904a63744b838b6fd55452427c15e45520fb06c7e55a",
+          "elements": 56248
+        },
+        {
+          "file": "extras.json",
+          "sha256": "64371d939f5b1efd80c627846930862fd010e712008cdfaf6d6dfb7e17329f46",
+          "elements": 6201
+        },
+        {
+          "file": "water.json",
+          "sha256": "425f17fc844888739943fddc7651cf5ebd47d1223ad87a3b150c37a49a7ebe7e",
+          "elements": 2651
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "5c629ee3bc1e8e029afe0bf4072ecff86c47f01e73aa83a8c880e5d360d51bd2",
+          "elements": 14971
+        },
+        {
+          "file": "roads.json",
+          "sha256": "85eefc9f53428038f051e39c4f7baea4f5f5282203946c7aa2edb5fb1decee47",
+          "elements": 10836
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 500,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 59,
+    "waterPolygons": 49,
+    "reachWaterPolygons": 49
+  },
+  "observed": {
+    "places": 56248,
+    "extras": 6201,
+    "water": 2651,
+    "landuse": 14971,
+    "roads": 10836
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1205,
+      "sha256": "c12650b9adb1dd2f6b32c71e0b5e7209fa253cec6f78c5061d3fd26952945fd8"
+    },
+    "geometry.ts": {
+      "bytes": 2209390,
+      "sha256": "553f105892026a022b3fc145d26d0e1d59e5d2dea369e2b447c7480bc8fe78d8"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "ddf29b4fb2f12496f54e90fb5c940e1c83031cad9d36c3840287de2fdf29d35a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/seoul.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

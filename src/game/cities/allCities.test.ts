@@ -71,8 +71,9 @@ test('every generated city passes its offline source and output check', () => {
       })
     })
     const remaining = foreign.filter(id => !checked.includes(id))
-    if (remaining.length) {
-      const output = execFileSync(python, [join(root, 'scripts/world/check-playable-africa-rollout.py'), ...remaining], {
+    // The rollout checker refuses more than 53 city IDs per call (its own input bound), so check in batches.
+    for (let start = 0; start < remaining.length; start += 50) {
+      const output = execFileSync(python, [join(root, 'scripts/world/check-playable-africa-rollout.py'), ...remaining.slice(start, start + 50)], {
         cwd: root, encoding: 'utf8', timeout: 60_000,
       })
       for (const line of output.trim().split('\n')) {

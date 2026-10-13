@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "conakry",
+  "countryIso2": "GN",
+  "generationIdentity": {
+    "cityId": "conakry",
+    "stateId": "gn-conakry",
+    "stateName": "Conakry"
+  },
+  "inventorySha256": "7f07df55d1c8a0d06ab2b2774e91e86fc140e9de6ebae9591e8f61660a5a2f3e",
+  "inventoryPath": "world/playable-africa-rollout/sources/conakry.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "conakry-airport",
+    "name": "Ahmed Sékou Touré International Airport",
+    "lon": -13.612,
+    "lat": 9.57689,
+    "sourceUrl": "https://ourairports.com/airports/GUCY/"
+  },
+  "bounds": [
+    9.33617931006602,
+    -13.882110316157231,
+    9.697941089933979,
+    -13.51757648384277
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/guinea-261011.osm.pbf",
+      "datasetSha256": "f838e08a0fef6b67973f565e40e5a106de8e87c51c87a57295903090064468ec",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "1ee652422f1a564dd868e219a813def0e2253c9600e3d5157de8ab4f7086b145",
+          "elements": 408
+        },
+        {
+          "file": "extras.json",
+          "sha256": "07128afb0b79bddfe4b21584a24dd2a3fe88de5731e5831a185c3fd2260f434d",
+          "elements": 161
+        },
+        {
+          "file": "water.json",
+          "sha256": "32c014132fffb6cf46d5f526c71898e30cb214f51e2976bf13fab0542d425d62",
+          "elements": 433
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "fdb38de2352ab4510174fda6c19f9d9c8c4317076393f18d8b97bef7ccf9ebb7",
+          "elements": 558
+        },
+        {
+          "file": "roads.json",
+          "sha256": "cc3501c88d2c6032357389f481d44e6173333097d0869beb4bae7a140706d89c",
+          "elements": 212
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 90,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 8,
+    "waterPolygons": 18,
+    "reachWaterPolygons": 22
+  },
+  "observed": {
+    "places": 408,
+    "extras": 161,
+    "water": 433,
+    "landuse": 558,
+    "roads": 212
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1216,
+      "sha256": "b9cee378b78921631901337bbf4d689a3f3978aa995b4f431e6a67df432f919b"
+    },
+    "geometry.ts": {
+      "bytes": 425539,
+      "sha256": "1e77b0fb46a319b205dea31255ddcba1da0029a7a0b47ed50e04bbd94e6453e1"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "4be5cc7e584e3f0b185e70dd8169563e312ba6cde1826cd2c38e841a360b92b6"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/conakry.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

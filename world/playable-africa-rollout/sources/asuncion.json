@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "asuncion",
+  "countryIso2": "PY",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Asuncion",
+    "coordinatesWgs84": [
+      -57.6343814,
+      -25.2800459
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/paraguay-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "asuncion-airport",
+    "name": "Silvio Pettirossi International Airport",
+    "lon": -57.519227,
+    "lat": -25.240156,
+    "sourceUrl": "https://ourairports.com/airports/SGAS/"
+  },
+  "boxes": {
+    "play": [
+      -25.46092678993398,
+      -57.83336963854545,
+      -25.099165010066024,
+      -57.435393161454556
+    ],
+    "core": [
+      -25.325266122483495,
+      -57.684072578847854,
+      -25.234825677516508,
+      -57.58469022115215
+    ],
+    "outline": [
+      -25.51092678993398,
+      -57.883369638545446,
+      -25.049165010066023,
+      -57.38539316145456
+    ],
+    "wide": [
+      -26.06092678993398,
+      -58.43336963854545,
+      -24.499165010066022,
+      -56.835393161454554
+    ],
+    "water": [
+      -26.06092678993398,
+      -58.43336963854545,
+      -24.499165010066022,
+      -56.835393161454554
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/paraguay-261011.osm.pbf",
+    "datasetSha256": "6222f1a832471179ba3571383051d87db2e05898623be4e3f17cb567c345a02a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "63b5750650a9cb300214d29a9b3c48e5d230cf2cb65ba1e7602f86ca9bd37578",
+        "elements": 1505
+      },
+      {
+        "file": "extras.json",
+        "sha256": "1cb173299ff8d718d80225c3ffae3cdf0e245b611d72ec6f4708bece3d10d045",
+        "elements": 675
+      },
+      {
+        "file": "water.json",
+        "sha256": "f1d4e791f03accb0afcd3d5c4bcaab9fe228319033a01ccf053542d43e4995bc",
+        "elements": 818
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "227670b0225f329d8c51eea530f5722b48cbf2827adf9697bab51af4470c638a",
+        "elements": 3666
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c04824768c52161faf9d64d35b678ab5048ecff1599b5572d2b80eb818f20db2",
+        "elements": 2722
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Línea 52",
+      "osm": "node/3048300696",
+      "coordinatesWgs84": [
+        -57.456172,
+        -25.374915
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "EuroGourmet",
+      "osm": "node/324817878",
+      "coordinatesWgs84": [
+        -57.56657,
+        -25.271321
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Católica \"Nuestra Señora de la Asunción\"",
+      "osm": "way/130888813",
+      "coordinatesWgs84": [
+        -57.637841,
+        -25.325894
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital de Clinicas",
+      "osm": "way/277760510",
+      "coordinatesWgs84": [
+        -57.652441,
+        -25.280095
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Ñu Guasú",
+      "osm": "node/1969320558",
+      "coordinatesWgs84": [
+        -57.543861,
+        -25.262729
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shopping Mariscal López A",
+      "osm": "way/31143117",
+      "coordinatesWgs84": [
+        -57.581067,
+        -25.295148
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Santuario Virgen del Rosario",
+      "osm": "way/166748772",
+      "coordinatesWgs84": [
+        -57.491528,
+        -25.266901
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Municipalidad de San Antonio",
+      "osm": "way/166917816",
+      "coordinatesWgs84": [
+        -57.574005,
+        -25.412592
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Embassy of Chile",
+      "osm": "way/384456846",
+      "coordinatesWgs84": [
+        -57.575402,
+        -25.299825
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "VILLA UNIVERSITARIA",
+      "osm": "way/48488012",
+      "coordinatesWgs84": [
+        -57.51895,
+        -25.331083
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Roberto Béttega",
+      "osm": "way/274541627",
+      "coordinatesWgs84": [
+        -57.568576,
+        -25.236306
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo Nacional de Bellas Artes",
+      "osm": "way/276233284",
+      "coordinatesWgs84": [
+        -57.621144,
+        -25.288639
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Nacional de Educación Superior Doctor Raúl Peña",
+      "osm": "way/316831439",
+      "coordinatesWgs84": [
+        -57.582937,
+        -25.319667
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Arsenio Erico",
+      "osm": "way/28439068",
+      "coordinatesWgs84": [
+        -57.640017,
+        -25.298309
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio River Plate",
+      "osm": "way/272754498",
+      "coordinatesWgs84": [
+        -57.598084,
+        -25.304944
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Asunción Paraguay Temple",
+      "osm": "way/273246495",
+      "coordinatesWgs84": [
+        -57.602867,
+        -25.287906
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Casa de la Independencia y Callejon Historico - Solar Martinez Saez",
+      "osm": "node/4379937704",
+      "coordinatesWgs84": [
+        -57.636362,
+        -25.280534
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital de Trauma Prof. Dr. Manuel Giagni",
+      "osm": "way/276186496",
+      "coordinatesWgs84": [
+        -57.612667,
+        -25.300565
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jardín Botánico y Zoológico de Asunción",
+      "osm": "way/29045875",
+      "coordinatesWgs84": [
+        -57.571018,
+        -25.246923
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Autónoma de Asunción (UAA)",
+      "osm": "way/274352578",
+      "coordinatesWgs84": [
+        -57.643073,
+        -25.287448
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Our Lady of Asunción Cathedral",
+      "osm": "way/164810076",
+      "coordinatesWgs84": [
+        -57.632384,
+        -25.281637
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mall Excelsior",
+      "osm": "way/266156282",
+      "coordinatesWgs84": [
+        -57.63856,
+        -25.287717
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital indígena",
+      "osm": "node/5793564354",
+      "coordinatesWgs84": [
+        -57.475215,
+        -25.161679
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ecologica",
+      "osm": "way/752981298",
+      "coordinatesWgs84": [
+        -57.551513,
+        -25.144635
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1247,
+      "sha256": "a13fde29782b985fbbfa32af54a8639c1f410590abb774bebb6ce3d599ca62e4"
+    },
+    "geometry.ts": {
+      "bytes": 75301,
+      "sha256": "b54f082ba68db8325148e76fd24568a41b61617f63147ae6d2f81cd235a80dea"
+    },
+    "places.ts": {
+      "bytes": 10222,
+      "sha256": "3d9b1646b4bf1fd74e7608a1258e70caeaf661a20d79443e33a11e541dd305a9"
+    },
+    "terrain.ts": {
+      "bytes": 154549,
+      "sha256": "e62724853900e8e893ccc51831ef6314f14705cd11d50403e0c42cf521ab4cb7"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "d40a294508dbd6ebc4a23dfd98392465f2ca8d84e385f287b15c85c3dcec2420"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

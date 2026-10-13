@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "brasilia",
+  "countryIso2": "BR",
+  "generationIdentity": {
+    "cityId": "brasilia",
+    "stateId": "br-brasilia",
+    "stateName": "Brasília"
+  },
+  "inventorySha256": "e920984578b85bc0f9a958577ee0a69f86bd140f38b475259d3800884638e72b",
+  "inventoryPath": "world/playable-africa-rollout/sources/brasilia.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "brasilia-airport",
+    "name": "Presidente Juscelino Kubitschek International Airport",
+    "lon": -47.920834,
+    "lat": -15.869167,
+    "sourceUrl": "https://ourairports.com/airports/SBBR/"
+  },
+  "bounds": [
+    -15.97486778993398,
+    -48.06967903443277,
+    -15.613106010066021,
+    -47.69592096556724
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/brazil-261011.osm.pbf",
+      "datasetSha256": "00f599575e5aae5b1a02c4feeca820bf4c33f3e3473e5d18a2e9d159cfb81bd6",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "3e0d3df4c05b28781aa1c738f57aac22b1858acaad751137840ca6d679cdba63",
+          "elements": 2214
+        },
+        {
+          "file": "extras.json",
+          "sha256": "89d56462227ffe02484a7fd53584cebf77ec433dbcab023df68140a2e4b34a2c",
+          "elements": 771
+        },
+        {
+          "file": "water.json",
+          "sha256": "77d1d079bcc37875a701ca51e5b918585977cd23df80287d57af36ede69cb86d",
+          "elements": 127
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "0755f819b0242db3624a66223dfbbe218404004f5f7cfb48043235acefe3468e",
+          "elements": 4331
+        },
+        {
+          "file": "roads.json",
+          "sha256": "e0299478e1741d0d12fd114f87a0c35d35c05270fd7131f40b3d3ba2cb705233",
+          "elements": 4007
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 22,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 2214,
+    "extras": 771,
+    "water": 127,
+    "landuse": 4331,
+    "roads": 4007
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1257,
+      "sha256": "2c2cfa338a5984f8160bc51113320b5c72ab40637d54fc981af93f4a6f991c16"
+    },
+    "geometry.ts": {
+      "bytes": 108035,
+      "sha256": "94512d258e149ff41dfc60a17659c78cadea281be696251bbce4598c3668136f"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "a47c3145ae8f00c588e07d92a0c2abd3213fa537804fe4957e81b5735f266e23"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/brasilia.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

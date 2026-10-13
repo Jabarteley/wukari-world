@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "port-of-spain",
+  "countryIso2": "TT",
+  "generationIdentity": {
+    "cityId": "port-of-spain",
+    "stateId": "tt",
+    "stateName": "Port of Spain"
+  },
+  "inventorySha256": "93a36e9c2dda17aec83c775e4b9a26a04e27777b309cb3988723af781d5051c8",
+  "inventoryPath": "world/playable-africa-rollout/sources/port-of-spain.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "port-of-spain-airport",
+    "name": "Piarco International Airport",
+    "lon": -61.337568,
+    "lat": 10.59535,
+    "sourceUrl": "https://ourairports.com/airports/TTPP/"
+  },
+  "bounds": [
+    10.47638691006602,
+    -61.70094250528619,
+    10.838148689933979,
+    -61.32842880207231
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "9e6f7bd8a33b7a362fec5e7d8877988bb85f1364645a4a9bde4d2f193fd861d4",
+          "elements": 737
+        },
+        {
+          "file": "extras.json",
+          "sha256": "0e8d38b20898c27a3ab8cf55aefacd53e8baecf89452921fc5e5ffc3db57666a",
+          "elements": 225
+        },
+        {
+          "file": "water.json",
+          "sha256": "0d9a5627da2b40c36e141ff00a1735f72ef846dcf36bf099cc27ca94d0194d0b",
+          "elements": 414
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "1fc0b9716792042cfcc440545df8f25defcbdb47e600be335306c6c571f440c8",
+          "elements": 371
+        },
+        {
+          "file": "roads.json",
+          "sha256": "7c693d5eb79605b2f3875ab03c8f96f86cfadd42b646c167f6ea6e1837c297f6",
+          "elements": 1158
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 262,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 11,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 6
+  },
+  "observed": {
+    "places": 737,
+    "extras": 225,
+    "water": 414,
+    "landuse": 371,
+    "roads": 1158
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1262,
+      "sha256": "8c61079f6a5ecdc4b2217f87aaafb2e816692b87f49bfbf19600141343cf259f"
+    },
+    "geometry.ts": {
+      "bytes": 179126,
+      "sha256": "0d0efcecff53266d55efda11066f9423360128ad4aae1b66a5ef4ca003d93ea7"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "513de1098dff9d8d0329811fc7165f3fb9dd00d6d815032772a588edb8e6bc3d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/port-of-spain.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

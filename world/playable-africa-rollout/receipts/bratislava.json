@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bratislava",
+  "countryIso2": "SK",
+  "generationIdentity": {
+    "cityId": "bratislava",
+    "stateId": "sk-bratislava",
+    "stateName": "Bratislava"
+  },
+  "inventorySha256": "148393206002f488760f54f565197a254b5a9eb72b31061b316d02dfda2f55fd",
+  "inventoryPath": "world/playable-africa-rollout/sources/bratislava.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "bratislava-airport",
+    "name": "M. R. Štefánik Airport",
+    "lon": 17.2127,
+    "lat": 48.1702,
+    "sourceUrl": "https://ourairports.com/airports/LZIB/"
+  },
+  "bounds": [
+    47.96262171006602,
+    16.838082391051863,
+    48.32438348993398,
+    17.37849100894814
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/slovakia-261011.osm.pbf",
+      "datasetSha256": "54542ce82198459fb4d156d01f96d6e3cdab4e9f82f40f63f20d59e00bc62ae5",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "f2bff45841c7dacfdcd06a4f4ffb635312e3aaaf92454d299a42b86864d73f7e",
+          "elements": 3839
+        },
+        {
+          "file": "extras.json",
+          "sha256": "c463770b942512419ff6e57f2ad11bcee56686db38ce32e91a13132fa83dec92",
+          "elements": 541
+        },
+        {
+          "file": "water.json",
+          "sha256": "b993e67e8f1e29a7edcd6225ca65857aee876d5a4f020b7d16594720aea35668",
+          "elements": 253
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "09a0547770f8f48ee118b9faeb34d5d2456404ff1e527ced852cddff6ba9391d",
+          "elements": 1394
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f76f0882da6b2bf7a14714d549f507516a0983f447d48b35960c793c1e726a43",
+          "elements": 2908
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 584,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 42,
+    "waterPolygons": 70,
+    "reachWaterPolygons": 18
+  },
+  "observed": {
+    "places": 3839,
+    "extras": 541,
+    "water": 253,
+    "landuse": 1394,
+    "roads": 2908
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "3d09b24dd051afd473ac9f89548ea8d51db6559168c2977aaa123ca30608e89c"
+    },
+    "geometry.ts": {
+      "bytes": 115133,
+      "sha256": "a80670f87a7a8979420a5093d85a2da6ac9e06f40779ce8f783307ac8ffa7c58"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "4c55e26d9f8febf3121cc0d5a77e039512303ff34f9c448540497a71f52edd6f"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/bratislava.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

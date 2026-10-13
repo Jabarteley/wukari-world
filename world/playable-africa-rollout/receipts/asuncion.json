@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "asuncion",
+  "countryIso2": "PY",
+  "generationIdentity": {
+    "cityId": "asuncion",
+    "stateId": "py-asuncion",
+    "stateName": "Asuncion"
+  },
+  "inventorySha256": "c241b7044fa908ec46cde28a46d3bd33495a83eb636c2dd8672e666e62479e00",
+  "inventoryPath": "world/playable-africa-rollout/sources/asuncion.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "asuncion-airport",
+    "name": "Silvio Pettirossi International Airport",
+    "lon": -57.519227,
+    "lat": -25.240156,
+    "sourceUrl": "https://ourairports.com/airports/SGAS/"
+  },
+  "bounds": [
+    -25.46092678993398,
+    -57.83336963854545,
+    -25.099165010066024,
+    -57.435393161454556
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/paraguay-261011.osm.pbf",
+      "datasetSha256": "6222f1a832471179ba3571383051d87db2e05898623be4e3f17cb567c345a02a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "63b5750650a9cb300214d29a9b3c48e5d230cf2cb65ba1e7602f86ca9bd37578",
+          "elements": 1505
+        },
+        {
+          "file": "extras.json",
+          "sha256": "1cb173299ff8d718d80225c3ffae3cdf0e245b611d72ec6f4708bece3d10d045",
+          "elements": 675
+        },
+        {
+          "file": "water.json",
+          "sha256": "f1d4e791f03accb0afcd3d5c4bcaab9fe228319033a01ccf053542d43e4995bc",
+          "elements": 818
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "227670b0225f329d8c51eea530f5722b48cbf2827adf9697bab51af4470c638a",
+          "elements": 3666
+        },
+        {
+          "file": "roads.json",
+          "sha256": "c04824768c52161faf9d64d35b678ab5048ecff1599b5572d2b80eb818f20db2",
+          "elements": 2722
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 23,
+    "waterPolygons": 11,
+    "reachWaterPolygons": 27
+  },
+  "observed": {
+    "places": 1505,
+    "extras": 675,
+    "water": 818,
+    "landuse": 3666,
+    "roads": 2722
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1247,
+      "sha256": "a13fde29782b985fbbfa32af54a8639c1f410590abb774bebb6ce3d599ca62e4"
+    },
+    "geometry.ts": {
+      "bytes": 75301,
+      "sha256": "b54f082ba68db8325148e76fd24568a41b61617f63147ae6d2f81cd235a80dea"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "d40a294508dbd6ebc4a23dfd98392465f2ca8d84e385f287b15c85c3dcec2420"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/asuncion.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tokyo",
+  "countryIso2": "JP",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tokyo",
+    "coordinatesWgs84": [
+      139.7638947,
+      35.6768601
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/japan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tokyo-airport",
+    "name": "Tokyo Haneda International Airport",
+    "lon": 139.786958,
+    "lat": 35.549678,
+    "sourceUrl": "https://ourairports.com/airports/RJTT/"
+  },
+  "boxes": {
+    "play": [
+      35.49597921006602,
+      139.54221916662937,
+      35.85774098993398,
+      139.98557023337065
+    ],
+    "core": [
+      35.631639877516506,
+      139.7085703373698,
+      35.72208032248349,
+      139.81921906263022
+    ],
+    "outline": [
+      35.44597921006602,
+      139.49221916662935,
+      35.90774098993398,
+      140.03557023337066
+    ],
+    "wide": [
+      34.89597921006602,
+      138.94221916662937,
+      36.45774098993398,
+      140.58557023337065
+    ],
+    "water": [
+      34.89597921006602,
+      138.94221916662937,
+      36.45774098993398,
+      140.58557023337065
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/japan-261011.osm.pbf",
+    "datasetSha256": "5ba8aed6c94fb0907c5e68e1668ee80cdc447cce9caa137fdda2f034d1975cd5",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "34d7daf7f60d3db45feb1d846df2060d657097367b011cd53688493f1741da38",
+        "elements": 36846
+      },
+      {
+        "file": "extras.json",
+        "sha256": "b0c72f78a3e85b59841e5dfcd9d8d3fcab76b918994307d47300b460e78f426c",
+        "elements": 10272
+      },
+      {
+        "file": "water.json",
+        "sha256": "6774699c425945ada419bc915469f55fd65948a3adb834aff4ab81251a68a8cd",
+        "elements": 12235
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "11fc2c33203ad3bbd4dc5f8ee264d9d905004842cedf75373774a39e340799ca",
+        "elements": 17078
+      },
+      {
+        "file": "roads.json",
+        "sha256": "927884f5284140d2abce15c35c61bf968e3df5bcbf108e631f9d55d0ed5dc82d",
+        "elements": 11760
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Nippori",
+      "osm": "node/172670767",
+      "coordinatesWgs84": [
+        139.770982,
+        35.72838
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tully's Coffee",
+      "osm": "node/1447682003",
+      "coordinatesWgs84": [
+        139.731027,
+        35.589041
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Seibu Library",
+      "osm": "node/504907469",
+      "coordinatesWgs84": [
+        139.940694,
+        35.798702
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "埼玉県済生会川口総合病院",
+      "osm": "node/1420192273",
+      "coordinatesWgs84": [
+        139.703102,
+        35.809559
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shakujii Park",
+      "osm": "relation/2658286",
+      "coordinatesWgs84": [
+        139.600009,
+        35.738466
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "イオン新浦安ショッピングセンター",
+      "osm": "way/26322912",
+      "coordinatesWgs84": [
+        139.914895,
+        35.648962
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "観音寺",
+      "osm": "node/610939786",
+      "coordinatesWgs84": [
+        139.60163,
+        35.623621
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "草加市役所",
+      "osm": "way/351764142",
+      "coordinatesWgs84": [
+        139.805363,
+        35.825394
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tokyo Metropolitan Government Main Building 1",
+      "osm": "way/89877471",
+      "coordinatesWgs84": [
+        139.69171,
+        35.689501
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tsurumi University",
+      "osm": "relation/18950099",
+      "coordinatesWgs84": [
+        139.672896,
+        35.505465
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nakayama Race Course",
+      "osm": "relation/8135061",
+      "coordinatesWgs84": [
+        139.961399,
+        35.724945
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "川和富士塚遺跡",
+      "osm": "node/9553352249",
+      "coordinatesWgs84": [
+        139.555981,
+        35.534303
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "秋ヶ瀬公園",
+      "osm": "way/459589547",
+      "coordinatesWgs84": [
+        139.604398,
+        35.848543
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "妙法寺",
+      "osm": "node/7064887959",
+      "coordinatesWgs84": [
+        139.866708,
+        35.734555
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Higahi Ohgishima East Park",
+      "osm": "relation/15635177",
+      "coordinatesWgs84": [
+        139.773623,
+        35.504454
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Daigo Fukuryu Maru Exhibition Hall",
+      "osm": "node/1420795772",
+      "coordinatesWgs84": [
+        139.826352,
+        35.650958
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "高応寺",
+      "osm": "node/11964372050",
+      "coordinatesWgs84": [
+        139.88284,
+        35.848952
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "十文字学園女子大学",
+      "osm": "way/136302688",
+      "coordinatesWgs84": [
+        139.550701,
+        35.799703
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musashi-Kosugi Tokyu Square",
+      "osm": "way/214703224",
+      "coordinatesWgs84": [
+        139.659201,
+        35.575905
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Onarimon Gate",
+      "osm": "way/1486519713",
+      "coordinatesWgs84": [
+        139.749897,
+        35.659528
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kyorin University Hospital",
+      "osm": "node/1420782236",
+      "coordinatesWgs84": [
+        139.5669,
+        35.677449
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sankyo Frontier Kashiwa Stadium",
+      "osm": "way/463900052",
+      "coordinatesWgs84": [
+        139.975052,
+        35.848479
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Metropolitan Elder Care Center",
+      "osm": "node/1420785573",
+      "coordinatesWgs84": [
+        139.701856,
+        35.750761
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "NISSAN Stadium",
+      "osm": "way/119477713",
+      "coordinatesWgs84": [
+        139.606383,
+        35.509993
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1195,
+      "sha256": "fd0707620e5b6509e6f073f7f9ccfeb36c54bce0871ade151fe60460ae6013d4"
+    },
+    "geometry.ts": {
+      "bytes": 146639,
+      "sha256": "0565c5114ca659014b7132422009fe0159a2f085cc86074eed847fe2d7adce88"
+    },
+    "places.ts": {
+      "bytes": 9893,
+      "sha256": "b442c6f8f973104a46fb30b8c62bbb714a52257595165f9cb1570a9f582c445b"
+    },
+    "terrain.ts": {
+      "bytes": 378797,
+      "sha256": "8a555568667712871ee64e11a10fbf5f2f5f6a9ded48138ea2511e0a12e98673"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "02df2a83aa2d34a9ee8a00460220341d9dbd06541b54f79dd12a5105a8b8dc47"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

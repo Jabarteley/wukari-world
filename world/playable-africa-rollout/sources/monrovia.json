@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "monrovia",
+  "countryIso2": "LR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Monrovia",
+    "coordinatesWgs84": [
+      -10.8060492,
+      6.3203562
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/liberia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "monrovia-airport",
+    "name": "Roberts International Airport",
+    "lon": -10.3623,
+    "lat": 6.23379,
+    "sourceUrl": "https://ourairports.com/airports/GLRB/"
+  },
+  "boxes": {
+    "play": [
+      6.139475310066022,
+      -10.986874246509581,
+      6.501237089933978,
+      -10.3532633001353
+    ],
+    "core": [
+      6.275135977516506,
+      -10.851243394022966,
+      6.365576422483494,
+      -10.760855005977035
+    ],
+    "outline": [
+      6.089475310066022,
+      -11.036874246509582,
+      6.551237089933978,
+      -10.3032633001353
+    ],
+    "wide": [
+      5.539475310066022,
+      -11.58687424650958,
+      7.101237089933978,
+      -9.7532633001353
+    ],
+    "water": [
+      5.539475310066022,
+      -11.58687424650958,
+      7.101237089933978,
+      -9.7532633001353
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/liberia-261011.osm.pbf",
+    "datasetSha256": "ad24c4adb4f2576b5b9c45d7bd29c42910c5ce95c29acc6aa248e08e0e5d0ac1",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "57c9b719799cd41c5e3c5e30e7eb09ac853a8bdcdffc4ae8237f60a0fe70f2ac",
+        "elements": 312
+      },
+      {
+        "file": "extras.json",
+        "sha256": "6f60c38c6ebf6f1b454d17ba75b12513a8bfa7f050424a7df64763f0c3444162",
+        "elements": 39
+      },
+      {
+        "file": "water.json",
+        "sha256": "2b1dbcb4e68d07e2a090f9f845bb977bd92b4e9bedbd23a7c49ce0ef408b290e",
+        "elements": 207
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "adc82305d66ed597341019fbc05c31040b9827ceaaa23dbfc2822c16ba16853d",
+        "elements": 1824
+      },
+      {
+        "file": "roads.json",
+        "sha256": "91d5f46f3a9ebe7ea91b835389e067bfacabd08fb1d87fcdaefc08d0549eb768",
+        "elements": 111
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Shared Taxi Station to Bo waterside",
+      "osm": "node/4537714890",
+      "coordinatesWgs84": [
+        -10.786024,
+        6.375572
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pepper Fish",
+      "osm": "node/6962402414",
+      "coordinatesWgs84": [
+        -10.691308,
+        6.240953
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Liberia",
+      "osm": "way/94957275",
+      "coordinatesWgs84": [
+        -10.794438,
+        6.299892
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "14th Military Hospital",
+      "osm": "node/7694996699",
+      "coordinatesWgs84": [
+        -10.565372,
+        6.216586
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Antoinette Tubman Stadium",
+      "osm": "way/143040580",
+      "coordinatesWgs84": [
+        -10.804116,
+        6.308917
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Turning Point Market",
+      "osm": "way/302305106",
+      "coordinatesWgs84": [
+        -10.722284,
+        6.332653
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sacred Heart Cathedral Church",
+      "osm": "way/299927206",
+      "coordinatesWgs84": [
+        -10.810208,
+        6.319097
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Executive Mansion",
+      "osm": "node/1565176470",
+      "coordinatesWgs84": [
+        -10.798322,
+        6.300232
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Center for National Documents and Records",
+      "osm": "way/134906307",
+      "coordinatesWgs84": [
+        -10.781769,
+        6.292269
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "UMU University",
+      "osm": "way/299926349",
+      "coordinatesWgs84": [
+        -10.804597,
+        6.317923
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Samuel Kanyon Doe Sports Stadium",
+      "osm": "way/157273329",
+      "coordinatesWgs84": [
+        -10.702077,
+        6.257038
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Museum of Liberia",
+      "osm": "way/143040586",
+      "coordinatesWgs84": [
+        -10.803875,
+        6.316844
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Episcopal Church",
+      "osm": "way/143040548",
+      "coordinatesWgs84": [
+        -10.809091,
+        6.317587
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Academic Building",
+      "osm": "node/10155854393",
+      "coordinatesWgs84": [
+        -10.617425,
+        6.382728
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Liberian Institute for Tropical Medicine",
+      "osm": "way/295839261",
+      "coordinatesWgs84": [
+        -10.381101,
+        6.198772
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Firestone Medical Center",
+      "osm": "way/784173574",
+      "coordinatesWgs84": [
+        -10.46968,
+        6.35325
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dr. Jallah Medical Center",
+      "osm": "node/7695068489",
+      "coordinatesWgs84": [
+        -10.474058,
+        6.178513
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Blamasee",
+      "osm": "node/8999008284",
+      "coordinatesWgs84": [
+        -10.812947,
+        6.438449
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Red Light Market",
+      "osm": "node/2812532381",
+      "coordinatesWgs84": [
+        -10.69075,
+        6.292388
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Oporto Chicken Crib",
+      "osm": "node/8617869166",
+      "coordinatesWgs84": [
+        -10.734616,
+        6.269542
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hotel Africa ruins",
+      "osm": "node/8470144258",
+      "coordinatesWgs84": [
+        -10.80357,
+        6.389849
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "MAISON MEMORIAL A.M.E. CHURCH",
+      "osm": "node/3708503058",
+      "coordinatesWgs84": [
+        -10.762377,
+        6.281643
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cotton Tree",
+      "osm": "node/1730515734",
+      "coordinatesWgs84": [
+        -10.807505,
+        6.323778
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Newport Street Mosque",
+      "osm": "way/143040550",
+      "coordinatesWgs84": [
+        -10.810321,
+        6.312785
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1242,
+      "sha256": "b539ebbf03739ae9c83ab1132c6c53854eb4fbe03d5becfad80202e2b43c1639"
+    },
+    "geometry.ts": {
+      "bytes": 398781,
+      "sha256": "f2ed7a6710395b0205bf75ed1e3d3d635bd3db47797b669de992729df0fabbcb"
+    },
+    "places.ts": {
+      "bytes": 9524,
+      "sha256": "1b9989cddf3f49f7fabfa0634f046b0f6fd56488e4694795ece3693046ec3dc7"
+    },
+    "terrain.ts": {
+      "bytes": 272087,
+      "sha256": "18e9f579d64e735501ede0908dc518770a6067fab458847e8cf5d76fb3b65c93"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "dec1d901db5c20eced12fc58bca648e1cd4202e7e7e15bde3348526a851aff7e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,4 +1,4 @@
-> **Ready for local testing — 13 October 2026.** Food data is compacted; both remaining Ayo expectations are fixed. All 150 focused checks, full typecheck (5 projects, zero errors), production build and all measured download budgets pass. The shared scene bundle is 188,216 bytes raw / 70,633 gzip, below the unchanged 192,000 / 71,000 limits. Preview: http://127.0.0.1:5173/. No deployment was performed. The old allowance continuation remains paused.
+> **Ready for local testing — 13 October 2026.** Food data is compacted; both remaining Ayo expectations are fixed. All 150 focused checks, full typecheck (5 projects, zero errors), production build and all measured download budgets pass. The shared scene bundle is 188,216 bytes raw / 70,638 gzip, below the unchanged 192,000 / 71,000 limits. Preview: http://127.0.0.1:5173/. No deployment was performed. The old allowance continuation remains paused.
 
 # Allworld: open-source research and playable improvements
 

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "zurich",
+  "countryIso2": "CH",
+  "generationIdentity": {
+    "cityId": "zurich",
+    "stateId": "ch-zurich",
+    "stateName": "Zurich"
+  },
+  "inventorySha256": "40a619eb23974718c8dd56827de4ab3db9b5b837dc186e116e474a5a694ea625",
+  "inventoryPath": "world/playable-africa-rollout/sources/zurich.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "zurich-airport",
+    "name": "Zürich Airport",
+    "lon": 8.548056,
+    "lat": 47.458056,
+    "sourceUrl": "https://ourairports.com/airports/LSZH/"
+  },
+  "bounds": [
+    47.193568010066016,
+    8.274827776048742,
+    47.55532978993398,
+    8.807256623951258
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/switzerland-261011.osm.pbf",
+      "datasetSha256": "56e1c44ae1c9302cd6fe3692cc32cd477d8f40439e28614ea9a6e95d86120ec3",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6d3783528874380367ec1e04a480336c93099d1fd129376b7b84b087781de227",
+          "elements": 7297
+        },
+        {
+          "file": "extras.json",
+          "sha256": "22aaf1a569c42be14082f3c6904de55ba1de576375271d484a3e8aa937e5f0b2",
+          "elements": 1142
+        },
+        {
+          "file": "water.json",
+          "sha256": "153f49fbe7b2a4e9397050ff73806361acec35e592a0c8148bcf8f78928a35f6",
+          "elements": 294
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "9ff907e90a2ceb76b6fe53ac611705ac73d51402a5ed4d0e51a384e172ca12d2",
+          "elements": 3731
+        },
+        {
+          "file": "roads.json",
+          "sha256": "4c44fc3715cc42100f252a4015473970bae2415735e3bfbff167da81b6a6c581",
+          "elements": 5896
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 63,
+    "waterPolygons": 32,
+    "reachWaterPolygons": 9
+  },
+  "observed": {
+    "places": 7297,
+    "extras": 1142,
+    "water": 294,
+    "landuse": 3731,
+    "roads": 5896
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1195,
+      "sha256": "55ef49ff4f608d35925e9fcbfd958e68d26745bbf4ee6d53ef3b41b49b3da7ee"
+    },
+    "geometry.ts": {
+      "bytes": 207430,
+      "sha256": "0bfa4b95cb5f1f296f1ab413e3ba04287e5508990d44274b115c1be17dba7a36"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "fc724d05786f025071387569cdf650e4d89eda4234667c143aeca8cfc69edcdf"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/zurich.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

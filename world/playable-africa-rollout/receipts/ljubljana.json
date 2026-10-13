@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ljubljana",
+  "countryIso2": "SI",
+  "generationIdentity": {
+    "cityId": "ljubljana",
+    "stateId": "si-ljubljana",
+    "stateName": "Ljubljana"
+  },
+  "inventorySha256": "184a3f877d6a6284deb1385d76b2e1aa9cd1b607f74f9424f3624d049ccbbe45",
+  "inventoryPath": "world/playable-africa-rollout/sources/ljubljana.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "ljubljana-airport",
+    "name": "Ljubljana Jože Pučnik Airport",
+    "lon": 14.4576,
+    "lat": 46.223701,
+    "sourceUrl": "https://ourairports.com/airports/LJLJ/"
+  },
+  "bounds": [
+    45.86914591006602,
+    14.247208961813255,
+    46.232745044496696,
+    14.766648838186745
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf",
+      "datasetSha256": "7d4a51d3b7f027abeae0e00fc9d8a2c5127bde43d31f8936babe1e6b759b5db9",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/europe/slovenia-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 313640878,
+          "md5": "781a1fdb13a4d2540ee74b38daf3f7be",
+          "sha256": "9f8135606e47d72f9cc33b44eac45d2816dd92ffcfb9ca1f83b5a12cb6ef6be7"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/europe/italy/nord-est-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 625244513,
+          "md5": "5c0ebb731629669395f29835013c363f",
+          "sha256": "b6f06220b9b7ece9c6bbdb61c9f25b11bb0b3c57bbb128b24f61be7466b460c4",
+          "reason": "The Slovenian coast chain starts at node 447676493 (Punta Aquila, Muggia, Italy); the Italian coastline way that ends at that node (way/860393119) is absent from the Slovenia clip, so the coast cannot close; the Italy north-east extract supplies it (only the Muggia/Trieste coast inside the Ljubljana water box is used)"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "1f389767c6d31f88401f47ec6e5876e229af5818f661b57a788a40c98ea7b254",
+          "elements": 2674
+        },
+        {
+          "file": "extras.json",
+          "sha256": "0bc376cd2945f39ee2ee8fcaa3d0d88ede67139b83831a97641a8f50fb0cdbd2",
+          "elements": 340
+        },
+        {
+          "file": "water.json",
+          "sha256": "d4e4d5503e7263ba51e22ed1ae404365825e2e54d3c5c7b1ce7c59f3087166c1",
+          "elements": 920
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "657023fc50d600730bac32166b1fd639e38af6429347b80cfe7eb4b6bf34015d",
+          "elements": 3779
+        },
+        {
+          "file": "roads.json",
+          "sha256": "044c8afc17e1d2702b8cd5f2dd93385854e5178e5a50af3afa9dccdef3f4696c",
+          "elements": 2870
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 444,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 27,
+    "waterPolygons": 57,
+    "reachWaterPolygons": 32
+  },
+  "observed": {
+    "places": 2674,
+    "extras": 340,
+    "water": 920,
+    "landuse": 3779,
+    "roads": 2870
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1224,
+      "sha256": "9f633e9c81be172eb069d0e8a9860775058fd47a1ba139ef7913cd2581216531"
+    },
+    "geometry.ts": {
+      "bytes": 88328,
+      "sha256": "1626a1d93294c16b2e41adc36c071dbef022ec107c57de8ad42838fc29286bc2"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "30f45831df524aa54525569c86b588cc1ea61ff1be86fa7c10bd88e3ffe72c20"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/ljubljana.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

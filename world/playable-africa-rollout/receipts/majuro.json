@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "cityId": "majuro",
+  "countryIso2": "MH",
+  "generationIdentity": {
+    "cityId": "majuro",
+    "stateId": "mh-majuro",
+    "stateName": "Majuro"
+  },
+  "inventorySha256": "06a863f65daea5c8cbe197a9190d2228137ae1f8d5d83c3ed36847e416c757bd",
+  "inventoryPath": "world/playable-africa-rollout/sources/majuro.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "majuro-airport",
+    "name": "Marshall Islands International Airport",
+    "lon": 171.271656,
+    "lat": 7.06511,
+    "sourceUrl": "https://ourairports.com/airports/PKMJ/"
+  },
+  "bounds": [
+    6.910111510066022,
+    171.20051637022945,
+    7.271873289933978,
+    171.56275442977054
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/marshall-islands-261011.osm.pbf",
+      "datasetSha256": "f65227c2f4db95424d705c11912784971f820730a1bc9ecb437e1150f6f1b86a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "3962a427984bb14679e71f946f3bc722c1052747be6be55532eb7e903892f5ab",
+          "elements": 26
+        },
+        {
+          "file": "extras.json",
+          "sha256": "e7ad40b5c1439f24c7ca8ce17d7730bdad4985452992aeb6f58fbed8d43b75c3",
+          "elements": 13
+        },
+        {
+          "file": "water.json",
+          "sha256": "cd9050061970c203cf9921818cea11f480fdbf6857f77df24f2f6bd8f8569051",
+          "elements": 141
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "f5b54af3285231d8a52930a98f296b2fb9a5993d259474af03e9588795319450",
+          "elements": 41
+        },
+        {
+          "file": "roads.json",
+          "sha256": "24ee0a80e646a4d196fca407bed477d08b7f724eaf977c050b7c86a70687e711",
+          "elements": 6
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 20,
+    "roads": 5,
+    "neighbourhoodLabels": 9,
+    "landPolygons": 1,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "node/3993101946"
+      }
+    ]
+  },
+  "observed": {
+    "places": 26,
+    "extras": 13,
+    "water": 141,
+    "landuse": 41,
+    "roads": 6
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1246,
+      "sha256": "0f86128d651d997a986bcfbcae29147be9ef181ac148bada7d97ed48275fe4b6"
+    },
+    "geometry.ts": {
+      "bytes": 28626,
+      "sha256": "11dd0792bf03a1683202a080b3b458a82f8b313188898fd116e5440e20a45804"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "86853973f18f3fcd7239ff64f90b15f0ec13b2c349122ebd1712b214ada662c4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/majuro.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dhaka",
+  "countryIso2": "BD",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Dhaka",
+    "coordinatesWgs84": [
+      90.3890144,
+      23.7643863
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/bangladesh-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "dhaka-airport",
+    "name": "Hazrat Shahjalal International Airport",
+    "lon": 90.397783,
+    "lat": 23.843347,
+    "sourceUrl": "https://ourairports.com/airports/VGHS/"
+  },
+  "boxes": {
+    "play": [
+      23.583505410066024,
+      90.19243311848332,
+      23.94526718993398,
+      90.58559568151666
+    ],
+    "core": [
+      23.71916607751651,
+      90.33992056266716,
+      23.809606522483495,
+      90.43810823733283
+    ],
+    "outline": [
+      23.533505410066024,
+      90.14243311848332,
+      23.99526718993398,
+      90.63559568151666
+    ],
+    "wide": [
+      22.983505410066023,
+      89.59243311848333,
+      24.54526718993398,
+      91.18559568151666
+    ],
+    "water": [
+      23.583505410066024,
+      90.19243311848332,
+      23.94526718993398,
+      90.58559568151666
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/bangladesh-261011.osm.pbf",
+    "datasetSha256": "18ec3897a3de21d4623ab6963e1a71a71a8453fd45679ef7dd8c463795c7363e",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "712778ba06fee13671343f4f7af60ae199149c12f305bb97d50265ba8f68a015",
+        "elements": 4657
+      },
+      {
+        "file": "extras.json",
+        "sha256": "36f9612c52cd0284c5fd27c3354d16f9d5eef8714f94ab2dcb21131441d4fa95",
+        "elements": 977
+      },
+      {
+        "file": "water.json",
+        "sha256": "c9774d46f7cfa4390faaf8fa8a79e411c04a77bb4e1208a33ce609016ad7d71e",
+        "elements": 304
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "56f367e4f6dcea5a1b6bef676c5adc066d09aaa4824338665a04d1cbf183c895",
+        "elements": 1770
+      },
+      {
+        "file": "roads.json",
+        "sha256": "6a189ac6ae8d078981fb97441dfe5304d60214354fbfb37490512c3439a9494d",
+        "elements": 1683
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Dhaka Airport Railway Station",
+      "osm": "node/5798601925",
+      "coordinatesWgs84": [
+        90.408379,
+        23.852071
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bengal Foundation",
+      "osm": "node/3127514952",
+      "coordinatesWgs84": [
+        90.369812,
+        23.753385
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "China Bangladesh Friendship Exhibition Center",
+      "osm": "relation/14376114",
+      "coordinatesWgs84": [
+        90.534395,
+        23.842673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Enam Medical College and hospital",
+      "osm": "way/337766881",
+      "coordinatesWgs84": [
+        90.252998,
+        23.837404
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bangladesh National Monument",
+      "osm": "way/32561564",
+      "coordinatesWgs84": [
+        90.255533,
+        23.912453
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jamuna Future Park",
+      "osm": "way/586535435",
+      "coordinatesWgs84": [
+        90.424134,
+        23.813513
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Binat Bibi Mosque",
+      "osm": "node/3711746808",
+      "coordinatesWgs84": [
+        90.418146,
+        23.711101
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nagar Bhaban",
+      "osm": "way/689287638",
+      "coordinatesWgs84": [
+        90.503273,
+        23.607946
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sarak Bhaban, Roads & Highways Department Head Office",
+      "osm": "way/1148134190",
+      "coordinatesWgs84": [
+        90.408699,
+        23.764234
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Daffodil International University",
+      "osm": "way/587828519",
+      "coordinatesWgs84": [
+        90.32255,
+        23.878872
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sher-E-Bangla National Cricket Stadium",
+      "osm": "way/121390579",
+      "coordinatesWgs84": [
+        90.363623,
+        23.806921
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fantasy Kingdom",
+      "osm": "way/550516604",
+      "coordinatesWgs84": [
+        90.29184,
+        23.934276
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bashundhara Kings Arena",
+      "osm": "node/9532058929",
+      "coordinatesWgs84": [
+        90.469955,
+        23.823903
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "International University of Business Agriculture and Technology",
+      "osm": "way/490287434",
+      "coordinatesWgs84": [
+        90.390634,
+        23.888211
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bangladesh Islami University",
+      "osm": "way/1187202894",
+      "coordinatesWgs84": [
+        90.452107,
+        23.729076
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Khan Mohammad Mridha Mosque",
+      "osm": "node/4764950575",
+      "coordinatesWgs84": [
+        90.384183,
+        23.720894
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Combined Military Hospital (CMH)",
+      "osm": "way/502997496",
+      "coordinatesWgs84": [
+        90.398075,
+        23.814276
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Museum of Science & Technology",
+      "osm": "way/370071885",
+      "coordinatesWgs84": [
+        90.371604,
+        23.77889
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "IZUMI",
+      "osm": "way/141641870",
+      "coordinatesWgs84": [
+        90.420631,
+        23.788487
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ramna Park",
+      "osm": "way/236956073",
+      "coordinatesWgs84": [
+        90.400714,
+        23.737848
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mugda Medical College & Hospital",
+      "osm": "way/499441489",
+      "coordinatesWgs84": [
+        90.430042,
+        23.732444
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Rosary Church",
+      "osm": "way/296537243",
+      "coordinatesWgs84": [
+        90.392141,
+        23.759185
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tara Mosque",
+      "osm": "way/245019710",
+      "coordinatesWgs84": [
+        90.401559,
+        23.715666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Stadium, Dhaka",
+      "osm": "way/24477071",
+      "coordinatesWgs84": [
+        90.413535,
+        23.727971
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1228,
+      "sha256": "61a74d85e87de4d3aaa3309c95d7a8ef32a15a46059ac2593ebd77333e48a447"
+    },
+    "geometry.ts": {
+      "bytes": 133094,
+      "sha256": "81d6bd072f299096f8acb4177c7df3daa9c0da64e5785565d9a106405003b9fc"
+    },
+    "places.ts": {
+      "bytes": 10159,
+      "sha256": "51256250eff01ecfeb77f4a68150cec0aef1283a198f5ef35f6ff1dcfb9fb64f"
+    },
+    "terrain.ts": {
+      "bytes": 170674,
+      "sha256": "d7d5514feba8c86c5bd08b2625ac5675dfc454871d111ec307c57f51c7653f8b"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "3e590f3878cb0f3dc727dc0bc527b83f8772b3dd7f7ad8fcd58522e2895e4c13"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

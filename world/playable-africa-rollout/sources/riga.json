@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "riga",
+  "countryIso2": "LV",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Riga",
+    "coordinatesWgs84": [
+      24.1051846,
+      56.9493977
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/latvia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "riga-airport",
+    "name": "Riga International Airport",
+    "lon": 23.970711,
+    "lat": 56.920752,
+    "sourceUrl": "https://ourairports.com/airports/EVRA/"
+  },
+  "boxes": {
+    "play": [
+      56.76851681006602,
+      23.77415072686342,
+      57.13027858993398,
+      24.43621847313658
+    ],
+    "core": [
+      56.904177477516505,
+      24.02272803686108,
+      56.99461792248349,
+      24.187641163138924
+    ],
+    "outline": [
+      56.71851681006602,
+      23.72415072686342,
+      57.18027858993398,
+      24.48621847313658
+    ],
+    "wide": [
+      56.168516810066016,
+      23.17415072686342,
+      57.73027858993398,
+      25.036218473136582
+    ],
+    "water": [
+      56.168516810066016,
+      23.17415072686342,
+      57.73027858993398,
+      25.036218473136582
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/latvia-261011.osm.pbf",
+    "datasetSha256": "5360942ced94f18fa9b9f196c4c8f3147558ab2340fbfea6d7cf54308549b5b5",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "bdae8bafeba49dc06019a33df1029cf8ff926254f18267057d71a663bb45c6ed",
+        "elements": 1703
+      },
+      {
+        "file": "extras.json",
+        "sha256": "37cc1dd9f388a4aaf4c94d7701c0f768dc3d9da9cfe88aada96405019d5830ef",
+        "elements": 528
+      },
+      {
+        "file": "water.json",
+        "sha256": "a8666459537bbdafef2c3c023ee93bea11e2957d2fce0992d84cda3a92e3430d",
+        "elements": 2145
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "9d9fdec2b299dd78902443204f6717ed17669a1c5cfe0fa8ed84a0838fec0a3c",
+        "elements": 10225
+      },
+      {
+        "file": "roads.json",
+        "sha256": "28962d9ea4e995eb45160d7e8c660986594d2964f6bf3522171fde5270c2d8fb",
+        "elements": 3350
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Kalngale",
+      "osm": "node/467091568",
+      "coordinatesWgs84": [
+        24.151699,
+        57.086016
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Briezes",
+      "osm": "node/293876722",
+      "coordinatesWgs84": [
+        24.342134,
+        56.97322
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rīgas Valsts tehnikums",
+      "osm": "node/430708777",
+      "coordinatesWgs84": [
+        24.104432,
+        56.953066
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pauls Stradiņš Clinical university hospital",
+      "osm": "relation/17588998",
+      "coordinatesWgs84": [
+        24.065126,
+        56.931328
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zemitāna laukums",
+      "osm": "way/88326540",
+      "coordinatesWgs84": [
+        24.18529,
+        56.978387
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ozols",
+      "osm": "way/152306757",
+      "coordinatesWgs84": [
+        24.180233,
+        56.928106
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Biķeru Svētās Katrīnas baznīca",
+      "osm": "way/88027358",
+      "coordinatesWgs84": [
+        24.249389,
+        56.957892
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baumaņa skvērs",
+      "osm": "node/7767862916",
+      "coordinatesWgs84": [
+        24.116179,
+        56.952791
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Body of European Regulators for Electronic Communications",
+      "osm": "node/7546142863",
+      "coordinatesWgs84": [
+        24.110534,
+        56.950917
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "RSU Sporta akadēmija",
+      "osm": "way/479748207",
+      "coordinatesWgs84": [
+        24.209627,
+        56.986254
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Salaspils stadium",
+      "osm": "way/153019384",
+      "coordinatesWgs84": [
+        24.337446,
+        56.857952
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Daugavgrīvas cietoksnis",
+      "osm": "node/5257943276",
+      "coordinatesWgs84": [
+        24.039351,
+        57.04518
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Riga Aviation Museum",
+      "osm": "way/976058477",
+      "coordinatesWgs84": [
+        23.960459,
+        56.919184
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Daugavas muzejs",
+      "osm": "node/837991340",
+      "coordinatesWgs84": [
+        24.228566,
+        56.848732
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dauderu parks",
+      "osm": "way/1309603872",
+      "coordinatesWgs84": [
+        24.123409,
+        57.005004
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Olaines luterāņu baznīca",
+      "osm": "way/406039559",
+      "coordinatesWgs84": [
+        23.982984,
+        56.799644
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Riga National Zoological Garden",
+      "osm": "way/4469063",
+      "coordinatesWgs84": [
+        24.161586,
+        57.00813
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of the Resurrection",
+      "osm": "way/104407997",
+      "coordinatesWgs84": [
+        24.145952,
+        56.971795
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Spice",
+      "osm": "way/25867450",
+      "coordinatesWgs84": [
+        24.035698,
+        56.929347
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rīga Stradiņš University",
+      "osm": "way/380059745",
+      "coordinatesWgs84": [
+        24.055201,
+        56.95374
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Daugava Stadium",
+      "osm": "way/476926467",
+      "coordinatesWgs84": [
+        24.158035,
+        56.955985
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Xiaomi Arēna",
+      "osm": "way/38247112",
+      "coordinatesWgs84": [
+        24.121341,
+        56.967884
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Domina Shopping",
+      "osm": "way/37953112",
+      "coordinatesWgs84": [
+        24.162806,
+        56.966441
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Turiba University",
+      "osm": "way/385118270",
+      "coordinatesWgs84": [
+        24.080044,
+        56.910503
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1183,
+      "sha256": "e0c3ed33b4a06d0ad833f40d520243ee6dad658a89bf9f3bff1631255f089905"
+    },
+    "geometry.ts": {
+      "bytes": 179731,
+      "sha256": "89b382129f0a23b832a3c49974fa338febf1ee29cabf5392a8116939906225a4"
+    },
+    "places.ts": {
+      "bytes": 9802,
+      "sha256": "8ebc375a06de3b2efe29907b51a252f7dee13f28c9f97e1f89c0ef2fd6af0a52"
+    },
+    "terrain.ts": {
+      "bytes": 409335,
+      "sha256": "6a883c2d8a46f4ce7e5dc1c03b58c80efab358ddfdbb1fea120d61b3cfa52c06"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "cf94a8fb93a0146f73fa562d78eb007597e8ead769f4e63a53e63fcb6176557e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

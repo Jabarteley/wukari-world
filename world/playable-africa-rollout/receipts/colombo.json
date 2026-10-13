@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "colombo",
+  "countryIso2": "LK",
+  "generationIdentity": {
+    "cityId": "colombo",
+    "stateId": "lk-colombo",
+    "stateName": "Colombo"
+  },
+  "inventorySha256": "f5a46d0a3f26fbe26395e67dca54f5c74e22dccdfa857af5842f383b61c31f47",
+  "inventoryPath": "world/playable-africa-rollout/sources/colombo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "colombo-airport",
+    "name": "Bandaranaike International Colombo Airport",
+    "lon": 79.88410186767578,
+    "lat": 7.180759906768799,
+    "sourceUrl": "https://ourairports.com/airports/VCBI/"
+  },
+  "bounds": [
+    6.757980510066022,
+    79.67314217675448,
+    7.189803951265498,
+    80.03525882324553
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/sri-lanka-261011.osm.pbf",
+      "datasetSha256": "ba8ac6d693aa468301afe9003c9c455c77fa72b78c61c4f4d45771de64e2f8e3",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "76272adc80c37aad85cb47c76fa5aef29bf318e9fb0f03c7816cd8201d44ec21",
+          "elements": 1687
+        },
+        {
+          "file": "extras.json",
+          "sha256": "523c171f43816523d525abdfc53ee9306bc1d2d4b9823ecca5eef77313b0ddf3",
+          "elements": 727
+        },
+        {
+          "file": "water.json",
+          "sha256": "12dd88f1168e12331af7e7fedf95135d5ec03e1e847a4144d8f96c2984b6d7d8",
+          "elements": 1810
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "583402a2ed320ea08d7d3ee6068e6da94c15f77598410d80c3a70a0ccc7e8452",
+          "elements": 2052
+        },
+        {
+          "file": "roads.json",
+          "sha256": "18db80ffdf4b0f5058d448f6120a2e6a03e49eb067c64c3648392484d3a9c4a4",
+          "elements": 2902
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 15,
+    "waterPolygons": 24,
+    "reachWaterPolygons": 49
+  },
+  "observed": {
+    "places": 1687,
+    "extras": 727,
+    "water": 1810,
+    "landuse": 2052,
+    "roads": 2902
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1253,
+      "sha256": "78e11dcfa5e05cc5ccabcf18205001a994e8bb85ae727cb662143d89e304871a"
+    },
+    "geometry.ts": {
+      "bytes": 93522,
+      "sha256": "52b9c3683834b7aa399c92d4b703463ea533ebaefff30e7d1e70f46bad9b5c4a"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "140b121de1c91982152c49556246671dbbb9cdacedbd898eaa2b37cd521100e4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/colombo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

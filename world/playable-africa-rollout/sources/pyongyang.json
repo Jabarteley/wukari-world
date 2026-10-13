@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "pyongyang",
+  "countryIso2": "KP",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Pyongyang",
+    "coordinatesWgs84": [
+      125.7526222,
+      39.0196585
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "pyongyang-airport",
+    "name": "Pyongyang Sunan International Airport",
+    "lon": 125.669998,
+    "lat": 39.224098,
+    "sourceUrl": "https://ourairports.com/airports/ZKPY/"
+  },
+  "boxes": {
+    "play": [
+      38.83877761006602,
+      125.52078157518345,
+      39.233142044496695,
+      125.98446282481656
+    ],
+    "core": [
+      38.974438277516505,
+      125.69477359337375,
+      39.06487872248349,
+      125.81047080662626
+    ],
+    "outline": [
+      38.78877761006602,
+      125.47078157518345,
+      39.28314204449669,
+      126.03446282481656
+    ],
+    "wide": [
+      38.238777610066016,
+      124.92078157518345,
+      39.8331420444967,
+      126.58446282481655
+    ],
+    "water": [
+      38.238777610066016,
+      124.92078157518345,
+      39.8331420444967,
+      126.58446282481655
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf",
+    "datasetSha256": "f8f3765bef591f649753382929ce016985d9d4f2d37c7c8fc80025ea4b7c4ba7",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 92633737,
+        "md5": "613c91f099220dd867b1a64c69e8422b",
+        "sha256": "35b29765950cd53bd39166955c93b6d5f4934d8a5ac5891f5c9334187ab20374"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/china/liaoning-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 28455093,
+        "md5": "df8325731a4290986a88056ee867e4e0",
+        "sha256": "190ba0e1485943ae9f263205a5286b7291a8a05164cc72102c80bef306299ba4",
+        "reason": "ways 218452189 (48 nodes) and 1032769161 (3 nodes), the Yalu River (Amnok) KP-CN border at 124.508-124.529E 40.215-40.231N (river mouth), absent from the North Korea clip; all nodes inside the Liaoning poly"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "8e973043c45cbc8d435f0a97b50baa7cee2126392d43176a580e7557a9c70520",
+        "elements": 910
+      },
+      {
+        "file": "extras.json",
+        "sha256": "b83b296879691797756a98c0b1eba4c4c27c6f2dd39842b6d48f6dc82fe49acd",
+        "elements": 121
+      },
+      {
+        "file": "water.json",
+        "sha256": "fb0d3f5688ede8fa98f2e9cc4866059c437d9bdee47b9ad75d9125d8a339de85",
+        "elements": 1276
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "05902750280a58a851f9f7384ca426a4f9c80b3f007970db99829f25d968ff31",
+        "elements": 2905
+      },
+      {
+        "file": "roads.json",
+        "sha256": "61e39ab547f43b152ce0e575224c204ba4aec45cc2d31e0b1036d42a2d18fc82",
+        "elements": 1086
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Puhŭng",
+      "osm": "node/532205266",
+      "coordinatesWgs84": [
+        125.717726,
+        39.008539
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pyongyang Taedonggang Fish Restaurant",
+      "osm": "way/725445234",
+      "coordinatesWgs84": [
+        125.771071,
+        39.036607
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kim Jong-il Political-Military University",
+      "osm": "way/251911140",
+      "coordinatesWgs84": [
+        125.749684,
+        39.139424
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pyongyang General Hospital",
+      "osm": "way/788102545",
+      "coordinatesWgs84": [
+        125.771519,
+        39.029041
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pyongyang Folklore Park",
+      "osm": "way/1472420069",
+      "coordinatesWgs84": [
+        125.825204,
+        39.060453
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cheonnae Market",
+      "osm": "way/1017177927",
+      "coordinatesWgs84": [
+        125.595944,
+        38.943432
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chilgol Church",
+      "osm": "way/832150487",
+      "coordinatesWgs84": [
+        125.675293,
+        39.031885
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pyongyang City People's Committee",
+      "osm": "way/577053104",
+      "coordinatesWgs84": [
+        125.747229,
+        39.016675
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "중앙검찰소",
+      "osm": "way/964325525",
+      "coordinatesWgs84": [
+        125.64546,
+        39.017588
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pyongyang University of Science and Technology",
+      "osm": "way/427620999",
+      "coordinatesWgs84": [
+        125.704197,
+        38.955367
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sosan Football Stadium",
+      "osm": "way/1112393994",
+      "coordinatesWgs84": [
+        125.691382,
+        39.005359
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ryongsong Residence",
+      "osm": "way/518025824",
+      "coordinatesWgs84": [
+        125.806021,
+        39.116258
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tomb of King Tongmyong",
+      "osm": "way/427808616",
+      "coordinatesWgs84": [
+        125.922923,
+        38.894782
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pyongyang University of Railways",
+      "osm": "way/403889844",
+      "coordinatesWgs84": [
+        125.712671,
+        39.061211
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pyongyang University of Architecture",
+      "osm": "way/1105308903",
+      "coordinatesWgs84": [
+        125.816787,
+        39.022371
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kumsusan Palace of the Sun",
+      "osm": "way/722791910",
+      "coordinatesWgs84": [
+        125.788878,
+        39.063724
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kwangbopsa",
+      "osm": "way/974980487",
+      "coordinatesWgs84": [
+        125.82651,
+        39.09162
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "East Pyongyang Stadium",
+      "osm": "way/23697980",
+      "coordinatesWgs84": [
+        125.787853,
+        39.015493
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kim Il-sung Stadium",
+      "osm": "way/184410022",
+      "coordinatesWgs84": [
+        125.757716,
+        39.043811
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Three Revolution Exhibition",
+      "osm": "way/42416605",
+      "coordinatesWgs84": [
+        125.756202,
+        39.08053
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of the Life-Giving Trinity",
+      "osm": "way/879112285",
+      "coordinatesWgs84": [
+        125.745858,
+        38.982061
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cheonseok Restaurant",
+      "osm": "relation/8310581",
+      "coordinatesWgs84": [
+        125.662428,
+        38.995624
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pyongyang Noodle Restaurant",
+      "osm": "node/3090689020",
+      "coordinatesWgs84": [
+        125.725275,
+        38.976628
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kim Man-yu Hospital",
+      "osm": "way/300349055",
+      "coordinatesWgs84": [
+        125.785562,
+        39.031898
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1241,
+      "sha256": "2b0ee0b135e7d8b7d559db11bb56eac5e5b50896ac8b78caefd3a3dc404990bc"
+    },
+    "geometry.ts": {
+      "bytes": 354849,
+      "sha256": "42561012e07c23c9c77a4f021961752172ec549222e7bcf56cf258db624fabb0"
+    },
+    "places.ts": {
+      "bytes": 10119,
+      "sha256": "1b382cc9549be1b42e0215ceb245aed6aa6bb4d5a0c8437bc1c52f4fdd65333e"
+    },
+    "terrain.ts": {
+      "bytes": 757091,
+      "sha256": "03bd538f51a90649ef94cfd433b42498cd8fe7de8a2be3b61a782259c04d020b"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "4911399a7b8ce53f7a68c9d32a68d1b7b99f043fe88e146b951e9bf1a1287e07"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

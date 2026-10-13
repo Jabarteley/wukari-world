@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "san-salvador",
+  "countryIso2": "SV",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "San Salvador",
+    "coordinatesWgs84": [
+      -89.191156,
+      13.697629
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/el-salvador-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "san-salvador-airport",
+    "name": "El Salvador International Airport Saint Óscar Arnulfo Romero y Galdámez",
+    "lon": -89.055784,
+    "lat": 13.44447,
+    "sourceUrl": "https://ourairports.com/airports/MSLP/"
+  },
+  "boxes": {
+    "play": [
+      13.435425955503302,
+      -89.37622092484835,
+      13.878509889933978,
+      -89.00609107515166
+    ],
+    "core": [
+      13.652408777516504,
+      -89.2373953103713,
+      13.742849222483494,
+      -89.14491668962872
+    ],
+    "outline": [
+      13.385425955503301,
+      -89.42622092484835,
+      13.928509889933979,
+      -88.95609107515166
+    ],
+    "wide": [
+      12.835425955503302,
+      -89.97622092484835,
+      14.478509889933978,
+      -88.40609107515166
+    ],
+    "water": [
+      12.835425955503302,
+      -89.97622092484835,
+      14.478509889933978,
+      -88.40609107515166
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/el-salvador-261011.osm.pbf",
+    "datasetSha256": "c8a79cfda11b165737780e2071792ae7c602fabbda2d16cc558da95d9fcf9e8e",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "18d2566e7e1e0f5ffc1a1865ca2acfaf00ac57938e3aa071bd096450d5948b20",
+        "elements": 3005
+      },
+      {
+        "file": "extras.json",
+        "sha256": "14803c9dd5f85eac12074ee1b5f583165a81f918b163760cb464f957b3434a80",
+        "elements": 658
+      },
+      {
+        "file": "water.json",
+        "sha256": "8632818d95ef8fad007e42081ef8ca898db2eba91c5b394b250df69f6608c54e",
+        "elements": 612
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "2278e30a81515970ea21d5d9f0840bf725b1d6b15b5e4c781d6fff06dbec452e",
+        "elements": 1342
+      },
+      {
+        "file": "roads.json",
+        "sha256": "fb1f69886a3854babbeb3b67e479426cec530365040b31a0b463d08701acb7cd",
+        "elements": 1814
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Estación de Tren FENADESAL",
+      "osm": "node/443130350",
+      "coordinatesWgs84": [
+        -89.176013,
+        13.701014
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "La Ramada 2",
+      "osm": "node/1519171556",
+      "coordinatesWgs84": [
+        -89.361954,
+        13.488702
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Centroamericana José Simeón Cañas",
+      "osm": "way/139809829",
+      "coordinatesWgs84": [
+        -89.235577,
+        13.680775
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital El Salvador",
+      "osm": "way/140084935",
+      "coordinatesWgs84": [
+        -89.235784,
+        13.688469
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Recreativo Cultural Puerta del Diablo",
+      "osm": "way/1193781654",
+      "coordinatesWgs84": [
+        -89.189749,
+        13.624829
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Metrocentro",
+      "osm": "way/178904086",
+      "coordinatesWgs84": [
+        -89.21168,
+        13.706131
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Catedral Metropolitana del Divino Salvador del Mundo",
+      "osm": "relation/7966675",
+      "coordinatesWgs84": [
+        -89.19108,
+        13.698521
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Alcaldía Municipal",
+      "osm": "node/4259632506",
+      "coordinatesWgs84": [
+        -89.34065,
+        13.704957
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Asamblea Legislativa",
+      "osm": "way/562915545",
+      "coordinatesWgs84": [
+        -89.199615,
+        13.706188
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Dr. José Matías Delgado | Campus I",
+      "osm": "way/138475747",
+      "coordinatesWgs84": [
+        -89.256962,
+        13.675346
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio España",
+      "osm": "node/448010104",
+      "coordinatesWgs84": [
+        -89.140633,
+        13.718278
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sitio Arqueológico Joya de Cerén",
+      "osm": "relation/6127139",
+      "coordinatesWgs84": [
+        -89.356521,
+        13.827662
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "El Boqueron National Park",
+      "osm": "way/199426776",
+      "coordinatesWgs84": [
+        -89.279456,
+        13.735109
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cristo de La Paz",
+      "osm": "node/4236378091",
+      "coordinatesWgs84": [
+        -89.190561,
+        13.66845
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Monumento a La Constitución",
+      "osm": "node/3838426270",
+      "coordinatesWgs84": [
+        -89.222443,
+        13.718077
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centro Comercial Galerías",
+      "osm": "way/38045211",
+      "coordinatesWgs84": [
+        -89.229872,
+        13.702382
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Cuscatlán",
+      "osm": "way/1546379365",
+      "coordinatesWgs84": [
+        -89.222357,
+        13.68116
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Cuscatlán",
+      "osm": "relation/6195189",
+      "coordinatesWgs84": [
+        -89.206785,
+        13.698768
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia El Carmen",
+      "osm": "way/196615967",
+      "coordinatesWgs84": [
+        -89.288198,
+        13.675793
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Santuario de Fátima",
+      "osm": "node/7439633333",
+      "coordinatesWgs84": [
+        -89.187748,
+        13.643391
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estadio Universitario Héroes y Mártires del 30 de julio de 1975",
+      "osm": "way/1546142604",
+      "coordinatesWgs84": [
+        -89.202005,
+        13.721535
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Francisco Gavidia",
+      "osm": "relation/8166884",
+      "coordinatesWgs84": [
+        -89.219524,
+        13.698664
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Comercial Multiplaza",
+      "osm": "way/373925847",
+      "coordinatesWgs84": [
+        -89.248638,
+        13.679509
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Benjamín Bloom",
+      "osm": "relation/8776526",
+      "coordinatesWgs84": [
+        -89.204078,
+        13.714266
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1327,
+      "sha256": "0c52261166da463290647eb1926fb839fec17330d991b2b94a9fad538eabd962"
+    },
+    "geometry.ts": {
+      "bytes": 58716,
+      "sha256": "c3e3be712cce3ac9fc2d6f5ef6c5cece321d56b5c84d2c899ce29d4022f186db"
+    },
+    "places.ts": {
+      "bytes": 10343,
+      "sha256": "d5cfd8a6e7ed7ee1e9d85935202c9850000cc209ebfc6c1f5ec12b0857ac1694"
+    },
+    "terrain.ts": {
+      "bytes": 246063,
+      "sha256": "3fb9c800a6cf860d69003ebde20e197ae87f3eea7cddc4dbbd354e9e92180601"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "ba1a8c84d64e9c43ab474438890c9e16c325273478600c250f7c7d00fadbb8a8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

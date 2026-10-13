@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kyiv",
+  "countryIso2": "UA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Kyiv",
+    "coordinatesWgs84": [
+      30.5241361,
+      50.4500336
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/ukraine-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "kyiv-airport",
+    "name": "Boryspil International Airport",
+    "lon": 30.894699,
+    "lat": 50.345001,
+    "sourceUrl": "https://ourairports.com/airports/UKBB/"
+  },
+  "boxes": {
+    "play": [
+      50.26915271006602,
+      30.24089722954983,
+      50.63091448993398,
+      30.90877819032727
+    ],
+    "core": [
+      50.404813377516504,
+      30.45352993172862,
+      50.49525382248349,
+      30.59474226827138
+    ],
+    "outline": [
+      50.21915271006602,
+      30.19089722954983,
+      50.680914489933976,
+      30.95877819032727
+    ],
+    "wide": [
+      49.669152710066015,
+      29.64089722954983,
+      51.23091448993398,
+      31.50877819032727
+    ],
+    "water": [
+      50.26915271006602,
+      30.24089722954983,
+      50.63091448993398,
+      30.90877819032727
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/ukraine-261011.osm.pbf",
+    "datasetSha256": "fdfe2837ca5d211ba6c7d537b6484cbd35395107636f7397834506f4d93e54ac",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5280f292ccdcea251803db60a2016454bc4732d12082d2ede524b3cc753ccf96",
+        "elements": 6036
+      },
+      {
+        "file": "extras.json",
+        "sha256": "db4682c1a40b7ca5d0253b6126f92fb0642e70d4f4059f81304fabc7e02a669e",
+        "elements": 1331
+      },
+      {
+        "file": "water.json",
+        "sha256": "74fd694c31180dc89235d98b74dc4aae971a6d61b4af154e710c282c72107465",
+        "elements": 559
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "9cd4886930159b2c246b19d5497aba862baba3f5cad6a81aa87ac343872103ac",
+        "elements": 7888
+      },
+      {
+        "file": "roads.json",
+        "sha256": "51cc74faed34fdfd8cf8d62cb17feb6aac416c02fc2ee33b1809c60ecdca82db",
+        "elements": 3433
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Prospekt Nauky",
+      "osm": "node/354092439",
+      "coordinatesWgs84": [
+        30.549056,
+        50.374405
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "100 Rokiv Tomu Vpered",
+      "osm": "node/7775614985",
+      "coordinatesWgs84": [
+        30.517543,
+        50.457128
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Дитяча бібліотека №142",
+      "osm": "node/2275530238",
+      "coordinatesWgs84": [
+        30.446992,
+        50.381569
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Київська міська клінічна лікарня швидкої медичної допомоги",
+      "osm": "relation/3430089",
+      "coordinatesWgs84": [
+        30.618948,
+        50.472833
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Парк Тараса Шевченка",
+      "osm": "relation/14984045",
+      "coordinatesWgs84": [
+        30.77256,
+        50.499583
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Retroville",
+      "osm": "way/435080613",
+      "coordinatesWgs84": [
+        30.416581,
+        50.503592
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Свято-Михайлівська церква",
+      "osm": "way/481695850",
+      "coordinatesWgs84": [
+        30.305888,
+        50.310148
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kharkivska Square",
+      "osm": "node/8173531647",
+      "coordinatesWgs84": [
+        30.683156,
+        50.402088
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Національна комісія регулювання енергетики та комунальних послуг",
+      "osm": "node/803756038",
+      "coordinatesWgs84": [
+        30.448348,
+        50.450612
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Університет Україна",
+      "osm": "way/114113363",
+      "coordinatesWgs84": [
+        30.369711,
+        50.453667
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Spartak",
+      "osm": "way/832672170",
+      "coordinatesWgs84": [
+        30.474699,
+        50.483009
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bunker No 453 KIFR",
+      "osm": "node/309594358",
+      "coordinatesWgs84": [
+        30.263234,
+        50.513089
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Л-410",
+      "osm": "node/6423216738",
+      "coordinatesWgs84": [
+        30.829166,
+        50.388011
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mezhyhiria",
+      "osm": "way/158025803",
+      "coordinatesWgs84": [
+        30.476715,
+        50.615349
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Serpent's Wall",
+      "osm": "way/552929873",
+      "coordinatesWgs84": [
+        30.467632,
+        50.279101
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Санаторій «Конча-Заспа»",
+      "osm": "way/1052304759",
+      "coordinatesWgs84": [
+        30.587002,
+        50.294962
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Парк «Пуща-Водиця»",
+      "osm": "way/152179973",
+      "coordinatesWgs84": [
+        30.353354,
+        50.534377
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kyiv Ukraine Temple",
+      "osm": "way/223762038",
+      "coordinatesWgs84": [
+        30.395454,
+        50.404593
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathedral of St. Pantaleon",
+      "osm": "way/41378030",
+      "coordinatesWgs84": [
+        30.487707,
+        50.34482
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Національний університет біоресурсів і природокористування України",
+      "osm": "way/642676042",
+      "coordinatesWgs84": [
+        30.498339,
+        50.394191
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kyiv Medical College No. 3",
+      "osm": "way/192594997",
+      "coordinatesWgs84": [
+        30.643302,
+        50.428559
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kyiv City Maternity Hospital 1",
+      "osm": "way/438649004",
+      "coordinatesWgs84": [
+        30.539003,
+        50.429461
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Локомотив",
+      "osm": "relation/14694175",
+      "coordinatesWgs84": [
+        30.481106,
+        50.438816
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ocean Plaza",
+      "osm": "way/191681151",
+      "coordinatesWgs84": [
+        30.522458,
+        50.411999
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1195,
+      "sha256": "03b661f6a13177606edaf9bf9cb20b6611c5b1cc4645a21e4bf8ed5f40577f91"
+    },
+    "geometry.ts": {
+      "bytes": 247168,
+      "sha256": "6cfcc7e3733f564f5dff3ac370e131ce14c2e924291ab01c8c788e802f2706b8"
+    },
+    "places.ts": {
+      "bytes": 10545,
+      "sha256": "09c313fbbd7e46da47e94e2685aa97c874dea50147884dbafde9b4ed6d66087b"
+    },
+    "terrain.ts": {
+      "bytes": 257904,
+      "sha256": "3e34de9aac9c3c278ba337acb6e93bca2aa5cf5086ebcfe0cd63ae56315d09f1"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "4ca2692f43e3eb60116d4b0a798f634fd61a7b3dede7362681df147ec0d7dc44"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

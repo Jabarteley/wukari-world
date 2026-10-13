@@ -1,0 +1,375 @@
+{
+  "schemaVersion": 1,
+  "cityId": "madrid",
+  "countryIso2": "ES",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Madrid",
+    "coordinatesWgs84": [
+      -3.703507,
+      40.416782
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/spain-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "madrid-airport",
+    "name": "Adolfo Suárez Madrid–Barajas Airport",
+    "lon": -3.572249,
+    "lat": 40.493407,
+    "sourceUrl": "https://ourairports.com/airports/LEMD/"
+  },
+  "boxes": {
+    "play": [
+      40.23590111006602,
+      -3.940123282444742,
+      40.59766288993398,
+      -3.466890717555258
+    ],
+    "core": [
+      40.371561777516504,
+      -3.762541442416989,
+      40.46200222248349,
+      -3.6444725575830113
+    ],
+    "outline": [
+      40.18590111006602,
+      -3.990123282444742,
+      40.647662889933976,
+      -3.4168907175552583
+    ],
+    "wide": [
+      39.635901110066015,
+      -4.540123282444742,
+      41.19766288993398,
+      -2.866890717555258
+    ],
+    "water": [
+      40.23590111006602,
+      -3.940123282444742,
+      40.59766288993398,
+      -3.466890717555258
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/spain-261011.osm.pbf",
+    "datasetSha256": "4c8a93158d9c49654e71f28b2292b73cc43bbcb96cb159eef43be0157b248636",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/europe/spain-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 1490515895,
+        "md5": "5cb20c71ee07266b290bb91a573d468d",
+        "sha256": "8707ab589c1c5d418055d55c1087cc63a8668ebdfeae9e79d97e4cd4ebe75c3d"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/africa/morocco-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 243739061,
+        "md5": "b59943161d2e4d27262105d20f70c27a",
+        "sha256": "d3db4380c2afee9644bb80daebdb16b044413f663dd45376c539c3a7ee180d33",
+        "reason": "admin-0 relation/1311341 (Spain) member ways absent from the Spain clip: Perejil island ways 8692572, 32257984, 1532330547, 1551133098 and the Penon de Velez / Alhucemas / Chafarinas rings 1435939762, 1435939763, 1486838834, 1461500180; all their nodes lie inside the Morocco clip"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/africa/canary-islands-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 59920240,
+        "md5": "fcc1b239d7a896e1b7dfdab1ad5cca6a",
+        "sha256": "9d4cdc267e65de605d08e138f0fb9040696841331535e54561b56bba4d40587d",
+        "reason": "admin-0 relation/1311341 (Spain) maritime=yes territorial rings 46419267, 46419269, 46419270, 46419271, 46419272 (Canary Islands, 12 nm) are absent from the Spain clip; all their nodes lie inside the Canary Islands clip; with Morocco and Canary Islands all 640 way members are present"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "02a74aadd87ce557f32801dcd52491c1d6ab5c92eda0c7fc2bcb07f4465cfa6d",
+        "elements": 11923
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f039387388e796f4c90788a42226e07994a49c8193788144630d7270291fa3ab",
+        "elements": 2726
+      },
+      {
+        "file": "water.json",
+        "sha256": "566aaff102931ca9da81ec6893ef709dab44b5fcfd3689719e7e515f8378cecd",
+        "elements": 262
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "00a8f8a1874aeaa56f3db0751243717d91e40cf2a129fbdcd6166cf0168bc43b",
+        "elements": 7642
+      },
+      {
+        "file": "roads.json",
+        "sha256": "3b3de3d16c1f32105425b2aec086d14923d8a779d6e4d69c9b515d671977d3f8",
+        "elements": 10778
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Fuencarral",
+      "osm": "node/79715911",
+      "coordinatesWgs84": [
+        -3.682161,
+        40.501536
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vips",
+      "osm": "node/2830482300",
+      "coordinatesWgs84": [
+        -3.67365,
+        40.407408
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Rey Juan Carlos",
+      "osm": "relation/2962284",
+      "coordinatesWgs84": [
+        -3.877731,
+        40.336125
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Universitario de Getafe",
+      "osm": "way/28070410",
+      "coordinatesWgs84": [
+        -3.742609,
+        40.312658
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dehesa de Navalcarbón",
+      "osm": "way/17542778",
+      "coordinatesWgs84": [
+        -3.886693,
+        40.509676
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Comercial Parque Corredor",
+      "osm": "relation/1137809",
+      "coordinatesWgs84": [
+        -3.480504,
+        40.476235
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia de Santa María de Caná",
+      "osm": "way/28150310",
+      "coordinatesWgs84": [
+        -3.799838,
+        40.434593
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Junta Municipal de Distrito de Moncloa-Aravaca.",
+      "osm": "way/29993310",
+      "coordinatesWgs84": [
+        -3.718715,
+        40.435118
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Junta Municipal de Distrito de Barajas.",
+      "osm": "way/23290568",
+      "coordinatesWgs84": [
+        -3.57789,
+        40.47486
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Rey Juan Carlos (Campus de Vicálvaro)",
+      "osm": "way/28744628",
+      "coordinatesWgs84": [
+        -3.611047,
+        40.405965
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Fernando Torres",
+      "osm": "way/198982440",
+      "coordinatesWgs84": [
+        -3.82672,
+        40.291162
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Puente ferroviario la Poveda",
+      "osm": "way/35817901",
+      "coordinatesWgs84": [
+        -3.485344,
+        40.325384
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia de San Cipriano",
+      "osm": "way/596798361",
+      "coordinatesWgs84": [
+        -3.504788,
+        40.567309
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palacio Real de El Pardo",
+      "osm": "relation/18324181",
+      "coordinatesWgs84": [
+        -3.77506,
+        40.521295
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Universitario Infanta Sofía",
+      "osm": "way/394889267",
+      "coordinatesWgs84": [
+        -3.610553,
+        40.55784
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palacio del Canto del Pico",
+      "osm": "way/48582857",
+      "coordinatesWgs84": [
+        -3.925514,
+        40.589234
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital del Henares",
+      "osm": "way/394889270",
+      "coordinatesWgs84": [
+        -3.532896,
+        40.418522
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque de Las Presillas",
+      "osm": "way/32030445",
+      "coordinatesWgs84": [
+        -3.797744,
+        40.358673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Dehesa Boyal",
+      "osm": "way/28742252",
+      "coordinatesWgs84": [
+        -3.688492,
+        40.346475
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro Comercial Palacio de Hielo",
+      "osm": "way/7990496",
+      "coordinatesWgs84": [
+        -3.636802,
+        40.463093
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Cerro del Espino",
+      "osm": "way/409110880",
+      "coordinatesWgs84": [
+        -3.860285,
+        40.457566
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Europea de Madrid",
+      "osm": "way/70656562",
+      "coordinatesWgs84": [
+        -3.918938,
+        40.372622
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ermita de Santa María la Antigua",
+      "osm": "way/444827472",
+      "coordinatesWgs84": [
+        -3.752501,
+        40.382422
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Escuela Técnica Superior de Ingenieros Informáticos UPM",
+      "osm": "way/368926226",
+      "coordinatesWgs84": [
+        -3.838934,
+        40.405648
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1210,
+      "sha256": "d330005101bb4fb9ac0c9e8f8a09885f472700a762e883d3d16a32cd91938e7e"
+    },
+    "geometry.ts": {
+      "bytes": 140122,
+      "sha256": "5d9fabd43b0a008db40fbda6de9a4c3a6b3fc670b7d499b02087621eb6d951a0"
+    },
+    "places.ts": {
+      "bytes": 10229,
+      "sha256": "17b93620faa127befa8fc581aa62501f8cd1dc4af7be00bfd2e8db2d62ecf9bc"
+    },
+    "terrain.ts": {
+      "bytes": 49905,
+      "sha256": "36c876baf727b01c9ea84d1bc525abd9c94e10bd99691d8b1a4275cb4182219f"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "0c4add46b2c14334d6d2d37f4dfcd928ed610032d34e21613c1ae5ed1106f601"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

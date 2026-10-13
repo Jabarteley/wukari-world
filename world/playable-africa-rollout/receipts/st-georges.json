@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "cityId": "st-georges",
+  "countryIso2": "GD",
+  "generationIdentity": {
+    "cityId": "st-georges",
+    "stateId": "gd-st-georges",
+    "stateName": "St. George's"
+  },
+  "inventorySha256": "0c1f77c7e1c0ad19ccbc5235910ad8bf1be81a4cff8059c12a625f6abecb5ea5",
+  "inventoryPath": "world/playable-africa-rollout/sources/st-georges.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "st-georges-airport",
+    "name": "Maurice Bishop International Airport",
+    "lon": -61.785302,
+    "lat": 12.003996,
+    "sourceUrl": "https://ourairports.com/airports/TGPY/"
+  },
+  "bounds": [
+    11.87265221006602,
+    -61.93564240520758,
+    12.234413989933978,
+    -61.567967594792414
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "335cfb6d05f7359359c77a7782a1053b670159e47e47094c6e1dfbbd3439b939",
+          "elements": 301
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d7b1de5ed6bf95399af88c06017c4ed8b269ef31edb40a07b1f692d119b147cf",
+          "elements": 31
+        },
+        {
+          "file": "water.json",
+          "sha256": "f1558bbe6444563b6a4de208a4db73a652988bb6d68ac86b5eacb39a926405c4",
+          "elements": 139
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "304cf45b4f9eb6b827e8f173cc7cd7660ec0addbd3ef0d057b73623e85b53953",
+          "elements": 161
+        },
+        {
+          "file": "roads.json",
+          "sha256": "d47ee5e96e40980624c2a97900a768947f2aeb7245f43abab4df31446e7a4052",
+          "elements": 267
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 33,
+    "neighbourhoodLabels": 5,
+    "landPolygons": 5,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "way/385939410"
+      }
+    ]
+  },
+  "observed": {
+    "places": 301,
+    "extras": 31,
+    "water": 139,
+    "landuse": 161,
+    "roads": 267
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1267,
+      "sha256": "9cdd3694e2fc56552fc6d185a3a7b471a04dda87fc0a0795731ee023a28e271a"
+    },
+    "geometry.ts": {
+      "bytes": 133049,
+      "sha256": "641352528af189833973cd1cc8e55470c559ec459cb785fdcbdabf2b94c87607"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "0189c7ca87f600da6c80904bc1f8e8946897914b9e9e77a35e5c9c568f43dda2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/st-georges.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

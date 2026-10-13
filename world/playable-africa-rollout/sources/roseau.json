@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "roseau",
+  "countryIso2": "DM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Roseau",
+    "coordinatesWgs84": [
+      -61.3872868,
+      15.2991923
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "roseau-airport",
+    "name": "Douglas-Charles Airport",
+    "lon": -61.301082,
+    "lat": 15.546673,
+    "sourceUrl": "https://ourairports.com/airports/TDPD/"
+  },
+  "boxes": {
+    "play": [
+      15.11831141006602,
+      -61.573711916042896,
+      15.5557170444967,
+      -61.2008616839571
+    ],
+    "core": [
+      15.253972077516504,
+      -61.433862667858776,
+      15.344412522483495,
+      -61.34071093214122
+    ],
+    "outline": [
+      15.06831141006602,
+      -61.62371191604289,
+      15.6057170444967,
+      -61.1508616839571
+    ],
+    "wide": [
+      14.51831141006602,
+      -62.1737119160429,
+      16.1557170444967,
+      -60.6008616839571
+    ],
+    "water": [
+      14.51831141006602,
+      -62.1737119160429,
+      16.1557170444967,
+      -60.6008616839571
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "bec55104c0aab2f1d833925b85ea90e2cc9dca660332deec8f71489d6dd042ec",
+        "elements": 773
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9c52807f4871785ade49738e79f8d9d14636de9722dfdd1e0f6290ebab353ab3",
+        "elements": 26
+      },
+      {
+        "file": "water.json",
+        "sha256": "6d77cee8941795651238549dfa89a53fa5faa83e10164dcd560092629782b58d",
+        "elements": 814
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "858579c67a35b489986df066b38a44f18f827887b42d44432051a1a79ded2bd5",
+        "elements": 126
+      },
+      {
+        "file": "roads.json",
+        "sha256": "b44c9dc70c56a1a0d5a0fa20d3781d27e1ff1c19d05d3f452edfe618de4981a1",
+        "elements": 207
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Roseau",
+      "osm": "node/4882864440",
+      "coordinatesWgs84": [
+        -61.389642,
+        15.29747
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Molly's Food Spot",
+      "osm": "node/4650862590",
+      "coordinatesWgs84": [
+        -61.461396,
+        15.48454
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dominica State College",
+      "osm": "relation/5963855",
+      "coordinatesWgs84": [
+        -61.378525,
+        15.309497
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marigot Hospital",
+      "osm": "way/370396285",
+      "coordinatesWgs84": [
+        -61.282853,
+        15.540018
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lindo Park",
+      "osm": "way/142324885",
+      "coordinatesWgs84": [
+        -61.38563,
+        15.304843
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bellevue Chopin Mall",
+      "osm": "way/1033304908",
+      "coordinatesWgs84": [
+        -61.345887,
+        15.266709
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Our Lady of Fair Haven Cthedral",
+      "osm": "way/361451997",
+      "coordinatesWgs84": [
+        -61.385473,
+        15.297404
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Fond Community Center",
+      "osm": "way/271661481",
+      "coordinatesWgs84": [
+        -61.275932,
+        15.360841
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "pas de jonction",
+      "osm": "node/6366091386",
+      "coordinatesWgs84": [
+        -61.413115,
+        15.436926
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pierre Charles Secondary School",
+      "osm": "way/198518720",
+      "coordinatesWgs84": [
+        -61.315068,
+        15.246323
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Windsor Park",
+      "osm": "node/11977639451",
+      "coordinatesWgs84": [
+        -61.384461,
+        15.30187
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Victoria Falls",
+      "osm": "node/1418090286",
+      "coordinatesWgs84": [
+        -61.271724,
+        15.290725
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "House of the president",
+      "osm": "node/5779237653",
+      "coordinatesWgs84": [
+        -61.384893,
+        15.29602
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Trafalgar Falls",
+      "osm": "node/3661886297",
+      "coordinatesWgs84": [
+        -61.334045,
+        15.327708
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Botanical Gardens",
+      "osm": "way/145400476",
+      "coordinatesWgs84": [
+        -61.382617,
+        15.299612
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Islet view",
+      "osm": "node/5238480521",
+      "coordinatesWgs84": [
+        -61.258682,
+        15.446876
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "3D Restaurant",
+      "osm": "node/4650862492",
+      "coordinatesWgs84": [
+        -61.368178,
+        15.212533
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Concord Playing Feild",
+      "osm": "way/1102696829",
+      "coordinatesWgs84": [
+        -61.276794,
+        15.489837
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "View of Trafalgar Falls",
+      "osm": "node/4568918989",
+      "coordinatesWgs84": [
+        -61.345324,
+        15.324304
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Morne Bruce",
+      "osm": "node/9682732830",
+      "coordinatesWgs84": [
+        -61.379251,
+        15.298926
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "All Saints University School of Medicine",
+      "osm": "way/389821142",
+      "coordinatesWgs84": [
+        -61.387928,
+        15.2999
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The University of the West Indies Open Campus",
+      "osm": "way/396804252",
+      "coordinatesWgs84": [
+        -61.381342,
+        15.301285
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dominica-China Friendship Hospital",
+      "osm": "way/396970462",
+      "coordinatesWgs84": [
+        -61.384507,
+        15.306516
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Old Market",
+      "osm": "way/361451994",
+      "coordinatesWgs84": [
+        -61.38733,
+        15.296728
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1205,
+      "sha256": "29581a8c55faab0556721a43f311eb605d19c62e1af841a4d2328f816f000b76"
+    },
+    "geometry.ts": {
+      "bytes": 109179,
+      "sha256": "12492b1e87a6d02d5582b093ee208cf6c2458b64931828f9d320b47e10b4db5e"
+    },
+    "places.ts": {
+      "bytes": 9393,
+      "sha256": "619a0934da92aaaf0afe464da71a47db77b1986b5c289dd5b3e1f23d8ed78c4f"
+    },
+    "terrain.ts": {
+      "bytes": 577014,
+      "sha256": "0721646de13f3767cf055d1a31d7e6d084190fa63d56cbf3e6345eb78b932c96"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "13c003d07846146246472c40f04ff21f1d2ac50f8dea3120721ff0d3011a9fe5"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

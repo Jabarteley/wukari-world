@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 1,
+  "cityId": "thimphu",
+  "countryIso2": "BT",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Thimphu",
+    "coordinatesWgs84": [
+      89.6336729,
+      27.4713546
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "thimphu-airport",
+    "name": "Paro International Airport",
+    "lon": 89.424599,
+    "lat": 27.4032,
+    "sourceUrl": "https://ourairports.com/airports/VQPR/"
+  },
+  "boxes": {
+    "play": [
+      27.290473710066024,
+      89.41447965842985,
+      27.65223548993398,
+      89.83650211956622
+    ],
+    "core": [
+      27.426134377516508,
+      89.58302828112082,
+      27.516574822483495,
+      89.68431751887917
+    ],
+    "outline": [
+      27.240473710066023,
+      89.36447965842986,
+      27.70223548993398,
+      89.88650211956622
+    ],
+    "wide": [
+      26.690473710066023,
+      88.81447965842986,
+      28.25223548993398,
+      90.43650211956621
+    ],
+    "water": [
+      27.290473710066024,
+      89.41447965842985,
+      27.65223548993398,
+      89.83650211956622
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf",
+    "datasetSha256": "2c1354be334d3e7ed45ba1ac94b0dfedd93de4e35970232ca7e4e9536ac5114e",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 23618779,
+        "md5": "1ca3f314308ebc51d36febcf5b074943",
+        "sha256": "ded95c6492c9f3f77ad528e5dd25255a99fec83a94113914b9b93c5ac8574d30"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/india/eastern-zone-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 247241895,
+        "md5": "86d77f4f7b9246085aa0081f32e51100",
+        "sha256": "1644aac81a450816f97593aef9aebf0e03f82beee70882e9bff7d41fe60bc2ce",
+        "reason": "way/751503085 (Bhutan-India border, relation 184629 member; 2/2 nodes at 26.80N 89.46E) lies in the Geofabrik eastern-zone polygon and not in bhutan, nepal, bangladesh, china or north-eastern-zone"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "4780f122450b5d8d1b629a2450532c4cb40fad1768f0db8714ae16222af9e539",
+        "elements": 699
+      },
+      {
+        "file": "extras.json",
+        "sha256": "3fe84dd6989e3654348ce0200b04f28b7bd8c05fbd1afa7d51b102bbea63db6e",
+        "elements": 146
+      },
+      {
+        "file": "water.json",
+        "sha256": "7f10ed0c83815e90167795d4efd5e899b9e967f87eafbfa8fcd3189b391b2d31",
+        "elements": 44
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b73255872b2fac66510cf0b6882be249240b58426d2c78791749a67c834a485e",
+        "elements": 302
+      },
+      {
+        "file": "roads.json",
+        "sha256": "72f808a318fa257396ac88c51318e3d7500f2dba467cfbc99bdad494ea55ab00",
+        "elements": 339
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "City Bus Terminal",
+      "osm": "node/4776561047",
+      "coordinatesWgs84": [
+        89.639187,
+        27.472135
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Menchuna",
+      "osm": "node/4496630080",
+      "coordinatesWgs84": [
+        89.762413,
+        27.516577
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Library of Bhutan",
+      "osm": "way/260418942",
+      "coordinatesWgs84": [
+        89.632463,
+        27.483251
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jigme Dorji Wangchuck National Referral Hospital",
+      "osm": "way/425635150",
+      "coordinatesWgs84": [
+        89.638595,
+        27.463356
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dangrina Recreational Park",
+      "osm": "way/1083747727",
+      "coordinatesWgs84": [
+        89.639589,
+        27.528973
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Canteen",
+      "osm": "node/11937243669",
+      "coordinatesWgs84": [
+        89.450154,
+        27.385189
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Buddha Dordenma",
+      "osm": "way/188067168",
+      "coordinatesWgs84": [
+        89.645387,
+        27.443587
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clock Tower Square",
+      "osm": "way/91559919",
+      "coordinatesWgs84": [
+        89.639667,
+        27.470374
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kabesa Gewog Centre",
+      "osm": "node/10759470946",
+      "coordinatesWgs84": [
+        89.791408,
+        27.632573
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Norbuling Rigter College",
+      "osm": "node/6161406390",
+      "coordinatesWgs84": [
+        89.434319,
+        27.495003
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Changlimithang Stadium",
+      "osm": "way/369953190",
+      "coordinatesWgs84": [
+        89.641025,
+        27.471212
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Museum of Bhutan",
+      "osm": "way/187025042",
+      "coordinatesWgs84": [
+        89.425498,
+        27.42876
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Motithang Takin Preserve",
+      "osm": "way/1380032231",
+      "coordinatesWgs84": [
+        89.612048,
+        27.481747
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tashichho Dzong",
+      "osm": "relation/2532733",
+      "coordinatesWgs84": [
+        89.635087,
+        27.489666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal Textile Academy",
+      "osm": "way/217728797",
+      "coordinatesWgs84": [
+        89.635796,
+        27.479074
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Traditional Medicine Hospital",
+      "osm": "way/435186557",
+      "coordinatesWgs84": [
+        89.629792,
+        27.479742
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Memorial Chorten",
+      "osm": "way/663910123",
+      "coordinatesWgs84": [
+        89.637899,
+        27.46656
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kuen-thun Restaurant and bar",
+      "osm": "node/11933012275",
+      "coordinatesWgs84": [
+        89.559585,
+        27.320476
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "E/G88 Restaurant &Bar",
+      "osm": "node/10756662149",
+      "coordinatesWgs84": [
+        89.568344,
+        27.405093
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Chamgang BHU",
+      "osm": "way/541766925",
+      "coordinatesWgs84": [
+        89.696772,
+        27.411184
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "International Office ( IRO office)",
+      "osm": "node/11936865369",
+      "coordinatesWgs84": [
+        89.657629,
+        27.401396
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Anniversary park",
+      "osm": "way/1380056477",
+      "coordinatesWgs84": [
+        89.750421,
+        27.489453
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Royal Institute of Management",
+      "osm": "way/431787600",
+      "coordinatesWgs84": [
+        89.666097,
+        27.441963
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jungshina Neighborhood Vegtable Market",
+      "osm": "node/10308083192",
+      "coordinatesWgs84": [
+        89.636468,
+        27.5068
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1208,
+      "sha256": "d6e9d3a1bce76bf14fd0ea749c30c266bdbe37873693a0ebe73d3cb52f4ada2c"
+    },
+    "geometry.ts": {
+      "bytes": 24698,
+      "sha256": "606cb82c42b64f1fac4877e78518faac48e1e9ee28201b4c7ba11c9dcb0ecb47"
+    },
+    "places.ts": {
+      "bytes": 9633,
+      "sha256": "bdcd1036d76922ed8d72300ed58af092a860f14807a5c660fd470bcd73cd6aeb"
+    },
+    "terrain.ts": {
+      "bytes": 15809,
+      "sha256": "199e5c5428fc98adc18fcaf5c2318acf612e7781abfb63919408e3f5a5d28091"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "b0d96ed224561ff1fcc553007087c639f593c7bcc657a19325bed60ebae0e3b5"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

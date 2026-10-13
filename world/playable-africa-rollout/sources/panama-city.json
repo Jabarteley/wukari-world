@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "panama-city",
+  "countryIso2": "PA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Panama City",
+    "coordinatesWgs84": [
+      -79.5341802,
+      8.9714493
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/panama-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "panama-city-airport",
+    "name": "Tocumen International Airport",
+    "lon": -79.383499,
+    "lat": 9.07136,
+    "sourceUrl": "https://ourairports.com/airports/MPTO/"
+  },
+  "boxes": {
+    "play": [
+      8.79056841006602,
+      -79.71615922013568,
+      9.152330189933979,
+      -79.35220117986431
+    ],
+    "core": [
+      8.926229077516505,
+      -79.57965773437142,
+      9.016669522483495,
+      -79.48870266562857
+    ],
+    "outline": [
+      8.74056841006602,
+      -79.76615922013568,
+      9.20233018993398,
+      -79.30220117986431
+    ],
+    "wide": [
+      8.190568410066021,
+      -80.31615922013567,
+      9.752330189933978,
+      -78.75220117986431
+    ],
+    "water": [
+      8.190568410066021,
+      -80.31615922013567,
+      9.752330189933978,
+      -78.75220117986431
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/panama-261011.osm.pbf",
+    "datasetSha256": "18fa63477a7a53c2828d3978a9cec897f67ebb3d4fab2c6b424d6af93100e1b8",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/central-america/panama-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 36299876,
+        "md5": "68c5d6bced6c09f6ff334dc0914b53d0",
+        "sha256": "3e923f66271c8fb6e4a164391792d26d57f3d8782f2d0b47311a07407fa40893"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/south-america/colombia-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 331664518,
+        "md5": "7c2308a7282a4cb192c15cdc987f0ccd",
+        "sha256": "54bf72e2880c7973984df5b78fe7564e59b35184fb4208bc5f03f1d9359c03ea",
+        "reason": "admin-0 relation/287668 member way/542342990 (maritime closing line) is absent from the Panama clip; both nodes lie inside the Colombia clip and not the Costa Rica clip"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e4dd07f6665dfa7d25da67e24982f35c543758afecbc3534bf9d7d7578f88b9f",
+        "elements": 1741
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c18537579277854fc2d5dc00cc7103873e1a4647018ebcd20104f70f700b374f",
+        "elements": 499
+      },
+      {
+        "file": "water.json",
+        "sha256": "d3b5b2c6076501597eaaaab98f009162e1e98d33119b2a73a31bf61f8e5283b9",
+        "elements": 1540
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "1c5ae95effc84b217c211ecf1dfbf9fcd8d54fb7cfbeb9543ad9c1a3bedbde2c",
+        "elements": 1734
+      },
+      {
+        "file": "roads.json",
+        "sha256": "dbba8ab6b480dba2370263d2775d913f29f13d43f53041d905aafb1e5c0818d3",
+        "elements": 1517
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "5 de Mayo",
+      "osm": "node/5208805275",
+      "coordinatesWgs84": [
+        -79.539403,
+        8.9627
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Café Lavanda",
+      "osm": "node/12954711904",
+      "coordinatesWgs84": [
+        -79.507029,
+        8.989958
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Florida State University Panamá",
+      "osm": "way/387400207",
+      "coordinatesWgs84": [
+        -79.589364,
+        9.005246
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Nacional",
+      "osm": "way/1290651149",
+      "coordinatesWgs84": [
+        -79.533497,
+        8.97261
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Summit Municipal Park",
+      "osm": "way/22946547",
+      "coordinatesWgs84": [
+        -79.646762,
+        9.065887
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Albrook Mall",
+      "osm": "way/273732972",
+      "coordinatesWgs84": [
+        -79.552386,
+        8.9729
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Templo de la Ciudad de Panamá",
+      "osm": "way/379779318",
+      "coordinatesWgs84": [
+        -79.570404,
+        8.991493
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palacio Municipal",
+      "osm": "way/301268537",
+      "coordinatesWgs84": [
+        -79.534944,
+        8.951983
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Asamblea Nacional de Panamá",
+      "osm": "way/605386929",
+      "coordinatesWgs84": [
+        -79.542039,
+        8.962926
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Tecnico Superior Especializado",
+      "osm": "way/1053821129",
+      "coordinatesWgs84": [
+        -79.401117,
+        9.068125
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Olímpico Rommel Fernández Gutiérrez",
+      "osm": "way/180003519",
+      "coordinatesWgs84": [
+        -79.469484,
+        9.035862
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pedro Miguel Locks",
+      "osm": "node/2845942117",
+      "coordinatesWgs84": [
+        -79.613157,
+        9.01743
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Universidad Tecnológica de Panamá",
+      "osm": "way/570814678",
+      "coordinatesWgs84": [
+        -79.53292,
+        9.023915
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Biomuseo",
+      "osm": "way/74450873",
+      "coordinatesWgs84": [
+        -79.544768,
+        8.93193
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King's College",
+      "osm": "way/387387459",
+      "coordinatesWgs84": [
+        -79.56852,
+        9.006231
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monumento Goethals",
+      "osm": "node/6460155335",
+      "coordinatesWgs84": [
+        -79.555701,
+        8.958501
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital Punta Pacífica",
+      "osm": "way/146820184",
+      "coordinatesWgs84": [
+        -79.510255,
+        8.982017
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Juan D. Arosemena",
+      "osm": "way/550798044",
+      "coordinatesWgs84": [
+        -79.54202,
+        8.970068
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Iglesia de Santa Ana",
+      "osm": "way/179079739",
+      "coordinatesWgs84": [
+        -79.539319,
+        8.953971
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Basílica Metropolitana Santa María la Antigua",
+      "osm": "way/140348509",
+      "coordinatesWgs84": [
+        -79.535349,
+        8.952645
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo Afroantillano",
+      "osm": "way/697812340",
+      "coordinatesWgs84": [
+        -79.53946,
+        8.962928
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Metropolitan Natural Park",
+      "osm": "relation/11719090",
+      "coordinatesWgs84": [
+        -79.547129,
+        8.99427
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Complejo Hospitalario Dr. Arnulfo Arias Madrid",
+      "osm": "way/383814377",
+      "coordinatesWgs84": [
+        -79.534744,
+        8.980849
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pio Pio",
+      "osm": "node/3882111329",
+      "coordinatesWgs84": [
+        -79.701942,
+        8.930706
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1241,
+      "sha256": "7ef0cdca8b61243314087f7710b18d80b8e489133717a29d48696ecb663531b2"
+    },
+    "geometry.ts": {
+      "bytes": 858756,
+      "sha256": "59da1933dedce176f568af274dfd3014d5f304c2310f785ff339179144d665d6"
+    },
+    "places.ts": {
+      "bytes": 10083,
+      "sha256": "e8e6512be38b9b22ef1202d9ec72e8af62980b80ac589ab47e9ff9382a99f14a"
+    },
+    "terrain.ts": {
+      "bytes": 391025,
+      "sha256": "6056479da86f40b6393782327ef6abf1f3e78e22f38d7d6bb89f6e5e17bd13e3"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "2ba25a2cf6d8900a31fdcb669fd4825f6ed8ec346296e4ef6749703805d5cedd"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

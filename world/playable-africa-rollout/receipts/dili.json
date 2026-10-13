@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "dili",
+  "countryIso2": "TL",
+  "generationIdentity": {
+    "cityId": "dili",
+    "stateId": "tl-dili",
+    "stateName": "Dili"
+  },
+  "inventorySha256": "29d57fafa5a43970d6ee6d221551e120b31f39c41845c056a422a5c08021b510",
+  "inventoryPath": "world/playable-africa-rollout/sources/dili.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "dili-airport",
+    "name": "Presidente Nicolau Lobato International Airport",
+    "lon": 125.524507,
+    "lat": -8.546562,
+    "sourceUrl": "https://ourairports.com/airports/WPDL/"
+  },
+  "bounds": [
+    -8.734561789933979,
+    125.39663897711469,
+    -8.37280001006602,
+    125.76017962288532
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/east-timor-261011.osm.pbf",
+      "datasetSha256": "ed503ce335b087fe3fb37934fcc1980dcdc7c75e8f359f0a880963cb86c7a74a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "c8ccc5201a43e06155220b554a1f042870893dae387e5adb461b670b67457a7e",
+          "elements": 349
+        },
+        {
+          "file": "extras.json",
+          "sha256": "79415365388e39caac24f1353787fcbfd79527c46b221798a406295b7b1129c8",
+          "elements": 187
+        },
+        {
+          "file": "water.json",
+          "sha256": "25db7f3c11cdfa80b2d79ddd0add04821ccfee50ce6d1eca5501d856139b9ce1",
+          "elements": 288
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "792c1ec22516ea26113a8c88ecf7f0d59da074682f4daeeea3e74c223c236e49",
+          "elements": 2143
+        },
+        {
+          "file": "roads.json",
+          "sha256": "fe6d33f0d5f13f0e31ab2de639f384a433b70841c04015eababb019947f8edb1",
+          "elements": 269
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 54,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 32,
+    "waterPolygons": 13,
+    "reachWaterPolygons": 28
+  },
+  "observed": {
+    "places": 349,
+    "extras": 187,
+    "water": 288,
+    "landuse": 2143,
+    "roads": 269
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "45c689ef9ed10d58fa82b252bb161a399024aedb23525377c95108e3711e608c"
+    },
+    "geometry.ts": {
+      "bytes": 342132,
+      "sha256": "d52598babe0be06a0ab1412244fd33a8d6997008bceda3450f75738223ae64ef"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "a02d4ed6f4dc5d38b0dd5afa0d55d5b793bf276bcc35b871fe5fae038332ccb3"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/dili.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

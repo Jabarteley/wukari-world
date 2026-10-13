@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "phnom-penh",
+  "countryIso2": "KH",
+  "generationIdentity": {
+    "cityId": "phnom-penh",
+    "stateId": "kh-phnom-penh",
+    "stateName": "Phnom Penh"
+  },
+  "inventorySha256": "3a54db3366d3fd3a5ba53f3070d51abde4ae8f794888dfd58d7fd58c994064c5",
+  "inventoryPath": "world/playable-africa-rollout/sources/phnom-penh.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "phnom-penh-airport",
+    "name": "Techo International Airport",
+    "lon": 104.921272,
+    "lat": 11.359987,
+    "sourceUrl": "https://ourairports.com/airports/KH-0002/"
+  },
+  "bounds": [
+    11.350942955503301,
+    104.73893561599425,
+    11.749151889933978,
+    105.10594958400574
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/cambodia-261011.osm.pbf",
+      "datasetSha256": "3ba981fb87c3d9d6c4b0c5cd0785319d82631a7a936a70d01dbcc75e1bbba8c8",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "aa6fd03353316cff93b515117247ca4c7355aa339856e213854a24ba4996041c",
+          "elements": 1632
+        },
+        {
+          "file": "extras.json",
+          "sha256": "11be9c0df827236290bd4c489a275b6efdad82fe36c9f9703c7de81ca6494716",
+          "elements": 197
+        },
+        {
+          "file": "water.json",
+          "sha256": "23405422564ed56df37ad1709a3482321e04afe190dd5bb09a529d2ac63042f0",
+          "elements": 90
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "132a2e13ee4329d9dea40931e0a4ee991ba6d92ab26bde550ec98294875889c3",
+          "elements": 630
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5e420d76411f12fd51403b15f0202ff0190373d769ddf77969ea0e4daf853cd4",
+          "elements": 1499
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 468,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 29,
+    "waterPolygons": 34,
+    "reachWaterPolygons": 14
+  },
+  "observed": {
+    "places": 1632,
+    "extras": 197,
+    "water": 90,
+    "landuse": 630,
+    "roads": 1499
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "88437ba0b6edc2c67c174f9f6f0b6d479dbaeba23bfbeeadee2b1f948e5a2a6b"
+    },
+    "geometry.ts": {
+      "bytes": 102447,
+      "sha256": "bf19f3139d8f235c23e3b774b743a94dff6ad67e9ad95bb54cfd0b4a9a40a194"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "83cf23f3a7ab463c065d1aff82ce8b0445971024d8d99cc2736e07d4da60561f"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/phnom-penh.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

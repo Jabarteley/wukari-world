@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "athens",
+  "countryIso2": "GR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Athens",
+    "coordinatesWgs84": [
+      23.7348324,
+      37.9755648
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/greece-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "athens-airport",
+    "name": "Athens Eleftherios Venizelos International Airport",
+    "lon": 23.9445,
+    "lat": 37.936401,
+    "sourceUrl": "https://ourairports.com/airports/LGAV/"
+  },
+  "boxes": {
+    "play": [
+      37.79468391006602,
+      23.506349478745935,
+      38.15644568993398,
+      23.96331532125406
+    ],
+    "core": [
+      37.93034457751651,
+      23.677817574645474,
+      38.020785022483494,
+      23.791847225354523
+    ],
+    "outline": [
+      37.74468391006602,
+      23.456349478745935,
+      38.20644568993398,
+      24.013315321254062
+    ],
+    "wide": [
+      37.19468391006602,
+      22.906349478745934,
+      38.75644568993398,
+      24.563315321254063
+    ],
+    "water": [
+      37.19468391006602,
+      22.906349478745934,
+      38.75644568993398,
+      24.563315321254063
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/greece-261011.osm.pbf",
+    "datasetSha256": "ac48a222ce6a3f7d694e8e9db50b62d939166400131909972eede05c5ccf3c6a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e76c4e8915628e07951e3a946d522d5d6315e3a0c3616dd9ed7c3e415cdcbdb8",
+        "elements": 7083
+      },
+      {
+        "file": "extras.json",
+        "sha256": "db1e0c1e5f91b71c47070071d251fe1512b916f17edd768d4078e18c1afcbc6c",
+        "elements": 1727
+      },
+      {
+        "file": "water.json",
+        "sha256": "b94a5687d1342586bf94e0e6849362f3a5dc8707f1288ec7b51ac32259e33329",
+        "elements": 2226
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "afa1dad73bab2253c90894c541a22228dcaf37b87d77ca4e7b4952256ca2af35",
+        "elements": 5734
+      },
+      {
+        "file": "roads.json",
+        "sha256": "d415d4ceee9b62ffd415137bd043df29a30b774a6bb309ca03d14775fa0e8c0e",
+        "elements": 6672
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Megaro Mousikis",
+      "osm": "node/250702349",
+      "coordinatesWgs84": [
+        23.753009,
+        37.979032
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Varoulko Seaside",
+      "osm": "node/2902095151",
+      "coordinatesWgs84": [
+        23.658529,
+        37.937305
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Drossinis Museum",
+      "osm": "way/299059456",
+      "coordinatesWgs84": [
+        23.811913,
+        38.071192
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Εθνικό Κέντρο Αποκατάστασης",
+      "osm": "way/669746894",
+      "coordinatesWgs84": [
+        23.717697,
+        38.049615
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Άλσος Βεΐκου",
+      "osm": "way/89943258",
+      "coordinatesWgs84": [
+        23.765386,
+        38.0275
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Mall Athens",
+      "osm": "way/44000881",
+      "coordinatesWgs84": [
+        23.79039,
+        38.044596
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monastère de Daphni",
+      "osm": "way/208889169",
+      "coordinatesWgs84": [
+        23.635926,
+        38.012977
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Πλατεία Μεταξουργείου",
+      "osm": "way/81783120",
+      "coordinatesWgs84": [
+        23.719639,
+        37.98519
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hellenic National Meteorological Service",
+      "osm": "way/191315065",
+      "coordinatesWgs84": [
+        23.74239,
+        37.890255
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of West Attica - Ancient Grove Campus",
+      "osm": "way/160307906",
+      "coordinatesWgs84": [
+        23.672393,
+        37.978417
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Αστεροσκοπείο Πεντέλης",
+      "osm": "way/432559442",
+      "coordinatesWgs84": [
+        23.864458,
+        38.047204
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Battle of Salamis Memorial",
+      "osm": "node/6506548450",
+      "coordinatesWgs84": [
+        23.52767,
+        37.951754
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Τελεστήριον",
+      "osm": "relation/2022511",
+      "coordinatesWgs84": [
+        23.538581,
+        38.04086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Αττικό Ζωολογικό Πάρκο",
+      "osm": "way/412135808",
+      "coordinatesWgs84": [
+        23.908684,
+        37.981141
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ναός Αγίου Λουκά Λαμπρικών",
+      "osm": "node/9385908004",
+      "coordinatesWgs84": [
+        23.85476,
+        37.871147
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nea Smyrni Stadium",
+      "osm": "relation/1626837",
+      "coordinatesWgs84": [
+        23.709302,
+        37.943021
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Γενικό Νοσοκομείο Νοσημάτων Θώρακος \"Η Σωτηρία\"",
+      "osm": "way/316732250",
+      "coordinatesWgs84": [
+        23.7835,
+        37.993798
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Peristeri Stadium",
+      "osm": "way/948091319",
+      "coordinatesWgs84": [
+        23.689819,
+        38.005017
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ιερός Ναός Κοιμήσεως Θεοτόκου (16ου-17ου αιώνα)",
+      "osm": "node/3565807234",
+      "coordinatesWgs84": [
+        23.878574,
+        38.125308
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Δρομοκαΐτειο",
+      "osm": "node/1008013053",
+      "coordinatesWgs84": [
+        23.662691,
+        38.000241
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National and Kapodistrian University of Athens",
+      "osm": "relation/3568067",
+      "coordinatesWgs84": [
+        23.774133,
+        37.970039
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Australian Archaeological Institute at Athens",
+      "osm": "way/319084318",
+      "coordinatesWgs84": [
+        23.723965,
+        37.96567
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pedion Areos",
+      "osm": "way/1566325327",
+      "coordinatesWgs84": [
+        23.736877,
+        37.993389
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "City Link",
+      "osm": "node/4729929890",
+      "coordinatesWgs84": [
+        23.734587,
+        37.977338
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1227,
+      "sha256": "469ae2955c214de166e29987f29351e7f230fa9ec420a6928ea74edc57032980"
+    },
+    "geometry.ts": {
+      "bytes": 1035269,
+      "sha256": "c292bce21f9457baf1caf9f6b597132cbf56d7cbf4ac7b45f2f856cbea67e270"
+    },
+    "places.ts": {
+      "bytes": 10472,
+      "sha256": "a920eb87df3c15c8a604697eec83d2e18cffb99bdb7ec88cb02abd1e87a506f7"
+    },
+    "terrain.ts": {
+      "bytes": 469341,
+      "sha256": "40eb242eb53bf78236372bd8d670e057dab00dfc401fa8cce4e91faaadbc41dc"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "af4e87c3395a151bb862382105b7a42ea7222b11ad928e74e684c90719a46a33"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

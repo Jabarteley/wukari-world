@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mogadishu",
+  "countryIso2": "SO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Mogadishu",
+    "coordinatesWgs84": [
+      45.3419183,
+      2.0349312
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "mogadishu-airport",
+    "name": "Aden Adde International Airport",
+    "lon": 45.304699,
+    "lat": 2.01444,
+    "sourceUrl": "https://ourairports.com/airports/HCMM/"
+  },
+  "boxes": {
+    "play": [
+      1.8540503100660215,
+      45.162121628217974,
+      2.2158120899339786,
+      45.52171497178203
+    ],
+    "core": [
+      1.9897109775165054,
+      45.29697312363944,
+      2.0801514224834947,
+      45.38686347636057
+    ],
+    "outline": [
+      1.8040503100660215,
+      45.11212162821798,
+      2.2658120899339784,
+      45.57171497178203
+    ],
+    "wide": [
+      1.2540503100660216,
+      44.56212162821797,
+      2.8158120899339787,
+      46.12171497178203
+    ],
+    "water": [
+      1.2540503100660216,
+      44.56212162821797,
+      2.8158120899339787,
+      46.12171497178203
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+    "datasetSha256": "c8405db8aa5b4c3d012bfaf159cf6a55216b406da4fb53de74a2270a2e102351",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "bb299807c5802ed0dbbe3240aa028add04eb32848ea3452b520ef0d9580a9db1",
+        "elements": 121
+      },
+      {
+        "file": "extras.json",
+        "sha256": "5874939d254284f7a2fb9c7e33570a8deb66572949886abecbed75abd645c855",
+        "elements": 82
+      },
+      {
+        "file": "water.json",
+        "sha256": "cf55246408ef233ca03ea37c3d9bca9617ac81f3148e740cda5e827e1858ae47",
+        "elements": 5961
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "8428405c4fce18ec7bf7cf5ae99a3aebb804ccc2ee48477735961258b287ed2f",
+        "elements": 1446
+      },
+      {
+        "file": "roads.json",
+        "sha256": "fbaad0f7251161d96b7192b81d127afcca02ff3c43180c080922fa099dac96be",
+        "elements": 120
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Isgoyska Xoosh",
+      "osm": "node/313404166",
+      "coordinatesWgs84": [
+        45.264454,
+        2.035613
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tufaax Restaurant",
+      "osm": "node/11235334239",
+      "coordinatesWgs84": [
+        45.357393,
+        2.073127
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Somali National University",
+      "osm": "way/395085700",
+      "coordinatesWgs84": [
+        45.287717,
+        2.039289
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Martino Hospital",
+      "osm": "way/1371916683",
+      "coordinatesWgs84": [
+        45.338035,
+        2.029189
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Xarunta Dalxiiska ee Degmada Dayniile",
+      "osm": "way/1558283056",
+      "coordinatesWgs84": [
+        45.274819,
+        2.106692
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fish Market",
+      "osm": "way/1011677469",
+      "coordinatesWgs84": [
+        45.358532,
+        2.038081
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjidka isbahaysiga جامع التضامن الإسلامي",
+      "osm": "node/34006525",
+      "coordinatesWgs84": [
+        45.330424,
+        2.03576
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Degmada Deyniile",
+      "osm": "way/835495512",
+      "coordinatesWgs84": [
+        45.288315,
+        2.09528
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministry of Defence of Somalia",
+      "osm": "way/1373530319",
+      "coordinatesWgs84": [
+        45.30938,
+        2.060773
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zamzam University",
+      "osm": "way/713009128",
+      "coordinatesWgs84": [
+        45.264039,
+        2.071298
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mogadishu Stadium",
+      "osm": "way/609620228",
+      "coordinatesWgs84": [
+        45.335469,
+        2.067459
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ahmed Gurey Monument",
+      "osm": "node/9208024997",
+      "coordinatesWgs84": [
+        45.310717,
+        2.031673
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Battle of Mogadishu 1993 - first Black Hawk down (Wolcott)",
+      "osm": "node/9201097499",
+      "coordinatesWgs84": [
+        45.326361,
+        2.052615
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mogadishu Cathedral",
+      "osm": "way/126234890",
+      "coordinatesWgs84": [
+        45.341611,
+        2.035785
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Battle of Mogadishu 1993 - second Black Hawk down (Durant)",
+      "osm": "node/9201097500",
+      "coordinatesWgs84": [
+        45.326354,
+        2.04724
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Eng. Yariisow Stadium",
+      "osm": "way/5057908",
+      "coordinatesWgs84": [
+        45.356788,
+        2.042154
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "DKM Boba & Waffles",
+      "osm": "way/1362840018",
+      "coordinatesWgs84": [
+        45.317411,
+        2.142663
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjidka Afarta Minaaradood",
+      "osm": "way/1024928619",
+      "coordinatesWgs84": [
+        45.391671,
+        2.085456
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Keysane Hospital",
+      "osm": "way/1373864082",
+      "coordinatesWgs84": [
+        45.386955,
+        2.053519
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SOS Hospital",
+      "osm": "way/1373683895",
+      "coordinatesWgs84": [
+        45.369102,
+        2.090227
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Suuqa Wayn",
+      "osm": "way/308595147",
+      "coordinatesWgs84": [
+        45.290011,
+        2.020865
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Somali Marino Coast and Navy Guard",
+      "osm": "way/1371916687",
+      "coordinatesWgs84": [
+        45.32215,
+        2.020379
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Somali Aviation Academy",
+      "osm": "way/1373751544",
+      "coordinatesWgs84": [
+        45.304926,
+        2.019162
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "afrikan village residence",
+      "osm": "node/4243421295",
+      "coordinatesWgs84": [
+        45.31294,
+        2.045585
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1229,
+      "sha256": "ca058908ce32f3fd98114a951775983e48a777171323731516faef017b9bf5a4"
+    },
+    "geometry.ts": {
+      "bytes": 22343,
+      "sha256": "1bc9fd7e4984fa9272ff1d68ebc91461f02a71f856bf2a4946f83f96d2b34233"
+    },
+    "places.ts": {
+      "bytes": 9646,
+      "sha256": "e864fd8a217ce82495cda6584d3c6f391d180d3403e06c120b7643d9c803d493"
+    },
+    "terrain.ts": {
+      "bytes": 51416,
+      "sha256": "40b6aa0e80295b0380e82575e24c3fada2671ebc0f0dc272d377a9205577c089"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "cbac699db6c5b657252c56e77bc35e54744a936231abe5c22a093180bb841396"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

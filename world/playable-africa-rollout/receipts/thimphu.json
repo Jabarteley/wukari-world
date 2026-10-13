@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "thimphu",
+  "countryIso2": "BT",
+  "generationIdentity": {
+    "cityId": "thimphu",
+    "stateId": "bt-thimphu",
+    "stateName": "Thimphu"
+  },
+  "inventorySha256": "4754251d39d56dc1537737eb379aff707e6e2929426af2cd054094b2fc7c8481",
+  "inventoryPath": "world/playable-africa-rollout/sources/thimphu.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "thimphu-airport",
+    "name": "Paro International Airport",
+    "lon": 89.424599,
+    "lat": 27.4032,
+    "sourceUrl": "https://ourairports.com/airports/VQPR/"
+  },
+  "bounds": [
+    27.290473710066024,
+    89.41447965842985,
+    27.65223548993398,
+    89.83650211956622
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf",
+      "datasetSha256": "2c1354be334d3e7ed45ba1ac94b0dfedd93de4e35970232ca7e4e9536ac5114e",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 23618779,
+          "md5": "1ca3f314308ebc51d36febcf5b074943",
+          "sha256": "ded95c6492c9f3f77ad528e5dd25255a99fec83a94113914b9b93c5ac8574d30"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/india/eastern-zone-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 247241895,
+          "md5": "86d77f4f7b9246085aa0081f32e51100",
+          "sha256": "1644aac81a450816f97593aef9aebf0e03f82beee70882e9bff7d41fe60bc2ce",
+          "reason": "way/751503085 (Bhutan-India border, relation 184629 member; 2/2 nodes at 26.80N 89.46E) lies in the Geofabrik eastern-zone polygon and not in bhutan, nepal, bangladesh, china or north-eastern-zone"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "4780f122450b5d8d1b629a2450532c4cb40fad1768f0db8714ae16222af9e539",
+          "elements": 699
+        },
+        {
+          "file": "extras.json",
+          "sha256": "3fe84dd6989e3654348ce0200b04f28b7bd8c05fbd1afa7d51b102bbea63db6e",
+          "elements": 146
+        },
+        {
+          "file": "water.json",
+          "sha256": "7f10ed0c83815e90167795d4efd5e899b9e967f87eafbfa8fcd3189b391b2d31",
+          "elements": 44
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b73255872b2fac66510cf0b6882be249240b58426d2c78791749a67c834a485e",
+          "elements": 302
+        },
+        {
+          "file": "roads.json",
+          "sha256": "72f808a318fa257396ac88c51318e3d7500f2dba467cfbc99bdad494ea55ab00",
+          "elements": 339
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 70,
+    "neighbourhoodLabels": 6,
+    "landPolygons": 17,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 4
+  },
+  "observed": {
+    "places": 699,
+    "extras": 146,
+    "water": 44,
+    "landuse": 302,
+    "roads": 339
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1208,
+      "sha256": "d6e9d3a1bce76bf14fd0ea749c30c266bdbe37873693a0ebe73d3cb52f4ada2c"
+    },
+    "geometry.ts": {
+      "bytes": 24698,
+      "sha256": "606cb82c42b64f1fac4877e78518faac48e1e9ee28201b4c7ba11c9dcb0ecb47"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "b0d96ed224561ff1fcc553007087c639f593c7bcc657a19325bed60ebae0e3b5"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/thimphu.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

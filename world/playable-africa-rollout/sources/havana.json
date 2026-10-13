@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "havana",
+  "countryIso2": "CU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Havana",
+    "coordinatesWgs84": [
+      -82.3589631,
+      23.135305
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/cuba-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "havana-airport",
+    "name": "José Martí International Airport",
+    "lon": -82.40910339355469,
+    "lat": 22.989200592041016,
+    "sourceUrl": "https://ourairports.com/airports/MUHA/"
+  },
+  "boxes": {
+    "play": [
+      22.95442411006602,
+      -82.5546022865957,
+      23.316185889933976,
+      -82.1633239134043
+    ],
+    "core": [
+      23.090084777516505,
+      -82.40782317211331,
+      23.180525222483492,
+      -82.31010302788668
+    ],
+    "outline": [
+      22.90442411006602,
+      -82.60460228659569,
+      23.366185889933977,
+      -82.1133239134043
+    ],
+    "wide": [
+      22.35442411006602,
+      -83.15460228659569,
+      23.916185889933978,
+      -81.5633239134043
+    ],
+    "water": [
+      22.35442411006602,
+      -83.15460228659569,
+      23.916185889933978,
+      -81.5633239134043
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/cuba-261011.osm.pbf",
+    "datasetSha256": "a2b6b33698a850d2445a162a6b4728ab09392f1618370f680046a9f6f4762595",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "af379944803aeed347610a5e89895ccb1e061ddde3b1d55f654f53efb7b0513e",
+        "elements": 2401
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8b7f90d43c4824fb44d24c0ea4cc58e397144507db054d808e55aaac899dbdb0",
+        "elements": 820
+      },
+      {
+        "file": "water.json",
+        "sha256": "426f5fe8c46d31f478c1747745e047870f60bafef98a3734357f0235b1191183",
+        "elements": 691
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "c99036055c2abf425c8196e24fb49d158828017bd32d02695f90b5d78e38c3bf",
+        "elements": 2501
+      },
+      {
+        "file": "roads.json",
+        "sha256": "3eac02e5b2b896e7a97346b15e358979dc448e65f62fa5bfccffa0543f79d00a",
+        "elements": 2908
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Havana",
+      "osm": "way/23872644",
+      "coordinatesWgs84": [
+        -82.354541,
+        23.12994
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "El Cuarto de Tula",
+      "osm": "node/5029240527",
+      "coordinatesWgs84": [
+        -82.377276,
+        23.138464
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Academia de las FAR General Máximo Gómez",
+      "osm": "way/367375102",
+      "coordinatesWgs84": [
+        -82.247401,
+        23.173838
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Militar Dr. Carlos J. Finlay",
+      "osm": "way/38804278",
+      "coordinatesWgs84": [
+        -82.433164,
+        23.082074
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Havana Zoological Garden",
+      "osm": "way/231769366",
+      "coordinatesWgs84": [
+        -82.397172,
+        23.110574
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Agropecuario",
+      "osm": "node/3903174200",
+      "coordinatesWgs84": [
+        -82.4636,
+        22.984419
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Basilica Menor de San Francisco de Asís",
+      "osm": "way/38575195",
+      "coordinatesWgs84": [
+        -82.348475,
+        23.137085
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Revolution Square",
+      "osm": "way/319925515",
+      "coordinatesWgs84": [
+        -82.385945,
+        23.12455
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Capitol",
+      "osm": "relation/12639209",
+      "coordinatesWgs84": [
+        -82.359707,
+        23.135244
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Superior de Arte (ISA)",
+      "osm": "way/331472906",
+      "coordinatesWgs84": [
+        -82.447009,
+        23.08858
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pan American Stadium",
+      "osm": "way/1490900566",
+      "coordinatesWgs84": [
+        -82.316842,
+        23.157687
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hemingway House Havana",
+      "osm": "node/2199414676",
+      "coordinatesWgs84": [
+        -82.296407,
+        23.067768
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Leonor Pérez",
+      "osm": "way/1419495076",
+      "coordinatesWgs84": [
+        -82.33835,
+        23.104177
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Aquarium",
+      "osm": "way/257926030",
+      "coordinatesWgs84": [
+        -82.43655,
+        23.11509
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Pedro Marrero",
+      "osm": "way/1170872914",
+      "coordinatesWgs84": [
+        -82.412957,
+        23.107446
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "John Lennon Park",
+      "osm": "way/23919819",
+      "coordinatesWgs84": [
+        -82.400193,
+        23.131924
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Latin American Stadium",
+      "osm": "way/665673095",
+      "coordinatesWgs84": [
+        -82.375999,
+        23.118385
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fraternity park",
+      "osm": "way/245349429",
+      "coordinatesWgs84": [
+        -82.360487,
+        23.133179
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Tecnológica de la Habana \"José Antonio Echeverría\" (CUJAE)",
+      "osm": "relation/17595359",
+      "coordinatesWgs84": [
+        -82.41577,
+        23.051437
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parroquia de San Juan Bosco",
+      "osm": "way/379448607",
+      "coordinatesWgs84": [
+        -82.37892,
+        23.096493
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Templo Beth Shalom",
+      "osm": "way/312320219",
+      "coordinatesWgs84": [
+        -82.389299,
+        23.141776
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Paladar La Guarida",
+      "osm": "node/993692568",
+      "coordinatesWgs84": [
+        -82.368335,
+        23.13834
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Instituto Superior de Ciencias y Tecnologías Aplicadas",
+      "osm": "way/385503017",
+      "coordinatesWgs84": [
+        -82.381293,
+        23.131698
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Neurología y Neurocirugía",
+      "osm": "node/4157873423",
+      "coordinatesWgs84": [
+        -82.387964,
+        23.131463
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1228,
+      "sha256": "15973008cdaaa0623d30404352aa7137fbcaf7e41c9808b1a9118f25e628b4da"
+    },
+    "geometry.ts": {
+      "bytes": 79250,
+      "sha256": "54c2582ca4d4887feadc2f8e5adde665417cd5f4ab09ab507d3ff62c563c4e6f"
+    },
+    "places.ts": {
+      "bytes": 10115,
+      "sha256": "7704181c51d5e5920a3ae6bbe6a385cd768f1f5a50079c58f932da2aa50a6732"
+    },
+    "terrain.ts": {
+      "bytes": 141003,
+      "sha256": "ab5fdfa2a0941f4425d2b73e83bfbb87dd7db5ae1c8dcf88ed456dda24628177"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "bfa410a335a777d7353330ebde09c898fa109853c033a2d9cfcfc2d76359f123"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

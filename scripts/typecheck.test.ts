@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import test, { type TestContext } from 'node:test';
+import { DATA_MODULE, declarationOf } from './typecheck-data-stubs.ts';
 
 // Run the actual wrapper against bounded fake compiler processes. These tests verify process
 // completion and diagnostic ownership; they do not replace compilation of the real projects.
@@ -17,6 +18,7 @@ function fixture(t: TestContext, compiler: string, baseline: Record<string, Reco
   const target = join(root, 'scripts/typecheck.ts');
   copyFileSync(source, target);
   assert.deepEqual(readFileSync(target), readFileSync(source), 'execute the exact current wrapper');
+  copyFileSync(new URL('./typecheck-data-stubs.ts', import.meta.url), join(root, 'scripts/typecheck-data-stubs.ts'));
   writeFileSync(join(root, 'tsconfig/baseline.json'), JSON.stringify({ projects: baseline }));
   writeFileSync(join(root, 'node_modules/vue-tsc/bin/vue-tsc.js'), compiler);
   return () => spawnSync(process.execPath, ['--experimental-strip-types', target, '--serial'], {
@@ -91,4 +93,18 @@ test('typecheck wrapper rejects abnormal exit even when imported diagnostics loo
   assert.equal(result.status, 1);
   assert.match(result.stderr, /compiler exited unexpected status 17/);
   assert.doesNotMatch(result.stdout, /Typecheck clean/);
+});
+
+test('a city data module reaches the compiler as its declaration only, anything else as written', () => {
+  const header = "/**\n * Generated.\n */\nimport type { DestinationTerrain } from '../africa/map.ts'\n\n";
+  assert.ok(DATA_MODULE.test('/repo/src/game/cities/accra/terrain.ts'));
+  assert.ok(DATA_MODULE.test('/repo/src/game/cities/port-louis/places.ts'));
+  assert.ok(!DATA_MODULE.test('/repo/src/game/cities/accra/map.ts'));
+  assert.ok(!DATA_MODULE.test('/repo/src/game/cities/accra/terrain.test.ts'));
+  assert.equal(declarationOf(`${header}export const TERRAIN: DestinationTerrain = {\n  water: [[[[1,2]]]],\n}\n`), `${header}export declare const TERRAIN: DestinationTerrain\n`);
+  assert.equal(declarationOf("import type { DestinationPlace } from '../africa/types.ts'\n\nexport const PLACES: readonly DestinationPlace[] = [\n]\n"), "import type { DestinationPlace } from '../africa/types.ts'\n\nexport declare const PLACES: readonly DestinationPlace[]\n");
+  // A module with a value import, a function or no annotation is not a generated literal: it is read as written.
+  assert.equal(declarationOf("import { x } from './x.ts'\nexport const GEOMETRY: G = { x }\n"), null);
+  assert.equal(declarationOf('export const GEOMETRY = {}\n'), null);
+  assert.equal(declarationOf('export function geometry() {}\n'), null);
 });

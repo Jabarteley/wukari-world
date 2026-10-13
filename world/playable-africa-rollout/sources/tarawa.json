@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tarawa",
+  "countryIso2": "KI",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "South Tarawa",
+    "coordinatesWgs84": [
+      173.0386512,
+      1.3490778
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/kiribati-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "tarawa-airport",
+    "name": "Bonriki International Airport",
+    "lon": 173.147003,
+    "lat": 1.38164,
+    "sourceUrl": "https://ourairports.com/airports/NGTA/"
+  },
+  "boxes": {
+    "play": [
+      1.1681969100660217,
+      172.858924892749,
+      1.5299586899339785,
+      173.218377507251
+    ],
+    "core": [
+      1.3038575775165056,
+      172.99372233854598,
+      1.3942980224834947,
+      173.08358006145403
+    ],
+    "outline": [
+      1.1181969100660216,
+      172.808924892749,
+      1.5799586899339786,
+      173.26837750725102
+    ],
+    "wide": [
+      0.5681969100660217,
+      172.258924892749,
+      2.1299586899339786,
+      173.818377507251
+    ],
+    "water": [
+      0.5681969100660217,
+      172.258924892749,
+      2.1299586899339786,
+      173.818377507251
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/kiribati-261011.osm.pbf",
+    "datasetSha256": "56ef5269f39bb35fa03fc7b99b8641845d629695e237ced5fd21ae1b136047a8",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "c19bd7a61a78e4b7b3360612fe94c1bfa678e1da4972445192eab6360f876180",
+        "elements": 89
+      },
+      {
+        "file": "extras.json",
+        "sha256": "e7198b37ec9a7b21442d5f44c63b7b2c2b2358c02ab57b8ef5f3e96bc1cf890e",
+        "elements": 55
+      },
+      {
+        "file": "water.json",
+        "sha256": "1bcab95f16b4aab7d6f2ba1b0f0ee6846cdd079abcb6a07f771a93119079e5ad",
+        "elements": 152
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b0264d90d75eca87cc03fb51ab62c6ae6fc87b6646cbcfa5ac2ccd137304fd32",
+        "elements": 40
+      },
+      {
+        "file": "roads.json",
+        "sha256": "1e933a9341a975fb0544f2a4f52a232165b072eaef36c5cab126197b7329446f",
+        "elements": 29
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Ferry to North Tarawa",
+      "osm": "node/1051474544",
+      "coordinatesWgs84": [
+        172.97492,
+        1.331946
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Swampy's",
+      "osm": "node/2395665986",
+      "coordinatesWgs84": [
+        173.144965,
+        1.361875
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kiribati Technical Institute",
+      "osm": "node/2399104525",
+      "coordinatesWgs84": [
+        172.932401,
+        1.35883
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tungaru Central Hospital - Female Ward",
+      "osm": "way/498370391",
+      "coordinatesWgs84": [
+        173.113268,
+        1.362628
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Amusement Park",
+      "osm": "node/12062291831",
+      "coordinatesWgs84": [
+        173.004976,
+        1.332523
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Betio Super Market",
+      "osm": "way/335676916",
+      "coordinatesWgs84": [
+        172.927936,
+        1.3567
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sacred Heart Cathedral",
+      "osm": "way/90810971",
+      "coordinatesWgs84": [
+        173.007222,
+        1.332587
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tenimanraoi Maneaba",
+      "osm": "way/291432462",
+      "coordinatesWgs84": [
+        172.94724,
+        1.349512
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "House of Assembly",
+      "osm": "way/541856638",
+      "coordinatesWgs84": [
+        173.038842,
+        1.350291
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "EBS Dormitory",
+      "osm": "way/231551186",
+      "coordinatesWgs84": [
+        173.124813,
+        1.365357
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bariki National Stadium",
+      "osm": "way/223373092",
+      "coordinatesWgs84": [
+        172.977054,
+        1.329059
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kiribati National Museum and Cultural Centre",
+      "osm": "way/497807556",
+      "coordinatesWgs84": [
+        173.120726,
+        1.365728
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bouta Lodge Bar",
+      "osm": "way/472259897",
+      "coordinatesWgs84": [
+        173.124933,
+        1.399054
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Eita",
+      "osm": "node/4884735821",
+      "coordinatesWgs84": [
+        173.068872,
+        1.358797
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Titarbakti Cafe",
+      "osm": "node/2398053764",
+      "coordinatesWgs84": [
+        173.145131,
+        1.379734
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bill house",
+      "osm": "node/5850089487",
+      "coordinatesWgs84": [
+        173.158837,
+        1.36154
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marine Training Centre",
+      "osm": "way/496795760",
+      "coordinatesWgs84": [
+        172.939815,
+        1.354168
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "USP Kiribati Campus",
+      "osm": "way/791807366",
+      "coordinatesWgs84": [
+        173.013365,
+        1.333616
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tungaru Central Hospital (Hospital, Dentist, Ministry of Health)",
+      "osm": "way/223383917",
+      "coordinatesWgs84": [
+        173.139441,
+        1.362276
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tobwaan te Tongo Park",
+      "osm": "way/851490550",
+      "coordinatesWgs84": [
+        173.145645,
+        1.366988
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "TTRP",
+      "osm": "node/12062288381",
+      "coordinatesWgs84": [
+        172.950526,
+        1.347401
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Main port",
+      "osm": "node/5850089485",
+      "coordinatesWgs84": [
+        173.118736,
+        1.365386
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Domestic Ferry Pier",
+      "osm": "node/5504031221",
+      "coordinatesWgs84": [
+        172.930472,
+        1.359258
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Betio Hospital",
+      "osm": "way/1065417644",
+      "coordinatesWgs84": [
+        172.926666,
+        1.357955
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1246,
+      "sha256": "29fd2c7c92643c6137670b31fcf8f5aee11a82406ef5196971afe6aeaf39c21c"
+    },
+    "geometry.ts": {
+      "bytes": 51488,
+      "sha256": "00dbfeda922f6659fbe6b343aa3bff303abac61ce0f2255552476ca393dfaf6c"
+    },
+    "places.ts": {
+      "bytes": 9329,
+      "sha256": "a4845e8440884fb882e8f17f1bd87dfa4d931ca4ca46994cb3c459a03aafe944"
+    },
+    "terrain.ts": {
+      "bytes": 183250,
+      "sha256": "1a3ce333244ed203893ddd02e13b0e18d4b14adc7153f6d254a376620872deb2"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "11d0fb3281d68f42cf341d1b07f05f8d6372a5183ce746edef8356101f11abce"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

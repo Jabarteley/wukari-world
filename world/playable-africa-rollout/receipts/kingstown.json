@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kingstown",
+  "countryIso2": "VC",
+  "generationIdentity": {
+    "cityId": "kingstown",
+    "stateId": "vc-kingstown",
+    "stateName": "Kingstown"
+  },
+  "inventorySha256": "138ec1762f78f7fd62c0d0d30c26b7a7428ffdb9d4d7b43290577e0fd5dab341",
+  "inventoryPath": "world/playable-africa-rollout/sources/kingstown.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "kingstown-airport",
+    "name": "Argyle International Airport",
+    "lon": -61.148801,
+    "lat": 13.159725,
+    "sourceUrl": "https://ourairports.com/airports/TVSA/"
+  },
+  "bounds": [
+    12.97530551006602,
+    -61.41260416105407,
+    13.337067289933978,
+    -61.04332003894593
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5707c265e87710e8f0a4e8ea44591fcc420f4111849b8ecd59ea226e2e1547bf",
+          "elements": 188
+        },
+        {
+          "file": "extras.json",
+          "sha256": "cd8c01b5bab4b0c1774ab43a89177443df62e60ffc87d680e623992b98e9f29d",
+          "elements": 54
+        },
+        {
+          "file": "water.json",
+          "sha256": "d32b55dfde21b1ef1a97ee5c4dd8a559b3746e018061d35a95e68cf0a161faf5",
+          "elements": 242
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "695ff0a19f2f36ca2471f2657cba31ed6165ad6b2575bf2f53032012f6b6e6ac",
+          "elements": 124
+        },
+        {
+          "file": "roads.json",
+          "sha256": "324f6067f78bb16422b81cb7efb57ca17759aa1be52b929a97538200ea56024c",
+          "elements": 116
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 34,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 7,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "node/5480716454"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "village": 18
+    }
+  },
+  "observed": {
+    "places": 188,
+    "extras": 54,
+    "water": 242,
+    "landuse": 124,
+    "roads": 116
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1235,
+      "sha256": "78564432540993d5c149f3ecfce2adb4e77f728ed5882b0b73a4cf36e315d80b"
+    },
+    "geometry.ts": {
+      "bytes": 70693,
+      "sha256": "c477c52ae6bc1c34926a58d5bba4fe7684d9d0229bd19d22d6e32618619d674c"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "4281945f958bba7f8042e1f6b621aa636f326105ee60a0fba37fc0aefe3a0fd6"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/kingstown.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

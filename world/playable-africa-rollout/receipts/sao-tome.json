@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "sao-tome",
+  "countryIso2": "ST",
+  "generationIdentity": {
+    "cityId": "sao-tome",
+    "stateId": "st-sao-tome",
+    "stateName": "São Tomé"
+  },
+  "inventorySha256": "3840fada232ac8dcfa38af2fc68f2ec42da616a92526c8475a796c3ffbf120d6",
+  "inventoryPath": "world/playable-africa-rollout/sources/sao-tome.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "sao-tome-airport",
+    "name": "São Tomé International Airport",
+    "lon": 6.71215,
+    "lat": 0.378175,
+    "sourceUrl": "https://ourairports.com/airports/FPST/"
+  },
+  "bounds": [
+    0.15804331006602154,
+    6.5516334710351485,
+    0.5198050899339784,
+    6.910972728964851
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/sao-tome-and-principe-261011.osm.pbf",
+      "datasetSha256": "e464a14fb7f49472a4ffc5042232d4e29aaad5c64fcb154309e46b2bf637fc5e",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "f5ec9286f13350ff2414b99e7310c00160124eab9ea1150c92646b3b46a5a9c1",
+          "elements": 99
+        },
+        {
+          "file": "extras.json",
+          "sha256": "fcbcd88390215825dee79c201bac7a2bd14e6471be310cfba78e821c51f47821",
+          "elements": 31
+        },
+        {
+          "file": "water.json",
+          "sha256": "6fe1cd99a855af982d382b10266005467cf4d58d2f2326ef94f46f06cfc97edb",
+          "elements": 77
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "32aee240bc14ee85f6a8a094ce7d4be1ef729c3dce7b455470e36caa6b5ab51c",
+          "elements": 369
+        },
+        {
+          "file": "roads.json",
+          "sha256": "18520fc1192b1b96ebe9aea5bfdfa0e9d38f07d57cfd1c53cec3794a9e245276",
+          "elements": 106
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 23,
+    "roads": 37,
+    "neighbourhoodLabels": 13,
+    "landPolygons": 14,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "observed": {
+    "places": 99,
+    "extras": 31,
+    "water": 77,
+    "landuse": 369,
+    "roads": 106
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1258,
+      "sha256": "df1413cf4b6e67062c8ad649fe32b100420ceada44ce8bb59ca3e6ba1b996c19"
+    },
+    "geometry.ts": {
+      "bytes": 29517,
+      "sha256": "e633bd2907929d871a0682213e25baab8c12e961244e070d1999b9cb58c865b9"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "43ad09e64a85c0c96fa48b2350a338a669ba1732fde4bd3601e07909b44efac1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/sao-tome.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

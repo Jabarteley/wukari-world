@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "cityId": "male",
+  "countryIso2": "MV",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Malé",
+    "coordinatesWgs84": [
+      73.5107387,
+      4.1779879
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/maldives-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "male-airport",
+    "name": "Velana International Airport",
+    "lon": 73.529099,
+    "lat": 4.19183,
+    "sourceUrl": "https://ourairports.com/airports/VRMM/"
+  },
+  "boxes": {
+    "play": [
+      3.997107010066021,
+      73.33055529711906,
+      4.358868789933978,
+      73.69092210288095
+    ],
+    "core": [
+      4.132767677516505,
+      73.46570085131668,
+      4.223208122483494,
+      73.55577654868333
+    ],
+    "outline": [
+      3.9471070100660213,
+      73.28055529711907,
+      4.408868789933978,
+      73.74092210288094
+    ],
+    "wide": [
+      3.397107010066021,
+      72.73055529711907,
+      4.958868789933978,
+      74.29092210288094
+    ],
+    "water": [
+      3.397107010066021,
+      72.73055529711907,
+      4.958868789933978,
+      74.29092210288094
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/maldives-261011.osm.pbf",
+    "datasetSha256": "d4db22dc16c3ef027aa1a3245e4967cee59006f7e2ecebdfc482e5680f824604",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "962500319e3f244162d46599cf1a53e34420876c5c37e30b805199a5b63d205d",
+        "elements": 340
+      },
+      {
+        "file": "extras.json",
+        "sha256": "2d35f81dbf0aa805c83d9b44ceeb6f53425d554670912294afd29b6aece72e8e",
+        "elements": 84
+      },
+      {
+        "file": "water.json",
+        "sha256": "dde19619a78afba8e33fc24dd43c834978e8f27c3131ee5652e9969eda4b7ae2",
+        "elements": 374
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d26bec11e581ddb41b800bffe201a84d08fcdee7d02a32a30d8b1e91d95b2a12",
+        "elements": 99
+      },
+      {
+        "file": "roads.json",
+        "sha256": "07c83f297b8afd6ccae3fc63510af6d55923bb46397edcbf262953ca26f3e916",
+        "elements": 47
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [],
+  "selectedPlaces": [
+    {
+      "name": "Heinveru Ferry Terminal (public ferry to other atolls)",
+      "osm": "node/3063811852",
+      "coordinatesWgs84": [
+        73.517028,
+        4.177941
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fukuya Teppanyaki",
+      "osm": "node/5818314168",
+      "coordinatesWgs84": [
+        73.554008,
+        4.287386
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Villa College",
+      "osm": "way/1317793006",
+      "coordinatesWgs84": [
+        73.509051,
+        4.169612
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Indira Gandhi Memorial Hospital",
+      "osm": "way/151403710",
+      "coordinatesWgs84": [
+        73.501608,
+        4.173351
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sunset Park",
+      "osm": "way/436805451",
+      "coordinatesWgs84": [
+        73.544678,
+        4.220408
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché Local",
+      "osm": "way/153106623",
+      "coordinatesWgs84": [
+        73.508575,
+        4.179707
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bihuroazu Kamanaa Mosque",
+      "osm": "way/1037933653",
+      "coordinatesWgs84": [
+        73.510629,
+        4.17588
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Secretariat of th Huraa Council Maaleatolhu",
+      "osm": "node/6367296535",
+      "coordinatesWgs84": [
+        73.59938,
+        4.33314
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ministry of Foreign Affairs",
+      "osm": "node/14081772854",
+      "coordinatesWgs84": [
+        73.514096,
+        4.178357
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Avid College",
+      "osm": "node/6294958141",
+      "coordinatesWgs84": [
+        73.512929,
+        4.171026
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Football Stadium",
+      "osm": "way/186667274",
+      "coordinatesWgs84": [
+        73.512999,
+        4.174085
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Medhu Ziyaaraiy",
+      "osm": "way/306746570",
+      "coordinatesWgs84": [
+        73.512642,
+        4.177582
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King Salman Mosque",
+      "osm": "way/959150179",
+      "coordinatesWgs84": [
+        73.518511,
+        4.175749
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ADK Hospital",
+      "osm": "way/1317929099",
+      "coordinatesWgs84": [
+        73.515284,
+        4.174937
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjid-al-Sultan Muhammad Thakurufaanu Al Auzam",
+      "osm": "way/151402193",
+      "coordinatesWgs84": [
+        73.510558,
+        4.178465
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maldives National University",
+      "osm": "node/8935561366",
+      "coordinatesWgs84": [
+        73.509021,
+        4.171219
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vihamanaafushi",
+      "osm": "way/19881993",
+      "coordinatesWgs84": [
+        73.51968,
+        4.226371
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vista Del Mar",
+      "osm": "node/12109909429",
+      "coordinatesWgs84": [
+        73.397521,
+        4.098851
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lime Restaurant",
+      "osm": "way/116704222",
+      "coordinatesWgs84": [
+        73.426919,
+        4.283589
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marina Clinic",
+      "osm": "node/9559425955",
+      "coordinatesWgs84": [
+        73.463464,
+        4.123857
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sharks and rays viewpoint",
+      "osm": "node/12849075901",
+      "coordinatesWgs84": [
+        73.493364,
+        4.268835
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sunset View Point",
+      "osm": "node/6398078446",
+      "coordinatesWgs84": [
+        73.568092,
+        4.31136
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Redbull Park",
+      "osm": "way/897444516",
+      "coordinatesWgs84": [
+        73.542069,
+        4.206711
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tree Tower Park",
+      "osm": "way/437135029",
+      "coordinatesWgs84": [
+        73.541873,
+        4.213866
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1237,
+      "sha256": "61bf8be84dc5b72a880b005f7646ec0bd32a58c8373faba6fa046c5969aa4def"
+    },
+    "geometry.ts": {
+      "bytes": 457722,
+      "sha256": "97db652fc6664c01ccc2c1abdc844c2ff46d1706a3a94aa36b2ff205826bbc85"
+    },
+    "places.ts": {
+      "bytes": 9510,
+      "sha256": "8700ff2000df9a89b81da880c6b529b44630a706262ca9fb4da8322a4f9bbe61"
+    },
+    "terrain.ts": {
+      "bytes": 266790,
+      "sha256": "99f332ca19afbe9df6a71c2623e00467833389698a8afc94f7103079b44bb3af"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "e66422774638e94a647cf74e642e964f78a3901b501bf9917a57f1c1dd9790b3"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

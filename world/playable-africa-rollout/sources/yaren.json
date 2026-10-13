@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "cityId": "yaren",
+  "countryIso2": "NR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Yaren",
+    "coordinatesWgs84": [
+      166.9163479,
+      -0.5471064
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/nauru-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "yaren-airport",
+    "name": "Nauru International Airport",
+    "lon": 166.919525,
+    "lat": -0.547893,
+    "sourceUrl": "https://ourairports.com/airports/ANYN/"
+  },
+  "boxes": {
+    "play": [
+      -0.7279872899339784,
+      166.73667116198516,
+      -0.36622551006602155,
+      167.09602463801485
+    ],
+    "core": [
+      -0.5923266224834947,
+      166.87142994096226,
+      -0.5018861775165053,
+      166.96126585903775
+    ],
+    "outline": [
+      -0.7779872899339785,
+      166.68667116198515,
+      -0.31622551006602156,
+      167.14602463801486
+    ],
+    "wide": [
+      -1.3279872899339784,
+      166.13667116198516,
+      0.23377448993397842,
+      167.69602463801485
+    ],
+    "water": [
+      -1.3279872899339784,
+      166.13667116198516,
+      0.23377448993397842,
+      167.69602463801485
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/nauru-261011.osm.pbf",
+    "datasetSha256": "45688d43675a6ac33b02b39d09052011ee762aeacb9451669eb2f7c97ecfe47f",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "773e290396edc69f7fa19ca83a7ec43b9b6426359f3a8720dde3994df02c11a6",
+        "elements": 189
+      },
+      {
+        "file": "extras.json",
+        "sha256": "298f6bd2e5c17f5058e4fbdeb35c328b708413c583af0e86650d470452386ca4",
+        "elements": 9
+      },
+      {
+        "file": "water.json",
+        "sha256": "c9fb19e4c6204d0981d888c1ee9169a3a859b4bfdb9d3be7fbfcaf546aa6d7dd",
+        "elements": 28
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "0650fa84da90c3965af50cd2b110ba4ddc8feb28128049432ab1f7477e648a1a",
+        "elements": 45
+      },
+      {
+        "file": "roads.json",
+        "sha256": "7532b0796db0a3d990e95c1f2c151abca9ee5e02636a5d450c4d7e166a486b92",
+        "elements": 16
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Bondi Beach",
+      "osm": "node/5749424707",
+      "coordinatesWgs84": [
+        166.927763,
+        -0.553243
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nauru College",
+      "osm": "way/357945014",
+      "coordinatesWgs84": [
+        166.914581,
+        -0.522239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nauru Medical Centre",
+      "osm": "way/520015485",
+      "coordinatesWgs84": [
+        166.914996,
+        -0.523863
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ella Park",
+      "osm": "way/1184486003",
+      "coordinatesWgs84": [
+        166.921225,
+        -0.550448
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of Christ the King",
+      "osm": "way/160584951",
+      "coordinatesWgs84": [
+        166.931583,
+        -0.505813
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Civic Centre",
+      "osm": "way/126994205",
+      "coordinatesWgs84": [
+        166.911941,
+        -0.538806
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Government Building",
+      "osm": "way/160603356",
+      "coordinatesWgs84": [
+        166.917317,
+        -0.547435
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of the South Pacific (Nauru Campus)",
+      "osm": "way/1184110658",
+      "coordinatesWgs84": [
+        166.915084,
+        -0.545767
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bunker",
+      "osm": "node/6717696888",
+      "coordinatesWgs84": [
+        166.952703,
+        -0.528116
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Naoero Museum",
+      "osm": "node/6936364885",
+      "coordinatesWgs84": [
+        166.914786,
+        -0.545113
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Crystal’s restaurant",
+      "osm": "node/12057081469",
+      "coordinatesWgs84": [
+        166.949314,
+        -0.540265
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lagoon viewpoint",
+      "osm": "node/5943958387",
+      "coordinatesWgs84": [
+        166.923022,
+        -0.534968
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tropicana Cafe",
+      "osm": "node/10994324451",
+      "coordinatesWgs84": [
+        166.938618,
+        -0.503537
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Japanese WWII Gun",
+      "osm": "node/4898470422",
+      "coordinatesWgs84": [
+        166.916773,
+        -0.530941
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Japanese WWII guns and bunker",
+      "osm": "node/10994460231",
+      "coordinatesWgs84": [
+        166.92438,
+        -0.543957
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gun",
+      "osm": "node/6715040385",
+      "coordinatesWgs84": [
+        166.921971,
+        -0.548699
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1232,
+      "sha256": "abb5fcbf4e5ffecb9d6659f7e4d9d85f9924e8bf40ad8aa2accf43a67a126abb"
+    },
+    "geometry.ts": {
+      "bytes": 10558,
+      "sha256": "8f4a7c3d4421e7e86708ab306350bf5ce28ede4923e7e6c374c49989254aafa6"
+    },
+    "places.ts": {
+      "bytes": 6426,
+      "sha256": "27eca6a28e33175e58d1c3bfffdfc7458d2a8d9653ddc12135bca4e6210f44ff"
+    },
+    "terrain.ts": {
+      "bytes": 8629,
+      "sha256": "e7d762c4c2e7f8963bc3b0da1035e0e80f4103d31498ac14a212a9353c718de0"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "c044a399b10dd2b0f0901c6a192f524dcef7da536ef319ab16103277a90debfb"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

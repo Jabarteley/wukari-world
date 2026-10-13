@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "cityId": "koror",
+  "countryIso2": "PW",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Koror",
+    "coordinatesWgs84": [
+      134.4766767,
+      7.343275
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/palau-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "koror-airport",
+    "name": "Roman Tmetuchl International Airport",
+    "lon": 134.544085,
+    "lat": 7.366965,
+    "sourceUrl": "https://ourairports.com/airports/PTRO/"
+  },
+  "boxes": {
+    "play": [
+      7.162394110066022,
+      134.29545409185195,
+      7.524155889933978,
+      134.65789930814807
+    ],
+    "core": [
+      7.298054777516506,
+      134.43138508515648,
+      7.3884952224834946,
+      134.52196831484355
+    ],
+    "outline": [
+      7.112394110066022,
+      134.24545409185194,
+      7.574155889933978,
+      134.7078993081481
+    ],
+    "wide": [
+      6.562394110066022,
+      133.69545409185196,
+      8.124155889933979,
+      135.25789930814807
+    ],
+    "water": [
+      6.562394110066022,
+      133.69545409185196,
+      8.124155889933979,
+      135.25789930814807
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/palau-261011.osm.pbf",
+    "datasetSha256": "1b5f1f629c982f6880edc285489e7022375666e56cbc655e9e5eb357c93353db",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "aad6e3e08fdc314e10f32e8f3cbeba935ea83f232c8ac7c493d1f3f492b05c35",
+        "elements": 98
+      },
+      {
+        "file": "extras.json",
+        "sha256": "3ab26820eb032bfe0b0d38e5b631439be03260471d304e8e4d1271c12c8dcc78",
+        "elements": 19
+      },
+      {
+        "file": "water.json",
+        "sha256": "b63b4fedc2cd7b1d71ddc6d1482e2c3f00e5d6e562c749ad0236648041599bc3",
+        "elements": 893
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b201e922cea978b599e68019ae59b32a1b35012b381c6884251f973d2077f5e0",
+        "elements": 172
+      },
+      {
+        "file": "roads.json",
+        "sha256": "0a97c879c2bb7c1b406c97e67f1e1dcb1486dce5e53fc314994aa546e169686b",
+        "elements": 24
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Koror Port",
+      "osm": "node/1389401974",
+      "coordinatesWgs84": [
+        134.457393,
+        7.333676
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Okemii Cafe",
+      "osm": "node/1385949667",
+      "coordinatesWgs84": [
+        134.635561,
+        7.499474
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Palau Public Library",
+      "osm": "way/436679194",
+      "coordinatesWgs84": [
+        134.470679,
+        7.341142
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Belau National Hospital",
+      "osm": "way/515651236",
+      "coordinatesWgs84": [
+        134.464061,
+        7.354008
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Asahi Baseball Field",
+      "osm": "way/54438039",
+      "coordinatesWgs84": [
+        134.47446,
+        7.340791
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "WCTC Shopping Center",
+      "osm": "way/515653366",
+      "coordinatesWgs84": [
+        134.477973,
+        7.342535
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nan'yō Shinto Shrine",
+      "osm": "node/9530465481",
+      "coordinatesWgs84": [
+        134.496873,
+        7.339665
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Palau Supreme Court",
+      "osm": "node/367695820",
+      "coordinatesWgs84": [
+        134.470011,
+        7.34138
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Capitol",
+      "osm": "way/1178068090",
+      "coordinatesWgs84": [
+        134.62427,
+        7.500195
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Stadium",
+      "osm": "way/35783457",
+      "coordinatesWgs84": [
+        134.47247,
+        7.343266
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Airai Bai",
+      "osm": "node/4031085076",
+      "coordinatesWgs84": [
+        134.560276,
+        7.361149
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Meteu 'L Klechem",
+      "osm": "node/9049179001",
+      "coordinatesWgs84": [
+        134.636194,
+        7.49243
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sacred Heart Church",
+      "osm": "way/436679168",
+      "coordinatesWgs84": [
+        134.484952,
+        7.345218
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Belau National Museum",
+      "osm": "way/436679166",
+      "coordinatesWgs84": [
+        134.476344,
+        7.336578
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Natinal",
+      "osm": "node/6257235586",
+      "coordinatesWgs84": [
+        134.522953,
+        7.365125
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Palau Crocodile Preserves",
+      "osm": "node/357256713",
+      "coordinatesWgs84": [
+        134.4978,
+        7.358035
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Airport Entrance",
+      "osm": "node/6257235485",
+      "coordinatesWgs84": [
+        134.545244,
+        7.368273
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Elilai",
+      "osm": "node/1384146475",
+      "coordinatesWgs84": [
+        134.462692,
+        7.341776
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sakura",
+      "osm": "node/13333745401",
+      "coordinatesWgs84": [
+        134.451123,
+        7.335745
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ngaremeduu Bay Conservation Area",
+      "osm": "node/357256793",
+      "coordinatesWgs84": [
+        134.462549,
+        7.336685
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Surangel's Supercenter",
+      "osm": "way/441805822",
+      "coordinatesWgs84": [
+        134.478437,
+        7.341789
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fish Market",
+      "osm": "node/9530641571",
+      "coordinatesWgs84": [
+        134.463551,
+        7.341643
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Belau Medical Clinic",
+      "osm": "node/4080475589",
+      "coordinatesWgs84": [
+        134.478402,
+        7.342211
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "5a7b0175a2afbeee2a434481ae9d420c3467474c67d7dc1af6ce404b4e62f3e5"
+    },
+    "geometry.ts": {
+      "bytes": 1295857,
+      "sha256": "947986c8c6d07e1fcbab49c34575dac6ae3036cf071ddfe86742d8056678e8ca"
+    },
+    "places.ts": {
+      "bytes": 8916,
+      "sha256": "58a54c26a6ad735b7c06006ea62af5c4861513c2b819cfbc5e6ad0c3f332c407"
+    },
+    "terrain.ts": {
+      "bytes": 736884,
+      "sha256": "cd688d6d66a3a71f5e22ee28d5f0e036187e5607f9db2a278c50fa56fb58e42e"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "9f62f85b0cefeb8def092add9922fa2fc7576930df3810e2e5268f15bfbff553"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

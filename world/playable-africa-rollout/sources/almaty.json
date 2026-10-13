@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "almaty",
+  "countryIso2": "KZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Almaty",
+    "coordinatesWgs84": [
+      76.9457275,
+      43.2363924
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "almaty-airport",
+    "name": "Almaty International Airport",
+    "lon": 77.042828,
+    "lat": 43.354267,
+    "sourceUrl": "https://ourairports.com/airports/UAAA/"
+  },
+  "boxes": {
+    "play": [
+      43.05551151006602,
+      76.69838406081209,
+      43.41727328993398,
+      77.19307093918792
+    ],
+    "core": [
+      43.191172177516506,
+      76.88402969483555,
+      43.28161262248349,
+      77.00742530516446
+    ],
+    "outline": [
+      43.00551151006602,
+      76.64838406081209,
+      43.46727328993398,
+      77.24307093918792
+    ],
+    "wide": [
+      42.45551151006602,
+      76.0983840608121,
+      44.01727328993398,
+      77.79307093918791
+    ],
+    "water": [
+      43.05551151006602,
+      76.69838406081209,
+      43.41727328993398,
+      77.19307093918792
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+    "datasetSha256": "53a639fc0cfdb786089050ba4c18c8a25ed91f7758ec71d934a0257a7d056495",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "1ff5143df60eae66efc379b683551da9afce81c4d49e7dd4370006bc6832c351",
+        "elements": 1872
+      },
+      {
+        "file": "extras.json",
+        "sha256": "be1745f87e7bc2ca8f90427663e7c68098a40177ea1019ba28f493b867362830",
+        "elements": 214
+      },
+      {
+        "file": "water.json",
+        "sha256": "a093622a7ae6af65d95772511372886c133f2cf98ad81181be9748fe2da06e5d",
+        "elements": 134
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "7d7ed44e3e5efe350a81022b34aa7657b63b5fb2538dce2e1aeb56c2259fd1ac",
+        "elements": 2311
+      },
+      {
+        "file": "roads.json",
+        "sha256": "dddee5d9c19b6f1ecf8b0dce09d86bfd2cbed066c2cfec7e57f1659e243159a9",
+        "elements": 2223
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Almaty-1 station",
+      "osm": "node/260543817",
+      "coordinatesWgs84": [
+        76.949173,
+        43.341446
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Aqqu",
+      "osm": "way/1458336073",
+      "coordinatesWgs84": [
+        76.944593,
+        43.253496
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Narxoz University",
+      "osm": "way/27480946",
+      "coordinatesWgs84": [
+        76.871491,
+        43.21507
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Қалалық кардиология орталығы",
+      "osm": "node/4527578543",
+      "coordinatesWgs84": [
+        76.928144,
+        43.254005
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kok-Tobe Park",
+      "osm": "way/1296886349",
+      "coordinatesWgs84": [
+        76.97593,
+        43.233567
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Апорт Молл",
+      "osm": "relation/17023570",
+      "coordinatesWgs84": [
+        76.777574,
+        43.234738
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Seraphim and Theognost Aksai Hermitage (monastery). Church",
+      "osm": "way/1512139326",
+      "coordinatesWgs84": [
+        76.776569,
+        43.099673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Almaty City Akimat",
+      "osm": "relation/3244397",
+      "coordinatesWgs84": [
+        76.945725,
+        43.236294
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wedding palace",
+      "osm": "way/1148828088",
+      "coordinatesWgs84": [
+        76.920035,
+        43.241251
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sagadat Nurmagambetov Military Institute of the Ground Forces",
+      "osm": "way/1389306295",
+      "coordinatesWgs84": [
+        76.992745,
+        43.385236
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jas Qyran Stadium",
+      "osm": "way/1084732338",
+      "coordinatesWgs84": [
+        76.879244,
+        43.243192
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Oktyabrskaya cave",
+      "osm": "node/10713558763",
+      "coordinatesWgs84": [
+        77.110699,
+        43.100913
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Бұтақты",
+      "osm": "node/13690633205",
+      "coordinatesWgs84": [
+        77.081269,
+        43.182945
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Сакский курган",
+      "osm": "node/13691030944",
+      "coordinatesWgs84": [
+        76.809153,
+        43.313402
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Храм Христа Спасителя",
+      "osm": "way/231104375",
+      "coordinatesWgs84": [
+        76.832029,
+        43.245328
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Our Lady of Kazan church",
+      "osm": "way/389067729",
+      "coordinatesWgs84": [
+        76.976165,
+        43.284632
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baum grove",
+      "osm": "way/210871483",
+      "coordinatesWgs84": [
+        76.94994,
+        43.308623
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Academy of Civil Aviation",
+      "osm": "way/411621076",
+      "coordinatesWgs84": [
+        77.005301,
+        43.355375
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MEGA Alma-Ata",
+      "osm": "way/207798752",
+      "coordinatesWgs84": [
+        76.891955,
+        43.201656
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Almaty Botanical Garden",
+      "osm": "relation/3048271",
+      "coordinatesWgs84": [
+        76.916057,
+        43.219374
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Тумар",
+      "osm": "way/50459830",
+      "coordinatesWgs84": [
+        76.89944,
+        43.252158
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Almaty University of Power Engineering and Telecommunications",
+      "osm": "way/286610625",
+      "coordinatesWgs84": [
+        76.931351,
+        43.234942
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Central Stadium",
+      "osm": "way/1456509345",
+      "coordinatesWgs84": [
+        76.924181,
+        43.238374
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Almaty Arena",
+      "osm": "relation/10082036",
+      "coordinatesWgs84": [
+        76.817551,
+        43.263767
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1211,
+      "sha256": "3c4199eeb388fd439b514e1654a38737e6b1d18dcc75ce13a9b85847f37faf3c"
+    },
+    "geometry.ts": {
+      "bytes": 121596,
+      "sha256": "773f337c9a9fe0bde86e0da95468b78d6b6d6248c9d0f02fe49473945f22654e"
+    },
+    "places.ts": {
+      "bytes": 10040,
+      "sha256": "e1f8ae5f5d106b7a73e88d4e7d06d6fa33e67ae40747ee54abecb6f30eebc92d"
+    },
+    "terrain.ts": {
+      "bytes": 20229,
+      "sha256": "32982c32830235b38355ff1bdb6d392e33006b445c3d5914d391c40e23de4cc6"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "1bd25f854c2f66017aa9b61cf69af2fc627fad713665abbff893935e5f933f09"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

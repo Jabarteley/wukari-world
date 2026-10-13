@@ -115,15 +115,17 @@ test('limits of the ride on credit: main home only, only when cash is short, one
   assert.match(String(refused.reason), /You owe ₦12,000 for your ride home/)
   assert.ok(l.view().estate.links?.filter((link) => link.open && link.status !== 'coming').every((link) => /You owe/.test(link.blocked ?? '')), 'every open link says why')
   assert.equal(l.run('estate.relocate', { to: 'ibadan', mode: 'road', credit: true }).code, 'ride_debt')
-  for (const cash of [251999, 252000, 265000, 289999, 290000]) {
+  // The cheapest quoted route from Algiers changes when a nearer hub opens (Niamey replaced Birnin Kebbi); the cash cases follow the fare.
+  const algiersFare = 245500
+  for (const cash of [algiersFare - 1, algiersFare, algiersFare + 13000, algiersFare + 37999, algiersFare + 38000]) {
     const foreign = life()
     foreign.visit('algiers', cash)
     const quote = planHomewardRoute('algiers', 'lagos', linksFrom, isOpenCityId)
     assert.ok(quote)
-    assert.deepEqual([quote.totalFare, quote.totalSeconds, quote.legs.map(leg => [leg.from, leg.to, leg.fare])], [252000, 86, [['algiers', 'birnin-kebbi', 236000], ['birnin-kebbi', 'lagos', 16000]]])
+    assert.deepEqual([quote.totalFare, quote.totalSeconds, quote.legs.map(leg => [leg.from, leg.to, leg.fare])], [algiersFare, 94, [['algiers', 'niamey', 227000], ['niamey', 'lagos', 18500]]])
     if (cash < quote.totalFare) {
       assert.equal(foreign.view().estate.ride.journey?.totalFare, quote.totalFare)
-      assert.ok(help(foreign)?.line.includes('₦252,000'))
+      assert.ok(help(foreign)?.line.includes('₦245,500'))
     } else {
       assert.equal(help(foreign), null, 'a complete affordable route is not a short-of-money situation')
       assert.equal(foreign.view().estate.ride.offer, null)

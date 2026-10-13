@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tokyo",
+  "countryIso2": "JP",
+  "generationIdentity": {
+    "cityId": "tokyo",
+    "stateId": "jp-tokyo",
+    "stateName": "Tokyo"
+  },
+  "inventorySha256": "4506583e556e3221e1ed72aa3950fc4ec16c60df9a778b92a24868af1a6a12e4",
+  "inventoryPath": "world/playable-africa-rollout/sources/tokyo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "tokyo-airport",
+    "name": "Tokyo Haneda International Airport",
+    "lon": 139.786958,
+    "lat": 35.549678,
+    "sourceUrl": "https://ourairports.com/airports/RJTT/"
+  },
+  "bounds": [
+    35.49597921006602,
+    139.54221916662937,
+    35.85774098993398,
+    139.98557023337065
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/japan-261011.osm.pbf",
+      "datasetSha256": "5ba8aed6c94fb0907c5e68e1668ee80cdc447cce9caa137fdda2f034d1975cd5",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "34d7daf7f60d3db45feb1d846df2060d657097367b011cd53688493f1741da38",
+          "elements": 36846
+        },
+        {
+          "file": "extras.json",
+          "sha256": "b0c72f78a3e85b59841e5dfcd9d8d3fcab76b918994307d47300b460e78f426c",
+          "elements": 10272
+        },
+        {
+          "file": "water.json",
+          "sha256": "6774699c425945ada419bc915469f55fd65948a3adb834aff4ab81251a68a8cd",
+          "elements": 12235
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "11fc2c33203ad3bbd4dc5f8ee264d9d905004842cedf75373774a39e340799ca",
+          "elements": 17078
+        },
+        {
+          "file": "roads.json",
+          "sha256": "927884f5284140d2abce15c35c61bf968e3df5bcbf108e631f9d55d0ed5dc82d",
+          "elements": 11760
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 44,
+    "waterPolygons": 29,
+    "reachWaterPolygons": 122
+  },
+  "observed": {
+    "places": 36846,
+    "extras": 10272,
+    "water": 12235,
+    "landuse": 17078,
+    "roads": 11760
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1195,
+      "sha256": "fd0707620e5b6509e6f073f7f9ccfeb36c54bce0871ade151fe60460ae6013d4"
+    },
+    "geometry.ts": {
+      "bytes": 146639,
+      "sha256": "0565c5114ca659014b7132422009fe0159a2f085cc86074eed847fe2d7adce88"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "02df2a83aa2d34a9ee8a00460220341d9dbd06541b54f79dd12a5105a8b8dc47"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/tokyo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

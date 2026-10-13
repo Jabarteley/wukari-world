@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "cityId": "belize-city",
+  "countryIso2": "BZ",
+  "generationIdentity": {
+    "cityId": "belize-city",
+    "stateId": "bz-belize-city",
+    "stateName": "Belize City"
+  },
+  "inventorySha256": "4c8a5ad43691ab5c2b7cbcfab373d5450b25cf560904fe08ae57746384a2b49f",
+  "inventoryPath": "world/playable-africa-rollout/sources/belize-city.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "belize-city-airport",
+    "name": "Philip S. W. Goldson International Airport",
+    "lon": -88.303556,
+    "lat": 17.539951,
+    "sourceUrl": "https://ourairports.com/airports/MZBZ/"
+  },
+  "bounds": [
+    17.319395910066024,
+    -88.38744371588106,
+    17.68115768993398,
+    -88.01030368411892
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/belize-261011.osm.pbf",
+      "datasetSha256": "924e3eb2b59fca6200115945e339334bd092e69ab9b8031be6e985dcb0a94498",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/central-america/belize-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 18272673,
+          "md5": "d91b7238d1917141515817e0d7422d5f",
+          "sha256": "c264f8618f9f7dcbe792437726e1cae1efcddfda016f610f90fe32fe9132e66b"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/central-america/guatemala-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 131359417,
+          "md5": "4f8618c6854e76083ca5dad916fea8da",
+          "sha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa",
+          "reason": "admin-0 relation/287827 member way/384124908 (maritime territorial closing line) is absent from the Belize clip; both nodes lie inside the Guatemala clip"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/north-america/mexico-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 646670065,
+          "md5": "823f85852e7a49a61974d19f40b7361b",
+          "sha256": "17ae82c36eaa3208384cf8a9059269f0fb456a67eec0fe9f5c4611563c504b75",
+          "reason": "admin-0 relation/287827 member way/194198510 (Mexico - Belize maritime limit closing line) is absent from the Belize clip; both nodes lie inside the Mexico clip and in no smaller neighbour"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "9d2a47fdc3b79a88853c0e32f2f1086dea83fa15e9679665b0c044741d1b2c1a",
+          "elements": 240
+        },
+        {
+          "file": "extras.json",
+          "sha256": "1810234760a234171caf44dc9d414de22c42ac7b56cf848dd9f35b4d21066a59",
+          "elements": 63
+        },
+        {
+          "file": "water.json",
+          "sha256": "73b1e653bf265fd710272412b4053e64b5c9c887843e43ca00b273c683d45122",
+          "elements": 2226
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "2ad661ed002172046bc8fbe2f04c52ccbeddeb6f8c06124da2cc1416ff1a163b",
+          "elements": 532
+        },
+        {
+          "file": "roads.json",
+          "sha256": "ddf34f9975bf96fa93a038c2e75570cd0f20fa82145394f0cbaaeae95ec303c7",
+          "elements": 313
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 137,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 9,
+    "waterPolygons": 25,
+    "reachWaterPolygons": 25
+  },
+  "observed": {
+    "places": 240,
+    "extras": 63,
+    "water": 2226,
+    "landuse": 532,
+    "roads": 313
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1277,
+      "sha256": "5c4f5c599ea0bae50a2475ed702929d2cae04e62b4f372d25473f0e6079fda6e"
+    },
+    "geometry.ts": {
+      "bytes": 682408,
+      "sha256": "8c3893d6422dfafe19afa0e4e6dd98e556bbdc17fbfe1633137540fb1f3c6527"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "52761d788aecb312ebb1f85836a9246fee2937f52dafb0f00f776ca18adce44a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/belize-city.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

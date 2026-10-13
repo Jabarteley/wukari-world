@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "oslo",
+  "countryIso2": "NO",
+  "generationIdentity": {
+    "cityId": "oslo",
+    "stateId": "no-oslo",
+    "stateName": "Oslo"
+  },
+  "inventorySha256": "dbb2b219297d75d9a08f1032db723b75224f620f6dd421ffb83a689c8f96570a",
+  "inventoryPath": "world/playable-africa-rollout/sources/oslo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "oslo-airport",
+    "name": "Oslo-Gardermoen International Airport",
+    "lon": 11.1004,
+    "lat": 60.193901,
+    "sourceUrl": "https://ourairports.com/airports/ENGM/"
+  },
+  "bounds": [
+    59.73244921006602,
+    10.378618864005034,
+    60.202945044496694,
+    11.118477241021512
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/norway-261011.osm.pbf",
+      "datasetSha256": "cfeef17cee2bb377160c8e4323dde02b9d651d21bf82a9ed79a389e0c888c829",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "033ff7e21b5a5d5a1956233df570b6e0fe6edbc5d5855ef36e7b90ec53039750",
+          "elements": 4494
+        },
+        {
+          "file": "extras.json",
+          "sha256": "083be6762f8c7b2c89966eed064a77abf7d89dafade344431e405cfb79b19a8d",
+          "elements": 729
+        },
+        {
+          "file": "water.json",
+          "sha256": "77dec590ed0138ed19989e4142e8d5349e5c3190f76d64d2287608077a90e513",
+          "elements": 3244
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ce54b7c30962859151ed2b983b67fa2ad2fdf71b17220b4d683ccfdc9925971c",
+          "elements": 4328
+        },
+        {
+          "file": "roads.json",
+          "sha256": "339c2b4352e56a7283c3d4292f7282bbdd85a2fa3f47656f2b2eb689b0476d03",
+          "elements": 5731
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 100,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 28,
+    "waterPolygons": 30,
+    "reachWaterPolygons": 30
+  },
+  "observed": {
+    "places": 4494,
+    "extras": 729,
+    "water": 3244,
+    "landuse": 4328,
+    "roads": 5731
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1209,
+      "sha256": "04539e98e76d73acd3a29a166a6a3344247347d05763a56774380b0663976530"
+    },
+    "geometry.ts": {
+      "bytes": 1281803,
+      "sha256": "7fd24b7219316f45cc538cfafab679e280997105f672c5834d3d06aeb39aa603"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "8ccf6729471193b0aa0f5a04dfa3184fb0eca3f14eb6190f205fc69be049c647"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/oslo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

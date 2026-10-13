@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "caracas",
+  "countryIso2": "VE",
+  "generationIdentity": {
+    "cityId": "caracas",
+    "stateId": "ve-caracas",
+    "stateName": "Caracas"
+  },
+  "inventorySha256": "4ea1497acb9145ac37361d1e86def876f806b1762860ef4889060e99f4da18c2",
+  "inventoryPath": "world/playable-africa-rollout/sources/caracas.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "caracas-airport",
+    "name": "Maiquetía Simón Bolívar International Airport",
+    "lon": -66.991174,
+    "lat": 10.602214,
+    "sourceUrl": "https://ourairports.com/airports/SVMI/"
+  },
+  "bounds": [
+    10.32521251006602,
+    -67.09743428529598,
+    10.686974289933978,
+    -66.73176731470403
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/venezuela-261011.osm.pbf",
+      "datasetSha256": "aeae03f62268ffab742dc3c4577f76b33ccfdb19fcaf90aaf97e68a1241d07c7",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "43c3d28d66ce2266bb5e33d5a2fbdaec25e508bba3c2d3f8dfec80c0aca20c1e",
+          "elements": 2967
+        },
+        {
+          "file": "extras.json",
+          "sha256": "4e1ff5ad8d18e0a928667c036433bacd8bb28c21197d2f5a6ca37ebca46c2b9f",
+          "elements": 884
+        },
+        {
+          "file": "water.json",
+          "sha256": "cc4fcaba5d49d60b053c7eabb136479c51b93f95a7d19b2cab7dc5ce48b41329",
+          "elements": 538
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "e3a4c5dc83f01ab2f60406270d7788cc3d00a66c52702f8c25f092705f19e804",
+          "elements": 853
+        },
+        {
+          "file": "roads.json",
+          "sha256": "3ab1d1cfa32c4ef0c8979b85c7105f0164854b510ce0859200dff56ac8cdac8e",
+          "elements": 2215
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 636,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 16,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 7
+  },
+  "observed": {
+    "places": 2967,
+    "extras": 884,
+    "water": 538,
+    "landuse": 853,
+    "roads": 2215
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1246,
+      "sha256": "ec2370a95f67d32e771c552e9e1da29f4c9d751bca3fcd0bc03936560a82a815"
+    },
+    "geometry.ts": {
+      "bytes": 49316,
+      "sha256": "9263050844edd379d114ba06a320ddf655257d85c557ee16c970fdea96ea8cf0"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "7fbb7e0a9a21daa4f02354e58a872dceedf5db242d6d5df449575e1b2a99369f"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/caracas.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "prague",
+  "countryIso2": "CZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Prague",
+    "coordinatesWgs84": [
+      14.4212535,
+      50.0874654
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/czech-republic-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "prague-airport",
+    "name": "Václav Havel Airport Prague",
+    "lon": 14.259911,
+    "lat": 50.100874,
+    "sourceUrl": "https://ourairports.com/airports/LKPR/"
+  },
+  "boxes": {
+    "play": [
+      49.90658451006602,
+      14.140176742559426,
+      50.26834628993398,
+      14.702330257440575
+    ],
+    "core": [
+      50.042245177516506,
+      14.351183724278364,
+      50.13268562248349,
+      14.491323275721637
+    ],
+    "outline": [
+      49.85658451006602,
+      14.090176742559425,
+      50.31834628993398,
+      14.752330257440576
+    ],
+    "wide": [
+      49.30658451006602,
+      13.540176742559426,
+      50.86834628993398,
+      15.302330257440575
+    ],
+    "water": [
+      49.90658451006602,
+      14.140176742559426,
+      50.26834628993398,
+      14.702330257440575
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/czech-republic-261011.osm.pbf",
+    "datasetSha256": "a49bce7e0e2c863ed298281068318c3d77ce1c5d396fc7522ac7ed387b4d7193",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "f82459a1897155699b39e4a9eff5966991c0bb43467fab81b8c1516a2f5e0ec0",
+        "elements": 7468
+      },
+      {
+        "file": "extras.json",
+        "sha256": "77d9a3df92d03c4aa827cfcfc6aad0f5839e89194922dedfb039e8d1ea6279aa",
+        "elements": 1230
+      },
+      {
+        "file": "water.json",
+        "sha256": "cf1e515398a4959e4197564858ba591d320d74c10bd4a22f9edc4280a25cff8a",
+        "elements": 1220
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "397abf4d97d6b14cffb9005f5131af901e150d387ea9223e9542f56c6f93ffad",
+        "elements": 7261
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c11547e4888e4254393a0ece3fc0affe4146693a6c02a20b448558d5ef5ff88d",
+        "elements": 4951
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "I. P. Pavlova",
+      "osm": "node/24569684",
+      "coordinatesWgs84": [
+        14.430311,
+        50.07433
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cyberdog",
+      "osm": "node/7242001415",
+      "coordinatesWgs84": [
+        14.349553,
+        50.050445
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Infocentrum s knihovnou",
+      "osm": "node/1270591804",
+      "coordinatesWgs84": [
+        14.626287,
+        50.011213
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Psychiatrická nemocnice Bohnice",
+      "osm": "way/319062309",
+      "coordinatesWgs84": [
+        14.421776,
+        50.13628
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pietní území Lidice",
+      "osm": "relation/7735080",
+      "coordinatesWgs84": [
+        14.199741,
+        50.142283
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Westfield Černý Most",
+      "osm": "way/250416859",
+      "coordinatesWgs84": [
+        14.583684,
+        50.108106
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "monastýr sv. Václava a sv. Ludmily",
+      "osm": "relation/1688416",
+      "coordinatesWgs84": [
+        14.153614,
+        49.993206
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Úřad městské části Praha - Újezd",
+      "osm": "node/432429276",
+      "coordinatesWgs84": [
+        14.521617,
+        50.018793
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Obecní úřad Borek",
+      "osm": "node/10241648078",
+      "coordinatesWgs84": [
+        14.645025,
+        50.222697
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Panevropská univerzita",
+      "osm": "node/13922405680",
+      "coordinatesWgs84": [
+        14.500862,
+        50.112762
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "rozhledna Hradiště - Závist",
+      "osm": "way/1016659823",
+      "coordinatesWgs84": [
+        14.407961,
+        49.962293
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "zřícenina hrádku Karlík",
+      "osm": "node/963907924",
+      "coordinatesWgs84": [
+        14.25491,
+        49.944734
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "kostel sv. Jakuba Většího",
+      "osm": "way/37111399",
+      "coordinatesWgs84": [
+        14.299535,
+        50.224453
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zámek Lobkovice",
+      "osm": "way/51001576",
+      "coordinatesWgs84": [
+        14.541383,
+        50.251725
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "zámek Štiřín",
+      "osm": "way/258815975",
+      "coordinatesWgs84": [
+        14.599215,
+        49.916564
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "sv. Kliment",
+      "osm": "way/139745554",
+      "coordinatesWgs84": [
+        14.409895,
+        50.231795
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "vyhlídka na Housle",
+      "osm": "node/3481221272",
+      "coordinatesWgs84": [
+        14.356218,
+        50.12454
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Metropole Zličín",
+      "osm": "way/4019771",
+      "coordinatesWgs84": [
+        14.286861,
+        50.053456
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "IKEM",
+      "osm": "way/23093458",
+      "coordinatesWgs84": [
+        14.463678,
+        50.023151
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "OC Spektrum",
+      "osm": "way/1050400363",
+      "coordinatesWgs84": [
+        14.57214,
+        50.004925
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Korunka",
+      "osm": "way/1190106231",
+      "coordinatesWgs84": [
+        14.298049,
+        49.915922
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "park Maxe van der Stoela",
+      "osm": "relation/7096099",
+      "coordinatesWgs84": [
+        14.387239,
+        50.090733
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Přímské náměstí",
+      "osm": "way/34963462",
+      "coordinatesWgs84": [
+        14.678061,
+        50.099029
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Metropolitan University of Prague",
+      "osm": "way/28310118",
+      "coordinatesWgs84": [
+        14.498233,
+        50.06896
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1222,
+      "sha256": "66ea7c63105ed42f6ea9a9ac9dceacb26613cfefbecbfb0143991d6d54d72b3b"
+    },
+    "geometry.ts": {
+      "bytes": 248920,
+      "sha256": "3025f1466b6079963c4586a4d925dc40a23e40f4c760c6e12d0d82108c59eb08"
+    },
+    "places.ts": {
+      "bytes": 9873,
+      "sha256": "927419a4db590a2a8ffafaa985bd0e63e49f63cba235adfe70e902d84340f720"
+    },
+    "terrain.ts": {
+      "bytes": 91111,
+      "sha256": "43a0bc86ad2df2c2f2ca2439ab11ed04790d323474cf7814a917e1ad4a6105c2"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "6e7c29d0cdd6261acef005101272f7c22712f67706833975e0527535fcc0a883"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

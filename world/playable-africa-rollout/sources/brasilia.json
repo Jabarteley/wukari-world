@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "brasilia",
+  "countryIso2": "BR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Brasília",
+    "coordinatesWgs84": [
+      -47.8828,
+      -15.7939869
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/south-america/brazil-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "brasilia-airport",
+    "name": "Presidente Juscelino Kubitschek International Airport",
+    "lon": -47.920834,
+    "lat": -15.869167,
+    "sourceUrl": "https://ourairports.com/airports/SBBR/"
+  },
+  "boxes": {
+    "play": [
+      -15.97486778993398,
+      -48.06967903443277,
+      -15.613106010066021,
+      -47.69592096556724
+    ],
+    "core": [
+      -15.839207122483495,
+      -47.92948824372703,
+      -15.748766677516505,
+      -47.83611175627298
+    ],
+    "outline": [
+      -16.024867789933978,
+      -48.119679034432764,
+      -15.56310601006602,
+      -47.64592096556724
+    ],
+    "wide": [
+      -16.57486778993398,
+      -48.66967903443277,
+      -15.013106010066021,
+      -47.09592096556724
+    ],
+    "water": [
+      -15.97486778993398,
+      -48.06967903443277,
+      -15.613106010066021,
+      -47.69592096556724
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/south-america/brazil-261011.osm.pbf",
+    "datasetSha256": "00f599575e5aae5b1a02c4feeca820bf4c33f3e3473e5d18a2e9d159cfb81bd6",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "3e0d3df4c05b28781aa1c738f57aac22b1858acaad751137840ca6d679cdba63",
+        "elements": 2214
+      },
+      {
+        "file": "extras.json",
+        "sha256": "89d56462227ffe02484a7fd53584cebf77ec433dbcab023df68140a2e4b34a2c",
+        "elements": 771
+      },
+      {
+        "file": "water.json",
+        "sha256": "77d1d079bcc37875a701ca51e5b918585977cd23df80287d57af36ede69cb86d",
+        "elements": 127
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "0755f819b0242db3624a66223dfbbe218404004f5f7cfb48043235acefe3468e",
+        "elements": 4331
+      },
+      {
+        "file": "roads.json",
+        "sha256": "e0299478e1741d0d12fd114f87a0c35d35c05270fd7131f40b3d3ba2cb705233",
+        "elements": 4007
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Brasília",
+      "osm": "node/303847107",
+      "coordinatesWgs84": [
+        -47.940999,
+        -15.775473
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Casa de Chá",
+      "osm": "way/1340424680",
+      "coordinatesWgs84": [
+        -47.860811,
+        -15.800775
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidade de Brasília - Campus Universitário Darcy Ribeiro - Gleba A",
+      "osm": "way/332888307",
+      "coordinatesWgs84": [
+        -47.874164,
+        -15.758082
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital SARAH",
+      "osm": "way/1143723421",
+      "coordinatesWgs84": [
+        -47.891302,
+        -15.799249
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Ecológico Águas Claras",
+      "osm": "way/125232972",
+      "coordinatesWgs84": [
+        -48.026308,
+        -15.830266
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ParkShopping",
+      "osm": "way/216491572",
+      "coordinatesWgs84": [
+        -47.955387,
+        -15.833602
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sara Nossa Terra",
+      "osm": "way/1197729365",
+      "coordinatesWgs84": [
+        -47.767543,
+        -15.747957
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça dos Orixás",
+      "osm": "way/849010921",
+      "coordinatesWgs84": [
+        -47.878194,
+        -15.820328
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Residência Oficial da Granja do Torto",
+      "osm": "way/550355836",
+      "coordinatesWgs84": [
+        -47.905282,
+        -15.705926
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto de Ciências Biológicas",
+      "osm": "way/739637976",
+      "coordinatesWgs84": [
+        -47.865106,
+        -15.766523
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estádio Augustinho Pires de Lima",
+      "osm": "way/242250854",
+      "coordinatesWgs84": [
+        -47.785259,
+        -15.652694
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museu do Catetinho",
+      "osm": "node/2673931012",
+      "coordinatesWgs84": [
+        -47.988451,
+        -15.947636
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Torre de TV Digital",
+      "osm": "way/424628555",
+      "coordinatesWgs84": [
+        -47.829575,
+        -15.699273
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Igreja Batista de Atos - BTA",
+      "osm": "node/5496838926",
+      "coordinatesWgs84": [
+        -48.022245,
+        -15.879335
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Palácio da Alvorada",
+      "osm": "way/18140049",
+      "coordinatesWgs84": [
+        -47.822131,
+        -15.792445
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estádio JK Paranoá",
+      "osm": "way/382528304",
+      "coordinatesWgs84": [
+        -47.786365,
+        -15.779819
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça do DI",
+      "osm": "way/202664538",
+      "coordinatesWgs84": [
+        -48.057507,
+        -15.826701
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "JK Memorial",
+      "osm": "way/84830646",
+      "coordinatesWgs84": [
+        -47.913375,
+        -15.784198
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Igrejinha Nossa Senhora de Fátima",
+      "osm": "way/43339378",
+      "coordinatesWgs84": [
+        -47.903774,
+        -15.813973
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parque Olhos d'Água",
+      "osm": "way/41573825",
+      "coordinatesWgs84": [
+        -47.884711,
+        -15.743907
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Conjunto Nacional",
+      "osm": "way/141913048",
+      "coordinatesWgs84": [
+        -47.883179,
+        -15.791291
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro de Ensino Tecnológico de Brasília",
+      "osm": "way/141496566",
+      "coordinatesWgs84": [
+        -47.88416,
+        -15.811622
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Universitário de Brasília",
+      "osm": "way/41573440",
+      "coordinatesWgs84": [
+        -47.873611,
+        -15.771729
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituto Rio Branco",
+      "osm": "way/480025603",
+      "coordinatesWgs84": [
+        -47.868859,
+        -15.80547
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1257,
+      "sha256": "2c2cfa338a5984f8160bc51113320b5c72ab40637d54fc981af93f4a6f991c16"
+    },
+    "geometry.ts": {
+      "bytes": 108035,
+      "sha256": "94512d258e149ff41dfc60a17659c78cadea281be696251bbce4598c3668136f"
+    },
+    "places.ts": {
+      "bytes": 10139,
+      "sha256": "0fe9b659eef9f4f47f32d41aa78968996d81998c6264a874f57d2008894b667a"
+    },
+    "terrain.ts": {
+      "bytes": 64446,
+      "sha256": "7f9ba19f22ef924f4db9ed731fe9ff05a27fd64ee5c6596820f81dff376fe682"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "a47c3145ae8f00c588e07d92a0c2abd3213fa537804fe4957e81b5735f266e23"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

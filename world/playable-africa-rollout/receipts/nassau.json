@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "nassau",
+  "countryIso2": "BS",
+  "generationIdentity": {
+    "cityId": "nassau",
+    "stateId": "bs-nassau",
+    "stateName": "Nassau"
+  },
+  "inventorySha256": "65f57dc6aa07675364f934414610a4ed6f9c600ef2a6fddcc3c90688acc1240a",
+  "inventoryPath": "world/playable-africa-rollout/sources/nassau.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "nassau-airport",
+    "name": "Lynden Pindling International Airport",
+    "lon": -77.466202,
+    "lat": 25.039,
+    "sourceUrl": "https://ourairports.com/airports/MYNN/"
+  },
+  "bounds": [
+    24.897345710066023,
+    -77.53700009397514,
+    25.259107489933978,
+    -77.13968750602487
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america/bahamas-261011.osm.pbf",
+      "datasetSha256": "4fbd3e6ebd93b4df3ccf6667e595286696b349de6e42ef382ad8bf18602c9aa1",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "e152ae5305de1203f1892522b91a0b865991122bce1fa7c021fb7674f04e939d",
+          "elements": 628
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f1b9a67c6fc476673fe7bde795bcd2ee72837dd1fa09aff24ea3f017376f545c",
+          "elements": 81
+        },
+        {
+          "file": "water.json",
+          "sha256": "d5891ec5181eeace4afbbc917b0c8ccdd57ed1e702e433cf200eed632aee7871",
+          "elements": 1504
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "42da057cf0eb358977524aa1d1895a896dfe1165c9acffc5ff557d6619009f55",
+          "elements": 700
+        },
+        {
+          "file": "roads.json",
+          "sha256": "af2c594c401f80a60deea80a2552d947bb12a967f67bed45102a7b406c00b27b",
+          "elements": 538
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 219,
+    "neighbourhoodLabels": 5,
+    "landPolygons": 3,
+    "waterPolygons": 7,
+    "reachWaterPolygons": 7
+  },
+  "selection": {
+    "districtLabelAreas": [
+      {
+        "ref": "way/370281985",
+        "place": "neighbourhood",
+        "name": "Dignity Gardens"
+      },
+      {
+        "ref": "way/302696064",
+        "place": "subdivision",
+        "name": "Baha Mar"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "locality": 2,
+      "neighbourhood": 2,
+      "subdivision": 1
+    }
+  },
+  "observed": {
+    "places": 628,
+    "extras": 81,
+    "water": 1504,
+    "landuse": 700,
+    "roads": 538
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1246,
+      "sha256": "afdda1d6d474ab0fe795c4ff24665b23c292131e2721169f5e74412fa76c5513"
+    },
+    "geometry.ts": {
+      "bytes": 162008,
+      "sha256": "07021bdbe6052f064e54725c0ad167597fdce7ca36989b18d6081bfc641eb854"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "3757a2d529f949d48c81471cf07e58d6787e42619804d9ae196f85971ff51819"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/nassau.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

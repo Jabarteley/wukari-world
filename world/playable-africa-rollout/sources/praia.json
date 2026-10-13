@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "praia",
+  "countryIso2": "CV",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Praia",
+    "coordinatesWgs84": [
+      -23.5095095,
+      14.9162811
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/cape-verde-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "praia-airport",
+    "name": "Nelson Mandela International Airport",
+    "lon": -23.484728,
+    "lat": 14.941126,
+    "sourceUrl": "https://ourairports.com/airports/GVNP/"
+  },
+  "boxes": {
+    "play": [
+      14.735400210066022,
+      -23.695594354538553,
+      15.09716198993398,
+      -23.323424645461447
+    ],
+    "core": [
+      14.871060877516506,
+      -23.556001148115012,
+      14.961501322483496,
+      -23.463017851884988
+    ],
+    "outline": [
+      14.685400210066021,
+      -23.745594354538554,
+      15.14716198993398,
+      -23.273424645461446
+    ],
+    "wide": [
+      14.135400210066022,
+      -24.295594354538554,
+      15.69716198993398,
+      -22.723424645461446
+    ],
+    "water": [
+      14.135400210066022,
+      -24.295594354538554,
+      15.69716198993398,
+      -22.723424645461446
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/cape-verde-261011.osm.pbf",
+    "datasetSha256": "7ff55801c3e64c9f1e3f0be4de3f2353df744deddafdb2dbdf19936fba929fdf",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "7659121961c482c3479b77c8f6dbd072d941f165be1e0761049d9feb5d93dbb2",
+        "elements": 209
+      },
+      {
+        "file": "extras.json",
+        "sha256": "15cac9644aab288cd58cc50eb095b68cafdc77b5793f9f13e7fd43cf443559a6",
+        "elements": 38
+      },
+      {
+        "file": "water.json",
+        "sha256": "5dc58e2339002bf84548dda962e25e2eba7b696655f639c575794c163a3f95d9",
+        "elements": 980
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "982904942924de08d719bb66c5b82048ad3544c1ffa47da684b35b265889e2da",
+        "elements": 131
+      },
+      {
+        "file": "roads.json",
+        "sha256": "7526430647ec9ee1e6863472c7e2bee813bf49340262a27b027c6adc1c7de511",
+        "elements": 283
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Porto da Praia",
+      "osm": "node/80035032",
+      "coordinatesWgs84": [
+        -23.500629,
+        14.911544
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kusa di kasa",
+      "osm": "node/283689726",
+      "coordinatesWgs84": [
+        -23.602627,
+        14.913962
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Cape Verde",
+      "osm": "way/1002802348",
+      "coordinatesWgs84": [
+        -23.548817,
+        14.921636
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital de São Domingos",
+      "osm": "node/7426734305",
+      "coordinatesWgs84": [
+        -23.554767,
+        15.022297
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Praça Alexandre Albuquerque",
+      "osm": "way/95807245",
+      "coordinatesWgs84": [
+        -23.509137,
+        14.917699
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mercado Municipal",
+      "osm": "node/8069363808",
+      "coordinatesWgs84": [
+        -23.632538,
+        15.083082
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nossa Senhora do Rosário",
+      "osm": "way/197049485",
+      "coordinatesWgs84": [
+        -23.605251,
+        14.916548
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praça Luís de Camões",
+      "osm": "way/194097856",
+      "coordinatesWgs84": [
+        -23.507301,
+        14.919512
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palácio Presidencial",
+      "osm": "relation/12850410",
+      "coordinatesWgs84": [
+        -23.509238,
+        14.916393
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Unica",
+      "osm": "way/236735652",
+      "coordinatesWgs84": [
+        -23.526859,
+        14.916739
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estádio da Varzea",
+      "osm": "way/665879789",
+      "coordinatesWgs84": [
+        -23.512084,
+        14.916135
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pelourinho da Cidade Velha",
+      "osm": "node/909626615",
+      "coordinatesWgs84": [
+        -23.605083,
+        14.915042
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Museou Etnográfico",
+      "osm": "way/194252477",
+      "coordinatesWgs84": [
+        -23.507231,
+        14.920913
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Igreja de Nossa Senhora da Graça",
+      "osm": "way/954580000",
+      "coordinatesWgs84": [
+        -23.508671,
+        14.917283
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jean Piaget University of Cape Verde",
+      "osm": "way/240118946",
+      "coordinatesWgs84": [
+        -23.537285,
+        14.920572
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arquivo Historico Nacional",
+      "osm": "relation/12849568",
+      "coordinatesWgs84": [
+        -23.511506,
+        14.914615
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Big Lanche",
+      "osm": "node/6432419161",
+      "coordinatesWgs84": [
+        -23.47406,
+        15.064921
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ponta Sambala",
+      "osm": "node/4970670691",
+      "coordinatesWgs84": [
+        -23.457738,
+        14.972859
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estádio Nacional de Cabo Verde",
+      "osm": "way/1208534900",
+      "coordinatesWgs84": [
+        -23.53078,
+        14.975861
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Restaurante Daly",
+      "osm": "node/7933657029",
+      "coordinatesWgs84": [
+        -23.591368,
+        15.065297
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mercado de Minho Branco",
+      "osm": "node/7490200241",
+      "coordinatesWgs84": [
+        -23.520484,
+        15.024098
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hospital de Trindade, Psicatria",
+      "osm": "way/239654104",
+      "coordinatesWgs84": [
+        -23.555805,
+        14.960577
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centro de Saúde Achada Grande Trás",
+      "osm": "way/819344290",
+      "coordinatesWgs84": [
+        -23.488249,
+        14.921143
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Praia Shopping",
+      "osm": "node/4706531118",
+      "coordinatesWgs84": [
+        -23.52028,
+        14.903593
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1228,
+      "sha256": "8531906641e2be9078acba0fc073e84ed36cdb0a03730e5cc4925ada4827cfea"
+    },
+    "geometry.ts": {
+      "bytes": 119196,
+      "sha256": "5c96e150f659528de8828bf21e5ede160198f643976d2171b227f0bd0cc3fb8d"
+    },
+    "places.ts": {
+      "bytes": 9626,
+      "sha256": "96c1b42dca516fdab95406258cc41bac8ffbc6985b2f9f3a99ee36ccbaceba74"
+    },
+    "terrain.ts": {
+      "bytes": 253216,
+      "sha256": "3b09ebc889a0131c9aa03170a69b0cf2d677207b4e588713abeb869f17b62c93"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "070389c82ed438db076dd94d5b49d9519c5e53c8f1885b24f9d5122a28610178"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

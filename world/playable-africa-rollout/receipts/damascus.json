@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "damascus",
+  "countryIso2": "SY",
+  "generationIdentity": {
+    "cityId": "damascus",
+    "stateId": "sy-damascus",
+    "stateName": "Damascus"
+  },
+  "inventorySha256": "4d5735e23735ea3b119df40b3db1916ff2bab851b84dadf9282c07a44036d2c0",
+  "inventoryPath": "world/playable-africa-rollout/sources/damascus.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "damascus-airport",
+    "name": "Damascus International Airport",
+    "lon": 36.51559829711914,
+    "lat": 33.4114990234375,
+    "sourceUrl": "https://ourairports.com/airports/OSDI/"
+  },
+  "bounds": [
+    33.33218861006602,
+    36.09364451013709,
+    33.69395038993398,
+    36.526361020459994
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/syria-261011.osm.pbf",
+      "datasetSha256": "51a57093143679ef58231fc320a43ca1ca9f20406e3e625a8a36e8f0c2aee7a2",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "a3e606ab4b59014b0176b9445157a75a84b665378600ab52d33115e0873ee1cd",
+          "elements": 1198
+        },
+        {
+          "file": "extras.json",
+          "sha256": "cb86a6a78753fab9c6812b53b043af49693c372196e4adc14883864af1bf56fd",
+          "elements": 633
+        },
+        {
+          "file": "water.json",
+          "sha256": "52cbd49c9fa8a099af61c7238225a230a764503fd474c4a1f3078d32ced3f465",
+          "elements": 32
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "a94ddcd356d3a7db6a58c4ae112a6f792c8e5aafcbe9a05d4e3400c0812bf6a8",
+          "elements": 1971
+        },
+        {
+          "file": "roads.json",
+          "sha256": "ec77d16ff75c6c530facbfc91cb17cecf4a3a68ce0b48fff8283627505602c35",
+          "elements": 1267
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 474,
+    "neighbourhoodLabels": 6,
+    "landPolygons": 47,
+    "waterPolygons": 0,
+    "reachWaterPolygons": 0
+  },
+  "observed": {
+    "places": 1198,
+    "extras": 633,
+    "water": 32,
+    "landuse": 1971,
+    "roads": 1267
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1238,
+      "sha256": "9b0ffd54a37a7fef677df0a1c01c48c7af0a1d48910fed5672b742afafbc5217"
+    },
+    "geometry.ts": {
+      "bytes": 149038,
+      "sha256": "344d68812a8420ed49e0e80041960083d8630260cfd38c9757de6a67f08fed7c"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "9014099b52a7705563c9f2f893b1102934991ce5c3f95b36f34c7270eb542c6b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/damascus.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

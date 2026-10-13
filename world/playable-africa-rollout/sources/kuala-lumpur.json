@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kuala-lumpur",
+  "countryIso2": "MY",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Kuala Lumpur",
+    "coordinatesWgs84": [
+      101.6942371,
+      3.1516964
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "kuala-lumpur-airport",
+    "name": "Kuala Lumpur International Airport",
+    "lon": 101.709999,
+    "lat": 2.74558,
+    "sourceUrl": "https://ourairports.com/airports/WMKK/"
+  },
+  "boxes": {
+    "play": [
+      2.736535955503301,
+      101.51427052810885,
+      3.3325772899339787,
+      101.87420367189114
+    ],
+    "core": [
+      3.1064761775165053,
+      101.6492515332168,
+      3.196916622483495,
+      101.73922266678319
+    ],
+    "outline": [
+      2.686535955503301,
+      101.46427052810886,
+      3.3825772899339785,
+      101.92420367189114
+    ],
+    "wide": [
+      2.1365359555033008,
+      100.91427052810886,
+      3.932577289933979,
+      102.47420367189113
+    ],
+    "water": [
+      2.1365359555033008,
+      100.91427052810886,
+      3.932577289933979,
+      102.47420367189113
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf",
+    "datasetSha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "f4d49ee1dba66ec5569bbacd653f378587841ab7b6a5c00d1bbdd49e09c04096",
+        "elements": 10838
+      },
+      {
+        "file": "extras.json",
+        "sha256": "4cae4f0af8e893e600b7ae226ce37d3fe1c1377648f30122ea7b0212d72c2ff0",
+        "elements": 1597
+      },
+      {
+        "file": "water.json",
+        "sha256": "9809de8dc0ba6e05b8d8f80034d1eb78e1d68c1b27a7cdee0e0bfa2b7e32d312",
+        "elements": 1693
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d9f7347b9360b0adfe6e76037f4f9a0cf6f1e551144d2f71831b916f6d1f0f82",
+        "elements": 10342
+      },
+      {
+        "file": "roads.json",
+        "sha256": "49a0f695549d159248f755104eb610a082b8b06102667cf07daf59cee65486b2",
+        "elements": 12661
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Kepong Sentral",
+      "osm": "node/243306384",
+      "coordinatesWgs84": [
+        101.628534,
+        3.208715
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Starbucks",
+      "osm": "node/5359377048",
+      "coordinatesWgs84": [
+        101.583743,
+        3.084487
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Islamic Science University of Malaysia",
+      "osm": "relation/9704946",
+      "coordinatesWgs84": [
+        101.775665,
+        2.845657
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Canselor Tuanku Muhriz UKM",
+      "osm": "way/149160360",
+      "coordinatesWgs84": [
+        101.725692,
+        3.098424
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Zoo",
+      "osm": "relation/17633468",
+      "coordinatesWgs84": [
+        101.759111,
+        3.210658
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "IOI City Mall",
+      "osm": "way/787651639",
+      "coordinatesWgs84": [
+        101.71421,
+        2.969455
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjid As-Saadah",
+      "osm": "node/313044458",
+      "coordinatesWgs84": [
+        101.811214,
+        3.001159
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sepang Municipal Council",
+      "osm": "way/133751216",
+      "coordinatesWgs84": [
+        101.645618,
+        2.933886
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Malaysian Houses of Parliament",
+      "osm": "way/229254507",
+      "coordinatesWgs84": [
+        101.679077,
+        3.150043
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MARA-Japan Industrial Institute",
+      "osm": "way/342904301",
+      "coordinatesWgs84": [
+        101.864791,
+        2.904406
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bukit Jalil National Stadium",
+      "osm": "way/24691651",
+      "coordinatesWgs84": [
+        101.691369,
+        3.054676
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Orang Asli Museum, Gombak",
+      "osm": "way/1207976408",
+      "coordinatesWgs84": [
+        101.732069,
+        3.294389
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjid Asy - Syabab",
+      "osm": "node/2935650691",
+      "coordinatesWgs84": [
+        101.836606,
+        3.134089
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kolej MARA Banting",
+      "osm": "way/404265345",
+      "coordinatesWgs84": [
+        101.624595,
+        2.819635
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "HELP University Subang Bestari Campus",
+      "osm": "way/823365646",
+      "coordinatesWgs84": [
+        101.548875,
+        3.179418
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjid Al-Munawwarah",
+      "osm": "way/200560100",
+      "coordinatesWgs84": [
+        101.566244,
+        3.014118
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tombstone of Teoh Beng Hock",
+      "osm": "node/11049175263",
+      "coordinatesWgs84": [
+        101.865519,
+        3.048678
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mitsui Outlet Park KLIA Sepang",
+      "osm": "way/1033470607",
+      "coordinatesWgs84": [
+        101.677416,
+        2.780415
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "1 Utama Shopping Centre",
+      "osm": "relation/11365206",
+      "coordinatesWgs84": [
+        101.616308,
+        3.149411
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Assunta",
+      "osm": "relation/17060995",
+      "coordinatesWgs84": [
+        101.645297,
+        3.093446
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadium Majlis Perbandaran Selayang",
+      "osm": "way/925097361",
+      "coordinatesWgs84": [
+        101.657197,
+        3.254841
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gleneagles Kuala Lumpur",
+      "osm": "way/914977615",
+      "coordinatesWgs84": [
+        101.739646,
+        3.161861
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Istana Bukit Kayangan",
+      "osm": "node/8379958565",
+      "coordinatesWgs84": [
+        101.534032,
+        3.071792
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Titiwangsa Lake Park",
+      "osm": "way/487114579",
+      "coordinatesWgs84": [
+        101.706953,
+        3.177848
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1269,
+      "sha256": "5148b64bd16ee9b3e7bc8aee2ffe3815b51692f166ec9037734ff1ce2c4e3d06"
+    },
+    "geometry.ts": {
+      "bytes": 115756,
+      "sha256": "9ec97bc514a5c15216f9aa9c644131315dbfde1c344b94900d88d8ce833e8237"
+    },
+    "places.ts": {
+      "bytes": 10163,
+      "sha256": "8d2cb5e1d5ddf44097e5349e9edc2250c3bbae8d8f0f6b554bea0145e05b5204"
+    },
+    "terrain.ts": {
+      "bytes": 361009,
+      "sha256": "c90f83e39aa6d72616c625c7114fadc29f79a6a2c0b5f35a26e83953d45b6b80"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "17536986683f4fd13db4e68184ea0e368fc0c69c0498527fd2dc251183512e1d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

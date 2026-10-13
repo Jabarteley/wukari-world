@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "luxembourg",
+  "countryIso2": "LU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Luxembourg",
+    "coordinatesWgs84": [
+      6.129799,
+      49.6112768
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/luxembourg-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "luxembourg-airport",
+    "name": "Luxembourg-Findel International Airport",
+    "lon": 6.212134,
+    "lat": 49.626845,
+    "sourceUrl": "https://ourairports.com/airports/ELLX/"
+  },
+  "boxes": {
+    "play": [
+      49.43039591006602,
+      5.851495487379748,
+      49.79215768993398,
+      6.408102512620252
+    ],
+    "core": [
+      49.566056577516505,
+      6.060417268657366,
+      49.65649702248349,
+      6.199180731342635
+    ],
+    "outline": [
+      49.38039591006602,
+      5.801495487379748,
+      49.84215768993398,
+      6.458102512620252
+    ],
+    "wide": [
+      48.83039591006602,
+      5.251495487379748,
+      50.39215768993398,
+      7.008102512620252
+    ],
+    "water": [
+      49.43039591006602,
+      5.851495487379748,
+      49.79215768993398,
+      6.408102512620252
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/luxembourg-261011.osm.pbf",
+    "datasetSha256": "5669cebe95a49c194044d333df057685c3c9c9e61f7dcc137709cdddd37aca9a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "b5bed7940e06edaeb238450e86e47eb58933c8758de484f1917fcb50ba9c81c1",
+        "elements": 3129
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ad619814fbcc2da14dd21890a3f243a0a6fd4fd05e4ad4485221d661bef2b3cc",
+        "elements": 623
+      },
+      {
+        "file": "water.json",
+        "sha256": "77ebf860a4a69974b75300107e1b49e61334c66bf91579a5372734d36784c345",
+        "elements": 711
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "e33ff3a12ba984803102ff35df01e6ea704b0b757eea3fd6daf2153d3c60f765",
+        "elements": 2724
+      },
+      {
+        "file": "roads.json",
+        "sha256": "151c0fe8c92c6776721a8b334b83d142041530272e848d12c3a35777c8f83ead",
+        "elements": 5300
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Cents-Hamm",
+      "osm": "node/25609667",
+      "coordinatesWgs84": [
+        6.165978,
+        49.615013
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "La Distillerie",
+      "osm": "node/1480135589",
+      "coordinatesWgs84": [
+        6.217235,
+        49.702638
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre National de la littérature",
+      "osm": "way/34248783",
+      "coordinatesWgs84": [
+        6.108247,
+        49.750928
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre Hospitalier de Luxembourg",
+      "osm": "way/41407070",
+      "coordinatesWgs84": [
+        6.10139,
+        49.61786
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc Gerlache",
+      "osm": "way/39054579",
+      "coordinatesWgs84": [
+        5.890188,
+        49.523904
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre Commercial Belle-Étoile",
+      "osm": "way/79885477",
+      "coordinatesWgs84": [
+        6.050894,
+        49.623444
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Notre-Dame des Mineurs",
+      "osm": "node/2844040292",
+      "coordinatesWgs84": [
+        6.020819,
+        49.479003
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Château de Bettembourg",
+      "osm": "way/146811861",
+      "coordinatesWgs84": [
+        6.096782,
+        49.517332
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Administration du cadastre et de la topographie",
+      "osm": "node/10837810672",
+      "coordinatesWgs84": [
+        6.123229,
+        49.584245
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Luxembourg",
+      "osm": "way/460847721",
+      "coordinatesWgs84": [
+        5.948237,
+        49.503623
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Bock",
+      "osm": "node/621867608",
+      "coordinatesWgs84": [
+        6.136201,
+        49.611413
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Château de Septfontaines",
+      "osm": "node/258816379",
+      "coordinatesWgs84": [
+        5.963836,
+        49.700729
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tumulus",
+      "osm": "node/365760606",
+      "coordinatesWgs84": [
+        6.325375,
+        49.745333
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vicus Ricciacus",
+      "osm": "node/588684577",
+      "coordinatesWgs84": [
+        6.255939,
+        49.538231
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Saint-Michel",
+      "osm": "way/108752289",
+      "coordinatesWgs84": [
+        6.324751,
+        49.610903
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint-Sébastien",
+      "osm": "way/115712504",
+      "coordinatesWgs84": [
+        6.351058,
+        49.490673
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guillou Campagne",
+      "osm": "node/4250666792",
+      "coordinatesWgs84": [
+        5.955453,
+        49.580487
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stade Jos Haupert",
+      "osm": "way/389682249",
+      "coordinatesWgs84": [
+        5.902703,
+        49.545812
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc Heintz",
+      "osm": "way/526461841",
+      "coordinatesWgs84": [
+        6.121767,
+        49.60268
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hôpital intercommunal de Steinfort",
+      "osm": "way/469054630",
+      "coordinatesWgs84": [
+        5.91259,
+        49.660948
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade de Luxembourg",
+      "osm": "way/707074800",
+      "coordinatesWgs84": [
+        6.114154,
+        49.577002
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Place de Gand",
+      "osm": "way/50041968",
+      "coordinatesWgs84": [
+        6.106695,
+        49.608086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ma langue sourit",
+      "osm": "way/45252123",
+      "coordinatesWgs84": [
+        6.249595,
+        49.597745
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Luxembourg - SnT",
+      "osm": "way/48992138",
+      "coordinatesWgs84": [
+        6.168852,
+        49.63235
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1243,
+      "sha256": "25a1e7a63923be74f881f4da378ba8b2ea512646a91df08f0c861f53cdbf7397"
+    },
+    "geometry.ts": {
+      "bytes": 118294,
+      "sha256": "fdcf05e409b9e7a8969e6351dcd28e4eaf45b786999258aa951fa5f7ac473338"
+    },
+    "places.ts": {
+      "bytes": 9844,
+      "sha256": "ecc3a02405e75be3139a3c0327fb75a11eea4395b195148cb2d38486566fb548"
+    },
+    "terrain.ts": {
+      "bytes": 45242,
+      "sha256": "28acdbae18183672f1041520526d8637977a065ca5400b510ea95473d1867cf2"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "c9f06c5dfabd6bcaf8c97ffc546ff6e35de02fec845d2977e631c13e13d7dcd5"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

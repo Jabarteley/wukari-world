@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "toronto",
+  "countryIso2": "CA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Toronto",
+    "coordinatesWgs84": [
+      -79.3839347,
+      43.6534817
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "toronto-airport",
+    "name": "Toronto Pearson International Airport",
+    "lon": -79.629421,
+    "lat": 43.675935,
+    "sourceUrl": "https://ourairports.com/airports/CYYZ/"
+  },
+  "boxes": {
+    "play": [
+      43.47260081006602,
+      -79.64184322710955,
+      43.83436258993398,
+      -79.13486908374745
+    ],
+    "core": [
+      43.60826147751651,
+      -79.44606004912784,
+      43.698701922483494,
+      -79.32180935087216
+    ],
+    "outline": [
+      43.42260081006602,
+      -79.69184322710954,
+      43.88436258993398,
+      -79.08486908374745
+    ],
+    "wide": [
+      42.87260081006602,
+      -80.24184322710954,
+      44.43436258993398,
+      -78.53486908374745
+    ],
+    "water": [
+      43.47260081006602,
+      -79.64184322710955,
+      43.83436258993398,
+      -79.13486908374745
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf",
+    "datasetSha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/north-america/canada-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 6524280859,
+        "md5": "6294f9930c1e8e2aaf1aed16cf1cc5d1",
+        "sha256": "e9cf194b3965dafc4d985e3a5085297525bfda589af39b00ee097d402fbb1a50"
+      },
+      {
+        "role": "city-extract",
+        "url": "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 1032522521,
+        "md5": "0f003eb450a5d76de312331dd0c38542",
+        "sha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+        "reason": "Canada (6.52 GB) is read only for the admin-0 boundary; Toronto's metadata and layers come from ontario (1.03 GB). 1.5% of the outline box (Lake Ontario, US waters, 43.42-43.49N 79.19-79.09W) lies outside ontario.poly and also outside canada.poly, so neither file holds data there",
+        "polyUrl": "https://download.geofabrik.de/north-america/canada/ontario.poly",
+        "polySha256": "fa7d70729c3b5cdf4b9b32485444b2ac2df86dc56c52435e39e14c6e61d7bdea",
+        "primaryPolyUrl": "https://download.geofabrik.de/north-america/canada.poly",
+        "primaryPolySha256": "55e4d85f9755035288437f4debf4612016c00279dbf67291494ad7e9e0b13dd3"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "8e7a2ab4cce421143170be75c4b7f30ee91f37bf4665e95ea0377c7f6d03ca3f",
+        "elements": 7391
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8663f95995e59d05e7b2b487a27e1760202e60c69fc39c03b5b5be5dcedf9790",
+        "elements": 2378
+      },
+      {
+        "file": "water.json",
+        "sha256": "5aba186318a3725e6dce7154e5c76406012dc494cb12f71fa1b0381a2af1dc6c",
+        "elements": 271
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b70913a91054d82471916b8b4185d75427600066c3d37bd35d44ee3d43352845",
+        "elements": 12775
+      },
+      {
+        "file": "roads.json",
+        "sha256": "f0d1ddd957733b6e86420c3af7ed21e9e29d121c10341c26fb16873aac5cf2a7",
+        "elements": 7327
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Bay",
+      "osm": "node/25991314",
+      "coordinatesWgs84": [
+        -79.390269,
+        43.670185
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tiflisi",
+      "osm": "node/10866107005",
+      "coordinatesWgs84": [
+        -79.301594,
+        43.66981
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Toronto Public Library - North York Central Library",
+      "osm": "node/349203862",
+      "coordinatesWgs84": [
+        -79.414799,
+        43.768131
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Scarborough Health Network - Centenary Hospital",
+      "osm": "way/5520155",
+      "coordinatesWgs84": [
+        -79.204445,
+        43.780469
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Étienne Brûlé Park",
+      "osm": "node/364925801",
+      "coordinatesWgs84": [
+        -79.490348,
+        43.651916
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Woodbine Mall",
+      "osm": "way/29466121",
+      "coordinatesWgs84": [
+        -79.600081,
+        43.720484
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Knox Presbyterian Church",
+      "osm": "way/67140605",
+      "coordinatesWgs84": [
+        -79.281387,
+        43.785296
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Etobicoke Civic Centre",
+      "osm": "way/79664993",
+      "coordinatesWgs84": [
+        -79.565292,
+        43.643606
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Archives of Ontario",
+      "osm": "node/8153684524",
+      "coordinatesWgs84": [
+        -79.500381,
+        43.775062
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Seneca Polytechnic",
+      "osm": "way/703666033",
+      "coordinatesWgs84": [
+        -79.349845,
+        43.796693
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Birchmount Stadium",
+      "osm": "way/35545706",
+      "coordinatesWgs84": [
+        -79.260721,
+        43.695824
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Legoland Discovery Centre",
+      "osm": "node/2424870841",
+      "coordinatesWgs84": [
+        -79.535428,
+        43.825167
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mississauga Hospital",
+      "osm": "way/299944185",
+      "coordinatesWgs84": [
+        -79.608369,
+        43.571654
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Edwards Gardens",
+      "osm": "way/656128849",
+      "coordinatesWgs84": [
+        -79.358766,
+        43.731429
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Colonel Samuel Smith Park",
+      "osm": "way/33711256",
+      "coordinatesWgs84": [
+        -79.513894,
+        43.593044
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lawrence Allen Centre",
+      "osm": "way/30082934",
+      "coordinatesWgs84": [
+        -79.447191,
+        43.716767
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Toronto and Region Islamic Congregation",
+      "osm": "way/60483157",
+      "coordinatesWgs84": [
+        -79.51598,
+        43.717965
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Heintzman House",
+      "osm": "way/61956858",
+      "coordinatesWgs84": [
+        -79.416305,
+        43.823834
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Family Catholic Church",
+      "osm": "way/85544826",
+      "coordinatesWgs84": [
+        -79.434517,
+        43.637734
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centreville",
+      "osm": "relation/11005099",
+      "coordinatesWgs84": [
+        -79.372884,
+        43.620192
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pacific Mall",
+      "osm": "way/661050155",
+      "coordinatesWgs84": [
+        -79.306281,
+        43.826192
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Scarborough Health Network - General Campus",
+      "osm": "way/681295729",
+      "coordinatesWgs84": [
+        -79.248282,
+        43.756475
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shoushin",
+      "osm": "node/5369170123",
+      "coordinatesWgs84": [
+        -79.404099,
+        43.731448
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tyndale University",
+      "osm": "way/702100748",
+      "coordinatesWgs84": [
+        -79.390782,
+        43.797941
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1230,
+      "sha256": "b0fa71ec6082d189fed419790ffb197e5cb44ba47d995e7f814a3a95e3bf1705"
+    },
+    "geometry.ts": {
+      "bytes": 63920,
+      "sha256": "9fe77cb344f9cfadf18a46376131a6a412d989cbd5d5322782cdb426f19c1eb4"
+    },
+    "places.ts": {
+      "bytes": 9960,
+      "sha256": "58d234e5bb56f7317a72f4b096ceca1148afef602d727061c22a94a5585aab6f"
+    },
+    "terrain.ts": {
+      "bytes": 80000,
+      "sha256": "b7537d494af726ab550c7b06656048401c3dd891c4bc6de5962abc9bf9746416"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "5e87cd16273c77d319f51cc18ae023ad46078ace147313f82ac6afa1ca14b724"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

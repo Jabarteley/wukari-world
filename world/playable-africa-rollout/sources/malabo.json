@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "malabo",
+  "countryIso2": "GQ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Malabo",
+    "coordinatesWgs84": [
+      8.7740663,
+      3.741877
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/equatorial-guinea-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "malabo-airport",
+    "name": "Malabo International Airport",
+    "lon": 8.70872,
+    "lat": 3.75527,
+    "sourceUrl": "https://ourairports.com/airports/FGSL/"
+  },
+  "boxes": {
+    "play": [
+      3.5609961100660215,
+      8.593982161081565,
+      3.922757889933979,
+      8.954150438918434
+    ],
+    "core": [
+      3.6966567775165053,
+      8.729052447544005,
+      3.787097222483495,
+      8.819080152455994
+    ],
+    "outline": [
+      3.5109961100660216,
+      8.543982161081564,
+      3.9727578899339786,
+      9.004150438918435
+    ],
+    "wide": [
+      2.9609961100660214,
+      7.993982161081565,
+      4.522757889933978,
+      9.554150438918434
+    ],
+    "water": [
+      2.9609961100660214,
+      7.993982161081565,
+      4.522757889933978,
+      9.554150438918434
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/equatorial-guinea-261011.osm.pbf",
+    "datasetSha256": "4990daf7a617ea9dcbff50bb8edcfaa435fa84c15c8d1fd58beff22acd15eb01",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "db34af52ae3bbbbb0154e3b3d27693925303074c9dcccce4d5af292da728e2e4",
+        "elements": 92
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d67f1cc708ed314b45b2f815b4602003bc1a8a6ea3aa837646135238a3981f9e",
+        "elements": 27
+      },
+      {
+        "file": "water.json",
+        "sha256": "2b254610c1f52d55bacf3f95466da3e4a23579aec1338e2b02611d5aae486134",
+        "elements": 84
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "c0c674187437d22526e4427c375facc82e3e8e23f033adacf6dcfa33a37b4f54",
+        "elements": 236
+      },
+      {
+        "file": "roads.json",
+        "sha256": "62b1988ed4264c82d0025f9fb774d02104114f24e309f183eb13000d5c544891",
+        "elements": 244
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Puerto de Malabo",
+      "osm": "node/4872455415",
+      "coordinatesWgs84": [
+        8.781096,
+        3.758631
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Equatore Restaurant",
+      "osm": "node/3151789258",
+      "coordinatesWgs84": [
+        8.908814,
+        3.752484
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Université nationale de Guinée équatoriale",
+      "osm": "way/276917529",
+      "coordinatesWgs84": [
+        8.775045,
+        3.747047
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital de Sampaka",
+      "osm": "way/678133924",
+      "coordinatesWgs84": [
+        8.73076,
+        3.720819
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Malabo National Park",
+      "osm": "way/654502236",
+      "coordinatesWgs84": [
+        8.728007,
+        3.748725
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "VENTAGE",
+      "osm": "node/8442109718",
+      "coordinatesWgs84": [
+        8.751521,
+        3.753092
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cathédrale Sainte-Élisabeth",
+      "osm": "way/273891106",
+      "coordinatesWgs84": [
+        8.782879,
+        3.756948
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ayuntamiento de Rebola",
+      "osm": "way/307509417",
+      "coordinatesWgs84": [
+        8.835126,
+        3.726219
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Senate of the Republic of Equatorial Guinea",
+      "osm": "way/282840658",
+      "coordinatesWgs84": [
+        8.769905,
+        3.735667
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Campus Universitario de Basupu",
+      "osm": "way/1364477067",
+      "coordinatesWgs84": [
+        8.671914,
+        3.71837
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio de Malabo",
+      "osm": "way/347366427",
+      "coordinatesWgs84": [
+        8.769205,
+        3.725032
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Trailhead",
+      "osm": "node/5670102933",
+      "coordinatesWgs84": [
+        8.787459,
+        3.655804
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ECG Fabrication Yard",
+      "osm": "node/4638964990",
+      "coordinatesWgs84": [
+        8.68927,
+        3.749359
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "La Paz Medical Center",
+      "osm": "way/272208994",
+      "coordinatesWgs84": [
+        8.877303,
+        3.762197
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Salón del Reino de los Testigos de Jehová",
+      "osm": "node/9970815565",
+      "coordinatesWgs84": [
+        8.796234,
+        3.739101
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Colegio María Cano",
+      "osm": "way/678128961",
+      "coordinatesWgs84": [
+        8.747833,
+        3.729546
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plaza de San Fernando",
+      "osm": "way/363635642",
+      "coordinatesWgs84": [
+        8.799645,
+        3.757435
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gran Reserva",
+      "osm": "node/3299210014",
+      "coordinatesWgs84": [
+        8.716287,
+        3.758026
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Finca Sampaka",
+      "osm": "node/5909941285",
+      "coordinatesWgs84": [
+        8.747562,
+        3.715164
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centro Comercial Tomos",
+      "osm": "node/9195927549",
+      "coordinatesWgs84": [
+        8.783542,
+        3.732422
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cafetería Muankaba",
+      "osm": "node/9554184978",
+      "coordinatesWgs84": [
+        8.757624,
+        3.740468
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parque de Alcaide",
+      "osm": "way/638398364",
+      "coordinatesWgs84": [
+        8.788988,
+        3.744467
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Semu",
+      "osm": "node/14180562901",
+      "coordinatesWgs84": [
+        8.783099,
+        3.741412
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Estadio Pablo Boyas",
+      "osm": "way/678125725",
+      "coordinatesWgs84": [
+        8.737038,
+        3.719315
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1222,
+      "sha256": "cb80d011548cb467b7c81a96c6bbcff559346874d643ba6cb44ef46000327ad5"
+    },
+    "geometry.ts": {
+      "bytes": 358381,
+      "sha256": "a5d6688415c5fcc7294f02fd6f80ccf1bc4fc1506e2e1fc25c2d5481c2da423c"
+    },
+    "places.ts": {
+      "bytes": 9275,
+      "sha256": "c4d6674a19e2958f9a4d5f588ac19154891d3ae33946525c5d5f70fd96ba7456"
+    },
+    "terrain.ts": {
+      "bytes": 203276,
+      "sha256": "9ba2ba2e71bd8daad0f413b5708e83a36955ad6d8f483e26965ca21d45607c60"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "bba2802ca00d67166e890bbacc5cba77fb00cf218b8904b4bdb941ef279b6621"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "minsk",
+  "countryIso2": "BY",
+  "generationIdentity": {
+    "cityId": "minsk",
+    "stateId": "by-minsk",
+    "stateName": "Minsk"
+  },
+  "inventorySha256": "29342088d787d51a4682e6447e588a528393dbe4cc9cf99b9a50f5eaa420bbf1",
+  "inventoryPath": "world/playable-africa-rollout/sources/minsk.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "minsk-airport",
+    "name": "Minsk National Airport",
+    "lon": 28.039964,
+    "lat": 53.888071,
+    "sourceUrl": "https://ourairports.com/airports/UMMS/"
+  },
+  "bounds": [
+    53.72159071006602,
+    27.25554926623365,
+    54.08335248993398,
+    28.055209327656982
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/belarus-261011.osm.pbf",
+      "datasetSha256": "bdd674e3cdfee84b40a37f8f4fd91d786d9ba87e4195af0ffd2828f3753930e5",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "e76f206c9e5ad69b96b286e4a16dddafc749c525b749b1b0ad4438fc11d02338",
+          "elements": 3212
+        },
+        {
+          "file": "extras.json",
+          "sha256": "bd46c4ba81671e5744ed04785a9bd9e4befc51b180ad15a451f7a41f047d1d55",
+          "elements": 941
+        },
+        {
+          "file": "water.json",
+          "sha256": "5cb59bcedfe5f9ef356a53813c74ef7b9ee8229bd9cf9ab220d2918f05bbd7f7",
+          "elements": 172
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "cb3ada70b3f6a4816db5e55f73eb9cd7e00933749217f3d73b8033f7b8facf2d",
+          "elements": 6096
+        },
+        {
+          "file": "roads.json",
+          "sha256": "3fc409799679ce2f580a02fc4d2b92b896add763892536c6abeecf5042e3cb2b",
+          "elements": 6337
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 91,
+    "waterPolygons": 45,
+    "reachWaterPolygons": 14
+  },
+  "observed": {
+    "places": 3212,
+    "extras": 941,
+    "water": 172,
+    "landuse": 6096,
+    "roads": 6337
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1197,
+      "sha256": "5314a3649b0784edf56cd8fbf683d4a6d0d005226b477c77b8672a54b84e4e5b"
+    },
+    "geometry.ts": {
+      "bytes": 263974,
+      "sha256": "4b26f73a56a83abb8702525d3afe05c389ae61ee231f9e062d589e04b5b20269"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "804a7e9b51f4822c6cdf11c8ec1ce6ee6c1d33a9cf9b1f78840de72976280c70"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/minsk.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

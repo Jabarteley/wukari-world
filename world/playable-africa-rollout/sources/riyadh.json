@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "riyadh",
+  "countryIso2": "SA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Riyadh",
+    "coordinatesWgs84": [
+      46.7160104,
+      24.638916
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "riyadh-airport",
+    "name": "King Khalid International Airport",
+    "lon": 46.698799,
+    "lat": 24.9576,
+    "sourceUrl": "https://ourairports.com/airports/OERK/"
+  },
+  "boxes": {
+    "play": [
+      24.45803511006602,
+      46.51806438549398,
+      24.966644044496697,
+      46.913956414506025
+    ],
+    "core": [
+      24.593695777516505,
+      46.666577888121545,
+      24.68413622248349,
+      46.76544291187846
+    ],
+    "outline": [
+      24.40803511006602,
+      46.46806438549398,
+      25.016644044496697,
+      46.96395641450602
+    ],
+    "wide": [
+      23.85803511006602,
+      45.91806438549398,
+      25.566644044496698,
+      47.513956414506026
+    ],
+    "water": [
+      24.45803511006602,
+      46.51806438549398,
+      24.966644044496697,
+      46.913956414506025
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/gcc-states-261011.osm.pbf",
+    "datasetSha256": "146b0eee40cd3e5d36f497dc834eff9cc62cead909308eb14c6f9ba7db6aa400",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5476847e1cb3c0d798f97602e124d8aa7048719adb9d8c85ca92f5ec15fb294b",
+        "elements": 1535
+      },
+      {
+        "file": "extras.json",
+        "sha256": "942a232040d3afde022439b927ff44ce69d56ed6661234e266d0816fafbc099c",
+        "elements": 452
+      },
+      {
+        "file": "water.json",
+        "sha256": "16db367da1b29b6a7733ed649dbc8bb4967a34a7b627e02c62bb066a324cda3d",
+        "elements": 17
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3972c11b1e3ae3f3490e2ad7a9cb4e9adc0a163cac364df12e78bcff94d008ef",
+        "elements": 3104
+      },
+      {
+        "file": "roads.json",
+        "sha256": "7b82b13f6d59e75df25df732e7edbd14282bcf3fd1a585bd043a82279c0096e2",
+        "elements": 2572
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Riyadh Railway Station",
+      "osm": "node/492520789",
+      "coordinatesWgs84": [
+        46.740657,
+        24.650469
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Firdays",
+      "osm": "node/586570960",
+      "coordinatesWgs84": [
+        46.759759,
+        24.76759
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "King Saud University",
+      "osm": "relation/13296000",
+      "coordinatesWgs84": [
+        46.623394,
+        24.724414
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King Fahad Medical City",
+      "osm": "way/53193801",
+      "coordinatesWgs84": [
+        46.705281,
+        24.68764
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King Salman Park",
+      "osm": "way/915570666",
+      "coordinatesWgs84": [
+        46.71966,
+        24.722718
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sahara Mall",
+      "osm": "way/220845002",
+      "coordinatesWgs84": [
+        46.682735,
+        24.738745
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "مسجد",
+      "osm": "node/4193342092",
+      "coordinatesWgs84": [
+        46.713701,
+        24.52757
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Deera Square",
+      "osm": "way/1385940115",
+      "coordinatesWgs84": [
+        46.711857,
+        24.630793
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministry of Foreign Affairs",
+      "osm": "way/302308518",
+      "coordinatesWgs84": [
+        46.692367,
+        24.649225
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Princess Nora bint Abdulrahman University",
+      "osm": "way/161612193",
+      "coordinatesWgs84": [
+        46.71834,
+        24.851741
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King Fahd International Stadium",
+      "osm": "way/119616744",
+      "coordinatesWgs84": [
+        46.839144,
+        24.788553
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yamamah Palace",
+      "osm": "way/329990284",
+      "coordinatesWgs84": [
+        46.640586,
+        24.665352
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "At-Turaif District in ad-Dir'iyah",
+      "osm": "way/978220391",
+      "coordinatesWgs84": [
+        46.572739,
+        24.733153
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al Yamamah University",
+      "osm": "way/221634202",
+      "coordinatesWgs84": [
+        46.592069,
+        24.862785
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kingdom Centre",
+      "osm": "way/264745917",
+      "coordinatesWgs84": [
+        46.674356,
+        24.711365
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Boeing 707-386C",
+      "osm": "node/3351034516",
+      "coordinatesWgs84": [
+        46.737357,
+        24.753476
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Riyadh College of Technology",
+      "osm": "way/328365837",
+      "coordinatesWgs84": [
+        46.703016,
+        24.731718
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King Abdullah Park",
+      "osm": "way/441769548",
+      "coordinatesWgs84": [
+        46.736846,
+        24.666544
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Prince Sultan Military Medical City",
+      "osm": "way/1193082860",
+      "coordinatesWgs84": [
+        46.714262,
+        24.692203
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Prince Faisal bin Fahd Sports City Stadium",
+      "osm": "way/53157805",
+      "coordinatesWgs84": [
+        46.739848,
+        24.66262
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Awwal Park",
+      "osm": "way/623544763",
+      "coordinatesWgs84": [
+        46.623774,
+        24.729178
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Medical City",
+      "osm": "way/331075149",
+      "coordinatesWgs84": [
+        46.861258,
+        24.751396
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Suwaidi Park",
+      "osm": "way/168522856",
+      "coordinatesWgs84": [
+        46.694994,
+        24.597027
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Granada Mall",
+      "osm": "way/161100723",
+      "coordinatesWgs84": [
+        46.73123,
+        24.781805
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1223,
+      "sha256": "0a8d203850d9875a3c612ff52628f43bc86c4ce1034dd2d7bb57527e147c4f05"
+    },
+    "geometry.ts": {
+      "bytes": 174707,
+      "sha256": "46da00dbf8c544facbc9b8c860a6bca15fb9015c7aa826872a408d30aea4d63d"
+    },
+    "places.ts": {
+      "bytes": 9737,
+      "sha256": "721385c80dc7317b75d031074a1d888268dcb4fd5e44d424b36917648fc797b1"
+    },
+    "terrain.ts": {
+      "bytes": 41662,
+      "sha256": "307a38945a32bd5f2da648d31c754281e8d9458e0b56fb71529ebab89ea56289"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "98b03c5102f5cd85cff6b74801a86440421d4283e3202f2d659da3d2b7cf65ca"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

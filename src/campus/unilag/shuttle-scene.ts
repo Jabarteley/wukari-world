@@ -16,6 +16,14 @@ export function buildShuttle(kit: Kit): { group: Group; triangles: number; dispo
   }
   batch.box(0, 1.0, -3.23, 2.7, 0.5, 0.08, '#8f2434');
   batch.box(0, 2.45, 0, 2.0, 0.12, 3.4, '#d9b43c');
+  batch.box(0, 0.55, 3.27, 3.0, 0.22, 0.2, '#2a2d30');
+  batch.quad(0, 0.92, 3.27, 1.4, 0.35, '#33383b');
+  for (const side of [-1, 1]) {
+    batch.quad(side * 1.0, 0.9, 3.28, 0.4, 0.2, '#fff6cf', { layer: 'glow' });
+    batch.quad(side * 1.0, 1.1, -3.27, 0.4, 0.16, '#e0322a', { layer: 'glow', ry: Math.PI });
+    batch.quad(side * 1.64, 1.75, 0, 4.9, 0.12, '#e8e1cc', { ry: side * Math.PI / 2 });
+    batch.quad(side * 1.64, 1.0, 1.2, 0.9, 1.5, '#b9a77f', { ry: side * Math.PI / 2 });
+  }
   const built = batch.build(sceneMaterials(kit));
   for (const mesh of built.meshes) group.add(mesh);
   const registry = kitResources(kit).disposers;

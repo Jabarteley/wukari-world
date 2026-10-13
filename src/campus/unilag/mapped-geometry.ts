@@ -5,7 +5,7 @@ import { createBatch, sceneMaterials } from '../../scene/build.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 import { boundsOf } from './geo.ts';
 import type { CampusMapBuilding, MetrePoint, MetreRing } from './geo.ts';
-import { signLetters } from '../shared/signs.ts';
+import { bodyColour, drawLandmarkCrowns, drawMainGate, isSenateTower, paintBuilding, roofColour } from './architecture.ts';
 import { CAMPUS_TREES } from './landscape.ts';
 import { instances, primitiveGeometry } from '../shared/geometry.ts';
 
@@ -20,7 +20,7 @@ export function createMappedGeometry(kit: Kit) {
   const detailGroup = new THREE.Group(); detailGroup.name = 'Near campus facades'; group.add(detailGroup);
   let detailKey = '', treeKey = '';
   let nearTrees: InstancedMesh | null = null, farTrees: InstancedMesh | null = null;
-  const DETAIL_RADIUS = 120, DETAIL_TRIANGLES = 6000, HIGH_TREES = 24;
+  const DETAIL_RADIUS = 120, DETAIL_TRIANGLES = 5500, HIGH_TREES = 24;
   let rebuilds = 0;
   const tile = (x: number, z: number) => `${Math.floor(x / tileSize)}:${Math.floor(z / tileSize)}`;
   for (const b of CAMPUS_MAP.buildings) {
@@ -66,32 +66,16 @@ export function createMappedGeometry(kit: Kit) {
     });
   const bodies: BufferGeometry[] = [], roofs: BufferGeometry[] = [];
   for (const b of parts) {
-    const senate=b.osm.id===653186158&&b.height===43, color=senate?'#d6c8a8':b.osm.id%3===0?'#d8c9b0':b.osm.id%3===1?'#d8d2be':'#cab8a0';
+    const color=bodyColour(b);
     bodies.push(polygon(b.ring,b.height,color));
-    const roof=polygon(b.ring,0,senate?'#c8bba0':b.osm.id%4===0?'#88584a':'#687271');roof.translate(0,b.height+.035,0);roofs.push(roof);
+    const roof=polygon(b.ring,0,roofColour(b));roof.translate(0,b.height+.035,0);roofs.push(roof);
   }
   const mass=new THREE.Group();mass.name='All mapped footprints and roofs';mass.userData.footprints=CAMPUS_MAP.buildings.length;mass.userData.parts=parts.length;merged(bodies,mass);merged(roofs,mass);group.add(mass);
   const distanceTo = (b: CampusMapBuilding,x: number,z: number): number => { const [x0,z0,x1,z1]=boundsOf(b.ring); return Math.hypot(Math.max(x0-x,0,x-x1),Math.max(z0-z,0,z-z1)); };
   function facadeDetail(buildings: CampusMapBuilding[]) {
-    clear(detailGroup);group.add(detailGroup);const batch=createBatch(THREE);let remaining=DETAIL_TRIANGLES;
-    for(const b of buildings){
-      const senate=b.osm.id===653186158&&b.height===43,h=b.height;
-      const [x0,z0,x1,z1]=boundsOf(b.ring),cx=(x0+x1)/2,cz=(z0+z1)/2;
-      for(let i=1;i<b.ring.length&&remaining>=14;i++){
-        const [ax,az]=b.ring[i-1]!,[bx,bz]=b.ring[i]!,dx=bx-ax,dz=bz-az,length=Math.hypot(dx,dz);if(length<3)continue;
-        const mx=(ax+bx)/2,mz=(az+bz)/2, sign=(dz*(mx-cx)-dx*(mz-cz))>=0?1:-1,nx=sign*dz/length,nz=-sign*dx/length;
-        const spacing=senate?3:4.4,floors=Math.min(12,Math.max(1,Math.floor(h/3.5))), yaw=Math.atan2(nx,nz),ry=Math.atan2(-dz,dx);
-        const windows=Math.min(senate?4:6,Math.max(0,Math.ceil((length-3.4)/spacing)));
-        for(let floor=0;floor<floors&&remaining>=14;floor++)for(let slot=0;slot<windows&&remaining>=14;slot++){
-          const d=windows===1?length/2:2+(length-3.4)*slot/(windows-1);
-          const x=ax+dx*d/length,z=az+dz*d/length,y=2+floor*3.5,lit=(floor+Math.floor(d/spacing)+b.osm.id)%5===0;
-          batch.quad(x+nx*.12,y,z+nz*.12,senate?1.9:2.1,1.6,lit?'#c7b886':'#4d696e',{ry:yaw,layer:lit?'glow':'solid'});remaining-=2;
-          batch.box(x+nx*.44,y+1,z+nz*.44,senate?2.9:2.6,.18,.95,'#e0d6bd',{ry});remaining-=12;
-          if(senate&&remaining>=12){batch.box(x+nx*.6,y,z+nz*.6,.22,3.4,1.4,(floor+Math.floor(d/spacing))%4===0?'#934b3d':'#d9cbaa',{ry});remaining-=12;}
-        }
-        for(let floor=1;floor<floors&&remaining>=12;floor++){batch.box(mx+nx*.2,floor*3.5+.25,mz+nz*.2,length,.22,.5,senate?'#9a4b3d':'#bdb49e',{ry});remaining-=12;}
-      }
-    }
+    clear(detailGroup);group.add(detailGroup);const batch=createBatch(THREE);const budget={left:DETAIL_TRIANGLES};
+    for(const b of buildings){if(budget.left<40)break;if(isSenateTower(b))continue;paintBuilding(batch,b,budget);}
+    const remaining=budget.left;
     for(const mesh of batch.build(materials).meshes)detailGroup.add(mesh);detailGroup.userData.triangles=DETAIL_TRIANGLES-remaining;rebuilds++;
   }
   const land=new THREE.Group();land.name='UNILAG mapped ground';group.add(land);
@@ -108,14 +92,14 @@ export function createMappedGeometry(kit: Kit) {
     b.ico(2.4,7.1,-.9,2.8,2.6,3,'#597a4e');
   });
   const farTreeGeometry=primitiveGeometry(kit,b=>{
-    b.cyl(0,3,0,.32,6,'#786c50',{seg:3});
-    b.cone(0,7,0,4.4,6,'#56764f',{seg:3});
+    b.cone(0,4.6,0,4.4,8.4,'#56764f',{seg:3,open:true});
   });
+  const TREE_TONES=['#ffffff','#e4efcc','#f4f2dc','#cfe3d2','#fff0c0','#d9e8c0'];
   function treeDetail(x:number,z:number){
     const near=CAMPUS_TREES.map((tree,index)=>({tree,index,distance:Math.hypot(tree.x-x,tree.z-z)})).filter(item=>item.distance<140).sort((a,b)=>a.distance-b.distance).slice(0,HIGH_TREES), indices=new Set(near.map(item=>item.index)),key=[...indices].sort((a,b)=>a-b).join(',');
     if(key===treeKey&&farTrees)return;treeKey=key;
     nearTrees?.removeFromParent();nearTrees?.dispose();farTrees?.removeFromParent();farTrees?.dispose();
-    const item=(p:typeof CAMPUS_TREES[number])=>({x:p.x,y:0,z:p.z,sx:p.size,sy:p.size,sz:p.size});
+    const item=(p:typeof CAMPUS_TREES[number])=>({x:p.x,y:0,z:p.z,sx:p.size,sy:p.size,sz:p.size,ry:p.x*.37,color:TREE_TONES[Math.floor(Math.abs(Math.sin(p.x*3.1+p.z*7.7))*6)%6]});
     nearTrees=instances(kit,treeGeometry,near.map(({tree})=>item(tree)));farTrees=instances(kit,farTreeGeometry,CAMPUS_TREES.filter((_,i)=>!indices.has(i)).map(item));
     if(nearTrees)land.add(nearTrees);if(farTrees)land.add(farTrees);rebuilds++;
   }
@@ -141,23 +125,10 @@ export function createMappedGeometry(kit: Kit) {
 
   // Gate silhouette follows Ei'eke's May 2025 photograph. Dimensions are estimated.
   const gate=createBatch(THREE);
-  gate.at(0,0,0,-Math.PI/2,()=>{
-    for(const x of [-16,0,16]){
-      gate.box(x,3.4,0,x===0?5:1.4,6.8,3,'#d6bd86');
-      gate.box(x,1.5,1.6,x===0?5:1.4,2.8,.2,'#87443f');
-    }
-    for(const side of [-1,1]){
-      const cx=side*8;
-      for(const z of [-2,2]){
-        gate.box(cx,7,z,11,.22,.22,'#344143');
-        gate.box(cx,6.2,z,11,.18,.18,'#344143');
-        for(let k=0;k<6;k++)gate.box(side*2.5+side*k*2,6.6,z,2.15,.13,.13,'#344143',{rz:k%2?.4:-.4});
-      }
-      for(let k=0;k<7;k++)gate.box(cx-5+k*1.65,7,0,.13,.13,4,'#344143');
-    }
-    signLetters(gate,'UNIVERSITY OF LAGOS',0,4.7,1.7,5);
-  });
+  gate.at(0,0,0,-Math.PI/2,()=>drawMainGate(gate));
   const gateGroup=new THREE.Group();gateGroup.name='Main gate photo interpretation';for(const mesh of gate.build(materials).meshes)gateGroup.add(mesh);group.add(gateGroup);
+  const crownBatch=createBatch(THREE);drawLandmarkCrowns(crownBatch,parts);
+  const crown=new THREE.Group();crown.name='Senate House tower and landmark crowns';for(const mesh of crownBatch.build(materials).meshes){mesh.castShadow=true;crown.add(mesh);}group.add(crown);
   for(const x of [-16,0,16]){
     const width=x===0?5:1.4;
     const vertices=x===0?[[-width/2,6.8],[-width/2,12.5],[0,9],[width/2,12.5],[width/2,6.8]]:[[-width/2,6.8],[-width/2,13],[width/2,10.8],[width/2,6.8]];
@@ -171,5 +142,5 @@ export function createMappedGeometry(kit: Kit) {
     treeDetail(x,z);
   }
   let disposed=false;
-  return {group,update,get rebuilds(){return rebuilds;},get resident(){return [...resident.keys()];},dispose(){if(disposed)return;disposed=true;resident.clear();nearTrees?.dispose();farTrees?.dispose();nearTrees?.removeFromParent();farTrees?.removeFromParent();clear(mass);clear(detailGroup);clear(land);clear(gateGroup);treeGeometry.dispose();farTreeGeometry.dispose();group.removeFromParent();group.clear();}};
+  return {group,update,get rebuilds(){return rebuilds;},get resident(){return [...resident.keys()];},dispose(){if(disposed)return;disposed=true;resident.clear();nearTrees?.dispose();farTrees?.dispose();nearTrees?.removeFromParent();farTrees?.removeFromParent();clear(mass);clear(detailGroup);clear(land);clear(gateGroup);clear(crown);treeGeometry.dispose();farTreeGeometry.dispose();group.removeFromParent();group.clear();}};
 }

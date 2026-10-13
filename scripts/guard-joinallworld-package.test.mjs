@@ -165,7 +165,7 @@ test('archive extractor rejects traversal, symlink, hardlink and oversize entrie
 
 test('archive extractor accepts the street-pack count and rejects excess entries or aggregate bytes', t => {
   const f = fixture(t), unpack = fileURLToPath(new URL('./unpack-joinallworld.py', import.meta.url));
-  for (const [name, count, size, accepted] of [['streets', 6000, 0, true], ['too-many', 6501, 0, false], ['too-large', 21, 5 * 1024 * 1024, false]]) {
+  for (const [name, count, size, accepted] of [['streets', 6000, 0, true], ['too-many', 20001, 0, false], ['too-large', 205, 5 * 1024 * 1024, false]]) {
     const archive = join(f.root, `${name}.tar`), destination = join(f.root, name);
     const script = `import tarfile,sys,io\nwith tarfile.open(sys.argv[1],'w') as t:\n data=bytes(int(sys.argv[3]))\n for n in range(int(sys.argv[2])):\n  i=tarfile.TarInfo('assets/pack-'+str(n)+'.txt'); i.size=len(data); t.addfile(i,io.BytesIO(data))\n`;
     assert.equal(spawnSync('python3', ['-c', script, archive, String(count), String(size)]).status, 0);

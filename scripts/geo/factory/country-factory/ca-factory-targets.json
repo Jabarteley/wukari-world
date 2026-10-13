@@ -1,0 +1,293 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "CA",
+    "datasetSha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+    "boundaryDatasetSha256": "e9cf194b3965dafc4d985e3a5085297525bfda589af39b00ee097d402fbb1a50",
+    "receiptSha256": "3d129a2a2870c9b9c1545b65b0c4dcc7fbde7dc3bca7157d8d059f266cf6453c",
+    "receiptBytes": 619571,
+    "geometrySha256": "76cb309e77fd842d02de684548f31b1559852a10951b628ed467b272b9ec87b0",
+    "geometryBytes": 808063,
+    "scriptSha256": "bbe1db23bd836d8dec523260a917501cddad8c520cacf75f3128aab143c10f3c",
+    "relationId": 1428125,
+    "boundaryKey": "ca",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38329177114,
+      "sourceSha": "8c0bef08240a71eebbf9e64219943a575e003b9b",
+      "sourceArtifact": "city-bootstrap-ca-8c0bef08240a71eebbf9e64219943a575e003b9b",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "toronto",
+      "name": "Toronto",
+      "country": "ca",
+      "facts": {
+        "id": "toronto",
+        "name": "Toronto",
+        "country": {
+          "idISOlower": "ca",
+          "name": "Canada"
+        },
+        "state": {
+          "idunique": "ca-toronto",
+          "name": "Toronto"
+        },
+        "timezone": "America/Toronto",
+        "centre": {
+          "lon": -79.3839347,
+          "lat": 43.6534817
+        },
+        "airport": {
+          "id": "toronto-airport",
+          "name": "Toronto Pearson International Airport",
+          "lon": -79.629421,
+          "lat": 43.675935,
+          "sourceUrl": "https://ourairports.com/airports/CYYZ/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/18063533",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -79.64184322710955,
+          43.47260081006602,
+          -79.13486908374745,
+          43.83436258993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/18063533",
+          "sourceUrl": "https://www.openstreetmap.org/node/18063533",
+          "sourceRecord": {
+            "ref": "node/18063533",
+            "tags": {
+              "admin_level": "4",
+              "alt_name:ono": "Tháęꞏdoʔ",
+              "capital": "4",
+              "name": "Toronto",
+              "name:ar": "تورونتو",
+              "name:az-Arab": "تورونتو",
+              "name:azb": "تورونتو",
+              "name:bn": "টোরোংটো",
+              "name:br": "Toronto",
+              "name:ca": "Toronto",
+              "name:cay": "Tgáǫ:doˀ",
+              "name:ckb": "تۆرنتۆ",
+              "name:de": "Toronto",
+              "name:el": "Τορόντο",
+              "name:en": "Toronto",
+              "name:eo": "Toronto",
+              "name:es": "Toronto",
+              "name:et": "Toronto",
+              "name:fa": "تورنتو",
+              "name:fr": "Toronto",
+              "name:ga": "Torontó",
+              "name:grc": "Τορόντον",
+              "name:he": "טורונטו",
+              "name:hi": "टॊरॊंटो",
+              "name:hr": "Toronto",
+              "name:hy": "Տորոնտո",
+              "name:hyw": "Թորոնթօ",
+              "name:ja": "トロント",
+              "name:kab-Arab": "تورونتو",
+              "name:kk-Arab": "تورونتو",
+              "name:kmr": "تۆرۆنتۆ",
+              "name:kn": "ಟೊರೊಂಟೋ",
+              "name:ko": "토론토",
+              "name:ku": "Toronto",
+              "name:moh": "Aterón:to",
+              "name:mr": "टॊरॊंटो",
+              "name:oc": "Toronto",
+              "name:oj": "Gichi Kiiwenging",
+              "name:ono": "Tgáędoʔ",
+              "name:pa": "ਟੋਰਾਂਟੋ",
+              "name:pl": "Toronto",
+              "name:pnb": "ٹورنٹو",
+              "name:ps": "ټورنټو",
+              "name:pt": "Toronto",
+              "name:ru": "Торонто",
+              "name:sr": "Торонто",
+              "name:sr-Latn": "Toronto",
+              "name:ta": "டொரொண்டோ",
+              "name:ug": "تورونتو",
+              "name:uk": "Торонто",
+              "name:ur": "ٹورانٹو",
+              "name:wal": "Torontto",
+              "name:zh-Hans": "多伦多",
+              "name:zh-Hant": "多倫多",
+              "place": "city",
+              "population": "2731571",
+              "population:date": "2016",
+              "wikidata": "Q172",
+              "wikipedia": "en:Toronto"
+            },
+            "lon": -79.3839347,
+            "lat": 43.6534817
+          },
+          "pbfSha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+          "selection": {
+            "cityOsmRef": "node/18063533",
+            "matchedOsmRef": "node/18063533"
+          }
+        },
+        "airport": {
+          "rowNumber": 21487,
+          "row": {
+            "id": "1990",
+            "ident": "CYYZ",
+            "type": "large_airport",
+            "name": "Toronto Pearson International Airport",
+            "latitude_deg": "43.675935",
+            "longitude_deg": "-79.629421",
+            "elevation_ft": "569",
+            "continent": "NA",
+            "iso_country": "CA",
+            "iso_region": "CA-ON",
+            "municipality": "Toronto",
+            "scheduled_service": "yes",
+            "icao_code": "CYYZ",
+            "iata_code": "YYZ",
+            "gps_code": "CYYZ",
+            "local_code": "YYZ",
+            "home_link": "http://www.torontopearson.com/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Toronto_Pearson_International_Airport",
+            "keywords": "YTO, Toronto International Airport, Malton"
+          },
+          "rowSha256": "44aaf92afbeb7987cd1c28c662042c15f50a3d38b6907fdb5fcf48ae3ee0dbb2",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "CYYZ",
+            "sourceUrl": "https://ourairports.com/airports/CYYZ/",
+            "matchedIdent": "CYYZ",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/CYYZ/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "CA,BS",
+              "+4339-07923",
+              "America/Toronto",
+              "Eastern - ON & QC (most areas)"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Toronto",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "CA,BS",
+              "+4339-07923",
+              "America/Toronto",
+              "Eastern - ON & QC (most areas)"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf",
+          "bytes": 1032522521,
+          "sha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [],
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              43.47260081006602,
+              -79.64184322710955,
+              43.83436258993398,
+              -79.13486908374745
+            ],
+            "core": [
+              43.60826147751651,
+              -79.44606004912784,
+              43.698701922483494,
+              -79.32180935087216
+            ],
+            "outline": [
+              43.42260081006602,
+              -79.69184322710954,
+              43.88436258993398,
+              -79.08486908374745
+            ],
+            "wide": [
+              42.87260081006602,
+              -80.24184322710954,
+              44.43436258993398,
+              -78.53486908374745
+            ]
+          },
+          "airportMarginMetres": 1000.1507515515458,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "toronto",
+      "extractSha256": {
+        "places": "8e7a2ab4cce421143170be75c4b7f30ee91f37bf4665e95ea0377c7f6d03ca3f",
+        "extras": "8663f95995e59d05e7b2b487a27e1760202e60c69fc39c03b5b5be5dcedf9790",
+        "water": "5aba186318a3725e6dce7154e5c76406012dc494cb12f71fa1b0381a2af1dc6c",
+        "landuse": "b70913a91054d82471916b8b4185d75427600066c3d37bd35d44ee3d43352845",
+        "roads": "f0d1ddd957733b6e86420c3af7ed21e9e29d121c10341c26fb16873aac5cf2a7"
+      },
+      "sourceJob": {
+        "city": "toronto",
+        "sourceRunId": 38329177114,
+        "sourceArtifact": "city-bootstrap-ca-8c0bef08240a71eebbf9e64219943a575e003b9b",
+        "sourceSha": "8c0bef08240a71eebbf9e64219943a575e003b9b",
+        "datasetSha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "extractSha256": {
+          "places": "8e7a2ab4cce421143170be75c4b7f30ee91f37bf4665e95ea0377c7f6d03ca3f",
+          "extras": "8663f95995e59d05e7b2b487a27e1760202e60c69fc39c03b5b5be5dcedf9790",
+          "water": "5aba186318a3725e6dce7154e5c76406012dc494cb12f71fa1b0381a2af1dc6c",
+          "landuse": "b70913a91054d82471916b8b4185d75427600066c3d37bd35d44ee3d43352845",
+          "roads": "f0d1ddd957733b6e86420c3af7ed21e9e29d121c10341c26fb16873aac5cf2a7"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/north-america/canada-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 6524280859,
+            "md5": "6294f9930c1e8e2aaf1aed16cf1cc5d1",
+            "sha256": "e9cf194b3965dafc4d985e3a5085297525bfda589af39b00ee097d402fbb1a50"
+          },
+          {
+            "role": "city-extract",
+            "url": "https://download.geofabrik.de/north-america/canada/ontario-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 1032522521,
+            "md5": "0f003eb450a5d76de312331dd0c38542",
+            "sha256": "0e536314a99fb0e0ec4df43f611fdf79a55fe114a283ff2e9ae8040e66576039",
+            "reason": "Canada (6.52 GB) is read only for the admin-0 boundary; Toronto's metadata and layers come from ontario (1.03 GB). 1.5% of the outline box (Lake Ontario, US waters, 43.42-43.49N 79.19-79.09W) lies outside ontario.poly and also outside canada.poly, so neither file holds data there",
+            "polyUrl": "https://download.geofabrik.de/north-america/canada/ontario.poly",
+            "polySha256": "fa7d70729c3b5cdf4b9b32485444b2ac2df86dc56c52435e39e14c6e61d7bdea",
+            "primaryPolyUrl": "https://download.geofabrik.de/north-america/canada.poly",
+            "primaryPolySha256": "55e4d85f9755035288437f4debf4612016c00279dbf67291494ad7e9e0b13dd3"
+          }
+        ]
+      }
+    }
+  ]
+}

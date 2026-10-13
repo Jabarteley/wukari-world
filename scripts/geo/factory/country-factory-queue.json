@@ -44,6 +44,10 @@
   {
    "id": "vn",
    "table": "scripts/geo/factory/country-factory/vn-factory-targets.json"
+  },
+  {
+   "id": "au",
+   "table": "scripts/geo/factory/country-factory/au-factory-targets.json"
   }
  ]
 }

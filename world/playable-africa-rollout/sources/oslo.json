@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "oslo",
+  "countryIso2": "NO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Oslo",
+    "coordinatesWgs84": [
+      10.7389701,
+      59.9133301
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/norway-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "oslo-airport",
+    "name": "Oslo-Gardermoen International Airport",
+    "lon": 11.1004,
+    "lat": 60.193901,
+    "sourceUrl": "https://ourairports.com/airports/ENGM/"
+  },
+  "boxes": {
+    "play": [
+      59.73244921006602,
+      10.378618864005034,
+      60.202945044496694,
+      11.118477241021512
+    ],
+    "core": [
+      59.86810987751651,
+      10.649251378663054,
+      59.9585503224835,
+      10.828688821336945
+    ],
+    "outline": [
+      59.682449210066025,
+      10.328618864005033,
+      60.25294504449669,
+      11.168477241021513
+    ],
+    "wide": [
+      59.13244921006602,
+      9.778618864005034,
+      60.802945044496695,
+      11.718477241021512
+    ],
+    "water": [
+      59.13244921006602,
+      9.778618864005034,
+      60.802945044496695,
+      11.718477241021512
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/norway-261011.osm.pbf",
+    "datasetSha256": "cfeef17cee2bb377160c8e4323dde02b9d651d21bf82a9ed79a389e0c888c829",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "033ff7e21b5a5d5a1956233df570b6e0fe6edbc5d5855ef36e7b90ec53039750",
+        "elements": 4494
+      },
+      {
+        "file": "extras.json",
+        "sha256": "083be6762f8c7b2c89966eed064a77abf7d89dafade344431e405cfb79b19a8d",
+        "elements": 729
+      },
+      {
+        "file": "water.json",
+        "sha256": "77dec590ed0138ed19989e4142e8d5349e5c3190f76d64d2287608077a90e513",
+        "elements": 3244
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "ce54b7c30962859151ed2b983b67fa2ad2fdf71b17220b4d683ccfdc9925971c",
+        "elements": 4328
+      },
+      {
+        "file": "roads.json",
+        "sha256": "339c2b4352e56a7283c3d4292f7282bbdd85a2fa3f47656f2b2eb689b0476d03",
+        "elements": 5731
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Oslo Central Station",
+      "osm": "node/660921",
+      "coordinatesWgs84": [
+        10.753138,
+        59.911025
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vangen",
+      "osm": "node/5920115758",
+      "coordinatesWgs84": [
+        10.999265,
+        59.818664
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Høyskolen i Akershus",
+      "osm": "way/89631775",
+      "coordinatesWgs84": [
+        11.044168,
+        59.976434
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sunnaas sykehus",
+      "osm": "way/43556465",
+      "coordinatesWgs84": [
+        10.640754,
+        59.83524
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Furuset kulturpark",
+      "osm": "way/155873155",
+      "coordinatesWgs84": [
+        10.889864,
+        59.942774
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Østerås senter",
+      "osm": "way/229971808",
+      "coordinatesWgs84": [
+        10.607531,
+        59.943535
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Betel Nærsnes",
+      "osm": "node/3131568566",
+      "coordinatesWgs84": [
+        10.512123,
+        59.759992
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Vollebekk torg",
+      "osm": "relation/19904207",
+      "coordinatesWgs84": [
+        10.828134,
+        59.935889
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bærum rådhus",
+      "osm": "way/30606562",
+      "coordinatesWgs84": [
+        10.526266,
+        59.890089
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Oslo",
+      "osm": "relation/7757342",
+      "coordinatesWgs84": [
+        10.725065,
+        59.931239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jordal amfi",
+      "osm": "way/760875553",
+      "coordinatesWgs84": [
+        10.783961,
+        59.911171
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stunnerøya",
+      "osm": "node/1779117990",
+      "coordinatesWgs84": [
+        10.917468,
+        59.746571
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Spenningsbygruva",
+      "osm": "node/1914126620",
+      "coordinatesWgs84": [
+        10.915536,
+        60.086682
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tusenfryd",
+      "osm": "way/48672338",
+      "coordinatesWgs84": [
+        10.775756,
+        59.747008
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ringkollen kapell",
+      "osm": "way/308441483",
+      "coordinatesWgs84": [
+        10.38999,
+        60.171506
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nittedal kirke",
+      "osm": "way/822899835",
+      "coordinatesWgs84": [
+        10.946139,
+        60.009011
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Akershus universitetssykehus",
+      "osm": "way/51446838",
+      "coordinatesWgs84": [
+        10.99497,
+        59.931448
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Radiumhospitalet",
+      "osm": "way/143526382",
+      "coordinatesWgs84": [
+        10.662583,
+        59.930953
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kobberhaughytta",
+      "osm": "node/540229469",
+      "coordinatesWgs84": [
+        10.663684,
+        60.036096
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nansenparken",
+      "osm": "way/129487913",
+      "coordinatesWgs84": [
+        10.617159,
+        59.896617
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sverre Enevolds plass",
+      "osm": "way/106902060",
+      "coordinatesWgs84": [
+        10.7879,
+        59.954754
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sandbakken",
+      "osm": "node/260042955",
+      "coordinatesWgs84": [
+        10.916705,
+        59.828622
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Intility Arena",
+      "osm": "way/443983964",
+      "coordinatesWgs84": [
+        10.806553,
+        59.91799
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ullevaal Stadion",
+      "osm": "way/43222619",
+      "coordinatesWgs84": [
+        10.734329,
+        59.949136
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1209,
+      "sha256": "04539e98e76d73acd3a29a166a6a3344247347d05763a56774380b0663976530"
+    },
+    "geometry.ts": {
+      "bytes": 1281803,
+      "sha256": "7fd24b7219316f45cc538cfafab679e280997105f672c5834d3d06aeb39aa603"
+    },
+    "places.ts": {
+      "bytes": 9519,
+      "sha256": "3b74b99a6c3d1134c56b676359df5f320fa437f673928145699cc7afdda8afe4"
+    },
+    "terrain.ts": {
+      "bytes": 2397185,
+      "sha256": "ed476d8118718b45d3351e74f606d94757080ec59a2b5050a6875cc23998c325"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "8ccf6729471193b0aa0f5a04dfa3184fb0eca3f14eb6190f205fc69be049c647"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "cityId": "male",
+  "countryIso2": "MV",
+  "generationIdentity": {
+    "cityId": "male",
+    "stateId": "mv-male",
+    "stateName": "Malé"
+  },
+  "inventorySha256": "50616512bbe92b92a140b3e2cecad14138464da12cc6e9e0c377b82656890b42",
+  "inventoryPath": "world/playable-africa-rollout/sources/male.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "male-airport",
+    "name": "Velana International Airport",
+    "lon": 73.529099,
+    "lat": 4.19183,
+    "sourceUrl": "https://ourairports.com/airports/VRMM/"
+  },
+  "bounds": [
+    3.997107010066021,
+    73.33055529711906,
+    4.358868789933978,
+    73.69092210288095
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/maldives-261011.osm.pbf",
+      "datasetSha256": "d4db22dc16c3ef027aa1a3245e4967cee59006f7e2ecebdfc482e5680f824604",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "962500319e3f244162d46599cf1a53e34420876c5c37e30b805199a5b63d205d",
+          "elements": 340
+        },
+        {
+          "file": "extras.json",
+          "sha256": "2d35f81dbf0aa805c83d9b44ceeb6f53425d554670912294afd29b6aece72e8e",
+          "elements": 84
+        },
+        {
+          "file": "water.json",
+          "sha256": "dde19619a78afba8e33fc24dd43c834978e8f27c3131ee5652e9969eda4b7ae2",
+          "elements": 374
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d26bec11e581ddb41b800bffe201a84d08fcdee7d02a32a30d8b1e91d95b2a12",
+          "elements": 99
+        },
+        {
+          "file": "roads.json",
+          "sha256": "07c83f297b8afd6ccae3fc63510af6d55923bb46397edcbf262953ca26f3e916",
+          "elements": 47
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 3,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 14,
+    "waterPolygons": 16,
+    "reachWaterPolygons": 21
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [],
+    "districtLabelAreas": [
+      {
+        "ref": "relation/14391899",
+        "place": "island",
+        "name": "މާލެ"
+      },
+      {
+        "ref": "way/302137566",
+        "place": "islet",
+        "name": "ފުނަދޫ"
+      },
+      {
+        "ref": "way/19882009",
+        "place": "islet",
+        "name": "ދޫނިދޫ"
+      },
+      {
+        "ref": "relation/6615241",
+        "place": "island",
+        "name": "ހުޅުލެ"
+      },
+      {
+        "ref": "way/19882189",
+        "place": "islet",
+        "name": "Feydoofinolu"
+      },
+      {
+        "ref": "way/19881993",
+        "place": "islet",
+        "name": "Vihamanaafushi"
+      },
+      {
+        "ref": "relation/6615242",
+        "place": "island",
+        "name": "ހުޅުމާލެ"
+      },
+      {
+        "ref": "way/19882113",
+        "place": "islet",
+        "name": "Aarah"
+      },
+      {
+        "ref": "way/19881978",
+        "place": "islet",
+        "name": "Adaaran Prestige Vadoo"
+      },
+      {
+        "ref": "way/19881944",
+        "place": "islet",
+        "name": "Embudhu Finolhu"
+      },
+      {
+        "ref": "way/602730308",
+        "place": "island",
+        "name": "ތިލަފުށި"
+      },
+      {
+        "ref": "way/19882143",
+        "place": "islet",
+        "name": "Furanafushi"
+      },
+      {
+        "ref": "way/19882024",
+        "place": "islet",
+        "name": "Kandu Oiy Giri"
+      },
+      {
+        "ref": "way/19882115",
+        "place": "islet",
+        "name": "Kuda Bandos"
+      },
+      {
+        "ref": "way/19882199",
+        "place": "islet",
+        "name": "Velassaru"
+      },
+      {
+        "ref": "way/234993294",
+        "place": "islet",
+        "name": "Bandos"
+      },
+      {
+        "ref": "way/3990127",
+        "place": "islet",
+        "name": "Embudu"
+      },
+      {
+        "ref": "way/19882148",
+        "place": "islet",
+        "name": "Giraavaru Falhu"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "island": 4,
+      "islet": 14
+    }
+  },
+  "observed": {
+    "places": 340,
+    "extras": 84,
+    "water": 374,
+    "landuse": 99,
+    "roads": 47
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1237,
+      "sha256": "61bf8be84dc5b72a880b005f7646ec0bd32a58c8373faba6fa046c5969aa4def"
+    },
+    "geometry.ts": {
+      "bytes": 457722,
+      "sha256": "97db652fc6664c01ccc2c1abdc844c2ff46d1706a3a94aa36b2ff205826bbc85"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "e66422774638e94a647cf74e642e964f78a3901b501bf9917a57f1c1dd9790b3"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/male.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

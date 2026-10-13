@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "athens",
+  "countryIso2": "GR",
+  "generationIdentity": {
+    "cityId": "athens",
+    "stateId": "gr-athens",
+    "stateName": "Athens"
+  },
+  "inventorySha256": "c4fb24b2e828d74e512a586140dc494ba85756e4becdaf39c1d3152e655dffd5",
+  "inventoryPath": "world/playable-africa-rollout/sources/athens.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "athens-airport",
+    "name": "Athens Eleftherios Venizelos International Airport",
+    "lon": 23.9445,
+    "lat": 37.936401,
+    "sourceUrl": "https://ourairports.com/airports/LGAV/"
+  },
+  "bounds": [
+    37.79468391006602,
+    23.506349478745935,
+    38.15644568993398,
+    23.96331532125406
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/greece-261011.osm.pbf",
+      "datasetSha256": "ac48a222ce6a3f7d694e8e9db50b62d939166400131909972eede05c5ccf3c6a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "e76c4e8915628e07951e3a946d522d5d6315e3a0c3616dd9ed7c3e415cdcbdb8",
+          "elements": 7083
+        },
+        {
+          "file": "extras.json",
+          "sha256": "db1e0c1e5f91b71c47070071d251fe1512b916f17edd768d4078e18c1afcbc6c",
+          "elements": 1727
+        },
+        {
+          "file": "water.json",
+          "sha256": "b94a5687d1342586bf94e0e6849362f3a5dc8707f1288ec7b51ac32259e33329",
+          "elements": 2226
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "afa1dad73bab2253c90894c541a22228dcaf37b87d77ca4e7b4952256ca2af35",
+          "elements": 5734
+        },
+        {
+          "file": "roads.json",
+          "sha256": "d415d4ceee9b62ffd415137bd043df29a30b774a6bb309ca03d14775fa0e8c0e",
+          "elements": 6672
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 14,
+    "waterPolygons": 8,
+    "reachWaterPolygons": 8
+  },
+  "observed": {
+    "places": 7083,
+    "extras": 1727,
+    "water": 2226,
+    "landuse": 5734,
+    "roads": 6672
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1227,
+      "sha256": "469ae2955c214de166e29987f29351e7f230fa9ec420a6928ea74edc57032980"
+    },
+    "geometry.ts": {
+      "bytes": 1035269,
+      "sha256": "c292bce21f9457baf1caf9f6b597132cbf56d7cbf4ac7b45f2f856cbea67e270"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "af4e87c3395a151bb862382105b7a42ea7222b11ad928e74e684c90719a46a33"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/athens.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

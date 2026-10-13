@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "cityId": "moscow",
+  "countryIso2": "RU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Moscow",
+    "coordinatesWgs84": [
+      37.6174782,
+      55.7505412
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/russia/central-fed-district-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "moscow-airport",
+    "name": "Sheremetyevo International Airport",
+    "lon": 37.386677,
+    "lat": 55.977486,
+    "sourceUrl": "https://ourairports.com/airports/UUEE/"
+  },
+  "boxes": {
+    "play": [
+      55.56966031006602,
+      37.29675860998793,
+      55.986530044496696,
+      37.93819779001207
+    ],
+    "core": [
+      55.70532097751651,
+      37.53757782946084,
+      55.795761422483494,
+      37.697378570539165
+    ],
+    "outline": [
+      55.51966031006602,
+      37.246758609987936,
+      56.03653004449669,
+      37.988197790012066
+    ],
+    "wide": [
+      54.96966031006602,
+      36.69675860998793,
+      56.5865300444967,
+      38.53819779001207
+    ],
+    "water": [
+      55.56966031006602,
+      37.29675860998793,
+      55.986530044496696,
+      37.93819779001207
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/russia/central-fed-district-261011.osm.pbf",
+    "datasetSha256": "e67c8d1d95f4e7578473cbec44f10599a7eccffd4f17410dc841d0bb9b5d287f",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/russia-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 4177162962,
+        "md5": "0686cfd0421551d55d9cb077dc7c1008",
+        "sha256": "96ec7a9889c547c3745c8fafb765b39b2071091c60526c2199720204ac0e5a54"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 224167699,
+        "md5": "7ba3914ae712a63ab97e92adbefa4cf4",
+        "sha256": "53a639fc0cfdb786089050ba4c18c8a25ed91f7758ec71d934a0257a7d056495",
+        "reason": "admin-0 relation/60189 (Russia) member ways 1491044267 and 1491046685 (Caspian Sea, 52.5E 45.9N, one ring together) are absent from the Russia clip; their nodes lie inside the Kazakhstan clip"
+      },
+      {
+        "role": "city-extract",
+        "url": "https://download.geofabrik.de/russia/central-fed-district-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 880557310,
+        "md5": "248628020800fdc3c3e736add07c237f",
+        "sha256": "e67c8d1d95f4e7578473cbec44f10599a7eccffd4f17410dc841d0bb9b5d287f",
+        "reason": "Russia (4.18 GB) is read only for the admin-0 boundary; Moscow's metadata and layers come from central-fed-district (881 MB), which holds the centre, Sheremetyevo and all three boxes",
+        "polyUrl": "https://download.geofabrik.de/russia/central-fed-district.poly",
+        "polySha256": "2757e10f1c016c4343469309460ebeae248ff713b28908a142174eb377f01bd1",
+        "primaryPolyUrl": "https://download.geofabrik.de/russia.poly",
+        "primaryPolySha256": "94313a5b13fd2afef4d12998e36488f10100162f48e2df06758317ce27972c46"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "9a7bc5d5ac9777fac25141fb54f5dc8a33798ad0faa33a59ea1912ca66b883c8",
+        "elements": 13565
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d9f9cd5aac9fce1f530e2c0089e555a88e42a1dcdbb19671aaa2b8cc0999052a",
+        "elements": 3582
+      },
+      {
+        "file": "water.json",
+        "sha256": "a6916d2b7892558e28a069068f22a1e936073f06ebfe2b959174d562b1958c20",
+        "elements": 333
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "fac1524544864289b5b834e5bc8186dfebf0fe7a06f0e6ca165587d48248a9ea",
+        "elements": 15822
+      },
+      {
+        "file": "roads.json",
+        "sha256": "d91d6c3b6074ad0ff0cde49f0ec0c7f80b838664e08fb0f714f65f9165c94bef",
+        "elements": 8993
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Черкизово",
+      "osm": "node/54626031",
+      "coordinatesWgs84": [
+        37.746685,
+        55.803016
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Му-Му",
+      "osm": "node/1732706925",
+      "coordinatesWgs84": [
+        37.62265,
+        55.729312
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Российская экономическая школа",
+      "osm": "node/3148830081",
+      "coordinatesWgs84": [
+        37.393728,
+        55.698076
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Детская городская клиническая больница имени З.А. Башляевой",
+      "osm": "relation/8220601",
+      "coordinatesWgs84": [
+        37.404241,
+        55.853031
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Garden of the Future",
+      "osm": "relation/365223",
+      "coordinatesWgs84": [
+        37.641263,
+        55.842294
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Aviapark",
+      "osm": "relation/3789959",
+      "coordinatesWgs84": [
+        37.531125,
+        55.789982
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Храм Троицы Живоначальной",
+      "osm": "way/39288715",
+      "coordinatesWgs84": [
+        37.519218,
+        55.638237
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "площадь Амилкара Кабрала",
+      "osm": "node/8093485166",
+      "coordinatesWgs84": [
+        37.824573,
+        55.72179
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ЗАГС",
+      "osm": "node/4221178591",
+      "coordinatesWgs84": [
+        37.512932,
+        55.93972
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Мытищинский филиал МГТУ им. Н. Э. Баумана (МГУЛ)",
+      "osm": "relation/2801575",
+      "coordinatesWgs84": [
+        37.792492,
+        55.927604
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zorky",
+      "osm": "relation/7821481",
+      "coordinatesWgs84": [
+        37.326517,
+        55.82793
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Покровское",
+      "osm": "node/4862008461",
+      "coordinatesWgs84": [
+        37.628647,
+        55.60384
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Brateevo park",
+      "osm": "relation/1944912",
+      "coordinatesWgs84": [
+        37.726865,
+        55.638019
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tupolev Tu-104",
+      "osm": "way/227741770",
+      "coordinatesWgs84": [
+        37.307897,
+        55.597794
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Спецобъект Коммунарка",
+      "osm": "way/1317128307",
+      "coordinatesWgs84": [
+        37.454155,
+        55.578365
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Храм во имя иконы Божией Матери «Знамение» в Аксиньине",
+      "osm": "way/242466020",
+      "coordinatesWgs84": [
+        37.486371,
+        55.857928
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of the Exaltation of the Holy Cross in Altufyevo",
+      "osm": "way/50612064",
+      "coordinatesWgs84": [
+        37.586374,
+        55.908012
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Москворецкий дендропарк",
+      "osm": "relation/6912449",
+      "coordinatesWgs84": [
+        37.464359,
+        55.756222
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "МГТУ им. Н. Э. Баумана (Главный учебный корпус)",
+      "osm": "relation/64496",
+      "coordinatesWgs84": [
+        37.68499,
+        55.765941
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Sports Arena of the Luzhniki Olympic Complex",
+      "osm": "relation/162802",
+      "coordinatesWgs84": [
+        37.553766,
+        55.715729
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mytishchi Arena",
+      "osm": "way/91742617",
+      "coordinatesWgs84": [
+        37.726788,
+        55.910759
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "FSB Academy",
+      "osm": "relation/9993909",
+      "coordinatesWgs84": [
+        37.470647,
+        55.683825
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ЦКБ Управления делами Президента РФ",
+      "osm": "relation/4080379",
+      "coordinatesWgs84": [
+        37.390491,
+        55.75251
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Рижский рынок",
+      "osm": "node/3887492858",
+      "coordinatesWgs84": [
+        37.636946,
+        55.792977
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1230,
+      "sha256": "742beb5cda41dc82cafa7a80d36c2bada91dbe9498c9a7a7b97e846a17cf8262"
+    },
+    "geometry.ts": {
+      "bytes": 261547,
+      "sha256": "a2c6044256671a64a149466e405b87c614cd0cce1c1e793a993fa1bee8043bc3"
+    },
+    "places.ts": {
+      "bytes": 10827,
+      "sha256": "ba27606bbee27a48ce18ac24cb7a51edb51bc159d446881e69215dfb85d6c7b8"
+    },
+    "terrain.ts": {
+      "bytes": 108487,
+      "sha256": "54f6fd38ff22ee832939152e64fe396df4b8526b623a5fa9ea50957a21dc71e1"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "c1963522b117d966c3701da02b692dc635f80bc22af3142a295d1a80de82fd40"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

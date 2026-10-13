@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ramallah",
+  "countryIso2": "PS",
+  "generationIdentity": {
+    "cityId": "ramallah",
+    "stateId": "ps-ramallah",
+    "stateName": "Ramallah"
+  },
+  "inventorySha256": "69ffb8f5433c060d2494ff47aeb53ebf7f3de4f3aa4b1a5e582e21337f18800e",
+  "inventoryPath": "world/playable-africa-rollout/sources/ramallah.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "ramallah-airport",
+    "name": "Ramallah Heliport",
+    "lon": 35.20756,
+    "lat": 31.91123,
+    "sourceUrl": "https://ourairports.com/airports/ZDM/"
+  },
+  "bounds": [
+    31.722173410066024,
+    34.983177336342926,
+    32.08393518993398,
+    35.40727366365707
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf",
+      "datasetSha256": "dfabb9741932fd776d7c29b32693c9a8adf8530b2c73690948a38b992ba330f0",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6d66b3c78a9d8053cdfb647899d968b350040568df373a65920c2c6a9cf861cf",
+          "elements": 2267
+        },
+        {
+          "file": "extras.json",
+          "sha256": "2db7820d8ac7b8b751ebd456562d609231f711b0bc330fd561ed2ed3d55a5622",
+          "elements": 611
+        },
+        {
+          "file": "water.json",
+          "sha256": "a4092713b2398ad08e53b5de04e8568ba02a5e083fbd28df335654d00629b437",
+          "elements": 961
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "311af1164e1243d50068c574400203d48166118ba0537ae2efee1a4e484c3df1",
+          "elements": 2122
+        },
+        {
+          "file": "roads.json",
+          "sha256": "d38a3dd1d57b07ee4e52f3645b2b494386007505b022747d964b67a84091432f",
+          "elements": 1728
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 119,
+    "neighbourhoodLabels": 15,
+    "landPolygons": 75,
+    "waterPolygons": 0,
+    "reachWaterPolygons": 13
+  },
+  "observed": {
+    "places": 2267,
+    "extras": 611,
+    "water": 961,
+    "landuse": 2122,
+    "roads": 1728
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1240,
+      "sha256": "a242ae83b650a29d518d957fdbe2cf9c14548a55f643ec36abcdd661dcaf2922"
+    },
+    "geometry.ts": {
+      "bytes": 79833,
+      "sha256": "4c4332e2f80d18b5305b5e59735fba6adc0c62da4f89e5b25843785169ecbb57"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "6ebe4a7b71bd37860c7559e510450d12c104381e5ebd816a683bc393827f8bb4"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/ramallah.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

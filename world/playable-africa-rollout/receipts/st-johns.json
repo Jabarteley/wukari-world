@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "cityId": "st-johns",
+  "countryIso2": "AG",
+  "generationIdentity": {
+    "cityId": "st-johns",
+    "stateId": "ag-st-johns",
+    "stateName": "St. John's"
+  },
+  "inventorySha256": "e0a26f2d91a54a1058fe71b6a875cbac20b5608484dda43fd7ca5a26b28d3c3d",
+  "inventoryPath": "world/playable-africa-rollout/sources/st-johns.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "st-johns-airport",
+    "name": "V. C. Bird International Airport",
+    "lon": -61.792702,
+    "lat": 17.1367,
+    "sourceUrl": "https://ourairports.com/airports/TAPA/"
+  },
+  "bounds": [
+    16.937576010066024,
+    -62.03302534992644,
+    17.29933778993398,
+    -61.656676450073554
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "aba51f48490331049870c6936c3e5da067ed8b70bb16ee4712f4c17e7aa2fb55",
+          "elements": 323
+        },
+        {
+          "file": "extras.json",
+          "sha256": "afd73191768bb4f8a5a87422a4f24213ba5d8689dc035a4e6ad69744bc43c016",
+          "elements": 50
+        },
+        {
+          "file": "water.json",
+          "sha256": "4a876c49822278ea43218b7b1c529633e32703e1cbce8e086b44d70dfdf110c3",
+          "elements": 318
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "57b246a32736792eec53b5100e647cab433ab05a4fd0e839c389f5a484f8142c",
+          "elements": 214
+        },
+        {
+          "file": "roads.json",
+          "sha256": "53d320a132bc90461288b72500de94a415b19fcf99bb17c129c7b58755ab36d5",
+          "elements": 155
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 50,
+    "neighbourhoodLabels": 6,
+    "landPolygons": 7,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 6
+  },
+  "selection": {
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "way/150128834"
+      }
+    ]
+  },
+  "observed": {
+    "places": 323,
+    "extras": 50,
+    "water": 318,
+    "landuse": 214,
+    "roads": 155
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1252,
+      "sha256": "201c234d96c5e849ac69ebf657faaf2dbbf9ea7c649c7969d35e4f38e8333c5f"
+    },
+    "geometry.ts": {
+      "bytes": 751735,
+      "sha256": "218ae9e81da30ad342ddbe1677b28231552928b8829d9893de950be830712df7"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "46f616bce6487badef186e043417bb44e22aa9e2892f4e578fb7b22e7c3f4cf3"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/st-johns.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

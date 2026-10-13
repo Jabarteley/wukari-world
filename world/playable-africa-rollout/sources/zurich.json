@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "zurich",
+  "countryIso2": "CH",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Zurich",
+    "coordinatesWgs84": [
+      8.5410422,
+      47.3744489
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/switzerland-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "zurich-airport",
+    "name": "Zürich Airport",
+    "lon": 8.548056,
+    "lat": 47.458056,
+    "sourceUrl": "https://ourairports.com/airports/LSZH/"
+  },
+  "boxes": {
+    "play": [
+      47.193568010066016,
+      8.274827776048742,
+      47.55532978993398,
+      8.807256623951258
+    ],
+    "core": [
+      47.329228677516504,
+      8.474660266199539,
+      47.41966912248349,
+      8.60742413380046
+    ],
+    "outline": [
+      47.14356801006602,
+      8.224827776048741,
+      47.605329789933975,
+      8.857256623951258
+    ],
+    "wide": [
+      46.593568010066015,
+      7.674827776048742,
+      48.15532978993398,
+      9.407256623951257
+    ],
+    "water": [
+      47.193568010066016,
+      8.274827776048742,
+      47.55532978993398,
+      8.807256623951258
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/switzerland-261011.osm.pbf",
+    "datasetSha256": "56e1c44ae1c9302cd6fe3692cc32cd477d8f40439e28614ea9a6e95d86120ec3",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6d3783528874380367ec1e04a480336c93099d1fd129376b7b84b087781de227",
+        "elements": 7297
+      },
+      {
+        "file": "extras.json",
+        "sha256": "22aaf1a569c42be14082f3c6904de55ba1de576375271d484a3e8aa937e5f0b2",
+        "elements": 1142
+      },
+      {
+        "file": "water.json",
+        "sha256": "153f49fbe7b2a4e9397050ff73806361acec35e592a0c8148bcf8f78928a35f6",
+        "elements": 294
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "9ff907e90a2ceb76b6fe53ac611705ac73d51402a5ed4d0e51a384e172ca12d2",
+        "elements": 3731
+      },
+      {
+        "file": "roads.json",
+        "sha256": "4c44fc3715cc42100f252a4015473970bae2415735e3bfbff167da81b6a6c581",
+        "elements": 5896
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Dietikon",
+      "osm": "node/1219787004",
+      "coordinatesWgs84": [
+        8.404922,
+        47.405805
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Haus Hiltl",
+      "osm": "node/119247298",
+      "coordinatesWgs84": [
+        8.53675,
+        47.373304
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Stadtbibliothek Winterthur",
+      "osm": "node/4468111183",
+      "coordinatesWgs84": [
+        8.729532,
+        47.498674
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Privatklinik Hohenegg",
+      "osm": "way/235292955",
+      "coordinatesWgs84": [
+        8.659839,
+        47.274362
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kurpark",
+      "osm": "way/50397148",
+      "coordinatesWgs84": [
+        8.310622,
+        47.479115
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zentrum Töss",
+      "osm": "way/35203442",
+      "coordinatesWgs84": [
+        8.706005,
+        47.49164
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Dreifaltigkeitskirche",
+      "osm": "way/12168787",
+      "coordinatesWgs84": [
+        8.535209,
+        47.521333
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rathaus Bremgarten",
+      "osm": "way/477927605",
+      "coordinatesWgs84": [
+        8.342345,
+        47.352044
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "GVZ Gebäudeversicherung Kanton Zürich",
+      "osm": "node/5880755469",
+      "coordinatesWgs84": [
+        8.553198,
+        47.415962
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gottlieb-Duttweiler-Institut",
+      "osm": "way/30296204",
+      "coordinatesWgs84": [
+        8.552684,
+        47.302005
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Aussichtsturm Irchel",
+      "osm": "way/312787805",
+      "coordinatesWgs84": [
+        8.62047,
+        47.540565
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Schreibmaschinenmuseum Beck",
+      "osm": "node/306475059",
+      "coordinatesWgs84": [
+        8.770814,
+        47.370802
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Erdmannliloch",
+      "osm": "node/6419670946",
+      "coordinatesWgs84": [
+        8.413078,
+        47.542177
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Römisch-katholische kirchliche Zentrum St. Gabriel",
+      "osm": "way/49895064",
+      "coordinatesWgs84": [
+        8.651049,
+        47.381437
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Peter und Paul",
+      "osm": "way/59561172",
+      "coordinatesWgs84": [
+        8.778725,
+        47.218006
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Schloss Horben",
+      "osm": "way/163539799",
+      "coordinatesWgs84": [
+        8.326791,
+        47.220084
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gasthof zum Bären",
+      "osm": "way/117336724",
+      "coordinatesWgs84": [
+        8.763261,
+        47.284651
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Restaurant Storchen",
+      "osm": "way/769027329",
+      "coordinatesWgs84": [
+        8.38961,
+        47.229426
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Liceo Vermigli",
+      "osm": "node/9717533158",
+      "coordinatesWgs84": [
+        8.487596,
+        47.394124
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Loorenkopf-Turm",
+      "osm": "way/303186336",
+      "coordinatesWgs84": [
+        8.598971,
+        47.36976
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadlerturm",
+      "osm": "way/437737781",
+      "coordinatesWgs84": [
+        8.456966,
+        47.534049
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Spital Männedorf",
+      "osm": "way/236595729",
+      "coordinatesWgs84": [
+        8.696052,
+        47.250895
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadtspital Triemli",
+      "osm": "way/555945140",
+      "coordinatesWgs84": [
+        8.497454,
+        47.366477
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ETH Zürich, Hönggerberg",
+      "osm": "way/28367342",
+      "coordinatesWgs84": [
+        8.508406,
+        47.408311
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1195,
+      "sha256": "55ef49ff4f608d35925e9fcbfd958e68d26745bbf4ee6d53ef3b41b49b3da7ee"
+    },
+    "geometry.ts": {
+      "bytes": 207430,
+      "sha256": "0bfa4b95cb5f1f296f1ab413e3ba04287e5508990d44274b115c1be17dba7a36"
+    },
+    "places.ts": {
+      "bytes": 9753,
+      "sha256": "63935c0ee076e1650928d6fb56d83afa95164c18a639ff4afdb336bf0d853694"
+    },
+    "terrain.ts": {
+      "bytes": 167001,
+      "sha256": "641ee03ff7f8a9c9d91f53858cdb94cdadbfa2ad20e37db3619b9d05a7520c98"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "fc724d05786f025071387569cdf650e4d89eda4234667c143aeca8cfc69edcdf"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

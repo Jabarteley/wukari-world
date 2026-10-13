@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "cityId": "new-york",
+  "countryIso2": "US",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "New York",
+    "coordinatesWgs84": [
+      -74.0060152,
+      40.7127281
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/north-america/us-northeast-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "new-york-airport",
+    "name": "John F. Kennedy International Airport",
+    "lon": -73.779317,
+    "lat": 40.639447,
+    "sourceUrl": "https://ourairports.com/airports/KJFK/"
+  },
+  "boxes": {
+    "play": [
+      40.53184721006602,
+      -74.24368676689816,
+      40.89360898993398,
+      -73.76747717952446
+    ],
+    "core": [
+      40.667507877516506,
+      -74.06531166911171,
+      40.75794832248349,
+      -73.94671873088828
+    ],
+    "outline": [
+      40.48184721006602,
+      -74.29368676689816,
+      40.94360898993398,
+      -73.71747717952447
+    ],
+    "wide": [
+      39.93184721006602,
+      -74.84368676689816,
+      41.49360898993398,
+      -73.16747717952447
+    ],
+    "water": [
+      39.93184721006602,
+      -74.84368676689816,
+      41.49360898993398,
+      -73.16747717952447
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/north-america/us-northeast-261011.osm.pbf",
+    "datasetSha256": "132ba0faa6062f0cdeff79a9b859aafcf29a9870c630966cd1e453ce7b395538",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/north-america/us-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 12199919524,
+        "md5": "f9a56ae3ef76583cf892e5bfe23a18d4",
+        "sha256": "de48784f65c1160eec691abf47821c7d8deab685c8cc984ba3720ce410c8b5df"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/north-america/canada/yukon-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 83641633,
+        "md5": "8993af0c9518defcea8ff46cc9d4e985",
+        "sha256": "197967a770eaf5fa28c2e942813883eb83c3f70aedbc913baac4159294e17adb",
+        "reason": "admin-0 relation/148838 (United States) member way 1232724301 (Bering Sea territorial waters, 3 nodes, 140.75W 69.83N) is absent from the US clip and ends on present boundary ways; all 3 nodes lie inside the Canada/Yukon clip. The other 38 absent ways are maritime=yes territorial rings of US territories, covered by bootstrap/boundary-evidence/us.json"
+      },
+      {
+        "role": "city-extract",
+        "url": "https://download.geofabrik.de/north-america/us-northeast-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 1803685482,
+        "md5": "0629f2fe95ee55f48d961b2cd33611d3",
+        "sha256": "132ba0faa6062f0cdeff79a9b859aafcf29a9870c630966cd1e453ce7b395538",
+        "reason": "The US file (12.2 GB) is read only for the admin-0 boundary. New York's play/core/outline boxes include the New Jersey side (Jersey City, Newark, Elizabeth), outside new-york.poly; us-northeast (1.80 GB, NY NJ PA and New England) holds all three boxes and the centre",
+        "polyUrl": "https://download.geofabrik.de/north-america/us-northeast.poly",
+        "polySha256": "d78f03a533f3bb0bb4a98319b1b2083dc28a1e30f29f46fb164d40f2fee40e30",
+        "primaryPolyUrl": "https://download.geofabrik.de/north-america/us.poly",
+        "primaryPolySha256": "5b36ffe960cba918b5b33bd998bca090ce4279828590dab382d097d4a3b7a2f3"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "94967bb381df06acd787696dffe884e7532b06072737fd5af355e5f214765e81",
+        "elements": 15928
+      },
+      {
+        "file": "extras.json",
+        "sha256": "709001743080742875e23e432badf1ce1a9998cf05138801c03782a3c0776489",
+        "elements": 3913
+      },
+      {
+        "file": "water.json",
+        "sha256": "ad40e9026d729b775bb3a1ed1054f0e670d834485970bca60acd2762ce7a64a5",
+        "elements": 5452
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "61778e78a2a0095fcaf11d17d7435f030bdfa91dbf306b749386b78bfa2a38d8",
+        "elements": 6398
+      },
+      {
+        "file": "roads.json",
+        "sha256": "8304e6fdb5448f462001fcfeef9eac238b6843f894b67debc70c5bc485104719",
+        "elements": 18871
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "183rd Street",
+      "osm": "node/42736282",
+      "coordinatesWgs84": [
+        -73.903867,
+        40.858415
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "John's of Bleecker Street",
+      "osm": "node/931799204",
+      "coordinatesWgs84": [
+        -74.003342,
+        40.73161
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rutgers Biomedical and Health Sciences",
+      "osm": "relation/13104702",
+      "coordinatesWgs84": [
+        -74.188034,
+        40.741394
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "NYC Health + Hospitals: South Brooklyn Health",
+      "osm": "way/219041270",
+      "coordinatesWgs84": [
+        -73.964896,
+        40.585748
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Proctor-Hopson Circle",
+      "osm": "node/357640969",
+      "coordinatesWgs84": [
+        -73.786236,
+        40.697866
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "American Dream",
+      "osm": "way/907577618",
+      "coordinatesWgs84": [
+        -74.068065,
+        40.808542
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Temple of Israel",
+      "osm": "node/357617868",
+      "coordinatesWgs84": [
+        -73.809464,
+        40.587343
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Staten Island Borough Hall",
+      "osm": "way/241853809",
+      "coordinatesWgs84": [
+        -74.076022,
+        40.642423
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Brooklyn Community Board 9",
+      "osm": "node/9291191735",
+      "coordinatesWgs84": [
+        -73.950872,
+        40.667604
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kean University - Main Campus",
+      "osm": "way/419060582",
+      "coordinatesWgs84": [
+        -74.235183,
+        40.679374
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Citi Field",
+      "osm": "way/604023701",
+      "coordinatesWgs84": [
+        -73.845858,
+        40.757037
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Voorlezer's House",
+      "osm": "way/246242284",
+      "coordinatesWgs84": [
+        -74.14749,
+        40.571402
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grace Episcopal Church",
+      "osm": "way/284831877",
+      "coordinatesWgs84": [
+        -73.783834,
+        40.841036
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Reynier Speer House",
+      "osm": "way/1564487878",
+      "coordinatesWgs84": [
+        -74.203072,
+        40.860443
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Name Medical Center",
+      "osm": "way/245394269",
+      "coordinatesWgs84": [
+        -74.010018,
+        40.883005
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Spring Creek Park",
+      "osm": "relation/4479990",
+      "coordinatesWgs84": [
+        -73.866087,
+        40.655387
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Riverside Park",
+      "osm": "way/178575123",
+      "coordinatesWgs84": [
+        -73.968068,
+        40.80686
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Tilden Historic District",
+      "osm": "relation/9462533",
+      "coordinatesWgs84": [
+        -73.892515,
+        40.561027
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. John Lutheran Church",
+      "osm": "way/1489479553",
+      "coordinatesWgs84": [
+        -74.127084,
+        40.867745
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Mills at Jersey Gardens",
+      "osm": "way/167898277",
+      "coordinatesWgs84": [
+        -74.171527,
+        40.660056
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Calvary Hospital - Bronx Campus",
+      "osm": "way/527873169",
+      "coordinatesWgs84": [
+        -73.843498,
+        40.847999
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kings Plaza Shopping Center",
+      "osm": "way/250026584",
+      "coordinatesWgs84": [
+        -73.920209,
+        40.610108
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bamonte's",
+      "osm": "node/6018127885",
+      "coordinatesWgs84": [
+        -73.95122,
+        40.716644
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rockefeller University",
+      "osm": "way/108158013",
+      "coordinatesWgs84": [
+        -73.955952,
+        40.762274
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1251,
+      "sha256": "e1ec175afcc40b7d3f343dba9f2858b0910b34222e19d69bdf3ad09b52493a42"
+    },
+    "geometry.ts": {
+      "bytes": 2483715,
+      "sha256": "c599d42d7331b74529d9e17505d116acaa5706a6e62c7ab5f80d5aae61e71555"
+    },
+    "places.ts": {
+      "bytes": 10040,
+      "sha256": "099da0f1cbd33e32e3da2af73887b70425f43ea63324b71112007b1187e6cc75"
+    },
+    "terrain.ts": {
+      "bytes": 1040562,
+      "sha256": "b9730c8b36a44c33c2ac50ad649e6a324e372063377e2e28162bb77b394b129f"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "c7750df5d82565b9b8a6a48c6240fd7ef6f0bf8d63d7a44b4f6695c98d8e9094"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

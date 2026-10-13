@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "istanbul",
+  "countryIso2": "TR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Istanbul",
+    "coordinatesWgs84": [
+      28.9758715,
+      41.006381
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/turkey-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "istanbul-airport",
+    "name": "İstanbul Airport",
+    "lon": 28.732136,
+    "lat": 41.274874,
+    "sourceUrl": "https://ourairports.com/airports/LTFM/"
+  },
+  "boxes": {
+    "play": [
+      40.82550011006602,
+      28.720181619192175,
+      41.283918044496694,
+      29.214605842962158
+    ],
+    "core": [
+      40.961160777516504,
+      28.91631114773655,
+      41.05160122248349,
+      29.03543185226345
+    ],
+    "outline": [
+      40.77550011006602,
+      28.670181619192174,
+      41.33391804449669,
+      29.26460584296216
+    ],
+    "wide": [
+      40.225500110066015,
+      28.120181619192174,
+      41.883918044496696,
+      29.81460584296216
+    ],
+    "water": [
+      40.225500110066015,
+      28.120181619192174,
+      41.883918044496696,
+      29.81460584296216
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/turkey-261011.osm.pbf",
+    "datasetSha256": "c064255eeacd0b3322bb7ffb71295f7894985e6e32c648ac58e361f574fb66e8",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "77c7b68ac3e64dbdeccebd86629dd8ac9a4ba25d4dbc9cc7a9f8e4058a2421ee",
+        "elements": 10658
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c2c3e3cf593fffd9347e2788fee6b853d3b16c900bb4cbaeb2f9a81d46ad0c40",
+        "elements": 4485
+      },
+      {
+        "file": "water.json",
+        "sha256": "6b500cd1ae4bc9c987c8b403dd842134f09acc620d273272bea5568d9bfefb1c",
+        "elements": 818
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "4b93ac7c33cf688ef9d5602d86f5075303f18753110634fb2d7ab3a883966e59",
+        "elements": 8185
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c445b2d9f931964c2ab65e22fa6dcb0fc1e1331d6851c334be54f63f3b60c488",
+        "elements": 8682
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Ayvansaray",
+      "osm": "node/27609492",
+      "coordinatesWgs84": [
+        28.944855,
+        41.040811
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "beyti lokanta",
+      "osm": "way/276462508",
+      "coordinatesWgs84": [
+        28.793988,
+        40.97332
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Halki seminary",
+      "osm": "node/5285477246",
+      "coordinatesWgs84": [
+        29.094697,
+        40.881881
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ataşehir Memorial Hastanesi",
+      "osm": "way/399306293",
+      "coordinatesWgs84": [
+        29.10705,
+        40.984232
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bebek Parkı",
+      "osm": "way/41724831",
+      "coordinatesWgs84": [
+        29.043787,
+        41.07591
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Carousel Alışveriş ve Yaşam Merkezi",
+      "osm": "way/162139987",
+      "coordinatesWgs84": [
+        28.873417,
+        40.977725
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Arnavutköy Osmanlı Camii",
+      "osm": "way/317507205",
+      "coordinatesWgs84": [
+        28.74206,
+        41.188175
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rıhtım Meydanı",
+      "osm": "node/6458152384",
+      "coordinatesWgs84": [
+        29.021595,
+        40.991247
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Anadolu Palace of Justice",
+      "osm": "way/341045630",
+      "coordinatesWgs84": [
+        29.178351,
+        40.914402
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Koç University",
+      "osm": "way/1491971480",
+      "coordinatesWgs84": [
+        29.073642,
+        41.206062
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Atatürk Olympic Stadium",
+      "osm": "way/121462312",
+      "coordinatesWgs84": [
+        28.765661,
+        41.074474
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Uzun Aqueduct",
+      "osm": "way/48162658",
+      "coordinatesWgs84": [
+        28.902648,
+        41.171133
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bahçeköy Aqueduct",
+      "osm": "way/1015392049",
+      "coordinatesWgs84": [
+        28.991442,
+        41.171041
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mazul Kemer",
+      "osm": "way/969480621",
+      "coordinatesWgs84": [
+        28.851133,
+        41.07089
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Beykoz Korusu",
+      "osm": "way/989152604",
+      "coordinatesWgs84": [
+        29.09881,
+        41.133329
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "İbn Haldun Üniversitesi",
+      "osm": "way/791438790",
+      "coordinatesWgs84": [
+        28.799523,
+        41.137622
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "RAMS Park",
+      "osm": "way/342828509",
+      "coordinatesWgs84": [
+        28.990951,
+        41.103378
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Şamlar Köyü Camii",
+      "osm": "way/1365047639",
+      "coordinatesWgs84": [
+        28.735929,
+        41.123979
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Büyük Çamlıca",
+      "osm": "relation/9948513",
+      "coordinatesWgs84": [
+        29.067676,
+        41.026756
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mimar Sinan Güzel Sanatlar Üniversitesi Dolmabahçe Yerleşkesi",
+      "osm": "way/475513360",
+      "coordinatesWgs84": [
+        29.000633,
+        41.041051
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Mary",
+      "osm": "node/4735960522",
+      "coordinatesWgs84": [
+        29.04172,
+        41.16035
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Forum Istanbul Shopping and Life Center",
+      "osm": "way/401781146",
+      "coordinatesWgs84": [
+        28.897651,
+        41.046855
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maltepe Hasan Polat Stadyumu",
+      "osm": "way/159932934",
+      "coordinatesWgs84": [
+        29.131345,
+        40.920438
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Olivium Outlet Center",
+      "osm": "way/388925021",
+      "coordinatesWgs84": [
+        28.909765,
+        40.995372
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1206,
+      "sha256": "796072d66134d2c61f0fa5a8b9922b9272c442c7d3efef72db88d00d5bc3f179"
+    },
+    "geometry.ts": {
+      "bytes": 318744,
+      "sha256": "000707bba7e17326391b0ff43a23d54952a5428e36ec23ce21dba133400bd5f0"
+    },
+    "places.ts": {
+      "bytes": 9912,
+      "sha256": "0457af1015c5e2285cfdaf03400ce6cbc8e90cc3be4cce506b46997fa3ee206c"
+    },
+    "terrain.ts": {
+      "bytes": 513032,
+      "sha256": "f93bea40a110a19583a43756f40023a5ce9a9f82c16f89957494b8adcadfa999"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "434912a97e494771dd609a030552fdb56e9d82fbff7f05f10e92b3cbb81924f9"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

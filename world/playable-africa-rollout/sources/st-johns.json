@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "st-johns",
+  "countryIso2": "AG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "St. John's",
+    "coordinatesWgs84": [
+      -61.8448509,
+      17.1184569
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "st-johns-airport",
+    "name": "V. C. Bird International Airport",
+    "lon": -61.792702,
+    "lat": 17.1367,
+    "sourceUrl": "https://ourairports.com/airports/TAPA/"
+  },
+  "boxes": {
+    "play": [
+      16.937576010066024,
+      -62.03302534992644,
+      17.29933778993398,
+      -61.656676450073554
+    ],
+    "core": [
+      17.07323667751651,
+      -61.89185997817698,
+      17.163677122483495,
+      -61.79784182182301
+    ],
+    "outline": [
+      16.887576010066024,
+      -62.08302534992644,
+      17.34933778993398,
+      -61.60667645007356
+    ],
+    "wide": [
+      16.337576010066023,
+      -62.63302534992644,
+      17.89933778993398,
+      -61.05667645007355
+    ],
+    "water": [
+      16.337576010066023,
+      -62.63302534992644,
+      17.89933778993398,
+      -61.05667645007355
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "aba51f48490331049870c6936c3e5da067ed8b70bb16ee4712f4c17e7aa2fb55",
+        "elements": 323
+      },
+      {
+        "file": "extras.json",
+        "sha256": "afd73191768bb4f8a5a87422a4f24213ba5d8689dc035a4e6ad69744bc43c016",
+        "elements": 50
+      },
+      {
+        "file": "water.json",
+        "sha256": "4a876c49822278ea43218b7b1c529633e32703e1cbce8e086b44d70dfdf110c3",
+        "elements": 318
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "57b246a32736792eec53b5100e647cab433ab05a4fd0e839c389f5a484f8142c",
+        "elements": 214
+      },
+      {
+        "file": "roads.json",
+        "sha256": "53d320a132bc90461288b72500de94a415b19fcf99bb17c129c7b58755ab36d5",
+        "elements": 155
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "East Bus Station",
+      "osm": "node/208524019",
+      "coordinatesWgs84": [
+        -61.839393,
+        17.121218
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Abracadabra",
+      "osm": "node/727564216",
+      "coordinatesWgs84": [
+        -61.76801,
+        17.009501
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "American University of Antigua",
+      "osm": "relation/5969216",
+      "coordinatesWgs84": [
+        -61.79699,
+        17.156373
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clare Hill Health Center",
+      "osm": "node/13790139925",
+      "coordinatesWgs84": [
+        -61.822004,
+        17.13136
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "all saints park",
+      "osm": "way/749853682",
+      "coordinatesWgs84": [
+        -61.790511,
+        17.060823
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Heritage Market",
+      "osm": "relation/7553158",
+      "coordinatesWgs84": [
+        -61.843781,
+        17.117202
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Georges Church",
+      "osm": "way/396955695",
+      "coordinatesWgs84": [
+        -61.78749,
+        17.128717
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "High Court",
+      "osm": "way/150128834",
+      "coordinatesWgs84": [
+        -61.835225,
+        17.12028
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Antigua & Barbuda Transport Board Headquarters",
+      "osm": "node/4557434091",
+      "coordinatesWgs84": [
+        -61.810117,
+        17.101411
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Health Sciences Antigua (Dow’s Hill Campus)",
+      "osm": "node/13459831357",
+      "coordinatesWgs84": [
+        -61.751953,
+        17.016538
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sir Vivian Richards Stadium",
+      "osm": "way/19881528",
+      "coordinatesWgs84": [
+        -61.784889,
+        17.102717
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort James",
+      "osm": "way/1031834593",
+      "coordinatesWgs84": [
+        -61.863469,
+        17.1308
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Coolidge Cricket Ground",
+      "osm": "way/19881453",
+      "coordinatesWgs84": [
+        -61.794803,
+        17.140968
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clarence House",
+      "osm": "way/182023855",
+      "coordinatesWgs84": [
+        -61.762172,
+        17.010082
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ebenezer Methodist Church",
+      "osm": "node/8761557614",
+      "coordinatesWgs84": [
+        -61.84151,
+        17.120596
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Antigua Naval Dockyard and Related Archaeological Sites",
+      "osm": "way/1245381574",
+      "coordinatesWgs84": [
+        -61.756329,
+        17.005405
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Family Cathedral",
+      "osm": "way/150145638",
+      "coordinatesWgs84": [
+        -61.837523,
+        17.116561
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Devil's Bridge",
+      "osm": "node/1264199603",
+      "coordinatesWgs84": [
+        -61.678566,
+        17.100612
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Turners Beach Bar",
+      "osm": "node/4709905915",
+      "coordinatesWgs84": [
+        -61.889345,
+        17.028277
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Beach Bum Bar & Cafe",
+      "osm": "node/10243462034",
+      "coordinatesWgs84": [
+        -61.689066,
+        17.040048
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Adelin Medical Centre",
+      "osm": "way/347984242",
+      "coordinatesWgs84": [
+        -61.846468,
+        17.136025
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Hero's Park",
+      "osm": "way/555984831",
+      "coordinatesWgs84": [
+        -61.815332,
+        17.115213
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sea View Farm Playfield",
+      "osm": "way/459204144",
+      "coordinatesWgs84": [
+        -61.801877,
+        17.092789
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Antigua and Barbuda Hospitality Training Institute",
+      "osm": "relation/5964183",
+      "coordinatesWgs84": [
+        -61.791279,
+        17.15247
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1252,
+      "sha256": "201c234d96c5e849ac69ebf657faaf2dbbf9ea7c649c7969d35e4f38e8333c5f"
+    },
+    "geometry.ts": {
+      "bytes": 751735,
+      "sha256": "218ae9e81da30ad342ddbe1677b28231552928b8829d9893de950be830712df7"
+    },
+    "places.ts": {
+      "bytes": 9756,
+      "sha256": "379201e95e4064b6c8c9c33d187d3d93d350db3188e2ffd52dad940f5656fd66"
+    },
+    "terrain.ts": {
+      "bytes": 365758,
+      "sha256": "219c6170bfac46857642657cfc654ca986757d3a430b9dd26f786a768c00bf58"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "46f616bce6487badef186e043417bb44e22aa9e2892f4e578fb7b22e7c3f4cf3"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -29,6 +29,8 @@ const emit = defineEmits<{ accept: []; dismiss: [] }>()
 .inv-chip-go { min-height: 36px; padding: 0 12px; border-radius: var(--r-pill); background: var(--c-green-dark); color: #fff; font-weight: 700; font-size: 12px; }
 .inv-chip-x { width: 36px; min-height: 36px; border-radius: 50%; background: none; color: var(--c-muted); font-size: 20px; line-height: 1; }
 .inv-chip button:focus-visible { outline: var(--focus); outline-offset: 2px; }
+/* A very narrow phone: the title and the button, no icon or second line, so it never wraps to four lines. */
+@media (max-width: 360px) { .inv-chip-icon, .inv-chip-words small { display: none; } .inv-chip { gap: 6px; padding-left: 10px; } .inv-chip-words b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } }
 @media (prefers-reduced-motion: no-preference) { .inv-chip { animation: inv-chip-in .22s ease-out; } }
 @keyframes inv-chip-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 </style>

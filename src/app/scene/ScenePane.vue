@@ -81,6 +81,8 @@ const waitLine = (): string => {
   if (stuck.value?.status === 'failed') return 'This place could not be loaded. Check your connection, then try again. Everything else still works.'
   return phase.value
 }
+// The arrival fade scales the container (1.035 → 1): a resize measured during it sizes the canvas too big, and the host draws no frame of its own while idle.
+// So when the fade ends the scene is measured and drawn once more at its settled size.
 const onResize = (): void => { if (game.mode.value !== 'map') scene.venue.value?.resize() }
 
 onMounted(() => {
@@ -169,7 +171,7 @@ defineExpose({ layout })
 </script>
 
 <template>
-  <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden">
+  <div id="venue-scene" ref="container"  class="life-scene" :hidden="hidden" @animationend.self="onResize">
     <div v-if="waiting" class="scene-wait" :class="{ 'is-stuck': failed || stuck }" role="status">
       <img src="/icons/world-loader.webp" width="96" height="96" alt="" />
       <strong>{{ waitLine() }}</strong>

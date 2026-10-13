@@ -188,7 +188,8 @@ function onSaved(): void {
   .hud-cash::after { inset: -6px -3px; }
   .hud-delta { top: calc(100% + 4px); }
 }
-@media (max-width: 359px) { .hud-status-time { display: none; } .hud-status-toggle { padding: 0 8px; } }
+/* The time stays at 320 px (it is the one thing the chip is for): the neighbours give it room instead. */
+@media (max-width: 359px) { .hud-bar { gap: 3px; padding-left: 8px; padding-right: 8px; } .hud-status-toggle { padding: 0 6px; gap: 4px; } .hud-status-time { font-size: 12px; white-space: nowrap; } }
 @media (prefers-reduced-motion: reduce) {
   .hud-cash.is-up, .hud-cash.is-down { animation: none; }
   .hud-delta.is-up, .hud-delta.is-down { animation: hud-delta-still 3.4s steps(1, end); }

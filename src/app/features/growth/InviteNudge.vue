@@ -12,6 +12,7 @@ import { EMPTY_ROOM_MS, INVITE_KEY, PROMPT_MS, decideInvite, freshMemory, invite
 import type { InviteMemory, InviteMoment } from './inviteNudgeModel.ts'
 import { useGrowth } from './useGrowth.ts'
 import { hold } from '../../state/landingHold.ts'
+import { settleWanted, tour } from '../tour/tourState.ts'
 
 // The chip is loaded the first time a prompt is shown, so the button stays small.
 const InviteChip = defineAsyncComponent(() => import('./InviteChip.vue'))
@@ -60,12 +61,14 @@ const roomEmpty = computed(() => {
   const room = community.state.value
   return Boolean(room && room.connection === 'Connected' && !room.privateHome && room.memberCount === 1 && game.state.value.location !== 'home')
 })
+/** One ask at a time (tourState.ts): while the settle-in offer is up, the invitation waits behind it. */
+const waitsForSettle = computed(() => settleWanted(view.value, tour.settleAway))
 const stillApplies = (moment: InviteMoment): boolean => moment !== 'empty-venue' || roomEmpty.value
 
 function propose(moment: InviteMoment): void {
   if (prompt.value) return
-  // The first landing: the walkthrough goes first. The moment is kept and offered once it has gone.
-  if (hold.invite) { pending = { moment, at: Date.now() }; return }
+  // The first landing: the walkthrough goes first, then the offer to settle in. The moment is kept and offered once they have gone.
+  if (hold.invite || waitsForSettle.value) { pending = { moment, at: Date.now() }; return }
   const now = Date.now()
   const decision = decideInvite({ moment, memory: memory.value, now, activity: busy.value, guestNotPlaying: guestNotPlaying.value })
   if (decision.show && decision.which) { show(decision.which, now); return }
@@ -99,8 +102,8 @@ function dismiss(): void {
 const onPress = (): void => hide()
 
 // The landing's hold ended: a moment that waited is offered if it still applies.
-watch(() => hold.invite, (now) => {
-  if (now || !pending || busy.value) return
+watch([() => hold.invite, waitsForSettle], ([held, settling]) => {
+  if (held || settling || !pending || busy.value) return
   const kept = pending
   pending = null
   if (Date.now() - kept.at < KEEP_MS && stillApplies(kept.moment)) propose(kept.moment)

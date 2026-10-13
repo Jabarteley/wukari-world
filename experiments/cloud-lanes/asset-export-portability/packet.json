@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "assetId": "original-meter-beacon",
+  "version": "1.0.0",
+  "route": "static",
+  "topologyVersion": "analytic-profile-v1",
+  "skeletonVersion": null,
+  "license": "AGPL-3.0-or-later",
+  "provenance": "Original analytic geometry authored by this lane for Allworld; no external asset input",
+  "baseline": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "coordinator": "844da27a549d30c5148c1cb5b5927b7d0f5bfde6",
+  "units": "meters",
+  "axisConversion": "Blender (x,y,z) -> glTF (x,z,-y)",
+  "pivot": [
+    0,
+    0,
+    0
+  ],
+  "lod": {
+    "near": "artifacts/beacon-near.glb",
+    "far": "artifacts/beacon-far.glb"
+  },
+  "dependencies": {
+    "blender": "4.3.2",
+    "three": "0.180.0",
+    "gltfpack": "1.3.0",
+    "gltf-validator": "2.0.0-dev.3.10"
+  },
+  "compression": "Optional EXT_meshopt_compression, no Draco",
+  "admission": "Isolated portability proof only; no runtime promotion; static adapter PBR loss explicitly unaccepted",
+  "inputs": {
+    "src/scene/models/gltf-source.ts": {
+      "bytes": 7343,
+      "sha256": "e0a3b1f5ec2a4b3778dfbbb21424d304470162cf8018387defabe7ec67ccd32f"
+    },
+    "src/scene/models/scene-models.ts": {
+      "bytes": 26965,
+      "sha256": "24e61b0e7eacedbb128363971602876633896ff6875aa24f3642c5fdbb8499c5"
+    },
+    "src/scene/body/skinned.ts": {
+      "bytes": 24713,
+      "sha256": "ce647008f84413ad7e647ed3acfb1d462fe041ee700dd53a088da078d429bcbd"
+    },
+    "src/scene/body/manifest.ts": {
+      "bytes": 3053,
+      "sha256": "bea27314fd3d8acdc166f151c7227389e8f764cf8bd5beaaebc4da397100b745"
+    },
+    "src/scene/body/assets/base-body-male.glb": {
+      "bytes": 159916,
+      "sha256": "a375403639d688da351b0c87d5a70afa0080dafcf85dbf64b64395ce76e66f7c"
+    },
+    "src/scene/body/assets/base-body-female.glb": {
+      "bytes": 157992,
+      "sha256": "ee8b9eb6d7ad2b35abfb026f2997d85384b7484342922cb99503e72462c2c5ad"
+    },
+    "src/scene/body/assets/clip-pack.glb": {
+      "bytes": 338060,
+      "sha256": "89a2c636d3a9d1d9eac0e1125c20ca14d030c55ae27561dd8644b30645fd3d47"
+    },
+    "scripts/body/build-body.ts": {
+      "bytes": 23434,
+      "sha256": "2c89b7695b671c1dc4973c29c5a80dc30dffdfa2d12a3fdc7acc22b3b5c27980"
+    },
+    "scripts/body/gltf-io.ts": {
+      "bytes": 6859,
+      "sha256": "7828bbbccb0a15d93383d0b8126c3f5199371d3e8d5777608c521824841e2e88"
+    },
+    "scripts/agent-slot.ts": {
+      "bytes": 14218,
+      "sha256": "873fcf993506655018cffff78fc37b9dce92410ffba184bd92360aa9a77bb566"
+    },
+    "package.json": {
+      "bytes": 6359,
+      "sha256": "afb99740a6761adc8d78e8cee606862a7c16735a1bdc8e4414f39fb6452b3ddd"
+    },
+    "package-lock.json": {
+      "bytes": 65844,
+      "sha256": "d3a82d0f0d7e750bee84042a2ab36dcaa655cf6e7c9bdb8047823e507112efa9"
+    },
+    "src/budgets.ts": {
+      "bytes": 12796,
+      "sha256": "998b98cd1d1d2be509eb50fa32bd53551c56aa2409098374a56a1db39bed07a2"
+    },
+    "experiments/cloud-lanes/asset-export-portability/fixture.json": {
+      "bytes": 1159,
+      "sha256": "78199e3757becb4edac9ecdfd4681fab3c951bf19242ac32c0237ad43ee248a5"
+    },
+    "experiments/cloud-lanes/asset-export-portability/export_fixture.py": {
+      "bytes": 6053,
+      "sha256": "54c1f1728b7402e16d3b314a87fc0a4ad11a298bbaca393705d28a30667cb42d"
+    },
+    "experiments/cloud-lanes/asset-export-portability/pack.sh": {
+      "bytes": 763,
+      "sha256": "cc5b5a77e03a14dd4f801a11c9e1d918c2315954da1f102455064696242f56a9"
+    },
+    "experiments/cloud-lanes/asset-export-portability/validate.ts": {
+      "bytes": 12071,
+      "sha256": "c4f97abd1e82233170fbf3a4e249db205ca1da393bbd4b6365cb24e29a64a146"
+    },
+    "experiments/cloud-lanes/asset-export-portability/contract.test.ts": {
+      "bytes": 3814,
+      "sha256": "7b505bd8e78798cd91521d5e0e557446db1b6deac3354e7507107437a635cf2c"
+    },
+    "experiments/cloud-lanes/asset-export-portability/golden-import.json": {
+      "bytes": 10965,
+      "sha256": "be938e2c1452b023318c3f28420188c7f6a50ea423400a58f187b56d1661adef"
+    },
+    "experiments/cloud-lanes/asset-export-portability/package.json": {
+      "bytes": 242,
+      "sha256": "fa64f86da75b9702d1dfa00dd94f9d96e3b53a9be24df0feb3a71ea9496ea36e"
+    },
+    "experiments/cloud-lanes/asset-export-portability/package-lock.json": {
+      "bytes": 1355,
+      "sha256": "b0a18ca6921f139277048f4bbbd5c8303ef2c60d297fea9ae207a7480124d2d2"
+    },
+    "experiments/cloud-lanes/asset-export-portability/bounded_run.py": {
+      "bytes": 4407,
+      "sha256": "afd47e98a211eab91a49dea57ee7c5957bd5d03f48b89f7d674e157011f9fddd"
+    },
+    "experiments/cloud-lanes/asset-export-portability/test_bounded_run.py": {
+      "bytes": 2068,
+      "sha256": "712386d6c6298936127f3784e69b554c10cc22a14306ad4de63d509dc149cd5e"
+    },
+    "experiments/cloud-lanes/asset-export-portability/render.html": {
+      "bytes": 6029,
+      "sha256": "de81a4bcf244cf5030bb497069a0d37cd0afe948c94fce49a2e84f6311f0f5cc"
+    },
+    "experiments/cloud-lanes/asset-export-portability/render.py": {
+      "bytes": 4182,
+      "sha256": "9add701b8e25314f361e0258746c48b0e78b91c83774f748e0f64a1502da0d8f"
+    },
+    "experiments/cloud-lanes/asset-export-portability/prepare_browser.ts": {
+      "bytes": 751,
+      "sha256": "f9b285adeb315de7db5f72394220c337f4adaf40f67b205a04ef0cab368eeab0"
+    },
+    "experiments/cloud-lanes/asset-export-portability/reproduce.sh": {
+      "bytes": 1727,
+      "sha256": "3e980e12ded8a561419a278ec81eca29a1b8b4fbfb3003b239ffce7446ce231c"
+    },
+    "experiments/cloud-lanes/asset-export-portability/verify_packet.py": {
+      "bytes": 888,
+      "sha256": "d67993df9e70669c2883586371f0bb08e2755d89bc2764ee4ed5af7b6e7ceca7"
+    }
+  },
+  "outputs": {
+    "artifacts/beacon-far-meshopt.glb": {
+      "bytes": 3980,
+      "sha256": "d6d335973441808343d8c7fbbefd764680c5a2a6ad1ede824ada651e79758975"
+    },
+    "artifacts/beacon-far.glb": {
+      "bytes": 9540,
+      "sha256": "a5d662b96efacd654b4cd2d6a20bad2e3ae0460720a2cf75edb46f8b14b3f678"
+    },
+    "artifacts/beacon-near-meshopt.glb": {
+      "bytes": 6740,
+      "sha256": "8a0680361a8c8654c8ee3eaf7f69ec89a8c3694fbd2faeac9f640e5b94548508"
+    },
+    "artifacts/beacon-near.glb": {
+      "bytes": 25868,
+      "sha256": "a59f64c71190393516a52267ad730c9c811557b5c75d8d1a32e4e9cc765a282a"
+    },
+    "artifacts/export-receipt.json": {
+      "bytes": 568,
+      "sha256": "2bd02a78f98d907454f759257d74ab14874c5b9741ba1d2dc21fcc784aa4e93c"
+    },
+    "artifacts/original-meter-beacon.blend": {
+      "bytes": 481348,
+      "sha256": "970f2d85f5dabac9e56f7bd2356590dc138b815e831372455af2982e02c4b14a"
+    },
+    "artifacts/render.png": {
+      "bytes": 88493,
+      "sha256": "092110b438b72b71831d9752c02275aa237056b9680059473d23214edcebdca5"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "bash",
+    "/workspace/joinallworld/experiments/cloud-lanes/asset-export-portability/pack.sh",
+    "/workspace/joinallworld/experiments/cloud-lanes/asset-export-portability/runs/reproduce-WFZNhE/generated"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 0.104,
+  "sampledTreePeakRssBytes": 18337792,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

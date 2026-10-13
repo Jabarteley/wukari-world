@@ -1,0 +1,7 @@
+test_child_failure_is_not_reported_as_success (test_bounded_run.Boundary.test_child_failure_is_not_reported_as_success) ... ok
+test_timeout_reaps_detached_child_and_records_tree_memory (test_bounded_run.Boundary.test_timeout_reaps_detached_child_and_records_tree_memory) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.150s
+
+OK

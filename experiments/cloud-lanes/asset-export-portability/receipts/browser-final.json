@@ -1,0 +1,125 @@
+{
+  "ready": true,
+  "three": "180",
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "softwareOnly": true,
+  "records": [
+    {
+      "tier": "near",
+      "route": "raw GLTFLoader",
+      "file": "beacon-near.glb",
+      "pbr": {
+        "metallicFactor": 0.18000000715255737,
+        "roughnessFactor": 0.36000001430511475
+      },
+      "coloredPixels": 9269,
+      "drawCalls": 4,
+      "renderTriangles": 492
+    },
+    {
+      "tier": "near",
+      "route": "raw GLTFLoader",
+      "file": "beacon-near-meshopt.glb",
+      "pbr": {
+        "metallicFactor": 0.180000007,
+        "roughnessFactor": 0.360000014
+      },
+      "coloredPixels": 9269,
+      "drawCalls": 4,
+      "renderTriangles": 492
+    },
+    {
+      "tier": "near",
+      "route": "static adapter reconstructed",
+      "file": "beacon-near.glb",
+      "pbr": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.92
+      },
+      "coloredPixels": 9605,
+      "drawCalls": 4,
+      "renderTriangles": 492
+    },
+    {
+      "tier": "far",
+      "route": "raw GLTFLoader",
+      "file": "beacon-far.glb",
+      "pbr": {
+        "metallicFactor": 0.18000000715255737,
+        "roughnessFactor": 0.36000001430511475
+      },
+      "coloredPixels": 9101,
+      "drawCalls": 4,
+      "renderTriangles": 268
+    },
+    {
+      "tier": "far",
+      "route": "raw GLTFLoader",
+      "file": "beacon-far-meshopt.glb",
+      "pbr": {
+        "metallicFactor": 0.180000007,
+        "roughnessFactor": 0.360000014
+      },
+      "coloredPixels": 9101,
+      "drawCalls": 4,
+      "renderTriangles": 268
+    },
+    {
+      "tier": "far",
+      "route": "static adapter reconstructed",
+      "file": "beacon-far.glb",
+      "pbr": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.92
+      },
+      "coloredPixels": 9453,
+      "drawCalls": 4,
+      "renderTriangles": 268
+    }
+  ],
+  "importerPin": {
+    "path": "src/scene/models/gltf-source.ts",
+    "sha256": "e0a3b1f5ec2a4b3778dfbbb21424d304470162cf8018387defabe7ec67ccd32f"
+  },
+  "errors": [],
+  "animationLoop": false,
+  "status": "passed",
+  "browserVersion": "154.0.8037.57",
+  "disposed": true,
+  "screenshot": {
+    "path": "runs/render/render.png",
+    "bytes": 88493,
+    "sha256": "092110b438b72b71831d9752c02275aa237056b9680059473d23214edcebdca5"
+  },
+  "pageErrors": [],
+  "failedRequests": [],
+  "glbResponses": [
+    {
+      "url": "beacon-near.glb",
+      "status": 200
+    },
+    {
+      "url": "beacon-near-meshopt.glb",
+      "status": 200
+    },
+    {
+      "url": "beacon-near.glb",
+      "status": 200
+    },
+    {
+      "url": "beacon-far.glb",
+      "status": 200
+    },
+    {
+      "url": "beacon-far-meshopt.glb",
+      "status": 200
+    },
+    {
+      "url": "beacon-far.glb",
+      "status": 200
+    }
+  ],
+  "elapsedSeconds": 2.516,
+  "serverClosed": true,
+  "browserClosed": true
+}

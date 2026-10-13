@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "experiments/cloud-lanes/asset-export-portability/render.py"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 2.63,
+  "sampledTreePeakRssBytes": 835227648,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

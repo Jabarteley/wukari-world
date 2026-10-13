@@ -1,0 +1,16 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-concurrency=1",
+    "/workspace/joinallworld/experiments/cloud-lanes/asset-export-portability/contract.test.ts"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 0.31,
+  "sampledTreePeakRssBytes": 109109248,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

@@ -107,6 +107,8 @@ def main():
     if LANE not in out.parents or out == LANE:
         raise ValueError("Output must be a subdirectory of this lane")
     out.mkdir(parents=True, exist_ok=True)
+    if any(p.suffix in (".blend", ".glb") for p in out.iterdir()):
+        raise ValueError("Refusing to overwrite an existing asset packet; use a fresh output directory")
     spec = json.loads((LANE / "fixture.json").read_text())
     if not options.from_blend:
         build(spec)

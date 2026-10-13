@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Original meter beacon · Linux export proof</title>
+<link rel="icon" href="data:,">
+<style>
+  *{box-sizing:border-box}body{margin:0;background:#101c28;color:#ecf2f4;font:14px system-ui,sans-serif}
+  main{width:1080px;margin:26px auto}h1{font-size:25px;margin:0 0 8px}p{color:#acc0cf;margin:0 0 22px}
+  .labels{display:grid;grid-template-columns:repeat(3,1fr);gap:1px}.labels div{padding:12px 18px;background:#233444}
+  small{color:#aac0d1;display:block;margin-top:5px}canvas{display:block;width:1080px;height:560px}
+  footer{color:#acc0cf;padding-top:14px;line-height:1.6}
+</style>
+<main><h1>Original meter beacon / export portability</h1>
+<p>1.00 m tall · 0.44 m base · original geometry · near above, far below · software WebGL proof</p>
+<div class="labels"><div>Canonical GLB<small>Core PBR · metallic 0.18 / roughness 0.36</small></div><div>EXT Meshopt derivative<small>Same geometry contracts · 16-bit positions / colors</small></div><div>Existing static importer<small>Reconstructed with runtime defaults · metallic 0 / roughness 0.92</small></div></div>
+<canvas id="view" width="1080" height="560"></canvas>
+<footer>Near: 332 triangles · Far: 108 triangles. Both retain the ground-center pivot and named anchors.<br>
+Amber and teal are stored as linear vertex colors. Red marker = forward anchor, white marker = top anchor.<br>
+Raw GLTFLoader retains PBR. The current static adapter drops those factors. This is an isolated import proof, not in-game acceptance.</footer></main>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/":"./node_modules/three/","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script>window.addEventListener('error',e=>window.proofError=e.message);window.addEventListener('unhandledrejection',e=>window.proofError=String(e.reason));</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
+import {createGltfSource} from './.generated/gltf-source.js';
+
+const canvas=document.getElementById('view');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,preserveDrawingBuffer:true});
+renderer.setSize(1080,560,false); renderer.setPixelRatio(1);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.2;
+const gl=renderer.getContext(), ext=gl.getExtension('WEBGL_debug_renderer_info');
+const loader=new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+const scenes=[], records=[], errors=[];
+window.addEventListener('error', e=>errors.push(e.message));
+const source=createGltfSource({THREE},{urls:{near:'./artifacts/beacon-near.glb',far:'./artifacts/beacon-far.glb'},atlasOf:()=>''});
+
+for(let row=0;row<2;row++)for(let col=0;col<3;col++){
+ const tier=row===0?'near':'far', name=`beacon-${tier}${col===1?'-meshopt':''}.glb`;
+ const scene=new THREE.Scene(); scene.background=new THREE.Color('#172737');
+ scene.add(new THREE.HemisphereLight('#d6edff','#68727c',2.4));
+ const sun=new THREE.DirectionalLight('#ffe3bc',3.3);sun.position.set(3,4,2);scene.add(sun);
+ const rim=new THREE.DirectionalLight('#65c4ff',2);rim.position.set(-2,2,-3);scene.add(rim);
+ let model, pbr;
+ if(col<2){
+   model=(await loader.loadAsync('./artifacts/'+name)).scene;
+   model.traverse(o=>{if(o.isMesh)pbr={metallicFactor:o.material.metalness,roughnessFactor:o.material.roughness};});
+ }else{
+   const data=await source.load(tier); model=new THREE.Group();
+   for(const part of data.parts){
+     const g=new THREE.BufferGeometry();
+     g.setAttribute('position',new THREE.BufferAttribute(part.position,3));
+     g.setAttribute('normal',new THREE.BufferAttribute(part.normal,3));
+     g.setAttribute('color',new THREE.BufferAttribute(part.color,3));
+     g.setIndex(new THREE.BufferAttribute(part.index,1));
+     model.add(new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,metalness:0,roughness:0.92})));
+   }
+   pbr={metallicFactor:0,roughnessFactor:0.92};
+ }
+ scene.add(model);
+ for(const [pos,color]of [[[0,1,0],'#ffffff'],[[0,.08,.22],'#ff4545']]){
+   const marker=new THREE.Mesh(new THREE.SphereGeometry(.012,8,6),new THREE.MeshBasicMaterial({color}));marker.position.fromArray(pos);scene.add(marker);
+ }
+ const grid=new THREE.GridHelper(2,10,'#435769','#283b4d');grid.position.y=-.002;scene.add(grid);
+ const camera=new THREE.PerspectiveCamera(31,360/280,.01,30);camera.position.set(1.35,1.18,1.95);camera.lookAt(0,.51,0);
+ renderer.setViewport(col*360,(1-row)*280,360,280);renderer.setScissor(col*360,(1-row)*280,360,280);renderer.setScissorTest(true);
+ renderer.render(scene,camera);
+ const pixels=new Uint8Array(360*280*4);gl.readPixels(col*360,(1-row)*280,360,280,gl.RGBA,gl.UNSIGNED_BYTE,pixels);
+ let coloredPixels=0;
+ for(let i=0;i<pixels.length;i+=4)if((pixels[i]>80&&pixels[i]>pixels[i+2]*1.3)||(pixels[i+1]>80&&pixels[i+1]>pixels[i]*1.4))coloredPixels++;
+ if(coloredPixels<1500)throw new Error(`No substantial rendered fixture in ${tier}/${col}: ${coloredPixels}`);
+ records.push({tier,route:col===2?'static adapter reconstructed':'raw GLTFLoader',file:name,pbr,coloredPixels,drawCalls:renderer.info.render.calls,renderTriangles:renderer.info.render.triangles});
+ scenes.push(scene);
+}
+const importerPin=await(await fetch('./.generated/importer-pin.json')).json();
+window.receipt={ready:true,three:THREE.REVISION,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),softwareOnly:true,records,importerPin,errors,animationLoop:false};
+window.cleanup=()=>{for(const scene of scenes)scene.traverse(o=>{o.geometry?.dispose();if(o.material){for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();}});source.dispose();renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true;};
+</script></html>

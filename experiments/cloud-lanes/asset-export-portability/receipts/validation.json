@@ -1,0 +1,536 @@
+{
+  "beacon-near.glb": {
+    "sha256": "a59f64c71190393516a52267ad730c9c811557b5c75d8d1a32e4e9cc765a282a",
+    "bytes": 25868,
+    "brotliBytes": 3152,
+    "requiredExtensions": [],
+    "imported": {
+      "meshes": 1,
+      "vertices": 624,
+      "triangles": 332,
+      "bounds": {
+        "min": [
+          -0.22,
+          0,
+          -0.22
+        ],
+        "max": [
+          0.22,
+          1,
+          0.22
+        ]
+      },
+      "rootPosition": [
+        0,
+        0,
+        0
+      ],
+      "anchors": {
+        "anchor_top": [
+          0,
+          1,
+          0
+        ],
+        "anchor_front": [
+          0,
+          0.08,
+          0.22
+        ]
+      },
+      "palette": [
+        [
+          0.007194,
+          0.342392,
+          0.273838
+        ],
+        [
+          0.033105,
+          0.046964,
+          0.063724
+        ],
+        [
+          1,
+          0.263273,
+          0.007194
+        ]
+      ],
+      "pbr": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallicFactor": 0.18,
+        "roughnessFactor": 0.36,
+        "alphaMode": "OPAQUE",
+        "doubleSided": false
+      },
+      "normalMaxLengthError": 0,
+      "minTriangleArea": 0.000088,
+      "signedVolume": 0.058847
+    },
+    "staticImport": {
+      "triangles": 332,
+      "bounds": {
+        "min": [
+          -0.22,
+          0,
+          -0.22
+        ],
+        "max": [
+          0.22,
+          1,
+          0.22
+        ]
+      },
+      "anchors": {
+        "anchor_front": [
+          0,
+          0.08,
+          0.22
+        ],
+        "anchor_top": [
+          0,
+          1,
+          0
+        ]
+      },
+      "pbrPreserved": false,
+      "reason": "ModelPart omits material factors; scene-models.ts chooses roughness=0.92, metalness=0"
+    },
+    "validator": {
+      "version": "2.0.0-dev.3.10",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 2,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "NODE_EMPTY",
+            "message": "Empty node encountered.",
+            "severity": 2,
+            "pointer": "/nodes/0"
+          },
+          {
+            "code": "NODE_EMPTY",
+            "message": "Empty node encountered.",
+            "severity": 2,
+            "pointer": "/nodes/1"
+          }
+        ],
+        "truncated": false
+      },
+      "scope": "full uncompressed validation"
+    }
+  },
+  "beacon-near-meshopt.glb": {
+    "sha256": "8a0680361a8c8654c8ee3eaf7f69ec89a8c3694fbd2faeac9f640e5b94548508",
+    "bytes": 6740,
+    "brotliBytes": 2631,
+    "requiredExtensions": [
+      "KHR_mesh_quantization",
+      "EXT_meshopt_compression"
+    ],
+    "imported": {
+      "meshes": 1,
+      "vertices": 624,
+      "triangles": 332,
+      "bounds": {
+        "min": [
+          -0.22,
+          0,
+          -0.22
+        ],
+        "max": [
+          0.219994,
+          1,
+          0.219994
+        ]
+      },
+      "rootPosition": [
+        0,
+        0,
+        0
+      ],
+      "anchors": {
+        "anchor_top": [
+          0,
+          1,
+          0
+        ],
+        "anchor_front": [
+          0,
+          0.08,
+          0.22
+        ]
+      },
+      "palette": [
+        [
+          0.007187,
+          0.342397,
+          0.273838
+        ],
+        [
+          0.033112,
+          0.046967,
+          0.063722
+        ],
+        [
+          1,
+          0.263279,
+          0.007187
+        ]
+      ],
+      "pbr": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallicFactor": 0.18,
+        "roughnessFactor": 0.36,
+        "alphaMode": "OPAQUE",
+        "doubleSided": false
+      },
+      "normalMaxLengthError": 0.00572,
+      "minTriangleArea": 0.000088,
+      "signedVolume": 0.058848
+    },
+    "staticImport": {
+      "triangles": 332,
+      "bounds": {
+        "min": [
+          -0.22,
+          0,
+          -0.22
+        ],
+        "max": [
+          0.219994,
+          1,
+          0.219994
+        ]
+      },
+      "anchors": {
+        "anchor_front": [
+          0,
+          0.08,
+          0.22
+        ],
+        "anchor_top": [
+          0,
+          1,
+          0
+        ]
+      },
+      "pbrPreserved": false,
+      "reason": "ModelPart omits material factors; scene-models.ts chooses roughness=0.92, metalness=0"
+    },
+    "validator": {
+      "version": "2.0.0-dev.3.10",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 4,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "UNSUPPORTED_EXTENSION",
+            "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+            "severity": 2,
+            "pointer": "/extensionsUsed/1"
+          },
+          {
+            "code": "NODE_EMPTY",
+            "message": "Empty node encountered.",
+            "severity": 2,
+            "pointer": "/nodes/1"
+          },
+          {
+            "code": "NODE_EMPTY",
+            "message": "Empty node encountered.",
+            "severity": 2,
+            "pointer": "/nodes/2"
+          },
+          {
+            "code": "UNUSED_OBJECT",
+            "message": "This object may be unused.",
+            "severity": 2,
+            "pointer": "/buffers/0"
+          }
+        ],
+        "truncated": false
+      },
+      "scope": "structural only; Meshopt decoded separately by Three"
+    }
+  },
+  "beacon-far.glb": {
+    "sha256": "a5d662b96efacd654b4cd2d6a20bad2e3ae0460720a2cf75edb46f8b14b3f678",
+    "bytes": 9540,
+    "brotliBytes": 1570,
+    "requiredExtensions": [],
+    "imported": {
+      "meshes": 1,
+      "vertices": 208,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.22,
+          0,
+          -0.22
+        ],
+        "max": [
+          0.22,
+          1,
+          0.22
+        ]
+      },
+      "rootPosition": [
+        0,
+        0,
+        0
+      ],
+      "anchors": {
+        "anchor_top": [
+          0,
+          1,
+          0
+        ],
+        "anchor_front": [
+          0,
+          0.08,
+          0.22
+        ]
+      },
+      "palette": [
+        [
+          0.007194,
+          0.342392,
+          0.273838
+        ],
+        [
+          0.033105,
+          0.046964,
+          0.063724
+        ],
+        [
+          1,
+          0.263273,
+          0.007194
+        ]
+      ],
+      "pbr": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallicFactor": 0.18,
+        "roughnessFactor": 0.36,
+        "alphaMode": "OPAQUE",
+        "doubleSided": false
+      },
+      "normalMaxLengthError": 0,
+      "minTriangleArea": 0.002071,
+      "signedVolume": 0.053591
+    },
+    "staticImport": {
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.22,
+          0,
+          -0.22
+        ],
+        "max": [
+          0.22,
+          1,
+          0.22
+        ]
+      },
+      "anchors": {
+        "anchor_front": [
+          0,
+          0.08,
+          0.22
+        ],
+        "anchor_top": [
+          0,
+          1,
+          0
+        ]
+      },
+      "pbrPreserved": false,
+      "reason": "ModelPart omits material factors; scene-models.ts chooses roughness=0.92, metalness=0"
+    },
+    "validator": {
+      "version": "2.0.0-dev.3.10",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 2,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "NODE_EMPTY",
+            "message": "Empty node encountered.",
+            "severity": 2,
+            "pointer": "/nodes/0"
+          },
+          {
+            "code": "NODE_EMPTY",
+            "message": "Empty node encountered.",
+            "severity": 2,
+            "pointer": "/nodes/1"
+          }
+        ],
+        "truncated": false
+      },
+      "scope": "full uncompressed validation"
+    }
+  },
+  "beacon-far-meshopt.glb": {
+    "sha256": "d6d335973441808343d8c7fbbefd764680c5a2a6ad1ede824ada651e79758975",
+    "bytes": 3980,
+    "brotliBytes": 1420,
+    "requiredExtensions": [
+      "KHR_mesh_quantization",
+      "EXT_meshopt_compression"
+    ],
+    "imported": {
+      "meshes": 1,
+      "vertices": 208,
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.22,
+          0,
+          -0.22
+        ],
+        "max": [
+          0.219994,
+          1,
+          0.219994
+        ]
+      },
+      "rootPosition": [
+        0,
+        0,
+        0
+      ],
+      "anchors": {
+        "anchor_top": [
+          0,
+          1,
+          0
+        ],
+        "anchor_front": [
+          0,
+          0.08,
+          0.22
+        ]
+      },
+      "palette": [
+        [
+          0.007187,
+          0.342397,
+          0.273838
+        ],
+        [
+          0.033112,
+          0.046967,
+          0.063722
+        ],
+        [
+          1,
+          0.263279,
+          0.007187
+        ]
+      ],
+      "pbr": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallicFactor": 0.18,
+        "roughnessFactor": 0.36,
+        "alphaMode": "OPAQUE",
+        "doubleSided": false
+      },
+      "normalMaxLengthError": 0.004225,
+      "minTriangleArea": 0.002071,
+      "signedVolume": 0.053592
+    },
+    "staticImport": {
+      "triangles": 108,
+      "bounds": {
+        "min": [
+          -0.22,
+          0,
+          -0.22
+        ],
+        "max": [
+          0.219994,
+          1,
+          0.219994
+        ]
+      },
+      "anchors": {
+        "anchor_front": [
+          0,
+          0.08,
+          0.22
+        ],
+        "anchor_top": [
+          0,
+          1,
+          0
+        ]
+      },
+      "pbrPreserved": false,
+      "reason": "ModelPart omits material factors; scene-models.ts chooses roughness=0.92, metalness=0"
+    },
+    "validator": {
+      "version": "2.0.0-dev.3.10",
+      "issues": {
+        "numErrors": 0,
+        "numWarnings": 0,
+        "numInfos": 4,
+        "numHints": 0,
+        "messages": [
+          {
+            "code": "UNSUPPORTED_EXTENSION",
+            "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+            "severity": 2,
+            "pointer": "/extensionsUsed/1"
+          },
+          {
+            "code": "NODE_EMPTY",
+            "message": "Empty node encountered.",
+            "severity": 2,
+            "pointer": "/nodes/1"
+          },
+          {
+            "code": "NODE_EMPTY",
+            "message": "Empty node encountered.",
+            "severity": 2,
+            "pointer": "/nodes/2"
+          },
+          {
+            "code": "UNUSED_OBJECT",
+            "message": "This object may be unused.",
+            "severity": 2,
+            "pointer": "/buffers/0"
+          }
+        ],
+        "truncated": false
+      },
+      "scope": "structural only; Meshopt decoded separately by Three"
+    }
+  }
+}

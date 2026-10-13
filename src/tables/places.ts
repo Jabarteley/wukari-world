@@ -8,7 +8,7 @@
  */
 import type { TableGameId } from '../types/growth.ts';
 
-export const GAME_LABELS = Object.freeze({ whot: 'Whot', penalty: 'Penalties', chess: 'Chess', weave: 'Weave' });
+export const GAME_LABELS = Object.freeze({ whot: 'Whot', penalty: 'Penalties', chess: 'Chess', weave: 'Weave', ayo: 'Ayo' });
 
 /** One table: a row of TABLES. */
 export interface TableDef { id: string; venue: string; game: TableGameId; label: string; seats: number }
@@ -22,6 +22,7 @@ export const TABLES = Object.freeze(([
   { id: 'buka-corner', venue: 'amala-shitta', game: 'whot', label: 'Corner table', seats: 4 },
   { id: 'buka-door', venue: 'amala-shitta', game: 'whot', label: 'Table by the door', seats: 4 },
   { id: 'park-bench', venue: 'park', game: 'whot', label: 'Bench under the trees', seats: 4 },
+  { id: 'park-ayo', venue: 'park', game: 'ayo', label: 'Ayo board under the trees', seats: 2 },
   { id: 'rooftop-lounge', venue: 'rooftop', game: 'whot', label: 'Lounge table', seats: 4 },
   { id: 'viewing-whot', venue: 'viewing-centre', game: 'whot', label: 'Back-row table', seats: 4 },
   { id: 'viewing-goal', venue: 'viewing-centre', game: 'penalty', label: 'Five-a-side goal', seats: 2 },

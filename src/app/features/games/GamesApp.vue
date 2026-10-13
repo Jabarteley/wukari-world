@@ -46,7 +46,7 @@ watch(() => props.params, () => { if (wanted() === 'oro') screen.value = 'daily'
 useSection(() => (wanted() === 'chess' || wanted() === 'weave' ? { section: wanted() } : null))
 function back(): void { screen.value = 'hub'; void loadToday() }
 function onState(next: OroView): void { today.value = next }
-const openTable = (table: 'phone-chess' | 'phone-weave' | 'phone-whot' | 'phone-penalty'): void => { shell.open('tables', { table }) }
+const openTable = (table: 'phone-chess' | 'phone-weave' | 'phone-whot' | 'phone-penalty' | 'phone-ayo'): void => { shell.open('tables', { table }) }
 /** Where the Sim is, or null while it travels. */
 const hereVenue = computed(() => (isDeparting(game.state.value) ? null : game.state.value.location))
 /** The tables of the city the player is in: where they stand first, then the rest, a few of them. */
@@ -82,6 +82,10 @@ const dailyCta = computed(() => (today.value?.status === 'playing' || !today.val
       </section>
       <section class="gm-game"><button type="button" class="gm-launch" aria-label="Play Whot" @click="openTable('phone-whot')"><GameCover game="whot" /><strong>Whot</strong><span>The classic card game</span></button></section>
       <section class="gm-game"><button type="button" class="gm-launch" aria-label="Play penalties" @click="openTable('phone-penalty')"><GameCover game="penalty" /><strong>Penalties</strong><span>Pick your spot. Take the shot.</span></button></section>
+      <section class="gm-game" data-section="ayo">
+        <button type="button" class="gm-launch" aria-label="Play Ayo" @click="openTable('phone-ayo')"><GameCover game="ayo" /><strong>Ayo</strong><span>Sow and capture · Oware rules</span></button>
+        <button type="button" class="gm-share" @click="share('/games/ayo', 'Play Ayo on Allworld:')">Share Ayo</button>
+      </section>
     </div>
     <p class="gm-note">Play these games against the computer. For a match with friends, find a table below.</p>
     <SectionTitle>Tables near you</SectionTitle>

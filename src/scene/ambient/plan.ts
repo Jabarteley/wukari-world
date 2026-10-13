@@ -52,7 +52,11 @@ export interface Stage {
 
 export interface Key { t: number; x: number; z: number; ry: number; mode: Mode; hold: number; seat?: number }
 export interface Track { id: string; seed: string; role: Role; keys: readonly Key[]; with?: string }
-export interface Sample { x: number; z: number; ry: number; mode: Mode; pose: AmbientPose; seat: number; step: number; walking: boolean }
+export interface Sample {
+  x: number; z: number; ry: number; mode: Mode; pose: AmbientPose; seat: number; step: number; walking: boolean
+  /** Continuous walk cycle, 0 … 1. Optional so hand-authored samples and older callers remain valid. */
+  stride?: number
+}
 
 export interface Ident {
   cityId: string
@@ -106,7 +110,11 @@ export function sampleTrack(track: Track, at: number): Sample | null {
     const leg = Math.hypot(next.x - k.x, next.z - k.z), from = k.t + k.hold
     if (at < next.t) {
       const f = (at - from) / Math.max(1, next.t - from)
-      return { x: k.x + (next.x - k.x) * f, z: k.z + (next.z - k.z) * f, ry: Math.atan2(next.x - k.x, next.z - k.z), mode: 'walk', pose: 'walk', seat: 0, step: Math.floor((walked + leg * f) / STEP) % 2, walking: true }
+      const distance = walked + leg * f
+      return {
+        x: k.x + (next.x - k.x) * f, z: k.z + (next.z - k.z) * f, ry: Math.atan2(next.x - k.x, next.z - k.z), mode: 'walk', pose: 'walk', seat: 0,
+        step: Math.floor(distance / STEP) % 2, stride: (distance / (STEP * 2)) % 1, walking: true,
+      }
     }
     walked += leg
   }

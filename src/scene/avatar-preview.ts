@@ -96,6 +96,8 @@ const FRAMES: Record<PreviewFocus, PreviewFrame> = {
   head: { y: 2.26, height: 1.62, width: 1.5 }, // head and shoulders, with room for the tallest hair, a gele or a hat
   outfit: { y: 1.5, height: 2.5, width: 1.9 }, // shoulders to the shoes: what is worn, without the empty space above the hair
 };
+/** The shipped body's head is much smaller than the procedural figure's; include its face, hair/headwear and shoulders. */
+const SKINNED_HEAD_FRAME: PreviewFrame = { y: 2.15, height: 1.05, width: 1.2 };
 const FOV = 26, START_YAW = -0.42, DRAG_SPEED = 0.011, KEY_STEP = Math.PI / 12, MAX_PIXEL_RATIO = 2.5;
 const clamp = (value: number, low: number, high: number): number => Math.max(low, Math.min(high, value));
 const ease = (t: number): number => 1 - (1 - t) ** 3;
@@ -200,6 +202,15 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
   let previewProportions = avatarProportions(undefined);
   let body: SkinnedBody | null = null, bodyLook: unknown = null, bodyLoading = false, bodyFailed = !bodyAllowed();
 
+  const targetFrame = (next: PreviewFocus): PreviewFrame => next === 'head' && body ? SKINNED_HEAD_FRAME : FRAMES[next];
+  function moveFrame(to: PreviewFrame): void {
+    const from = { ...shown };
+    animate('zoom', 340, (t: number) => {
+      const k = ease(t);
+      shown = { y: from.y + (to.y - from.y) * k, height: from.height + (to.height - from.height) * k, width: from.width + (to.width - from.width) * k };
+    });
+  }
+
   /** Wear the look on the skinned body (see the header), fetching it once the world already has; else keep the drawn figure. */
   function dress(look: unknown) {
     bodyLook = look;
@@ -217,8 +228,13 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
       turntable.add(body.object);
       body.place(0, 0, 0, 0);
       if (avatar) avatar.visible = false;
-      render();
-    }).catch((error: unknown) => { bodyLoading = false; bodyFailed = true; console.warn('Skinned body unavailable; keeping the drawn figure:', error); });
+      if (focus === 'head') moveFrame(targetFrame(focus)); else render();
+    }).catch((error: unknown) => {
+      bodyLoading = false; bodyFailed = true;
+      if (disposed) return;
+      if (focus === 'head' && (shown.y !== FRAMES.head.y || shown.height !== FRAMES.head.height || shown.width !== FRAMES.head.width)) moveFrame(FRAMES.head); else render();
+      console.warn('Skinned body unavailable; keeping the drawn figure:', error);
+    });
   }
 
   function frame() {
@@ -292,11 +308,7 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     const wanted = asFocus(next);
     if (disposed || wanted === focus) return false;
     focus = wanted;
-    const from = { ...shown }, to = FRAMES[wanted];
-    animate('zoom', 340, (t: number) => {
-      const k = ease(t);
-      shown = { y: from.y + (to.y - from.y) * k, height: from.height + (to.height - from.height) * k, width: from.width + (to.width - from.width) * k };
-    });
+    moveFrame(targetFrame(wanted));
     return true;
   }
   function setInset(px: number): boolean {

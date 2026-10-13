@@ -15,7 +15,7 @@ test('the games: /games, each game, and the aliases', () => {
   assert.deepEqual(parsePath('/chess'), { kind: 'games', game: 'chess' })
   assert.deepEqual(parsePath('/word'), { kind: 'games', game: 'oro' })
   assert.deepEqual(parsePath('/games/unknown'), { kind: 'games', game: null }, 'an unknown game is the hub')
-  assert.deepEqual(PHONE_TABLE, { chess: 'phone-chess', weave: 'phone-weave', whot: 'phone-whot', penalties: 'phone-penalty' })
+  assert.deepEqual(PHONE_TABLE, { chess: 'phone-chess', weave: 'phone-weave', whot: 'phone-whot', penalties: 'phone-penalty', ayo: 'phone-ayo' })
 })
 
 test('every registry city answers at /<id>, and a state with one open city is that city', () => {

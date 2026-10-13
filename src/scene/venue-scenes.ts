@@ -801,7 +801,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     const placed = placeCrowd(view.crowd);
     // The regulars (up to a few) are drawn by the ambient layer when it is on, so that they glance, shift and talk; the rest stay in the merged batch.
     const residents = placed.filter((person) => person.kind === 'npc' && !person.live && Number.isFinite(person.x) && Number.isFinite(person.z));
-    const drawnHere = new Set(ambient.setResidents(residents.map((person) => ({ id: String(person.id), seed: String(person.seed ?? person.id), x: person.x!, z: person.z!, ry: person.ry ?? 0 }))));
+    const drawnHere = new Set(ambient.setResidents(residents.map((person) => ({ id: String(person.id), seed: String(person.seed ?? person.id), look: person.look, x: person.x!, z: person.z!, ry: person.ry ?? 0 }))));
     const merged = placed.filter((person) => !person.live && !drawnHere.has(String(person.id)));
     // The merged batch holds NPCs and players without a reported position: rebuilt only when THEY change.
     const key = JSON.stringify(merged);
@@ -1061,6 +1061,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     ambientCaps() { return ambient.caps(); },
     /** A line over a background person or a regular; true when they are in the scene. */
     say(id: string, text: string, ms?: number) { return ambient.layer?.speak(id, text, ms) ?? false; },
+    animateSpeech(id: string, ms?: number) { return ambient.layer?.animateSpeech(id, ms) ?? false; },
     /** Two regulars face each other for a while. */
     talk(a: string, b: string, ms?: number) { return ambient.layer?.talk(a, b, ms) ?? false; },
     set onAmbient(fn: ((ready: boolean) => void) | null) { ambientChanged = fn; },

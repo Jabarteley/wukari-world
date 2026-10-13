@@ -26,10 +26,10 @@
  */
 
 import type * as THREE from 'three';
-import type { Batch, BatchLayer, BatchOptions, BatchResult, Colour, LightSpec, SceneMaterials, ThreeModule } from './types.ts';
+import type { Batch, BatchGeometry, BatchLayer, BatchOptions, BatchResult, Colour, LightSpec, SceneMaterials, ThreeModule } from './types.ts';
 import type { Kit } from './kit.ts';
 
-interface Template { pos: Float32Array; nor: Float32Array; idx: number[] }
+interface Template extends BatchGeometry { pos: Float32Array; nor: Float32Array; idx: number[] }
 interface LayerData { pos: number[]; nor: number[]; col: number[]; idx: number[] }
 const templates = new Map<string, Template>();
 function template(key: string, make: () => THREE.BufferGeometry): Template {
@@ -70,20 +70,20 @@ export function createBatch(THREE: ThreeModule): Batch {
     }
     return value;
   }
-  function add(shape: Template, x: number, y: number, z: number, sx: number, sy: number, sz: number, colour: Colour, o?: BatchOptions) {
+  function add(shape: BatchGeometry, x: number, y: number, z: number, sx: number, sy: number, sz: number, colour: Colour, o?: BatchOptions) {
     e.set(o?.rx || 0, o?.ry || 0, o?.rz || 0, 'YXZ');
     m.compose(p.set(x, y, z), q.setFromEuler(e), s.set(sx, sy, sz)).premultiply(stack[stack.length - 1]!);
     n3.getNormalMatrix(m);
     const target = store(Object.hasOwn(layers, o?.layer as string) && BASE.includes(o?.layer as string) ? o!.layer! : 'solid', o?.part);
     const base = target.pos.length / 3;
     const [r, g, bl] = rgb(colour);
-    const { pos, nor, idx } = shape;
+    const { pos, nor, idx, col } = shape;
     for (let i = 0; i < pos.length; i += 3) {
       v.set(pos[i]!, pos[i + 1]!, pos[i + 2]!).applyMatrix4(m);
       target.pos.push(v.x, v.y, v.z);
       v.set(nor[i]!, nor[i + 1]!, nor[i + 2]!).applyMatrix3(n3).normalize();
       target.nor.push(v.x, v.y, v.z);
-      target.col.push(r, g, bl);
+      target.col.push(r * (col?.[i] ?? 1), g * (col?.[i + 1] ?? 1), bl * (col?.[i + 2] ?? 1));
     }
     for (let i = 0; i < idx.length; i++) target.idx.push(base + idx[i]!);
   }
@@ -92,6 +92,8 @@ export function createBatch(THREE: ThreeModule): Batch {
 
   const batch: Batch = {
     isBatch: true,
+    /** Add prepared indexed geometry at the current origin, sharing this batch's colour and material path. */
+    geometry(shape, colour, o) { add(shape, 0, 0, 0, 1, 1, 1, colour, o); return batch; },
     /** box(x, y, z, width, height, depth, colour, options?) — centred on x, y, z */
     box(x, y, z, w, h, d, colour, o) { add(boxShape(), x, y, z, w, h, d, colour, o); return batch; },
     /** cyl(x, y, z, radius, height, colour, { top = 1 (top radius ÷ bottom radius), seg = 8, open, sx, sz }) — upright, centred */

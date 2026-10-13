@@ -20,7 +20,7 @@ import type { Tier } from '../../scene/ambient/density.ts'
 import { bodyAllowed } from '../../scene/body/gate.ts'
 import { isDeparting } from '../../life.ts'
 import { useApp } from '../state/app.ts'
-import { say as sayAbove, tagOf } from './bubbles.ts'
+import { BUBBLE_MS, say as sayAbove, tagOf } from './bubbles.ts'
 import { heard, heardScene, heardStop } from '../../audio/voice/emit.ts'
 
 /** How often the driver looks at the clock. A slot of the voice is nine seconds, so this never misses one. */
@@ -113,7 +113,10 @@ export function startAmbient(): void {
     if (!line) return
     const name = names.get(line.speaker)
     // A regular's line is a bubble over their name tag (with the NPC word); anyone else's is a bubble over their figure in the scene itself.
-    if (name && tagOf(line.speaker.slice(4))) sayAbove(line.speaker.slice(4), name, line.text, false)
+    if (name && tagOf(line.speaker.slice(4))) {
+      sayAbove(line.speaker.slice(4), name, line.text, false)
+      world.animateSpeech(line.speaker, BUBBLE_MS)
+    }
     else world.say(line.speaker, line.text)
     const at = people.find((person) => person.id === line.speaker)
     heard({ id: line.speaker, text: line.text, kind: name ? 'regular' : 'npc', place: kind, ...(country ? { country } : {}), ...(at ? { x: at.x, z: at.z } : {}) })

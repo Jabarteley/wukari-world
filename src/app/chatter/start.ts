@@ -8,7 +8,7 @@ import { REPLY_DELAY_MS, newChatter } from '../../game/chatter/index.ts'
 import type { Chosen, Regular } from '../../game/chatter/index.ts'
 import { isDeparting } from '../../life.ts'
 import { useApp } from '../state/app.ts'
-import { clearBubbles, say, sayTag, tagOf } from './bubbles.ts'
+import { BUBBLE_MS, clearBubbles, say, sayTag, tagOf } from './bubbles.ts'
 import { heard, heardStop } from '../../audio/voice/emit.ts'
 
 /** How often the visit asks the picker. An exchange stays due for 20 s, so this never misses one. */
@@ -37,6 +37,7 @@ export function startChatter(): void {
 
   const speak = (who: { npcId: string; name: string; text: string }, beta: boolean, reply = false): void => {
     say(who.npcId, who.name, who.text, beta)
+    scene.venue.value?.animateSpeech(`npc:${who.npcId}`, BUBBLE_MS)
     const at = scene.venue.value?.ambientPeople?.().find((person) => person.id === `npc:${who.npcId}`)
     heard({ id: `npc:${who.npcId}`, text: who.text, kind: 'regular', reply, ...(at ? { x: at.x, z: at.z } : {}) })
     community.controller()?.npcLine?.(beta ? `${who.name} (beta)` : who.name, who.text)
@@ -46,6 +47,7 @@ export function startChatter(): void {
     // The two turn to face each other while they talk.
     scene.venue.value?.talk?.(`npc:${chosen.first.npcId}`, `npc:${chosen.second.npcId}`, REPLY_DELAY_MS + 6_000)
     speak(chosen.first, chosen.beta)
+    scene.venue.value?.wakeAmbient()
     later(() => { if (same()) speak(chosen.second, chosen.beta, true) }, REPLY_DELAY_MS)
   }
 

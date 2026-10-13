@@ -36,6 +36,7 @@ const GAME_META: Readonly<Record<GameSlug, { title: string; description: string 
   weave: { title: `Play Weave, the word-tile game — ${BRAND}`, description: `Weave words across the cloth with seven tiles against the computer. ${TAIL}` },
   whot: { title: `Play Whot, the card game — ${BRAND}`, description: `Play Whot against the computer, or at a table with friends. ${TAIL}` },
   penalties: { title: `Play penalties, the shootout — ${BRAND}`, description: `Take the penalty shootout against the computer. ${TAIL}` },
+  ayo: { title: `Play Ayo free — ${BRAND}`, description: `Sow and capture seeds in Ayo, played here with Oware rules, against the computer. ${TAIL}` },
 };
 
 /** What an intent's page says about itself. */

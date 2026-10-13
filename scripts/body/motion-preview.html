@@ -30,13 +30,14 @@
   <section class="controls" aria-label="Preview controls">
     <label>Body<select id="body"><option value="woman">Woman</option><option value="man">Man</option></select></label>
     <label>Pose<select id="pose"><option>idle</option><option>walk</option><option>jog</option><option>sit</option><option>lie</option><option>soak</option><option>wash</option><option>interact</option></select></label>
-    <label>Camera<select id="cameraView"><option value="front">Front</option><option value="side">Side</option><option value="three-quarter">Three-quarter</option></select></label>
+    <label>Camera<select id="cameraView"><option value="front">Front</option><option value="side">Side</option><option value="three-quarter">Three-quarter</option><option value="face">Face close-up</option></select></label>
     <label>Visible<select id="visible"><option value="both">Both</option><option value="fallback">Fallback only</option><option value="full">Full body only</option></select></label>
     <label>Stride phase<input id="phase" type="range" min="0" max="6.2832" step="0.01" value="0"><span id="phaseValue">0.00 rad</span></label>
     <label>Cadence cycles/s<input id="cadence" type="number" min="0.2" max="8" step="0.05" value="1.00"></label>
     <label>Transition speed<input id="duration" type="range" min="0.25" max="2.5" step="0.05" value="1"><span id="durationValue">1.00×</span></label>
     <button id="play">Play sit enter / exit</button>
     <button id="playLie">Play lie / get up</button>
+    <button id="demo">Walk → jog → stop</button>
     <button id="run">Play</button>
     <button id="reset">Reset pose</button>
   </section>
@@ -99,10 +100,10 @@ function landmark(x, lie) {
 const landmarks = [landmark(-lane, false), landmark(lane, true)];
 function setCameraView() {
     cameraView = $('cameraView').value;
-    const side = cameraView === 'side';
+    const side = cameraView === 'side', face = cameraView === 'face', gap = face ? 0.44 : lane;
     actors = side
         ? [new THREE.Vector3(0, 0, lane), new THREE.Vector3(0, 0, -lane)]
-        : [new THREE.Vector3(-lane, 0, 0), new THREE.Vector3(lane, 0, 0)];
+        : [new THREE.Vector3(-gap, 0, 0), new THREE.Vector3(gap, 0, 0)];
     actors.forEach((position, index) => {
         const { seat, bed } = landmarks[index];
         seat.position.set(position.x, 0, position.z);
@@ -113,10 +114,11 @@ function setCameraView() {
             : new THREE.Vector3(0, 0, 1);
     const box = canvas.getBoundingClientRect(), aspect = Math.max(box.width / Math.max(box.height, 1), 0.35);
     camera.fov = aspect < 0.85 ? 52 : 32;
-    const neededHeight = (4.7 / aspect) * 1.08;
-    const distance = Math.max(8, neededHeight / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))));
+    const neededHeight = ((face ? 1.65 : 4.7) / aspect) * 1.08;
+    const distance = Math.max(face ? 2.5 : 8, neededHeight / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))));
+    target.set(0, face ? 1.78 : 1, 0);
     camera.position.copy(target).addScaledVector(direction, distance);
-    camera.position.y = 2.8;
+    camera.position.y = face ? 1.82 : 2.8;
     camera.lookAt(target);
     camera.aspect = aspect;
     camera.updateProjectionMatrix();
@@ -137,7 +139,7 @@ function updateLandmarks() {
     });
 }
 let bodyKind = 'woman', pose = 'idle', playing = false, phase = 0, last = performance.now();
-let transitionKind = null, transitionLeg = 0, raf = null;
+let transitionKind = null, transitionLeg = 0, demoStage = null, demoTime = 0, raf = null;
 let fallback = buildAvatar(kit, lookFor(bodyKind), { rig: true, detail: 'medium', scale: 0.82 });
 fallback.position.copy(actors[0]);
 scene.add(fallback);
@@ -151,6 +153,8 @@ function render() {
     renderer.render(scene, camera);
     updateStats();
     $('run').textContent = shouldAnimate() ? 'Pause' : 'Play';
+    $('demo').disabled = !full;
+    $('demo').setAttribute('aria-pressed', String(demoStage !== null));
     $('pose').value = pose;
 }
 function updateStats() {
@@ -164,7 +168,8 @@ function updateStats() {
     } });
     const fallbackState = pose === 'lie' || pose === 'soak' ? 'unsupported pose; shown as relax' : pose === 'sit' ? 'production sit figure' : 'production rig';
     $('stats').textContent = [
-        `pose=${pose}  playing=${playing}  phase=${phase.toFixed(2)}rad  cadence=${Number($('cadence').value).toFixed(2)} cycles/s  transition=${transitionKind ?? 'none'}`,
+        `pose=${pose}  phase=${phase.toFixed(2)}rad  cadence=${Number($('cadence').value).toFixed(2)} cycles/s`,
+        `transition=${transitionKind ?? 'none'}  locomotionDemo=${demoStage ?? 'none'}  easing=${full?.easing ?? false}  loopActive=${shouldAnimate()}  rafQueued=${raf !== null}`,
         `fallback: ${fallbackState}  position=${fallback.position.x.toFixed(2)},${fallback.position.y.toFixed(2)},${fallback.position.z.toFixed(2)}`,
         `skinned: ${full ? `key=${full.key} easing=${full.easing} seated=${full.seated} world=${world.x.toFixed(2)},${world.y.toFixed(2)},${world.z.toFixed(2)}` : 'loading'}  bones: ${bones.join(' | ')}`,
         `whole viewer: ${renderer.info.render.calls} draw calls  ${renderer.info.render.triangles} triangles  ${renderer.info.render.lines} lines  buffers=${renderer.info.memory.geometries}`,
@@ -213,18 +218,20 @@ function applyPose(next) {
         updateStride();
     render();
 }
-function updateStride() {
+function updateStride(animate = false) {
     const jog = pose === 'jog';
     poseAvatar(fallback, { pose: jog ? 'jog' : 'walk', stride: phase / (Math.PI * 2) });
-    full?.stride(phase, jog);
+    full?.stride(phase, jog, 0, animate);
 }
-function shouldAnimate() { return (playing && (pose === 'walk' || pose === 'jog')) || Boolean(transitionKind); }
+function shouldAnimate() { return (playing && (pose === 'walk' || pose === 'jog')) || Boolean(transitionKind) || demoStage !== null; }
 function schedule() { if (raf === null && shouldAnimate())
     raf = requestAnimationFrame(frame); }
 function cancelMotion() {
     playing = false;
     transitionKind = null;
     transitionLeg = 0;
+    demoStage = null;
+    demoTime = 0;
     if (raf !== null)
         cancelAnimationFrame(raf);
     raf = null;
@@ -250,6 +257,52 @@ function beginTransition(kind) {
     last = performance.now();
     schedule();
 }
+function beginLocomotionDemo() {
+    if (!full)
+        return;
+    cancelMotion();
+    phase = 0;
+    $('phase').value = '0';
+    $('phaseValue').textContent = '0.00 rad';
+    full.show('idle', false);
+    full.place(actors[1].x, 0, actors[1].z, 0);
+    demoStage = 'walk';
+    demoTime = 0;
+    applyFallbackPose('walk');
+    updateStride(true);
+    last = performance.now();
+    schedule();
+    render();
+}
+function stepLocomotionDemo(dt) {
+    if (!full || demoStage === null)
+        return;
+    demoTime += dt;
+    if (demoStage === 'walk' && demoTime >= 0.9) {
+        demoStage = 'jog';
+        demoTime = 0;
+        pose = 'jog';
+    }
+    else if (demoStage === 'jog' && demoTime >= 0.9) {
+        demoStage = 'stop';
+        demoTime = 0;
+        full.show('idle', true);
+        applyFallbackPose('idle');
+    }
+    if (demoStage === 'walk' || demoStage === 'jog') {
+        pose = demoStage;
+        phase = (phase + dt * Number($('cadence').value) * Math.PI * 2) % (Math.PI * 2);
+        $('phase').value = String(phase);
+        $('phaseValue').textContent = `${phase.toFixed(2)} rad`;
+        updateStride(true);
+    }
+    full.step(dt);
+    if (demoStage === 'stop' && !full.easing) {
+        demoStage = null;
+        demoTime = 0;
+        pose = 'idle';
+    }
+}
 function frame(now) {
     raf = null;
     const dt = Math.min((now - last) / 1000, 0.05);
@@ -260,6 +313,7 @@ function frame(now) {
         $('phaseValue').textContent = `${phase.toFixed(2)} rad`;
         updateStride();
     }
+    stepLocomotionDemo(dt);
     if (transitionKind && full?.easing) {
         const speed = Number($('duration').value);
         full.step(dt * speed);
@@ -302,6 +356,7 @@ $('body').addEventListener('change', async () => {
     scene.add(fallbackSeat);
     full?.dispose();
     full = null;
+    render();
     try {
         full = await loadBody(kit, lookFor(bodyKind), 'motion-preview', 0.82);
         full.object.position.copy(actors[1]);
@@ -326,6 +381,7 @@ else
     playWalking(); });
 $('play').addEventListener('click', () => beginTransition('sit'));
 $('playLie').addEventListener('click', () => beginTransition('lie'));
+$('demo').addEventListener('click', beginLocomotionDemo);
 $('reset').addEventListener('click', () => { cancelMotion(); phase = 0; $('phase').value = '0'; applyPose('idle'); });
 const resize = new ResizeObserver(() => { const box = canvas.getBoundingClientRect(); renderer.setSize(box.width, box.height, false); setCameraView(); });
 resize.observe(canvas);

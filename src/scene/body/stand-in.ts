@@ -7,8 +7,8 @@
  * Same rules as at home (gate.ts): fetched after a scene's first frame, only on a device bodyAllowed() accepts with a
  * WebGL2 renderer; any failure keeps the procedural figure for the rest of the session. No frames of its own: a pose
  * is a still frame, walking samples the host's stride phase (the stairs clips while the floor height climbs or drops
- * under the stride), and only sit-enter / sit-exit, and the door clip on coming into a scene, run in time, stepped by
- * the host's motion loop while `easing` is true.
+ * under the stride). Pose transitions and the short locomotion blends are stepped only by the host's existing motion
+ * loop while `easing` is true.
  */
 import { bodyAllowed, drawsWebGL2, importBody } from './gate.ts';
 import type { BodyPose, SkinnedBody } from './skinned.ts';
@@ -32,9 +32,9 @@ export interface StandInScene {
 }
 
 /** Preflight every sampled sole vertex before mutating either leg. */
-export function solveSupportedFeet(body: Pick<SkinnedBody, 'sampleFootContacts' | 'solveFeet' | 'easing' | 'seated'>,
+export function solveSupportedFeet(body: Pick<SkinnedBody, 'sampleFootContacts' | 'solveFeet' | 'easing' | 'seated'> & { readonly contactSolvable?: boolean },
   contactHeightAt: StandInScene['contactHeightAt']): boolean {
-  if (!contactHeightAt || body.easing || body.seated) return false;
+  if (!contactHeightAt || body.seated || body.contactSolvable === false || (body.contactSolvable === undefined && body.easing)) return false;
   const contacts = body.sampleFootContacts();
   if (!contacts.length) return false;
   const targets = new Map<string, number>();
@@ -60,7 +60,7 @@ export function solveSupportedFeet(body: Pick<SkinnedBody, 'sampleFootContacts' 
 }
 
 export interface StandIn {
-  /** True while a sit-enter / sit-exit / door plays (the host steps it). */
+  /** True while a bounded pose or locomotion blend needs host frames. */
   readonly easing: boolean;
   /** The body, once it is in and shown (tests, diagnostics). */
   readonly shown: boolean;
@@ -79,7 +79,7 @@ export interface StandIn {
   clearStandingDestination(): void;
   pose(name: string, seat: number | undefined, animate: boolean): void;
   /** One walking frame at the stride phase; `y` the floor height under the walker (the stairs clips on a slope). */
-  gait(phase: number, jog: boolean, y?: number): void;
+  gait(phase: number, jog: boolean, y?: number, animate?: boolean): void;
   step(dt: number): boolean;
   settle(): void;
   dispose(): void;
@@ -185,20 +185,20 @@ export function createStandIn(kit: Kit, onReady: () => void, allowed: boolean = 
       arrived = false;
       if (!body) return;
       if (door) body.enter(animate);
-      else body.show(posed, animate && (body.pose === 'walk' || body.pose === 'jog' || body.seated || posed === 'sit'));
+      else body.show(posed, animate && (body.pose === 'walk' || body.pose === 'jog' || body.seated || body.easing || posed === 'sit'));
       put();
       solveContacts();
     },
-    gait(phase, jog, y = at.y) {
+    gait(phase, jog, y = at.y, animate = false) {
       clearStandingDestination();
       const run = was ? Math.hypot(at.x - was.x, at.z - was.z) : 0;
       climb = was && run > 1e-3 ? (y - was.y) / run : 0;
       was = { x: at.x, y, z: at.z };
       posed = jog ? 'jog' : 'walk';
       standingIntent = climb === 0;
-      if (body) { body.stride(phase, jog, Math.abs(climb) >= CLIMB ? climb : 0); put(); solveContacts(); }
+      if (body) { body.stride(phase, jog, Math.abs(climb) >= CLIMB ? climb : 0, animate); put(); solveContacts(); }
     },
-    step(dt) { const more = body?.step(dt) ?? false; put(); if (!more) solveContacts(); return more && Boolean(scene); },
+    step(dt) { const more = body?.step(dt) ?? false; put(); if (!more) solveContacts(); else if (body?.contactSolvable) solveContacts(); return more && Boolean(scene); },
     settle() { body?.settle(); put(); solveContacts(); },
     dispose() { gone = true; clearStandingDestination(); drop(); scene = null; },
   };

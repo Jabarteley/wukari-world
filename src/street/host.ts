@@ -42,6 +42,7 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
   let closed = false, busy = false, location = 'city-street', initialized = false, centreKey = '', renderCount = 0, travelled = 0, lastSend = 0
   let player: HostPlayer = {}, avatar = buildAvatar(kit, undefined, { rig: true, scale: 0.72 }), playerKey = ''
   let standIn: StandIn | null = null, stride = 0
+  const reduced = () => globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true
   world.add(avatar)
   let pending: Promise<void> | null = null, entering = false, doorTask: string | null = null
   const held = new Set<string>(), doorViews = new Map<string, HTMLButtonElement>(), label = document.createElement('div')
@@ -151,10 +152,10 @@ export function createStreetHost(container: HTMLElement, options: StreetHostOpti
     stride += gaitPhase(distance, 0.72 * proportions.height * proportions.depth, walker.jogging, standIn?.shown === true)
     poseAvatar(avatar, { pose: distance > 0 ? walker.jogging ? 'jog' : 'walk' : 'stand', stride: (stride / (2 * Math.PI)) % 1 })
     const local = scenery.local(walker); standIn?.move(local.x, 0, local.z, walker.ry)
-    if (distance > 0) standIn?.gait(stride, walker.jogging, 0); else standIn?.pose('stand', undefined, false)
+    if (distance > 0) standIn?.gait(stride, walker.jogging, 0, !reduced()); else standIn?.pose('stand', undefined, !reduced())
     const bodyMoving = standIn?.step(dt) === true
     void send(!walker.moving); const cameraMoving = orbit.step(dt); draw(); return Boolean(moving || bodyMoving || cameraMoving || walker.hasInput && !busy && !pending)
-  }, { onHidden() { held.clear(); walker.stop(); controls?.release(); void send(true) }, onVisible() { draw(); if (walker.moving) loop.wake() } })
+  }, { onHidden() { held.clear(); walker.stop(); controls?.release(); standIn?.settle(); void send(true) }, onVisible() { draw(); if (walker.moving || standIn?.easing) loop.wake() } })
   const controls = createSceneControls(container, { onZoom: d => { orbit.zoomBy(d > 0 ? 0.9 : 1.1); loop.wake() }, onRecentre: () => { orbit.reset(); loop.wake() }, onStick: (right, forward, jog) => { if (busy || entering) return; doorTask = null; walker.input(right, forward, jog); loop.wake() } })
   controls?.touch(true)
   const directions = new Map([['w', 'up'], ['arrowup', 'up'], ['s', 'down'], ['arrowdown', 'down'], ['a', 'left'], ['arrowleft', 'left'], ['d', 'right'], ['arrowright', 'right']])

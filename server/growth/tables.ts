@@ -175,7 +175,7 @@ function gameOf<State extends TableState, Move, View>(rules: TableRules<State, M
     },
   };
 }
-const GAME_OF: Record<TableGameId, Game> = { whot: gameOf(GAMES.whot), penalty: gameOf(GAMES.penalty), chess: gameOf(GAMES.chess), weave: gameOf(GAMES.weave) };
+const GAME_OF: Record<TableGameId, Game> = { whot: gameOf(GAMES.whot), penalty: gameOf(GAMES.penalty), chess: gameOf(GAMES.chess), weave: gameOf(GAMES.weave), ayo: gameOf(GAMES.ayo) };
 
 // ---- the service's own records ----------------------------------------------------------------------
 
@@ -234,7 +234,7 @@ export function tablesService(ctx: RouteContext) {
 }
 
 /** What a Phone table is called, by game. */
-const PHONE_LABEL: Readonly<Record<TableGameId, string>> = { chess: 'Chess on your Phone', weave: 'Word tiles on your Phone', whot: 'Whot on your Phone', penalty: 'Penalties on your Phone' };
+const PHONE_LABEL: Readonly<Record<TableGameId, string>> = { chess: 'Chess on your Phone', weave: 'Word tiles on your Phone', whot: 'Whot on your Phone', penalty: 'Penalties on your Phone', ayo: 'Ayo on your Phone' };
 
 function buildService(ctx: RouteContext) {
   const now = () => ctx.now();
@@ -242,7 +242,7 @@ function buildService(ctx: RouteContext) {
   const tables = new Map<string, Table>();
   /** publicId → the key of the table that player is seated at */
   const seated = new Map<string, string>();
-  const gameId = (value: string): TableGameId | null => (value === 'whot' || value === 'penalty' || value === 'chess' || value === 'weave' ? value : null);
+  const gameId = (value: string): TableGameId | null => (value === 'whot' || value === 'penalty' || value === 'chess' || value === 'weave' || value === 'ayo' ? value : null);
   /** The tables standing in a city: the ones it lists, and a chess and a word-tile table wherever a venue suits them (src/tables/derive.ts). */
   const places = (cityId: CityId): TableDef[] => {
     const content = cityContent(cityId);
@@ -251,7 +251,7 @@ function buildService(ctx: RouteContext) {
       return game ? [{ id: place.id, venue: place.venueId, game, label: place.label, seats: place.seats }] : [];
     });
   };
-  /** The Phone's own tables: a board game against the house's bots, anywhere, with no venue and no seat for anyone else. Yours alone; the id the screen uses is `phone-chess`, `phone-weave`, `phone-whot`, `phone-penalty`. */
+  /** The Phone's own tables: a board game against the house's bots, anywhere, with no venue and no seat for anyone else. Yours alone; ids are `phone-<game>`. */
   const phonePlace = (id: unknown): TableDef | null => {
     const game = typeof id === 'string' && id.startsWith('phone-') ? gameId(id.slice(6)) : null;
     return game ? { id: `phone-${game}`, venue: PHONE_VENUE, game, label: PHONE_LABEL[game], seats: GAME_OF[game].seats.max } : null;

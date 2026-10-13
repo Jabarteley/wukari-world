@@ -48,6 +48,7 @@ export class FakeContext {
   createWaveShaper(): FakeNode & { curve: Float32Array | null } { const n = Object.assign(new FakeNode(), { curve: null as Float32Array | null }); this.shapers.push(n); return n }
   createAnalyser(): FakeNode & { fftSize: number } { return Object.assign(new FakeNode(), { fftSize: 0 }) }
   createBuffer(_channels: number, length: number): { getChannelData(): Float32Array } { const data = new Float32Array(length); return { getChannelData: () => data } }
+  close(): Promise<void> { this.state = 'closed'; return Promise.resolve() }
   resume(): Promise<void> { this.state = 'running'; this.resumed++; return Promise.resolve() }
   suspend(): Promise<void> { this.state = 'suspended'; this.suspended++; return Promise.resolve() }
   get sources(): FakeSource[] { return this.made.filter((n): n is FakeSource => n instanceof FakeSource) }

@@ -16,7 +16,7 @@ class FakeAudioContext extends FakeContext {
 const errors: unknown[][] = []
 const target = { addEventListener: listen, removeEventListener: () => undefined, dispatchEvent: () => true }
 Object.assign(globalThis, {
-  window: { ...target, location: { search: '' }, localStorage: null }, document: { ...target, hidden: false, createElement: () => ({ style: {} }) }, addEventListener: listen, localStorage: undefined,
+  window: { ...target, location: { search: '' }, localStorage: null }, document: { ...target, hidden: false, querySelector: () => null, createElement: () => ({ style: {} }) }, addEventListener: listen, localStorage: undefined,
   AudioContext: FakeAudioContext,
 })
 // The engine's repeating timer must not keep the test process alive.
@@ -58,6 +58,20 @@ test('a board move, a capture and the guide speaking each make a sound; an unkno
   assert.ok(await heard('jaw:companion', { kind: 'speak', mood: 'celebrate' }) > 0, 'the guide celebrates')
   assert.equal(await heard('jaw:table', { game: 'chess', event: 'nonsense' }), 0)
   assert.equal(await heard('jaw:companion', { kind: 'act' }), 0)
+})
+
+test('mute releases the context and unmute rebuilds exactly one graph', async () => {
+  const { setSound } = await import('./settings.ts')
+  setSound({ on: false })
+  await new Promise(resolve => setTimeout(resolve, 70))
+  assert.ok(contexts.every(context => context.state === 'closed'))
+  setSound({ on: true })
+  await new Promise(resolve => setTimeout(resolve, 100))
+  assert.equal(created, 2)
+  assert.equal(contexts.filter(context => context.state === 'running').length, 1)
+  fire('pointerdown')
+  assert.equal(created, 2)
+  setSound({ on: false })
 })
 
 test.after(() => { console.error = originalError })

@@ -3,23 +3,30 @@
 // the chunk loads are kept (a few) and played when it is up.
 import type { LifeState } from '../types/life.ts'
 import type { PanelView } from '../app/types/panel.ts'
+import { getSound, onSoundChange } from './settings.ts'
 import type { Engine } from './engine.ts'
 
 let engine: Engine | null = null
 let loading = false
+let touched = false
 let calling = false
 let latest: [LifeState, PanelView] | null = null
 const waiting: string[] = []
 
 function wake(): void {
+  touched = true
+  if (!getSound().on) return
+  if (engine?.disposed) engine = null
   if (engine) { engine.unlock(); return }
   if (loading) return
   loading = true
   import('./engine.ts').then(({ createEngine }) => {
+    loading = false
     engine = createEngine()
     if (!engine) return
-    engine.call(calling); engine.unlock()
+    engine.call(calling)
     if (latest) engine.observe(...latest)
+    engine.unlock()
     for (const name of waiting.splice(0)) engine.play(name)
   }).catch(() => { loading = false })
 }
@@ -33,3 +40,8 @@ export function observe(state: LifeState, view: PanelView): void { latest = [sta
 export function setCallActive(on: boolean): void { calling = on; engine?.call(on) }
 // The call screens say when a call is ringing or connected (a window event, so neither side imports the other): ambience ducks under it.
 globalThis.window?.addEventListener('jaw:call-active', (event) => setCallActive((event as CustomEvent<boolean>).detail === true))
+
+onSoundChange(() => {
+  if (!getSound().on) { engine?.dispose(); engine = null; return }
+  if (touched && (!engine || engine.disposed)) wake()
+})

@@ -30,6 +30,7 @@ export interface Seen {
 }
 export interface Deps {
   settings: () => SoundSettings
+  onEffect?: () => void
   soundOf: (city: string) => CitySound | undefined
   /** The scene kind of a venue ('market', 'park', …), or '' when unknown. */
   kindOf: (city: string, venue: string) => string
@@ -125,7 +126,7 @@ export class Director {
 
   private refresh(): void {
     const s = this.deps.settings()
-    const audible = levelFor(s, 'effects') > 0 || levelFor(s, 'ambience') > 0
+    const audible = levelFor(s, 'effects') > 0 || levelFor(s, 'ambience') > 0 || levelFor(s, 'music') > 0
     const awake = !this.hidden && !this.idle && audible
     if (awake !== this.awake) {
       this.awake = awake
@@ -158,7 +159,9 @@ export class Director {
       return this.play(mapped, o)
     }
     const id = EVENTS[name]
-    return id && this.awake ? this.synth.play(id, o) : false
+    const played = id && this.awake ? this.synth.play(id, o) : false
+    if (played) this.deps.onEffect?.()
+    return played
   }
 
   // ---- the world ---------------------------------------------------------------------------------------------------------
@@ -193,7 +196,7 @@ export class Director {
     const sound = this.deps.soundOf(s.city)
     const motif = MOTIFS[sound?.motif ?? 'neutral'] ?? 'motif-neutral'
     const shift = 2 ** ((sound?.key ?? 0) / 12)
-    this.deps.after(() => { if (this.awake) this.synth.play(motif, { pitch: shift }) }, end ? 1100 : 0)
+    this.deps.after(() => { if (this.awake && this.synth.play(motif, { pitch: shift })) this.deps.onEffect?.() }, end ? 1100 : 0)
   }
 
   private kind(s: Seen): string { return this.deps.kindOf(s.city, s.location) }
@@ -309,6 +312,7 @@ export class Director {
   private stopSteps(): void { this.stopStep?.(); this.stopStep = null; this.stepping = false }
 
   dispose(): void {
+    this.awake = false
     this.stopTick?.(); this.stopTick = null; this.stopSteps()
     for (const chan of CHANNELS) { this.cur[chan]?.scape.stop(0.1); this.cur[chan] = null }
   }

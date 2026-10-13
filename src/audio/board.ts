@@ -21,7 +21,7 @@ function peakOf(analyser: AnalyserNode, buffer: Float32Array<ArrayBuffer>): numb
   return peak
 }
 
-export function mountBoard(director: Director, ctx: AudioContext): void {
+export function mountBoard(director: Director, ctx: AudioContext): () => void {
   const scratch = new Float32Array(director.synth.analyser.fftSize)
   const handle: BoardHandle = {
     director, ctx,
@@ -55,5 +55,10 @@ export function mountBoard(director: Director, ctx: AudioContext): void {
   section('Scapes (day)', Object.keys(SCAPES), id => director.preview(id, false))
   section('Scapes (night)', Object.keys(SCAPES), id => director.preview(id, true))
   document.body.append(root)
-  setInterval(() => { head.textContent = `voices ${director.synth.count()} · peak ${handle.peak().toFixed(3)} · ${ctx.state}` }, 200)
+  const tick = setInterval(() => { head.textContent = `voices ${director.synth.count()} · peak ${handle.peak().toFixed(3)} · ${ctx.state}` }, 200)
+  return () => {
+    clearInterval(tick); root.remove()
+    const win = window as unknown as { __soundBoard?: BoardHandle }
+    if (win.__soundBoard === handle) delete win.__soundBoard
+  }
 }

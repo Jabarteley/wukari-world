@@ -11,9 +11,13 @@ import { Director, type Seen } from './director.ts'
 import { getSound, onSoundChange, setSound } from './settings.ts'
 import { COMPANION_SOUNDS, TABLE_SOUNDS } from './data.ts'
 import { VOICE_EVENT, VOICE_SCENE_EVENT, VOICE_STOP_EVENT, type HeardLine, type SceneNote } from './voice/types.ts'
+import { MusicDirector } from './music/director.ts'
+import { musicContext } from './music/context.ts'
 import type { Voices } from './voice/index.ts'
 
 export interface Engine {
+  readonly disposed: boolean
+  dispose(): void
   play(name: string): void
   observe(state: LifeState, view: PanelView): void
   call(on: boolean): void
@@ -50,12 +54,16 @@ export function createEngine(): Engine | null {
   const win = window
   const Context = globalThis.AudioContext ?? (globalThis as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
   if (!Context) return null
+  if (!getSound().on || document.hidden) return null
+  let disposed = false
+  const events = new AbortController()
   let ctx: AudioContext
   try { ctx = new Context({ latencyHint: 'playback' }) } catch { return null }
   const kinds = new Map<string, string>()
   const variants = new Map<string, string>()
+  let speaking = (): boolean => false
   const director = new Director(ctx, {
-    settings: getSound,
+    settings: getSound, onEffect: () => music.duck(),
     soundOf: (city): CitySound | undefined => { try { return contentFor(city).sound } catch { return undefined } },
     kindOf: (city, venue) => {
       const key = `${city}/${venue}`
@@ -74,29 +82,39 @@ export function createEngine(): Engine | null {
     after: (run, ms) => { const id = setTimeout(run, ms); return () => clearTimeout(id) },
     live: true,
   })
+
+  const music = new MusicDirector(ctx, { destination: director.synth.music, settings: getSound, speaking: () => speaking(), every: (run, ms) => { const id = setInterval(run, ms); return () => clearInterval(id) } })
+
   // The voices (talk sounds, spoken words, human sounds) are a chunk of their own, fetched on the first line that is to be heard.
   let voices: Promise<Voices | null> | null = null
   let voicesNow: Voices | null = null
+  let stopBoard: (() => void) | undefined
+  let stopVoiceChange: (() => void) | undefined
   let avatarAt: { x: number; z: number } | null = null
   let place = ''
   const voiced = (): boolean => { const s = getSound(); return s.on && s.voices !== 'off' }
   const withVoices = (run: (voices: Voices) => void): void => {
+    if (disposed) return
     voices ??= import('./voice/index.ts').then(({ Voices, createSpeech }) => {
+      if (disposed) return null
       const found = createSpeech()
+      speaking = () => found?.speech.busy() ?? false
       const made = new Voices(ctx, director.synth.fx, director.synth.noiseBuffer('white'), { settings: getSound, speech: found?.speech ?? null, hidden: () => document.hidden })
       if (avatarAt) made.setAvatar(avatarAt.x, avatarAt.z)
-      found?.onVoices(() => made.applySettings())
+      stopVoiceChange = found?.onVoices(() => made.applySettings())
       voicesNow = made
       return made
     }).catch(() => null)
     void voices.then(made => { if (made) run(made) })
   }
-  const running = (): boolean => ctx.state === 'running'
+  const running = (): boolean => !disposed && ctx.state === 'running'
   const tell = (): void => { if (!getSound().told && running() && getSound().on) { setSound({ told: true }); toast(TOLD) } }
   const play = (name: string): void => { if (running() && director.play(name)) tell() }
   const unlock = (): void => {
+    if (disposed || !getSound().on || document.hidden) return
     director.touch()
-    if (ctx.state !== 'running') ctx.resume().catch(() => undefined)
+    music.refresh()
+    if (ctx.state !== 'running') ctx.resume().then(() => music.refresh()).catch(() => undefined)
   }
 
   const press = (event: Event): void => {
@@ -113,34 +131,50 @@ export function createEngine(): Engine | null {
     if (box?.matches?.('[role=switch],input[type=checkbox]')) play(box.checked ? 'toggle-on' : 'toggle-off')
   }
   const moved = (event: Event): void => { const at = (event as CustomEvent<{ x: number; z: number }>).detail; if (at) { director.step(at.x, at.z); avatarAt = { x: at.x, z: at.z }; voicesNow?.setAvatar(at.x, at.z) } }
-  const shown = (): void => { director.setHidden(document.hidden); if (document.hidden) voicesNow?.setHidden(true) }
+  const shown = (): void => { director.setHidden(document.hidden); music.setHidden(document.hidden); if (document.hidden) { voicesNow?.setHidden(true); void ctx.suspend().catch(() => undefined) } else unlock() }
   const named = (event: Event): void => { const id = (event as CustomEvent<string>).detail; if (typeof id === 'string') play(id) }
 
-  win.addEventListener('pointerdown', press, { capture: true, passive: true })
-  win.addEventListener('keydown', unlock, { capture: true, passive: true })
-  win.addEventListener('change', changed, { capture: true, passive: true })
-  win.addEventListener('jaw:avatar-move', moved)
-  win.addEventListener('jaw:sound', named)
-  win.addEventListener('jaw:table', (event) => { const at = (event as CustomEvent<{ game?: string; event?: string }>).detail; const id = at && TABLE_SOUNDS[`${at.game}:${at.event}`]; if (id) play(id) })
-  win.addEventListener('jaw:companion', (event) => { const at = (event as CustomEvent<{ kind?: string; mood?: string }>).detail; const id = at && COMPANION_SOUNDS[at.mood === 'celebrate' ? 'celebrate' : String(at.kind)]; if (id) play(id) })
-  win.addEventListener(VOICE_EVENT, (event) => { const line = (event as CustomEvent<HeardLine>).detail; if (line && running() && voiced()) withVoices(made => made.hear(line)) })
-  win.addEventListener(VOICE_SCENE_EVENT, (event) => { const note = (event as CustomEvent<SceneNote>).detail; if (note && running() && voiced()) withVoices(made => made.scene(note)) })
-  win.addEventListener(VOICE_STOP_EVENT, () => voicesNow?.stop())
-  document.addEventListener('visibilitychange', shown)
-  onSoundChange(() => { director.applySettings(); voicesNow?.applySettings() })
-  shown()
-
+  win.addEventListener('pointerdown', press, { capture: true, passive: true, signal: events.signal })
+  win.addEventListener('keydown', unlock, { capture: true, passive: true, signal: events.signal })
+  win.addEventListener('change', changed, { capture: true, passive: true, signal: events.signal })
+  win.addEventListener('jaw:avatar-move', moved, { signal: events.signal })
+  win.addEventListener('jaw:sound', named, { signal: events.signal })
+  win.addEventListener('jaw:table', (event) => { const at = (event as CustomEvent<{ game?: string; event?: string }>).detail; const id = at && TABLE_SOUNDS[`${at.game}:${at.event}`]; if (id) { music.game(); play(id) } }, { signal: events.signal })
+  win.addEventListener('jaw:companion', (event) => { const at = (event as CustomEvent<{ kind?: string; mood?: string }>).detail; const id = at && COMPANION_SOUNDS[at.mood === 'celebrate' ? 'celebrate' : String(at.kind)]; if (id) play(id) }, { signal: events.signal })
+  win.addEventListener(VOICE_EVENT, (event) => { const line = (event as CustomEvent<HeardLine>).detail; if (line && running() && voiced()) { music.duck(Math.min(12, Math.max(2, line.text.length / 12))); withVoices(made => made.hear(line)) } }, { signal: events.signal })
+  win.addEventListener(VOICE_SCENE_EVENT, (event) => { const note = (event as CustomEvent<SceneNote>).detail; if (note && running() && voiced()) { music.duck(1); withVoices(made => made.scene(note)) } }, { signal: events.signal })
+  win.addEventListener(VOICE_STOP_EVENT, () => voicesNow?.stop(), { signal: events.signal })
+  document.addEventListener('visibilitychange', shown, { signal: events.signal })
+  const stopSettings = onSoundChange(() => {
+    if (!getSound().on) { engine.dispose(); return }
+    director.applySettings(); voicesNow?.applySettings(); music.refresh()
+  })
   const engine: Engine = {
+    get disposed() { return disposed },
+    dispose() {
+      if (disposed) return
+      disposed = true; events.abort(); stopSettings(); stopVoiceChange?.(); stopBoard?.(); voicesNow?.stop(); director.dispose()
+      director.synth.out.gain.cancelScheduledValues(ctx.currentTime)
+      director.synth.out.gain.setTargetAtTime(0, ctx.currentTime, 0.008)
+      setTimeout(() => { music.dispose(); void ctx.close().catch(() => undefined) }, 50)
+    },
     play,
     observe(state, view) {
-      director.observe(seenOf(state, view)); tell()
+      if (disposed) return
+      const seen = seenOf(state, view)
+      director.observe(seen); tell()
+      let kind = '', variant = ''
+      try { const venue = contentFor(state.estate.city).venues.find(item => item.id === state.location); kind = venue?.kind ?? ''; variant = venue?.definition.scene.variant ?? '' } catch { /* city still loading */ }
+      const musicSeen = document.querySelector('.cr-panel') ? { ...seen, mode: 'creator' }
+        : document.querySelector('.boutique-root,.buy-place,.buy-catalogue:not(.is-hidden),.sp[aria-label=Shop],dialog[data-shop-inside][open]') ? { ...seen, mode: 'shop' } : seen
+      music.setContext(musicContext(musicSeen, kind, variant)); music.refresh()
       // A new place: every voice and spoken line of the old one stops.
       const here = `${state.estate.city}/${state.location}`
       if (here !== place) { place = here; voicesNow?.stop() }
     },
-    call: on => director.setCall(on),
+    call: on => { director.setCall(on); music.setCall(on) },
     unlock,
   }
-  if (/[?&]sounds\b/.test(win.location.search)) void import('./board.ts').then(board => board.mountBoard(director, ctx)).catch(() => undefined)
+  if (/[?&]sounds\b/.test(win.location.search)) void import('./board.ts').then(board => { if (!disposed) stopBoard = board.mountBoard(director, ctx) }).catch(() => undefined)
   return engine
 }

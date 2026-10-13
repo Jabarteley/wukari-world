@@ -9,10 +9,10 @@ import { BEAT_SECONDS, MOTIFS } from './data.ts'
 
 interface Rig { ctx: FakeContext; director: Director; settings: SoundSettings; clock: { ms: number }; timers: { run: () => void; ms: number; every: boolean }[] }
 const NOON = Date.UTC(2026, 9, 6, 11, 0, 0) // 12:00 in Nigeria
-function rig(patch: Partial<SoundSettings> = {}, sound: Deps['soundOf'] = () => undefined): Rig {
+function rig(patch: Partial<SoundSettings> = {}, sound: Deps['soundOf'] = () => undefined, onEffect?: () => void): Rig {
   const ctx = new FakeContext(), settings: SoundSettings = { ...SOUND_DEFAULTS, ...patch }, clock = { ms: NOON }, timers: Rig['timers'] = []
   const director = new Director(asContext(ctx), {
-    settings: () => settings, soundOf: sound, kindOf: (_city, venue) => ({ stall: 'market', gardens: 'park', flat: 'home', church: 'worship', mosque: 'worship', club: 'club', busPark: 'hub', rail: 'hub' } as Record<string, string>)[venue] ?? '',
+    settings: () => settings, soundOf: sound, onEffect, kindOf: (_city, venue) => ({ stall: 'market', gardens: 'park', flat: 'home', church: 'worship', mosque: 'worship', club: 'club', busPark: 'hub', rail: 'hub' } as Record<string, string>)[venue] ?? '',
     variantOf: (_city, venue) => ({ church: 'church', mosque: 'mosque', rail: 'rail', busPark: 'bus-park' } as Record<string, string>)[venue] ?? '',
     now: () => clock.ms, live: true,
     every: (run, ms) => { const t = { run, ms, every: true }; timers.push(t); return () => { timers.splice(timers.indexOf(t), 1) } },
@@ -286,4 +286,15 @@ test('Quiet and mute keep the new sounds out as well: nothing is built for a ser
       assert.equal(r.ctx.sources.length, 0, `${where} under ${JSON.stringify(patch)}`)
     }
   }
+})
+
+test('automatic rewards and interface events share the music ducking hook', () => {
+  let ducks = 0
+  const r = rig({}, () => undefined, () => { ducks++ })
+  r.director.observe(seen())
+  r.director.observe(seen({ ledger: [{ at: 1, amount: 20, reason: 'A reward' }] }))
+  assert.equal(ducks, 1)
+  assert.equal(r.director.play('unknown'), false); assert.equal(ducks, 1)
+  assert.equal(r.director.play('tap'), true); assert.equal(ducks, 2)
+  r.director.dispose()
 })

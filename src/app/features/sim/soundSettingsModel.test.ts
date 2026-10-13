@@ -16,8 +16,8 @@ test('a control stores the right preference and nothing else', () => {
 })
 
 test('the section lists a switch for each on/off preference and a slider for each level, with a label and a hint', () => {
-  assert.deepEqual(SOUND_SWITCHES.map(s => s.id), ['on', 'quiet'])
-  assert.deepEqual(SOUND_SLIDERS.map(s => s.id), ['master', 'effects', 'ambience', 'calls'])
+  assert.deepEqual(SOUND_SWITCHES.map(s => s.id), ['on', 'musicOn', 'quiet'])
+  assert.deepEqual(SOUND_SLIDERS.map(s => s.id), ['master', 'effects', 'ambience', 'music', 'calls'])
   for (const control of [...SOUND_SWITCHES, ...SOUND_SLIDERS]) { assert.ok(control.label.length > 0 && control.hint.length > 0); assert.ok(control.id in SOUND_DEFAULTS) }
 })
 

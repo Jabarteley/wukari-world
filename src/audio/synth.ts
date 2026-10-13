@@ -63,6 +63,8 @@ export class Synth {
   readonly out: GainNode
   readonly fx: GainNode
   readonly amb: GainNode
+  /** Soundtrack input, sharing the final ceiling with effects and ambience. */
+  readonly music: GainNode
   readonly ambDuck: GainNode
   readonly fxDuck: GainNode
   readonly verb: GainNode
@@ -78,6 +80,7 @@ export class Synth {
     this.recipes = recipes
     this.out = ctx.createGain()
     const mix = ctx.createGain()
+    this.music = ctx.createGain(); this.music.gain.value = 0.25; this.music.connect(mix)
     const comp = ctx.createDynamicsCompressor()
     comp.threshold.value = -14; comp.knee.value = 8; comp.ratio.value = 6; comp.attack.value = 0.004; comp.release.value = 0.2
     const ceiling = ctx.createWaveShaper()

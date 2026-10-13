@@ -9,6 +9,8 @@ export interface SoundSettings {
   master: number
   effects: number
   ambience: number
+  music: number
+  musicOn: boolean
   calls: number
   /** Quiet: no ambience and softer effects, for public places. */
   quiet: boolean
@@ -17,7 +19,7 @@ export interface SoundSettings {
   /** The one-line "Sound is on" toast has been shown on this device. */
   told: boolean
 }
-export const SOUND_DEFAULTS: Readonly<SoundSettings> = { on: true, master: 0.8, effects: 0.6, ambience: 0.35, calls: 0.8, quiet: false, voices: 'sounds', told: false }
+export const SOUND_DEFAULTS: Readonly<SoundSettings> = { on: true, master: 0.8, effects: 0.6, ambience: 0.35, music: 0.4, musicOn: true, calls: 0.8, quiet: false, voices: 'sounds', told: false }
 
 type Store = Pick<Storage, 'getItem'> | null | undefined
 /** The saved preferences; a value of the wrong kind or range is replaced by its default. */

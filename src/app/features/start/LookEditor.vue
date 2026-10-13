@@ -4,6 +4,7 @@
 // (it calls chooseLook with the wardrobe it wants). With `owned` (a wardrobe) styles not owned are
 // disabled and say where to buy them.
 import '../../../ui/panels/look-ui.css'
+import AvatarFigure from './AvatarFigure.vue'
 import { computed, defineAsyncComponent, h, ref } from 'vue'
 import { APPEARANCE, BOUTIQUE_PRICES } from '../../../game/content/traits.ts'
 import type { AvatarLook } from '../../../game/wardrobe/look.ts'
@@ -15,7 +16,9 @@ import type { ChipsGroup, LookField, Owned, SwatchGroup } from './lookModel.ts'
 const props = withDefaults(defineProps<{
   look: AvatarLook
   owned?: Owned | null
-}>(), { owned: null })
+  /** Hairstyles and outfits as picture cards (the creator); the other screens keep text chips. */
+  visual?: boolean
+}>(), { owned: null, visual: false })
 const emit = defineEmits<{ choose: [field: LookField, value: string]; replace: [look: AvatarLook] }>()
 const LayerControls = defineAsyncComponent({
   loader: () => import('./AvatarLayerControls.vue'),
@@ -45,11 +48,15 @@ function lockedBecause(field: LookField, id: string): string {
 const swatches = (group: SwatchGroup) => APPEARANCE[group]
 const colourOf = (field: LookField): string => String(props.look[field as 'skin'] ?? '')
 const chips = (group: ChipsGroup): string[] => optionsOf(group.field, props.look)
+/** The look with one option tried on, drawn small as that option's picture. */
+const thumbOf = (field: LookField, id: string): AvatarLook => ({ ...props.look, [field]: id })
+const pictured = (field: LookField): boolean => props.visual && (field === 'hair' || field === 'outfit')
+const tabIndex = computed(() => Math.max(0, sections.value.findIndex((item) => item.id === current.value?.id)))
 </script>
 
 <template>
   <div v-if="current" class="look-editor">
-    <div class="look-tabs" :style="{ '--look-tab-count': sections.length }" role="tablist" aria-label="What to change">
+    <div class="look-tabs" :style="{ '--look-tab-count': sections.length, '--look-tab-index': tabIndex }" role="tablist" aria-label="What to change">
       <button v-for="item in sections" :id="`look-tab-${item.id}`" :key="item.id" type="button" role="tab" class="look-tab" :data-look-tab="item.id" :data-key="`tab:${item.id}`" :aria-selected="item.id === current.id" aria-controls="look-panel" @click="openTab(item.id)">
         <span aria-hidden="true"><GameIcon :name="item.icon" inline /></span>{{ item.title }}<b v-if="item.id === 'extras' && carrying">{{ carrying }}</b>
       </button>
@@ -59,8 +66,8 @@ const chips = (group: ChipsGroup): string[] => optionsOf(group.field, props.look
       <template v-for="group in current.groups" :key="group.field">
         <fieldset v-if="group.kind === 'chips'" class="look-group">
           <legend>{{ group.title }}</legend>
-          <div class="look-chips">
-            <button v-for="id in chips(group)" :key="id" type="button" class="look-chip" :data-look="group.field" :data-value="id" :data-key="`${group.field}:${id}`" :aria-pressed="chosen(look, group.field, id)" :disabled="Boolean(lockedBecause(group.field, id))" :title="lockedBecause(group.field, id) || undefined" @click="emit('choose', group.field, id)">{{ titled(id) }}<small v-if="lockedBecause(group.field, id)"><GameIcon name="lock" inline /> {{ lockedBecause(group.field, id) }}</small></button>
+          <div class="look-chips" :class="{ 'is-pictured': pictured(group.field) }">
+            <button v-for="id in chips(group)" :key="id" type="button" class="look-chip" :data-look="group.field" :data-value="id" :data-key="`${group.field}:${id}`" :aria-pressed="chosen(look, group.field, id)" :disabled="Boolean(lockedBecause(group.field, id))" :title="lockedBecause(group.field, id) || undefined" @click="emit('choose', group.field, id)"><AvatarFigure v-if="pictured(group.field)" :look="thumbOf(group.field, id)" :size="56" :crop="group.field === 'hair' ? 'head' : 'body'" label="" />{{ titled(id) }}<small v-if="lockedBecause(group.field, id)"><GameIcon name="lock" inline /> {{ lockedBecause(group.field, id) }}</small></button>
           </div>
         </fieldset>
         <fieldset v-else class="look-group">

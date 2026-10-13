@@ -162,7 +162,7 @@ const def = computed(() => stepDef(cr.step))
 const title = computed(() => (isNew && cr.step === 'who' ? (campusEntry ? 'Explore UNILAG' : 'Welcome to Allworld') : def.value.title))
 const lead = computed(() => (isNew && cr.step === 'who' ? (campusEntry ? 'Create your Sim and enter the University of Lagos through Main Gate.' : 'A digital world you can live in, with your friends. Choose who you are to begin; you can play in seconds.') : def.value.lead))
 // What is open, read from the catalogue the page already has: no number is written here to go stale.
-const pitch = computed(() => `${CITY_WORLD_FIGURES.cities} real cities across Africa, and more opening. Free, in your browser, no download.`)
+const pitch = computed(() => `${CITY_WORLD_FIGURES.cities} real cities across Africa, and more opening.`)
 const homePending = computed(() => cr.step === 'home' && !homeReady.value)
 const blocked = computed(() => homePending.value ? 'Load this city before continuing.' : stepBlocked(cr.step, { nameProblem: nameProblem(draft.value.name.trim()), area: draft.value.area, traits: draft.value.traits.length }))
 const last = computed(() => nextStep(steps.value, cr.step) === null)
@@ -383,9 +383,8 @@ onBeforeUnmount(() => {
       </header>
 
       <div ref="scroller" class="cr-scroll">
-        <p v-if="isNew && cr.step === 'who' && !campusEntry" class="cr-pitch">{{ pitch }}</p>
         <p v-if="intro" class="cr-banner is-info"><span aria-hidden="true"><GameIcon :name="intro.kind === 'why' ? 'home' : 'star'" inline /></span><span><strong>{{ intro.strong }}</strong> {{ intro.text }}</span></p>
-        <PathIntro v-if="isNew && playable && cr.step === 'who' && !invited()" :intent="waiting" :busy="Boolean(cr.pending) || play.sending" @start="startIn" @signup="openSignUp" @login="openSignIn" />
+        <PathIntro v-if="isNew && playable && cr.step === 'who' && !invited() && waiting" :intent="waiting" :busy="Boolean(cr.pending) || play.sending" @start="startIn" @signup="openSignUp" @login="openSignIn" />
         <p v-if="isNew && invited()" class="cr-banner is-good" role="status"><span aria-hidden="true"><GameIcon name="invite" inline /></span><span><strong>{{ invitedNote.title }}</strong> {{ inviter ? `Start your life and you land where ${inviter} is.` : 'Start your life and you land where they are.' }}</span></p>
         <p v-if="showNote && words" class="cr-banner is-warn" role="status"><span aria-hidden="true"><GameIcon name="cloud-off" inline /></span><span><strong>{{ words.short }}.</strong> {{ words.why }} Your character is kept on this device.</span><LinkAction class-name="cr-btn is-small" /></p>
         <p v-if="shown" :class="['cr-banner', calm ? 'is-info' : 'is-error']" :role="calm ? 'status' : 'alert'" data-cr-error>{{ shown }}</p>
@@ -400,6 +399,7 @@ onBeforeUnmount(() => {
             <h1 id="cr-title" ref="heading" tabindex="-1">{{ title }}</h1>
             <p class="cr-lead">{{ lead }}</p>
             <StepWho v-if="cr.step === 'who'" :look="draft.look" :preset="presetId" :name="draft.name" :error="shown" @preset="preset" @body="body" @shuffle="shuffle" @dice="dice" @name="typed" @submit="next" />
+            <PathIntro v-if="isNew && playable && cr.step === 'who' && !invited() && !waiting" class="is-quiet" :intent="null" :busy="Boolean(cr.pending) || play.sending" :pitch="campusEntry ? '' : pitch" @start="startIn" @signup="openSignUp" @login="openSignIn" />
             <StepLook v-else-if="cr.step === 'look'" :look="draft.look" :owned="wardrobe" :can-undo="cr.history.length > 0" :can-reset="cr.origin !== null && !sameLook(cr.origin, draft.look)" @choose="choose" @replace="replaceLook" @undo="undo" @reset="reset" @shuffle="shuffle" @tab="onTab" />
             <StepSpirit v-else-if="cr.step === 'spirit'" :city="cr.city ?? view.cityId" :traits="draft.traits" :dream="draft.dream" @trait="pickTrait" @dream="pickDream" @random="randomSpirit" />
             <StepHome v-else-if="cr.step === 'home'" v-model="draft.area" :choosable="isNew" @ready="homeReady = $event" />

@@ -1,65 +1,15 @@
 {
- "schemaVersion": 1,
- "queue": [
-  {
-   "id": "fo",
-   "table": "scripts/geo/factory/country-tables/fo.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "gg",
-   "table": "scripts/geo/factory/country-tables/gg.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "im",
-   "table": "scripts/geo/factory/country-tables/im.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "tw",
-   "table": "scripts/geo/factory/country-tables/tw.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "hk",
-   "table": "scripts/geo/factory/country-tables/hk.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "mo",
-   "table": "scripts/geo/factory/country-tables/mo.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "cx",
-   "table": "scripts/geo/factory/country-tables/cx.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "cc",
-   "table": "scripts/geo/factory/country-tables/cc.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "xk",
-   "table": "scripts/geo/factory/country-tables/xk.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "ax",
-   "table": "scripts/geo/factory/country-tables/ax.json",
-   "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
-  },
-  {
-   "id": "xs",
-   "table": "scripts/geo/factory/country-tables/xs.json",
-   "appSha": "04ac8c7f0f1519c65cec56685186696a9c6fef51"
-  },
-  {
-   "id": "xn",
-   "table": "scripts/geo/factory/country-tables/xn.json",
-   "appSha": "04ac8c7f0f1519c65cec56685186696a9c6fef51"
-  }
- ]
+  "schemaVersion": 1,
+  "queue": [
+    {
+      "id": "aw",
+      "table": "scripts/geo/factory/country-tables/aw.json",
+      "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
+    },
+    {
+      "id": "mf",
+      "table": "scripts/geo/factory/country-tables/mf.json",
+      "appSha": "ef28bc298016b778220ee815ac136e4919b7500e"
+    }
+  ]
 }

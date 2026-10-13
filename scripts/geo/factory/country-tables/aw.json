@@ -18,6 +18,7 @@
       "id": "oranjestad",
       "name": "Oranjestad",
       "countryISO": "AW",
+      "cityOsmRef": "node/50031810",
       "airport": {
         "ident": "TNCA",
         "sourceUrl": "https://ourairports.com/airports/TNCA/"

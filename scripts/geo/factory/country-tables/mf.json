@@ -18,6 +18,7 @@
       "id": "marigot",
       "name": "Marigot",
       "countryISO": "MF",
+      "cityOsmRef": "node/271047808",
       "profile": "microstate",
       "airport": {
         "ident": "TFFG",

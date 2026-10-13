@@ -237,4 +237,5 @@ export const GENERATED_CITY_CATALOGUE_ROWS = Object.freeze([
   ["paris","Paris","fr-paris","",2.3483915,48.8534951,1,"fr","France"],
   ["funafuti","Funafuti","tv-funafuti","",179.1982548,-8.5199633,1,"tv","Tuvalu"],
   ["shanghai","Shanghai","cn-shanghai","",121.4691024,31.2323437,1,"cn","China"],
+  ["vatican-city","Vatican City","va","",12.4528349,41.9034912,1,"va","Vatican City"],
 ] satisfies readonly CityCatalogueRow[])

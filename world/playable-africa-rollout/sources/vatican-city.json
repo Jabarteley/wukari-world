@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "cityId": "vatican-city",
+  "countryIso2": "VA",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Vatican City",
+    "coordinatesWgs84": [
+      12.4528349,
+      41.9034912
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/italy/centro-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "vatican-city-airport",
+    "name": "Eliporto Internazionale della Città del Vaticano",
+    "lon": 12.4465,
+    "lat": 41.902,
+    "sourceUrl": "https://ourairports.com/airports/VA-0001/"
+  },
+  "boxes": {
+    "play": [
+      41.72261031006602,
+      12.210754277159126,
+      42.08437208993398,
+      12.694915522840873
+    ],
+    "core": [
+      41.858270977516504,
+      12.392443705225482,
+      41.94871142248349,
+      12.513226094774517
+    ],
+    "outline": [
+      41.67261031006602,
+      12.160754277159125,
+      42.134372089933976,
+      12.744915522840873
+    ],
+    "wide": [
+      41.122610310066015,
+      11.610754277159126,
+      42.68437208993398,
+      13.294915522840872
+    ],
+    "water": [
+      41.122610310066015,
+      11.610754277159126,
+      42.68437208993398,
+      13.294915522840872
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/italy/centro-261011.osm.pbf",
+    "datasetSha256": "ba5273f937661607db26009a7f4eda6819ecc75c144c85020a15bb4f3e888a49",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6e88658d43d36e63f034487c2d7a9d79ab9cb4f3ae95bb755c3cbb13bcb63cad",
+        "elements": 8160
+      },
+      {
+        "file": "extras.json",
+        "sha256": "20ee93c4eeba4888e67fd324dae6bd68965bcf62ba73f55db5a9ccc09fcd8317",
+        "elements": 2424
+      },
+      {
+        "file": "water.json",
+        "sha256": "fb5363a4d402648114564b319692bff4c582cf3aab3a25865ef87f1c466da6fc",
+        "elements": 838
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "1c934130bcb6778f86653b9d8e973a239072ff7c584c68d9de9dd2b8cfb339a5",
+        "elements": 9547
+      },
+      {
+        "file": "roads.json",
+        "sha256": "da03e9ef353d678cc78248786642e4955e64caf65438e5417b5cb3858b969272",
+        "elements": 5691
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "clinic",
+      "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Vatican City",
+      "osm": "node/2015144901",
+      "coordinatesWgs84": [
+        12.45093,
+        41.90088
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bistròt La Pigna",
+      "osm": "way/1016871040",
+      "coordinatesWgs84": [
+        12.454765,
+        41.905928
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pontifical Ethiopian College",
+      "osm": "way/30161132",
+      "coordinatesWgs84": [
+        12.449676,
+        41.90239
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "French Garden",
+      "osm": "way/120654784",
+      "coordinatesWgs84": [
+        12.449664,
+        41.903235
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pauline Chapel",
+      "osm": "way/215302734",
+      "coordinatesWgs84": [
+        12.454744,
+        41.90259
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Peter's Square",
+      "osm": "relation/10044166",
+      "coordinatesWgs84": [
+        12.457358,
+        41.902229
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Financial Information Authority",
+      "osm": "node/2616072088",
+      "coordinatesWgs84": [
+        12.452664,
+        41.900786
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dome of Saint Peter",
+      "osm": "node/5108555139",
+      "coordinatesWgs84": [
+        12.453456,
+        41.902166
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pius IV House",
+      "osm": "way/44402133",
+      "coordinatesWgs84": [
+        12.452583,
+        41.904158
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Peregrin's Church",
+      "osm": "way/111996197",
+      "coordinatesWgs84": [
+        12.457024,
+        41.904966
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vatican Museums",
+      "osm": "way/112137587",
+      "coordinatesWgs84": [
+        12.452744,
+        41.906268
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Galleria delle Carte Geografiche",
+      "osm": "node/10774102205",
+      "coordinatesWgs84": [
+        12.454207,
+        41.904511
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Saints Martin and Sebastian of the Swiss",
+      "osm": "way/111699749",
+      "coordinatesWgs84": [
+        12.456729,
+        41.903349
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Caffè delle carrozze",
+      "osm": "node/5737556419",
+      "coordinatesWgs84": [
+        12.453647,
+        41.905449
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Punto panoramico di viale della Galea",
+      "osm": "node/1272283718",
+      "coordinatesWgs84": [
+        12.45539,
+        41.906344
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1257,
+      "sha256": "c6734044d94ebe2f3059b406e71e04d3b90e9f6a8e39315ed33a2f30ff6399db"
+    },
+    "geometry.ts": {
+      "bytes": 1895,
+      "sha256": "f59badaa507b626c1594fc6138f274f0f442f446f3d4459b7ef854ed3422b93f"
+    },
+    "places.ts": {
+      "bytes": 6635,
+      "sha256": "42f4be74ee751709f1bca539edaf3926a5a44b1e0663b624f1b471b6271cb519"
+    },
+    "terrain.ts": {
+      "bytes": 36032,
+      "sha256": "a460c7164476312dddc1b85f71a7b6a25db1058b072c0394997aaf6fbdfab87d"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "ecec7f6bbe02507254e517778798d9479f827ab693dbf46fa06af3aad21527e2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

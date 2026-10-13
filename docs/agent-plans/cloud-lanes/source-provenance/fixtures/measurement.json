@@ -1,0 +1,9 @@
+{
+  "context": "synthetic",
+  "operator": "source-provenance lane",
+  "measuredAt": "2026-10-13T18:01:20Z",
+  "method": "Euclidean distance between first two authored local vertices: sqrt((12-0)^2+(0-0)^2).",
+  "widthM": 12,
+  "uncertaintyM": 0,
+  "limitation": "Exact arithmetic on synthetic vertices, no field accuracy claim."
+}

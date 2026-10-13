@@ -1,0 +1,606 @@
+{
+  "schemaVersion": 1,
+  "kind": "allworld-source-registry",
+  "reviewedAt": "2026-10-13T18:01:20Z",
+  "baselineCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "policy": "Source-family research is not acquisition or legal approval. Only the original synthetic fixture is admitted in v1; all external assets fail closed. No upstream page-byte hashes are claimed.",
+  "sources": [
+    {
+      "id": "original-synthetic",
+      "product": "Original synthetic contract fixture",
+      "kind": "original",
+      "publisher": "Allworld source-provenance lane (AI-assisted)",
+      "authors": [
+        "Allworld source-provenance lane (AI-assisted)"
+      ],
+      "sourceUrl": "https://github.com/kromate/joinallworld/tree/codex/cloud-source-provenance-20261013/docs/agent-plans/cloud-lanes/source-provenance",
+      "release": "original-fixture-v1",
+      "license": {
+        "id": "AGPL-3.0-or-later",
+        "url": "https://github.com/kromate/joinallworld/blob/81d9f599d87dfb34adf49cd9337a0b05678e5e0d/LICENSE",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": {
+          "path": "fixtures/LICENSE-AGPL-3.0.txt",
+          "bytes": 34523,
+          "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+        }
+      },
+      "evidence": [
+        {
+          "url": "https://github.com/kromate/joinallworld/blob/81d9f599d87dfb34adf49cd9337a0b05678e5e0d/LICENSE",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Local baseline LICENSE and CONTRIBUTING originality/license rules inspected; fixture authored for this lane."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "allowed",
+        "redistribute_raw": "allowed",
+        "redistribute_derived": "allowed",
+        "runtime_display": "allowed"
+      },
+      "admission": "fixture-only",
+      "attribution": [
+        {
+          "id": "allworld-fixture",
+          "text": "Allworld source-provenance lane; original synthetic fixture; AGPL-3.0-or-later.",
+          "url": "https://github.com/kromate/joinallworld/blob/81d9f599d87dfb34adf49cd9337a0b05678e5e0d/LICENSE"
+        }
+      ],
+      "conditions": [
+        "Preserve editable original fixture, license and notice. Synthetic test use only; no surveyed Lagos claim."
+      ],
+      "unresolvedRights": [],
+      "qualityLimits": [
+        "Arbitrary original rectangle; no geographic transform or real building identity."
+      ],
+      "acquisition": {
+        "file": {
+          "path": "fixtures/original-block.json",
+          "bytes": 488,
+          "sha256": "8b6d300449fd4b9dd56a37e626491d4e160338065b0a1b3c7058ba95b7ac2cf5"
+        },
+        "capturedAt": "2026-10-13T18:01:20Z",
+        "acquiredAt": "2026-10-13T18:01:20Z"
+      },
+      "status": "admitted-fixture",
+      "coverage": {
+        "status": "synthetic-only",
+        "area": "12 m by 8 m authored local rectangle; no real-world location.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "No real-world survey, imagery, facade, height or geographic coverage."
+        ]
+      }
+    },
+    {
+      "id": "osm-vectors",
+      "product": "OpenStreetMap vector database (bounded extract to be selected)",
+      "kind": "vector",
+      "publisher": "OpenStreetMap contributors",
+      "authors": [
+        "OpenStreetMap contributors"
+      ],
+      "sourceUrl": "https://www.openstreetmap.org/copyright",
+      "release": null,
+      "license": {
+        "id": "ODbL-1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": null
+      },
+      "evidence": [
+        {
+          "url": "https://www.openstreetmap.org/copyright",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "OSM database is ODbL; attribution and license notice required."
+        },
+        {
+          "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Sections 4.3-4.6 distinguish notices, derivative databases, produced works and database access obligations."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "conditional",
+        "redistribute_raw": "conditional",
+        "redistribute_derived": "conditional",
+        "runtime_display": "conditional"
+      },
+      "admission": "quarantined",
+      "attribution": [
+        {
+          "id": "osm",
+          "text": "© OpenStreetMap contributors",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "conditions": [
+        "Retain exact source bytes, acquisition time, immutable release/object IDs and SHA-256 before admission.",
+        "Retain the applicable license text and complete per-input attribution before admission.",
+        "Classify database versus produced work; satisfy applicable ODbL share-alike/database offer obligations.",
+        "Data rights do not grant unrestricted OSM standard tile-server use."
+      ],
+      "unresolvedRights": [
+        "No extract selected; exact object versions, contributors, retained terms and distribution classification unresolved."
+      ],
+      "qualityLimits": [
+        "Tag completeness and currency are unverified. Source-reported heights are not field measurements."
+      ],
+      "acquisition": null,
+      "status": "candidate",
+      "coverage": {
+        "status": "unverified",
+        "area": "Candidate approximately 200 m Lagos block; location and coverage not selected/verified.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "Exact pilot coverage unverified.",
+          "No bounded source extract acquired."
+        ]
+      }
+    },
+    {
+      "id": "overture-buildings",
+      "product": "Overture buildings theme",
+      "kind": "vector",
+      "publisher": "Overture Maps Foundation and upstream contributors",
+      "authors": [
+        "Overture Maps Foundation and upstream contributors"
+      ],
+      "sourceUrl": "https://docs.overturemaps.org/attribution/",
+      "release": null,
+      "license": {
+        "id": "ODbL-1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": null
+      },
+      "evidence": [
+        {
+          "url": "https://docs.overturemaps.org/attribution/",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Buildings theme is ODbL, with upstream notices including OSM, Microsoft, Esri and Google Open Buildings."
+        },
+        {
+          "url": "https://docs.overturemaps.org/schema/reference/buildings/building/",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Building schema page reports v2.0.0; preserve actual record source metadata. This is not a dataset release pin."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "conditional",
+        "redistribute_raw": "conditional",
+        "redistribute_derived": "conditional",
+        "runtime_display": "conditional"
+      },
+      "admission": "quarantined",
+      "attribution": [
+        {
+          "id": "overture",
+          "text": "Overture Maps Foundation; retain applicable upstream notices for the selected release.",
+          "url": "https://docs.overturemaps.org/attribution/"
+        },
+        {
+          "id": "osm",
+          "text": "© OpenStreetMap contributors",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "conditions": [
+        "Retain exact source bytes, acquisition time, immutable release/object IDs and SHA-256 before admission.",
+        "Retain the applicable license text and complete per-input attribution before admission.",
+        "Retain selected record IDs and per-field source metadata; resolve all applicable contributor attribution.",
+        "Apply ODbL obligations to derivative databases/produced works; do not relabel as blanket CDLA."
+      ],
+      "unresolvedRights": [
+        "No release or selected feature; upstream licenses/notices and distribution classification not resolved."
+      ],
+      "qualityLimits": [
+        "ML footprints and inferred heights must be labeled estimated/source-reported, not surveyed."
+      ],
+      "acquisition": null,
+      "status": "candidate",
+      "coverage": {
+        "status": "unverified",
+        "area": "Candidate approximately 200 m Lagos block; location and coverage not selected/verified.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "Exact pilot coverage unverified.",
+          "No bounded source extract acquired."
+        ]
+      }
+    },
+    {
+      "id": "overture-transportation",
+      "product": "Overture transportation theme",
+      "kind": "vector",
+      "publisher": "Overture Maps Foundation, OpenStreetMap and TomTom",
+      "authors": [
+        "Overture Maps Foundation, OpenStreetMap and TomTom"
+      ],
+      "sourceUrl": "https://docs.overturemaps.org/attribution/",
+      "release": null,
+      "license": {
+        "id": "ODbL-1.0",
+        "url": "https://opendatacommons.org/licenses/odbl/1-0/",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": null
+      },
+      "evidence": [
+        {
+          "url": "https://docs.overturemaps.org/attribution/",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Transportation theme is ODbL and lists OSM and TomTom."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "conditional",
+        "redistribute_raw": "conditional",
+        "redistribute_derived": "conditional",
+        "runtime_display": "conditional"
+      },
+      "admission": "quarantined",
+      "attribution": [
+        {
+          "id": "overture-transport",
+          "text": "Overture Maps Foundation; transportation includes TomTom and OpenStreetMap data.",
+          "url": "https://docs.overturemaps.org/attribution/"
+        },
+        {
+          "id": "osm",
+          "text": "© OpenStreetMap contributors",
+          "url": "https://www.openstreetmap.org/copyright"
+        }
+      ],
+      "conditions": [
+        "Retain exact source bytes, acquisition time, immutable release/object IDs and SHA-256 before admission.",
+        "Retain the applicable license text and complete per-input attribution before admission.",
+        "Retain per-record source references and evaluate ODbL derivative-database obligations."
+      ],
+      "unresolvedRights": [
+        "No release, road records, exact notices or derived database offer selected."
+      ],
+      "qualityLimits": [
+        "Network centerlines do not establish kerb, drain, pavement width or walkability."
+      ],
+      "acquisition": null,
+      "status": "candidate",
+      "coverage": {
+        "status": "unverified",
+        "area": "Candidate approximately 200 m Lagos block; location and coverage not selected/verified.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "Exact pilot coverage unverified.",
+          "No bounded source extract acquired."
+        ]
+      }
+    },
+    {
+      "id": "copernicus-dem",
+      "product": "Copernicus DEM GLO-30/GLO-90 (not EEA-10)",
+      "kind": "elevation",
+      "publisher": "European Union/ESA; DLR and Airbus",
+      "authors": [
+        "European Union/ESA; DLR and Airbus"
+      ],
+      "sourceUrl": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+      "release": null,
+      "license": {
+        "id": "LicenseRef-Copernicus-DEM",
+        "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": null
+      },
+      "evidence": [
+        {
+          "url": "https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Global 30/90 m products use a free license with specific original/modified notices; 10 m product has separate eligibility."
+        },
+        {
+          "url": "https://registry.opendata.aws/copernicus-dem/",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Distributor describes a 2021 COG mirror; this is not a pin to the official latest release."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "conditional",
+        "redistribute_raw": "conditional",
+        "redistribute_derived": "conditional",
+        "runtime_display": "conditional"
+      },
+      "admission": "quarantined",
+      "attribution": [],
+      "conditions": [
+        "Retain exact source bytes, acquisition time, immutable release/object IDs and SHA-256 before admission.",
+        "Retain the applicable license text and complete per-input attribution before admission.",
+        "Copy the exact product-specific original/modified notice from the applicable terms into the eventual packet.",
+        "Confirm GLO product/release and datum; preserve resampling/no-data treatment."
+      ],
+      "unresolvedRights": [
+        "Full applicable license/annex not retained; exact required notice awaits product selection.",
+        "No geocell, release, vertical datum or reusable derivative classification admitted."
+      ],
+      "qualityLimits": [
+        "30/90 m digital surface model includes vegetation/buildings; not a centimetre-scale ground or kerb survey."
+      ],
+      "acquisition": null,
+      "status": "candidate",
+      "coverage": {
+        "status": "unverified",
+        "area": "Candidate approximately 200 m Lagos block; location and coverage not selected/verified.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "Exact pilot coverage unverified.",
+          "No bounded source extract acquired."
+        ]
+      }
+    },
+    {
+      "id": "sentinel-2",
+      "product": "Copernicus Sentinel-2 original data products",
+      "kind": "imagery",
+      "publisher": "European Union/Copernicus; ESA",
+      "authors": [
+        "European Union/Copernicus; ESA"
+      ],
+      "sourceUrl": "https://dataspace.copernicus.eu/data-collections/copernicus-sentinel-missions/sentinel-2",
+      "release": null,
+      "license": {
+        "id": "LicenseRef-Copernicus-Sentinel",
+        "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": null
+      },
+      "evidence": [
+        {
+          "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Legal notice permits lawful copying, distribution and modification with source/year notices."
+        },
+        {
+          "url": "https://dataspace.copernicus.eu/terms-and-conditions",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Sentinel data is separate from other portal contents; screenshots and basemaps are not automatically covered."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "conditional",
+        "redistribute_raw": "conditional",
+        "redistribute_derived": "conditional",
+        "runtime_display": "conditional"
+      },
+      "admission": "quarantined",
+      "attribution": [
+        {
+          "id": "sentinel-original",
+          "text": "Copernicus Sentinel data [Year]",
+          "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        },
+        {
+          "id": "sentinel-modified",
+          "text": "Contains modified Copernicus Sentinel data [Year]",
+          "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
+        }
+      ],
+      "conditions": [
+        "Retain exact source bytes, acquisition time, immutable release/object IDs and SHA-256 before admission.",
+        "Retain the applicable license text and complete per-input attribution before admission.",
+        "Select original or modified notice as applicable and substitute actual sensing year before admission.",
+        "Use original data products, not portal screenshots or unrelated basemap imagery."
+      ],
+      "unresolvedRights": [
+        "No product ID/year, bands, processing baseline, cloud mask or retained legal notice selected."
+      ],
+      "qualityLimits": [
+        "10/20/60 m bands provide regional context; facade, road drainage and kerb detail remain unresolved."
+      ],
+      "acquisition": null,
+      "status": "candidate",
+      "coverage": {
+        "status": "unverified",
+        "area": "Candidate approximately 200 m Lagos block; location and coverage not selected/verified.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "Exact pilot coverage unverified.",
+          "No bounded source extract acquired."
+        ]
+      }
+    },
+    {
+      "id": "srtm-unverified",
+      "product": "SRTM elevation alternative (rights evidence unavailable)",
+      "kind": "elevation",
+      "publisher": "NASA/USGS LP DAAC",
+      "authors": [
+        "NASA/USGS LP DAAC"
+      ],
+      "sourceUrl": "https://lpdaac.usgs.gov/products/srtmgl1v003/",
+      "release": null,
+      "license": {
+        "id": "NOASSERTION",
+        "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": null
+      },
+      "evidence": [
+        {
+          "url": "https://lpdaac.usgs.gov/products/srtmgl1v003/",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "unavailable",
+          "note": "Web retrieval failed; product terms were not verified."
+        },
+        {
+          "url": "https://www.earthdata.nasa.gov/data/catalog/lpcloud-srtmgl1-003",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "unavailable",
+          "note": "Web retrieval returned 403."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "unresolved",
+        "redistribute_raw": "unresolved",
+        "redistribute_derived": "unresolved",
+        "runtime_display": "unresolved"
+      },
+      "admission": "quarantined",
+      "attribution": [],
+      "conditions": [
+        "Retain exact source bytes, acquisition time, immutable release/object IDs and SHA-256 before admission.",
+        "Retain the applicable license text and complete per-input attribution before admission."
+      ],
+      "unresolvedRights": [
+        "Exact product rights and citation policy unverified; do not infer a public-domain grant from memory."
+      ],
+      "qualityLimits": [
+        "Resolution, void-fill provenance and vertical datum require product-specific verification."
+      ],
+      "acquisition": null,
+      "status": "blocked",
+      "coverage": {
+        "status": "unverified",
+        "area": "Candidate approximately 200 m Lagos block; location and coverage not selected/verified.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "Exact pilot coverage unverified.",
+          "No bounded source extract acquired."
+        ]
+      }
+    },
+    {
+      "id": "original-survey-pending",
+      "product": "Future original Lagos survey/photographs",
+      "kind": "imagery",
+      "publisher": "Unassigned photographer/survey owner",
+      "authors": [
+        "Unassigned photographer/survey owner"
+      ],
+      "sourceUrl": "https://github.com/kromate/joinallworld",
+      "release": null,
+      "license": {
+        "id": "NOASSERTION",
+        "url": "https://github.com/kromate/joinallworld/blob/81d9f599d87dfb34adf49cd9337a0b05678e5e0d/CONTRIBUTING.md",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": null
+      },
+      "evidence": [
+        {
+          "url": "https://github.com/kromate/joinallworld/blob/81d9f599d87dfb34adf49cd9337a0b05678e5e0d/CONTRIBUTING.md",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Repository originality rules reviewed; no actual survey author, photograph or rights grant supplied."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "unresolved",
+        "redistribute_raw": "unresolved",
+        "redistribute_derived": "unresolved",
+        "runtime_display": "unresolved"
+      },
+      "admission": "quarantined",
+      "attribution": [],
+      "conditions": [
+        "Retain exact source bytes, acquisition time, immutable release/object IDs and SHA-256 before admission.",
+        "Retain the applicable license text and complete per-input attribution before admission."
+      ],
+      "unresolvedRights": [
+        "Author identity and explicit geometry/texture/redistribution rights absent.",
+        "Applicable third-party rights in proposed photographs remain unreviewed."
+      ],
+      "qualityLimits": [
+        "No measurements, control points, device calibration or accuracy receipt supplied."
+      ],
+      "acquisition": null,
+      "status": "blocked",
+      "coverage": {
+        "status": "unverified",
+        "area": "Candidate approximately 200 m Lagos block; location and coverage not selected/verified.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "Exact pilot coverage unverified.",
+          "No bounded source extract acquired."
+        ]
+      }
+    },
+    {
+      "id": "google-maps-runtime",
+      "product": "Google Maps imagery / Photorealistic 3D Tiles",
+      "kind": "runtime-tiles",
+      "publisher": "Google and credited providers",
+      "authors": [
+        "Google and credited providers"
+      ],
+      "sourceUrl": "https://developers.google.com/maps/documentation/tile/3d-tiles",
+      "release": null,
+      "license": {
+        "id": "LicenseRef-Google-Maps-Platform",
+        "url": "https://cloud.google.com/maps-platform/terms",
+        "scope": "Only this named product; no license grant for unrelated imagery, software, web pages or vendor services.",
+        "retainedText": null
+      },
+      "evidence": [
+        {
+          "url": "https://cloud.google.com/maps-platform/terms",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Section 3.2.3 disallows scraping and creation of content from Maps content."
+        },
+        {
+          "url": "https://developers.google.com/maps/documentation/tile/policies",
+          "checkedAt": "2026-10-13T18:01:20Z",
+          "result": "reviewed",
+          "note": "Visualization is distinct from extraction/offline use; display has attribution and caching conditions."
+        }
+      ],
+      "rights": {
+        "derive_geometry": "forbidden",
+        "redistribute_raw": "forbidden",
+        "redistribute_derived": "forbidden",
+        "runtime_display": "conditional"
+      },
+      "admission": "runtime-only",
+      "attribution": [],
+      "conditions": [
+        "No extraction, tracing, reusable geometry, offline bundle or texture derivation.",
+        "Runtime API visualization is conditional on applicable agreement, account region, attribution, third-party credits and permitted caching.",
+        "No API calls, key creation, billing or deployment authorized in this lane."
+      ],
+      "unresolvedRights": [
+        "Runtime account/region agreement and product attribution not reviewed; no runtime admission."
+      ],
+      "qualityLimits": [
+        "Viewing tiles does not grant redistributable geometry rights.",
+        "Separately licensed Google Open Buildings is a distinct product; do not confuse with Maps content."
+      ],
+      "acquisition": null,
+      "status": "blocked",
+      "coverage": {
+        "status": "unverified",
+        "area": "Candidate approximately 200 m Lagos block; location and coverage not selected/verified.",
+        "horizontalAccuracyM": null,
+        "verticalAccuracyM": null,
+        "missingData": [
+          "Exact pilot coverage unverified.",
+          "No bounded source extract acquired."
+        ]
+      }
+    }
+  ]
+}

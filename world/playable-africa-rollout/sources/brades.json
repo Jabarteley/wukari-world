@@ -1,0 +1,299 @@
+{
+  "schemaVersion": 1,
+  "cityId": "brades",
+  "countryIso2": "MS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Brades",
+    "coordinatesWgs84": [
+      -62.2099434,
+      16.7898749
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "brades-airport",
+    "name": "John A. Osborne Airport",
+    "lon": -62.193204,
+    "lat": 16.791835,
+    "sourceUrl": "https://ourairports.com/airports/TRPG/"
+  },
+  "boxes": {
+    "play": [
+      16.62708209905942,
+      -62.37898494990648,
+      16.95266770094058,
+      -62.04090185009352
+    ],
+    "core": [
+      16.744654677516507,
+      -62.25687013153457,
+      16.835095122483494,
+      -62.16301666846543
+    ],
+    "outline": [
+      16.57708209905942,
+      -62.42898494990648,
+      17.00266770094058,
+      -61.99090185009352
+    ],
+    "wide": [
+      16.02708209905942,
+      -62.97898494990648,
+      17.55266770094058,
+      -61.44090185009352
+    ],
+    "water": [
+      16.02708209905942,
+      -62.97898494990648,
+      17.55266770094058,
+      -61.44090185009352
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "d0b85165fabd3a8293b788cafa877ca3b3bd83725308b1328863a9e14c2450cd",
+        "elements": 118
+      },
+      {
+        "file": "extras.json",
+        "sha256": "5657cf94372355ec93f566acfe6baa8af5eeb6acf7773cb592a38230499389ec",
+        "elements": 20
+      },
+      {
+        "file": "water.json",
+        "sha256": "9fa827bcbf5830f7188f47ac9e72ffdbaaa21636ef34b38db344f2a0d7db706b",
+        "elements": 646
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "c41eb1f8611a69265096210a0d71807374d241aa1cc653da32892ec70b0c2f4e",
+        "elements": 93
+      },
+      {
+        "file": "roads.json",
+        "sha256": "302ab02323c3dde90d1471b1136cf3b2bd9dba396465b575b4238b867f14eb65",
+        "elements": 54
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Montserrat Ferry Terminal",
+      "osm": "way/525908409",
+      "coordinatesWgs84": [
+        -62.205386,
+        16.803285
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Isle's Bay Beach Bar",
+      "osm": "way/525911948",
+      "coordinatesWgs84": [
+        -62.232403,
+        16.738552
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Montserrat Community College",
+      "osm": "way/750181857",
+      "coordinatesWgs84": [
+        -62.217945,
+        16.755401
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Glendon Hospital",
+      "osm": "way/381881809",
+      "coordinatesWgs84": [
+        -62.192392,
+        16.788961
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Salem Park",
+      "osm": "way/1454779411",
+      "coordinatesWgs84": [
+        -62.222923,
+        16.747526
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Office of the Auditor General",
+      "osm": "node/6394397340",
+      "coordinatesWgs84": [
+        -62.20751,
+        16.782993
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sports Department",
+      "osm": "way/381894171",
+      "coordinatesWgs84": [
+        -62.211032,
+        16.792345
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of the West Indies Global Campus",
+      "osm": "way/1470063189",
+      "coordinatesWgs84": [
+        -62.217217,
+        16.756292
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Blakes Estate Stadium",
+      "osm": "way/409349407",
+      "coordinatesWgs84": [
+        -62.186227,
+        16.78392
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plymouth",
+      "osm": "node/13341371451",
+      "coordinatesWgs84": [
+        -62.212272,
+        16.705196
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Montserrat Volcano Observatory",
+      "osm": "node/358226040",
+      "coordinatesWgs84": [
+        -62.212769,
+        16.748697
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Museum of Montserrat",
+      "osm": "way/381894081",
+      "coordinatesWgs84": [
+        -62.201878,
+        16.800231
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Old Airport Viewpoint",
+      "osm": "node/359010199",
+      "coordinatesWgs84": [
+        -62.167965,
+        16.766296
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fort St. George",
+      "osm": "node/13341390470",
+      "coordinatesWgs84": [
+        -62.207579,
+        16.722111
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ziggy's",
+      "osm": "way/525902974",
+      "coordinatesWgs84": [
+        -62.215693,
+        16.770493
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hilltop Coffee House",
+      "osm": "way/397189233",
+      "coordinatesWgs84": [
+        -62.210121,
+        16.776202
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Park",
+      "osm": "node/13341415105",
+      "coordinatesWgs84": [
+        -62.232243,
+        16.740477
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1227,
+      "sha256": "924f6a76c51f05922d1a4065fb004ab44ecc11003176316998f2c7ecd4edca5e"
+    },
+    "geometry.ts": {
+      "bytes": 35557,
+      "sha256": "782aee52f70e4dcd8ee0ed3d0c201f6cc5b1a2f91715049dd7eb038c3a259527"
+    },
+    "places.ts": {
+      "bytes": 6928,
+      "sha256": "b4cc32af50aea4758d62254211469379e0d04d75df1154abd7dd8b704f08501e"
+    },
+    "terrain.ts": {
+      "bytes": 181372,
+      "sha256": "bc5cfdfb6a4ffed9c6c6b324962795c4c6c2c5aec1f71df9aab59696b32aab8e"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "40ba0581731b55a87fd373d5c6cae4f59f8013d15a879b825a9e31aa2ae423ed"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

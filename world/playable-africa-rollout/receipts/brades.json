@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "cityId": "brades",
+  "countryIso2": "MS",
+  "generationIdentity": {
+    "cityId": "brades",
+    "stateId": "ms-brades",
+    "stateName": "Brades"
+  },
+  "inventorySha256": "30ae44d7e484b51a8f4b4da14572802bef57eaebdbf1502ba77c26f50c3f5c7e",
+  "inventoryPath": "world/playable-africa-rollout/sources/brades.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "brades-airport",
+    "name": "John A. Osborne Airport",
+    "lon": -62.193204,
+    "lat": 16.791835,
+    "sourceUrl": "https://ourairports.com/airports/TRPG/"
+  },
+  "bounds": [
+    16.62708209905942,
+    -62.37898494990648,
+    16.95266770094058,
+    -62.04090185009352
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "d0b85165fabd3a8293b788cafa877ca3b3bd83725308b1328863a9e14c2450cd",
+          "elements": 118
+        },
+        {
+          "file": "extras.json",
+          "sha256": "5657cf94372355ec93f566acfe6baa8af5eeb6acf7773cb592a38230499389ec",
+          "elements": 20
+        },
+        {
+          "file": "water.json",
+          "sha256": "9fa827bcbf5830f7188f47ac9e72ffdbaaa21636ef34b38db344f2a0d7db706b",
+          "elements": 646
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "c41eb1f8611a69265096210a0d71807374d241aa1cc653da32892ec70b0c2f4e",
+          "elements": 93
+        },
+        {
+          "file": "roads.json",
+          "sha256": "302ab02323c3dde90d1471b1136cf3b2bd9dba396465b575b4238b867f14eb65",
+          "elements": 54
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 17,
+    "roads": 4,
+    "neighbourhoodLabels": 6,
+    "landPolygons": 1,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 3
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "worship",
+        "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "office=government",
+        "ref": "node/6394397340"
+      }
+    ]
+  },
+  "observed": {
+    "places": 118,
+    "extras": 20,
+    "water": 646,
+    "landuse": 93,
+    "roads": 54
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1227,
+      "sha256": "924f6a76c51f05922d1a4065fb004ab44ecc11003176316998f2c7ecd4edca5e"
+    },
+    "geometry.ts": {
+      "bytes": 35557,
+      "sha256": "782aee52f70e4dcd8ee0ed3d0c201f6cc5b1a2f91715049dd7eb038c3a259527"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "40ba0581731b55a87fd373d5c6cae4f59f8013d15a879b825a9e31aa2ae423ed"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/brades.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -500,5 +500,29 @@ export const AUTHORED_CITY_LINKS = Object.freeze([
     compactLagosFlight("nuuk","Nuuk",7739,639000,20),
     compactLagosFlight("oranjestad","Oranjestad",8060,665000,20),
     compactLagosFlight("road-town","Road Town",7467,617000,20),
-    compactLagosFlight("san-juan","San Juan",7624,630000,20)
+    compactLagosFlight("san-juan","San Juan",7624,630000,20),
+    compactLagosFlight("brades","Brades",7209,597000,20),
+    compactLagosFlight("villa-las-estrellas","Villa Las Estrellas",9270,762000,20),
+    {
+      "a": "santiago",
+      "b": "villa-las-estrellas",
+      "mode": "air",
+      "beta": true,
+      "label": "Charter flight between Santiago and Villa Las Estrellas",
+      "icon": "🛩️",
+      "km": 3303,
+      "fare": 426000,
+      "seconds": 20
+    },
+    {
+      "a": "buenos-aires",
+      "b": "villa-las-estrellas",
+      "mode": "road",
+      "beta": true,
+      "label": "Ship between Buenos Aires and Villa Las Estrellas",
+      "icon": "🚢",
+      "km": 3068,
+      "fare": 50500,
+      "seconds": 75
+    }
   ] satisfies readonly CityLink[])

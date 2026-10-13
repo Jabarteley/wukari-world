@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "cityId": "villa-las-estrellas",
+  "countryIso2": "AQ",
+  "generationIdentity": {
+    "cityId": "villa-las-estrellas",
+    "stateId": "aq",
+    "stateName": "Villa Las Estrellas"
+  },
+  "inventorySha256": "a96185f13b8060ef8866c6b454648e28bf28cfecc88a240af3658555ddfaed58",
+  "inventoryPath": "world/playable-africa-rollout/sources/villa-las-estrellas.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "villa-las-estrellas-airport",
+    "name": "Teniente Rodolfo Marsh Martin Airport",
+    "lon": -58.98669,
+    "lat": -62.191026,
+    "sourceUrl": "https://ourairports.com/airports/SCRM/"
+  },
+  "bounds": [
+    -62.38130678993398,
+    -59.35291859748897,
+    -62.01954501006602,
+    -58.57781940251103
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/antarctica-261013.osm.pbf",
+      "datasetSha256": "52516734e725e61456789ec8d957feacd98f7686377b1f40520b6084dee152d0",
+      "pbfHeaderTimestamp": "2026-10-13T20:21:31Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "4079d0a7f3520bbcbb8289d4d8b36f3c4fa8a6d866c15f0041884becbccbb1d3",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "342da0b264548aa71ce96fb3a2a9a83ce24e8fd61b7f1b4ea6cfd969fa3cffc6",
+          "elements": 60
+        },
+        {
+          "file": "extras.json",
+          "sha256": "21d75b624f7da31c7d88d34ffff359fdbbdceca9b8f8c54b8049c43209c08a69",
+          "elements": 3
+        },
+        {
+          "file": "water.json",
+          "sha256": "e325917d1ec622e7b0525db7e7bd5be041b1ac7940ee6e5ee9e18c193e67be82",
+          "elements": 1113
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "5a388d277e704208e36821e44c81939a58eaa959f20b5ac8fd0e0243fba39322",
+          "elements": 1
+        },
+        {
+          "file": "roads.json",
+          "sha256": "e275bb6d7b014075057614a99cfde80eca3eb49857a1c31b7aa948174d6c46c5",
+          "elements": 74
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 7,
+    "roads": 10,
+    "neighbourhoodLabels": 2,
+    "landPolygons": 1,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "profile": "outpost",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station (or amenity=ferry_terminal) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "meal",
+        "reason": "no unused named amenity=restaurant or amenity=cafe feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "recreation",
+        "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "polling",
+        "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "government",
+        "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ]
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "aq-villa-las-estrellas",
+          "to": "aq"
+        }
+      },
+      "before": {
+        "catalogueBytes": 180,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 160,
+        "limit": 150,
+        "passed": false
+      }
+    }
+  ],
+  "observed": {
+    "places": 60,
+    "extras": 3,
+    "water": 1113,
+    "landuse": 1,
+    "roads": 74
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1573,
+      "sha256": "528c15dac593ef218172f255500c8472eb1b60c80d4f622f60bfc7f576693523"
+    },
+    "geometry.ts": {
+      "bytes": 161737,
+      "sha256": "f61f9791115933a8b831648c2bbe8eb38edf36f2ba07a1429e78409b6d2a37a8"
+    },
+    "index.ts": {
+      "bytes": 270,
+      "sha256": "482c617ca2555472e4ea0f47ceca31cde75740d44f6a7e8ad64026ec7e94bd45"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/villa-las-estrellas.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

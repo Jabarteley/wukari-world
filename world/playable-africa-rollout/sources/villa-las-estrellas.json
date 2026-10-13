@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "cityId": "villa-las-estrellas",
+  "countryIso2": "AQ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Villa Las Estrellas",
+    "coordinatesWgs84": [
+      -58.965369,
+      -62.2004259
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/antarctica-261013.osm.pbf"
+  },
+  "airport": {
+    "id": "villa-las-estrellas-airport",
+    "name": "Teniente Rodolfo Marsh Martin Airport",
+    "lon": -58.98669,
+    "lat": -62.191026,
+    "sourceUrl": "https://ourairports.com/airports/SCRM/"
+  },
+  "boxes": {
+    "play": [
+      -62.38130678993398,
+      -59.35291859748897,
+      -62.01954501006602,
+      -58.57781940251103
+    ],
+    "core": [
+      -62.24564612248349,
+      -59.06182018568934,
+      -62.155205677516506,
+      -58.86891781431066
+    ],
+    "outline": [
+      -62.43130678993398,
+      -59.40291859748897,
+      -61.96954501006602,
+      -58.527819402511035
+    ],
+    "wide": [
+      -62.98130678993398,
+      -59.952918597488974,
+      -61.41954501006602,
+      -57.97781940251103
+    ],
+    "water": [
+      -62.98130678993398,
+      -59.952918597488974,
+      -61.41954501006602,
+      -57.97781940251103
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/antarctica-261013.osm.pbf",
+    "datasetSha256": "52516734e725e61456789ec8d957feacd98f7686377b1f40520b6084dee152d0",
+    "pbfHeaderTimestamp": "2026-10-13T20:21:31Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "4079d0a7f3520bbcbb8289d4d8b36f3c4fa8a6d866c15f0041884becbccbb1d3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "342da0b264548aa71ce96fb3a2a9a83ce24e8fd61b7f1b4ea6cfd969fa3cffc6",
+        "elements": 60
+      },
+      {
+        "file": "extras.json",
+        "sha256": "21d75b624f7da31c7d88d34ffff359fdbbdceca9b8f8c54b8049c43209c08a69",
+        "elements": 3
+      },
+      {
+        "file": "water.json",
+        "sha256": "e325917d1ec622e7b0525db7e7bd5be041b1ac7940ee6e5ee9e18c193e67be82",
+        "elements": 1113
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "5a388d277e704208e36821e44c81939a58eaa959f20b5ac8fd0e0243fba39322",
+        "elements": 1
+      },
+      {
+        "file": "roads.json",
+        "sha256": "e275bb6d7b014075057614a99cfde80eca3eb49857a1c31b7aa948174d6c46c5",
+        "elements": 74
+      }
+    ]
+  },
+  "profile": "outpost",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station (or amenity=ferry_terminal) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "meal",
+      "reason": "no unused named amenity=restaurant or amenity=cafe feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "polling",
+      "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "government",
+      "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Villa Las Estrellas",
+      "osm": "node/446987858",
+      "coordinatesWgs84": [
+        -58.965369,
+        -62.200426
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Medical Unit",
+      "osm": "way/277056528",
+      "coordinatesWgs84": [
+        -58.96014,
+        -62.19774
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chapel of Saint Mary Queen of Peace",
+      "osm": "way/277045528",
+      "coordinatesWgs84": [
+        -58.967765,
+        -62.199807
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Carlini Base",
+      "osm": "node/2011467410",
+      "coordinatesWgs84": [
+        -58.667008,
+        -62.237934
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "King Sejong Station",
+      "osm": "node/2011467454",
+      "coordinatesWgs84": [
+        -58.787309,
+        -62.223047
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Collins Base",
+      "osm": "node/5314158621",
+      "coordinatesWgs84": [
+        -58.851771,
+        -62.169279
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Holy Trinity Church",
+      "osm": "way/749856717",
+      "coordinatesWgs84": [
+        -58.960604,
+        -62.196078
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1573,
+      "sha256": "528c15dac593ef218172f255500c8472eb1b60c80d4f622f60bfc7f576693523"
+    },
+    "geometry.ts": {
+      "bytes": 161737,
+      "sha256": "f61f9791115933a8b831648c2bbe8eb38edf36f2ba07a1429e78409b6d2a37a8"
+    },
+    "places.ts": {
+      "bytes": 3643,
+      "sha256": "5f443dfd9e7a1e74bb11389924f66797e9dcef6822760ee2f1b0f3dea7bc3e4d"
+    },
+    "terrain.ts": {
+      "bytes": 373418,
+      "sha256": "6df4f87cc5d88967762d139cf370a84a0327f0ed1c99746ef78e3d78607788ff"
+    },
+    "index.ts": {
+      "bytes": 270,
+      "sha256": "482c617ca2555472e4ea0f47ceca31cde75740d44f6a7e8ad64026ec7e94bd45"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

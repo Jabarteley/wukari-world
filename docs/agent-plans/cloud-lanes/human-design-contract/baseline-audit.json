@@ -1,0 +1,375 @@
+{
+  "baselineCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "evidenceLevel": "Read-only GLB JSON metadata and source SHA-256; no Meshopt decode, render, rest-matrix or deformation certification.",
+  "sourceHashes": {
+    "src/types/avatar.ts": "612d9ccf82dbd32a06926ca79dc837bbc3179ffa11ddb8ec45a9f312ec76eb6d",
+    "src/types/life.ts": "ff34284fecfba29210a6594fec5429f33a5f0a8f89447d6168c10a416ec8198f",
+    "src/scene/characters.ts": "8c0c8a8fee027dba02f31976948baa52de616882c2bd9d7d3818c531b80be0ca",
+    "src/scene/body/manifest.ts": "bea27314fd3d8acdc166f151c7227389e8f764cf8bd5beaaebc4da397100b745",
+    "src/scene/body/skinned.ts": "ce647008f84413ad7e647ed3acfb1d462fe041ee700dd53a088da078d429bcbd",
+    "src/scene/body/appearance.ts": "017f8ba22a27de0a3221eb894efa596e62387d57737b3c870ef4a19497fad311",
+    "src/scene/body/facial.ts": "c09031ba8901b00603dd586bc6374a5c8a5b28cc92fcc8bd6dc45a887fac6d03",
+    "src/scene/body/animation-pose.ts": "24498791f072471bfc81bd1f01b41d8807c411fbc54b17e91a70d9fccd6dfb6b",
+    "src/scene/body/foot-contact.ts": "6f98bb61fde23e51016148d06136fcb0b46b0b9d5c03cefc73c7ad47745df8c6",
+    "src/game/wardrobe/catalogue.ts": "d353e15e8817a9d6ee6990a003e553cdce957badcba98942ce6a23e4e4539d84",
+    "src/game/wardrobe/rules.ts": "1f8bcbd76da268032f0f33dccf8318d218086679cb4aaf384581ec1f7854780d",
+    "src/game/wardrobe/look.ts": "7bb221f98da1316076e56f7c61cbacd881a52ec29b1913eebdb97256dbd4fc08",
+    "src/scene/wardrobe/geometry.ts": "57de05de1cc111ffd30a8a81ebf3be18ff8776feab47892f10d3716821120ae6",
+    "src/scene/wardrobe/renderer.ts": "4627d0704750cea6ff7a5b531f38bd21bfc0daec75660f2bf5148dca4a54989e"
+  },
+  "assets": [
+    {
+      "path": "src/scene/body/assets/base-body-male.glb",
+      "bytes": 159916,
+      "sha256": "a375403639d688da351b0c87d5a70afa0080dafcf85dbf64b64395ce76e66f7c",
+      "extensionsRequired": [
+        "KHR_mesh_quantization",
+        "EXT_meshopt_compression"
+      ],
+      "skins": [
+        {
+          "joints": [
+            {
+              "name": "root",
+              "parent": "Armature"
+            },
+            {
+              "name": "pelvis",
+              "parent": "root"
+            },
+            {
+              "name": "spine_01",
+              "parent": "pelvis"
+            },
+            {
+              "name": "spine_02",
+              "parent": "spine_01"
+            },
+            {
+              "name": "spine_03",
+              "parent": "spine_02"
+            },
+            {
+              "name": "neck_01",
+              "parent": "spine_03"
+            },
+            {
+              "name": "Head",
+              "parent": "neck_01"
+            },
+            {
+              "name": "clavicle_l",
+              "parent": "spine_03"
+            },
+            {
+              "name": "upperarm_l",
+              "parent": "clavicle_l"
+            },
+            {
+              "name": "lowerarm_l",
+              "parent": "upperarm_l"
+            },
+            {
+              "name": "hand_l",
+              "parent": "lowerarm_l"
+            },
+            {
+              "name": "clavicle_r",
+              "parent": "spine_03"
+            },
+            {
+              "name": "upperarm_r",
+              "parent": "clavicle_r"
+            },
+            {
+              "name": "lowerarm_r",
+              "parent": "upperarm_r"
+            },
+            {
+              "name": "hand_r",
+              "parent": "lowerarm_r"
+            },
+            {
+              "name": "thigh_l",
+              "parent": "pelvis"
+            },
+            {
+              "name": "calf_l",
+              "parent": "thigh_l"
+            },
+            {
+              "name": "foot_l",
+              "parent": "calf_l"
+            },
+            {
+              "name": "ball_l",
+              "parent": "foot_l"
+            },
+            {
+              "name": "thigh_r",
+              "parent": "pelvis"
+            },
+            {
+              "name": "calf_r",
+              "parent": "thigh_r"
+            },
+            {
+              "name": "foot_r",
+              "parent": "calf_r"
+            },
+            {
+              "name": "ball_r",
+              "parent": "foot_r"
+            }
+          ],
+          "inverseBindAccessor": 7,
+          "jointNodeMetadataSha256": "bdfe9f589407ffbcc2c9d914c8f98c71edc4dc69884f44a35c8fe6559df32b5a"
+        }
+      ],
+      "primitives": [
+        {
+          "mode": 4,
+          "vertices": 5136,
+          "indexCount": 27006,
+          "trianglesFromMetadata": 9002,
+          "attributes": [
+            "POSITION",
+            "NORMAL",
+            "TEXCOORD_0",
+            "COLOR_0",
+            "JOINTS_0",
+            "WEIGHTS_0"
+          ],
+          "morphTargetCount": 0
+        }
+      ],
+      "animationNames": [],
+      "animationTargetNames": []
+    },
+    {
+      "path": "src/scene/body/assets/base-body-female.glb",
+      "bytes": 157992,
+      "sha256": "ee8b9eb6d7ad2b35abfb026f2997d85384b7484342922cb99503e72462c2c5ad",
+      "extensionsRequired": [
+        "KHR_mesh_quantization",
+        "EXT_meshopt_compression"
+      ],
+      "skins": [
+        {
+          "joints": [
+            {
+              "name": "root",
+              "parent": "Armature"
+            },
+            {
+              "name": "pelvis",
+              "parent": "root"
+            },
+            {
+              "name": "spine_01",
+              "parent": "pelvis"
+            },
+            {
+              "name": "spine_02",
+              "parent": "spine_01"
+            },
+            {
+              "name": "spine_03",
+              "parent": "spine_02"
+            },
+            {
+              "name": "neck_01",
+              "parent": "spine_03"
+            },
+            {
+              "name": "Head",
+              "parent": "neck_01"
+            },
+            {
+              "name": "clavicle_l",
+              "parent": "spine_03"
+            },
+            {
+              "name": "upperarm_l",
+              "parent": "clavicle_l"
+            },
+            {
+              "name": "lowerarm_l",
+              "parent": "upperarm_l"
+            },
+            {
+              "name": "hand_l",
+              "parent": "lowerarm_l"
+            },
+            {
+              "name": "clavicle_r",
+              "parent": "spine_03"
+            },
+            {
+              "name": "upperarm_r",
+              "parent": "clavicle_r"
+            },
+            {
+              "name": "lowerarm_r",
+              "parent": "upperarm_r"
+            },
+            {
+              "name": "hand_r",
+              "parent": "lowerarm_r"
+            },
+            {
+              "name": "thigh_l",
+              "parent": "pelvis"
+            },
+            {
+              "name": "calf_l",
+              "parent": "thigh_l"
+            },
+            {
+              "name": "foot_l",
+              "parent": "calf_l"
+            },
+            {
+              "name": "ball_l",
+              "parent": "foot_l"
+            },
+            {
+              "name": "thigh_r",
+              "parent": "pelvis"
+            },
+            {
+              "name": "calf_r",
+              "parent": "thigh_r"
+            },
+            {
+              "name": "foot_r",
+              "parent": "calf_r"
+            },
+            {
+              "name": "ball_r",
+              "parent": "foot_r"
+            }
+          ],
+          "inverseBindAccessor": 7,
+          "jointNodeMetadataSha256": "84a357ac1eb6be9dee00a8269ef40e1f4199f1e97eaf60106388a32b986d851a"
+        }
+      ],
+      "primitives": [
+        {
+          "mode": 4,
+          "vertices": 5114,
+          "indexCount": 27006,
+          "trianglesFromMetadata": 9002,
+          "attributes": [
+            "POSITION",
+            "NORMAL",
+            "TEXCOORD_0",
+            "COLOR_0",
+            "JOINTS_0",
+            "WEIGHTS_0"
+          ],
+          "morphTargetCount": 0
+        }
+      ],
+      "animationNames": [],
+      "animationTargetNames": []
+    },
+    {
+      "path": "src/scene/body/assets/clip-pack.glb",
+      "bytes": 338060,
+      "sha256": "89a2c636d3a9d1d9eac0e1125c20ca14d030c55ae27561dd8644b30645fd3d47",
+      "extensionsRequired": [
+        "KHR_mesh_quantization",
+        "EXT_meshopt_compression"
+      ],
+      "skins": [],
+      "primitives": [],
+      "animationNames": [
+        "idle",
+        "walk",
+        "jog",
+        "sit-enter",
+        "sit",
+        "sit-exit",
+        "interact",
+        "dance",
+        "cook",
+        "cook-enter",
+        "cook-exit",
+        "cook-low",
+        "cook-low-enter",
+        "cook-low-exit",
+        "bucket-wash",
+        "bucket-wash-enter",
+        "bucket-wash-exit",
+        "eat",
+        "eat-enter",
+        "eat-exit",
+        "drink",
+        "drink-enter",
+        "drink-exit",
+        "shower-wash",
+        "shower-wash-enter",
+        "shower-wash-exit",
+        "soak-wash",
+        "soak-wash-enter",
+        "soak-wash-exit",
+        "home-door",
+        "door",
+        "lie-down",
+        "get-up",
+        "sleep",
+        "bathe-sit",
+        "bathe-stand",
+        "stairs-up",
+        "stairs-down",
+        "cook-female",
+        "cook-enter-female",
+        "cook-exit-female",
+        "cook-low-female",
+        "cook-low-enter-female",
+        "cook-low-exit-female",
+        "bucket-wash-female",
+        "bucket-wash-enter-female",
+        "bucket-wash-exit-female",
+        "eat-female",
+        "eat-enter-female",
+        "eat-exit-female",
+        "drink-female",
+        "drink-enter-female",
+        "drink-exit-female",
+        "shower-wash-female",
+        "shower-wash-enter-female",
+        "shower-wash-exit-female",
+        "soak-wash-female",
+        "soak-wash-enter-female",
+        "soak-wash-exit-female",
+        "home-door-female"
+      ],
+      "animationTargetNames": [
+        "Head",
+        "ball_l",
+        "ball_r",
+        "calf_l",
+        "calf_r",
+        "clavicle_l",
+        "clavicle_r",
+        "foot_l",
+        "foot_r",
+        "hand_l",
+        "hand_r",
+        "lowerarm_l",
+        "lowerarm_r",
+        "neck_01",
+        "pelvis",
+        "spine_01",
+        "spine_02",
+        "spine_03",
+        "thigh_l",
+        "thigh_r",
+        "upperarm_l",
+        "upperarm_r"
+      ]
+    }
+  ]
+}

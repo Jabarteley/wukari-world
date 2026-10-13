@@ -1,0 +1,75 @@
+{
+  "baseline": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "sources": [
+    {
+      "bytes": 1514,
+      "path": "src/game/cities/lagos/map.ts",
+      "sha256": "bb480362926de7e15645e797cb9c418bf11f6d462e28b48237dcf04bb46bda75"
+    },
+    {
+      "bytes": 1010,
+      "path": "src/game/neighbourhood-space.ts",
+      "sha256": "e96333b8e2d2762e0c19b62b8a1e5047f8d02dbd053ed32aab8ff67354eeef2e"
+    },
+    {
+      "bytes": 3436,
+      "path": "src/geo/frame.ts",
+      "sha256": "e2c1ce1a7696f6285b67118936122bf24bcb25d657fbc911db19ef40eaf2d24f"
+    },
+    {
+      "bytes": 32780,
+      "path": "src/map3d/cities/lagos.ts",
+      "sha256": "21015c805d2fc83fac609c619c05eacf46350b07b0e9798fb92d5e95e9cf2e88"
+    },
+    {
+      "bytes": 100,
+      "path": "src/map3d/geo/frame.ts",
+      "sha256": "55c80ea3abf7f176522f7ac321c5e386613940f6988eec1ee05e5b4db3905327"
+    },
+    {
+      "bytes": 2827,
+      "path": "src/map3d/geo/projection.ts",
+      "sha256": "e2e5addf926470141a9bf37a7662b4691f4956d92a29763237788b544e4486d0"
+    },
+    {
+      "bytes": 24713,
+      "path": "src/scene/body/skinned.ts",
+      "sha256": "ce647008f84413ad7e647ed3acfb1d462fe041ee700dd53a088da078d429bcbd"
+    },
+    {
+      "bytes": 26965,
+      "path": "src/scene/models/scene-models.ts",
+      "sha256": "24e61b0e7eacedbb128363971602876633896ff6875aa24f3642c5fdbb8499c5"
+    },
+    {
+      "bytes": 28500,
+      "path": "src/scene/movement.ts",
+      "sha256": "1451cc3c050542ac777ae43380dfa584d7a4c82db87246b02f49e4813c1bbed9"
+    },
+    {
+      "bytes": 18673,
+      "path": "src/scene/street/street-plan.ts",
+      "sha256": "b099adf537fc9bc12d93202fbe3f6d07ef6c479d5f534c7a918b119b18f5bde5"
+    },
+    {
+      "bytes": 7005,
+      "path": "src/street/frame.ts",
+      "sha256": "41c2d4ccdf27e0220512aae53f56f01dba9e45049bb85ec76334b94c3246f608"
+    },
+    {
+      "bytes": 22310,
+      "path": "src/street/host.ts",
+      "sha256": "67ae56001db0c1b69114546f44dfb0b04d2e37e8e68b0ac1593085dab768f8ba"
+    },
+    {
+      "bytes": 8532,
+      "path": "src/street/renderer.ts",
+      "sha256": "837ff8f41b0c40b7a7aea4b33479652cd4688c89454908a105f01280cdea2e92"
+    },
+    {
+      "bytes": 3163,
+      "path": "src/street/types.ts",
+      "sha256": "726a924658b6ce7d893e98790858f2a62088bbeb8234201057646cbccf1e8f8f"
+    }
+  ]
+}

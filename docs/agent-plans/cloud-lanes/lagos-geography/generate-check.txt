@@ -1,0 +1,2 @@
+check source-pins.json bytes=2311 sha256=20a72bbf758578e02f0dd6baecf91565c32b7ef6f9ddd297754624bff82fc7db
+check sample-manifest.json bytes=19021 sha256=a1c0d7e8245fa3e184619f48c801e22dc397e094c51f92703bb65fd0685bee71

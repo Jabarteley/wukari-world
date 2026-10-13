@@ -1,0 +1,23 @@
+{
+  "body": "woman",
+  "hair": "braids",
+  "outfit": "office",
+  "fabric": "plain",
+  "skin": "skin-7",
+  "hairColor": "black",
+  "outfitColor": "blue",
+  "bottomsColor": "navy",
+  "face": "round",
+  "expression": "grin",
+  "accessories": [
+    "glasses"
+  ],
+  "wearables": [
+    "wristwatch"
+  ],
+  "appearance": {
+    "height": "tall",
+    "build": "broad",
+    "ageAppearance": "elder"
+  }
+}

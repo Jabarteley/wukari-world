@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-13T18:11:13Z",
+  "baselineCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "coordinatorCommit": "844da27a549d30c5148c1cb5b5927b7d0f5bfde6",
+  "parentLane": 2,
+  "branch": "codex/cloud-source-provenance-20261013",
+  "nodeVersion": "v24.19.0",
+  "command": "NODE_OPTIONS=--max-old-space-size=1536 node scripts/agent-slot.ts heavy --wait-ms 1000 -- timeout 60s node --test --test-concurrency=1 docs/agent-plans/cloud-lanes/source-provenance/validate.test.ts",
+  "exitCode": 0,
+  "tests": 49,
+  "passed": 49,
+  "failed": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "durationMs": 559.902002,
+  "fixtureResult": {
+    "ok": true,
+    "eligibleForProduction": false,
+    "checkedFiles": 3,
+    "checkedBytes": 35342
+  },
+  "sources": 9,
+  "externalAssetsAdmitted": 0,
+  "dependenciesAdded": 0,
+  "paidOperations": 0,
+  "geospatialDownloads": 0,
+  "limits": {
+    "heavyJobs": 1,
+    "nodeHeapMiB": 1536,
+    "timeoutSeconds": 60,
+    "packetBytes": 262144,
+    "fileBytes": 1048576,
+    "totalPacketReadBytes": 4194304
+  },
+  "notRun": [
+    "Full game tests/build",
+    "Static TypeScript compiler (dependencies absent)",
+    "Provider imagery/tiles/elevation/vector downloads",
+    "Production integration or deployment"
+  ],
+  "files": [
+    {
+      "path": "validate.ts",
+      "bytes": 21602,
+      "sha256": "ca3ed4b2c62c5d965993babaa433e3627b3a61b9e7824103049ea1864e343b21"
+    },
+    {
+      "path": "validate.test.ts",
+      "bytes": 10553,
+      "sha256": "8d9f88dbdd19bf2c2829644fc7823f23d9df4d907f7264a04795326d1a1ddc37"
+    },
+    {
+      "path": "schema.v1.json",
+      "bytes": 21491,
+      "sha256": "6b5f58b4a86211d7d216b230037fec848c9449fd2114bed63a8ad99d6369eee6"
+    },
+    {
+      "path": "registry.v1.json",
+      "bytes": 25247,
+      "sha256": "17804533082d60a5552b05613cd06a8fca8824cfc8b2bc8f9c89779af50f632e"
+    },
+    {
+      "path": "pins.json",
+      "bytes": 509,
+      "sha256": "f92bde151499f173a930336c8691df5a2ef71ddf01d2cb569a036a6399142245"
+    },
+    {
+      "path": "make-fixture.py",
+      "bytes": 5283,
+      "sha256": "e8b7a4f037b014232ec0823e861e1995dbf93944081c49ff5a8640b904f95f22"
+    },
+    {
+      "path": "fixtures/lawful.packet.json",
+      "bytes": 5025,
+      "sha256": "6acb989598b75ba12f419c971978992881dae2df32401e5deb6a65041d2c9ac7"
+    },
+    {
+      "path": "fixtures/original-block.json",
+      "bytes": 488,
+      "sha256": "8b6d300449fd4b9dd56a37e626491d4e160338065b0a1b3c7058ba95b7ac2cf5"
+    },
+    {
+      "path": "fixtures/measurement.json",
+      "bytes": 331,
+      "sha256": "b2ea0553a1d891ed0543ce60b797de56cc1390a4aeaf6abbce5081826e21b4e2"
+    },
+    {
+      "path": "fixtures/rejections.json",
+      "bytes": 5834,
+      "sha256": "e64ae52d1b415d9ba12e6176fd88f4b03ce860e817b7edb7efd8de0b67b35e25"
+    },
+    {
+      "path": "fixtures/LICENSE-AGPL-3.0.txt",
+      "bytes": 34523,
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    },
+    {
+      "path": "evidence/focused-tests.log",
+      "bytes": 3346,
+      "sha256": "6fe365318b92175626b2f7bf19c6b14e6f56f0aedb67e638262a09a4dcc136c9"
+    }
+  ]
+}

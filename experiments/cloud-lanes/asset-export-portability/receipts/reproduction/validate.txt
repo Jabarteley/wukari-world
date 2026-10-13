@@ -1,0 +1,30 @@
+{
+  "beacon-near.glb": {
+    "bytes": 25868,
+    "triangles": 332,
+    "errors": 0,
+    "warnings": 0,
+    "pbrPreservedByStaticAdapter": false
+  },
+  "beacon-near-meshopt.glb": {
+    "bytes": 6740,
+    "triangles": 332,
+    "errors": 0,
+    "warnings": 0,
+    "pbrPreservedByStaticAdapter": false
+  },
+  "beacon-far.glb": {
+    "bytes": 9540,
+    "triangles": 108,
+    "errors": 0,
+    "warnings": 0,
+    "pbrPreservedByStaticAdapter": false
+  },
+  "beacon-far-meshopt.glb": {
+    "bytes": 3980,
+    "triangles": 108,
+    "errors": 0,
+    "warnings": 0,
+    "pbrPreservedByStaticAdapter": false
+  }
+}

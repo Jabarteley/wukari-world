@@ -1,0 +1,25 @@
+{
+  "command": [
+    "blender",
+    "-b",
+    "experiments/cloud-lanes/asset-export-portability/artifacts/original-meter-beacon.blend",
+    "-t",
+    "2",
+    "--python-exit-code",
+    "1",
+    "--python",
+    "experiments/cloud-lanes/asset-export-portability/export_fixture.py",
+    "--",
+    "--from-blend",
+    "--out",
+    "experiments/cloud-lanes/asset-export-portability/runs/reexport"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 1.321,
+  "sampledGroupPeakRssBytes": 264675328,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

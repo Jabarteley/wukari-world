@@ -1,0 +1,32 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+18:10:33 | INFO: Starting glTF 2.0 export
+18:10:33 | INFO: Extracting primitive: beacon_near
+18:10:33 | INFO: Primitives created: 1
+18:10:33 | INFO: Finished glTF 2.0 export in 0.005873441696166992 s
+
+18:10:33 | INFO: Starting glTF 2.0 export
+18:10:33 | INFO: Extracting primitive: beacon_far
+18:10:33 | INFO: Primitives created: 1
+18:10:33 | INFO: Finished glTF 2.0 export in 0.003953218460083008 s
+
+{
+  "blender": "4.3.2",
+  "fromBlend": true,
+  "fixture": "original-meter-beacon-v1",
+  "units": "meters",
+  "draco": false,
+  "outputs": {
+    "beacon-far.glb": {
+      "bytes": 9540,
+      "sha256": "a5d662b96efacd654b4cd2d6a20bad2e3ae0460720a2cf75edb46f8b14b3f678"
+    },
+    "beacon-near.glb": {
+      "bytes": 25868,
+      "sha256": "a59f64c71190393516a52267ad730c9c811557b5c75d8d1a32e4e9cc765a282a"
+    }
+  }
+}
+Blender 4.3.2
+Read blend: "/workspace/joinallworld/experiments/cloud-lanes/asset-export-portability/artifacts/original-meter-beacon.blend"
+
+Blender quit

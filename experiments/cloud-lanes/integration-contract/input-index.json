@@ -1,0 +1,1098 @@
+{
+  "schema": "allworld-cloud-input-index-v1",
+  "baseline": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "coordinator": "844da27a549d30c5148c1cb5b5927b7d0f5bfde6",
+  "lanes": {
+    "source-provenance": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+    "lagos-geography": "21b0850a996b4444d2e0c16626771671e191ddcd",
+    "asset-export-portability": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+    "human-design-contract": "71d6b5ad391754b0f30fc5364e993208299640ed"
+  },
+  "files": [
+    {
+      "path": "LICENSE",
+      "bytes": 34523,
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/asset-export-portability/CONTINUE.md",
+      "bytes": 9722,
+      "sha256": "43ff06db9eb4e84f2d940a2018cd036b74b94ba399e884d9e8f6998eb69529c7",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/asset-export-portability/PORTABILITY.md",
+      "bytes": 4179,
+      "sha256": "be37c380e19f8e23038bb488ff6be7f9b9b71c2371de3c674a7d5edd1cf1a48c",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/CONTINUE.md",
+      "bytes": 10531,
+      "sha256": "652553d26251f46352aa9f7d3aa2b1d0a5c9a4626ae1d42cc95097780207aabe",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/README.md",
+      "bytes": 14139,
+      "sha256": "428c14662a4c0ea7a68f91dc789c56fe7d23ba6eb625bbcd43f4f141b4aefe22",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/REALISM-ACCEPTANCE.md",
+      "bytes": 10226,
+      "sha256": "6cb4e2d9b6680efa20e3fc3adb1daeff4dcd309b916eacf218127248d2abf9e7",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/SHA256SUMS.json",
+      "bytes": 4352,
+      "sha256": "878aa2a0958968cf4c5c614610c78987e834bd3cda71797f8dfdb8592656d9de",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/baseline-audit.json",
+      "bytes": 10318,
+      "sha256": "afe2ab672e93f71dcf267477870ea59e6d68b0afb93aa1048485684977c43a9f",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/checks.txt",
+      "bytes": 1940,
+      "sha256": "dcbfe99773efcf3bc6cf3189215462a65014e7c6f5d1e5df35cdfd1ea0770aac",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/topology-and-dependencies.png",
+      "bytes": 312582,
+      "sha256": "463ce74c32744e0c9ba6b960c1000762bb4ca2dc1f2e96dd75453d8560520a7c",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/topology-and-dependencies.svg",
+      "bytes": 7256,
+      "sha256": "61eb4abcec0cf0ef6e77973d81f6f366966102c4d25d9246f471ff7c86b1b342",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/verification.json",
+      "bytes": 2123,
+      "sha256": "953213f52c3999b8f90a50bb9d8e937c9aa01889b3be0f7d16f4b488d9150e22",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/lagos-geography/CONTINUE.md",
+      "bytes": 8733,
+      "sha256": "2f1ccd97e255b528e5fbf9680bacfcf19a435f8b8e3b32f97ce5e4187d685def",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/lagos-geography/CONTRACTS.md",
+      "bytes": 4673,
+      "sha256": "0cca8fddc418b496fa3175cbf7f1420677908db949b7055168b1fb104d6aa354",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/lagos-geography/first-check.txt",
+      "bytes": 272,
+      "sha256": "db35d8eb1a1abeb5ea24238b49eaa7878dd23e5317f9c494f8f99a57dfc2b1e3",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/lagos-geography/first-tests.txt",
+      "bytes": 5940,
+      "sha256": "df140a7a810a92c9e3f6e7f95552396fe5fd23feb27e4d8ed75e6f4761d7578b",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/lagos-geography/generate-check.txt",
+      "bytes": 217,
+      "sha256": "f39e82204ac786f98c35882e9ca0bf1ab1db332dd9141703966784f20653b60f",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/lagos-geography/tests.txt",
+      "bytes": 4286,
+      "sha256": "61ae04d61d6bea9d93bcb138e92df6d37803ff6d689bf3e84781d7c8d569efd3",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/CONTINUE.md",
+      "bytes": 4953,
+      "sha256": "bcf3e5850015be8806699360bc70f96072973017232265a93861baadd4875235",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/README.md",
+      "bytes": 7406,
+      "sha256": "b8663d347d8c6da0ad524183880d0c89f587cfe08af2fee75404d6ce31e52baf",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/RESEARCH.md",
+      "bytes": 5390,
+      "sha256": "d7d329e2e88fb511e5ee807e6535bcae708fe7d50e49fe1f2d7e37cf8931c89f",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/evidence/focused-tests.log",
+      "bytes": 3346,
+      "sha256": "6fe365318b92175626b2f7bf19c6b14e6f56f0aedb67e638262a09a4dcc136c9",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/evidence/initial-48-tests.log",
+      "bytes": 3250,
+      "sha256": "ce8c6dabcddbd0b21d6ea5b6dd19cfa4079588d6bd79a292f4e84be62233b147",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/evidence/verification.json",
+      "bytes": 3151,
+      "sha256": "87399a654e7291f1573dcba762ed6e2388faae6f9edcf9c17df58eee09571ac1",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/fixtures/LICENSE-AGPL-3.0.txt",
+      "bytes": 34523,
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/fixtures/lawful.packet.json",
+      "bytes": 5025,
+      "sha256": "6acb989598b75ba12f419c971978992881dae2df32401e5deb6a65041d2c9ac7",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/fixtures/measurement.json",
+      "bytes": 331,
+      "sha256": "b2ea0553a1d891ed0543ce60b797de56cc1390a4aeaf6abbce5081826e21b4e2",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/fixtures/original-block.json",
+      "bytes": 488,
+      "sha256": "8b6d300449fd4b9dd56a37e626491d4e160338065b0a1b3c7058ba95b7ac2cf5",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/fixtures/rejections.json",
+      "bytes": 5834,
+      "sha256": "e64ae52d1b415d9ba12e6176fd88f4b03ce860e817b7edb7efd8de0b67b35e25",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/make-fixture.py",
+      "bytes": 5283,
+      "sha256": "e8b7a4f037b014232ec0823e861e1995dbf93944081c49ff5a8640b904f95f22",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/pins.json",
+      "bytes": 509,
+      "sha256": "f92bde151499f173a930336c8691df5a2ef71ddf01d2cb569a036a6399142245",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/registry.v1.json",
+      "bytes": 25247,
+      "sha256": "17804533082d60a5552b05613cd06a8fca8824cfc8b2bc8f9c89779af50f632e",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/schema.v1.json",
+      "bytes": 21491,
+      "sha256": "6b5f58b4a86211d7d216b230037fec848c9449fd2114bed63a8ad99d6369eee6",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/validate.test.ts",
+      "bytes": 10553,
+      "sha256": "8d9f88dbdd19bf2c2829644fc7823f23d9df4d907f7264a04795326d1a1ddc37",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/source-provenance/validate.ts",
+      "bytes": 21602,
+      "sha256": "ca3ed4b2c62c5d965993babaa433e3627b3a61b9e7824103049ea1864e343b21",
+      "sourceCommit": "1f89cdd91e8300a341ca65f17030a22f929eb5dd",
+      "lane": "source-provenance"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/.gitignore",
+      "bytes": 54,
+      "sha256": "3b0607db86db9559dacfe5003d8a19737c778189bc834646da3353e21e8e47c5",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/README.md",
+      "bytes": 3634,
+      "sha256": "6e014369d8280113fb835e212772fcefd445d0f1f59f7f330eb380d69743c838",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-far-meshopt.glb",
+      "bytes": 3980,
+      "sha256": "d6d335973441808343d8c7fbbefd764680c5a2a6ad1ede824ada651e79758975",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-far.glb",
+      "bytes": 9540,
+      "sha256": "a5d662b96efacd654b4cd2d6a20bad2e3ae0460720a2cf75edb46f8b14b3f678",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-near-meshopt.glb",
+      "bytes": 6740,
+      "sha256": "8a0680361a8c8654c8ee3eaf7f69ec89a8c3694fbd2faeac9f640e5b94548508",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/artifacts/beacon-near.glb",
+      "bytes": 25868,
+      "sha256": "a59f64c71190393516a52267ad730c9c811557b5c75d8d1a32e4e9cc765a282a",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/artifacts/export-receipt.json",
+      "bytes": 568,
+      "sha256": "2bd02a78f98d907454f759257d74ab14874c5b9741ba1d2dc21fcc784aa4e93c",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/artifacts/original-meter-beacon.blend",
+      "bytes": 481348,
+      "sha256": "970f2d85f5dabac9e56f7bd2356590dc138b815e831372455af2982e02c4b14a",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/artifacts/render.png",
+      "bytes": 88493,
+      "sha256": "092110b438b72b71831d9752c02275aa237056b9680059473d23214edcebdca5",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/bounded_run.py",
+      "bytes": 4407,
+      "sha256": "afd47e98a211eab91a49dea57ee7c5957bd5d03f48b89f7d674e157011f9fddd",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/contract.test.ts",
+      "bytes": 3814,
+      "sha256": "7b505bd8e78798cd91521d5e0e557446db1b6deac3354e7507107437a635cf2c",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/export_fixture.py",
+      "bytes": 6053,
+      "sha256": "54c1f1728b7402e16d3b314a87fc0a4ad11a298bbaca393705d28a30667cb42d",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/fixture.json",
+      "bytes": 1159,
+      "sha256": "78199e3757becb4edac9ecdfd4681fab3c951bf19242ac32c0237ad43ee248a5",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/golden-import.json",
+      "bytes": 10965,
+      "sha256": "be938e2c1452b023318c3f28420188c7f6a50ea423400a58f187b56d1661adef",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/pack.sh",
+      "bytes": 763,
+      "sha256": "cc5b5a77e03a14dd4f801a11c9e1d918c2315954da1f102455064696242f56a9",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/package-lock.json",
+      "bytes": 1355,
+      "sha256": "b0a18ca6921f139277048f4bbbd5c8303ef2c60d297fea9ae207a7480124d2d2",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/package.json",
+      "bytes": 242,
+      "sha256": "fa64f86da75b9702d1dfa00dd94f9d96e3b53a9be24df0feb3a71ea9496ea36e",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/packet.json",
+      "bytes": 6738,
+      "sha256": "48d6380a8847625916309e59c5d10223f858038ed21614aafc08b3885ccff582",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/prepare_browser.ts",
+      "bytes": 751,
+      "sha256": "f9b285adeb315de7db5f72394220c337f4adaf40f67b205a04ef0cab368eeab0",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/browser-attempt-1.json",
+      "bytes": 395,
+      "sha256": "3eeaeda44c9de1eda547ee74aa86b17e17f2354059b56b45e7d52ed7e0af93c5",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/browser-final.json",
+      "bytes": 2907,
+      "sha256": "bed5a58477cc3378ee4f2767f3c84e61f39dee0ae3b41c0ed5b2c5bd6c00dadf",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/browser.json",
+      "bytes": 2905,
+      "sha256": "5327a19331a9209241a781250e13faea6a09475ea06b5f5d3cd460ca7e02ace0",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/export.txt",
+      "bytes": 1306,
+      "sha256": "37b7539dd6c88d7a09865f93d06d179c1caff7ae3895da1e29b7e3aba7112e58",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/handoff.json",
+      "bytes": 4814,
+      "sha256": "ed78ce6625d21e04fc32ec54ed2044993acfd57e9df18973ca4a2f52843cb94d",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/pack.txt",
+      "bytes": 1024,
+      "sha256": "f7ba987e55a414d0481d86a894e3d4ed714dd4201d7fb451cd24ce65dbeb61a8",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reexport-resource.json",
+      "bytes": 623,
+      "sha256": "4c90cd68a27bce8a6d9ad04ba45e8e8606ef96ae30b61957b998f48eab41fdf0",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reexport-resource.txt",
+      "bytes": 1123,
+      "sha256": "c8f401cd46465012b11a31d92b761dcf256aeb54da3a81ab2fd9a0a1af928985",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reexport.txt",
+      "bytes": 78,
+      "sha256": "edbe47204943cdd0e2c73b656876576a393789ba9a090b2cef9ce504500c3189",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/render-attempt-1-resource.json",
+      "bytes": 329,
+      "sha256": "17d75e52687a330d5206a5adbbd3ec3a8b02ba8d2932e54e36c33337167a4733",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/render-attempt-1.txt",
+      "bytes": 2253,
+      "sha256": "93f95f922780dd0df902e10ae74dc775986cc87f6f4c4383408c51f885964487",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/render-final-resource.json",
+      "bytes": 326,
+      "sha256": "da82cec0abf47bf8b63db6d987051c3d7d2d14a663073e7c44dc68a85611c7ba",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/render-final-resource.txt",
+      "bytes": 2907,
+      "sha256": "bed5a58477cc3378ee4f2767f3c84e61f39dee0ae3b41c0ed5b2c5bd6c00dadf",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/render-resource.json",
+      "bytes": 326,
+      "sha256": "3f6dc4d16c90430cb047fbcd4cd924d03ba8aef645889f9ce304e2571a6b66e7",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/render-resource.txt",
+      "bytes": 2905,
+      "sha256": "5327a19331a9209241a781250e13faea6a09475ea06b5f5d3cd460ca7e02ace0",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/generate.json",
+      "bytes": 574,
+      "sha256": "f6764385600d3600cfb0d700363daa5ec7ffcc8545fc42a6c5df041585aac869",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/generate.txt",
+      "bytes": 1306,
+      "sha256": "422097fb4ee97876f8efd106b5214ddbb8e2d8a40b4dc355d2685edd97d22063",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/pack.json",
+      "bytes": 457,
+      "sha256": "4e700b372ebb3b8db9d82f72b3f92e75a8a5379205df79d7340072e0978797d8",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/pack.txt",
+      "bytes": 1024,
+      "sha256": "f7ba987e55a414d0481d86a894e3d4ed714dd4201d7fb451cd24ce65dbeb61a8",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/reexport.json",
+      "bytes": 713,
+      "sha256": "78190afd5755f441d4a85b037e2760d997f65a18c1d6b48cc9f2456d3d58187c",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/reexport.txt",
+      "bytes": 1123,
+      "sha256": "d25fe155f5a49da28b1416ad5c3003e16d371539c997f4154e7e2de22f2817e5",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/tests.json",
+      "bytes": 396,
+      "sha256": "801f296ac8ebecd8038968218d130c058de81b86342723e4c974601aa8268170",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/tests.txt",
+      "bytes": 1121,
+      "sha256": "558d802744e65a7335aa139278fcfbb16b8295ea030610e8b8f1314c1e95f3f3",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/validate.json",
+      "bytes": 461,
+      "sha256": "7bbdffc09debb7cbe1d6288eba2368697f6a47969cd6ed5d5ab16779ca6759bd",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/reproduction/validate.txt",
+      "bytes": 602,
+      "sha256": "6f9243c7bd911e0296e5088823c3840c453379fe3b06817d1f49524cb892b382",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/supervisor-tests.txt",
+      "bytes": 376,
+      "sha256": "4ecb3deb5e1ba2929b99b98772caf9553c6d34871c8bb4f0ccc78f35e4a78422",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/tests.txt",
+      "bytes": 1125,
+      "sha256": "e60614173b80c7680bcae1c2c5f5eca2d9700e99db0dcc1509f9e2bbbe49b174",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/receipts/validation.json",
+      "bytes": 10965,
+      "sha256": "be938e2c1452b023318c3f28420188c7f6a50ea423400a58f187b56d1661adef",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/render.html",
+      "bytes": 6029,
+      "sha256": "de81a4bcf244cf5030bb497069a0d37cd0afe948c94fce49a2e84f6311f0f5cc",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/render.py",
+      "bytes": 4182,
+      "sha256": "9add701b8e25314f361e0258746c48b0e78b91c83774f748e0f64a1502da0d8f",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/reproduce.sh",
+      "bytes": 1727,
+      "sha256": "3e980e12ded8a561419a278ec81eca29a1b8b4fbfb3003b239ffce7446ce231c",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/test_bounded_run.py",
+      "bytes": 2068,
+      "sha256": "712386d6c6298936127f3784e69b554c10cc22a14306ad4de63d509dc149cd5e",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/validate.ts",
+      "bytes": 12071,
+      "sha256": "c4f97abd1e82233170fbf3a4e249db205ca1da393bbd4b6365cb24e29a64a146",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/asset-export-portability/verify_packet.py",
+      "bytes": 888,
+      "sha256": "d67993df9e70669c2883586371f0bb08e2755d89bc2764ee4ed5af7b6e7ceca7",
+      "sourceCommit": "f00b42be76b3ed22f053233f0d82bd559c73810a",
+      "lane": "asset-export-portability"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/anchor-bindings-v1.schema.json",
+      "bytes": 3648,
+      "sha256": "8f6280d8ab7e9bd44c49b4cdacecfc33ea71980fc13158a529e40f73b3700aeb",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/audit-baseline.mjs",
+      "bytes": 3251,
+      "sha256": "77853979ff83be8fa65a6e3da73b14b0c8d5d76192a1a6a10a5212d2ed49a391",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/check-json-schema.py",
+      "bytes": 1915,
+      "sha256": "7a4ccace63d9fdd0a5ddd1b7f11eac80dc62a1121fea66e572cdcebc0b8336e7",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/contract.mjs",
+      "bytes": 10402,
+      "sha256": "7618a4f0994ba022c5ac952825968e555e0564182155cb88880d3320a3de7bbb",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/contract.test.mjs",
+      "bytes": 12552,
+      "sha256": "e5107754e129a44bc07de8ab392acadb3495aa88b1b614cbfe8a1bc717b1b05b",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/definitions.mjs",
+      "bytes": 3426,
+      "sha256": "50cba56cc118abd442ac6300c10b18db79920f3f515a70254232d113da25fc14",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/fictional-01.json",
+      "bytes": 1692,
+      "sha256": "1ce500f15415d3598678f65f89c8f9bf55962703a0b411f9f815431948e6986b",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/fictional-02.json",
+      "bytes": 1710,
+      "sha256": "9a68023636f7a658f203648aac2a7e0dc74fc81cf95d74108e8086813c25363d",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/fictional-03.json",
+      "bytes": 1718,
+      "sha256": "25157f43c7da8b9486615f1dd2ee9ae021f449bdb7f486c3d7f1b09ea7a948fe",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/fictional-04.json",
+      "bytes": 1647,
+      "sha256": "0cc922e1d6cd418ab1a9ec9a92f29d4b16a0b3afa088518b0109d707767e4e48",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/fictional-05.json",
+      "bytes": 1712,
+      "sha256": "df3716301e6ae1c76d843f6c9c7ece80782cb5ad99716677b78dc36f043dbde5",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/fictional-06.json",
+      "bytes": 1710,
+      "sha256": "706f4f846bdf186061d64ae21785736c4fc7b2672b43812e776200ebd7712e83",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/fictional-07.json",
+      "bytes": 1695,
+      "sha256": "351bc174a63853d2e5ce453af6aa2d5d6b27734b2799f8cae6c4324d7abe29db",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/index.json",
+      "bytes": 1841,
+      "sha256": "b6f05f7c8d981dfb8591d053c62ee0b9cda6911bf4955275142c24c0ae8a833e",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/legacy-v0.json",
+      "bytes": 396,
+      "sha256": "687a93436975051d0d833c20f8e2baa74afbecc4dfc43a9b0e922757cfe59b3d",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/prototype-v1.json",
+      "bytes": 1390,
+      "sha256": "9efa024995a45dbd23e97a2912306d6437f59589deafe3869a18858d410c881b",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/fixtures/synthetic-hair-bindings.json",
+      "bytes": 1033,
+      "sha256": "d40d9e35c8f949087e26d0d68e6b5f45f73e504177e40437b437f5e596b55756",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/generate-fixtures.mjs",
+      "bytes": 4343,
+      "sha256": "91e78a2edd94abdbeeed946f9d322245c94d569e24e690d74865128843578a33",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/generate-schemas.mjs",
+      "bytes": 4378,
+      "sha256": "108c75efca86e561a68b4107e3ea7740ce6fc310220a69544c305d4f3fb4fa57",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/human-design-v1.schema.json",
+      "bytes": 10058,
+      "sha256": "b3b992a2ef08fac49903b4a642369386cbbf01b9f20acea2caef7ecd6a016489",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/human-design-contract/human-design-v2.schema.json",
+      "bytes": 12628,
+      "sha256": "8dd4357f2c2e7985bf8f33f2f7dbcc983b1bfe23208e889e442d742b44f81aa4",
+      "sourceCommit": "71d6b5ad391754b0f30fc5364e993208299640ed",
+      "lane": "human-design-contract"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/README.md",
+      "bytes": 5505,
+      "sha256": "b5eaf2d29563dfa6d20edaf66e6dcab6b36955ea3958451a286944632a14469e",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/adapter.test.ts",
+      "bytes": 9784,
+      "sha256": "1d834d38ba2cf81a89e2738c65d461dcc2632dafd656a04554ff261cd46108d9",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/adapter.ts",
+      "bytes": 9730,
+      "sha256": "c38d7f854f9b97b57253eb887d9ac69ee5950410807aae6203bac172cda4b4db",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/fixture.ts",
+      "bytes": 2687,
+      "sha256": "8f810fac7e46d93f5fb1d482cde4237065604756383ae2d6f5323d35d2dd39fc",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/generate.ts",
+      "bytes": 2319,
+      "sha256": "9c85d32916f7045d8921aa7564c7822b5b876180f0d6f023374a67a8eb640e98",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/manifest.test.ts",
+      "bytes": 4519,
+      "sha256": "24a0bc6762e62c902ff9ab0a237ccf0a8f488cdd99e723d47a6ffec110857827",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/manifest.ts",
+      "bytes": 8153,
+      "sha256": "455fa8a7901833a6b49d9927753306536df6cc731b9b7a52797ccfbdf9bf5755",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/sample-manifest.json",
+      "bytes": 19021,
+      "sha256": "a1c0d7e8245fa3e184619f48c801e22dc397e094c51f92703bb65fd0685bee71",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "experiments/cloud-lanes/lagos-geography/source-pins.json",
+      "bytes": 2311,
+      "sha256": "20a72bbf758578e02f0dd6baecf91565c32b7ef6f9ddd297754624bff82fc7db",
+      "sourceCommit": "21b0850a996b4444d2e0c16626771671e191ddcd",
+      "lane": "lagos-geography"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 65844,
+      "sha256": "d3a82d0f0d7e750bee84042a2ab36dcaa655cf6e7c9bdb8047823e507112efa9",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "package.json",
+      "bytes": 6359,
+      "sha256": "afb99740a6761adc8d78e8cee606862a7c16735a1bdc8e4414f39fb6452b3ddd",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "scripts/agent-slot.ts",
+      "bytes": 14218,
+      "sha256": "873fcf993506655018cffff78fc37b9dce92410ffba184bd92360aa9a77bb566",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "scripts/body/build-body.ts",
+      "bytes": 23434,
+      "sha256": "2c89b7695b671c1dc4973c29c5a80dc30dffdfa2d12a3fdc7acc22b3b5c27980",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "scripts/body/gltf-io.ts",
+      "bytes": 6859,
+      "sha256": "7828bbbccb0a15d93383d0b8126c3f5199371d3e8d5777608c521824841e2e88",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/budgets.ts",
+      "bytes": 12796,
+      "sha256": "998b98cd1d1d2be509eb50fa32bd53551c56aa2409098374a56a1db39bed07a2",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/game/cities/lagos/map.ts",
+      "bytes": 1514,
+      "sha256": "bb480362926de7e15645e797cb9c418bf11f6d462e28b48237dcf04bb46bda75",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/game/neighbourhood-space.ts",
+      "bytes": 1010,
+      "sha256": "e96333b8e2d2762e0c19b62b8a1e5047f8d02dbd053ed32aab8ff67354eeef2e",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/game/wardrobe/catalogue.ts",
+      "bytes": 4655,
+      "sha256": "d353e15e8817a9d6ee6990a003e553cdce957badcba98942ce6a23e4e4539d84",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/game/wardrobe/look.ts",
+      "bytes": 3355,
+      "sha256": "7bb221f98da1316076e56f7c61cbacd881a52ec29b1913eebdb97256dbd4fc08",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/game/wardrobe/rules.ts",
+      "bytes": 4867,
+      "sha256": "1f8bcbd76da268032f0f33dccf8318d218086679cb4aaf384581ec1f7854780d",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/geo/frame.ts",
+      "bytes": 3436,
+      "sha256": "e2c1ce1a7696f6285b67118936122bf24bcb25d657fbc911db19ef40eaf2d24f",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/map3d/cities/lagos.ts",
+      "bytes": 32780,
+      "sha256": "21015c805d2fc83fac609c619c05eacf46350b07b0e9798fb92d5e95e9cf2e88",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/map3d/geo/frame.ts",
+      "bytes": 100,
+      "sha256": "55c80ea3abf7f176522f7ac321c5e386613940f6988eec1ee05e5b4db3905327",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/map3d/geo/projection.ts",
+      "bytes": 2827,
+      "sha256": "e2e5addf926470141a9bf37a7662b4691f4956d92a29763237788b544e4486d0",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/animation-pose.ts",
+      "bytes": 1255,
+      "sha256": "24498791f072471bfc81bd1f01b41d8807c411fbc54b17e91a70d9fccd6dfb6b",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/appearance.ts",
+      "bytes": 12861,
+      "sha256": "017f8ba22a27de0a3221eb894efa596e62387d57737b3c870ef4a19497fad311",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/assets/base-body-female.glb",
+      "bytes": 157992,
+      "sha256": "ee8b9eb6d7ad2b35abfb026f2997d85384b7484342922cb99503e72462c2c5ad",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/assets/base-body-male.glb",
+      "bytes": 159916,
+      "sha256": "a375403639d688da351b0c87d5a70afa0080dafcf85dbf64b64395ce76e66f7c",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/assets/clip-pack.glb",
+      "bytes": 338060,
+      "sha256": "89a2c636d3a9d1d9eac0e1125c20ca14d030c55ae27561dd8644b30645fd3d47",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/facial.ts",
+      "bytes": 5981,
+      "sha256": "c09031ba8901b00603dd586bc6374a5c8a5b28cc92fcc8bd6dc45a887fac6d03",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/foot-contact.ts",
+      "bytes": 9374,
+      "sha256": "6f98bb61fde23e51016148d06136fcb0b46b0b9d5c03cefc73c7ad47745df8c6",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/manifest.ts",
+      "bytes": 3053,
+      "sha256": "bea27314fd3d8acdc166f151c7227389e8f764cf8bd5beaaebc4da397100b745",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/body/skinned.ts",
+      "bytes": 24713,
+      "sha256": "ce647008f84413ad7e647ed3acfb1d462fe041ee700dd53a088da078d429bcbd",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/characters.ts",
+      "bytes": 124287,
+      "sha256": "8c0c8a8fee027dba02f31976948baa52de616882c2bd9d7d3818c531b80be0ca",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/models/gltf-source.ts",
+      "bytes": 7343,
+      "sha256": "e0a3b1f5ec2a4b3778dfbbb21424d304470162cf8018387defabe7ec67ccd32f",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/models/scene-models.ts",
+      "bytes": 26965,
+      "sha256": "24e61b0e7eacedbb128363971602876633896ff6875aa24f3642c5fdbb8499c5",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/movement.ts",
+      "bytes": 28500,
+      "sha256": "1451cc3c050542ac777ae43380dfa584d7a4c82db87246b02f49e4813c1bbed9",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/street/street-plan.ts",
+      "bytes": 18673,
+      "sha256": "b099adf537fc9bc12d93202fbe3f6d07ef6c479d5f534c7a918b119b18f5bde5",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/wardrobe/geometry.ts",
+      "bytes": 52583,
+      "sha256": "57de05de1cc111ffd30a8a81ebf3be18ff8776feab47892f10d3716821120ae6",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/scene/wardrobe/renderer.ts",
+      "bytes": 10667,
+      "sha256": "4627d0704750cea6ff7a5b531f38bd21bfc0daec75660f2bf5148dca4a54989e",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/street/frame.ts",
+      "bytes": 7005,
+      "sha256": "41c2d4ccdf27e0220512aae53f56f01dba9e45049bb85ec76334b94c3246f608",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/street/host.ts",
+      "bytes": 22310,
+      "sha256": "67ae56001db0c1b69114546f44dfb0b04d2e37e8e68b0ac1593085dab768f8ba",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/street/renderer.ts",
+      "bytes": 8532,
+      "sha256": "837ff8f41b0c40b7a7aea4b33479652cd4688c89454908a105f01280cdea2e92",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/street/types.ts",
+      "bytes": 3163,
+      "sha256": "726a924658b6ce7d893e98790858f2a62088bbeb8234201057646cbccf1e8f8f",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/types/avatar.ts",
+      "bytes": 5182,
+      "sha256": "612d9ccf82dbd32a06926ca79dc837bbc3179ffa11ddb8ec45a9f312ec76eb6d",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    },
+    {
+      "path": "src/types/life.ts",
+      "bytes": 54420,
+      "sha256": "ff34284fecfba29210a6594fec5429f33a5f0a8f89447d6168c10a416ec8198f",
+      "sourceCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+      "lane": "baseline-read-only"
+    }
+  ]
+}

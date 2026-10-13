@@ -1,0 +1,479 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:allworld:experimental:human-design:save-v2",
+  "title": "save-v2",
+  "description": "Isolated proposal. All morphology values are residual normalized controls after legacy appearance. Zero preserves it. Ranges are authoring domains, not proven deformation limits. No inventory authority.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 2
+    },
+    "legacyLook": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "hair": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "outfit": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "fabric": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "face": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "expression": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "gender": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "hairstyle": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "skin": {
+          "type": [
+            "string",
+            "number"
+          ],
+          "maxLength": 128
+        },
+        "hairColor": {
+          "type": [
+            "string",
+            "number"
+          ],
+          "maxLength": 128
+        },
+        "outfitColor": {
+          "type": [
+            "string",
+            "number"
+          ],
+          "maxLength": 128
+        },
+        "bottomsColor": {
+          "type": [
+            "string",
+            "number"
+          ],
+          "maxLength": 128
+        },
+        "skinTone": {
+          "type": [
+            "string",
+            "number"
+          ],
+          "maxLength": 128
+        },
+        "seed": {
+          "type": [
+            "string",
+            "number"
+          ],
+          "maxLength": 128
+        },
+        "id": {
+          "type": [
+            "string",
+            "number"
+          ],
+          "maxLength": 128
+        },
+        "accessories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "maxItems": 11,
+          "uniqueItems": true
+        },
+        "wearables": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "maxItems": 23,
+          "uniqueItems": true
+        },
+        "appearance": {
+          "type": "object",
+          "properties": {
+            "height": {
+              "type": "string",
+              "enum": [
+                "short",
+                "average",
+                "tall"
+              ]
+            },
+            "build": {
+              "type": "string",
+              "enum": [
+                "slim",
+                "average",
+                "broad"
+              ]
+            },
+            "ageAppearance": {
+              "type": "string",
+              "enum": [
+                "adult",
+                "mature",
+                "elder"
+              ]
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "design": {
+      "type": "object",
+      "properties": {
+        "controlSpace": {
+          "type": "string",
+          "const": "legacy-relative-v1"
+        },
+        "morphology": {
+          "type": "object",
+          "properties": {
+            "earLeft": {
+              "type": "object",
+              "properties": {
+                "height": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "protrusion": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "rotation": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "lobeLength": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "height",
+                "width",
+                "protrusion",
+                "rotation",
+                "lobeLength"
+              ],
+              "additionalProperties": false
+            },
+            "earRight": {
+              "type": "object",
+              "properties": {
+                "height": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "width": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "protrusion": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "rotation": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "lobeLength": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "height",
+                "width",
+                "protrusion",
+                "rotation",
+                "lobeLength"
+              ],
+              "additionalProperties": false
+            },
+            "nose": {
+              "type": "object",
+              "properties": {
+                "bridgeWidth": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "bridgeHeight": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "projection": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "tipRotation": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "alarWidth": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "bridgeWidth",
+                "bridgeHeight",
+                "projection",
+                "tipRotation",
+                "alarWidth"
+              ],
+              "additionalProperties": false
+            },
+            "face": {
+              "type": "object",
+              "properties": {
+                "width": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "length": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "headDepth": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "jawWidth": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "chinProjection": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "cheekFullness": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "browHeight": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "browAngle": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "eyeSpacing": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "eyeAperture": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "eyelidFold": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "lipFullness": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "width",
+                "length",
+                "headDepth",
+                "jawWidth",
+                "chinProjection",
+                "cheekFullness",
+                "browHeight",
+                "browAngle",
+                "eyeSpacing",
+                "eyeAperture",
+                "eyelidFold",
+                "lipFullness"
+              ],
+              "additionalProperties": false
+            },
+            "body": {
+              "type": "object",
+              "properties": {
+                "height": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "shoulderWidth": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "torsoLength": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "armLength": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "legLength": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "waistWidth": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "hipWidth": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "handSize": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "footSize": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "abdominalFullness": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                },
+                "muscleDefinition": {
+                  "type": "number",
+                  "minimum": -1,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "height",
+                "shoulderWidth",
+                "torsoLength",
+                "armLength",
+                "legLength",
+                "waistWidth",
+                "hipWidth",
+                "handSize",
+                "footSize",
+                "abdominalFullness",
+                "muscleDefinition"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "earLeft",
+            "earRight",
+            "nose",
+            "face",
+            "body"
+          ],
+          "additionalProperties": false
+        },
+        "expression": {
+          "type": "object",
+          "properties": {
+            "preset": {
+              "type": "string",
+              "enum": [
+                "inherit",
+                "neutral",
+                "soft-smile",
+                "grin",
+                "focus",
+                "concern",
+                "surprise"
+              ]
+            },
+            "intensity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "preset",
+            "intensity"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "controlSpace",
+        "morphology",
+        "expression"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "legacyLook",
+    "design"
+  ],
+  "additionalProperties": false
+}

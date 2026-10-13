@@ -1,0 +1,21 @@
+{
+  "blender": "4.3.2",
+  "fromBlend": false,
+  "fixture": "original-meter-beacon-v1",
+  "units": "meters",
+  "draco": false,
+  "outputs": {
+    "beacon-far.glb": {
+      "bytes": 9540,
+      "sha256": "a5d662b96efacd654b4cd2d6a20bad2e3ae0460720a2cf75edb46f8b14b3f678"
+    },
+    "beacon-near.glb": {
+      "bytes": 25868,
+      "sha256": "a59f64c71190393516a52267ad730c9c811557b5c75d8d1a32e4e9cc765a282a"
+    },
+    "original-meter-beacon.blend": {
+      "bytes": 481348,
+      "sha256": "970f2d85f5dabac9e56f7bd2356590dc138b815e831372455af2982e02c4b14a"
+    }
+  }
+}

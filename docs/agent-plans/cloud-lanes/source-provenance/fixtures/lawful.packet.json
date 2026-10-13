@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "kind": "allworld-source-packet",
+  "schemaSha256": "6b5f58b4a86211d7d216b230037fec848c9449fd2114bed63a8ad99d6369eee6",
+  "registrySha256": "17804533082d60a5552b05613cd06a8fca8824cfc8b2bc8f9c89779af50f632e",
+  "owner": {
+    "lane": "source-provenance",
+    "branch": "codex/cloud-source-provenance-20261013",
+    "baseCommit": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d"
+  },
+  "pilot": {
+    "city": "Lagos",
+    "scope": "synthetic-fixture",
+    "blockId": null,
+    "sourceCrs": "LOCAL_SYNTHETIC",
+    "axisOrder": "east-north-up",
+    "units": "m",
+    "verticalDatum": "synthetic-zero",
+    "realWorldTransform": null
+  },
+  "inputs": [
+    {
+      "id": "original-block",
+      "sourceId": "original-synthetic",
+      "author": "Allworld source-provenance lane (AI-assisted)",
+      "sourceUrl": "https://github.com/kromate/joinallworld/tree/codex/cloud-source-provenance-20261013/docs/agent-plans/cloud-lanes/source-provenance",
+      "release": "original-fixture-v1",
+      "capturedAt": "2026-10-13T18:01:20Z",
+      "acquiredAt": "2026-10-13T18:01:20Z",
+      "file": {
+        "path": "fixtures/original-block.json",
+        "bytes": 488,
+        "sha256": "8b6d300449fd4b9dd56a37e626491d4e160338065b0a1b3c7058ba95b7ac2cf5"
+      },
+      "licenseId": "AGPL-3.0-or-later",
+      "licenseText": {
+        "path": "fixtures/LICENSE-AGPL-3.0.txt",
+        "bytes": 34523,
+        "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+      },
+      "uses": [
+        "derive_geometry",
+        "redistribute_raw",
+        "redistribute_derived"
+      ],
+      "attributionIds": [
+        "allworld-fixture"
+      ],
+      "upstreamRecordIds": [
+        "synthetic-building-1"
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "id": "width",
+      "featureId": "synthetic-building-1",
+      "property": "width",
+      "value": 12,
+      "unit": "m",
+      "basis": "measured",
+      "context": "synthetic",
+      "inputIds": [
+        "original-block"
+      ],
+      "confidence": "known-error-bound",
+      "method": "Exact arithmetic on synthetic local coordinates; see measurement receipt.",
+      "operator": "source-provenance lane",
+      "observedAt": "2026-10-13T18:01:20Z",
+      "uncertainty": {
+        "status": "bounded",
+        "plusMinus": 0,
+        "unit": "m"
+      },
+      "beta": false,
+      "evidence": {
+        "path": "fixtures/measurement.json",
+        "bytes": 331,
+        "sha256": "b2ea0553a1d891ed0543ce60b797de56cc1390a4aeaf6abbce5081826e21b4e2"
+      }
+    },
+    {
+      "id": "height",
+      "featureId": "synthetic-building-1",
+      "property": "height",
+      "value": 6,
+      "unit": "m",
+      "basis": "estimated",
+      "context": "synthetic",
+      "inputIds": [
+        "original-block"
+      ],
+      "confidence": "low",
+      "method": "Test-only two-storey assumption, no survey or source height.",
+      "operator": "source-provenance lane",
+      "observedAt": null,
+      "uncertainty": {
+        "status": "unknown",
+        "plusMinus": null,
+        "unit": "m"
+      },
+      "beta": true,
+      "evidence": {
+        "path": "fixtures/original-block.json",
+        "bytes": 488,
+        "sha256": "8b6d300449fd4b9dd56a37e626491d4e160338065b0a1b3c7058ba95b7ac2cf5"
+      }
+    },
+    {
+      "id": "facade",
+      "featureId": "synthetic-building-1",
+      "property": "facade",
+      "value": "authored neutral plaster",
+      "unit": "text",
+      "basis": "authored",
+      "context": "synthetic",
+      "inputIds": [
+        "original-block"
+      ],
+      "confidence": "not-applicable",
+      "method": "Original material description without external imagery.",
+      "operator": "source-provenance lane",
+      "observedAt": null,
+      "uncertainty": {
+        "status": "not-applicable",
+        "plusMinus": null,
+        "unit": "text"
+      },
+      "beta": true,
+      "evidence": {
+        "path": "fixtures/original-block.json",
+        "bytes": 488,
+        "sha256": "8b6d300449fd4b9dd56a37e626491d4e160338065b0a1b3c7058ba95b7ac2cf5"
+      }
+    }
+  ],
+  "derivations": [
+    {
+      "id": "fixture-copy",
+      "operator": "source-provenance lane",
+      "operation": "Retain the original editable JSON geometry; no external derivation.",
+      "inputIds": [
+        "original-block"
+      ],
+      "output": {
+        "path": "fixtures/original-block.json",
+        "bytes": 488,
+        "sha256": "8b6d300449fd4b9dd56a37e626491d4e160338065b0a1b3c7058ba95b7ac2cf5"
+      }
+    }
+  ],
+  "attribution": [
+    {
+      "id": "allworld-fixture",
+      "text": "Allworld source-provenance lane; original synthetic fixture; AGPL-3.0-or-later.",
+      "url": "https://github.com/kromate/joinallworld/blob/81d9f599d87dfb34adf49cd9337a0b05678e5e0d/LICENSE"
+    }
+  ],
+  "unresolvedRights": [],
+  "limitations": [
+    "Synthetic fixture only; not a selected, surveyed or georeferenced Lagos block.",
+    "A pass proves pinned provenance structure, not legal ownership or production acceptance."
+  ]
+}

@@ -1,0 +1,26 @@
+✔ both authored LODs and EXT Meshopt derivatives match frozen import receipts (125.633351ms)
+✔ static route rejects skins (1.539093ms)
+✔ static route rejects animations (0.349636ms)
+✔ static route rejects skin nodes (0.728205ms)
+✔ static route rejects weights (0.322266ms)
+✔ static route rejects morphs (0.290879ms)
+✔ static route rejects missing COLOR_0 (0.417346ms)
+✔ static route rejects Draco (0.33877ms)
+✔ static route rejects external buffers (0.548209ms)
+✔ contract rejects centimeters mistaken for meters (0.558745ms)
+✔ contract rejects pivot moved (0.215158ms)
+✔ contract rejects anchor moved (0.209249ms)
+✔ contract rejects sRGB written as linear (0.262047ms)
+✔ contract rejects PBR factor lost (0.292723ms)
+✔ contract rejects LOD budget drift (0.200957ms)
+✔ contract rejects winding inverted (0.204753ms)
+✔ the current static adapter bakes nonidentity parent transforms and transforms anchors (2.240278ms)
+✔ truncated GLB is rejected before import (0.207857ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 295.708809

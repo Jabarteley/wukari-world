@@ -1,0 +1,23 @@
+{
+  "command": [
+    "blender",
+    "-b",
+    "-t",
+    "2",
+    "--python-exit-code",
+    "1",
+    "--python",
+    "/workspace/joinallworld/experiments/cloud-lanes/asset-export-portability/export_fixture.py",
+    "--",
+    "--out",
+    "/workspace/joinallworld/experiments/cloud-lanes/asset-export-portability/runs/reproduce-WFZNhE/generated"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 1.426,
+  "sampledTreePeakRssBytes": 250544128,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

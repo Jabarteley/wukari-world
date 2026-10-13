@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "frame": "body-metres-bind-y-up-z-forward",
+  "slot": "hair",
+  "target": {
+    "skeletonId": "allworld-body-23@1",
+    "bodySha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "topologyId": "synthetic-four-triangles@1",
+    "topologySha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "anchorRevision": 1,
+    "triangleCount": 4
+  },
+  "bindings": [
+    {
+      "anchorId": "scalp.crown",
+      "joint": "Head",
+      "triangle": 0,
+      "barycentric": [
+        0.2,
+        0.3,
+        0.5
+      ],
+      "normalOffsetMetres": 0.002
+    },
+    {
+      "anchorId": "scalp.templeLeft",
+      "joint": "Head",
+      "triangle": 1,
+      "barycentric": [
+        0.2,
+        0.3,
+        0.5
+      ],
+      "normalOffsetMetres": 0.002
+    },
+    {
+      "anchorId": "scalp.templeRight",
+      "joint": "Head",
+      "triangle": 2,
+      "barycentric": [
+        0.2,
+        0.3,
+        0.5
+      ],
+      "normalOffsetMetres": 0.002
+    }
+  ]
+}

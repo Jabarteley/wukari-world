@@ -1,0 +1,31 @@
+{
+  "id": "synthetic-lagos-contract-example",
+  "description": "Original test rectangle; not a real Lagos parcel or survey.",
+  "author": "Allworld source-provenance lane (AI-assisted)",
+  "license": "AGPL-3.0-or-later",
+  "frame": "synthetic-local-metres",
+  "footprint": [
+    [
+      0,
+      0
+    ],
+    [
+      12,
+      0
+    ],
+    [
+      12,
+      8
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "heightM": 6,
+  "facade": "authored neutral plaster"
+}

@@ -1,0 +1,144 @@
+TAP version 13
+# Subtest: pinned anchor independently agrees with rounded Lagos origin and existing frame functions
+not ok 1 - pinned anchor independently agrees with rounded Lagos origin and existing frame functions
+  ---
+  duration_ms: 4.155654
+  type: 'test'
+  location: '/workspace/joinallworld-lagos-geography/experiments/cloud-lanes/lagos-geography/adapter.test.ts:14:1'
+  failureType: 'testCodeFailure'
+  error: 'nominal origin anchor is not the rounded origin'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/joinallworld-lagos-geography/experiments/cloud-lanes/lagos-geography/adapter.test.ts:21:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.start (node:internal/test_runner/test:1242:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: independent geographic steps establish axis signs and scale, not just inverse agreement
+not ok 2 - independent geographic steps establish axis signs and scale, not just inverse agreement
+  ---
+  duration_ms: 0.240794
+  type: 'test'
+  location: '/workspace/joinallworld-lagos-geography/experiments/cloud-lanes/lagos-geography/adapter.test.ts:24:1'
+  failureType: 'testCodeFailure'
+  error: '110.47865354492559 != 110.47858293387088 within 0.000001'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    close (file:///workspace/joinallworld-lagos-geography/experiments/cloud-lanes/lagos-geography/adapter.test.ts:9:84)
+    TestContext.<anonymous> (file:///workspace/joinallworld-lagos-geography/experiments/cloud-lanes/lagos-geography/adapter.test.ts:28:3)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: one-metre cube has expected east/up/north axes and unit edges in the proposed scene
+ok 3 - one-metre cube has expected east/up/north axes and unit edges in the proposed scene
+  ---
+  duration_ms: 0.406634
+  type: 'test'
+  ...
+# Subtest: 486 grid samples round-trip geographic/city/street and translated rotated scaled scene within 1 cm
+ok 4 - 486 grid samples round-trip geographic/city/street and translated rotated scaled scene within 1 cm
+  ---
+  duration_ms: 5.453245
+  type: 'test'
+  ...
+# {"samples":486,"maxCoordinateErrorMetres":7.789168533229508e-11,"maxSceneErrorMetres":3.182604911552452e-14,"maxQuantizedErrorMetres":0.005503984662381194}
+# Subtest: declared 500 m domain has edge witnesses and rejects beyond it
+ok 5 - declared 500 m domain has edge witnesses and rejects beyond it
+  ---
+  duration_ms: 0.530652
+  type: 'test'
+  ...
+# Subtest: proposal sides are approximately 200 spherical ground metres by independent haversine witness
+ok 6 - proposal sides are approximately 200 spherical ground metres by independent haversine witness
+  ---
+  duration_ms: 0.156347
+  type: 'test'
+  ...
+# Subtest: headings independently orient model +z north/east/south/west and wrap
+ok 7 - headings independently orient model +z north/east/south/west and wrap
+  ---
+  duration_ms: 0.24503
+  type: 'test'
+  ...
+# Subtest: centimetre asset scale, nonzero pivot and local ground height are preserved
+ok 8 - centimetre asset scale, nonzero pivot and local ground height are preserved
+  ---
+  duration_ms: 0.150047
+  type: 'test'
+  ...
+# Subtest: negative tiles and rounded seam ownership use half-open centimetre coordinates
+ok 9 - negative tiles and rounded seam ownership use half-open centimetre coordinates
+  ---
+  duration_ms: 0.335787
+  type: 'test'
+  ...
+# Subtest: invalid numbers, swapped coordinate order, foreign frames and bad scales fail clearly
+ok 10 - invalid numbers, swapped coordinate order, foreign frames and bad scales fail clearly
+  ---
+  duration_ms: 0.376499
+  type: 'test'
+  ...
+# Subtest: caller mutation cannot change a created adapter and altitude is never silently inferred
+ok 11 - caller mutation cannot change a created adapter and altitude is never silently inferred
+  ---
+  duration_ms: 0.394126
+  type: 'test'
+  ...
+# Subtest: committed sample is byte-deterministic and independent of input feature order
+ok 12 - committed sample is byte-deterministic and independent of input feature order
+  ---
+  duration_ms: 3.57818
+  type: 'test'
+  ...
+# Subtest: source pins verify all 14 read-only contracts against current bytes
+ok 13 - source pins verify all 14 read-only contracts against current bytes
+  ---
+  duration_ms: 0.838568
+  type: 'test'
+  ...
+# Subtest: proposed area is closed, counter-clockwise and 200 x 200 local metres; geography is lon/lat
+ok 14 - proposed area is closed, counter-clockwise and 200 x 200 local metres; geography is lon/lat
+  ---
+  duration_ms: 0.661701
+  type: 'test'
+  ...
+# Subtest: provenance, unknown real heights/datum and non-admission status survive serialization
+ok 15 - provenance, unknown real heights/datum and non-admission status survive serialization
+  ---
+  duration_ms: 0.304591
+  type: 'test'
+  ...
+# Subtest: malformed synthetic manifests reject duplicate IDs, false certainty and out-of-bound footprints
+ok 16 - malformed synthetic manifests reject duplicate IDs, false certainty and out-of-bound footprints
+  ---
+  duration_ms: 0.592466
+  type: 'test'
+  ...
+# Subtest: building output does not mutate inputs or retain writable references to them
+ok 17 - building output does not mutate inputs or retain writable references to them
+  ---
+  duration_ms: 0.466796
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 15
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 190.150945

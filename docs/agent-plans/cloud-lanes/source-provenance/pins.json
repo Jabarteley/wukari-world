@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "files": [
+    {
+      "path": "schema.v1.json",
+      "bytes": 21491,
+      "sha256": "6b5f58b4a86211d7d216b230037fec848c9449fd2114bed63a8ad99d6369eee6"
+    },
+    {
+      "path": "registry.v1.json",
+      "bytes": 25247,
+      "sha256": "17804533082d60a5552b05613cd06a8fca8824cfc8b2bc8f9c89779af50f632e"
+    },
+    {
+      "path": "fixtures/LICENSE-AGPL-3.0.txt",
+      "bytes": 34523,
+      "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
+    }
+  ]
+}

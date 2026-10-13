@@ -1,0 +1,19 @@
+{
+ "iso": "UA",
+ "country": "Ukraine",
+ "geofabrik": "europe/ukraine",
+ "snapshot": "261011",
+ "cities": [
+  {
+   "id": "kyiv",
+   "name": "Kyiv",
+   "lat": 50.45,
+   "lon": 30.523611111111,
+   "centreSource": "Wikidata Q1899 P625 (wbgetentities, 2026-10-12)",
+   "airportIdent": "UKBB",
+   "timezone": "Europe/Kyiv",
+   "airportSourceUrl": "https://ourairports.com/airports/UKBB/",
+   "hubWaiver": "Boryspil International (UKBB), the large airport serving Kyiv, has scheduled service suspended since February 2022 and the pinned OurAirports row says scheduled_service=no; it is the hub only as a mapped place and the game claims no operations or flights from it."
+  }
+ ]
+}

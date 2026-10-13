@@ -20,9 +20,10 @@ export const MAXIMUM_LABELS = 18;
  * @param ref     element -> canonical `type/id`
  * @param normal  name normaliser used for de-duplication
  * @param centre  { lon, lat } of the city, used only to rank fallback labels (nearest first)
+ * @param minimumLabels  the profile's minimum (standard 5, microstate 3); the fallback tiers start only below it
  * @returns { labels: [{id, ref, kind:'neighbourhood'}], placeTags: { [ref]: place tag }, fallback: boolean, areaRefs: string[] }
  */
-export function districtLabels({ pool, name, ref, normal, centre }) {
+export function districtLabels({ pool, name, ref, normal, centre, minimumLabels = MINIMUM_LABELS }) {
     const nodes = tags => pool.filter(el => el.type === 'node' && tags.includes(el.tags.place));
     const areas = tags => pool.filter(el => el.type !== 'node' && el.center && tags.includes(el.tags.place));
     const lonLat = el => (el.type === 'node' ? el : el.center);
@@ -30,18 +31,18 @@ export function districtLabels({ pool, name, ref, normal, centre }) {
     const wikidata = el => (el.tags.wikidata ? 1 : 0);
     const primary = dedupe(nodes(PRIMARY_DISTRICT_PLACES).sort((a, b) => wikidata(b) - wikidata(a) || ref(a).localeCompare(ref(b)))).slice(0, MAXIMUM_LABELS);
     let chosen = primary, fallback = false;
-    if (primary.length < MINIMUM_LABELS) {
+    if (primary.length < minimumLabels) {
         const taken = new Set(primary.map(el => normal(name(el))));
         const distance = el => Math.hypot(lonLat(el).lon - centre.lon, lonLat(el).lat - centre.lat);
         const tier = el => FALLBACK_DISTRICT_PLACES.indexOf(el.tags.place);
         const extra = dedupe(nodes(FALLBACK_DISTRICT_PLACES).sort((a, b) => tier(a) - tier(b) || wikidata(b) - wikidata(a) || distance(a) - distance(b) || ref(a).localeCompare(ref(b))), taken);
         chosen = [...primary, ...extra].slice(0, MAXIMUM_LABELS);
-        if (chosen.length < MINIMUM_LABELS) {
+        if (chosen.length < minimumLabels) {
             // Areas only after every node, and never more than the minimum is topped up: primary tags first, then the fallback tags in tier order, nearest first.
             const areaTier = el => (PRIMARY_DISTRICT_PLACES.includes(el.tags.place) ? -1 : tier(el));
             const taken2 = new Set(chosen.map(el => normal(name(el))));
             const more = dedupe(areas([...PRIMARY_DISTRICT_PLACES, ...FALLBACK_DISTRICT_PLACES]).sort((a, b) => areaTier(a) - areaTier(b) || wikidata(b) - wikidata(a) || distance(a) - distance(b) || ref(a).localeCompare(ref(b))), taken2);
-            chosen = [...chosen, ...more].slice(0, MINIMUM_LABELS);
+            chosen = [...chosen, ...more].slice(0, minimumLabels);
         }
         fallback = chosen.length > primary.length;
     }

@@ -1,0 +1,24 @@
+{
+ "iso": "NR",
+ "country": "Nauru",
+ "geofabrik": "australia-oceania/nauru",
+ "snapshot": "261011",
+ "cities": [
+  {
+   "id": "yaren",
+   "name": "Yaren",
+   "lat": -0.5477,
+   "lon": 166.920867,
+   "centreSource": "Wikidata Q31026 P625",
+   "airportIdent": "ANYN",
+   "cityOsmRef": "node/313728509",
+   "profile": "microstate",
+   "selectionExclusions": [
+    {
+     "ref": "node/4896230521",
+     "reason": "Cantilever Cranes: a harbour crane mapped as a point 33 m inside the sea (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+    }
+   ]
+  }
+ ]
+}

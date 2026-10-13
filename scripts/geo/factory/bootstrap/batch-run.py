@@ -23,7 +23,7 @@ _merge_spec = importlib.util.spec_from_file_location('source_merge', HERE / 'sou
 _merge = importlib.util.module_from_spec(_merge_spec)
 _merge_spec.loader.exec_module(_merge)
 
-SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions'}
+SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions', 'profile'}
 
 def digest_many(path, *algorithms):
     if not algorithms or len(set(algorithms)) != len(algorithms):
@@ -81,7 +81,8 @@ def validate(table):
         if seed.get('namesUnit') is not None and (not isinstance(seed['namesUnit'], str) or not seed['namesUnit'].strip()):
             raise ValueError(f"{seed.get('id', 'seed')}: namesUnit must be a non-empty string")
         selection_exclusions(seed)
-        shared_seed = {key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone')
+        _shared._metadata.profile_rules(seed)
+        shared_seed = {key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile')
                        if key in seed}
         _shared.validate({'schemaVersion': 1, 'geometrySourceSha': table.get('geometrySourceSha'),
                           'seed': shared_seed, 'countrySource': source, 'airports': airports})
@@ -123,6 +124,9 @@ def selection_exclusions(seed):
 
 def selection_exclusions_policy(seed):
     return {'selectionExclusions': selection_exclusions(seed)}
+
+def profile_policy(seed):
+    return {} if seed.get('profile') is None else {'profile': seed['profile']}
 
 def check_seeds_offline(seeds, zone, countries):
     """Network-free seed checks: selectors are well formed and the pinned tz/country tables resolve every seed."""
@@ -384,7 +388,7 @@ def main():
         if boundary_error:
             for seed in seeds:
                 reason = 'city metadata and extraction skipped because the exact same-source country boundary is HOLD: ' + boundary_error
-                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), 'reason': reason}
+                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **profile_policy(seed), 'reason': reason}
                 city_results.append(city_result)
                 (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
                 (out / 'logs' / (seed['id'] + '-metadata.log')).write_text('SKIPPED: ' + reason + '\n')
@@ -395,7 +399,7 @@ def main():
                 city_metadata.mkdir(parents=True, exist_ok=True)
                 seed_file = city_metadata / 'seed.json'
                 # Only the shared source-selection keys reach metadata; map/selection policy stays in batch results.
-                seed_file.write_text(json.dumps({key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone') if key in seed}))
+                seed_file.write_text(json.dumps({key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile') if key in seed}))
                 seed_files.append(str(seed_file))
             seed_manifest = out / 'inputs' / 'metadata-seeds.json'
             seed_manifest.parent.mkdir(parents=True, exist_ok=True)
@@ -439,7 +443,7 @@ def main():
                     metadata_log = out / 'logs' / (seed['id'] + '-metadata.log')
                     if not metadata_log.exists():
                         metadata_log.write_text(json.dumps({'status': 'HOLD', 'reason': reason}) + '\nshared log: batch-metadata.log\n')
-                    city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), 'reason': reason}
+                    city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **profile_policy(seed), 'reason': reason}
                     city_results.append(city_result)
                     (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
         extraction_errors = {}
@@ -461,9 +465,9 @@ def main():
                 job_file = out / 'receipts' / (seed['id'] + '-source-job.json')
                 job_file.write_text(json.dumps(producer, indent=2))
                 producers.append(producer)
-                city_results.append({'id': seed['id'], 'status': 'SOURCE_CANDIDATE', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), 'sourceJob': producer})
+                city_results.append({'id': seed['id'], 'status': 'SOURCE_CANDIDATE', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **profile_policy(seed), 'sourceJob': producer})
             except Exception as error:
-                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), 'reason': str(error)}
+                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **profile_policy(seed), 'reason': str(error)}
                 city_results.append(city_result)
                 (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
         city_results.sort(key=lambda city: [seed['id'] for seed in seeds].index(city['id']))

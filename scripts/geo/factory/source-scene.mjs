@@ -1,4 +1,5 @@
 import { assertDestinationOutput } from './destination-contract.mjs';
+import { profileFor } from './profile.mjs';
 import { loadCountryScope, assertCountryFacts } from './country-scope.mjs';
 import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
@@ -74,9 +75,30 @@ export function countryProblemsFor(places, bundle, scope) {
   });
 }
 
+const insideRing = ([x, y], ring) => {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i], [xj, yj] = ring[j];
+    if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+};
+
+/** A documented empty slot keeps the game's fictional venue near the city centre; it must not stand in drawn water (the exact-coast stage only tests sourced places). */
+export function wetEmptySlotsFor(emptySlots, ids, venues, water) {
+  return (emptySlots ?? []).flatMap(({ slot }) => {
+    const position = venues.find(venue => venue.id === ids[slot])?.position;
+    if (!position || position.kind !== 'lon-lat') return [{ slot, problem: 'fictional venue has no lon/lat position to check' }];
+    const point = [position.lon, position.lat];
+    return water.some(polygon => insideRing(point, polygon[0]) && !polygon.slice(1).some(hole => insideRing(point, hole)))
+      ? [{ slot, problem: 'the fictional venue of the empty slot stands in drawn water', point }] : [];
+  });
+}
+
 export async function inspectFactorySourceScene(app, cityId, extractDir, expected) {
-  const [{ PLACES }, { FACTS }, { CONFIG }] = await Promise.all([
+  const [{ PLACES }, { FACTS }, { CONFIG }, { TERRAIN }, { buildDestinationContent }, { destinationVenueIds }] = await Promise.all([
     moduleAt(app, `src/game/cities/${cityId}/places.ts`), moduleAt(app, `src/game/cities/${cityId}/facts.ts`), moduleAt(app, `scripts/geo/destination-detail/${cityId}.ts`),
+    moduleAt(app, `src/game/cities/${cityId}/terrain.ts`), moduleAt(app, 'src/game/cities/africa/contentBuilder.ts'), moduleAt(app, 'src/game/cities/africa/types.ts'),
   ]);
   const bundle = await loadSourceBundle(app, cityId, extractDir, CONFIG, expected);
   assertDestinationOutput(FACTS, PLACES);
@@ -84,12 +106,17 @@ export async function inspectFactorySourceScene(app, cityId, extractDir, expecte
   assertCountryFacts(scope, FACTS);
   assert.deepEqual(scope.receipt, expected.countryScopeReceipt, 'country receipt changed since selection');
   const scene = await inspectSourceScene(app, cityId, extractDir, expected);
-  return { ...scene, countryScope: scope.receipt, sourceProblems: [...scene.sourceProblems, ...countryProblemsFor(PLACES, bundle, scope)] };
+  // Profile (standard unless the recipe names one): the place minimum, and the documented empty slots with their fictional venues checked for water.
+  const profile = profileFor(CONFIG.profile), emptySlots = CONFIG.emptySlots ?? [];
+  const wetEmptySlots = wetEmptySlotsFor(emptySlots, destinationVenueIds(cityId, FACTS.airport.id), buildDestinationContent(FACTS, PLACES).venues, TERRAIN.water ?? []);
+  return { ...scene, profile: CONFIG.profile ?? 'standard', minimumPlaces: profile.minimumPlaces, emptySlots: emptySlots.map(item => item.slot), wetEmptySlots, countryScope: scope.receipt, sourceProblems: [...scene.sourceProblems, ...countryProblemsFor(PLACES, bundle, scope)] };
 }
 
 export function assertSourceScene(scene) {
   assert.ok(!scene.sourceProblems.length && !scene.unknownKinds.length, 'source reference or scene-kind proof failed');
-  assert.ok(scene.places >= 20 && scene.venues >= 20 && scene.airportMinimumBoxMarginMetres >= 900, 'places or airport margin below city acceptance bar');
+  const minimumPlaces = scene.minimumPlaces ?? 20;
+  assert.ok(scene.places >= minimumPlaces && scene.venues >= minimumPlaces && scene.airportMinimumBoxMarginMetres >= 900, 'places or airport margin below city acceptance bar');
+  assert.ok(!scene.wetEmptySlots?.length, 'a documented empty slot has its fictional venue in drawn water');
   assert.ok(scene.triangles < scene.triangleLimit && scene.drawCalls <= scene.drawCallLimit, 'scene budget exceeded');
 }
 

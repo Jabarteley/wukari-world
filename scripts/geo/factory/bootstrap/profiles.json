@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "description": "City selection profiles. A seed names at most one with `profile`; a seed without it is `standard`. Read by profile.mjs (selection, preflight, source scene, acceptance, receipts) and by metadata.py (which place tags may name the city node). The documented empty slot is a feature of the profile, never of a single run: a slot without an honest source keeps the game's own fictional venue, and the selection records why.",
+  "profiles": {
+    "standard": {
+      "minimumPlaces": 20,
+      "minimumNeighbourhoodLabels": 5,
+      "maximumEmptySlots": 0,
+      "cityPlaceTags": [
+        "city",
+        "town"
+      ],
+      "capitalPlaceTags": []
+    },
+    "microstate": {
+      "minimumPlaces": 12,
+      "minimumNeighbourhoodLabels": 3,
+      "maximumEmptySlots": 4,
+      "cityPlaceTags": [
+        "city",
+        "town",
+        "village",
+        "hamlet",
+        "locality"
+      ],
+      "capitalPlaceTags": [
+        "suburb"
+      ]
+    }
+  }
+}

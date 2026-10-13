@@ -1,0 +1,20 @@
+{
+ "iso": "VA",
+ "country": "Holy See (Vatican City State)",
+ "geofabrik": "europe/italy",
+ "snapshot": "261011",
+ "cities": [
+  {
+   "id": "vatican-city",
+   "name": "Vatican City",
+   "lat": 41.904,
+   "lon": 12.453,
+   "centreSource": "Wikidata Q237 P625 (Vatican City)",
+   "airportIdent": "VA-0001",
+   "airportSourceUrl": "https://ourairports.com/airports/VA-0001/",
+   "cityOsmRef": "node/424311883",
+   "profile": "microstate",
+   "hubWaiver": "The Holy See has no airport with scheduled service in the pinned OurAirports CSV; its own named Vatican City heliport (VA-0001) is the game air hub. Airport records do not establish current operations; the game claims none."
+  }
+ ]
+}

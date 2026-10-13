@@ -39,3 +39,23 @@ export function pickForSlot({ slot, predicate, pool, rank, ref }) {
   }
   return { el: undefined, slotFallback: undefined };
 }
+
+/**
+ * Fill every slot in order (the order matters: `rank` drops what `take` already used).
+ * @param slots        { [slot]: predicate } in selection order
+ * @param allowEmpty   true only for a profile that permits documented empty slots (profile.mjs `maximumEmptySlots > 0`)
+ * @param emptyReason  slot -> recorded reason (profile.mjs `emptySlotReason`)
+ * @param take         (slot, el, slotFallback) => void, called for each slot that has a source
+ * @returns { empty: [{ slot, reason }], missing: [slot] } where `empty` is the documented empty slots and `missing` the slots left without a source
+ *          when empty slots are not allowed (the caller turns those into errors).
+ */
+export function fillSlots({ slots, pool, rank, ref, allowEmpty, emptyReason, take }) {
+  const empty = [], missing = [];
+  for (const [slot, predicate] of Object.entries(slots)) {
+    const { el, slotFallback } = pickForSlot({ slot, predicate, pool, rank, ref });
+    if (el) take(slot, el, slotFallback);
+    else if (allowEmpty) empty.push({ slot, reason: emptyReason(slot) });
+    else missing.push(slot);
+  }
+  return { empty, missing };
+}

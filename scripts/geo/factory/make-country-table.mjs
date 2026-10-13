@@ -12,7 +12,11 @@
 //   {iso:'LR', country:'Liberia', geofabrik:'africa/liberia',
 //    cities:[{id:'monrovia', name:'Monrovia', lat:6.3, lon:-10.8, centreSource:'GeoNames 2274895', airportIdent:'GLRB',
 //             timezone:'Africa/Monrovia' /* required only for multi-zone countries */,
-//             airportSourceUrl, cityOsmRef, sceneWaterExtent, namesUnit, selectionExclusions /* passed through */}]}
+//             airportSourceUrl, cityOsmRef, sceneWaterExtent, namesUnit, selectionExclusions, profile /* passed through */,
+//             hubWaiver /* written reason (>= 20 chars): only for a country with NO scheduled-service large/medium/small airport; the
+//                          named airport may then be a heliport, seaplane base or small field with any scheduled_service */}],
+//    snapshot:'261011' /* optional YYMMDD: pin this dated Geofabrik file instead of whatever -latest points to today */,
+//    neighbours:[{geofabrik:'europe/italy/nord-ovest', reason:'...'}] /* optional, 1-3: same-snapshot neighbour extracts (README-batch.md 'Neighbour extracts') */}
 // Writes <out>/<iso-lower>.json (the table) and <out>/<iso-lower>-notes.json (proposals, checks, sources, retrieval times).
 // Exit code 1 if any country fails; the failure reason is printed and no table is written for it.
 import { createHash } from 'node:crypto';
@@ -26,7 +30,9 @@ const GEOMETRY_SHA = '7a57e756a10b35a0eec9ec5928f083580fb9e7a9';
 const AIRPORTS_REPO = 'davidmegginson/ourairports-data';
 const MAX_KM_DEFAULT = 60;
 const ELIGIBLE_TYPES = new Set(['large_airport', 'medium_airport']);
-const SEED_PASSTHROUGH = ['cityOsmRef', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions'];
+const SEED_PASSTHROUGH = ['cityOsmRef', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions', 'profile'];
+const WAIVER_TYPES = new Set(['large_airport', 'medium_airport', 'small_airport', 'heliport', 'seaplane_base']);
+const SCHEDULED_TYPES = new Set(['large_airport', 'medium_airport', 'small_airport']);
 const UA = { 'user-agent': 'allworld-make-country-table' };
 
 class Refuse extends Error {}
@@ -41,11 +47,13 @@ async function http(url, options = {}) {
 }
 
 // ---- Geofabrik ---------------------------------------------------------------------------------------------
-async function resolveGeofabrik(path) {
+async function resolveGeofabrik(path, snapshot) {
   if (!/^[a-z0-9-]+(?:\/[a-z0-9-]+)+$/.test(path)) refuse(`geofabrik path must look like 'africa/liberia': ${path}`);
+  if (snapshot !== undefined && !/^\d{6}$/.test(snapshot)) refuse(`snapshot must be YYMMDD, got ${JSON.stringify(snapshot)}`);
   const slug = path.split('/').pop();
   const latest = `https://download.geofabrik.de/${path}-latest.osm.pbf`;
-  const head = await http(latest, { method: 'HEAD', redirect: 'manual' });
+  // With a snapshot the dated file is named directly (HEAD below must still return its size); without one the -latest redirect decides.
+  const head = snapshot === undefined ? await http(latest, { method: 'HEAD', redirect: 'manual' }) : { status: 307, headers: new Headers({ location: `https://download.geofabrik.de/${path}-${snapshot}.osm.pbf` }) };
   const location = head.headers.get('location');
   if (head.status < 300 || head.status >= 400 || !location) refuse(`${latest} did not redirect to a dated file (HTTP ${head.status}); check the Geofabrik path`);
   const url = new URL(location, latest).href;
@@ -138,6 +146,7 @@ function airportFacts(row, km) {
 }
 
 function chooseAirport(rows, city, iso, maxKm) {
+  if (city.hubWaiver !== undefined) return waivedAirport(rows, city, iso, maxKm);
   const inCountry = rows.filter((r) => r.iso_country === iso && r.latitude_deg && r.longitude_deg);
   const dist = (r) => haversineKm(city.lat, city.lon, Number(r.latitude_deg), Number(r.longitude_deg));
   if (city.airportIdent) {
@@ -156,6 +165,24 @@ function chooseAirport(rows, city, iso, maxKm) {
     .map((r) => ({ row: r, km: dist(r) })).sort((a, b) => a.km - b.km);
   if (!eligible.length || eligible[0].km > maxKm) refuse(`${city.id}: no large/medium scheduled-service ${iso} airport within ${maxKm} km (nearest: ${eligible[0] ? `${eligible[0].row.ident} at ${eligible[0].km.toFixed(1)} km` : 'none'}); supply airportIdent after review`);
   return { row: eligible[0].row, km: eligible[0].km, proposed: true, alternatives: eligible.slice(1, 4).filter((e) => e.km <= maxKm).map((e) => airportFacts(e.row, e.km)) };
+}
+
+// hubWaiver: a country with no scheduled-service large/medium/small airport in the pinned CSV (the same test metadata.py applies) may name its own
+// heliport, seaplane base or field as the game's air hub. The named row must exist, be in the country, be named, and lie within --max-km of the centre.
+function waivedAirport(rows, city, iso, maxKm) {
+  if (typeof city.hubWaiver !== 'string' || city.hubWaiver.trim().length < 20) refuse(`${city.id}: hubWaiver needs a written reason of at least 20 characters`);
+  if (!city.airportIdent) refuse(`${city.id}: hubWaiver needs an explicit airportIdent`);
+  const scheduled = rows.filter((r) => r.iso_country === iso && r.scheduled_service === 'yes' && SCHEDULED_TYPES.has(r.type));
+  if (scheduled.length) refuse(`${city.id}: hubWaiver refused, ${iso} has scheduled-service airports (${scheduled.map((r) => r.ident).join(', ')})`);
+  const hits = rows.filter((r) => r.ident === city.airportIdent);
+  if (hits.length !== 1) refuse(`${city.id}: airport ident ${city.airportIdent} is missing or ambiguous in the pinned CSV`);
+  const row = hits[0];
+  if (row.iso_country !== iso) refuse(`${city.id}: ${row.ident} is in ${row.iso_country}, not ${iso}`);
+  if (!WAIVER_TYPES.has(row.type)) refuse(`${city.id}: ${row.ident} is type ${row.type}; not an airport, heliport or seaplane base`);
+  if (!row.name) refuse(`${city.id}: ${row.ident} has no name`);
+  const km = haversineKm(city.lat, city.lon, Number(row.latitude_deg), Number(row.longitude_deg));
+  if (km > maxKm) refuse(`${city.id}: ${row.ident} is ${km.toFixed(1)} km from the supplied city centre; limit ${maxKm} km`);
+  return { row, km, proposed: false, alternatives: [], waived: true };
 }
 
 // ---- timezone ----------------------------------------------------------------------------------------------
@@ -214,7 +241,20 @@ async function buildCountry(spec, shared, options) {
   const tz = shared.tz;
   const isoName = isoCountryName(tz, iso);
   if (!isoName) refuse(`${iso} is not in the pinned iso3166.tab`);
-  const geofabrik = await resolveGeofabrik(spec.geofabrik);
+  const geofabrik = await resolveGeofabrik(spec.geofabrik, spec.snapshot);
+  if (spec.neighbours !== undefined) {
+    if (!Array.isArray(spec.neighbours) || spec.neighbours.length < 1 || spec.neighbours.length > 3) refuse(`${iso}: neighbours must be 1 to 3 entries`);
+    const yymmdd = geofabrik.countrySource.url.match(/-(\d{6})\.osm\.pbf$/)[1];
+    geofabrik.countrySource.neighbours = [];
+    geofabrik.notes.neighbours = [];
+    for (const item of spec.neighbours) {
+      if (!item || typeof item.geofabrik !== 'string' || typeof item.reason !== 'string' || item.reason.trim().length < 20) refuse(`${iso}: each neighbour needs a geofabrik path and a written reason (>= 20 characters)`);
+      // The neighbour must be the SAME snapshot as the primary (Geofabrik keeps dated files for a while); resolving it by name, never by -latest.
+      const resolved = await resolveGeofabrik(item.geofabrik, yymmdd);
+      geofabrik.countrySource.neighbours.push({ ...resolved.countrySource, reason: item.reason.trim() });
+      geofabrik.notes.neighbours.push(resolved.notes);
+    }
+  }
   const airports = await shared.airports();
   const seeds = [];
   const cityNotes = [];
@@ -223,13 +263,13 @@ async function buildCountry(spec, shared, options) {
     const zone = timezoneFor(tz, iso, city.timezone, city.id);
     const seed = { id: city.id, name: city.name, countryISO: iso };
     for (const key of SEED_PASSTHROUGH) if (city[key] !== undefined) seed[key] = city[key];
-    seed.airport = { ident: pick.row.ident, sourceUrl: city.airportSourceUrl || `https://ourairports.com/airports/${encodeURIComponent(pick.row.ident)}/` };
+    seed.airport = { ident: pick.row.ident, sourceUrl: city.airportSourceUrl || `https://ourairports.com/airports/${encodeURIComponent(pick.row.ident)}/`, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}) };
     seed.timezone = { id: zone.id, sourceUrl: tz.zone.record.url };
     seeds.push(seed);
     cityNotes.push({
       id: city.id, name: city.name,
       centre: { lat: city.lat, lon: city.lon, source: city.centreSource, usedFor: 'airport distance check only; the pipeline derives the real centre from the OSM city node' },
-      airport: { ...airportFacts(pick.row, pick.km), proposal: pick.proposed, status: pick.proposed ? 'PROPOSED by nearest large/medium scheduled-service airport; needs human or helper review before queueing' : 'verified from spec airportIdent', sourceUrl: seed.airport.sourceUrl, alternatives: pick.alternatives },
+      airport: { ...airportFacts(pick.row, pick.km), proposal: pick.proposed, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}), status: pick.waived ? 'WAIVED hub (named airport row, no scheduled-service airport in the country)' : pick.proposed ? 'PROPOSED by nearest large/medium scheduled-service airport; needs human or helper review before queueing' : 'verified from spec airportIdent', sourceUrl: seed.airport.sourceUrl, alternatives: pick.alternatives },
       timezone: { id: zone.id, explicit: zone.explicit, zoneRowsForCountry: zone.ids, release: tz.release },
     });
   }

@@ -25,6 +25,7 @@
         "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this city's timezone selection."}
       }
     },
+    "profile": {"enum": ["microstate"], "description": "Selection profile (bootstrap/profiles.json). Absent = standard. microstate: city node may be place=village|hamlet|locality, minimum 12 sourced places and 3 neighbourhood labels, and up to 4 slots without an honest source stay the game's fictional venue (documented in the selection and every receipt). Never invents a place or maps a feature to a wrong kind."},
     "sceneWaterExtent": {"enum": ["play", "reach"], "description": "Oceania-owned runtime scene-water selection."},
     "namesUnit": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Unit label used when presenting local place names."},
     "selectionExclusions": {

@@ -11,8 +11,8 @@ import subprocess
 import time
 from urllib.parse import quote
 
-from metadata import (Hold, choose_airport, choose_city, choose_timezone, coordinate,
-                      country_name, digest, normalized, validate_dataset_url,
+from metadata import (Hold, choose_airport, choose_city, choose_timezone, city_place_tags, coordinate,
+                      city_node_tag_ok, country_name, digest, normalized, profile_rules, validate_dataset_url,
                       validate_seed)
 
 _SCAN_PROGRESS_INTERVAL = 5_000_000
@@ -29,8 +29,8 @@ def _phase_started(phase, **fields):
 def _phase_complete(phase, started, **fields):
     _phase_record(phase, 'complete', elapsedSeconds=round(time.monotonic() - started, 3), **fields)
 
-def _city_node_record(node, expected_name):
-    if node.tags.get('place') not in {'city', 'town'}:
+def _city_node_record(node, expected_name, seed=None):
+    if not city_node_tag_ok(node.tags, seed or {}):
         return None
     if not any(normalized(node.tags.get(key, '')) == expected_name for key in ('name', 'name:en')):
         return None
@@ -51,6 +51,7 @@ def scan_city_nodes(pbf, seeds):
     errors = {}
     for seed in seeds:
         by_name.setdefault(normalized(seed['name']), []).append(seed)
+    scan_tags = set().union(*(city_place_tags(seed) for seed in seeds))
     phase = 'city-node-scan'
     started = _phase_started(phase, progressEvery=_SCAN_PROGRESS_INTERVAL, seedCount=len(seeds))
     import osmium
@@ -65,7 +66,7 @@ def scan_city_nodes(pbf, seeds):
                 _phase_record(phase, 'progress', nodes=self.nodes_seen,
                              candidates=sum(map(len, candidates.values())))
                 self.next_progress += _SCAN_PROGRESS_INTERVAL
-            if node.tags.get('place') not in {'city', 'town'}:
+            if node.tags.get('place') not in scan_tags:
                 return
             matching_names = {normalized(node.tags.get(key, '')) for key in ('name', 'name:en')}
             for name in matching_names.intersection(by_name):
@@ -73,7 +74,7 @@ def scan_city_nodes(pbf, seeds):
                     if seed['id'] in errors:
                         continue
                     try:
-                        record = _city_node_record(node, name)
+                        record = _city_node_record(node, name, seed)
                     except Hold as error:
                         errors[seed['id']] = str(error)
                     else:
@@ -200,6 +201,9 @@ def finish_city(context, args, adapter):
                   'bounds': bounds}
     if 'cityOsmRef' in seed:
         provenance['centre']['selection'] = {'cityOsmRef': seed['cityOsmRef'], 'matchedOsmRef': city['ref']}
+    if 'profile' in seed:
+        # The selection profile (profiles.json) travels with the city's provenance; the city node's own place tag is in centre.sourceRecord.tags.
+        provenance['profile'] = {'name': seed['profile'], 'rules': profile_rules(seed), 'cityPlaceTag': city['tags'].get('place')}
     if 'airport' in seed:
         provenance['airport']['selection'] = {**seed['airport'], 'matchedIdent': airport['ident'],
             'municipalityMatchesCity': normalized(airport.get('municipality', '')) == normalized(seed['name']),

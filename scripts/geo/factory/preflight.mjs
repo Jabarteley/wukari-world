@@ -1,4 +1,5 @@
 import { slotPresentation } from './destination-contract.mjs';
+import { profileFor, emptySlotProblems } from './profile.mjs';
 /** Read-only dry-run: node --experimental-strip-types preflight.mjs ROOT CITY EXTRACT_DIR POLICY_JSON */
 import { loadCountryScope, assertCountryFacts } from './country-scope.mjs';
 import { resolve, join } from 'node:path';
@@ -27,6 +28,9 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
     assertCountryFacts(countryScope, f);
     const refs = new Map([...extract.answers.places.elements, ...extract.answers.extras.elements].map(el => [`${el.type}/${el.id}`, el]));
     const errors = [], slots = new Set(), keys = new Set(), names = new Set(), selected = new Set();
+    // The recipe's `profile` (standard when absent) sets the place minimum and whether a slot may be documented empty (profile.mjs).
+    let profile;
+    try { profile = profileFor(c.profile); } catch (error) { errors.push(error.message); profile = profileFor(undefined); }
     const point = el => el.type === 'node' ? [el.lon, el.lat] : [el.center.lon, el.center.lat];
     const normalize = name => name.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLocaleLowerCase('en');
     const base = buildDestinationContent(f, []), ids = destinationVenueIds(city, f.airport.id);
@@ -66,13 +70,17 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
             errors.push(`${p.ref}: fails .008-degree venue guard (atEdge needs separate review)`);
         return [{ ...p, name, lon, lat, district: c.name, osm: p.ref, accuracy: el.type === 'node' ? 'mapped-feature' : 'feature-centroid' }];
     });
-    for (const slot of Object.keys(ids).filter(s => s !== 'airport'))
-        if (!slots.has(slot))
-            errors.push(`missing fixed slot ${slot}`);
-    if (places.length < 20)
-        errors.push(`only ${places.length} sourced venues`);
-    const transit = places.find(p => p.slot === 'transit');
-    if (f.names?.roadHub !== transit?.name)
+    const fixedSlots = Object.keys(ids).filter(s => s !== 'airport'), missingSlots = fixedSlots.filter(slot => !slots.has(slot));
+    if (c.profile === undefined) {
+        for (const slot of missingSlots) errors.push(`missing fixed slot ${slot}`);
+        if (c.emptySlots !== undefined) errors.push('emptySlots needs a profile that allows them');
+    }
+    else errors.push(...emptySlotProblems({ profile: c.profile, emptySlots: c.emptySlots, missingSlots, knownSlots: fixedSlots }));
+    if (places.length < profile.minimumPlaces)
+        errors.push(`only ${places.length} sourced venues (the ${profile.name} profile needs ${profile.minimumPlaces})`);
+    // A documented empty transit slot leaves the game's own transit venue, so the road hub is that venue's fictional name.
+    const transit = places.find(p => p.slot === 'transit'), expectedRoadHub = transit ? transit.name : base.venues.find(venue => venue.id === ids.transit)?.name;
+    if (f.names?.roadHub !== expectedRoadHub)
         errors.push('roadHub differs from actual transit display name');
     const marginKm = Math.min((f.airport.lon - w) * 111.32 * Math.cos(f.airport.lat * Math.PI / 180), (e - f.airport.lon) * 111.32 * Math.cos(f.airport.lat * Math.PI / 180), (f.airport.lat - s) * 110.57, (n - f.airport.lat) * 110.57);
     if (marginKm < .9)
@@ -92,6 +100,8 @@ export async function preflight(rootArg, city, extractArg, suppliedConfig, suppl
     catch (error) {
         errors.push(error.message);
     }
+    if (c.profile !== undefined && c.names.filter(p => p.kind === 'neighbourhood').length < profile.minimumNeighbourhoodLabels)
+        errors.push(`fewer than ${profile.minimumNeighbourhoodLabels} neighbourhood labels (the ${profile.name} profile)`);
     const water = new Map(extract.answers.water.elements.map(el => [`${el.type}/${el.id}`, el])), waterLabels = [];
     for (const pick of c.names.filter(p => p.kind === 'water')) {
         const el = water.get(pick.ref), polys = el ? polygonsOf(areaRings(el), boxes.wide, Math.max(c.waterTolerance, .0008)) : [];

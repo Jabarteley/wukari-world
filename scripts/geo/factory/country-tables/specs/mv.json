@@ -1,0 +1,17 @@
+{
+ "iso": "MV",
+ "country": "Maldives",
+ "geofabrik": "asia/maldives",
+ "snapshot": "261011",
+ "cities": [
+  {
+   "id": "male",
+   "name": "Malé",
+   "lat": 4.175,
+   "lon": 73.508333,
+   "centreSource": "Wikidata P625 Q9347",
+   "airportIdent": "VRMM",
+   "profile": "microstate"
+  }
+ ]
+}

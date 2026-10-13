@@ -1,0 +1,28 @@
+{
+ "iso": "MC",
+ "country": "Monaco",
+ "geofabrik": "europe/monaco",
+ "snapshot": "261011",
+ "neighbours": [
+  {
+   "geofabrik": "europe/france/provence-alpes-cote-d-azur",
+   "reason": "Monaco's clipped extract cuts the natural=coastline ways that continue into France; the same-snapshot PACA extract holds the rest of that coast (diag-factory-batch6: exact coast fails 'Unclosed coastline topology' on Monaco alone)."
+  },
+  {
+   "geofabrik": "europe/italy/nord-ovest",
+   "reason": "The coast east of Monaco continues into Italy (Liguria, Italy nord-ovest); same snapshot, complete ways, so the sea closes without any splice."
+  }
+ ],
+ "cities": [
+  {
+   "id": "monaco",
+   "name": "Monaco",
+   "lat": 43.731111111,
+   "lon": 7.42,
+   "centreSource": "Wikidata Q235 P625 (capital of Monaco, P36)",
+   "airportIdent": "LNMC",
+   "airportSourceUrl": "https://ourairports.com/airports/LNMC/",
+   "hubWaiver": "Monaco has no large, medium or small airport in the pinned OurAirports CSV; its own named Monaco Heliport (LNMC, IATA MCM, Fontvieille) is the game air hub. Airport records do not establish current operations; the game claims none."
+  }
+ ]
+}

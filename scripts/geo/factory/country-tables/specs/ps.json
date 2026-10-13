@@ -1,0 +1,19 @@
+{
+ "iso": "PS",
+ "country": "Palestine",
+ "geofabrik": "asia/israel-and-palestine",
+ "snapshot": "261011",
+ "cities": [
+  {
+   "id": "ramallah",
+   "name": "Ramallah",
+   "lat": 31.89694,
+   "lon": 35.20167,
+   "centreSource": "Wikidata Q158119 P625 (retrieved 2026-10-12)",
+   "timezone": "Asia/Hebron",
+   "airportIdent": "ZDM",
+   "airportSourceUrl": "https://ourairports.com/airports/ZDM/",
+   "hubWaiver": "The State of Palestine has no open airport with scheduled service in the pinned OurAirports CSV (Gaza Yasser Arafat International and the other strips are closed); its own named Ramallah Heliport (ZDM, IATA ZDM) at the city is the game air hub. Airport records do not establish current operations; the game claims none."
+  }
+ ]
+}

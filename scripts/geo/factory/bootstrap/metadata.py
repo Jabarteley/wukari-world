@@ -47,11 +47,32 @@ def validate_source_url(value):
     if parsed.scheme != 'https' or not parsed.hostname or parsed.username is not None or parsed.password is not None:
         raise Hold('selection sourceUrl must be an HTTPS provenance URL')
 
+PROFILES = json.loads((Path(__file__).with_name('profiles.json')).read_text())['profiles']
+
+def profile_rules(seed):
+    """Selection profile of a seed (profiles.json; `standard` when absent). Only the city-node place tags are read here; the other minimums belong to the JS stages."""
+    name = seed.get('profile')
+    if name is None:
+        return PROFILES['standard']
+    if name == 'standard' or name not in PROFILES:
+        raise Hold('unknown seed profile (allowed: ' + ', '.join(sorted(key for key in PROFILES if key != 'standard')) + ')')
+    return PROFILES[name]
+
+def city_place_tags(seed):
+    return set(profile_rules(seed)['cityPlaceTags']) | set(profile_rules(seed)['capitalPlaceTags'])
+
+def city_node_tag_ok(tags, seed):
+    """place=city|town (standard); a profile adds more tags (microstate: village, hamlet, locality) and, for a capital=yes|2 node only, `capitalPlaceTags` (the Holy See's capital node is mapped place=suburb)."""
+    rules = profile_rules(seed)
+    place = tags.get('place')
+    return place in rules['cityPlaceTags'] or (place in rules['capitalPlaceTags'] and tags.get('capital') in {'yes', '2'})
+
 def validate_seed(seed):
-    if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone'}:
+    if not isinstance(seed, dict) or set(seed) - {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'profile'}:
         raise Hold('unsupported seed fields')
     if not isinstance(seed.get('id'), str) or not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', seed['id']) or not isinstance(seed.get('name'), str) or not normalized(seed['name']) or not isinstance(seed.get('countryISO'), str) or not re.fullmatch(r'[A-Z]{2}', seed['countryISO']):
         raise Hold('seed needs city id/name and uppercase country ISO')
+    profile_rules(seed)
     if 'cityOsmRef' in seed and (not isinstance(seed['cityOsmRef'], str) or not re.fullmatch(r'node/[1-9][0-9]*', seed['cityOsmRef'])):
         raise Hold('cityOsmRef needs a positive OSM node reference')
     for key, field in (('airport', 'ident'), ('timezone', 'id')):
@@ -73,7 +94,7 @@ def validate_dataset_url(value):
     return value
 
 def choose_city(nodes, seed, selector=None):
-    matches = [node for node in nodes if node['tags'].get('place') in {'city', 'town'} and any(normalized(node['tags'].get(key, '')) == normalized(seed['name']) for key in ('name', 'name:en'))]
+    matches = [node for node in nodes if city_node_tag_ok(node['tags'], seed) and any(normalized(node['tags'].get(key, '')) == normalized(seed['name']) for key in ('name', 'name:en'))]
     selected_ref = selector if selector is not None else seed.get('cityOsmRef')
     if selected_ref is not None:
         eligible = [node for node in matches if node.get('ref') == selected_ref]
@@ -82,6 +103,12 @@ def choose_city(nodes, seed, selector=None):
         return eligible[0]
     capitals = [node for node in matches if node['tags'].get('capital') in {'yes', '2'}]
     eligible = capitals or matches
+    # A profile with more city place tags (microstate: village, hamlet, locality) prefers the highest tag in its list when several nodes share the name.
+    tags = profile_rules(seed)['cityPlaceTags']
+    if len(eligible) > 1 and tags != PROFILES['standard']['cityPlaceTags']:
+        rank = lambda node: tags.index(node['tags']['place']) if node['tags']['place'] in tags else len(tags)
+        best = min(map(rank, eligible))
+        eligible = [node for node in eligible if rank(node) == best]
     if len(eligible) != 1:
         raise Hold(f'city match is missing or ambiguous: {len(matches)} names, {len(capitals)} national capitals')
     return eligible[0]
@@ -190,7 +217,7 @@ def main():
                     phase_record(phase, 'progress', nodes=self.nodes_seen, candidates=len(candidates))
                     self.next_progress += SCAN_PROGRESS_INTERVAL
                 tags = {tag.k: tag.v for tag in node.tags}
-                if tags.get('place') in {'city', 'town'} and any(normalized(tags.get(key, '')) == expected_name for key in ('name', 'name:en')):
+                if city_node_tag_ok(tags, seed) and any(normalized(tags.get(key, '')) == expected_name for key in ('name', 'name:en')):
                     if not node.location.valid():
                         raise Hold('matching city node has no valid location')
                     candidates.append({'ref': f'node/{node.id}', 'tags': tags, **coordinate(node.location.lon, node.location.lat)})

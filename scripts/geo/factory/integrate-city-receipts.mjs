@@ -3,6 +3,7 @@ import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 import { validateSourceInputs } from './source-inputs.mjs';
+import { profileFor } from './profile.mjs';
 const [rootArg, manifestArg, receiptRootArg = 'world/playable-africa-rollout'] = process.argv.slice(2);
 if (!rootArg || !manifestArg || !/^world\/playable-[a-z-]+-rollout$/.test(receiptRootArg)) throw Error('Usage: node --experimental-strip-types integrate-city-receipts.mjs <worktree> <private manifest> [world/playable-<region>-rollout]');
 const root = resolve(rootArg), manifest = JSON.parse(readFileSync(manifestArg, 'utf8'));
@@ -24,7 +25,9 @@ for (const { id, extract, sourceInputs } of manifest.cities) {
   for (const layer of layers) for (const key of ['cityId', 'datasetUrl', 'datasetSha256', 'pbfHeaderTimestamp', 'adapterSha256']) {
     if (layer.parsed.source[key] !== provenance[key]) throw Error(`${id}: inconsistent ${key}`);
   }
-  if (provenance.cityId !== id || PLACES.length < 20) throw Error(`${id}: source identity or place minimum failed`);
+  // The place minimum is the recipe's profile minimum (20 for a recipe without a profile; profile.mjs).
+  const profile = profileFor(CONFIG.profile), emptySlots = CONFIG.emptySlots ?? [];
+  if (provenance.cityId !== id || PLACES.length < profile.minimumPlaces) throw Error(`${id}: source identity or place minimum failed`);
   // Merged primary+neighbour source: datasetSha256 is the merged file's; the dated inputs are recorded beside it.
   if (sourceInputs !== undefined) validateSourceInputs(sourceInputs, { url: provenance.datasetUrl });
   const generatedAssets = Object.fromEntries(['facts.ts', 'geometry.ts', 'places.ts', 'terrain.ts', 'index.ts', 'content.ts', 'map.ts'].map(name => {
@@ -42,6 +45,7 @@ for (const { id, extract, sourceInputs } of manifest.cities) {
     schemaVersion: 1, cityId: id, countryIso2: FACTS.country.idISOlower.toUpperCase(), admission,
     cityPoint: { name: FACTS.name, coordinatesWgs84: [FACTS.centre.lon, FACTS.centre.lat], sourceClass: 'map projection origin', sourceUrl: FACTS.sourceUrl },
     airport: FACTS.airport, boxes: provenance.boxes, waterRecipe: provenance.waterRecipe, geometryInput,
+    ...(CONFIG.profile === undefined ? {} : { profile: CONFIG.profile, emptySlots }),
     selectedPlaces: PLACES.map(({ name, osm, lon, lat, accuracy }) => ({ name, osm, coordinatesWgs84: [lon, lat], accuracy })),
     generatedAssets, licence: FACTS.licence, scope: FACTS.coverageNote,
   };
@@ -53,7 +57,8 @@ for (const { id, extract, sourceInputs } of manifest.cities) {
   const areaLabels = CONFIG.names.filter(label => label.kind === 'neighbourhood' && !label.ref.startsWith('node/')).map(label => ({ ref: label.ref, place: placeElements.get(label.ref)?.tags?.place, name: placeElements.get(label.ref)?.tags?.name }));
   const fallbackLabels = labelTags.some(tag => ['village', 'hamlet', 'locality', 'subdivision'].includes(tag)) || areaLabels.length > 0;
   const slotFallbacks = CONFIG.places.filter(place => place.slotFallback).map(place => place.slotFallback);
-  const selection = slotFallbacks.length || fallbackLabels ? {
+  const selection = slotFallbacks.length || fallbackLabels || CONFIG.profile !== undefined ? {
+    ...(CONFIG.profile === undefined ? {} : { profile: CONFIG.profile, emptySlots }),
     ...(slotFallbacks.length ? { slotFallbacks } : {}),
     ...(areaLabels.length ? { districtLabelAreas: areaLabels } : {}),
     ...(fallbackLabels ? { districtLabelPlaceTags: Object.fromEntries([...new Set(labelTags)].sort().map(tag => [tag, labelTags.filter(item => item === tag).length])) } : {}),

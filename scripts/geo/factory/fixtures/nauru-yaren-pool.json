@@ -1,0 +1,2059 @@
+{
+ "note": "The named elements of the real Yaren (Nauru) places and extras extracts, tags trimmed to the selection-relevant keys, nothing added: source australia-oceania/nauru-261011.osm.pbf (sha256 45688d43675a6ac33b02b39d09052011ee762aeacb9451669eb2f7c97ecfe47f), extracted by scripts/geo/offline-extract.py through bootstrap/batch-run.py on 13 Oct 2026. The pool has no railway/bus station and no marketplace or mall, so the transit and market slots have no honest source.",
+ "source": {
+  "cityId": "yaren",
+  "datasetUrl": "https://download.geofabrik.de/australia-oceania/nauru-261011.osm.pbf",
+  "datasetSha256": "45688d43675a6ac33b02b39d09052011ee762aeacb9451669eb2f7c97ecfe47f"
+ },
+ "elements": [
+  {
+   "type": "node",
+   "id": 313728503,
+   "tags": {
+    "name": "Orro",
+    "place": "village",
+    "wikidata": "Q3886168"
+   },
+   "lon": 166.911842,
+   "lat": -0.5376164
+  },
+  {
+   "type": "node",
+   "id": 313728507,
+   "tags": {
+    "name": "Buada",
+    "place": "village"
+   },
+   "lon": 166.9237342,
+   "lat": -0.5344982
+  },
+  {
+   "type": "node",
+   "id": 313728509,
+   "tags": {
+    "capital": "no",
+    "name": "Yaren",
+    "name:en": "Yaren",
+    "place": "village",
+    "wikidata": "Q31026"
+   },
+   "lon": 166.9163479,
+   "lat": -0.5471064
+  },
+  {
+   "type": "node",
+   "id": 1406310763,
+   "tags": {
+    "name": "Anibare",
+    "place": "village",
+    "wikidata": "Q328733"
+   },
+   "lon": 166.9507521,
+   "lat": -0.5308137
+  },
+  {
+   "type": "node",
+   "id": 1406310781,
+   "tags": {
+    "name": "Arubo",
+    "place": "village"
+   },
+   "lon": 166.932432,
+   "lat": -0.5048074
+  },
+  {
+   "type": "node",
+   "id": 1406310784,
+   "tags": {
+    "name": "Baitsi",
+    "place": "village",
+    "wikidata": "Q60181983"
+   },
+   "lon": 166.9286951,
+   "lat": -0.5095396
+  },
+  {
+   "type": "node",
+   "id": 1406310789,
+   "tags": {
+    "name": "Boe",
+    "place": "village"
+   },
+   "lon": 166.9139992,
+   "lat": -0.5410232
+  },
+  {
+   "type": "node",
+   "id": 1406310806,
+   "tags": {
+    "name": "Ganokoro",
+    "place": "hamlet"
+   },
+   "lon": 166.9567481,
+   "lat": -0.5214971
+  },
+  {
+   "type": "node",
+   "id": 1406310809,
+   "tags": {
+    "name": "Ibwenape",
+    "place": "village"
+   },
+   "lon": 166.93851,
+   "lat": -0.5514114
+  },
+  {
+   "type": "node",
+   "id": 1406310812,
+   "tags": {
+    "name": "Ijuw",
+    "place": "hamlet",
+    "wikidata": "Q49277602"
+   },
+   "lon": 166.9572641,
+   "lat": -0.5152162
+  },
+  {
+   "type": "node",
+   "id": 1406310818,
+   "tags": {
+    "name": "Nibok",
+    "place": "village"
+   },
+   "lon": 166.9206529,
+   "lat": -0.5171988
+  },
+  {
+   "type": "node",
+   "id": 1406312402,
+   "tags": {
+    "name": "Ronave",
+    "place": "village",
+    "wikidata": "Q135900368"
+   },
+   "lon": 166.9417455,
+   "lat": -0.5036955
+  },
+  {
+   "type": "node",
+   "id": 1406312407,
+   "tags": {
+    "name": "Uaboe",
+    "place": "village",
+    "wikidata": "Q49278357"
+   },
+   "lon": 166.9253458,
+   "lat": -0.5130868
+  },
+  {
+   "type": "node",
+   "id": 4896230521,
+   "tags": {
+    "name": "Cantilever Cranes",
+    "name:en": "Cantilever Cranes",
+    "tourism": "attraction"
+   },
+   "lon": 166.9093343,
+   "lat": -0.5317365
+  },
+  {
+   "type": "node",
+   "id": 4896230522,
+   "tags": {
+    "name": "Broken Down Cantilever Cranes",
+    "name:en": "Broken Down Cantilever Cranes",
+    "tourism": "attraction"
+   },
+   "lon": 166.9093282,
+   "lat": -0.5364055
+  },
+  {
+   "type": "node",
+   "id": 4896390821,
+   "tags": {
+    "name": "Rock Pinnacles",
+    "name:en": "Rock Pinnacles",
+    "tourism": "attraction"
+   },
+   "lon": 166.9548599,
+   "lat": -0.525674
+  },
+  {
+   "type": "node",
+   "id": 4898470421,
+   "tags": {
+    "name": "Japanese WWII Gun",
+    "name:en": "Japanese WWII Gun",
+    "tourism": "attraction"
+   },
+   "lon": 166.9163959,
+   "lat": -0.5334374
+  },
+  {
+   "type": "node",
+   "id": 4898470422,
+   "tags": {
+    "name": "Japanese WWII Gun",
+    "name:en": "Japanese WWII Gun",
+    "tourism": "attraction"
+   },
+   "lon": 166.9167728,
+   "lat": -0.5309407
+  },
+  {
+   "type": "node",
+   "id": 4898579521,
+   "tags": {
+    "name": "Japanese WWII Prison",
+    "name:en": "Japanese WWII Prison",
+    "tourism": "attraction"
+   },
+   "lon": 166.9180326,
+   "lat": -0.5362399
+  },
+  {
+   "type": "node",
+   "id": 5749424186,
+   "tags": {
+    "name": "Arijejen",
+    "place": "village",
+    "wikidata": "Q33422255"
+   },
+   "lon": 166.9140086,
+   "lat": -0.5241523
+  },
+  {
+   "type": "node",
+   "id": 5749424707,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Bondi Beach"
+   },
+   "lon": 166.9277633,
+   "lat": -0.5532431
+  },
+  {
+   "type": "node",
+   "id": 5749424710,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Star Kingdom"
+   },
+   "lon": 166.9112104,
+   "lat": -0.5367103
+  },
+  {
+   "type": "node",
+   "id": 5749424711,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Florowest"
+   },
+   "lon": 166.9108556,
+   "lat": -0.5386788
+  },
+  {
+   "type": "node",
+   "id": 5807533899,
+   "tags": {
+    "name": "Anabar",
+    "place": "village",
+    "wikidata": "Q49277171"
+   },
+   "lon": 166.952083,
+   "lat": -0.5077784
+  },
+  {
+   "type": "node",
+   "id": 5943958387,
+   "tags": {
+    "name": "Lagoon viewpoint",
+    "name:en": "Lagoon viewpoint",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9230216,
+   "lat": -0.5349681
+  },
+  {
+   "type": "node",
+   "id": 6597709641,
+   "tags": {
+    "name": "Arenibek",
+    "place": "village"
+   },
+   "lon": 166.9224196,
+   "lat": -0.5338085
+  },
+  {
+   "type": "node",
+   "id": 6715040385,
+   "tags": {
+    "name": "Gun",
+    "name:en": "Gun",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9219711,
+   "lat": -0.5486994
+  },
+  {
+   "type": "node",
+   "id": 6715040387,
+   "tags": {
+    "name": "Bunker",
+    "name:en": "Bunker",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9493385,
+   "lat": -0.5396499
+  },
+  {
+   "type": "node",
+   "id": 6715040389,
+   "tags": {
+    "name": "Bunker",
+    "name:en": "Bunker",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9456255,
+   "lat": -0.5480045
+  },
+  {
+   "type": "node",
+   "id": 6715040986,
+   "tags": {
+    "name": "Bunker",
+    "name:en": "Bunker",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9490935,
+   "lat": -0.5456917
+  },
+  {
+   "type": "node",
+   "id": 6715040987,
+   "tags": {
+    "name": "Bunker",
+    "name:en": "Bunker",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9393006,
+   "lat": -0.5517492
+  },
+  {
+   "type": "node",
+   "id": 6715040988,
+   "tags": {
+    "name": "Bunker",
+    "name:en": "Bunker",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9363978,
+   "lat": -0.5529779
+  },
+  {
+   "type": "node",
+   "id": 6715040990,
+   "tags": {
+    "name": "Bunker",
+    "name:en": "Bunker",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9253492,
+   "lat": -0.51205
+  },
+  {
+   "type": "node",
+   "id": 6717696688,
+   "tags": {
+    "name": "Bunker",
+    "name:en": "Bunker",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9579813,
+   "lat": -0.5149928
+  },
+  {
+   "type": "node",
+   "id": 6717696888,
+   "tags": {
+    "name": "Bunker",
+    "name:en": "Bunker",
+    "tourism": "viewpoint"
+   },
+   "lon": 166.9527033,
+   "lat": -0.5281158
+  },
+  {
+   "type": "node",
+   "id": 6933189410,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "E4 Restaurant"
+   },
+   "lon": 166.9136638,
+   "lat": -0.5272373
+  },
+  {
+   "type": "node",
+   "id": 6936364885,
+   "tags": {
+    "name": "Naoero Museum",
+    "name:en": "Naoero Museum",
+    "tourism": "museum",
+    "wikidata": "Q106510196"
+   },
+   "lon": 166.9147856,
+   "lat": -0.5451127
+  },
+  {
+   "type": "node",
+   "id": 6936369085,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "GABAB Restaurant",
+    "name:en": "GABAB Restaurant"
+   },
+   "lon": 166.9113098,
+   "lat": -0.5401442
+  },
+  {
+   "type": "node",
+   "id": 10307751489,
+   "tags": {
+    "name": "Abab",
+    "place": "locality"
+   },
+   "lon": 166.935544,
+   "lat": -0.5097743
+  },
+  {
+   "type": "node",
+   "id": 10307751490,
+   "tags": {
+    "name": "Abwaw",
+    "place": "locality"
+   },
+   "lon": 166.9274857,
+   "lat": -0.533075
+  },
+  {
+   "type": "node",
+   "id": 10307751491,
+   "tags": {
+    "name": "Adibor",
+    "place": "locality"
+   },
+   "lon": 166.9521483,
+   "lat": -0.5127611
+  },
+  {
+   "type": "node",
+   "id": 10307751492,
+   "tags": {
+    "name": "Adwongeo",
+    "place": "locality"
+   },
+   "lon": 166.9523311,
+   "lat": -0.5181965
+  },
+  {
+   "type": "node",
+   "id": 10307751493,
+   "tags": {
+    "name": "Adreyi",
+    "place": "locality"
+   },
+   "lon": 166.9441717,
+   "lat": -0.5304392
+  },
+  {
+   "type": "node",
+   "id": 10307751494,
+   "tags": {
+    "name": "Adrurior",
+    "place": "locality"
+   },
+   "lon": 166.9386103,
+   "lat": -0.5206019
+  },
+  {
+   "type": "node",
+   "id": 10307751495,
+   "tags": {
+    "name": "Adungidungur",
+    "place": "locality"
+   },
+   "lon": 166.9265122,
+   "lat": -0.5349655
+  },
+  {
+   "type": "node",
+   "id": 10307751496,
+   "tags": {
+    "name": "Aeibur",
+    "place": "locality"
+   },
+   "lon": 166.9518838,
+   "lat": -0.5148477
+  },
+  {
+   "type": "node",
+   "id": 10307751497,
+   "tags": {
+    "name": "Aeonun",
+    "place": "locality"
+   },
+   "lon": 166.9323076,
+   "lat": -0.5147671
+  },
+  {
+   "type": "node",
+   "id": 10307751498,
+   "tags": {
+    "name": "Agabwe",
+    "place": "locality"
+   },
+   "lon": 166.9464315,
+   "lat": -0.5313829
+  },
+  {
+   "type": "node",
+   "id": 10307751499,
+   "tags": {
+    "name": "Aiburi",
+    "place": "locality"
+   },
+   "lon": 166.937492,
+   "lat": -0.5108936
+  },
+  {
+   "type": "node",
+   "id": 10307751500,
+   "tags": {
+    "name": "Amet",
+    "place": "locality"
+   },
+   "lon": 166.9298874,
+   "lat": -0.5190129
+  },
+  {
+   "type": "node",
+   "id": 10307751501,
+   "tags": {
+    "name": "Anabar",
+    "place": "locality"
+   },
+   "lon": 166.955412,
+   "lat": -0.5119003
+  },
+  {
+   "type": "node",
+   "id": 10307751502,
+   "tags": {
+    "name": "Anakawida",
+    "place": "locality"
+   },
+   "lon": 166.9304312,
+   "lat": -0.513526
+  },
+  {
+   "type": "node",
+   "id": 10307751503,
+   "tags": {
+    "name": "Anakawiduwa",
+    "place": "locality"
+   },
+   "lon": 166.9266673,
+   "lat": -0.5215739
+  },
+  {
+   "type": "node",
+   "id": 10307751504,
+   "tags": {
+    "name": "Anakawidwo",
+    "place": "locality"
+   },
+   "lon": 166.9237055,
+   "lat": -0.5279341
+  },
+  {
+   "type": "node",
+   "id": 10307751505,
+   "tags": {
+    "name": "Anamangidrin",
+    "place": "locality"
+   },
+   "lon": 166.916811,
+   "lat": -0.5428878
+  },
+  {
+   "type": "node",
+   "id": 10307751506,
+   "tags": {
+    "name": "Anapodu",
+    "place": "locality"
+   },
+   "lon": 166.9167867,
+   "lat": -0.5244991
+  },
+  {
+   "type": "node",
+   "id": 10307751507,
+   "tags": {
+    "name": "Anatip",
+    "place": "locality"
+   },
+   "lon": 166.9162283,
+   "lat": -0.5269995
+  },
+  {
+   "type": "node",
+   "id": 10307751508,
+   "tags": {
+    "name": "Anebweyan",
+    "place": "locality"
+   },
+   "lon": 166.9402136,
+   "lat": -0.5225206
+  },
+  {
+   "type": "node",
+   "id": 10307798509,
+   "tags": {
+    "name": "Anerowe",
+    "place": "locality"
+   },
+   "lon": 166.9148931,
+   "lat": -0.522642
+  },
+  {
+   "type": "node",
+   "id": 10307798510,
+   "tags": {
+    "name": "Angoweang",
+    "place": "locality"
+   },
+   "lon": 166.9295209,
+   "lat": -0.5239295
+  },
+  {
+   "type": "node",
+   "id": 10307798511,
+   "tags": {
+    "name": "Anibawo",
+    "place": "locality"
+   },
+   "lon": 166.9175904,
+   "lat": -0.5217151
+  },
+  {
+   "type": "node",
+   "id": 10307798512,
+   "tags": {
+    "name": "Anigobwi",
+    "place": "locality"
+   },
+   "lon": 166.9227231,
+   "lat": -0.5471199
+  },
+  {
+   "type": "node",
+   "id": 10307798513,
+   "tags": {
+    "name": "Anitobu",
+    "place": "locality"
+   },
+   "lon": 166.9428761,
+   "lat": -0.5316539
+  },
+  {
+   "type": "node",
+   "id": 10307798514,
+   "tags": {
+    "name": "Aniwen",
+    "place": "locality"
+   },
+   "lon": 166.940696,
+   "lat": -0.5437383
+  },
+  {
+   "type": "node",
+   "id": 10307798515,
+   "tags": {
+    "name": "Anoreo",
+    "place": "locality"
+   },
+   "lon": 166.9342072,
+   "lat": -0.5319114
+  },
+  {
+   "type": "node",
+   "id": 10307798516,
+   "tags": {
+    "name": "Anut",
+    "place": "locality"
+   },
+   "lon": 166.933145,
+   "lat": -0.5167017
+  },
+  {
+   "type": "node",
+   "id": 10307798517,
+   "tags": {
+    "name": "Anuuroya",
+    "place": "locality"
+   },
+   "lon": 166.943153,
+   "lat": -0.509995
+  },
+  {
+   "type": "node",
+   "id": 10307798518,
+   "tags": {
+    "name": "Anwer",
+    "place": "locality"
+   },
+   "lon": 166.9399953,
+   "lat": -0.5083866
+  },
+  {
+   "type": "node",
+   "id": 10307798519,
+   "tags": {
+    "name": "Aramen",
+    "place": "locality"
+   },
+   "lon": 166.9353261,
+   "lat": -0.5053483
+  },
+  {
+   "type": "node",
+   "id": 10307798520,
+   "tags": {
+    "name": "Araro",
+    "place": "locality"
+   },
+   "lon": 166.9460207,
+   "lat": -0.510927
+  },
+  {
+   "type": "node",
+   "id": 10307798521,
+   "tags": {
+    "name": "Areb",
+    "place": "locality"
+   },
+   "lon": 166.9490762,
+   "lat": -0.5124719
+  },
+  {
+   "type": "node",
+   "id": 10307798522,
+   "tags": {
+    "name": "Aribeang",
+    "place": "locality"
+   },
+   "lon": 166.9399267,
+   "lat": -0.5290537
+  },
+  {
+   "type": "node",
+   "id": 10307798523,
+   "tags": {
+    "name": "Aribweabwe",
+    "place": "locality"
+   },
+   "lon": 166.912791,
+   "lat": -0.5331288
+  },
+  {
+   "type": "node",
+   "id": 10307798524,
+   "tags": {
+    "name": "Ariyeyen",
+    "place": "locality"
+   },
+   "lon": 166.921612,
+   "lat": -0.5245645
+  },
+  {
+   "type": "node",
+   "id": 10307798525,
+   "tags": {
+    "name": "Aromwemwe",
+    "place": "locality"
+   },
+   "lon": 166.9251667,
+   "lat": -0.5391768
+  },
+  {
+   "type": "node",
+   "id": 10307798526,
+   "tags": {
+    "name": "Arubo",
+    "place": "locality"
+   },
+   "lon": 166.9329647,
+   "lat": -0.5062488
+  },
+  {
+   "type": "node",
+   "id": 10307798527,
+   "tags": {
+    "name": "Arwango",
+    "place": "locality"
+   },
+   "lon": 166.9398191,
+   "lat": -0.5455148
+  },
+  {
+   "type": "node",
+   "id": 10307798528,
+   "tags": {
+    "name": "Atabwagabap",
+    "place": "locality"
+   },
+   "lon": 166.9326738,
+   "lat": -0.5467417
+  },
+  {
+   "type": "node",
+   "id": 10307798529,
+   "tags": {
+    "name": "Ataneu",
+    "place": "locality"
+   },
+   "lon": 166.9345359,
+   "lat": -0.5125612
+  },
+  {
+   "type": "node",
+   "id": 10307798530,
+   "tags": {
+    "name": "Ataro",
+    "place": "locality"
+   },
+   "lon": 166.947816,
+   "lat": -0.543927
+  },
+  {
+   "type": "node",
+   "id": 10307798531,
+   "tags": {
+    "name": "Atebar",
+    "place": "locality"
+   },
+   "lon": 166.9530795,
+   "lat": -0.5112691
+  },
+  {
+   "type": "node",
+   "id": 10307798532,
+   "tags": {
+    "name": "Atedi",
+    "place": "locality"
+   },
+   "lon": 166.9445286,
+   "lat": -0.5131221
+  },
+  {
+   "type": "node",
+   "id": 10307798533,
+   "tags": {
+    "name": "Atibuyinor",
+    "place": "locality"
+   },
+   "lon": 166.9437044,
+   "lat": -0.5188305
+  },
+  {
+   "type": "node",
+   "id": 10307798534,
+   "tags": {
+    "name": "Atirabu",
+    "place": "locality"
+   },
+   "lon": 166.9326694,
+   "lat": -0.5128186
+  },
+  {
+   "type": "node",
+   "id": 10307798535,
+   "tags": {
+    "name": "Atowedudu",
+    "place": "locality"
+   },
+   "lon": 166.9460752,
+   "lat": -0.5456736
+  },
+  {
+   "type": "node",
+   "id": 10307798536,
+   "tags": {
+    "name": "Atsiyeiubar",
+    "place": "locality"
+   },
+   "lon": 166.936838,
+   "lat": -0.5496912
+  },
+  {
+   "type": "node",
+   "id": 10307798537,
+   "tags": {
+    "name": "Atubwinumar",
+    "place": "locality"
+   },
+   "lon": 166.9191768,
+   "lat": -0.5409763
+  },
+  {
+   "type": "node",
+   "id": 10307798538,
+   "tags": {
+    "name": "Atumurumur",
+    "place": "locality"
+   },
+   "lon": 166.9193588,
+   "lat": -0.5274305
+  },
+  {
+   "type": "node",
+   "id": 10307798539,
+   "tags": {
+    "name": "Autibwere",
+    "place": "locality"
+   },
+   "lon": 166.9408558,
+   "lat": -0.5138241
+  },
+  {
+   "type": "node",
+   "id": 10307798540,
+   "tags": {
+    "name": "Awidayungiyung",
+    "place": "locality"
+   },
+   "lon": 166.9327595,
+   "lat": -0.550468
+  },
+  {
+   "type": "node",
+   "id": 10307798541,
+   "tags": {
+    "name": "Badi",
+    "place": "locality"
+   },
+   "lon": 166.9420696,
+   "lat": -0.5484774
+  },
+  {
+   "type": "node",
+   "id": 10307798542,
+   "tags": {
+    "name": "Bagabap",
+    "place": "locality"
+   },
+   "lon": 166.9364131,
+   "lat": -0.5406
+  },
+  {
+   "type": "node",
+   "id": 10307798543,
+   "tags": {
+    "name": "Bagetareor",
+    "place": "locality"
+   },
+   "lon": 166.9545235,
+   "lat": -0.5137391
+  },
+  {
+   "type": "node",
+   "id": 10307798544,
+   "tags": {
+    "name": "Bangabanga",
+    "place": "locality"
+   },
+   "lon": 166.9218472,
+   "lat": -0.5297489
+  },
+  {
+   "type": "node",
+   "id": 10307798545,
+   "tags": {
+    "name": "Biteye",
+    "place": "locality"
+   },
+   "lon": 166.9156324,
+   "lat": -0.5388643
+  },
+  {
+   "type": "node",
+   "id": 10307798546,
+   "tags": {
+    "name": "Bodeadi",
+    "place": "locality"
+   },
+   "lon": 166.9484063,
+   "lat": -0.5151452
+  },
+  {
+   "type": "node",
+   "id": 10307798547,
+   "tags": {
+    "name": "Bogemaru",
+    "place": "locality"
+   },
+   "lon": 166.9488183,
+   "lat": -0.5190074
+  },
+  {
+   "type": "node",
+   "id": 10307798548,
+   "tags": {
+    "name": "Boreboren",
+    "place": "locality"
+   },
+   "lon": 166.938038,
+   "lat": -0.5047944
+  },
+  {
+   "type": "node",
+   "id": 10307798549,
+   "tags": {
+    "name": "Bowagae",
+    "place": "locality"
+   },
+   "lon": 166.9225885,
+   "lat": -0.5264228
+  },
+  {
+   "type": "node",
+   "id": 10307798550,
+   "tags": {
+    "name": "Butimangum",
+    "place": "locality"
+   },
+   "lon": 166.9123059,
+   "lat": -0.5275043
+  },
+  {
+   "type": "node",
+   "id": 10307798551,
+   "tags": {
+    "name": "Bwaterangerang",
+    "place": "locality"
+   },
+   "lon": 166.9249574,
+   "lat": -0.5260109
+  },
+  {
+   "type": "node",
+   "id": 10307798552,
+   "tags": {
+    "name": "Bweranibek",
+    "place": "locality"
+   },
+   "lon": 166.9461576,
+   "lat": -0.5362071
+  },
+  {
+   "type": "node",
+   "id": 10307798553,
+   "tags": {
+    "name": "Bwerigi",
+    "place": "locality"
+   },
+   "lon": 166.9163056,
+   "lat": -0.5203291
+  },
+  {
+   "type": "node",
+   "id": 10307798554,
+   "tags": {
+    "name": "Bweteboe",
+    "place": "locality"
+   },
+   "lon": 166.9497625,
+   "lat": -0.5257534
+  },
+  {
+   "type": "node",
+   "id": 10307798555,
+   "tags": {
+    "name": "Bweteoaru",
+    "place": "locality"
+   },
+   "lon": 166.948063,
+   "lat": -0.5282081
+  },
+  {
+   "type": "node",
+   "id": 10307798556,
+   "tags": {
+    "name": "Bwidin",
+    "place": "locality"
+   },
+   "lon": 166.9322702,
+   "lat": -0.5210157
+  },
+  {
+   "type": "node",
+   "id": 10307798557,
+   "tags": {
+    "name": "Daubugingarawa",
+    "place": "locality"
+   },
+   "lon": 166.9244767,
+   "lat": -0.5190074
+  },
+  {
+   "type": "node",
+   "id": 10307798558,
+   "tags": {
+    "name": "Deradae",
+    "place": "locality"
+   },
+   "lon": 166.9331456,
+   "lat": -0.5104933
+  },
+  {
+   "type": "node",
+   "id": 10307798559,
+   "tags": {
+    "name": "Eanuawirieria",
+    "place": "locality"
+   },
+   "lon": 166.9285966,
+   "lat": -0.5294096
+  },
+  {
+   "type": "node",
+   "id": 10307798560,
+   "tags": {
+    "name": "Eatabwerik",
+    "place": "locality"
+   },
+   "lon": 166.9541398,
+   "lat": -0.5199515
+  },
+  {
+   "type": "node",
+   "id": 10307798561,
+   "tags": {
+    "name": "Eatamebure",
+    "place": "locality"
+   },
+   "lon": 166.9559594,
+   "lat": -0.5173595
+  },
+  {
+   "type": "node",
+   "id": 10307798562,
+   "tags": {
+    "name": "Eatebibido",
+    "place": "locality"
+   },
+   "lon": 166.9442178,
+   "lat": -0.5075752
+  },
+  {
+   "type": "node",
+   "id": 10307798563,
+   "tags": {
+    "name": "Eatedeta",
+    "place": "locality"
+   },
+   "lon": 166.9456618,
+   "lat": -0.5059867
+  },
+  {
+   "type": "node",
+   "id": 10307798564,
+   "tags": {
+    "name": "Eatedogi",
+    "place": "locality"
+   },
+   "lon": 166.9427263,
+   "lat": -0.5271516
+  },
+  {
+   "type": "node",
+   "id": 10307798565,
+   "tags": {
+    "name": "Eateduna",
+    "place": "locality"
+   },
+   "lon": 166.9460051,
+   "lat": -0.5035148
+  },
+  {
+   "type": "node",
+   "id": 10307798566,
+   "tags": {
+    "name": "Eateneno",
+    "place": "locality"
+   },
+   "lon": 166.9189341,
+   "lat": -0.5255724
+  },
+  {
+   "type": "node",
+   "id": 10307798567,
+   "tags": {
+    "name": "Eateragabe",
+    "place": "locality"
+   },
+   "lon": 166.9321863,
+   "lat": -0.5269285
+  },
+  {
+   "type": "node",
+   "id": 10307798568,
+   "tags": {
+    "name": "Eaterienago",
+    "place": "locality"
+   },
+   "lon": 166.9155523,
+   "lat": -0.531855
+  },
+  {
+   "type": "node",
+   "id": 10307798569,
+   "tags": {
+    "name": "Eatoborowada",
+    "place": "locality"
+   },
+   "lon": 166.9162905,
+   "lat": -0.5365068
+  },
+  {
+   "type": "node",
+   "id": 10307798570,
+   "tags": {
+    "name": "Eaterieri",
+    "place": "locality"
+   },
+   "lon": 166.9451296,
+   "lat": -0.5151187
+  },
+  {
+   "type": "node",
+   "id": 10307798571,
+   "tags": {
+    "name": "Eatibwer",
+    "place": "locality"
+   },
+   "lon": 166.9542105,
+   "lat": -0.5159426
+  },
+  {
+   "type": "node",
+   "id": 10307798572,
+   "tags": {
+    "name": "Eatoborowada",
+    "place": "locality"
+   },
+   "lon": 166.9134752,
+   "lat": -0.5305161
+  },
+  {
+   "type": "node",
+   "id": 10307798573,
+   "tags": {
+    "name": "Eatobwadae",
+    "place": "locality"
+   },
+   "lon": 166.9212687,
+   "lat": -0.5208176
+  },
+  {
+   "type": "node",
+   "id": 10307798574,
+   "tags": {
+    "name": "Edet",
+    "place": "locality"
+   },
+   "lon": 166.9196894,
+   "lat": -0.5194444
+  },
+  {
+   "type": "node",
+   "id": 10307798575,
+   "tags": {
+    "name": "Etabae",
+    "place": "locality"
+   },
+   "lon": 166.9248049,
+   "lat": -0.5237872
+  },
+  {
+   "type": "node",
+   "id": 10307798576,
+   "tags": {
+    "name": "Etamor",
+    "place": "locality"
+   },
+   "lon": 166.954983,
+   "lat": -0.5237701
+  },
+  {
+   "type": "node",
+   "id": 10307798577,
+   "tags": {
+    "name": "Etur",
+    "place": "locality"
+   },
+   "lon": 166.9500734,
+   "lat": -0.5214871
+  },
+  {
+   "type": "node",
+   "id": 10307798578,
+   "tags": {
+    "name": "Gabab",
+    "place": "locality"
+   },
+   "lon": 166.9106316,
+   "lat": -0.5391858
+  },
+  {
+   "type": "node",
+   "id": 10307798579,
+   "tags": {
+    "name": "Ganoko",
+    "place": "locality"
+   },
+   "lon": 166.9236443,
+   "lat": -0.5214858
+  },
+  {
+   "type": "node",
+   "id": 10307798580,
+   "tags": {
+    "name": "Ganokoro",
+    "place": "locality"
+   },
+   "lon": 166.9573414,
+   "lat": -0.5198551
+  },
+  {
+   "type": "node",
+   "id": 10307798581,
+   "tags": {
+    "name": "Kareeub",
+    "place": "locality"
+   },
+   "lon": 166.9160298,
+   "lat": -0.5407236
+  },
+  {
+   "type": "node",
+   "id": 10307798582,
+   "tags": {
+    "name": "Kawinanut",
+    "place": "locality"
+   },
+   "lon": 166.9368951,
+   "lat": -0.5303495
+  },
+  {
+   "type": "node",
+   "id": 10307798583,
+   "tags": {
+    "name": "Kibepe",
+    "place": "locality"
+   },
+   "lon": 166.927076,
+   "lat": -0.5475664
+  },
+  {
+   "type": "node",
+   "id": 10307798584,
+   "tags": {
+    "name": "Mangadab",
+    "place": "locality"
+   },
+   "lon": 166.9365861,
+   "lat": -0.5185225
+  },
+  {
+   "type": "node",
+   "id": 10307798585,
+   "tags": {
+    "name": "Marerawua",
+    "place": "locality"
+   },
+   "lon": 166.9416157,
+   "lat": -0.5172008
+  },
+  {
+   "type": "node",
+   "id": 10307798586,
+   "tags": {
+    "name": "Medang",
+    "place": "locality"
+   },
+   "lon": 166.9391782,
+   "lat": -0.5123945
+  },
+  {
+   "type": "node",
+   "id": 10307798587,
+   "tags": {
+    "name": "Mediteru",
+    "place": "locality"
+   },
+   "lon": 166.9474351,
+   "lat": -0.5081546
+  },
+  {
+   "type": "node",
+   "id": 10307798588,
+   "tags": {
+    "name": "Mererawua",
+    "place": "locality"
+   },
+   "lon": 166.9413411,
+   "lat": -0.5052193
+  },
+  {
+   "type": "node",
+   "id": 10307798589,
+   "tags": {
+    "name": "Merubo",
+    "place": "locality"
+   },
+   "lon": 166.9439698,
+   "lat": -0.5330708
+  },
+  {
+   "type": "node",
+   "id": 10307798590,
+   "tags": {
+    "name": "Meure",
+    "place": "locality"
+   },
+   "lon": 166.9267522,
+   "lat": -0.541396
+  },
+  {
+   "type": "node",
+   "id": 10307798591,
+   "tags": {
+    "name": "Miage",
+    "place": "locality"
+   },
+   "lon": 166.9226154,
+   "lat": -0.5168795
+  },
+  {
+   "type": "node",
+   "id": 10307798592,
+   "tags": {
+    "name": "Mwea",
+    "place": "locality"
+   },
+   "lon": 166.935043,
+   "lat": -0.5071633
+  },
+  {
+   "type": "node",
+   "id": 10307798593,
+   "tags": {
+    "name": "Mweoen",
+    "place": "locality"
+   },
+   "lon": 166.9269517,
+   "lat": -0.5165008
+  },
+  {
+   "type": "node",
+   "id": 10307798594,
+   "tags": {
+    "name": "Oreb",
+    "place": "locality"
+   },
+   "lon": 166.9193882,
+   "lat": -0.5316462
+  },
+  {
+   "type": "node",
+   "id": 10307798596,
+   "tags": {
+    "name": "Redeta",
+    "place": "locality"
+   },
+   "lon": 166.9218353,
+   "lat": -0.5399774
+  },
+  {
+   "type": "node",
+   "id": 10307798597,
+   "tags": {
+    "name": "Ronawi",
+    "place": "locality"
+   },
+   "lon": 166.9312424,
+   "lat": -0.5368533
+  },
+  {
+   "type": "node",
+   "id": 10307798598,
+   "tags": {
+    "name": "Ruebe",
+    "place": "locality"
+   },
+   "lon": 166.930693,
+   "lat": -0.5439255
+  },
+  {
+   "type": "node",
+   "id": 10307798599,
+   "tags": {
+    "name": "Tarawoa",
+    "place": "locality"
+   },
+   "lon": 166.9132007,
+   "lat": -0.5251809
+  },
+  {
+   "type": "node",
+   "id": 10307798600,
+   "tags": {
+    "name": "Tebata",
+    "place": "locality"
+   },
+   "lon": 166.915089,
+   "lat": -0.5345017
+  },
+  {
+   "type": "node",
+   "id": 10307798601,
+   "tags": {
+    "name": "Tsigamei",
+    "place": "locality"
+   },
+   "lon": 166.9170288,
+   "lat": -0.5286139
+  },
+  {
+   "type": "node",
+   "id": 10307798602,
+   "tags": {
+    "name": "Tieniben",
+    "place": "locality"
+   },
+   "lon": 166.9457992,
+   "lat": -0.52125
+  },
+  {
+   "type": "node",
+   "id": 10307798603,
+   "tags": {
+    "name": "Uaboe",
+    "place": "locality"
+   },
+   "lon": 166.9204365,
+   "lat": -0.5194797
+  },
+  {
+   "type": "node",
+   "id": 10307798604,
+   "tags": {
+    "name": "Ubweno",
+    "place": "locality"
+   },
+   "lon": 166.926247,
+   "lat": -0.5303648
+  },
+  {
+   "type": "node",
+   "id": 10307798605,
+   "tags": {
+    "name": "Webwebin",
+    "place": "locality"
+   },
+   "lon": 166.9317402,
+   "lat": -0.5335576
+  },
+  {
+   "type": "node",
+   "id": 10307798606,
+   "tags": {
+    "name": "Umaruru",
+    "place": "locality"
+   },
+   "lon": 166.927998,
+   "lat": -0.5119806
+  },
+  {
+   "type": "node",
+   "id": 10307798607,
+   "tags": {
+    "name": "Baitsi",
+    "place": "locality"
+   },
+   "lon": 166.9303326,
+   "lat": -0.5087707
+  },
+  {
+   "type": "node",
+   "id": 10307798608,
+   "tags": {
+    "name": "Urigomagom",
+    "place": "locality"
+   },
+   "lon": 166.9463657,
+   "lat": -0.5177826
+  },
+  {
+   "type": "node",
+   "id": 10307798609,
+   "tags": {
+    "name": "Wengom",
+    "place": "locality"
+   },
+   "lon": 166.9272083,
+   "lat": -0.5233956
+  },
+  {
+   "type": "node",
+   "id": 10307798610,
+   "tags": {
+    "name": "Wereda",
+    "place": "locality"
+   },
+   "lon": 166.9509148,
+   "lat": -0.5103671
+  },
+  {
+   "type": "node",
+   "id": 10307798612,
+   "tags": {
+    "name": "Yaranemat",
+    "place": "locality"
+   },
+   "lon": 166.9138211,
+   "lat": -0.5375525
+  },
+  {
+   "type": "node",
+   "id": 10307798613,
+   "tags": {
+    "name": "Yanmwitebwiyeye",
+    "place": "locality"
+   },
+   "lon": 166.9378308,
+   "lat": -0.5342241
+  },
+  {
+   "type": "node",
+   "id": 10307798614,
+   "tags": {
+    "name": "Weranemat",
+    "place": "locality"
+   },
+   "lon": 166.9200681,
+   "lat": -0.5229912
+  },
+  {
+   "type": "node",
+   "id": 10307798615,
+   "tags": {
+    "name": "Yaren",
+    "place": "locality"
+   },
+   "lon": 166.9174471,
+   "lat": -0.5475956
+  },
+  {
+   "type": "node",
+   "id": 10307798616,
+   "tags": {
+    "name": "Yatabang",
+    "place": "locality"
+   },
+   "lon": 166.9308828,
+   "lat": -0.5106492
+  },
+  {
+   "type": "node",
+   "id": 10307798617,
+   "tags": {
+    "name": "Yaterangia",
+    "place": "locality"
+   },
+   "lon": 166.942161,
+   "lat": -0.5207597
+  },
+  {
+   "type": "node",
+   "id": 10307798618,
+   "tags": {
+    "name": "Yedwen",
+    "place": "locality"
+   },
+   "lon": 166.936685,
+   "lat": -0.52536
+  },
+  {
+   "type": "node",
+   "id": 10307798619,
+   "tags": {
+    "name": "Yoe",
+    "place": "locality"
+   },
+   "lon": 166.9348482,
+   "lat": -0.5234032
+  },
+  {
+   "type": "node",
+   "id": 10307798620,
+   "tags": {
+    "name": "Yongin",
+    "place": "locality"
+   },
+   "lon": 166.9249948,
+   "lat": -0.5441561
+  },
+  {
+   "type": "node",
+   "id": 10307798621,
+   "tags": {
+    "name": "Yorangeb",
+    "place": "locality"
+   },
+   "lon": 166.9364618,
+   "lat": -0.5155071
+  },
+  {
+   "type": "node",
+   "id": 10307798622,
+   "tags": {
+    "name": "Yuwinengin",
+    "place": "locality"
+   },
+   "lon": 166.9441351,
+   "lat": -0.5238151
+  },
+  {
+   "type": "node",
+   "id": 10994324451,
+   "tags": {
+    "amenity": "cafe",
+    "name": "Tropicana Cafe"
+   },
+   "lon": 166.9386177,
+   "lat": -0.5035373
+  },
+  {
+   "type": "node",
+   "id": 10994460231,
+   "tags": {
+    "name": "Japanese WWII guns and bunker",
+    "tourism": "attraction"
+   },
+   "lon": 166.92438,
+   "lat": -0.5439573
+  },
+  {
+   "type": "node",
+   "id": 11002593966,
+   "tags": {
+    "amenity": "library",
+    "name": "Nauru Community Library"
+   },
+   "lon": 166.9151539,
+   "lat": -0.5457041
+  },
+  {
+   "type": "node",
+   "id": 11242759431,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "A'sims Breaky"
+   },
+   "lon": 166.9116399,
+   "lat": -0.5396922
+  },
+  {
+   "type": "node",
+   "id": 11242769951,
+   "tags": {
+    "name": "Nauru Revenue Office",
+    "office": "government"
+   },
+   "lon": 166.9116963,
+   "lat": -0.5384685
+  },
+  {
+   "type": "node",
+   "id": 11242769952,
+   "tags": {
+    "amenity": "conference_centre",
+    "name": "Eigigu Convention Hall"
+   },
+   "lon": 166.9118262,
+   "lat": -0.5388282
+  },
+  {
+   "type": "node",
+   "id": 11242770020,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "E4 Breakfast Buns"
+   },
+   "lon": 166.9135888,
+   "lat": -0.527268
+  },
+  {
+   "type": "node",
+   "id": 12057081469,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Crystal’s restaurant"
+   },
+   "lon": 166.9493137,
+   "lat": -0.540265
+  },
+  {
+   "type": "node",
+   "id": 12060261069,
+   "tags": {
+    "amenity": "restaurant",
+    "name": "Somewhere else"
+   },
+   "lon": 166.9149778,
+   "lat": -0.5273214
+  },
+  {
+   "type": "node",
+   "id": 13081747813,
+   "tags": {
+    "name": "Ronave",
+    "place": "village"
+   },
+   "lon": 166.9436527,
+   "lat": -0.5036788
+  },
+  {
+   "type": "way",
+   "id": 126994205,
+   "tags": {
+    "amenity": "townhall",
+    "building": "yes",
+    "name": "Civic Centre"
+   },
+   "center": {
+    "lat": -0.5388056999999999,
+    "lon": 166.91194094999997
+   }
+  },
+  {
+   "type": "way",
+   "id": 160584951,
+   "tags": {
+    "amenity": "place_of_worship",
+    "building": "church",
+    "name": "Church of Christ the King",
+    "tourism": "attraction",
+    "wikidata": "Q28740164"
+   },
+   "center": {
+    "lat": -0.5058130000000001,
+    "lon": 166.93158315
+   }
+  },
+  {
+   "type": "way",
+   "id": 160603356,
+   "tags": {
+    "building": "yes",
+    "name": "Government Building",
+    "office": "government"
+   },
+   "center": {
+    "lat": -0.5474355,
+    "lon": 166.91731695
+   }
+  },
+  {
+   "type": "way",
+   "id": 160660693,
+   "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "K-Love"
+   },
+   "center": {
+    "lat": -0.551701,
+    "lon": 166.9259406
+   }
+  },
+  {
+   "type": "way",
+   "id": 170211761,
+   "tags": {
+    "building": "yes",
+    "name": "Lands and Survey",
+    "office": "government"
+   },
+   "center": {
+    "lat": -0.5469362,
+    "lon": 166.94057595
+   }
+  },
+  {
+   "type": "way",
+   "id": 211248043,
+   "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "Anibare Boat Harbour Resturant"
+   },
+   "center": {
+    "lat": -0.5355282,
+    "lon": 166.9500299
+   }
+  },
+  {
+   "type": "way",
+   "id": 236814351,
+   "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "The Bay"
+   },
+   "center": {
+    "lat": -0.53503835,
+    "lon": 166.95015425000003
+   }
+  },
+  {
+   "type": "way",
+   "id": 353964491,
+   "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "June"
+   },
+   "center": {
+    "lat": -0.5510429,
+    "lon": 166.92501435
+   }
+  },
+  {
+   "type": "way",
+   "id": 357945014,
+   "tags": {
+    "amenity": "college",
+    "name": "Nauru College"
+   },
+   "center": {
+    "lat": -0.52223865,
+    "lon": 166.91458075
+   }
+  },
+  {
+   "type": "way",
+   "id": 520015485,
+   "tags": {
+    "amenity": "hospital",
+    "name": "Nauru Medical Centre",
+    "wikidata": "Q64098422"
+   },
+   "center": {
+    "lat": -0.52386295,
+    "lon": 166.91499635
+   }
+  },
+  {
+   "type": "way",
+   "id": 538839894,
+   "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "Aiwo Bridge Restaurant"
+   },
+   "center": {
+    "lat": -0.5350723500000001,
+    "lon": 166.91126865
+   }
+  },
+  {
+   "type": "way",
+   "id": 1184110658,
+   "tags": {
+    "amenity": "university",
+    "name": "University of the South Pacific (Nauru Campus)"
+   },
+   "center": {
+    "lat": -0.54576665,
+    "lon": 166.91508395
+   }
+  },
+  {
+   "type": "way",
+   "id": 1184486003,
+   "tags": {
+    "leisure": "park",
+    "name": "Ella Park"
+   },
+   "center": {
+    "lat": -0.55044805,
+    "lon": 166.9212246
+   }
+  },
+  {
+   "type": "way",
+   "id": 1184502539,
+   "tags": {
+    "building": "yes",
+    "name": "Parliament House",
+    "office": "government"
+   },
+   "center": {
+    "lat": -0.5470413000000001,
+    "lon": 166.91692005
+   }
+  },
+  {
+   "type": "way",
+   "id": 1188206613,
+   "tags": {
+    "name": "President Office",
+    "office": "government"
+   },
+   "center": {
+    "lat": -0.54742055,
+    "lon": 166.91724695
+   }
+  },
+  {
+   "type": "way",
+   "id": 1188207515,
+   "tags": {
+    "building": "yes",
+    "name": "Office of the Speaker of Parliament",
+    "office": "government"
+   },
+   "center": {
+    "lat": -0.5470874,
+    "lon": 166.91688090000002
+   }
+  },
+  {
+   "type": "way",
+   "id": 1213502392,
+   "tags": {
+    "amenity": "restaurant",
+    "building": "yes",
+    "name": "Kasuo Restaurant"
+   },
+   "center": {
+    "lat": -0.5359977,
+    "lon": 166.91079645000002
+   }
+  }
+ ]
+}

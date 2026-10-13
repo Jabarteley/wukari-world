@@ -8,9 +8,10 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { factsForTarget, geometryPolicy } from './inputs.mjs';
-import { pickForSlot } from './slot-fallback.mjs';
+import { fillSlots } from './slot-fallback.mjs';
 import { fitCatalogueBudget, CATALOGUE_LIMIT } from './catalogue-budget.mjs';
 import { districtLabels } from './district-labels.mjs';
+import { profileFor, emptySlotReason } from './profile.mjs';
 
 // Less coastline than this in the wide box is not a sea shore (mis-tagged creek or pond rings).
 const MINIMUM_COASTLINE_METRES = 3000;
@@ -54,6 +55,9 @@ for (const target of table.targets) {
             throw new TypeError(`${target.id}: namesUnit must be a non-empty string`);
         if (target.sceneWaterExtent !== undefined && !['play', 'reach'].includes(target.sceneWaterExtent))
             throw new TypeError(`${target.id}: sceneWaterExtent must be 'play' or 'reach'`);
+        // `profile` (seed field, table-level data) sets the minimums and whether a slot may stay empty; absent means standard. See profile.mjs.
+        const profile = profileFor(target.profile);
+        if (target.profile !== undefined) row.profile = target.profile;
         const fitted = fitCatalogueBudget(await factsForTarget(table, target)), prior = fitted.facts, old = geometryPolicy(table, target);
         row.catalogueBytes = fitted.bytes;
         if (fitted.compacted) row.catalogueCompaction = fitted.compacted;
@@ -81,18 +85,21 @@ for (const target of table.targets) {
         const excludedRefs = new Set(selectionExclusions.map(exclusion => exclusion.ref));
         const pool = [...unique.values()].filter(el => !excludedRefs.has(ref(el)) && countryScope.classify(point(el)) === 'inside' && name(el) && inBox([s + .008, w + .008, n - .008, e - .008], point(el)) && !onWater(point(el)));
         const slots = { transit: t => t.railway === 'station' || t.amenity === 'bus_station' || t.public_transport === 'station', meal: t => ['restaurant', 'cafe'].includes(t.amenity), community: t => ['university', 'college', 'library', 'community_centre', 'conference_centre'].includes(t.amenity), clinic: t => ['hospital', 'clinic'].includes(t.amenity), recreation: t => t.leisure === 'park', market: t => t.amenity === 'marketplace' || t.shop === 'mall', worship: t => t.amenity === 'place_of_worship', polling: t => t.place === 'square' || t.amenity === 'townhall', government: t => ['townhall', 'courthouse', 'parliament'].includes(t.amenity) || t.office === 'government' || t.building === 'government' };
-        const used = new Set(), usedNames = new Set(), choices = [], selected = [];
+        const used = new Set(), usedNames = new Set(), choices = [], selected = [], emptySlots = [];
         const score = el => { const p = point(el), spread = selected.length ? Math.min(...selected.map(q => Math.hypot(p[0] - q[0], p[1] - q[1]))) : 0; return (el.tags.wikidata ? 20 : 0) + (el.tags.wikipedia ? 5 : 0) + Math.min(10, spread * 100); };
         const rank = items => items.filter(el => !used.has(ref(el)) && !usedNames.has(normal(name(el)))).sort((a, b) => score(b) - score(a) || ref(a).localeCompare(ref(b), 'en', { numeric: true }));
         const choose = (el, choice) => { used.add(ref(el)); usedNames.add(normal(name(el))); selected.push(point(el)); choices.push({ ...choice, ref: ref(el), line: choice.slot === 'polling' ? `${name(el)}; voting here is a fictional game activity.` : `${name(el)}, a mapped place for the game.` }); };
-        for (const [slot, predicate] of Object.entries(slots)) {
-            const { el, slotFallback } = pickForSlot({ slot, predicate, pool, rank, ref });
-            if (!el) {
-                row.errors.push(`no eligible unique source for ${slot}`);
-                continue;
-            }
+        const filled = fillSlots({ slots, pool, rank, ref, allowEmpty: profile.maximumEmptySlots > 0, emptyReason: emptySlotReason, take: (slot, el, slotFallback) => {
             if (slotFallback) (row.slotFallbacks ??= []).push(slotFallback);
             choose(el, { slot, ...slotPresentation(base, ids, slot), ...(slotFallback ? { slotFallback } : {}) });
+        } });
+        // Only a profile that allows empty slots (microstate) may leave one: the game's fictional venue stays and the reason is recorded.
+        emptySlots.push(...filled.empty);
+        for (const slot of filled.missing) row.errors.push(`no eligible unique source for ${slot}`);
+        if (emptySlots.length) {
+            row.emptySlots = emptySlots;
+            if (emptySlots.length > profile.maximumEmptySlots)
+                row.errors.push(`${emptySlots.length} slots have no eligible source (${emptySlots.map(item => item.slot).join(', ')}); the ${profile.name} profile allows ${profile.maximumEmptySlots}`);
         }
         const addedKind = tags => {
             if (['university', 'college'].includes(tags.amenity)) return 'quad';
@@ -116,7 +123,7 @@ for (const target of table.targets) {
         const semanticKinds = [...new Set(pool.map(element => addedKind(element.tags)).filter(Boolean))].sort();
         const maximumPerKind = 3, relaxedCaps = [5, 6, 7, 8];
         row.eligibleKindCounts = Object.fromEntries(semanticKinds.map(kind => [kind, new Set(pool.filter(element => addedKind(element.tags) === kind).map(element => normal(name(element)))).size]));
-        row.semanticPolicy = { maximumPerKind, targetPlaces: 24, minimumPlaces: 20 };
+        row.semanticPolicy = { maximumPerKind, targetPlaces: 24, minimumPlaces: profile.minimumPlaces };
         const unavailableSemanticKinds = [];
         for (const kind of semanticKinds) {
             if (choices.some(choice => choice.kind === kind)) continue;
@@ -135,18 +142,18 @@ for (const target of table.targets) {
             }
         };
         fill(maximumPerKind);
-        // Only when the cap leaves fewer than the 20 venues the acceptance contract needs (PLACES.length >= 20 in acceptance.mjs; nothing there limits a kind).
+        // Only when the cap leaves fewer than the venues the acceptance contract needs (PLACES.length >= the profile minimum, 20 unless a profile says otherwise; nothing there limits a kind).
         // One step at a time (5, 6, 7, 8 per kind), stopping at the first cap that reaches 20, so the smallest sufficient relaxation is used.
         for (const cap of relaxedCaps) {
-            if (choices.length >= 20) break;
+            if (choices.length >= profile.minimumPlaces) break;
             fill(cap);
             row.semanticPolicy.relaxedMaximumPerKind = cap;
         }
         row.semanticCoverage = semanticKinds.map(kind => ({ kind, refs: choices.filter(choice => choice.kind === kind).map(choice => choice.ref) }));
         row.unavailableSemanticKinds = unavailableSemanticKinds;
-        if (choices.length < 20)
-            row.errors.push(`only ${choices.length} eligible unique named venues`);
-        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre }), names = [...districts.labels];
+        if (choices.length < profile.minimumPlaces)
+            row.errors.push(`only ${choices.length} eligible unique named venues (the ${profile.name} profile needs ${profile.minimumPlaces})`);
+        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre, minimumLabels: profile.minimumNeighbourhoodLabels }), names = [...districts.labels];
         row.districtLabelPlaceTags = districts.placeTags;
         if (districts.areaRefs.length) row.districtLabelAreaRefs = districts.areaRefs;
         if (districts.fallback) row.districtLabelFallback = 'fewer than five suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended' + (districts.areaRefs.length ? `; still short of five nodes, so place areas at their centre points: ${districts.areaRefs.join(', ')}` : '');
@@ -174,17 +181,20 @@ for (const target of table.targets) {
         // The generated map test (acceptance.mjs) demands five source-backed neighbourhood labels; fail at selection with the exact count instead of after generation.
         const neighbourhoodLabels = names.filter(label => label.kind === 'neighbourhood').length;
         row.neighbourhoodLabels = neighbourhoodLabels;
-        if (neighbourhoodLabels < 5)
-            row.errors.push(`only ${neighbourhoodLabels} source-backed neighbourhood labels (place=suburb|neighbourhood|quarter nodes, then village|hamlet|locality|subdivision nodes, then the same tags as way/relation areas at their centre, inside the eligible pool); five are required`);
+        if (neighbourhoodLabels < profile.minimumNeighbourhoodLabels)
+            row.errors.push(`only ${neighbourhoodLabels} source-backed neighbourhood labels (place=suburb|neighbourhood|quarter nodes, then village|hamlet|locality|subdivision nodes, then the same tags as way/relation areas at their centre, inside the eligible pool); ${profile.minimumNeighbourhoodLabels} are required`);
         const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names,
-            ...(target.sceneWaterExtent === undefined ? {} : { sceneWaterExtent: target.sceneWaterExtent }) };
+            ...(target.sceneWaterExtent === undefined ? {} : { sceneWaterExtent: target.sceneWaterExtent }),
+            ...(target.profile === undefined ? {} : { profile: target.profile, emptySlots }) };
         for (const key of ['discovery', 'water', 'landuse', 'roads', 'sea', 'wideWater'])
             delete config[key];
         if (policy.kind !== 'inland') {
             config.wideWater = true;
             config.sea = { kind: policy.kind, bandMetres: raw.source.waterRecipe?.sea?.bandMetres ?? 40000 };
         }
-        facts.names = destinationNames(facts, target.name, name(unique.get(choices.find(p => p.slot === 'transit')?.ref) ?? { tags: {} }));
+        // An empty transit slot keeps the game's own transit venue, so the road hub carries that venue's fictional name.
+        const genericTransitName = base.venues.find(venue => venue.id === ids.transit)?.name;
+        facts.names = destinationNames(facts, target.name, choices.some(p => p.slot === 'transit') ? name(unique.get(choices.find(p => p.slot === 'transit').ref)) : genericTransitName);
         if (target.namesUnit !== undefined) facts.names = { ...facts.names, unit: target.namesUnit };
         const manifest = { root, facts, config, countryScope: countryScope.policy, countryScopeReceipt: countryScope.receipt, queryPolicy: policy, extract: { directory: target.extractDirectory, sha256: Object.fromEntries(Object.entries(ex.answers).map(([key, v]) => [key, v.sha256])) } };
         const manifestPath = join(out, `${target.id}-manifest.json`);

@@ -1,0 +1,17 @@
+{
+ "iso": "TV",
+ "country": "Tuvalu",
+ "geofabrik": "australia-oceania/tuvalu",
+ "snapshot": "261011",
+ "cities": [
+  {
+   "id": "funafuti",
+   "name": "Funafuti",
+   "lat": -8.504778,
+   "lon": 179.117361,
+   "centreSource": "Wikidata Q34126 P625",
+   "airportIdent": "NGFU",
+   "profile": "microstate"
+  }
+ ]
+}

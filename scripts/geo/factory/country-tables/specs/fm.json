@@ -1,0 +1,18 @@
+{
+ "iso": "FM",
+ "country": "Micronesia (Federated States of)",
+ "geofabrik": "australia-oceania/micronesia",
+ "snapshot": "261011",
+ "cities": [
+  {
+   "id": "palikir",
+   "name": "Palikir",
+   "lat": 6.917778,
+   "lon": 158.185,
+   "centreSource": "Wikidata Q42751 P625",
+   "airportIdent": "PTPN",
+   "timezone": "Pacific/Guadalcanal",
+   "profile": "microstate"
+  }
+ ]
+}

@@ -1,0 +1,18 @@
+{
+ "iso": "SM",
+ "country": "San Marino",
+ "geofabrik": "europe/italy",
+ "snapshot": "261011",
+ "cities": [
+  {
+   "id": "san-marino",
+   "name": "Città di San Marino",
+   "lat": 43.932011111,
+   "lon": 12.44845,
+   "centreSource": "Wikidata Q1848 P625 (City of San Marino, capital of San Marino, P36 of Q238)",
+   "airportIdent": "LIKD",
+   "airportSourceUrl": "https://ourairports.com/airports/LIKD/",
+   "hubWaiver": "San Marino has no large, medium or small airport with scheduled service in the pinned OurAirports CSV; its own named Torraccia Airfield (LIKD, small_airport, scheduled_service=no) is the game air hub. Airport records do not establish current operations; the game claims none."
+  }
+ ]
+}

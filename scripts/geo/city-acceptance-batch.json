@@ -2,18 +2,13 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-h-1",
-      "appSha": "c8e8cf2adf8859845226ed3da5d6aa9146e536f8",
+      "id": "release-i-1",
+      "appSha": "2cb356d4020d95923007a2e2945d6909c89b4d43",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "male",
-        "toronto",
-        "palikir",
-        "kyiv",
-        "singapore",
-        "yaren",
-        "st-johns",
-        "ramallah"
+        "seoul",
+        "jakarta",
+        "san-marino"
       ],
       "roundtrip": true
     }

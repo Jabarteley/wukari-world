@@ -176,7 +176,7 @@ function metaFor(): Meta {
     names.push(seat && !seat.bot ? seat.name.slice(0, 9) : '')
   }
   const team = (t: number): string => { const n = seats.filter((s, i) => i % 2 === t && !s.bot).map((s) => s.name.slice(0, 9)); return n.length ? (n.length > 1 ? n[0] + ' +' + (n.length - 1) : n[0]) as string : (t ? 'Computer' : 'Home') }
-  return { names, kits: KITS, looks, you: st?.you ?? null, reduced, teamNames: [team(0), team(1)], portrait: portrait.value }
+  return { names, kits: KITS, looks, you: st?.you ?? null, reduced, teamNames: [team(0), team(1)], portrait: portrait.value, overview: !live.value }
 }
 
 function frame(now: number): void {
@@ -240,12 +240,13 @@ onBeforeUnmount(() => {
 <template>
   <ArenaStage title="Football" :chip="conn === 'open' ? (state?.practice ? 'Practice' : status === 'playing' ? (seated ? 'Live' : 'Watching') : status) : 'Connecting…'" :off="conn !== 'open'" @leave="leave">
     <template #bar>
-      <span class="fb-sbar" data-testid="football-score"><b class="a">{{ sb.a }}</b><strong>{{ sb.ga }} - {{ sb.gb }}</strong><b class="b">{{ sb.b }}</b><small>{{ sb.clock }}</small></span>
+      <span class="fb-sbar" data-testid="football-score"><b class="a">{{ sb.a }}</b><span class="fb-sc"><strong>{{ sb.ga }} - {{ sb.gb }}</strong><small>{{ sb.clock }}</small></span><b class="b">{{ sb.b }}</b></span>
     </template>
-    <div class="fb" data-testid="football">
+    <div class="fb" :class="{ idle: !live }" data-testid="football">
       <div v-if="gone" class="fb-card"><p>{{ note || 'That game is not on any more.' }}</p><button type="button" class="fb-go" @click="leave">Back to games</button></div>
       <template v-else>
         <div class="fb-play" :class="{ idle: !live }">
+          <div class="fb-teams" aria-hidden="true"><span class="a"><i />{{ sb.a }}</span><span class="b">{{ sb.b }}<i /></span></div>
           <div ref="box" class="fb-stage arena-fill"><canvas ref="canvas" aria-label="Football pitch" role="img" /></div>
           <section v-if="live" class="fb-pad" aria-label="Controls" data-testid="football-pad">
             <div class="fb-joy" aria-label="Move" data-testid="football-joy" @pointerdown.prevent="joyStart" @pointermove.prevent="joyId >= 0 && joyMove($event)" @pointerup.prevent="joyStop" @pointercancel="joyStop">
@@ -259,9 +260,9 @@ onBeforeUnmount(() => {
             </div>
           </section>
         </div>
+        <div v-if="!live" class="fb-side"><ArenaRoomPanels :room="room" /></div>
         <p v-if="note" class="fb-note" role="status">{{ note }}</p>
         <p v-if="live" class="fb-small keys">Keys: arrows or WASD move · Space tap pass, hold to shoot · K slide tackle</p>
-        <ArenaRoomPanels v-if="!live" :room="room" />
       </template>
     </div>
   </ArenaStage>
@@ -269,15 +270,20 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .fb { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 8px; user-select: none; -webkit-user-select: none; }
-.fb-sbar { display: flex; align-items: baseline; gap: 8px; font-size: 13px; color: #1a1d24; white-space: nowrap; }
+.fb-sbar { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: #1a1d24; white-space: nowrap; }
 .fb-sbar b { max-width: 84px; overflow: hidden; text-overflow: ellipsis; font-weight: 700; }
 .fb-sbar b.a { border-bottom: 3px solid #0a8f3c; } .fb-sbar b.b { border-bottom: 3px solid #f3c20f; }
-.fb-sbar strong { font-size: 18px; color: #0a6b2d; font-variant-numeric: tabular-nums; }
+.fb-sc { display: grid; justify-items: center; line-height: 1.05; }
+.fb-sbar strong { font-size: 17px; color: #0a6b2d; font-variant-numeric: tabular-nums; }
 .fb-sbar small { font-size: 12px; opacity: 0.9; font-variant-numeric: tabular-nums; }
 .fb-play { position: relative; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 6px; }
 .fb-play.idle { flex: none; }
 .fb-stage { position: relative; flex: 1 1 auto; min-height: 150px; background: #12301d; border-radius: 12px; overflow: hidden; }
-.fb-play.idle .fb-stage { flex: none; height: min(78vw, 42vh); }
+.fb-play.idle .fb-stage { flex: none; height: min(112vw, 46vh); }
+.fb-teams { display: none; justify-content: space-between; font-size: 13px; font-weight: 700; color: #1a1d24; padding: 0 4px; }
+.fb-teams span { display: flex; align-items: center; gap: 6px; } .fb-teams i { width: 10px; height: 16px; border-radius: 3px; background: #0a8f3c; } .fb-teams .b i { background: #f3c20f; }
+.fb-side { flex: none; }
+@media (orientation: portrait) { .fb-sbar b { display: none; } .fb-teams { display: flex; } }
 .fb-stage canvas { position: absolute; left: 0; top: 0; display: block; touch-action: none; }
 .fb-card { display: grid; gap: 10px; padding: 14px; background: #f3efe8; border-radius: 14px; }
 .fb-go { min-height: 44px; border-radius: 10px; border: 0; background: #0a8f3c; color: #fff; font: 700 15px system-ui; }
@@ -302,6 +308,8 @@ onBeforeUnmount(() => {
   .fb-joy { width: 108px; height: 108px; } .fb-knob { width: 46px; height: 46px; }
   .fb-btn.shoot { width: 86px; height: 86px; } .fb-btn.tackle { width: 62px; height: 62px; }
   .keys { display: none; }
-  .fb-play.idle .fb-stage { height: min(40vh, 60vw); }
+  .fb.idle { flex-direction: row; align-items: stretch; gap: 10px; }
+  .fb.idle .fb-play { flex: 1 1 56%; } .fb.idle .fb-stage { height: 100%; min-height: 140px; }
+  .fb.idle .fb-side { flex: 1 1 44%; overflow-y: auto; }
 }
 </style>

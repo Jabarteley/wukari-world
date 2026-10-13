@@ -12,7 +12,7 @@ import type { FootballSnap, FootballerSnap } from './football.ts'
 import { lerp } from './interp.ts'
 
 /** Players and ball are drawn a little larger than the rules' sizes so they read on a phone. */
-const VS = 1.6
+const VS = 1.9
 export const OX = 44, TOP = 46, BOTTOM = 30
 export const VIEW_W = W + OX * 2, VIEW_H = H + TOP + BOTTOM
 
@@ -27,6 +27,7 @@ export interface Meta {
   /** where the own player is drawn (light prediction), world units */ own?: { x: number; y: number } | null
   teamNames: [string, string]
   /** a tall canvas: the pitch is turned so the goals are at the top and bottom */ portrait: boolean
+  /** show the whole pitch (lobby, full time) instead of following the play */ overview?: boolean
 }
 export const KITS: [Kit, Kit] = [
   { shirt: '#0a8f3c', trim: '#ffffff', shorts: '#ffffff', name: 'Green' },
@@ -138,7 +139,7 @@ export const viewRotation = (you: number | null, portrait: boolean): number => {
 /** A heading on the screen (joystick, arrows) as the vector in pitch coordinates. */
 export const screenToWorld = (vx: number, vy: number, rot: number): [number, number] => [vx * Math.cos(rot) + vy * Math.sin(rot), -vx * Math.sin(rot) + vy * Math.cos(rot)]
 
-function player(c: CanvasRenderingContext2D, f: FootballerSnap, kit: Kit, look: Look, run: number, mine: boolean, label: string, number: string, rot: number, reduced: boolean): void {
+function player(c: CanvasRenderingContext2D, f: FootballerSnap, kit: Kit, look: Look, run: number, mine: boolean, label: string, number: string, rot: number, reduced: boolean, carrier: boolean): void {
   const st = f[3], sliding = (st & 1) !== 0, stunned = (st & 2) !== 0, charge = (st >> 2) & 7
   c.save()
   c.translate(f[0], f[1])
@@ -175,7 +176,12 @@ function player(c: CanvasRenderingContext2D, f: FootballerSnap, kit: Kit, look: 
   c.save(); c.translate(f[0], f[1]); c.rotate(-rot)
   c.textAlign = 'center'; c.textBaseline = 'middle'
   c.font = '900 11px system-ui, sans-serif'; c.lineWidth = 3; c.strokeStyle = 'rgba(8,20,13,0.85)'; c.strokeText(number, 0, 0); c.fillStyle = '#ffffff'; c.fillText(number, 0, 0)
-  if (label) { c.font = '800 11px system-ui, sans-serif'; c.strokeText(label, 0, -PR * VS - 11); c.fillStyle = mine ? '#ffe14d' : '#ffffff'; c.fillText(label, 0, -PR * VS - 11) }
+  if (carrier) {
+    // an arrow over whoever has the ball, in his kit colour
+    c.fillStyle = kit.shirt; c.strokeStyle = '#ffffff'; c.lineWidth = 3
+    c.beginPath(); c.moveTo(0, -PR * VS - 3); c.lineTo(-9, -PR * VS - 18); c.lineTo(9, -PR * VS - 18); c.closePath(); c.stroke(); c.fill()
+  }
+  if (label) { c.font = '800 11px system-ui, sans-serif'; const ly = -PR * VS - (carrier ? 28 : 11); c.strokeText(label, 0, ly); c.fillStyle = mine ? '#ffe14d' : '#ffffff'; c.fillText(label, 0, ly) }
   if (charge > 0) {
     c.strokeStyle = charge > 5 ? '#ff4d2e' : charge > 2 ? '#ffb020' : '#ffffff'; c.lineWidth = 4
     c.beginPath(); c.arc(0, 0, PR * VS + 8, -Math.PI / 2, -Math.PI / 2 + (charge / 7) * Math.PI * 2); c.stroke()
@@ -197,14 +203,17 @@ function keeper(c: CanvasRenderingContext2D, team: number, y: number): void {
 }
 
 function ball(c: CanvasRenderingContext2D, x: number, y: number, speed: number, vx: number, vy: number): void {
-  const R = 11.5
+  const R = 10.5
+  // halo so the ball is never lost against the grass or a shirt
+  c.fillStyle = 'rgba(255,255,255,0.2)'; c.strokeStyle = 'rgba(255,255,255,0.7)'; c.lineWidth = 2.5
+  c.beginPath(); c.arc(x, y, R * 1.75, 0, Math.PI * 2); c.fill(); c.stroke()
   c.fillStyle = 'rgba(0,0,0,0.3)'; c.beginPath(); c.ellipse(x + 2, y + 3, R, R * 0.75, 0, 0, Math.PI * 2); c.fill()
-  if (speed > 12) { c.strokeStyle = 'rgba(255,255,255,0.35)'; c.lineWidth = 6; c.lineCap = 'round'; c.beginPath(); c.moveTo(x, y); c.lineTo(x - vx * 1.4, y - vy * 1.4); c.stroke() }
+  if (speed > 12) { c.strokeStyle = 'rgba(255,255,255,0.4)'; c.lineWidth = 6; c.lineCap = 'round'; c.beginPath(); c.moveTo(x, y); c.lineTo(x - vx * 1.4, y - vy * 1.4); c.stroke() }
   c.fillStyle = '#ffffff'; c.beginPath(); c.arc(x, y, R, 0, Math.PI * 2); c.fill()
-  c.strokeStyle = '#222'; c.lineWidth = 1.4; c.stroke()
-  c.fillStyle = '#222'
+  c.strokeStyle = '#111'; c.lineWidth = 1.6; c.stroke()
+  c.fillStyle = '#111'
   const a = (x + y) / 9
-  for (let i = 0; i < 3; i++) { c.beginPath(); c.arc(x + Math.cos(a + i * 2.1) * 6, y + Math.sin(a + i * 2.1) * 6, 2.6, 0, Math.PI * 2); c.fill() }
+  for (let i = 0; i < 3; i++) { c.beginPath(); c.arc(x + Math.cos(a + i * 2.1) * 5.6, y + Math.sin(a + i * 2.1) * 5.6, 2.5, 0, Math.PI * 2); c.fill() }
 }
 
 const clampTo = (v: number, lo: number, hi: number): number => (lo > hi ? (lo + hi) / 2 : Math.max(lo, Math.min(hi, v)))
@@ -223,7 +232,8 @@ export function drawFootball(ctx: CanvasRenderingContext2D, width: number, heigh
   const rotated = meta.portrait
   const sw = rotated ? VIEW_H : VIEW_W, sh = rotated ? VIEW_W : VIEW_H
   const fit = Math.min(width / sw, height / sh)
-  const scale = rotated ? Math.max(fit, width / sw) : fit * 1.3
+  // Close in: about 62% of the pitch's short side across the screen, so a footballer is ~50 px on a phone; the camera follows the play.
+  const scale = meta.overview ? fit : Math.max(fit, (rotated ? width / sw : height / sh) / 0.62)
   const from = a ?? b
 
   // positions of everyone for this frame
@@ -269,7 +279,7 @@ export function drawFootball(ctx: CanvasRenderingContext2D, width: number, heigh
     fx.run[p] = (fx.run[p] ?? 0) + Math.min(moved, 12) * 0.34
     const kit = meta.kits[p & 1] as Kit
     const look = meta.looks[p] ?? { skin: '#8a5a3c', hair: '#1c1c1c' }
-    list.push({ y: f[1], draw: () => player(ctx, f, kit, look, fx.run[p] as number, meta.you === p, meta.names[p] ?? '', NUMBERS[p >> 1] ?? '8', rot, meta.reduced) })
+    list.push({ y: f[1], draw: () => player(ctx, f, kit, look, fx.run[p] as number, meta.you === p, meta.names[p] ?? '', NUMBERS[p >> 1] ?? '8', rot, meta.reduced, b.b[2] === p + 1) })
   })
   keeper(ctx, 0, lerp(from.k[0], b.k[0], t)); keeper(ctx, 1, lerp(from.k[1], b.k[1], t))
   list.sort((p, q) => p.y - q.y)
@@ -285,6 +295,22 @@ export function drawFootball(ctx: CanvasRenderingContext2D, width: number, heigh
   ctx.globalAlpha = 1
   fx.shake *= 0.85
   ctx.restore()
+
+  // the ball is off screen: an arrow at the edge points to it
+  {
+    const dxv = OX + bx - fx.cx, dyv = TOP + by - fx.cy
+    const sxp = width / 2 + (dxv * Math.cos(rot) - dyv * Math.sin(rot)) * scale, syp = height / 2 + (dxv * Math.sin(rot) + dyv * Math.cos(rot)) * scale
+    const m = 22
+    if (sxp < m || sxp > width - m || syp < m || syp > height - m) {
+      const ex = Math.max(m, Math.min(width - m, sxp)), ey = Math.max(m, Math.min(height - m, syp))
+      const ang = Math.atan2(syp - height / 2, sxp - width / 2)
+      ctx.save(); ctx.translate(ex, ey)
+      ctx.fillStyle = 'rgba(8,24,15,0.7)'; ctx.beginPath(); ctx.arc(0, 0, 15, 0, Math.PI * 2); ctx.fill()
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(0, 0, 8, 0, Math.PI * 2); ctx.fill()
+      ctx.rotate(ang); ctx.fillStyle = '#ffe14d'; ctx.beginPath(); ctx.moveTo(24, 0); ctx.lineTo(14, -7); ctx.lineTo(14, 7); ctx.closePath(); ctx.fill()
+      ctx.restore()
+    }
+  }
 
   // radar: the whole pitch, shown while the camera is closer than that
   if (zoomed) {
@@ -306,14 +332,14 @@ export function drawFootball(ctx: CanvasRenderingContext2D, width: number, heigh
   }
 
   // banners
-  const big = (text: string, sub: string, color: string, pulse: number): void => {
+  const big = (text: string, sub: string, color: string, pulse: number, at = 0.47): void => {
     ctx.save()
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
-    ctx.fillStyle = 'rgba(0,0,0,0.42)'; ctx.fillRect(0, height * 0.38, width, height * 0.24)
+    ctx.fillStyle = 'rgba(0,0,0,0.42)'; ctx.fillRect(0, height * (at - 0.09), width, height * 0.24)
     const size = Math.max(22, Math.min(width * 0.2, height * 0.2) * pulse)
-    ctx.font = `900 ${size}px system-ui, sans-serif`; ctx.lineWidth = Math.max(3, size / 9); ctx.strokeStyle = '#0b1f14'; ctx.strokeText(text, width / 2, height * 0.47)
-    ctx.fillStyle = color; ctx.fillText(text, width / 2, height * 0.47)
-    ctx.font = `800 ${Math.max(12, Math.min(width * 0.05, 22))}px system-ui, sans-serif`; ctx.fillStyle = '#ffffff'; ctx.fillText(sub, width / 2, height * 0.56)
+    ctx.font = `900 ${size}px system-ui, sans-serif`; ctx.lineWidth = Math.max(3, size / 9); ctx.strokeStyle = '#0b1f14'; ctx.strokeText(text, width / 2, height * at)
+    ctx.fillStyle = color; ctx.fillText(text, width / 2, height * at)
+    ctx.font = `800 ${Math.max(12, Math.min(width * 0.05, 22))}px system-ui, sans-serif`; ctx.fillStyle = '#ffffff'; ctx.fillText(sub, width / 2, height * (at + 0.09))
     ctx.restore()
   }
   const you = meta.you
@@ -323,7 +349,7 @@ export function drawFootball(ctx: CanvasRenderingContext2D, width: number, heigh
     big('GOAL!', `${scorer ? scorer + ' scores!' : (meta.teamNames[team] ?? '') + ' score!'}  ${b.g[0]}-${b.g[1]}`, (meta.kits[team] ?? meta.kits[0]).shirt === '#f3c20f' ? '#ffe14d' : '#7dff9b', meta.reduced ? 1 : 1 + Math.sin(performance.now() / 110) * 0.06)
     if (fx.flash > 0.02 && !meta.reduced) { ctx.fillStyle = `rgba(255,255,255,${fx.flash * 0.35})`; ctx.fillRect(0, 0, width, height); fx.flash *= 0.88 }
   } else if (b.p === PHASE.kickoff && b.c > 0) {
-    big(String(b.c), you !== null ? 'Get ready. Kick-off!' : 'Kick-off', '#ffffff', 1)
+    big(String(b.c), you !== null ? 'Get ready. Kick-off!' : 'Kick-off', '#ffffff', 1, 0.8)
   } else if (b.p === PHASE.over) {
     big(b.g[0] === b.g[1] ? 'DRAW' : 'FULL TIME', `${meta.teamNames[0]} ${b.g[0]} - ${b.g[1]} ${meta.teamNames[1]}`, '#ffe14d', 0.8)
   }

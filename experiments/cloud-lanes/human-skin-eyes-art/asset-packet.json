@@ -6,6 +6,29 @@
   "units": "metres",
   "blenderAxes": "Z up / -Y front",
   "gltfAxes": "Y up / +Z front",
+  "anchorsGLTFM": {
+    "eyeCenter": [
+      0.102,
+      0.044,
+      0
+    ],
+    "skinUmberCenter": [
+      -0.102,
+      0.044,
+      0
+    ],
+    "skinCopperCenter": [
+      -0.034,
+      0.044,
+      0
+    ],
+    "skinRoseCenter": [
+      0.034,
+      0.044,
+      0
+    ]
+  },
+  "anchorStatus": "authored calibration object origins; not human attachment anchors",
   "authorship": "Original procedural geometry and textures authored for Allworld; no external assets",
   "license": "AGPL-3.0-or-later",
   "files": {
@@ -56,6 +79,78 @@
     "proof/contact-sheet.jpg": {
       "bytes": 189189,
       "sha256": "4fd84b5a2950aac7bbd3c0050fe4323fa2573044e922d01dce737677a9939aa5"
+    },
+    "proof/gltf-contact-sheet.jpg": {
+      "bytes": 138881,
+      "sha256": "a35563e4b91e4217ae74fcca7c50b803bb810dff64bae1b3aa878eb1ada94a0d"
+    },
+    "proof/shader-loss.jpg": {
+      "bytes": 67978,
+      "sha256": "23f391afd8f439d2e61a9c8264c77c0c9e2a2f05dda960a12cbe9b77c57ec5bf"
+    },
+    "browser_proof.py": {
+      "bytes": 2624,
+      "sha256": "151b799d5776c9c331073832a6f792caff90a0a3beda13cc451c81da18107127"
+    },
+    "build.py": {
+      "bytes": 11861,
+      "sha256": "f264cbb819b4991e2d907e6c4b5ce344f2edf13dab3d1ac7d45e10b3d5017a7c"
+    },
+    "contact_sheet.py": {
+      "bytes": 1861,
+      "sha256": "f19a482355705f5dc5333be89f184da14a2efb536976565632159ec0e89adbc3"
+    },
+    "make_textures.py": {
+      "bytes": 3941,
+      "sha256": "0060629dede7d6a48956c6079dfb003fdd7b039cf0417cc6b013dbe42171481b"
+    },
+    "package-lock.json": {
+      "bytes": 933,
+      "sha256": "5f195795b2d86bcac60c1c286e88ee75e38479c258740c052242693d2915c8c3"
+    },
+    "package.json": {
+      "bytes": 214,
+      "sha256": "3391c11d1ab4273d99b775b3468fa0bcaa3e6e31e12aee4ef86108e56d6deccc"
+    },
+    "shader_loss.py": {
+      "bytes": 2060,
+      "sha256": "e129149cc932132d1812f7c6616f16086b86b0c0411366eb1f051100c65ff51e"
+    },
+    "shader_sheet.py": {
+      "bytes": 841,
+      "sha256": "f7801bc53d09c9b325d6513d5e401e5d2d75874a7826ec0979da964d58d402b9"
+    },
+    "validate.ts": {
+      "bytes": 557,
+      "sha256": "bb96ee21f207e52a6e28d806dbd5f6d5785281eed5e2b976bd608c33ecd82f2b"
+    },
+    "verify.py": {
+      "bytes": 6599,
+      "sha256": "47fd29bef16cc339a569a0e93a7e0f7b5c5f64534655b2d52ab20d6cc65fe226"
+    },
+    "viewer.html": {
+      "bytes": 5647,
+      "sha256": "b1d65edc7431da9f30d3bc52e2ee2407e0f59d99f26a34b485ef0b7a678716f8"
+    },
+    "receipts/blender-measurements.json": {
+      "bytes": 5218,
+      "sha256": "608a648376ca886a5cb47016ee012765513da5459153177b040d94358d837ed3"
+    },
+    "receipts/browser.json": {
+      "bytes": 4017,
+      "sha256": "b07ae09aed1325adf1ea50c1569b33ec394134740b24667e7e3939c37e14f4a4"
+    },
+    "receipts/decoded-glb.json": {
+      "bytes": 12088,
+      "sha256": "cb8bbb2e3f09ef59d82bf6355215588085f3edbcf331ec871396a62c75c19fd3"
+    },
+    "receipts/gltf-validator.json": {
+      "bytes": 4462,
+      "sha256": "5f051b8d7a233840cb4d29b65e1b656d63fdb4d0369ac761d9a44a0b5ee5874c"
+    },
+    "receipts/source-reopen.json": {
+      "bytes": 690,
+      "sha256": "d1724bc7e45993f5fdc91c067c5b3acc0029d13bd679e602a34b02b0dc8019f4"
     }
   }
 }

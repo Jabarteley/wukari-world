@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Allworld skin / eye PBR calibration</title><link rel="icon" href="data:,">
+<style>*{box-sizing:border-box}body{margin:0;background:#101c25;color:#ecebdd;font:15px system-ui}main{margin:24px;width:1200px}h1{font-size:25px;font-weight:500;margin-bottom:8px}p{color:#a9c6c9;line-height:1.5}.label{display:flex;gap:20px;margin:10px 0;color:#c7c8bb}.label span{width:280px}canvas{display:block;width:1200px;height:1100px}.viewwrap{position:relative}.rowtag{position:absolute;left:12px;background:#101c25cc;color:#cdd8db;padding:4px 8px;font-size:12px;letter-spacing:1px}footer{line-height:1.6;color:#adbdc3;font-size:14px}</style>
+<main><h1>ALLWORLD / Baked skin + eye calibration</h1><p>Original material studies · raw GLTFLoader · no human UV fit · neutral / day / night, then eye close-up</p>
+<div class="label"><span>01 UMBER</span><span>02 COPPER</span><span>03 ROSE</span><span>04 EYE</span></div>
+<div class="viewwrap"><canvas id="view" width="1200" height="1100"></canvas><span class="rowtag" style="top:8px">NEUTRAL</span><span class="rowtag" style="top:258px">DAY</span><span class="rowtag" style="top:508px">NIGHT</span><span class="rowtag" style="top:758px">EYE DETAIL / NEUTRAL</span></div>
+<footer>Three 0.180.0 · software WebGL · sRGB textures, tangent +Y normals · opaque alpha throughout<br>Cornea: KHR_materials_transmission + KHR_materials_ior. Blender SSS is omitted; lighting is illustrative, not renderer parity.<br>Curved patches are material fixtures. Exact human UV/material checkpoint required before fitting or portrait acceptance.</footer></main>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script>window.addEventListener('error',e=>window.proofError=e.message);window.addEventListener('unhandledrejection',e=>window.proofError=String(e.reason));</script>
+<script type="module">
+import * as T from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+const renderer=new T.WebGLRenderer({canvas:document.getElementById('view'),antialias:true,preserveDrawingBuffer:true});
+renderer.setSize(1200,1100,false);renderer.setPixelRatio(1);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.1;
+const room=new RoomEnvironment();const pmrem=new T.PMREMGenerator(renderer);const env=pmrem.fromScene(room,.04);room.dispose();pmrem.dispose();
+const gltf=await new GLTFLoader().loadAsync('./artifacts/skin-eyes-calibration-v1.glb');
+const records=[],scenes=[],materials=[];gltf.scene.traverse(o=>{if(o.isMesh)materials.push({object:o.name,material:o.material.name,roughness:o.material.roughness,metalness:o.material.metalness,normalScale:o.material.normalScale?.toArray(),hasBaseColor:!!o.material.map,hasRoughness:!!o.material.roughnessMap,hasNormal:!!o.material.normalMap,transmission:o.material.transmission??0,ior:o.material.ior??null,transparent:o.material.transparent,opacity:o.material.opacity,side:o.material.side});});
+const presets=[{name:'neutral',env:.65,key:2.0,keyColor:0xffffff,fill:.4,fillColor:0xb8d5ff,background:0x263844},{name:'day',env:.85,key:2.6,keyColor:0xffe4bd,fill:.7,fillColor:0x8fc0ff,background:0x304550},{name:'night',env:.12,key:.4,keyColor:0x779fff,fill:1.2,fillColor:0xff8c43,background:0x0c1629}];
+for(let row=0;row<4;row++){
+ const p=presets[row===3?0:row],scene=new T.Scene();scene.background=new T.Color(p.background);scene.environment=env.texture;scene.environmentIntensity=p.env;
+ const model=gltf.scene.clone();scene.add(model);const key=new T.DirectionalLight(p.keyColor,p.key);key.position.set(-.1,.2,.25);scene.add(key);
+ const fill=new T.DirectionalLight(p.fillColor,p.fill);fill.position.set(.2,.08,.12);scene.add(fill);
+ let camera,height,y;
+ if(row<3){height=250;y=1100-(row+1)*250;camera=new T.OrthographicCamera(-.164,.164,.03417,-.03417,.001,10);camera.position.set(0,.075,.34);camera.lookAt(0,.044,0);}else{height=350;y=0;camera=new T.OrthographicCamera(-.055,.055,.016,-.016,.001,10);camera.position.set(.109,.050,.064);camera.lookAt(.102,.044,0);model.traverse(o=>{if(o.name.startsWith('SkinPatch'))o.visible=false;});}
+ renderer.setViewport(0,y,1200,height);renderer.setScissor(0,y,1200,height);renderer.setScissorTest(true);renderer.render(scene,camera);
+ const pixels=new Uint8Array(1200*height*4);const gl=renderer.getContext();gl.readPixels(0,y,1200,height,gl.RGBA,gl.UNSIGNED_BYTE,pixels);
+ let warm=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]>pixels[i+2]*1.15&&pixels[i]>35)warm++;
+ if(warm<500)throw new Error('Missing visible skin/iris '+row);
+ records.push({lighting:p.name,view:row===3?'eye close':'calibration lineup',coloredPixels:warm,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles});scenes.push(scene);
+}
+const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info');
+window.receipt={ready:true,three:T.REVISION,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),softwareOnly:true,materials,records,animationLoop:false};
+window.cleanup=()=>{const gs=new Set(),ms=new Set(),ts=new Set();gltf.scene.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});for(const m of ms){for(const v of Object.values(m))if(v?.isTexture)ts.add(v);m.dispose();}for(const g of gs)g.dispose();for(const t of ts)t.dispose();env.dispose();renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true;};
+</script></html>

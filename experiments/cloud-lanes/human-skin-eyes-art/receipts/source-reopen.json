@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "blendOpened": true,
+  "packedImages": [
+    "iris_basecolor.png",
+    "iris_normal.png",
+    "sclera_basecolor.png",
+    "skin_01_umber_basecolor.png",
+    "skin_02_copper_basecolor.png",
+    "skin_03_rose_basecolor.png",
+    "skin_normal.png",
+    "skin_roughness.png"
+  ],
+  "embeddedSources": [
+    "build.py",
+    "make_textures.py",
+    "README_CALIBRATION_ONLY"
+  ],
+  "comparison": "sequential matched-camera and matched-light frames: exported core PBR / Blender SSS source; identical maps, geometry and random seed",
+  "sourceSubsurfaceWeight": 0.11,
+  "sourceSubsurfaceScaleM": 0.00065,
+  "coreSubsurfaceWeight": 0,
+  "renderSamples": 64,
+  "threads": 2
+}

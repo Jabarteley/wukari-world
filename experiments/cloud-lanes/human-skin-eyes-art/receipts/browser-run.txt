@@ -1,0 +1,174 @@
+{
+  "ready": true,
+  "three": "180",
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "softwareOnly": true,
+  "materials": [
+    {
+      "object": "SkinPatch_01_umber",
+      "material": "Skin_01_umber_BAKED_PBR",
+      "roughness": 1,
+      "metalness": 0,
+      "normalScale": [
+        0.699999988079071,
+        0.699999988079071
+      ],
+      "hasBaseColor": true,
+      "hasRoughness": true,
+      "hasNormal": true,
+      "transmission": 0,
+      "ior": null,
+      "transparent": false,
+      "opacity": 1,
+      "side": 2
+    },
+    {
+      "object": "SkinPatch_02_copper",
+      "material": "Skin_02_copper_BAKED_PBR",
+      "roughness": 1,
+      "metalness": 0,
+      "normalScale": [
+        0.699999988079071,
+        0.699999988079071
+      ],
+      "hasBaseColor": true,
+      "hasRoughness": true,
+      "hasNormal": true,
+      "transmission": 0,
+      "ior": null,
+      "transparent": false,
+      "opacity": 1,
+      "side": 2
+    },
+    {
+      "object": "SkinPatch_03_rose",
+      "material": "Skin_03_rose_BAKED_PBR",
+      "roughness": 1,
+      "metalness": 0,
+      "normalScale": [
+        0.699999988079071,
+        0.699999988079071
+      ],
+      "hasBaseColor": true,
+      "hasRoughness": true,
+      "hasNormal": true,
+      "transmission": 0,
+      "ior": null,
+      "transparent": false,
+      "opacity": 1,
+      "side": 2
+    },
+    {
+      "object": "Eye_ScleralShell_24mm",
+      "material": "Eye_Sclera_BAKED_PBR",
+      "roughness": 0.23999999463558197,
+      "metalness": 0,
+      "normalScale": [
+        1,
+        1
+      ],
+      "hasBaseColor": true,
+      "hasRoughness": false,
+      "hasNormal": false,
+      "transmission": 0,
+      "ior": null,
+      "transparent": false,
+      "opacity": 1,
+      "side": 2
+    },
+    {
+      "object": "Eye_ConcaveIris_11p2mm",
+      "material": "Eye_Iris_BAKED_PBR",
+      "roughness": 0.3400000035762787,
+      "metalness": 0,
+      "normalScale": [
+        0.3499999940395355,
+        0.3499999940395355
+      ],
+      "hasBaseColor": true,
+      "hasRoughness": false,
+      "hasNormal": true,
+      "transmission": 0,
+      "ior": null,
+      "transparent": false,
+      "opacity": 1,
+      "side": 2
+    },
+    {
+      "object": "Eye_RecessedPupil_4p4mm",
+      "material": "Eye_Pupil",
+      "roughness": 0.6000000238418579,
+      "metalness": 0,
+      "normalScale": [
+        1,
+        1
+      ],
+      "hasBaseColor": false,
+      "hasRoughness": false,
+      "hasNormal": false,
+      "transmission": 0,
+      "ior": null,
+      "transparent": false,
+      "opacity": 1,
+      "side": 2
+    },
+    {
+      "object": "Eye_CorneaCap",
+      "material": "Eye_Cornea_TRANSMISSION",
+      "roughness": 0.04500000178813934,
+      "metalness": 0,
+      "normalScale": [
+        1,
+        1
+      ],
+      "hasBaseColor": false,
+      "hasRoughness": false,
+      "hasNormal": false,
+      "transmission": 1,
+      "ior": 1.3760000467300415,
+      "transparent": false,
+      "opacity": 1,
+      "side": 2
+    }
+  ],
+  "records": [
+    {
+      "lighting": "neutral",
+      "view": "calibration lineup",
+      "coloredPixels": 120497,
+      "drawCalls": 14,
+      "triangles": 34592
+    },
+    {
+      "lighting": "day",
+      "view": "calibration lineup",
+      "coloredPixels": 120454,
+      "drawCalls": 14,
+      "triangles": 34592
+    },
+    {
+      "lighting": "night",
+      "view": "calibration lineup",
+      "coloredPixels": 109096,
+      "drawCalls": 14,
+      "triangles": 34592
+    },
+    {
+      "lighting": "neutral",
+      "view": "eye close",
+      "coloredPixels": 8954,
+      "drawCalls": 8,
+      "triangles": 19040
+    }
+  ],
+  "animationLoop": false,
+  "status": "PASS",
+  "browserVersion": "154.0.8037.57",
+  "screenshotSha256": "a35563e4b91e4217ae74fcca7c50b803bb810dff64bae1b3aa878eb1ada94a0d",
+  "disposed": true,
+  "pageErrors": [],
+  "failedRequests": [],
+  "elapsedSeconds": 4.777,
+  "browserClosed": true,
+  "serverClosed": true
+}

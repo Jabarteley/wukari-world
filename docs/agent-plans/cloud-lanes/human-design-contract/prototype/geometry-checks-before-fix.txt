@@ -1,0 +1,13 @@
+{"cases": 112, "triangles": 29186, "meshes": 31, "errors": 54, "passed": false, "bounds": {"min": [-0.33131101727485657, -0.13899999856948853, 0.009999999776482582], "max": [0.331366628408432, 0.11958041042089462, 1.7580000162124634]}}
+[{"case": "blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "nose.projection:-1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "nose.projection:1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "nose.alarWidth:-1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "nose.alarWidth:1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "earLeft.protrusion:-1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "earLeft.protrusion:1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "earRight.protrusion:-1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "earRight.protrusion:1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "body.height:-1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "body.height:1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "body.shoulderWidth:-1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "body.shoulderWidth:1/blink", "mesh": "LowerLid_Left", "newZeroArea": 0, "normalReversals": 2}, {"case": "blink", "mesh": "LowerLid_Right", "newZeroArea": 0, "normalReversals": 4}, {"case": "nose.projection:-1/blink", "mesh": "LowerLid_Right", "newZeroArea": 0, "normalReversals": 4}]
+Traceback (most recent call last):
+  File "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/inspect_character.py", line 128, in <module>
+    assert not errors, 'Geometry checks failed; see geometry-checks.json'
+           ^^^^^^^^^^
+AssertionError: Geometry checks failed; see geometry-checks.json
+
+Error: script failed, file: 'experiments/cloud-lanes/human-design-contract/prototype/inspect_character.py', exiting.
+Blender 4.3.2
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.blend"
+
+Blender quit

@@ -1,0 +1,1294 @@
+{
+  "schemaVersion": 1,
+  "evidence": "Actual Blender source positions and morph deltas, original authored geometry.",
+  "blendSha256": "36018022ff64367e7426069d7417625a3591f3a2c0684c628c11c3bd908f84d9",
+  "glbSha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07",
+  "cases": 112,
+  "checks": [
+    "finite vertices",
+    "zero-area triangles",
+    "triangle normal reversal (lids use signed x/z Jacobian; large rotations retained)",
+    "nose/ear region independence",
+    "central blink closure",
+    "high-detail preview triangle limit"
+  ],
+  "triangles": 29186,
+  "meshCount": 31,
+  "highDetailPreviewMaximum": 34000,
+  "bodyBoundsBlenderMetres": {
+    "min": [
+      -0.33131101727485657,
+      -0.13899999856948853,
+      0.009999999776482582
+    ],
+    "max": [
+      0.331366628408432,
+      0.11958041042089462,
+      1.7580000162124634
+    ]
+  },
+  "errors": [],
+  "passed": true,
+  "lidRotationWitnesses": [],
+  "meshes": [
+    {
+      "name": "Neck",
+      "vertices": 96,
+      "triangles": 188,
+      "positionSha256": "7eaff140ca3bebcff4347668f10c406e0c74414377076e2f60b7d92a608c894d",
+      "triangleOrderSha256": "02c243c5e69a2b843d145468f169b416ced9bebec7ced6bc29bc75e04c804dd8",
+      "uvSha256": "dd716cb2ea0d9054f6d89b99a384c7d84e34162b082811215f03302e4321b1b1",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.04600000008940697,
+          -0.026000000536441803,
+          1.409999966621399
+        ],
+        "max": [
+          0.04600000008940697,
+          0.06300000101327896,
+          1.524999976158142
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 96,
+          "maxDeltaMetres": 0.07574999332427979,
+          "sha256": "0110ef9d67d480121beccb6054f2e8c30b2374168b30e4418f2431ccf2b82153"
+        },
+        "body.shoulderWidth": {
+          "movedVertices": 10,
+          "maxDeltaMetres": 7.572025060653687e-05,
+          "sha256": "a7d078bf686a2a9088555c54930f62c20f5c9a9643a793701ea671ffe12d50ae"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Shirt_fused_shoulders",
+      "vertices": 1901,
+      "triangles": 3798,
+      "positionSha256": "687cc7eff62c2a8248efc7bf08d8e44647d72aaa4114a9cdefe00387dfbbc8d3",
+      "triangleOrderSha256": "6f9168f8b6565c98f8125004506aa48571badc93031b7c855583d1f78befcacf",
+      "uvSha256": "3052b449f01e4e547a9f5ee95830f7561fcbaa38274859026434525ef4d7c9aa",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.3008401691913605,
+          -0.09556542336940765,
+          1.0250016450881958
+        ],
+        "max": [
+          0.3007112443447113,
+          0.119511179625988,
+          1.4429832696914673
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 1901,
+          "maxDeltaMetres": 0.07164919376373291,
+          "sha256": "54222ca4c53edf5ed016a0ad52de837041f4b19ab38afef6329e138142c0523c"
+        },
+        "body.shoulderWidth": {
+          "movedVertices": 1746,
+          "maxDeltaMetres": 0.0260000079870224,
+          "sha256": "2c05aaa2307a46700eb54a1fbbed73a3cec5e6868305b440449974606f731b3d"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Collar_band",
+      "vertices": 80,
+      "triangles": 80,
+      "positionSha256": "8e5de169f7e0832997aba93d5c1d8fceef72d2d8852da2c95a3b9040f9fa3f58",
+      "triangleOrderSha256": "83319e132267ea9f3fc3c8b0b18fa46a03bf4d7be8f5d3c715bb3b9345f6553b",
+      "uvSha256": "fafa7e38c26608e02f343963c1927f6b492944ebfb4aee32c6c7922cda7810de",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.050999999046325684,
+          -0.03400000184774399,
+          1.4320000410079956
+        ],
+        "max": [
+          0.050999999046325684,
+          0.05999999865889549,
+          1.4470000267028809
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 80,
+          "maxDeltaMetres": 0.07185006141662598,
+          "sha256": "dacd5f6833708fe6d530e4bef7aa0e52f6cd1434656ae8de6518fef9986c7009"
+        },
+        "body.shoulderWidth": {
+          "movedVertices": 36,
+          "maxDeltaMetres": 8.215010166168213e-05,
+          "sha256": "db445cbb70edc398140f8a039f6cd0128929ad9d99eee9f9f102570447c3340f"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Trousers_fused_hip",
+      "vertices": 1843,
+      "triangles": 3682,
+      "positionSha256": "71b1388c8726808b5848670bee40388bf349ddb680633aa89504d6ac35977aa4",
+      "triangleOrderSha256": "6881abdafca4ba26f95a3a59739a1f6bfc626b80ae1a8044a3c3b4e1d7cca04c",
+      "uvSha256": "2e933a7747e3d79e9859e1bccbdda2c67357690fd93b66e0105a59d9c42aa003",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.16038985550403595,
+          -0.08362787216901779,
+          0.09799890220165253
+        ],
+        "max": [
+          0.16039660573005676,
+          0.11958041042089462,
+          1.0389982461929321
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 1843,
+          "maxDeltaMetres": 0.05144989490509033,
+          "sha256": "d9f8b10c140eba94309d51c37bed2ddd420dae0154cc5afe90063d14789d8aab"
+        },
+        "body.shoulderWidth": {
+          "movedVertices": 526,
+          "maxDeltaMetres": 0.017854824662208557,
+          "sha256": "f515896e889d8e78953631f6dd53de148390fed8ed504741cfc12af5ea7c15a0"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Forearm_hand_-1",
+      "vertices": 1006,
+      "triangles": 2008,
+      "positionSha256": "e1cdca29c553d5b1f46aa40516a7a72c3a70593dc5113064eb913a53155fe4e7",
+      "triangleOrderSha256": "c0bd67def3896920cc91f7f2a63cc3431c3848ed7bdfe4d0998d389055f34b79",
+      "uvSha256": "6e27b81b07f05ae2d0ec1c2d1576a22c527cf81eaa87a5e7eeca574a12648160",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.33131101727485657,
+          -0.036671970039606094,
+          0.7969567179679871
+        ],
+        "max": [
+          -0.2101908177137375,
+          0.049285076558589935,
+          1.1629974842071533
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 1006,
+          "maxDeltaMetres": 0.057649850845336914,
+          "sha256": "1c6a187f82d27d38a5f2e7f696719c79048bf5190064cef58adf60a9dfec2547"
+        },
+        "body.shoulderWidth": {
+          "movedVertices": 1006,
+          "maxDeltaMetres": 0.0260000079870224,
+          "sha256": "3486b5b769b368e9d9cc0d79af8f8aeded1d172be8141363ae62513db483cdc5"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Shoe_-1",
+      "vertices": 192,
+      "triangles": 380,
+      "positionSha256": "b44007246c83845330c954e4b00f2d0a172dfab30c632f4f0f0458f2026b55f2",
+      "triangleOrderSha256": "d7aac2c1f0e583a27bdcf11ccbd99455369ff2caa910bd93b2956fa1fbad8761",
+      "uvSha256": "f29b2ef8d0f71d3663b527cc6525eb4941360063975ce428adb19f464cd9db11",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.14000000059604645,
+          -0.1379999965429306,
+          0.012000000104308128
+        ],
+        "max": [
+          -0.03999999910593033,
+          0.0860000029206276,
+          0.10400000214576721
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 192,
+          "maxDeltaMetres": 0.00469999760389328,
+          "sha256": "147c03ff5f1fda9f1c7592ae1dc1626ec02c2fd40ff2a64b37cf54f4e36d6ba8"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Sole_-1",
+      "vertices": 64,
+      "triangles": 124,
+      "positionSha256": "4d277ecb2b392f2f4f1e3c9d60ec31671be0b1cebad4b2d53624169b9d6f556e",
+      "triangleOrderSha256": "b30bfe699ec376f07e62311b595fa8e5f19300c2084cb82d30b0fd0a0363ffd3",
+      "uvSha256": "e565c382dbd50d8ecd8c18903498a1423156555d4dfb377e739be028ad45301e",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.14100000262260437,
+          -0.13899999856948853,
+          0.009999999776482582
+        ],
+        "max": [
+          -0.039000000804662704,
+          0.08699999749660492,
+          0.027000000700354576
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 32,
+          "maxDeltaMetres": 0.0008499994874000549,
+          "sha256": "42140d3f43f8c955b111b5e4af042a292b015932d0d3671d53886420df174b3f"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Forearm_hand_1",
+      "vertices": 1006,
+      "triangles": 2008,
+      "positionSha256": "c6eb6dd8ed3746316d0f758c3d2f182a040e6dfd2cd077070163935aebc5504b",
+      "triangleOrderSha256": "d51d622f76087b86f1236c1585a1592b4a64f775636986965f8b359c43a218d7",
+      "uvSha256": "cd0014f90762b61830723f06704fa7d66b2de087a189cb9b6f534e9c9d6151ed",
+      "boundsBlenderMetres": {
+        "min": [
+          0.21015742421150208,
+          -0.03669823706150055,
+          0.7969615459442139
+        ],
+        "max": [
+          0.331366628408432,
+          0.049304116517305374,
+          1.162997841835022
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 1006,
+          "maxDeltaMetres": 0.057649850845336914,
+          "sha256": "383b6641e420ce88b7e088c5bcbcf2ff0a8a8d86eebc3cf21fc2aa3ed0a6e68a"
+        },
+        "body.shoulderWidth": {
+          "movedVertices": 1006,
+          "maxDeltaMetres": 0.0260000079870224,
+          "sha256": "8a1ab2d124991ff74d01d0bd9cbf14f0120351c5a635be374d30264daa9f9ce7"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Shoe_1",
+      "vertices": 192,
+      "triangles": 380,
+      "positionSha256": "4e042ca955ed8e6e18b6f8b87fe4b69e7dff57a0980b9e8ad2ee32075f681d37",
+      "triangleOrderSha256": "d7aac2c1f0e583a27bdcf11ccbd99455369ff2caa910bd93b2956fa1fbad8761",
+      "uvSha256": "c1a7348a3a0fd08a1a30fda178a9aff486e717ab8a4cb8e23dfb60ef82379f0d",
+      "boundsBlenderMetres": {
+        "min": [
+          0.03999999910593033,
+          -0.1379999965429306,
+          0.012000000104308128
+        ],
+        "max": [
+          0.14000000059604645,
+          0.0860000029206276,
+          0.10400000214576721
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 192,
+          "maxDeltaMetres": 0.00469999760389328,
+          "sha256": "147c03ff5f1fda9f1c7592ae1dc1626ec02c2fd40ff2a64b37cf54f4e36d6ba8"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Sole_1",
+      "vertices": 64,
+      "triangles": 124,
+      "positionSha256": "36627c01382355f39358696e82fbf341fe4e93cc0d2d1ed7d639e326d13be06c",
+      "triangleOrderSha256": "b30bfe699ec376f07e62311b595fa8e5f19300c2084cb82d30b0fd0a0363ffd3",
+      "uvSha256": "bb93eb17316ef63f1fee383188fdc9121e5c443570704b9d894ca1940ccfd07e",
+      "boundsBlenderMetres": {
+        "min": [
+          0.039000000804662704,
+          -0.13899999856948853,
+          0.009999999776482582
+        ],
+        "max": [
+          0.14100000262260437,
+          0.08699999749660492,
+          0.027000000700354576
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 32,
+          "maxDeltaMetres": 0.0008499994874000549,
+          "sha256": "42140d3f43f8c955b111b5e4af042a292b015932d0d3671d53886420df174b3f"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Head_continuous_anatomy",
+      "vertices": 4068,
+      "triangles": 8096,
+      "positionSha256": "50fb1df341bfd1026436b5e73544f7587f646aeca63ae7cff638f6eb9c294a60",
+      "triangleOrderSha256": "c84be0818b32b048a752600db20ed82416c0b627c6801fe11ea0145ed2f3f695",
+      "uvSha256": "23be2a017a917bdda88a2bea722c2db80d9f40e29369dd4c8bfdae7beaf4dc28",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.07800000160932541,
+          -0.08029482513666153,
+          1.4900000095367432
+        ],
+        "max": [
+          0.07800000160932541,
+          0.09799999743700027,
+          1.7569999694824219
+        ]
+      },
+      "morphs": {
+        "nose.projection": {
+          "movedVertices": 857,
+          "maxDeltaMetres": 0.01791556179523468,
+          "sha256": "c67d3fca800017635f5d39f44c2f4cd530939221583c10944025d4db87f4925e"
+        },
+        "nose.alarWidth": {
+          "movedVertices": 288,
+          "maxDeltaMetres": 0.005622490309178829,
+          "sha256": "4fb6da12078e300c4349f68c2977b9030cf99b01ebb2b0127d0df70bc6630722"
+        },
+        "earLeft.protrusion": {
+          "movedVertices": 623,
+          "maxDeltaMetres": 0.0019884631037712097,
+          "sha256": "aa8723e0399b070461e100703569838735c04b59554f61d01015ab2c5a749cd6"
+        },
+        "earRight.protrusion": {
+          "movedVertices": 623,
+          "maxDeltaMetres": 0.0019884631037712097,
+          "sha256": "8d5ad2cb3d258f79ca47f9b771627bc580f78afb571ea32ceebe4ca83b0aa23b"
+        },
+        "body.height": {
+          "movedVertices": 4068,
+          "maxDeltaMetres": 0.08735001087188721,
+          "sha256": "7877cab28e5e61c0c1861aad62bb17b0c314a878129c4080991f78f2c90a00f0"
+        },
+        "expression.smileLeft": {
+          "movedVertices": 535,
+          "maxDeltaMetres": 0.00757543430096438,
+          "sha256": "85f8afa67001621b7ec0991bfd12e92cfffdaaa6671c628664b3a67f414e0363"
+        },
+        "expression.smileRight": {
+          "movedVertices": 535,
+          "maxDeltaMetres": 0.00757543430096438,
+          "sha256": "7fcd6081cb128bf9695bb15afed21b61f4f6ab64b560b83a9106c975d9aaf303"
+        },
+        "expression.frownLeft": {
+          "movedVertices": 534,
+          "maxDeltaMetres": 0.006060347223928612,
+          "sha256": "875a4aaeea29e862afba753f564d6f796357c4d9e50dbf22813d08854f6d8bd9"
+        },
+        "expression.frownRight": {
+          "movedVertices": 534,
+          "maxDeltaMetres": 0.006060347223928612,
+          "sha256": "74ebc48de58be1977e902e55f35891afd3eb6c2cded1e92ed12166af62880483"
+        },
+        "expression.browRaiseLeft": {
+          "movedVertices": 219,
+          "maxDeltaMetres": 0.008724093437194824,
+          "sha256": "3c8132a080958cfff91a5e77b26a872f52b24102d0b02fa3af57bc36ba72d249"
+        },
+        "expression.browRaiseRight": {
+          "movedVertices": 219,
+          "maxDeltaMetres": 0.008724093437194824,
+          "sha256": "66a3aa3106ab0994176287e12a03018678b21bfd29e366b487f339527f63201c"
+        },
+        "corrective.height.smileLeft": {
+          "movedVertices": 484,
+          "maxDeltaMetres": 0.0003674030303955078,
+          "sha256": "1d5a2009ef2c35d19268ed830f64884744b3aeab2138d56862d0f2ad94285888"
+        },
+        "corrective.height.smileRight": {
+          "movedVertices": 484,
+          "maxDeltaMetres": 0.0003674030303955078,
+          "sha256": "3fee38bfbab2906f422aef32c42541d8fcd39997dbaf23d236f189c0c2863196"
+        },
+        "corrective.height.frownLeft": {
+          "movedVertices": 481,
+          "maxDeltaMetres": 0.00029397010803222656,
+          "sha256": "ee6a6f449f7dfe60118c4352d18ebc6cf9cbf6acb999378d8f8507b83c63abd2"
+        },
+        "corrective.height.frownRight": {
+          "movedVertices": 481,
+          "maxDeltaMetres": 0.00029397010803222656,
+          "sha256": "10ac41ca193b69f582c5bd6e30be12298380e93ad69b9f29a6b0c3f995541624"
+        },
+        "corrective.height.browRaiseLeft": {
+          "movedVertices": 163,
+          "maxDeltaMetres": 0.0004361867904663086,
+          "sha256": "a687d9e433786e21cdd372f8db7599c664e6d4fd5101b41d5e12138006c1fee5"
+        },
+        "corrective.height.browRaiseRight": {
+          "movedVertices": 163,
+          "maxDeltaMetres": 0.0004361867904663086,
+          "sha256": "8035a39f4475005880bd0abb0699c005d61726c861bdc3a436b49baf488f6845"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Eye_Left",
+      "vertices": 366,
+      "triangles": 728,
+      "positionSha256": "1d901cf5aa1db2c6fcc8d8417670fd79f421f897031accdba6a3eab4ac12de0d",
+      "triangleOrderSha256": "927b12d86106658d63382f2e008aa38c1264408a974cfee1883b9d53c114b731",
+      "uvSha256": "bb58c65f74936ed8cf205b36305978dfc9592ababfc9838a6ee4391f9f78432f",
+      "boundsBlenderMetres": {
+        "min": [
+          0.014000000432133675,
+          -0.05000000074505806,
+          1.621000051498413
+        ],
+        "max": [
+          0.05000000074505806,
+          -0.02199999988079071,
+          1.6490000486373901
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 366,
+          "maxDeltaMetres": 0.08194994926452637,
+          "sha256": "8801fe9daf2b218891d12658054488facaa722747c98837147ec64088c5e52f7"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Iris_Left",
+      "vertices": 41,
+      "triangles": 40,
+      "positionSha256": "554dc0fe9c55c9ca81c132e2de82c51da33c6c9210e554f8803f6d56c638d59a",
+      "triangleOrderSha256": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uvSha256": "431aea82a18845018561a7c8faf8bdba36bfdc33c73f6a2ea63d01124045e709",
+      "boundsBlenderMetres": {
+        "min": [
+          0.026000000536441803,
+          -0.05025000125169754,
+          1.628999948501587
+        ],
+        "max": [
+          0.03799999877810478,
+          -0.04889911040663719,
+          1.6410000324249268
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 41,
+          "maxDeltaMetres": 0.0815500020980835,
+          "sha256": "acc36c53848341f0302a1bdc51e5361b55c6758b203e55dcea5e446275950852"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Pupil_Left",
+      "vertices": 41,
+      "triangles": 40,
+      "positionSha256": "5ee5e54e2d0225f2173d2e2896590cc45d2a12f04e99e59aedd162c7087c6c58",
+      "triangleOrderSha256": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uvSha256": "a47de0f6e321da9770194d05c4fcd0d2b7e758349766c74892e280a055746664",
+      "boundsBlenderMetres": {
+        "min": [
+          0.029349999502301216,
+          -0.05025000125169754,
+          1.632349967956543
+        ],
+        "max": [
+          0.03465000167489052,
+          -0.049996908754110336,
+          1.6376500129699707
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 41,
+          "maxDeltaMetres": 0.08138251304626465,
+          "sha256": "c44e8636f9db4b97b4119aca0a281986a704f7194b208e05a649afa0e499c230"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "UpperLid_Left",
+      "vertices": 165,
+      "triangles": 256,
+      "positionSha256": "ea00b8deeee0dcef004cd163c1328c8d607c9e7e863b46af09803ee4156229de",
+      "triangleOrderSha256": "0cbad687ff10c97d8ee3ad730cb88764157fb88f972d4d84ec3bb1f1e74ef857",
+      "uvSha256": "b285ee7406acc80dae60b3f5523ff1d0a39d1086487859620dc34775398ba484",
+      "boundsBlenderMetres": {
+        "min": [
+          0.00800000037997961,
+          -0.057223860174417496,
+          1.6333543062210083
+        ],
+        "max": [
+          0.0560000017285347,
+          -0.030678996816277504,
+          1.654065728187561
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 165,
+          "maxDeltaMetres": 0.08220326900482178,
+          "sha256": "6381e2f32b7a03558b05c53708043f70619be502ae0e09417731dc08a9a8a240"
+        },
+        "expression.blinkLeft": {
+          "movedVertices": 143,
+          "maxDeltaMetres": 0.006475527806527369,
+          "sha256": "77a00e8ffb228f705989f3bc06dbac18b8625bfd50c207ec09d78a674a91eb3d"
+        },
+        "corrective.height.blinkLeft": {
+          "movedVertices": 124,
+          "maxDeltaMetres": 0.00031495094299316406,
+          "sha256": "b60d8b63be1b3afacfb22562d14324d137a0e1139368734a846722d908ec33bd"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "LowerLid_Left",
+      "vertices": 165,
+      "triangles": 256,
+      "positionSha256": "954dcc098b8731658ce9e752d29c4b5b6a075b2c8f9b634b9d8df6cd99d4e3a0",
+      "triangleOrderSha256": "2446142bfd86760f6d3bc1b7a8b00b7d01871e71ef36b71e3820ab47232e034e",
+      "uvSha256": "4bcd6c58ba905de9aa08b5aa62dc194b20c985c3099cc4a27b8a97fd8a0123e6",
+      "boundsBlenderMetres": {
+        "min": [
+          0.00800000037997961,
+          -0.057223860174417496,
+          1.6179276704788208
+        ],
+        "max": [
+          0.0560000017285347,
+          -0.030678996816277504,
+          1.6366456747055054
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 165,
+          "maxDeltaMetres": 0.08133232593536377,
+          "sha256": "90c2b312a706d762f7fc50223b4fa740674cde397f114c4fd650545357b6ccb5"
+        },
+        "expression.blinkLeft": {
+          "movedVertices": 138,
+          "maxDeltaMetres": 0.004874393423884293,
+          "sha256": "615b8168678d800e1bc79d889542610ae73fe604f6e071ea76a5f40b6811e0d4"
+        },
+        "corrective.height.blinkLeft": {
+          "movedVertices": 124,
+          "maxDeltaMetres": 0.00023996829986572266,
+          "sha256": "65479e2fd62d689c2d928d6b7d71650b2add852f09d55265cf1abb7cc6d81a0d"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Brow_Left",
+      "vertices": 50,
+      "triangles": 48,
+      "positionSha256": "4b23e55840b1a2e2afd9e8a4dc4389ab3530256badef8492c48381a970665e37",
+      "triangleOrderSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+      "uvSha256": "151d1213c6e6f42f98eafed45bcebfbcbd0fe221b4a621d6b247f19e89686418",
+      "boundsBlenderMetres": {
+        "min": [
+          0.00800000037997961,
+          -0.05936748534440994,
+          1.6587451696395874
+        ],
+        "max": [
+          0.0560000017285347,
+          -0.033586520701646805,
+          1.665848731994629
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 50,
+          "maxDeltaMetres": 0.08279240131378174,
+          "sha256": "8a0117d09f2037fe28aabec3e3c8a89c141bfd73d72c09700148c2bb0b13d0f3"
+        },
+        "expression.browRaiseLeft": {
+          "movedVertices": 50,
+          "maxDeltaMetres": 0.008804917335510254,
+          "sha256": "d5cf61ca2e0f63ff081092a8014ed832a7e6d71186c218bafa1f3eaa5b44e9d3"
+        },
+        "corrective.height.browRaiseLeft": {
+          "movedVertices": 50,
+          "maxDeltaMetres": 0.00044023990631103516,
+          "sha256": "e230e710459c3397bbf27fe2c4902eea6c3fff5aa6f3adae11ab5731ff676184"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Eye_Right",
+      "vertices": 366,
+      "triangles": 728,
+      "positionSha256": "21ee6b184c15672d59120b0fde1cea5158b594fb8ea20a9f414d3c97938e0ccc",
+      "triangleOrderSha256": "927b12d86106658d63382f2e008aa38c1264408a974cfee1883b9d53c114b731",
+      "uvSha256": "f04f82af529b4d0a7ec0683afc83cd88d6ae7eca9f4492d43b0b868dfb0f3e46",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.05000000074505806,
+          -0.05000000074505806,
+          1.621000051498413
+        ],
+        "max": [
+          -0.014000000432133675,
+          -0.02199999988079071,
+          1.6490000486373901
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 366,
+          "maxDeltaMetres": 0.08194994926452637,
+          "sha256": "8801fe9daf2b218891d12658054488facaa722747c98837147ec64088c5e52f7"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Iris_Right",
+      "vertices": 41,
+      "triangles": 40,
+      "positionSha256": "82068746526654358fb68c90340aa29365d9f96abd70e6e8a408e30383590180",
+      "triangleOrderSha256": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uvSha256": "cf77bf07849f85fae583fa5beb7bd2a7c9a1e9783c596355afba37cdc3bf96bf",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.03799999877810478,
+          -0.05025000125169754,
+          1.628999948501587
+        ],
+        "max": [
+          -0.026000000536441803,
+          -0.04889911040663719,
+          1.6410000324249268
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 41,
+          "maxDeltaMetres": 0.0815500020980835,
+          "sha256": "acc36c53848341f0302a1bdc51e5361b55c6758b203e55dcea5e446275950852"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Pupil_Right",
+      "vertices": 41,
+      "triangles": 40,
+      "positionSha256": "67e3be9436c9294d8034bdd294ab0a24f585dbf031f187f94ed440651aa52ea1",
+      "triangleOrderSha256": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uvSha256": "481159002d37c360c1cea74956cb0b26bffc2414fc35e8167fb204a1758adcc8",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.03465000167489052,
+          -0.05025000125169754,
+          1.632349967956543
+        ],
+        "max": [
+          -0.029349999502301216,
+          -0.049996908754110336,
+          1.6376500129699707
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 41,
+          "maxDeltaMetres": 0.08138251304626465,
+          "sha256": "c44e8636f9db4b97b4119aca0a281986a704f7194b208e05a649afa0e499c230"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "UpperLid_Right",
+      "vertices": 165,
+      "triangles": 256,
+      "positionSha256": "581d70b6365df29f1b6f4d7ad2f5280bd91ce07f236c1846c7d5d7e140b20b93",
+      "triangleOrderSha256": "0cbad687ff10c97d8ee3ad730cb88764157fb88f972d4d84ec3bb1f1e74ef857",
+      "uvSha256": "d1e295e4f1afa614df7219198ab03ae4c3ff2483e85d463fcadc4dfc6b451869",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.0560000017285347,
+          -0.057223860174417496,
+          1.6333543062210083
+        ],
+        "max": [
+          -0.00800000037997961,
+          -0.030678996816277504,
+          1.654065728187561
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 165,
+          "maxDeltaMetres": 0.08220326900482178,
+          "sha256": "bedeff8e04fa2392ae59ee06fb1d62c894ba15a11045aea65d930dc0dd4a5762"
+        },
+        "expression.blinkRight": {
+          "movedVertices": 143,
+          "maxDeltaMetres": 0.006475527806527369,
+          "sha256": "63c5bcb9445614286d331a9147e3f91d0f972b2a333c440cd235ee697dda7e48"
+        },
+        "corrective.height.blinkRight": {
+          "movedVertices": 124,
+          "maxDeltaMetres": 0.00031495094299316406,
+          "sha256": "6eacb616fdd45151b3b80781282e946d515a73e0f420331cbfa5e877a17c5a0c"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "LowerLid_Right",
+      "vertices": 165,
+      "triangles": 256,
+      "positionSha256": "0691b57d10b9b1e028de6e320882adf8917688530123ba7bc8dad03e3852d20a",
+      "triangleOrderSha256": "2446142bfd86760f6d3bc1b7a8b00b7d01871e71ef36b71e3820ab47232e034e",
+      "uvSha256": "9c4ede9a3ec607902008e348c5883df68f799a09a99a62dcdd26eb3b6a38d9a7",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.0560000017285347,
+          -0.057223860174417496,
+          1.6179276704788208
+        ],
+        "max": [
+          -0.00800000037997961,
+          -0.030678996816277504,
+          1.6366456747055054
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 165,
+          "maxDeltaMetres": 0.08133232593536377,
+          "sha256": "19c3f10254b16deffdb6b7bbdb6989c8771c8856b558bbcc908a65b732b2d93a"
+        },
+        "expression.blinkRight": {
+          "movedVertices": 138,
+          "maxDeltaMetres": 0.004874393423884293,
+          "sha256": "f31a8b3230a36ea5cd1e5718485b77c60fa23c6f377bc624d4a3ff1c42f781a3"
+        },
+        "corrective.height.blinkRight": {
+          "movedVertices": 124,
+          "maxDeltaMetres": 0.00023996829986572266,
+          "sha256": "479c6afb9b50a8e8dbb40c07b30149501b3df2d2dae2dc992e7ccbccacf51308"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Brow_Right",
+      "vertices": 50,
+      "triangles": 48,
+      "positionSha256": "8583e7b5dae6574657ccc5a7df5a6983fa7ad2daf5697ffb404c41df531cd9e7",
+      "triangleOrderSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+      "uvSha256": "5351ffc64eabe2cba1b6d1c1537ff44f725dde5edf6c2e5a9488cc38ca6ded22",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.0560000017285347,
+          -0.05936748534440994,
+          1.6587451696395874
+        ],
+        "max": [
+          -0.00800000037997961,
+          -0.033586520701646805,
+          1.665848731994629
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 50,
+          "maxDeltaMetres": 0.08279240131378174,
+          "sha256": "158910af9d70d564b7b5bf84910cf58b5d322245ce6bc310118d148adc1c17e3"
+        },
+        "expression.browRaiseRight": {
+          "movedVertices": 50,
+          "maxDeltaMetres": 0.008804917335510254,
+          "sha256": "abaa0279c96174d1ab02990919b1aceda741a167661c2cb55f1da87518646893"
+        },
+        "corrective.height.browRaiseRight": {
+          "movedVertices": 50,
+          "maxDeltaMetres": 0.00044023990631103516,
+          "sha256": "61def9a178fa4fb3e52f45c2abc4978953b0e34a3867d39e3d14296e0c8595b6"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Lip_upper",
+      "vertices": 217,
+      "triangles": 344,
+      "positionSha256": "f286f473bcf45d06494f0ad4d24674fc329c8a1c6920b9c94602c1e663f8f4d8",
+      "triangleOrderSha256": "39e7450a29ff8ac384343808066b183281e4c49850ae1c7112bd9d901fc75dd2",
+      "uvSha256": "eb10d60fd26cb73c0ee9951a271d8209c5d87fca0223fd8019eae3ddbc0828a6",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.026000000536441803,
+          -0.06264703720808029,
+          1.5479999780654907
+        ],
+        "max": [
+          0.026000000536441803,
+          -0.04915182292461395,
+          1.5545899868011475
+        ]
+      },
+      "morphs": {
+        "nose.projection": {
+          "movedVertices": 217,
+          "maxDeltaMetres": 0.002213645726442337,
+          "sha256": "9abca3bb096ebe5cae091c4d21e0fd5cf981422f25ef85e03e3c9b9fd558ecfe"
+        },
+        "nose.alarWidth": {
+          "movedVertices": 212,
+          "maxDeltaMetres": 3.0397437512874603e-05,
+          "sha256": "577bcf07ad7c22eae125014e624150bae6807d9907cb060791302933aaeafd18"
+        },
+        "body.height": {
+          "movedVertices": 217,
+          "maxDeltaMetres": 0.07722949981689453,
+          "sha256": "abd1759f6fcd2e9192d41b4940a2697a4030e6a9b4b4f4d039afc515e8ecaa85"
+        },
+        "expression.smileLeft": {
+          "movedVertices": 102,
+          "maxDeltaMetres": 0.007937311999797778,
+          "sha256": "e345414059ac2103909b327ea83434774b4b44c953c1ed9c184bb71493ae4772"
+        },
+        "expression.smileRight": {
+          "movedVertices": 102,
+          "maxDeltaMetres": 0.007937311999797778,
+          "sha256": "35438e818186c34d2ff0120fe49c2e0c9852b66acfbae0aa2a530ed5cbe03935"
+        },
+        "expression.frownLeft": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.006349849437205502,
+          "sha256": "b206407ef0c203babdbdc3029acd0e0221e63a26237f7a60fb49a5735dd5c89c"
+        },
+        "expression.frownRight": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.006349849437205502,
+          "sha256": "32949488e0650ccc0d8f0510390bec313d121d77c92b1015c64c3affa124ba3c"
+        },
+        "corrective.height.smileLeft": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00038504600524902344,
+          "sha256": "0559132a5016f9806ea109416a043541d5d43341672978ec7628dada0fb76d21"
+        },
+        "corrective.height.smileRight": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00038504600524902344,
+          "sha256": "ed99bd3be3d0415a307ff03c9043caeaaa522af37ffa1f1ea9e1b192bd91baf5"
+        },
+        "corrective.height.frownLeft": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00030803680419921875,
+          "sha256": "c6e2e731310293a068c3cd631b782b7d8296eb3a3497c8ae3f867d54f6cfef59"
+        },
+        "corrective.height.frownRight": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00030803680419921875,
+          "sha256": "024ee355bddf36e8e45478e2ce21e3b311d4b5f89c1e0199114bd8648c4e8c2c"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Lip_lower",
+      "vertices": 217,
+      "triangles": 344,
+      "positionSha256": "ced272e40bb0d00f651500d39cbc3a0d812f55fa9b772e9d73101e4590b9bb88",
+      "triangleOrderSha256": "690b648dbb82ce9c0d50d27ef59a1222edd6e77c9796f9f2fc9a20b7598f0a98",
+      "uvSha256": "7d3c51f014eeb9639cf77735fb0d98a5605af21449f6696def7a16316d656e52",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.026000000536441803,
+          -0.0613003708422184,
+          1.5420000553131104
+        ],
+        "max": [
+          0.026000000536441803,
+          -0.04915182292461395,
+          1.548699975013733
+        ]
+      },
+      "morphs": {
+        "nose.projection": {
+          "movedVertices": 217,
+          "maxDeltaMetres": 0.0010703317821025848,
+          "sha256": "5c2d96f63a23c80ec03abd3ff5bd3177f8f5bef56c628cdfe98cc7d6919a37e0"
+        },
+        "nose.alarWidth": {
+          "movedVertices": 210,
+          "maxDeltaMetres": 2.998858690261841e-06,
+          "sha256": "aa1cdd40e169cafc7fc5739ddbee3dc3456ceeb28e4c37e74351f634283e8eb3"
+        },
+        "body.height": {
+          "movedVertices": 217,
+          "maxDeltaMetres": 0.0769350528717041,
+          "sha256": "816bda4c2a54189d11a515331bde471e410da07b9bd5878f3f312eae4ace1ef3"
+        },
+        "expression.smileLeft": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00787169237152865,
+          "sha256": "5314f4cb7b7de114efa0e9af33620315f26715c120ede20e8e2eaf10d72ad2bc"
+        },
+        "expression.smileRight": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00787169237152865,
+          "sha256": "b61351e0e6ddbe3a6a4a619002155a7ee4983718f16bfefef97f9405074709d9"
+        },
+        "expression.frownLeft": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.006297261214596513,
+          "sha256": "2aebff3edc013f144d31bcc565750461ff9be3d5c6aabfd44eda7b856462fcb9"
+        },
+        "expression.frownRight": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.006297261214596513,
+          "sha256": "b7e54485ed1bd7fd5da4500f2212d5f7e1cd25b536dfb8091718587e6c4cbe49"
+        },
+        "corrective.height.smileLeft": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00038182735443115234,
+          "sha256": "78078be608f061d6367b7c8f1e0973f62ff28a5c899e23516e62f4e028a66da0"
+        },
+        "corrective.height.smileRight": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00038182735443115234,
+          "sha256": "45193cb22e6e560e85a74f0c8c85caf5cbb1549103d17dd489c02baad19d8ed9"
+        },
+        "corrective.height.frownLeft": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00030541419982910156,
+          "sha256": "c1b24676ecf68db04eba80be9b2560a2b882487d253986439ef1855bd5ece9fe"
+        },
+        "corrective.height.frownRight": {
+          "movedVertices": 101,
+          "maxDeltaMetres": 0.00030541419982910156,
+          "sha256": "01906f989366385a266af7f1391280a9103abfef1b72dae3401aac6512e9acfc"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Mouth_seam",
+      "vertices": 270,
+      "triangles": 536,
+      "positionSha256": "ef69a4d7e2a526f2e630bccb5695a33e18ee5fafe296c8514c61497a58852b07",
+      "triangleOrderSha256": "d32f38d3ed5c440cb5db1cf9210b7f1820e15a6f424bbaec539c7845466ba6cd",
+      "uvSha256": "8433aa86336f3c1b49c44f5ed9cd27c043643b5bea3a7aeeacb45be2d2954f59",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.026097169145941734,
+          -0.06063273549079895,
+          1.5475499629974365
+        ],
+        "max": [
+          0.026097169145941734,
+          -0.04907640442252159,
+          1.5488797426223755
+        ]
+      },
+      "morphs": {
+        "nose.projection": {
+          "movedVertices": 270,
+          "maxDeltaMetres": 0.0011366978287696838,
+          "sha256": "9ea1a93fe789727d9a72362833dff2014136be6277b4aa336326c21da3ac783d"
+        },
+        "nose.alarWidth": {
+          "movedVertices": 264,
+          "maxDeltaMetres": 3.507360816001892e-06,
+          "sha256": "06803ac3d32392c1b02d7eb8fff39e0c519088b50fc963dd1d1b8dac80bcde98"
+        },
+        "body.height": {
+          "movedVertices": 270,
+          "maxDeltaMetres": 0.07694399356842041,
+          "sha256": "3c226bcad7106df13ea23e72673256aa7c73039ce47505e965e4988f4076e38b"
+        },
+        "expression.smileLeft": {
+          "movedVertices": 128,
+          "maxDeltaMetres": 0.007884105230389684,
+          "sha256": "8f47999d42a661b5a5d595a6d960cc9fd701b391263aae4ce4f998619be9dc86"
+        },
+        "expression.smileRight": {
+          "movedVertices": 128,
+          "maxDeltaMetres": 0.007884105230389684,
+          "sha256": "e0fbc3f3ce88d693aebf5e2976347899e339c5c9159e61b3e507b61e91b97b97"
+        },
+        "expression.frownLeft": {
+          "movedVertices": 126,
+          "maxDeltaMetres": 0.006307214794328729,
+          "sha256": "ad29159323b696d7500dd3b8a2d4efde72107888d83f107353630c9e162e1a4f"
+        },
+        "expression.frownRight": {
+          "movedVertices": 126,
+          "maxDeltaMetres": 0.006307214794328729,
+          "sha256": "d50fda7c41f4f120c199416d91dead1208c47607a0d3d85b7391aebc65b260b5"
+        },
+        "corrective.height.smileLeft": {
+          "movedVertices": 126,
+          "maxDeltaMetres": 0.00038242340087890625,
+          "sha256": "161e81876951b75a70b0c5702f845fcd18e2b5a63d7f90e2014181ec984d48f1"
+        },
+        "corrective.height.smileRight": {
+          "movedVertices": 126,
+          "maxDeltaMetres": 0.00038242340087890625,
+          "sha256": "b1a46a38826a2bebcbb9292ff08c81ea9076546d26b46983244d839c17c00539"
+        },
+        "corrective.height.frownLeft": {
+          "movedVertices": 126,
+          "maxDeltaMetres": 0.0003058910369873047,
+          "sha256": "0df0b44cb0f2e5dcaf673cadae620adcb8490b963327efab2bc657d1b44d3edf"
+        },
+        "corrective.height.frownRight": {
+          "movedVertices": 126,
+          "maxDeltaMetres": 0.0003058910369873047,
+          "sha256": "08bf218e0454a907e0778876936d3b7135792bad69f1cc4320fb9425b06bfa0b"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Nostril_-1",
+      "vertices": 142,
+      "triangles": 280,
+      "positionSha256": "3fb72a9a1f97da2229dc4099662c0e6829a0038c7d8d158fea3a7fafe5338024",
+      "triangleOrderSha256": "586c86939aae11d2f6044387322b5fa77327ce2c963971dac1a3cf1d469ed5b5",
+      "uvSha256": "a84a2360dbef5b2f456f7feaef81cf0e930132aa991d760d35de3787b1afe313",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.014299999922513962,
+          -0.08150000125169754,
+          1.576300024986267
+        ],
+        "max": [
+          -0.0052999998442828655,
+          -0.07850000262260437,
+          1.5807000398635864
+        ]
+      },
+      "morphs": {
+        "nose.projection": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.013741552829742432,
+          "sha256": "ba3baf1eaab00cef2d9af143db9ac0dc8bcd3301206d2dd0634fdd5c33349514"
+        },
+        "nose.alarWidth": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.005579113960266113,
+          "sha256": "7f6052b0fbf23bc257e98021d0b7207847dfeafca2ceffc6e54052208836fccf"
+        },
+        "body.height": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.07853496074676514,
+          "sha256": "9a8c83e4978a08c0e16a9fada1157b68da4075953d2f0272d7b4a1698987708d"
+        },
+        "expression.smileRight": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.0015161965942701724,
+          "sha256": "91a22a12e935d1ab65d1059972f857d28538522ec70a563d734c4a8a0d07f642"
+        },
+        "expression.frownRight": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.0012130494430680177,
+          "sha256": "2b18b339a82d5e234bdc5e1a14bb5d454d8c84641c931ec5c979a44199941b30"
+        },
+        "corrective.height.smileRight": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 7.355213165283203e-05,
+          "sha256": "5cababbb302b39d8f98311c986a0e04677e5e9adc805f08abeba130029b9a617"
+        },
+        "corrective.height.frownRight": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 5.888938903808594e-05,
+          "sha256": "82474289831a91ba155e54f579358bc4304dd16680c94c2ac5fa10e8f53a8fd3"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Nostril_1",
+      "vertices": 142,
+      "triangles": 280,
+      "positionSha256": "fdd8d3b3eaf26729c19da0c751753d86475459bd99d6710a873d8693a7ee74fe",
+      "triangleOrderSha256": "586c86939aae11d2f6044387322b5fa77327ce2c963971dac1a3cf1d469ed5b5",
+      "uvSha256": "2de93c3b71ed6f753f4eba493ff469e0cb2569508e8afbf7bc2303b6dc3195ef",
+      "boundsBlenderMetres": {
+        "min": [
+          0.0052999998442828655,
+          -0.08150000125169754,
+          1.576300024986267
+        ],
+        "max": [
+          0.014299999922513962,
+          -0.07850000262260437,
+          1.5807000398635864
+        ]
+      },
+      "morphs": {
+        "nose.projection": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.013741552829742432,
+          "sha256": "1861cb590aa672bda5db064dcfbb0d8c7b973c8debb3dccd20ccfcb45a200d95"
+        },
+        "nose.alarWidth": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.005579113960266113,
+          "sha256": "d4a002333c89c4414384f6e8b7958b53c5b7abed81bb8cb52d4b25d98e2793f4"
+        },
+        "body.height": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.07853496074676514,
+          "sha256": "9a8c83e4978a08c0e16a9fada1157b68da4075953d2f0272d7b4a1698987708d"
+        },
+        "expression.smileLeft": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.0015161965942701724,
+          "sha256": "5fec9903d72420931eebb23d142dc86ddfdb4fbd6f7e4baddfea96811d212b4d"
+        },
+        "expression.frownLeft": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 0.0012130494430680177,
+          "sha256": "242f67164665b1646578580552303a82134488b524eb5b25a216478020ec0757"
+        },
+        "corrective.height.smileLeft": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 7.355213165283203e-05,
+          "sha256": "4a52a83580cfc26a5190a64245f2580f212ed2c526b58ae1d51b62de85dc2b10"
+        },
+        "corrective.height.frownLeft": {
+          "movedVertices": 142,
+          "maxDeltaMetres": 5.888938903808594e-05,
+          "sha256": "e4571f9853dc9c5e044e38b013d59937fa48721522e543bda8df4b655a92f7ad"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Ear_Left",
+      "vertices": 360,
+      "triangles": 640,
+      "positionSha256": "7905313821da5fd2b9d0e3354d66bb9c4bb4f578f3b31cafa7e8d5b1159cdec4",
+      "triangleOrderSha256": "749a0e51c6d1dcf42e7db0bcf1de1fc8aafe0a95f00f8588ff0e3c670874e083",
+      "uvSha256": "8699e219061240a59a60448558392c3bde3784d1bbdf63bc4576ba2051fd7d41",
+      "boundsBlenderMetres": {
+        "min": [
+          0.0729999989271164,
+          -0.005501915700733662,
+          1.5829999446868896
+        ],
+        "max": [
+          0.08762113749980927,
+          0.0255019161850214,
+          1.6410000324249268
+        ]
+      },
+      "morphs": {
+        "earLeft.protrusion": {
+          "movedVertices": 320,
+          "maxDeltaMetres": 0.0075738877058029175,
+          "sha256": "52578d7be319f426f127ca0689d79a54db5916b1c042e459e608248727265a42"
+        },
+        "body.height": {
+          "movedVertices": 360,
+          "maxDeltaMetres": 0.0815500020980835,
+          "sha256": "34677b87564d6eab13537e9d714e07980b87b5e9ab363066a58131139b4a587c"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Ear_Right",
+      "vertices": 360,
+      "triangles": 640,
+      "positionSha256": "3c5cd574da9206908e5b3c2eb8e50d1a757408ffc25498047ff418b94eb0d4e0",
+      "triangleOrderSha256": "51612b267cf6f0c8e22a5c33a455e8a9003e8c11a11fb17a69c1d19179b7de69",
+      "uvSha256": "6d70727a93c771052ddaa18220fa22f14ce43ea6042b6d109202a00aa589366b",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.08762113749980927,
+          -0.005501915700733662,
+          1.5829999446868896
+        ],
+        "max": [
+          -0.0729999989271164,
+          0.0255019161850214,
+          1.6410000324249268
+        ]
+      },
+      "morphs": {
+        "earRight.protrusion": {
+          "movedVertices": 320,
+          "maxDeltaMetres": 0.0075738877058029175,
+          "sha256": "947c0cefcfa090ebc6f51598c442e2008b79809dd50720288593d92a37631e24"
+        },
+        "body.height": {
+          "movedVertices": 360,
+          "maxDeltaMetres": 0.0815500020980835,
+          "sha256": "34677b87564d6eab13537e9d714e07980b87b5e9ab363066a58131139b4a587c"
+        }
+      },
+      "zeroAreaTriangles": 0
+    },
+    {
+      "name": "Hair_original_close_curl_surface",
+      "vertices": 1296,
+      "triangles": 2518,
+      "positionSha256": "ebbc45d3e91ce75f892fa97b6e4b101ba71e3d0540da7db3bed9102e6303bde1",
+      "triangleOrderSha256": "3596a505357ee93d378d5bd5359f9f611ee54ed676eb718d27cf10dc176c694e",
+      "uvSha256": "871f1adea1cd051755f207510b49bfccc04774c644f41b197d44d2101d91fc52",
+      "boundsBlenderMetres": {
+        "min": [
+          -0.07710392773151398,
+          -0.049136362969875336,
+          1.625
+        ],
+        "max": [
+          0.07710392773151398,
+          0.10193069279193878,
+          1.7580000162124634
+        ]
+      },
+      "morphs": {
+        "body.height": {
+          "movedVertices": 1296,
+          "maxDeltaMetres": 0.08739995956420898,
+          "sha256": "fcf2be32da57fc966d10c5abff3356be79c3406e765d559e853c8c0630d4d20f"
+        }
+      },
+      "zeroAreaTriangles": 0
+    }
+  ],
+  "limits": "Sampled endpoint and pairwise arithmetic; no continuous self-intersection, skinning, dynamic garment fit, runtime/mobile or realism acceptance."
+}

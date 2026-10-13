@@ -84,6 +84,17 @@ function receiptRoot(delivery, id) {
   return roots[0]
 }
 
+function ladderReportMatches(canonical, rungReport, rung) {
+  if (!isFile(canonical) || !isFile(rungReport)) return false
+  try {
+    const a = JSON.parse(readFileSync(canonical, 'utf8')), b = JSON.parse(readFileSync(rungReport, 'utf8'))
+    const ladder = a.toleranceLadder
+    delete a.toleranceLadder
+    delete b.toleranceLadder
+    return ladder?.rungsDegrees?.[rung - 1] === ladder?.rungToleranceDegrees && JSON.stringify(a) === JSON.stringify(b)
+  } catch { return false }
+}
+
 function verifyCity({ artifact, delivery, id, row, manifest }) {
   const dir = join(delivery, 'cities', id)
   if (!isDir(dir)) throw new Error(`delivery/cities/${id} missing`)
@@ -107,7 +118,11 @@ function verifyCity({ artifact, delivery, id, row, manifest }) {
     // The exact-coast stage rewrites app files (terrain.ts, geometry.ts) after earlier steps pinned their hashes and
     // step-cache.json does not always carry the new hash for every rewritten file. Its own log records sha256After
     // for each rewritten file: accept that hash (the delivered file must still match it) when the stage passed.
-    const coastLog = join(artifact, 'evidence', `${id}-exact-coast.log`)
+    // When the water budget ladder ran (row.waterBudgetLadder.accepted.rung = N), the delivered files are the ones the
+    // accepted rung wrote: its log (<id>-exact-coast-rung-N.log) is the one that carries their sha256After.
+    const rung = Number(row?.waterBudgetLadder?.accepted?.rung)
+    const coastLogName = Number.isInteger(rung) && rung > 0 ? `${id}-exact-coast-rung-${rung}.log` : `${id}-exact-coast.log`
+    const coastLog = join(artifact, 'evidence', coastLogName)
     let coastRewrites = []
     if (isFile(coastLog)) {
       try {
@@ -130,7 +145,12 @@ function verifyCity({ artifact, delivery, id, row, manifest }) {
       else if (tail.startsWith(`evidence/${id}/`)) file = join(artifact, tail)
       if (!file) continue
       if (!isFile(file)) throw new Error(`${tail} (step ${step}) is pinned but missing from the artifact`)
-      if (sha(file) !== hash) throw new Error(`sha256 mismatch for ${tail} (step ${step})`)
+      if (sha(file) !== hash) {
+        // The ladder rewrites coast-water.json after the exact-coast step pinned it: the canonical report is the accepted
+        // rung's report plus a toleranceLadder block. Accept it only when it equals that rung report (itself hash-pinned)
+        // apart from toleranceLadder, and the ladder block names the same accepted rung.
+        if (!(rung > 0 && tail === `evidence/${id}/coast-water.json` && ladderReportMatches(file, join(artifact, 'evidence', id, `coast-water-rung-${rung}.json`), rung))) throw new Error(`sha256 mismatch for ${tail} (step ${step})`)
+      }
       checked++
     }
   }

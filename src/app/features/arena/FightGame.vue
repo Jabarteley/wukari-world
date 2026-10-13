@@ -137,8 +137,9 @@ function frame(now: number): void {
   const latest = room.latest
   let own: FighterSnap | null = null
   if (live && latest && you != null && latest.p === PHASE.fight && st?.status === 'playing') {
-    const foe = pick ? (pick.a.f[1 - you][0] + (pick.b.f[1 - you][0] - pick.a.f[1 - you][0]) * pick.t) : latest.f[1 - you][0]
-    own = predictor.frame(now, latest.f[you] as FighterSnap, foe)
+    const mine: 0 | 1 = you === 1 ? 1 : 0, other: 0 | 1 = mine === 1 ? 0 : 1 // a fight has exactly two seats
+    const foe = pick ? (pick.a.f[other][0] + (pick.b.f[other][0] - pick.a.f[other][0]) * pick.t) : latest.f[other][0]
+    own = predictor.frame(now, latest.f[mine], foe)
   }
   const result = st?.result
   const winner = st?.status === 'over' && result ? (result.draw ? 2 : (result.winners[0] ?? -1)) : -1

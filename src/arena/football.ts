@@ -59,7 +59,7 @@ export function dirCode(dx: number, dy: number, dead = 0): number {
 export const dirVector = (code: number): [number, number] => (code >= 1 && code <= 24 ? [DX[code - 1] as number, DY[code - 1] as number] : [0, 0])
 
 /** `ending`: 1 = golden goal, 2 = draw (numbers because the shared lobby panel sends option values as numbers). */
-export interface FootballOptions { seconds: number; ending: number; side: number }
+export type FootballOptions = { seconds: number; ending: number; side: number }
 export interface Footballer {
   x: number; y: number; vx: number; vy: number
   /** facing 0..23 */ d: number

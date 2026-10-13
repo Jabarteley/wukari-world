@@ -262,6 +262,8 @@ function buildService(ctx: RouteContext) {
     sweeper = setInterval(sweep, TUNING.sweepMs);
     sweeper.unref?.();
   }
+  /** Read afresh: removing a seat can close the room, which a status check made earlier cannot know. */
+  const isClosed = (room: Room): boolean => room.status === 'closed';
   function sweep(): void {
     const t = clock();
     for (const room of [...rooms.values()]) {
@@ -269,7 +271,7 @@ function buildService(ctx: RouteContext) {
         const seat = room.seats[index];
         if (!seat || seat.bot || seat.left || seat.away <= 0 || room.status === 'closed') continue;
         const limit = room.status === 'playing' ? TUNING.awayForfeitMs : TUNING.awaySeatMs;
-        if (t - seat.away >= limit) { removeSeat(room, index); if (room.status !== 'closed') announce(room); }
+        if (t - seat.away >= limit) { removeSeat(room, index); if (!isClosed(room)) announce(room); }
       }
       if (room.status === 'closed') continue;
       if (room.emptySince > 0 && t - room.emptySince >= TUNING.emptyMs) close(room);

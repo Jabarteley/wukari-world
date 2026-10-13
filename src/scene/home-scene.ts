@@ -803,7 +803,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   function rebuild(state: LifeState | null) {
     const house = visit ?? homeOf(state, HOUSE_DESIGNS, state ? housesFor(state.estate.city) : undefined);
     const colours = visitPalette ?? (state && cachedCityContent(state.estate.city)?.homePalette) ?? ROOM_PALETTE;
-    const key = visit ? 'visit' : `${house.id}|${house.label}`;
+    const key = 'id' in house ? `${house.id}|${house.label}` : 'visit';
     if (house.grid !== grid || house.owned !== owned || colours !== palette || key !== homeKey) {
       homeKey = key; grid = house.grid; owned = house.owned; tile = ROOM / grid; palette = colours;
       plot = plotOf(grid, owned); plan = planOf(plot);

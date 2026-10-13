@@ -58,7 +58,8 @@ test('football: two players and a spectator play a whole match to the same final
   h.send(cy, 'arena-input', { room, i: 1 }); // a watcher's input counts for nothing
   // Ada runs east with the ball and shoots now and then; Bola stands still.
   const run = packInput(2, false), charge = packInput(2, true), kick = packInput(2, false, BTN.kick)
-  for (let n = 0; ada.state.status === 'playing' && n < 200; n++) {
+  const playing = (peer: Peer): boolean => peer.state.status === 'playing' // read afresh: the asserts above narrowed the field
+  for (let n = 0; playing(ada) && n < 200; n++) {
     h.send(ada, 'arena-input', { room, i: charge }); await h.wait(60);
     h.send(ada, 'arena-input', { room, i: kick }); await h.wait(20);
     h.send(ada, 'arena-input', { room, i: run }); await h.wait(150);

@@ -50,7 +50,7 @@ export interface RealtimeRules<State extends { options: object } = { options: ob
   /** null while the game goes on. Once non-null the room stops ticking. */
   outcome: (state: State) => ArenaOutcome | null
   /** What EVERYONE sees, as compact JSON (arrays, small integers). It is sent every tick, so keep it a few hundred bytes. */
-  snapshot: (state: State) => unknown
+  snapshot: (state: State) => Snap
   /** The computer's input for a seat this tick. */
   bot: (state: State, seat: number, rng: () => number) => Input
   /** The seat leaves for good: the others win (or the game is called off). */

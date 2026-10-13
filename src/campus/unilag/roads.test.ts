@@ -17,7 +17,7 @@ const distToPolyline = (p: MetrePoint, pts: readonly MetrePoint[]) => {
 };
 const trianglesFaceUp = (layer: FlatLayer) => {
   for (let i = 0; i < layer.idx.length; i += 3) {
-    const [a, b, c] = [layer.idx[i]!, layer.idx[i + 1]!, layer.idx[i + 2]!].map(k => [layer.pos[k * 3]!, layer.pos[k * 3 + 2]!]) as MetrePoint[];
+    const [a, b, c] = [layer.idx[i]!, layer.idx[i + 1]!, layer.idx[i + 2]!].map((k): MetrePoint => [layer.pos[k * 3]!, layer.pos[k * 3 + 2]!]) as [MetrePoint, MetrePoint, MetrePoint];
     // three.js front face is counter-clockwise seen from +y: (b-a)x(c-a) along y is negative in x/z coordinates
     const cross = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
     if (!(cross < 0)) return false;

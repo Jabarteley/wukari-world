@@ -37,7 +37,7 @@ export const FLAG = Object.freeze({ off: 1, hit: 2, out: 4, brake: 8, boost: 16 
 const ACC = 0.3, DRAG = 0.0035, COAST = 0.985, BRAKE = 0.8, REV_ACC = 0.18, REV_MAX = -3
 const BOOST_ACC = 0.5, BOOST_TICKS = 16, TURN = 0.075, GRIP = 0.78, DRIFT_GRIP = 0.93, GRASS = 0.93, WALL_KEEP = 0.5
 
-export interface RaceOptions { laps: number; track: number }
+export type RaceOptions = { laps: number; track: number }
 export interface Car {
   x: number; y: number; vx: number; vy: number
   /** Heading, radians (0 = +x, clockwise on screen). */

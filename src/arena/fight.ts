@@ -47,7 +47,7 @@ export const MOVES = Object.freeze({
 const WALK = 9, AIR_STEER = 3, JUMP_V = 20, GRAVITY = 2.4, MIN_APART = 44
 export const INTRO_TICKS = 50, KO_TICKS = 50
 
-export interface FightOptions { rounds: number; seconds: number }
+export type FightOptions = { rounds: number; seconds: number }
 export interface Fighter {
   x: number; y: number; vx: number; vy: number
   /** 1 faces right, -1 faces left. */

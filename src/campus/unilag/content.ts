@@ -132,6 +132,6 @@ const NPC_LOOKS: Record<string, Partial<import('../../types/life.ts').Look>> = {
   'lecturer-ada': { body: 'woman', outfit: 'office', outfitColor: 'navy', accessories: ['glasses', 'handbag'] },
   'porter-bayo': { body: 'man', outfit: 'kaftan', outfitColor: 'cream' },
   'driver-sola': { body: 'man', outfit: 'casual', outfitColor: 'gold', accessories: ['cap'] },
-  'security-efe': { body: 'man', outfit: 'sitework', outfitColor: 'navy', accessories: ['cap'] },
+  'security-efe': { body: 'man', outfit: 'site-work', outfitColor: 'navy', accessories: ['cap'] },
 };
 for (const [id, look] of Object.entries(NPC_LOOKS)) { const npc = CAMPUS_NPCS[id]; if (npc) npc.look = look; }

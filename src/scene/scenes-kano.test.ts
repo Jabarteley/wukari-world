@@ -94,7 +94,7 @@ test('no two Kano scenes are the same scene, and each takes its sign from the ve
       let sum = 0;
       entry.group.traverseVisible((child) => {
         const position = (child as { geometry?: { attributes?: { position?: { array: ArrayLike<number> } } } }).geometry?.attributes?.position?.array;
-        if (position) for (let i = 0; i < position.length; i += 7) sum += position[i];
+        if (position) for (let i = 0; i < position.length; i += 7) sum += position[i] ?? 0;
       });
       const key = `${entry.stats().triangles}/${sum.toFixed(2)}`;
       assert.ok(!sizes.has(key), `${kind}/${variant} has the same triangle count as ${sizes.get(key)}`);

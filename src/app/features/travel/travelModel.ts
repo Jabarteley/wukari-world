@@ -1,6 +1,6 @@
 import { civicTitle, civicOffice, cityUnit } from '../../../game/cities/terminology.ts'
 import { cityCatalogueEntry, cityRules } from '../../../game/cities/registry.ts'
-import { ATLAS_LEVEL_METADATA, countryAtlasLevel } from '../../../game/cities/atlasMetadata.ts'
+import { ATLAS_LEVEL_METADATA, countryAtlasLevel, mapEntryOf } from '../../../game/cities/atlasMetadata.ts'
 import type { AtlasLevelId } from '../../../game/cities/atlasMetadata.ts'
 // Getting around without a DOM: the one place that decides what a trip costs, why Go is off, what
 // the trip bar says, which places the Map lists and what each Ride row offers. It is the typed
@@ -130,7 +130,7 @@ export interface MapLevel { id: AtlasLevelId | 'country' | 'city'; label: string
  */
 export function mapLevels(cityName: string, layer: 'city' | 'world', atlasLevel = 2, cityId?: string): MapLevel[] {
   // The played city's rules are loaded (they name its country as the catalogue does); the world network is only a fallback.
-  const rules = cityRules(cityId), ruled = rules ? { countryISO: rules.country.id === 'ng' || rules.country.id === 'nigeria' ? undefined : rules.country.id, countryName: rules.country.name } : null
+  const rules = cityRules(cityId), ruled = rules ? { countryISO: rules.country.id === 'ng' || rules.country.id === 'nigeria' ? undefined : mapEntryOf(rules.country.id), countryName: rules.country.name } : null
   const catalogue = ruled ?? cityCatalogueEntry(cityId)
   const foreign = Boolean(catalogue?.countryISO && catalogue.countryISO !== 'ng')
   const country = foreign ? catalogue?.countryName || catalogue?.countryISO?.toUpperCase() || 'Country' : 'Nigeria'

@@ -1,5 +1,6 @@
 import { CITY_INDEX, CITY_LOADERS, CLOSED_RESERVED_CITIES } from './catalogue.ts'
 import { generateCityLinks } from './generatedLinks.ts'
+import { mapEntryOf } from './atlasMetadata.ts'
 import { CITY_NETWORK_AT_START, fetchCityNetwork } from '#city-network'
 import type { CityCatalogueEntry } from './catalogue.ts'
 import type { CityLandComponentRow } from './generatedLinks.ts'
@@ -161,7 +162,7 @@ const catalogueOfModule = (module: CityModule): CityCatalogueEntry => Object.fre
   id: module.id,
   name: module.rules.name,
   state: Object.freeze({ id: module.rules.state.id, name: module.rules.state.name }),
-  ...(module.rules.country.id !== 'ng' && module.rules.country.id !== 'nigeria' ? { countryISO: module.rules.country.id, countryName: module.rules.country.name } : {}),
+  ...(module.rules.country.id !== 'ng' && module.rules.country.id !== 'nigeria' ? { countryISO: mapEntryOf(module.rules.country.id), countryName: module.rules.country.name } : {}),
   lon: module.rules.atlas.lon,
   lat: module.rules.atlas.lat,
   open: module.rules.status === 'open',

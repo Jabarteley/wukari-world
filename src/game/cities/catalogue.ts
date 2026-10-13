@@ -1,5 +1,6 @@
 import { GENERATED_CITY_FIGURES, GENERATED_CITY_INDEX, GENERATED_CITY_LOADERS } from '#city-loaders'
 import type { CityModule } from '../../types/content.ts'
+import { mapEntryOf } from './atlasMetadata.ts'
 
 /** The city facts of the world network (src/game/cities/network.ts): every city's place, state and country. */
 export interface CityCatalogueEntry {
@@ -49,7 +50,7 @@ export const CLOSED_RESERVED_CITIES: readonly CityCatalogueEntry[] = Object.free
 export function catalogueFromRows(rows: readonly CityCatalogueRow[]): readonly CityCatalogueEntry[] {
   const generated = rows.map(([id, name, stateId, stateName, lon, lat, airport, countryISO, countryName]) => Object.freeze({
     id, name, state: Object.freeze({ id: stateId, name: stateName === '' ? name : stateName }), lon, lat, open: true, airport: airport === 1,
-    ...(countryISO ? { countryISO, countryName } : {}),
+    ...(countryISO ? { countryISO: mapEntryOf(countryISO), countryName } : {}),
   }))
   return Object.freeze([
     ...generated.slice(0, 4),

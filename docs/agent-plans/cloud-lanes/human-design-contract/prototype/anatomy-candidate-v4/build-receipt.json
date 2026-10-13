@@ -1,0 +1,1203 @@
+{
+  "version": 4,
+  "frozenMasterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "triangles": 29538,
+  "meshes": 27,
+  "changedMeshes": [
+    "Head_continuous_anatomy",
+    "Eye_Left",
+    "Iris_Left",
+    "Pupil_Left",
+    "Eye_Right",
+    "Iris_Right",
+    "Pupil_Right"
+  ],
+  "removedSeparateLids": [
+    "UpperLid_Left",
+    "LowerLid_Left",
+    "UpperLid_Right",
+    "LowerLid_Right"
+  ],
+  "exactPreservedMeshes": [
+    "Neck",
+    "Shirt_fused_shoulders",
+    "Collar_band",
+    "Trousers_fused_hip",
+    "Forearm_hand_-1",
+    "Shoe_-1",
+    "Sole_-1",
+    "Forearm_hand_1",
+    "Shoe_1",
+    "Sole_1",
+    "Brow_Left",
+    "Brow_Right",
+    "Lip_upper",
+    "Lip_lower",
+    "Mouth_seam",
+    "Nostril_-1",
+    "Nostril_1",
+    "Ear_Left",
+    "Ear_Right",
+    "Hair_original_close_curl_surface"
+  ],
+  "protectedHashes": {
+    "Neck": {
+      "positions": "7eaff140ca3bebcff4347668f10c406e0c74414377076e2f60b7d92a608c894d",
+      "triangles": "02c243c5e69a2b843d145468f169b416ced9bebec7ced6bc29bc75e04c804dd8",
+      "uv": {
+        "Prototype_UV_v1": "dd716cb2ea0d9054f6d89b99a384c7d84e34162b082811215f03302e4321b1b1"
+      },
+      "keys": {
+        "Basis": "7eaff140ca3bebcff4347668f10c406e0c74414377076e2f60b7d92a608c894d",
+        "body.height": "94352d6c5272b730e1a1f439040398aae579043a449aee5405bfef1f4d492f63",
+        "body.shoulderWidth": "6c543cdf9754273f8ed28aab88e7a48fafd85d2b41f696764ed4f4fd4ef5326c"
+      },
+      "materials": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Shirt_fused_shoulders": {
+      "positions": "687cc7eff62c2a8248efc7bf08d8e44647d72aaa4114a9cdefe00387dfbbc8d3",
+      "triangles": "6f9168f8b6565c98f8125004506aa48571badc93031b7c855583d1f78befcacf",
+      "uv": {
+        "Prototype_UV_v1": "3052b449f01e4e547a9f5ee95830f7561fcbaa38274859026434525ef4d7c9aa"
+      },
+      "keys": {
+        "Basis": "687cc7eff62c2a8248efc7bf08d8e44647d72aaa4114a9cdefe00387dfbbc8d3",
+        "body.height": "088e9f3c09ab7ab72ebbbe939640018746735c21f349c7cc5173da74e21a0bf3",
+        "body.shoulderWidth": "6ce9bd36a02b343e71c35d1430b4ba88e5911804e766308247cc96c8b6faf63a"
+      },
+      "materials": [
+        "Shirt | woven petrol blue"
+      ]
+    },
+    "Collar_band": {
+      "positions": "8e5de169f7e0832997aba93d5c1d8fceef72d2d8852da2c95a3b9040f9fa3f58",
+      "triangles": "83319e132267ea9f3fc3c8b0b18fa46a03bf4d7be8f5d3c715bb3b9345f6553b",
+      "uv": {
+        "Prototype_UV_v1": "fafa7e38c26608e02f343963c1927f6b492944ebfb4aee32c6c7922cda7810de"
+      },
+      "keys": {
+        "Basis": "8e5de169f7e0832997aba93d5c1d8fceef72d2d8852da2c95a3b9040f9fa3f58",
+        "body.height": "35363a32b72afecc2acb26e241c219dbabbf1c19d573f6d0c8d3921e67e245a5",
+        "body.shoulderWidth": "cd6146371d8f3614331cbc4f57b4b7b077c626a9d76fd708bead968c16114333"
+      },
+      "materials": [
+        "Shirt | woven petrol blue"
+      ]
+    },
+    "Trousers_fused_hip": {
+      "positions": "71b1388c8726808b5848670bee40388bf349ddb680633aa89504d6ac35977aa4",
+      "triangles": "6881abdafca4ba26f95a3a59739a1f6bfc626b80ae1a8044a3c3b4e1d7cca04c",
+      "uv": {
+        "Prototype_UV_v1": "2e933a7747e3d79e9859e1bccbdda2c67357690fd93b66e0105a59d9c42aa003"
+      },
+      "keys": {
+        "Basis": "71b1388c8726808b5848670bee40388bf349ddb680633aa89504d6ac35977aa4",
+        "body.height": "8fc1ceea26ba6d483dcc944b503b8260ad5a32f1f19eaccb9a1e7a5ddb594b97",
+        "body.shoulderWidth": "6d602f2bd666ea19be29a855193ed8fac905cb7475c479c6afd0893ee8dd5048"
+      },
+      "materials": [
+        "Trousers | warm charcoal"
+      ]
+    },
+    "Forearm_hand_-1": {
+      "positions": "e1cdca29c553d5b1f46aa40516a7a72c3a70593dc5113064eb913a53155fe4e7",
+      "triangles": "c0bd67def3896920cc91f7f2a63cc3431c3848ed7bdfe4d0998d389055f34b79",
+      "uv": {
+        "Prototype_UV_v1": "6e27b81b07f05ae2d0ec1c2d1576a22c527cf81eaa87a5e7eeca574a12648160"
+      },
+      "keys": {
+        "Basis": "e1cdca29c553d5b1f46aa40516a7a72c3a70593dc5113064eb913a53155fe4e7",
+        "body.height": "c794a7ea9aa30a5f1279d1550a59dfb586f4b800bd4832a12390f67be8cd7974",
+        "body.shoulderWidth": "762be3a82ca193217ca79a64714b31f57b1822aa9b8ee50b6a191e8bb1339061"
+      },
+      "materials": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Shoe_-1": {
+      "positions": "b44007246c83845330c954e4b00f2d0a172dfab30c632f4f0f0458f2026b55f2",
+      "triangles": "d7aac2c1f0e583a27bdcf11ccbd99455369ff2caa910bd93b2956fa1fbad8761",
+      "uv": {
+        "Prototype_UV_v1": "f29b2ef8d0f71d3663b527cc6525eb4941360063975ce428adb19f464cd9db11"
+      },
+      "keys": {
+        "Basis": "b44007246c83845330c954e4b00f2d0a172dfab30c632f4f0f0458f2026b55f2",
+        "body.height": "ae644285f8bbfc3d35159dfafadea0e2768f8ad74dc5fb398cab077b95b5eaae"
+      },
+      "materials": [
+        "Footwear | brown leather"
+      ]
+    },
+    "Sole_-1": {
+      "positions": "4d277ecb2b392f2f4f1e3c9d60ec31671be0b1cebad4b2d53624169b9d6f556e",
+      "triangles": "b30bfe699ec376f07e62311b595fa8e5f19300c2084cb82d30b0fd0a0363ffd3",
+      "uv": {
+        "Prototype_UV_v1": "e565c382dbd50d8ecd8c18903498a1423156555d4dfb377e739be028ad45301e"
+      },
+      "keys": {
+        "Basis": "4d277ecb2b392f2f4f1e3c9d60ec31671be0b1cebad4b2d53624169b9d6f556e",
+        "body.height": "69443a8b0eb5a92f62eeaf8c4a5bfe0aa8269952561dce886312d5a518f7df5d"
+      },
+      "materials": [
+        "Sole | muted stone"
+      ]
+    },
+    "Forearm_hand_1": {
+      "positions": "c6eb6dd8ed3746316d0f758c3d2f182a040e6dfd2cd077070163935aebc5504b",
+      "triangles": "d51d622f76087b86f1236c1585a1592b4a64f775636986965f8b359c43a218d7",
+      "uv": {
+        "Prototype_UV_v1": "cd0014f90762b61830723f06704fa7d66b2de087a189cb9b6f534e9c9d6151ed"
+      },
+      "keys": {
+        "Basis": "c6eb6dd8ed3746316d0f758c3d2f182a040e6dfd2cd077070163935aebc5504b",
+        "body.height": "ad49f4269902ca7ba32c6d40b1609ae82c0b01c7129a1a9ada38966f1aec5e45",
+        "body.shoulderWidth": "dd4fd957ecbb26ecc7e9d8deaec0507fb664787e17706a6089615ce988820bd9"
+      },
+      "materials": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Shoe_1": {
+      "positions": "4e042ca955ed8e6e18b6f8b87fe4b69e7dff57a0980b9e8ad2ee32075f681d37",
+      "triangles": "d7aac2c1f0e583a27bdcf11ccbd99455369ff2caa910bd93b2956fa1fbad8761",
+      "uv": {
+        "Prototype_UV_v1": "c1a7348a3a0fd08a1a30fda178a9aff486e717ab8a4cb8e23dfb60ef82379f0d"
+      },
+      "keys": {
+        "Basis": "4e042ca955ed8e6e18b6f8b87fe4b69e7dff57a0980b9e8ad2ee32075f681d37",
+        "body.height": "2963987ba93ed23a506ccd4c132630684abdac80131c4b127351084df982b1f8"
+      },
+      "materials": [
+        "Footwear | brown leather"
+      ]
+    },
+    "Sole_1": {
+      "positions": "36627c01382355f39358696e82fbf341fe4e93cc0d2d1ed7d639e326d13be06c",
+      "triangles": "b30bfe699ec376f07e62311b595fa8e5f19300c2084cb82d30b0fd0a0363ffd3",
+      "uv": {
+        "Prototype_UV_v1": "bb93eb17316ef63f1fee383188fdc9121e5c443570704b9d894ca1940ccfd07e"
+      },
+      "keys": {
+        "Basis": "36627c01382355f39358696e82fbf341fe4e93cc0d2d1ed7d639e326d13be06c",
+        "body.height": "e80331835d8b057ea6e3e456a7746371d47717f3fd61c1478ef093caf3628f0f"
+      },
+      "materials": [
+        "Sole | muted stone"
+      ]
+    },
+    "Brow_Left": {
+      "positions": "4b23e55840b1a2e2afd9e8a4dc4389ab3530256badef8492c48381a970665e37",
+      "triangles": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+      "uv": {
+        "Prototype_UV_v1": "151d1213c6e6f42f98eafed45bcebfbcbd0fe221b4a621d6b247f19e89686418"
+      },
+      "keys": {
+        "Basis": "4b23e55840b1a2e2afd9e8a4dc4389ab3530256badef8492c48381a970665e37",
+        "body.height": "c7f514b0a4fd0e65265f790772a8a0cecc10e47eaa3664cf6bad223a5b3286fc",
+        "expression.browRaiseLeft": "bbd2803d38291bf85375bb7d518e10871c35d576030f81df9931ba56d91bdf78",
+        "corrective.height.browRaiseLeft": "3542d25a7ebd2971c01bb1e6bc97c769e52063278a1f793facf443ae71f238f7"
+      },
+      "materials": [
+        "Hair | dark close curls"
+      ]
+    },
+    "Brow_Right": {
+      "positions": "8583e7b5dae6574657ccc5a7df5a6983fa7ad2daf5697ffb404c41df531cd9e7",
+      "triangles": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+      "uv": {
+        "Prototype_UV_v1": "5351ffc64eabe2cba1b6d1c1537ff44f725dde5edf6c2e5a9488cc38ca6ded22"
+      },
+      "keys": {
+        "Basis": "8583e7b5dae6574657ccc5a7df5a6983fa7ad2daf5697ffb404c41df531cd9e7",
+        "body.height": "8386440cb1a6cb1355b373b52d9b3cf40400205b4b2168a762c42f9e01cb42fe",
+        "expression.browRaiseRight": "cfb68b3423c99bd853d016b1d329ae2545e901191f02674aaaf76b7d7230c5f0",
+        "corrective.height.browRaiseRight": "4385bd55e5751cb1f98f443ac3de4df7261da1ee381e3a6e25398e21bc7c7e54"
+      },
+      "materials": [
+        "Hair | dark close curls"
+      ]
+    },
+    "Lip_upper": {
+      "positions": "f286f473bcf45d06494f0ad4d24674fc329c8a1c6920b9c94602c1e663f8f4d8",
+      "triangles": "39e7450a29ff8ac384343808066b183281e4c49850ae1c7112bd9d901fc75dd2",
+      "uv": {
+        "Prototype_UV_v1": "eb10d60fd26cb73c0ee9951a271d8209c5d87fca0223fd8019eae3ddbc0828a6"
+      },
+      "keys": {
+        "Basis": "f286f473bcf45d06494f0ad4d24674fc329c8a1c6920b9c94602c1e663f8f4d8",
+        "nose.projection": "fb69c78de7da172fbb99fd7b55f964ae96f561ef32fc08f830b3ebc632eb289f",
+        "nose.alarWidth": "7c23bbd1acce490ef9f38fcd4ecfe0346fd6ceffdce3b56e019823e1d3dae5d3",
+        "body.height": "7f2371a99a56e78620e20ba7018a9e60facccc7ab76cdf1d04d231975cd2d2c3",
+        "expression.smileLeft": "3961bb42b23d548521c3bc32293710260f943df0aa649ba15aa25efe0737f6b1",
+        "expression.smileRight": "93a976ae07ee761d6c657e8153c4c62c389a6249937d0f88cf45e49dd4ea1210",
+        "expression.frownLeft": "769ed3c31c9373b9331cbfd4680992801a1a9362b783eb8ae8f2f926a7a64d9a",
+        "expression.frownRight": "f72887f5150e849e1ae29c54cd7c27276bbcd3c3df2c4e0787ac55c073b13149",
+        "corrective.height.smileLeft": "a29c66a0cb9492a24e22188128a3507b129db58ca565aed1aa893ea48c8ab44d",
+        "corrective.height.smileRight": "f9fb439deecf6b88a663f280cdb85df3e591d410ebc096940f90274aaad38171",
+        "corrective.height.frownLeft": "d5410933a373d807dbcca6037bd125c365f70c2c592e85e9b179169763afe4dc",
+        "corrective.height.frownRight": "b559e05006607473b54f11fd17b4e935fddef56f2c5c08d7ead87d45596edaa8"
+      },
+      "materials": [
+        "Lips | muted warm brown"
+      ]
+    },
+    "Lip_lower": {
+      "positions": "ced272e40bb0d00f651500d39cbc3a0d812f55fa9b772e9d73101e4590b9bb88",
+      "triangles": "690b648dbb82ce9c0d50d27ef59a1222edd6e77c9796f9f2fc9a20b7598f0a98",
+      "uv": {
+        "Prototype_UV_v1": "7d3c51f014eeb9639cf77735fb0d98a5605af21449f6696def7a16316d656e52"
+      },
+      "keys": {
+        "Basis": "ced272e40bb0d00f651500d39cbc3a0d812f55fa9b772e9d73101e4590b9bb88",
+        "nose.projection": "57798311574b3c45e6f4dc494cefda2c977fb6e95ad6c63aa57c4b1ac2834a97",
+        "nose.alarWidth": "c9f7885d561fbdbc2d29fb20dc8c058b5181dba1ff6ad5cb425d7ccabf856c84",
+        "body.height": "9dcf685c2decb63dd9562025975f8454ca99455e1ffc21ab20f15d3252ebbf99",
+        "expression.smileLeft": "7548e8b6d8a73425a11d9bd7ac628d047edece2699df2daaed36ab58d9a182e2",
+        "expression.smileRight": "9225f48c0b268be98cff9e24c0afd7b145c24d4c383954addd423f296cdba725",
+        "expression.frownLeft": "f395dd58c36db6c476cdd7c39caf69eb432a595ba3b993fa16c6b1b2c98d5b6d",
+        "expression.frownRight": "910a0e963abe9547234b40a8f82a341bac96b930e0f73a39652127d027994fc0",
+        "corrective.height.smileLeft": "95a006abb60f3fdce51666df15b124e3c7b1b7ecc6a0fdcd55d6f5035366d18f",
+        "corrective.height.smileRight": "e6ff3e610c5167d9138bf5aee2b10ddc6c5f94348a884eeb1af975a3d68971ea",
+        "corrective.height.frownLeft": "a8b8f9448285f6d8fe1e163d59d95c1c29c267fd7e11e813607bb8ce6418a191",
+        "corrective.height.frownRight": "7526e58a10ff053182fe3abb530fd80a3ac4e5a8da8a4eeb250f22835d4a51f1"
+      },
+      "materials": [
+        "Lips | muted warm brown"
+      ]
+    },
+    "Mouth_seam": {
+      "positions": "ef69a4d7e2a526f2e630bccb5695a33e18ee5fafe296c8514c61497a58852b07",
+      "triangles": "d32f38d3ed5c440cb5db1cf9210b7f1820e15a6f424bbaec539c7845466ba6cd",
+      "uv": {
+        "Prototype_UV_v1": "8433aa86336f3c1b49c44f5ed9cd27c043643b5bea3a7aeeacb45be2d2954f59"
+      },
+      "keys": {
+        "Basis": "ef69a4d7e2a526f2e630bccb5695a33e18ee5fafe296c8514c61497a58852b07",
+        "nose.projection": "b08420af08897d7a0feed50bb41e5cea328664b5a2a239d961448023b945534c",
+        "nose.alarWidth": "07faa3ec1a09a5b063e1670ec2fafdb9142cc5fd6603a1270c453c9b03a0f63f",
+        "body.height": "d147a0a3945396d533067bd5e7cbcb6ea7d4806cfc3e854421f65bb22aea9234",
+        "expression.smileLeft": "7a85b31e2370e21aff76540d806adf45974a433690360b76483865e097b0efbf",
+        "expression.smileRight": "6627e3f95cf9b8ad91fea71f3e2b30e2a309cd18696124c98df583b8f4272df9",
+        "expression.frownLeft": "363a0fbf1abbeb20bd9cd7723fc96dfb116f8dc341f17fa7aa04a7a568d2e430",
+        "expression.frownRight": "e79d3f384fd1fcbf17e21dacc68f76a471721adfacb825c188740446e806499d",
+        "corrective.height.smileLeft": "1ed000833c783cf1397351d60550ef973ba6404e670713c04e98b9c2959132d4",
+        "corrective.height.smileRight": "6c0513b072ca1d2ebd63a6a4f49fe72e4dae8f677729c4d88695d38413114a9d",
+        "corrective.height.frownLeft": "6f7f9dca4bf0008495abab1364b50b8c90ecfa8edfbdb558d02c021bccc7d040",
+        "corrective.height.frownRight": "730af7d3ad5c6439aa555342d147eaf1a974aca14857ce96cbb0424c4231e583"
+      },
+      "materials": [
+        "Pupil and oral recess"
+      ]
+    },
+    "Nostril_-1": {
+      "positions": "3fb72a9a1f97da2229dc4099662c0e6829a0038c7d8d158fea3a7fafe5338024",
+      "triangles": "586c86939aae11d2f6044387322b5fa77327ce2c963971dac1a3cf1d469ed5b5",
+      "uv": {
+        "Prototype_UV_v1": "a84a2360dbef5b2f456f7feaef81cf0e930132aa991d760d35de3787b1afe313"
+      },
+      "keys": {
+        "Basis": "3fb72a9a1f97da2229dc4099662c0e6829a0038c7d8d158fea3a7fafe5338024",
+        "nose.projection": "bffb4e27778e3c79f0788a2cf6dc08273cd2268c9d97227963a30b9afdd1c6ef",
+        "nose.alarWidth": "58955e1143aa118bed484ceb867f923729e757f82d0a7c2f34a47febfc411d4d",
+        "body.height": "28aa9db225e5634e081a0ab748157e0b438a9a25e211aadb7827c99b6d442670",
+        "expression.smileRight": "ed71be3da80e2250b40911170194747a91f0465fc21460c261ab52966371804d",
+        "expression.frownRight": "7a45aed4683aeaf2081c71fce2ec50cb2997705bfff0c9443f86d295df309b89",
+        "corrective.height.smileRight": "fb05c754b17895a32d4341357876aa12b5343297933cf772eea3e2edc5d7e52c",
+        "corrective.height.frownRight": "8cdccd73900b21d8146ff05e0254acee3135c4c5e067e17f8d07c258b645a788"
+      },
+      "materials": [
+        "Pupil and oral recess"
+      ]
+    },
+    "Nostril_1": {
+      "positions": "fdd8d3b3eaf26729c19da0c751753d86475459bd99d6710a873d8693a7ee74fe",
+      "triangles": "586c86939aae11d2f6044387322b5fa77327ce2c963971dac1a3cf1d469ed5b5",
+      "uv": {
+        "Prototype_UV_v1": "2de93c3b71ed6f753f4eba493ff469e0cb2569508e8afbf7bc2303b6dc3195ef"
+      },
+      "keys": {
+        "Basis": "fdd8d3b3eaf26729c19da0c751753d86475459bd99d6710a873d8693a7ee74fe",
+        "nose.projection": "ef9b6cf397fbe235064b31f48f3052648eafcedc97c3af3ff5f795364fda438f",
+        "nose.alarWidth": "02ca27bcd309f0794e9e5ec78bf019091aec3aa802f987a7c4b83b165872ddd1",
+        "body.height": "28c4f00db16fea3cbce218a353ae333794bf2821c348e65e3116cad1cc579d37",
+        "expression.smileLeft": "5ed5fffe2f16b3addc0e55773d99ac6ad7ad1153a9790c132ac1e3a45fd3502e",
+        "expression.frownLeft": "e554936d03ddc3f41287c412d66091a560f0e37eb9c411da0bc7b823c5239354",
+        "corrective.height.smileLeft": "f37e7710026643356dfc10e8a6282e2922eb5287043fa98a7d51408689ac8ecb",
+        "corrective.height.frownLeft": "dd8e1b993e9e7bd52ffdf043b071312eb1d0e5e90c4fd689c5cc3c5618887a5c"
+      },
+      "materials": [
+        "Pupil and oral recess"
+      ]
+    },
+    "Ear_Left": {
+      "positions": "7905313821da5fd2b9d0e3354d66bb9c4bb4f578f3b31cafa7e8d5b1159cdec4",
+      "triangles": "749a0e51c6d1dcf42e7db0bcf1de1fc8aafe0a95f00f8588ff0e3c670874e083",
+      "uv": {
+        "Prototype_UV_v1": "8699e219061240a59a60448558392c3bde3784d1bbdf63bc4576ba2051fd7d41"
+      },
+      "keys": {
+        "Basis": "7905313821da5fd2b9d0e3354d66bb9c4bb4f578f3b31cafa7e8d5b1159cdec4",
+        "earLeft.protrusion": "86f10ba17ff1a37a796012113eccb4c9056552054bb8f211fc425b89a9a5e231",
+        "body.height": "25f1f3942fb05d5dac8f7f5d9886494420ef0c1ded823b69651ed5729b8dc5a9"
+      },
+      "materials": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Ear_Right": {
+      "positions": "3c5cd574da9206908e5b3c2eb8e50d1a757408ffc25498047ff418b94eb0d4e0",
+      "triangles": "51612b267cf6f0c8e22a5c33a455e8a9003e8c11a11fb17a69c1d19179b7de69",
+      "uv": {
+        "Prototype_UV_v1": "6d70727a93c771052ddaa18220fa22f14ce43ea6042b6d109202a00aa589366b"
+      },
+      "keys": {
+        "Basis": "3c5cd574da9206908e5b3c2eb8e50d1a757408ffc25498047ff418b94eb0d4e0",
+        "earRight.protrusion": "881c77863f829c8e90d0853b19856bee50cfab61d34ffec7cb651d420fc54eb4",
+        "body.height": "060b6ae5c9b100858d0a0cdbd472b8c626fdd94c9b61b0b6e36cc02bc9fde3cb"
+      },
+      "materials": [
+        "Skin | original warm umber"
+      ]
+    },
+    "Hair_original_close_curl_surface": {
+      "positions": "ebbc45d3e91ce75f892fa97b6e4b101ba71e3d0540da7db3bed9102e6303bde1",
+      "triangles": "3596a505357ee93d378d5bd5359f9f611ee54ed676eb718d27cf10dc176c694e",
+      "uv": {
+        "Prototype_UV_v1": "871f1adea1cd051755f207510b49bfccc04774c644f41b197d44d2101d91fc52"
+      },
+      "keys": {
+        "Basis": "ebbc45d3e91ce75f892fa97b6e4b101ba71e3d0540da7db3bed9102e6303bde1",
+        "body.height": "55201ce73f204460943dc4a9064db1f391f0dcb1bfaef90f3a0e34e702e16dc2"
+      },
+      "materials": [
+        "Hair | dark close curls"
+      ]
+    }
+  },
+  "originalHeadVertexCount": 4068,
+  "originalHeadTriangleCount": 8096,
+  "headPositionChanges": [
+    {
+      "vertex": 1862,
+      "deltaMetres": [
+        0.0,
+        -5.472451448440552e-05,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1914,
+      "deltaMetres": [
+        0.0,
+        -5.472451448440552e-05,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1925,
+      "deltaMetres": [
+        0.0,
+        -0.0006680525839328766,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1926,
+      "deltaMetres": [
+        0.0,
+        -0.001762349158525467,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1927,
+      "deltaMetres": [
+        0.0,
+        -0.000700928270816803,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1977,
+      "deltaMetres": [
+        0.0,
+        -0.000700928270816803,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1978,
+      "deltaMetres": [
+        0.0,
+        -0.001762349158525467,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1979,
+      "deltaMetres": [
+        0.0,
+        -0.0006680525839328766,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1988,
+      "deltaMetres": [
+        0.0,
+        -0.000288158655166626,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1989,
+      "deltaMetres": [
+        0.0,
+        -0.0027027390897274017,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1990,
+      "deltaMetres": [
+        0.0,
+        -0.004453103989362717,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1991,
+      "deltaMetres": [
+        0.0,
+        -0.003548860549926758,
+        0.0
+      ]
+    },
+    {
+      "vertex": 1992,
+      "deltaMetres": [
+        0.0,
+        -0.00017075985670089722,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2040,
+      "deltaMetres": [
+        0.0,
+        -0.00017075985670089722,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2041,
+      "deltaMetres": [
+        0.0,
+        -0.003548860549926758,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2042,
+      "deltaMetres": [
+        0.0,
+        -0.004453103989362717,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2043,
+      "deltaMetres": [
+        0.0,
+        -0.0027027390897274017,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2044,
+      "deltaMetres": [
+        0.0,
+        -0.000288158655166626,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2052,
+      "deltaMetres": [
+        0.0,
+        -0.0019101090729236603,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2053,
+      "deltaMetres": [
+        0.0,
+        -0.0044376440346241,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2054,
+      "deltaMetres": [
+        0.0,
+        -0.006092481315135956,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2055,
+      "deltaMetres": [
+        0.0,
+        -0.006715528666973114,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2056,
+      "deltaMetres": [
+        0.0,
+        -0.0018176175653934479,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2104,
+      "deltaMetres": [
+        0.0,
+        -0.0018176175653934479,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2105,
+      "deltaMetres": [
+        0.0,
+        -0.006715528666973114,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2106,
+      "deltaMetres": [
+        0.0,
+        -0.006092481315135956,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2107,
+      "deltaMetres": [
+        0.0,
+        -0.0044376440346241,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2108,
+      "deltaMetres": [
+        0.0,
+        -0.0019101090729236603,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2115,
+      "deltaMetres": [
+        0.0,
+        -0.008351162075996399,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2116,
+      "deltaMetres": [
+        0.0,
+        -0.0037910155951976776,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2164,
+      "deltaMetres": [
+        0.0,
+        -0.0037910155951976776,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2165,
+      "deltaMetres": [
+        0.0,
+        -0.008351162075996399,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2171,
+      "deltaMetres": [
+        0.0,
+        -0.008885666728019714,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2172,
+      "deltaMetres": [
+        0.0,
+        -0.005063548684120178,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2220,
+      "deltaMetres": [
+        0.0,
+        -0.005063548684120178,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2221,
+      "deltaMetres": [
+        0.0,
+        -0.008885666728019714,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2227,
+      "deltaMetres": [
+        0.0,
+        -0.008926939219236374,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2228,
+      "deltaMetres": [
+        0.0,
+        -0.00515509769320488,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2276,
+      "deltaMetres": [
+        0.0,
+        -0.00515509769320488,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2277,
+      "deltaMetres": [
+        0.0,
+        -0.008926939219236374,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2284,
+      "deltaMetres": [
+        0.0,
+        -0.006883036345243454,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2285,
+      "deltaMetres": [
+        0.0,
+        -0.008293330669403076,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2286,
+      "deltaMetres": [
+        0.0,
+        -0.003769323229789734,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2334,
+      "deltaMetres": [
+        0.0,
+        -0.003769323229789734,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2335,
+      "deltaMetres": [
+        0.0,
+        -0.008293330669403076,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2336,
+      "deltaMetres": [
+        0.0,
+        -0.006883036345243454,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2345,
+      "deltaMetres": [
+        0.0,
+        -0.00290878489613533,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2346,
+      "deltaMetres": [
+        0.0,
+        -0.005147431045770645,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2347,
+      "deltaMetres": [
+        0.0,
+        -0.005873490124940872,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2348,
+      "deltaMetres": [
+        0.0,
+        -0.0015152432024478912,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2396,
+      "deltaMetres": [
+        0.0,
+        -0.0015152432024478912,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2397,
+      "deltaMetres": [
+        0.0,
+        -0.005873490124940872,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2398,
+      "deltaMetres": [
+        0.0,
+        -0.005147431045770645,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2399,
+      "deltaMetres": [
+        0.0,
+        -0.00290878489613533,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2410,
+      "deltaMetres": [
+        0.0,
+        -0.0023504532873630524,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2411,
+      "deltaMetres": [
+        0.0,
+        -0.0022086314857006073,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2412,
+      "deltaMetres": [
+        0.0,
+        -3.35201621055603e-05,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2460,
+      "deltaMetres": [
+        0.0,
+        -3.35201621055603e-05,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2461,
+      "deltaMetres": [
+        0.0,
+        -0.0022086314857006073,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2462,
+      "deltaMetres": [
+        0.0,
+        -0.0023504532873630524,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2475,
+      "deltaMetres": [
+        0.0,
+        -0.00014745071530342102,
+        0.0
+      ]
+    },
+    {
+      "vertex": 2525,
+      "deltaMetres": [
+        0.0,
+        -0.00014745071530342102,
+        0.0
+      ]
+    }
+  ],
+  "lidRegions": {
+    "Left": {
+      "firstNewVertex": 4068,
+      "lastNewVertexExclusive": 4366,
+      "firstTriangle": 8096,
+      "lastTriangleExclusive": 8664,
+      "gridRows": 5,
+      "gridSamples": 25,
+      "aperturePairs": [
+        [
+          4193,
+          4193
+        ],
+        [
+          4194,
+          4343
+        ],
+        [
+          4195,
+          4344
+        ],
+        [
+          4196,
+          4345
+        ],
+        [
+          4197,
+          4346
+        ],
+        [
+          4198,
+          4347
+        ],
+        [
+          4199,
+          4348
+        ],
+        [
+          4200,
+          4349
+        ],
+        [
+          4201,
+          4350
+        ],
+        [
+          4202,
+          4351
+        ],
+        [
+          4203,
+          4352
+        ],
+        [
+          4204,
+          4353
+        ],
+        [
+          4205,
+          4354
+        ],
+        [
+          4206,
+          4355
+        ],
+        [
+          4207,
+          4356
+        ],
+        [
+          4208,
+          4357
+        ],
+        [
+          4209,
+          4358
+        ],
+        [
+          4210,
+          4359
+        ],
+        [
+          4211,
+          4360
+        ],
+        [
+          4212,
+          4361
+        ],
+        [
+          4213,
+          4362
+        ],
+        [
+          4214,
+          4363
+        ],
+        [
+          4215,
+          4364
+        ],
+        [
+          4216,
+          4365
+        ],
+        [
+          4217,
+          4217
+        ]
+      ]
+    },
+    "Right": {
+      "firstNewVertex": 4366,
+      "lastNewVertexExclusive": 4664,
+      "firstTriangle": 8664,
+      "lastTriangleExclusive": 9232,
+      "gridRows": 5,
+      "gridSamples": 25,
+      "aperturePairs": [
+        [
+          4491,
+          4491
+        ],
+        [
+          4492,
+          4641
+        ],
+        [
+          4493,
+          4642
+        ],
+        [
+          4494,
+          4643
+        ],
+        [
+          4495,
+          4644
+        ],
+        [
+          4496,
+          4645
+        ],
+        [
+          4497,
+          4646
+        ],
+        [
+          4498,
+          4647
+        ],
+        [
+          4499,
+          4648
+        ],
+        [
+          4500,
+          4649
+        ],
+        [
+          4501,
+          4650
+        ],
+        [
+          4502,
+          4651
+        ],
+        [
+          4503,
+          4652
+        ],
+        [
+          4504,
+          4653
+        ],
+        [
+          4505,
+          4654
+        ],
+        [
+          4506,
+          4655
+        ],
+        [
+          4507,
+          4656
+        ],
+        [
+          4508,
+          4657
+        ],
+        [
+          4509,
+          4658
+        ],
+        [
+          4510,
+          4659
+        ],
+        [
+          4511,
+          4660
+        ],
+        [
+          4512,
+          4661
+        ],
+        [
+          4513,
+          4662
+        ],
+        [
+          4514,
+          4663
+        ],
+        [
+          4515,
+          4515
+        ]
+      ]
+    }
+  },
+  "eyeCentresBlender": {
+    "Left": [
+      0.032,
+      -0.036,
+      1.635
+    ],
+    "Right": [
+      -0.032,
+      -0.036,
+      1.635
+    ]
+  },
+  "eyeRadiiMetres": [
+    0.012,
+    0.012,
+    0.012
+  ],
+  "sharedAnchorsBlender": {
+    "scalp.crown": [
+      0,
+      0.025,
+      1.759
+    ],
+    "scalp.templeLeft": [
+      0.072,
+      -0.01,
+      1.67
+    ],
+    "scalp.templeRight": [
+      -0.072,
+      -0.01,
+      1.67
+    ],
+    "eye.left": [
+      0.032,
+      -0.036,
+      1.635
+    ],
+    "eye.right": [
+      -0.032,
+      -0.036,
+      1.635
+    ],
+    "ear.lobeLeft": [
+      0.08,
+      0.01,
+      1.583
+    ],
+    "ear.lobeRight": [
+      -0.08,
+      0.01,
+      1.583
+    ],
+    "nose.bridge": [
+      0,
+      -0.074,
+      1.622
+    ],
+    "neck.collar": [
+      0,
+      0.013,
+      1.443
+    ],
+    "shoulder.left": [
+      0.176,
+      0.012,
+      1.367
+    ],
+    "shoulder.right": [
+      -0.176,
+      0.012,
+      1.367
+    ],
+    "waist.center": [
+      0,
+      0.015,
+      1.039
+    ],
+    "wrist.left": [
+      0.293,
+      -0.011,
+      0.925
+    ],
+    "wrist.right": [
+      -0.293,
+      -0.011,
+      0.925
+    ],
+    "foot.left": [
+      0.09,
+      -0.026,
+      0.027
+    ],
+    "foot.right": [
+      -0.09,
+      -0.026,
+      0.027
+    ]
+  },
+  "blendSha256": "722216b96d52f33fdb637d7cdee68f76edc36a2cac0b022f1faa027f31b96e35",
+  "glbSha256": "68fb9e909156bc67c8d4336b86595be829d40d448c3220e90ac5d2a9eddc7e61",
+  "status": "Built candidate, validation pending. No realism or adoption claim."
+}

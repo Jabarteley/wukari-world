@@ -1,0 +1,94 @@
+{
+  "Head_continuous_anatomy": {
+    "triangles": 9232,
+    "positiveAreaOverlapPairs": 2122,
+    "summedOverlapArea": 0.006510515795434813,
+    "minimumUvTriangleArea": 0.0,
+    "summedTriangleArea": 0.993295260770672,
+    "uvBounds": [
+      0.0,
+      1.3220329284667969,
+      0.0,
+      1.0
+    ]
+  },
+  "Iris_Left": {
+    "triangles": 160,
+    "positiveAreaOverlapPairs": 0,
+    "summedOverlapArea": 0,
+    "minimumUvTriangleArea": 0.0027092888791040437,
+    "summedTriangleArea": 0.7803622019707952,
+    "uvBounds": [
+      7.326404016794186e-08,
+      1.0000001192092896,
+      -3.496805902614142e-06,
+      1.000003457069397
+    ]
+  },
+  "Iris_Right": {
+    "triangles": 160,
+    "positiveAreaOverlapPairs": 0,
+    "summedOverlapArea": 0,
+    "minimumUvTriangleArea": 0.0027092870551994608,
+    "summedTriangleArea": 0.7803621907088494,
+    "uvBounds": [
+      -8.195638656616211e-08,
+      0.9999999403953552,
+      -3.496805902614142e-06,
+      1.000003457069397
+    ]
+  },
+  "Pupil_Left": {
+    "triangles": 40,
+    "positiveAreaOverlapPairs": 0,
+    "summedOverlapArea": 0,
+    "minimumUvTriangleArea": 0.019549528289010354,
+    "summedTriangleArea": 0.7821704785746956,
+    "uvBounds": [
+      -3.8068250773903856e-07,
+      1.0,
+      -4.246549906383734e-06,
+      1.0000042915344238
+    ]
+  },
+  "Pupil_Right": {
+    "triangles": 40,
+    "positiveAreaOverlapPairs": 0,
+    "summedOverlapArea": 0,
+    "minimumUvTriangleArea": 0.019549529953758304,
+    "summedTriangleArea": 0.7821704790087992,
+    "uvBounds": [
+      -2.9240014853826324e-08,
+      1.0000003576278687,
+      -4.246549906383734e-06,
+      1.0000042915344238
+    ]
+  },
+  "headOriginalFaces": {
+    "triangles": 8096,
+    "positiveAreaOverlapPairs": 2102,
+    "summedOverlapArea": 0.006440786604267102,
+    "minimumUvTriangleArea": 0.0,
+    "summedTriangleArea": 0.9835228353917294,
+    "uvBounds": [
+      0.0,
+      1.3220329284667969,
+      0.0,
+      1.0
+    ]
+  },
+  "headNewFaces": {
+    "triangles": 1136,
+    "positiveAreaOverlapPairs": 20,
+    "summedOverlapArea": 6.972919116771115e-05,
+    "minimumUvTriangleArea": 2.3290663193620276e-06,
+    "summedTriangleArea": 0.009772425378942629,
+    "uvBounds": [
+      0.378421813249588,
+      0.6215781569480896,
+      0.5079365968704224,
+      0.5873018503189087
+    ]
+  },
+  "newVersusOldOverlapPairs": 0
+}

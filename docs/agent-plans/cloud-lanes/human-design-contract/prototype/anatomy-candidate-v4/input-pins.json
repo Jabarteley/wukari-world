@@ -1,0 +1,11 @@
+{
+  "reviewCommit": "7d01f9979aea8d0d74b6110d6de662c69a7c4a40",
+  "files": {
+    "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/RESULT.md": "e8baf5da365efcabe8f6c77d5787bdd7ed0735329518dd71332168f86889fcc6",
+    "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/lid-diagnostic.json": "32b98c03d3c48a1fca1e4c5052fc34174322b393594520d7f16c8b96dd3c6564",
+    "docs/agent-plans/cloud-lanes/integration-contract/combined-review-v1/compatibility-and-budgets.json": "8621db076d686d6222757601ab6a0cc34f6a2d615009d888596937044bc20c1c"
+  },
+  "frozenMaster": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "priorCandidate": "b62b7fb6d10e9c80e0d127d535d97a86d0b29f49",
+  "scope": "Eye/head/lid anatomy only; preserve six identity controls and fit anchors; no master replacement."
+}

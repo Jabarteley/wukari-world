@@ -1,0 +1,110 @@
+{
+  "flaggedTriangles": [
+    {
+      "mesh": "UpperLid_Left",
+      "triangle": 492,
+      "samples": [
+        {
+          "blink": 0,
+          "areaM2": 1.3180325431398124e-07,
+          "cosineToNeutral": 1.0000000000000002
+        },
+        {
+          "blink": 0.25,
+          "areaM2": 1.2327685191532634e-07,
+          "cosineToNeutral": 0.9953197229115174
+        },
+        {
+          "blink": 0.5,
+          "areaM2": 1.1539618474530304e-07,
+          "cosineToNeutral": 0.7907220137145156
+        },
+        {
+          "blink": 0.75,
+          "areaM2": 1.7957687549782312e-07,
+          "cosineToNeutral": 0.21021183899961357
+        },
+        {
+          "blink": 1,
+          "areaM2": 3.2819482618134447e-07,
+          "cosineToNeutral": -0.11421588577630166
+        }
+      ]
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "triangle": 973,
+      "samples": [
+        {
+          "blink": 0,
+          "areaM2": 1.719053372207667e-07,
+          "cosineToNeutral": 0.9999999999999998
+        },
+        {
+          "blink": 0.25,
+          "areaM2": 1.2897142709336792e-07,
+          "cosineToNeutral": 0.9999998108082027
+        },
+        {
+          "blink": 0.5,
+          "areaM2": 8.600332682702125e-08,
+          "cosineToNeutral": 0.9999994788101464
+        },
+        {
+          "blink": 0.75,
+          "areaM2": 4.300098266302837e-08,
+          "cosineToNeutral": 0.9999998252952162
+        },
+        {
+          "blink": 1,
+          "areaM2": 1.1353048276352452e-10,
+          "cosineToNeutral": -0.3128487022201454
+        }
+      ]
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "triangle": 973,
+      "samples": [
+        {
+          "blink": 0,
+          "areaM2": 9.994704544785553e-08,
+          "cosineToNeutral": 1.0000000000000002
+        },
+        {
+          "blink": 0.25,
+          "areaM2": 7.49565497530596e-08,
+          "cosineToNeutral": 0.9999999720279273
+        },
+        {
+          "blink": 0.5,
+          "areaM2": 4.9965391608407944e-08,
+          "cosineToNeutral": 0.9999987324136896
+        },
+        {
+          "blink": 0.75,
+          "areaM2": 2.4974076082911665e-08,
+          "cosineToNeutral": 0.9999724199895187
+        },
+        {
+          "blink": 1,
+          "areaM2": 3.360563585076193e-10,
+          "cosineToNeutral": -0.05735725312882929
+        }
+      ]
+    }
+  ],
+  "neutralInheritedEyeHead": [
+    {
+      "eye": "Eye_Left",
+      "rawPairs": 33,
+      "properPairs": 32
+    },
+    {
+      "eye": "Eye_Right",
+      "rawPairs": 37,
+      "properPairs": 37
+    }
+  ],
+  "interpretation": "Three lid faces point opposite their own neutral normals at full closure, but retain positive finite areas at the five already-sampled blink values. This is not sufficient to classify a fold or certify continuous orientation; retained for anatomy-owner inspection. No extra morph-state combinations were added."
+}

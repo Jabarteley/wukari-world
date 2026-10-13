@@ -29,7 +29,8 @@ let items: { id: string; itemId: string; x: number; y: number; rot: number }[] =
 const buy = params.get('buy');
 if (buy) {
   const { FURNITURE } = await import('../game/content/furniture.ts');
-  const { starterLayout, suggestSpot } = await import('../game/home-layout.ts');
+  const { starterLayout } = await import('../game/home-layout.ts');
+  const { suggestSpot } = await import('./home-zones.ts');
   items = starterLayout(grid) as typeof items;
   for (const itemId of buy.split(',')) { const def = FURNITURE[itemId]; const at = def && suggestSpot(grid, items as never, def, 0); if (at) items.push({ id: `b${items.length}`, itemId, ...at }); }
 }

@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { FURNITURE } from './content/furniture.ts';
-import { checkPlacement, findFreeSpot, fitInto, plotOf, starterLayout, suggestSpot, windowSlot, zonesOf } from './home-layout.ts';
+import { FURNITURE } from '../game/content/furniture.ts';
+import { checkPlacement, findFreeSpot, fitInto, plotOf, starterLayout, windowSlot } from '../game/home-layout.ts';
+import { suggestSpot, zonesOf } from './home-zones.ts';
 import type { PlacedItem } from '../types/life.ts';
 
 /** Buy `ids` one after the other the way the Buy panel does: each takes the spot the zone rules offer. */

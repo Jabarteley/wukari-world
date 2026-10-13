@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "AQ",
+  "dataset": {
+    "url": "https://download.geofabrik.de/antarctica-261013.osm.pbf",
+    "bytes": 33094189,
+    "md5": "a9a412b8b54ebff8ca948f8ae184d362"
+  },
+  "treatyScope": {
+    "kind": "antarctic-treaty-area",
+    "reason": "Owner decision 2026-10-13: Antarctica is playable. OpenStreetMap has no admin-0 relation for Antarctica (no territory has sovereignty under the Antarctic Treaty), so the scope is the Antarctic Treaty area, the fixed polygon south of 60 degrees South (Treaty Article VI). Game venue map only: no claims about sovereignty, borders or station operations; the place is described as governed under the Antarctic Treaty."
+  }
+}

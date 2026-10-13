@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "cityId": "funafuti",
+  "countryIso2": "TV",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Funafuti",
+    "coordinatesWgs84": [
+      179.1982548,
+      -8.5199633
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/tuvalu-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "funafuti-airport",
+    "name": "Funafuti International Airport",
+    "lon": 179.196976,
+    "lat": -8.523885,
+    "sourceUrl": "https://ourairports.com/airports/NGFU/"
+  },
+  "boxes": {
+    "play": [
+      -8.70084418993398,
+      179.01650087872326,
+      -8.339082410066021,
+      179.38000872127674
+    ],
+    "core": [
+      -8.565183522483496,
+      179.152832650996,
+      -8.474743077516505,
+      179.243676949004
+    ],
+    "outline": [
+      -8.75084418993398,
+      178.96650087872325,
+      -8.28908241006602,
+      179.43000872127675
+    ],
+    "wide": [
+      -9.30084418993398,
+      178.41650087872327,
+      -7.739082410066022,
+      179.98000872127673
+    ],
+    "water": [
+      -9.30084418993398,
+      178.41650087872327,
+      -7.739082410066022,
+      179.98000872127673
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/tuvalu-261011.osm.pbf",
+    "datasetSha256": "ecdc3668e7b0f0f3a96d8febfd2d8bd6fc56e51f56880cd96c9072000bf203a6",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "9f8222c2e05d6e851a3ce91cab4fc0cb843e0f7bc5560a282cc87e53a3d2a5c0",
+        "elements": 45
+      },
+      {
+        "file": "extras.json",
+        "sha256": "dee5a6b3effe4813d67e5a6c890da18d4f23aeefaf91931c81d00704e67acdce",
+        "elements": 6
+      },
+      {
+        "file": "water.json",
+        "sha256": "18cc0f8b00e74261a83fd0b2cf4fadd1032c51bd7c7d57390b028fc43f102a09",
+        "elements": 66
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "73404255aa3f9c09f76c299a44cf19a48e7479e95226e190b797a55e552e06bf",
+        "elements": 16
+      },
+      {
+        "file": "roads.json",
+        "sha256": "3b3a13c85b2a1f3796f6fe77330cc0f1c9a6bc832e1b7216ce43679f190ff1ba",
+        "elements": 5
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Fast Food Restaurant",
+      "osm": "node/6950273685",
+      "coordinatesWgs84": [
+        179.196234,
+        -8.522305
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "MUSTER STATION/PARADE GROUNDS",
+      "osm": "way/1559314434",
+      "coordinatesWgs84": [
+        179.171044,
+        -8.438959
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Princess Margaret Hospital",
+      "osm": "node/651129681",
+      "coordinatesWgs84": [
+        179.199375,
+        -8.515221
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Teone Church",
+      "osm": "way/133496185",
+      "coordinatesWgs84": [
+        179.197025,
+        -8.506024
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Partnership House",
+      "osm": "way/136839527",
+      "coordinatesWgs84": [
+        179.19361,
+        -8.525724
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Government of Tuvalu",
+      "osm": "relation/7456977",
+      "coordinatesWgs84": [
+        179.194491,
+        -8.524364
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Conservation Area Tour Office",
+      "osm": "node/13987101601",
+      "coordinatesWgs84": [
+        179.199008,
+        -8.516678
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ahmadiyya Tuvalu Mosque",
+      "osm": "way/136840917",
+      "coordinatesWgs84": [
+        179.197278,
+        -8.522449
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "3 Ts Restaurant",
+      "osm": "node/13332937401",
+      "coordinatesWgs84": [
+        179.189016,
+        -8.53125
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Joy Seafood Restaurant",
+      "osm": "node/12470543601",
+      "coordinatesWgs84": [
+        179.19886,
+        -8.510909
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "David's Drill (Royal Society Scientific Expedition 1896)",
+      "osm": "node/13987101501",
+      "coordinatesWgs84": [
+        179.200762,
+        -8.515494
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "SICKBAY",
+      "osm": "way/1560044520",
+      "coordinatesWgs84": [
+        179.171307,
+        -8.439166
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1252,
+      "sha256": "6c2f5550786d8645137ad741d6d5d611dd3ffa36ab131cefc453b1df5f63c9d1"
+    },
+    "geometry.ts": {
+      "bytes": 197982,
+      "sha256": "ec92fb8112334e448a7699b629d3f956b53499d585428a5b8204bfaffacccfe5"
+    },
+    "places.ts": {
+      "bytes": 5233,
+      "sha256": "7ce23967131c3efdc2e36ed00df5f5fceee27918dd3167c421cb329dee396f0d"
+    },
+    "terrain.ts": {
+      "bytes": 104549,
+      "sha256": "f3681fac576e53b9a64ef3fc6b8c0154ecae4e48511d7a6bc8de19a9e791874b"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "23613438e4c7cc0ce0f0cffe89c06190adeeba8bbd5799e5370a542ab1ba41e2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

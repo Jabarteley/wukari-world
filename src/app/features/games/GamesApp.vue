@@ -19,6 +19,7 @@ import { dailyLine } from './oroModel.ts'
 import { ARENA_CATALOG, catalogEntry, playersLine } from '../../../arena/catalog.ts'
 import type { ArenaCatalogEntry, ArenaIntent } from '../../../arena/catalog.ts'
 import { gameOfRoom, roomFromText } from '../../../arena/code.ts'
+import { pendingTable } from '../../../quick-start/entry.ts'
 import { useSection } from '../kit/section.ts'
 import { partition, rowSub, tableTitle } from '../tables/tablesModel.ts'
 import { useTables } from '../tables/useTables.ts'
@@ -57,6 +58,9 @@ async function loadToday(): Promise<void> {
   if (result.ok && 'rows' in result) today.value = result
 }
 onMounted(() => {
+  // An invitation the landing kept (a reload or a second open of this app lost its room): go to that room.
+  const kept = pendingTable()
+  if (kept && !roomParam() && screen.value === 'hub' && gameOfRoom(kept)) void openRoom(kept)
   void loadToday()
   // Opened from inside the game: its address (/games) is shown so it can be copied, and Back closes it.
   void import('../paths/arrive.ts').then(({ enterGames }) => { enterGames() })

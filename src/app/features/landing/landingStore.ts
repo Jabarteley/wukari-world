@@ -182,9 +182,10 @@ export function createLanding(deps: LandingDeps, refs?: LandingRefs): Landing {
         const gameRoom = gameOfRoom(table) !== null
         const exists = gameRoom || await deps.tableExists(table)
         if (!isCurrent()) return
-        deps.forgetTable()
+        // A game room's code stays on the device until the room screen has really joined (src/arena/room.ts forgets it then): a reload in
+        // between, with the dev server or a service worker update, must not lose the invitation. A table link is forgotten at once.
         if (gameRoom) deps.open('games', { room: table })
-        else if (exists) deps.open('tables', { table })
+        else { deps.forgetTable(); if (exists) deps.open('tables', { table }) }
       }
       // An e-mail's button: one panel from the fixed list, opened once. A table link, which names its own panel, wins.
       if (go) {

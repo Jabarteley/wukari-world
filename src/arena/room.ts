@@ -62,6 +62,9 @@ export function useArenaRoom<Snap>(opts: ArenaRoomOptions<Snap>) {
   let created = false
   let matchSeen = 0
   let client: ArenaClient
+  // The invitation (the link's room code kept on the device by the quick start) is done with once this screen has the room or knows it is gone.
+  let invitation = !!opts.intent.room
+  const settled = (): void => { if (!invitation) return; invitation = false; void import('../quick-start/entry.ts').then((entry) => { entry.forgetTable() }).catch(() => undefined) }
 
   client = createArenaClient({
     open() {
@@ -70,6 +73,7 @@ export function useArenaRoom<Snap>(opts: ArenaRoomOptions<Snap>) {
     },
     state(frame) {
       room = frame.room
+      settled()
       if (frame.status === 'closed') { gone.value = true; note.value = 'This game has ended.'; state.value = frame; opts.onGone?.('closed'); return }
       if (frame.game !== opts.game) { gone.value = true; note.value = 'That link is for a different game.'; opts.onGone?.('game'); return }
       if (frame.match !== matchSeen) { matchSeen = frame.match; timeline.clear(); latest = null; opts.onMatch?.() }
@@ -84,6 +88,7 @@ export function useArenaRoom<Snap>(opts: ArenaRoomOptions<Snap>) {
     },
     error(code, reason) {
       note.value = reason
+      if (code === 'arena_unknown' || code === 'arena_game') settled()
       if (code === 'arena_unknown' || code === 'arena_game' || code === 'arena_full') gone.value = !state.value
       if (gone.value) opts.onGone?.(code)
     },

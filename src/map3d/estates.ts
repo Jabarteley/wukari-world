@@ -13,6 +13,7 @@
  *     a square lattice just fine enough (`size` a side) that every one lies wholly on the local
  *     government's buildable land — clear of the venues, the home lots, the coming-soon zones and
  *     the roads — numbered outwards from the first, so the growing edge spreads from the middle.
+ *     A tiny country (the Vatican) that cannot hold 512 has `layout.count` < 512 estates, all on one lattice (see TINY_FLOOR); everywhere else count is 512.
  *   plotAt(layout, x, z)      → { estate, plot } under the point, or null
  * Pure maths: no Three.js, no DOM. Layouts are cached per pack.
  */
@@ -29,7 +30,10 @@ export interface EstateLayout {
   size: number
   /** The side of the first, big estate. */
   front: number
+  /** The squares of the estates, the first (the show estate) at index 0; 512 of them, fewer only on a tiny island (see TINY_FLOOR). */
   cells: EstateCell[]
+  /** How many estates there are: `cells.length` (ESTATE.estates unless the land is tiny). Addresses beyond it are drawn on the last estate. */
+  count: number
   /** The distance between two plots of an estate. */
   pitch: (estate: number) => number
   /** Where a plot is: streets run west–east, street 1 at the north side; plots count from the west. */
@@ -50,6 +54,13 @@ const FRONT = 15;            // the side of a local government's first estate, w
  * (a coral atoll such as Funafuti, whose land is a strip a few hundred metres wide), which used to throw "no room for its first estate".
  */
 const FRONT_FLOOR = 1.2, LATTICE_FLOOR = 0.15;
+/**
+ * A compact microstate (the Vatican: land of about 11 × 7 map units, of which the venues' lots and the roads leave about 5 units² free) cannot hold 512 estates
+ * at any square a house can be drawn in, because the map draws a fixed 10 units to the kilometre. Only land that is not a strip (both sides at least
+ * TINY_SPAN units, so a thin strip is still refused as before) and that failed the ordinary search may use the tiny search: the squares go down to TINY_FLOOR and the
+ * local government gets as many estates as fit, at least MIN_ESTATES (the show estate and seven more: 1,568 plots). The count is `layout.count`.
+ */
+const TINY_SPAN = 3, TINY_START = 2, TINY_FLOOR = 0.3, MIN_ESTATES = 8;
 const FILL = 0.9;            // the share of an estate's square its plots cover (the rest is the verge between estates)
 
 const SCALE = 4;             // cells of the buildable-land grid per map unit
@@ -119,9 +130,9 @@ const boundsOf = (lga: PackLga): Rect => {
  * live in houses large enough to be seen from a street away. It is as big as the land allows
  * (up to FRONT units a side). The other 511 estates are the compact lattice around it.
  */
-function frontFor(lga: PackLga, mine: Sampler): EstateCell | null {
+function frontFor(lga: PackLga, mine: Sampler, floor = FRONT_FLOOR, from = FRONT): EstateCell | null {
   const { minX, maxX, minZ, maxZ } = boundsOf(lga), [px, pz] = lga.plate;
-  for (let size = FRONT; size >= FRONT_FLOOR; size *= 0.9) {
+  for (let size = from; size >= floor; size *= 0.9) {
     let best: { x: number; z: number; size: number; far: number } | null = null;
     for (let z = minZ + size / 2; z <= maxZ - size / 2; z += size / 4) for (let x = minX + size / 2; x <= maxX - size / 2; x += size / 4) {
       const far = Math.hypot(x - px, z - pz);
@@ -140,6 +151,22 @@ function cellsFor(lga: PackLga, size: number, mine: Sampler, front: EstateCell |
   return cells.length >= want ? cells : null;
 }
 
+/**
+ * The tiny search: one lattice for every estate, the first (show) estate included, on the squares of side TINY_START down to TINY_FLOOR. The estates are as many as the land can
+ * hold (up to 512), at the coarsest side that holds that many; the first is the square nearest the name plate. Null when even the finest side holds fewer than MIN_ESTATES.
+ */
+function tinyLattice(lga: PackLga, mine: Sampler): { front: EstateCell; cells: EstateCell[]; size: number } | null {
+  const [px, pz] = lga.plate, want = ESTATE.estates;
+  let best: EstateCell[] | null = null, size = 0;
+  for (let side = TINY_START; side >= TINY_FLOOR; side *= 0.94) {
+    const found = cellsFor(lga, side, mine, null, 0) ?? [];
+    if (Math.min(found.length, want) > (best ? Math.min(best.length, want) : MIN_ESTATES - 1)) { best = found; size = side; }
+  }
+  if (!best) return null;
+  best.sort((a, b) => Math.hypot(a.x - px, a.z - pz) - Math.hypot(b.x - px, b.z - pz) || a.z - b.z || a.x - b.x);
+  return { front: best[0]!, cells: best.slice(1), size };
+}
+
 export function estateLayout(pack: CityPack, lgaId: string): EstateLayout | null {
   let layouts = cache.get(pack);
   if (!layouts) cache.set(pack, layouts = new Map<string, EstateLayout>());
@@ -147,26 +174,32 @@ export function estateLayout(pack: CityPack, lgaId: string): EstateLayout | null
   const lga = pack.lgas?.find((item) => item.id === lgaId);
   if (!lga) return null;
   const mine = sampler(gridOf(pack), pack.lgas.indexOf(lga) + 1), want = ESTATE.estates - 1;
-  const front = frontFor(lga, mine);
-  if (!front) throw new Error(`The land of ${lgaId} has no room for its first estate`);
-  let size = 4, cells: EstateCell[] | null = null;
-  // The coarsest lattice that still gives every other estate its own square.
-  for (; size > LATTICE_FLOOR && !cells; size *= 0.94) cells = cellsFor(lga, size, mine, front, want);
-  if (!cells) throw new Error(`The land of ${lgaId} cannot hold ${ESTATE.estates} estates`);
-  size /= 0.94;
-  cells.sort((a, b) => Math.hypot(a.x - front.x, a.z - front.z) - Math.hypot(b.x - front.x, b.z - front.z) || a.z - b.z || a.x - b.x);
-  cells.length = want;
+  let front = frontFor(lga, mine), size = 4, cells: EstateCell[] | null = null;
+  // The ordinary search: the coarsest lattice that still gives every other estate its own square.
+  if (front) for (; size > LATTICE_FLOOR && !cells; size *= 0.94) cells = cellsFor(lga, size, mine, front, want);
+  if (front && cells) size /= 0.94;
+  else {
+    // Only a compact land that failed the ordinary search is tiny; a strip is refused as before and a land that fitted never comes here.
+    const box = boundsOf(lga);
+    if (box.maxX - box.minX < TINY_SPAN || box.maxZ - box.minZ < TINY_SPAN) throw new Error(front ? `The land of ${lgaId} cannot hold ${ESTATE.estates} estates` : `The land of ${lgaId} has no room for its first estate`);
+    const tiny = tinyLattice(lga, mine);
+    if (!tiny) throw new Error(`The land of ${lgaId} cannot hold even ${MIN_ESTATES} estates`);
+    ({ front, cells, size } = tiny);
+  }
+  cells.sort((a, b) => Math.hypot(a.x - front!.x, a.z - front!.z) - Math.hypot(b.x - front!.x, b.z - front!.z) || a.z - b.z || a.x - b.x);
+  cells.length = Math.min(cells.length, want);
   cells.unshift(front);
+  const count = cells.length;
   const key = (x: number, z: number) => `${Math.round((x / size) * 2)}:${Math.round((z / size) * 2)}`;
   const index = new Map<string, number>(cells.slice(1).map((cell, i): [string, number] => [key(cell.x, cell.z), i + 1]));
-  const anchor = cells[1]!;
+  const anchor = cells[1] ?? front, cellOf = (estate: number) => cells[Math.min(estate, count - 1)]!;
   const layout: EstateLayout = {
-    id: lgaId, size, front: front.size, cells,
+    id: lgaId, size, front: front.size, cells, count,
     /** The distance between two plots of an estate. */
-    pitch: (estate) => (cells![estate]!.size * FILL) / ESTATE.plots,
+    pitch: (estate) => (cellOf(estate).size * FILL) / ESTATE.plots,
     /** Where a plot is: streets run west–east, street 1 at the north side; plots count from the west. */
     plot(estate, plot) {
-      const cell = cells![estate]!, pitch = (cell.size * FILL) / ESTATE.plots, origin = -(cell.size * FILL) / 2 + pitch / 2;
+      const cell = cellOf(estate), pitch = (cell.size * FILL) / ESTATE.plots, origin = -(cell.size * FILL) / 2 + pitch / 2;
       return { x: cell.x + origin + (plot % ESTATE.plots) * pitch, z: cell.z + origin + Math.floor(plot / ESTATE.plots) * pitch };
     },
     /** The estate whose square contains the point, or -1. */

@@ -1,0 +1,24 @@
+[
+ {
+  "slot": "transit",
+  "name": "Bay",
+  "district": "University",
+  "kind": "hub",
+  "category": "civic",
+  "icon": "bus",
+  "lon": -79.390269,
+  "lat": 43.670185,
+  "line": "Bay, a mapped place for the game.",
+  "osm": "node/25991314",
+  "wikidata": "Q812059",
+  "accuracy": "mapped-feature"
+ },
+ {
+  "name": "SS William E. Corey",
+  "kind": "walk",
+  "lon": -79.575604,
+  "lat": 43.547997,
+  "osm": "way/1304570821",
+  "accuracy": "mapped-feature"
+ }
+]

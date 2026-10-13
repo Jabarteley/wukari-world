@@ -1,0 +1,80 @@
+{
+ "city": {
+  "id": "toronto"
+ },
+ "polygonProof": {
+  "land": {
+   "polygons": 4,
+   "rings": 29,
+   "holes": 25,
+   "areaSquareDegrees": 0.11242902134745236,
+   "polygonProblem": null,
+   "triangulationProblem": null
+  },
+  "playArea": {
+   "polygons": 13,
+   "rings": 50,
+   "holes": 37,
+   "areaSquareDegrees": 0.23448944054803178,
+   "polygonProblem": null,
+   "triangulationProblem": null
+  },
+  "water": {
+   "polygons": 9,
+   "rings": 21,
+   "holes": 12,
+   "areaSquareDegrees": 0.12206041920057942,
+   "polygonProblem": null,
+   "triangulationProblem": null
+  },
+  "reachWater": {
+   "polygons": 2,
+   "rings": 22,
+   "holes": 20,
+   "areaSquareDegrees": 0.5678061974531374,
+   "polygonProblem": null,
+   "triangulationProblem": null
+  }
+ },
+ "sourcePoints": {
+  "places": {
+   "label": "places",
+   "count": 24,
+   "outsideBounds": [],
+   "wet": [
+    {
+     "name": "SS William E. Corey",
+     "lon": -79.575604,
+     "lat": 43.547997
+    }
+   ]
+  },
+  "labels": {
+   "label": "land names",
+   "count": 18,
+   "outsideBounds": [],
+   "wet": []
+  },
+  "waterLabels": {
+   "label": "water names",
+   "count": 1,
+   "outsideBounds": [],
+   "wet": [
+    {
+     "name": "Lake Ontario",
+     "lon": -79.23008,
+     "lat": 43.53981
+    }
+   ]
+  },
+  "airport": {
+   "label": "airport",
+   "count": 1,
+   "outsideBounds": [],
+   "wet": []
+  }
+ },
+ "pack": {
+  "roadPointCoverageWithinGround": 1
+ }
+}

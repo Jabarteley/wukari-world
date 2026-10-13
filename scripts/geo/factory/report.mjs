@@ -19,6 +19,6 @@ export function contactSheetInputs(out, rows) {
       if (!bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) continue;
       images.push({ view, path: relative, sha256: createHash('sha256').update(bytes).digest('hex'), proof: `${row.id}/proof/${view}/${row.id}-proof.json` });
     }
-    return { id: row.id, status: 'HOLD', machineStages: row.machineStages, images, missingViews: ['ground', 'city'].filter(view => !images.some(image => image.view === view)), reasons: row.reasons, visualAcceptance: 'pending review of actual images', browserAcceptance: 'pending' };
+    return { id: row.id, status: 'HOLD', machineStages: row.machineStages, images, missingViews: ['ground', 'city'].filter(view => !images.some(image => image.view === view)), reasons: row.reasons, ...(row.autoRetries?.length ? { autoRetries: row.autoRetries } : {}), visualAcceptance: 'pending review of actual images', browserAcceptance: 'pending' };
   });
 }

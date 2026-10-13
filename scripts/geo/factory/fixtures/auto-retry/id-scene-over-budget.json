@@ -1,0 +1,74 @@
+{
+  "sourceProblems": [],
+  "unknownKinds": [],
+  "sharedCityKinds": [
+    "quad"
+  ],
+  "places": 24,
+  "uniqueNames": 24,
+  "venues": 25,
+  "airportMinimumBoxMarginMetres": 1062.958652074672,
+  "triangles": 90971,
+  "triangleLimit": 90000,
+  "drawCalls": 16,
+  "drawCallLimit": 40,
+  "profile": "standard",
+  "minimumPlaces": 20,
+  "emptySlots": [],
+  "wetEmptySlots": [],
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "iso": "ID",
+    "source": {
+      "url": "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf",
+      "date": "2026-10-11",
+      "headerTimestamp": "2026-10-11T20:21:06Z",
+      "bytes": 1997748831,
+      "sha256": "f87acda04777ea517e35036f846532f828364e3871b7892894dcdd11cf6beb1f",
+      "license": "ODbL-1.0",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 1738714327,
+          "md5": "a6dbf890ad7110b33a22012bb7b1a32c",
+          "sha256": "c88d3ec0abd5ea718c71983e912231ffb75ae0e747d124d5a986bc34594f3eca"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 251874432,
+          "md5": "cf05f5628adeed48ff74399bb8c33a72",
+          "sha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
+          "reason": "The admin-0 relation of Indonesia (304751) has two member ways outside the Indonesia clip: way/1147865283 (Singapore-Indonesia territorial sea, 1.33N 104.41E to 1.44N 104.57E) and way/1181737260 (Malaysia-Indonesia land border, Sabah/Kalimantan Utara, 4.39N 115.90E to 4.38N 115.87E); both are also members of the Singapore and Malaysia relations in that extract"
+        }
+      ]
+    },
+    "relation": {
+      "id": 304751,
+      "version": 262,
+      "timestamp": "2026-08-17 02:09:23+00:00"
+    },
+    "receiptSha256": "5c23c9b2a1af5ca1b207ad6cf5c16226a7a63439f782b29860a3304ecca047ac",
+    "geometrySha256": "8ec31610d677796687e6d268082b3b16d8a28d732197cf8951ae5218ed3f390f",
+    "geometryBytes": 585363,
+    "scriptSha256": "c09dd3824694c92d828a5307c03a675a2b623ebfccdc62fc0ef6ff7fd4948870",
+    "assembly": {
+      "method": "pyosmium-area-assembly",
+      "completeMemberSegments": 24809,
+      "polygonCount": 1,
+      "holeCount": 2,
+      "sourceMemberEdgesSha256": "2c9f0efabeb0cf08f335852c2720227ac03e260843c360b529b37a0c4ecdc609"
+    },
+    "fixtureSha256": null,
+    "boundaryJob": {
+      "sourceRunId": 38336723526,
+      "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+      "sourceArtifact": "city-bootstrap-id-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+      "artifactSubdirectory": "country-boundary"
+    },
+    "limitation": "OSM mapped national boundary; not legal jurisdiction or municipal membership"
+  }
+}

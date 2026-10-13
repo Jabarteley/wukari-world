@@ -11,7 +11,7 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const readModule = path => import(pathToFileURL(join(root, path)).href);
 const outputRoot = join(root, receiptRootArg);
 for (const sub of ['sources', 'receipts']) mkdirSync(join(outputRoot, sub), { recursive: true });
-for (const { id, extract, sourceInputs } of manifest.cities) {
+for (const { id, extract, sourceInputs, autoRetries } of manifest.cities) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) throw Error('Invalid city id');
   const directory = `src/game/cities/${id}`;
   const [{ FACTS }, { PLACES }, { TERRAIN }, { GEOMETRY }, { CONFIG }] = await Promise.all([
@@ -79,6 +79,8 @@ for (const { id, extract, sourceInputs } of manifest.cities) {
     airportCandidate: FACTS.airport, bounds: CONFIG.box, sources: { geometryInput },
     kept: { places: PLACES.length, roads: TERRAIN.roads.length, neighbourhoodLabels: TERRAIN.names.filter(label => label.kind === 'neighbourhood').length, landPolygons: GEOMETRY.land.length, waterPolygons: TERRAIN.water?.length ?? 0, reachWaterPolygons: TERRAIN.reachWater?.length ?? 0 },
     ...(selection ? { selection } : {}),
+    // Changes the runner made on its own (auto-retry.mjs): each class, the change, what failed before it and what came after. Absent when it changed nothing.
+    ...(Array.isArray(autoRetries) && autoRetries.length ? { autoRetries } : {}),
     observed: Object.fromEntries(layers.map(({ label, parsed }) => [label, parsed.elements.length])),
     assets: Object.fromEntries(['facts.ts', 'geometry.ts', 'index.ts', 'content.ts', 'map.ts'].map(name => [name, generatedAssets[name]])),
     cityDetail: { tier: 'detailed', generator: 'scripts/geo/build-destination-detail.ts', recipe: `scripts/geo/destination-detail/${id}.ts`, input: 'Geofabrik PBF extract', attribution: '© OpenStreetMap contributors', licence: 'ODbL-1.0' },

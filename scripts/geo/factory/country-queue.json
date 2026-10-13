@@ -20,6 +20,11 @@
    "id": "se",
    "table": "scripts/geo/factory/country-tables/se.json",
    "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "fr",
+   "table": "scripts/geo/factory/country-tables/fr.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
   }
  ]
 }

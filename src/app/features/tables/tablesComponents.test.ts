@@ -326,7 +326,7 @@ test('stakes, in play and at the end: the stake and the play-money line stay on 
   withState({ tableId: 'park-bench', state: frame({ you: 0, n: 3, table: summary({ status: 'playing', seats, stake: 500, max: 2 }), toMove: [0], view: whotView(), stakes: stakesOf({ amount: 500, pot: 1000 }) }) })
   const playing = text(await tablesApp())
   assert.ok(playing.includes('Play for ₦500 each — winner takes ₦1,000. Play money only — game naira, never real money.'))
-  const stake = (outcome: 'won' | 'lost' | 'refunded') => ({ amount: 500, pot: 1000, outcome })
+  const stake = (outcome: 'won' | 'lost' | 'refunded') => ({ amount: 500, pot: 1000, outcome, line: '' })
   const over = (outcome: 'won' | 'lost' | 'refunded', won: boolean, draw = false) => frame({ you: 0, table: summary({ status: 'over', seats, stake: 500, max: 2 }), stakes: stakesOf({ amount: 500, pot: 1000 }),
     result: { text: 'Ada wins.', calledOff: false, winners: won ? [0] : [], mine: { won, draw, human: true, counted: false, stake: stake(outcome) } } })
   withState({ state: over('won', true) })
@@ -344,7 +344,7 @@ test('stakes, the words: none of a betting site’s, and the rules text says wha
   const model = await load<typeof import('./tablesModel.ts')>('/src/app/features/tables/tablesModel.ts')
   const table = await load<typeof import('../../../game/table-stakes.ts')>('/src/game/table-stakes.ts')
   const sentences = [...model.LIST_RULES, model.pickNote, model.acceptNote(500), model.AGAIN_STAKE_NOTE, model.startNote({ min: 2, stake: 500, seats: [1] }), model.startNote({ min: 2, stake: 500, seats: [1, 2] }), model.sitLabel({ stake: 100 }, 1),
-    model.outcomeNote({ calledOff: false, mine: { won: true, draw: false, human: true, counted: false, stake: { amount: 500, pot: 1000, outcome: 'won' } } }, null, 150) ?? '']
+    model.outcomeNote({ calledOff: false, mine: { won: true, draw: false, human: true, counted: false, stake: { amount: 500, pot: 1000, outcome: 'won', line: 'You won the pot: ₦1,000 (your ₦500 back and ₦500 from the other player).' } } }, null, 150) ?? '']
   assert.ok(sentences.every(Boolean))
   for (const sentence of sentences) assert.equal(table.FORBIDDEN_WORDS.test(sentence), false, sentence)
 })

@@ -96,7 +96,7 @@ test('stakes: both stakes are taken once when the game starts, the pot is held, 
 
   // Fool's mate: Bola wins and takes the whole pot, ₦1,000, once.
   await play(ada, 'f2f3', bola); await play(bola, 'e7e5', ada); await play(ada, 'g2g4', bola); await play(bola, 'd8h4', ada);
-  assert.deepEqual([ada.state.table.status, ada.state.result?.winners, bola.state.result?.mine?.stake, ada.state.result?.mine?.stake], ['over', [1], { amount: 500, pot: 1000, outcome: 'won' }, { amount: 500, pot: 1000, outcome: 'lost' }]);
+  assert.deepEqual([ada.state.table.status, ada.state.result?.winners, bola.state.result?.mine?.stake, ada.state.result?.mine?.stake], ['over', [1], { amount: 500, pot: 1000, outcome: 'won', line: 'You won the pot: ₦1,000 (your ₦500 back and ₦500 from the other player).' }, { amount: 500, pot: 1000, outcome: 'lost', line: 'You lost your ₦500 stake. The pot went to the winner.' }]);
   assert.deepEqual(await cash(ada, bola), [CASH - 500, CASH + 500]);
   assert.deepEqual(await lines(bola), ['Table stake: Chess with Ada -500', 'Won the pot: Chess with Ada 1000']);
   assert.deepEqual(await pots(), {}, 'the record is the receipt: gone once paid');
@@ -138,7 +138,7 @@ test('stakes: a game called off before any move refunds both and gives the day�
   assert.deepEqual((await stakeBook())?.players && Object.values((await stakeBook())?.players ?? {}), [2000, 2000]);
   // Bola resigns before anyone has moved: nothing was played, so nothing is lost.
   await act(bola, 'table-move', { n: bola.state.n, move: { t: 'resign' } }, ada);
-  assert.deepEqual([ada.state.table.status, ada.state.result?.calledOff, ada.state.result?.mine?.stake], ['over', true, { amount: 2000, pot: 4000, outcome: 'refunded' }]);
+  assert.deepEqual([ada.state.table.status, ada.state.result?.calledOff, ada.state.result?.mine?.stake], ['over', true, { amount: 2000, pot: 4000, outcome: 'refunded', line: 'Your ₦2,000 stake came back. Nobody won or lost.' }]);
   assert.deepEqual(await cash(ada, bola), [CASH, CASH]);
   assert.deepEqual(Object.values((await stakeBook())?.players ?? {}), [0, 0], 'a stake that never played does not use up the day’s limit');
   assert.deepEqual(await pots(), {});

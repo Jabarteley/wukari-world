@@ -17,7 +17,7 @@ import { onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import type { ShallowRef } from 'vue'
 import { useApp } from '../../state/app.ts'
 import type { App } from '../../state/app.ts'
-import { LIST_STALE_MS, listIsStale } from './tablesModel.ts'
+import { LIST_STALE_MS, listIsStale } from './tablesList.ts'
 import {
   T, again, begin, closeTable, leave, openTable, play, reconnect, refreshList, refreshTable, setOption, setStake, sit, start,
 } from './tablesBoundary.ts'

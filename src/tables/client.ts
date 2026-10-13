@@ -12,7 +12,6 @@
 import type { PanelApi } from '../app/types/panel.ts';
 import { reconnectDelay, STABLE_CONNECTION_MS } from '../reconnect.ts';
 import type { TableGameId, TableOptionValue, TableRating, TableServerFrame, TableStateFrame, TableSummary, TablesClaimResult } from '../types/growth.ts';
-import { stakeOutcome } from '../game/table-stakes.ts';
 
 /** A refusal frame: only `code` and `reason` are read here, the socket also carries other modules' errors. */
 interface ErrorFrame { type: 'error'; code?: string; reason?: string }
@@ -72,7 +71,8 @@ async function claim(): Promise<void> {
       T.claimed = result.results.at(-1) ?? null;
       // The life changed on the server (a win was paid, a mission moved, a stake was taken or came back): read it again.
       await panelApi().command('missions.refresh');
-      if (stake) panelApi().toast(stakeOutcome(stake), stake.outcome === 'won' ? 'earn' : 'info');
+      // The server writes what happened to a stake (stake.line), so the startup never carries the stake rules.
+      if (stake) panelApi().toast(stake.line, stake.outcome === 'won' ? 'earn' : 'info');
       else if (T.claimed?.code === 'paid') panelApi().toast(panelApi().state().message || 'You won.', 'earn');
     }
     refresh();

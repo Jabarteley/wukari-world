@@ -118,7 +118,7 @@ test('stakes: the chip, the sit button, why it is disabled, when the Stake card 
   assert.match(startNote({ min: 2, stake: 500, seats: [{}] }), /needs a second real player.*no bots at a staked table/)
   assert.match(startNote({ min: 2, stake: 500, seats: [{}, {}] }), /Starting takes ₦500 from each of you, and the winner takes ₦1,000\./)
   // The result of a staked game says what happened to the stake, whatever the table's other counts say.
-  const mine = (outcome: 'won' | 'lost' | 'refunded') => ({ calledOff: false, mine: { won: outcome === 'won', draw: outcome === 'refunded', human: true, counted: false, stake: { amount: 500, pot: 1000, outcome } } })
+  const mine = (outcome: 'won' | 'lost' | 'refunded') => ({ calledOff: false, mine: { won: outcome === 'won', draw: outcome === 'refunded', human: true, counted: false, stake: { amount: 500, pot: 1000, outcome, line: '' } } })
   assert.equal(outcomeNote(mine('won'), null, 150), 'You won the pot: ₦1,000 (your ₦500 back and ₦500 from the other player).')
   assert.equal(outcomeNote(mine('lost'), null, 150), 'You lost your ₦500 stake. The pot went to the winner.')
   assert.equal(outcomeNote(mine('refunded'), null, 150), 'Your ₦500 stake came back. Nobody won or lost.')

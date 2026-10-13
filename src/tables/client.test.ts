@@ -64,7 +64,7 @@ test('tables: sitting names the stake the player saw, the host picks one by mess
   // A staked game that ends: the life is read again (naira moved), and the toast names the stake's outcome, not a win reward.
   socket.receive({ type: 'table-state', table: summary(500, 'playing'), you: 0, result: null })
   commands.length = 0; toasts.length = 0
-  socket.receive({ type: 'table-state', table: summary(500, 'over'), you: 0, result: { text: 'Ada wins.', calledOff: true, winners: [], mine: { won: false, draw: false, human: true, counted: false, stake: { amount: 500, pot: 1000, outcome: 'refunded' } } } })
+  socket.receive({ type: 'table-state', table: summary(500, 'over'), you: 0, result: { text: 'Ada wins.', calledOff: true, winners: [], mine: { won: false, draw: false, human: true, counted: false, stake: { amount: 500, pot: 1000, outcome: 'refunded', line: 'Your ₦500 stake came back. Nobody won or lost.' } } } })
   await new Promise((done) => setTimeout(done, 10))
   assert.deepEqual(commands, ['missions.refresh'])
   assert.deepEqual(toasts, ['Your ₦500 stake came back. Nobody won or lost.'])

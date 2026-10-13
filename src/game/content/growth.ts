@@ -23,15 +23,15 @@ export const TABLE_REWARDS: Readonly<TableRewards> = Object.freeze({
  * Table stakes (docs/GAMES.md, "Stakes"): game naira put on a two-player game, winner takes the pot. Game naira only: it can
  * never be bought with real money or cashed out (docs/REAL-VALUE.md red lines). Skill games only, never against a bot, 18+.
  */
-export const TABLE_STAKES: Readonly<TableStakes> = Object.freeze({
+export const TABLE_STAKES: Readonly<TableStakes> = /* @__PURE__ */ Object.freeze({
   /** What each player may put in, in naira; 0 is a free game. The most is the last. */
-  choices: Object.freeze([0, 100, 500, 1000, 2000]),
+  choices: /* @__PURE__ */ Object.freeze([0, 100, 500, 1000, 2000]),
   /** Staked naira per Lagos day between the same two players, whoever wins. */
   pairPerDay: 5000,
   /** Staked naira per player per Lagos day in all. */
   playerPerDay: 10000,
   /** The only games that may be staked: skill games between two real players. Chance games are never added here. */
-  games: Object.freeze(['whot', 'ayo', 'chess', 'penalty', 'weave']),
+  games: /* @__PURE__ */ Object.freeze(['whot', 'ayo', 'chess', 'penalty', 'weave']),
   beta: true,
 });
 

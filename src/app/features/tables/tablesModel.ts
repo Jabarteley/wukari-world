@@ -8,7 +8,7 @@ import { PLAY_MONEY, STAKE_MAX, stakeChip, stakeLine, stakeOutcome } from '../..
 export { PLAY_MONEY, stakeLine }
 
 /** The list is asked for again on open when it is older than this. */
-export const LIST_STALE_MS = 20000
+export { LIST_STALE_MS, listIsStale } from './tablesList.ts'
 
 export const tableTitle = (table: Pick<TableSummary, 'gameLabel' | 'label'>): string => `${table.gameLabel} · ${table.label}`
 
@@ -92,8 +92,6 @@ export function tableParam(params: unknown): string | null {
 }
 /** Back to the list: the seat is given up unless a game is on. Written as the existing panel decided it, a table that has not loaded yet included. */
 export const leavesOnBack = (state: Pick<TableStateFrame, 'you' | 'table'> | null): boolean => state?.you !== null && state?.table.status !== 'playing'
-/** Is the list old enough to ask for again? Only on the list screen. */
-export const listIsStale = (onList: boolean, listAt: number, hasList: boolean, now: number): boolean => !onList ? false : hasList && now - listAt > LIST_STALE_MS
 
 /** A select's value is the JSON of the option's value, so numbers and booleans survive the round trip. */
 export const optionKey = (value: TableOptionValue): string => JSON.stringify(value)

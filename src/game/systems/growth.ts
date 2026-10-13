@@ -113,7 +113,6 @@ export const tablesOp: TypedActionHandler<'tables.server'> = (state, payload, ct
     if (block) return fail(state, block.code, block.reason);
     if (!canAfford(state, amount) || !debit(state, amount, `Table stake: ${label}`, ctx)) return fail(state, 'insufficient_funds', `You need ${naira(amount)} to play for this; you have ${naira(state.cash)}.`);
     book.staked = Math.min(Number.MAX_SAFE_INTEGER, book.staked + amount);
-    state.message = `You put ${naira(amount)} on the table: ${label}. The winner takes the pot.`;
     return ok(state, 'staked');
   }
   if (!canCredit(state, amount)) return fail(state, 'balance_limit', 'Your saved balance has reached its supported limit.');
@@ -121,7 +120,7 @@ export const tablesOp: TypedActionHandler<'tables.server'> = (state, payload, ct
   const own = op === 'refund' ? amount : Math.min(amount, safeCount(payload?.stake) ? payload.stake : 0);
   credit(state, amount, op === 'pot' ? `Won the pot: ${label}` : `Table stake returned: ${label}`, ctx);
   book.staked = Math.max(0, book.staked - own);
-  state.message = op === 'pot' ? `You won the pot at ${label}: +${naira(amount)}.` : `Your ${naira(amount)} stake came back: ${label}.`;
+  // No life message: the wallet line says what moved, and the table result carries the sentence (server/growth/tables.ts stakeOf).
   return ok(state, op === 'pot' ? 'won' : 'refunded');
 };
 

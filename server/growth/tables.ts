@@ -46,7 +46,7 @@
 import { lagosTime } from '../../src/game/clock.ts';
 import { makeRng, naira } from '../../src/game/util.ts';
 import { TABLE_REWARDS, TABLE_STAKES } from '../../src/game/content/growth.ts';
-import { STAKE_CHOICES, isStake, pairKey, potOf, settlement, stakeBlock, stakeLabel, stakeable, theyCannot } from '../../src/game/table-stakes.ts';
+import { STAKE_CHOICES, isStake, pairKey, potOf, settlement, stakeBlock, stakeLabel, stakeOutcome, stakeable, theyCannot } from '../../src/game/table-stakes.ts';
 import type { Settlement, StakeFacts, StakeRefusal } from '../../src/game/table-stakes.ts';
 import { passedOn } from '../../src/game/systems/growth.ts';
 import { characterCity } from '../character.ts';
@@ -563,7 +563,11 @@ function buildService(ctx: RouteContext) {
     // A staked game is called off only if nobody had moved: after that, a player who leaves has lost it (the pot is settled below by the same rule).
     const calledOff = left && (staked > 0 ? moved === 0 : humans.some(({ seat }) => (seat.moves ?? 0) < TUNING.minMovesEach));
     const plan = staked > 0 ? settlement(outcome, moved) : null;
-    const stakeOf = (index: number): TableResultMine['stake'] => (plan ? { amount: staked, pot: potOf(staked), outcome: plan.kind === 'refund' ? 'refunded' : plan.seat === index ? 'won' : 'lost' } : undefined);
+    const stakeOf = (index: number): TableResultMine['stake'] => {
+      if (!plan) return undefined;
+      const stake = { amount: staked, pot: potOf(staked), outcome: plan.kind === 'refund' ? 'refunded' as const : plan.seat === index ? 'won' as const : 'lost' as const };
+      return { ...stake, line: stakeOutcome(stake) };
+    };
     const per: Record<string, TableResultMine> = {};
     const result: TableResult = { text: calledOff ? 'The game was called off before it really began. Nothing counts.' : withNames(outcome.text, names(table)), calledOff, winners: calledOff ? [] : outcome.winners, per };
     table.result = result;

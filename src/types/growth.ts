@@ -585,7 +585,8 @@ export interface TableResultMine {
   rating?: number
   change?: number
   /** Present when the game was played for a stake: what happened to this player's. `amount` is their stake, `pot` what the winner took. */
-  stake?: { amount: number; pot: number; outcome: 'won' | 'lost' | 'refunded' }
+  /** `line` is the sentence the player is told (src/game/table-stakes.ts stakeOutcome), written by the server so the startup never carries the stake rules. */
+  stake?: { amount: number; pot: number; outcome: 'won' | 'lost' | 'refunded'; line: string }
 }
 
 /** Ask for a venue's tables (every table of the city without `venue`); the socket is then nudged when one of them changes. */

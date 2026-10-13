@@ -5,7 +5,7 @@
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "MC",
     "datasetSha256": "4cb9d70fd09569514f1f841bbe5fed3c3044d7fd4bca374780c2ad1a5efc8f3b",
-    "receiptSha256": "02a50db9b657e14b5eeacb101346985765b4cf459d1c187e73f610fb0b4f678f",
+    "receiptSha256": "9d2847d05c0e089565c20c8e941b44990c6faf0a8629bc2a645026c6fd6f717f",
     "receiptBytes": 19329,
     "geometrySha256": "43c76c25174e686ccf8ae1eb6cdf811b48aa1c8d4f057b98cae4677798bc78c0",
     "geometryBytes": 11883,
@@ -14,9 +14,9 @@
     "boundaryKey": "mc",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38345314080,
-      "sourceSha": "5a1935b5ae0373260bc703452446bb3e85270175",
-      "sourceArtifact": "city-bootstrap-mc-5a1935b5ae0373260bc703452446bb3e85270175",
+      "sourceRunId": 38372406475,
+      "sourceSha": "cbfb4c94da21329e5de9459bc4a88eb9420fa11a",
+      "sourceArtifact": "city-bootstrap-mc-cbfb4c94da21329e5de9459bc4a88eb9420fa11a",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -691,9 +691,9 @@
       },
       "sourceJob": {
         "city": "monaco",
-        "sourceRunId": 38345314080,
-        "sourceArtifact": "city-bootstrap-mc-5a1935b5ae0373260bc703452446bb3e85270175",
-        "sourceSha": "5a1935b5ae0373260bc703452446bb3e85270175",
+        "sourceRunId": 38372406475,
+        "sourceArtifact": "city-bootstrap-mc-cbfb4c94da21329e5de9459bc4a88eb9420fa11a",
+        "sourceSha": "cbfb4c94da21329e5de9459bc4a88eb9420fa11a",
         "datasetSha256": "4cb9d70fd09569514f1f841bbe5fed3c3044d7fd4bca374780c2ad1a5efc8f3b",
         "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {

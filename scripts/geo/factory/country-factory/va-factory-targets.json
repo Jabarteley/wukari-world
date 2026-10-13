@@ -5,7 +5,7 @@
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "VA",
     "datasetSha256": "ba5273f937661607db26009a7f4eda6819ecc75c144c85020a15bb4f3e888a49",
-    "receiptSha256": "1b16eb5982a3804842945412ee7d1b3cfe211cd4a6e5a8e101d8fa4d9deb30f4",
+    "receiptSha256": "d0c3d890a2366117c7e0b042b4780adfc7b2a8ccebafc9a0aeec2a0003a399b1",
     "receiptBytes": 21911,
     "geometrySha256": "93a4a2c54e6dc647c15c3a0e5f79db6aade7c619f82b440f2638ce3db634ce79",
     "geometryBytes": 6149,
@@ -14,9 +14,9 @@
     "boundaryKey": "va",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38345314080,
-      "sourceSha": "5a1935b5ae0373260bc703452446bb3e85270175",
-      "sourceArtifact": "city-bootstrap-va-5a1935b5ae0373260bc703452446bb3e85270175",
+      "sourceRunId": 38372406475,
+      "sourceSha": "cbfb4c94da21329e5de9459bc4a88eb9420fa11a",
+      "sourceArtifact": "city-bootstrap-va-cbfb4c94da21329e5de9459bc4a88eb9420fa11a",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -499,9 +499,9 @@
       },
       "sourceJob": {
         "city": "vatican-city",
-        "sourceRunId": 38345314080,
-        "sourceArtifact": "city-bootstrap-va-5a1935b5ae0373260bc703452446bb3e85270175",
-        "sourceSha": "5a1935b5ae0373260bc703452446bb3e85270175",
+        "sourceRunId": 38372406475,
+        "sourceArtifact": "city-bootstrap-va-cbfb4c94da21329e5de9459bc4a88eb9420fa11a",
+        "sourceSha": "cbfb4c94da21329e5de9459bc4a88eb9420fa11a",
         "datasetSha256": "ba5273f937661607db26009a7f4eda6819ecc75c144c85020a15bb4f3e888a49",
         "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {

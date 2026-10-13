@@ -1,5 +1,5 @@
 import { timedLink } from '../content/travel.ts'
-import type { CityLink } from '../../types/content.ts'
+import type { CityLink, CityModuleRules } from '../../types/content.ts'
 
 /**
  * Links between cities that nobody wrote by hand. A pure function of the open cities, so a city opened later
@@ -41,6 +41,8 @@ export interface LinkableCity {
   airport: boolean
   /** Known country identity permits long domestic road journeys. */
   countryId?: string
+  /** 'authored-only' (outposts): the city takes part in no generated link; its own authored links are its only routes. */
+  generatedLinkPolicy?: CityModuleRules['generatedLinkPolicy']
 }
 
 /** Exact catalogue endpoints and pinned-source land identity; null means unresolved source membership. */
@@ -60,12 +62,29 @@ export const generatedRoadFare = (roadKm: number): number => rounded(GENERATED_L
 /** Generated tickets stay under the journey ceiling less a feeder-bus allowance (see `maxAirFare`) and remain buyable at the default ₦1m start balance. */
 export const generatedAirFare = (airKm: number): number => Math.min(GENERATED_LINKS.maxAirFare, rounded(GENERATED_LINKS.air.base + GENERATED_LINKS.air.perKm * airKm, GENERATED_LINKS.air.step))
 
+/**
+ * THE OUTPOST FARE RULE (authored links of an 'authored-only' destination: a research station, a remote island, a glacier).
+ *   charter  a chartered flight: `charterFactor` × the generated air fare formula, rounded to AIR.step, never above `maxAirFare`;
+ *            seconds from the air timetable (at most 20 s).
+ *   ship     a ship is a road link with a ship label (there is no ship mode): the generated road fare formula on the great-circle
+ *            km, rounded to ROAD.step; seconds from the road timetable (at most 75 s). `overland` (a track or mountain road) is the same.
+ * The Lagos connection of every destination keeps its normal generated air fare, so a homeward trip to Lagos stays under the
+ * ₦1,000,000 cap. A homeward trip to any other home needs one surface leg (ship or overland) to a city with an airport whose fare
+ * fits the feeder allowance under `maxAirFare` (₦100,000): that leg plus one generated flight stays under the cap. Every outpost
+ * therefore has at least one such leg (`surfaceFeederFare`). Example (Villa Las Estrellas): Santiago charter 3,300 km ₦426,000;
+ * Buenos Aires ship 3,063 km ₦50,500.
+ */
+export const OUTPOST_LINKS = Object.freeze({ charterFactor: 1.5, surfaceFeederFare: 1_000_000 - GENERATED_LINKS.maxAirFare })
+export const charterFare = (km: number): number => Math.min(GENERATED_LINKS.maxAirFare,
+  rounded(OUTPOST_LINKS.charterFactor * (GENERATED_LINKS.air.base + GENERATED_LINKS.air.perKm * km), GENERATED_LINKS.air.step))
+export const shipFare = (km: number): number => generatedRoadFare(km)
+
 const pairKey = (a: string, b: string, mode: string): string => `${[a, b].sort().join('|')}|${mode}`
 
 /** The links missing between `cities`, given the `authored` ones. Pairs are listed once, ids in alphabetical order. */
 export function generateCityLinks(cities: readonly LinkableCity[], authored: readonly Pick<CityLink, 'a' | 'b' | 'mode'>[], land: readonly CityLandComponentRow[] = []): readonly CityLink[] {
   const have = new Set(authored.map(link => pairKey(link.a, link.b, link.mode)))
-  const usable = cities.filter(city => Number.isFinite(city.lon) && Number.isFinite(city.lat)).sort((x, y) => (x.id < y.id ? -1 : x.id > y.id ? 1 : 0))
+  const usable = cities.filter(city => city.generatedLinkPolicy !== 'authored-only' && Number.isFinite(city.lon) && Number.isFinite(city.lat)).sort((x, y) => (x.id < y.id ? -1 : x.id > y.id ? 1 : 0))
   const components = new Map(land.map(row => [row[0], row]))
   const componentOf = (city: LinkableCity): string | null => {
     const row = components.get(city.id)

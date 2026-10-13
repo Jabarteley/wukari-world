@@ -1,5 +1,5 @@
 import { GENERATED_CITY_FIGURES, GENERATED_CITY_INDEX, GENERATED_CITY_LOADERS, GENERATED_CITY_WORLD_INDEX } from '#city-loaders'
-import type { CityModule } from '../../types/content.ts'
+import type { CityModule, CityModuleRules } from '../../types/content.ts'
 import { mapEntryOf } from './atlasMetadata.ts'
 
 /** The city facts of the world network (src/game/cities/network.ts): every city's place, state and country. */
@@ -13,12 +13,18 @@ export interface CityCatalogueEntry {
   readonly lat: number
   readonly open: boolean
   readonly airport: boolean
+  /** 'authored-only': an outpost reached only by its authored links (generatedLinks.ts). */
+  readonly generatedLinkPolicy?: CityModuleRules['generatedLinkPolicy']
   readonly teaser?: string
   readonly preview?: readonly string[]
 }
 
-/** Compact generated form: open is implicit, 1/0 encodes airport, and an empty state name repeats the city name. */
-export type CityCatalogueRow = readonly [id: string, name: string, stateId: string, stateName: string, lon: number, lat: number, airport: 0 | 1, countryISO?: string, countryName?: string]
+/**
+ * Compact generated form: open is implicit, 1/0 encodes airport, and an empty state name repeats the city name. A tenth element 1
+ * marks an outpost whose travel is restricted to its authored links (generatedLinkPolicy 'authored-only'); every other row ends
+ * at the country name, so its bytes are unchanged.
+ */
+export type CityCatalogueRow = readonly [id: string, name: string, stateId: string, stateName: string, lon: number, lat: number, airport: 0 | 1, countryISO?: string, countryName?: string, authoredOnly?: 1]
 
 /**
  * One open city in the city index (loaders.generated.ts): its id and display name. In the browser the first download carries only
@@ -50,9 +56,10 @@ export const CITY_WORLD_FIGURES: { readonly cities: number; readonly countries: 
 
 /** The full catalogue from the generated rows (read by network.ts): the generated open cities plus the small closed-city catalogue. */
 export function catalogueFromRows(rows: readonly CityCatalogueRow[]): readonly CityCatalogueEntry[] {
-  const generated = rows.map(([id, name, stateId, stateName, lon, lat, airport, countryISO, countryName]) => Object.freeze({
+  const generated = rows.map(([id, name, stateId, stateName, lon, lat, airport, countryISO, countryName, authoredOnly]) => Object.freeze({
     id, name, state: Object.freeze({ id: stateId, name: stateName === '' ? name : stateName }), lon, lat, open: true, airport: airport === 1,
     ...(countryISO ? { countryISO: mapEntryOf(countryISO), countryName } : {}),
+    ...(authoredOnly === 1 ? { generatedLinkPolicy: 'authored-only' as const } : {}),
   }))
   return Object.freeze([
     ...generated.slice(0, 4),

@@ -5,7 +5,8 @@ import { createBatch, sceneMaterials } from '../../scene/build.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 import { boundsOf } from './geo.ts';
 import type { CampusMapBuilding, MetrePoint, MetreRing } from './geo.ts';
-import { bodyColour, drawLandmarkCrowns, drawMainGate, isSenateTower, paintBuilding, roofColour } from './architecture.ts';
+import { standalones } from './standalone.ts';
+import { landmarkHeight, bodyColour, drawLandmarkCrowns, drawMainGate, isSenateTower, paintBuilding, roofColour } from './architecture.ts';
 import { CAMPUS_TREES } from './landscape.ts';
 import { instances, primitiveGeometry } from '../shared/geometry.ts';
 
@@ -63,7 +64,7 @@ export function createMappedGeometry(kit: Kit) {
       }
       if(ring[0])ring.push(ring[0]);
       return [b,{...b,ring,height:43}];
-    });
+    }).map(b=>{const height=landmarkHeight(b);return height===b.height?b:{...b,height};}).concat(standalones().map(s=>s.building));
   const bodies: BufferGeometry[] = [], roofs: BufferGeometry[] = [];
   for (const b of parts) {
     const color=bodyColour(b);
@@ -72,11 +73,14 @@ export function createMappedGeometry(kit: Kit) {
   }
   const mass=new THREE.Group();mass.name='All mapped footprints and roofs';mass.userData.footprints=CAMPUS_MAP.buildings.length;mass.userData.parts=parts.length;merged(bodies,mass);merged(roofs,mass);group.add(mass);
   const distanceTo = (b: CampusMapBuilding,x: number,z: number): number => { const [x0,z0,x1,z1]=boundsOf(b.ring); return Math.hypot(Math.max(x0-x,0,x-x1),Math.max(z0-z,0,z-z1)); };
+  let night=false;
+  /** Lit windows are separate glow meshes: invisible by day, shown at dusk and night. */
+  function applyGlow(node:Group){node.traverse(o=>{if(o instanceof THREE.Mesh&&o.material===materials.glow)o.visible=night;});}
   function facadeDetail(buildings: CampusMapBuilding[]) {
     clear(detailGroup);group.add(detailGroup);const batch=createBatch(THREE);const budget={left:DETAIL_TRIANGLES};
     for(const b of buildings){if(budget.left<40)break;if(isSenateTower(b))continue;paintBuilding(batch,b,budget);}
     const remaining=budget.left;
-    for(const mesh of batch.build(materials).meshes)detailGroup.add(mesh);detailGroup.userData.triangles=DETAIL_TRIANGLES-remaining;rebuilds++;
+    for(const mesh of batch.build(materials).meshes)detailGroup.add(mesh);detailGroup.userData.triangles=DETAIL_TRIANGLES-remaining;applyGlow(detailGroup);rebuilds++;
   }
   const land=new THREE.Group();land.name='UNILAG mapped ground';group.add(land);
   const groundGeometries=[polygon(CAMPUS_MAP.boundary,0,'#778b65')];
@@ -128,7 +132,7 @@ export function createMappedGeometry(kit: Kit) {
   gate.at(0,0,0,-Math.PI/2,()=>drawMainGate(gate));
   const gateGroup=new THREE.Group();gateGroup.name='Main gate photo interpretation';for(const mesh of gate.build(materials).meshes)gateGroup.add(mesh);group.add(gateGroup);
   const crownBatch=createBatch(THREE);drawLandmarkCrowns(crownBatch,parts);
-  const crown=new THREE.Group();crown.name='Senate House tower and landmark crowns';for(const mesh of crownBatch.build(materials).meshes){mesh.castShadow=true;crown.add(mesh);}group.add(crown);
+  const crown=new THREE.Group();crown.name='Senate House tower and landmark crowns';for(const mesh of crownBatch.build(materials).meshes){mesh.castShadow=true;crown.add(mesh);}applyGlow(crown);group.add(crown);
   for(const x of [-16,0,16]){
     const width=x===0?5:1.4;
     const vertices=x===0?[[-width/2,6.8],[-width/2,12.5],[0,9],[width/2,12.5],[width/2,6.8]]:[[-width/2,6.8],[-width/2,13],[width/2,10.8],[width/2,6.8]];
@@ -136,7 +140,8 @@ export function createMappedGeometry(kit: Kit) {
     const geometry=new THREE.ExtrudeGeometry(shape,{depth:3,bevelEnabled:false});geometry.translate(x,0,-1.5);geometry.rotateY(-Math.PI/2);
     const mesh=new THREE.Mesh(geometry,kit.material('#d6bd86'));mesh.castShadow=true;gateGroup.add(mesh);
   }
-  function update(x:number,z:number){
+  function update(x:number,z:number,time?:string){
+    if(time!==undefined&&(time!=='day')!==night){night=time!=='day';applyGlow(detailGroup);applyGlow(crown);}
     const near=parts.filter(b=>distanceTo(b,x,z)<=DETAIL_RADIUS).sort((a,b)=>{const priority=(part:CampusMapBuilding)=>part.osm.id===653186158&&distanceTo(part,x,z)<60?-1:0;return priority(a)-priority(b)||distanceTo(a,x,z)-distanceTo(b,x,z)||b.height-a.height;}),key=near.map(b=>`${b.osm.id}:${b.height}`).sort().join(',');
     if(key!==detailKey){detailKey=key;facadeDetail(near);resident.clear();for(const b of near){const bounds=boundsOf(b.ring);resident.set(tile((bounds[0]+bounds[2])/2,(bounds[1]+bounds[3])/2),{group:detailGroup,detail:true});}}
     treeDetail(x,z);

@@ -7,6 +7,7 @@ import { ANCHORS, ZONES, zoneAtPoint } from './layout.ts';
 import type { CampusZone } from './layout.ts';
 import { CAMPUS_TREES } from './landscape.ts';
 import { propBlocks } from './life-plan.ts';
+import { standaloneBlocks } from './standalone.ts';
 
 export interface CampusWalk { grids:Map<string,WalkGrid>; zoneAt:(x:number,z:number)=>CampusZone|null; route:(from:WalkPoint,to:WalkPoint)=>WalkPoint[]|null }
 const CELL=2, RADIUS=.4;
@@ -20,7 +21,7 @@ const blockedBy=(x:number,z:number,ring:MetreRing)=>pointInRing([x,z],ring)||dis
 export function createGeographicCampusWalk(extraFootprints:Record<string,Array<WalkRect|WalkCircle>>={}):CampusWalk{
   const gateColumns:WalkRect[]=[[-1.5,-2.5,1.5,2.5],[-1.5,-16.7,1.5,-15.3],[-1.5,15.3,1.5,16.7]];
   const treeTrunks:WalkCircle[]=CAMPUS_TREES.map(tree=>[tree.x,tree.z,.45*tree.size]);
-  const grid=createWalkGrid({bounds:[CAMPUS_MAP.bounds[0],CAMPUS_MAP.bounds[1],CAMPUS_MAP.bounds[2],CAMPUS_MAP.bounds[3]],block:[...gateColumns,...treeTrunks,...propBlocks(),...Object.values(extraFootprints).flat()],cell:CELL,radius:RADIUS});
+  const grid=createWalkGrid({bounds:[CAMPUS_MAP.bounds[0],CAMPUS_MAP.bounds[1],CAMPUS_MAP.bounds[2],CAMPUS_MAP.bounds[3]],block:[...gateColumns,...treeTrunks,...propBlocks(),...standaloneBlocks(),...Object.values(extraFootprints).flat()],cell:CELL,radius:RADIUS});
   const [minX,minZ]=grid.bounds;
   // A trunk smaller than the cell diagonal may contain no cell centre; always
   // claim its containing cell so the rendered trunk cannot be walked through.

@@ -15,14 +15,21 @@ export const WATERFRONT_MIN_X = 450;
 let planCache: Prop[] | null = null;
 export const segs = CAMPUS_MAP.roads.flatMap(r => r.points.slice(1).map((b, i) => ({ a: r.points[i]!, b, w: r.width, hw: r.highway })));
 const footprints = CAMPUS_MAP.buildings.map(b => boundsOf(b.ring));
+const CELL = 48;
+const grid = new Map<string, typeof segs>();
+for (const sg of segs) {
+  const x0 = Math.floor((Math.min(sg.a[0], sg.b[0]) - sg.w - 2) / CELL), x1 = Math.floor((Math.max(sg.a[0], sg.b[0]) + sg.w + 2) / CELL);
+  const z0 = Math.floor((Math.min(sg.a[1], sg.b[1]) - sg.w - 2) / CELL), z1 = Math.floor((Math.max(sg.a[1], sg.b[1]) + sg.w + 2) / CELL);
+  for (let i = x0; i <= x1; i++) for (let j = z0; j <= z1; j++) { const k = `${i}:${j}`; (grid.get(k) ?? grid.set(k, []).get(k)!).push(sg); }
+}
 const offRoadAndBuilding = (x: number, z: number, buildingMargin = 2.5): boolean => {
+  for (const sg of grid.get(`${Math.floor(x / CELL)}:${Math.floor(z / CELL)}`) ?? []) {
+    const { a: [ax, az], b: [bx, bz], w } = sg, dx = bx - ax, dz = bz - az, t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / (dx * dx + dz * dz || 1)));
+    if (Math.hypot(x - ax - t * dx, z - az - t * dz) < w / 2 + 1.6) return false;
+  }
   if (!pointInRing([x, z], CAMPUS_MAP.boundary)) return false;
   if (footprints.some(([a, b, c, d]) => x > a - buildingMargin && x < c + buildingMargin && z > b - buildingMargin && z < d + buildingMargin)) return false;
   if (CAMPUS_MAP.surfaces.some(s => pointInRing([x, z], s.ring))) return false;
-  for (const { a: [ax, az], b: [bx, bz], w } of segs) {
-    const dx = bx - ax, dz = bz - az, t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / (dx * dx + dz * dz || 1)));
-    if (Math.hypot(x - ax - t * dx, z - az - t * dz) < w / 2 + 1.6) return false;
-  }
   return true;
 };
 
@@ -34,16 +41,19 @@ function outward(ax: number, az: number, bx: number, bz: number): [number, numbe
   if (pointInRing([mx + nx * 1.5, mz + nz * 1.5], CAMPUS_MAP.boundary)) { nx = -nx; nz = -nz; }
   return [nx, nz];
 }
-export const shoreEdges = () => {
+const boundaryEdges = (shore: boolean) => {
   const b = CAMPUS_MAP.boundary, out: Array<{ ax: number; az: number; bx: number; bz: number; nx: number; nz: number; len: number }> = [];
   for (let i = 1; i < b.length; i++) {
     const [ax, az] = b[i - 1]!, [bx, bz] = b[i]!, len = Math.hypot(bx - ax, bz - az);
-    if (len < 4 || (ax + bx) / 2 < WATERFRONT_MIN_X) continue;
+    if (len < 4 || ((ax + bx) / 2 >= WATERFRONT_MIN_X) !== shore) continue;
     const [nx, nz] = outward(ax, az, bx, bz);
     out.push({ ax, az, bx, bz, nx, nz, len });
   }
   return out;
 };
+export const shoreEdges = () => boundaryEdges(true);
+/** Edges where the campus meets the Akoka/Yaba town side rather than the lagoon. */
+export const landEdges = () => boundaryEdges(false);
 
 export function campusPlan(): Prop[] {
   if (planCache) return planCache;

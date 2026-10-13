@@ -1,6 +1,7 @@
 import './host.css';
 import type { Group, WebGLRenderer } from 'three';
 import { createKit } from '../../scene/kit.ts';
+import { renderTier } from '../../scene/look.ts';
 import { createMotionLoop } from '../../scene/motion-loop.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
 import { createPositionReporter, createWalker, gaitPhase, WALK_SPEED, JOG_SPEED } from '../../scene/movement.ts';
@@ -91,10 +92,12 @@ export function createCampusHost(container: HTMLElement, {
   const world = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 1800);
   const renderer: WebGLRenderer = providedRenderer || new THREE.WebGLRenderer({ antialias: true, alpha: false });
-  renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
+  // Phone tier (src/scene/look.ts): lower pixel ratio, 1024 hard-filtered shadow map; wide screens keep 2048 soft.
+  const tier = renderTier();
+  renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, tier.pixelRatio));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = tier.softShadows ? THREE.PCFSoftShadowMap : THREE.PCFShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.12;
   container.classList.add('campus-host');
@@ -108,7 +111,7 @@ export function createCampusHost(container: HTMLElement, {
   const sun = new THREE.DirectionalLight('#fff0d2', 2.4);
   sun.position.set(80, 140, 50);
   sun.castShadow = true;
-  sun.shadow.mapSize.set(2048, 2048);
+  sun.shadow.mapSize.set(tier.shadowMap, tier.shadowMap);
   sun.shadow.camera.left = -120; sun.shadow.camera.right = 120;
   sun.shadow.camera.top = 120; sun.shadow.camera.bottom = -120;
   sun.shadow.camera.near = 1; sun.shadow.camera.far = 420;
@@ -272,8 +275,9 @@ export function createCampusHost(container: HTMLElement, {
     world.background = new THREE.Color(campus.background);
     world.fog = new THREE.Fog(campus.background, 450, 2200);
     sun.position.set(walker.x-70,140,walker.z+60); sun.target.position.set(walker.x,0,walker.z);
-    const night = campus.time === 'night'; hemi.intensity = night ? 0.9 : 2; sun.intensity = night ? 0.65 : 2.4;
-    sun.color.set(night ? '#9ebadb' : '#fff0d2');
+    const light = campus.lighting();
+    hemi.color.set(light.hemi[0]); hemi.groundColor.set(light.hemi[1]); hemi.intensity = light.hemi[2];
+    sun.color.set(light.sun[0]); sun.intensity = light.sun[1];
     renderer.render(world, camera); renderCount += 1;
     syncTags(); drawMap();
   }

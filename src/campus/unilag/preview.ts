@@ -56,7 +56,7 @@ function draw(){
   camera.position.set(walker.x+Math.sin(yaw)*Math.cos(tilt)*distance,Math.sin(tilt)*distance+2,walker.z+Math.cos(yaw)*Math.cos(tilt)*distance);
   camera.lookAt(walker.x,2,walker.z);
   world.background=new THREE.Color(campus.background);world.fog=new THREE.Fog(campus.background,450,2200);
-  const night=campus.time==='night';hemi.intensity=night?.9:2;sun.intensity=night?.65:2.4;sun.color.set(night?'#9ebadb':'#fff0d2');
+  const light=campus.lighting();hemi.color.set(light.hemi[0]);hemi.groundColor.set(light.hemi[1]);hemi.intensity=light.hemi[2];sun.color.set(light.sun[0]);sun.intensity=light.sun[1];
   document.body.dataset.time=campus.time;
   sun.position.set(walker.x-70,140,walker.z+60);sun.target.position.set(walker.x,0,walker.z);
   renderer.render(world,camera);frameCount++;

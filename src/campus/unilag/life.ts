@@ -16,7 +16,7 @@ import { pointInRing } from './geo.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 
 import type { Prop, PropKind } from './life-plan.ts';
-import { campusPlan, hash, shoreEdges, segs } from './life-plan.ts';
+import { campusPlan, hash, shoreEdges, landEdges, segs } from './life-plan.ts';
 const RADIUS = 100, CAP_TRIS = 3300, LINE_TRIS = 900;
 
 /* ---------- draw routines (local coordinates, +z forward) ---------- */
@@ -50,7 +50,7 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false): void {
         b.cyl(0, 3.2, 0, .1, 6.4, '#4a5254', { seg: 4 });
         b.box(0, 6.35, .7, .14, .14, 1.5, '#4a5254');
         b.box(0, 6.22, 1.4, lit ? .5 : .32, .12, lit ? .7 : .5, lit ? '#fff0b0' : '#9a9a90', lit ? { layer: 'glow' } : undefined);
-        if (lit) { b.quad(0, .13, 1.4, 7, 7, '#5f5a3a', { layer: 'glow', rx: -Math.PI / 2 }); b.quad(0, .14, 1.4, 3.4, 3.4, '#8a8350', { layer: 'glow', rx: -Math.PI / 2 }); }
+        if (lit) { b.quad(0, .13, 1.4, 7, 7, '#6e5528', { layer: 'glow', rx: -Math.PI / 2 }); b.quad(0, .14, 1.4, 3.4, 3.4, '#a07c38', { layer: 'glow', rx: -Math.PI / 2 }); }
         break;
       }
       case 'bench': {
@@ -160,9 +160,9 @@ export function createCampusLife(kit: Kit) {
       g.setAttribute('color', new THREE.BufferAttribute(a, 3)); return g;
     };
     const [x0, z0, x1, z1] = CAMPUS_MAP.bounds;
-    // Off-campus ground: dry Akoka/Yaba earth. Water is only drawn seaward of the shore edges.
-    const base = new THREE.PlaneGeometry(9000, 9000); base.rotateX(-Math.PI / 2); base.translate((x0 + x1) / 2, -.7, (z0 + z1) / 2);
-    geos.push(colour(base.toNonIndexed(), '#a3a68a'));
+    // Open lagoon to the horizon (the scene fog fades it into haze); off-campus town land is laid over it on the land side only.
+    const base = new THREE.PlaneGeometry(12000, 12000); base.rotateX(-Math.PI / 2); base.translate((x0 + x1) / 2, -.7, (z0 + z1) / 2);
+    geos.push(colour(base.toNonIndexed(), '#4f8896'));
     const poly = (pts: number[][], y: number, hex: string) => {
       const g = new THREE.BufferGeometry(), v = pts.flatMap(([x, z]) => [x!, y, z!]);
       g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(v), 3));
@@ -179,7 +179,7 @@ export function createCampusLife(kit: Kit) {
     for (const e of edges) {
       const mx = (e.ax + e.bx) / 2, mz = (e.az + e.bz) / 2;
       let r = FAR;
-      for (let d = 12; d < FAR; d += 12) if (pointInRing([mx + e.nx * d, mz + e.nz * d], CAMPUS_MAP.boundary)) { r = Math.max(14, d - 14); break; }
+      for (let d = 12; d < FAR; d += 24) if (pointInRing([mx + e.nx * d, mz + e.nz * d], CAMPUS_MAP.boundary)) { r = Math.max(14, d - 26); break; }
       reach.set(e, r);
     }
     const bands: Array<[number, number, number, string]> = [[110, FAR, -.6, '#4f8896'], [28, 110, -.5, '#5f9ba5'], [2.2, 28, -.38, '#7db3ae'], [-.5, 2.2, -.2, '#e3eee4']];
@@ -196,6 +196,19 @@ export function createCampusLife(kit: Kit) {
       if (Math.hypot(p.bx - q.ax, p.bz - q.az) > 1) continue;
       const R = Math.min(reach.get(p)!, reach.get(q)!);
       if (R > 111) poly([[q.ax, q.az], [q.ax + p.nx * R, q.az + p.nz * R], [q.ax + q.nx * R, q.az + q.nz * R]], -.6, '#4f8896');
+    }
+    // Town side: land strips fade from earth to the haze-friendly green-grey with distance (vertex colours), ragged by edge.
+    const land = landEdges(), LAND = 1500;
+    for (const e of land) {
+      const ux = (e.bx - e.ax) / e.len, uz = (e.bz - e.az) / e.len, mx = (e.ax + e.bx) / 2, mz = (e.az + e.bz) / 2;
+      let R = LAND;
+      for (let d = 24; d < LAND; d += 24) if (pointInRing([mx + e.nx * d, mz + e.nz * d], CAMPUS_MAP.boundary)) { R = Math.max(14, d - 26); break; }
+      poly([[e.ax - ux * 2, e.az - uz * 2], [e.bx + ux * 2, e.bz + uz * 2], [e.bx + e.nx * R + ux * 2, e.bz + e.nz * R + uz * 2], [e.ax + e.nx * R - ux * 2, e.az + e.nz * R - uz * 2]], -.62, '#9aa585');
+    }
+    for (let i = 1; i < land.length; i++) {
+      const p = land[i - 1]!, q = land[i]!;
+      if (Math.hypot(p.bx - q.ax, p.bz - q.az) > 1) continue;
+      poly([[q.ax, q.az], [q.ax + p.nx * LAND, q.az + p.nz * LAND], [q.ax + q.nx * LAND, q.az + q.nz * LAND]], -.62, '#9aa585');
     }
     const merged = mergeGeometries(geos.map(g => { g.deleteAttribute('uv'); return g; }), false)!;
     geos.forEach(g => g.dispose());

@@ -12,14 +12,14 @@
  */
 import type { Batch } from '../../scene/types.ts';
 import type { CampusMapBuilding, MetrePoint } from './geo.ts';
-import { boundsOf, pointInRing } from './geo.ts';
-import { CAMPUS_MAP } from './map.generated.ts';
+import { boundsOf } from './geo.ts';
 import { LANDMARK_MAPPINGS } from './layout.ts';
+import { landmarkBuildingIds, standalones } from './standalone.ts';
 import { landmarkLabel } from './spot-names.ts';
 import { signLetters } from '../shared/signs.ts';
 
 export type FacadeStyle = 'tower' | 'hall' | 'library' | 'institutional' | 'auditorium';
-export interface ArchitectureInfo { id: string; label: string; style: FacadeStyle; accent: string; sign: boolean }
+export interface ArchitectureInfo { id: string; label: string; style: FacadeStyle; accent: string; sign: boolean; kind: string }
 
 export const SENATE_OSM_ID = 653186158;
 export const SENATE_TOWER_HEIGHT = 43;
@@ -30,25 +30,21 @@ const STYLE_BY_LANDMARK: Record<string, FacadeStyle> = { senate: 'tower', librar
 /** osm building id -> what the landmark layout says it is. Nodes resolve to the footprint that contains them. */
 const LANDMARK_BUILDINGS: ReadonlyMap<number, ArchitectureInfo> = (() => {
   const result = new Map<number, ArchitectureInfo>();
-  const byId = new Map(CAMPUS_MAP.buildings.map((b) => [b.osm.id, b]));
-  for (const [id, mapping] of Object.entries(LANDMARK_MAPPINGS)) {
-    if (mapping.kind === 'open-space' || mapping.kind === 'gate') continue;
-    let building: CampusMapBuilding | undefined;
-    if (mapping.osmType === 'way') building = byId.get(mapping.osmId);
-    else if (mapping.osmType === 'node') {
-      const poi = CAMPUS_MAP.pois.find((p) => p.osm.id === mapping.osmId);
-      if (poi) building = CAMPUS_MAP.buildings.find((b) => pointInRing(poi.point, b.ring));
-    }
-    if (!building || result.has(building.osm.id)) continue;
+  for (const [id, osmId] of landmarkBuildingIds()) {
+    const mapping = LANDMARK_MAPPINGS[id]!;
     const style = STYLE_BY_LANDMARK[id] ?? (mapping.kind === 'hall' ? 'hall' : 'institutional');
-    result.set(building.osm.id, { id, label: landmarkLabel(id), style, accent: mapping.color, sign: true });
+    result.set(osmId, { id, label: landmarkLabel(id), style, accent: mapping.color, sign: true, kind: mapping.kind });
+  }
+  for (const s of standalones()) {
+    const style: FacadeStyle = s.kind === 'hall' ? 'hall' : 'institutional';
+    result.set(s.building.osm.id, { id: s.id, label: s.label, style, accent: s.accent, sign: true, kind: s.kind });
   }
   return result;
 })();
 
-const PLAIN: ArchitectureInfo = { id: '', label: '', style: 'institutional', accent: '#b9ad92', sign: false };
+const PLAIN: ArchitectureInfo = { id: '', label: '', style: 'institutional', accent: '#b9ad92', sign: false, kind: '' };
 export function architectureOf(b: CampusMapBuilding): ArchitectureInfo {
-  if (isSenateTower(b)) return { id: 'senate', label: 'Senate House', style: 'tower', accent: '#a24b3b', sign: false };
+  if (isSenateTower(b)) return { id: 'senate', label: 'Senate House', style: 'tower', accent: '#a24b3b', sign: false, kind: 'administration' };
   return LANDMARK_BUILDINGS.get(b.osm.id) ?? PLAIN;
 }
 
@@ -67,8 +63,29 @@ export function roofColour(b: CampusMapBuilding): string {
   return b.osm.id % 4 === 0 ? '#88584a' : '#687271';
 }
 
+/**
+ * OSM leaves most buildings at an estimated 8 m. Landmarks get a credible storey count by type. These are
+ * ESTIMATES (no surveyed storey counts were found): library 5 storeys, Main Auditorium 3-storey-equivalent hall,
+ * halls of residence 4, faculties and administration 3-4, banks and services stay low.
+ */
+export function landmarkHeight(b: CampusMapBuilding): number {
+  if (b.heightSource !== 'estimated' || isSenateTower(b)) return b.height;
+  const info = LANDMARK_BUILDINGS.get(b.osm.id);
+  if (!info || b.osm.id === SENATE_OSM_ID) return b.height;
+  if (info.id === 'library') return 16.5;
+  if (info.id === 'auditorium') return 13;
+  if (info.style === 'hall') return 13.2;
+  if (info.kind === 'faculty' || info.kind === 'academic' || info.kind === 'administration') return Math.max(b.height, 10);
+  return b.height;
+}
+
 export interface Budget { left: number }
 const GLASS = '#41606a', LIT = '#d8c98f', CONCRETE = '#e4d9bf', SHADE = '#cdc3aa';
+/** Glass pane; a lit pane adds a glow quad that mapped-geometry shows only at dusk and night. */
+function pane(batch: Batch, x: number, y: number, z: number, w: number, h: number, lit: boolean): void {
+  batch.quad(x, y, z, w, h, GLASS);
+  if (lit) batch.quad(x, y, z + .02, w * .94, h * .92, LIT, { layer: 'glow' });
+}
 const hash = (a: number, b: number): number => {
   let h = Math.imul(a | 0, 374761393) + Math.imul(b | 0, 668265263);
   h = Math.imul(h ^ (h >>> 13), 1274126177);
@@ -92,7 +109,7 @@ const tower: Painter = (batch, L, H, info, seed) => {
   for (let f = 0; f < floors; f++) {
     const y = f * fh;
     const lit = hash(seed, f) % 12 === 0;
-    batch.quad(0, y + fh * .5 + (f ? 0 : .3), .1, L - .2, fh - (f ? 1.1 : .5), lit ? LIT : GLASS, { layer: lit ? 'glow' : 'solid' });
+    pane(batch, 0, y + fh * .5 + (f ? 0 : .3), .1, L - .2, fh - (f ? 1.1 : .5), lit);
     if (f) batch.box(0, y - .2, .85, L, .55, 1.7, CONCRETE);
   }
   batch.box(0, H - .1, .95, L + .4, .7, 1.9, CONCRETE);
@@ -110,7 +127,7 @@ const hall: Painter = (batch, L, H, info, seed) => {
     }
     for (let r = 0; r < rooms; r++) {
       const lit = hash(seed + f, r) % 9 === 0;
-      batch.quad(-L / 2 + rw * (r + .5), y + fh * .6, .06, rw * .5, fh * .42, lit ? LIT : GLASS, { layer: lit ? 'glow' : 'solid' });
+      pane(batch, -L / 2 + rw * (r + .5), y + fh * .6, .06, rw * .5, fh * .42, lit);
     }
   }
   for (let i = 0; i <= rooms; i += 2) batch.box(-L / 2 + i * rw, H / 2, .35, .32, H, .7, info.accent);
@@ -134,7 +151,7 @@ const institutional: Painter = (batch, L, H, _info, seed) => {
     batch.box(0, y + fh - .25, .5, L, .4, 1, SHADE);
     for (let i = 0; i < n; i++) {
       const lit = hash(seed + f, i) % 9 === 0;
-      batch.quad(-L / 2 + step * (i + .5), y + fh * .5, .06, Math.min(2.2, step * .55), fh * .5, lit ? LIT : GLASS, { layer: lit ? 'glow' : 'solid' });
+      pane(batch, -L / 2 + step * (i + .5), y + fh * .5, .06, Math.min(2.2, step * .55), fh * .5, lit);
     }
   }
   for (let i = 0; i <= n; i += 2) batch.box(-L / 2 + step * i, H / 2, .22, .3, H, .45, '#d9cfb4');

@@ -109,7 +109,7 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   function setPosition(x:number,z:number):boolean {
     const zone=navigation.zoneAt(x,z);
     if(disposed||!zone||!grid.free(x,z))return false;
-    position.x=x;position.z=z;position.zone=zone.id;player.position.set(x,0,z);mapped.update(x,z);life.update(x,z,time);ambient?.retarget(x,z);return true;
+    position.x=x;position.z=z;position.zone=zone.id;player.position.set(x,0,z);mapped.update(x,z,time);life.update(x,z,time);ambient?.retarget(x,z);return true;
   }
   function clearPeople(){for(const peer of peopleCache.values())peer.body.userData.dispose();peopleCache.clear();peopleGroup.clear();}
   const walk:AvatarWalk={
@@ -123,11 +123,11 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   };
   const scene:UnilagScene={group,kind:'unilag',mood:'outdoor',anchors:ANCHORS,walk,navigation,
     camera:{landscape:[22,20,26],portrait:[26,30,34]},
-    get background(){return time==='night'?'#132638':time==='dusk'?'#d1a68e':'#bfd1d3';},
+    get background(){return time==='night'?'#0d1f3a':time==='dusk'?'#dc9f82':'#bfd1d3';},
     get time(){return time;},get zone(){return position.zone;},get position(){return {...position};},
     update(state){const hour=lagosTime(state?.t??0).hour;return scene.setTime(venue.scene?.time||(hour<6||hour>=19?'night':hour>=17?'dusk':'day'));},
-    setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;life.update(position.x,position.z,time);return true;},
-    lighting(){return {hemi:[scene.background,'#677457',time==='night'?.8:1.6],sun:[time==='night'?'#96b5da':'#fff0d2',time==='night'?.65:2.4,[80,140,50]]};},
+    setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;mapped.update(position.x,position.z,time);life.update(position.x,position.z,time);return true;},
+    lighting(){return time==='night'?{hemi:['#3d63a0','#141d2c',1.2],sun:['#7092d8',.6,[80,140,50]]}:time==='dusk'?{hemi:['#e6ab8e','#5d504a',1.5],sun:['#ffad68',1.8,[80,140,50]]}:{hemi:['#c6dde0','#68765a',1.8],sun:['#fff1d6',2.3,[80,140,50]]};},
     setPosition,setSpot(id){const a=ANCHORS[id];return !!a&&setPosition(a.x,a.z);},
     setPlayer({look,seed='campus-visitor',pose='stand'}:PlayerInput={}){const key=JSON.stringify([look,seed]);if(look&&key!==playerKey){playerKey=key;player.userData.dispose();player=buildAvatar(kit,look,{detail:'low',rig:true,scale:.60,seed});group.add(player);player.position.set(position.x,0,position.z);walk.avatar=player;}poseAvatar(player,{pose});return true;},
     setCrowd(people){

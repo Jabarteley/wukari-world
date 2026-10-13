@@ -3,7 +3,7 @@
 // one small pill. The name opens the Sim sheet and the wallet opens the Bank. A change of the
 // balance is flashed and written out with its reason from the ledger; the flash is one CSS
 // animation that ends by itself, so nothing runs while the game is idle.
-import { computed, defineAsyncComponent, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, h, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
 import { money } from '../../ui/format.ts'
@@ -20,7 +20,22 @@ const view = game.view
 const state = game.state
 const mood = computed(() => moodOf(view.value))
 const saved = computed(() => savedPill(view.value, game.saving.value))
+/** The balance as drawn: it counts to a new value (a short run, skipped for people who ask for less motion) instead of jumping. */
+const shownCash = ref(state.value.cash)
 const cash = computed(() => money(state.value.cash))
+// The count-up and the short form (₦12.3m) are fetched on the first change, or when the balance is long: not part of the startup download.
+const counting = shallowRef<typeof import('./cashCount.ts') | null>(null)
+const cashLabel = computed(() => counting.value?.cashText(shownCash.value, money) ?? money(shownCash.value))
+let stopCount = (): void => {}, run = 0
+watch(() => state.value.cash, async (to, from) => {
+  stopCount(); const mine = ++run
+  const moving = Math.abs(to - (from ?? to)) >= 2 && typeof requestAnimationFrame === 'function' && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  if (!moving && Math.abs(to) < 1e7) { shownCash.value = to; return }
+  const lib = counting.value ??= await import('./cashCount.ts').catch(() => null)
+  if (mine !== run) return
+  if (moving && lib) stopCount = lib.countCash(shownCash.value, to, (value) => { shownCash.value = value }); else shownCash.value = to
+}, { immediate: true })
+onBeforeUnmount(() => { run++; stopCount() })
 /** Signed in: the account chip carries the name, so the plain name button steps aside (its sheet is one tap further, from the account sheet). */
 const account = useAccountLite()
 const chip = computed(() => game.connected.value && account.state.loaded && account.state.enabled && account.state.account !== null)
@@ -92,7 +107,7 @@ function onSaved(): void {
       </span>
     </span>
     <InviteButton />
-    <button class="hud-cash" :class="cashFlash" type="button" @animationend="cashFlash = null" :aria-label="`Wallet ${cash}. Open the bank and your transactions`" @click="shell.open('bank')">{{ cash }}</button>
+    <button class="hud-cash" :class="cashFlash" type="button" @animationend="cashFlash = null" :aria-label="`Wallet ${cash}. Open the bank and your transactions`" @click="shell.open('bank')">{{ cashLabel }}</button>
     <span v-if="delta" :key="delta.run" class="hud-delta" :class="delta.up ? 'is-up' : 'is-down'" aria-hidden="true">{{ delta.text }}</span>
   </section>
 </template>
@@ -173,7 +188,8 @@ function onSaved(): void {
   .hud-cash::after { inset: -6px -3px; }
   .hud-delta { top: calc(100% + 4px); }
 }
-@media (max-width: 359px) { .hud-status-time { display: none; } .hud-status-toggle { padding: 0 8px; } }
+/* The time stays at 320 px (it is the one thing the chip is for): the neighbours give it room instead. */
+@media (max-width: 359px) { .hud-bar { gap: 3px; padding-left: 8px; padding-right: 8px; } .hud-status-toggle { padding: 0 6px; gap: 4px; } .hud-status-time { font-size: 12px; white-space: nowrap; } }
 @media (prefers-reduced-motion: reduce) {
   .hud-cash.is-up, .hud-cash.is-down { animation: none; }
   .hud-delta.is-up, .hud-delta.is-down { animation: hud-delta-still 3.4s steps(1, end); }

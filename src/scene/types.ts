@@ -31,6 +31,13 @@ export interface BatchOptions {
   sx?: number
   sz?: number
 }
+/** Static indexed geometry already prepared for the scene batcher. Optional colours are linear RGB per vertex. */
+export interface BatchGeometry {
+  readonly pos: ArrayLike<number>
+  readonly nor: ArrayLike<number>
+  readonly idx: ArrayLike<number>
+  readonly col?: ArrayLike<number>
+}
 export interface LightSpec { x: number; y: number; z: number; colour: Colour; intensity: number; distance: number }
 export interface BatchResult { meshes: THREE.Mesh[]; lights: THREE.PointLight[]; triangles: number }
 export interface SceneMaterials { solid: THREE.MeshLambertMaterial | THREE.MeshStandardMaterial; glow: THREE.MeshBasicMaterial; glass: THREE.MeshStandardMaterial }
@@ -38,6 +45,7 @@ export interface SceneMaterials { solid: THREE.MeshLambertMaterial | THREE.MeshS
 /** The geometry batcher (src/scene/build.ts). */
 export interface Batch {
   isBatch: true
+  geometry(shape: BatchGeometry, colour: Colour, o?: BatchOptions): Batch
   box(x: number, y: number, z: number, w: number, h: number, d: number, colour: Colour, o?: BatchOptions): Batch
   cyl(x: number, y: number, z: number, r: number, h: number, colour: Colour, o?: BatchOptions): Batch
   cone(x: number, y: number, z: number, r: number, h: number, colour: Colour, o?: BatchOptions): Batch
@@ -244,7 +252,7 @@ export interface SceneWalk {
   readonly solids: number[][]
   move(x: number, y: number, z: number, ry: number): void
   pose(name?: string, seat?: number): boolean
-  gait(step: unknown, phase?: number, jog?: boolean): boolean
+  gait(step: unknown, phase?: number, jog?: boolean, animate?: boolean): boolean
   heightAt(x: number, z: number): number
   /** Drawn support top plus contact allowance, or null for unsupported points (ramps/edges/anchors). */
   contactHeightAt?(x: number, z: number, expectedY?: number): number | null
@@ -281,6 +289,7 @@ export interface SceneEntry {
   ambientPeople?(): import('./ambient/layer.ts').AmbientPerson[]
   ambientCaps?(): { full: number; lean: number; far: number } | null
   say?(id: string, text: string, ms?: number): boolean
+  animateSpeech?(id: string, ms?: number): boolean
   talk?(a: string, b: string, ms?: number): boolean
   /** Called when a spoken line comes or goes (false) and when the people have arrived after the scene asked for them (true). */
   onAmbient?: ((ready: boolean) => void) | null

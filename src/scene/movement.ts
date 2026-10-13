@@ -29,7 +29,7 @@
  *   host's frame loop alive — and lets it stop the moment the avatar arrives.
  */
 
-import type { Batch, BatchOptions } from './types.ts';
+import type { Batch, BatchGeometry, BatchOptions } from './types.ts';
 
 import { AVATAR_RADIUS } from './walk-grid.ts';
 import type { WalkGrid, WalkPoint, WalkRect } from './walk-grid.ts';
@@ -77,6 +77,24 @@ export interface FootprintShapes {
 /** What footprintRecorder returns: the batch to draw into and the recorded shapes. */
 export interface FootprintRecorder { batch: Batch; shapes(): FootprintShapes }
 
+function geometryBounds(shape: BatchGeometry): { x: number; y: number; z: number; hx: number; hy: number; hz: number } {
+  let x0 = Infinity, y0 = Infinity, z0 = Infinity, x1 = -Infinity, y1 = -Infinity, z1 = -Infinity;
+  for (let i = 0; i < shape.pos.length; i += 3) {
+    const x = shape.pos[i]!, y = shape.pos[i + 1]!, z = shape.pos[i + 2]!;
+    x0 = Math.min(x0, x); y0 = Math.min(y0, y); z0 = Math.min(z0, z);
+    x1 = Math.max(x1, x); y1 = Math.max(y1, y); z1 = Math.max(z1, z);
+  }
+  return { x: (x0 + x1) / 2, y: (y0 + y1) / 2, z: (z0 + z1) / 2, hx: (x1 - x0) / 2, hy: (y1 - y0) / 2, hz: (z1 - z0) / 2 };
+}
+
+/** Rotate a prepared shape's non-zero bounds centre about the geometry origin, in Batch's YXZ order. */
+function geometryCentre({ x, y, z }: { x: number; y: number; z: number }, o: BatchOptions | undefined): { x: number; y: number; z: number } {
+  const cx = Math.cos(o?.rx || 0), sx = Math.sin(o?.rx || 0), cy = Math.cos(o?.ry || 0), sy = Math.sin(o?.ry || 0), cz = Math.cos(o?.rz || 0), sz = Math.sin(o?.rz || 0);
+  const ax = x * cz - y * sz, ay = x * sz + y * cz;
+  const by = ay * cx - z * sx, bz = ay * sx + z * cx;
+  return { x: ax * cy + bz * sy, y: by, z: -ax * sy + bz * cy };
+}
+
 export function footprintRecorder(inner: Batch, { low = 0.34, high = 1.2 }: { low?: number; high?: number } = {}): FootprintRecorder {
   const block: WalkRect[] = [], solids: FootprintSolid[] = [], seats: SeatPlace[] = [];
   let floor: WalkRect | null = null, floorArea = 0, walls: { backZ: number; leftX: number } | null = null;
@@ -109,6 +127,12 @@ export function footprintRecorder(inner: Batch, { low = 0.34, high = 1.2 }: { lo
   }
   const batch: Batch = {
     isBatch: true,
+    geometry(shape, colour, o) {
+      const bounds = geometryBounds(shape);
+      const centre = geometryCentre(bounds, o);
+      inner.geometry(shape, colour, note(centre.x, centre.y, centre.z, bounds.hx, bounds.hy, bounds.hz, o));
+      return batch;
+    },
     box(x, y, z, w, h, d, colour, o) { inner.box(x, y, z, w, h, d, colour, note(x, y, z, w / 2, h / 2, d / 2, o)); return batch; },
     cyl(x, y, z, r, h, colour, o) { inner.cyl(x, y, z, r, h, colour, note(x, y, z, r * (o?.sx || 1), h / 2, r * (o?.sz || 1), o)); return batch; },
     cone(x, y, z, r, h, colour, o) { return batch.cyl(x, y, z, r, h, colour, { ...o, top: 0 }); },

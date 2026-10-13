@@ -80,7 +80,7 @@ const ALL = ['needs', 'hud', 'goal', 'place', 'nav-map', 'nav-phone', 'map-card'
 const titles = (steps: readonly { title: string }[]): string[] => steps.map((step) => step.title)
 
 test('the tour is short, starts with a welcome and ends with the set card', () => {
-  assert.ok(STEPS.length >= 7 && STEPS.length <= 13)
+  assert.ok(STEPS.length >= 7 && STEPS.length <= 11)
   assert.equal(STEPS[0]?.id, 'welcome'); assert.equal(STEPS.at(-1)?.id, 'done')
   assert.match(wordsOf(STEPS[0]!, context([]), false).text, /show you around.*skip any time/)
   assert.match(wordsOf(STEPS.at(-1)!, context([]), false).text, /Phone, then Help, then Take the tour.*\?/)
@@ -95,9 +95,9 @@ test('steps whose target is missing are skipped, in both directions, and the opt
   assert.equal(seek(list, list.length - 1, 1, noGoal), -1, 'past the end')
   assert.equal(seek(list, 0, -1, noGoal), -1, 'before the start')
   const home = titles(playlist(STEPS, context(ALL.filter((id) => id !== 'community'))))
-  assert.ok(!home.includes('Talk to people') && !home.includes('Community'), 'no online pill, community or invite on screen: neither step')
+  assert.ok(!home.includes('Talk to people'), 'no online pill, community or invite on screen: neither step')
   const venue = titles(playlist(STEPS, context(ALL)))
-  assert.ok(venue.includes('Community') && !venue.includes('Talk to people'), 'the community button alone lights only its own step')
+  assert.ok(!venue.includes('Talk to people'), 'the community button alone lights no people step')
   assert.ok(titles(playlist(STEPS, context(['invite']))).includes('Talk to people'), 'the invite button alone lights it')
   assert.ok(showable(STEPS[0]!, context([])), 'a step with no target always shows')
   const nothing = context([])
@@ -114,24 +114,19 @@ test('the people step says only what is on screen', () => {
   assert.match(say(['invite']), /People in your phone.*press Call/)
   assert.doesNotMatch(say(['invite']), /green count/)
   for (const present of [['online'], ['invite'], ['online', 'invite'], ['call']]) assert.match(say(present), /Messages .*chats and groups/)
-  const community = STEPS.find((step) => step.id === 'community')!
-  assert.deepEqual([community.targets, community.needs], [['community'], ['community']])
-  assert.match(wordsOf(community, context(['community']), false).text, /chat of the place you are in.*voice circle/)
 })
 
 const order = (present: string[]): string[] => playlist(STEPS, context(present)).map((step) => step.id)
 test('the steps come in one order, and a guest in a venue, a player at home and a bare build each get their own list', () => {
-  assert.deepEqual(STEPS.map((step) => step.id), ['welcome', 'needs', 'hud', 'signup', 'place', 'move', 'map', 'travel', 'phone', 'work', 'people', 'community', 'done'])
+  assert.deepEqual(STEPS.map((step) => step.id), ['welcome', 'needs', 'hud', 'signup', 'place', 'move', 'map', 'travel', 'phone', 'people', 'done'])
   assert.deepEqual(order([...ALL, 'signup', 'online', 'invite']), STEPS.map((step) => step.id), 'a guest in a venue sees all of it')
-  assert.deepEqual(order([...ALL.filter((id) => id !== 'community'), 'online']), ['welcome', 'needs', 'hud', 'place', 'move', 'map', 'travel', 'phone', 'work', 'people', 'done'], 'signed in, at home')
-  assert.deepEqual(order([]), ['welcome', 'needs', 'hud', 'place', 'move', 'map', 'travel', 'phone', 'work', 'done'])
-  // The travel and work steps point at the Map and Phone buttons, which every layout has, or at what the step before opened.
-  const travel = STEPS.find((step) => step.id === 'travel')!, work = STEPS.find((step) => step.id === 'work')!
+  assert.deepEqual(order([...ALL.filter((id) => id !== 'community'), 'online']), ['welcome', 'needs', 'hud', 'place', 'move', 'map', 'travel', 'phone', 'people', 'done'], 'signed in, at home')
+  assert.deepEqual(order([]), ['welcome', 'needs', 'hud', 'place', 'move', 'map', 'travel', 'phone', 'done'])
+  // The travel step points at the Map button, which every layout has, or at what the step before opened.
+  const travel = STEPS.find((step) => step.id === 'travel')!
   assert.deepEqual([travel.targets, travel.needs, travel.keeps], [['map-world', 'nav-map'], undefined, 'map'])
-  assert.deepEqual([work.targets, work.needs, work.keeps, work.allows], [['phone-dock', 'nav-phone'], undefined, 'phone', 'phone'])
-  assert.ok(showable(travel, context(['nav-map'])) && showable(work, context(['nav-phone'])))
+  assert.ok(showable(travel, context(['nav-map'])))
   assert.ok(!showable(travel, context([])), 'with neither on screen the step is passed over')
-  assert.match(wordsOf(work, context([]), false).text, /Jobs.*Career.*stall in Business.*Bank.*Invest.*Billboards/)
 })
 
 test('what a step opened is closed when the tour moves on, unless the next step carries on with it', () => {
@@ -140,10 +135,9 @@ test('what a step opened is closed when the tour moves on, unless the next step 
   assert.equal(closes(by('travel'), by('phone')), 'map')
   assert.equal(closes(by('travel'), by('map')), null, 'going back')
   assert.equal(closes(by('map'), by('move')), 'map')
-  assert.equal(closes(by('phone'), by('work')), null)
-  assert.equal(closes(by('work'), by('people')), 'phone')
-  assert.equal(closes(by('work'), by('phone')), null)
-  assert.equal(closes(by('work'), null), 'phone', 'the tour ends: nothing is left open')
+  assert.equal(closes(by('phone'), by('people')), 'phone')
+  assert.equal(closes(by('people'), by('phone')), null)
+  assert.equal(closes(by('phone'), null), 'phone', 'the tour ends: nothing is left open')
   assert.equal(closes(by('travel'), null), 'map')
   assert.equal(closes(by('needs'), by('hud')), null)
 })
@@ -193,14 +187,14 @@ test('every card is short: the new ones are two sentences, and none runs past a 
     assert.ok(words.text.length <= 260, `${step.id}: ${words.text.length} characters`)
     assert.ok(words.title.length <= 28 && (words.task ?? '').length <= 40)
     assert.equal(words.text, words.text.trim()); assert.doesNotMatch(words.text, / {2}|undefined|\bnull\b/)
-    if (['travel', 'work', 'people', 'community'].includes(step.id)) assert.equal(words.text.match(/[.!?](?=\s|$)/g)?.length, 2, `${step.id}: ${words.text}`)
+    if (['travel', 'people'].includes(step.id)) assert.equal(words.text.match(/[.!?](?=\s|$)/g)?.length, 2, `${step.id}: ${words.text}`)
   }
 })
 
 test('the activity step speaks of the home when the player lands there; interactive steps change their words when done', () => {
   const place = STEPS.find((step) => step.id === 'place')!
-  assert.match(wordsOf(place, context([], { home: true }), false).text, /Your home has spots/)
-  assert.match(wordsOf(place, context([]), false).text, /Every place has spots/)
+  assert.match(wordsOf(place, context([], { home: true }), false).text, /Pick a spot at home/)
+  assert.match(wordsOf(place, context([]), false).text, /Pick a spot to stand at/)
   assert.ok(wordsOf(place, context([]), false).task)
   assert.equal(wordsOf(place, context([]), true).task, null)
   const map = STEPS.find((step) => step.id === 'map')!
@@ -247,8 +241,8 @@ test('the tour is due once, after landing, and never over anything', () => {
 
 test('the tour keeps the attention ring, the coach line and the settle-in offer quiet, and they resume', () => {
   const attention = here('../hud/useAttention.ts'), chip = here('../life/GoalChip.vue')
-  assert.match(attention, /if \(tour\.active \|\| off\.value\) \{[^}]*attention\?\.clear\(\)[^}]*return/, 'no ring or bubble while the tour is up')
-  assert.match(attention, /\(\) => tour\.active\]/, 'they are drawn again when it ends')
+  assert.match(attention, /if \(tour\.active \|\| tour\.pending \|\| settleWanted\([^)]*\)[^)]*\|\| off\.value\) \{[^}]*attention\?\.clear\(\)[^}]*return/, 'no ring or bubble while the tour is up, or the settle-in offer is')
+  assert.match(attention, /\(\) => tour\.active, \(\) => tour\.pending, \(\) => tour\.settleAway/, 'they are drawn again when it ends')
   assert.match(attention, /if \(tour\.active\) \{ lastCash/, 'the money pill waits too')
   assert.match(chip, /!now\.connected \|\| tour\.active/); assert.match(chip, /!tour\.active\n?/)
   assert.match(chip, /watch\(\(\) => tour\.active, \(on\) => \{ if \(!on\) bookkeeping\(\) \}/, 'the offer is looked at again after the tour')
@@ -275,7 +269,7 @@ test('every key the shortcuts sheet lists has a handler, and the gestures are on
   for (const cap of ['W', 'A', 'S', 'D', 'M', 'P', 'I', 'H', '?', 'Esc', 'Shift']) assert.ok(caps.includes(cap), cap)
 })
 
-test('the sign-up step lights the Sign up button only when it is on screen, and the tour stays at thirteen steps or fewer', () => {
+test('the sign-up step lights the Sign up button only when it is on screen, and the tour stays at eleven steps or fewer', () => {
   assert.ok(STEPS.length <= 13)
   const signup = STEPS.find((step) => step.id === 'signup')!
   assert.equal(signup.title, 'Save your progress')

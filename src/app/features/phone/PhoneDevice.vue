@@ -230,6 +230,7 @@ defineExpose({
               <AppArtwork class="ph-bar-icon" :app="app.id" />
               <h2>{{ app.title }}</h2>
               <button class="ph-wide" type="button" :aria-pressed="wide" :aria-label="wide ? 'Make the phone narrower' : 'Make the phone wider'" :title="wide ? 'Narrower' : 'Wider'" @click="wide = !wide"><GameIcon bare :name="wide ? 'shrink' : 'expand'" /></button>
+              <button class="ph-appclose" type="button" aria-label="Close the phone" @click="shell.close()"><GameIcon bare name="close" /></button>
             </template>
           </header>
           <div ref="appBody" class="ph-appbody sheet-body">

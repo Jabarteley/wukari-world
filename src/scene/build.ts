@@ -26,11 +26,26 @@
  */
 
 import type * as THREE from 'three';
-import type { Batch, BatchLayer, BatchOptions, BatchResult, Colour, LightSpec, SceneMaterials, ThreeModule } from './types.ts';
+import type { Batch, BatchGeometry, BatchLayer, BatchOptions, BatchResult, Colour, LightSpec, SceneMaterials, ThreeModule } from './types.ts';
 import type { Kit } from './kit.ts';
+import { bakeVertexAO, createOccluders, type AoPrim } from './ao-bake.ts';
+import { aoStrength, bakedAO, renderTier } from './look.ts';
 
-interface Template { pos: Float32Array; nor: Float32Array; idx: number[] }
-interface LayerData { pos: number[]; nor: number[]; col: number[]; idx: number[] }
+interface Template extends BatchGeometry { pos: Float32Array; nor: Float32Array; idx: number[]; lo: number[]; hi: number[]; shrink: number }
+interface LayerData { pos: number[]; nor: number[]; col: number[]; idx: number[]; prims: AoPrim[] }
+/** Local bounds of any batch geometry: templates carry theirs; geometry passed to batch.geometry() is measured once and remembered. */
+const measured = new WeakMap<BatchGeometry, { lo: number[]; hi: number[]; shrink: number }>();
+function boundsOf(shape: BatchGeometry): { lo: number[]; hi: number[]; shrink: number } {
+  if ('lo' in shape && 'hi' in shape) return shape as Template;
+  let found = measured.get(shape);
+  if (!found) {
+    const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+    for (let i = 0; i < shape.pos.length; i++) { lo[i % 3] = Math.min(lo[i % 3]!, shape.pos[i]!); hi[i % 3] = Math.max(hi[i % 3]!, shape.pos[i]!); }
+    found = { lo, hi, shrink: 0.14 };
+    measured.set(shape, found);
+  }
+  return found;
+}
 const templates = new Map<string, Template>();
 function template(key: string, make: () => THREE.BufferGeometry): Template {
   let entry = templates.get(key);
@@ -40,7 +55,9 @@ function template(key: string, make: () => THREE.BufferGeometry): Template {
     const nor = Float32Array.from(geometry.attributes.normal!.array);
     const idx = geometry.index ? Array.from(geometry.index.array) : Array.from({ length: pos.length / 3 }, (_, i) => i);
     geometry.dispose();
-    entry = { pos, nor, idx };
+    const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+    for (let i = 0; i < pos.length; i++) { lo[i % 3] = Math.min(lo[i % 3]!, pos[i]!); hi[i % 3] = Math.max(hi[i % 3]!, pos[i]!); }
+    entry = { pos, nor, idx, lo, hi, shrink: key === 'box' || key === 'quad' ? 0 : 0.14 };
     templates.set(key, entry);
   }
   return entry;
@@ -50,7 +67,9 @@ export const GLOW: Readonly<{ layer: 'glow' }> = Object.freeze({ layer: 'glow' a
 export const GLASS: Readonly<{ layer: 'glass' }> = Object.freeze({ layer: 'glass' as const });
 
 export function createBatch(THREE: ThreeModule): Batch {
-  const layer = (): LayerData => ({ pos: [], nor: [], col: [], idx: [] });
+  const layer = (): LayerData => ({ pos: [], nor: [], col: [], idx: [], prims: [] });
+  const ao = bakedAO();
+  let primId = 0;
   const layers: Record<string, LayerData> = { solid: layer(), glow: layer(), glass: layer() };
   const BASE: string[] = ['solid', 'glow', 'glass'];
   /** The vertex store for a layer, or for one named part of it (made the first time the part is drawn). */
@@ -70,28 +89,42 @@ export function createBatch(THREE: ThreeModule): Batch {
     }
     return value;
   }
-  function add(shape: Template, x: number, y: number, z: number, sx: number, sy: number, sz: number, colour: Colour, o?: BatchOptions) {
+  function add(shape: BatchGeometry, x: number, y: number, z: number, sx: number, sy: number, sz: number, colour: Colour, o?: BatchOptions) {
     e.set(o?.rx || 0, o?.ry || 0, o?.rz || 0, 'YXZ');
     m.compose(p.set(x, y, z), q.setFromEuler(e), s.set(sx, sy, sz)).premultiply(stack[stack.length - 1]!);
     n3.getNormalMatrix(m);
     const target = store(Object.hasOwn(layers, o?.layer as string) && BASE.includes(o?.layer as string) ? o!.layer! : 'solid', o?.part);
     const base = target.pos.length / 3;
     const [r, g, bl] = rgb(colour);
-    const { pos, nor, idx } = shape;
+    const { pos, nor, idx, col } = shape;
     for (let i = 0; i < pos.length; i += 3) {
       v.set(pos[i]!, pos[i + 1]!, pos[i + 2]!).applyMatrix4(m);
       target.pos.push(v.x, v.y, v.z);
       v.set(nor[i]!, nor[i + 1]!, nor[i + 2]!).applyMatrix3(n3).normalize();
       target.nor.push(v.x, v.y, v.z);
-      target.col.push(r, g, bl);
+      target.col.push(r * (col?.[i] ?? 1), g * (col?.[i + 1] ?? 1), bl * (col?.[i + 2] ?? 1));
     }
     for (let i = 0; i < idx.length; i++) target.idx.push(base + idx[i]!);
+    if (ao) {
+      // The primitive's world box (shrunk for round shapes), for the occlusion probes at build().
+      const min: [number, number, number] = [Infinity, Infinity, Infinity], max: [number, number, number] = [-Infinity, -Infinity, -Infinity];
+      const box = boundsOf(shape);
+      for (let c = 0; c < 8; c++) {
+        v.set(c & 1 ? box.hi[0]! : box.lo[0]!, c & 2 ? box.hi[1]! : box.lo[1]!, c & 4 ? box.hi[2]! : box.lo[2]!).applyMatrix4(m);
+        min[0] = Math.min(min[0], v.x); min[1] = Math.min(min[1], v.y); min[2] = Math.min(min[2], v.z);
+        max[0] = Math.max(max[0], v.x); max[1] = Math.max(max[1], v.y); max[2] = Math.max(max[2], v.z);
+      }
+      for (let a = 0; a < 3; a++) { const grow = (max[a]! - min[a]!) * box.shrink / 2; min[a]! += grow; max[a]! -= grow; }
+      target.prims.push({ id: primId++, start: base, count: pos.length / 3, min, max });
+    }
   }
   const boxShape = () => template('box', () => new THREE.BoxGeometry(1, 1, 1));
   const cylShape = (top: number, seg: number, open: boolean) => template(`cyl:${top}:${seg}:${open}`, () => new THREE.CylinderGeometry(top, 1, 1, seg, 1, open));
 
   const batch: Batch = {
     isBatch: true,
+    /** Add prepared indexed geometry at the current origin, sharing this batch's colour and material path. */
+    geometry(shape, colour, o) { add(shape, 0, 0, 0, 1, 1, 1, colour, o); return batch; },
     /** box(x, y, z, width, height, depth, colour, options?) — centred on x, y, z */
     box(x, y, z, w, h, d, colour, o) { add(boxShape(), x, y, z, w, h, d, colour, o); return batch; },
     /** cyl(x, y, z, radius, height, colour, { top = 1 (top radius ÷ bottom radius), seg = 8, open, sx, sz }) — upright, centred */
@@ -139,6 +172,12 @@ export function createBatch(THREE: ThreeModule): Batch {
       const meshes: THREE.Mesh[] = [];
       let triangles = 0;
       // The three shared layers first, then each part's own meshes.
+      if (ao) {
+        const solids = Object.keys(layers).filter((key) => key === 'solid' || key.startsWith('solid@'));
+        const occluders = createOccluders(solids.flatMap((key) => layers[key]!.prims));
+        let budget = 30000; const strength = aoStrength();
+        for (const key of solids) { const d = layers[key]!; budget -= bakeVertexAO(d.pos, d.nor, d.col, d.prims, occluders, { probeBudget: budget, strength }); }
+      }
       const keys = [...BASE, ...Object.keys(layers).filter((key) => !BASE.includes(key)).sort()];
       for (const key of keys) {
         const data = layers[key]!;
@@ -180,10 +219,12 @@ export function kitResources(kit: Kit): KitResources {
   let entry = resources.get(kit);
   if (!entry) {
     const { THREE } = kit;
+    // High tier: slightly lower roughness so the generated environment map shows as a soft sheen; glass clearer.
+    const high = renderTier().name === 'high';
     const materials: SceneMaterials = {
-      solid: kit.matte ? new THREE.MeshLambertMaterial({ vertexColors: true }) : new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.9, metalness: 0 }),
+      solid: kit.matte ? new THREE.MeshLambertMaterial({ vertexColors: true }) : new THREE.MeshStandardMaterial({ vertexColors: true, roughness: high ? 0.8 : 0.9, metalness: 0 }),
       glow: new THREE.MeshBasicMaterial({ vertexColors: true }),
-      glass: new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.25, metalness: 0, transparent: true, opacity: 0.62, depthWrite: false }),
+      glass: new THREE.MeshStandardMaterial({ vertexColors: true, roughness: high ? 0.12 : 0.25, metalness: 0, transparent: true, opacity: 0.62, depthWrite: false }),
     };
     const disposers = new Set<() => void>();
     entry = { materials, disposers };

@@ -136,6 +136,12 @@ function visit(): void {
       <GuestsStrip :house="me.visiting" />
     </template>
 
+    <h3 class="ui-section">Play together</h3>
+    <div class="ui-card" data-testid="invite-games">
+      <p>Fight, race or play football with friends, live. Make a game, send the link, and anyone can join or watch.</p>
+      <button type="button" class="ui-button is-block" @click="shell.open('games')">Play with friends</button>
+    </div>
+
     <h3 class="ui-section">Visit a house</h3>
     <form class="social-form is-search" @submit.prevent="visit">
       <input v-model="inviteUi.paste" name="link" maxlength="200" placeholder="Paste a house link" aria-label="House link" autocomplete="off"><button type="submit" class="social-btn">Find</button>

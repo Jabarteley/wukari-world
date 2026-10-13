@@ -65,7 +65,7 @@ export interface Houses {
 type Batch = ReturnType<typeof createBatch>;
 interface Layer { mesh: THREE.InstancedMesh; capacity: number; geometryName: string }
 /** An instance of a box-shaped part (walls, roofs, fences, ...): its middle, width and height. */
-interface Part { x: number; z: number; w: number; h: number; colour: string; pitch?: number }
+interface Part { x: number; z: number; w: number; h: number; colour: string; pitch?: number; /** Paint variation, -1..1: no two walls or roofs are quite the same shade. */ j?: number }
 interface Plot { x: number; z: number; s: number; colour: string }
 interface Dot { x: number; y: number; z: number; w: number; colour: string }
 interface FarBlock { x: number; z: number; w: number; d: number; fill: number; colour: string; front?: boolean }
@@ -81,6 +81,8 @@ export const BINS = 4;
 // one full estate of 196 houses, or several that are filling up.
 export const DETAIL_BUDGET = HOUSES_DETAIL_TRIANGLES.value;
 export const PAD_DISTANCE = 150;
+/** Houses get frames, bars, awnings, a plinth and a gate (a few more triangles each) when a plot is at least this many CSS pixels wide and the estates in view still fit DETAIL_BUDGET. */
+export const RICH_PIXELS = 16;
 const MAX_DETAILED = HOUSES_MAX_DETAILED.value;
 const SHAPES = HOUSE_STYLE.shape.map((shape) => shape.id);
 /** How big a house is on its plot, by tier rank: the starter is small, a villa fills the plot. */
@@ -97,16 +99,61 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
   const dummy = new THREE.Object3D(), tint = new THREE.Color(), tintB = new THREE.Color();
   const unit = (draw: (batch: Batch) => void) => { const batch = createBatch(THREE); draw(batch); return batch.build({ solid: lit, glow: lit, glass: lit }).meshes[0]!.geometry; };
   // One unit house: 1 wide, 1 deep, walls 1 high; the roof sits on top. Everything is white and takes its colour per instance.
+  // Vertex colours are grey tones that multiply that colour: a darker plinth, shaded eaves, dark window bars cost nothing to draw.
+  const shade = (geometry: THREE.BufferGeometry, tone: (y: number, ny: number) => number) => {
+    const { position, normal, color } = geometry.attributes as Record<string, THREE.BufferAttribute>;
+    for (let i = 0; i < position!.count; i++) { const t = tone(position!.getY(i), normal!.getY(i)); color!.setXYZ(i, t, t, t); }
+    return geometry;
+  };
+  /** A mesh from flat faces: each is its corner points, its normal and its grey tone. */
+  const faces = (list: readonly (readonly [number[][], number[], number])[]) => {
+    const pos: number[] = [], nor: number[] = [], col: number[] = [], idx: number[] = [];
+    for (const [points, normal, tone] of list) {
+      const base = pos.length / 3;
+      for (const point of points) { pos.push(...point); nor.push(...normal); col.push(tone, tone, tone); }
+      for (let i = 1; i < points.length - 1; i++) idx.push(base, base + i, base + i + 1);
+    }
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(pos), 3));
+    geometry.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(nor), 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(col), 3));
+    geometry.setIndex(idx);
+    return geometry;
+  };
+  /** A flat panel on the front wall (facing +z) from x0..x1, y0..y1 at depth z. */
+  const panel = (x0: number, x1: number, y0: number, y1: number, z: number, tone: number): [number[][], number[], number] => [[[x0, y0, z], [x1, y0, z], [x1, y1, z], [x0, y1, z]], [0, 0, 1], tone];
+  const roofShade = (kind: 'gable' | 'pyramid') => shade(leanGeometry(THREE, kind), (y) => 0.78 + 0.22 * Math.min(1, y / 0.5));
+  /** The walls of the CLOSE detail tier: a dark plinth band, then the paint (16 triangles; no top, the roof covers it). */
+  const richWalls = () => {
+    const list: (readonly [number[][], number[], number])[] = [];
+    for (const [nx, nz] of [[0, 1], [0, -1], [1, 0], [-1, 0]] as const) {
+      // Along the wall, left to right as seen from outside.
+      const point = (u: number, y: number) => [nx ? nx * 0.5 : (nz > 0 ? u : -u), y, nz ? nz * 0.5 : (nx > 0 ? -u : u)];
+      for (const [y0, y1, t0, t1] of [[0, 0.1, 0.62, 0.62], [0.1, 1, 0.9, 1]] as const) {
+        const quad = [point(-0.5, y0), point(0.5, y0), point(0.5, y1), point(-0.5, y1)];
+        list.push([quad, [nx, 0, nz], (t0 + t1) / 2]);
+      }
+    }
+    return faces(list);
+  };
   const geometries: Record<string, THREE.BufferGeometry> = {
-    walls: leanGeometry(THREE, 'box'),
+    walls: shade(leanGeometry(THREE, 'box'), (y, ny) => ny > 0.5 ? 1 : 0.8 + 0.2 * y),
+    'walls+': richWalls(),
     door: unit((u) => u.quad(0, 0.3, 0.506, 0.24, 0.6, '#ffffff')),
+    // A frame round the door and an awning over it (a sloped sheet and its front edge).
+    'door+': faces([panel(-0.14, 0.14, 0, 0.64, 0.505, 0.5), panel(-0.12, 0.12, 0, 0.6, 0.506, 1), [[[-0.17, 0.65, 0.6], [0.17, 0.65, 0.6], [0.17, 0.7, 0.51], [-0.17, 0.7, 0.51]], [0, 0.88, 0.47], 1], panel(-0.17, 0.17, 0.62, 0.65, 0.6, 0.72)]),
     glass: unit((u) => { u.quad(-0.3, 0.58, 0.506, 0.2, 0.26, '#ffffff'); u.quad(0.3, 0.58, 0.506, 0.2, 0.26, '#ffffff'); }),
+    // Each window: a dark frame, the glass, two burglar-proof bars across it.
+    'glass+': faces([-0.3, 0.3].flatMap((x) => [panel(x - 0.125, x + 0.125, 0.44, 0.73, 0.505, 0.38), panel(x - 0.1, x + 0.1, 0.45, 0.71, 0.506, 1), panel(x - 0.04, x - 0.025, 0.45, 0.71, 0.507, 0.3), panel(x + 0.025, x + 0.04, 0.45, 0.71, 0.507, 0.3)])),
     // Roofs: a ridge (a three-sided prism lying along the house), a pyramid, a slab, two small pyramids. Twelve triangles or so each.
-    gable: leanGeometry(THREE, 'gable'),
-    hip: leanGeometry(THREE, 'pyramid'),
+    gable: roofShade('gable'),
+    hip: roofShade('pyramid'),
     flat: unit((u) => u.box(0, 0.06, 0, 1.1, 0.12, 1.1, '#ffffff')),
-    twin: (() => { const a = leanGeometry(THREE, 'gable'); a.scale(0.5, 0.9, 1); const left = a.clone().translate(-0.28, 0, 0), right = a.translate(0.28, 0, 0); const merged = new THREE.BufferGeometry(); for (const name of ['position', 'normal', 'color']) merged.setAttribute(name, new THREE.BufferAttribute(Float32Array.from([...left.attributes[name]!.array, ...right.attributes[name]!.array]), 3)); const n = left.attributes.position!.count; merged.setIndex([...left.index!.array, ...Array.from(right.index!.array, (i) => i + n)]); left.dispose(); right.dispose(); return merged; })(),
+    twin: (() => { const a = roofShade('gable'); a.scale(0.5, 0.9, 1); const left = a.clone().translate(-0.28, 0, 0), right = a.translate(0.28, 0, 0); const merged = new THREE.BufferGeometry(); for (const name of ['position', 'normal', 'color']) merged.setAttribute(name, new THREE.BufferAttribute(Float32Array.from([...left.attributes[name]!.array, ...right.attributes[name]!.array]), 3)); const n = left.attributes.position!.count; merged.setIndex([...left.index!.array, ...Array.from(right.index!.array, (i) => i + n)]); left.dispose(); right.dispose(); return merged; })(),
     fence: unit((u) => { for (const [x, z, ry] of [[0, 0.5, 0], [0, -0.5, Math.PI], [0.5, 0, Math.PI / 2], [-0.5, 0, -Math.PI / 2]] as [number, number, number][]) u.quad(x, 0.11, z, 1, 0.22, '#ffffff', { ry }); }),
+    // The same wall with a gate in the front: two leaves of dark steel between the piers.
+    'fence+': faces([panel(-0.5, -0.1, 0, 0.24, 0.5, 1), panel(0.1, 0.5, 0, 0.24, 0.5, 1), panel(-0.1, 0.1, 0, 0.3, 0.5, 0.36),
+      [[[0.5, 0, -0.5], [-0.5, 0, -0.5], [-0.5, 0.24, -0.5], [0.5, 0.24, -0.5]], [0, 0, -1], 0.95], [[[0.5, 0, 0.5], [0.5, 0, -0.5], [0.5, 0.24, -0.5], [0.5, 0.24, 0.5]], [1, 0, 0], 0.88], [[[-0.5, 0, -0.5], [-0.5, 0, 0.5], [-0.5, 0.24, 0.5], [-0.5, 0.24, -0.5]], [-1, 0, 0], 0.88]]),
     green: unit((u) => u.cone(0, 0.42, 0, 0.3, 0.84, '#ffffff', { seg: 4 })),
     box: unit((u) => u.box(0, 0.2, 0, 0.3, 0.4, 0.3, '#ffffff')),
     // The "online" light: a small flat diamond over the roof (two triangles, unlit green).
@@ -185,7 +232,7 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
   // ---- CLOSE: the estates in view as houses ----------------------------------------------------------
   let detailKey = '', detailTriangles = 0, drawn: EstateRef[] = [];
   const hex = (field: string, index: number) => STYLE_OPTIONS[field]![index]?.hex ?? '#ffffff';
-  function buildDetail(list: readonly DetailEstate[], serverNow: number, own: OwnPlot | null) {
+  function buildDetail(list: readonly DetailEstate[], serverNow: number, own: OwnPlot | null, rich: boolean) {
     const plots: Plot[] = [], walls: Part[] = [], doors: Part[] = [], glass: Part[] = [], roofs: Record<string, Part[]> = Object.fromEntries(SHAPES.map((shape): [string, Part[]] => [shape, []])), fences: Part[] = [], greens: Part[] = [], boxes: Part[] = [], dots: Dot[] = [], scaffolds: Part[] = [];
     for (const { lga, estate, houses } of list) {
       const layout = estateLayout(pack, lga)!, pitch = layout.pitch(estate);
@@ -196,8 +243,10 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
         if (!house) continue;
         const { tier, style } = unpackStyle(house.s) as { tier: keyof typeof HOUSE_TIERS; style: HouseStyleIndexes }, rank = HOUSE_TIERS[tier].rank, w = pitch * 0.9 * TIER_SCALE[rank]! * 0.72, h = pitch * 0.9 * TIER_HEIGHT[rank]! * 0.7;
         const item = { x: at.x, z: at.z - pitch * 0.06, w, h, pitch };
-        walls.push({ ...item, colour: hex('wall', style.wall) }); doors.push({ ...item, colour: hex('door', style.door) }); glass.push({ ...item, colour: hex('windows', style.windows) });
-        roofs[SHAPES[style.shape]!]!.push({ ...item, colour: hex('roof', style.roof) });
+        // Two coats of paint are never the same: a small, fixed shade difference per plot.
+        const seed = Math.imul(plot + 1, 2654435761) ^ Math.imul(estate + 7, 40503) ^ Math.imul(lga.length, 97), wallJ = ((seed >>> 3) % 1000) / 500 - 1, roofJ = ((seed >>> 13) % 1000) / 500 - 1;
+        walls.push({ ...item, colour: hex('wall', style.wall), j: wallJ }); doors.push({ ...item, colour: hex('door', style.door) }); glass.push({ ...item, colour: hex('windows', style.windows) });
+        roofs[SHAPES[style.shape]!]!.push({ ...item, colour: hex('roof', style.roof), j: roofJ });
         if (style.fence) fences.push({ x: at.x, z: at.z, w: pitch * 0.84, h: pitch * 0.7, colour: hex('fence', style.fence) });
         const yard = YARD[HOUSE_STYLE.yard[style.yard]!.id];
         if (yard) (yard[0] === 'green' ? greens : boxes).push({ x: at.x + pitch * 0.3, z: at.z + pitch * 0.3, w: pitch * 0.5 * yard[2], h: pitch * 0.5 * yard[2], colour: yard[1] });
@@ -205,11 +254,16 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
         if (house.u > serverNow) scaffolds.push({ ...item, colour: '#c9a35a' });
       }
     }
-    const stand = (item: Part, o: THREE.Object3D, colour: THREE.Color) => { o.position.set(item.x, 0.03, item.z); o.rotation.set(0, 0, 0); o.scale.set(item.w, item.h, item.w); colour.set(item.colour); };
+    const stand = (item: Part, o: THREE.Object3D, colour: THREE.Color) => { o.position.set(item.x, 0.03, item.z); o.rotation.set(0, 0, 0); o.scale.set(item.w, item.h, item.w); colour.set(item.colour); if (item.j) colour.offsetHSL(0, 0, item.j * 0.035); };
+    // A part with a richer form for the CLOSE tier: the same layer, drawn with the geometry named `+`; the other is emptied.
+    const part = (name: string, geometryName: string, material: THREE.Material, items: readonly Part[]) => {
+      fill(rich ? name : `${name}+`, rich ? geometryName : `${geometryName}+`, material, [], null);
+      return fill(rich ? `${name}+` : name, rich ? `${geometryName}+` : geometryName, material, items, stand);
+    };
     let total = fill('plots', 'pad', flat, plots, (item, o, colour) => { o.position.set(item.x, 0.028, item.z); o.rotation.set(0, 0, 0); o.scale.set(item.s, 1, item.s); colour.set(item.colour); });
-    total += fill('walls', 'walls', lit, walls, stand) + fill('doors', 'door', flat, doors, stand) + fill('glass', 'glass', flat, glass, stand);
-    for (const shape of SHAPES) total += fill(`roof-${shape}`, shape, lit, roofs[shape]!, (item, o, colour) => { o.position.set(item.x, 0.03 + item.h, item.z); o.rotation.set(0, 0, 0); o.scale.set(item.w, item.w, item.w); colour.set(item.colour); });
-    total += fill('fences', 'fence', lit, fences, stand) + fill('greens', 'green', lit, greens, stand) + fill('boxes', 'box', lit, boxes, stand);
+    total += part('walls', 'walls', lit, walls) + part('doors', 'door', flat, doors) + part('glass', 'glass', flat, glass);
+    for (const shape of SHAPES) total += fill(`roof-${shape}`, shape, lit, roofs[shape]!, (item, o, colour) => { o.position.set(item.x, 0.03 + item.h, item.z); o.rotation.set(0, 0, 0); o.scale.set(item.w, item.w, item.w); colour.set(item.colour); if (item.j) colour.offsetHSL(0, 0, item.j * 0.035); });
+    total += part('fences', 'fence', lit, fences) + fill('greens', 'green', lit, greens, stand) + fill('boxes', 'box', lit, boxes, stand);
     total += fill('dots', 'dot', flat, dots, (item, o, colour) => { o.position.set(item.x, item.y, item.z); o.rotation.set(0, 0, 0); o.scale.set(item.w, item.w, item.w); colour.set(item.colour); });
     total += fill('scaffold', 'scaffold', lit, scaffolds, (item, o, colour) => { o.position.set(item.x, 0.03, item.z); o.rotation.set(0, 0, 0); o.scale.set(item.w, Math.max(item.h, item.w) * 0.8, item.w); colour.set(item.colour); });
     detailTriangles = total;
@@ -217,7 +271,9 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
   }
   /** Triangles a list of estates would cost as houses (worst case per house: every part). */
   const PER_HOUSE = trianglesOf('walls') + trianglesOf('door') + trianglesOf('glass') + trianglesOf('gable') + trianglesOf('fence') + trianglesOf('green') + trianglesOf('dot');
-  const costOf = (houses: number) => PLOTS_PER_ESTATE * trianglesOf('pad') + houses * PER_HOUSE;
+  /** What the richer geometry adds to a house (the walls, door, windows and fence in their `+` forms). */
+  const RICH_EXTRA = ['walls', 'door', 'glass', 'fence'].reduce((sum, name) => sum + trianglesOf(`${name}+`) - trianglesOf(name), 0);
+  const costOf = (houses: number, rich = false) => PLOTS_PER_ESTATE * trianglesOf('pad') + houses * (PER_HOUSE + (rich ? RICH_EXTRA : 0));
 
   let level: HouseLevel = 'far';
   const api: Houses = {
@@ -236,7 +292,7 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
       if (!visible || !pack.lgas?.length) return [];
       const focus = view.distance < PAD_DISTANCE ? lgaAt(pack, view.x, view.z) : null;
       const wanted: EstateRef[] = [];
-      let detail: DetailEstate[] = [];
+      let detail: DetailEstate[] = [], richCost = 0;
       if (focus) {
         // The estates whose houses would be big enough to tell apart, nearest the middle of the view first.
         const layout = estateLayout(pack, focus)!, occ = summary?.get(focus)?.occ;
@@ -250,12 +306,14 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
         for (const item of near.slice(0, MAX_DETAILED)) {
           const cost = costOf(item.houses);
           if (cost > budget) break;
-          budget -= cost;
+          budget -= cost; richCost += costOf(item.houses, true);
           wanted.push({ lga: focus, estate: item.estate });
           const loaded = data?.estate(focus, item.estate);
           if (loaded) detail.push({ lga: focus, estate: item.estate, houses: loaded.houses, at: loaded.at });
         }
       }
+      // Close enough to see windows, and the richer houses fit the same budget: frames, bars, awnings and gates. Otherwise the plain ones.
+      const rich = detail.length > 0 && richCost <= DETAIL_BUDGET && view.pixels * Math.min(...detail.map((item) => estateLayout(pack, item.lga)!.pitch(item.estate))) >= RICH_PIXELS;
       level = detail.length ? 'close' : focus ? 'near' : 'far';
       // FAR is always there for the rest of the city; the local government in focus shows its pads instead.
       const nextFar = `${focus || ''}|${summary ? [...summary.values()].map((item) => item.houses).join(',') : ''}`;
@@ -263,8 +321,8 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
       const skip = new Set(detail.map((item) => item.estate));
       const nextPads = focus ? `${focus}|${[...skip].join(',')}|${summary?.get(focus)?.houses ?? 0}` : '';
       if (nextPads !== padsKey) { padsKey = nextPads; if (focus) buildPads(focus, summary?.get(focus)?.occ, skip); else padTriangles = fill('pads', 'pad', flat, [], null); }
-      const nextDetail = detail.map((item) => `${item.lga}/${item.estate}@${item.at}`).join('|') + `|${own ? `${own.lga}/${own.estate}/${own.plot}` : ''}|${Math.floor(serverNow / 30000)}`;
-      if (nextDetail !== detailKey) { detailKey = nextDetail; buildDetail(detail, serverNow, own); }
+      const nextDetail = detail.map((item) => `${item.lga}/${item.estate}@${item.at}`).join('|') + `|${own ? `${own.lga}/${own.estate}/${own.plot}` : ''}|${Math.floor(serverNow / 30000)}|${rich ? 1 : 0}`;
+      if (nextDetail !== detailKey) { detailKey = nextDetail; buildDetail(detail, serverNow, own, rich); }
       return wanted;
     },
     detailed: () => drawn,

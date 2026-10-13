@@ -116,6 +116,18 @@ class ClothBuilder {
     if (!first || !second) throw new Error(`Unknown wardrobe bones ${a}/${b}`);
     return [[first.index, 1 - ratio], [second.index, ratio]];
   }
+  bilinear(a: string, b: string, c: string, d: string, x: number, y: number): Weights {
+    const first = this.rest.bones.get(a), second = this.rest.bones.get(b), third = this.rest.bones.get(c), fourth = this.rest.bones.get(d);
+    if (!first || !second || !third || !fourth) throw new Error(`Unknown wardrobe bones ${a}/${b}/${c}/${d}`);
+    const across = THREE.MathUtils.clamp(x, 0, 1), down = THREE.MathUtils.clamp(y, 0, 1);
+    return [[first.index, (1 - across) * (1 - down)], [second.index, across * (1 - down)], [third.index, (1 - across) * down], [fourth.index, across * down]];
+  }
+  converge(weights: Weights, bone: string, ratio: number): Weights {
+    const target = this.rest.bones.get(bone);
+    if (!target || !weights.some(([index]) => index === target.index)) throw new Error(`Cannot converge wardrobe weights to ${bone}`);
+    const t = THREE.MathUtils.clamp(ratio, 0, 1);
+    return weights.map(([index, weight]) => [index, weight * (1 - t) + (index === target.index ? t : 0)] as const);
+  }
   bodyWeights(point: THREE.Vector3): Weights {
     const hip = this.anchor('pelvis'), knee = this.anchor('calf_l'), spine = this.anchor('spine_01'), chest = this.anchor('spine_03');
     if (point.y >= hip.y) {
@@ -215,30 +227,102 @@ class ClothBuilder {
 
 function colour(hex: string): THREE.Color { return new THREE.Color(hex); }
 const GOLD = colour('#d5aa45'), SILVER = colour('#c4c9d0'), BLACK = colour('#20252d'), WHITE = colour('#eeeae0');
+interface HeadFit {
+  readonly centre: THREE.Vector3;
+  readonly halfX: number;
+  readonly halfZ: number;
+  readonly height: number;
+  readonly front: number;
+  readonly back: number;
+  readonly hairTop: number;
+}
+function fitHead(b: ClothBuilder): HeadFit {
+  const head = b.rest.bounds.get('Head'), anchor = b.anchor('Head');
+  if (!head) return { centre: anchor.clone().add(new THREE.Vector3(0, 0.1, 0)), halfX: 0.09, halfZ: 0.112, height: 0.23, front: 0.112, back: -0.112, hairTop: anchor.y + 0.22 };
+  const centre = head.getCenter(new THREE.Vector3()), size = head.getSize(new THREE.Vector3());
+  return {
+    centre,
+    halfX: size.x / 2,
+    halfZ: size.z / 2,
+    height: size.y,
+    front: head.max.z,
+    back: head.min.z,
+    hairTop: b.rest.bounds.get('hair')?.max.y ?? head.max.y,
+  };
+}
 function fitTorso(b: ClothBuilder, y: number, padding = 0.018): { rx: number; rz: number; z: number } {
-  const shoulder = Math.abs(b.anchor('upperarm_l').x);
-  const points = b.rest.points.filter(p => Math.abs(p.y - y) < 0.035 && Math.abs(p.x) < shoulder + 0.012);
+  const shoulder = b.anchor('upperarm_l'), excludeArms = y >= shoulder.y - 0.12;
+  const points = b.rest.points.filter(p => Math.abs(p.y - y) < 0.035 && (!excludeArms || Math.abs(p.x) < Math.abs(shoulder.x) + 0.012));
   const box = new THREE.Box3().setFromPoints(points);
-  if (box.isEmpty()) return { rx: shoulder + padding, rz: 0.14 + padding, z: 0 };
+  if (box.isEmpty()) return { rx: Math.abs(shoulder.x) + padding, rz: 0.14 + padding, z: 0 };
   return { rx: Math.max(Math.abs(box.min.x), Math.abs(box.max.x)) + padding, rz: (box.max.z - box.min.z) / 2 + padding, z: (box.max.z + box.min.z) / 2 };
 }
+function fitNeck(b: ClothBuilder, padding = 0.009): { rx: number; rz: number; z: number } {
+  const box = b.rest.bounds.get('neck_01'), anchor = b.anchor('neck_01');
+  if (!box) return { rx: 0.068 + padding, rz: 0.058 + padding, z: anchor.z };
+  const size = box.getSize(new THREE.Vector3());
+  // The male neck bone also dominates part of the trapezius, so its complete bounds are much broader
+  // and deeper than the upper neck that should pass through a shirt opening. Cap those two dimensions
+  // at the measured upper-neck section; the female bounds already sit inside both limits.
+  return { rx: Math.min(size.x / 2, 0.072) + padding, rz: Math.min(size.z / 2, 0.055) + padding, z: anchor.z };
+}
+function longGarmentWeights(b: ClothBuilder, point: THREE.Vector3, hip: THREE.Vector3, knee: THREE.Vector3): Weights {
+  const transitionY = hip.y - 0.19, across = THREE.MathUtils.clamp(0.5 + (point.x - hip.x) / 0.4, 0, 1);
+  if (point.y >= transitionY) return b.blend('thigh_r', 'thigh_l', across);
+  if (point.y <= knee.y) return b.blend('calf_r', 'calf_l', across);
+  return b.bilinear('thigh_r', 'thigh_l', 'calf_r', 'calf_l', across, (transitionY - point.y) / (transitionY - knee.y));
+}
 function torso(b: ClothBuilder, fabric: THREE.Color, hem: number, bulk = 0.018): void {
-  const hip = b.anchor('pelvis'), neck = b.anchor('neck_01'), shoulder = b.anchor('upperarm_l');
-  const headBox = b.rest.bounds.get('Head');
-  const neckRadius = Math.min(0.058, (headBox ? headBox.max.x - headBox.min.x : 0.18) * 0.29);
+  const hip = b.anchor('pelvis'), knee = b.anchor('calf_l'), neck = b.anchor('neck_01'), shoulder = b.anchor('upperarm_l');
+  const neckFit = fitNeck(b), neckBounds = b.rest.bounds.get('neck_01');
+  const broadShoulders = (neckBounds?.getSize(new THREE.Vector3()).x ?? 0) > 0.16;
+  // The male trapezius rises above the neck joint. A ring at the joint cuts through that surface.
+  // Carry the shoulder seam over its top before narrowing to the exposed upper neck.
+  const shoulderTopY = shoulder.y + (broadShoulders ? 0.085 : 0.028);
+  const neckBaseY = neck.y + (broadShoulders ? 0.045 : -0.018), neckTopY = neck.y + (broadShoulders ? 0.075 : 0.018);
+  const lowerHem = hem - 0.03, shortHem = hem >= hip.y - 0.2;
+  const lowerLevels = [
+    { y: lowerHem, ...fitTorso(b, lowerHem, bulk + (shortHem ? 0.012 : 0.07)) },
+    ...(shortHem ? [{ y: hem + 0.025, ...fitTorso(b, hem + 0.025, bulk + 0.008) }] : [hip.y - 0.28, hip.y - 0.19, hip.y - 0.125]
+      .filter(y => y > lowerHem + 0.015)
+      .map(y => ({ y, ...fitTorso(b, y, bulk + 0.06) }))),
+  ];
   const levels = [
-    { y: hem, ...fitTorso(b, hip.y, bulk) },
-    { y: hip.y + 0.1, ...fitTorso(b, hip.y + 0.1, bulk) },
+    // Size the shirt at its actual hem. Sampling the narrower pelvis slice here let the separate trouser
+    // tubes poke through the old open edge, especially on the woman's wider lower-hip profile.
+    ...lowerLevels,
+    { y: hip.y + 0.115, ...fitTorso(b, hip.y + 0.115, bulk) },
     { y: b.anchor('spine_02').y, ...fitTorso(b, b.anchor('spine_02').y, bulk) },
     { y: b.anchor('spine_03').y + 0.065, ...fitTorso(b, b.anchor('spine_03').y + 0.065, bulk) },
-    { y: shoulder.y + 0.028, rx: shoulder.x + 0.028 + bulk, rz: 0.108 + bulk, z: shoulder.z + 0.012 },
-    { y: neck.y - 0.016, rx: neckRadius + 0.036, rz: 0.075, z: neck.z + 0.008 },
-    { y: neck.y + 0.012, rx: neckRadius + 0.006, rz: 0.06, z: neck.z },
+    { y: shoulderTopY, rx: shoulder.x + 0.028 + bulk, rz: 0.108 + bulk, z: shoulder.z + 0.012 },
+    { y: neckBaseY, rx: neckFit.rx + 0.026, rz: neckFit.rz + 0.025, z: neckFit.z },
+    { y: neckTopY, rx: neckFit.rx + 0.009, rz: neckFit.rz + 0.008, z: neckFit.z },
   ];
-  b.clothProfiles.push(levels);
-  const shortHem = hem >= hip.y - 0.2;
-  b.loft(levels, fabric, p => shortHem && p.y < hip.y ? b.rigid('pelvis') : b.bodyWeights(p), 16);
-  b.cover('torso', hem, neck.y + 0.013); b.cover('hips', hem, neck.y + 0.013);
+  const frontDrop = broadShoulders ? 0.045 : 0;
+  const collarStart = levels.length - 3;
+  b.clothProfiles.push(levels.map((level, row) => row < collarStart ? level : { ...level, y: level.y - frontDrop }));
+  const collarHeight = new Map<THREE.Vector3, number>();
+  const weights = (p: THREE.Vector3): Weights => {
+    const raisedY = collarHeight.get(p) ?? p.y;
+    if (raisedY >= shoulderTopY) return b.blend('spine_03', 'neck_01', (raisedY - shoulderTopY) / Math.max(0.001, neckTopY - shoulderTopY));
+    const followsPelvis = shortHem ? p.y <= hip.y + 0.115 : p.y >= hip.y - 0.125 && p.y <= hip.y + 0.115;
+    if (followsPelvis) return b.rigid('pelvis');
+    if (shortHem || p.y > hip.y + 0.115) return b.bodyWeights(p);
+    return longGarmentWeights(b, p, hip, knee);
+  };
+  const rows = levels.map((level, row) => Array.from({ length: 16 }, (_, i) => {
+    const angle = TAU * i / 16;
+    const front = Math.max(0, Math.sin(angle));
+    const point = new THREE.Vector3(
+      Math.cos(angle) * level.rx,
+      level.y - (row >= collarStart ? frontDrop * front * front : 0),
+      (level.z ?? 0) + Math.sin(angle) * level.rz,
+    );
+    if (row >= collarStart) collarHeight.set(point, level.y);
+    return point;
+  }));
+  b.surface(rows, fabric, weights);
+  b.cover('torso', lowerHem, neckTopY); b.cover('hips', lowerHem, neckTopY); b.cover('neck', neck.y - 0.035, neck.y + 0.012);
 }
 function sleeves(b: ClothBuilder, fabric: THREE.Color, length: 'short' | 'long' | 'wide', bulk = 0): void {
   for (const side of SIDES) {
@@ -247,30 +331,93 @@ function sleeves(b: ClothBuilder, fabric: THREE.Color, length: 'short' | 'long' 
     const radius = upperBox ? (upperBox.max.y - upperBox.min.y) / 2 + 0.025 + bulk : 0.095;
     const end = length === 'short' ? shoulder.clone().lerp(elbow, 0.84) : wrist.clone().lerp(elbow, 0.04);
     const lower = (lowerBox ? (lowerBox.max.y - lowerBox.min.y) / 2 : 0.055) + 0.016 + bulk;
-    const first = shoulder.clone().add(new THREE.Vector3(side === 'l' ? -0.025 : 0.025, 0, 0));
+    const inward = side === 'l' ? -1 : 1;
+    const first = shoulder.clone().add(new THREE.Vector3(inward * 0.045, -0.035, 0));
+    const joint = shoulder.clone().add(new THREE.Vector3(0, -0.02, 0));
     const points = length === 'short'
-      ? [first, shoulder.clone().lerp(end, 0.3), shoulder.clone().lerp(end, 0.7), end]
-      : [first, shoulder.clone().lerp(elbow, 0.45), elbow, elbow.clone().lerp(end, 0.55), end];
-    const radii = length === 'wide' ? [radius + 0.035, radius + 0.055, 0.15, 0.165, 0.155]
-      : length === 'short' ? [radius * 1.015, radius, radius * 0.94, radius * 0.9]
-      : [radius * 1.015, radius, radius * 0.92, lower * 1.07, lower];
+      ? [first, joint, shoulder.clone().lerp(end, 0.34), shoulder.clone().lerp(end, 0.72), end]
+      : [first, joint, shoulder.clone().lerp(elbow, 0.45), elbow, elbow.clone().lerp(end, 0.55), end];
+    const radii = length === 'wide' ? [radius * 0.82, radius * 0.96, radius + 0.055, 0.15, 0.165, 0.155]
+      : length === 'short' ? [radius * 0.78, radius * 0.92, radius, radius * 0.94, radius * 0.9]
+      : [radius * 0.78, radius * 0.92, radius, radius * 0.92, lower * 1.07, lower];
     b.tube(points, radii, fabric, p => {
       const signedX = Math.abs(p.x), a = Math.abs(shoulder.x), e = Math.abs(elbow.x), w = Math.abs(wrist.x);
-      return signedX < e ? b.blend(`upperarm_${side}`, `lowerarm_${side}`, Math.max(0, (signedX - a) / (e - a))) : b.blend(`lowerarm_${side}`, `hand_${side}`, Math.max(0, (signedX - e) / (w - e)));
+      const join = Math.abs(first.x);
+      if (signedX <= a) return b.blend('spine_03', `upperarm_${side}`, 0.28 + 0.72 * Math.max(0, (signedX - join) / Math.max(0.001, a - join)));
+      if (signedX < e) {
+        const along = Math.max(0, (signedX - a) / (e - a));
+        // The shipped short-sleeve cuff ends 84% along this span, where the arm vertices still carry
+        // about 84% upper-arm weight. Using geometric progress directly gave the cloth 84% lower-arm
+        // weight, so it moved away from the skin in idle. Match the measured late joint transition.
+        const lowerArm = length === 'short' ? THREE.MathUtils.clamp((along - 0.68) / 0.97, 0, 1) : along;
+        return b.blend(`upperarm_${side}`, `lowerarm_${side}`, lowerArm);
+      }
+      return b.blend(`lowerarm_${side}`, `hand_${side}`, Math.max(0, (signedX - e) / (w - e)));
     }, 12, length === 'wide' ? 1.16 : 1);
   }
   // Short sleeves keep all underlying arm triangles. Their exposed cuffs remain clothed by the original base.
   if (length !== 'short') { b.hides.add('upperarms'); b.hides.add('forearms'); }
 }
-function trousers(b: ClothBuilder, fabric: THREE.Color, shorts = false): void {
+function trousers(b: ClothBuilder, fabric: THREE.Color, shorts = false, coveredTo?: number): void {
+  const hip = b.anchor('pelvis');
+  if (coveredTo === undefined) {
+    // A pelvis-weighted shell joins the independent leg tubes and sits under every shirt hem. This keeps
+    // the waist closed when the thighs rotate for walking or sitting without adding another skeleton.
+    b.loft([
+      { y: hip.y - 0.14, ...fitTorso(b, hip.y - 0.14, 0.008) },
+      { y: hip.y - 0.025, ...fitTorso(b, hip.y - 0.025, 0.009) },
+      { y: hip.y + 0.11, ...fitTorso(b, hip.y + 0.11, 0.008) },
+    ], fabric, () => b.rigid('pelvis'), 16);
+    b.cover('hips', hip.y - 0.14, hip.y + 0.11);
+  }
   for (const side of SIDES) {
     const thigh = b.anchor(`thigh_${side}`), knee = b.anchor(`calf_${side}`), foot = b.anchor(`foot_${side}`);
     const box = b.rest.bounds.get(`thigh_${side}`), width = box ? (box.max.x - box.min.x) / 2 + 0.018 : 0.12;
+    const topY = thigh.y + 0.075, joinY = hip.y - 0.125, transitionY = hip.y - 0.19;
+    const upper = fitTorso(b, topY, 0.012), join = fitTorso(b, joinY, 0.008);
+    // Bounds for the whole thigh include its widest lower vertices. Reusing that radius at the hip made
+    // each independent tube flare outside the shirt as a large side wedge. Fit the top ring to its own
+    // cross-section; the pelvis shell above supplies the centre coverage and overlap for seated motion.
+    const upperWidth = Math.max(0.04, upper.rx - Math.abs(thigh.x));
+    const upperDepth = Math.max(0.075, upper.rz - Math.abs(thigh.z - upper.z) - 0.006);
+    const joinWidth = Math.max(0.055, Math.min(width * 0.9, join.rx - Math.abs(thigh.x)));
+    const joinDepth = Math.max(0.08, join.rz - Math.abs(thigh.z - join.z) - 0.004);
+    // The first visible ring shares the robe edge plane and weights. Keeping it above that plane leaves
+    // a small hidden strip that can still rotate through the hem in deep walk/sit poses.
+    const visibleStart = coveredTo === undefined ? undefined : Math.min(thigh.y - 0.01, coveredTo);
+    const startRatio = visibleStart === undefined ? 0 : THREE.MathUtils.clamp((thigh.y - visibleStart) / Math.max(0.001, thigh.y - knee.y), 0, 1);
+    const settledY = visibleStart === undefined ? undefined : Math.max(foot.y + 0.1, visibleStart - 0.08);
+    const settledBelowKnee = settledY === undefined ? 0 : THREE.MathUtils.clamp((knee.y - settledY) / Math.max(0.001, knee.y - foot.y), 0, 1);
+    const visibleLevels = visibleStart === undefined ? [
+      { y: topY, x: thigh.x, z: thigh.z, rx: upperWidth, rz: upperDepth },
+      { y: joinY, x: thigh.x, z: thigh.z, rx: joinWidth, rz: joinDepth },
+      { y: transitionY, x: thigh.x, z: thigh.z, rx: width * 0.9, rz: 0.108 },
+    ] : [{
+      y: visibleStart,
+      x: THREE.MathUtils.lerp(thigh.x, knee.x, startRatio),
+      z: THREE.MathUtils.lerp(thigh.z, knee.z, startRatio),
+      rx: THREE.MathUtils.lerp(width * 0.9, width * 0.86, startRatio),
+      rz: 0.108,
+    }, ...(settledY === undefined ? [] : [{
+      y: settledY,
+      x: THREE.MathUtils.lerp(knee.x, foot.x, settledBelowKnee),
+      z: THREE.MathUtils.lerp(knee.z, foot.z, settledBelowKnee),
+      rx: THREE.MathUtils.lerp(width * 0.86, 0.079, settledBelowKnee),
+      rz: THREE.MathUtils.lerp(0.108, 0.09, settledBelowKnee),
+    }])];
     b.loft([
-      { y: thigh.y + 0.075, x: thigh.x, z: thigh.z, rx: width, rz: 0.12 },
-      { y: knee.y + (shorts ? 0.08 : 0), x: knee.x, z: knee.z, rx: width * 0.86, rz: 0.108 },
+      ...visibleLevels,
+      ...(visibleStart !== undefined && visibleStart <= knee.y + 0.012 ? [] : [{ y: knee.y, x: knee.x, z: knee.z, rx: width * 0.86, rz: 0.108 }]),
       ...(shorts ? [] : [{ y: foot.y + 0.04, x: foot.x, z: foot.z, rx: 0.079, rz: 0.09 }]),
-    ], fabric, p => p.y > knee.y ? b.blend(`thigh_${side}`, `calf_${side}`, (thigh.y - p.y) / (thigh.y - knee.y)) : b.rigid(`calf_${side}`), 8);
+    ], fabric, p => {
+      if (visibleStart !== undefined && settledY !== undefined) {
+        const shared = longGarmentWeights(b, p, hip, knee);
+        return b.converge(shared, `calf_${side}`, (visibleStart - p.y) / Math.max(0.001, visibleStart - settledY));
+      }
+      if (p.y >= joinY) return b.rigid('pelvis');
+      if (p.y >= transitionY) return b.rigid(`thigh_${side}`);
+      return p.y > knee.y ? b.blend(`thigh_${side}`, `calf_${side}`, (transitionY - p.y) / (transitionY - knee.y)) : b.rigid(`calf_${side}`);
+    }, 8);
   }
   if (!shorts) b.cover('legs', b.anchor('foot_l').y + 0.04, b.anchor('thigh_l').y + 0.075);
 }
@@ -285,7 +432,9 @@ function skirt(b: ClothBuilder, fabric: THREE.Color, hem: number, flare: number,
   if (wrapper) {
     const strip = colour('#e0bc70');
     b.loft([{ y: hip.y + 0.11, rx: upper.rx + 0.008, rz: upper.rz + 0.008, z: upper.z }, { y: hip.y + 0.065, rx: upper.rx + 0.009, rz: upper.rz + 0.009, z: upper.z }], strip, () => b.rigid('pelvis'), 14);
-    b.box(new THREE.Vector3(upper.rx * 0.72, hip.y + 0.025, upper.z + upper.rz + 0.02), [0.07, 0.16, 0.032], fabric, b.rigid('pelvis'));
+    // Keep the wrapper fold below the blouse hem. At its old waist height the corner of this rigid box
+    // sat beyond the curved blouse profile and appeared as a tan rectangle whenever the pelvis turned.
+    b.box(new THREE.Vector3(upper.rx * 0.72, hip.y - 0.21, upper.z + upper.rz + 0.02), [0.07, 0.16, 0.032], fabric, b.rigid('pelvis'));
   }
   b.cover('hips', hem, hip.y + 0.105); b.cover('legs', hem, hip.y + 0.105);
 }
@@ -300,14 +449,18 @@ function collar(b: ClothBuilder, fabric: THREE.Color, tie = false): void {
 function garment(b: ClothBuilder, id: string, read: ResolvedWardrobeLook['look']): void {
   const top = colour(read.outfitColor), bottom = colour(read.bottomsColor), hip = b.anchor('pelvis'), knee = b.anchor('calf_l'), ankle = b.anchor('foot_l');
   switch (id) {
-    case 'agbada':
-      trousers(b, bottom); torso(b, top, knee.y + 0.13, 0.07); sleeves(b, top, 'wide', 0.025);
+    case 'agbada': {
+      const hem = knee.y + 0.13;
+      trousers(b, bottom, false, hem - 0.03); torso(b, top, hem, 0.07); sleeves(b, top, 'wide', 0.025);
       // Two floating front embroidery strips give the wide outer robe its open-panel silhouette.
       for (const x of [-0.05, 0.05]) b.box(new THREE.Vector3(x, hip.y + 0.21, 0.186), [0.025, 0.47, 0.015], GOLD, b.rigid('spine_01'));
       break;
-    case 'kaftan':
-      trousers(b, bottom); torso(b, top, knee.y + 0.025, 0.027); sleeves(b, top, 'long'); collar(b, top);
+    }
+    case 'kaftan': {
+      const hem = knee.y + 0.025;
+      trousers(b, bottom, false, hem - 0.03); torso(b, top, hem, 0.027); sleeves(b, top, 'long'); collar(b, top);
       b.box(new THREE.Vector3(0, hip.y + 0.23, 0.171), [0.022, 0.42, 0.012], GOLD, b.rigid('spine_01')); break;
+    }
     case 'abaya':
       skirt(b, top, ankle.y + 0.055, 0.18); torso(b, top, hip.y - 0.1, 0.035); sleeves(b, top, 'long', 0.02);
       b.loft([{ y: ankle.y + 0.075, rx: 0.36, rz: 0.24 }, { y: ankle.y + 0.095, rx: 0.355, rz: 0.237 }], GOLD, p => b.bodyWeights(p)); break;
@@ -318,7 +471,7 @@ function garment(b: ClothBuilder, id: string, read: ResolvedWardrobeLook['look']
       torso(b, WHITE, hip.y - 0.03); sleeves(b, WHITE, 'short'); collar(b, WHITE, true);
       b.box(new THREE.Vector3(0.072, b.anchor('spine_03').y + 0.024, 0.166), [0.064, 0.082, 0.009], WHITE.clone().multiplyScalar(0.88), b.rigid('spine_03')); break;
     case 'work-uniform':
-      trousers(b, bottom); torso(b, top, hip.y - 0.045, 0.032); sleeves(b, top, 'long'); collar(b, top);
+      trousers(b, bottom); torso(b, top, hip.y - 0.015, 0.032); sleeves(b, top, 'long'); collar(b, top);
       for (const x of [-0.09, 0.09]) {
         b.box(new THREE.Vector3(x, b.anchor('spine_03').y + 0.015, 0.178), [0.073, 0.078, 0.014], bottom, b.rigid('spine_03'));
         b.box(new THREE.Vector3(x, hip.y + 0.09, 0.174), [0.077, 0.025, 0.012], WHITE, b.rigid('spine_01'));
@@ -332,24 +485,24 @@ function garment(b: ClothBuilder, id: string, read: ResolvedWardrobeLook['look']
       b.loft([{ y: neck.y - 0.06, rx: 0.145, rz: 0.13, z: -0.04 }, { y: neck.y + 0.045, rx: 0.125, rz: 0.1, z: -0.06 }], top, () => b.rigid('spine_03'), 12, 2.65, TAU + 0.49);
       b.box(new THREE.Vector3(0, hip.y + 0.12, 0.19), [0.18, 0.09, 0.012], top.clone().multiplyScalar(0.86), b.rigid('spine_01')); break;
     }
-    case 'office': trousers(b, bottom); torso(b, top, hip.y - 0.085); sleeves(b, top, 'long'); collar(b, WHITE, true); break;
+    case 'office': trousers(b, bottom); torso(b, top, hip.y - 0.02); sleeves(b, top, 'long'); collar(b, WHITE, true); break;
     case 'sitework':
-      trousers(b, bottom); torso(b, top, hip.y - 0.1); sleeves(b, top, 'short');
+      trousers(b, bottom); torso(b, top, hip.y - 0.02); sleeves(b, top, 'short');
       for (const x of [-0.09, 0.09]) b.box(new THREE.Vector3(x, hip.y + 0.3, 0.175), [0.035, 0.34, 0.014], colour('#e6cd51'), b.rigid('spine_02'));
       break;
-    case 'chill': case 'jersey': trousers(b, bottom, true); torso(b, top, hip.y - 0.085); sleeves(b, top, 'short'); break;
-    default: trousers(b, bottom); torso(b, top, hip.y - 0.085); sleeves(b, top, 'short');
+    case 'chill': case 'jersey': trousers(b, bottom, true); torso(b, top, hip.y - 0.015); sleeves(b, top, 'short'); break;
+    default: trousers(b, bottom); torso(b, top, hip.y - 0.015); sleeves(b, top, 'short');
   }
 }
 
 function headCover(b: ClothBuilder, id: string, fabric: THREE.Color): void {
-  const head = b.anchor('Head'), neck = b.anchor('neck_01'), hair = b.rest.bounds.get('hair');
-  const top = hair?.max.y ?? head.y + 0.23, weights = b.rigid('Head');
+  const head = b.anchor('Head'), neck = b.anchor('neck_01'), fit = fitHead(b);
+  const top = fit.hairTop, weights = b.rigid('Head'), crownZ = fit.centre.z - 0.012;
   b.hides.add('hair');
   if (id === 'hijab-drape' || id === 'hijab-wrap') {
     // The open arc spans back and sides. No triangle crosses the front face aperture.
-    b.loft([{ y: neck.y + 0.025, rx: 0.112, rz: 0.115, z: -0.026 }, { y: head.y + 0.09, rx: 0.12, rz: 0.13, z: -0.01 }, { y: top - 0.055, rx: 0.102, rz: 0.114, z: -0.015 }], fabric, () => weights, 12, 2.5, TAU + 0.64);
-    b.loft([{ y: top - 0.054, rx: 0.104, rz: 0.116, z: -0.015 }, { y: top + 0.004, rx: 0.063, rz: 0.072, z: -0.014 }, { y: top + 0.018, rx: 0.001, rz: 0.001, z: -0.01 }], fabric, () => weights, 12);
+    b.loft([{ y: neck.y + 0.025, rx: fit.halfX + 0.022, rz: fit.halfZ + 0.005, z: crownZ - 0.014 }, { y: head.y + fit.height * 0.39, rx: fit.halfX + 0.03, rz: fit.halfZ + 0.019, z: crownZ + 0.002 }, { y: top - 0.055, rx: fit.halfX + 0.012, rz: fit.halfZ + 0.004, z: crownZ - 0.003 }], fabric, () => weights, 12, 2.5, TAU + 0.64);
+    b.loft([{ y: top - 0.054, rx: fit.halfX + 0.014, rz: fit.halfZ + 0.006, z: crownZ - 0.003 }, { y: top + 0.004, rx: fit.halfX * 0.7, rz: fit.halfZ * 0.64, z: crownZ - 0.002 }, { y: top + 0.018, rx: 0.001, rz: 0.001, z: crownZ + 0.002 }], fabric, () => weights, 12);
     const long = id === 'hijab-drape', low = long ? b.anchor('spine_03').y + 0.01 : neck.y - 0.09;
     const width = Math.abs(b.anchor('upperarm_l').x) + 0.038;
     const mantle = [{ y: neck.y + 0.055, rx: 0.111, rz: 0.118, z: -0.02 }, { y: neck.y - 0.025, rx: 0.123, rz: 0.133, z: -0.015 }, { y: neck.y - (long ? 0.075 : 0.045), rx: width * 0.9, rz: 0.167, z: -0.015 }, { y: low + (long ? 0.04 : 0.024), rx: width, rz: 0.192, z: -0.015 }, { y: low, rx: width * 0.96, rz: 0.187, z: -0.015 }];
@@ -362,16 +515,16 @@ function headCover(b: ClothBuilder, id: string, fabric: THREE.Color): void {
     if (!long) b.box(new THREE.Vector3(-0.11, neck.y - 0.14, 0.157), [0.08, 0.25, 0.035], fabric.clone().multiplyScalar(0.9), b.rigid('spine_03'));
     b.hides.add('neck'); return;
   }
-  const centre = new THREE.Vector3(0, top - 0.07, -0.012);
+  const centre = new THREE.Vector3(fit.centre.x, top - 0.07, crownZ);
   if (id === 'legacy-cap') {
-    b.loft([{ y: centre.y - 0.05, rx: 0.108, rz: 0.12, z: -0.01 }, { y: top + 0.01, rx: 0.095, rz: 0.102, z: -0.01 }, { y: top + 0.024, rx: 0.001, rz: 0.001 }], fabric, () => weights);
-    b.box(new THREE.Vector3(0, centre.y - 0.027, 0.13), [0.19, 0.017, 0.15], fabric, weights); return;
+    b.ball(new THREE.Vector3(fit.centre.x, top - 0.055, crownZ + 0.002), [fit.halfX + 0.018, 0.083, fit.halfZ + 0.01], fabric, weights, 14, 6);
+    b.box(new THREE.Vector3(0, centre.y - 0.027, fit.front + 0.015), [fit.halfX * 2 + 0.01, 0.017, fit.halfZ + 0.04], fabric, weights); return;
   }
   if (id === 'legacy-fila') {
-    b.loft([{ y: centre.y - 0.03, rx: 0.104, rz: 0.116 }, { y: top + 0.09, rx: 0.093, rz: 0.1, x: 0.026 }, { y: top + 0.095, rx: 0.001, rz: 0.001, x: 0.026 }], fabric, () => weights, 8); return;
+    b.loft([{ y: centre.y - 0.03, rx: fit.halfX + 0.014, rz: fit.halfZ + 0.006, z: crownZ }, { y: top + 0.09, rx: fit.halfX + 0.003, rz: fit.halfZ - 0.012, z: crownZ, x: 0.026 }, { y: top + 0.095, rx: 0.001, rz: 0.001, z: crownZ, x: 0.026 }], fabric, () => weights, 8); return;
   }
-  b.ball(centre.clone().add(new THREE.Vector3(0, 0.02, -0.004)), [0.116, 0.105, 0.133], fabric, weights, 12, 4);
-  for (let i = 0; i < 3; i++) b.ring(new THREE.Vector3(0, centre.y - 0.018 + i * 0.033, -0.01), 0.116 - i * 0.005, 0, 0.128 - i * 0.007, 0.012, fabric.clone().multiplyScalar(0.86 + i * 0.07), weights, 12);
+  b.ball(centre.clone().add(new THREE.Vector3(0, 0.02, -0.004)), [fit.halfX + 0.026, 0.105, fit.halfZ + 0.022], fabric, weights, 12, 4);
+  for (let i = 0; i < 3; i++) b.ring(new THREE.Vector3(0, centre.y - 0.018 + i * 0.033, crownZ + 0.002), fit.halfX + 0.026 - i * 0.005, 0, fit.halfZ + 0.017 - i * 0.007, 0.012, fabric.clone().multiplyScalar(0.86 + i * 0.07), weights, 12);
   if (id === 'turban' || id === 'legacy-headwrap') {
     b.ball(new THREE.Vector3(0, centre.y + 0.035, 0.122), [0.037, 0.043, 0.026], fabric, weights, 6, 3);
     if (id === 'legacy-headwrap') b.box(new THREE.Vector3(-0.098, head.y - 0.045, -0.11), [0.065, 0.22, 0.028], fabric, weights);
@@ -389,26 +542,62 @@ function hairStyle(b: ClothBuilder, style: string, tint: THREE.Color): void {
   if (style === 'bald') { b.hides.add('hair'); return; }
   if (style === 'lowcut' || style === 'fade') return;
   if (style === 'gele') { headCover(b, 'gele-fan', tint); return; }
-  b.hides.add('hair');
-  const head = b.anchor('Head'), top = b.rest.bounds.get('hair')?.max.y ?? head.y + 0.22, weights = b.rigid('Head');
-  b.ball(new THREE.Vector3(0, top - 0.064, -0.024), [0.102, 0.082, 0.103], tint, weights, 10, 3);
+  const head = b.anchor('Head'), fit = fitHead(b), top = fit.hairTop, weights = b.rigid('Head');
+  const crownZ = fit.centre.z - 0.024;
+  const hanging = style === 'braids' || style === 'locs' || style === 'ponytail';
+  if (!hanging) {
+    b.hides.add('hair');
+    const crownRadius: Point = [fit.halfX + 0.012, 0.082, Math.max(0.09, fit.halfZ - 0.009)];
+    b.ball(new THREE.Vector3(0, top - 0.064, crownZ), crownRadius, tint, weights, 14, 6);
+  }
   switch (style) {
-    case 'curls': b.ball(new THREE.Vector3(0, top - 0.056, -0.025), [0.123, 0.1, 0.12], tint, weights, 12, 4); break;
-    case 'afro': b.ball(new THREE.Vector3(0, top - 0.05, -0.025), [0.162, 0.157, 0.155], tint, weights, 12, 5); break;
-    case 'bun': b.ball(new THREE.Vector3(0, top + 0.07, -0.058), [0.086, 0.09, 0.084], tint, weights); break;
-    case 'ponytail':
-      b.tube([new THREE.Vector3(0, top - 0.03, -0.1), new THREE.Vector3(0, head.y + 0.035, -0.18), new THREE.Vector3(0, head.y - 0.15, -0.2)], [0.045, 0.053, 0.032], tint, () => weights, 8); break;
+    case 'curls': b.ball(new THREE.Vector3(0, top - 0.056, crownZ), [fit.halfX + 0.033, 0.1, fit.halfZ + 0.008], tint, weights, 12, 4); break;
+    case 'afro': b.ball(new THREE.Vector3(0, top - 0.05, crownZ), [fit.halfX + 0.072, 0.157, fit.halfZ + 0.043], tint, weights, 12, 5); break;
+    case 'bun': b.ball(new THREE.Vector3(0, top + 0.07, fit.back + fit.halfZ * 0.48), [fit.halfX * 0.95, 0.09, fit.halfZ * 0.75], tint, weights); break;
+    case 'ponytail': {
+      const tie = new THREE.Vector3(0, top - 0.105, fit.back - 0.025);
+      b.ball(tie, [0.039, 0.035, 0.031], tint.clone().multiplyScalar(0.78), weights, 8, 3);
+      for (let i = 0; i < 5; i++) {
+        const across = (i - 2) * 0.012, sway = (i % 2 ? -1 : 1) * (0.012 + Math.abs(i - 2) * 0.003);
+        b.tube([
+          tie.clone().add(new THREE.Vector3(across * 0.45, -0.004, -0.002)),
+          new THREE.Vector3(across * 0.7, head.y + 0.035, fit.back - 0.082),
+          new THREE.Vector3(across + sway * 0.45, head.y - 0.055, fit.back - 0.115),
+          new THREE.Vector3(across + sway, head.y - 0.145 - (i % 3) * 0.012, fit.back - 0.1),
+          new THREE.Vector3(across + sway * 0.65, head.y - 0.225 - (i % 2) * 0.015, fit.back - 0.074),
+        ], [0.013, 0.015, 0.0125, 0.0085, 0.0045], tint, () => weights, 6);
+      }
+      break;
+    }
     case 'long':
-      b.loft([{ y: top - 0.01, rx: 0.097, rz: 0.1, z: -0.02 }, { y: head.y - 0.12, rx: 0.12, rz: 0.13, z: -0.05 }, { y: head.y - 0.29, rx: 0.15, rz: 0.13, z: -0.05 }], tint, () => weights, 12, 2.55, TAU + 0.59); break;
+      b.loft([{ y: top - 0.01, rx: fit.halfX + 0.007, rz: fit.halfZ - 0.012, z: crownZ + 0.004 }, { y: head.y - 0.12, rx: fit.halfX + 0.03, rz: fit.halfZ + 0.018, z: crownZ - 0.026 }, { y: head.y - 0.29, rx: fit.halfX + 0.06, rz: fit.halfZ + 0.018, z: crownZ - 0.026 }], tint, () => weights, 12, 2.55, TAU + 0.59); break;
     case 'bantuknots':
-      for (let i = 0; i < 7; i++) { const angle = TAU * i / 7; b.ball(new THREE.Vector3(Math.cos(angle) * 0.093, top + (i % 2 ? 0.01 : 0.035), -0.025 + Math.sin(angle) * 0.072), [0.037, 0.043, 0.037], tint, weights, 6, 3); } break;
+      for (let i = 0; i < 7; i++) { const angle = TAU * i / 7; b.ball(new THREE.Vector3(Math.cos(angle) * (fit.halfX + 0.003), top + (i % 2 ? 0.01 : 0.035), crownZ + Math.sin(angle) * fit.halfZ * 0.64), [0.037, 0.043, 0.037], tint, weights, 6, 3); } break;
     case 'cornrows':
-      for (let i = -2; i <= 2; i++) b.tube([new THREE.Vector3(i * 0.031, top - 0.033, 0.067), new THREE.Vector3(i * 0.031, top + 0.01, -0.025), new THREE.Vector3(i * 0.031, head.y + 0.06, -0.105)], [0.014, 0.015, 0.013], tint, () => weights, 5); break;
-    case 'classic': b.ball(new THREE.Vector3(0.028, top - 0.015, -0.005), [0.105, 0.067, 0.095], tint, weights, 10, 3); break;
-    default: {
-      const count = style === 'braids' ? 10 : 8, radius = style === 'twists' ? 0.018 : 0.024;
+      for (let i = -2; i <= 2; i++) b.tube([new THREE.Vector3(i * fit.halfX * 0.34, top - 0.033, fit.front - 0.045), new THREE.Vector3(i * fit.halfX * 0.34, top + 0.01, crownZ), new THREE.Vector3(i * fit.halfX * 0.34, head.y + 0.06, fit.back + 0.003)], [0.014, 0.015, 0.013], tint, () => weights, 5); break;
+    case 'classic': b.ball(new THREE.Vector3(fit.halfX * 0.31, top - 0.015, fit.centre.z - 0.005), [fit.halfX + 0.015, 0.067, fit.halfZ - 0.017], tint, weights, 10, 3); break;
+    case 'braids': case 'locs': {
+      const count = style === 'braids' ? 12 : 9, rootRadius = style === 'braids' ? 0.0105 : 0.016;
       for (let i = 0; i < count; i++) {
-        const a = 2.5 + i * 4.3 / (count - 1), x = Math.cos(a) * 0.103, z = -0.025 + Math.sin(a) * 0.102;
+        const angle = 2.48 + i * 4.3 / (count - 1) + Math.sin(i * 2.17) * 0.035;
+        const rootX = Math.cos(angle) * (fit.halfX + 0.006), rootZ = crownZ - 0.004 + Math.sin(angle) * (fit.halfZ - 0.02);
+        const behindFace = Math.min(rootZ, fit.centre.z - 0.006), side = Math.sign(rootX || (i % 2 ? 1 : -1));
+        const splay = side * (0.016 + i % 3 * 0.006), bend = (i % 2 ? -1 : 1) * (0.012 + i % 3 * 0.004);
+        const length = (style === 'braids' ? 0.205 : 0.145) + i % 4 * 0.016;
+        b.tube([
+          new THREE.Vector3(rootX * 0.94, top - 0.045 - (i % 3) * 0.008, rootZ),
+          new THREE.Vector3(rootX * 1.015, head.y + 0.105 - (i % 2) * 0.01, behindFace - 0.003),
+          new THREE.Vector3(rootX * 1.08 + splay * 0.35, head.y + 0.018, behindFace - 0.02),
+          new THREE.Vector3(rootX * 1.08 + splay + bend, head.y - length * 0.52, behindFace - 0.04 + (i % 2) * 0.012),
+          new THREE.Vector3(rootX + splay * 1.45 - bend * 0.55, head.y - length, behindFace - 0.022 + (i % 3 - 1) * 0.007),
+        ], style === 'braids' ? [rootRadius, 0.0102, 0.0088, 0.0068, 0.0042] : [rootRadius, 0.0165, 0.0145, 0.011, 0.0065], tint, () => weights, 6);
+      }
+      break;
+    }
+    default: {
+      const count = 8, radius = style === 'twists' ? 0.018 : 0.024;
+      for (let i = 0; i < count; i++) {
+        const a = 2.5 + i * 4.3 / (count - 1), x = Math.cos(a) * (fit.halfX + 0.013), z = crownZ + Math.sin(a) * (fit.halfZ - 0.01);
         b.tube([new THREE.Vector3(x, top - 0.035, z), new THREE.Vector3(x * 1.08, head.y + 0.025, z), new THREE.Vector3(x * 1.28, head.y - (style === 'braids' ? 0.23 : 0.18), z - 0.015)], [radius, radius, radius * 0.75], tint, () => weights, 5);
       }
     }
@@ -491,18 +680,29 @@ function accessory(b: ClothBuilder, id: ResolvedAvatarWearableId, read: Resolved
     case 'agbada': case 'kaftan': case 'abaya': case 'buba-iro': case 'school-uniform': case 'work-uniform': garment(b, id, read); break;
     case 'slippers': case 'sandals': case 'sneakers': footwear(b, id, colour(read.skin)); break;
     case 'legacy-glasses': case 'legacy-sunglasses': {
-      const head = b.anchor('Head'), weights = b.rigid('Head'), y = head.y + 0.105, tint = id === 'legacy-sunglasses' ? BLACK : GOLD;
+      const head = b.anchor('Head'), fit = fitHead(b), weights = b.rigid('Head');
+      const neckBounds = b.rest.bounds.get('neck_01'), broadShoulders = (neckBounds?.getSize(new THREE.Vector3()).x ?? 0) > 0.16;
+      // Eye centres and the upper nose bridge are measured from the shipped face UV islands. Head max-Z
+      // is the nose tip; using it as the lens plane left both frames more than 33 mm in front of the bridge.
+      const y = head.y + (broadShoulders ? 0.0972 : 0.1044), lensX = fit.halfX * 0.38;
+      const lensZ = fit.centre.z + (broadShoulders ? 0.0859 : 0.0878) + 0.006;
+      const lensRx = fit.halfX * 0.34, lensRy = fit.height * 0.085, tint = id === 'legacy-sunglasses' ? BLACK : GOLD;
       for (const sign of [-1, 1]) {
-        const centre = new THREE.Vector3(sign * 0.044, y, 0.101);
-        if (id === 'legacy-sunglasses') b.box(centre, [0.072, 0.042, 0.012], BLACK, weights);
-        else b.ring(centre, 0.034, 0.023, 0, 0.004, tint, weights, 8);
-        b.box(new THREE.Vector3(sign * 0.087, y, 0.033), [0.006, 0.006, 0.128], tint, weights);
+        const centre = new THREE.Vector3(sign * lensX, y, lensZ);
+        if (id === 'legacy-sunglasses') b.box(centre, [lensRx * 2.12, lensRy * 1.82, 0.012], BLACK, weights);
+        else b.ring(centre, lensRx, lensRy, 0, 0.004, tint, weights, 8);
+        const outerX = lensX + lensRx * (id === 'legacy-sunglasses' ? 1.06 : 1);
+        b.tube([
+          new THREE.Vector3(sign * outerX, y, lensZ),
+          new THREE.Vector3(sign * (fit.halfX + 0.004), y - 0.002, fit.centre.z - 0.008),
+        ], [0.003, 0.003], tint, () => weights, 4);
       }
-      b.box(new THREE.Vector3(0, y, 0.104), [0.026, 0.005, 0.008], tint, weights); break;
+      const bridgeHalf = Math.max(0.006, lensX - lensRx + 0.004);
+      b.box(new THREE.Vector3(0, y, lensZ + 0.002), [bridgeHalf * 2, 0.005, 0.008], tint, weights); break;
     }
     case 'legacy-earrings': {
-      const head = b.anchor('Head');
-      for (const sign of [-1, 1]) b.ring(new THREE.Vector3(sign * 0.097, head.y + 0.032, 0.014), 0.017, 0.028, 0, 0.004, GOLD, b.rigid('Head'), 8); break;
+      const head = b.anchor('Head'), fit = fitHead(b);
+      for (const sign of [-1, 1]) b.ring(new THREE.Vector3(sign * (fit.halfX + 0.008), head.y + fit.height * 0.14, fit.centre.z + 0.01), 0.017, 0.028, 0, 0.004, GOLD, b.rigid('Head'), 8); break;
     }
     case 'legacy-backpack': {
       const chest = b.anchor('spine_03'), weights = b.rigid('spine_03');

@@ -362,11 +362,12 @@ export function spotMarker(b: Batch, x: number, z: number, color: Colour = '#f2d
 export interface GameTableOptions { game?: string; ry?: number; accent?: Colour }
 /**
  * A GAME TABLE — the place a table of src/tables/places.ts stands in a venue (venue-scenes.js puts one on free floor for
- * each). Drawn into the venue's own batch: no draw call of its own, about 150 triangles.
+ * each). Drawn into the venue's own batch: no draw call of its own.
  *   'whot'      a low round table with a felt top, a fan of cards and four stools
  *   'penalty'   a small goal frame with a net line, a penalty spot and a ball
  *   'chess'     a low table with a two-tone board and a few pieces, two stools
  *   'weave'     a cloth-covered table with a woven board and a rack of tiles, four stools
+ *   'ayo'       a wooden board with two rows of six cups and seeds, two stools
  * `accent` is the venue's accent colour (the felt, the goal's bar), so the table belongs to its room.
  */
 export function gameTable(b: Batch, x: number, z: number, { game = 'whot', ry = 0, accent = '#2f8f55' }: GameTableOptions = {}): void {
@@ -382,6 +383,22 @@ export function gameTable(b: Batch, x: number, z: number, { game = 'whot', ry = 
     // The board games are plain boxes: a few dozen triangles for the table, a few more for the stools, so a room near its budget can still hold them.
     const box = (px: number, py: number, pz: number, w: number, h: number, d: number, colour: Colour) => b.box(px, py, pz, w, h, d, colour);
     const seat = (px: number, pz: number) => { box(px, 0.5, pz, 0.5, 0.1, 0.5, WOOD); box(px, 0.25, pz, 0.12, 0.5, 0.12, METAL_DARK); };
+    if (game === 'ayo') {
+      box(0, 0.78, 0, 1.95, 0.16, 0.94, WOOD_DARK);
+      box(0, 0.875, 0, 1.83, 0.04, 0.84, WOOD_LIGHT);
+      for (const row of [-1, 1]) for (let cup = 0; cup < 6; cup++) {
+        const cx = (cup - 2.5) * 0.27, cz = row * 0.21;
+        b.disc(cx, 0.9, cz, 0.114, '#46301e', { seg: 8 });
+        for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+          b.disc(cx + sx * 0.036, 0.905, cz + sz * 0.033, 0.025, '#e4c88c', { seg: 5 });
+        }
+      }
+      for (const side of [-1, 1]) {
+        box(side * 0.67, 0.38, 0, 0.12, 0.76, 0.6, WOOD_DARK);
+        seat(0, side * 1.18);
+      }
+      return;
+    }
     if (game === 'chess') {
       // A square table with a two-tone board (two dark squares on a light one read as a board from across the room), three pieces and two stools.
       box(0, 0.78, 0, 1.4, 0.1, 1.4, WOOD_DARK);

@@ -43,6 +43,7 @@ import { avatarProportions } from '../types/avatar.ts';
 import { buildAvatar, normalizeLook } from './characters.ts';
 import type { AvatarGroup } from './characters.ts';
 import type { ThreeModule } from './types.ts';
+import { lazyEnvironment, renderTier } from './look.ts';
 import { bodyAllowed, bodyImports, drawsWebGL2, importBody } from './body/gate.ts';
 import type { SkinnedBody } from './body/skinned.ts';
 
@@ -96,6 +97,8 @@ const FRAMES: Record<PreviewFocus, PreviewFrame> = {
   head: { y: 2.26, height: 1.62, width: 1.5 }, // head and shoulders, with room for the tallest hair, a gele or a hat
   outfit: { y: 1.5, height: 2.5, width: 1.9 }, // shoulders to the shoes: what is worn, without the empty space above the hair
 };
+/** The shipped body's head is much smaller than the procedural figure's; include its face, hair/headwear and shoulders. */
+const SKINNED_HEAD_FRAME: PreviewFrame = { y: 2.15, height: 1.05, width: 1.2 };
 const FOV = 26, START_YAW = -0.42, DRAG_SPEED = 0.011, KEY_STEP = Math.PI / 12, MAX_PIXEL_RATIO = 2.5;
 const clamp = (value: number, low: number, high: number): number => Math.max(low, Math.min(high, value));
 const ease = (t: number): number => 1 - (1 - t) ** 3;
@@ -105,9 +108,9 @@ let current: AvatarPreview | null = null;
 export function lightStage(THREE: ThreeModule, scene: THREE.Scene): THREE.Light[] {
   // Tuned on the whole skin range: enough light from the front that the darkest tones keep their features.
   const hemi = new THREE.HemisphereLight('#ffffff', '#e6d2bb', 1.85);
-  const key = new THREE.DirectionalLight('#fff3e2', 2.5); key.position.set(2.4, 3.6, 5);
+  const key = new THREE.DirectionalLight('#ffeedb', 2.5); key.position.set(2.4, 3.6, 5);
   const fill = new THREE.DirectionalLight('#d6e4ff', 1.1); fill.position.set(-4, 2.4, 3.4);
-  const rim = new THREE.DirectionalLight('#ffffff', 2); rim.position.set(-1.8, 3.8, -4.2);
+  const rim = new THREE.DirectionalLight('#f4f8ff', 2.4); rim.position.set(-1.8, 3.8, -4.2);
   const lights = [hemi, key, fill, rim];
   lights.forEach((light) => scene.add(light));
   return lights;
@@ -118,21 +121,30 @@ export function buildGround(THREE: ThreeModule): { group: THREE.Group; dispose()
   const group = new THREE.Group();
   const disposables: { dispose(): void }[] = [];
   const keep = <T extends { dispose(): void }>(item: T): T => { disposables.push(item); return item; };
-  const disc = new THREE.Mesh(keep(new THREE.CircleGeometry(1.32, 56)), keep(new THREE.MeshStandardMaterial({ color: '#c3c8d2', roughness: 1 })));
-  disc.rotation.x = -Math.PI / 2;
-  const rim = new THREE.Mesh(keep(new THREE.CircleGeometry(1.4, 56)), keep(new THREE.MeshStandardMaterial({ color: '#aeb4c0', roughness: 1 })));
-  rim.rotation.x = -Math.PI / 2; rim.position.y = -0.012;
   // Two soft blobs: a wide faint one for the body and a tight dark one where the feet touch.
   const size = 96, data = new Uint8Array(size * size * 4);
   for (let j = 0; j < size; j++) for (let i = 0; i < size; i++) {
     const d = Math.hypot((i + 0.5) / size - 0.5, (j + 0.5) / size - 0.5) * 2;
     const wide = clamp(1 - d, 0, 1) ** 1.8 * 95, tight = clamp(1 - d / 0.42, 0, 1) ** 1.3 * 120;
-    data.set([18, 22, 32, Math.round(Math.min(190, wide + tight))], (j * size + i) * 4);
+    data.set([14, 18, 24, Math.round(Math.min(215, wide * 1.15 + tight * 1.2))], (j * size + i) * 4);
   }
   const texture = keep(new THREE.DataTexture(data, size, size, THREE.RGBAFormat));
   texture.magFilter = THREE.LinearFilter; texture.minFilter = THREE.LinearFilter; texture.needsUpdate = true;
-  const shadow = new THREE.Mesh(keep(new THREE.PlaneGeometry(1.7, 1.35)), keep(new THREE.MeshBasicMaterial({ map: texture, transparent: true, depthWrite: false })));
+  const shadow = new THREE.Mesh(keep(new THREE.PlaneGeometry(1.9, 1.5)), keep(new THREE.MeshBasicMaterial({ map: texture, transparent: true, depthWrite: false })));
   shadow.rotation.x = -Math.PI / 2; shadow.position.set(0, 0.006, 0.03);
+  // A pedestal that melts into the backdrop: warm stone, opaque in the middle, fading to nothing at the edge.
+  const fade = new Uint8Array(size * size * 4);
+  for (let j = 0; j < size; j++) for (let i = 0; i < size; i++) {
+    const d = Math.hypot((i + 0.5) / size - 0.5, (j + 0.5) / size - 0.5) * 2, v = Math.round(255 * clamp((1 - d) / 0.32, 0, 1) ** 1.2);
+    fade.set([v, v, v, 255], (j * size + i) * 4);
+  }
+  const alpha = keep(new THREE.DataTexture(fade, size, size, THREE.RGBAFormat));
+  alpha.magFilter = THREE.LinearFilter; alpha.minFilter = THREE.LinearFilter; alpha.needsUpdate = true;
+  const disc = new THREE.Mesh(keep(new THREE.CircleGeometry(1.5, 56)), keep(new THREE.MeshStandardMaterial({ color: '#d8d0c6', roughness: 1, alphaMap: alpha, transparent: true, opacity: 0.92, depthWrite: false })));
+  disc.rotation.x = -Math.PI / 2;
+  const rim = new THREE.Mesh(keep(new THREE.RingGeometry(1.0, 1.04, 64)), keep(new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.16, depthWrite: false })));
+  rim.rotation.x = -Math.PI / 2; rim.position.y = 0.004;
+  disc.renderOrder = 0; shadow.renderOrder = 1; rim.renderOrder = 2; // the transparent layers draw bottom to top
   group.add(rim, disc, shadow);
   return { group, dispose() { group.parent?.remove(group); disposables.forEach((item) => item.dispose()); disposables.length = 0; } };
 }
@@ -188,6 +200,8 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 60);
   lightStage(THREE, scene);
+  // High tier: the generated environment map gives skin and cloth a softer response; one redraw when it lands, no idle loop.
+  if (renderTier().env) lazyEnvironment(THREE, scene, () => render(), 0.15);
   const ground = buildGround(THREE);
   const turntable = new THREE.Group();
   scene.add(ground.group, turntable);
@@ -199,6 +213,15 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
   const tweens = new Map<string, Tween>(); // name → { start, duration, step(t, dt) → false to stop early, last }
   let previewProportions = avatarProportions(undefined);
   let body: SkinnedBody | null = null, bodyLook: unknown = null, bodyLoading = false, bodyFailed = !bodyAllowed();
+
+  const targetFrame = (next: PreviewFocus): PreviewFrame => next === 'head' && body ? SKINNED_HEAD_FRAME : FRAMES[next];
+  function moveFrame(to: PreviewFrame): void {
+    const from = { ...shown };
+    animate('zoom', 340, (t: number) => {
+      const k = ease(t);
+      shown = { y: from.y + (to.y - from.y) * k, height: from.height + (to.height - from.height) * k, width: from.width + (to.width - from.width) * k };
+    });
+  }
 
   /** Wear the look on the skinned body (see the header), fetching it once the world already has; else keep the drawn figure. */
   function dress(look: unknown) {
@@ -217,8 +240,13 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
       turntable.add(body.object);
       body.place(0, 0, 0, 0);
       if (avatar) avatar.visible = false;
-      render();
-    }).catch((error: unknown) => { bodyLoading = false; bodyFailed = true; console.warn('Skinned body unavailable; keeping the drawn figure:', error); });
+      if (focus === 'head') moveFrame(targetFrame(focus)); else render();
+    }).catch((error: unknown) => {
+      bodyLoading = false; bodyFailed = true;
+      if (disposed) return;
+      if (focus === 'head' && (shown.y !== FRAMES.head.y || shown.height !== FRAMES.head.height || shown.width !== FRAMES.head.width)) moveFrame(FRAMES.head); else render();
+      console.warn('Skinned body unavailable; keeping the drawn figure:', error);
+    });
   }
 
   function frame() {
@@ -292,11 +320,7 @@ export function createAvatarPreview(host: HTMLElement | null | undefined, option
     const wanted = asFocus(next);
     if (disposed || wanted === focus) return false;
     focus = wanted;
-    const from = { ...shown }, to = FRAMES[wanted];
-    animate('zoom', 340, (t: number) => {
-      const k = ease(t);
-      shown = { y: from.y + (to.y - from.y) * k, height: from.height + (to.height - from.height) * k, width: from.width + (to.width - from.width) * k };
-    });
+    moveFrame(targetFrame(wanted));
     return true;
   }
   function setInset(px: number): boolean {

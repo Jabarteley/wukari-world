@@ -23,6 +23,12 @@ const NPC_PLACES: Record<string, string> = {
   'agent-bimpe': 'desk', 'porter-sule': 'arrivals', 'engineer-chioma': 'control', 'driver-mustapha': 'loading',
 };
 const npc = (id: NpcId, venue: string, name: string, role: string, emoji: string, quotes: string[], extra: Pick<NpcDefinition, 'beta' | 'note'> = { beta: true }): Omit<NpcDefinition, 'at'> => ({ id, venue, name, role, emoji, quotes, ...extra });
+const NPC_LOOKS: Record<string, NpcDefinition['look']> = {
+  amaka: { body: 'woman', hair: 'bun', outfit: 'casual', fabric: 'adire', skin: 'skin-4', hairColor: 'soft-black', outfitColor: 'blue', bottomsColor: 'navy', accessories: ['earrings'] },
+  'baba-sege': { body: 'man', hair: 'low-cut', outfit: 'kaftan', fabric: 'aso-oke', skin: 'skin-6', hairColor: 'soft-black', outfitColor: 'cream', bottomsColor: 'cream', accessories: ['fila', 'glasses'], appearance: { height: 'average', build: 'average', ageAppearance: 'elder' } },
+  kunle: { body: 'man', hair: 'locs', outfit: 'casual', fabric: 'plain', skin: 'skin-5', hairColor: 'black', outfitColor: 'teal', bottomsColor: 'navy', accessories: ['glasses', 'backpack'] },
+  'mama-ronke': { body: 'woman', hair: 'gele', outfit: 'owambe', fabric: 'ankara', skin: 'skin-5', hairColor: 'black', outfitColor: 'orange', bottomsColor: 'green', accessories: ['earrings'], expression: 'grin', appearance: { height: 'average', build: 'average', ageAppearance: 'mature' } },
+};
 export const NPCS: Record<NpcId, NpcDefinition> = Object.fromEntries([
   npc('amaka', 'amala-shitta', 'Amaka', 'Serving', '👩🏾‍🍳', ['Extra meat is extra money, no vex.', 'This pot has fed half of Surulere today.', 'You look like somebody that skipped breakfast.'], { note: 'Name and role are fixed; quotes are original.' }),
   npc('baba-sege', 'amala-shitta', 'Baba Sege', 'Regular customer', '👴🏾', ['I have eaten here since before you were born.', 'Abula first, wahala later.'],),
@@ -72,6 +78,6 @@ export const NPCS: Record<NpcId, NpcDefinition> = Object.fromEntries([
   npc('porter-sule', 'airport', 'Sule', 'Porter at Arrivals', '🧑🏾', ['Oga, let me carry that one for you.', 'Every flight lands with one suitcase too many.']),
   npc('engineer-chioma', 'refinery', 'Engr Chioma', 'Shift engineer', '👩🏾', ['Hard hat on before you say hello.', 'When the flare is quiet, everybody is happy.']),
   npc('driver-mustapha', 'refinery', 'Mustapha', 'Tanker driver', '👨🏾', ['I have been on this queue since dawn.', 'Full tank going out, empty stomach coming back.']),
-].map((entry) => [entry.id, { ...entry, at: NPC_PLACES[entry.id] ?? null }]));
+].map((entry) => [entry.id, { ...entry, ...(NPC_LOOKS[entry.id] ? { look: NPC_LOOKS[entry.id] } : {}), at: NPC_PLACES[entry.id] ?? null }]));
 
 Object.assign(NPCS, CAMPUS_NPCS);

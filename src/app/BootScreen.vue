@@ -15,6 +15,7 @@ const busy = ref(false)
 const failed = ref(false)
 const stage = ref(bootStage(performance.now()))
 const clearing = ref(false)
+const retry = ref<HTMLButtonElement | null>(null)
 // The "Start fresh" code and words are fetched when the 40 s stage is reached; if that fetch fails on a bad network, a plain reload is offered instead.
 const fresh: ShallowRef<typeof import('./state/bootFresh.ts') | null> = shallowRef(null)
 const freshMissing = ref(false)
@@ -58,6 +59,9 @@ async function open(): Promise<void> {
     noteBootResult(true)
     if (isChunkLoadError(error) && reloadOnce()) return
     if (isChunkLoadError(error)) await noteChunkFailure()
+    // The failure message is announced (role=alert); the way out is where the keyboard and screen reader land.
+    await nextTick()
+    retry.value?.focus()
   } finally { busy.value = false }
 }
 
@@ -94,8 +98,8 @@ async function clearAndReload(): Promise<void> {
       <div v-if="failed" role="alert">
         <p v-if="updateAvailable">Allworld has been updated. Reload to continue.</p>
         <p v-else>Allworld couldn't finish loading. Check your connection, then try again.</p>
-        <button v-if="updateAvailable" type="button" @click="reload">Reload</button>
-        <button v-else type="button" @click="reload">Try again</button>
+        <button v-if="updateAvailable" ref="retry" type="button" @click="reload">Reload</button>
+        <button v-else ref="retry" type="button" @click="reload">Try again</button>
       </div>
       <template v-else>
         <p class="boot-status" role="status">{{ stage === 'loading' ? BOOT_WORDS.loading : BOOT_WORDS.slow }}</p>

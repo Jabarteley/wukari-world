@@ -68,7 +68,7 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     const world = makeWorld(container, { location: 'park', renderer });
     const count = () => world.diagnostics().renderCount;
     assert.equal(count(), 1);
-    assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.day.hemi[2], sun: LIGHTING.outdoor.day.sun[1], sky: '#eaf4ff' }, 'the host applied the scene’s own lighting preset');
+    assert.deepEqual(world.diagnostics().lighting, { hemi: LIGHTING.outdoor.day.hemi[2], sun: LIGHTING.outdoor.day.sun[1], sky: LIGHTING.outdoor.day.hemi[0] }, 'the host applied the scene’s own lighting preset');
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
     assert.equal(count(), 2, 'the avatar changed: one frame');
     world.setPlayer({ look: { body: 'woman', hair: 'afro' }, seed: PLAYER, name: 'Ada' });
@@ -77,8 +77,8 @@ test('an idle venue with a crowd renders zero frames; the crowd, the player and 
     assert.equal(count(), 3, 'a crowd arrived: one frame');
     const tags = world.diagnostics().tags;
     assert.deepEqual(tags.filter((tag) => tag.kind !== 'table').map((tag) => [tag.kind, tag.marker]), [['self', 'crown'], ['player', 'tag'], ['npc', 'dot'], ['player', 'tag'], ['npc', 'dot']]);
-    // The park's two game tables stand in the scene and are named (part of the scene, like its spots: they cost no frame of their own).
-    assert.deepEqual(tags.filter((tag) => tag.kind === 'table').map((tag) => tag.text), ['Whot · Bench under the trees', 'Penalties · Kickabout corner', 'Chess · Chess under the trees']);
+    // The park's game tables stand in the scene and are named (part of the scene, like its spots: they cost no frame of their own).
+    assert.deepEqual(tags.filter((tag) => tag.kind === 'table').map((tag) => tag.text), ['Whot · Bench under the trees', 'Ayo · Ayo board under the trees', 'Penalties · Kickabout corner', 'Chess · Chess under the trees']);
     assert.deepEqual([tags[0]!.text, tags[1]!.text, tags[2]!.name], ['Ada', '@Player 0', 'Local 1']);
     assert.ok(tags.every((tag) => Number.isFinite(tag.x) && Number.isFinite(tag.y)), 'every tag has a screen position');
     // The view starts close to the player (START_DISTANCE in venue-world.js), so not everyone is in it: the player's own tag always is.
@@ -851,7 +851,7 @@ test('game tables can be walked up to: a tap walks there and opens it on arrival
     const { world } = bench;
     world.setState(PARK);
     const things = () => world.diagnostics().things, avatar = () => world.diagnostics().avatar;
-    assert.deepEqual(things().map((thing) => [thing.id, thing.kind, thing.at]), [['table:park-bench', 'table', false], ['table:park-goal', 'table', false], ['table:park-chess', 'table', false]]);
+    assert.deepEqual(things().map((thing) => [thing.id, thing.kind, thing.at]), [['table:park-bench', 'table', false], ['table:park-ayo', 'table', false], ['table:park-goal', 'table', false], ['table:park-chess', 'table', false]]);
     const table = things()[0]!;
     const away = () => Math.hypot(avatar().x - table.x, avatar().z - table.z);
     assert.ok(away() > 6, 'the avatar starts at the entrance, not at a table');

@@ -21,15 +21,167 @@ import type { AmbientPose } from './plan.ts';
  * What a figure is asked to look like: who it is and what it is doing. `step` is which of the two walking steps. `lean` asks for the cheap
  * kind (about 200 triangles, one mesh) that a place can afford many of; the other is the game's own person (up to 600).
  */
-export interface FigureSpec { seed: string; pose: AmbientPose; step: number; seat: number; lean?: boolean }
+export interface FigureSpec { seed: string; look?: unknown; pose: AmbientPose; step: number; seat: number; lean?: boolean }
 /** What a figure of each kind costs at most, in triangles: the layer plans its budget with these. */
-export const FIGURE_COST = Object.freeze({ full: 450, lean: 230 })
+export const FIGURE_COST = Object.freeze({ full: 600, lean: 230 })
+
+/** The non-seated poses which can share one low-detail mesh and interpolate on the GPU. */
+export type MotionPose = Exclude<AmbientPose, 'sit'>
+
+/**
+ * One low-detail person whose poses are morph targets on one merged mesh. The caller owns time:
+ * pose() only chooses a target, step() advances the short cross-fade, and neither asks for frames.
+ */
+export interface MotionFigure {
+  readonly group: AvatarGroup
+  pose(pose: MotionPose, stride?: number, instant?: boolean): void
+  face(blink: number, speech: number): void
+  step(dt: number): boolean
+  settle(): void
+  dispose(): void
+}
+
+export const MOTION_BLEND_SECONDS = 0.18
+const WALK_PHASES = [0, 0.25, 0.5, 0.75] as const
+const STILL_POSES = ['relax', 'work', 'wave'] as const satisfies readonly MotionPose[]
+
+interface MorphFrame { name: string; pose: MotionPose; stride?: number; facial?: { blink?: number; speech?: number } }
+const POSE_FRAMES: readonly MorphFrame[] = Object.freeze([
+  ...WALK_PHASES.map((stride, index) => ({ name: `walk${index}`, pose: 'walk' as const, stride })),
+  ...STILL_POSES.map((pose) => ({ name: pose, pose })),
+])
+const FACE_FRAMES: readonly MorphFrame[] = Object.freeze([
+  { name: 'blink', pose: 'stand', facial: { blink: 1 } },
+  { name: 'speech', pose: 'stand', facial: { speech: 1 } },
+])
+const MORPH_FRAMES: readonly MorphFrame[] = Object.freeze([...POSE_FRAMES, ...FACE_FRAMES])
+
+const meshChildren = (group: AvatarGroup): THREE.Mesh[] => group.children.filter((child): child is THREE.Mesh => (child as THREE.Mesh).isMesh === true)
+
+function sameIndex(a: THREE.BufferGeometry, b: THREE.BufferGeometry): boolean {
+  const ai = a.index?.array, bi = b.index?.array
+  if (!ai || !bi) return ai === bi
+  if (ai.length !== bi.length) return false
+  for (let i = 0; i < ai.length; i++) if (ai[i] !== bi[i]) return false
+  return true
+}
+
+/**
+ * Build a single merged low-detail NPC with compatible position and normal morph targets. Returns
+ * null for sitting or if a future avatar shape stops sharing topology, so callers can keep using a
+ * normal static figure without risking corrupt geometry.
+ */
+export function makeMotionFigure(kit: Kit, spec: Omit<FigureSpec, 'lean'>): MotionFigure | null {
+  if (spec.pose === 'sit') return null
+  const { THREE } = kit
+  const base = buildAvatar(kit, spec.look, { seed: spec.seed, pose: 'stand', marker: null })
+  const meshes = meshChildren(base)
+  if (meshes.length !== 1) { base.userData.dispose(); return null }
+  const mesh = meshes[0]!
+  const geometry = mesh.geometry
+  const basePosition = geometry.getAttribute('position'), baseNormal = geometry.getAttribute('normal')
+  if (!basePosition || !baseNormal || basePosition.itemSize !== 3 || baseNormal.itemSize !== 3) { base.userData.dispose(); return null }
+
+  const positionTargets: THREE.BufferAttribute[] = [], normalTargets: THREE.BufferAttribute[] = []
+  for (const frame of MORPH_FRAMES) {
+    const target = buildAvatar(kit, spec.look, { seed: spec.seed, pose: frame.pose, ...(frame.stride === undefined ? {} : { stride: frame.stride }), ...(frame.facial ? { facial: frame.facial } : {}), marker: null })
+    const targets = meshChildren(target), targetMesh = targets[0]
+    const targetPosition = targetMesh?.geometry.getAttribute('position'), targetNormal = targetMesh?.geometry.getAttribute('normal')
+    const compatible = targets.length === 1 && targetPosition?.count === basePosition.count && targetNormal?.count === baseNormal.count && sameIndex(geometry, targetMesh!.geometry)
+    if (!compatible) {
+      target.userData.dispose()
+      base.userData.dispose()
+      return null
+    }
+    const positions = new Float32Array(basePosition.count * 3), normals = new Float32Array(baseNormal.count * 3)
+    for (let i = 0; i < basePosition.count; i++) {
+      const at = i * 3
+      positions[at] = targetPosition!.getX(i) - basePosition.getX(i)
+      positions[at + 1] = targetPosition!.getY(i) - basePosition.getY(i)
+      positions[at + 2] = targetPosition!.getZ(i) - basePosition.getZ(i)
+      normals[at] = targetNormal!.getX(i) - baseNormal.getX(i)
+      normals[at + 1] = targetNormal!.getY(i) - baseNormal.getY(i)
+      normals[at + 2] = targetNormal!.getZ(i) - baseNormal.getZ(i)
+    }
+    const position = new THREE.BufferAttribute(positions, 3), normal = new THREE.BufferAttribute(normals, 3)
+    position.name = frame.name; normal.name = frame.name
+    positionTargets.push(position); normalTargets.push(normal)
+    target.userData.dispose()
+  }
+
+  geometry.morphAttributes.position = positionTargets
+  geometry.morphAttributes.normal = normalTargets
+  geometry.morphTargetsRelative = true
+  geometry.computeBoundingBox()
+  geometry.computeBoundingSphere()
+  geometry.boundingBox?.expandByScalar(0.05)
+  if (geometry.boundingSphere) geometry.boundingSphere.radius += 0.05
+  mesh.updateMorphTargets()
+  const influences = mesh.morphTargetInfluences
+  if (!influences || influences.length !== MORPH_FRAMES.length) { base.userData.dispose(); return null }
+
+  const from = new Array<number>(POSE_FRAMES.length).fill(0)
+  const target = new Array<number>(POSE_FRAMES.length).fill(0)
+  const current = new Array<number>(POSE_FRAMES.length).fill(0)
+  let elapsed = MOTION_BLEND_SECONDS, wanted: MotionPose = 'stand'
+  const writeWeights = (values: number[], pose: MotionPose, stride = 0): void => {
+    values.fill(0)
+    if (pose === 'walk') {
+      const cycle = (((stride % 1) + 1) % 1) * WALK_PHASES.length
+      const before = Math.floor(cycle) % WALK_PHASES.length, mix = cycle - Math.floor(cycle)
+      values[before] = 1 - mix
+      values[(before + 1) % WALK_PHASES.length] = mix
+    } else if (pose !== 'stand') {
+      const index = POSE_FRAMES.findIndex((frame) => frame.name === pose)
+      if (index >= 0) values[index] = 1
+    }
+  }
+  const applyPose = (values: readonly number[]): void => { for (let i = 0; i < POSE_FRAMES.length; i++) influences[i] = values[i] ?? 0 }
+  const applyFace = (blink: number, speech: number): void => {
+    influences[POSE_FRAMES.length] = Math.max(0, Math.min(1, blink))
+    influences[POSE_FRAMES.length + 1] = Math.max(0, Math.min(1, speech))
+  }
+  const snapPose = (): void => {
+    elapsed = MOTION_BLEND_SECONDS
+    for (let i = 0; i < target.length; i++) current[i] = from[i] = target[i]!
+    applyPose(current)
+  }
+
+  const controller: MotionFigure = {
+    group: base,
+    pose(pose, stride = 0, instant = false) {
+      if (pose !== wanted) {
+        wanted = pose; elapsed = 0
+        for (let i = 0; i < current.length; i++) from[i] = current[i]!
+      }
+      writeWeights(target, pose, stride)
+      if (instant) { snapPose(); return }
+      if (elapsed >= MOTION_BLEND_SECONDS) {
+        for (let i = 0; i < current.length; i++) current[i] = target[i]!
+        applyPose(current)
+      }
+    },
+    face: applyFace,
+    step(dt) {
+      if (elapsed >= MOTION_BLEND_SECONDS) return false
+      elapsed = Math.min(MOTION_BLEND_SECONDS, elapsed + Math.max(0, dt))
+      const linear = elapsed / MOTION_BLEND_SECONDS, eased = linear * linear * (3 - 2 * linear)
+      for (let i = 0; i < current.length; i++) current[i] = from[i]! + (target[i]! - from[i]!) * eased
+      applyPose(current)
+      return elapsed < MOTION_BLEND_SECONDS
+    },
+    settle() { snapPose(); applyFace(0, 0) },
+    dispose: () => base.userData.dispose(),
+  }
+  controller.pose(spec.pose, spec.pose === 'walk' ? (spec.step ? 0.75 : 0.25) : 0, true)
+  return controller
+}
 
 /** The figure, standing at the origin facing +z, ready to be placed by its transform. Built once per (person, pose) and reused. */
 export function makeFigure(kit: Kit, spec: FigureSpec): AvatarGroup {
   if (spec.lean) return makeLeanFigure(kit, spec)
   const walking = spec.pose === 'walk'
-  return buildAvatar(kit, null, { seed: spec.seed, pose: walking ? 'walk' : spec.pose, ...(walking ? { stride: spec.step ? 0.75 : 0.25 } : {}), ...(spec.pose === 'sit' ? { seat: spec.seat } : {}), marker: null })
+  return buildAvatar(kit, spec.look, { seed: spec.seed, pose: walking ? 'walk' : spec.pose, ...(walking ? { stride: spec.step ? 0.75 : 0.25 } : {}), ...(spec.pose === 'sit' ? { seat: spec.seat } : {}), marker: null })
 }
 
 /** A lean person: a tapered body, a head, two legs and two arms of single tubes, posed by the angles of the limbs. One mesh. */

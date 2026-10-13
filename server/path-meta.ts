@@ -13,6 +13,8 @@ import type { GameSlug, PathIntent } from '../src/paths.ts';
 import { SITE_ORIGIN } from './host-context.ts';
 import { ENTRY_VARIANTS, variantOf, withFigures } from '../src/entry-variants.ts';
 import { worldFigures } from '../src/app/features/start/entryModel.ts';
+import { gameOfRoom } from '../src/arena/code.ts';
+import { arenaGame } from '../src/arena/registry.ts';
 
 export interface PathMeta {
   title: string
@@ -36,6 +38,7 @@ const GAME_META: Readonly<Record<GameSlug, { title: string; description: string 
   weave: { title: `Play Weave, the word-tile game — ${BRAND}`, description: `Weave words across the cloth with seven tiles against the computer. ${TAIL}` },
   whot: { title: `Play Whot, the card game — ${BRAND}`, description: `Play Whot against the computer, or at a table with friends. ${TAIL}` },
   penalties: { title: `Play penalties, the shootout — ${BRAND}`, description: `Take the penalty shootout against the computer. ${TAIL}` },
+  ayo: { title: `Play Ayo free — ${BRAND}`, description: `Sow and capture seeds in Ayo, played here with Oware rules, against the computer. ${TAIL}` },
 };
 
 /** What an intent's page says about itself. */
@@ -89,9 +92,21 @@ export const escapeHtml = (text: string): string => text.replace(/[&<>"']/g, (ch
 const setMeta = (html: string, key: string, value: string): string =>
   html.replace(new RegExp(`(<meta (?:property|name)="${key}" content=")[^"]*(")`), (_all, open: string, close: string) => `${open}${escapeHtml(value)}${close}`);
 
+/**
+ * The head of an invite link to a live game (`/?table=g-fight-k7m2qp`): it names the game. Only the game's own label is used (from the
+ * registry, never from the link), the link is not for search engines, and the page keeps its default picture and canonical address.
+ */
+export function roomMeta(pathname: string, search: string): PathMeta | null {
+  if (pathname !== '/' && pathname !== '') return null;
+  const code = /[?&]table=([a-z0-9-]{1,40})(?:[&#]|$)/.exec(search)?.[1];
+  const game = code ? arenaGame(gameOfRoom(code)) : null;
+  if (!game) return null;
+  return { title: `Join my ${game.label} match on ${BRAND}`, description: `A friend is waiting for you in a live ${game.label} match. Tap to play, or to watch if it is full. ${TAIL}`, canonical: null, index: false };
+}
+
 /** index.html written for an address. `origin` is the page's public origin (no trailing slash); empty falls back to the site's own. */
-export function withPathMeta(html: string, pathname: string, origin = ''): string {
-  const meta = metaFor(pathname);
+export function withPathMeta(html: string, pathname: string, origin = '', search = ''): string {
+  const meta = roomMeta(pathname, search) ?? metaFor(pathname);
   if (!meta) return html;
   let page = html;
   if (!meta.index) page = setMeta(page, 'robots', 'noindex,follow');

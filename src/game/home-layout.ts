@@ -65,7 +65,7 @@ export function plotOf(grid: number, owned = false): Plot {
   plot.rule = ruleOf?.(plot);
   return plot;
 }
-const plotIn = (space: number | Plot): Plot => (typeof space === 'number' ? plotOf(space) : space);
+export const plotIn = (space: number | Plot): Plot => (typeof space === 'number' ? plotOf(space) : space);
 const floorOf = (item: { floor?: number }): number => item.floor ?? 0;
 
 const whole = (value: unknown): value is number => Number.isInteger(value);

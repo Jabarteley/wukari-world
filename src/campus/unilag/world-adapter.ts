@@ -65,6 +65,7 @@ interface WorldHost {
   setAmbient?(ambientFor: AmbientFor | null): void;
   wakeAmbient?(): boolean;
   say?(id: string, text: string, ms?: number): boolean;
+  animateSpeech?(id: string, ms?: number): boolean;
   talk?(a: string, b: string, ms?: number): boolean;
   ambientPeople?(): AmbientPerson[];
   ambientFrames?(): number;
@@ -284,6 +285,7 @@ export function createWorldAdapter(container: HTMLElement, { location = 'park', 
     setAmbient(next: AmbientFor | null) { ambientFor = next; host?.setAmbient?.(next); },
     wakeAmbient() { return host?.wakeAmbient?.() ?? false; },
     say(id: string, text: string, ms?: number) { return host?.say?.(id, text, ms) ?? false; },
+    animateSpeech(id: string, ms?: number) { return host?.animateSpeech?.(id, ms) ?? false; },
     talk(a: string, b: string, ms?: number) { return host?.talk?.(a, b, ms) ?? false; },
     ambientPeople() { return host?.ambientPeople?.() ?? []; },
     ambientFrames() { return host?.ambientFrames?.() ?? 0; },

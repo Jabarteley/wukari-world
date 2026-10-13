@@ -18,6 +18,7 @@ const GAME_LINES: Readonly<Record<GameSlug, { strong: string; text: string; butt
   weave: { strong: 'Weave: word tiles against the computer.', text: 'Free in your browser, no password.', button: 'Play Weave' },
   whot: { strong: 'Whot against the computer.', text: 'The card game, free in your browser, no password.', button: 'Play Whot' },
   penalties: { strong: 'Penalties against the computer.', text: 'A shootout in your browser, free, no password.', button: 'Play penalties' },
+  ayo: { strong: 'Ayo against the computer.', text: 'Sow and capture seeds with Oware rules. Free in your browser, no password.', button: 'Play Ayo' },
 }
 
 /** The line for an address a visitor with no life opened, or null when the plain landing says it all. */

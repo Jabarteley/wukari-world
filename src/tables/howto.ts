@@ -19,3 +19,11 @@ export const weaveRules: readonly string[] = [
   'You can swap tiles for new ones (while the bag has at least seven) or pass. The game ends when someone runs out of tiles with the bag empty, or after six turns in a row with no score.',
   'You have two minutes for each turn. A win against real players is paid by the game; a game against bots pays nothing.',
 ]
+export const ayoRules: readonly string[] = [
+  'This table uses Oware rules. Ayo house styles vary, so another board may use different capture or ending rules.',
+  'Each player owns six cups and starts with four seeds in each. Choose one of your cups and sow its seeds anticlockwise, one seed per cup. Skip the cup you picked if a sowing lap reaches it again.',
+  'When your last seed lands on the other player’s row in a cup holding two or three seeds, capture that cup and keep moving backwards while their cups hold two or three.',
+  'A capture that would clear the other player’s whole row is cancelled. If their row is empty before your turn, you must choose a move that feeds it when one is available.',
+  'Capture more than 24 seeds to win; 24 each is a draw. If play is starved or bounded by repetition, each player collects the seeds left on their own row.',
+  'A win against a real player is paid by the game. A game against the computer pays nothing.',
+]

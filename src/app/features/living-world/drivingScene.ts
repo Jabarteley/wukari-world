@@ -134,7 +134,7 @@ export async function createDrivingScene(canvas: HTMLCanvasElement, route: Drivi
   const moveActor = (at: Point, heading: number, pose: ActorPose, fallback: Point, stride = 0) => {
     standIn.move(at.x, at.y, at.z, heading)
     setActorPose(pose, false)
-    if (pose === 'walk') { standIn.gait(stride, false, at.y); actorPose = 'walk' }
+    if (pose === 'walk') { standIn.gait(stride, false, at.y, !reduceMotion); actorPose = 'walk' }
     fallbackAt(fallback, heading, pose, stride)
   }
   const poseCar = (pose: Omit<VehiclePose, 'distance'> = {}) => {
@@ -281,7 +281,7 @@ export async function createDrivingScene(canvas: HTMLCanvasElement, route: Drivi
       const fallback: Point = { x: a.exitGround.x + (a.approach.x - a.exitGround.x) * t, y: 0, z: a.exitGround.z + (a.approach.z - a.exitGround.z) * t }
       moveActor(walking, current.heading, 'walk', fallback, stridePhase)
       poseCar({ door: 1, time: clock })
-      if (t >= 1) { phase = 'exit-close'; phaseTime = 0; setActorPose('stand', false, true); fallbackAt(a.approach, current.heading, 'stand') }
+      if (t >= 1) { phase = 'exit-close'; phaseTime = 0; setActorPose('stand', !reduceMotion, true); fallbackAt(a.approach, current.heading, 'stand') }
     } else if (phase === 'exit-close') {
       phaseTime += dt
       const doorCloseDuration = reduceMotion ? 0.08 : 0.22

@@ -107,6 +107,8 @@ export interface Drawing {
 /** Options of drawAvatar and buildAvatar. */
 export interface DrawOptions {
   sleeping?: boolean;
+  /** Transient facial motion, independent of the character's saved expression. */
+  facial?: { blink?: number; speech?: number };
   x?: number; y?: number; z?: number; ry?: number;
   pose?: Pose;
   /** The phase of 'walk' or 'jog', 0 … 1. */
@@ -125,7 +127,7 @@ export interface DrawnAvatar { look: Look; top: number }
 /** The movable parts of a rigged avatar (each a Group pivoted at its joint). */
 export type AvatarParts = Record<PartName | 'body', THREE.Group>;
 interface Bend { geometry: THREE.BufferGeometry; start: number; position: Float32Array; normal: Float32Array; pivotY: number; angle: number; kind: 'calf' | 'fore'; side: 0 | 1 }
-export interface AvatarUserData { look: Look; top: number; triangles: number; dispose: () => void; parts?: AvatarParts; bends?: Bend[] }
+export interface AvatarUserData { twist?: number; lookTorso?: number; look: Look; top: number; triangles: number; dispose: () => void; parts?: AvatarParts; bends?: Bend[] }
 /** What buildAvatar returns. */
 export interface AvatarGroup extends THREE.Group { userData: AvatarUserData }
 /** An avatar built with `rig: true`: its parts are there. */
@@ -207,6 +209,11 @@ function pickAccessories(value: unknown): string[] {
 // What a passer-by with no recorded look may carry (most carry nothing).
 const SEEDED_ACCESSORIES: string[][] = [[], [], [], ['glasses'], ['cap'], [], ['backpack'], ['watch'], [], ['sunglasses'], ['handbag'], []];
 
+// What a passer-by's cloth is (indices into LOOK_OPTIONS.fabric): plain, ankara, adire, aso-oke, so a crowd shows more than one wax print.
+const SEEDED_FABRIC = [0, 1, 0, 2, 0, 3, 1, 0, 3, 2];
+// Indices into LOOK_OPTIONS.outfitColor: navy, cream, navy, teal, blue, gold (weighted to the neutrals).
+const HARMONY_BOTTOMS = [7, 8, 7, 6, 0, 8, 7, 9];
+
 /** Fill in a look. The same input and seed always give the same result. */
 export function normalizeLook(look?: unknown, seed?: unknown): Look {
   const source: Record<string, unknown> = look && typeof look === 'object' ? look as Record<string, unknown> : {};
@@ -215,7 +222,8 @@ export function normalizeLook(look?: unknown, seed?: unknown): Look {
   const pick = (part: string) => hash(`${base}:${part}`);
   const body = pickOption(source.body ?? source.gender, LOOK_OPTIONS.body, pick('body'));
   const outfitColor = pickColour(source.outfitColor, LOOK_OPTIONS.outfitColor, pick('outfitColor'));
-  let bottomsSeed = pick('bottomsColor');
+  // A passer-by's trousers or wrapper come mostly from the grounded colours (navy, cream, teal, blue), so a crowd reads as dressed, not random.
+  let bottomsSeed = source.bottomsColor == null ? HARMONY_BOTTOMS[pick('bottomsColor') % HARMONY_BOTTOMS.length]! : pick('bottomsColor');
   if (LOOK_OPTIONS.outfitColor[bottomsSeed % 10]!.hex === outfitColor) bottomsSeed += 7;
   // Seeded fallbacks rarely pick site work, so a crowd is not a sea of hard hats.
   const outfits = LOOK_OPTIONS.outfit[body], everyday = outfits.filter((id) => id !== 'sitework');
@@ -224,7 +232,7 @@ export function normalizeLook(look?: unknown, seed?: unknown): Look {
     body,
     hair: pickOption(source.hair ?? source.hairstyle, LOOK_OPTIONS.hair[body], pick('hair')),
     outfit: pickOption(source.outfit, outfits, outfitSeed),
-    fabric: pickOption(source.fabric, LOOK_OPTIONS.fabric, source.fabric == null && pick('fabric') % 2 ? 0 : pick('fabric')),
+    fabric: pickOption(source.fabric, LOOK_OPTIONS.fabric, source.fabric == null ? SEEDED_FABRIC[pick('fabric') % SEEDED_FABRIC.length]! : pick('fabric')),
     skin: pickColour(source.skin ?? source.skinTone, LOOK_OPTIONS.skin, pick('skin')),
     hairColor: pickColour(source.hairColor, LOOK_OPTIONS.hairColor, pick('hairColor') % 4),
     outfitColor,
@@ -245,6 +253,8 @@ interface Joints {
   arm: [[number, number], [number, number]];
   fore: [number, number]; leg: [number, number]; calf: [number, number];
   lean: number; bob?: number;
+  /** Torso turn about the vertical axis (the shoulders counter-rotate against the hips). */
+  twist?: number;
 }
 const POSE: Partial<Record<Pose, Joints>> & { stand: Joints } = {
   stand: { arm: [[0.06, 0.1], [0.06, 0.1]], fore: [-0.18, -0.18], leg: [0.03, -0.03], calf: [0, 0], lean: 0 },
@@ -267,17 +277,26 @@ const POSE: Partial<Record<Pose, Joints>> & { stand: Joints } = {
  */
 function gait(stride: number | undefined, jog: boolean): Joints {
   const p = (stride !== undefined && Number.isFinite(stride) ? stride : 0.25) * TAU, swing = Math.sin(p);
-  const reach = jog ? 0.78 : 0.5, knee = jog ? 1.25 : 0.62, elbow = jog ? -1.35 : -0.35;
+  const reach = jog ? 0.7 : 0.42, knee = jog ? 1.25 : 0.62, elbow = jog ? -1.35 : -0.35;
   // Index 0 is the right side. A leg's knee bends while that leg is travelling forwards.
   const leg: [number, number] = [-reach * swing, reach * swing];
   const calf: [number, number] = [(jog ? 0.3 : 0.08) + knee * Math.max(0, Math.cos(p)), (jog ? 0.3 : 0.08) + knee * Math.max(0, -Math.cos(p))];
-  const arm: Joints['arm'] = [[reach * 0.9 * swing, 0.1], [-reach * 0.9 * swing, 0.1]];
-  return { arm, fore: [elbow - 0.15 * Math.max(0, -swing), elbow - 0.15 * Math.max(0, swing)], leg, calf, lean: jog ? 0.17 : 0.06, bob: (jog ? 0.045 : 0.02) * Math.cos(2 * p) };
+  const arm: Joints['arm'] = [[reach * 1.15 * swing, 0.1], [-reach * 1.15 * swing, 0.1]];
+  return { arm, fore: [elbow - 0.15 * Math.max(0, -swing), elbow - 0.15 * Math.max(0, swing)], leg, calf, lean: jog ? 0.17 : 0.06, bob: (jog ? 0.045 : 0.02) * Math.cos(2 * p), twist: -(jog ? 0.1 : 0.07) * swing };
 }
 /** Joint angles for a pose (an unknown pose stands). 'walk' and 'jog' take `stride`; 'walk' without one is the classic mid-stride figure. */
 function jointsOf(pose: Pose | undefined, stride?: number): Joints {
   if (pose === 'jog' || (pose === 'walk' && Number.isFinite(stride))) return gait(stride, pose === 'jog');
   return (pose && POSE[pose]) || POSE.stand;
+}
+/** `from` → `to` by `k` (0 … 1), joint by joint. */
+function mixJoints(from: Joints, to: Joints, k: number): Joints {
+  const m = (a: number, b: number) => a + (b - a) * k;
+  const pair = (a: [number, number], b: [number, number]): [number, number] => [m(a[0], b[0]), m(a[1], b[1])];
+  return {
+    arm: [pair(from.arm[0], to.arm[0]), pair(from.arm[1], to.arm[1])], fore: pair(from.fore, to.fore), leg: pair(from.leg, to.leg), calf: pair(from.calf, to.calf),
+    lean: m(from.lean, to.lean), bob: m(from.bob ?? 0, to.bob ?? 0), twist: m(from.twist ?? 0, to.twist ?? 0),
+  };
 }
 /** Draw `fn` in a frame at (x, y, z) turned by rx, rz. On a rig this is a separate, movable part with its pivot there. */
 function part(b: Drawing, name: string, x: number, y: number, z: number, fn: (b: Drawing) => void, rx = 0, rz = 0): void {
@@ -467,13 +486,48 @@ const weave = (look: Look, colours: Colours): Paint => ({ ankara: [colours[0], c
 // ---- Low detail (crowds, venue and home scenes): at most 600 triangles --------------------------
 
 const LOW_BUDGET = AVATAR_LOW_TRIANGLES.value;
-function headLow(b: Drawing, look: Look, sleeping = false): void {
+const LOW_FACES: Record<Face, { rx: number; ry: number }> = {
+  oval: { rx: 0.26, ry: 0.27 },
+  round: { rx: 0.272, ry: 0.255 },
+  long: { rx: 0.252, ry: 0.295 },
+};
+function headLow(b: Drawing, look: Look, sleeping = false, facial: DrawOptions['facial'] = {}): void {
   const age = look.appearance?.ageAppearance === 'elder' ? 1 : look.appearance?.ageAppearance === 'mature' ? 0.55 : 0;
-  b.ball(0, HEAD.y - age * 0.004, 0, 0.26 + age * 0.002, 0.27 + age * 0.004, 0.26, look.skin, { seg: 8 });
-  for (const side of [-1, 1]) b.quad(side * 0.095, 2.215, 0.249, 0.055, sleeping ? 0.006 : 0.065, INK, { ry: side * 0.3 });
-  b.quad(0, 2.07, 0.238, 0.11, 0.026, mix(look.skin, '#4a1d1a', 0.55), { rx: 0.25 });
+  const unit = (value: number | undefined): number => Number.isFinite(value) ? Math.max(0, Math.min(1, value!)) : 0;
+  const blink = sleeping ? 1 : unit(facial.blink), speech = sleeping ? 0 : unit(facial.speech);
+  const grin = look.expression === 'grin', smile = look.expression !== 'neutral', face = LOW_FACES[look.face] || LOW_FACES.oval;
+  const eyeOpen = ((grin ? 0.041 : 0.052) * (1 - blink) + 0.002), eyeY = 2.215;
+  b.ball(0, HEAD.y + 0.27 - face.ry - age * 0.004, 0, face.rx + age * 0.002, face.ry + age * 0.004, 0.26, look.skin, { seg: 8 });
+  for (const side of [-1, 1]) {
+    const x = side * 0.095;
+    b.at(x, eyeY, 0.252, side * 0.3, () => b.disc(0, 0, 0, 0.031, '#f6f1e7', { seg: 6, sx: 1.08, sz: eyeOpen / 0.062 }), Math.PI / 2);
+    b.quad(x - side * 0.004, eyeY - 0.001, 0.259, 0.024 + blink * 0.032, eyeOpen * 0.72 + blink * 0.003, '#23150e', { ry: side * 0.3, rz: blink * side * 0.04 });
+    b.quad(side * 0.097, 2.287 + (smile ? 0.006 : 0), 0.247, 0.065, 0.009, mix(look.hairColor, INK, 0.5), { ry: side * 0.3, rz: side * (smile ? -0.09 : 0) });
+  }
+  const relief = shade(look.skin, channels(look.skin).reduce((sum, value) => sum + value, 0) < 250 ? 0.12 : -0.08);
+  b.cone(0, 2.135, 0.266, 0.032, 0.06, relief, { seg: 3, open: true, rx: Math.PI / 2 });
+  const mouth = mix(look.skin, '#211012', 0.8), wide = grin ? 0.108 : smile ? 0.096 : 0.084, mouthY = 2.058 - speech * 0.008;
+  b.quad(0, mouthY, 0.257, wide - speech * 0.014, (grin ? 0.024 : 0.009) + speech * 0.035, mouth, { rx: 0.2 });
+  for (const side of [-1, 1]) b.quad(side * (wide / 2 + 0.004), 2.062 + (smile ? 0.009 : 0), 0.251, 0.023, 0.007, mouth, { ry: side * 0.3, rz: side * (smile ? 0.55 : 0) });
+  b.quad(0, mouthY + 0.004, 0.262, grin ? 0.068 : 0.05, grin ? 0.009 : 0.001, '#f6f1e7', { rx: 0.2 });
 }
 const capLow = (b: Drawing, c: Colour) => b.ball(0, 2.32, -0.03, 0.275, 0.19, 0.27, c, { seg: 7 });
+/** A few tapered, bent strands round the nape: enough silhouette for crowds without separate meshes. */
+function hangingLow(b: Drawing, c: Colour, count: number, length: number, r0: number, r1: number): void {
+  for (let i = 0; i < count; i++) {
+    const turn = -1.15 + 2.3 * i / Math.max(1, count - 1), side = Math.abs(turn) / 1.15;
+    const root: Vec3 = [Math.sin(turn) * 0.25, 2.37 - side * 0.035, -0.04 - Math.cos(turn) * 0.235];
+    const drop = length * (0.9 + (i % 3) * 0.05), direction = Math.sign(turn);
+    const bend: Vec3 = [root[0] * 1.08, root[1] - drop * 0.46, root[2] - 0.015];
+    const end: Vec3 = [root[0] * 1.12 + direction * 0.018, root[1] - drop, root[2] + 0.018];
+    const points = [root, bend, end];
+    for (let part = 0; part < points.length - 1; part++) {
+      const A = points[part]!, B = points[part + 1]!, dx = B[0] - A[0], dy = B[1] - A[1], dz = B[2] - A[2], span = Math.hypot(dx, dy, dz) || 1e-6;
+      const startRadius = r0 + (r1 - r0) * part / 2, endRadius = r0 + (r1 - r0) * (part + 1) / 2;
+      b.cyl((A[0] + B[0]) / 2, (A[1] + B[1]) / 2, (A[2] + B[2]) / 2, startRadius, span, c, { seg: 3, top: q3(endRadius / startRadius), rx: Math.acos(Math.max(-1, Math.min(1, dy / span))), ry: Math.atan2(dx, dz), open: true });
+    }
+  }
+}
 /** Draws one hairstyle: the colour, the look, the fabric colours and whether the fine detail is wanted. */
 type HairDraw = (b: Drawing, c: Colour, look: Look, colours: Colours, fine?: boolean) => void;
 const HAIR_LOW: Record<string, HairDraw> & { lowcut: HairDraw } = {
@@ -506,17 +560,11 @@ const HAIR_LOW: Record<string, HairDraw> & { lowcut: HairDraw } = {
   },
   braids(b, c) {
     capLow(b, c);
-    for (let i = 0; i < 5; i++) {
-      const turn = (i - 2) * 0.6, length = 0.62 + (i % 2) * 0.12;
-      b.box(Math.sin(turn) * 0.27, 2.3 - length / 2, -Math.cos(turn) * 0.27, 0.085, length, 0.085, c);
-    }
+    hangingLow(b, c, 5, 0.68, 0.034, 0.018);
   },
   locs(b, c) {
     b.ball(0, 2.34, -0.03, 0.285, 0.2, 0.28, c, { seg: 7 });
-    for (let i = 0; i < 5; i++) {
-      const turn = (i - 2) * 0.6;
-      b.box(Math.sin(turn) * 0.29, 2.08, -Math.cos(turn) * 0.28, 0.13, 0.5 + (i % 3) * 0.06, 0.13, c, { rz: Math.sin(turn) * 0.16 });
-    }
+    hangingLow(b, c, 5, 0.48, 0.046, 0.025);
   },
   cornrows(b, c, look) {
     b.ball(0, 2.31, -0.02, 0.268, 0.19, 0.266, mix(c, look.skin, 0.4), { seg: 7 });
@@ -531,11 +579,14 @@ const HAIR_LOW: Record<string, HairDraw> & { lowcut: HairDraw } = {
     capLow(b, c);
     for (const [x, y, z] of [[0, 2.56, -0.02], [-0.17, 2.47, 0.06], [0.17, 2.47, 0.06], [-0.18, 2.45, -0.16], [0.18, 2.45, -0.16]] as Vec3[]) b.cone(x, y, z, 0.075, 0.12, c, { seg: 5 });
   },
-  gele(b, c, look, colours) {
-    b.ball(0, 2.27, -0.04, 0.268, 0.16, 0.265, c, { seg: 7 });
-    b.cyl(0, 2.49, -0.03, 0.27, 0.3, colours[0], { top: 1.45, seg: 8 });
-    b.box(0, 2.72, -0.07, 0.8, 0.26, 0.09, colours[1], { rx: -0.25 });
-    b.box(0.1, 2.78, 0.05, 0.56, 0.2, 0.08, colours[0], { rx: 0.15, rz: 0.12 });
+  gele(b, _c, _look, colours) {
+    const base = colours[0], fold = colours[1];
+    b.ball(0, 2.39, -0.04, 0.292, 0.155, 0.29, base, { seg: 7 });
+    b.cyl(0, 2.39, -0.03, 0.294, 0.072, fold, { seg: 7, sz: 0.98, open: true });
+    for (const panel of [-2, -1, 0, 1, 2]) {
+      const edge = Math.abs(panel), colour = edge % 2 ? fold : base;
+      b.quad(panel * 0.105, 2.62 - edge * 0.012, -0.085, 0.21 - edge * 0.015, 0.32 - edge * 0.025, colour, { rx: -0.08, rz: panel * -0.16 });
+    }
   },
 };
 // Under a hat only hair that hangs below it is drawn in full; the rest is cut short.
@@ -635,8 +686,8 @@ function markerOf(b: Drawing, marker: Marker | null | undefined): void {
 const accessoryColour = (look: Look, colours: Colours): Colour => (look.fabric === 'plain' ? shade(look.outfitColor, -0.25) : colours[1]);
 
 /** What drawLow and drawHigh need besides the look. */
-interface Stance { joints: Joints; sitting: boolean; marker: Marker | null | undefined; sleeping?: boolean }
-function drawLow(b: Drawing, look: Look, { joints, sitting, marker, sleeping }: Stance): void {
+interface Stance { joints: Joints; sitting: boolean; marker: Marker | null | undefined; sleeping?: boolean; facial?: DrawOptions['facial'] }
+function drawLow(b: Drawing, look: Look, { joints, sitting, marker, sleeping, facial }: Stance): void {
   const style = OUTFIT[look.outfit] || OUTFIT.casual, m = BODY[look.body], woman = look.body === 'woman';
   const colours = fabricColours(look), top = look.outfitColor, bottoms = look.bottomsColor, skin = look.skin;
   // Accessories are drawn only while they fit the budget: `reserve` is what the rest of the body still needs.
@@ -687,8 +738,8 @@ function drawLow(b: Drawing, look: Look, { joints, sitting, marker, sleeping }: 
       b.cyl(0, 0.42, 0, m.chest + 0.045, 0.07, '#eeeacb', { seg: 8, sz: m.aspect + 0.08, open: true });
     }
     if (style.hood) {
-      b.ball(0, 0.84, -0.15, 0.22, 0.16, 0.14, top, { seg: 6 });
-      b.box(0, 0.22, front(0.22), 0.32, 0.17, 0.03, shade(top, -0.2));
+      b.ball(0, 0.84, -0.15, 0.22, 0.16, 0.14, top, { seg: 5 });
+      b.quad(0, 0.22, front(0.22), 0.32, 0.17, shade(top, -0.2));
     }
     if (style.gown) b.box(0, 0.46, front(0.46), 0.13, 0.8, 0.03, colours[1] === top ? shade(top, 0.35) : colours[1], { rz: 0.62 });
     if (style.sport) {
@@ -702,9 +753,9 @@ function drawLow(b: Drawing, look: Look, { joints, sitting, marker, sleeping }: 
       b.quad(0, 0.5, 0.2, 0.2, 0.36, GOLD, { rx: -0.12 });
     }
     if (style.dress) b.cyl(0, 0.2, 0, m.waist + 0.03 + bulk, 0.07, bottoms, { seg: 8, sz: aspect, open: true });
-    b.cyl(0, 0.86, 0, m.neck, 0.18, skin, { seg: 6 });
+    b.cyl(0, 0.86, 0, m.neck, 0.18, skin, { seg: 6, open: true });
     part(b, 'head', 0, 0.86, 0, () => b.at(0, -HIP_Y - 0.86, 0, 0, () => {
-      headLow(b, look, sleeping);
+      headLow(b, look, sleeping, facial);
       const head = style.helmet || look.hair === 'gele' ? null : look.accessories.find((id) => ACCESSORY_SLOTS[id] === 'head');
       const covered = style.helmet || head;
       const selectedHead = fallbackHead(look);
@@ -718,8 +769,21 @@ function drawLow(b: Drawing, look: Look, { joints, sitting, marker, sleeping }: 
       if (head === 'cap' && room(48)) { b.ball(0, 2.36, -0.01, 0.295, 0.2, 0.3, cloth, { seg: 6 }); b.box(0, 2.34, 0.3, 0.3, 0.03, 0.22, cloth); }
       if (head === 'headwrap' && room(48)) { b.ball(0, 2.33, -0.03, 0.295, 0.22, 0.3, cloth, { seg: 6 }); b.box(0, 2.2, -0.3, 0.12, 0.2, 0.06, cloth); }
       if (head === 'fila' && room(24)) b.cyl(0.02, 2.5, -0.02, 0.27, 0.24, cloth, { seg: 6, top: 1.08, rz: -0.12 });
-      if (has('sunglasses') && room(12)) b.box(0, 2.215, 0.25, 0.34, 0.085, 0.03, '#15171c');
-      else if (has('glasses') && room(12)) b.box(0, 2.215, 0.25, 0.32, 0.03, 0.03, INK);
+      const shades = has('sunglasses'), glasses = !shades && has('glasses');
+      if ((shades || glasses) && room(shades ? 10 : 22)) {
+        for (const side of [-1, 1]) {
+          const x = side * 0.094, ry = side * 0.3;
+          if (shades) b.quad(x, 2.215, 0.268, 0.13, 0.077, '#15171c', { ry });
+          else {
+            for (const edge of [-1, 1]) {
+              b.quad(x, 2.215 + edge * 0.043, 0.268, 0.13, 0.009, INK, { ry });
+              b.quad(x + edge * 0.06, 2.215, 0.268 - edge * side * 0.018, 0.009, 0.086, INK, { ry });
+            }
+          }
+          b.quad(side * 0.173, 2.215, 0.214, 0.1, 0.009, INK, { ry: side * Math.PI / 2 });
+        }
+        b.quad(0, 2.225, 0.279, 0.067, 0.009, INK);
+      }
       if (has('earrings') && room(24)) for (const side of [-1, 1]) b.box(side * 0.265, 2.1, 0, 0.03, 0.07, 0.03, GOLD);
       markerOf(b, marker);
       reserve = 84;
@@ -789,7 +853,7 @@ function headHigh(b: Drawing, look: Look, woman: boolean, fine: boolean, sleepin
   const age = look.appearance?.ageAppearance === 'elder' ? 1 : look.appearance?.ageAppearance === 'mature' ? 0.55 : 0;
   const skin = look.skin, F = FACES[look.face] || FACES.oval, mood = look.expression;
   const dark = channels(skin).reduce((sum, v) => sum + v, 0) < 250; // the two darkest tones: features are lifted, not darkened
-  const deep = shade(skin, -0.22), white = '#f6f1e7', fz = (x: number, y: number) => faceZ(x, y, F), relief = shade(skin, dark ? 0.1 : -0.05);
+  const deep = shade(skin, -0.22), white = '#f6f1e7', fz = (x: number, y: number) => faceZ(x, y, F), relief = shade(skin, dark ? 0.05 : -0.03);
   b.ball(0, HEAD.y + HEAD.ry - F.ry - age * 0.004, 0, HEAD.rx + age * 0.002, F.ry + age * 0.004, HEAD.rz, skin, { seg: 28 });
   if (age) for (const sign of [-1, 1]) b.quad(sign * 0.115, 2.148, fz(sign * 0.115, 2.148) + 0.004, 0.048, 0.003 * age, mix(skin, INK, 0.2), { ry: sign * 0.3 });
   if (F.jaw) b.ball(0, JAW.y, JAW.z, F.jaw, JAW.ry, JAW.rz, skin, { seg: 24 });
@@ -819,8 +883,8 @@ function headHigh(b: Drawing, look: Look, woman: boolean, fine: boolean, sleepin
     if (fine) b.ball(side * 0.266, 2.195, -0.004, 0.016, 0.042, 0.027, deep, { seg: 6 });
   }
   // Nose: a tip with a wing each side.
-  b.ball(0, 2.126, fz(0, 2.126) + 0.006, 0.034, 0.032, 0.04, relief, { seg: 10 });
-  if (fine) for (const side of [-1, 1]) b.ball(side * 0.03, 2.116, fz(0, 2.116) - 0.004, 0.022, 0.02, 0.026, relief, { seg: 7 });
+  b.ball(0, 2.126, fz(0, 2.126) + 0.004, 0.029, 0.028, 0.034, relief, { seg: 10 });
+  if (fine) for (const side of [-1, 1]) b.ball(side * 0.027, 2.116, fz(0, 2.116) - 0.004, 0.019, 0.017, 0.022, relief, { seg: 7 });
   // Mouth: a line with lifted corners, a two-part upper lip and a fuller lower one.
   const lip = woman ? mix(skin, dark ? '#c9606a' : '#b8454c', 0.6) : mix(skin, dark ? '#a8605a' : '#8a3f3a', dark ? 0.5 : 0.4), line = dark ? '#150a09' : mix(skin, '#2a0f0d', 0.72);
   const my = 2.036, mz = fz(0, my) + 0.002, wide = grin ? 0.12 : 0.1, full = woman ? 1 : 0.78;
@@ -1454,7 +1518,7 @@ function drawHigh(b0: Drawing, look: Look, { joints, sitting, marker, sleeping }
  * blue dot), detail ('low' — the default — | 'medium' | 'high'; see the top of this file) }
  * Returns { look, top } where top is the height just above the head, for a name tag.
  */
-export function drawAvatar(b: Drawing, input?: unknown, { x = 0, y = 0, z = 0, ry = 0, pose = 'stand', stride, seat = 0.6, seed, scale = 1, appearanceFit = true, sleeping = false, marker = null, detail = 'low' }: DrawOptions = {}): DrawnAvatar {
+export function drawAvatar(b: Drawing, input?: unknown, { x = 0, y = 0, z = 0, ry = 0, pose = 'stand', stride, seat = 0.6, seed, scale = 1, appearanceFit = true, sleeping = false, facial, marker = null, detail = 'low' }: DrawOptions = {}): DrawnAvatar {
   const look = normalizeLook(input, seed), rendered = fallbackLook(look), proportions = avatarProportions(look.appearance);
   if (appearanceFit) scale *= proportions.height;
   // A rig is drawn upright and still: its pose is set afterwards by turning its parts (poseAvatar).
@@ -1463,7 +1527,7 @@ export function drawAvatar(b: Drawing, input?: unknown, { x = 0, y = 0, z = 0, r
   b.at(x, y + lift * scale, z, ry, () => {
     const selected = look.wearables?.length ? coarse(b, detail === 'low' ? 0.65 : 0.88, detail === 'low' ? 3 : 5) : b;
     if (detail === 'high' || detail === 'medium') drawHigh(selected, rendered, { joints, sitting, marker, sleeping }, detail === 'high');
-    else drawLow(selected, rendered, { joints, sitting, marker, sleeping });
+    else drawLow(selected, rendered, { joints, sitting, marker, sleeping, facial });
   }, 0, 0, scale);
   return { look, top: y + (lift + 2.95) * scale };
 }
@@ -1501,15 +1565,24 @@ function rigBatch(THREE: ThreeModule): RigBatch {
  * 'jog') }. Shoulders, hips, elbows and knees turn, the torso leans and the whole body bobs.
  * Returns the avatar.
  */
-export function poseAvatar<T extends { userData?: unknown } | null | undefined>(avatar: T, { pose = 'stand', stride }: { pose?: Pose; stride?: number } = {}): T {
+export function poseAvatar<T extends { userData?: unknown } | null | undefined>(avatar: T, { pose = 'stand', stride, blend = 1, time }: { pose?: Pose; stride?: number; /** 0 … 1: how far a 'walk' or 'jog' replaces the standing pose (eases a walk in and out). */ blend?: number; /** Seconds: gives a standing figure a slow breath and weight shift. */ time?: number } = {}): T {
   const data = avatar?.userData as { parts?: AvatarParts; bends?: Bend[] } | null | undefined;
   const parts = data?.parts;
   if (!parts) return avatar;
-  const joints = jointsOf(pose, stride);
-  parts.torso.rotation.x = joints.lean || 0;
-  parts.body.position.y = joints.bob || 0;
+  let joints = jointsOf(pose, stride);
+  if (blend < 1 && (pose === 'walk' || pose === 'jog')) joints = mixJoints(POSE.stand, joints, Math.max(0, blend));
+  // At rest a figure breathes and shifts its weight a little, so it is never a statue (only when the caller keeps time).
+  const idle = time !== undefined && Number.isFinite(time) && (pose === 'stand' || pose === 'relax') ? Math.sin(time * 1.9) : 0;
+  const sway = time !== undefined && Number.isFinite(time) && (pose === 'stand' || pose === 'relax') ? Math.sin(time * 0.55) : 0;
+  parts.torso.rotation.x = (joints.lean || 0) - idle * 0.006;
+  parts.torso.rotation.z = sway * 0.012;
+  // A look (avatar-rig.ts lookAvatar) turns the torso a little too: the stride's twist rides on top of it.
+  const memo = avatar!.userData as { twist?: number; lookTorso?: number };
+  memo.twist = joints.twist || 0;
+  parts.torso.rotation.y = memo.twist + (memo.lookTorso || 0);
+  parts.body.position.y = (joints.bob || 0) + idle * 0.004 - Math.abs(sway) * 0.004;
   parts.legR.rotation.x = joints.leg[0]; parts.legL.rotation.x = joints.leg[1];
-  parts.armR.rotation.set(joints.arm[0][0], 0, -joints.arm[0][1]); parts.armL.rotation.set(joints.arm[1][0], 0, joints.arm[1][1]);
+  parts.armR.rotation.set(joints.arm[0][0], 0, -joints.arm[0][1] - idle * 0.01); parts.armL.rotation.set(joints.arm[1][0], 0, joints.arm[1][1] + idle * 0.01);
   for (const bend of data?.bends ?? []) {
     const angle = joints[bend.kind][bend.side];
     if (angle === bend.angle) continue;

@@ -27,6 +27,8 @@ import { chunkedView } from '../../ui/lazyList.ts'
 import { changes, dayLabel, failedVerdict, sameStatement, statementRules, verdictOf } from './statementModel.ts'
 import type { Verdict } from './statementModel.ts'
 import { checked } from './statementState.ts'
+import { dayHeading, lineIcon } from '../bank/ledgerModel.ts'
+import { lagosTime } from '../../../game/clock.ts'
 import { createStatementHistory } from './statementHistory.ts'
 import { statementOf } from '../../../game/wallet-statement.ts'
 
@@ -39,6 +41,7 @@ const summary = computed(() => statementOf(game.state.value))
 // The statement is derived from bounded, server-owned wallet history. Keep the verdict tied to
 // that exact summary so another wallet change in the same city cannot leave an old check current.
 const walletFingerprint = computed(() => JSON.stringify(summary.value))
+const today = computed(() => lagosTime(Math.max(game.serverNow(), wallet.value.ledger[0]?.at ?? 0)).day)
 const days = computed(() => summary.value.days.slice().reverse())
 const since = computed(() => (summary.value.opening.day === null ? 'before your first change' : `at the start of ${dayLabel(summary.value.opening.day)}`))
 const verdict = computed<Verdict | null>(() => (checked.value && checked.value.identity === game.session.value?.id && checked.value.cityId === view.value.cityId && checked.value.walletFingerprint === walletFingerprint.value ? checked.value : null))
@@ -100,8 +103,8 @@ async function check(): Promise<void> {
     <h3 class="ui-section">By day</h3>
     <ul v-if="days.length" class="statement-days">
       <li v-for="day in days" :key="day.day">
-        <div class="statement-day"><strong>{{ dayLabel(day.day) }}</strong><span>{{ money(day.open) }} → {{ money(day.close) }}</span></div>
-        <div class="statement-flow"><span class="is-in">+{{ money(day.in) }}</span><span class="is-out">−{{ money(day.out) }}</span><small>{{ changes(day.changes) }}</small></div>
+        <div class="statement-day"><strong>{{ dayHeading(day.day, today) }}</strong><span>{{ money(day.open) }} → {{ money(day.close) }}</span></div>
+        <div class="statement-flow"><span v-if="day.in" class="is-in">+{{ money(day.in) }}</span><span v-if="day.out" class="is-out">−{{ money(day.out) }}</span><small>{{ changes(day.changes) }}</small></div>
         <ul class="statement-groups">
           <li v-for="group in day.groups" :key="group.group"><span>{{ group.group }}<template v-if="group.count > 1"> × {{ group.count }}</template></span><b :class="group.net < 0 ? 'is-out' : 'is-in'">{{ signedMoney(group.net) }}</b></li>
         </ul>
@@ -114,7 +117,7 @@ async function check(): Promise<void> {
       <LazyList :items="lines.visible.value" :item-key="(line: (typeof wallet.ledger)[number]) => `${line.at}:${line.amount}:${line.balance}`" :has-more="lines.hasMore.value" :loading="false" label="changes" :row-height="58" @more="lines.more()">
       <template #row="{ item: line }">
       <ListRow :title="line.reason" :sub="`${formatClock(line.at)} · balance ${money(line.balance)}`">
-        <template #icon><RowMark round :tone="line.amount < 0 ? 'out' : 'in'"><GameIcon :name="line.amount < 0 ? 'spend' : 'earn'" /></RowMark></template>
+        <template #icon><RowMark round :tone="line.amount < 0 ? 'out' : 'in'"><GameIcon :name="lineIcon(line.reason, line.amount)" /></RowMark></template>
         <template #end><span :class="line.amount < 0 ? 'is-out' : 'is-in'">{{ signedMoney(line.amount) }}</span></template>
       </ListRow>
       </template>
@@ -126,7 +129,7 @@ async function check(): Promise<void> {
     <p class="statement-coverage">{{ recorded.coverage }}</p>
     <ListRows v-if="recorded.entries.length" label="Recorded wallet history">
       <ListRow v-for="line in recorded.entries" :key="line.seq" :title="line.reason" :sub="`${line.cityId} · ${formatClock(line.at)} · balance ${money(line.balanceAfter)}`">
-        <template #icon><RowMark round :tone="line.amount < 0 ? 'out' : 'in'"><GameIcon :name="line.amount < 0 ? 'spend' : 'earn'" /></RowMark></template>
+        <template #icon><RowMark round :tone="line.amount < 0 ? 'out' : 'in'"><GameIcon :name="lineIcon(line.reason, line.amount)" /></RowMark></template>
         <template #end><span :class="line.amount < 0 ? 'is-out' : 'is-in'">{{ signedMoney(line.amount) }}</span></template>
       </ListRow>
     </ListRows>
@@ -143,5 +146,6 @@ async function check(): Promise<void> {
 .is-in { color: var(--c-green-dark); }
 .is-out { color: var(--c-red); }
 .statement-coverage { margin: 0 0 var(--s-2); color: var(--c-ink-2); font-size: var(--t-caption); line-height: 1.4; }
+.statement-app :deep(.list-row-body > b), .statement-app :deep(.list-row-body > small) { white-space: normal; overflow: visible; }
 .statement-history-more { margin: var(--s-2) 0; }
 </style>

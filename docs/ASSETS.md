@@ -152,3 +152,26 @@ The procedural avatar stays, byte for byte, in each of these cases:
 - any fetch, parse or build of the body fails. A console warning is logged and the body is not retried.
 
 These checks live in `src/scene/body/gate.ts`, the "SKINNED BODY" section of `src/scene/home-scene.ts`, the venue stand-in `src/scene/body/stand-in.ts` (owned by `src/venue-world.ts`), and the look preview `src/scene/avatar-preview.ts`. There is no user setting and no address flag.
+
+## Buka stew pot (`src/scene/assets/kenney-food.generated.ts`)
+
+The open stew pot on the buka counter is `pot-stew.glb` from [Kenney Food Kit 2.0](https://kenney.nl/assets/food-kit), created and distributed by Kenney. The pack is CC0 1.0. The archive's exact 711-byte licence is kept at `src/scene/assets/kenney-food-LICENSE.txt`.
+
+The raw archive and its texture stay out of git. The bake reads only these entries:
+
+| Source entry | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `Models/GLB format/pot-stew.glb` | 29,560 | `311ba282a85bd722b5093f512579a168e3da949617600196b60d782c11afd6b8` |
+| `Models/GLB format/Textures/colormap.png` | 10,715 | `75baf74d9483a0fc56ac21ceba346fbe16fc24a2a1bf0524c53e6bbe802e1153` |
+| `License.txt` | 711 | `32a081c2035dd4db47d850c83244da048165f0e53d71c076b76c1afc0590bc7f` |
+
+Rebuild from the official archive:
+
+```
+node --experimental-strip-types scripts/assets/bake-food.ts \
+  --archive /tmp/allworld-kenney-food-kit.zip
+```
+
+`scripts/assets/bake-food.ts` accepts only the pinned one-node, one-primitive, identity-transform asset and its 512 px indexed atlas. It preserves all 370 triangles and their original winding, welding only identical position/normal/colour tuples from 532 to 404 vertices. The nearest atlas colour at each source UV is converted from sRGB to linear RGB and emitted beside the geometry. This is a measured gradient approximation because 164 source triangles cross atlas colours; a 10-step barycentric grid over every triangle measured 24,420 samples, maximum linear-channel error 0.048984 and RMS error 0.009508. The importer rejects a maximum error above 0.06.
+
+The generated TypeScript is 10,345 bytes, 4,298 bytes with gzip level 9, and has SHA-256 `38f59214b8a4086762653ff321be87143f737aee13a9fb286ecfa4d6094bc313`. Its 5,496-byte payload stores int16 positions, octahedral int16 normals, palette indices and delta-coded triangle indices. A small decoder runs once at module initialization; scratch buffers are function-local. Maximum decoded errors are 0.000006169 scene units in position, 0.002559 degrees in normal direction and 2.609e-8 in linear colour. Repeating the command with the pinned archive produces the same bytes. At runtime this prop requires no GLB loader or separate asset request, texture, material, geometry object, or draw call: its arrays merge into the buka's existing solid batch and shared vertex-colour material.

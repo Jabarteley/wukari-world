@@ -25,7 +25,8 @@ import WhotBoard from './WhotBoard.vue'
 // The board games' screens are chunks of their own, fetched when a table of that game is opened.
 const ChessBoard = defineAsyncComponent(() => import('./ChessBoard.vue'))
 const WeaveBoard = defineAsyncComponent(() => import('./WeaveBoard.vue'))
-import { GAME_LABELS, chessRules, isChessState, isPenaltyState, isWeaveState, isWhotState, penaltyRules, tableById, weaveRules, whotRules } from './tablesBoundary.ts'
+const AyoBoard = defineAsyncComponent(() => import('./AyoBoard.vue'))
+import { GAME_LABELS, ayoRules, chessRules, isAyoState, isChessState, isPenaltyState, isWeaveState, isWhotState, penaltyRules, tableById, weaveRules, whotRules } from './tablesBoundary.ts'
 import {
   LIST_RULES, NO_TABLE_HERE, botCounts, botLabel, heroFigure, heroNote, hostNote, leavesOnBack, openLabel, optionKey, outcomeNote, outcomeTitle,
   parseOption, partition, ratingLine, rowSub, seatLabel, startNote, tableParam, tableTitle,
@@ -56,11 +57,12 @@ const seated = computed(() => s.value !== null && s.value.you !== null)
 const onPhone = computed(() => table.value?.venue === 'phone')
 const atVenue = computed(() => table.value !== null && (onPhone.value || table.value.venue === at.value))
 const free = computed(() => (table.value ? table.value.max - table.value.seats.length : 0))
-const rulesText = computed(() => (table.value?.game === 'whot' ? whotRules : table.value?.game === 'penalty' ? penaltyRules : table.value?.game === 'chess' ? chessRules : table.value?.game === 'weave' ? weaveRules : []))
+const rulesText = computed(() => (table.value?.game === 'whot' ? whotRules : table.value?.game === 'penalty' ? penaltyRules : table.value?.game === 'chess' ? chessRules : table.value?.game === 'weave' ? weaveRules : table.value?.game === 'ayo' ? ayoRules : []))
 const whot = computed(() => (s.value && isWhotState(s.value) ? s.value : null))
 const penalty = computed(() => (s.value && isPenaltyState(s.value) ? s.value : null))
 const chess = computed(() => (s.value && isChessState(s.value) ? s.value : null))
 const weave = computed(() => (s.value && isWeaveState(s.value) ? s.value : null))
+const ayo = computed(() => (s.value && isAyoState(s.value) ? s.value : null))
 const result = computed(() => (table.value?.status === 'over' ? s.value?.result ?? null : null))
 const outcome = computed(() => (result.value ? { title: outcomeTitle(result.value), note: outcomeNote(result.value, t.value.claimed, paid.value?.win ?? 0) } : null))
 
@@ -194,6 +196,7 @@ function onOption(name: string, raw: string): void {
         <PenaltyBoard v-else-if="penalty" :state="penalty" :now="view.now" @play="tables.play" />
         <ChessBoard v-else-if="chess" :state="chess" :now="view.now" @play="tables.play" />
         <WeaveBoard v-else-if="weave" :state="weave" :now="view.now" @play="tables.play" />
+        <AyoBoard v-else-if="ayo" :state="ayo" :now="view.now" :pending="t.pending" :error="t.error" @play="tables.play" />
         <p v-else class="gr-note">This game cannot be shown in this version.</p>
         <button v-if="table.status !== 'over' && seated" class="gr-swap" type="button" @click="forfeit">Leave the game (you forfeit)</button>
         <BaseButton v-if="table.status !== 'over' && !onPhone" block :reason="busyWhy" @click="invite">{{ growth.state.busy === 'table' ? 'Preparing…' : 'Invite a friend to this table' }}</BaseButton>

@@ -10,10 +10,10 @@
  */
 import { cityCatalogue, cityCatalogueEntry, cityRules, knownCityIds } from './game/cities/registry.ts'
 
-export const GAME_SLUGS = ['chess', 'oro', 'weave', 'whot', 'penalties'] as const
+export const GAME_SLUGS = ['chess', 'oro', 'weave', 'whot', 'penalties', 'ayo'] as const
 export type GameSlug = typeof GAME_SLUGS[number]
 /** The Phone table a board game opens (a private game against the computer). Oro is the daily puzzle, not a table. */
-export const PHONE_TABLE: Readonly<Record<Exclude<GameSlug, 'oro'>, string>> = Object.freeze({ chess: 'phone-chess', weave: 'phone-weave', whot: 'phone-whot', penalties: 'phone-penalty' });
+export const PHONE_TABLE: Readonly<Record<Exclude<GameSlug, 'oro'>, string>> = Object.freeze({ chess: 'phone-chess', weave: 'phone-weave', whot: 'phone-whot', penalties: 'phone-penalty', ayo: 'phone-ayo' });
 
 export const PANEL_WORDS = ['messages', 'friends', 'invite', 'business', 'jobs', 'help', 'sound', 'politics', 'records', 'signup', 'login', 'shops', 'services'] as const
 export type PanelWord = typeof PANEL_WORDS[number]

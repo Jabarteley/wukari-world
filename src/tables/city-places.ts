@@ -5,7 +5,7 @@ import type { TableGameId } from '../types/growth.ts'
 
 export interface CityTablePlace { id: string; venue: string; game: TableGameId; label: string; seats: number }
 export const GAME_LABELS: Readonly<Record<string, string>> = RAW_GAME_LABELS
-const isGame = (game: string): game is TableGameId => game === 'whot' || game === 'penalty' || game === 'chess' || game === 'weave'
+const isGame = (game: string): game is TableGameId => game === 'whot' || game === 'penalty' || game === 'chess' || game === 'weave' || game === 'ayo'
 
 export function tablesFor(cityId: string): CityTablePlace[] {
   const content = contentFor(cityId)

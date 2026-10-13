@@ -11,7 +11,7 @@ import type { Attention } from '../../../ui/attention-dom.ts'
 import { isTrip } from '../venue/tripModel.ts'
 import { useApp } from '../../state/app.ts'
 import { COACH_KEY, coachHints } from './coachModel.ts'
-import { tour } from '../tour/tourState.ts'
+import { settleWanted, tour } from '../tour/tourState.ts'
 import { mapUi } from '../travel/travelState.ts'
 import { social } from '../social/useSocial.ts'
 
@@ -55,7 +55,8 @@ export function useAttention() {
   function point(): void {
     for (const node of document.querySelectorAll('#life-dialog .is-coach')) node.classList.remove('is-coach')
     // The walkthrough is talking: no ring, no bubble, and nothing counted as acted on. They come back when it ends.
-    if (tour.active || off.value) { attention?.clear(); step.value = null; stepId = ''; return }
+    // One ask at a time: the walkthrough, then the settle-in offer, speak first; no ring (nor a counted step) until they are done.
+    if (tour.active || tour.pending || settleWanted(game.view.value, tour.settleAway) || off.value) { attention?.clear(); step.value = null; stepId = ''; return }
     const next = evaluate()
     // A step that was showing and is now gone (or replaced) was acted on: count it, so the situational pointers taper off.
     if (stepId && stepId !== 'goal' && stepId !== next?.id) {
@@ -122,7 +123,7 @@ export function useAttention() {
     void nextTick(() => { point(); notice() })
   })
   onBeforeUnmount(() => { gone = true; document.removeEventListener('pointerdown', onClick, true); attention?.destroy(); attention = null })
-  watch([game.state, game.mode, shell.sheet, off, () => shell.ui.clean, () => shell.ui.expanded, () => shell.ui.trayOpen, () => tour.active], () => { void nextTick(() => { point(); notice() }) }, { flush: 'post' })
+  watch([game.state, game.mode, shell.sheet, off, () => shell.ui.clean, () => shell.ui.expanded, () => shell.ui.trayOpen, () => tour.active, () => tour.pending, () => tour.settleAway, () => game.view.value.onboarding?.guest], () => { void nextTick(() => { point(); notice() }) }, { flush: 'post' })
   // Going up to the world map, or picking another place there, changes what Go there is to point at.
   watch([() => mapUi.layer, () => mapUi.destination], () => { void nextTick(point) }, { flush: 'post' })
   /** The goal line the coach speaks for (the first starter goals); null when the pointer is only a ring or a bubble. */

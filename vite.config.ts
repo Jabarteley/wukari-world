@@ -289,6 +289,8 @@ export default defineConfig({
     // The glTF loader, meshopt decoder and skeleton cloner are only for the skinned body (src/scene/body/skinned.ts, fetched after a scene's first
     // frame): left to the bundler, they ride in that lazy chunk, so the three chunk every scene fetches is the bytes it was.
     if (/node_modules\/three\/examples\/jsm\/(loaders\/GLTFLoader|libs\/meshopt_decoder\.module|utils\/SkeletonUtils)\.js$/.test(id)) return undefined
+    // The high tier's environment map and night bloom (src/scene/quality.ts, imported only on that tier) ride in its lazy chunk the same way.
+    if (/node_modules\/three\/examples\/jsm\/(environments|postprocessing|shaders)\//.test(id)) return undefined
     if (/node_modules\/three\//.test(id)) return 'three'
     // The one-line component wrapper every compiled .vue file imports: beside Vue, which each of them imports as well, so the first page and the shell kit do not need a file of its own for it.
     if (id === '\0plugin-vue:export-helper') return 'vue'

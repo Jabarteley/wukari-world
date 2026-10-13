@@ -28,7 +28,7 @@
  */
 import { createBatch } from '../scene/build.ts';
 import { leanGeometry } from './city-build.ts';
-import { ESTATE, PLOTS_PER_ESTATE, HOUSE_STYLE, HOUSE_TIERS } from '../game/content/world.ts';
+import { PLOTS_PER_ESTATE, HOUSE_STYLE, HOUSE_TIERS } from '../game/content/world.ts';
 import { unpackStyle } from '../scene/house-style.ts';
 import { estateLayout } from './estates.ts';
 import { lgaAt } from './lga.ts';
@@ -155,7 +155,7 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
       const xs = lga.polygon.map((point) => point[0]), zs = lga.polygon.map((point) => point[1]);
       const minX = Math.min(...xs), minZ = Math.min(...zs), stepX = (Math.max(...xs) - minX) / BINS || 1, stepZ = (Math.max(...zs) - minZ) / BINS || 1;
       const bins = new Map<number, { x0: number; x1: number; z0: number; z1: number; houses: number; estates: number }>();
-      for (let i = 1; i < ESTATE.estates; i++) {
+      for (let i = 1; i < layout.count; i++) {
         if (!occ[i]) continue;
         const cell = layout.cells[i]!, key = Math.min(BINS - 1, Math.floor((cell.x - minX) / stepX)) + BINS * Math.min(BINS - 1, Math.floor((cell.z - minZ) / stepZ));
         let bin = bins.get(key);
@@ -175,7 +175,7 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
   let padsKey = '', padTriangles = 0;
   function buildPads(lga: string, occ: Uint8Array | undefined, skip: Set<number>) {
     const layout = estateLayout(pack, lga)!, items: Pad[] = [];
-    for (let i = 0; i < ESTATE.estates; i++) if (!skip.has(i)) items.push({ cell: layout.cells[i]!, fill: (occ?.[i] || 0) / PLOTS_PER_ESTATE });
+    for (let i = 0; i < layout.count; i++) if (!skip.has(i)) items.push({ cell: layout.cells[i]!, fill: (occ?.[i] || 0) / PLOTS_PER_ESTATE });
     padTriangles = fill('pads', 'pad', flat, items, (item, o, colour) => {
       o.position.set(item.cell.x, 0.025, item.cell.z); o.rotation.set(0, 0, 0); o.scale.set(item.cell.size * 0.92, 1, item.cell.size * 0.92);
       if (item.fill > 0) colour.set('#efe3c6').lerp(tintB.set('#b5593c'), 0.2 + item.fill * 0.65); else colour.set('#d3dfb6');
@@ -241,7 +241,7 @@ export function createHouses(kit: Kit, pack: CityPack): Houses {
         // The estates whose houses would be big enough to tell apart, nearest the middle of the view first.
         const layout = estateLayout(pack, focus)!, occ = summary?.get(focus)?.occ;
         const near: { estate: number; far: number; houses: number }[] = [];
-        for (let i = 0; i < ESTATE.estates; i++) {
+        for (let i = 0; i < layout.count; i++) {
           const cell = layout.cells[i]!, far = Math.hypot(cell.x - view.x, cell.z - view.z);
           if (layout.pitch(i) * view.pixels >= 7 && far < cell.size * 1.2 + 260 / view.pixels) near.push({ estate: i, far, houses: occ?.[i] ?? 0 });
         }

@@ -1,6 +1,6 @@
 # Continue: isolated human design contract
 
-**Active visual prototype continuation:** parent subsequently authorized this same task to create original isolated Blender geometry and functional morphs. Read [prototype/CONTINUE.md](prototype/CONTINUE.md) first for that work and its actual assets, tests, fitting handoff and remaining captures. The contract-only checkpoint below is retained as history. Shared runtime and existing character/Blender production remain untouched.
+**Active visual prototype continuation:** parent subsequently authorized this same task to create original isolated Blender geometry and functional morphs. Read [prototype/CONTINUE.md](prototype/CONTINUE.md) first for the completed controls video, expression/endpoint images, separate eye refinement, tests, immutable master and fitting handoff. The contract-only checkpoint below is retained as history; its statements about no Blender work and unchanged executable code describe that earlier checkpoint. Shared runtime and existing character/Blender production remain untouched.
 
 ## Locate and verify
 

@@ -1,0 +1,482 @@
+[
+  {
+    "frame": 60,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.7980172272802396
+    }
+  },
+  {
+    "frame": 61,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.5264321628773561
+    }
+  },
+  {
+    "frame": 62,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.18374951781657037
+    }
+  },
+  {
+    "frame": 63,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -0.18374951781657012
+    }
+  },
+  {
+    "frame": 64,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -0.5264321628773558
+    }
+  },
+  {
+    "frame": 65,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -0.7980172272802395
+    }
+  },
+  {
+    "frame": 66,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -0.961825643172819
+    }
+  },
+  {
+    "frame": 67,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -0.9957341762950346
+    }
+  },
+  {
+    "frame": 68,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -0.8951632913550626
+    }
+  },
+  {
+    "frame": 69,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -0.6736956436465578
+    }
+  },
+  {
+    "frame": 70,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -0.36124166618715303
+    }
+  },
+  {
+    "frame": 71,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": -2.4492935982947064e-16
+    }
+  },
+  {
+    "frame": 72,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.0
+    }
+  },
+  {
+    "frame": 73,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.3612416661871529
+    }
+  },
+  {
+    "frame": 74,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.6736956436465572
+    }
+  },
+  {
+    "frame": 75,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.8951632913550623
+    }
+  },
+  {
+    "frame": 76,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.9957341762950345
+    }
+  },
+  {
+    "frame": 77,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.961825643172819
+    }
+  },
+  {
+    "frame": 78,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.7980172272802396
+    }
+  },
+  {
+    "frame": 79,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.5264321628773561
+    }
+  },
+  {
+    "frame": 80,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": 0.18374951781657037
+    }
+  },
+  {
+    "frame": 81,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -0.18374951781657012
+    }
+  },
+  {
+    "frame": 82,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -0.5264321628773558
+    }
+  },
+  {
+    "frame": 83,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -0.7980172272802395
+    }
+  },
+  {
+    "frame": 84,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -0.961825643172819
+    }
+  },
+  {
+    "frame": 85,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -0.9957341762950346
+    }
+  },
+  {
+    "frame": 86,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -0.8951632913550626
+    }
+  },
+  {
+    "frame": 87,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -0.6736956436465578
+    }
+  },
+  {
+    "frame": 88,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -0.36124166618715303
+    }
+  },
+  {
+    "frame": 89,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earLeft.protrusion": -2.4492935982947064e-16
+    }
+  },
+  {
+    "frame": 90,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.0
+    }
+  },
+  {
+    "frame": 91,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.3612416661871529
+    }
+  },
+  {
+    "frame": 92,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.6736956436465572
+    }
+  },
+  {
+    "frame": 93,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.8951632913550623
+    }
+  },
+  {
+    "frame": 94,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.9957341762950345
+    }
+  },
+  {
+    "frame": 95,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.961825643172819
+    }
+  },
+  {
+    "frame": 96,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.7980172272802396
+    }
+  },
+  {
+    "frame": 97,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.5264321628773561
+    }
+  },
+  {
+    "frame": 98,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": 0.18374951781657037
+    }
+  },
+  {
+    "frame": 99,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -0.18374951781657012
+    }
+  },
+  {
+    "frame": 100,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -0.5264321628773558
+    }
+  },
+  {
+    "frame": 101,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -0.7980172272802395
+    }
+  },
+  {
+    "frame": 102,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -0.961825643172819
+    }
+  },
+  {
+    "frame": 103,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -0.9957341762950346
+    }
+  },
+  {
+    "frame": 104,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -0.8951632913550626
+    }
+  },
+  {
+    "frame": 105,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -0.6736956436465578
+    }
+  },
+  {
+    "frame": 106,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -0.36124166618715303
+    }
+  },
+  {
+    "frame": 107,
+    "view": "portrait",
+    "angleRadians": 0,
+    "values": {
+      "earRight.protrusion": -2.4492935982947064e-16
+    }
+  },
+  {
+    "frame": 108,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.0
+    }
+  },
+  {
+    "frame": 109,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.3612416661871529
+    }
+  },
+  {
+    "frame": 110,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.6736956436465572
+    }
+  },
+  {
+    "frame": 111,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.8951632913550623
+    }
+  },
+  {
+    "frame": 112,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.9957341762950345
+    }
+  },
+  {
+    "frame": 113,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.961825643172819
+    }
+  },
+  {
+    "frame": 114,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.7980172272802396
+    }
+  },
+  {
+    "frame": 115,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.5264321628773561
+    }
+  },
+  {
+    "frame": 116,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": 0.18374951781657037
+    }
+  },
+  {
+    "frame": 117,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": -0.18374951781657012
+    }
+  },
+  {
+    "frame": 118,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": -0.5264321628773558
+    }
+  },
+  {
+    "frame": 119,
+    "view": "full",
+    "angleRadians": 0.1,
+    "values": {
+      "body.height": -0.7980172272802395
+    }
+  }
+]

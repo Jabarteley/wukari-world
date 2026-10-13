@@ -47,14 +47,17 @@ else:
         if frame<36:
             kind='full';angle=2*math.pi*frame/36
         elif frame<72:
-            angle=.55;t=(frame-36)/35
-            values={'nose.projection':-math.cos(t*2*math.pi),'nose.alarWidth':math.sin(t*2*math.pi)}
+            angle=.55;local=frame-36;t=(local%18)/17
+            key='nose.projection' if local<18 else 'nose.alarWidth'
+            values={key:math.sin(t*2*math.pi)}
         elif frame<108:
-            t=(frame-72)/35
-            values={'earLeft.protrusion':math.sin(2*math.pi*t),'earRight.protrusion':math.sin(2*math.pi*t+math.pi)}
+            local=frame-72;t=(local%18)/17
+            key='earLeft.protrusion' if local<18 else 'earRight.protrusion'
+            values={key:math.sin(t*2*math.pi)}
         elif frame<144:
-            kind='full';angle=.1;t=(frame-108)/35
-            values={'body.height':-math.cos(t*2*math.pi),'body.shoulderWidth':math.sin(t*2*math.pi)}
+            kind='full';angle=.1;local=frame-108;t=(local%18)/17
+            key='body.height' if local<18 else 'body.shoulderWidth'
+            values={key:math.sin(t*2*math.pi)}
         else:
             # Separate neutral / happy / sad / full blink, nine frames each.
             names=['neutral','happy','sad','blink'];values=PRESETS[names[min(3,(frame-144)//9)]]

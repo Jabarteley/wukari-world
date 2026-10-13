@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "derivative": "eye-refinement-v2",
+  "frozenMasterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "changedObjects": [
+    "UpperLid_Left",
+    "LowerLid_Left",
+    "UpperLid_Right",
+    "LowerLid_Right"
+  ],
+  "protectedGeometryUnchanged": true,
+  "originalMasterBytesUnchanged": true,
+  "change": "Lid aperture narrowed to 29.6 mm width and 8.6 mm central height; body, head, eyes, materials, hair and UV/index topology retained.",
+  "blenderEyeCenters": {
+    "left": [
+      0.032,
+      -0.036,
+      1.635
+    ],
+    "right": [
+      -0.032,
+      -0.036,
+      1.635
+    ]
+  },
+  "fitFrame": "Inherits prototype-geometry coordinates from fit-frame.json. Lid positions/morphs only are a derivative; do not substitute it for the frozen master silently.",
+  "blendSha256": "9c50ee5368deedc95b9065740a762d41eb2dff09e608ce479ade04ae55be3848",
+  "glbSha256": "b946240b7956cf03e73d0bf094b149e157ff99b16e43fff20a65e235f99679c3",
+  "evaluatedCases": 36,
+  "checks": [
+    {
+      "mesh": "UpperLid_Left",
+      "height": -1,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": -1,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": -1,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": -1,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Left",
+      "height": -1,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 1.1920928955078125e-07
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": -1,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 1.1920928955078125e-07
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": -1,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 1.1920928955078125e-07
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": -1,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 1.1920928955078125e-07
+    },
+    {
+      "mesh": "UpperLid_Left",
+      "height": -1,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": -1,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": -1,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": -1,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Left",
+      "height": 0,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": 0,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": 0,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": 0,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Left",
+      "height": 0,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 5.960464477539063e-08
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": 0,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 5.960464477539063e-08
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": 0,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 5.960464477539063e-08
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": 0,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 5.960464477539063e-08
+    },
+    {
+      "mesh": "UpperLid_Left",
+      "height": 0,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": 0,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": 0,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": 0,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Left",
+      "height": 1,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": 1,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": 1,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": 1,
+      "blink": 0,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Left",
+      "height": 1,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 1.1920928955078125e-07
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": 1,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 1.1920928955078125e-07
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": 1,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 1.1920928955078125e-07
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": 1,
+      "blink": 0.5,
+      "maximumEvaluatedErrorMetres": 1.1920928955078125e-07
+    },
+    {
+      "mesh": "UpperLid_Left",
+      "height": 1,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Left",
+      "height": 1,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "UpperLid_Right",
+      "height": 1,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    },
+    {
+      "mesh": "LowerLid_Right",
+      "height": 1,
+      "blink": 1,
+      "maximumEvaluatedErrorMetres": 0.0
+    }
+  ],
+  "acceptance": "Geometry checks passed; neutral/blink pixels require review. Unfinished stylized prototype, no production or realistic-human acceptance."
+}

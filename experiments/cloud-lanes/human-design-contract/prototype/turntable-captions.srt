@@ -1,0 +1,43 @@
+1
+00:00:00,000 --> 00:00:03,000
+Camera turntable / no skeletal rig
+
+2
+00:00:03,000 --> 00:00:04,500
+Nose projection only
+
+3
+00:00:04,500 --> 00:00:06,000
+Nose width only
+
+4
+00:00:06,000 --> 00:00:07,500
+Left ear projection only
+
+5
+00:00:07,500 --> 00:00:09,000
+Right ear projection only
+
+6
+00:00:09,000 --> 00:00:10,500
+Body height only
+
+7
+00:00:10,500 --> 00:00:12,000
+Shoulder width only
+
+8
+00:00:12,000 --> 00:00:12,750
+Neutral
+
+9
+00:00:12,750 --> 00:00:13,500
+Happy / smile morphs
+
+10
+00:00:13,500 --> 00:00:14,250
+Sad / mouth and brow morphs
+
+11
+00:00:14,250 --> 00:00:15,000
+Blink / geometric eyelid closure

@@ -1,0 +1,125 @@
+Filtered render console: warnings/errors, saved paths, timings and completion markers. Repetitive Cycles progress omitted. Raw local log retained in ignored prototype/frames/render-logs/.
+Blender 4.3.2
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.blend"
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0060.png'
+Time: 00:00.69 (Saving: 00:00.13)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0061.png'
+Time: 00:00.58 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0062.png'
+Time: 00:00.57 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0063.png'
+Time: 00:00.59 (Saving: 00:00.05)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0064.png'
+Time: 00:00.61 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0065.png'
+Time: 00:00.55 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0066.png'
+Time: 00:00.53 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0067.png'
+Time: 00:00.53 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0068.png'
+Time: 00:00.51 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0069.png'
+Time: 00:00.50 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0070.png'
+Time: 00:00.55 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0071.png'
+Time: 00:00.57 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0072.png'
+Time: 00:00.51 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0073.png'
+Time: 00:00.53 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0074.png'
+Time: 00:00.57 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0075.png'
+Time: 00:00.65 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0076.png'
+Time: 00:00.59 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0077.png'
+Time: 00:00.56 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0078.png'
+Time: 00:00.59 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0079.png'
+Time: 00:00.59 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0080.png'
+Time: 00:00.53 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0081.png'
+Time: 00:00.58 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0082.png'
+Time: 00:00.52 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0083.png'
+Time: 00:00.55 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0084.png'
+Time: 00:00.52 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0085.png'
+Time: 00:00.53 (Saving: 00:00.01)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0086.png'
+Time: 00:00.52 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0087.png'
+Time: 00:00.51 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0088.png'
+Time: 00:00.54 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0089.png'
+Time: 00:00.63 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0090.png'
+Time: 00:00.65 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0091.png'
+Time: 00:00.72 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0092.png'
+Time: 00:00.68 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0093.png'
+Time: 00:00.72 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0094.png'
+Time: 00:00.71 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0095.png'
+Time: 00:00.71 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0096.png'
+Time: 00:00.72 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0097.png'
+Time: 00:00.72 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0098.png'
+Time: 00:00.71 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0099.png'
+Time: 00:00.71 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0100.png'
+Time: 00:00.69 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0101.png'
+Time: 00:00.71 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0102.png'
+Time: 00:00.62 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0103.png'
+Time: 00:00.69 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0104.png'
+Time: 00:00.72 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0105.png'
+Time: 00:00.63 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0106.png'
+Time: 00:00.59 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0107.png'
+Time: 00:00.62 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0108.png'
+Time: 00:00.87 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0109.png'
+Time: 00:00.79 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0110.png'
+Time: 00:00.86 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0111.png'
+Time: 00:00.79 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0112.png'
+Time: 00:00.76 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0113.png'
+Time: 00:00.77 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0114.png'
+Time: 00:00.73 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0115.png'
+Time: 00:00.82 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0116.png'
+Time: 00:00.83 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0117.png'
+Time: 00:00.77 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0118.png'
+Time: 00:00.79 (Saving: 00:00.02)
+Saved: '/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/frames/0119.png'
+Time: 00:00.85 (Saving: 00:00.02)
+CAPTURE_COMPLETE frames 60 120
+Blender quit

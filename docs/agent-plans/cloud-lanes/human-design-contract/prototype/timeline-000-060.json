@@ -1,0 +1,410 @@
+[
+  {
+    "frame": 0,
+    "view": "full",
+    "angleRadians": 0.0,
+    "values": {}
+  },
+  {
+    "frame": 1,
+    "view": "full",
+    "angleRadians": 0.17453292519943295,
+    "values": {}
+  },
+  {
+    "frame": 2,
+    "view": "full",
+    "angleRadians": 0.3490658503988659,
+    "values": {}
+  },
+  {
+    "frame": 3,
+    "view": "full",
+    "angleRadians": 0.5235987755982988,
+    "values": {}
+  },
+  {
+    "frame": 4,
+    "view": "full",
+    "angleRadians": 0.6981317007977318,
+    "values": {}
+  },
+  {
+    "frame": 5,
+    "view": "full",
+    "angleRadians": 0.8726646259971648,
+    "values": {}
+  },
+  {
+    "frame": 6,
+    "view": "full",
+    "angleRadians": 1.0471975511965976,
+    "values": {}
+  },
+  {
+    "frame": 7,
+    "view": "full",
+    "angleRadians": 1.2217304763960306,
+    "values": {}
+  },
+  {
+    "frame": 8,
+    "view": "full",
+    "angleRadians": 1.3962634015954636,
+    "values": {}
+  },
+  {
+    "frame": 9,
+    "view": "full",
+    "angleRadians": 1.5707963267948966,
+    "values": {}
+  },
+  {
+    "frame": 10,
+    "view": "full",
+    "angleRadians": 1.7453292519943295,
+    "values": {}
+  },
+  {
+    "frame": 11,
+    "view": "full",
+    "angleRadians": 1.9198621771937623,
+    "values": {}
+  },
+  {
+    "frame": 12,
+    "view": "full",
+    "angleRadians": 2.0943951023931953,
+    "values": {}
+  },
+  {
+    "frame": 13,
+    "view": "full",
+    "angleRadians": 2.2689280275926285,
+    "values": {}
+  },
+  {
+    "frame": 14,
+    "view": "full",
+    "angleRadians": 2.443460952792061,
+    "values": {}
+  },
+  {
+    "frame": 15,
+    "view": "full",
+    "angleRadians": 2.617993877991494,
+    "values": {}
+  },
+  {
+    "frame": 16,
+    "view": "full",
+    "angleRadians": 2.792526803190927,
+    "values": {}
+  },
+  {
+    "frame": 17,
+    "view": "full",
+    "angleRadians": 2.9670597283903604,
+    "values": {}
+  },
+  {
+    "frame": 18,
+    "view": "full",
+    "angleRadians": 3.141592653589793,
+    "values": {}
+  },
+  {
+    "frame": 19,
+    "view": "full",
+    "angleRadians": 3.316125578789226,
+    "values": {}
+  },
+  {
+    "frame": 20,
+    "view": "full",
+    "angleRadians": 3.490658503988659,
+    "values": {}
+  },
+  {
+    "frame": 21,
+    "view": "full",
+    "angleRadians": 3.6651914291880923,
+    "values": {}
+  },
+  {
+    "frame": 22,
+    "view": "full",
+    "angleRadians": 3.8397243543875246,
+    "values": {}
+  },
+  {
+    "frame": 23,
+    "view": "full",
+    "angleRadians": 4.014257279586958,
+    "values": {}
+  },
+  {
+    "frame": 24,
+    "view": "full",
+    "angleRadians": 4.1887902047863905,
+    "values": {}
+  },
+  {
+    "frame": 25,
+    "view": "full",
+    "angleRadians": 4.363323129985824,
+    "values": {}
+  },
+  {
+    "frame": 26,
+    "view": "full",
+    "angleRadians": 4.537856055185257,
+    "values": {}
+  },
+  {
+    "frame": 27,
+    "view": "full",
+    "angleRadians": 4.71238898038469,
+    "values": {}
+  },
+  {
+    "frame": 28,
+    "view": "full",
+    "angleRadians": 4.886921905584122,
+    "values": {}
+  },
+  {
+    "frame": 29,
+    "view": "full",
+    "angleRadians": 5.061454830783556,
+    "values": {}
+  },
+  {
+    "frame": 30,
+    "view": "full",
+    "angleRadians": 5.235987755982988,
+    "values": {}
+  },
+  {
+    "frame": 31,
+    "view": "full",
+    "angleRadians": 5.410520681182422,
+    "values": {}
+  },
+  {
+    "frame": 32,
+    "view": "full",
+    "angleRadians": 5.585053606381854,
+    "values": {}
+  },
+  {
+    "frame": 33,
+    "view": "full",
+    "angleRadians": 5.759586531581288,
+    "values": {}
+  },
+  {
+    "frame": 34,
+    "view": "full",
+    "angleRadians": 5.934119456780721,
+    "values": {}
+  },
+  {
+    "frame": 35,
+    "view": "full",
+    "angleRadians": 6.1086523819801535,
+    "values": {}
+  },
+  {
+    "frame": 36,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.0
+    }
+  },
+  {
+    "frame": 37,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.3612416661871529
+    }
+  },
+  {
+    "frame": 38,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.6736956436465572
+    }
+  },
+  {
+    "frame": 39,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.8951632913550623
+    }
+  },
+  {
+    "frame": 40,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.9957341762950345
+    }
+  },
+  {
+    "frame": 41,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.961825643172819
+    }
+  },
+  {
+    "frame": 42,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.7980172272802396
+    }
+  },
+  {
+    "frame": 43,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.5264321628773561
+    }
+  },
+  {
+    "frame": 44,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": 0.18374951781657037
+    }
+  },
+  {
+    "frame": 45,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -0.18374951781657012
+    }
+  },
+  {
+    "frame": 46,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -0.5264321628773558
+    }
+  },
+  {
+    "frame": 47,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -0.7980172272802395
+    }
+  },
+  {
+    "frame": 48,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -0.961825643172819
+    }
+  },
+  {
+    "frame": 49,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -0.9957341762950346
+    }
+  },
+  {
+    "frame": 50,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -0.8951632913550626
+    }
+  },
+  {
+    "frame": 51,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -0.6736956436465578
+    }
+  },
+  {
+    "frame": 52,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -0.36124166618715303
+    }
+  },
+  {
+    "frame": 53,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.projection": -2.4492935982947064e-16
+    }
+  },
+  {
+    "frame": 54,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.0
+    }
+  },
+  {
+    "frame": 55,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.3612416661871529
+    }
+  },
+  {
+    "frame": 56,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.6736956436465572
+    }
+  },
+  {
+    "frame": 57,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.8951632913550623
+    }
+  },
+  {
+    "frame": 58,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.9957341762950345
+    }
+  },
+  {
+    "frame": 59,
+    "view": "portrait",
+    "angleRadians": 0.55,
+    "values": {
+      "nose.alarWidth": 0.961825643172819
+    }
+  }
+]

@@ -1,0 +1,25 @@
+Filtered render console: warnings/errors, saved paths, timings and completion markers. Repetitive Cycles progress omitted. Raw local log retained in ignored prototype/frames/render-logs/.
+Blender 4.3.2
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.blend"
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/neutral.png'
+Time: 00:02.04 (Saving: 00:00.15)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/happy.png'
+Time: 00:02.10 (Saving: 00:00.03)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/sad.png'
+Time: 00:02.38 (Saving: 00:00.04)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/blink.png'
+Time: 00:02.37 (Saving: 00:00.03)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/nose-min.png'
+Time: 00:02.43 (Saving: 00:00.03)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/nose-max.png'
+Time: 00:02.46 (Saving: 00:00.03)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/ears-asymmetric.png'
+Time: 00:02.43 (Saving: 00:00.03)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/body-short-narrow.png'
+Time: 00:03.74 (Saving: 00:00.03)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/body-tall-broad.png'
+Time: 00:03.61 (Saving: 00:00.03)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/neutral-full-current.png'
+Time: 00:03.57 (Saving: 00:00.04)
+CAPTURE_COMPLETE stills 0 60
+Blender quit

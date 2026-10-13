@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 1,
+  "result": "pass",
+  "scope": "Actual GLB accessors; finite indexed positions, nonzero morph deltas and height products. No rig or realism acceptance.",
+  "exports": [
+    {
+      "path": "original-human-prototype.glb",
+      "sha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07",
+      "triangleCount": 29186,
+      "meshCount": 31,
+      "heightProductTargetsChecked": 28,
+      "skins": 0,
+      "animations": 0,
+      "meshes": [
+        {
+          "name": "Neck-mesh",
+          "vertices": 129,
+          "triangles": 188,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Shirt_torso-mesh",
+          "vertices": 1924,
+          "triangles": 3798,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Collar_band-mesh",
+          "vertices": 82,
+          "triangles": 80,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Trouser_hip-mesh",
+          "vertices": 1862,
+          "triangles": 3682,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Forearm_-1-mesh",
+          "vertices": 1032,
+          "triangles": 2008,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Shoe_-1-mesh",
+          "vertices": 230,
+          "triangles": 380,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Sole_-1-mesh",
+          "vertices": 98,
+          "triangles": 124,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Forearm_1-mesh",
+          "vertices": 1030,
+          "triangles": 2008,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Shoe_1-mesh",
+          "vertices": 226,
+          "triangles": 380,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Sole_1-mesh",
+          "vertices": 94,
+          "triangles": 124,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Head_continuous_anatomy-mesh",
+          "vertices": 4165,
+          "triangles": 8096,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "earLeft.protrusion",
+            "earRight.protrusion",
+            "body.height",
+            "expression.smileLeft",
+            "expression.smileRight",
+            "expression.frownLeft",
+            "expression.frownRight",
+            "expression.browRaiseLeft",
+            "expression.browRaiseRight",
+            "corrective.height.smileLeft",
+            "corrective.height.smileRight",
+            "corrective.height.frownLeft",
+            "corrective.height.frownRight",
+            "corrective.height.browRaiseLeft",
+            "corrective.height.browRaiseRight"
+          ]
+        },
+        {
+          "name": "Eye_Left-mesh",
+          "vertices": 401,
+          "triangles": 728,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Iris_Left-mesh",
+          "vertices": 43,
+          "triangles": 40,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Pupil_Left-mesh",
+          "vertices": 43,
+          "triangles": 40,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "UpperLid_Left-mesh",
+          "vertices": 165,
+          "triangles": 256,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.blinkLeft",
+            "corrective.height.blinkLeft"
+          ]
+        },
+        {
+          "name": "LowerLid_Left-mesh",
+          "vertices": 168,
+          "triangles": 256,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.blinkLeft",
+            "corrective.height.blinkLeft"
+          ]
+        },
+        {
+          "name": "Brow_Left-mesh",
+          "vertices": 50,
+          "triangles": 48,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.browRaiseLeft",
+            "corrective.height.browRaiseLeft"
+          ]
+        },
+        {
+          "name": "Eye_Right-mesh",
+          "vertices": 381,
+          "triangles": 728,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Iris_Right-mesh",
+          "vertices": 44,
+          "triangles": 40,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Pupil_Right-mesh",
+          "vertices": 44,
+          "triangles": 40,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "UpperLid_Right-mesh",
+          "vertices": 165,
+          "triangles": 256,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.blinkRight",
+            "corrective.height.blinkRight"
+          ]
+        },
+        {
+          "name": "LowerLid_Right-mesh",
+          "vertices": 168,
+          "triangles": 256,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.blinkRight",
+            "corrective.height.blinkRight"
+          ]
+        },
+        {
+          "name": "Brow_Right-mesh",
+          "vertices": 50,
+          "triangles": 48,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.browRaiseRight",
+            "corrective.height.browRaiseRight"
+          ]
+        },
+        {
+          "name": "Lip_upper-mesh",
+          "vertices": 217,
+          "triangles": 344,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileLeft",
+            "expression.smileRight",
+            "expression.frownLeft",
+            "expression.frownRight",
+            "corrective.height.smileLeft",
+            "corrective.height.smileRight",
+            "corrective.height.frownLeft",
+            "corrective.height.frownRight"
+          ]
+        },
+        {
+          "name": "Lip_lower-mesh",
+          "vertices": 217,
+          "triangles": 344,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileLeft",
+            "expression.smileRight",
+            "expression.frownLeft",
+            "expression.frownRight",
+            "corrective.height.smileLeft",
+            "corrective.height.smileRight",
+            "corrective.height.frownLeft",
+            "corrective.height.frownRight"
+          ]
+        },
+        {
+          "name": "Mouth_seam-mesh",
+          "vertices": 270,
+          "triangles": 536,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileLeft",
+            "expression.smileRight",
+            "expression.frownLeft",
+            "expression.frownRight",
+            "corrective.height.smileLeft",
+            "corrective.height.smileRight",
+            "corrective.height.frownLeft",
+            "corrective.height.frownRight"
+          ]
+        },
+        {
+          "name": "Nostril_-1-mesh",
+          "vertices": 153,
+          "triangles": 280,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileRight",
+            "expression.frownRight",
+            "corrective.height.smileRight",
+            "corrective.height.frownRight"
+          ]
+        },
+        {
+          "name": "Nostril_1-mesh",
+          "vertices": 165,
+          "triangles": 280,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileLeft",
+            "expression.frownLeft",
+            "corrective.height.smileLeft",
+            "corrective.height.frownLeft"
+          ]
+        },
+        {
+          "name": "Ear_Left-mesh",
+          "vertices": 400,
+          "triangles": 640,
+          "exportedMorphNames": [
+            "earLeft.protrusion",
+            "body.height"
+          ]
+        },
+        {
+          "name": "Ear_Right-mesh",
+          "vertices": 411,
+          "triangles": 640,
+          "exportedMorphNames": [
+            "earRight.protrusion",
+            "body.height"
+          ]
+        },
+        {
+          "name": "Hair_original_close_curl_surface-mesh",
+          "vertices": 1348,
+          "triangles": 2518,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "eye-refinement-v2/eye-refinement-v2.glb",
+      "sha256": "b946240b7956cf03e73d0bf094b149e157ff99b16e43fff20a65e235f99679c3",
+      "triangleCount": 29186,
+      "meshCount": 31,
+      "heightProductTargetsChecked": 28,
+      "skins": 0,
+      "animations": 0,
+      "meshes": [
+        {
+          "name": "Neck-mesh",
+          "vertices": 129,
+          "triangles": 188,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Shirt_torso-mesh",
+          "vertices": 1924,
+          "triangles": 3798,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Collar_band-mesh",
+          "vertices": 82,
+          "triangles": 80,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Trouser_hip-mesh",
+          "vertices": 1862,
+          "triangles": 3682,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Forearm_-1-mesh",
+          "vertices": 1032,
+          "triangles": 2008,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Shoe_-1-mesh",
+          "vertices": 230,
+          "triangles": 380,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Sole_-1-mesh",
+          "vertices": 98,
+          "triangles": 124,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Forearm_1-mesh",
+          "vertices": 1030,
+          "triangles": 2008,
+          "exportedMorphNames": [
+            "body.height",
+            "body.shoulderWidth"
+          ]
+        },
+        {
+          "name": "Shoe_1-mesh",
+          "vertices": 226,
+          "triangles": 380,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Sole_1-mesh",
+          "vertices": 94,
+          "triangles": 124,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Head_continuous_anatomy-mesh",
+          "vertices": 4165,
+          "triangles": 8096,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "earLeft.protrusion",
+            "earRight.protrusion",
+            "body.height",
+            "expression.smileLeft",
+            "expression.smileRight",
+            "expression.frownLeft",
+            "expression.frownRight",
+            "expression.browRaiseLeft",
+            "expression.browRaiseRight",
+            "corrective.height.smileLeft",
+            "corrective.height.smileRight",
+            "corrective.height.frownLeft",
+            "corrective.height.frownRight",
+            "corrective.height.browRaiseLeft",
+            "corrective.height.browRaiseRight"
+          ]
+        },
+        {
+          "name": "Eye_Left-mesh",
+          "vertices": 401,
+          "triangles": 728,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Iris_Left-mesh",
+          "vertices": 43,
+          "triangles": 40,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Pupil_Left-mesh",
+          "vertices": 43,
+          "triangles": 40,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "UpperLid_Left-mesh",
+          "vertices": 165,
+          "triangles": 256,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.blinkLeft",
+            "corrective.height.blinkLeft"
+          ]
+        },
+        {
+          "name": "LowerLid_Left-mesh",
+          "vertices": 168,
+          "triangles": 256,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.blinkLeft",
+            "corrective.height.blinkLeft"
+          ]
+        },
+        {
+          "name": "Brow_Left-mesh",
+          "vertices": 50,
+          "triangles": 48,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.browRaiseLeft",
+            "corrective.height.browRaiseLeft"
+          ]
+        },
+        {
+          "name": "Eye_Right-mesh",
+          "vertices": 381,
+          "triangles": 728,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Iris_Right-mesh",
+          "vertices": 44,
+          "triangles": 40,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "Pupil_Right-mesh",
+          "vertices": 44,
+          "triangles": 40,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        },
+        {
+          "name": "UpperLid_Right-mesh",
+          "vertices": 165,
+          "triangles": 256,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.blinkRight",
+            "corrective.height.blinkRight"
+          ]
+        },
+        {
+          "name": "LowerLid_Right-mesh",
+          "vertices": 168,
+          "triangles": 256,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.blinkRight",
+            "corrective.height.blinkRight"
+          ]
+        },
+        {
+          "name": "Brow_Right-mesh",
+          "vertices": 50,
+          "triangles": 48,
+          "exportedMorphNames": [
+            "body.height",
+            "expression.browRaiseRight",
+            "corrective.height.browRaiseRight"
+          ]
+        },
+        {
+          "name": "Lip_upper-mesh",
+          "vertices": 217,
+          "triangles": 344,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileLeft",
+            "expression.smileRight",
+            "expression.frownLeft",
+            "expression.frownRight",
+            "corrective.height.smileLeft",
+            "corrective.height.smileRight",
+            "corrective.height.frownLeft",
+            "corrective.height.frownRight"
+          ]
+        },
+        {
+          "name": "Lip_lower-mesh",
+          "vertices": 217,
+          "triangles": 344,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileLeft",
+            "expression.smileRight",
+            "expression.frownLeft",
+            "expression.frownRight",
+            "corrective.height.smileLeft",
+            "corrective.height.smileRight",
+            "corrective.height.frownLeft",
+            "corrective.height.frownRight"
+          ]
+        },
+        {
+          "name": "Mouth_seam-mesh",
+          "vertices": 270,
+          "triangles": 536,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileLeft",
+            "expression.smileRight",
+            "expression.frownLeft",
+            "expression.frownRight",
+            "corrective.height.smileLeft",
+            "corrective.height.smileRight",
+            "corrective.height.frownLeft",
+            "corrective.height.frownRight"
+          ]
+        },
+        {
+          "name": "Nostril_-1-mesh",
+          "vertices": 153,
+          "triangles": 280,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileRight",
+            "expression.frownRight",
+            "corrective.height.smileRight",
+            "corrective.height.frownRight"
+          ]
+        },
+        {
+          "name": "Nostril_1-mesh",
+          "vertices": 165,
+          "triangles": 280,
+          "exportedMorphNames": [
+            "nose.projection",
+            "nose.alarWidth",
+            "body.height",
+            "expression.smileLeft",
+            "expression.frownLeft",
+            "corrective.height.smileLeft",
+            "corrective.height.frownLeft"
+          ]
+        },
+        {
+          "name": "Ear_Left-mesh",
+          "vertices": 400,
+          "triangles": 640,
+          "exportedMorphNames": [
+            "earLeft.protrusion",
+            "body.height"
+          ]
+        },
+        {
+          "name": "Ear_Right-mesh",
+          "vertices": 411,
+          "triangles": 640,
+          "exportedMorphNames": [
+            "earRight.protrusion",
+            "body.height"
+          ]
+        },
+        {
+          "name": "Hair_original_close_curl_surface-mesh",
+          "vertices": 1348,
+          "triangles": 2518,
+          "exportedMorphNames": [
+            "body.height"
+          ]
+        }
+      ]
+    }
+  ]
+}

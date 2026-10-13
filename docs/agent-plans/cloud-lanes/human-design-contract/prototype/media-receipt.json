@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "frozenMasterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "originalMasterBytesUnchanged": true,
+  "frameCount": 180,
+  "durationSeconds": 15,
+  "fps": 12,
+  "resolution": [
+    384,
+    512
+  ],
+  "identityControlsShownIndividually": 6,
+  "unimplementedIdentityControls": 32,
+  "expressions": [
+    "neutral",
+    "happy",
+    "sad",
+    "blink"
+  ],
+  "videoVerification": "ffprobe counts 180 frames / 15 seconds; ffmpeg decoded entire video with zero errors; 11 labelled samples visually inspected. Real-time playback was not performed.",
+  "stillsVerification": "Expression, endpoint and derivative neutral/blink images visually inspected. Geometric expression changes are visible; visual realism acceptance failed/pending.",
+  "visualFindings": [
+    "Neutral and blink eyelid positions are distinguishable; no white globe remains visible in full blink.",
+    "Narrowed eye-only derivative retains visible lid/face surface seams; it is not an accepted anatomical socket.",
+    "Frozen face, ears, cap hair, shoulders and hands remain stylized and need further work.",
+    "Video is a camera turntable and shape-key demonstration, with no skeletal animation."
+  ],
+  "geometryVerification": {
+    "frozenMeshSampleCasesPreviouslyPassed": 112,
+    "derivativeEvaluatedCasesPassed": 36,
+    "actualGlbExportsChecked": 2,
+    "trianglesEach": 29186,
+    "heightProductTargetsEach": 28
+  },
+  "libraryDelivery": {
+    "status": "blocked",
+    "error": "prepared-upload helper hosted apps tools/list request failed: network",
+    "newLibraryFilesConfirmed": 0,
+    "attemptDetails": "First invocation rejected unsupported create name metadata locally before any app request; corrected batch failed tool discovery. No direct-write fallback or uncertain finalization retry."
+  },
+  "artifacts": [
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/prototype/character-controls-turntable.mp4",
+      "bytes": 673624,
+      "sha256": "a2b35d52ff3162042cef3bb478153d03ee4d4e2bf64e4684f531110385015141"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/prototype/expression-review.png",
+      "bytes": 1072499,
+      "sha256": "d98a948a50dd7d904bd7de10f4e7d763a79260fd4bf2e2210163bdda227558ed"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/prototype/control-endpoints-review.png",
+      "bytes": 1266302,
+      "sha256": "0af98e6215a7563024753327cbed3f5f0c59b2e227a88a563516fe3a505584a5"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/prototype/video-sampled-frames.png",
+      "bytes": 986209,
+      "sha256": "8efbad3a34aee151c88a0cd66061b903f218d6a0921bc3e096258f6bc3c534ba"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/prototype/eye-refinement-v2/neutral-blink-review.png",
+      "bytes": 1556617,
+      "sha256": "fc6f5a2bc4599f79f7c39213b0734bb79e23a6c8637d74972553da86a4374c0a"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/prototype/eye-refinement-v2/neutral.png",
+      "bytes": 610963,
+      "sha256": "f0a45b6096ffd9537da73087c5e7be172d43a71b912fd6d86fc3c8a32948493f"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/human-design-contract/prototype/eye-refinement-v2/blink.png",
+      "bytes": 609160,
+      "sha256": "9775b9b049722d6658b8e5efef969fd8a1ef0a9290bf50c54cf007c2cb6215b0"
+    }
+  ]
+}

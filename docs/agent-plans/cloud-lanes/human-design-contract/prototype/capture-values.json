@@ -1,0 +1,91 @@
+{
+  "stills": [
+    {
+      "file": "neutral.png",
+      "view": "portrait",
+      "angleRadians": 0,
+      "values": {}
+    },
+    {
+      "file": "happy.png",
+      "view": "portrait",
+      "angleRadians": 0,
+      "values": {
+        "expression.smileLeft": 1,
+        "expression.smileRight": 1
+      }
+    },
+    {
+      "file": "sad.png",
+      "view": "portrait",
+      "angleRadians": 0,
+      "values": {
+        "expression.frownLeft": 1,
+        "expression.frownRight": 1,
+        "expression.browRaiseLeft": 0.8,
+        "expression.browRaiseRight": 0.8
+      }
+    },
+    {
+      "file": "blink.png",
+      "view": "portrait",
+      "angleRadians": 0,
+      "values": {
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      }
+    },
+    {
+      "file": "nose-min.png",
+      "view": "portrait",
+      "angleRadians": 0.55,
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1
+      }
+    },
+    {
+      "file": "nose-max.png",
+      "view": "portrait",
+      "angleRadians": 0.55,
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1
+      }
+    },
+    {
+      "file": "ears-asymmetric.png",
+      "view": "portrait",
+      "angleRadians": 0,
+      "values": {
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": -1
+      }
+    },
+    {
+      "file": "body-short-narrow.png",
+      "view": "full",
+      "angleRadians": 0.1,
+      "values": {
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      }
+    },
+    {
+      "file": "body-tall-broad.png",
+      "view": "full",
+      "angleRadians": 0.1,
+      "values": {
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      }
+    },
+    {
+      "file": "neutral-full-current.png",
+      "view": "full",
+      "angleRadians": 0.1,
+      "values": {}
+    }
+  ],
+  "description": "Actual Blender source shape-key renders. No image-generated or composited facial features."
+}

@@ -1,0 +1,11 @@
+Filtered render console: warnings/errors, saved paths, timings and completion markers. Repetitive Cycles progress omitted. Raw local log retained in ignored prototype/frames/render-logs/.
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+Blender 4.3.2
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/original-human-prototype.blend"
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/eye-refinement-v2/neutral.png'
+Time: 00:06.08 (Saving: 00:00.16)
+Saved: '/workspace/joinallworld-human-design-contract/docs/agent-plans/cloud-lanes/human-design-contract/prototype/eye-refinement-v2/blink.png'
+Time: 00:06.84 (Saving: 00:00.05)
+Info: Saved "eye-refinement-v2.blend"
+EYE_REFINEMENT_COMPLETE {"evaluatedCases": 36, "protectedGeometryUnchanged": true, "originalMasterBytesUnchanged": true}
+Blender quit

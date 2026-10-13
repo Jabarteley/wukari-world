@@ -1,0 +1,5 @@
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+MEDIA_ASSEMBLY_COMPLETE: 180 frames; entire video decoded; 11 labelled samples extracted

@@ -9,7 +9,7 @@
 //
 //   const tables = useTables()
 //   tables.t.value        the latest copy of T (list, tableId, state, pending, socket, claimed, ratings)
-//   tables.openTable(id)  …and the other actions of the client: closeTable, sit, leave, begin, again, play, setOption, reconnect
+//   tables.openTable(id)  …and the other actions of the client: closeTable, sit, leave, begin, again, play, setOption, setStake, refreshTable, reconnect
 //
 // The rule "the list is asked for again when it is older than 20 seconds" is checked when the screen
 // opens and whenever the client reports a change while the list is showing.
@@ -17,9 +17,9 @@ import { onBeforeUnmount, onMounted, shallowRef, watch } from 'vue'
 import type { ShallowRef } from 'vue'
 import { useApp } from '../../state/app.ts'
 import type { App } from '../../state/app.ts'
-import { LIST_STALE_MS, listIsStale } from './tablesModel.ts'
+import { LIST_STALE_MS, listIsStale } from './tablesList.ts'
 import {
-  T, again, begin, closeTable, leave, openTable, play, reconnect, refreshList, setOption, sit, start,
+  T, again, begin, closeTable, leave, openTable, play, reconnect, refreshList, refreshTable, setOption, setStake, sit, start,
 } from './tablesBoundary.ts'
 import type { TablesApi, TablesClientState } from './tablesBoundary.ts'
 
@@ -71,7 +71,7 @@ export function useTables() {
     t: snapshot,
     connect,
     refreshStaleList,
-    openTable, closeTable, sit, leave, begin, again, play, setOption, reconnect,
+    openTable, closeTable, sit, leave, begin, again, play, setOption, setStake, refreshTable, reconnect,
   }
 }
 export type Tables = ReturnType<typeof useTables>

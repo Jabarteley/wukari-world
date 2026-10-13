@@ -20,6 +20,7 @@ import type { ConsentView, OutreachLogLine, ResultGameId, ShareFacts, ShareKind,
 import type { CampusElectionRecord } from '../src/types/campus.ts'
 import type { CommerceCollection, CommerceGateway } from './commerce/types.ts'
 import type { BusinessCollection } from '../src/types/business.ts'
+import type { MarketCollection } from '../src/types/market.ts'
 import type { BillsRecord, DecreeRecord, GrantRecord, JusticeRecord, PartyRecord, PetitionRecord, LawsRecord, TermAccounts, TermAudit, TreasuryRecord } from '../src/types/politics.ts'
 import type { ComebackType, LedgerType, PrefKey } from '../src/game/comeback.ts'
 import type { StoredWalletEffect } from './economy/effects.ts'
@@ -698,11 +699,34 @@ export type GrowthCityMetricsRecord = Omit<GrowthMetricsRecord, 'cities' | 'sour
 export interface GrowthCityTablesRecord {
   ratings?: Record<string, Partial<Record<TableGameId, { rating: number; played: number; won: number }>>>
 }
-/** server/growth/tables.ts: ratings per player per game, and how often two players' games counted today. */
+/**
+ * A staked game's pot, held here from the moment both stakes are taken until the game is settled: the winner is paid the whole pot,
+ * or both stakes go back, in the one transaction that deletes this record. So a pot is paid out once, and a restart in between
+ * leaves it here for the next start to refund (server/growth/tables.ts).
+ */
+export interface TablePotRecord {
+  cityId: CityId
+  table: string
+  game: TableGameId
+  /** The game's label, for the wallet lines ("Whot"). */
+  label: string
+  /** Naira each player put in; the pot is twice this. */
+  stake: number
+  /** Lagos day the stakes were counted on. */
+  day: number
+  at: number
+  /** The two players, in seat order. */
+  seats: { id: string; name: string }[]
+}
+/** server/growth/tables.ts: ratings per player per game, how often two players' games counted today, and the pots of staked games in play. */
 export interface GrowthTablesRecord {
   cities?: Partial<Record<CityId, GrowthCityTablesRecord>>
   ratings?: Record<string, Partial<Record<TableGameId, { rating: number; played: number; won: number }>>>
   pairs?: { day: number; counts: Record<string, number> }
+  /** Pots of staked games in play, by match id. Empty when nothing is staked. */
+  pots?: Record<string, TablePotRecord>
+  /** Naira staked on Lagos day `day`: per player, and per pair of players (`a|b`, ids sorted). */
+  stakes?: { day: number; players: Record<string, number>; pairs: Record<string, number> }
 }
 /** What a channel last sent per period: the Lagos day of the last 'away' message and the Lagos week of the last 'week' one. */
 export interface OutreachPeriods { away?: number; week?: number }
@@ -810,6 +834,8 @@ export interface Database {
   commerce?: CommerceCollection
   /** server/business/service.ts: every player-owned shop. Created by the first shop, so it is not in COLLECTION_NAMES. */
   business?: BusinessCollection
+  /** server/market/service.ts: every city's market accounts, order books and tape. Created by the first deposit or order, so it is not in COLLECTION_NAMES. */
+  market?: MarketCollection
   /** server/trust/service.ts: checked tiers and complaints. Created by the first report or check, so it is not in COLLECTION_NAMES. */
   trust?: import('./trust/service.ts').TrustCollection
   trustChecks?: import('./trust/dojah.ts').IdChecks
@@ -829,7 +855,7 @@ export interface Database {
   [collection: string]: unknown
 }
 /** Top-level keys of the document. */
-export const DATABASE_KEYS = ['version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'business', 'campus', 'accounts', 'accountDevices', 'accountLog', 'visits', 'walletEffects'] as const satisfies readonly (keyof Database)[]
+export const DATABASE_KEYS = ['version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'business', 'market', 'campus', 'accounts', 'accountDevices', 'accountLog', 'visits', 'walletEffects'] as const satisfies readonly (keyof Database)[]
 /** The namespaced collections reached through `collection(db, name)`. */
 export const COLLECTION_NAMES = ['social', 'civic', 'support', 'moderation', 'growth'] as const
 export type CollectionName = (typeof COLLECTION_NAMES)[number]

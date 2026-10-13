@@ -5,8 +5,8 @@
  * simulation (scripts/economy-sim.ts, strategy "social") before it ships.
  */
 
-/** Table games (src/tables/**). There are NO stakes: a win is paid by the game, never by the loser. */
-import type { ReferralRules, TableRewards } from '../../types/content.ts'
+/** Table games (src/tables/**). A win is paid by the game; a staked game (TABLE_STAKES) is paid by the loser's stake instead, never both. */
+import type { ReferralRules, TableRewards, TableStakes } from '../../types/content.ts'
 
 export const TABLE_REWARDS: Readonly<TableRewards> = Object.freeze({
   /** Naira for a counted win against at least one real player. A loss, a draw or a bot game pays nothing. */
@@ -17,6 +17,22 @@ export const TABLE_REWARDS: Readonly<TableRewards> = Object.freeze({
   botCreditsPerDay: 1,
   /** The same two players' games count (pay, rating, missions) this many times a Lagos day; more are for fun. */
   pairGamesPerDay: 3,
+});
+
+/**
+ * Table stakes (docs/GAMES.md, "Stakes"): game naira put on a two-player game, winner takes the pot. Game naira only: it can
+ * never be bought with real money or cashed out (docs/REAL-VALUE.md red lines). Skill games only, never against a bot, 18+.
+ */
+export const TABLE_STAKES: Readonly<TableStakes> = /* @__PURE__ */ Object.freeze({
+  /** What each player may put in, in naira; 0 is a free game. The most is the last. */
+  choices: /* @__PURE__ */ Object.freeze([0, 100, 500, 1000, 2000]),
+  /** Staked naira per Lagos day between the same two players, whoever wins. */
+  pairPerDay: 5000,
+  /** Staked naira per player per Lagos day in all. */
+  playerPerDay: 10000,
+  /** The only games that may be staked: skill games between two real players. Chance games are never added here. */
+  games: /* @__PURE__ */ Object.freeze(['whot', 'ayo', 'chess', 'penalty', 'weave']),
+  beta: true,
 });
 
 /** Referral: both sides are rewarded only after the newcomer has really played. */

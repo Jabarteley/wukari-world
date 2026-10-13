@@ -17,11 +17,14 @@ export function noteBootResult(failed: boolean): void { try { if (failed) global
 
 export async function loadGame(): Promise<LoadedGame> {
   warmLanding() // a device that has never played opens on the landing: fetch its code now, beside the city and the shell
-  const { isCityId, loadCityContent } = await import('../game/cities/registry.ts')
-  const { loadLifeCities } = await import('../game/cities/lifeCities.ts')
+  const { isCityId, loadCityContent, loadLifeCities, savedCityIndex } = await import('../game/cities/boot.ts')
   let cached: string | null = null
   try { cached = globalThis.localStorage.getItem(STORAGE_KEY) } catch { /* The server session can still restore the character. */ }
   if (cached !== null) {
+    // The first download names Nigeria's cities only: a saved life anywhere else waits for the whole city index, so its city is never
+    // mistaken for an unknown one (and the player put back in Lagos).
+    const index = savedCityIndex(cached)
+    if (index) await index
     // Every referenced city's rules and the current city's content must arrive before reconstruction. A failed download
     // leaves the saved copy untouched, so retrying can never trade homes or money for an empty preview.
     await loadLifeCities(savedState(cached), [initialCity(cached, isCityId)])

@@ -30,10 +30,10 @@ const start = (): (string | null)[] => [
   ...BACK.map((kind) => `b${kind}`), ...Array<string>(8).fill('bP'), ...Array<null>(32).fill(null), ...Array<string>(8).fill('wP'), ...BACK.map((kind) => `w${kind}`),
 ]
 const state = (you: 'w' | 'b' | null, patch: { bot?: boolean; history?: string[] } = {}): ChessState => ({
-  type: 'table-state', cityId: 'lagos', n: 2, you: you === null ? null : you === 'w' ? 0 : 1, host: false, log: [], toMove: [], result: null, optionList: [],
+  type: 'table-state', cityId: 'lagos', n: 2, you: you === null ? null : you === 'w' ? 0 : 1, host: false, log: [], toMove: [], result: null, optionList: [], stakes: { amount: 0, pot: 0, allowed: true, note: '', why: null, code: null, choices: [] },
   clock: { deadline: 301000, now: 1000, seconds: 300 },
   table: {
-    id: 't', venue: 'v', venueLabel: 'V', game: 'chess', gameLabel: 'Chess', label: 'Chess', status: 'playing', max: 2, min: 2, options: { clock: '5+3', level: 'medium' }, watching: 0,
+    id: 't', venue: 'v', venueLabel: 'V', game: 'chess', gameLabel: 'Chess', label: 'Chess', status: 'playing', max: 2, min: 2, options: { clock: '5+3', level: 'medium' }, watching: 0, stake: 0,
     seats: [{ name: 'Ada', bot: false }, { name: 'Bola', bot: patch.bot ?? false }],
   },
   view: {

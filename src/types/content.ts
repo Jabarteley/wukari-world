@@ -1550,6 +1550,14 @@ export interface TableRewards {
   pairGamesPerDay: number
 }
 
+export interface TableStakes {
+  choices: readonly number[]
+  pairPerDay: number
+  playerPerDay: number
+  games: readonly string[]
+  beta: boolean
+}
+
 export interface ReferralRules {
   welcome: number
   welcomeWorkDays: number

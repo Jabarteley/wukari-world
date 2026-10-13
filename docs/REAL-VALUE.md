@@ -96,6 +96,7 @@ Each level opens only when its trigger is met and Anthony signs off. Production 
 | Level | What | Trigger before opening | Main rules (desk research) |
 | --- | --- | --- | --- |
 | L0 | No money moves through Allworld. Stalls link out; classes and gigs are free to post. | Trust layer live | NDPA 2023 and the GAID 2025 data rules: consent, a privacy notice, minimal data and a DPO contact. Notice boards must be organic: they carry no paid ads. |
+| L0, Market | The Allworld Market ([MARKET.md](MARKET.md)): a play-money commodity exchange, one market per city. Game naira only; nothing goes in or out. | Phase 0 decisions D1–D5 accepted ([research plan](crypto-token-research-2026-10-13/PHASES.md)) | No real money in, no cash-out, no cash-value prizes for ranks. No "earn", "invest" or "profit" copy. Under-18s may trade, since no money is involved. |
 | L1 | Paid visibility: billboard and stall boosts, plus brand sponsorship of venues | A registered CAC company, a VAT registration, and a lawyer's note on ARCON | ARCON is reported to require vetting of every advert before it is shown, online too (Federal High Court ruling of 30 April 2025 and a May 2025 directive), with fees of roughly ₦7,500–₦100,000 and fines up to ₦1M [?]. The ad template therefore needs an ARCON approval reference field and a takedown control. No betting, loan or investment adverts. FCCPC consumer rules apply. |
 | L2 | Buy coins for cosmetics and boosts | L1 cleared, plus Paystack or Flutterwave approval for virtual goods | Coins cannot be cashed out or transferred. No loot boxes. VAT at 7.5% (Nigeria Tax Act, in force 1 January 2026) [?]. A published refund policy. 18+ to buy, or a parent's approval flow. |
 | L3 | Player-to-player sales and escrowed gig pay | A lawyer signs off on SCUML, FCCPC and escrow | Allworld is never the payee. Sellers use subaccounts with a payment gateway, which does the KYC. Settlement is delayed or held in escrow, with a dispute path. |
@@ -111,6 +112,17 @@ Sellers abroad use their own Payoneer, Grey or Wise accounts. Allworld only link
 - Allworld never holds users' money.
 - No home addresses, and no direct messages that skip report and hide.
 - No "earn while you play" marketing that sounds like an investment.
+- Market naira can never be bought with real money.
+- Market holdings are never cashed out, gifted outside the transfer rules, or sold off-platform.
+- No cash-value prizes for Market ranks.
+- No "earn", "invest" or "profit" copy about the Market.
+- Table stakes (docs/GAMES.md, "Stakes") are game naira only: never bought with real money, never cashed out, never paid in or out by a payment provider. Skill games only, between two real players, never against a bot and never a game of chance. 18+ only, by the age answer. Within the gift allowance and the day's limits, so a stake cannot move money a player did not work for. No "bet", "gamble", "earn", "invest" or "profit" copy: say stake, play for, pot and winner takes the pot.
+
+## Real-money trading
+
+Selling game naira, Market holdings or accounts for real money breaks the terms, and so does buying them. Accounts doing it are closed. The rule follows EVE Online's policy on real-money trading, and applies to every feature in the game. It is written into the terms and the Help app.
+
+The Market is the first feature this rule covers in practice. Its design is in [MARKET.md](MARKET.md), and the research behind the decision to keep it play-money is in [crypto-token-research-2026-10-13/](crypto-token-research-2026-10-13/README.md).
 
 ## What to reuse and what is new
 

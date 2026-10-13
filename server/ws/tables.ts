@@ -8,14 +8,18 @@
  *                                                 nudged (tables-changed) when a table in that venue changes
  *   table-watch   { cityId, table }             → table-state (and again whenever the table changes)
  *   table-unwatch {}                            stop receiving a table's state
- *   table-sit     { cityId, table }             take a seat (your Sim must be in the table's venue)
+ *   table-sit     { cityId, table, stake? }     take a seat (your Sim must be in the table's venue); `stake` is the stake you saw (none = 0):
+ *                                                 a table whose stake is another one refuses you (stake_changed). Sitting accepts the stake.
+ *   table-stake   { cityId, table, stake }      the first to sit, alone at an open table, sets what each player puts in (0, 100, 500, 1000,
+ *                                                 2000 naira); it cannot change once two players sit (docs/GAMES.md, "Stakes")
  *   table-options { cityId, table, options }    the first to sit sets the table's rules, before a game
- *   table-start   { cityId, table, bots? }      start with the people seated, plus `bots` house players
+ *   table-start   { cityId, table, bots? }      start with the people seated, plus `bots` house players (never at a staked table: both
+ *                                                 stakes are taken in one transaction, then the game begins)
  *   table-move    { cityId, table, n, move }    play; `n` is the number of moves made when you chose yours
  *   table-leave   { cityId, table }             give up your seat (during a game: forfeit)
  *   table-again   { cityId, table }             after a game: open the table again
  * SERVER → CLIENT
- *   table-state { cityId, table: summary, you: seat | null, host, n, view, log, toMove, clock, result, optionList }
+ *   table-state { cityId, table: summary, you: seat | null, host, n, view, log, toMove, clock, result, optionList, stakes }
  *       `view` is the game's own view for YOUR seat (or the watcher's view): it never holds another
  *       player's hand. Sent to every socket attached to the table, each with its own view.
  *   tables-changed { cityId, venue }            a table in a venue you listed changed: ask table-list again
@@ -32,9 +36,10 @@ export default function tablesSocket(ctx: RouteContext): WsHandlers {
     close(ws) { tables.drop(ws); },
     messages: {
       'table-list': async (ws, message) => { ctx.send(ws, tables.list(ws, message)); },
-      'table-watch': async (ws, message) => { tables.watch(ws, message); },
+      'table-watch': async (ws, message) => { await tables.watch(ws, message); },
       'table-unwatch': async (ws) => { tables.unwatch(ws); },
       'table-sit': async (ws, message) => { await tables.sit(ws, message); },
+      'table-stake': async (ws, message) => { await tables.stake(ws, message); },
       'table-options': async (ws, message) => { tables.options(ws, message); },
       'table-start': async (ws, message) => { await tables.start(ws, message); },
       'table-move': async (ws, message) => { await tables.move(ws, message); },

@@ -997,8 +997,8 @@ export interface EventsSlice {
 // ---- growth -------------------------------------------------------------------------------
 
 export interface GrowthState {
-  /** Today's paid wins and bot credits (reset when `day` turns); lifetime games played and won. */
-  tables: { day: LagosDay; paid: number; bots: number; played: number; won: number }
+  /** Today's paid wins and bot credits (reset when `day` turns); lifetime games played and won; `staked` is the naira of own stakes held on a table or lost (it counts against the gift allowance, systems/growth.ts passedOn). */
+  tables: { day: LagosDay; paid: number; bots: number; played: number; won: number; staked: number }
   /** This life has received its one referral welcome gift. */
   welcomed: boolean
   /** Referral rewards paid in Lagos week `week` and for life. */
@@ -1048,7 +1048,7 @@ export type SystemId =
   | 'core' | 'wallet' | 'inventory' | 'needs' | 'skills' | 'career' | 'activities' | 'travel' | 'health'
   | 'economy' | 'property' | 'estate' | 'homeward' | 'home' | 'stories' | 'land' | 'street' | 'onboarding' | 'goals' | 'social' | 'civic' | 'missions' | 'events' | 'growth' | 'business'
   | 'unilagStudent' | 'unilagCommunity' | 'unilagShuttle'
-  | 'livingWorld'
+  | 'livingWorld' | 'market'
 
 /** The top-level keys each system owns. */
 export interface SliceBySystem {
@@ -1078,6 +1078,7 @@ export interface SliceBySystem {
   business: BusinessSlice
   homeward: Record<never, never>
   livingWorld: Record<never, never>
+  market: Record<never, never>
   unilagStudent: UnilagStudentSlice
   unilagCommunity: UnilagCommunitySlice
   unilagShuttle: UnilagShuttleSlice
@@ -1206,6 +1207,7 @@ export const SYSTEM_STATE_KEYS = {
   growth: ['growth'],
   business: ['business'],
   livingWorld: [],
+  market: [],
   unilagStudent: ['unilagStudent'],
   unilagCommunity: ['unilagCommunity'],
   unilagShuttle: ['unilagShuttle'],

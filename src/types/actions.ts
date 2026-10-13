@@ -21,6 +21,7 @@ import { CAMPUS_ACTION_TYPES } from './campus.ts'
 import type { StoryActionMap } from './stories.ts'
 import type { LandPayPayload } from './land.ts'
 import type { TierId } from './politics.ts'
+import type { StakeCode } from '../game/table-stakes.ts'
 import type { CampusActionMap, CampusActivityVetoCode, GuestCampusActionType } from './campus.ts'
 
 // ---- shared code groups -------------------------------------------------------------------
@@ -374,6 +375,17 @@ export interface ActionMap extends CampusActionMap, StoryActionMap {
     serverOnly: true
   }
 
+  /**
+   * SERVER ONLY: the life's half of a staked table game (server/growth/tables.ts). 'stake' takes one player's stake within the
+   * gift allowance; 'pot' pays the winner the whole pot (`stake` is their own part of it); 'refund' gives a stake back.
+   */
+  'tables.server': {
+    payload: { op: TablesServerOp; amount: number; label?: string; stake?: number }
+    ok: 'staked' | 'won' | 'refunded'
+    fail: TablesBlockCode
+    serverOnly: true
+  }
+
   // -- business --
   /** SERVER ONLY: the life's half of a shop change the server has checked (server/business/service.ts). `op` is a BusinessServerOp. */
   'business.server': {
@@ -390,7 +402,26 @@ export interface ActionMap extends CampusActionMap, StoryActionMap {
     fail: 'invalid_barber_action' | 'invalid_clerk_action' | 'invalid_npc_restock_action' | 'balance_limit' | 'insufficient_funds'
     serverOnly: true
   }
+
+  // -- market --
+  /** SERVER ONLY: moves a life's naira into or out of a city's market account after the server has checked the rules (server/market/service.ts). Never earned from work. */
+  'market.server': {
+    payload: { op: MarketServerOp; amount: number }
+    ok: 'deposited' | 'withdrawn'
+    fail: MarketBlockCode
+    serverOnly: true
+  }
 }
+
+/** The operations 'tables.server' accepts (systems/growth.ts). */
+export type TablesServerOp = 'stake' | 'pot' | 'refund'
+/** Why the life's half of a stake was refused. */
+export type TablesBlockCode = 'invalid_operation' | 'invalid_amount' | 'balance_limit' | StakeCode
+
+/** The operations 'market.server' accepts (systems/market.ts). */
+export type MarketServerOp = 'deposit' | 'withdraw'
+/** Why the life's half of a market deposit or withdrawal was refused. */
+export type MarketBlockCode = 'invalid_operation' | 'invalid_amount' | 'insufficient_funds' | 'balance_limit'
 
 /** The operations 'business.server' accepts (systems/business.ts). */
 export type BusinessServerOp = 'open' | 'spend' | 'collect' | 'refund' | 'buy' | 'bag-add' | 'bag-take' | 'bag-return'
@@ -493,9 +524,9 @@ export const ACTION_TYPES = [
   'civic.hunt-search', 'civic.hunt-claim', 'civic.refresh', 'civic.news', 'civic.run', 'civic.vote', 'civic.rent-ad', 'civic.treasury', 'civic.justice', 'civic.shoutout',
   'missions.claim', 'missions.reroll', 'missions.refresh',
   'events.spray',
-  'growth.table-result', 'growth.referral',
+  'growth.table-result', 'growth.referral', 'tables.server',
   'business.server',
-  'living-world.server',
+  'living-world.server', 'market.server',
   // the campus: unilagStudent, unilagCommunity, unilagShuttle (campus.ts)
   ...CAMPUS_ACTION_TYPES,
 ] as const satisfies readonly ActionType[]
@@ -504,7 +535,7 @@ export const ACTION_TYPES = [
 export const SERVER_ONLY_ACTIONS = [
   'estate.land-pay', 'street.place',
   'wallet.admin', 'wallet.bonus', 'needs.admin', 'activity.admin', 'estate.assign', 'estate.released', 'onboarding.arrive', 'social.server', 'civic.news', 'civic.run', 'civic.vote', 'civic.rent-ad',
-  'civic.treasury', 'civic.justice', 'civic.shoutout', 'growth.table-result', 'growth.referral', 'business.server', 'living-world.server', 'unilag.election.nominate', 'unilag.election.vote',
+  'civic.treasury', 'civic.justice', 'civic.shoutout', 'growth.table-result', 'growth.referral', 'tables.server', 'business.server', 'living-world.server', 'market.server', 'unilag.election.nominate', 'unilag.election.vote',
 ] as const satisfies readonly ServerOnlyActionType[]
 
 /** The server-only deliveries that pass a held life's veto (onboarding.js INBOUND). */
@@ -512,6 +543,12 @@ export const INBOUND_ACTIONS = ['social.server', 'growth.referral', 'growth.tabl
 
 /** The operations 'business.server' accepts (systems/business.ts). */
 export const BUSINESS_SERVER_OPS = ['open', 'spend', 'collect', 'refund', 'buy', 'bag-add', 'bag-take', 'bag-return'] as const satisfies readonly BusinessServerOp[]
+
+/** The operations 'tables.server' accepts (systems/growth.ts). */
+export const TABLES_SERVER_OPS = ['stake', 'pot', 'refund'] as const satisfies readonly TablesServerOp[]
+
+/** The operations 'market.server' accepts (systems/market.ts). */
+export const MARKET_SERVER_OPS = ['deposit', 'withdraw'] as const satisfies readonly MarketServerOp[]
 
 /** The operations 'social.server' accepts (social.js serverOps). */
 export const SOCIAL_SERVER_OPS = [

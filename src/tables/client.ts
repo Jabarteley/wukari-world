@@ -65,11 +65,15 @@ async function claim(): Promise<void> {
     const result = await panelApi().fetchJson<TablesClaimResult>('/api/growth/tables/claim', { method: 'POST', body: { cityId: cityId() } });
     if (!result.ok) return;
     T.ratings = result.ratings;
-    if (result.results.length) {
+    // A game played for a stake moved naira whether or not there is anything to collect (a draw or a cancelled game gives the stakes back).
+    const stake = T.state?.result?.mine?.stake;
+    if (result.results.length || stake) {
       T.claimed = result.results.at(-1) ?? null;
-      // The life changed on the server (a win was paid, a mission moved): read it again.
+      // The life changed on the server (a win was paid, a mission moved, a stake was taken or came back): read it again.
       await panelApi().command('missions.refresh');
-      if (T.claimed?.code === 'paid') panelApi().toast(panelApi().state().message || 'You won.', 'earn');
+      // The server writes what happened to a stake (stake.line), so the startup never carries the stake rules.
+      if (stake) panelApi().toast(stake.line, stake.outcome === 'won' ? 'earn' : 'info');
+      else if (T.claimed?.code === 'paid') panelApi().toast(panelApi().state().message || 'You won.', 'earn');
     }
     refresh();
   } catch { /* the result stays owed on the server and is collected at the next visit */ }
@@ -92,7 +96,7 @@ function onMessage(message: ServerMessage): void {
   } else if (message.type === 'error') {
     T.pending = false;
     // Only refusals about tables are shown here; the socket also carries other modules' errors.
-    if (/table|seat|game|move|turn|here|host|players|rate/.test(message.code ?? '')) { T.error = message.reason || 'That could not be done.'; T.api?.toast(T.error, 'error'); }
+    if (/table|seat|game|move|turn|here|host|players|rate|stake|adults|work_first|funds|_cap/.test(message.code ?? '')) { T.error = message.reason || 'That could not be done.'; T.api?.toast(T.error, 'error'); }
   } else return;
   refresh();
 }
@@ -156,7 +160,12 @@ export function closeTable(): void {
   refresh();
 }
 const act = (type: string, body?: Record<string, unknown>): void => { if (send(type, body)) { T.pending = true; refresh(); } else { T.api?.toast('Not connected to the table. Reconnecting…', 'error'); reconnect(); } };
-export const sit = (): void => { act('table-sit'); track('table_sat', { game: T.state?.table.game ?? 'unknown' }); };
+/** Sitting accepts the table's stake, so the seat names the stake the player saw: a table whose stake has changed refuses it. */
+export const sit = (): void => { act('table-sit', { stake: T.state?.table.stake ?? 0 }); track('table_sat', { game: T.state?.table.game ?? 'unknown' }); };
+/** The first to sit, alone, sets what each player puts in (0: a free game). */
+export const setStake = (stake: number): void => act('table-stake', { stake });
+/** Ask for the table again: what this player may do about its stake is read from the store when it is watched. */
+export const refreshTable = (): void => { if (T.tableId) send('table-watch'); };
 export const leave = (): void => act('table-leave');
 export const begin = (bots = 0): void => act('table-start', { bots });
 export const again = (): void => act('table-again');

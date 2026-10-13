@@ -1,4 +1,4 @@
-import { GENERATED_CITY_FIGURES, GENERATED_CITY_INDEX, GENERATED_CITY_LOADERS } from '#city-loaders'
+import { GENERATED_CITY_FIGURES, GENERATED_CITY_INDEX, GENERATED_CITY_LOADERS, GENERATED_CITY_WORLD_INDEX } from '#city-loaders'
 import type { CityModule } from '../../types/content.ts'
 
 /** The city facts of the world network (src/game/cities/network.ts): every city's place, state and country. */
@@ -20,12 +20,17 @@ export interface CityCatalogueEntry {
 export type CityCatalogueRow = readonly [id: string, name: string, stateId: string, stateName: string, lon: number, lat: number, airport: 0 | 1, countryISO?: string, countryName?: string]
 
 /**
- * One open city in the startup index (loaders.generated.ts): its id and display name. Keep it this small: it is the only per-city
- * table the first download carries, so it is paid once for every city in the world.
+ * One open city in the city index (loaders.generated.ts): its id and display name. In the browser the first download carries only
+ * Nigeria's rows (a fixed set); every other row is the lazy `city-index` chunk (vite.config.ts lazyCityLoaders), fetched once.
  */
 export type CityIndexRow = readonly [id: string, name: string]
 
 export type CityModuleLoader = () => Promise<CityModule>
+
+/** The whole city index and one rules loader per row, in the same order. */
+export interface CityWorldIndex { readonly index: readonly CityIndexRow[]; readonly loaders: readonly CityModuleLoader[] }
+/** Fetches the whole city index; null where the startup index is already whole (Node, the Worker, the development server). */
+export type CityWorldIndexLoader = () => Promise<CityWorldIndex>
 
 export const RESERVED_CITIES: readonly CityCatalogueEntry[] = Object.freeze([
   Object.freeze({
@@ -36,14 +41,11 @@ export const RESERVED_CITIES: readonly CityCatalogueEntry[] = Object.freeze([
   }),
 ])
 
-/** The open cities of the startup index, in catalogue order. */
+/** The open cities of the startup index, in catalogue order: every open city in Node and the Worker, Nigeria's in a browser build. */
 export const CITY_INDEX: readonly { readonly id: string; readonly name: string }[] = Object.freeze(GENERATED_CITY_INDEX.map(([id, name]) => Object.freeze({ id, name })))
 
 /** How many cities are open, in how many countries (the landing's figures), without the world network. */
 export const CITY_WORLD_FIGURES: { readonly cities: number; readonly countries: number } = GENERATED_CITY_FIGURES
-
-/** The reserved (closed) cities that no open city has replaced. */
-export const CLOSED_RESERVED_CITIES: readonly CityCatalogueEntry[] = Object.freeze(RESERVED_CITIES.filter((city) => !CITY_INDEX.some((open) => open.id === city.id)))
 
 /** The full catalogue from the generated rows (read by network.ts): the generated open cities plus the small closed-city catalogue. */
 export function catalogueFromRows(rows: readonly CityCatalogueRow[]): readonly CityCatalogueEntry[] {
@@ -61,3 +63,6 @@ export function catalogueFromRows(rows: readonly CityCatalogueRow[]): readonly C
 export const CITY_LOADERS: Readonly<Record<string, CityModuleLoader | undefined>> = Object.freeze(Object.fromEntries(
   CITY_INDEX.map((city, index) => [city.id, GENERATED_CITY_LOADERS[index]]),
 ))
+
+/** The loader of the whole city index when the startup index is not whole (a browser build), else null: registry.ts loadCityIndex(). */
+export const CITY_WORLD_INDEX: CityWorldIndexLoader | null = GENERATED_CITY_WORLD_INDEX

@@ -5,18 +5,18 @@
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "SE",
     "datasetSha256": "f062b7c4cb20a3e62d964bfe60d02b0a173cd470906bf070311f120aac42b0de",
-    "receiptSha256": "33a8970036282448eb8341c783698adf2b764b70cd76d438667c9ba38bee7fb0",
-    "receiptBytes": 90895,
+    "receiptSha256": "68455a473d898f6a5b0e175675b351278ec946d7347ba57cd6c03e1ee442ee83",
+    "receiptBytes": 91329,
     "geometrySha256": "d4d6955e36d6326876dde89265faea54e1b03d7e676e4b02a9bf33c94cfea7da",
     "geometryBytes": 347241,
-    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "scriptSha256": "2845bd1b6a9ce2603ccf0dbe9b4aafc9ffb73891d00a42e06f3acafaa87dd4d1",
     "relationId": 52822,
     "boundaryKey": "se",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38307668383,
-      "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
-      "sourceArtifact": "city-bootstrap-se-28439a3230520b77094d69937eefd9c9b5857b46",
+      "sourceRunId": 38364332400,
+      "sourceSha": "99323bcd7cd3effcfe9106028a1189cb35434b04",
+      "sourceArtifact": "city-bootstrap-se-99323bcd7cd3effcfe9106028a1189cb35434b04",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -59,7 +59,12 @@
           59.6575340444967
         ]
       },
+      "sceneWaterExtent": "play",
+      "waterBudgetLadder": true,
       "selectionExclusions": [],
+      "geometry": {
+        "maxRoads": 400
+      },
       "metadataSources": {
         "centre": {
           "osmRef": "node/25929985",
@@ -25418,7 +25423,7 @@
           "way/1562322523",
           "way/1563211045"
         ],
-        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -25460,25 +25465,25 @@
       },
       "extractKey": "stockholm",
       "extractSha256": {
-        "places": "5d1446807818c372ccc053ff5037f773405894520a8d0174e8c1aeecd9fe7594",
-        "extras": "69f38395810d5095319f458d5704d30608cc546e3a2dc15c963970165ac9414c",
-        "water": "701c3d109b22e14ea9da57e243df06bf7df03e9abd12488501e8a15c8fce3eca",
-        "landuse": "22feeb7cb410bff2af874033dabdb67b745dc75615cd3224fcfca19fc0374b4f",
-        "roads": "e7d38a42816e22287efc51200e0185d4c07e6b57faf8262181f05d416702946d"
+        "places": "5426d1cb2b7b76f8a5434b406eabefc38206ccc2f75c2c84ea48659e168244e0",
+        "extras": "d3d4d18f4a725ccd67400e0261df1f65c2f61f118b16681222f47eb6e81326a3",
+        "water": "0961e53e5abf791ef1393167e0c786ac3c28d156341a4f762a2122142605e7a4",
+        "landuse": "cc19db21063e0657159c01c9ac4ba83ac757d231fb7e8c2445b1f509ec743dcf",
+        "roads": "e440c9196db8606fb4dc2d228399fa9e92d7f9de825e835c725843fb951be292"
       },
       "sourceJob": {
         "city": "stockholm",
-        "sourceRunId": 38307668383,
-        "sourceArtifact": "city-bootstrap-se-28439a3230520b77094d69937eefd9c9b5857b46",
-        "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
+        "sourceRunId": 38364332400,
+        "sourceArtifact": "city-bootstrap-se-99323bcd7cd3effcfe9106028a1189cb35434b04",
+        "sourceSha": "99323bcd7cd3effcfe9106028a1189cb35434b04",
         "datasetSha256": "f062b7c4cb20a3e62d964bfe60d02b0a173cd470906bf070311f120aac42b0de",
-        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {
-          "places": "5d1446807818c372ccc053ff5037f773405894520a8d0174e8c1aeecd9fe7594",
-          "extras": "69f38395810d5095319f458d5704d30608cc546e3a2dc15c963970165ac9414c",
-          "water": "701c3d109b22e14ea9da57e243df06bf7df03e9abd12488501e8a15c8fce3eca",
-          "landuse": "22feeb7cb410bff2af874033dabdb67b745dc75615cd3224fcfca19fc0374b4f",
-          "roads": "e7d38a42816e22287efc51200e0185d4c07e6b57faf8262181f05d416702946d"
+          "places": "5426d1cb2b7b76f8a5434b406eabefc38206ccc2f75c2c84ea48659e168244e0",
+          "extras": "d3d4d18f4a725ccd67400e0261df1f65c2f61f118b16681222f47eb6e81326a3",
+          "water": "0961e53e5abf791ef1393167e0c786ac3c28d156341a4f762a2122142605e7a4",
+          "landuse": "cc19db21063e0657159c01c9ac4ba83ac757d231fb7e8c2445b1f509ec743dcf",
+          "roads": "e440c9196db8606fb4dc2d228399fa9e92d7f9de825e835c725843fb951be292"
         }
       }
     }

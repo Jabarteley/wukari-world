@@ -1,22 +1,22 @@
 {
-  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "expectedSourceGitSHA": "d5b2bb59f7c9cb8c85169255d8bc27b49b1a3754",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "TV",
     "datasetSha256": "ecdc3668e7b0f0f3a96d8febfd2d8bd6fc56e51f56880cd96c9072000bf203a6",
-    "receiptSha256": "0f8e1b75cfead5508bd535a5a3b382e4d4bbadb4939f0875f884e242e41e9aff",
-    "receiptBytes": 18488,
+    "receiptSha256": "553f9d0423c4eb374da19e1c23aeae53048d63db2a46169604eed99b7b28a45f",
+    "receiptBytes": 18950,
     "geometrySha256": "5cb4ab407920875ab5e703f00470717663d7b4b232078ee25fada255a7d36779",
     "geometryBytes": 69048,
-    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "scriptSha256": "2845bd1b6a9ce2603ccf0dbe9b4aafc9ffb73891d00a42e06f3acafaa87dd4d1",
     "relationId": 2177266,
     "boundaryKey": "tv",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38248346879,
-      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-      "sourceArtifact": "city-bootstrap-tv-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceRunId": 38364332400,
+      "sourceSha": "99323bcd7cd3effcfe9106028a1189cb35434b04",
+      "sourceArtifact": "city-bootstrap-tv-99323bcd7cd3effcfe9106028a1189cb35434b04",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -59,6 +59,7 @@
           -8.339082410066021
         ]
       },
+      "profile": "microstate",
       "selectionExclusions": [],
       "metadataSources": {
         "centre": {
@@ -249,7 +250,7 @@
           "way/1391573916",
           "way/1391573917"
         ],
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -287,29 +288,55 @@
           "airportMarginMetres": 19566.37763100014,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "districtSquarePlaces": [
+              "square"
+            ]
+          },
+          "cityPlaceTag": "town"
         }
       },
       "extractKey": "funafuti",
       "extractSha256": {
-        "places": "f2a8126130f45388758082bb47715dfa2e734d58009a14941e35620fe6d4078b",
-        "extras": "f4802eb1ef90755be650a8536c279413a658d19f47716e5d1249225f9f613851",
-        "water": "b492b25490e902eb78b38909a510215b3ad30f691fabd623bfbe4e692d9450d0",
-        "landuse": "f25f5d61ae543a8da17c34156b78fc7df12e4e27faf8f1758c7b15e26be100d1",
-        "roads": "c01a02ad3755131e8c3d97f40179e6ee063d7379371e9a33469267fc533b0d55"
+        "places": "9f8222c2e05d6e851a3ce91cab4fc0cb843e0f7bc5560a282cc87e53a3d2a5c0",
+        "extras": "dee5a6b3effe4813d67e5a6c890da18d4f23aeefaf91931c81d00704e67acdce",
+        "water": "18cc0f8b00e74261a83fd0b2cf4fadd1032c51bd7c7d57390b028fc43f102a09",
+        "landuse": "73404255aa3f9c09f76c299a44cf19a48e7479e95226e190b797a55e552e06bf",
+        "roads": "3b3a13c85b2a1f3796f6fe77330cc0f1c9a6bc832e1b7216ce43679f190ff1ba"
       },
       "sourceJob": {
         "city": "funafuti",
-        "sourceRunId": 38248346879,
-        "sourceArtifact": "city-bootstrap-tv-06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceRunId": 38364332400,
+        "sourceArtifact": "city-bootstrap-tv-99323bcd7cd3effcfe9106028a1189cb35434b04",
+        "sourceSha": "99323bcd7cd3effcfe9106028a1189cb35434b04",
         "datasetSha256": "ecdc3668e7b0f0f3a96d8febfd2d8bd6fc56e51f56880cd96c9072000bf203a6",
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {
-          "places": "f2a8126130f45388758082bb47715dfa2e734d58009a14941e35620fe6d4078b",
-          "extras": "f4802eb1ef90755be650a8536c279413a658d19f47716e5d1249225f9f613851",
-          "water": "b492b25490e902eb78b38909a510215b3ad30f691fabd623bfbe4e692d9450d0",
-          "landuse": "f25f5d61ae543a8da17c34156b78fc7df12e4e27faf8f1758c7b15e26be100d1",
-          "roads": "c01a02ad3755131e8c3d97f40179e6ee063d7379371e9a33469267fc533b0d55"
+          "places": "9f8222c2e05d6e851a3ce91cab4fc0cb843e0f7bc5560a282cc87e53a3d2a5c0",
+          "extras": "dee5a6b3effe4813d67e5a6c890da18d4f23aeefaf91931c81d00704e67acdce",
+          "water": "18cc0f8b00e74261a83fd0b2cf4fadd1032c51bd7c7d57390b028fc43f102a09",
+          "landuse": "73404255aa3f9c09f76c299a44cf19a48e7479e95226e190b797a55e552e06bf",
+          "roads": "3b3a13c85b2a1f3796f6fe77330cc0f1c9a6bc832e1b7216ce43679f190ff1ba"
         }
       }
     }

@@ -2,24 +2,8 @@
  "schemaVersion": 1,
  "queue": [
   {
-   "id": "va",
-   "table": "scripts/geo/factory/country-factory/va-factory-targets.json"
-  },
-  {
-   "id": "mc",
-   "table": "scripts/geo/factory/country-factory/mc-factory-targets.json"
-  },
-  {
    "id": "fr",
    "table": "scripts/geo/factory/country-factory/fr-factory-targets.json"
-  },
-  {
-   "id": "fi",
-   "table": "scripts/geo/factory/country-factory/fi-factory-targets.json"
-  },
-  {
-   "id": "se",
-   "table": "scripts/geo/factory/country-factory/se-factory-targets.json"
   }
  ]
 }

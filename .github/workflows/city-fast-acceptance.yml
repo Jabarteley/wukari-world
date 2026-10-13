@@ -21,6 +21,7 @@ jobs:
       batch: ${{ steps.plan.outputs.batch }}
       cities: ${{ steps.plan.outputs.cities }}
       roundtrip: ${{ steps.plan.outputs.roundtrip }}
+      browserOnly: ${{ steps.plan.outputs.browserOnly }}
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -100,7 +101,7 @@ jobs:
           if-no-files-found: error
   node:
     needs: [plan, build]
-    if: ${{ needs.plan.outputs.active == 'true' }}
+    if: ${{ needs.plan.outputs.active == 'true' && needs.plan.outputs.browserOnly != 'true' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     strategy:
@@ -155,7 +156,7 @@ jobs:
           if-no-files-found: error
   edge:
     needs: [plan, build]
-    if: ${{ needs.plan.outputs.active == 'true' }}
+    if: ${{ needs.plan.outputs.active == 'true' && needs.plan.outputs.browserOnly != 'true' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -290,6 +291,7 @@ jobs:
         env:
           PLAN: ${{ needs.plan.result }}
           ACTIVE: ${{ needs.plan.outputs.active }}
+          BROWSER_ONLY: ${{ needs.plan.outputs.browserOnly }}
           BUILD: ${{ needs.build.result }}
           NODE: ${{ needs.node.result }}
           EDGE: ${{ needs.edge.result }}
@@ -299,6 +301,14 @@ jobs:
           test "$PLAN" = success
           if [ "$ACTIVE" != true ]; then
             echo 'No acceptance queued; no cities accepted.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if [ "$BROWSER_ONLY" = true ]; then
+            # Browser-only batch: node and edge must have been skipped on purpose (never failed or cancelled); everything else must pass.
+            test "$NODE" = skipped
+            test "$EDGE" = skipped
+            for result in "$BUILD" "$BROWSER"; do test "$result" = success; done
+            echo 'Browser-only batch: shared build, typecheck, size budget and every city journey passed; node shards and Worker suite intentionally skipped (main CI runs the full suite).' >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
           for result in "$BUILD" "$NODE" "$EDGE" "$BROWSER"; do test "$result" = success; done

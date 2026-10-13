@@ -4,7 +4,7 @@
 // The frames and the table types are the protocol's own (src/types/growth.ts).
 import {
   T as T_JS, again as againJs, begin as beginJs, closeTable as closeTableJs, leave as leaveJs, openTable as openTableJs, play as playJs,
-  refreshList as refreshListJs, reconnect as reconnectJs, setOption as setOptionJs, sit as sitJs, start as startJs,
+  refreshList as refreshListJs, refreshTable as refreshTableJs, reconnect as reconnectJs, setOption as setOptionJs, setStake as setStakeJs, sit as sitJs, start as startJs,
 } from '../../../tables/client.ts'
 import { penaltyRules as penaltyRulesJs } from '../../../tables/penalty-board.ts'
 import { ZONES as ZONES_JS } from '../../../tables/penalty.ts'
@@ -18,7 +18,7 @@ import type { AyoMove, AyoView } from '../../../tables/ayo.ts'
 import type { FetchJson } from '../../types/client.ts'
 import type { ToastKind } from '../../types/panel.ts'
 
-export type { TableGameId, TableOptionValue, TableRating, TableResultMine, TableSeat, TableStateFrame, TableSummary } from '../../../types/growth.ts'
+export type { TableGameId, TableOptionValue, TableRating, TableResultMine, TableSeat, TableStakes, TableStateFrame, TableSummary } from '../../../types/growth.ts'
 export { GAME_LABELS, tableById, tablesAt, tablesFor } from './tablesPlaces.ts'
 export type { TablePlace } from './tablesPlaces.ts'
 
@@ -68,6 +68,8 @@ export const leave = leaveJs as unknown as () => void
 export const begin = beginJs as unknown as (bots?: number) => void
 export const again = againJs as unknown as () => void
 export const setOption = setOptionJs as unknown as (name: string, value: TableOptionValue) => void
+export const setStake = setStakeJs as unknown as (stake: number) => void
+export const refreshTable = refreshTableJs as unknown as () => void
 export const play = playJs as unknown as (move: WhotMove | PenaltyMove | ChessMove | WeaveMove | AyoMove) => void
 
 // ---- game views and moves -----------------------------------------------------------------------

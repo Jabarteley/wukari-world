@@ -402,7 +402,7 @@ function checkState(state: LifeState, what: string): void {
   assert.deepEqual(keys(state.missions.stamps), ['days', 'paid', 'week'], `${what}: missions.stamps`)
   assert.deepEqual(keys(state.missions.visited), ['list', 'week'], `${what}: missions.visited`)
   assert.deepEqual(keys(state.events.spray), ['day', 'spent'], `${what}: events.spray`)
-  assert.deepEqual(keys(state.growth.tables), ['bots', 'day', 'paid', 'played', 'won'], `${what}: growth.tables`)
+  assert.deepEqual(keys(state.growth.tables), ['bots', 'day', 'paid', 'played', 'staked', 'won'], `${what}: growth.tables`)
   assert.deepEqual(keys(state.growth.referrals), ['paid', 'total', 'week'], `${what}: growth.referrals`)
   const student = state.unilagStudent
   assert.deepEqual(keys(student.hostel), ['allocations', 'storage'], `${what}: unilagStudent.hostel`)

@@ -826,7 +826,7 @@ export const WORKER_HOST_ROUTE_KEYS = ['GET /api/voice-config'] as const satisfi
 export const CLIENT_FRAME_TYPES = [
   'join', 'move', 'voice-state', 'signal', 'chat', 'groups', 'group-join',
   'dm-send', 'dm-read', 'people-list', 'friend-request', 'friend-answer', 'invite-knock', 'invite-answer',
-  'table-list', 'table-watch', 'table-unwatch', 'table-sit', 'table-options', 'table-start', 'table-move', 'table-leave', 'table-again',
+  'table-list', 'table-watch', 'table-unwatch', 'table-sit', 'table-stake', 'table-options', 'table-start', 'table-move', 'table-leave', 'table-again',
   'arena-create', 'arena-join', 'arena-watch', 'arena-start', 'arena-options', 'arena-input', 'arena-again', 'arena-leave',
   'call-invite', 'call-accept', 'call-decline', 'call-cancel', 'call-hangup', 'call-signal', 'call-settings', 'call-ice', 'call-report',
   'live-watch', 'live-unwatch', 'pulse-watch',

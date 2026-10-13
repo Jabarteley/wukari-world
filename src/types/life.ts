@@ -997,8 +997,8 @@ export interface EventsSlice {
 // ---- growth -------------------------------------------------------------------------------
 
 export interface GrowthState {
-  /** Today's paid wins and bot credits (reset when `day` turns); lifetime games played and won. */
-  tables: { day: LagosDay; paid: number; bots: number; played: number; won: number }
+  /** Today's paid wins and bot credits (reset when `day` turns); lifetime games played and won; `staked` is the naira of own stakes held on a table or lost (it counts against the gift allowance, systems/growth.ts passedOn). */
+  tables: { day: LagosDay; paid: number; bots: number; played: number; won: number; staked: number }
   /** This life has received its one referral welcome gift. */
   welcomed: boolean
   /** Referral rewards paid in Lagos week `week` and for life. */

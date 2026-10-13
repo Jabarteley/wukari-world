@@ -10,7 +10,7 @@ import { fitCatalogueBudget } from './catalogue-budget.mjs';
 //   id-scene-over-budget.json   Jakarta scene-source.json with the table key removed (90,971 of 90,000 triangles)
 //   ca-proof-ground-wet.json    Toronto proofGround (wetPlaces 1: the shipwreck way/1304570821 in Lake Ontario), trimmed to the keys the check reads
 //   ca-places-sample.json       two rows of the generated Toronto places.ts (the Bay hub, and the shipwreck as the proof names it)
-//   sg-exact-coast-wet.log      Singapore exact-coast log with Pasir Ris Park left in (the final error line)
+//   sg-exact-coast-wet.txt      Singapore exact-coast log with Pasir Ris Park left in (the final error line)
 const here = dirname(fileURLToPath(import.meta.url)), fixture = name => join(here, 'fixtures', 'auto-retry', name);
 const json = name => JSON.parse(readFileSync(fixture(name), 'utf8')), text = name => readFileSync(fixture(name), 'utf8');
 const toronto = { id: 'toronto', selectionExclusions: [] };
@@ -60,7 +60,7 @@ test('wet-places (proofs): a proof that failed for any other reason too is not a
 });
 
 test('wet-places (exact coast): the final error line names every wet anchor; any other error or a malformed line names none', () => {
-  const log = text('sg-exact-coast-wet.log'), wet = wetAnchorsFromExactCoastLog(log);
+  const log = text('sg-exact-coast-wet.txt'), wet = wetAnchorsFromExactCoastLog(log);
   assert.ok(wet.length >= 1 && wet.length <= MAXIMUM_AUTO_EXCLUSIONS, JSON.stringify(wet));
   assert.ok(wet.some(place => place.ref === 'relation/8752029' && place.name === 'Pasir Ris Park'));
   assert.equal(wetAnchorsFromExactCoastLog(log + '\nValueError: Unclosed coastline topology (cuts/dangles/invalid rings): {}'), null);

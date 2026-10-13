@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "scripts/geo/factory/exact-coastwater.py", line 938, in <module>
+    drive()
+    ~~~~~^^
+  File "scripts/geo/factory/exact-coastwater.py", line 925, in drive
+    return main_with_clip_fallback()
+  File "scripts/geo/factory/exact-coastwater.py", line 893, in main_with_clip_fallback
+    return main()
+  File "scripts/geo/factory/exact-coastwater.py", line 546, in main
+    raise ValueError('Source anchors are not dry land: ' + json.dumps(wet_anchors))
+ValueError: Source anchors are not dry land: [{"ref": "relation/8752029", "name": "Pasir Ris Park", "sourceLonLat": [103.95040355, 1.38405355], "vectorClass": "land", "directedClass": "water", "coastDistanceM": 128.18161538710606}]

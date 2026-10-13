@@ -1,3 +1,4 @@
+import { tripPace } from './trip-pace.ts';
 import './host.css';
 import type { Group, WebGLRenderer } from 'three';
 import { createKit } from '../../scene/kit.ts';
@@ -167,7 +168,7 @@ export function createCampusHost(container: HTMLElement, {
   function finishTask(result: WalkResult, expected: WalkTask | null = walkTask): void {
     const task = walkTask;
     if (!task || task !== expected) return;
-    walkTask = null;
+    walkTask = null; restorePace();
     task.resolve(result);
   }
   function cancelTask(code = 'cancelled'): void {
@@ -445,6 +446,13 @@ export function createCampusHost(container: HTMLElement, {
     draw(); return true;
   }
 
+  const basePace = { speed: walker.speed, jog: walker.jogSpeed };
+  function restorePace(): void { walker.speed = basePace.speed; walker.jogSpeed = basePace.jog; }
+  /** A tapped trip across the campus is sped up so it takes at most ~40 s (see trip-pace.ts); manual walking is untouched. */
+  function speedUpTrip(anchor: { x: number; z: number }): void {
+    const pace = tripPace(Math.hypot(walker.x - anchor.x, walker.z - anchor.z) * 1.4, basePace.speed);
+    walker.speed = pace; walker.jogSpeed = Math.max(basePace.jog, pace);
+  }
   function walkTo(id: string): Promise<WalkResult> {
     const anchor = ANCHORS[id];
     if (!anchor) return Promise.resolve({ ok: false, code: 'invalid_spot', reason: 'That campus destination is unavailable.' });
@@ -455,6 +463,7 @@ export function createCampusHost(container: HTMLElement, {
       const arrive = () => void arrived(id, task);
       const alreadyThere = Math.hypot(walker.x - anchor.x, walker.z - anchor.z) <= 0.1;
       const started = walker.goTo(anchor.x, anchor.z, { exact: true, face: anchor.ry, arrive });
+      if (started) speedUpTrip(anchor);
       campus.walk.goal(anchor.x, anchor.z);
       if (!started && alreadyThere) { walker.place(anchor.x, anchor.z, anchor.ry); campus.walk.move(anchor.x, 0, anchor.z, anchor.ry); draw(); arrive(); return; }
       if (!started) {

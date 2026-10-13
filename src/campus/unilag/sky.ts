@@ -11,9 +11,9 @@ export interface SkyLook { horizon: string; mid: string; zenith: string; glow: s
 
 /** Low evening sun sits towards the lagoon side the preview light comes from; by day it is high and the glow is faint. */
 export const SKY: Readonly<Record<SkyTime, SkyLook>> = {
-  day: { horizon: '#bfd1d3', mid: '#8fb8d2', zenith: '#4f86bf', glow: '#fff4d6', glowStrength: .35, sun: [-.5, .8, .42], fogNear: 260, fogFar: 1750 },
-  dusk: { horizon: '#dc9f82', mid: '#a688a0', zenith: '#34497f', glow: '#ffb067', glowStrength: 1.15, sun: [-.78, .09, .62], fogNear: 220, fogFar: 1600 },
-  night: { horizon: '#0d1f3a', mid: '#0b1a33', zenith: '#040a18', glow: '#6f8fd0', glowStrength: .18, sun: [-.5, .7, .5], fogNear: 120, fogFar: 1400 },
+  day: { horizon: '#bfd1d3', mid: '#8fb8d2', zenith: '#4f86bf', glow: '#fff4d6', glowStrength: .35, sun: [-.5, .8, .42], fogNear: 220, fogFar: 1300 },
+  dusk: { horizon: '#dc9f82', mid: '#a688a0', zenith: '#34497f', glow: '#ffb067', glowStrength: 1.15, sun: [-.78, .09, .62], fogNear: 200, fogFar: 1300 },
+  night: { horizon: '#1a2f55', mid: '#10224a', zenith: '#050c22', glow: '#9db8f0', glowStrength: .3, sun: [-.5, .7, .5], fogNear: 140, fogFar: 1250 },
 };
 export const skyLook = (time: string): SkyLook => SKY[(time in SKY ? time : 'day') as SkyTime];
 
@@ -29,8 +29,9 @@ void main(){
   float s = max(dot(d, normalize(sunDir)), 0.0);
   float haze = pow(1.0 - h, 6.0);
   col += glow * glowStrength * (0.55 * pow(s, 5.0) + 0.5 * pow(s, 48.0)) * mix(0.35, 1.0, haze);
-  col += glow * glowStrength * 4.0 * pow(s, 1800.0);
-  col = mix(col, horizon, step(d.y, 0.0));
+  col += glow * (0.9 + glowStrength) * 3.0 * smoothstep(0.9988, 0.9997, s);
+  // below the horizon and just above it the sky is the fog colour, so far land and water melt into it without a band
+  col = mix(horizon, col, smoothstep(-0.02, 0.06, d.y));
   gl_FragColor = vec4(col, 1.0);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>

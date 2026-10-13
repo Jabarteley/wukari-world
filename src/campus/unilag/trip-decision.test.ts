@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { tripKind, walkTime, shuttlePlan, tripOptions, JOG_FROM, CHOOSE_FROM } from './trip-decision.ts';
+import { tripKind, walkTime, shuttlePlan, tripOptions, describeTrip, JOG_FROM, CHOOSE_FROM } from './trip-decision.ts';
 import { ANCHORS, ENTRANCE } from './layout.ts';
 
 const PACE = 1.82 * .6;
@@ -28,6 +28,15 @@ test('from the Main Gate the shuttle is offered for Senate and Lagoon Front, wit
     assert.ok(plan.alightDistance < Math.hypot(ANCHORS[id]!.x - ENTRANCE.x, ANCHORS[id]!.z - ENTRANCE.z) * .5);
   }
   assert.equal(shuttlePlan(ENTRANCE, ANCHORS['main-gate']!), null);
+});
+
+test('the sheet orients first-timers with a distance and a compass direction', () => {
+  const line = describeTrip(ENTRANCE, 'senate');
+  assert.match(line, /^Senate House · \d\.\d km (north|south|east|west)(-(north|south|east|west))?$/);
+  assert.equal(describeTrip({ x: 0, z: 0 }, 'nowhere'), '');
+  const a = ANCHORS['library']!;
+  assert.match(describeTrip({ x: a.x, z: a.z + 300 }, 'library'), /300 m north$/);
+  assert.match(describeTrip({ x: a.x - 300, z: a.z }, 'library'), /300 m east$/);
 });
 
 test('every choice sheet has a walk and a go-there option; the shuttle only when it helps', () => {

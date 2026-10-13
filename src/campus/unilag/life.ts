@@ -6,7 +6,7 @@
  * (not a surveyed inventory). Only props near the player are baked, in one batch (solid + glow), so the
  * resident cost is small and fixed: ~2 draw calls plus one static water mesh.
  */
-import type { BufferGeometry, Group, Mesh } from 'three';
+import type { BufferGeometry, Group, InstancedMesh, Mesh } from 'three';
 import type { Kit } from '../../scene/kit.ts';
 import { createBatch, sceneMaterials } from '../../scene/build.ts';
 import type { Batch } from '../../scene/types.ts';
@@ -23,12 +23,19 @@ const CAR_COLOURS = ['#e8e8e4', '#2f3338', '#9aa3a8', '#a33a35', '#2f5f8a', '#d9
 const SHIRTS = ['#f4f1e8', '#3f72c4', '#d6a83a', '#3f9a5a', '#c9423a', '#243a66', '#dd6fa0', '#ece2c6', '#8055c2', '#2f9d98'];
 const SKINS = ['#8a5a3c', '#6e422c', '#573323', '#9a6341', '#40261b', '#b0764d'];
 const UMBRELLAS = ['#f5c400', '#e3262f', '#2c9f3e', '#1c6fb8'];
-const COST: Record<PropKind, number> = { palm: 200, flame: 110, almond: 90, lamp: 62, bench: 50, sign: 60, kiosk: 120, car: 90, keke: 110, bus: 150, goal: 70, hoop: 50, net: 60, student: 90, gen: 80, hedge: 40, bump: 30, zebra: 60, guard: 100, pier: 400, canoe: 40, board: 60, bin: 30,
-  mango: 150, coconut: 190, frangi: 110, shrub: 26, bed: 55, paving: 4, fountain: 170, terrace: 36, wall: 36, booth: 50, stall: 130 };
+const COST: Record<PropKind, number> = { palm: 200, flame: 150, almond: 150, lamp: 62, bench: 50, sign: 60, kiosk: 120, car: 90, keke: 110, bus: 150, goal: 70, hoop: 50, net: 60, student: 90, gen: 80, hedge: 40, bump: 30, zebra: 60, guard: 100, pier: 400, canoe: 40, board: 60, bin: 30,
+  mango: 190, coconut: 190, frangi: 110, shuttle: 140, boat: 90, mast: 40, roadsign: 40, mapboard: 70, guardman: 70, shrub: 26, bed: 55, paving: 4, fountain: 170, terrace: 36, wall: 36, booth: 50, stall: 130 };
 /** How far each kind is drawn: low understorey and flat decals vanish sooner than trees and landmarks. */
-const REACH: Partial<Record<PropKind, number>> = { shrub: 85, bed: 95, frangi: 90, student: 70, bin: 50, board: 70, hedge: 80, bump: 70, canoe: 90 };
+const REACH: Partial<Record<PropKind, number>> = { roadsign: 60, mast: 110, sign: 70, shrub: 85, bed: 95, frangi: 90, student: 70, bin: 50, board: 70, hedge: 80, bump: 70, canoe: 90 };
 
+/** Foliage as clustered sub-blobs, two-tone: the lower blobs take the dark colour, the upper ones the light. */
+function blobs(b: Batch, list: number[][], dark: string, light: string, far: boolean): void {
+  const n = far ? Math.min(3, list.length) : list.length;
+  for (let i = 0; i < n; i++) { const [x, y, z, r] = list[i]!; b.ico(x!, y!, z!, r!, r! * .72, r! * .95, y! > 5 ? light : dark); }
+}
+const TREES = new Set<PropKind>(['palm', 'coconut', 'mango', 'frangi', 'almond', 'flame']);
 function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void {
+  const scale = TREES.has(p.t) ? .78 + hash(p.x * .37 + p.z * .91) * .52 : 1;
   b.at(p.x, 0, p.z, p.ry, () => {
     switch (p.t) {
       case 'palm': { // royal palm: tall pale ringed trunk, crownshaft, irregular drooping fronds (not a star)
@@ -52,10 +59,9 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
         if (!far) b.ico(cx, 5.5, 0, .3, .22, .3, '#7a8f3a');
         break;
       }
-      case 'mango': { // broad spreading mango: dense dark dome on a short fork
-        b.cyl(0, 1.4, 0, .42, 2.8, '#5e4a38', { seg: 5, top: .7 });
-        b.ico(0, 4.8, 0, 3.7, 2.6, 3.5, '#3b6638'); b.ico(-2.3, 4.2, 1, 2.5, 2.0, 2.4, '#4e7c44');
-        if (!far) { b.ico(2.3, 4.4, -.8, 2.4, 2.1, 2.5, '#355f35'); b.ico(0, 6.5, 0, 2.2, 1.6, 2.0, '#5a8749'); }
+      case 'mango': { // broad spreading mango: dome of clustered sub-blobs, dark below and lighter above
+        b.cyl(0, 1.5, 0, .38, 3, '#5e4a38', { seg: 6, top: .65 }); b.cone(0, .35, 0, .75, .7, '#5e4a38', { seg: 6, top: .5 });
+        blobs(b, [[0, 4.5, 0, 2.0], [-2.1, 4.0, .9, 1.6], [2.0, 4.1, -.8, 1.7], [-.5, 5.8, .4, 1.5], [1.2, 5.3, 1.7, 1.3], [-1.7, 4.7, -1.5, 1.4]], '#2f5a30', '#5f9150', far);
         break;
       }
       case 'frangi': { // frangipani: gnarled grey branches, sparse leaves, white and pink flowers
@@ -108,21 +114,21 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
         b.cyl(0, 1.2, -.5, .04, 2.4, '#3a4042', { seg: 4 }); b.cone(0, 2.55, -.5, 1.9, .6, um, { seg: 8 });
         break;
       }
-      case 'flame': { // flame-of-the-forest: spreading red-orange canopy
-        b.cyl(0, 2, 0, .3, 4, '#6f5c46', { seg: 5, top: .7 });
-        b.ico(0, 5.4, 0, 4.4, 2.1, 4.2, '#d8442b'); b.ico(-2.4, 4.8, 1, 2.8, 1.7, 2.8, '#e65a2e'); b.ico(2.5, 5, -1, 2.6, 1.6, 2.7, '#c93a2c');
+      case 'flame': { // flame-of-the-forest: wide flat crown of red-orange sub-blobs on a flared trunk
+        b.cyl(0, 2, 0, .3, 4, '#6f5c46', { seg: 6, top: .65 }); b.cone(0, .35, 0, .62, .7, '#6f5c46', { seg: 6, top: .5 });
+        blobs(b, [[0, 5.2, 0, 2.1], [-2.3, 4.7, .8, 1.6], [2.3, 4.9, -.7, 1.7], [.6, 5.8, 1.6, 1.4], [-.9, 5.5, -1.8, 1.5]], '#c9362a', '#ef6a30', far);
         break;
       }
-      case 'almond': { // umbrella tiers of the tropical almond
-        b.cyl(0, 2.3, 0, .3, 4.6, '#6a5a45', { seg: 5, top: .7 });
-        b.ico(0, 4.9, 0, 3.8, 1.0, 3.8, '#5a8442'); b.ico(.4, 6.1, -.2, 2.6, .8, 2.6, '#6a9650');
+      case 'almond': { // tropical almond: layered flat tiers of sub-blobs
+        b.cyl(0, 2.3, 0, .3, 4.6, '#6a5a45', { seg: 6, top: .65 }); b.cone(0, .35, 0, .6, .7, '#6a5a45', { seg: 6, top: .5 });
+        blobs(b, [[0, 4.6, 0, 1.9], [-2.1, 4.4, .6, 1.5], [2.0, 4.5, -.4, 1.5], [.4, 5.9, -.2, 1.5], [-.3, 5.3, 1.7, 1.3]], '#4a7a3a', '#74a14e', far);
         break;
       }
       case 'lamp': {
         b.cyl(0, 3.2, 0, .1, 6.4, '#4a5254', { seg: 4 });
         b.box(0, 6.35, .7, .14, .14, 1.5, '#4a5254');
         b.box(0, 6.22, 1.4, lit ? .5 : .32, .12, lit ? .7 : .5, lit ? '#fff0b0' : '#9a9a90', lit ? { layer: 'glow' } : undefined);
-        if (lit) { b.quad(0, .13, 1.4, 7, 7, '#6e5528', { layer: 'glow', rx: -Math.PI / 2 }); b.quad(0, .14, 1.4, 3.4, 3.4, '#a07c38', { layer: 'glow', rx: -Math.PI / 2 }); }
+        if (lit) { b.quad(0, .13, 1.4, 9, 9, '#8f7436', { layer: 'glow', rx: -Math.PI / 2 }); b.quad(0, .14, 1.4, 5, 5, '#c9a24c', { layer: 'glow', rx: -Math.PI / 2 }); b.quad(0, .15, 1.4, 2.2, 2.2, '#f0cf7a', { layer: 'glow', rx: -Math.PI / 2 }); }
         break;
       }
       case 'bench': {
@@ -130,20 +136,52 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
         b.box(-.8, .25, 0, .1, .5, .45, '#3a4042'); b.box(.8, .25, 0, .1, .5, .45, '#3a4042');
         break;
       }
-      case 'sign': { // white board, blue header band, green foot band, two posts
-        b.box(-1.9, 1.3, 0, .12, 2.6, .12, '#3a4042'); b.box(1.9, 1.3, 0, .12, 2.6, .12, '#3a4042');
-        { const hd = ['#1c5fa8', '#7a2430', '#1f3f6e'][p.v % 3]!, ft = ['#2d8a4a', '#d6a83a', '#2d8a4a'][p.v % 3]!; b.box(0, 2.1, 0, 4.1, 1.5, .1, p.v % 3 === 2 ? '#e8ecef' : '#f4f4ee'); b.box(0, 2.72, .06, 4.1, .26, .05, hd); b.box(0, 1.5, .06, 4.1, .2, .05, ft); }
+      case 'sign': { // ground sign board: bold two-line lettering on the nearest boards, a plain painted board otherwise
+        const hd = ['#1c5fa8', '#7a2430', '#1f3f6e'][p.v % 3]!, ft = ['#2d8a4a', '#d6a83a', '#2d8a4a'][p.v % 3]!;
+        b.box(-2.4, 1.3, 0, .14, 2.6, .14, '#3a4042'); b.box(2.4, 1.3, 0, .14, 2.6, .14, '#3a4042');
+        b.box(0, 2.0, 0, 5.2, 1.9, .1, p.v % 3 === 2 ? '#e8ecef' : '#f4f4ee'); b.box(0, 2.9, .06, 5.2, .22, .05, hd); b.box(0, 1.15, .06, 5.2, .18, .05, ft);
         if (text && p.label) {
           const words = p.label.toUpperCase().replace(/[^A-Z0-3 ]/g, '').split(' '), lines: string[] = [''];
-          for (const w of words) { const last = lines.length - 1; if ((lines[last] + ' ' + w).trim().length <= 16) lines[last] = (lines[last] + ' ' + w).trim(); else lines.push(w); }
-          lines.slice(0, 2).forEach((l, i) => signLetters(b, l, 0, 2.28 - i * .34, .08, 3.8, '#1c3f78'));
-        } else { b.box(0, 2.22, .06, 3.2, .16, .04, '#1c3f78'); b.box(0, 1.92, .06, 2.2, .14, .04, '#1c3f78'); }
+          for (const w of words) { const last = lines.length - 1; if ((lines[last] + ' ' + w).trim().length <= 12) lines[last] = (lines[last] + ' ' + w).trim(); else lines.push(w); }
+          lines.slice(0, 2).forEach((l, i) => signLetters(b, l, 0, 2.38 - i * .5, .08, 4.8, '#10294f'));
+        }
         break;
       }
       case 'board': { // notice board with pinned papers
         b.box(-.8, .9, 0, .08, 1.8, .08, '#4a3d2e'); b.box(.8, .9, 0, .08, 1.8, .08, '#4a3d2e');
         b.box(0, 1.5, 0, 1.9, 1.1, .08, '#8a6a45'); b.box(0, 1.5, .05, 1.7, .9, .03, '#c9b48a');
         for (let i = 0; i < 5; i++) b.box(-.6 + i * .3, 1.55 + (i % 2) * .15 - .1, .08, .22, .3, .01, i % 2 ? '#f4f1e8' : '#7db6c5');
+        break;
+      }
+      case 'shuttle': { // campus shuttle: white body, green livery (livery unsourced)
+        b.box(0, 1.5, 0, 2.3, 2.2, 7, '#f1f4ef'); b.box(0, .95, 0, 2.32, .5, 7.02, '#1f7a46'); b.box(0, 1.95, 0, 2.32, .75, 6.2, '#27343b'); b.box(0, 2.65, 0, 2.0, .12, 6, '#d5dad4');
+        for (const sx of [-1.05, 1.05]) for (const z of [-2.3, 2.3]) b.cyl(sx, .45, z, .45, .26, '#1c1f21', { seg: 7, rz: Math.PI / 2 });
+        break;
+      }
+      case 'boat': { // moored lagoon boat: painted hull, cabin and a mooring post
+        const hull = ['#2f5f8a', '#d8d4c4', '#a33a35'][p.v % 3]!;
+        b.box(0, .35, 0, 1.9, .7, 7, hull); b.box(0, .5, 3.7, .9, .55, 1.2, hull, { rx: -.5 }); b.box(0, 1.2, -.8, 1.5, .9, 2.4, '#e8e8e2'); b.box(0, 1.7, -.8, 1.7, .12, 2.6, '#7a7f80');
+        b.cyl(1.4, .6, 3.2, .06, 1.2, '#4a3d2e', { seg: 4 });
+        break;
+      }
+      case 'mast': { // floodlight mast
+        b.cyl(0, 6, 0, .14, 12, '#4a5254', { seg: 4 }); b.box(0, 12.1, .3, 1.8, .7, .3, lit ? '#fff4c8' : '#9a9a90', lit ? { layer: 'glow' } : undefined);
+        break;
+      }
+      case 'roadsign': { // street-name blade (lettering only on the nearest)
+        b.cyl(0, 1.5, 0, .05, 3, '#4a5254', { seg: 4 }); b.box(0, 3.0, 0, 2.6, .5, .06, '#1f6a4a');
+        if (text && p.label) signLetters(b, p.label.toUpperCase().replace(/[^A-Z0-3 ]/g, '').slice(0, 14), 0, 3.12, .05, 2.5, '#f4f4ee');
+        break;
+      }
+      case 'mapboard': { // campus map board at the gate
+        b.box(-1.7, 1.2, 0, .1, 2.4, .1, '#3a4042'); b.box(1.7, 1.2, 0, .1, 2.4, .1, '#3a4042');
+        b.box(0, 1.7, 0, 3.8, 2.2, .1, '#1f3f6e'); b.box(0, 1.5, .06, 3.4, 1.5, .03, '#e6e1cd');
+        b.box(-.8, 1.4, .09, 1.2, .5, .02, '#9fb7a0'); b.box(.7, 1.7, .09, .9, .6, .02, '#c9a97a'); b.box(0, 1.1, .09, 3, .1, .02, '#f4f4ee'); b.box(1.0, 1.1, .1, .16, .16, .02, '#c9423a');
+        if (text) signLetters(b, 'CAMPUS MAP', 0, 2.5, .07, 3.2, '#f4f4ee');
+        break;
+      }
+      case 'guardman': { // gate guard: dark uniform and cap
+        b.box(-.1, .4, 0, .15, .8, .18, '#1f2a24'); b.box(.1, .4, 0, .15, .8, .18, '#1f2a24'); b.box(0, 1.2, 0, .42, .55, .26, '#2d4a3a'); b.ball(0, 1.62, 0, .13, .14, .13, SKINS[p.v % 6]!); b.box(0, 1.76, .02, .3, .08, .3, '#1f2a24');
         break;
       }
       case 'bin': b.cyl(0, .45, 0, .3, .9, ['#2d8a4a', '#1c5fa8'][p.v % 2]!, { seg: 7 }); break;
@@ -216,7 +254,7 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
         break;
       }
     }
-  });
+  }, 0, 0, scale);
 }
 
 /* ---------- builder ---------- */
@@ -238,19 +276,58 @@ export function createCampusLife(kit: Kit) {
   const addWater = () => { waterTimer = undefined; if (!disposed) group.add(buildWater()); };
   waterTimer = idle ? idle(addWater, { timeout: 1500 }) : setTimeout(addWater, 0);
 
+
+  // Lagoon sparkle: instanced glints that drift and twinkle by the wall clock. They are positioned when the scene updates its
+  // matrices (during a draw), so nothing runs while the scene is idle (src/scene/motion-loop.ts battery rule).
+  // Third Mainland Bridge: a hazy stylised silhouette far across the lagoon (bearing north-east/east of the Lagoon Front per the
+  // reference notes; length, height and exact distance are estimates), shown only near the waterfront.
+  const pier = plan.find(q => q.t === 'pier');
+  const SPARKLES = 64;
+  let sparkles: InstancedMesh | null = null, bridge: Group | null = null;
+  const sparkleSeed = Array.from({ length: SPARKLES }, (_, i) => ({ f: 10 + hash(i * 1.7) * 190, u: (hash(i * 2.9) - .5) * 320, sz: .5 + hash(i * 4.3) * .9, a: .6 + hash(i * 5.1) * 1.4, ph: hash(i * 6.3) * 6.28, dr: hash(i * 7.7) * 6.28 }));
+  if (pier) {
+    const g = new THREE.PlaneGeometry(1, 1); g.rotateX(-Math.PI / 2);
+    g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(Array.from({ length: 4 }, () => [.8, .93, .96]).flat()), 3));
+    sparkles = new THREE.InstancedMesh(g, materials.glow, SPARKLES); sparkles.name = 'Lagoon glints'; sparkles.frustumCulled = false; sparkles.visible = false; group.add(sparkles);
+    const bb = createBatch(THREE), dirx = .6, dirz = -.8, bx = pier.x + 1300, bz = pier.z - 260, L = 1900;
+    bb.at(bx, 0, bz, Math.atan2(dirx, dirz), () => {
+      bb.box(0, 15, 0, 14, 2.4, L, '#8a9aa0'); bb.box(0, 16.4, 0, 14.4, .5, L, '#9aa8ad');
+      for (let i = -8; i <= 8; i++) bb.box(0, 7, i * 110, 5, 14, 6, '#7d8e94');
+    });
+    bridge = new THREE.Group(); bridge.name = 'Third Mainland Bridge (stylised)'; bridge.visible = false;
+    for (const m of bb.build(materials).meshes) { m.castShadow = false; m.receiveShadow = false; bridge.add(m); }
+    group.add(bridge);
+    const base = group.updateMatrixWorld.bind(group), matrix = new THREE.Matrix4(), q = new THREE.Quaternion(), pos = new THREE.Vector3(), sc = new THREE.Vector3();
+    const fx = Math.sin(pier.ry), fz = Math.cos(pier.ry), ux = Math.cos(pier.ry), uz = -Math.sin(pier.ry);
+    group.updateMatrixWorld = (force?: boolean) => {
+      if (sparkles && sparkles.visible && !disposed) {
+        const t = performance.now() / 1000;
+        for (let i = 0; i < SPARKLES; i++) {
+          const k = sparkleSeed[i]!, tw = Math.max(0, Math.sin(t * k.a + k.ph)), size = k.sz * tw * tw * 1.3 + .02;
+          pos.set(pier.x + fx * k.f + ux * k.u + Math.sin(t * .3 + k.dr) * 1.5, -.22, pier.z + fz * k.f + uz * k.u + Math.cos(t * .27 + k.dr) * 1.5);
+          sc.set(size * 2.2, 1, size * .7); matrix.compose(pos, q, sc); sparkles.setMatrixAt(i, matrix);
+        }
+        sparkles.instanceMatrix.needsUpdate = true;
+      }
+      base(force);
+    };
+  }
+
   function rebuild(px: number, pz: number) {
     live.traverse(o => { const m = o as Mesh; if (m.isMesh) m.geometry.dispose(); });
     live.clear();
     const batch = createBatch(THREE);
     const near = plan.map(p => ({ p, d: Math.hypot(p.x - px, p.z - pz) })).filter(i => i.d < RADIUS).sort((a, b) => a.d - b.d);
-    let budget = CAP_TRIS, signText = 1;
+    let budget = CAP_TRIS, signText = 2, roadText = 1;
     for (const { p, d } of near) {
       if (d > (REACH[p.t] ?? RADIUS)) continue;
       const far = d > 45 && (p.t === 'palm' || p.t === 'coconut' || p.t === 'mango' || p.t === 'frangi');
-      const cost = (far ? COST[p.t] * .55 : COST[p.t]) + (p.t === 'sign' && signText && d < 60 ? 700 : 0);
+      if (p.t === 'sign' && d > 50) continue;
+      const wantsText = (p.t === 'sign' && signText > 0 && d < 45) || (p.t === 'mapboard' && d < 40) || (p.t === 'roadsign' && roadText > 0 && d < 30);
+      const cost = (far ? COST[p.t] * .55 : COST[p.t]) + (wantsText ? (p.t === 'roadsign' ? 450 : p.t === 'mapboard' ? 150 : 650) : 0);
       if (cost > budget) continue;
-      const text = p.t === 'sign' && signText > 0 && d < 60;
-      if (text) signText--;
+      const text = wantsText;
+      if (text && p.t === 'sign') signText--; else if (text && p.t === 'roadsign') roadText--;
       draw(batch, p, text, lit, far); budget -= cost;
     }
     // waterfront promenade: seawall kerb, paved strip and bollards on shore edges near the player
@@ -296,6 +373,7 @@ export function createCampusLife(kit: Kit) {
     const cell = `${Math.round(x / 30)}:${Math.round(z / 30)}:${time !== 'day'}`;
     if (cell === key) return;
     key = cell; lit = time !== 'day'; rebuild(x, z);
+    if (pier) { const dist = Math.hypot(x - pier.x, z - pier.z); if (sparkles) sparkles.visible = dist < 330; if (bridge) bridge.visible = dist < 900; }
   }
   return {
     group, update, get rebuilds() { return rebuilds; },

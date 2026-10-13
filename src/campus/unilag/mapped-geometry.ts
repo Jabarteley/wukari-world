@@ -1,5 +1,5 @@
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import type { BufferGeometry, Group, InstancedMesh, Material } from 'three';
+import type { BufferGeometry, Box3, Group, InstancedMesh, Material } from 'three';
 import type { Kit } from '../../scene/kit.ts';
 import { createBatch, sceneMaterials } from '../../scene/build.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
@@ -30,7 +30,7 @@ export function createMappedGeometry(kit: Kit) {
   const detailGroup = new THREE.Group(); detailGroup.name = 'Near campus facades'; group.add(detailGroup);
   let detailKey = '', treeKey = '';
   let nearTrees: InstancedMesh | null = null, farTrees: InstancedMesh | null = null;
-  const DETAIL_RADIUS = 120, DETAIL_TRIANGLES = 5500, HIGH_TREES = 24;
+  const DETAIL_RADIUS = 120, DETAIL_TRIANGLES = 4600, HIGH_TREES = 16;
   let rebuilds = 0;
   const tile = (x: number, z: number) => `${Math.floor(x / tileSize)}:${Math.floor(z / tileSize)}`;
   for (const b of CAMPUS_MAP.buildings) {
@@ -100,16 +100,17 @@ export function createMappedGeometry(kit: Kit) {
   for(const surface of CAMPUS_MAP.surfaces){
     // A wetland mapped out in the lagoon is marsh shallows lying on the water, not a green lawn: sunk to water level and tinted like reedy shallows.
     const offshore=isOffshoreMarsh(surface,CAMPUS_MAP.boundary);
-    const color=surface.kind==='pool'?'#469eb4':surface.kind==='water'?'#4a8187':surface.kind==='pitch'?'#5b8055':surface.kind==='sports'?'#84936c':offshore?'#5c9792':'#526e55';
+    const color=surface.kind==='pool'?'#469eb4':surface.kind==='water'?'#4a8187':surface.kind==='pitch'?(surface.sport==='athletics'?'#a65440':'#5b8055'):surface.kind==='sports'?'#84936c':offshore?'#5c9792':'#526e55';
     const geometry=polygon(surface.ring,0,color);geometry.translate(0,offshore?-.25:surface.kind==='pitch'||surface.kind==='pool'?.035:.014,0);(offshore?marshGeometries:surfaceGeometries).push(geometry);
   }
   merged(groundGeometries,land,layerMaterial(2,2));merged(surfaceGeometries,land,layerMaterial(1,1));merged(marshGeometries,land,layerMaterial(-1,-1));
   const treeGeometry=primitiveGeometry(kit,b=>{
-    b.cyl(0,3,0,.32,6,'#786c50',{seg:7});
-    b.ico(0,7.4,0,4.4,3.1,4.1,'#476a47');
-    b.ico(-2.2,6.2,1.2,3.2,2.5,3.1,'#668258');
-    b.ico(2.4,7.1,-.9,2.8,2.6,3,'#597a4e');
+    // clustered sub-blob canopy, two-tone (dark underside, light top), flared trunk
+    b.cyl(0,3,0,.3,6,'#786c50',{seg:6,top:.6});b.cone(0,.4,0,.7,.8,'#786c50',{seg:6,top:.5});
+    b.ico(0,6.6,0,2.6,2.0,2.5,'#3d6340');b.ico(-2.3,6.0,1.0,1.9,1.5,1.9,'#476d45');b.ico(2.2,6.2,-.8,1.9,1.5,2.0,'#41683f');
+    b.ico(.5,8.0,.4,2.0,1.5,1.9,'#6d9358');b.ico(-1.2,7.6,-1.6,1.5,1.2,1.5,'#628a52');
   });
+
   const farTreeGeometry=primitiveGeometry(kit,b=>{
     b.cone(0,4.6,0,4.4,8.4,'#56764f',{seg:3,open:true});
   });
@@ -143,14 +144,18 @@ export function createMappedGeometry(kit: Kit) {
   const gate=createBatch(THREE);
   gate.at(0,0,0,-Math.PI/2,()=>drawMainGate(gate));
   const gateGroup=new THREE.Group();gateGroup.name='Main gate photo interpretation';for(const mesh of gate.build(materials).meshes)gateGroup.add(mesh);group.add(gateGroup);
-  const crownBatch=createBatch(THREE);drawLandmarkCrowns(crownBatch,parts,CAMPUS_MAP.surfaces.filter(s=>s.kind==='pitch'));
-  const crown=new THREE.Group();crown.name='Landmark crowns: mosque, chapel, stands and floodlights';for(const mesh of crownBatch.build(materials).meshes){mesh.castShadow=true;crown.add(mesh);}applyGlow(crown);group.add(crown);
+  // Crowns split by place so each can be culled by distance: mosque and chapel, and the sports ground (stands, markings, floodlights).
+  const cullable:Array<{group:Group;box:Box3}>=[];
+  const crownGroup=(name:string,draw:(b:ReturnType<typeof createBatch>)=>void)=>{const batch=createBatch(THREE);draw(batch);const g=new THREE.Group();g.name=name;for(const mesh of batch.build(materials).meshes){mesh.castShadow=true;g.add(mesh);}applyGlow(g);group.add(g);cullable.push({group:g,box:new THREE.Box3().setFromObject(g)});return g;};
+  cullable.push({group:gateGroup,box:new THREE.Box3().setFromObject(gateGroup)});
+  const crown=crownGroup('Landmark crowns: mosque and chapel',b=>drawLandmarkCrowns(b,parts,[]));
+  crownGroup('Sports ground: stands, markings, floodlights',b=>drawLandmarkCrowns(b,[],CAMPUS_MAP.surfaces.filter(s=>s.kind==='pitch')));
   // Senate tower in two levels of detail: rich near, cheap far. Only the visible one counts against the budget.
   const senateTower=parts.find(isSenateTower)!,[sx0,sz0,sx1,sz1]=boundsOf(senateTower.ring);
   const towerGroup=(rich:boolean)=>{const batch=createBatch(THREE);drawSenateTower(batch,senateTower,rich);const g=new THREE.Group();g.name=rich?'Senate House tower (near)':'Senate House tower (far)';for(const mesh of batch.build(towerMaterials).meshes){mesh.castShadow=true;g.add(mesh);}g.userData.triangles=batch.triangles;applyGlow(g);group.add(g);return g;};
   const towerNearGroup=towerGroup(true),towerFarGroup=towerGroup(false);towerNearGroup.visible=false;
   let towerNearOn=false;
-  const TOWER_NEAR=170;
+  const TOWER_NEAR=130,CULL_RADIUS=480;
   for(const x of [-16,0,16]){
     const width=x===0?5:1.4;
     const vertices=x===0?[[-width/2,6.8],[-width/2,12.5],[0,9],[width/2,12.5],[width/2,6.8]]:[[-width/2,6.8],[-width/2,13],[width/2,10.8],[width/2,6.8]];
@@ -159,7 +164,8 @@ export function createMappedGeometry(kit: Kit) {
     const mesh=new THREE.Mesh(geometry,kit.material('#d6bd86'));mesh.castShadow=true;gateGroup.add(mesh);
   }
   function update(x:number,z:number,time?:string){
-    if(time!==undefined&&(time!=='day')!==night){night=time!=='day';applyGlow(detailGroup);applyGlow(crown);applyGlow(towerNearGroup);applyGlow(towerFarGroup);}
+    if(time!==undefined&&(time!=='day')!==night){night=time!=='day';applyGlow(detailGroup);cullable.forEach(c=>applyGlow(c.group));applyGlow(towerNearGroup);applyGlow(towerFarGroup);}
+    {const at=new THREE.Vector3(x,0,z);for(const c of cullable)c.group.visible=c.box.distanceToPoint(at)<CULL_RADIUS;}
     const wantNear=Math.hypot(Math.max(sx0-x,0,x-sx1),Math.max(sz0-z,0,z-sz1))<TOWER_NEAR;
     if(wantNear!==towerNearOn){towerNearOn=wantNear;towerNearGroup.visible=wantNear;towerFarGroup.visible=!wantNear;}
     const near=parts.filter(b=>distanceTo(b,x,z)<=DETAIL_RADIUS).sort((a,b)=>{const priority=(part:CampusMapBuilding)=>part.osm.id===653186158&&distanceTo(part,x,z)<60?-2:architectureOf(part).id&&distanceTo(part,x,z)<90?-1:0;return priority(a)-priority(b)||distanceTo(a,x,z)-distanceTo(b,x,z)||b.height-a.height;}),key=near.map(b=>`${b.osm.id}:${b.height}`).sort().join(',')+(towerNearOn?'+T':'');
@@ -167,5 +173,5 @@ export function createMappedGeometry(kit: Kit) {
     treeDetail(x,z);
   }
   let disposed=false;
-  return {group,update,get rebuilds(){return rebuilds;},get resident(){return [...resident.keys()];},dispose(){if(disposed)return;disposed=true;resident.clear();nearTrees?.dispose();farTrees?.dispose();nearTrees?.removeFromParent();farTrees?.removeFromParent();clear(mass);clear(detailGroup);clear(land);offsetMaterials.forEach(m=>m.dispose());clear(gateGroup);clear(crown);clear(towerNearGroup);clear(towerFarGroup);doubleSolid.dispose();if(atlas){atlas.dispose();wallMaterial.dispose();}treeGeometry.dispose();farTreeGeometry.dispose();group.removeFromParent();group.clear();}};
+  return {group,update,get rebuilds(){return rebuilds;},get resident(){return [...resident.keys()];},dispose(){if(disposed)return;disposed=true;resident.clear();nearTrees?.dispose();farTrees?.dispose();nearTrees?.removeFromParent();farTrees?.removeFromParent();clear(mass);clear(detailGroup);clear(land);offsetMaterials.forEach(m=>m.dispose());clear(gateGroup);cullable.forEach(c=>clear(c.group));clear(towerNearGroup);clear(towerFarGroup);doubleSolid.dispose();if(atlas){atlas.dispose();wallMaterial.dispose();}treeGeometry.dispose();farTreeGeometry.dispose();group.removeFromParent();group.clear();}};
 }

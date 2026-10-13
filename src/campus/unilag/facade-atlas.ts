@@ -11,11 +11,11 @@ import type { CampusMapBuilding, MetreRing } from './geo.ts';
 import { architectureOf, baysOf, floorsOf } from './architecture.ts';
 import { renderTier } from '../../scene/look.ts';
 
-/** Logical drawing grid is 64 px per cell; the canvas is drawn at 2x (128 px per cell, 512x256, about 520 KB raw and 700 KB with mips). */
-export const ATLAS = Object.freeze({ cols: 4, rows: 2, cell: 64, scale: 2, bytes: 512 * 256 * 4 });
+/** Logical drawing grid is 64 px per cell; the canvas is drawn at 2x (128 px per cell, 512x384 = 12 cells, about 790 KB raw and 1 MB with mips). */
+export const ATLAS = Object.freeze({ cols: 4, rows: 3, cell: 64, scale: 2, bytes: 512 * 384 * 4 });
 const PLAIN = 4;
 /** Wall cells by style. */
-const STYLE_CELLS = [0, 1, 2, 3, 5, 6, 7];
+const STYLE_CELLS = [0, 1, 2, 3, 5, 6, 7, 11];
 
 
 /** Which atlas cell a building's walls use. Landmarks and the Senate tower are plain: their geometry draws the windows. */
@@ -23,7 +23,13 @@ export function wallCell(b: CampusMapBuilding): number {
   // Window-style landmarks use the punched cell and their geometric panes cover it exactly (same floor and bay grid);
   // the rest draw their whole facade in geometry over plain render.
   const info = architectureOf(b);
-  if (info.id) return info.style === 'institutional' || info.style === 'hall' || info.style === 'auditorium' ? 0 : PLAIN;
+  if (info.id) {
+    // Faculty styles keep a matching texture underneath their own geometry so a budget-starved view is never a bare box.
+    const FACULTY: Record<string, number> = { engineering: 2, arts: 5, law: 7, social: 1, science: 0 };
+    if (FACULTY[info.style] !== undefined) return FACULTY[info.style]!;
+    if (info.style === 'library' || info.style === 'podium' || info.style === 'tower') return 10; // board-marked concrete
+    return info.style === 'institutional' || info.style === 'hall' || info.style === 'auditorium' ? 0 : PLAIN;
+  }
   if (b.height < 3.4) return PLAIN;
   const h = Math.imul(b.osm.id | 0, 2654435761) >>> 0, pick = STYLE_CELLS[(h >>> 7) % STYLE_CELLS.length]!;
   return b.height >= 11 && (pick === 6 || pick === 2) ? 0 : pick;
@@ -59,6 +65,7 @@ export function createFacadeAtlas(THREE: typeof ThreeNamespace): CanvasTexture |
   // 4 plain render with faint speckle.
   cells[4] = (ox, oy) => {
     g.fillStyle = '#ffffff'; g.fillRect(ox, oy, S, S);
+    for (let y = 8; y < S; y += 8) { g.fillStyle = 'rgba(120,110,95,.05)'; g.fillRect(ox, oy + y, S, 1); }
     let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
     for (let i = 0; i < 70; i++) { g.fillStyle = `rgba(130,120,104,${.015 + rnd() * .03})`; g.fillRect(ox + rnd() * S, oy + rnd() * S, 1 + rnd() * 3, 1 + rnd() * 2); }
     g.fillStyle = '#d2ccbb'; g.fillRect(ox, oy, S, 2);
@@ -69,7 +76,15 @@ export function createFacadeAtlas(THREE: typeof ThreeNamespace): CanvasTexture |
   cells[6] = (ox, oy) => { frame(ox + 6, oy + 12, 52, 38); glass(ox + 6, oy + 12, 52, 38); g.fillStyle = '#d4cdb9'; g.fillRect(ox + 30, oy + 12, 3, 38); g.fillRect(ox + 6, oy + 24, 52, 2); g.fillStyle = '#b9b2a0'; g.fillRect(ox, oy + 52, S, 10); };
   // 7 wide punched window with a deep head shadow.
   cells[7] = (ox, oy) => { frame(ox + 6, oy + 14, 52, 30); glass(ox + 6, oy + 14, 52, 30); g.fillStyle = 'rgba(60,55,45,.35)'; g.fillRect(ox + 4, oy + 10, 56, 4); sill(ox + 6, oy + 44, 52); };
-  for (let i = 0; i < 8; i++) {
+  // 8 blind panel: solid wall with a small high vent.
+  cells[8] = (ox, oy) => { g.fillStyle = '#ece6d6'; g.fillRect(ox + 6, oy + 6, S - 12, S - 12); g.fillStyle = '#b8b2a0'; g.fillRect(ox + 6, oy + 6, S - 12, 2); g.fillStyle = '#6f7a78'; g.fillRect(ox + 24, oy + 16, 16, 7); for (let y = 17; y < 23; y += 2) { g.fillStyle = '#b9c2bd'; g.fillRect(ox + 24, oy + y, 16, 1); } };
+  // 9 window with an air-conditioner box under the sill.
+  cells[9] = (ox, oy) => { frame(ox + 11, oy + 9, 42, 28); glass(ox + 11, oy + 9, 42, 28); sill(ox + 11, oy + 37, 42); g.fillStyle = '#d8dcd8'; g.fillRect(ox + 36, oy + 44, 18, 10); g.fillStyle = '#7d8683'; g.fillRect(ox + 38, oy + 47, 14, 5); g.fillStyle = '#9a948a'; g.fillRect(ox + 36, oy + 54, 18, 2); };
+  // 10 board-marked concrete: horizontal formwork boards with grain.
+  cells[10] = (ox, oy) => { g.fillStyle = '#ffffff'; g.fillRect(ox, oy, S, S); for (let y = 0; y < S; y += 5) { g.fillStyle = `rgba(110,100,86,${y % 10 ? .12 : .2})`; g.fillRect(ox, oy + y, S, 1); } let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647; for (let i = 0; i < 60; i++) { g.fillStyle = `rgba(120,108,90,${.05 + rnd() * .06})`; g.fillRect(ox + rnd() * S, oy + rnd() * S, 6 + rnd() * 16, 1); } g.fillStyle = '#cfc8b6'; g.fillRect(ox, oy, S, 2); };
+  // 11 shuttered window: frame, glass and two louvred shutters folded back.
+  cells[11] = (ox, oy) => { frame(ox + 17, oy + 13, 30, 33); glass(ox + 17, oy + 13, 30, 33); for (const x of [6, 47]) { g.fillStyle = '#6e8a7c'; g.fillRect(ox + x, oy + 13, 11, 33); for (let y = 15; y < 46; y += 3) { g.fillStyle = '#4f6a5d'; g.fillRect(ox + x, oy + y, 11, 1); } } sill(ox + 14, oy + 46, 36); };
+  for (let i = 0; i < 12; i++) {
     const ox = (i % ATLAS.cols) * S, oy = Math.floor(i / ATLAS.cols) * S;
     g.fillStyle = '#ffffff'; g.fillRect(ox, oy, S, S);
     g.fillStyle = '#d2ccbb'; g.fillRect(ox, oy, S, 2); // ledge shadow at the top of each floor
@@ -88,14 +103,24 @@ export function facadeMaterial<M extends MeshLambertMaterial | MeshStandardMater
   m.onBeforeCompile = (shader) => {
     shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nattribute float aCell;\nvarying float vCell;').replace('#include <uv_vertex>', '#include <uv_vertex>\nvCell = aCell;');
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', '#include <common>\nvarying float vCell;').replace('#include <map_fragment>', `
-      vec2 cellOrigin = vec2(mod(vCell + .5, 4.), floor((vCell + .5) / 4.));
+      // Per-tile variation: now and then a blind panel, an AC bay or a shuttered window; per-storey and per-bay tint.
+      vec2 tileId = floor(vMapUv);
+      float hh = fract(sin(dot(tileId + vCell * 3.1, vec2(12.9898, 78.233))) * 43758.5453);
+      float cellId = vCell;
+      bool windowed = (vCell < 3.5 || (vCell > 4.5 && vCell < 7.5) || vCell > 10.5);
+      if (windowed && tileId.y > .5) { if (hh > .94) cellId = 8.; else if (hh > .88) cellId = 9.; else if (hh > .83 && vCell != 11.) cellId = 11.; }
+      vec2 atlasSize = vec2(4., 3.);
+      vec2 cellOrigin = vec2(mod(cellId + .5, 4.), atlasSize.y - 1. - floor((cellId + .5) / 4.));
       vec2 tile = fract(vMapUv) * .9375 + .03125;
-      vec2 atlasSize = vec2(4., 2.);
-      // Distance fade: past ~70 m the cell is sampled from ever blurrier mips and eased toward a calm wall tone, so far blocks read as facades, not noise.
+      // Distance fade: past ~70 m the cell is sampled from ever blurrier mips, then eased toward storey bands of wall tone, so far blocks read as banded facades.
       float far = smoothstep(70., 260., length(vViewPosition));
       float blur = 1. + 7. * far;
       vec4 facade = textureGrad(map, (cellOrigin + tile) / atlasSize, dFdx(vMapUv) * blur * .9375 / atlasSize, dFdy(vMapUv) * blur * .9375 / atlasSize);
-      diffuseColor *= mix(facade, vec4(vec3(.82), 1.), far * .45);`);
+      float band = mix(.74, .93, step(.36, fract(vMapUv.y)));
+      facade = mix(facade, vec4(vec3(band), 1.), far * .62);
+      facade.rgb *= .95 + .05 * fract(sin(tileId.y * 91.7 + vCell) * 437.58) + .03 * hh;
+      facade.rgb *= mix(.76, 1., smoothstep(0., .45, vMapUv.y)); // base-of-wall occlusion on the ground storey
+      diffuseColor *= facade;`);
   };
   m.customProgramCacheKey = () => 'unilag-facade-atlas';
   return m;

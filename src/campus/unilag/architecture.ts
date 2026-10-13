@@ -20,14 +20,14 @@ import { landmarkBuildingIds, standalones } from './standalone.ts';
 import { landmarkLabel } from './spot-names.ts';
 import { signLetters } from '../shared/signs.ts';
 
-export type FacadeStyle = 'tower' | 'podium' | 'hall' | 'library' | 'institutional' | 'auditorium' | 'mosque' | 'chapel';
+export type FacadeStyle = 'tower' | 'podium' | 'hall' | 'library' | 'institutional' | 'auditorium' | 'mosque' | 'chapel' | 'engineering' | 'arts' | 'law' | 'social' | 'science';
 export interface ArchitectureInfo { id: string; label: string; style: FacadeStyle; accent: string; sign: boolean; kind: string; wall: string; roof: string; variant: number }
 
 export const SENATE_OSM_ID = 653186158;
 export const SENATE_TOWER_HEIGHT = 43;
 export const isSenateTower = (b: Pick<CampusMapBuilding, 'osm' | 'height'>): boolean => b.osm.id === SENATE_OSM_ID && b.height === SENATE_TOWER_HEIGHT;
 
-const STYLE_BY_LANDMARK: Record<string, FacadeStyle> = { senate: 'podium', library: 'library', auditorium: 'auditorium', 'central-mosque': 'mosque', 'education-chapel': 'chapel' };
+const STYLE_BY_LANDMARK: Record<string, FacadeStyle> = { senate: 'podium', library: 'library', auditorium: 'auditorium', 'central-mosque': 'mosque', 'education-chapel': 'chapel', engineering: 'engineering', arts: 'arts', law: 'law', 'social-sciences': 'social', science: 'science' };
 
 /**
  * Per-landmark palette and layout variant (estimates for variety). variant picks the hall layout:
@@ -48,6 +48,12 @@ const PALETTE: Record<string, { wall: string; accent: string; roof?: string; var
   senate: { wall: '#ded6c1', accent: '#a79c82', roof: '#c4bba4' },
   'central-mosque': { wall: '#f1eee2', accent: '#3f8f6b', roof: '#b8c4bb' },
   'education-chapel': { wall: '#efe9dc', accent: '#7a5a3c', roof: '#7d6a5a' },
+  // Faculty identities are stylisation: only Engineering's heavy louvres and roof Y-beams are sourced (transnationalarchitecture.group, Jan 2024).
+  engineering: { wall: '#bdb9ae', accent: '#8d8a80', roof: '#6c6f6d' },
+  arts: { wall: '#e6cfae', accent: '#8a4a38', roof: '#9a5a44' },
+  law: { wall: '#dcdcd4', accent: '#27406a', roof: '#6d747a' },
+  'social-sciences': { wall: '#e5e2d2', accent: '#2f8a86', roof: '#6f7d7a' },
+  science: { wall: '#dfe3dc', accent: '#4f7f5c', roof: '#6a7873' },
 };
 
 /** osm building id -> what the landmark layout says it is. Nodes resolve to a footprint (see standalone.ts). */
@@ -70,7 +76,7 @@ export function architectureOf(b: CampusMapBuilding): ArchitectureInfo {
   return LANDMARK_BUILDINGS.get(b.osm.id) ?? PLAIN;
 }
 
-const WALLS = ['#e4d8bc', '#e9e4d2', '#dccaa8', '#d9d3bf', '#e2dccb', '#d6cdb6'];
+const WALLS = ['#e4d8bc', '#e9e4d2', '#dccaa8', '#d9d3bf', '#e2dccb', '#d6cdb6', '#e8d2c6', '#d4dccb', '#e6d29e', '#d3d9d8', '#d9bfa6', '#ece6dc'];
 const ROOFS = ['#98564a', '#88584a', '#6a7472', '#7a7d78', '#6f8076', '#a86a4a', '#5f6a6b', '#8d6a58'];
 export function bodyColour(b: CampusMapBuilding): string {
   const info = architectureOf(b);
@@ -98,15 +104,15 @@ export function landmarkHeight(b: CampusMapBuilding): number {
 }
 
 /** Floor and bay grid shared by the facade atlas and the window painters, so geometric panes cover texture windows exactly. */
-export const floorsOf = (height: number): number => Math.max(1, Math.floor(height / 3.4));
-export const baysOf = (length: number): number => Math.max(1, Math.floor((length - 1.5) / 3.8));
+export const floorsOf = (height: number): number => Math.max(1, Math.floor(height / 3.6));
+export const baysOf = (length: number): number => Math.max(1, Math.floor((length - 1.5) / 4.4));
 export interface Budget { left: number }
 let texturedWalls = false;
 /** When the facade atlas is active, plain OSM buildings take their windows and piers from the texture. */
 export const setTexturedWalls = (on: boolean): void => { texturedWalls = on; };
 const LIT_TONES = ['#ffd68a', '#ffe6b0', '#f6c978'];
 const CONCRETE = '#e4d9bf', SHADE = '#cdc3aa', FRAME = '#d9d0b8';
-const MOSAIC = ['#ece3cc', '#a6a495', '#dccfae', '#8f9893'];
+const MOSAIC = ['#efe6cf', '#9b9a8d', '#d9b45e', '#7f8a86', '#e2d7bb', '#c9c2ad'];
 export const hash = (a: number, b: number): number => {
   let h = Math.imul(a | 0, 374761393) + Math.imul(b | 0, 668265263);
   h = Math.imul(h ^ (h >>> 13), 1274126177);
@@ -138,24 +144,26 @@ type Painter = (batch: Batch, length: number, height: number, info: Architecture
 /** Senate tower, near LOD: mosaic spandrels, scooped cement fins in cream and grey mosaic, framed windows. */
 export const towerNear: Painter = (batch, L, H, info, seed) => {
   const floors = Math.max(2, Math.round(H / 3.07)), fh = H / floors;
-  const bays = Math.max(1, Math.round(L / 3.6)), bw = L / bays;
-  batch.box(0, .7, .9, L, 1.4, 1.8, '#a9a18c');
+  const bays = Math.max(1, Math.round(L / 4.2)), bw = L / bays;
+  batch.box(0, .7, 1.1, L, 1.4, 2.2, '#9c957f');
   for (let f = 0; f < floors; f++) {
     const y = f * fh;
-    if (f) batch.box(0, y - .1, .9, L, .5, 1.8, f % 2 ? '#e6dcc4' : '#ddd3b9');
+    // Deep slabs read as dark shadow lines on the facade.
+    if (f) batch.box(0, y - .1, 1.2, L, .5, 2.4, f % 2 ? '#b4ac96' : '#a9a18b');
     for (let i = 0; i < bays; i++) {
       const x = -L / 2 + bw * (i + .5);
-      if (f) batch.quad(x, y + .52, .06, bw - .6, .75, MOSAIC[(f + i) % 2 ? 0 : 1]!);
-      windowPane(batch, x, y + fh * .55 + (f ? .1 : .4), .06, bw - 1.1, fh * .52, seed + i, isLit(seed, f, i), false);
+      if (f) batch.quad(x, y + .52, .06, bw - .6, .75, MOSAIC[(f + i) % 3 === 0 ? 2 : (f + i) % 2 ? 0 : 1]!);
+      windowPane(batch, x, y + fh * .55 + (f ? .1 : .4), .06, bw - 1.3, fh * .52, seed + i, isLit(seed, f, i), false);
     }
   }
-  batch.box(0, H + .1, .95, L + .5, .8, 1.9, '#d8cdb0');
-  // Scooped fins: three mosaic-clad segments, a rib on the face of every second one.
+  batch.box(0, H + .1, 1.1, L + .5, .9, 2.3, '#d8cdb0');
+  // Scooped fins: four mosaic-clad segments in cream, grey and gold so the tile pattern reads from far away.
+  const seg = H / 4;
   for (let i = 0; i <= bays; i++) {
-    const x = -L / 2 + i * bw, seg = H / 3;
-    for (let s = 0; s < 3; s++) {
-      batch.box(x, seg * (s + .5) + .4, .75, .5, seg - .05, 1.5, MOSAIC[(i + s) % 4]!);
-      if ((i + s) % 2 === 0) batch.box(x, seg * (s + .5) + .4, 1.55, .26, seg - .5, .7, MOSAIC[(i + s + 2) % 4]!);
+    const x = -L / 2 + i * bw;
+    for (let s = 0; s < 4; s++) {
+      batch.box(x, seg * (s + .5) + .4, 1.1, .6, seg - .05, 2.2, MOSAIC[(i * 2 + s * 5 + seed) % 6]!);
+      if ((i + s) % 4 === 0) batch.box(x, seg * (s + .5) + .4, 2.35, .3, seg - .6, .5, MOSAIC[(i + s + 3) % 6]!);
     }
   }
   void info;
@@ -163,15 +171,12 @@ export const towerNear: Painter = (batch, L, H, info, seed) => {
 
 /** Senate tower, far LOD: slabs, one glazing band per floor and plain fins. */
 export const towerFar: Painter = (batch, L, H, _info, seed) => {
-  const floors = Math.max(2, Math.round(H / 3.07)), fh = H / floors, bays = Math.max(1, Math.round(L / 3.6)), bw = L / bays;
+  const floors = Math.max(2, Math.round(H / 3.07)), fh = H / floors, bays = Math.max(1, Math.round(L / 6)), bw = L / bays;
   batch.box(0, .6, .9, L, 1.2, 1.8, '#a9a18c');
-  for (let f = 0; f < floors; f++) {
-    const y = f * fh;
-    batch.quad(0, y + fh * .5, .08, L - .2, fh - 1.1, '#4d6b75');
-    if (f) batch.box(0, y - .2, .85, L, .5, 1.7, CONCRETE);
-  }
+  batch.quad(0, H / 2 + .3, .08, L - .2, H - 1.4, '#4d6b75');
+  for (let f = 2; f < floors; f += 2) batch.box(0, f * fh - .2, .85, L, .5, 1.7, CONCRETE);
   batch.box(0, H - .1, .95, L + .4, .8, 1.9, '#d8cdb0');
-  for (let i = 0; i <= bays; i++) batch.box(-L / 2 + i * bw, H / 2 + .4, .7, .5, H - .8, 1.4, MOSAIC[(i + seed) % 2]!);
+  for (let i = 0; i <= bays; i++) batch.box(-L / 2 + i * bw, H / 2 + .4, .7, .6, H - .8, 1.4, MOSAIC[(i + seed) % 2]!);
 };
 
 /** The Senate podium: ground-floor colonnade, mosaic upper band and framed ribbon windows. */
@@ -281,7 +286,95 @@ const chapel: Painter = (batch, L, H, info, seed) => {
   void seed;
 };
 
-const PAINTERS: Record<FacadeStyle, Painter> = { tower: towerNear, podium, hall, library, institutional, auditorium, mosque, chapel };
+const CONC = ['#aaa79c', '#9b988d', '#b9b6ab', '#a3a095'];
+
+/** Engineering: heavy interlocking concrete louvres at first-floor level, deep slabs, and Y-beams projecting past the roof line (sourced: Jan 2024 TAG visit; colour inferred raw concrete). */
+const engineering: Painter = (batch, L, H, _info, seed) => {
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n;
+  batch.box(0, .6, .7, L, 1.2, 1.4, '#8f8c82');
+  for (let f = 1; f < floors; f++) {
+    const y = f * fh;
+    if (f === 1) {
+      for (let i = 0; i < n; i++) for (let k = 0; k < 3; k++) batch.box(-L / 2 + step * (i + .5), y + .5 + k * .95, .95, step * .94, .36, 1.9, CONC[(i + k) % 4]!);
+    } else batch.box(0, y, .8, L, .55, 1.6, CONC[1]!);
+  }
+  for (let i = 0; i <= n; i++) batch.box(-L / 2 + step * i, H / 2, .55, .8, H, 1.1, CONC[(i + seed) % 3 + (i % 2 ? 0 : 0)]!);
+  batch.box(0, H + .25, .6, L + .4, .6, 1.4, CONC[1]!);
+  for (let i = 0; i < n; i += 2) {
+    const x = -L / 2 + step * (i + .5);
+    batch.box(x, H + 1.5, 1.2, .45, 2.4, .6, CONC[0]!);
+    batch.box(x - .85, H + 3.3, 1.2, .4, 2.5, .6, CONC[2]!, { rz: .52 });
+    batch.box(x + .85, H + 3.3, 1.2, .4, 2.5, .6, CONC[2]!, { rz: -.52 });
+  }
+};
+
+/** Arts: a quadrangle arcade: pointed arches over a deep ground-floor gallery, balustraded gallery above, finialled cornice. */
+const arts: Painter = (batch, L, H, info, seed) => {
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n, g = Math.min(4.2, fh + .3);
+  batch.box(0, .35, .9, L, .7, 1.8, '#b99d7e');
+  for (let i = 0; i < n; i++) {
+    const x = -L / 2 + step * (i + .5), w = step * .62;
+    batch.quad(x, g * .42 + .35, .08, w, g * .62, '#3a2c26');
+    batch.quad(x, g * .73 + .35, .08, w * .72, w * .72, '#3a2c26', { rz: Math.PI / 4 });
+    batch.box(x + step / 2, g / 2, 1.5, .62, g, .62, '#efe3cd');
+    batch.box(x, g + .15, 1.5, step, .45, .7, info.accent);
+    batch.box(x, H + .55, .3, .4, .9, .4, '#efe3cd');
+  }
+  batch.box(-L / 2, g / 2, 1.5, .62, g, .62, '#efe3cd');
+  batch.box(0, g + .55, 1.3, L, .22, 1.2, '#efe3cd');
+  for (let i = 0; i <= n * 2; i++) batch.box(-L / 2 + (L * i) / (n * 2), g + 1, 1.8, .14, .75, .14, '#d6c7ac');
+  batch.box(0, H + .1, .5, L, .5, 1, info.accent);
+  void seed;
+};
+
+/** Law: a courtyard colonnade of giant columns carrying a plain entablature and a central pediment. */
+const law: Painter = (batch, L, H, info, seed) => {
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n, ch = Math.min(H - .8, fh * 2);
+  batch.box(0, .3, 1.2, L, .6, 2.4, '#bfc0b8');
+  batch.quad(0, ch / 2 + .5, .1, L - .3, ch - .4, '#2b3a46');
+  for (let i = 0; i <= n; i++) batch.cyl(-L / 2 + step * i, ch / 2 + .6, 1.7, .42, ch, '#ecece4', { seg: 8 });
+  batch.box(0, ch + .95, 1.5, L + .5, .9, 2.2, '#e4e4dc');
+  batch.box(0, ch + 1.65, 1.5, L + .8, .35, 2.5, info.accent);
+  const peak = Math.min(2.4, L * .12);
+  for (const s of [-1, 1]) batch.box(s * L * .12, ch + 2.4 + peak * .35, 1.5, L * .26, .4, 2.2, '#e4e4dc', { rz: s * .27 });
+  void seed;
+};
+
+/** Social Sciences: a block raised on pilotis, a deep-shaded upper volume with accent panels and framed ribbon windows. */
+const social: Painter = (batch, L, H, info, seed) => {
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n;
+  batch.quad(0, fh * .5, .1, L, fh - .2, '#33464a');
+  for (let i = 0; i <= n; i++) batch.cyl(-L / 2 + step * i, fh / 2, 1.4, .26, fh, '#e9e5d6', { seg: 6 });
+  batch.box(0, fh + (H - fh) / 2, .9, L + .4, H - fh, 1.8, '#e3dfcf');
+  for (let f = 1; f < floors; f++) {
+    const y = f * fh;
+    batch.box(0, y + fh - .15, 1.2, L + .6, .4, 2.6, '#cfcabb');
+    for (let i = 0; i < n; i++) {
+      const x = -L / 2 + step * (i + .5);
+      windowPane(batch, x, y + fh * .5, 1.82, step * .62, fh * .5, seed + i + f, isLit(seed, f, i));
+      if ((i + f) % 3 === 0) batch.quad(x, y + fh * .5, 1.84, step * .85, fh * .85, info.accent);
+    }
+  }
+  batch.box(0, H + .2, .9, L + .6, .5, 1.8, info.accent);
+};
+
+/** Science: framed ribbon glazing per floor with mullions, a glazed stair tower at one end and lab vent stacks on the roof. */
+const science: Painter = (batch, L, H, info, seed) => {
+  const floors = floorsOf(H), fh = H / floors, n = baysOf(L), step = L / n;
+  for (let f = 0; f < floors; f++) {
+    const y = f * fh;
+    batch.box(0, y + fh - .2, .55, L, .4, 1.1, '#cfd3cb');
+    batch.quad(0, y + fh * .5, .08, L - 1.2, fh * .52, '#34545a');
+    batch.quad(0, y + fh * .62, .1, L - 1.2, fh * .22, '#7fa4b0');
+    for (let i = 0; i <= n; i++) batch.box(-L / 2 + .6 + (L - 1.2) * i / n, y + fh * .5, .2, .14, fh * .54, .3, '#e4e7e0');
+  }
+  batch.box(L / 2 - 1.8, H / 2 + 1, 1.2, 3.2, H + 2, 2.4, info.accent);
+  batch.quad(L / 2 - 1.8, H / 2 + 1, 2.42, 1.6, H - .5, '#7fa4b0');
+  for (let k = 0; k < 3; k++) batch.cyl(-L / 2 + 3 + k * 2.2, H + 1.1, .2, .38, 2.2, '#9a9e98', { seg: 6 });
+  void seed;
+};
+
+const PAINTERS: Record<FacadeStyle, Painter> = { tower: towerNear, podium, hall, library, institutional, auditorium, mosque, chapel, engineering, arts, law, social, science };
 
 const SIGN_DESIGNS = [
   { plate: '#14463f', ink: '#fff4db', rim: '#d1ad55' },
@@ -315,11 +408,14 @@ function entrance(batch: Batch, L: number, H: number, info: ArchitectureInfo, bu
   const bayH = Math.max(info.style === 'hall' ? H + 1.2 : Math.min(H + .5, 9), signY0 + labelH + .6);
   const bayColour = info.style === 'hall' ? info.accent : info.style === 'auditorium' ? '#c9a13e' : info.style === 'library' ? '#d3c8ad' : '#e6dcc4';
   if (info.style === 'podium') {
-    batch.box(0, .08, 8.5, Math.min(L, 42), .16, 15, '#d5ccb5');
-    for (let i = -3; i <= 3; i++) batch.quad(i * 5, .18, 8.5, 1.4, 14, i % 2 ? '#bdb29a' : '#c8bda3', { rx: -Math.PI / 2 });
-    for (let s = 0; s < 3; s++) batch.box(0, .16 + s * .15, 3.6 - s * .8, w + 4, .15, 1.2, '#e1d8c1');
-    signBoard(batch, info.label, 6.2, Math.min(L - 2, 16), 3.1, 1, bud);
-    batch.box(0, 4.4, 2.6, Math.min(L - 2, 18), .4, 2.6, '#e6dcc4');
+    // Circular stone plaza in concentric steps (distinct from the road) and a curved glazed rotunda lobby under the name plate.
+    const R = Math.min(22, L * .45);
+    for (let s = 0; s < 3; s++) batch.cyl(0, .06 + s * .09, 8.5, R - s * 2.6, .12, s % 2 ? '#d9cfb4' : '#cbbf9f', { seg: 28 });
+    for (let k = 0; k < 8; k++) batch.quad(Math.sin(k * .785) * R * .55, .36, 8.5 + Math.cos(k * .785) * R * .55, 1.6, R * .5, k % 2 ? '#b9ad92' : '#e2d8bd', { rx: -Math.PI / 2, ry: k * .785 });
+    batch.cyl(0, 2.3, 7.5, 5, 4.6, '#e8dec4', { seg: 20 });
+    batch.cyl(0, 1.7, 7.5, 5.08, 2.6, '#2f4c56', { seg: 20 });
+    batch.cyl(0, 4.75, 7.5, 5.4, .35, '#cfc4a8', { seg: 20 });
+    signBoard(batch, info.label, 7.2, Math.min(L - 2, 16), 1.9, 1, bud);
     return;
   }
   batch.box(0, bayH / 2, .85, w, bayH, 1.7, bayColour);
@@ -357,7 +453,7 @@ function roofClutter(batch: Batch, b: CampusMapBuilding, info: ArchitectureInfo)
 
 /** Paint every wall of a building. Spends the shared triangle budget. */
 export function paintBuilding(batch: Batch, b: CampusMapBuilding, bud: Budget): void {
-  const info = architectureOf(b), paint = PAINTERS[info.style], H = b.height;
+  const info = architectureOf(b), paint = PAINTERS[info.style] ?? institutional, H = b.height;
   const winding = area(b.ring) >= 0 ? 1 : -1;
   let doorEdge = -1;
   if (info.sign) {
@@ -428,19 +524,34 @@ export function drawLandmarkCrowns(batch: Batch, buildings: readonly CampusMapBu
       batch.box(cx, H + 13.6, z1 - 2.2, .22, 2.2, .22, '#efe5ce'); batch.box(cx, H + 13.9, z1 - 2.2, 1.2, .22, .22, '#efe5ce');
     }
   }
-  // Large pitches: a stand along one long side and four floodlight masts with night-lit heads.
+  // Pitches: the soccer ground gets a stand on its far side, floodlight masts and full markings; athletics strips get lane lines; the oval a few masts.
   for (const p of pitches) {
-    const [x0, z0, x1, z1] = boundsOf(p.ring), w = x1 - x0, d = z1 - z0, long = Math.max(w, d), short = Math.min(w, d);
-    if (long < 60 || short < 24 || (p.sport !== 'soccer' && p.sport !== 'athletics' && p.sport !== 'cricket')) continue;
-    const cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, alongX = w >= d;
-    if (p.sport !== 'cricket') {
-      const len = Math.min(48, long * .6);
-      for (let s = 0; s < 5; s++) {
-        const off = short / 2 + 2.5 + s * 1.5, y = .5 + s * .6;
-        if (alongX) batch.box(cx, y, z0 - (off - short / 2), len, 1, 1.5, s % 2 ? '#c9c2ad' : '#a8a18c');
-        else batch.box(x0 - (off - short / 2), y, cz, 1.5, 1, len, s % 2 ? '#c9c2ad' : '#a8a18c');
+    const [x0, z0, x1, z1] = boundsOf(p.ring), w = x1 - x0, d = z1 - z0, long = Math.max(w, d), short = Math.min(w, d), cx = (x0 + x1) / 2, cz = (z0 + z1) / 2, alongX = w >= d;
+    if (p.sport === 'athletics') {
+      for (let k = 1; k < 5; k++) { const o = (k / 5 - .5) * (alongX ? d : w) * .8; batch.quad(alongX ? cx : cx + o, .09, alongX ? cz + o : cz, alongX ? w * .88 : .12, alongX ? .12 : d * .88, '#f2e8dc', { rx: -Math.PI / 2 }); }
+      continue;
+    }
+    if (long < 60 || short < 24 || (p.sport !== 'soccer' && p.sport !== 'cricket')) continue;
+    if (p.sport === 'soccer') {
+      batch.cyl(cx, .08, cz, 9, .02, '#e8f0e0', { seg: 24 }); batch.cyl(cx, .09, cz, 8.8, .02, '#5b8055', { seg: 24 });
+      batch.quad(cx, .1, cz, alongX ? .15 : short * .94, alongX ? short * .94 : .15, '#e8f0e0', { rx: -Math.PI / 2 });
+      for (const e of [-1, 1]) {
+        const bx = alongX ? cx + e * (long / 2 - 8.2) : cx, bz = alongX ? cz : cz + e * (long / 2 - 8.2);
+        batch.quad(bx, .1, bz, alongX ? .15 : 40, alongX ? 40 : .15, '#e8f0e0', { rx: -Math.PI / 2 });
+        for (const s of [-1, 1]) batch.quad(alongX ? bx + e * 8.2 / 2 + 0 : bx + s * 20, .1, alongX ? bz + s * 20 : bz + e * 8.2 / 2, alongX ? 8.2 : .15, alongX ? .15 : 8.2, '#e8f0e0', { rx: -Math.PI / 2 });
       }
-      if (alongX) batch.box(cx, 5.2, z0 - short / 2 - 5.5 + short / 2 - .2, len, .3, 9, '#46667a'); else batch.box(x0 - 7, 5.2, cz, 9, .3, len, '#46667a');
+      // Stand on the far (east or south) side, seen from the default preview approach; stepped rows, a roof and a name plate.
+      const len = Math.min(52, long * .6);
+      for (let s = 0; s < 7; s++) {
+        const off = short / 2 + 3 + s * 1.5, y = .6 + s * .75;
+        if (alongX) batch.box(cx, y, cz + off - (short / 2 - d / 2), len, 1.1, 1.5, s % 2 ? '#c9c2ad' : '#a8a18c'); else batch.box(cx + off - (short / 2 - w / 2), y, cz, 1.5, 1.1, len, s % 2 ? '#c9c2ad' : '#a8a18c');
+      }
+      for (let k = 0; k < 6; k++) {
+        const t = (k / 5 - .5) * (len - 2);
+        if (alongX) batch.box(cx + t, 3.2, cz + d / 2 + 13.5, .5, 6.4, .5, '#8a8f90'); else batch.box(x1 + 13.5, 3.2, cz + t, .5, 6.4, .5, '#8a8f90');
+      }
+      if (alongX) batch.box(cx, 6.6, cz + d / 2 + 9.5, len, .35, 10.5, '#46667a'); else batch.box(x1 + 9.5, 6.6, cz, 10.5, .35, len, '#46667a');
+      if (!alongX) batch.at(x1 + 4.2, 8.3, cz, -Math.PI / 2, () => signBoard(batch, 'STADIUM', 0, 16, 0, 0, { left: 10000 }));
     }
     for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
       const mx = cx + sx * (w / 2 + 2), mz = cz + sz * (d / 2 + 2);
@@ -449,9 +560,9 @@ export function drawLandmarkCrowns(batch: Batch, buildings: readonly CampusMapBu
       batch.at(mx, 18.4, mz, Math.atan2(-sx, -sz), () => {
         batch.box(0, 0, -.1, 3.4, 1.9, .2, '#2d3236');
         for (const y of [-.95, .95]) batch.box(0, y, .05, 3.5, .1, .12, '#454b50');
-        for (const x of [-1.15, 0, 1.15]) for (const y of [-.48, .48]) {
-          batch.quad(x, y, .13, .95, .7, '#c9cfcc');
-          batch.quad(x, y, .15, .85, .6, '#fff1c0', { layer: 'glow' });
+        for (const x of [-1.15, 0, 1.15]) {
+          batch.quad(x, 0, .13, .95, 1.3, '#c9cfcc');
+          batch.quad(x, 0, .15, .85, 1.2, '#fff1c0', { layer: 'glow' });
         }
       });
     }

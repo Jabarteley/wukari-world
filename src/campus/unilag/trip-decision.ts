@@ -38,6 +38,17 @@ export function shuttlePlan(from: Point, to: Point): ShuttlePlan | null {
   return { board: board.stop.id, boardLabel: board.stop.label, alight: alight.stop.id, alightLabel: alight.stop.label, fare: SHUTTLE_FEE, boardDistance: board.d, alightDistance: alight.d };
 }
 
+const COMPASS = ['north', 'north-east', 'east', 'south-east', 'south', 'south-west', 'west', 'north-west'] as const;
+/** "Senate House · 1.4 km north-east": where the place is from the avatar (north is -z on the campus map). */
+export function describeTrip(from: Point, spotId: string): string {
+  const a = ANCHORS[spotId];
+  if (!a) return '';
+  const dx = a.x - from.x, dz = a.z - from.z, d = Math.hypot(dx, dz);
+  const bearing = (Math.atan2(dx, -dz) * 180 / Math.PI + 360) % 360;
+  const far = d < 1000 ? `${Math.round(d / 10) * 10} m` : `${(d / 1000).toFixed(1)} km`;
+  return `${a.label} · ${far} ${COMPASS[Math.round(bearing / 45) % 8]}`;
+}
+
 export interface TripOption { id: 'walk' | 'shuttle' | 'go'; label: string; note: string }
 /** The sheet's choices, in order. "Go there" is always last and always available. */
 export function tripOptions(from: Point, spotId: string, pace: number): TripOption[] {

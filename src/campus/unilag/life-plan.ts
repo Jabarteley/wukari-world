@@ -6,7 +6,7 @@ import { CAMPUS_TREES } from './landscape.ts';
 
 export type PropKind = 'palm' | 'flame' | 'almond' | 'lamp' | 'bench' | 'sign' | 'kiosk' | 'car' | 'keke' | 'bus' | 'goal' | 'hoop' | 'net'
   | 'student' | 'gen' | 'hedge' | 'bump' | 'zebra' | 'guard' | 'pier' | 'canoe' | 'board' | 'bin'
-  | 'mango' | 'coconut' | 'frangi' | 'shrub' | 'bed' | 'paving' | 'fountain' | 'terrace' | 'wall' | 'booth' | 'stall';
+  | 'shuttle' | 'boat' | 'mast' | 'roadsign' | 'mapboard' | 'guardman' | 'mango' | 'coconut' | 'frangi' | 'shrub' | 'bed' | 'paving' | 'fountain' | 'terrace' | 'wall' | 'booth' | 'stall';
 export interface Prop { t: PropKind; x: number; z: number; ry: number; v: number; label?: string; w?: number; d?: number }
 
 export const hash = (n: number) => Math.abs(Math.sin(n * 12.9898 + 4.1414) * 43758.5453) % 1;
@@ -26,7 +26,7 @@ for (const sg of segs) {
 }
 const bgrid = new Map<string, number[][]>();
 for (const f of footprints) {
-  for (let i = Math.floor((f[0] - 8) / CELL); i <= Math.floor((f[2] + 8) / CELL); i++) for (let j = Math.floor((f[1] - 8) / CELL); j <= Math.floor((f[3] + 8) / CELL); j++) { const k = `${i}:${j}`; (bgrid.get(k) ?? bgrid.set(k, []).get(k)!).push(f as number[]); }
+  for (let i = Math.floor((f[0] - 8) / CELL); i <= Math.floor((f[2] + 8) / CELL); i++) for (let j = Math.floor((f[1] - 8) / CELL); j <= Math.floor((f[3] + 8) / CELL); j++) { const k = `${i}:${j}`; (bgrid.get(k) ?? bgrid.set(k, []).get(k)!).push([...f]); }
 }
 const surfaceBoxes = CAMPUS_MAP.surfaces.map(s => ({ ring: s.ring, b: boundsOf(s.ring) }));
 const offRoadAndBuilding = (x: number, z: number, buildingMargin = 2.5): boolean => {
@@ -39,6 +39,15 @@ const offRoadAndBuilding = (x: number, z: number, buildingMargin = 2.5): boolean
   for (const { ring, b: [a, b, c, d] } of surfaceBoxes) if (x >= a && x <= c && z >= b && z <= d && pointInRing([x, z], ring)) return false;
   return true;
 };
+
+const onRoad = (x: number, z: number, extra = .5): boolean => {
+  for (const sg of grid.get(`${Math.floor(x / CELL)}:${Math.floor(z / CELL)}`) ?? []) {
+    const { a: [ax, az], b: [bx, bz], w } = sg, dx = bx - ax, dz = bz - az, t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / (dx * dx + dz * dz || 1)));
+    if (Math.hypot(x - ax - t * dx, z - az - t * dz) < w / 2 + extra) return true;
+  }
+  return false;
+};
+const onBuilding = (x: number, z: number, m = .5): boolean => (bgrid.get(`${Math.floor(x / CELL)}:${Math.floor(z / CELL)}`) ?? []).some(([a, b, c, d]) => x > a! - m && x < c! + m && z > b! - m && z < d! + m);
 
 /** Outward unit normal (towards the lagoon) of boundary edge i, using the ring itself to decide the side. */
 function outward(ax: number, az: number, bx: number, bz: number): [number, number] {
@@ -123,6 +132,7 @@ export function campusPlan(): Prop[] {
       }
     }
   }
+  const lmStart = p.length;
   // Landmark dressing from the anchors: each landmark gets its own composition (plaza, garden, shade, car park, palm court).
   const kindOf = new Map(BUILDINGS.map(b => [b.id, b.kind]));
   let a = 0;
@@ -155,6 +165,11 @@ export function campusPlan(): Prop[] {
     }
     if (kind === 'hall' || id === 'university-bookshop' || id === 'amphitheatre') p.push({ t: 'kiosk', x: x + 14 + r * 4, z: z + 5, ry: 0, v: a });
     if (id === 'engineering' || id === 'medical-centre' || id === 'library' || id === 'senate') p.push({ t: 'gen', x: x + 22, z: z + 3, ry: 0, v: a });
+    if (kind === 'open-space') {
+      p.push({ t: 'paving', x, z: z + 5, ry: 0, v: a + 1, w: 16, d: 10 }, { t: 'lamp', x: x - 8, z: z + 2, ry: 0, v: 0 }, { t: 'lamp', x: x + 8, z: z + 2, ry: 0, v: 0 }, { t: 'mango', x: x - 11, z: z + 8, ry: a, v: r }, { t: 'mango', x: x + 12, z: z + 9, ry: r, v: r2 }, { t: 'coconut', x: x + 4, z: z + 11, ry: a, v: r3 });
+      for (let i = 0; i < 3; i++) p.push({ t: 'bed', x: x - 9 + i * 8, z: z + 12, ry: 0, v: a + i }, { t: 'shrub', x: x - 12 + i * 12, z: z + 14, ry: 0, v: a + i * 2 });
+      p.push({ t: 'bench', x: x - 3, z: z + 8, ry: Math.PI, v: 0 }, { t: 'bin', x: x + 6, z: z + 7, ry: 0, v: a });
+    }
     if (kind === 'open-space') p.push({ t: 'bench', x: x + 4, z: z + 4, ry: Math.PI, v: 0 }, { t: 'student', x: x + 4.7, z: z + 2.9, ry: 0, v: a }, { t: 'student', x: x + 3.4, z: z + 2.9, ry: 0, v: a + 5 });
   }
   // Lagoon Front plaza: paved promenade, seating terraces, fountain, planters and lighting (a fountain is listed for the Lagoon Front; layout is interpreted).
@@ -189,15 +204,55 @@ export function campusPlan(): Prop[] {
   {
     const [bx0, bz0, bx1, bz1] = CAMPUS_MAP.bounds, STEP = 19;
     let g = 0;
+    const tg = new Set<string>(); for (const t of CAMPUS_TREES) tg.add(`${Math.floor(t.x / 5)}:${Math.floor(t.z / 5)}`);
+    const nearTree = (x: number, z: number) => { const i = Math.floor(x / 5), j = Math.floor(z / 5); for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) if (tg.has(`${i + a}:${j + b}`)) return true; return false; };
     for (let gx = bx0 + 10; gx < bx1; gx += STEP) for (let gz = bz0 + 10; gz < bz1; gz += STEP) {
       g++;
       const h = hash(g * 1.31 + gx * .013), x = gx + (hash(g * 2.7) - .5) * STEP * .8, z = gz + (hash(g * 4.1) - .5) * STEP * .8;
       if (h > .9 || !offRoadAndBuilding(x, z, 4)) continue;
-      if (CAMPUS_TREES.some(t => Math.abs(t.x - x) < 5 && Math.abs(t.z - z) < 5)) continue;
+      if (nearTree(x, z)) continue;
       const kind = h < .4 ? 'shrub' : h < .55 ? 'frangi' : h < .65 ? 'bed' : h < .76 ? 'mango' : h < .81 ? 'coconut' : 'almond';
       p.push({ t: kind, x, z, ry: h * 40, v: hash(g * 6.7) });
       if (kind === 'shrub') p.push({ t: 'shrub', x: x + 1.8, z: z + .8, ry: 0, v: hash(g * 9.1) });
     }
+  }
+  // Paved paths from each landmark forecourt to the nearest road, with lamps, benches on paving and student groups.
+  {
+    let pi = 0;
+    for (const [id, anchor] of Object.entries(ANCHORS)) {
+      pi++;
+      if (id === 'main-gate' || !(kindOf.get(id) && kindOf.get(id) !== 'gate')) continue;
+      const { x, z } = anchor;
+      let best: { px: number; pz: number; d: number } | null = null;
+      for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) for (const sg of grid.get(`${Math.floor(x / CELL) + i}:${Math.floor(z / CELL) + j}`) ?? []) {
+        const { a: [ax, az], b: [bx, bz] } = sg, dx = bx - ax, dz = bz - az, t = Math.max(0, Math.min(1, ((x - ax) * dx + (z - az) * dz) / (dx * dx + dz * dz || 1)));
+        const px = ax + dx * t, pz = az + dz * t, d = Math.hypot(px - x, pz - z);
+        if (d > sg.w / 2 + 3 && (!best || d < best.d)) best = { px, pz, d };
+      }
+      if (!best || best.d > 90) continue;
+      const dx = best.px - x, dz = best.pz - z, len = Math.hypot(dx, dz) - 4, ux = dx / (len + 4), uz = dz / (len + 4);
+      let clear = len > 8;
+      for (let t = 0; t < len && clear; t += 3) if (onBuilding(x + ux * t, z + uz * t, 1)) clear = false;
+      if (!clear) continue;
+      p.push({ t: 'paving', x: x + ux * (len / 2), z: z + uz * (len / 2), ry: Math.atan2(ux, uz), v: pi + 1, w: 2.8, d: len });
+      for (let t = 10; t < len - 4; t += 16) {
+        const sx = -uz, sz = ux, side = (Math.floor(t / 16) + pi) % 2 ? 1 : -1;
+        p.push({ t: 'lamp', x: x + ux * t + sx * side * 2.4, z: z + uz * t + sz * side * 2.4, ry: Math.atan2(-sx * side, -sz * side), v: 0 });
+        if (t % 32 === 10) { p.push({ t: 'bench', x: x + ux * (t + 5) - sx * side * 2.6, z: z + uz * (t + 5) - sz * side * 2.6, ry: Math.atan2(sx * side, sz * side), v: 0 }, { t: 'student', x: x + ux * (t + 5) - sx * side * 3.6, z: z + uz * (t + 5) - sz * side * 3.6, ry: 1, v: pi * 5 + t }); }
+      }
+    }
+  }
+  // Benches sit on paving and never on tarmac: drop landmark furniture that landed on a road and lay a paving pad under each bench.
+  {
+    const keep = new Set<PropKind>(['paving', 'car', 'keke', 'bus', 'shuttle', 'bump', 'zebra', 'guard', 'lamp', 'palm', 'coconut']);
+    const tail = p.splice(lmStart), out: Prop[] = [];
+    for (const q of tail) {
+      if (!keep.has(q.t) && onRoad(q.x, q.z, .4)) continue;
+      if (q.t === 'bench' && onRoad(q.x, q.z, 1.2)) continue;
+      if (q.t === 'bench') out.push({ t: 'paving', x: q.x, z: q.z, ry: q.ry, v: 2, w: 3.4, d: 2.4 });
+      out.push(q);
+    }
+    p.push(...out);
   }
   // Main gate: palm-lined entrance, boundary wall, booths, hawker stalls, a queue of vehicles, zebra, speed bumps.
   for (let i = 0; i < 8; i++) for (const s of [-1, 1]) p.push({ t: i % 3 === 1 ? 'coconut' : 'palm', x: 14 + i * 13, z: s * (4.5 + 3.5), ry: i * 2 + s, v: .9 });
@@ -245,6 +300,39 @@ export function campusPlan(): Prop[] {
     else if (long >= 36 && short >= 15) p.push({ t: 'net', x: cx, z: cz, ry: alongX ? Math.PI / 2 : 0, v: 0, w: short });
     else if (long >= 20) for (const e of [-1, 1]) p.push({ t: 'hoop', x: alongX ? cx + e * (long / 2 - 1.2) : cx, z: alongX ? cz : cz + e * (long / 2 - 1.2), ry: alongX ? (e > 0 ? -Math.PI / 2 : Math.PI / 2) : (e > 0 ? Math.PI : 0), v: 0 });
   }
+  // Gate life: hawker crowd at the stalls, uniformed guards, a white-and-green campus shuttle in the queue, a campus map board.
+  for (let i = 0; i < 10; i++) p.push({ t: 'student', x: 18 + i * 4.3 + hash(i) * 2, z: (i % 2 ? 1 : -1) * (10.5 + hash(i * 3) * 2.5), ry: i, v: 100 + i });
+  p.push({ t: 'guardman', x: 4.5, z: 7, ry: 1.2, v: 1 }, { t: 'guardman', x: 11, z: -9, ry: 4, v: 2 }, { t: 'guardman', x: 8.5, z: 10.4, ry: 0, v: 3 });
+  p.push({ t: 'shuttle', x: 100, z: 2.3, ry: -Math.PI / 2, v: 1 }, { t: 'shuttle', x: 108, z: -2.3, ry: Math.PI / 2, v: 2 });
+  p.push({ t: 'mapboard', x: 16.5, z: 10, ry: Math.PI, v: 0, label: 'CAMPUS MAP' });
+  // Moored boats off the Lagoon Front pier.
+  if (lf) {
+    const pier = p.find(q => q.t === 'pier');
+    if (pier) for (let i = 0; i < 3; i++) {
+      const ux = Math.cos(pier.ry), uz = -Math.sin(pier.ry), fx = Math.sin(pier.ry), fz = Math.cos(pier.ry), side = i === 1 ? -1 : 1, along = (i + 1) * 6.5 * side, out = 6 + i * 3;
+      p.push({ t: 'boat', x: pier.x + ux * along + fx * out, z: pier.z + uz * along + fz * out, ry: pier.ry + (i - 1) * .12, v: i });
+    }
+  }
+  // Floodlight masts at the larger pitches.
+  for (const sf of CAMPUS_MAP.surfaces) {
+    if (sf.kind !== 'pitch') continue;
+    const [fx0, fz0, fx1, fz1] = boundsOf(sf.ring);
+    if (Math.max(fx1 - fx0, fz1 - fz0) < 55) continue;
+    for (const [mx, mz] of [[fx0 - 2, fz0 - 2], [fx1 + 2, fz0 - 2], [fx0 - 2, fz1 + 2], [fx1 + 2, fz1 + 2]] as const) p.push({ t: 'mast', x: mx, z: mz, ry: Math.atan2((fx0 + fx1) / 2 - mx, (fz0 + fz1) / 2 - mz), v: 0 });
+  }
+  // Road-name boards at junction-like bends of the named through roads (OSM names), every ~260 m.
+  {
+    let acc = 0;
+    for (const r of CAMPUS_MAP.roads) {
+      if (!r.name || (r.highway !== 'secondary' && r.highway !== 'tertiary')) continue;
+      for (let i = 1; i < r.points.length; i++) {
+        const [ax, az] = r.points[i - 1]!, [bx, bz] = r.points[i]!, len = Math.hypot(bx - ax, bz - az);
+        acc += len; if (acc < 260 || len < 6) continue; acc = 0;
+        const ux = (bx - ax) / len, uz = (bz - az) / len, off = r.width / 2 + 2.4, x = ax + ux * len * .5 - uz * off, z = az + uz * len * .5 + ux * off;
+        if (offRoadAndBuilding(x, z, 1.5)) p.push({ t: 'roadsign', x, z, ry: Math.atan2(ux, uz) + Math.PI / 2, v: 0, label: r.name });
+      }
+    }
+  }
   return planCache = p;
 }
 
@@ -270,6 +358,10 @@ export function propBlocks():PropBlock[]{
       case 'car':circle(p,0,-1.2,1.1);circle(p,0,1.2,1.1);break;
       case 'keke':circle(p,0,0,1.0);break;
       case 'bus':circle(p,0,-2,1.3);circle(p,0,0,1.3);circle(p,0,2,1.3);break;
+      case 'shuttle':circle(p,0,-2.4,1.4);circle(p,0,0,1.4);circle(p,0,2.4,1.4);break;
+      case 'mast':circle(p,0,0,.3);break;
+      case 'roadsign':circle(p,0,0,.25);break;
+      case 'mapboard':circle(p,-1.6,0,.3);circle(p,1.6,0,.3);break;
       case 'goal':circle(p,-3.6,0,.3);circle(p,3.6,0,.3);break;
       case 'hoop':circle(p,0,-.4,.3);break;
       case 'sign':circle(p,-1.9,0,.3);circle(p,1.9,0,.3);break;

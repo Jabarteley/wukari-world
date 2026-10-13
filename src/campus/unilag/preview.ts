@@ -12,6 +12,7 @@ import { BUILDINGS, ZONES, ROADS, ANCHORS, ENTRANCE } from './layout.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 import { pointInRing, boundsOf } from './geo.ts';
 import { standalones } from './standalone.ts';
+import { framePreset as computeFrame, occluded } from './camera-frame.ts';
 import type { Kit } from '../../scene/kit.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
 import type { Walker } from './host.ts';
@@ -57,14 +58,13 @@ function drawMap(){
 /** Footprints with their heights, so the orbit camera can be kept out of buildings (solids share the CAMPUS_MAP.buildings order). */
 const solidBoxes=[...campus.walk.solids,...standalones().map(({building:b})=>{const [x0,z0,x1,z1]=boundsOf(b.ring);return [x0,0,z0,x1,b.height,z1] as typeof campus.walk.solids[number];})];
 const blockers=[...CAMPUS_MAP.buildings,...standalones().map(s=>s.building)].map((b,i)=>({ring:b.ring,bounds:solidBoxes[i]!}));
-const insideBuilding=(x: number,y: number,z: number)=>blockers.some(({ring,bounds:[x0,,z0,x1,h,z1]})=>x>x0-.8&&x<x1+.8&&z>z0-.8&&z<z1+.8&&y<h+2&&(pointInRing([x,z],ring)||blockerNear(ring,x,z)));
-function blockerNear(ring: readonly (readonly [number,number])[],x: number,z: number){for(let i=1;i<ring.length;i++){const [ax,az]=ring[i-1]!,[bx,bz]=ring[i]!,dx=bx-ax,dz=bz-az,t=Math.max(0,Math.min(1,((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz||1)));if(Math.hypot(x-ax-dx*t,z-az-dz*t)<.8)return true;}return false;}
+const insideBuilding=(x: number,y: number,z: number)=>occluded(x,y,z,0)!==null;
 const fog=new THREE.Fog('#bfd1d3',260,1750),background=new THREE.Color();
 function draw(){
   // Orbit camera arm: stops before the first building on its ray (never inside or behind a wall), never below the ground.
   const fx=walker.x+focus.dx,fz=walker.z+focus.dz,ty=lookHeight,wantX=fx+Math.sin(yaw)*Math.cos(tilt)*distance,wantY=Math.max(1.4,Math.sin(tilt)*distance+ty),wantZ=fz+Math.cos(yaw)*Math.cos(tilt)*distance;
   let arm=1;
-  for(let t=.1;t<=1;t+=.02)if(insideBuilding(fx+(wantX-fx)*t,ty+(wantY-ty)*t,fz+(wantZ-fz)*t)){arm=Math.max(.12,t-.06);break;}
+  for(let t=Math.max(.1,6/Math.max(8,distance));t<=1;t+=.02)if(insideBuilding(fx+(wantX-fx)*t,ty+(wantY-ty)*t,fz+(wantZ-fz)*t)){arm=Math.max(.12,t-.06);break;}
   camera.position.set(fx+(wantX-fx)*arm,Math.max(1.4,ty+(wantY-ty)*arm),fz+(wantZ-fz)*arm);
   camera.lookAt(fx,ty,fz);
   // A wider near plane at altitude gives the depth buffer 10-20x more precision for the distant ground, roofs and water.
@@ -103,18 +103,7 @@ const loop=createMotionLoop((dt: number)=>{
 },{onHidden(){keys.clear();walker.stop();},onVisible(){draw();}});
 function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();draw();}
 /** Entrances face the anchor's +z side (the anchor sits 2 m in front of the footprint), so frame from there, low enough to read the door and sign. */
-function framePreset(id: string){
-  const keep=id==='senate'||id==='main-gate'||id==='lagoon-front',anchor=ANCHORS[id];
-  lookHeight=2;focus.dx=focus.dz=0;
-  if(id==='lagoon-front'){yaw=-Math.PI/2;tilt=.38;distance=75;return;}
-  // Node-mapped landmarks have no footprint of their own: use the nearest mapped building within 14 m of the anchor.
-  let best: {h: number;size: number} | null=null,bestScore=Infinity,face=0;
-  if(anchor&&!keep)solidBoxes.forEach(([x0,,z0,x1,h,z1])=>{const d=Math.hypot(Math.max(x0-anchor.x,0,anchor.x-x1),Math.max(z0-anchor.z,0,anchor.z-z1)),score=d-Math.min(h,30)*.2;if(d<14&&h>3&&score<bestScore){bestScore=score;best={h,size:Math.max(x1-x0,z1-z0)};face=d===0?z1+2.5-anchor.z:0;}});
-  const b=BUILDINGS.find(item=>item.id===id),h=best?(best as {h:number}).h:b?.h||0,size=best?(best as {size:number}).size:Math.max(b?.w||0,b?.d||0);
-  if(b?.kind==='open-space'){yaw=.55;tilt=.42;distance=62;return;}
-  if(keep||!(h>0)){yaw=.55;tilt=.62;distance=id==='senate'?125:48;return;}
-  focus.dz=face;focus.dx=face?Math.min(14,size*.22):0;yaw=.3;tilt=.3;distance=Math.round(Math.min(95,Math.max(30,h*1.7+14,size*.5+18)));lookHeight=Math.min(10,Math.max(2,h*.3));
-}
+function framePreset(id: string){const f=computeFrame(id);yaw=f.yaw;tilt=f.tilt;distance=f.distance;lookHeight=f.lookHeight;focus.dx=f.dx;focus.dz=f.dz;}
 function jump(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(!a)return false;loop.stop();walker.stop();if(!campus.setSpot(id))return false;walker.place(a.x,a.z,a.ry);$<HTMLSelectElement>('destination').value=id;framePreset(id);draw();return true;}
 function go(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(a&&walker.goTo(a.x,a.z,{arrive(){ $('status').textContent=`You reached ${a.label}.`; }})){ $('status').textContent=`Walking to ${a.label}…`;loop.wake();return true;}$('status').textContent='That destination is not reachable from here.';return false;}
 function showTrip(at: { x: number; z: number; ry: number } | null){if(!at)return;walker.place(at.x,at.z,at.ry);campus.setPosition(at.x,at.z);bus.group.visible=true;campus.walk.avatar.visible=false;bus.group.position.set(at.x,.2,at.z);bus.group.rotation.y=at.ry;}

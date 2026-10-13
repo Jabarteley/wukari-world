@@ -133,7 +133,7 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
     get time(){return time;},get zone(){return position.zone;},get position(){return {...position};},
     update(state){const hour=lagosTime(state?.t??0).hour;return scene.setTime(venue.scene?.time||(hour<6||hour>=19?'night':hour>=17?'dusk':'day'));},
     setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;sky.setTime(time);mapped.update(position.x,position.z,time);life.update(position.x,position.z,time);return true;},
-    lighting(){return time==='night'?{hemi:['#3d63a0','#141d2c',1.2],sun:['#7092d8',.6,[80,140,50]]}:time==='dusk'?{hemi:['#9fb0dc','#4d4f63',1.45],sun:['#ffc277',2.1,[80,140,50]]}:{hemi:['#c6dde0','#68765a',1.8],sun:['#fff1d6',2.3,[80,140,50]]};},
+    lighting(){return time==='night'?{hemi:['#86a4e2','#33405f',2.3],sun:['#b3c8f7',1.6,[80,140,50]]}:time==='dusk'?{hemi:['#9fb0dc','#4d4f63',1.45],sun:['#ffc277',2.1,[80,140,50]]}:{hemi:['#c6dde0','#68765a',1.8],sun:['#fff1d6',2.3,[80,140,50]]};},
     setPosition,setSpot(id){const a=ANCHORS[id];return !!a&&setPosition(a.x,a.z);},
     setPlayer({look,seed='campus-visitor',pose='stand'}:PlayerInput={}){const key=JSON.stringify([look,seed]);if(look&&key!==playerKey){playerKey=key;player.userData.dispose();player=buildAvatar(kit,look,{detail:'low',rig:true,scale:.60,seed});group.add(player);player.position.set(position.x,0,position.z);walk.avatar=player;}poseAvatar(player,{pose});return true;},
     setCrowd(people){

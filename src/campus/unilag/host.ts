@@ -1,5 +1,6 @@
+import { occluded } from './camera-frame.ts';
 import { tripPace } from './trip-pace.ts';
-import { tripKind, tripOptions, shuttlePlan } from './trip-decision.ts';
+import { tripKind, tripOptions, shuttlePlan, describeTrip } from './trip-decision.ts';
 import type { TripOption } from './trip-decision.ts';
 import './host.css';
 import type { Group, WebGLRenderer } from 'three';
@@ -59,12 +60,13 @@ export interface CampusHost {
 export interface Walker {
   x: number; z: number; ry: number; moving: boolean; jogging: boolean; hasInput: boolean; mode: string;
   others: Point[] | null;
+  speed: number; jogSpeed: number;
   setGrid(grid: unknown): void;
   place(x: number, z: number, ry?: number): void;
   stop(): void;
   input(right: number, forward: number, fast?: boolean): void;
   step(dt: number, cameraYaw?: number, snap?: boolean): boolean;
-  goTo(x: number, z: number, options?: { exact?: boolean; face?: number; arrive?: () => void }): boolean;
+  goTo(x: number, z: number, options?: { exact?: boolean; face?: number; arrive?: () => void; jog?: boolean }): boolean;
   finishNow(): boolean;
 }
 interface PositionReporter { report(x: number, z: number, now: number): boolean; rest(x: number, z: number, now: number): boolean }
@@ -157,7 +159,21 @@ export function createCampusHost(container: HTMLElement, {
   const crowdKinds = new Map<string, 'npc' | 'player'>();
   let crowd: HostPerson[] = [], state: HostState | null = null, player: HostPlayer = {}, playerKey = '', crowdKey = '[]';
   let insets = { top: 0, bottom: 0 }, size = { width: 0, height: 0 };
-  let yaw = -Math.PI/2, tilt = 0.32, distance = 32, phase = 0, renderCount = 0;
+  // The first frame says UNILAG: a pulled-back 3/4 view of the whole gate arch, its lettering, the road and the palms.
+  // It settles into the ordinary follow camera on the first move or drag.
+  let yaw = 0.95, tilt = 0.42, distance = 74, phase = 0, renderCount = 0, intro = true;
+  function settleIntro(): void {
+    if (!intro) return;
+    intro = false;
+    const from = { tilt, distance }, start = globalThis.performance?.now?.() ?? 0, ms = reduced() ? 0 : 1300;
+    const step = (): void => {
+      if (disposed) return;
+      const k = ms ? Math.min(1, ((globalThis.performance?.now?.() ?? 0) - start) / ms) : 1, e = k * k * (3 - 2 * k);
+      tilt = from.tilt + (0.34 - from.tilt) * e; distance = from.distance + (34 - from.distance) * e; draw();
+      if (k < 1) globalThis.requestAnimationFrame?.(step);
+    };
+    step();
+  }
   let locked = false, wasMoving = false, disposed = false, drag: { id: number; x: number; y: number } | null = null, walkTask: WalkTask | null = null;
   let shuttleActive = false, shuttleAt: ShuttlePose | null = null, shuttleClock: ShuttleClock | null = null;
   const projected = new THREE.Vector3();
@@ -199,16 +215,16 @@ export function createCampusHost(container: HTMLElement, {
     const available = Math.max(180, size.height - insets.top - insets.bottom);
     const phone = size.width <= 720;
     const viewDistance = distance * (phone ? 0.88 : 1) * clamp(560 / available, 0.9, 1.42);
-    camera.position.set(
-      target.x + Math.sin(yaw) * Math.cos(tilt) * viewDistance,
-      Math.sin(tilt) * viewDistance + 2,
-      target.z + Math.cos(yaw) * Math.cos(tilt) * viewDistance,
-    );
+    // The camera arm stops before the first building or tree on its ray, so it never ends up inside or behind a wall.
+    const wantX = target.x + Math.sin(yaw) * Math.cos(tilt) * viewDistance, wantY = Math.sin(tilt) * viewDistance + 2, wantZ = target.z + Math.cos(yaw) * Math.cos(tilt) * viewDistance;
+    let arm = 1;
+    if (!intro && viewDistance < 140) for (let t = 0.1; t <= 1; t += 0.03) if (occluded(target.x + (wantX - target.x) * t, 2 + (wantY - 2) * t, target.z + (wantZ - target.z) * t, t > 0.8 ? 1.5 : 0.3) === 'building') { arm = Math.max(0.15, t - 0.08); break; }
+    camera.position.set(target.x + (wantX - target.x) * arm, Math.max(1.4, 2 + (wantY - 2) * arm), target.z + (wantZ - target.z) * arm);
     camera.lookAt(target.x, 2, target.z);
     const shift = Math.round((insets.bottom - insets.top) / 2);
     if (shift && size.width && size.height) camera.setViewOffset(size.width, size.height, 0, shift, size.width, size.height);
     else camera.clearViewOffset();
-    applyDepthRange(viewDistance);
+    applyDepthRange(viewDistance * arm);
     camera.updateProjectionMatrix();
   }
 
@@ -336,6 +352,7 @@ export function createCampusHost(container: HTMLElement, {
     walker.input(canWalk() ? right : 0, canWalk() ? forward : 0, keys.has('jog'));
     const fromX = walker.x, fromZ = walker.z;
     const moving = walker.step(dt, yaw, reduced());
+    if (moving && intro) settleIntro();
     phase += gaitPhase(Math.hypot(walker.x - fromX, walker.z - fromZ), .60, walker.jogging, false);
     campus.walk.move(walker.x, 0, walker.z, walker.ry);
     if (walker.moving) { campus.walk.gait(true, phase, walker.jogging); report.report(walker.x, walker.z, now()); }
@@ -380,7 +397,7 @@ export function createCampusHost(container: HTMLElement, {
     button.addEventListener('pointerdown', down); button.addEventListener('pointerup', up); button.addEventListener('pointercancel', up); button.addEventListener('lostpointercapture', up);
     controlCleanups.push(() => { button.removeEventListener('pointerdown', down); button.removeEventListener('pointerup', up); button.removeEventListener('pointercancel', up); button.removeEventListener('lostpointercapture', up); });
   }
-  const pointerDown = (event: PointerEvent): void => { if (event.button !== 0) return; drag = { id: event.pointerId, x: event.clientX, y: event.clientY }; try { canvas.setPointerCapture(event.pointerId); } catch {} };
+  const pointerDown = (event: PointerEvent): void => { if (event.button !== 0) return; settleIntro(); drag = { id: event.pointerId, x: event.clientX, y: event.clientY }; try { canvas.setPointerCapture(event.pointerId); } catch {} };
   const pointerMove = (event: PointerEvent): void => {
     if (!drag || drag.id !== event.pointerId) return;
     yaw -= (event.clientX - drag.x) * 0.006; tilt = clamp(tilt + (event.clientY - drag.y) * 0.004, 0.10, 1.35);
@@ -421,6 +438,7 @@ export function createCampusHost(container: HTMLElement, {
     const actionStarted = !previous?.activeAction && active;
     const committingHere = walkTask?.committing === true && walkTask.id === state.spot;
     if (!previous || wasShuttle || spotChanged || actionStarted) placeAt(state.spot, committingHere);
+    if (wasShuttle && !active && pendingLeg) { const leg = pendingLeg; pendingLeg = null; if (state.spot === leg.via) void walkTo(leg.dest, true); }
     if (active) { walker.stop(); cancelTask('busy'); releaseInput(); }
     if (changed || wasShuttle || spotChanged || actionStarted) draw();
   }
@@ -457,20 +475,22 @@ export function createCampusHost(container: HTMLElement, {
   }
 
   // ---- the "far away" choice sheet: lazy, built the first time a long trip is tapped ----
-  let sheet: HTMLDivElement | null = null, fade: HTMLDivElement | null = null;
-  function closeSheet(): void { if (sheet) sheet.hidden = true; }
+  let sheet: HTMLDivElement | null = null, scrim: HTMLDivElement | null = null, fade: HTMLDivElement | null = null;
+  function closeSheet(): void { if (sheet) sheet.hidden = true; if (scrim) scrim.hidden = true; document.body.classList.remove('campus-trip-sheet'); }
   function showSheet(id: string, options: TripOption[], pick: (choice: TripOption['id'] | null) => void): boolean {
     if (!options.length) return false;
-    if (!sheet) { sheet = document.createElement('div'); sheet.className = 'campus-host-sheet'; sheet.setAttribute('role', 'dialog'); container.append(sheet); }
+    if (!sheet) { scrim = document.createElement('div'); scrim.className = 'campus-host-sheet-scrim'; sheet = document.createElement('div'); sheet.className = 'campus-host-sheet'; sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-modal', 'true'); container.append(scrim, sheet); }
+    scrim!.onclick = () => { closeSheet(); pick(null); };
     sheet.replaceChildren();
-    const title = document.createElement('p'); title.className = 'campus-host-sheet-title'; title.textContent = `${ANCHORS[id]?.label ?? 'That place'} is far from here`; sheet.append(title);
+    const title = document.createElement('p'); title.className = 'campus-host-sheet-title'; title.textContent = `${ANCHORS[id]?.label ?? 'That place'} is far from here`;
+    const where = document.createElement('p'); where.className = 'campus-host-sheet-where'; where.textContent = describeTrip(walker, id); sheet.append(title, where);
     for (const option of options) {
       const button = document.createElement('button'); button.type = 'button'; button.className = 'campus-host-sheet-option'; button.dataset.trip = option.id;
       const label = document.createElement('b'); label.textContent = option.label; const note = document.createElement('small'); note.textContent = option.note;
       button.append(label, note); button.onclick = () => { closeSheet(); pick(option.id); }; sheet.append(button);
     }
     const stay = document.createElement('button'); stay.type = 'button'; stay.className = 'campus-host-sheet-cancel'; stay.textContent = 'Stay here'; stay.onclick = () => { closeSheet(); pick(null); }; sheet.append(stay);
-    sheet.hidden = false; return true;
+    sheet.hidden = false; scrim!.hidden = false; document.body.classList.add('campus-trip-sheet'); sheet.querySelector<HTMLElement>('button')?.focus(); return true;
   }
   /** "Go there": a ~1.5 s fade to black, the avatar is placed at the destination under it, then the fade clears. Reduced motion: no fade. */
   function goThere(id: string, task: WalkTask): void {
@@ -502,14 +522,17 @@ export function createCampusHost(container: HTMLElement, {
     if (!loop.available || reduced()) { walker.finishNow(); campus.walk.rest(); draw(); return; }
     loop.wake();
   }
-  function walkTo(id: string): Promise<WalkResult> {
+  /** After a shuttle ride that ends at the nearest stop, the last stretch is walked without another tap. */
+  let pendingLeg: { via: string; dest: string } | null = null;
+  function walkTo(id: string, continuing = false): Promise<WalkResult> {
+    if (!continuing) pendingLeg = null;
     const anchor = ANCHORS[id];
     if (!anchor) return Promise.resolve({ ok: false, code: 'invalid_spot', reason: 'That campus destination is unavailable.' });
     if (locked) return Promise.resolve({ ok: false, code: 'busy', reason: 'Finish or cancel your current action before moving.' });
     cancelTask();
     return new Promise<WalkResult>((resolve) => {
       const task: WalkTask = { id, resolve }; walkTask = task;
-      const distance = Math.hypot(walker.x - anchor.x, walker.z - anchor.z), kind = tripKind(distance);
+      const distance = Math.hypot(walker.x - anchor.x, walker.z - anchor.z), kind = continuing && tripKind(distance) === 'choose' ? 'jog' : tripKind(distance);
       if (kind !== 'choose') { startWalk(id, task, kind); return; }
       const options = tripOptions(walker, id, basePace.speed);
       const shown = showSheet(id, options, (choice) => {
@@ -519,7 +542,7 @@ export function createCampusHost(container: HTMLElement, {
         if (choice === 'go') { goThere(id, task); return; }
         const plan = shuttlePlan(walker, anchor); if (!plan) { goThere(id, task); return; }
         // Ride from the nearest stop: walk to it, commit it as the spot (the server boards from the player's stop), then hand the ride to the app.
-        task.shuttle = plan.alight; task.id = plan.board;
+        task.shuttle = plan.alight; task.id = plan.board; pendingLeg = plan.alight === id ? null : { via: plan.alight, dest: id };
         if (state?.spot === plan.board) { void arrived(plan.board, task); return; }
         startWalk(plan.board, task, 'jog');
       });

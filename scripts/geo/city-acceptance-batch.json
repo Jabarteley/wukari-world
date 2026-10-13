@@ -2,16 +2,17 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-l-2b",
-      "appSha": "3e119adcc9fe5ed03716400a10104512aea54dd9",
+      "id": "release-m-1",
+      "appSha": "0c4d507c7339778b7435a180e34c4fa11f59785b",
       "driverSha": "3523613e9a220e2d588cdeef6de57a4eb3d1b948",
       "cities": [
-        "garapan",
-        "taipei",
-        "kyrenia",
-        "macau",
-        "philipsburg",
-        "noumea"
+        "oranjestad",
+        "hamilton",
+        "avarua",
+        "flying-fish-cove",
+        "nuuk",
+        "hagatna",
+        "hong-kong"
       ],
       "roundtrip": true,
       "browserOnly": true

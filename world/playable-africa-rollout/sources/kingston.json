@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kingston",
+  "countryIso2": "JM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Kingston",
+    "coordinatesWgs84": [
+      -76.7928128,
+      17.9712148
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/jamaica-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "kingston-airport",
+    "name": "Norman Manley International Airport",
+    "lon": -76.7874984741211,
+    "lat": 17.935699462890625,
+    "sourceUrl": "https://ourairports.com/airports/MKJP/"
+  },
+  "boxes": {
+    "play": [
+      17.79033391006602,
+      -76.98188459783609,
+      18.152095689933976,
+      -76.6037410021639
+    ],
+    "core": [
+      17.925994577516505,
+      -76.84004421729585,
+      18.016435022483492,
+      -76.74558138270413
+    ],
+    "outline": [
+      17.74033391006602,
+      -77.03188459783608,
+      18.202095689933977,
+      -76.5537410021639
+    ],
+    "wide": [
+      17.19033391006602,
+      -77.58188459783608,
+      18.752095689933977,
+      -76.0037410021639
+    ],
+    "water": [
+      17.19033391006602,
+      -77.58188459783608,
+      18.752095689933977,
+      -76.0037410021639
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/jamaica-261011.osm.pbf",
+    "datasetSha256": "cc3243ff4a9e75f6d700b15c824e054532f17f52e39c54cac407e5a92fd43ebc",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "d16d35629f789c9ea4eceea22168b6b6feec453af0df679e9b3174739d356d17",
+        "elements": 607
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f4ecb9a7860087fa54ef24e9e6814841240264808900dec7c2e311dfa2ab170a",
+        "elements": 170
+      },
+      {
+        "file": "water.json",
+        "sha256": "a7751f779f171b14ac66ce7081616c80f1d19b33d5154bd35859a66c6cc7c681",
+        "elements": 297
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b921c07bb25228251ce4b1f04e334eb7b10376d633abb262a7d565f306d89822",
+        "elements": 399
+      },
+      {
+        "file": "roads.json",
+        "sha256": "6224790f2565b184c86ad793ac6e6e672364c2cbc535e0c97d60908636b8ee10",
+        "elements": 709
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Spanish Town Railway Station",
+      "osm": "way/353900429",
+      "coordinatesWgs84": [
+        -76.9554,
+        17.99032
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lilians",
+      "osm": "node/1137638468",
+      "coordinatesWgs84": [
+        -76.743025,
+        18.019087
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Library of Jamaica",
+      "osm": "way/375253490",
+      "coordinatesWgs84": [
+        -76.789657,
+        17.966798
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bellevue Hospital",
+      "osm": "way/353080113",
+      "coordinatesWgs84": [
+        -76.770509,
+        17.970466
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Heroes Park",
+      "osm": "way/28048272",
+      "coordinatesWgs84": [
+        -76.788625,
+        17.982952
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Port Henderson Plaza",
+      "osm": "way/881904829",
+      "coordinatesWgs84": [
+        -76.883063,
+        17.954915
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Holy Trinity Cathedral",
+      "osm": "way/296160942",
+      "coordinatesWgs84": [
+        -76.784195,
+        17.975346
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Emancipation Square",
+      "osm": "way/374570627",
+      "coordinatesWgs84": [
+        -76.954385,
+        17.996245
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jamaica National Heritage Trust",
+      "osm": "way/375256353",
+      "coordinatesWgs84": [
+        -76.790672,
+        17.973735
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of the West Indies (Mona)",
+      "osm": "way/354944904",
+      "coordinatesWgs84": [
+        -76.745762,
+        18.005365
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sabina Park",
+      "osm": "way/25886780",
+      "coordinatesWgs84": [
+        -76.782587,
+        17.977973
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bob Marley museum",
+      "osm": "way/262238296",
+      "coordinatesWgs84": [
+        -76.779764,
+        18.019822
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kingston Public Hospital",
+      "osm": "way/325781633",
+      "coordinatesWgs84": [
+        -76.795447,
+        17.975855
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Trinity Moravian Church",
+      "osm": "node/4913756065",
+      "coordinatesWgs84": [
+        -76.807007,
+        18.006136
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Emancipation Park",
+      "osm": "way/173106442",
+      "coordinatesWgs84": [
+        -76.789756,
+        18.002806
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Spanish Town Hospital",
+      "osm": "way/374593273",
+      "coordinatesWgs84": [
+        -76.947143,
+        17.991774
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Gallery of Jamaica",
+      "osm": "node/4956331011",
+      "coordinatesWgs84": [
+        -76.794686,
+        17.964785
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mico University College",
+      "osm": "node/2497592734",
+      "coordinatesWgs84": [
+        -76.787514,
+        17.988045
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Negro Aroused",
+      "osm": "node/307991768",
+      "coordinatesWgs84": [
+        -76.793282,
+        17.963651
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shaare Shalom Synagogue",
+      "osm": "way/375141828",
+      "coordinatesWgs84": [
+        -76.790108,
+        17.97511
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Technology, Jamaica",
+      "osm": "way/299256337",
+      "coordinatesWgs84": [
+        -76.743978,
+        18.018409
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Blackalicious",
+      "osm": "node/12539925828",
+      "coordinatesWgs84": [
+        -76.660025,
+        17.934276
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cinchona Botanical Gardens",
+      "osm": "way/753127490",
+      "coordinatesWgs84": [
+        -76.656099,
+        18.071253
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rockwells Clubhouse",
+      "osm": "way/839108008",
+      "coordinatesWgs84": [
+        -76.823757,
+        18.109986
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1271,
+      "sha256": "5060f01d4419a874ef605ab6c0691e91da06c1f20457285e57451ac15a434299"
+    },
+    "geometry.ts": {
+      "bytes": 90472,
+      "sha256": "731afdfb23b3178b7a42bed944035fd50952380ca5dc61c1c4251e3c7c239572"
+    },
+    "places.ts": {
+      "bytes": 9843,
+      "sha256": "94f3c91b98471bb57dc02289e97014dc75c2474de549c99c99d7fc4ae10505d4"
+    },
+    "terrain.ts": {
+      "bytes": 230933,
+      "sha256": "fa7f5f88526c0ccb9f93ccb539be42299b16c4d600bbe1b4e6e4dc5afe75dd9c"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "b3e74431e4c8e9a0add3be69a23f43551413b599652be9de9370ec610cad69d1"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

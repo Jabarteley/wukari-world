@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "nassau",
+  "countryIso2": "BS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Nassau",
+    "coordinatesWgs84": [
+      -77.3383438,
+      25.0782266
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/bahamas-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "nassau-airport",
+    "name": "Lynden Pindling International Airport",
+    "lon": -77.466202,
+    "lat": 25.039,
+    "sourceUrl": "https://ourairports.com/airports/MYNN/"
+  },
+  "boxes": {
+    "play": [
+      24.897345710066023,
+      -77.53700009397514,
+      25.259107489933978,
+      -77.13968750602487
+    ],
+    "core": [
+      25.033006377516507,
+      -77.38795259204727,
+      25.123446822483494,
+      -77.28873500795274
+    ],
+    "outline": [
+      24.847345710066023,
+      -77.58700009397513,
+      25.30910748993398,
+      -77.08968750602487
+    ],
+    "wide": [
+      24.297345710066022,
+      -78.13700009397513,
+      25.85910748993398,
+      -76.53968750602488
+    ],
+    "water": [
+      24.297345710066022,
+      -78.13700009397513,
+      25.85910748993398,
+      -76.53968750602488
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/bahamas-261011.osm.pbf",
+    "datasetSha256": "4fbd3e6ebd93b4df3ccf6667e595286696b349de6e42ef382ad8bf18602c9aa1",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e152ae5305de1203f1892522b91a0b865991122bce1fa7c021fb7674f04e939d",
+        "elements": 628
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f1b9a67c6fc476673fe7bde795bcd2ee72837dd1fa09aff24ea3f017376f545c",
+        "elements": 81
+      },
+      {
+        "file": "water.json",
+        "sha256": "d5891ec5181eeace4afbbc917b0c8ccdd57ed1e702e433cf200eed632aee7871",
+        "elements": 1504
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "42da057cf0eb358977524aa1d1895a896dfe1165c9acffc5ff557d6619009f55",
+        "elements": 700
+      },
+      {
+        "file": "roads.json",
+        "sha256": "af2c594c401f80a60deea80a2552d947bb12a967f67bed45102a7b406c00b27b",
+        "elements": 538
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Paradise Island Ferry Terminal",
+      "osm": "node/2080727622",
+      "coordinatesWgs84": [
+        -77.32258,
+        25.080039
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Compass Point Restaurant",
+      "osm": "node/4108498823",
+      "coordinatesWgs84": [
+        -77.480026,
+        25.064341
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nassau Public Library & Museum",
+      "osm": "way/301902604",
+      "coordinatesWgs84": [
+        -77.340532,
+        25.076429
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sandilands Rehabilitation Centre (SRC)",
+      "osm": "way/301893671",
+      "coordinatesWgs84": [
+        -77.291256,
+        25.031657
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bamboo Town Constituency Park",
+      "osm": "way/1491651204",
+      "coordinatesWgs84": [
+        -77.347035,
+        25.017852
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pompey Village",
+      "osm": "way/368833938",
+      "coordinatesWgs84": [
+        -77.401562,
+        25.073167
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Christ Church Cathedral",
+      "osm": "way/444246696",
+      "coordinatesWgs84": [
+        -77.344105,
+        25.077266
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rawson Square",
+      "osm": "way/234030479",
+      "coordinatesWgs84": [
+        -77.340461,
+        25.078312
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bahamas National Archives",
+      "osm": "node/4828931426",
+      "coordinatesWgs84": [
+        -77.322667,
+        25.071483
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of The Bahamas (UB)",
+      "osm": "way/80922971",
+      "coordinatesWgs84": [
+        -77.354659,
+        25.060483
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Thomas A. Robinson National Stadium",
+      "osm": "way/301425856",
+      "coordinatesWgs84": [
+        -77.360337,
+        25.054368
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Montagu",
+      "osm": "way/191808714",
+      "coordinatesWgs84": [
+        -77.30662,
+        25.073661
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Albany Golf Course",
+      "osm": "way/222586240",
+      "coordinatesWgs84": [
+        -77.501568,
+        25.011404
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queens Staircase",
+      "osm": "way/374794285",
+      "coordinatesWgs84": [
+        -77.337625,
+        25.073197
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Andrews Presbyterian Kirk",
+      "osm": "way/408486495",
+      "coordinatesWgs84": [
+        -77.343148,
+        25.07594
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lia Ra'chards Heavenly Cafe",
+      "osm": "node/12653954301",
+      "coordinatesWgs84": [
+        -77.394245,
+        25.01467
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Southwest Diner & Bar",
+      "osm": "node/14066492002",
+      "coordinatesWgs84": [
+        -77.457058,
+        25.00257
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Community Centre",
+      "osm": "way/174579796",
+      "coordinatesWgs84": [
+        -77.499312,
+        25.041052
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cairo National Park",
+      "osm": "way/228455375",
+      "coordinatesWgs84": [
+        -77.431266,
+        25.073523
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bahamas Baptist Community College (BBC)",
+      "osm": "way/377805365",
+      "coordinatesWgs84": [
+        -77.314882,
+        25.048027
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faith Plaza",
+      "osm": "way/692348777",
+      "coordinatesWgs84": [
+        -77.370608,
+        25.01177
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "New Providence Community Centre",
+      "osm": "way/370134561",
+      "coordinatesWgs84": [
+        -77.450836,
+        25.061708
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Continental Foods",
+      "osm": "node/5088154289",
+      "coordinatesWgs84": [
+        -77.309446,
+        25.022312
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of West Indies Open Campus",
+      "osm": "node/3796314387",
+      "coordinatesWgs84": [
+        -77.316368,
+        25.059762
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1246,
+      "sha256": "afdda1d6d474ab0fe795c4ff24665b23c292131e2721169f5e74412fa76c5513"
+    },
+    "geometry.ts": {
+      "bytes": 162008,
+      "sha256": "07021bdbe6052f064e54725c0ad167597fdce7ca36989b18d6081bfc641eb854"
+    },
+    "places.ts": {
+      "bytes": 9705,
+      "sha256": "8d90846113e899e4652e6c5556a201177c089ca7f7a418648e8ed714f58785e2"
+    },
+    "terrain.ts": {
+      "bytes": 307775,
+      "sha256": "0a2b4de60e86832a15c20fa155939e347c6ff00d9afe12ed01df361af1cbe32b"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "3757a2d529f949d48c81471cf07e58d6787e42619804d9ae196f85971ff51819"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

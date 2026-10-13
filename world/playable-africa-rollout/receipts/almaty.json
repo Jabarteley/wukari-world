@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "almaty",
+  "countryIso2": "KZ",
+  "generationIdentity": {
+    "cityId": "almaty",
+    "stateId": "kz-almaty",
+    "stateName": "Almaty"
+  },
+  "inventorySha256": "19591845a50bff9240c0b57a423196968f509127a62a8179f9d5d37529f5066e",
+  "inventoryPath": "world/playable-africa-rollout/sources/almaty.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "almaty-airport",
+    "name": "Almaty International Airport",
+    "lon": 77.042828,
+    "lat": 43.354267,
+    "sourceUrl": "https://ourairports.com/airports/UAAA/"
+  },
+  "bounds": [
+    43.05551151006602,
+    76.69838406081209,
+    43.41727328993398,
+    77.19307093918792
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/kazakhstan-261011.osm.pbf",
+      "datasetSha256": "53a639fc0cfdb786089050ba4c18c8a25ed91f7758ec71d934a0257a7d056495",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "1ff5143df60eae66efc379b683551da9afce81c4d49e7dd4370006bc6832c351",
+          "elements": 1872
+        },
+        {
+          "file": "extras.json",
+          "sha256": "be1745f87e7bc2ca8f90427663e7c68098a40177ea1019ba28f493b867362830",
+          "elements": 214
+        },
+        {
+          "file": "water.json",
+          "sha256": "a093622a7ae6af65d95772511372886c133f2cf98ad81181be9748fe2da06e5d",
+          "elements": 134
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "7d7ed44e3e5efe350a81022b34aa7657b63b5fb2538dce2e1aeb56c2259fd1ac",
+          "elements": 2311
+        },
+        {
+          "file": "roads.json",
+          "sha256": "dddee5d9c19b6f1ecf8b0dce09d86bfd2cbed066c2cfec7e57f1659e243159a9",
+          "elements": 2223
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 255,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 23,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 3
+  },
+  "observed": {
+    "places": 1872,
+    "extras": 214,
+    "water": 134,
+    "landuse": 2311,
+    "roads": 2223
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1211,
+      "sha256": "3c4199eeb388fd439b514e1654a38737e6b1d18dcc75ce13a9b85847f37faf3c"
+    },
+    "geometry.ts": {
+      "bytes": 121596,
+      "sha256": "773f337c9a9fe0bde86e0da95468b78d6b6d6248c9d0f02fe49473945f22654e"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "1bd25f854c2f66017aa9b61cf69af2fc627fad713665abbff893935e5f933f09"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/almaty.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

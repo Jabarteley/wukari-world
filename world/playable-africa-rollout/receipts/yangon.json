@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "yangon",
+  "countryIso2": "MM",
+  "generationIdentity": {
+    "cityId": "yangon",
+    "stateId": "mm-yangon",
+    "stateName": "Yangon"
+  },
+  "inventorySha256": "3ba5bd04dcd27dcd13bfec692668e4c354408981d9438fe9ac2868989a91108c",
+  "inventoryPath": "world/playable-africa-rollout/sources/yangon.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "yangon-airport",
+    "name": "Yangon International Airport",
+    "lon": 96.1332015991,
+    "lat": 16.907300949099998,
+    "sourceUrl": "https://ourairports.com/airports/VYYY/"
+  },
+  "bounds": [
+    16.615832010066022,
+    95.97314272669976,
+    16.977593789933977,
+    96.34884047330024
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/myanmar-261011.osm.pbf",
+      "datasetSha256": "9ff926b35db2209c43b162dabcc50fb6d133341ed2f34a629e6cc31e598dbfa9",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6a3b9d7da80ff74626e86322efe8f9c5f77b40956b83475978758d1732c8203e",
+          "elements": 3419
+        },
+        {
+          "file": "extras.json",
+          "sha256": "6c19ba22c0defe4eea87708f4115c01dd702d76c7f32afc29c712f6bc92f4d3e",
+          "elements": 460
+        },
+        {
+          "file": "water.json",
+          "sha256": "9ea0df45d793e0023da8f1d8d6bdcf1e053b5dceddcbfbfb4fa56102bb3bc727",
+          "elements": 583
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "524d2a2e78f53982bd2ee71a62eccde8ee77f5297c6a489da8114ee243ccd655",
+          "elements": 2198
+        },
+        {
+          "file": "roads.json",
+          "sha256": "518bcf97802f91023c5d622c168ebe5bb43748a7feceb6b9a1f92cf3afb9f54d",
+          "elements": 2997
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 370,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 30,
+    "waterPolygons": 25,
+    "reachWaterPolygons": 88
+  },
+  "observed": {
+    "places": 3419,
+    "extras": 460,
+    "water": 583,
+    "landuse": 2198,
+    "roads": 2997
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1225,
+      "sha256": "2723e7e1ee075a0640da0a2bd145f163a04eea6f4bb798c882008f3e27c1dd62"
+    },
+    "geometry.ts": {
+      "bytes": 137251,
+      "sha256": "642435de99adeab4246084cefdcfa39186ced42425534160e25d3d2209d3beff"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "718b7300f9a03b44b8150ce8bba14edf6e43f2bd1d2bab978048cba85b6808dd"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/yangon.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

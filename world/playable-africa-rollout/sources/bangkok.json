@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "bangkok",
+  "countryIso2": "TH",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Bangkok",
+    "coordinatesWgs84": [
+      100.4935089,
+      13.7524938
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/thailand-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "bangkok-airport",
+    "name": "Suvarnabhumi Airport",
+    "lon": 100.747002,
+    "lat": 13.6811,
+    "sourceUrl": "https://ourairports.com/airports/VTBS/"
+  },
+  "boxes": {
+    "play": [
+      13.57161291006602,
+      100.30840009468739,
+      13.933374689933979,
+      100.75624778595025
+    ],
+    "core": [
+      13.707273577516505,
+      100.44725873712021,
+      13.797714022483495,
+      100.53975906287978
+    ],
+    "outline": [
+      13.52161291006602,
+      100.25840009468739,
+      13.98337468993398,
+      100.80624778595025
+    ],
+    "wide": [
+      12.971612910066021,
+      99.70840009468739,
+      14.533374689933979,
+      101.35624778595025
+    ],
+    "water": [
+      12.971612910066021,
+      99.70840009468739,
+      14.533374689933979,
+      101.35624778595025
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/thailand-261011.osm.pbf",
+    "datasetSha256": "a807751a1cbb8740b13254a4a240bfa539a1b61fae590521ba79c8fdc22f5cb6",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "0505a67dbe70c8aef73e5f6f51f589aa4ed78ffc9f4eb27756de400f56b8866c",
+        "elements": 9182
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ad33de983339620b8729f808c3626ad6af1d5194b4f00900d9729a9fd5859ca4",
+        "elements": 1788
+      },
+      {
+        "file": "water.json",
+        "sha256": "b10cf1a656b3d819e218c373ee8d266681a0d34b9ded0ae1a724fa9cab0c0225",
+        "elements": 1399
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3b1c6df7ba69355521fa2b5a36857f0ec441b18ad5e29224871e5592fb140861",
+        "elements": 12045
+      },
+      {
+        "file": "roads.json",
+        "sha256": "3cd5fb61cd49bb77e38e3359382693284aa7d135d2c163fc26dbf0d53fc75341",
+        "elements": 7570
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Sala Ya",
+      "osm": "node/249644272",
+      "coordinatesWgs84": [
+        100.324334,
+        13.802502
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sirocco",
+      "osm": "node/358876587",
+      "coordinatesWgs84": [
+        100.516873,
+        13.721292
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dhurakij Pundit University",
+      "osm": "relation/2840322",
+      "coordinatesWgs84": [
+        100.551039,
+        13.870619
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nakornthon Hospital",
+      "osm": "node/3040931236",
+      "coordinatesWgs84": [
+        100.434319,
+        13.660606
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Suan Luang Rama IX",
+      "osm": "way/33042465",
+      "coordinatesWgs84": [
+        100.663784,
+        13.685093
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Central Westgate",
+      "osm": "way/359413315",
+      "coordinatesWgs84": [
+        100.411664,
+        13.876793
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wat Khae",
+      "osm": "node/1669113342",
+      "coordinatesWgs84": [
+        100.564825,
+        13.606456
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ศาลาว่าการกรุงเทพมหานคร 2",
+      "osm": "way/1319861844",
+      "coordinatesWgs84": [
+        100.553922,
+        13.770772
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Thai Bar",
+      "osm": "way/200187184",
+      "coordinatesWgs84": [
+        100.40804,
+        13.760422
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Institute of Development Administration",
+      "osm": "way/1543169884",
+      "coordinatesWgs84": [
+        100.653669,
+        13.770217
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lumpinee Boxing Stadium",
+      "osm": "node/2962259464",
+      "coordinatesWgs84": [
+        100.608727,
+        13.867004
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Safari World",
+      "osm": "way/706259602",
+      "coordinatesWgs84": [
+        100.70315,
+        13.865374
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wat Rat Burana",
+      "osm": "node/1669417525",
+      "coordinatesWgs84": [
+        100.744353,
+        13.580705
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Wat Nong Khaem",
+      "osm": "way/378636213",
+      "coordinatesWgs84": [
+        100.338784,
+        13.676467
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MK Restaurant",
+      "osm": "node/6169672727",
+      "coordinatesWgs84": [
+        100.480555,
+        13.823934
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bang Nam Pheung Floating Market",
+      "osm": "node/1641043367",
+      "coordinatesWgs84": [
+        100.576055,
+        13.680271
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "King Mongkut's University of Technology, Thonburi",
+      "osm": "way/420312611",
+      "coordinatesWgs84": [
+        100.49384,
+        13.651776
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Siam University",
+      "osm": "way/177938414",
+      "coordinatesWgs84": [
+        100.453195,
+        13.720833
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Thawiwanarom Park",
+      "osm": "relation/20313115",
+      "coordinatesWgs84": [
+        100.352472,
+        13.74445
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Panyananthaphikkhu Chonprathan Medical Center",
+      "osm": "node/1645930798",
+      "coordinatesWgs84": [
+        100.502017,
+        13.899912
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Royal Thai Air Force Museum",
+      "osm": "way/1464119566",
+      "coordinatesWgs84": [
+        100.621721,
+        13.91998
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Suan Luang Rama VIII Park",
+      "osm": "way/203011799",
+      "coordinatesWgs84": [
+        100.494838,
+        13.768442
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nopparat Rajathanee Hospital",
+      "osm": "way/341749639",
+      "coordinatesWgs84": [
+        100.688346,
+        13.817364
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Thunder Dome",
+      "osm": "way/175314200",
+      "coordinatesWgs84": [
+        100.548398,
+        13.9181
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1200,
+      "sha256": "36a1ee2cf09076960c3d5d026b354186af2c0f57bbbdab80e522690face16acd"
+    },
+    "geometry.ts": {
+      "bytes": 226381,
+      "sha256": "c8a8cbe29228de0f1ef0c7df08be46a2937b81b8b9898dc94da026b51ff62b06"
+    },
+    "places.ts": {
+      "bytes": 10011,
+      "sha256": "320ea24cf542a544464d151fc0f8863122ad6be4936d3259e74d9fa1d1e33b3a"
+    },
+    "terrain.ts": {
+      "bytes": 149347,
+      "sha256": "69824d7d4a76df87ba3267bb13d27ffc9942883737f8a0ce8327b194f2223880"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "7719aad9d86ec417935c4dbe2a0c6661fab177f2418647e31c34279e1d1b9222"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "damascus",
+  "countryIso2": "SY",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Damascus",
+    "coordinatesWgs84": [
+      36.3095814,
+      33.5130695
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/syria-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "damascus-airport",
+    "name": "Damascus International Airport",
+    "lon": 36.51559829711914,
+    "lat": 33.4114990234375,
+    "sourceUrl": "https://ourairports.com/airports/OSDI/"
+  },
+  "boxes": {
+    "play": [
+      33.33218861006602,
+      36.09364451013709,
+      33.69395038993398,
+      36.526361020459994
+    ],
+    "core": [
+      33.46784927751651,
+      36.25568211799431,
+      33.558289722483494,
+      36.36348068200569
+    ],
+    "outline": [
+      33.28218861006602,
+      36.04364451013709,
+      33.74395038993398,
+      36.57636102045999
+    ],
+    "wide": [
+      32.73218861006602,
+      35.49364451013709,
+      34.29395038993398,
+      37.126361020459996
+    ],
+    "water": [
+      33.33218861006602,
+      36.09364451013709,
+      33.69395038993398,
+      36.526361020459994
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/syria-261011.osm.pbf",
+    "datasetSha256": "51a57093143679ef58231fc320a43ca1ca9f20406e3e625a8a36e8f0c2aee7a2",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "a3e606ab4b59014b0176b9445157a75a84b665378600ab52d33115e0873ee1cd",
+        "elements": 1198
+      },
+      {
+        "file": "extras.json",
+        "sha256": "cb86a6a78753fab9c6812b53b043af49693c372196e4adc14883864af1bf56fd",
+        "elements": 633
+      },
+      {
+        "file": "water.json",
+        "sha256": "52cbd49c9fa8a099af61c7238225a230a764503fd474c4a1f3078d32ced3f465",
+        "elements": 32
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "a94ddcd356d3a7db6a58c4ae112a6f792c8e5aafcbe9a05d4e3400c0812bf6a8",
+        "elements": 1971
+      },
+      {
+        "file": "roads.json",
+        "sha256": "ec77d16ff75c6c530facbfc91cb17cecf4a3a68ce0b48fff8283627505602c35",
+        "elements": 1267
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Hejaz Railway Station",
+      "osm": "way/28843859",
+      "coordinatesWgs84": [
+        36.294945,
+        33.511234
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bawabet Demashq",
+      "osm": "node/1426370724",
+      "coordinatesWgs84": [
+        36.406842,
+        33.439189
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Higher Institute for Applied Sciences and Technology",
+      "osm": "way/842850104",
+      "coordinatesWgs84": [
+        36.312403,
+        33.553887
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "مستشفى المزة العسكري",
+      "osm": "relation/18482507",
+      "coordinatesWgs84": [
+        36.254523,
+        33.512091
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Umayyads Park",
+      "osm": "way/30419151",
+      "coordinatesWgs84": [
+        36.269826,
+        33.516936
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Damasquino Mall",
+      "osm": "way/1194503849",
+      "coordinatesWgs84": [
+        36.27533,
+        33.500621
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nabi Habeel Mosque",
+      "osm": "node/1830080283",
+      "coordinatesWgs84": [
+        36.106099,
+        33.621262
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Abbassiyeen Square",
+      "osm": "way/708301579",
+      "coordinatesWgs84": [
+        36.318543,
+        33.524192
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ministry of education",
+      "osm": "way/842962557",
+      "coordinatesWgs84": [
+        36.292071,
+        33.525737
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Damascus University",
+      "osm": "relation/4614118",
+      "coordinatesWgs84": [
+        36.295802,
+        33.546202
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Muhafaza Stadium",
+      "osm": "way/1121497973",
+      "coordinatesWgs84": [
+        36.285346,
+        33.496163
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bab Kisan",
+      "osm": "node/354573941",
+      "coordinatesWgs84": [
+        36.315657,
+        33.506537
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sayyidah Zaynab Shrine",
+      "osm": "node/12989783743",
+      "coordinatesWgs84": [
+        36.340884,
+        33.44436
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tishreen Military Hospital",
+      "osm": "way/351273248",
+      "coordinatesWgs84": [
+        36.333406,
+        33.56562
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tomb of the Unknown Soldier",
+      "osm": "way/1120153082",
+      "coordinatesWgs84": [
+        36.254783,
+        33.526129
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tomb of Mu'awiya I",
+      "osm": "node/13386461392",
+      "coordinatesWgs84": [
+        36.303113,
+        33.502155
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sayyidah Ruqayya Shrine",
+      "osm": "way/1486782802",
+      "coordinatesWgs84": [
+        36.307329,
+        33.51327
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Higher Institute of Dramatic Art",
+      "osm": "node/1246877089",
+      "coordinatesWgs84": [
+        36.279421,
+        33.51239
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Al Jala' Sports Stadium",
+      "osm": "relation/16920636",
+      "coordinatesWgs84": [
+        36.253743,
+        33.502027
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ibn Nafees Hospital",
+      "osm": "way/106775196",
+      "coordinatesWgs84": [
+        36.306771,
+        33.547064
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jasmine Stadium",
+      "osm": "way/5057870",
+      "coordinatesWgs84": [
+        36.289157,
+        33.505409
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "سوق الخجا",
+      "osm": "way/166614282",
+      "coordinatesWgs84": [
+        36.300058,
+        33.516678
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sebki Park",
+      "osm": "way/28869028",
+      "coordinatesWgs84": [
+        36.288403,
+        33.519437
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "سوق السكرية",
+      "osm": "node/3245444438",
+      "coordinatesWgs84": [
+        36.303032,
+        33.508409
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1238,
+      "sha256": "9b0ffd54a37a7fef677df0a1c01c48c7af0a1d48910fed5672b742afafbc5217"
+    },
+    "geometry.ts": {
+      "bytes": 149038,
+      "sha256": "344d68812a8420ed49e0e80041960083d8630260cfd38c9757de6a67f08fed7c"
+    },
+    "places.ts": {
+      "bytes": 9980,
+      "sha256": "1a2c1007040a16058519e31bd04f59e0731ce60c2fca8b9a73fbaf6d4120384f"
+    },
+    "terrain.ts": {
+      "bytes": 31554,
+      "sha256": "51b3055779c088874453f89a2be5e762f1da9c9a185e70752413781701fb360c"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "9014099b52a7705563c9f2f893b1102934991ce5c3f95b36f34c7270eb542c6b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

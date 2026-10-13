@@ -1,0 +1,379 @@
+{
+  "schemaVersion": 1,
+  "cityId": "belize-city",
+  "countryIso2": "BZ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Belize City",
+    "coordinatesWgs84": [
+      -88.1988737,
+      17.5002768
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america/belize-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "belize-city-airport",
+    "name": "Philip S. W. Goldson International Airport",
+    "lon": -88.303556,
+    "lat": 17.539951,
+    "sourceUrl": "https://ourairports.com/airports/MZBZ/"
+  },
+  "boxes": {
+    "play": [
+      17.319395910066024,
+      -88.38744371588106,
+      17.68115768993398,
+      -88.01030368411892
+    ],
+    "core": [
+      17.45505657751651,
+      -88.2459807805808,
+      17.545497022483495,
+      -88.15176661941919
+    ],
+    "outline": [
+      17.269395910066024,
+      -88.43744371588106,
+      17.73115768993398,
+      -87.96030368411893
+    ],
+    "wide": [
+      16.719395910066023,
+      -88.98744371588106,
+      18.28115768993398,
+      -87.41030368411893
+    ],
+    "water": [
+      16.719395910066023,
+      -88.98744371588106,
+      18.28115768993398,
+      -87.41030368411893
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america/belize-261011.osm.pbf",
+    "datasetSha256": "924e3eb2b59fca6200115945e339334bd092e69ab9b8031be6e985dcb0a94498",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/central-america/belize-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 18272673,
+        "md5": "d91b7238d1917141515817e0d7422d5f",
+        "sha256": "c264f8618f9f7dcbe792437726e1cae1efcddfda016f610f90fe32fe9132e66b"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/central-america/guatemala-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 131359417,
+        "md5": "4f8618c6854e76083ca5dad916fea8da",
+        "sha256": "6b1e405f0a3bbf120987e645847e2045aa4e33c2ec1e19a665b3d9378ee34daa",
+        "reason": "admin-0 relation/287827 member way/384124908 (maritime territorial closing line) is absent from the Belize clip; both nodes lie inside the Guatemala clip"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/north-america/mexico-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 646670065,
+        "md5": "823f85852e7a49a61974d19f40b7361b",
+        "sha256": "17ae82c36eaa3208384cf8a9059269f0fb456a67eec0fe9f5c4611563c504b75",
+        "reason": "admin-0 relation/287827 member way/194198510 (Mexico - Belize maritime limit closing line) is absent from the Belize clip; both nodes lie inside the Mexico clip and in no smaller neighbour"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "9d2a47fdc3b79a88853c0e32f2f1086dea83fa15e9679665b0c044741d1b2c1a",
+        "elements": 240
+      },
+      {
+        "file": "extras.json",
+        "sha256": "1810234760a234171caf44dc9d414de22c42ac7b56cf848dd9f35b4d21066a59",
+        "elements": 63
+      },
+      {
+        "file": "water.json",
+        "sha256": "73b1e653bf265fd710272412b4053e64b5c9c887843e43ca00b273c683d45122",
+        "elements": 2226
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "2ad661ed002172046bc8fbe2f04c52ccbeddeb6f8c06124da2cc1416ff1a163b",
+        "elements": 532
+      },
+      {
+        "file": "roads.json",
+        "sha256": "ddf34f9975bf96fa93a038c2e75570cd0f20fa82145394f0cbaaeae95ec303c7",
+        "elements": 313
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Belize City => Corozal Town",
+      "osm": "node/9817874415",
+      "coordinatesWgs84": [
+        -88.193427,
+        17.49409
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ABC Restaurant",
+      "osm": "node/2580450445",
+      "coordinatesWgs84": [
+        -88.378454,
+        17.649085
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Central America Health Sciences University",
+      "osm": "way/963695037",
+      "coordinatesWgs84": [
+        -88.351836,
+        17.584981
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Karl Heusner Memorial Hospital",
+      "osm": "way/295699807",
+      "coordinatesWgs84": [
+        -88.195678,
+        17.507199
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Buttonwood Bay Park",
+      "osm": "way/376110638",
+      "coordinatesWgs84": [
+        -88.2129,
+        17.513901
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Craft Market",
+      "osm": "node/3789147573",
+      "coordinatesWgs84": [
+        -88.182965,
+        17.494363
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. John's Anglican Cathedral",
+      "osm": "way/130793100",
+      "coordinatesWgs84": [
+        -88.187797,
+        17.48874
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Belize City Hall",
+      "osm": "way/295592929",
+      "coordinatesWgs84": [
+        -88.186928,
+        17.494872
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Meteorological Service of Belize",
+      "osm": "node/4732408021",
+      "coordinatesWgs84": [
+        -88.313002,
+        17.53429
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Belize (Education Campus)",
+      "osm": "way/295702030",
+      "coordinatesWgs84": [
+        -88.200896,
+        17.511775
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Albert Hoy Stadium",
+      "osm": "way/1015283263",
+      "coordinatesWgs84": [
+        -88.195598,
+        17.492124
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tomb of Baron Bliss",
+      "osm": "node/7047979386",
+      "coordinatesWgs84": [
+        -88.181436,
+        17.491485
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Holy Redeemer Cathedral",
+      "osm": "way/259180757",
+      "coordinatesWgs84": [
+        -88.187047,
+        17.496349
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Martin de Porres Catholic Church",
+      "osm": "way/375289101",
+      "coordinatesWgs84": [
+        -88.201084,
+        17.498934
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museum of Belize",
+      "osm": "way/259179297",
+      "coordinatesWgs84": [
+        -88.183471,
+        17.498086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Di Plaze",
+      "osm": "node/12596381963",
+      "coordinatesWgs84": [
+        -88.291856,
+        17.469107
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kukumba Beach",
+      "osm": "relation/8504547",
+      "coordinatesWgs84": [
+        -88.24807,
+        17.470708
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Manatee Lookout Restaurant & Bar",
+      "osm": "way/376017484",
+      "coordinatesWgs84": [
+        -88.282693,
+        17.54492
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Digi Park",
+      "osm": "way/113653382",
+      "coordinatesWgs84": [
+        -88.187631,
+        17.507321
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wilton Park",
+      "osm": "way/375230999",
+      "coordinatesWgs84": [
+        -88.196247,
+        17.485473
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Belize Medical Associates",
+      "osm": "way/961547974",
+      "coordinatesWgs84": [
+        -88.194122,
+        17.510053
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Belize Healthcare Partners Limited",
+      "osm": "way/1119389631",
+      "coordinatesWgs84": [
+        -88.203923,
+        17.512834
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Central America Health Sciences Belize Medical College",
+      "osm": "way/961896200",
+      "coordinatesWgs84": [
+        -88.353737,
+        17.585726
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of the West Indies",
+      "osm": "way/295702032",
+      "coordinatesWgs84": [
+        -88.199563,
+        17.510236
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1277,
+      "sha256": "5c4f5c599ea0bae50a2475ed702929d2cae04e62b4f372d25473f0e6079fda6e"
+    },
+    "geometry.ts": {
+      "bytes": 682408,
+      "sha256": "8c3893d6422dfafe19afa0e4e6dd98e556bbdc17fbfe1633137540fb1f3c6527"
+    },
+    "places.ts": {
+      "bytes": 9696,
+      "sha256": "fc8d608df225645ec794d83c210033b6ce0268a2e66146b49a1708056b1caf5d"
+    },
+    "terrain.ts": {
+      "bytes": 1336518,
+      "sha256": "a63bf56c8ea2ff99014bef7e7b8adfdfb429cb667f7f30b3d8609dd8709bb432"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "52761d788aecb312ebb1f85836a9246fee2937f52dafb0f00f776ca18adce44a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "vienna",
+  "countryIso2": "AT",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Vienna",
+    "coordinatesWgs84": [
+      16.3725042,
+      48.2083537
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/austria-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "vienna-airport",
+    "name": "Vienna International Airport",
+    "lon": 16.5697,
+    "lat": 48.110298,
+    "sourceUrl": "https://ourairports.com/airports/LOWW/"
+  },
+  "boxes": {
+    "play": [
+      48.02747281006602,
+      16.10195572445075,
+      48.389234589933984,
+      16.643052675549253
+    ],
+    "core": [
+      48.16313347751651,
+      16.305046721633115,
+      48.2535739224835,
+      16.43996167836689
+    ],
+    "outline": [
+      47.977472810066025,
+      16.05195572445075,
+      48.43923458993398,
+      16.693052675549254
+    ],
+    "wide": [
+      47.42747281006602,
+      15.50195572445075,
+      48.989234589933986,
+      17.243052675549254
+    ],
+    "water": [
+      48.02747281006602,
+      16.10195572445075,
+      48.389234589933984,
+      16.643052675549253
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/austria-261011.osm.pbf",
+    "datasetSha256": "d65ed6561626831706637e43093a9f8b4ddccf0d5df474f0abf9862910d63151",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "c35bd0f7efaf0df55cceb1a65581975564991c077d37b67f9a3c90698ea20bb2",
+        "elements": 8935
+      },
+      {
+        "file": "extras.json",
+        "sha256": "e8395a16abdc487869cb659c95f1e1873f477ad227a7c0b9979534f3a7b2ed21",
+        "elements": 1746
+      },
+      {
+        "file": "water.json",
+        "sha256": "5e91aaa92568411bffed7a578dce59be276c1e8a2ec62d1a6b2f45236d2493e3",
+        "elements": 547
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "fc82b4ab768d3f1cdffb1457c8a3310cc9ebcb17fccb6f60b83df6bd4adfede4",
+        "elements": 4298
+      },
+      {
+        "file": "roads.json",
+        "sha256": "77507e445a889b21773351a451ae8e121911c160194f1ae37ab755c73af31d4a",
+        "elements": 9174
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Wien Ottakring",
+      "osm": "node/8091317",
+      "coordinatesWgs84": [
+        16.311191,
+        48.21182
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Anningerhaus",
+      "osm": "way/27556083",
+      "coordinatesWgs84": [
+        16.245908,
+        48.054633
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vienna University of Technology",
+      "osm": "relation/33319",
+      "coordinatesWgs84": [
+        16.435794,
+        48.201147
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clinic Floridsdorf",
+      "osm": "way/261921616",
+      "coordinatesWgs84": [
+        16.406583,
+        48.26709
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bill-Grah-Park",
+      "osm": "way/38756181",
+      "coordinatesWgs84": [
+        16.525721,
+        48.214574
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SCS Hauptgebäude",
+      "osm": "way/23087421",
+      "coordinatesWgs84": [
+        16.318113,
+        48.109525
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Waldandacht",
+      "osm": "node/326086904",
+      "coordinatesWgs84": [
+        16.199346,
+        48.214141
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gemeindeamt Ebergassing",
+      "osm": "node/1862583508",
+      "coordinatesWgs84": [
+        16.520304,
+        48.046795
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Landesgericht Korneuburg",
+      "osm": "node/5280053579",
+      "coordinatesWgs84": [
+        16.323681,
+        48.346011
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pädagogische Hochschule Wien",
+      "osm": "way/1052649543",
+      "coordinatesWgs84": [
+        16.374298,
+        48.165785
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tempelbergwarte",
+      "osm": "way/179647766",
+      "coordinatesWgs84": [
+        16.243003,
+        48.337848
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lourdesgrotte",
+      "osm": "node/2169420120",
+      "coordinatesWgs84": [
+        16.129457,
+        48.05487
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pestkreuz",
+      "osm": "node/7734394361",
+      "coordinatesWgs84": [
+        16.148226,
+        48.380105
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Schloss Wolkersdorf",
+      "osm": "way/32594130",
+      "coordinatesWgs84": [
+        16.51931,
+        48.380996
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hl. Anna",
+      "osm": "way/691761715",
+      "coordinatesWgs84": [
+        16.625493,
+        48.207434
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pfarrkirche hl. Thomas",
+      "osm": "way/299960913",
+      "coordinatesWgs84": [
+        16.606161,
+        48.083989
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Schubertpark Maurer",
+      "osm": "way/173239405",
+      "coordinatesWgs84": [
+        16.259631,
+        48.150009
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stefaniewarte",
+      "osm": "way/26586105",
+      "coordinatesWgs84": [
+        16.333316,
+        48.276277
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wettsteinpark",
+      "osm": "way/1077764991",
+      "coordinatesWgs84": [
+        16.369152,
+        48.22219
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Allianz Stadion",
+      "osm": "relation/3015485",
+      "coordinatesWgs84": [
+        16.265896,
+        48.198027
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Höhere technische Bundeslehr- und Versuchsanstalt Mödling",
+      "osm": "way/10677471",
+      "coordinatesWgs84": [
+        16.289122,
+        48.071638
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Luftburg Kolarik",
+      "osm": "way/1013775833",
+      "coordinatesWgs84": [
+        16.403,
+        48.213039
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vienna Conservatory",
+      "osm": "node/3762548985",
+      "coordinatesWgs84": [
+        16.333391,
+        48.187465
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Großgrünmarkt",
+      "osm": "way/122867605",
+      "coordinatesWgs84": [
+        16.36111,
+        48.136221
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1207,
+      "sha256": "58f19257202a14e6391679896bf3fc77f1b019172848397de87da39c680293eb"
+    },
+    "geometry.ts": {
+      "bytes": 167192,
+      "sha256": "69270cd20763fb8340c9a7ea7cbd004ad47119ec131174211418ceea270eeb45"
+    },
+    "places.ts": {
+      "bytes": 9740,
+      "sha256": "ed983cb0784785e814a62c12cf94d9d36b41a5127ed3298d8c067b435bbb20e3"
+    },
+    "terrain.ts": {
+      "bytes": 86207,
+      "sha256": "894872fc19d137a9d56f0f5b78696d08b377a8bb31722e603438661b2f9fe705"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "8926a85b74288f9fc6b387d1f696a42b6c2bd6ffbeabd5bdd7cf7cf6c2e34d69"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

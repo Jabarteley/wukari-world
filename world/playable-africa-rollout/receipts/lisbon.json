@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "lisbon",
+  "countryIso2": "PT",
+  "generationIdentity": {
+    "cityId": "lisbon",
+    "stateId": "pt-lisbon",
+    "stateName": "Lisbon"
+  },
+  "inventorySha256": "8b88725339ca910edc0279a9474d36445656ddd3dad1e268710033fefba381cd",
+  "inventoryPath": "world/playable-africa-rollout/sources/lisbon.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "lisbon-airport",
+    "name": "Lisbon Humberto Delgado Airport",
+    "lon": -9.13592,
+    "lat": 38.7813,
+    "sourceUrl": "https://ourairports.com/airports/LPPT/"
+  },
+  "bounds": [
+    38.52686981006602,
+    -9.36741112308337,
+    38.88863158993398,
+    -8.905772676916632
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/portugal-261011.osm.pbf",
+      "datasetSha256": "c105550a3ffaa9969639284f6fea638f4bc74b0108d597703dbfe5038276ed34",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "ead1f54b0d7c3d946dc4b6055013f093b4fd5f6f47158eb0e97edcf070409f76",
+          "elements": 10349
+        },
+        {
+          "file": "extras.json",
+          "sha256": "bc41850a2e755a8c4a2ccde9b5d04762ba323549422b35e10b5883d4dcd2c02c",
+          "elements": 1388
+        },
+        {
+          "file": "water.json",
+          "sha256": "46cdc7da2fa85febb5179856d017be9a570c2e234b776c3d8e2897987564c152",
+          "elements": 5885
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "4d190a485d9d47a8559d88fbec4388e7762fdd7a09ed6b6f4c81641456568e71",
+          "elements": 6380
+        },
+        {
+          "file": "roads.json",
+          "sha256": "02e27739391d225a3142b7e746f71f63696fc44f08342087e396bf2eecd2e0ed",
+          "elements": 8319
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 16,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 42
+  },
+  "observed": {
+    "places": 10349,
+    "extras": 1388,
+    "water": 5885,
+    "landuse": 6380,
+    "roads": 8319
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1213,
+      "sha256": "8b7727efda48ae0bc842329728f753dc4a931024340a6557e5c347485996ab8f"
+    },
+    "geometry.ts": {
+      "bytes": 144178,
+      "sha256": "bf8ad671cb2706396a3bfe5951d29a00c5431c810bb194acd5989a05f4c34bef"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "df7861c19d7fe32b2552bcf6d620a516a462369bd6f7dcc49993ad0f51858eaf"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/lisbon.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

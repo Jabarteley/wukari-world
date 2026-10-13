@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "paramaribo",
+  "countryIso2": "SR",
+  "generationIdentity": {
+    "cityId": "paramaribo",
+    "stateId": "sr-paramaribo",
+    "stateName": "Paramaribo"
+  },
+  "inventorySha256": "fd1eedaea7895e9458f5345cac3267b2a3721af7739c908e3803f1b2f8deef5d",
+  "inventoryPath": "world/playable-africa-rollout/sources/paramaribo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "paramaribo-airport",
+    "name": "Johan Adolf Pengel International Airport",
+    "lon": -55.187801,
+    "lat": 5.45283,
+    "sourceUrl": "https://ourairports.com/airports/SMJP/"
+  },
+  "bounds": [
+    5.443785955503301,
+    -55.35104783597648,
+    6.0056436899339785,
+    -54.989740364023525
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/south-america/suriname-261011.osm.pbf",
+      "datasetSha256": "1acfd87f06b3a5fa908365c06983919404fd70e12b673ba6a2bd22d1a8e87af3",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/south-america/suriname-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 21402790,
+          "md5": "3751335c967af8cb914986acd0b85782",
+          "sha256": "d47d39a5ba954a5a5bbf645be41e5c074e512b4c23f21a24b5d5738b2d6c019a"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/south-america/guyana-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 15554318,
+          "md5": "73aca8d8e775563d49a971ed9dd79c20",
+          "sha256": "2d89476a2cfed68506b3c759c898b54afd0c9996269c7dd8b73f4c2b7f45e8d4",
+          "reason": "admin-0 relation/287082 member way/143451568 (Guyana - Suriname, Corantijn mouth, 60 nodes) is absent from the Suriname clip; all its nodes lie inside the Guyana clip"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "898b33b32c6f7a005682115a43fba4569e01f89cfb37ad3c7218db5f7c547a19",
+          "elements": 546
+        },
+        {
+          "file": "extras.json",
+          "sha256": "ee422f2e5d7d00b3fa879cf4e87b6a9c37874c465cc958ba67697a365640710d",
+          "elements": 84
+        },
+        {
+          "file": "water.json",
+          "sha256": "6a8822fd119dab0602f7d6d83f846de0d3b2206dae57d9417ae8051ca03d9b69",
+          "elements": 86
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "7ce8a91b83f38d63cbd03809a43a21d2f18ec215565df0f9e8232c235fc0056b",
+          "elements": 291
+        },
+        {
+          "file": "roads.json",
+          "sha256": "2987108beb8a2c2f82ba3f5c7a65be27a16d5bd3e6b9ba98482f3081ce6a49a7",
+          "elements": 218
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 30,
+    "neighbourhoodLabels": 15,
+    "landPolygons": 16,
+    "waterPolygons": 8,
+    "reachWaterPolygons": 32
+  },
+  "observed": {
+    "places": 546,
+    "extras": 84,
+    "water": 86,
+    "landuse": 291,
+    "roads": 218
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1264,
+      "sha256": "6c5ca6f0a62b2df1a210e3f49bd3ca070cc7dc96b7ee0de178f3da8b4da68318"
+    },
+    "geometry.ts": {
+      "bytes": 42584,
+      "sha256": "533c33435b8f3230f33299c1bfb2a0b24583e45cc5e975cbd8eac03b73806a59"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "a497601247969bffdc6880676de3f92664b5474e77737900ee63285b9de12f05"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/paramaribo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

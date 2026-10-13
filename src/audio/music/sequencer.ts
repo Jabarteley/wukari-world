@@ -44,7 +44,9 @@ export function songEvents(song: Song): SongEvent[] {
       if (localBar % 2 === 0) add(barBeat + 1, 0.14, arrangement.backbeat, null, 0.34, section.kind, absoluteBar)
       add(barBeat + 3, 0.14, arrangement.backbeat, null, 0.36, section.kind, absoluteBar)
       for (const beat of GROOVE_SHAKERS[song.groove] ?? GROOVE_SHAKERS[2] ?? []) {
-        add(barBeat + beat, 0.1, 'shaker', null, 0.18, section.kind, absoluteBar)
+        const pickup = !sparse && localBar % 4 === 3 && beat === 3.5
+        const accent = sparse ? 0.18 : Math.floor(beat) % 2 === 0 ? 0.2 : 0.16
+        add(barBeat + beat + (pickup ? 0.25 : 0), 0.1, 'shaker', null, accent, section.kind, absoluteBar)
       }
       const fill = arrangement.fill
       if (fill && localBar % 2 === 1) add(barBeat + fill.beat, fill.duration, fill.instrument, root + fill.octave, fill.velocity, section.kind, absoluteBar)

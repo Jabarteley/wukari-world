@@ -4,6 +4,8 @@ The soundtrack is generated on the device after the first user gesture. It ships
 
 `src/audio/music/songs.ts` contains twelve original instrumental scores. `sequencer.ts` plays their intro, answering phrases, break, variation and outro on the audio clock. Every fifth selection uses a seeded composition. Context changes align to a bar and crossfade over 750 ms. Venues with their own music keep priority. A shared 24-note budget limits overlapping bands.
 
+The listening revision raises each score by 6 BPM (Home's first selection, Evening Palm, moves from 88 to 94 BPM). Alternating soft shaker accents and a later pickup every fourth full bar add movement without adding notes. Melodies, instruments, sparse sections, mix levels and voice ducking retain the approved candidate's identity.
+
 The scores, instruments, composer and initial lifecycle implementation were adapted from this repository's stopped local music candidate, commit `75f0d838632c0761dbdf73a6e79de8e1fdc30a58`, originating in `e0c8278d`. The source carries the repository's AGPL-3.0-or-later license. No third-party composition, sample, paid generation or recording from that candidate is included.
 
 Ordinary ambience no longer holds a three-note chord. Environmental sounds remain, including contextual motors, rain, footsteps and sparse outdoor details. Fixed-key musical fragments were removed from the park and market so they cannot conflict with the soundtrack's changing harmony.

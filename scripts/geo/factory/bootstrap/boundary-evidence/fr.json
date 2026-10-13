@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "countryISO": "FR",
-  "datasetSha256": "FILL-AFTER-FIRST-HOSTED-RUN: receipts/downloads.json pbf.sha256 of europe/france-261011.osm.pbf (5,097,271,668 bytes, md5 bf8a956f9bcd68691abb6b324de5d5e1). Evidence is valid only for that file; until filled the boundary stage HOLDs on a PBF mismatch.",
+  "datasetSha256": "d82ac8a228f4f831b59da8b3431e71b30e8d505320136de2bf3d130e1bb1209a",
   "wholeSeparateRings": true,
   "reason": "Owner decision 13 Oct 2026: France plays as the metropolitan extract. These 357 admin_level=2 member ways of relation 2202162 belong to overseas departments and territories (by position: French Guiana, the Antilles, the Indian Ocean islands, Saint-Pierre and Miquelon, French Polynesia, Clipperton and the TAAF, with their sea limits). They form whole separate rings of their own (every endpoint pairs among them, none is a node of a present boundary way) and lie wholly outside the europe/france Geofabrik clip.",
   "source": "https://api.openstreetmap.org/api/0.6/ways.json?ways=<the 357 ids below, in batches of 100>",

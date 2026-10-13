@@ -11,10 +11,11 @@ on:
 permissions:
   contents: read
 
-# One source lane for the whole repository: at most one run in progress. GitHub keeps only the newest
-# pending run, so push one queue edit at a time (put several countries in one queue instead).
+# Every run is independent: the group includes the run id, so a long country (France) never blocks another queue push.
+# Nothing is shared between runs: each job has its own runner and $RUNNER_TEMP, there is no cache, artifact names are
+# per run, and the only outside resource is read-only Geofabrik downloads (be polite: max-parallel below is per run).
 concurrency:
-  group: country-source-lane
+  group: country-source-${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:

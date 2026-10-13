@@ -12,8 +12,10 @@ permissions:
   actions: read
   contents: read
 
+# Every run is independent (the group includes the run id). Nothing is shared between runs: each job has its own
+# runner and $RUNNER_TEMP, there is no cache, artifact names are per run, and producer artifacts are only read.
 concurrency:
-  group: country-factory-lane
+  group: country-factory-${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:

@@ -6,8 +6,8 @@ Hosted triggers live on branch `claude/factory-20261012` only and fire only on a
 
 | Stage | Workflow | Trigger path (queue) | Lane |
 |---|---|---|---|
-| B. source batch | `.github/workflows/country-source-batch.yml` | `scripts/geo/factory/country-queue.json` | concurrency group `country-source-lane`, matrix `max-parallel: 1`, `fail-fast: false`, 240 min limit |
-| D. factory candidate | `.github/workflows/country-factory.yml` | `scripts/geo/factory/country-factory-queue.json` | group `country-factory-lane`, `max-parallel: 1`, 60 min limit |
+| B. source batch | `.github/workflows/country-source-batch.yml` | `scripts/geo/factory/country-queue.json` | concurrency group `country-source-${{ github.run_id }}` (runs are independent), matrix `max-parallel: 8`, `fail-fast: false`, 240 min limit |
+| D. factory candidate | `.github/workflows/country-factory.yml` | `scripts/geo/factory/country-factory-queue.json` | group `country-factory-${{ github.run_id }}` (runs are independent), `max-parallel: 6`, 60 min limit |
 
 A failed or timed-out entry ends its own job; the lane is free for the next matrix entry and the next run. A missing, deleted or empty (`"queue": []`) queue file is a no-op (plan job only, no downloads). Templates: `country-queue.example.json`, `country-factory-queue.example.json` (the example names do not match the trigger paths).
 
@@ -26,7 +26,7 @@ A failed or timed-out entry ends its own job; the lane is free for the next matr
 8. Write `scripts/geo/factory/country-factory-queue.json` with `{"id":"<cc>","table":"scripts/geo/factory/country-factory/<cc>-factory-targets.json"}`, commit both, push. The factory workflow checks out the app at the table's `expectedSourceGitSHA`, verifies producers and hashes, and runs selection, scaffold, generation, source scene, map/journey tests, flat proofs and receipts.
 9. Download `city-factory-<cc>-<N>targets-<github.sha>`: `evidence/machine-holds.json` (pass = `machineFailed:false`, `catalogue:true`), `delivery/cities/<id>/`, `delivery/recipes/<id>.ts`, `delivery/<receiptRoot name>/receipts|sources/<id>.json`, flat PNGs under `evidence/<id>/proof/`. LOOK at the PNGs. Import per FACTORY-RUNBOOK.md stage E (copy delivery files, `npm run cities:catalogue`, `npm run cities:assets`; never apply `generated.patch`).
 
-After a run, reset the queue to `{"schemaVersion":1,"queue":[]}` (a push of an empty queue only runs the 15 s plan job). Two queue pushes in quick succession: GitHub keeps only the newest pending run, so put several countries in one queue.
+After a run, reset the queue to `{"schemaVersion":1,"queue":[]}` (a push of an empty queue only runs the 15 s plan job). Two queue pushes in quick succession now start two independent runs (no pending-run replacement); each run still processes its whole queue.
 
 ## Importing a delivery (import-delivery.mjs)
 

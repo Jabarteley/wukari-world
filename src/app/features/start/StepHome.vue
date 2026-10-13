@@ -60,9 +60,15 @@ function pickState(id: string): void {
 }
 const cityLabel = computed(() => cityNow.value?.name ?? estate.value.cityName)
 const lgas = computed<readonly LgaCard[]>(() => cityId.value === estate.value.city ? estate.value.lgas : city.units.value.map((item) => ({ id: item.id, name: item.name, line: localUnitDescription(cityId.value, item.id), land: item.land, levy: 0 })))
+/** A life not started yet has an area chosen for it (the first listed), so one tap goes on; it can be changed or found on this device. */
+const defaulted = ref(false)
 function validateArea(): void {
   const valid = areaForCity(area.value, lgas.value)
   if (valid !== area.value) area.value = valid
+  if (props.choosable && !area.value) {
+    const first = groupLgas(cityId.value, lgas.value)[0]?.items[0]
+    if (first) { area.value = { lga: first.id, via: 'manual' }; defaulted.value = true }
+  }
 }
 
 const query = ref('')
@@ -84,8 +90,11 @@ watch(found, async (now) => {
   scroller.scrollTo({ top: Math.max(0, top), behavior: globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
 })
 
-function choose(id: string): void { area.value = { lga: id, via: 'manual' }; Object.assign(ui, { found: null, note: '' }) }
-function yes(): void { if (ui.found) { area.value = { lga: ui.found.id, via: 'device' }; Object.assign(ui, { found: null, note: '' }) } }
+/** Only the first few of each zone are listed until asked for (the list of a big city is long); a search shows every match. */
+const showAll = ref(false)
+const capped = computed(() => !showAll.value && !query.value.trim())
+function choose(id: string): void { defaulted.value = false; area.value = { lga: id, via: 'manual' }; Object.assign(ui, { found: null, note: '' }) }
+function yes(): void { if (ui.found) { defaulted.value = false; area.value = { lga: ui.found.id, via: 'device' }; Object.assign(ui, { found: null, note: '' }) } }
 function no(): void { Object.assign(ui, { found: null, note: '' }) }
 async function find(): Promise<void> { area.value = undefined; await findLga(ui, cityId.value) }
 function surprise(): void {
@@ -108,13 +117,17 @@ onBeforeUnmount(city.cancel)
         <li v-if="openStates.length <= 1 || !choosable">{{ stateNow?.name }}</li>
         <li v-if="openStates.length <= 1 || !choosable">{{ cityNow?.name }}</li>
       </ol>
-      <div v-if="openStates.length > 1 && choosable" class="cr-chips" role="group" aria-label="State">
-        <button v-for="item in openStates" :key="item.id" type="button" class="cr-chip" :aria-pressed="item.id === stateId" @click="pickState(item.id)">{{ item.name }}</button>
-      </div>
-      <div v-if="openCities.length > 1 && choosable" class="cr-chips" role="group" aria-label="City">
-        <button v-for="item in openCities" :key="item.id" type="button" class="cr-chip" :aria-pressed="item.id === cityId" @click="pickCity(item.id)">{{ item.name }}</button>
-      </div>
-      <p v-if="soon.length" class="cr-soon">More places are opening: <span v-for="item in soon" :key="item.id">{{ item.name }}</span></p>
+      <details v-if="choosable && (openStates.length > 1 || openCities.length > 1 || soon.length)" class="cr-change">
+        <summary>Starting in <b>{{ cityLabel }}</b> · Change city</summary>
+        <div v-if="openStates.length > 1" class="cr-chips" role="group" aria-label="State">
+          <button v-for="item in openStates" :key="item.id" type="button" class="cr-chip" :aria-pressed="item.id === stateId" @click="pickState(item.id)">{{ item.name }}</button>
+        </div>
+        <div v-if="openCities.length > 1" class="cr-chips" role="group" aria-label="City">
+          <button v-for="item in openCities" :key="item.id" type="button" class="cr-chip" :aria-pressed="item.id === cityId" @click="pickCity(item.id)">{{ item.name }}</button>
+        </div>
+        <p v-if="soon.length" class="cr-soon">More places are opening: <span v-for="item in soon" :key="item.id">{{ item.name }}</span></p>
+      </details>
+      <p v-else-if="soon.length" class="cr-soon">More places are opening: <span v-for="item in soon" :key="item.id">{{ item.name }}</span></p>
     </nav>
 
     <p v-if="loading" class="cr-note" role="status">Loading {{ cityLabel }}…</p>
@@ -122,6 +135,20 @@ onBeforeUnmount(city.cancel)
       <p class="cr-note is-warn">{{ loadError }}</p>
       <button type="button" class="cr-btn" data-key="area:retry" @click="pickCity(cityId)">Try again</button>
     </div>
+
+    <template v-if="here">
+      <p v-if="defaulted && picked" class="cr-note cr-default" role="status" data-cr-default>Pre-picked for you: <b>{{ picked.name }}</b>. Find your own area, or choose another below.</p>
+      <div class="cr-find">
+        <button type="button" class="cr-btn is-primary" data-key="area:find" :disabled="ui.finding" @click="find"><GameIcon name="pin" inline /> {{ ui.finding ? 'Finding…' : 'Find my area' }}</button>
+        <button type="button" class="cr-btn" data-key="area:random" @click="surprise"><GameIcon name="game" inline /> Pick for me</button>
+      </div>
+      <p class="cr-note">Worked out on this device. Your position is never sent or stored: only the {{ unit }} you confirm.</p>
+      <div v-if="found" ref="foundBox" class="cr-found" role="status">
+        <p>{{ found.sure ? 'You are in' : 'Nearest to you is' }} <b>{{ found.name }}</b>. Is that right?</p>
+        <div class="cr-row"><button type="button" class="cr-btn is-primary" data-key="area:yes" @click="yes">Yes, {{ found.name }}</button><button type="button" class="cr-btn" data-key="area:no" @click="no">No, let me pick</button></div>
+      </div>
+      <p v-if="ui.note" class="cr-note is-warn" role="status">{{ ui.note }}</p>
+    </template>
 
     <div class="cr-house" :class="{ 'is-empty': !picked }" data-cr-house>
       <HouseArt :look="DEFAULT_STYLE" tier="starter" />
@@ -133,27 +160,18 @@ onBeforeUnmount(city.cancel)
     </div>
 
     <template v-if="here">
-      <div class="cr-find">
-        <button type="button" class="cr-btn is-primary" data-key="area:find" :disabled="ui.finding" @click="find"><GameIcon name="pin" inline /> {{ ui.finding ? 'Finding…' : 'Find my area' }}</button>
-        <button type="button" class="cr-btn" data-key="area:random" @click="surprise"><GameIcon name="game" inline /> Pick for me</button>
-      </div>
-      <p class="cr-note">Worked out on this device. Your position is never sent or stored: only the {{ unit }} you confirm.</p>
-      <div v-if="found" ref="foundBox" class="cr-found" role="status">
-        <p>{{ found.sure ? 'You are in' : 'Nearest to you is' }} <b>{{ found.name }}</b>. Is that right?</p>
-        <div class="cr-row"><button type="button" class="cr-btn is-primary" data-key="area:yes" @click="yes">Yes, {{ found.name }}</button><button type="button" class="cr-btn" data-key="area:no" @click="no">No, let me pick</button></div>
-      </div>
-      <p v-if="ui.note" class="cr-note is-warn" role="status">{{ ui.note }}</p>
 
       <label class="cr-field">Or choose from the {{ lgas.length }} {{ unit }}s of {{ cityLabel }}
-        <input v-model="query" type="search" name="area-search" placeholder="Search by name" autocomplete="off" data-key="area:search">
+        <input v-model="query" type="search" name="area-search" placeholder="Search by name" enterkeyhint="search" autocomplete="off" data-key="area:search">
       </label>
-      <div v-for="group in groups" :key="group.zone" class="cr-lgas">
+      <div v-for="group in groups" :key="group.zone" class="cr-lgas" :class="{ 'is-capped': capped }">
         <h3 v-if="group.title">{{ group.title }}</h3>
         <div class="cr-cards is-areas" role="group" :aria-label="group.title || cityLabel">
           <button v-for="item in group.items" :key="item.id" type="button" class="cr-card" :data-lga="item.id" :data-key="`area:${item.id}`" :aria-pressed="area?.lga === item.id" @click="choose(item.id)"><strong>{{ item.name }}</strong><small>{{ item.line }}</small></button>
         </div>
       </div>
       <p v-if="!groups.length" class="cr-note" role="status">No {{ unit }} matches “{{ query }}”.</p>
+      <button v-if="capped && lgas.length > 8" type="button" class="cr-btn" data-key="area:all" @click="showAll = true">Show all {{ lgas.length }} {{ unit }}s</button>
     </template>
   </div>
 </template>

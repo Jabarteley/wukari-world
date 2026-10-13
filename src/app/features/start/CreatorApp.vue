@@ -175,6 +175,22 @@ const canStay = computed(() => !isNew && last.value && o.value.guest && state.va
 
 watch(choices, (on) => { if (on) signupShown('creator') }, { immediate: true })
 
+// On a phone the stage and the options share the height: the handle lifts the sheet (tap, or drag up) to give the options more room, and puts it back.
+const sheetUp = ref(false)
+let dragFrom: number | null = null
+function setSheet(up: boolean): void {
+  if (sheetUp.value === up) return
+  sheetUp.value = up
+  // The 3D preview sizes itself to the stage: ask it to measure again once the rows have moved.
+  void nextTick(() => { window.dispatchEvent(new Event('resize')) })
+}
+function grabDown(event: PointerEvent): void { dragFrom = event.clientY }
+function grabUp(event: PointerEvent): void {
+  const moved = dragFrom === null ? 0 : event.clientY - dragFrom
+  dragFrom = null
+  if (Math.abs(moved) < 12) setSheet(!sheetUp.value); else setSheet(moved < 0)
+}
+
 function focusStep(): void {
   if (scroller.value) scroller.value.scrollTop = 0
   heading.value?.focus({ preventScroll: true })
@@ -361,13 +377,14 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="cr-host" :class="{ 'is-embedded': embedded, 'panel-fill': embedded }">
-  <div ref="root" class="cr-root" :data-step="cr.step" :data-mode="mode" data-cr-root>
+  <div ref="root" class="cr-root" :class="{ 'is-sheet-up': sheetUp }" :data-step="cr.step" :data-mode="mode" data-cr-root>
     <div v-if="!embedded || cr.step === 'look'" class="cr-stage-col">
       <p class="cr-brand"><i aria-hidden="true"><GameIcon name="globe" :size="20" /></i><b>Allworld</b><span>A digital world you can live in</span></p>
       <CreatorStage :look="draft.look" :name="draft.name || 'Your character'" :focus="focus" :caption="draft.name" @focus="setFocus" />
     </div>
 
     <section class="cr-panel" :aria-labelledby="'cr-title'">
+      <button v-if="!embedded" type="button" class="cr-grab" data-key="sheet" :aria-expanded="sheetUp" :aria-label="sheetUp ? 'Show more of your character' : 'Show more options'" @pointerdown="grabDown" @pointerup.prevent="grabUp" @keydown.enter.prevent="setSheet(!sheetUp)" @keydown.space.prevent="setSheet(!sheetUp)"><i aria-hidden="true" /></button>
       <header class="cr-head">
         <div class="cr-head-row">
           <button v-if="previous && !finished" type="button" class="cr-back" data-key="back" :aria-label="`Back to ${stepDef(previous).label}`" @click="back"><GameIcon name="back" :size="22" /></button>

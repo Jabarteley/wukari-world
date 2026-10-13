@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "experiments/cloud-lanes/yaba-ground-art/verify.ts"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 0.256,
+  "sampledTreePeakRssBytes": 94654464,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 45,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

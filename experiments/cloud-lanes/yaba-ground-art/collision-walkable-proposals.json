@@ -1,0 +1,107 @@
+{
+  "schema": "allworld-yaba-ground-collision-proposals-v1",
+  "routeAuthorized": false,
+  "registered": false,
+  "provenance": {
+    "classification": "authored-synthetic",
+    "surveyed": false,
+    "realWorldHorizontalErrorMetres": null,
+    "realWorldVerticalErrorMetres": null,
+    "sourceImages": [],
+    "routeAuthorized": false
+  },
+  "collisionEnvelopes": [
+    {
+      "id": "road",
+      "min": [
+        -3.5,
+        -0.2,
+        -12
+      ],
+      "max": [
+        3.5,
+        0.37,
+        12
+      ]
+    },
+    {
+      "id": "east_sidewalk",
+      "min": [
+        4.28,
+        -0.2,
+        -12
+      ],
+      "max": [
+        6.38,
+        0.37,
+        12
+      ]
+    },
+    {
+      "id": "west_sidewalk",
+      "min": [
+        -6.38,
+        -0.2,
+        -12
+      ],
+      "max": [
+        -4.28,
+        0.37,
+        12
+      ]
+    }
+  ],
+  "envelopeAxes": "glTF X/Y/Z metres; conservative bounds only; not usable surface colliders",
+  "walkableAnnotations": [
+    {
+      "id": "east_sidewalk",
+      "localEastInterval": [
+        4.28,
+        6.38
+      ],
+      "localNorthInterval": [
+        -12,
+        12
+      ],
+      "surface": "walk(x,n) in editable source",
+      "proposedOnly": true,
+      "routeAuthorized": false
+    },
+    {
+      "id": "west_sidewalk",
+      "localEastInterval": [
+        -6.38,
+        -4.28
+      ],
+      "localNorthInterval": [
+        -12,
+        12
+      ],
+      "surface": "walk(x,n) in editable source",
+      "proposedOnly": true,
+      "routeAuthorized": false
+    }
+  ],
+  "exclusionAnnotations": [
+    {
+      "id": "open_drains",
+      "localEastIntervals": [
+        [
+          -4.08,
+          -3.5
+        ],
+        [
+          3.5,
+          4.08
+        ]
+      ],
+      "localNorthInterval": [
+        -12,
+        12
+      ],
+      "note": "open hazard even where grilles/driveway bridge appear; WORLD must author actual collisions",
+      "routeAuthorized": false
+    }
+  ],
+  "runtimeEdits": []
+}

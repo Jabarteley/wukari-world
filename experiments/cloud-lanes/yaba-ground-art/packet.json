@@ -1,0 +1,305 @@
+{
+  "schema": "allworld-yaba-ground-art-packet-v1",
+  "version": "yaba-ground-layout-v1",
+  "family": "authored-ground-street",
+  "integrationCommit": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "firstTangibleCommit": "a8b19c28",
+  "source": {
+    "author": "Original agent-authored Allworld prototype",
+    "license": "AGPL-3.0-or-later",
+    "seed": 13102026,
+    "externalAssetInputs": [],
+    "imageryInputs": [],
+    "geographicTruth": "authored-synthetic; approximate game anchor only",
+    "geometryMethod": "editable mesh cross-sections, slab joints, non-destructive bevels/triangulation; no acquired meshes",
+    "textureMethod": "seeded numpy scalar fields and fine aggregate, Pillow encoding; packed in blend and embedded in GLB"
+  },
+  "files": {
+    "artifacts/contact-sheet.jpg": {
+      "bytes": 121088,
+      "sha256": "2fe3b9ea9bcbd64b79fc7e2e84256d1c3d532143b572845b5c91503ed8934692"
+    },
+    "artifacts/detail.jpg": {
+      "bytes": 104710,
+      "sha256": "42ff86fc99e8e81fc678f17547433cb1d56f60a6da10fbaa7389af3db2ac3dbd"
+    },
+    "artifacts/eye.jpg": {
+      "bytes": 58554,
+      "sha256": "da14271139c42e0abdbcf991e2aae3939a43b8aa58d16d8bee647a2c94e2b2a4"
+    },
+    "artifacts/overview.jpg": {
+      "bytes": 36193,
+      "sha256": "5e6de3c53ba706a7a213c0b808833496dbcc79d12641e7a21cd647d936f89d4d"
+    },
+    "artifacts/plan.jpg": {
+      "bytes": 20714,
+      "sha256": "ea62b03e2ed4f4949fb232d0690b069d265276fea81d5a74cd5bd40cd01d7a38"
+    },
+    "artifacts/street-far.glb": {
+      "bytes": 22740,
+      "sha256": "3d8fa875298c8c2faf4241f8c2cbec18734e6ee944d9983f2d75471f275de7c7"
+    },
+    "artifacts/street-near.glb": {
+      "bytes": 2932236,
+      "sha256": "1a572dcf7e14c7bfe5ff403b8dfb5d08d87d189829de66dea6684d18a76f74c4"
+    },
+    "artifacts/yaba-street-v1.blend": {
+      "bytes": 1252231,
+      "sha256": "56cc0a74cbe3944729022380073a3cd2fe85dd8c8e78660843d8959f713c65ee"
+    },
+    "receipts/browser/browser.json": {
+      "bytes": 1752,
+      "sha256": "9f510918a539dd9d61e18a6f88a9d22671a0a23a03fc0c930e4d9c3e756e3cda"
+    },
+    "receipts/browser/gltfloader.jpg": {
+      "bytes": 87902,
+      "sha256": "a2b5577f8f43ae98a933a211974dcfb2c2a459221a711ed7c0c0ed13e8cde8f4"
+    },
+    "build_street.py": {
+      "bytes": 16179,
+      "sha256": "7bd9d651c1eed9ce5e14f8cb95c8b2636a231b14968f6c376c57e53790afe726"
+    },
+    "make_textures.py": {
+      "bytes": 1834,
+      "sha256": "809059a77bafc1d639f860deac48444dc82d25434893c5941fdc9a8ade0fd51c"
+    },
+    "compact_glb.py": {
+      "bytes": 2591,
+      "sha256": "c683b4450d1b62964cc925c1db52be5d9ba0797b0db13492a955a23eff9b78c9"
+    },
+    "render_blender.py": {
+      "bytes": 843,
+      "sha256": "3ac3e42b6b2ed950ed270673d9f60dc1d70ac93e1e520eb3a4ca21360ad69513"
+    },
+    "render.html": {
+      "bytes": 4124,
+      "sha256": "9ee7b3ae98bd697fe1dd5e8c61a8e8fd45fd9be39ede3f6c251323cbe9c34c91"
+    },
+    "render_browser.py": {
+      "bytes": 4188,
+      "sha256": "3923e1fb716418eb18c3f990f322606665dda22cd9f22a8f0702e185aa6a1c2d"
+    },
+    "verify.ts": {
+      "bytes": 11026,
+      "sha256": "b4bf3b1060a37489e9a5afbf4c3504d435178c886b64bc18f084381716deefc2"
+    },
+    "bounded_run.py": {
+      "bytes": 4407,
+      "sha256": "afd47e98a211eab91a49dea57ee7c5957bd5d03f48b89f7d674e157011f9fddd"
+    },
+    "contact_sheet.py": {
+      "bytes": 1417,
+      "sha256": "9caf5a3aef981ae5e7ab93f2d0cbadfeb128a8f64815c73fefc73934afe95d39"
+    },
+    "measure_packet.py": {
+      "bytes": 4053,
+      "sha256": "01451469198c78db27d42ae0ceb2ada8199f1fe1f804a125ae57233ee3a005f7"
+    },
+    "placement.json": {
+      "bytes": 14704,
+      "sha256": "32f866137b678014665ad1444cf6b359cc71ed69d5e287fc28bd0f4fd7bbba4d"
+    },
+    "collision-walkable-proposals.json": {
+      "bytes": 1990,
+      "sha256": "bbab09fda760a888b6ab827ba8cfdf8290c75a194b35631e031604796b8cde89"
+    },
+    "anchors-source.json": {
+      "bytes": 756,
+      "sha256": "4b4f9119f1c367b1472c7116b7125017e85d32aa0b7eb72c6bbf98f36ea0ac3b"
+    },
+    "package.json": {
+      "bytes": 198,
+      "sha256": "9552785683810c04041678570809ec445a5d83ccc8a77c9907fd72bc9935d955"
+    },
+    "package-lock.json": {
+      "bytes": 921,
+      "sha256": "cedde51abf8c2cd7e8be616d6300cf48d2916c8edd338ae0ded535c616fd8669"
+    }
+  },
+  "geometry": {
+    "near": {
+      "bytes": 2932236,
+      "sha256": "1a572dcf7e14c7bfe5ff403b8dfb5d08d87d189829de66dea6684d18a76f74c4",
+      "boundsGltfMetres": {
+        "min": [
+          -6.599999904632568,
+          -0.28999999165534973,
+          -12
+        ],
+        "max": [
+          6.599999904632568,
+          0.3537999987602234,
+          12
+        ],
+        "size": [
+          13.199999809265137,
+          0.6437999904155731,
+          24
+        ]
+      },
+      "triangles": 14253,
+      "meshes": 448,
+      "primitives": 448,
+      "materials": 13,
+      "materialNames": [
+        "Asphalt \u2022 coarse mineral aggregate",
+        "Cement \u2022 sand and fine pits",
+        "Silt \u2022 ochre dust",
+        "Paver tone 05",
+        "Paver tone 03",
+        "Paver tone 01",
+        "Paver tone 02",
+        "Paver tone 04",
+        "Paver tone 00",
+        "Iron \u2022 oxidised drain casting",
+        "Rust \u2022 recessed frame",
+        "Tar \u2022 weathered repair seam",
+        "Paint \u2022 worn warm white"
+      ],
+      "textures": 6,
+      "skins": 0,
+      "morphTargets": 0,
+      "animations": 0,
+      "extensionsUsed": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "far": {
+      "bytes": 22740,
+      "sha256": "3d8fa875298c8c2faf4241f8c2cbec18734e6ee944d9983f2d75471f275de7c7",
+      "boundsGltfMetres": {
+        "min": [
+          -6.599999904632568,
+          -0.28999999165534973,
+          -12
+        ],
+        "max": [
+          6.599999904632568,
+          0.3537999987602234,
+          12
+        ],
+        "size": [
+          13.199999809265137,
+          0.6437999904155731,
+          24
+        ]
+      },
+      "triangles": 148,
+      "meshes": 22,
+      "primitives": 22,
+      "materials": 3,
+      "materialNames": [
+        "Far asphalt average",
+        "Far cement average",
+        "Far silt average"
+      ],
+      "textures": 0,
+      "skins": 0,
+      "morphTargets": 0,
+      "animations": 0,
+      "extensionsUsed": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    }
+  },
+  "textures": [
+    {
+      "name": "asphalt-normal",
+      "mimeType": "image/png",
+      "width": 512,
+      "height": 512,
+      "encodedBytes": 541713,
+      "sha256": "9ac7fc0ac63f1b135f5a9c08a9b3d159c646350e5ba73f59c40f6f4ab95f2a4f",
+      "decodedRGBA8Bytes": 1048576
+    },
+    {
+      "name": "asphalt-color",
+      "mimeType": "image/jpeg",
+      "width": 512,
+      "height": 512,
+      "encodedBytes": 108417,
+      "sha256": "545bdd3ffdd7ae7faff30fee54e012df492e025fb08d44c806fd21a31e668f1d",
+      "decodedRGBA8Bytes": 1048576
+    },
+    {
+      "name": "cement-normal",
+      "mimeType": "image/png",
+      "width": 256,
+      "height": 256,
+      "encodedBytes": 132577,
+      "sha256": "d3c71039b78005b3679f989db53b5061c58ae0a8c1c5bd01a6ede9e30af66945",
+      "decodedRGBA8Bytes": 262144
+    },
+    {
+      "name": "cement-color",
+      "mimeType": "image/jpeg",
+      "width": 256,
+      "height": 256,
+      "encodedBytes": 21671,
+      "sha256": "acf3a9e578955ec72aa381f97ea7af2a5c5fcd46b007b60b3ca1c21889292821",
+      "decodedRGBA8Bytes": 262144
+    },
+    {
+      "name": "silt-normal",
+      "mimeType": "image/png",
+      "width": 256,
+      "height": 256,
+      "encodedBytes": 131581,
+      "sha256": "1ab92ac4d4775c8ea630a3149c404e5861abca720887ba48c0e2de45aba4bdea",
+      "decodedRGBA8Bytes": 262144
+    },
+    {
+      "name": "silt-color",
+      "mimeType": "image/jpeg",
+      "width": 256,
+      "height": 256,
+      "encodedBytes": 25156,
+      "sha256": "d9c64fa2b5e9ed0f57d85a5cb942b12e137391fd575753b644620a3e17ef1c2f",
+      "decodedRGBA8Bytes": 262144
+    }
+  ],
+  "totalEmbeddedTextureBytes": 961115,
+  "totalDecodedRGBA8TextureBytesNoMipmaps": 3145728,
+  "materialConvention": {
+    "baseColor": "sRGB JPEG decoded to linear by glTF",
+    "normal": "OpenGL tangent-space +Y; PNG Non-Color; scale 0.28; explicit exported tangents",
+    "roughness": "scalar PBR factors 0.63\u20130.98 in near materials, not spatial roughness maps",
+    "alpha": "OPAQUE throughout; no alpha textures",
+    "textureTileMetres": 2,
+    "baking": "No shader-only noise nodes: generated maps feed Principled directly and export without a bake step"
+  },
+  "units": "one metre per Blender/glTF unit",
+  "blenderAxes": "X east / Y north / Z up",
+  "gltfAxes": "X east / Y up / Z south",
+  "modelForward": "+Z (south)",
+  "pivot": {
+    "anchor": "anchor_pivot",
+    "gltfMetres": [
+      0,
+      0,
+      12
+    ],
+    "placementHeadingDegrees": 180
+  },
+  "nearFarAnchors": 10,
+  "textureCompression": "JPEG colors / PNG normals; uncompressed geometry; no Draco/Meshopt",
+  "routeAuthorized": false,
+  "productionAdmission": false,
+  "limitations": [
+    "only 24m segment detailed; remaining 200m area is planning massing",
+    "448 near mesh primitives remain expensive draw submission; not batched for game",
+    "far LOD omits drain side walls, wear and fine ramps; visible transition needs runtime review",
+    "no collision registration, nav grid, building or human fitting",
+    "no verified Lagos survey data",
+    "software CPU/WebGL proof only, no physical-device performance evidence",
+    "current static ModelPart importer drops PBR factors; use isolated raw GLTFLoader for this proof"
+  ]
+}

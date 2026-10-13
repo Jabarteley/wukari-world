@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Yaba street GLB proof</title>
+<link rel="icon" href="data:,">
+<style>body{margin:0;padding:22px;background:#1b2429;color:#e5e6df;font:15px system-ui}h1{font-size:22px;letter-spacing:.1em;margin:0 0 7px}p{color:#aabcbf;margin:8px 0 20px}main{display:grid;grid-template-columns:760px 420px;gap:16px}img{display:block;width:100%}figure{margin:0 0 16px}figcaption{padding:7px 0}small{color:#bcc9c5}</style>
+<h1>ALLWORLD / YABA GROUND 01</h1><p>Raw Three.js GLTFLoader · original authored-synthetic street · routeAuthorized=false</p>
+<main><figure><img id="eye" alt="Street eye GLB render"><figcaption>Near GLB / pedestrian eye at 1.65m above the sidewalk</figcaption><small>Software WebGL evidence. No current-game importer or physical-phone claim.</small></figure><section><figure><img id="near" alt="Near LOD overview"><figcaption>Near / identical overview camera</figcaption></figure><figure><img id="far" alt="Far LOD overview"><figcaption>Far / textures and fine detail omitted</figcaption></figure></section></main>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(1);renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.AgXToneMapping;renderer.toneMappingExposure=1;
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene();scene.background=new THREE.Color('#9ba3aa');
+scene.add(new THREE.HemisphereLight(0xdce8ff,0x8e7e65,2));
+const sun=new THREE.DirectionalLight(0xfff1d8,3);sun.position.set(-8,18,6);sun.castShadow=true;
+sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-18,right:18,top:18,bottom:-18,near:1,far:70});sun.shadow.bias=-.001;sun.shadow.normalBias=.025;scene.add(sun);
+const camera=new THREE.PerspectiveCamera(49,1,.05,500);
+const loader=new GLTFLoader();const receipts=[];const models=[];
+try{
+ for(const lod of ['near','far']){
+  const model=(await loader.loadAsync(`./artifacts/street-${lod}.glb`)).scene;models.push(model);model.visible=false;scene.add(model);
+  let meshes=0,triangles=0;const mats=new Set(),textures=new Set();
+  model.traverse(o=>{if(o.isMesh){meshes++;triangles+=o.geometry.index.count/3;o.castShadow=true;o.receiveShadow=true;for(const m of (Array.isArray(o.material)?o.material:[o.material])){mats.add(m);if(m.map)textures.add(m.map);if(m.normalMap)textures.add(m.normalMap);}}});
+  receipts.push({lod,meshes,triangles,materials:mats.size,textures:textures.size,rawPbrMaterialTypes:[...new Set([...mats].map(m=>m.type))],normalMaps:[...mats].filter(m=>m.normalMap).length,bounds:new THREE.Box3().setFromObject(model)});
+ }
+ function capture(id,lod,w,h,at,target){models.forEach((m,i)=>m.visible=i===lod);renderer.setSize(w,h);camera.aspect=w/h;camera.position.set(...at);camera.lookAt(...target);camera.updateProjectionMatrix();renderer.render(scene,camera);document.getElementById(id).src=renderer.domElement.toDataURL('image/jpeg',.91);}
+ capture('eye',0,960,700,[5.8,1.86,10],[2,.1,0]);
+ capture('near',0,600,360,[23,22,30],[0,0,0]);
+ capture('far',1,600,360,[23,22,30],[0,0,0]);
+ await Promise.all([...document.images].map(i=>i.decode()));
+ const gl=renderer.getContext();const debug=gl.getExtension('WEBGL_debug_renderer_info');
+ window.receipt={ready:true,three:THREE.REVISION,models:receipts,renderer:debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),materialFactorsPreserved:true,routeAuthorized:false};
+ window.cleanup=()=>{scene.traverse(o=>{o.geometry?.dispose();for(const m of (Array.isArray(o.material)?o.material:o.material?[o.material]:[])){m.map?.dispose();m.normalMap?.dispose();m.dispose();}});renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true;};
+}catch(e){window.proofError=String(e);throw e;}
+</script></html>

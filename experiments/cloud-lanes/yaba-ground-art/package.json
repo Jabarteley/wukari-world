@@ -1,0 +1,7 @@
+{
+  "name": "allworld-yaba-ground-art-proof",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "dependencies": { "three": "0.180.0", "gltf-validator": "2.0.0-dev.3.10" }
+}

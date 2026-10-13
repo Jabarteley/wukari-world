@@ -7,10 +7,13 @@ import bpy
 import math
 import json
 import random
+import sys
 from pathlib import Path
 from mathutils import Vector
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0,str(HERE))
+from compact_glb import compact
 OUT = HERE / 'artifacts'
 random.seed(13102026)
 bpy.ops.object.select_all(action='SELECT')
@@ -60,7 +63,7 @@ def material(name, color, rough=.85, texture=None, metal=0):
         links.new(tex.outputs['Color'],p.inputs['Base Color'])
         norm=nodes.new('ShaderNodeTexImage'); norm.image=bpy.data.images.load(str(HERE/'textures'/f'{texture}-normal.png'),check_existing=True)
         norm.image.colorspace_settings.name='Non-Color'
-        nm=nodes.new('ShaderNodeNormalMap'); nm.inputs['Strength'].default_value=.55
+        nm=nodes.new('ShaderNodeNormalMap'); nm.inputs['Strength'].default_value=.28
         links.new(norm.outputs['Color'],nm.inputs['Color']); links.new(nm.outputs['Normal'],p.inputs['Normal'])
     return m
 asphalt=material('Asphalt • coarse mineral aggregate',(.065,.067,.06),.94,'asphalt')
@@ -142,7 +145,10 @@ for side in [-1,1]:
             v += [(x,y,z+.075) for x,y,z in v]
             ob=mesh('Paving %s %02d.%d'%('E' if side>0 else 'W',row,col),v,[(0,3,2,1),(0,1,5,4),(1,2,6,5),(2,3,7,6),(3,0,4,7),(4,5,6,7)],cement if random.random()<.38 else random.choice(pavers),.003)
     # Dust shoulders are part of the segment, ending at 6.60m.
-    a,b=sorted([side*6.38,side*6.60]); strip('Unfinished frontage shoulder',[(a,-.12),(b,-.12),(b,.17),(a,.17)],-12,12,silt)
+    a,b=sorted([side*6.38,side*6.60])
+    for y0,y1 in ([(-12,2),(2,3),(3,7),(7,8),(8,12)] if side>0 else [(-12,12)]):
+        v=[(a,y0,walk(a,y0)),(b,y0,walk(b,y0)),(b,y1,walk(b,y1)),(a,y1,walk(a,y1))]
+        mesh('Graded frontage shoulder',v,[(0,1,2,3)],silt)
 
 # Drain inspection grilles. Bars sit across a real recessed channel, no black decal hole.
 def grate(y0,length=.94):
@@ -166,7 +172,7 @@ for i in range(18):
 # Inset utility panel, original fictional casting with scored edge and lifting recesses.
 z=walk(5.3,-3.2)+.007
 box('Utility lid outer seat',4.93,5.85,-3.62,-2.90,z-.03,z,iron,.012)
-box('Utility lid cement insert',4.99,5.79,-3.56,-2.96,z,z+.005,cement,.006)
+box('Utility lid cement insert',4.99,5.79,-3.56,-2.96,z,z+.005,cement)
 for yy in [-3.49,-3.04]: box('Lid recessed lifting slot',5.29,5.48,yy,yy+.027,z+.006,z+.007,dark,.005)
 
 # Irregular resurfacing patches and nonuniform crack repairs give an authored wear history.
@@ -209,7 +215,10 @@ for side in [-1,1]:
         strip('Far kerb',[(a,-.13),(b,-.13),(b,top),(a,top)],y0,y1,cement)
     for y0,y1 in ([(-12,2),(2,3),(3,7),(7,8),(8,12)] if side>0 else [(-12,12)]):
         a,b=sorted([side*4.28,side*6.38]); v=[(a,y0,walk(a,y0)),(b,y0,walk(b,y0)),(b,y1,walk(b,y1)),(a,y1,walk(a,y1))]; mesh('Far sidewalk',v,[(0,1,2,3)],cement)
-    a,b=sorted([side*6.38,side*6.60]);strip('Far shoulder',[(a,-.12),(b,-.12),(b,.17),(a,.17)],-12,12,silt)
+    a,b=sorted([side*6.38,side*6.60])
+    for y0,y1 in ([(-12,2),(2,3),(3,7),(7,8),(8,12)] if side>0 else [(-12,12)]):
+        v=[(a,y0,walk(a,y0)),(b,y0,walk(b,y0)),(b,y1,walk(b,y1)),(a,y1,walk(a,y1))]
+        mesh('Far graded shoulder',v,[(0,1,2,3)],silt)
 strip('Far driveway bridge',[(3.48,-.055),(4.10,-.055),(4.10,.035),(3.48,.015)],3,7,cement)
 for name,p in anchor_defs.items(): anchor('anchor_'+name,*p,FAR)
 
@@ -241,8 +250,11 @@ ob=bpy.data.objects.new('Late afternoon sun',data);STUDIO.objects.link(ob);ob.ro
 # Export only each LOD collection. glTF axes become X east / Y up / Z south.
 for col,filename in [(NEAR,'street-near.glb'),(FAR,'street-far.glb')]:
     bpy.ops.object.select_all(action='DESELECT')
-    for ob in col.objects:ob.select_set(True)
-    bpy.ops.export_scene.gltf(filepath=str(OUT/filename),export_format='GLB',use_selection=True,export_apply=True,export_extras=True,export_yup=True,export_animations=False,export_cameras=False,export_lights=False,export_image_format='AUTO')
+    for ob in col.objects:
+        ob.select_set(True)
+        if ob.type=='MESH':ob.modifiers.new('Export tangent triangulation','TRIANGULATE')
+    bpy.ops.export_scene.gltf(filepath=str(OUT/filename),export_format='GLB',use_selection=True,export_apply=True,export_extras=True,export_yup=True,export_animations=False,export_cameras=False,export_lights=False,export_image_format='AUTO',export_tangents=col==NEAR,export_texcoords=col==NEAR)
+    compact(OUT/filename)
 for col in [FAR,PLAN,COLLISION]:col.hide_render=True;col.hide_viewport=True
 scene.camera=bpy.data.objects['Camera_street_eye_1.65m']
 scene['planningBoundary']='yaba-game-anchor-200m-planning-v1'

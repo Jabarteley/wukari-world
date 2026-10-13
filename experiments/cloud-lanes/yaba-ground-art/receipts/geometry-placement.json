@@ -1,0 +1,118 @@
+{
+  "status": "PASS",
+  "verifiedFrozenInputFiles": 155,
+  "sealedIndexDigestVerified": true,
+  "packetHash": "9c15f10e6c82bbf31aa74e9dbcf2c9d3e4aef67ef3789d255c7c2e608623e7cb",
+  "metrics": {
+    "near": {
+      "bytes": 2932236,
+      "sha256": "1a572dcf7e14c7bfe5ff403b8dfb5d08d87d189829de66dea6684d18a76f74c4",
+      "boundsGltfMetres": {
+        "min": [
+          -6.599999904632568,
+          -0.28999999165534973,
+          -12
+        ],
+        "max": [
+          6.599999904632568,
+          0.3537999987602234,
+          12
+        ],
+        "size": [
+          13.199999809265137,
+          0.6437999904155731,
+          24
+        ]
+      },
+      "triangles": 14253,
+      "meshes": 448,
+      "primitives": 448,
+      "materials": 13,
+      "materialNames": [
+        "Asphalt • coarse mineral aggregate",
+        "Cement • sand and fine pits",
+        "Silt • ochre dust",
+        "Paver tone 05",
+        "Paver tone 03",
+        "Paver tone 01",
+        "Paver tone 02",
+        "Paver tone 04",
+        "Paver tone 00",
+        "Iron • oxidised drain casting",
+        "Rust • recessed frame",
+        "Tar • weathered repair seam",
+        "Paint • worn warm white"
+      ],
+      "textures": 6,
+      "skins": 0,
+      "morphTargets": 0,
+      "animations": 0,
+      "extensionsUsed": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    },
+    "far": {
+      "bytes": 22740,
+      "sha256": "3d8fa875298c8c2faf4241f8c2cbec18734e6ee944d9983f2d75471f275de7c7",
+      "boundsGltfMetres": {
+        "min": [
+          -6.599999904632568,
+          -0.28999999165534973,
+          -12
+        ],
+        "max": [
+          6.599999904632568,
+          0.3537999987602234,
+          12
+        ],
+        "size": [
+          13.199999809265137,
+          0.6437999904155731,
+          24
+        ]
+      },
+      "triangles": 148,
+      "meshes": 22,
+      "primitives": 22,
+      "materials": 3,
+      "materialNames": [
+        "Far asphalt average",
+        "Far cement average",
+        "Far silt average"
+      ],
+      "textures": 0,
+      "skins": 0,
+      "morphTargets": 0,
+      "animations": 0,
+      "extensionsUsed": [],
+      "validation": {
+        "errors": 0,
+        "warnings": 0,
+        "infos": 0,
+        "messages": []
+      }
+    }
+  },
+  "anchorCount": 10,
+  "nearFarAnchorDeltaMetres": 0,
+  "maxAuthoredToExportAnchorErrorMetres": 1.1460868152517824e-7,
+  "maxAdjacentAdapterResidualMetres": 8.702278148087217e-9,
+  "actualMeshSeams": {
+    "near": {
+      "southVertexSamples": 359,
+      "northVertexSamples": 359,
+      "maxMismatchMetres": 2.85506248642875e-8
+    },
+    "far": {
+      "southVertexSamples": 71,
+      "northVertexSamples": 71,
+      "maxMismatchMetres": 8.702278148087217e-9
+    }
+  },
+  "mapEastScaleRelativeToLocal": 0.9940932547076073,
+  "routeAuthorized": false
+}

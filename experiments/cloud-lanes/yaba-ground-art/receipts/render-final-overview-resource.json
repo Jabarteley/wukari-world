@@ -1,0 +1,20 @@
+{
+  "command": [
+    "blender",
+    "-b",
+    "-t",
+    "2",
+    "--python",
+    "experiments/cloud-lanes/yaba-ground-art/render_blender.py",
+    "--",
+    "overview"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 6.157,
+  "sampledTreePeakRssBytes": 342261760,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 120,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

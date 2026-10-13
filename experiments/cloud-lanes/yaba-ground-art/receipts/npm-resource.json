@@ -1,0 +1,21 @@
+{
+  "command": [
+    "npm",
+    "--prefix",
+    "experiments/cloud-lanes/yaba-ground-art",
+    "install",
+    "--ignore-scripts",
+    "--no-audit",
+    "--no-fund",
+    "--cache",
+    "/tmp/yaba-ground-npm-cache"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 1.536,
+  "sampledTreePeakRssBytes": 120193024,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 120,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "experiments/cloud-lanes/yaba-ground-art/render_browser.py"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 2.931,
+  "sampledTreePeakRssBytes": 917954560,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 60,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

@@ -16,7 +16,7 @@ for name, n, color, contrast in [('asphalt', 512, [64, 65, 61], 39), ('cement', 
     fine = rng.normal(0, 1, (n, n))
     cloud = field(n, 12)
     height = fine * .3 + cloud * .6
-    value = fine * contrast * .4 + cloud * contrast
+    value = fine * contrast * .4 + cloud * contrast * (.25 if name == 'asphalt' else .55)
     if name == 'asphalt':
         # Fine crushed aggregate and sparse exposed light stone, tiled at 2 metres.
         stones = rng.random((n, n)) > .966

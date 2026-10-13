@@ -1,0 +1,592 @@
+{
+  "schema": "allworld-yaba-ground-placement-v1",
+  "version": "yaba-ground-layout-v1",
+  "integrationCommit": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "packetLockSha256": "9c15f10e6c82bbf31aa74e9dbcf2c9d3e4aef67ef3789d255c7c2e608623e7cb",
+  "pilot": {
+    "anchor": {
+      "frame": "lonlat-degrees",
+      "lat": 6.5075,
+      "lon": 3.382
+    },
+    "beta": true,
+    "extentMetres": [
+      200,
+      200
+    ],
+    "geographicBoundary": {
+      "coordinates": [
+        [
+          [
+            3.381094847766593,
+            6.506600679636276
+          ],
+          [
+            3.3829051522334073,
+            6.506600679636276
+          ],
+          [
+            3.3829051522334073,
+            6.508399320363725
+          ],
+          [
+            3.381094847766593,
+            6.508399320363725
+          ],
+          [
+            3.381094847766593,
+            6.506600679636276
+          ]
+        ]
+      ],
+      "type": "Polygon"
+    },
+    "horizontalErrorMetres": null,
+    "id": "yaba-game-anchor-200m-planning-v1",
+    "localBoundary": [
+      {
+        "east": -100,
+        "frame": "block-local-metres",
+        "north": -100,
+        "up": 0
+      },
+      {
+        "east": 100,
+        "frame": "block-local-metres",
+        "north": -100,
+        "up": 0
+      },
+      {
+        "east": 100,
+        "frame": "block-local-metres",
+        "north": 100,
+        "up": 0
+      },
+      {
+        "east": -100,
+        "frame": "block-local-metres",
+        "north": 100,
+        "up": 0
+      },
+      {
+        "east": -100,
+        "frame": "block-local-metres",
+        "north": -100,
+        "up": 0
+      }
+    ],
+    "sourceClassification": "approximate-repository-anchor-plus-original-synthetic-AOI",
+    "sourceProposalId": "yaba-game-anchor-200m-proposal-v1",
+    "status": "adopted-reversible-planning-assumption",
+    "surveyed": false,
+    "use": "Original authored prototype layout only; no claim of actual road, parcel, business or building positions",
+    "verticalDatum": "arbitrary-local-zero-unverified",
+    "verticalErrorMetres": null
+  },
+  "provenance": {
+    "classification": "authored-synthetic",
+    "surveyed": false,
+    "realWorldHorizontalErrorMetres": null,
+    "realWorldVerticalErrorMetres": null,
+    "sourceImages": [],
+    "routeAuthorized": false
+  },
+  "axes": {
+    "blender": "X east, Y north, Z up",
+    "gltf": "X east, Y up, Z south",
+    "units": "metres"
+  },
+  "spec": {
+    "near": "artifacts/street-near.glb",
+    "far": "artifacts/street-far.glb",
+    "metresPerModelUnit": 1,
+    "groundAnchorModel": {
+      "x": 0,
+      "y": 0,
+      "z": 12
+    },
+    "forward": "+z"
+  },
+  "placement": {
+    "near": "artifacts/street-near.glb",
+    "far": "artifacts/street-far.glb",
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "ry": 0,
+    "scale": 1,
+    "status": "proposal",
+    "frame": "pilot-scene-units",
+    "routeAuthorized": false
+  },
+  "headingDegrees": 180,
+  "dimensionsAuthored": {
+    "segmentLengthMetres": 24,
+    "carriagewayWidthMetres": 7,
+    "kerbWidthMetres": 0.2,
+    "drainOuterWidthMetres": 0.58,
+    "sidewalkWidthMetres": 2.1,
+    "fullWidthMetres": 13.2,
+    "longitudinalGrade": 0.006,
+    "crownRiseMetres": 0.065,
+    "crossfall": 0.018571428571428572,
+    "normalKerbUpMetres": 0.175,
+    "drivewayKerbUpMetres": 0.035,
+    "drivewayNorthIntervalMetres": [
+      3,
+      7
+    ],
+    "drivewayTransitionsNorthIntervals": [
+      [
+        2,
+        3
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "verticalDatum": "arbitrary authored zero at south road edge"
+  },
+  "anchors": {
+    "pivot": {
+      "model": {
+        "x": 0,
+        "y": 0,
+        "z": 12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": 0,
+        "y": 0,
+        "z": 12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": 0,
+        "north": -12,
+        "up": 0
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.382,
+        "lat": 6.507392081556353
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1976.8571967337266,
+        "z": -6334.2625179192055
+      }
+    },
+    "south_crown": {
+      "model": {
+        "x": 0,
+        "y": 0.06499999761581421,
+        "z": 12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": 0,
+        "y": 0.06499999761581421,
+        "z": 12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": 0,
+        "north": -12,
+        "up": 0.06499999761581421
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.382,
+        "lat": 6.507392081556353
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1976.8571967337266,
+        "z": -6334.2625179192055
+      }
+    },
+    "north_crown": {
+      "model": {
+        "x": 0,
+        "y": 0.20900000631809235,
+        "z": -12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": 0,
+        "y": 0.20900000631809235,
+        "z": -12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": 0,
+        "north": 12,
+        "up": 0.20900000631809235
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.382,
+        "lat": 6.5076079184436475
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1976.8571967337266,
+        "z": -6358.262517919275
+      }
+    },
+    "south_east_kerb": {
+      "model": {
+        "x": 4.079999923706055,
+        "y": 0.17499999701976776,
+        "z": 12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": 4.079999923706055,
+        "y": 0.17499999701976776,
+        "z": 12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": 4.079999923706055,
+        "north": -12,
+        "up": 0.17499999701976776
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.3820369302104325,
+        "lat": 6.507392081556353
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1972.8012963303627,
+        "z": -6334.2625179192055
+      }
+    },
+    "north_east_kerb": {
+      "model": {
+        "x": 4.079999923706055,
+        "y": 0.3190000057220459,
+        "z": -12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": 4.079999923706055,
+        "y": 0.3190000057220459,
+        "z": -12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": 4.079999923706055,
+        "north": 12,
+        "up": 0.3190000057220459
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.3820369302104325,
+        "lat": 6.5076079184436475
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1972.8012963303627,
+        "z": -6358.262517919275
+      }
+    },
+    "south_west_kerb": {
+      "model": {
+        "x": -4.079999923706055,
+        "y": 0.17499999701976776,
+        "z": 12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": -4.079999923706055,
+        "y": 0.17499999701976776,
+        "z": 12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": -4.079999923706055,
+        "north": -12,
+        "up": 0.17499999701976776
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.3819630697895677,
+        "lat": 6.507392081556353
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1980.9130971370905,
+        "z": -6334.2625179192055
+      }
+    },
+    "north_west_kerb": {
+      "model": {
+        "x": -4.079999923706055,
+        "y": 0.3190000057220459,
+        "z": -12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": -4.079999923706055,
+        "y": 0.3190000057220459,
+        "z": -12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": -4.079999923706055,
+        "north": 12,
+        "up": 0.3190000057220459
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.3819630697895677,
+        "lat": 6.5076079184436475
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1980.9130971370905,
+        "z": -6358.262517919275
+      }
+    },
+    "driveway_threshold": {
+      "model": {
+        "x": 6.380000114440918,
+        "y": 0.16850000619888306,
+        "z": -5
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": 6.380000114440918,
+        "y": 0.16850000619888306,
+        "z": -5
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": 6.380000114440918,
+        "north": 5,
+        "up": 0.16850000619888306
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.3820577487135273,
+        "lat": 6.5075449660181865
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1970.51488165489,
+        "z": -6351.262517919258
+      }
+    },
+    "drain_invert_south": {
+      "model": {
+        "x": 3.7899999618530273,
+        "y": -0.20000000298023224,
+        "z": 12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": 3.7899999618530273,
+        "y": -0.20000000298023224,
+        "z": 12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": 3.7899999618530273,
+        "north": -12,
+        "up": -0.20000000298023224
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.382034305269301,
+        "lat": 6.507392081556353
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1973.089583336332,
+        "z": -6334.2625179192055
+      }
+    },
+    "drain_invert_north": {
+      "model": {
+        "x": 3.7899999618530273,
+        "y": -0.0560000017285347,
+        "z": -12
+      },
+      "scene": {
+        "frame": "pilot-scene-units",
+        "x": 3.7899999618530273,
+        "y": -0.0560000017285347,
+        "z": -12
+      },
+      "local": {
+        "frame": "block-local-metres",
+        "east": 3.7899999618530273,
+        "north": 12,
+        "up": -0.0560000017285347
+      },
+      "geographicPlanningOnly": {
+        "frame": "lonlat-degrees",
+        "lon": 3.382034305269301,
+        "lat": 6.5076079184436475
+      },
+      "projectedStreet": {
+        "frame": "lagos-street-projected-metres",
+        "x": -1973.089583336332,
+        "z": -6358.262517919275
+      }
+    }
+  },
+  "adjacentSegmentProposal": {
+    "placement": {
+      "near": "artifacts/street-near.glb",
+      "far": "artifacts/street-far.glb",
+      "x": 0,
+      "y": 0.144,
+      "z": -24,
+      "ry": 0,
+      "scale": 1,
+      "status": "proposal",
+      "frame": "pilot-scene-units",
+      "routeAuthorized": false
+    },
+    "note": "numerical seam witness only, not an additional detailed authored segment"
+  },
+  "frontages": [
+    {
+      "id": "E01",
+      "version": "frontage-zones-v1",
+      "boundsLocalEastNorthMetres": [
+        6.6,
+        26.6,
+        -10,
+        10
+      ],
+      "buildingFrontHeadingDegrees": 270,
+      "provenance": {
+        "classification": "authored-synthetic",
+        "surveyed": false,
+        "realWorldHorizontalErrorMetres": null,
+        "realWorldVerticalErrorMetres": null,
+        "sourceImages": [],
+        "routeAuthorized": false
+      },
+      "authority": "reservation proposal only; building owner supplies their own threshold/pivot",
+      "setbackMetres": 0
+    },
+    {
+      "id": "W01",
+      "version": "frontage-zones-v1",
+      "boundsLocalEastNorthMetres": [
+        -26.6,
+        -6.6,
+        -10,
+        10
+      ],
+      "buildingFrontHeadingDegrees": 90,
+      "provenance": {
+        "classification": "authored-synthetic",
+        "surveyed": false,
+        "realWorldHorizontalErrorMetres": null,
+        "realWorldVerticalErrorMetres": null,
+        "sourceImages": [],
+        "routeAuthorized": false
+      },
+      "authority": "reservation proposal only; building owner supplies their own threshold/pivot",
+      "setbackMetres": 0
+    },
+    {
+      "id": "E02",
+      "version": "frontage-zones-v1",
+      "boundsLocalEastNorthMetres": [
+        6.6,
+        28,
+        14,
+        38
+      ],
+      "buildingFrontHeadingDegrees": 270,
+      "provenance": {
+        "classification": "authored-synthetic",
+        "surveyed": false,
+        "realWorldHorizontalErrorMetres": null,
+        "realWorldVerticalErrorMetres": null,
+        "sourceImages": [],
+        "routeAuthorized": false
+      },
+      "authority": "reservation proposal only; building owner supplies their own threshold/pivot",
+      "setbackMetres": 0
+    },
+    {
+      "id": "W02",
+      "version": "frontage-zones-v1",
+      "boundsLocalEastNorthMetres": [
+        -28,
+        -6.6,
+        14,
+        38
+      ],
+      "buildingFrontHeadingDegrees": 90,
+      "provenance": {
+        "classification": "authored-synthetic",
+        "surveyed": false,
+        "realWorldHorizontalErrorMetres": null,
+        "realWorldVerticalErrorMetres": null,
+        "sourceImages": [],
+        "routeAuthorized": false
+      },
+      "authority": "reservation proposal only; building owner supplies their own threshold/pivot",
+      "setbackMetres": 0
+    }
+  ],
+  "frontageThresholdProposals": [
+    {
+      "id": "E01_driveway",
+      "local": {
+        "frame": "block-local-metres",
+        "east": 6.6,
+        "north": 5,
+        "up": 0.1718
+      },
+      "note": "connects graded shoulder; building sill still owned by E",
+      "routeAuthorized": false
+    }
+  ],
+  "planningRoadReservations": [
+    {
+      "id": "north_south",
+      "bounds": [
+        -6.6,
+        6.6,
+        -100,
+        100
+      ]
+    },
+    {
+      "id": "east_west",
+      "bounds": [
+        -100,
+        100,
+        42,
+        55
+      ]
+    }
+  ],
+  "lod": {
+    "switchDistanceMetresProposal": 35,
+    "hysteresisMetresProposal": 5,
+    "implementedInRuntime": false,
+    "omissions": [
+      "fine cracks and paint",
+      "individual flags and bevels",
+      "iron grille and lid",
+      "loose aggregate",
+      "drain walls",
+      "continuous kerb ramp profile"
+    ],
+    "farMaterials": "three average factors, no texture maps"
+  },
+  "seamLimitations": "Named design anchors match; bevels intentionally recess surface corners by up to 5mm. Neither seam proof nor street art grants routing."
+}

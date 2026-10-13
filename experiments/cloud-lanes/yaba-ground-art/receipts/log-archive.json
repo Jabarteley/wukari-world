@@ -1,0 +1,162 @@
+[
+  {
+    "log": "browser-final-resource.txt",
+    "originalBytes": 1752,
+    "originalSha256": "9f510918a539dd9d61e18a6f88a9d22671a0a23a03fc0c930e4d9c3e756e3cda",
+    "gzip": "browser-final-resource.txt.gz",
+    "gzipBytes": 649,
+    "gzipSha256": "71868a06a02d4f8c14b159891c55082287a38d1c3e061346504428a9bd126287"
+  },
+  {
+    "log": "browser-resource.txt",
+    "originalBytes": 1752,
+    "originalSha256": "c6de26373b18fac86b3889a06b33e92f87432894fd5805aa1cc51f9d4782439e",
+    "gzip": "browser-resource.txt.gz",
+    "gzipBytes": 648,
+    "gzipSha256": "26bf01cd7ea2350e996ce3f70a32b56ddc8cf2529e16d4afb930a285b8495139"
+  },
+  {
+    "log": "build-accepted-resource.txt",
+    "originalBytes": 45632,
+    "originalSha256": "18b855291ef1b30363a42a89439f6f9636c898fb3094b3f57124f0d814ee63d2",
+    "gzip": "build-accepted-resource.txt.gz",
+    "gzipBytes": 2153,
+    "gzipSha256": "467e879646cadca5793a09de5fd869f42374ca8be04c09460f22f89a1553c47e"
+  },
+  {
+    "log": "build-final-resource.txt",
+    "originalBytes": 45632,
+    "originalSha256": "43d63d83e655ef4731a3e8b4f0a8023a2d57b18ab114a63e7d1b270b519b54d4",
+    "gzip": "build-final-resource.txt.gz",
+    "gzipBytes": 2151,
+    "gzipSha256": "f69a35d74f699cda9dc559f043f7c0cb508e6b71647eeca5372c989980fffaf5"
+  },
+  {
+    "log": "build-resource-v2.txt",
+    "originalBytes": 44790,
+    "originalSha256": "e7e1abc54edaaee10f37f00603cee6c292977421f27b30059993c70fe7580519",
+    "gzip": "build-resource-v2.txt.gz",
+    "gzipBytes": 2092,
+    "gzipSha256": "7721e3eeee77c6de2b0128e3b118c0351673e8c3e1c9a5acb9fcffeaf458fa58"
+  },
+  {
+    "log": "build-resource.txt",
+    "originalBytes": 44790,
+    "originalSha256": "9c1d43f66c0e2cb67a95c2b82c186e938724a235b4ec5ed5e12c9bade0aae40f",
+    "gzip": "build-resource.txt.gz",
+    "gzipBytes": 2125,
+    "gzipSha256": "2813aa89d9d0c631a73f831a3b46ea574b3443351edb354cf0a93bbf992e21a3"
+  },
+  {
+    "log": "build-tangents-resource.txt",
+    "originalBytes": 45632,
+    "originalSha256": "50827cd83422388cdec687a211273a304dae60d3f608889a47e70e42cf284ae0",
+    "gzip": "build-tangents-resource.txt.gz",
+    "gzipBytes": 2119,
+    "gzipSha256": "ec44eaa1ed788b7a2e19d872cc7baeab2eccb5113b6cb93cb96190bd6bcb66ff"
+  },
+  {
+    "log": "npm-resource.txt",
+    "originalBytes": 232,
+    "originalSha256": "35cc88bfe69297132346d651b286b8835c7c806958455a4fc23488e4cf417d9e",
+    "gzip": "npm-resource.txt.gz",
+    "gzipBytes": 170,
+    "gzipSha256": "c3770df663f6cc42ecd40f96961fc472c02cead7a7468a200c5fe9d8b00b2ac4"
+  },
+  {
+    "log": "render-detail-resource.txt",
+    "originalBytes": 64422,
+    "originalSha256": "bd2579ec0ead8d33f10c5ab3c8e5980a100c8b6c5acb35bb0d6b7ba7cdb31b5e",
+    "gzip": "render-detail-resource.txt.gz",
+    "gzipBytes": 4174,
+    "gzipSha256": "34ede509868579682e99798bd4406ba8cb501a7230a5bac62acc5ee6efe15f3c"
+  },
+  {
+    "log": "render-eye-resource-v2.txt",
+    "originalBytes": 64297,
+    "originalSha256": "73e6c79b16e4647ed10ba8f9261674a895f1d531baa117828ee0b6d4f7240488",
+    "gzip": "render-eye-resource-v2.txt.gz",
+    "gzipBytes": 4175,
+    "gzipSha256": "4c542f798582639ce897360c9dec23f2f9d587e4fa4478c1e1527b67e22f2f8f"
+  },
+  {
+    "log": "render-eye-resource.txt",
+    "originalBytes": 61609,
+    "originalSha256": "aca453c3d04c2df01bd5da5de843840d89bb437ba6e4571572ec7ca674c3bda9",
+    "gzip": "render-eye-resource.txt.gz",
+    "gzipBytes": 4027,
+    "gzipSha256": "b149452fd214314ff8933087e59a539e9a9dea47a182341b5eec05d7f33a7571"
+  },
+  {
+    "log": "render-final-detail-resource.txt",
+    "originalBytes": 65261,
+    "originalSha256": "723b83c2a62da5ef79aa25329e7674c0d8b2166926fba6e60f616f6446ffa6f0",
+    "gzip": "render-final-detail-resource.txt.gz",
+    "gzipBytes": 4341,
+    "gzipSha256": "f13e6fda466f48771c221396330fe865feead3196fdc8ee9566680e9f92f43ad"
+  },
+  {
+    "log": "render-final-eye-resource.txt",
+    "originalBytes": 65387,
+    "originalSha256": "ef10b674773fc00310c95b8c769cdec8a80d450f0cb1b403700e31ef031823cb",
+    "gzip": "render-final-eye-resource.txt.gz",
+    "gzipBytes": 4338,
+    "gzipSha256": "f09a22df3b36b499ccd89f330ce56fe83faaadfb9e2278c7183ac4862944f724"
+  },
+  {
+    "log": "render-final-overview-resource.txt",
+    "originalBytes": 65263,
+    "originalSha256": "47dd93b10df5974c8699ba3aad5bce54885f467c0b17592fd50f08479becdae7",
+    "gzip": "render-final-overview-resource.txt.gz",
+    "gzipBytes": 4347,
+    "gzipSha256": "338d9c120bec59771474a428e8580bb42a431dd8efd233455d2bd5c487ed1506"
+  },
+  {
+    "log": "render-final-plan-resource.txt",
+    "originalBytes": 66350,
+    "originalSha256": "1922633c6b2417c8845b7fce52ec62556aac6ca3d0385805afcdb2a4b8d27f20",
+    "gzip": "render-final-plan-resource.txt.gz",
+    "gzipBytes": 4454,
+    "gzipSha256": "d649b6c3e290a0b9cc1fbd2c3afad8cd4c797866d851684b74aa7a7327ff286b"
+  },
+  {
+    "log": "render-plan-resource.txt",
+    "originalBytes": 65641,
+    "originalSha256": "3704a011d99b76e862167c47def3f79eae71a3a621411390f24c695cd4bab8a8",
+    "gzip": "render-plan-resource.txt.gz",
+    "gzipBytes": 4303,
+    "gzipSha256": "1763e4a5304761c1a3de750b7b9306a06f9cd7297a1c1f75d7e99491ee204539"
+  },
+  {
+    "log": "verify-accepted-resource.txt",
+    "originalBytes": 528,
+    "originalSha256": "d08ab1d1432546c0f6d645e4c9f51a45eb8469eaed526c12a2766b25a80c64d2",
+    "gzip": "verify-accepted-resource.txt.gz",
+    "gzipBytes": 300,
+    "gzipSha256": "4459bd191358ce0f7b45014c3bb9808453fb0e62ebacabd42bb63613ec2ae499"
+  },
+  {
+    "log": "verify-delivery-resource.txt",
+    "originalBytes": 489,
+    "originalSha256": "2f04a4fbb7a212d47c13dc0d653cf6aa8d050bb5f4c95017dd78077a6a5c9b37",
+    "gzip": "verify-delivery-resource.txt.gz",
+    "gzipBytes": 261,
+    "gzipSha256": "fe59846e70db5c47fc9c467139239ff18fb521a36d0a80f33d929504f11ccb0f"
+  },
+  {
+    "log": "verify-final-resource.txt",
+    "originalBytes": 81106,
+    "originalSha256": "f9f0b334aefebf7b25ed8c786c5dbfafd75fa365a5d82fd69365e89f7650db31",
+    "gzip": "verify-final-resource.txt.gz",
+    "gzipBytes": 2405,
+    "gzipSha256": "03d7b7de550a085a2e1b12896d5456a2318f9761729dfbb11f4769c8b0174258"
+  },
+  {
+    "log": "verify-resource.txt",
+    "originalBytes": 24452,
+    "originalSha256": "073dfc6d9d45f96d5bdf27cb96c5f581796d9493de2dece3559dd28b93df4870",
+    "gzip": "verify-resource.txt.gz",
+    "gzipBytes": 1026,
+    "gzipSha256": "2b1b329039e940235631775622899afb617d6efe9da7711e6550c10e460212ad"
+  }
+]

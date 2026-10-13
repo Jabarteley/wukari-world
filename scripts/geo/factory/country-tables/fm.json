@@ -18,6 +18,7 @@
       "id": "palikir",
       "name": "Palikir",
       "countryISO": "FM",
+      "profile": "microstate",
       "airport": {
         "ident": "PTPN",
         "sourceUrl": "https://ourairports.com/airports/PTPN/"

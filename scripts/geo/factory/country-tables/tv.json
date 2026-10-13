@@ -18,6 +18,7 @@
       "id": "funafuti",
       "name": "Funafuti",
       "countryISO": "TV",
+      "profile": "microstate",
       "airport": {
         "ident": "NGFU",
         "sourceUrl": "https://ourairports.com/airports/NGFU/"

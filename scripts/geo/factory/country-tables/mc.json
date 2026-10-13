@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/europe/monaco-261011.osm.pbf",
+    "bytes": 691631,
+    "md5": "f75ab6ae7bc34e23163c97efea269e4f",
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/europe/france/provence-alpes-cote-d-azur-261011.osm.pbf",
+        "bytes": 390353249,
+        "md5": "0631573b7a595b332063e0ed4d43e752",
+        "snapshotDate": "2026-10-11",
+        "reason": "Monaco's clipped extract cuts the natural=coastline ways that continue into France; the same-snapshot PACA extract holds the rest of that coast (diag-factory-batch6: exact coast fails 'Unclosed coastline topology' on Monaco alone)."
+      },
+      {
+        "url": "https://download.geofabrik.de/europe/italy/nord-ovest-261011.osm.pbf",
+        "bytes": 592676030,
+        "md5": "a520172bbe60706b14391f91b22ea30a",
+        "snapshotDate": "2026-10-11",
+        "reason": "The coast east of Monaco continues into Italy (Liguria, Italy nord-ovest); same snapshot, complete ways, so the sea closes without any splice."
+      }
+    ]
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "monaco",
+      "name": "Monaco",
+      "countryISO": "MC",
+      "airport": {
+        "ident": "LNMC",
+        "sourceUrl": "https://ourairports.com/airports/LNMC/",
+        "hubWaiver": "Monaco has no large, medium or small airport in the pinned OurAirports CSV; its own named Monaco Heliport (LNMC, IATA MCM, Fontvieille) is the game air hub. Airport records do not establish current operations; the game claims none."
+      },
+      "timezone": {
+        "id": "Europe/Paris",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

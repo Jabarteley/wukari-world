@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/europe/italy/centro-261011.osm.pbf",
+    "bytes": 385076983,
+    "md5": "ddca4b97f65e27688a1ff263d2648678",
+    "snapshotDate": "2026-10-11"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "vatican-city",
+      "name": "Vatican City",
+      "countryISO": "VA",
+      "cityOsmRef": "node/424311883",
+      "profile": "microstate",
+      "airport": {
+        "ident": "VA-0001",
+        "sourceUrl": "https://ourairports.com/airports/VA-0001/",
+        "hubWaiver": "The Holy See has no airport with scheduled service in the pinned OurAirports CSV; its own named Vatican City heliport (VA-0001) is the game air hub. Airport records do not establish current operations; the game claims none."
+      },
+      "timezone": {
+        "id": "Europe/Rome",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

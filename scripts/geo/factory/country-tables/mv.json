@@ -18,6 +18,7 @@
       "id": "male",
       "name": "Malé",
       "countryISO": "MV",
+      "profile": "microstate",
       "airport": {
         "ident": "VRMM",
         "sourceUrl": "https://ourairports.com/airports/VRMM/"

@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 4,
+  "frameId": "original-human-anatomy-frame@5",
+  "units": "metres",
+  "blenderAxes": {
+    "up": "+Z",
+    "front": "-Y",
+    "characterLeft": "+X"
+  },
+  "gltfAxes": {
+    "up": "+Y",
+    "front": "+Z",
+    "characterLeft": "+X"
+  },
+  "blenderToGltf": "[x, y, z] -> [x, z, -y]",
+  "sourceBlendSha256": "33c3f4a8d87ca764fb16004d2f322d45fe46bae247303317d92fa5a188efcbaa",
+  "sourceGlbSha256": "f0ab94dedf374d8e7e5374f58f2da14d7f21df1076145e581916cdf9083b27de",
+  "skeleton": null,
+  "rigStatus": "No skeleton/skin weights or locomotion yet; real exported shape keys only.",
+  "topologyStatus": "Curved orbital loops replace v4 rectangular lid grid and 208 surrounding original head triangles. Same 27 mesh-node names; no separate eyelid objects.",
+  "bodySurfaceStatus": "Clothed torso/leg envelope plus exposed head/neck/forearm/hand. No independent undressed torso/leg master; clothing fit not accepted.",
+  "anchorsBlenderMetres": {
+    "scalp.crown": [
+      0,
+      0.025,
+      1.759
+    ],
+    "scalp.templeLeft": [
+      0.072,
+      -0.01,
+      1.67
+    ],
+    "scalp.templeRight": [
+      -0.072,
+      -0.01,
+      1.67
+    ],
+    "eye.left": [
+      0.032,
+      -0.036,
+      1.635
+    ],
+    "eye.right": [
+      -0.032,
+      -0.036,
+      1.635
+    ],
+    "ear.lobeLeft": [
+      0.08,
+      0.01,
+      1.583
+    ],
+    "ear.lobeRight": [
+      -0.08,
+      0.01,
+      1.583
+    ],
+    "nose.bridge": [
+      0,
+      -0.074,
+      1.622
+    ],
+    "neck.collar": [
+      0,
+      0.013,
+      1.443
+    ],
+    "shoulder.left": [
+      0.176,
+      0.012,
+      1.367
+    ],
+    "shoulder.right": [
+      -0.176,
+      0.012,
+      1.367
+    ],
+    "waist.center": [
+      0,
+      0.015,
+      1.039
+    ],
+    "wrist.left": [
+      0.293,
+      -0.011,
+      0.925
+    ],
+    "wrist.right": [
+      -0.293,
+      -0.011,
+      0.925
+    ],
+    "foot.left": [
+      0.09,
+      -0.026,
+      0.027
+    ],
+    "foot.right": [
+      -0.09,
+      -0.026,
+      0.027
+    ]
+  },
+  "anchorStatus": "Authored rest-frame fitting landmarks from construction parameters, not fitted production surface bindings. Measured actual bounds accompany each mesh.",
+  "implementedIdentityControls": [
+    "nose.projection",
+    "nose.alarWidth",
+    "earLeft.protrusion",
+    "earRight.protrusion",
+    "body.height",
+    "body.shoulderWidth"
+  ],
+  "expressionPresets": {
+    "neutral": {},
+    "happy": {
+      "expression.smileLeft": 1,
+      "expression.smileRight": 1
+    },
+    "sad": {
+      "expression.frownLeft": 1,
+      "expression.frownRight": 1,
+      "expression.browRaiseLeft": 0.8,
+      "expression.browRaiseRight": 0.8
+    },
+    "blink": {
+      "expression.blinkLeft": 1,
+      "expression.blinkRight": 1
+    }
+  },
+  "correctiveRule": "For every exported corrective.height.CHANNEL, weight = body.height * expression.CHANNEL. Blender source includes drivers; glTF consumer must compute this product explicitly.",
+  "unimplementedIdentityCount": 32,
+  "provenance": "Original scripted geometry by this lane; no downloaded assets, personal photos, scans or third-party models.",
+  "inheritedFrameCommit": "2921534bdc8959a8489713f9b1652381702808a5",
+  "controlledLidNode": "Head_continuous_anatomy",
+  "eyeRadiiBlenderMetres": [
+    0.0148,
+    0.013,
+    0.013
+  ],
+  "correctiveRules": {
+    "height": "corrective.height.CHANNEL = body.height * expression.CHANNEL",
+    "blinkArc": "corrective.blinkArcLeft/Right = 4 * expression.blinkLeft/Right * (1 - expression.blinkLeft/Right)"
+  },
+  "removedNodes": [],
+  "changedNodes": [
+    "Head_continuous_anatomy",
+    "Eye_Left",
+    "Iris_Left",
+    "Pupil_Left",
+    "Eye_Right",
+    "Iris_Right",
+    "Pupil_Right"
+  ],
+  "corneaBinding": "Rebind to new 29.6 x 26 x 26 mm globe envelope and new iris/pupil depth; centres unchanged. Existing v4/older cap acceptance does not transfer.",
+  "triangleCount": 30194,
+  "meshCount": 27,
+  "acceptance": "Unchanged v5 checker PASS (35 poses). Existing v5 pixels are under parent review; no visual acceptance or skin refit.",
+  "uvStatus": "Single U-coordinate correction at Head vertex5074; 7 face corners. Zero new/new or new/original UV overlap pairs. Original 2102 retained Head overlaps unchanged.",
+  "apertureRestMetres": {
+    "width": 0.0284,
+    "centralHeight": 0.0104
+  },
+  "closedSeamCentralOffsetMetres": -0.0016,
+  "uvRevision": 1,
+  "uvCorrectionInputCommit": "c54141c1eb809f1c529e5808e46d228f3451e20f",
+  "anchorPacketSha256": "258589dae8b27b66d2e7e784194fd5aa23ccb6495def9572ff7050b21021629d",
+  "inputFitFrameSha256": "e6c07bebe66d2260fcb1a6b65e302b739645246516e65a191b42f2b648be1826"
+}

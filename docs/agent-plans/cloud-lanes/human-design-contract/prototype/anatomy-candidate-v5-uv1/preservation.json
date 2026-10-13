@@ -1,0 +1,25 @@
+{
+  "inputCommit": "c54141c1eb809f1c529e5808e46d228f3451e20f",
+  "unchangedGeometryCheckFields": [
+    "version",
+    "cases",
+    "properCrossingsAllTestedPairs",
+    "neutralEyeHeadProperCrossings",
+    "minimumNewLidTriangleAreaM2",
+    "minimumNormalCosineToNeutral",
+    "maximumEvaluatedMorphErrorM",
+    "headBoundaryEdges",
+    "allHeadBoundariesAreActualEyeApertures",
+    "nonmanifoldEdges",
+    "apertureMeasurements",
+    "preservedMeshes",
+    "continuousBlinkNormalCertificates",
+    "caseResults",
+    "limits"
+  ],
+  "allUnchangedGeometryResultsExact": true,
+  "canonicalGeometryResultsSha256": "ba156395be8fe3936a320bd74131887e034bdbee6a7061e034cbc0699d98ddd9",
+  "existingLibraryId": "libfile_eaf2a90ff35c819192aaac774c56d0ce",
+  "newLibrarySaves": 0,
+  "renders": 0
+}

@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checkerSha256": "2fb91dccf2488049b3ca2a19d911dd79b21f6dd21d48089131bbcc88240db6ef",
+  "checkerByteIdentical": true,
+  "copiedDependenciesSha256": {
+    "check_anatomy_v5.py": "2fb91dccf2488049b3ca2a19d911dd79b21f6dd21d48089131bbcc88240db6ef",
+    "build_character.py": "f11df397a66266f23c31ea3d5034098c69a25b5540258e0a8a4788f12123c705",
+    "check_lid_candidate_v3.py": "2ee47f414507ee681efad0678b29a29ff2669f33bc1e27439aeaf13e3b976e1d",
+    "fit-frame.json": "51fae932279d1513e16c4d06ce633f6218a994fe6c224bc3436e105cc519083b"
+  },
+  "inputBlendSha256": "33c3f4a8d87ca764fb16004d2f322d45fe46bae247303317d92fa5a188efcbaa",
+  "cases": 35,
+  "failures": [],
+  "method": "Unmodified checker and dependencies copied into an isolated path-compatible tree with the corrected BLEND at its expected path. Only asset SHA fields in the copied build receipt change.",
+  "frozenV5AssetsAndEvidenceOverwritten": false,
+  "rendered": false
+}

@@ -1,5 +1,7 @@
 # Original human prototype: active continuation
 
+**V5 UV-only follow-up:** [correction and unchanged-checker PASS](anatomy-candidate-v5-uv1/CONTINUE.md). The existing v5 portraits remain under review; no rerender or skin refit.
+
 **Latest face review checkpoint:** see [anatomy-candidate-v5/CONTINUE.md](anatomy-candidate-v5/CONTINUE.md). Curved eye/socket topology and neutral/half/full portraits are complete; geometry/export gates pass, while the overall checker remains FAIL for seven added UV overlaps. Parent face review and UV/skin/cornea work are required. Protected v4, v3 and original master remain unchanged.
 
 Parent expanded this same lane at approximately 18:34 UTC on 13 October 2026: deliver actual original Blender character geometry, first pixels, physical subset controls, expressions and a turntable. This is an independent prototype, not adoption of the existing character task or a game-body replacement. Same branch and two owned prefixes only. Skin/eyes, hair and wardrobe task launches are parent-owned; no subworkers were launched here.

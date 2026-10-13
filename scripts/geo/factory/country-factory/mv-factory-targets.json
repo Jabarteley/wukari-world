@@ -5,18 +5,18 @@
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "MV",
     "datasetSha256": "d4db22dc16c3ef027aa1a3245e4967cee59006f7e2ecebdfc482e5680f824604",
-    "receiptSha256": "514ed038596e8598825a5327a58c9d36c0b94f4cad7c2a4fc27aa15f4632f862",
-    "receiptBytes": 24552,
+    "receiptSha256": "6176167af9be8bf1cda43a87896bb5014f43790b8da0fea751c6ffc194e412d4",
+    "receiptBytes": 25011,
     "geometrySha256": "2a91620a5e12eab97d5875b3ec98c5cea71a333575ff1a85a56b821a4008fecf",
     "geometryBytes": 2581,
-    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "scriptSha256": "c09dd3824694c92d828a5307c03a675a2b623ebfccdc62fc0ef6ff7fd4948870",
     "relationId": 536773,
     "boundaryKey": "mv",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38248346879,
-      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-      "sourceArtifact": "city-bootstrap-mv-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceRunId": 38336723526,
+      "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+      "sourceArtifact": "city-bootstrap-mv-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -59,7 +59,41 @@
           4.358868789933978
         ]
       },
-      "selectionExclusions": [],
+      "profile": "microstate",
+      "selectionExclusions": [
+        {
+          "ref": "node/663869940",
+          "reason": "Black Coral Faru: a scuba-diving reef point (natural=reef, tourism=attraction) 942 m offshore in the lagoon; the exact-coast stage reports it as a wet source anchor, and it is not a place a player can stand."
+        },
+        {
+          "ref": "node/663869943",
+          "reason": "Bolifushi: its mapped point lies in water, 130 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "node/663869951",
+          "reason": "Embudu Kandu: its mapped point lies in water, 572 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "node/3314137175",
+          "reason": "Coral garden: its mapped point lies in water, 129 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "node/663869950",
+          "reason": "Embudu Channel / Embudu Express: its mapped point lies in water, 1001 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "node/4584554104",
+          "reason": "Embudu Finolhu Outside: its mapped point lies in water, 852 m from the exact coast (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        },
+        {
+          "ref": "node/663869941",
+          "reason": "Velassaru Caves: a scuba-diving or reef point (sport=scuba_diving / natural=reef) mapped in the lagoon or open sea, not on dry land (the exact-coast stage reports such points as wet source anchors); not a place a player can stand."
+        },
+        {
+          "ref": "node/663869942",
+          "reason": "Vaadho Caves: a scuba-diving or reef point (sport=scuba_diving / natural=reef) mapped in the lagoon or open sea, not on dry land (the exact-coast stage reports such points as wet source anchors); not a place a player can stand."
+        }
+      ],
       "metadataSources": {
         "centre": {
           "osmRef": "node/3385374395",
@@ -549,7 +583,7 @@
           "way/1530863633",
           "way/1566874079"
         ],
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -587,29 +621,52 @@
           "airportMarginMetres": 17965.95835267838,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ]
+          },
+          "cityPlaceTag": "city"
         }
       },
       "extractKey": "male",
       "extractSha256": {
-        "places": "3362422a8db9ff515e56aa4662d5076f9267039d2685c1dd2d775897fa116a66",
-        "extras": "7c1788707041f829404a119055c90528ba76396916a9715e7a2e58eab9540909",
-        "water": "e32793e45ba832fa94928c3be3da51f2728af95a3dc3b8a64a6349294fcde1c5",
-        "landuse": "85b31deaa50c7de00d9aac61f7f7d5d5fca4dd5cbc6ffd64fb234f417e1a9174",
-        "roads": "f72163c384aa36154aed0240d5e8d13a023ac10b769107f640e88c6c74ef1106"
+        "places": "962500319e3f244162d46599cf1a53e34420876c5c37e30b805199a5b63d205d",
+        "extras": "2d35f81dbf0aa805c83d9b44ceeb6f53425d554670912294afd29b6aece72e8e",
+        "water": "dde19619a78afba8e33fc24dd43c834978e8f27c3131ee5652e9969eda4b7ae2",
+        "landuse": "d26bec11e581ddb41b800bffe201a84d08fcdee7d02a32a30d8b1e91d95b2a12",
+        "roads": "07c83f297b8afd6ccae3fc63510af6d55923bb46397edcbf262953ca26f3e916"
       },
       "sourceJob": {
         "city": "male",
-        "sourceRunId": 38248346879,
-        "sourceArtifact": "city-bootstrap-mv-06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceRunId": 38336723526,
+        "sourceArtifact": "city-bootstrap-mv-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+        "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
         "datasetSha256": "d4db22dc16c3ef027aa1a3245e4967cee59006f7e2ecebdfc482e5680f824604",
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {
-          "places": "3362422a8db9ff515e56aa4662d5076f9267039d2685c1dd2d775897fa116a66",
-          "extras": "7c1788707041f829404a119055c90528ba76396916a9715e7a2e58eab9540909",
-          "water": "e32793e45ba832fa94928c3be3da51f2728af95a3dc3b8a64a6349294fcde1c5",
-          "landuse": "85b31deaa50c7de00d9aac61f7f7d5d5fca4dd5cbc6ffd64fb234f417e1a9174",
-          "roads": "f72163c384aa36154aed0240d5e8d13a023ac10b769107f640e88c6c74ef1106"
+          "places": "962500319e3f244162d46599cf1a53e34420876c5c37e30b805199a5b63d205d",
+          "extras": "2d35f81dbf0aa805c83d9b44ceeb6f53425d554670912294afd29b6aece72e8e",
+          "water": "dde19619a78afba8e33fc24dd43c834978e8f27c3131ee5652e9969eda4b7ae2",
+          "landuse": "d26bec11e581ddb41b800bffe201a84d08fcdee7d02a32a30d8b1e91d95b2a12",
+          "roads": "07c83f297b8afd6ccae3fc63510af6d55923bb46397edcbf262953ca26f3e916"
         }
       }
     }

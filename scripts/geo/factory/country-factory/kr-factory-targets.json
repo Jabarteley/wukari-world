@@ -4,19 +4,19 @@
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "KR",
-    "datasetSha256": "a856bb1e43c968612b2339af0e01da8bb972e10ba21ca86b9d91aac4d1d64505",
-    "receiptSha256": "79837d4582ac440605da7cb76dc514aea1cf4874c258e06fb92122d981ec8184",
-    "receiptBytes": 67408,
+    "datasetSha256": "3d7370bd43b198d5c67bbae966d14831804162c863cf92d2660cae5f40587fdc",
+    "receiptSha256": "b7cdb98e272295ec66e6d49f5c8bda788a7569a40e27627fd43bdf04ff118ab1",
+    "receiptBytes": 68783,
     "geometrySha256": "ab1cbbcf4d893877732b9a799eaa479f8cd542419de596b0b16338254856ae07",
     "geometryBytes": 53180,
-    "scriptSha256": "f143c7cac0b3a9277dfeb9423569be68442ee20374875d97472127cd605d3ac0",
+    "scriptSha256": "c09dd3824694c92d828a5307c03a675a2b623ebfccdc62fc0ef6ff7fd4948870",
     "relationId": 307756,
     "boundaryKey": "kr",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38307668383,
-      "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
-      "sourceArtifact": "city-bootstrap-kr-28439a3230520b77094d69937eefd9c9b5857b46",
+      "sourceRunId": 38336723526,
+      "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+      "sourceArtifact": "city-bootstrap-kr-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -59,6 +59,7 @@
           37.74755998993398
         ]
       },
+      "sceneWaterExtent": "play",
       "selectionExclusions": [],
       "metadataSources": {
         "centre": {
@@ -257,7 +258,7 @@
             "lon": 126.9782914,
             "lat": 37.5666791
           },
-          "pbfSha256": "a856bb1e43c968612b2339af0e01da8bb972e10ba21ca86b9d91aac4d1d64505"
+          "pbfSha256": "3d7370bd43b198d5c67bbae966d14831804162c863cf92d2660cae5f40587fdc"
         },
         "airport": {
           "rowNumber": 55365,
@@ -317,13 +318,15 @@
         },
         "pbf": {
           "url": "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf",
-          "bytes": 289058579,
-          "sha256": "a856bb1e43c968612b2339af0e01da8bb972e10ba21ca86b9d91aac4d1d64505",
+          "bytes": 382691177,
+          "sha256": "3d7370bd43b198d5c67bbae966d14831804162c863cf92d2660cae5f40587fdc",
           "headerTimestamp": "2026-10-11T20:21:06Z"
         },
         "coastlineRefsWithinWide": [
           "way/15473657",
           "way/15473808",
+          "way/15473815",
+          "way/15473845",
           "way/15473929",
           "way/15474009",
           "way/15474053",
@@ -334,6 +337,7 @@
           "way/15474354",
           "way/15474448",
           "way/15474470",
+          "way/15474510",
           "way/15474580",
           "way/15474588",
           "way/15474942",
@@ -662,8 +666,10 @@
           "way/587847412",
           "way/600328606",
           "way/600328607",
+          "way/600328609",
           "way/600328611",
           "way/600328613",
+          "way/600328614",
           "way/600328615",
           "way/600328616",
           "way/600328617",
@@ -675,6 +681,7 @@
           "way/645759806",
           "way/701909072",
           "way/702946373",
+          "way/707455898",
           "way/720019160",
           "way/720019161",
           "way/720884633",
@@ -693,6 +700,7 @@
           "way/847432423",
           "way/847451002",
           "way/855728907",
+          "way/861122040",
           "way/867252403",
           "way/867252406",
           "way/871154016",
@@ -717,10 +725,15 @@
           "way/938751350",
           "way/976876810",
           "way/988797072",
+          "way/992040606",
           "way/1018653982",
           "way/1036695351",
           "way/1036695352",
           "way/1046825738",
+          "way/1050709429",
+          "way/1050709430",
+          "way/1050709431",
+          "way/1050709434",
           "way/1050709436",
           "way/1051204475",
           "way/1052046100",
@@ -740,6 +753,9 @@
           "way/1174430819",
           "way/1176004050",
           "way/1183522694",
+          "way/1236777524",
+          "way/1236777529",
+          "way/1236777531",
           "way/1312616617",
           "way/1312616618",
           "way/1322827826",
@@ -747,6 +763,7 @@
           "way/1322827828",
           "way/1322828341",
           "way/1322829188",
+          "way/1323106442",
           "way/1410562424",
           "way/1410562428",
           "way/1410562429",
@@ -770,17 +787,31 @@
           "way/1432160570",
           "way/1432563392",
           "way/1432563393",
+          "way/1489579169",
+          "way/1489579170",
           "way/1489579171",
           "way/1489579172",
           "way/1489579173",
+          "way/1489579174",
           "way/1489579175",
+          "way/1489579176",
           "way/1489579177",
+          "way/1489579178",
           "way/1489579180",
+          "way/1489579181",
+          "way/1489579185",
           "way/1489579188",
           "way/1489579191",
           "way/1489579193",
           "way/1489579198",
           "way/1489579200",
+          "way/1495249467",
+          "way/1495249468",
+          "way/1495249469",
+          "way/1495249473",
+          "way/1495249474",
+          "way/1495249475",
+          "way/1495249479",
           "way/1503200390",
           "way/1512533891",
           "way/1512982006",
@@ -789,7 +820,7 @@
           "way/1521285008",
           "way/1536134982"
         ],
-        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -831,26 +862,45 @@
       },
       "extractKey": "seoul",
       "extractSha256": {
-        "places": "49232c4ca1237390324e90358b494b92de70ac76c415446e0719e66ec7a22734",
-        "extras": "5e1ef0525970bae2490185a0dc3833633c23d383cdbc9d0e190a80fa6fc1e34d",
-        "water": "1f904e4d657a854b486bba99628cb14759aba0f17879514af9e6de8032f63b6c",
-        "landuse": "e6f781d0ac5de4a7fdd5785d35dedeaccdaf63a4fca5d1a61b1ac8c5d54a3388",
-        "roads": "4f10f7e5a2a6440181300293c50dd4a9d4e152dd9ec3ae2f762d49551acee781"
+        "places": "7d390228c9e8ddaffd84904a63744b838b6fd55452427c15e45520fb06c7e55a",
+        "extras": "64371d939f5b1efd80c627846930862fd010e712008cdfaf6d6dfb7e17329f46",
+        "water": "425f17fc844888739943fddc7651cf5ebd47d1223ad87a3b150c37a49a7ebe7e",
+        "landuse": "5c629ee3bc1e8e029afe0bf4072ecff86c47f01e73aa83a8c880e5d360d51bd2",
+        "roads": "85eefc9f53428038f051e39c4f7baea4f5f5282203946c7aa2edb5fb1decee47"
       },
       "sourceJob": {
         "city": "seoul",
-        "sourceRunId": 38307668383,
-        "sourceArtifact": "city-bootstrap-kr-28439a3230520b77094d69937eefd9c9b5857b46",
-        "sourceSha": "28439a3230520b77094d69937eefd9c9b5857b46",
-        "datasetSha256": "a856bb1e43c968612b2339af0e01da8bb972e10ba21ca86b9d91aac4d1d64505",
-        "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+        "sourceRunId": 38336723526,
+        "sourceArtifact": "city-bootstrap-kr-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+        "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+        "datasetSha256": "3d7370bd43b198d5c67bbae966d14831804162c863cf92d2660cae5f40587fdc",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {
-          "places": "49232c4ca1237390324e90358b494b92de70ac76c415446e0719e66ec7a22734",
-          "extras": "5e1ef0525970bae2490185a0dc3833633c23d383cdbc9d0e190a80fa6fc1e34d",
-          "water": "1f904e4d657a854b486bba99628cb14759aba0f17879514af9e6de8032f63b6c",
-          "landuse": "e6f781d0ac5de4a7fdd5785d35dedeaccdaf63a4fca5d1a61b1ac8c5d54a3388",
-          "roads": "4f10f7e5a2a6440181300293c50dd4a9d4e152dd9ec3ae2f762d49551acee781"
-        }
+          "places": "7d390228c9e8ddaffd84904a63744b838b6fd55452427c15e45520fb06c7e55a",
+          "extras": "64371d939f5b1efd80c627846930862fd010e712008cdfaf6d6dfb7e17329f46",
+          "water": "425f17fc844888739943fddc7651cf5ebd47d1223ad87a3b150c37a49a7ebe7e",
+          "landuse": "5c629ee3bc1e8e029afe0bf4072ecff86c47f01e73aa83a8c880e5d360d51bd2",
+          "roads": "85eefc9f53428038f051e39c4f7baea4f5f5282203946c7aa2edb5fb1decee47"
+        },
+        "sourceInputs": [
+          {
+            "role": "primary",
+            "url": "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 289058579,
+            "md5": "df6f9430a975f927c08f4afddade7f97",
+            "sha256": "a856bb1e43c968612b2339af0e01da8bb972e10ba21ca86b9d91aac4d1d64505"
+          },
+          {
+            "role": "neighbour",
+            "url": "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf",
+            "snapshotDate": "2026-10-11",
+            "bytes": 92633737,
+            "md5": "613c91f099220dd867b1a64c69e8422b",
+            "sha256": "35b29765950cd53bd39166955c93b6d5f4934d8a5ac5891f5c9334187ab20374",
+            "reason": "Seoul water box reaches 38.35N and 125.84E: the Yellow Sea coast north and west of Ganghwa (Han estuary, Yeonan and Haeju coast) is cut at the border and continues in North Korea; the Korea and North Korea clips together cover the whole box"
+          }
+        ]
       }
     }
   ]

@@ -5,18 +5,18 @@
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "FM",
     "datasetSha256": "2786fce7653d7ae29ada6f43138fd19a20efd35118e350aa1516642986033ea0",
-    "receiptSha256": "f33d149363002c947b9f408485fa779a3f2e705cae97fd89b0d96cd1340ae5b8",
-    "receiptBytes": 37735,
+    "receiptSha256": "6f0314ef9e9402a06dff26a971104ec4dd11322792676df835f57940b142ba42",
+    "receiptBytes": 38196,
     "geometrySha256": "fad41d77b85c13a09e08b2f51a838d40f8910f8ae2a34e88209bb037e3c615c2",
     "geometryBytes": 144027,
-    "scriptSha256": "91017a500b1837d12a15d75625893d0d0c65faef3c0bb6bb74b6cb6068cb77ea",
+    "scriptSha256": "c09dd3824694c92d828a5307c03a675a2b623ebfccdc62fc0ef6ff7fd4948870",
     "relationId": 571802,
     "boundaryKey": "fm",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38248346879,
-      "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
-      "sourceArtifact": "city-bootstrap-fm-06193da21e13cbf72e436d30f54f52553c78b2d3",
+      "sourceRunId": 38336723526,
+      "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+      "sourceArtifact": "city-bootstrap-fm-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -59,6 +59,7 @@
           7.101624889933978
         ]
       },
+      "profile": "microstate",
       "selectionExclusions": [],
       "metadataSources": {
         "centre": {
@@ -534,7 +535,7 @@
           "way/1293123726",
           "way/1293123727"
         ],
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
@@ -572,29 +573,52 @@
           "airportMarginMetres": 12886.147339999947,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ]
+          },
+          "cityPlaceTag": "town"
         }
       },
       "extractKey": "palikir",
       "extractSha256": {
-        "places": "9a38261ca068a08024ffc78da6b8b0dac374b89e3958527aef6843d1e0f35f4a",
-        "extras": "91486c85e4bcd093a620030fc31aee61e111c11a8ce710f995e2a6c38e06e544",
-        "water": "1bf11369eab80a3f862d2700ad5637849c7001de693957b46a4db5856b00765d",
-        "landuse": "8a546e2c98a55cb9d248a2ec6d471e2b66fbee76596f9515387548edda4750a4",
-        "roads": "144c7ad93dc8fe5d437767d907d4e0ad768e24ed3fd3414b4f8b19e840f68bef"
+        "places": "a4fd288ab35ea8eaa1384db8103dcc8e9127a5c1c3cdedb6680edaa58094101d",
+        "extras": "a693247c1b8908797fb889d2184edf374d0a4e5e47c24c317582d9f26668d4b7",
+        "water": "2b8c50c05bf85a2783664399d569b3af0b063d057b0d2008e7677819b81d94fe",
+        "landuse": "3bead2332c12da62de1c153024573b5ede21550af6f0b097c82222a15f605f61",
+        "roads": "358b71032957a137a687056e3000491f7d351901d2bc3203898b3e4050b42eb4"
       },
       "sourceJob": {
         "city": "palikir",
-        "sourceRunId": 38248346879,
-        "sourceArtifact": "city-bootstrap-fm-06193da21e13cbf72e436d30f54f52553c78b2d3",
-        "sourceSha": "06193da21e13cbf72e436d30f54f52553c78b2d3",
+        "sourceRunId": 38336723526,
+        "sourceArtifact": "city-bootstrap-fm-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+        "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
         "datasetSha256": "2786fce7653d7ae29ada6f43138fd19a20efd35118e350aa1516642986033ea0",
-        "adapterSha256": "78a74166683176dca0bde837987da99300483771cb0ee1d038ee40bfe6ba23c3",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {
-          "places": "9a38261ca068a08024ffc78da6b8b0dac374b89e3958527aef6843d1e0f35f4a",
-          "extras": "91486c85e4bcd093a620030fc31aee61e111c11a8ce710f995e2a6c38e06e544",
-          "water": "1bf11369eab80a3f862d2700ad5637849c7001de693957b46a4db5856b00765d",
-          "landuse": "8a546e2c98a55cb9d248a2ec6d471e2b66fbee76596f9515387548edda4750a4",
-          "roads": "144c7ad93dc8fe5d437767d907d4e0ad768e24ed3fd3414b4f8b19e840f68bef"
+          "places": "a4fd288ab35ea8eaa1384db8103dcc8e9127a5c1c3cdedb6680edaa58094101d",
+          "extras": "a693247c1b8908797fb889d2184edf374d0a4e5e47c24c317582d9f26668d4b7",
+          "water": "2b8c50c05bf85a2783664399d569b3af0b063d057b0d2008e7677819b81d94fe",
+          "landuse": "3bead2332c12da62de1c153024573b5ede21550af6f0b097c82222a15f605f61",
+          "roads": "358b71032957a137a687056e3000491f7d351901d2bc3203898b3e4050b42eb4"
         }
       }
     }

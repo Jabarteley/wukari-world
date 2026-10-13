@@ -1,0 +1,363 @@
+{
+  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "NR",
+    "datasetSha256": "45688d43675a6ac33b02b39d09052011ee762aeacb9451669eb2f7c97ecfe47f",
+    "receiptSha256": "c7ed07286679d5d6aa263c3133aaf476a22818589a0d57f3f3a7519dcd98306d",
+    "receiptBytes": 11905,
+    "geometrySha256": "bc8277a84b2ea3acd02c18a4d2d680f9b51d851d232bbd978196bb8cf90ec88c",
+    "geometryBytes": 49482,
+    "scriptSha256": "c09dd3824694c92d828a5307c03a675a2b623ebfccdc62fc0ef6ff7fd4948870",
+    "relationId": 571804,
+    "boundaryKey": "nr",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38336723526,
+      "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+      "sourceArtifact": "city-bootstrap-nr-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "yaren",
+      "name": "Yaren",
+      "country": "nr",
+      "facts": {
+        "id": "yaren",
+        "name": "Yaren",
+        "country": {
+          "idISOlower": "nr",
+          "name": "Nauru"
+        },
+        "state": {
+          "idunique": "nr-yaren",
+          "name": "Yaren"
+        },
+        "timezone": "Pacific/Nauru",
+        "centre": {
+          "lon": 166.9163479,
+          "lat": -0.5471064
+        },
+        "airport": {
+          "id": "yaren-airport",
+          "name": "Nauru International Airport",
+          "lon": 166.919525,
+          "lat": -0.547893,
+          "sourceUrl": "https://ourairports.com/airports/ANYN/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/313728509",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          166.73667116198516,
+          -0.7279872899339784,
+          167.09602463801485,
+          -0.36622551006602155
+        ]
+      },
+      "profile": "microstate",
+      "selectionExclusions": [
+        {
+          "ref": "node/4896230521",
+          "reason": "Cantilever Cranes: a harbour crane mapped as a point 33 m inside the sea (the exact-coast stage reports it as a wet source anchor); not a place a player can stand."
+        }
+      ],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/313728509",
+          "sourceUrl": "https://www.openstreetmap.org/node/313728509",
+          "sourceRecord": {
+            "ref": "node/313728509",
+            "tags": {
+              "capital": "no",
+              "name": "Yaren",
+              "name:ace": "Yaren",
+              "name:af": "Yaren",
+              "name:am": "ያሬን",
+              "name:ar": "ضاحية يارين",
+              "name:arz": "ضاحية يارين",
+              "name:ast": "Yaren",
+              "name:avk": "Yaren",
+              "name:az": "Yaren",
+              "name:be": "Ярэн",
+              "name:bg": "Ярен",
+              "name:bn": "ইয়ারেন জেলা",
+              "name:bo": "ཡ་རེན།",
+              "name:bs": "Yaren",
+              "name:ca": "Yaren",
+              "name:cs": "Yaren",
+              "name:cu": "Ꙗрєнъ",
+              "name:cy": "Yaren",
+              "name:da": "Yaren",
+              "name:de": "Yaren",
+              "name:el": "Γιαρέν",
+              "name:en": "Yaren",
+              "name:eo": "Jareno",
+              "name:es": "Distrito de Yaren",
+              "name:et": "Yareni ringkond",
+              "name:eu": "Yaren",
+              "name:fa": "یارن",
+              "name:fi": "Yaren",
+              "name:fr": "Yaren",
+              "name:frr": "Yaren",
+              "name:gd": "Yaren",
+              "name:gl": "Yaren",
+              "name:gv": "Yaren",
+              "name:hak": "Yaren",
+              "name:he": "יארן",
+              "name:hi": "यारेन जिला",
+              "name:hif": "Yaren",
+              "name:hr": "Yaren",
+              "name:ht": "Yarèn",
+              "name:hu": "Yaren",
+              "name:hy": "Յարեն",
+              "name:id": "Yaren",
+              "name:io": "Yaren",
+              "name:is": "Jaren",
+              "name:it": "Yaren",
+              "name:ja": "ヤレン",
+              "name:jv": "Yaren",
+              "name:ka": "იარენი",
+              "name:kk": "Ярен",
+              "name:ko": "야렌구",
+              "name:la": "Yaren",
+              "name:lij": "Yaren",
+              "name:lt": "Jarenas",
+              "name:lv": "Jarena",
+              "name:mg": "Yaren",
+              "name:mk": "Јарен",
+              "name:mr": "यारेन",
+              "name:mrj": "Ярен",
+              "name:ms": "Yaren",
+              "name:na": "Yaren",
+              "name:nl": "Yaren",
+              "name:no": "Yaren",
+              "name:oc": "Yaren",
+              "name:pa": "ਯਾਰਨ ਜ਼ਿਲ੍ਹਾ",
+              "name:pl": "Yaren",
+              "name:pt": "Iarém",
+              "name:ro": "Yaren",
+              "name:ru": "Ярен",
+              "name:sah": "Ярен",
+              "name:sc": "Yaren",
+              "name:sco": "Yaren",
+              "name:sh": "Yaren",
+              "name:sk": "Yaren",
+              "name:sl": "Yaren",
+              "name:sm": "Yaren",
+              "name:sn": "Yaren",
+              "name:sr": "Јарен",
+              "name:sv": "Yaren",
+              "name:sw": "Yaren",
+              "name:szl": "Yaren",
+              "name:ta": "யாரென் மாவட்டம்",
+              "name:tg": "Ярен",
+              "name:th": "ยาเรน",
+              "name:tl": "Yaren",
+              "name:tr": "Yaren",
+              "name:ty": "Yaren",
+              "name:uk": "Ярен",
+              "name:vi": "Yaren",
+              "name:war": "Yaren",
+              "name:xmf": "იარენი",
+              "name:zh": "亞倫",
+              "note": "Before editing capital tag please discuss on https://wiki.openstreetmap.org/wiki/Talk:Key:capital",
+              "old_name": "Makwa",
+              "place": "village",
+              "population": "747",
+              "source": "wikipedia",
+              "wikidata": "Q31026"
+            },
+            "lon": 166.9163479,
+            "lat": -0.5471064
+          },
+          "pbfSha256": "45688d43675a6ac33b02b39d09052011ee762aeacb9451669eb2f7c97ecfe47f",
+          "selection": {
+            "cityOsmRef": "node/313728509",
+            "matchedOsmRef": "node/313728509"
+          }
+        },
+        "airport": {
+          "rowNumber": 10141,
+          "row": {
+            "id": "8",
+            "ident": "ANYN",
+            "type": "medium_airport",
+            "name": "Nauru International Airport",
+            "latitude_deg": "-0.547893",
+            "longitude_deg": "166.919525",
+            "elevation_ft": "22",
+            "continent": "OC",
+            "iso_country": "NR",
+            "iso_region": "NR-14",
+            "municipality": "Yaren",
+            "scheduled_service": "yes",
+            "icao_code": "ANYN",
+            "iata_code": "INU",
+            "gps_code": "ANYN",
+            "local_code": "",
+            "home_link": "https://www.nauruair.com/",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Nauru_International_Airport",
+            "keywords": "Nauru, Yaren District, Naero"
+          },
+          "rowSha256": "0002c0159b79cffa4e779ea5b9fd2ba7606700588baafc16d1e7d61e052905ed",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "ANYN",
+            "sourceUrl": "https://ourairports.com/airports/ANYN/",
+            "matchedIdent": "ANYN",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/ANYN/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "NR",
+              "-0031+16655",
+              "Pacific/Nauru"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "Pacific/Nauru",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "NR",
+              "-0031+16655",
+              "Pacific/Nauru"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/nauru-261011.osm.pbf",
+          "bytes": 266540,
+          "sha256": "45688d43675a6ac33b02b39d09052011ee762aeacb9451669eb2f7c97ecfe47f",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/28558508",
+          "way/503124464",
+          "way/503124466",
+          "way/503124469",
+          "way/503124472",
+          "way/503124474",
+          "way/503124483",
+          "way/503124485",
+          "way/597832622",
+          "way/597832624",
+          "way/597844743",
+          "way/598145539",
+          "way/613728539",
+          "way/613728549",
+          "way/613728550",
+          "way/613732387",
+          "way/613732394",
+          "way/613732395",
+          "way/613732396",
+          "way/613732397",
+          "way/881987907",
+          "way/881987908",
+          "way/883150711",
+          "way/883150712",
+          "way/883150713",
+          "way/883274732",
+          "way/883274733"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -0.7279872899339784,
+              166.73667116198516,
+              -0.36622551006602155,
+              167.09602463801485
+            ],
+            "core": [
+              -0.5923266224834947,
+              166.87142994096226,
+              -0.5018861775165053,
+              166.96126585903775
+            ],
+            "outline": [
+              -0.7779872899339785,
+              166.68667116198515,
+              -0.31622551006602156,
+              167.14602463801486
+            ],
+            "wide": [
+              -1.3279872899339784,
+              166.13667116198516,
+              0.23377448993397842,
+              167.69602463801485
+            ]
+          },
+          "airportMarginMetres": 19647.04138612753,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "microstate",
+          "rules": {
+            "minimumPlaces": 12,
+            "minimumNeighbourhoodLabels": 3,
+            "maximumEmptySlots": 4,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality"
+            ],
+            "capitalPlaceTags": [
+              "suburb"
+            ],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ]
+          },
+          "cityPlaceTag": "village"
+        }
+      },
+      "extractKey": "yaren",
+      "extractSha256": {
+        "places": "773e290396edc69f7fa19ca83a7ec43b9b6426359f3a8720dde3994df02c11a6",
+        "extras": "298f6bd2e5c17f5058e4fbdeb35c328b708413c583af0e86650d470452386ca4",
+        "water": "c9fb19e4c6204d0981d888c1ee9169a3a859b4bfdb9d3be7fbfcaf546aa6d7dd",
+        "landuse": "0650fa84da90c3965af50cd2b110ba4ddc8feb28128049432ab1f7477e648a1a",
+        "roads": "7532b0796db0a3d990e95c1f2c151abca9ee5e02636a5d450c4d7e166a486b92"
+      },
+      "sourceJob": {
+        "city": "yaren",
+        "sourceRunId": 38336723526,
+        "sourceArtifact": "city-bootstrap-nr-73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+        "sourceSha": "73df9b8cd6960e56991d20ba4e823ad7f1a334b0",
+        "datasetSha256": "45688d43675a6ac33b02b39d09052011ee762aeacb9451669eb2f7c97ecfe47f",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "773e290396edc69f7fa19ca83a7ec43b9b6426359f3a8720dde3994df02c11a6",
+          "extras": "298f6bd2e5c17f5058e4fbdeb35c328b708413c583af0e86650d470452386ca4",
+          "water": "c9fb19e4c6204d0981d888c1ee9169a3a859b4bfdb9d3be7fbfcaf546aa6d7dd",
+          "landuse": "0650fa84da90c3965af50cd2b110ba4ddc8feb28128049432ab1f7477e648a1a",
+          "roads": "7532b0796db0a3d990e95c1f2c151abca9ee5e02636a5d450c4d7e166a486b92"
+        }
+      }
+    }
+  ]
+}

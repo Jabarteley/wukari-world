@@ -420,3 +420,10 @@
 }
 
 @container cr (max-width:639px){.cr-host:not(.is-embedded) .cr-look{gap:6px}.cr-host:not(.is-embedded) .cr-editor .look-tabs{padding-top:0}}
+
+/* The last row always clears the footer (it is a sibling below the scroller, so the scroller's own end padding is the whole gap), and a short fade says there is more. */
+@container cr (max-width:639px){
+  .cr-host:not(.is-embedded) .cr-scroll{padding-bottom:calc(28px + env(safe-area-inset-bottom));scroll-padding-bottom:28px;-webkit-mask-image:linear-gradient(#000 calc(100% - 22px),transparent);mask-image:linear-gradient(#000 calc(100% - 22px),transparent)}
+  .cr-editor .look-swatch{min-height:92px;align-content:start}
+  .cr-editor .look-swatch span,.cr-editor .look-swatch{overflow-wrap:anywhere}
+}

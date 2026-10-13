@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "cityId": "shanghai",
+  "countryIso2": "CN",
+  "generationIdentity": {
+    "cityId": "shanghai",
+    "stateId": "cn-shanghai",
+    "stateName": "Shanghai"
+  },
+  "inventorySha256": "5bb9a5364288edd1049ba7b368ab0db96a156f3df6d492abff4285221aa0556c",
+  "inventoryPath": "world/playable-africa-rollout/sources/shanghai.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "shanghai-airport",
+    "name": "Shanghai Pudong International Airport",
+    "lon": 121.805,
+    "lat": 31.1434,
+    "sourceUrl": "https://ourairports.com/airports/ZSPD/"
+  },
+  "bounds": [
+    31.051462810066024,
+    121.25858469409144,
+    31.41322458993398,
+    121.81549681636386
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/china/shanghai-261011.osm.pbf",
+      "datasetSha256": "b6d45e81c52dc0016143c19817fce0783875f6b482042090b37897589d29535a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/china-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 1606894482,
+          "md5": "d8ea2e9d574773bd57f20b9b7b0d9adf",
+          "sha256": "0f8510a389bf9e35ae059879a8e385526a7034cd62e7fe76f3982f81e40b7a17"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/taiwan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 327517851,
+          "md5": "7bb79f0c8bc05d2d67497eb62734735b",
+          "sha256": "8d7b21385c34f4d0af57610ac0fa53799d77f245b5e670ebc9a9b2f5f63acf54",
+          "reason": "admin-0 relation/270056 (China) member ways around Kinmen, Matsu and the Taiwan Strait islets (e.g. 9411252, 151689648, 277652512, 884030133) are absent from the China clip; their nodes lie inside the Taiwan clip. Owner decision 2026-10-13: China proceeds as a game venue map (no real-operation claims); the neighbour extract only supplies the nodes of these ways for the admin-0 boundary."
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/bhutan-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 23618779,
+          "md5": "1ca3f314308ebc51d36febcf5b074943",
+          "sha256": "ded95c6492c9f3f77ad528e5dd25255a99fec83a94113914b9b93c5ac8574d30",
+          "reason": "admin-0 relation/270056 (China) 'China's claimed border' / Bhutan - China ways at 89.1E 27.4N (e.g. 298158655, 589204000, 1337681673) are absent from the China clip; their nodes lie inside the Bhutan clip. Owner decision 2026-10-13: China proceeds as a game venue map (no real-operation claims); the neighbour extract only supplies the nodes of these ways for the admin-0 boundary."
+        },
+        {
+          "role": "city-extract",
+          "url": "https://download.geofabrik.de/asia/china/shanghai-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 25946863,
+          "md5": "e8be5994618ca23e53eabda64c309e57",
+          "sha256": "b6d45e81c52dc0016143c19817fce0783875f6b482042090b37897589d29535a",
+          "reason": "China (1.61 GB) is read only for the admin-0 boundary; Shanghai's metadata and layers come from the official Geofabrik Shanghai extract (26 MB, same 2026-10-11T20:21:06Z replication timestamp). ZSPD (31.14N 121.81E) and the city centre lie inside shanghai.poly (120.85-123.68E, 30.64-31.89N)",
+          "polyUrl": "https://download.geofabrik.de/asia/china/shanghai.poly",
+          "polySha256": "c34d551f02a2d42f327e2f123fd2f28399fd914b36ab46f0c099e15b68ae0f59",
+          "primaryPolyUrl": "https://download.geofabrik.de/asia/china.poly",
+          "primaryPolySha256": "c8b52c737100026700c6503c0a09169f455d83db565e341af9ac0e8e073cf8eb"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5bbe4991387d7a1e6c8f31de038aefa4d205a041b79ec32250fe6401ec9b488e",
+          "elements": 6667
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d7baa5a9a23dd7e07b999281728b1f1ded41626d4cc590a7d53a165c17172b64",
+          "elements": 1634
+        },
+        {
+          "file": "water.json",
+          "sha256": "6fa3e0b887c9e04f05ccab6fff77d4b14618765cca4c980bbbf8fa366b0072f4",
+          "elements": 1209
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "e87995af3243ef2e4649079c1743d50ca111eb66880e56fee93f23d48fc48c6d",
+          "elements": 13445
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a5f32bd04ab59c07454f7c22914177ba06074a5b3b65c7ba578696484d5f4e12",
+          "elements": 13890
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 26,
+    "waterPolygons": 32,
+    "reachWaterPolygons": 32
+  },
+  "observed": {
+    "places": 6667,
+    "extras": 1634,
+    "water": 1209,
+    "landuse": 13445,
+    "roads": 13890
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1234,
+      "sha256": "e9cda9ae58510c0b00b72feb3a6d1682da09fb2bb6142973da4e3e765c39c200"
+    },
+    "geometry.ts": {
+      "bytes": 1022067,
+      "sha256": "b0d256f5f2678b27434a0fde27b52d2e669b6a65a812fe0a4d09142a5dad3e49"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "0062d8fcf8bc9818071da02f127532a6d8a115a89f14d0c3e756e0d85da68aec"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/shanghai.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "stockholm",
+  "countryIso2": "SE",
+  "generationIdentity": {
+    "cityId": "stockholm",
+    "stateId": "se-stockholm",
+    "stateName": "Stockholm"
+  },
+  "inventorySha256": "390464df564194105f01b11af43714101070f7e9b92f1926e225995992698234",
+  "inventoryPath": "world/playable-africa-rollout/sources/stockholm.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "stockholm-airport",
+    "name": "Stockholm-Arlanda Airport",
+    "lon": 17.928829,
+    "lat": 59.64849,
+    "sourceUrl": "https://ourairports.com/airports/ESSA/"
+  },
+  "bounds": [
+    59.21658866603961,
+    17.85911761747465,
+    59.6575340444967,
+    18.28306938252535
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/sweden-261011.osm.pbf",
+      "datasetSha256": "f062b7c4cb20a3e62d964bfe60d02b0a173cd470906bf070311f120aac42b0de",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "a5170ba7da6e6728cbc05dba08578167e74bb960d775a3bb37e6e9ec7570aaf2",
+          "elements": 5376
+        },
+        {
+          "file": "extras.json",
+          "sha256": "7b5f39bc7d277f15ba8a335ce741c223192f13cb5e44cd8ea3a364d19c93e197",
+          "elements": 1337
+        },
+        {
+          "file": "water.json",
+          "sha256": "3d1a4a6cd3876e08a37ffa1cb931d03da9de479a49236e80c929ef7ec7b693d5",
+          "elements": 23309
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "e3558b2e6d8dd60a9c19f4dfd3230865655617b29e7b4889940d1d17e67bb53f",
+          "elements": 9105
+        },
+        {
+          "file": "roads.json",
+          "sha256": "728884a06882b70248b0031a7f782c16656240d6583521c56a31e505c7da3fef",
+          "elements": 2916
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 400,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 32,
+    "waterPolygons": 61,
+    "reachWaterPolygons": 61
+  },
+  "observed": {
+    "places": 5376,
+    "extras": 1337,
+    "water": 23309,
+    "landuse": 9105,
+    "roads": 2916
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1212,
+      "sha256": "f9f6a4f7a79e54773c32d60ac501d57310db0fe5808e19a81ef022a265974902"
+    },
+    "geometry.ts": {
+      "bytes": 2993217,
+      "sha256": "4edc9a5c70b4deeb7ae8cd35d91c11e2f85c51c5762cbbe8b3dccd8f53ad72a4"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "3ccc249a69d668d121c96acc5473707f6e8a0fba26cd7c382832051c6938e56d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/stockholm.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

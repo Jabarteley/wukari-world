@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 /** Development pages that live as long as their tab: nothing in the game opens and closes them. */
-const TOOLS = [/^scene\/harness\.ts$/, /^models\//, /^campus\/unilag\/preview\.ts$/];
+const TOOLS = [/^scene\/(home-|street-)?harness\.ts$/, /^models\//, /^campus\/unilag\/preview\.ts$/];
 /** The driving practice scene: its source is pinned by hash to its geometry evidence (src/game/living-world), so it changes only with that evidence. */
 const PINNED = [/^app\/features\/living-world\/drivingScene\.ts$/];
 function sources(dir: string, found: string[] = []): string[] {

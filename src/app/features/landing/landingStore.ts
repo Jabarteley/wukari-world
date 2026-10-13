@@ -14,6 +14,7 @@
 // answer (the connection dropped) it stays and is tried again at the next connection.
 //
 // `createLanding(deps)` takes everything it touches as arguments, so the tests run it against fakes.
+import { gameOfRoom } from '../../../arena/code.ts'
 import { shallowRef } from 'vue'
 import type { ShallowRef } from 'vue'
 import type { JoinAnswer, JoinBanner } from '../../../quick-start/landingBanners.ts'
@@ -177,10 +178,14 @@ export function createLanding(deps: LandingDeps, refs?: LandingRefs): Landing {
       if (!shown && gift) shown = linkBanner(sharer || 'a friend')
       // A table the link named: the Tables app opens on it (the banner is shown over it).
       if (table) {
-        const exists = await deps.tableExists(table)
+        // A game room's code (a live game a friend made, src/arena/code.ts) is not a table: it opens the Games app on that room.
+        const gameRoom = gameOfRoom(table) !== null
+        const exists = gameRoom || await deps.tableExists(table)
         if (!isCurrent()) return
-        deps.forgetTable()
-        if (exists) deps.open('tables', { table })
+        // A game room's code stays on the device until the room screen has really joined (src/arena/room.ts forgets it then): a reload in
+        // between, with the dev server or a service worker update, must not lose the invitation. A table link is forgotten at once.
+        if (gameRoom) deps.open('games', { room: table })
+        else { deps.forgetTable(); if (exists) deps.open('tables', { table }) }
       }
       // An e-mail's button: one panel from the fixed list, opened once. A table link, which names its own panel, wins.
       if (go) {

@@ -8,9 +8,13 @@ import { cachedCityContent } from '../../../game/cities/registry.ts'
 import type { DreamId, Look, TraitId } from '../../../types/life.ts'
 import { lookSummary } from './lookModel.ts'
 import type { StepId } from './creatorModel.ts'
+import AvatarFigure from './AvatarFigure.vue'
+import GameIcon from '../../ui/GameIcon.vue'
 
 const props = defineProps<{ city?: string; name: string; look: Look; traits: readonly TraitId[]; dream: DreamId | null; area: string }>()
 const emit = defineEmits<{ edit: [step: StepId] }>()
+/** The two traits as pills with their icons; the other rows are one line of words. */
+const traitPills = computed(() => props.traits.map((id) => ({ id, label: TRAITS[id]?.label ?? id, icon: TRAITS[id]?.icon })))
 const rows = computed<{ step: StepId; label: string; value: string }[]>(() => [
   { step: 'look', label: 'Look', value: lookSummary(props.look) },
   { step: 'spirit', label: 'Traits', value: props.traits.map((id) => TRAITS[id]?.label ?? id).join(' and ') || 'None yet' },
@@ -21,10 +25,15 @@ const rows = computed<{ step: StepId; label: string; value: string }[]>(() => [
 
 <template>
   <div class="cr-ready" data-cr-summary>
-    <h3 class="cr-ready-name" data-cr-name>{{ name }}</h3>
+    <div class="cr-ready-top">
+      <AvatarFigure :look="look" :size="52" crop="head" label="" />
+      <div><p class="cr-eyebrow">Here's you</p><h3 class="cr-ready-name" data-cr-name>{{ name }}</h3></div>
+    </div>
     <dl class="cr-sum">
       <div v-for="(row, index) in rows" :key="index">
-        <dt>{{ row.label }}</dt><dd>{{ row.value }}</dd>
+        <dt>{{ row.label }}</dt>
+        <dd v-if="row.label === 'Traits' && traitPills.length" class="cr-pills"><span v-for="pill in traitPills" :key="pill.id" class="cr-pill"><GameIcon kind="trait" :id="pill.id" :emoji="pill.icon" inline /> {{ pill.label }}</span></dd>
+        <dd v-else>{{ row.value }}</dd>
         <button type="button" class="cr-link" :data-key="`edit:${row.label}`" :aria-label="`Change ${row.label.toLowerCase()}`" @click="emit('edit', row.step)">Change</button>
       </div>
     </dl>

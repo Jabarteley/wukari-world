@@ -238,6 +238,12 @@ h1:focus { outline: none; }
   .en-root { place-items: end center; padding: 0; }
   .en-card { width: 100%; max-height: 94%; padding: 20px 18px max(16px, env(safe-area-inset-bottom)); border-radius: 24px 24px 0 0; gap: 10px; }
   h1 { font-size: 24px; }
+  /* The first look is the headline and Play now: the reassurance and the feature tiles are quieter, and sit closer together. */
+  .en-pitch { font-size: 14.5px; }
+  .en-tiles { gap: 6px; }
+  .en-tiles li { min-height: 44px; padding: 6px 8px; background: transparent; font-size: 12px; font-weight: 600; color: var(--c-ink-2); }
+  .en-tiles i { width: 26px; height: 26px; }
+  .en-find { gap: 0; }
 }
 @media (max-height: 620px) { .en-tiles li { min-height: 44px; } .en-card { gap: 8px; } }
 /* A very large screen: the same card, drawn larger so it is not lost in the picture. */

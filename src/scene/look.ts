@@ -22,7 +22,7 @@ import type * as THREE from 'three';
 import type { Colour, ThreeModule } from './types.ts';
 
 /** What a device is allowed to cost. */
-export interface RenderTier { readonly name: 'phone' | 'wide'; readonly pixelRatio: number; readonly shadowMap: number; readonly softShadows: boolean }
+export interface RenderTier { readonly name: 'phone' | 'wide' | 'high'; readonly pixelRatio: number; readonly shadowMap: number; readonly softShadows: boolean; readonly env?: boolean; readonly shadowReach?: number }
 /** The window-like object the helpers read (a real window, or a test stub). */
 export type LookWindow = Partial<Pick<Window, 'location' | 'localStorage' | 'matchMedia' | 'innerWidth' | 'innerHeight' | 'devicePixelRatio'>>
 /** The parts of a renderer applyRendererLook touches (a test stub may lack the optional ones). */
@@ -36,6 +36,8 @@ export interface LookRenderer {
 
 export const PHONE_TIER: RenderTier = Object.freeze({ name: 'phone', pixelRatio: 1.5, shadowMap: 1024, softShadows: false });
 export const WIDE_TIER: RenderTier = Object.freeze({ name: 'wide', pixelRatio: 2, shadowMap: 2048, softShadows: true });
+/** Desktops and high-end devices: a higher pixel ratio, a generated environment map, tighter sun shadows, night bloom (src/scene/quality.ts). */
+export const HIGH_TIER: RenderTier = Object.freeze({ name: 'high', pixelRatio: 2.5, shadowMap: 2048, softShadows: true, env: true, shadowReach: 17 });
 
 /**
  * FOR REVIEW, DEFAULT OFF: cheaper scenery. With the flag on, the kit's per-colour materials and the
@@ -51,17 +53,44 @@ export function matteScenery(win: LookWindow = globalThis): boolean {
   } catch { return false; }
 }
 
-/** The render tier for this device. */
+/** ?quality=phone|high|wide forces a tier (testing); null when absent. */
+function forcedTier(win: LookWindow): RenderTier | null {
+  try {
+    const q = new URLSearchParams(win.location?.search || '').get('quality');
+    return q === 'phone' ? PHONE_TIER : q === 'high' ? HIGH_TIER : q === 'wide' ? WIDE_TIER : null;
+  } catch { return null; }
+}
+
+/**
+ * The render tier for this device. Phone: coarse pointer and a short side up to 720 CSS px (unchanged).
+ * High: a fine pointer (desktop), or a device with deviceMemory >= 6 and hardwareConcurrency >= 8; every
+ * renderer three r180 makes is WebGL2. Anything else keeps the wide tier.
+ */
 export function renderTier(win: LookWindow = globalThis): RenderTier {
+  const forced = forcedTier(win);
+  if (forced) return forced;
   const coarse = win.matchMedia?.('(pointer: coarse)').matches === true;
   const short = Math.min(Number(win.innerWidth) || Infinity, Number(win.innerHeight) || Infinity);
-  return coarse && short <= 720 ? PHONE_TIER : WIDE_TIER;
+  if (coarse && short <= 720) return PHONE_TIER;
+  const nav = (win as { navigator?: { deviceMemory?: number; hardwareConcurrency?: number } }).navigator ?? (globalThis as { navigator?: { deviceMemory?: number; hardwareConcurrency?: number } }).navigator;
+  const strong = (nav?.deviceMemory ?? 0) >= 6 && (nav?.hardwareConcurrency ?? 0) >= 8;
+  return !coarse || strong ? HIGH_TIER : WIDE_TIER;
+}
+
+/** ?tm=aces|agx|neutral picks the tone mapper on the high tier (evaluation); Neutral by default. */
+function highToneMapping(THREE: ThreeModule, win: LookWindow): THREE.ToneMapping {
+  try {
+    const tm = new URLSearchParams(win.location?.search || '').get('tm');
+    if (tm === 'aces') return THREE.ACESFilmicToneMapping;
+    if (tm === 'agx') return THREE.AgXToneMapping;
+  } catch { /* default */ }
+  return THREE.NeutralToneMapping;
 }
 
 /** Colour space, tone mapping, pixel ratio and shadow filter for a renderer. Safe on a test stub. */
 export function applyRendererLook(THREE: ThreeModule, renderer: LookRenderer, tier: RenderTier = WIDE_TIER, { shadows = true, win = globalThis }: { shadows?: boolean; win?: LookWindow } = {}): RenderTier {
   renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.NeutralToneMapping;
+  renderer.toneMapping = tier.name === 'high' ? highToneMapping(THREE, win) : THREE.NeutralToneMapping;
   renderer.toneMappingExposure = 1;
   renderer.setPixelRatio?.(Math.min(win.devicePixelRatio || 1, tier.pixelRatio));
   if (shadows && renderer.shadowMap) {
@@ -84,8 +113,8 @@ const SKY_ROWS = 32;
  * zenith colour at the top. One 1×32 texture, re-used and re-filled when the colours change.
  * → { texture, set(horizon, zenith) → boolean (changed), dispose() }
  */
-export function createSky(THREE: ThreeModule) {
-  const data = new Uint8Array(SKY_ROWS * 4);
+export function createSky(THREE: ThreeModule, high: boolean = renderTier().name === 'high') {
+  const highTier = high, data = new Uint8Array(SKY_ROWS * 4);
   const texture = new THREE.DataTexture(data, 1, SKY_ROWS, THREE.RGBAFormat);
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.magFilter = THREE.LinearFilter; texture.minFilter = THREE.LinearFilter;
@@ -97,11 +126,17 @@ export function createSky(THREE: ThreeModule) {
       const next = `${horizon}:${zenith}`;
       if (next === key) return false;
       key = next;
-      const low = channels(horizon), high = channels(zenith);
+      const low = channels(horizon), top = channels(zenith);
       for (let row = 0; row < SKY_ROWS; row += 1) {
         // The lower third stays near the horizon colour (that is where the ground meets it), then it rises.
         const t = Math.max(0, (row / (SKY_ROWS - 1) - 0.3) / 0.7), ease = t * t * (3 - 2 * t);
-        for (let c = 0; c < 3; c += 1) data[row * 4 + c] = Math.round(low[c]! * (1 - ease) + high[c]! * ease);
+        // High tier: a soft lighter band just above the horizon (the haze the far corners melt into), and a deeper zenith.
+        const band = highTier ? 0.1 * Math.exp(-(((row / (SKY_ROWS - 1)) - 0.34) ** 2) / 0.012) : 0;
+        const deep = highTier ? ease * ease * 0.1 : 0;
+        for (let c = 0; c < 3; c += 1) {
+          const base = low[c]! * (1 - ease) + top[c]! * ease;
+          data[row * 4 + c] = Math.round(Math.max(0, Math.min(255, base * (1 - deep) + (255 - base) * band)));
+        }
         data[row * 4 + 3] = 255;
       }
       texture.needsUpdate = true;
@@ -149,3 +184,22 @@ export function createGround(THREE: ThreeModule) {
     dispose() { geometry.dispose(); material.dispose(); },
   };
 }
+
+/** Baked vertex AO (src/scene/ao-bake.ts) is on unless ?ao=0 (for before/after comparison). */
+export function bakedAO(win: LookWindow = globalThis): boolean {
+  try { return new URLSearchParams(win.location?.search || '').get('ao') !== '0'; } catch { return true; }
+}
+
+/**
+ * High tier only (the caller checks tier.env): on the scene's first draw, fetch quality.ts (lazy, so a phone never loads it)
+ * and give the scene the generated environment map, then call `redraw` once (a demand-driven host has no next frame coming).
+ */
+export function lazyEnvironment(THREE: ThreeModule, scene: THREE.Scene, redraw: (renderer: THREE.WebGLRenderer, camera: THREE.Camera) => void, intensity = 0.1): void {
+  scene.onBeforeRender = (renderer, _scene, camera) => {
+    scene.onBeforeRender = () => {};
+    void import('./quality.ts').then((q) => q.ensureEnvironment(THREE, renderer, scene, () => redraw(renderer, camera), intensity));
+  };
+}
+
+/** Per-tier strength of the baked ambient occlusion: the phone is as it was, high is deeper. */
+export const aoStrength = (tier: RenderTier = renderTier()): number => (tier.name === 'high' ? 1.55 : 1);

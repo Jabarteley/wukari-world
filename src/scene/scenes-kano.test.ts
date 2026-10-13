@@ -90,7 +90,13 @@ test('no two Kano scenes are the same scene, and each takes its sign from the ve
   for (const [kind, variants] of Object.entries(VARIANTS)) {
     for (const variant of Object.keys(variants)) {
       const entry = buildVenueScene(kit, { id: `${kind}-${variant}`, label: 'Test Place', scene: { kind, variant } } as SceneVenue, CITY);
-      const key = `${entry.stats().triangles}`;
+      // A fingerprint of the drawn geometry itself: two different scenes can coincide on a triangle count.
+      let sum = 0;
+      entry.group.traverseVisible((child) => {
+        const position = (child as { geometry?: { attributes?: { position?: { array: ArrayLike<number> } } } }).geometry?.attributes?.position?.array;
+        if (position) for (let i = 0; i < position.length; i += 7) sum += position[i] ?? 0;
+      });
+      const key = `${entry.stats().triangles}/${sum.toFixed(2)}`;
       assert.ok(!sizes.has(key), `${kind}/${variant} has the same triangle count as ${sizes.get(key)}`);
       sizes.set(key, `${kind}/${variant}`);
       // The name on the scene is drawn from the label: a longer label draws more lettering.

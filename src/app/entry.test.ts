@@ -218,6 +218,9 @@ test('automatic game startup, including one selected city, stays within the orig
   const network = all.filter(name => /^city-network-[\w-]+\.js$/.test(name))
   assert.equal(network.length, 1, 'the world city network (catalogue rows, land components, routes) is one lazy chunk')
   const networkCode = readFileSync(join(dist, 'assets', network[0] ?? ''), 'utf8')
+  const cityIndex = all.filter(name => /^city-index-[0-9a-f]{8}\.js$/.test(name))
+  assert.equal(cityIndex.length, 1, 'the whole city index (every open city\'s id, name and rules hash) is one lazy chunk')
+  const indexCode = readFileSync(join(dist, 'assets', cityIndex[0] ?? ''), 'utf8')
   const catalogueRows = readFileSync(join(root, 'src/game/cities/catalogue.generated.ts'), 'utf8').split('\n').filter((line) => /^  \["/.test(line)).map((line) => JSON.parse(line.trim().replace(/,$/, '')) as [string, string, string, string, number, number, 0 | 1])
   const loaderExports = [...readFileSync(join(root, 'src/game/cities/loaders.generated.ts'), 'utf8').matchAll(/\.then\(m=>m\.([A-Za-z_$][\w$]*)\),$/gm)].map((match) => match[1] ?? '')
   assert.equal(loaderExports.length, catalogueRows.length)
@@ -240,32 +243,37 @@ test('automatic game startup, including one selected city, stays within the orig
     const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     const rules = one(new RegExp(`^city-${escaped}-rules-[\\w-]+\\.js$`), `${id} has one lazy rules chunk`)
     const content = one(new RegExp(`^city-${escaped}-content-[\\w-]+\\.js$`), `${id} has one lazy content chunk`)
-    // The full catalogue row is the world network's; the startup carries only the index tuple (id and name) and the rules loader.
+    // The full catalogue row is the world network's. The startup carries the index tuple (id and name) and the rules loader of Nigeria's
+    // cities only (rows without country fields, a fixed set); every open city's tuple and loader are in the lazy city-index chunk.
+    const startupRow = row.length <= 7
     assert.ok(commonCode.indexOf(JSON.stringify(row.slice(0, 4)).slice(0, -1) + ',') < 0, `${id}'s catalogue tuple is not in the built startup`)
     const catalogueStart = networkCode.indexOf(JSON.stringify(row.slice(0, 4)).slice(0, -1) + ',')
     assert.ok(catalogueStart >= 0, `${id}'s compact catalogue tuple is in the world network chunk`)
     const catalogueTuple = arrayLiteralAt(networkCode, catalogueStart)
-    const indexStart = commonCode.indexOf(JSON.stringify([id, row[1]]))
-    assert.ok(indexStart >= 0, `${id}'s index tuple is in the built startup`)
-    const indexTuple = arrayLiteralAt(commonCode, indexStart)
+    assert.equal(commonCode.includes(JSON.stringify([id, row[1]])), startupRow, `${id}'s index tuple is ${startupRow ? '' : 'not '}in the built startup`)
+    const indexStart = indexCode.indexOf(JSON.stringify([id, row[1]]))
+    assert.ok(indexStart >= 0, `${id}'s index tuple is in the city-index chunk`)
+    const indexTuple = arrayLiteralAt(indexCode, indexStart)
     // The rules loader keeps only the content hash of city-<id>-rules-<hash>.js (the importer rebuilds the name from the index) and
     // names the export only when it is not `city`.
     const hash = new RegExp(`^city-${escaped}-rules-([0-9a-f]{8})\\.js$`).exec(rules)?.[1]
     assert.ok(hash, `${id}'s rules chunk is named city-${id}-rules-<hash>.js`)
     const loaderTuple = JSON.stringify(hash)
-    assert.ok(commonCode.includes(`${loaderTuple},`) || commonCode.includes(`${loaderTuple}]`), `${id}'s rules hash is a loader row of the built startup`)
-    if (exportName !== 'city') assert.ok(commonCode.includes(JSON.stringify(exportName)), `${id}'s export name ${exportName} is in the built startup`)
+    assert.equal(commonCode.includes(`${loaderTuple},`) || commonCode.includes(`${loaderTuple}]`), startupRow, `${id}'s rules hash is ${startupRow ? '' : 'not '}a loader row of the built startup`)
+    assert.ok(indexCode.includes(`${loaderTuple},`) || indexCode.includes(`${loaderTuple}]`), `${id}'s rules hash is a loader row of the city-index chunk`)
+    if (exportName !== 'city') assert.ok((startupRow ? commonCode : indexCode).includes(JSON.stringify(exportName)), `${id}'s export name ${exportName} is with its loader row`)
     // Terser writes fractional coordinates as -.21 or .55; keep full numeric equality after parsing.
     const jsonTuple = catalogueTuple.replace(/"(?:\\.|[^"\\])*"|(?<=[[,])(-?\.\d+(?:e[+-]?\d+)?)(?=[,\]])/g, (token: string, fraction: string | undefined) => fraction === undefined ? token : JSON.stringify(Number(fraction)))
     assert.deepEqual(JSON.parse(jsonTuple), row)
     assert.deepEqual(JSON.parse(indexTuple), [id, row[1]])
-    const marginal = Buffer.byteLength(indexTuple) + Buffer.byteLength(loaderTuple) + 2
+    const marginal = startupRow ? Buffer.byteLength(indexTuple) + Buffer.byteLength(loaderTuple) + 2 : 0
     assert.ok(marginal <= 64, `${id} adds ${marginal} built startup bytes of index and loader rows (limit 64)`)
     const names = eagerChunks(dist, [...common, rules, content].map((name) => `assets/${name}`))
     assert.ok(!names.includes(`assets/${homewardRules}`), `${id} does not preload conditional homeward rules`)
     assert.ok(!names.includes(`assets/${panelBodies}`), `${id} does not preload unopened app body loaders`)
     assert.ok(names.includes(`assets/${rules}`) && names.includes(`assets/${content}`), `${id} loads its rules and content`)
     assert.ok(!names.includes(`assets/${network[0]}`), `${id}'s startup does not load the world network`)
+    assert.ok(!names.includes(`assets/${cityIndex[0]}`), `${id}'s startup does not load the whole city index`)
     assert.deepEqual(names.filter((name) => /\/city-.+-(?:rules|content)-[\w-]+\.js$/.test(name) && !name.includes(`city-${id}-`) && !/\/city-(?:formula|ogun)-rules-/.test(name) && !/\/city-(?:ogun-)?content-builder-/.test(name) && !/\/city-ogun-content-/.test(name) && !/\/city-formula-content-/.test(name)), [], `${id} does not load another city's rules or content`)
     assert.deepEqual(names.filter((name) => /\/city-.+-map-[\w-]+\.js$/.test(name)), [], `${id} does not load a map at startup`)
     const total = measure(names)

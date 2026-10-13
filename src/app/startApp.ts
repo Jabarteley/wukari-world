@@ -4,6 +4,7 @@ import { useApp } from './state/app.ts'
 import { telemetry } from '../telemetry/index.ts'
 import { landingCodeSettled } from './features/start/warmLanding.ts'
 import { preloadNext } from './state/idlePreload.ts'
+import { loadCityIndex } from '../game/cities/registry.ts'
 import { watch } from 'vue'
 import { takeStoreReturn } from './features/commerce/connectionReturn.ts'
 
@@ -28,6 +29,9 @@ export function ready(): void {
   })
   const settled = Promise.all([landingCodeSettled(), sceneShown])
   preloadNext(settled)
+  // The whole city index (every open city's id, name and rules file; the first download names Nigeria's cities only) is a few kB:
+  // fetched as soon as the scene is up, on every connection, so a screen that lists or names other cities finds it in (registry.ts).
+  void settled.then(() => loadCityIndex()).catch(() => undefined)
   // Once the scene is up: the moment lines, the work dilemmas and place actions. Never part of the first download (./startExtras.ts).
   void settled.then(() => import('./startExtras.ts')).then(({ startAfterReady }) => { startAfterReady() }, () => undefined)
   // `?diagnostics`: the scene's frame counter, readable by a person and by a test harness; a short address (/games, /abuja, …): its chunk. Fetched only then (./startExtras.ts).

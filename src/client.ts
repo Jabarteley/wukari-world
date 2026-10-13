@@ -1,5 +1,5 @@
 import { initialCity } from './storage-city.ts';
-import { cityCatalogueEntry, registeredCityIds, cityRules, cityDefaultName, loadCityContent, isCityId, isOpenCityId } from './game/cities/registry.ts';
+import { cityCatalogueEntry, cityIndexWaitFor, registeredCityIds, cityRules, cityDefaultName, loadCityContent, isCityId, isOpenCityId } from './game/cities/registry.ts';
 import { STORAGE_KEY } from './storage-key.ts';
 /**
  * Client model: the browser's read-only mirror of the server-held life, plus networking.
@@ -519,6 +519,8 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
     catch (error) {
       if (typeof error !== 'object' || error === null || Reflect.get(error, 'code') !== 'city_moved') throw error;
       const destination: unknown = Reflect.get(error, 'city');
+      const index = cityIndexWaitFor([destination]); if (index) await index; // a city outside the startup index is read with the whole one
+      if (!responseCurrent()) throw staleIdentityResponse();
       if (typeof destination !== 'string' || !isCityId(destination)) throw error;
       await loadCityContent(destination);
       if (!responseCurrent()) throw staleIdentityResponse();
@@ -583,6 +585,8 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
     status('Connecting…');
     try {
       if (createNew && startCity !== undefined) {
+        const index = cityIndexWaitFor([startCity]); if (index) await index;
+        if (!current()) return false
         if (!isOpenCityId(startCity)) throw new TypeError('Choose an open city to start.');
         await loadCityContent(startCity);
         if (!current()) return false
@@ -608,6 +612,9 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
       const previousIdentity = client.session?.id ?? pendingAction?.sessionId
       if (client.session?.id !== response.session.id) { identityGeneration += 1; client.busy = false; forgetRevisions(); }
       const held = response.session.cities
+      // The server may name a city outside the startup index (a life elsewhere): read it with the whole index, never as unknown.
+      const heldIndex = Array.isArray(held) ? cityIndexWaitFor(held) : null
+      if (heldIndex) { await heldIndex; if (!current()) return false }
       const ownsIdentityCity = snapshotOwner === response.session.id && !(Array.isArray(held) && held.length === 1 && isCityId(held[0]) && client.state.estate.city !== held[0])
       const ownsSnapshot = ownsIdentityCity && cachedStateReady
       if (ownsSnapshot) snapshotPhase = 'available'
@@ -703,6 +710,8 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
     } catch (e) {
       const error = e as ApiError;
       if (!responseCurrent() || error.code === 'stale_identity_response') return { ok: false, code: 'stale_identity_response' }
+      const movedIndex = error.code === 'city_moved' ? cityIndexWaitFor([error.city]) : null
+      if (movedIndex) { await movedIndex; if (!responseCurrent()) return { ok: false, code: 'stale_identity_response' } }
       if (error.code === 'city_moved' && isCityId(error.city)) {
         try {
           const askedAt = taken, moved = await fetchCurrentLife(error.city, responseCurrent);
@@ -772,6 +781,8 @@ export function createClient({ fetch = globalThis.fetch?.bind(globalThis), stora
 
   /** Move to another city's life. Refused mid-action and while offline. */
   async function switchCity(id: string): Promise<CommandResult> {
+    const index = cityIndexWaitFor([id]);
+    if (index) { try { await index } catch { return { ok: false, code: 'network', reason: 'The list of cities did not load. Check your connection, then try again.' } } }
     if (typeof id !== 'string' || !isCityId(id)) return { ok: false, code: 'invalid_city' };
     if (client.state.activeAction) return { ok: false, code: 'busy', reason: 'Complete or cancel your current action before switching cities.' };
     if (!client.online) { const reason = client.session ? 'Reconnect before switching cities.' : 'Connect before entering a city.'; status(reason, true); return { ok: false, code: 'offline', reason }; }

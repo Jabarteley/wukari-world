@@ -159,33 +159,53 @@ function cityNetworkMode(): Plugin {
   return { name: 'allworld:city-network-mode', apply: 'build', config: () => ({ define: { __CITY_NETWORK_LENIENT__: 'true' } }) };
 }
 
+/** The lazy chunk of the whole city index (every open city's id, name and rules hash): `city-index-<hash>.js`. */
+const CITY_INDEX_MODULE = 'virtual:allworld-city-index';
+const CITY_INDEX_ID = `\0${CITY_INDEX_MODULE}`;
+
 /**
  * The checked-in loader table uses literal dynamic imports so Node and the Worker bundler can resolve it. In the browser build,
  * emit those same entry modules as Rollup chunks and keep, per city, only the content hash of its rules chunk (the file is
  * `city-<id>-rules-<hash>.js` beside the importer; any other name is kept whole), the few export names that are not `city`, and one
  * shared importer in startup.
+ * The startup keeps those rows (id, name, hash) for Nigeria's cities only, a fixed set: every open city's rows are the lazy `city-index`
+ * chunk, which registry.ts loadCityIndex() fetches (GENERATED_CITY_WORLD_INDEX), so a city added anywhere else adds nothing to the
+ * first download.
  */
 function lazyCityLoaders(): Plugin {
   const emitted = new Map<string, string>();
+  let worldIndex: string | null = null;
   return {
     name: 'allworld:lazy-city-loaders',
     apply: 'build',
     enforce: 'pre',
+    resolveId(source) { return source === CITY_INDEX_MODULE ? CITY_INDEX_ID : null; },
+    load(id) {
+      if (id !== CITY_INDEX_ID) return null;
+      if (worldIndex === null) throw new Error('The city index chunk was asked for before the city loaders were built');
+      return { code: worldIndex, map: null };
+    },
     async transform(code, id) {
       if (!/\/src\/game\/cities\/loaders\.generated\.ts$/.test(id)) return null;
       const declarations = [...code.matchAll(/\(\)=>import\(("[^"]+")\)\.then\(m=>m\.([A-Za-z_$][\w$]*)\),/g)];
       const declaredCount = [...code.matchAll(/\(\)=>import\(/g)].length;
       if (!declarations.length || declarations.length !== declaredCount) throw new Error(`Expected ${declaredCount} generated city loaders, parsed ${declarations.length}`);
       const stringLiteral = (literal: string | undefined, label: string): string => { const value: unknown = JSON.parse(literal ?? 'null'); if (typeof value !== 'string') throw new Error(`${label} is not a string`); return value; };
-      const catalogueIds = [...readFileSync(id.replace(/loaders\.generated\.ts$/, 'catalogue.generated.ts'), 'utf8').matchAll(/^  \["([^"]+)"/gm)].flatMap((match) => typeof match[1] === 'string' ? [match[1]] : []);
+      const catalogueRows = readFileSync(id.replace(/loaders\.generated\.ts$/, 'catalogue.generated.ts'), 'utf8').split('\n').filter((line) => /^  \["/.test(line)).map((line) => JSON.parse(line.trim().replace(/,$/, '')) as unknown[]);
+      const catalogueIds = catalogueRows.map((row) => String(row[0]));
+      // Nigeria's rows have no country fields (scripts/city/build-catalogue.ts): those are the startup index.
+      const startup = catalogueRows.map((row) => row.length <= 7);
       const loaderIds = declarations.map((match) => stringLiteral(match[1], 'Generated city loader path').replace(/^\.\//, '').replace(/\/index\.ts$/, ''));
       if (JSON.stringify(loaderIds) !== JSON.stringify(catalogueIds)) throw new Error('Generated city catalogue and browser loader rows differ');
-      // The startup index (each open city's id and name) is kept as written: it is the only per-city table of the first download.
+      // The city index (each open city's id and name): Nigeria's rows go to startup, every row to the lazy `city-index` chunk.
       const index = /^export const GENERATED_CITY_INDEX: readonly CityIndexRow\[\] = Object\.freeze\(\[\n((?: {2}\[.*\],\n)*)\]\)$/m.exec(code);
       const indexIds = [...(index?.[1] ?? '').matchAll(/^ {2}\["([^"]+)"/gm)].map((match) => match[1]);
       if (!index || JSON.stringify(indexIds) !== JSON.stringify(catalogueIds)) throw new Error('Generated city catalogue and startup index rows differ');
       const figures = /^export const GENERATED_CITY_FIGURES = Object\.freeze\(\{ cities: \d+, countries: \d+ \}\)$/m.exec(code);
       if (!figures) throw new Error('Generated city figures are missing');
+      if (!/^export const GENERATED_CITY_WORLD_INDEX: CityWorldIndexLoader \| null = null$/m.test(code)) throw new Error('Generated city world index export is missing');
+      const indexRows = [...(index[1] ?? '').matchAll(/^ {2}(\[.*\]),$/gm)].map((match) => JSON.parse(match[1] ?? 'null') as [string, string]);
+      if (indexRows.length !== catalogueIds.length) throw new Error('Generated city index rows could not be read');
       const rows: string[] = [], names: Record<number, string> = {};
       for (let index = 0; index < declarations.length; index += 1) {
         const match = declarations[index]!, specifier = stringLiteral(match[1], 'Generated city loader path'), exportName = match[2]!;
@@ -196,7 +216,11 @@ function lazyCityLoaders(): Plugin {
         rows.push(`import.meta.ROLLUP_FILE_URL_${referenceId}`);
         if (exportName !== 'city') names[index] = exportName;
       }
-      return { code: `import type { CityModule } from '../../types/content.ts'\nimport type { CityIndexRow, CityModuleLoader } from './catalogue.ts'\n${index[0]}\n${figures[0]}\nconst rows: readonly string[] = [${rows.join(',')}]\nconst names: Readonly<Record<number, string>> = ${JSON.stringify(names)}\nconst load = (index: number): Promise<CityModule> => { const row = rows[index]!, name = names[index] ?? 'city', path = row.startsWith('.') ? row : './city-' + GENERATED_CITY_INDEX[index]![0] + '-rules-' + row + '.js'; return import(/* @vite-ignore */ path).then((namespace: Record<string, CityModule>) => { const city = namespace[name]; if (!city) throw new Error('City module export is missing'); return city }) }\nexport const GENERATED_CITY_LOADERS: readonly CityModuleLoader[] = Object.freeze(rows.map((_row, index) => async() => load(index)))\n`, map: null };
+      const keep = (all: number[]): number[] => all.filter((at) => startup[at]);
+      const every = indexRows.map((_row, at) => at), first = keep(every);
+      const exportsOf = (ats: number[]): Record<number, string> => Object.fromEntries(ats.flatMap((at, row) => names[at] === undefined ? [] : [[row, names[at]]]));
+      worldIndex = `export const index = Object.freeze(${JSON.stringify(indexRows)})\nexport const rows = [${rows.join(',')}]\nexport const names = ${JSON.stringify(names)}\n`;
+      return { code: `import type { CityModule } from '../../types/content.ts'\nimport type { CityIndexRow, CityModuleLoader, CityWorldIndexLoader } from './catalogue.ts'\nexport const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze(${JSON.stringify(first.map((at) => indexRows[at]))})\n${figures[0]}\nconst rows: readonly string[] = [${first.map((at) => rows[at]).join(',')}]\nconst names: Readonly<Record<number, string>> = ${JSON.stringify(exportsOf(first))}\nconst load = (id: string, row: string, name: string): Promise<CityModule> => { const path = row.startsWith('.') ? row : './city-' + id + '-rules-' + row + '.js'; return import(/* @vite-ignore */ path).then((namespace: Record<string, CityModule>) => { const city = namespace[name]; if (!city) throw new Error('City module export is missing'); return city }) }\nconst loadersOf = (index: readonly CityIndexRow[], hashes: readonly string[], exported: Readonly<Record<number, string>>): readonly CityModuleLoader[] => Object.freeze(hashes.map((row, at) => async() => load(index[at]![0], row, exported[at] ?? 'city')))\nexport const GENERATED_CITY_LOADERS: readonly CityModuleLoader[] = loadersOf(GENERATED_CITY_INDEX, rows, names)\nexport const GENERATED_CITY_WORLD_INDEX: CityWorldIndexLoader | null = () => import('${CITY_INDEX_MODULE}').then((world: { index: readonly CityIndexRow[]; rows: readonly string[]; names: Readonly<Record<number, string>> }) => ({ index: world.index, loaders: loadersOf(world.index, world.rows, world.names) }))\n`, map: null };
     },
     resolveFileUrl({ referenceId, relativePath }) {
       const cityId = emitted.get(referenceId);
@@ -249,6 +273,7 @@ export default defineConfig({
     modulePreload: { polyfill: false },
     sourcemap: wantMaps ? 'hidden' : false,
     rollupOptions: { treeshake: { moduleSideEffects: (id) => !id.endsWith('/src/scene/home-scene.ts') && !/\/src\/game\/wardrobe\/(catalogue|rules|look|view|prices)\.ts$/.test(id) }, input: { app: 'index.html', adminshell: 'adminshell.html' }, output: { hashCharacters: 'hex', onlyExplicitManualChunks: true, manualChunks(id) {
+    if (id === CITY_INDEX_ID) return 'city-index'
     if (/\/src\/game\/wardrobe\//.test(id)) return undefined
     // Practice rules are loaded by their screens; leave shared readers to their actual import graph.
     if (/\/src\/game\/living-world\//.test(id)) return undefined
@@ -310,6 +335,9 @@ export default defineConfig({
     // people screens and of the Map's list, the creative choices of an advert, and the shop line of each piece of furniture.
     // The world clock's bands, day seed and seasons ride in the routines chunk (below).
     if (/\/src\/game\/(ping|comeback-prefs|social-lines|live-lines|content\/civic-ads|content\/furniture-blurbs)\.ts$/.test(id)) return undefined
+    // Read only by lazy chunks, so left to the bundler (each then rides with its readers): the continent of every country and the atlas
+    // levels (the Map and the travel list), and the campaign words of a visit (the growth counter, itself a dynamic import).
+    if (/\/src\/game\/(cities\/atlasMetadata|attribution)\.ts$/.test(id)) return undefined
     // Full statement reconciliation is only read by the lazy Statement screen (and by the server build).
     if (/\/src\/game\/wallet-statement\.ts$/.test(id)) return undefined
     // The trust rules (tiers, the no-fee filter, the link allow-list): read only by the community panel, the "leaving Allworld" sheet and the trust card, all fetched on demand.

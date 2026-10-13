@@ -1,5 +1,5 @@
 /** Discover every city reference in a saved life and load its full rules before reconstruction. */
-import { isCityId, isKnownCityId, loadCityContent, loadCityNetwork, loadCityRules, registeredCityIds } from './registry.ts'
+import { cityIndexReady, cityIndexWaitFor, isCityId, isKnownCityId, loadCityContent, loadCityNetwork, loadCityRules, registeredCityIds } from './registry.ts'
 
 const record = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value)
 const MAX_RELATIONSHIPS = 200
@@ -10,9 +10,31 @@ const MAX_EVENT_ATTENDANCE = 24
 
 /** Every registered city mentioned by the bounded fields that a saved life can preserve. */
 export function lifeCities(raw: unknown, extra: readonly unknown[] = []): string[] {
+  return citiesOf(raw, extra, isCityId, isKnownCityId, awayCities)
+}
+/** The registered cities a life keeps a place in. Before the whole index is in (a browser build), its keys are read one by one: a life
+ * naming a city outside the startup index has waited for it (loadLifeCities), so they are all startup cities. */
+function awayCities(away: Record<string, unknown>): readonly string[] {
+  const keys = Object.keys(away)
+  if (!keys.length) return []
+  return cityIndexReady() ? registeredCityIds().filter((id) => Object.hasOwn(away, id)) : keys.filter(isCityId)
+}
+
+/** A string in a city-id position that could be a city id (lower-case words joined by hyphens). */
+const CITY_ID_SHAPE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
+const cityShaped = (value: string): boolean => value.length <= 64 && CITY_ID_SHAPE.test(value)
+/**
+ * Every string in the same fields that could name a city, read without the city index: what a browser that holds only the startup
+ * index must check (cityIndexWaitFor) before lifeCities can answer for this life.
+ */
+export function lifeCityCandidates(raw: unknown, extra: readonly unknown[] = []): string[] {
+  return citiesOf(raw, extra, cityShaped, cityShaped, (away) => Object.keys(away).filter(cityShaped))
+}
+
+function citiesOf(raw: unknown, extra: readonly unknown[], open: (id: string) => boolean, known: (id: string) => boolean, awayIds: (away: Record<string, unknown>) => readonly string[]): string[] {
   const found = new Set<string>()
-  const add = (value: unknown): void => { if (typeof value === 'string' && isCityId(value)) found.add(value) }
-  const addKnown = (value: unknown): void => { if (typeof value === 'string' && isKnownCityId(value)) found.add(value) }
+  const add = (value: unknown): void => { if (typeof value === 'string' && open(value)) found.add(value) }
+  const addKnown = (value: unknown): void => { if (typeof value === 'string' && known(value)) found.add(value) }
   const addQualified = (value: unknown): void => {
     if (typeof value !== 'string') return
     add(value)
@@ -33,7 +55,7 @@ export function lifeCities(raw: unknown, extra: readonly unknown[] = []): string
     }
   }
   for (const value of extra) add(value)
-  if (record(estate.away)) for (const id of registeredCityIds()) if (Object.hasOwn(estate.away, id)) add(id)
+  if (record(estate.away)) for (const id of awayIds(estate.away)) add(id)
   if (record(state.career)) add(state.career.city)
   if (record(state.activeAction) && state.activeAction.kind === 'intercity') { add(state.activeAction.from); add(state.activeAction.id) }
   if (record(state.social) && record(state.social.rel)) {
@@ -81,6 +103,9 @@ export function lifeNeedsCityNetwork(raw: unknown): boolean {
  * content. A failure rejects; callers must retain the saved value and avoid rebuilding it with partial rules.
  */
 export async function loadLifeCities(raw: unknown, extra: readonly unknown[] = []): Promise<string[]> {
+  // A browser build starts with Nigeria's cities only: a life that names any other city waits for the whole index before it is read.
+  const index = cityIndexWaitFor(lifeCityCandidates(raw, extra))
+  if (index) await index
   const cities = lifeCities(raw, extra)
   await Promise.all([...(lifeNeedsCityNetwork(raw) ? [loadCityNetwork()] : []), ...cities.map(loadCityRules)])
   const state = record(raw) ? raw : {}

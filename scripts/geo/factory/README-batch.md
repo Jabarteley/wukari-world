@@ -44,6 +44,8 @@ Steps: preflight, fetch (and `git merge origin/main` with `--main-merge`; a conf
 
 Idempotent: if a commit on the branch (since `origin/<base>`) already has the same `Factory-Runs:` trailer, download and import are skipped and only the regeneration, build, typecheck, size, test and size checks run again (a changed tree becomes a small "Regenerate" commit). `NODE_OPTIONS` gets `--max-old-space-size=<--heap>` (default 6144 MB) unless it already sets one; `--slot` runs build and typecheck through the heavy-slot scripts. The temp dir is deleted at the end and so is `<app>/dist` (`--keep-tmp`, `--keep-dist` keep them). `--dry-run` prints the plan and runs nothing (no git, gh, npm, no files). Tests: `node --experimental-strip-types --test scripts/geo/factory/assemble-release.test.mjs` (argument and plan parsing, importer/TAP/budget parsing, test-list expansion, dry-run and preflight behaviour).
 
+Rehearsed 13 Oct on Release H's tree with run 38355870179 (san-marino): all steps passed, 361 tests in 62 files, startup 610,052 / 221,355 / 193,802. The targeted tests loop over every playable city (`src/game/stuck.test.ts` alone ran 10-30 minutes on a loaded Mac); `--tests-timeout <min>` (default 120) kills the whole test process group and fails with a clear message instead of hanging. A script killed with SIGKILL leaves its `/private/tmp/aw-assemble-*` dir behind; delete it.
+
 Still manual, as the importer says: primary-record review of centre and airport, the visual review of the flat PNGs, hosted acceptance on the exact SHA, deploy.
 
 ## Generating a table (make-country-table.mjs)

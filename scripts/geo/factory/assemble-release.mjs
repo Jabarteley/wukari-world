@@ -452,7 +452,7 @@ function main(argv) {
         landRegenerated = true
         check = R.run('land-check-2', 'npm', ['run', '-s', 'cities:land:check'])
         must(check, 'cities:land:check still fails after regeneration')
-        S.land = `regenerated (${tailOf(py.log, 2).replace(/\s+/g, ' ').slice(0, 300)})`
+        S.land = `regenerated from the pinned Natural Earth file; ${(py.text.match(/'component': None/g) ?? []).length} cities have no resolved component (road held, air unaffected)`
       }
       end()
     }

@@ -287,15 +287,15 @@ test('the gap under the last card is the bar\'s height, the safe area and 16 px 
   assert.match(page, /watch\(message, \(\) => \{ void nextTick\(measure\) \}\)/); assert.match(page, /addEventListener\('resize', measure\)/); assert.match(page, /new ResizeObserver\(measure\)/)
 })
 
-test('Phone apps with no atlas picture: Services draws its icon-set mark, the others keep the settings gears', () => {
+test('Phone apps with no atlas picture: Services and Market draw their icon-set marks, the others keep the settings gears', () => {
   const art = source('app', 'features', 'phone', 'AppArtwork.vue')
   const atlas = (readFileSync(join(root, 'ui', 'phone', 'appArtwork.ts'), 'utf8').match(/PHONE_ART: readonly string\[\] = \[([^\]]*)\]/)?.[1] ?? '').split(',').map((id) => id.replace(/"/g, '').trim())
   const without = NATIVE_PANELS.filter((panel) => panel.placement === 'phone' && !atlas.includes(panel.id)).map((panel) => panel.id).sort()
-  assert.deepEqual(without, ['barber-practice', 'clerk-practice', 'driving-practice', 'justice-practice', 'showcase'], 'the apps that have no atlas picture')
+  assert.deepEqual(without, ['barber-practice', 'clerk-practice', 'driving-practice', 'justice-practice', 'market', 'showcase'], 'the apps that have no atlas picture')
   const drawn = /ICON_SET_APPS: readonly string\[\] = \[([^\]]*)\]/.exec(art)?.[1]?.replace(/'/g, '').split(',').map((id) => id.trim()) ?? []
-  assert.deepEqual(drawn, ['showcase'], 'only an app that declares a mark draws it')
+  assert.deepEqual(drawn, ['showcase', 'market'], 'only an app that declares a mark draws it')
   assert.match(art, /const drawn = computed\(\(\) => ICON_SET_APPS\.includes\(props\.app\) && !PHONE_ART\.includes\(props\.app\)\)/)
-  for (const id of without) assert.equal(drawn.includes(id) ? 'icon-set mark' : 'settings gears', id === 'showcase' ? 'icon-set mark' : 'settings gears', id)
+  for (const id of without) assert.equal(drawn.includes(id) ? 'icon-set mark' : 'settings gears', id === 'showcase' || id === 'market' ? 'icon-set mark' : 'settings gears', id)
   assert.match(art, /indexOf\('settings'\)/, 'the old fallback is still there')
 })
 

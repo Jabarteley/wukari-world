@@ -20,6 +20,7 @@ import type { ConsentView, OutreachLogLine, ResultGameId, ShareFacts, ShareKind,
 import type { CampusElectionRecord } from '../src/types/campus.ts'
 import type { CommerceCollection, CommerceGateway } from './commerce/types.ts'
 import type { BusinessCollection } from '../src/types/business.ts'
+import type { MarketCollection } from '../src/types/market.ts'
 import type { BillsRecord, DecreeRecord, GrantRecord, JusticeRecord, PartyRecord, PetitionRecord, LawsRecord, TermAccounts, TermAudit, TreasuryRecord } from '../src/types/politics.ts'
 import type { ComebackType, LedgerType, PrefKey } from '../src/game/comeback.ts'
 import type { StoredWalletEffect } from './economy/effects.ts'
@@ -810,6 +811,8 @@ export interface Database {
   commerce?: CommerceCollection
   /** server/business/service.ts: every player-owned shop. Created by the first shop, so it is not in COLLECTION_NAMES. */
   business?: BusinessCollection
+  /** server/market/service.ts: every city's market accounts, order books and tape. Created by the first deposit or order, so it is not in COLLECTION_NAMES. */
+  market?: MarketCollection
   /** server/trust/service.ts: checked tiers and complaints. Created by the first report or check, so it is not in COLLECTION_NAMES. */
   trust?: import('./trust/service.ts').TrustCollection
   trustChecks?: import('./trust/dojah.ts').IdChecks
@@ -829,7 +832,7 @@ export interface Database {
   [collection: string]: unknown
 }
 /** Top-level keys of the document. */
-export const DATABASE_KEYS = ['version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'business', 'campus', 'accounts', 'accountDevices', 'accountLog', 'visits', 'walletEffects'] as const satisfies readonly (keyof Database)[]
+export const DATABASE_KEYS = ['version', 'sessions', 'archivedLives', 'social', 'civic', 'support', 'moderation', 'growth', 'business', 'market', 'campus', 'accounts', 'accountDevices', 'accountLog', 'visits', 'walletEffects'] as const satisfies readonly (keyof Database)[]
 /** The namespaced collections reached through `collection(db, name)`. */
 export const COLLECTION_NAMES = ['social', 'civic', 'support', 'moderation', 'growth'] as const
 export type CollectionName = (typeof COLLECTION_NAMES)[number]

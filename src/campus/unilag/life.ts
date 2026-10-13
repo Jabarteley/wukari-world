@@ -7,33 +7,105 @@
  * resident cost is small and fixed: ~2 draw calls plus one static water mesh.
  */
 import type { BufferGeometry, Group, Mesh } from 'three';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { Kit } from '../../scene/kit.ts';
 import { createBatch, sceneMaterials } from '../../scene/build.ts';
 import type { Batch } from '../../scene/types.ts';
 import { signLetters } from '../shared/signs.ts';
-import { pointInRing } from './geo.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 
 import type { Prop, PropKind } from './life-plan.ts';
-import { campusPlan, hash, shoreEdges, landEdges, segs } from './life-plan.ts';
-const RADIUS = 100, CAP_TRIS = 3300, LINE_TRIS = 900;
+import { campusPlan, hash, shoreEdges, segs } from './life-plan.ts';
+import { buildLagoon } from './lagoon.ts';
+const RADIUS = 100, CAP_TRIS = 4800, LINE_TRIS = 900;
 
 /* ---------- draw routines (local coordinates, +z forward) ---------- */
 const CAR_COLOURS = ['#e8e8e4', '#2f3338', '#9aa3a8', '#a33a35', '#2f5f8a', '#d9d4c6', '#4a5a4c', '#c8c8c8'];
 const SHIRTS = ['#f4f1e8', '#3f72c4', '#d6a83a', '#3f9a5a', '#c9423a', '#243a66', '#dd6fa0', '#ece2c6', '#8055c2', '#2f9d98'];
 const SKINS = ['#8a5a3c', '#6e422c', '#573323', '#9a6341', '#40261b', '#b0764d'];
 const UMBRELLAS = ['#f5c400', '#e3262f', '#2c9f3e', '#1c6fb8'];
-const COST: Record<PropKind, number> = { palm: 130, flame: 110, almond: 90, lamp: 50, bench: 50, sign: 60, kiosk: 120, car: 90, keke: 110, bus: 150, goal: 70, hoop: 50, net: 60, student: 70, gen: 80, hedge: 24, bump: 30, zebra: 60, guard: 100, pier: 400, canoe: 40, board: 60, bin: 30, };
+const COST: Record<PropKind, number> = { palm: 200, flame: 110, almond: 90, lamp: 62, bench: 50, sign: 60, kiosk: 120, car: 90, keke: 110, bus: 150, goal: 70, hoop: 50, net: 60, student: 90, gen: 80, hedge: 40, bump: 30, zebra: 60, guard: 100, pier: 400, canoe: 40, board: 60, bin: 30,
+  mango: 150, coconut: 190, frangi: 110, shrub: 40, bed: 12, paving: 4, fountain: 170, terrace: 36, wall: 36, booth: 50, stall: 130 };
+/** How far each kind is drawn: low understorey and flat decals vanish sooner than trees and landmarks. */
+const REACH: Partial<Record<PropKind, number>> = { shrub: 55, bed: 70, frangi: 80, student: 70, bin: 50, board: 70, hedge: 80, bump: 70, canoe: 90 };
 
-function draw(b: Batch, p: Prop, text: boolean, lit = false): void {
+function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void {
   b.at(p.x, 0, p.z, p.ry, () => {
     switch (p.t) {
-      case 'palm': { // royal-palm look: tall pale trunk, drooping crown
-        const h = 8 + p.v * 5;
-        b.cyl(0, h / 2, 0, .26, h, '#9b9283', { seg: 5, top: .75 });
-        b.cyl(0, h + .1, 0, .38, .35, '#5f7d3c', { seg: 5 });
-        for (let i = 0; i < 7; i++) b.at(0, h + .3, 0, i * 0.9, () => b.box(0, -.35, 1.8, .22, .1, 3.6, i % 2 ? '#4e7a3a' : '#5d8a43', { rx: .55 }));
+      case 'palm': { // royal palm: tall pale ringed trunk, crownshaft, irregular drooping fronds (not a star)
+        const h = 8 + p.v * 5, n = far ? 5 : 9;
+        b.cyl(0, h / 2, 0, .26, h, '#a29a8a', { seg: 5, top: .72 });
+        b.cyl(0, h + .35, 0, .3, .7, '#6a8a45', { seg: 5 });
+        for (let i = 0; i < n; i++) {
+          const yaw = i * 2.4 + p.v * 3, len = 1.35 + hash(i + p.v * 9) * .5, tilt = i % 3 === 0 ? .25 : i % 3 === 1 ? .6 : .95;
+          b.at(0, h + .7, 0, yaw, () => b.ico(0, -.2 - tilt * .5, len * 1.1, .22, .07, len * 1.35, i % 2 ? '#4e7a3a' : '#5f8f45', { rx: tilt }));
+        }
+        break;
+      }
+      case 'coconut': { // leaning coconut palm with a curved trunk and drooping crown
+        const lean = (p.v - .5) * .5;
+        b.cyl(lean * .3, 1.4, 0, .22, 2.8, '#8a7a62', { seg: 5, top: .85 }); b.cyl(lean * .9, 4.2, 0, .18, 2.9, '#85755e', { seg: 5, top: .85, rz: -lean * .25 });
+        const cx = lean * 1.4, n = far ? 4 : 7;
+        for (let i = 0; i < n; i++) {
+          const yaw = i * 2.4 + p.v * 4, tilt = .5 + (i % 3) * .35;
+          b.at(cx, 5.7, 0, yaw, () => b.ico(0, -.3, 1.25, .2, .06, 1.5, i % 2 ? '#548a3e' : '#6a9a48', { rx: tilt }));
+        }
+        if (!far) b.ico(cx, 5.5, 0, .3, .22, .3, '#7a8f3a');
+        break;
+      }
+      case 'mango': { // broad spreading mango: dense dark dome on a short fork
+        b.cyl(0, 1.4, 0, .42, 2.8, '#5e4a38', { seg: 5, top: .7 });
+        b.ico(0, 4.8, 0, 3.7, 2.6, 3.5, '#3b6638'); b.ico(-2.3, 4.2, 1, 2.5, 2.0, 2.4, '#4e7c44');
+        if (!far) { b.ico(2.3, 4.4, -.8, 2.4, 2.1, 2.5, '#355f35'); b.ico(0, 6.5, 0, 2.2, 1.6, 2.0, '#5a8749'); }
+        break;
+      }
+      case 'frangi': { // frangipani: gnarled grey branches, sparse leaves, white and pink flowers
+        b.cyl(0, .8, 0, .2, 1.7, '#8c8678', { seg: 4, top: .8 }); b.box(-.5, 2.0, 0, .12, 1.2, .12, '#8c8678', { rz: .5 }); b.box(.55, 2.1, .1, .12, 1.3, .12, '#8c8678', { rz: -.5 });
+        b.ico(-1.0, 2.8, 0, 1.0, .55, 1.0, '#6f9a52'); b.ico(1.1, 2.9, .1, 1.0, .55, .95, '#7aa55a');
+        if (!far) { b.ico(-.9, 3.25, .2, .45, .25, .45, p.v < .5 ? '#f6ece4' : '#eba2b4'); b.ico(1.0, 3.35, 0, .4, .22, .4, p.v < .5 ? '#eba2b4' : '#f6ece4'); }
+        break;
+      }
+      case 'shrub': { // low understorey clump, some in flower
+        const c = ['#4a7a42', '#3c6a3a', '#58864a', '#4a7a42'][Math.floor(p.v * 4) % 4]!;
+        b.ico(0, .5, 0, .9, .6, .85, c); b.ico(.6, .38, .3, .6, .45, .6, ['#5a8f4c', '#c8405e', '#e8a030', '#5a8f4c'][Math.floor(p.v * 7) % 4]!);
+        break;
+      }
+      case 'bed': { // flowerbed: kerb, soil and bright rows
+        const w = 3.4, d = 1.6, cols = ['#d94a3a', '#f0b429', '#e8708a', '#8e5bc2', '#f4efe2'];
+        b.quad(0, .1, 0, w + .5, d + .5, '#bdb7a4', { rx: -Math.PI / 2 }); b.quad(0, .11, 0, w, d, '#5a4430', { rx: -Math.PI / 2 });
+        for (let i = 0; i < 4; i++) b.quad(-w / 2 + .45 + i * .75, .12, 0, .5, d * .8, cols[Math.floor(hash(p.v + i) * 5)]!, { rx: -Math.PI / 2 });
+        break;
+      }
+      case 'paving': { // paved forecourt / plaza with a lighter border
+        const w = p.w ?? 12, d = p.d ?? 8, tone = ['#cfc7b2', '#c4bcaa', '#d6cdb8', '#b9b3a4'][Math.floor(p.v) % 4]!;
+        b.quad(0, .085, 0, w + .6, d + .6, '#a9a393', { rx: -Math.PI / 2 }); b.quad(0, .09, 0, w, d, tone, { rx: -Math.PI / 2 });
+        break;
+      }
+      case 'fountain': {
+        b.cyl(0, .3, 0, 2.7, .6, '#b6b1a3', { seg: 14 }); b.cyl(0, .62, 0, 2.3, .08, '#6fb5c9', { seg: 14 });
+        b.cyl(0, 1.0, 0, .28, 1.4, '#a8a396', { seg: 6 }); b.cyl(0, 1.75, 0, .9, .2, '#b6b1a3', { seg: 10, top: .5 });
+        b.cone(0, 2.5, 0, .22, 1.3, '#c6e6f0', { seg: 6 });
+        break;
+      }
+      case 'terrace': { // stepped seating towards the lagoon
+        const w = p.w ?? 24;
+        b.box(0, .15, 0, w, .3, 3.2, '#c8c1b0'); b.box(0, .45, -.9, w, .3, 1.4, '#bfb8a6'); b.box(0, .75, -1.6, w, .3, .8, '#b6af9d');
+        break;
+      }
+      case 'wall': { // boundary wall: plastered panel, capped, with a pier
+        const w = p.w ?? 6;
+        b.box(0, 1.1, 0, .3, 2.2, w, '#cfc8b4'); b.box(0, 2.28, 0, .45, .16, w, '#9a9488'); b.box(0, 1.25, w / 2, .55, 2.5, .5, '#c4bca6');
+        break;
+      }
+      case 'booth': { // security booth with a lit window at night
+        b.box(0, 1.3, 0, 2.4, 2.6, 2.4, ['#2f5f8a', '#e8e4d4'][p.v % 2]!); b.box(0, 2.7, 0, 3, .16, 3, '#5a5f60');
+        b.box(0, 1.5, 1.22, 1.6, .9, .05, lit ? '#f5d78a' : '#27343b', lit ? { layer: 'glow' } : undefined);
+        break;
+      }
+      case 'stall': { // hawker stall: table, produce and a bright umbrella
+        const um = ['#f5c400', '#e3262f', '#2c9f3e', '#1c6fb8', '#e8708a'][p.v % 5]!;
+        b.box(0, .75, 0, 2.6, .12, 1.4, '#8a6a45'); b.box(-1.1, .37, -.5, .1, .75, .1, '#4a3d2e'); b.box(1.1, .37, -.5, .1, .75, .1, '#4a3d2e'); b.box(-1.1, .37, .5, .1, .75, .1, '#4a3d2e'); b.box(1.1, .37, .5, .1, .75, .1, '#4a3d2e');
+        for (let i = 0; i < 4; i++) b.box(-.9 + i * .6, .95, 0, .4, .25, .6, ['#e8a030', '#c93a2c', '#4f9a3a', '#f4efe2'][(i + p.v) % 4]!);
+        b.cyl(0, 1.2, -.5, .04, 2.4, '#3a4042', { seg: 4 }); b.cone(0, 2.55, -.5, 1.9, .6, um, { seg: 8 });
         break;
       }
       case 'flame': { // flame-of-the-forest: spreading red-orange canopy
@@ -60,7 +132,7 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false): void {
       }
       case 'sign': { // white board, blue header band, green foot band, two posts
         b.box(-1.9, 1.3, 0, .12, 2.6, .12, '#3a4042'); b.box(1.9, 1.3, 0, .12, 2.6, .12, '#3a4042');
-        b.box(0, 2.1, 0, 4.1, 1.5, .1, '#f4f4ee'); b.box(0, 2.72, .06, 4.1, .26, .05, '#1c5fa8'); b.box(0, 1.5, .06, 4.1, .2, .05, '#2d8a4a');
+        { const hd = ['#1c5fa8', '#7a2430', '#1f3f6e'][p.v % 3]!, ft = ['#2d8a4a', '#d6a83a', '#2d8a4a'][p.v % 3]!; b.box(0, 2.1, 0, 4.1, 1.5, .1, p.v % 3 === 2 ? '#e8ecef' : '#f4f4ee'); b.box(0, 2.72, .06, 4.1, .26, .05, hd); b.box(0, 1.5, .06, 4.1, .2, .05, ft); }
         if (text && p.label) {
           const words = p.label.toUpperCase().replace(/[^A-Z0-3 ]/g, '').split(' '), lines: string[] = [''];
           for (const w of words) { const last = lines.length - 1; if ((lines[last] + ' ' + w).trim().length <= 16) lines[last] = (lines[last] + ' ' + w).trim(); else lines.push(w); }
@@ -120,7 +192,13 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false): void {
         b.box(0, .15, 1.25, 3.4, .3, .1, '#e3b02a'); b.cyl(1.4, 3.2, -.6, .1, 1.5, '#2b2f31', { seg: 5 });
         break;
       }
-      case 'hedge': b.box(0, .4, 0, p.w ?? 4, .8, .8, '#355d34'); break;
+      case 'hedge': { // plain, bougainvillea or hibiscus hedge
+        const w = p.w ?? 4;
+        b.box(0, .4, 0, w, .8, .8, '#355d34');
+        if (p.v === 1) { b.box(0, .78, 0, w * .96, .3, .7, '#c2307a'); b.box(0, .95, 0, w * .6, .2, .5, '#e8467f'); }
+        else if (p.v === 2) for (let i = 0; i < Math.floor(w / 1.2); i++) b.ico(-w / 2 + .7 + i * 1.2, .85, .2, .22, .18, .22, '#d8302e');
+        break;
+      }
       case 'bump': { const w = p.w ?? 8; for (let i = 0; i < 6; i++) b.quad(0, .105, -1 + i * .4, w, .38, i % 2 ? '#e8c820' : '#222527', { rx: -Math.PI / 2 }); break; }
       case 'zebra': { const w = p.w ?? 8; for (let i = 0; i < 10; i++) b.quad(-w / 2 + .5 + i * (w - 1) / 9, .106, 0, .55, 3.2, '#ece9da', { rx: -Math.PI / 2, ry: Math.PI / 2 }); break; }
       case 'guard': { // gate house
@@ -149,74 +227,16 @@ export function createCampusLife(kit: Kit) {
   const plan = campusPlan();
   const edges = shoreEdges();
   const live = new THREE.Group(); live.name = 'Near street life'; group.add(live);
+  let disposed = false;
   let key = '', rebuilds = 0, lit = false;
 
   // Static lagoon: banded water + foam along the shore. One merged vertex-coloured mesh.
-  const water = (() => {
-    const geos: BufferGeometry[] = [];
-    const colour = (g: BufferGeometry, hex: string) => {
-      const c = new THREE.Color(hex), a = new Float32Array(g.attributes.position!.count * 3);
-      for (let i = 0; i < a.length; i += 3) { a[i] = c.r; a[i + 1] = c.g; a[i + 2] = c.b; }
-      g.setAttribute('color', new THREE.BufferAttribute(a, 3)); return g;
-    };
-    const [x0, z0, x1, z1] = CAMPUS_MAP.bounds;
-    // Open lagoon to the horizon (the scene fog fades it into haze); off-campus town land is laid over it on the land side only.
-    const base = new THREE.PlaneGeometry(12000, 12000); base.rotateX(-Math.PI / 2); base.translate((x0 + x1) / 2, -.7, (z0 + z1) / 2);
-    geos.push(colour(base.toNonIndexed(), '#4f8896'));
-    const poly = (pts: number[][], y: number, hex: string) => {
-      const g = new THREE.BufferGeometry(), v = pts.flatMap(([x, z]) => [x!, y, z!]);
-      g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(v), 3));
-      g.setAttribute('normal', new THREE.BufferAttribute(new Float32Array(pts.flatMap(() => [0, 1, 0])), 3));
-      const crossY = (v[5]! - v[2]!) * (v[6]! - v[0]!) - (v[3]! - v[0]!) * (v[8]! - v[2]!);
-      const up = crossY > 0 ? [0, 1, 2, 0, 2, 3] : [0, 2, 1, 0, 3, 2];
-      g.setIndex(pts.length === 3 ? up.slice(0, 3) : up);
-      const ni = g.toNonIndexed(); g.dispose(); geos.push(colour(ni, hex));
-    };
-    // each shore edge gets deep water, mid-water, shallows and foam strips out from the edge
-    const FAR = 2600;
-    // Water only runs seaward until the ray meets campus land again (bays and inlets must not flood the far side).
-    const reach = new Map<object, number>();
-    for (const e of edges) {
-      const mx = (e.ax + e.bx) / 2, mz = (e.az + e.bz) / 2;
-      let r = FAR;
-      for (let d = 12; d < FAR; d += 24) if (pointInRing([mx + e.nx * d, mz + e.nz * d], CAMPUS_MAP.boundary)) { r = Math.max(14, d - 26); break; }
-      reach.set(e, r);
-    }
-    const bands: Array<[number, number, number, string]> = [[110, FAR, -.6, '#4f8896'], [28, 110, -.5, '#5f9ba5'], [2.2, 28, -.38, '#7db3ae'], [-.5, 2.2, -.2, '#e3eee4']];
-    for (const e of edges) {
-      const ux = (e.bx - e.ax) / e.len, uz = (e.bz - e.az) / e.len;
-      const R = reach.get(e)!;
-      for (const [d0, d1raw, y, hex] of bands) { const d1 = Math.min(d1raw, R); if (d1 <= d0 + .3) continue; poly([
-        [e.ax + e.nx * d0 - ux * 2, e.az + e.nz * d0 - uz * 2], [e.bx + e.nx * d0 + ux * 2, e.bz + e.nz * d0 + uz * 2],
-        [e.bx + e.nx * d1 + ux * 2, e.bz + e.nz * d1 + uz * 2], [e.ax + e.nx * d1 - ux * 2, e.az + e.nz * d1 - uz * 2]], y, hex); }
-    }
-    // corner wedges so far water has no land-coloured gaps between neighbouring shore edges
-    for (let i = 1; i < edges.length; i++) {
-      const p = edges[i - 1]!, q = edges[i]!;
-      if (Math.hypot(p.bx - q.ax, p.bz - q.az) > 1) continue;
-      const R = Math.min(reach.get(p)!, reach.get(q)!);
-      if (R > 111) poly([[q.ax, q.az], [q.ax + p.nx * R, q.az + p.nz * R], [q.ax + q.nx * R, q.az + q.nz * R]], -.6, '#4f8896');
-    }
-    // Town side: land strips fade from earth to the haze-friendly green-grey with distance (vertex colours), ragged by edge.
-    const land = landEdges(), LAND = 1500;
-    for (const e of land) {
-      const ux = (e.bx - e.ax) / e.len, uz = (e.bz - e.az) / e.len, mx = (e.ax + e.bx) / 2, mz = (e.az + e.bz) / 2;
-      let R = LAND;
-      for (let d = 24; d < LAND; d += 24) if (pointInRing([mx + e.nx * d, mz + e.nz * d], CAMPUS_MAP.boundary)) { R = Math.max(14, d - 26); break; }
-      poly([[e.ax - ux * 2, e.az - uz * 2], [e.bx + ux * 2, e.bz + uz * 2], [e.bx + e.nx * R + ux * 2, e.bz + e.nz * R + uz * 2], [e.ax + e.nx * R - ux * 2, e.az + e.nz * R - uz * 2]], -.62, '#9aa585');
-    }
-    for (let i = 1; i < land.length; i++) {
-      const p = land[i - 1]!, q = land[i]!;
-      if (Math.hypot(p.bx - q.ax, p.bz - q.az) > 1) continue;
-      poly([[q.ax, q.az], [q.ax + p.nx * LAND, q.az + p.nz * LAND], [q.ax + q.nx * LAND, q.az + q.nz * LAND]], -.62, '#9aa585');
-    }
-    const merged = mergeGeometries(geos.map(g => { g.deleteAttribute('uv'); return g; }), false)!;
-    geos.forEach(g => g.dispose());
-    const mesh = new THREE.Mesh(merged, materials.solid); mesh.name = 'Lagos Lagoon'; mesh.receiveShadow = true;
-    // The plane normal must face up for lighting; strip normals are recomputed from winding above.
-    return mesh;
-  })();
-  group.add(water);
+  // Built after the first frame (idle callback) so entering the campus is not held up by ~100 ms of shoreline maths.
+  const buildWater = () => buildLagoon(kit);
+  let waterTimer: number | ReturnType<typeof setTimeout> | undefined;
+  const idle = (globalThis as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
+  const addWater = () => { waterTimer = undefined; if (!disposed) group.add(buildWater()); };
+  waterTimer = idle ? idle(addWater, { timeout: 1500 }) : setTimeout(addWater, 0);
 
   function rebuild(px: number, pz: number) {
     live.traverse(o => { const m = o as Mesh; if (m.isMesh) m.geometry.dispose(); });
@@ -225,11 +245,13 @@ export function createCampusLife(kit: Kit) {
     const near = plan.map(p => ({ p, d: Math.hypot(p.x - px, p.z - pz) })).filter(i => i.d < RADIUS).sort((a, b) => a.d - b.d);
     let budget = CAP_TRIS, signText = 1;
     for (const { p, d } of near) {
-      const cost = COST[p.t] + (p.t === 'sign' && signText && d < 60 ? 700 : 0);
+      if (d > (REACH[p.t] ?? RADIUS)) continue;
+      const far = d > 45 && (p.t === 'palm' || p.t === 'coconut' || p.t === 'mango' || p.t === 'frangi');
+      const cost = (far ? COST[p.t] * .55 : COST[p.t]) + (p.t === 'sign' && signText && d < 60 ? 700 : 0);
       if (cost > budget) continue;
       const text = p.t === 'sign' && signText > 0 && d < 60;
       if (text) signText--;
-      draw(batch, p, text, lit); budget -= cost;
+      draw(batch, p, text, lit, far); budget -= cost;
     }
     // waterfront promenade: seawall kerb, paved strip and bollards on shore edges near the player
     let lineBudget = LINE_TRIS;
@@ -275,11 +297,11 @@ export function createCampusLife(kit: Kit) {
     if (cell === key) return;
     key = cell; lit = time !== 'day'; rebuild(x, z);
   }
-  let disposed = false;
   return {
     group, update, get rebuilds() { return rebuilds; },
     dispose() {
       if (disposed) return; disposed = true;
+      if (waterTimer !== undefined) { const cancel = (globalThis as { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback; if (idle && cancel) cancel(waterTimer as number); else clearTimeout(waterTimer as ReturnType<typeof setTimeout>); }
       group.traverse(o => { const m = o as Mesh; if (m.isMesh) m.geometry.dispose(); });
       group.removeFromParent(); group.clear();
     },

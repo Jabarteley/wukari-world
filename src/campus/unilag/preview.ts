@@ -10,6 +10,8 @@ import { buildShuttle } from './shuttle-scene.ts';
 import { CAMPUS_NPCS } from './content.ts';
 import { BUILDINGS, ZONES, ROADS, ANCHORS, ENTRANCE } from './layout.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
+import { pointInRing, boundsOf } from './geo.ts';
+import { standalones } from './standalone.ts';
 import type { Kit } from '../../scene/kit.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
 import type { Walker } from './host.ts';
@@ -29,7 +31,7 @@ const hemi=new THREE.HemisphereLight('#c6e0e6','#68765a',2),sun=new THREE.Direct
 sun.position.set(80,140,50);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-120,right:120,top:120,bottom:-120,near:1,far:420});sun.shadow.normalBias=.3;world.add(hemi,sun,sun.target);
 const bus: ShuttleView=buildShuttle(kit);bus.group.visible=false;world.add(bus.group);
 const walker: Walker=createWalker({speed:8,jogSpeed:18});walker.setGrid(campus.walk.grid);walker.place(ENTRANCE.x,ENTRANCE.z,0);
-let yaw=-Math.PI/2,tilt=.32,distance=32,gridVisible=false,frameCount=0,phase=0,trip: Trip | null=null;
+let yaw=-Math.PI/2,tilt=.32,distance=32,lookHeight=2,focus={dx:0,dz:0},gridVisible=false,frameCount=0,phase=0,trip: Trip | null=null;
 const keys=new Set<string>(),labels=new Map<string, HTMLSpanElement>(),map=$<HTMLCanvasElement>('map'),ctx=map.getContext('2d')!;
 const screenPoint=new THREE.Vector3(),labelRay=new THREE.Raycaster(),rayStart=new THREE.Vector3(),rayDirection=new THREE.Vector3(),hitPoint=new THREE.Vector3();
 const occluders=campus.walk.solids.map(([x0,y0,z0,x1,y1,z1])=>new THREE.Box3(new THREE.Vector3(x0,y0,z0),new THREE.Vector3(x1,y1,z1)));
@@ -52,10 +54,22 @@ function drawMap(){
   for(const friend of campus.walk.people()){const p=point(friend.x,friend.z);ctx.fillStyle='#686ab8';ctx.beginPath();ctx.arc(...p,2.5,0,Math.PI*2);ctx.fill();}
   const p=point(walker.x,walker.z);ctx.fillStyle='#db7142';ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(...p,4,0,Math.PI*2);ctx.fill();ctx.stroke();
 }
+/** Footprints with their heights, so the orbit camera can be kept out of buildings (solids share the CAMPUS_MAP.buildings order). */
+const solidBoxes=[...campus.walk.solids,...standalones().map(({building:b})=>{const [x0,z0,x1,z1]=boundsOf(b.ring);return [x0,0,z0,x1,b.height,z1] as typeof campus.walk.solids[number];})];
+const blockers=[...CAMPUS_MAP.buildings,...standalones().map(s=>s.building)].map((b,i)=>({ring:b.ring,bounds:solidBoxes[i]!}));
+const insideBuilding=(x: number,y: number,z: number)=>blockers.some(({ring,bounds:[x0,,z0,x1,h,z1]})=>x>x0-.8&&x<x1+.8&&z>z0-.8&&z<z1+.8&&y<h+2&&(pointInRing([x,z],ring)||blockerNear(ring,x,z)));
+function blockerNear(ring: readonly (readonly [number,number])[],x: number,z: number){for(let i=1;i<ring.length;i++){const [ax,az]=ring[i-1]!,[bx,bz]=ring[i]!,dx=bx-ax,dz=bz-az,t=Math.max(0,Math.min(1,((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz||1)));if(Math.hypot(x-ax-dx*t,z-az-dz*t)<.8)return true;}return false;}
+const fog=new THREE.Fog('#bfd1d3',260,1750),background=new THREE.Color();
 function draw(){
-  camera.position.set(walker.x+Math.sin(yaw)*Math.cos(tilt)*distance,Math.sin(tilt)*distance+2,walker.z+Math.cos(yaw)*Math.cos(tilt)*distance);
-  camera.lookAt(walker.x,2,walker.z);
-  world.background=new THREE.Color(campus.background);world.fog=new THREE.Fog(campus.background,450,2200);
+  // Orbit camera arm: stops before the first building on its ray (never inside or behind a wall), never below the ground.
+  const fx=walker.x+focus.dx,fz=walker.z+focus.dz,ty=lookHeight,wantX=fx+Math.sin(yaw)*Math.cos(tilt)*distance,wantY=Math.max(1.4,Math.sin(tilt)*distance+ty),wantZ=fz+Math.cos(yaw)*Math.cos(tilt)*distance;
+  let arm=1;
+  for(let t=.1;t<=1;t+=.02)if(insideBuilding(fx+(wantX-fx)*t,ty+(wantY-ty)*t,fz+(wantZ-fz)*t)){arm=Math.max(.12,t-.06);break;}
+  camera.position.set(fx+(wantX-fx)*arm,Math.max(1.4,ty+(wantY-ty)*arm),fz+(wantZ-fz)*arm);
+  camera.lookAt(fx,ty,fz);
+  // A wider near plane at altitude gives the depth buffer 10-20x more precision for the distant ground, roofs and water.
+  const near=Math.max(.3,distance*arm*.04);if(Math.abs(camera.near-near)>.01){camera.near=near;camera.updateProjectionMatrix();}
+  background.set(campus.background);world.background=background;const f=campus.fog;fog.color.set(f.color);fog.near=f.near;fog.far=f.far;world.fog=fog;
   const light=campus.lighting();hemi.color.set(light.hemi[0]);hemi.groundColor.set(light.hemi[1]);hemi.intensity=light.hemi[2];sun.color.set(light.sun[0]);sun.intensity=light.sun[1];
   document.body.dataset.time=campus.time;
   sun.position.set(walker.x-70,140,walker.z+60);sun.target.position.set(walker.x,0,walker.z);
@@ -83,12 +97,25 @@ const loop=createMotionLoop((dt: number)=>{
 
   walker.input(Number(keys.has('d')||keys.has('ArrowRight'))-Number(keys.has('a')||keys.has('ArrowLeft')),Number(keys.has('w')||keys.has('ArrowUp'))-Number(keys.has('s')||keys.has('ArrowDown')),keys.has('Shift'));
   // Calling input(0,0) preserves the walker's existing path.
-  const moved=walker.step(dt,yaw);phase+=dt*(walker.jogging?9:5);
+  const moved=walker.step(dt,yaw);if(moved)focus.dx=focus.dz=0;phase+=dt*(walker.jogging?9:5);
   campus.walk.move(walker.x,0,walker.z,walker.ry);campus.walk.gait(phase,phase);
   if(!moved)campus.walk.rest();draw();return moved||walker.hasInput;
 },{onHidden(){keys.clear();walker.stop();},onVisible(){draw();}});
 function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();draw();}
-function jump(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(!a)return false;loop.stop();walker.stop();if(!campus.setSpot(id))return false;walker.place(a.x,a.z,a.ry);$<HTMLSelectElement>('destination').value=id;yaw=id==='lagoon-front'?-Math.PI/2:.55;tilt=id==='lagoon-front'?.38:.62;distance=id==='senate'?125:id==='lagoon-front'?75:48;draw();return true;}
+/** Entrances face the anchor's +z side (the anchor sits 2 m in front of the footprint), so frame from there, low enough to read the door and sign. */
+function framePreset(id: string){
+  const keep=id==='senate'||id==='main-gate'||id==='lagoon-front',anchor=ANCHORS[id];
+  lookHeight=2;focus.dx=focus.dz=0;
+  if(id==='lagoon-front'){yaw=-Math.PI/2;tilt=.38;distance=75;return;}
+  // Node-mapped landmarks have no footprint of their own: use the nearest mapped building within 14 m of the anchor.
+  let best: {h: number;size: number} | null=null,bestScore=Infinity,face=0;
+  if(anchor&&!keep)solidBoxes.forEach(([x0,,z0,x1,h,z1])=>{const d=Math.hypot(Math.max(x0-anchor.x,0,anchor.x-x1),Math.max(z0-anchor.z,0,anchor.z-z1)),score=d-Math.min(h,30)*.2;if(d<14&&h>3&&score<bestScore){bestScore=score;best={h,size:Math.max(x1-x0,z1-z0)};face=d===0?z1+2.5-anchor.z:0;}});
+  const b=BUILDINGS.find(item=>item.id===id),h=best?(best as {h:number}).h:b?.h||0,size=best?(best as {size:number}).size:Math.max(b?.w||0,b?.d||0);
+  if(b?.kind==='open-space'){yaw=.55;tilt=.42;distance=62;return;}
+  if(keep||!(h>0)){yaw=.55;tilt=.62;distance=id==='senate'?125:48;return;}
+  focus.dz=face;yaw=.3;tilt=.3;distance=Math.round(Math.min(95,Math.max(30,h*1.7+14,size*.5+18)));lookHeight=Math.min(10,Math.max(2,h*.3));
+}
+function jump(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(!a)return false;loop.stop();walker.stop();if(!campus.setSpot(id))return false;walker.place(a.x,a.z,a.ry);$<HTMLSelectElement>('destination').value=id;framePreset(id);draw();return true;}
 function go(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(a&&walker.goTo(a.x,a.z,{arrive(){ $('status').textContent=`You reached ${a.label}.`; }})){ $('status').textContent=`Walking to ${a.label}…`;loop.wake();return true;}$('status').textContent='That destination is not reachable from here.';return false;}
 function showTrip(at: { x: number; z: number; ry: number } | null){if(!at)return;walker.place(at.x,at.z,at.ry);campus.setPosition(at.x,at.z);bus.group.visible=true;campus.walk.avatar.visible=false;bus.group.position.set(at.x,.2,at.z);bus.group.rotation.y=at.ry;}
 function ridePreview(destination: string,progress: number | null=null){

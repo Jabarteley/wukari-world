@@ -16,6 +16,7 @@ import { createCampusLife } from './life.ts';
 import { createAmbient } from './ambient.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 import { boundsOf } from './geo.ts';
+import { buildSky, skyLook } from './sky.ts';
 
 export type Point = WalkPoint;
 /** Obstacle shapes the walk model accepts: a rectangle [x0, z0, x1, z1] or a circle [x, z, radius]. */
@@ -65,6 +66,8 @@ export interface UnilagScene {
   navigation: CampusNavigation;
   camera: { landscape: number[]; portrait: number[] };
   readonly background: string;
+  /** Distance fog matching the sky horizon: far buildings and the lagoon fade into haze. */
+  readonly fog: { color: string; near: number; far: number };
   readonly time: string;
   readonly zone: string | null;
   readonly position: PlayerPosition;
@@ -92,6 +95,7 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   let player = buildAvatar(kit, { body: 'woman', outfit: 'casual', outfitColor: 'gold', skin: 'skin-5' }, { detail: 'low', rig: true, scale: .60, seed: 'campus-visitor' });
   group.add(player);
   let time = venue.scene?.time || 'day', disposed = false, playerKey = '';
+  const sky = buildSky(kit); sky.setTime(time); group.add(sky.mesh);
   let crowd: CrowdPerson[] = [];
   const peopleGroup = new THREE.Group(); peopleGroup.name='Campus stationary peers'; group.add(peopleGroup);
   const peopleCache = new Map<string, { key: string; body: ReturnType<typeof buildAvatar> }>();
@@ -124,9 +128,10 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   const scene:UnilagScene={group,kind:'unilag',mood:'outdoor',anchors:ANCHORS,walk,navigation,
     camera:{landscape:[22,20,26],portrait:[26,30,34]},
     get background(){return time==='night'?'#0d1f3a':time==='dusk'?'#dc9f82':'#bfd1d3';},
+    get fog(){const look=skyLook(time);return {color:scene.background,near:look.fogNear,far:look.fogFar};},
     get time(){return time;},get zone(){return position.zone;},get position(){return {...position};},
     update(state){const hour=lagosTime(state?.t??0).hour;return scene.setTime(venue.scene?.time||(hour<6||hour>=19?'night':hour>=17?'dusk':'day'));},
-    setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;mapped.update(position.x,position.z,time);life.update(position.x,position.z,time);return true;},
+    setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;sky.setTime(time);mapped.update(position.x,position.z,time);life.update(position.x,position.z,time);return true;},
     lighting(){return time==='night'?{hemi:['#3d63a0','#141d2c',1.2],sun:['#7092d8',.6,[80,140,50]]}:time==='dusk'?{hemi:['#e6ab8e','#5d504a',1.5],sun:['#ffad68',1.8,[80,140,50]]}:{hemi:['#c6dde0','#68765a',1.8],sun:['#fff1d6',2.3,[80,140,50]]};},
     setPosition,setSpot(id){const a=ANCHORS[id];return !!a&&setPosition(a.x,a.z);},
     setPlayer({look,seed='campus-visitor',pose='stand'}:PlayerInput={}){const key=JSON.stringify([look,seed]);if(look&&key!==playerKey){playerKey=key;player.userData.dispose();player=buildAvatar(kit,look,{detail:'low',rig:true,scale:.60,seed});group.add(player);player.position.set(position.x,0,position.z);walk.avatar=player;}poseAvatar(player,{pose});return true;},
@@ -144,7 +149,7 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
     },
     tags(){return Object.entries(ANCHORS).filter(([,a])=>Math.hypot(a.x-position.x,a.z-position.z)<220).map(([id,a])=>({id,name:a.label,kind:'landmark',position:{x:a.x,y:3.5,z:a.z}})).concat(crowd.map(p=>({id:p.id,name:p.name,kind:p.kind,position:{x:p.x,y:2.3,z:p.z}})));},
     stats(){return {...measureScene(group),zone:position.zone,resident:mapped.resident,rebuilds:mapped.rebuilds};},
-    dispose(){if(disposed)return;disposed=true;registry.delete(scene.dispose);mapped.dispose();life.dispose();ambient?.dispose();clearPeople();player.userData.dispose();markerGeometry.dispose();group.removeFromParent();group.clear();},
+    dispose(){if(disposed)return;disposed=true;registry.delete(scene.dispose);sky.dispose();mapped.dispose();life.dispose();ambient?.dispose();clearPeople();player.userData.dispose();markerGeometry.dispose();group.removeFromParent();group.clear();},
   };
   const registry=kitResources(kit).disposers;registry.add(scene.dispose);
   ambient=createAmbient(kit,navigation,()=>player.visible);group.add(ambient.group);ambient.setCapacity(CAMPUS_BUDGET.crowd);

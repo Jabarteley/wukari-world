@@ -1,7 +1,7 @@
 import './host.css';
 import type { Group, WebGLRenderer } from 'three';
 import { createKit } from '../../scene/kit.ts';
-import { renderTier } from '../../scene/look.ts';
+import { lazyEnvironment, renderTier } from '../../scene/look.ts';
 import { createMotionLoop } from '../../scene/motion-loop.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
 import { createPositionReporter, createWalker, gaitPhase, WALK_SPEED, JOG_SPEED } from '../../scene/movement.ts';
@@ -100,6 +100,8 @@ export function createCampusHost(container: HTMLElement, {
   renderer.shadowMap.type = tier.softShadows ? THREE.PCFSoftShadowMap : THREE.PCFShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.12;
+  // High tier: the generated environment map (lazy; redraws once when it lands).
+  if (tier.env) lazyEnvironment(THREE, world, () => renderer.render(world, camera));
   container.classList.add('campus-host');
   container.appendChild(renderer.domElement);
 

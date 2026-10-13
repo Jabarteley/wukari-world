@@ -1,7 +1,6 @@
 import { createWalkGrid } from '../../scene/walk-grid.ts';
 import type { WalkCircle, WalkGrid, WalkPoint, WalkRect } from '../../scene/walk-grid.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
-import { pointInRing } from './geo.ts';
 import type { MetreRing } from './geo.ts';
 import { ANCHORS, ZONES, zoneAtPoint } from './layout.ts';
 import type { CampusZone } from './layout.ts';
@@ -11,12 +10,31 @@ import { standaloneBlocks } from './standalone.ts';
 
 export interface CampusWalk { grids:Map<string,WalkGrid>; zoneAt:(x:number,z:number)=>CampusZone|null; route:(from:WalkPoint,to:WalkPoint)=>WalkPoint[]|null }
 const CELL=2, RADIUS=.4;
-const distanceToRing=(x:number,z:number,ring:MetreRing):number=>{
-  let best=Infinity;
-  for(let index=1;index<ring.length;index++){const [ax,az]=ring[index-1]!,[bx,bz]=ring[index]!,dx=bx-ax,dz=bz-az;const t=Math.max(0,Math.min(1,((x-ax)*dx+(z-az)*dz)/(dx*dx+dz*dz||1)));best=Math.min(best,Math.hypot(x-ax-dx*t,z-az-dz*t));}
-  return best;
-};
-const blockedBy=(x:number,z:number,ring:MetreRing)=>pointInRing([x,z],ring)||distanceToRing(x,z,ring)<=RADIUS;
+/** Block every cell whose centre is inside the ring or within RADIUS of its edge: scanline fill plus a stroke per edge, so cost follows the outline, not the bounding box. */
+function blockRing(grid:WalkGrid,ring:MetreRing):void{
+  const [minX,minZ]=grid.bounds,{cols,rows,cell,cells}=grid;
+  let z0=Infinity,z1=-Infinity;for(const p of ring){if(p[1]<z0)z0=p[1];if(p[1]>z1)z1=p[1];}
+  const r0=Math.max(0,Math.floor((z0-RADIUS-minZ)/cell)),r1=Math.min(rows-1,Math.floor((z1+RADIUS-minZ)/cell));
+  const crossings:number[]=[];
+  for(let row=r0;row<=r1;row++){
+    const z=minZ+(row+.5)*cell;crossings.length=0;
+    for(let i=1;i<ring.length;i++){const [ax,az]=ring[i-1]!,[bx,bz]=ring[i]!;if((az>z)===(bz>z))continue;crossings.push(ax+(bx-ax)*(z-az)/(bz-az));}
+    crossings.sort((a,b)=>a-b);
+    for(let k=0;k+1<crossings.length;k+=2){
+      const c0=Math.max(0,Math.ceil((crossings[k]!-minX)/cell-.5)),c1=Math.min(cols-1,Math.floor((crossings[k+1]!-minX)/cell-.5));
+      for(let c=c0;c<=c1;c++)cells[row*cols+c]=1;
+    }
+  }
+  for(let i=1;i<ring.length;i++){
+    const [ax,az]=ring[i-1]!,[bx,bz]=ring[i]!,dx=bx-ax,dz=bz-az,len2=dx*dx+dz*dz||1;
+    const c0=Math.max(0,Math.floor((Math.min(ax,bx)-RADIUS-minX)/cell)),c1=Math.min(cols-1,Math.floor((Math.max(ax,bx)+RADIUS-minX)/cell));
+    const rr0=Math.max(0,Math.floor((Math.min(az,bz)-RADIUS-minZ)/cell)),rr1=Math.min(rows-1,Math.floor((Math.max(az,bz)+RADIUS-minZ)/cell));
+    for(let row=rr0;row<=rr1;row++){const z=minZ+(row+.5)*cell;for(let c=c0;c<=c1;c++){
+      const x=minX+(c+.5)*cell,t=Math.max(0,Math.min(1,((x-ax)*dx+(z-az)*dz)/len2));
+      if(Math.hypot(x-ax-dx*t,z-az-dz*t)<=RADIUS)cells[row*cols+c]=1;
+    }}
+  }
+}
 
 export function createGeographicCampusWalk(extraFootprints:Record<string,Array<WalkRect|WalkCircle>>={}):CampusWalk{
   const gateColumns:WalkRect[]=[[-1.5,-2.5,1.5,2.5],[-1.5,-16.7,1.5,-15.3],[-1.5,15.3,1.5,16.7]];
@@ -40,12 +58,7 @@ export function createGeographicCampusWalk(extraFootprints:Record<string,Array<W
       if(!inside)grid.cells[row*grid.cols+column]=1;
     }
   }
-  for(const feature of [...CAMPUS_MAP.buildings,...CAMPUS_MAP.surfaces.filter(surface=>surface.kind==='water'||surface.kind==='wetland'||surface.kind==='pool')]){
-    const ring=feature.ring,xs=ring.map(p=>p[0]),zs=ring.map(p=>p[1]);
-    const c0=Math.max(0,Math.floor((Math.min(...xs)-RADIUS-minX)/grid.cell)),c1=Math.min(grid.cols-1,Math.floor((Math.max(...xs)+RADIUS-minX)/grid.cell));
-    const r0=Math.max(0,Math.floor((Math.min(...zs)-RADIUS-minZ)/grid.cell)),r1=Math.min(grid.rows-1,Math.floor((Math.max(...zs)+RADIUS-minZ)/grid.cell));
-    for(let row=r0;row<=r1;row++)for(let column=c0;column<=c1;column++){const x=minX+(column+.5)*grid.cell,z=minZ+(row+.5)*grid.cell;if(blockedBy(x,z,ring))grid.cells[row*grid.cols+column]=1;}
-  }
+  for(const feature of [...CAMPUS_MAP.buildings,...CAMPUS_MAP.surfaces.filter(surface=>surface.kind==='water'||surface.kind==='wetland'||surface.kind==='pool')])blockRing(grid,feature.ring);
   const grids=new Map(ZONES.map(zone=>[zone.id,grid]));
   const zoneAt=(x:number,z:number)=>Number.isFinite(x)&&Number.isFinite(z)?zoneAtPoint(x,z):null;
   for(const anchor of Object.values(ANCHORS)){

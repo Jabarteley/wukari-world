@@ -5,7 +5,18 @@
     "url": "https://download.geofabrik.de/europe/france-261011.osm.pbf",
     "bytes": 5097271668,
     "md5": "bf8a956f9bcd68691abb6b324de5d5e1",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "cityExtract": {
+      "url": "https://download.geofabrik.de/europe/france/ile-de-france-261011.osm.pbf",
+      "bytes": 339281723,
+      "md5": "4f6da19f95328fcf1b7b413e2be91ef1",
+      "snapshotDate": "2026-10-11",
+      "reason": "France (5.10 GB) is read only for the admin-0 boundary (its 357 overseas ring ways are reviewed evidence); Paris's metadata and layers come from the official Geofabrik Ile-de-France extract (339 MB, same 2026-10-11T20:21:06Z replication timestamp). The Paris centre (48.853N 2.348E) and LFPG lie inside ile-de-france.poly (1.445-3.560E, 48.119-49.243N), so the play, core and outline boxes lie inside it",
+      "polyUrl": "https://download.geofabrik.de/europe/france/ile-de-france.poly",
+      "polySha256": "ebda64b6174c4cff0aa4aedc702d54bf5035bf19b173e0593d83060d16489683",
+      "primaryPolyUrl": "https://download.geofabrik.de/europe/france.poly",
+      "primaryPolySha256": "97870c5d6718d958ced9a5dcc944eea1bea486059a69efb41fb311ad4e015932"
+    }
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
@@ -18,6 +29,7 @@
       "id": "paris",
       "name": "Paris",
       "countryISO": "FR",
+      "cityOsmRef": "node/17807753",
       "airport": {
         "ident": "LFPG",
         "sourceUrl": "https://ourairports.com/airports/LFPG/"

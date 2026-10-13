@@ -1,12 +1,16 @@
 {
   "schemaVersion": 1,
   "countryISO": "FR",
-  "datasetSha256": "d82ac8a228f4f831b59da8b3431e71b30e8d505320136de2bf3d130e1bb1209a",
+  "dataset": {
+    "url": "https://download.geofabrik.de/europe/france-261011.osm.pbf",
+    "bytes": 5097271668,
+    "md5": "bf8a956f9bcd68691abb6b324de5d5e1"
+  },
   "wholeSeparateRings": true,
   "reason": "Owner decision 13 Oct 2026: France plays as the metropolitan extract. These 357 admin_level=2 member ways of relation 2202162 belong to overseas departments and territories (by position: French Guiana, the Antilles, the Indian Ocean islands, Saint-Pierre and Miquelon, French Polynesia, Clipperton and the TAAF, with their sea limits). They form whole separate rings of their own (every endpoint pairs among them, none is a node of a present boundary way) and lie wholly outside the europe/france Geofabrik clip.",
   "source": "https://api.openstreetmap.org/api/0.6/ways.json?ways=<the 357 ids below, in batches of 100>",
   "retrievedAt": "2026-10-13",
-  "note": "The absent set is PREDICTED from the published europe/france.poly (a way is absent when none of its nodes lies inside the polygon; the same rule matched the observed absent sets of am, az, uz, kg, sr, bz, hn, pa, ht, my, to). The hosted run's country-boundary result.json diagnostic.missingMemberWayIds must equal this list exactly, otherwise the boundary HOLDs and this file must be regenerated from that list. Predicted counts: 1,742 way members, 1,385 present, 357 absent (243 maritime=yes, 114 land/river border ways). Ring closure checked on the API node lists: 0 odd endpoints among the absent ways, 0 endpoints on present ways. Latest absent way timestamp 2026-08-31, before the 2026-10-11 snapshot.",
+  "note": "The absent set is PREDICTED from the published europe/france.poly (a way is absent when none of its nodes lies inside the polygon; the same rule matched the observed absent sets of am, az, uz, kg, sr, bz, hn, pa, ht, my, to). The first hosted run (38329177114, head 8c0bef08) reported missingMemberWayIds equal to this list exactly (357 of 357) and hashed europe/france-261011.osm.pbf to d82ac8a228f4f831b59da8b3431e71b30e8d505320136de2bf3d130e1bb1209a; the file is now bound by the url, bytes and md5 the download is verified with (the full france file stays the boundary primary of the city sub-extract table), and a way set that differs from the actually absent set still HOLDs. Predicted counts: 1,742 way members, 1,385 present, 357 absent (243 maritime=yes, 114 land/river border ways). Ring closure checked on the API node lists: 0 odd endpoints among the absent ways, 0 endpoints on present ways. Latest absent way timestamp 2026-08-31, before the 2026-10-11 snapshot.",
   "ways": [
     {
       "id": 10854559,

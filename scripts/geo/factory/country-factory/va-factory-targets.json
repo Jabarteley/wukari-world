@@ -1,5 +1,5 @@
 {
-  "expectedSourceGitSHA": "31e7799ce9f87c6afe0f7697e0089747e43896d2",
+  "expectedSourceGitSHA": "b9ab2deb33bf7b48edaa5a277e79358539964b41",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
@@ -61,6 +61,9 @@
       },
       "profile": "microstate",
       "selectionExclusions": [],
+      "geometry": {
+        "minRoadKm": 0.2
+      },
       "metadataSources": {
         "centre": {
           "osmRef": "node/424311883",

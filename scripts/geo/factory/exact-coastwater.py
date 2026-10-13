@@ -176,6 +176,12 @@ def main():
                 dropped_ids.update(e['id'] for e in ways)
                 foreign_fragments.append({'ways': ['way/' + str(e['id']) for e in ways], 'openEnds': [list(c) for c in far_open_ends]})
         coast = [e for e in coast if e['id'] not in dropped_ids]
+        # Closed rings (islets, ponds, a reef) are never chains, so they stay when the open chain of a neighbour's shore is dropped (Vatican City: the whole Tyrrhenian
+        # chain is Italian and 24 km away, twelve closed Italian islets remain). A shore with no way inside the border tolerance of the country is not this country's shore,
+        # and without the open chain the sea would otherwise be "everywhere but the islets": the country itself would be wet. Such a country has no shore.
+        if coast and not any(country_early.distance(LineString([(p['lon'], p['lat']) for p in e['geometry']])) * 111320 <= BORDER_END_TOLERANCE_METRES for e in coast):
+            foreign_fragments.append({'ways': ['way/' + str(e['id']) for e in coast], 'openEnds': [], 'reason': 'closed coast rings none of which lies within the border tolerance of the country'})
+            coast = []
         if not coast:
             # Every coastline way of the wide box is a chain of the neighbouring country that never comes within BORDER_END_TOLERANCE_METRES of the pinned country
             # (San Marino: the Adriatic shore of Rimini, 10.7 km away): the country has no shore, so the stage reports not-applicable like an inland city (the ground is
@@ -373,6 +379,12 @@ def main():
         anchor_candidates.append((choice['ref'], Point(q['lon'], q['lat'])))
     for q in decoded((args.city_directory / 'places.ts').read_text(), r'export const PLACES[^=]*=\s*'):
         anchor_candidates.append((q['osm'], Point(q['lon'], q['lat'])))
+    # The airport (every city has one: the flights, the airport venue) must be dry too. Its point is not a place or a name, so it was never an anchor and a heliport
+    # on a quay or reclaimed platform (Monaco, LNMC) stayed in the generated or exact sea until the proof reported it wet. As an anchor it keeps the generator's sea only
+    # when dry, and within ANCHOR_CLEARANCE_METRES of the coast the shore is cleared around it like any other shoreline anchor.
+    airport_facts = decoded((args.city_directory / 'facts.ts').read_text(), r'export const FACTS\s*=\s*').get('airport')
+    if airport_facts:
+        anchor_candidates.append(('airport/' + str(airport_facts['id']), Point(airport_facts['lon'], airport_facts['lat'])))
     # The generator draws a sea of its own (a grid flood fill that needs the shore to be closed). Where that sea already agrees with the directed source
     # coast, it is kept as generated: away from the shore (GENERATOR_SEA_MARGIN_METRES) the generated water may not miss source sea or drown source land
     # over more than GENERATOR_SEA_DISAGREEMENT of the ground box, and no place or land name may lie in it. Where it does not (a sea left out, or land and sea swapped), the exact sea replaces it.

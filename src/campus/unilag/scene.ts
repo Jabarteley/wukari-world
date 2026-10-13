@@ -9,6 +9,7 @@ import { ANCHORS, ENTRANCE } from './layout.ts';
 import type { CampusAnchor } from './layout.ts';
 import { createCampusWalk } from './walk.ts';
 import type { CampusWalk as NavigationApi, WalkCircle, WalkGrid, WalkPoint, WalkRect } from './walk.ts';
+import { releaseWalkScratch } from '../../scene/walk-grid.ts';
 import { measureScene } from '../shared/geometry.ts';
 import type { SceneMeasure } from '../shared/geometry.ts';
 import { createMappedGeometry } from './mapped-geometry.ts';
@@ -132,7 +133,7 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
     get time(){return time;},get zone(){return position.zone;},get position(){return {...position};},
     update(state){const hour=lagosTime(state?.t??0).hour;return scene.setTime(venue.scene?.time||(hour<6||hour>=19?'night':hour>=17?'dusk':'day'));},
     setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;sky.setTime(time);mapped.update(position.x,position.z,time);life.update(position.x,position.z,time);return true;},
-    lighting(){return time==='night'?{hemi:['#3d63a0','#141d2c',1.2],sun:['#7092d8',.6,[80,140,50]]}:time==='dusk'?{hemi:['#e6ab8e','#5d504a',1.5],sun:['#ffad68',1.8,[80,140,50]]}:{hemi:['#c6dde0','#68765a',1.8],sun:['#fff1d6',2.3,[80,140,50]]};},
+    lighting(){return time==='night'?{hemi:['#3d63a0','#141d2c',1.2],sun:['#7092d8',.6,[80,140,50]]}:time==='dusk'?{hemi:['#9fb0dc','#4d4f63',1.45],sun:['#ffc277',2.1,[80,140,50]]}:{hemi:['#c6dde0','#68765a',1.8],sun:['#fff1d6',2.3,[80,140,50]]};},
     setPosition,setSpot(id){const a=ANCHORS[id];return !!a&&setPosition(a.x,a.z);},
     setPlayer({look,seed='campus-visitor',pose='stand'}:PlayerInput={}){const key=JSON.stringify([look,seed]);if(look&&key!==playerKey){playerKey=key;player.userData.dispose();player=buildAvatar(kit,look,{detail:'low',rig:true,scale:.60,seed});group.add(player);player.position.set(position.x,0,position.z);walk.avatar=player;}poseAvatar(player,{pose});return true;},
     setCrowd(people){
@@ -149,7 +150,7 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
     },
     tags(){return Object.entries(ANCHORS).filter(([,a])=>Math.hypot(a.x-position.x,a.z-position.z)<220).map(([id,a])=>({id,name:a.label,kind:'landmark',position:{x:a.x,y:3.5,z:a.z}})).concat(crowd.map(p=>({id:p.id,name:p.name,kind:p.kind,position:{x:p.x,y:2.3,z:p.z}})));},
     stats(){return {...measureScene(group),zone:position.zone,resident:mapped.resident,rebuilds:mapped.rebuilds};},
-    dispose(){if(disposed)return;disposed=true;registry.delete(scene.dispose);sky.dispose();mapped.dispose();life.dispose();ambient?.dispose();clearPeople();player.userData.dispose();markerGeometry.dispose();group.removeFromParent();group.clear();},
+    dispose(){if(disposed)return;disposed=true;registry.delete(scene.dispose);sky.dispose();mapped.dispose();life.dispose();ambient?.dispose();releaseWalkScratch();clearPeople();player.userData.dispose();markerGeometry.dispose();group.removeFromParent();group.clear();},
   };
   const registry=kitResources(kit).disposers;registry.add(scene.dispose);
   ambient=createAmbient(kit,navigation,()=>player.visible);group.add(ambient.group);ambient.setCapacity(CAMPUS_BUDGET.crowd);

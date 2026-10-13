@@ -16,7 +16,7 @@ import { CAMPUS_MAP } from './map.generated.ts';
 import type { Prop, PropKind } from './life-plan.ts';
 import { campusPlan, hash, shoreEdges, segs } from './life-plan.ts';
 import { buildLagoon } from './lagoon.ts';
-const RADIUS = 100, CAP_TRIS = 4800, LINE_TRIS = 900;
+const RADIUS = 100, CAP_TRIS = 4200, LINE_TRIS = 900;
 
 /* ---------- draw routines (local coordinates, +z forward) ---------- */
 const CAR_COLOURS = ['#e8e8e4', '#2f3338', '#9aa3a8', '#a33a35', '#2f5f8a', '#d9d4c6', '#4a5a4c', '#c8c8c8'];
@@ -24,9 +24,9 @@ const SHIRTS = ['#f4f1e8', '#3f72c4', '#d6a83a', '#3f9a5a', '#c9423a', '#243a66'
 const SKINS = ['#8a5a3c', '#6e422c', '#573323', '#9a6341', '#40261b', '#b0764d'];
 const UMBRELLAS = ['#f5c400', '#e3262f', '#2c9f3e', '#1c6fb8'];
 const COST: Record<PropKind, number> = { palm: 200, flame: 110, almond: 90, lamp: 62, bench: 50, sign: 60, kiosk: 120, car: 90, keke: 110, bus: 150, goal: 70, hoop: 50, net: 60, student: 90, gen: 80, hedge: 40, bump: 30, zebra: 60, guard: 100, pier: 400, canoe: 40, board: 60, bin: 30,
-  mango: 150, coconut: 190, frangi: 110, shrub: 40, bed: 12, paving: 4, fountain: 170, terrace: 36, wall: 36, booth: 50, stall: 130 };
+  mango: 150, coconut: 190, frangi: 110, shrub: 26, bed: 55, paving: 4, fountain: 170, terrace: 36, wall: 36, booth: 50, stall: 130 };
 /** How far each kind is drawn: low understorey and flat decals vanish sooner than trees and landmarks. */
-const REACH: Partial<Record<PropKind, number>> = { shrub: 55, bed: 70, frangi: 80, student: 70, bin: 50, board: 70, hedge: 80, bump: 70, canoe: 90 };
+const REACH: Partial<Record<PropKind, number>> = { shrub: 85, bed: 95, frangi: 90, student: 70, bin: 50, board: 70, hedge: 80, bump: 70, canoe: 90 };
 
 function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void {
   b.at(p.x, 0, p.z, p.ry, () => {
@@ -66,13 +66,13 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
       }
       case 'shrub': { // low understorey clump, some in flower
         const c = ['#4a7a42', '#3c6a3a', '#58864a', '#4a7a42'][Math.floor(p.v * 4) % 4]!;
-        b.ico(0, .5, 0, .9, .6, .85, c); b.ico(.6, .38, .3, .6, .45, .6, ['#5a8f4c', '#c8405e', '#e8a030', '#5a8f4c'][Math.floor(p.v * 7) % 4]!);
+        b.ico(0, .5, 0, .95, .62, .9, c); if (p.v > .45) b.ico(.55, .85, .2, .3, .22, .3, ['#c8405e', '#e8a030', '#f4efe2'][Math.floor(p.v * 7) % 3]!);
         break;
       }
       case 'bed': { // flowerbed: kerb, soil and bright rows
         const w = 3.4, d = 1.6, cols = ['#d94a3a', '#f0b429', '#e8708a', '#8e5bc2', '#f4efe2'];
         b.quad(0, .1, 0, w + .5, d + .5, '#bdb7a4', { rx: -Math.PI / 2 }); b.quad(0, .11, 0, w, d, '#5a4430', { rx: -Math.PI / 2 });
-        for (let i = 0; i < 4; i++) b.quad(-w / 2 + .45 + i * .75, .12, 0, .5, d * .8, cols[Math.floor(hash(p.v + i) * 5)]!, { rx: -Math.PI / 2 });
+        for (let i = 0; i < 4; i++) b.box(-w / 2 + .6 + i * .75, .2 + hash(p.v + i * 2) * .15, (i % 2 - .5) * .5, .42, .3, .5, cols[Math.floor(hash(p.v + i) * 5)]!);
         break;
       }
       case 'paving': { // paved forecourt / plaza with a lighter border
@@ -195,7 +195,7 @@ function draw(b: Batch, p: Prop, text: boolean, lit = false, far = false): void 
       case 'hedge': { // plain, bougainvillea or hibiscus hedge
         const w = p.w ?? 4;
         b.box(0, .4, 0, w, .8, .8, '#355d34');
-        if (p.v === 1) { b.box(0, .78, 0, w * .96, .3, .7, '#c2307a'); b.box(0, .95, 0, w * .6, .2, .5, '#e8467f'); }
+        if (p.v === 1) for (let i = 0; i < Math.max(2, Math.floor(w / 1.6)); i++) b.ico(-w / 2 + .8 + i * 1.6, .85 + (i % 2) * .12, 0, .85, .38, .5, i % 2 ? '#c2307a' : '#e8467f');
         else if (p.v === 2) for (let i = 0; i < Math.floor(w / 1.2); i++) b.ico(-w / 2 + .7 + i * 1.2, .85, .2, .22, .18, .22, '#d8302e');
         break;
       }

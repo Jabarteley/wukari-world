@@ -97,6 +97,9 @@ export function landmarkHeight(b: CampusMapBuilding): number {
   return b.height;
 }
 
+/** Floor and bay grid shared by the facade atlas and the window painters, so geometric panes cover texture windows exactly. */
+export const floorsOf = (height: number): number => Math.max(1, Math.floor(height / 3.4));
+export const baysOf = (length: number): number => Math.max(1, Math.floor((length - 1.5) / 3.8));
 export interface Budget { left: number }
 let texturedWalls = false;
 /** When the facade atlas is active, plain OSM buildings take their windows and piers from the texture. */
@@ -189,8 +192,8 @@ const podium: Painter = (batch, L, H, info, seed) => {
 
 /** Halls: five layouts, each with its own accent so they read apart at a glance. */
 const hall: Painter = (batch, L, H, info, seed) => {
-  const floors = Math.max(2, Math.min(6, Math.round(H / 3.2))), fh = H / floors, v = info.variant;
-  const rooms = Math.max(1, Math.round(L / 3.3)), rw = L / rooms, acc = info.accent;
+  const floors = floorsOf(H), fh = H / floors, v = info.variant;
+  const rooms = baysOf(L), rw = L / rooms, acc = info.accent;
   for (let f = 0; f < floors; f++) {
     const y = f * fh;
     if (f && v !== 2) {
@@ -201,7 +204,7 @@ const hall: Painter = (batch, L, H, info, seed) => {
     if (v === 2) { batch.box(0, y + fh - .35, .5, L, .22, 1.1, '#f0e9d8'); batch.quad(0, y + fh * .52, .06, L - .6, fh * .5, '#5d8190'); }
     for (let r = 0; r < rooms; r++) {
       const x = -L / 2 + rw * (r + .5);
-      windowPane(batch, x, y + fh * .6, .06, rw * (v === 2 ? .8 : .5), fh * .42, seed + r + f, isLit(seed, f, r), v !== 2);
+      windowPane(batch, x, y + fh * .547, .06, rw * (v === 2 ? .8 : .62), fh * (v === 2 ? .42 : .5), seed + r + f, isLit(seed, f, r), v !== 2);
       if (v === 2 && r < rooms) batch.box(x + rw / 2, y + fh * .5, .3, .18, fh * .7, .6, acc);
     }
   }
@@ -236,7 +239,7 @@ const institutional: Painter = (batch, L, H, info, seed) => {
     batch.box(0, y + fh - .25, .5, L, .4, 1, SHADE);
     for (let i = 0; i < n; i++) {
       const x = -L / 2 + step * (i + .5);
-      windowPane(batch, x, y + fh * .5, .06, Math.min(2.2, step * .55), fh * .5, seed + i + f, isLit(seed, f, i));
+      windowPane(batch, x, y + fh * .547, .06, step * .62, fh * .5, seed + i + f, isLit(seed, f, i));
       if (info.variant === 9) batch.box(x + step / 2, y + fh / 2, .35, .16, fh * .9, .6, SHADE);
     }
   }
@@ -442,8 +445,15 @@ export function drawLandmarkCrowns(batch: Batch, buildings: readonly CampusMapBu
     for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
       const mx = cx + sx * (w / 2 + 2), mz = cz + sz * (d / 2 + 2);
       batch.cyl(mx, 9, mz, .22, 18, '#8a8f90', { seg: 5 });
-      batch.box(mx, 18.3, mz, 3, .9, .6, '#3a3f42', { ry: Math.atan2(-sx, -sz) });
-      batch.box(mx, 18.3, mz, 2.6, .55, .3, '#fff1c0', { ry: Math.atan2(-sx, -sz), layer: 'glow' });
+      // Lamp head: dark frame, pale lenses (lit warm at night) in a 3x2 grid, facing the pitch.
+      batch.at(mx, 18.4, mz, Math.atan2(-sx, -sz), () => {
+        batch.box(0, 0, -.1, 3.4, 1.9, .2, '#2d3236');
+        for (const y of [-.95, .95]) batch.box(0, y, .05, 3.5, .1, .12, '#454b50');
+        for (const x of [-1.15, 0, 1.15]) for (const y of [-.48, .48]) {
+          batch.quad(x, y, .13, .95, .7, '#c9cfcc');
+          batch.quad(x, y, .15, .85, .6, '#fff1c0', { layer: 'glow' });
+        }
+      });
     }
   }
 }

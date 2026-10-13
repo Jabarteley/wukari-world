@@ -117,7 +117,7 @@ export function createCampusHost(container: HTMLElement, {
   sun.shadow.camera.left = -120; sun.shadow.camera.right = 120;
   sun.shadow.camera.top = 120; sun.shadow.camera.bottom = -120;
   sun.shadow.camera.near = 1; sun.shadow.camera.far = 420;
-  sun.shadow.normalBias = .3;
+  sun.shadow.normalBias = .3; sun.shadow.bias = -0.0006;
   world.add(hemi, sun, sun.target);
 
   const tagLayer = document.createElement('div');
@@ -205,7 +205,20 @@ export function createCampusHost(container: HTMLElement, {
     const shift = Math.round((insets.bottom - insets.top) / 2);
     if (shift && size.width && size.height) camera.setViewOffset(size.width, size.height, 0, shift, size.width, size.height);
     else camera.clearViewOffset();
+    applyDepthRange(viewDistance);
     camera.updateProjectionMatrix();
+  }
+
+  /** Near plane grows with camera distance: 10-20x more depth precision for far ground, roofs and water (no z-fighting at altitude). */
+  function applyDepthRange(viewDistance: number): void { camera.near = Math.max(0.3, viewDistance * 0.04); }
+
+  /** Distance fog and background come from the campus sky so land, water and the sky dome meet at one horizon colour. */
+  function applySkyFog(): void {
+    const f = campus.fog;
+    if (!(world.fog instanceof THREE.Fog)) world.fog = new THREE.Fog(f.color, f.near, f.far);
+    world.fog.color.set(f.color); world.fog.near = f.near; world.fog.far = f.far;
+    if (!(world.background instanceof THREE.Color)) world.background = new THREE.Color();
+    world.background.set(campus.background);
   }
 
   function drawMap(): void {
@@ -274,8 +287,7 @@ export function createCampusHost(container: HTMLElement, {
   function draw(): void {
     if (disposed) return;
     updateCamera();
-    world.background = new THREE.Color(campus.background);
-    world.fog = new THREE.Fog(campus.background, 450, 2200);
+    applySkyFog();
     sun.position.set(walker.x-70,140,walker.z+60); sun.target.position.set(walker.x,0,walker.z);
     const light = campus.lighting();
     hemi.color.set(light.hemi[0]); hemi.groundColor.set(light.hemi[1]); hemi.intensity = light.hemi[2];

@@ -8,19 +8,22 @@
 import type { BufferGeometry, CanvasTexture, Material, MeshLambertMaterial, MeshStandardMaterial } from 'three';
 import type * as ThreeNamespace from 'three';
 import type { CampusMapBuilding, MetreRing } from './geo.ts';
-import { architectureOf } from './architecture.ts';
+import { architectureOf, baysOf, floorsOf } from './architecture.ts';
+import { renderTier } from '../../scene/look.ts';
 
-export const ATLAS = Object.freeze({ cols: 4, rows: 2, cell: 64, bytes: 256 * 128 * 4 });
+/** Logical drawing grid is 64 px per cell; the canvas is drawn at 2x (128 px per cell, 512x256, about 520 KB raw and 700 KB with mips). */
+export const ATLAS = Object.freeze({ cols: 4, rows: 2, cell: 64, scale: 2, bytes: 512 * 256 * 4 });
 const PLAIN = 4;
 /** Wall cells by style. */
 const STYLE_CELLS = [0, 1, 2, 3, 5, 6, 7];
 
-export const floorsOf = (height: number): number => Math.max(1, Math.floor(height / 3.4));
-export const baysOf = (length: number): number => Math.max(1, Math.floor((length - 1.5) / 3.8));
 
 /** Which atlas cell a building's walls use. Landmarks and the Senate tower are plain: their geometry draws the windows. */
 export function wallCell(b: CampusMapBuilding): number {
-  if (architectureOf(b).id) return PLAIN;
+  // Window-style landmarks use the punched cell and their geometric panes cover it exactly (same floor and bay grid);
+  // the rest draw their whole facade in geometry over plain render.
+  const info = architectureOf(b);
+  if (info.id) return info.style === 'institutional' || info.style === 'hall' || info.style === 'auditorium' ? 0 : PLAIN;
   if (b.height < 3.4) return PLAIN;
   const h = Math.imul(b.osm.id | 0, 2654435761) >>> 0, pick = STYLE_CELLS[(h >>> 7) % STYLE_CELLS.length]!;
   return b.height >= 11 && (pick === 6 || pick === 2) ? 0 : pick;
@@ -29,9 +32,10 @@ export function wallCell(b: CampusMapBuilding): number {
 export function createFacadeAtlas(THREE: typeof ThreeNamespace): CanvasTexture | null {
   if (typeof document === 'undefined') return null;
   const canvas = document.createElement('canvas');
-  canvas.width = ATLAS.cols * ATLAS.cell; canvas.height = ATLAS.rows * ATLAS.cell;
+  canvas.width = ATLAS.cols * ATLAS.cell * ATLAS.scale; canvas.height = ATLAS.rows * ATLAS.cell * ATLAS.scale;
   const g = canvas.getContext('2d');
   if (!g) return null;
+  g.scale(ATLAS.scale, ATLAS.scale);
   const S = ATLAS.cell;
   const glass = (x: number, y: number, w: number, h: number) => {
     g.fillStyle = '#35505a'; g.fillRect(x, y, w, h);
@@ -53,7 +57,12 @@ export function createFacadeAtlas(THREE: typeof ThreeNamespace): CanvasTexture |
     g.fillStyle = 'rgba(70,64,56,.75)'; g.fillRect(ox, oy + 40, S, 2); for (let x = 3; x < S; x += 6) g.fillRect(ox + x, oy + 40, 2, 12);
   };
   // 4 plain render with faint speckle.
-  cells[4] = (ox, oy) => { g.fillStyle = '#ffffff'; g.fillRect(ox, oy, S, S); for (let i = 0; i < 90; i++) { g.fillStyle = `rgba(120,110,95,${.03 + (i % 5) * .012})`; g.fillRect(ox + ((i * 37) % S), oy + ((i * 53) % S), 2, 2); } g.fillStyle = '#d2ccbb'; g.fillRect(ox, oy, S, 2); };
+  cells[4] = (ox, oy) => {
+    g.fillStyle = '#ffffff'; g.fillRect(ox, oy, S, S);
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < 70; i++) { g.fillStyle = `rgba(130,120,104,${.015 + rnd() * .03})`; g.fillRect(ox + rnd() * S, oy + rnd() * S, 1 + rnd() * 3, 1 + rnd() * 2); }
+    g.fillStyle = '#d2ccbb'; g.fillRect(ox, oy, S, 2);
+  };
   // 5 two small windows.
   cells[5] = (ox, oy) => { for (const x of [6, 36]) { frame(ox + x, oy + 13, 22, 32); glass(ox + x, oy + 13, 22, 32); sill(ox + x, oy + 45, 22); } };
   // 6 shopfront: tall glazing with transom.
@@ -67,7 +76,7 @@ export function createFacadeAtlas(THREE: typeof ThreeNamespace): CanvasTexture |
     cells[i]?.(ox, oy);
   }
   const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace; texture.generateMipmaps = true; texture.anisotropy = 4;
+  texture.colorSpace = THREE.SRGBColorSpace; texture.generateMipmaps = true; texture.anisotropy = renderTier().name === 'high' ? 16 : renderTier().name === 'phone' ? 2 : 4; // three clamps to the renderer's maximum
   texture.minFilter = THREE.LinearMipmapLinearFilter; texture.magFilter = THREE.LinearFilter;
   return texture;
 }
@@ -82,7 +91,11 @@ export function facadeMaterial<M extends MeshLambertMaterial | MeshStandardMater
       vec2 cellOrigin = vec2(mod(vCell + .5, 4.), floor((vCell + .5) / 4.));
       vec2 tile = fract(vMapUv) * .9375 + .03125;
       vec2 atlasSize = vec2(4., 2.);
-      diffuseColor *= textureGrad(map, (cellOrigin + tile) / atlasSize, dFdx(vMapUv) * .9375 / atlasSize, dFdy(vMapUv) * .9375 / atlasSize);`);
+      // Distance fade: past ~70 m the cell is sampled from ever blurrier mips and eased toward a calm wall tone, so far blocks read as facades, not noise.
+      float far = smoothstep(70., 260., length(vViewPosition));
+      float blur = 1. + 7. * far;
+      vec4 facade = textureGrad(map, (cellOrigin + tile) / atlasSize, dFdx(vMapUv) * blur * .9375 / atlasSize, dFdy(vMapUv) * blur * .9375 / atlasSize);
+      diffuseColor *= mix(facade, vec4(vec3(.82), 1.), far * .45);`);
   };
   m.customProgramCacheKey = () => 'unilag-facade-atlas';
   return m;

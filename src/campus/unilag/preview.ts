@@ -28,7 +28,7 @@ const world=new THREE.Scene(),camera=new THREE.PerspectiveCamera(48,1,.1,1800),k
 world.add(campus.group);
 campus.setCrowd(Object.values(CAMPUS_NPCS).flatMap(npc=>{const a=ANCHORS[npc.at];if(!a)return [];const at=campus.walk.grid.nearest(a.x+3,a.z+3);return at?[{...npc,name:npc.name+' · '+npc.role,...at}]:[];}));
 const hemi=new THREE.HemisphereLight('#c6e0e6','#68765a',2),sun=new THREE.DirectionalLight('#fff0d2',2.4);
-sun.position.set(80,140,50);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-120,right:120,top:120,bottom:-120,near:1,far:420});sun.shadow.normalBias=.3;world.add(hemi,sun,sun.target);
+sun.position.set(80,140,50);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-120,right:120,top:120,bottom:-120,near:1,far:420});sun.shadow.normalBias=.3;sun.shadow.bias=-.0006;world.add(hemi,sun,sun.target);
 const bus: ShuttleView=buildShuttle(kit);bus.group.visible=false;world.add(bus.group);
 const walker: Walker=createWalker({speed:8,jogSpeed:18});walker.setGrid(campus.walk.grid);walker.place(ENTRANCE.x,ENTRANCE.z,0);
 let yaw=-Math.PI/2,tilt=.32,distance=32,lookHeight=2,focus={dx:0,dz:0},gridVisible=false,frameCount=0,phase=0,trip: Trip | null=null;
@@ -113,7 +113,7 @@ function framePreset(id: string){
   const b=BUILDINGS.find(item=>item.id===id),h=best?(best as {h:number}).h:b?.h||0,size=best?(best as {size:number}).size:Math.max(b?.w||0,b?.d||0);
   if(b?.kind==='open-space'){yaw=.55;tilt=.42;distance=62;return;}
   if(keep||!(h>0)){yaw=.55;tilt=.62;distance=id==='senate'?125:48;return;}
-  focus.dz=face;yaw=.3;tilt=.3;distance=Math.round(Math.min(95,Math.max(30,h*1.7+14,size*.5+18)));lookHeight=Math.min(10,Math.max(2,h*.3));
+  focus.dz=face;focus.dx=face?Math.min(14,size*.22):0;yaw=.3;tilt=.3;distance=Math.round(Math.min(95,Math.max(30,h*1.7+14,size*.5+18)));lookHeight=Math.min(10,Math.max(2,h*.3));
 }
 function jump(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(!a)return false;loop.stop();walker.stop();if(!campus.setSpot(id))return false;walker.place(a.x,a.z,a.ry);$<HTMLSelectElement>('destination').value=id;framePreset(id);draw();return true;}
 function go(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(a&&walker.goTo(a.x,a.z,{arrive(){ $('status').textContent=`You reached ${a.label}.`; }})){ $('status').textContent=`Walking to ${a.label}…`;loop.wake();return true;}$('status').textContent='That destination is not reachable from here.';return false;}

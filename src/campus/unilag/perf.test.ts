@@ -13,3 +13,12 @@ test('the campus walk grid is a typed array, cheap to build, and defers its A* s
  const grown = process.memoryUsage().arrayBuffers - before;
  assert.ok(grown < grid.cells.byteLength + 3 * 1048576, `no eager A* scratch: grew ${(grown / 1048576).toFixed(1)} MB for a ${(grid.cells.byteLength / 1048576).toFixed(1)} MB grid`);
 });
+
+test('releasing the A* scratch memory does not break later routes', async () => {
+ const { releaseWalkScratch } = await import('../../scene/walk-grid.ts');
+ const { ANCHORS } = await import('./layout.ts');
+ const walk = createCampusWalk(), a = ANCHORS['main-gate']!, b = ANCHORS['senate']!;
+ assert.ok(walk.route(a, b), 'route before release');
+ releaseWalkScratch();
+ assert.ok(walk.route(a, b), 'route after release re-creates the scratch');
+});

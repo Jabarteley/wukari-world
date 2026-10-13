@@ -7,7 +7,7 @@ import { boundsOf } from './geo.ts';
 import type { CampusMapBuilding, MetrePoint, MetreRing } from './geo.ts';
 import { standalones } from './standalone.ts';
 import { addWallUvs, createFacadeAtlas, facadeMaterial, wallCell } from './facade-atlas.ts';
-import { setTexturedWalls, landmarkHeight, bodyColour, drawLandmarkCrowns, drawSenateTower, drawMainGate, isSenateTower, paintBuilding, roofColour } from './architecture.ts';
+import { architectureOf, setTexturedWalls, landmarkHeight, bodyColour, drawLandmarkCrowns, drawSenateTower, drawMainGate, isSenateTower, paintBuilding, roofColour } from './architecture.ts';
 import { CAMPUS_TREES } from './landscape.ts';
 import { buildRoadLayers, addStrip } from './roads.ts';
 import { isOffshoreMarsh } from './geo.ts';
@@ -162,7 +162,7 @@ export function createMappedGeometry(kit: Kit) {
     if(time!==undefined&&(time!=='day')!==night){night=time!=='day';applyGlow(detailGroup);applyGlow(crown);applyGlow(towerNearGroup);applyGlow(towerFarGroup);}
     const wantNear=Math.hypot(Math.max(sx0-x,0,x-sx1),Math.max(sz0-z,0,z-sz1))<TOWER_NEAR;
     if(wantNear!==towerNearOn){towerNearOn=wantNear;towerNearGroup.visible=wantNear;towerFarGroup.visible=!wantNear;}
-    const near=parts.filter(b=>distanceTo(b,x,z)<=DETAIL_RADIUS).sort((a,b)=>{const priority=(part:CampusMapBuilding)=>part.osm.id===653186158&&distanceTo(part,x,z)<60?-1:0;return priority(a)-priority(b)||distanceTo(a,x,z)-distanceTo(b,x,z)||b.height-a.height;}),key=near.map(b=>`${b.osm.id}:${b.height}`).sort().join(',')+(towerNearOn?'+T':'');
+    const near=parts.filter(b=>distanceTo(b,x,z)<=DETAIL_RADIUS).sort((a,b)=>{const priority=(part:CampusMapBuilding)=>part.osm.id===653186158&&distanceTo(part,x,z)<60?-2:architectureOf(part).id&&distanceTo(part,x,z)<90?-1:0;return priority(a)-priority(b)||distanceTo(a,x,z)-distanceTo(b,x,z)||b.height-a.height;}),key=near.map(b=>`${b.osm.id}:${b.height}`).sort().join(',')+(towerNearOn?'+T':'');
     if(key!==detailKey){detailKey=key;facadeDetail(near,towerNearOn?Math.max(1500,DETAIL_TRIANGLES-Math.round((towerNearGroup.userData.triangles as number)-(towerFarGroup.userData.triangles as number))):DETAIL_TRIANGLES);resident.clear();for(const b of near){const bounds=boundsOf(b.ring);resident.set(tile((bounds[0]+bounds[2])/2,(bounds[1]+bounds[3])/2),{group:detailGroup,detail:true});}}
     treeDetail(x,z);
   }

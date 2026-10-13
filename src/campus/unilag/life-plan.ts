@@ -177,17 +177,23 @@ export function campusPlan(): Prop[] {
       for (const lx of [-6, 6]) for (const lz of [-3, 4]) { [qx, qz] = at(lx * 1.9, lz); p.push({ t: 'bed', x: qx, z: qz, ry, v: lx + lz + 9 }); }
       [qx, qz] = at(-5, -9); p.push({ t: 'student', x: qx, z: qz, ry, v: 61 }); [qx, qz] = at(4, 6); p.push({ t: 'student', x: qx, z: qz, ry: ry + 2, v: 62 });
       [qx, qz] = at(16, 3); p.push({ t: 'kiosk', x: qx, z: qz, ry, v: 3 });
+      // planted surround so the lawn behind the plaza is broken up
+      for (let i = 0; i < 26; i++) {
+        const ang = i * 2.399, rad = 26 + (i % 5) * 9 + hash(i) * 6; [qx, qz] = at(Math.cos(ang) * rad * 1.5, -Math.abs(Math.sin(ang)) * rad * .9 - 8);
+        if (!offRoadAndBuilding(qx, qz, 3)) continue;
+        p.push({ t: i % 5 === 0 ? 'mango' : i % 5 === 1 ? 'frangi' : i % 5 === 2 ? 'bed' : 'shrub', x: qx, z: qz, ry: i, v: hash(i * 3.3) });
+      }
     }
   }
   // Open lawns: jittered planting (shrubs, frangipani, flowerbeds, spreading trees) so no lawn stays bare for more than ~30 m.
   {
-    const [bx0, bz0, bx1, bz1] = CAMPUS_MAP.bounds, STEP = 27;
+    const [bx0, bz0, bx1, bz1] = CAMPUS_MAP.bounds, STEP = 19;
     let g = 0;
     for (let gx = bx0 + 10; gx < bx1; gx += STEP) for (let gz = bz0 + 10; gz < bz1; gz += STEP) {
       g++;
       const h = hash(g * 1.31 + gx * .013), x = gx + (hash(g * 2.7) - .5) * STEP * .8, z = gz + (hash(g * 4.1) - .5) * STEP * .8;
-      if (h > .86 || !offRoadAndBuilding(x, z, 4)) continue;
-      if (CAMPUS_TREES.some(t => Math.abs(t.x - x) < 7 && Math.abs(t.z - z) < 7)) continue;
+      if (h > .9 || !offRoadAndBuilding(x, z, 4)) continue;
+      if (CAMPUS_TREES.some(t => Math.abs(t.x - x) < 5 && Math.abs(t.z - z) < 5)) continue;
       const kind = h < .4 ? 'shrub' : h < .55 ? 'frangi' : h < .65 ? 'bed' : h < .76 ? 'mango' : h < .81 ? 'coconut' : 'almond';
       p.push({ t: kind, x, z, ry: h * 40, v: hash(g * 6.7) });
       if (kind === 'shrub') p.push({ t: 'shrub', x: x + 1.8, z: z + .8, ry: 0, v: hash(g * 9.1) });

@@ -132,10 +132,10 @@ const club: SceneDef = {
     ropeLine(b, [[5.2, 6.4], [5.2, 2.6], [7, 1]]);
     // Entrance: a bookcase that swings open, or a neon doorway
     if (speakeasy) {
-      for (const x of [-10.2, -4.2]) shelf(b, x, -9.6, { w: 2.9, h: 4.2, rows: 4, per: 5 });
+      for (const x of [-10.2, -4.2]) shelf(b, x, -9.6, { w: 2.9, h: 4.2, rows: 4, per: 4 });
       b.box(-7.2, 2.2, -9.7, 2.6, 4.4, 0.1, '#1a1410');
       b.quad(-7.2, 2.1, -9.64, 2.2, 4, '#ffb866', GLOW);
-      b.at(-5.9, 0, -9.5, -1.05, () => shelf(b, -1.45, 0, { w: 2.9, h: 4.2, rows: 4, per: 5 }));
+      b.at(-5.9, 0, -9.5, -1.05, () => shelf(b, -1.45, 0, { w: 2.9, h: 4.2, rows: 4, per: 4 }));
       // Reading nook
       sofa(b, -9.6, -6.6, { w: 1.6, ry: 0.5, color: '#6a4a3a', cushion: '#8a6248' });
       table(b, -7.8, -5.6, { round: true, w: 0.9, h: 0.75, color: WOOD_DARK });

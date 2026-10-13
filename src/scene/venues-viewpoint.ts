@@ -45,7 +45,7 @@ function townBelow(b: Batch) {
   b.box(14, -3.4 + 2, -23, 1.7, 4, 1.7, '#d9d0bc'); b.box(14, -3.4 + 4.6, -23, 1.2, 1.2, 1.2, '#cfc5ae'); b.cone(14, -3.4 + 5.7, -23, 1.15, 1.4, '#8d4a2c', { seg: 4, ry: PI / 4 });
   // Seven hills: low, hazy ridges at the back
   ([[-30, -46, 9, '#6f8f72'], [-12, -49, 7, '#7c9a82'], [8, -50, 10, '#6c8c6e'], [28, -47, 8, '#7a9a80'], [-2, -56, 11, '#86a58a']] as [number, number, number, Colour][]).forEach(([x, z, h, c]) => {
-    b.ball(x, -5.4 + h * 0.15, z, 14, h, 9, c, { seg: 7 });
+    b.ball(x, -5.4 + h * 0.15, z, 14, h, 9, c, { seg: 5 });
   });
 }
 

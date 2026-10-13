@@ -19,7 +19,10 @@
 //             airportSourceUrl, cityOsmRef, sceneWaterExtent, waterBudgetLadder, namesUnit, selectionExclusions, geometry, playBox, profile /* passed through */,
 //             hubWaiver /* written reason (>= 20 chars): only for a country with NO scheduled-service large/medium/small airport; the
 //                          named airport may then be a heliport, seaplane base or small field with any scheduled_service */,
-//             airportCountryOverride /* {iso, reason >= 20 chars}: the named airport is filed under that OurAirports country (Aland AX: EFMA under FI); the run requires the airport point inside the territory boundary */}]}
+//             airportCountryOverride /* {iso, reason >= 20 chars}: the named airport is filed under that OurAirports country (Aland AX: EFMA under FI); the run requires the airport point inside the territory boundary */,
+//             gateway, timezoneOverride, countryName, links /* outpost and wilderness profiles (OUTPOST-PLAN 13 Oct 2026), passed through:
+//                          gateway {osmRef:'node/<id>', mode:'air'|'sea'|'land', sourceUrl} replaces the airport pick; timezoneOverride {id, reason, sourceUrl}
+//                          replaces the zone1970 pick; countryName {name, reason} names a user-assigned X? code absent from iso3166.tab; links [{to, kind}] */}]}
 // Writes <out>/<iso-lower>.json (the table) and <out>/<iso-lower>-notes.json (proposals, checks, sources, retrieval times).
 // Exit code 1 if any country fails; the failure reason is printed and no table is written for it.
 import { createHash } from 'node:crypto';
@@ -33,7 +36,7 @@ const GEOMETRY_SHA = '7a57e756a10b35a0eec9ec5928f083580fb9e7a9';
 const AIRPORTS_REPO = 'davidmegginson/ourairports-data';
 const MAX_KM_DEFAULT = 60;
 const ELIGIBLE_TYPES = new Set(['large_airport', 'medium_airport']);
-const SEED_PASSTHROUGH = ['cityOsmRef', 'sceneWaterExtent', 'waterBudgetLadder', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile'];
+const SEED_PASSTHROUGH = ['cityOsmRef', 'sceneWaterExtent', 'waterBudgetLadder', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile', 'gateway', 'timezoneOverride', 'countryName', 'links'];
 const WAIVER_TYPES = new Set(['large_airport', 'medium_airport', 'small_airport', 'heliport', 'seaplane_base']);
 const SCHEDULED_TYPES = new Set(['large_airport', 'medium_airport', 'small_airport']);
 const UA = { 'user-agent': 'allworld-make-country-table' };
@@ -306,26 +309,33 @@ async function buildCountry(spec, shared, options) {
   checkSpec(spec);
   const iso = spec.iso;
   const tz = shared.tz;
-  const isoName = isoCountryName(tz, iso);
-  if (!isoName) refuse(`${iso} is not in the pinned iso3166.tab`);
+  // A user-assigned code absent from the pinned tables (XG, XA) takes the seeds' reviewed countryName (metadata.py seed_country_name).
+  const isoName = isoCountryName(tz, iso) ?? (spec.cities.every((city) => city.countryName?.name) ? spec.cities[0].countryName.name : null);
+  if (!isoName) refuse(`${iso} is not in the pinned iso3166.tab (a user-assigned code needs countryName on every city)`);
   const geofabrik = await resolveGeofabrik(spec.geofabrik, spec.geofabrikDate);
   const extras = await resolveExtras(spec, geofabrik);
   const airports = await shared.airports();
   const seeds = [];
   const cityNotes = [];
   for (const city of spec.cities) {
-    const pick = chooseAirport(airports.rows, city, iso, options.maxKm);
-    const zone = timezoneFor(tz, iso, city.timezone, city.id);
+    // An outpost gateway replaces the airport pick; a timezoneOverride replaces the zone1970 pick (both checked again by the source run).
+    const pick = city.gateway ? null : chooseAirport(airports.rows, city, iso, options.maxKm);
+    const zone = city.timezoneOverride ? { id: city.timezoneOverride.id, explicit: true, ids: [], override: city.timezoneOverride } : timezoneFor(tz, iso, city.timezone, city.id);
     const seed = { id: city.id, name: city.name, countryISO: iso };
     for (const key of SEED_PASSTHROUGH) if (city[key] !== undefined) seed[key] = city[key];
-    seed.airport = { ident: pick.row.ident, sourceUrl: city.airportSourceUrl || `https://ourairports.com/airports/${encodeURIComponent(pick.row.ident)}/`, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}), ...(pick.countryOverride ? { countryOverride: pick.countryOverride } : {}) };
-    seed.timezone = { id: zone.id, sourceUrl: tz.zone.record.url };
+    if (pick) seed.airport = { ident: pick.row.ident, sourceUrl: city.airportSourceUrl || `https://ourairports.com/airports/${encodeURIComponent(pick.row.ident)}/`, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}), ...(pick.countryOverride ? { countryOverride: pick.countryOverride } : {}) };
+    if (!zone.override) seed.timezone = { id: zone.id, sourceUrl: tz.zone.record.url };
     seeds.push(seed);
+    if (!pick) {
+      cityNotes.push({ id: city.id, name: city.name, centre: { lat: city.lat, lon: city.lon, source: city.centreSource }, gateway: { ...city.gateway, status: 'GATEWAY node (outpost); its tags and distance are checked by the source run' },
+        timezone: { id: zone.id, explicit: zone.explicit, zoneRowsForCountry: zone.ids, release: tz.release, ...(zone.override ? { override: zone.override } : {}) } });
+      continue;
+    }
     cityNotes.push({
       id: city.id, name: city.name,
       centre: { lat: city.lat, lon: city.lon, source: city.centreSource, usedFor: 'airport distance check only; the pipeline derives the real centre from the OSM city node' },
       airport: { ...airportFacts(pick.row, pick.km), proposal: pick.proposed, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}), ...(pick.countryOverride ? { countryOverride: pick.countryOverride } : {}), status: pick.waived ? 'WAIVED hub (named airport row, no scheduled-service airport in the country)' : pick.proposed ? 'PROPOSED by nearest large/medium scheduled-service airport; needs human or helper review before queueing' : 'verified from spec airportIdent', sourceUrl: seed.airport.sourceUrl, alternatives: pick.alternatives },
-      timezone: { id: zone.id, explicit: zone.explicit, zoneRowsForCountry: zone.ids, release: tz.release },
+      timezone: { id: zone.id, explicit: zone.explicit, zoneRowsForCountry: zone.ids, release: tz.release, ...(zone.override ? { override: zone.override } : {}) },
     });
   }
   const countrySource = { ...geofabrik.countrySource, ...(extras.neighbours ? { neighbours: extras.neighbours } : {}), ...(extras.cityExtract ? { cityExtract: extras.cityExtract } : {}) };
@@ -335,7 +345,7 @@ async function buildCountry(spec, shared, options) {
     generatedAt: new Date().toISOString(),
     iso, country: spec.country ?? null, iso3166Name: isoName,
     countryNameNote: spec.country && spec.country !== isoName ? `spec country '${spec.country}' differs from pinned iso3166.tab '${isoName}' (informational; the table derives the name from iso3166.tab)` : null,
-    anyAirportProposed: cityNotes.some((c) => c.airport.proposal),
+    anyAirportProposed: cityNotes.some((c) => c.airport?.proposal),
     maxAirportKm: options.maxKm,
     sources: { geofabrik: { ...geofabrik.notes, ...extras.notes }, ourairports: airports.notes, timezone: { release: tz.release, zone1970: tz.zone.record, iso3166: tz.countries.record, ...(tz.additions.has(iso) ? { reviewedAddition: { iso, name: tz.additions.get(iso).name, zoneId: tz.additions.get(iso).zoneId, codeStatus: tz.additions.get(iso).codeStatus, additionsFile: tz.additions.get(iso).record } } : {}) } },
     cities: cityNotes,

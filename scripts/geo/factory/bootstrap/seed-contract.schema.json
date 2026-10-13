@@ -26,7 +26,27 @@
         "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this city's timezone selection."}
       }
     },
-    "profile": {"enum": ["microstate"], "description": "Selection profile (bootstrap/profiles.json). Absent = standard. microstate: city node may be place=village|hamlet|locality, minimum 12 sourced places and 3 neighbourhood labels, and up to 4 slots without an honest source stay the game's fictional venue (documented in the selection and every receipt). Never invents a place or maps a feature to a wrong kind."},
+    "profile": {"enum": ["microstate", "outpost", "wilderness"], "description": "Selection profile (bootstrap/profiles.json). Absent = standard. microstate: city node may be place=village|hamlet|locality, minimum 12 sourced places and 3 neighbourhood labels, and up to 4 slots without an honest source stay the game's fictional venue (documented in the selection and every receipt). outpost (a station or a few houses: 3 places, 2 labels, up to 9 empty slots, place=isolated_dwelling allowed) and wilderness (a glacier or reef: 0 places, natural names as labels, cityOsmRef required) take the profile-only extraction filters, need no road, never select military or aviation features, may name a gateway and need authored links. Never invents a place or maps a feature to a wrong kind."},
+    "gateway": {
+      "type": "object", "additionalProperties": false, "required": ["osmRef", "mode", "sourceUrl"],
+      "description": "outpost/wilderness only, instead of airport: the mapped OSM node that serves as the hub (a landing, heliport or track end), within 40 km of the place; tagged for its mode (air: aeroway heliport|helipad|aerodrome|airstrip; sea: ferry_terminal, harbour, pier, slipway, marina; land: trailhead, mountain pass, saddle, hut, shelter); never a military feature.",
+      "properties": {"osmRef": {"type": "string", "pattern": "^node/[1-9][0-9]*$"}, "mode": {"enum": ["air", "sea", "land"]}, "sourceUrl": {"$ref": "#/$defs/provenanceUrl"}}
+    },
+    "timezoneOverride": {
+      "type": "object", "additionalProperties": false, "required": ["id", "reason", "sourceUrl"],
+      "description": "Instead of timezone, for a place whose country has no zone1970 row (Heard Island: Etc/GMT-5) or a user-assigned code: a zone of the pinned zone1970.tab (any row) or Etc/GMT[+-]N; the reason is kept in the receipts.",
+      "properties": {"id": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 20}, "sourceUrl": {"$ref": "#/$defs/provenanceUrl"}}
+    },
+    "countryName": {
+      "type": "object", "additionalProperties": false, "required": ["name", "reason"],
+      "description": "Only for a user-assigned X? code that the pinned iso3166.tab does not carry (XG Siachen Glacier, XA Ashmore and Cartier Islands).",
+      "properties": {"name": {"type": "string", "minLength": 1}, "reason": {"type": "string", "minLength": 20}}
+    },
+    "links": {
+      "type": "array", "minItems": 2, "maxItems": 4,
+      "description": "outpost/wilderness only (required there): authored links to open cities; the factory adds km and names from the app catalogue and the app applies the outpost fare rule (charter: 1.5 x the air fare, cap 900,000; ship and overland: the road fare on great-circle km). At least one ship or overland link whose fare is at most 100,000 (the feeder allowance), so a homeward quote reaches every home under the 1,000,000 cap. The Lagos connection is added by the app.",
+      "items": {"type": "object", "additionalProperties": false, "required": ["to", "kind"], "properties": {"to": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}, "kind": {"enum": ["charter", "ship", "overland"]}}}
+    },
     "sceneWaterExtent": {"enum": ["play", "reach"], "description": "Oceania-owned runtime scene-water selection."},
     "waterBudgetLadder": {"type": "boolean", "description": "Budget-aware water ladder (scripts/geo/factory/water-ladder.mjs). true: when only the scene triangle budget fails, the factory runner repeats the exact-coast stage with a coarser shore (about 2.2 m, then 3.3 m; area error capped at 0.05% and recorded as toleranceLadder). Absent or false: off."},
     "namesUnit": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Unit label used when presenting local place names."},

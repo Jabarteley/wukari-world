@@ -11,9 +11,9 @@ import subprocess
 import time
 from urllib.parse import quote
 
-from metadata import (Hold, choose_airport, choose_city, choose_timezone, city_place_tags, coordinate,
-                      city_node_tag_ok, country_name, digest, normalized, profile_rules, validate_dataset_url,
-                      validate_seed)
+from metadata import (Hold, choose_airport, choose_city, choose_seed_timezone, city_natural_tags, city_place_tags, coordinate,
+                      city_node_tag_ok, digest, gateway_facts, gateway_record, normalized, profile_rules, seed_country_name,
+                      validate_dataset_url, validate_seed)
 
 _SCAN_PROGRESS_INTERVAL = 5_000_000
 
@@ -45,13 +45,17 @@ def write_hold(out, error):
     (out / 'metadata.json').write_text(json.dumps(payload, indent=2))
     return payload
 
-def scan_city_nodes(pbf, seeds):
+def scan_city_nodes(pbf, seeds, gateways=None):
+    """City-node candidates per seed. `gateways` (outposts): {node id: [seed ids]} whose gateway nodes are recorded too, in the same pass."""
     by_name = {}
     candidates = {seed['id']: [] for seed in seeds}
     errors = {}
+    gateways = gateways if gateways is not None else {}
     for seed in seeds:
         by_name.setdefault(normalized(seed['name']), []).append(seed)
     scan_tags = set().union(*(city_place_tags(seed) for seed in seeds))
+    # Wilderness seeds may name a natural node (glacier, peak, saddle, reef, mountain pass); every other scan is exactly the place-tag scan.
+    natural_tags = set().union(*(city_natural_tags(seed) for seed in seeds))
     phase = 'city-node-scan'
     started = _phase_started(phase, progressEvery=_SCAN_PROGRESS_INTERVAL, seedCount=len(seeds))
     import osmium
@@ -60,13 +64,21 @@ def scan_city_nodes(pbf, seeds):
             super().__init__()
             self.nodes_seen = 0
             self.next_progress = _SCAN_PROGRESS_INTERVAL
+            self.gateway_nodes = {}
         def node(self, node):
             self.nodes_seen += 1
             if self.nodes_seen >= self.next_progress:
                 _phase_record(phase, 'progress', nodes=self.nodes_seen,
                              candidates=sum(map(len, candidates.values())))
                 self.next_progress += _SCAN_PROGRESS_INTERVAL
-            if node.tags.get('place') not in scan_tags:
+            if gateways and node.id in gateways:
+                if not node.location.valid():
+                    raise Hold('gateway node has no valid location')
+                tags = {tag.k: tag.v for tag in node.tags}
+                for seed_id in gateways[node.id]:
+                    self.gateway_nodes[seed_id] = {'ref': f'node/{node.id}', 'tags': tags, **coordinate(node.location.lon, node.location.lat)}
+            if node.tags.get('place') not in scan_tags and not (natural_tags and (node.tags.get('natural') in natural_tags
+                                                                             or ('mountain_pass' in natural_tags and node.tags.get('mountain_pass') == 'yes'))):
                 return
             matching_names = {normalized(node.tags.get(key, '')) for key in ('name', 'name:en')}
             for name in matching_names.intersection(by_name):
@@ -84,28 +96,45 @@ def scan_city_nodes(pbf, seeds):
     handler.apply_file(str(pbf))
     _phase_complete(phase, started, nodes=handler.nodes_seen,
                    candidates=sum(map(len, candidates.values())))
+    if gateways:
+        return candidates, errors, handler.gateway_nodes
     return candidates, errors
 
 def prepare_city(seed, out, candidates, args, airport_rows, zone_lines, country_lines,
-                 timestamp, dataset_bytes):
+                 timestamp, dataset_bytes, gateway_node=None):
     city = choose_city(candidates, seed)
-    row_number, airport = choose_airport(airport_rows, seed)
-    timezone, zone_rows = choose_timezone(zone_lines, seed['countryISO'], seed.get('timezone'))
-    country = country_name(country_lines, seed['countryISO'])
+    if 'gateway' in seed:
+        # Outpost gateway (a mapped landing, heliport or track end): the facts' airport record is that node; no OurAirports row is read.
+        if gateway_node is None:
+            raise Hold('gateway node ' + seed['gateway']['osmRef'] + ' is absent from the PBF')
+        gateway = gateway_record(gateway_node, seed)
+        row_number, airport = None, None
+    else:
+        gateway = None
+        row_number, airport = choose_airport(airport_rows, seed)
+    timezone, zone_rows = choose_seed_timezone(zone_lines, seed)
+    country = seed_country_name(country_lines, seed)
     if not timestamp.startswith(args.dataset_date + 'T'):
         raise Hold('PBF header timestamp does not match its stated snapshot date')
     display_name = city['tags'].get('name:en') or city['tags']['name']
-    airport_point = coordinate(float(airport['longitude_deg']), float(airport['latitude_deg']))
+    if gateway is None:
+        airport_point = coordinate(float(airport['longitude_deg']), float(airport['latitude_deg']))
+        airport_facts = {'id': seed['id'] + '-airport', 'name': airport['name'], **airport_point,
+                         'sourceUrl': 'https://ourairports.com/airports/' + quote(airport['ident'], safe='') + '/'}
+    else:
+        airport_facts = gateway_facts(seed, gateway, city)
     facts = {'id': seed['id'], 'name': display_name,
              'country': {'idISOlower': seed['countryISO'].lower(), 'name': country},
              'state': {'idunique': seed['countryISO'].lower() + '-' + seed['id'], 'name': display_name},
              'timezone': timezone, 'centre': coordinate(city['lon'], city['lat']),
-             'airport': {'id': seed['id'] + '-airport', 'name': airport['name'], **airport_point,
-                         'sourceUrl': 'https://ourairports.com/airports/' + quote(airport['ident'], safe='') + '/'},
-             'sourceLabel': 'OpenStreetMap country PBF and OurAirports dated CSV',
+             'airport': airport_facts,
+             'sourceLabel': 'OpenStreetMap country PBF and OurAirports dated CSV' if gateway is None else 'OpenStreetMap country PBF',
              'sourceUrl': 'https://www.openstreetmap.org/' + city['ref'],
-             'licence': 'OpenStreetMap ODbL-1.0; OurAirports public-domain dataset',
-             'coverageNote': 'Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.'}
+             'licence': 'OpenStreetMap ODbL-1.0; OurAirports public-domain dataset' if gateway is None else 'OpenStreetMap ODbL-1.0',
+             'coverageNote': 'Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.'
+             if gateway is None else 'Source-sampling bounds from a mapped place node and its mapped gateway node; the grouping is not an administrative-boundary claim. A mapped landing, heliport or track does not establish current operations or access.'}
+    if gateway is not None:
+        facts['gateway'] = {'mode': seed['gateway']['mode'], 'osmRef': seed['gateway']['osmRef']}
     (out / 'facts-input.json').write_text(json.dumps(facts, indent=2))
     phase = 'bounds-derivation'
     started = time.monotonic()
@@ -121,7 +150,7 @@ def prepare_city(seed, out, candidates, args, airport_rows, zone_lines, country_
     return {'seed': seed, 'out': out, 'city': city, 'displayName': display_name,
             'airport': airport, 'airportRowNumber': row_number, 'timezone': timezone,
             'zoneRows': zone_rows, 'facts': facts, 'bounds': bounds, 'datasetBytes': dataset_bytes,
-            'coastRefs': []}
+            'coastRefs': [], 'gateway': gateway}
 
 def scan_coastlines(pbf, contexts, adapter):
     phase = 'coastline-scan'
@@ -182,17 +211,27 @@ def finish_city(context, args, adapter):
         water['sea'] = {'kind': 'coast', 'bandMetres': 40000}
     extraction_input = {'city': {'id': seed['id'], 'name': display_name},
                         'boxes': bounds['boxes'], 'waterRecipe': water}
+    extraction = profile_rules(seed).get('extraction') if 'profile' in seed else None
+    if extraction is not None:
+        # Outpost and wilderness only: the profile's extra place filters, road ladder and sensitive-feature exclusion (offline-extract.py).
+        extraction_input['profileExtraction'] = {'profile': seed['profile'], **extraction}
     metadata_file = out / 'source-input.json'
     metadata_file.write_text(json.dumps(extraction_input, indent=2))
     adapter.load_city(metadata_file)
     play = bounds['boxes']['play']
     facts['bounds'] = [play[1], play[0], play[3], play[2]]
+    gateway = context.get('gateway')
+    airport_source = ({'rowNumber': context['airportRowNumber'], 'row': airport,
+                       'rowSha256': hashlib.sha256(json.dumps(airport, sort_keys=True,
+                           separators=(',', ':')).encode()).hexdigest(),
+                       'csvSha256': digest(args.airports_csv), 'snapshotDate': args.airports_date}
+                      if gateway is None else None)
     provenance = {'centre': {'osmRef': city['ref'], 'sourceUrl': facts['sourceUrl'],
                              'sourceRecord': city, 'pbfSha256': args.expected_pbf_sha256},
-                  'airport': {'rowNumber': context['airportRowNumber'], 'row': airport,
-                              'rowSha256': hashlib.sha256(json.dumps(airport, sort_keys=True,
-                                  separators=(',', ':')).encode()).hexdigest(),
-                              'csvSha256': digest(args.airports_csv), 'snapshotDate': args.airports_date},
+                  **({'airport': airport_source} if gateway is None else {
+                      'gateway': {**seed['gateway'], 'sourceRecord': {key: gateway[key] for key in ('ref', 'tags', 'lon', 'lat')},
+                                  'pbfSha256': args.expected_pbf_sha256,
+                                  'claim': 'caller-supplied gateway node, checked for its mode tags and for no military tag; a mapped landing does not establish operations'}}),
                   'timezone': {'rows': zone_rows, 'zoneTabSha256': digest(args.zone_tab),
                                'countryTableSha256': digest(args.countries_tab)},
                   'pbf': {'url': args.dataset_url, 'bytes': context['datasetBytes'],
@@ -206,6 +245,11 @@ def finish_city(context, args, adapter):
     if 'profile' in seed:
         # The selection profile (profiles.json) travels with the city's provenance; the city node's own place tag is in centre.sourceRecord.tags.
         provenance['profile'] = {'name': seed['profile'], 'rules': profile_rules(seed), 'cityPlaceTag': city['tags'].get('place')}
+    if 'timezoneOverride' in seed:
+        provenance['timezone']['override'] = {**seed['timezoneOverride'],
+            'claim': 'reviewed timezone override: the pinned zone1970.tab has no row for this place, or the zone of a station differs from its country row'}
+    if 'countryName' in seed:
+        provenance['countryName'] = {**seed['countryName'], 'claim': 'reviewed name of a user-assigned code absent from the pinned iso3166.tab; game map only'}
     if 'airport' in seed:
         provenance['airport']['selection'] = {**seed['airport'], 'matchedIdent': airport['ident'],
             'municipalityMatchesCity': normalized(airport.get('municipality', '')) == normalized(seed['name']),
@@ -268,7 +312,15 @@ def run_batch_metadata(args):
         import osmium
         with osmium.io.Reader(str(pbf), osmium.osm.NOTHING) as reader:
             timestamp = reader.header().get('osmosis_replication_timestamp', '')
-        candidates, node_errors = scan_city_nodes(pbf, seeds)
+        gateways = {}
+        for seed in seeds:
+            if 'gateway' in seed:
+                gateways.setdefault(int(seed['gateway']['osmRef'].split('/')[1]), []).append(seed['id'])
+        if gateways:
+            candidates, node_errors, gateway_nodes = scan_city_nodes(pbf, seeds, gateways)
+        else:
+            candidates, node_errors = scan_city_nodes(pbf, seeds)
+            gateway_nodes = {}
         for seed in seeds:
             # Identity-review diagnostic (from the Oceania single-seed stage): every matching named city/town node, capped at 100.
             records = sorted(candidates[seed['id']], key=lambda node: int(node['ref'].split('/')[1]))
@@ -284,7 +336,7 @@ def run_batch_metadata(args):
                 if city_id in node_errors:
                     raise Hold(node_errors[city_id])
                 context = prepare_city(seed, outputs[city_id], candidates[city_id], args,
-                                       airport_rows, zone_lines, country_lines, timestamp, pbf_bytes)
+                                       airport_rows, zone_lines, country_lines, timestamp, pbf_bytes, gateway_nodes.get(city_id))
                 context['timestamp'] = timestamp
                 contexts.append(context)
             except Exception as error:

@@ -2,15 +2,12 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-m-1c",
-      "appSha": "63ab1e79a6e8571692dd5de7ddc65b4203b3e476",
-      "driverSha": "3523613e9a220e2d588cdeef6de57a4eb3d1b948",
+      "id": "release-n-1",
+      "appSha": "c0ca971847730a3489f529ac9f36d179b4fc28dc",
+      "driverSha": "8c661b4fce5822601ce3811e2f3011d3e18716de",
       "cities": [
-        "flying-fish-cove",
-        "oranjestad",
-        "hamilton",
-        "avarua",
-        "nuuk"
+        "villa-las-estrellas",
+        "brades"
       ],
       "roundtrip": true,
       "browserOnly": true

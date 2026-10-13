@@ -45,4 +45,6 @@ sky.set(...street.sky!);
 renderer.setClearColor(street.background!);
 const draw = () => { street.look?.(camera.position.x, camera.position.z); renderer.render(scene, camera); document.getElementById('info')!.textContent = `street · ${time}${params.get('models') === '1' ? ' · models' : ' · stand-ins'} · ${renderer.info.render.calls} calls · ${renderer.info.render.triangles} tris`; (window as unknown as { __diag: unknown }).__diag = { calls: renderer.info.render.calls, triangles: renderer.info.render.triangles }; };
 draw();
-if (params.get('models') === '1') { street.startCrowd?.(renderer as never, draw); setInterval(draw, 700); }
+// Redraw a bounded number of times while the models arrive (a timeout chain: scene sources hold no interval).
+const redraw = (left: number): void => { draw(); if (left > 0) setTimeout(() => redraw(left - 1), 700) }
+if (params.get('models') === '1') { street.startCrowd?.(renderer as never, draw); redraw(30); }

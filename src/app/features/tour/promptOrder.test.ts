@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { promptTurn, settleWanted } from './promptOrder.ts'
+import { promptTurn, settleWanted } from './tourState.ts'
 
 test('one prompt at a time: tour, then settle-in, then the coach line', () => {
   assert.equal(promptTurn({ tour: true, settle: true, coach: true }), 'tour')

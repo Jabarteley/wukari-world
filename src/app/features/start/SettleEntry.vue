@@ -2,14 +2,15 @@
 // "SETTLE IN: GET YOUR HOME": the standing way in to the settle-in flow for a guest of the quick start, drawn in the goal
 // area of the home screen whether or not a goal is pointing at it. It can be put away for the session and comes back with the
 // next visit; a settled life never sees it (it draws nothing, so the HUD gives it no room).
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
-import { tour } from '../tour/tourState.ts'
-import { promptTurn, settleWanted } from './promptOrder.ts'
+import { promptTurn, settleWanted, tour } from '../tour/tourState.ts'
 import { SETTLE_ENTRY, settleEntry, startSettling } from './settleModel.ts'
 
 const { game, shell } = useApp()
 // Second in line: after the walkthrough, before the coach's goal line (which waits while this is up and not put away).
+// The coach line (CoachTip.vue) reads the same flag from tourState.ts, so the two never import each other's modules.
+watch(() => settleEntry.dismissed, (away) => { tour.settleAway = away }, { immediate: true })
 const shown = computed(() => promptTurn({ tour: tour.active || tour.pending, settle: settleWanted(game.view.value, settleEntry.dismissed), coach: false }) === 'settle')
 </script>
 

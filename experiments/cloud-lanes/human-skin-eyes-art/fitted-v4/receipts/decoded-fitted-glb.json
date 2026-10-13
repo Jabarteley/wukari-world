@@ -1,0 +1,1313 @@
+{
+  "status": "PASS",
+  "glbBytes": 2224132,
+  "glbSha256": "b96fd39c318ff2a6906ba073ff6ae5d8ed3aa7ac84755d2dd8db24fea6d01890",
+  "sourceGlbSha256": "2338c0b3b4d34d3549e2a2d30c91b4ddf65dc2111c9b6f13450a2dd8dad3477d",
+  "sourceNodesComparedExactly": [
+    {
+      "node": "Neck",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Shirt_fused_shoulders",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Collar_band",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Trousers_fused_hip",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Forearm_hand_-1",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Shoe_-1",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Sole_-1",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Forearm_hand_1",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Shoe_1",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Sole_1",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Head_continuous_anatomy",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "earLeft.protrusion",
+        "earRight.protrusion",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "expression.browRaiseLeft",
+        "expression.browRaiseRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight",
+        "corrective.height.browRaiseLeft",
+        "corrective.height.browRaiseRight",
+        "expression.blinkLeft",
+        "corrective.blinkArcLeft",
+        "corrective.height.blinkLeft",
+        "expression.blinkRight",
+        "corrective.blinkArcRight",
+        "corrective.height.blinkRight"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Eye_Left",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Iris_Left",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Pupil_Left",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Brow_Left",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height",
+        "expression.browRaiseLeft",
+        "corrective.height.browRaiseLeft"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Eye_Right",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Iris_Right",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Pupil_Right",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Brow_Right",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height",
+        "expression.browRaiseRight",
+        "corrective.height.browRaiseRight"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Lip_upper",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Lip_lower",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Mouth_seam",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Nostril_-1",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileRight",
+        "expression.frownRight",
+        "corrective.height.smileRight",
+        "corrective.height.frownRight"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Nostril_1",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileLeft",
+        "expression.frownLeft",
+        "corrective.height.smileLeft",
+        "corrective.height.frownLeft"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Ear_Left",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "earLeft.protrusion",
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Ear_Right",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "earRight.protrusion",
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    },
+    {
+      "node": "Hair_original_close_curl_surface",
+      "trianglePositionsExact": true,
+      "morphNames": [
+        "body.height"
+      ],
+      "morphPayloadsExact": true
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Neck",
+      "vertices": 129,
+      "triangles": 188,
+      "targets": 2,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0"
+      ]
+    },
+    {
+      "name": "Shirt_fused_shoulders",
+      "vertices": 2086,
+      "triangles": 3798,
+      "targets": 2,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Collar_band",
+      "vertices": 82,
+      "triangles": 80,
+      "targets": 2,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Trousers_fused_hip",
+      "vertices": 2013,
+      "triangles": 3682,
+      "targets": 2,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Forearm_hand_-1",
+      "vertices": 1153,
+      "triangles": 2008,
+      "targets": 2,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Shoe_-1",
+      "vertices": 230,
+      "triangles": 380,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0"
+      ]
+    },
+    {
+      "name": "Sole_-1",
+      "vertices": 98,
+      "triangles": 124,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0"
+      ]
+    },
+    {
+      "name": "Forearm_hand_1",
+      "vertices": 1145,
+      "triangles": 2008,
+      "targets": 2,
+      "morphNames": [
+        "body.height",
+        "body.shoulderWidth"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Shoe_1",
+      "vertices": 226,
+      "triangles": 380,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0"
+      ]
+    },
+    {
+      "name": "Sole_1",
+      "vertices": 94,
+      "triangles": 124,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0"
+      ]
+    },
+    {
+      "name": "Head_continuous_anatomy",
+      "vertices": 4853,
+      "triangles": 9232,
+      "targets": 23,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "earLeft.protrusion",
+        "earRight.protrusion",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "expression.browRaiseLeft",
+        "expression.browRaiseRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight",
+        "corrective.height.browRaiseLeft",
+        "corrective.height.browRaiseRight",
+        "expression.blinkLeft",
+        "corrective.blinkArcLeft",
+        "corrective.height.blinkLeft",
+        "expression.blinkRight",
+        "corrective.blinkArcRight",
+        "corrective.height.blinkRight"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Eye_Left",
+      "vertices": 401,
+      "triangles": 728,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Iris_Left",
+      "vertices": 97,
+      "triangles": 160,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Pupil_Left",
+      "vertices": 41,
+      "triangles": 40,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Brow_Left",
+      "vertices": 50,
+      "triangles": 48,
+      "targets": 3,
+      "morphNames": [
+        "body.height",
+        "expression.browRaiseLeft",
+        "corrective.height.browRaiseLeft"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Eye_Right",
+      "vertices": 381,
+      "triangles": 728,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Iris_Right",
+      "vertices": 97,
+      "triangles": 160,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Pupil_Right",
+      "vertices": 41,
+      "triangles": 40,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Brow_Right",
+      "vertices": 50,
+      "triangles": 48,
+      "targets": 3,
+      "morphNames": [
+        "body.height",
+        "expression.browRaiseRight",
+        "corrective.height.browRaiseRight"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Lip_upper",
+      "vertices": 217,
+      "triangles": 344,
+      "targets": 11,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Lip_lower",
+      "vertices": 217,
+      "triangles": 344,
+      "targets": 11,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Mouth_seam",
+      "vertices": 270,
+      "triangles": 536,
+      "targets": 11,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileLeft",
+        "expression.smileRight",
+        "expression.frownLeft",
+        "expression.frownRight",
+        "corrective.height.smileLeft",
+        "corrective.height.smileRight",
+        "corrective.height.frownLeft",
+        "corrective.height.frownRight"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0"
+      ]
+    },
+    {
+      "name": "Nostril_-1",
+      "vertices": 157,
+      "triangles": 280,
+      "targets": 7,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileRight",
+        "expression.frownRight",
+        "corrective.height.smileRight",
+        "corrective.height.frownRight"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Nostril_1",
+      "vertices": 171,
+      "triangles": 280,
+      "targets": 7,
+      "morphNames": [
+        "nose.projection",
+        "nose.alarWidth",
+        "body.height",
+        "expression.smileLeft",
+        "expression.frownLeft",
+        "corrective.height.smileLeft",
+        "corrective.height.frownLeft"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Ear_Left",
+      "vertices": 530,
+      "triangles": 640,
+      "targets": 2,
+      "morphNames": [
+        "earLeft.protrusion",
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Ear_Right",
+      "vertices": 531,
+      "triangles": 640,
+      "targets": 2,
+      "morphNames": [
+        "earRight.protrusion",
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Hair_original_close_curl_surface",
+      "vertices": 1348,
+      "triangles": 2518,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0"
+      ]
+    },
+    {
+      "name": "Fitted_Cornea_Left",
+      "vertices": 321,
+      "triangles": 600,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    },
+    {
+      "name": "Fitted_Cornea_Right",
+      "vertices": 321,
+      "triangles": 600,
+      "targets": 1,
+      "morphNames": [
+        "body.height"
+      ],
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ]
+    }
+  ],
+  "meshCount": 29,
+  "triangles": 30738,
+  "vertices": 17350,
+  "totalMorphTargetsAcrossMeshes": 105,
+  "joints": 0,
+  "animations": 0,
+  "materials": 38,
+  "images": [
+    {
+      "name": "Neck_normal",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 5320,
+      "sha256": "16918a67d09c465f30d91e9814fa85459b31dc86012179bee78f5ea017cc2fd2",
+      "opaque": true
+    },
+    {
+      "name": "Neck_02_copper_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4743,
+      "sha256": "fb99fcc47c942ef987b831d8a6faa3a3d109c51dc24ce18270d1a6c108b46c0f",
+      "opaque": true
+    },
+    {
+      "name": "Neck_roughness",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4520,
+      "sha256": "b47a3eb2b00fdd63eb344ebfeb69e985a1a4c4f838c7a2a4ed353f17459884ec",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_minus1_normal",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 5012,
+      "sha256": "faf37bd7cf77b895769c563f1989cc5c2b55fa7c18a78152782a758195b4f15c",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_minus1_02_copper_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4953,
+      "sha256": "99242e5bab8883539c6b8e81685f36959dcfc23294533106ae7c67fbea7fb703",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_minus1_roughness",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4321,
+      "sha256": "8566b3b3f478a43e240de703509e637cc63f9d2954c57b9ce88a5483476cd7ec",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_1_normal",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4975,
+      "sha256": "3670fc4029d949d7c21b0e21f48c63304bc898debbb5b11d447dc500e3bf00a4",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_1_02_copper_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4941,
+      "sha256": "0c7d715d7b97decebe3258547d49a4dc70b8e47b31661b8541c7fc7d785c86b3",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_1_roughness",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4311,
+      "sha256": "86a7ab704f681d6fb0b601d7ba12f12d562232faa8940c43e0cafca729d8cd09",
+      "opaque": true
+    },
+    {
+      "name": "Head_continuous_anatomy_normal",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 82276,
+      "sha256": "cfd742062ef29cd7d385c4eef59a9ba4605ad1b212489e3f7c63e64a5c6f7a85",
+      "opaque": true
+    },
+    {
+      "name": "Head_continuous_anatomy_02_copper_basecolor",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 62247,
+      "sha256": "773402fb129636bb1a5801433500735472892d74af67e472e140b817eac3c51e",
+      "opaque": true
+    },
+    {
+      "name": "Head_continuous_anatomy_roughness",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 66554,
+      "sha256": "a6e6214fe2dbe31a17435728f7f309cfc3f5c1955a877f05fa23874635052622",
+      "opaque": true
+    },
+    {
+      "name": "Eye_Left_basecolor",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 25025,
+      "sha256": "730863fae8de72c6d5e97c53b1df89eb10c99e8cfa0b4a08e0b753fdb523a261",
+      "opaque": true
+    },
+    {
+      "name": "Iris_Left_basecolor",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 58513,
+      "sha256": "0854b93ed32bb16fd083838c88288eb9518cf5dd90488990dff9a05b39fd5898",
+      "opaque": true
+    },
+    {
+      "name": "Eye_Right_basecolor",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 25032,
+      "sha256": "6259dba0b5b0340c1af8fe02a97010ab41460acbdb7a64729b544ad9d0ab0564",
+      "opaque": true
+    },
+    {
+      "name": "Iris_Right_basecolor",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 58599,
+      "sha256": "44c1753ded40b21da0ae5e7383d58f3799baca09b1fa8c75e295994d5e346ee8",
+      "opaque": true
+    },
+    {
+      "name": "Lip_upper_normal",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3093,
+      "sha256": "4891e4cf6b01f6dc0af9ac647b44eafed762f73fe8e279772e368586d4d9ded3",
+      "opaque": true
+    },
+    {
+      "name": "Lip_upper_02_copper_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 1658,
+      "sha256": "74a5f9b071075419d799ac67080ba90116c615f87de9fed8cf807cb363d74126",
+      "opaque": true
+    },
+    {
+      "name": "Lip_upper_roughness",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 2754,
+      "sha256": "0eda0dfd67c5226fe3c853788917252d8bec3b304ae16ac5b4ecf6d28a0d3493",
+      "opaque": true
+    },
+    {
+      "name": "Lip_lower_normal",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3174,
+      "sha256": "5df5756aeb9566768396b78ac866c4e51058ca561b83e94f5f8be208bb301181",
+      "opaque": true
+    },
+    {
+      "name": "Lip_lower_02_copper_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 1687,
+      "sha256": "b4756aecfaff169500c0bda034e2b9245b9ea99ced7134cad8dcde1d09e3f5a7",
+      "opaque": true
+    },
+    {
+      "name": "Lip_lower_roughness",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 2778,
+      "sha256": "86972ed2867d1aa11c7b044a6a8dbf165fd3016b7b02627c09094dabb01d7448",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Left_normal",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4212,
+      "sha256": "b66ad64ddcfab81a1eae123ec9759a588d59db75b97225867d550ca2a852fcc4",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Left_02_copper_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3329,
+      "sha256": "2e736c5dc04b64c012ec14f940a14a8e9403d6f40364861a68a40474b08890ac",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Left_roughness",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3792,
+      "sha256": "468342b84b8e40705df4531fc9cc5e23d0461cf36f87098c217c4e58e7fd131c",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Right_normal",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4251,
+      "sha256": "b9e2f0d7b5ab9a50e85ca5bc3bcc49132bc6cbc9db5a83cce828e01ca4ca8de3",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Right_02_copper_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3266,
+      "sha256": "9b6de6d52bdfce6a82a6b6397b3c06b1278b9755b13398368bd0e51aba3ea94f",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Right_roughness",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3819,
+      "sha256": "446ec11eecdcdd7ed72d81a1d819ec0f8c5d90b5bf17ae029c223b89e25bfc04",
+      "opaque": true
+    },
+    {
+      "name": "Neck_01_umber_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4654,
+      "sha256": "4e53982e91ab26789ec8f098bceb46e42be2e38f238be0a56a2f25032b16ca9a",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_minus1_01_umber_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4885,
+      "sha256": "29b8d54374a5206540f25e6e0074ddba6fedb0bbfbe020022db6aacfedfb4d87",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_1_01_umber_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4887,
+      "sha256": "a0d0dd0cf1ca687314d51eab4904865a98342c512aca9158ee583ad38fe88e84",
+      "opaque": true
+    },
+    {
+      "name": "Head_continuous_anatomy_01_umber_basecolor",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 60275,
+      "sha256": "1774e6e46bc7959154ccc8086c6bbdb6032f2a3378ec4d69a0b35e4d5f8383d3",
+      "opaque": true
+    },
+    {
+      "name": "Lip_upper_01_umber_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 1624,
+      "sha256": "b5eb4bd5c3bbe9920271bd5313e228707ff9259221ee7ae78fa8e13ad6831ec5",
+      "opaque": true
+    },
+    {
+      "name": "Lip_lower_01_umber_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 1695,
+      "sha256": "ab72235e34974844708b37bb949202b1191a34045eaf1579785144b7651d7922",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Left_01_umber_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3318,
+      "sha256": "058f050a0294c517daff321911e74c10cf7b30b1c5f9355ad075c745c51e21c6",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Right_01_umber_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3195,
+      "sha256": "3359bf7dea88bc2d1fe2352c9b22c3305be1995b8155e104b639073ab785572c",
+      "opaque": true
+    },
+    {
+      "name": "Neck_03_rose_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 4860,
+      "sha256": "ffb4a1c1ba441dcb727056cc8597b3d5f9890227a958cd26357e9df3008fc6ac",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_minus1_03_rose_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 5030,
+      "sha256": "20bc829bb1f7d34cec7856fa0a359fb8b5d3f6b7d616cf2c589d693396e7fcad",
+      "opaque": true
+    },
+    {
+      "name": "Forearm_hand_1_03_rose_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 5043,
+      "sha256": "38b2db10a18619bc2c786313e98db8626329fe404762aca769e30d9c75ad9ee2",
+      "opaque": true
+    },
+    {
+      "name": "Head_continuous_anatomy_03_rose_basecolor",
+      "dimensions": [
+        256,
+        256
+      ],
+      "encodedBytes": 64143,
+      "sha256": "504b4fc9d743bbfbbf4f0ea06dfd784a07d0d60a9dc3bd4c02ad5595607bb8d2",
+      "opaque": true
+    },
+    {
+      "name": "Lip_upper_03_rose_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 1669,
+      "sha256": "c6632f8047840ce4a05c1389f0d12e9269cd2877b3ebaf31641c8a12a27f83c4",
+      "opaque": true
+    },
+    {
+      "name": "Lip_lower_03_rose_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 1750,
+      "sha256": "5b3fce18cb5d74ce0407f01f2c77119a98e4010a277301c7b96d1810a26187d0",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Left_03_rose_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3414,
+      "sha256": "25dfd879f0263a2009f862ec7d25e4d94f8a6953e9b5506d40b0bfbc92e26cfa",
+      "opaque": true
+    },
+    {
+      "name": "Ear_Right_03_rose_basecolor",
+      "dimensions": [
+        64,
+        64
+      ],
+      "encodedBytes": 3301,
+      "sha256": "db029b08b65808ac533363758006a69cc192e7cdcc0eb4c493ae2a8e194941be",
+      "opaque": true
+    }
+  ],
+  "embeddedImageBytes": 632898,
+  "rgba8BaseLevelBytesEstimate": 2932736,
+  "boundsGLTFM": [
+    [
+      -0.33131101727485657,
+      0.009999999776482582,
+      -0.11958041042089462
+    ],
+    [
+      0.331366628408432,
+      1.7580000162124634,
+      0.13899999856948853
+    ]
+  ],
+  "pixelExactMaterialMapsVerified": [
+    "Fitted_02_copper_Neck",
+    "Fitted_02_copper_Forearm_hand_-1",
+    "Fitted_02_copper_Forearm_hand_1",
+    "Fitted_02_copper_Head_continuous_anatomy",
+    "Fitted_02_copper_Lip_upper",
+    "Fitted_02_copper_Lip_lower",
+    "Fitted_02_copper_Ear_Left",
+    "Fitted_02_copper_Ear_Right",
+    "Fitted_01_umber_Neck",
+    "Fitted_01_umber_Forearm_hand_-1",
+    "Fitted_01_umber_Forearm_hand_1",
+    "Fitted_01_umber_Head_continuous_anatomy",
+    "Fitted_01_umber_Lip_upper",
+    "Fitted_01_umber_Lip_lower",
+    "Fitted_01_umber_Ear_Left",
+    "Fitted_01_umber_Ear_Right",
+    "Fitted_03_rose_Neck",
+    "Fitted_03_rose_Forearm_hand_-1",
+    "Fitted_03_rose_Forearm_hand_1",
+    "Fitted_03_rose_Head_continuous_anatomy",
+    "Fitted_03_rose_Lip_upper",
+    "Fitted_03_rose_Lip_lower",
+    "Fitted_03_rose_Ear_Left",
+    "Fitted_03_rose_Ear_Right"
+  ],
+  "variantBindings": [
+    "Neck",
+    "Forearm_hand_-1",
+    "Forearm_hand_1",
+    "Head_continuous_anatomy",
+    "Lip_upper",
+    "Lip_lower",
+    "Ear_Left",
+    "Ear_Right"
+  ],
+  "extensionsUsed": [
+    "KHR_materials_transmission",
+    "KHR_materials_specular",
+    "KHR_materials_ior",
+    "KHR_materials_variants"
+  ],
+  "alpha": "all materials OPAQUE; all embedded alpha pixels opaque; cornea optical transmission",
+  "fitAcceptance": false
+}

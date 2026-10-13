@@ -1,0 +1,214 @@
+{
+  "candidateCommit": "2921534bdc8959a8489713f9b1652381702808a5",
+  "method": "Exact shipped pixel-centre coverage and same procedural copper colour evaluation for competing triangle contributions; last triangle wins as in bake. No UV changes.",
+  "caveats": "Sampled at texture resolution; thin overlaps and zero-area cap UVs may miss pixels. Pore normals, filtering and mip seams can differ further. Front-eye box is a diagnostic region, not visibility classification.",
+  "surfaces": [
+    {
+      "object": "Head_continuous_anatomy",
+      "size": 256,
+      "uvLayer": "Head_socket_UV_v4",
+      "coveredPixels": 64837,
+      "multiplyCoveredPixels": 124,
+      "fractionCoveredPixelsWithCompetition": 0.0019124882397396547,
+      "competingSamplePairs": 261,
+      "maximumCompetingCopperSrgbDifference8bit": 8.497428548621532,
+      "p95CompetingCopperSrgbDifference8bit": 8.042208659323522,
+      "maximumCompetingSurfaceDistanceM": 0.037754299136884606,
+      "competingSurfaceBoundsBlenderM": [
+        [
+          -0.012524470954701142,
+          -0.01869241970826565,
+          1.4905214938331306
+        ],
+        [
+          0.017301678958355198,
+          0.023399147534916093,
+          1.7564784858408524
+        ]
+      ],
+      "competingSamplesInFrontEyeRegion": 0
+    },
+    {
+      "object": "Ear_Left",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 2430,
+      "multiplyCoveredPixels": 663,
+      "fractionCoveredPixelsWithCompetition": 0.27283950617283953,
+      "competingSamplePairs": 1187,
+      "maximumCompetingCopperSrgbDifference8bit": 10.59015196622933,
+      "p95CompetingCopperSrgbDifference8bit": 6.2674830701287965,
+      "maximumCompetingSurfaceDistanceM": 0.016449863016142287,
+      "competingSurfaceBoundsBlenderM": [
+        [
+          0.07301075520393377,
+          -0.005393112975363401,
+          1.5834530703560534
+        ],
+        [
+          0.08728062571426437,
+          0.025392403347106365,
+          1.6405469077011299
+        ]
+      ],
+      "competingSamplesInFrontEyeRegion": 0
+    },
+    {
+      "object": "Ear_Right",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 2449,
+      "multiplyCoveredPixels": 702,
+      "fractionCoveredPixelsWithCompetition": 0.28664761126990607,
+      "competingSamplePairs": 1270,
+      "maximumCompetingCopperSrgbDifference8bit": 10.667281130384065,
+      "p95CompetingCopperSrgbDifference8bit": 5.398258838745801,
+      "maximumCompetingSurfaceDistanceM": 0.01614048446713302,
+      "competingSurfaceBoundsBlenderM": [
+        [
+          -0.08727897852507473,
+          -0.005398023302908351,
+          1.5834530703560536
+        ],
+        [
+          -0.07301075539181322,
+          0.025392090600233487,
+          1.6405469077085988
+        ]
+      ],
+      "competingSamplesInFrontEyeRegion": 0
+    },
+    {
+      "object": "Forearm_hand_-1",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 3574,
+      "multiplyCoveredPixels": 192,
+      "fractionCoveredPixelsWithCompetition": 0.053721320649132626,
+      "competingSamplePairs": 214,
+      "maximumCompetingCopperSrgbDifference8bit": 10.78043404737841,
+      "p95CompetingCopperSrgbDifference8bit": 7.225992004602124,
+      "maximumCompetingSurfaceDistanceM": 0.03848469524950914,
+      "competingSurfaceBoundsBlenderM": [
+        [
+          -0.329482229396889,
+          -0.03521089365064587,
+          0.7998164113999479
+        ],
+        [
+          -0.2511372479348726,
+          -0.01131048830131575,
+          0.8798878301195416
+        ]
+      ],
+      "competingSamplesInFrontEyeRegion": 0
+    },
+    {
+      "object": "Forearm_hand_1",
+      "size": 64,
+      "uvLayer": "Prototype_UV_v1",
+      "coveredPixels": 3569,
+      "multiplyCoveredPixels": 186,
+      "fractionCoveredPixelsWithCompetition": 0.05211543849817876,
+      "competingSamplePairs": 203,
+      "maximumCompetingCopperSrgbDifference8bit": 11.068128713260696,
+      "p95CompetingCopperSrgbDifference8bit": 7.638781594610664,
+      "maximumCompetingSurfaceDistanceM": 0.037911299713298964,
+      "competingSurfaceBoundsBlenderM": [
+        [
+          0.25113411526395835,
+          -0.03501827645557956,
+          0.7998212044845133
+        ],
+        [
+          0.3294002823445887,
+          -0.011449011812805995,
+          0.874172328158032
+        ]
+      ],
+      "competingSamplesInFrontEyeRegion": 0
+    }
+  ],
+  "ownerPublishedUvDiagnostic": {
+    "Iris_Left": {
+      "triangles": 160,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 0.0027092888791040437,
+      "summedTriangleArea": 0.7803622019707952,
+      "uvBounds": [
+        7.326404016794186e-08,
+        1.0000001192092896,
+        -3.496805902614142e-06,
+        1.000003457069397
+      ]
+    },
+    "Iris_Right": {
+      "triangles": 160,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 0.0027092870551994608,
+      "summedTriangleArea": 0.7803621907088494,
+      "uvBounds": [
+        -8.195638656616211e-08,
+        0.9999999403953552,
+        -3.496805902614142e-06,
+        1.000003457069397
+      ]
+    },
+    "Pupil_Left": {
+      "triangles": 40,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 0.019549528289010354,
+      "summedTriangleArea": 0.7821704785746956,
+      "uvBounds": [
+        -3.8068250773903856e-07,
+        1.0,
+        -4.246549906383734e-06,
+        1.0000042915344238
+      ]
+    },
+    "Pupil_Right": {
+      "triangles": 40,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 0.019549529953758304,
+      "summedTriangleArea": 0.7821704790087992,
+      "uvBounds": [
+        -2.9240014853826324e-08,
+        1.0000003576278687,
+        -4.246549906383734e-06,
+        1.0000042915344238
+      ]
+    },
+    "headOriginalFaces": {
+      "triangles": 8096,
+      "positiveAreaOverlapPairs": 2102,
+      "summedOverlapArea": 0.006440786604267102,
+      "minimumUvTriangleArea": 0.0,
+      "summedTriangleArea": 0.9835228353917294,
+      "uvBounds": [
+        0.0,
+        1.3220329284667969,
+        0.0,
+        1.0
+      ]
+    },
+    "headNewFaces": {
+      "triangles": 1136,
+      "positiveAreaOverlapPairs": 0,
+      "summedOverlapArea": 0,
+      "minimumUvTriangleArea": 2.3290663193620276e-06,
+      "summedTriangleArea": 0.00972593925149745,
+      "uvBounds": [
+        0.378421813249588,
+        0.6215781569480896,
+        0.5079365968704224,
+        0.5873018503189087
+      ]
+    },
+    "separateSocketMaterialDomain": false,
+    "newVersusOldOverlapPairs": 0
+  }
+}

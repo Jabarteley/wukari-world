@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Allworld anatomy v4 material refit</title><link rel="icon" href="data:,">
+<style>*{box-sizing:border-box}body{margin:0;background:#101c25;color:#e7e8dc;font:15px system-ui}main{width:1200px;margin:24px}h1{font-size:26px;font-weight:500;margin-bottom:8px}p{color:#aec7ca;line-height:1.5}.wrap{position:relative;height:760px}.row{position:absolute;display:flex;left:0}.row div{width:400px;background:#101c25df;padding:9px 12px;font-size:13px}footer{color:#b2c6ca;padding-top:12px;line-height:1.6}</style>
+<main><h1>ALLWORLD / Anatomy v4 skin and eye refit</h1><p>Exact candidate 2921534b · 27 original meshes preserved · joined lid material on Head_socket_UV_v4</p>
+<div class="wrap"><canvas id="view" width="1200" height="760"></canvas>
+<div class="row" style="top:0"><div>COPPER / NEUTRAL / blink 0</div><div>COPPER / HALF BLINK / blink 0.5</div><div>COPPER / FULL BLINK / blink 1</div></div>
+<div class="row" style="top:320px"><div>EXISTING UMBER / NEUTRAL</div><div>EXISTING COPPER / NEUTRAL</div><div>EXISTING ROSE / NEUTRAL</div></div></div>
+<footer id="result">Loading finite refit check…</footer>
+<footer>Raw GLTFLoader materials and transmission; fixed neutral lighting. Both corneas stay visible with opaque alpha.<br>Prototype anatomy, coarse shading and inherited UV overlap remain. Finite fitting and software WebGL proof do not establish final realism or device performance.</footer></main>
+<script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js","three/addons/":"../node_modules/three/examples/jsm/"}}</script>
+<script>window.addEventListener('error',e=>window.proofError=e.message);window.addEventListener('unhandledrejection',e=>window.proofError=String(e.reason));</script>
+<script type="module">
+import * as T from 'three';import{GLTFLoader}from'three/addons/loaders/GLTFLoader.js';import{RoomEnvironment}from'three/addons/environments/RoomEnvironment.js';
+const renderer=new T.WebGLRenderer({canvas:document.getElementById('view'),antialias:true,preserveDrawingBuffer:true});renderer.setSize(1200,760,false);renderer.setPixelRatio(1);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
+const room=new RoomEnvironment(),pm=new T.PMREMGenerator(renderer),env=pm.fromScene(room,.04);room.dispose();pm.dispose();
+const gltf=await new GLTFLoader().loadAsync('./artifacts/fitted-human-skin-eyes-v4.glb');
+const sweep=await(await fetch('./receipts/finite-refit.json')).json();if(sweep.status!=='PASS')throw Error('Finite check failed');
+document.getElementById('result').textContent=`${sweep.poseSamples} finite sampled poses: 0 added cornea crossings. 30,738 triangles / 29 meshes. Cap vertex clearances: head ${(sweep.minimumSampledCapVertexToHeadM*1e6).toFixed(1)} µm; inner eye ${(sweep.minimumSampledCapVertexToInnerEyeM*1e6).toFixed(1)} µm.`;
+const variants=gltf.parser.json.extensions.KHR_materials_variants.variants.map(x=>x.name);
+const allMaterials=await Promise.all(gltf.parser.json.materials.map((_,i)=>gltf.parser.getDependency('material',i)));
+gltf.scene.traverse(o=>{if(o.isMesh){const a=gltf.parser.associations.get(o);o.userData.fitMappings=gltf.parser.json.meshes[a.meshes].primitives[a.primitives].extensions?.KHR_materials_variants?.mappings??[];}});
+const records=[],scenes=[];
+for(let row=0;row<2;row++)for(let col=0;col<3;col++){
+ const scene=new T.Scene();scene.background=new T.Color(0x263744);scene.environment=env.texture;scene.environmentIntensity=.52;
+ const key=new T.DirectionalLight(0xffffff,1.8);key.position.set(-2,3,4);scene.add(key);const fill=new T.DirectionalLight(0xc8dcff,.35);fill.position.set(2,1,3);scene.add(fill);
+ const amount=row?0:[0,.5,1][col],variant=row?col:1,values={'expression.blinkLeft':amount,'expression.blinkRight':amount};
+ const model=gltf.scene.clone();scene.add(model);let caps=0,changed=0,arcCount=0,headMaterial;
+ model.traverse(o=>{if(!o.isMesh)return;
+  const mapping=o.userData.fitMappings.find(m=>m.variants.includes(variant));if(mapping){o.material=allMaterials[mapping.material];changed++;}
+  if(o.name.startsWith('Fitted_Cornea_')){caps++;if(!o.visible||o.material.opacity!==1)throw Error('Hidden or faded cap');}
+  if(o.name==='Head_continuous_anatomy')headMaterial=o.material.name;
+  if(/^(UpperLid|LowerLid)_/.test(o.name))throw Error('Unmigrated old lid binding');
+  if(o.morphTargetDictionary)for(const [name,index]of Object.entries(o.morphTargetDictionary)){
+   let v=values[name]??0;
+   if(name.startsWith('corrective.height.'))v=(values['body.height']??0)*(values['expression.'+name.slice('corrective.height.'.length)]??0);
+   if(name.startsWith('corrective.blinkArc')){const b=values['expression.blink'+(name.endsWith('Left')?'Left':'Right')]??0;v=4*b*(1-b);if(v!==0)arcCount++;}
+   o.morphTargetInfluences[index]=v;
+  }
+ });
+ if(caps!==2||changed!==8||(amount===.5&&arcCount!==2))throw Error('Incorrect v4 bindings');
+ const width=row?.28:.128,height=row?440:320,center=row?1.622:1.633,camera=new T.OrthographicCamera(-width/2,width/2,width*height/400/2,-width*height/400/2,.001,20);camera.position.set(row?.025:.006,center+.008,3);camera.lookAt(0,center,0);
+ const yy=row?0:440;renderer.info.autoReset=false;renderer.info.reset();renderer.setViewport(col*400,yy,400,height);renderer.setScissor(col*400,yy,400,height);renderer.setScissorTest(true);renderer.render(scene,camera);
+ const gl=renderer.getContext(),pixels=new Uint8Array(400*height*4);gl.readPixels(col*400,yy,400,height,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let warm=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]>35&&pixels[i]>pixels[i+2]*1.12)warm++;if(warm<5000)throw Error('Missing close-up');
+ records.push({view:row?'portrait':'close-up',blink:amount,variant:variants[variant],caps,capVisibility:true,capOpacity:1,changedMaterialBindings:changed,headMaterial,nonzeroBlinkArcCorrectives:arcCount,coloredPixels:warm,drawCallsIncludingTransmissionPass:renderer.info.render.calls,trianglesIncludingTransmissionPass:renderer.info.render.triangles});scenes.push(scene);
+}
+const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info');window.receipt={ready:true,three:T.REVISION,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),softwareOnly:true,records,animationLoop:false,finiteRegressionGate:sweep.status};
+window.measureFullBody=()=>{const target=new T.WebGLRenderTarget(512,512),camera=new T.OrthographicCamera(-1.1,1.1,1.1,-1.1,.001,20);camera.position.set(0,.90,3);camera.lookAt(0,.90,0);renderer.setRenderTarget(target);renderer.setViewport(0,0,512,512);renderer.setScissorTest(false);renderer.info.reset();renderer.render(scenes[0],camera);const cost={drawCallsIncludingTransmissionPass:renderer.info.render.calls,trianglesIncludingTransmissionPass:renderer.info.render.triangles,renderTargetPixels:512*512,shadows:false};renderer.setRenderTarget(null);target.dispose();return cost;};
+window.cleanup=()=>{const gs=new Set(),ms=new Set(allMaterials),ts=new Set();for(const s of scenes)s.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});for(const m of ms){for(const v of Object.values(m))if(v?.isTexture)ts.add(v);m.dispose();}for(const g of gs)g.dispose();for(const t of ts)t.dispose();env.dispose();renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true;};
+</script></html>

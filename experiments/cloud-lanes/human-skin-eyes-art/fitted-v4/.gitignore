@@ -1,0 +1,5 @@
+inputs/
+*.blend1
+*.log
+proof/*.png
+__pycache__/

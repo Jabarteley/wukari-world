@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "candidateCommit": "2921534bdc8959a8489713f9b1652381702808a5",
+  "integrationBase": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "preservedPreviousDerivativeCommit": "2544b6d66bddf5431ed15bd17298a21b43bcc454",
+  "frameId": "original-human-anatomy-frame@4",
+  "files": {
+    "experiments/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/anatomy-candidate-v4.blend": {
+      "bytes": 1045709,
+      "sha256": "fb6f488c55b01083fc23803a79e677ae957ecc237004de62a78bd8804ee76302"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/anatomy-candidate-v4.glb": {
+      "bytes": 2902692,
+      "sha256": "2338c0b3b4d34d3549e2a2d30c91b4ddf65dc2111c9b6f13450a2dd8dad3477d"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/fit-frame-candidate-v4.json": {
+      "bytes": 4168,
+      "sha256": "517ab0f1f552781664caf44e6ae65675d2cf57c4e6d05219ef5a35eab1ba275c"
+    },
+    "docs/agent-plans/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/CONTINUE.md": {
+      "bytes": 10652,
+      "sha256": "2d8348ecc8a8a4057e3642c1b8c32a5ddd46e7237418ccb17458c236dbcfc57f"
+    },
+    "docs/agent-plans/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/checks.json": {
+      "bytes": 81945,
+      "sha256": "82abe9cb9affb621362f5cf1c283542bfd65bdc86ee98f648c87e87ed25baade"
+    },
+    "docs/agent-plans/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/build-receipt.json": {
+      "bytes": 30308,
+      "sha256": "92366ce0817c135245704aefba42827db110d408f754d91acee0665ed5795b89"
+    },
+    "docs/agent-plans/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/export-compatibility.json": {
+      "bytes": 20188,
+      "sha256": "aff004dd2fd9c60d017d55bc7092a7652e13c4adae65a2e36b8be631e942796a"
+    },
+    "docs/agent-plans/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/uv-diagnostic.json": {
+      "bytes": 2058,
+      "sha256": "a1ba0202f4cad7c172e5b87d339b826cdbad33de709001d2f5a95bef885928ae"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/build_anatomy_v4.py": {
+      "bytes": 16361,
+      "sha256": "156f4219e1943557409875773e7616f6af521f4e1b2c9488526fa3fbddb79fea"
+    },
+    "experiments/cloud-lanes/human-design-contract/prototype/check_lid_candidate_v3.py": {
+      "bytes": 11755,
+      "sha256": "2ee47f414507ee681efad0678b29a29ff2669f33bc1e27439aeaf13e3b976e1d"
+    }
+  }
+}

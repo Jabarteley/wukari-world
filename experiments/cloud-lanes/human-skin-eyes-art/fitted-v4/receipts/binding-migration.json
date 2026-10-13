@@ -1,0 +1,38 @@
+{
+  "candidateCommit": "2921534bdc8959a8489713f9b1652381702808a5",
+  "fromFrame": "original-human-prototype-frame@1",
+  "toFrame": "original-human-anatomy-frame@4",
+  "removedNodeRebindings": {
+    "UpperLid_Left": {
+      "newNode": "Head_continuous_anatomy",
+      "material": "Fitted_<existing appearance>_Head_continuous_anatomy",
+      "uvLayer": "Head_socket_UV_v4"
+    },
+    "LowerLid_Left": {
+      "newNode": "Head_continuous_anatomy",
+      "material": "Fitted_<existing appearance>_Head_continuous_anatomy",
+      "uvLayer": "Head_socket_UV_v4"
+    },
+    "UpperLid_Right": {
+      "newNode": "Head_continuous_anatomy",
+      "material": "Fitted_<existing appearance>_Head_continuous_anatomy",
+      "uvLayer": "Head_socket_UV_v4"
+    },
+    "LowerLid_Right": {
+      "newNode": "Head_continuous_anatomy",
+      "material": "Fitted_<existing appearance>_Head_continuous_anatomy",
+      "uvLayer": "Head_socket_UV_v4"
+    }
+  },
+  "rules": {
+    "height": "corrective.height.CHANNEL = body.height * expression.CHANNEL",
+    "blinkArc": "corrective.blinkArcLeft/Right = 4 * expression.blinkLeft/Right * (1 - expression.blinkLeft/Right)"
+  },
+  "eyeUvLayers": {
+    "Eye_Left/Right": "Prototype_UV_v1",
+    "Iris_Left/Right": "Eye_disc_UV_v4",
+    "Pupil_Left/Right": "Eye_disc_UV_v4"
+  },
+  "cornea": "New sphere-conforming owned caps; original caps remain in fitted-v1.",
+  "noMasterChanges": true
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "geometryAndMorphBufferPrefixUnchanged": true,
+  "baseBufferBytes": 1964464,
+  "finalGlbBytes": 2224132,
+  "materials": 38,
+  "images": 44,
+  "textures": 44,
+  "variants": [
+    "01_umber",
+    "02_copper",
+    "03_rose"
+  ],
+  "mappings": 8,
+  "sha256": "b96fd39c318ff2a6906ba073ff6ae5d8ed3aa7ac84755d2dd8db24fea6d01890"
+}

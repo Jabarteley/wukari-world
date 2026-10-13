@@ -1,0 +1,39 @@
+{
+  "purpose": "Four bounded depth candidates after all-controls-minimum cap crossings; no master geometry changes.",
+  "blinkSamplesPerDepth": 9,
+  "packet": "all six implemented controls = -1",
+  "depths": [
+    {
+      "offsetM": 0.00025,
+      "domeM": 0.0001,
+      "headRawPairs": 0,
+      "headProperPairs": 0,
+      "innerRawPairs": 0,
+      "innerProperPairs": 0
+    },
+    {
+      "offsetM": 0.00025,
+      "domeM": 5e-05,
+      "headRawPairs": 0,
+      "headProperPairs": 0,
+      "innerRawPairs": 0,
+      "innerProperPairs": 0
+    },
+    {
+      "offsetM": 0.00025,
+      "domeM": 2e-05,
+      "headRawPairs": 0,
+      "headProperPairs": 0,
+      "innerRawPairs": 0,
+      "innerProperPairs": 0
+    },
+    {
+      "offsetM": 0.00024,
+      "domeM": 1e-05,
+      "headRawPairs": 0,
+      "headProperPairs": 0,
+      "innerRawPairs": 0,
+      "innerProperPairs": 0
+    }
+  ]
+}

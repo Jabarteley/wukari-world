@@ -48,6 +48,10 @@
   {
    "id": "au",
    "table": "scripts/geo/factory/country-factory/au-factory-targets.json"
+  },
+  {
+   "id": "nl",
+   "table": "scripts/geo/factory/country-factory/nl-factory-targets.json"
   }
  ]
 }

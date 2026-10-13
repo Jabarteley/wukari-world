@@ -1,0 +1,326 @@
+{
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "AW",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "receiptSha256": "443bcd7c24ef0e1ab35b1845f1218433ec88e515113f9cda25326d5e18374317",
+    "receiptBytes": 6466,
+    "geometrySha256": "6203e099c0696cdb78010fbd0237ca01c2d09371bc3f4ea168e0b44ac00e8eae",
+    "geometryBytes": 15829,
+    "scriptSha256": "5ff4dfbbd3956af4e7502b3ff27111da8362a4ce4101a0327d3aba52b26c54cc",
+    "relationId": 1231749,
+    "boundaryKey": "aw",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38438164960,
+      "sourceSha": "63bd2c672a57eb3151f8f0be45844fd419eb89be",
+      "sourceArtifact": "city-bootstrap-aw-63bd2c672a57eb3151f8f0be45844fd419eb89be",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "oranjestad",
+      "name": "Oranjestad",
+      "country": "aw",
+      "facts": {
+        "id": "oranjestad",
+        "name": "Oranjestad",
+        "country": {
+          "idISOlower": "aw",
+          "name": "Aruba"
+        },
+        "state": {
+          "idunique": "aw-oranjestad",
+          "name": "Oranjestad"
+        },
+        "timezone": "America/Puerto_Rico",
+        "centre": {
+          "lon": -70.0371329,
+          "lat": 12.5201024
+        },
+        "airport": {
+          "id": "oranjestad-airport",
+          "name": "Queen Beatrix International Airport",
+          "lon": -70.014281,
+          "lat": 12.501056,
+          "sourceUrl": "https://ourairports.com/airports/TNCA/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/50031810",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          -70.22130160114335,
+          12.339221510066022,
+          -69.85296419885665,
+          12.70098328993398
+        ]
+      },
+      "selectionExclusions": [],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/50031810",
+          "sourceUrl": "https://www.openstreetmap.org/node/50031810",
+          "sourceRecord": {
+            "ref": "node/50031810",
+            "tags": {
+              "admin_level": "3",
+              "capital": "3",
+              "is_capital": "state",
+              "name": "Oranjestad",
+              "name:ar": "أورنجستاد",
+              "name:be": "Араньестад",
+              "name:be-tarask": "Араньестад",
+              "name:bg": "Оранестад",
+              "name:de": "Oranjestad",
+              "name:el": "Οράνιεστατ",
+              "name:en": "Oranjestad",
+              "name:eo": "Oranjestado",
+              "name:fr": "Oranjestad",
+              "name:fy": "Oranjestêd",
+              "name:he": "אורנייסטאד",
+              "name:hu": "Oranjestad",
+              "name:it": "Oranjestad",
+              "name:ja": "オラニエスタッド",
+              "name:ka": "ორანესტადი",
+              "name:ko": "오랑예스타트",
+              "name:lt": "Oranjestadas",
+              "name:mk": "Орањестад",
+              "name:mr": "ओरांजेश्टाड",
+              "name:nb": "Oranjestad",
+              "name:nl": "Oranjestad",
+              "name:os": "Ораньестад",
+              "name:pl": "Oranjestad",
+              "name:pt": "Oranjestad",
+              "name:ru": "Ораньестад",
+              "name:sr": "Орањестад",
+              "name:sv": "Oranjestad",
+              "name:tr": "Oranjestad",
+              "name:uk": "Ораньєстад",
+              "name:ur": "اورنجسٹیڈ",
+              "name:zh": "奧拉涅斯塔德",
+              "place": "town",
+              "population": "35000",
+              "ref:LOCODE": "AWORJ",
+              "wikidata": "Q131243",
+              "wikipedia": "nl:Oranjestad (Aruba)"
+            },
+            "lon": -70.0371329,
+            "lat": 12.5201024
+          },
+          "pbfSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+          "selection": {
+            "cityOsmRef": "node/50031810",
+            "matchedOsmRef": "node/50031810"
+          }
+        },
+        "airport": {
+          "rowNumber": 65751,
+          "row": {
+            "id": "6402",
+            "ident": "TNCA",
+            "type": "large_airport",
+            "name": "Queen Beatrix International Airport",
+            "latitude_deg": "12.501056",
+            "longitude_deg": "-70.014281",
+            "elevation_ft": "60",
+            "continent": "NA",
+            "iso_country": "AW",
+            "iso_region": "AW-U-A",
+            "municipality": "Oranjestad",
+            "scheduled_service": "yes",
+            "icao_code": "TNCA",
+            "iata_code": "AUA",
+            "gps_code": "TNCA",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "https://en.wikipedia.org/wiki/Queen_Beatrix_International_Airport",
+            "keywords": "Playa, Dakota Field"
+          },
+          "rowSha256": "fd909fcb2590125994240ea81fcd55d780db43bf6bdeb8a6d55e4a2229708e32",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "TNCA",
+            "sourceUrl": "https://ourairports.com/airports/TNCA/",
+            "matchedIdent": "TNCA",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/TNCA/"
+        },
+        "timezone": {
+          "rows": [
+            [
+              "PR,AG,CA,AI,AW,BL,BQ,CW,DM,GD,GP,KN,LC,MF,MS,SX,TT,VC,VG,VI",
+              "+182806-0660622",
+              "America/Puerto_Rico",
+              "AST - QC (Lower North Shore)"
+            ]
+          ],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "selection": {
+            "id": "America/Puerto_Rico",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab",
+            "matchedRow": [
+              "PR,AG,CA,AI,AW,BL,BQ,CW,DM,GD,GP,KN,LC,MF,MS,SX,TT,VC,VG,VI",
+              "+182806-0660622",
+              "America/Puerto_Rico",
+              "AST - QC (Lower North Shore)"
+            ],
+            "claim": "caller-supplied city timezone provenance; country membership verified against supplied zone.tab"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+          "bytes": 791507843,
+          "sha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+          "headerTimestamp": "2026-10-11T20:21:06Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/6279617",
+          "way/6279621",
+          "way/38424424",
+          "way/38424474",
+          "way/38424478",
+          "way/38424485",
+          "way/38424488",
+          "way/43469853",
+          "way/54041321",
+          "way/97403753",
+          "way/97403803",
+          "way/97566633",
+          "way/97566648",
+          "way/97566650",
+          "way/97566695",
+          "way/97566707",
+          "way/97566747",
+          "way/97566758",
+          "way/97566817",
+          "way/97566819",
+          "way/97566832",
+          "way/97566879",
+          "way/97675880",
+          "way/97683889",
+          "way/97691497",
+          "way/97692020",
+          "way/97730483",
+          "way/97730528",
+          "way/98105012",
+          "way/98105019",
+          "way/98105051",
+          "way/98105155",
+          "way/98105159",
+          "way/98106715",
+          "way/98114215",
+          "way/98114228",
+          "way/98619679",
+          "way/352770656",
+          "way/352770657",
+          "way/352778212",
+          "way/352778247",
+          "way/352778261",
+          "way/352778281",
+          "way/450892419",
+          "way/450892420",
+          "way/451801407",
+          "way/487248973",
+          "way/673172309",
+          "way/673172310",
+          "way/778493960",
+          "way/1072277799",
+          "way/1072277800",
+          "way/1072277801",
+          "way/1072277802",
+          "way/1072277803",
+          "way/1072277804",
+          "way/1072277805",
+          "way/1072277806",
+          "way/1108788010",
+          "way/1108792165",
+          "way/1108799654",
+          "way/1108808564",
+          "way/1108808568",
+          "way/1108808569",
+          "way/1108815171",
+          "way/1108820554",
+          "way/1108820555",
+          "way/1108821215",
+          "way/1108825959",
+          "way/1109092923",
+          "way/1109093687",
+          "way/1109093688",
+          "way/1109098702",
+          "way/1109098703",
+          "way/1227029799"
+        ],
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
+        "bounds": {
+          "policy": {
+            "playKm": 20,
+            "coreKm": 5,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              12.339221510066022,
+              -70.22130160114335,
+              12.70098328993398,
+              -69.85296419885665
+            ],
+            "core": [
+              12.474882177516506,
+              -70.083150647727,
+              12.565322622483496,
+              -69.99111515227301
+            ],
+            "outline": [
+              12.289221510066021,
+              -70.27130160114335,
+              12.75098328993398,
+              -69.80296419885666
+            ],
+            "wide": [
+              11.739221510066022,
+              -70.82130160114335,
+              13.30098328993398,
+              -69.25296419885666
+            ]
+          },
+          "airportMarginMetres": 17532.04342570576,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        }
+      },
+      "extractKey": "oranjestad",
+      "extractSha256": {
+        "places": "252976a8cb048a8caf4fa6288aee5ccfc53269eec4ddaca2fe48cbc1763447e7",
+        "extras": "8f6a215f7c8774b750873434100c38c00bc6db253446e0c6d88f1bb5bcd6b424",
+        "water": "eab107a153b8208073908182beba1b0ac8cee8a31b0d4aa1ab8d19327cb0769b",
+        "landuse": "127c2a9d01c46f96be41ce5fdf68348d454a2e709dbf23ba9f26de0e78e7c47f",
+        "roads": "2cff15cd0daa37bf7a7d66f4a8fd0ebdbb19748097f980f52f46c71f1c943179"
+      },
+      "sourceJob": {
+        "city": "oranjestad",
+        "sourceRunId": 38438164960,
+        "sourceArtifact": "city-bootstrap-aw-63bd2c672a57eb3151f8f0be45844fd419eb89be",
+        "sourceSha": "63bd2c672a57eb3151f8f0be45844fd419eb89be",
+        "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+        "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+        "extractSha256": {
+          "places": "252976a8cb048a8caf4fa6288aee5ccfc53269eec4ddaca2fe48cbc1763447e7",
+          "extras": "8f6a215f7c8774b750873434100c38c00bc6db253446e0c6d88f1bb5bcd6b424",
+          "water": "eab107a153b8208073908182beba1b0ac8cee8a31b0d4aa1ab8d19327cb0769b",
+          "landuse": "127c2a9d01c46f96be41ce5fdf68348d454a2e709dbf23ba9f26de0e78e7c47f",
+          "roads": "2cff15cd0daa37bf7a7d66f4a8fd0ebdbb19748097f980f52f46c71f1c943179"
+        }
+      }
+    }
+  ]
+}

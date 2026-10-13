@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "earlyCheckpoint": "be0c211a371e5e4533acc8ec2b946928e2629da0",
+  "candidateCommit": "2921534bdc8959a8489713f9b1652381702808a5",
+  "visuallyInspected": "proof/anatomy-v4-refit.jpg",
+  "imageSha256": "73204d905bc72d7f79541b4ab6bcbe7e2fb451f942de071ec51a6e80c78dd751",
+  "observations": [
+    "Neutral and half-open iris/pupil and eye highlights visible; full blink closes over corneas.",
+    "Joined lid atlas follows the head; no old separate lid nodes.",
+    "Angular orbital folds, coarse ear shading, broad mottling and waxy skin highlights remain."
+  ],
+  "library": {
+    "library_file_id": "libfile_bd57abc427ac819180aecbdb7006ba62",
+    "file_id": "file_00000000345081f6ae93b4dc134241df",
+    "file_name": "Allworld-anatomy-v4-skin-cornea-refit-review.jpg",
+    "current_version_number": 0,
+    "originalLocalPath": "/tmp/allworld-v4-library.CizCJt/Allworld-anatomy-v4-skin-cornea-refit-review.jpg",
+    "artifactType": "image"
+  },
+  "noProductionAdoption": true
+}

@@ -85,6 +85,14 @@
       "bytes": 2479,
       "sha256": "23ae5feca3fb233d9a64613bbd54e4538bd2294d3a75b37087ae00b2f6fd44b8"
     },
+    "receipts/integration-verification.json": {
+      "bytes": 313,
+      "sha256": "fe4faf045d6c77cfe699c26f4b769d97291fcd6f9a1b48535a1b04fa7e3d8076"
+    },
+    "receipts/review-delivery.json": {
+      "bytes": 996,
+      "sha256": "4f4c6df1910643a36a679fbcc7d39590b056ed634a311d9c194c7475d3d5a62b"
+    },
     "receipts/source-preservation.json": {
       "bytes": 44209,
       "sha256": "6a9f88365a1adc26624ecd0595d26ec6dcb910c6bd06dc76350533c7605d7f63"

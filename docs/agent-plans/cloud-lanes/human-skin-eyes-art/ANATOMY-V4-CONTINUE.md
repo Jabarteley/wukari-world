@@ -2,6 +2,12 @@
 
 Separate owned review candidate. The corrected `fitted-v1` packet at `2544b6d66bddf5431ed15bd17298a21b43bcc454` remains byte-for-byte unchanged. This derivative consumes **`2921534bdc8959a8489713f9b1652381702808a5`**, frame `original-human-anatomy-frame@4`; it does not adopt or modify the human master. No new appearances, controls, workers, runtime changes or deployment.
 
+Tangible checkpoint **`be0c211a371e5e4533acc8ec2b946928e2629da0`** was pushed to this lane's branch without force. The incremental v4 packet is about 4.90 MiB including this documentation and hashes. The later handoff commit adds references and receipts only; artifact bytes are unchanged.
+
+[Review image in Library](https://chatgpt.com/api/library/files/libfile_bd57abc427ac819180aecbdb7006ba62/download). File ID `file_00000000345081f6ae93b4dc134241df`; Library ID `libfile_bd57abc427ac819180aecbdb7006ba62`. This is an actual local GLTFLoader render, not retouched or image-generated.
+
+Output GLB SHA-256: `b96fd39c318ff2a6906ba073ff6ae5d8ed3aa7ac84755d2dd8db24fea6d01890`. Packed Blender SHA-256: `4c18c8ca5ee69f0fc91ad3155c400ebd99083afe65445ed5a45bef2f83e7f25c`.
+
 ## Open the tangible result
 
 - [Editable packed Blender source](../../../../experiments/cloud-lanes/human-skin-eyes-art/fitted-v4/artifacts/fitted-human-skin-eyes-v4.blend)

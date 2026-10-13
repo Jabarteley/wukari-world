@@ -1,4 +1,6 @@
-Current correction: [CORNEA-CORRECTION.md](CORNEA-CORRECTION.md). The owned cap regression now passes the original gate and dense intermediate-blink sweep; earlier failure history below is retained.
+Latest separate candidate: [ANATOMY-V4-CONTINUE.md](ANATOMY-V4-CONTINUE.md), fitted to exact human commit `2921534b`. This earlier derivative remains preserved unchanged.
+
+Earlier correction: [CORNEA-CORRECTION.md](CORNEA-CORRECTION.md). The owned cap regression passes its original gate and dense intermediate-blink sweep; earlier failure history below is retained.
 
 # Pinned human material derivative — provisional fit
 

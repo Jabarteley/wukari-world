@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "cityId": "vatican-city",
+  "countryIso2": "VA",
+  "generationIdentity": {
+    "cityId": "vatican-city",
+    "stateId": "va",
+    "stateName": "Vatican City"
+  },
+  "inventorySha256": "dfbfc5de051d11d4f97c7c9a092dd288763026028951c7069a22da15a2d1449a",
+  "inventoryPath": "world/playable-africa-rollout/sources/vatican-city.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "vatican-city-airport",
+    "name": "Eliporto Internazionale della Città del Vaticano",
+    "lon": 12.4465,
+    "lat": 41.902,
+    "sourceUrl": "https://ourairports.com/airports/VA-0001/"
+  },
+  "bounds": [
+    41.72261031006602,
+    12.210754277159126,
+    42.08437208993398,
+    12.694915522840873
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/italy/centro-261011.osm.pbf",
+      "datasetSha256": "ba5273f937661607db26009a7f4eda6819ecc75c144c85020a15bb4f3e888a49",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6e88658d43d36e63f034487c2d7a9d79ab9cb4f3ae95bb755c3cbb13bcb63cad",
+          "elements": 8160
+        },
+        {
+          "file": "extras.json",
+          "sha256": "20ee93c4eeba4888e67fd324dae6bd68965bcf62ba73f55db5a9ccc09fcd8317",
+          "elements": 2424
+        },
+        {
+          "file": "water.json",
+          "sha256": "fb5363a4d402648114564b319692bff4c582cf3aab3a25865ef87f1c466da6fc",
+          "elements": 838
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "1c934130bcb6778f86653b9d8e973a239072ff7c584c68d9de9dd2b8cfb339a5",
+          "elements": 9547
+        },
+        {
+          "file": "roads.json",
+          "sha256": "da03e9ef353d678cc78248786642e4955e64caf65438e5417b5cb3858b969272",
+          "elements": 5691
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 15,
+    "roads": 2,
+    "neighbourhoodLabels": 6,
+    "landPolygons": 1,
+    "waterPolygons": 0,
+    "reachWaterPolygons": 29
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "clinic",
+        "reason": "no unused named amenity=hospital or amenity=clinic feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "districtLabelSquares": [
+      {
+        "ref": "way/135747106",
+        "place": "square",
+        "name": "Piazza Retta"
+      },
+      {
+        "ref": "relation/10044166",
+        "place": "square",
+        "name": "Saint Peter's Square"
+      },
+      {
+        "ref": "way/388852949",
+        "place": "square",
+        "name": "Basilica Forecourt"
+      },
+      {
+        "ref": "way/604750626",
+        "place": "square",
+        "name": "Grand Espace Notre-Dame-de-la-Garde"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "locality": 1,
+      "square": 4,
+      "suburb": 1
+    }
+  },
+  "observed": {
+    "places": 8160,
+    "extras": 2424,
+    "water": 838,
+    "landuse": 9547,
+    "roads": 5691
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1257,
+      "sha256": "c6734044d94ebe2f3059b406e71e04d3b90e9f6a8e39315ed33a2f30ff6399db"
+    },
+    "geometry.ts": {
+      "bytes": 1895,
+      "sha256": "f59badaa507b626c1594fc6138f274f0f442f446f3d4459b7ef854ed3422b93f"
+    },
+    "index.ts": {
+      "bytes": 263,
+      "sha256": "ecec7f6bbe02507254e517778798d9479f827ab693dbf46fa06af3aad21527e2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/vatican-city.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -2,17 +2,20 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-d-2",
-      "appSha": "808a3ff1a0e30811ddbbcd8999171e9225e575d5",
+      "id": "release-e-1",
+      "appSha": "f887c1d65d9ca2b15fc2812d999c5ea0c4c8892d",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "panama-city",
-        "lisbon",
-        "paramaribo",
-        "damascus",
-        "bangkok",
-        "port-vila",
-        "sanaa"
+        "london",
+        "warsaw",
+        "basseterre",
+        "lahore",
+        "kingstown",
+        "thimphu",
+        "port-moresby",
+        "madrid",
+        "port-of-spain",
+        "roseau"
       ],
       "roundtrip": true
     }

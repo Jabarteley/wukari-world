@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "nf",
-      "table": "scripts/geo/factory/country-tables/nf.json",
+      "id": "ms",
+      "table": "scripts/geo/factory/country-tables/ms.json",
       "appSha": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb"
     }
   ]

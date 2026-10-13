@@ -21,7 +21,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 export const REPO = 'kromate/joinallworld'
 export const TRAILER = 'Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>'
 export const FILE_LIMIT_BYTES = 3_000_000
-export const DISK_FLOOR_BYTES = 8 * 1024 ** 3
+export const DISK_FLOOR_BYTES = Number(process.env.ASSEMBLE_DISK_FLOOR_GIB || 8) * 1024 ** 3
 export const DEFAULT_HEAP_MB = 6144
 export const DEFAULT_LAND_SOURCE = join(homedir(), 'Documents/Allworld-notes/relay/astra-tools/travel-land-components/ne_10m_admin_0_countries.geojson')
 export const LAND_SOURCE_BYTES = 13287234
@@ -363,7 +363,7 @@ function main(argv) {
     const auth = R.run('gh-auth', 'gh', ['auth', 'status'])
     if (auth.code) fail('gh is not logged in (gh auth status failed); this script never prints or reads tokens')
     const fs = statfsSync(tmpRoot)
-    if (fs.bavail * fs.bsize < DISK_FLOOR_BYTES) fail(`less than 8 GiB free under ${tmpRoot}`)
+    if (fs.bavail * fs.bsize < DISK_FLOOR_BYTES) fail(`less than the disk floor free under ${tmpRoot}`)
     end()
 
     // 2 fetch / merge

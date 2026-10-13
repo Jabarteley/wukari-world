@@ -1,0 +1,61 @@
+{
+  "schema": "allworld-skin-eyes-calibration-v1",
+  "integrationCommit": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "humanUVCheckpoint": null,
+  "productionAdmission": false,
+  "units": "metres",
+  "blenderAxes": "Z up / -Y front",
+  "gltfAxes": "Y up / +Z front",
+  "authorship": "Original procedural geometry and textures authored for Allworld; no external assets",
+  "license": "AGPL-3.0-or-later",
+  "files": {
+    "artifacts/skin-eyes-calibration-v1.blend": {
+      "bytes": 1305557,
+      "sha256": "73fb4e24e63ee2c4fe35fa6b7c20f613f4f9df9c3ca964e1e146a813aca1b924"
+    },
+    "artifacts/skin-eyes-calibration-v1.glb": {
+      "bytes": 1619492,
+      "sha256": "520a78795bf7daf1bd7037df3d51fae9d9b74ea094165f87859c76bf78bb5622"
+    },
+    "textures/iris_basecolor.png": {
+      "bytes": 187477,
+      "sha256": "8214dd999c7a3314a75d263ba577e51a7bcf59a054fe0c166148ef77ab113c08"
+    },
+    "textures/iris_normal.png": {
+      "bytes": 77571,
+      "sha256": "07a8f09fb3c650567b8dbd3f58af4f03bc986625a6d6ec77805da8da34502aca"
+    },
+    "textures/sclera_basecolor.png": {
+      "bytes": 60942,
+      "sha256": "ca6c0a5ad08e1b19e52eaddf891d660c75d2ab6c7693f0068df9de464df9b771"
+    },
+    "textures/skin_01_umber_basecolor.png": {
+      "bytes": 126142,
+      "sha256": "62be2711f6d77cb677d12846311c560eaf01f885f189401d01b2649ebb93d43f"
+    },
+    "textures/skin_02_copper_basecolor.png": {
+      "bytes": 127483,
+      "sha256": "6a43f52d47f360dedb082916e5fdc8c9e15ce7def61b68180e52bc544bcffe05"
+    },
+    "textures/skin_03_rose_basecolor.png": {
+      "bytes": 128962,
+      "sha256": "3222699110a07aaa5f96f73862883a850aeec5a257b6ccb7fc7f1581d78942bf"
+    },
+    "textures/skin_normal.png": {
+      "bytes": 224597,
+      "sha256": "b17b40ad1942772f5af1828b94fa7c474a681ce468f0819a06b02a7e5a45ea4a"
+    },
+    "textures/skin_roughness.png": {
+      "bytes": 81561,
+      "sha256": "2b78d9e9285970960ffbd31044766420e16f661e6e8cb27b1ac423156b157e1f"
+    },
+    "textures/texture-manifest.json": {
+      "bytes": 1356,
+      "sha256": "04541f31cec67114fbd7e102a6645e247853bf832334f4fd2474f1d976336205"
+    },
+    "proof/contact-sheet.jpg": {
+      "bytes": 189189,
+      "sha256": "4fd84b5a2950aac7bbd3c0050fe4323fa2573044e922d01dce737677a9939aa5"
+    }
+  }
+}

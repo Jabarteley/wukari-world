@@ -1,0 +1,82 @@
+{
+  "iris_basecolor.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "bytes": 187477,
+    "colorSpace": "sRGB",
+    "alpha": "none"
+  },
+  "iris_normal.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "bytes": 77571,
+    "colorSpace": "Non-Color",
+    "alpha": "none"
+  },
+  "sclera_basecolor.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "bytes": 60942,
+    "colorSpace": "sRGB",
+    "alpha": "none"
+  },
+  "skin_01_umber_basecolor.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "bytes": 126142,
+    "colorSpace": "sRGB",
+    "alpha": "none"
+  },
+  "skin_02_copper_basecolor.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "bytes": 127483,
+    "colorSpace": "sRGB",
+    "alpha": "none"
+  },
+  "skin_03_rose_basecolor.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "bytes": 128962,
+    "colorSpace": "sRGB",
+    "alpha": "none"
+  },
+  "skin_normal.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "RGB",
+    "bytes": 224597,
+    "colorSpace": "Non-Color",
+    "alpha": "none"
+  },
+  "skin_roughness.png": {
+    "dimensions": [
+      512,
+      512
+    ],
+    "mode": "L",
+    "bytes": 81561,
+    "colorSpace": "Non-Color",
+    "alpha": "none"
+  }
+}

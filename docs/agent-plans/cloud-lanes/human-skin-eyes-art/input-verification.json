@@ -1,0 +1,14 @@
+{
+  "integrationCommit": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "packetLock": {
+    "bytes": 14085,
+    "path": "packets/9c15f10e6c82bbf31aa74e9dbcf2c9d3e4aef67ef3789d255c7c2e608623e7cb.json",
+    "schema": "allworld-cloud-packet-lock-v1",
+    "sha256": "9c15f10e6c82bbf31aa74e9dbcf2c9d3e4aef67ef3789d255c7c2e608623e7cb"
+  },
+  "verifiedFiles": 155,
+  "verifiedBytes": 2746358,
+  "pinnedHumanContract": "71d6b5ad391754b0f30fc5364e993208299640ed",
+  "newHumanMeshCheckpoint": null,
+  "status": "PASS: SHA-256 and byte lengths of packet and indexed inputs"
+}

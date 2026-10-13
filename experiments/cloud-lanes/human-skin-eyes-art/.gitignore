@@ -1,0 +1,4 @@
+node_modules/
+.blender-cache/
+*.blend1
+proof/*.png

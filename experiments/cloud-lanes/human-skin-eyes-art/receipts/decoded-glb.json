@@ -1,0 +1,565 @@
+{
+  "status": "PASS",
+  "calibrationOnly": true,
+  "glbBytes": 1619492,
+  "glbSha256": "520a78795bf7daf1bd7037df3d51fae9d9b74ea094165f87859c76bf78bb5622",
+  "meshCount": 7,
+  "triangles": 17296,
+  "exportedVertices": 9185,
+  "materialCount": 7,
+  "textureCount": 12,
+  "embeddedImageCount": 8,
+  "embeddedTextureBytes": 1094118,
+  "boundsGLTFWorldM": [
+    [
+      -0.12649999745190144,
+      0.013499999418854713,
+      -0.012000000104308128
+    ],
+    [
+      0.11399847455322742,
+      0.07450000010430813,
+      0.01281999982893467
+    ]
+  ],
+  "extensionsUsed": [
+    "KHR_materials_transmission",
+    "KHR_materials_ior"
+  ],
+  "extensionsRequired": [],
+  "meshes": [
+    {
+      "name": "SkinPatch_01_umber",
+      "exportedVertices": 1369,
+      "triangles": 2592,
+      "material": 0,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ],
+      "boundsGLTFLocalM": [
+        [
+          -0.02449999935925007,
+          -0.030500000342726707,
+          -0.012000000104308128
+        ],
+        [
+          0.02449999935925007,
+          0.030500000342726707,
+          -3.828093841917735e-09
+        ]
+      ],
+      "translationGLTFM": [
+        -0.10199999809265137,
+        0.04399999976158142,
+        0.0
+      ]
+    },
+    {
+      "name": "SkinPatch_02_copper",
+      "exportedVertices": 1369,
+      "triangles": 2592,
+      "material": 1,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ],
+      "boundsGLTFLocalM": [
+        [
+          -0.02449999935925007,
+          -0.030500000342726707,
+          -0.012000000104308128
+        ],
+        [
+          0.02449999935925007,
+          0.030500000342726707,
+          -3.828093841917735e-09
+        ]
+      ],
+      "translationGLTFM": [
+        -0.03400000184774399,
+        0.04399999976158142,
+        0.0
+      ]
+    },
+    {
+      "name": "SkinPatch_03_rose",
+      "exportedVertices": 1369,
+      "triangles": 2592,
+      "material": 2,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ],
+      "boundsGLTFLocalM": [
+        [
+          -0.02449999935925007,
+          -0.030500000342726707,
+          -0.012000000104308128
+        ],
+        [
+          0.02449999935925007,
+          0.030500000342726707,
+          -3.828093841917735e-09
+        ]
+      ],
+      "translationGLTFM": [
+        0.03400000184774399,
+        0.04399999976158142,
+        0.0
+      ]
+    },
+    {
+      "name": "Eye_ScleralShell_24mm",
+      "exportedVertices": 2996,
+      "triangles": 5680,
+      "material": 3,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ],
+      "boundsGLTFLocalM": [
+        [
+          -0.011998476460576057,
+          -0.011998476460576057,
+          -0.012000000104308128
+        ],
+        [
+          0.011998476460576057,
+          0.011998476460576057,
+          0.010665364563465118
+        ]
+      ],
+      "translationGLTFM": [
+        0.10199999809265137,
+        0.04399999976158142,
+        0.0
+      ]
+    },
+    {
+      "name": "Eye_ConcaveIris_11p2mm",
+      "exportedVertices": 1040,
+      "triangles": 1920,
+      "material": 4,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ],
+      "boundsGLTFLocalM": [
+        [
+          -0.00559999980032444,
+          -0.00559999980032444,
+          0.010334884747862816
+        ],
+        [
+          0.00559999980032444,
+          0.00559999980032444,
+          0.01080000028014183
+        ]
+      ],
+      "translationGLTFM": [
+        0.10199999809265137,
+        0.04399999976158142,
+        0.0
+      ]
+    },
+    {
+      "name": "Eye_RecessedPupil_4p4mm",
+      "exportedVertices": 81,
+      "triangles": 80,
+      "material": 5,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ],
+      "boundsGLTFLocalM": [
+        [
+          -0.0022100000642240047,
+          -0.0022100000642240047,
+          0.010200000368058681
+        ],
+        [
+          0.0022100000642240047,
+          0.0022100000642240047,
+          0.010200000368058681
+        ]
+      ],
+      "translationGLTFM": [
+        0.10199999809265137,
+        0.04399999976158142,
+        0.0
+      ]
+    },
+    {
+      "name": "Eye_CorneaCap",
+      "exportedVertices": 961,
+      "triangles": 1840,
+      "material": 6,
+      "attributes": [
+        "POSITION",
+        "NORMAL",
+        "TEXCOORD_0",
+        "TANGENT"
+      ],
+      "boundsGLTFLocalM": [
+        [
+          -0.0056500001810491085,
+          -0.0056500001810491085,
+          0.01071999967098236
+        ],
+        [
+          0.0056500001810491085,
+          0.0056500001810491085,
+          0.01281999982893467
+        ]
+      ],
+      "translationGLTFM": [
+        0.10199999809265137,
+        0.04399999976158142,
+        0.0
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extras": {
+        "source": "Original analytic raster bakes; seed 7108; make_textures.py",
+        "appearanceClassification": "artistic, not ethnicity or a scanned individual"
+      },
+      "name": "Skin_01_umber_BAKED_PBR",
+      "normalTexture": {
+        "index": 0,
+        "scale": 0.699999988079071
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 1
+        },
+        "metallicFactor": 0,
+        "metallicRoughnessTexture": {
+          "index": 2
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "extras": {
+        "source": "Original analytic raster bakes; seed 7108; make_textures.py",
+        "appearanceClassification": "artistic, not ethnicity or a scanned individual"
+      },
+      "name": "Skin_02_copper_BAKED_PBR",
+      "normalTexture": {
+        "index": 3,
+        "scale": 0.699999988079071
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 4
+        },
+        "metallicFactor": 0,
+        "metallicRoughnessTexture": {
+          "index": 5
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "extras": {
+        "source": "Original analytic raster bakes; seed 7108; make_textures.py",
+        "appearanceClassification": "artistic, not ethnicity or a scanned individual"
+      },
+      "name": "Skin_03_rose_BAKED_PBR",
+      "normalTexture": {
+        "index": 6,
+        "scale": 0.699999988079071
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 7
+        },
+        "metallicFactor": 0,
+        "metallicRoughnessTexture": {
+          "index": 8
+        }
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Eye_Sclera_BAKED_PBR",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 9
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.23999999463558197
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Eye_Iris_BAKED_PBR",
+      "normalTexture": {
+        "index": 10,
+        "scale": 0.3499999940395355
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 11
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 0.3400000035762787
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Eye_Pupil",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.00039999998989515007,
+          0.0002500000118743628,
+          0.0001500000071246177,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.6000000238418579
+      }
+    },
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_transmission": {
+          "transmissionFactor": 1
+        },
+        "KHR_materials_ior": {
+          "ior": 1.3760000467300415
+        }
+      },
+      "extras": {
+        "alphaMode": "OPAQUE: optical transmission, no alpha blending",
+        "runtimeDependency": "KHR_materials_transmission + KHR_materials_ior; isolated GLTFLoader proof only"
+      },
+      "name": "Eye_Cornea_TRANSMISSION",
+      "pbrMetallicRoughness": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.04500000178813934
+      }
+    }
+  ],
+  "images": [
+    {
+      "name": "skin_normal",
+      "dimensions": [
+        512,
+        512
+      ],
+      "channels": "RGB",
+      "encodedBytes": 224597,
+      "sha256": "b17b40ad1942772f5af1828b94fa7c474a681ce468f0819a06b02a7e5a45ea4a",
+      "opaquePixels": true,
+      "channelRange": [
+        [
+          106,
+          149
+        ],
+        [
+          104,
+          151
+        ],
+        [
+          253,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "skin_01_umber_basecolor",
+      "dimensions": [
+        512,
+        512
+      ],
+      "channels": "RGB",
+      "encodedBytes": 126142,
+      "sha256": "62be2711f6d77cb677d12846311c560eaf01f885f189401d01b2649ebb93d43f",
+      "opaquePixels": true,
+      "channelRange": [
+        [
+          59,
+          109
+        ],
+        [
+          17,
+          68
+        ],
+        [
+          2,
+          51
+        ]
+      ]
+    },
+    {
+      "name": "skin_roughness",
+      "dimensions": [
+        512,
+        512
+      ],
+      "channels": "RGB",
+      "encodedBytes": 160944,
+      "sha256": "aa6d2476551dc190cd2deb632936565ccf6b764c1b5ec09fcee47d72f564501c",
+      "opaquePixels": true,
+      "channelRange": [
+        [
+          255,
+          255
+        ],
+        [
+          106,
+          153
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "skin_02_copper_basecolor",
+      "dimensions": [
+        512,
+        512
+      ],
+      "channels": "RGB",
+      "encodedBytes": 127483,
+      "sha256": "6a43f52d47f360dedb082916e5fdc8c9e15ce7def61b68180e52bc544bcffe05",
+      "opaquePixels": true,
+      "channelRange": [
+        [
+          120,
+          171
+        ],
+        [
+          59,
+          110
+        ],
+        [
+          26,
+          76
+        ]
+      ]
+    },
+    {
+      "name": "skin_03_rose_basecolor",
+      "dimensions": [
+        512,
+        512
+      ],
+      "channels": "RGB",
+      "encodedBytes": 128962,
+      "sha256": "3222699110a07aaa5f96f73862883a850aeec5a257b6ccb7fc7f1581d78942bf",
+      "opaquePixels": true,
+      "channelRange": [
+        [
+          163,
+          215
+        ],
+        [
+          111,
+          160
+        ],
+        [
+          81,
+          131
+        ]
+      ]
+    },
+    {
+      "name": "sclera_basecolor",
+      "dimensions": [
+        512,
+        512
+      ],
+      "channels": "RGB",
+      "encodedBytes": 60942,
+      "sha256": "ca6c0a5ad08e1b19e52eaddf891d660c75d2ab6c7693f0068df9de464df9b771",
+      "opaquePixels": true,
+      "channelRange": [
+        [
+          186,
+          197
+        ],
+        [
+          168,
+          198
+        ],
+        [
+          158,
+          187
+        ]
+      ]
+    },
+    {
+      "name": "iris_normal",
+      "dimensions": [
+        512,
+        512
+      ],
+      "channels": "RGB",
+      "encodedBytes": 77571,
+      "sha256": "07a8f09fb3c650567b8dbd3f58af4f03bc986625a6d6ec77805da8da34502aca",
+      "opaquePixels": true,
+      "channelRange": [
+        [
+          125,
+          130
+        ],
+        [
+          125,
+          130
+        ],
+        [
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "name": "iris_basecolor",
+      "dimensions": [
+        512,
+        512
+      ],
+      "channels": "RGB",
+      "encodedBytes": 187477,
+      "sha256": "8214dd999c7a3314a75d263ba577e51a7bcf59a054fe0c166148ef77ab113c08",
+      "opaquePixels": true,
+      "channelRange": [
+        [
+          3,
+          112
+        ],
+        [
+          2,
+          75
+        ],
+        [
+          1,
+          27
+        ]
+      ]
+    }
+  ],
+  "joints": 0,
+  "morphs": 0,
+  "animations": 0
+}

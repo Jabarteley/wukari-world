@@ -1,0 +1,58 @@
+Extensions: writing cache failed ([Errno 30] Read-only file system: '/home/agent/.config/blender/4.3/extensions').
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+18:48:14 | INFO: Starting glTF 2.0 export
+18:48:14 | INFO: Extracting primitive: SkinPatch_01_umber
+18:48:14 | INFO: Primitives created: 1
+18:48:14 | INFO: Extracting primitive: SkinPatch_02_copper
+18:48:15 | INFO: Primitives created: 1
+18:48:15 | INFO: Extracting primitive: SkinPatch_03_rose
+18:48:15 | INFO: Primitives created: 1
+18:48:15 | INFO: Extracting primitive: Eye_ScleralShell_24mm
+18:48:15 | INFO: Primitives created: 1
+18:48:15 | INFO: Extracting primitive: Eye_ConcaveIris_11p2mm
+18:48:15 | INFO: Primitives created: 1
+18:48:15 | INFO: Extracting primitive: Eye_RecessedPupil_4p4mm
+18:48:15 | INFO: Primitives created: 1
+18:48:15 | INFO: Extracting primitive: Eye_CorneaCap
+18:48:15 | INFO: Primitives created: 1
+18:48:15 | INFO: Finished glTF 2.0 export in 0.17031097412109375 s
+Blender 4.3.2
+Fra:1 Mem:24.03M (Peak 24.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SkinPatch_01_umber
+Fra:1 Mem:24.03M (Peak 24.03M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Proof_Backdrop
+Fra:1 Mem:24.20M (Peak 24.20M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_CorneaCap
+Fra:1 Mem:24.39M (Peak 24.39M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_RecessedPupil_4p4mm
+Fra:1 Mem:24.39M (Peak 24.39M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_ConcaveIris_11p2mm
+Fra:1 Mem:24.66M (Peak 24.66M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SkinPatch_02_copper
+Fra:1 Mem:24.97M (Peak 24.97M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Eye_ScleralShell_24mm
+Fra:1 Mem:25.32M (Peak 25.32M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SkinPatch_03_rose
+Fra:1 Mem:25.63M (Peak 25.63M) | Time:00:00.00 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:25.60M (Peak 25.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading iris_normal.png
+Fra:1 Mem:25.60M (Peak 25.63M) | Time:00:00.01 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading skin_01_umber_basecolor.png
+Fra:1 Mem:26.61M (Peak 27.60M) | Time:00:00.01 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading skin_roughness.png
+Fra:1 Mem:27.61M (Peak 28.61M) | Time:00:00.01 | Mem:2.00M, Peak:2.00M | Scene, ViewLayer | Updating Images | Loading skin_normal.png
+Fra:1 Mem:28.61M (Peak 29.61M) | Time:00:00.01 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Updating Images | Loading skin_02_copper_basecolor.png
+Fra:1 Mem:29.61M (Peak 30.61M) | Time:00:00.01 | Mem:4.00M, Peak:4.00M | Scene, ViewLayer | Updating Images | Loading skin_03_rose_basecolor.png
+Fra:1 Mem:31.61M (Peak 33.61M) | Time:00:00.01 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Updating Images | Loading sclera_basecolor.png
+Fra:1 Mem:31.61M (Peak 33.61M) | Time:00:00.01 | Mem:6.00M, Peak:6.00M | Scene, ViewLayer | Updating Images | Loading iris_basecolor.png
+Fra:1 Mem:32.82M (Peak 35.61M) | Time:00:00.01 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Waiting for render to start
+Failed to denoise, build has no OpenImageDenoise support
+Fra:1 Mem:32.82M (Peak 35.61M) | Time:00:00.01 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:32.82M (Peak 35.61M) | Time:00:00.01 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:32.82M (Peak 35.61M) | Time:00:00.01 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:32.91M (Peak 35.61M) | Time:00:00.01 | Mem:8.01M, Peak:8.01M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:32.91M (Peak 35.61M) | Time:00:00.01 | Mem:8.01M, Peak:8.01M | Scene, ViewLayer | Failed to denoise, build has no OpenImageDenoise support
+Traceback (most recent call last):
+  File "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/build.py", line 161, in <module>
+    set_light(label);scene.render.filepath=str(P/'proof'/f'blender-{label}.png');bpy.ops.render.render(write_still=True)
+                                                                                 ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/usr/share/blender/scripts/modules/bpy/ops.py", line 109, in __call__
+    ret = _op_call(self.idname_py(), kw)
+RuntimeError: Error: Failed to denoise, build has no OpenImageDenoise support
+Error: Failed to denoise, build has no OpenImageDenoise support
+
+
+Info: Saved "skin-eyes-calibration-v1.blend"
+Error: Failed to denoise, build has no OpenImageDenoise support
+Error: Failed to denoise, build has no OpenImageDenoise support
+
+Blender quit

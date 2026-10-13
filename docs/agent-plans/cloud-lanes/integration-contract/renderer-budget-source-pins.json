@@ -1,0 +1,72 @@
+{
+  "schema": "allworld-combined-character-budget-sources-v1",
+  "baseline": "81d9f599d87dfb34adf49cd9337a0b05678e5e0d",
+  "scope": "read-only local code audit; no asset review, runtime integration or tests executed",
+  "files": [
+    {
+      "path": "src/budgets.ts",
+      "bytes": 12796,
+      "sha256": "998b98cd1d1d2be509eb50fa32bd53551c56aa2409098374a56a1db39bed07a2"
+    },
+    {
+      "path": "src/scene/body/body-assets.test.ts",
+      "bytes": 5748,
+      "sha256": "026b48c791a2a54fd2a06dec62230573533e2ac12212014eb12d7d6956746cdf"
+    },
+    {
+      "path": "src/scene/body/manifest.ts",
+      "bytes": 3053,
+      "sha256": "bea27314fd3d8acdc166f151c7227389e8f764cf8bd5beaaebc4da397100b745"
+    },
+    {
+      "path": "src/scene/body/skinned.ts",
+      "bytes": 24713,
+      "sha256": "ce647008f84413ad7e647ed3acfb1d462fe041ee700dd53a088da078d429bcbd"
+    },
+    {
+      "path": "src/scene/body/gate.ts",
+      "bytes": 2600,
+      "sha256": "0217b20637f77717a1fda754bd465a8ca47b4028cdef70ad68c227785e101204"
+    },
+    {
+      "path": "src/scene/avatar-preview.test.ts",
+      "bytes": 27223,
+      "sha256": "6002bed87fb6ac8be9f71babe046d615ced8f43da634114955fe9bf42484d839"
+    },
+    {
+      "path": "src/scene/avatar-preview.ts",
+      "bytes": 23456,
+      "sha256": "c6108a6737cb332940682d5a007b340b7aaa1964a424132f805b89349b287065"
+    },
+    {
+      "path": "src/scene/characters.ts",
+      "bytes": 124287,
+      "sha256": "8c0c8a8fee027dba02f31976948baa52de616882c2bd9d7d3818c531b80be0ca"
+    },
+    {
+      "path": "src/scene/scenes.test.ts",
+      "bytes": 43813,
+      "sha256": "acd3125e7fbf0d1b27994a964c8a7b085fd220bab36bacf6cf0c392d315b7c8f"
+    },
+    {
+      "path": "src/scene/models/scene-models.ts",
+      "bytes": 26965,
+      "sha256": "24e61b0e7eacedbb128363971602876633896ff6875aa24f3642c5fdbb8499c5"
+    },
+    {
+      "path": "src/scene/wardrobe/geometry.ts",
+      "bytes": 52583,
+      "sha256": "57de05de1cc111ffd30a8a81ebf3be18ff8776feab47892f10d3716821120ae6"
+    },
+    {
+      "path": "src/scene/wardrobe/renderer.ts",
+      "bytes": 10667,
+      "sha256": "4627d0704750cea6ff7a5b531f38bd21bfc0daec75660f2bf5148dca4a54989e"
+    },
+    {
+      "path": "scripts/download-budget.ts",
+      "bytes": 14049,
+      "sha256": "3b2fa249e871e18e97702e72d3d4e53824bb81627aae4fefb645bb044772c07f"
+    }
+  ]
+}

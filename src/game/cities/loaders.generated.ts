@@ -235,8 +235,9 @@ export const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze([
   ["monaco","Monaco"],
   ["stockholm","Stockholm"],
   ["paris","Paris"],
+  ["vatican-city","Vatican City"],
 ])
-export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 233, countries: 192 })
+export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 234, countries: 193 })
 
 export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./lagos/index.ts").then(m=>m.lagosCity),
@@ -472,4 +473,5 @@ export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./monaco/index.ts").then(m=>m.city),
   ()=>import("./stockholm/index.ts").then(m=>m.city),
   ()=>import("./paris/index.ts").then(m=>m.city),
+  ()=>import("./vatican-city/index.ts").then(m=>m.city),
 ] satisfies readonly CityModuleLoader[])

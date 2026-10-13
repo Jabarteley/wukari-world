@@ -19,7 +19,7 @@ export type ArenaConnection = 'connecting' | 'open' | 'closed'
 export interface ArenaListener {
   open(): void
   state(frame: ArenaStateFrame): void
-  snap(room: string, k: number, s: unknown): void
+  snap(room: string, k: number, s: unknown, acks?: number[]): void
   /** A refusal (`code` is the machine code, `reason` the sentence for the player). */
   error(code: string, reason: string): void
   connection(status: ArenaConnection): void
@@ -52,7 +52,7 @@ export function createArenaClient(listener: ArenaListener): ArenaClient {
       switch (frame.type) {
         case 'heartbeat': if (socket.readyState === 1) socket.send('{"type":"heartbeat-ack"}'); break
         case 'arena-state': listener.state(frame as unknown as ArenaStateFrame); break
-        case 'arena-snap': { const f = frame as unknown as Extract<ArenaServerFrame, { type: 'arena-snap' }>; listener.snap(f.room, f.k, f.s); break }
+        case 'arena-snap': { const f = frame as unknown as Extract<ArenaServerFrame, { type: 'arena-snap' }>; listener.snap(f.room, f.k, f.s, f.a); break }
         case 'error': if (typeof frame.code === 'string' && /^(arena_|invalid_arena)/.test(frame.code)) listener.error(frame.code, typeof frame.reason === 'string' ? frame.reason : 'That could not be done.'); else if (frame.code === 'rate_limited') listener.error('rate_limited', 'You are sending too fast. Reconnecting.'); break
         default: break
       }
@@ -109,10 +109,12 @@ export class InputPipe {
     const t = this.opt.now()
     const stale = this.held !== 0 && t - this.lastSend >= this.opt.resendMs
     if (!this.dirty && !stale) return false
-    if (t - this.lastSend < this.opt.minGapMs) return false
     while (this.log.length && t - (this.log[0] as number) > this.opt.windowMs) this.log.shift()
-    // Over the ceiling only a change of what is held, or a tap, goes out; a mere re-send is skipped.
-    if (this.log.length >= this.opt.maxPerWindow && !this.dirty) return false
+    const over = this.log.length >= this.opt.maxPerWindow
+    // Over the ceiling the gap widens (taps still merge into the next frame, none is lost) and a mere re-send is skipped, so a
+    // player mashing buttons for a minute stays well under the host's 600 frames a minute.
+    if (t - this.lastSend < (over ? this.opt.minGapMs * 2.5 : this.opt.minGapMs)) return false
+    if (over && !this.dirty) return false
     this.opt.send(this.held, this.pending)
     this.sentHeld = this.held; this.pending = 0; this.dirty = false; this.lastSend = t
     this.log.push(t)

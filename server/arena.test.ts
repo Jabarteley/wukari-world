@@ -56,7 +56,7 @@ test('a room is made, joined by its code, and starts by itself when both seats a
   const h = await harness(t);
   const [ada, bola] = [await h.peer('Ada'), await h.peer('Bola')];
   const room = await h.create(ada);
-  assert.match(room, /^g-[a-hj-km-np-z2-9]{6}$/);
+  assert.match(room, /^g-fight-[a-hj-km-np-z2-9]{6}$/);
   assert.equal(ada.state.status, 'lobby'); assert.equal(ada.state.you, 0); assert.equal(ada.state.host, true);
   assert.equal(ada.state.practice, false); assert.equal(ada.state.snap, null);
   await h.join(bola, room);
@@ -192,7 +192,7 @@ test('limits: unknown game and room are refused, rooms per minute, watchers per 
   const h = await harness(t);
   const [ada, bola, cy] = [await h.peer('Ada'), await h.peer('Bola'), await h.peer('Cyril')];
   h.send(ada, 'arena-create', { game: 'nope' });
-  h.send(ada, 'arena-join', { room: 'g-aaaaaa' });
+  h.send(ada, 'arena-join', { room: 'g-fight-aaaaaa' });
   h.send(ada, 'arena-join', { room: '../../etc' });
   await h.until(() => ada.errors.length === 3, 'refusals');
   assert.deepEqual(ada.errors.map((e) => e.code), ['arena_game', 'arena_unknown', 'arena_unknown']);
@@ -222,7 +222,7 @@ test('input flooding and junk are dropped without breaking the room', async (t) 
   await h.until(() => ada.state.status === 'playing', 'start');
   for (let i = 0; i < 300; i++) h.send(ada, 'arena-input', { room, i: i % 64 });
   for (const junk of [-1, 99, 'x', null, [1], { a: 1 }, 1.5]) h.send(ada, 'arena-input', { room, i: junk });
-  h.send(ada, 'arena-input', { room: 'g-zzzzzz', i: 1 });
+  h.send(ada, 'arena-input', { room: 'g-fight-zzzzzz', i: 1 });
   await new Promise((r) => setTimeout(r, 100));
   assert.deepEqual(ada.errors, []);
   assert.equal(ada.state.status, 'playing');
@@ -237,4 +237,15 @@ test('a room nobody is connected to closes by itself', async (t) => {
   h.send(bola, 'arena-join', { room });
   await h.until(() => bola.errors.length === 1, 'refusal');
   assert.equal(bola.errors[0]?.code, 'arena_unknown');
+});
+
+test('practice seat count: default is the game\'s minimum, `seats` raises it up to the maximum and never beyond', async (t) => {
+  const h = await harness(t);
+  const [ada, bola, cyril] = [await h.peer('Ada'), await h.peer('Bola'), await h.peer('Cyril')];
+  const make = async (p: Peer, body: Record<string, unknown>) => { p.state = null as unknown as ArenaStateFrame; h.send(p, 'arena-create', { game: 'race', practice: true, ...body }); await h.until(() => Boolean(p.state), 'state'); return p.state; };
+  const base = await make(ada, {});
+  assert.equal(base.min, 2); assert.equal(base.seats.length, base.min);
+  assert.equal((await make(bola, { seats: 3 })).seats.length, 3);
+  assert.equal((await make(cyril, { seats: 99 })).seats.length, cyril.state.max);
+  assert.equal((await make(cyril, { seats: 1 })).seats.length, cyril.state.min);
 });

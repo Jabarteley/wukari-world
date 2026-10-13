@@ -18,7 +18,7 @@ test('registry exposes fight and rejects unknown ids', () => {
   assert.equal(arenaGame('fight'), fight)
   assert.equal(arenaGame('nope'), null)
   assert.equal(arenaGame('__proto__'), null)
-  assert.deepEqual(Object.keys(ARENA_GAMES), ['fight'])
+  assert.ok(Object.keys(ARENA_GAMES).includes('fight'))
 })
 
 test('input parsing is strict and edges latch between ticks', () => {

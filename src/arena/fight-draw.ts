@@ -10,10 +10,10 @@ import { lerp } from './interp.ts'
 
 export interface FighterColors { skin: string; hair: string; top: string; bottoms: string }
 export interface Spark { x: number; y: number; vx: number; vy: number; life: number; max: number; color: string; size: number }
-export interface Fx { sparks: Spark[]; shake: number; flash: [number, number]; lastTick: number }
-export interface Meta { names: [string, string]; colors: [FighterColors, FighterColors]; you: number | null; rounds: number; reduced: boolean }
+export interface Fx { sparks: Spark[]; shake: number; flash: [number, number]; lastTick: number; /** white KO flash 0..1 and zoom 0..1 */ ko: number }
+export interface Meta { names: [string, string]; colors: [FighterColors, FighterColors]; you: number | null; rounds: number; reduced: boolean; /** performance.now() */ time: number; /** the seat that won the match once it is over, 2 for a draw, else -1 */ winner: number; /** the fighter to draw for `you` instead of the blended snapshot (client prediction) */ own?: FighterSnap | null }
 
-export const newFx = (): Fx => ({ sparks: [], shake: 0, flash: [0, 0], lastTick: -1 })
+export const newFx = (): Fx => ({ sparks: [], shake: 0, flash: [0, 0], lastTick: -1, ko: 0 })
 
 /** Spawn the sparks, shake and flash for this tick's hits (`events` of a snapshot). Call once per snapshot. */
 export function spawnHits(fx: Fx, snap: FightSnap, reduced: boolean): void {
@@ -99,10 +99,16 @@ function banner(ctx: CanvasRenderingContext2D, w: number, h: number, text: strin
 
 /** Paint one frame. `a`→`b` are the snapshots around the moment, `t` how far between them. */
 export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a: FightSnap, b: FightSnap, t: number, meta: Meta, fx: Fx, dtFrames: number): void {
-  const f0 = mix(a.f[0], b.f[0], t), f1 = mix(a.f[1], b.f[1], t)
+  let f0 = mix(a.f[0], b.f[0], t), f1 = mix(a.f[1], b.f[1], t)
+  if (meta.own && meta.you === 0) f0 = meta.own
+  else if (meta.own && meta.you === 1) f1 = meta.own
+  // The knock-out: a white flash and a push-in on whoever went down.
+  if (b.p === PHASE.ko && b.c <= 1 && !meta.reduced && fx.ko === 0) fx.ko = 1
+  const loser = b.f[0][5] <= 0 ? f0[0] : b.f[1][5] <= 0 ? f1[0] : null
+  const zoom = b.p === PHASE.ko && loser !== null && !meta.reduced ? Math.max(0, 1 - b.c / 30) : 0
   const gap = Math.abs(f1[0] - f0[0])
-  const viewW = Math.max(560, Math.min(ARENA_W, gap + 380))
-  const mid = (f0[0] + f1[0]) / 2
+  const viewW = Math.max(420, Math.min(ARENA_W, gap + 300)) * (1 - 0.22 * zoom)
+  const mid = loser !== null && zoom > 0 ? lerp((f0[0] + f1[0]) / 2, loser, zoom) : (f0[0] + f1[0]) / 2
   const camX = Math.max(0, Math.min(ARENA_W - viewW, mid - viewW / 2))
   const scale = w / viewW, ground = h * 0.84
   const hudH = 54
@@ -117,7 +123,8 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
   const order = f0[3] === ACT.ko ? [1, 0] : [0, 1]
   for (const seat of order) {
     const f = seat ? f1 : f0
-    const px = sx(f[0]), py = ground - f[1] * scale
+    const bob = f[3] === ACT.none && f[1] === 0 && (f[6] & 1) === 0 ? Math.sin(meta.time / 240 + seat * 2) * 1.6 * scale : 0
+    const px = sx(f[0]), py = ground - f[1] * scale + bob
     ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(px, ground + 4, 20 * scale * (1 - Math.min(0.5, f[1] / 260)), 5 * scale, 0, 0, Math.PI * 2); ctx.fill()
     ctx.save(); ctx.translate(px, py); ctx.scale((f[2] ? 1 : -1) * scale * 1.0, scale)
     person(ctx, f, meta.colors[seat as 0 | 1], f[0] * 0.14, fx.flash[seat as 0 | 1] > 0 && f[3] === ACT.hurt)
@@ -130,9 +137,11 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
   }
   ctx.globalAlpha = 1
   ctx.restore()
+  if (fx.ko > 0.01) { ctx.fillStyle = `rgba(255,255,255,${(fx.ko * 0.75).toFixed(3)})`; ctx.fillRect(0, 0, w, h) }
   // advance effects once per drawn frame (in 60 fps frames)
   for (const s of fx.sparks) s.life += dtFrames * 0.75
   fx.sparks = fx.sparks.filter((s) => s.life < s.max)
+  fx.ko *= Math.pow(0.9, dtFrames); if (b.p !== PHASE.ko) fx.ko = 0
   fx.shake *= Math.pow(0.82, dtFrames)
   fx.flash[0] = Math.max(0, fx.flash[0] - dtFrames); fx.flash[1] = Math.max(0, fx.flash[1] - dtFrames)
 
@@ -161,5 +170,11 @@ export function drawFight(ctx: CanvasRenderingContext2D, w: number, h: number, a
   } else if (b.p === PHASE.ko || b.p === PHASE.over) {
     const dead = b.f[0][5] <= 0 || b.f[1][5] <= 0
     banner(ctx, w, h, b.q === 2 ? 'DRAW' : dead ? 'K.O.!' : 'TIME!', s * 1.3, dead ? '#ff6a4d' : '#ffd34d')
+    if (b.p === PHASE.over && meta.winner >= 0) {
+      const line = meta.winner === 2 ? 'Nobody wins' : `${meta.names[meta.winner as 0 | 1]} wins!`
+      ctx.font = `800 ${Math.round(s * 0.62)}px system-ui, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+      ctx.lineWidth = 5; ctx.strokeStyle = 'rgba(0,0,0,.7)'; ctx.strokeText(line, w / 2, h * 0.38 + s * 1.1)
+      ctx.fillStyle = '#fff'; ctx.fillText(line, w / 2, h * 0.38 + s * 1.1)
+    }
   }
 }

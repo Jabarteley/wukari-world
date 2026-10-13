@@ -6,8 +6,10 @@
  */
 import type { RealtimeRules } from './rules.ts'
 import fight from './fight.ts'
+import race from './race.ts'
+import football from './football.ts'
 
 // The rules are stored behind the contract's loosest types; the room host never looks inside a state or an input.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const ARENA_GAMES: Readonly<Record<string, RealtimeRules<any, any, any>>> = Object.freeze({ fight })
+export const ARENA_GAMES: Readonly<Record<string, RealtimeRules<any, any, any>>> = Object.freeze({ fight, race, football })
 export const arenaGame = (id: unknown): RealtimeRules<any, any, any> | null => (typeof id === 'string' && Object.hasOwn(ARENA_GAMES, id) ? ARENA_GAMES[id] ?? null : null)

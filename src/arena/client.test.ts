@@ -41,7 +41,7 @@ test('a frantic player stays under the budget: 600 a minute is the host limit', 
   const { p, sent, at } = pipe()
   for (let ms = 0; ms < 60000; ms += 16) { at(ms); p.hold((ms / 16) % 2 ? 1 : 2); p.press(8); p.flush() }
   // Taps/changes are always sent (the gap is 60 ms: at most ~1000 a minute would pass); the pipe's own gap must keep it under the host's.
-  assert.ok(sent.length <= 1000, String(sent.length))
+  assert.ok(sent.length <= 520, String(sent.length))
 })
 
 test('reset lets go of everything', () => {

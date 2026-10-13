@@ -4,7 +4,7 @@
  * a fixed server tick (src/arena/*.ts), with watchers. The server is the only judge: it holds the state, takes each
  * seat's input, steps the rules `hz` times a second and broadcasts one compact snapshot per tick.
  *
- * A ROOM is not a place: it needs no venue, no city and no life, only an open socket. Its code (`g-` + 6 characters) is the
+ * A ROOM is not a place: it needs no venue, no city and no life, only an open socket. Its code (`g-<game>-` + 6 characters, src/arena/code.ts) is the
  * invitation. In a room:
  *   lobby    people arrive by the code; the first is the host. Full seats start the game by themselves; the host may
  *            start against the computer (`practice` rooms start at once).
@@ -23,6 +23,7 @@ import { makeRng } from '../../src/game/util.ts';
 import { withNames } from '../../src/tables/rules.ts';
 import { arenaGame } from '../../src/arena/registry.ts';
 import { cleanArenaOptions } from '../../src/arena/rules.ts';
+import { ROOM_CODE } from '../../src/arena/code.ts';
 import type { RealtimeRules } from '../../src/arena/rules.ts';
 import type { ArenaLook, ArenaResult, ArenaSeat, ArenaStateFrame, ArenaStatus } from '../../src/types/arena.ts';
 import type { TableOptionValue } from '../../src/types/growth.ts';
@@ -33,7 +34,6 @@ export const TUNING = {
   speed: 1, maxRooms: 300, maxWatchers: 20, createsPerMinute: 8, inputBurst: 30, inputPerSecond: 24,
   awayForfeitMs: 12000, awaySeatMs: 30000, emptyMs: 60000, lobbyMs: 15 * 60000, overMs: 10 * 60000, sweepMs: 2000, maxCatchUp: 4,
 };
-const ROOM_CODE = /^g-[a-hj-km-np-z2-9]{6}$/;
 const ALPHABET = 'abcdefghjkmnpqrstuvwxyz23456789';
 const refuse = (code: string, reason: string) => Object.assign(new Error(code), { reason });
 const isRecord = (value: unknown): value is Record<string, unknown> => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -47,6 +47,8 @@ interface Seat {
   input: unknown
   again: boolean
   tokens: number; refilled: number
+  /** The client's counter on the newest input received, and the newest one a tick has consumed (sent back in `a` for prediction). */
+  lastN: number; ackN: number
 }
 interface Room {
   code: string
@@ -80,10 +82,10 @@ export function arenaService(ctx: RouteContext) {
   return api;
 }
 
-function newCode(taken: (code: string) => boolean): string {
+function newCode(game: string, taken: (code: string) => boolean): string {
   for (let attempt = 0; attempt < 20; attempt++) {
     const bytes = crypto.getRandomValues(new Uint8Array(6));
-    const code = 'g-' + [...bytes].map((b) => ALPHABET[b % ALPHABET.length]).join('');
+    const code = `g-${game}-` + [...bytes].map((b) => ALPHABET[b % ALPHABET.length]).join('');
     if (!taken(code)) return code;
   }
   throw refuse('arena_busy', 'Too many games are on. Try again in a minute.');
@@ -154,7 +156,7 @@ function buildService(ctx: RouteContext) {
   function takeSeat(room: Room, ws: WsConnection, look: ArenaLook | undefined): boolean {
     const reuse = room.seats.findIndex((s) => s.left);
     if (reuse < 0 && room.seats.length >= room.rules.seats.max) return false;
-    const seat: Seat = { id: ws.session.id, name: ws.session.name, bot: false, ...(look ? { look } : {}), away: 0, left: false, input: room.rules.idle(), again: false, tokens: TUNING.inputBurst, refilled: clock() };
+    const seat: Seat = { id: ws.session.id, name: ws.session.name, bot: false, ...(look ? { look } : {}), away: 0, left: false, input: room.rules.idle(), again: false, tokens: TUNING.inputBurst, refilled: clock(), lastN: 0, ackN: 0 };
     if (reuse >= 0) room.seats[reuse] = seat; else room.seats.push(seat);
     return true;
   }
@@ -223,17 +225,19 @@ function buildService(ctx: RouteContext) {
       if (seat.bot) return rules.bot(room.state, index, room.rng);
       if (seat.left) return rules.idle();
       const given = seat.input;
+      seat.ackN = seat.lastN;
       if (rules.settle) seat.input = rules.settle(given);
       return given;
     });
     room.state = rules.step(room.state, inputs, room.rng);
     room.tick += 1;
     room.snap = rules.snapshot(room.state);
-    const text = JSON.stringify(room.snap);
+    const acks = room.seats.map((seat) => seat.ackN);
+    const text = JSON.stringify(room.snap) + (acks.some((n) => n > 0) ? JSON.stringify(acks) : '');
     // A tick that changed nothing is not sent (a standing fight is a frame a second), but a client hears something every second.
     if (text !== room.lastText || room.tick - room.lastSentTick >= rules.hz) {
       room.lastText = text; room.lastSentTick = room.tick;
-      sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });
+      sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap, ...(acks.some((n) => n > 0) ? { a: acks } : {}) });
     }
     finishIfOver(room);
   }
@@ -283,7 +287,7 @@ function buildService(ctx: RouteContext) {
   }
   const watching = (room: Room): number => new Set([...room.sockets].map((s) => s.session.id).filter((who) => seatOf(room, who) < 0)).size;
   const humans = (room: Room): number => room.seats.filter((s) => !s.bot && !s.left).length;
-  const fillBots = (room: Room): void => { while (room.seats.length < room.rules.seats.max) room.seats.push({ id: `bot-${room.seats.length}`, name: `Bot ${room.seats.length}`, bot: true, away: 0, left: false, input: room.rules.idle(), again: false, tokens: 0, refilled: 0 }); };
+  const fillBots = (room: Room, target: number = room.rules.seats.min): void => { const upTo = Math.max(room.rules.seats.min, Math.min(room.rules.seats.max, Math.floor(target) || 0)); while (room.seats.length < upTo) room.seats.push({ id: `bot-${room.seats.length}`, name: `Bot ${room.seats.length}`, bot: true, away: 0, left: false, input: room.rules.idle(), again: false, tokens: 0, refilled: 0, lastN: 0, ackN: 0 }); };
 
   function create(ws: WsConnection, message: IncomingFrame): void {
     const rules = arenaGame(message.game);
@@ -292,13 +296,13 @@ function buildService(ctx: RouteContext) {
     exit(ws);
     if (rooms.size >= TUNING.maxRooms) throw refuse('arena_busy', 'Too many games are on right now. Try again in a minute.');
     const practice = message.practice === true;
-    const code = newCode((c) => rooms.has(c));
+    const code = newCode(rules.id, (c) => rooms.has(c));
     const options = cleanArenaOptions(rules, message.options);
     const room: Room = { code, rules, host: ws.session.id, practice, status: 'lobby', seats: [], options, sockets: new Set(), state: null, rng: Math.random, match: 0, result: null, tick: 0, nextAt: 0, timer: null, lastText: '', lastSentTick: 0, snap: null, emptySince: 0, since: clock() };
     rooms.set(code, room);
     takeSeat(room, ws, lookOf(message.look));
     attach(room, ws);
-    if (practice) { fillBots(room); startMatch(room); } else announce(room);
+    if (practice) { fillBots(room, Number(message.seats)); startMatch(room); } else announce(room);
   }
   function join(ws: WsConnection, message: IncomingFrame, watchOnly = false): void {
     const room = roomOf(message);
@@ -318,7 +322,7 @@ function buildService(ctx: RouteContext) {
     const room = roomOf(message);
     if (room.host !== ws.session.id) throw refuse('arena_not_host', 'Only the person who made the game can start it.');
     if (room.status !== 'lobby') throw refuse('arena_started', 'The game has started.');
-    if (message.bots !== undefined && Number(message.bots) > 0) fillBots(room);
+    if (message.bots !== undefined && Number(message.bots) > 0) fillBots(room, Number(message.seats));
     if (room.seats.length < room.rules.seats.min) throw refuse('arena_need_players', 'You need someone to play against. Share the link, or play the computer.');
     startMatch(room);
   }
@@ -341,6 +345,7 @@ function buildService(ctx: RouteContext) {
     let parsed: unknown;
     try { parsed = room.rules.parseInput(message.i); } catch { return; }
     seat.input = room.rules.reduce ? room.rules.reduce(seat.input, parsed) : parsed;
+    if (typeof message.n === 'number' && Number.isSafeInteger(message.n) && message.n > seat.lastN) seat.lastN = message.n;
   }
   function again(ws: WsConnection, message: IncomingFrame): void {
     const room = roomOf(message);

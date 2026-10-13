@@ -21,12 +21,15 @@ import type { TableOptionValue } from './growth.ts'
 /** [skin, hair colour, outfit colour, bottoms colour] ids from the player's look; cosmetic, untrusted, looked up on the client. */
 export type ArenaLook = [string, string, string, string]
 
-export interface ArenaCreateFrame { type: 'arena-create'; game: string; practice?: boolean; options?: Record<string, TableOptionValue>; look?: ArenaLook }
+/** `seats` (practice): how many seats in all, people and computer players; default the rules' minimum, at most their maximum. */
+export interface ArenaCreateFrame { type: 'arena-create'; game: string; practice?: boolean; seats?: number; options?: Record<string, TableOptionValue>; look?: ArenaLook }
 export interface ArenaJoinFrame { type: 'arena-join'; room: string; look?: ArenaLook }
 export interface ArenaWatchFrame { type: 'arena-watch'; room: string }
-export interface ArenaStartFrame { type: 'arena-start'; room: string; bots?: number }
+/** `bots` > 0 fills empty seats with the computer, up to `seats` in all (default the rules' minimum). */
+export interface ArenaStartFrame { type: 'arena-start'; room: string; bots?: number; seats?: number }
 export interface ArenaOptionsFrame { type: 'arena-options'; room: string; options: Record<string, TableOptionValue> }
-export interface ArenaInputFrame { type: 'arena-input'; room: string; i: unknown }
+/** `n` is the client's input counter (rises by one per frame): the server echoes the newest one a tick used, in `a` of the snapshots, so a client can predict its own seat. */
+export interface ArenaInputFrame { type: 'arena-input'; room: string; i: unknown; n?: number }
 export interface ArenaAgainFrame { type: 'arena-again'; room: string }
 export interface ArenaLeaveFrame { type: 'arena-leave'; room: string }
 export type ArenaClientFrame = ArenaCreateFrame | ArenaJoinFrame | ArenaWatchFrame | ArenaStartFrame | ArenaOptionsFrame | ArenaInputFrame | ArenaAgainFrame | ArenaLeaveFrame
@@ -63,7 +66,7 @@ export interface ArenaStateFrame {
   match: number
 }
 /** `k` is the server tick (rises by one per tick; a tick that changed nothing is not sent). */
-export interface ArenaSnapFrame { type: 'arena-snap'; room: string; k: number; s: unknown }
+export interface ArenaSnapFrame { type: 'arena-snap'; room: string; k: number; s: unknown; /** per seat: the newest input counter the tick consumed; absent until anyone sent a counter. */ a?: number[] }
 export type ArenaServerFrame = ArenaStateFrame | ArenaSnapFrame
 
 /** Codes of a refused `arena-*` frame (server/growth/arena.ts refuse()), always with a `reason`. */

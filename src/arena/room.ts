@@ -89,7 +89,7 @@ export function useArenaRoom<Snap>(opts: ArenaRoomOptions<Snap>) {
     error(code, reason) {
       note.value = reason
       if (code === 'arena_unknown' || code === 'arena_game') settled()
-      if (code === 'arena_unknown' || code === 'arena_game' || code === 'arena_full') gone.value = !state.value
+      if (code === 'arena_unknown' || code === 'arena_game' || code === 'arena_full' || code === 'arena_unavailable') gone.value = !state.value
       if (gone.value) opts.onGone?.(code)
     },
     connection(status) { conn.value = status },

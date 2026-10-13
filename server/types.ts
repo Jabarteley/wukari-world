@@ -178,8 +178,8 @@ export interface AccountRecord {
   welcome?: 'pending' | 'failed' | 'skipped' | number
   /**
    * "E-mail me about my character" was on when the account was made (the creation screen says so next to its button). Set
-   * only on an account created from the build that has comeback mail; absent on an older account, which has to switch it on
-   * itself. Cleared when the owner unsubscribes from everything. Read when the character first plays after the change.
+   * only on an account created from the build that has comeback mail; absent on an older account, which is switched on at its
+   * character's next visit and told so once in the game. Cleared when the owner unsubscribes from everything.
    */
   mailOptIn?: true
   /**
@@ -766,6 +766,8 @@ export interface ComebackRecord {
   suppressedDay: number
   /** Made for a character that belongs to an account: the record outlives the idle-player sweep (the choice stays) and its recipient is the account's verified address. Absent: the address of Stay in touch. */
   acct?: true
+  /** Switched on by default for an account made before the creation screen said so; the owner has not answered the notice in the game yet. */
+  auto?: true
   /** Ping mails sent to this player (src/game/ping.ts): when, and whose ping. At most PING.mail.kept, a week of them; counted apart from `sent`. */
   pings?: { at: number; from: string }[]
 }

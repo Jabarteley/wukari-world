@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf",
     "bytes": 1738714327,
     "md5": "a6dbf890ad7110b33a22012bb7b1a32c",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf",
+        "bytes": 251874432,
+        "md5": "cf05f5628adeed48ff74399bb8c33a72",
+        "snapshotDate": "2026-10-11",
+        "reason": "The admin-0 relation of Indonesia (304751) has two member ways outside the Indonesia clip: way/1147865283 (Singapore-Indonesia territorial sea, 1.33N 104.41E to 1.44N 104.57E) and way/1181737260 (Malaysia-Indonesia land border, Sabah/Kalimantan Utara, 4.39N 115.90E to 4.38N 115.87E); both are also members of the Singapore and Malaysia relations in that extract"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",

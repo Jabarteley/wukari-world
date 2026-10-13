@@ -348,7 +348,9 @@ def extract(args):
     for member in relation['members']:
         # OSM Relation:boundary defines subarea relations as hierarchy references. A node cannot be a boundary edge, so
         # every node member (admin_centre, label, capital, highest_point, ...) is a non-boundary reference, listed in the receipt.
-        if member['type'] == 'n' or (member['type'] == 'r' and member['role'] == 'subarea'):
+        # A `land_area` relation member (Antigua and Barbuda: relation 9604462, boundary=land_area, the land mass) is a second, land-only picture of the same country, not part of the
+        # boundary ring: the 6 maritime member ways already close the admin-0 area, assembled and proved segment by segment below.
+        if member['type'] == 'n' or (member['type'] == 'r' and member['role'] in {'subarea', 'land_area'}):
             excluded.append(member)
         elif member['type'] == 'w' and member['role'] in {'', 'outer', 'inner'}:
             boundary_records.append(member)

@@ -28,3 +28,17 @@ test('a neighbourhood label or an unknown ref is never dropped', () => {
   assert.deepEqual(dropWaterLabels(recipe, ['way/5']).removed, []);
   assert.equal(dropWaterLabels('not a recipe', ['way/5']).text, 'not a recipe');
 });
+
+test('a generated water label outside the play box is found by id and dropped; inside labels and neighbourhoods stay', async () => {
+  const { outsideWaterLabelIds, dropWaterLabelsById } = await import('./water-label-skip.mjs');
+  const terrain = 'export const TERRAIN = {\n  names: ' + JSON.stringify([
+    { id: 'water-way-249196321', name: 'A', lon: 5.2, lat: 2.5, kind: 'water' },
+    { id: 'water-relation-9', name: 'B', lon: 3.5, lat: 2.5, kind: 'water' },
+    { id: 'district-1', name: 'C', lon: 9, lat: 9, kind: 'neighbourhood' },
+  ]) + ',\n  surround: {},\n}\n';
+  assert.deepEqual(outsideWaterLabelIds(terrain, [2, 1, 4, 3]), ['water-way-249196321']);
+  assert.deepEqual(outsideWaterLabelIds('no names here', [2, 1, 4, 3]), []);
+  const { text, removed } = dropWaterLabelsById(recipe, ['water-way-249196321', 'district-1']);
+  assert.deepEqual(removed.map(label => label.ref), ['way/249196321']);
+  assert.ok(text.includes('relation/9') && text.includes('"district-1"'));
+});

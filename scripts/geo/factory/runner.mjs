@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { ensureAcceptance } from './acceptance.mjs';
-import { dropWaterLabels, unlabellableWaterRefs } from './water-label-skip.mjs';
+import { dropWaterLabels, dropWaterLabelsById, outsideWaterLabelIds, unlabellableWaterRefs } from './water-label-skip.mjs';
 const a = process.argv.slice(2), get = k => a[a.indexOf(k) + 1], home = dirname(fileURLToPath(import.meta.url));
 if (!['--table', '--workspace', '--outdir'].every(k => a.includes(k)))
     throw Error('Usage: runner.mjs --table JSON --workspace DISPOSABLE_CLONE --outdir PRIVATE_EVIDENCE [--plan|--execute]');
@@ -137,6 +137,19 @@ for (const c of cityPlan) {
             copyFileSync(logPath, join(out, `${c.id}-generation-attempt-${attempt}.log`));
             (row.warnings ??= []).push(...dropped.removed.map(label => `water label ${label.ref} skipped: no interior point in the rendered water (generator error; the label is optional)`));
             (row.skippedWaterLabels ??= []).push(...dropped.removed.map(label => label.ref));
+            row.machineStages.generation = run(`${c.id}/generation`, c.generation, c.generatedFiles.map(p => join(workspace, p)));
+        }
+        // A water label the generator placed outside the play box would fail the city proof (outsideBounds): drop exactly that optional label and generate again (at most twice).
+        for (let attempt = 1; row.machineStages.generation && attempt <= 2; attempt += 1) {
+            const recipePath = join(workspace, `scripts/geo/destination-detail/${c.id}.ts`), terrainPath = join(workspace, `src/game/cities/${c.id}/terrain.ts`);
+            const bounds = JSON.parse(readFileSync(join(out, 'selection', `${c.id}-manifest.json`))).facts.bounds;
+            const dropped = dropWaterLabelsById(readFileSync(recipePath, 'utf8'), outsideWaterLabelIds(readFileSync(terrainPath, 'utf8'), bounds));
+            if (!dropped.removed.length)
+                break;
+            writeFileSync(recipePath, dropped.text);
+            (row.warnings ??= []).push(...dropped.removed.map(label => `water label ${label.ref} skipped: generated outside the play box (the label is optional)`));
+            (row.skippedWaterLabels ??= []).push(...dropped.removed.map(label => label.ref));
+            delete cache.steps[`${c.id}/generation`];
             row.machineStages.generation = run(`${c.id}/generation`, c.generation, c.generatedFiles.map(p => join(workspace, p)));
         }
         if (!row.machineStages.generation)

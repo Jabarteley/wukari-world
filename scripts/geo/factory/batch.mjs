@@ -11,6 +11,7 @@ import { factsForTarget, geometryPolicy } from './inputs.mjs';
 import { fillSlots } from './slot-fallback.mjs';
 import { fitCatalogueBudget, CATALOGUE_LIMIT } from './catalogue-budget.mjs';
 import { districtLabels } from './district-labels.mjs';
+import { nearCoastlineMetres } from './coast-near-play.mjs';
 import { profileFor, emptySlotReason } from './profile.mjs';
 
 // Less coastline than this in the wide box is not a sea shore (mis-tagged creek or pond rings).
@@ -176,7 +177,7 @@ for (const target of table.targets) {
         if (districts.fallback) row.districtLabelFallback = 'fewer than the minimum suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended' + (profile.districtIslandPlaces?.length ? '; then named island|islet places (profile ' + profile.name + ')' : '') + (districts.areaRefs.length ? `; still short of five nodes, so place areas at their centre points: ${districts.areaRefs.join(', ')}` : '');
         // A coast is a shore a city can stand beside, not one mis-tagged ring: Asuncion's extract holds a single closed natural=coastline way of 976 m (the creek
         // "Zanja Soro" in landlocked Paraguay), which made the recipe a sea city and sent every dry place to the wrong side of the exact-coast stage.
-        const coastlineMetres = el => (el.geometry ?? []).slice(1).reduce((sum, p, i) => sum + Math.hypot((p.lon - el.geometry[i].lon) * 111320 * Math.cos(p.lat * Math.PI / 180), (p.lat - el.geometry[i].lat) * 111320), 0);
+        const coastlineMetres = el => nearCoastlineMetres(el, boxes.play);
         const waterElements = ex.answers.water.elements, coast = waterElements.filter(el => el.tags.natural === 'coastline').reduce((sum, el) => sum + coastlineMetres(el), 0) >= MINIMUM_COASTLINE_METRES;
         let policy = { kind: coast ? 'coast' : 'inland' };
         if (!coast && raw.source.waterRecipe?.kind === 'lake') {

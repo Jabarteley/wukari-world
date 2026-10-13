@@ -111,7 +111,7 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   const codes = ['ISO3166-1:alpha2', 'ISO3166-1'].filter(key => key in relation.tags).map(key => relation.tags[key]);
   assert.ok(codes.length && codes.every(code => code === iso), 'missing/conflicting country ISO tags');
   // A node cannot be a boundary edge: every node member (admin_centre, label, capital, highest_point, ...) is a non-boundary reference.
-  const nonBoundary = member => member.type === 'n' || member.type === 'r' && member.role === 'subarea';
+  const nonBoundary = member => member.type === 'n' || member.type === 'r' && ['subarea', 'land_area'].includes(member.role);
   const relationMembers = relation.members.filter(member => !nonBoundary(member));
   // Reviewed absent-member policy: maritime=yes ways wholly outside the Geofabrik clip, listed with the evidence file SHA-256.
   const absentPolicy = receipt.absentMemberPolicy ?? null;

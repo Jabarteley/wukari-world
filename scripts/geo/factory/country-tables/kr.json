@@ -5,7 +5,16 @@
     "url": "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf",
     "bytes": 289058579,
     "md5": "df6f9430a975f927c08f4afddade7f97",
-    "snapshotDate": "2026-10-11"
+    "snapshotDate": "2026-10-11",
+    "neighbours": [
+      {
+        "url": "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf",
+        "bytes": 92633737,
+        "md5": "613c91f099220dd867b1a64c69e8422b",
+        "snapshotDate": "2026-10-11",
+        "reason": "Seoul water box reaches 38.35N and 125.84E: the Yellow Sea coast north and west of Ganghwa (Han estuary, Yeonan and Haeju coast) is cut at the border and continues in North Korea; the Korea and North Korea clips together cover the whole box"
+      }
+    ]
   },
   "airports": {
     "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
@@ -25,7 +34,8 @@
       "timezone": {
         "id": "Asia/Seoul",
         "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
-      }
+      },
+      "sceneWaterExtent": "play"
     }
   ]
 }

@@ -120,6 +120,43 @@ OVERRIDE = {'relationId': 100, 'expectedTags': DISPUTED, 'reason': 'Owner-approv
 
 
 @unittest.skipIf(osmium is None, 'osmium/shapely not installed')
+class LandAreaMember(unittest.TestCase):
+    """Antigua and Barbuda: the admin-0 relation also lists a boundary=land_area relation (role `land_area`), a land-only second picture of the country."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix='boundary-land-area-test-')
+        self.dir = Path(self.tmp.name)
+        self.pbf = self.dir / 'aa.osm.pbf'
+        members = [('w', 1, 'outer'), ('w', 2, 'outer')]
+        self.objects = [helpers.node(1, 0, 0), helpers.node(2, 2, 0), helpers.node(3, 2, 2), helpers.node(4, 0, 2),
+                        helpers.way(1, [1, 2, 3], tags=BORDER), helpers.way(2, [3, 4, 1], tags=BORDER)]
+        self.members = members
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def run_boundary(self, extra_role):
+        helpers.write(self.pbf, self.objects + [helpers.relation(100, self.members + [('r', 200, extra_role)], COUNTRY)], box=(-0.1, -0.1, 2.1, 2.1))
+        sha = helpers.merge_sha(self.pbf)
+        command = [sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(self.pbf), '--country', 'AA', '--expected-sha256', sha,
+                   '--expected-bytes', str(self.pbf.stat().st_size), '--dataset-url', PRIMARY, '--dataset-date', '2026-10-11', '--out', str(self.dir / extra_role)]
+        done = subprocess.run(command, capture_output=True, text=True)
+        return done, sha
+
+    def test_land_area_relation_is_listed_not_a_boundary_member(self):
+        done, sha = self.run_boundary('land_area')
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        receipt = json.loads((self.dir / 'land_area/receipt.json').read_text())
+        listed = receipt['memberRolePolicy']['excludedNonBoundaryMembers']
+        self.assertEqual([(m['type'], m['ref'], m['role']) for m in listed], [('r', 200, 'land_area')])
+        check = subprocess.run(['node', '--input-type=module', '-e', NODE_CHECK, str(self.dir / 'land_area'), sha], capture_output=True, text=True, cwd=HERE.parent)
+        self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
+
+    def test_any_other_relation_role_still_holds(self):
+        done, _ = self.run_boundary('inner_area')
+        self.assertNotEqual(done.returncode, 0)
+
+
+@unittest.skipIf(osmium is None, 'osmium/shapely not installed')
 class RelationOverride(unittest.TestCase):
     """Reviewed admin-0 relation override (Palestine, relation 1703814: boundary=disputed, no admin_level)."""
     def setUp(self):

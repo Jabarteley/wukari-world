@@ -31,6 +31,10 @@ class FinerWater(ValueError):
 MAX_RING_VERTICES = 6000
 MAX_SERIALIZATION_AREA_FRACTION = 1e-12
 MAX_GAP_SLIVER_M2 = 5000
+# A face with ring contacts that has more vertices than this has a small window round each contact cut out before any constrained triangulation. Set well above the faces of the
+# cities that already pass (Port Louis: a face of about 8,000 vertices, whose constrained triangulation is within budget) so their terrain and geometry stay byte-identical; Helsinki (65,064) and Stockholm (61,414) are far above it.
+CONTACT_WINDOW_VERTICES = 30000
+CONTACT_WINDOW_DEGREES = 0.0003
 # Width of a gap sliver (area over half its perimeter) that is filled: at most this many shore-simplification tolerances (the shore of the water moves by up to one).
 MAX_GAP_SLIVER_TOLERANCES = 4
 # A triangle thinner than this (square degrees; about 1e-3 m2) has a signed area that rounds to zero in the renderer's ring check.
@@ -226,8 +230,20 @@ def main():
     seg = np.asarray(segments) * scale
     a, v = seg[:, 0], seg[:, 1] - seg[:, 0]
     v2 = (v * v).sum(axis=1)
+    a_all, v_all, v2_all = a, v, v2
+    # A point is classified against the nearest shore segments only: the segments are indexed (in metres, the same scale as the arithmetic below), so a coast of hundreds of thousands
+    # of segments (the Stockholm archipelago: 25,122 coastline ways) costs a lookup per point and not a pass over all segments (that took more than the runner's 15 minutes).
+    segment_tree = shapely.STRtree(shapely.linestrings(np.stack([seg[:, 0], seg[:, 1]], axis=1)))
     def side(point):
-        xy = np.array([point.x, point.y]) * scale
+        xy_all = np.array([point.x, point.y]) * scale
+        probe = shapely.points(xy_all)
+        first = int(segment_tree.query_nearest(probe)[0])
+        first_distance = float(np.sqrt(((a[first] + np.clip(((xy_all - a[first]) * v[first]).sum() / v2[first], 0, 1) * v[first] - xy_all) ** 2).sum()))
+        # Every segment within a hair of the nearest one, in their original order (ties are broken by the first, as before), then the same arithmetic on that subset.
+        near = np.sort(segment_tree.query(probe, predicate='dwithin', distance=first_distance * (1 + 1e-6) + 1e-6))
+        return side_among(xy_all, near)
+    def side_among(xy, near):
+        a, v, v2 = a_all[near], v_all[near], v2_all[near]
         u = np.clip(((xy - a) * v).sum(axis=1) / v2, 0, 1)
         distance = ((a + u[:, None] * v - xy) ** 2).sum(axis=1)
         i = int(distance.argmin())
@@ -491,12 +507,38 @@ def main():
     report['gapSliversFilled'] = {'count': len(gap_slivers), 'areaM2': sum(h.area for h in gap_slivers) * scale[0] * scale[1]}
     if not water.is_valid or not tile_union.is_valid:
         raise ValueError('Invalid canonical land/water union')
-    def ring_contacts(p):
+    def touching_rings(p):
+        # Pairs (i, j), i < j, of rings of the polygon that intersect: one indexed bulk query, not a test of every pair (a face of 1,058 rings is 560,000 pairs).
         rings = [p.exterior, *p.interiors]
-        return any(a.intersects(b) for i, a in enumerate(rings) for b in rings[i + 1:])
+        if len(rings) < 2:
+            return rings, []
+        first, second = shapely.STRtree(rings).query(rings, predicate='intersects')
+        return rings, sorted({(int(i), int(j)) for i, j in zip(first, second) if i < j})
+    def ring_contacts(p):
+        return bool(touching_rings(p)[1])
     def topology(g):
         counts = water_counts(g)
         return {'components': counts['polygons'], 'holes': counts['holes']}
+
+    def ring_contact_points(p):
+        rings, pairs = touching_rings(p)
+        found = []
+        for i, j in pairs:
+            touch = rings[i].intersection(rings[j])
+            if not touch.is_empty:
+                found.append(touch if touch.geom_type == 'Point' else touch.representative_point())
+        return found
+
+    def cut_out_contact(face):
+        # Cut a small window (CONTACT_WINDOW_DEGREES, about 35 m) round the face's first ring contact out of the face: the window pieces hold the contact and are small enough to
+        # triangulate exactly, the rest of the face keeps its rings and loses that contact. The pieces tile the face (checked by area), so no coast moves.
+        # None when the cut does not tile the face (the caller then triangulates the whole face).
+        at = ring_contact_points(face)[0]
+        window = box(at.x - CONTACT_WINDOW_DEGREES * 1.0137, at.y - CONTACT_WINDOW_DEGREES * 0.9931, at.x + CONTACT_WINDOW_DEGREES * 1.0071, at.y + CONTACT_WINDOW_DEGREES * 0.9913)
+        pieces = area_polygons(face.intersection(window)) + area_polygons(face.difference(window))
+        if len(pieces) >= 2 and abs(sum(q.area for q in pieces) - face.area) <= face.area * 1e-12:
+            return pieces
+        return None
 
     def merge_flat_triangles(triangles):
         # The triangulation of a face with point contacts can return a triangle of (nearly) collinear vertices; the renderer rejects a ring with no area. Such a triangle is
@@ -532,11 +574,19 @@ def main():
         # A face is water when the water covers most of it. The representative point alone is not enough: for a tiny face that is exactly an island of the water
         # (Singapore, two islets near Tuas) the point can fall on the boundary the two share and then `covers` is true although the face is land.
         selected = [p for p in faces.geoms if g.covers(p.representative_point()) and g.intersection(p).area > p.area / 2]
-        clean, contact_splits, partition_splits = [], 0, 0
+        clean, contact_splits, partition_splits, contact_windows = [], 0, 0, 0
         queue = list(selected)
         while queue:
             face = queue.pop()
             if ring_contacts(face):
+                # A big face with a few point contacts (Helsinki: 1,058 rings, 2 contacts; Stockholm: 806 rings, 15) first has a small window round each contact cut out, so that constrained
+                # triangles are only made of those windows; triangulating the whole face gave 66,138 triangles and a 6.7 MB geometry.ts against the 5 MiB limit.
+                if sum(len(r.coords) for r in [face.exterior, *face.interiors]) > CONTACT_WINDOW_VERTICES and contact_windows < 2000:
+                    pieces = cut_out_contact(face)
+                    if pieces:
+                        contact_windows += 1
+                        queue.extend(pieces)
+                        continue
                 # Exact constrained triangles separate point contacts without moving a coast.
                 contact_splits += 1
                 queue.extend(merge_flat_triangles(list(shapely.constrained_delaunay_triangles(face).geoms)))

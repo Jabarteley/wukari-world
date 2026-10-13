@@ -807,7 +807,7 @@ function headHigh(b: Drawing, look: Look, woman: boolean, fine: boolean, sleepin
   const age = look.appearance?.ageAppearance === 'elder' ? 1 : look.appearance?.ageAppearance === 'mature' ? 0.55 : 0;
   const skin = look.skin, F = FACES[look.face] || FACES.oval, mood = look.expression;
   const dark = channels(skin).reduce((sum, v) => sum + v, 0) < 250; // the two darkest tones: features are lifted, not darkened
-  const deep = shade(skin, -0.22), white = '#f6f1e7', fz = (x: number, y: number) => faceZ(x, y, F), relief = shade(skin, dark ? 0.1 : -0.05);
+  const deep = shade(skin, -0.22), white = '#f6f1e7', fz = (x: number, y: number) => faceZ(x, y, F), relief = shade(skin, dark ? 0.05 : -0.03);
   b.ball(0, HEAD.y + HEAD.ry - F.ry - age * 0.004, 0, HEAD.rx + age * 0.002, F.ry + age * 0.004, HEAD.rz, skin, { seg: 28 });
   if (age) for (const sign of [-1, 1]) b.quad(sign * 0.115, 2.148, fz(sign * 0.115, 2.148) + 0.004, 0.048, 0.003 * age, mix(skin, INK, 0.2), { ry: sign * 0.3 });
   if (F.jaw) b.ball(0, JAW.y, JAW.z, F.jaw, JAW.ry, JAW.rz, skin, { seg: 24 });
@@ -836,11 +836,9 @@ function headHigh(b: Drawing, look: Look, woman: boolean, fine: boolean, sleepin
     b.ball(side * 0.247, 2.19, -0.012, 0.034, 0.066, 0.048, skin, { seg: 10 });
     if (fine) b.ball(side * 0.266, 2.195, -0.004, 0.016, 0.042, 0.027, deep, { seg: 6 });
   }
-  // Cheeks: two soft, warmer swells under the eyes, so the face has volume and a little colour instead of one flat sphere.
-  if (fine) for (const side of [-1, 1]) b.ball(side * 0.125, 2.108, fz(side * 0.125, 2.108) - 0.012, 0.062, 0.05, 0.03, mix(skin, dark ? '#a84a3c' : '#c8574a', dark ? 0.08 : 0.06), { seg: 10, ry: side * 0.5 });
   // Nose: a tip with a wing each side.
-  b.ball(0, 2.126, fz(0, 2.126) + 0.006, 0.034, 0.032, 0.04, relief, { seg: 10 });
-  if (fine) for (const side of [-1, 1]) b.ball(side * 0.03, 2.116, fz(0, 2.116) - 0.004, 0.022, 0.02, 0.026, relief, { seg: 7 });
+  b.ball(0, 2.126, fz(0, 2.126) + 0.004, 0.029, 0.028, 0.034, relief, { seg: 10 });
+  if (fine) for (const side of [-1, 1]) b.ball(side * 0.027, 2.116, fz(0, 2.116) - 0.004, 0.019, 0.017, 0.022, relief, { seg: 7 });
   // Mouth: a line with lifted corners, a two-part upper lip and a fuller lower one.
   const lip = woman ? mix(skin, dark ? '#c9606a' : '#b8454c', 0.6) : mix(skin, dark ? '#a8605a' : '#8a3f3a', dark ? 0.5 : 0.4), line = dark ? '#150a09' : mix(skin, '#2a0f0d', 0.72);
   const my = 2.036, mz = fz(0, my) + 0.002, wide = grin ? 0.12 : 0.1, full = woman ? 1 : 0.78;

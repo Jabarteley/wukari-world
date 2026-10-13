@@ -2,14 +2,11 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-k-1",
-      "appSha": "9279c189fc0c95f3dfbdaaa46c0c3a260019015f",
+      "id": "release-k-va",
+      "appSha": "77e577014bd137c3273bb0d6b5d83b845c470cd5",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "monaco",
-        "helsinki",
-        "stockholm",
-        "paris"
+        "vatican-city"
       ],
       "roundtrip": true,
       "browserOnly": true

@@ -2,12 +2,20 @@
   "schema": "allworld-fitted-skin-eyes-v1",
   "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
   "calibrationCommit": "1efc5a280e52a0b3c432fca649d84689fe91993d",
+  "earlyFittedCommit": "2973529c",
   "fitStatus": "REVIEW_REQUIRED: partial blink intersections; provisional UV overlaps",
   "productionAdmission": false,
+  "sourceAndDerivedGeometry": "original 31 meshes, UVs and morphs exact; two 600-triangle corneal caps added",
+  "units": "metres",
+  "axes": "Blender Z up / -Y front; GLB Y up / +Z front",
   "files": {
     ".gitignore": {
       "bytes": 29,
       "sha256": "8c49f85ff75454610bc93a5e6e310c546a6c27c1aacf365a078297401bb1db01"
+    },
+    "README.md": {
+      "bytes": 13104,
+      "sha256": "5162d19e9aedc5912fb8fd263eab0811f3d9409a3e9ff2d5333dd72a60a076d6"
     },
     "artifacts/fitted-human-skin-eyes-v1.blend": {
       "bytes": 1669924,
@@ -17,9 +25,17 @@
       "bytes": 2124928,
       "sha256": "1498ae740803a421e46d5b72fd64bd113b6b6967872a35a69f51254b21131ebb"
     },
+    "browser_proof.py": {
+      "bytes": 2660,
+      "sha256": "1384b9c745fbad820ba2e24b2b538991e8ee5ae1c9a2929d1fb3f3d0debda7f3"
+    },
     "build_fitted.py": {
       "bytes": 11598,
       "sha256": "cabec355f55e5a89df36a6fcd0935284978b415b41a49dcbbf4cbc2b2c95abfb"
+    },
+    "capture_witness.py": {
+      "bytes": 2731,
+      "sha256": "e4a4a6beabae109e4a0e92677c0924e8154c957a78c6546b549de42f5ad5e666"
     },
     "check_fit.py": {
       "bytes": 5402,
@@ -45,9 +61,21 @@
       "bytes": 1455,
       "sha256": "233c7443c6a7ebe92ef80ef7fc7a076ce35a308b7d9dc148a3db36c3fcf59ada"
     },
+    "proof/fitted-gltf-proof.jpg": {
+      "bytes": 180663,
+      "sha256": "b22485e9bae1863892ed2d8db677f7ee39ea169a406500088c48f559c6782508"
+    },
     "proof/fitted-portraits.jpg": {
       "bytes": 101321,
       "sha256": "b3164eb59be5977c8d424675433e9c8d2cbc4d07cc174461ba5eaf9d93d831a2"
+    },
+    "receipts/browser-run.txt": {
+      "bytes": 3719,
+      "sha256": "3f5ff12420d6108ba5ac3c714820fea1b9719fda4d936d2b0016d6bc06e52bf4"
+    },
+    "receipts/browser.json": {
+      "bytes": 3719,
+      "sha256": "3f5ff12420d6108ba5ac3c714820fea1b9719fda4d936d2b0016d6bc06e52bf4"
     },
     "receipts/build-fitted.txt": {
       "bytes": 61800,
@@ -57,6 +85,22 @@
       "bytes": 62026,
       "sha256": "e97858032735c8c5dce149a129afc72e09da5d00388933f0d27f51ef447011cf"
     },
+    "receipts/decoded-fitted-glb.json": {
+      "bytes": 37585,
+      "sha256": "feb3ed34d881e06a033b6502d9c87551ef0f7bc281b3b0f06476300ce70606c3"
+    },
+    "receipts/final-source-preservation.json": {
+      "bytes": 21989,
+      "sha256": "f5ee049e04b23497c940ae6af726a520b7adf6f99c2203abcabfc59ad92c1e2a"
+    },
+    "receipts/gltf-validator.json": {
+      "bytes": 27643,
+      "sha256": "01b5095bc54611ebbb131cf35dd64b5c8e88e721c2307a2685eaa88614d852e7"
+    },
+    "receipts/half-blink-witness.json": {
+      "bytes": 14654,
+      "sha256": "f8749abb7ab3784674c9f6c01921a25427a6078ff042dfbf939ba6acf3be0e68"
+    },
     "receipts/input-mesh-check.txt": {
       "bytes": 366,
       "sha256": "0ee62a7e15c7dd82f4086ee0dde9625512e57296a22748b22f4c92a853afe001"
@@ -64,6 +108,10 @@
     "receipts/input-mesh-hashes.json": {
       "bytes": 8447,
       "sha256": "8acca2accc4a5d6ed08f46e0953f36748c9ab041c074b7f6e73c35eeb204e149"
+    },
+    "receipts/library-preview.json": {
+      "bytes": 379,
+      "sha256": "4594bdb87c7c76659d7769e50dc78eda02734c897c837364217ffb523153af7a"
     },
     "receipts/morph-fit-run.txt": {
       "bytes": 1178,
@@ -77,9 +125,21 @@
       "bytes": 3362,
       "sha256": "f4cc068d359c61b10b574c9f18c31e1b89542f2f322a9d33779e821ba8c416f2"
     },
+    "receipts/validator-run.txt": {
+      "bytes": 7033,
+      "sha256": "4e6f986d3c6d8559e1399d08ad9f5be9d6e020575b953410eb0376c68fbe89f9"
+    },
     "receipts/variant-merge.json": {
       "bytes": 349,
       "sha256": "a6844f9a5a3c63f676d82b3298a18533fbb582e68c488af1602aa612cdb2fc20"
+    },
+    "receipts/witness-run.txt": {
+      "bytes": 256,
+      "sha256": "85171fdd033f786141fed41a3c50fbd9fd155628f47708d61c07bef5e6e9cc0d"
+    },
+    "seal_packet.py": {
+      "bytes": 1454,
+      "sha256": "d70ff612c2e5207e255b0849867c1e0f18fa9ac161ba852cd224c4e0d05c10dd"
     },
     "textures/Ear_Left_01_umber_basecolor.png": {
       "bytes": 3318,
@@ -336,6 +396,18 @@
     "textures/UpperLid_Right_roughness.png": {
       "bytes": 1426,
       "sha256": "70b65eeb397fa6832ead427395416652d3c96b0adcf2a849c02fed79f6e6ed98"
+    },
+    "validate.ts": {
+      "bytes": 559,
+      "sha256": "c410d9278846747b0485b715f4474eee4aa53fa55b2ad971abf1cd5c34ba9a6c"
+    },
+    "verify_export.py": {
+      "bytes": 5986,
+      "sha256": "969b0da16f83280e136cda24cf5b062470ff7962db865ff2cc336e940258e001"
+    },
+    "viewer.html": {
+      "bytes": 7661,
+      "sha256": "1b7039d969fd76d23e1012aa55d5299cc38ed0a4b4109302c0486004733e467f"
     }
   }
 }

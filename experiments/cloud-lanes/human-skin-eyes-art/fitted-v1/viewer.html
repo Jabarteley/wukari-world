@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Allworld fitted material review</title><link rel="icon" href="data:,">
+<style>*{box-sizing:border-box}body{margin:0;background:#101c25;color:#e4e6d9;font:14px system-ui}main{width:1200px;margin:24px}h1{font-size:25px;font-weight:500;margin-bottom:8px}p{color:#acc4c6}.wrap{position:relative;width:1200px;height:1230px}canvas{display:block}.labels{position:absolute;left:0;display:flex;pointer-events:none}.labels div{width:400px;padding:9px 12px;background:#101c25dd;font-size:13px;line-height:1.5}small{color:#a8bdc3}footer{line-height:1.65;color:#acbfc4;padding-top:12px}</style>
+<main><h1>ALLWORLD / Skin + eyes on the pinned human prototype</h1><p>Master 3ee5882c · material variants and real morph targets · raw GLTFLoader / software WebGL</p>
+<div class="wrap"><canvas id="view" width="1200" height="1230"></canvas>
+<div class="labels" style="top:0"><div>01 UMBER / NEUTRAL</div><div>02 COPPER / NEUTRAL</div><div>03 ROSE / NEUTRAL</div></div>
+<div class="labels" style="top:410px"><div>COPPER / DAY</div><div>COPPER / NIGHT</div><div>HALF BLINK / CONTACT WITNESS<br><small>Red: cornea triangles crossing upper lids</small></div></div>
+<div class="labels" style="top:820px"><div>ALL SIX IDENTITY CONTROLS = -1</div><div>ALL SIX IDENTITY CONTROLS = +1</div><div>SHORT HEIGHT + FULL BLINK<br><small>Height × expression correctives applied</small></div></div></div>
+<footer>30,386 triangles / 33 meshes. Three artistic appearances; unchanged original topology, UVs and morph deltas.<br>Provisional fit: 34 new cornea/lid triangle pairs intersect at half-blink; inherited eye/lid contacts and UV overlaps remain.<br>No skeleton, skinning, animation-ready eye fit or game admission. Existing hair cap, anatomy and clothes belong to the pinned prototype.</footer></main>
+<script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js","three/addons/":"../node_modules/three/examples/jsm/"}}</script>
+<script>window.addEventListener('error',e=>window.proofError=e.message);window.addEventListener('unhandledrejection',e=>window.proofError=String(e.reason));</script>
+<script type="module">
+import * as T from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+const renderer=new T.WebGLRenderer({canvas:document.getElementById('view'),antialias:true,preserveDrawingBuffer:true});renderer.setSize(1200,1230,false);renderer.setPixelRatio(1);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;
+const room=new RoomEnvironment();const pm=new T.PMREMGenerator(renderer);const env=pm.fromScene(room,.04);room.dispose();pm.dispose();
+const gltf=await new GLTFLoader().loadAsync('./artifacts/fitted-human-skin-eyes-v1.glb');
+const variants=gltf.parser.json.extensions.KHR_materials_variants.variants.map(x=>x.name);
+const allMaterials=await Promise.all(gltf.parser.json.materials.map((_,i)=>gltf.parser.getDependency('material',i)));
+gltf.scene.traverse(o=>{if(o.isMesh){const a=gltf.parser.associations.get(o);o.userData.fitMappings=gltf.parser.json.meshes[a.meshes].primitives[a.primitives].extensions?.KHR_materials_variants?.mappings??[];}});
+const ids=['nose.projection','nose.alarWidth','earLeft.protrusion','earRight.protrusion','body.height','body.shoulderWidth'];
+const plans=[{variant:0,label:'umber neutral'},{variant:1,label:'copper neutral'},{variant:2,label:'rose neutral'},{variant:1,light:'day',label:'copper day'},{variant:1,light:'night',label:'copper night'},{variant:1,witness:true,label:'half-blink intersection',values:{'expression.blinkLeft':.5,'expression.blinkRight':.5}},{variant:1,full:true,label:'all identity minimum',values:Object.fromEntries(ids.map(k=>[k,-1]))},{variant:1,full:true,label:'all identity maximum',values:Object.fromEntries(ids.map(k=>[k,1]))},{variant:1,label:'short and full blink',values:{'body.height':-1,'expression.blinkLeft':1,'expression.blinkRight':1}}];
+const witness=await(await fetch('./receipts/half-blink-witness.json')).json();
+const records=[],scenes=[];
+for(let n=0;n<plans.length;n++){
+ const p=plans[n],scene=new T.Scene(),values=p.values??{};scene.background=new T.Color(p.light==='night'?0x111f31:0x263744);scene.environment=env.texture;scene.environmentIntensity=p.light==='night'?.10:.52;
+ const key=new T.DirectionalLight(p.light==='night'?0x6a9afc:p.light==='day'?0xffe4bc:0xffffff,p.light==='night'?.35:1.8);key.position.set(-2,3,4);scene.add(key);
+ const fill=new T.DirectionalLight(p.light==='night'?0xff8841:0xc8dcff,p.light==='night'?.9:.35);fill.position.set(2,1,3);scene.add(fill);
+ const model=gltf.scene.clone();scene.add(model);let changed=0,correctives=0,morphMeshes=0;
+ model.traverse(o=>{if(!o.isMesh)return;const mapping=o.userData.fitMappings.find(m=>m.variants.includes(p.variant));if(mapping){o.material=allMaterials[mapping.material];changed++;}
+ if(o.morphTargetDictionary){morphMeshes++;for(const [name,index] of Object.entries(o.morphTargetDictionary)){let v=values[name]??0;if(name.startsWith('corrective.height.')){v=(values['body.height']??0)*(values['expression.'+name.slice('corrective.height.'.length)]??0);if(v!==0)correctives++;}o.morphTargetInfluences[index]=v;}}
+ });
+ let center=1.610+(values['body.height']??0)*((1.610-.010)*.05),width=.345;
+ if(p.full){center=1.0;width=2.4;const grid=new T.GridHelper(.8,8,0x667b83,0x3b4d59);grid.position.y=.009;scene.add(grid);}
+ if(p.witness){center=1.635;width=.132;
+  for(const w of witness.witnesses){const arr=w.corneaTrianglesGLTF.flat(2);const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(arr,3));g.computeVertexNormals();const m=new T.MeshBasicMaterial({color:0xff3333,side:T.DoubleSide,depthTest:false,transparent:true,opacity:.85});const overlay=new T.Mesh(g,m);overlay.renderOrder=100;scene.add(overlay);}
+ }
+ const camera=new T.OrthographicCamera(-width/2,width/2,width*410/400/2,-width*410/400/2,.001,20);camera.position.set(p.full?.08:.035,center+.025,3);camera.lookAt(0,center,0);
+ const col=n%3,row=Math.floor(n/3),y=(2-row)*410;renderer.setViewport(col*400,y,400,410);renderer.setScissor(col*400,y,400,410);renderer.setScissorTest(true);renderer.render(scene,camera);
+ const pixels=new Uint8Array(400*410*4);const gl=renderer.getContext();gl.readPixels(col*400,y,400,410,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let warm=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]>35&&pixels[i]>pixels[i+2]*1.12)warm++;if(warm<500)throw Error('Missing character '+p.label);
+ records.push({view:p.label,variant:variants[p.variant],values,changedMaterialBindings:changed,morphMeshes,nonzeroHeightCorrectives:correctives,coloredPixels:warm,drawCalls:renderer.info.render.calls,renderTriangles:renderer.info.render.triangles});scenes.push(scene);
+}
+const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info');
+window.receipt={ready:true,three:T.REVISION,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),softwareOnly:true,variants,records,animationLoop:false,fitAccepted:false,intersectionWitnessPairs:witness.newCorneaUpperLidTrianglePairs};
+window.cleanup=()=>{const gs=new Set(),ms=new Set(allMaterials),ts=new Set();for(const s of scenes)s.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});for(const m of ms){for(const v of Object.values(m))if(v?.isTexture)ts.add(v);m.dispose();}for(const g of gs)g.dispose();for(const t of ts)t.dispose();env.dispose();renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true;};
+</script></html>

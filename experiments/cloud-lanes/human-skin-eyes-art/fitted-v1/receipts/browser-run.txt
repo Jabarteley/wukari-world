@@ -1,0 +1,145 @@
+{
+  "ready": true,
+  "three": "180",
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "softwareOnly": true,
+  "variants": [
+    "01_umber",
+    "02_copper",
+    "03_rose"
+  ],
+  "records": [
+    {
+      "view": "umber neutral",
+      "variant": "01_umber",
+      "values": {},
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 0,
+      "coloredPixels": 43712,
+      "drawCalls": 52,
+      "renderTriangles": 43360
+    },
+    {
+      "view": "copper neutral",
+      "variant": "02_copper",
+      "values": {},
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 0,
+      "coloredPixels": 43935,
+      "drawCalls": 52,
+      "renderTriangles": 43360
+    },
+    {
+      "view": "rose neutral",
+      "variant": "03_rose",
+      "values": {},
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 0,
+      "coloredPixels": 43932,
+      "drawCalls": 52,
+      "renderTriangles": 43360
+    },
+    {
+      "view": "copper day",
+      "variant": "02_copper",
+      "values": {},
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 0,
+      "coloredPixels": 44039,
+      "drawCalls": 52,
+      "renderTriangles": 43360
+    },
+    {
+      "view": "copper night",
+      "variant": "02_copper",
+      "values": {},
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 0,
+      "coloredPixels": 39647,
+      "drawCalls": 52,
+      "renderTriangles": 43360
+    },
+    {
+      "view": "half-blink intersection",
+      "variant": "02_copper",
+      "values": {
+        "expression.blinkLeft": 0.5,
+        "expression.blinkRight": 0.5
+      },
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 0,
+      "coloredPixels": 150436,
+      "drawCalls": 54,
+      "renderTriangles": 43256
+    },
+    {
+      "view": "all identity minimum",
+      "variant": "02_copper",
+      "values": {
+        "nose.projection": -1,
+        "nose.alarWidth": -1,
+        "earLeft.protrusion": -1,
+        "earRight.protrusion": -1,
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 0,
+      "coloredPixels": 2524,
+      "drawCalls": 68,
+      "renderTriangles": 60772
+    },
+    {
+      "view": "all identity maximum",
+      "variant": "02_copper",
+      "values": {
+        "nose.projection": 1,
+        "nose.alarWidth": 1,
+        "earLeft.protrusion": 1,
+        "earRight.protrusion": 1,
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 0,
+      "coloredPixels": 2859,
+      "drawCalls": 68,
+      "renderTriangles": 60772
+    },
+    {
+      "view": "short and full blink",
+      "variant": "02_copper",
+      "values": {
+        "body.height": -1,
+        "expression.blinkLeft": 1,
+        "expression.blinkRight": 1
+      },
+      "changedMaterialBindings": 12,
+      "morphMeshes": 33,
+      "nonzeroHeightCorrectives": 4,
+      "coloredPixels": 42327,
+      "drawCalls": 52,
+      "renderTriangles": 43360
+    }
+  ],
+  "animationLoop": false,
+  "fitAccepted": false,
+  "intersectionWitnessPairs": 34,
+  "status": "PASS",
+  "browserVersion": "154.0.8037.57",
+  "screenshotSha256": "b22485e9bae1863892ed2d8db677f7ee39ea169a406500088c48f559c6782508",
+  "disposed": true,
+  "pageErrors": [],
+  "failedRequests": [],
+  "elapsedSeconds": 7.814,
+  "browserClosed": true,
+  "serverClosed": true
+}

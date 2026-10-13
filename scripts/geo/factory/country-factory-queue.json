@@ -36,6 +36,14 @@
   {
    "id": "id",
    "table": "scripts/geo/factory/country-factory/id-factory-targets.json"
+  },
+  {
+   "id": "sg",
+   "table": "scripts/geo/factory/country-factory/sg-factory-targets.json"
+  },
+  {
+   "id": "ca",
+   "table": "scripts/geo/factory/country-factory/ca-factory-targets.json"
   }
  ]
 }

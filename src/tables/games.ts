@@ -7,5 +7,6 @@ import whot from './whot.ts';
 import penalty from './penalty.ts';
 import chess from './chess.ts';
 import weave from './weave.ts';
+import ayo from './ayo.ts';
 
-export const GAMES = Object.freeze({ whot, penalty, chess, weave });
+export const GAMES = Object.freeze({ whot, penalty, chess, weave, ayo });

@@ -295,7 +295,7 @@ export interface OroView {
 // ---- table games: claiming results ----------------------------------------------------------------
 
 /** src/tables/games.ts GAMES. */
-export type TableGameId = 'whot' | 'penalty' | 'chess' | 'weave'
+export type TableGameId = 'whot' | 'penalty' | 'chess' | 'weave' | 'ayo'
 /** A game that can leave a result to claim: a table game, or the daily word puzzle (src/words/oro.ts), which has no table. */
 export type ResultGameId = TableGameId | 'oro'
 

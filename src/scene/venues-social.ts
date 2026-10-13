@@ -5,6 +5,7 @@
  */
 import { GLOW, GLASS } from './build.ts';
 import type { Batch, Colour, SceneDef } from './types.ts';
+import { KENNEY_POT_STEW } from './assets/kenney-food.generated.ts';
 import {
   room, table, chair, stool, bench, sofa, counter, speaker, screen, plant, shelf, kiosk, crate, laptop, rug, bottles, pot,
   ropeLine, stringLights, door, sign, landmark, extra,
@@ -25,8 +26,9 @@ const buka: SceneDef = {
     // Counter with the day's pots
     counter(b, 0.6, -7, { w: 11, d: 1.2, color: '#8a5a34', top: '#d9b780', stripe: accent });
     ([['#4a3a2e', false], ['#4f7a3a', false], ['#d9a441', true], ['#b8402a', false], ['#f0e6c8', true]] as [string, boolean][]).forEach(([food, lid], i) => {
-      pot(b, -3.6 + i * 2.1, 1.35, -7, { food, lid, r: 0.5 });
-      if (!lid) b.box(-3.3 + i * 2.1, 2.15, -7.1, 0.05, 0.6, 0.05, METAL, { rz: -0.4 });
+      if (i === 3) b.at(2.7, 1.35, -7, 0, (local) => local.geometry(KENNEY_POT_STEW, '#ffffff'), 0, 0, 1.35);
+      else pot(b, -3.6 + i * 2.1, 1.35, -7, { food, lid, r: 0.5 });
+      if (!lid) b.box(-3.3 + i * 2.1, i === 3 ? 1.99 : 2.15, -7.1, 0.05, 0.6, 0.05, METAL, { rz: -0.4 });
     });
     for (let i = 0; i < 4; i++) b.cyl(-4.6 + i * 0.26, 1.42, -6.6, 0.16, 0.05 + i * 0.02, WHITE, { seg: 8 });
     // Menu board

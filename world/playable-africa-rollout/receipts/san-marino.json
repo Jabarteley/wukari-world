@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "cityId": "san-marino",
+  "countryIso2": "SM",
+  "generationIdentity": {
+    "cityId": "san-marino",
+    "stateId": "sm-san-marino",
+    "stateName": "City of San Marino"
+  },
+  "inventorySha256": "47b9eb213c39fbff06db402e159a68d82813c3ad30caa37a4d0a0f7ac8bc3e90",
+  "inventoryPath": "world/playable-africa-rollout/sources/san-marino.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "san-marino-airport",
+    "name": "Torraccia Airfield",
+    "lon": 12.511411,
+    "lat": 43.948895,
+    "sourceUrl": "https://ourairports.com/airports/LIKD/"
+  },
+  "bounds": [
+    43.75551871006602,
+    12.196443999539392,
+    44.11728048993398,
+    12.696954200460608
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/italy-261011.osm.pbf",
+      "datasetSha256": "09787737b88c2e4f125ae279fad0b12365c50daabbe1f632f5995748f7661042",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "a75e5589268d080555c447b86658e861e049d30bb7a8a441de6e3b6fa574f12e",
+          "elements": 2362
+        },
+        {
+          "file": "extras.json",
+          "sha256": "627ecf3381dca7278f57c89e744d2dc57ece792aec537b139ff3ef7d961b16b7",
+          "elements": 435
+        },
+        {
+          "file": "water.json",
+          "sha256": "900acf6bc583d56d1b0e5a4d33f870977c646cb4d3dcd1a6e01d303baf37863a",
+          "elements": 3364
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "53b2d4801df3576f172577d6d42d5ec57bf8230e77a5d392cf31746dd8e0c835",
+          "elements": 3436
+        },
+        {
+          "file": "roads.json",
+          "sha256": "9ec5bd33e83dbdc796d3190e45099357433da3e14542b8a9036b52d163b3a90b",
+          "elements": 1381
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 12,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 0,
+    "reachWaterPolygons": 23
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "hamlet": 5,
+      "neighbourhood": 1,
+      "suburb": 1,
+      "village": 11
+    }
+  },
+  "observed": {
+    "places": 2362,
+    "extras": 435,
+    "water": 3364,
+    "landuse": 3436,
+    "roads": 1381
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1251,
+      "sha256": "3805e4c1c7db8d3a3b7f92495149873f3db2025ddba1ff7fee91f8c459f41221"
+    },
+    "geometry.ts": {
+      "bytes": 11100,
+      "sha256": "274612aca1e60090234acb5d8967ba8d7b5ff2f0b44c947ec2664e39fec2878a"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "a900218fe4812ddd0612836e8a4f866d33c659a51164775bbbf940ece60138e9"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/san-marino.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -237,6 +237,7 @@ export interface HostScene {
   readonly ambientFrames?: number
   ambientPeople?(): AmbientPerson[]
   say?(id: string, text: string, ms?: number): boolean
+  animateSpeech?(id: string, ms?: number): boolean
   talk?(a: string, b: string, ms?: number): boolean
   onAmbient?: ((ready: boolean) => void) | null
   look?(x: number, z: number): boolean
@@ -275,6 +276,8 @@ export interface VenueWorld {
   setAmbient(ambientFor: ((venue: string, kind: string) => AmbientIdent | null) | null): void
   wakeAmbient(): boolean
   say(id: string, text: string, ms?: number): boolean
+  /** Match an existing speech bubble using the host's current animation window. */
+  animateSpeech(id: string, ms?: number): boolean
   talk(a: string, b: string, ms?: number): boolean
   ambientPeople(): AmbientPerson[]
   /** How many frames the people have been stepped in this scene (the frame budget the tests count). */
@@ -516,6 +519,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
   const previousCursor = canvas.style?.cursor;
   // A drag on the scene orbits the camera: it must never scroll the page or start a text selection.
   if (canvas.style) { canvas.style.touchAction = 'none'; canvas.style.cursor = 'grab'; canvas.style.userSelect = 'none'; canvas.style.webkitUserSelect = 'none'; }
+  const reducedMotion = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)') ?? null;
   const reduced = () => globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
 
   // ---- walking state --------------------------------------------------------------------
@@ -658,8 +662,8 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
       if (atThing && !thingList.some((thing) => thing.id === atThing && Math.hypot(thing.x - walker.x, thing.z - walker.z) < TABLE_REACH + 0.8)) atThing = null;
       if (walker.hasInput) afterPose = null;
       // Two prebuilt figures alternate for the stride; nothing is built while walking.
-      walk.gait(still || Math.floor(stride / Math.PI) % 2 === 0, still ? 0 : stride, jogging);
-      standIn?.gait(still ? 0 : stride, jogging, avatarY);
+      walk.gait(still || Math.floor(stride / Math.PI) % 2 === 0, still ? 0 : stride, jogging, !still);
+      standIn?.gait(still ? 0 : stride, jogging, avatarY, !still);
     } else if (wasMoving) { walk.goal(); showPose(); }
     showNear();
     // Back on the floor: the perch is behind it.
@@ -859,8 +863,22 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     stick.x = 0; stick.z = 0; stick.jog = false;
     controls?.release();
   }
-  // Hidden: stop and forget held keys. Visible again: resume a pending route or bounded furniture transition.
-  const loop = createMotionLoop(tick, { onHidden: dropInput, onVisible: () => { if (walker.mode === 'path' || current?.easing || standIn?.easing || afterPose) loop.wake(); } });
+  // Hidden: stop and forget held keys, and snap the finite ambient window shut. Visible again:
+  // resume only a pending route or bounded actor/furniture transition.
+  const loop = createMotionLoop(tick, {
+    onHidden: () => { dropInput(); current?.settleAmbient?.(); },
+    onVisible: () => {
+      if (walker.mode === 'path' || current?.easing || standIn?.easing || afterPose) loop.wake();
+      else { readTags(); renderScene(); }
+    },
+  });
+  const onReducedMotion = (event: MediaQueryListEvent): void => {
+    if (event.matches) {
+      current?.settleAmbient?.();
+      if (!loop.running && !globalThis.document?.hidden) { readTags(); renderScene(); }
+    }
+  };
+  reducedMotion?.addEventListener?.('change', onReducedMotion);
   /** The camera's goal changed: ease to it in the loop, or — with no loop or reduced motion — draw it at once. */
   function redrawView() {
     if (loop.available && !reduced()) { loop.wake(); return; }
@@ -1616,6 +1634,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     },
     wakeAmbient() { return current ? wakeAmbientFrames(current) : false; },
     say: (id, text, ms) => current?.say?.(id, text, ms) ?? false,
+    animateSpeech: (id, ms) => current?.animateSpeech?.(id, ms) ?? false,
     talk: (a, b, ms) => current?.talk?.(a, b, ms) ?? false,
     ambientPeople: () => current?.ambientPeople?.() ?? [],
     ambientFrames: () => current?.ambientFrames ?? 0,
@@ -1639,7 +1658,7 @@ export function createVenueHost(container: HTMLElement, { location = 'park', cit
     position() { const k = presenceScale(); return { x: Math.round(walker.x * k * 100) / 100, z: Math.round(walker.z * k * 100) / 100, location: currentLocation }; },
     dispose() {
       if (gone) return;
-      gone = true; standInStartup.dispose(); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
+      gone = true; reducedMotion?.removeEventListener?.('change', onReducedMotion); standInStartup.dispose(); loop.dispose(); standIn?.dispose(); clearDwell(); if (thingDwell !== null) { clearTimeout(thingDwell); thingDwell = null; }
       releasePointers();
       for (const [type, listener] of Object.entries(listeners)) canvas.removeEventListener?.(type, listener, { capture: type === 'click' });
       win?.removeEventListener?.('jaw:mode', onMode); win?.removeEventListener?.('jaw:reward', onReward); win?.removeEventListener?.('jaw:cheer', onCheer); win?.removeEventListener?.('jaw:key', onKey); win?.removeEventListener?.('jaw:key-up', onKeyUp); win?.removeEventListener?.('blur', dropInput);

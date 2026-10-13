@@ -21,8 +21,8 @@ import { lookAvatar } from '../avatar-rig.ts';
 import { hash } from '../build.ts';
 import { createPlanner, poseOf } from './plan.ts';
 import type { AmbientPose, Ident, Planner, Role, Sample, Stage, Track } from './plan.ts';
-import { FIGURE_COST, makeFarFigures, makeFigure } from './figure.ts';
-import type { FarFigures } from './figure.ts';
+import { FIGURE_COST, makeFarFigures, makeFigure, makeMotionFigure } from './figure.ts';
+import type { FarFigures, MotionFigure } from './figure.ts';
 
 /** How long the layer keeps the frame loop awake after being woken. */
 export const WINDOW_MS = 12_000;
@@ -32,6 +32,8 @@ export const MAX_FIGURES = 16;
 export const MAX_FULL = 4;
 /** The most regulars drawn as figures of their own (the rest stay in the scene's merged batch). */
 export const MAX_RESIDENTS = 6;
+/** The most nearby individual figures that carry GPU pose morphs at once (residents and planned people combined). */
+export const MAX_REACTIVE = 4;
 /** Draw calls a figure takes: a full one is a solid mesh drawn twice (once for the sun's shadow) and its glow; a lean one is one mesh drawn twice. */
 const FULL_CALLS = 3, LEAN_CALLS = 2;
 /** The far crowd costs about this much a person, in triangles. */
@@ -41,7 +43,7 @@ export interface Room { triangles: number; meshes: number }
 export interface AmbientTag { id: string; name: string; kind: string; text: string; marker: string; colour: string; position: { x: number; y: number; z: number } }
 export interface AmbientPerson { id: string; role: Role; x: number; z: number; sitting: boolean }
 /** A regular standing in the scene (placed by the scene). */
-export interface Resident { id: string; seed: string; x: number; z: number; ry: number }
+export interface Resident { id: string; seed: string; look?: unknown; x: number; z: number; ry: number }
 
 export interface LayerOptions {
   kit: Kit
@@ -63,6 +65,8 @@ export interface LayerOptions {
 interface Entry {
   id: string
   seed: string
+  look: unknown
+  lookKey: string
   role: Role
   resident: boolean
   lean: boolean
@@ -70,15 +74,31 @@ interface Entry {
   figures: Map<string, AvatarGroup>
   shown: AvatarGroup | null
   shownKey: string
+  motion: MotionFigure | null
+  reactive: boolean
+  motionBlocked: boolean
   x: number; z: number; ry: number; placed: boolean
   ox: number; oz: number
   gaze: GazeState
   top: number
   /** Facing a partner for a talk, until the time. */
   talk: { until: number; face: number; lead: boolean } | null
+  /** A spoken bark animates the mouth only while the existing ambient window happens to be open. */
+  speakingUntil: number
+  blinkPeriod: number
+  blinkOffset: number
+  speechPhase: number
 }
 
 const turn = (from: number, to: number): number => { let d = to - from; while (d > Math.PI) d -= Math.PI * 2; while (d < -Math.PI) d += Math.PI * 2; return d };
+
+/** A resident look comes from JSON-shaped city content; sort object keys so equivalent records reuse the same figure cache. */
+function appearanceKey(value: unknown): string {
+  if (value === null || typeof value !== 'object') return JSON.stringify(value) ?? String(value)
+  if (Array.isArray(value)) return `[${value.map(appearanceKey).join(',')}]`
+  const record = value as Record<string, unknown>
+  return `{${Object.keys(record).sort().map((key) => `${JSON.stringify(key)}:${appearanceKey(record[key])}`).join(',')}}`
+}
 
 export interface AmbientLayer {
   /** Advance to the clock (or to `at`) by `dt` seconds. True while the window is open (the loop should keep drawing). */
@@ -97,6 +117,8 @@ export interface AmbientLayer {
   residentTag(id: string, name: string): AmbientTag | null
   people(): AmbientPerson[]
   tags(): AmbientTag[]
+  /** Move an existing person's mouth for a bounded time; does not add a bubble, timer, wake, or frame. */
+  animateSpeech(id: string, ms?: number): boolean
   speak(id: string, text: string, ms?: number): boolean
   talk(a: string, b: string, ms?: number): boolean
   stats(): { triangles: number; meshes: number }
@@ -134,27 +156,64 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     farCap = c2 >= 2 ? Math.max(0, Math.floor(t2 / FAR_TRIANGLES)) : 0
   }
 
-  function enter(id: string, seed: string, role: Role, resident: boolean, lean = false): Entry {
+  function enter(id: string, seed: string, role: Role, resident: boolean, lean = false, look?: unknown): Entry {
     const holder = new THREE.Group()
     holder.name = resident ? 'ambient-resident' : 'ambient-person'
     group.add(holder)
-    const entry: Entry = { id, seed, role, resident, lean, holder, figures: new Map(), shown: null, shownKey: '', x: 0, z: 0, ry: 0, placed: false, ox: 0, oz: 0, gaze: newGaze(), top: 2.9, talk: null }
+    const blinkPeriod = 4_200 + hash(`${seed}|blink-period`) % 2_400
+    const entry: Entry = {
+      id, seed, look, lookKey: appearanceKey(look), role, resident, lean, holder, figures: new Map(), shown: null, shownKey: '', motion: null, reactive: false, motionBlocked: false,
+      x: 0, z: 0, ry: 0, placed: false, ox: 0, oz: 0, gaze: newGaze(), top: 2.9, talk: null, speakingUntil: 0,
+      blinkPeriod, blinkOffset: hash(`${seed}|blink-phase`) % blinkPeriod, speechPhase: (hash(`${seed}|speech-phase`) % 6_283) / 1_000,
+    }
     entries.set(id, entry)
     return entry
   }
   function leave(entry: Entry): void {
     for (const figure of entry.figures.values()) figure.userData.dispose()
+    entry.motion?.dispose()
     entry.holder.parent?.remove(entry.holder)
     entries.delete(entry.id)
     const bark = barks.get(entry.id)
     if (bark) { clearTimeout(bark.timer); barks.delete(entry.id) }
   }
-  function show(entry: Entry, pose: AmbientPose, step: number, seat: number): void {
+  /** True only when this call paid the synchronous cost of attempting a morph-controller build. */
+  function setReactive(entry: Entry, wanted: boolean, pose: AmbientPose, step: number, seat: number, allowPromotion: boolean): boolean {
+    if (wanted === entry.reactive) return false
+    if (!wanted) {
+      if (entry.shown === entry.motion?.group) { entry.shown = null; entry.shownKey = '' }
+      entry.motion?.dispose(); entry.motion = null; entry.reactive = false
+      return false
+    }
+    if (entry.lean || entry.motionBlocked || pose === 'sit' || !allowPromotion) return false
+    const motion = makeMotionFigure(kit, { seed: entry.seed, look: entry.look, pose, step, seat })
+    if (!motion) { entry.motionBlocked = true; return true }
+    for (const figure of entry.figures.values()) figure.userData.dispose()
+    entry.figures.clear(); entry.shown = null; entry.shownKey = ''
+    motion.group.visible = false
+    entry.holder.add(motion.group)
+    entry.motion = motion; entry.reactive = true
+    return true
+  }
+  function show(entry: Entry, pose: AmbientPose, step: number, stride: number | undefined, seat: number, still: boolean): void {
+    if (pose !== 'sit' && entry.motion) {
+      const reveal = entry.shown !== entry.motion.group
+      if (reveal) {
+        if (entry.shown) entry.shown.visible = false
+        entry.motion.group.visible = true
+        entry.shown = entry.motion.group
+      }
+      entry.motion.pose(pose, stride ?? (step ? 0.75 : 0.25), still || reveal)
+      if (still) entry.motion.settle()
+      entry.shownKey = pose
+      entry.top = entry.motion.group.userData.top ?? 2.9
+      return
+    }
     const key = pose === 'walk' ? `walk${step}` : pose === 'sit' ? `sit${seat}` : pose
     if (key === entry.shownKey) return
     let figure = entry.figures.get(key)
     if (!figure) {
-      figure = makeFigure(kit, { seed: entry.seed, pose, step, seat, lean: entry.lean })
+      figure = makeFigure(kit, { seed: entry.seed, look: entry.look, pose, step, seat, lean: entry.lean })
       entry.holder.add(figure)
       entry.figures.set(key, figure)
     }
@@ -165,7 +224,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
   }
 
   /** One person this frame: the pose and place the plan gives, and the small reactions to the player (a walker steps round, a stander glances). */
-  function put(entry: Entry, sample: Sample, at: number, dt: number, still: boolean, player: { x: number; z: number }): boolean {
+  function put(entry: Entry, sample: Sample, at: number, dt: number, still: boolean, player: { x: number; z: number }, reactive: boolean, promotion: { spent: boolean }): boolean {
     let pose: AmbientPose = sample.walking && still ? 'stand' : sample.pose
     let face = sample.ry, moving = false
     const sitting = sample.mode === 'sit'
@@ -173,7 +232,19 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       face = entry.talk.face
       pose = entry.talk.lead === (Math.floor(at / 2600) % 2 === 0) && !still ? 'wave' : 'stand'
     } else if (entry.talk) entry.talk = null
-    show(entry, pose, sample.step, sample.seat)
+    // A still placement is also the reduced-motion path: it never pays to bake morph targets.
+    const keepBaked = still && entry.reactive && pose !== 'sit'
+    if (setReactive(entry, keepBaked || (reactive && !still), pose, sample.step, sample.seat, !promotion.spent)) promotion.spent = true
+    show(entry, pose, sample.step, sample.stride, sample.seat, still)
+    if (!still && entry.motion && entry.shown === entry.motion.group) {
+      moving = entry.motion.step(dt) || moving
+      const blinkAt = (at + entry.blinkOffset) % entry.blinkPeriod
+      const blink = blinkAt < 180 ? Math.sin((blinkAt / 180) * Math.PI) : 0
+      const takingTurn = entry.talk && at < entry.talk.until && entry.talk.lead === (Math.floor(at / 2600) % 2 === 0)
+      const speaking = at < entry.speakingUntil || takingTurn
+      const speech = speaking ? 0.25 + ((Math.sin(at / 82 + entry.speechPhase) + 1) / 2) * 0.75 : 0
+      entry.motion.face(blink, speech)
+    }
     let x = sample.x, z = sample.z, wantX = 0, wantZ = 0
     if (sample.walking && !still) {
       const dx = x - player.x, dz = z - player.z, d = Math.hypot(dx, dz)
@@ -192,7 +263,8 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     }
     entry.placed = true; entry.x = x; entry.z = z
     const y = heightAt(x, z)
-    entry.holder.position.set(x, y + (sample.walking ? Math.abs(Math.sin(at / 170 + entry.id.length)) * 0.035 : 0), z)
+    const bakedBob = entry.motion && entry.shown === entry.motion.group
+    entry.holder.position.set(x, y + (sample.walking && !bakedBob ? Math.abs(Math.sin(at / 170 + entry.id.length)) * 0.035 : 0), z)
     entry.holder.rotation.y = entry.ry + (lookAvatar(entry.shown, glance) ? 0 : glance)
     return moving
   }
@@ -200,12 +272,14 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
   function place(at: number, dt: number, still: boolean): boolean {
     const player = options.avatar()
     let moving = false
-    for (const resident of residents) {
-      const entry = entries.get(resident.id) ?? enter(resident.id, resident.seed, 'stander', true)
+    // Baking one controller creates the base plus its pose/face targets. Bound that synchronous
+    // work to one attempt per animated frame; everyone else keeps their existing static figure.
+    const promotion = { spent: still }
+    const residentSamples = residents.map((resident) => {
       const track: Pick<Track, 'seed' | 'role'> = { seed: resident.seed, role: 'stander' }
       const sample: Sample = { x: resident.x, z: resident.z, ry: resident.ry, mode: 'stand', pose: poseOf(track, { mode: 'stand' }, at), seat: 0.6, step: 0, walking: false }
-      moving = put(entry, sample, at, dt, still, player) || moving
-    }
+      return { resident, sample }
+    })
     // When there is room for fewer than the plan holds, the ones kept are a mix of walkers, sitters and standers (by a hash of who they are), not all
     // of one kind. Someone already in the place keeps their kind of figure; a newcomer is full while there is a full place left, lean after.
     const sorted = planner.at(at).sort((a, b) => hash(a.track.id) - hash(b.track.id) || (a.track.id < b.track.id ? -1 : 1))
@@ -216,15 +290,34 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       if (!known || known.resident) continue
       if (known.lean ? leanUsed < leanCap : fullUsed < fullCap) { admitted.push({ ...item, lean: known.lean }); if (known.lean) leanUsed++; else fullUsed++ }
     }
-    for (const item of sorted) {
-      if (entries.has(item.track.id)) continue
+    const newcomers = sorted.filter((item) => !entries.has(item.track.id)).sort((a, b) => {
+      const ad = (a.sample.x - player.x) ** 2 + (a.sample.z - player.z) ** 2, bd = (b.sample.x - player.x) ** 2 + (b.sample.z - player.z) ** 2
+      return ad - bd || hash(a.track.id) - hash(b.track.id) || (a.track.id < b.track.id ? -1 : 1)
+    })
+    for (const item of newcomers) {
       if (fullUsed < fullCap) { admitted.push({ ...item, lean: false }); fullUsed++ } else if (leanUsed < leanCap) { admitted.push({ ...item, lean: true }); leanUsed++ }
     }
     const present = new Set([...admitted.map(({ track }) => track.id), ...residents.map((resident) => resident.id)])
     for (const entry of [...entries.values()]) if (!present.has(entry.id)) leave(entry)
+
+    // Keep the GPU-morphed set both small and stable: an existing member gets a 1.5-unit
+    // distance advantage, so two neighbours do not continually exchange geometry at the boundary.
+    const candidates = [
+      ...residentSamples.map(({ resident, sample }) => ({ id: resident.id, sample })),
+      ...admitted.filter(({ lean }) => !lean).map(({ track, sample }) => ({ id: track.id, sample })),
+    ].filter(({ sample }) => sample.mode !== 'sit')
+    candidates.sort((a, b) => {
+      const score = ({ id, sample }: typeof a) => Math.hypot(sample.x - player.x, sample.z - player.z) - (entries.get(id)?.reactive ? 1.5 : 0)
+      return score(a) - score(b) || (a.id < b.id ? -1 : 1)
+    })
+    const reactive = new Set(candidates.slice(0, ident.tier === 'full' ? MAX_REACTIVE : 0).map(({ id }) => id))
+    for (const { resident, sample } of residentSamples) {
+      const entry = entries.get(resident.id) ?? enter(resident.id, resident.seed, 'stander', true, false, resident.look)
+      moving = put(entry, sample, at, dt, still, player, reactive.has(resident.id), promotion) || moving
+    }
     for (const { track, sample, lean } of admitted) {
       const entry = entries.get(track.id) ?? enter(track.id, track.seed, track.role, false, lean)
-      moving = put(entry, sample, at, dt, still, player) || moving
+      moving = put(entry, sample, at, dt, still, player, reactive.has(track.id), promotion) || moving
     }
     return moving
   }
@@ -247,6 +340,13 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     return moving
   }
 
+  function animateSpeech(id: string, ms = 5_000): boolean {
+    const entry = entries.get(id)
+    if (disposed || !entry) return false
+    entry.speakingUntil = clock() + Math.max(0, ms)
+    return true
+  }
+
   budget()
   sync(clock(), 0, true)
 
@@ -254,11 +354,13 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     step(dt, at = clock()) {
       if (disposed) return false
       frames += 1
+      const closing = windowLeft > 0 && windowLeft - dt <= 0
       windowLeft = Math.max(0, windowLeft - dt)
       sync(at, dt, false)
+      if (closing) for (const entry of entries.values()) entry.motion?.settle()
       return windowLeft > 0
     },
-    settle(at = clock()) { if (!disposed) sync(at, 1, true) },
+    settle(at = clock()) { if (!disposed) { windowLeft = 0; sync(at, 1, true) } },
     wake() {
       if (disposed) return false
       windowLeft = WINDOW_MS / 1000
@@ -268,7 +370,12 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     get count() { return entries.size },
     get frames() { return frames },
     setResidents(list) {
-      residents = list.slice(0, MAX_RESIDENTS)
+      const next = list.slice(0, MAX_RESIDENTS)
+      for (const resident of next) {
+        const entry = entries.get(resident.id)
+        if (entry?.resident && (entry.seed !== resident.seed || entry.lookKey !== appearanceKey(resident.look))) leave(entry)
+      }
+      residents = next
       budget()
       sync(clock(), 0, true)
       return residents.map((resident) => resident.id)
@@ -291,8 +398,9 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
       }
       return out
     },
+    animateSpeech,
     speak(id, text, ms = 5_000) {
-      if (disposed || !entries.has(id)) return false
+      if (!animateSpeech(id, ms)) return false
       const had = barks.get(id)
       if (had) clearTimeout(had.timer)
       const timer = setTimeout(() => { barks.delete(id); options.changed?.() }, ms)
@@ -303,7 +411,7 @@ export function createAmbientLayer(options: LayerOptions): AmbientLayer {
     talk(a, b, ms = 8_000) {
       const first = entries.get(a), second = entries.get(b)
       if (disposed || !first || !second) return false
-      const until = current + ms
+      const until = clock() + ms
       first.talk = { until, face: Math.atan2(second.x - first.x, second.z - first.z), lead: true }
       second.talk = { until, face: Math.atan2(first.x - second.x, first.z - second.z), lead: false }
       return true

@@ -18,7 +18,7 @@
  * The helpers at the top are shared with src/scene/venues-ogun-b.ts.
  */
 import { GLOW, GLASS } from './build.ts';
-import type { Batch, Colour, SceneCamera, SceneDef, SceneWalkSpec } from './types.ts';
+import type { Batch, BatchGeometry, BatchOptions, Colour, SceneCamera, SceneDef, SceneWalkSpec } from './types.ts';
 import {
   ground, bench, chair, leafTree, tallTree, palm, bush, lampPost, kiosk, flag, parasol, stringLights, fence, windowPane, sign, signBoard,
   landmark, extra, table, car, crate, plant, textWidth,
@@ -160,6 +160,38 @@ function irokoTree(b: Batch, x: number, y: number, z: number, s = 1): void {
   }, 0, 0, s);
 }
 
+const OPEN_BOTTOM_BOX_NORMALS = Object.freeze([
+  0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
+  0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1,
+  0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1,
+  1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
+  -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
+]);
+const OPEN_BOTTOM_BOX_INDICES = Object.freeze([
+  0, 1, 2, 0, 2, 3,
+  4, 5, 6, 4, 6, 7,
+  8, 9, 10, 8, 10, 11,
+  12, 13, 14, 12, 14, 15,
+  16, 17, 18, 16, 18, 19,
+]);
+
+/** One closed-looking building block whose ground-hidden bottom face is omitted. */
+function valleyBlock(b: Batch, x: number, y: number, z: number, w: number, h: number, d: number, colour: Colour, o?: BatchOptions): void {
+  const hx = w / 2, hy = h / 2, hz = d / 2;
+  const shape: BatchGeometry = {
+    pos: [
+      -hx, hy, hz, hx, hy, hz, hx, hy, -hz, -hx, hy, -hz,
+      -hx, -hy, hz, hx, -hy, hz, hx, hy, hz, -hx, hy, hz,
+      hx, -hy, -hz, -hx, -hy, -hz, -hx, hy, -hz, hx, hy, -hz,
+      hx, -hy, hz, hx, -hy, -hz, hx, hy, -hz, hx, hy, hz,
+      -hx, -hy, -hz, -hx, -hy, hz, -hx, hy, hz, -hx, hy, -hz,
+    ],
+    nor: OPEN_BOTTOM_BOX_NORMALS,
+    idx: OPEN_BOTTOM_BOX_INDICES,
+  };
+  b.at(x, y, z, 0, (local) => local.geometry(shape, colour, o));
+}
+
 /** Roofs of the old town spread over the hillside far below the terrace, with a few towers and trees among them. */
 function valley(b: Batch, rand: () => number): void {
   const roofs: Colour[] = ['#8d4a2c', '#9b5532', '#7b4430', '#a65f3a', '#6f3f2d', '#b06a3f', '#84432b', '#94512f', '#a9a7a0', '#c4bba8'];
@@ -179,7 +211,7 @@ function valley(b: Batch, rand: () => number): void {
       const x = gx + (rand() - 0.5) * 0.8, z = gz + (rand() - 0.5) * 0.8, w = 3.2 + rand() * 1.1, d = 2.8 + rand() * 0.9, ry = (rand() - 0.5) * 0.35;
       const tone = roofs[Math.floor(rand() * roofs.length)]!;
       b.at(x, FLOOR_Y, z, ry, () => {
-        b.box(0, 0.5, 0, w, 1, d, tone, { rx: 0.06 });
+        valleyBlock(b, 0, 0.5, 0, w, 1, d, tone, { rx: 0.06 });
         b.quad(0, 1.05, -d * 0.18, w * 0.96, 0.14, '#6a3f2d', { rx: -HALF }); b.quad(0, 1.05, d * 0.18, w * 0.96, 0.14, '#6a3f2d', { rx: -HALF });
       });
     }
@@ -189,7 +221,7 @@ function valley(b: Batch, rand: () => number): void {
     for (let gz = -74; gz <= -35; gz += 6.4) {
       if (Math.abs(gx - riverX(gz)) < 5 || rand() < 0.5) continue;
       const x = gx + (rand() - 0.5) * 1.2, z = gz + (rand() - 0.5) * 1.2, w = 5.2 + rand() * 1.6, d = 4.4 + rand() * 1.2, tone = roofs[Math.floor(rand() * roofs.length)]!;
-      b.at(x, FLOOR_Y, z, (rand() - 0.5) * 0.35, () => { b.box(0, 0.6, 0, w, 1.2, d, tone, { rx: 0.06 }); b.quad(0, 1.25, 0, w * 0.96, 0.18, '#6a3f2d', { rx: -HALF }); });
+      b.at(x, FLOOR_Y, z, (rand() - 0.5) * 0.35, () => { valleyBlock(b, 0, 0.6, 0, w, 1.2, d, tone, { rx: 0.06 }); b.quad(0, 1.25, 0, w * 0.96, 0.18, '#6a3f2d', { rx: -HALF }); });
     }
   }
   for (let i = 0; i < 9; i++) { const x = -30 + rand() * 80, z = -8 - rand() * 50; if (Math.abs(x - riverX(z)) < 3.4) continue; b.ico(x, FLOOR_Y + 1, z, 1.2 + rand() * 0.6, 1.3, 1.2 + rand() * 0.6, rand() < 0.5 ? '#4f8a45' : '#3d7a4a'); }

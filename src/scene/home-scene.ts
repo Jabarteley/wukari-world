@@ -1232,6 +1232,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     get bodyShown() { return body !== null; },
     stepCrowd(dt: number) {
       const more = Boolean(body?.step(dt)), using = sequence.step(dt), door = hinge?.step(dt) ?? false;
+      if (body?.contactSolvable && !sequence.presented && !doorDone) body.solveFeet(contact => contactHeightAt(contact.x, contact.z, contact.y));
       if (doorDone && body) body.sampleUse('homeDoor', Math.min(2.399, (hinge?.progress ?? 0) * 2.4));
       if (!more) placeBody();
       const action = sequence.presented; if (action) useProps.update(action, body); else useProps.hide();
@@ -1290,7 +1291,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
         return shown;
       },
       // With a rigged figure the limbs swing with `phase`; without one the two figures alternate (avatar-rig.js).
-      gait(step: boolean, phase = 0, jog = false) {
+      gait(step: boolean, phase = 0, jog = false, animate = false) {
         if (doorVisual) cancelDoor();
         if (sequence.easing || sequence.phase === 'rest') { sequence.interrupt(); useProps.hide(); }
         if (body) {
@@ -1299,7 +1300,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
           const flight = flightAt(plan, level, (floorAt.x + ROOM / 2) / tile, (floorAt.z + ROOM / 2) / tile)?.flight;
           if (flight && Math.abs(slope) < 0.3) slope = (Math.sign(floorAt.x - lastGait.x) || 1) * flight.dir * WALL_HEIGHT / (flight.w * tile);
           lastGait.x = floorAt.x; lastGait.y = floorAt.y; lastGait.z = floorAt.z;
-          body.stride(phase, jog, Math.abs(slope) >= 0.3 ? slope : 0); placeBody();
+          body.stride(phase, jog, Math.abs(slope) >= 0.3 ? slope : 0, animate); placeBody();
           if (!sequence.presented && !doorDone) body.solveFeet(contact => contactHeightAt(contact.x, contact.z, contact.y));
         }
         syncPresentation();

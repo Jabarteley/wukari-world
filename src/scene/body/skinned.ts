@@ -10,11 +10,10 @@
  *
  * STATIC RENDERING (the battery rule). The body never asks for frames. A resting pose (idle, sit, interact, dance,
  * lie, soak, wash) is one still frame of its clip. Walking and jogging sample the walk/jog clip (stairs-up/-down on a
- * slope) at the stride phase the host already steps every walking frame. The only clips that run in time are the
- * bounded transitions (sit-enter, sit-exit, lie-down, get-up, door), and only when the caller says the host's motion
- * loop is running (show(pose, true), enter(true)): while one plays, `easing` is true, the host steps it with
- * step(dt), and settle() jumps to its end. Otherwise the pose is taken at once, so a still frame never shows a
- * half-sat body.
+ * slope) at the stride phase the host already steps every walking frame. Bounded pose transitions and the short
+ * idle/walk/jog/stairs blends run only when the caller says the host's motion loop is running. While one plays,
+ * `easing` is true, the host advances it with step(dt), and settle() jumps to its end. Otherwise the pose is taken at
+ * once, so a still frame never shows an unfinished transition.
  */
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/examples/jsm/libs/meshopt_decoder.module.js';
@@ -36,6 +35,7 @@ import type { FootContact, FootSolveResult } from './foot-contact.ts';
 import type { BodyTint } from './tint.ts';
 import { DOOR, INTO, OUT, SEATED, STAIRS, STILL, WORK_INTO, WORK_OUT } from './poses.ts';
 import type { BodyPose } from './poses.ts';
+import { createFacialSampler, faceAtlas, FACIAL_FRAGMENT_PARS, facialMapFragment } from './facial.ts';
 
 export type { BodyPose };
 
@@ -65,8 +65,10 @@ export interface SkinnedBody {
   setPresentation(presentation: WardrobePresentation): boolean;
   sampleFootContacts(): readonly FootContact[];
   solveFeet(heightAt: (contact: FootContact) => number): FootSolveResult;
-  /** True while a transition (sit-enter, sit-exit, lie-down, get-up, door) is playing. */
+  /** True while a bounded pose or locomotion blend still needs host frames. */
   readonly easing: boolean;
+  /** True when the current raw animation sample can receive standing foot correction. */
+  readonly contactSolvable: boolean;
   readonly pose: BodyPose;
   /** True while seated, lying, soaking or entering/leaving a furniture pose. */
   readonly seated: boolean;
@@ -80,8 +82,8 @@ export interface SkinnedBody {
    * One walking frame: the walk (or jog) clip at the stride phase (radians; 2π is a full left-right cycle). `climb`
    * > 0 walking up a stair or ramp, < 0 down it: the stairs clips (same length as the walk, so the phase holds).
    */
-  stride(phase: number, jog: boolean, climb?: number): void;
-  /** Advance a transition. True while more frames are needed. */
+  stride(phase: number, jog: boolean, climb?: number, animate?: boolean): void;
+  /** Advance a bounded pose or locomotion transition. True while more frames are needed. */
   step(dt: number): boolean;
   /** Jump to the end of a transition. */
   settle(): void;
@@ -107,38 +109,22 @@ varying vec4 vRegion;`;
 const FRAGMENT = /* glsl */ `
 varying vec4 vRegion;
 uniform vec3 uSkin, uTop, uBottoms, uHair, uShoes;
-uniform float uSkinLum, uClothLum, uSleeping;
-uniform vec2 uEyeU;`;
+uniform float uSkinLum, uClothLum;
+${FACIAL_FRAGMENT_PARS}`;
 // After the base-colour texel is in: keep the painted face, recolour skin by tone, dress the regions.
-// Skin only: a warm, skin-tinted glow toward the silhouette (cheap subsurface and fresnel in one) so faces and arms read soft.
-const SKIN_GLOW = /* glsl */ `
-#include <emissivemap_fragment>
-{
-  float edge = 1.0 - clamp(dot(normalize(normal), normalize(vViewPosition)), 0.0, 1.0);
-  totalEmissiveRadiance += uSkin * vec3(1.0, 0.6, 0.45) * skinMask * (0.035 + 0.2 * edge * edge * edge);
-}`;
 const DRESS = /* glsl */ `
-#include <map_fragment>
-float skinMask = 0.0;
+${facialMapFragment('vRegion.r')}
 {
   vec3 texel = diffuseColor.rgb;
-  #ifdef USE_MAP
-  if (uSleeping > 0.5) {
-    float dx = abs(vMapUv.x - uEyeU.x) < abs(vMapUv.x - uEyeU.y) ? vMapUv.x - uEyeU.x : vMapUv.x - uEyeU.y;
-    float eye = (1.0 - smoothstep(0.82, 1.0, length(vec2(dx / 0.031, (vMapUv.y - 0.177734375) / 0.014)))) * vRegion.r;
-    vec3 cheek = texture2D(map, vec2(vMapUv.x, 0.205)).rgb;
-    float lidY = 0.178 + 0.003 * (1.0 - min(1.0, dx * dx / 0.0009));
-    float lid = (1.0 - smoothstep(0.0011, 0.0023, abs(vMapUv.y - lidY))) * (1.0 - smoothstep(0.026, 0.031, abs(dx)));
-    texel = mix(texel, mix(cheek, cheek * 0.22, lid), eye);
-  }
-  #endif
+  // Garment meshes own the cuffs and collar. Bone-weight blends in the source mask must not
+  // paint their clothing colour over the exposed neck and arms between those edges.
+  vec4 region = mix(vRegion, vec4(1.0, 0.0, 0.0, 0.0), smoothstep(0.2, 0.3, vRegion.r));
   float hi = max(max(texel.r, texel.g), texel.b), lo = min(min(texel.r, texel.g), texel.b);
   float skinness = hi > 0.01 ? smoothstep(0.28, 0.42, (hi - lo) / hi) : 0.0;
   float shade = clamp(dot(texel, vec3(0.2126, 0.7152, 0.0722)) / mix(uClothLum, uSkinLum, skinness), 0.55, 1.35);
-  float shoes = clamp(1.0 - vRegion.r - vRegion.g - vRegion.b - vRegion.a, 0.0, 1.0);
+  float shoes = clamp(1.0 - region.r - region.g - region.b - region.a, 0.0, 1.0);
   vec3 skin = mix(texel, texel * uSkin, skinness);
-  skinMask = skinness * vRegion.r;
-  diffuseColor.rgb = skin * vRegion.r + (uTop * vRegion.g + uBottoms * vRegion.b + uHair * vRegion.a + uShoes * shoes) * shade;
+  diffuseColor.rgb = skin * region.r + (uTop * region.g + uBottoms * region.b + uHair * region.a + uShoes * shoes) * shade;
 }`;
 
 let loader: GLTFLoader | null = null;
@@ -156,7 +142,7 @@ function loadClips(): Promise<THREE.AnimationClip[]> {
 /** Load the body a look wears, dressed in it, scaled for a scene whose avatar scale is `sceneScale`. */
 export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScale: number): Promise<SkinnedBody> {
   const { THREE: T } = kit;
-  let tint = bodyTint(look, seed);
+  let read = normalizeLook(look, seed), tint = bodyTint(read, seed);
   const key = tint.key, facts = BODY_MANIFEST.bodies[key];
   await MeshoptDecoder.ready;
   const [gltf, clips] = await Promise.all([gltfLoader().loadAsync(BODY_FILES[key]), loadClips()]);
@@ -169,20 +155,30 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
   if (!map) throw new Error(`no base colour in ${BODY_FILES[key]}`);
   // The scene's own material family (Lambert when scenery is matte), with the look as uniforms.
   const material = kit.matte ? new T.MeshLambertMaterial({ map }) : new T.MeshStandardMaterial({ map, roughness: 0.82, metalness: 0 });
+  const atlas = faceAtlas(key), facial = createFacialSampler(read.expression, seed);
   const uniforms = {
     uSkin: { value: new T.Vector3() }, uTop: { value: new T.Vector3() }, uBottoms: { value: new T.Vector3() },
     uHair: { value: new T.Vector3() }, uShoes: { value: new T.Vector3() },
     uSkinLum: { value: facts.skinLum }, uClothLum: { value: facts.clothLum },
-    uSleeping: { value: 0 }, uEyeU: { value: new T.Vector2(key === 'male' ? 141 / 1024 : 134 / 1024, key === 'male' ? 240 / 1024 : 239 / 1024) },
+    uSleeping: { value: 0 }, uExpression: { value: facial.state.expression },
+    uExpressionMotion: { value: facial.state.expressionMotion }, uBlink: { value: facial.state.blink },
+    uEyeUv: { value: new T.Vector3(...atlas.eyes) }, uMouthUv: { value: new T.Vector2(...atlas.mouth) },
   };
   const apply = (next: BodyTint) => { for (const part of ['skin', 'top', 'bottoms', 'hair', 'shoes'] as const) uniforms[`u${part[0]!.toUpperCase()}${part.slice(1)}` as 'uSkin'].value.fromArray(next[part]); };
+  const syncFacial = () => {
+    uniforms.uExpression.value = facial.state.expression;
+    uniforms.uExpressionMotion.value = facial.state.expressionMotion;
+    uniforms.uBlink.value = facial.state.blink;
+  };
+  const sampleFacial = (seconds: number) => { facial.sample(seconds); syncFacial(); };
+  const settleFacial = () => { facial.settle(); syncFacial(); };
   apply(tint);
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
     shader.vertexShader = shader.vertexShader.replace('#include <common>', `#include <common>${VERTEX}`).replace('#include <begin_vertex>', '#include <begin_vertex>\n  vRegion = color;');
-    shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>${FRAGMENT}`).replace('#include <map_fragment>', DRESS).replace('#include <emissivemap_fragment>', SKIN_GLOW);
+    shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>${FRAGMENT}`).replace('#include <map_fragment>', DRESS);
   };
-  material.customProgramCacheKey = () => 'allworld-body-sleep-2';
+  material.customProgramCacheKey = () => 'allworld-body-face-1';
   loaded.dispose();
   skinned.material = material;
   // A posed body leaves its bind-pose bounds; one small mesh is cheaper to draw than to cull wrongly.
@@ -196,13 +192,13 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
   const wardrobe = createWardrobeRenderer(skinned, kit.matte);
   const appearanceMade = createAvatarAppearanceController(skinned);
   const footContact = createFootContactController(object, skinned, wardrobe.object);
-  let read = normalizeLook(look, seed), appearance = normalizeAvatarAppearance(read.appearance);
+  let appearance = normalizeAvatarAppearance(read.appearance);
   let proportions = avatarProportions(appearance), sceneFit = sceneScale;
   wardrobe.wear({ look: read, ids: resolveAvatarWearablesForRenderer(read) });
   if (appearanceMade.ok) appearanceMade.controller.apply(appearance);
   const mixer = new T.AnimationMixer(gltf.scene);
   const actions = new Map(clips.map((clip) => [clip.name, mixer.clipAction(clip)]));
-  let active: THREE.AnimationAction | null = null, scale = 1, pose: BodyPose = 'idle';
+  let active = new Set<THREE.AnimationAction>(), scale = 1, pose: BodyPose = 'idle';
   // Restore the raw clip pose before sampling; cached mixer writes cannot undo external IK.
   const mixerPose = createAnimationPoseCheckpoint(skinned.skeleton.bones);
   let strideClimb = 0;
@@ -212,21 +208,20 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
   let seat: { x: number; top: number; z: number; ry: number; lying: boolean } | null = null;
   type BoneFrame = { position: THREE.Vector3; quaternion: THREE.Quaternion; scale: THREE.Vector3 };
   let blendFrom: BoneFrame[] | null = null;
+  let faceTime = 0;
   const CROSSFADE = 0.16;
-  // Stopping a walk: the bones the stride left, eased into the standing pose over WALK_STOP seconds (a snap reads as a hitch).
-  const WALK_STOP = 0.12;
-  let walkStop: { time: number; from: BoneFrame[] } | null = null;
-  function easeStop() {
-    if (!walkStop) return;
-    const t = Math.min(1, walkStop.time / WALK_STOP), eased = t * t * (3 - 2 * t), from = walkStop.from;
-    if (t >= 1) { walkStop = null; return; }
-    skinned.skeleton.bones.forEach((bone, index) => {
-      const was = from[index];
-      if (!was) return;
-      bone.position.lerpVectors(was.position, bone.position, eased);
-      bone.quaternion.slerp(was.quaternion, 1 - eased);
-    });
-  }
+  const LOCOMOTION_BLEND = 0.18;
+  const locomotionNames = ['idle', 'walk', 'jog', STAIRS.up, STAIRS.down] as const;
+  type LocomotionName = typeof locomotionNames[number];
+  type LocomotionWeights = Record<LocomotionName, number>;
+  const oneHot = (name: LocomotionName): LocomotionWeights => ({
+    idle: name === 'idle' ? 1 : 0,
+    walk: name === 'walk' ? 1 : 0,
+    jog: name === 'jog' ? 1 : 0,
+    [STAIRS.up]: name === STAIRS.up ? 1 : 0,
+    [STAIRS.down]: name === STAIRS.down ? 1 : 0,
+  });
+  let locomotion: { weights: LocomotionWeights; from: LocomotionWeights; target: LocomotionName; time: number; phase: number } | null = null;
   let transition: { clip: string; time: number; length: number; then: BodyPose; from: Placement } | null = null;
   const anchored = new Set([...Object.values(INTO), ...Object.values(OUT), ...Object.values(WORK_INTO), ...Object.values(WORK_OUT)]);
   const clipFor = (name: string) => key === 'female' && actions.has(`${name}-female`) ? `${name}-female` : name;
@@ -247,12 +242,21 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
     }
   }
 
-  function sample(name: string, time: number) {
-    const action = actions.get(clipFor(name));
-    if (!action) return;
+  function sampleActions(samples: readonly { name: string; time: number; weight: number }[]) {
     mixerPose.restore();
-    if (action !== active) { active?.stop(); action.play(); active = action; }
-    action.time = Math.min(Math.max(time, 0), action.getClip().duration);
+    const wanted = new Set<THREE.AnimationAction>();
+    for (const sampled of samples) {
+      if (sampled.weight <= 0) continue;
+      const action = actions.get(clipFor(sampled.name));
+      if (!action) continue;
+      wanted.add(action);
+      if (!active.has(action)) action.reset().play();
+      action.enabled = true;
+      action.setEffectiveWeight(sampled.weight);
+      action.time = Math.min(Math.max(sampled.time, 0), action.getClip().duration);
+    }
+    for (const action of active) if (!wanted.has(action)) action.stop();
+    active = wanted;
     mixer.update(0);
     mixerPose.capture(); // before transition blending and external foot correction
     if (blendFrom && transition) {
@@ -267,9 +271,55 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       if (t >= 1) blendFrom = null;
     }
   }
+  function sample(name: string, time: number) {
+    sampleActions([{ name, time, weight: 1 }]);
+  }
+  function sampleLocomotion() {
+    const current = locomotion;
+    if (!current) return;
+    const phase = current.phase - Math.floor(current.phase);
+    sampleActions(locomotionNames.map((name) => {
+      const clip = actions.get(name)?.getClip();
+      const time = name === 'idle'
+        ? (actions.get(clipFor('idle'))?.getClip().duration ?? 0) * STILL.idle.at
+        : phase * (clip?.duration ?? 0);
+      return { name, time, weight: current.weights[name] };
+    }));
+  }
+  function setLocomotion(name: LocomotionName, phase: number, animate: boolean, initial: LocomotionName = 'idle') {
+    if (!locomotion) locomotion = { weights: oneHot(initial), from: oneHot(initial), target: initial, time: LOCOMOTION_BLEND, phase };
+    locomotion.phase = phase;
+    if (!animate) {
+      locomotion.weights = oneHot(name);
+      locomotion.from = oneHot(name);
+      locomotion.target = name;
+      locomotion.time = LOCOMOTION_BLEND;
+    } else if (locomotion.target !== name) {
+      locomotion.from = { ...locomotion.weights };
+      locomotion.target = name;
+      locomotion.time = 0;
+    }
+    sampleLocomotion();
+  }
+  function stepLocomotion(dt: number) {
+    if (!locomotion || locomotion.time >= LOCOMOTION_BLEND) return false;
+    locomotion.time = Math.min(LOCOMOTION_BLEND, locomotion.time + Math.max(dt, 0));
+    const t = locomotion.time / LOCOMOTION_BLEND, eased = t * t * (3 - 2 * t), target = oneHot(locomotion.target);
+    for (const name of locomotionNames) locomotion.weights[name] = locomotion.from[name] + (target[name] - locomotion.from[name]) * eased;
+    sampleLocomotion();
+    return locomotion.time < LOCOMOTION_BLEND;
+  }
+  function settleLocomotion() {
+    if (!locomotion) return;
+    locomotion.weights = oneHot(locomotion.target);
+    locomotion.from = oneHot(locomotion.target);
+    locomotion.time = LOCOMOTION_BLEND;
+    sampleLocomotion();
+  }
   function still(next: BodyPose) {
     const { clip, at } = STILL[next];
     sample(clip, (actions.get(clipFor(clip))?.getClip().duration ?? 0) * at);
+    settleFacial();
   }
   function finish() {
     if (!transition) return;
@@ -280,6 +330,8 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
   }
   /** Run a bounded clip into the current pose, or (none, or not in the pack) take the pose at once. */
   function play(clip: string | undefined) {
+    locomotion = null;
+    faceTime = 0; settleFacial();
     const length = clip ? actions.get(clipFor(clip))?.getClip().duration ?? 0 : 0;
     if (!clip || !length) { transition = null; blendFrom = null; return still(pose); }
     // An interrupted use loop can be at any phase. Blend its exact current local bones into the authored exit.
@@ -306,52 +358,58 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       if (strideClimb) for (let pass = 0; pass < 3 && result.limited && result.maxError > 0.002; pass++) result = footContact.solve(heightAt);
       return result;
     },
-    get easing() { return transition !== null || walkStop !== null; },
+    get easing() { return transition !== null || Boolean(locomotion && locomotion.time < LOCOMOTION_BLEND); },
+    get contactSolvable() { return transition === null && !SEATED.has(pose); },
     get pose() { return pose; },
     get seated() { return SEATED.has(pose) || SEATED.has(transition?.clip ?? ''); },
     show(next, animate = false) {
+      if (next === 'idle' && locomotion) {
+        transition = null; blendFrom = null; strideClimb = 0; pose = next;
+        setLocomotion('idle', locomotion.phase, animate);
+        return;
+      }
       if (next === pose && transition && animate) return;
       if (next === pose && !transition) return still(next);
-      const leaving = animate && (pose === 'walk' || pose === 'jog') && next !== 'walk' && next !== 'jog' && !SEATED.has(next);
-      const left = leaving ? skinned.skeleton.bones.map(bone => ({ position: bone.position.clone(), quaternion: bone.quaternion.clone(), scale: bone.scale.clone() })) : null;
       const into = next !== pose ? INTO[next] ?? WORK_INTO[next] : undefined, out = next !== pose && next !== 'walk' && next !== 'jog' ? OUT[pose] ?? WORK_OUT[pose] : undefined;
       pose = next;
-      walkStop = null;
       play(animate ? into ?? out : undefined);
-      if (left && !transition) { walkStop = { time: 0, from: left }; easeStop(); }
     },
     sampleUse(next, seconds) {
       if (transition) return;
+      locomotion = null;
       pose = next;
       const { clip } = STILL[next], length = actions.get(clipFor(clip))?.getClip().duration ?? 0;
       if (length) sample(clip, ((Math.max(0, seconds) % length) + length) % length);
+      sampleFacial(seconds);
       put();
     },
     enter(animate) { pose = 'idle'; play(animate ? DOOR : undefined); },
-    stride(phase, jog, climb = 0) {
+    stride(phase, jog, climb = 0, animate = false) {
+      const previous = pose;
+      const locomotionHandoff = previous === 'idle' || previous === 'walk' || previous === 'jog';
+      const initial = previous === 'walk' || previous === 'jog' ? previous : 'idle';
       strideClimb = climb;
-      transition = null; blendFrom = null; walkStop = null;
+      transition = null; blendFrom = null;
       pose = jog ? 'jog' : 'walk';
-      const name = !climb ? pose : climb > 0 ? STAIRS.up : STAIRS.down, clip = actions.get(name)?.getClip();
-      if (!clip) return;
-      const turn = phase / (2 * Math.PI);
-      sample(name, (turn - Math.floor(turn)) * clip.duration);
+      const name: LocomotionName = !climb ? pose : climb > 0 ? STAIRS.up : STAIRS.down;
+      setLocomotion(name, phase / (2 * Math.PI), animate && locomotionHandoff, initial);
+      sampleFacial(Math.abs(phase) / (jog ? 8.5 : 6.5));
     },
     step(dt) {
-      if (walkStop && !transition) {
-        walkStop.time += Math.max(dt, 0);
-        still(pose);
-        easeStop();
-        return walkStop !== null;
+      const elapsed = Math.max(dt, 0);
+      faceTime += elapsed; sampleFacial(faceTime);
+      if (!transition) {
+        const more = stepLocomotion(elapsed);
+        if (!more) settleFacial();
+        return more;
       }
-      if (!transition) return false;
-      transition.time += Math.max(dt, 0);
+      transition.time += elapsed;
       if (transition.time >= transition.length) { finish(); return false; }
       sample(transition.clip, transition.time);
       put();
       return true;
     },
-    settle() { walkStop = null; finish(); },
+    settle() { if (transition) finish(); else settleLocomotion(); settleFacial(); },
     place(x, y, z, ry) { standing = { x, y, z, ry }; put(); },
     sitOn(x, top, z, ry) {
       seat = { x, top, z, ry, lying: (transition?.clip ?? pose) === 'get-up' || pose === 'lie' };
@@ -370,6 +428,7 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
       const nextRead = normalizeLook(next, nextSeed);
       if (!wardrobe.wear({ look: nextRead, ids: resolveAvatarWearablesForRenderer(nextRead) })) return true;
       read = nextRead; appearance = normalizeAvatarAppearance(read.appearance); proportions = avatarProportions(appearance);
+      facial.wear(read.expression, nextSeed ?? seed); syncFacial();
       if (appearanceMade.ok) appearanceMade.controller.apply(appearance);
       body.fit(sceneFit);
       tint = wanted; apply(tint);

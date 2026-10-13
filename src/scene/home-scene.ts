@@ -86,6 +86,7 @@ import { cachedCityContent } from '../game/cities/registry.ts';
 import type { HomePalette } from '../types/content.ts';
 import { HOUSE_DESIGNS, HOUSE_STYLE } from '../game/content/world.ts';
 import { footprint, windowSlot, doorSlot, plotOf } from '../game/home-layout.ts';
+import { zonesOf } from './home-zones.ts';
 import type { Plot } from '../game/home-layout.ts';
 import { planOf, wallsOf, bumpsOf, railsOf, flightAt, stairwellOf, routeOf, slabOf, finishAt, nearestFree } from '../game/home-plan.ts';
 import type { HousePlan, PlanStairs, PlanWall } from '../game/home-plan.ts';
@@ -166,17 +167,31 @@ export const MAX_GUESTS_SHOWN = 5;
 /** How tall each furniture shape stands, in tiles — what can come between the camera and the avatar (camera-collision.js). Unlisted shapes are low. */
 const TALL: Record<string, number | undefined> = { bed: 1.3, fridge: 1.9, shower: SHOWER_HEAD + 0.02, speaker: 1.25, tv: 1.4, shelf: 1.5, wardrobe: 1.7, tripod: 1.25, mic: 1.3, floorlamp: 1.7, cage: 1.5, aquarium: 1.15, plant: 1.1, drum: 1, cooker: 1.1, desk: 1, bench: 1, inverter: 0.95, chair: 0.95, sofa: 0.85 };
 
+/** A hex colour moved `t` of the way to `to`: dados, skirting and shadows are derived from whatever palette the city gives. */
+const mix = (a: Colour, to: Colour, t: number): Colour => {
+  const x = parseInt(a.slice(1), 16), y = parseInt(to.slice(1), 16), ch = (s: number) => Math.round(((x >> s) & 255) * (1 - t) + ((y >> s) & 255) * t);
+  return `#${((1 << 24) | (ch(16) << 16) | (ch(8) << 8) | ch(0)).toString(16).slice(1)}`;
+};
+/** A cushioned box: the body, and a slightly lighter, inset top so the edge reads as rounded from above. */
+const soft = (b: Tools, x: number, y: number, z: number, w: number, h: number, d: number, c: Colour, e = 0.04) => {
+  b.box(x, y - e / 2, z, w, h - e, d, c); b.box(x, y + h / 2 - e / 2, z, w - e * 2, e, d - e * 2, mix(c, '#ffffff', 0.14));
+};
 const legs = (b: Tools, w: number, d: number, h: number, c: Colour = WOOD) => { for (const x of [-w / 2, w / 2]) for (const z of [-d / 2, d / 2]) b.box(x, h / 2, z, 0.06, h, 0.06, c); };
 
 /** One low-poly model per catalogue `shape`. Units are tiles; origin is the footprint centre on the floor; W × D is the footprint. */
 const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
   mat(b, W, D, c) { b.box(0, 0.04, 0, W * 0.84, 0.06, D * 0.9, c); b.box(0, 0.1, -D * 0.36, W * 0.5, 0.07, D * 0.12, WHITE); },
   bed(b, W, D, c, def) {
-    b.box(0, 0.2, 0, W * 0.92, 0.26, D * 0.94, WOOD);
-    b.box(0, 0.42, 0, W * 0.86, 0.2, D * 0.9, WHITE);
-    b.box(0, 0.54, D * 0.14, W * 0.88, 0.07, D * 0.58, c);
-    for (let i = 0; i < W; i++) b.box((i - (W - 1) / 2) * 0.8, 0.58, -D * 0.38, 0.55, 0.1, D * 0.12 + 0.08, '#ffffff');
-    b.box(0, 0.5 + def.stars * 0.08, -D * 0.47, W * 0.92, 0.7 + def.stars * 0.16, 0.07, def.stars >= 4 ? '#c9a227' : WOOD);
+    const wood = def.stars >= 4 ? '#c9a227' : WOOD, top = 0.5 + def.stars * 0.08, tall = 0.7 + def.stars * 0.16;
+    b.box(0, 0.2, 0, W * 0.92, 0.26, D * 0.94, wood);
+    for (const x of [-1, 1]) for (const z of [-1, 1]) b.box(x * W * 0.43, 0.04, z * D * 0.44, 0.1, 0.08, 0.1, mix(wood, '#000000', 0.35));
+    soft(b, 0, 0.42, 0, W * 0.86, 0.2, D * 0.9, WHITE);
+    soft(b, 0, 0.54, D * 0.14, W * 0.88, 0.07, D * 0.58, c, 0.025);
+    b.box(0, 0.552, -D * 0.14, W * 0.88, 0.078, 0.14, mix(c, '#ffffff', 0.55));
+    b.box(0, 0.565, D * 0.4, W * 0.88, 0.06, 0.2, mix(c, '#000000', 0.2));
+    for (let i = 0; i < W; i++) soft(b, (i - (W - 1) / 2) * 0.8, 0.58, -D * 0.38, 0.55, 0.12, D * 0.12 + 0.08, '#ffffff', 0.04);
+    b.box(0, top, -D * 0.47, W * 0.92, tall, 0.07, wood); b.box(0, top + tall * 0.1, -D * 0.435, W * 0.76, tall * 0.62, 0.02, mix(wood, '#ffffff', 0.12));
+    for (const x of [-1, 1]) b.box(x * W * 0.46, top + tall / 2 + 0.05, -D * 0.47, 0.09, 0.09, 0.09, mix(wood, '#000000', 0.25));
   },
   stove(b, W, D, c) {
     b.box(0, 0.5, 0, 0.82, 0.06, 0.82, '#8a6b4a'); legs(b, 0.68, 0.68, 0.5);
@@ -186,11 +201,17 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
     b.box(0, 0.43, 0, W * 0.84, 0.86, D * 0.8, c); b.box(0, 0.88, 0, W * 0.86, 0.04, D * 0.82, DARK);
     for (let i = 0; i < W * 2; i++) b.round((i + 0.5) * 0.42 - W * 0.42, 0.92, 0, 0.13, 0.04, '#6c7278');
     b.box(0, 1.0, -D * 0.37, W * 0.84, 0.2, 0.05, c); b.box(0, 0.45, D * 0.41, W * 0.6, 0.4, 0.02, DARK);
+    b.round(-W * 0.2, 1.0, 0.04, 0.17, 0.2, '#b9bdc0'); b.round(-W * 0.2, 1.12, 0.04, 0.18, 0.03, '#8a8f93'); b.box(-W * 0.2 + 0.2, 1.02, 0.04, 0.12, 0.04, 0.04, DARK);
   },
   cooler(b, W, D, c) { b.box(0, 0.24, 0, 0.62, 0.44, 0.44, c); b.box(0, 0.5, 0, 0.66, 0.09, 0.48, WHITE); b.box(0, 0.58, 0, 0.3, 0.05, 0.06, c); },
   fridge(b, W, D, c, def) {
     const h = 1.3 + def.stars * 0.12;
-    b.box(0, h / 2, 0, 0.74, h, 0.7, c); b.box(0, h * 0.68, 0.36, 0.7, 0.02, 0.02, DARK); b.box(0.28, h * 0.5, 0.37, 0.04, 0.3, 0.03, STEEL);
+    const split = h * 0.68, edge = mix(c, '#000000', 0.12);
+    b.box(0, 0.03, 0, 0.7, 0.06, 0.66, DARK); b.box(0, (h - 0.06) / 2 + 0.06, 0, 0.74, h - 0.12, 0.7, c); b.box(0, h - 0.03, 0, 0.7, 0.06, 0.66, mix(c, '#ffffff', 0.18));
+    b.box(0, split, 0.355, 0.72, 0.025, 0.02, DARK); b.box(0, h / 2 + 0.05, 0.355, 0.012, h - 0.2, 0.012, edge);
+    for (const [y, tall] of [[split + 0.1, 0.22], [split - 0.38, 0.4]] as const) b.box(0.29, y, 0.375, 0.035, tall, 0.035, STEEL);
+    b.box(-0.2, split + 0.12, 0.362, 0.1, 0.12, 0.012, '#d9d4c0'); b.box(-0.2, split + 0.17, 0.37, 0.1, 0.02, 0.012, '#c9372c');
+    for (const [x, y, m] of [[-0.12, split - 0.2, '#35a06b'], [-0.24, split - 0.3, '#e0a526'], [0, split - 0.36, '#2f6fbf']] as const) b.box(x, y, 0.362, 0.06, 0.06, 0.014, m);
   },
   drum(b, W, D, c) { b.round(0, 0.48, 0, 0.36, 0.96, c); b.round(0, 0.98, 0, 0.38, 0.05, '#2c4f76'); b.round(0, 0.3, 0, 0.375, 0.04, '#2c4f76'); b.round(0, 0.66, 0, 0.375, 0.04, '#2c4f76'); },
   bucket(b, W, D, c) { b.round(-0.12, 0.2, -0.08, 0.22, 0.4, c); b.round(-0.12, 0.41, -0.08, 0.24, 0.03, '#8fc6d8'); b.round(0.24, 0.07, 0.2, 0.16, 0.12, '#d9574f'); },
@@ -206,14 +227,35 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
   },
   toilet(b, W, D, c) { b.round(0, 0.19, 0.08, 0.19, 0.38, c); b.round(0, 0.41, 0.1, 0.25, 0.07, c); b.box(0, 0.55, -0.27, 0.46, 0.5, 0.18, c); b.box(0, 0.82, -0.27, 0.5, 0.05, 0.22, WHITE); },
   basin(b, W, D, c) { b.round(0, 0.1, 0, 0.36, 0.2, c); b.round(0, 0.2, 0, 0.3, 0.02, '#8fc6d8'); },
-  chair(b, W, D, c) { b.box(0, 0.38, 0, 0.5, 0.06, 0.5, c); b.box(0, 0.66, -0.23, 0.5, 0.5, 0.05, c); legs(b, 0.42, 0.42, 0.36, c); },
+  chair(b, W, D, c) {
+    soft(b, 0, 0.38, 0, 0.5, 0.06, 0.5, c, 0.025); legs(b, 0.42, 0.42, 0.36, mix(c, '#000000', 0.25));
+    for (const x of [-0.2, 0.2]) b.box(x, 0.62, -0.23, 0.05, 0.42, 0.05, mix(c, '#000000', 0.15));
+    b.box(0, 0.84, -0.23, 0.5, 0.06, 0.05, c); soft(b, 0, 0.64, -0.23, 0.36, 0.26, 0.04, c, 0.02);
+  },
   sofa(b, W, D, c) {
-    b.box(0, 0.24, 0, W * 0.94, 0.34, D * 0.84, c); b.box(0, 0.58, -D * 0.34, W * 0.94, 0.5, D * 0.18, c);
-    for (const side of [-1, 1]) b.box(side * (W * 0.47 - 0.07), 0.46, 0, 0.14, 0.32, D * 0.84, c);
-    for (let i = 0; i < W; i++) b.box((i - (W - 1) / 2) * 0.82, 0.45, D * 0.06, 0.66, 0.1, D * 0.5, '#f0e6d6');
+    const dark = mix(c, '#000000', 0.18);
+    for (const x of [-1, 1]) for (const z of [-1, 1]) b.box(x * W * 0.42, 0.04, z * D * 0.34, 0.07, 0.08, 0.07, WOOD);
+    b.box(0, 0.19, 0, W * 0.94, 0.22, D * 0.84, dark); soft(b, 0, 0.62, -D * 0.34, W * 0.94, 0.5, D * 0.18, c, 0.05);
+    for (const side of [-1, 1]) soft(b, side * (W * 0.47 - 0.07), 0.46, 0, 0.14, 0.38, D * 0.84, c, 0.05);
+    for (let i = 0; i < W; i++) {
+      const x = (i - (W - 1) / 2) * 0.82;
+      soft(b, x, 0.4, D * 0.06, 0.7, 0.2, D * 0.52, mix(c, '#ffffff', 0.08), 0.05);
+      soft(b, x, 0.68, -D * 0.2, 0.66, 0.36, 0.12, mix(c, '#ffffff', 0.05), 0.04);
+    }
+    // Ankara-style throw pillows: a bold ground with a contrasting inner panel, one at each end.
+    for (const [x, ground, panel] of [[W / 2 - 0.4, '#d9a441', '#1f5f8b'], [-W / 2 + 0.4, '#1f5f8b', '#e0702c']] as const) { soft(b, x, 0.68, -D * 0.1, 0.3, 0.3, 0.1, ground, 0.03); b.box(x, 0.68, -D * 0.1 + 0.052, 0.16, 0.16, 0.01, panel); }
   },
   beanbag(b, W, D, c) { b.ball(0, 0.26, 0, 0.38, c); b.ball(0, 0.5, -0.08, 0.24, c); },
-  rug(b, W, D, c) { b.box(0, 0.02, 0, W * 0.94, 0.03, D * 0.94, c); b.box(0, 0.04, 0, W * 0.7, 0.02, D * 0.7, '#e8d9b5'); b.box(0, 0.055, 0, W * 0.4, 0.02, D * 0.4, c); },
+  rug(b, W, D, c) {
+    // A wax-print rug: border bands, then rows of bold circles in two-tone prints.
+    b.box(0, 0.02, 0, W * 0.94, 0.03, D * 0.94, c); b.box(0, 0.04, 0, W * 0.86, 0.02, D * 0.86, '#efe3c4'); b.box(0, 0.055, 0, W * 0.8, 0.02, D * 0.8, '#1f5f8b');
+    const prints = [['#d9a441', '#c9372c'], ['#efe3c4', '#e0702c']] as const, nx = Math.max(2, Math.round(W * 1.5)), nz = Math.max(2, Math.round(D * 1.5));
+    for (let i = 0; i < nx; i++) for (let j = 0; j < nz; j++) {
+      const [outer, inner] = prints[(i + j) % 2]!, x = (i + 0.5 - nx / 2) * (W * 0.7 / nx), z = (j + 0.5 - nz / 2) * (D * 0.7 / nz), r = Math.min(W * 0.7 / nx, D * 0.7 / nz) * 0.4;
+      b.round(x, 0.075, z, r, 0.02, outer); b.round(x, 0.087, z, r * 0.5, 0.01, inner);
+    }
+    for (const z of [-1, 1]) b.box(0, 0.012, z * D * 0.485, W * 0.9, 0.02, 0.05, '#efe3c4');
+  },
   radio(b, W, D, c) {
     b.round(0, 0.4, 0, 0.26, 0.06, WOOD); legs(b, 0.3, 0.3, 0.4);
     b.box(0, 0.56, 0, 0.44, 0.26, 0.16, c); b.round(-0.1, 0.56, 0.085, 0.07, 0.02, DARK); b.box(0.18, 0.84, 0, 0.015, 0.34, 0.015, STEEL);
@@ -221,7 +263,11 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
   speaker(b, W, D, c) { b.box(0, 0.6, 0, 0.5, 1.2, 0.46, c); b.ball(0, 0.85, 0.2, 0.14, '#5b6068'); b.ball(0, 0.42, 0.2, 0.2, '#5b6068'); b.box(0, 1.22, 0, 0.3, 0.04, 0.1, '#35d07f', true); },
   board(b, W, D, c) { b.box(0, 0.3, 0, 0.7, 0.05, 0.7, WOOD); legs(b, 0.56, 0.56, 0.3); b.box(0, 0.34, 0, 0.56, 0.03, 0.56, c); b.box(-0.14, 0.36, -0.14, 0.2, 0.02, 0.2, '#c9372c'); b.box(0.14, 0.36, 0.14, 0.2, 0.02, 0.2, '#2f6fbf'); },
   tv(b, W, D, c) {
-    b.box(0, 0.24, 0, W * 0.82, 0.48, 0.4, c);
+    soft(b, 0, 0.26, 0, W * 0.82, 0.44, 0.4, c, 0.03); legs(b, W * 0.74, 0.3, 0.05, DARK);
+    for (const x of W > 1 ? [-1, 1] : [0]) b.box(x * W * 0.2, 0.26, 0.205, W > 1 ? W * 0.34 : W * 0.7, 0.32, 0.012, mix(c, '#000000', 0.22));
+    b.box(0, 0.53, 0, 0.1, 0.06, 0.1, DARK);
+    b.box(W * 0.1, 0.5, 0.05, W * 0.46, 0.012, 0.28, '#f4efe0'); b.box(W * 0.1, 0.486, 0.19, W * 0.46, 0.02, 0.02, '#d9d0b8');
+    if (W > 1) { b.box(-W * 0.3, 0.55, 0.08, 0.16, 0.12, 0.02, WOOD); b.box(-W * 0.3, 0.55, 0.09, 0.13, 0.09, 0.012, '#9bbad4'); }
     b.box(0, 0.5 + W * 0.26, 0, W * 0.7, W * 0.42, 0.07, '#15171a'); b.box(0, 0.5 + W * 0.26, 0.04, W * 0.62, W * 0.34, 0.01, '#5d8fc4', true);
   },
   console(b, W, D, c) { b.box(0, 0.2, 0, 0.7, 0.4, 0.5, WOOD); b.box(0, 0.45, 0, 0.4, 0.1, 0.3, c); b.box(0.24, 0.43, 0.14, 0.16, 0.05, 0.1, '#e5e7e9'); b.box(0, 0.51, 0.16, 0.2, 0.01, 0.02, '#4aa3ff', true); },
@@ -235,12 +281,14 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
     b.box(-W * 0.32, 0.98, 0, 0.04, 0.04, 0.96, STEEL); for (const z of [-0.44, 0.44]) b.box(-W * 0.32, 0.98, z, 0.3, 0.3, 0.06, DARK);
   },
   desk(b, W, D, c) {
-    b.box(0, 0.62, 0, W * 0.9, 0.06, 0.62, c); legs(b, W * 0.8, 0.5, 0.6, DARK);
+    soft(b, 0, 0.62, 0, W * 0.9, 0.06, 0.62, c, 0.02); legs(b, W * 0.8, 0.5, 0.6, DARK);
+    b.box(-W * 0.28, 0.46, 0.02, W * 0.3, 0.26, 0.5, mix(c, '#000000', 0.2)); b.box(-W * 0.28, 0.46, 0.275, W * 0.26, 0.2, 0.012, mix(c, '#000000', 0.05)); b.box(-W * 0.28, 0.46, 0.285, 0.1, 0.02, 0.014, STEEL);
     b.box(0, 0.67, 0.02, 0.44, 0.02, 0.3, STEEL); b.box(0, 0.83, -0.14, 0.44, 0.3, 0.02, DARK); b.box(0, 0.83, -0.125, 0.4, 0.26, 0.01, '#8fd0ff', true);
     b.box(W * 0.3, 0.72, -0.1, 0.1, 0.14, 0.1, '#d9574f');
   },
   shelf(b, W, D, c) {
     b.box(0, 0.75, -0.14, 0.8, 1.5, 0.05, c); for (const x of [-0.39, 0.39]) b.box(x, 0.75, 0, 0.04, 1.5, 0.34, c);
+    b.box(0.2, 1.57, 0, 0.2, 0.14, 0.03, WOOD); b.box(0.2, 1.57, 0.02, 0.16, 0.1, 0.012, '#d7b58a'); b.box(-0.12, 1.55, 0, 0.14, 0.1, 0.03, WOOD); b.box(-0.12, 1.55, 0.02, 0.1, 0.07, 0.012, '#9bbad4');
     [0.08, 0.5, 0.92, 1.34].forEach((y, row) => { b.box(0, y, 0, 0.78, 0.04, 0.34, c); if (row < 3) for (let i = 0; i < 5; i++) b.box(-0.28 + i * 0.14, y + 0.17, 0, 0.1, 0.28 - (i % 2) * 0.05, 0.22, ['#b6524a', '#4f7fa8', '#d1a94a', '#5d8f63', '#8a5f99'][(i + row) % 5]!); });
   },
   keyboard(b, W, D, c) {
@@ -260,8 +308,21 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
   },
   inverter(b, W, D, c) { b.box(0, 0.62, -0.18, 0.5, 0.6, 0.18, c); b.box(0, 0.74, -0.08, 0.2, 0.1, 0.01, '#35d07f', true); for (const x of [-0.2, 0.2]) b.box(x, 0.16, 0.08, 0.34, 0.32, 0.5, DARK); },
   jerrycans(b, W, D, c) { b.box(-0.18, 0.24, -0.06, 0.26, 0.48, 0.34, c); b.box(0.16, 0.24, 0.08, 0.26, 0.48, 0.34, c); b.box(-0.18, 0.52, -0.06, 0.08, 0.08, 0.08, DARK); b.box(0.16, 0.52, 0.08, 0.08, 0.08, 0.08, DARK); },
-  plant(b, W, D, c) { b.round(0, 0.17, 0, 0.2, 0.34, '#b9744f'); b.crown(0, 0.72, 0, 0.36, 0.5, 0.36, c); b.crown(0.14, 0.92, -0.06, 0.22, 0.3, 0.22, '#63a56e'); },
-  wardrobe(b, W, D, c) { b.box(0, 0.85, 0, W * 0.92, 1.7, 0.56, c); b.box(0, 0.85, 0.285, 0.02, 1.6, 0.01, DARK); for (const x of [-0.07, 0.07]) b.box(x, 0.9, 0.3, 0.03, 0.2, 0.03, STEEL); },
+  plant(b, W, D, c) {
+    b.round(0, 0.15, 0, 0.18, 0.3, '#b9744f'); b.round(0, 0.32, 0, 0.23, 0.05, '#c98660'); b.round(0, 0.345, 0, 0.19, 0.02, '#4a3526');
+    // Upright leaf blades round the pot (a snake plant): each a tall, narrow lump, taller and darker at the middle.
+    for (let i = 0; i < 8; i++) {
+      const a = i * 2.4, r = i < 2 ? 0.02 : 0.1 + (i % 3) * 0.035, tall = i < 2 ? 0.62 : 0.34 + (i % 4) * 0.07;
+      b.crown(Math.cos(a) * r, 0.34 + tall * 0.9, Math.sin(a) * r, 0.055, tall * 0.9, 0.09, i % 2 ? c : mix(c, '#000000', 0.22));
+    }
+    b.crown(0.13, 0.8, 0.06, 0.04, 0.2, 0.07, '#a8c46a');
+  },
+  wardrobe(b, W, D, c) {
+    b.box(0, 0.04, 0.02, W * 0.9, 0.08, 0.5, mix(c, '#000000', 0.4)); b.box(0, 0.88, 0, W * 0.92, 1.64, 0.56, c); b.box(0, 1.73, 0, W * 0.96, 0.06, 0.6, mix(c, '#000000', 0.15));
+    b.box(0, 0.88, 0.285, 0.02, 1.6, 0.01, DARK);
+    for (const s of [-1, 1]) { soft(b, s * W * 0.22, 1.0, 0.29, W * 0.38, 1.1, 0.012, mix(c, '#ffffff', 0.1), 0.02); soft(b, s * W * 0.22, 0.28, 0.29, W * 0.38, 0.3, 0.012, mix(c, '#ffffff', 0.1), 0.02); }
+    for (const x of [-0.07, 0.07]) b.box(x, 0.9, 0.3, 0.03, 0.2, 0.03, STEEL);
+  },
   aquarium(b, W, D, c) { b.box(0, 0.3, 0, 0.8, 0.6, 0.44, WOOD); b.box(0, 0.86, 0, 0.78, 0.5, 0.4, c); b.box(0, 1.13, 0, 0.8, 0.05, 0.42, DARK); b.box(-0.15, 0.9, 0.205, 0.12, 0.06, 0.01, '#ffb347', true); b.box(0.18, 0.78, 0.205, 0.1, 0.05, 0.01, '#ff6f61', true); },
   petbed(b, W, D, c) {
     b.round(0, 0.07, 0, 0.4, 0.14, '#7a8f9a'); b.box(0, 0.24, 0, 0.42, 0.2, 0.24, c); b.ball(0.24, 0.36, 0.02, 0.13, c);
@@ -271,14 +332,26 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
   // ---- wall items: origin is the mounting point on the wall, facing +z ----
   lamp(b, W, D, c) { b.box(0, 0, 0.04, 0.1, 0.16, 0.08, DARK); b.box(0, 0.06, 0.14, 0.22, 0.24, 0.16, c, true); },
   strip(b, W, D, c) { b.box(0, 0.5, 0.03, 0.9, 0.06, 0.04, c, true); },
-  fan(b) { b.box(0, 0, 0.06, 0.1, 0.1, 0.12, DARK); b.box(0, 0, 0.16, 0.56, 0.56, 0.03, STEEL); b.box(0, 0, 0.19, 0.5, 0.1, 0.02, WHITE); b.box(0, 0, 0.19, 0.1, 0.5, 0.02, WHITE); },
+  fan(b) {
+    b.box(0, 0, 0.06, 0.1, 0.1, 0.12, DARK); b.box(0, -0.02, 0.15, 0.64, 0.64, 0.02, mix(STEEL, '#ffffff', 0.2));
+    for (const [x, y, w, h] of [[0, 0.3, 0.64, 0.03], [0, -0.3, 0.64, 0.03], [0.3, 0, 0.03, 0.6], [-0.3, 0, 0.03, 0.6]] as const) b.box(x, y - 0.02, 0.17, w, h, 0.03, STEEL);
+    b.box(0, -0.02, 0.2, 0.52, 0.1, 0.02, WHITE); b.box(0, -0.02, 0.2, 0.1, 0.52, 0.02, WHITE); b.box(0, -0.02, 0.22, 0.1, 0.1, 0.03, DARK);
+  },
   mirror(b, W, D, c) { b.box(0, -0.4, 0.03, 0.74, 1.8, 0.05, WOOD); b.box(0, -0.4, 0.06, 0.64, 1.68, 0.02, c); },
   calendar(b, W, D, c) { b.box(0, 0, 0.02, 0.4, 0.54, 0.03, c); b.box(0, 0.2, 0.04, 0.4, 0.14, 0.02, '#c9372c'); },
-  art(b, W, D, c) { b.box(0, 0, 0.03, 0.74, 0.58, 0.05, WOOD); b.box(0, 0, 0.06, 0.62, 0.46, 0.02, c); b.box(-0.1, 0.02, 0.075, 0.2, 0.2, 0.01, '#e8d9b5'); b.box(0.16, -0.08, 0.075, 0.14, 0.14, 0.01, '#7fa6d9'); },
+  art(b, W, D, c) { b.box(0, 0, 0.03, 0.74, 0.58, 0.05, WOOD); b.box(0, 0, 0.055, 0.64, 0.48, 0.02, '#f1e9d6'); b.box(0, 0, 0.06, 0.56, 0.4, 0.02, c); b.box(-0.1, 0.02, 0.075, 0.2, 0.2, 0.01, '#e8d9b5'); b.box(0.16, -0.08, 0.075, 0.14, 0.14, 0.01, '#7fa6d9'); },
   fallback(b, W, D, c) { b.box(0, 0.3, 0, W * 0.8, 0.6, D * 0.8, c); },
 };
 
-const TRIM = '#8c7a62', RAIL = '#4a4038';
+/** Shapes that stand on a round footprint, and those that lie flat on the floor (a shadow under them would only show as a halo). */
+const ROUND_SHAPES = new Set(['plant', 'lantern', 'floorlamp', 'drum', 'beanbag', 'mic', 'bucket', 'basin', 'cage', 'stove', 'radio', 'toilet']);
+const FLAT_SHAPES = new Set(['rug', 'mat', 'gymmat']);
+const within = (zone: readonly number[], tx: number, ty: number) => tx >= zone[0]! && ty >= zone[1]! && tx < zone[0]! + zone[2]! && ty < zone[1]! + zone[3]!;
+const TRIM = '#8c7a62', RAIL = '#4a4038', PAINT = '#efe7d4', CURTAIN = '#b5654a', BARS = '#26282c';
+/** Curtain colours a home may have, and how its walls lean: a tint towards a harmonious colour, picked by home (deterministic). */
+const CURTAINS = ['#b5654a', '#2f7f86', '#c9a03a', '#8a3a46'] as const;
+const WALL_TINTS = [null, '#f0d9b0', '#c8d4b8', '#e8c9c0'] as const;
+const hashOf = (text: string) => { let h = 2166136261; for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 16777619); return h >>> 0; };
 /** How high the walls between rooms stand: cut low, so every room of the floor can be seen into. */
 const INNER = 1.15;
 const lift = (floor: number) => floor * WALL_HEIGHT;
@@ -326,6 +399,7 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   glow.position.set(-1, 3, -1);
   group.add(glow);
 
+  let walls = { back: ROOM_PALETTE.back, left: ROOM_PALETTE.left }, paint: Colour = PAINT, curtain: Colour = CURTAIN, homeKey = '';
   let palette: HomePalette = ROOM_PALETTE, grid = 0, owned = false, tile = 1, drawn = '', lastState: LifeState | null = null, camera: THREE.Camera | null = null, canvas: HTMLElement | null = null, status = '', undrawn = false;
   let homeTime: TimeOfDay = 'day';
   glow.intensity = 26 * lightingFor('indoor', homeTime).lamps;
@@ -394,11 +468,34 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     for (const parent of [room, furniture, overlay]) for (const child of parent.children) if (child.userData.part) child.visible = partShown(child.userData.part);
   }
 
-  /** A window on an outer wall: frame and glass. */
+  /** A window on an outer wall: a deep painted reveal round bright glass, burglar bars, a sill, curtains on a rod, a clock above and a bulb bracket. */
   function windowAt(b: Batch, x: number, y: number, part: string) {
-    const wide = Math.min(tile * 0.86, 1.5), z = -ROOM / 2;
-    b.box(x, y + 2.0, z + 0.03, wide, 1.2, 0.07, '#5f4a36', { part });
-    b.box(x, y + 2.0, z + 0.07, wide - 0.16, 1.04, 0.02, '#a9d3ea', { part, layer: 'glow' });
+    const wide = Math.min(tile * 0.86, 1.5), z = -ROOM / 2, p = { part }, mid = y + 2.0, inner = mix(paint, '#000000', 0.2);
+    b.box(x, mid, z + 0.01, wide - 0.14, 1.04, 0.02, '#cfeaf7', { part, layer: 'glow' });
+    // Reveal: the frame stands proud of the wall on four sides, its inner faces a shade darker, so the glass reads as set back.
+    b.box(x, mid + 0.6 - 0.035, z + 0.05, wide, 0.07, 0.1, paint, p); b.box(x, mid - 0.6 + 0.035, z + 0.05, wide, 0.07, 0.1, paint, p);
+    for (const s of [-1, 1]) b.box(x + s * (wide / 2 - 0.035), mid, z + 0.05, 0.07, 1.2, 0.1, paint, p);
+    b.box(x, mid + 0.52, z + 0.05, wide - 0.14, 0.02, 0.09, inner, p); b.box(x, mid - 0.52, z + 0.05, wide - 0.14, 0.02, 0.09, inner, p);
+    b.box(x, mid, z + 0.055, 0.04, 1.04, 0.04, paint, p);
+    // Burglar bars: iron uprights and two rails in front of the glass, with a diamond at the middle.
+    const bars = Math.max(3, Math.round(wide / 0.22));
+    for (let i = 0; i <= bars; i++) b.box(x + (i / bars - 0.5) * (wide - 0.16), mid, z + 0.1, 0.022, 1.04, 0.022, BARS, p);
+    for (const dy of [-0.2, 0.2]) b.box(x, mid + dy, z + 0.1, wide - 0.14, 0.022, 0.022, BARS, p);
+    b.box(x, mid, z + 0.105, 0.2, 0.2, 0.018, BARS, { part, ry: 0, rz: Math.PI / 4 });
+    b.box(x, y + 1.37, z + 0.1, wide + 0.22, 0.05, 0.16, paint, p);
+    b.box(x, y + 2.8, z + 0.2, wide + 0.8, 0.03, 0.03, '#4a3a2c', p);
+    for (const s of [-1, 1]) {
+      const cx = x + s * (wide / 2 + 0.17);
+      b.box(x + s * (wide / 2 + 0.42), y + 2.8, z + 0.2, 0.06, 0.06, 0.06, '#d9a441', p);
+      for (const k of [-1, 0, 1]) b.box(cx + k * 0.13, y + 1.98, z + 0.19 + (k ? 0.012 : 0), 0.12, 1.6, 0.05, k ? mix(curtain, '#000000', 0.14) : curtain, p);
+      b.box(cx, y + 1.5, z + 0.2, 0.44, 0.045, 0.07, '#d9a441', p);
+    }
+    const lampX = x > 0 ? -ROOM * 0.3 : ROOM * 0.3;
+    b.box(lampX, y + 3.04, z + 0.05, 0.1, 0.1, 0.1, '#4a3a2c', p); b.box(lampX, y + 2.95, z + 0.12, 0.03, 0.03, 0.14, '#4a3a2c', p);
+    b.ball(lampX, y + 2.9, z + 0.2, 0.09, 0.09, 0.09, '#ffe6a8', { part, seg: 8, layer: 'glow' });
+    b.cyl(x, y + 3.0, z + 0.035, 0.15, 0.05, '#3b3028', { part, rx: Math.PI / 2, seg: 14 });
+    b.cyl(x, y + 3.0, z + 0.062, 0.12, 0.012, '#f3ecda', { part, rx: Math.PI / 2, seg: 14 });
+    b.box(x, y + 3.03, z + 0.075, 0.016, 0.1, 0.01, DARK, p); b.box(x + 0.03, y + 3.0, z + 0.075, 0.07, 0.016, 0.01, DARK, p);
   }
   /** A flight of stairs: treads stacked from the floor, a sloping rail each side. */
   const stairSteps = (flight: PlanStairs) => Math.max(flight.w * 2, Math.ceil(WALL_HEIGHT / (0.18 * tile * AVATAR_SCALE * 2.45 / 1.81)));
@@ -427,6 +524,12 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const plinth = kit.box(x0 + W / 2, -0.21, z0 + D / 2, W + 0.5, 0.4, D + 0.5, '#6f6253', room);
     plinth.onBeforeRender = (renderer, scene, cam) => { camera = cam; undrawn = false; attach(renderer.domElement); if (wantsBody) startBody(renderer); };
     const b = createBatch(THREE);
+    // This home's look, the same every time: walls leaning to one of a few harmonious tints, paint and curtains to match, and a floor by tier
+    // (ceramic tiles in a single room, speckled terrazzo in a flat, wood planks in the big houses; wet rooms keep their tiles).
+    const seed = hashOf(homeKey), lean = visit ? null : WALL_TINTS[seed % WALL_TINTS.length]!;
+    walls = { back: lean ? mix(palette.back, lean, 0.3) : palette.back, left: lean ? mix(palette.left, lean, 0.3) : palette.left };
+    paint = mix(PAINT, walls.back, 0.18); curtain = CURTAINS[(seed >>> 3) % CURTAINS.length]!;
+    const finish = grid <= 6 ? 'tile' : grid <= 9 ? 'terrazzo' : 'wood', wood = mix(['#a9794f', '#9a6a42', '#b58759'][(seed >>> 6) % 3]!, palette.floor[1], 0.15);
     for (let floor = 0; floor < plot.floors; floor++) {
       const y = lift(floor), part = partOf(floor), rooms = plan.floors[floor] ?? [], hole = stairwellOf(plan, floor);
       const open = rooms.length === 1 && /terrace/i.test(rooms[0]!.label), high = open ? 1 : WALL_HEIGHT;
@@ -435,43 +538,125 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
         for (const [ax, az, bx, bz] of slabOf(plan, floor)) b.box(edge((ax + bx) / 2), y - 0.1, edge((az + bz) / 2), (bx - ax) * tile, 0.2, (bz - az) * tile, '#8c8478', { part });
         for (const line of railsOf(hole, floor)) run(b, line, y + 0.87, 0.06, 0.06, RAIL, part);
       }
-      for (let ty = 0; ty < plot.d; ty++) for (let tx = 0; tx < plot.w; tx++) {
-        if (hole && tx >= hole.x && tx < hole.x + hole.w && ty >= hole.y && ty < hole.y + hole.h) continue;
-        const tones = finishAt(plan, floor, tx, ty) ?? palette.floor;
-        b.quad(along(tx), y + 0.016, along(ty), tile * 0.985, tile * 0.985, (tx + ty) % 2 ? tones[0] : tones[1], { part, rx: -Math.PI / 2 });
+      // Grout under the tiles (not where the stairwell is), and each tile a touch lighter or darker than its tone so the floor reads as laid, not printed.
+      if (!hole) b.quad(x0 + W / 2, y + 0.01, z0 + D / 2, W, D, mix(palette.floor[1], '#3a2c1c', 0.3), { part, rx: -Math.PI / 2 });
+      const bare = (tx: number, ty: number) => !(hole && tx >= hole.x && tx < hole.x + hole.w && ty >= hole.y && ty < hole.y + hole.h);
+      const noise = (tx: number, ty: number, k = 0) => (Math.imul(tx + 7, 73856093) ^ Math.imul(ty + 3, 19349663) ^ Math.imul(floor + 1, 83492791) ^ Math.imul(k + 1, 2654435761)) >>> 0;
+      // A single-room home is zoned by its floor: a glossy white kitchen corner, a wood-floored sleeping corner and a darker entry strip by the door; the rest is the tier's finish.
+      const zones = floor === 0 && plan.floors[0]?.length === 1 && plot.w === plot.grid ? zonesOf(grid) : null;
+      const kindAt = (tx: number, ty: number): string => {
+        if (finishAt(plan, floor, tx, ty)) return 'tile';
+        if (zones) for (const zone of ['kitchen', 'hall', 'bed'] as const) if (within(zones[zone], tx, ty)) return zone === 'kitchen' ? 'gloss' : zone === 'hall' ? 'hall' : finish === 'wood' ? 'terrazzo' : 'wood';
+        return finish;
+      };
+      for (let ty = 0; ty < plot.d; ty++) {
+        for (let tx = 0; tx < plot.w; tx++) {
+          if (!bare(tx, ty)) continue;
+          const kind = kindAt(tx, ty), tones = finishAt(plan, floor, tx, ty) ?? palette.floor, jitter = noise(tx, ty);
+          if (kind === 'wood') continue;
+          if (kind === 'terrazzo') {
+            // One pale slab with scattered chips (dark, white, terracotta) baked in as tiny quads.
+            b.quad(along(tx), y + 0.016, along(ty), tile * 0.985, tile * 0.985, mix(mix(tones[0], '#ffffff', 0.3), jitter % 2 ? '#ffffff' : '#000000', (jitter >>> 4) % 3 * 0.015), { part, rx: -Math.PI / 2 });
+            for (let k = 0; k < 4; k++) { const n = noise(tx, ty, k), size = tile * (0.03 + (n >>> 8) % 4 * 0.012); b.quad(along(tx) + ((n & 255) / 255 - 0.5) * tile * 0.86, y + 0.019, along(ty) + (((n >>> 12) & 255) / 255 - 0.5) * tile * 0.86, size, size, ['#4a4038', '#fbf8ef', '#b9714f', '#8a8478'][k]!, { part, rx: -Math.PI / 2 }); }
+            continue;
+          }
+          const base = kind === 'gloss' ? ['#f3f5f2', '#e1e7e3'] as const : kind === 'hall' ? [mix(palette.floor[1], '#4a4038', 0.4), mix(palette.floor[1], '#4a4038', 0.52)] as const : tones;
+          b.quad(along(tx), y + 0.016, along(ty), tile * 0.965, tile * 0.965, mix((tx + ty) % 2 ? base[0] : base[1], jitter % 3 ? '#ffffff' : '#000000', (jitter >>> 4) % 4 * 0.012), { part, rx: -Math.PI / 2 });
+          if (kind === 'gloss') b.quad(along(tx) - tile * 0.12, y + 0.018, along(ty) - tile * 0.12, tile * 0.42, tile * 0.42, '#ffffff', { part, rx: -Math.PI / 2 });
+        }
+        // Planks: three strips to a tile row, each broken into boards about three tiles long, the joints staggered from strip to strip.
+        for (let k = 0; k < 3; k++) {
+          let start = -1;
+          for (let tx = 0; tx <= plot.w; tx++) {
+            const live = tx < plot.w && bare(tx, ty) && kindAt(tx, ty) === 'wood', joint = live && (tx + ty * 2 + k) % 3 === 0 && tx > start;
+            if (start >= 0 && (!live || joint)) {
+              const n = noise(start, ty, k), c = mix(wood, n % 2 ? '#ffffff' : '#000000', (n >>> 5) % 4 * 0.025);
+              b.quad(edge((start + tx) / 2), y + 0.016, edge(ty) + (k + 0.5) * tile / 3, (tx - start) * tile - 0.03, tile / 3 - 0.025, c, { part, rx: -Math.PI / 2 });
+              start = -1;
+            }
+            if (live && start < 0) start = tx;
+          }
+        }
+      }
+      // Thresholds: a brass strip along the open edges of the kitchen and sleeping corners (flat, walked over).
+      if (zones) for (const [zx, zy, zw, zh] of [zones.kitchen, zones.bed]) {
+        b.box(edge(zx + zw / 2), y + 0.02, edge(zy > 0 ? zy : zy + zh), zw * tile, 0.012, 0.04, '#b08d4a', { part });
+        b.box(edge(zx > 0 ? zx : zx + zw), y + 0.02, edge(zy + zh / 2), 0.04, 0.012, zh * tile, '#b08d4a', { part });
       }
       for (const wall of wallsOf(plan, floor)) {
-        run(b, wall, y, INNER, 0.12, palette.left, part);
+        run(b, wall, y, INNER, 0.12, walls.left, part);
         run(b, wall, y + INNER, 0.04, 0.16, TRIM, part, 0.04);
       }
       for (const flight of plan.stairs) if (flight.floor === floor) stairsOf(b, flight);
       const back = partOf(floor, 'back'), left = partOf(floor, 'left');
-      b.box(x0 + W / 2 - 0.125, y + high / 2, z0 - 0.125, W + 0.25, high, 0.25, palette.back, { part: back });
+      b.box(x0 + W / 2 - 0.125, y + high / 2, z0 - 0.125, W + 0.25, high, 0.25, walls.back, { part: back });
       const doorWidth = Math.min(tile * 0.86, 1.5), doorZ = along(doorSlot(grid));
       const unit = tile * AVATAR_SCALE * 2.45 / 1.81;
       const vertical = body?.scale ?? unit, lateral = body?.scaleX ?? unit;
       const doorHeight = Math.min(WALL_HEIGHT - 0.08, Math.max(2.3, 1.81 * vertical + 0.45));
       if (floor === 0) {
         const a = doorZ - doorWidth / 2, c = doorZ + doorWidth / 2;
-        b.box(x0 - 0.125, high / 2, (z0 + a) / 2, 0.25, high, a - z0, palette.left, { part: left });
-        b.box(x0 - 0.125, high / 2, (c + z0 + D) / 2, 0.25, high, z0 + D - c, palette.left, { part: left });
-        b.box(x0 - 0.125, (high + doorHeight) / 2, doorZ, 0.25, high - doorHeight, doorWidth, palette.left, { part: left });
+        b.box(x0 - 0.125, high / 2, (z0 + a) / 2, 0.25, high, a - z0, walls.left, { part: left });
+        b.box(x0 - 0.125, high / 2, (c + z0 + D) / 2, 0.25, high, z0 + D - c, walls.left, { part: left });
+        b.box(x0 - 0.125, (high + doorHeight) / 2, doorZ, 0.25, high - doorHeight, doorWidth, walls.left, { part: left });
         hinge = createHingedHomeDoor(kit, { x: x0, z: doorZ, width: doorWidth, height: doorHeight,
           handleHeight: 0.03 + (0.045 + 0.92) * vertical, handleOffset: 0.1 * lateral });
         hinge.object.userData.part = left;
         room.add(hinge.object);
-      } else b.box(x0 - 0.125, y + high / 2, z0 + D / 2, 0.25, high, D, palette.left, { part: left });
-      b.box(x0 + W / 2, y + 0.12, z0 + 0.02, W, 0.24, 0.04, TRIM, { part: back });
+      } else b.box(x0 - 0.125, y + high / 2, z0 + D / 2, 0.25, high, D, walls.left, { part: left });
+      // Both outer walls inside: a darker dado with its rail, skirting with a cap, crown moulding, and a soft dark strip on the floor where wall meets floor.
+      const dado = mix(walls.back, '#3a2a1c', 0.14), dadoLeft = mix(walls.left, '#3a2a1c', 0.14), shade = mix(palette.floor[1], '#2a1c10', 0.16), cap = mix(paint, '#000000', 0.12);
+      const reach: [number, number][] = floor === 0 ? [[z0, doorZ - doorWidth / 2], [doorZ + doorWidth / 2, z0 + D]] : [[z0, z0 + D]];
+      b.quad(x0 + W / 2, y + 0.021, z0 + 0.16, W, 0.3, shade, { part: back, rx: -Math.PI / 2 });
+      b.box(x0 + W / 2, y + 0.11, z0 + 0.03, W, 0.22, 0.06, paint, { part: back }); b.box(x0 + W / 2, y + 0.235, z0 + 0.04, W, 0.03, 0.08, cap, { part: back });
+      if (!open) {
+        b.box(x0 + W / 2, y + 0.55, z0 + 0.012, W, 0.6, 0.024, dado, { part: back }); b.box(x0 + W / 2, y + 0.9, z0 + 0.025, W, 0.05, 0.05, paint, { part: back });
+        b.box(x0 + W / 2, y + high - 0.07, z0 + 0.05, W, 0.14, 0.1, paint, { part: back }); b.box(x0 + W / 2, y + high - 0.17, z0 + 0.03, W, 0.04, 0.06, cap, { part: back });
+      }
+      if (!open) {
+        // A split AC on the middle of the left wall (white case, vent slit, a standby light), and a lit cove under the crown: POP ceilings have both.
+        const acZ = z0 + D * 0.5;
+        b.box(x0 + 0.12, y + 2.62, acZ, 0.22, 0.34, 1.05, '#f1f1ec', { part: left }); b.box(x0 + 0.16, y + 2.52, acZ, 0.16, 0.05, 0.9, '#c9cdca', { part: left });
+        b.box(x0 + 0.24, y + 2.7, acZ + 0.4, 0.014, 0.03, 0.05, '#35d07f', { part: left, layer: 'glow' });
+        b.box(x0 + W / 2, y + high - 0.2, z0 + 0.04, W, 0.025, 0.05, '#f0cf8e', { part: back, layer: 'glow' });
+        for (const [s0, s1] of reach) b.box(x0 + 0.04, y + high - 0.2, (s0 + s1) / 2, 0.05, 0.025, s1 - s0, '#f0cf8e', { part: left, layer: 'glow' });
+      }
+      if (!open) {
+        // Long walls get a cluster of family photos every few metres, in the band above the wall items (which hang about the middle), clear of the window, clock, bulb and door.
+        const windowX = along(windowSlot(grid)), lampX = windowX > 0 ? -ROOM * 0.3 : ROOM * 0.3, frames = ['#d7b58a', '#9bbad4', '#c98f7a', '#a9c49a', '#e0c36a'];
+        const cluster = (at: number, wall: 'back' | 'left', n: number) => {
+          const pick = (k: number) => frames[(noise(n, k, 9) >>> 3) % frames.length]!;
+          const place = (u: number, v: number, w: number, h: number, k: number) => {
+            const tall = y + 2.78 + v, fw = wall === 'back' ? [w, h, 0.035] as const : [0.035, h, w] as const, pos = (d: number): [number, number] => wall === 'back' ? [at + u, z0 + d] : [x0 + d, at + u];
+            const [fx, fz] = pos(0.025), [mx, mz] = pos(0.038);
+            b.box(fx, tall, fz, fw[0], fw[1], fw[2], WOOD, { part: wall === 'back' ? back : left });
+            b.box(mx, tall, mz, wall === 'back' ? w - 0.07 : 0.012, h - 0.07, wall === 'back' ? 0.012 : w - 0.07, pick(k), { part: wall === 'back' ? back : left });
+          };
+          place(-0.2, 0.04, 0.34, 0.26, 0); place(0.1, -0.02, 0.22, 0.3, 1); if (n % 2) place(0.34, 0.06, 0.2, 0.16, 2);
+        };
+        for (let at = x0 + 1.7, n = 0; at < x0 + W - 1.2; at += 3.1, n++) if (Math.abs(at - windowX) > 1.5 && Math.abs(at - lampX) > 0.7) cluster(at, 'back', n + floor * 7);
+        for (let at = z0 + 1.7, n = 0; at < z0 + D - 1.2; at += 3.1, n++) if ((floor > 0 || Math.abs(at - doorZ) > 1.3) && Math.abs(at - (z0 + D * 0.5)) > 1.3) cluster(at, 'left', n + 3 + floor * 7);
+      }
+      for (const [s0, s1] of reach) {
+        const mid = (s0 + s1) / 2, length = s1 - s0;
+        b.quad(x0 + 0.16, y + 0.021, mid, 0.3, length, shade, { part: left, rx: -Math.PI / 2 });
+        b.box(x0 + 0.03, y + 0.11, mid, 0.06, 0.22, length, paint, { part: left }); b.box(x0 + 0.04, y + 0.235, mid, 0.08, 0.03, length, cap, { part: left });
+        if (open) continue;
+        b.box(x0 + 0.012, y + 0.55, mid, 0.024, 0.6, length, dadoLeft, { part: left }); b.box(x0 + 0.025, y + 0.9, mid, 0.05, 0.05, length, paint, { part: left });
+        b.box(x0 + 0.05, y + high - 0.07, mid, 0.1, 0.14, length, paint, { part: left }); b.box(x0 + 0.03, y + high - 0.17, mid, 0.06, 0.04, length, cap, { part: left });
+      }
       if (floor === 0) {
+        // The door's casing: posts and a head round the opening (flat to the wall, so the swinging door clears it), and a mat inside.
         const a = doorZ - doorWidth / 2, c = doorZ + doorWidth / 2;
-        b.box(x0 + 0.02, 0.12, (z0 + a) / 2, 0.04, 0.24, a - z0, TRIM, { part: left });
-        b.box(x0 + 0.02, 0.12, (c + z0 + D) / 2, 0.04, 0.24, z0 + D - c, TRIM, { part: left });
-      } else b.box(x0 + 0.02, y + 0.12, z0 + D / 2, 0.04, 0.24, D, TRIM, { part: left });
+        for (const edgeZ of [a - 0.07, c + 0.07]) b.box(x0 + 0.02, doorHeight / 2, edgeZ, 0.04, doorHeight, 0.14, paint, { part: left });
+        b.box(x0 + 0.02, doorHeight + 0.06, doorZ, 0.04, 0.12, doorWidth + 0.28, paint, { part: left });
+        b.box(x0 + 0.55, 0.03, doorZ, 0.8, 0.02, doorWidth * 0.9, '#5a4636', { part }); b.box(x0 + 0.55, 0.042, doorZ, 0.62, 0.012, doorWidth * 0.7, '#8a6a4a', { part });
+      }
       if (floor > 0) {
         // Upstairs, the open sides get a parapet (the roof terrace) or a rail: nobody steps off the edge.
         const tall = open ? 1 : 0.06, at = open ? 0.5 : 0.9;
-        b.box(x0 + W / 2, y + at, z0 + D, W, tall, 0.1, open ? palette.back : RAIL, { part });
-        b.box(x0 + W, y + at, z0 + D / 2, 0.1, tall, D, open ? palette.left : RAIL, { part });
+        b.box(x0 + W / 2, y + at, z0 + D, W, tall, 0.1, open ? walls.back : RAIL, { part });
+        b.box(x0 + W, y + at, z0 + D / 2, 0.1, tall, D, open ? walls.left : RAIL, { part });
       }
       // A window on the back wall of every room-floor, the door on the ground floor's side wall: the slots the placement rules keep clear.
       if (!open) windowAt(b, along(windowSlot(grid)), y, back);
@@ -614,9 +799,18 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     return { x: along(x, size.w), y: lift(floor) + 0.015, z: along(y, size.h), ry: -rot * Math.PI / 2, scale: tile, part: partOf(floor) };
   }
   /** Draw an object into a batch, at its place, in its floor's (or wall's) part. */
-  function model(b: Batch, def: FurnitureDefinition, x: number, y: number, rot: number, floor: number) {
+  /** A contact shadow: a darker patch of floor under a piece (opaque, so it costs nothing extra), a little wider than its footprint. `lifted` clears a rug. */
+  function shade(b: Batch, part: string, def: FurnitureDefinition, lifted: boolean) {
+    const tone = mix(palette.floor[1], '#1d140c', 0.4), at = lifted ? 0.075 : 0.012;
+    if (ROUND_SHAPES.has(def.shape)) b.disc(0, at, 0, def.shape === 'floorlamp' || def.shape === 'mic' ? 0.24 : 0.4, tone, { part, seg: 14 });
+    else b.quad(0, at, 0, def.w * 1.04, def.h * 1.04, tone, { part, rx: -Math.PI / 2 });
+  }
+  function model(b: Batch, def: FurnitureDefinition, x: number, y: number, rot: number, floor: number, lifted = false) {
     const at = mountOf(def, x, y, rot, floor);
-    b.at(at.x, at.y, at.z, at.ry, () => (SHAPES[def.shape] || SHAPES.fallback)(batchTools(b, at.part), def.wall ? 1 : def.w, def.wall ? 1 : def.h, def.color, def), 0, 0, at.scale);
+    b.at(at.x, at.y, at.z, at.ry, () => {
+      if (!def.wall && !FLAT_SHAPES.has(def.shape)) shade(b, at.part, def, lifted);
+      (SHAPES[def.shape] || SHAPES.fallback)(batchTools(b, at.part), def.wall ? 1 : def.w, def.wall ? 1 : def.h, def.color, def);
+    }, 0, 0, at.scale);
   }
   /** Build a batch into meshes of `parent` (released with the furniture). */
   function keep(b: Batch, parent: THREE.Object3D) {
@@ -641,8 +835,9 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
   function rebuild(state: LifeState | null) {
     const house = visit ?? homeOf(state, HOUSE_DESIGNS, state ? housesFor(state.estate.city) : undefined);
     const colours = visitPalette ?? (state && cachedCityContent(state.estate.city)?.homePalette) ?? ROOM_PALETTE;
-    if (house.grid !== grid || house.owned !== owned || colours !== palette) {
-      grid = house.grid; owned = house.owned; tile = ROOM / grid; palette = colours;
+    const key = 'id' in house ? `${house.id}|${house.label}` : 'visit';
+    if (house.grid !== grid || house.owned !== owned || colours !== palette || key !== homeKey) {
+      homeKey = key; grid = house.grid; owned = house.owned; tile = ROOM / grid; palette = colours;
       plot = plotOf(grid, owned); plan = planOf(plot);
       level = Math.min(level, plot.floors - 1); shownFloor = viewFloor();
       buildRoom();
@@ -651,10 +846,13 @@ export function buildHomeScene(kit: Kit, options: { visit?: VisitHomeScene } = {
     const items = itemsOf(state);
     const b = createBatch(THREE);
     let placed = 0;
+    // Pieces standing on a rug get their shadow on top of it.
+    const rugs = items.flatMap((item) => { const def = FURNITURE[item?.itemId]; return def?.shape === 'rug' ? [{ floor: floorOf(item), rect: rectOf(def, item) }] : []; });
     for (const item of items) {
       const def = FURNITURE[item?.itemId], floor = floorOf(item);
       if (!def || floor >= plot.floors) continue;
-      model(b, def, item.x, item.y, item.rot, floor);
+      const rest = (def.shape === 'rug' || def.shape === 'mat') ? null : mountOf(def, item.x, item.y, item.rot, floor);
+      model(b, def, item.x, item.y, item.rot, floor, Boolean(rest && !def.wall && rugs.some((rug) => rug.floor === floor && rest.x >= rug.rect[0] && rest.x <= rug.rect[2] && rest.z >= rug.rect[1] && rest.z <= rug.rect[3])));
       placed += 1;
       // Outside Buy mode the marker follows the spot: it clears when the player moves to another one.
       const spot = KINDS[def.kind]?.spot;

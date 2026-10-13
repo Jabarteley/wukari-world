@@ -14,6 +14,7 @@ import { VOICE_EVENT, VOICE_SCENE_EVENT, VOICE_STOP_EVENT, type HeardLine, type 
 import { MusicDirector } from './music/director.ts'
 import { musicContext } from './music/context.ts'
 import type { Voices } from './voice/index.ts'
+import { promptsOnScreen, quietNow } from './told.ts'
 
 export interface Engine {
   readonly disposed: boolean
@@ -108,7 +109,7 @@ export function createEngine(): Engine | null {
     void voices.then(made => { if (made) run(made) })
   }
   const running = (): boolean => !disposed && ctx.state === 'running'
-  const tell = (): void => { if (!getSound().told && running() && getSound().on) { setSound({ told: true }); toast(TOLD) } }
+  const tell = (): void => { if (!getSound().told && running() && getSound().on && quietNow(promptsOnScreen(document))) { setSound({ told: true }); toast(TOLD) } }
   const play = (name: string): void => { if (running() && director.play(name)) tell() }
   const unlock = (): void => {
     if (disposed || !getSound().on || document.hidden) return

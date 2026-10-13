@@ -139,6 +139,8 @@
 .ph[data-view=app] .ph-app{opacity:1;visibility:visible;transform:none;transition-delay:0s}
 .ph[data-view=app] .ph-home{opacity:0;visibility:hidden;transform:scale(1.08);transition-delay:0s,0s,.26s;pointer-events:none}
 .ph-appbar{flex:none;display:flex;align-items:center;gap:8px;min-height:100px;padding:46px 12px 10px 8px;background:#fff;color:var(--c-ink);border-bottom:1px solid var(--c-line);box-shadow:none;z-index:2}
+.ph-appclose{display:none;place-items:center;flex:none;width:var(--tap,44px);height:var(--tap,44px);padding:0;border:0;border-radius:50%;background:none;color:var(--c-ink)}
+.ph-appclose svg{width:20px;height:20px}
 .ph-appbar h2{flex:1;min-width:0;margin:0;font-size:18px;font-weight:700;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ph-back,.ph-wide{flex:none;display:grid;place-items:center;width:var(--tap);height:var(--tap);border:0;border-radius:8px;background:none;color:var(--c-blue)}
 .ph-back:hover,.ph-wide:hover{background:var(--c-fill)}
@@ -169,6 +171,14 @@
   .ph-shade{padding-top:48px;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
   .ph-appbody{padding-bottom:calc(30px + env(safe-area-inset-bottom))}
   .ph-homebar{bottom:calc(6px + env(safe-area-inset-bottom))}
+  /* An open app owns the whole screen: no fake status bar, notch or home bar, and Close lives in the app's own header (not a pill over the scene). */
+  #life-dialog[data-phone]:has(.ph[data-view=app]){--ph-top:env(safe-area-inset-top)}
+  .ph-stage:has(.ph[data-view=app]) .ph-close{display:none}
+  .ph[data-view=app]{--ph-h:calc(100 * var(--ui-vh) - env(safe-area-inset-top));border-radius:0}
+  .ph[data-view=app] .ph-screen{border-radius:0}
+  .ph[data-view=app] .ph-status,.ph[data-view=app] .ph-island,.ph[data-view=app] .ph-homebar{display:none}
+  .ph-appbar{min-height:56px;padding:6px 4px 6px 4px}
+  .ph-appclose{display:grid}
   .ph-icon{width:58px;height:58px;border-radius:16px}
   .ph-icon svg{width:31px;height:31px}
   .ph-appbtn{min-height:84px}

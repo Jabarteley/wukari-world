@@ -8,7 +8,14 @@ import { reactive } from 'vue'
  * pending  it is due and has not started yet (waiting for a quiet moment): the things that would compete with it — the
  *          invitation chip, the guest bar, the hint to click the floor, the welcome toast — wait too.
  */
-export const tour = reactive({ active: false, pending: false })
+export const tour = reactive({ active: false, pending: false, settleAway: false })
+
+// WHO MAY SPEAK IN THE FIRST MINUTES: one prompt asks for attention at a time. The walkthrough goes first; then the offer to
+// settle in (housing is the product's first priority, so the goal lines do not hold it back); then the coach's goal line, once the
+// offer is put away (`tour.settleAway`) or done. The order is written where each speaks (SettleEntry.vue, CoachTip.vue, useAttention.ts); `settleWanted` is the shared test.
+/** Does the settle-in offer apply to this life (a connected guest past the creator who has not put it away)? */
+export const settleWanted = (view: { connected: boolean; onboarding: { guest: boolean; required: boolean } }, away: boolean): boolean =>
+  view.connected && view.onboarding.guest && !view.onboarding.required && !away
 
 /** Funnel events through the consent-gated 'jaw:track' path. No personal data: a step index, never a name or a place. */
 export function track(name: string, props: Record<string, string | number | boolean> = {}): void {

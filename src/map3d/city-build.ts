@@ -148,7 +148,7 @@ export const CONTEXT_COLOURS = { state: '#dde1d3', country: '#e4dfd0', road: '#c
 const LAND_COLOURS: Record<LandKind, string> = { mainland: '#a9c783', island: '#b8ce91', estate: '#9fc579', sand: '#e8d19c' };
 /** The half-widths of the shallows and of the beach along a true-scale shoreline, in map units (100 m each at the frame's scale). */
 const SHALLOWS = 0.55, BEACH = 0.22;
-const ASPHALT = '#5d626b', TRUNK = '#464a52', TRUNK_KERB = '#f0eadb', KERB = '#e4dfcf', DASH = '#f6f2e2', PATH = '#dcd2b6';
+const ASPHALT = '#5d626b', MAJOR = '#555a63', GUTTER = '#4b4f57', TRUNK = '#464a52', TRUNK_KERB = '#f0eadb', KERB = '#e4dfcf', DASH = '#f6f2e2', PATH = '#dcd2b6';
 
 export const CITY_LIGHT: Readonly<Record<TimeOfDay, TimePreset>> = Object.freeze({
   day: { sky: ['#d7edf3', '#a8cfdd'], hemi: ['#f0f5f1', '#879578', 1.25], sun: ['#ffe3b4', 1.65, [-70, 120, 90]], water: '#347f9b', windows: '#526b7c', waves: 0.34, shadow: 0.26 },
@@ -505,21 +505,70 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
   const g: Builder = { b, w, at: (x, y, z, ry, draw) => b.at(x, y, z, ry, () => w.at(x, y, z, ry, () => draw(g), 0, 0, LANDMARK_SCALE), 0, 0, LANDMARK_SCALE) };
   const hk = Math.sqrt(k), pk = Math.max(0.5, k);               // heights follow roads by the square root; paths never get thinner than half
   const segments: Segment[] = [];                              // every ground stretch of road, for keeping the fabric off it
+  // A point `d` along a polyline and the stretch of it between two distances; the dashes, crossings and lamps follow the line, not its vertices.
+  const spot = (points: readonly Point3[], d: number) => {
+    let run = 0;
+    for (let i = 1; i < points.length; i++) {
+      const a = points[i - 1]!, c = points[i]!, length = Math.hypot(c.x - a.x, c.z - a.z);
+      if (run + length >= d || i === points.length - 1) { const t = Math.max(0, Math.min(1, (d - run) / (length || 1))); return { x: a.x + (c.x - a.x) * t, y: a.y + (c.y - a.y) * t, z: a.z + (c.z - a.z) * t, ry: Math.atan2(c.x - a.x, c.z - a.z) }; }
+      run += length;
+    }
+    return { ...points[0]!, ry: 0 };
+  };
+  const stretch = (points: readonly Point3[], d0: number, d1: number): Point3[] => {
+    const out: Point3[] = [spot(points, d0)];
+    let run = 0;
+    for (let i = 1; i < points.length; i++) { run += Math.hypot(points[i]!.x - points[i - 1]!.x, points[i]!.z - points[i - 1]!.z); if (run > d0 + 1e-6 && run < d1 - 1e-6) out.push(points[i]!); }
+    out.push(spot(points, d1));
+    return out;
+  };
+  // Dashes, crossings and lamps are drawn where the city is lived in (its core); the far roads keep their plain ribbons.
+  const lived = pack.core ?? { minX: minX + 8, maxX: maxX - 8, minZ: minZ + 8, maxZ: maxZ - 8 };
+  const marked = (x: number, z: number) => x >= lived.minX && x <= lived.maxX && z >= lived.minZ && z <= lived.maxZ;
+  // Vertices that lie on the straight line between their neighbours (to a hair, in height too) add triangles and no shape.
+  const lean = (points: Point3[]): Point3[] => {
+    const out = [points[0]!];
+    for (let i = 1; i < points.length - 1; i++) {
+      const a = out[out.length - 1]!, p = points[i]!, c = points[i + 1]!, length = Math.hypot(c.x - a.x, c.z - a.z) || 1;
+      const off = Math.abs((c.x - a.x) * (a.z - p.z) - (a.x - p.x) * (c.z - a.z)) / length, t = Math.hypot(p.x - a.x, p.z - a.z) / length;
+      if (off > 0.05 * k || Math.abs(a.y + (c.y - a.y) * t - p.y) > 0.01 || Math.hypot(p.x - a.x, p.z - a.z) > 30 * k) out.push(p);
+    }
+    out.push(points[points.length - 1]!);
+    return out;
+  };
+  // Each class sits a hair above the one below (kerbs, then asphalt), so where two roads cross the bigger one wins cleanly and nothing z-fights.
+  const STEP = 0.006, tone = (base: string, id: string) => `#${new THREE.Color(base).offsetHSL(0, 0, (hash(`${pack.id}:road:${id}`) % 100 / 100 - 0.5) * 0.05).getHexString()}`;
+  // A junction is a road end that another road passes through: a zebra crossing goes a little way up the major roads that reach one.
+  const meets = (road: Road, end: Point3) => network.roads.some((other) => other !== road && !other.bridge && other.points.some((point) => Math.hypot(point.x - end.x, point.z - end.z) < 1.2 * k));
   for (const road of network.roads) {
-    const wide = (road.trunk ? 3.6 : road.major ? 2.5 : 1.8) * k;
+    const wide = (road.trunk ? 3.6 : road.major ? 2.5 : 1.8) * k, tier = road.trunk ? 2 : road.major ? 1 : 0, lift = tier * STEP;
     // On a hill the ribbon rides a little higher, so the mound's coarse surface never covers it.
     const hl = !road.bridge && road.points.some((point) => point.y > 0.05) ? 0.08 : 0;
-    raw.ribbon(road.points, wide + 0.7 * k, road.bridge ? 0.05 : 0.035 + hl, road.trunk ? TRUNK_KERB : KERB);
-    raw.ribbon(road.points, wide, road.bridge ? 0.08 : 0.06 + hl, road.trunk ? TRUNK : ASPHALT);
-    if (road.major || road.trunk) {
-      for (let i = 1; i < road.points.length - 1; i += 2) {
-        const a = road.points[i]!, c = road.points[i + 1]!, mid = { x: (a.x + c.x) / 2, y: (a.y + c.y) / 2, z: (a.z + c.z) / 2 };
-        raw.ribbon([{ x: a.x + (mid.x - a.x) * 0.3, y: a.y, z: a.z + (mid.z - a.z) * 0.3 }, mid], 0.16 * k, road.bridge ? 0.1 : 0.08 + hl, DASH);
+    const surface = road.trunk ? TRUNK : tone(road.major ? MAJOR : ASPHALT, road.id), kerb = road.trunk ? TRUNK_KERB : KERB;
+    const kerbY = road.bridge ? 0.05 : 0.035 + hl + lift, roadY = road.bridge ? 0.08 : 0.06 + hl + lift;
+    const shape = lean(road.points);
+    raw.ribbon(shape, wide + 0.7 * k, kerbY, kerb);
+    raw.ribbon(shape, wide, roadY, surface);
+    // The edges: a painted line along a main road, a dark gutter along a side street.
+    const edge = road.points.filter((_, i) => i % 4 === 0 || i === road.points.length - 1);       // a thin line needs few vertices
+    if (road.trunk && !road.bridge) for (const side of [-1, 1]) raw.ribbon(edge, (road.major ? 0.1 : 0.16) * k, roadY + 0.008, road.major ? DASH : GUTTER, side * (wide / 2 - 0.16 * k));
+    if (road.major) {
+      // One run of dashes along the whole line, however its vertices fall.
+      const period = 11 * k, dash = 2.4 * k;
+      for (let d = period * 0.5; d + dash < road.length; d += period) {
+        const m = spot(road.points, d + dash / 2);
+        if (marked(m.x, m.z)) raw.ribbon(stretch(road.points, d, d + dash), 0.16 * k, roadY + 0.02, DASH);
+      }
+      if (!road.bridge && road.length > 10 * k) for (const [end, atEnd] of [[road.points[0]!, 0], [road.points[road.points.length - 1]!, 1]] as const) {
+        if (!marked(end.x, end.z) || !meets(road, end)) continue;
+        const d = atEnd ? road.length - wide / 2 - 1.1 * k : wide / 2 + 1.1 * k, stripes = Math.max(4, Math.round(wide / (0.55 * k)));
+        const run = stretch(road.points, d - 0.4 * k, d + 0.4 * k);
+        for (let i = 0; i < stripes; i++) raw.ribbon(run, 0.28 * k, roadY + 0.012, DASH, ((i + 0.5) / stripes - 0.5) * (wide - 0.5 * k));
       }
     }
     // Every road end is rounded off, so two roads that meet at an angle join in a smooth corner and not a notch.
     for (const end of [road.points[0]!, road.points[road.points.length - 1]!]) {
-      raw.shape(circle(end.x, end.z, wide / 2 + 0.35 * k), 0.035 + hl + end.y, road.trunk ? TRUNK_KERB : KERB); raw.shape(circle(end.x, end.z, wide / 2), 0.06 + hl + end.y, road.trunk ? TRUNK : ASPHALT);
+      raw.shape(circle(end.x, end.z, wide / 2 + 0.35 * k, 8), kerbY - (road.bridge ? 0.015 : 0) + end.y, kerb); raw.shape(circle(end.x, end.z, wide / 2, 8), roadY - (road.bridge ? 0.02 : 0) + end.y, surface);
     }
     if (road.bridge) {
       // The parapets grow out of the ground with the ramp, so the deck leaves the road without a step.
@@ -768,6 +817,21 @@ export function buildCity(kit: MapKit, pack: CityPack, network: Network, { venue
     u.cyl(0, 1.5, 0, 0.11, 3.0, '#8a7250', { seg: 5, top: 0.7 });
     for (let i = 0; i < 6; i++) { const a = i * 1.047; u.cone(Math.sin(a) * 0.8, 2.95, Math.cos(a) * 0.8, 0.32, 1.6, i % 2 ? '#3f8a57' : '#4f9a5f', { seg: 3, rz: -Math.sin(a) * 1.25, rx: Math.cos(a) * 1.25 }); }
   }), materials.instanced, fabric.palms, (item, o) => upright(item, o, item.s, item.s, item.s)));
+
+  // Street lamps stand along the main roads, alternating sides, a head leaning over the carriageway; one instanced mesh, left out with the rest of the fabric from afar.
+  const lamps: { x: number; y: number; z: number; ry: number }[] = [];
+  for (const road of network.roads) {
+    if (!road.major || road.length < 6 * k) continue;
+    const wide = (road.trunk ? 3.6 : 2.5) * k;
+    let side = 1;
+    for (let d = 10 * k; d < road.length - 6 * k; d += 150 * k, side = -side) {
+      const at = spot(road.points, d), x = at.x + Math.cos(at.ry) * side * (wide / 2 + 0.2 * k), z = at.z - Math.sin(at.ry) * side * (wide / 2 + 0.2 * k);
+      if (!marked(at.x, at.z) || (!road.bridge && !onLand(at.x, at.z))) continue;
+      lamps.push({ x, y: at.y + (road.bridge ? 0.16 : 0.06), z, ry: at.ry + (side > 0 ? Math.PI : 0) });
+    }
+  }
+  fabricLayer(instanced('street-lamps', unit((u) => { u.cyl(0, 0.4, 0, 0.03, 0.8, '#8b9096', { seg: 3, open: true }); u.box(0.1, 0.8, 0, 0.28, 0.04, 0.09, '#d9d4c0'); }), materials.instanced, lamps,
+    (item, o) => { o.position.set(item.x, item.y, item.z); o.rotation.set(0, item.ry, 0); o.scale.setScalar(Math.max(0.7, k * 1.2)); }));
 
   // ---- flat shadows: one instanced quad beside everything that stands up -----------------------
   for (const item of fabric.houses) shadows.push({ x: item.x + 0.3 + item.sy * 0.22, z: item.z + 0.2 + item.sy * 0.16, w: item.sx + 0.5, d: item.sz + 0.5, ry: item.ry });

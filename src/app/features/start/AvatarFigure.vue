@@ -12,12 +12,15 @@ const props = withDefaults(defineProps<{
   size?: number
   /** The text alternative; '' draws the figure as decoration. */
   label?: string
-}>(), { size: 150, label: 'Preview of your character' })
+  /** A close-up for option thumbnails: the head, or the upper body. Whole figure by default. */
+  crop?: 'head' | 'body'
+}>(), { size: 150, label: 'Preview of your character', crop: undefined })
+const box = computed(() => (props.crop === 'head' ? { view: '24 4 72 72', w: 1, h: 1 } : props.crop === 'body' ? { view: '10 44 100 100', w: 1, h: 1 } : { view: '0 0 120 190', w: 120, h: 190 }))
 const shapes = computed(() => avatarShapes(props.look))
 </script>
 
 <template>
-  <svg class="look-avatar" role="img" :aria-label="label" viewBox="0 0 120 190" :width="size" :height="Math.round(size * 190 / 120)">
+  <svg class="look-avatar" role="img" :aria-label="label" :viewBox="box.view" :width="size" :height="Math.round(size * box.h / box.w)">
     <component :is="shape.tag" v-for="(shape, index) in shapes" :key="index" v-bind="shape.attrs" />
   </svg>
 </template>

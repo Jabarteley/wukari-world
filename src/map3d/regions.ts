@@ -307,7 +307,10 @@ export function regionEntry(kind: RegionKind, id: string): RegionInfo {
   if (kind === 'country' && id !== 'ng') {
     const open = cityCatalogue().find(city => city.countryISO === id && city.open);
     const level = countryAtlasLevel(id);
-    if (open && level) return { ...entry, level, status: 'open', city: open.id, teaser: entry?.teaser ?? `${open.countryName ?? id} is open through ${open.name}.` };
+    // A context-only entry (status null: Antarctica, uninhabited territories) opens like any country once a city module names it;
+    // its context line is not a teaser for an open place, so the generic one is used.
+    const teaser = entry && entry.status !== null ? entry.teaser : undefined;
+    if (open && level) return { ...entry, level, status: 'open', city: open.id, teaser: teaser ?? `${open.countryName ?? id} is open through ${open.name}.` };
     if (open) return { ...entry, status: 'planned', teaser: entry?.teaser ?? `${open.countryName ?? id} needs a registered atlas entry before opening.` };
   }
   if (kind === 'country' && entry?.status === 'open' && !countryAtlasLevel(id)) return { ...entry, status: 'planned' };

@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "paris",
+  "countryIso2": "FR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Paris",
+    "coordinatesWgs84": [
+      2.3483915,
+      48.8534951
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/france/ile-de-france-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "paris-airport",
+    "name": "Charles de Gaulle International Airport",
+    "lon": 2.554117,
+    "lat": 49.00896,
+    "sourceUrl": "https://ourairports.com/airports/LFPG/"
+  },
+  "boxes": {
+    "play": [
+      48.68165825456273,
+      2.0881009083398387,
+      49.02533194543728,
+      2.608682091660161
+    ],
+    "core": [
+      48.80827487751651,
+      2.280067655089659,
+      48.8987153224835,
+      2.416715344910341
+    ],
+    "outline": [
+      48.63165825456273,
+      2.038100908339839,
+      49.07533194543728,
+      2.658682091660161
+    ],
+    "wide": [
+      48.081658254562726,
+      1.4881009083398387,
+      49.62533194543728,
+      3.2086820916601613
+    ],
+    "water": [
+      48.68165825456273,
+      2.0881009083398387,
+      49.02533194543728,
+      2.608682091660161
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/france/ile-de-france-261011.osm.pbf",
+    "datasetSha256": "779e5ab5b27bf8fa54ab11267ff417730bdeb4213181c92f2c2ea7d36920f0b9",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/europe/france-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 5097271668,
+        "md5": "bf8a956f9bcd68691abb6b324de5d5e1",
+        "sha256": "d82ac8a228f4f831b59da8b3431e71b30e8d505320136de2bf3d130e1bb1209a"
+      },
+      {
+        "role": "city-extract",
+        "url": "https://download.geofabrik.de/europe/france/ile-de-france-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 339281723,
+        "md5": "4f6da19f95328fcf1b7b413e2be91ef1",
+        "sha256": "779e5ab5b27bf8fa54ab11267ff417730bdeb4213181c92f2c2ea7d36920f0b9",
+        "reason": "France (5.10 GB) is read only for the admin-0 boundary (its 357 overseas ring ways are reviewed evidence); Paris's metadata and layers come from the official Geofabrik Ile-de-France extract (339 MB, same 2026-10-11T20:21:06Z replication timestamp). The Paris centre (48.853N 2.348E) and LFPG lie inside ile-de-france.poly (1.445-3.560E, 48.119-49.243N), so the play, core and outline boxes lie inside it",
+        "polyUrl": "https://download.geofabrik.de/europe/france/ile-de-france.poly",
+        "polySha256": "ebda64b6174c4cff0aa4aedc702d54bf5035bf19b173e0593d83060d16489683",
+        "primaryPolyUrl": "https://download.geofabrik.de/europe/france.poly",
+        "primaryPolySha256": "97870c5d6718d958ced9a5dcc944eea1bea486059a69efb41fb311ad4e015932"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "07a0122084fe1baa14203153dfa0a5de58bd3cc5376d171d1c3ac6f867fbeb4b",
+        "elements": 26683
+      },
+      {
+        "file": "extras.json",
+        "sha256": "a31ecb8eaf0b6a3da1873a16a73071828ab8fe5f923a2293bc2a16a83c986509",
+        "elements": 6075
+      },
+      {
+        "file": "water.json",
+        "sha256": "d9a194a365cb4658e32eb43886f3eadb6b1107c43c5c3bccc076246ea3771653",
+        "elements": 1223
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "f9b3a27d900fbcd48e538c0eeb711332933fedc34af2f270b87921afa58ec535",
+        "elements": 6115
+      },
+      {
+        "file": "roads.json",
+        "sha256": "459e7d3e41636ce3869cbe6955df7156fc5cc545f3b1aaecae2d76d9bbad590a",
+        "elements": 17672
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Malakoff - Rue Étienne Dolet",
+      "osm": "node/12388534",
+      "coordinatesWgs84": [
+        2.297342,
+        48.815193
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maison du Val",
+      "osm": "way/132248181",
+      "coordinatesWgs84": [
+        2.106218,
+        48.921155
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Institut supérieur de mécanique de Paris",
+      "osm": "node/267355578",
+      "coordinatesWgs84": [
+        2.332784,
+        48.919949
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hôpital Henri Mondor",
+      "osm": "relation/1773821",
+      "coordinatesWgs84": [
+        2.452986,
+        48.796392
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc de Versailles",
+      "osm": "relation/6697690",
+      "coordinatesWgs84": [
+        2.101527,
+        48.80907
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Aéroville",
+      "osm": "relation/3294447",
+      "coordinatesWgs84": [
+        2.521367,
+        48.991921
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Saint-Flaive",
+      "osm": "way/43014678",
+      "coordinatesWgs84": [
+        2.258883,
+        48.98994
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mairie de Noisy-le-Grand",
+      "osm": "relation/19802284",
+      "coordinatesWgs84": [
+        2.552485,
+        48.849259
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Préfecture des Hauts-de-Seine",
+      "osm": "relation/4187796",
+      "coordinatesWgs84": [
+        2.215551,
+        48.897211
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Télécom Paris",
+      "osm": "node/6698144969",
+      "coordinatesWgs84": [
+        2.199685,
+        48.713111
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Accor Arena",
+      "osm": "way/252506849",
+      "coordinatesWgs84": [
+        2.378804,
+        48.838722
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Menhirs de la propiété Talma, dits la femme et la fille de Loth",
+      "osm": "node/1906996216",
+      "coordinatesWgs84": [
+        2.503509,
+        48.695671
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pyramide de Juvisy",
+      "osm": "node/2295902532",
+      "coordinatesWgs84": [
+        2.372133,
+        48.698194
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parc de Ladoucette",
+      "osm": "way/111365747",
+      "coordinatesWgs84": [
+        2.443886,
+        48.925376
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Saint-Didier",
+      "osm": "way/346302141",
+      "coordinatesWgs84": [
+        2.389234,
+        49.008302
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort de Vaujours",
+      "osm": "way/976068267",
+      "coordinatesWgs84": [
+        2.598335,
+        48.925413
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Saint-Martin",
+      "osm": "way/85301687",
+      "coordinatesWgs84": [
+        2.160123,
+        48.987451
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Westfield Vélizy 2",
+      "osm": "way/678745793",
+      "coordinatesWgs84": [
+        2.220167,
+        48.782632
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc Montreau",
+      "osm": "way/365579410",
+      "coordinatesWgs84": [
+        2.472245,
+        48.865511
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rungis International Market",
+      "osm": "way/130808774",
+      "coordinatesWgs84": [
+        2.355587,
+        48.757112
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Institut hospitalier franco-britannique - Site Kléber",
+      "osm": "relation/1223157",
+      "coordinatesWgs84": [
+        2.279386,
+        48.891611
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hôpital Émile Roux",
+      "osm": "way/46173452",
+      "coordinatesWgs84": [
+        2.485436,
+        48.749083
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Roland-Garros",
+      "osm": "way/39316077",
+      "coordinatesWgs84": [
+        2.247059,
+        48.846808
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "École Nationale Supérieure d'Architecture de Paris La Villette",
+      "osm": "way/1415157895",
+      "coordinatesWgs84": [
+        2.382434,
+        48.892991
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1236,
+      "sha256": "fd3e7cda79b4465769d1e706fcc02e0a71a1a507cd695f7cdd770e2b45abe8bf"
+    },
+    "geometry.ts": {
+      "bytes": 36347,
+      "sha256": "d857adf58bd5eb19bae4f4a2a4d901dfceeb3edb892084f0f2ed2e199956d942"
+    },
+    "places.ts": {
+      "bytes": 10068,
+      "sha256": "0cd0df228d998c55bb7f505c40ed023da83cbf6f7b2d4a516b01bd9695e8c84a"
+    },
+    "terrain.ts": {
+      "bytes": 57933,
+      "sha256": "ade188423915ca10a27fec09169320125d0d8e90e537fb841a792fa229b642a2"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "155f2414e90026134836c694d9a22e0fa9fdb75c94716100024f2e844bb13f02"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

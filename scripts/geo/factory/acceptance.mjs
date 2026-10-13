@@ -15,7 +15,7 @@ export function mapTestText(cityId, { profile, emptySlots = [] } = {}) {
         : "  assert.equal(FACTS.names?.roadHub, PLACES.find(p => p.slot === 'transit')?.name ?? content.venues.find(v => v.id === ids.transit)?.name)";
     const emptyChecks = profile === undefined ? '' : `  // ${profile} profile: these slots have no honest source, so they keep the game's own fictional venue (recorded in the recipe, the selection and the receipt).
   assert.deepEqual(EMPTY_SLOTS, Object.keys(ids).filter(slot => slot !== 'airport' && !PLACES.some(p => p.slot === slot)))
-  for (const slot of EMPTY_SLOTS) assert.ok(content.venues.find(v => v.id === ids[slot])?.name.endsWith('(game venue)'), slot + ' keeps its fictional game venue')
+  for (const slot of EMPTY_SLOTS) assert.ok(content.venues.find(v => v.id === ids[slot as keyof typeof ids])?.name.endsWith('(game venue)'), slot + ' keeps its fictional game venue')
 `;
     return `import assert from 'node:assert/strict'
 import test from 'node:test'

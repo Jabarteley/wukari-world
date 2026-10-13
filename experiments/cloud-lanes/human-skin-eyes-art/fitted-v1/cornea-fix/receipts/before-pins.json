@@ -1,0 +1,14 @@
+{
+  "commit": "f504d2f450a95d5f411abca6f63b9401f1401fc5",
+  "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "artifacts": {
+    "artifacts/fitted-human-skin-eyes-v1.blend": {
+      "bytes": 1669924,
+      "sha256": "2ea2ba117e510b084258699ebbed248c13d0d1bdd642bc7b896c7f1b8e496138"
+    },
+    "artifacts/fitted-human-skin-eyes-v1.glb": {
+      "bytes": 2124928,
+      "sha256": "1498ae740803a421e46d5b72fd64bd113b6b6967872a35a69f51254b21131ebb"
+    }
+  }
+}

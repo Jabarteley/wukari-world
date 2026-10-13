@@ -1,7 +1,7 @@
 {
   "status": "PASS",
-  "glbBytes": 2124928,
-  "glbSha256": "1498ae740803a421e46d5b72fd64bd113b6b6967872a35a69f51254b21131ebb",
+  "glbBytes": 2125024,
+  "glbSha256": "03c58a092fe6a3501adb59fc17f52b1c3584fd74a032457f1564caf8761fc6d5",
   "sourceGlbSha256": "5f0f8da1f3e6b14fc4910f04f02ed1eafe6446f896f44ef2b3a23f2ca071bc07",
   "sourceNodesComparedExactly": [
     {

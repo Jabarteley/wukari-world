@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "changedAccessorSpans": [
+    {
+      "mesh": "Fitted_Cornea_Left",
+      "attribute": "POSITION",
+      "accessor": 253,
+      "offset": 1794528,
+      "bytes": 3852
+    },
+    {
+      "mesh": "Fitted_Cornea_Left",
+      "attribute": "NORMAL",
+      "accessor": 254,
+      "offset": 1798380,
+      "bytes": 3852
+    },
+    {
+      "mesh": "Fitted_Cornea_Left",
+      "attribute": "TANGENT",
+      "accessor": 256,
+      "offset": 1804800,
+      "bytes": 5136
+    },
+    {
+      "mesh": "Fitted_Cornea_Right",
+      "attribute": "POSITION",
+      "accessor": 259,
+      "offset": 1817388,
+      "bytes": 3852
+    },
+    {
+      "mesh": "Fitted_Cornea_Right",
+      "attribute": "NORMAL",
+      "accessor": 260,
+      "offset": 1821240,
+      "bytes": 3852
+    },
+    {
+      "mesh": "Fitted_Cornea_Right",
+      "attribute": "TANGENT",
+      "accessor": 262,
+      "offset": 1827660,
+      "bytes": 5136
+    }
+  ],
+  "allOtherBinaryBytesUnchanged": true,
+  "capsIndicesUVsAndMorphDeltasUnchanged": true,
+  "materialsVariantsImagesUnchanged": true,
+  "glbBytes": 2125024,
+  "glbSha256": "03c58a092fe6a3501adb59fc17f52b1c3584fd74a032457f1564caf8761fc6d5"
+}

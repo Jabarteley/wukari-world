@@ -1,3 +1,5 @@
+Current correction: [CORNEA-CORRECTION.md](CORNEA-CORRECTION.md). The owned cap regression now passes the original gate and dense intermediate-blink sweep; earlier failure history below is retained.
+
 # Pinned human material derivative — provisional fit
 
 Parent supplied exact master commit `3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a`. `fitted-v1/input-pins.json` records original Blender/GLB/frame hashes. The frame SHA-256 is `51fae932279d1513e16c4d06ce633f6218a994fe6c224bc3436e105cc519083b`; source Blender and GLB match its assertions. Read the human producer's own continuation at that exact commit before using the master. Imported bytes remain ignored inputs within this lane, never edits of its master.

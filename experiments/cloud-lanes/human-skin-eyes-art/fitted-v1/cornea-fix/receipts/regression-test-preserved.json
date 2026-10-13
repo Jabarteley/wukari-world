@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "sourceCommit": "f504d2f450a95d5f411abca6f63b9401f1401fc5",
+  "file": "../check_fit.py",
+  "sha256": "27bdecc8098b2b5b546296ad66a7bfea96d6d92ae7e5b9a1b012ffa555af2a0f",
+  "testSourceByteIdentical": true,
+  "beforeExitCode": 2,
+  "afterExitCode": 0,
+  "beforeAddedPairs": 34,
+  "afterAddedPairs": 0
+}

@@ -3,9 +3,9 @@
 <main><h1>ALLWORLD / Skin + eyes on the pinned human prototype</h1><p>Master 3ee5882c · material variants and real morph targets · raw GLTFLoader / software WebGL</p>
 <div class="wrap"><canvas id="view" width="1200" height="1230"></canvas>
 <div class="labels" style="top:0"><div>01 UMBER / NEUTRAL</div><div>02 COPPER / NEUTRAL</div><div>03 ROSE / NEUTRAL</div></div>
-<div class="labels" style="top:410px"><div>COPPER / DAY</div><div>COPPER / NIGHT</div><div>HALF BLINK / CONTACT WITNESS<br><small>Red: cornea triangles crossing upper lids</small></div></div>
+<div class="labels" style="top:410px"><div>COPPER / DAY</div><div>COPPER / NIGHT</div><div>HALF BLINK / CORNEA CORRECTION<br><small>Dense sweep: 0 added cap/lid crossings</small></div></div>
 <div class="labels" style="top:820px"><div>ALL SIX IDENTITY CONTROLS = -1</div><div>ALL SIX IDENTITY CONTROLS = +1</div><div>SHORT HEIGHT + FULL BLINK<br><small>Height × expression correctives applied</small></div></div></div>
-<footer>30,386 triangles / 33 meshes. Three artistic appearances; unchanged original topology, UVs and morph deltas.<br>Provisional fit: 34 new cornea/lid triangle pairs intersect at half-blink; inherited eye/lid contacts and UV overlaps remain.<br>No skeleton, skinning, animation-ready eye fit or game admission. Existing hair cap, anatomy and clothes belong to the pinned prototype.</footer></main>
+<footer>30,386 triangles / 33 meshes. Three artistic appearances; unchanged original topology, UVs and morph deltas.<br>Static corneal correction: no added crossings in 3,003 sampled eye poses; inherited eye/lid contacts and UV overlaps remain.<br>No skeleton, skinning, animation-ready eye fit or game admission. Existing hair cap, anatomy and clothes belong to the pinned prototype.</footer></main>
 <script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js","three/addons/":"../node_modules/three/examples/jsm/"}}</script>
 <script>window.addEventListener('error',e=>window.proofError=e.message);window.addEventListener('unhandledrejection',e=>window.proofError=String(e.reason));</script>
 <script type="module">
@@ -19,7 +19,7 @@ const variants=gltf.parser.json.extensions.KHR_materials_variants.variants.map(x
 const allMaterials=await Promise.all(gltf.parser.json.materials.map((_,i)=>gltf.parser.getDependency('material',i)));
 gltf.scene.traverse(o=>{if(o.isMesh){const a=gltf.parser.associations.get(o);o.userData.fitMappings=gltf.parser.json.meshes[a.meshes].primitives[a.primitives].extensions?.KHR_materials_variants?.mappings??[];}});
 const ids=['nose.projection','nose.alarWidth','earLeft.protrusion','earRight.protrusion','body.height','body.shoulderWidth'];
-const plans=[{variant:0,label:'umber neutral'},{variant:1,label:'copper neutral'},{variant:2,label:'rose neutral'},{variant:1,light:'day',label:'copper day'},{variant:1,light:'night',label:'copper night'},{variant:1,witness:true,label:'half-blink intersection',values:{'expression.blinkLeft':.5,'expression.blinkRight':.5}},{variant:1,full:true,label:'all identity minimum',values:Object.fromEntries(ids.map(k=>[k,-1]))},{variant:1,full:true,label:'all identity maximum',values:Object.fromEntries(ids.map(k=>[k,1]))},{variant:1,label:'short and full blink',values:{'body.height':-1,'expression.blinkLeft':1,'expression.blinkRight':1}}];
+const plans=[{variant:0,label:'umber neutral'},{variant:1,label:'copper neutral'},{variant:2,label:'rose neutral'},{variant:1,light:'day',label:'copper day'},{variant:1,light:'night',label:'copper night'},{variant:1,witness:true,label:'half-blink corrected',values:{'expression.blinkLeft':.5,'expression.blinkRight':.5}},{variant:1,full:true,label:'all identity minimum',values:Object.fromEntries(ids.map(k=>[k,-1]))},{variant:1,full:true,label:'all identity maximum',values:Object.fromEntries(ids.map(k=>[k,1]))},{variant:1,label:'short and full blink',values:{'body.height':-1,'expression.blinkLeft':1,'expression.blinkRight':1}}];
 const witness=await(await fetch('./receipts/half-blink-witness.json')).json();
 const records=[],scenes=[];
 for(let n=0;n<plans.length;n++){

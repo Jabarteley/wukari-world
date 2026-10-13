@@ -1,0 +1,27 @@
+{
+  "sourceCommit": "f504d2f450a95d5f411abca6f63b9401f1401fc5",
+  "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "changes": [
+    {
+      "object": "Fitted_Cornea_Left",
+      "vertices": 321,
+      "maxPosteriorShiftM": 0.00019999999999952253,
+      "oldDomeM": 0.00045,
+      "newDomeM": 0.00025,
+      "geometryChange": "only local Y of existing vertices and corresponding shape-key coordinates",
+      "newMorphs": 0,
+      "visibilityOrAlphaChange": false
+    },
+    {
+      "object": "Fitted_Cornea_Right",
+      "vertices": 321,
+      "maxPosteriorShiftM": 0.00019999999999952253,
+      "oldDomeM": 0.00045,
+      "newDomeM": 0.00025,
+      "geometryChange": "only local Y of existing vertices and corresponding shape-key coordinates",
+      "newMorphs": 0,
+      "visibilityOrAlphaChange": false
+    }
+  ],
+  "blendSha256": "709168bfec5726daf815305541718fcc4f25b917962b280a36a56654cd0a2b78"
+}

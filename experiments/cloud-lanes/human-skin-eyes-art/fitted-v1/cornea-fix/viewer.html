@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Allworld cornea correction before / after</title><link rel="icon" href="data:,">
+<style>*{box-sizing:border-box}body{margin:0;background:#101c25;color:#e7e8dc;font:15px system-ui}main{width:1200px;margin:24px}h1{font-size:26px;font-weight:500;margin-bottom:8px}p{color:#aec7ca;line-height:1.5}.wrap{position:relative;height:640px}.row{position:absolute;display:flex;left:0}.row div{width:400px;background:#101c25df;padding:9px 12px;font-size:13px}.after{color:#afd9bd}footer{color:#b2c6ca;padding-top:14px;line-height:1.7}</style>
+<main><h1>ALLWORLD / Corneal dome correction</h1><p>Same master, materials, topology, UVs and morphs · only added cap depth changes by at most 0.20 mm</p>
+<div class="wrap"><canvas id="view" width="1200" height="640"></canvas>
+<div class="row" style="top:0"><div>BEFORE / NEUTRAL / blink 0</div><div>BEFORE / HALF BLINK / blink 0.5</div><div>BEFORE / FULL BLINK / blink 1</div></div>
+<div class="row after" style="top:320px"><div>CORRECTED / NEUTRAL / blink 0</div><div>CORRECTED / HALF BLINK / blink 0.5</div><div>CORRECTED / FULL BLINK / blink 1</div></div></div>
+<footer id="result">Loading measured sweep…</footer>
+<footer>Raw GLTFLoader, fixed camera and lights, opaque-alpha materials. No cap deletion, aperture shrink, visibility trick or new blink key.<br>Inherited eye/lid contacts and prototype seams remain. Dense sampled regression clearance is not full anatomical, continuous-motion or production acceptance.</footer></main>
+<script type="importmap">{"imports":{"three":"../../node_modules/three/build/three.module.js","three/addons/":"../../node_modules/three/examples/jsm/"}}</script>
+<script>window.addEventListener('error',e=>window.proofError=e.message);window.addEventListener('unhandledrejection',e=>window.proofError=String(e.reason));</script>
+<script type="module">
+import * as T from 'three';import{GLTFLoader}from'three/addons/loaders/GLTFLoader.js';import{RoomEnvironment}from'three/addons/environments/RoomEnvironment.js';
+const renderer=new T.WebGLRenderer({canvas:document.getElementById('view'),antialias:true,preserveDrawingBuffer:true});renderer.setSize(1200,640,false);renderer.setPixelRatio(1);renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
+const room=new RoomEnvironment(),pm=new T.PMREMGenerator(renderer),env=pm.fromScene(room,.04);room.dispose();pm.dispose();
+const loader=new GLTFLoader(),before=await loader.loadAsync('./inputs/fitted-human-skin-eyes-v1.glb'),after=await loader.loadAsync('../artifacts/fitted-human-skin-eyes-v1.glb');
+const sweep=await(await fetch('./receipts/dense-blink.json')).json();if(sweep.status!=='PASS')throw Error('Dense sweep did not pass');
+document.getElementById('result').textContent=`Before half-blink: 34 added cornea/lid triangle pairs. Corrected: 0 at all ${sweep.pairedEyePoseSamples.toLocaleString()} sampled paired-eye poses (blink step ${sweep.blinkStep}; height -1, 0, +1).`;
+const records=[],scenes=[];
+for(let row=0;row<2;row++)for(let col=0;col<3;col++){
+ const scene=new T.Scene();scene.background=new T.Color(0x263744);scene.environment=env.texture;scene.environmentIntensity=.52;
+ const key=new T.DirectionalLight(0xffffff,1.8);key.position.set(-2,3,4);scene.add(key);const fill=new T.DirectionalLight(0xc8dcff,.35);fill.position.set(2,1,3);scene.add(fill);
+ const amount=[0,.5,1][col],model=[before,after][row].scene.clone();scene.add(model);let caps=0;
+ model.traverse(o=>{if(!o.isMesh)return;if(o.name.startsWith('Fitted_Cornea_')){caps++;if(!o.visible||o.material.opacity!==1)throw Error('Hidden or faded cornea');}if(o.morphTargetDictionary)for(const [name,index]of Object.entries(o.morphTargetDictionary))o.morphTargetInfluences[index]=name==='expression.blinkLeft'||name==='expression.blinkRight'?amount:0;});
+ if(caps!==2)throw Error('Expected both original cap meshes');
+ const width=.128,camera=new T.OrthographicCamera(-width/2,width/2,width*.8/2,-width*.8/2,.001,20);camera.position.set(.006,1.641,3);camera.lookAt(0,1.633,0);
+ renderer.setViewport(col*400,(1-row)*320,400,320);renderer.setScissor(col*400,(1-row)*320,400,320);renderer.setScissorTest(true);renderer.render(scene,camera);
+ const gl=renderer.getContext(),pixels=new Uint8Array(400*320*4);gl.readPixels(col*400,(1-row)*320,400,320,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let warm=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]>35&&pixels[i]>pixels[i+2]*1.12)warm++;if(warm<5000)throw Error('Missing close-up');
+ records.push({revision:row?'corrected':'f504d2f4 before',blink:amount,caps,capVisibility:true,capOpacity:1,coloredPixels:warm,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles});scenes.push(scene);
+}
+const gl=renderer.getContext(),ext=gl.getExtension('WEBGL_debug_renderer_info');window.receipt={ready:true,three:T.REVISION,renderer:ext?gl.getParameter(ext.UNMASKED_RENDERER_WEBGL):gl.getParameter(gl.RENDERER),softwareOnly:true,records,animationLoop:false,corneaRegressionGate:sweep.status};
+window.cleanup=()=>{const gs=new Set(),ms=new Set(),ts=new Set();for(const s of scenes)s.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)ms.add(o.material);});for(const m of ms){for(const v of Object.values(m))if(v?.isTexture)ts.add(v);m.dispose();}for(const g of gs)g.dispose();for(const t of ts)t.dispose();env.dispose();renderer.dispose();renderer.forceContextLoss();window.receipt.disposed=true;};
+</script></html>

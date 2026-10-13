@@ -1,0 +1,79 @@
+{
+  "ready": true,
+  "three": "180",
+  "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+  "softwareOnly": true,
+  "records": [
+    {
+      "revision": "f504d2f4 before",
+      "blink": 0,
+      "caps": 2,
+      "capVisibility": true,
+      "capOpacity": 1,
+      "coloredPixels": 121189,
+      "drawCalls": 50,
+      "triangles": 43200
+    },
+    {
+      "revision": "f504d2f4 before",
+      "blink": 0.5,
+      "caps": 2,
+      "capVisibility": true,
+      "capOpacity": 1,
+      "coloredPixels": 123526,
+      "drawCalls": 50,
+      "triangles": 43200
+    },
+    {
+      "revision": "f504d2f4 before",
+      "blink": 1,
+      "caps": 2,
+      "capVisibility": true,
+      "capOpacity": 1,
+      "coloredPixels": 125538,
+      "drawCalls": 50,
+      "triangles": 43200
+    },
+    {
+      "revision": "corrected",
+      "blink": 0,
+      "caps": 2,
+      "capVisibility": true,
+      "capOpacity": 1,
+      "coloredPixels": 121150,
+      "drawCalls": 50,
+      "triangles": 43200
+    },
+    {
+      "revision": "corrected",
+      "blink": 0.5,
+      "caps": 2,
+      "capVisibility": true,
+      "capOpacity": 1,
+      "coloredPixels": 123520,
+      "drawCalls": 50,
+      "triangles": 43200
+    },
+    {
+      "revision": "corrected",
+      "blink": 1,
+      "caps": 2,
+      "capVisibility": true,
+      "capOpacity": 1,
+      "coloredPixels": 125538,
+      "drawCalls": 50,
+      "triangles": 43200
+    }
+  ],
+  "animationLoop": false,
+  "corneaRegressionGate": "PASS",
+  "status": "PASS",
+  "browserVersion": "154.0.8037.57",
+  "screenshotSha256": "0e1d0a479721fcc5f572aecc97c7ac384163bce5cd04a778a96a77f023a1268d",
+  "disposed": true,
+  "pageErrors": [],
+  "failedRequests": [],
+  "elapsedSeconds": 7.253,
+  "browserClosed": true,
+  "serverClosed": true
+}

@@ -1,0 +1,268 @@
+{
+  "status": "PASS",
+  "beforeCommit": "f504d2f450a95d5f411abca6f63b9401f1401fc5",
+  "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "blinkLevels": 1001,
+  "blinkStep": 0.001,
+  "heights": [
+    -1,
+    0,
+    1
+  ],
+  "pairedEyePoseSamples": 3003,
+  "corneaLidPairTestsPerVersion": 12012,
+  "allOriginalMeshesAndMorphsExact": 31,
+  "corneaTopologyUVAndHeightMorphUnchanged": true,
+  "visibilityAndMaterialsUnchanged": true,
+  "crossEyeBlinkIndependenceVerified": true,
+  "beforeCorneaLidTrianglePairSum": 81063,
+  "afterCorneaLidTrianglePairSum": 0,
+  "inheritedEyeLidTrianglePairSum": 177800,
+  "afterCorneaInnerEyeOrHeadTrianglePairs": 0,
+  "afterMinimumSampledLidDistanceM": 7.681357237743214e-05,
+  "maximumLidVertexMovementPerBlinkStepM": 6.782331387549807e-06,
+  "heightsSummary": [
+    {
+      "height": -1,
+      "beforeTrianglePairSum": 27020,
+      "beforeFailingBlinkAmounts": 361,
+      "beforeFailingBlinkInterval": [
+        0.47900000000000004,
+        0.839
+      ],
+      "afterTrianglePairSum": 0,
+      "afterFailingBlinkAmounts": 0,
+      "afterMinimumSampledDistanceM": 7.681357237743214e-05,
+      "neutralHalfFullBeforePairs": [
+        0,
+        34,
+        0
+      ],
+      "neutralHalfFullAfterPairs": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "height": 0,
+      "beforeTrianglePairSum": 27018,
+      "beforeFailingBlinkAmounts": 361,
+      "beforeFailingBlinkInterval": [
+        0.47900000000000004,
+        0.839
+      ],
+      "afterTrianglePairSum": 0,
+      "afterFailingBlinkAmounts": 0,
+      "afterMinimumSampledDistanceM": 7.723478483967483e-05,
+      "neutralHalfFullBeforePairs": [
+        0,
+        34,
+        0
+      ],
+      "neutralHalfFullAfterPairs": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "height": 1,
+      "beforeTrianglePairSum": 27025,
+      "beforeFailingBlinkAmounts": 361,
+      "beforeFailingBlinkInterval": [
+        0.47900000000000004,
+        0.839
+      ],
+      "afterTrianglePairSum": 0,
+      "afterFailingBlinkAmounts": 0,
+      "afterMinimumSampledDistanceM": 7.761435699649155e-05,
+      "neutralHalfFullBeforePairs": [
+        0,
+        34,
+        0
+      ],
+      "neutralHalfFullAfterPairs": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "innerSurfaceChecks": [
+    {
+      "height": -1,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Eye_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.0002246488438686356
+    },
+    {
+      "height": -1,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Iris_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 1.0740327525127213e-05
+    },
+    {
+      "height": -1,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Pupil_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.00019281629647593945
+    },
+    {
+      "height": -1,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Head_continuous_anatomy",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.004156493116170168
+    },
+    {
+      "height": -1,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Eye_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.0002246488438686356
+    },
+    {
+      "height": -1,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Iris_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 1.0740327525127213e-05
+    },
+    {
+      "height": -1,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Pupil_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.00019281629647593945
+    },
+    {
+      "height": -1,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Head_continuous_anatomy",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.004156493116170168
+    },
+    {
+      "height": 0,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Eye_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.00022730873024556786
+    },
+    {
+      "height": 0,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Iris_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 1.0883190043387003e-05
+    },
+    {
+      "height": 0,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Pupil_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.000193367843166925
+    },
+    {
+      "height": 0,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Head_continuous_anatomy",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.004292747005820274
+    },
+    {
+      "height": 0,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Eye_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.00022730873024556786
+    },
+    {
+      "height": 0,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Iris_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 1.0883190043387003e-05
+    },
+    {
+      "height": 0,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Pupil_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.000193367843166925
+    },
+    {
+      "height": 0,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Head_continuous_anatomy",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.004292747005820274
+    },
+    {
+      "height": 1,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Eye_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.00022975311730988324
+    },
+    {
+      "height": 1,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Iris_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 1.1009649824700318e-05
+    },
+    {
+      "height": 1,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Pupil_Left",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.0001938282512128353
+    },
+    {
+      "height": 1,
+      "cornea": "Fitted_Cornea_Left",
+      "surface": "Head_continuous_anatomy",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.004423131234943867
+    },
+    {
+      "height": 1,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Eye_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.00022975321917328984
+    },
+    {
+      "height": 1,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Iris_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 1.1009649824700318e-05
+    },
+    {
+      "height": 1,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Pupil_Right",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.0001938282512128353
+    },
+    {
+      "height": 1,
+      "cornea": "Fitted_Cornea_Right",
+      "surface": "Head_continuous_anatomy",
+      "trianglePairs": 0,
+      "minimumSampledDistanceM": 0.004423131234943867
+    }
+  ],
+  "samplesSha256": "bdefcfe9f6d138c151f530d86712ea965203d16fa3a21a97f7c7987fb2bd5a3a",
+  "sampleArrayAxes": "height, blink, side [Left,Right], lid [Upper,Lower], count kind [inherited eye,before cornea,after cornea]",
+  "elapsedSeconds": 12.169,
+  "limits": "Dense discrete sampling, not a continuous collision certificate. Distances are bidirectional vertex-to-triangle samples, not exact global minima. Inherited eye/lid defects remain separately counted; no alpha, visibility, face exclusion, shrinking aperture or new blink deformation.",
+  "beforeBlendSha256": "2ea2ba117e510b084258699ebbed248c13d0d1bdd642bc7b896c7f1b8e496138",
+  "afterBlendSha256": "709168bfec5726daf815305541718fcc4f25b917962b280a36a56654cd0a2b78"
+}

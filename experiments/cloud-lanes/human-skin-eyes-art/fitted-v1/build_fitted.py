@@ -107,13 +107,13 @@ for side in ['Left','Right']:
         a=sample(SOURCE[file],u,v);name=ob.name+'_basecolor.png';save(name,a)
         ob.data.materials.clear();ob.data.materials.append(pbr('Fitted_'+ob.name,name,r=rough))
     pupil=bpy.data.objects['Pupil_'+side];m=pbr('Fitted_Pupil_'+side,r=.5);m.node_tree.nodes.get('Principled BSDF').inputs['Base Color'].default_value=(.0004,.00025,.00015,1);pupil.data.materials.clear();pupil.data.materials.append(m)
-    # Thin optical overlay, at most 0.45 mm anterior to the existing iris center.
-    vs=[(cx,-.05070,1.635)];uvs=[(.5,.5)];faces=[];segs=40;rings=8;radius=.00625
+    # Thin optical overlay, at most 0.25 mm anterior to the existing iris center.
+    vs=[(cx,-.05050,1.635)];uvs=[(.5,.5)];faces=[];segs=40;rings=8;radius=.00625
     for j in range(1,rings+1):
         r=radius*j/rings
         for k in range(segs):
             a=math.tau*k/segs;dx=r*math.cos(a);dz=r*math.sin(a)
-            y=-.036-.014*math.sqrt(max(0,1-(dx/.018)**2-(dz/.014)**2))-.00025-.00045*(1-(r/radius)**2)
+            y=-.036-.014*math.sqrt(max(0,1-(dx/.018)**2-(dz/.014)**2))-.00025-.00025*(1-(r/radius)**2)
             vs.append((cx+dx,y,1.635+dz));uvs.append((.5+dx/(2*radius),.5+dz/(2*radius)))
     for k in range(segs):faces.append((0,1+k,1+(k+1)%segs))
     for j in range(rings-1):

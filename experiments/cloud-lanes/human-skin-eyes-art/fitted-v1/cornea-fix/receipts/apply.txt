@@ -1,0 +1,14 @@
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:36:34 | INFO: Starting glTF 2.0 export
+19:36:34 | INFO: Extracting primitive: Fitted_Cornea_Left
+19:36:34 | INFO: Primitives created: 1
+19:36:34 | INFO: Extracting primitive: Fitted_Cornea_Right
+19:36:34 | INFO: Primitives created: 1
+19:36:34 | INFO: Finished glTF 2.0 export in 0.010576486587524414 s
+
+Info: Saved "fitted-human-skin-eyes-v1.blend"
+CORNEA_ONLY_STATIC_CORRECTION_WRITTEN
+Blender 4.3.2
+Read blend: "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/cornea-fix/inputs/fitted-human-skin-eyes-v1.blend"
+
+Blender quit

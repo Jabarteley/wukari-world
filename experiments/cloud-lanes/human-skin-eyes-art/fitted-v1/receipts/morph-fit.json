@@ -1,5 +1,5 @@
 {
-  "status": "FIT_INTERSECTIONS_FOUND",
+  "status": "PASS",
   "inputCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
   "originalMeshesWithExactPositionTriangleUVMorphHashes": [
     "Neck",
@@ -38,9 +38,9 @@
   "triangles": 30386,
   "meshCount": 33,
   "addedCorneaTriangles": 1200,
-  "newCorneaLidOrHeadTriangleIntersectionPairs": 34,
+  "newCorneaLidOrHeadTriangleIntersectionPairs": 0,
   "baselineEyeLidTriangleIntersectionPairs": 1336,
-  "minimumSampledCorneaLidDistanceM": 2.4029739051911747e-06,
+  "minimumSampledCorneaLidDistanceM": 9.53341368585825e-05,
   "caseResults": [
     {
       "case": "neutral",
@@ -51,14 +51,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -70,14 +70,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -97,14 +97,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -116,14 +116,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -143,14 +143,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -162,14 +162,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -189,14 +189,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -208,14 +208,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -235,14 +235,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -254,14 +254,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -281,14 +281,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -300,14 +300,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -327,14 +327,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -346,14 +346,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -373,14 +373,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -392,14 +392,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -419,14 +419,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -438,14 +438,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -465,14 +465,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006118849851191044
+          "sampledMinimumSurfaceDistanceM": 0.0006118880119174719
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004929787828586996
+          "sampledMinimumSurfaceDistanceM": 0.0005343241500668228
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -491,7 +491,7 @@
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0004971568705514073
+          "sampledMinimumSurfaceDistanceM": 0.0005385674885474145
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -518,7 +518,7 @@
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.000503082643263042
+          "sampledMinimumSurfaceDistanceM": 0.0005453036283142865
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -530,14 +530,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006339147803373635
+          "sampledMinimumSurfaceDistanceM": 0.0006339179817587137
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005073855863884091
+          "sampledMinimumSurfaceDistanceM": 0.0005496104713529348
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -557,14 +557,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -576,14 +576,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -603,14 +603,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -622,14 +622,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -654,14 +654,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006118849851191044
+          "sampledMinimumSurfaceDistanceM": 0.0006118880119174719
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004929787828586996
+          "sampledMinimumSurfaceDistanceM": 0.0005343241500668228
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -680,7 +680,7 @@
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0004971568705514073
+          "sampledMinimumSurfaceDistanceM": 0.0005385674885474145
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -712,7 +712,7 @@
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.000503082643263042
+          "sampledMinimumSurfaceDistanceM": 0.0005453036283142865
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -724,14 +724,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006339147803373635
+          "sampledMinimumSurfaceDistanceM": 0.0006339179817587137
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005073855863884091
+          "sampledMinimumSurfaceDistanceM": 0.0005496104713529348
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -752,14 +752,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -771,14 +771,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -801,14 +801,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -820,14 +820,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -848,14 +848,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 28,
-          "sampledMinimumSurfaceDistanceM": 0.00013307812332641333
+          "sampledMinimumSurfaceDistanceM": 0.00030689913546666503
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 0,
-          "sampledMinimumSurfaceDistanceM": 0.0001625539007363841
+          "sampledMinimumSurfaceDistanceM": 0.0003477272985037416
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -867,14 +867,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.00013948589912615716
+          "sampledMinimumSurfaceDistanceM": 0.00031631250749342144
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 14,
-          "sampledMinimumSurfaceDistanceM": 0.0001690886856522411
+          "sampledMinimumSurfaceDistanceM": 0.0003543699567671865
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -896,14 +896,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 28,
-          "sampledMinimumSurfaceDistanceM": 0.00013288490299601108
+          "sampledMinimumSurfaceDistanceM": 0.00030640442855656147
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 0,
-          "sampledMinimumSurfaceDistanceM": 0.0001623398275114596
+          "sampledMinimumSurfaceDistanceM": 0.0003472824755590409
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -915,14 +915,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0001392884732922539
+          "sampledMinimumSurfaceDistanceM": 0.00031581061193719506
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 14,
-          "sampledMinimumSurfaceDistanceM": 0.0001688942575128749
+          "sampledMinimumSurfaceDistanceM": 0.00035390377161093056
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -944,14 +944,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 28,
-          "sampledMinimumSurfaceDistanceM": 0.0001332470856141299
+          "sampledMinimumSurfaceDistanceM": 0.00030732888262718916
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 0,
-          "sampledMinimumSurfaceDistanceM": 0.00016272219363600016
+          "sampledMinimumSurfaceDistanceM": 0.0003480965970084071
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -963,14 +963,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0001397000887664035
+          "sampledMinimumSurfaceDistanceM": 0.00031674723140895367
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 14,
-          "sampledMinimumSurfaceDistanceM": 0.0001692963851382956
+          "sampledMinimumSurfaceDistanceM": 0.00035473916796036065
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -989,16 +989,16 @@
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "UpperLid_Left",
-          "newTriangleIntersectionPairs": 18,
+          "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 20,
-          "sampledMinimumSurfaceDistanceM": 4.926276233163662e-06
+          "sampledMinimumSurfaceDistanceM": 9.53341368585825e-05
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 8,
-          "sampledMinimumSurfaceDistanceM": 0.00010824228229466826
+          "sampledMinimumSurfaceDistanceM": 0.0002475616929586977
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -1008,16 +1008,16 @@
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "UpperLid_Right",
-          "newTriangleIntersectionPairs": 16,
+          "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 8,
-          "sampledMinimumSurfaceDistanceM": 2.4029739051911747e-06
+          "sampledMinimumSurfaceDistanceM": 0.00010531192674534395
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 24,
-          "sampledMinimumSurfaceDistanceM": 0.00011274072312517092
+          "sampledMinimumSurfaceDistanceM": 0.00025643009576015174
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -1037,14 +1037,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 28,
-          "sampledMinimumSurfaceDistanceM": 0.00013307812332641333
+          "sampledMinimumSurfaceDistanceM": 0.00030689913546666503
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 0,
-          "sampledMinimumSurfaceDistanceM": 0.0001625539007363841
+          "sampledMinimumSurfaceDistanceM": 0.0003477272985037416
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -1056,14 +1056,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 4,
-          "sampledMinimumSurfaceDistanceM": 0.0006245182012207806
+          "sampledMinimumSurfaceDistanceM": 0.000624521286226809
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 26,
-          "sampledMinimumSurfaceDistanceM": 0.0005025629652664065
+          "sampledMinimumSurfaceDistanceM": 0.0005444082198664546
         },
         {
           "cornea": "Fitted_Cornea_Right",
@@ -1083,14 +1083,14 @@
           "lid": "UpperLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 12,
-          "sampledMinimumSurfaceDistanceM": 0.0006222646916285157
+          "sampledMinimumSurfaceDistanceM": 0.0006222677184268832
         },
         {
           "cornea": "Fitted_Cornea_Left",
           "lid": "LowerLid_Left",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.0004983182298019528
+          "sampledMinimumSurfaceDistanceM": 0.0005401568487286568
         },
         {
           "cornea": "Fitted_Cornea_Left",
@@ -1102,14 +1102,14 @@
           "lid": "UpperLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 16,
-          "sampledMinimumSurfaceDistanceM": 0.00013948589912615716
+          "sampledMinimumSurfaceDistanceM": 0.00031631250749342144
         },
         {
           "cornea": "Fitted_Cornea_Right",
           "lid": "LowerLid_Right",
           "newTriangleIntersectionPairs": 0,
           "baselineEyeLidTriangleIntersectionPairs": 14,
-          "sampledMinimumSurfaceDistanceM": 0.0001690886856522411
+          "sampledMinimumSurfaceDistanceM": 0.0003543699567671865
         },
         {
           "cornea": "Fitted_Cornea_Right",

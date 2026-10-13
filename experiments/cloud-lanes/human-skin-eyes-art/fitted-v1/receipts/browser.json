@@ -141,5 +141,7 @@
   "failedRequests": [],
   "elapsedSeconds": 7.814,
   "browserClosed": true,
-  "serverClosed": true
+  "serverClosed": true,
+  "evidenceRevision": "Historical pre-correction f504d2f450a95d5f411abca6f63b9401f1401fc5",
+  "currentProof": "cornea-fix/receipts/browser.json"
 }

@@ -13,6 +13,11 @@ def encode(g,b):
  while len(j)%4:j+=b' '
  return struct.pack('<4sII',b'glTF',2,28+len(j)+len(b))+struct.pack('<II',len(j),0x4e4f534a)+j+struct.pack('<II',len(b),0x004e4942)+b
 G,B=read(P/'inputs/fitted-02_copper.glb')
+# Refuse stale 0.45 mm dome exports after the owned 0.25 mm correction.
+for node in G['nodes']:
+ if node.get('name','').startswith('Fitted_Cornea_'):
+  prim=G['meshes'][node['mesh']]['primitives'][0]
+  assert abs(G['accessors'][prim['attributes']['POSITION']]['max'][2]-.0505)<1e-6, 'Rebuild corrected temporary material states first'
 baseGeometryBytes=len(B)
 def image_bytes(g,b,i):
  v=g['bufferViews'][g['images'][i]['bufferView']];return bytes(b[v.get('byteOffset',0):v.get('byteOffset',0)+v['byteLength']])

@@ -23,6 +23,7 @@ w=[]
 for side in ['Left','Right']:
  a,t,ct=meshes['Fitted_Cornea_'+side];b,bt,lt=meshes['UpperLid_'+side];pairs=ct.overlap(lt);ids=sorted(set(i for i,j in pairs));lids=sorted(set(j for i,j in pairs))
  w.append({'side':side,'trianglePairs':len(pairs),'corneaTriangleIds':ids,'lidTriangleIds':lids,'corneaTrianglesGLTF':[[[float(p[0]),float(p[2]),float(-p[1])] for p in a[t[i]]] for i in ids],'lidTrianglesGLTF':[[[float(p[0]),float(p[2]),float(-p[1])] for p in b[bt[i]]] for i in lids]})
-assert sum(x['trianglePairs'] for x in w)==34
+count=sum(x['trianglePairs'] for x in w)
 (P/'receipts/final-source-preservation.json').write_text(json.dumps({'status':'PASS','blendSha256':hashlib.sha256((P/'artifacts/fitted-human-skin-eyes-v1.blend').read_bytes()).hexdigest(),'verifiedOriginalMeshes':31,'meshes':hashes},indent=2)+'\n')
-(P/'receipts/half-blink-witness.json').write_text(json.dumps({'case':{'expression.blinkLeft':.5,'expression.blinkRight':.5},'status':'FIT_REVIEW_REQUIRED','newCorneaUpperLidTrianglePairs':34,'witnesses':w},indent=2)+'\n');print('Final original data preserved; half-blink contact witness captured, 34 triangle pairs.')
+(P/'receipts/half-blink-witness.json').write_text(json.dumps({'case':{'expression.blinkLeft':.5,'expression.blinkRight':.5},'status':'PASS' if count==0 else 'FIT_REVIEW_REQUIRED','newCorneaUpperLidTrianglePairs':count,'witnesses':w},indent=2)+'\n');print('Final original data preserved; half-blink triangle pairs:',count)
+assert count==0, 'Added cornea half-blink intersections remain'

@@ -1,0 +1,36 @@
+height -1 before 27020 after 0
+height 0 before 27018 after 0
+height 1 before 27025 after 0
+{
+  "status": "PASS",
+  "beforeCommit": "f504d2f450a95d5f411abca6f63b9401f1401fc5",
+  "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "blinkLevels": 1001,
+  "blinkStep": 0.001,
+  "heights": [
+    -1,
+    0,
+    1
+  ],
+  "pairedEyePoseSamples": 3003,
+  "corneaLidPairTestsPerVersion": 12012,
+  "allOriginalMeshesAndMorphsExact": 31,
+  "corneaTopologyUVAndHeightMorphUnchanged": true,
+  "visibilityAndMaterialsUnchanged": true,
+  "crossEyeBlinkIndependenceVerified": true,
+  "beforeCorneaLidTrianglePairSum": 81063,
+  "afterCorneaLidTrianglePairSum": 0,
+  "inheritedEyeLidTrianglePairSum": 177800,
+  "afterCorneaInnerEyeOrHeadTrianglePairs": 0,
+  "afterMinimumSampledLidDistanceM": 7.681357237743214e-05,
+  "maximumLidVertexMovementPerBlinkStepM": 6.782331387549807e-06,
+  "samplesSha256": "bdefcfe9f6d138c151f530d86712ea965203d16fa3a21a97f7c7987fb2bd5a3a",
+  "sampleArrayAxes": "height, blink, side [Left,Right], lid [Upper,Lower], count kind [inherited eye,before cornea,after cornea]",
+  "elapsedSeconds": 12.169,
+  "limits": "Dense discrete sampling, not a continuous collision certificate. Distances are bidirectional vertex-to-triangle samples, not exact global minima. Inherited eye/lid defects remain separately counted; no alpha, visibility, face exclusion, shrinking aperture or new blink deformation."
+}
+Blender 4.3.2
+Read blend: "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/cornea-fix/inputs/fitted-human-skin-eyes-v1.blend"
+Read blend: "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/artifacts/fitted-human-skin-eyes-v1.blend"
+
+Blender quit

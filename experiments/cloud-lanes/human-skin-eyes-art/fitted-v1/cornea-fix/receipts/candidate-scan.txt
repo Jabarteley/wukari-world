@@ -1,0 +1,10 @@
+dome 0.00045 lid pairs 2706 failed states 70 eye/iris/pupil 0
+dome 0.0003 lid pairs 0 failed states 0 eye/iris/pupil 0
+dome 0.0002 lid pairs 0 failed states 0 eye/iris/pupil 0
+dome 0.00015 lid pairs 0 failed states 0 eye/iris/pupil 0
+dome 0.0001 lid pairs 0 failed states 0 eye/iris/pupil 32
+dome 5e-05 lid pairs 0 failed states 0 eye/iris/pupil 159
+Blender 4.3.2
+Read blend: "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/cornea-fix/inputs/fitted-human-skin-eyes-v1.blend"
+
+Blender quit

@@ -1,6 +1,8 @@
+Current correction: [owned cornea regression fixed, with dense sweep and before/after proof](../../../../docs/agent-plans/cloud-lanes/human-skin-eyes-art/CORNEA-CORRECTION.md). The original 23-case gate now passes; inherited master defects remain.
+
 # Skin and eyes on the pinned human — material fit study
 
-[Inspected GLTF proof](proof/fitted-gltf-proof.jpg) · [Blender portraits](proof/fitted-portraits.jpg) · [editable source](artifacts/fitted-human-skin-eyes-v1.blend) · [GLB with three material variants](artifacts/fitted-human-skin-eyes-v1.glb) · [fit failure](receipts/morph-fit.json) · [continuation](../../../../docs/agent-plans/cloud-lanes/human-skin-eyes-art/FITTED-CONTINUE.md)
+[Current before/after close-ups](cornea-fix/proof/before-after.jpg) · [Pre-correction GLTF study](proof/fitted-gltf-proof.jpg) · [Blender portraits](proof/fitted-portraits.jpg) · [editable source](artifacts/fitted-human-skin-eyes-v1.blend) · [GLB with three material variants](artifacts/fitted-human-skin-eyes-v1.glb) · [fit failure](receipts/morph-fit.json) · [continuation](../../../../docs/agent-plans/cloud-lanes/human-skin-eyes-art/FITTED-CONTINUE.md)
 
 **Provisional material derivative, not accepted animated eye fit or a finished realistic human.** Exact input is human producer commit `3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a`. The master and original calibration assets remain unchanged. Existing hair, anatomy, clothes and identity/expression design belong to the human producer; this lane adds original procedural material bakes, appearance variants and two thin corneal surfaces only.
 
@@ -10,7 +12,7 @@
 
 Saved-source checks preserve all **31 original meshes' positions, ordered triangles, original `Prototype_UV_v1` and every morph delta**. `capture_witness.py` confirms preservation on the final packed `.blend`. The new caps have their own `Fitted_Cornea_UV_v1` and matching `body.height` key. `verify_export.py` independently decodes both actual GLBs and confirms every original triangle position and all corresponding POSITION morph payloads are byte-exact after expanding their respective index buffers. It does not assume shared exported vertex indices.
 
-No master mesh rebuild, remesh, UV edit, expression repair or skeleton addition occurred. Import reads the actual saved master. All derivative files stay in this lane. Metres, Blender X character-left / Z up / -Y front convert to GLB X character-left / Y up / +Z front. Master nodes retain identity transforms. The caps use the supplied eye centers at Blender `[±0.032,-0.036,1.635]`, conform to the actual 36 × 28 × 28 mm eye envelope, and extend about 0.45 mm anterior to its existing iris center. They are thin optical approximations with no volumetric corneal thickness or tear film.
+No master mesh rebuild, remesh, UV edit, expression repair or skeleton addition occurred. Import reads the actual saved master. All derivative files stay in this lane. Metres, Blender X character-left / Z up / -Y front convert to GLB X character-left / Y up / +Z front. Master nodes retain identity transforms. The caps use the supplied eye centers at Blender `[±0.032,-0.036,1.635]`, conform to the actual 36 × 28 × 28 mm eye envelope, and extend about 0.25 mm anterior to its existing iris center. They are thin optical approximations with no volumetric corneal thickness or tear film.
 
 ## Materials and editing
 
@@ -28,8 +30,8 @@ Base colors are sRGB; roughness and normals are Non-Color/linear data. Normal gr
 
 | Measurement | Value |
 | --- | ---: |
-| Packed editable `.blend` | 1,669,924 bytes |
-| GLB with all variants | 2,124,928 bytes |
+| Packed editable `.blend` | 1,659,819 bytes |
+| GLB with all variants | 2,125,024 bytes |
 | Original + added triangles | 29,186 + 1,200 = **30,386** |
 | Original + added meshes | 31 + 2 = **33** |
 | Blender source vertices including caps | 15,814 |
@@ -46,13 +48,13 @@ Base colors are sRGB; roughness and normals are Non-Color/linear data. Normal gr
 
 The texture estimate excludes mip levels, driver overhead, transmission buffers and framebuffer memory; it is not measured GPU allocation. Draw counts include optical transmission passes; the full-body proof includes a grid. These software WebGL counters are not phone/device timing. The 30,386 asset triangles fit the producer's 34,000 high-detail preview cap, not medium/crowd budgets or scene-level admission. Neutral GLB bounds are `[-0.3313110,0.0100000,-0.1195804]` to `[0.3313666,1.7580000,0.1390000]` metres. Geometry dimensions are authored, not surveyed anatomy.
 
-## Actual fit failure and visual limits
+## Original fit failure and visual limits (before correction)
 
 `check_fit.py` samples **23 cases**: neutral; both endpoints of all six implemented identity controls; all six together at each extreme; happy/sad/full blink; height extremes with blink; half blink; left-only and right-only blink. This is a new derivative fit test, not a rerun of the producer's 112 deformation checks. The remaining 32 contract identity controls remain unimplemented.
 
-The new caps add **34 triangle intersection pairs at half blink**, 18 left upper lid and 16 right upper lid. Other sampled cases add zero cap/lid/head triangle crossings, including neutral, full blink and all identity endpoints. The unmodified original eye/lid geometry already has **1,336 triangle intersection pairs summed across the cases**, including **58 at neutral**. Counts are triangle pairs, not independent physical contact regions; some inherited contacts may be hidden near the socket. No untested master-surface collisions are certified.
+Before the correction at the link above, the caps added **34 triangle intersection pairs at half blink**, 18 left upper lid and 16 right upper lid. Other sampled cases add zero cap/lid/head triangle crossings, including neutral, full blink and all identity endpoints. The unmodified original eye/lid geometry already has **1,336 triangle intersection pairs summed across the cases**, including **58 at neutral**. Counts are triangle pairs, not independent physical contact regions; some inherited contacts may be hidden near the socket. No untested master-surface collisions are certified.
 
-`capture_witness.py` records the actual intersecting triangles from the final saved derivative; `viewer.html` overlays those cornea triangles in red on the real half-blink pose. The smallest sampled vertex-to-surface cap/lid distance is approximately **2.4 µm**, in the failed pose. It is not a positive global clearance certificate. BVH triangle intersections, not that distance, establish the crossing. Linear interpolation between the master's lid endpoints is a likely contributor; the producer owns any trajectory correction. This lane does not change those expression targets.
+The archived `cornea-fix/receipts/before-half-blink-witness.json` records the original crossing triangles. The current `capture_witness.py` now records zero added crossings; the old GLTF study image retains its historical red witness. The new before/after close-ups show the actual correction. The smallest sampled vertex-to-surface cap/lid distance is approximately **2.4 µm**, in the failed pose. It is not a positive global clearance certificate. BVH triangle intersections, not that distance, establish the crossing. Linear interpolation between the master's lid endpoints is a likely contributor; the producer owns any trajectory correction. This lane does not change those expression targets.
 
 Fixed-UV triangle surface area ratios over the sampled skin cases range from approximately **0.0368 to 4.0036**, with the largest compression/stretch on the blinking lid. Non-blink cases range from approximately **0.2768 to 2.0695**. These ratios describe geometric area change per unchanged UV triangle, not a full texture-distortion or injectivity proof.
 
@@ -79,7 +81,7 @@ NODE_OPTIONS=--max-old-space-size=256 node scripts/agent-slot.ts heavy --wait-ms
 NODE_OPTIONS=--max-old-space-size=256 node scripts/agent-slot.ts heavy --wait-ms 1000 -- node scripts/agent-slot.ts server --wait-ms 1000 -- node scripts/agent-slot.ts browser --wait-ms 1000 -- timeout 90s python3 experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/browser_proof.py
 ```
 
-`check_fit.py` intentionally exits **2** because the half-blink cap intersections fail its fit gate. That failure is retained, not converted to a pass. Do not rerun it expecting a clean exit before the underlying fit has changed. Exit 75 from the wrapper means defer a busy slot. No original full suite or unchanged producer checks were rerun. All original calibration files remain at their prior bytes.
+The unmodified `check_fit.py` previously exited **2** for the original half-blink regression. The corneal geometry has now changed, and the same test exits **0**. Its complete before failure receipt remains in `cornea-fix/receipts/before-morph-fit.json`; the new dense sweep verifies the transition between the original test samples. Exit 75 from the wrapper means defer a busy slot. No original full suite or unchanged producer checks were rerun. All original calibration files remain at their prior bytes.
 
 Parent should relay the half-blink witness and provisional UV overlap findings to the human master owner. Consume only a new exact checkpoint for any revised eyelids/UVs; make a new derivative version and preserve this one. Do not authorize production/animation on the basis of a still portrait. No skeleton, weights, locomotion, wearable animation, collision admission or current-game integration is established.
 

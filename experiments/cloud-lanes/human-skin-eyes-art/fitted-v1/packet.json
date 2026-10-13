@@ -1,9 +1,10 @@
 {
-  "schema": "allworld-fitted-skin-eyes-v1",
+  "schema": "allworld-fitted-skin-eyes-v1.1-cornea",
   "masterCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
   "calibrationCommit": "1efc5a280e52a0b3c432fca649d84689fe91993d",
   "earlyFittedCommit": "2973529c",
-  "fitStatus": "REVIEW_REQUIRED: partial blink intersections; provisional UV overlaps",
+  "fitStatus": "PASS owned static cornea regression at 3003 sampled eye poses; inherited master defects remain",
+  "beforeCorrectionCommit": "f504d2f450a95d5f411abca6f63b9401f1401fc5",
   "productionAdmission": false,
   "sourceAndDerivedGeometry": "original 31 meshes, UVs and morphs exact; two 600-triangle corneal caps added",
   "units": "metres",
@@ -14,16 +15,16 @@
       "sha256": "8c49f85ff75454610bc93a5e6e310c546a6c27c1aacf365a078297401bb1db01"
     },
     "README.md": {
-      "bytes": 13104,
-      "sha256": "5162d19e9aedc5912fb8fd263eab0811f3d9409a3e9ff2d5333dd72a60a076d6"
+      "bytes": 13710,
+      "sha256": "6e1702c9aa8bcd0efccda20bfa846e333f8d6b1f27898ea13ab9ef6ead277333"
     },
     "artifacts/fitted-human-skin-eyes-v1.blend": {
-      "bytes": 1669924,
-      "sha256": "2ea2ba117e510b084258699ebbed248c13d0d1bdd642bc7b896c7f1b8e496138"
+      "bytes": 1659819,
+      "sha256": "709168bfec5726daf815305541718fcc4f25b917962b280a36a56654cd0a2b78"
     },
     "artifacts/fitted-human-skin-eyes-v1.glb": {
-      "bytes": 2124928,
-      "sha256": "1498ae740803a421e46d5b72fd64bd113b6b6967872a35a69f51254b21131ebb"
+      "bytes": 2125024,
+      "sha256": "03c58a092fe6a3501adb59fc17f52b1c3584fd74a032457f1564caf8761fc6d5"
     },
     "browser_proof.py": {
       "bytes": 2660,
@@ -31,15 +32,119 @@
     },
     "build_fitted.py": {
       "bytes": 11598,
-      "sha256": "cabec355f55e5a89df36a6fcd0935284978b415b41a49dcbbf4cbc2b2c95abfb"
+      "sha256": "835f83d0a1c89e178a97ab5d7529c003586b7e67a8fb85177efd445adca4f9e8"
     },
     "capture_witness.py": {
-      "bytes": 2731,
-      "sha256": "e4a4a6beabae109e4a0e92677c0924e8154c957a78c6546b549de42f5ad5e666"
+      "bytes": 2794,
+      "sha256": "608cb16a4f2e2dcb7b893e3cdd1fabb68fc14f6ae2fff1e3a4dd82632ad8fd0a"
     },
     "check_fit.py": {
       "bytes": 5402,
       "sha256": "27bdecc8098b2b5b546296ad66a7bfea96d6d92ae7e5b9a1b012ffa555af2a0f"
+    },
+    "cornea-fix/.gitignore": {
+      "bytes": 20,
+      "sha256": "de28b6c8303ea61d22af1f6e6ddf476cfc902f21d7d329e4617dec80f52a4fcc"
+    },
+    "cornea-fix/apply_correction.py": {
+      "bytes": 2946,
+      "sha256": "c807cedde893269a1c74383c52e84cdb5e6fa76f7caeed805dc013291253c45e"
+    },
+    "cornea-fix/browser_proof.py": {
+      "bytes": 2669,
+      "sha256": "3a4671b106e59da41c16f065aad55e98ea23ed5f4fc6794abf640102c0b87376"
+    },
+    "cornea-fix/dense_blink.py": {
+      "bytes": 7074,
+      "sha256": "84af8e834cfded4e3928eacf339c8b5b500204392312dfc64c11501c519373be"
+    },
+    "cornea-fix/diagnose.py": {
+      "bytes": 2409,
+      "sha256": "e98f7e947342f4d373e322c76d1b129d7cfe6e1ee51954be7b9f0f71a69c5a28"
+    },
+    "cornea-fix/patch_glb.py": {
+      "bytes": 3339,
+      "sha256": "8a6e345ed16a377d6240ea10a2e2a1ab3f2c89d5bd8efb7bbfe4b2e82c4e336a"
+    },
+    "cornea-fix/pin_before.py": {
+      "bytes": 642,
+      "sha256": "55711adbcf6c07105cd0026337a5f4ac793f5e805bc38c565b2e477af99554fb"
+    },
+    "cornea-fix/proof/before-after.jpg": {
+      "bytes": 157446,
+      "sha256": "0e1d0a479721fcc5f572aecc97c7ac384163bce5cd04a778a96a77f023a1268d"
+    },
+    "cornea-fix/receipts/apply.txt": {
+      "bytes": 719,
+      "sha256": "ed6babe4742b828a5f06c83688a92bf588fe0d39c125d9dfd9b25f8d64a1c3ae"
+    },
+    "cornea-fix/receipts/before-decoded-fitted-glb.json": {
+      "bytes": 37585,
+      "sha256": "feb3ed34d881e06a033b6502d9c87551ef0f7bc281b3b0f06476300ce70606c3"
+    },
+    "cornea-fix/receipts/before-final-source-preservation.json": {
+      "bytes": 21989,
+      "sha256": "f5ee049e04b23497c940ae6af726a520b7adf6f99c2203abcabfc59ad92c1e2a"
+    },
+    "cornea-fix/receipts/before-half-blink-witness.json": {
+      "bytes": 14654,
+      "sha256": "f8749abb7ab3784674c9f6c01921a25427a6078ff042dfbf939ba6acf3be0e68"
+    },
+    "cornea-fix/receipts/before-morph-fit.json": {
+      "bytes": 75201,
+      "sha256": "7a3c13b3c999fff894ae684b214abaf18cdf1a6047a2aaed31387d92413b7151"
+    },
+    "cornea-fix/receipts/before-pins.json": {
+      "bytes": 470,
+      "sha256": "6f61546d7cc0b5b1e85851c1dfb6a510b24beff0bd1005fef3d197e62a7b7b2b"
+    },
+    "cornea-fix/receipts/browser-run.txt": {
+      "bytes": 1820,
+      "sha256": "5669a385f80b4a3cf7856daa3e97e153804ccd62a973643b9b5d53415153e6b3"
+    },
+    "cornea-fix/receipts/browser.json": {
+      "bytes": 1820,
+      "sha256": "5669a385f80b4a3cf7856daa3e97e153804ccd62a973643b9b5d53415153e6b3"
+    },
+    "cornea-fix/receipts/candidate-scan.json": {
+      "bytes": 12487,
+      "sha256": "698da78c3cd290f2eb593d61b4d2ff43b72984f0537881024755ee44cfcce95f"
+    },
+    "cornea-fix/receipts/candidate-scan.txt": {
+      "bytes": 527,
+      "sha256": "26d0e216752184107522057f666a1f5adec716822b6598f8d24f9d004160546d"
+    },
+    "cornea-fix/receipts/correction.json": {
+      "bytes": 916,
+      "sha256": "22e2cf93d314ae793773e637ac77cfc6bef00aae014bfc65ec9c95ebfaee5fe1"
+    },
+    "cornea-fix/receipts/dense-blink.json": {
+      "bytes": 7490,
+      "sha256": "0f2d579754d44387961c6215859e852046d1b68ccc506a3f3a58391dec3a4b2c"
+    },
+    "cornea-fix/receipts/dense-blink.txt": {
+      "bytes": 1736,
+      "sha256": "a281c53270ff7717e254b2342acf39e883b59ec733bbd5a3ce631eb8b5e64a3c"
+    },
+    "cornea-fix/receipts/dense-samples.npz": {
+      "bytes": 51728,
+      "sha256": "bdefcfe9f6d138c151f530d86712ea965203d16fa3a21a97f7c7987fb2bd5a3a"
+    },
+    "cornea-fix/receipts/glb-patch.json": {
+      "bytes": 1179,
+      "sha256": "0e93955fe0df294ba87712fd18b98077758ef6b2aa7ffaae489fd354cd87baf1"
+    },
+    "cornea-fix/receipts/library-preview.json": {
+      "bytes": 392,
+      "sha256": "81f9b5971399c5c3f4c456dba676bdeb159a3b0aa940d9bc10f83eeaec82760c"
+    },
+    "cornea-fix/receipts/regression-test-preserved.json": {
+      "bytes": 324,
+      "sha256": "530187513c0965904790799a6a2d0a73fbe0a477cda48b6ea2d7328ef27292a4"
+    },
+    "cornea-fix/viewer.html": {
+      "bytes": 5489,
+      "sha256": "613689f1059ff8a9f6ed2d9ec7966e7c50082e94fb5b60211145dcdc7a001df4"
     },
     "input-pins.json": {
       "bytes": 1251,
@@ -54,8 +159,8 @@
       "sha256": "b9a197838010e6ee62120b26d44f155469ecac111a4b4124bbd123cbfc150825"
     },
     "merge_variants.py": {
-      "bytes": 3867,
-      "sha256": "848408efbd1bf1390cc164ce7de046b5a6a4287e3bf7e0c30640fdbb6c241d33"
+      "bytes": 4202,
+      "sha256": "911157040611ab9ef3e2572748862f3375e84ed9af1843aee34bfc51aecd50a9"
     },
     "pin_master.py": {
       "bytes": 1455,
@@ -74,8 +179,8 @@
       "sha256": "3f5ff12420d6108ba5ac3c714820fea1b9719fda4d936d2b0016d6bc06e52bf4"
     },
     "receipts/browser.json": {
-      "bytes": 3719,
-      "sha256": "3f5ff12420d6108ba5ac3c714820fea1b9719fda4d936d2b0016d6bc06e52bf4"
+      "bytes": 3865,
+      "sha256": "c87839f694c658ed53ac820feafef4e6504754613aa5550204c1c787b655b5b4"
     },
     "receipts/build-fitted.txt": {
       "bytes": 61800,
@@ -87,19 +192,19 @@
     },
     "receipts/decoded-fitted-glb.json": {
       "bytes": 37585,
-      "sha256": "feb3ed34d881e06a033b6502d9c87551ef0f7bc281b3b0f06476300ce70606c3"
+      "sha256": "9a1a48351fe46ce8f74c20044bb452ca17320abf4b33bb0163101b4b1d290f29"
     },
     "receipts/final-source-preservation.json": {
       "bytes": 21989,
-      "sha256": "f5ee049e04b23497c940ae6af726a520b7adf6f99c2203abcabfc59ad92c1e2a"
+      "sha256": "67e4ced95fa78389be159aec1bcda9dbba2042cc9e407e850217f217825c0bf4"
     },
     "receipts/gltf-validator.json": {
       "bytes": 27643,
-      "sha256": "01b5095bc54611ebbb131cf35dd64b5c8e88e721c2307a2685eaa88614d852e7"
+      "sha256": "b9f0bf85d46c0299efb0f53e6c05dd92b0c0815943d01b31d2ee4d03f3c109a1"
     },
     "receipts/half-blink-witness.json": {
-      "bytes": 14654,
-      "sha256": "f8749abb7ab3784674c9f6c01921a25427a6078ff042dfbf939ba6acf3be0e68"
+      "bytes": 531,
+      "sha256": "a3688dcb775de3d96f38234ab37f694825db731181304dcb1d2136898ee9f6ec"
     },
     "receipts/input-mesh-check.txt": {
       "bytes": 366,
@@ -114,12 +219,12 @@
       "sha256": "4594bdb87c7c76659d7769e50dc78eda02734c897c837364217ffb523153af7a"
     },
     "receipts/morph-fit-run.txt": {
-      "bytes": 1178,
-      "sha256": "12d95952b353bfaba934a5f9c10a10915bdb37299800802e7a2256a8f47ff5ca"
+      "bytes": 803,
+      "sha256": "8b345c9b72d1fece8bb47e6f99505e94aaac1b0b55172c41dbd35e99d392ce60"
     },
     "receipts/morph-fit.json": {
-      "bytes": 75201,
-      "sha256": "7a3c13b3c999fff894ae684b214abaf18cdf1a6047a2aaed31387d92413b7151"
+      "bytes": 75167,
+      "sha256": "514480f728d592060db72b9883829f131a7f16985f7906c7a5c23ce31c0a8ab1"
     },
     "receipts/uv-rasterization.json": {
       "bytes": 3362,
@@ -134,12 +239,12 @@
       "sha256": "a6844f9a5a3c63f676d82b3298a18533fbb582e68c488af1602aa612cdb2fc20"
     },
     "receipts/witness-run.txt": {
-      "bytes": 256,
-      "sha256": "85171fdd033f786141fed41a3c50fbd9fd155628f47708d61c07bef5e6e9cc0d"
+      "bytes": 229,
+      "sha256": "1ebe905da26d42c8ade4156471339b33fe1ad8601a3b2ff4938536827c9eef06"
     },
     "seal_packet.py": {
-      "bytes": 1454,
-      "sha256": "d70ff612c2e5207e255b0849867c1e0f18fa9ac161ba852cd224c4e0d05c10dd"
+      "bytes": 1557,
+      "sha256": "04e2f6b414fc9187938d7af6bcc996c654f7d3fd565c9dc72e4152f41ae7b288"
     },
     "textures/Ear_Left_01_umber_basecolor.png": {
       "bytes": 3318,
@@ -406,8 +511,8 @@
       "sha256": "969b0da16f83280e136cda24cf5b062470ff7962db865ff2cc336e940258e001"
     },
     "viewer.html": {
-      "bytes": 7661,
-      "sha256": "1b7039d969fd76d23e1012aa55d5299cc38ed0a4b4109302c0486004733e467f"
+      "bytes": 7656,
+      "sha256": "61c9e2391308ad0ad5edfef3838a386a60509dda072cf8105b7cacf20919a963"
     }
   }
 }

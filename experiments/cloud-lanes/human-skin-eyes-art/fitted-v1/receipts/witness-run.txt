@@ -1,4 +1,4 @@
-Final original data preserved; half-blink contact witness captured, 34 triangle pairs.
+Final original data preserved; half-blink triangle pairs: 0
 Blender 4.3.2
 Read blend: "/workspace/human-skin-eyes-art/experiments/cloud-lanes/human-skin-eyes-art/fitted-v1/artifacts/fitted-human-skin-eyes-v1.blend"
 

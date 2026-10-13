@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "blendSha256": "2ea2ba117e510b084258699ebbed248c13d0d1bdd642bc7b896c7f1b8e496138",
+  "blendSha256": "709168bfec5726daf815305541718fcc4f25b917962b280a36a56654cd0a2b78",
   "verifiedOriginalMeshes": 31,
   "meshes": {
     "Neck": {
@@ -330,7 +330,7 @@
       }
     },
     "Fitted_Cornea_Left": {
-      "positionSha256": "ba5dfe564eb3ba32cf451bed70ca425ed4c42943d93f2a9216667f542a2e9cc4",
+      "positionSha256": "a8e4e1138492a580b7ab70adec9d0069655b145f42992144e87f7429f57b848e",
       "triangleOrderSha256": "6037beccfb9c3971bcd306d5d73ee9d4a25d7351388a19435b65fedbe903a40f",
       "uvSha256": "ea101385b717153e686fd67f65c659cfa426a6000436ebb42134e89c399296ff",
       "morphs": {
@@ -338,7 +338,7 @@
       }
     },
     "Fitted_Cornea_Right": {
-      "positionSha256": "023d1324b2fbff1f3c5afd77db13c927a10d2f2bb4e9c4c32f42fe12e4d97cca",
+      "positionSha256": "a6cc1ee80f7809cfa59b7f29a464bcb90a89d3060ab7edf8405b69012ae22557",
       "triangleOrderSha256": "6037beccfb9c3971bcd306d5d73ee9d4a25d7351388a19435b65fedbe903a40f",
       "uvSha256": "ea101385b717153e686fd67f65c659cfa426a6000436ebb42134e89c399296ff",
       "morphs": {

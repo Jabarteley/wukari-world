@@ -1,0 +1,585 @@
+{
+  "inputCommit": "f504d2f450a95d5f411abca6f63b9401f1401fc5",
+  "candidates": [
+    {
+      "domeMetres": 0.00045,
+      "sampledBlinkValues": 101,
+      "corneaLidPairSum": 2706,
+      "failingStates": [
+        {
+          "side": "Left",
+          "blink": 0.48,
+          "trianglePairs": 6
+        },
+        {
+          "side": "Left",
+          "blink": 0.49,
+          "trianglePairs": 16
+        },
+        {
+          "side": "Left",
+          "blink": 0.5,
+          "trianglePairs": 18
+        },
+        {
+          "side": "Left",
+          "blink": 0.51,
+          "trianglePairs": 24
+        },
+        {
+          "side": "Left",
+          "blink": 0.52,
+          "trianglePairs": 26
+        },
+        {
+          "side": "Left",
+          "blink": 0.53,
+          "trianglePairs": 34
+        },
+        {
+          "side": "Left",
+          "blink": 0.54,
+          "trianglePairs": 38
+        },
+        {
+          "side": "Left",
+          "blink": 0.55,
+          "trianglePairs": 40
+        },
+        {
+          "side": "Left",
+          "blink": 0.56,
+          "trianglePairs": 38
+        },
+        {
+          "side": "Left",
+          "blink": 0.5700000000000001,
+          "trianglePairs": 38
+        },
+        {
+          "side": "Left",
+          "blink": 0.58,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Left",
+          "blink": 0.59,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Left",
+          "blink": 0.6,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Left",
+          "blink": 0.61,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Left",
+          "blink": 0.62,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Left",
+          "blink": 0.63,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Left",
+          "blink": 0.64,
+          "trianglePairs": 48
+        },
+        {
+          "side": "Left",
+          "blink": 0.65,
+          "trianglePairs": 52
+        },
+        {
+          "side": "Left",
+          "blink": 0.66,
+          "trianglePairs": 52
+        },
+        {
+          "side": "Left",
+          "blink": 0.67,
+          "trianglePairs": 52
+        },
+        {
+          "side": "Left",
+          "blink": 0.68,
+          "trianglePairs": 52
+        },
+        {
+          "side": "Left",
+          "blink": 0.6900000000000001,
+          "trianglePairs": 52
+        },
+        {
+          "side": "Left",
+          "blink": 0.7000000000000001,
+          "trianglePairs": 54
+        },
+        {
+          "side": "Left",
+          "blink": 0.71,
+          "trianglePairs": 56
+        },
+        {
+          "side": "Left",
+          "blink": 0.72,
+          "trianglePairs": 56
+        },
+        {
+          "side": "Left",
+          "blink": 0.73,
+          "trianglePairs": 52
+        },
+        {
+          "side": "Left",
+          "blink": 0.74,
+          "trianglePairs": 48
+        },
+        {
+          "side": "Left",
+          "blink": 0.75,
+          "trianglePairs": 48
+        },
+        {
+          "side": "Left",
+          "blink": 0.76,
+          "trianglePairs": 50
+        },
+        {
+          "side": "Left",
+          "blink": 0.77,
+          "trianglePairs": 42
+        },
+        {
+          "side": "Left",
+          "blink": 0.78,
+          "trianglePairs": 44
+        },
+        {
+          "side": "Left",
+          "blink": 0.79,
+          "trianglePairs": 38
+        },
+        {
+          "side": "Left",
+          "blink": 0.8,
+          "trianglePairs": 30
+        },
+        {
+          "side": "Left",
+          "blink": 0.81,
+          "trianglePairs": 30
+        },
+        {
+          "side": "Left",
+          "blink": 0.8200000000000001,
+          "trianglePairs": 22
+        },
+        {
+          "side": "Left",
+          "blink": 0.8300000000000001,
+          "trianglePairs": 18
+        },
+        {
+          "side": "Right",
+          "blink": 0.49,
+          "trianglePairs": 12
+        },
+        {
+          "side": "Right",
+          "blink": 0.5,
+          "trianglePairs": 16
+        },
+        {
+          "side": "Right",
+          "blink": 0.51,
+          "trianglePairs": 16
+        },
+        {
+          "side": "Right",
+          "blink": 0.52,
+          "trianglePairs": 22
+        },
+        {
+          "side": "Right",
+          "blink": 0.53,
+          "trianglePairs": 28
+        },
+        {
+          "side": "Right",
+          "blink": 0.54,
+          "trianglePairs": 36
+        },
+        {
+          "side": "Right",
+          "blink": 0.55,
+          "trianglePairs": 38
+        },
+        {
+          "side": "Right",
+          "blink": 0.56,
+          "trianglePairs": 38
+        },
+        {
+          "side": "Right",
+          "blink": 0.5700000000000001,
+          "trianglePairs": 38
+        },
+        {
+          "side": "Right",
+          "blink": 0.58,
+          "trianglePairs": 40
+        },
+        {
+          "side": "Right",
+          "blink": 0.59,
+          "trianglePairs": 40
+        },
+        {
+          "side": "Right",
+          "blink": 0.6,
+          "trianglePairs": 42
+        },
+        {
+          "side": "Right",
+          "blink": 0.61,
+          "trianglePairs": 42
+        },
+        {
+          "side": "Right",
+          "blink": 0.62,
+          "trianglePairs": 42
+        },
+        {
+          "side": "Right",
+          "blink": 0.63,
+          "trianglePairs": 44
+        },
+        {
+          "side": "Right",
+          "blink": 0.64,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Right",
+          "blink": 0.65,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Right",
+          "blink": 0.66,
+          "trianglePairs": 48
+        },
+        {
+          "side": "Right",
+          "blink": 0.67,
+          "trianglePairs": 48
+        },
+        {
+          "side": "Right",
+          "blink": 0.68,
+          "trianglePairs": 50
+        },
+        {
+          "side": "Right",
+          "blink": 0.6900000000000001,
+          "trianglePairs": 50
+        },
+        {
+          "side": "Right",
+          "blink": 0.7000000000000001,
+          "trianglePairs": 48
+        },
+        {
+          "side": "Right",
+          "blink": 0.71,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Right",
+          "blink": 0.72,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Right",
+          "blink": 0.73,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Right",
+          "blink": 0.74,
+          "trianglePairs": 46
+        },
+        {
+          "side": "Right",
+          "blink": 0.75,
+          "trianglePairs": 42
+        },
+        {
+          "side": "Right",
+          "blink": 0.76,
+          "trianglePairs": 44
+        },
+        {
+          "side": "Right",
+          "blink": 0.77,
+          "trianglePairs": 40
+        },
+        {
+          "side": "Right",
+          "blink": 0.78,
+          "trianglePairs": 32
+        },
+        {
+          "side": "Right",
+          "blink": 0.79,
+          "trianglePairs": 28
+        },
+        {
+          "side": "Right",
+          "blink": 0.8,
+          "trianglePairs": 20
+        },
+        {
+          "side": "Right",
+          "blink": 0.81,
+          "trianglePairs": 20
+        },
+        {
+          "side": "Right",
+          "blink": 0.8200000000000001,
+          "trianglePairs": 16
+        }
+      ],
+      "innerSurfacePairs": [
+        {
+          "side": "Left",
+          "surface": "Eye_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Eye_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Pupil_Right",
+          "trianglePairs": 0
+        }
+      ]
+    },
+    {
+      "domeMetres": 0.0003,
+      "sampledBlinkValues": 101,
+      "corneaLidPairSum": 0,
+      "failingStates": [],
+      "innerSurfacePairs": [
+        {
+          "side": "Left",
+          "surface": "Eye_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Eye_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Pupil_Right",
+          "trianglePairs": 0
+        }
+      ]
+    },
+    {
+      "domeMetres": 0.0002,
+      "sampledBlinkValues": 101,
+      "corneaLidPairSum": 0,
+      "failingStates": [],
+      "innerSurfacePairs": [
+        {
+          "side": "Left",
+          "surface": "Eye_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Eye_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Pupil_Right",
+          "trianglePairs": 0
+        }
+      ]
+    },
+    {
+      "domeMetres": 0.00015,
+      "sampledBlinkValues": 101,
+      "corneaLidPairSum": 0,
+      "failingStates": [],
+      "innerSurfacePairs": [
+        {
+          "side": "Left",
+          "surface": "Eye_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Iris_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Eye_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Iris_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Pupil_Right",
+          "trianglePairs": 0
+        }
+      ]
+    },
+    {
+      "domeMetres": 0.0001,
+      "sampledBlinkValues": 101,
+      "corneaLidPairSum": 0,
+      "failingStates": [],
+      "innerSurfacePairs": [
+        {
+          "side": "Left",
+          "surface": "Eye_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Iris_Left",
+          "trianglePairs": 16
+        },
+        {
+          "side": "Left",
+          "surface": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Eye_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Iris_Right",
+          "trianglePairs": 16
+        },
+        {
+          "side": "Right",
+          "surface": "Pupil_Right",
+          "trianglePairs": 0
+        }
+      ]
+    },
+    {
+      "domeMetres": 5e-05,
+      "sampledBlinkValues": 101,
+      "corneaLidPairSum": 0,
+      "failingStates": [],
+      "innerSurfacePairs": [
+        {
+          "side": "Left",
+          "surface": "Eye_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Left",
+          "surface": "Iris_Left",
+          "trianglePairs": 78
+        },
+        {
+          "side": "Left",
+          "surface": "Pupil_Left",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Eye_Right",
+          "trianglePairs": 0
+        },
+        {
+          "side": "Right",
+          "surface": "Iris_Right",
+          "trianglePairs": 81
+        },
+        {
+          "side": "Right",
+          "surface": "Pupil_Right",
+          "trianglePairs": 0
+        }
+      ]
+    }
+  ],
+  "limits": "101 blink samples at neutral height, candidate screen only; final dense sweep required"
+}

@@ -1,3 +1,5 @@
+Current correction: [CORNEA-CORRECTION.md](CORNEA-CORRECTION.md). The owned cap regression now passes the original gate and dense intermediate-blink sweep; earlier failure history below is retained.
+
 Current continuation: [pinned human material derivative](FITTED-CONTINUE.md), against master `3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a`. Calibration below remains preserved.
 
 # Skin / eyes calibration — assignment A

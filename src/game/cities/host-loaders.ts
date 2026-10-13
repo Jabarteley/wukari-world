@@ -2,7 +2,7 @@ import { GENERATED_CITY_CATALOGUE_ROWS } from './catalogue.generated.ts'
 import { CITY_CONTENT_ASSETS } from './content-assets.generated.ts'
 import { loadCityContentAsset, type CityContentAssetReader } from './content-asset.ts'
 import type { CityModule } from '../../types/content.ts'
-import type { CityIndexRow } from './catalogue.ts'
+import type { CityIndexRow, CityWorldIndexLoader } from './catalogue.ts'
 
 const manifest = new Map(CITY_CONTENT_ASSETS.map(row => [row.id, row]))
 let readAsset: CityContentAssetReader | undefined
@@ -35,3 +35,6 @@ export async function loadHostCityModule(id: string, reader: CityContentAssetRea
 export const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze(GENERATED_CITY_CATALOGUE_ROWS.map(([id, name]): CityIndexRow => [id, name]))
 export const GENERATED_CITY_FIGURES = Object.freeze({ cities: GENERATED_CITY_CATALOGUE_ROWS.length, countries: new Set(GENERATED_CITY_CATALOGUE_ROWS.map((row) => row[7] ?? 'NG')).size })
 export const GENERATED_CITY_LOADERS = Object.freeze(GENERATED_CITY_CATALOGUE_ROWS.map(([id]) => () => loadHostCityModule(id)))
+
+// The server keeps the whole index in the Worker bundle, so there is no separate world-index chunk to load.
+export const GENERATED_CITY_WORLD_INDEX: CityWorldIndexLoader | null = null

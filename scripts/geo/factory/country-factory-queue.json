@@ -24,6 +24,18 @@
   {
    "id": "ua",
    "table": "scripts/geo/factory/country-factory/ua-factory-targets.json"
+  },
+  {
+   "id": "ag",
+   "table": "scripts/geo/factory/country-factory/ag-factory-targets.json"
+  },
+  {
+   "id": "sm",
+   "table": "scripts/geo/factory/country-factory/sm-factory-targets.json"
+  },
+  {
+   "id": "id",
+   "table": "scripts/geo/factory/country-factory/id-factory-targets.json"
   }
  ]
 }

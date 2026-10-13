@@ -2,17 +2,17 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-m-1",
+      "id": "release-m-2",
       "appSha": "0c4d507c7339778b7435a180e34c4fa11f59785b",
       "driverSha": "3523613e9a220e2d588cdeef6de57a4eb3d1b948",
       "cities": [
-        "oranjestad",
-        "hamilton",
-        "avarua",
-        "flying-fish-cove",
-        "nuuk",
-        "hagatna",
-        "hong-kong"
+        "marigot",
+        "kingston-nf",
+        "alofi",
+        "san-juan",
+        "road-town",
+        "charlotte-amalie",
+        "hargeisa"
       ],
       "roundtrip": true,
       "browserOnly": true

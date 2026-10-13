@@ -1,22 +1,22 @@
 {
-  "expectedSourceGitSHA": "ef28bc298016b778220ee815ac136e4919b7500e",
+  "expectedSourceGitSHA": "5b8fd5b9e0683c3d7b5880c2d46fba3e81710fcb",
   "geometryPreset": "standard",
   "countryScope": {
     "kind": "osm-admin0-boundary-v1",
     "countryISO": "MS",
     "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
-    "receiptSha256": "79b86e343824e09270ca8d082ac3aaf32a99c8fa66dfa427ab63982b01816561",
+    "receiptSha256": "ea6b117a1245f3ce121f32d58c7557ca92cd27c1d1d86bc06145ef830254fbdb",
     "receiptBytes": 8827,
     "geometrySha256": "68d7f149a9ce6eff88466171e8764c92aed964b1b9e164cb71d4b4f3a681301c",
     "geometryBytes": 6542,
-    "scriptSha256": "56c11011066863d877b5c3d6919a14ab67a7d3750dd7fbac43c0dd942d2d6f62",
+    "scriptSha256": "5ff4dfbbd3956af4e7502b3ff27111da8362a4ce4101a0327d3aba52b26c54cc",
     "relationId": 537257,
     "boundaryKey": "ms",
     "directory": "country-boundary",
     "boundaryJob": {
-      "sourceRunId": 38431865880,
-      "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
-      "sourceArtifact": "city-bootstrap-ms-76625e88577c373598b4141ef4285f6af082419c",
+      "sourceRunId": 38463024638,
+      "sourceSha": "32e849bb3b8e38528e80027c88e326dd7bd971e9",
+      "sourceArtifact": "city-bootstrap-ms-32e849bb3b8e38528e80027c88e326dd7bd971e9",
       "artifactSubdirectory": "country-boundary"
     }
   },
@@ -53,10 +53,10 @@
         "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
         "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
         "bounds": [
-          -62.39778543031533,
-          16.608994010066024,
-          -62.02210136968467,
-          16.97075578993398
+          -62.37898494990648,
+          16.62708209905942,
+          -62.04090185009352,
+          16.95266770094058
         ]
       },
       "profile": "microstate",
@@ -264,7 +264,6 @@
           "way/41876263",
           "way/41894525",
           "way/41895615",
-          "way/41896589",
           "way/47014384",
           "way/51193317",
           "way/51193431",
@@ -305,13 +304,8 @@
           "way/255485725",
           "way/255485754",
           "way/277174509",
-          "way/277174513",
           "way/277174515",
-          "way/277174516",
           "way/279549031",
-          "way/280743564",
-          "way/281230943",
-          "way/281230945",
           "way/295292685",
           "way/295292686",
           "way/300382929",
@@ -519,7 +513,6 @@
           "way/1038989619",
           "way/1038996173",
           "way/1038996174",
-          "way/1039028186",
           "way/1096977342",
           "way/1096977345",
           "way/1109126130",
@@ -543,17 +536,17 @@
         "boundsPolicySha256": "ba4e077a84cbc56f000e87b844938bbd324c550c1623621e4c1b65b78660f50e",
         "bounds": {
           "policy": {
-            "playKm": 20,
+            "playKm": 18,
             "coreKm": 5,
             "airportClearanceMetres": 1000,
             "maximumAbsoluteLatitude": 75
           },
           "boxes": {
             "play": [
-              16.608994010066024,
-              -62.39778543031533,
-              16.97075578993398,
-              -62.02210136968467
+              16.62708209905942,
+              -62.37898494990648,
+              16.95266770094058,
+              -62.04090185009352
             ],
             "core": [
               16.744654677516507,
@@ -562,19 +555,19 @@
               -62.16301666846543
             ],
             "outline": [
-              16.558994010066023,
-              -62.44778543031533,
-              17.02075578993398,
-              -61.97210136968467
+              16.57708209905942,
+              -62.42898494990648,
+              17.00266770094058,
+              -61.99090185009352
             ],
             "wide": [
-              16.008994010066022,
-              -62.99778543031533,
-              17.57075578993398,
-              -61.42210136968467
+              16.02708209905942,
+              -62.97898494990648,
+              17.55266770094058,
+              -61.44090185009352
             ]
           },
-          "airportMarginMetres": 18234.987439731216,
+          "airportMarginMetres": 16231.35649914035,
           "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
           "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
         },
@@ -583,7 +576,7 @@
           "rules": {
             "minimumPlaces": 12,
             "minimumNeighbourhoodLabels": 3,
-            "maximumEmptySlots": 4,
+            "maximumEmptySlots": 5,
             "cityPlaceTags": [
               "city",
               "town",
@@ -607,25 +600,25 @@
       },
       "extractKey": "brades",
       "extractSha256": {
-        "places": "6024eb21319514462ff9f2645a7f1338be6e2e6c1c25e3e5469f42bb6546cd6c",
-        "extras": "a040827e08eed05030bf7ba291124988fdf2c361cf44f1bc043e88608341d377",
-        "water": "02edefa3d5f72329f4484f0fe0c39df9ab585370cce91c505d937ca26784ae41",
-        "landuse": "e898728aca671c209e9c694f3715d9081314ff92a2f5471088957d4d89990f8b",
-        "roads": "01c9c7a16745af9f49b2decef5cb672d837ac55ee6eb4c68ecb7f9ebb0c0b1ab"
+        "places": "d0b85165fabd3a8293b788cafa877ca3b3bd83725308b1328863a9e14c2450cd",
+        "extras": "5657cf94372355ec93f566acfe6baa8af5eeb6acf7773cb592a38230499389ec",
+        "water": "9fa827bcbf5830f7188f47ac9e72ffdbaaa21636ef34b38db344f2a0d7db706b",
+        "landuse": "c41eb1f8611a69265096210a0d71807374d241aa1cc653da32892ec70b0c2f4e",
+        "roads": "302ab02323c3dde90d1471b1136cf3b2bd9dba396465b575b4238b867f14eb65"
       },
       "sourceJob": {
         "city": "brades",
-        "sourceRunId": 38431865880,
-        "sourceArtifact": "city-bootstrap-ms-76625e88577c373598b4141ef4285f6af082419c",
-        "sourceSha": "76625e88577c373598b4141ef4285f6af082419c",
+        "sourceRunId": 38463024638,
+        "sourceArtifact": "city-bootstrap-ms-32e849bb3b8e38528e80027c88e326dd7bd971e9",
+        "sourceSha": "32e849bb3b8e38528e80027c88e326dd7bd971e9",
         "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
         "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
         "extractSha256": {
-          "places": "6024eb21319514462ff9f2645a7f1338be6e2e6c1c25e3e5469f42bb6546cd6c",
-          "extras": "a040827e08eed05030bf7ba291124988fdf2c361cf44f1bc043e88608341d377",
-          "water": "02edefa3d5f72329f4484f0fe0c39df9ab585370cce91c505d937ca26784ae41",
-          "landuse": "e898728aca671c209e9c694f3715d9081314ff92a2f5471088957d4d89990f8b",
-          "roads": "01c9c7a16745af9f49b2decef5cb672d837ac55ee6eb4c68ecb7f9ebb0c0b1ab"
+          "places": "d0b85165fabd3a8293b788cafa877ca3b3bd83725308b1328863a9e14c2450cd",
+          "extras": "5657cf94372355ec93f566acfe6baa8af5eeb6acf7773cb592a38230499389ec",
+          "water": "9fa827bcbf5830f7188f47ac9e72ffdbaaa21636ef34b38db344f2a0d7db706b",
+          "landuse": "c41eb1f8611a69265096210a0d71807374d241aa1cc653da32892ec70b0c2f4e",
+          "roads": "302ab02323c3dde90d1471b1136cf3b2bd9dba396465b575b4238b867f14eb65"
         }
       }
     }

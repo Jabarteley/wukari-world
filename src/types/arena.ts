@@ -36,7 +36,8 @@ export type ArenaClientFrame = ArenaCreateFrame | ArenaJoinFrame | ArenaWatchFra
 
 export type ArenaStatus = 'lobby' | 'playing' | 'over' | 'closed'
 export interface ArenaSeat { name: string; bot: boolean; id?: string; away?: true; look?: ArenaLook }
-export interface ArenaResult { text: string; winners: number[]; draw: boolean; reason: string; scores: number[] }
+/** `places`: per seat, 1 = first; present only when the game ranks every seat (a race). */
+export interface ArenaResult { text: string; winners: number[]; draw: boolean; reason: string; scores: number[]; places?: number[] }
 export interface ArenaStateFrame {
   type: 'arena-state'
   room: string

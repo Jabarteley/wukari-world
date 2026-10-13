@@ -15,6 +15,8 @@ import type { TableOptionSpecs, Outcome } from '../tables/rules.ts'
 import type { TableOptionValue } from '../types/growth.ts'
 
 export type { Outcome, TableOptionValue }
+/** What `outcome` returns: `places` (optional) is each seat's finishing place, 1 = first. Without it a game whose `winners` lists EVERY seat best to worst (a race) is read as a ranking; any other game has winners and losers only. */
+export type ArenaOutcome = Outcome & { places?: number[] }
 
 /** Thrown by `parseInput` for an input that is not well formed. The room drops such an input silently. */
 export class ArenaInputError extends Error {}
@@ -46,7 +48,7 @@ export interface RealtimeRules<State extends { options: object } = { options: ob
    */
   step: (state: State, inputs: readonly Input[], rng: () => number) => State
   /** null while the game goes on. Once non-null the room stops ticking. */
-  outcome: (state: State) => Outcome | null
+  outcome: (state: State) => ArenaOutcome | null
   /** What EVERYONE sees, as compact JSON (arrays, small integers). It is sent every tick, so keep it a few hundred bytes. */
   snapshot: (state: State) => unknown
   /** The computer's input for a seat this tick. */

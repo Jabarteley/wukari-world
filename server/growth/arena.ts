@@ -120,7 +120,7 @@ function buildService(ctx: RouteContext) {
       max: room.rules.seats.max, min: room.rules.seats.min, watchers, options: room.options,
       optionList: Object.entries(room.rules.options as Record<string, { label: string; values: readonly TableOptionValue[]; names?: readonly string[] }>).map(([name, spec]) => ({ name, label: spec.label, values: [...spec.values], names: spec.names ? [...spec.names] : spec.values.map(String), value: room.options[name] as TableOptionValue })),
       again: room.seats.map((s) => s.again), practice: room.practice,
-      result: room.result ? { text: room.result.text, winners: room.result.winners, draw: room.result.draw, reason: room.result.reason, scores: room.result.scores } : null,
+      result: room.result ? { text: room.result.text, winners: room.result.winners, draw: room.result.draw, reason: room.result.reason, scores: room.result.scores, ...(room.result.places ? { places: room.result.places } : {}) } : null,
       snap: room.status === 'lobby' ? null : room.snap, match: room.match,
     };
   }
@@ -248,7 +248,8 @@ function buildService(ctx: RouteContext) {
     room.status = 'over'; room.since = clock();
     if (room.timer) { clearTimeout(room.timer); room.timer = null; }
     const names = room.seats.map((s) => s.name);
-    room.result = { text: withNames(outcome.text, names), winners: outcome.winners, draw: outcome.draw, reason: outcome.reason, scores: outcome.scores, names };
+    const ranked = outcome.places ?? (!outcome.draw && outcome.winners.length === room.seats.length && room.seats.length > 1 ? room.seats.map((_, seat) => outcome.winners.indexOf(seat) + 1) : undefined);
+    room.result = { text: withNames(outcome.text, names), winners: outcome.winners, draw: outcome.draw, reason: outcome.reason, scores: outcome.scores, ...(ranked && ranked.every((place) => place > 0) ? { places: ranked } : {}), names };
     room.snap = room.rules.snapshot(room.state);
     for (const seat of room.seats) seat.again = false;
     sendAll(room, { type: 'arena-snap', room: room.code, k: room.tick, s: room.snap });

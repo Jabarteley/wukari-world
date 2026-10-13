@@ -41,6 +41,15 @@ export interface ArenaRoomOptions<Snap> {
   close?: () => void
 }
 
+const ORDINAL = ['', '1st', '2nd', '3rd', '4th', '5th', '6th', '7th', '8th']
+/** The result line for a player: first "You won!", second and third "2nd place", the rest "You finished 4th"; without places, won or lost. */
+export function placeHeadline(place: number | undefined, won: boolean, seats: number): string {
+  if (place === undefined) return won ? 'You won!' : 'You lost'
+  if (place === 1) return 'You won!'
+  const word = ORDINAL[place] ?? `${place}th`
+  return place <= 3 && place < seats ? `${word} place` : `You finished ${word}`
+}
+
 export function useArenaRoom<Snap>(opts: ArenaRoomOptions<Snap>) {
   const state = shallowRef<ArenaStateFrame | null>(null)
   const note = ref('')
@@ -87,14 +96,16 @@ export function useArenaRoom<Snap>(opts: ArenaRoomOptions<Snap>) {
   const opponent = computed(() => state.value?.seats.find((_, index) => index !== state.value?.you)?.name ?? '')
   const iAsked = computed(() => state.value?.you != null && state.value.again[state.value.you] === true)
   const headline = computed(() => {
-    const r = state.value?.result
+    const r = state.value?.result, you = state.value?.you
     if (!r) return ''
     if (r.draw) return 'Draw'
-    if (state.value?.you == null) return 'Game over'
-    return r.winners[0] === state.value.you ? 'You win!' : r.winners.includes(state.value.you) ? 'You finished on the podium' : 'You lose'
+    if (you == null) return 'Game over'
+    return placeHeadline(r.places?.[you], r.winners.includes(you), (state.value?.seats.length ?? 0))
   })
 
-  async function share(line = 'Come and play me on Allworld:'): Promise<void> {
+  async function share(line?: string): Promise<void> {
+    const label = state.value?.label ?? 'game'
+    line ??= `Join my ${label} match on Allworld:`
     const { shareAddress } = await import('../app/features/paths/share.ts')
     await shareAddress(`/?table=${state.value?.room ?? ''}`, line, (text, kind) => { opts.toast?.(text, kind) })
   }

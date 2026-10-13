@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { lagosDayStart } from '../../../game/clock.ts'
-import { compactMoney } from '../../ui/format.ts'
+import { compactMoney } from '../hud/cashCount.ts'
 import { dayHeading, dayTotals, groupLedger, lineIcon, percentOf, weekFlow } from './ledgerModel.ts'
 
 const at = (day: number, hour = 12): number => lagosDayStart(day) + hour * 3600000

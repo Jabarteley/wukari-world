@@ -2,7 +2,7 @@
 // tested without a browser. Nothing here changes anything.
 import { lagosTime } from '../../../game/clock.ts'
 import { dayLabel } from '../money/statementModel.ts'
-import { compactMoney } from '../../ui/format.ts'
+import { compactMoney } from '../hud/cashCount.ts'
 
 export interface Line { at: number; amount: number; reason: string; balance: number }
 

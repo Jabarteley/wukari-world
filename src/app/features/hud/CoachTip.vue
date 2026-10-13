@@ -7,12 +7,12 @@ import { computed, watch } from 'vue'
 import GameIcon from '../../ui/GameIcon.vue'
 import { useApp } from '../../state/app.ts'
 import { useAttention } from './useAttention.ts'
-import { promptTurn, settleWanted, tour } from '../tour/tourState.ts'
+import { settleWanted, tour } from '../tour/tourState.ts'
 
 const { game, shell } = useApp()
 const { coach, dismiss } = useAttention()
 // First minute, one voice at a time: the walkthrough, then the settle-in offer, then this line (tourState.ts).
-const line = computed(() => (promptTurn({ tour: tour.active || tour.pending, settle: settleWanted(game.view.value, tour.settleAway), coach: Boolean(coach.value) }) === 'coach' ? coach.value : null))
+const line = computed(() => (tour.active || tour.pending || settleWanted(game.view.value, tour.settleAway) ? null : coach.value))
 // One line of guidance at a time: while the coach is talking, a phone's HUD drops the goal chip that says the same thing.
 watch(line, (now) => { shell.ui.coaching = Boolean(now) }, { immediate: true })
 </script>

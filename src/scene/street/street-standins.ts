@@ -28,6 +28,23 @@ function drawWindow(b: Batch, x: number, y: number, face: number, lit: boolean, 
 }
 
 /**
+ * A long-span roofing-sheet roof, as on most Lagos bungalows: two slopes of coloured sheets (alternating shades make the corrugation),
+ * a ridge cap, gutters along the eaves and a gable end of wall paint at each side. `y0` is the top of the eaves board.
+ */
+function drawSheetRoof(b: Batch, x: number, z: number, width: number, depth: number, y0: number, roof: string, wall: string): void {
+  const run = depth / 2, rise = 1.7, slope = Math.atan2(rise, run), length = Math.hypot(run, rise), strips = 14, strip = width / strips;
+  for (const side of [1, -1]) {
+    // A sheet faces up and out: +z for the front slope, -z for the back one.
+    const rx = side > 0 ? slope - Math.PI / 2 : -(Math.PI / 2 + slope);
+    for (let i = 0; i < strips; i++) b.quad(x - width / 2 + strip * (i + 0.5), y0 + rise / 2 + 0.02, z + side * run / 2, strip, length, tone(roof, i % 2 ? 0.8 : 1), { rx });
+    b.box(x, y0 + 0.02, z + side * (run + 0.04), width, 0.13, 0.15, '#5d6166');
+  }
+  b.box(x, y0 + rise + 0.06, z, width + 0.04, 0.16, 0.36, tone(roof, 0.62));
+  // The triangle of wall under each end of the ridge: a three-sided prism lying along the house.
+  for (const side of [-1, 1]) b.cyl(x + side * (width / 2 - 0.1), y0 + rise / 3, z, 1, 0.14, wall, { seg: 3, rz: Math.PI / 2, rx: -Math.PI / 2, sx: run * 0.99 / 0.866, sz: rise / 1.5 });
+}
+
+/**
  * A house as boxes: the front wall split around the door, windows with frames and bars, a painted plinth, a door with an awning,
  * a hip roof with a fascia (a bungalow) or a flat roof behind a parapet (a storey building, with balconies and a water tank on top).
  * In the house's own frame (x centred, front at z = front).
@@ -65,9 +82,8 @@ export function drawHouse(b: Batch, x: number, front: number, width: number, dep
   b.box(x, 2.78, face + 0.5, 2.6, 0.1, 1.0, door, { rx: 0.18 });
   // The roof. Eaves overhang the walls and end in a pale fascia board.
   b.box(x, wallHeight + 0.1, mid, width + 0.9, 0.22, depth + 0.9, TRIM);
-  if (floors === 1) {
-    b.cone(x, wallHeight + 1.15, mid, 1, 1.9, roof, { seg: 4, ry: Math.PI / 4, sx: (width + 0.5) / Math.SQRT2, sz: (depth + 0.5) / Math.SQRT2 });
-  } else {
+  if (floors === 1) drawSheetRoof(b, x, mid, width + 0.9, depth + 0.9, wallHeight + 0.21, roof, wall);
+  else {
     b.box(x, wallHeight + 0.4, mid, width + 0.5, 0.4, depth + 0.5, tone(roof, 0.75));
     for (const [dx, dz, w, d] of [[0, 1, width + 0.5, 0.28], [0, -1, width + 0.5, 0.28], [1, 0, 0.28, depth + 0.5], [-1, 0, 0.28, depth + 0.5]] as const) b.box(x + dx * (width + 0.22) / 2, wallHeight + 0.95, mid + dz * (depth + 0.22) / 2, w, 0.7, d, tone(wall, 1.12));
     if (floors > 2) { b.cyl(x - half + 1.6, wallHeight + 2.0, back + 1.6, 0.85, 1.6, '#34383e'); for (const [dx, dz] of [[-0.6, -0.6], [0.6, -0.6], [-0.6, 0.6], [0.6, 0.6]] as const) b.box(x - half + 1.6 + dx, wallHeight + 0.85, back + 1.6 + dz, 0.1, 0.9, 0.1, BARS); }
@@ -93,7 +109,10 @@ export function standInFor(item: PlanPiece): ((b: Batch) => void) | undefined {
       return (b) => { for (const side of [-1, 1]) {
         b.box(side * 1.65, 0.9, 0, 0.5, 1.8, 0.5, SAND); b.box(side * 1.65, 1.85, 0, 0.64, 0.12, 0.64, '#efe6cf'); b.box(side * 1.65, 0.12, 0, 0.6, 0.24, 0.6, tone(SAND, 0.7));
         b.box(side * 2.0, 0.95, -0.9, 0.07, 1.5, 1.3, DARK); b.box(side * 2.0, 1.75, -0.9, 0.09, 0.1, 1.3, BARS);
-      } };
+      }
+      // The electricity meter box on one pier (which one is fixed by where the gate stands): a grey case with a window and a red lamp.
+      const meter = Math.round(item.x / 12) % 2 ? 1 : -1;
+      b.box(meter * 1.65, 1.15, 0.31, 0.34, 0.46, 0.12, '#cfd1cc'); b.quad(meter * 1.65, 1.18, 0.38, 0.22, 0.2, '#2c3a46'); b.quad(meter * 1.65, 0.98, 0.38, 0.05, 0.05, '#d8473a', { layer: 'glow' }); };
     case 'lamp':
       return (b) => { b.cyl(0, 2.6, 0, 0.12, 5.2, '#5d5142'); b.box(0.7, 5.3, 0, 1.5, 0.12, 0.2, '#5d5142'); b.cyl(1.4, 5.2, 0, 0.3, 0.3, '#e9c97c', { seg: 8 }); };
     case 'busstop':
@@ -107,17 +126,33 @@ export function standInFor(item: PlanPiece): ((b: Batch) => void) | undefined {
     case 'bin':
       return (b) => b.cyl(0, 0.55, 0, 0.36, 1.1, '#3f6f4c');
     case 'tank':
-      return (b) => { b.cyl(0, 3.4, 0, 0.95, 2, '#34383e'); for (const [x, z] of [[-0.8, -0.8], [0.8, -0.8], [-0.8, 0.8], [0.8, 0.8]] as const) b.box(x, 1.2, z, 0.12, 2.4, 0.12, DARK); };
+      // An overhead water tank: a dark-blue plastic drum with ribs and a domed lid, on a steel stand with a platform.
+      return (b) => { b.cyl(0, 3.3, 0, 0.95, 1.8, '#1d3452'); b.cyl(0, 4.4, 0, 0.95, 0.5, '#2a4a74', { top: 0.45 }); for (const y of [2.8, 3.5]) b.cyl(0, y, 0, 1.0, 0.1, '#14243b'); b.cyl(0, 4.7, 0, 0.18, 0.12, '#14243b', { seg: 6 });
+        b.box(0, 2.35, 0, 2.2, 0.12, 2.2, DARK); for (const [x, z] of [[-0.95, -0.95], [0.95, -0.95], [-0.95, 0.95], [0.95, 0.95]] as const) b.box(x, 1.15, z, 0.12, 2.3, 0.12, DARK); b.box(0, 0.9, 0.95, 1.9, 0.08, 0.08, DARK); };
     case 'generator':
-      return (b) => b.box(0, 0.65, 0, 1.3, 1.1, 0.9, '#b5483f');
+      // A petrol generator: a red cabinet with a dark control panel, a fuel tank on top, a tubular frame and an exhaust.
+      return (b) => { b.box(0, 0.6, 0, 1.2, 0.9, 0.8, '#b5483f'); b.quad(-0.15, 0.62, 0.41, 0.7, 0.5, '#2f3338'); b.quad(0.4, 0.62, 0.41, 0.2, 0.3, '#e8c24a'); b.box(0, 1.2, 0, 0.8, 0.3, 0.6, '#d9d3c4'); b.box(0, 0.08, 0, 1.4, 0.16, 1.0, DARK);
+        for (const x of [-0.62, 0.62]) b.box(x, 0.85, 0, 0.06, 0.06, 1.0, DARK); b.cyl(0.78, 0.7, -0.3, 0.07, 1.0, BARS, { seg: 6 }); };
     case 'billboard':
       return (b) => { for (const side of [-1, 1]) b.box(side * 2, 2.6, 0, 0.2, 5.2, 0.2, DARK); b.box(0, 5.2, 0, 6.3, 3, 0.2, '#f3eee0'); };
     case 'trafficlight':
       return (b) => { b.cyl(0, 2.5, 0, 0.1, 5, DARK); b.box(1.6, 4.9, 0, 3.2, 0.1, 0.1, DARK); b.box(3.2, 4.4, 0, 0.5, 1.2, 0.4, DARK); };
     case 'table':
       return (b) => b.box(0, 0.9, 0, 2, 0.1, 1, '#8a6644');
-    case 'detail-gatehouse': case 'detail-generator-hut':
-      return (b) => b.box(0, 1.1, 0, 1.8, 2.2, 1.5, SAND);
+    case 'detail-gatehouse':
+      // The gateman's hut: a block room with a barred window, a door and a flat roof with a lip.
+      return (b) => { b.box(0, 1.1, 0, 1.8, 2.2, 1.5, SAND); b.box(0, 2.28, 0, 2.1, 0.16, 1.8, '#a85c40'); b.box(0, 2.42, 0, 2.1, 0.12, 1.8, '#efe6cf'); b.quad(-0.4, 1.3, 0.76, 0.6, 0.6, '#59707f'); for (const dx of [-0.6, -0.4, -0.2]) b.quad(-0.4 + dx + 0.2, 1.3, 0.78, 0.04, 0.6, BARS); b.box(0.5, 0.95, 0.76, 0.5, 1.7, 0.06, '#6b4a2b'); };
+    case 'detail-generator-hut':
+      // A generator shed: a block box, a louvred vent, a steel door and the exhaust stack.
+      return (b) => { b.box(0, 1.1, 0, 1.8, 2.2, 1.5, SAND); b.box(0, 2.28, 0, 2.0, 0.14, 1.7, '#8d9399'); for (let i = 0; i < 4; i++) b.box(0.5, 1.2 + i * 0.22, 0.77, 0.6, 0.08, 0.05, BARS); b.box(-0.4, 0.95, 0.76, 0.6, 1.7, 0.06, '#3b6e8f'); b.cyl(0.75, 2.8, -0.4, 0.07, 1.2, BARS, { seg: 6 }); };
+    case 'detail-ac-external':
+      // A split AC's outdoor unit: a pale cabinet with a dark fan grille, on a bracket.
+      return (b) => { b.box(0, 0.28, 0.2, 0.8, 0.5, 0.38, '#e6e6e0'); b.quad(-0.1, 0.28, 0.4, 0.42, 0.36, '#3a3d42'); b.box(0.3, 0.28, 0.4, 0.12, 0.34, 0.02, '#c9cac4'); b.box(0, 0.02, 0.2, 0.7, 0.04, 0.3, BARS); };
+    case 'detail-dish':
+      // A DSTV dish: a tilted disc on an arm, its receiver at the focus.
+      return (b) => { b.cyl(0, 0.3, 0.05, 0.04, 0.6, BARS, { seg: 6 }); b.cyl(0, 0.72, 0.14, 0.34, 0.06, '#e9e9e6', { seg: 10, rx: 1.15 }); b.box(0, 0.74, 0.42, 0.05, 0.05, 0.22, BARS, { rx: 0.4 }); };
+    case 'detail-security-light':
+      return (b) => { b.box(0, 0.14, 0.16, 0.26, 0.2, 0.24, DARK); b.quad(0, 0.1, 0.29, 0.2, 0.12, LIT, { layer: 'glow' }); };
     default:
       return undefined;
   }

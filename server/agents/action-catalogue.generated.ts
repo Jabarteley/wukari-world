@@ -92,6 +92,7 @@ export const ACTION_CATALOGUE: readonly (readonly [string, string, string])[] = 
   [ "growth.referral", "", "{ kind: 'welcome' | 'reward'; name?: string }" ],
   [ "business.server", "", "{ op: BusinessServerOp; [field: string]: unknown }" ],
   [ "living-world.server", "", "{ op: 'barber-reward'; lessonId: 'basic' | 'advanced' } | { op: 'barber-tool' } | { op: 'clerk-reward' } | { op: 'npc-restock-wage' }" ],
+  [ "market.server", "", "{ op: MarketServerOp; amount: number }" ],
   [ "unilag.apply", "At the Senate spot: pay the admission fee and be admitted.", "{ programme: ProgrammeId }" ],
   [ "unilag.matriculate", "At the Senate spot: get a student id.", "NoPayload" ],
   [ "unilag.change-programme", "Before the first semester is registered only.", "{ programme: ProgrammeId }" ],

@@ -14,7 +14,7 @@
  *   D5 market gains are not earned from work.
  */
 import type { LifeState } from './life.ts'
-import type { CityId, HostErrorCode, JsonBodyErrorCode, OnceErrorCode, SessionErrorCode, StorageErrorCode, TimedId } from './protocol.ts'
+import type { CityGateErrorCode, CityId, HostErrorCode, JsonBodyErrorCode, Ok, OnceErrorCode, SessionErrorCode, StorageErrorCode, TimedId } from './protocol.ts'
 
 export type CommodityId = 'rice' | 'garri' | 'beans' | 'palm-oil' | 'cement' | 'petrol'
 export type MarketSide = 'buy' | 'sell'
@@ -146,6 +146,8 @@ export interface MarketAccountRecord {
 export interface MarketOrderRecord extends MarketOrder {
   /** Owner's public id. Never sent to another player. */
   by: string
+  /** A buy order: the naira still held for it (price × units plus the worst-case fees, less what its fills used). Added by the server rules; a sell order holds units instead. */
+  held?: number
 }
 
 export interface MarketFillRecord {
@@ -172,6 +174,8 @@ export interface MarketCollection {
   /** Public ids an operator froze: they can cancel and withdraw, not trade. */
   frozen: string[]
   seq: number
+  /** 64 hex characters the server made once. It keys the price walk and the event picks so tomorrow's prices cannot be read off the code. NEVER sent to a client. */
+  salt: string
 }
 
 // ---- the routes (server/routes/market.ts) ------------------------------------------------------
@@ -206,5 +210,25 @@ export interface MarketHistoryResponse {
 export type MarketWriteResponse = { ok: boolean; code: string; reason?: string; duplicate?: true; fills?: MarketFill[]; state?: LifeState } & MarketViewResponse
 
 type MarketRead = HostErrorCode | 'invalid_city' | 'invalid_commodity' | 'market_rate_limited'
-export type MarketErrorCode = MarketRead | JsonBodyErrorCode | SessionErrorCode | StorageErrorCode | OnceErrorCode
+export type MarketErrorCode = MarketRead | JsonBodyErrorCode | SessionErrorCode | StorageErrorCode | OnceErrorCode | CityGateErrorCode
 export type MarketPaid<B = object> = B & { cityId: CityId; requestId: TimedId }
+
+/** The codes of a refusal (HTTP 200 `{ ok: false, code, reason }`): src/game/market-model.ts and server/market/service.ts. 'not_in_city' and the life's own 'insufficient_funds' / 'balance_limit' come from the wallet side. */
+export type MarketRefusalCode =
+  | 'frozen' | 'invalid_side' | 'invalid_units' | 'invalid_price' | 'outside_band' | 'too_many_orders' | 'traded_limit' | 'insufficient_cash' | 'insufficient_units' | 'position_limit'
+  | 'no_match' | 'book_full' | 'no_such_order' | 'invalid_anon' | 'invalid_amount' | 'deposit_limit' | 'account_full' | 'insufficient_funds' | 'balance_limit' | 'not_in_city'
+/** The code of an accepted write: 'placed' (rests, nothing filled yet), 'partial', 'filled'; 'deposited', 'withdrawn', 'cancelled', 'anon', 'named'. */
+export type MarketDoneCode = 'placed' | 'partial' | 'filled' | 'deposited' | 'withdrawn' | 'cancelled' | 'anon' | 'named'
+
+type MarketOperatorError = HostErrorCode | 'not_found' | 'moderator_token_required' | 'rate_limited' | JsonBodyErrorCode | 'unknown_player'
+
+export interface MarketHttpRoutes {
+  'GET /api/market/view': { query: { city: CityId }; response: Ok<MarketViewResponse>; errors: MarketRead | StorageErrorCode }
+  'GET /api/market/history': { query: { city: CityId; commodity: CommodityId }; response: Ok<MarketHistoryResponse>; errors: MarketRead }
+  'POST /api/market/deposit': { body: MarketPaid<{ amount: number }>; response: Ok<MarketWriteResponse>; errors: MarketErrorCode }
+  'POST /api/market/withdraw': { body: MarketPaid<{ amount: number }>; response: Ok<MarketWriteResponse>; errors: MarketErrorCode }
+  'POST /api/market/order': { body: MarketPaid<{ commodity: CommodityId; side: MarketSide; price: number; units: number; now?: boolean }>; response: Ok<MarketWriteResponse>; errors: MarketErrorCode }
+  'POST /api/market/cancel': { body: MarketPaid<{ order: string }>; response: Ok<MarketWriteResponse>; errors: MarketErrorCode }
+  'POST /api/market/anon': { body: { cityId: CityId; anon: boolean }; response: Ok<MarketWriteResponse>; errors: MarketErrorCode }
+  'POST /api/mod/market/freeze': { body: { publicId: string; frozen: boolean; reason?: string }; response: Ok<{ ok: true; code: 'frozen' | 'unfrozen' }>; errors: MarketOperatorError }
+}

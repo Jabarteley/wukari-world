@@ -59,6 +59,11 @@ def load_absent_evidence(args, timestamp):
     The PBF cannot describe a way it does not contain, so the tags come from a reviewed file pinned by SHA-256 in the
     receipt, and the evidence must name the PBF by SHA-256. Only maritime=yes admin-0 ways recorded at a version no newer
     than the PBF that form whole rings of their own, touching no present boundary way, may be omitted.
+
+    Owner decision 2026-10-13 (France as the metropolitan extract): an evidence file that sets `"wholeSeparateRings": true`
+    and a written `reason` (at least 20 characters) may also list non-maritime admin_level=2 boundary ways, for overseas
+    departments and territories that lie as whole separate rings far outside the clip. The ring-closure and
+    touches-no-present-way proofs below are unchanged and decide; a main-ring omission still HOLDs.
     """
     require(args.absent_evidence, 'country boundary member ways absent from PBF and no --absent-evidence file')
     path = Path(args.absent_evidence)
@@ -67,12 +72,15 @@ def load_absent_evidence(args, timestamp):
             and evidence.get('datasetSha256') == args.expected_sha256, 'absent-way evidence schema/country/PBF mismatch')
     ways = evidence.get('ways')
     require(isinstance(ways, list) and ways, 'absent-way evidence has no ways')
+    whole_rings = evidence.get('wholeSeparateRings') is True
+    require(not whole_rings or (isinstance(evidence.get('reason'), str) and len(evidence['reason'].strip()) >= 20),
+            'wholeSeparateRings evidence needs a written reason of at least 20 characters')
     records = {}
     for way in ways:
         tags = way.get('tags') or {}
         require(isinstance(way.get('id'), int) and way['id'] not in records, 'absent-way evidence ids must be unique integers')
-        require(tags.get('boundary') == 'administrative' and tags.get('admin_level') == '2' and tags.get('maritime') == 'yes',
-                f"absent way {way['id']} is not a maritime=yes admin_level=2 boundary way; HOLD")
+        require(tags.get('boundary') == 'administrative' and tags.get('admin_level') == '2' and (whole_rings or tags.get('maritime') == 'yes'),
+                f"absent way {way['id']} is not a maritime=yes admin_level=2 boundary way (and the evidence does not declare wholeSeparateRings); HOLD")
         require(isinstance(way.get('version'), int) and isinstance(way.get('timestamp'), str) and way['timestamp'] <= timestamp,
                 f"absent way {way['id']} evidence is newer than the PBF snapshot")
         require(isinstance(way.get('firstNode'), int) and isinstance(way.get('lastNode'), int),
@@ -84,7 +92,7 @@ def load_absent_evidence(args, timestamp):
     endpoints = Counter(node for record in records.values() for node in (record['firstNode'], record['lastNode']))
     require(all(count % 2 == 0 for count in endpoints.values()),
             'absent ways do not close into rings of their own (a gap in a land or maritime ring would remain); HOLD')
-    return records, digest(path), set(endpoints)
+    return records, digest(path), set(endpoints), (evidence['reason'].strip() if whole_rings else None)
 
 
 def load_source_inputs(args):
@@ -197,7 +205,7 @@ def extract(args):
                             'missingMemberWayIds': missing_member_ways})
     absent_policy, area_source = None, pbf
     if missing_member_ways:
-        absent, evidence_sha, absent_endpoints = load_absent_evidence(args, timestamp)
+        absent, evidence_sha, absent_endpoints, ring_reason = load_absent_evidence(args, timestamp)
         require(not absent_endpoints & node_refs,
                 'an absent way ends on a node of a present boundary way, so it belongs to the main ring; HOLD')
         require(set(absent) == set(missing_member_ways),
@@ -207,7 +215,10 @@ def extract(args):
         derived = workdir / 'derived.osm.pbf'
         write_without_absent_members(osmium, pbf, derived, relation['id'], set(absent), set(way_records), node_refs)
         area_source = derived
-        absent_policy = {'rule': 'maritime=yes admin_level=2 member ways absent from the clipped PBF are omitted; every other member must be present and the remaining rings must assemble and match every present segment',
+        absent_policy = {'rule': ('admin_level=2 member ways that form whole separate rings outside the clipped PBF (overseas territories; ' + ring_reason + ') are omitted; '
+                                  if ring_reason else 'maritime=yes admin_level=2 member ways absent from the clipped PBF are omitted; ')
+                                 + 'every other member must be present and the remaining rings must assemble and match every present segment',
+                         **({'wholeSeparateRings': True, 'reason': ring_reason} if ring_reason else {}),
                          'evidenceSha256': evidence_sha, 'omittedAbsentMaritimeWays': [absent[key] for key in sorted(absent)],
                          'derivedFile': 'same pinned PBF; relation member list reduced; present ways and their nodes copied unchanged'}
     require(all(count == 1 for count in expected_edges.values()), 'repeated country boundary segment; HOLD')
@@ -276,7 +287,7 @@ def extract(args):
                'fixtureResults': fixture_results,
                'limitations': ['OSM mapped administrative boundary, not legal-border authority',
                                'fixture points are caller-supplied pinned source samples; their origin remains in fixture receipts',
-                               *(['maritime sea-limit member ways lying wholly outside the Geofabrik clip are omitted (see absentMemberPolicy); nothing inside the clip is affected'] if absent_policy else []),
+                               *(['member ways forming whole separate rings lying wholly outside the Geofabrik clip are omitted (see absentMemberPolicy); nothing inside the clip is affected'] if absent_policy else []),
                                'no city limits, selection/scaffold integration, or browser acceptance proved']}
     return geometry_bytes, receipt
 
@@ -290,7 +301,7 @@ def main():
     parser.add_argument('--dataset-url', required=True)
     parser.add_argument('--dataset-date', required=True)
     parser.add_argument('--fixture')
-    parser.add_argument('--absent-evidence', help='JSON evidence for maritime=yes member ways absent from the clipped PBF')
+    parser.add_argument('--absent-evidence', help='JSON evidence for member ways absent from the clipped PBF (maritime=yes, or whole separate rings when the evidence declares wholeSeparateRings)')
     parser.add_argument('--source-inputs', help='JSON list of the dated Geofabrik files a merged --pbf was built from (primary first)')
     parser.add_argument('--out', required=True, help='New separate output directory')
     args = parser.parse_args()

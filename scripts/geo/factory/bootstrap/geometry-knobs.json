@@ -1,0 +1,19 @@
+{
+  "comment": "Per-seed geometry knobs (seed.geometry, factory stage) and play box size (seed.playBox, source stage). One list read by batch-run.py, table.mjs, batch.mjs and bounds.mjs. A knob is applied only when the seed names it; the shared 'standard' preset is otherwise untouched. Ranges are deliberately narrow so a typo cannot silently change a city.",
+  "geometry": {
+    "waterTolerance": {"min": 0.0001, "max": 0.002, "integer": false, "recipeKey": "waterTolerance"},
+    "outlineTolerance": {"min": 0.0001, "max": 0.002, "integer": false, "recipeKey": "outlineTolerance"},
+    "farTolerance": {"min": 0.0004, "max": 0.004, "integer": false, "recipeKey": "farTolerance"},
+    "coreTolerance": {"min": 0.0002, "max": 0.002, "integer": false, "recipeKey": "coreTolerance"},
+    "minWaterKm2": {"min": 0.05, "max": 10, "integer": false, "recipeKey": "minWaterKm2"},
+    "maxRoads": {"min": 100, "max": 1500, "integer": true, "recipeKey": "maxRoads"},
+    "minRoadKm": {"min": 0.2, "max": 5, "integer": false, "recipeKey": "minRoadKm"},
+    "cell": {"min": 0.002, "max": 0.01, "integer": false, "recipeKey": "cell"},
+    "split": {"min": 4, "max": 16, "integer": true, "recipeKey": "split"},
+    "seaBandMetres": {"min": 1000, "max": 100000, "integer": true, "recipeKey": "sea.bandMetres"}
+  },
+  "playBox": {
+    "playKm": {"min": 5, "max": 40},
+    "coreKm": {"min": 1, "max": 20}
+  }
+}

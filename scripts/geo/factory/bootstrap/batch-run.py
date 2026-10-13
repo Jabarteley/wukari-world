@@ -23,7 +23,8 @@ _merge_spec = importlib.util.spec_from_file_location('source_merge', HERE / 'sou
 _merge = importlib.util.module_from_spec(_merge_spec)
 _merge_spec.loader.exec_module(_merge)
 
-SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions'}
+SEED_KEYS = {'id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox'}
+KNOBS = json.loads((HERE / 'geometry-knobs.json').read_text())
 
 def digest_many(path, *algorithms):
     if not algorithms or len(set(algorithms)) != len(algorithms):
@@ -81,6 +82,8 @@ def validate(table):
         if seed.get('namesUnit') is not None and (not isinstance(seed['namesUnit'], str) or not seed['namesUnit'].strip()):
             raise ValueError(f"{seed.get('id', 'seed')}: namesUnit must be a non-empty string")
         selection_exclusions(seed)
+        geometry_knobs(seed)
+        play_box(seed)
         shared_seed = {key: seed[key] for key in ('id', 'name', 'countryISO', 'cityOsmRef', 'airport', 'timezone')
                        if key in seed}
         _shared.validate({'schemaVersion': 1, 'geometrySourceSha': table.get('geometrySourceSha'),
@@ -120,6 +123,44 @@ def selection_exclusions(seed):
             raise ValueError(f"{seed.get('id', 'seed')}: selection exclusion {ref} requires a non-empty reason")
         seen.add(ref)
     return exclusions
+
+def number_in_range(label, value, spec):
+    if isinstance(value, bool) or not isinstance(value, (int, float)) or value != value or not spec['min'] <= value <= spec['max']:
+        raise ValueError(f"{label} must be a number from {spec['min']} to {spec['max']}")
+    if spec.get('integer') and (isinstance(value, float) and not value.is_integer()):
+        raise ValueError(f"{label} must be an integer")
+    return value
+
+def geometry_knobs(seed):
+    """seed.geometry: recipe geometry knobs for the factory stage (bootstrap/geometry-knobs.json); only the named knobs change."""
+    knobs = seed.get('geometry', {})
+    if not isinstance(knobs, dict) or (seed.get('geometry') is not None and not knobs):
+        raise ValueError(f"{seed.get('id', 'seed')}: geometry must be a non-empty object")
+    unknown = sorted(set(knobs) - set(KNOBS['geometry']))
+    if unknown:
+        raise ValueError(f"{seed.get('id', 'seed')}: unsupported geometry knobs {unknown}; allowed {sorted(KNOBS['geometry'])}")
+    for key, value in knobs.items():
+        number_in_range(f"{seed.get('id', 'seed')}: geometry.{key}", value, KNOBS['geometry'][key])
+    return knobs
+
+def play_box(seed):
+    """seed.playBox: half-widths in km for the source-stage bounds (bounds-policy.mjs defaults 20 and 5); the airport box still joins the play box."""
+    box = seed.get('playBox', {})
+    if not isinstance(box, dict) or (seed.get('playBox') is not None and not box):
+        raise ValueError(f"{seed.get('id', 'seed')}: playBox must be a non-empty object")
+    unknown = sorted(set(box) - set(KNOBS['playBox']))
+    if unknown:
+        raise ValueError(f"{seed.get('id', 'seed')}: unsupported playBox fields {unknown}")
+    for key, value in box.items():
+        number_in_range(f"{seed.get('id', 'seed')}: playBox.{key}", value, KNOBS['playBox'][key])
+    play, core = box.get('playKm', 20), box.get('coreKm', 5)
+    if core > play:
+        raise ValueError(f"{seed.get('id', 'seed')}: playBox.coreKm must not exceed playKm")
+    return box
+
+def geometry_policy(seed):
+    return {**({'geometry': geometry_knobs(seed)} if seed.get('geometry') is not None else {}),
+            **({'playBox': play_box(seed)} if seed.get('playBox') is not None else {})}
 
 def selection_exclusions_policy(seed):
     return {'selectionExclusions': selection_exclusions(seed)}
@@ -384,7 +425,7 @@ def main():
         if boundary_error:
             for seed in seeds:
                 reason = 'city metadata and extraction skipped because the exact same-source country boundary is HOLD: ' + boundary_error
-                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), 'reason': reason}
+                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), 'reason': reason}
                 city_results.append(city_result)
                 (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
                 (out / 'logs' / (seed['id'] + '-metadata.log')).write_text('SKIPPED: ' + reason + '\n')
@@ -439,7 +480,7 @@ def main():
                     metadata_log = out / 'logs' / (seed['id'] + '-metadata.log')
                     if not metadata_log.exists():
                         metadata_log.write_text(json.dumps({'status': 'HOLD', 'reason': reason}) + '\nshared log: batch-metadata.log\n')
-                    city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), 'reason': reason}
+                    city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), 'reason': reason}
                     city_results.append(city_result)
                     (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
         extraction_errors = {}
@@ -461,9 +502,9 @@ def main():
                 job_file = out / 'receipts' / (seed['id'] + '-source-job.json')
                 job_file.write_text(json.dumps(producer, indent=2))
                 producers.append(producer)
-                city_results.append({'id': seed['id'], 'status': 'SOURCE_CANDIDATE', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), 'sourceJob': producer})
+                city_results.append({'id': seed['id'], 'status': 'SOURCE_CANDIDATE', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), 'sourceJob': producer})
             except Exception as error:
-                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), 'reason': str(error)}
+                city_result = {'id': seed['id'], 'status': 'HOLD', **scene_water_policy(seed), **names_unit_policy(seed), **selection_exclusions_policy(seed), **geometry_policy(seed), 'reason': str(error)}
                 city_results.append(city_result)
                 (out / 'receipts' / (seed['id'] + '-result.json')).write_text(json.dumps(city_result, indent=2))
         city_results.sort(key=lambda city: [seed['id'] for seed in seeds].index(city['id']))

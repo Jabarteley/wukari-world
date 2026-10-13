@@ -99,7 +99,9 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
     assert.ok(Array.isArray(absentPolicy.omittedAbsentMaritimeWays) && absentPolicy.omittedAbsentMaritimeWays.length > 0);
     for (const way of absentPolicy.omittedAbsentMaritimeWays) {
       assert.ok(Number.isSafeInteger(way.id) && !omitted.has(way.id), 'duplicate omitted absent way');
-      assert.equal(way.tags?.maritime, 'yes', 'only maritime=yes ways may be omitted');
+      // Only an evidence file that declared wholeSeparateRings (with its written reason) may omit non-maritime ways (overseas rings, France).
+      if (absentPolicy.wholeSeparateRings === true) assert.ok(typeof absentPolicy.reason === 'string' && absentPolicy.reason.trim().length >= 20, 'wholeSeparateRings needs its written reason');
+      else assert.equal(way.tags?.maritime, 'yes', 'only maritime=yes ways may be omitted');
       assert.equal(way.tags.boundary, 'administrative');
       assert.equal(way.tags.admin_level, '2');
       assert.ok(relationMembers.some(member => member.type === 'w' && member.ref === way.id), 'omitted way is not a member of the country relation');

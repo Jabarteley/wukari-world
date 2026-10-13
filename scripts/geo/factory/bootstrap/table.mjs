@@ -4,7 +4,18 @@ import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 
+const KNOBS = JSON.parse(readFileSync(join(fileURLToPath(new URL('.', import.meta.url)), 'geometry-knobs.json'), 'utf8'));
+// seed.geometry knobs (bootstrap/geometry-knobs.json) reach the factory target unchanged; the same ranges as batch-run.py, batch.mjs.
+function assertGeometryKnobs(id, knobs) {
+  assert.ok(knobs && typeof knobs === 'object' && !Array.isArray(knobs) && Object.keys(knobs).length, `${id}: geometry must be a non-empty object`);
+  for (const [key, value] of Object.entries(knobs)) {
+    const spec = KNOBS.geometry[key];
+    assert.ok(spec, `${id}: unsupported geometry knob ${key}`);
+    assert.ok(typeof value === 'number' && Number.isFinite(value) && value >= spec.min && value <= spec.max && (!spec.integer || Number.isInteger(value)), `${id}: geometry.${key} out of range`);
+  }
+}
 const [input, output, boundaryPolicyFile, generationSourceSHA] = process.argv.slice(2);
 if (!input || !output || !generationSourceSHA) throw Error('Usage: table.mjs BOOTSTRAP_ARTIFACT TARGET_TABLE BOUNDARY_POLICY_JSON_OR_DASH GENERATION_SOURCE_SHA');
 assert.match(generationSourceSHA, /^[0-9a-f]{40}$/, 'explicit generation baseline required');
@@ -26,6 +37,7 @@ if (batch) {
     assert.ok(['SOURCE_CANDIDATE', 'HOLD'].includes(city.status));
     if (city.sceneWaterExtent !== undefined) assert.ok(['play', 'reach'].includes(city.sceneWaterExtent), `${city.id}: invalid sceneWaterExtent`);
     if (city.namesUnit !== undefined) assert.ok(typeof city.namesUnit === 'string' && city.namesUnit.trim(), `${city.id}: namesUnit must be a non-empty string`);
+    if (city.geometry !== undefined) assertGeometryKnobs(city.id, city.geometry);
     if (city.selectionExclusions !== undefined) {
       assert.ok(Array.isArray(city.selectionExclusions), `${city.id}: selectionExclusions must be an array`);
       const refs = new Set();
@@ -156,6 +168,7 @@ for (const city of candidates) {
     ...(batch && city.sceneWaterExtent !== undefined ? { sceneWaterExtent: city.sceneWaterExtent } : {}),
     ...(batch && city.namesUnit !== undefined ? { namesUnit: city.namesUnit } : {}),
     ...(batch && city.selectionExclusions !== undefined ? { selectionExclusions: city.selectionExclusions } : {}),
+    ...(batch && city.geometry !== undefined ? { geometry: city.geometry } : {}),
     metadataSources: { ...sources, airport: { ...sources.airport, sourceUrl: facts.airport.sourceUrl } },
     extractKey: metadata.id, extractSha256: job.extractSha256, sourceJob: job });
 }

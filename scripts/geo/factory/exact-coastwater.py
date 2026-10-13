@@ -529,7 +529,9 @@ def main():
         faces, cuts, dangles, invalid = polygonize_full(unary_union(g.boundary))
         if any(not part.is_empty for part in [cuts, dangles, invalid]):
             raise ValueError('Invalid polygon boundary linework')
-        selected = [p for p in faces.geoms if g.covers(p.representative_point())]
+        # A face is water when the water covers most of it. The representative point alone is not enough: for a tiny face that is exactly an island of the water
+        # (Singapore, two islets near Tuas) the point can fall on the boundary the two share and then `covers` is true although the face is land.
+        selected = [p for p in faces.geoms if g.covers(p.representative_point()) and g.intersection(p).area > p.area / 2]
         clean, contact_splits, partition_splits = [], 0, 0
         queue = list(selected)
         while queue:
@@ -563,7 +565,10 @@ def main():
         if (fraction > MAX_SERIALIZATION_AREA_FRACTION
                 or topology(g) != topology(represented)
                 or any(not p.is_valid or ring_contacts(p) for p in clean)):
-            raise FinerWater('Serialization changed coverage/topology or retained ring contacts')
+            raise FinerWater('Serialization changed coverage/topology or retained ring contacts: ' + json.dumps({
+                'areaFraction': fraction, 'maximumAreaFraction': MAX_SERIALIZATION_AREA_FRACTION,
+                'sourceTopology': topology(g), 'representedTopology': topology(represented),
+                'invalidParts': sum(not p.is_valid for p in clean), 'partsWithRingContacts': sum(ring_contacts(p) for p in clean)}))
         arrays = [[list(p.exterior.coords)] + [list(r.coords) for r in p.interiors] for p in clean]
         largest_ring = max((len(r) for p in arrays for r in p), default=0)
         if largest_ring > MAX_RING_VERTICES:

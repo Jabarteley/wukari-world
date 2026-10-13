@@ -42,6 +42,21 @@ const selectionExclusionsFor = target => {
     }
     return exclusions;
 };
+const KNOBS = JSON.parse(readFileSync(join(home, 'bootstrap', 'geometry-knobs.json'), 'utf8'));
+// Per-target geometry knobs (seed.geometry, written by bootstrap/table.mjs): only the named keys replace the shared preset value, and the effective values
+// are written into the recipe (CONFIG) and the selection row, so the receipt shows exactly what was applied.
+const geometryKnobsFor = target => {
+    if (target.geometry === undefined) return {};
+    if (!target.geometry || typeof target.geometry !== 'object' || Array.isArray(target.geometry) || !Object.keys(target.geometry).length)
+        throw new TypeError(`${target.id}: geometry must be a non-empty object`);
+    for (const [key, value] of Object.entries(target.geometry)) {
+        const spec = KNOBS.geometry[key];
+        if (!spec) throw new TypeError(`${target.id}: unsupported geometry knob ${key}`);
+        if (typeof value !== 'number' || !Number.isFinite(value) || value < spec.min || value > spec.max || (spec.integer && !Number.isInteger(value)))
+            throw new TypeError(`${target.id}: geometry.${key} must be a${spec.integer ? 'n integer' : ' number'} from ${spec.min} to ${spec.max}`);
+    }
+    return target.geometry;
+};
 const rows = [], contacts = [];
 for (const target of table.targets) {
     const row = { id: target.id, status: 'MACHINEHOLD', errors: [], metadataReviewRequired: true, metadataSources: target.metadataSources ?? null };
@@ -50,6 +65,8 @@ for (const target of table.targets) {
         const root = resolve(table.root), load = file => import(pathToFileURL(join(root, file)).href);
         const selectionExclusions = selectionExclusionsFor(target);
         row.selectionExclusions = selectionExclusions;
+        const geometryKnobs = geometryKnobsFor(target);
+        if (Object.keys(geometryKnobs).length) row.geometryKnobs = geometryKnobs;
         if (target.namesUnit !== undefined && (typeof target.namesUnit !== 'string' || !target.namesUnit.trim()))
             throw new TypeError(`${target.id}: namesUnit must be a non-empty string`);
         if (target.sceneWaterExtent !== undefined && !['play', 'reach'].includes(target.sceneWaterExtent))
@@ -176,13 +193,14 @@ for (const target of table.targets) {
         row.neighbourhoodLabels = neighbourhoodLabels;
         if (neighbourhoodLabels < 5)
             row.errors.push(`only ${neighbourhoodLabels} source-backed neighbourhood labels (place=suburb|neighbourhood|quarter nodes, then village|hamlet|locality|subdivision nodes, then the same tags as way/relation areas at their centre, inside the eligible pool); five are required`);
-        const config = { ...old, name: target.name, box: boxes.play, core: boxes.core, places: choices, names,
+        const { seaBandMetres, ...recipeKnobs } = geometryKnobs;
+        const config = { ...old, ...recipeKnobs, name: target.name, box: boxes.play, core: boxes.core, places: choices, names,
             ...(target.sceneWaterExtent === undefined ? {} : { sceneWaterExtent: target.sceneWaterExtent }) };
         for (const key of ['discovery', 'water', 'landuse', 'roads', 'sea', 'wideWater'])
             delete config[key];
         if (policy.kind !== 'inland') {
             config.wideWater = true;
-            config.sea = { kind: policy.kind, bandMetres: raw.source.waterRecipe?.sea?.bandMetres ?? 40000 };
+            config.sea = { kind: policy.kind, bandMetres: seaBandMetres ?? raw.source.waterRecipe?.sea?.bandMetres ?? 40000 };
         }
         facts.names = destinationNames(facts, target.name, name(unique.get(choices.find(p => p.slot === 'transit')?.ref) ?? { tags: {} }));
         if (target.namesUnit !== undefined) facts.names = { ...facts.names, unit: target.namesUnit };

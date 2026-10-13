@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-k-va",
-      "appSha": "77e577014bd137c3273bb0d6b5d83b845c470cd5",
-      "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
+      "id": "release-va-2",
+      "appSha": "eab84fed677c18a1ab5cdda1eabe2f73652af78a",
+      "driverSha": "96ec1f31ae60af26ad584e10befc0217c7e57d6a",
       "cities": [
         "vatican-city"
       ],

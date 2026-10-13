@@ -214,4 +214,10 @@ export const GENERATED_CITY_CATALOGUE_ROWS = Object.freeze([
   ["pyongyang","Pyongyang","kp-pyongyang","",125.7526222,39.0196585,1,"kp","Korea (North)"],
   ["tehran","Tehran","ir-tehran","",51.3896004,35.6892523,1,"ir","Iran"],
   ["zurich","Zurich","ch-zurich","",8.5410422,47.3744489,1,"ch","Switzerland"],
+  ["ho-chi-minh-city","Ho Chi Minh City","vn","",106.7166008,10.7737261,1,"vn","Vietnam"],
+  ["manila","Manila","ph-manila","",120.9803621,14.5904492,1,"ph","Philippines"],
+  ["new-york","New York","us-new-york","",-74.0060152,40.7127281,1,"us","United States"],
+  ["oslo","Oslo","no-oslo","",10.7389701,59.9133301,1,"no","Norway"],
+  ["sydney","Sydney","au-sydney","",151.2082848,-33.8698439,1,"au","Australia"],
+  ["tel-aviv-yafo","Tel Aviv","il-tel-aviv-yafo","",34.7818064,32.0852997,1,"il","Israel"],
 ] satisfies readonly CityCatalogueRow[])

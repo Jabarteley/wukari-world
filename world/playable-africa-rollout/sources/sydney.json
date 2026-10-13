@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "sydney",
+  "countryIso2": "AU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Sydney",
+    "coordinatesWgs84": [
+      151.2082848,
+      -33.8698439
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/australia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "sydney-airport",
+    "name": "Sydney Kingsford Smith International Airport",
+    "lon": 151.177002,
+    "lat": -33.946098,
+    "sourceUrl": "https://ourairports.com/airports/YSSY/"
+  },
+  "boxes": {
+    "play": [
+      -34.05072478993398,
+      150.9914434151979,
+      -33.68896301006602,
+      151.4251261848021
+    ],
+    "core": [
+      -33.91506412248349,
+      151.1541609057886,
+      -33.824623677516506,
+      151.26240869421142
+    ],
+    "outline": [
+      -34.10072478993398,
+      150.94144341519788,
+      -33.63896301006602,
+      151.47512618480212
+    ],
+    "wide": [
+      -34.65072478993398,
+      150.3914434151979,
+      -33.08896301006602,
+      152.0251261848021
+    ],
+    "water": [
+      -34.65072478993398,
+      150.3914434151979,
+      -33.08896301006602,
+      152.0251261848021
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/australia-261011.osm.pbf",
+    "datasetSha256": "c269604e9ec10202fa640ad0c79439041428f44e6a5797339e7ec7e32c718fbd",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e68a83b9ba02a127dff0ae15237940dac1cfee3af28835f8120a67de332e8ce0",
+        "elements": 7637
+      },
+      {
+        "file": "extras.json",
+        "sha256": "c0a9852fd0d41b2e55d7ffeda8dad29bd10be1b771e219d4030be50358e27674",
+        "elements": 3376
+      },
+      {
+        "file": "water.json",
+        "sha256": "203ab956e463446434a06e27c70b66b816586c1a99181c3fc304de9175fed51c",
+        "elements": 3846
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3c7d318671ac1e94f862d228c031ae998e7e703d797338af975dc802b70af0d7",
+        "elements": 12812
+      },
+      {
+        "file": "roads.json",
+        "sha256": "1863d237962a3d6bbb0c0851d8076745c64dfcfebb9430a436adfba6aee89d85",
+        "elements": 12468
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "St Leonards",
+      "osm": "node/13877592",
+      "coordinatesWgs84": [
+        151.194193,
+        -33.822438
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Doyles on the Beach",
+      "osm": "way/1034473941",
+      "coordinatesWgs84": [
+        151.281981,
+        -33.842835
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Western Sydney University, Parramatta South Campus",
+      "osm": "relation/5634772",
+      "coordinatesWgs84": [
+        151.025601,
+        -33.811776
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hornsby Ku-ring-gai Hospital",
+      "osm": "way/69548890",
+      "coordinatesWgs84": [
+        151.112533,
+        -33.702565
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hurstville Oval",
+      "osm": "way/17499261",
+      "coordinatesWgs84": [
+        151.099327,
+        -33.961298
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Westfield Eastgardens",
+      "osm": "way/209941085",
+      "coordinatesWgs84": [
+        151.224266,
+        -33.944728
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Newtown Mission",
+      "osm": "way/548526874",
+      "coordinatesWgs84": [
+        151.180628,
+        -33.896417
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sydney Town Hall",
+      "osm": "way/104948253",
+      "coordinatesWgs84": [
+        151.206171,
+        -33.873204
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centrelink",
+      "osm": "way/522791499",
+      "coordinatesWgs84": [
+        151.103344,
+        -33.814274
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Macquarie University",
+      "osm": "way/207693612",
+      "coordinatesWgs84": [
+        151.112819,
+        -33.774347
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ocean Protect Stadium",
+      "osm": "way/666183098",
+      "coordinatesWgs84": [
+        151.140704,
+        -34.038403
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cemetery Station No. 1",
+      "osm": "node/2052073022",
+      "coordinatesWgs84": [
+        151.051256,
+        -33.869682
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Oxford Falls Peace Park",
+      "osm": "way/1451898197",
+      "coordinatesWgs84": [
+        151.244984,
+        -33.739976
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Castle Towers",
+      "osm": "way/309039664",
+      "coordinatesWgs84": [
+        151.005716,
+        -33.730595
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hazelhurst Gallery",
+      "osm": "way/130512350",
+      "coordinatesWgs84": [
+        151.082325,
+        -34.032868
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Westfield Burwood",
+      "osm": "way/19234830",
+      "coordinatesWgs84": [
+        151.105902,
+        -33.874618
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lakemba Mosque",
+      "osm": "way/1126413889",
+      "coordinatesWgs84": [
+        151.074104,
+        -33.912471
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al Zahra Mosque",
+      "osm": "way/548322850",
+      "coordinatesWgs84": [
+        151.149087,
+        -33.932167
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Boronia House",
+      "osm": "relation/7987675",
+      "coordinatesWgs84": [
+        151.239315,
+        -33.823953
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Oatley Park",
+      "osm": "way/1075245506",
+      "coordinatesWgs84": [
+        151.059769,
+        -33.981532
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Université de New South Wales",
+      "osm": "way/610927146",
+      "coordinatesWgs84": [
+        151.234317,
+        -33.90603
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Leichhardt Oval",
+      "osm": "way/5310699",
+      "coordinatesWgs84": [
+        151.154865,
+        -33.868668
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St George Hospital",
+      "osm": "way/273864558",
+      "coordinatesWgs84": [
+        151.13398,
+        -33.966952
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ENGIE Stadium",
+      "osm": "way/4385854",
+      "coordinatesWgs84": [
+        151.067628,
+        -33.84312
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1244,
+      "sha256": "c749e62cdba80b08e224b1e7dacbadf38f0a901504a30ebf3e12807199f8f923"
+    },
+    "geometry.ts": {
+      "bytes": 195851,
+      "sha256": "a42e54646f3331991a8afa8fef8bc90d195b2cd067b3480fcdbdd0babc7fd8b6"
+    },
+    "places.ts": {
+      "bytes": 9824,
+      "sha256": "0dea9062ff97663547afd6b4b8cfe319d6fa0dddffc1d636b479bb303b8bbf57"
+    },
+    "terrain.ts": {
+      "bytes": 165017,
+      "sha256": "95c9ade7bc999210cedc727a8b337f6d5c0bfbe2836a9931c1ce2d03c00c7ef4"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "ce562e4f302c4dd39c86e3291beb2fe5f82f4c2dc6b2331295e9202d28800b9e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

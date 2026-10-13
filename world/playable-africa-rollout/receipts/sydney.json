@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "sydney",
+  "countryIso2": "AU",
+  "generationIdentity": {
+    "cityId": "sydney",
+    "stateId": "au-sydney",
+    "stateName": "Sydney"
+  },
+  "inventorySha256": "ec815397206a64dee62868fbd045d2a1ea95616cb31a75f8907f4c461e7884aa",
+  "inventoryPath": "world/playable-africa-rollout/sources/sydney.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "sydney-airport",
+    "name": "Sydney Kingsford Smith International Airport",
+    "lon": 151.177002,
+    "lat": -33.946098,
+    "sourceUrl": "https://ourairports.com/airports/YSSY/"
+  },
+  "bounds": [
+    -34.05072478993398,
+    150.9914434151979,
+    -33.68896301006602,
+    151.4251261848021
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/australia-261011.osm.pbf",
+      "datasetSha256": "c269604e9ec10202fa640ad0c79439041428f44e6a5797339e7ec7e32c718fbd",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "e68a83b9ba02a127dff0ae15237940dac1cfee3af28835f8120a67de332e8ce0",
+          "elements": 7637
+        },
+        {
+          "file": "extras.json",
+          "sha256": "c0a9852fd0d41b2e55d7ffeda8dad29bd10be1b771e219d4030be50358e27674",
+          "elements": 3376
+        },
+        {
+          "file": "water.json",
+          "sha256": "203ab956e463446434a06e27c70b66b816586c1a99181c3fc304de9175fed51c",
+          "elements": 3846
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "3c7d318671ac1e94f862d228c031ae998e7e703d797338af975dc802b70af0d7",
+          "elements": 12812
+        },
+        {
+          "file": "roads.json",
+          "sha256": "1863d237962a3d6bbb0c0851d8076745c64dfcfebb9430a436adfba6aee89d85",
+          "elements": 12468
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 16,
+    "waterPolygons": 32,
+    "reachWaterPolygons": 32
+  },
+  "observed": {
+    "places": 7637,
+    "extras": 3376,
+    "water": 3846,
+    "landuse": 12812,
+    "roads": 12468
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1244,
+      "sha256": "c749e62cdba80b08e224b1e7dacbadf38f0a901504a30ebf3e12807199f8f923"
+    },
+    "geometry.ts": {
+      "bytes": 195851,
+      "sha256": "a42e54646f3331991a8afa8fef8bc90d195b2cd067b3480fcdbdd0babc7fd8b6"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "ce562e4f302c4dd39c86e3291beb2fe5f82f4c2dc6b2331295e9202d28800b9e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/sydney.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

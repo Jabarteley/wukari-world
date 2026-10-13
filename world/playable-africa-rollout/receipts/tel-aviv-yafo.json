@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "tel-aviv-yafo",
+  "countryIso2": "IL",
+  "generationIdentity": {
+    "cityId": "tel-aviv-yafo",
+    "stateId": "il-tel-aviv-yafo",
+    "stateName": "Tel Aviv"
+  },
+  "inventorySha256": "68344f2bd916a5f2dca84d63a1f07b1a6bb589005d9bbfe0a23bb86f253cc0b2",
+  "inventoryPath": "world/playable-africa-rollout/sources/tel-aviv-yafo.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "tel-aviv-yafo-airport",
+    "name": "Ben Gurion International Airport",
+    "lon": 34.8867,
+    "lat": 32.011398,
+    "sourceUrl": "https://ourairports.com/airports/LLBG/"
+  },
+  "bounds": [
+    31.904418810066023,
+    34.56933347881145,
+    32.26618058993398,
+    34.99427932118855
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/israel-and-palestine-261011.osm.pbf",
+      "datasetSha256": "dfabb9741932fd776d7c29b32693c9a8adf8530b2c73690948a38b992ba330f0",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "ef3f9681d2762e7afe42f45d44faeef2ce8cce80ac78f8832d969ecfecdb8ce7",
+          "elements": 2710
+        },
+        {
+          "file": "extras.json",
+          "sha256": "2acfafe6b8b63a4131cf795388163bfea88e4772bd0dfefaed5e40aa9049804c",
+          "elements": 1293
+        },
+        {
+          "file": "water.json",
+          "sha256": "cbb4193ddd6c066a9c3e5bbe854383743ffdcb3df45e124e6d18e44b4fa00359",
+          "elements": 1060
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "12279b980aaaf76260976bd7f58a31b520840b7bb8708a1b41fde5e236d04647",
+          "elements": 1143
+        },
+        {
+          "file": "roads.json",
+          "sha256": "c28edd6e2c41ca6dee303dbc0f856b52e8001cce17a8774da1eabee6d62f022c",
+          "elements": 2872
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 5,
+    "waterPolygons": 6,
+    "reachWaterPolygons": 19
+  },
+  "observed": {
+    "places": 2710,
+    "extras": 1293,
+    "water": 1060,
+    "landuse": 1143,
+    "roads": 2872
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1245,
+      "sha256": "03432cef15b1f59e59a3049603da94356dc33e91ed1b405d1300f2a625066437"
+    },
+    "geometry.ts": {
+      "bytes": 263786,
+      "sha256": "80d7888efff644a0a6b5cc1df7d8ac7e7e9df09c7ffbf34e23eb5b49729253c3"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "27a887de09e021718ffe0925e25089fafe795727ee4cb69059c355acf91cb000"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/tel-aviv-yafo.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

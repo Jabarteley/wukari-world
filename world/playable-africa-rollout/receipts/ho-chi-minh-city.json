@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "ho-chi-minh-city",
+  "countryIso2": "VN",
+  "generationIdentity": {
+    "cityId": "ho-chi-minh-city",
+    "stateId": "vn",
+    "stateName": "Ho Chi Minh City"
+  },
+  "inventorySha256": "d6e4f17003f64f278775d6d2e112fba60d00b14bd520ccd4d9ac13e9e7816c67",
+  "inventoryPath": "world/playable-africa-rollout/sources/ho-chi-minh-city.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "ho-chi-minh-city-airport",
+    "name": "Tan Son Nhat International Airport",
+    "lon": 106.652,
+    "lat": 10.8188,
+    "sourceUrl": "https://ourairports.com/airports/VVTS/"
+  },
+  "bounds": [
+    10.59284521006602,
+    106.53360400569034,
+    10.954606989933978,
+    106.89959759430965
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/vietnam-261011.osm.pbf",
+      "datasetSha256": "fe2968d88ed99518b3efa77b402ed9915b1647c162383ce59af9374cc582b5fd",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/vietnam-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 330311486,
+          "md5": "b60a6365bffe82cd391e2b6a3bc94e78",
+          "sha256": "d954e09b891079520bf13799377a9cf783cb1d9fe2745ef11864cb8d2a5b2048"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/philippines-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 609760908,
+          "md5": "89aea1627157097ce61c3234dc63b001",
+          "sha256": "26c8148f78776ccf071e270d8a4bef623fe2d2763bec6601f6b03c38cc9eaa74",
+          "reason": "16 maritime Spratly-region ways of relation 49915 absent from the Vietnam clip (1120240923,925,927,928,930,931,932,934,941,942,947,954,955,1199677144,1319181446,1368675506); ways 941+942 are part of the main ring; all nodes inside the Philippines poly, and 942, 1368675506, 1120240932 are present in the Philippines PBF"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "97322165a984292b3cbe904b0d77f279ba0a12955aff2b226738b63804adf5d2",
+          "elements": 7517
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f8ffc1f8fa2026c63456753bda4153aa8531266dd5357e1c5274a8883b75c81b",
+          "elements": 863
+        },
+        {
+          "file": "water.json",
+          "sha256": "3f9a3d715c2cad429dc904b90c8e92b0d806ef87c64b7f45b099ad1270ed3e83",
+          "elements": 2968
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b691cec6c387da9cbd53386c0f335a7ec5da562102ecd1798af221b2a878e585",
+          "elements": 2388
+        },
+        {
+          "file": "roads.json",
+          "sha256": "259d80f6a2cbc877881f6fba9720d7a1eb6709023bbafe3260fd2cbe83f3ab84",
+          "elements": 6478
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 50,
+    "waterPolygons": 210,
+    "reachWaterPolygons": 210
+  },
+  "observed": {
+    "places": 7517,
+    "extras": 863,
+    "water": 2968,
+    "landuse": 2388,
+    "roads": 6478
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1252,
+      "sha256": "ef059dd04840b87e71774ac017a20005bf9d9f0fb09a4fc313f4858e753f0d8f"
+    },
+    "geometry.ts": {
+      "bytes": 228377,
+      "sha256": "605210b49e5cfc19ecf5d36a86d87c30026d93d4b2e01ceef28586cb0c3ea94d"
+    },
+    "index.ts": {
+      "bytes": 267,
+      "sha256": "d3db50d6e8d6deb8ce0959a916a8b5b6c40357c7242806503f434e840650a634"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/ho-chi-minh-city.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

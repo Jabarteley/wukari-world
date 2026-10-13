@@ -2,20 +2,16 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-f-1",
-      "appSha": "82fcf203df18b24edafb7561f05de7a01a6f78b1",
+      "id": "release-g-1",
+      "appSha": "47ba227f976f23928c58679cc39ca8294cde7d76",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "zurich",
-        "baghdad",
-        "athens",
-        "istanbul",
-        "brussels",
-        "tehran",
-        "pyongyang",
-        "moscow",
-        "berlin",
-        "amsterdam"
+        "ho-chi-minh-city",
+        "tel-aviv-yafo",
+        "new-york",
+        "sydney",
+        "oslo",
+        "manila"
       ],
       "roundtrip": true
     }

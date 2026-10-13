@@ -1,0 +1,287 @@
+{
+  "expectedSourceGitSHA": "48d36a0ffa0025c6506b455220b72a8e781939b2",
+  "geometryPreset": "standard",
+  "countryScope": {
+    "kind": "osm-admin0-boundary-v1",
+    "countryISO": "HM",
+    "datasetSha256": "76f15eba2b9d4bf3d5b70b2eb84e2a1e7842a8c265253bf56a11658f42d93f55",
+    "receiptSha256": "a1dfe368eee169b1f5987090a330ec180fa022fbd7734290e1620d8e797f337a",
+    "receiptBytes": 8942,
+    "geometrySha256": "6df6594cda467047afc8d3d464f5ae0be880aba01b68ff46cb25e19a77f03b3e",
+    "geometryBytes": 10331,
+    "scriptSha256": "80ea2383d0e7be17763bfa99e60c0267acbe69e43b33e59e0f28749ee5336f73",
+    "relationId": 2177227,
+    "boundaryKey": "hm",
+    "directory": "country-boundary",
+    "boundaryJob": {
+      "sourceRunId": 38482448629,
+      "sourceSha": "d0dab056cfa8c4a263443aec1159c33405e0d72b",
+      "sourceArtifact": "city-bootstrap-hm-d0dab056cfa8c4a263443aec1159c33405e0d72b",
+      "artifactSubdirectory": "country-boundary"
+    }
+  },
+  "targets": [
+    {
+      "id": "atlas-cove",
+      "name": "Atlas Cove Station",
+      "country": "hm",
+      "facts": {
+        "id": "atlas-cove",
+        "name": "Atlas Cove Station",
+        "country": {
+          "idISOlower": "hm",
+          "name": "Heard Island & McDonald Islands"
+        },
+        "state": {
+          "idunique": "hm-atlas-cove",
+          "name": "Atlas Cove Station"
+        },
+        "timezone": "Etc/GMT-5",
+        "centre": {
+          "lon": 73.3934601,
+          "lat": -53.0190019
+        },
+        "airport": {
+          "id": "atlas-cove-airport",
+          "name": "Atlas Cove Station Helipad",
+          "lon": 73.39349,
+          "lat": -53.01885,
+          "sourceUrl": "https://ourairports.com/airports/AU-0178/"
+        },
+        "sourceLabel": "OpenStreetMap country PBF and OurAirports dated CSV",
+        "sourceUrl": "https://www.openstreetmap.org/node/2855510564",
+        "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+        "coverageNote": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations.",
+        "bounds": [
+          73.31871537731125,
+          -53.06422212248349,
+          73.46820482268875,
+          -52.973781677516506
+        ]
+      },
+      "profile": "outpost",
+      "selectionExclusions": [],
+      "links": [
+        {
+          "to": "port-louis",
+          "kind": "ship"
+        },
+        {
+          "to": "cape-town",
+          "kind": "charter"
+        }
+      ],
+      "metadataSources": {
+        "centre": {
+          "osmRef": "node/2855510564",
+          "sourceUrl": "https://www.openstreetmap.org/node/2855510564",
+          "sourceRecord": {
+            "ref": "node/2855510564",
+            "tags": {
+              "amenity": "research_institute",
+              "name": "Atlas Cove Station",
+              "place": "hamlet"
+            },
+            "lon": 73.3934601,
+            "lat": -53.0190019
+          },
+          "pbfSha256": "76f15eba2b9d4bf3d5b70b2eb84e2a1e7842a8c265253bf56a11658f42d93f55",
+          "selection": {
+            "cityOsmRef": "node/2855510564",
+            "matchedOsmRef": "node/2855510564"
+          }
+        },
+        "airport": {
+          "rowNumber": 11421,
+          "row": {
+            "id": "341499",
+            "ident": "AU-0178",
+            "type": "heliport",
+            "name": "Atlas Cove Station Helipad",
+            "latitude_deg": "-53.01885",
+            "longitude_deg": "73.39349",
+            "elevation_ft": "",
+            "continent": "OC",
+            "iso_country": "HM",
+            "iso_region": "HM-U-A",
+            "municipality": "Atlas Cove Station",
+            "scheduled_service": "no",
+            "icao_code": "",
+            "iata_code": "",
+            "gps_code": "",
+            "local_code": "",
+            "home_link": "",
+            "wikipedia_link": "",
+            "keywords": "YZAC"
+          },
+          "rowSha256": "9d4ed52bb5c4ee97448dbf7aa5824209b77c7fdf1da0b2c7f19a574baa1987ff",
+          "csvSha256": "eb99a7ca14a63612b82d1c33694b2f8963b7cc42b7a6128142e8f1b9c5be23e5",
+          "snapshotDate": "2026-10-12",
+          "selection": {
+            "ident": "AU-0178",
+            "sourceUrl": "https://ourairports.com/airports/AU-0178/",
+            "hubWaiver": "Heard Island and McDonald Islands (HM) has no scheduled-service airport; Atlas Cove Station Helipad (AU-0178, heliport row filed under HM, 0.1 km from the station) is the only mapped landing place. Game venue map only.",
+            "matchedIdent": "AU-0178",
+            "municipalityMatchesCity": true,
+            "claim": "caller-supplied serves-city provenance; source URL content is not verified offline"
+          },
+          "sourceUrl": "https://ourairports.com/airports/AU-0178/"
+        },
+        "timezone": {
+          "rows": [],
+          "zoneTabSha256": "5f23781702bf51408ff1581daa109ab3b9257fb433b1554e579d92172892c0cf",
+          "countryTableSha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
+          "override": {
+            "id": "Etc/GMT-5",
+            "reason": "Heard Island and McDonald Islands has no zone1970.tab row; the territory keeps Indian/Maldives time (UTC+5) in practice, written as the fixed zone Etc/GMT-5.",
+            "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/etcetera",
+            "claim": "reviewed timezone override: the pinned zone1970.tab has no row for this place, or the zone of a station differs from its country row"
+          }
+        },
+        "pbf": {
+          "url": "https://download.geofabrik.de/australia-oceania/australia/heard-mcdonald-261013.osm.pbf",
+          "bytes": 98523,
+          "sha256": "76f15eba2b9d4bf3d5b70b2eb84e2a1e7842a8c265253bf56a11658f42d93f55",
+          "headerTimestamp": "2026-10-13T20:21:31Z"
+        },
+        "coastlineRefsWithinWide": [
+          "way/188546159",
+          "way/272244722",
+          "way/272244723",
+          "way/272297881",
+          "way/272297883",
+          "way/272297884",
+          "way/272297885",
+          "way/272297886",
+          "way/272297887",
+          "way/281467592",
+          "way/281467596",
+          "way/281467599",
+          "way/281574837",
+          "way/281574838",
+          "way/1057833461",
+          "way/1188611305",
+          "way/1188611306",
+          "way/1188611307",
+          "way/1189552913",
+          "way/1208695333",
+          "way/1511347380"
+        ],
+        "adapterSha256": "4079d0a7f3520bbcbb8289d4d8b36f3c4fa8a6d866c15f0041884becbccbb1d3",
+        "boundsPolicySha256": "6f384df7d7b374e875192057a85d6bcace4dd2d7c3b3701298a7893dc2ed67b6",
+        "bounds": {
+          "policy": {
+            "playKm": 5,
+            "coreKm": 3,
+            "airportClearanceMetres": 1000,
+            "maximumAbsoluteLatitude": 75
+          },
+          "boxes": {
+            "play": [
+              -53.06422212248349,
+              73.31871537731125,
+              -52.973781677516506,
+              73.46820482268875
+            ],
+            "core": [
+              -53.0461340334901,
+              73.34863208842818,
+              -52.9918697665099,
+              73.43828811157182
+            ],
+            "outline": [
+              -53.11422212248349,
+              73.26871537731125,
+              -52.92378167751651,
+              73.51820482268874
+            ],
+            "wide": [
+              -53.48845629054974,
+              72.894481209245,
+              -52.54954750945026,
+              73.892438990755
+            ]
+          },
+          "airportMarginMetres": 4983.204417000007,
+          "geometrySourceGitSHA": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+          "geometryToolsSha256": "2d5a2e9cce4856aa26db2526f688602befd2e7e55abc5e25efdc1c5594350641"
+        },
+        "profile": {
+          "name": "outpost",
+          "rules": {
+            "minimumPlaces": 3,
+            "minimumNeighbourhoodLabels": 2,
+            "maximumEmptySlots": 9,
+            "cityPlaceTags": [
+              "city",
+              "town",
+              "village",
+              "hamlet",
+              "locality",
+              "isolated_dwelling"
+            ],
+            "capitalPlaceTags": [],
+            "districtIslandPlaces": [
+              "island",
+              "islet"
+            ],
+            "hubGateway": true,
+            "authoredLinks": true,
+            "slotExtras": {
+              "transit": [
+                "amenity=ferry_terminal"
+              ],
+              "community": [
+                "office=research",
+                "amenity=research_institute"
+              ]
+            },
+            "extraction": {
+              "extraPlaces": [
+                "post_office",
+                "hut",
+                "research",
+                "historic",
+                "ferry"
+              ],
+              "roadLadder": [
+                "secondary",
+                "tertiary",
+                "unclassified",
+                "residential",
+                "service",
+                "track"
+              ],
+              "allowNoRoads": true,
+              "excludeSensitive": true
+            }
+          },
+          "cityPlaceTag": "hamlet"
+        }
+      },
+      "extractKey": "atlas-cove",
+      "extractSha256": {
+        "places": "194bff3ff0967d7a970bebc45e805105d07b9bbe3e1ff4b68d6d9da14386b1fa",
+        "extras": "111416ed6550541af5962cb1387f09f4f7ce3d1e3f672561c97a032351a87a48",
+        "water": "733c26ff6e6e73c94ea3d13dbf640cfdcf4bff62dbe2fdc84a77b1454fd7d941",
+        "landuse": "85363eaa8a501dfb39786f7f8f54377a8df6e8d165c36561e9c43d0c74e47215",
+        "roads": "4a7eaca318a7f853abe36656faff04d448aca4918c8ca09b0ec2fbfff669a0df"
+      },
+      "sourceJob": {
+        "city": "atlas-cove",
+        "sourceRunId": 38482448629,
+        "sourceArtifact": "city-bootstrap-hm-d0dab056cfa8c4a263443aec1159c33405e0d72b",
+        "sourceSha": "d0dab056cfa8c4a263443aec1159c33405e0d72b",
+        "datasetSha256": "76f15eba2b9d4bf3d5b70b2eb84e2a1e7842a8c265253bf56a11658f42d93f55",
+        "adapterSha256": "4079d0a7f3520bbcbb8289d4d8b36f3c4fa8a6d866c15f0041884becbccbb1d3",
+        "extractSha256": {
+          "places": "194bff3ff0967d7a970bebc45e805105d07b9bbe3e1ff4b68d6d9da14386b1fa",
+          "extras": "111416ed6550541af5962cb1387f09f4f7ce3d1e3f672561c97a032351a87a48",
+          "water": "733c26ff6e6e73c94ea3d13dbf640cfdcf4bff62dbe2fdc84a77b1454fd7d941",
+          "landuse": "85363eaa8a501dfb39786f7f8f54377a8df6e8d165c36561e9c43d0c74e47215",
+          "roads": "4a7eaca318a7f853abe36656faff04d448aca4918c8ca09b0ec2fbfff669a0df"
+        }
+      }
+    }
+  ]
+}

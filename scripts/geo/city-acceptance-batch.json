@@ -2,11 +2,39 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-va-3",
-      "appSha": "884fe89b75174d8b1a3be34b752680344b87719a",
+      "id": "release-l-1",
+      "appSha": "3e119adcc9fe5ed03716400a10104512aea54dd9",
       "driverSha": "b142c0e94ca4ad2fdd27df401a8f6c509279a31c",
       "cities": [
-        "vatican-city"
+        "the-valley",
+        "pago-pago",
+        "mariehamn",
+        "gustavia",
+        "willemstad",
+        "laayoune",
+        "stanley",
+        "torshavn",
+        "st-peter-port",
+        "douglas"
+      ],
+      "roundtrip": true,
+      "browserOnly": true
+    },
+    {
+      "id": "release-l-2",
+      "appSha": "3e119adcc9fe5ed03716400a10104512aea54dd9",
+      "driverSha": "b142c0e94ca4ad2fdd27df401a8f6c509279a31c",
+      "cities": [
+        "george-town",
+        "macau",
+        "garapan",
+        "noumea",
+        "papeete",
+        "philipsburg",
+        "cockburn-town",
+        "taipei",
+        "pristina",
+        "kyrenia"
       ],
       "roundtrip": true,
       "browserOnly": true

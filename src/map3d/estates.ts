@@ -44,6 +44,12 @@ type Sampler = (x: number, z: number) => boolean;
 
 const cache = new WeakMap<CityPack, Map<string, EstateLayout>>();
 const FRONT = 15;            // the side of a local government's first estate, where the land allows
+/**
+ * How small the squares may get before a local government is refused. Searching goes from big to small and stops at the first square that
+ * fits, so a government that already fitted keeps exactly its layout; the lower floors only matter for a very small or narrow island
+ * (a coral atoll such as Funafuti, whose land is a strip a few hundred metres wide), which used to throw "no room for its first estate".
+ */
+const FRONT_FLOOR = 1.2, LATTICE_FLOOR = 0.15;
 const FILL = 0.9;            // the share of an estate's square its plots cover (the rest is the verge between estates)
 
 const SCALE = 4;             // cells of the buildable-land grid per map unit
@@ -115,7 +121,7 @@ const boundsOf = (lga: PackLga): Rect => {
  */
 function frontFor(lga: PackLga, mine: Sampler): EstateCell | null {
   const { minX, maxX, minZ, maxZ } = boundsOf(lga), [px, pz] = lga.plate;
-  for (let size = FRONT; size >= 3; size *= 0.9) {
+  for (let size = FRONT; size >= FRONT_FLOOR; size *= 0.9) {
     let best: { x: number; z: number; size: number; far: number } | null = null;
     for (let z = minZ + size / 2; z <= maxZ - size / 2; z += size / 4) for (let x = minX + size / 2; x <= maxX - size / 2; x += size / 4) {
       const far = Math.hypot(x - px, z - pz);
@@ -145,7 +151,7 @@ export function estateLayout(pack: CityPack, lgaId: string): EstateLayout | null
   if (!front) throw new Error(`The land of ${lgaId} has no room for its first estate`);
   let size = 4, cells: EstateCell[] | null = null;
   // The coarsest lattice that still gives every other estate its own square.
-  for (; size > 0.3 && !cells; size *= 0.94) cells = cellsFor(lga, size, mine, front, want);
+  for (; size > LATTICE_FLOOR && !cells; size *= 0.94) cells = cellsFor(lga, size, mine, front, want);
   if (!cells) throw new Error(`The land of ${lgaId} cannot hold ${ESTATE.estates} estates`);
   size /= 0.94;
   cells.sort((a, b) => Math.hypot(a.x - front.x, a.z - front.z) - Math.hypot(b.x - front.x, b.z - front.z) || a.z - b.z || a.x - b.x);

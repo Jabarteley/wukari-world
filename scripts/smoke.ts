@@ -188,7 +188,11 @@ async function main(): Promise<void> {
   if (dev) pass('city chunks', 'skipped: the dev server has no built chunks');
   else {
     let fetched = 0;
-    const texts = [...scripts], got = new Set<string>();
+    const got = new Set<string>();
+    // Every `city-...js` file name seen so far in the startup scripts and in each fetched body. Only the names are kept, never the bodies,
+    // so the corpus is scanned once per file instead of once per city and loop turn (the full text of ~1,000 files ran the heap out).
+    const seen = new Set<string>();
+    const noteNames = (text: string): void => { for (const found of text.matchAll(/\bcity-[\w-]+\.js/g)) seen.add(found[0]); };
     // The page's startup scripts no longer name each city's chunks: they hold the ordered city index (id and name) and an equally long,
     // equally ordered table of the 8-hex content hashes of the rules files, and the loader builds `city-<id>-rules-<hash>.js` at run
     // time. Read both from the page's own scripts, rebuild the names the browser would ask for, and treat them as referenced.
@@ -196,35 +200,40 @@ async function main(): Promise<void> {
     const indexIds = [...(/\[(?:\["[a-z0-9-]+","[^"\]]*"\],?){10,}\]/.exec(source)?.[0] ?? '').matchAll(/\["([a-z0-9-]+)","/g)].map((found) => found[1] as string);
     const hashes = [...(/\[(?:"[0-9a-f]{8}",?){10,}\]/.exec(source)?.[0] ?? '').matchAll(/"([0-9a-f]{8})"/g)].map((found) => found[1] as string);
     if (!indexIds.length || indexIds.length !== hashes.length) fail(`the page's city index has ${indexIds.length} rows but its rules table ${hashes.length}`);
-    const named: string[] = [];
-    for (const [row, id] of indexIds.entries()) named.push(`city-${id}-rules-${hashes[row]}.js`);
-    texts.push(named.join('\n'));
+    noteNames(source);
+    for (const [row, id] of indexIds.entries()) seen.add(`city-${id}-rules-${hashes[row]}.js`);
+    const fetchText = async (path: string, city?: string): Promise<string> => {
+      const chunk = await get(path);
+      if (chunk.status !== 200) fail(`${path} answered ${chunk.status}`);
+      if (city && !TYPES['.js']?.test(chunk.headers.get('content-type') ?? '')) fail(`${path} has content type "${chunk.headers.get('content-type')}"`);
+      return chunk.text();
+    };
     for (const city of cities) {
       // A city's files name each other (its rules name its map, a recipe names its content), so follow the names from the page's scripts
       // until no new file of this city turns up. Lagos's rules may be part of the rules chunk the page loads.
-      const kinds = new Set<string>();
-      for (let more = true; more;) {
-        more = false;
-        for (const found of texts.join('\n').matchAll(new RegExp(`\\b(city-${city}-([a-z]+)-[\\w-]+\\.js)`, 'g'))) {
-          const name = found[1] as string;
-          if (got.has(name)) continue;
-          got.add(name); kinds.add(found[2] as string); more = true;
-          const path = `/assets/${name}`;
-          const chunk = await get(path);
-          if (chunk.status !== 200) fail(`${path} answered ${chunk.status}`);
-          if (!TYPES['.js']?.test(chunk.headers.get('content-type') ?? '')) fail(`${path} has content type "${chunk.headers.get('content-type')}"`);
-          const body = await chunk.text();
-          texts.push(body);
-          fetched++;
-          // What the file imports before it runs may be where the city's other files are named.
-          for (const needed of body.matchAll(/(?:from|import)\s*["']\.\/((?!city-)[\w.-]+\.js)["']/g)) {
-            const other = needed[1] as string;
-            if (got.has(other)) continue;
-            got.add(other);
-            const shared = await get(`/assets/${other}`);
-            if (shared.status !== 200) fail(`/assets/${other} answered ${shared.status}`);
-            texts.push(await shared.text());
-          }
+      const kinds = new Set<string>(), own = new RegExp(`\\b(city-${city}-([a-z]+)-[\\w-]+\\.js)`);
+      for (;;) {
+        const todo: string[] = [];
+        for (const name of seen) {
+          const found = own.exec(name);
+          if (!found || got.has(found[1] as string)) continue;
+          got.add(found[1] as string); kinds.add(found[2] as string); todo.push(found[1] as string);
+        }
+        if (!todo.length) break;
+        // A few at a time: the files are small and the page loads them together.
+        for (let from = 0; from < todo.length; from += 8) {
+          await Promise.all(todo.slice(from, from + 8).map(async (name) => {
+            const body = await fetchText(`/assets/${name}`, city);
+            fetched++;
+            noteNames(body);
+            // What the file imports before it runs may be where the city's other files are named.
+            for (const needed of body.matchAll(/(?:from|import)\s*["']\.\/((?!city-)[\w.-]+\.js)["']/g)) {
+              const other = needed[1] as string;
+              if (got.has(other)) continue;
+              got.add(other);
+              noteNames(await fetchText(`/assets/${other}`));
+            }
+          }));
         }
       }
       if (!kinds.has('map')) fail(`no map chunk of ${city} is referenced by the page's scripts`);

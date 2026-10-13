@@ -1,0 +1,79 @@
+{
+  "design": {
+    "controlSpace": "legacy-relative-v1",
+    "expression": {
+      "intensity": 1,
+      "preset": "neutral"
+    },
+    "morphology": {
+      "body": {
+        "abdominalFullness": 0.42857142857142855,
+        "armLength": 0,
+        "footSize": 0,
+        "handSize": 0,
+        "height": 0,
+        "hipWidth": -0.2,
+        "legLength": 0,
+        "muscleDefinition": 0,
+        "shoulderWidth": 0.2,
+        "torsoLength": 0,
+        "waistWidth": 0
+      },
+      "earLeft": {
+        "height": 0,
+        "lobeLength": -0.3,
+        "protrusion": 0.3,
+        "rotation": 0,
+        "width": 0
+      },
+      "earRight": {
+        "height": 0,
+        "lobeLength": 0,
+        "protrusion": 0.15,
+        "rotation": 0,
+        "width": 0
+      },
+      "face": {
+        "browAngle": 0,
+        "browHeight": 0,
+        "cheekFullness": 0,
+        "chinProjection": 0,
+        "eyeAperture": 0,
+        "eyeSpacing": -0.2,
+        "eyelidFold": 0,
+        "headDepth": 0,
+        "jawWidth": -0.5,
+        "length": 0,
+        "lipFullness": -0.42857142857142855,
+        "width": 0
+      },
+      "nose": {
+        "alarWidth": 0.6,
+        "bridgeHeight": 0,
+        "bridgeWidth": 0,
+        "projection": 0.25,
+        "tipRotation": 0
+      }
+    }
+  },
+  "legacyLook": {
+    "accessories": [],
+    "appearance": {
+      "ageAppearance": "adult",
+      "build": "broad",
+      "height": "short"
+    },
+    "body": "woman",
+    "bottomsColor": "navy",
+    "fabric": "plain",
+    "hair": "braids",
+    "hairColor": "black",
+    "outfit": "kaftan",
+    "outfitColor": "blue",
+    "skin": "skin-1",
+    "wearables": [
+      "kaftan"
+    ]
+  },
+  "schemaVersion": 2
+}

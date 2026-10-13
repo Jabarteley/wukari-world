@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1080" viewBox="0 0 1400 1080" role="img" aria-labelledby="title desc">
+<title id="title">Original human control topology and deformation dependency proposal</title>
+<desc id="desc">Conceptual front-face loop diagram, side profile and whole-body joint dependencies. Independent left and right ears, nose, eyes and mouth are marked. This is an original planning diagram, not a character mesh or realism evidence.</desc>
+<defs>
+  <style>text{font-family:DejaVu Sans,sans-serif;fill:#dae4ef;font-size:17px}.title{font-size:32px;font-weight:bold}.sub{fill:#9eb2c7;font-size:16px}.label{font-size:20px;font-weight:bold}.line{fill:none;stroke:#849fb7;stroke-width:2}.loop{fill:none;stroke:#61d8bf;stroke-width:2}.face{fill:#203445;stroke:#8ea5bb;stroke-width:3}.morph{fill:none;stroke:#edb56f;stroke-width:3}.rig{fill:none;stroke:#829aff;stroke-width:4}.node{fill:#becbff}.small{font-size:14px}</style>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#829aff"/></marker>
+</defs>
+<rect width="1400" height="1080" fill="#101c29"/>
+<text x="48" y="57" class="title">Human design contract / topology dependencies</text>
+<text x="48" y="89" class="sub">Original conceptual drawing • v2 proposal • 38 identity controls • no real-person reference</text>
+<rect x="40" y="118" width="830" height="598" rx="18" fill="#152535"/>
+<rect x="891" y="118" width="467" height="598" rx="18" fill="#152535"/>
+<text x="65" y="155" class="label">A. Identity regions and expression loops</text>
+<text x="910" y="155" class="label">B. Rig and fit dependencies</text>
+<!-- A deliberately abstract symmetric scaffold, not a traced face. -->
+<path class="face" d="M193 253C193 197 246 181 287 181C340 181 381 210 381 261L370 377Q355 434 287 465Q220 434 204 377Z"/>
+<path class="morph" d="M202 285C166 263 155 290 174 346Q182 362 203 347M374 285C410 263 421 290 402 346Q394 362 373 347"/>
+<path class="loop" d="M195 296Q176 284 184 325Q190 341 200 328M379 296Q400 284 392 325Q386 341 376 328"/>
+<ellipse class="loop" cx="243" cy="293" rx="34" ry="22"/><ellipse class="loop" cx="332" cy="293" rx="34" ry="22"/>
+<ellipse class="loop" cx="243" cy="293" rx="25" ry="13"/><ellipse class="loop" cx="332" cy="293" rx="25" ry="13"/>
+<path class="morph" d="M283 285L268 349Q287 366 306 349L292 285M271 349Q277 340 282 349M293 349Q298 340 304 349"/>
+<path class="loop" d="M231 383Q287 351 344 383Q287 422 231 383ZM245 383Q287 367 330 383Q287 398 245 383Z"/>
+<path class="loop" d="M211 265Q244 248 271 266M304 266Q334 248 365 265M215 323Q209 367 225 397L253 422M359 323Q365 367 349 397L321 422M255 435Q288 447 320 435"/>
+<path class="line" d="M287 184V259M198 252Q287 220 376 252M267 449L266 477M309 449L310 477"/>
+<text x="82" y="231" fill="#edb56f">earRight</text><path class="line" d="M138 239L178 282"/>
+<text x="398" y="231">earLeft</text><path class="line" d="M425 239L398 282"/>
+<text x="99" y="486" class="small">Character left/right; independent values stored</text>
+<text x="77" y="528">Teal loops: lids, lip seal, brow and cheek flow</text>
+<text x="77" y="558">Amber regions: ear-root / nasal-wall continuity</text>
+<text x="77" y="588">Shared seam must preserve position + normals + UV</text>
+<text x="77" y="619">Identity edits must retain the expression sample</text>
+<!-- Profile scaffold shows dependency rather than an anatomical claim. -->
+<path class="face" d="M614 222Q663 197 703 224Q722 244 718 274L718 294L744 333L723 344L729 365L720 377L727 389Q715 424 678 429L671 469L624 467L619 404Q582 364 579 309Q575 250 614 222Z"/>
+<path class="loop" d="M698 285Q713 281 719 294M704 290Q710 298 716 295M701 367Q718 360 729 365M700 380Q713 376 720 377"/>
+<path class="morph" d="M650 300C620 281 614 313 630 346Q644 351 650 336M717 305L734 332L723 338"/>
+<circle cx="670" cy="398" r="6" fill="#829aff"/>
+<path class="rig" d="M670 398L690 413L713 404"/>
+<text x="534" y="509" class="small">Jaw/eye articulation requires new</text>
+<text x="534" y="530" class="small">morphs or an explicitly versioned rig.</text>
+<text x="534" y="562" class="small">Current 23-bone body has neither</text>
+<text x="534" y="583" class="small">independent jaw nor eye bones.</text>
+<text x="77" y="680" class="sub">Loops illustrate flow only; they are not exported topology, vertex IDs or measured anatomy.</text>
+<!-- Neutral body dependency scaffold. -->
+<ellipse class="face" cx="1102" cy="224" rx="35" ry="44"/>
+<path class="face" d="M1082 267L1080 285L1040 302L1008 375L978 452L996 462L1031 399L1060 351L1069 415L1060 449L1069 521L1062 615L1088 621L1102 530L1117 621L1143 615L1136 521L1145 449L1135 415L1144 351L1174 399L1209 462L1227 452L1197 375L1165 302L1125 285L1122 267"/>
+<path class="rig" d="M1102 267V449M1102 302L1054 317L1026 391L986 456M1102 302L1151 317L1181 391L1218 456M1102 449L1080 463L1080 535L1074 616M1102 449L1124 463L1124 535L1132 616"/>
+<g class="node"><circle cx="1102" cy="287" r="6"/><circle cx="1102" cy="331" r="6"/><circle cx="1102" cy="365" r="6"/><circle cx="1102" cy="400" r="6"/><circle cx="1102" cy="449" r="6"/><circle cx="1054" cy="317" r="6"/><circle cx="1151" cy="317" r="6"/><circle cx="1026" cy="391" r="6"/><circle cx="1181" cy="391" r="6"/><circle cx="1080" cy="535" r="6"/><circle cx="1124" cy="535" r="6"/></g>
+<path class="loop" d="M1058 312Q1102 330 1146 312M1070 410Q1102 423 1135 410M1060 450Q1102 470 1145 450M1068 533L1092 538M1112 538L1135 533"/>
+<text x="927" y="659" class="small">Rest/bind correction → garment refit → clip / IK</text>
+<text x="927" y="684" class="small">Joint/contact marks are schematic, not 23-bone coordinates.</text>
+<text x="49" y="764" class="label">C. Evaluate from immutable inputs; never accumulate deformations</text>
+<g fill="#203649" stroke="#466079"><rect x="48" y="790" width="236" height="90" rx="12"/><rect x="325" y="790" width="235" height="90" rx="12"/><rect x="601" y="790" width="235" height="90" rx="12"/><rect x="877" y="790" width="235" height="90" rx="12"/></g>
+<text x="68" y="826">Legacy + identity</text><text x="68" y="853" class="small">base + approved endpoint deltas</text>
+<text x="344" y="826">Rig / garment fit</text><text x="344" y="853" class="small">rest/bind + seams + anchors</text>
+<text x="620" y="826">Expression + clip</text><text x="620" y="853" class="small">correctives + raw pose restore</text>
+<text x="896" y="826">Skin / contact</text><text x="896" y="853" class="small">host IK + scene placement</text>
+<g class="rig" marker-end="url(#arrow)"><path d="M287 835H317"/><path d="M563 835H593"/><path d="M839 835H869"/></g>
+<text x="1141" y="817" class="small">Receiver owns</text><text x="1141" y="842" class="small">actual ordering</text><text x="1141" y="867" class="small">and validation.</text>
+<rect x="48" y="913" width="1305" height="113" rx="12" fill="#293344"/>
+<text x="67" y="944">Binding identity = body hash + ordered topology hash + skeleton version + anchor revision</text>
+<text x="67" y="975" class="sub">LOD/topology changes invalidate triangle/barycentric bindings until a tested correspondence is supplied.</text>
+<text x="67" y="1005" class="sub">PROTOTYPE DIAGRAM ONLY • Not a replacement character • No geometry / deformation / in-game realism pass</text>
+</svg>

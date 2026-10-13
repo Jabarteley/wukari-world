@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "provenance": "Original fictional parameter combinations authored in this isolated lane. No real-person reference, photo, scan, inferred race, nationality, health or identity. Adult cosmetic presentation only.",
+  "semantics": "Equal, editable starting points; none is an ideal or demographic average. Internal body keys select the existing mesh, not a person’s gender. Skin/hair, morphology, clothes and expression are independent.",
+  "presets": [
+    {
+      "id": "fictional-01",
+      "file": "fictional-01.json",
+      "label": "Fictional study 1",
+      "reviewStatus": "parameters-only; unrendered; no fit or realism acceptance"
+    },
+    {
+      "id": "fictional-02",
+      "file": "fictional-02.json",
+      "label": "Fictional study 2",
+      "reviewStatus": "parameters-only; unrendered; no fit or realism acceptance"
+    },
+    {
+      "id": "fictional-03",
+      "file": "fictional-03.json",
+      "label": "Fictional study 3",
+      "reviewStatus": "parameters-only; unrendered; no fit or realism acceptance"
+    },
+    {
+      "id": "fictional-04",
+      "file": "fictional-04.json",
+      "label": "Fictional study 4",
+      "reviewStatus": "parameters-only; unrendered; no fit or realism acceptance"
+    },
+    {
+      "id": "fictional-05",
+      "file": "fictional-05.json",
+      "label": "Fictional study 5",
+      "reviewStatus": "parameters-only; unrendered; no fit or realism acceptance"
+    },
+    {
+      "id": "fictional-06",
+      "file": "fictional-06.json",
+      "label": "Fictional study 6",
+      "reviewStatus": "parameters-only; unrendered; no fit or realism acceptance"
+    },
+    {
+      "id": "fictional-07",
+      "file": "fictional-07.json",
+      "label": "Fictional study 7",
+      "reviewStatus": "parameters-only; unrendered; no fit or realism acceptance"
+    }
+  ]
+}

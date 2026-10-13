@@ -352,6 +352,9 @@ function raisedContactTop(shapes: readonly RaisedShape[] | undefined, x: number,
 
 
 /** How long another player's figure takes to ease to a newly reported position (seconds), and the jump beyond which it is simply placed. */
+/** How long a walk takes to ease back to standing, and how far (scene units) the player's head turns to someone close by. */
+const STOP_EASE = 0.2, GLANCE_REACH = 4.5;
+const reducedMotion = (): boolean => Boolean(globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches);
 const PEER_EASE: [number, number] = [0.16, 0.42], PEER_JUMP = 7, PEER_PACE = 6;
 
 /** One other player's figure: a standing and a walking pose, eased between reported positions. */
@@ -428,6 +431,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   avatar.name = 'avatar';
   const figures = new Map<string, AvatarGroup>();
   let shownFigure: AvatarGroup | null = null, standFigure: AvatarGroup | null = null, strideFigure: AvatarGroup | null = null, driven = false;
+  let walking = false, stopLeft = 0, strideAt = 0, strideJog = false, headTurn = 0; // the player's rig between strides (stepPlayerLife)
   const marks: Record<'ring' | 'near' | 'goal', THREE.Mesh | null> = { ring: null, near: null, goal: null };
   /** The game tables that stand here: [{ id, kind: 'table', table, game, x, z, top, r, label }] (see TABLE_PLACES). */
   const tableList: SceneThing[] = [];
@@ -649,9 +653,37 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
   function clearFigures() {
     for (const entry of figures.values()) entry.userData.dispose();
     figures.clear();
-    shownFigure = null; standFigure = null; strideFigure = null;
+    shownFigure = null; standFigure = null; strideFigure = null; walking = false; stopLeft = 0; headTurn = 0;
   }
   /** The two figures of the walk cycle, built ahead so that a step only switches which one is visible. */
+  /**
+   * The player's figure between strides, on frames the host draws anyway (nothing here asks for one): a walk eases back to standing
+   * (STOP_EASE), a standing figure breathes and shifts its weight by the clock (so any frame rate looks the same), and its head
+   * turns to someone close by (smoothed), or back to the front while walking. True while the stop is still easing.
+   */
+  function stepPlayerLife(dt: number): boolean {
+    const rig = rigOf(standFigure);
+    if (!live || !rig || !driven || shownFigure !== standFigure) { stopLeft = 0; return false; }
+    const seconds = (globalThis.performance?.now() ?? 0) / 1000;
+    if (stopLeft > 0) {
+      stopLeft = Math.max(0, stopLeft - dt);
+      if (stopLeft > 0) rig.fade?.(strideAt, stopLeft / STOP_EASE, strideJog); else rig.rest();
+    } else if (!walking) rig.idle?.(seconds);
+    let want = 0;
+    if (!walking && stopLeft === 0) {
+      let near = GLANCE_REACH * GLANCE_REACH;
+      for (const peer of peers.values()) {
+        const dx = peer.x - avatar.position.x, dz = peer.z - avatar.position.z, d2 = dx * dx + dz * dz;
+        if (d2 >= near) continue;
+        const turn = turnTowards(avatar.rotation.y, Math.atan2(dx, dz));
+        if (Math.abs(turn) < 1.5) { near = d2; want = turn; }
+      }
+    }
+    headTurn += (want - headTurn) * (1 - Math.exp(-6 * dt));
+    if (Math.abs(headTurn) < 0.002 && want === 0) headTurn = 0;
+    lookAvatar(standFigure, headTurn);
+    return stopLeft > 0 || Math.abs(headTurn - want) > 0.01;
+  }
   function prebuild() { standFigure = figure('stand'); strideFigure = rigOf(standFigure) ? null : figure('walk'); }
   /** Move the avatar (transform only) and its name tag. */
   function moveAvatar(x: number, y: number, z: number, ry: number) {
@@ -901,7 +933,14 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
     get solids() { return footprints?.solids || []; },
     move: moveAvatar,
     /** Resting pose ('stand', or the activity's pose) — builds that figure if it has not been needed yet. */
-    pose(name?: string, seat?: number) { rigOf(standFigure)?.rest(); return show(name || 'stand', seat); },
+    pose(name?: string, seat?: number) {
+      const rig = rigOf(standFigure);
+      // Stopping on the spot: the stride eases back to standing over STOP_EASE seconds (stepAmbient, on frames the host draws anyway).
+      if (rig?.fade && walking && driven && (!name || name === 'stand') && !reducedMotion()) { stopLeft = STOP_EASE; walking = false; return showFigure(standFigure); }
+      walking = false; stopLeft = 0;
+      rig?.rest();
+      return show(name || 'stand', seat);
+    },
     /**
      * The walk cycle. With a rigged figure (characters.js offering limb parts — see avatar-rig.js) the
      * standing figure's limbs swing with `phase`; without one the walking and the standing figure
@@ -909,7 +948,7 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
      */
     gait(step: unknown, phase = 0, jog = false) {
       const rig = rigOf(standFigure);
-      if (rig) { rig.stride(phase, 1, jog); return showFigure(standFigure); }
+      if (rig) { walking = true; stopLeft = 0; strideAt = phase; strideJog = jog; rig.stride(phase, 1, jog); return showFigure(standFigure); }
       return showFigure(step ? strideFigure : standFigure);
     },
     /**
@@ -1050,12 +1089,12 @@ function createEntry(kit: Kit, venue: SceneVenue | null | undefined, wanted: str
       return changed;
     },
     /** One step of the people (their own window of frames: src/scene/ambient/layer.ts). True while the window is open. */
-    stepAmbient(dt: number) { return ambient.layer?.step(dt) ?? false; },
+    stepAmbient(dt: number) { return stepPlayerLife(dt) || (ambient.layer?.step(dt) ?? false); },
     /** Open the window: the host draws frames for a few seconds so the people can be seen walking. False when there is nobody to see. */
     wakeAmbient() { return ambient.layer?.wake() ?? false; },
     /** Place the people as they are and stand them still (reduced motion, no frame loop). */
     settleAmbient() { ambient.layer?.settle(); },
-    get ambientAwake() { return ambient.layer?.awake ?? false; },
+    get ambientAwake() { return stopLeft > 0 || (ambient.layer?.awake ?? false); },
     get ambientFrames() { return ambient.layer?.frames ?? 0; },
     ambientPeople() { return ambient.people(); },
     ambientCaps() { return ambient.caps(); },

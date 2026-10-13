@@ -110,8 +110,16 @@ uniform vec3 uSkin, uTop, uBottoms, uHair, uShoes;
 uniform float uSkinLum, uClothLum, uSleeping;
 uniform vec2 uEyeU;`;
 // After the base-colour texel is in: keep the painted face, recolour skin by tone, dress the regions.
+// Skin only: a warm, skin-tinted glow toward the silhouette (cheap subsurface and fresnel in one) so faces and arms read soft.
+const SKIN_GLOW = /* glsl */ `
+#include <emissivemap_fragment>
+{
+  float edge = 1.0 - clamp(dot(normalize(normal), normalize(vViewPosition)), 0.0, 1.0);
+  totalEmissiveRadiance += uSkin * vec3(1.0, 0.6, 0.45) * skinMask * (0.035 + 0.2 * edge * edge * edge);
+}`;
 const DRESS = /* glsl */ `
 #include <map_fragment>
+float skinMask = 0.0;
 {
   vec3 texel = diffuseColor.rgb;
   #ifdef USE_MAP
@@ -129,6 +137,7 @@ const DRESS = /* glsl */ `
   float shade = clamp(dot(texel, vec3(0.2126, 0.7152, 0.0722)) / mix(uClothLum, uSkinLum, skinness), 0.55, 1.35);
   float shoes = clamp(1.0 - vRegion.r - vRegion.g - vRegion.b - vRegion.a, 0.0, 1.0);
   vec3 skin = mix(texel, texel * uSkin, skinness);
+  skinMask = skinness * vRegion.r;
   diffuseColor.rgb = skin * vRegion.r + (uTop * vRegion.g + uBottoms * vRegion.b + uHair * vRegion.a + uShoes * shoes) * shade;
 }`;
 
@@ -171,9 +180,9 @@ export async function loadBody(kit: Kit, look: unknown, seed: unknown, sceneScal
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
     shader.vertexShader = shader.vertexShader.replace('#include <common>', `#include <common>${VERTEX}`).replace('#include <begin_vertex>', '#include <begin_vertex>\n  vRegion = color;');
-    shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>${FRAGMENT}`).replace('#include <map_fragment>', DRESS);
+    shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>${FRAGMENT}`).replace('#include <map_fragment>', DRESS).replace('#include <emissivemap_fragment>', SKIN_GLOW);
   };
-  material.customProgramCacheKey = () => 'allworld-body-sleep-1';
+  material.customProgramCacheKey = () => 'allworld-body-sleep-2';
   loaded.dispose();
   skinned.material = material;
   // A posed body leaves its bind-pose bounds; one small mesh is cheaper to draw than to cull wrongly.

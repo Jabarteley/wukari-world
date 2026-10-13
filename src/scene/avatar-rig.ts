@@ -42,6 +42,10 @@ export function avatarStrideScale(look: unknown): number {
 export interface AvatarRig {
   stride(phase: number, amount?: number, jog?: boolean): void;
   rest(): void;
+  /** Hold the stride at `phase`, `share` (0 … 1) of the way from standing: a walk easing out when the avatar stops. Only a rig from characters.ts has it. */
+  fade?(phase: number, share: number, jog?: boolean): void;
+  /** Stand with a slow breath and weight shift at `time` seconds. Only a rig from characters.ts has it. */
+  idle?(time: number): void;
 }
 /** Anything with a rotation whose x swings it forward and back. */
 interface Turnable { rotation: { x: number } }
@@ -100,9 +104,16 @@ export function rigOf(figure: { userData?: unknown } | null | undefined): Avatar
   let rig: AvatarRig | null = null;
   if (PLAYER_RIG && data.parts?.body?.position && data.parts.torso?.rotation && data.parts.legL && data.parts.legR && data.parts.armL && data.parts.armR) {
     // characters.ts poses its own rig: one full cycle is stride 0 … 1 (phase 2π).
+    // The first steps ease the stand into the stride (a few frames, from a half-stride), so a walk starts without a snap.
+    let eased = 0;
     rig = {
-      stride: (phase: number, amount = 1, jog = false) => { if (amount > 0) characters.poseAvatar(figure, { pose: jog ? 'jog' : 'walk', stride: (((phase / TURN) % 1) + 1) % 1 }); else characters.poseAvatar(figure, { pose: 'stand' }); },
-      rest: () => { characters.poseAvatar(figure, { pose: 'stand' }); },
+      stride: (phase: number, amount = 1, jog = false) => {
+        if (amount > 0) { eased = eased === 0 ? 0.55 * Math.min(1, amount) : eased + (Math.min(1, amount) - eased) * 0.35; characters.poseAvatar(figure, { pose: jog ? 'jog' : 'walk', stride: (((phase / TURN) % 1) + 1) % 1, blend: eased > 0.97 ? 1 : eased }); }
+        else { eased = 0; characters.poseAvatar(figure, { pose: 'stand' }); }
+      },
+      rest: () => { eased = 0; characters.poseAvatar(figure, { pose: 'stand' }); },
+      fade: (phase: number, share: number, jog = false) => { eased = 0; characters.poseAvatar(figure, { pose: jog ? 'jog' : 'walk', stride: (((phase / TURN) % 1) + 1) % 1, blend: Math.max(0, Math.min(1, share)) }); },
+      idle: (time: number) => { characters.poseAvatar(figure, { pose: 'stand', time }); },
     };
   } else if (typeof data.stride === 'function') rig = { stride: (phase: number, amount = 1) => { data.stride!(phase, amount); }, rest: () => { data.stride!(0, 0); } };
   else if (data.parts && typeof data.parts === 'object') {

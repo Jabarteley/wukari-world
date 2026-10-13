@@ -108,12 +108,20 @@ def load_absent_evidence(args, timestamp):
             # A reviewed, written exception for a member way that carries maritime=yes but lacks boundary/admin_level tags
             # (US way 42296616, USVI Saint Croix ring). Only absent keys may be excused, never a different value.
             missing = exception.get('missingKeys') if isinstance(exception, dict) else None
-            require(isinstance(exception, dict) and set(exception) == {'missingKeys', 'reason'} and isinstance(missing, list) and missing
+            require(isinstance(exception, dict) and set(exception) in ({'missingKeys', 'reason'}, {'missingKeys', 'reason', 'boundaryValue'})
+                    and isinstance(missing, list) and missing
                     and set(missing) <= TAG_EXCEPTION_KEYS and len(set(missing)) == len(missing) and not set(missing) & set(tags)
                     and isinstance(exception['reason'], str) and len(exception['reason'].strip()) >= 20,
                     f"absent way {way['id']} tagException must list only absent boundary/admin_level keys with a written reason; HOLD")
+            # Reviewed restricted-water line (Taiwan way 654482085, Taiping Island): `boundaryValue: 'maritime'` names the one other value of
+            # boundary the way really carries. Only in a wholeSeparateRings evidence file, only with admin_level absent and excused, and the
+            # way must still close a whole separate ring with the other absent ways (the closure proof below).
+            require('boundaryValue' not in exception or (whole_rings and exception['boundaryValue'] == 'maritime' and tags.get('boundary') == 'maritime'
+                                                       and 'admin_level' in missing and 'boundary' not in missing),
+                    f"absent way {way['id']} tagException boundaryValue is only 'maritime', only with wholeSeparateRings, a boundary=maritime way and admin_level excused; HOLD")
         excused = set(exception['missingKeys']) if exception else set()
-        require((whole_rings or tags.get('maritime') == 'yes') and ('boundary' in excused or tags.get('boundary') == 'administrative')
+        require((whole_rings or tags.get('maritime') == 'yes')
+                and ('boundary' in excused or tags.get('boundary') == 'administrative' or (exception and exception.get('boundaryValue') == tags.get('boundary')))
                 and ('admin_level' in excused or tags.get('admin_level') == '2'),
                 f"absent way {way['id']} is not a maritime=yes admin_level=2 boundary way (and the evidence does not declare wholeSeparateRings); HOLD")
         require(isinstance(way.get('version'), int) and isinstance(way.get('timestamp'), str) and way['timestamp'] <= timestamp,
@@ -198,16 +206,24 @@ def load_relation_override(args):
         require(isinstance(binding, dict) and set(binding) == {'url', 'bytes', 'md5'} and binding['url'] == args.dataset_url
                 and binding['bytes'] == args.expected_bytes and binding['md5'] == args.actual_md5,
                 'relation override evidence PBF mismatch (dataset url/bytes/md5)')
-    require(isinstance(override, dict) and set(override) == {'relationId', 'expectedTags', 'reason'}
+    # userAssignedCode (Somaliland XS, Northern Cyprus XN; owner decision 2026-10-13): a disputed place whose OSM relation carries NO ISO3166-1 tag.
+    # The table's country code is then a user-assigned ISO 3166-1 code (X?), the relation must carry none of the ISO3166-1 keys, and the relation is
+    # pinned by id, by a wikidata tag and by the other expected tags instead.
+    user_assigned = isinstance(override, dict) and override.get('userAssignedCode') is True
+    require(isinstance(override, dict) and set(override) in ({'relationId', 'expectedTags', 'reason'}, {'relationId', 'expectedTags', 'reason', 'userAssignedCode'})
+            and ('userAssignedCode' not in override or user_assigned)
             and isinstance(override['relationId'], int) and override['relationId'] > 0
             and isinstance(override['expectedTags'], dict) and override['expectedTags']
             and all(isinstance(k, str) and isinstance(v, str) for k, v in override['expectedTags'].items())
             and override['expectedTags'].get('admin_level', '0') != '2'
-            and args.country in (override['expectedTags'].get('ISO3166-1:alpha2'), override['expectedTags'].get('ISO3166-1'))
+            and (args.country in (override['expectedTags'].get('ISO3166-1:alpha2'), override['expectedTags'].get('ISO3166-1')) if not user_assigned
+                 else re.fullmatch(r'X[A-Z]', args.country) is not None and not any(key.startswith('ISO3166-1') for key in override['expectedTags'])
+                 and override['expectedTags'].get('boundary') == 'administrative' and re.fullmatch(r'Q[1-9][0-9]*', override['expectedTags'].get('wikidata', '')) is not None)
             and isinstance(override['reason'], str) and len(override['reason'].strip()) >= 20,
-            'admin0RelationOverride needs relationId, expectedTags (with the country ISO code, admin_level absent or not 2) and a written reason of at least 20 characters')
+            'admin0RelationOverride needs relationId, expectedTags (with the country ISO code, admin_level absent or not 2) and a written reason of at least 20 characters; '
+            'a userAssignedCode override needs an X? country code and expectedTags without any ISO3166-1 key but with boundary=administrative and a wikidata id')
     return {'relationId': override['relationId'], 'expectedTags': override['expectedTags'], 'reason': override['reason'].strip(),
-            'evidenceSha256': digest(path)}
+            **({'userAssignedCode': True} if user_assigned else {}), 'evidenceSha256': digest(path)}
 
 
 def load_reviewed_relation_members(args, timestamp):
@@ -401,9 +417,12 @@ def extract(args):
             if not is_admin0(tags, relation.id, args.country, override):
                 return
             codes = [tags[key] for key in ('ISO3166-1:alpha2', 'ISO3166-1') if key in tags]
-            if args.country not in codes:
-                return
-            require(all(code == args.country for code in codes), 'conflicting country ISO tags')
+            if override is not None and override.get('userAssignedCode'):
+                require(not codes, 'a userAssignedCode relation must carry no ISO3166-1 tag')
+            else:
+                if args.country not in codes:
+                    return
+                require(all(code == args.country for code in codes), 'conflicting country ISO tags')
             require(tags.get('type') in {'boundary', 'multipolygon'}, 'unsupported country relation type')
             candidates.append({**metadata(relation), 'tags': tags,
                                'members': [{'type': m.type, 'ref': m.ref, 'role': m.role} for m in relation.members]})
@@ -485,7 +504,8 @@ def extract(args):
     args.diagnostic['stage'] = 'area-assembly'
     factory = osmium.geom.GeoJSONFactory()
     geometries = []
-    country_tags = osmium.filter.TagFilter(('ISO3166-1:alpha2', args.country), ('ISO3166-1', args.country))
+    country_tags = (osmium.filter.TagFilter(('wikidata', override['expectedTags']['wikidata'])) if override is not None and override.get('userAssignedCode')
+                    else osmium.filter.TagFilter(('ISO3166-1:alpha2', args.country), ('ISO3166-1', args.country)))
     processor = osmium.FileProcessor(str(area_source)).with_areas(country_tags).with_filter(osmium.filter.EntityFilter(osmium.osm.AREA))
     for area in processor:
         if area.from_way() or area.orig_id() != relation['id']:

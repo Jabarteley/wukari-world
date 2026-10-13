@@ -1,0 +1,18 @@
+{
+ "iso": "XK",
+ "country": "Kosovo",
+ "geofabrik": "europe/kosovo",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "pristina",
+   "name": "Pristina",
+   "lat": 42.6638771,
+   "lon": 21.1640849,
+   "centreSource": "OSM node/2885136501 place=city capital=yes wikidata=Q25270 in europe/kosovo-261011",
+   "airportIdent": "BKPR",
+   "airportSourceUrl": "https://ourairports.com/airports/BKPR/",
+   "cityOsmRef": "node/2885136501"
+  }
+ ]
+}

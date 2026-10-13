@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/europe/isle-of-man-261011.osm.pbf",
+    "bytes": 6095104,
+    "md5": "7926a7ed22b0efe84fe59496a53e90ba",
+    "snapshotDate": "2026-10-11"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "douglas",
+      "name": "Douglas",
+      "countryISO": "IM",
+      "cityOsmRef": "node/2199688788",
+      "airport": {
+        "ident": "EGNS",
+        "sourceUrl": "https://ourairports.com/airports/EGNS/"
+      },
+      "timezone": {
+        "id": "Europe/London",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

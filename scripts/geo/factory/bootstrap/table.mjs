@@ -135,7 +135,10 @@ for (const city of candidates) {
   assert.equal(facts.centre.lat, sources.centre.sourceRecord.lat);
   assert.equal(facts.airport.lon, Number(sources.airport.row.longitude_deg));
   assert.equal(facts.airport.lat, Number(sources.airport.row.latitude_deg));
-  assert.equal(facts.country.idISOlower.toUpperCase(), sources.airport.row.iso_country);
+  // airport.countryOverride (reviewed, written reason): the territory's airport may be filed under another OurAirports country (Aland AX: EFMA under FI).
+  const airportOverride = sources.airport.selection?.countryOverride;
+  if (airportOverride === undefined) assert.equal(facts.country.idISOlower.toUpperCase(), sources.airport.row.iso_country);
+  else assert.ok(airportOverride.iso === sources.airport.row.iso_country && airportOverride.iso !== facts.country.idISOlower.toUpperCase() && typeof airportOverride.reason === 'string' && airportOverride.reason.trim().length >= 20, 'airport countryOverride must name the airport row country, differ from the seed country and carry a written reason');
   for (const point of [facts.centre, facts.airport]) assert.ok(Number.isFinite(point.lon) && Number.isFinite(point.lat) && Math.abs(point.lon) <= 180 && Math.abs(point.lat) <= 90);
   if (batch) {
     assert.equal(job.datasetSha256, downloads.pbf.sha256);

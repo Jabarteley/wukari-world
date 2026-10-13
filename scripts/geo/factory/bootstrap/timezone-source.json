@@ -16,5 +16,11 @@
       "sha256": "837c80785080c8433fd9d4ea87e78f161ac7a40389301c5153d4f90198baeb2a",
       "license": "public domain"
     }
+  },
+  "reviewedAdditions": {
+    "path": "timezone-data/reviewed-additions.json",
+    "bytes": 2313,
+    "sha256": "1c9c8e33ffce8e6528843af5b07a00ba2886e1e305a23abc495bb87564d75b85",
+    "license": "Allworld reviewed addition, not IANA data"
   }
 }

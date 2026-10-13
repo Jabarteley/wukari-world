@@ -1,0 +1,18 @@
+{
+ "iso": "IM",
+ "country": "Isle of Man",
+ "geofabrik": "europe/isle-of-man",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "douglas",
+   "name": "Douglas",
+   "lat": 54.15,
+   "lon": -4.4775,
+   "centreSource": "Wikidata Q18569 P625 (retrieved 2026-10-13)",
+   "airportIdent": "EGNS",
+   "airportSourceUrl": "https://ourairports.com/airports/EGNS/",
+   "cityOsmRef": "node/2199688788"
+  }
+ ]
+}

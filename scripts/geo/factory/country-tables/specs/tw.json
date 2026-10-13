@@ -1,0 +1,19 @@
+{
+ "iso": "TW",
+ "country": "Taiwan",
+ "geofabrik": "asia/taiwan",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "taipei",
+   "name": "Taipei",
+   "lat": 25.0375,
+   "lon": 121.5625,
+   "centreSource": "Wikidata Q1867 P625 (retrieved 2026-10-13)",
+   "airportIdent": "RCSS",
+   "airportSourceUrl": "https://ourairports.com/airports/RCSS/",
+   "cityOsmRef": "node/1147314253",
+   "timezone": "Asia/Taipei"
+  }
+ ]
+}

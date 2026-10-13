@@ -116,6 +116,83 @@ class WholeSeparateRings(unittest.TestCase):
         self.assertIn('PBF mismatch', result['reason'])
 
 
+LINE = {'boundary': 'maritime', 'border_type': 'restricted waters', 'name': 'Restricted-water line (test)'}
+CLOSER = {**BORDER, 'maritime': 'yes', 'border_type': 'territorial'}
+LINE_EXCEPTION = {'missingKeys': ['admin_level'], 'boundaryValue': 'maritime',
+                  'reason': 'Restricted-water line of an island, boundary=maritime without admin_level (test, Taiping Island).'}
+
+
+def line_evidence(sha, exception=LINE_EXCEPTION, closer_last=30, **extra):
+    """Two absent ways of one island ring: a boundary=maritime line (nodes 30-32-31, no admin_level) and a maritime=yes closing way (31-30)."""
+    line = {'id': 5, 'version': 7, 'timestamp': '2026-08-01T00:00:00Z', 'firstNode': 30, 'lastNode': 31, 'tags': LINE}
+    if exception is not None:
+        line['tagException'] = exception
+    return {'schemaVersion': 1, 'countryISO': 'AA', 'datasetSha256': sha, **extra,
+            'ways': [line, {'id': 6, 'version': 1, 'timestamp': '2026-08-01T00:00:00Z', 'firstNode': 31, 'lastNode': closer_last, 'tags': CLOSER}]}
+
+
+@unittest.skipIf(osmium is None, 'osmium/shapely not installed')
+class RestrictedWaterLine(unittest.TestCase):
+    """Taiwan relation 449220: way 654482085 (boundary=maritime, no admin_level) and way 1199677144 (maritime=yes) close the Taiping ring."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix='boundary-line-test-')
+        self.dir = Path(self.tmp.name)
+        self.pbf = self.dir / 'aa.osm.pbf'
+        members = [('w', 1, 'outer'), ('w', 2, 'outer'), ('w', 5, 'outer'), ('w', 6, 'outer')]
+        helpers.write(self.pbf, objects()[:-1] + [helpers.relation(100, members, COUNTRY)], box=(-0.1, -0.1, 2.1, 2.1))
+        self.sha = helpers.merge_sha(self.pbf)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def run_boundary(self, name, document):
+        path = self.dir / (name + '-evidence.json')
+        path.write_text(json.dumps(document))
+        command = [sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(self.pbf), '--country', 'AA', '--expected-sha256', self.sha,
+                   '--expected-bytes', str(self.pbf.stat().st_size), '--dataset-url', PRIMARY, '--dataset-date', '2026-10-11', '--out', str(self.dir / name),
+                   '--absent-evidence', str(path)]
+        done = subprocess.run(command, capture_output=True, text=True)
+        return done, json.loads((self.dir / name / 'result.json').read_text())
+
+    def test_line_and_closing_way_form_a_ring_and_are_omitted(self):
+        done, _ = self.run_boundary('ok', line_evidence(self.sha, wholeSeparateRings=True, reason=REASON))
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        receipt = json.loads((self.dir / 'ok/receipt.json').read_text())
+        self.assertEqual(sorted(way['id'] for way in receipt['absentMemberPolicy']['omittedAbsentMaritimeWays']), [5, 6])
+        self.assertEqual(sorted(way['id'] for way in receipt['memberWays']), [1, 2])
+        check = subprocess.run(['node', '--input-type=module', '-e', NODE_CHECK, str(self.dir / 'ok'), self.sha], capture_output=True, text=True, cwd=HERE.parent)
+        self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
+
+    def test_without_the_exception_the_line_holds(self):
+        done, result = self.run_boundary('noexc', line_evidence(self.sha, exception=None, wholeSeparateRings=True, reason=REASON))
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('not a maritime=yes admin_level=2 boundary way', result['reason'])
+
+    def test_exception_needs_the_declaration(self):
+        done, result = self.run_boundary('nodecl', line_evidence(self.sha))
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('boundaryValue', result['reason'])
+
+    def test_only_the_maritime_value_is_excused(self):
+        done, result = self.run_boundary('value', line_evidence(self.sha, exception={**LINE_EXCEPTION, 'boundaryValue': 'disputed'}, wholeSeparateRings=True, reason=REASON))
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('boundaryValue', result['reason'])
+
+    def test_open_pair_holds(self):
+        done, result = self.run_boundary('open', line_evidence(self.sha, closer_last=32, wholeSeparateRings=True, reason=REASON))
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('rings of their own', result['reason'])
+
+    def test_receipt_check_refuses_the_value_without_the_declaration(self):
+        done, _ = self.run_boundary('ok2', line_evidence(self.sha, wholeSeparateRings=True, reason=REASON))
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        receipt = json.loads((self.dir / 'ok2/receipt.json').read_text())
+        receipt['absentMemberPolicy'].pop('wholeSeparateRings')
+        (self.dir / 'ok2/receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+        refused = subprocess.run(['node', '--input-type=module', '-e', NODE_CHECK, str(self.dir / 'ok2'), self.sha], capture_output=True, text=True, cwd=HERE.parent)
+        self.assertNotEqual(refused.returncode, 0)
+
+
 DISPUTED = {'type': 'boundary', 'boundary': 'disputed', 'ISO3166-1:alpha2': 'AA', 'ISO3166-1': 'AA', 'name': 'Aaland (disputed)'}
 OVERRIDE = {'relationId': 100, 'expectedTags': DISPUTED, 'reason': 'Owner-approved test override: the only relation of the country is boundary=disputed.'}
 
@@ -442,3 +519,73 @@ class ReviewedRelationMember(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+USER_ASSIGNED = {'type': 'boundary', 'boundary': 'administrative', 'admin_level': '3', 'name': 'Xland (disputed place, no ISO tag)', 'wikidata': 'Q34754'}
+USER_OVERRIDE = {'relationId': 100, 'expectedTags': USER_ASSIGNED, 'userAssignedCode': True,
+                 'reason': 'Disputed place without an ISO 3166-1 tag in OSM: game venue map only, no claims, user-assigned code XA (test).'}
+
+
+@unittest.skipIf(osmium is None, 'osmium/shapely not installed')
+class UserAssignedCodeOverride(unittest.TestCase):
+    """Somaliland (XS) and Northern Cyprus (XN): an admin_level 3 relation with NO ISO3166-1 tag under a user-assigned X? code."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix='boundary-user-assigned-test-')
+        self.dir = Path(self.tmp.name)
+        self.pbf = self.dir / 'xa.osm.pbf'
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def run_boundary(self, name, override=USER_OVERRIDE, relation_tags=USER_ASSIGNED, country='XA'):
+        objects_ = [helpers.node(1, 0, 0), helpers.node(2, 2, 0), helpers.node(3, 2, 2), helpers.node(4, 0, 2),
+                    helpers.way(1, [1, 2, 3], tags=BORDER), helpers.way(2, [3, 4, 1], tags=BORDER),
+                    helpers.relation(100, [('w', 1, 'outer'), ('w', 2, 'outer')], relation_tags)]
+        helpers.write(self.pbf, objects_, box=(-0.1, -0.1, 2.1, 2.1))
+        self.sha = helpers.merge_sha(self.pbf)
+        command = [sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(self.pbf), '--country', country, '--expected-sha256', self.sha,
+                   '--expected-bytes', str(self.pbf.stat().st_size), '--dataset-url', PRIMARY, '--dataset-date', '2026-10-11', '--out', str(self.dir / name)]
+        path = self.dir / (name + '-evidence.json')
+        path.write_text(json.dumps({'schemaVersion': 1, 'countryISO': country, 'datasetSha256': self.sha, 'admin0RelationOverride': override}))
+        command += ['--absent-evidence', str(path)]
+        done = subprocess.run(command, capture_output=True, text=True)
+        return done, json.loads((self.dir / name / 'result.json').read_text())
+
+    def node_check(self, name):
+        script = NODE_CHECK.replace("'AA'", "'XA'").replace("'aa'", "'xa'")
+        return subprocess.run(['node', '--input-type=module', '-e', script, str(self.dir / name), self.sha], capture_output=True, text=True, cwd=HERE.parent)
+
+    def test_relation_without_iso_tags_is_accepted_under_a_user_assigned_code(self):
+        done, _ = self.run_boundary('ok')
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        receipt = json.loads((self.dir / 'ok/receipt.json').read_text())
+        self.assertTrue(receipt['relationOverride']['userAssignedCode'])
+        self.assertEqual(receipt['relation']['id'], 100)
+        check = self.node_check('ok')
+        self.assertEqual(check.returncode, 0, check.stdout + check.stderr)
+        # Without the flag in the receipt the node-only checker demands ISO tags again.
+        receipt['relationOverride'].pop('userAssignedCode')
+        (self.dir / 'ok/receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+        self.assertNotEqual(self.node_check('ok').returncode, 0)
+
+    def test_a_real_iso_code_cannot_use_the_flag(self):
+        done, result = self.run_boundary('iso', country='SO')
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('userAssignedCode', result['reason'])
+
+    def test_expected_tags_may_not_carry_an_iso_key_and_need_a_wikidata_id(self):
+        for name, tags in (('isokey', {**USER_ASSIGNED, 'ISO3166-1': 'XA'}), ('nowd', {k: v for k, v in USER_ASSIGNED.items() if k != 'wikidata'}),
+                           ('badwd', {**USER_ASSIGNED, 'wikidata': 'Qx'})):
+            done, result = self.run_boundary(name, override={**USER_OVERRIDE, 'expectedTags': tags}, relation_tags=tags)
+            self.assertNotEqual(done.returncode, 0, name)
+            self.assertIn('userAssignedCode', result['reason'], name)
+
+    def test_relation_that_carries_an_iso_tag_is_refused_for_the_flag(self):
+        tags = {**USER_ASSIGNED, 'ISO3166-1': 'XA'}
+        done, result = self.run_boundary('tagged', relation_tags=tags, override={**USER_OVERRIDE})
+        self.assertNotEqual(done.returncode, 0)
+
+    def test_other_relation_tags_are_not_found(self):
+        done, result = self.run_boundary('other', relation_tags={**USER_ASSIGNED, 'wikidata': 'Q1'})
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('found 0', result['reason'])

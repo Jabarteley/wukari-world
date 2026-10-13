@@ -1,0 +1,27 @@
+{
+ "iso": "AX",
+ "country": "Åland Islands",
+ "geofabrik": "europe/finland",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "mariehamn",
+   "name": "Mariehamn",
+   "lat": 60.09861111,
+   "lon": 19.94444444,
+   "centreSource": "Wikidata Q48329 P625 (retrieved 2026-10-13)",
+   "airportIdent": "EFMA",
+   "airportSourceUrl": "https://ourairports.com/airports/EFMA/",
+   "airportCountryOverride": {
+    "iso": "FI",
+    "reason": "OurAirports files Mariehamn Airport (EFMA, IATA MHQ) under FI because it has no AX country row. EFMA is the airport of Mariehamn, Aland's capital; the generator requires the airport point to lie inside the exact Aland boundary (relation 1650407), so no Finnish mainland airport can be picked this way. Game venue map only; airport records do not establish current operations."
+   },
+   "cityOsmRef": "node/249423791",
+   "sceneWaterExtent": "play",
+   "waterBudgetLadder": true,
+   "playBox": {
+    "playKm": 8
+   }
+  }
+ ]
+}

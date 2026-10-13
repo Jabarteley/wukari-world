@@ -1,0 +1,22 @@
+{
+ "iso": "XS",
+ "country": "Somaliland",
+ "geofabrik": "africa/somalia",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "hargeisa",
+   "name": "Hargeisa",
+   "lat": 9.565556,
+   "lon": 44.060556,
+   "centreSource": "Wikidata Q168652 P625 (OSM node/4298140251 place=city capital=yes name:en=Hargeisa)",
+   "airportIdent": "HCMH",
+   "airportSourceUrl": "https://ourairports.com/airports/HCMH/",
+   "airportCountryOverride": {
+    "iso": "SO",
+    "reason": "OurAirports has no row country for Somaliland: Egal International Airport (HCMH, IATA HGA, Hargeisa) is filed under SO. The run requires the airport point to lie inside the exact Somaliland boundary (OSM relation 3586169), so no airport outside it can be named this way. Game venue map only, no claims; airport records do not establish current operations."
+   },
+   "cityOsmRef": "node/4298140251"
+  }
+ ]
+}

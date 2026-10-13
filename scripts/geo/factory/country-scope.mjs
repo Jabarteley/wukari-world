@@ -103,13 +103,16 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
     assert.equal(override.relationId, relation.id, 'relation override names another relation');
     assert.ok(typeof override.reason === 'string' && override.reason.trim().length >= 20, 'relation override needs a written reason');
     assert.ok(relation.tags.admin_level === override.expectedTags.admin_level && override.expectedTags.admin_level !== '2' && Object.entries(override.expectedTags).every(([key, value]) => relation.tags[key] === value), 'relation tags differ from the reviewed override');
+    // userAssignedCode (Somaliland XS, Northern Cyprus XN): a relation with NO ISO3166-1 tag under a user-assigned X? code, pinned by id, wikidata and the other expected tags.
+    if (override.userAssignedCode !== undefined) assert.ok(override.userAssignedCode === true && /^X[A-Z]$/.test(iso.toUpperCase()) && !Object.keys(override.expectedTags).some(key => key.startsWith('ISO3166-1')) && override.expectedTags.boundary === 'administrative' && /^Q[1-9][0-9]*$/.test(override.expectedTags.wikidata ?? ''), 'userAssignedCode override is malformed');
   } else {
     assert.equal(relation.tags.boundary, 'administrative');
     assert.equal(relation.tags.admin_level, '2');
   }
   assert.ok(['boundary', 'multipolygon'].includes(relation.tags.type));
   const codes = ['ISO3166-1:alpha2', 'ISO3166-1'].filter(key => key in relation.tags).map(key => relation.tags[key]);
-  assert.ok(codes.length && codes.every(code => code === iso), 'missing/conflicting country ISO tags');
+  if (override?.userAssignedCode === true) assert.deepEqual(codes, [], 'a userAssignedCode relation must carry no ISO3166-1 tag');
+  else assert.ok(codes.length && codes.every(code => code === iso), 'missing/conflicting country ISO tags');
   // A node cannot be a boundary edge: every node member (admin_centre, label, capital, highest_point, ...) is a non-boundary reference.
   const nonBoundary = member => member.type === 'n' || member.type === 'r' && ['subarea', 'land_area'].includes(member.role);
   // Reviewed non-boundary relation members (bootstrap/country-boundary.py load_reviewed_relation_members; Vatican City: relation 6474878,
@@ -148,11 +151,13 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
       // A reviewed tagException excuses only ABSENT boundary/admin_level keys (US way 42296616), with a written reason.
       const excused = new Set(way.tagException?.missingKeys ?? []);
       if (way.tagException !== undefined) {
-        assert.deepEqual(Object.keys(way.tagException).sort(), ['missingKeys', 'reason'], 'tagException keys');
+        assert.deepEqual(Object.keys(way.tagException).sort(), way.tagException.boundaryValue === undefined ? ['missingKeys', 'reason'] : ['boundaryValue', 'missingKeys', 'reason'], 'tagException keys');
+        // Reviewed restricted-water line (Taiwan way 654482085): boundary=maritime with admin_level excused, only in a wholeSeparateRings policy.
+        if (way.tagException.boundaryValue !== undefined) assert.ok(absentPolicy.wholeSeparateRings === true && way.tagException.boundaryValue === 'maritime' && way.tags.boundary === 'maritime' && way.tagException.missingKeys.includes('admin_level') && !way.tagException.missingKeys.includes('boundary'), 'tagException boundaryValue is only maritime, with wholeSeparateRings and admin_level excused');
         assert.ok(excused.size > 0 && excused.size === way.tagException.missingKeys.length && [...excused].every(key => ['boundary', 'admin_level'].includes(key) && !(key in way.tags)), 'tagException may excuse only absent boundary/admin_level keys');
         assert.ok(typeof way.tagException.reason === 'string' && way.tagException.reason.trim().length >= 20, 'tagException needs a written reason');
       }
-      if (!excused.has('boundary')) assert.equal(way.tags.boundary, 'administrative');
+      if (!excused.has('boundary')) assert.equal(way.tags.boundary, way.tagException?.boundaryValue ?? 'administrative');
       if (!excused.has('admin_level')) assert.equal(way.tags.admin_level, '2');
       assert.ok(relationMembers.some(member => member.type === 'w' && member.ref === way.id), 'omitted way is not a member of the country relation');
       omitted.set(way.id, way);

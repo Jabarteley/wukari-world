@@ -1,0 +1,19 @@
+{
+ "iso": "CX",
+ "country": "Christmas Island",
+ "geofabrik": "australia-oceania/australia/christmas-island",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "flying-fish-cove",
+   "name": "Flying Fish Cove",
+   "lat": -10.421666667,
+   "lon": 105.678055556,
+   "centreSource": "Wikidata Q30980 P625 (retrieved 2026-10-13)",
+   "airportIdent": "YPXM",
+   "airportSourceUrl": "https://ourairports.com/airports/YPXM/",
+   "profile": "microstate",
+   "cityOsmRef": "node/2120280212"
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "release": "2026e",
+  "entries": [
+    {
+      "iso": "XK",
+      "name": "Kosovo",
+      "zoneId": "Europe/Belgrade",
+      "zoneRowCountries": "RS,BA,HR,ME,MK,SI",
+      "codeStatus": "user-assigned code XK (not in ISO 3166-1 or the pinned tzdb 2026e tables), game map only",
+      "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope as game venue maps, with no claims. XK is the widely used user-assigned code for Kosovo (it is the ISO3166-1 tag of OSM relation 2088990). The pinned iso3166.tab and zone1970.tab have no XK row; Kosovo observes the same civil time as the Europe/Belgrade row (CET/CEST), which is the pinned zone1970.tab row RS,BA,HR,ME,MK,SI. Only runs for XK read the two tables with this one row appended; every other country reads the pinned files unchanged."
+    },
+    {
+      "iso": "XS",
+      "name": "Somaliland",
+      "zoneId": "Africa/Nairobi",
+      "zoneRowCountries": "KE,DJ,ER,ET,KM,MG,SO,TZ,UG,YT",
+      "codeStatus": "user-assigned code XS (not in ISO 3166-1 or the pinned tzdb 2026e tables), game map only",
+      "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope as game venue maps, with no claims. XS is a user-assigned code for the world-map entry Somaliland (OSM relation 3586169, admin_level 3, no ISO3166-1 tag). The pinned tables have no XS row; Somaliland observes East Africa Time like the pinned Africa/Nairobi row (KE,DJ,ER,ET,KM,MG,SO,TZ,UG,YT). Only runs for XS read the two tables with this one row appended."
+    },
+    {
+      "iso": "XN",
+      "name": "Northern Cyprus",
+      "zoneId": "Asia/Famagusta",
+      "zoneRowCountries": "CY",
+      "codeStatus": "user-assigned code XN (not in ISO 3166-1 or the pinned tzdb 2026e tables), game map only",
+      "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope as game venue maps, with no claims. XN is a user-assigned code for the world-map entry Northern Cyprus (OSM relation 2514541, admin_level 3, no ISO3166-1 tag). The pinned tables have no XN row; the pinned zone1970.tab names the zone of that area itself: the CY row Asia/Famagusta, comment 'Northern Cyprus'. Only runs for XN read the two tables with this one row appended."
+    }
+  ]
+}

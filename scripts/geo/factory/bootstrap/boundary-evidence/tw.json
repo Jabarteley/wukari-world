@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "TW",
+  "dataset": {
+    "url": "https://download.geofabrik.de/asia/taiwan-261011.osm.pbf",
+    "bytes": 327517851,
+    "md5": "7bb79f0c8bc05d2d67497eb62734735b"
+  },
+  "source": "https://api.openstreetmap.org/api/0.6/relation/449220/full.json and https://api.openstreetmap.org/api/0.6/way/{284788564,654482085,1199677144}.json",
+  "retrievedAt": "2026-10-13",
+  "wholeSeparateRings": true,
+  "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope, game venue map only, no claims about real borders, operations or sovereignty. Taiwan relation 449220 (v202, admin_level=2, ISO3166-1=TW) lists 27 member ways. Three of them are two whole separate maritime rings far from the island that the Geofabrik taiwan clip does not contain: the closed Pratas/Dongsha ring (way 284788564, nodes near 20.94N 116.65E) and the Taiping Island ring (way 654482085, a boundary=maritime restricted-waters line, plus way 1199677144, the maritime=yes line between the same two end nodes, near 10.33N 114.34E). Neither ring touches a node of any other member way, and the 24 present ways close into rings on their own (checked against the OSM API geometry and the published taiwan.poly).",
+  "note": "PREDICTED, not read from the PBF: absence is derived from the published europe taiwan.poly (no node of these three ways lies inside it; the same rule matched every observed hold). The 24 present ways have no loose endpoint. If the hosted run reports a different missingMemberWayIds set the boundary stage HOLDs and names the exact set. Replaces the china and philippines neighbour merge (1.6 GB and 610 MB) of the earlier draft.",
+  "ways": [
+    {
+      "id": 284788564,
+      "version": 3,
+      "timestamp": "2026-03-08T08:13:58Z",
+      "tags": {
+        "admin_level": "2",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 13626315941,
+      "lastNode": 13626315941
+    },
+    {
+      "id": 654482085,
+      "version": 7,
+      "timestamp": "2023-08-19T05:20:43Z",
+      "tags": {
+        "border_type": "限制水域",
+        "boundary": "maritime",
+        "description": "對未經許可進入限制或禁止水域之大陸船舶，各主管機關依「臺灣地區與大陸地區人民關係條例」第三十二條及其施行細則第四十二條、第四十三條規定處理。",
+        "is_in": "Taiwan",
+        "name": "南沙（太平島）地區限制水域界線",
+        "note": "限制水域範圍：太平島周邊低潮線向外延伸四千至六千公尺以內海域",
+        "source": "https://www.cpami.gov.tw/kids/filesys/file/chinese/new5/0930001493.pdf"
+      },
+      "firstNode": 11126797042,
+      "lastNode": 6132742653,
+      "tagException": {
+        "missingKeys": [
+          "admin_level"
+        ],
+        "boundaryValue": "maritime",
+        "reason": "Restricted-water line around Taiping Island (Itu Aba) in the South China Sea, tagged boundary=maritime without admin_level (a Taiwan administrative restricted-waters zone, 4000-6000 m off the low-water line, not a territorial claim). It closes a whole separate ring together with way 1199677144 (same two end nodes) and touches no other member way of the relation."
+      }
+    },
+    {
+      "id": 1199677144,
+      "version": 1,
+      "timestamp": "2023-08-19T05:20:43Z",
+      "tags": {
+        "admin_level": "2",
+        "border_type": "territorial",
+        "boundary": "administrative",
+        "maritime": "yes"
+      },
+      "firstNode": 11126797042,
+      "lastNode": 6132742653
+    }
+  ]
+}

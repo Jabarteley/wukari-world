@@ -18,7 +18,8 @@
 //             timezone:'Africa/Monrovia' /* required only for multi-zone countries */,
 //             airportSourceUrl, cityOsmRef, sceneWaterExtent, waterBudgetLadder, namesUnit, selectionExclusions, geometry, playBox, profile /* passed through */,
 //             hubWaiver /* written reason (>= 20 chars): only for a country with NO scheduled-service large/medium/small airport; the
-//                          named airport may then be a heliport, seaplane base or small field with any scheduled_service */}]}
+//                          named airport may then be a heliport, seaplane base or small field with any scheduled_service */,
+//             airportCountryOverride /* {iso, reason >= 20 chars}: the named airport is filed under that OurAirports country (Aland AX: EFMA under FI); the run requires the airport point inside the territory boundary */}]}
 // Writes <out>/<iso-lower>.json (the table) and <out>/<iso-lower>-notes.json (proposals, checks, sources, retrieval times).
 // Exit code 1 if any country fails; the failure reason is printed and no table is written for it.
 import { createHash } from 'node:crypto';
@@ -185,20 +186,29 @@ function airportFacts(row, km) {
 }
 
 function chooseAirport(rows, city, iso, maxKm) {
-  if (city.hubWaiver !== undefined) return waivedAirport(rows, city, iso, maxKm);
+  if (city.hubWaiver !== undefined) {
+    if (city.airportCountryOverride !== undefined) refuse(`${city.id}: airportCountryOverride cannot be combined with hubWaiver`);
+    return waivedAirport(rows, city, iso, maxKm);
+  }
   const inCountry = rows.filter((r) => r.iso_country === iso && r.latitude_deg && r.longitude_deg);
   const dist = (r) => haversineKm(city.lat, city.lon, Number(r.latitude_deg), Number(r.longitude_deg));
   if (city.airportIdent) {
     const hits = rows.filter((r) => r.ident === city.airportIdent);
     if (hits.length !== 1) refuse(`${city.id}: airport ident ${city.airportIdent} is missing or ambiguous in the pinned CSV`);
     const row = hits[0];
-    if (row.iso_country !== iso) refuse(`${city.id}: ${row.ident} is in ${row.iso_country}, not ${iso}`);
+    const override = city.airportCountryOverride;
+    if (override !== undefined) {
+      // Reviewed airport.countryOverride (Aland AX: EFMA is filed under FI): another OurAirports country, a written reason, never with a hub waiver.
+      if (!override || typeof override !== 'object' || Object.keys(override).sort().join() !== 'iso,reason' || !/^[A-Z]{2}$/.test(override.iso) || override.iso === iso
+        || typeof override.reason !== 'string' || override.reason.trim().length < 20) refuse(`${city.id}: airportCountryOverride needs {iso, reason}: another two-letter country than ${iso} and a written reason of at least 20 characters`);
+      if (row.iso_country !== override.iso) refuse(`${city.id}: ${row.ident} is in ${row.iso_country}, not the override country ${override.iso}`);
+    } else if (row.iso_country !== iso) refuse(`${city.id}: ${row.ident} is in ${row.iso_country}, not ${iso}`);
     if (!ELIGIBLE_TYPES.has(row.type)) refuse(`${city.id}: ${row.ident} is type ${row.type}; large_airport or medium_airport required`);
     if (row.scheduled_service !== 'yes') refuse(`${city.id}: ${row.ident} has scheduled_service=${row.scheduled_service || '(empty)'}; yes required`);
     if (!row.name) refuse(`${city.id}: ${row.ident} has no name`);
     const km = dist(row);
     if (km > maxKm) refuse(`${city.id}: ${row.ident} is ${km.toFixed(1)} km from the supplied city centre; limit ${maxKm} km`);
-    return { row, km, proposed: false, alternatives: [] };
+    return { row, km, proposed: false, alternatives: [], ...(override !== undefined ? { countryOverride: { iso: override.iso, reason: override.reason.trim() } } : {}) };
   }
   const eligible = inCountry.filter((r) => ELIGIBLE_TYPES.has(r.type) && r.scheduled_service === 'yes' && r.name)
     .map((r) => ({ row: r, km: dist(r) })).sort((a, b) => a.km - b.km);
@@ -227,19 +237,37 @@ function waivedAirport(rows, city, iso, maxKm) {
 // ---- timezone ----------------------------------------------------------------------------------------------
 function loadTimezoneSource() {
   const manifest = JSON.parse(readFileSync(join(TZ_DIR, 'timezone-source.json'), 'utf8'));
-  const read = (key) => {
-    const record = manifest.files[key];
+  const read = (key, record = manifest.files[key]) => {
     const buffer = readFileSync(join(TZ_DIR, record.path));
     if (buffer.length !== record.bytes || sha256(buffer) !== record.sha256) refuse(`pinned timezone file failed verification: ${record.path}`);
     return { text: buffer.toString('utf8'), record };
   };
-  return { release: manifest.release, zone: read('zone1970'), countries: read('iso3166') };
+  const tz = { release: manifest.release, zone: read('zone1970'), countries: read('iso3166'), additions: new Map() };
+  // Reviewed rows for a user-assigned code the pinned IANA tables lack (Kosovo, XK): bootstrap/timezone-data/reviewed-additions.json,
+  // pinned by bytes and SHA-256 in the manifest. The two IANA files are never edited; only the ISO named there reads this row.
+  if (manifest.reviewedAdditions) {
+    const added = read('reviewedAdditions', manifest.reviewedAdditions);
+    const data = JSON.parse(added.text);
+    if (data.schemaVersion !== 1 || data.release !== manifest.release || !Array.isArray(data.entries)) refuse('unsupported reviewed timezone additions file');
+    for (const entry of data.entries) {
+      const rows = tz.zone.text.split('\n').filter((l) => l && !l.startsWith('#')).map((l) => l.split('\t'));
+      const base = rows.filter((f) => f[2] === entry.zoneId && f[0] === entry.zoneRowCountries);
+      if (!/^[A-Z]{2}$/.test(entry.iso) || base.length !== 1 || rows.some((f) => f[0].split(',').includes(entry.iso))
+        || tz.countries.text.split('\n').some((l) => l && !l.startsWith('#') && l.split('\t')[0] === entry.iso)
+        || !/game map only/.test(entry.codeStatus || '') || typeof entry.reason !== 'string' || entry.reason.trim().length < 20) {
+        refuse(`reviewed timezone addition ${entry.iso} is malformed or already in the pinned IANA tables`);
+      }
+      tz.additions.set(entry.iso, { ...entry, record: added.record });
+    }
+  }
+  return tz;
 }
 
 function timezoneFor(tz, iso, wanted, cityId) {
   const rows = tz.zone.text.split('\n').filter((l) => l && !l.startsWith('#')).map((l) => l.split('\t'))
     .filter((f) => f.length >= 3 && f[0].split(',').includes(iso));
   const ids = [...new Set(rows.map((f) => f[2]))];
+  if (!ids.length && tz.additions.has(iso)) ids.push(tz.additions.get(iso).zoneId);
   if (!ids.length) refuse(`${iso} has no row in the pinned zone1970.tab`);
   if (wanted) {
     if (!ids.includes(wanted)) refuse(`${cityId}: timezone ${wanted} is not a zone1970 row for ${iso} (rows: ${ids.join(', ')})`);
@@ -251,7 +279,7 @@ function timezoneFor(tz, iso, wanted, cityId) {
 
 function isoCountryName(tz, iso) {
   const line = tz.countries.text.split('\n').find((l) => l && !l.startsWith('#') && l.split('\t')[0] === iso);
-  return line ? line.split('\t')[1] : null;
+  return line ? line.split('\t')[1] : (tz.additions.get(iso)?.name ?? null);
 }
 
 // ---- build -------------------------------------------------------------------------------------------------
@@ -290,13 +318,13 @@ async function buildCountry(spec, shared, options) {
     const zone = timezoneFor(tz, iso, city.timezone, city.id);
     const seed = { id: city.id, name: city.name, countryISO: iso };
     for (const key of SEED_PASSTHROUGH) if (city[key] !== undefined) seed[key] = city[key];
-    seed.airport = { ident: pick.row.ident, sourceUrl: city.airportSourceUrl || `https://ourairports.com/airports/${encodeURIComponent(pick.row.ident)}/`, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}) };
+    seed.airport = { ident: pick.row.ident, sourceUrl: city.airportSourceUrl || `https://ourairports.com/airports/${encodeURIComponent(pick.row.ident)}/`, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}), ...(pick.countryOverride ? { countryOverride: pick.countryOverride } : {}) };
     seed.timezone = { id: zone.id, sourceUrl: tz.zone.record.url };
     seeds.push(seed);
     cityNotes.push({
       id: city.id, name: city.name,
       centre: { lat: city.lat, lon: city.lon, source: city.centreSource, usedFor: 'airport distance check only; the pipeline derives the real centre from the OSM city node' },
-      airport: { ...airportFacts(pick.row, pick.km), proposal: pick.proposed, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}), status: pick.waived ? 'WAIVED hub (named airport row, no scheduled-service airport in the country)' : pick.proposed ? 'PROPOSED by nearest large/medium scheduled-service airport; needs human or helper review before queueing' : 'verified from spec airportIdent', sourceUrl: seed.airport.sourceUrl, alternatives: pick.alternatives },
+      airport: { ...airportFacts(pick.row, pick.km), proposal: pick.proposed, ...(pick.waived ? { hubWaiver: city.hubWaiver.trim() } : {}), ...(pick.countryOverride ? { countryOverride: pick.countryOverride } : {}), status: pick.waived ? 'WAIVED hub (named airport row, no scheduled-service airport in the country)' : pick.proposed ? 'PROPOSED by nearest large/medium scheduled-service airport; needs human or helper review before queueing' : 'verified from spec airportIdent', sourceUrl: seed.airport.sourceUrl, alternatives: pick.alternatives },
       timezone: { id: zone.id, explicit: zone.explicit, zoneRowsForCountry: zone.ids, release: tz.release },
     });
   }
@@ -309,7 +337,7 @@ async function buildCountry(spec, shared, options) {
     countryNameNote: spec.country && spec.country !== isoName ? `spec country '${spec.country}' differs from pinned iso3166.tab '${isoName}' (informational; the table derives the name from iso3166.tab)` : null,
     anyAirportProposed: cityNotes.some((c) => c.airport.proposal),
     maxAirportKm: options.maxKm,
-    sources: { geofabrik: { ...geofabrik.notes, ...extras.notes }, ourairports: airports.notes, timezone: { release: tz.release, zone1970: tz.zone.record, iso3166: tz.countries.record } },
+    sources: { geofabrik: { ...geofabrik.notes, ...extras.notes }, ourairports: airports.notes, timezone: { release: tz.release, zone1970: tz.zone.record, iso3166: tz.countries.record, ...(tz.additions.has(iso) ? { reviewedAddition: { iso, name: tz.additions.get(iso).name, zoneId: tz.additions.get(iso).zoneId, codeStatus: tz.additions.get(iso).codeStatus, additionsFile: tz.additions.get(iso).record } } : {}) } },
     cities: cityNotes,
   };
   return { table, notes };

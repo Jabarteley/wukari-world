@@ -197,6 +197,15 @@ def primary_scope(city_id, centre, boxes, boundary_geojson, primary_box):
             'primaryHeaderBox': primary_box}
 
 
+def airport_inside_boundary(city_id, airport, boundary_geojson):
+    """airport.countryOverride (Aland: OurAirports files EFMA under FI): the airport must lie inside the exact territory boundary."""
+    from shapely.geometry import Point, shape
+    country = shape(json.loads(Path(boundary_geojson).read_text()))
+    if not country.contains(Point(airport['lon'], airport['lat'])):
+        raise MergeError(f'{city_id}: the airport named with a countryOverride lies outside the exact admin-0 boundary of the territory; HOLD')
+    return {'city': city_id, 'airportInsideAdmin0': True}
+
+
 CITY_EXTRACT_KEYS = {'url', 'bytes', 'md5', 'snapshotDate', 'reason', 'polyUrl', 'polySha256', 'primaryPolyUrl', 'primaryPolySha256'}
 CITY_BOXES = ('play', 'core', 'outline')
 # Area (square degrees, about 1 m2 at the equator) below which a box part outside the sub-extract .poly counts as no area:

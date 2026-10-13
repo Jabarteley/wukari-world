@@ -1,0 +1,18 @@
+{
+ "iso": "GG",
+ "country": "Guernsey",
+ "geofabrik": "europe/guernsey-jersey",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "st-peter-port",
+   "name": "St Peter Port",
+   "lat": 49.46,
+   "lon": -2.55194,
+   "centreSource": "Wikidata Q174262 P625 (retrieved 2026-10-13)",
+   "airportIdent": "EGJB",
+   "airportSourceUrl": "https://ourairports.com/airports/EGJB/",
+   "cityOsmRef": "node/116359720"
+  }
+ ]
+}

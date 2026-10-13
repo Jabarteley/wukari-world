@@ -82,11 +82,17 @@ def validate_seed(seed):
         if key not in seed:
             continue
         selector = seed[key]
-        allowed = {field, 'sourceUrl'} | ({'hubWaiver'} if key == 'airport' else set())
+        allowed = {field, 'sourceUrl'} | ({'hubWaiver', 'countryOverride'} if key == 'airport' else set())
         if not isinstance(selector, dict) or not {field, 'sourceUrl'} <= set(selector) <= allowed or not isinstance(selector.get(field), str) or not selector[field].strip() or selector[field] != selector[field].strip():
             raise Hold(key + ' selection requires ' + field + ' and sourceUrl')
         if 'hubWaiver' in selector and (not isinstance(selector['hubWaiver'], str) or len(selector['hubWaiver'].strip()) < 20):
             raise Hold('airport hubWaiver needs a written reason (at least 20 characters)')
+        if 'countryOverride' in selector:
+            override = selector['countryOverride']
+            if ('hubWaiver' in selector or not isinstance(override, dict) or set(override) != {'iso', 'reason'}
+                    or not isinstance(override['iso'], str) or not re.fullmatch(r'[A-Z]{2}', override['iso']) or override['iso'] == seed.get('countryISO')
+                    or not isinstance(override['reason'], str) or len(override['reason'].strip()) < 20):
+                raise Hold('airport countryOverride needs {iso, reason}: another two-letter OurAirports country than the seed (reason of at least 20 characters), and cannot be combined with hubWaiver')
         validate_source_url(selector['sourceUrl'])
     return seed
 
@@ -128,7 +134,10 @@ def choose_airport(rows, seed, selector=None):
         # hubWaiver (a country with no scheduled-service airport: Monaco, Liechtenstein, Andorra, San Marino): the country's own named heliport or airfield in the pinned CSV is the game's air hub.
         # Airport records never establish operations (facts.coverageNote), so the venue stays a game hub; the written reason is kept in the receipts.
         waived = 'hubWaiver' in selection
-        if row.get('iso_country') != seed['countryISO'] or row.get('type') not in ({**types, 'heliport': 0, 'seaplane_base': 0} if waived else types) or (row.get('scheduled_service') != 'yes' and not waived) or not row.get('name'):
+        # countryOverride (Aland AX, whose airport OurAirports files under FI): the named row may carry the override's OurAirports country instead of the
+        # seed's. Every other rule (type, scheduled service, name) is unchanged, and batch-run.py requires the airport point to lie inside the exact territory boundary.
+        airport_country = selection['countryOverride']['iso'] if 'countryOverride' in selection else seed['countryISO']
+        if row.get('iso_country') != airport_country or row.get('type') not in ({**types, 'heliport': 0, 'seaplane_base': 0} if waived else types) or (row.get('scheduled_service') != 'yes' and not waived) or not row.get('name'):
             raise Hold('explicit airport must be a named same-country scheduled-service airport (or carry a hubWaiver)')
         if waived and any(r.get('iso_country') == seed['countryISO'] and r.get('scheduled_service') == 'yes' and r.get('type') in types for _, r in rows):
             raise Hold('hubWaiver refused: the country has a scheduled-service airport')

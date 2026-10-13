@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "geometrySourceSha": "7a57e756a10b35a0eec9ec5928f083580fb9e7a9",
+  "countrySource": {
+    "url": "https://download.geofabrik.de/europe/faroe-islands-261011.osm.pbf",
+    "bytes": 7735535,
+    "md5": "ece29f62d9f17562f051ac32c8183035",
+    "snapshotDate": "2026-10-11"
+  },
+  "airports": {
+    "url": "https://raw.githubusercontent.com/davidmegginson/ourairports-data/03565b612558de9d9ec27ca7a1e99a4f9d2619ba/airports.csv",
+    "commit": "03565b612558de9d9ec27ca7a1e99a4f9d2619ba",
+    "snapshotDate": "2026-10-12",
+    "commitTimestamp": "2026-10-12T01:53:12Z"
+  },
+  "seeds": [
+    {
+      "id": "torshavn",
+      "name": "Tórshavn",
+      "countryISO": "FO",
+      "cityOsmRef": "node/29023813",
+      "airport": {
+        "ident": "EKVG",
+        "sourceUrl": "https://ourairports.com/airports/EKVG/"
+      },
+      "timezone": {
+        "id": "Atlantic/Faroe",
+        "sourceUrl": "https://data.iana.org/time-zones/tzdb-2026e/zone1970.tab"
+      }
+    }
+  ]
+}

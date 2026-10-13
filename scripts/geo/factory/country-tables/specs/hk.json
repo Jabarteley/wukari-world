@@ -1,0 +1,19 @@
+{
+ "iso": "HK",
+ "country": "Hong Kong",
+ "geofabrik": "asia/china/guangdong",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "hong-kong",
+   "name": "Hong Kong",
+   "lat": 22.278333333,
+   "lon": 114.158611111,
+   "centreSource": "Wikidata Q8646 P625 (retrieved 2026-10-13)",
+   "airportIdent": "VHHH",
+   "airportSourceUrl": "https://ourairports.com/airports/VHHH/",
+   "cityOsmRef": "node/24330691",
+   "timezone": "Asia/Hong_Kong"
+  }
+ ]
+}

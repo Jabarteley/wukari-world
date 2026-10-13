@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "XS",
+  "dataset": {
+    "url": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+    "bytes": 164734467,
+    "md5": "639481b935c9ebe395758c417d7f6dab"
+  },
+  "admin0RelationOverride": {
+    "relationId": 3586169,
+    "userAssignedCode": true,
+    "expectedTags": {
+      "boundary": "administrative",
+      "admin_level": "3",
+      "type": "boundary",
+      "wikidata": "Q34754"
+    },
+    "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope. Somaliland (XS) is a disputed place (a self-declared state with no UN recognition, claimed by Somalia); it has no ISO 3166-1 code, so XS is a user-assigned code for the world-map entry (reviewed addition in bootstrap/timezone-data/reviewed-additions.json). In OpenStreetMap the only relation for it is relation 3586169 (Q34754), boundary=administrative with admin_level 3 and NO ISO3166-1 tag, so the default admin-0 rule (admin_level=2 with the ISO code) finds none. Territory, game venue map only, no claims: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
+  }
+}

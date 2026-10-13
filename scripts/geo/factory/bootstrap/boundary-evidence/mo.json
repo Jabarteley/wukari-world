@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "MO",
+  "dataset": {
+    "url": "https://download.geofabrik.de/asia/china/guangdong-261011.osm.pbf",
+    "bytes": 173576057,
+    "md5": "174570be76d9547d185edd00cd3fcc40"
+  },
+  "admin0RelationOverride": {
+    "relationId": 1867188,
+    "expectedTags": {
+      "ISO3166-1": "MO",
+      "ISO3166-1:alpha2": "MO",
+      "boundary": "administrative",
+      "admin_level": "3",
+      "type": "boundary"
+    },
+    "reason": "Owner decision 2026-10-13: non-sovereign territories and disputed places are in scope. Macau (MO) is a territory, not a sovereign state (a special administrative region of China). In OpenStreetMap the only relation carrying ISO3166-1=MO is relation 1867188; it is boundary=administrative with admin_level 3, not 2, because the territory sits below a sovereign state, so the default admin-0 rule (boundary=administrative, admin_level=2) finds none. Territory, game venue map only, no claims: no claims about real operations, borders or sovereignty; OSM mapped boundary, not legal-border authority. Every other proof (member ways, area assembly, segment match) still applies."
+  }
+}

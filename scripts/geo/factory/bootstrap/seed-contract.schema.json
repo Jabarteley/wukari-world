@@ -15,7 +15,8 @@
       "properties": {
         "ident": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Exact unique pinned CSV ident; same-country named airport with scheduled_service=yes required. Municipality may differ."},
         "sourceUrl": {"$ref": "#/$defs/provenanceUrl", "description": "Caller-reviewed HTTPS source supporting this airport serves the selected city."},
-        "hubWaiver": {"type": "string", "minLength": 20, "description": "Only for a country with no scheduled-service airport: allows its own named heliport or airfield (any scheduled_service) as the game air hub; written reason kept in the receipts."}
+        "hubWaiver": {"type": "string", "minLength": 20, "description": "Only for a country with no scheduled-service airport: allows its own named heliport or airfield (any scheduled_service) as the game air hub; written reason kept in the receipts."},
+        "countryOverride": {"type": "object", "additionalProperties": false, "required": ["iso", "reason"], "properties": {"iso": {"type": "string", "pattern": "^[A-Z]{2}$"}, "reason": {"type": "string", "minLength": 20}}, "description": "Only for a territory whose airport OurAirports files under another country (Aland AX, EFMA under FI): the named row may carry this OurAirports country instead of the seed's. Not combinable with hubWaiver; the airport point must lie inside the exact territory boundary (batch-run.py); the reason is kept in the receipts."}
       }
     },
     "timezone": {

@@ -1,0 +1,19 @@
+{
+ "iso": "CC",
+ "country": "Cocos (Keeling) Islands",
+ "geofabrik": "australia-oceania/australia/cocos-islands",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "west-island",
+   "name": "West Island",
+   "lat": -12.186944444,
+   "lon": 96.828333333,
+   "centreSource": "Wikidata Q48675 P625 (retrieved 2026-10-13)",
+   "airportIdent": "YPCC",
+   "airportSourceUrl": "https://ourairports.com/airports/YPCC/",
+   "profile": "microstate",
+   "cityOsmRef": "node/1927498780"
+  }
+ ]
+}

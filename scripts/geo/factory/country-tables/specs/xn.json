@@ -1,0 +1,22 @@
+{
+ "iso": "XN",
+ "country": "Northern Cyprus",
+ "geofabrik": "europe/cyprus",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "kyrenia",
+   "name": "Kyrenia",
+   "lat": 35.340277778,
+   "lon": 33.319166667,
+   "centreSource": "Wikidata Q206760 P625 (OSM node/676672956 place=city name=Girne name:en=Kyrenia)",
+   "airportIdent": "LCEN",
+   "airportSourceUrl": "https://ourairports.com/airports/LCEN/",
+   "airportCountryOverride": {
+    "iso": "CY",
+    "reason": "OurAirports has no row country for Northern Cyprus: Ercan International Airport (LCEN, IATA ECN) is filed under CY. The run requires the airport point to lie inside the exact Northern Cyprus boundary (OSM relation 2514541), so no airport outside it can be named this way. Game venue map only, no claims; airport records do not establish current operations."
+   },
+   "cityOsmRef": "node/676672956"
+  }
+ ]
+}

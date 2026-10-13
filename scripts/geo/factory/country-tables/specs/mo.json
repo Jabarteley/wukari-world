@@ -1,0 +1,20 @@
+{
+ "iso": "MO",
+ "country": "Macau",
+ "geofabrik": "asia/china/guangdong",
+ "geofabrikDate": "261011",
+ "cities": [
+  {
+   "id": "macau",
+   "name": "Macau",
+   "lat": 22.19,
+   "lon": 113.538055556,
+   "centreSource": "Wikidata Q14773 P625 (retrieved 2026-10-13)",
+   "airportIdent": "VMMC",
+   "airportSourceUrl": "https://ourairports.com/airports/VMMC/",
+   "cityOsmRef": "node/1939592594",
+   "timezone": "Asia/Macau",
+   "profile": "microstate"
+  }
+ ]
+}

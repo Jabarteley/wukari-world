@@ -10,6 +10,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from datetime import date
 
@@ -60,6 +61,58 @@ def timezone_source_files():
             raise ValueError(f'pinned timezone file verification failed: {expected_name}')
         files[key] = (path, record)
     return manifest, files
+
+def reviewed_additions(manifest):
+    """Reviewed rows for a user-assigned code that the pinned IANA tables do not carry (Kosovo, XK).
+
+    The two pinned IANA files stay byte-identical; every other country reads exactly those files. The additions file is
+    pinned in the manifest by bytes and SHA-256, and a run for an ISO code listed there reads copies of the two tables with
+    that one reviewed row appended (`effective_timezone_files`).
+    """
+    record = manifest.get('reviewedAdditions')
+    if record is None:
+        return {}, None
+    path = (HERE / record.get('path', '')).resolve()
+    if path.parent != (HERE / 'timezone-data').resolve() or path.name != 'reviewed-additions.json':
+        raise ValueError('invalid pinned reviewed timezone additions path')
+    if not path.is_file() or path.stat().st_size != record.get('bytes') or digest(path) != record.get('sha256'):
+        raise ValueError('pinned reviewed timezone additions verification failed')
+    data = json.loads(path.read_text())
+    if data.get('schemaVersion') != 1 or data.get('release') != manifest.get('release') or not isinstance(data.get('entries'), list):
+        raise ValueError('unsupported reviewed timezone additions file')
+    entries = {}
+    for entry in data['entries']:
+        if (not isinstance(entry, dict) or set(entry) != {'iso', 'name', 'zoneId', 'zoneRowCountries', 'codeStatus', 'reason'}
+                or not re.fullmatch(r'[A-Z]{2}', str(entry['iso'])) or entry['iso'] in entries
+                or not all(isinstance(entry[key], str) and entry[key].strip() for key in ('name', 'zoneId', 'zoneRowCountries', 'codeStatus'))
+                or 'game map only' not in entry['codeStatus'] or not isinstance(entry['reason'], str) or len(entry['reason'].strip()) < 20):
+            raise ValueError('reviewed timezone addition needs iso, name, zoneId, zoneRowCountries, a codeStatus naming game map only and a written reason')
+        entries[entry['iso']] = entry
+    return entries, record
+
+def effective_timezone_files(iso, files, manifest, workdir):
+    """(zone tab path, iso tab path, extra receipt fields). The pinned files themselves unless `iso` has a reviewed addition."""
+    additions, record = reviewed_additions(manifest)
+    zone, countries = files['zone1970'][0], files['iso3166'][0]
+    if iso not in additions:
+        return zone, countries, {}
+    entry = additions[iso]
+    zone_text, country_text = zone.read_text(), countries.read_text()
+    zone_rows = [line.split('\t') for line in zone_text.splitlines() if line.strip() and not line.startswith('#')]
+    base = [row for row in zone_rows if len(row) >= 3 and row[2] == entry['zoneId'] and row[0] == entry['zoneRowCountries']]
+    in_country_table = any(line.split('\t')[0] == iso for line in country_text.splitlines() if line.strip() and not line.startswith('#'))
+    if len(base) != 1 or any(iso in row[0].split(',') for row in zone_rows) or in_country_table:
+        raise ValueError(f'reviewed addition {iso} must not exist in the pinned tables and must name exactly one pinned zone1970 row')
+    workdir = Path(workdir)
+    workdir.mkdir(parents=True, exist_ok=True)
+    zone_out, countries_out = workdir / 'zone1970.tab', workdir / 'iso3166.tab'
+    zone_out.write_text(zone_text.rstrip('\n') + '\n' + '\t'.join([iso, base[0][1], entry['zoneId'], entry['codeStatus']]) + '\n')
+    countries_out.write_text(country_text.rstrip('\n') + '\n' + iso + '\t' + entry['name'] + '\n')
+    return zone_out, countries_out, {'reviewedAddition': {
+        'iso': iso, 'name': entry['name'], 'zoneId': entry['zoneId'], 'codeStatus': entry['codeStatus'], 'reason': entry['reason'].strip(),
+        'additionsFile': record['path'], 'additionsSha256': record['sha256'],
+        'pinnedZoneTabSha256': files['zone1970'][1]['sha256'], 'pinnedCountryTableSha256': files['iso3166'][1]['sha256'],
+        'zoneTabSha256': digest(zone_out), 'countryTableSha256': digest(countries_out)}}
 
 def validate(table):
     if type(table.get('schemaVersion')) is not int or table['schemaVersion'] != 2:
@@ -321,7 +374,9 @@ def validate_only(table_path):
         table = json.loads(table_path.read_text())
         seeds, source, airports = validate(table)
         manifest, files = timezone_source_files()
-        seed_report = check_seeds_offline(seeds, files['zone1970'][0], files['iso3166'][0])
+        with tempfile.TemporaryDirectory(prefix='aw-tz-') as tz_scratch:
+            zone_tab, country_tab, _ = effective_timezone_files(seeds[0]['countryISO'], files, manifest, tz_scratch)
+            seed_report = check_seeds_offline(seeds, zone_tab, country_tab)
         neighbours = _merge.validate_neighbours(source)
         city_extract = _merge.validate_city_extract(source)
         report.update(ids=[seed['id'] for seed in seeds], countryISO=seeds[0]['countryISO'],
@@ -451,11 +506,15 @@ def main():
         timezone_manifest, timezone_files = timezone_source_files()
         zone, zone_record = timezone_files['zone1970']
         countries, countries_record = timezone_files['iso3166']
+        zone, countries, tz_addition = effective_timezone_files(seeds[0]['countryISO'], timezone_files, timezone_manifest, out / 'inputs/timezone')
+        if tz_addition:
+            zone_record = {**zone_record, 'sha256': tz_addition['reviewedAddition']['zoneTabSha256'], 'bytes': zone.stat().st_size}
+            countries_record = {**countries_record, 'sha256': tz_addition['reviewedAddition']['countryTableSha256'], 'bytes': countries.stat().st_size}
         tz = {'release': timezone_manifest['release'],
               'zoneTabPath': 'zone1970.tab', 'zoneTabUrl': zone_record['url'],
               'zoneTabBytes': zone_record['bytes'], 'zoneTabSha256': zone_record['sha256'],
               'countryTablePath': 'iso3166.tab', 'countryTableUrl': countries_record['url'],
-              'countryTableBytes': countries_record['bytes'], 'countryTableSha256': countries_record['sha256']}
+              'countryTableBytes': countries_record['bytes'], 'countryTableSha256': countries_record['sha256'], **tz_addition}
         shutil.copyfile(zone, out / 'receipts/zone1970.tab'); shutil.copyfile(countries, out / 'receipts/iso3166.tab')
         (out / 'receipts/timezones.json').write_text(json.dumps(tz, indent=2))
         boundary = out / 'country-boundary'
@@ -514,6 +573,14 @@ def main():
                     metadata_file.write_text(json.dumps(metadata_result, indent=2))
                 if metadata_batch_error and metadata_result.get('status') == 'METADATA_CANDIDATE':
                     metadata_result = {'status': 'HOLD', 'reason': metadata_batch_error}
+                if metadata_result.get('status') == 'METADATA_CANDIDATE' and 'countryOverride' in seed.get('airport', {}):
+                    # Reviewed airport.countryOverride (Aland): the airport row belongs to another OurAirports country, so it must lie inside the territory itself.
+                    try:
+                        proof = _merge.airport_inside_boundary(seed['id'], metadata_result['facts']['airport'], boundary / 'boundary.geojson')
+                        proof.update(countryOverride=seed['airport']['countryOverride'], boundaryReceiptSha256=digest(boundary / 'receipt.json'))
+                        (out / 'receipts' / (seed['id'] + '-airport-country-override.json')).write_text(json.dumps(proof, indent=2))
+                    except Exception as error:
+                        metadata_result = {'status': 'HOLD', 'reason': str(error)}
                 if metadata_result.get('status') == 'METADATA_CANDIDATE' and city_extract:
                     # Owner rule (13 Oct): the city lies wholly inside the sub-extract it is read from (README-batch.md).
                     try:

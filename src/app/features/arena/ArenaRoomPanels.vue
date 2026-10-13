@@ -38,10 +38,10 @@ const choose = (name: string, event: Event): void => {
   <section v-if="r.status.value === 'lobby' && r.state.value" class="rp" data-testid="fight-lobby">
     <h3>Waiting for {{ r.state.value.max > 2 ? 'players' : 'your friend' }}</h3>
     <p>Send this link. Whoever opens it comes straight into this game.</p>
-    <TransitionGroup tag="ul" name="rp-pop" class="rp-people" aria-label="Players">
+    <ul class="rp-people" aria-label="Players">
       <li v-for="p in people" :key="p.key" class="rp-person"><span class="rp-disc" :style="{ background: p.skin, boxShadow: `inset 0 -12px 0 ${p.top}` }" aria-hidden="true">{{ p.initial }}</span><span class="rp-name">{{ p.you ? 'You' : p.name }}</span></li>
       <li v-for="n in empty" :key="'empty-' + n" class="rp-person rp-empty"><span class="rp-disc" aria-hidden="true">?</span><span class="rp-name">Open seat</span></li>
-    </TransitionGroup>
+    </ul>
     <p class="rp-wait" role="status">{{ waiting }}</p>
     <input class="rp-link" readonly :value="r.link.value" aria-label="Invite link" @focus="($event.target as HTMLInputElement).select()">
     <div class="rp-row">
@@ -88,8 +88,9 @@ const choose = (name: string, event: Event): void => {
 .rp-empty .rp-disc { background: transparent; border: 2px dashed #b9b1a3; color: #b9b1a3; text-shadow: none; }
 .rp-name { font-size: 12px; max-width: 64px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rp-wait { font-weight: 650; }
-.rp-pop-enter-active { animation: rp-pop .45s cubic-bezier(.2, 1.6, .4, 1); }
+/* A plain CSS pop on insertion: TransitionGroup would pull its runtime into the shared first-paint vue chunk. */
+.rp-person:not(.rp-empty) { animation: rp-pop .45s cubic-bezier(.2, 1.6, .4, 1); }
 @keyframes rp-pop { from { transform: scale(.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .rp-pop-enter-active { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .rp-person { animation: none; } }
 .rp-small { font-size: 12px; color: var(--c-muted); }
 </style>

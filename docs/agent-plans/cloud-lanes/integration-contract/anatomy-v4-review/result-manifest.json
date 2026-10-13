@@ -1,0 +1,76 @@
+{
+  "schema": "allworld-anatomy-v4-coordinator-review-v1",
+  "candidateCommit": "2921534bdc8959a8489713f9b1652381702808a5",
+  "status": "PRE_SKIN_VISUAL_AND_GEOMETRY_REVIEW_COMPLETE_FULL_ACCEPTANCE_BLOCKED",
+  "candidateVisualSourcesInspected": [
+    "Allworld-anatomy-v4-neutral-half-full-review.png",
+    "neutral.png",
+    "full-blink.png"
+  ],
+  "newRenders": 0,
+  "productionAdopted": false,
+  "skinRefitReceived": false,
+  "fullCombinationRendered": false,
+  "files": [
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/anatomy-v4-review/MATERIAL-DRAW-PLAN.md",
+      "bytes": 7118,
+      "sha256": "e3cae969b8a8eec3e32061c84aee30659843ae8770ab3fdffb5b80dc10e3f2e9"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/anatomy-v4-review/RESULT.md",
+      "bytes": 10751,
+      "sha256": "92ec227ad8e9141d162f90d92551bf1b0df921dc99df11ef658e3261356b597c"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/anatomy-v4-review/compatibility-and-cost-plan.json",
+      "bytes": 127711,
+      "sha256": "e59a94f15374aa08a8cd96a76e83289b147c345d8d930bff1304155de1c486d0"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/anatomy-v4-review/input-pins.json",
+      "bytes": 8385,
+      "sha256": "5cb7b96e3cdc0b2e7c5974a9acc6f44ed85c88b3baa21da42b02a9abbeab1604"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/anatomy-v4-review/targeted-geometry-checks.json",
+      "bytes": 10863,
+      "sha256": "a58b2b3d036f40972d3726e09acfab4cdfc88d89112193088f052f57153efdf8"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/anatomy-v4-review/targeted-geometry-output.txt",
+      "bytes": 751,
+      "sha256": "a6ef6551182889f1ae2ebb84dedf9685fcd65d98f0ed998f811a5c9ff3f2df5f"
+    },
+    {
+      "path": "docs/agent-plans/cloud-lanes/integration-contract/renderer-budget-source-pins.json",
+      "bytes": 2347,
+      "sha256": "f87c97cf1f7aeafdeb686f26326f2a80f48b442a16f1c3385ba09a7e4a099243"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/anatomy-v4-review/.gitignore",
+      "bytes": 22,
+      "sha256": "8da0a2bb012d2887b7e09910cf39a36e23aa7991b48fa20fd3f38df76e92dc87"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/anatomy-v4-review/audit.py",
+      "bytes": 6742,
+      "sha256": "091bec2fd4955cd294b2217bfa1a1ba7bebd10207614d450111a8bfefc3e11ec"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/anatomy-v4-review/materialize.py",
+      "bytes": 2573,
+      "sha256": "ffafb75a545d54984bb26effada03a3934bd8f414547355d832326f0801c10a9"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/anatomy-v4-review/sample_geometry.py",
+      "bytes": 6113,
+      "sha256": "1cc1bd82136afd9a0a66a2c988f16d219ef0289e5268be0d3aeeb45a68c691e5"
+    },
+    {
+      "path": "experiments/cloud-lanes/integration-contract/combined-review-v1/glb.py",
+      "bytes": 5752,
+      "sha256": "bbce90938e585d008f720718d9a9d230fb2963894dd1a958b591ecb15f0b363c"
+    }
+  ]
+}

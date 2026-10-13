@@ -1,0 +1,4 @@
+{"status": "TARGETED_PRE_SKIN_GEOMETRY_PASS", "summary": {"distinctStates": 5, "hairStateCombinations": 10, "eyeHeadProperCrossings": 0, "newLidNormalFlags": 0, "hairProperCrossings": 0, "wardrobeProperCrossings": 0, "invalidGeometryStates": 0, "hairPenetrationStates": 0, "wardrobePenetrationStates": 0, "minimumHairSignedSampleMetres": 0.0034047318785559444, "minimumWardrobeSignedSampleMetres": 0.0027930392484232774, "minimumNewLidAreaM2": 2.5295251320737453e-07}, "seconds": 0.4149123070001224, "classifierSourceSha256": "2ee47f414507ee681efad0678b29a29ff2669f33bc1e27439aeaf13e3b976e1d", "classifierFixturesPassed": 3, "properCrossingToleranceMetres": 2.5e-07, "inputFilesUnchanged": true, "neutralResetExact": true}
+Blender 4.3.2
+
+Blender quit

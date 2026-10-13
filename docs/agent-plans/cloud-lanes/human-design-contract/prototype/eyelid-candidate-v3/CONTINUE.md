@@ -1,6 +1,6 @@
 # Eyelid candidate v3 — bounded correction complete, review required
 
-The four-lid candidate is complete and **not adopted or realism-accepted**. Parent owns combined review and further launches. Original master `3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a` and v2 at `f00a004c2372e1f4ce9305c283be9632c0f238e3` remain unchanged. Source checkpoint `d20184674744995a02c804210853a34f29b958aa` was pushed and remote-verified; obtain the final immutable candidate SHA from the task response. No other lane should rebind automatically.
+The four-lid candidate is complete and **not adopted or realism-accepted**. Parent owns combined review and further launches. Original master `3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a` and v2 at `f00a004c2372e1f4ce9305c283be9632c0f238e3` remain unchanged. Source checkpoint `d20184674744995a02c804210853a34f29b958aa` was pushed and remote-verified; the immutable candidate is **`b62b7fb6d10e9c80e0d127d535d97a86d0b29f49`**. Later receipt-only commits do not change its assets. No other lane should rebind automatically.
 
 ## Candidate and proof
 
@@ -53,3 +53,5 @@ NODE_OPTIONS=--max-old-space-size=128 node scripts/agent-slot.ts heavy --wait-ms
 Builder `-- --no-render` skips images; checker `-- --quick` selects only three diagnostic poses and is not the final gate. Assembly `--image-only` changes layout without repeating unchanged GLB checks. Four Blender CPU threads; no device-performance claim. Nonfatal optional-Draco/Fontconfig warnings retained. Reproduce in a fresh review checkout; never silently overwrite a published candidate.
 
 Parent next action: review this immutable candidate alongside pinned skin/hair/wardrobe work. Retain the current master until explicit adoption. Further anatomy work needs a separate version and scope; this bounded task is finished.
+
+Library proof saved as `libfile_c24ee62b1b00819185546fd938cdbe37`, version 0, image `file_00000000f73c8230926b35a52305c7b0`; see `library-proof.json`. No new render/test is running.

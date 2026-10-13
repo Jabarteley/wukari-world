@@ -2,17 +2,15 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-m-2",
-      "appSha": "0c4d507c7339778b7435a180e34c4fa11f59785b",
+      "id": "release-m-1c",
+      "appSha": "63ab1e79a6e8571692dd5de7ddc65b4203b3e476",
       "driverSha": "3523613e9a220e2d588cdeef6de57a4eb3d1b948",
       "cities": [
-        "marigot",
-        "kingston-nf",
-        "alofi",
-        "san-juan",
-        "road-town",
-        "charlotte-amalie",
-        "hargeisa"
+        "flying-fish-cove",
+        "oranjestad",
+        "hamilton",
+        "avarua",
+        "nuuk"
       ],
       "roundtrip": true,
       "browserOnly": true

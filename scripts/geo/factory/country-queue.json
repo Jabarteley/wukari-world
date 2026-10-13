@@ -35,6 +35,31 @@
    "id": "vn",
    "table": "scripts/geo/factory/country-tables/vn.json",
    "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "de",
+   "table": "scripts/geo/factory/country-tables/de.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "ph",
+   "table": "scripts/geo/factory/country-tables/ph.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "ru",
+   "table": "scripts/geo/factory/country-tables/ru.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "ca",
+   "table": "scripts/geo/factory/country-tables/ca.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
+  },
+  {
+   "id": "us",
+   "table": "scripts/geo/factory/country-tables/us.json",
+   "appSha": "31e7799ce9f87c6afe0f7697e0089747e43896d2"
   }
  ]
 }

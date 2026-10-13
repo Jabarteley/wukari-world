@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mariehamn",
+  "countryIso2": "AX",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Mariehamn",
+    "coordinatesWgs84": [
+      19.94126,
+      60.102423
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/finland-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "mariehamn-airport",
+    "name": "Mariehamn Airport",
+    "lon": 19.898199,
+    "lat": 60.1222,
+    "sourceUrl": "https://ourairports.com/airports/EFMA/"
+  },
+  "boxes": {
+    "play": [
+      60.03007064402641,
+      19.79676611367186,
+      60.174775355973594,
+      20.08575388632814
+    ],
+    "core": [
+      60.05720277751651,
+      19.85102584549452,
+      60.147643222483495,
+      20.03149415450548
+    ],
+    "outline": [
+      59.98007064402641,
+      19.74676611367186,
+      60.22477535597359,
+      20.13575388632814
+    ],
+    "wide": [
+      59.43007064402641,
+      19.19676611367186,
+      60.774775355973595,
+      20.68575388632814
+    ],
+    "water": [
+      59.43007064402641,
+      19.19676611367186,
+      60.774775355973595,
+      20.68575388632814
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/finland-261011.osm.pbf",
+    "datasetSha256": "033dca9c34f00b56a76b0f647203953904466c2255424d68523d36e2312d736d",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "9ad3c216257d98850b50030c4863040a86e3fea8db0b46e96c9e29922b7a5d4e",
+        "elements": 299
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ca4de17518d3eb880cc84a5f1ff093f88a7d3c2de682a7ef1cde391ec5a6016c",
+        "elements": 38
+      },
+      {
+        "file": "water.json",
+        "sha256": "4712c7ff259953526e4e1936a92bd7f81081a4680e853207b53565e2e62578ec",
+        "elements": 17552
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "2ad7c3759127918e9da8e0023d0321b210528aa6544fc35198ff61706f902f41",
+        "elements": 669
+      },
+      {
+        "file": "roads.json",
+        "sha256": "f7456ced07dabba2e746346eb26b2eb930d7c95e8505f84d2438140eba4df16b",
+        "elements": 383
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Mariehamn Western Harbour",
+      "osm": "way/155087370",
+      "coordinatesWgs84": [
+        19.929021,
+        60.092076
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "F.P. von KNORRING",
+      "osm": "way/111858376",
+      "coordinatesWgs84": [
+        19.947544,
+        60.09876
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sjöfartsprogrammen vid Ålands yrkesgymnasium",
+      "osm": "node/13688602433",
+      "coordinatesWgs84": [
+        19.927686,
+        60.101543
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Åland central hospital",
+      "osm": "way/360782167",
+      "coordinatesWgs84": [
+        19.932348,
+        60.115715
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lilla holmen",
+      "osm": "way/1494779775",
+      "coordinatesWgs84": [
+        19.950736,
+        60.096
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Telegrafen",
+      "osm": "way/953317231",
+      "coordinatesWgs84": [
+        19.941272,
+        60.099595
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sankt Olofs kyrka",
+      "osm": "way/261409033",
+      "coordinatesWgs84": [
+        19.948416,
+        60.155027
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mariehamns stadshus",
+      "osm": "way/162310909",
+      "coordinatesWgs84": [
+        19.94371,
+        60.096106
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ålands lagting",
+      "osm": "way/1557602324",
+      "coordinatesWgs84": [
+        19.944825,
+        60.097838
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Alandica Shipping Academy",
+      "osm": "node/9299613331",
+      "coordinatesWgs84": [
+        19.924807,
+        60.10705
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Torpviken birdwatching tower",
+      "osm": "node/1804271293",
+      "coordinatesWgs84": [
+        19.89939,
+        60.108381
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Önningebymuseet",
+      "osm": "node/5095859130",
+      "coordinatesWgs84": [
+        20.006566,
+        60.118287
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kungsö batteri",
+      "osm": "way/306321868",
+      "coordinatesWgs84": [
+        19.8139,
+        60.10622
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Plus Minnessten",
+      "osm": "node/3669569440",
+      "coordinatesWgs84": [
+        19.898592,
+        60.045538
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "S:t Mårtens kyrka",
+      "osm": "way/165234934",
+      "coordinatesWgs84": [
+        19.947847,
+        60.117543
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Åland Pingstförsamling",
+      "osm": "way/494277380",
+      "coordinatesWgs84": [
+        19.940477,
+        60.089987
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Miramarparken",
+      "osm": "way/493148135",
+      "coordinatesWgs84": [
+        19.94406,
+        60.101301
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sittkoff",
+      "osm": "way/169355118",
+      "coordinatesWgs84": [
+        19.943112,
+        60.099037
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Självstyrelseparken",
+      "osm": "way/527070540",
+      "coordinatesWgs84": [
+        19.944552,
+        60.098852
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "ZEIPELS",
+      "osm": "way/173383813",
+      "coordinatesWgs84": [
+        19.942223,
+        60.099783
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Taste of Himalaya",
+      "osm": "node/14073432102",
+      "coordinatesWgs84": [
+        19.907619,
+        60.124907
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ombudet Spel & Café",
+      "osm": "way/496249920",
+      "coordinatesWgs84": [
+        19.933698,
+        60.13088
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baltic friidrottsarena",
+      "osm": "way/1173832356",
+      "coordinatesWgs84": [
+        19.946551,
+        60.085441
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ålands hotell- och restaurangskola",
+      "osm": "node/1805019649",
+      "coordinatesWgs84": [
+        19.942105,
+        60.107641
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1230,
+      "sha256": "c4b91f02fa338f5003a09bf6443d6d84711ec9ec210ae76b5d927dffd417e8a2"
+    },
+    "geometry.ts": {
+      "bytes": 2444457,
+      "sha256": "9d2230a83e9d789af632fb43d6d727bad8ad639c4ca23eadd927d3f723db93b0"
+    },
+    "places.ts": {
+      "bytes": 9702,
+      "sha256": "bc1dbdfa705575610f8d8be35ac2cf0114d2f52209af7d21e023dc892f62b0b2"
+    },
+    "terrain.ts": {
+      "bytes": 1203229,
+      "sha256": "89d4cadc9ecf8add8963ba351a91f3dec364567c08a6ca9baf56f7446f505bce"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "8236cf71e46767dda96224af89fd30e76fcc38f6ecb099526ac780fad82930cd"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

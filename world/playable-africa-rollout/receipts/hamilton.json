@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "cityId": "hamilton",
+  "countryIso2": "BM",
+  "generationIdentity": {
+    "cityId": "hamilton",
+    "stateId": "bm-hamilton",
+    "stateName": "Hamilton"
+  },
+  "inventorySha256": "f731531d222faf628223c406f10babea39dfc01af6de2f1851d00b2d9556fc9c",
+  "inventoryPath": "world/playable-africa-rollout/sources/hamilton.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "hamilton-airport",
+    "name": "L.F. Wade International Airport",
+    "lon": -64.67824,
+    "lat": 32.363802,
+    "sourceUrl": "https://ourairports.com/airports/TXKF/"
+  },
+  "bounds": [
+    32.11338701006602,
+    -64.99828141790888,
+    32.47514878993398,
+    -64.5723519820911
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/united-kingdom/bermuda-261011.osm.pbf",
+      "datasetSha256": "3171958bc0276b242cd0680c40a670da6a0366b513ddfbec196c081ed6444738",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "690317cb33e7a3dbfb4736822ad0292671dcadc750f83f7f98e76949571278e9",
+          "elements": 362
+        },
+        {
+          "file": "extras.json",
+          "sha256": "b87fe516928be81d6bd12d28d913a729dcbd30c761c87957dae99a0683c3be0b",
+          "elements": 105
+        },
+        {
+          "file": "water.json",
+          "sha256": "d888c40689c2e3e09c9a769a3fcab738b80e4a96f12920505cfb7bcbcc00a844",
+          "elements": 402
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "cb4bd49b382c72ee660ee7508da3d6b817993786b908997a49a60b68759e9e79",
+          "elements": 133
+        },
+        {
+          "file": "roads.json",
+          "sha256": "3c33ca0d7182abd4f8fd8ecc531a35923a79b60af814d5304b75d583e682c4f5",
+          "elements": 255
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 26,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 3,
+    "waterPolygons": 40,
+    "reachWaterPolygons": 46
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "hamlet": 1,
+      "locality": 8,
+      "neighbourhood": 2,
+      "village": 7
+    }
+  },
+  "observed": {
+    "places": 362,
+    "extras": 105,
+    "water": 402,
+    "landuse": 133,
+    "roads": 255
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1255,
+      "sha256": "a1133d9b2496687d69fc7c23f1450327f38ed2982a893d287f6087b36903488a"
+    },
+    "geometry.ts": {
+      "bytes": 628021,
+      "sha256": "3093a2af54cf873732e4f0acd2803fb77b6619e7f884aa2555c3841e9f650492"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "483d1c6759f34a98a1bd8ac067192a1734a575ae42d63a0e6747e95f792124cc"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/hamilton.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

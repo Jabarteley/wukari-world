@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "cityId": "avarua",
+  "countryIso2": "CK",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Avarua",
+    "coordinatesWgs84": [
+      -159.7708145,
+      -21.2074736
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/cook-islands-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "avarua-airport",
+    "name": "Rarotonga International Airport",
+    "lon": -159.806,
+    "lat": -21.2027,
+    "sourceUrl": "https://ourairports.com/airports/NCRG/"
+  },
+  "boxes": {
+    "play": [
+      -21.388354489933977,
+      -159.96376526193234,
+      -21.026592710066023,
+      -159.57786373806766
+    ],
+    "core": [
+      -21.252693822483494,
+      -159.81900763388916,
+      -21.162253377516507,
+      -159.72262136611084
+    ],
+    "outline": [
+      -21.438354489933978,
+      -160.01376526193235,
+      -20.976592710066022,
+      -159.52786373806765
+    ],
+    "wide": [
+      -21.98835448993398,
+      -160.56376526193233,
+      -20.42659271006602,
+      -158.97786373806767
+    ],
+    "water": [
+      -21.98835448993398,
+      -160.56376526193233,
+      -20.42659271006602,
+      -158.97786373806767
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/cook-islands-261011.osm.pbf",
+    "datasetSha256": "63f99fa03ae90a44dda490e29742b83b83753a41b05a523ac7ae37b07de85403",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "dff66e0102b8a8dc7a3363cbb0720cd1549245a144aee1a56b45c38eaf087cb1",
+        "elements": 109
+      },
+      {
+        "file": "extras.json",
+        "sha256": "22ad32de4f3d8652137d69243ecdb7392a073504b47e462aa1bb1b2c2c440b04",
+        "elements": 22
+      },
+      {
+        "file": "water.json",
+        "sha256": "d6304ecce96af0a2a455eef9acd1fb17953f01f091e92bb1424411490abc7c07",
+        "elements": 7
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "5e82abe010a8509bde961a6c44cfc618e2827c67eb10195a4d6e34abe70e611c",
+        "elements": 102
+      },
+      {
+        "file": "roads.json",
+        "sha256": "314ca08c8cb4ed4d7939764d9b8d7be27f8f74a72de5032fe024656e86ec0cfa",
+        "elements": 102
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Cook's Corner Bus Terminal",
+      "osm": "node/2171160885",
+      "coordinatesWgs84": [
+        -159.777414,
+        -21.206319
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cafe Puretu",
+      "osm": "node/13521835939",
+      "coordinatesWgs84": [
+        -159.743736,
+        -21.270685
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Takamoa Theological College",
+      "osm": "way/207000207",
+      "coordinatesWgs84": [
+        -159.772413,
+        -21.208949
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rarotonga Hospital",
+      "osm": "way/198974940",
+      "coordinatesWgs84": [
+        -159.819982,
+        -21.212023
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Raemaru Park",
+      "osm": "way/901216183",
+      "coordinatesWgs84": [
+        -159.825267,
+        -21.230943
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Muri Night Market",
+      "osm": "node/2936558679",
+      "coordinatesWgs84": [
+        -159.732393,
+        -21.25719
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parliament of the Cook Islands",
+      "osm": "way/207000165",
+      "coordinatesWgs84": [
+        -159.806211,
+        -21.200569
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Infrastructure Cook Islands",
+      "osm": "node/4682743570",
+      "coordinatesWgs84": [
+        -159.828836,
+        -21.219923
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cook Islands Tertiary and Training Institute Faculty of Hospitality and Services",
+      "osm": "way/1079320783",
+      "coordinatesWgs84": [
+        -159.728657,
+        -21.237622
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "BCI Stadium",
+      "osm": "way/201214783",
+      "coordinatesWgs84": [
+        -159.806875,
+        -21.205907
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Museum",
+      "osm": "node/6324434485",
+      "coordinatesWgs84": [
+        -159.769763,
+        -21.206789
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Muri Lagoon",
+      "osm": "way/1079412410",
+      "coordinatesWgs84": [
+        -159.727368,
+        -21.256001
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Circles Cafe",
+      "osm": "node/12237139801",
+      "coordinatesWgs84": [
+        -159.790821,
+        -21.264178
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Clear View",
+      "osm": "node/2111683565",
+      "coordinatesWgs84": [
+        -159.763948,
+        -21.234727
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kaena",
+      "osm": "node/2187931298",
+      "coordinatesWgs84": [
+        -159.817397,
+        -21.256357
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Good View of Needle",
+      "osm": "node/2148100832",
+      "coordinatesWgs84": [
+        -159.787017,
+        -21.238335
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Whale and Wildlife Centre",
+      "osm": "node/2100754933",
+      "coordinatesWgs84": [
+        -159.792123,
+        -21.206356
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "CTIC Building Centre",
+      "osm": "way/593816781",
+      "coordinatesWgs84": [
+        -159.786322,
+        -21.205107
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nikao Social Centre",
+      "osm": "way/1081629061",
+      "coordinatesWgs84": [
+        -159.821578,
+        -21.206432
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Punanga Nui Market",
+      "osm": "way/196945531",
+      "coordinatesWgs84": [
+        -159.78252,
+        -21.205052
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Southern Pacific",
+      "osm": "way/598519609",
+      "coordinatesWgs84": [
+        -159.772025,
+        -21.207673
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1256,
+      "sha256": "dd3a708c7dfff71008c90fc71e5b515b55a3e7b0ffaf22942dd7038099617596"
+    },
+    "geometry.ts": {
+      "bytes": 10247,
+      "sha256": "a02f578e19a6ec1fd6ca278c8e04895bb9d121642177a3a3deec5905d5804cf6"
+    },
+    "places.ts": {
+      "bytes": 8349,
+      "sha256": "69732458d35d805f68522f9fa098a2a564e291c3edb924cbf373b4c1284270ca"
+    },
+    "terrain.ts": {
+      "bytes": 10693,
+      "sha256": "9a6a566096dc0d5ec097d1ced38741080c07fc45a92e25f554a910eaf18aa956"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "76f135c9882c04482efbfa0349a746509a16f00c7d367011cbcf10d01f5a22b2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

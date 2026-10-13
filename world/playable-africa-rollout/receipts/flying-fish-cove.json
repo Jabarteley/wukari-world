@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "cityId": "flying-fish-cove",
+  "countryIso2": "CX",
+  "generationIdentity": {
+    "cityId": "flying-fish-cove",
+    "stateId": "cx",
+    "stateName": "Flying Fish Cove"
+  },
+  "inventorySha256": "0511a6a326f42c317e649ddf760646295f339768708abc57d2d08254cd6fed1c",
+  "inventoryPath": "world/playable-africa-rollout/sources/flying-fish-cove.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "flying-fish-cove-airport",
+    "name": "Christmas Island International Airport",
+    "lon": 105.6911,
+    "lat": -10.450387,
+    "sourceUrl": "https://ourairports.com/airports/YPXM/"
+  },
+  "bounds": [
+    -10.602215289933978,
+    105.49163034263032,
+    -10.24045351006602,
+    105.85719565736969
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/australia/christmas-island-261011.osm.pbf",
+      "datasetSha256": "89c297fcde59dfaa96d8a764ca24ebfc5edacad0db3eabd015cb6c7730c5578a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6b5d7e38986421a85c26176a3ad40995c05f271d06fb36e2f28d1e5da5d0e28e",
+          "elements": 29
+        },
+        {
+          "file": "extras.json",
+          "sha256": "a08fdcf5abd01efd5055edf320d3b5d30e3c5f57d5f10a8d04eaab228786e5c7",
+          "elements": 4
+        },
+        {
+          "file": "water.json",
+          "sha256": "758eb50442f91492ffb37b514bb885cf47af9fa2b0e2be260dea760f987f79ab",
+          "elements": 17
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "70842348dfa6c87dc040bfe68c25524d7e974bd2ade44ad7a0ca342c38e97f55",
+          "elements": 9
+        },
+        {
+          "file": "roads.json",
+          "sha256": "646883ea68eb9420a25353b577de097ee864b9938ad9b68a82059535e5df1a5a",
+          "elements": 14
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 14,
+    "roads": 9,
+    "neighbourhoodLabels": 4,
+    "landPolygons": 1,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "community",
+        "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "polling",
+        "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "government",
+        "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ]
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "cx-flying-fish-cove",
+          "to": "cx"
+        }
+      },
+      "before": {
+        "catalogueBytes": 172,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 155,
+        "limit": 150,
+        "passed": false
+      }
+    }
+  ],
+  "observed": {
+    "places": 29,
+    "extras": 4,
+    "water": 17,
+    "landuse": 9,
+    "roads": 14
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1306,
+      "sha256": "85f8d1abbb682742f9c6dfda298b33f65aec274fd8c71553d1ee09f749dc927a"
+    },
+    "geometry.ts": {
+      "bytes": 31636,
+      "sha256": "5e585f0e764f86e54727d9e743eb59144baa521c8ac839f40267cf32f40d726b"
+    },
+    "index.ts": {
+      "bytes": 267,
+      "sha256": "3de496dc53a3e0780552fae1a37996d03bb1b3469885aa55330698326246933d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/flying-fish-cove.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

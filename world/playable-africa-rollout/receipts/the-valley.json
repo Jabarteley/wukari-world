@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "cityId": "the-valley",
+  "countryIso2": "AI",
+  "generationIdentity": {
+    "cityId": "the-valley",
+    "stateId": "ai-the-valley",
+    "stateName": "The Valley"
+  },
+  "inventorySha256": "97b00afcacea2cd7f71263e73e432669c8f46c5169f355ec5e7b3b929ff0f054",
+  "inventoryPath": "world/playable-africa-rollout/sources/the-valley.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "the-valley-airport",
+    "name": "Clayton J. Lloyd International Airport",
+    "lon": -63.05383,
+    "lat": 18.204773,
+    "sourceUrl": "https://ourairports.com/airports/TQPF/"
+  },
+  "bounds": [
+    18.03370521006602,
+    -63.24111307900157,
+    18.395466989933976,
+    -62.86243872099843
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "eed9e3f40d18ee699e3d161da7ae082951f494a261b205cc58b31ecf355d0475",
+          "elements": 503
+        },
+        {
+          "file": "extras.json",
+          "sha256": "a58a20f47990a07984c7231d3d939329d3f106ac72f6180adafb02bdfb6c8d94",
+          "elements": 36
+        },
+        {
+          "file": "water.json",
+          "sha256": "cf2bcee7f8a33f268b6ad7baaca28a185a5292a913ebe3ad56b51fd31393ee2e",
+          "elements": 400
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "569f86981af7c32bb938e9212187a47e1e711568f74c6732d37baa87e39fa4b5",
+          "elements": 320
+        },
+        {
+          "file": "roads.json",
+          "sha256": "fe8a6a6399b04549cd2b6cd1d63348b42501e38afa0e67773b2e27ee9dd8bf6d",
+          "elements": 292
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 17,
+    "roads": 25,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 1,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 9
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "community",
+        "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "office=government",
+        "ref": "way/360643395"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "hamlet": 7,
+      "village": 11
+    }
+  },
+  "observed": {
+    "places": 503,
+    "extras": 36,
+    "water": 400,
+    "landuse": 320,
+    "roads": 292
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1267,
+      "sha256": "a6f1dacf75cce69331fe04aa0a769c0215c32ff7d394770f30638ddd65f49e89"
+    },
+    "geometry.ts": {
+      "bytes": 187606,
+      "sha256": "55107dc2a056bdba9997ae5c905ed3f136b966ecd8b4b39d506058d6a8e6c09b"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "5776fc71e86559e50d2878a3d90ecc0782302a6197d747f994249337f54e166e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/the-valley.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

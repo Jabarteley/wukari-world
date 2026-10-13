@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "pristina",
+  "countryIso2": "XK",
+  "generationIdentity": {
+    "cityId": "pristina",
+    "stateId": "xk-pristina",
+    "stateName": "Pristina"
+  },
+  "inventorySha256": "ecad8b957f77c0abe6b8e5c7ada5cd6aa929168209b2b5885911fa50745cc027",
+  "inventoryPath": "world/playable-africa-rollout/sources/pristina.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "pristina-airport",
+    "name": "Priština Adem Jashari International Airport",
+    "lon": 21.035801,
+    "lat": 42.5728,
+    "sourceUrl": "https://ourairports.com/airports/BKPR/"
+  },
+  "bounds": [
+    42.48299621006602,
+    20.919046015952425,
+    42.84475798993398,
+    21.409123784047573
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/kosovo-261011.osm.pbf",
+      "datasetSha256": "6cfbca6ecbf1e3d47d27db2bd7e44e30e7c28d8404c04a2709fa10fb20018a5c",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "bf9589de9e8c74849f0db9cd9da615ce0035e5a4035d681e5e9c46aa62e57fce",
+          "elements": 1410
+        },
+        {
+          "file": "extras.json",
+          "sha256": "d5d0c9be980955d124e0985348e0127cef34569ab1ada572eaa4a880d96f251d",
+          "elements": 228
+        },
+        {
+          "file": "water.json",
+          "sha256": "b560bb685be4f4cd9be4a148b44dda95d33b0f85a650200f5b3ba3d2a2fd85da",
+          "elements": 172
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "5d3b02a79781ccafff94c47cf246cce412c1ad704fec1f8d2808971f15930674",
+          "elements": 1995
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a36acda77f2b6ef711a8e185506fbd46cb1f53ca26695484ea3080c1435c45e6",
+          "elements": 969
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 383,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 31,
+    "waterPolygons": 2,
+    "reachWaterPolygons": 2
+  },
+  "observed": {
+    "places": 1410,
+    "extras": 228,
+    "water": 172,
+    "landuse": 1995,
+    "roads": 969
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1231,
+      "sha256": "a72ffd75472f8fa38df5362a1011619d6948507c020bd6c24f404804a76bf742"
+    },
+    "geometry.ts": {
+      "bytes": 74634,
+      "sha256": "4033e5b006f366c49ee9614d8eeccd09d2c33a54f1db1159a6228f2282664eef"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "8c40f17ba4f492228f032b156f1e56487a79fb66feac12c3878f8b0bdd1b94e2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/pristina.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

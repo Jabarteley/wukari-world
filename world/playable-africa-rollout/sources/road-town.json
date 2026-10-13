@@ -1,0 +1,326 @@
+{
+  "schemaVersion": 1,
+  "cityId": "road-town",
+  "countryIso2": "VG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Road Town",
+    "coordinatesWgs84": [
+      -64.6230914,
+      18.425766
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "road-town-airport",
+    "name": "Terrance B. Lettsome International Airport",
+    "lon": -64.541707,
+    "lat": 18.445492,
+    "sourceUrl": "https://ourairports.com/airports/TUPJ/"
+  },
+  "boxes": {
+    "play": [
+      18.244885110066022,
+      -64.81266223703753,
+      18.606646889933977,
+      -64.43352056296249
+    ],
+    "core": [
+      18.380545777516506,
+      -64.67044649370678,
+      18.470986222483493,
+      -64.57573630629324
+    ],
+    "outline": [
+      18.19488511006602,
+      -64.86266223703753,
+      18.656646889933977,
+      -64.38352056296249
+    ],
+    "wide": [
+      17.64488511006602,
+      -65.41266223703752,
+      19.206646889933978,
+      -63.833520562962484
+    ],
+    "water": [
+      17.64488511006602,
+      -65.41266223703752,
+      19.206646889933978,
+      -63.833520562962484
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "184e46ee435a13a09ee9ea2314fe73789531f5189182358741f0e4517f5ee230",
+        "elements": 274
+      },
+      {
+        "file": "extras.json",
+        "sha256": "67da5f5b36071981a60bda4a1e7d5c2d5e48c4cdb83a19678ead4ae7ec53bcc8",
+        "elements": 28
+      },
+      {
+        "file": "water.json",
+        "sha256": "87417b559fb33572184cb18f31bf4b08a0c8ec182127706481b978859fb50f36",
+        "elements": 452
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "c609fa6da781b2fb176f645c09740af83c3c49171ce87b27252ee17d56a41f96",
+        "elements": 103
+      },
+      {
+        "file": "roads.json",
+        "sha256": "0d98da81b1ac81f706b163b4a0234b229379b3976e31bcea84da3279d1c1cf01",
+        "elements": 274
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [],
+  "selectedPlaces": [
+    {
+      "name": "Great Harbour Ferry Dock",
+      "osm": "node/3363957247",
+      "coordinatesWgs84": [
+        -64.753308,
+        18.443398
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fat Hogs Bob",
+      "osm": "node/2287910830",
+      "coordinatesWgs84": [
+        -64.568869,
+        18.421493
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "H. Lavity Stoutt Community College",
+      "osm": "way/398580541",
+      "coordinatesWgs84": [
+        -64.577627,
+        18.421572
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Peebles Hospital",
+      "osm": "way/398620009",
+      "coordinatesWgs84": [
+        -64.619456,
+        18.417112
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Baths National Park",
+      "osm": "node/4011791651",
+      "coordinatesWgs84": [
+        -64.4422,
+        18.429169
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Harbour Market",
+      "osm": "node/4015267149",
+      "coordinatesWgs84": [
+        -64.701003,
+        18.385317
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Williams Catholic Church",
+      "osm": "way/399684164",
+      "coordinatesWgs84": [
+        -64.618941,
+        18.421384
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Virgin Islands Supreme Court",
+      "osm": "way/399711084",
+      "coordinatesWgs84": [
+        -64.622613,
+        18.425227
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Department of Motor Vehicles",
+      "osm": "way/336882327",
+      "coordinatesWgs84": [
+        -64.656574,
+        18.392598
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "JR O'Neal Trail",
+      "osm": "node/3985384932",
+      "coordinatesWgs84": [
+        -64.655087,
+        18.409109
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cane Garden Beach",
+      "osm": "node/4736438731",
+      "coordinatesWgs84": [
+        -64.657443,
+        18.426054
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pirates Bight",
+      "osm": "way/25839951",
+      "coordinatesWgs84": [
+        -64.613118,
+        18.317967
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cooper Island Beach Club",
+      "osm": "way/521988587",
+      "coordinatesWgs84": [
+        -64.51249,
+        18.385539
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Culture Ville",
+      "osm": "way/398441044",
+      "coordinatesWgs84": [
+        -64.554599,
+        18.443912
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Swim with Dolphins",
+      "osm": "node/2762140557",
+      "coordinatesWgs84": [
+        -64.615597,
+        18.407949
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Big Fig Tree",
+      "osm": "node/13623762300",
+      "coordinatesWgs84": [
+        -64.662561,
+        18.403021
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Half Moon Point",
+      "osm": "node/4653554739",
+      "coordinatesWgs84": [
+        -64.582076,
+        18.413515
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Island Tours & Taxi gathering",
+      "osm": "node/13714339195",
+      "coordinatesWgs84": [
+        -64.615289,
+        18.423539
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tortola Express",
+      "osm": "node/4014810501",
+      "coordinatesWgs84": [
+        -64.614943,
+        18.411203
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Queen Elizabeth Park",
+      "osm": "way/398735674",
+      "coordinatesWgs84": [
+        -64.616798,
+        18.415194
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Noel Lloyd Positive Action Movement Park",
+      "osm": "way/399518614",
+      "coordinatesWgs84": [
+        -64.617557,
+        18.422013
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1273,
+      "sha256": "f31075864dc5f7fbbbe680f8c541cb83191eced448e144205bb7e72f1f6f641d"
+    },
+    "geometry.ts": {
+      "bytes": 883534,
+      "sha256": "ff00df09ede3fa68112038d720ab8d78533bb8f0d164acc2813afd392ef93a7a"
+    },
+    "places.ts": {
+      "bytes": 8333,
+      "sha256": "3faeaeab775e83e59c5ebc768dc05fa3b192a8a38719908ec6d1715a691dcfa1"
+    },
+    "terrain.ts": {
+      "bytes": 517001,
+      "sha256": "7fde134df89d54264bf9f14ea2f9a3e6f163830275c7488ce2e2a37cf6e15621"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "df5787b23ad3fe334fc39c7c870170b03573433cff01ce2adf266261b94299de"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

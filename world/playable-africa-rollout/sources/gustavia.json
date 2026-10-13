@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 1,
+  "cityId": "gustavia",
+  "countryIso2": "BL",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Gustavia",
+    "coordinatesWgs84": [
+      -62.8508372,
+      17.8957043
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "gustavia-airport",
+    "name": "St. Jean Airport",
+    "lon": -62.843333,
+    "lat": 17.904398,
+    "sourceUrl": "https://ourairports.com/airports/TFFJ/"
+  },
+  "boxes": {
+    "play": [
+      17.71482341006602,
+      -63.039827502100195,
+      18.076585189933976,
+      -62.66184689789981
+    ],
+    "core": [
+      17.850484077516505,
+      -62.898048422067106,
+      17.940924522483492,
+      -62.803625977932896
+    ],
+    "outline": [
+      17.66482341006602,
+      -63.08982750210019,
+      18.126585189933976,
+      -62.61184689789981
+    ],
+    "wide": [
+      17.11482341006602,
+      -63.6398275021002,
+      18.676585189933977,
+      -62.061846897899805
+    ],
+    "water": [
+      17.11482341006602,
+      -63.6398275021002,
+      18.676585189933977,
+      -62.061846897899805
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "60c0c25a50a5452cbaef208b807c835c1ff8b21dd26fabb4388404d3205e44d1",
+        "elements": 189
+      },
+      {
+        "file": "extras.json",
+        "sha256": "7311893e589070f7af96d174b0b6a0fa5b375ebf478e9d60204f3d331bd1cd2e",
+        "elements": 21
+      },
+      {
+        "file": "water.json",
+        "sha256": "a0e6f9b962d28822cd5c51467195aaa06f2ef2d7a7a5a7a0dc655574a3883976",
+        "elements": 470
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "182f9828ba6ee46ff658d45328cc0125f078fdc8cd3e1bc0875b7531b8dc5856",
+        "elements": 411
+      },
+      {
+        "file": "roads.json",
+        "sha256": "bded167ce4569a463a9b79ba4cb0f7dcf9adb757225f2a57f371277e61b8d490",
+        "elements": 76
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Gustavia Ferry Terminal",
+      "osm": "node/3659532889",
+      "coordinatesWgs84": [
+        -62.850804,
+        17.89933
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurant Le Gaïac",
+      "osm": "way/363590642",
+      "coordinatesWgs84": [
+        -62.797576,
+        17.899599
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Biblithèque de Lorient",
+      "osm": "way/338583111",
+      "coordinatesWgs84": [
+        -62.824181,
+        17.905697
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Irénée de Bruyn Hospital",
+      "osm": "way/399483982",
+      "coordinatesWgs84": [
+        -62.850837,
+        17.894281
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "La Maison des Plantes",
+      "osm": "way/929036319",
+      "coordinatesWgs84": [
+        -62.838497,
+        17.891149
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Notre-Dame-de-l'Assomption",
+      "osm": "way/363204411",
+      "coordinatesWgs84": [
+        -62.848219,
+        17.894687
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Espace Rockfeller",
+      "osm": "way/1451711981",
+      "coordinatesWgs84": [
+        -62.851251,
+        17.896677
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hôtel de la Collectivité",
+      "osm": "way/361630547",
+      "coordinatesWgs84": [
+        -62.852606,
+        17.89833
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Municipal de Saint-Jean",
+      "osm": "way/1286299984",
+      "coordinatesWgs84": [
+        -62.841821,
+        17.902099
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maison des Gouverneurs, actuellement hôtel de ville de Gustavia",
+      "osm": "node/5639324918",
+      "coordinatesWgs84": [
+        -62.849345,
+        17.89832
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Maison Dinzey",
+      "osm": "node/5639324914",
+      "coordinatesWgs84": [
+        -62.850437,
+        17.895169
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Clocher suédois de Gustavia",
+      "osm": "node/5639324916",
+      "coordinatesWgs84": [
+        -62.847589,
+        17.895357
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Church of Our Lady of the Assumption, Lorient",
+      "osm": "way/496898761",
+      "coordinatesWgs84": [
+        -62.823729,
+        17.905399
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "chapelle Sainte-Catherine-de-Sienne de Colombier",
+      "osm": "way/1193995016",
+      "coordinatesWgs84": [
+        -62.853143,
+        17.912081
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Colombier Viewpoint",
+      "osm": "node/3104286317",
+      "coordinatesWgs84": [
+        -62.865929,
+        17.919131
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Ti St. Barth",
+      "osm": "node/3687052434",
+      "coordinatesWgs84": [
+        -62.814849,
+        17.913028
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restaurant O'Corail",
+      "osm": "way/364607503",
+      "coordinatesWgs84": [
+        -62.803353,
+        17.909604
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort Gustave",
+      "osm": "node/3663052503",
+      "coordinatesWgs84": [
+        -62.852082,
+        17.901334
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Square de la Rétrocession",
+      "osm": "way/361887020",
+      "coordinatesWgs84": [
+        -62.848899,
+        17.895506
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1235,
+      "sha256": "b30786242931b295599febeb60a46474e9e3ff073a3bac6bb737a3257ca55619"
+    },
+    "geometry.ts": {
+      "bytes": 102370,
+      "sha256": "e695eac11367a3e286a003f0741431585219b0d17e329cbeaa4990166d29abe8"
+    },
+    "places.ts": {
+      "bytes": 8014,
+      "sha256": "071c9d85f6a17891699d3b427c18cebfb061ab2dcf12c69309380bb435cb9deb"
+    },
+    "terrain.ts": {
+      "bytes": 257495,
+      "sha256": "3dbc50d58f455f312e48945992dc65575b89b28425ff7ccdbb6be37efa3075dc"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "deab32c8302eb1c5700517c5834e02d8a4c986533aab47730ae9d6236bbee809"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "cityId": "alofi",
+  "countryIso2": "NU",
+  "generationIdentity": {
+    "cityId": "alofi",
+    "stateId": "nu-alofi",
+    "stateName": "Alofi"
+  },
+  "inventorySha256": "eb2a3060a9312eee70429ca1724f8e2104d26b965874b0af641e8c69183eb548",
+  "inventoryPath": "world/playable-africa-rollout/sources/alofi.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "alofi-airport",
+    "name": "Niue International Airport",
+    "lon": -169.923493,
+    "lat": -19.080109,
+    "sourceUrl": "https://ourairports.com/airports/NIUE/"
+  },
+  "bounds": [
+    -19.23429678993398,
+    -170.10948301342634,
+    -18.872535010066024,
+    -169.72891498657364
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/niue-261011.osm.pbf",
+      "datasetSha256": "26be776b74961799ff2efc6eb3e21ff45ffce8d0e0e0501050b70115b69368d8",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "84727659f1bf05d54e65c02e74c9425b1c9217fce195bc14aecc7f5504f7e249",
+          "elements": 163
+        },
+        {
+          "file": "extras.json",
+          "sha256": "44ef2fbfa74ec4fb7c7320c82aaed0c90463efe9bb7762511bcba6f15b9629fa",
+          "elements": 1
+        },
+        {
+          "file": "water.json",
+          "sha256": "5830d338c62433a6242e2d271c65a7861634d88d6991b5ae46430b1b0356b615",
+          "elements": 31
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "dabdebaacaa773f8c6a6b8c783f2a2c390d0ad1588c5d341b4283ab0f6e17b08",
+          "elements": 100
+        },
+        {
+          "file": "roads.json",
+          "sha256": "ae886fb6f71414a14fb07c85023784bd1d0b7a31595e58fa982948fd3ed0c25d",
+          "elements": 5
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 15,
+    "roads": 4,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 9,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "community",
+        "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "recreation",
+        "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "worship",
+        "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "government",
+        "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "office=government",
+        "ref": "node/13458765949"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "hamlet": 6,
+      "village": 12
+    }
+  },
+  "observed": {
+    "places": 163,
+    "extras": 1,
+    "water": 31,
+    "landuse": 100,
+    "roads": 5
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1231,
+      "sha256": "8a48c762dda7123302b39ea0c94893add8a0404fda7fb93800650199973e5c69"
+    },
+    "geometry.ts": {
+      "bytes": 93644,
+      "sha256": "26d8d84a12d8fd4b1ef7efa615be4f277e295d2c4edbcd5acbf55698ad5a85b3"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "ac670e8b55749770f5b3252920312880aeb63a25cf44015b743ef85107f218ac"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/alofi.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

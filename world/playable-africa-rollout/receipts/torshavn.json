@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "torshavn",
+  "countryIso2": "FO",
+  "generationIdentity": {
+    "cityId": "torshavn",
+    "stateId": "fo-torshavn",
+    "stateName": "Tórshavn"
+  },
+  "inventorySha256": "ba0c3b522b6706a644b3db277d8dd9dc4f9698a58559e671f4b713ebc36e51b4",
+  "inventoryPath": "world/playable-africa-rollout/sources/torshavn.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "torshavn-airport",
+    "name": "Vágar Airport",
+    "lon": -7.275782,
+    "lat": 62.063256,
+    "sourceUrl": "https://ourairports.com/airports/EKVG/"
+  },
+  "bounds": [
+    61.82925871006602,
+    -7.294962051435183,
+    62.19102048993398,
+    -6.386463709992522
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/faroe-islands-261011.osm.pbf",
+      "datasetSha256": "dfdbff22052289d67d7d9c1fa6aa5771536a6d22a414e2cb3de89213a8fa2513",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "bdc52c3abcafd19df180b4fc40dfc38973aa966ea5cc6a004690e986a6516806",
+          "elements": 613
+        },
+        {
+          "file": "extras.json",
+          "sha256": "a0f4fdc97267716e2d703941fdd04dc8e936125c593b211bb24ef5ab1199642f",
+          "elements": 40
+        },
+        {
+          "file": "water.json",
+          "sha256": "de58833f52b15bca170c39baf126830ee6ccfc18e4cae6f9abbd061ba4e18827",
+          "elements": 1550
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ed75d68bbb7fca980b2ba5c530216ad1135952d56ef24ace3bf8f601f8040da7",
+          "elements": 1111
+        },
+        {
+          "file": "roads.json",
+          "sha256": "97ec2ce3e6009a7317f394a98f7c3c363a36821326618fec0dbf51ed7b226a84",
+          "elements": 502
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 23,
+    "roads": 41,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 13,
+    "waterPolygons": 14,
+    "reachWaterPolygons": 10
+  },
+  "observed": {
+    "places": 613,
+    "extras": 40,
+    "water": 1550,
+    "landuse": 1111,
+    "roads": 502
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1220,
+      "sha256": "b2874018049be43046e1203a922973b53e3073ed301feb924e403e593173e317"
+    },
+    "geometry.ts": {
+      "bytes": 1167780,
+      "sha256": "d11e7fcef32e3a504b4798fee32088ad40887a52eb7d4b9ebe558f34e715cfd3"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "b64f09ac6ea2bba6efdbd3a3044491951c1377a44de97a1dc98e78a311424a56"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/torshavn.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

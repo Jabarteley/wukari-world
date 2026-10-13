@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "douglas",
+  "countryIso2": "IM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Douglas",
+    "coordinatesWgs84": [
+      -4.4779021,
+      54.149774
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/isle-of-man-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "douglas-airport",
+    "name": "Isle of Man Airport",
+    "lon": -4.623871,
+    "lat": 54.083081,
+    "sourceUrl": "https://ourairports.com/airports/EGNS/"
+  },
+  "boxes": {
+    "play": [
+      53.96889311006602,
+      -4.786014240612886,
+      54.33065488993398,
+      -4.1697899593871135
+    ],
+    "core": [
+      54.10455377751651,
+      -4.554677088226814,
+      54.194994222483494,
+      -4.401127111773185
+    ],
+    "outline": [
+      53.91889311006602,
+      -4.836014240612886,
+      54.38065488993398,
+      -4.119789959387114
+    ],
+    "wide": [
+      53.36889311006602,
+      -5.3860142406128855,
+      54.93065488993398,
+      -3.5697899593871134
+    ],
+    "water": [
+      53.36889311006602,
+      -5.3860142406128855,
+      54.93065488993398,
+      -3.5697899593871134
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/isle-of-man-261011.osm.pbf",
+    "datasetSha256": "fa0b3476f98d505043bb3286fe12a9e86c2a46cc52049328635556431981092a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "b8e0d815dad0dd2539a81631e7cf5d770caf4643561ba14becd803c4b4a53067",
+        "elements": 1020
+      },
+      {
+        "file": "extras.json",
+        "sha256": "da8d0decd7fc46c075d127c86e51eae66f04366f85da5edd2eda41e1a71b598b",
+        "elements": 165
+      },
+      {
+        "file": "water.json",
+        "sha256": "d02e64b3393beaf2e3d8c7c7fdf587a760608312e8ad4446ddca2334f6a38c53",
+        "elements": 139
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3ab3bf63d3d642c9524a08cd4a215c101bbde5867576655b9825a68a5c95629d",
+        "elements": 387
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5699d077b73b9d79e1189fb609634702583ac7dc0f78b5b020319c3a50f48133",
+        "elements": 1240
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Snaefell Summit",
+      "osm": "node/8307374531",
+      "coordinatesWgs84": [
+        -4.463008,
+        54.262115
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Isola",
+      "osm": "way/79143392",
+      "coordinatesWgs84": [
+        -4.481138,
+        54.149001
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "George Herdman Library",
+      "osm": "node/414899649",
+      "coordinatesWgs84": [
+        -4.756034,
+        54.086663
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Noble's Hospital",
+      "osm": "way/765929809",
+      "coordinatesWgs84": [
+        -4.505063,
+        54.173466
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Poulsom Park",
+      "osm": "way/28714989",
+      "coordinatesWgs84": [
+        -4.648421,
+        54.079444
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Market Hall",
+      "osm": "way/58706857",
+      "coordinatesWgs84": [
+        -4.478986,
+        54.147976
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint German's Cathedral",
+      "osm": "way/147183435",
+      "coordinatesWgs84": [
+        -4.691228,
+        54.2218
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Douglas Town Hall",
+      "osm": "way/79143118",
+      "coordinatesWgs84": [
+        -4.480864,
+        54.148792
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Government House",
+      "osm": "way/136360207",
+      "coordinatesWgs84": [
+        -4.46577,
+        54.173602
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Nunnery",
+      "osm": "way/59384695",
+      "coordinatesWgs84": [
+        -4.495833,
+        54.148365
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Niarbyl",
+      "osm": "node/283522771",
+      "coordinatesWgs84": [
+        -4.740051,
+        54.163854
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dub Cottage",
+      "osm": "node/283486904",
+      "coordinatesWgs84": [
+        -4.563242,
+        54.303586
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Waterworks",
+      "osm": "node/1697727831",
+      "coordinatesWgs84": [
+        -4.376976,
+        54.313212
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Greeba Bridge",
+      "osm": "node/458533125",
+      "coordinatesWgs84": [
+        -4.605775,
+        54.196848
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Saint Adamnan's Church",
+      "osm": "way/160506184",
+      "coordinatesWgs84": [
+        -4.411486,
+        54.186022
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Old St Runius",
+      "osm": "way/217382559",
+      "coordinatesWgs84": [
+        -4.573156,
+        54.176309
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bradda Hill",
+      "osm": "node/300040027",
+      "coordinatesWgs84": [
+        -4.763526,
+        54.104395
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University College Isle of Man",
+      "osm": "way/77964053",
+      "coordinatesWgs84": [
+        -4.478767,
+        54.172202
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Costa",
+      "osm": "way/414637480",
+      "coordinatesWgs84": [
+        -4.652233,
+        54.074007
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cosy Nook Cafe",
+      "osm": "way/79396808",
+      "coordinatesWgs84": [
+        -4.759117,
+        54.087161
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kerroobeg",
+      "osm": "node/5063392621",
+      "coordinatesWgs84": [
+        -4.668008,
+        54.135269
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sulby Claddagh",
+      "osm": "node/283492465",
+      "coordinatesWgs84": [
+        -4.482723,
+        54.316805
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dwight's Park",
+      "osm": "way/1017175209",
+      "coordinatesWgs84": [
+        -4.700495,
+        54.097426
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Laxey Woollen Mills",
+      "osm": "way/71521258",
+      "coordinatesWgs84": [
+        -4.403138,
+        54.230864
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1215,
+      "sha256": "2c8d6151c29c6d2ee635ed7521fce72b9f68f202b65ee4fba90d6cbd186b95e3"
+    },
+    "geometry.ts": {
+      "bytes": 55883,
+      "sha256": "04255e02c38d2a7ba89dd720a5b3502bc4da619dd5c6523f22ecc7df6ff70a03"
+    },
+    "places.ts": {
+      "bytes": 9386,
+      "sha256": "5eaf8fc91582201ca47a3dab97c05b1339f6ca3571c717e06e10964316fd6bbc"
+    },
+    "terrain.ts": {
+      "bytes": 41980,
+      "sha256": "a3796d674bf99653463729b5037d39825b4271160054676f88901d115f40eadc"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "a70752f3ab888e939a6ac33ddcc9fd51328d7c2a5a5eee1fb735a18c3446a821"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

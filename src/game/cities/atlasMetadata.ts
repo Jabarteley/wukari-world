@@ -30,7 +30,18 @@ const continentCountries: Readonly<Record<ContinentId, ReadonlySet<string>>> = {
   an: new Set(["aq","gs","hm","tf"]),
 };
 
-export function countryAtlasLevel(id: string): AtlasLevelId | null {
+/**
+ * World-map entries that are not ISO countries but have a city module of their own: Somaliland is the map entry `sol`, Northern
+ * Cyprus is `cyn`. The city generator's contract is a two-letter country code (`country.id`), so a module for one of them carries
+ * a user-assigned code (`xs`, `xn`, like Kosovo's `xk`) and every catalogue reader turns it into the map entry's id here, once.
+ * Without a city module the map entries stay "coming soon"; nothing here opens an entry by itself.
+ */
+const MAP_ENTRY_OF_CODE: Readonly<Record<string, string>> = Object.freeze({ xs: 'sol', xn: 'cyn', cx: 'ioa', cc: 'ioa' })
+export const mapEntryOf = (code: string): string => Object.hasOwn(MAP_ENTRY_OF_CODE, code) ? MAP_ENTRY_OF_CODE[code]! : code
+export const MAP_ENTRY_CODES: readonly string[] = Object.freeze(Object.keys(MAP_ENTRY_OF_CODE))
+
+export function countryAtlasLevel(rawId: string): AtlasLevelId | null {
+  const id = mapEntryOf(rawId)
   if (id === 'ng') return 'nigeria'
   return ATLAS_LEVEL_METADATA.find(level => level.continent && continentCountries[level.continent].has(id))?.id ?? null
 }

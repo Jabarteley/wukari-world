@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "cityId": "noumea",
+  "countryIso2": "NC",
+  "generationIdentity": {
+    "cityId": "noumea",
+    "stateId": "nc-noumea",
+    "stateName": "Nouméa"
+  },
+  "inventorySha256": "1dce8b500ac81f67e3e9c9996bb00ce9e85c085656a2b5ff896897c0b23e1b06",
+  "inventoryPath": "world/playable-africa-rollout/sources/noumea.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "noumea-airport",
+    "name": "Nouméa Magenta Airport",
+    "lon": 166.472822,
+    "lat": -22.257706,
+    "sourceUrl": "https://ourairports.com/airports/NWWM/"
+  },
+  "bounds": [
+    -22.455407289933977,
+    166.24801661034195,
+    -22.093645510066022,
+    166.63682138965805
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/new-caledonia-261011.osm.pbf",
+      "datasetSha256": "c92e7362be4cb3902148c49ed009cfd4701221525f474f86c61cf68c408c6108",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "e7ac850168213a5903e44e7201f7a494d15437c0d5aba10692c6c884749c3c91",
+          "elements": 588
+        },
+        {
+          "file": "extras.json",
+          "sha256": "4ae2ccb73cd871f2f75da38c9c8adc4e4c73164d5764e7f26c132b314d42b1d9",
+          "elements": 230
+        },
+        {
+          "file": "water.json",
+          "sha256": "c4bcd744a61fb7854ffe1ca636018be71b0a4e6918aa9d2a9f317102b8b3d1bb",
+          "elements": 826
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "c902b91ac12b12e177d019a6185168ef231e4c2d165f99dcd0a8a2996e3e4b55",
+          "elements": 128
+        },
+        {
+          "file": "roads.json",
+          "sha256": "7962661e2aa08dbaa8a832b855ae08bedee32796a133ba9a3bf60bd5829e5f3b",
+          "elements": 895
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 120,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 6,
+    "waterPolygons": 13,
+    "reachWaterPolygons": 28
+  },
+  "autoRetries": [
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "node/10597846830",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "node/10597846830",
+            "name": "Le Ponton",
+            "lon": 166.4948707,
+            "lat": -22.312995
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 23676,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 588,
+    "extras": 230,
+    "water": 826,
+    "landuse": 128,
+    "roads": 895
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1236,
+      "sha256": "c6860d75596cf8b21632afbf444e7d8515110b19aadf1b21027a1be868d29ea7"
+    },
+    "geometry.ts": {
+      "bytes": 175949,
+      "sha256": "ed31306c2b10cdb49a706c1b25c53cb3ef7586fce50741416351e556cc78bc1f"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "9f34c89623609b4a4ae5fc9b98787ee1e1cc8e2d01a442c491c7a39f2b596efb"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/noumea.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "hamilton",
+  "countryIso2": "BM",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Hamilton",
+    "coordinatesWgs84": [
+      -64.7853167,
+      32.2942679
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/united-kingdom/bermuda-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "hamilton-airport",
+    "name": "L.F. Wade International Airport",
+    "lon": -64.67824,
+    "lat": 32.363802,
+    "sourceUrl": "https://ourairports.com/airports/TXKF/"
+  },
+  "boxes": {
+    "play": [
+      32.11338701006602,
+      -64.99828141790888,
+      32.47514878993398,
+      -64.5723519820911
+    ],
+    "core": [
+      32.24904767751651,
+      -64.83847791652605,
+      32.339488122483495,
+      -64.73215548347395
+    ],
+    "outline": [
+      32.06338701006602,
+      -65.04828141790888,
+      32.52514878993398,
+      -64.52235198209111
+    ],
+    "wide": [
+      31.51338701006602,
+      -65.59828141790888,
+      33.07514878993398,
+      -63.972351982091105
+    ],
+    "water": [
+      31.51338701006602,
+      -65.59828141790888,
+      33.07514878993398,
+      -63.972351982091105
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/united-kingdom/bermuda-261011.osm.pbf",
+    "datasetSha256": "3171958bc0276b242cd0680c40a670da6a0366b513ddfbec196c081ed6444738",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "690317cb33e7a3dbfb4736822ad0292671dcadc750f83f7f98e76949571278e9",
+        "elements": 362
+      },
+      {
+        "file": "extras.json",
+        "sha256": "b87fe516928be81d6bd12d28d913a729dcbd30c761c87957dae99a0683c3be0b",
+        "elements": 105
+      },
+      {
+        "file": "water.json",
+        "sha256": "d888c40689c2e3e09c9a769a3fcab738b80e4a96f12920505cfb7bcbcc00a844",
+        "elements": 402
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "cb4bd49b382c72ee660ee7508da3d6b817993786b908997a49a60b68759e9e79",
+        "elements": 133
+      },
+      {
+        "file": "roads.json",
+        "sha256": "3c33ca0d7182abd4f8fd8ecc531a35923a79b60af814d5304b75d583e682c4f5",
+        "elements": 255
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "St. George's Ferry Terminal",
+      "osm": "node/242151179",
+      "coordinatesWgs84": [
+        -64.678954,
+        32.379431
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The New Traditions Restaurant",
+      "osm": "node/1351784192",
+      "coordinatesWgs84": [
+        -64.873526,
+        32.267852
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bermuda College",
+      "osm": "way/912385468",
+      "coordinatesWgs84": [
+        -64.775609,
+        32.278485
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mid-Atlantic Wellness Institute",
+      "osm": "way/911970741",
+      "coordinatesWgs84": [
+        -64.745811,
+        32.306804
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Victoria Park",
+      "osm": "way/75243034",
+      "coordinatesWgs84": [
+        -64.784824,
+        32.2955
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clocktower Mall",
+      "osm": "way/1364424421",
+      "coordinatesWgs84": [
+        -64.835055,
+        32.325338
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Anthony's Catholic Church",
+      "osm": "way/424119495",
+      "coordinatesWgs84": [
+        -64.815961,
+        32.26347
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Town Hall",
+      "osm": "way/181329188",
+      "coordinatesWgs84": [
+        -64.676505,
+        32.381084
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bermuda Civil Aviation Authority",
+      "osm": "way/182591934",
+      "coordinatesWgs84": [
+        -64.675179,
+        32.366014
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bermuda Institute of Ocean Sciences",
+      "osm": "way/919300910",
+      "coordinatesWgs84": [
+        -64.696078,
+        32.370716
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen's View",
+      "osm": "node/12249214673",
+      "coordinatesWgs84": [
+        -64.834335,
+        32.253208
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. David's Battery",
+      "osm": "way/181381778",
+      "coordinatesWgs84": [
+        -64.648537,
+        32.368251
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masterworks Museum of Bermuda Art",
+      "osm": "way/834197246",
+      "coordinatesWgs84": [
+        -64.761766,
+        32.293651
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fort St. Catherine",
+      "osm": "way/181381774",
+      "coordinatesWgs84": [
+        -64.674441,
+        32.390607
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Old Devonshire Church",
+      "osm": "way/834369428",
+      "coordinatesWgs84": [
+        -64.754588,
+        32.30584
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. John’s Anglican Church",
+      "osm": "way/717069727",
+      "coordinatesWgs84": [
+        -64.786497,
+        32.300799
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bermuda Botanical Gardens",
+      "osm": "way/834354832",
+      "coordinatesWgs84": [
+        -64.762642,
+        32.291979
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shelly Bay Park",
+      "osm": "way/175194099",
+      "coordinatesWgs84": [
+        -64.739581,
+        32.334686
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Somerset Country Squire",
+      "osm": "way/183907775",
+      "coordinatesWgs84": [
+        -64.86396,
+        32.303598
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sul Verde",
+      "osm": "node/7289544262",
+      "coordinatesWgs84": [
+        -64.696065,
+        32.334557
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Horseshoe Bay",
+      "osm": "node/5519434022",
+      "coordinatesWgs84": [
+        -64.822732,
+        32.250482
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Flora Duffy South Field Stadium",
+      "osm": "way/1150163054",
+      "coordinatesWgs84": [
+        -64.769974,
+        32.300461
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "King Edward VII Memorial Hospital",
+      "osm": "way/326975395",
+      "coordinatesWgs84": [
+        -64.766263,
+        32.292483
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Washington Mall",
+      "osm": "way/1198079103",
+      "coordinatesWgs84": [
+        -64.785433,
+        32.293715
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1255,
+      "sha256": "a1133d9b2496687d69fc7c23f1450327f38ed2982a893d287f6087b36903488a"
+    },
+    "geometry.ts": {
+      "bytes": 628021,
+      "sha256": "3093a2af54cf873732e4f0acd2803fb77b6619e7f884aa2555c3841e9f650492"
+    },
+    "places.ts": {
+      "bytes": 9877,
+      "sha256": "a33c736bf0480168a002bc2f8b0d573d5a07c13cbd574362ff62441afbfacf22"
+    },
+    "terrain.ts": {
+      "bytes": 565056,
+      "sha256": "3c527ffb22d5e6d8e0939390ad8e23b9f30f710eb15da859d6d79ec6a3a20027"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "483d1c6759f34a98a1bd8ac067192a1734a575ae42d63a0e6747e95f792124cc"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "cityId": "nuuk",
+  "countryIso2": "GL",
+  "generationIdentity": {
+    "cityId": "nuuk",
+    "stateId": "gl-nuuk",
+    "stateName": "Nuuk"
+  },
+  "inventorySha256": "7196b94d33009399ff95e076b4f950e3a5706cbab939c0788df5981f3c4b10cb",
+  "inventoryPath": "world/playable-africa-rollout/sources/nuuk.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "nuuk-airport",
+    "name": "Nuuk International Airport",
+    "lon": -51.67914,
+    "lat": 64.191066,
+    "sourceUrl": "https://ourairports.com/airports/BGGH/"
+  },
+  "bounds": [
+    63.99582401006602,
+    -52.15130533577506,
+    64.35758578993398,
+    -51.320983464224945
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/north-america/greenland-261011.osm.pbf",
+      "datasetSha256": "f338dd29250e0d0e459e249e1db6f50da8d8c9baede259c000d054c700b9d0ed",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "e80cd804d46f1f91e0d2147ba3675320798274d6fbfe5fda51fcd57efbddb199",
+          "elements": 206
+        },
+        {
+          "file": "extras.json",
+          "sha256": "9b152775e9c825366936f5a7f9ef6f7442553bb2853a71255796af4a13fbb015",
+          "elements": 22
+        },
+        {
+          "file": "water.json",
+          "sha256": "ab1e7d9c2c475efde0c82be61042a103749e35930e7e754743fbec818d9cbec5",
+          "elements": 6921
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "01a2f47ef3eea384a352f05585eb965d10004e62630793b7d20198783fd0cfed",
+          "elements": 59
+        },
+        {
+          "file": "roads.json",
+          "sha256": "fb522537f1229b818a5709223a33395b5c5dc6e33119db594c4a39982ee2e7b7",
+          "elements": 93
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 20,
+    "roads": 3,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 1,
+    "waterPolygons": 30,
+    "reachWaterPolygons": 30
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ]
+  },
+  "observed": {
+    "places": 206,
+    "extras": 22,
+    "water": 6921,
+    "landuse": 59,
+    "roads": 93
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1223,
+      "sha256": "4c06234caf27d8a7fa520b733b1a4ff8a8724dcd3be54bcfcc0ec7ebc2e2629f"
+    },
+    "geometry.ts": {
+      "bytes": 1057724,
+      "sha256": "e7dcaba8d2c02cde1f1e8a8e9a94d506f15264e0c28bc5a3569c470c70620d3b"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "e37ac9ddffeae7b615ef46834508aad01538080da10cd924dd22ba8fd0a289f7"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/nuuk.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

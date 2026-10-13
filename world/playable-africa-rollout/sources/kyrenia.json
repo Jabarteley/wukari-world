@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kyrenia",
+  "countryIso2": "XN",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Kyrenia",
+    "coordinatesWgs84": [
+      33.3205287,
+      35.3396291
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/cyprus-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "kyrenia-airport",
+    "name": "Ercan International Airport",
+    "lon": 33.507352,
+    "lat": 35.153064,
+    "sourceUrl": "https://ourairports.com/airports/LCEN/"
+  },
+  "boxes": {
+    "play": [
+      35.1440199555033,
+      33.09978836489444,
+      35.520509989933984,
+      33.54126903510556
+    ],
+    "core": [
+      35.29440887751651,
+      33.26543657627874,
+      35.3848493224835,
+      33.375620823721256
+    ],
+    "outline": [
+      35.094019955503306,
+      33.04978836489444,
+      35.57050998993398,
+      33.591269035105555
+    ],
+    "wide": [
+      34.5440199555033,
+      32.499788364894435,
+      36.120509989933986,
+      34.14126903510556
+    ],
+    "water": [
+      34.5440199555033,
+      32.499788364894435,
+      36.120509989933986,
+      34.14126903510556
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/cyprus-261011.osm.pbf",
+    "datasetSha256": "65fe2b12d863fb1136fec15db21bfc13d4efc5ed89cfaab981cf55818e5dd0a5",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "3c77ea49f46fa185989edc5b9644171937ff8f68ae6c3ddf496ad8872363b608",
+        "elements": 1348
+      },
+      {
+        "file": "extras.json",
+        "sha256": "6d082b453133b33ea9661a999b7e3e2afc72598fbec075011a3fbb22448fb4a6",
+        "elements": 300
+      },
+      {
+        "file": "water.json",
+        "sha256": "7191fd53a545389c919a1247139931cbae8f2285c17f3aa544046a8eed7caeaf",
+        "elements": 846
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "caddf851580e924df8b8e4b9bf36f3e360979f6afc483610318b54cd4300a98b",
+        "elements": 1030
+      },
+      {
+        "file": "roads.json",
+        "sha256": "bd38e0843e6eec2249b3fa18fca62262fa49323faec73c960bc65287c78db778",
+        "elements": 1656
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Kyrenia Port",
+      "osm": "node/2012091240",
+      "coordinatesWgs84": [
+        33.332139,
+        35.343151
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Patrio my Fair",
+      "osm": "node/1788750774",
+      "coordinatesWgs84": [
+        33.194221,
+        35.343469
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Near East University",
+      "osm": "relation/16750860",
+      "coordinatesWgs84": [
+        33.32292,
+        35.227843
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Medical Center",
+      "osm": "way/1030789769",
+      "coordinatesWgs84": [
+        33.274011,
+        35.333277
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Çağlayan Parkı",
+      "osm": "way/322104089",
+      "coordinatesWgs84": [
+        33.368092,
+        35.18095
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Municipal Market",
+      "osm": "way/629540154",
+      "coordinatesWgs84": [
+        33.364634,
+        35.175412
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sourp Magar Armenian Monastery",
+      "osm": "node/2017924410",
+      "coordinatesWgs84": [
+        33.522263,
+        35.287382
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Atatürk Square",
+      "osm": "way/697772851",
+      "coordinatesWgs84": [
+        33.360842,
+        35.177929
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Presidential Palace",
+      "osm": "way/686121404",
+      "coordinatesWgs84": [
+        33.359553,
+        35.181309
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cyprus International University",
+      "osm": "way/443934864",
+      "coordinatesWgs84": [
+        33.417005,
+        35.221853
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nicosia Atatürk Stadium",
+      "osm": "way/206176262",
+      "coordinatesWgs84": [
+        33.337963,
+        35.213798
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Buffavento Castle",
+      "osm": "way/102190298",
+      "coordinatesWgs84": [
+        33.41002,
+        35.287398
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bellapais Abbey",
+      "osm": "relation/2747685",
+      "coordinatesWgs84": [
+        33.355499,
+        35.307345
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "C1974 Memorial Ship",
+      "osm": "node/12115453579",
+      "coordinatesWgs84": [
+        33.236598,
+        35.344895
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Final International University",
+      "osm": "way/1266800351",
+      "coordinatesWgs84": [
+        33.361523,
+        35.329655
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ağa Cafer Paşa Camii",
+      "osm": "way/205139721",
+      "coordinatesWgs84": [
+        33.320635,
+        35.341171
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Agios Agridaki Church",
+      "osm": "way/435833503",
+      "coordinatesWgs84": [
+        33.150604,
+        35.308287
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Girne Amerikan Üniversitesi",
+      "osm": "way/169391630",
+      "coordinatesWgs84": [
+        33.275636,
+        35.333453
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gelincik Cafeterya",
+      "osm": "node/4695087598",
+      "coordinatesWgs84": [
+        33.50329,
+        35.158422
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fota Kasap Meyhane",
+      "osm": "node/4776629726",
+      "coordinatesWgs84": [
+        33.222206,
+        35.263291
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "yıkım aşamasında kapalı iflas",
+      "osm": "way/435291543",
+      "coordinatesWgs84": [
+        33.495437,
+        35.218167
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "1 eğtim yeri",
+      "osm": "node/4211959892",
+      "coordinatesWgs84": [
+        33.165113,
+        35.245183
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Karşıyaka Atatürk Parkı",
+      "osm": "way/512030566",
+      "coordinatesWgs84": [
+        33.119293,
+        35.3535
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hamitköy Avrupa Birliği Parkı",
+      "osm": "way/956076118",
+      "coordinatesWgs84": [
+        33.375273,
+        35.21708
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "6e83d956dd2c90cb9ed52cfc3e2847732644697e2aa00fbcfb380649dc419f07"
+    },
+    "geometry.ts": {
+      "bytes": 213981,
+      "sha256": "cafc65ea69188a86c113bbd13e3a3560ea5f6cd20d48e01695e2932f105444da"
+    },
+    "places.ts": {
+      "bytes": 9651,
+      "sha256": "f49ce91a5b77fdc262557b2b806ab68262f797331a4bf325e20b073e5ecdf538"
+    },
+    "terrain.ts": {
+      "bytes": 211806,
+      "sha256": "01428344b8a0807931ba356eb90b2e64f931f8e6160e40101268a0d4da1f214b"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "65f2215c4445256498db08fb5654397f5177d5eccfe46ca0f54eb12ae506c405"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

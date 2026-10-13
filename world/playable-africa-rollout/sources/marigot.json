@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 1,
+  "cityId": "marigot",
+  "countryIso2": "MF",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Marigot",
+    "coordinatesWgs84": [
+      -63.0848869,
+      18.0668544
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "marigot-airport",
+    "name": "Grand Case-l'Espérance Airport",
+    "lon": -63.047444,
+    "lat": 18.100057,
+    "sourceUrl": "https://ourairports.com/airports/TFFG/"
+  },
+  "boxes": {
+    "play": [
+      17.885973510066023,
+      -63.27406249099159,
+      18.247735289933978,
+      -62.89571130900841
+    ],
+    "core": [
+      18.021634177516507,
+      -63.13214403872752,
+      18.112074622483494,
+      -63.037629761272484
+    ],
+    "outline": [
+      17.835973510066022,
+      -63.32406249099159,
+      18.29773528993398,
+      -62.845711309008415
+    ],
+    "wide": [
+      17.28597351006602,
+      -63.87406249099159,
+      18.84773528993398,
+      -62.29571130900841
+    ],
+    "water": [
+      17.28597351006602,
+      -63.87406249099159,
+      18.84773528993398,
+      -62.29571130900841
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "d73d14af2cdfeab7d07dc2c4de6b276bcc058a7c435eff73947323ec2552d29b",
+        "elements": 609
+      },
+      {
+        "file": "extras.json",
+        "sha256": "66fd1f45828e504644ed9460ab79146b835bd55e2b2e92eca16ce78c82738a05",
+        "elements": 59
+      },
+      {
+        "file": "water.json",
+        "sha256": "f1e62c0d26b874cee87464902212363e4fdea4d31e6f773f5b00366330fb4ee1",
+        "elements": 443
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "89fe2195ed0a89b4bf0b05d554de4a00bb00579fc4e3a9138957918fc35dc3db",
+        "elements": 350
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a58adde693114caab486a6a6c2494dd6871bb92ba4eb35c027fb1196a31325a8",
+        "elements": 390
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [],
+  "selectedPlaces": [
+    {
+      "name": "Voyage de Standing",
+      "osm": "node/3694768574",
+      "coordinatesWgs84": [
+        -63.055251,
+        18.103381
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Sand",
+      "osm": "node/3983179937",
+      "coordinatesWgs84": [
+        -63.115494,
+        18.065308
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Médiathèque",
+      "osm": "way/323057986",
+      "coordinatesWgs84": [
+        -63.073446,
+        18.066286
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hospital Louis Constant Fleming",
+      "osm": "way/524462591",
+      "coordinatesWgs84": [
+        -63.073601,
+        18.064552
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lili's Tropical Garden",
+      "osm": "way/1335555796",
+      "coordinatesWgs84": [
+        -63.07516,
+        18.081306
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Centre Commercial Aventura",
+      "osm": "way/465741045",
+      "coordinatesWgs84": [
+        -63.039977,
+        18.095835
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Saint-Joseph",
+      "osm": "way/354942727",
+      "coordinatesWgs84": [
+        -63.031264,
+        18.075028
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Réserve Naturelle de Saint-Martin",
+      "osm": "way/323656342",
+      "coordinatesWgs84": [
+        -63.038319,
+        18.111722
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Préfecture déléguée",
+      "osm": "way/257664652",
+      "coordinatesWgs84": [
+        -63.084524,
+        18.070501
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Babit Point",
+      "osm": "node/3893659644",
+      "coordinatesWgs84": [
+        -63.011253,
+        18.053503
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pinel Island",
+      "osm": "relation/9565439",
+      "coordinatesWgs84": [
+        -63.014352,
+        18.105884
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Border Monument",
+      "osm": "node/542487242",
+      "coordinatesWgs84": [
+        -63.040403,
+        18.055921
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Roche Gravée du Moho",
+      "osm": "node/3324470538",
+      "coordinatesWgs84": [
+        -63.040175,
+        18.072592
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pearch Bar",
+      "osm": "way/399788872",
+      "coordinatesWgs84": [
+        -63.01531,
+        18.083605
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Santal",
+      "osm": "way/334678758",
+      "coordinatesWgs84": [
+        -63.097272,
+        18.060474
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "L'observatoire des baleines",
+      "osm": "way/369607931",
+      "coordinatesWgs84": [
+        -63.012565,
+        18.06666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Observatoire des Oiseaux",
+      "osm": "node/3969654359",
+      "coordinatesWgs84": [
+        -63.02684,
+        18.09528
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marina Royale",
+      "osm": "way/366902209",
+      "coordinatesWgs84": [
+        -63.086383,
+        18.06451
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Howell Center",
+      "osm": "node/3375689678",
+      "coordinatesWgs84": [
+        -63.080589,
+        18.072022
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1244,
+      "sha256": "7bf9ddd0699c7e6868ef30db18988487aaecb6456d0870ba9b8c2fd1ac26d22e"
+    },
+    "geometry.ts": {
+      "bytes": 171492,
+      "sha256": "25db430dfe3ace3a83c0670eee70130bf35dd0b1b0b4879aa4b77e064e36e72c"
+    },
+    "places.ts": {
+      "bytes": 7578,
+      "sha256": "64ef1b4b35b8a2ade97d961f05df034190aecc9a9bf0212dd77b6c442044c4ce"
+    },
+    "terrain.ts": {
+      "bytes": 395480,
+      "sha256": "f1265f21a0319aceab704681afb76573401973ed2dae4707fc1f194d88175501"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "a4273e3f4f367b946117ad1a232b15d3c03e703522ee6b06bd2b1198e212b823"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

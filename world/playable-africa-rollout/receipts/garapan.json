@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "cityId": "garapan",
+  "countryIso2": "MP",
+  "generationIdentity": {
+    "cityId": "garapan",
+    "stateId": "mp-garapan",
+    "stateName": "Garapan"
+  },
+  "inventorySha256": "1b363d0590f8a7c5f4cb8dd9d4a6ad0699be2ed95331f919f345b3bed0868783",
+  "inventoryPath": "world/playable-africa-rollout/sources/garapan.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "garapan-airport",
+    "name": "Saipan International Airport",
+    "lon": 145.728848,
+    "lat": 15.119384,
+    "sourceUrl": "https://ourairports.com/airports/PGSN/"
+  },
+  "bounds": [
+    15.026204210066021,
+    145.53451840606485,
+    15.38796598993398,
+    145.90720319393515
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+      "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "6bc88daed4ca17f017e669014688469951efa25d67b5cb4ed53110ef880a518c",
+          "elements": 152
+        },
+        {
+          "file": "extras.json",
+          "sha256": "320ddb671f7068361055401f5edbccd628a15232a97ae5f2f1a22b6892f115fa",
+          "elements": 10
+        },
+        {
+          "file": "water.json",
+          "sha256": "854c2af3e96e6e27df1e58fab0bcf4dcdd6345a2bbb6c491314aa77c0d9a4336",
+          "elements": 99
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ea0046652a7b0b7160ad98f98c67b68085d1d4bc59cc88d6914dc585f6846b7a",
+          "elements": 52
+        },
+        {
+          "file": "roads.json",
+          "sha256": "590871f2adc8ff261895ed30b45992c0d4c159dfdc79d707686cfa91c32acfad",
+          "elements": 126
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 22,
+    "roads": 11,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 2
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ]
+  },
+  "autoRetries": [
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "way/1304760649",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "way/1304760649",
+            "name": "USS Asphalt",
+            "lon": 145.70388745,
+            "lat": 15.217365699999998
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 7027,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 152,
+    "extras": 10,
+    "water": 99,
+    "landuse": 52,
+    "roads": 126
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1270,
+      "sha256": "7a75aa884155a8c1dd99aacee4251c94a62281e97da22bff09f04a750a3b17af"
+    },
+    "geometry.ts": {
+      "bytes": 21795,
+      "sha256": "5d0c91250412f40608b1b5fef1335a6c487bd536261aeeb7e0717cfca2cb2fd9"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "479828f76d1f7b505c31a3025abfe9d50c20d4aaa97296d38ae9036eba7bd85e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/garapan.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

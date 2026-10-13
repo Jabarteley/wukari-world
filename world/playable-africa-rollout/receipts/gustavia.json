@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "cityId": "gustavia",
+  "countryIso2": "BL",
+  "generationIdentity": {
+    "cityId": "gustavia",
+    "stateId": "bl-gustavia",
+    "stateName": "Gustavia"
+  },
+  "inventorySha256": "b4fdd59a2148fe3400fec049f27c12616584a0866487fd542637fa26a1eadec2",
+  "inventoryPath": "world/playable-africa-rollout/sources/gustavia.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "gustavia-airport",
+    "name": "St. Jean Airport",
+    "lon": -62.843333,
+    "lat": 17.904398,
+    "sourceUrl": "https://ourairports.com/airports/TFFJ/"
+  },
+  "bounds": [
+    17.71482341006602,
+    -63.039827502100195,
+    18.076585189933976,
+    -62.66184689789981
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "60c0c25a50a5452cbaef208b807c835c1ff8b21dd26fabb4388404d3205e44d1",
+          "elements": 189
+        },
+        {
+          "file": "extras.json",
+          "sha256": "7311893e589070f7af96d174b0b6a0fa5b375ebf478e9d60204f3d331bd1cd2e",
+          "elements": 21
+        },
+        {
+          "file": "water.json",
+          "sha256": "a0e6f9b962d28822cd5c51467195aaa06f2ef2d7a7a5a7a0dc655574a3883976",
+          "elements": 470
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "182f9828ba6ee46ff658d45328cc0125f078fdc8cd3e1bc0875b7531b8dc5856",
+          "elements": 411
+        },
+        {
+          "file": "roads.json",
+          "sha256": "bded167ce4569a463a9b79ba4cb0f7dcf9adb757225f2a57f371277e61b8d490",
+          "elements": 76
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 19,
+    "roads": 8,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 1,
+    "waterPolygons": 6,
+    "reachWaterPolygons": 10
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ]
+  },
+  "observed": {
+    "places": 189,
+    "extras": 21,
+    "water": 470,
+    "landuse": 411,
+    "roads": 76
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1235,
+      "sha256": "b30786242931b295599febeb60a46474e9e3ff073a3bac6bb737a3257ca55619"
+    },
+    "geometry.ts": {
+      "bytes": 102370,
+      "sha256": "e695eac11367a3e286a003f0741431585219b0d17e329cbeaa4990166d29abe8"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "deab32c8302eb1c5700517c5834e02d8a4c986533aab47730ae9d6236bbee809"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/gustavia.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "cityId": "papeete",
+  "countryIso2": "PF",
+  "generationIdentity": {
+    "cityId": "papeete",
+    "stateId": "pf-papeete",
+    "stateName": "Papeete"
+  },
+  "inventorySha256": "5e402ce01a12858e14c9dc55d2441dd33a8c4f446cea2b3379c95f5d1984800d",
+  "inventoryPath": "world/playable-africa-rollout/sources/papeete.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "papeete-airport",
+    "name": "Fa'a'ā International Airport",
+    "lon": -149.606936,
+    "lat": -17.553472,
+    "sourceUrl": "https://ourairports.com/airports/NTAA/"
+  },
+  "bounds": [
+    -17.718264389933978,
+    -149.7546053940901,
+    -17.356502610066023,
+    -149.37738740590987
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/polynesie-francaise-261011.osm.pbf",
+      "datasetSha256": "43280e0fe664fa00dda2e2a5e4964700d7d5823bd29be9f79696562b0b019ce9",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "7d507be4f7f4e10203b2fddb05c0a758fa6c83c1a2c4451e937918ef640a2333",
+          "elements": 640
+        },
+        {
+          "file": "extras.json",
+          "sha256": "271b636a75eef3e6d174c8746cd704353f20649a3b22ac654ec14932c304c813",
+          "elements": 216
+        },
+        {
+          "file": "water.json",
+          "sha256": "82ca916d3a66add28bc43ccfa027aa674be85430f5150df8050d9b242a7024c0",
+          "elements": 261
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "62b2422c87c05e5343d0a58c0b688772a2861ad7fbbaab11cdd4bdf32c9f33f9",
+          "elements": 172
+        },
+        {
+          "file": "roads.json",
+          "sha256": "9301ba2aed5a3ba628792b2c7751150e5f4cccf1106a75b518fb6b2653ca7913",
+          "elements": 650
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 107,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "autoRetries": [
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "node/10869083514",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "node/10869083514",
+            "name": "Source",
+            "lon": -149.4562493,
+            "lat": -17.5070058
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 20856,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 640,
+    "extras": 216,
+    "water": 261,
+    "landuse": 172,
+    "roads": 650
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1259,
+      "sha256": "49cc4a3d5bb3d5796fb30849caf3be561e405bd315ef17f2edf49f319339a3ff"
+    },
+    "geometry.ts": {
+      "bytes": 32179,
+      "sha256": "908284b54ab31de1db6d9b1f6fab0662bafa0ac95a132e59cc2014a1c28c89c6"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "c6bef7cb0aa957f302a196f760266b235e60d09b94234be245613fd9c9169663"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/papeete.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

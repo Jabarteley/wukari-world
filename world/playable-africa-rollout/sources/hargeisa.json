@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "hargeisa",
+  "countryIso2": "XS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Hargeisa",
+    "coordinatesWgs84": [
+      44.061803,
+      9.561733
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "hargeisa-airport",
+    "name": "Egal International Airport",
+    "lon": 44.083469,
+    "lat": 9.514082,
+    "sourceUrl": "https://ourairports.com/airports/HCMH/"
+  },
+  "boxes": {
+    "play": [
+      9.380852110066021,
+      43.87951173893194,
+      9.74261388993398,
+      44.24409426106806
+    ],
+    "core": [
+      9.516512777516505,
+      44.016248576509,
+      9.606953222483495,
+      44.107357423490996
+    ],
+    "outline": [
+      9.33085211006602,
+      43.82951173893194,
+      9.79261388993398,
+      44.294094261068054
+    ],
+    "wide": [
+      8.780852110066022,
+      43.27951173893194,
+      10.342613889933979,
+      44.84409426106806
+    ],
+    "water": [
+      9.380852110066021,
+      43.87951173893194,
+      9.74261388993398,
+      44.24409426106806
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+    "datasetSha256": "c8405db8aa5b4c3d012bfaf159cf6a55216b406da4fb53de74a2270a2e102351",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "f1a37997cd892cbc440246d08f2a645149def54aaeb8299f23b27324014a8a43",
+        "elements": 314
+      },
+      {
+        "file": "extras.json",
+        "sha256": "343c3dd5b3c7cba3541ed283c0e02cf0e4968c24e32625cc66c5c95856af0e4e",
+        "elements": 35
+      },
+      {
+        "file": "water.json",
+        "sha256": "ea257d5fab6bec5bf669a26e18075cd27fc1f79c595b53c1f53bf69eeb53ddd8",
+        "elements": 1824
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "b31dcd8533b9bdb6b0ccd99a0dee66313550c278ed097ccce70403ff6a236eb2",
+        "elements": 2126
+      },
+      {
+        "file": "roads.json",
+        "sha256": "5c005229fac996011f9efead36a62827001262e61e5d8e112d9f80e990730ffd",
+        "elements": 75
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Harageisa Bus Station",
+      "osm": "node/1138799090",
+      "coordinatesWgs84": [
+        44.067371,
+        9.562931
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kaah Restaurant",
+      "osm": "way/319413613",
+      "coordinatesWgs84": [
+        44.115817,
+        9.560276
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gollis University",
+      "osm": "way/798770515",
+      "coordinatesWgs84": [
+        44.038654,
+        9.562145
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Edna Adan Maternity Hospital",
+      "osm": "way/791242083",
+      "coordinatesWgs84": [
+        44.066842,
+        9.551056
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Warshada caanaha",
+      "osm": "node/8930451121",
+      "coordinatesWgs84": [
+        44.054045,
+        9.547189
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sariibada MMooge",
+      "osm": "way/359876299",
+      "coordinatesWgs84": [
+        44.090985,
+        9.537734
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Masjidka Cali Mataan",
+      "osm": "way/906825193",
+      "coordinatesWgs84": [
+        44.068275,
+        9.561806
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Somaliland Supreme Court",
+      "osm": "node/4463222378",
+      "coordinatesWgs84": [
+        44.054628,
+        9.558871
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "DANIDA",
+      "osm": "way/406928714",
+      "coordinatesWgs84": [
+        44.046487,
+        9.561828
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Hargeisa",
+      "osm": "way/449354369",
+      "coordinatesWgs84": [
+        44.046929,
+        9.546349
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hargeisa Stadium",
+      "osm": "way/238835442",
+      "coordinatesWgs84": [
+        44.062524,
+        9.549745
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hargeisa Memorial",
+      "osm": "node/10225628867",
+      "coordinatesWgs84": [
+        44.046126,
+        9.554491
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "War Memorial (MIG)",
+      "osm": "node/1138799338",
+      "coordinatesWgs84": [
+        44.06541,
+        9.561457
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "go ants",
+      "osm": "node/6554383286",
+      "coordinatesWgs84": [
+        44.223285,
+        9.440172
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "tls geele Arab",
+      "osm": "node/6589200285",
+      "coordinatesWgs84": [
+        44.204782,
+        9.638518
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mediterranean Restaurant",
+      "osm": "node/3593965256",
+      "coordinatesWgs84": [
+        44.070457,
+        9.518656
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Golis",
+      "osm": "way/365346749",
+      "coordinatesWgs84": [
+        44.090345,
+        9.560862
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "masaajid",
+      "osm": "way/353244599",
+      "coordinatesWgs84": [
+        44.135101,
+        9.569595
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Naaso Hablood Hospital",
+      "osm": "way/1462275345",
+      "coordinatesWgs84": [
+        44.124816,
+        9.576957
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hargeisa International Hospital",
+      "osm": "way/430366600",
+      "coordinatesWgs84": [
+        44.075072,
+        9.528823
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gobonimo market",
+      "osm": "node/7798002349",
+      "coordinatesWgs84": [
+        44.062014,
+        9.570355
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hand Memorial ( Taalda Gacanta)",
+      "osm": "way/1376931546",
+      "coordinatesWgs84": [
+        44.074752,
+        9.546821
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CIIR Mall",
+      "osm": "way/1544987456",
+      "coordinatesWgs84": [
+        44.064029,
+        9.523645
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guri_Samo Park",
+      "osm": "way/1315022603",
+      "coordinatesWgs84": [
+        44.072062,
+        9.556129
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1223,
+      "sha256": "5e2f1f5f92699afa2736bc43f1f0c21a7517fa3a8cec62acb4281da5557a8893"
+    },
+    "geometry.ts": {
+      "bytes": 12752,
+      "sha256": "8dd8335e3dfeb1f7523213b84a191ab0a6a09983ebdf5e459fd57b99599c27fc"
+    },
+    "places.ts": {
+      "bytes": 9265,
+      "sha256": "d891170ef615469405b0b839e10b175749beaf0520e8f0e94f2395eb9b3c942e"
+    },
+    "terrain.ts": {
+      "bytes": 6123,
+      "sha256": "637bfe082f92dcbbbbb053a1c29900e96e6e303eb678f9e8ff3a47ae93d2afd0"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "240179663edf5df13ef103ac44668914db2981fcdd1090cf90efd9e255c272ed"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

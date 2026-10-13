@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "cityId": "douglas",
+  "countryIso2": "IM",
+  "generationIdentity": {
+    "cityId": "douglas",
+    "stateId": "im-douglas",
+    "stateName": "Douglas"
+  },
+  "inventorySha256": "fdc088fc52a7ef0a307c35501c975fc749624212ecdcb047cd9ee49c7f13ed08",
+  "inventoryPath": "world/playable-africa-rollout/sources/douglas.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "douglas-airport",
+    "name": "Isle of Man Airport",
+    "lon": -4.623871,
+    "lat": 54.083081,
+    "sourceUrl": "https://ourairports.com/airports/EGNS/"
+  },
+  "bounds": [
+    53.96889311006602,
+    -4.786014240612886,
+    54.33065488993398,
+    -4.1697899593871135
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/isle-of-man-261011.osm.pbf",
+      "datasetSha256": "fa0b3476f98d505043bb3286fe12a9e86c2a46cc52049328635556431981092a",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "b8e0d815dad0dd2539a81631e7cf5d770caf4643561ba14becd803c4b4a53067",
+          "elements": 1020
+        },
+        {
+          "file": "extras.json",
+          "sha256": "da8d0decd7fc46c075d127c86e51eae66f04366f85da5edd2eda41e1a71b598b",
+          "elements": 165
+        },
+        {
+          "file": "water.json",
+          "sha256": "d02e64b3393beaf2e3d8c7c7fdf587a760608312e8ad4446ddca2334f6a38c53",
+          "elements": 139
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "3ab3bf63d3d642c9524a08cd4a215c101bbde5867576655b9825a68a5c95629d",
+          "elements": 387
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5699d077b73b9d79e1189fb609634702583ac7dc0f78b5b020319c3a50f48133",
+          "elements": 1240
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 460,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 12,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "neighbourhood": 1,
+      "suburb": 1,
+      "village": 16
+    }
+  },
+  "observed": {
+    "places": 1020,
+    "extras": 165,
+    "water": 139,
+    "landuse": 387,
+    "roads": 1240
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1215,
+      "sha256": "2c8d6151c29c6d2ee635ed7521fce72b9f68f202b65ee4fba90d6cbd186b95e3"
+    },
+    "geometry.ts": {
+      "bytes": 55883,
+      "sha256": "04255e02c38d2a7ba89dd720a5b3502bc4da619dd5c6523f22ecc7df6ff70a03"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "a70752f3ab888e939a6ac33ddcc9fd51328d7c2a5a5eee1fb735a18c3446a821"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/douglas.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

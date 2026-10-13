@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "cityId": "st-peter-port",
+  "countryIso2": "GG",
+  "generationIdentity": {
+    "cityId": "st-peter-port",
+    "stateId": "gg",
+    "stateName": "Saint Peter Port"
+  },
+  "inventorySha256": "2a4e6ad7a4c73d056ae1bf066bd1d7b2b3158c6a8a71ca60214160a37158cc73",
+  "inventoryPath": "world/playable-africa-rollout/sources/st-peter-port.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "st-peter-port-airport",
+    "name": "Guernsey Airport",
+    "lon": -2.60197,
+    "lat": 49.435001,
+    "sourceUrl": "https://ourairports.com/airports/EGJB/"
+  },
+  "bounds": [
+    49.275933310066016,
+    -2.816417658416154,
+    49.63769508993398,
+    -2.261578141583846
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/guernsey-jersey-261011.osm.pbf",
+      "datasetSha256": "f3ecad9dd9c1a682327645282a5273f56124a22a70ea7bc29da65054d8f4d3a5",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "dd2e871ef5ac6c777e56a4cf4cdb70b196c7d2e6ce1672c1b24fcd7da743100e",
+          "elements": 317
+        },
+        {
+          "file": "extras.json",
+          "sha256": "cbacfc53f8044b98c1f6b080fc232f341a2f50c09dba656177fdd3febf4a520d",
+          "elements": 30
+        },
+        {
+          "file": "water.json",
+          "sha256": "5ec81c573f50d6694683c3a682299b5e41d6c8e6907ea85de276ff287ceb7326",
+          "elements": 510
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d19c7257fa5b798deb753e2146d9da36d1f35816f03af9f89cfd8228e007c989",
+          "elements": 391
+        },
+        {
+          "file": "roads.json",
+          "sha256": "447b52af8b9b60062842ee4c360f158c02c9c9cee68dfd74e4f1d00c39ef45d0",
+          "elements": 422
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 47,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 8,
+    "reachWaterPolygons": 10
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "hamlet": 7,
+      "locality": 3,
+      "village": 8
+    }
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "gg-st-peter-port",
+          "to": "gg"
+        }
+      },
+      "before": {
+        "catalogueBytes": 154,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 140,
+        "limit": 150,
+        "passed": true
+      }
+    },
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "node/2072652842",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "node/2072652842",
+            "name": "Herm Harbour",
+            "lon": -2.4535404,
+            "lat": 49.4703206
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 17055,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 317,
+    "extras": 30,
+    "water": 510,
+    "landuse": 391,
+    "roads": 422
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1250,
+      "sha256": "36ab11359803012a8ebfc8936d5cb68eb6a28415bf5aeddb828b280d52df3969"
+    },
+    "geometry.ts": {
+      "bytes": 111443,
+      "sha256": "07dc44e5a7ebf67c428769e863ec68a5b59431991c77780de1e6442caca4975a"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "a938e577552b7911d5ed3f2b7d3a4fffd166cfe8a794491be0e0fe6749632571"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/st-peter-port.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

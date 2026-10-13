@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "hong-kong",
+  "countryIso2": "HK",
+  "generationIdentity": {
+    "cityId": "hong-kong",
+    "stateId": "hk-hong-kong",
+    "stateName": "Hong Kong"
+  },
+  "inventorySha256": "28a260c4b2e75c5453da39ab83c95e791868fbee70c588d1a2b4855a2ee4baad",
+  "inventoryPath": "world/playable-africa-rollout/sources/hong-kong.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "hong-kong-airport",
+    "name": "Hong Kong International Airport",
+    "lon": 113.914862,
+    "lat": 22.31184,
+    "sourceUrl": "https://ourairports.com/airports/VHHH/"
+  },
+  "bounds": [
+    22.10095241006602,
+    113.90515127684363,
+    22.462714189933976,
+    114.35269573837654
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/china/guangdong-261011.osm.pbf",
+      "datasetSha256": "8b3a98d07f2f417659b81adbecf128287a6f326e6027120c77eb30b6708fb15c",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "12455097bdf4141059b2f906a8e7c8858c986ebfb066e02b34a65ba4b71eb917",
+          "elements": 8243
+        },
+        {
+          "file": "extras.json",
+          "sha256": "6430edd4912e3385c46f3fb6cb37287a8c4fc3a668044aaed03834a28d4389e2",
+          "elements": 1913
+        },
+        {
+          "file": "water.json",
+          "sha256": "b48cd87151d57b9fbc47313035ba07a9b178347fc5836443873041657536911c",
+          "elements": 5443
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "9cf64bc1a21f752f61be5895c2ecc0681ba64f182423ea7ec43920f8ac0fbebe",
+          "elements": 15740
+        },
+        {
+          "file": "roads.json",
+          "sha256": "94d36e9c45f948a7ccb929d06d5d8a31d7c5ed007127d0719f4f4278bd506562",
+          "elements": 11670
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 500,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 16,
+    "waterPolygons": 47,
+    "reachWaterPolygons": 47
+  },
+  "observed": {
+    "places": 8243,
+    "extras": 1913,
+    "water": 5443,
+    "landuse": 15740,
+    "roads": 11670
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1237,
+      "sha256": "ba34235c306d8ae403623ed4acbe747867a504dcdd91f5f1e75e523c4055e86e"
+    },
+    "geometry.ts": {
+      "bytes": 1134247,
+      "sha256": "d995f73ce7ccd7330e297b6bd742b5ec3184e226bc89af4f0406661ac576d876"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "276c2d40ad4eb360429beb566fb2d85ab9b7cb6fd91340c4e421ec7e4580536c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/hong-kong.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

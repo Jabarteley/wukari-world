@@ -12,9 +12,4 @@ export function footprintOf(building:CampusBuilding):WalkRect[]{
   return [[building.x-building.w/2,building.z-building.d/2,building.x+building.w/2,building.z+building.d/2]];
 }
 
-let shared:CampusWalk|undefined;
-/** Without extra footprints the campus has one walk model (grid and routes) for the scene, the shuttle and the host to share. */
-export function createCampusWalk(extraFootprints:Record<string,Array<WalkRect|WalkCircle>>={}):CampusWalk{
-  if(Object.keys(extraFootprints).length)return createGeographicCampusWalk(extraFootprints);
-  return shared??=createGeographicCampusWalk();
-}
+export function createCampusWalk(extraFootprints:Record<string,Array<WalkRect|WalkCircle>>={}):CampusWalk{return createGeographicCampusWalk(extraFootprints);}

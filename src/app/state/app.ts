@@ -527,9 +527,6 @@ function createApp(game: Game, native: readonly VuePanel[]) {
     const venue = scene.venue.value
     if (type === 'spot' && game.state.value.location === 'unilag' && venue?.host === 'campus' && typeof payload?.id === 'string' && payload.id !== game.state.value.spot) {
       const result = await venue.walkToSpot(payload.id)
-      // The player chose the campus shuttle and now stands at its boarding stop: ride to the stop the host picked.
-      const { code, destination } = result as { code?: string; destination?: string }
-      if (result.ok && code === 'shuttle' && typeof destination === 'string') return send('campus-shuttle', { destination } as never) as never
       // A refusal of the walk itself (the server's own refusals were already shown by commitSpot).
       if (!result.ok && result.reason && (result.code === 'no_route' || result.code === 'invalid_spot')) game.toast(result.reason, 'error')
       return result as never

@@ -9,15 +9,11 @@ import { ANCHORS, ENTRANCE } from './layout.ts';
 import type { CampusAnchor } from './layout.ts';
 import { createCampusWalk } from './walk.ts';
 import type { CampusWalk as NavigationApi, WalkCircle, WalkGrid, WalkPoint, WalkRect } from './walk.ts';
-import { releaseWalkScratch } from '../../scene/walk-grid.ts';
 import { measureScene } from '../shared/geometry.ts';
 import type { SceneMeasure } from '../shared/geometry.ts';
 import { createMappedGeometry } from './mapped-geometry.ts';
-import { createCampusLife } from './life.ts';
-import { createAmbient } from './ambient.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
 import { boundsOf } from './geo.ts';
-import { buildSky, skyLook } from './sky.ts';
 
 export type Point = WalkPoint;
 /** Obstacle shapes the walk model accepts: a rectangle [x0, z0, x1, z1] or a circle [x, z, radius]. */
@@ -67,8 +63,6 @@ export interface UnilagScene {
   navigation: CampusNavigation;
   camera: { landscape: number[]; portrait: number[] };
   readonly background: string;
-  /** Distance fog matching the sky horizon: far buildings and the lagoon fade into haze. */
-  readonly fog: { color: string; near: number; far: number };
   readonly time: string;
   readonly zone: string | null;
   readonly position: PlayerPosition;
@@ -91,12 +85,9 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   group.name = 'UNILAG Akoka · mapped campus';
   const navigation = createCampusWalk();
   const mapped = createMappedGeometry(kit); group.add(mapped.group);
-  const life = createCampusLife(kit); group.add(life.group);
-  let ambient: ReturnType<typeof createAmbient> | null = null;
   let player = buildAvatar(kit, { body: 'woman', outfit: 'casual', outfitColor: 'gold', skin: 'skin-5' }, { detail: 'low', rig: true, scale: .60, seed: 'campus-visitor' });
   group.add(player);
   let time = venue.scene?.time || 'day', disposed = false, playerKey = '';
-  const sky = buildSky(kit); sky.setTime(time); group.add(sky.mesh);
   let crowd: CrowdPerson[] = [];
   const peopleGroup = new THREE.Group(); peopleGroup.name='Campus stationary peers'; group.add(peopleGroup);
   const peopleCache = new Map<string, { key: string; body: ReturnType<typeof buildAvatar> }>();
@@ -114,7 +105,7 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   function setPosition(x:number,z:number):boolean {
     const zone=navigation.zoneAt(x,z);
     if(disposed||!zone||!grid.free(x,z))return false;
-    position.x=x;position.z=z;position.zone=zone.id;player.position.set(x,0,z);mapped.update(x,z,time);life.update(x,z,time);ambient?.retarget(x,z);return true;
+    position.x=x;position.z=z;position.zone=zone.id;player.position.set(x,0,z);mapped.update(x,z);return true;
   }
   function clearPeople(){for(const peer of peopleCache.values())peer.body.userData.dispose();peopleCache.clear();peopleGroup.clear();}
   const walk:AvatarWalk={
@@ -128,12 +119,11 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
   };
   const scene:UnilagScene={group,kind:'unilag',mood:'outdoor',anchors:ANCHORS,walk,navigation,
     camera:{landscape:[22,20,26],portrait:[26,30,34]},
-    get background(){return time==='night'?'#0d1f3a':time==='dusk'?'#dc9f82':'#bfd1d3';},
-    get fog(){const look=skyLook(time);return {color:scene.background,near:look.fogNear,far:look.fogFar};},
+    get background(){return time==='night'?'#132638':time==='dusk'?'#c9a792':'#b7ced6';},
     get time(){return time;},get zone(){return position.zone;},get position(){return {...position};},
     update(state){const hour=lagosTime(state?.t??0).hour;return scene.setTime(venue.scene?.time||(hour<6||hour>=19?'night':hour>=17?'dusk':'day'));},
-    setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;sky.setTime(time);mapped.update(position.x,position.z,time);life.update(position.x,position.z,time);return true;},
-    lighting(){return time==='night'?{hemi:['#86a4e2','#33405f',2.3],sun:['#b3c8f7',1.6,[80,140,50]]}:time==='dusk'?{hemi:['#9fb0dc','#4d4f63',1.45],sun:['#ffc277',2.1,[80,140,50]]}:{hemi:['#c6dde0','#68765a',1.8],sun:['#fff1d6',2.3,[80,140,50]]};},
+    setTime(value){if(!['day','dusk','night'].includes(value)||value===time)return false;time=value;return true;},
+    lighting(){return {hemi:[scene.background,'#677457',time==='night'?.8:1.6],sun:[time==='night'?'#96b5da':'#fff0d2',time==='night'?.65:2.4,[80,140,50]]};},
     setPosition,setSpot(id){const a=ANCHORS[id];return !!a&&setPosition(a.x,a.z);},
     setPlayer({look,seed='campus-visitor',pose='stand'}:PlayerInput={}){const key=JSON.stringify([look,seed]);if(look&&key!==playerKey){playerKey=key;player.userData.dispose();player=buildAvatar(kit,look,{detail:'low',rig:true,scale:.60,seed});group.add(player);player.position.set(position.x,0,position.z);walk.avatar=player;}poseAvatar(player,{pose});return true;},
     setCrowd(people){
@@ -145,15 +135,13 @@ export function buildUnilag(kit: Kit, venue: { scene?: { time?: string } } = {})
         if(!peer||peer.key!==key){peer?.body.userData.dispose();const body=buildAvatar(kit,look,{detail:'low',rig:false,scale:.60,seed:person.id});peer={key,body};peopleCache.set(person.id,peer);peopleGroup.add(body);}
         peer.body.position.set(person.x,0,person.z);
       }
-      ambient?.setCapacity(CAMPUS_BUDGET.crowd-crowd.length);ambient?.retarget(position.x,position.z);
       return scene.tags();
     },
     tags(){return Object.entries(ANCHORS).filter(([,a])=>Math.hypot(a.x-position.x,a.z-position.z)<220).map(([id,a])=>({id,name:a.label,kind:'landmark',position:{x:a.x,y:3.5,z:a.z}})).concat(crowd.map(p=>({id:p.id,name:p.name,kind:p.kind,position:{x:p.x,y:2.3,z:p.z}})));},
     stats(){return {...measureScene(group),zone:position.zone,resident:mapped.resident,rebuilds:mapped.rebuilds};},
-    dispose(){if(disposed)return;disposed=true;registry.delete(scene.dispose);sky.dispose();mapped.dispose();life.dispose();ambient?.dispose();releaseWalkScratch();clearPeople();player.userData.dispose();markerGeometry.dispose();group.removeFromParent();group.clear();},
+    dispose(){if(disposed)return;disposed=true;registry.delete(scene.dispose);mapped.dispose();clearPeople();player.userData.dispose();markerGeometry.dispose();group.removeFromParent();group.clear();},
   };
   const registry=kitResources(kit).disposers;registry.add(scene.dispose);
-  ambient=createAmbient(kit,navigation,()=>player.visible);group.add(ambient.group);ambient.setCapacity(CAMPUS_BUDGET.crowd);
   const start=grid.nearest(ENTRANCE.x,ENTRANCE.z);if(start)setPosition(start.x,start.z);
   return scene;
 }

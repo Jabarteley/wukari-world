@@ -8,12 +8,8 @@ import { buildUnilag } from './scene.ts';
 import { SHUTTLE_STOPS, shuttleRoute, shuttlePose } from './shuttle.ts';
 import { buildShuttle } from './shuttle-scene.ts';
 import { CAMPUS_NPCS } from './content.ts';
-import { NPC_LOOKS } from './npc-looks.ts';
 import { BUILDINGS, ZONES, ROADS, ANCHORS, ENTRANCE } from './layout.ts';
 import { CAMPUS_MAP } from './map.generated.ts';
-import { pointInRing, boundsOf } from './geo.ts';
-import { standalones } from './standalone.ts';
-import { framePreset as computeFrame, occluded } from './camera-frame.ts';
 import type { Kit } from '../../scene/kit.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
 import type { Walker } from './host.ts';
@@ -28,12 +24,12 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=
 renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;
 const world=new THREE.Scene(),camera=new THREE.PerspectiveCamera(48,1,.1,1800),kit: Kit=createKit(),campus=buildUnilag(kit);
 world.add(campus.group);
-campus.setCrowd(Object.values(CAMPUS_NPCS).flatMap(npc=>{const a=ANCHORS[npc.at];if(!a)return [];const at=campus.walk.grid.nearest(a.x+3,a.z+3);return at?[{...npc,look:NPC_LOOKS[npc.id],name:npc.name+' · '+npc.role,...at}]:[];}));
+campus.setCrowd(Object.values(CAMPUS_NPCS).flatMap(npc=>{const a=ANCHORS[npc.at];if(!a)return [];const at=campus.walk.grid.nearest(a.x+3,a.z+3);return at?[{...npc,name:npc.name+' · '+npc.role,...at}]:[];}));
 const hemi=new THREE.HemisphereLight('#c6e0e6','#68765a',2),sun=new THREE.DirectionalLight('#fff0d2',2.4);
-sun.position.set(80,140,50);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-120,right:120,top:120,bottom:-120,near:1,far:420});sun.shadow.normalBias=.3;sun.shadow.bias=-.0006;world.add(hemi,sun,sun.target);
+sun.position.set(80,140,50);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-120,right:120,top:120,bottom:-120,near:1,far:420});sun.shadow.normalBias=.3;world.add(hemi,sun,sun.target);
 const bus: ShuttleView=buildShuttle(kit);bus.group.visible=false;world.add(bus.group);
 const walker: Walker=createWalker({speed:8,jogSpeed:18});walker.setGrid(campus.walk.grid);walker.place(ENTRANCE.x,ENTRANCE.z,0);
-let yaw=-Math.PI/2,tilt=.32,distance=32,lookHeight=2,focus={dx:0,dz:0},gridVisible=false,frameCount=0,phase=0,trip: Trip | null=null;
+let yaw=-Math.PI/2,tilt=.32,distance=32,gridVisible=false,frameCount=0,phase=0,trip: Trip | null=null;
 const keys=new Set<string>(),labels=new Map<string, HTMLSpanElement>(),map=$<HTMLCanvasElement>('map'),ctx=map.getContext('2d')!;
 const screenPoint=new THREE.Vector3(),labelRay=new THREE.Raycaster(),rayStart=new THREE.Vector3(),rayDirection=new THREE.Vector3(),hitPoint=new THREE.Vector3();
 const occluders=campus.walk.solids.map(([x0,y0,z0,x1,y1,z1])=>new THREE.Box3(new THREE.Vector3(x0,y0,z0),new THREE.Vector3(x1,y1,z1)));
@@ -56,22 +52,11 @@ function drawMap(){
   for(const friend of campus.walk.people()){const p=point(friend.x,friend.z);ctx.fillStyle='#686ab8';ctx.beginPath();ctx.arc(...p,2.5,0,Math.PI*2);ctx.fill();}
   const p=point(walker.x,walker.z);ctx.fillStyle='#db7142';ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(...p,4,0,Math.PI*2);ctx.fill();ctx.stroke();
 }
-/** Footprints with their heights, so the orbit camera can be kept out of buildings (solids share the CAMPUS_MAP.buildings order). */
-const solidBoxes=[...campus.walk.solids,...standalones().map(({building:b})=>{const [x0,z0,x1,z1]=boundsOf(b.ring);return [x0,0,z0,x1,b.height,z1] as typeof campus.walk.solids[number];})];
-const blockers=[...CAMPUS_MAP.buildings,...standalones().map(s=>s.building)].map((b,i)=>({ring:b.ring,bounds:solidBoxes[i]!}));
-const insideBuilding=(x: number,y: number,z: number)=>occluded(x,y,z,0)!==null;
-const fog=new THREE.Fog('#bfd1d3',260,1750),background=new THREE.Color();
 function draw(){
-  // Orbit camera arm: stops before the first building on its ray (never inside or behind a wall), never below the ground.
-  const fx=walker.x+focus.dx,fz=walker.z+focus.dz,ty=lookHeight,wantX=fx+Math.sin(yaw)*Math.cos(tilt)*distance,wantY=Math.max(1.4,Math.sin(tilt)*distance+ty),wantZ=fz+Math.cos(yaw)*Math.cos(tilt)*distance;
-  let arm=1;
-  for(let t=Math.max(.1,6/Math.max(8,distance));t<=1;t+=.02)if(insideBuilding(fx+(wantX-fx)*t,ty+(wantY-ty)*t,fz+(wantZ-fz)*t)){arm=Math.max(.12,t-.06);break;}
-  camera.position.set(fx+(wantX-fx)*arm,Math.max(1.4,ty+(wantY-ty)*arm),fz+(wantZ-fz)*arm);
-  camera.lookAt(fx,ty,fz);
-  // A wider near plane at altitude gives the depth buffer 10-20x more precision for the distant ground, roofs and water.
-  const near=Math.max(.3,distance*arm*.04);if(Math.abs(camera.near-near)>.01){camera.near=near;camera.updateProjectionMatrix();}
-  background.set(campus.background);world.background=background;const f=campus.fog;fog.color.set(f.color);fog.near=f.near;fog.far=f.far;world.fog=fog;
-  const light=campus.lighting();hemi.color.set(light.hemi[0]);hemi.groundColor.set(light.hemi[1]);hemi.intensity=light.hemi[2];sun.color.set(light.sun[0]);sun.intensity=light.sun[1];
+  camera.position.set(walker.x+Math.sin(yaw)*Math.cos(tilt)*distance,Math.sin(tilt)*distance+2,walker.z+Math.cos(yaw)*Math.cos(tilt)*distance);
+  camera.lookAt(walker.x,2,walker.z);
+  world.background=new THREE.Color(campus.background);world.fog=new THREE.Fog(campus.background,450,2200);
+  const night=campus.time==='night';hemi.intensity=night?.9:2;sun.intensity=night?.65:2.4;sun.color.set(night?'#9ebadb':'#fff0d2');
   document.body.dataset.time=campus.time;
   sun.position.set(walker.x-70,140,walker.z+60);sun.target.position.set(walker.x,0,walker.z);
   renderer.render(world,camera);frameCount++;
@@ -98,14 +83,12 @@ const loop=createMotionLoop((dt: number)=>{
 
   walker.input(Number(keys.has('d')||keys.has('ArrowRight'))-Number(keys.has('a')||keys.has('ArrowLeft')),Number(keys.has('w')||keys.has('ArrowUp'))-Number(keys.has('s')||keys.has('ArrowDown')),keys.has('Shift'));
   // Calling input(0,0) preserves the walker's existing path.
-  const moved=walker.step(dt,yaw);if(moved)focus.dx=focus.dz=0;phase+=dt*(walker.jogging?9:5);
+  const moved=walker.step(dt,yaw);phase+=dt*(walker.jogging?9:5);
   campus.walk.move(walker.x,0,walker.z,walker.ry);campus.walk.gait(phase,phase);
   if(!moved)campus.walk.rest();draw();return moved||walker.hasInput;
 },{onHidden(){keys.clear();walker.stop();},onVisible(){draw();}});
 function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();draw();}
-/** Entrances face the anchor's +z side (the anchor sits 2 m in front of the footprint), so frame from there, low enough to read the door and sign. */
-function framePreset(id: string){const f=computeFrame(id);yaw=f.yaw;tilt=f.tilt;distance=f.distance;lookHeight=f.lookHeight;focus.dx=f.dx;focus.dz=f.dz;}
-function jump(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(!a)return false;loop.stop();walker.stop();if(!campus.setSpot(id))return false;walker.place(a.x,a.z,a.ry);$<HTMLSelectElement>('destination').value=id;framePreset(id);draw();return true;}
+function jump(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(!a)return false;loop.stop();walker.stop();if(!campus.setSpot(id))return false;walker.place(a.x,a.z,a.ry);$<HTMLSelectElement>('destination').value=id;yaw=id==='lagoon-front'?-Math.PI/2:.55;tilt=id==='lagoon-front'?.38:.62;distance=id==='senate'?125:id==='lagoon-front'?75:48;draw();return true;}
 function go(id: string){trip=null;bus.group.visible=false;campus.walk.avatar.visible=true;const a=ANCHORS[id];if(a&&walker.goTo(a.x,a.z,{arrive(){ $('status').textContent=`You reached ${a.label}.`; }})){ $('status').textContent=`Walking to ${a.label}…`;loop.wake();return true;}$('status').textContent='That destination is not reachable from here.';return false;}
 function showTrip(at: { x: number; z: number; ry: number } | null){if(!at)return;walker.place(at.x,at.z,at.ry);campus.setPosition(at.x,at.z);bus.group.visible=true;campus.walk.avatar.visible=false;bus.group.position.set(at.x,.2,at.z);bus.group.rotation.y=at.ry;}
 function ridePreview(destination: string,progress: number | null=null){
@@ -134,5 +117,5 @@ $<HTMLCanvasElement>('world').addEventListener('wheel',e=>{e.preventDefault();di
 for(const button of document.querySelectorAll<HTMLElement>('[data-move]')){const key={up:'w',left:'a',right:'d',down:'s'}[button.dataset.move as 'up'|'left'|'right'|'down']; button.onpointerdown=(e: PointerEvent)=>{e.preventDefault();button.setPointerCapture(e.pointerId);keys.add(key);loop.wake();};button.onpointerup=button.onpointercancel=()=>keys.delete(key);}
 map.onclick=e=>{const r=map.getBoundingClientRect(),x=CAMPUS_MAP.bounds[0]+(e.clientX-r.left)/r.width*(CAMPUS_MAP.bounds[2]-CAMPUS_MAP.bounds[0]),z=CAMPUS_MAP.bounds[1]+(e.clientY-r.top)/r.height*(CAMPUS_MAP.bounds[3]-CAMPUS_MAP.bounds[1]);const at=campus.walk.grid.nearest(x,z);if(at&&walker.goTo(at.x,at.z))loop.wake();else $('status').textContent='Choose a walkable part of campus.';};
 // Inspection interface exists only on the dev page, with no game-server writes.
-(globalThis as typeof globalThis & { campusPreview?: object }).campusPreview={campus,walker,renderer,jump,go,draw,ridePreview,setTime(value: string){campus.setTime(value);$<HTMLSelectElement>('time').value=value;draw();},get frames(){return frameCount;},get idle(){return !loop.running;},setFocus(dx: number,dz: number,look: number){focus.dx=dx;focus.dz=dz;lookHeight=look;draw();},setView(values: { yaw?: number; tilt?: number; distance?: number }){if(finite(values.yaw))yaw=values.yaw;if(finite(values.tilt))tilt=values.tilt;if(finite(values.distance))distance=values.distance;draw();},dispose(){loop.dispose();campus.dispose();bus.dispose();kit.dispose();renderer.dispose();}};
+(globalThis as typeof globalThis & { campusPreview?: object }).campusPreview={campus,walker,renderer,jump,go,draw,ridePreview,setTime(value: string){campus.setTime(value);$<HTMLSelectElement>('time').value=value;draw();},get frames(){return frameCount;},get idle(){return !loop.running;},setView(values: { yaw?: number; tilt?: number; distance?: number }){if(finite(values.yaw))yaw=values.yaw;if(finite(values.tilt))tilt=values.tilt;if(finite(values.distance))distance=values.distance;draw();},dispose(){loop.dispose();campus.dispose();bus.dispose();kit.dispose();renderer.dispose();}};
 resize();

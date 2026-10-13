@@ -77,8 +77,3 @@ export function boundsOf(points: readonly MetrePoint[]): MetreBounds {
   for (const [x, z] of points) { minX = Math.min(minX, x); minZ = Math.min(minZ, z); maxX = Math.max(maxX, x); maxZ = Math.max(maxZ, z); }
   return [minX, minZ, maxX, maxZ];
 }
-
-/** A mapped wetland that mostly lies outside the campus boundary is marsh in the lagoon, not lawn: it must sit at water level. */
-export function isOffshoreMarsh(surface: Pick<CampusMapSurface, 'kind' | 'ring'>, boundary: MetreRing): boolean {
-  return surface.kind === 'wetland' && surface.ring.filter(p => pointInRing(p, boundary)).length < surface.ring.length / 2;
-}

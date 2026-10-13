@@ -231,15 +231,3 @@ Everything above describes the campus as first built. In the current game it is 
 | Types | `src/types/campus.ts`. |
 
 Known limits carried over: the leaderboard projection reads every session on each `GET /api/campus` (rate limited per player, not cached); `campus.*` engine events have no listener; `campus-shuttle` is the one campus action outside the `unilag.` namespace.
-
-### Campus life layer, 13 October 2026
-
-Landscape and street life added without new lights, textures or dependencies (all procedural, vertex-coloured):
-
-- `src/campus/unilag/life-plan.ts` is the pure-data decorative plan (not a surveyed inventory) from the pinned OSM roads, boundary and anchors. It also exports `propBlocks()`, which `navigation.ts` adds to the walk-grid blockers, so palms, kiosks, benches, cars, keke, lamps, signs, notice boards, generator houses, hedges and goals cannot be walked through. Anchors keep a 4.5 m clearance and every anchor route still resolves.
-- `src/campus/unilag/life.ts` bakes the props near the player (100 m radius, at most about 4,200 triangles, solid plus glow, 2 draw calls) and builds one static lagoon mesh (about 700 triangles, 1 call): shore-edge water bands, foam, and dry land colour off campus. Water is drawn only seaward of the shore edges east of x=450 and stops where a ray meets campus land again. Along the shore: seawall, paved promenade, bollards, palms, benches, lamps, a timber pier and fishing canoes at the Lagoon Front. Lamps, kiosks and the gate house glow at dusk and night (glow layer; lamps add a light pool on the ground).
-- Landmark dressing: blue/white/green sign boards (lettering on the nearest one only), notice boards, hedges, benches, students with bags, kiosks with recharge-card umbrellas, generator houses, pitch goals/nets/hoops, speed bumps, zebra crossing and a palm-lined gate approach. The palm-lined entrance and the lagoon and Third Mainland Bridge outlook are from a published campus ranking; the bridge itself is not drawn (no sourced bearing). Shuttle livery is unsourced and unchanged.
-- `src/campus/unilag/ambient.ts`: up to four ambient students walk A* routes between the nearest landmarks and an ambient shuttle loops the mapped stops. They use whatever crowd budget the live peers leave unused (12 minus peers) and hide the ambient shuttle while the player rides the real one. Positions come from the wall clock at draw time, so they move whenever the scene draws and never keep the frame loop alive (battery rule in `src/scene/motion-loop.ts`).
-- Trees: far trees are now an open 3-sided cone (about 9,000 fewer triangles) with per-instance tint and rotation. Near-player avenue trees (palm, flame-of-the-forest, almond) come from the life layer.
-- NPCs in `content.ts` now carry a `look` (backpacks, headwraps, jersey, office wear).
-- Budget measured by `scene.test.ts`: worst resident view about 57,600 of 60,000 triangles, 34 of 60 draw calls.

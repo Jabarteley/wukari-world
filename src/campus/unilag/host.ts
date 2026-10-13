@@ -1,11 +1,6 @@
-import { occluded } from './camera-frame.ts';
-import { tripPace } from './trip-pace.ts';
-import { tripKind, tripOptions, shuttlePlan, describeTrip } from './trip-decision.ts';
-import type { TripOption } from './trip-decision.ts';
 import './host.css';
 import type { Group, WebGLRenderer } from 'three';
 import { createKit } from '../../scene/kit.ts';
-import { lazyEnvironment, renderTier } from '../../scene/look.ts';
 import { createMotionLoop } from '../../scene/motion-loop.ts';
 import type { MotionLoop } from '../../scene/motion-loop.ts';
 import { createPositionReporter, createWalker, gaitPhase, WALK_SPEED, JOG_SPEED } from '../../scene/movement.ts';
@@ -20,7 +15,7 @@ import { CAMPUS_MAP } from './map.generated.ts';
 import { NPC_WORD, npcAria, npcTitle } from '../../ui/npc-mark.ts';
 import type { Kit } from '../../scene/kit.ts';
 
-export interface WalkResult { ok: boolean; code?: string; reason?: string; /** code 'shuttle': the stop the app should ride to now that the player stands at the boarding stop. */ destination?: string }
+export interface WalkResult { ok: boolean; code?: string; reason?: string }
 export interface SpotRequest { id: string; open: boolean }
 /** The shuttle ride the server reports as the player's active action. */
 export interface HostAction { kind?: string; origin?: string; dest?: string; start?: number; duration: number; remaining: number }
@@ -60,18 +55,17 @@ export interface CampusHost {
 export interface Walker {
   x: number; z: number; ry: number; moving: boolean; jogging: boolean; hasInput: boolean; mode: string;
   others: Point[] | null;
-  speed: number; jogSpeed: number;
   setGrid(grid: unknown): void;
   place(x: number, z: number, ry?: number): void;
   stop(): void;
   input(right: number, forward: number, fast?: boolean): void;
   step(dt: number, cameraYaw?: number, snap?: boolean): boolean;
-  goTo(x: number, z: number, options?: { exact?: boolean; face?: number; arrive?: () => void; jog?: boolean }): boolean;
+  goTo(x: number, z: number, options?: { exact?: boolean; face?: number; arrive?: () => void }): boolean;
   finishNow(): boolean;
 }
 interface PositionReporter { report(x: number, z: number, now: number): boolean; rest(x: number, z: number, now: number): boolean }
 interface ShuttleView { group: Group; dispose(): void }
-interface WalkTask { id: string; resolve: (result: WalkResult) => void; committing?: boolean; shuttle?: string }
+interface WalkTask { id: string; resolve: (result: WalkResult) => void; committing?: boolean }
 interface ShuttleClock { key: string; remaining: number; receivedAt: number }
 interface TagView extends CampusTag { text?: string }
 
@@ -97,16 +91,12 @@ export function createCampusHost(container: HTMLElement, {
   const world = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 1800);
   const renderer: WebGLRenderer = providedRenderer || new THREE.WebGLRenderer({ antialias: true, alpha: false });
-  // Phone tier (src/scene/look.ts): lower pixel ratio, 1024 hard-filtered shadow map; wide screens keep 2048 soft.
-  const tier = renderTier();
-  renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, tier.pixelRatio));
+  renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = tier.softShadows ? THREE.PCFSoftShadowMap : THREE.PCFShadowMap;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.12;
-  // High tier: the generated environment map (lazy; redraws once when it lands).
-  if (tier.env) lazyEnvironment(THREE, world, () => renderer.render(world, camera));
   container.classList.add('campus-host');
   container.appendChild(renderer.domElement);
 
@@ -118,11 +108,11 @@ export function createCampusHost(container: HTMLElement, {
   const sun = new THREE.DirectionalLight('#fff0d2', 2.4);
   sun.position.set(80, 140, 50);
   sun.castShadow = true;
-  sun.shadow.mapSize.set(tier.shadowMap, tier.shadowMap);
+  sun.shadow.mapSize.set(2048, 2048);
   sun.shadow.camera.left = -120; sun.shadow.camera.right = 120;
   sun.shadow.camera.top = 120; sun.shadow.camera.bottom = -120;
   sun.shadow.camera.near = 1; sun.shadow.camera.far = 420;
-  sun.shadow.normalBias = .3; sun.shadow.bias = -0.0006;
+  sun.shadow.normalBias = .3;
   world.add(hemi, sun, sun.target);
 
   const tagLayer = document.createElement('div');
@@ -159,23 +149,7 @@ export function createCampusHost(container: HTMLElement, {
   const crowdKinds = new Map<string, 'npc' | 'player'>();
   let crowd: HostPerson[] = [], state: HostState | null = null, player: HostPlayer = {}, playerKey = '', crowdKey = '[]';
   let insets = { top: 0, bottom: 0 }, size = { width: 0, height: 0 };
-  // The first frame says UNILAG: a pulled-back 3/4 view of the whole gate arch, its lettering, the road and the palms.
-  // It settles into the ordinary follow camera on the first move or drag.
-  // Seen from outside the gate, low enough for the whole banner and both outer pylons; the follow camera blends in from here.
-  let yaw = -1.3, tilt = 0.34, distance = 34, phase = 0, renderCount = 0, intro = true, introBlend = 1, armNow = 1;
-  const INTRO_VIEW = 112, INTRO_TILT = 0.3, INTRO_SHIFT_Z = -5;
-  function settleIntro(): void {
-    if (!intro) return;
-    intro = false;
-    const start = globalThis.performance?.now?.() ?? 0, ms = reduced() ? 0 : 1300;
-    const step = (): void => {
-      if (disposed) return;
-      const k = ms ? Math.min(1, ((globalThis.performance?.now?.() ?? 0) - start) / ms) : 1, e = k * k * (3 - 2 * k);
-      introBlend = 1 - e; draw();
-      if (k < 1) globalThis.requestAnimationFrame?.(step);
-    };
-    step();
-  }
+  let yaw = -Math.PI/2, tilt = 0.32, distance = 32, phase = 0, renderCount = 0;
   let locked = false, wasMoving = false, disposed = false, drag: { id: number; x: number; y: number } | null = null, walkTask: WalkTask | null = null;
   let shuttleActive = false, shuttleAt: ShuttlePose | null = null, shuttleClock: ShuttleClock | null = null;
   const projected = new THREE.Vector3();
@@ -188,7 +162,7 @@ export function createCampusHost(container: HTMLElement, {
   function finishTask(result: WalkResult, expected: WalkTask | null = walkTask): void {
     const task = walkTask;
     if (!task || task !== expected) return;
-    walkTask = null; restorePace(); closeSheet();
+    walkTask = null;
     task.resolve(result);
   }
   function cancelTask(code = 'cancelled'): void {
@@ -205,7 +179,7 @@ export function createCampusHost(container: HTMLElement, {
       const result = await onSpot({ id, open: true });
       if (walkTask !== task) return;
       if (!result?.ok) placeAt(state?.spot, true);
-      finishTask(task.shuttle && result?.ok ? { ...(result as WalkResult), code: 'shuttle', destination: task.shuttle } : result as WalkResult, task); // an onSpot that answers nothing resolves the walk with undefined, as before
+      finishTask(result as WalkResult, task); // an onSpot that answers nothing resolves the walk with undefined, as before
     } catch (error) {
       if (walkTask === task) placeAt(state?.spot, true);
       finishTask({ ok: false, code: 'network', reason: (error as { message?: string } | null)?.message || 'That place could not be selected.' }, task);
@@ -216,33 +190,17 @@ export function createCampusHost(container: HTMLElement, {
     const target = shuttleActive && shuttleAt ? shuttleAt : walker;
     const available = Math.max(180, size.height - insets.top - insets.bottom);
     const phone = size.width <= 720;
-    const followDistance = distance * (phone ? 0.88 : 1) * clamp(560 / available, 0.9, 1.42);
-    const viewDistance = followDistance * (1 - introBlend) + INTRO_VIEW * introBlend, lens = tilt * (1 - introBlend) + INTRO_TILT * introBlend;
-    const tx = target.x, tz = target.z + INTRO_SHIFT_Z * introBlend * (target === walker ? 1 : 0);
-    // The camera arm stops before the first building, gate or booth on its ray and keeps 3 m off solids; it cuts in at once but eases back out.
-    const wantX = tx + Math.sin(yaw) * Math.cos(lens) * viewDistance, wantY = Math.sin(lens) * viewDistance + 2, wantZ = tz + Math.cos(yaw) * Math.cos(lens) * viewDistance;
-    let arm = 1;
-    if (introBlend < 0.5 && viewDistance < 140) for (let t = 0.1; t <= 1; t += 0.03) { const hit = occluded(tx + (wantX - tx) * t, 2 + (wantY - 2) * t, tz + (wantZ - tz) * t, t > 0.8 ? 3 : 0.5); if (hit && hit !== 'tree') { arm = Math.max(0.15, t - 0.1); break; } }
-    armNow = arm < armNow ? arm : Math.min(arm, armNow + 0.05);
-    camera.position.set(tx + (wantX - tx) * armNow, Math.max(1.4, 2 + (wantY - 2) * armNow), tz + (wantZ - tz) * armNow);
-    camera.lookAt(tx, 2, tz);
+    const viewDistance = distance * (phone ? 0.88 : 1) * clamp(560 / available, 0.9, 1.42);
+    camera.position.set(
+      target.x + Math.sin(yaw) * Math.cos(tilt) * viewDistance,
+      Math.sin(tilt) * viewDistance + 2,
+      target.z + Math.cos(yaw) * Math.cos(tilt) * viewDistance,
+    );
+    camera.lookAt(target.x, 2, target.z);
     const shift = Math.round((insets.bottom - insets.top) / 2);
     if (shift && size.width && size.height) camera.setViewOffset(size.width, size.height, 0, shift, size.width, size.height);
     else camera.clearViewOffset();
-    applyDepthRange(viewDistance * armNow);
     camera.updateProjectionMatrix();
-  }
-
-  /** Near plane grows with camera distance: 10-20x more depth precision for far ground, roofs and water (no z-fighting at altitude). */
-  function applyDepthRange(viewDistance: number): void { camera.near = Math.max(0.3, viewDistance * 0.04); }
-
-  /** Distance fog and background come from the campus sky so land, water and the sky dome meet at one horizon colour. */
-  function applySkyFog(): void {
-    const f = campus.fog;
-    if (!(world.fog instanceof THREE.Fog)) world.fog = new THREE.Fog(f.color, f.near, f.far);
-    world.fog.color.set(f.color); world.fog.near = f.near; world.fog.far = f.far;
-    if (!(world.background instanceof THREE.Color)) world.background = new THREE.Color();
-    world.background.set(campus.background);
   }
 
   function drawMap(): void {
@@ -311,11 +269,11 @@ export function createCampusHost(container: HTMLElement, {
   function draw(): void {
     if (disposed) return;
     updateCamera();
-    applySkyFog();
+    world.background = new THREE.Color(campus.background);
+    world.fog = new THREE.Fog(campus.background, 450, 2200);
     sun.position.set(walker.x-70,140,walker.z+60); sun.target.position.set(walker.x,0,walker.z);
-    const light = campus.lighting();
-    hemi.color.set(light.hemi[0]); hemi.groundColor.set(light.hemi[1]); hemi.intensity = light.hemi[2];
-    sun.color.set(light.sun[0]); sun.intensity = light.sun[1];
+    const night = campus.time === 'night'; hemi.intensity = night ? 0.9 : 2; sun.intensity = night ? 0.65 : 2.4;
+    sun.color.set(night ? '#9ebadb' : '#fff0d2');
     renderer.render(world, camera); renderCount += 1;
     syncTags(); drawMap();
   }
@@ -357,7 +315,6 @@ export function createCampusHost(container: HTMLElement, {
     walker.input(canWalk() ? right : 0, canWalk() ? forward : 0, keys.has('jog'));
     const fromX = walker.x, fromZ = walker.z;
     const moving = walker.step(dt, yaw, reduced());
-    if (moving && intro) settleIntro();
     phase += gaitPhase(Math.hypot(walker.x - fromX, walker.z - fromZ), .60, walker.jogging, false);
     campus.walk.move(walker.x, 0, walker.z, walker.ry);
     if (walker.moving) { campus.walk.gait(true, phase, walker.jogging); report.report(walker.x, walker.z, now()); }
@@ -402,7 +359,7 @@ export function createCampusHost(container: HTMLElement, {
     button.addEventListener('pointerdown', down); button.addEventListener('pointerup', up); button.addEventListener('pointercancel', up); button.addEventListener('lostpointercapture', up);
     controlCleanups.push(() => { button.removeEventListener('pointerdown', down); button.removeEventListener('pointerup', up); button.removeEventListener('pointercancel', up); button.removeEventListener('lostpointercapture', up); });
   }
-  const pointerDown = (event: PointerEvent): void => { if (event.button !== 0) return; settleIntro(); drag = { id: event.pointerId, x: event.clientX, y: event.clientY }; try { canvas.setPointerCapture(event.pointerId); } catch {} };
+  const pointerDown = (event: PointerEvent): void => { if (event.button !== 0) return; drag = { id: event.pointerId, x: event.clientX, y: event.clientY }; try { canvas.setPointerCapture(event.pointerId); } catch {} };
   const pointerMove = (event: PointerEvent): void => {
     if (!drag || drag.id !== event.pointerId) return;
     yaw -= (event.clientX - drag.x) * 0.006; tilt = clamp(tilt + (event.clientY - drag.y) * 0.004, 0.10, 1.35);
@@ -443,7 +400,6 @@ export function createCampusHost(container: HTMLElement, {
     const actionStarted = !previous?.activeAction && active;
     const committingHere = walkTask?.committing === true && walkTask.id === state.spot;
     if (!previous || wasShuttle || spotChanged || actionStarted) placeAt(state.spot, committingHere);
-    if (wasShuttle && !active && pendingLeg) { const leg = pendingLeg; pendingLeg = null; if (state.spot === leg.via) void walkTo(leg.dest, true); }
     if (active) { walker.stop(); cancelTask('busy'); releaseInput(); }
     if (changed || wasShuttle || spotChanged || actionStarted) draw();
   }
@@ -471,87 +427,25 @@ export function createCampusHost(container: HTMLElement, {
     draw(); return true;
   }
 
-  const basePace = { speed: walker.speed, jog: walker.jogSpeed };
-  function restorePace(): void { walker.speed = basePace.speed; walker.jogSpeed = basePace.jog; }
-  /** Fallback only (the choice sheet could not be shown): a far tapped trip is sped up to ~40 s (see trip-pace.ts). */
-  function speedUpTrip(anchor: { x: number; z: number }): void {
-    const pace = tripPace(Math.hypot(walker.x - anchor.x, walker.z - anchor.z) * 1.4, basePace.speed);
-    walker.speed = pace; walker.jogSpeed = Math.max(basePace.jog, pace);
-  }
-
-  // ---- the "far away" choice sheet: lazy, built the first time a long trip is tapped ----
-  let sheet: HTMLDivElement | null = null, scrim: HTMLDivElement | null = null, fade: HTMLDivElement | null = null;
-  function closeSheet(): void { if (sheet) sheet.hidden = true; if (scrim) scrim.hidden = true; document.body.classList.remove('campus-trip-sheet'); }
-  function showSheet(id: string, options: TripOption[], pick: (choice: TripOption['id'] | null) => void): boolean {
-    if (!options.length) return false;
-    if (!sheet) { scrim = document.createElement('div'); scrim.className = 'campus-host-sheet-scrim'; sheet = document.createElement('div'); sheet.className = 'campus-host-sheet'; sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-modal', 'true'); container.append(scrim, sheet); }
-    scrim!.onclick = () => { closeSheet(); pick(null); };
-    sheet.replaceChildren();
-    const title = document.createElement('p'); title.className = 'campus-host-sheet-title'; title.textContent = `${ANCHORS[id]?.label ?? 'That place'} is far from here`;
-    const where = document.createElement('p'); where.className = 'campus-host-sheet-where'; where.textContent = describeTrip(walker, id); sheet.append(title, where);
-    for (const option of options) {
-      const button = document.createElement('button'); button.type = 'button'; button.className = 'campus-host-sheet-option'; button.dataset.trip = option.id;
-      const label = document.createElement('b'); label.textContent = option.label; const note = document.createElement('small'); note.textContent = option.note;
-      button.append(label, note); button.onclick = () => { closeSheet(); pick(option.id); }; sheet.append(button);
-    }
-    const stay = document.createElement('button'); stay.type = 'button'; stay.className = 'campus-host-sheet-cancel'; stay.textContent = 'Stay here'; stay.onclick = () => { closeSheet(); pick(null); }; sheet.append(stay);
-    sheet.hidden = false; scrim!.hidden = false; document.body.classList.add('campus-trip-sheet'); sheet.querySelector<HTMLElement>('button')?.focus(); return true;
-  }
-  /** "Go there": a ~1.5 s fade to black, the avatar is placed at the destination under it, then the fade clears. Reduced motion: no fade. */
-  function goThere(id: string, task: WalkTask): void {
-    const anchor = ANCHORS[id]; if (!anchor) { finishTask({ ok: false, code: 'invalid_spot', reason: 'That campus destination is unavailable.' }, task); return; }
-    const land = (): void => {
-      if (walkTask !== task) return;
-      walker.stop(); walker.place(anchor.x, anchor.z, anchor.ry); campus.setPosition(anchor.x, anchor.z); campus.walk.move(anchor.x, 0, anchor.z, anchor.ry); campus.walk.rest(); report.rest(anchor.x, anchor.z, now()); draw();
-      void arrived(id, task);
-    };
-    if (reduced() || !loop.available) { land(); return; }
-    if (!fade) { fade = document.createElement('div'); fade.className = 'campus-host-fade'; container.append(fade); }
-    const veil = fade; veil.classList.add('is-on');
-    globalThis.setTimeout(() => { land(); globalThis.setTimeout(() => veil.classList.remove('is-on'), 250); }, 650);
-  }
-  function startWalk(id: string, task: WalkTask, pace: 'walk' | 'jog' | 'trip'): void {
-    const anchor = ANCHORS[id]!;
-    const arrive = () => void arrived(id, task);
-    const alreadyThere = Math.hypot(walker.x - anchor.x, walker.z - anchor.z) <= 0.1;
-    const started = walker.goTo(anchor.x, anchor.z, { exact: true, face: anchor.ry, arrive, jog: pace === 'jog' ? true : pace === 'walk' ? false : undefined });
-    if (started && pace === 'jog') walker.jogSpeed = basePace.jog;
-    if (started && pace === 'trip') speedUpTrip(anchor);
-    campus.walk.goal(anchor.x, anchor.z);
-    if (!started && alreadyThere) { walker.place(anchor.x, anchor.z, anchor.ry); campus.walk.move(anchor.x, 0, anchor.z, anchor.ry); draw(); arrive(); return; }
-    if (!started) {
-      campus.walk.goal();
-      finishTask({ ok: false, code: 'no_route', reason: `${anchor.label} cannot be reached from here.` }, task);
-      draw(); return;
-    }
-    if (!loop.available || reduced()) { walker.finishNow(); campus.walk.rest(); draw(); return; }
-    loop.wake();
-  }
-  /** After a shuttle ride that ends at the nearest stop, the last stretch is walked without another tap. */
-  let pendingLeg: { via: string; dest: string } | null = null;
-  function walkTo(id: string, continuing = false): Promise<WalkResult> {
-    if (!continuing) pendingLeg = null;
+  function walkTo(id: string): Promise<WalkResult> {
     const anchor = ANCHORS[id];
     if (!anchor) return Promise.resolve({ ok: false, code: 'invalid_spot', reason: 'That campus destination is unavailable.' });
     if (locked) return Promise.resolve({ ok: false, code: 'busy', reason: 'Finish or cancel your current action before moving.' });
     cancelTask();
     return new Promise<WalkResult>((resolve) => {
       const task: WalkTask = { id, resolve }; walkTask = task;
-      const distance = Math.hypot(walker.x - anchor.x, walker.z - anchor.z), kind = continuing && tripKind(distance) === 'choose' ? 'jog' : tripKind(distance);
-      if (kind !== 'choose') { startWalk(id, task, kind); return; }
-      const options = tripOptions(walker, id, basePace.speed);
-      const shown = showSheet(id, options, (choice) => {
-        if (walkTask !== task) return;
-        if (choice === null) { finishTask({ ok: false, code: 'cancelled', reason: 'Staying where you are.' }, task); return; }
-        if (choice === 'walk') { startWalk(id, task, 'walk'); return; }
-        if (choice === 'go') { goThere(id, task); return; }
-        const plan = shuttlePlan(walker, anchor); if (!plan) { goThere(id, task); return; }
-        // Ride from the nearest stop: walk to it, commit it as the spot (the server boards from the player's stop), then hand the ride to the app.
-        task.shuttle = plan.alight; task.id = plan.board; pendingLeg = plan.alight === id ? null : { via: plan.alight, dest: id };
-        if (state?.spot === plan.board) { void arrived(plan.board, task); return; }
-        startWalk(plan.board, task, 'jog');
-      });
-      if (!shown) startWalk(id, task, 'trip');
+      const arrive = () => void arrived(id, task);
+      const alreadyThere = Math.hypot(walker.x - anchor.x, walker.z - anchor.z) <= 0.1;
+      const started = walker.goTo(anchor.x, anchor.z, { exact: true, face: anchor.ry, arrive });
+      campus.walk.goal(anchor.x, anchor.z);
+      if (!started && alreadyThere) { walker.place(anchor.x, anchor.z, anchor.ry); campus.walk.move(anchor.x, 0, anchor.z, anchor.ry); draw(); arrive(); return; }
+      if (!started) {
+        campus.walk.goal();
+        finishTask({ ok: false, code: 'no_route', reason: `${anchor.label} cannot be reached from here.` }, task);
+        draw(); return;
+      }
+      if (!loop.available || reduced()) { walker.finishNow(); campus.walk.rest(); draw(); return; }
+      loop.wake();
     });
   }
 

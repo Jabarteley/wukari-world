@@ -45,12 +45,6 @@ export interface WalkGrid {
   ascii(marks?: Record<string, [number, number]>): string;
 }
 
-let shared: { cost: Float32Array; from: Int32Array; state: Uint8Array } | null = null;
-/** The A* scratch arrays (about 12 MB on the campus grid), shared by every grid and made on first use. */
-const scratch = (size: number) => (!shared || shared.cost.length < size ? (shared = { cost: new Float32Array(size), from: new Int32Array(size), state: new Uint8Array(size) }) : shared);
-/** Free the scratch memory (a scene calls this when it is disposed); the next route request makes it again. */
-export function releaseWalkScratch(): void { shared = null; }
-
 export function createWalkGrid({ bounds = [-10, -8, 10, 8], block = [], clear = [], cell = CELL, radius = AVATAR_RADIUS }: WalkDescription = {}): WalkGrid {
   const [minX, minZ, maxX, maxZ] = bounds;
   const cols = Math.max(1, Math.ceil((maxX - minX) / cell)), rows = Math.max(1, Math.ceil((maxZ - minZ) / cell));
@@ -108,15 +102,15 @@ export function createWalkGrid({ bounds = [-10, -8, 10, 8], block = [], clear = 
     return true;
   }
 
-  const size = cols * rows;
+  // A* scratch space, made once per grid.
+  const cost = new Float32Array(cols * rows), from = new Int32Array(cols * rows), state = new Uint8Array(cols * rows);
   function path(ax: number, az: number, bx: number, bz: number): WalkPoint[] | null {
     const start = nearest(ax, az), goal = nearest(bx, bz);
     if (!start || !goal) return null;
     if (clearLine(start.x, start.z, goal.x, goal.z)) return [{ x: goal.x, z: goal.z }];
-    const { cost, from, state } = scratch(size);
     const sc = col(start.x), sr = row(start.z), gc = col(goal.x), gr = row(goal.z);
     const startIndex = sr * cols + sc, goalIndex = gr * cols + gc;
-    cost.fill(Infinity, 0, size); state.fill(0, 0, size); from.fill(-1, 0, size);
+    cost.fill(Infinity); state.fill(0); from.fill(-1);
     const heap: number[] = [], score: number[] = [];
     const push = (index: number, value: number) => {
       let i = heap.length; heap.push(index); score.push(value);
@@ -163,7 +157,7 @@ export function createWalkGrid({ bounds = [-10, -8, 10, 8], block = [], clear = 
     let endIndex = goalIndex;
     if (!found) {
       let best = Infinity;
-      for (let index = 0; index < size; index++) {
+      for (let index = 0; index < state.length; index++) {
         if (state[index] !== 2) continue;
         const distance = Math.hypot(centreX(index % cols) - goal.x, centreZ(Math.floor(index / cols)) - goal.z);
         if (distance < best) { best = distance; endIndex = index; }

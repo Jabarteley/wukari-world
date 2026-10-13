@@ -1,0 +1,15 @@
+# Audio release continuation
+
+Approved audio: 7229b69e13c2b65f85f0dec55dea4b007123d818. Integrated tested candidate: 43952ff80c0d63893fcd85140cfc9734a7bddcad. Preserved on origin/codex/audio-identity-20261013. Anthony authorized production release; no audio production deployment has occurred.
+
+The required public-venue rendering test fails Lagos Library at 17,083 triangles against the unchanged 17,000 limit. Independently reproduced on the audio candidate and main ef28bc29. Latest checked main 81d9f599d87dfb34adf49cd9337a0b05678e5e0d adds Vatican City and package-test alignment; it does not change the implicated scene files or budget. No redundant test run was made for this handoff.
+
+Release owner Claude has been asked for an active geometry fix commit or an explicit isolated file-lane agreement. No response found in the bounded check. Request: /Users/anthonyakpan/Documents/Allworld-notes/relay/to-claude/20261013-audio-rendering-lane-request.md; designated response: relay/to-astra/20261013-audio-rendering-lane-response.md. Do not duplicate Claude's scene work or raise the budget. Deployment lock is not held by this audio task.
+
+Evidence and exact local instructions: /Users/anthonyakpan/Documents/Codex/2026-10-13/task/RELEASE-HANDOFF.md and release-evidence/. Build/typecheck/budgets and 17 smoke cases passed; Worker 186/186 and audio/settings/voice 89/89 passed. Full Node runner ended with 2,895 passed, one failed, 520 cancelled after stopping the owned runner. The exhaustive city overlap assertion passed after 27m23s; it was CPU work, not a hung runner. No complete Node pass may be claimed.
+
+Continue by obtaining the rendering fix/agreement, integrating current main without losing concurrent market/Vatican work, then rerunning the mandated exact-candidate gates. Upstream now owns package fixture alignment; resolve any duplicate fixture change in favor of current policy, preserving guard implementation. Approved audio runtime changes are the 28 audio paths documented in the local handoff; do not introduce a packaging redesign.
+
+Use relay/DEPLOY.md in order: exclusive lock, current-main integration, all required checks, fast-forward push, successful exact-commit CI, canonical sealed package and guard, continuity checks, normal online notice, supported deployment, health/continuity/smoke verification, lock release. Use --keep-vars with the pinned Wrangler to preserve dashboard variables. Keep Worker identity, binding, migrations, credentials and production data unchanged. Never force-push or roll back the whole tree.
+
+Then verify the deployed audio asset hashes and run the prepared live browser acceptance harness with the Astra browser owner. Do not claim physical iOS or real voice transport coverage. Captures are real game output, without microphone use; assistant did not audibly listen. Anthony listened to and approved the upbeat Library preview (libfile_4ca3ede2a338819185074e108046e35c). Native before/after Library comparison: libfile_6314c868ced081918b83e5900460b19a.

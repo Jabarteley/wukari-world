@@ -31,12 +31,14 @@ for region in build['lidRegions'].values():
         expected_boundary.add(tuple(sorted((a[0],b[0]))));expected_boundary.add(tuple(sorted((a[1],b[1]))))
 actual_boundary={e for e,n in edge_counts.items() if n==1}
 assert actual_boundary==expected_boundary,('Unconnected socket seam',len(actual_boundary),len(expected_boundary))
-uv={name:uv_check(bpy.data.objects[name].data) for name in ['Head_continuous_anatomy','Iris_Left','Iris_Right','Pupil_Left','Pupil_Right']}
+uv={name:uv_check(bpy.data.objects[name].data) for name in ['Iris_Left','Iris_Right','Pupil_Left','Pupil_Right']}
 def uv_subset(triangles):
     return uv_check(SimpleNamespace(calc_loop_triangles=lambda:None,uv_layers=head.data.uv_layers,loop_triangles=triangles))
 uv['headOriginalFaces']=uv_subset(list(head.data.loop_triangles)[:nold])
 uv['headNewFaces']=uv_subset(list(head.data.loop_triangles)[nold:])
-uv['newVersusOldOverlapPairs']=uv['Head_continuous_anatomy']['positiveAreaOverlapPairs']-uv['headOriginalFaces']['positiveAreaOverlapPairs']-uv['headNewFaces']['positiveAreaOverlapPairs']
+separate_domains=len(head.data.materials)>1 and all(p.material_index==1 for p in list(head.data.polygons)[nold:])
+uv['separateSocketMaterialDomain']=separate_domains
+uv['newVersusOldOverlapPairs']=None if separate_domains else uv_check(head.data)['positiveAreaOverlapPairs']-uv['headOriginalFaces']['positiveAreaOverlapPairs']-uv['headNewFaces']['positiveAreaOverlapPairs']
 (OUT/'uv-diagnostic.json').write_text(json.dumps(uv,indent=2)+'\n')
 uv_failures=[]
 if uv['headNewFaces']['positiveAreaOverlapPairs'] or uv['newVersusOldOverlapPairs']:uv_failures.append({'type':'new UV overlap','newFaces':uv['headNewFaces']['positiveAreaOverlapPairs'],'newVsOld':uv['newVersusOldOverlapPairs']})

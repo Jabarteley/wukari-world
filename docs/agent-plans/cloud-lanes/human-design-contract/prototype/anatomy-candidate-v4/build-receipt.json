@@ -1197,7 +1197,7 @@
       0.027
     ]
   },
-  "blendSha256": "722216b96d52f33fdb637d7cdee68f76edc36a2cac0b022f1faa027f31b96e35",
-  "glbSha256": "68fb9e909156bc67c8d4336b86595be829d40d448c3220e90ac5d2a9eddc7e61",
+  "blendSha256": "fb6f488c55b01083fc23803a79e677ae957ecc237004de62a78bd8804ee76302",
+  "glbSha256": "2338c0b3b4d34d3549e2a2d30c91b4ddf65dc2111c9b6f13450a2dd8dad3477d",
   "status": "Built candidate, validation pending. No realism or adoption claim."
 }

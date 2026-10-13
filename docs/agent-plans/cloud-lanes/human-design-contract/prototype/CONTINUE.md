@@ -1,6 +1,6 @@
 # Original human prototype: active continuation
 
-**Latest bounded eyelid correction:** see [eyelid-candidate-v3/CONTINUE.md](eyelid-candidate-v3/CONTINUE.md). Its separate candidate and neutral/half/full-blink proof are complete; frozen master 3ee5882c remains unchanged. Parent review is required before adoption.
+**Latest completed correction:** see [anatomy-candidate-v4/CONTINUE.md](anatomy-candidate-v4/CONTINUE.md) for connected eye/socket/lid geometry, finite passing checks and the v3/v4 comparison. The separate v4 candidate does not replace frozen master 3ee5882c; skin/cornea refitting and parent review are required before adoption. Earlier v3 and original-prototype history below remain preserved.
 
 Parent expanded this same lane at approximately 18:34 UTC on 13 October 2026: deliver actual original Blender character geometry, first pixels, physical subset controls, expressions and a turntable. This is an independent prototype, not adoption of the existing character task or a game-body replacement. Same branch and two owned prefixes only. Skin/eyes, hair and wardrobe task launches are parent-owned; no subworkers were launched here.
 

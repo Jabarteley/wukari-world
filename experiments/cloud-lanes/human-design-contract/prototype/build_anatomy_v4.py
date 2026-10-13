@@ -161,16 +161,39 @@ for side,tag in [(1,'Left'),(-1,'Right')]:
     # Bridge the rectangular connected lid boundary into the old head opening.
     outer=sorted(loop,key=lambda i:math.atan2(base[i].z-cz,base[i].x-cx)%(2*math.pi))
     inner=sorted(set(rimids),key=lambda i:math.atan2(base[i].z-cz,base[i].x-cx)%(2*math.pi))
-    angle=lambda i:math.atan2(base[i].z-cz,base[i].x-cx)%(2*math.pi)
-    oi=ii=0
-    while oi<len(outer) or ii<len(inner):
-        a=outer[oi%len(outer)];b=inner[ii%len(inner)]
-        oa=angle(outer[(oi+1)%len(outer)])+(2*math.pi if oi+1>=len(outer) else 0)
-        ia=angle(inner[(ii+1)%len(inner)])+(2*math.pi if ii+1>=len(inner) else 0)
-        if oi<len(outer) and (ii==len(inner) or oa<=ia):
-            tri=(a,outer[(oi+1)%len(outer)],b);oi+=1
-        else:tri=(a,inner[(ii+1)%len(inner)],b);ii+=1
+    # A visible cut from the rightmost outer vertex to the nearest rectangle
+    # point makes a simple polygon with a hole. Angular zipper triangulation
+    # can cross the rectangular corner, so use constrained polygon tessellation.
+    oa=max(outer,key=lambda i:base[i].x)
+    candidates=[i for i in inner if abs(base[i].x-(cx+rect_width))<1e-7]
+    ia=min(candidates,key=lambda i:(base[i]-base[oa]).length)
+    oi=outer.index(oa);clockwise=list(reversed(inner));ii=clockwise.index(ia)
+    cut=outer[oi:]+outer[:oi]+[oa]+clockwise[ii:]+clockwise[:ii]+[ia]
+    flat=[Vector((base[i].x,base[i].z,0)) for i in cut]
+    flatlookup={tuple(p):i for p,i in zip(flat,cut)}
+    queue=[]
+    for result in tessellate_polygon([flat]):
+        triangle=tuple(cut[i] if isinstance(i,int) else flatlookup[tuple(i)] for i in result)
+        p,q,r=[base[i] for i in triangle]
+        if abs((q-p).cross(r-p).y)>1e-12:queue.append(triangle)
+    # Preserve collinear original boundary vertices: the tessellator may omit
+    # them or emit zero-projected-area ears. Split spanning triangle edges at
+    # those exact vertices instead of retaining degenerate faces/T-junctions.
+    boundaryids=set(outer+inner);steps=0
+    while queue:
+        tri=queue.pop();steps+=1;assert steps<10000
+        split=False
+        for edge in range(3):
+            a,b,c=tri[edge],tri[(edge+1)%3],tri[(edge+2)%3]
+            va=Vector((base[a].x,base[a].z));vb=Vector((base[b].x,base[b].z));direction=vb-va
+            for i in boundaryids-set(tri):
+                p=Vector((base[i].x,base[i].z));t=(p-va).dot(direction)/direction.length_squared
+                if 1e-6<t<1-1e-6 and (p-(va+direction*t)).length<1e-8:
+                    queue.extend([(a,i,c),(i,b,c)]);split=True;break
+            if split:break
+        if split:continue
         p,q,r=[base[i] for i in tri]
+        assert abs((q-p).cross(r-p).y)>1e-12,('Degenerate socket bridge',tri)
         if (q-p).cross(r-p).y>0:tri=tuple(reversed(tri))
         faces.append(tri);faceuv.append([tuple(newuv[i] if i in newuv else vertexuv[i]) for i in tri])
     regions[tag]={'firstNewVertex':startvertex,'lastNewVertexExclusive':len(base),'firstTriangle':startface,'lastTriangleExclusive':len(faces),'gridRows':rows,'gridSamples':samples,'aperturePairs':list(zip(grids[True][-1],grids[False][-1]))}

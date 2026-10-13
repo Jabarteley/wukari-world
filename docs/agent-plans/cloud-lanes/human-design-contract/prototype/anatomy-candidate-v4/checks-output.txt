@@ -1,0 +1,5 @@
+{"version": 4, "status": "PASS", "cases": 35, "failures": [], "properCrossingsAllTestedPairs": 0, "neutralEyeHeadProperCrossings": 0, "minimumNewLidTriangleAreaM2": 2.4042716037942096e-07, "minimumNormalCosineToNeutral": 0.36191452608143354, "maximumEvaluatedMorphErrorM": 1.4901161193847656e-07, "headBoundaryEdges": 96, "allHeadBoundariesAreActualEyeApertures": true, "nonmanifoldEdges": 0, "preservedMeshes": 20}
+Blender 4.3.2
+Read blend: "/workspace/joinallworld-human-design-contract/experiments/cloud-lanes/human-design-contract/prototype/anatomy-candidate-v4/anatomy-candidate-v4.blend"
+
+Blender quit

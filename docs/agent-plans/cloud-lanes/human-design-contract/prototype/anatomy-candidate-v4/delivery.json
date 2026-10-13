@@ -1,0 +1,18 @@
+{
+  "status": "Finite anatomy correction complete; parent adoption pending",
+  "candidateBlendSha256": "fb6f488c55b01083fc23803a79e677ae957ecc237004de62a78bd8804ee76302",
+  "candidateGlbSha256": "2338c0b3b4d34d3549e2a2d30c91b4ddf65dc2111c9b6f13450a2dd8dad3477d",
+  "proofSha256": "57a3ce56a99f7a633388c52e92a417e995b13d10496bdb79c545a14cb603c50a",
+  "checks": "PASS, 35 poses, zero proper crossings, zero normal reversals",
+  "export": "PASS, exact 20 protected meshes and original Head face UVs",
+  "visualReview": "Closed lids flatter; face and orbital creases remain coarse/stylized. Not final realism.",
+  "remaining": [
+    "Parent anatomy/art review",
+    "Skin/cornea surface rebind",
+    "Node-specific lid binding migration if present",
+    "Inherited head UV overlaps",
+    "Detailed hair over budget",
+    "Production rig/deformation/runtime/device acceptance"
+  ],
+  "jobsRunning": 0
+}

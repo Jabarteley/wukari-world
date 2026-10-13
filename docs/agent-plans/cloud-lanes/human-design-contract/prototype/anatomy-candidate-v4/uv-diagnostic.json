@@ -1,17 +1,4 @@
 {
-  "Head_continuous_anatomy": {
-    "triangles": 9232,
-    "positiveAreaOverlapPairs": 2122,
-    "summedOverlapArea": 0.006510515795434813,
-    "minimumUvTriangleArea": 0.0,
-    "summedTriangleArea": 0.993295260770672,
-    "uvBounds": [
-      0.0,
-      1.3220329284667969,
-      0.0,
-      1.0
-    ]
-  },
   "Iris_Left": {
     "triangles": 160,
     "positiveAreaOverlapPairs": 0,
@@ -79,10 +66,10 @@
   },
   "headNewFaces": {
     "triangles": 1136,
-    "positiveAreaOverlapPairs": 20,
-    "summedOverlapArea": 6.972919116771115e-05,
+    "positiveAreaOverlapPairs": 0,
+    "summedOverlapArea": 0,
     "minimumUvTriangleArea": 2.3290663193620276e-06,
-    "summedTriangleArea": 0.009772425378942629,
+    "summedTriangleArea": 0.00972593925149745,
     "uvBounds": [
       0.378421813249588,
       0.6215781569480896,
@@ -90,5 +77,6 @@
       0.5873018503189087
     ]
   },
+  "separateSocketMaterialDomain": false,
   "newVersusOldOverlapPairs": 0
 }

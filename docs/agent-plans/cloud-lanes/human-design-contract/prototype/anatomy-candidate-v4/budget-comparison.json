@@ -1,0 +1,33 @@
+{
+  "candidateTriangles": 29538,
+  "candidateMeshes": 27,
+  "reductionFromV3": 2944,
+  "assemblyFormula": "candidate - 2518 placeholder hair + 1200 corneas + selected hair + 2324 wardrobe",
+  "comparison": [
+    {
+      "hair": "detailed crop",
+      "hairTriangles": 6574,
+      "projectedCombinedTriangles": 37118,
+      "marginUnder34000": -3118
+    },
+    {
+      "hair": "detailed bun",
+      "hairTriangles": 5766,
+      "projectedCombinedTriangles": 36310,
+      "marginUnder34000": -2310
+    },
+    {
+      "hair": "crop silhouette",
+      "hairTriangles": 358,
+      "projectedCombinedTriangles": 30902,
+      "marginUnder34000": 3098
+    },
+    {
+      "hair": "bun silhouette",
+      "hairTriangles": 502,
+      "projectedCombinedTriangles": 31046,
+      "marginUnder34000": 2954
+    }
+  ],
+  "limits": "Arithmetic using pinned combined-review counts. Not an actual reassembly or approval; new cornea/skin fitting may change costs. Draw calls, optical costs and venue/crowd/shipped-rig comparators remain untested/outstanding."
+}

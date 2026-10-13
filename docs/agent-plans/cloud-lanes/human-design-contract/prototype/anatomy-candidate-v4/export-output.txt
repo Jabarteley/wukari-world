@@ -1,0 +1,4 @@
+{"status": "PASS", "candidateSha256": "2338c0b3b4d34d3549e2a2d30c91b4ddf65dc2111c9b6f13450a2dd8dad3477d", "triangleCount": 29538, "meshCount": 27, "exactPreservedTriangleExpandedMeshes": 20, "originalHeadFaceUvsPreserved": true, "allDecodedPositionsMorphsNormalsFinite": true}
+Blender 4.3.2
+
+Blender quit

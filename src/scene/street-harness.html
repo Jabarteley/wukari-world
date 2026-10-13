@@ -1,0 +1,21 @@
+<!doctype html>
+<!-- Development-only street viewer. Not linked from the app and not part of the production build.
+     Open through the Vite dev server: /src/scene/street-harness.html?x=74&time=dusk -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Street harness</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #111; color: #eee; font: 12px system-ui, sans-serif; }
+    #stage { position: fixed; inset: 0; }
+    #stage canvas { width: 100%; height: 100%; display: block; }
+    #info { position: fixed; left: 8px; bottom: 8px; background: #000a; padding: 4px 8px; border-radius: 6px; white-space: pre; z-index: 2; }
+  </style>
+</head>
+<body>
+  <div id="stage"></div>
+  <div id="info"></div>
+  <script type="module" src="./street-harness.ts"></script>
+</body>
+</html>

@@ -132,7 +132,9 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     slab(-ROW_HALF_WIDTH, Z.road0 + 0.05, ROW_HALF_WIDTH, Z.road0 + 0.75, 0.002, 0.004, '#4a4d4b');
     slab(-ROW_HALF_WIDTH, Z.road0 + 0.55, ROW_HALF_WIDTH, Z.road0 + 0.63, 0.012, 0.012, '#d9d4b8');
     slab(-ROW_HALF_WIDTH, Z.road1 - 0.63, ROW_HALF_WIDTH, Z.road1 - 0.55, 0.012, 0.012, '#d9d4b8');
-    for (let z = Z.road0 + 1; z < Z.road1 - 0.8; z += 1.1) slab(76.6, z, 79.4, z + 0.55, 0.012, 0.012, '#e9e6d6');
+    for (let z = Z.road0 + 1; z < Z.road1 - 0.8; z += 1.1) slab(76.6, z, 79.4, z + 0.65, 0.012, 0.012, '#e9e6d6');
+    // The kerb at the junction is painted black and yellow, as Lagos kerbs are by a crossing or a stop; the paint stays off the zebra's strip.
+    for (let x = 66, i = 0; x < 92; x += 1.3, i++) if (x < 75.4 || x > 80.6) slab(x, Z.kerb, x + 1.3, Z.road0, 0.137, 0.004, i % 2 ? '#2b2b2b' : '#e8b923');
     // Pavement joints near the gates, a path from every gate to its door, grass on land that belongs to a house.
     for (let x = -ROW_HALF_WIDTH + 2.4; x < ROW_HALF_WIDTH; x += 4.8) slab(x - 0.03, Z.pavement0, x + 0.03, Z.kerb, 0.052, 0.012, '#bdb4a0');
     for (const house of frontages()) slab(house.x - 1.1, Z.front, house.x + 1.1, Z.fence + 0.2, 0.02, 0.1, '#cdbf9f');

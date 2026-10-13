@@ -87,6 +87,9 @@ async function mountCity(cityId: CityId): Promise<void> {
     if (ticket !== generation) { next.destroy(); return; }
     renderer = next;
     applyFixture();
+    // Dev aid: ?x=&z=&dist= (and optional &pitch=) parks the camera for a close look at the streets.
+    const q = new URLSearchParams(location.search), x = Number(q.get('x')), z = Number(q.get('z')), distance = Number(q.get('dist'));
+    if (q.has('x') && q.has('z') && Number.isFinite(x + z)) renderer.restoreView({ ...renderer.cameraView(), x, z, distance: distance || 20, ...(q.has('pitch') ? { pitch: Number(q.get('pitch')) } : {}) });
     resizeObserver?.disconnect();
     resizeObserver = typeof ResizeObserver === 'function' ? new ResizeObserver(() => renderer?.resize()) : null;
     resizeObserver?.observe(host!);

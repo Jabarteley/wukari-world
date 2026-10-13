@@ -24,7 +24,7 @@ import type { ModelCache, ModelLayer } from './models/scene-models.ts';
 import { fileKey, familyOf, hasFar, WINDOW_TILES } from './street/street-kit.ts';
 import { BOUNDS, BUS_STOP, Z, planStreet, sceneryMix } from './street/street-plan.ts';
 import type { PlanHouse, StreetPlan } from './street/street-plan.ts';
-import { drawDanfo, drawKeke, drawPole, drawWires, standInFor, tone } from './street/street-standins.ts';
+import { drawDanfo, drawKeke, drawLampGlow, drawPole, drawPoleAdverts, drawRoadBillboard, drawWires, standInFor, tone } from './street/street-standins.ts';
 
 const HOME_DOOR = { x: 0, z: -6.25, ry: Math.PI, direction: 'inside' as const };
 const ENTRANCE = { x: 0, y: 0, z: -3.25, ry: 0 };
@@ -33,7 +33,7 @@ const CAMERA: SceneCamera = { landscape: [15, 12, 17], portrait: [9, 10, 15], st
 const MODEL_BUDGET = { triangles: 11500, drawCalls: 20 };
 const FENCE_COLOUR = ['#d9c9a6', '#5d9a62', '#f6f2e6', '#c9c2b0'];
 /** How lit the windows are by the time of day. */
-const WINDOW_GLOW: Record<TimeOfDay, number> = { day: 0, dusk: 0.55, night: 1 };
+const WINDOW_GLOW: Record<TimeOfDay, number> = { day: 0, dusk: 0.8, night: 1.5 };
 const NO_MODELS: ModelCache = createModelCache({ load: () => Promise.reject(new Error('No models')), texture: () => null });
 
 
@@ -53,7 +53,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
   group.add(avatar);
   let avatarDispose = avatar.userData.dispose;
   let avatarLook: unknown = null, avatarSeed = 'neighbourhood-player', playerName = '', pose: Pose = 'stand';
-  let sceneryObjects: (THREE.Mesh | THREE.PointLight)[] = [];
+  let sceneryObjects: (THREE.Mesh | THREE.PointLight)[] = [], nightMeshes: THREE.Mesh[] = [];
   let street: WorldStreetResponse | null = null, streetKey = '', signature = '', anchor: number | null = null, ownTier: HouseTierId = 'starter', cityId = '';
   let currentStyle: HouseStyle = { shape: 0, wall: 2, roof: 0, door: 0, windows: 0, fence: 1, yard: 0, sign: 0 };
   const peers = new Map<string, StreetPeer>();
@@ -112,7 +112,7 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     m.emissiveMap = mask; m.emissive.set('#ffd9a0'); m.emissiveIntensity = WINDOW_GLOW[streetTime];
     lit.push(m);
   };
-  const light = (): void => { for (const material of lit) material.emissiveIntensity = WINDOW_GLOW[streetTime]; };
+  const light = (): void => { for (const material of lit) material.emissiveIntensity = WINDOW_GLOW[streetTime]; for (const mesh of nightMeshes) mesh.visible = streetTime !== 'day'; };
 
   function render(): void {
     releaseObjects(sceneryObjects); sceneryObjects = [];
@@ -148,12 +148,18 @@ export function buildNeighbourhoodScene(kit: Kit): HostScene {
     // Utility poles with their wires along the far pavement, a pole transformer on every third, and the road's parked traffic.
     const poleZ = Z.farKerb + 0.7, poles: number[] = [];
     for (let x = -ROW_HALF_WIDTH + 10; x <= ROW_HALF_WIDTH - 6; x += 26) poles.push(x);
-    poles.forEach((x, i) => { drawPole(b, x, poleZ, i % 3 === 1); if (i) drawWires(b, poles[i - 1]!, x, poleZ); });
-    drawDanfo(b, -ROW_HALF_WIDTH + 30, Z.road1 - 1.6); drawKeke(b, ROW_HALF_WIDTH - 40, Z.road1 - 1.4); drawDanfo(b, 8, Z.road0 + 1.5);
+    poles.forEach((x, i) => { drawPole(b, x, poleZ, i % 3 === 1); if (i % 2 === 0) drawPoleAdverts(b, x, poleZ, i); if (i) drawWires(b, poles[i - 1]!, x, poleZ); });
+    drawRoadBillboard(b, -ROW_HALF_WIDTH + 52, Z.farKerb + 2.2);
+    // Traffic parked along the road, spread so a few are in view wherever the player's home is.
+    drawDanfo(b, -32, Z.road1 - 1.6); drawKeke(b, -9, Z.road0 + 1.4); drawDanfo(b, 22, Z.road1 - 1.6); drawKeke(b, 52, Z.road0 + 1.4); drawDanfo(b, -62, Z.road0 + 1.5);
     for (const [x, y, z] of plan.lights) b.light(x, y, z, '#ffe3a0', 4, 7);
     void width; void deep;
-    const built = b.build(sceneMaterials(kit));
-    sceneryObjects = [...built.meshes, ...built.lights];
+    // The lamps' heads and the pools of light under them: their own meshes, shown from dusk (the day has no use for them).
+    const after = createBatch(THREE);
+    for (const [x, y, z] of plan.lights) drawLampGlow(after, x, y - 0.1, z - 0.05);
+    const built = b.build(sceneMaterials(kit)), dark = after.build(sceneMaterials(kit));
+    nightMeshes = dark.meshes; nightMeshes.forEach(mesh => { mesh.visible = streetTime !== 'day'; });
+    sceneryObjects = [...built.meshes, ...dark.meshes, ...built.lights];
     sceneryObjects.forEach(object => scenery.add(object));
 
     layer = createModelLayer(kit, models, { budget: MODEL_BUDGET, nearRadius: 30, focus: { x: focusX, z: focusZ }, decorate });

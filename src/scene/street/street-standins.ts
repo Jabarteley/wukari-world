@@ -116,6 +116,24 @@ export function drawKeke(b: Batch, x: number, z: number): void {
   for (const [wx, wz] of [[-0.8, -0.65], [-0.8, 0.65], [1.0, 0]] as const) b.cyl(x + wx, 0.3, z + wz, 0.3, 0.2, '#17181a', { rx: Math.PI / 2, seg: 8 });
 }
 
+/** Small adverts stapled to a pole at head height (a loan, a lesson, a cure): flat coloured boards facing the street both ways. */
+export function drawPoleAdverts(b: Batch, x: number, z: number, seed: number): void {
+  const paints = ['#e5b52b', '#d8473a', '#3f8a57', '#f3eee0', '#3f6f8f'];
+  for (let i = 0; i < 2; i++) for (const side of [-1, 1]) b.quad(x, 2.2 + i * 0.95, z + side * 0.16, 0.55, 0.7, paints[(seed + i * 2 + (side > 0 ? 1 : 0)) % paints.length]!, { ry: side > 0 ? 0 : Math.PI });
+}
+/** A roadside billboard on two posts: a bold panel with banded colours and a lit strip, facing -z (toward the houses). */
+export function drawRoadBillboard(b: Batch, x: number, z: number): void {
+  for (const dx of [-2.3, 2.3]) b.box(x + dx, 2.0, z, 0.2, 4.0, 0.2, DARK);
+  b.box(x, 4.4, z, 6.2, 2.6, 0.18, '#f3eee0');
+  for (const [dy, h, colour] of [[0.85, 0.7, '#1f5a3a'], [0, 0.7, '#e5b52b'], [-0.85, 0.7, '#d8473a']] as const) b.quad(x, 4.4 + dy, z - 0.1, 5.8, h, colour, { ry: Math.PI });
+  b.quad(x, 4.4, z - 0.11, 4.6, 0.3, LIT, { ry: Math.PI, layer: 'glow' });
+}
+/** The glow of a street lamp after dark: a bright head and a soft warm pool on the pavement (drawn only at dusk and night). */
+export function drawLampGlow(b: Batch, x: number, y: number, z: number): void {
+  b.ball(x, y, z, 0.42, 0.28, 0.42, LIT, { seg: 6, layer: 'glow' });
+  for (const [i, radius, colour] of [[0, 3.6, '#686c76'], [1, 2.5, '#797567'], [2, 1.4, '#8d8268']] as const) b.disc(x, 0.07 + i * 0.004, z, radius, colour, { seg: 16, layer: 'glow' });
+}
+
 const SAND = '#d9c9a6', GREEN = '#3f8a57', DARK = '#3b3f46';
 
 /** The stand-in for a piece, drawn in the model's own frame (the layer applies the piece's position, turn and scale). */

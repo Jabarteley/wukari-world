@@ -19,7 +19,7 @@ const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
 applyRendererLook(THREE, renderer, renderTier());
 document.getElementById('stage')!.appendChild(renderer.domElement);
-const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 360);
+const streetView = params.get('houses') === '1', camera = new THREE.PerspectiveCamera(num('fov', streetView ? 80 : 48), 1, 0.1, 360);
 const lights = createHostLights(THREE, scene);
 const sky = createSky(THREE);
 scene.background = sky.texture;
@@ -33,10 +33,11 @@ if (params.get('houses') === '1') {
 }
 scene.add(street.group);
 const stage = document.getElementById('stage')!, { clientWidth: width, clientHeight: height } = stage;
-const x = num('x', 74);
+const x = num('x', streetView ? -18 : 74);
 camera.aspect = width / height;
-camera.position.set(x + num('dx', -6), num('up', 7), num('z', 22));
-camera.lookAt(num('lx', x), 0.3, num('lz', 6));
+// With ?houses=1 the default frame is the whole row from above the road: about four houses, the road with its traffic, the poles and wires.
+camera.position.set(x + num('dx', streetView ? 0 : -6), num('up', streetView ? 46 : 7), num('z', streetView ? 14 : 22));
+camera.lookAt(num('lx', x), 0.3, num('lz', streetView ? 2 : 6));
 camera.updateProjectionMatrix();
 renderer.setSize(width, height, false);
 lights.apply(lightingFor('outdoor', time));

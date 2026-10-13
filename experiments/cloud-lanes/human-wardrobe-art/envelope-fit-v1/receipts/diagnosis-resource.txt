@@ -1,0 +1,62 @@
+{
+  "status": "PASS_SOURCE_PRESERVATION_WITH_FAILED_FIT",
+  "bodyMeshes": 31,
+  "sourceHumanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "neutralCrossingPairs": 79,
+  "neutralCrossingsByGarmentPiece": {
+    "GAME_Shirt_L_sleeve": 6,
+    "GAME_Shirt_L_front_panel": 13,
+    "GAME_Shirt_L_camp_collar_edge_return_2": 7,
+    "GAME_Shirt_R_camp_collar_edge_return_2": 5,
+    "GAME_Shirt_R_sleeve": 8,
+    "GAME_Shirt_R_front_panel": 11,
+    "GAME_Shirt_L_camp_collar": 15,
+    "GAME_Shirt_R_camp_collar": 14
+  },
+  "neutralCrossingsByBodyMesh": {
+    "Shirt_fused_shoulders": 79
+  },
+  "negativeVertexSamplesByGarmentPiece": {
+    "GAME_Shirt_R_camp_collar": 1,
+    "GAME_Shirt_R_camp_collar_edge_return_2": 6,
+    "GAME_Shirt_L_camp_collar": 1,
+    "GAME_Shirt_L_camp_collar_edge_return_2": 6
+  },
+  "morphEndpointEdgeLengthRatios": {
+    "-1/-1": {
+      "min": 0.7366522350242811,
+      "median": 0.9624393828331828,
+      "max": 1.0731273693780627
+    },
+    "-1/+1": {
+      "min": 0.9300341392711319,
+      "median": 0.9981076667775655,
+      "max": 1.2653952949476897
+    },
+    "+1/-1": {
+      "min": 0.7371749785921428,
+      "median": 1.0029092698035602,
+      "max": 1.1327585410228618
+    },
+    "+1/+1": {
+      "min": 0.9603534511735317,
+      "median": 1.0393586862353086,
+      "max": 1.2656996824570226
+    }
+  },
+  "strainCaveat": "Geometric edge ratios only, not fabric strain/cloth simulation. Rest retarget changes design dimensions; endpoint ratios describe authored shape-key geometry.",
+  "sourceBytes": 1061573,
+  "sourceSha256": "99ed8371f30395977f9d1474fd9850c73584f0354c886daa9ec7d7ab2c3f11b0",
+  "garmentEditablePieces": 73,
+  "garmentMorphs": [
+    "body.height",
+    "body.shoulderWidth"
+  ],
+  "armatures": 0,
+  "finalFitAccepted": false
+}
+Blender 4.3.2
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/everyday-01-game-v1-editable.blend"
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/everyday-01-envelope-v1-editable.blend"
+
+Blender quit

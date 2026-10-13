@@ -1,0 +1,29 @@
+FIT_SAMPLE neutral 0 0
+FIT_SAMPLE nose.projection min 0 0
+FIT_SAMPLE nose.projection max 0 0
+FIT_SAMPLE nose.alarWidth min 0 0
+FIT_SAMPLE nose.alarWidth max 0 0
+FIT_SAMPLE earLeft.protrusion min 0 0
+FIT_SAMPLE earLeft.protrusion max 0 0
+FIT_SAMPLE earRight.protrusion min 0 0
+FIT_SAMPLE earRight.protrusion max 0 0
+FIT_SAMPLE body.height min 0 0
+FIT_SAMPLE body.height max 0 0
+FIT_SAMPLE body.shoulderWidth min 0 0
+FIT_SAMPLE body.shoulderWidth max 0 0
+FIT_SAMPLE height-1 shoulder-1 0 0
+FIT_SAMPLE height-1 shoulder+1 0 0
+FIT_SAMPLE height+1 shoulder-1 0 0
+FIT_SAMPLE height+1 shoulder+1 0 0
+Info: Saved "everyday-01-envelope-v1-editable.blend"
+ERROR Draco mesh compression is not available because library could not be found at /usr/bin/4.3/python/lib/python3.13/site-packages/libextern_draco.so
+19:29:26 | INFO: Starting glTF 2.0 export
+19:29:27 | INFO: Extracting primitive: GAME_Shirt_R_front_panel.001
+19:29:27 | INFO: Primitives created: 1
+19:29:27 | INFO: Finished glTF 2.0 export in 0.00881814956665039 s
+
+ENVELOPE_EXPORT_COMPLETE
+Blender 4.3.2
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/everyday-01-game-v1-editable.blend"
+
+Blender quit

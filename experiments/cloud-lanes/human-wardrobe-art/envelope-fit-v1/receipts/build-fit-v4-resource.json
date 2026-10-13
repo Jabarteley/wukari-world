@@ -1,0 +1,20 @@
+{
+  "command": [
+    "blender",
+    "--background",
+    "--threads",
+    "2",
+    "--python-exit-code",
+    "1",
+    "--python",
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/fit_envelope.py"
+  ],
+  "exitCode": 0,
+  "failure": null,
+  "elapsedSeconds": 3.439,
+  "sampledTreePeakRssBytes": 298885120,
+  "rssLimitBytes": 1610612736,
+  "timeoutSeconds": 120,
+  "sampleIntervalSeconds": 0.05,
+  "remainingOwnedProcesses": []
+}

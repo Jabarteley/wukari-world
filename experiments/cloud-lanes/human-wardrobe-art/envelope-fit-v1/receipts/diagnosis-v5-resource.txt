@@ -1,0 +1,136 @@
+{
+  "status": "PASS_SOURCE_PRESERVATION",
+  "bodyMeshes": 31,
+  "sourceHumanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "nearZeroTriangles": [
+    {
+      "triangle": 452,
+      "piece": "GAME_Shirt_R_side_gusset",
+      "area": 0.0,
+      "positions": [
+        [
+          -0.17683333158493042,
+          0.003183757420629263,
+          1.1708333492279053
+        ],
+        [
+          -0.17299999296665192,
+          0.013000000268220901,
+          1.2050000429153442
+        ],
+        [
+          -0.17299999296665192,
+          0.013000000268220901,
+          1.2050000429153442
+        ]
+      ]
+    },
+    {
+      "triangle": 454,
+      "piece": "GAME_Shirt_R_side_gusset",
+      "area": 0.0,
+      "positions": [
+        [
+          -0.17683333158493042,
+          0.012754593975841999,
+          1.1708333492279053
+        ],
+        [
+          -0.17299999296665192,
+          0.013000000268220901,
+          1.2050000429153442
+        ],
+        [
+          -0.17299999296665192,
+          0.013000000268220901,
+          1.2050000429153442
+        ]
+      ]
+    },
+    {
+      "triangle": 477,
+      "piece": "GAME_Shirt_L_side_gusset",
+      "area": 0.0,
+      "positions": [
+        [
+          0.17683333158493042,
+          0.003183757420629263,
+          1.1708333492279053
+        ],
+        [
+          0.17299999296665192,
+          0.013000000268220901,
+          1.2050000429153442
+        ],
+        [
+          0.17299999296665192,
+          0.013000000268220901,
+          1.2050000429153442
+        ]
+      ]
+    },
+    {
+      "triangle": 479,
+      "piece": "GAME_Shirt_L_side_gusset",
+      "area": 0.0,
+      "positions": [
+        [
+          0.17683333158493042,
+          0.012754593975841999,
+          1.1708333492279053
+        ],
+        [
+          0.17299999296665192,
+          0.013000000268220901,
+          1.2050000429153442
+        ],
+        [
+          0.17299999296665192,
+          0.013000000268220901,
+          1.2050000429153442
+        ]
+      ]
+    }
+  ],
+  "neutralCrossingPairs": 0,
+  "neutralCrossingsByGarmentPiece": {},
+  "neutralCrossingsByBodyMesh": {},
+  "negativeVertexSamplesByGarmentPiece": {},
+  "morphEndpointEdgeLengthRatios": {
+    "-1/-1": {
+      "min": 0.7366522350242811,
+      "median": 0.9610665460221016,
+      "max": 1.0731273693780627
+    },
+    "-1/+1": {
+      "min": 0.9300341392711319,
+      "median": 0.9970276096875054,
+      "max": 1.2653952949476897
+    },
+    "+1/-1": {
+      "min": 0.7371749785921428,
+      "median": 1.0032126799450576,
+      "max": 1.1327585410228618
+    },
+    "+1/+1": {
+      "min": 0.9603534511735317,
+      "median": 1.0394271168258304,
+      "max": 1.2656996824570226
+    }
+  },
+  "strainCaveat": "Geometric edge ratios only, not fabric strain/cloth simulation. Rest retarget changes design dimensions; endpoint ratios describe authored shape-key geometry.",
+  "sourceBytes": 1065734,
+  "sourceSha256": "5ae646dc3771119b1f40a2b833d01be473354846f64c392b5bb39a3b1396b677",
+  "garmentEditablePieces": 73,
+  "garmentMorphs": [
+    "body.height",
+    "body.shoulderWidth"
+  ],
+  "armatures": 0,
+  "finalFitAccepted": false
+}
+Blender 4.3.2
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/everyday-01-game-v1-editable.blend"
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/everyday-01-envelope-v1-editable.blend"
+
+Blender quit

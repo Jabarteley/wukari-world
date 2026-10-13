@@ -1,0 +1,697 @@
+{
+  "status": "PASS_SOURCE_PRESERVATION",
+  "verifiedBodyMeshes": [
+    {
+      "name": "UpperLid_Right",
+      "positionSha256": "581d70b6365df29f1b6f4d7ad2f5280bd91ce07f236c1846c7d5d7e140b20b93",
+      "triangleOrderSha256": "0cbad687ff10c97d8ee3ad730cb88764157fb88f972d4d84ec3bb1f1e74ef857",
+      "uvSha256": "d1e295e4f1afa614df7219198ab03ae4c3ff2483e85d463fcadc4dfc6b451869",
+      "verifiedMorphTargets": 3
+    },
+    {
+      "name": "UpperLid_Left",
+      "positionSha256": "ea00b8deeee0dcef004cd163c1328c8d607c9e7e863b46af09803ee4156229de",
+      "triangleOrderSha256": "0cbad687ff10c97d8ee3ad730cb88764157fb88f972d4d84ec3bb1f1e74ef857",
+      "uvSha256": "b285ee7406acc80dae60b3f5523ff1d0a39d1086487859620dc34775398ba484",
+      "verifiedMorphTargets": 3
+    },
+    {
+      "name": "Trousers_fused_hip",
+      "positionSha256": "71b1388c8726808b5848670bee40388bf349ddb680633aa89504d6ac35977aa4",
+      "triangleOrderSha256": "6881abdafca4ba26f95a3a59739a1f6bfc626b80ae1a8044a3c3b4e1d7cca04c",
+      "uvSha256": "2e933a7747e3d79e9859e1bccbdda2c67357690fd93b66e0105a59d9c42aa003",
+      "verifiedMorphTargets": 2
+    },
+    {
+      "name": "Sole_1",
+      "positionSha256": "36627c01382355f39358696e82fbf341fe4e93cc0d2d1ed7d639e326d13be06c",
+      "triangleOrderSha256": "b30bfe699ec376f07e62311b595fa8e5f19300c2084cb82d30b0fd0a0363ffd3",
+      "uvSha256": "bb93eb17316ef63f1fee383188fdc9121e5c443570704b9d894ca1940ccfd07e",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Sole_-1",
+      "positionSha256": "4d277ecb2b392f2f4f1e3c9d60ec31671be0b1cebad4b2d53624169b9d6f556e",
+      "triangleOrderSha256": "b30bfe699ec376f07e62311b595fa8e5f19300c2084cb82d30b0fd0a0363ffd3",
+      "uvSha256": "e565c382dbd50d8ecd8c18903498a1423156555d4dfb377e739be028ad45301e",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Shoe_1",
+      "positionSha256": "4e042ca955ed8e6e18b6f8b87fe4b69e7dff57a0980b9e8ad2ee32075f681d37",
+      "triangleOrderSha256": "d7aac2c1f0e583a27bdcf11ccbd99455369ff2caa910bd93b2956fa1fbad8761",
+      "uvSha256": "c1a7348a3a0fd08a1a30fda178a9aff486e717ab8a4cb8e23dfb60ef82379f0d",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Shoe_-1",
+      "positionSha256": "b44007246c83845330c954e4b00f2d0a172dfab30c632f4f0f0458f2026b55f2",
+      "triangleOrderSha256": "d7aac2c1f0e583a27bdcf11ccbd99455369ff2caa910bd93b2956fa1fbad8761",
+      "uvSha256": "f29b2ef8d0f71d3663b527cc6525eb4941360063975ce428adb19f464cd9db11",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Shirt_fused_shoulders",
+      "positionSha256": "687cc7eff62c2a8248efc7bf08d8e44647d72aaa4114a9cdefe00387dfbbc8d3",
+      "triangleOrderSha256": "6f9168f8b6565c98f8125004506aa48571badc93031b7c855583d1f78befcacf",
+      "uvSha256": "3052b449f01e4e547a9f5ee95830f7561fcbaa38274859026434525ef4d7c9aa",
+      "verifiedMorphTargets": 2
+    },
+    {
+      "name": "Pupil_Right",
+      "positionSha256": "67e3be9436c9294d8034bdd294ab0a24f585dbf031f187f94ed440651aa52ea1",
+      "triangleOrderSha256": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uvSha256": "481159002d37c360c1cea74956cb0b26bffc2414fc35e8167fb204a1758adcc8",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Pupil_Left",
+      "positionSha256": "5ee5e54e2d0225f2173d2e2896590cc45d2a12f04e99e59aedd162c7087c6c58",
+      "triangleOrderSha256": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uvSha256": "a47de0f6e321da9770194d05c4fcd0d2b7e758349766c74892e280a055746664",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Nostril_1",
+      "positionSha256": "fdd8d3b3eaf26729c19da0c751753d86475459bd99d6710a873d8693a7ee74fe",
+      "triangleOrderSha256": "586c86939aae11d2f6044387322b5fa77327ce2c963971dac1a3cf1d469ed5b5",
+      "uvSha256": "2de93c3b71ed6f753f4eba493ff469e0cb2569508e8afbf7bc2303b6dc3195ef",
+      "verifiedMorphTargets": 7
+    },
+    {
+      "name": "Nostril_-1",
+      "positionSha256": "3fb72a9a1f97da2229dc4099662c0e6829a0038c7d8d158fea3a7fafe5338024",
+      "triangleOrderSha256": "586c86939aae11d2f6044387322b5fa77327ce2c963971dac1a3cf1d469ed5b5",
+      "uvSha256": "a84a2360dbef5b2f456f7feaef81cf0e930132aa991d760d35de3787b1afe313",
+      "verifiedMorphTargets": 7
+    },
+    {
+      "name": "Neck",
+      "positionSha256": "7eaff140ca3bebcff4347668f10c406e0c74414377076e2f60b7d92a608c894d",
+      "triangleOrderSha256": "02c243c5e69a2b843d145468f169b416ced9bebec7ced6bc29bc75e04c804dd8",
+      "uvSha256": "dd716cb2ea0d9054f6d89b99a384c7d84e34162b082811215f03302e4321b1b1",
+      "verifiedMorphTargets": 2
+    },
+    {
+      "name": "Mouth_seam",
+      "positionSha256": "ef69a4d7e2a526f2e630bccb5695a33e18ee5fafe296c8514c61497a58852b07",
+      "triangleOrderSha256": "d32f38d3ed5c440cb5db1cf9210b7f1820e15a6f424bbaec539c7845466ba6cd",
+      "uvSha256": "8433aa86336f3c1b49c44f5ed9cd27c043643b5bea3a7aeeacb45be2d2954f59",
+      "verifiedMorphTargets": 11
+    },
+    {
+      "name": "LowerLid_Right",
+      "positionSha256": "0691b57d10b9b1e028de6e320882adf8917688530123ba7bc8dad03e3852d20a",
+      "triangleOrderSha256": "2446142bfd86760f6d3bc1b7a8b00b7d01871e71ef36b71e3820ab47232e034e",
+      "uvSha256": "9c4ede9a3ec607902008e348c5883df68f799a09a99a62dcdd26eb3b6a38d9a7",
+      "verifiedMorphTargets": 3
+    },
+    {
+      "name": "LowerLid_Left",
+      "positionSha256": "954dcc098b8731658ce9e752d29c4b5b6a075b2c8f9b634b9d8df6cd99d4e3a0",
+      "triangleOrderSha256": "2446142bfd86760f6d3bc1b7a8b00b7d01871e71ef36b71e3820ab47232e034e",
+      "uvSha256": "4bcd6c58ba905de9aa08b5aa62dc194b20c985c3099cc4a27b8a97fd8a0123e6",
+      "verifiedMorphTargets": 3
+    },
+    {
+      "name": "Lip_upper",
+      "positionSha256": "f286f473bcf45d06494f0ad4d24674fc329c8a1c6920b9c94602c1e663f8f4d8",
+      "triangleOrderSha256": "39e7450a29ff8ac384343808066b183281e4c49850ae1c7112bd9d901fc75dd2",
+      "uvSha256": "eb10d60fd26cb73c0ee9951a271d8209c5d87fca0223fd8019eae3ddbc0828a6",
+      "verifiedMorphTargets": 11
+    },
+    {
+      "name": "Lip_lower",
+      "positionSha256": "ced272e40bb0d00f651500d39cbc3a0d812f55fa9b772e9d73101e4590b9bb88",
+      "triangleOrderSha256": "690b648dbb82ce9c0d50d27ef59a1222edd6e77c9796f9f2fc9a20b7598f0a98",
+      "uvSha256": "7d3c51f014eeb9639cf77735fb0d98a5605af21449f6696def7a16316d656e52",
+      "verifiedMorphTargets": 11
+    },
+    {
+      "name": "Iris_Right",
+      "positionSha256": "82068746526654358fb68c90340aa29365d9f96abd70e6e8a408e30383590180",
+      "triangleOrderSha256": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uvSha256": "cf77bf07849f85fae583fa5beb7bd2a7c9a1e9783c596355afba37cdc3bf96bf",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Iris_Left",
+      "positionSha256": "554dc0fe9c55c9ca81c132e2de82c51da33c6c9210e554f8803f6d56c638d59a",
+      "triangleOrderSha256": "035d1586827c34112108192e4305c67f7a83eda0399b8b227128bc2b8e6a4b13",
+      "uvSha256": "431aea82a18845018561a7c8faf8bdba36bfdc33c73f6a2ea63d01124045e709",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Head_continuous_anatomy",
+      "positionSha256": "50fb1df341bfd1026436b5e73544f7587f646aeca63ae7cff638f6eb9c294a60",
+      "triangleOrderSha256": "c84be0818b32b048a752600db20ed82416c0b627c6801fe11ea0145ed2f3f695",
+      "uvSha256": "23be2a017a917bdda88a2bea722c2db80d9f40e29369dd4c8bfdae7beaf4dc28",
+      "verifiedMorphTargets": 17
+    },
+    {
+      "name": "Hair_original_close_curl_surface",
+      "positionSha256": "ebbc45d3e91ce75f892fa97b6e4b101ba71e3d0540da7db3bed9102e6303bde1",
+      "triangleOrderSha256": "3596a505357ee93d378d5bd5359f9f611ee54ed676eb718d27cf10dc176c694e",
+      "uvSha256": "871f1adea1cd051755f207510b49bfccc04774c644f41b197d44d2101d91fc52",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Forearm_hand_1",
+      "positionSha256": "c6eb6dd8ed3746316d0f758c3d2f182a040e6dfd2cd077070163935aebc5504b",
+      "triangleOrderSha256": "d51d622f76087b86f1236c1585a1592b4a64f775636986965f8b359c43a218d7",
+      "uvSha256": "cd0014f90762b61830723f06704fa7d66b2de087a189cb9b6f534e9c9d6151ed",
+      "verifiedMorphTargets": 2
+    },
+    {
+      "name": "Forearm_hand_-1",
+      "positionSha256": "e1cdca29c553d5b1f46aa40516a7a72c3a70593dc5113064eb913a53155fe4e7",
+      "triangleOrderSha256": "c0bd67def3896920cc91f7f2a63cc3431c3848ed7bdfe4d0998d389055f34b79",
+      "uvSha256": "6e27b81b07f05ae2d0ec1c2d1576a22c527cf81eaa87a5e7eeca574a12648160",
+      "verifiedMorphTargets": 2
+    },
+    {
+      "name": "Eye_Right",
+      "positionSha256": "21ee6b184c15672d59120b0fde1cea5158b594fb8ea20a9f414d3c97938e0ccc",
+      "triangleOrderSha256": "927b12d86106658d63382f2e008aa38c1264408a974cfee1883b9d53c114b731",
+      "uvSha256": "f04f82af529b4d0a7ec0683afc83cd88d6ae7eca9f4492d43b0b868dfb0f3e46",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Eye_Left",
+      "positionSha256": "1d901cf5aa1db2c6fcc8d8417670fd79f421f897031accdba6a3eab4ac12de0d",
+      "triangleOrderSha256": "927b12d86106658d63382f2e008aa38c1264408a974cfee1883b9d53c114b731",
+      "uvSha256": "bb58c65f74936ed8cf205b36305978dfc9592ababfc9838a6ee4391f9f78432f",
+      "verifiedMorphTargets": 1
+    },
+    {
+      "name": "Ear_Right",
+      "positionSha256": "3c5cd574da9206908e5b3c2eb8e50d1a757408ffc25498047ff418b94eb0d4e0",
+      "triangleOrderSha256": "51612b267cf6f0c8e22a5c33a455e8a9003e8c11a11fb17a69c1d19179b7de69",
+      "uvSha256": "6d70727a93c771052ddaa18220fa22f14ce43ea6042b6d109202a00aa589366b",
+      "verifiedMorphTargets": 2
+    },
+    {
+      "name": "Ear_Left",
+      "positionSha256": "7905313821da5fd2b9d0e3354d66bb9c4bb4f578f3b31cafa7e8d5b1159cdec4",
+      "triangleOrderSha256": "749a0e51c6d1dcf42e7db0bcf1de1fc8aafe0a95f00f8588ff0e3c670874e083",
+      "uvSha256": "8699e219061240a59a60448558392c3bde3784d1bbdf63bc4576ba2051fd7d41",
+      "verifiedMorphTargets": 2
+    },
+    {
+      "name": "Collar_band",
+      "positionSha256": "8e5de169f7e0832997aba93d5c1d8fceef72d2d8852da2c95a3b9040f9fa3f58",
+      "triangleOrderSha256": "83319e132267ea9f3fc3c8b0b18fa46a03bf4d7be8f5d3c715bb3b9345f6553b",
+      "uvSha256": "fafa7e38c26608e02f343963c1927f6b492944ebfb4aee32c6c7922cda7810de",
+      "verifiedMorphTargets": 2
+    },
+    {
+      "name": "Brow_Right",
+      "positionSha256": "8583e7b5dae6574657ccc5a7df5a6983fa7ad2daf5697ffb404c41df531cd9e7",
+      "triangleOrderSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+      "uvSha256": "5351ffc64eabe2cba1b6d1c1537ff44f725dde5edf6c2e5a9488cc38ca6ded22",
+      "verifiedMorphTargets": 3
+    },
+    {
+      "name": "Brow_Left",
+      "positionSha256": "4b23e55840b1a2e2afd9e8a4dc4389ab3530256badef8492c48381a970665e37",
+      "triangleOrderSha256": "133b08830728b9d182ea04439f35a30c7b9c13bf7b9afe4e4f09bd8b2545df49",
+      "uvSha256": "151d1213c6e6f42f98eafed45bcebfbcbd0fe221b4a621d6b247f19e89686418",
+      "verifiedMorphTargets": 3
+    }
+  ],
+  "bodyMeshes": 31,
+  "sourceHumanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "nearZeroTriangles": [],
+  "neutralCrossingPairs": 0,
+  "neutralCrossingsByGarmentPiece": {},
+  "neutralCrossingsByBodyMesh": {},
+  "negativeVertexSamplesByGarmentPiece": {},
+  "restRetargetEdgeLengthRatios": {
+    "GAME_Shirt_R_front_panel": {
+      "kind": "surface",
+      "min": 0.530332448900995,
+      "median": 0.8161038199334099,
+      "max": 3.363461232119354
+    },
+    "GAME_Shirt_R_back_panel": {
+      "kind": "surface",
+      "min": 0.5303312327218103,
+      "median": 0.8119767517291249,
+      "max": 3.2392442768893
+    },
+    "GAME_Shirt_R_shoulder_separate_piece": {
+      "kind": "surface",
+      "min": 0.7525040463981891,
+      "median": 0.8264905202874049,
+      "max": 0.9594442828295111
+    },
+    "GAME_Shirt_L_front_panel": {
+      "kind": "surface",
+      "min": 0.530332448900995,
+      "median": 0.8133667907384803,
+      "max": 3.341597596443572
+    },
+    "GAME_Shirt_L_back_panel": {
+      "kind": "surface",
+      "min": 0.5303312327218103,
+      "median": 0.810913628610154,
+      "max": 3.243860616060895
+    },
+    "GAME_Shirt_L_shoulder_separate_piece": {
+      "kind": "surface",
+      "min": 0.7539300216635668,
+      "median": 0.8280000614043481,
+      "max": 0.9474329302407984
+    },
+    "GAME_Shirt_R_side_gusset": {
+      "topologyChanged": true,
+      "reason": "Explicit triangular armpit fan; source edge correspondence not claimed"
+    },
+    "GAME_Shirt_L_side_gusset": {
+      "topologyChanged": true,
+      "reason": "Explicit triangular armpit fan; source edge correspondence not claimed"
+    },
+    "GAME_Shirt_R_sleeve": {
+      "kind": "surface",
+      "min": 0.3930822301817112,
+      "median": 0.9408523040528087,
+      "max": 1.6414610286059865
+    },
+    "GAME_Shirt_R_cuff_facing": {
+      "kind": "surface",
+      "min": 0.4894266529572682,
+      "median": 0.9059012262417618,
+      "max": 1.1759493087547
+    },
+    "GAME_Shirt_R_cuff_facing_edge_return_0": {
+      "kind": "edge-return",
+      "min": 0.8507793218297578,
+      "median": 0.9321527365849898,
+      "max": 1.0031574328675292
+    },
+    "GAME_Shirt_R_cuff_facing_edge_return_1": {
+      "kind": "edge-return",
+      "min": 0.8849300593559737,
+      "median": 0.9252841870857729,
+      "max": 1.000013716695152
+    },
+    "GAME_Shirt_L_sleeve": {
+      "kind": "surface",
+      "min": 0.3930822301817112,
+      "median": 0.9432333580437714,
+      "max": 1.6900916738273872
+    },
+    "GAME_Shirt_L_cuff_facing": {
+      "kind": "surface",
+      "min": 0.4894266529572682,
+      "median": 0.9059012262417618,
+      "max": 1.1759493087547
+    },
+    "GAME_Shirt_L_cuff_facing_edge_return_0": {
+      "kind": "edge-return",
+      "min": 0.8507793218297578,
+      "median": 0.9321527365849898,
+      "max": 1.0031574328675292
+    },
+    "GAME_Shirt_L_cuff_facing_edge_return_1": {
+      "kind": "edge-return",
+      "min": 0.884930067602167,
+      "median": 0.9252841870857729,
+      "max": 1.0000137175249892
+    },
+    "GAME_Shirt_front_upper_placket": {
+      "kind": "surface",
+      "min": 0.7982533899501999,
+      "median": 0.7991941408730334,
+      "max": 0.8395123374540961
+    },
+    "GAME_Shirt_front_under_placket": {
+      "kind": "surface",
+      "min": 0.7982533899501999,
+      "median": 0.7991941408730334,
+      "max": 0.8299772802562065
+    },
+    "GAME_Shirt_button_0": {
+      "kind": "button-disc",
+      "min": 0.7981800842406421,
+      "median": 0.8142491586006222,
+      "max": 0.8300000263874727
+    },
+    "GAME_Shirt_button_1": {
+      "kind": "button-disc",
+      "min": 0.7981999523166177,
+      "median": 0.8142560445144822,
+      "max": 0.8300000263874727
+    },
+    "GAME_Shirt_button_2": {
+      "kind": "button-disc",
+      "min": 0.7981999523166177,
+      "median": 0.8142560445144822,
+      "max": 0.8300000263874727
+    },
+    "GAME_Shirt_button_3": {
+      "kind": "button-disc",
+      "min": 0.7981999523166177,
+      "median": 0.8142560445144822,
+      "max": 0.8300000263874727
+    },
+    "GAME_Shirt_button_4": {
+      "kind": "button-disc",
+      "min": 0.7981999523166177,
+      "median": 0.8142560445144822,
+      "max": 0.8300000263874727
+    },
+    "GAME_Shirt_button_5": {
+      "kind": "button-disc",
+      "min": 0.7981999523166177,
+      "median": 0.8142560445144822,
+      "max": 0.8300000263874727
+    },
+    "GAME_Shirt_R_camp_collar": {
+      "kind": "surface",
+      "min": 0.6229611395513668,
+      "median": 0.839100161279049,
+      "max": 1.2327769666853747
+    },
+    "GAME_Shirt_R_camp_collar_edge_return_0": {
+      "kind": "edge-return",
+      "min": 0.8077037896322189,
+      "median": 0.8777496707277587,
+      "max": 1.0000143867149272
+    },
+    "GAME_Shirt_R_camp_collar_edge_return_1": {
+      "kind": "edge-return",
+      "min": 0.8042173624421609,
+      "median": 0.843457967404991,
+      "max": 1.0000077282992683
+    },
+    "GAME_Shirt_R_camp_collar_edge_return_2": {
+      "kind": "edge-return",
+      "min": 0.7902831185050051,
+      "median": 0.9999818757860928,
+      "max": 1.2518853062231985
+    },
+    "GAME_Shirt_R_camp_collar_edge_return_3": {
+      "kind": "edge-return",
+      "min": 0.8282228429093335,
+      "median": 0.8994278051306204,
+      "max": 0.9999958933810945
+    },
+    "GAME_Shirt_L_camp_collar": {
+      "kind": "surface",
+      "min": 0.6180084301588249,
+      "median": 0.8352946687611679,
+      "max": 1.2314480680823734
+    },
+    "GAME_Shirt_L_camp_collar_edge_return_0": {
+      "kind": "edge-return",
+      "min": 0.8127264557831773,
+      "median": 0.889372817444498,
+      "max": 1.0000148384735599
+    },
+    "GAME_Shirt_L_camp_collar_edge_return_1": {
+      "kind": "edge-return",
+      "min": 0.8042173624421609,
+      "median": 0.8434579675250579,
+      "max": 1.0000076831729021
+    },
+    "GAME_Shirt_L_camp_collar_edge_return_2": {
+      "kind": "edge-return",
+      "min": 0.7910764380369611,
+      "median": 0.9999818757860928,
+      "max": 1.2505358093721735
+    },
+    "GAME_Shirt_L_camp_collar_edge_return_3": {
+      "kind": "edge-return",
+      "min": 0.8293164052123557,
+      "median": 0.8987691202579813,
+      "max": 0.9999958933810945
+    },
+    "GAME_Shirt_L_open_patch_pocket": {
+      "kind": "surface",
+      "min": 0.798204928265586,
+      "median": 0.8113111679286662,
+      "max": 0.8288991013064433
+    },
+    "GAME_Shirt_L_pocket_folded_lip": {
+      "kind": "surface",
+      "min": 0.7982415380700859,
+      "median": 0.8275394293592041,
+      "max": 0.8288991013064433
+    },
+    "GAME_Shirt_R_open_patch_pocket": {
+      "kind": "surface",
+      "min": 0.798204928265586,
+      "median": 0.8113111679286662,
+      "max": 0.8288991013064433
+    },
+    "GAME_Shirt_R_pocket_folded_lip": {
+      "kind": "surface",
+      "min": 0.7982415380700859,
+      "median": 0.8275394293592041,
+      "max": 0.8288991013064433
+    },
+    "GAME_Trousers_R_front_panel": {
+      "kind": "surface",
+      "min": 0.4729682802997186,
+      "median": 0.9751290505858099,
+      "max": 1.1573981136777611
+    },
+    "GAME_Trousers_R_back_panel": {
+      "kind": "surface",
+      "min": 0.4648667595719491,
+      "median": 1.000239379102382,
+      "max": 1.176761329619603
+    },
+    "GAME_Trousers_R_turned_hem": {
+      "kind": "surface",
+      "min": 0.7059262340265013,
+      "median": 0.7762328942282786,
+      "max": 1.0279864468406257
+    },
+    "GAME_Trousers_R_turned_hem_edge_return_0": {
+      "kind": "edge-return",
+      "min": 0.2729971478849431,
+      "median": 0.753585575076923,
+      "max": 1.1211529350108123
+    },
+    "GAME_Trousers_R_turned_hem_edge_return_1": {
+      "kind": "edge-return",
+      "min": 0.1543978062630014,
+      "median": 0.7555883402811956,
+      "max": 0.8449287398137666
+    },
+    "GAME_Trousers_R_back_welt": {
+      "kind": "surface",
+      "min": 0.7947375268247416,
+      "median": 0.8370560001262661,
+      "max": 1.0943293840549875
+    },
+    "GAME_Trousers_L_front_panel": {
+      "kind": "surface",
+      "min": 0.472841251298219,
+      "median": 0.9765636973002225,
+      "max": 1.157410768761459
+    },
+    "GAME_Trousers_L_back_panel": {
+      "kind": "surface",
+      "min": 0.46462495535152176,
+      "median": 0.9999081493830582,
+      "max": 1.1772690293089854
+    },
+    "GAME_Trousers_L_turned_hem": {
+      "kind": "surface",
+      "min": 0.7063384830788003,
+      "median": 0.7762328942282786,
+      "max": 1.0195134083612671
+    },
+    "GAME_Trousers_L_turned_hem_edge_return_0": {
+      "kind": "edge-return",
+      "min": 0.19010406372777094,
+      "median": 0.7528564199034244,
+      "max": 0.9994665908812004
+    },
+    "GAME_Trousers_L_turned_hem_edge_return_1": {
+      "kind": "edge-return",
+      "min": 0.17607487219147464,
+      "median": 0.7563682077050911,
+      "max": 0.8750618404007361
+    },
+    "GAME_Trousers_L_back_welt": {
+      "kind": "surface",
+      "min": 0.7904088884758466,
+      "median": 0.8409553879325384,
+      "max": 1.042081049294108
+    },
+    "GAME_Trousers_continuous_waistband": {
+      "kind": "surface",
+      "min": 0.7799999184423757,
+      "median": 0.7933763721862939,
+      "max": 1.0149986859893958
+    },
+    "GAME_Shirt_R_False_double_hem_0.01": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7981908702054554,
+      "median": 0.8260882131281189,
+      "max": 0.8299627462963443
+    },
+    "GAME_Shirt_R_True_double_hem_0.01": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7981908702054554,
+      "median": 0.8263265414744205,
+      "max": 0.8299662158038708
+    },
+    "GAME_Shirt_R_shoulder_topstitch": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.3694729546576485,
+      "median": 0.8070484989464984,
+      "max": 0.8752302387137234
+    },
+    "GAME_Shirt_L_False_double_hem_0.01": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7981908702054554,
+      "median": 0.8260882131281189,
+      "max": 0.8299627462963443
+    },
+    "GAME_Shirt_L_True_double_hem_0.01": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7981908702054554,
+      "median": 0.8263265414744205,
+      "max": 0.8299662158038708
+    },
+    "GAME_Shirt_L_shoulder_topstitch": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.3696998996190083,
+      "median": 0.8070484989464984,
+      "max": 0.8596109204026726
+    },
+    "GAME_Shirt_R_gusset_hem": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7981908702054554,
+      "median": 0.8200927093160216,
+      "max": 0.8200928061460027
+    },
+    "GAME_Shirt_L_gusset_hem": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7981908702054554,
+      "median": 0.8200927093160216,
+      "max": 0.8200928061460027
+    },
+    "GAME_Placket_upper_stitch_0.9": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.798286789546595,
+      "median": 0.7992204972680599,
+      "max": 0.8298619742649226
+    },
+    "GAME_Placket_under_stitch_0.9": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.798286789546595,
+      "median": 0.7992204972680599,
+      "max": 0.8298619742649226
+    },
+    "GAME_Pocket_L_side_stitch_0.05": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7982083100607745,
+      "median": 0.7984415014084656,
+      "max": 0.8276107901308716
+    },
+    "GAME_Pocket_L_side_stitch_0.95": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7982013839105745,
+      "median": 0.798293191896504,
+      "max": 0.8229038725816192
+    },
+    "GAME_Pocket_L_cross_stitch_0.045": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7981767180925666,
+      "median": 0.8240406747379837,
+      "max": 0.8278719343058157
+    },
+    "GAME_Pocket_R_side_stitch_0.05": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7982083100607745,
+      "median": 0.7984415014084656,
+      "max": 0.8276107901308716
+    },
+    "GAME_Pocket_R_side_stitch_0.95": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7982013839105745,
+      "median": 0.798293191896504,
+      "max": 0.8229038725816192
+    },
+    "GAME_Pocket_R_cross_stitch_0.045": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7981767180925666,
+      "median": 0.8240406747379837,
+      "max": 0.8278719343058157
+    },
+    "GAME_Trousers_R_outseam": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.779947506496899,
+      "median": 1.0132458422541908,
+      "max": 1.0149974349221698
+    },
+    "GAME_Trousers_R_slant_pocket_welt": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7662534178922518,
+      "median": 0.9424126757331877,
+      "max": 0.9957028624133348
+    },
+    "GAME_Trousers_R_back_welt_stitch": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7960789827607635,
+      "median": 0.8177576036057415,
+      "max": 1.0041782799686205
+    },
+    "GAME_Trousers_L_outseam": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.779947506496899,
+      "median": 1.0132458422541908,
+      "max": 1.0149974349221698
+    },
+    "GAME_Trousers_L_slant_pocket_welt": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.7681687305679712,
+      "median": 0.9447239050073926,
+      "max": 1.0024296187376955
+    },
+    "GAME_Trousers_L_back_welt_stitch": {
+      "kind": "intentional-seam-ribbon",
+      "min": 0.790665552020638,
+      "median": 0.8224495374801963,
+      "max": 1.2612780003736404
+    }
+  },
+  "morphEndpointEdgeLengthRatios": {
+    "-1/-1": {
+      "min": 0.7366522350242811,
+      "median": 0.9610996050874334,
+      "max": 1.0731273693780627
+    },
+    "-1/+1": {
+      "min": 0.9300341392711319,
+      "median": 0.9970674640485984,
+      "max": 1.2653952949476897
+    },
+    "+1/-1": {
+      "min": 0.7371749785921428,
+      "median": 1.003212480732445,
+      "max": 1.1327585410228618
+    },
+    "+1/+1": {
+      "min": 0.9603534511735317,
+      "median": 1.0393830009716312,
+      "max": 1.2656996824570226
+    }
+  },
+  "strainCaveat": "Geometric edge ratios only, not fabric strain/cloth simulation. Rest retarget changes design dimensions; endpoint ratios describe authored shape-key geometry.",
+  "sourceBytes": 1060170,
+  "sourceSha256": "70d1204246c026bc032880735cad9bb63f00b47a11e4378499804d787176f727",
+  "garmentEditablePieces": 73,
+  "garmentMorphs": [
+    "body.height",
+    "body.shoulderWidth"
+  ],
+  "armatures": 0,
+  "finalFitAccepted": false
+}

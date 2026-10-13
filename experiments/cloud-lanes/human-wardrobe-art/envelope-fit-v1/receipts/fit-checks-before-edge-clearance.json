@@ -1,0 +1,1549 @@
+{
+  "status": "FAIL_INTERSECTIONS",
+  "humanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "bodyInputSha256": "36018022ff64367e7426069d7417625a3591f3a2c0684c628c11c3bd908f84d9",
+  "gameInputSha256": "b2f493393cd701f7b8b4a2ef204a40f38a0e0d45af8fb5bb8618b0a867270198",
+  "bodySurface": "Clothed torso/leg envelope; no independent naked torso/legs",
+  "garmentTriangles": 2328,
+  "morphTargets": 2,
+  "skinBindings": 0,
+  "initialCorrectedVertices": 366,
+  "maximumInitialCorrectionM": 0.018000001608367438,
+  "boundedCenterRepairs": [
+    {
+      "iteration": 0,
+      "triangleCentersCorrected": 46,
+      "maxPushMetres": 0.008831583260762273
+    },
+    {
+      "iteration": 1,
+      "triangleCentersCorrected": 0,
+      "maxPushMetres": 0
+    }
+  ],
+  "cases": [
+    {
+      "label": "neutral",
+      "controls": {},
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "nose.projection min",
+      "controls": {
+        "nose.projection": -1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "nose.projection max",
+      "controls": {
+        "nose.projection": 1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "nose.alarWidth min",
+      "controls": {
+        "nose.alarWidth": -1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "nose.alarWidth max",
+      "controls": {
+        "nose.alarWidth": 1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "earLeft.protrusion min",
+      "controls": {
+        "earLeft.protrusion": -1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "earLeft.protrusion max",
+      "controls": {
+        "earLeft.protrusion": 1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "earRight.protrusion min",
+      "controls": {
+        "earRight.protrusion": -1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "earRight.protrusion max",
+      "controls": {
+        "earRight.protrusion": 1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010555854067206383,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "body.height min",
+      "controls": {
+        "body.height": -1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010116676625330001,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6335,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "body.height max",
+      "controls": {
+        "body.height": 1
+      },
+      "candidateTrianglePairs": 79,
+      "confirmedCrossingPairs": 79,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010983391548506916,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8250,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8129,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6236,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "body.shoulderWidth min",
+      "controls": {
+        "body.shoulderWidth": -1
+      },
+      "candidateTrianglePairs": 71,
+      "confirmedCrossingPairs": 71,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010964633198454976,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6351,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6345,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6236,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8129,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6339,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6340,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "body.shoulderWidth max",
+      "controls": {
+        "body.shoulderWidth": 1
+      },
+      "candidateTrianglePairs": 76,
+      "confirmedCrossingPairs": 76,
+      "crossingGarmentTriangles": 21,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010222610959317535,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6798,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6798,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8250,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "height-1 shoulder-1",
+      "controls": {
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "candidateTrianglePairs": 71,
+      "confirmedCrossingPairs": 71,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.01053888164460659,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6351,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6345,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6236,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8129,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6339,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6340,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "height-1 shoulder+1",
+      "controls": {
+        "body.height": -1,
+        "body.shoulderWidth": 1
+      },
+      "candidateTrianglePairs": 76,
+      "confirmedCrossingPairs": 76,
+      "crossingGarmentTriangles": 21,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.009778998151887208,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6798,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6798,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8250,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "height+1 shoulder-1",
+      "controls": {
+        "body.height": 1,
+        "body.shoulderWidth": -1
+      },
+      "candidateTrianglePairs": 71,
+      "confirmedCrossingPairs": 71,
+      "crossingGarmentTriangles": 22,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.011375449365004897,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6351,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6345,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6341,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6236,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8129,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6339,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6340,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 296,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    },
+    {
+      "label": "height+1 shoulder+1",
+      "controls": {
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "candidateTrianglePairs": 76,
+      "confirmedCrossingPairs": 76,
+      "crossingGarmentTriangles": 21,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 30,
+      "minimumSignedNearestNormalMetres": -0.010656990518327802,
+      "minimumTriangleAreaM2": 0.0,
+      "nearZeroTriangleCount": 4,
+      "witnesses": [
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6798,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 708,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8805,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6880,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 6798,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 709,
+          "garmentPiece": "GAME_Shirt_L_sleeve",
+          "bodyTriangle": 8935,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8250,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8251,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 6334,
+          "bodyMesh": "Shirt_fused_shoulders"
+        },
+        {
+          "garmentTriangle": 299,
+          "garmentPiece": "GAME_Shirt_L_front_panel",
+          "bodyTriangle": 8245,
+          "bodyMesh": "Shirt_fused_shoulders"
+        }
+      ]
+    }
+  ],
+  "measurementCaveats": [
+    "Sampled discrete states, not continuous intersection proof",
+    "Negative nearest-normal distance is a local diagnostic, not a global inside/outside certificate for intersecting closed body components",
+    "Narrow phase checks noncoplanar segment crossings; unresolved coplanar candidates are separately counted",
+    "No rig, arm bend, knee bend, locomotion or undressed-body fit",
+    "No body masking performed"
+  ],
+  "finalWearableFitAccepted": false
+}

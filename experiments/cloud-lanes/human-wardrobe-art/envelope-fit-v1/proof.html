@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Allworld / frozen clothed-envelope fitting study</title>
+<style>body{margin:0;background:#17232a;color:#e8e2cd;font:14px system-ui}header{padding:18px 24px 12px}h1{font-size:23px;font-weight:500;margin:0 0 7px}p{margin:0;color:#c6ccc1}.labels{display:flex;padding:12px 0;background:#17232a}.labels span{width:33.333%;padding-left:20px;box-sizing:border-box}canvas{display:block}footer{padding:16px 24px;color:#e2b578}</style>
+<header><h1>ALLWORLD / PINNED CLOTHED-ENVELOPE OVERLAY</h1><p>Human master 3ee5882 · optimized 2,324-triangle garment · separate derivative · no skeleton or final body-fit claim</p></header>
+<div class="labels"><span>NEUTRAL / FRONT</span><span>NEUTRAL / PROFILE</span><span>NEUTRAL / BACK</span></div><canvas id="neutral"></canvas>
+<div class="labels"><span>HEIGHT −1 / SHOULDER −1</span><span>HEIGHT −1 / SHOULDER +1</span><span>HEIGHT +1 / SHOULDER +1</span></div><canvas id="extreme"></canvas>
+<footer>Sampled morphology only. Underlying torso/legs are already clothed; no body masking. See measured intersections in fit-checks.json.</footer>
+<script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js","three/addons/":"../node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+try{
+ const loader=new GLTFLoader();const [body,garment]=await Promise.all([loader.loadAsync('../runs/frozen-human-3ee5882/original-human-prototype.glb'),loader.loadAsync('./artifacts/everyday-01-envelope-v1.glb')]);
+ const scene=new THREE.Scene();scene.background=new THREE.Color('#24323b');scene.add(body.scene,garment.scene,new THREE.HemisphereLight(0xffffff,0x746852,2));
+ for(const [pos,power] of [[[-3,4,4],3],[[3,2,-3],2]]){const l=new THREE.DirectionalLight(0xffffff,power);l.position.set(...pos);scene.add(l);}
+ let tris=0,draws=0,targets=0;const mats=new Set();garment.scene.traverse(o=>{if(!o.isMesh)return;tris+=o.geometry.index.count/3;draws++;targets=o.morphTargetInfluences.length;mats.add(o.material.uuid);});if(tris!==2324||draws!==1||targets!==2)throw Error('Unexpected fitted garment counts');
+ function set(state){scene.traverse(o=>{if(!o.morphTargetInfluences)return;o.morphTargetInfluences.fill(0);for(const [name,value] of Object.entries(state)){const i=o.morphTargetDictionary[name];if(i!==undefined)o.morphTargetInfluences[i]=value;}});}
+ const renderers=[];const camera=new THREE.OrthographicCamera(-.625,.625,.985,-.985,.01,20);const rows=[];
+ for(const [id,configs] of [['neutral',[[{},[0,.93,3]],[{},[3,.93,0]],[{},[0,.93,-3]]]],['extreme',[[{'body.height':-1,'body.shoulderWidth':-1},[0,.93,3]],[{'body.height':-1,'body.shoulderWidth':1},[0,.93,3]],[{'body.height':1,'body.shoulderWidth':1},[0,.93,3]]]]]){
+  const renderer=new THREE.WebGLRenderer({canvas:document.getElementById(id),antialias:true,preserveDrawingBuffer:true});renderers.push(renderer);renderer.setSize(1050,550);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.setScissorTest(true);
+  for(const [i,[state,pos]] of configs.entries()){set(state);camera.position.set(...pos);camera.lookAt(0,.90,0);camera.updateProjectionMatrix();renderer.setViewport(i*350,0,350,550);renderer.setScissor(i*350,0,350,550);renderer.render(scene,camera);rows.push({row:id,controls:state,camera:pos});}
+ }
+ window.receipt={ready:true,garmentTriangles:tris,garmentDraws:draws,garmentMaterials:mats.size,garmentMorphTargets:targets,skinBindings:0,views:rows,pinnedHumanCommit:'3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a',noMasking:true,finalBodyFitAccepted:false,render:'Raw GLTFLoader / software SwiftShader; neutral expressions so product corrective weights are zero'};
+ window.cleanup=()=>{const g=new Set(),m=new Set();scene.traverse(o=>{if(o.geometry)g.add(o.geometry);if(o.material)m.add(o.material);});for(const x of g)x.dispose();for(const x of m)x.dispose();for(const r of renderers){r.dispose();r.forceContextLoss();}window.receipt.disposed=true;};
+}catch(e){window.proofError=String(e);console.error(e);}
+</script></html>

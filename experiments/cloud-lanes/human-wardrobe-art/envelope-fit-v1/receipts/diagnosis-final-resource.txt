@@ -1,0 +1,47 @@
+{
+  "status": "PASS_SOURCE_PRESERVATION",
+  "bodyMeshes": 31,
+  "sourceHumanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "nearZeroTriangles": [],
+  "neutralCrossingPairs": 0,
+  "neutralCrossingsByGarmentPiece": {},
+  "neutralCrossingsByBodyMesh": {},
+  "negativeVertexSamplesByGarmentPiece": {},
+  "morphEndpointEdgeLengthRatios": {
+    "-1/-1": {
+      "min": 0.7366522350242811,
+      "median": 0.9610996050874334,
+      "max": 1.0731273693780627
+    },
+    "-1/+1": {
+      "min": 0.9300341392711319,
+      "median": 0.9970674640485984,
+      "max": 1.2653952949476897
+    },
+    "+1/-1": {
+      "min": 0.7371749785921428,
+      "median": 1.003212480732445,
+      "max": 1.1327585410228618
+    },
+    "+1/+1": {
+      "min": 0.9603534511735317,
+      "median": 1.0393830009716312,
+      "max": 1.2656996824570226
+    }
+  },
+  "strainCaveat": "Geometric edge ratios only, not fabric strain/cloth simulation. Rest retarget changes design dimensions; endpoint ratios describe authored shape-key geometry.",
+  "sourceBytes": 1060170,
+  "sourceSha256": "70d1204246c026bc032880735cad9bb63f00b47a11e4378499804d787176f727",
+  "garmentEditablePieces": 73,
+  "garmentMorphs": [
+    "body.height",
+    "body.shoulderWidth"
+  ],
+  "armatures": 0,
+  "finalFitAccepted": false
+}
+Blender 4.3.2
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/everyday-01-game-v1-editable.blend"
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/everyday-01-envelope-v1-editable.blend"
+
+Blender quit

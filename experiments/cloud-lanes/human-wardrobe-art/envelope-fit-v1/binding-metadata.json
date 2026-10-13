@@ -1,0 +1,219 @@
+{
+  "schema": "allworld-wardrobe-envelope-binding-proposal-v1",
+  "humanTask": "01a13667-6b47-7763-b71a-7d06139ed03f",
+  "humanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "fitFrameSha256": "51fae932279d1513e16c4d06ce633f6218a994fe6c224bc3436e105cc519083b",
+  "frame": {
+    "units": "metres",
+    "blender": "X character-left, Z up, -Y front",
+    "gltf": "X character-left, Y up, +Z front",
+    "rootTransform": "identity"
+  },
+  "bodySurface": "frozen clothed envelope; not undressed torso/legs",
+  "bodyIntegrityEvidence": "receipts/fit-diagnosis.json",
+  "garmentSource": "artifacts/everyday-01-envelope-v1-editable.blend",
+  "garmentExport": {
+    "status": "PASS",
+    "bytes": 124452,
+    "sha256": "8737a23dc58c9ac950cbfe4b42d6237756fdb02bfbe0cee37af292806d68c77c",
+    "triangles": 2324,
+    "vertices": 1922,
+    "drawPrimitives": 1,
+    "materials": 1,
+    "textures": 0,
+    "textureBytes": 0,
+    "skins": 0,
+    "animationClips": 0,
+    "morphTargets": [
+      "body.height",
+      "body.shoulderWidth"
+    ],
+    "normalMorphTargets": false,
+    "decodedBaseGeometryBytes": 83136,
+    "decodedMorphPositionBytes": 46128,
+    "decodedGeometryAndMorphBytes": 129264,
+    "gltfBufferBytes": 121824,
+    "sampledDecodedMorphCases": [
+      {
+        "height": 0,
+        "shoulderWidth": 0,
+        "minTriangleAreaM2": 1.2554279464893625e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.3149999976158142,
+            0.11099857836961746,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.3149999976158142,
+            1.459197759628296,
+            0.1360291987657547
+          ]
+        }
+      },
+      {
+        "height": -1,
+        "shoulderWidth": 0,
+        "minTriangleAreaM2": 1.2544871879072161e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.3149999976158142,
+            0.10594864934682846,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.3149999976158142,
+            1.3867378234863281,
+            0.1360291987657547
+          ]
+        }
+      },
+      {
+        "height": 1,
+        "shoulderWidth": 0,
+        "minTriangleAreaM2": 1.2564163398565142e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.3149999976158142,
+            0.11604850739240646,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.3149999976158142,
+            1.5316576957702637,
+            0.1360291987657547
+          ]
+        }
+      },
+      {
+        "height": 0,
+        "shoulderWidth": -1,
+        "minTriangleAreaM2": 1.2554279464893625e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.289000004529953,
+            0.11099857836961746,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.289000004529953,
+            1.459197759628296,
+            0.1360291987657547
+          ]
+        }
+      },
+      {
+        "height": 0,
+        "shoulderWidth": 1,
+        "minTriangleAreaM2": 1.2554279464893625e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.3409999907016754,
+            0.11099857836961746,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.3409999907016754,
+            1.459197759628296,
+            0.1360291987657547
+          ]
+        }
+      },
+      {
+        "height": -1,
+        "shoulderWidth": -1,
+        "minTriangleAreaM2": 1.2544871879072161e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.289000004529953,
+            0.10594864934682846,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.289000004529953,
+            1.3867378234863281,
+            0.1360291987657547
+          ]
+        }
+      },
+      {
+        "height": -1,
+        "shoulderWidth": 1,
+        "minTriangleAreaM2": 1.2544871879072161e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.3409999907016754,
+            0.10594864934682846,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.3409999907016754,
+            1.3867378234863281,
+            0.1360291987657547
+          ]
+        }
+      },
+      {
+        "height": 1,
+        "shoulderWidth": -1,
+        "minTriangleAreaM2": 1.2564163398565142e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.289000004529953,
+            0.11604850739240646,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.289000004529953,
+            1.5316576957702637,
+            0.1360291987657547
+          ]
+        }
+      },
+      {
+        "height": 1,
+        "shoulderWidth": 1,
+        "minTriangleAreaM2": 1.2564163398565142e-06,
+        "boundsGltfMetres": {
+          "min": [
+            -0.3409999907016754,
+            0.11604850739240646,
+            -0.15101510286331177
+          ],
+          "max": [
+            0.3409999907016754,
+            1.5316576957702637,
+            0.1360291987657547
+          ]
+        }
+      }
+    ],
+    "sourceIntersectionsCheck": "fit-checks.json tests all 17 body/garment source states; decoded export checks finite geometry and triangle areas for the nine distinct garment states",
+    "acceptance": "Sampled clothed-envelope overlay only, no final rig/body/game/phone acceptance"
+  },
+  "morphBinding": {
+    "body.height": "producer signed [-1,1] exact analytic height field at garment rest points",
+    "body.shoulderWidth": "producer signed [-1,1] exact analytic shoulder field at garment rest points",
+    "noseAndEarControls": "no garment deltas; all four endpoints tested against changing body",
+    "normalMorphs": false
+  },
+  "skeleton": null,
+  "skinWeights": null,
+  "inverseBindMatrices": null,
+  "bodyRegionMask": {
+    "adopted": false,
+    "coverageFaceIndices": null,
+    "note": "No body geometry hidden in tests/renders"
+  },
+  "sampledCaseCount": 17,
+  "sampledCrossings": 0,
+  "sampledDegeneracies": 0,
+  "minimumSignedNearestNormalMetres": 0.002793057112285169,
+  "acceptance": {
+    "sampledEnvelope": true,
+    "finalBodyFit": false,
+    "riggedPoseFit": false,
+    "runtimeAdopted": false,
+    "physicalDevicePerformance": false
+  }
+}

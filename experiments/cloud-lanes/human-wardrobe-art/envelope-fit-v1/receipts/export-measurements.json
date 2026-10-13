@@ -1,0 +1,179 @@
+{
+  "status": "PASS",
+  "bytes": 124452,
+  "sha256": "8737a23dc58c9ac950cbfe4b42d6237756fdb02bfbe0cee37af292806d68c77c",
+  "triangles": 2324,
+  "vertices": 1922,
+  "drawPrimitives": 1,
+  "materials": 1,
+  "textures": 0,
+  "textureBytes": 0,
+  "skins": 0,
+  "animationClips": 0,
+  "morphTargets": [
+    "body.height",
+    "body.shoulderWidth"
+  ],
+  "normalMorphTargets": false,
+  "decodedBaseGeometryBytes": 83136,
+  "decodedMorphPositionBytes": 46128,
+  "decodedGeometryAndMorphBytes": 129264,
+  "gltfBufferBytes": 121824,
+  "sampledDecodedMorphCases": [
+    {
+      "height": 0,
+      "shoulderWidth": 0,
+      "minTriangleAreaM2": 1.2554279464893625e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.3149999976158142,
+          0.11099857836961746,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.3149999976158142,
+          1.459197759628296,
+          0.1360291987657547
+        ]
+      }
+    },
+    {
+      "height": -1,
+      "shoulderWidth": 0,
+      "minTriangleAreaM2": 1.2544871879072161e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.3149999976158142,
+          0.10594864934682846,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.3149999976158142,
+          1.3867378234863281,
+          0.1360291987657547
+        ]
+      }
+    },
+    {
+      "height": 1,
+      "shoulderWidth": 0,
+      "minTriangleAreaM2": 1.2564163398565142e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.3149999976158142,
+          0.11604850739240646,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.3149999976158142,
+          1.5316576957702637,
+          0.1360291987657547
+        ]
+      }
+    },
+    {
+      "height": 0,
+      "shoulderWidth": -1,
+      "minTriangleAreaM2": 1.2554279464893625e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.289000004529953,
+          0.11099857836961746,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.289000004529953,
+          1.459197759628296,
+          0.1360291987657547
+        ]
+      }
+    },
+    {
+      "height": 0,
+      "shoulderWidth": 1,
+      "minTriangleAreaM2": 1.2554279464893625e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.3409999907016754,
+          0.11099857836961746,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.3409999907016754,
+          1.459197759628296,
+          0.1360291987657547
+        ]
+      }
+    },
+    {
+      "height": -1,
+      "shoulderWidth": -1,
+      "minTriangleAreaM2": 1.2544871879072161e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.289000004529953,
+          0.10594864934682846,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.289000004529953,
+          1.3867378234863281,
+          0.1360291987657547
+        ]
+      }
+    },
+    {
+      "height": -1,
+      "shoulderWidth": 1,
+      "minTriangleAreaM2": 1.2544871879072161e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.3409999907016754,
+          0.10594864934682846,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.3409999907016754,
+          1.3867378234863281,
+          0.1360291987657547
+        ]
+      }
+    },
+    {
+      "height": 1,
+      "shoulderWidth": -1,
+      "minTriangleAreaM2": 1.2564163398565142e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.289000004529953,
+          0.11604850739240646,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.289000004529953,
+          1.5316576957702637,
+          0.1360291987657547
+        ]
+      }
+    },
+    {
+      "height": 1,
+      "shoulderWidth": 1,
+      "minTriangleAreaM2": 1.2564163398565142e-06,
+      "boundsGltfMetres": {
+        "min": [
+          -0.3409999907016754,
+          0.11604850739240646,
+          -0.15101510286331177
+        ],
+        "max": [
+          0.3409999907016754,
+          1.5316576957702637,
+          0.1360291987657547
+        ]
+      }
+    }
+  ],
+  "sourceIntersectionsCheck": "fit-checks.json tests all 17 body/garment source states; decoded export checks finite geometry and triangle areas for the nine distinct garment states",
+  "acceptance": "Sampled clothed-envelope overlay only, no final rig/body/game/phone acceptance"
+}

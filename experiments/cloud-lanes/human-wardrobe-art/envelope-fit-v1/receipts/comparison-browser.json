@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "browserVersion": "154.0.8037.57",
+  "views": [
+    {
+      "ready": true,
+      "garmentTriangles": 2324,
+      "garmentDraws": 1,
+      "garmentMaterials": 1,
+      "garmentMorphTargets": 2,
+      "skinBindings": 0,
+      "views": [
+        {
+          "row": "neutral",
+          "controls": {},
+          "camera": [
+            0,
+            0.93,
+            3
+          ]
+        },
+        {
+          "row": "neutral",
+          "controls": {},
+          "camera": [
+            3,
+            0.93,
+            0
+          ]
+        },
+        {
+          "row": "neutral",
+          "controls": {},
+          "camera": [
+            0,
+            0.93,
+            -3
+          ]
+        },
+        {
+          "row": "extreme",
+          "controls": {
+            "body.height": -1,
+            "body.shoulderWidth": -1
+          },
+          "camera": [
+            0,
+            0.93,
+            3
+          ]
+        },
+        {
+          "row": "extreme",
+          "controls": {
+            "body.height": -1,
+            "body.shoulderWidth": 1
+          },
+          "camera": [
+            0,
+            0.93,
+            3
+          ]
+        },
+        {
+          "row": "extreme",
+          "controls": {
+            "body.height": 1,
+            "body.shoulderWidth": 1
+          },
+          "camera": [
+            0,
+            0.93,
+            3
+          ]
+        }
+      ],
+      "pinnedHumanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+      "noMasking": true,
+      "finalBodyFitAccepted": false,
+      "render": "Raw GLTFLoader / software SwiftShader; neutral expressions so product corrective weights are zero",
+      "image": {
+        "path": "artifacts/frozen-envelope-neutral-extremes.jpg",
+        "bytes": 120211,
+        "sha256": "53f0faaa3d19a1b0143212346414a53103fe6a916bd82e5e58ffa3e887532cd7"
+      },
+      "disposed": true
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "serverClosed": true,
+  "browserClosed": true,
+  "elapsedSeconds": 2.208
+}

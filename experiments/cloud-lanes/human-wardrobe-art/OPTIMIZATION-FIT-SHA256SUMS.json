@@ -1,0 +1,310 @@
+{
+  "schema": "allworld-wardrobe-optimization-fit-sha256-v1",
+  "preservedSourceManifest": "experiments/cloud-lanes/human-wardrobe-art/SHA256SUMS.json",
+  "files": {
+    "docs/agent-plans/cloud-lanes/human-wardrobe-art/FIT-CONTINUE.md": {
+      "bytes": 12748,
+      "sha256": "20d1ebbfc2eba3cb839c9c35ad84ed7977c14146201e687e330dd05b0e01052f"
+    },
+    "docs/agent-plans/cloud-lanes/human-wardrobe-art/OPTIMIZATION-CONTINUE.md": {
+      "bytes": 6395,
+      "sha256": "9440a6872949ac55b8ccecb191a512f458cc602953a787196d19d388c277761b"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/everyday-01-envelope-v1-editable.blend": {
+      "bytes": 1060170,
+      "sha256": "70d1204246c026bc032880735cad9bb63f00b47a11e4378499804d787176f727"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/everyday-01-envelope-v1.glb": {
+      "bytes": 124452,
+      "sha256": "8737a23dc58c9ac950cbfe4b42d6237756fdb02bfbe0cee37af292806d68c77c"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/frozen-envelope-neutral-extremes.jpg": {
+      "bytes": 120211,
+      "sha256": "53f0faaa3d19a1b0143212346414a53103fe6a916bd82e5e58ffa3e887532cd7"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/artifacts/initial-rejected-envelope-fit.jpg": {
+      "bytes": 121375,
+      "sha256": "6d27308b3e80e3269751d5f76768166a67f8f4d7883de5c81f83a63a9bb788e0"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/binding-metadata.json": {
+      "bytes": 6167,
+      "sha256": "4d36c721974773d727fce6287db4c3086c4b6084694a6662a6b371fe271c038c"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/diagnose_fit.py": {
+      "bytes": 5225,
+      "sha256": "b2678da0ff5de2ae5b8d3de6e432bf072eb512f76e8227cbf358bef56099006a"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/fit_envelope.py": {
+      "bytes": 14794,
+      "sha256": "564aea2284aed8c24cfa6f871b23d7414a20135e4badf92a0b861462e67aa533"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/materialize_frozen_inputs.py": {
+      "bytes": 1254,
+      "sha256": "48fb6d96e656fb85a5e28b03284483fc493c6a6cd1469a0456aa4118739c1f83"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/measure_export.py": {
+      "bytes": 2947,
+      "sha256": "a9b5593463e60f8cde1aa603fa2c9350a0021e5fc10b93df23c869cfbe1bfbbd"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/proof.html": {
+      "bytes": 4175,
+      "sha256": "0ddfaa263714989c42c8e028ddb020a82e517d32e495a2315b744f187c7bccfd"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-final-resource.json": {
+      "bytes": 441,
+      "sha256": "7c5aafad6c75a8e0e4ce17ac0134a4b013caf117f6653ce6ceb6b20463549e72"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-final-resource.txt": {
+      "bytes": 1213,
+      "sha256": "a2440a129f7eb8029254cfd06dc793dafda9a217992c0585563066ed2554325d"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v1-resource.json": {
+      "bytes": 440,
+      "sha256": "3e75782fa3f4021c6b0a21097305de546757393f8ca0458bded80bc425c14f00"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v1-resource.txt": {
+      "bytes": 519,
+      "sha256": "c6ef7abd9d8463beb1f9a25fa8fbf27eaaca178b77ba7feff5f957e4ce8c1a30"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v2-resource.json": {
+      "bytes": 441,
+      "sha256": "8f974167cef5d831d9156683f78427391e3ea96b6cc224dfc771822cb9287bce"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v2-resource.txt": {
+      "bytes": 1248,
+      "sha256": "066b8b622e29a4a661649d08e215978fc5c30ad6e22343b4941fbbf1d0c96e74"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v3-resource.json": {
+      "bytes": 440,
+      "sha256": "82c27df481ff346b5b3123ddffc7120ce16f025d7c7b1c636a0ff5d2358e864e"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v3-resource.txt": {
+      "bytes": 1248,
+      "sha256": "6920216fdd890ba9f8b097f9cf284f697116285479da73f6a9e950b8f311d572"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v4-resource.json": {
+      "bytes": 441,
+      "sha256": "ee9bee3bac0cd12f9edcc91a0ee6c80d54cf9cdbed2f1dcf8656221ca5854cd1"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v4-resource.txt": {
+      "bytes": 1213,
+      "sha256": "b87dc2035b44a8836739e81669e49020a930a013b77f41ba0f7c9a0dda042fb4"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v5-resource.json": {
+      "bytes": 441,
+      "sha256": "ba3ad99338574ad568306ed37b4f0cd7f39360e6a587bff90d59d1d4bcc53c29"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/build-fit-v5-resource.txt": {
+      "bytes": 1214,
+      "sha256": "b0f109ea39ce29dab9eb50b4b264d265a6f08a6c8e6f6526d1dd8edd30e4214e"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/comparison-browser.json": {
+      "bytes": 2045,
+      "sha256": "7c49365804d7a49503ea2a8a3b21fe2ff95dff9e2ec13a5cbb0017420e2f9351"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/diagnosis-final-resource.json": {
+      "bytes": 440,
+      "sha256": "380f9030ede6abf55ce24693d08a94137fb579a5b3f71f72356a35caf59fa315"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/diagnosis-final-resource.txt": {
+      "bytes": 1598,
+      "sha256": "c7e89882f643b3256cd025d526a4c6657b3563444f88b2f59177681276cde442"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/diagnosis-resource.json": {
+      "bytes": 440,
+      "sha256": "d68a0f50d9c431e9cc70ddc0a5e4858006e1b16e44ac4424105e242b0212b87a"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/diagnosis-resource.txt": {
+      "bytes": 2098,
+      "sha256": "5cdec0808e85cbb92d12397b508a19ae9a3c018b3290666d12a66145dd337e5b"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/diagnosis-v5-resource.json": {
+      "bytes": 440,
+      "sha256": "43894ffaed49e6640bdae779139c99c81e08edf79d97e4e8c23a73a1ce06f848"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/diagnosis-v5-resource.txt": {
+      "bytes": 3467,
+      "sha256": "30c7c86c91f2fc165070d4a0ed83e6c1a28805709f9b6fb6f9187e7a519b3764"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/export-measurements.json": {
+      "bytes": 4278,
+      "sha256": "191b43adb36fc7fa8e6c0bf780d113afaa3cb0987bdbe70423d35d5243369b7a"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/fit-checks-before-edge-clearance.json": {
+      "bytes": 47740,
+      "sha256": "dd8f78bc78e94b21545c8f763666581dec38a11c0aed0d0fbab68aa00a605034"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/fit-checks-edge-return-degeneracy.json": {
+      "bytes": 10147,
+      "sha256": "a2bc215d4261553773db0dff67b2261f667c4e8259a4cdf1bd2bd54c5a45c035"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/fit-checks-initial.json": {
+      "bytes": 48653,
+      "sha256": "f53b86ed145c0c4e4e3dc5c924e2feda5d65a49c9255912ee3c0e052ac62546f"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/fit-checks.json": {
+      "bytes": 11163,
+      "sha256": "2fb3b035426c6c172cac97940e84e1b06c50464da3e6e7b2117138a5127c6f0c"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/fit-diagnosis-before-edge-clearance.json": {
+      "bytes": 25668,
+      "sha256": "b98c6a6c958412cec75f6c39b4bc3b69496787327f554315b0256483d58a8420"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/fit-diagnosis.json": {
+      "bytes": 25184,
+      "sha256": "6bf3d141ad83b0ea657f6f92fca9e328c8393a308bdfd190e945811c376dad0b"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/gltf-validator.json": {
+      "bytes": 880,
+      "sha256": "9792cdd1fbb6966ce2211df372c7edbe117e4bd2766eaacd736c37ed8524c4b7"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/render-final-resource.json": {
+      "bytes": 340,
+      "sha256": "dc7889b0b794125fd0b943f69ef0f9130c7253c7faa716b3dde7538cfc0c2d99"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/render-final-resource.txt": {
+      "bytes": 2045,
+      "sha256": "7c49365804d7a49503ea2a8a3b21fe2ff95dff9e2ec13a5cbb0017420e2f9351"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/render-initial-resource.json": {
+      "bytes": 340,
+      "sha256": "05853dc8cdf5a1c0cabc31fd2915d6fd1b56d1230d95b99d2d6d1310900ba176"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/render-initial-resource.txt": {
+      "bytes": 2044,
+      "sha256": "ccfe802bfd4cd93387efeb26e5c3abbabadc381a7d0220c25540e439d466d018"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/render-revised-resource.json": {
+      "bytes": 340,
+      "sha256": "bd36eba08935565c1662ef83bdf85295a8992fa8f005826aefd8287264e37b11"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/render-revised-resource.txt": {
+      "bytes": 2045,
+      "sha256": "fab6a9cd3944425bc3175ec03858395c4b092d609e553dfab3dea5c285fd3c37"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/validation-final-resource.json": {
+      "bytes": 345,
+      "sha256": "68050bbf7969bc472b5db9cf64b647328b64e3a35c19568219fe6dcb1f60268b"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/validation-final-resource.txt": {
+      "bytes": 76,
+      "sha256": "2d80b2c28be8271074bcff2eb2753955e757d09b20264847c9ab0c16e96aa2e7"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/validation-resource.json": {
+      "bytes": 345,
+      "sha256": "e3b49b65d4d279c1c69ff5bdaf892234551ce4537c3c7ab08191bb0071b35e81"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/receipts/validation-resource.txt": {
+      "bytes": 76,
+      "sha256": "2d80b2c28be8271074bcff2eb2753955e757d09b20264847c9ab0c16e96aa2e7"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/render_fit.py": {
+      "bytes": 2817,
+      "sha256": "d3e92c0e01c12c44097421f8e3dd55759468190572413032788325bea480f971"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/validate_envelope.mjs": {
+      "bytes": 561,
+      "sha256": "4800407c233adcf6dcadb5d647cb11c9879be5093fd8d91062dafc5f358b05ac"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/build-measurements.json": {
+      "bytes": 19006,
+      "sha256": "dd51f125794de6c1e87b83b659166b35d17220a052c05eed4cee9366de1dc1f0"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/everyday-01-game-v1-editable.blend": {
+      "bytes": 179601,
+      "sha256": "b2f493393cd701f7b8b4a2ef204a40f38a0e0d45af8fb5bb8618b0a867270198"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/everyday-01-game-v1.glb": {
+      "bytes": 85088,
+      "sha256": "2f07d1146f0e356f7ce951e31f9df49a3ed0c0ae651774738c4527d045e00406"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/high-vs-game-detail.jpg": {
+      "bytes": 119348,
+      "sha256": "cfe5024ca27712647ae6569c5b9f07a95e649130c9479b4920606377d78d3f94"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/high-vs-game-neutral.jpg": {
+      "bytes": 122881,
+      "sha256": "36cdf60aaca003b06e5cfc56be317c8ac060ad5ba1bbdf28ba3608a63a559310"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/build_game.py": {
+      "bytes": 9616,
+      "sha256": "4402e7f5721670cbb7a4ecb9c6f1b25615c7aea985405331fcae91bf2ed147f7"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/compare.html": {
+      "bytes": 4963,
+      "sha256": "97428166b423adcfd4efe431165cedb924af60bd6430fb9444608aa83d028067"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/compare.py": {
+      "bytes": 2843,
+      "sha256": "a04e95678e09308106aff47370eeda0a6a1971b893bff5e6ff1f8b2c3fcce454"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/material-bake.json": {
+      "bytes": 604,
+      "sha256": "73216732bfa2aea0e402eb4e9b849851cbeab2381e610ca0543293e15055f2b2"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/measure_game.py": {
+      "bytes": 2468,
+      "sha256": "1b55fba31bf01ba08d5dc09fed905973425fbbf2275be792b909ca3b30c95ab0"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/budget-inputs.json": {
+      "bytes": 1147,
+      "sha256": "4704ad4fa44ee403ffb442100d335719dad691ce419b70dc985719eec77d3dba"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/build-v1-resource.json": {
+      "bytes": 440,
+      "sha256": "03ea6c8ce3b12e6e1418314e14a12d030429f4273931640998ba5627a1f8ab2f"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/build-v1-resource.txt": {
+      "bytes": 612,
+      "sha256": "fa319d41bf39686fe6f466456ceed388009f27249b30b2c41e489a438c711bef"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/build-v2-resource.json": {
+      "bytes": 441,
+      "sha256": "e85c8d2fcaff1aa1cd8aa69de5855600da2c3afb6ec87a102cd98f3697213fa4"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/build-v2-resource.txt": {
+      "bytes": 612,
+      "sha256": "1ac9f8d6008576be3224d64b5d559f69e190402e52cb2eb725d79ed13340f712"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/comparison-browser.json": {
+      "bytes": 1865,
+      "sha256": "c6e9e59f257c7dbf87c308422a559a557332523f58195589f8d9ffce10a51995"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/comparison-resource.json": {
+      "bytes": 340,
+      "sha256": "cf9b55e0d159b829b1d8d10cda336d3858487107233528b12cb87d1e4cbe368a"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/comparison-resource.txt": {
+      "bytes": 1865,
+      "sha256": "c6e9e59f257c7dbf87c308422a559a557332523f58195589f8d9ffce10a51995"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/export-measurements.json": {
+      "bytes": 1167,
+      "sha256": "2eb5c23c0e23c8ac100d7f06a8196b240efb94cd7ef260d4b23fb40ee4b40e8f"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/gltf-validator.json": {
+      "bytes": 876,
+      "sha256": "7a96e9c9be12821c492545fb802e78a2d2902a1f2e0b8192ec28171a40704737"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/human-input-verification.json": {
+      "bytes": 1951,
+      "sha256": "9e202c1c78d14821a27ae60e9074bd07b5d6600c2d851f3d59855ab21995dd40"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/validation-resource.json": {
+      "bytes": 344,
+      "sha256": "4ddd4d14e8928107f4adc456d2d6bc47e37d7a9b046db63c6541b639d2e399f9"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/receipts/validation-resource.txt": {
+      "bytes": 76,
+      "sha256": "2d80b2c28be8271074bcff2eb2753955e757d09b20264847c9ab0c16e96aa2e7"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/validate_game.mjs": {
+      "bytes": 553,
+      "sha256": "6d5a60b81656823d183a915ece36187fa0e05bba72a2d072d41303bab5b27461"
+    },
+    "experiments/cloud-lanes/human-wardrobe-art/verify_optimization_fit.py": {
+      "bytes": 469,
+      "sha256": "2bba582dcdcd3ebfaf740adb6e84c3e877732ac279334f5c0ca38071338edd16"
+    }
+  }
+}

@@ -1,0 +1,1554 @@
+{
+  "status": "SAMPLED_ONLY",
+  "humanCommit": "3ee5882c8efde54c00fddaa6cbdbc8d1bca48b8a",
+  "bodyInputSha256": "36018022ff64367e7426069d7417625a3591f3a2c0684c628c11c3bd908f84d9",
+  "gameInputSha256": "b2f493393cd701f7b8b4a2ef204a40f38a0e0d45af8fb5bb8618b0a867270198",
+  "bodySurface": "Clothed torso/leg envelope; no independent naked torso/legs",
+  "garmentTriangles": 2328,
+  "morphTargets": 2,
+  "skinBindings": 0,
+  "initialCorrectedVertices": 547,
+  "maximumInitialCorrectionM": 0.06740116909405165,
+  "boundedCenterRepairs": [
+    {
+      "iteration": 0,
+      "triangleCentersCorrected": 64,
+      "maxPushMetres": 0.012
+    },
+    {
+      "iteration": 1,
+      "triangleCentersCorrected": 27,
+      "maxPushMetres": 0.012
+    },
+    {
+      "iteration": 2,
+      "triangleCentersCorrected": 14,
+      "maxPushMetres": 0.012
+    }
+  ],
+  "cases": [
+    {
+      "label": "neutral",
+      "controls": {},
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "nose.projection min",
+      "controls": {
+        "nose.projection": -1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "nose.projection max",
+      "controls": {
+        "nose.projection": 1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "nose.alarWidth min",
+      "controls": {
+        "nose.alarWidth": -1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "nose.alarWidth max",
+      "controls": {
+        "nose.alarWidth": 1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "earLeft.protrusion min",
+      "controls": {
+        "earLeft.protrusion": -1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "earLeft.protrusion max",
+      "controls": {
+        "earLeft.protrusion": 1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "earRight.protrusion min",
+      "controls": {
+        "earRight.protrusion": -1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "earRight.protrusion max",
+      "controls": {
+        "earRight.protrusion": 1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005731246899813414,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "body.height min",
+      "controls": {
+        "body.height": -1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005550324058276601,
+      "minimumTriangleAreaM2": 5.5607373127183e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "body.height max",
+      "controls": {
+        "body.height": 1
+      },
+      "candidateTrianglePairs": 255,
+      "confirmedCrossingPairs": 255,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005902086937567219,
+      "minimumTriangleAreaM2": 5.848453481201904e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "body.shoulderWidth min",
+      "controls": {
+        "body.shoulderWidth": -1
+      },
+      "candidateTrianglePairs": 258,
+      "confirmedCrossingPairs": 258,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005568504609982483,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "body.shoulderWidth max",
+      "controls": {
+        "body.shoulderWidth": 1
+      },
+      "candidateTrianglePairs": 258,
+      "confirmedCrossingPairs": 258,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005856867603142746,
+      "minimumTriangleAreaM2": 5.702707002778178e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "height-1 shoulder-1",
+      "controls": {
+        "body.height": -1,
+        "body.shoulderWidth": -1
+      },
+      "candidateTrianglePairs": 258,
+      "confirmedCrossingPairs": 258,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005394043386331759,
+      "minimumTriangleAreaM2": 5.5607373127183e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "height-1 shoulder+1",
+      "controls": {
+        "body.height": -1,
+        "body.shoulderWidth": 1
+      },
+      "candidateTrianglePairs": 258,
+      "confirmedCrossingPairs": 258,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005670823709806427,
+      "minimumTriangleAreaM2": 5.5607373127183e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "height+1 shoulder-1",
+      "controls": {
+        "body.height": 1,
+        "body.shoulderWidth": -1
+      },
+      "candidateTrianglePairs": 258,
+      "confirmedCrossingPairs": 258,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.005733180674724281,
+      "minimumTriangleAreaM2": 5.848453481201904e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    },
+    {
+      "label": "height+1 shoulder+1",
+      "controls": {
+        "body.height": 1,
+        "body.shoulderWidth": 1
+      },
+      "candidateTrianglePairs": 258,
+      "confirmedCrossingPairs": 258,
+      "crossingGarmentTriangles": 36,
+      "nonCrossingCandidatePairs": 0,
+      "sampledVerticesAndCentroids": 4254,
+      "negativeNearestNormalSamplesOver0_1mm": 4,
+      "minimumSignedNearestNormalMetres": -0.006032781573594548,
+      "minimumTriangleAreaM2": 5.848453481201904e-07,
+      "nearZeroTriangleCount": 0,
+      "witnesses": [
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3077,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1249,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3045,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3044,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1537,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3073,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 1718,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3074,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1538,
+          "garmentPiece": "GAME_Trousers_R_back_panel",
+          "bodyTriangle": 3075,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3740,
+          "bodyMesh": "Trousers_fused_hip"
+        },
+        {
+          "garmentTriangle": 1926,
+          "garmentPiece": "GAME_Trousers_L_back_panel",
+          "bodyTriangle": 3718,
+          "bodyMesh": "Trousers_fused_hip"
+        }
+      ]
+    }
+  ],
+  "measurementCaveats": [
+    "Sampled discrete states, not continuous intersection proof",
+    "Negative nearest-normal distance is a local diagnostic, not a global inside/outside certificate for intersecting closed body components",
+    "Narrow phase checks noncoplanar segment crossings; unresolved coplanar candidates are separately counted",
+    "No rig, arm bend, knee bend, locomotion or undressed-body fit",
+    "No body masking performed"
+  ],
+  "finalWearableFitAccepted": false
+}

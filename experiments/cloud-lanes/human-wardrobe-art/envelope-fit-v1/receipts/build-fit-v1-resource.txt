@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/fit_envelope.py", line 24, in <module>
+    assert len(body)==31
+           ^^^^^^^^^^^^^
+AssertionError
+
+Error: script failed, file: 'experiments/cloud-lanes/human-wardrobe-art/envelope-fit-v1/fit_envelope.py', exiting.
+Blender 4.3.2
+Read blend: "/workspace/wardrobe-art/experiments/cloud-lanes/human-wardrobe-art/game-resolution-v1/artifacts/everyday-01-game-v1-editable.blend"
+
+Blender quit

@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "berlin",
+  "countryIso2": "DE",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Berlin",
+    "coordinatesWgs84": [
+      13.3951309,
+      52.5173885
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/germany/brandenburg-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "berlin-airport",
+    "name": "Berlin Brandenburg Airport",
+    "lon": 13.502341,
+    "lat": 52.361738,
+    "sourceUrl": "https://ourairports.com/airports/EDDB/"
+  },
+  "boxes": {
+    "play": [
+      52.33650761006602,
+      13.098664644603774,
+      52.698269389933984,
+      13.691597155396225
+    ],
+    "core": [
+      52.47216827751651,
+      13.321243761850258,
+      52.562608722483496,
+      13.469018038149741
+    ],
+    "outline": [
+      52.286507610066025,
+      13.048664644603774,
+      52.74826938993398,
+      13.741597155396226
+    ],
+    "wide": [
+      51.73650761006602,
+      12.498664644603775,
+      53.298269389933985,
+      14.291597155396225
+    ],
+    "water": [
+      52.33650761006602,
+      13.098664644603774,
+      52.698269389933984,
+      13.691597155396225
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/germany/brandenburg-261011.osm.pbf",
+    "datasetSha256": "510b97dea70346ab48e6099f941c8e0c4847b916dda57a953de68b193e3bba89",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/europe/germany-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 4858789747,
+        "md5": "e3cbcd4f3d4684df81584946650e3e95",
+        "sha256": "b171d86a45dc2d03b317c3adf6e482e733397ceff5edee5b7a646a5bbd6cbd5e"
+      },
+      {
+        "role": "city-extract",
+        "url": "https://download.geofabrik.de/europe/germany/brandenburg-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 296021045,
+        "md5": "8657ed03a6c033bccc6dd25f1fa43ddc",
+        "sha256": "510b97dea70346ab48e6099f941c8e0c4847b916dda57a953de68b193e3bba89",
+        "reason": "Germany (4.86 GB) is read only for the admin-0 boundary. Berlin's play/core/outline boxes (with BER airport, 19 km south) reach past berlin.poly into Brandenburg; Geofabrik's brandenburg extract (Brandenburg with Berlin, 296 MB) holds all three boxes and the centre",
+        "polyUrl": "https://download.geofabrik.de/europe/germany/brandenburg.poly",
+        "polySha256": "bb5e8fc925ecc40e15f7c61f8c7aba8c9e13aacae56d45ba45ac07cc6487150f",
+        "primaryPolyUrl": "https://download.geofabrik.de/europe/germany.poly",
+        "primaryPolySha256": "95a1710cb613629c6cf2875c852a9af09935b6e9ee7b873c5d604a56a7e5e0bd"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "cd3f6a344ad5128486a471c71afcc502b9854cc95a5e7a83b877f5d2ce933222",
+        "elements": 14002
+      },
+      {
+        "file": "extras.json",
+        "sha256": "69b600f22302ff792fc9e14236e9c44490154b8cf9a4a88ce65974a737dbd645",
+        "elements": 2792
+      },
+      {
+        "file": "water.json",
+        "sha256": "d63cad4197985c05c63d68644d759f3f432c2dd2081aaae67c806908e050a09d",
+        "elements": 605
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "8d1183f267e31ae9fbb7a5f19c822de84aa90b7fc31d805c69f5d3cb15521385",
+        "elements": 20912
+      },
+      {
+        "file": "roads.json",
+        "sha256": "f6ef3d46f6ed69d7fff660a3807b33d12b418a6e7648c68858e05979db93aa86",
+        "elements": 11472
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Tiergarten",
+      "osm": "node/21302157",
+      "coordinatesWgs84": [
+        13.33645,
+        52.514375
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Café Sibylle",
+      "osm": "node/1332424262",
+      "coordinatesWgs84": [
+        13.436985,
+        52.517183
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hauptbibliothek Spandau",
+      "osm": "node/257708789",
+      "coordinatesWgs84": [
+        13.201386,
+        52.536133
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Unfallkrankenhaus Berlin",
+      "osm": "way/158262343",
+      "coordinatesWgs84": [
+        13.56851,
+        52.519137
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Freizeitpark Lübars",
+      "osm": "relation/255109",
+      "coordinatesWgs84": [
+        13.369631,
+        52.610767
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tempelhofer Hafen",
+      "osm": "relation/20666721",
+      "coordinatesWgs84": [
+        13.38631,
+        52.455427
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Friedenskirche",
+      "osm": "way/24032288",
+      "coordinatesWgs84": [
+        13.577883,
+        52.418134
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mexikoplatz",
+      "osm": "way/564222901",
+      "coordinatesWgs84": [
+        13.232344,
+        52.437686
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Amt für Statistik Berlin-Brandenburg",
+      "osm": "node/5856222352",
+      "coordinatesWgs84": [
+        13.144126,
+        52.383693
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hochschule des Bundes für öffentliche Verwaltung/Akademie Auswärtiger Dienst",
+      "osm": "way/291483445",
+      "coordinatesWgs84": [
+        13.257769,
+        52.587856
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mommsenstadion",
+      "osm": "way/20593936",
+      "coordinatesWgs84": [
+        13.264455,
+        52.500994
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sowjetisches Ehrenmal",
+      "osm": "node/279997440",
+      "coordinatesWgs84": [
+        13.49561,
+        52.635478
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kriegerdenkmal Viktoria (1890)",
+      "osm": "node/505058576",
+      "coordinatesWgs84": [
+        13.585468,
+        52.680316
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Battle of Großbeeren",
+      "osm": "node/1078680550",
+      "coordinatesWgs84": [
+        13.297587,
+        52.357197
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kirche Schönwalde-Dorf",
+      "osm": "way/26669855",
+      "coordinatesWgs84": [
+        13.127735,
+        52.620164
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Karmelitenkloster St. Teresia",
+      "osm": "way/46830254",
+      "coordinatesWgs84": [
+        13.296827,
+        52.687006
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gemeinschaftskrankenhaus Havelhöhe",
+      "osm": "way/26775078",
+      "coordinatesWgs84": [
+        13.16295,
+        52.462145
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Volkspark Lichtenrade",
+      "osm": "way/1442933370",
+      "coordinatesWgs84": [
+        13.414779,
+        52.393372
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zamenhofpark",
+      "osm": "way/50239695",
+      "coordinatesWgs84": [
+        13.503343,
+        52.509135
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fliegeberg",
+      "osm": "node/1901759789",
+      "coordinatesWgs84": [
+        13.328979,
+        52.41419
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gesundbrunnen-Center",
+      "osm": "way/20980117",
+      "coordinatesWgs84": [
+        13.38953,
+        52.549773
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Evangelisches Waldkrankenhaus Spandau",
+      "osm": "way/24950668",
+      "coordinatesWgs84": [
+        13.156061,
+        52.562539
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Forum Steglitz",
+      "osm": "way/28505596",
+      "coordinatesWgs84": [
+        13.326368,
+        52.464753
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Müggelturm",
+      "osm": "way/277991410",
+      "coordinatesWgs84": [
+        13.625079,
+        52.417298
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1216,
+      "sha256": "045739643e07205de08ed482adc0c377f3fa0db8aef456d50af1c32a94916349"
+    },
+    "geometry.ts": {
+      "bytes": 193446,
+      "sha256": "5046a13a5eb7de371f83b13e0a563dd2df109b73272bf092da88d5da752e8fbb"
+    },
+    "places.ts": {
+      "bytes": 10023,
+      "sha256": "37e71255589949c01373192d761d804ad35b40fd39ae3d7ad8fb6e6f6de10127"
+    },
+    "terrain.ts": {
+      "bytes": 81278,
+      "sha256": "bde769e46d99708316306f2843f695df5f62c1cae5746f16cb244ef678bcf1cc"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "2a00651133235a9e1091cd8e7b7d465d466001f3714feb723f52030fe03a659b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

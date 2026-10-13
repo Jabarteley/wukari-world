@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "brussels",
+  "countryIso2": "BE",
+  "generationIdentity": {
+    "cityId": "brussels",
+    "stateId": "be-brussels",
+    "stateName": "Brussels"
+  },
+  "inventorySha256": "cd92c4fc5783b47f1964ea01db38cc1df41769a89f159d62b078944071170cf6",
+  "inventoryPath": "world/playable-africa-rollout/sources/brussels.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "brussels-airport",
+    "name": "Brussels Airport",
+    "lon": 4.48444,
+    "lat": 50.901402,
+    "sourceUrl": "https://ourairports.com/airports/EBBR/"
+  },
+  "bounds": [
+    50.66585631006602,
+    4.066836811706027,
+    51.02761808993398,
+    4.638149188293973
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/belgium-261011.osm.pbf",
+      "datasetSha256": "6390c7ad2cc2f0a2b94e0887f031885d6595024115c0128f107338327447ee1f",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "4dc5203a307c93ca525202e0425587ca4013c37ddeda72cbc02b89f9e0ed9fc5",
+          "elements": 6325
+        },
+        {
+          "file": "extras.json",
+          "sha256": "dcdaebe710ddde776320c0431cfd4e9e92db9042d752f8957ffd2edb9a33a6a1",
+          "elements": 1713
+        },
+        {
+          "file": "water.json",
+          "sha256": "7ddffc6b05259422674b090d60f20f51893515e51f5a8707bfe5e3c22d15a73e",
+          "elements": 4414
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "e2f83fecd1388e13d0a505ca7d6e447f48ad5b4c7d90b5a948092511e8bf76eb",
+          "elements": 27282
+        },
+        {
+          "file": "roads.json",
+          "sha256": "1e0ab119baaadd0a33c0d8e21770caa1aa10e96f9dd71c76eb923a72cf6fbbfe",
+          "elements": 7244
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 30,
+    "waterPolygons": 15,
+    "reachWaterPolygons": 41
+  },
+  "observed": {
+    "places": 6325,
+    "extras": 1713,
+    "water": 4414,
+    "landuse": 27282,
+    "roads": 7244
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1204,
+      "sha256": "e76ebec0463144e15d6c48ac2a77cbff74f7e1b0fc15320def1a91f6255ffab5"
+    },
+    "geometry.ts": {
+      "bytes": 220083,
+      "sha256": "e2f7e66a1700083e69aaedf93cdff9c262c631287c6bb7cb78b44d3f5559d811"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "4ab354ad9f84b6edc740a94d1c35b9d1d7d663a003e6630d91b9beaf4fae53a7"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/brussels.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

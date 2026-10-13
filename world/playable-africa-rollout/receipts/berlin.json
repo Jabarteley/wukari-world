@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "cityId": "berlin",
+  "countryIso2": "DE",
+  "generationIdentity": {
+    "cityId": "berlin",
+    "stateId": "de-berlin",
+    "stateName": "Berlin"
+  },
+  "inventorySha256": "d0cf3274eac3915a027d63335972ff0115b05da11020f0c75a85a7276812609c",
+  "inventoryPath": "world/playable-africa-rollout/sources/berlin.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "berlin-airport",
+    "name": "Berlin Brandenburg Airport",
+    "lon": 13.502341,
+    "lat": 52.361738,
+    "sourceUrl": "https://ourairports.com/airports/EDDB/"
+  },
+  "bounds": [
+    52.33650761006602,
+    13.098664644603774,
+    52.698269389933984,
+    13.691597155396225
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/germany/brandenburg-261011.osm.pbf",
+      "datasetSha256": "510b97dea70346ab48e6099f941c8e0c4847b916dda57a953de68b193e3bba89",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/europe/germany-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 4858789747,
+          "md5": "e3cbcd4f3d4684df81584946650e3e95",
+          "sha256": "b171d86a45dc2d03b317c3adf6e482e733397ceff5edee5b7a646a5bbd6cbd5e"
+        },
+        {
+          "role": "city-extract",
+          "url": "https://download.geofabrik.de/europe/germany/brandenburg-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 296021045,
+          "md5": "8657ed03a6c033bccc6dd25f1fa43ddc",
+          "sha256": "510b97dea70346ab48e6099f941c8e0c4847b916dda57a953de68b193e3bba89",
+          "reason": "Germany (4.86 GB) is read only for the admin-0 boundary. Berlin's play/core/outline boxes (with BER airport, 19 km south) reach past berlin.poly into Brandenburg; Geofabrik's brandenburg extract (Brandenburg with Berlin, 296 MB) holds all three boxes and the centre",
+          "polyUrl": "https://download.geofabrik.de/europe/germany/brandenburg.poly",
+          "polySha256": "bb5e8fc925ecc40e15f7c61f8c7aba8c9e13aacae56d45ba45ac07cc6487150f",
+          "primaryPolyUrl": "https://download.geofabrik.de/europe/germany.poly",
+          "primaryPolySha256": "95a1710cb613629c6cf2875c852a9af09935b6e9ee7b873c5d604a56a7e5e0bd"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "cd3f6a344ad5128486a471c71afcc502b9854cc95a5e7a83b877f5d2ce933222",
+          "elements": 14002
+        },
+        {
+          "file": "extras.json",
+          "sha256": "69b600f22302ff792fc9e14236e9c44490154b8cf9a4a88ce65974a737dbd645",
+          "elements": 2792
+        },
+        {
+          "file": "water.json",
+          "sha256": "d63cad4197985c05c63d68644d759f3f432c2dd2081aaae67c806908e050a09d",
+          "elements": 605
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "8d1183f267e31ae9fbb7a5f19c822de84aa90b7fc31d805c69f5d3cb15521385",
+          "elements": 20912
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f6ef3d46f6ed69d7fff660a3807b33d12b418a6e7648c68858e05979db93aa86",
+          "elements": 11472
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 34,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 25
+  },
+  "observed": {
+    "places": 14002,
+    "extras": 2792,
+    "water": 605,
+    "landuse": 20912,
+    "roads": 11472
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1216,
+      "sha256": "045739643e07205de08ed482adc0c377f3fa0db8aef456d50af1c32a94916349"
+    },
+    "geometry.ts": {
+      "bytes": 193446,
+      "sha256": "5046a13a5eb7de371f83b13e0a563dd2df109b73272bf092da88d5da752e8fbb"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "2a00651133235a9e1091cd8e7b7d465d466001f3714feb723f52030fe03a659b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/berlin.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "baghdad",
+  "countryIso2": "IQ",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Baghdad",
+    "coordinatesWgs84": [
+      44.3872213,
+      33.3061701
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/iraq-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "baghdad-airport",
+    "name": "Baghdad International Airport / New Al Muthana Air Base",
+    "lon": 44.2346,
+    "lat": 33.262501,
+    "sourceUrl": "https://ourairports.com/airports/ORBI/"
+  },
+  "boxes": {
+    "play": [
+      33.12528921006602,
+      44.17180167835458,
+      33.487050989933984,
+      44.60264092164542
+    ],
+    "core": [
+      33.26094987751651,
+      44.33345047008011,
+      33.351390322483496,
+      44.44099212991989
+    ],
+    "outline": [
+      33.075289210066025,
+      44.121801678354586,
+      33.53705098993398,
+      44.652640921645414
+    ],
+    "wide": [
+      32.52528921006602,
+      43.57180167835458,
+      34.087050989933985,
+      45.20264092164542
+    ],
+    "water": [
+      33.12528921006602,
+      44.17180167835458,
+      33.487050989933984,
+      44.60264092164542
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/iraq-261011.osm.pbf",
+    "datasetSha256": "3eec83a3dce299c90def45afd0dc7d3ac839fb3dd1a7e28f7d5774133c914b16",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "7cb9418680cf373d1a0e4d2b6ed9c053ed70e26b98dd16c87c25a5b9225aa586",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5b1c3977e62fc1fa17475baec479432835c04163d0d339c41c5d55df2b81c3ab",
+        "elements": 3564
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9217dc83bd4581124bed72cb9f1aa938236a2316f0986ae6f39eab01b91b780b",
+        "elements": 960
+      },
+      {
+        "file": "water.json",
+        "sha256": "5342f242e2d0f96af1acce540ab49447a1459d9e96a5a2788721379ccf31f893",
+        "elements": 170
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "71b8e5cd32df5f3bc4ace0797dafd79fc0e65f718df78dfedc6fb4283e883276",
+        "elements": 1832
+      },
+      {
+        "file": "roads.json",
+        "sha256": "8c32047bcb52b05771fe3fefd8b9865c57aaa077848e93091f991e8837660823",
+        "elements": 2110
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Allawi bus station",
+      "osm": "way/82809426",
+      "coordinatesWgs84": [
+        44.385365,
+        33.323131
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Shabandar Cafe",
+      "osm": "way/928718264",
+      "coordinatesWgs84": [
+        44.388061,
+        33.340345
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American University of Iraq - Baghdad",
+      "osm": "node/7958720685",
+      "coordinatesWgs84": [
+        44.256078,
+        33.284066
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "مستشفى الحسين العسكري",
+      "osm": "way/1077574466",
+      "coordinatesWgs84": [
+        44.433082,
+        33.305413
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baghdad tourism island",
+      "osm": "way/844680048",
+      "coordinatesWgs84": [
+        44.343656,
+        33.443241
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mansour Mall",
+      "osm": "way/1167428601",
+      "coordinatesWgs84": [
+        44.352804,
+        33.320299
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "جامع الكبيسي",
+      "osm": "node/4246078297",
+      "coordinatesWgs84": [
+        44.309831,
+        33.246141
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Liberation Square",
+      "osm": "node/7894353482",
+      "coordinatesWgs84": [
+        44.408328,
+        33.327767
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Supreme Judicial Council of Iraq",
+      "osm": "way/463067663",
+      "coordinatesWgs84": [
+        44.372908,
+        33.301471
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "جامعة البكر",
+      "osm": "way/85931827",
+      "coordinatesWgs84": [
+        44.395771,
+        33.376534
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Madina Sports Stadium",
+      "osm": "relation/20951269",
+      "coordinatesWgs84": [
+        44.455642,
+        33.354503
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tell Ishchali",
+      "osm": "node/6411927106",
+      "coordinatesWgs84": [
+        44.584054,
+        33.302916
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dur-Kurigalzu ziggurat",
+      "osm": "way/331568741",
+      "coordinatesWgs84": [
+        44.202254,
+        33.353759
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Muhammad al-Jawad Shrine",
+      "osm": "node/11597386428",
+      "coordinatesWgs84": [
+        44.3381,
+        33.380137
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "ام الطبول",
+      "osm": "way/82992750",
+      "coordinatesWgs84": [
+        44.344339,
+        33.286956
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Baghdad",
+      "osm": "way/4493601",
+      "coordinatesWgs84": [
+        44.381597,
+        33.272733
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Abu Hanifah Mosque",
+      "osm": "way/1208663973",
+      "coordinatesWgs84": [
+        44.35855,
+        33.372052
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ibn Sina Hospital",
+      "osm": "way/82665090",
+      "coordinatesWgs84": [
+        44.405773,
+        33.311221
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Technology",
+      "osm": "way/83672623",
+      "coordinatesWgs84": [
+        44.44723,
+        33.312022
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Um Al Khanzeer Island",
+      "osm": "way/82012284",
+      "coordinatesWgs84": [
+        44.368424,
+        33.286895
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "مستشفى ابن النفيس لطب وجراحة القلب والصدر والاوعية الدموية",
+      "osm": "way/1287507333",
+      "coordinatesWgs84": [
+        44.428249,
+        33.318128
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baghdad Mall",
+      "osm": "way/832799038",
+      "coordinatesWgs84": [
+        44.364373,
+        33.311912
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zawraa Park",
+      "osm": "way/83673023",
+      "coordinatesWgs84": [
+        44.378206,
+        33.314293
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Zawra Tower",
+      "osm": "way/82643837",
+      "coordinatesWgs84": [
+        44.376687,
+        33.309679
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1234,
+      "sha256": "4678a6360fde7c273f58fa3f728ca87803ceb5a3a122899d3b04493bf2e61912"
+    },
+    "geometry.ts": {
+      "bytes": 107071,
+      "sha256": "5624196927354e28eb0d80a3c87a4f656ee898d383acd9e3296cacf41f59b8f7"
+    },
+    "places.ts": {
+      "bytes": 10117,
+      "sha256": "f4628203b37b374778e0fb55e0589843448162b59cf4955570aba39e1313830c"
+    },
+    "terrain.ts": {
+      "bytes": 83525,
+      "sha256": "444669db1c4bbe35a28e40ef7e8cd8270ff90687bbb3349c190ac4cff0a31594"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "4a79af4b0699322b407581ef2548d01b0e5ba93a86a46d8969e53ef7fa743070"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "cityId": "jakarta",
+  "countryIso2": "ID",
+  "generationIdentity": {
+    "cityId": "jakarta",
+    "stateId": "id-jakarta",
+    "stateName": "Jakarta"
+  },
+  "inventorySha256": "62349037a44d5df0c583d47c7d45520e627f4936c9b0fa7ce865e5b6d7243e02",
+  "inventoryPath": "world/playable-africa-rollout/sources/jakarta.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "jakarta-airport",
+    "name": "Soekarno-Hatta International Airport",
+    "lon": 106.655998,
+    "lat": -6.12557,
+    "sourceUrl": "https://ourairports.com/airports/WIII/"
+  },
+  "bounds": [
+    -6.356285789933978,
+    106.64639449165824,
+    -5.994524010066022,
+    107.00794150834176
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf",
+      "datasetSha256": "f87acda04777ea517e35036f846532f828364e3871b7892894dcdd11cf6beb1f",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "sourceInputs": [
+        {
+          "role": "primary",
+          "url": "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 1738714327,
+          "md5": "a6dbf890ad7110b33a22012bb7b1a32c",
+          "sha256": "c88d3ec0abd5ea718c71983e912231ffb75ae0e747d124d5a986bc34594f3eca"
+        },
+        {
+          "role": "neighbour",
+          "url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf",
+          "snapshotDate": "2026-10-11",
+          "bytes": 251874432,
+          "md5": "cf05f5628adeed48ff74399bb8c33a72",
+          "sha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
+          "reason": "The admin-0 relation of Indonesia (304751) has two member ways outside the Indonesia clip: way/1147865283 (Singapore-Indonesia territorial sea, 1.33N 104.41E to 1.44N 104.57E) and way/1181737260 (Malaysia-Indonesia land border, Sabah/Kalimantan Utara, 4.39N 115.90E to 4.38N 115.87E); both are also members of the Singapore and Malaysia relations in that extract"
+        }
+      ],
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "094e1343f6acc59edc522bdf74d27f3c179550365817e35775774cb9f9daf026",
+          "elements": 6202
+        },
+        {
+          "file": "extras.json",
+          "sha256": "54714801f0f24cca951d2813cacbb9f7e87216d9b30c5ade5afea486c2d50f50",
+          "elements": 8722
+        },
+        {
+          "file": "water.json",
+          "sha256": "1726f662089ebbabee82aaaccd6d0d6998db5fc4861c851c8724adc50cf79713",
+          "elements": 1793
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "dec3f4e8ab2dbdbbbf73da4390ad4e56304a055a6211f06bd0c188647a39ecce",
+          "elements": 7970
+        },
+        {
+          "file": "roads.json",
+          "sha256": "ad1db81c41505696a9a715a20243ce3cb24d29c4ce573cadbeb7401cf0ddb6f0",
+          "elements": 9692
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 700,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 6,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 12
+  },
+  "observed": {
+    "places": 6202,
+    "extras": 8722,
+    "water": 1793,
+    "landuse": 7970,
+    "roads": 9692
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "a78b887b04e224186baac0d356c0ab9a2bf41423bcec5afe9b8dd452dcdea6a4"
+    },
+    "geometry.ts": {
+      "bytes": 475612,
+      "sha256": "deb935b3adfece0cdc8b2d0c7ed65eb679983154d6fe18e2dbc391e1ba456929"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "45bb34f7150f8e00608266dc16291c52d466695bef4dfa57456eae65b512e5f8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/jakarta.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

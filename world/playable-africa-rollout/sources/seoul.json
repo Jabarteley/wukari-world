@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "seoul",
+  "countryIso2": "KR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Seoul",
+    "coordinatesWgs84": [
+      126.9782914,
+      37.5666791
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "seoul-airport",
+    "name": "Incheon International Airport",
+    "lon": 126.450996,
+    "lat": 37.469101,
+    "sourceUrl": "https://ourairports.com/airports/RKSI/"
+  },
+  "boxes": {
+    "play": [
+      37.38579821006602,
+      126.43967634777182,
+      37.74755998993398,
+      127.2055061214048
+    ],
+    "core": [
+      37.52145887751651,
+      126.92159149876869,
+      37.611899322483495,
+      127.03499130123132
+    ],
+    "outline": [
+      37.335798210066024,
+      126.38967634777183,
+      37.79755998993398,
+      127.25550612140479
+    ],
+    "wide": [
+      36.78579821006602,
+      125.83967634777183,
+      38.347559989933984,
+      127.80550612140479
+    ],
+    "water": [
+      36.78579821006602,
+      125.83967634777183,
+      38.347559989933984,
+      127.80550612140479
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf",
+    "datasetSha256": "3d7370bd43b198d5c67bbae966d14831804162c863cf92d2660cae5f40587fdc",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/south-korea-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 289058579,
+        "md5": "df6f9430a975f927c08f4afddade7f97",
+        "sha256": "a856bb1e43c968612b2339af0e01da8bb972e10ba21ca86b9d91aac4d1d64505"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/north-korea-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 92633737,
+        "md5": "613c91f099220dd867b1a64c69e8422b",
+        "sha256": "35b29765950cd53bd39166955c93b6d5f4934d8a5ac5891f5c9334187ab20374",
+        "reason": "Seoul water box reaches 38.35N and 125.84E: the Yellow Sea coast north and west of Ganghwa (Han estuary, Yeonan and Haeju coast) is cut at the border and continues in North Korea; the Korea and North Korea clips together cover the whole box"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "7d390228c9e8ddaffd84904a63744b838b6fd55452427c15e45520fb06c7e55a",
+        "elements": 56248
+      },
+      {
+        "file": "extras.json",
+        "sha256": "64371d939f5b1efd80c627846930862fd010e712008cdfaf6d6dfb7e17329f46",
+        "elements": 6201
+      },
+      {
+        "file": "water.json",
+        "sha256": "425f17fc844888739943fddc7651cf5ebd47d1223ad87a3b150c37a49a7ebe7e",
+        "elements": 2651
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "5c629ee3bc1e8e029afe0bf4072ecff86c47f01e73aa83a8c880e5d360d51bd2",
+        "elements": 14971
+      },
+      {
+        "file": "roads.json",
+        "sha256": "85eefc9f53428038f051e39c4f7baea4f5f5282203946c7aa2edb5fb1decee47",
+        "elements": 10836
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Jegi-dong",
+      "osm": "node/355172758",
+      "coordinatesWgs84": [
+        127.034467,
+        37.578378
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mega Coffee",
+      "osm": "node/13874911724",
+      "coordinatesWgs84": [
+        126.983576,
+        37.564757
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Uijeongbu Digital Library",
+      "osm": "node/368656330",
+      "coordinatesWgs84": [
+        127.033911,
+        37.736558
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Samsung Medical Center",
+      "osm": "way/417994820",
+      "coordinatesWgs84": [
+        127.086291,
+        37.488605
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Paris Park",
+      "osm": "way/64933046",
+      "coordinatesWgs84": [
+        126.877055,
+        37.534909
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mecenatpolis",
+      "osm": "way/306956698",
+      "coordinatesWgs84": [
+        126.913778,
+        37.550887
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SSPX Korea Immaculate Conception Church",
+      "osm": "node/13938380101",
+      "coordinatesWgs84": [
+        127.015131,
+        37.496202
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bukahyeondong Community Service Center",
+      "osm": "way/472113204",
+      "coordinatesWgs84": [
+        126.957003,
+        37.559444
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Incheon City Hall",
+      "osm": "way/238024537",
+      "coordinatesWgs84": [
+        126.705241,
+        37.456122
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "국제법률경영대학원대학교",
+      "osm": "way/1463915497",
+      "coordinatesWgs84": [
+        126.868068,
+        37.726379
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Goyang Stadium",
+      "osm": "way/613824923",
+      "coordinatesWgs84": [
+        126.743161,
+        37.676438
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "호암산성",
+      "osm": "node/8573225768",
+      "coordinatesWgs84": [
+        126.92314,
+        37.445942
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "가운동 지석묘",
+      "osm": "node/11469141023",
+      "coordinatesWgs84": [
+        127.175681,
+        37.597557
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Namhansanseong Emergency Palace",
+      "osm": "way/872196107",
+      "coordinatesWgs84": [
+        127.181449,
+        37.478907
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jayu Park",
+      "osm": "way/231020902",
+      "coordinatesWgs84": [
+        126.622399,
+        37.475792
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sahmyook University",
+      "osm": "way/381119781",
+      "coordinatesWgs84": [
+        127.105022,
+        37.641803
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Korea Aerospace University",
+      "osm": "way/336024475",
+      "coordinatesWgs84": [
+        126.86519,
+        37.600254
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gogang dong Church",
+      "osm": "way/1080852337",
+      "coordinatesWgs84": [
+        126.812573,
+        37.52719
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Amsa-dong Prehistoric Settlement Site",
+      "osm": "way/419363587",
+      "coordinatesWgs84": [
+        127.130442,
+        37.561248
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yonggungsa",
+      "osm": "node/368860625",
+      "coordinatesWgs84": [
+        126.527821,
+        37.497167
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gocheok Sky Dome",
+      "osm": "way/258637347",
+      "coordinatesWgs84": [
+        126.867072,
+        37.498165
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tancheon Stadium",
+      "osm": "way/658766450",
+      "coordinatesWgs84": [
+        127.121186,
+        37.410167
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "삼육의료원 서울병원",
+      "osm": "way/416586666",
+      "coordinatesWgs84": [
+        127.064675,
+        37.587528
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lotte World",
+      "osm": "way/26281660",
+      "coordinatesWgs84": [
+        127.098246,
+        37.511315
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1205,
+      "sha256": "c12650b9adb1dd2f6b32c71e0b5e7209fa253cec6f78c5061d3fd26952945fd8"
+    },
+    "geometry.ts": {
+      "bytes": 2209390,
+      "sha256": "553f105892026a022b3fc145d26d0e1d59e5d2dea369e2b447c7480bc8fe78d8"
+    },
+    "places.ts": {
+      "bytes": 9831,
+      "sha256": "911e28de59bde1a93042ab60e01a3b65b86dacb0af6237c0109216ef29570313"
+    },
+    "terrain.ts": {
+      "bytes": 821167,
+      "sha256": "51641b30d962db2c29bc580b954b2e4010c200d6a508b8c2623acac13fc4d063"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "ddf29b4fb2f12496f54e90fb5c940e1c83031cad9d36c3840287de2fdf29d35a"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

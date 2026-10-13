@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "cityId": "jakarta",
+  "countryIso2": "ID",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Jakarta",
+    "coordinatesWgs84": [
+      106.827168,
+      -6.1754049
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "jakarta-airport",
+    "name": "Soekarno-Hatta International Airport",
+    "lon": 106.655998,
+    "lat": -6.12557,
+    "sourceUrl": "https://ourairports.com/airports/WIII/"
+  },
+  "boxes": {
+    "play": [
+      -6.356285789933978,
+      106.64639449165824,
+      -5.994524010066022,
+      107.00794150834176
+    ],
+    "core": [
+      -6.2206251224834945,
+      106.78198641307657,
+      -6.130184677516506,
+      106.87234958692343
+    ],
+    "outline": [
+      -6.406285789933978,
+      106.59639449165824,
+      -5.944524010066022,
+      107.05794150834176
+    ],
+    "wide": [
+      -6.956285789933978,
+      106.04639449165825,
+      -5.394524010066022,
+      107.60794150834175
+    ],
+    "water": [
+      -6.956285789933978,
+      106.04639449165825,
+      -5.394524010066022,
+      107.60794150834175
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf",
+    "datasetSha256": "f87acda04777ea517e35036f846532f828364e3871b7892894dcdd11cf6beb1f",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "sourceInputs": [
+      {
+        "role": "primary",
+        "url": "https://download.geofabrik.de/asia/indonesia-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 1738714327,
+        "md5": "a6dbf890ad7110b33a22012bb7b1a32c",
+        "sha256": "c88d3ec0abd5ea718c71983e912231ffb75ae0e747d124d5a986bc34594f3eca"
+      },
+      {
+        "role": "neighbour",
+        "url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261011.osm.pbf",
+        "snapshotDate": "2026-10-11",
+        "bytes": 251874432,
+        "md5": "cf05f5628adeed48ff74399bb8c33a72",
+        "sha256": "d3a75bfb7861eeb4dc81923f022a3ebda87d6deac3d3de728ca81a8881f9099c",
+        "reason": "The admin-0 relation of Indonesia (304751) has two member ways outside the Indonesia clip: way/1147865283 (Singapore-Indonesia territorial sea, 1.33N 104.41E to 1.44N 104.57E) and way/1181737260 (Malaysia-Indonesia land border, Sabah/Kalimantan Utara, 4.39N 115.90E to 4.38N 115.87E); both are also members of the Singapore and Malaysia relations in that extract"
+      }
+    ],
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "094e1343f6acc59edc522bdf74d27f3c179550365817e35775774cb9f9daf026",
+        "elements": 6202
+      },
+      {
+        "file": "extras.json",
+        "sha256": "54714801f0f24cca951d2813cacbb9f7e87216d9b30c5ade5afea486c2d50f50",
+        "elements": 8722
+      },
+      {
+        "file": "water.json",
+        "sha256": "1726f662089ebbabee82aaaccd6d0d6998db5fc4861c851c8724adc50cf79713",
+        "elements": 1793
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "dec3f4e8ab2dbdbbbf73da4390ad4e56304a055a6211f06bd0c188647a39ecce",
+        "elements": 7970
+      },
+      {
+        "file": "roads.json",
+        "sha256": "ad1db81c41505696a9a715a20243ce3cb24d29c4ce573cadbeb7401cf0ddb6f0",
+        "elements": 9692
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Kranji",
+      "osm": "node/316743611",
+      "coordinatesWgs84": [
+        106.979827,
+        -6.224513
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Restoran Sederhana - Taman Mini",
+      "osm": "way/274194694",
+      "coordinatesWgs84": [
+        106.883192,
+        -6.290075
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jakarta International College",
+      "osm": "node/13326343093",
+      "coordinatesWgs84": [
+        106.796059,
+        -6.181255
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rumah Sakit Siloam",
+      "osm": "way/485074669",
+      "coordinatesWgs84": [
+        106.817191,
+        -6.21909
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lapangan Banteng",
+      "osm": "way/28705164",
+      "coordinatesWgs84": [
+        106.834901,
+        -6.170212
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Baywalk Mall",
+      "osm": "way/529392697",
+      "coordinatesWgs84": [
+        106.779239,
+        -6.107902
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vihara Bahtera Bhakti",
+      "osm": "way/528649901",
+      "coordinatesWgs84": [
+        106.853962,
+        -6.120313
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Taman Fatahillah",
+      "osm": "way/368542626",
+      "coordinatesWgs84": [
+        106.813234,
+        -6.134682
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kementerian Pertanian",
+      "osm": "way/157362135",
+      "coordinatesWgs84": [
+        106.823152,
+        -6.296612
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Institut Teknologi Indonesia",
+      "osm": "way/687400650",
+      "coordinatesWgs84": [
+        106.675287,
+        -6.344512
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion Tugu",
+      "osm": "way/34748225",
+      "coordinatesWgs84": [
+        106.913396,
+        -6.136877
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "KRI Matjan Tutul",
+      "osm": "node/13546873949",
+      "coordinatesWgs84": [
+        106.913353,
+        -6.317514
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Politeknik Keuangan Negara STAN",
+      "osm": "way/877465306",
+      "coordinatesWgs84": [
+        106.732062,
+        -6.266414
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universitas Terbuka",
+      "osm": "way/248297920",
+      "coordinatesWgs84": [
+        106.758684,
+        -6.34162
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Warteg Kharisma Bahari · Sedia Soto Ayam",
+      "osm": "way/1156849545",
+      "coordinatesWgs84": [
+        106.686741,
+        -6.294743
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "J.CO Donuts & Coffee",
+      "osm": "way/1082234947",
+      "coordinatesWgs84": [
+        106.958637,
+        -6.296719
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Benteng Martello",
+      "osm": "relation/18873178",
+      "coordinatesWgs84": [
+        106.745118,
+        -6.025183
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museum MACAN",
+      "osm": "way/510896714",
+      "coordinatesWgs84": [
+        106.767669,
+        -6.191158
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Taman Menteng",
+      "osm": "way/28193134",
+      "coordinatesWgs84": [
+        106.829574,
+        -6.196305
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mall of Indonesia",
+      "osm": "way/121919489",
+      "coordinatesWgs84": [
+        106.892046,
+        -6.150943
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lippo Plaza Kramatjati",
+      "osm": "way/119451364",
+      "coordinatesWgs84": [
+        106.868758,
+        -6.270731
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Al-Azhar Great Mosque",
+      "osm": "way/498482968",
+      "coordinatesWgs84": [
+        106.799349,
+        -6.23501
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion Patriot Candrabhaga",
+      "osm": "way/626583660",
+      "coordinatesWgs84": [
+        106.991892,
+        -6.238289
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Indonesia Arena",
+      "osm": "way/29203124",
+      "coordinatesWgs84": [
+        106.800522,
+        -6.21483
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "a78b887b04e224186baac0d356c0ab9a2bf41423bcec5afe9b8dd452dcdea6a4"
+    },
+    "geometry.ts": {
+      "bytes": 475612,
+      "sha256": "deb935b3adfece0cdc8b2d0c7ed65eb679983154d6fe18e2dbc391e1ba456929"
+    },
+    "places.ts": {
+      "bytes": 9848,
+      "sha256": "2ab081c1d1a54eb368fd49ba25c0e909a1e5953c9d57fefefbd795492baa8bab"
+    },
+    "terrain.ts": {
+      "bytes": 155256,
+      "sha256": "4ee488f15608577f19631d256c89ff876fd90773fc493ea18b8e8ad620871679"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "45bb34f7150f8e00608266dc16291c52d466695bef4dfa57456eae65b512e5f8"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

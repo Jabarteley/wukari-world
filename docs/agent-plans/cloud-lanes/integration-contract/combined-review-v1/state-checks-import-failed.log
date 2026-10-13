@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/joinallworld-cloud-integration/experiments/cloud-lanes/integration-contract/combined-review-v1/check_states.py", line 7, in <module>
+    from inspect import load,LIDS,PLACEHOLDER,DOC
+ImportError: cannot import name 'load' from 'inspect' (/usr/lib/python3.13/inspect.py)
+
+Error: script failed, file: 'experiments/cloud-lanes/integration-contract/combined-review-v1/check_states.py', exiting.
+Blender 4.3.2
+
+Blender quit

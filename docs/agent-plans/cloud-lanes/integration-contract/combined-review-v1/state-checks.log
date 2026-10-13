@@ -1,0 +1,4 @@
+{"summary": {"states": 42, "newCapProperCrossings": 0, "hairProperCrossings": 0, "wardrobeProperCrossings": 0, "oppositeLidProperCrossings": 0, "invalidGeometryStates": 0, "orientationReversalStates": 2, "hairPenetrationStates": 0, "wardrobePenetrationStates": 0, "minimumHairSignedSampleMetres": 0.0034047318785559444, "minimumWardrobeSignedSampleMetres": 0.002808107791763288}, "status": "SAMPLED_GEOMETRY_PASS_WITH_BINDING_VISUAL_RUNTIME_BLOCKERS", "seconds": 2.78430772199863, "classifierSourceSha256": "2ee47f414507ee681efad0678b29a29ff2669f33bc1e27439aeaf13e3b976e1d", "properCrossingToleranceMetres": 2.5e-07, "classifierFixturesPassed": 3, "inputFilesUnchanged": true, "resetNeutralExact": true}
+Blender 4.3.2
+
+Blender quit

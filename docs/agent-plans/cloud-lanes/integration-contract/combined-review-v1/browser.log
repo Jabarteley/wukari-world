@@ -1,0 +1,1 @@
+{"views": 12, "renderCalls": [54, 56, 68, 70], "renderedTriangles": [50280, 50568, 67692, 67980], "errors": [], "cleanup": {"geometriesDisposed": 68, "materialsDisposed": 33, "texturesDisposed": 40, "geometryAfter": 0, "textureAfter": 1, "sceneChildren": 0, "rendererDisposed": true, "contextLossRequested": true}, "seconds": 4.652922504999879}

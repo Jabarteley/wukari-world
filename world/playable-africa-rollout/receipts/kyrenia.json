@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kyrenia",
+  "countryIso2": "XN",
+  "generationIdentity": {
+    "cityId": "kyrenia",
+    "stateId": "xn-kyrenia",
+    "stateName": "Kyrenia"
+  },
+  "inventorySha256": "325d2d4d0e2dbac3d84eecfd890bf0188571c2246fbb7d9eac9755834a3a9db4",
+  "inventoryPath": "world/playable-africa-rollout/sources/kyrenia.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "kyrenia-airport",
+    "name": "Ercan International Airport",
+    "lon": 33.507352,
+    "lat": 35.153064,
+    "sourceUrl": "https://ourairports.com/airports/LCEN/"
+  },
+  "bounds": [
+    35.1440199555033,
+    33.09978836489444,
+    35.520509989933984,
+    33.54126903510556
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/cyprus-261011.osm.pbf",
+      "datasetSha256": "65fe2b12d863fb1136fec15db21bfc13d4efc5ed89cfaab981cf55818e5dd0a5",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "3c77ea49f46fa185989edc5b9644171937ff8f68ae6c3ddf496ad8872363b608",
+          "elements": 1348
+        },
+        {
+          "file": "extras.json",
+          "sha256": "6d082b453133b33ea9661a999b7e3e2afc72598fbec075011a3fbb22448fb4a6",
+          "elements": 300
+        },
+        {
+          "file": "water.json",
+          "sha256": "7191fd53a545389c919a1247139931cbae8f2285c17f3aa544046a8eed7caeaf",
+          "elements": 846
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "caddf851580e924df8b8e4b9bf36f3e360979f6afc483610318b54cd4300a98b",
+          "elements": 1030
+        },
+        {
+          "file": "roads.json",
+          "sha256": "bd38e0843e6eec2249b3fa18fca62262fa49323faec73c960bc65287c78db778",
+          "elements": 1656
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 510,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 17,
+    "waterPolygons": 11,
+    "reachWaterPolygons": 27
+  },
+  "observed": {
+    "places": 1348,
+    "extras": 300,
+    "water": 846,
+    "landuse": 1030,
+    "roads": 1656
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "6e83d956dd2c90cb9ed52cfc3e2847732644697e2aa00fbcfb380649dc419f07"
+    },
+    "geometry.ts": {
+      "bytes": 213981,
+      "sha256": "cafc65ea69188a86c113bbd13e3a3560ea5f6cd20d48e01695e2932f105444da"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "65f2215c4445256498db08fb5654397f5177d5eccfe46ca0f54eb12ae506c405"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/kyrenia.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

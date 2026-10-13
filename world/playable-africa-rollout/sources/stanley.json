@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "cityId": "stanley",
+  "countryIso2": "FK",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Stanley",
+    "coordinatesWgs84": [
+      -57.856525,
+      -51.6930616
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/united-kingdom/falklands-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "stanley-airport",
+    "name": "Port Stanley Airport",
+    "lon": -57.777599,
+    "lat": -51.685699,
+    "sourceUrl": "https://ourairports.com/airports/SFAL/"
+  },
+  "boxes": {
+    "play": [
+      -51.87394248993398,
+      -58.147526081988616,
+      -51.51218071006602,
+      -57.56552391801138
+    ],
+    "core": [
+      -51.73828182248349,
+      -57.92905665721613,
+      -51.64784137751651,
+      -57.783993342783866
+    ],
+    "outline": [
+      -51.92394248993398,
+      -58.19752608198861,
+      -51.46218071006602,
+      -57.51552391801138
+    ],
+    "wide": [
+      -52.47394248993398,
+      -58.74752608198862,
+      -50.91218071006602,
+      -56.96552391801138
+    ],
+    "water": [
+      -52.47394248993398,
+      -58.74752608198862,
+      -50.91218071006602,
+      -56.96552391801138
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/united-kingdom/falklands-261011.osm.pbf",
+    "datasetSha256": "a36c26b86909f341531e6cf814d257962126414292a014999eaad128750e5a83",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "5f20332c1ebddaf3f35f2360290bba4cf18a7c357015b1da6db4f9b27b9d05f3",
+        "elements": 70
+      },
+      {
+        "file": "extras.json",
+        "sha256": "64ddacbeee9a17868cacd7ccbab2b67c100533d4aa7c6e0c65e976b3f4c970df",
+        "elements": 6
+      },
+      {
+        "file": "water.json",
+        "sha256": "08883844827a35261eb1d22fa80b175ede726e4b793ce6b969faa47f6176b498",
+        "elements": 455
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "ac5166dd57bc43cf273da62c450a33b56856ac4fa01bf9f8e3228a9147f940dd",
+        "elements": 45
+      },
+      {
+        "file": "roads.json",
+        "sha256": "c57f686b350bdd9e30d7dc423c04e586da46f1aa8d834c57030de6a183cf3d03",
+        "elements": 7
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Tasty Treat Bakery",
+      "osm": "node/1822389348",
+      "coordinatesWgs84": [
+        -57.857165,
+        -51.692932
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Christie Community Library",
+      "osm": "node/4743397596",
+      "coordinatesWgs84": [
+        -57.873007,
+        -51.694621
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "King Edward Memorial Hospital",
+      "osm": "way/210255821",
+      "coordinatesWgs84": [
+        -57.868302,
+        -51.692009
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Mary's Church",
+      "osm": "way/209294648",
+      "coordinatesWgs84": [
+        -57.863816,
+        -51.691719
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Town Hall",
+      "osm": "way/394209968",
+      "coordinatesWgs84": [
+        -57.864044,
+        -51.691397
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Gilbert House",
+      "osm": "way/211749548",
+      "coordinatesWgs84": [
+        -57.865867,
+        -51.69116
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Falkland College",
+      "osm": "way/942254769",
+      "coordinatesWgs84": [
+        -57.872724,
+        -51.694567
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cape Pembroke",
+      "osm": "node/1791574651",
+      "coordinatesWgs84": [
+        -57.719467,
+        -51.682622
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Moody Brook Barracks",
+      "osm": "node/9563237706",
+      "coordinatesWgs84": [
+        -57.920386,
+        -51.685322
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Falkland Islands Museum and National Trust",
+      "osm": "way/209298805",
+      "coordinatesWgs84": [
+        -57.88162,
+        -51.69099
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Christ Church Cathedral",
+      "osm": "way/168220217",
+      "coordinatesWgs84": [
+        -57.858545,
+        -51.692358
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "1982 Liberation Memorial",
+      "osm": "node/135001622",
+      "coordinatesWgs84": [
+        -57.867325,
+        -51.691433
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sea Cabbage Cafe",
+      "osm": "node/10095786051",
+      "coordinatesWgs84": [
+        -58.065225,
+        -51.758779
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cafe",
+      "osm": "way/323534124",
+      "coordinatesWgs84": [
+        -57.810218,
+        -51.677408
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1258,
+      "sha256": "9985cd06bf3078426dcb39338c24318a8efbee6c98c33b3b0a0beab9d2cefb11"
+    },
+    "geometry.ts": {
+      "bytes": 1078456,
+      "sha256": "249d7e048ad37c63e8b3beb4eb0e740ca05e3393c629e15416af4ba59989adcc"
+    },
+    "places.ts": {
+      "bytes": 6097,
+      "sha256": "69fa094c708f6443845933201442d5c350f8defc24ba29ec9eff0ea8992ab074"
+    },
+    "terrain.ts": {
+      "bytes": 633613,
+      "sha256": "4b9b5b452926c9032851fdcbcf065b3a70f1a8e094d6a37befff395bb925a2b7"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "b2a2e53d56ce6043d5949f7d2fcca5e27c9a6faaa09886be22da23d8d9fe10a0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

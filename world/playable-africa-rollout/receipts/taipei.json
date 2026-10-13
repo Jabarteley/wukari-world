@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "taipei",
+  "countryIso2": "TW",
+  "generationIdentity": {
+    "cityId": "taipei",
+    "stateId": "tw-taipei",
+    "stateName": "Taipei"
+  },
+  "inventorySha256": "6229154e2f372c3ad01263780985eda2175bdb12fb460fb0d4fd599719b2763b",
+  "inventoryPath": "world/playable-africa-rollout/sources/taipei.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "taipei-airport",
+    "name": "Taipei Songshan International Airport",
+    "lon": 121.552822,
+    "lat": 25.067244,
+    "sourceUrl": "https://ourairports.com/airports/RCSS/"
+  },
+  "bounds": [
+    24.85663891006602,
+    121.36508982644351,
+    25.218400689933976,
+    121.76226937355649
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/asia/taiwan-261011.osm.pbf",
+      "datasetSha256": "8d7b21385c34f4d0af57610ac0fa53799d77f245b5e670ebc9a9b2f5f63acf54",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "4bcdc11178c1ba7e434c63e434eede7b7e4a8cbc717dc4e935bf70b26959c60f",
+          "elements": 22735
+        },
+        {
+          "file": "extras.json",
+          "sha256": "4105344cb8754445e63eace0f47dee470a38206594065430858300cb1062b111",
+          "elements": 3685
+        },
+        {
+          "file": "water.json",
+          "sha256": "1425f52be5ec1f951106de63e9f8359e82d0d8f185592dcfd12beb34bf29a7cb",
+          "elements": 1421
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "8a4a427d393c42bef0bae0359ac7c585863338d3d7c353fc868dfa2736bd49e1",
+          "elements": 9092
+        },
+        {
+          "file": "roads.json",
+          "sha256": "66ae0fe4bb62eff856dafd08f7091e934ec9f3cc73e8af5cfaf31ed5abc2355b",
+          "elements": 4813
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 473,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 33,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 47
+  },
+  "observed": {
+    "places": 22735,
+    "extras": 3685,
+    "water": 1421,
+    "landuse": 9092,
+    "roads": 4813
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "e8729d6f644578217b07b2836a11bbb89fa907ee8c01cd04852d2f51be15700b"
+    },
+    "geometry.ts": {
+      "bytes": 252460,
+      "sha256": "9e253bde5f4977eed210612251a4eaf9b1a7cda7e2a04945dc70f443b28e7943"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "ecd34b082bd450f486b65795bc82c65b791e72ae14a3851a08a6aa508d1fe5ae"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/taipei.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

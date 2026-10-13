@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "cityId": "pago-pago",
+  "countryIso2": "AS",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Pago Pago",
+    "coordinatesWgs84": [
+      -170.7048298,
+      -14.2754786
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "pago-pago-airport",
+    "name": "Pago Pago International Airport",
+    "lon": -170.710007,
+    "lat": -14.331,
+    "sourceUrl": "https://ourairports.com/airports/NSTU/"
+  },
+  "boxes": {
+    "play": [
+      -14.456359489933979,
+      -170.89036648516475,
+      -14.09459771006602,
+      -170.51929311483525
+    ],
+    "core": [
+      -14.320698822483495,
+      -170.7511858050069,
+      -14.230258377516504,
+      -170.65847379499309
+    ],
+    "outline": [
+      -14.50635948993398,
+      -170.94036648516476,
+      -14.04459771006602,
+      -170.46929311483524
+    ],
+    "wide": [
+      -15.056359489933978,
+      -171.49036648516474,
+      -13.49459771006602,
+      -169.91929311483526
+    ],
+    "water": [
+      -15.056359489933978,
+      -171.49036648516474,
+      -13.49459771006602,
+      -169.91929311483526
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+    "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "46cd1c9f0ac20ef6bb36e815f7fceecc679ccfcf261269e8a4feec95266a4483",
+        "elements": 152
+      },
+      {
+        "file": "extras.json",
+        "sha256": "0fa48db60aa9b993a696e77a90dd060fe898bee96477c8938193a7805f2978a3",
+        "elements": 12
+      },
+      {
+        "file": "water.json",
+        "sha256": "b199270fc2f7eda9f1a58b8062dad7dad779489844ed4301bd932f2fdde6688a",
+        "elements": 86
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "99c7a7614983db9ac778c86397038b86dd99f9197a5ea7ed0229508a19ff3130",
+        "elements": 72
+      },
+      {
+        "file": "roads.json",
+        "sha256": "145566c0c3dd3c674855810f6d7fc4d4ecd13a49082c05a582b74f511133b0cf",
+        "elements": 70
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Sweetie's",
+      "osm": "node/1235134005",
+      "coordinatesWgs84": [
+        -170.690176,
+        -14.278909
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "American Samoa Community College",
+      "osm": "way/123454235",
+      "coordinatesWgs84": [
+        -170.742558,
+        -14.322325
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lyndon Baines Johnson Tropical Medical Center",
+      "osm": "way/585450401",
+      "coordinatesWgs84": [
+        -170.685441,
+        -14.290382
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pago Pago Park",
+      "osm": "node/359258660",
+      "coordinatesWgs84": [
+        -170.699722,
+        -14.2775
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fagatogo Market",
+      "osm": "way/107474782",
+      "coordinatesWgs84": [
+        -170.690926,
+        -14.277097
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Courthouse of American Samoa",
+      "osm": "way/332359599",
+      "coordinatesWgs84": [
+        -170.690488,
+        -14.278074
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "American Samoa Fono",
+      "osm": "node/8285563450",
+      "coordinatesWgs84": [
+        -170.688941,
+        -14.278218
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Veterans Memorial Stadium",
+      "osm": "way/253635520",
+      "coordinatesWgs84": [
+        -170.722308,
+        -14.333588
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Poloa Defensive Fortifications",
+      "osm": "node/9049560467",
+      "coordinatesWgs84": [
+        -170.834158,
+        -14.316302
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Masefau Defensive Fortifications",
+      "osm": "node/9049637848",
+      "coordinatesWgs84": [
+        -170.630255,
+        -14.257335
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fagalele Boys School",
+      "osm": "node/9049560470",
+      "coordinatesWgs84": [
+        -170.785926,
+        -14.341901
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gagamoe Field",
+      "osm": "node/359258592",
+      "coordinatesWgs84": [
+        -170.698889,
+        -14.276944
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tisa's Barefoot Bar",
+      "osm": "node/3844905202",
+      "coordinatesWgs84": [
+        -170.639214,
+        -14.281414
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Internet Café",
+      "osm": "node/4791141236",
+      "coordinatesWgs84": [
+        -170.717248,
+        -14.312702
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Utulei Beach Park",
+      "osm": "way/1205108937",
+      "coordinatesWgs84": [
+        -170.6813,
+        -14.277009
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1287,
+      "sha256": "b6663ba4b2fb21b1066396b980597764f2e6502c6c8ba33119d1c7599a6e1b12"
+    },
+    "geometry.ts": {
+      "bytes": 199816,
+      "sha256": "4b2311b511f13fb7d4cf549a44b2751c1372325ef17f0d3727beb784313b8a66"
+    },
+    "places.ts": {
+      "bytes": 6471,
+      "sha256": "5a7611a4869f854f6aafa6f92dd45ddae59b6cac09c16b41e3556aeb0891253a"
+    },
+    "terrain.ts": {
+      "bytes": 382585,
+      "sha256": "58ff0885f9923b56adec67b4776cd3c0503a72e0a166327c65891a0d2e59435e"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "37b691a42e159bb20bc74ad03ab1f7e5dfcdc1720c525d90acdfb6087b02f505"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

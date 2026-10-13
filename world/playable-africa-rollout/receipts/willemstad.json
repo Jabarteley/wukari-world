@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "willemstad",
+  "countryIso2": "CW",
+  "generationIdentity": {
+    "cityId": "willemstad",
+    "stateId": "cw-willemstad",
+    "stateName": "Willemstad"
+  },
+  "inventorySha256": "5faad503a2b0c9cf605832942da93f8a60d32888f3a87080dea18366b3d1baf5",
+  "inventoryPath": "world/playable-africa-rollout/sources/willemstad.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "willemstad-airport",
+    "name": "Hato International Airport",
+    "lon": -68.959801,
+    "lat": 12.1889,
+    "sourceUrl": "https://ourairports.com/airports/TNCC/"
+  },
+  "bounds": [
+    11.925788610066022,
+    -69.11900516055373,
+    12.28755038993398,
+    -68.75125623944628
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "4926c95689624105acbd039e239d251bd7e619ea5aa1a2ab90c17bdecf9db54f",
+          "elements": 1203
+        },
+        {
+          "file": "extras.json",
+          "sha256": "86646e116d45c1784c01e09e3e139a53aae213c5d7f9da01eb89b1ad2c28d48b",
+          "elements": 65
+        },
+        {
+          "file": "water.json",
+          "sha256": "43cd02018d5015a693e9dd0095d35e071de104560880924637df06613ad81b7f",
+          "elements": 275
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "5791ee3643d52410075b31f4cd67534bbc461cc148e687dde63bdba2b1a8f4c7",
+          "elements": 371
+        },
+        {
+          "file": "roads.json",
+          "sha256": "b1bfc87a98993e151d65646d2f87740cc81a4ef192c42a420eeab349466a17ca",
+          "elements": 734
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 197,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 8,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 14
+  },
+  "observed": {
+    "places": 1203,
+    "extras": 65,
+    "water": 275,
+    "landuse": 371,
+    "roads": 734
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1242,
+      "sha256": "4374b90a5991e3d8340c19f73b3553cb5c976ff99ed39e448d6b9000508df656"
+    },
+    "geometry.ts": {
+      "bytes": 175397,
+      "sha256": "502052aaf9d1a74089a63bc87e5da86f25ce63af0f84290de6b063d363955149"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "824a8390a0ca37a387459e6ea759fc7ca7218cb2898882526aa1f4881c5ecb95"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/willemstad.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

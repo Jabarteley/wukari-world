@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "cityId": "macau",
+  "countryIso2": "MO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Macau",
+    "coordinatesWgs84": [
+      113.5380454,
+      22.1899448
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/china/guangdong-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "macau-airport",
+    "name": "Macau International Airport",
+    "lon": 113.592003,
+    "lat": 22.149599,
+    "sourceUrl": "https://ourairports.com/airports/VMMC/"
+  },
+  "boxes": {
+    "play": [
+      22.009063910066022,
+      113.34376133670828,
+      22.370825689933977,
+      113.73232946329172
+    ],
+    "core": [
+      22.144724577516506,
+      113.48952153442147,
+      22.235165022483493,
+      113.58656926557853
+    ],
+    "outline": [
+      21.95906391006602,
+      113.29376133670829,
+      22.420825689933977,
+      113.78232946329172
+    ],
+    "wide": [
+      21.40906391006602,
+      112.74376133670829,
+      22.970825689933978,
+      114.33232946329171
+    ],
+    "water": [
+      21.40906391006602,
+      112.74376133670829,
+      22.970825689933978,
+      114.33232946329171
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/china/guangdong-261011.osm.pbf",
+    "datasetSha256": "8b3a98d07f2f417659b81adbecf128287a6f326e6027120c77eb30b6708fb15c",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "96545c241eaab06f469b436f484805b86a014aaed8c6de0d43d04d80c2abd60f",
+        "elements": 1494
+      },
+      {
+        "file": "extras.json",
+        "sha256": "1657689bd8f7b19062573654576b632d3bba33783e8f4c481b3b986077f1089f",
+        "elements": 595
+      },
+      {
+        "file": "water.json",
+        "sha256": "7db8640f7d90ddacc2405012e28c947c1fad1abf37e883d8e482eb3865db3a96",
+        "elements": 5527
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "469690c41f8922f282a2cfe3ccb5d672187e7117c2d8532c3cda6e13dd3267b8",
+        "elements": 3166
+      },
+      {
+        "file": "roads.json",
+        "sha256": "60cf6a191e07e5cb65addc01f62dfbb52b61c1bcfc9709b1bff3fd01469c008a",
+        "elements": 5036
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [],
+  "selectedPlaces": [
+    {
+      "name": "凱泉灣總站 Riviera Macau / Terminal",
+      "osm": "node/2561573392",
+      "coordinatesWgs84": [
+        113.532989,
+        22.190763
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Clube militar",
+      "osm": "node/4325083289",
+      "coordinatesWgs84": [
+        113.544157,
+        22.191734
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Seac Pai Van Library",
+      "osm": "node/7545205378",
+      "coordinatesWgs84": [
+        113.562234,
+        22.128508
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Islands Healthcare Complex — Macao Medical Center of Peking Union Medical College Hospital",
+      "osm": "way/428421340",
+      "coordinatesWgs84": [
+        113.56563,
+        22.136227
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "氹仔海濱休憩區 Zona de Lazer da Marginal da Taipa",
+      "osm": "way/405826614",
+      "coordinatesWgs84": [
+        113.543828,
+        22.159161
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "台山街市市政綜合大樓 Complexo Municipal do Mercado de Tamagnini Barbosa",
+      "osm": "way/334453286",
+      "coordinatesWgs84": [
+        113.545766,
+        22.210927
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Church of Our Lady of Sorrows",
+      "osm": "way/229290411",
+      "coordinatesWgs84": [
+        113.58932,
+        22.132477
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cultural Centre Square",
+      "osm": "way/307049831",
+      "coordinatesWgs84": [
+        113.554692,
+        22.190142
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Monetary Authority of Macao",
+      "osm": "way/347053217",
+      "coordinatesWgs84": [
+        113.548146,
+        22.195554
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Macau",
+      "osm": "relation/20002113",
+      "coordinatesWgs84": [
+        113.543793,
+        22.12835
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "MUST Stadium",
+      "osm": "way/244820723",
+      "coordinatesWgs84": [
+        113.56821,
+        22.152439
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Broadway Macau",
+      "osm": "way/346331627",
+      "coordinatesWgs84": [
+        113.551577,
+        22.146537
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "City University of Macau",
+      "osm": "way/580160817",
+      "coordinatesWgs84": [
+        113.557454,
+        22.163951
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ramalho Eanes Garden",
+      "osm": "way/244930722",
+      "coordinatesWgs84": [
+        113.551719,
+        22.117999
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hac Sa Park",
+      "osm": "way/322642517",
+      "coordinatesWgs84": [
+        113.568754,
+        22.118208
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "沙梨頭街市 Mercado Municipal do Patane",
+      "osm": "way/206823798",
+      "coordinatesWgs84": [
+        113.537215,
+        22.202583
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Macau Tower",
+      "osm": "relation/21176879",
+      "coordinatesWgs84": [
+        113.536797,
+        22.179809
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Communications Museum",
+      "osm": "way/330083075",
+      "coordinatesWgs84": [
+        113.55498,
+        22.203265
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Lisboa Palace Macau",
+      "osm": "way/295506987",
+      "coordinatesWgs84": [
+        113.574207,
+        22.144086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Macau Stadium",
+      "osm": "way/163732917",
+      "coordinatesWgs84": [
+        113.55331,
+        22.154666
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "中葡職業技術學校 Escola Luso-Chinesa Técnico-Profissional",
+      "osm": "way/330769741",
+      "coordinatesWgs84": [
+        113.553796,
+        22.210016
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kiang Wu Hospital",
+      "osm": "way/172301929",
+      "coordinatesWgs84": [
+        113.542683,
+        22.199169
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St. Augustine's Church",
+      "osm": "way/389129453",
+      "coordinatesWgs84": [
+        113.538399,
+        22.192326
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Red Market",
+      "osm": "way/306158878",
+      "coordinatesWgs84": [
+        113.5448,
+        22.205399
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1233,
+      "sha256": "236039aa03e45c95a919e88d2fd4b9d9d29f1f786faede9882ce2501d99326a5"
+    },
+    "geometry.ts": {
+      "bytes": 1411214,
+      "sha256": "46264bad9d8a280d2fd3836cfe120b0a9d5c9858db9824898e9673278c141043"
+    },
+    "places.ts": {
+      "bytes": 10661,
+      "sha256": "d64cbf9a7377e399813f61b500a4ab0bd2099dbec197fc2a0b22c47b4f464c92"
+    },
+    "terrain.ts": {
+      "bytes": 1618706,
+      "sha256": "e16d6a74f116cb3ea8263a17bc1bc61de7976df620666ece836e9c8441ece680"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "e07891a3186e8e12d05690ea58b323efc1d759bb0534b4b7a003166298e10116"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

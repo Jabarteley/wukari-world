@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "papeete",
+  "countryIso2": "PF",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Papeete",
+    "coordinatesWgs84": [
+      -149.5659964,
+      -17.5373835
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/polynesie-francaise-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "papeete-airport",
+    "name": "Fa'a'ā International Airport",
+    "lon": -149.606936,
+    "lat": -17.553472,
+    "sourceUrl": "https://ourairports.com/airports/NTAA/"
+  },
+  "boxes": {
+    "play": [
+      -17.718264389933978,
+      -149.7546053940901,
+      -17.356502610066023,
+      -149.37738740590987
+    ],
+    "core": [
+      -17.582603722483494,
+      -149.6131131382626,
+      -17.492163277516507,
+      -149.51887966173737
+    ],
+    "outline": [
+      -17.76826438993398,
+      -149.80460539409012,
+      -17.306502610066023,
+      -149.32738740590986
+    ],
+    "wide": [
+      -18.31826438993398,
+      -150.3546053940901,
+      -16.756502610066022,
+      -148.77738740590988
+    ],
+    "water": [
+      -18.31826438993398,
+      -150.3546053940901,
+      -16.756502610066022,
+      -148.77738740590988
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/polynesie-francaise-261011.osm.pbf",
+    "datasetSha256": "43280e0fe664fa00dda2e2a5e4964700d7d5823bd29be9f79696562b0b019ce9",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "7d507be4f7f4e10203b2fddb05c0a758fa6c83c1a2c4451e937918ef640a2333",
+        "elements": 640
+      },
+      {
+        "file": "extras.json",
+        "sha256": "271b636a75eef3e6d174c8746cd704353f20649a3b22ac654ec14932c304c813",
+        "elements": 216
+      },
+      {
+        "file": "water.json",
+        "sha256": "82ca916d3a66add28bc43ccfa027aa674be85430f5150df8050d9b242a7024c0",
+        "elements": 261
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "62b2422c87c05e5343d0a58c0b688772a2861ad7fbbaab11cdd4bdf32c9f33f9",
+        "elements": 172
+      },
+      {
+        "file": "roads.json",
+        "sha256": "9301ba2aed5a3ba628792b2c7751150e5f4cccf1106a75b518fb6b2653ca7913",
+        "elements": 650
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Gare Maritime",
+      "osm": "node/4934736239",
+      "coordinatesWgs84": [
+        -149.568582,
+        -17.534669
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Snack Resto Paea Manate",
+      "osm": "node/1422600001",
+      "coordinatesWgs84": [
+        -149.591653,
+        -17.670342
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of French Polynesia",
+      "osm": "way/283649950",
+      "coordinatesWgs84": [
+        -149.607898,
+        -17.576906
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hopital psychiatrique de Taaone",
+      "osm": "relation/10242033",
+      "coordinatesWgs84": [
+        -149.545571,
+        -17.531081
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc naturel Te Faa Iti",
+      "osm": "node/7065226769",
+      "coordinatesWgs84": [
+        -149.429533,
+        -17.58189
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre commercial",
+      "osm": "way/204556920",
+      "coordinatesWgs84": [
+        -149.491601,
+        -17.506411
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Sainte Anne",
+      "osm": "way/548581484",
+      "coordinatesWgs84": [
+        -149.425353,
+        -17.511891
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mairie de Arue",
+      "osm": "relation/10088377",
+      "coordinatesWgs84": [
+        -149.518256,
+        -17.525145
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Présidence de la Polynésie française",
+      "osm": "way/643967637",
+      "coordinatesWgs84": [
+        -149.569408,
+        -17.54436
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "CFPA",
+      "osm": "way/740564751",
+      "coordinatesWgs84": [
+        -149.605064,
+        -17.634113
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Pater",
+      "osm": "way/41444450",
+      "coordinatesWgs84": [
+        -149.551965,
+        -17.539885
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marae",
+      "osm": "node/1422688771",
+      "coordinatesWgs84": [
+        -149.43472,
+        -17.643584
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Phare de la Pointe Vénus",
+      "osm": "way/204556995",
+      "coordinatesWgs84": [
+        -149.494347,
+        -17.495065
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée de Tahiti et des Îles",
+      "osm": "relation/10242577",
+      "coordinatesWgs84": [
+        -149.613628,
+        -17.631789
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Papeete Tahiti Temple",
+      "osm": "way/734682036",
+      "coordinatesWgs84": [
+        -149.556163,
+        -17.536628
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathédrale Notre-Dame de Papeete",
+      "osm": "way/32774088",
+      "coordinatesWgs84": [
+        -149.567002,
+        -17.540269
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rampe parapente",
+      "osm": "node/6904941337",
+      "coordinatesWgs84": [
+        -149.532971,
+        -17.608811
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Captage 1000 sources",
+      "osm": "node/6781735685",
+      "coordinatesWgs84": [
+        -149.468233,
+        -17.585244
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rohotu",
+      "osm": "node/9695866739",
+      "coordinatesWgs84": [
+        -149.584956,
+        -17.706006
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "O belvédère",
+      "osm": "way/730928869",
+      "coordinatesWgs84": [
+        -149.529291,
+        -17.564302
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc Outuaraea",
+      "osm": "way/895747028",
+      "coordinatesWgs84": [
+        -149.597017,
+        -17.54855
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Concept Grill",
+      "osm": "node/2554433116",
+      "coordinatesWgs84": [
+        -149.613335,
+        -17.604477
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Marché de Arue",
+      "osm": "way/204557043",
+      "coordinatesWgs84": [
+        -149.532282,
+        -17.524235
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "C.C.",
+      "osm": "way/740565283",
+      "coordinatesWgs84": [
+        -149.614487,
+        -17.618205
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1259,
+      "sha256": "49cc4a3d5bb3d5796fb30849caf3be561e405bd315ef17f2edf49f319339a3ff"
+    },
+    "geometry.ts": {
+      "bytes": 32179,
+      "sha256": "908284b54ab31de1db6d9b1f6fab0662bafa0ac95a132e59cc2014a1c28c89c6"
+    },
+    "places.ts": {
+      "bytes": 9434,
+      "sha256": "5fa7b648b5e1312ddabcdef8be5528c5f753881af02d032b1fc0dfbbe9330504"
+    },
+    "terrain.ts": {
+      "bytes": 177644,
+      "sha256": "e1a87b69ff21fe65dc020fa923729a274975139a5d79742902b46b35c64754a3"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "c6bef7cb0aa957f302a196f760266b235e60d09b94234be245613fd9c9169663"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

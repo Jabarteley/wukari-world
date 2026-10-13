@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "cityId": "philipsburg",
+  "countryIso2": "SX",
+  "generationIdentity": {
+    "cityId": "philipsburg",
+    "stateId": "sx",
+    "stateName": "Philipsburg"
+  },
+  "inventorySha256": "e31521e8e82c481abb4afb71f1d6eb1cd0785f39b2285c1ce1e6bcb2cdc4d027",
+  "inventoryPath": "world/playable-africa-rollout/sources/philipsburg.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "philipsburg-airport",
+    "name": "Princess Juliana International Airport",
+    "lon": -63.108898,
+    "lat": 18.041,
+    "sourceUrl": "https://ourairports.com/airports/TNCM/"
+  },
+  "bounds": [
+    17.844190410066023,
+    -63.23743746692212,
+    18.205952189933978,
+    -62.85917713307788
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "8ddc50fc47b835dbca64919d60d94994ff6d13d79d6982b5c7b87c7bf217557f",
+          "elements": 586
+        },
+        {
+          "file": "extras.json",
+          "sha256": "4393cc373c38dada864a0bea0554c8275cef485b364f8ee736d10fa8e0cf9f55",
+          "elements": 48
+        },
+        {
+          "file": "water.json",
+          "sha256": "3c6d1ee3b09c1f38a694d067502230e499b7a5e6157b0077cf8a7f7e7688eeed",
+          "elements": 444
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ce1cb091ff207fd0c129f1af830d9b90f9fb70bb496af69348738c186c8ebcf5",
+          "elements": 443
+        },
+        {
+          "file": "roads.json",
+          "sha256": "418f26c0972909e9c4f7c119e506684227ab02d5959cfe434deb1150d5d9ea7e",
+          "elements": 353
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 11,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 1,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 12
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "way/261373945"
+      }
+    ]
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "sx-philipsburg",
+          "to": "sx"
+        }
+      },
+      "before": {
+        "catalogueBytes": 154,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 142,
+        "limit": 150,
+        "passed": true
+      }
+    },
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "way/22901563",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "way/22901563",
+            "name": "Maho Beach",
+            "lon": -63.121033600000004,
+            "lat": 18.03960285
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 15928,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 586,
+    "extras": 48,
+    "water": 444,
+    "landuse": 443,
+    "roads": 353
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1277,
+      "sha256": "f44b5662dbaf38bdf23b41e29fa44bf77aa31b53aa061c10a8d7413f0ae1d1e0"
+    },
+    "geometry.ts": {
+      "bytes": 726511,
+      "sha256": "388c49d26562417dea369900ebd0d11ab529f85ba6b1181f20ee828eb8f78a39"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "e90c4e3d6709d842240778ab80e448b584b09653b54f94d2af4ed55ba8466872"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/philipsburg.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

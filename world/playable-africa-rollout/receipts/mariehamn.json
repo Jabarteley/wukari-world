@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "cityId": "mariehamn",
+  "countryIso2": "AX",
+  "generationIdentity": {
+    "cityId": "mariehamn",
+    "stateId": "ax-mariehamn",
+    "stateName": "Mariehamn"
+  },
+  "inventorySha256": "42cff49d02683f517d3604ac89328e940ad2371a78d276518f7ffa15f6650339",
+  "inventoryPath": "world/playable-africa-rollout/sources/mariehamn.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "mariehamn-airport",
+    "name": "Mariehamn Airport",
+    "lon": 19.898199,
+    "lat": 60.1222,
+    "sourceUrl": "https://ourairports.com/airports/EFMA/"
+  },
+  "bounds": [
+    60.03007064402641,
+    19.79676611367186,
+    60.174775355973594,
+    20.08575388632814
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/finland-261011.osm.pbf",
+      "datasetSha256": "033dca9c34f00b56a76b0f647203953904466c2255424d68523d36e2312d736d",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "9ad3c216257d98850b50030c4863040a86e3fea8db0b46e96c9e29922b7a5d4e",
+          "elements": 299
+        },
+        {
+          "file": "extras.json",
+          "sha256": "ca4de17518d3eb880cc84a5f1ff093f88a7d3c2de682a7ef1cde391ec5a6016c",
+          "elements": 38
+        },
+        {
+          "file": "water.json",
+          "sha256": "4712c7ff259953526e4e1936a92bd7f81081a4680e853207b53565e2e62578ec",
+          "elements": 17552
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "2ad7c3759127918e9da8e0023d0321b210528aa6544fc35198ff61706f902f41",
+          "elements": 669
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f7456ced07dabba2e746346eb26b2eb930d7c95e8505f84d2438140eba4df16b",
+          "elements": 383
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 15,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 3,
+    "waterPolygons": 27,
+    "reachWaterPolygons": 27
+  },
+  "autoRetries": [
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "node/12965289293",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          },
+          {
+            "ref": "way/369246774",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "node/12965289293",
+            "name": "Plus",
+            "lon": 19.897,
+            "lat": 60.04305
+          },
+          {
+            "ref": "way/369246774",
+            "name": "Sjöfararkapellet",
+            "lon": 19.946634099999997,
+            "lat": 60.10693915
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 31543,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 299,
+    "extras": 38,
+    "water": 17552,
+    "landuse": 669,
+    "roads": 383
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1230,
+      "sha256": "c4b91f02fa338f5003a09bf6443d6d84711ec9ec210ae76b5d927dffd417e8a2"
+    },
+    "geometry.ts": {
+      "bytes": 2444457,
+      "sha256": "9d2230a83e9d789af632fb43d6d727bad8ad639c4ca23eadd927d3f723db93b0"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "8236cf71e46767dda96224af89fd30e76fcc38f6ecb099526ac780fad82930cd"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/mariehamn.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

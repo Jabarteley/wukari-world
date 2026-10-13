@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 1,
+  "cityId": "the-valley",
+  "countryIso2": "AI",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "The Valley",
+    "coordinatesWgs84": [
+      -63.0517759,
+      18.2145861
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "the-valley-airport",
+    "name": "Clayton J. Lloyd International Airport",
+    "lon": -63.05383,
+    "lat": 18.204773,
+    "sourceUrl": "https://ourairports.com/airports/TQPF/"
+  },
+  "boxes": {
+    "play": [
+      18.03370521006602,
+      -63.24111307900157,
+      18.395466989933976,
+      -62.86243872099843
+    ],
+    "core": [
+      18.169365877516505,
+      -63.099073084172005,
+      18.25980632248349,
+      -63.004478715828
+    ],
+    "outline": [
+      17.98370521006602,
+      -63.29111307900157,
+      18.445466989933976,
+      -62.812438720998436
+    ],
+    "wide": [
+      17.43370521006602,
+      -63.84111307900157,
+      18.995466989933977,
+      -62.26243872099843
+    ],
+    "water": [
+      17.43370521006602,
+      -63.84111307900157,
+      18.995466989933977,
+      -62.26243872099843
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "eed9e3f40d18ee699e3d161da7ae082951f494a261b205cc58b31ecf355d0475",
+        "elements": 503
+      },
+      {
+        "file": "extras.json",
+        "sha256": "a58a20f47990a07984c7231d3d939329d3f106ac72f6180adafb02bdfb6c8d94",
+        "elements": 36
+      },
+      {
+        "file": "water.json",
+        "sha256": "cf2bcee7f8a33f268b6ad7baaca28a185a5292a913ebe3ad56b51fd31393ee2e",
+        "elements": 400
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "569f86981af7c32bb938e9212187a47e1e711568f74c6732d37baa87e39fa4b5",
+        "elements": 320
+      },
+      {
+        "file": "roads.json",
+        "sha256": "fe8a6a6399b04549cd2b6cd1d63348b42501e38afa0e67773b2e27ee9dd8bf6d",
+        "elements": 292
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Blowing Point Ferry Terminal",
+      "osm": "node/1236465390",
+      "coordinatesWgs84": [
+        -63.093125,
+        18.171454
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Allan and Sue's Prickly Pear Restaurant",
+      "osm": "way/200829135",
+      "coordinatesWgs84": [
+        -63.17221,
+        18.264252
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Princess Alexandra Hospital",
+      "osm": "way/360806409",
+      "coordinatesWgs84": [
+        -63.04832,
+        18.219522
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ronald Webster Park",
+      "osm": "way/226917922",
+      "coordinatesWgs84": [
+        -63.050557,
+        18.217358
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Clarita Mason Shopping Centre",
+      "osm": "node/2386468615",
+      "coordinatesWgs84": [
+        -63.070816,
+        18.203157
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Gerard's Catholic Church",
+      "osm": "way/360815720",
+      "coordinatesWgs84": [
+        -63.054435,
+        18.210027
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Health Insurance",
+      "osm": "way/360643395",
+      "coordinatesWgs84": [
+        -63.050564,
+        18.212397
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Public Utilities Commission",
+      "osm": "node/3690523267",
+      "coordinatesWgs84": [
+        -63.055641,
+        18.213379
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Heritage Collection Museum",
+      "osm": "way/362017267",
+      "coordinatesWgs84": [
+        -62.996783,
+        18.236159
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wallblake House",
+      "osm": "way/360817333",
+      "coordinatesWgs84": [
+        -63.054735,
+        18.209562
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Lower West End Point",
+      "osm": "node/2107724413",
+      "coordinatesWgs84": [
+        -63.17254,
+        18.160261
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Celeste Restaraunt",
+      "osm": "way/839159058",
+      "coordinatesWgs84": [
+        -63.134916,
+        18.187708
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Madeariman Restaurant",
+      "osm": "way/361821807",
+      "coordinatesWgs84": [
+        -63.031158,
+        18.254486
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "South Hill Plaza",
+      "osm": "way/230276598",
+      "coordinatesWgs84": [
+        -63.104636,
+        18.189161
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "WSC GROUP",
+      "osm": "way/522219599",
+      "coordinatesWgs84": [
+        -63.064657,
+        18.213313
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Owen Mussington Playing Field",
+      "osm": "way/793135698",
+      "coordinatesWgs84": [
+        -62.99083,
+        18.239001
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mary Elizabeth Recreation Park",
+      "osm": "node/3652964299",
+      "coordinatesWgs84": [
+        -63.046671,
+        18.209345
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1267,
+      "sha256": "a6f1dacf75cce69331fe04aa0a769c0215c32ff7d394770f30638ddd65f49e89"
+    },
+    "geometry.ts": {
+      "bytes": 187606,
+      "sha256": "55107dc2a056bdba9997ae5c905ed3f136b966ecd8b4b39d506058d6a8e6c09b"
+    },
+    "places.ts": {
+      "bytes": 7103,
+      "sha256": "bf9403133889f1d99a254c595c58b47b4959ffb9132ae93d0ec00abf75e0dea1"
+    },
+    "terrain.ts": {
+      "bytes": 409202,
+      "sha256": "08f3890fc6fd79df839914de327d848687d41ef20f2f2654f328d5d0d08c8647"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "5776fc71e86559e50d2878a3d90ecc0782302a6197d747f994249337f54e166e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

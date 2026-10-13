@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "cityId": "pristina",
+  "countryIso2": "XK",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Pristina",
+    "coordinatesWgs84": [
+      21.1640849,
+      42.6638771
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/kosovo-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "pristina-airport",
+    "name": "Priština Adem Jashari International Airport",
+    "lon": 21.035801,
+    "lat": 42.5728,
+    "sourceUrl": "https://ourairports.com/airports/BKPR/"
+  },
+  "boxes": {
+    "play": [
+      42.48299621006602,
+      20.919046015952425,
+      42.84475798993398,
+      21.409123784047573
+    ],
+    "core": [
+      42.61865687751651,
+      21.102959237998345,
+      42.709097322483494,
+      21.225210562001653
+    ],
+    "outline": [
+      42.43299621006602,
+      20.869046015952424,
+      42.89475798993398,
+      21.459123784047573
+    ],
+    "wide": [
+      41.88299621006602,
+      20.319046015952424,
+      43.44475798993398,
+      22.009123784047574
+    ],
+    "water": [
+      42.48299621006602,
+      20.919046015952425,
+      42.84475798993398,
+      21.409123784047573
+    ]
+  },
+  "waterRecipe": {
+    "kind": "inland",
+    "wideWater": false
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/kosovo-261011.osm.pbf",
+    "datasetSha256": "6cfbca6ecbf1e3d47d27db2bd7e44e30e7c28d8404c04a2709fa10fb20018a5c",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "bf9589de9e8c74849f0db9cd9da615ce0035e5a4035d681e5e9c46aa62e57fce",
+        "elements": 1410
+      },
+      {
+        "file": "extras.json",
+        "sha256": "d5d0c9be980955d124e0985348e0127cef34569ab1ada572eaa4a880d96f251d",
+        "elements": 228
+      },
+      {
+        "file": "water.json",
+        "sha256": "b560bb685be4f4cd9be4a148b44dda95d33b0f85a650200f5b3ba3d2a2fd85da",
+        "elements": 172
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "5d3b02a79781ccafff94c47cf246cce412c1ad704fec1f8d2808971f15930674",
+        "elements": 1995
+      },
+      {
+        "file": "roads.json",
+        "sha256": "a36acda77f2b6ef711a8e185506fbd46cb1f53ca26695484ea3080c1435c45e6",
+        "elements": 969
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Prishtinë",
+      "osm": "node/1613271652",
+      "coordinatesWgs84": [
+        21.151067,
+        42.658934
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Aviano",
+      "osm": "node/2372326203",
+      "coordinatesWgs84": [
+        21.021427,
+        42.598745
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "AAB College",
+      "osm": "node/5356750423",
+      "coordinatesWgs84": [
+        21.112031,
+        42.638841
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University Clinic of the Republic of Kosovo",
+      "osm": "way/281597843",
+      "coordinatesWgs84": [
+        21.161503,
+        42.644004
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Park of Gërmia",
+      "osm": "node/7927911887",
+      "coordinatesWgs84": [
+        21.204837,
+        42.675087
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Prishtina Mall",
+      "osm": "way/812781071",
+      "coordinatesWgs84": [
+        21.136356,
+        42.564937
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Xhamia Karamanli",
+      "osm": "node/4458850093",
+      "coordinatesWgs84": [
+        20.967666,
+        42.820339
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Gjergj Kastrioti Skënderbeu Square",
+      "osm": "node/4591682869",
+      "coordinatesWgs84": [
+        21.163852,
+        42.663695
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ndërtesa Qeveritare (Ish-Rilindja)",
+      "osm": "way/124899242",
+      "coordinatesWgs84": [
+        21.155995,
+        42.659559
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rochester Insitute of Technology Kosovo (RIT)",
+      "osm": "node/2163812393",
+      "coordinatesWgs84": [
+        21.191793,
+        42.67012
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "bresalc-pllaci",
+      "osm": "node/4492345889",
+      "coordinatesWgs84": [
+        21.372983,
+        42.522246
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Guri i Plakës",
+      "osm": "node/4888253784",
+      "coordinatesWgs84": [
+        20.960173,
+        42.674081
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Nicholas Church",
+      "osm": "way/571273561",
+      "coordinatesWgs84": [
+        21.249068,
+        42.573906
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bear Sanctuary Prishtina",
+      "osm": "way/617002897",
+      "coordinatesWgs84": [
+        21.259178,
+        42.638479
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tomb of Sultan Murat",
+      "osm": "way/457642563",
+      "coordinatesWgs84": [
+        21.104694,
+        42.702026
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kisha e Prezentimit të Nënës Më të Shenjtë të Zotit",
+      "osm": "way/1444311509",
+      "coordinatesWgs84": [
+        21.120784,
+        42.525378
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University for Business and Technology",
+      "osm": "way/380982445",
+      "coordinatesWgs84": [
+        21.152919,
+        42.647405
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Instituti i Historisë",
+      "osm": "node/1309233007",
+      "coordinatesWgs84": [
+        21.163309,
+        42.655471
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parku i Qytetit",
+      "osm": "way/206457190",
+      "coordinatesWgs84": [
+        21.170281,
+        42.661828
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Restaurant Mileniumi i Ri",
+      "osm": "node/2583709127",
+      "coordinatesWgs84": [
+        21.338186,
+        42.816618
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "MELI Restaurant",
+      "osm": "node/13027856754",
+      "coordinatesWgs84": [
+        21.170781,
+        42.81731
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "marec",
+      "osm": "node/6205211786",
+      "coordinatesWgs84": [
+        21.352251,
+        42.653261
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lum i madh",
+      "osm": "node/5072893824",
+      "coordinatesWgs84": [
+        21.023611,
+        42.755277
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Te Bicollt",
+      "osm": "node/14039469490",
+      "coordinatesWgs84": [
+        21.101011,
+        42.783684
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1231,
+      "sha256": "a72ffd75472f8fa38df5362a1011619d6948507c020bd6c24f404804a76bf742"
+    },
+    "geometry.ts": {
+      "bytes": 74634,
+      "sha256": "4033e5b006f366c49ee9614d8eeccd09d2c33a54f1db1159a6228f2282664eef"
+    },
+    "places.ts": {
+      "bytes": 9721,
+      "sha256": "c449308434b7909b3b0467d50b50b270bc67f04b0df905772b1eee8e2046a8d5"
+    },
+    "terrain.ts": {
+      "bytes": 30264,
+      "sha256": "f2730c86e645b013c9161a55969b5789f0e04e2e5b05802bb768416459dc671d"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "8c40f17ba4f492228f032b156f1e56487a79fb66feac12c3878f8b0bdd1b94e2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "cityId": "pago-pago",
+  "countryIso2": "AS",
+  "generationIdentity": {
+    "cityId": "pago-pago",
+    "stateId": "as-pago-pago",
+    "stateName": "Pago Pago"
+  },
+  "inventorySha256": "d029cc7cbe1576694a1a1a2652c3c873655296c29487b431769422e38e70c797",
+  "inventoryPath": "world/playable-africa-rollout/sources/pago-pago.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "pago-pago-airport",
+    "name": "Pago Pago International Airport",
+    "lon": -170.710007,
+    "lat": -14.331,
+    "sourceUrl": "https://ourairports.com/airports/NSTU/"
+  },
+  "bounds": [
+    -14.456359489933979,
+    -170.89036648516475,
+    -14.09459771006602,
+    -170.51929311483525
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+      "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "46cd1c9f0ac20ef6bb36e815f7fceecc679ccfcf261269e8a4feec95266a4483",
+          "elements": 152
+        },
+        {
+          "file": "extras.json",
+          "sha256": "0fa48db60aa9b993a696e77a90dd060fe898bee96477c8938193a7805f2978a3",
+          "elements": 12
+        },
+        {
+          "file": "water.json",
+          "sha256": "b199270fc2f7eda9f1a58b8062dad7dad779489844ed4301bd932f2fdde6688a",
+          "elements": 86
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "99c7a7614983db9ac778c86397038b86dd99f9197a5ea7ed0229508a19ff3130",
+          "elements": 72
+        },
+        {
+          "file": "roads.json",
+          "sha256": "145566c0c3dd3c674855810f6d7fc4d4ecd13a49082c05a582b74f511133b0cf",
+          "elements": 70
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 15,
+    "roads": 17,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 4
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "worship",
+        "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "way/332359599"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "village": 18
+    }
+  },
+  "observed": {
+    "places": 152,
+    "extras": 12,
+    "water": 86,
+    "landuse": 72,
+    "roads": 70
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1287,
+      "sha256": "b6663ba4b2fb21b1066396b980597764f2e6502c6c8ba33119d1c7599a6e1b12"
+    },
+    "geometry.ts": {
+      "bytes": 199816,
+      "sha256": "4b2311b511f13fb7d4cf549a44b2751c1372325ef17f0d3727beb784313b8a66"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "37b691a42e159bb20bc74ad03ab1f7e5dfcdc1720c525d90acdfb6087b02f505"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/pago-pago.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

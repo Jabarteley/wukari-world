@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "st-peter-port",
+  "countryIso2": "GG",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Saint Peter Port",
+    "coordinatesWgs84": [
+      -2.5389979,
+      49.4568142
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/guernsey-jersey-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "st-peter-port-airport",
+    "name": "Guernsey Airport",
+    "lon": -2.60197,
+    "lat": 49.435001,
+    "sourceUrl": "https://ourairports.com/airports/EGJB/"
+  },
+  "boxes": {
+    "play": [
+      49.275933310066016,
+      -2.816417658416154,
+      49.63769508993398,
+      -2.261578141583846
+    ],
+    "core": [
+      49.4115939775165,
+      -2.6081603623108482,
+      49.50203442248349,
+      -2.469835437689152
+    ],
+    "outline": [
+      49.22593331006602,
+      -2.866417658416154,
+      49.687695089933975,
+      -2.2115781415838462
+    ],
+    "wide": [
+      48.675933310066014,
+      -3.416417658416154,
+      50.23769508993398,
+      -1.661578141583846
+    ],
+    "water": [
+      48.675933310066014,
+      -3.416417658416154,
+      50.23769508993398,
+      -1.661578141583846
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/guernsey-jersey-261011.osm.pbf",
+    "datasetSha256": "f3ecad9dd9c1a682327645282a5273f56124a22a70ea7bc29da65054d8f4d3a5",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "dd2e871ef5ac6c777e56a4cf4cdb70b196c7d2e6ce1672c1b24fcd7da743100e",
+        "elements": 317
+      },
+      {
+        "file": "extras.json",
+        "sha256": "cbacfc53f8044b98c1f6b080fc232f341a2f50c09dba656177fdd3febf4a520d",
+        "elements": 30
+      },
+      {
+        "file": "water.json",
+        "sha256": "5ec81c573f50d6694683c3a682299b5e41d6c8e6907ea85de276ff287ceb7326",
+        "elements": 510
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d19c7257fa5b798deb753e2146d9da36d1f35816f03af9f89cfd8228e007c989",
+        "elements": 391
+      },
+      {
+        "file": "roads.json",
+        "sha256": "447b52af8b9b60062842ee4c360f158c02c9c9cee68dfd74e4f1d00c39ef45d0",
+        "elements": 422
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "St Peter Port Harbour",
+      "osm": "node/12631433",
+      "coordinatesWgs84": [
+        -2.529033,
+        49.457351
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Portelet Kiosk",
+      "osm": "node/1313064020",
+      "coordinatesWgs84": [
+        -2.661413,
+        49.434515
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Priaulx Library",
+      "osm": "way/420020692",
+      "coordinatesWgs84": [
+        -2.541951,
+        49.459278
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Princess Elizabeth Hospital",
+      "osm": "way/97562929",
+      "coordinatesWgs84": [
+        -2.558889,
+        49.447723
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saumarez Park",
+      "osm": "way/270116887",
+      "coordinatesWgs84": [
+        -2.579851,
+        49.470313
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Market Square",
+      "osm": "way/570299339",
+      "coordinatesWgs84": [
+        -2.537375,
+        49.454531
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Tugual's Chapel",
+      "osm": "way/197343099",
+      "coordinatesWgs84": [
+        -2.449071,
+        49.471629
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Castel Douzaine Room",
+      "osm": "way/525722008",
+      "coordinatesWgs84": [
+        -2.586634,
+        49.46406
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Chief Pleas & Seneschal's Court",
+      "osm": "way/232235142",
+      "coordinatesWgs84": [
+        -2.35853,
+        49.43409
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "College of Further Education",
+      "osm": "way/573718984",
+      "coordinatesWgs84": [
+        -2.558065,
+        49.465877
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Footes Lane Sports Stadium",
+      "osm": "way/115109408",
+      "coordinatesWgs84": [
+        -2.56296,
+        49.464674
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bréhon Tower",
+      "osm": "way/522604715",
+      "coordinatesWgs84": [
+        -2.488114,
+        49.471269
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Trépied Dolmen",
+      "osm": "way/440654796",
+      "coordinatesWgs84": [
+        -2.642654,
+        49.460237
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Doyle monument",
+      "osm": "node/277523228",
+      "coordinatesWgs84": [
+        -2.534165,
+        49.426994
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St Philippe, Torteval",
+      "osm": "way/243103087",
+      "coordinatesWgs84": [
+        -2.643081,
+        49.430002
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Notre Dame du Rosaire",
+      "osm": "way/913686540",
+      "coordinatesWgs84": [
+        -2.540547,
+        49.453343
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Delancey Park",
+      "osm": "way/80438718",
+      "coordinatesWgs84": [
+        -2.526014,
+        49.478334
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cambridge Park",
+      "osm": "way/552204319",
+      "coordinatesWgs84": [
+        -2.540853,
+        49.460677
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Le Gouffre Cafe & Restaurant",
+      "osm": "node/1552743655",
+      "coordinatesWgs84": [
+        -2.59589,
+        49.421605
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rousse Kiosk",
+      "osm": "node/2512811018",
+      "coordinatesWgs84": [
+        -2.553077,
+        49.497586
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Viewing Gallery",
+      "osm": "node/6669704986",
+      "coordinatesWgs84": [
+        -2.53226,
+        49.503124
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Moulin Huet bay through the trees, Pierre-Auguste Renoir 1883",
+      "osm": "node/6699211785",
+      "coordinatesWgs84": [
+        -2.551269,
+        49.42759
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Renal Unit",
+      "osm": "node/6504570133",
+      "coordinatesWgs84": [
+        -2.558172,
+        49.448617
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Emergency Department",
+      "osm": "node/13544152092",
+      "coordinatesWgs84": [
+        -2.5588,
+        49.447345
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1250,
+      "sha256": "36ab11359803012a8ebfc8936d5cb68eb6a28415bf5aeddb828b280d52df3969"
+    },
+    "geometry.ts": {
+      "bytes": 111443,
+      "sha256": "07dc44e5a7ebf67c428769e863ec68a5b59431991c77780de1e6442caca4975a"
+    },
+    "places.ts": {
+      "bytes": 9532,
+      "sha256": "e5f8ee0bdd401f374c799f1dede76f01ba90acf3275e088cd0f77dc601ddfb1a"
+    },
+    "terrain.ts": {
+      "bytes": 248817,
+      "sha256": "84c9f9befd5f4443e8b1ee1ae5cd0e3bd0ef50eb0779edf4ce58b343f70b8162"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "a938e577552b7911d5ed3f2b7d3a4fffd166cfe8a794491be0e0fe6749632571"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,342 @@
+{
+  "schemaVersion": 1,
+  "cityId": "torshavn",
+  "countryIso2": "FO",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Tórshavn",
+    "coordinatesWgs84": [
+      -6.7715709,
+      62.0101396
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/europe/faroe-islands-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "torshavn-airport",
+    "name": "Vágar Airport",
+    "lon": -7.275782,
+    "lat": 62.063256,
+    "sourceUrl": "https://ourairports.com/airports/EKVG/"
+  },
+  "boxes": {
+    "play": [
+      61.82925871006602,
+      -7.294962051435183,
+      62.19102048993398,
+      -6.386463709992522
+    ],
+    "core": [
+      61.96491937751651,
+      -6.867417702107388,
+      62.055359822483496,
+      -6.675724097892613
+    ],
+    "outline": [
+      61.779258710066024,
+      -7.344962051435183,
+      62.24102048993398,
+      -6.336463709992522
+    ],
+    "wide": [
+      61.22925871006602,
+      -7.894962051435183,
+      62.791020489933985,
+      -5.786463709992522
+    ],
+    "water": [
+      61.22925871006602,
+      -7.894962051435183,
+      62.791020489933985,
+      -5.786463709992522
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/europe/faroe-islands-261011.osm.pbf",
+    "datasetSha256": "dfdbff22052289d67d7d9c1fa6aa5771536a6d22a414e2cb3de89213a8fa2513",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "bdc52c3abcafd19df180b4fc40dfc38973aa966ea5cc6a004690e986a6516806",
+        "elements": 613
+      },
+      {
+        "file": "extras.json",
+        "sha256": "a0f4fdc97267716e2d703941fdd04dc8e936125c593b211bb24ef5ab1199642f",
+        "elements": 40
+      },
+      {
+        "file": "water.json",
+        "sha256": "de58833f52b15bca170c39baf126830ee6ccfc18e4cae6f9abbd061ba4e18827",
+        "elements": 1550
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "ed75d68bbb7fca980b2ba5c530216ad1135952d56ef24ace3bf8f601f8040da7",
+        "elements": 1111
+      },
+      {
+        "file": "roads.json",
+        "sha256": "97ec2ce3e6009a7317f394a98f7c3c363a36821326618fec0dbf51ed7b226a84",
+        "elements": 502
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "M/F Teistin",
+      "osm": "node/4860307819",
+      "coordinatesWgs84": [
+        -6.878188,
+        61.903232
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Essabarr",
+      "osm": "node/326207871",
+      "coordinatesWgs84": [
+        -6.76946,
+        62.009418
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Landsbókasavnið",
+      "osm": "way/30704456",
+      "coordinatesWgs84": [
+        -6.778288,
+        62.006896
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Hospital of the Faroe Islands",
+      "osm": "way/696349363",
+      "coordinatesWgs84": [
+        -6.776533,
+        62.002722
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Viðarlundin",
+      "osm": "way/501834759",
+      "coordinatesWgs84": [
+        -6.780495,
+        62.016047
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "SMS",
+      "osm": "way/32351707",
+      "coordinatesWgs84": [
+        -6.77427,
+        62.014354
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kvívíkar kirkja",
+      "osm": "way/511472500",
+      "coordinatesWgs84": [
+        -7.07453,
+        62.117492
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kommunuskrivstovan",
+      "osm": "node/444643264",
+      "coordinatesWgs84": [
+        -6.722581,
+        62.111526
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Department of Social Services",
+      "osm": "node/5156619646",
+      "coordinatesWgs84": [
+        -6.767548,
+        62.021677
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Glasir",
+      "osm": "way/997129492",
+      "coordinatesWgs84": [
+        -6.799035,
+        62.005959
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Argir Stadium",
+      "osm": "way/648765786",
+      "coordinatesWgs84": [
+        -6.802623,
+        61.995081
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Magnus Cathedral",
+      "osm": "way/493139327",
+      "coordinatesWgs84": [
+        -6.792128,
+        61.951855
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Miðvágs kirkja",
+      "osm": "way/43917412",
+      "coordinatesWgs84": [
+        -7.194377,
+        62.048164
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vestmanna kirkja",
+      "osm": "way/44945414",
+      "coordinatesWgs84": [
+        -7.172415,
+        62.153665
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Faroese National Heritage",
+      "osm": "way/44619145",
+      "coordinatesWgs84": [
+        -6.764934,
+        62.032018
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nordic House in the Faroe Islands",
+      "osm": "way/43493030",
+      "coordinatesWgs84": [
+        -6.784635,
+        62.022076
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Aaron's Cafe og Grill",
+      "osm": "node/444659920",
+      "coordinatesWgs84": [
+        -6.938295,
+        62.101577
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "HOTEL VÁGAR RESTAURANT",
+      "osm": "node/604992048",
+      "coordinatesWgs84": [
+        -7.285708,
+        62.068703
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Syðrugota",
+      "osm": "node/683373731",
+      "coordinatesWgs84": [
+        -6.760541,
+        62.179164
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Trøllkonufingur",
+      "osm": "node/4918755823",
+      "coordinatesWgs84": [
+        -7.125687,
+        62.04475
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Torgið",
+      "osm": "way/48075009",
+      "coordinatesWgs84": [
+        -7.166762,
+        62.153916
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Náttúruvísindadeildin, Fróðskaparsetur Føroya",
+      "osm": "node/5844823036",
+      "coordinatesWgs84": [
+        -6.772673,
+        62.005884
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Føroya Fólkaháskúli",
+      "osm": "node/13743098696",
+      "coordinatesWgs84": [
+        -6.779583,
+        62.004698
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1220,
+      "sha256": "b2874018049be43046e1203a922973b53e3073ed301feb924e403e593173e317"
+    },
+    "geometry.ts": {
+      "bytes": 1167780,
+      "sha256": "d11e7fcef32e3a504b4798fee32088ad40887a52eb7d4b9ebe558f34e715cfd3"
+    },
+    "places.ts": {
+      "bytes": 9026,
+      "sha256": "bbdc5ff381118d8327a83c785f4f9ada6b14be529fb20d4e74d4f36ef2d23aa7"
+    },
+    "terrain.ts": {
+      "bytes": 703571,
+      "sha256": "e4e27f2419d3267a111f3870026e0beac308f6ed4d1bca75330f1d7ba72c516f"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "b64f09ac6ea2bba6efdbd3a3044491951c1377a44de97a1dc98e78a311424a56"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "cityId": "george-town",
+  "countryIso2": "KY",
+  "generationIdentity": {
+    "cityId": "george-town",
+    "stateId": "ky-george-town",
+    "stateName": "George Town"
+  },
+  "inventorySha256": "53138645bb9cf50219e82a2307c20dfc8bf0c38789dd931358bbff61c17899d9",
+  "inventoryPath": "world/playable-africa-rollout/sources/george-town.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "george-town-airport",
+    "name": "Owen Roberts International Airport",
+    "lon": -81.357697,
+    "lat": 19.292801,
+    "sourceUrl": "https://ourairports.com/airports/MWCR/"
+  },
+  "bounds": [
+    19.114474010066022,
+    -81.57134407520206,
+    19.476235789933977,
+    -81.19021112479794
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "b810ac81b4eabd8a23b63f7ba590150c6c7fb6db48c9cd0c64f0ccd90db90a9b",
+          "elements": 204
+        },
+        {
+          "file": "extras.json",
+          "sha256": "f9195d8496a6738e18425224157cd5d441578eaff268014e9757362a0398e051",
+          "elements": 32
+        },
+        {
+          "file": "water.json",
+          "sha256": "61965d0e9f0cee0ef479450a15c1d40d2838e3c0e84f898a9c3451ff32d08ed5",
+          "elements": 93
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "6fda7633bfc46ee6b5c21d8176c5ecc6fdbaac3449218b3fe732378162f58a87",
+          "elements": 146
+        },
+        {
+          "file": "roads.json",
+          "sha256": "335b69e56ec278a85c6d4564d6c98399f172615b676e375182ac98485a23f70c",
+          "elements": 300
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 20,
+    "roads": 32,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 11,
+    "reachWaterPolygons": 11
+  },
+  "autoRetries": [
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "node/8817882426",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "node/8817882426",
+            "name": "USS Kittiwake Shipwreck",
+            "lon": -81.4013551,
+            "lat": 19.3620753
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 12621,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 204,
+    "extras": 32,
+    "water": 93,
+    "landuse": 146,
+    "roads": 300
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1272,
+      "sha256": "8719bc460e8ab25b5646b55e60833496f15606dea3397b2e5c11cba8aaa0355f"
+    },
+    "geometry.ts": {
+      "bytes": 593297,
+      "sha256": "1d907eee955e626f82fa3fc7818fe240b20df70f7d3b076ea3868f4b488148ab"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "7c592fdb168ca78d802ed97c4ccb75336071c9d26543d6c9250d596481852b2b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/george-town.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

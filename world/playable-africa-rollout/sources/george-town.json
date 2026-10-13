@@ -1,0 +1,315 @@
+{
+  "schemaVersion": 1,
+  "cityId": "george-town",
+  "countryIso2": "KY",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "George Town",
+    "coordinatesWgs84": [
+      -81.3807776,
+      19.2953549
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "george-town-airport",
+    "name": "Owen Roberts International Airport",
+    "lon": -81.357697,
+    "lat": 19.292801,
+    "sourceUrl": "https://ourairports.com/airports/MWCR/"
+  },
+  "boxes": {
+    "play": [
+      19.114474010066022,
+      -81.57134407520206,
+      19.476235789933977,
+      -81.19021112479794
+    ],
+    "core": [
+      19.250134677516506,
+      -81.4283794928012,
+      19.340575122483493,
+      -81.3331757071988
+    ],
+    "outline": [
+      19.06447401006602,
+      -81.62134407520206,
+      19.526235789933978,
+      -81.14021112479794
+    ],
+    "wide": [
+      18.51447401006602,
+      -82.17134407520206,
+      20.07623578993398,
+      -80.59021112479795
+    ],
+    "water": [
+      18.51447401006602,
+      -82.17134407520206,
+      20.07623578993398,
+      -80.59021112479795
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "b810ac81b4eabd8a23b63f7ba590150c6c7fb6db48c9cd0c64f0ccd90db90a9b",
+        "elements": 204
+      },
+      {
+        "file": "extras.json",
+        "sha256": "f9195d8496a6738e18425224157cd5d441578eaff268014e9757362a0398e051",
+        "elements": 32
+      },
+      {
+        "file": "water.json",
+        "sha256": "61965d0e9f0cee0ef479450a15c1d40d2838e3c0e84f898a9c3451ff32d08ed5",
+        "elements": 93
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "6fda7633bfc46ee6b5c21d8176c5ecc6fdbaac3449218b3fe732378162f58a87",
+        "elements": 146
+      },
+      {
+        "file": "roads.json",
+        "sha256": "335b69e56ec278a85c6d4564d6c98399f172615b676e375182ac98485a23f70c",
+        "elements": 300
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Royal Watler Cruise Terminal",
+      "osm": "node/1129818287",
+      "coordinatesWgs84": [
+        -81.384151,
+        19.295343
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rum Point",
+      "osm": "node/697199526",
+      "coordinatesWgs84": [
+        -81.270785,
+        19.370876
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Teacher Reedly Powery Memorial Library",
+      "osm": "way/369192329",
+      "coordinatesWgs84": [
+        -81.403973,
+        19.379145
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Health Services Authority",
+      "osm": "node/566218708",
+      "coordinatesWgs84": [
+        -81.380784,
+        19.289627
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Malportas Bird Sanctuary",
+      "osm": "way/1134311986",
+      "coordinatesWgs84": [
+        -81.208497,
+        19.347221
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Farmer's Market",
+      "osm": "node/5312819266",
+      "coordinatesWgs84": [
+        -81.377882,
+        19.321933
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Ignatius Catholic Church",
+      "osm": "way/370952623",
+      "coordinatesWgs84": [
+        -81.386533,
+        19.276583
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Heliconia Court",
+      "osm": "node/5312685993",
+      "coordinatesWgs84": [
+        -81.378424,
+        19.320674
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Department of Vehicle and Driver's Licensing",
+      "osm": "way/81123667",
+      "coordinatesWgs84": [
+        -81.348953,
+        19.282124
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "starfish point",
+      "osm": "node/6340499785",
+      "coordinatesWgs84": [
+        -81.283376,
+        19.356323
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "National Museum",
+      "osm": "node/778613443",
+      "coordinatesWgs84": [
+        -81.382746,
+        19.294081
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cayman Motor Museum",
+      "osm": "way/369024905",
+      "coordinatesWgs84": [
+        -81.415263,
+        19.382393
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cayman Turtle Centre",
+      "osm": "way/62225884",
+      "coordinatesWgs84": [
+        -81.415584,
+        19.380054
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pankin's Jerk Centre",
+      "osm": "way/374313515",
+      "coordinatesWgs84": [
+        -81.262222,
+        19.274217
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The Lighthouse",
+      "osm": "way/372662553",
+      "coordinatesWgs84": [
+        -81.198731,
+        19.294557
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Public Beach",
+      "osm": "way/615434121",
+      "coordinatesWgs84": [
+        -81.382894,
+        19.348712
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Airport Park",
+      "osm": "node/5322136279",
+      "coordinatesWgs84": [
+        -81.365348,
+        19.292998
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "The Market at the Cricket Grounds",
+      "osm": "way/62088563",
+      "coordinatesWgs84": [
+        -81.37327,
+        19.289978
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hell",
+      "osm": "node/1550931122",
+      "coordinatesWgs84": [
+        -81.406531,
+        19.378686
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Dolphin Mall",
+      "osm": "way/217613994",
+      "coordinatesWgs84": [
+        -81.384098,
+        19.293245
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1272,
+      "sha256": "8719bc460e8ab25b5646b55e60833496f15606dea3397b2e5c11cba8aaa0355f"
+    },
+    "geometry.ts": {
+      "bytes": 593297,
+      "sha256": "1d907eee955e626f82fa3fc7818fe240b20df70f7d3b076ea3868f4b488148ab"
+    },
+    "places.ts": {
+      "bytes": 7964,
+      "sha256": "f95aa4fd47bc4f8c4dcb92b0fb18b98630cf6ba00be3158c073c595c2154f104"
+    },
+    "terrain.ts": {
+      "bytes": 289042,
+      "sha256": "5ee7b12907c61877c1a39934a1324f8692a0a5c718cfb60f71bc80222b5606ac"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "7c592fdb168ca78d802ed97c4ccb75336071c9d26543d6c9250d596481852b2b"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

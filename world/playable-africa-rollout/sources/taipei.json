@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "taipei",
+  "countryIso2": "TW",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Taipei",
+    "coordinatesWgs84": [
+      121.5636796,
+      25.0375198
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/taiwan-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "taipei-airport",
+    "name": "Taipei Songshan International Airport",
+    "lon": 121.552822,
+    "lat": 25.067244,
+    "sourceUrl": "https://ourairports.com/airports/RCSS/"
+  },
+  "boxes": {
+    "play": [
+      24.85663891006602,
+      121.36508982644351,
+      25.218400689933976,
+      121.76226937355649
+    ],
+    "core": [
+      24.992299577516505,
+      121.51408731769861,
+      25.08274002248349,
+      121.61327188230139
+    ],
+    "outline": [
+      24.80663891006602,
+      121.31508982644351,
+      25.268400689933976,
+      121.81226937355649
+    ],
+    "wide": [
+      24.25663891006602,
+      120.76508982644351,
+      25.818400689933977,
+      122.36226937355649
+    ],
+    "water": [
+      24.25663891006602,
+      120.76508982644351,
+      25.818400689933977,
+      122.36226937355649
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/taiwan-261011.osm.pbf",
+    "datasetSha256": "8d7b21385c34f4d0af57610ac0fa53799d77f245b5e670ebc9a9b2f5f63acf54",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "4bcdc11178c1ba7e434c63e434eede7b7e4a8cbc717dc4e935bf70b26959c60f",
+        "elements": 22735
+      },
+      {
+        "file": "extras.json",
+        "sha256": "4105344cb8754445e63eace0f47dee470a38206594065430858300cb1062b111",
+        "elements": 3685
+      },
+      {
+        "file": "water.json",
+        "sha256": "1425f52be5ec1f951106de63e9f8359e82d0d8f185592dcfd12beb34bf29a7cb",
+        "elements": 1421
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "8a4a427d393c42bef0bae0359ac7c585863338d3d7c353fc868dfa2736bd49e1",
+        "elements": 9092
+      },
+      {
+        "file": "roads.json",
+        "sha256": "66ae0fe4bb62eff856dafd08f7091e934ec9f3cc73e8af5cfaf31ed5abc2355b",
+        "elements": 4813
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Taipower Building",
+      "osm": "node/253559357",
+      "coordinatesWgs84": [
+        121.528208,
+        25.020669
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "藍白小鎮",
+      "osm": "way/295946611",
+      "coordinatesWgs84": [
+        121.450547,
+        25.176709
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ming Chi University of Technology",
+      "osm": "relation/5456014",
+      "coordinatesWgs84": [
+        121.420399,
+        25.041484
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "衛生福利部基隆醫院",
+      "osm": "way/367812162",
+      "coordinatesWgs84": [
+        121.748442,
+        25.130558
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Floriculture Experiment Center",
+      "osm": "relation/8410958",
+      "coordinatesWgs84": [
+        121.544274,
+        25.135107
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mitsui Shopping Park LaLaport 南港",
+      "osm": "way/1009409905",
+      "coordinatesWgs84": [
+        121.617951,
+        25.059349
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "保坪宮",
+      "osm": "way/242726461",
+      "coordinatesWgs84": [
+        121.711457,
+        24.936977
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "New Taipei City Hall",
+      "osm": "relation/4202253",
+      "coordinatesWgs84": [
+        121.465428,
+        25.012521
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Central Engraving and Printing Plant",
+      "osm": "relation/6296197",
+      "coordinatesWgs84": [
+        121.486817,
+        24.949285
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "台北海洋科技大學士林校區",
+      "osm": "way/261330789",
+      "coordinatesWgs84": [
+        121.471018,
+        25.108646
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "三板橋",
+      "osm": "way/773559279",
+      "coordinatesWgs84": [
+        121.517886,
+        25.20716
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen's Head",
+      "osm": "node/4199791991",
+      "coordinatesWgs84": [
+        121.693133,
+        25.208781
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hsing Xiu Kong",
+      "osm": "way/263590699",
+      "coordinatesWgs84": [
+        121.401311,
+        24.905168
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "天恩宮",
+      "osm": "way/1329940449",
+      "coordinatesWgs84": [
+        121.592324,
+        24.970364
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yingfeng Riverside Park",
+      "osm": "way/385941045",
+      "coordinatesWgs84": [
+        121.557967,
+        25.073316
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "National Archives",
+      "osm": "way/456206409",
+      "coordinatesWgs84": [
+        121.374114,
+        25.073448
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "土地公山遺址",
+      "osm": "node/12077731973",
+      "coordinatesWgs84": [
+        121.434113,
+        24.969612
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "國順公園",
+      "osm": "way/619916134",
+      "coordinatesWgs84": [
+        121.510079,
+        25.066111
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Huafan University",
+      "osm": "way/287104550",
+      "coordinatesWgs84": [
+        121.69137,
+        24.980749
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Taipei City Psychiatric Center (TCPC)",
+      "osm": "way/396909006",
+      "coordinatesWgs84": [
+        121.57439,
+        25.029496
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yes!Life Yulon City",
+      "osm": "way/1197004281",
+      "coordinatesWgs84": [
+        121.546796,
+        24.978123
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fu Hsing Kang College, National Defense University",
+      "osm": "relation/4612518",
+      "coordinatesWgs84": [
+        121.494098,
+        25.141015
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "芝山岩",
+      "osm": "node/2003037499",
+      "coordinatesWgs84": [
+        121.53019,
+        25.103269
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Shuang Ho Hospital, MOHW",
+      "osm": "way/354534871",
+      "coordinatesWgs84": [
+        121.493521,
+        24.992568
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1218,
+      "sha256": "e8729d6f644578217b07b2836a11bbb89fa907ee8c01cd04852d2f51be15700b"
+    },
+    "geometry.ts": {
+      "bytes": 252460,
+      "sha256": "9e253bde5f4977eed210612251a4eaf9b1a7cda7e2a04945dc70f443b28e7943"
+    },
+    "places.ts": {
+      "bytes": 9981,
+      "sha256": "ad0c2d531bf5d6ab268cf18817de56f47a452ad841793449fcfaf1ec1f7cfc81"
+    },
+    "terrain.ts": {
+      "bytes": 544047,
+      "sha256": "48fbe1e4f4e82cac928d8169fd32ed78cf99b08343473696eae9a65e3d3354b4"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "ecd34b082bd450f486b65795bc82c65b791e72ae14a3851a08a6aa508d1fe5ae"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

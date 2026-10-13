@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "cityId": "cockburn-town",
+  "countryIso2": "TC",
+  "generationIdentity": {
+    "cityId": "cockburn-town",
+    "stateId": "tc",
+    "stateName": "Cockburn Town"
+  },
+  "inventorySha256": "bbd70ca4f81ea23257776c9ec115c85e7a95eb33dea5b0c903eb4b2573f2e0e8",
+  "inventoryPath": "world/playable-africa-rollout/sources/cockburn-town.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "cockburn-town-airport",
+    "name": "JAGS McCartney International Airport",
+    "lon": -71.142303,
+    "lat": 21.4445,
+    "sourceUrl": "https://ourairports.com/airports/MBGT/"
+  },
+  "bounds": [
+    21.27989141006602,
+    -71.33328292548742,
+    21.641653189933976,
+    -70.94670827451259
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "f5ca4d5a0d5d882ced6b9e7b970f40b2eb9ff2f2e568f9282303e01ca8739855",
+          "elements": 29
+        },
+        {
+          "file": "extras.json",
+          "sha256": "95b59357748f9ea02c5982e5bcf0c71c5dc12f6ce757410cccfc79a65829a66a",
+          "elements": 13
+        },
+        {
+          "file": "water.json",
+          "sha256": "7ac6285799fb665d7198bd56e00cbaa7042e91d927cff0b6601ce3dadc366df7",
+          "elements": 148
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "3bd00d9d7db6465ab5f744fdaee2b3f811ec6d04b9b3786dcef3142998c8f1cb",
+          "elements": 15
+        },
+        {
+          "file": "roads.json",
+          "sha256": "ef6c1cf62cc4df027a4343527c0e286891e95e965c79e48edd79bd7f359d129f",
+          "elements": 17
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 13,
+    "roads": 4,
+    "neighbourhoodLabels": 6,
+    "landPolygons": 5,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 2
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "worship",
+        "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "office=government",
+        "ref": "node/4120352294"
+      }
+    ],
+    "districtLabelAreas": [
+      {
+        "ref": "relation/7162587",
+        "place": "island",
+        "name": "Grand Turk"
+      },
+      {
+        "ref": "way/150155035",
+        "place": "islet",
+        "name": "Gibbs Cay"
+      },
+      {
+        "ref": "way/23088050",
+        "place": "island",
+        "name": "Cotton Cay"
+      },
+      {
+        "ref": "way/23599947",
+        "place": "island",
+        "name": "Salt Cay"
+      },
+      {
+        "ref": "way/1022280975",
+        "place": "islet",
+        "name": "Toney Rock"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "island": 3,
+      "islet": 2,
+      "village": 1
+    }
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "tc-cockburn-town",
+          "to": "tc"
+        }
+      },
+      "before": {
+        "catalogueBytes": 161,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 147,
+        "limit": 150,
+        "passed": true
+      }
+    }
+  ],
+  "observed": {
+    "places": 29,
+    "extras": 13,
+    "water": 148,
+    "landuse": 15,
+    "roads": 17
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1278,
+      "sha256": "0778e9e6ecb27361db1f69b504b39fabfea0ee00f740b6e3a5d928c7daab341c"
+    },
+    "geometry.ts": {
+      "bytes": 40757,
+      "sha256": "7dcbfc6c08b63c3b0c48468a6b7acc2c4505f32a075d75e975c54adc14c9f485"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "1d2f61c826417214046d5c57b86524d5db7c9a47b171287b9114618434935760"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/cockburn-town.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

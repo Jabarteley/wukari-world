@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "willemstad",
+  "countryIso2": "CW",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Willemstad",
+    "coordinatesWgs84": [
+      -68.9351307,
+      12.1066695
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "willemstad-airport",
+    "name": "Hato International Airport",
+    "lon": -68.959801,
+    "lat": 12.1889,
+    "sourceUrl": "https://ourairports.com/airports/TNCC/"
+  },
+  "boxes": {
+    "play": [
+      11.925788610066022,
+      -69.11900516055373,
+      12.28755038993398,
+      -68.75125623944628
+    ],
+    "core": [
+      12.061449277516505,
+      -68.98107574968557,
+      12.151889722483496,
+      -68.88918565031443
+    ],
+    "outline": [
+      11.87578861006602,
+      -69.16900516055372,
+      12.33755038993398,
+      -68.70125623944628
+    ],
+    "wide": [
+      11.325788610066022,
+      -69.71900516055372,
+      12.88755038993398,
+      -68.15125623944628
+    ],
+    "water": [
+      11.325788610066022,
+      -69.71900516055372,
+      12.88755038993398,
+      -68.15125623944628
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "4926c95689624105acbd039e239d251bd7e619ea5aa1a2ab90c17bdecf9db54f",
+        "elements": 1203
+      },
+      {
+        "file": "extras.json",
+        "sha256": "86646e116d45c1784c01e09e3e139a53aae213c5d7f9da01eb89b1ad2c28d48b",
+        "elements": 65
+      },
+      {
+        "file": "water.json",
+        "sha256": "43cd02018d5015a693e9dd0095d35e071de104560880924637df06613ad81b7f",
+        "elements": 275
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "5791ee3643d52410075b31f4cd67534bbc461cc148e687dde63bdba2b1a8f4c7",
+        "elements": 371
+      },
+      {
+        "file": "roads.json",
+        "sha256": "b1bfc87a98993e151d65646d2f87740cc81a4ef192c42a420eeab349466a17ca",
+        "elements": 734
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Punda Ferry Dock",
+      "osm": "node/295125540",
+      "coordinatesWgs84": [
+        -68.934042,
+        12.106401
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Porto Marie Beach",
+      "osm": "node/335611671",
+      "coordinatesWgs84": [
+        -69.085519,
+        12.218532
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Biblioteka Nashonal Kòrsou",
+      "osm": "node/12960093074",
+      "coordinatesWgs84": [
+        -68.914271,
+        12.108453
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Curaçao Medical Center",
+      "osm": "way/387975180",
+      "coordinatesWgs84": [
+        -68.941848,
+        12.110175
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rif Mangrove Park",
+      "osm": "way/237592022",
+      "coordinatesWgs84": [
+        -68.943861,
+        12.107784
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "LXRY Mall",
+      "osm": "way/1552105131",
+      "coordinatesWgs84": [
+        -68.861006,
+        12.092618
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Katedral di Pietermaai",
+      "osm": "way/371810812",
+      "coordinatesWgs84": [
+        -68.924651,
+        12.103109
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bentana di informashon",
+      "osm": "way/372920585",
+      "coordinatesWgs84": [
+        -68.911527,
+        12.106383
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parliament of Curaçao",
+      "osm": "way/250834080",
+      "coordinatesWgs84": [
+        -68.933647,
+        12.104736
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Curacao Dr. Moises Da Costa Gomez",
+      "osm": "way/687410566",
+      "coordinatesWgs84": [
+        -68.961383,
+        12.157299
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stadion Ergilio Hato",
+      "osm": "way/696020924",
+      "coordinatesWgs84": [
+        -68.887651,
+        12.152792
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hato Caves",
+      "osm": "node/621938358",
+      "coordinatesWgs84": [
+        -68.948323,
+        12.179784
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Landhuis Daniël",
+      "osm": "way/946150393",
+      "coordinatesWgs84": [
+        -69.019575,
+        12.210868
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museum Landhuis Ascencion",
+      "osm": "node/8754288674",
+      "coordinatesWgs84": [
+        -69.061727,
+        12.273017
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sint Anna Basiliek",
+      "osm": "way/370349178",
+      "coordinatesWgs84": [
+        -68.936594,
+        12.108265
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mikvé Israel-Emanuel",
+      "osm": "way/312133712",
+      "coordinatesWgs84": [
+        -68.932717,
+        12.105095
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pearl of the Caribbean",
+      "osm": "way/301593974",
+      "coordinatesWgs84": [
+        -68.831852,
+        12.138314
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fuikbaai",
+      "osm": "node/614709247",
+      "coordinatesWgs84": [
+        -68.833709,
+        12.053698
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Kokomo Beach",
+      "osm": "node/1680059162",
+      "coordinatesWgs84": [
+        -69.004475,
+        12.160589
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Overkempe Estate",
+      "osm": "node/4148045689",
+      "coordinatesWgs84": [
+        -68.817374,
+        12.092165
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fromer I.P.O Police Academy",
+      "osm": "way/375316022",
+      "coordinatesWgs84": [
+        -68.926001,
+        12.145564
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Flamingo observation tower",
+      "osm": "node/295322115",
+      "coordinatesWgs84": [
+        -69.052987,
+        12.212986
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "St. Martinus University (Faculty of Medicine)",
+      "osm": "way/1380095524",
+      "coordinatesWgs84": [
+        -68.885246,
+        12.124753
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Villapark Wind Gate",
+      "osm": "node/3125134023",
+      "coordinatesWgs84": [
+        -68.856237,
+        12.124462
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1242,
+      "sha256": "4374b90a5991e3d8340c19f73b3553cb5c976ff99ed39e448d6b9000508df656"
+    },
+    "geometry.ts": {
+      "bytes": 175397,
+      "sha256": "502052aaf9d1a74089a63bc87e5da86f25ce63af0f84290de6b063d363955149"
+    },
+    "places.ts": {
+      "bytes": 9615,
+      "sha256": "d014c64d8b16ce0c54799505e50e0a0b7158931476ff644004b920789d14090b"
+    },
+    "terrain.ts": {
+      "bytes": 716698,
+      "sha256": "ce94f6098916ddc63af1adfd85fb8f27e681b1c977d567f6363c754c444e88c9"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "824a8390a0ca37a387459e6ea759fc7ca7218cb2898882526aa1f4881c5ecb95"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

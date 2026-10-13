@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "cityId": "laayoune",
+  "countryIso2": "EH",
+  "generationIdentity": {
+    "cityId": "laayoune",
+    "stateId": "eh-laayoune",
+    "stateName": "Laayoune"
+  },
+  "inventorySha256": "08607e94c6a48159943b8483c6b84643c5dce46157505741e73ef4d67841e1fe",
+  "inventoryPath": "world/playable-africa-rollout/sources/laayoune.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "laayoune-airport",
+    "name": "Laayoune Hassan I International Airport",
+    "lon": -13.224947,
+    "lat": 27.142467,
+    "sourceUrl": "https://ourairports.com/airports/GMML/"
+  },
+  "bounds": [
+    26.973631110066023,
+    -13.39763842466019,
+    27.335392889933978,
+    -12.993145775339809
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/morocco-261011.osm.pbf",
+      "datasetSha256": "d3db4380c2afee9644bb80daebdb16b044413f663dd45376c539c3a7ee180d33",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "8d1373b5657013bbe30ce4b33f9afbde91f9ba9727c26a81279f9773a86fdad0",
+          "elements": 38
+        },
+        {
+          "file": "extras.json",
+          "sha256": "e55cbdb6094946c1a51fcd17d2ff58d5fb7c3e2419f0e376b5a0a773a8b54097",
+          "elements": 14
+        },
+        {
+          "file": "water.json",
+          "sha256": "9b1751c1b47097ccdb273f18020e34b8508402fca2da0fbc083d592947d82a1f",
+          "elements": 30
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "943a968bc0b6644f254948fd03439e4b823aed9bb6da6a34452e48e9fd5f337b",
+          "elements": 462
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f7a2c26588ede5ab6d122512dad1af6aeb24492b7be60e2f3c7f53a802c4ed80",
+          "elements": 144
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 34,
+    "neighbourhoodLabels": 5,
+    "landPolygons": 9,
+    "waterPolygons": 3,
+    "reachWaterPolygons": 5
+  },
+  "selection": {
+    "districtLabelPlaceTags": {
+      "neighbourhood": 3,
+      "suburb": 1,
+      "village": 1
+    }
+  },
+  "observed": {
+    "places": 38,
+    "extras": 14,
+    "water": 30,
+    "landuse": 462,
+    "roads": 144
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1243,
+      "sha256": "d2058b5ed0f68dc5c7dd1143d52b6d3a36c00e7af06b5e15c581a3c44aab75dd"
+    },
+    "geometry.ts": {
+      "bytes": 18375,
+      "sha256": "803d854ff4e45b36296428c97702d5676ab8c83151cb3647e98d655a0b5cc554"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "588e3d145fb1940d9db71144da76ea4fe299f678be874701e48733d08388c3ec"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/laayoune.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

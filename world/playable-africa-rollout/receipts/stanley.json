@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "cityId": "stanley",
+  "countryIso2": "FK",
+  "generationIdentity": {
+    "cityId": "stanley",
+    "stateId": "fk-stanley",
+    "stateName": "Stanley"
+  },
+  "inventorySha256": "df90eea5da727eb502bd6fa8f4091f38ca3825c9c49959e89ea172889d94605d",
+  "inventoryPath": "world/playable-africa-rollout/sources/stanley.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "stanley-airport",
+    "name": "Port Stanley Airport",
+    "lon": -57.777599,
+    "lat": -51.685699,
+    "sourceUrl": "https://ourairports.com/airports/SFAL/"
+  },
+  "bounds": [
+    -51.87394248993398,
+    -58.147526081988616,
+    -51.51218071006602,
+    -57.56552391801138
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/europe/united-kingdom/falklands-261011.osm.pbf",
+      "datasetSha256": "a36c26b86909f341531e6cf814d257962126414292a014999eaad128750e5a83",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "5f20332c1ebddaf3f35f2360290bba4cf18a7c357015b1da6db4f9b27b9d05f3",
+          "elements": 70
+        },
+        {
+          "file": "extras.json",
+          "sha256": "64ddacbeee9a17868cacd7ccbab2b67c100533d4aa7c6e0c65e976b3f4c970df",
+          "elements": 6
+        },
+        {
+          "file": "water.json",
+          "sha256": "08883844827a35261eb1d22fa80b175ede726e4b793ce6b969faa47f6176b498",
+          "elements": 455
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "ac5166dd57bc43cf273da62c450a33b56856ac4fa01bf9f8e3228a9147f940dd",
+          "elements": 45
+        },
+        {
+          "file": "roads.json",
+          "sha256": "c57f686b350bdd9e30d7dc423c04e586da46f1aa8d834c57030de6a183cf3d03",
+          "elements": 7
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 14,
+    "roads": 4,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 12,
+    "waterPolygons": 12,
+    "reachWaterPolygons": 19
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "recreation",
+        "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "market",
+        "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "hamlet": 2,
+      "locality": 16
+    }
+  },
+  "autoRetries": [
+    {
+      "class": "wet-places",
+      "change": {
+        "selectionExclusions": [
+          {
+            "ref": "node/828692519",
+            "reason": "auto: place point is water (exactCoast run 38444180531)"
+          }
+        ]
+      },
+      "before": {
+        "stage": "exactCoast",
+        "wetPlaces": [
+          {
+            "ref": "node/828692519",
+            "name": "Lady Elizabeth",
+            "lon": -57.8038195,
+            "lat": -51.688755
+          }
+        ]
+      },
+      "after": {
+        "passed": true,
+        "stages": {
+          "generation": true,
+          "exactCoast": true,
+          "sourceScene": true,
+          "acceptance": true,
+          "proofGround": true,
+          "proofCity": true
+        },
+        "triangles": 20596,
+        "triangleLimit": 90000
+      }
+    }
+  ],
+  "observed": {
+    "places": 70,
+    "extras": 6,
+    "water": 455,
+    "landuse": 45,
+    "roads": 7
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1258,
+      "sha256": "9985cd06bf3078426dcb39338c24318a8efbee6c98c33b3b0a0beab9d2cefb11"
+    },
+    "geometry.ts": {
+      "bytes": 1078456,
+      "sha256": "249d7e048ad37c63e8b3beb4eb0e740ca05e3393c629e15416af4ba59989adcc"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "b2a2e53d56ce6043d5949f7d2fcca5e27c9a6faaa09886be22da23d8d9fe10a0"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/stanley.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

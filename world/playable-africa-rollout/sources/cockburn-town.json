@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "cityId": "cockburn-town",
+  "countryIso2": "TC",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Cockburn Town",
+    "coordinatesWgs84": [
+      -71.1399956,
+      21.4607723
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "cockburn-town-airport",
+    "name": "JAGS McCartney International Airport",
+    "lon": -71.142303,
+    "lat": 21.4445,
+    "sourceUrl": "https://ourairports.com/airports/MBGT/"
+  },
+  "boxes": {
+    "play": [
+      21.27989141006602,
+      -71.33328292548742,
+      21.641653189933976,
+      -70.94670827451259
+    ],
+    "core": [
+      21.415552077516505,
+      -71.18827221373165,
+      21.505992522483492,
+      -71.09171898626836
+    ],
+    "outline": [
+      21.22989141006602,
+      -71.38328292548742,
+      21.691653189933977,
+      -70.89670827451259
+    ],
+    "wide": [
+      20.67989141006602,
+      -71.93328292548742,
+      22.241653189933977,
+      -70.3467082745126
+    ],
+    "water": [
+      20.67989141006602,
+      -71.93328292548742,
+      22.241653189933977,
+      -70.3467082745126
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "f5ca4d5a0d5d882ced6b9e7b970f40b2eb9ff2f2e568f9282303e01ca8739855",
+        "elements": 29
+      },
+      {
+        "file": "extras.json",
+        "sha256": "95b59357748f9ea02c5982e5bcf0c71c5dc12f6ce757410cccfc79a65829a66a",
+        "elements": 13
+      },
+      {
+        "file": "water.json",
+        "sha256": "7ac6285799fb665d7198bd56e00cbaa7042e91d927cff0b6601ce3dadc366df7",
+        "elements": 148
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "3bd00d9d7db6465ab5f744fdaee2b3f811ec6d04b9b3786dcef3142998c8f1cb",
+        "elements": 15
+      },
+      {
+        "file": "roads.json",
+        "sha256": "ef6c1cf62cc4df027a4343527c0e286891e95e965c79e48edd79bd7f359d129f",
+        "elements": 17
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "The Inn Restaurant",
+      "osm": "node/4090974932",
+      "coordinatesWgs84": [
+        -71.146398,
+        21.465645
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Victoria Public Library",
+      "osm": "way/412178556",
+      "coordinatesWgs84": [
+        -71.14658,
+        21.468539
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cockburn Town Medical Centre",
+      "osm": "way/410152908",
+      "coordinatesWgs84": [
+        -71.144032,
+        21.480087
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Historic Lighthouse Park",
+      "osm": "way/410381414",
+      "coordinatesWgs84": [
+        -71.133486,
+        21.511643
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Windmills Plaza",
+      "osm": "way/410413537",
+      "coordinatesWgs84": [
+        -71.140616,
+        21.46689
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Attorney General's Chambers",
+      "osm": "node/4120352294",
+      "coordinatesWgs84": [
+        -71.148227,
+        21.442191
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Govermental Information Service",
+      "osm": "node/4134580201",
+      "coordinatesWgs84": [
+        -71.146145,
+        21.462273
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Turks and Caicos National Museum",
+      "osm": "way/410322609",
+      "coordinatesWgs84": [
+        -71.147399,
+        21.471334
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grand Turk Lighthouse",
+      "osm": "way/410381421",
+      "coordinatesWgs84": [
+        -71.133611,
+        21.51159
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Boaby Rock Point Snorkeling",
+      "osm": "node/12828526601",
+      "coordinatesWgs84": [
+        -71.14147,
+        21.423786
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lester Williams Community Park",
+      "osm": "way/411904621",
+      "coordinatesWgs84": [
+        -71.144378,
+        21.453293
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Reef Shark Bay and Grill",
+      "osm": "node/5662570237",
+      "coordinatesWgs84": [
+        -71.146222,
+        21.430777
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Breeza Restaurant",
+      "osm": "way/411579609",
+      "coordinatesWgs84": [
+        -71.142125,
+        21.473582
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1278,
+      "sha256": "0778e9e6ecb27361db1f69b504b39fabfea0ee00f740b6e3a5d928c7daab341c"
+    },
+    "geometry.ts": {
+      "bytes": 40757,
+      "sha256": "7dcbfc6c08b63c3b0c48468a6b7acc2c4505f32a075d75e975c54adc14c9f485"
+    },
+    "places.ts": {
+      "bytes": 5599,
+      "sha256": "42641bde610fbccdfa63a7bb33937b83dce412c701fd39ed9909bf7b112b2398"
+    },
+    "terrain.ts": {
+      "bytes": 164651,
+      "sha256": "a8f2d974fb4228496222fc082b3b5ca846262221db7746232588c7d3deb19479"
+    },
+    "index.ts": {
+      "bytes": 264,
+      "sha256": "1d2f61c826417214046d5c57b86524d5db7c9a47b171287b9114618434935760"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

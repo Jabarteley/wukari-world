@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "noumea",
+  "countryIso2": "NC",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Nouméa",
+    "coordinatesWgs84": [
+      166.442419,
+      -22.2745264
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/new-caledonia-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "noumea-airport",
+    "name": "Nouméa Magenta Airport",
+    "lon": 166.472822,
+    "lat": -22.257706,
+    "sourceUrl": "https://ourairports.com/airports/NWWM/"
+  },
+  "boxes": {
+    "play": [
+      -22.455407289933977,
+      166.24801661034195,
+      -22.093645510066022,
+      166.63682138965805
+    ],
+    "core": [
+      -22.319746622483493,
+      166.39386577992963,
+      -22.229306177516506,
+      166.49097222007038
+    ],
+    "outline": [
+      -22.505407289933977,
+      166.19801661034194,
+      -22.04364551006602,
+      166.68682138965806
+    ],
+    "wide": [
+      -23.055407289933978,
+      165.64801661034195,
+      -21.49364551006602,
+      167.23682138965805
+    ],
+    "water": [
+      -23.055407289933978,
+      165.64801661034195,
+      -21.49364551006602,
+      167.23682138965805
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/new-caledonia-261011.osm.pbf",
+    "datasetSha256": "c92e7362be4cb3902148c49ed009cfd4701221525f474f86c61cf68c408c6108",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e7ac850168213a5903e44e7201f7a494d15437c0d5aba10692c6c884749c3c91",
+        "elements": 588
+      },
+      {
+        "file": "extras.json",
+        "sha256": "4ae2ccb73cd871f2f75da38c9c8adc4e4c73164d5764e7f26c132b314d42b1d9",
+        "elements": 230
+      },
+      {
+        "file": "water.json",
+        "sha256": "c4bcd744a61fb7854ffe1ca636018be71b0a4e6918aa9d2a9f317102b8b3d1bb",
+        "elements": 826
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "c902b91ac12b12e177d019a6185168ef231e4c2d165f99dcd0a8a2996e3e4b55",
+        "elements": 128
+      },
+      {
+        "file": "roads.json",
+        "sha256": "7962661e2aa08dbaa8a832b855ae08bedee32796a133ba9a3bf60bd5829e5f3b",
+        "elements": 895
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "PAITA CENTRE",
+      "osm": "node/873236737",
+      "coordinatesWgs84": [
+        166.368034,
+        -22.130274
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Bout du Monde",
+      "osm": "node/466938358",
+      "coordinatesWgs84": [
+        166.440892,
+        -22.277488
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bibliothèque annexe de Plum",
+      "osm": "node/7262174119",
+      "coordinatesWgs84": [
+        166.623364,
+        -22.273254
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Centre Hospitalier Spécialisé Albert Bousquet",
+      "osm": "way/969939062",
+      "coordinatesWgs84": [
+        166.396257,
+        -22.266343
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Esplanade du 22 Avril",
+      "osm": "way/488647235",
+      "coordinatesWgs84": [
+        166.458165,
+        -22.168086
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Marché du Mt Dore",
+      "osm": "way/414713908",
+      "coordinatesWgs84": [
+        166.524767,
+        -22.231928
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église Sainte-Anne",
+      "osm": "way/113775364",
+      "coordinatesWgs84": [
+        166.472492,
+        -22.268703
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hôtel de Ville de Dumbéa",
+      "osm": "way/415616293",
+      "coordinatesWgs84": [
+        166.46716,
+        -22.20899
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tribunal de Nouméa",
+      "osm": "relation/19257369",
+      "coordinatesWgs84": [
+        166.448075,
+        -22.276377
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "IFPSS",
+      "osm": "relation/1526580",
+      "coordinatesWgs84": [
+        166.415207,
+        -22.267316
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stade Numa-Daly",
+      "osm": "way/430727319",
+      "coordinatesWgs84": [
+        166.467778,
+        -22.265557
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc Zoologique et Forestier Michel Corbasson",
+      "osm": "way/37890152",
+      "coordinatesWgs84": [
+        166.45697,
+        -22.258123
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église de la Conception",
+      "osm": "way/43894719",
+      "coordinatesWgs84": [
+        166.499846,
+        -22.225475
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Église de Saint-Louis",
+      "osm": "way/73813536",
+      "coordinatesWgs84": [
+        166.545101,
+        -22.227025
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Musée de la Nouvelle-Calédonie",
+      "osm": "relation/1296182",
+      "coordinatesWgs84": [
+        166.443398,
+        -22.275875
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kaori Renversé",
+      "osm": "node/1426723288",
+      "coordinatesWgs84": [
+        166.536002,
+        -22.109327
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Château d'Eau de Naia",
+      "osm": "node/1110244565",
+      "coordinatesWgs84": [
+        166.278213,
+        -22.155858
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Mozza Pizza",
+      "osm": "way/716990917",
+      "coordinatesWgs84": [
+        166.571754,
+        -22.273288
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cascade",
+      "osm": "node/2512504065",
+      "coordinatesWgs84": [
+        166.508324,
+        -22.172118
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Les 3 Bê",
+      "osm": "way/413771556",
+      "coordinatesWgs84": [
+        166.429036,
+        -22.226652
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Casino Mont-Dore",
+      "osm": "way/134363148",
+      "coordinatesWgs84": [
+        166.58621,
+        -22.238454
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc ex-Aquarêve",
+      "osm": "way/542503416",
+      "coordinatesWgs84": [
+        166.452614,
+        -22.310627
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Parc de la Rivière Salée",
+      "osm": "way/423514033",
+      "coordinatesWgs84": [
+        166.466275,
+        -22.234906
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ducos Centre",
+      "osm": "way/65069903",
+      "coordinatesWgs84": [
+        166.448288,
+        -22.236714
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1236,
+      "sha256": "c6860d75596cf8b21632afbf444e7d8515110b19aadf1b21027a1be868d29ea7"
+    },
+    "geometry.ts": {
+      "bytes": 175949,
+      "sha256": "ed31306c2b10cdb49a706c1b25c53cb3ef7586fce50741416351e556cc78bc1f"
+    },
+    "places.ts": {
+      "bytes": 9470,
+      "sha256": "90481cfa8b7e60c4d7afac84690efb661e8c050c2bfbe68d5e817c218fa10b5a"
+    },
+    "terrain.ts": {
+      "bytes": 439034,
+      "sha256": "48151b10a13b60c30c8c03e60ec6ad71d8cf34d86ae90db99e7ab9999b3b0536"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "9f34c89623609b4a4ae5fc9b98787ee1e1cc8e2d01a442c491c7a39f2b596efb"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

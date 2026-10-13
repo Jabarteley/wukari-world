@@ -27,6 +27,7 @@
     },
     "profile": {"enum": ["microstate"], "description": "Selection profile (bootstrap/profiles.json). Absent = standard. microstate: city node may be place=village|hamlet|locality, minimum 12 sourced places and 3 neighbourhood labels, and up to 4 slots without an honest source stay the game's fictional venue (documented in the selection and every receipt). Never invents a place or maps a feature to a wrong kind."},
     "sceneWaterExtent": {"enum": ["play", "reach"], "description": "Oceania-owned runtime scene-water selection."},
+    "waterBudgetLadder": {"type": "boolean", "description": "Budget-aware water ladder (scripts/geo/factory/water-ladder.mjs). true: when only the scene triangle budget fails, the factory runner repeats the exact-coast stage with a coarser shore (about 2.2 m, then 3.3 m; area error capped at 0.05% and recorded as toleranceLadder). Absent or false: off."},
     "namesUnit": {"type": "string", "minLength": 1, "pattern": "^\\S(?:.*\\S)?$", "description": "Unit label used when presenting local place names."},
     "selectionExclusions": {
       "type": "array",

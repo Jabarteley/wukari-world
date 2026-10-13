@@ -1,4 +1,5 @@
 import { slotPresentation, destinationNames } from './destination-contract.mjs';
+import { validateWaterBudgetLadder } from './water-ladder.mjs';
 import { loadCountryScope, assertCountryFacts } from './country-scope.mjs';
 import { insideSandbox } from './paths.mjs';
 /** One table, deterministic actual-source selection, private candidate scaffolds only. */
@@ -73,6 +74,8 @@ for (const target of table.targets) {
             throw new TypeError(`${target.id}: namesUnit must be a non-empty string`);
         if (target.sceneWaterExtent !== undefined && !['play', 'reach'].includes(target.sceneWaterExtent))
             throw new TypeError(`${target.id}: sceneWaterExtent must be 'play' or 'reach'`);
+        // `waterBudgetLadder` (target table data; off unless true): runner.mjs may repeat the exact-coast stage with a coarser shore when only the scene triangle budget fails (water-ladder.mjs). Not written to the recipe.
+        validateWaterBudgetLadder(target.waterBudgetLadder, target.id);
         // `profile` (seed field, table-level data) sets the minimums and whether a slot may stay empty; absent means standard. See profile.mjs.
         const profile = profileFor(target.profile);
         if (target.profile !== undefined) row.profile = target.profile;

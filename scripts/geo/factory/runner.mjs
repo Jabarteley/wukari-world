@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { ensureAcceptance } from './acceptance.mjs';
+import { budgetOverrunOnly, remainingRungs, rungArguments, attemptRecord, ladderRecord, validateWaterBudgetLadder } from './water-ladder.mjs';
 import { dropWaterLabels, dropWaterLabelsById, outsideWaterLabelIds, unlabellableWaterRefs } from './water-label-skip.mjs';
 const a = process.argv.slice(2), get = k => a[a.indexOf(k) + 1], home = dirname(fileURLToPath(import.meta.url));
 if (!['--table', '--workspace', '--outdir'].every(k => a.includes(k)))
@@ -18,7 +19,7 @@ const sandbox = a.includes('--sandbox-root') ? resolve(get('--sandbox-root')) : 
 insideSandbox(out, sandbox);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex'), readhash = path => hash(readFileSync(path));
 const shared = ['scripts/geo/build-destination-detail.ts', 'scripts/geo/destination-detail/geometry-tools.ts', 'scripts/geo/destination-detail/pbf-extract.ts', 'scripts/geo/destination-detail/queries.ts', 'scripts/geo/destination-detail/water-label.ts', 'scripts/city/build-catalogue.ts', 'src/game/cities/africa/contentBuilder.ts', 'src/game/cities/africa/types.ts', 'src/game/cities/africa/map.ts', 'src/game/cities/africa/module.ts', 'src/game/cities/cityContractTest.test.ts', 'package.json', 'package-lock.json'];
-const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs', 'gallery.mjs', 'country-scope.mjs', 'destination-contract.mjs', 'exact-coastwater.py', 'coast-triangulation.mjs', 'slot-fallback.mjs', 'catalogue-budget.mjs', 'district-labels.mjs', 'coast-near-play.mjs', 'water-label-skip.mjs', 'bootstrap/geometry-knobs.json', 'profile.mjs', 'bootstrap/profiles.json'].map(n => join(home, n));
+const tools = ['batch.mjs', 'scaffold.mjs', 'preflight.mjs', 'runner.mjs', 'inputs.mjs', 'acceptance.mjs', 'journey-template.ts', 'paths.mjs', 'report.mjs', 'source-scene.mjs', 'gallery.mjs', 'country-scope.mjs', 'destination-contract.mjs', 'exact-coastwater.py', 'coast-triangulation.mjs', 'slot-fallback.mjs', 'catalogue-budget.mjs', 'district-labels.mjs', 'coast-near-play.mjs', 'water-label-skip.mjs', 'bootstrap/geometry-knobs.json', 'profile.mjs', 'bootstrap/profiles.json', 'water-ladder.mjs'].map(n => join(home, n));
 if (!a.includes('--proof-helper') || !a.includes('--receipt-helper')) throw Error('Explicit --proof-helper and --receipt-helper are required');
 const proof = resolve(get('--proof-helper')), receipt = resolve(get('--receipt-helper'));
 tools.push(proof, receipt);
@@ -165,12 +166,60 @@ for (const row of rows) {
         continue;
     const c = cityPlan.find(c => c.id === row.id);
     const target = table.targets.find(target => target.id === row.id);
+    // Target `waterBudgetLadder: true` (off otherwise): keep the generated terrain and geometry that the exact-coast stage replaces, so a coarser shore can be tried (see water-ladder.mjs).
+    const ladderOn = validateWaterBudgetLadder(target.waterBudgetLadder, row.id), cityFiles = ['terrain', 'geometry'].map(n => join(workspace, `src/game/cities/${row.id}/${n}.ts`));
+    const keep = (name, files) => { mkdirSync(join(out, row.id, name), { recursive: true }); for (const f of files) copyFileSync(f, join(out, row.id, name, f.split('/').at(-1))); };
+    const restore = name => { for (const f of cityFiles) copyFileSync(join(out, row.id, name, f.split('/').at(-1)), f); };
+    if (ladderOn && !existsSync(join(out, row.id, 'pre-exact', 'terrain.ts'))) keep('pre-exact', cityFiles);
     // Exact directed source coast (land on the left of every OSM coastline way) replaces the grid flood-fill sea; inland cities report not-applicable.
     row.machineStages.exactCoast = run(`${row.id}/exact-coast`, c.exactCoast, [join(workspace, `src/game/cities/${row.id}/terrain.ts`), join(out, row.id, 'coast-water.json')]);
     if (!row.machineStages.exactCoast) { row.reasons.push('exact source-coast geometry failed or was not applicable'); continue; }
     const selectionManifest = JSON.parse(readFileSync(join(out, 'selection', `${row.id}-manifest.json`)));
     writeFileSync(join(out, `${row.id}-source-expected.json`), JSON.stringify({ ...(target.sourceJob ?? { extractSha256: target.extractSha256 }), countryScope: selectionManifest.countryScope, countryScopeReceipt: selectionManifest.countryScopeReceipt }));
     row.machineStages.sourceScene = run(`${row.id}/source-scene`, c.sourceScene, [join(out, row.id, 'proof', 'scene-source.json')]);
+    if (!row.machineStages.sourceScene && ladderOn) {
+        const readJson = path => existsSync(path) ? JSON.parse(readFileSync(path)) : null, coastReport = join(out, row.id, 'coast-water.json'), scenePath = join(out, row.id, 'proof', 'scene-source.json');
+        const first = readJson(coastReport), firstScene = readJson(scenePath), attempts = [];
+        if (first?.status === 'passed' && first.simplification && budgetOverrunOnly(firstScene)) {
+            copyFileSync(coastReport, join(out, row.id, 'coast-water-rung-0.json'));
+            copyFileSync(scenePath, join(out, row.id, 'proof', 'scene-source-rung-0.json'));
+            keep('rung-0', cityFiles);
+            attempts.push(attemptRecord({ rung: 0, toleranceDegrees: first.simplification.toleranceDegrees, report: first, scene: firstScene, outcome: 'over-budget' }));
+            let accepted = false, number = 0, lastGood = 'rung-0';
+            for (const rung of remainingRungs(first.simplification.toleranceDegrees)) {
+                number += 1;
+                restore('pre-exact');
+                const reportPath = join(out, row.id, `coast-water-rung-${number}.json`), at = c.exactCoast.indexOf('--report');
+                const command = [...c.exactCoast.slice(0, at + 1), reportPath, ...c.exactCoast.slice(at + 2), ...rungArguments(rung)];
+                if (!run(`${row.id}/exact-coast-rung-${number}`, command, [cityFiles[0], reportPath])) {
+                    const log = join(out, `${row.id}-exact-coast-rung-${number}.log`);
+                    attempts.push(attemptRecord({ rung: number, toleranceDegrees: rung, outcome: 'infeasible', reason: (existsSync(log) ? readFileSync(log, 'utf8') : '').trim().split('\n').at(-1)?.slice(0, 600) ?? 'exact-coast stage failed' }));
+                    break;
+                }
+                const rungReport = readJson(reportPath);
+                keep(`rung-${number}`, cityFiles);
+                lastGood = `rung-${number}`;
+                const passed = run(`${row.id}/source-scene-rung-${number}`, c.sourceScene, [scenePath]);
+                const scene = readJson(scenePath);
+                copyFileSync(scenePath, join(out, row.id, 'proof', `scene-source-rung-${number}.json`));
+                attempts.push(attemptRecord({ rung: number, toleranceDegrees: rung, report: rungReport, scene, outcome: passed ? 'fits' : budgetOverrunOnly(scene) ? 'over-budget' : 'failed-other' }));
+                if (passed) { accepted = true; break; }
+                if (!budgetOverrunOnly(scene)) break;
+            }
+            // The accepted rung (or, when none fits, the standard attempt) is what the later stages see; the report that carries it is the canonical coast-water.json.
+            const finalName = accepted ? lastGood : 'rung-0', finalNumber = Number(finalName.split('-')[1]);
+            restore(finalName);
+            if (!accepted) copyFileSync(join(out, row.id, 'proof', 'scene-source-rung-0.json'), scenePath);
+            const finalReport = readJson(join(out, row.id, finalNumber === 0 ? 'coast-water-rung-0.json' : `coast-water-rung-${finalNumber}.json`));
+            finalReport.toleranceLadder = { ...(finalReport.toleranceLadder ?? {}), ...ladderRecord({ attempts, accepted }) };
+            writeFileSync(coastReport, JSON.stringify(finalReport, null, 2));
+            row.waterBudgetLadder = finalReport.toleranceLadder;
+            row.machineStages.sourceScene = accepted;
+            (row.warnings ??= []).push(accepted
+                ? `water budget ladder: the standard shore overflowed the scene budget (${attempts[0].triangles} of ${attempts[0].triangleLimit} triangles); accepted rung ${finalNumber} (about ${attempts.at(-1).toleranceMetresApprox} m, play-water area error ${attempts.at(-1).playWaterAreaFraction}, ${attempts.at(-1).triangles} triangles)`
+                : `water budget ladder exhausted: ${attempts.map(a => `rung ${a.rung} ${a.outcome}${a.triangles ? ` ${a.triangles} triangles` : ''}`).join(', ')}`);
+        }
+    }
     if (!row.machineStages.sourceScene) row.reasons.push('source/name/point/scene-kind/budget proof incomplete or failed');
     if (!catalogue)
         row.reasons.push('shared catalogue failed');

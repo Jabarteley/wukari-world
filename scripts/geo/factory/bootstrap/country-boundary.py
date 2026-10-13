@@ -19,6 +19,7 @@ from urllib.parse import urlparse
 
 HERE = Path(__file__).resolve().parent
 TAG_EXCEPTION_KEYS = {'boundary', 'admin_level'}
+RING_OR_REVIEWED_ROLES = {'', 'outer', 'inner', 'subarea', 'land_area'}
 
 
 class Hold(RuntimeError):
@@ -209,6 +210,73 @@ def load_relation_override(args):
             'evidenceSha256': digest(path)}
 
 
+def load_reviewed_relation_members(args, timestamp):
+    """Reviewed non-boundary relation members of the admin-0 relation (`nonBoundaryRelationMembers` in boundary-evidence/<cc>.json).
+
+    Vatican City (relation 36989) lists relation 6474878 with role `part`: the Holy See's extraterritorial properties in Italy
+    (boundary=administrative without admin_level, 53 outer ways in Italian territory). It is not part of the country's own ring;
+    the 9 member ways already assemble the whole of Vatican City. The evidence names each such member as `{ref, role, version,
+    timestamp, tags, reason}` (reason of at least 20 characters, version/timestamp/tags exactly as mapped in the PBF snapshot, never
+    newer than its header) and names the PBF by datasetSha256 or dataset {url, bytes, md5}, so it cannot be reused on another snapshot.
+    Only a relation member can be listed, only with a role that is not a ring role (not '', outer, inner, subarea, land_area, which
+    have their own rules), and a relation that itself looks like a country (admin_level=2 or an ISO3166-1 tag) is refused: that is a
+    nested country boundary. Every other member still has to be a node reference, a subarea/land_area relation or a present ring way.
+    Returns ({(ref, role): record}, evidence file SHA-256), or ({}, None) when the evidence does not carry the key.
+    """
+    if not args.absent_evidence:
+        return {}, None
+    path = Path(args.absent_evidence)
+    evidence = json.loads(path.read_text())
+    listed = evidence.get('nonBoundaryRelationMembers')
+    if listed is None:
+        return {}, None
+    require(evidence.get('schemaVersion') == 1 and evidence.get('countryISO') == args.country, 'non-boundary relation member evidence schema/country mismatch')
+    binding = evidence.get('dataset')
+    require(('datasetSha256' in evidence) != (binding is not None), 'non-boundary relation member evidence must name its PBF by datasetSha256 or by dataset {url, bytes, md5}')
+    if binding is None:
+        require(evidence['datasetSha256'] == args.expected_sha256, 'non-boundary relation member evidence PBF mismatch (datasetSha256)')
+    else:
+        require(isinstance(binding, dict) and set(binding) == {'url', 'bytes', 'md5'} and binding['url'] == args.dataset_url
+                and binding['bytes'] == args.expected_bytes and binding['md5'] == args.actual_md5,
+                'non-boundary relation member evidence PBF mismatch (dataset url/bytes/md5)')
+    require(isinstance(listed, list) and listed, 'nonBoundaryRelationMembers must be a non-empty list')
+    records = {}
+    for item in listed:
+        require(isinstance(item, dict) and set(item) == {'ref', 'role', 'version', 'timestamp', 'tags', 'reason'},
+                'nonBoundaryRelationMembers entries need exactly ref, role, version, timestamp, tags and reason')
+        tags = item['tags']
+        require(isinstance(item['ref'], int) and item['ref'] > 0 and isinstance(item['role'], str) and item['role'] not in RING_OR_REVIEWED_ROLES
+                and item['role'].strip() == item['role'] and (item['ref'], item['role']) not in records,
+                'nonBoundaryRelationMembers needs unique positive integer refs and a role that is not a ring or already ruled role (use e.g. `part`)')
+        require(isinstance(item['version'], int) and item['version'] > 0 and isinstance(item['timestamp'], str) and item['timestamp'] <= timestamp,
+                f"non-boundary relation member {item['ref']} evidence is missing a version or newer than the PBF snapshot")
+        require(isinstance(tags, dict) and tags and all(isinstance(k, str) and isinstance(v, str) for k, v in tags.items()),
+                f"non-boundary relation member {item['ref']} evidence needs its mapped tags")
+        require(tags.get('admin_level') != '2' and not any(key.startswith('ISO3166-1') for key in tags),
+                f"non-boundary relation member {item['ref']} looks like a country boundary (admin_level=2 or ISO3166-1 tag); nested country boundary, HOLD")
+        require(isinstance(item['reason'], str) and len(item['reason'].strip()) >= 20,
+                f"non-boundary relation member {item['ref']} needs a written reason of at least 20 characters")
+        records[(item['ref'], item['role'])] = {'type': 'r', 'ref': item['ref'], 'role': item['role'], 'version': item['version'],
+                                                'timestamp': item['timestamp'], 'tags': tags, 'reason': item['reason'].strip()}
+    return records, digest(path)
+
+
+def verify_reviewed_relations_in_pbf(osmium, pbf, records):
+    """The evidence is checked against the snapshot itself: a listed relation that the PBF contains must carry exactly the pinned
+    version, timestamp and tags (a different one means another snapshot or a changed relation: HOLD); one the clip does not contain
+    is recorded as not present (its identity then rests on the evidence file alone). Sets `presentInPbf` on each record."""
+    found = {}
+    refs = {ref for ref, _ in records}
+    for relation in osmium.FileProcessor(str(pbf), osmium.osm.RELATION).with_filter(osmium.filter.IdFilter(refs)):
+        found[relation.id] = {'version': relation.version, 'timestamp': relation.timestamp.strftime('%Y-%m-%dT%H:%M:%SZ'),
+                              'tags': {tag.k: tag.v for tag in relation.tags}}
+    for (ref, _), record in records.items():
+        mapped = found.get(ref)
+        record['presentInPbf'] = mapped is not None
+        require(mapped is None or mapped == {key: record[key] for key in ('version', 'timestamp', 'tags')},
+                f'non-boundary relation member {ref} in the PBF differs from its evidence (version, timestamp or tags); HOLD')
+
+
 def is_admin0(tags, relation_id, country, override):
     """boundary=administrative admin_level=2 with the ISO code, or the one reviewed override relation with exactly its expected tags."""
     if tags.get('boundary') == 'administrative' and tags.get('admin_level') == '2':
@@ -322,6 +390,7 @@ def extract(args):
     workdir = Path(tempfile.mkdtemp(prefix='country-boundary-'))
     args.cleanup.append(workdir)
     override = load_relation_override(args)
+    reviewed_relations, reviewed_evidence_sha = load_reviewed_relation_members(args, timestamp)
     scan, closure_record = stream_closure(osmium, [pbf, *neighbour_paths], args.country, timestamp, workdir, args.diagnostic, override)
     candidates = []
     args.diagnostic['stage'] = 'admin0-relation-selection'
@@ -344,7 +413,7 @@ def extract(args):
     require(len(candidates) == 1, f'expected one ISO admin-0 relation, found {len(candidates)}; HOLD')
     relation = candidates[0]
     boundary_members = {}
-    excluded, unsupported, boundary_records = [], [], []
+    excluded, unsupported, boundary_records, reviewed_used = [], [], [], []
     for member in relation['members']:
         # OSM Relation:boundary defines subarea relations as hierarchy references. A node cannot be a boundary edge, so
         # every node member (admin_centre, label, capital, highest_point, ...) is a non-boundary reference, listed in the receipt.
@@ -352,6 +421,9 @@ def extract(args):
         # boundary ring: the 6 maritime member ways already close the admin-0 area, assembled and proved segment by segment below.
         if member['type'] == 'n' or (member['type'] == 'r' and member['role'] in {'subarea', 'land_area'}):
             excluded.append(member)
+        elif member['type'] == 'r' and (member['ref'], member['role']) in reviewed_relations:
+            # Reviewed by evidence (Vatican City: relation 6474878 role `part`, extraterritorial properties in Italy): listed in the receipt.
+            reviewed_used.append((member['ref'], member['role']))
         elif member['type'] == 'w' and member['role'] in {'', 'outer', 'inner'}:
             boundary_records.append(member)
         else:
@@ -361,6 +433,11 @@ def extract(args):
                             'unsupportedMembers': unsupported, 'excludedNonBoundaryMembers': excluded,
                             'boundaryMemberCount': len(boundary_records)})
     require(not unsupported, 'unsupported/nested country boundary member; refusing incomplete assembly')
+    require(sorted(reviewed_used) == sorted(reviewed_relations),
+            f'non-boundary relation member evidence {sorted(reviewed_relations)} differs from the relation members it excuses {sorted(reviewed_used)}; HOLD')
+    if reviewed_relations:
+        verify_reviewed_relations_in_pbf(osmium, pbf, reviewed_relations)
+        args.diagnostic['reviewedNonBoundaryRelationMembers'] = [reviewed_relations[key] for key in sorted(reviewed_relations)]
     for member in boundary_records:
         require(member['ref'] not in boundary_members, 'duplicate country boundary way member')
         boundary_members[member['ref']] = member['role']
@@ -460,7 +537,10 @@ def extract(args):
                           'bytes': args.expected_bytes, 'sha256': args.expected_sha256, 'license': 'ODbL-1.0',
                           **({'sourceInputs': args.source_inputs_record} if args.source_inputs_record else {})},
                'closure': closure_record, 'relation': relation, 'memberRolePolicy': {'sourceUrl': 'https://wiki.openstreetmap.org/wiki/Relation:boundary',
-                   'excludedNonBoundaryMembers': excluded, 'unsupportedMembers': []}, 'memberWays': [way_records[key] for key in sorted(way_records)],
+                   'excludedNonBoundaryMembers': excluded, 'unsupportedMembers': [],
+                   **({'reviewedNonBoundaryRelationMembers': {
+                       'rule': 'relation members named by the reviewed evidence file (version, timestamp and tags checked against the PBF when it contains them) are references, not ring members; every other member still has to be a node, a subarea/land_area relation or a present ring way',
+                       'evidenceSha256': reviewed_evidence_sha, 'members': [reviewed_relations[key] for key in sorted(reviewed_relations)]}} if reviewed_relations else {})}, 'memberWays': [way_records[key] for key in sorted(way_records)],
                'assembly': {'method': 'pyosmium-area-assembly', 'completeMemberSegments': sum(expected_edges.values()),
                             'polygonCount': len(polygons), 'holeCount': sum(len(p.interiors) for p in polygons),
                             'sourceMemberEdgesSha256': value_hash(sorted(expected_edges.items()))},

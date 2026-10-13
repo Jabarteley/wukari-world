@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "countryISO": "VA",
+  "datasetSha256": "ba5273f937661607db26009a7f4eda6819ecc75c144c85020a15bb4f3e888a49",
+  "nonBoundaryRelationMembers": [
+    {
+      "ref": 6474878,
+      "role": "part",
+      "version": 53,
+      "timestamp": "2026-07-03T20:00:30Z",
+      "tags": {
+        "boundary": "administrative",
+        "denomination": "roman_catholic",
+        "description": "According to the Lateran Treaties Extraterritorial property of the Holy See enjoys privileges like foreign embassies.",
+        "description:de": "Gemäß den Lateranverträgen genießt extraterritoriales Eigentum des Heiligen Stuhls Privilegien wie ausländische Botschaften.",
+        "description:fr": "Selon les Traités du Latran, les propriétés extraterritoriales du Saint-Siège jouissent des mêmes privilèges que les ambassades étrangères.",
+        "name": "Zona extraterritoriale della Santa Sede",
+        "name:be": "Экстэрытарыяльная зона Святога Пасада",
+        "name:de": "Exterritoriales Gebiet des Heiligen Stuhls",
+        "name:en": "Extraterritorial area of the Holy See",
+        "name:es": "Terreno extraterritorial de la Santa Sede",
+        "name:fr": "Zone Extraterritoriale du Saint-Siège",
+        "name:hr": "Ekstrateritorijalni posjed Svete Stolice",
+        "name:it": "Zona extraterritoriale della Santa Sede",
+        "name:ja": "聖座の治外法権地域",
+        "name:nl": "Extraterritoriaal gebied van de Heilige Stoel",
+        "name:sk": "Exteritoriálne územie Svätej stolice",
+        "name:zh": "聖座治外法權區域",
+        "religion": "christian",
+        "type": "boundary",
+        "wikidata": "Q114347595",
+        "wikimedia_commons": "Category:Extraterritorial properties of the Holy See",
+        "wikipedia": "it:Zone extraterritoriali della Santa Sede in Italia"
+      },
+      "reason": "Relation 6474878 (Zona extraterritoriale della Santa Sede, Q114347595) is the Holy See's extraterritorial properties in Italy (Lateran Treaties): boundary=administrative without admin_level and without any ISO3166-1 tag, 53 outer ways in Italian territory, not part of the country's own ring. Relation 36989 lists it with role part (version 117, 2026-07-31); its 9 ring ways already assemble the whole of Vatican City, and the assembled rings are still proved segment for segment. Reviewed 2026-10-13 against the OSM API (version 53, 2026-07-03T20:00:30Z) for the europe/italy/centro-261011 snapshot."
+    }
+  ]
+}

@@ -16,7 +16,7 @@
 //    neighbours:[{geofabrik:'africa/guinea', reason}] /* optional */, cityExtract:{geofabrik:'europe/germany/brandenburg', reason} /* optional */,
 //    cities:[{id:'monrovia', name:'Monrovia', lat:6.3, lon:-10.8, centreSource:'GeoNames 2274895', airportIdent:'GLRB',
 //             timezone:'Africa/Monrovia' /* required only for multi-zone countries */,
-//             airportSourceUrl, cityOsmRef, sceneWaterExtent, namesUnit, selectionExclusions, geometry, playBox, profile /* passed through */,
+//             airportSourceUrl, cityOsmRef, sceneWaterExtent, waterBudgetLadder, namesUnit, selectionExclusions, geometry, playBox, profile /* passed through */,
 //             hubWaiver /* written reason (>= 20 chars): only for a country with NO scheduled-service large/medium/small airport; the
 //                          named airport may then be a heliport, seaplane base or small field with any scheduled_service */}]}
 // Writes <out>/<iso-lower>.json (the table) and <out>/<iso-lower>-notes.json (proposals, checks, sources, retrieval times).
@@ -32,7 +32,7 @@ const GEOMETRY_SHA = '7a57e756a10b35a0eec9ec5928f083580fb9e7a9';
 const AIRPORTS_REPO = 'davidmegginson/ourairports-data';
 const MAX_KM_DEFAULT = 60;
 const ELIGIBLE_TYPES = new Set(['large_airport', 'medium_airport']);
-const SEED_PASSTHROUGH = ['cityOsmRef', 'sceneWaterExtent', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile'];
+const SEED_PASSTHROUGH = ['cityOsmRef', 'sceneWaterExtent', 'waterBudgetLadder', 'namesUnit', 'selectionExclusions', 'geometry', 'playBox', 'profile'];
 const WAIVER_TYPES = new Set(['large_airport', 'medium_airport', 'small_airport', 'heliport', 'seaplane_base']);
 const SCHEDULED_TYPES = new Set(['large_airport', 'medium_airport', 'small_airport']);
 const UA = { 'user-agent': 'allworld-make-country-table' };

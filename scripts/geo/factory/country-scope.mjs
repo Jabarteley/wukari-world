@@ -112,7 +112,28 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
   assert.ok(codes.length && codes.every(code => code === iso), 'missing/conflicting country ISO tags');
   // A node cannot be a boundary edge: every node member (admin_centre, label, capital, highest_point, ...) is a non-boundary reference.
   const nonBoundary = member => member.type === 'n' || member.type === 'r' && ['subarea', 'land_area'].includes(member.role);
-  const relationMembers = relation.members.filter(member => !nonBoundary(member));
+  // Reviewed non-boundary relation members (bootstrap/country-boundary.py load_reviewed_relation_members; Vatican City: relation 6474878,
+  // role `part`, the Holy See's extraterritorial properties in Italy): each is named with its pinned version/timestamp/tags and a written
+  // reason, the evidence file SHA-256 is recorded, it must be a real member of the country relation and never look like a country itself.
+  const reviewedPolicy = receipt.memberRolePolicy.reviewedNonBoundaryRelationMembers ?? null;
+  const reviewed = new Map();
+  if (reviewedPolicy) {
+    assert.match(reviewedPolicy.evidenceSha256 ?? '', hex, 'reviewed non-boundary relation member evidence pin required');
+    assert.ok(Array.isArray(reviewedPolicy.members) && reviewedPolicy.members.length > 0, 'reviewed non-boundary relation members required');
+    for (const item of reviewedPolicy.members) {
+      assert.equal(item.type, 'r', 'only relation members can be reviewed as non-boundary references');
+      assert.ok(Number.isSafeInteger(item.ref) && item.ref > 0 && typeof item.role === 'string' && !['', 'outer', 'inner', 'subarea', 'land_area'].includes(item.role), 'reviewed relation member needs a ref and a non-ring role');
+      assert.ok(!reviewed.has(`${item.ref}/${item.role}`), 'duplicate reviewed relation member');
+      assert.ok(Number.isSafeInteger(item.version) && item.version > 0 && typeof item.timestamp === 'string' && item.timestamp <= receipt.source.headerTimestamp.replace(' ', 'T'), 'reviewed relation member evidence version/timestamp');
+      assert.ok(item.tags && typeof item.tags === 'object' && item.tags.admin_level !== '2' && !Object.keys(item.tags).some(key => key.startsWith('ISO3166-1')), 'reviewed relation member looks like a country boundary');
+      assert.ok(typeof item.reason === 'string' && item.reason.trim().length >= 20, 'reviewed relation member needs a written reason');
+      assert.equal(typeof item.presentInPbf, 'boolean');
+      assert.ok(relation.members.some(member => member.type === 'r' && member.ref === item.ref && member.role === item.role), 'reviewed relation member is not a member of the country relation');
+      reviewed.set(`${item.ref}/${item.role}`, item);
+    }
+  }
+  const reviewedMember = member => member.type === 'r' && reviewed.has(`${member.ref}/${member.role}`);
+  const relationMembers = relation.members.filter(member => !nonBoundary(member) && !reviewedMember(member));
   // Reviewed absent-member policy: maritime=yes ways wholly outside the Geofabrik clip, listed with the evidence file SHA-256.
   const absentPolicy = receipt.absentMemberPolicy ?? null;
   const omitted = new Map();
@@ -193,7 +214,7 @@ export function loadCountryScope(root, policy, country, datasetSha256) {
     return inside ? 'inside' : 'outside';
   };
   for (const check of receipt.fixtureResults) assert.equal(classify(check.point), check.actual, `country fixture ${check.ref} does not match geometry`);
-  const proof = { kind: policy.kind, iso, source: receipt.source, relation: { id: relation.id, version: relation.version, timestamp: relation.timestamp }, receiptSha256: policy.receiptSha256, geometrySha256: policy.geometrySha256, geometryBytes: policy.geometryBytes, scriptSha256: receipt.scriptSha256, assembly: receipt.assembly, ...(absentPolicy ? { absentMemberPolicy: absentPolicy } : {}), ...(override ? { relationOverride: override } : {}), fixtureSha256: receipt.fixtureSha256, boundaryJob: policy.boundaryJob ?? null, limitation: 'OSM mapped national boundary; not legal jurisdiction or municipal membership' };
+  const proof = { kind: policy.kind, iso, source: receipt.source, relation: { id: relation.id, version: relation.version, timestamp: relation.timestamp }, receiptSha256: policy.receiptSha256, geometrySha256: policy.geometrySha256, geometryBytes: policy.geometryBytes, scriptSha256: receipt.scriptSha256, assembly: receipt.assembly, ...(absentPolicy ? { absentMemberPolicy: absentPolicy } : {}), ...(reviewedPolicy ? { reviewedNonBoundaryRelationMembers: reviewedPolicy } : {}), ...(override ? { relationOverride: override } : {}), fixtureSha256: receipt.fixtureSha256, boundaryJob: policy.boundaryJob ?? null, limitation: 'OSM mapped national boundary; not legal jurisdiction or municipal membership' };
   return { policy: { ...policy, directory }, receipt: proof, classify, assertPoint(point, label) { assert.equal(classify(point), 'inside', `${label}: outside/on OSM country boundary ${iso}; HOLD`); } };
 }
 

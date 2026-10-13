@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import sys
 import tempfile
 import time
 
@@ -40,6 +41,13 @@ MAX_GAP_SLIVER_TOLERANCES = 4
 # A triangle thinner than this (square degrees; about 1e-3 m2) has a signed area that rounds to zero in the renderer's ring check.
 MIN_TRIANGLE_AREA_DEGREES2 = 1e-13
 MAX_SIMPLIFICATION_AREA_FRACTION = 0.0001
+# The area guard actually applied. Equal to the standard 0.01% except in a budget-ladder rung (below), where the runner names a documented, larger cap.
+MAX_WATER_AREA_FRACTION = MAX_SIMPLIFICATION_AREA_FRACTION
+# Budget ladder (target `waterBudgetLadder: true`, driven by runner.mjs / water-ladder.mjs): when the scene would exceed the triangle budget the runner restores the
+# generated terrain and runs this stage again with `--ladder-tolerance-degrees` (a coarser shore) and `--ladder-area-cap` (the cap the measured area error must stay under).
+# A rung is a single attempt: it never steps coarser or finer by itself, and a guard it misses exits with RUNG_INFEASIBLE_EXIT instead of retrying.
+RUNG_INFEASIBLE_EXIT = 3
+LADDER_RUNG = None
 SCHEMA = 'exact-coastwater-report-v2'
 LIMIT = 5 * 1024 * 1024
 # A ferry terminal, jetty or promenade is often mapped on a pier a few tens of metres off the shore (Nassau: 24 m, 15 m): the shore is cleared around such an anchor.
@@ -74,6 +82,9 @@ def main():
         parser.add_argument('--' + flag, required=True, type=Path)
     # Optional pinned admin-0 boundary: a country extract ends at the border, so a coast way can end there (see the border extension below).
     parser.add_argument('--country-boundary', type=Path)
+    # Budget-ladder rung (see LADDER_RUNG): handled by drive(); accepted here so the one parser serves both.
+    parser.add_argument('--ladder-tolerance-degrees', type=float)
+    parser.add_argument('--ladder-area-cap', type=float)
     args = parser.parse_args()
     started = time.perf_counter()
     args.report.parent.mkdir(parents=True, exist_ok=True)
@@ -418,8 +429,8 @@ def main():
     if (exact_counts['polygons'], exact_counts['holes']) != (simplified_counts['polygons'], simplified_counts['holes']):
         raise FinerWater('Simplification changed water topology')
     area_fraction = exact_water.symmetric_difference(water).area / exact_water.area
-    if area_fraction > MAX_SIMPLIFICATION_AREA_FRACTION:
-        raise FinerWater('Simplification area change exceeds 0.01%')
+    if area_fraction > MAX_WATER_AREA_FRACTION:
+        raise FinerWater('Simplification area change exceeds ' + ('%.4g%%' % (MAX_WATER_AREA_FRACTION * 100)))
     def sampled_boundary_distance(a, b, sample_limit=256):
         # Deterministic samples bound diagnostic work; this is not a Hausdorff bound.
         distances, sample_counts = [], []
@@ -433,7 +444,7 @@ def main():
     simplification = {
         'toleranceDegrees': WATER_TOLERANCE_DEGREES,
         'preserveTopology': True,
-        'maximumAreaSymmetricDifferenceFraction': MAX_SIMPLIFICATION_AREA_FRACTION,
+        'maximumAreaSymmetricDifferenceFraction': MAX_WATER_AREA_FRACTION,
         'areaSymmetricDifferenceFraction': area_fraction,
         'signedAreaDeltaDegrees2': water.area - exact_water.area,
         'boundaryVertexSampledDistanceDegreesApprox': sampled_distance,
@@ -444,6 +455,14 @@ def main():
         'simplified': simplified_counts,
         'sceneBudgetVerification': 'Requires authoritative cloud sourceScene; no triangle proxy acceptance',
     }
+    if LADDER_RUNG is not None:
+        # Recorded in the report: the shore of this rung is coarser than the standard ladder allows, and its measured area error is under the named cap (the guard above enforced it).
+        report['toleranceLadder'] = {
+            'rungToleranceDegrees': WATER_TOLERANCE_DEGREES, 'rungToleranceMetresApprox': WATER_TOLERANCE_DEGREES * 111320,
+            'measuredWholeWaterAreaFraction': area_fraction, 'cap': MAX_WATER_AREA_FRACTION,
+            'standardMaximum': MAX_SIMPLIFICATION_AREA_FRACTION,
+            'rule': 'budget ladder: the standard shore overflowed the scene triangle budget, the runner asked for a coarser shore; its measured area error must stay under the cap',
+        }
     island_rows = []
     for ident, p in closed:
         if p.intersection(clip).is_empty:
@@ -701,7 +720,7 @@ def main():
     protected.extend(p.representative_point() for _, p in closed if not p.intersection(clip).is_empty)
     play_area_box = bounds(play)
     dropped = {'islets': Polygon()}
-    def serialized_layer(key, layer, baseline, maximum_fraction=MAX_SIMPLIFICATION_AREA_FRACTION, same_topology=True):
+    def serialized_layer(key, layer, baseline, maximum_fraction=MAX_WATER_AREA_FRACTION, same_topology=True):
         arrays, serialization = serializeNoRingContacts(layer)
         represented = unary_union([Polygon(p[0], p[1:]) for p in arrays])
         fraction = baseline.symmetric_difference(represented).area / baseline.area
@@ -762,7 +781,7 @@ def main():
             failures, chosen = [], None
             for candidate_tolerance in [None] + REACH_TOLERANCES:
                 try:
-                    candidate = serialized_layer(key, reach_candidate(fine, candidate_tolerance), baseline, REACH_MAX_AREA_FRACTION if candidate_tolerance else MAX_SIMPLIFICATION_AREA_FRACTION, candidate_tolerance is None)
+                    candidate = serialized_layer(key, reach_candidate(fine, candidate_tolerance), baseline, REACH_MAX_AREA_FRACTION if candidate_tolerance else MAX_WATER_AREA_FRACTION, candidate_tolerance is None)
                 except ValueError as error:
                     failures.append({'toleranceDegrees': candidate_tolerance, 'error': str(error)})
                     continue
@@ -800,6 +819,10 @@ def main():
         if path.stat().st_size > LIMIT:
             raise ValueError('Output exceeds 5 MiB: ' + str(path))
     report.update({'status': 'passed', 'sourceHashes': hashes, 'selectedWaterRefs': selected_water, 'selectedWaterRefCount': len(coast) + len(selected_water), 'coastCount': len(coast), 'closedCoastCount': len(closed), 'islands': island_rows, 'anchors': anchor_rows, 'generatedAnchors': generated_anchors, 'fixtureAnchors': fixture_anchors, 'geometry': stats, 'simplification': simplification, 'tiling': tiling, 'outputFiles': [{'path': str(terrain_path), 'bytes': len(raw_after), 'sha256Before': sha(before.encode()), 'sha256After': sha(raw_after)}, {'path': str(geometry_path), 'bytes': len(geometry_raw), 'sha256Before': sha(geometry_before.encode()), 'sha256After': sha(geometry_raw)}], 'preferred2MiB': max(len(raw_after), len(geometry_raw)) <= 2 * 1024 * 1024, 'elapsedSeconds': time.perf_counter() - started})
+    if LADDER_RUNG is not None:
+        # The cap is enforced on the fraction of the PLAY-box water that differs from the exact source water (the stricter figure); both are recorded.
+        play_fraction = stats['water']['sourceSymmetricDifferenceFraction']
+        report['toleranceLadder'].update({'measuredPlayWaterAreaFraction': play_fraction, 'relaxesStandardGuard': max(play_fraction, area_fraction) > MAX_SIMPLIFICATION_AREA_FRACTION})
     # Reserve a new report before generated-source mutations.
     water_vertices = stats['water']['vertices'] + (0 if play_scene else stats['reachWater']['vertices'])
     report['waterVertices'] = water_vertices
@@ -814,7 +837,24 @@ def main():
 
 def drive():
     # Shore simplification: 1 m first; 2 m when the water is too big for the scene budget; finer (0.5, 0.2, 0.1 m) when a guard rejects the simplified shore.
-    global WATER_TOLERANCE_DEGREES
+    global WATER_TOLERANCE_DEGREES, MAX_WATER_AREA_FRACTION, LADDER_RUNG
+    # A budget-ladder rung (runner.mjs): exactly one attempt at the named tolerance under the named area cap; no automatic stepping either way.
+    rung = argparse.ArgumentParser(add_help=False)
+    rung.add_argument('--ladder-tolerance-degrees', type=float)
+    rung.add_argument('--ladder-area-cap', type=float)
+    named, _ = rung.parse_known_args()
+    if (named.ladder_tolerance_degrees is None) != (named.ladder_area_cap is None):
+        raise SystemExit('--ladder-tolerance-degrees and --ladder-area-cap go together')
+    if named.ladder_tolerance_degrees is not None:
+        if not (0.000005 < named.ladder_tolerance_degrees <= 0.0001) or not (MAX_SIMPLIFICATION_AREA_FRACTION < named.ladder_area_cap <= 0.001):
+            raise SystemExit('budget ladder rung outside its documented range (coarser than 0.56 m and at most about 11 m; cap above 0.01% and at most 0.1%)')
+        WATER_TOLERANCE_DEGREES, MAX_WATER_AREA_FRACTION, LADDER_RUNG = named.ladder_tolerance_degrees, named.ladder_area_cap, True
+        COARSE_STEPS.clear()
+        try:
+            return main()
+        except FinerWater as error:
+            print(json.dumps({'status': 'rung-infeasible', 'toleranceDegrees': WATER_TOLERANCE_DEGREES, 'cap': MAX_WATER_AREA_FRACTION, 'error': str(error)[:1500]}))
+            sys.exit(RUNG_INFEASIBLE_EXIT)
     # 1.5 m before 2 m: a 2 m shore can miss the 0.01% source-area limit on a small play box by a hair (Doha: 0.0100060% against 0.0100000%).
     coarse, fine = list(COARSE_STEPS), [0.000005, 0.000002, 0.000001]
     tolerance = WATER_TOLERANCES_DEGREES[0]

@@ -37,6 +37,7 @@ if (batch) {
     assert.match(city.id, cityId);
     assert.ok(['SOURCE_CANDIDATE', 'HOLD'].includes(city.status));
     if (city.sceneWaterExtent !== undefined) assert.ok(['play', 'reach'].includes(city.sceneWaterExtent), `${city.id}: invalid sceneWaterExtent`);
+    if (city.waterBudgetLadder !== undefined) assert.equal(typeof city.waterBudgetLadder, 'boolean', `${city.id}: waterBudgetLadder must be true or false`);
     if (city.profile !== undefined) assert.ok(PROFILE_NAMES.includes(city.profile), `${city.id}: invalid profile`);
     if (city.namesUnit !== undefined) assert.ok(typeof city.namesUnit === 'string' && city.namesUnit.trim(), `${city.id}: namesUnit must be a non-empty string`);
     if (city.geometry !== undefined) assertGeometryKnobs(city.id, city.geometry);
@@ -182,6 +183,7 @@ for (const city of candidates) {
   assert.equal(sources.bounds.geometrySourceGitSHA, boundsSourceGitSHA);
   targets.push({ id: metadata.id, name: metadata.name, country: metadata.country, facts,
     ...(batch && city.sceneWaterExtent !== undefined ? { sceneWaterExtent: city.sceneWaterExtent } : {}),
+    ...(batch && city.waterBudgetLadder !== undefined ? { waterBudgetLadder: city.waterBudgetLadder } : {}),
     ...(batch && city.namesUnit !== undefined ? { namesUnit: city.namesUnit } : {}),
     ...(batch && city.profile !== undefined ? { profile: city.profile } : {}),
     ...(batch && city.selectionExclusions !== undefined ? { selectionExclusions: city.selectionExclusions } : {}),

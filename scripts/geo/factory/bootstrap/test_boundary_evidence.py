@@ -1,5 +1,6 @@
-"""Tests for the reviewed absent-way evidence of country-boundary.py: maritime=yes rings (original rule) and whole separate rings
-that are not maritime (`wholeSeparateRings`, the French overseas territories). Synthetic PBFs only.
+"""Tests for the reviewed evidence of country-boundary.py: absent maritime=yes rings (original rule), whole separate rings
+that are not maritime (`wholeSeparateRings`, the French overseas territories), the admin-0 relation override (Palestine) and
+reviewed non-boundary relation members (`nonBoundaryRelationMembers`, Vatican City relation 6474878 role `part`). Synthetic PBFs only.
 
 Run: python3 -m unittest scripts/geo/factory/bootstrap/test_boundary_evidence.py  (osmium==4.3.1 and shapely==2.1.2).
 """
@@ -221,6 +222,121 @@ class RelationOverride(unittest.TestCase):
     def test_an_administrative_country_ignores_the_override_file_entirely(self):
         # A country whose relation is a normal admin_level=2 boundary never reads the override: its receipt carries none.
         done, _ = self.run_boundary('plain', override=None)
+        self.assertNotEqual(done.returncode, 0)
+
+
+PART_TAGS = {'boundary': 'administrative', 'type': 'boundary', 'name': 'Extraterritorial properties (test)'}
+PART_REASON = 'Extraterritorial properties of the country outside its own ring (test fixture, like relation 6474878).'
+
+
+@unittest.skipIf(osmium is None, 'osmium/shapely not installed')
+class ReviewedRelationMember(unittest.TestCase):
+    """Vatican City: relation 36989 lists relation 6474878 with role `part` (the Holy See's extraterritorial properties in Italy)."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory(prefix='boundary-part-test-')
+        self.dir = Path(self.tmp.name)
+        self.pbf = self.dir / 'aa.osm.pbf'
+        self.base = [helpers.node(1, 0, 0), helpers.node(2, 2, 0), helpers.node(3, 2, 2), helpers.node(4, 0, 2),
+                     helpers.way(1, [1, 2, 3], tags=BORDER), helpers.way(2, [3, 4, 1], tags=BORDER)]
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def item(self, **change):
+        return {'ref': 200, 'role': 'part', 'version': 1, 'timestamp': helpers.STAMP, 'tags': PART_TAGS, 'reason': PART_REASON, **change}
+
+    def run_boundary(self, name, members=(('r', 200, 'part'),), part=True, listed=None, sha=None, **document):
+        objects_ = [*self.base, *([helpers.relation(200, [('w', 1, 'outer')], PART_TAGS)] if part else []),
+                    helpers.relation(100, [('w', 1, 'outer'), ('w', 2, 'outer'), *members], COUNTRY)]
+        helpers.write(self.pbf, objects_, box=(-0.1, -0.1, 2.1, 2.1))
+        self.sha = helpers.merge_sha(self.pbf)
+        command = [sys.executable, str(HERE / 'country-boundary.py'), '--pbf', str(self.pbf), '--country', 'AA', '--expected-sha256', self.sha,
+                   '--expected-bytes', str(self.pbf.stat().st_size), '--dataset-url', PRIMARY, '--dataset-date', '2026-10-11', '--out', str(self.dir / name)]
+        if listed is not None:
+            path = self.dir / (name + '-evidence.json')
+            path.write_text(json.dumps({'schemaVersion': 1, 'countryISO': 'AA', 'datasetSha256': sha or self.sha,
+                                        'nonBoundaryRelationMembers': listed, **document}))
+            command += ['--absent-evidence', str(path)]
+        done = subprocess.run(command, capture_output=True, text=True)
+        return done, json.loads((self.dir / name / 'result.json').read_text())
+
+    def node_check(self, name):
+        return subprocess.run(['node', '--input-type=module', '-e', NODE_CHECK, str(self.dir / name), self.sha], capture_output=True, text=True, cwd=HERE.parent)
+
+    def test_unlisted_part_relation_holds(self):
+        done, result = self.run_boundary('none')
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('unsupported/nested', result['reason'])
+        self.assertEqual(result['diagnostic']['unsupportedMembers'], [{'type': 'r', 'ref': 200, 'role': 'part'}])
+
+    def test_reviewed_part_relation_is_listed_in_the_receipt_and_accepted_by_the_checker(self):
+        done, _ = self.run_boundary('ok', listed=[self.item()])
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        receipt = json.loads((self.dir / 'ok/receipt.json').read_text())
+        policy = receipt['memberRolePolicy']['reviewedNonBoundaryRelationMembers']
+        self.assertRegex(policy['evidenceSha256'], r'^[0-9a-f]{64}$')
+        self.assertEqual([(m['type'], m['ref'], m['role'], m['version'], m['presentInPbf']) for m in policy['members']], [('r', 200, 'part', 1, True)])
+        self.assertEqual(receipt['memberRolePolicy']['excludedNonBoundaryMembers'], [])
+        self.assertEqual(sorted(way['id'] for way in receipt['memberWays']), [1, 2])
+        geometry = json.loads((self.dir / 'ok/boundary.geojson').read_text())
+        self.assertIn(geometry['type'], {'Polygon', 'MultiPolygon'})
+        checked = self.node_check('ok')
+        self.assertEqual(checked.returncode, 0, checked.stdout + checked.stderr)
+        # The node-only checker refuses the receipt once the reviewed record is removed (no weakening without the pinned evidence).
+        del receipt['memberRolePolicy']['reviewedNonBoundaryRelationMembers']
+        (self.dir / 'ok/receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+        refused = self.node_check('ok')
+        self.assertNotEqual(refused.returncode, 0)
+
+    def test_checker_refuses_a_reviewed_member_that_is_not_a_member_or_looks_like_a_country(self):
+        done, _ = self.run_boundary('chk', listed=[self.item()])
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        original = json.loads((self.dir / 'chk/receipt.json').read_text())
+        for label, change in (('other ref', {'ref': 201}), ('country level', {'tags': {**PART_TAGS, 'admin_level': '2'}}),
+                              ('ring role', {'role': 'outer'}), ('short reason', {'reason': 'too short'})):
+            receipt = json.loads(json.dumps(original))
+            receipt['memberRolePolicy']['reviewedNonBoundaryRelationMembers']['members'][0].update(change)
+            (self.dir / 'chk/receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+            self.assertNotEqual(self.node_check('chk').returncode, 0, label)
+
+    def test_relation_absent_from_the_clip_is_recorded_as_not_present(self):
+        done, _ = self.run_boundary('absent', part=False, listed=[self.item()])
+        self.assertEqual(done.returncode, 0, done.stdout + done.stderr)
+        receipt = json.loads((self.dir / 'absent/receipt.json').read_text())
+        self.assertFalse(receipt['memberRolePolicy']['reviewedNonBoundaryRelationMembers']['members'][0]['presentInPbf'])
+
+    def test_pbf_that_differs_from_the_evidence_holds(self):
+        for label, change in (('version', {'version': 2}), ('tags', {'tags': {**PART_TAGS, 'name': 'Another name'}})):
+            done, result = self.run_boundary(label, listed=[self.item(**change)])
+            self.assertNotEqual(done.returncode, 0, label)
+            self.assertIn('differs from its evidence', result['reason'])
+
+    def test_evidence_must_name_this_pbf_and_a_real_member(self):
+        done, result = self.run_boundary('pin', listed=[self.item()], sha='f' * 64)
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('PBF mismatch', result['reason'])
+        done, result = self.run_boundary('other', listed=[self.item(ref=201)])
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('unsupported/nested', result['reason'])
+        done, result = self.run_boundary('unused', members=(), listed=[self.item()])
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn('differs from the relation members it excuses', result['reason'])
+
+    def test_evidence_does_not_excuse_another_member(self):
+        done, result = self.run_boundary('second', members=(('r', 200, 'part'), ('r', 201, 'part')), listed=[self.item()])
+        self.assertNotEqual(done.returncode, 0)
+        self.assertEqual(result['diagnostic']['unsupportedMembers'], [{'type': 'r', 'ref': 201, 'role': 'part'}])
+
+    def test_evidence_rules(self):
+        cases = {'reason': self.item(reason='short'), 'country level': self.item(tags={**PART_TAGS, 'admin_level': '2'}),
+                 'iso tag': self.item(tags={**PART_TAGS, 'ISO3166-1:alpha2': 'IT'}), 'ring role': self.item(role='outer'),
+                 'subarea role': self.item(role='subarea'), 'newer than the snapshot': self.item(timestamp='2026-10-12T00:00:00Z'),
+                 'extra key': {**self.item(), 'type': 'way'}, 'no tags': self.item(tags={})}
+        for label, entry in cases.items():
+            done, result = self.run_boundary('rule-' + label.replace(' ', '-'), listed=[entry])
+            self.assertNotEqual(done.returncode, 0, label)
+            self.assertNotIn('Traceback', done.stderr, label)
+        done, _ = self.run_boundary('dup', listed=[self.item(), self.item()])
         self.assertNotEqual(done.returncode, 0)
 
 

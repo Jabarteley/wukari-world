@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "hong-kong",
+  "countryIso2": "HK",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Hong Kong",
+    "coordinatesWgs84": [
+      114.1582831,
+      22.2818333
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/asia/china/guangdong-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "hong-kong-airport",
+    "name": "Hong Kong International Airport",
+    "lon": 113.914862,
+    "lat": 22.31184,
+    "sourceUrl": "https://ourairports.com/airports/VHHH/"
+  },
+  "boxes": {
+    "play": [
+      22.10095241006602,
+      113.90515127684363,
+      22.462714189933976,
+      114.35269573837654
+    ],
+    "core": [
+      22.236613077516505,
+      114.10972733739798,
+      22.327053522483492,
+      114.20683886260203
+    ],
+    "outline": [
+      22.05095241006602,
+      113.85515127684363,
+      22.512714189933977,
+      114.40269573837654
+    ],
+    "wide": [
+      21.50095241006602,
+      113.30515127684363,
+      23.062714189933978,
+      114.95269573837653
+    ],
+    "water": [
+      21.50095241006602,
+      113.30515127684363,
+      23.062714189933978,
+      114.95269573837653
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/asia/china/guangdong-261011.osm.pbf",
+    "datasetSha256": "8b3a98d07f2f417659b81adbecf128287a6f326e6027120c77eb30b6708fb15c",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "12455097bdf4141059b2f906a8e7c8858c986ebfb066e02b34a65ba4b71eb917",
+        "elements": 8243
+      },
+      {
+        "file": "extras.json",
+        "sha256": "6430edd4912e3385c46f3fb6cb37287a8c4fc3a668044aaed03834a28d4389e2",
+        "elements": 1913
+      },
+      {
+        "file": "water.json",
+        "sha256": "b48cd87151d57b9fbc47313035ba07a9b178347fc5836443873041657536911c",
+        "elements": 5443
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "9cf64bc1a21f752f61be5895c2ecc0681ba64f182423ea7ec43920f8ac0fbebe",
+        "elements": 15740
+      },
+      {
+        "file": "roads.json",
+        "sha256": "94d36e9c45f948a7ccb929d06d5d8a31d7c5ed007127d0719f4f4278bd506562",
+        "elements": 11670
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Star Ferry",
+      "osm": "node/245090969",
+      "coordinatesWgs84": [
+        114.168965,
+        22.294137
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cafe 100%",
+      "osm": "node/7109127701",
+      "coordinatesWgs84": [
+        114.15851,
+        22.337623
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Ping Shan Tin Shui Wai Public Library",
+      "osm": "node/2097970871",
+      "coordinatesWgs84": [
+        114.004869,
+        22.447011
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "North Lantau Hospital",
+      "osm": "way/224774042",
+      "coordinatesWgs84": [
+        113.939283,
+        22.282049
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ma Wo Road Garden",
+      "osm": "relation/10700987",
+      "coordinatesWgs84": [
+        114.165197,
+        22.442411
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "The LOHAS",
+      "osm": "way/607534710",
+      "coordinatesWgs84": [
+        114.269625,
+        22.294835
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Pak She Tin Hau Temple",
+      "osm": "node/3624929549",
+      "coordinatesWgs84": [
+        114.027564,
+        22.212953
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sha Tin Town Hall",
+      "osm": "way/159044473",
+      "coordinatesWgs84": [
+        114.189945,
+        22.381264
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tai Hing Government Offices",
+      "osm": "way/1291689250",
+      "coordinatesWgs84": [
+        113.97372,
+        22.399827
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maritime Services Training Institute",
+      "osm": "way/186138931",
+      "coordinatesWgs84": [
+        114.018251,
+        22.360454
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sai Kung Tang Shiu Kin Sports Ground",
+      "osm": "way/169542419",
+      "coordinatesWgs84": [
+        114.273392,
+        22.383402
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hong Kong Correctional Services Museum",
+      "osm": "way/457242085",
+      "coordinatesWgs84": [
+        114.217998,
+        22.21624
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tin Hau Temple",
+      "osm": "way/1511791460",
+      "coordinatesWgs84": [
+        114.130952,
+        22.203746
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ha Fa Shan",
+      "osm": "node/8266367332",
+      "coordinatesWgs84": [
+        114.094041,
+        22.378885
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Lung Mo Temple",
+      "osm": "way/322429617",
+      "coordinatesWgs84": [
+        114.040136,
+        22.285149
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Astropark",
+      "osm": "way/587740480",
+      "coordinatesWgs84": [
+        114.33602,
+        22.376255
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ma On Shan Park",
+      "osm": "relation/12917211",
+      "coordinatesWgs84": [
+        114.230831,
+        22.426993
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Jordan Valley Park",
+      "osm": "way/125447650",
+      "coordinatesWgs84": [
+        114.221372,
+        22.329477
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Maclehose Medical Rehabilitation Centre",
+      "osm": "way/445060456",
+      "coordinatesWgs84": [
+        114.124281,
+        22.269946
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "THE SOUTHSIDE",
+      "osm": "way/950281943",
+      "coordinatesWgs84": [
+        114.167428,
+        22.247273
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rock Carving on Tung Lung Chau",
+      "osm": "node/3890530477",
+      "coordinatesWgs84": [
+        114.282848,
+        22.252982
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Cityplaza",
+      "osm": "relation/11953382",
+      "coordinatesWgs84": [
+        114.217347,
+        22.286306
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Wo Yi Hop Road Sport Ground",
+      "osm": "way/158053530",
+      "coordinatesWgs84": [
+        114.136931,
+        22.373882
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Technological and Higher Education Institute of Hong Kong",
+      "osm": "way/205759235",
+      "coordinatesWgs84": [
+        114.106336,
+        22.340528
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1237,
+      "sha256": "ba34235c306d8ae403623ed4acbe747867a504dcdd91f5f1e75e523c4055e86e"
+    },
+    "geometry.ts": {
+      "bytes": 1134247,
+      "sha256": "d995f73ce7ccd7330e297b6bd742b5ec3184e226bc89af4f0406661ac576d876"
+    },
+    "places.ts": {
+      "bytes": 10046,
+      "sha256": "60dd3829e71c22dafd6030b9336f36acd930cef366429835c167fee7de1f7ba8"
+    },
+    "terrain.ts": {
+      "bytes": 2217085,
+      "sha256": "e276ab65258de2d0ae8098c5f0b87aa9a8014cd30c2c21524fed85d9449d576f"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "276c2d40ad4eb360429beb566fb2d85ab9b7cb6fd91340c4e421ec7e4580536c"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

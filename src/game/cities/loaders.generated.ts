@@ -258,8 +258,22 @@ export const GENERATED_CITY_INDEX: readonly CityIndexRow[] = Object.freeze([
   ["the-valley","The Valley"],
   ["torshavn","Tórshavn"],
   ["willemstad","Willemstad"],
+  ["alofi","Alofi"],
+  ["avarua","Avarua"],
+  ["charlotte-amalie","Charlotte Amalie"],
+  ["flying-fish-cove","Flying Fish Cove"],
+  ["hagatna","Hagåtña"],
+  ["hamilton","Hamilton"],
+  ["hargeisa","Hargeisa"],
+  ["hong-kong","Hong Kong"],
+  ["kingston-nf","Kingston"],
+  ["marigot","Marigot"],
+  ["nuuk","Nuuk"],
+  ["oranjestad","Oranjestad"],
+  ["road-town","Road Town"],
+  ["san-juan","San Juan"],
 ])
-export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 256, countries: 215 })
+export const GENERATED_CITY_FIGURES = Object.freeze({ cities: 270, countries: 229 })
 export const GENERATED_CITY_WORLD_INDEX: CityWorldIndexLoader | null = null
 
 export const GENERATED_CITY_LOADERS = Object.freeze([
@@ -519,4 +533,18 @@ export const GENERATED_CITY_LOADERS = Object.freeze([
   ()=>import("./the-valley/index.ts").then(m=>m.city),
   ()=>import("./torshavn/index.ts").then(m=>m.city),
   ()=>import("./willemstad/index.ts").then(m=>m.city),
+  ()=>import("./alofi/index.ts").then(m=>m.city),
+  ()=>import("./avarua/index.ts").then(m=>m.city),
+  ()=>import("./charlotte-amalie/index.ts").then(m=>m.city),
+  ()=>import("./flying-fish-cove/index.ts").then(m=>m.city),
+  ()=>import("./hagatna/index.ts").then(m=>m.city),
+  ()=>import("./hamilton/index.ts").then(m=>m.city),
+  ()=>import("./hargeisa/index.ts").then(m=>m.city),
+  ()=>import("./hong-kong/index.ts").then(m=>m.city),
+  ()=>import("./kingston-nf/index.ts").then(m=>m.city),
+  ()=>import("./marigot/index.ts").then(m=>m.city),
+  ()=>import("./nuuk/index.ts").then(m=>m.city),
+  ()=>import("./oranjestad/index.ts").then(m=>m.city),
+  ()=>import("./road-town/index.ts").then(m=>m.city),
+  ()=>import("./san-juan/index.ts").then(m=>m.city),
 ] satisfies readonly CityModuleLoader[])

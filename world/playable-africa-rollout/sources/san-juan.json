@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "san-juan",
+  "countryIso2": "PR",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "San Juan",
+    "coordinatesWgs84": [
+      -66.116666,
+      18.465299
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/north-america/us/puerto-rico-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "san-juan-airport",
+    "name": "Luis Munoz Marin International Airport",
+    "lon": -66.001801,
+    "lat": 18.4394,
+    "sourceUrl": "https://ourairports.com/airports/TJSJ/"
+  },
+  "boxes": {
+    "play": [
+      18.284418110066024,
+      -66.30628092846186,
+      18.64617988993398,
+      -65.92705107153813
+    ],
+    "core": [
+      18.42007877751651,
+      -66.16403202171057,
+      18.510519222483495,
+      -66.06929997828942
+    ],
+    "outline": [
+      18.234418110066024,
+      -66.35628092846186,
+      18.69617988993398,
+      -65.87705107153813
+    ],
+    "wide": [
+      17.684418110066023,
+      -66.90628092846185,
+      19.24617988993398,
+      -65.32705107153814
+    ],
+    "water": [
+      17.684418110066023,
+      -66.90628092846185,
+      19.24617988993398,
+      -65.32705107153814
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/north-america/us/puerto-rico-261011.osm.pbf",
+    "datasetSha256": "284a2de4327016729bff7f64ca2c6ab9c4ba4c8ccc3ee742538679f874a8dd49",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "ff692c31b95403ea00553c6b95bb89fbd1bca65ff4ae3df25ffb8f87ccff3c95",
+        "elements": 3041
+      },
+      {
+        "file": "extras.json",
+        "sha256": "0ce105a229d68d4759f463a8303bcecd00a61cf152a255d5620e0fca888b040b",
+        "elements": 502
+      },
+      {
+        "file": "water.json",
+        "sha256": "3af9bc3592429eb6fa195ee64321ccac9d922cff349e57722b83ada9edd288b9",
+        "elements": 1118
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d3b99330db5ddede8a8b28d1ab2e408c9dfc08da9709e6248ea8169b39eb99cb",
+        "elements": 1376
+      },
+      {
+        "file": "roads.json",
+        "sha256": "18dae43b738a30351707bfdbe26459f197640e1cf7560df78b492dc21d80561f",
+        "elements": 1832
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Hato Rey",
+      "osm": "node/5356336924",
+      "coordinatesWgs84": [
+        -66.060126,
+        18.429224
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Loverbar",
+      "osm": "way/365141850",
+      "coordinatesWgs84": [
+        -66.052178,
+        18.399345
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Caribbean University",
+      "osm": "way/727594582",
+      "coordinatesWgs84": [
+        -66.168634,
+        18.383892
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Professional Hospital",
+      "osm": "way/308741708",
+      "coordinatesWgs84": [
+        -66.09772,
+        18.362522
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "San Juan National Historic Site",
+      "osm": "relation/9489434",
+      "coordinatesWgs84": [
+        -66.121698,
+        18.467825
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "San Patricio Plaza",
+      "osm": "way/57960816",
+      "coordinatesWgs84": [
+        -66.105511,
+        18.409101
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Capilla Nuestra Señora de Lourdes",
+      "osm": "way/295445063",
+      "coordinatesWgs84": [
+        -66.085145,
+        18.456417
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Casa Alcaldía de Bayamón",
+      "osm": "way/338720301",
+      "coordinatesWgs84": [
+        -66.15578,
+        18.396174
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Área de Embellecimiento y Ornato",
+      "osm": "way/369424125",
+      "coordinatesWgs84": [
+        -66.070601,
+        18.42815
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad Teólogica del Caribe",
+      "osm": "node/4892514142",
+      "coordinatesWgs84": [
+        -66.010675,
+        18.37388
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Coliseo Roberto Clemente Walker",
+      "osm": "way/55788712",
+      "coordinatesWgs84": [
+        -66.075409,
+        18.41593
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Museo de Arte de Puerto Rico",
+      "osm": "way/196598864",
+      "coordinatesWgs84": [
+        -66.066182,
+        18.448441
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "San Juan Puerto Rico Temple",
+      "osm": "way/1204253618",
+      "coordinatesWgs84": [
+        -66.029285,
+        18.385733
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Puente Histórico de Trujillo Alto (Nº 427)",
+      "osm": "way/421147595",
+      "coordinatesWgs84": [
+        -66.003702,
+        18.35752
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Fortín San Juan de la Cruz",
+      "osm": "way/203588975",
+      "coordinatesWgs84": [
+        -66.136408,
+        18.466357
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "La Casita Blanca",
+      "osm": "node/4727907289",
+      "coordinatesWgs84": [
+        -66.053698,
+        18.443385
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Polytechnic University of Puerto Rico",
+      "osm": "way/198390426",
+      "coordinatesWgs84": [
+        -66.055886,
+        18.422358
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Roberto Clemente Walker",
+      "osm": "way/528579414",
+      "coordinatesWgs84": [
+        -65.949324,
+        18.37683
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Universidad del Sagrado Corazón",
+      "osm": "way/197848164",
+      "coordinatesWgs84": [
+        -66.058495,
+        18.44176
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "San Cathedral Basilica of Saint John the Baptist",
+      "osm": "way/255583481",
+      "coordinatesWgs84": [
+        -66.1177,
+        18.465731
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Hiram Bithorn Sosa",
+      "osm": "way/301913181",
+      "coordinatesWgs84": [
+        -66.072976,
+        18.416819
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Estadio Manuel Carrasquillo Herpen",
+      "osm": "node/357273264",
+      "coordinatesWgs84": [
+        -65.994787,
+        18.418503
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parque Dolores Cruz",
+      "osm": "way/60449170",
+      "coordinatesWgs84": [
+        -66.171746,
+        18.429008
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "VA Healthcare Río Piedras",
+      "osm": "way/336398987",
+      "coordinatesWgs84": [
+        -66.079373,
+        18.390812
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1248,
+      "sha256": "e15f6ab97a3266a361028570a03c2ea688fd6740eff3d2108ede20b24e1c73f3"
+    },
+    "geometry.ts": {
+      "bytes": 501526,
+      "sha256": "59ec551476d4dfef64f7204152784e1f98404bc48b7df0ac847222d4ffd9e284"
+    },
+    "places.ts": {
+      "bytes": 10220,
+      "sha256": "e566324ac14f174f6e4c83aa9c9cf6364d6d4e331d7700f701e47b56c11bdd5a"
+    },
+    "terrain.ts": {
+      "bytes": 283711,
+      "sha256": "b6e564a3312a5a384277ebae945147e54d8dffbfcfcab2aa31ee019bc76ed77f"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "2efef224375d0e5ba92adb01a514b6528f63970481f977a35ee6e5a8a14eae78"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

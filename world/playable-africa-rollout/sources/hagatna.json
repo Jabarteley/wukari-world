@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "cityId": "hagatna",
+  "countryIso2": "GU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Hagåtña",
+    "coordinatesWgs84": [
+      144.7516191,
+      13.4748148
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "hagatna-airport",
+    "name": "Antonio B. Won Pat International Airport",
+    "lon": 144.797282,
+    "lat": 13.485,
+    "sourceUrl": "https://ourairports.com/airports/PGUM/"
+  },
+  "boxes": {
+    "play": [
+      13.293933910066022,
+      144.56673042568102,
+      13.65569568993398,
+      144.93650777431898
+    ],
+    "core": [
+      13.429594577516506,
+      144.70542337599264,
+      13.520035022483496,
+      144.79781482400736
+    ],
+    "outline": [
+      13.243933910066021,
+      144.516730425681,
+      13.70569568993398,
+      144.986507774319
+    ],
+    "wide": [
+      12.693933910066022,
+      143.96673042568102,
+      14.25569568993398,
+      145.53650777431898
+    ],
+    "water": [
+      12.693933910066022,
+      143.96673042568102,
+      14.25569568993398,
+      145.53650777431898
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+    "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "83dd0e0861185d0ada205cd0c36b20ccb7c52ef352bbbcb236932e58220fb664",
+        "elements": 287
+      },
+      {
+        "file": "extras.json",
+        "sha256": "ede97268bbf26f3446849e048d6a0c02a7b46aad2f5b9eef8c2c391539e00c86",
+        "elements": 99
+      },
+      {
+        "file": "water.json",
+        "sha256": "5cb9990d6c3066300e115fd15548f6cfdb2f7d1b6c7838feb0b3635c456a5c01",
+        "elements": 97
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "d00d6e984c52072d103b4fe86f6708178ab8b328b0ff8eab7ffaa53687be4cfa",
+        "elements": 346
+      },
+      {
+        "file": "roads.json",
+        "sha256": "f069154318885a8b2015e1f05d37f3fbdc7a17d73cfe9f89a1e2382603cf1264",
+        "elements": 104
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Ruby Tuesday",
+      "osm": "node/361386388",
+      "coordinatesWgs84": [
+        144.783158,
+        13.489848
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nieves M Flores Memorial Library",
+      "osm": "node/367142716",
+      "coordinatesWgs84": [
+        144.753923,
+        13.472751
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Guam Memorial Hospital",
+      "osm": "way/585214438",
+      "coordinatesWgs84": [
+        144.775085,
+        13.50461
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Atantano Shrine",
+      "osm": "way/504214572",
+      "coordinatesWgs84": [
+        144.678157,
+        13.424365
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Micronesia Mall",
+      "osm": "way/32524264",
+      "coordinatesWgs84": [
+        144.817875,
+        13.520421
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Yigo Guam Temple",
+      "osm": "way/1204265345",
+      "coordinatesWgs84": [
+        144.890115,
+        13.541708
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Asan Community Center",
+      "osm": "way/504322436",
+      "coordinatesWgs84": [
+        144.71631,
+        13.471972
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "NASA Guam MSFN Station (Decommisioned)",
+      "osm": "node/11014712827",
+      "coordinatesWgs84": [
+        144.736608,
+        13.310563
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Paseo Stadium",
+      "osm": "way/1159666361",
+      "coordinatesWgs84": [
+        144.752314,
+        13.478541
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Orote Air Field",
+      "osm": "way/943230481",
+      "coordinatesWgs84": [
+        144.640397,
+        13.436968
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Taleyfac Spanish Bridge",
+      "osm": "way/611934431",
+      "coordinatesWgs84": [
+        144.649347,
+        13.361581
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Anthony Catholic Church",
+      "osm": "node/358672300",
+      "coordinatesWgs84": [
+        144.780666,
+        13.49799
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fort Santa Agueda",
+      "osm": "way/576086363",
+      "coordinatesWgs84": [
+        144.747758,
+        13.473727
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cathédrale du Doux-Nom-de-Marie",
+      "osm": "way/320402586",
+      "coordinatesWgs84": [
+        144.752323,
+        13.474182
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Barrigada War Memorial Park",
+      "osm": "node/358671978",
+      "coordinatesWgs84": [
+        144.793637,
+        13.468203
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Chief Quipuha Park",
+      "osm": "way/606591976",
+      "coordinatesWgs84": [
+        144.753908,
+        13.47732
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Coco Palm Garden Beach",
+      "osm": "node/6203091886",
+      "coordinatesWgs84": [
+        144.84053,
+        13.628376
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Jeff's Pirates Cove",
+      "osm": "node/738952422",
+      "coordinatesWgs84": [
+        144.769737,
+        13.364152
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Guam Regional Medical City",
+      "osm": "way/547350935",
+      "coordinatesWgs84": [
+        144.822691,
+        13.525389
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Young Pagat Market",
+      "osm": "way/345025136",
+      "coordinatesWgs84": [
+        144.84104,
+        13.467627
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cetti Bay Overlook",
+      "osm": "node/3939176179",
+      "coordinatesWgs84": [
+        144.666244,
+        13.325716
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Two Lovers Leap",
+      "osm": "node/2133106594",
+      "coordinatesWgs84": [
+        144.802512,
+        13.535316
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tumon Sands Plaza",
+      "osm": "way/256252073",
+      "coordinatesWgs84": [
+        144.805572,
+        13.509646
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Northern Region Community Health Center",
+      "osm": "node/358672212",
+      "coordinatesWgs84": [
+        144.834065,
+        13.522388
+      ],
+      "accuracy": "mapped-feature"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1265,
+      "sha256": "34925356df88953f19cda847dc27fd0d2bf966015b3a5d7edec2e0e1eb03a1bb"
+    },
+    "geometry.ts": {
+      "bytes": 47069,
+      "sha256": "6674205289d8f8656236ad474458350b0b2ed988249ed6e64cf3cef5367c87c1"
+    },
+    "places.ts": {
+      "bytes": 9682,
+      "sha256": "0936b700fe5a9d16b68d478feaa26073c13f4d7242dacb1dcf8c48bfca35ba24"
+    },
+    "terrain.ts": {
+      "bytes": 29932,
+      "sha256": "9500711948badbdd8242795af56972c6cc8f4723cc8099b190fbfee8ecccd40a"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "0c80d13bad8439e805fb6be91eb37f9c256be36c1eeb648c26bfb36bbff2650e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

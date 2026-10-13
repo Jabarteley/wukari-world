@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "cityId": "oranjestad",
+  "countryIso2": "AW",
+  "generationIdentity": {
+    "cityId": "oranjestad",
+    "stateId": "aw-oranjestad",
+    "stateName": "Oranjestad"
+  },
+  "inventorySha256": "e47d47ec72cebee1b2473f59f59993d4d6d4ee6d166727aa38095eef52bc7173",
+  "inventoryPath": "world/playable-africa-rollout/sources/oranjestad.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "oranjestad-airport",
+    "name": "Queen Beatrix International Airport",
+    "lon": -70.014281,
+    "lat": 12.501056,
+    "sourceUrl": "https://ourairports.com/airports/TNCA/"
+  },
+  "bounds": [
+    12.339221510066022,
+    -70.22130160114335,
+    12.70098328993398,
+    -69.85296419885665
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "252976a8cb048a8caf4fa6288aee5ccfc53269eec4ddaca2fe48cbc1763447e7",
+          "elements": 533
+        },
+        {
+          "file": "extras.json",
+          "sha256": "8f6a215f7c8774b750873434100c38c00bc6db253446e0c6d88f1bb5bcd6b424",
+          "elements": 76
+        },
+        {
+          "file": "water.json",
+          "sha256": "eab107a153b8208073908182beba1b0ac8cee8a31b0d4aa1ab8d19327cb0769b",
+          "elements": 88
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "127c2a9d01c46f96be41ce5fdf68348d454a2e709dbf23ba9f26de0e78e7c47f",
+          "elements": 423
+        },
+        {
+          "file": "roads.json",
+          "sha256": "2cff15cd0daa37bf7a7d66f4a8fd0ebdbb19748097f980f52f46c71f1c943179",
+          "elements": 1008
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 419,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 4,
+    "reachWaterPolygons": 4
+  },
+  "observed": {
+    "places": 533,
+    "extras": 76,
+    "water": 88,
+    "landuse": 423,
+    "roads": 1008
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1262,
+      "sha256": "35541587ea58b761cfc8341230a384c870d27d1fcc7ef5e97f57ffd5bfb4dcff"
+    },
+    "geometry.ts": {
+      "bytes": 144237,
+      "sha256": "cace66f33612e1b2623bafd4c45dcd3c5756728cfffeb2c68eb968ba93d982f6"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "aec3a6dde585e8e8c533665a0759d5967fbd029c0c0a5202c69c509a294d0313"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/oranjestad.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

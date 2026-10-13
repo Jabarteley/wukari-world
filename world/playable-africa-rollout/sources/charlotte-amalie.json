@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "charlotte-amalie",
+  "countryIso2": "VI",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Charlotte Amalie",
+    "coordinatesWgs84": [
+      -64.9335173,
+      18.3414575
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/north-america/us/us-virgin-islands-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "charlotte-amalie-airport",
+    "name": "Cyril E. King Airport",
+    "lon": -64.977251,
+    "lat": 18.337091,
+    "sourceUrl": "https://ourairports.com/airports/TIST/"
+  },
+  "boxes": {
+    "play": [
+      18.160576610066023,
+      -65.12299447684404,
+      18.522338389933978,
+      -64.74404012315597
+    ],
+    "core": [
+      18.296237277516507,
+      -64.98084918060233,
+      18.386677722483494,
+      -64.88618541939768
+    ],
+    "outline": [
+      18.110576610066023,
+      -65.17299447684404,
+      18.57233838993398,
+      -64.69404012315597
+    ],
+    "wide": [
+      17.560576610066022,
+      -65.72299447684404,
+      19.12233838993398,
+      -64.14404012315597
+    ],
+    "water": [
+      17.560576610066022,
+      -65.72299447684404,
+      19.12233838993398,
+      -64.14404012315597
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/north-america/us/us-virgin-islands-261011.osm.pbf",
+    "datasetSha256": "d4c788f17185961b70e6267fed3fa58d603e274ded18b1f64575de24072d3a67",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "1171b70072a646407b186f24359762d0fa443bb5b275fc17de6541c01cc13762",
+        "elements": 300
+      },
+      {
+        "file": "extras.json",
+        "sha256": "439070b34a3b203cb2e76740425c14c0b7a7a23cc94d1bff3c6a94ca45c93b7a",
+        "elements": 49
+      },
+      {
+        "file": "water.json",
+        "sha256": "aca673b516f151eedff1c747610c471a31fbca2fc7e4cbba80a6366c6b15e2e6",
+        "elements": 282
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "0f8f17f09b7c9027e6590b3c6efc6ee06f7f7259762c1a020157c37268f6da3d",
+        "elements": 67
+      },
+      {
+        "file": "roads.json",
+        "sha256": "069b202757a5e6269551459fe90b3a9859e649babc7cb2bc3762b155904cb312",
+        "elements": 328
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "Frenchman’s Cove",
+      "osm": "node/1218392568",
+      "coordinatesWgs84": [
+        -64.922718,
+        18.32177
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Waterfront Bistro",
+      "osm": "node/1000296069",
+      "coordinatesWgs84": [
+        -64.79554,
+        18.330806
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Enid M Baa Library and Archives",
+      "osm": "node/367449794",
+      "coordinatesWgs84": [
+        -64.935435,
+        18.341166
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Roy Lester Schneider Hospital",
+      "osm": "way/584496926",
+      "coordinatesWgs84": [
+        -64.914786,
+        18.340845
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "FDR Park",
+      "osm": "way/38485624",
+      "coordinatesWgs84": [
+        -64.928177,
+        18.341899
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Bordeaux Farmers' Market",
+      "osm": "way/522515683",
+      "coordinatesWgs84": [
+        -65.016873,
+        18.353846
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Saint Thomas Synagogue",
+      "osm": "way/215454486",
+      "coordinatesWgs84": [
+        -64.932657,
+        18.342819
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Market Square",
+      "osm": "way/378331488",
+      "coordinatesWgs84": [
+        -64.934787,
+        18.341437
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Government House",
+      "osm": "way/323829748",
+      "coordinatesWgs84": [
+        -64.92918,
+        18.342465
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of the Virgin Islands Saint Thomas Campus",
+      "osm": "way/917673033",
+      "coordinatesWgs84": [
+        -64.972261,
+        18.343242
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Trunk Bay Outlook",
+      "osm": "node/9451357027",
+      "coordinatesWgs84": [
+        -64.772599,
+        18.351313
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fort Christian",
+      "osm": "relation/14560476",
+      "coordinatesWgs84": [
+        -64.929718,
+        18.340578
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Coral World Ocean Park",
+      "osm": "way/469663512",
+      "coordinatesWgs84": [
+        -64.8641,
+        18.349423
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hassel Island Historic District",
+      "osm": "node/356559567",
+      "coordinatesWgs84": [
+        -64.935423,
+        18.329123
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Saint Annes Chapel",
+      "osm": "node/356559609",
+      "coordinatesWgs84": [
+        -64.942758,
+        18.338001
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Saints Peter and Paul Cathedral",
+      "osm": "way/522510228",
+      "coordinatesWgs84": [
+        -64.936677,
+        18.341144
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Antonio Jarvis Square",
+      "osm": "node/356559520",
+      "coordinatesWgs84": [
+        -64.930701,
+        18.340512
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Emancipation Gardens Park",
+      "osm": "way/38311399",
+      "coordinatesWgs84": [
+        -64.930317,
+        18.341229
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sunset Grille",
+      "osm": "node/6003432587",
+      "coordinatesWgs84": [
+        -64.852208,
+        18.318435
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Waterfront Restaurant at Lovango Resort",
+      "osm": "node/13381802291",
+      "coordinatesWgs84": [
+        -64.802025,
+        18.360553
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Four Winds Plaza",
+      "osm": "way/38351557",
+      "coordinatesWgs84": [
+        -64.888448,
+        18.339446
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "St Thomas Airport Outlook",
+      "osm": "node/9453513417",
+      "coordinatesWgs84": [
+        -64.990453,
+        18.353662
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Crown Bay Center",
+      "osm": "node/452044421",
+      "coordinatesWgs84": [
+        -64.955013,
+        18.3322
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Bluewater Bible College & Institute",
+      "osm": "way/1155633919",
+      "coordinatesWgs84": [
+        -65.0253,
+        18.345253
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1291,
+      "sha256": "a8546e504192c1a3f9d6d53ac4a8874f207ddfd2b9e31e4839cdcff5defa2c67"
+    },
+    "geometry.ts": {
+      "bytes": 174664,
+      "sha256": "dc26cc9ec589aeca60e22a858769c34887a4ea26ba109c99e9e64f657241198f"
+    },
+    "places.ts": {
+      "bytes": 9905,
+      "sha256": "377b2db3e315bd561e2c67135ee3f8458f8d409d9a8d849fe78b995448bc7a33"
+    },
+    "terrain.ts": {
+      "bytes": 683700,
+      "sha256": "37aa573d62de8c31d1c4e37c91fd8db30a46703d9d1c39315b4ed4b5a9c56d7f"
+    },
+    "index.ts": {
+      "bytes": 267,
+      "sha256": "f52141f7a833cfdeb1fd60e85f09f1086c0f047b318e1520edf451f88ba1b502"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

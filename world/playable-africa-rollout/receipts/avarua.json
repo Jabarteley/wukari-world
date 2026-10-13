@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "cityId": "avarua",
+  "countryIso2": "CK",
+  "generationIdentity": {
+    "cityId": "avarua",
+    "stateId": "ck-avarua",
+    "stateName": "Avarua"
+  },
+  "inventorySha256": "689d9cf87a64d8cae8b52378dfe3716fa24bc4ecede168fb1668662953e5d663",
+  "inventoryPath": "world/playable-africa-rollout/sources/avarua.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "avarua-airport",
+    "name": "Rarotonga International Airport",
+    "lon": -159.806,
+    "lat": -21.2027,
+    "sourceUrl": "https://ourairports.com/airports/NCRG/"
+  },
+  "bounds": [
+    -21.388354489933977,
+    -159.96376526193234,
+    -21.026592710066023,
+    -159.57786373806766
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/cook-islands-261011.osm.pbf",
+      "datasetSha256": "63f99fa03ae90a44dda490e29742b83b83753a41b05a523ac7ae37b07de85403",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "dff66e0102b8a8dc7a3363cbb0720cd1549245a144aee1a56b45c38eaf087cb1",
+          "elements": 109
+        },
+        {
+          "file": "extras.json",
+          "sha256": "22ad32de4f3d8652137d69243ecdb7392a073504b47e462aa1bb1b2c2c440b04",
+          "elements": 22
+        },
+        {
+          "file": "water.json",
+          "sha256": "d6304ecce96af0a2a455eef9acd1fb17953f01f091e92bb1424411490abc7c07",
+          "elements": 7
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "5e82abe010a8509bde961a6c44cfc618e2827c67eb10195a4d6e34abe70e611c",
+          "elements": 102
+        },
+        {
+          "file": "roads.json",
+          "sha256": "314ca08c8cb4ed4d7939764d9b8d7be27f8f74a72de5032fe024656e86ec0cfa",
+          "elements": 102
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 21,
+    "roads": 20,
+    "neighbourhoodLabels": 14,
+    "landPolygons": 1,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "worship",
+        "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "office=government",
+        "ref": "way/207000165"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "hamlet": 4,
+      "locality": 1,
+      "suburb": 2,
+      "village": 7
+    }
+  },
+  "observed": {
+    "places": 109,
+    "extras": 22,
+    "water": 7,
+    "landuse": 102,
+    "roads": 102
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1256,
+      "sha256": "dd3a708c7dfff71008c90fc71e5b515b55a3e7b0ffaf22942dd7038099617596"
+    },
+    "geometry.ts": {
+      "bytes": 10247,
+      "sha256": "a02f578e19a6ec1fd6ca278c8e04895bb9d121642177a3a3deec5905d5804cf6"
+    },
+    "index.ts": {
+      "bytes": 257,
+      "sha256": "76f135c9882c04482efbfa0349a746509a16f00c7d367011cbcf10d01f5a22b2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/avarua.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

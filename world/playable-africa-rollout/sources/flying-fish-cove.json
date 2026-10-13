@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "cityId": "flying-fish-cove",
+  "countryIso2": "CX",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Flying Fish Cove",
+    "coordinatesWgs84": [
+      105.674413,
+      -10.4213344
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/australia/christmas-island-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "flying-fish-cove-airport",
+    "name": "Christmas Island International Airport",
+    "lon": 105.6911,
+    "lat": -10.450387,
+    "sourceUrl": "https://ourairports.com/airports/YPXM/"
+  },
+  "boxes": {
+    "play": [
+      -10.602215289933978,
+      105.49163034263032,
+      -10.24045351006602,
+      105.85719565736969
+    ],
+    "core": [
+      -10.466554622483494,
+      105.62873745112485,
+      -10.376114177516504,
+      105.72008854887515
+    ],
+    "outline": [
+      -10.652215289933979,
+      105.44163034263032,
+      -10.19045351006602,
+      105.90719565736968
+    ],
+    "wide": [
+      -11.202215289933978,
+      104.89163034263032,
+      -9.64045351006602,
+      106.45719565736968
+    ],
+    "water": [
+      -11.202215289933978,
+      104.89163034263032,
+      -9.64045351006602,
+      106.45719565736968
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/australia/christmas-island-261011.osm.pbf",
+    "datasetSha256": "89c297fcde59dfaa96d8a764ca24ebfc5edacad0db3eabd015cb6c7730c5578a",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "6b5d7e38986421a85c26176a3ad40995c05f271d06fb36e2f28d1e5da5d0e28e",
+        "elements": 29
+      },
+      {
+        "file": "extras.json",
+        "sha256": "a08fdcf5abd01efd5055edf320d3b5d30e3c5f57d5f10a8d04eaab228786e5c7",
+        "elements": 4
+      },
+      {
+        "file": "water.json",
+        "sha256": "758eb50442f91492ffb37b514bb885cf47af9fa2b0e2be260dea760f987f79ab",
+        "elements": 17
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "70842348dfa6c87dc040bfe68c25524d7e974bd2ade44ad7a0ca342c38e97f55",
+        "elements": 9
+      },
+      {
+        "file": "roads.json",
+        "sha256": "646883ea68eb9420a25353b577de097ee864b9938ad9b68a82059535e5df1a5a",
+        "elements": 14
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "market",
+      "reason": "no unused named amenity=marketplace or shop=mall feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "polling",
+      "reason": "no unused named place=square, amenity=townhall, or the audited fallbacks (courthouse, office=government, building=government, building=public, community_centre) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "government",
+      "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Flying Fish Cove",
+      "osm": "node/4160092424",
+      "coordinatesWgs84": [
+        105.682749,
+        -10.425097
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Rumah Tinggi",
+      "osm": "node/4721188139",
+      "coordinatesWgs84": [
+        105.678497,
+        -10.415622
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Christmas Island Hospital",
+      "osm": "node/3751248046",
+      "coordinatesWgs84": [
+        105.683189,
+        -10.425392
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Drumsite Park",
+      "osm": "way/747451092",
+      "coordinatesWgs84": [
+        105.672444,
+        -10.431561
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Goddess of Mercy Temple",
+      "osm": "way/661594160",
+      "coordinatesWgs84": [
+        105.679165,
+        -10.424287
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Martin Point Lookout",
+      "osm": "node/6473626309",
+      "coordinatesWgs84": [
+        105.557864,
+        -10.469281
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Tai Jin House",
+      "osm": "node/4551940689",
+      "coordinatesWgs84": [
+        105.665021,
+        -10.428661
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Phosphate Mining Company Abandoned Railway",
+      "osm": "node/4160092423",
+      "coordinatesWgs84": [
+        105.649799,
+        -10.562884
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Pink House Research Station",
+      "osm": "node/4551931090",
+      "coordinatesWgs84": [
+        105.647057,
+        -10.49178
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "LB4 look out",
+      "osm": "node/4551940189",
+      "coordinatesWgs84": [
+        105.599621,
+        -10.477243
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Margaret Knoll",
+      "osm": "node/4551940589",
+      "coordinatesWgs84": [
+        105.683691,
+        -10.476494
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Island Alchemy Cafe",
+      "osm": "node/11529873274",
+      "coordinatesWgs84": [
+        105.682937,
+        -10.434437
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Le Cla",
+      "osm": "way/438454016",
+      "coordinatesWgs84": [
+        105.67297,
+        -10.422075
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Poon Saan Park",
+      "osm": "way/1550247964",
+      "coordinatesWgs84": [
+        105.679555,
+        -10.424213
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1306,
+      "sha256": "85f8d1abbb682742f9c6dfda298b33f65aec274fd8c71553d1ee09f749dc927a"
+    },
+    "geometry.ts": {
+      "bytes": 31636,
+      "sha256": "5e585f0e764f86e54727d9e743eb59144baa521c8ac839f40267cf32f40d726b"
+    },
+    "places.ts": {
+      "bytes": 5813,
+      "sha256": "13878e626d980bb51255a167c15c0a315ac33a2de5dc2bfd00bc960b6eb82797"
+    },
+    "terrain.ts": {
+      "bytes": 59922,
+      "sha256": "bf10078840ef69ab978cc303338f0d5e535aa126615ded9ca60f4cc9e6974519"
+    },
+    "index.ts": {
+      "bytes": 267,
+      "sha256": "3de496dc53a3e0780552fae1a37996d03bb1b3469885aa55330698326246933d"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

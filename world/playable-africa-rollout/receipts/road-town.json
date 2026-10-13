@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "cityId": "road-town",
+  "countryIso2": "VG",
+  "generationIdentity": {
+    "cityId": "road-town",
+    "stateId": "vg-road-town",
+    "stateName": "Road Town"
+  },
+  "inventorySha256": "84859971b51b7130528b7fbb2b97c76f84751dd4ac9f5e7a26aa134e9789088e",
+  "inventoryPath": "world/playable-africa-rollout/sources/road-town.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "road-town-airport",
+    "name": "Terrance B. Lettsome International Airport",
+    "lon": -64.541707,
+    "lat": 18.445492,
+    "sourceUrl": "https://ourairports.com/airports/TUPJ/"
+  },
+  "bounds": [
+    18.244885110066022,
+    -64.81266223703753,
+    18.606646889933977,
+    -64.43352056296249
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "184e46ee435a13a09ee9ea2314fe73789531f5189182358741f0e4517f5ee230",
+          "elements": 274
+        },
+        {
+          "file": "extras.json",
+          "sha256": "67da5f5b36071981a60bda4a1e7d5c2d5e48c4cdb83a19678ead4ae7ec53bcc8",
+          "elements": 28
+        },
+        {
+          "file": "water.json",
+          "sha256": "87417b559fb33572184cb18f31bf4b08a0c8ec182127706481b978859fb50f36",
+          "elements": 452
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "c609fa6da781b2fb176f645c09740af83c3c49171ce87b27252ee17d56a41f96",
+          "elements": 103
+        },
+        {
+          "file": "roads.json",
+          "sha256": "0d98da81b1ac81f706b163b4a0234b229379b3976e31bcea84da3279d1c1cf01",
+          "elements": 274
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 21,
+    "roads": 23,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 2,
+    "waterPolygons": 8,
+    "reachWaterPolygons": 13
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "way/399711084"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "hamlet": 16,
+      "neighbourhood": 2
+    }
+  },
+  "observed": {
+    "places": 274,
+    "extras": 28,
+    "water": 452,
+    "landuse": 103,
+    "roads": 274
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1273,
+      "sha256": "f31075864dc5f7fbbbe680f8c541cb83191eced448e144205bb7e72f1f6f641d"
+    },
+    "geometry.ts": {
+      "bytes": 883534,
+      "sha256": "ff00df09ede3fa68112038d720ab8d78533bb8f0d164acc2813afd392ef93a7a"
+    },
+    "index.ts": {
+      "bytes": 260,
+      "sha256": "df5787b23ad3fe334fc39c7c870170b03573433cff01ce2adf266261b94299de"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/road-town.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

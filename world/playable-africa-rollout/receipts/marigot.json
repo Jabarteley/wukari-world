@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "cityId": "marigot",
+  "countryIso2": "MF",
+  "generationIdentity": {
+    "cityId": "marigot",
+    "stateId": "mf-marigot",
+    "stateName": "Marigot"
+  },
+  "inventorySha256": "392ab0df698bd62433e6b3043ae861bafef3e0a4c9fd575a331ed2e33c054319",
+  "inventoryPath": "world/playable-africa-rollout/sources/marigot.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "marigot-airport",
+    "name": "Grand Case-l'Espérance Airport",
+    "lon": -63.047444,
+    "lat": 18.100057,
+    "sourceUrl": "https://ourairports.com/airports/TFFG/"
+  },
+  "bounds": [
+    17.885973510066023,
+    -63.27406249099159,
+    18.247735289933978,
+    -62.89571130900841
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+      "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "d73d14af2cdfeab7d07dc2c4de6b276bcc058a7c435eff73947323ec2552d29b",
+          "elements": 609
+        },
+        {
+          "file": "extras.json",
+          "sha256": "66fd1f45828e504644ed9460ab79146b835bd55e2b2e92eca16ce78c82738a05",
+          "elements": 59
+        },
+        {
+          "file": "water.json",
+          "sha256": "f1e62c0d26b874cee87464902212363e4fdea4d31e6f773f5b00366330fb4ee1",
+          "elements": 443
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "89fe2195ed0a89b4bf0b05d554de4a00bb00579fc4e3a9138957918fc35dc3db",
+          "elements": 350
+        },
+        {
+          "file": "roads.json",
+          "sha256": "a58adde693114caab486a6a6c2494dd6871bb92ba4eb35c027fb1196a31325a8",
+          "elements": 390
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 19,
+    "roads": 14,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 3,
+    "waterPolygons": 11,
+    "reachWaterPolygons": 17
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "office=government",
+        "ref": "way/323656342"
+      }
+    ]
+  },
+  "observed": {
+    "places": 609,
+    "extras": 59,
+    "water": 443,
+    "landuse": 350,
+    "roads": 390
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1244,
+      "sha256": "7bf9ddd0699c7e6868ef30db18988487aaecb6456d0870ba9b8c2fd1ac26d22e"
+    },
+    "geometry.ts": {
+      "bytes": 171492,
+      "sha256": "25db430dfe3ace3a83c0670eee70130bf35dd0b1b0b4879aa4b77e064e36e72c"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "a4273e3f4f367b946117ad1a232b15d3c03e703522ee6b06bd2b1198e212b823"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/marigot.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

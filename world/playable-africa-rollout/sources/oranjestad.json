@@ -1,0 +1,351 @@
+{
+  "schemaVersion": 1,
+  "cityId": "oranjestad",
+  "countryIso2": "AW",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Oranjestad",
+    "coordinatesWgs84": [
+      -70.0371329,
+      12.5201024
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "oranjestad-airport",
+    "name": "Queen Beatrix International Airport",
+    "lon": -70.014281,
+    "lat": 12.501056,
+    "sourceUrl": "https://ourairports.com/airports/TNCA/"
+  },
+  "boxes": {
+    "play": [
+      12.339221510066022,
+      -70.22130160114335,
+      12.70098328993398,
+      -69.85296419885665
+    ],
+    "core": [
+      12.474882177516506,
+      -70.083150647727,
+      12.565322622483496,
+      -69.99111515227301
+    ],
+    "outline": [
+      12.289221510066021,
+      -70.27130160114335,
+      12.75098328993398,
+      -69.80296419885666
+    ],
+    "wide": [
+      11.739221510066022,
+      -70.82130160114335,
+      13.30098328993398,
+      -69.25296419885666
+    ],
+    "water": [
+      11.739221510066022,
+      -70.82130160114335,
+      13.30098328993398,
+      -69.25296419885666
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/central-america-261011.osm.pbf",
+    "datasetSha256": "3dc63ddc64aae92095158e757147e76a1cf4c6d3b31d805ce19f358b868d4776",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "252976a8cb048a8caf4fa6288aee5ccfc53269eec4ddaca2fe48cbc1763447e7",
+        "elements": 533
+      },
+      {
+        "file": "extras.json",
+        "sha256": "8f6a215f7c8774b750873434100c38c00bc6db253446e0c6d88f1bb5bcd6b424",
+        "elements": 76
+      },
+      {
+        "file": "water.json",
+        "sha256": "eab107a153b8208073908182beba1b0ac8cee8a31b0d4aa1ab8d19327cb0769b",
+        "elements": 88
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "127c2a9d01c46f96be41ce5fdf68348d454a2e709dbf23ba9f26de0e78e7c47f",
+        "elements": 423
+      },
+      {
+        "file": "roads.json",
+        "sha256": "2cff15cd0daa37bf7a7d66f4a8fd0ebdbb19748097f980f52f46c71f1c943179",
+        "elements": 1008
+      }
+    ]
+  },
+  "selectedPlaces": [
+    {
+      "name": "De Palm Island Ferry Teminal",
+      "osm": "node/2682381431",
+      "coordinatesWgs84": [
+        -69.978743,
+        12.472256
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "La Trattoria El Faro Blanco",
+      "osm": "node/2682540965",
+      "coordinatesWgs84": [
+        -70.052266,
+        12.613455
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Xavier University School of Medicine",
+      "osm": "way/369027333",
+      "coordinatesWgs84": [
+        -70.037273,
+        12.531088
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "IMSAN Dr. Rudy Engelbrecht Medical Center",
+      "osm": "way/382344981",
+      "coordinatesWgs84": [
+        -69.915925,
+        12.439397
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ayo Rock Formation",
+      "osm": "way/43109643",
+      "coordinatesWgs84": [
+        -69.971989,
+        12.53221
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Palm Beach Plaza Mall",
+      "osm": "relation/4073810",
+      "coordinatesWgs84": [
+        -70.042826,
+        12.574112
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Seroe Colorado Community Church",
+      "osm": "way/97566669",
+      "coordinatesWgs84": [
+        -69.884285,
+        12.419663
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "City Hall",
+      "osm": "way/38755794",
+      "coordinatesWgs84": [
+        -70.035881,
+        12.518714
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Human Resources Aruba",
+      "osm": "way/175180276",
+      "coordinatesWgs84": [
+        -70.053342,
+        12.533723
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "University of Aruba",
+      "osm": "way/491139601",
+      "coordinatesWgs84": [
+        -70.034229,
+        12.523638
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Sero Cabai",
+      "osm": "node/1773562177",
+      "coordinatesWgs84": [
+        -69.936464,
+        12.492382
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Fort Zoutman",
+      "osm": "way/769698096",
+      "coordinatesWgs84": [
+        -70.03561,
+        12.517661
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Guadirikiri Cave",
+      "osm": "node/540982491",
+      "coordinatesWgs84": [
+        -69.89952,
+        12.482527
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Alto Vista Chapel",
+      "osm": "node/540115823",
+      "coordinatesWgs84": [
+        -70.01093,
+        12.575979
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Model Train Museum",
+      "osm": "node/1770257502",
+      "coordinatesWgs84": [
+        -69.887471,
+        12.434485
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Synagogue",
+      "osm": "node/952400489",
+      "coordinatesWgs84": [
+        -70.030255,
+        12.512962
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Sero Jamanota",
+      "osm": "node/540217531",
+      "coordinatesWgs84": [
+        -69.940481,
+        12.487409
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hoi Sing Bar & Chinese Restaurant",
+      "osm": "node/3753152873",
+      "coordinatesWgs84": [
+        -69.950116,
+        12.452162
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Overhanging cliff",
+      "osm": "node/11591843520",
+      "coordinatesWgs84": [
+        -69.993384,
+        12.508087
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Parke Curazon",
+      "osm": "way/958543660",
+      "coordinatesWgs84": [
+        -70.003254,
+        12.547863
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Grandiso Sopi Seafood Mix",
+      "osm": "node/8677634858",
+      "coordinatesWgs84": [
+        -69.968801,
+        12.499927
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Green Corridor Linear park",
+      "osm": "way/959755657",
+      "coordinatesWgs84": [
+        -69.987631,
+        12.489404
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Super Food Plaza",
+      "osm": "way/190877206",
+      "coordinatesWgs84": [
+        -70.050693,
+        12.551988
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Rococo Plaza",
+      "osm": "way/371524223",
+      "coordinatesWgs84": [
+        -70.013497,
+        12.538377
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1262,
+      "sha256": "35541587ea58b761cfc8341230a384c870d27d1fcc7ef5e97f57ffd5bfb4dcff"
+    },
+    "geometry.ts": {
+      "bytes": 144237,
+      "sha256": "cace66f33612e1b2623bafd4c45dcd3c5756728cfffeb2c68eb968ba93d982f6"
+    },
+    "places.ts": {
+      "bytes": 9590,
+      "sha256": "987b9ab7aae4619c357a49f617f5508c8ca464b60d62c74fed2edcc9b0ef9aae"
+    },
+    "terrain.ts": {
+      "bytes": 282700,
+      "sha256": "104e105f253d14b44373039c94da098bb8b96e1c3b895d563fb3683f19f25355"
+    },
+    "index.ts": {
+      "bytes": 261,
+      "sha256": "aec3a6dde585e8e8c533665a0759d5967fbd029c0c0a5202c69c509a294d0313"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

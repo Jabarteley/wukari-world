@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "cityId": "charlotte-amalie",
+  "countryIso2": "VI",
+  "generationIdentity": {
+    "cityId": "charlotte-amalie",
+    "stateId": "vi",
+    "stateName": "Charlotte Amalie"
+  },
+  "inventorySha256": "118ff849f190203f1ac1cdf7cbfdfb4a5e12de1101c711233c2943424af9486e",
+  "inventoryPath": "world/playable-africa-rollout/sources/charlotte-amalie.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "charlotte-amalie-airport",
+    "name": "Cyril E. King Airport",
+    "lon": -64.977251,
+    "lat": 18.337091,
+    "sourceUrl": "https://ourairports.com/airports/TIST/"
+  },
+  "bounds": [
+    18.160576610066023,
+    -65.12299447684404,
+    18.522338389933978,
+    -64.74404012315597
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/north-america/us/us-virgin-islands-261011.osm.pbf",
+      "datasetSha256": "d4c788f17185961b70e6267fed3fa58d603e274ded18b1f64575de24072d3a67",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "1171b70072a646407b186f24359762d0fa443bb5b275fc17de6541c01cc13762",
+          "elements": 300
+        },
+        {
+          "file": "extras.json",
+          "sha256": "439070b34a3b203cb2e76740425c14c0b7a7a23cc94d1bff3c6a94ca45c93b7a",
+          "elements": 49
+        },
+        {
+          "file": "water.json",
+          "sha256": "aca673b516f151eedff1c747610c471a31fbca2fc7e4cbba80a6366c6b15e2e6",
+          "elements": 282
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "0f8f17f09b7c9027e6590b3c6efc6ee06f7f7259762c1a020157c37268f6da3d",
+          "elements": 67
+        },
+        {
+          "file": "roads.json",
+          "sha256": "069b202757a5e6269551459fe90b3a9859e649babc7cb2bc3762b155904cb312",
+          "elements": 328
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 157,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 5,
+    "reachWaterPolygons": 9
+  },
+  "autoRetries": [
+    {
+      "class": "catalogue-row",
+      "change": {
+        "stateId": {
+          "from": "vi-charlotte-amalie",
+          "to": "vi"
+        }
+      },
+      "before": {
+        "catalogueBytes": 175,
+        "limit": 150
+      },
+      "after": {
+        "catalogueBytes": 158,
+        "limit": 150,
+        "passed": false
+      }
+    }
+  ],
+  "observed": {
+    "places": 300,
+    "extras": 49,
+    "water": 282,
+    "landuse": 67,
+    "roads": 328
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1291,
+      "sha256": "a8546e504192c1a3f9d6d53ac4a8874f207ddfd2b9e31e4839cdcff5defa2c67"
+    },
+    "geometry.ts": {
+      "bytes": 174664,
+      "sha256": "dc26cc9ec589aeca60e22a858769c34887a4ea26ba109c99e9e64f657241198f"
+    },
+    "index.ts": {
+      "bytes": 267,
+      "sha256": "f52141f7a833cfdeb1fd60e85f09f1086c0f047b318e1520edf451f88ba1b502"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/charlotte-amalie.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

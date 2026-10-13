@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "cityId": "nuuk",
+  "countryIso2": "GL",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Nuuk",
+    "coordinatesWgs84": [
+      -51.7361444,
+      64.1767049
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/north-america/greenland-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "nuuk-airport",
+    "name": "Nuuk International Airport",
+    "lon": -51.67914,
+    "lat": 64.191066,
+    "sourceUrl": "https://ourairports.com/airports/BGGH/"
+  },
+  "boxes": {
+    "play": [
+      63.99582401006602,
+      -52.15130533577506,
+      64.35758578993398,
+      -51.320983464224945
+    ],
+    "core": [
+      64.13148467751651,
+      -51.839425495057256,
+      64.2219251224835,
+      -51.632863304942745
+    ],
+    "outline": [
+      63.945824010066026,
+      -52.201305335775054,
+      64.40758578993398,
+      -51.27098346422495
+    ],
+    "wide": [
+      63.39582401006602,
+      -52.75130533577506,
+      64.95758578993397,
+      -50.72098346422494
+    ],
+    "water": [
+      63.39582401006602,
+      -52.75130533577506,
+      64.95758578993397,
+      -50.72098346422494
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/north-america/greenland-261011.osm.pbf",
+    "datasetSha256": "f338dd29250e0d0e459e249e1db6f50da8d8c9baede259c000d054c700b9d0ed",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "e80cd804d46f1f91e0d2147ba3675320798274d6fbfe5fda51fcd57efbddb199",
+        "elements": 206
+      },
+      {
+        "file": "extras.json",
+        "sha256": "9b152775e9c825366936f5a7f9ef6f7442553bb2853a71255796af4a13fbb015",
+        "elements": 22
+      },
+      {
+        "file": "water.json",
+        "sha256": "ab1e7d9c2c475efde0c82be61042a103749e35930e7e754743fbec818d9cbec5",
+        "elements": 6921
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "01a2f47ef3eea384a352f05585eb965d10004e62630793b7d20198783fd0cfed",
+        "elements": 59
+      },
+      {
+        "file": "roads.json",
+        "sha256": "fb522537f1229b818a5709223a33395b5c5dc6e33119db594c4a39982ee2e7b7",
+        "elements": 93
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Farmers",
+      "osm": "node/1019617098",
+      "coordinatesWgs84": [
+        -51.738994,
+        64.174989
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "University of Greenland",
+      "osm": "way/252170985",
+      "coordinatesWgs84": [
+        -51.696415,
+        64.190992
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Queen Ingrid's Hospital",
+      "osm": "way/85628069",
+      "coordinatesWgs84": [
+        -51.737934,
+        64.169334
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Mitsimmavik",
+      "osm": "way/1276583869",
+      "coordinatesWgs84": [
+        -51.689381,
+        64.155438
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kalaaliaraq Market",
+      "osm": "way/256786456",
+      "coordinatesWgs84": [
+        -51.742444,
+        64.178677
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Hans Egedes Kirke",
+      "osm": "way/255788841",
+      "coordinatesWgs84": [
+        -51.736745,
+        64.173425
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kommuneqarfik Sermersooq",
+      "osm": "way/252790917",
+      "coordinatesWgs84": [
+        -51.736391,
+        64.176606
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Nukissiorfiit",
+      "osm": "way/252161876",
+      "coordinatesWgs84": [
+        -51.719527,
+        64.184511
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Ilinniarfissuaq",
+      "osm": "way/410015972",
+      "coordinatesWgs84": [
+        -51.739256,
+        64.180978
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Stanislawip Issikivia",
+      "osm": "node/1295226025",
+      "coordinatesWgs84": [
+        -51.693017,
+        64.18034
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nuuk Art Museum",
+      "osm": "way/253675197",
+      "coordinatesWgs84": [
+        -51.729241,
+        64.177873
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Greenland National Museum",
+      "osm": "node/14068566886",
+      "coordinatesWgs84": [
+        -51.746021,
+        64.177456
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nuuk Center",
+      "osm": "way/252790932",
+      "coordinatesWgs84": [
+        -51.738705,
+        64.177909
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Statue of Hans Egede",
+      "osm": "node/3265809565",
+      "coordinatesWgs84": [
+        -51.74537,
+        64.179528
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Church of Our Saviour",
+      "osm": "way/255823944",
+      "coordinatesWgs84": [
+        -51.744131,
+        64.179765
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Kristi Konge",
+      "osm": "way/253674855",
+      "coordinatesWgs84": [
+        -51.731763,
+        64.179423
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Cafe Tamu",
+      "osm": "node/11851503687",
+      "coordinatesWgs84": [
+        -51.668927,
+        64.166932
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Nasiffik",
+      "osm": "way/257366787",
+      "coordinatesWgs84": [
+        -51.705483,
+        64.179732
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Tech College Greenland",
+      "osm": "node/4784596045",
+      "coordinatesWgs84": [
+        -51.734431,
+        64.168269
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Aqqaluk Plads",
+      "osm": "way/255823949",
+      "coordinatesWgs84": [
+        -51.742009,
+        64.180394
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1223,
+      "sha256": "4c06234caf27d8a7fa520b733b1a4ff8a8724dcd3be54bcfcc0ec7ebc2e2629f"
+    },
+    "geometry.ts": {
+      "bytes": 1057724,
+      "sha256": "e7dcaba8d2c02cde1f1e8a8e9a94d506f15264e0c28bc5a3569c470c70620d3b"
+    },
+    "places.ts": {
+      "bytes": 8000,
+      "sha256": "f15243f570ef4d5de679588c94db532e0555fd9714faad213dca03369fe175de"
+    },
+    "terrain.ts": {
+      "bytes": 2103291,
+      "sha256": "399c099a0f0e7472229c89fb530ce35eb844d41728a5a76a0d31e5c4a70fa0f7"
+    },
+    "index.ts": {
+      "bytes": 255,
+      "sha256": "e37ac9ddffeae7b615ef46834508aad01538080da10cd924dd22ba8fd0a289f7"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "cityId": "hagatna",
+  "countryIso2": "GU",
+  "generationIdentity": {
+    "cityId": "hagatna",
+    "stateId": "gu-hagatna",
+    "stateName": "Hagåtña"
+  },
+  "inventorySha256": "331b457dc3bf9ac3da56efb66d0abc6800c104821106f426587c482fa93f802a",
+  "inventoryPath": "world/playable-africa-rollout/sources/hagatna.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "hagatna-airport",
+    "name": "Antonio B. Won Pat International Airport",
+    "lon": 144.797282,
+    "lat": 13.485,
+    "sourceUrl": "https://ourairports.com/airports/PGUM/"
+  },
+  "bounds": [
+    13.293933910066022,
+    144.56673042568102,
+    13.65569568993398,
+    144.93650777431898
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/american-oceania-261011.osm.pbf",
+      "datasetSha256": "c5dbd286e05428f534b98564a8572233f3bd6915c20a317c8d9d2113f899d16b",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "83dd0e0861185d0ada205cd0c36b20ccb7c52ef352bbbcb236932e58220fb664",
+          "elements": 287
+        },
+        {
+          "file": "extras.json",
+          "sha256": "ede97268bbf26f3446849e048d6a0c02a7b46aad2f5b9eef8c2c391539e00c86",
+          "elements": 99
+        },
+        {
+          "file": "water.json",
+          "sha256": "5cb9990d6c3066300e115fd15548f6cfdb2f7d1b6c7838feb0b3635c456a5c01",
+          "elements": 97
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "d00d6e984c52072d103b4fe86f6708178ab8b328b0ff8eab7ffaa53687be4cfa",
+          "elements": 346
+        },
+        {
+          "file": "roads.json",
+          "sha256": "f069154318885a8b2015e1f05d37f3fbdc7a17d73cfe9f89a1e2382603cf1264",
+          "elements": 104
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 31,
+    "neighbourhoodLabels": 9,
+    "landPolygons": 13,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 3
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "locality": 1,
+      "village": 8
+    }
+  },
+  "observed": {
+    "places": 287,
+    "extras": 99,
+    "water": 97,
+    "landuse": 346,
+    "roads": 104
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1265,
+      "sha256": "34925356df88953f19cda847dc27fd0d2bf966015b3a5d7edec2e0e1eb03a1bb"
+    },
+    "geometry.ts": {
+      "bytes": 47069,
+      "sha256": "6674205289d8f8656236ad474458350b0b2ed988249ed6e64cf3cef5367c87c1"
+    },
+    "index.ts": {
+      "bytes": 258,
+      "sha256": "0c80d13bad8439e805fb6be91eb37f9c256be36c1eeb648c26bfb36bbff2650e"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/hagatna.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

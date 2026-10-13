@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "cityId": "alofi",
+  "countryIso2": "NU",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "cityPoint": {
+    "name": "Alofi",
+    "coordinatesWgs84": [
+      -169.919199,
+      -19.0534159
+    ],
+    "sourceClass": "map projection origin",
+    "sourceUrl": "https://download.geofabrik.de/australia-oceania/niue-261011.osm.pbf"
+  },
+  "airport": {
+    "id": "alofi-airport",
+    "name": "Niue International Airport",
+    "lon": -169.923493,
+    "lat": -19.080109,
+    "sourceUrl": "https://ourairports.com/airports/NIUE/"
+  },
+  "boxes": {
+    "play": [
+      -19.23429678993398,
+      -170.10948301342634,
+      -18.872535010066024,
+      -169.72891498657364
+    ],
+    "core": [
+      -19.098636122483494,
+      -169.96673086966172,
+      -19.008195677516508,
+      -169.87166713033827
+    ],
+    "outline": [
+      -19.28429678993398,
+      -170.15948301342635,
+      -18.822535010066023,
+      -169.67891498657363
+    ],
+    "wide": [
+      -19.83429678993398,
+      -170.70948301342634,
+      -18.272535010066022,
+      -169.12891498657365
+    ],
+    "water": [
+      -19.83429678993398,
+      -170.70948301342634,
+      -18.272535010066022,
+      -169.12891498657365
+    ]
+  },
+  "waterRecipe": {
+    "kind": "coast",
+    "wideWater": true,
+    "sea": {
+      "kind": "coast",
+      "bandMetres": 40000
+    }
+  },
+  "geometryInput": {
+    "kind": "geofabrik-pbf",
+    "datasetUrl": "https://download.geofabrik.de/australia-oceania/niue-261011.osm.pbf",
+    "datasetSha256": "26be776b74961799ff2efc6eb3e21ff45ffce8d0e0e0501050b70115b69368d8",
+    "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+    "adapter": "offline-extract.py/v3-nested-centres",
+    "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+    "extracts": [
+      {
+        "file": "places.json",
+        "sha256": "84727659f1bf05d54e65c02e74c9425b1c9217fce195bc14aecc7f5504f7e249",
+        "elements": 163
+      },
+      {
+        "file": "extras.json",
+        "sha256": "44ef2fbfa74ec4fb7c7320c82aaed0c90463efe9bb7762511bcba6f15b9629fa",
+        "elements": 1
+      },
+      {
+        "file": "water.json",
+        "sha256": "5830d338c62433a6242e2d271c65a7861634d88d6991b5ae46430b1b0356b615",
+        "elements": 31
+      },
+      {
+        "file": "landuse.json",
+        "sha256": "dabdebaacaa773f8c6a6b8c783f2a2c390d0ad1588c5d341b4283ab0f6e17b08",
+        "elements": 100
+      },
+      {
+        "file": "roads.json",
+        "sha256": "ae886fb6f71414a14fb07c85023784bd1d0b7a31595e58fa982948fd3ed0c25d",
+        "elements": 5
+      }
+    ]
+  },
+  "profile": "microstate",
+  "emptySlots": [
+    {
+      "slot": "transit",
+      "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "community",
+      "reason": "no unused named amenity=university, college, library, community_centre or conference_centre feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "recreation",
+      "reason": "no unused named leisure=park, or the audited fallbacks (garden, stadium, sports_centre, pitch, nature_reserve, playground) feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "worship",
+      "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    },
+    {
+      "slot": "government",
+      "reason": "no unused named amenity=townhall, courthouse or parliament, office=government or building=government feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+    }
+  ],
+  "selectedPlaces": [
+    {
+      "name": "Israel Cafe",
+      "osm": "node/3173841974",
+      "coordinatesWgs84": [
+        -169.911305,
+        -19.118394
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Niue Foou Hospital",
+      "osm": "relation/1557077",
+      "coordinatesWgs84": [
+        -169.917351,
+        -19.073088
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Market of Niue",
+      "osm": "way/547136282",
+      "coordinatesWgs84": [
+        -169.920914,
+        -19.0556
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Niue Assembly",
+      "osm": "node/13458765949",
+      "coordinatesWgs84": [
+        -169.921264,
+        -19.055165
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Anaana Lookout",
+      "osm": "node/3173841972",
+      "coordinatesWgs84": [
+        -169.937499,
+        -19.089795
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Togo Chasm",
+      "osm": "node/8637114457",
+      "coordinatesWgs84": [
+        -169.808525,
+        -19.106927
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Talava Arches",
+      "osm": "node/3173841987",
+      "coordinatesWgs84": [
+        -169.87756,
+        -18.959181
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Anapala Chasm",
+      "osm": "node/3173841984",
+      "coordinatesWgs84": [
+        -169.83859,
+        -19.134524
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Hio Cafe",
+      "osm": "node/5084852122",
+      "coordinatesWgs84": [
+        -169.900933,
+        -18.985735
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Swanson Complex",
+      "osm": "way/693372026",
+      "coordinatesWgs84": [
+        -169.927774,
+        -19.071989
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Vaiolama Cafe & Mini-golf",
+      "osm": "node/3174114636",
+      "coordinatesWgs84": [
+        -169.929051,
+        -19.060918
+      ],
+      "accuracy": "mapped-feature"
+    },
+    {
+      "name": "Peniamina’s Grave",
+      "osm": "way/1191533235",
+      "coordinatesWgs84": [
+        -169.923314,
+        -19.014699
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Niue Cultural Centre",
+      "osm": "way/111378893",
+      "coordinatesWgs84": [
+        -169.90951,
+        -19.057943
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Washaway Cafe",
+      "osm": "way/310211852",
+      "coordinatesWgs84": [
+        -169.912747,
+        -19.127114
+      ],
+      "accuracy": "feature-centroid"
+    },
+    {
+      "name": "Falala Cafe & Bar",
+      "osm": "way/311687085",
+      "coordinatesWgs84": [
+        -169.922889,
+        -19.057852
+      ],
+      "accuracy": "feature-centroid"
+    }
+  ],
+  "generatedAssets": {
+    "facts.ts": {
+      "bytes": 1231,
+      "sha256": "8a48c762dda7123302b39ea0c94893add8a0404fda7fb93800650199973e5c69"
+    },
+    "geometry.ts": {
+      "bytes": 93644,
+      "sha256": "26d8d84a12d8fd4b1ef7efa615be4f277e295d2c4edbcd5acbf55698ad5a85b3"
+    },
+    "places.ts": {
+      "bytes": 6017,
+      "sha256": "cb5fa4acb65814b26552d3c68cfbd55c3f33a63835a8078d7ac3492f768f09c1"
+    },
+    "terrain.ts": {
+      "bytes": 165749,
+      "sha256": "33350606beec09d69536693a7bc788b7527ee064af3969c63d0882461b798648"
+    },
+    "index.ts": {
+      "bytes": 256,
+      "sha256": "ac670e8b55749770f5b3252920312880aeb63a25cf44015b743ef85107f218ac"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "licence": "OpenStreetMap ODbL-1.0; OurAirports public-domain dataset",
+  "scope": "Source-sampling bounds from a mapped city node and airport record; city grouping is not an administrative-boundary claim. Airport records do not establish current operations."
+}

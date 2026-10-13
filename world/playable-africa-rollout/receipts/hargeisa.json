@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "cityId": "hargeisa",
+  "countryIso2": "XS",
+  "generationIdentity": {
+    "cityId": "hargeisa",
+    "stateId": "xs-hargeisa",
+    "stateName": "Hargeisa"
+  },
+  "inventorySha256": "6d5564f2c357f8339ac314a5e4b199c6af47912743d798805babf93560fbfe00",
+  "inventoryPath": "world/playable-africa-rollout/sources/hargeisa.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "hargeisa-airport",
+    "name": "Egal International Airport",
+    "lon": 44.083469,
+    "lat": 9.514082,
+    "sourceUrl": "https://ourairports.com/airports/HCMH/"
+  },
+  "bounds": [
+    9.380852110066021,
+    43.87951173893194,
+    9.74261388993398,
+    44.24409426106806
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/africa/somalia-261011.osm.pbf",
+      "datasetSha256": "c8405db8aa5b4c3d012bfaf159cf6a55216b406da4fb53de74a2270a2e102351",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "f1a37997cd892cbc440246d08f2a645149def54aaeb8299f23b27324014a8a43",
+          "elements": 314
+        },
+        {
+          "file": "extras.json",
+          "sha256": "343c3dd5b3c7cba3541ed283c0e02cf0e4968c24e32625cc66c5c95856af0e4e",
+          "elements": 35
+        },
+        {
+          "file": "water.json",
+          "sha256": "ea257d5fab6bec5bf669a26e18075cd27fc1f79c595b53c1f53bf69eeb53ddd8",
+          "elements": 1824
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b31dcd8533b9bdb6b0ccd99a0dee66313550c278ed097ccce70403ff6a236eb2",
+          "elements": 2126
+        },
+        {
+          "file": "roads.json",
+          "sha256": "5c005229fac996011f9efead36a62827001262e61e5d8e112d9f80e990730ffd",
+          "elements": 75
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 24,
+    "roads": 39,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 4,
+    "waterPolygons": 0,
+    "reachWaterPolygons": 0
+  },
+  "selection": {
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "amenity=courthouse",
+        "ref": "node/4463222378"
+      }
+    ]
+  },
+  "observed": {
+    "places": 314,
+    "extras": 35,
+    "water": 1824,
+    "landuse": 2126,
+    "roads": 75
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1223,
+      "sha256": "5e2f1f5f92699afa2736bc43f1f0c21a7517fa3a8cec62acb4281da5557a8893"
+    },
+    "geometry.ts": {
+      "bytes": 12752,
+      "sha256": "8dd8335e3dfeb1f7523213b84a191ab0a6a09983ebdf5e459fd57b99599c27fc"
+    },
+    "index.ts": {
+      "bytes": 259,
+      "sha256": "240179663edf5df13ef103ac44668914db2981fcdd1090cf90efd9e255c272ed"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/hargeisa.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

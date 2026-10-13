@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "cityId": "kingston-nf",
+  "countryIso2": "NF",
+  "generationIdentity": {
+    "cityId": "kingston-nf",
+    "stateId": "nf-kingston-nf",
+    "stateName": "Kingston"
+  },
+  "inventorySha256": "33be9cbd06f3ae385f0db899b1921dd893f7bfaa4bd2d471586f5836304e660a",
+  "inventoryPath": "world/playable-africa-rollout/sources/kingston-nf.json",
+  "admission": {
+    "registered": true,
+    "accepted": false,
+    "status": "CANDIDATE_ONLY/NOT_ACCEPTED"
+  },
+  "airportCandidate": {
+    "id": "kingston-nf-airport",
+    "name": "Norfolk Island International Airport",
+    "lon": 167.939474,
+    "lat": -29.041759,
+    "sourceUrl": "https://ourairports.com/airports/YSNF/"
+  },
+  "bounds": [
+    -29.237237289933976,
+    167.75368143514592,
+    -28.87547551006602,
+    168.16546516485406
+  ],
+  "sources": {
+    "geometryInput": {
+      "kind": "geofabrik-pbf",
+      "datasetUrl": "https://download.geofabrik.de/australia-oceania/australia/norfolk-island-261011.osm.pbf",
+      "datasetSha256": "78a298bd22823a7fe502665dfc156c78c0f59a3b541440c206e106aeec3083f0",
+      "pbfHeaderTimestamp": "2026-10-11T20:21:06Z",
+      "adapter": "offline-extract.py/v3-nested-centres",
+      "adapterSha256": "b8fdcd48ad9602c67f522ad02904d1aa7910ae8e23a2345ee724a34062b6e96b",
+      "extracts": [
+        {
+          "file": "places.json",
+          "sha256": "ce29ca85c767f54ad6f75305ebd6eaa6ab1d7a88626740bf6acf65ad924ad71d",
+          "elements": 93
+        },
+        {
+          "file": "extras.json",
+          "sha256": "b86bc7385debdc48819e9aa51529a79b2b233a731f81766fbac0e4c660c6e69e",
+          "elements": 7
+        },
+        {
+          "file": "water.json",
+          "sha256": "c459d6ce2c932b53166cc6c80f6a6975589cc6aa7ba61873a8606d9e56d84a24",
+          "elements": 55
+        },
+        {
+          "file": "landuse.json",
+          "sha256": "b66216bba81658463f50cad61a529188f559d770fb8fd29bbf4abdf763f8b83e",
+          "elements": 40
+        },
+        {
+          "file": "roads.json",
+          "sha256": "4b3d655e2404be033d5c901d34199757737a2fcf1545d80f14722a058a9b9115",
+          "elements": 22
+        }
+      ]
+    }
+  },
+  "kept": {
+    "places": 17,
+    "roads": 9,
+    "neighbourhoodLabels": 18,
+    "landPolygons": 2,
+    "waterPolygons": 1,
+    "reachWaterPolygons": 1
+  },
+  "selection": {
+    "profile": "microstate",
+    "emptySlots": [
+      {
+        "slot": "transit",
+        "reason": "no unused named railway=station, amenity=bus_station or public_transport=station feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      },
+      {
+        "slot": "worship",
+        "reason": "no unused named amenity=place_of_worship feature inside the country, the play box guard and dry land in the pinned extract; the slot keeps the game's fictional venue"
+      }
+    ],
+    "slotFallbacks": [
+      {
+        "slot": "polling",
+        "used": "office=government",
+        "ref": "relation/3227220"
+      }
+    ],
+    "districtLabelPlaceTags": {
+      "hamlet": 1,
+      "locality": 15,
+      "neighbourhood": 2
+    }
+  },
+  "observed": {
+    "places": 93,
+    "extras": 7,
+    "water": 55,
+    "landuse": 40,
+    "roads": 22
+  },
+  "assets": {
+    "facts.ts": {
+      "bytes": 1298,
+      "sha256": "94dbd5516a3d51e4f3e4a4959d6c9c47437211e0ae259a2b4b6a99b159cbf1d1"
+    },
+    "geometry.ts": {
+      "bytes": 22252,
+      "sha256": "b6db6f0942fb44fc1d5a3ad922e4c15095fe27ee6825bf272b046c4cbf38708d"
+    },
+    "index.ts": {
+      "bytes": 262,
+      "sha256": "6e59e4e51fbba0365e8e8ac2da30c1e7b35bf6a2f8de66752485af8640ced3b2"
+    },
+    "content.ts": {
+      "bytes": 204,
+      "sha256": "c7b50f7865783ed1fcb359dae0fb05dc7cf80d7e1a70b492936f0fd56ca40ceb"
+    },
+    "map.ts": {
+      "bytes": 289,
+      "sha256": "a70906b620069cdf6d7f73f48fa7d2b12c354cee5437f92512f800b6c7070d2c"
+    }
+  },
+  "cityDetail": {
+    "tier": "detailed",
+    "generator": "scripts/geo/build-destination-detail.ts",
+    "recipe": "scripts/geo/destination-detail/kingston-nf.ts",
+    "input": "Geofabrik PBF extract",
+    "attribution": "© OpenStreetMap contributors",
+    "licence": "ODbL-1.0"
+  }
+}

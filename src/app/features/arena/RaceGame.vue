@@ -16,7 +16,8 @@ import ArenaStage from './ArenaStage.vue'
 import { drive, headingFrom256, INPUT, lapOf, standings } from '../../../arena/race.ts'
 import type { Car, CarSnap, RaceSnap } from '../../../arena/race.ts'
 import { buildTrack, nearestIndex, TRACK_IDS, WORLD_H, WORLD_W } from '../../../arena/race-track.ts'
-import { defaultLook, drawRace } from '../../../arena/race-draw.ts'
+import { defaultLook, drawRace, Skids } from '../../../arena/race-draw.ts'
+import { createRaceSound } from '../../../arena/race-sound.ts'
 import type { Camera, DrawCar, HudInfo } from '../../../arena/race-draw.ts'
 import type { ArenaLook } from '../../../types/arena.ts'
 
@@ -38,10 +39,13 @@ const accentOf = (seat: number): string | undefined => {
 }
 
 // ---- the room ------------------------------------------------------------------------------------------
+const sound = createRaceSound()
+const skids = new Skids()
+let fxSeen = { count: 0, hit: false, boost: false, fin: false }
 let own: { at: number; car: CarSnap; base: Car | null; p: number } | null = null
 const room = useArenaRoom<RaceSnap>({
   game: 'race', intent: props.intent, hz: HZ, look: ownLook, toast: (text, kind) => game.toast(text, kind), close: () => emit('close'),
-  onMatch: () => { own = null; disp = null; follow.value = -1 },
+  onMatch: () => { own = null; disp = null; follow.value = -1; skids.clear(); fxSeen = { count: 0, hit: false, boost: false, fin: false } },
   onSnap: (_k, snap) => {
     const you = room.state.value?.you
     if (you == null) return
@@ -60,7 +64,11 @@ const laps = computed(() => Number(state.value?.options.laps ?? 3))
 let heldBits = 0
 const down = ref(0)
 const pipe = new InputPipe({ now: () => performance.now(), send: (held) => { room.sendInput(held) } })
-function hold(bit: number, on: boolean): void { heldBits = on ? heldBits | bit : heldBits & ~bit; down.value = heldBits; pipe.hold(heldBits) }
+// One-thumb play: with auto gas on, the gas is held for you and only the brake lifts it.
+const autoGas = ref(typeof localStorage !== 'undefined' && localStorage.getItem('aw-race-autogas') === '1')
+const eff = (): number => heldBits | (autoGas.value && !(heldBits & INPUT.brake) ? INPUT.gas : 0)
+function hold(bit: number, on: boolean): void { heldBits = on ? heldBits | bit : heldBits & ~bit; down.value = heldBits; pipe.hold(eff()); sound.unlock() }
+function toggleAuto(): void { autoGas.value = !autoGas.value; try { localStorage.setItem('aw-race-autogas', autoGas.value ? '1' : '0') } catch { /* private mode */ } pipe.hold(eff()); sound.unlock() }
 const KEYS: Record<string, number> = { ArrowLeft: INPUT.left, a: INPUT.left, ArrowRight: INPUT.right, d: INPUT.right, ArrowUp: INPUT.gas, w: INPUT.gas, ArrowDown: INPUT.brake, s: INPUT.brake }
 function key(event: KeyboardEvent, on: boolean): void {
   const target = event.target as HTMLElement | null
@@ -133,18 +141,18 @@ function frame(now: number): void {
   const cars: DrawCar[] = b.r.map((cb, i) => {
     const ca = (a.r[i] ?? cb) as CarSnap
     const look = defaultLook(i, accentOf(i))
-    return { x: lerp(ca[0], cb[0], t), y: lerp(ca[1], cb[1], t), a: lerpAngle(headingFrom256(ca[2]), headingFrom256(cb[2]), t), v: cb[3] / 4, fl: cb[6], name: st.seats[i]?.name ?? 'Racer', look, place: order.indexOf(i) + 1, fin: cb[5] > 0 }
+    return { x: lerp(ca[0], cb[0], t), y: lerp(ca[1], cb[1], t), a: lerpAngle(headingFrom256(ca[2]), headingFrom256(cb[2]), t), v: Math.abs(cb[3] / 4), fl: cb[6], name: st.seats[i]?.name ?? 'Racer', look, place: order.indexOf(i) + 1, fin: cb[5] > 0 }
   })
   // Own car: the newest snapshot, run forward by the age of the packet plus a little for the trip back, then eased into place.
   if (you != null && own && own.p === 1 && cars[you]) {
     if (!own.base) {
       const c = own.car, h = headingFrom256(c[2]), v = c[3] / 4
-      own.base = { x: c[0], y: c[1], vx: v * Math.cos(h), vy: v * Math.sin(h), h, cur: c[4], best: c[4], i: nearestIndex(track, c[0], c[1]), dist: 0, fin: c[5], out: false, hit: 0, off: (c[5] === 0) && (c[6] & 1) !== 0, braking: false }
+      own.base = { x: c[0], y: c[1], vx: v * Math.cos(h), vy: v * Math.sin(h), h, cur: c[4], best: c[4], i: nearestIndex(track, c[0], c[1]), dist: 0, fin: c[5], out: false, hit: 0, off: (c[5] === 0) && (c[6] & 1) !== 0, braking: false, boost: (c[6] & 16) !== 0 ? 8 : 0 }
     }
     const age = (now - own.at) / (1000 / HZ) + 2
     const steps = Math.max(0, Math.min(10, Math.floor(age)))
     const p = { ...own.base }
-    const inp = own.car[5] ? 0 : heldBits
+    const inp = own.car[5] ? 0 : eff()
     for (let n = 0; n < steps; n++) drive(p, inp, track)
     const frac = Math.min(1, age - steps)
     const px = p.x + p.vx * frac, py = p.y + p.vy * frac
@@ -157,18 +165,31 @@ function frame(now: number): void {
   let target = you ?? 0
   if (you == null) target = follow.value >= 0 && follow.value < cars.length ? follow.value : (order[0] ?? 0)
   const tc = cars[target] as DrawCar
-  const wantZoom = (you == null ? 0.68 : 0.82) * (width / 390) * (1 - Math.min(0.14, tc.v / 9 * 0.14))
-  const look = tc.v * 7
+  const wantZoom = (you == null ? 0.68 : 0.82) * (width / 390) * (1 - Math.min(0.24, tc.v / 10 * 0.24))
+  const look = tc.v * 15
   const tx = tc.x + Math.cos(tc.a) * look, ty = tc.y + Math.sin(tc.a) * look
   if (!cam) cam = { x: tx, y: ty, zoom: wantZoom }
-  else { const k = you == null ? 1 - Math.exp(-dt / 260) : 1 - Math.exp(-dt / 90); cam.x = lerp(cam.x, tx, k); cam.y = lerp(cam.y, ty, k); cam.zoom = lerp(cam.zoom, wantZoom, 0.05) }
+  else { const k = you == null ? 1 - Math.exp(-dt / 260) : 1 - Math.exp(-dt / 90); cam.x = lerp(cam.x, tx, k); cam.y = lerp(cam.y, ty, k); cam.zoom = lerp(cam.zoom, wantZoom, 0.06) }
   const focus = you ?? target
   const fc = b.r[focus] as CarSnap
   const hud: HudInfo = {
-    place: order.indexOf(focus) + 1, of: cars.length, lap: Math.min(laps.value, Math.max(1, lapOf(fc[4], track.length) + 1)), laps: laps.value,
+    done: fc[5] ? order.indexOf(focus) + 1 : 0, place: order.indexOf(focus) + 1, of: cars.length, lap: Math.min(laps.value, Math.max(1, lapOf(fc[4], track.length) + 1)), laps: laps.value,
     time: timeText(fc[5] || b.t), speed: fc[3] / 4, go: b.p === 1 && b.t < HZ ? 1 : 0, count: b.p === 0 ? b.c : 0, you: you != null,
   }
-  drawRace(ctx, width, height, { trackId: trackId.value, cars, cam, you, follow: target, hud, spectator: you == null, phase: now, reduced })
+  cars.forEach((c, i) => skids.add(i, c.x, c.y, c.a, (c.fl & 8) !== 0 && c.v > 3))
+  // sounds: the hum follows the car you watch; beeps on the countdown; one-shots on the edges of your own flags
+  const mine = you != null ? b.r[you] : undefined
+  sound.engine(tc.v / 9, you != null && (eff() & INPUT.gas) !== 0, b.p === 1 && !(fc[5] > 0), you != null ? 1 : 0.5)
+  if (b.p === 0 && b.c !== fxSeen.count) { fxSeen.count = b.c; if (b.c > 0) sound.beep(false) }
+  if (b.p === 1 && fxSeen.count !== -1) { fxSeen.count = -1; sound.beep(true) }
+  if (mine) {
+    const hit = (mine[6] & 2) !== 0, boost = (mine[6] & 16) !== 0, fin = mine[5] > 0
+    if (hit && !fxSeen.hit) sound.bump()
+    if (boost && !fxSeen.boost) sound.boost()
+    if (fin && !fxSeen.fin) sound.finish()
+    fxSeen.hit = hit; fxSeen.boost = boost; fxSeen.fin = fin
+  }
+  drawRace(ctx, width, height, { trackId: trackId.value, cars, cam, you, follow: target, hud, spectator: you == null, phase: now, reduced, skids })
   if (now - lastBoard > 200) { lastBoard = now; board.value = buildBoard(b) }
 }
 
@@ -199,7 +220,7 @@ onMounted(() => {
   raf = requestAnimationFrame(frame)
 })
 onBeforeUnmount(() => {
-  cancelAnimationFrame(raf)
+  cancelAnimationFrame(raf); sound.close()
   window.removeEventListener('resize', size); watcher?.disconnect()
   window.removeEventListener('keydown', onDown); window.removeEventListener('keyup', onUp)
   document.removeEventListener('visibilitychange', onHide)
@@ -216,12 +237,13 @@ onBeforeUnmount(() => {
       <p v-if="note" class="rg-note" role="status">{{ note }}</p>
       <section v-if="status === 'playing' && seated" class="rg-pad" aria-label="Controls" data-testid="race-pad">
         <div class="rg-steer">
-          <button type="button" class="rg-btn" aria-label="Steer left" :class="{ on: down & INPUT.left }" @pointerdown="press(INPUT.left, true)($event)" @pointerup="press(INPUT.left, false)($event)" @pointercancel="press(INPUT.left, false)($event)" @pointerleave="press(INPUT.left, false)($event)">◀</button>
-          <button type="button" class="rg-btn" aria-label="Steer right" :class="{ on: down & INPUT.right }" @pointerdown="press(INPUT.right, true)($event)" @pointerup="press(INPUT.right, false)($event)" @pointercancel="press(INPUT.right, false)($event)" @pointerleave="press(INPUT.right, false)($event)">▶</button>
+          <button type="button" class="rg-btn mv" aria-label="Steer left" :class="{ on: down & INPUT.left }" @pointerdown="press(INPUT.left, true)($event)" @pointerup="press(INPUT.left, false)($event)" @pointercancel="press(INPUT.left, false)($event)" @pointerleave="press(INPUT.left, false)($event)">&#9664;</button>
+          <button type="button" class="rg-btn mv" aria-label="Steer right" :class="{ on: down & INPUT.right }" @pointerdown="press(INPUT.right, true)($event)" @pointerup="press(INPUT.right, false)($event)" @pointercancel="press(INPUT.right, false)($event)" @pointerleave="press(INPUT.right, false)($event)">&#9654;</button>
         </div>
         <div class="rg-pedals">
           <button type="button" class="rg-btn brake" aria-label="Brake" :class="{ on: down & INPUT.brake }" @pointerdown="press(INPUT.brake, true)($event)" @pointerup="press(INPUT.brake, false)($event)" @pointercancel="press(INPUT.brake, false)($event)" @pointerleave="press(INPUT.brake, false)($event)">Brake</button>
           <button type="button" class="rg-btn gas" aria-label="Gas" :class="{ on: down & INPUT.gas }" @pointerdown="press(INPUT.gas, true)($event)" @pointerup="press(INPUT.gas, false)($event)" @pointercancel="press(INPUT.gas, false)($event)" @pointerleave="press(INPUT.gas, false)($event)">Gas</button>
+          <button type="button" class="rg-auto" :class="{ on: autoGas }" :aria-pressed="autoGas" aria-label="Auto gas" @click="toggleAuto">Auto gas {{ autoGas ? 'on' : 'off' }}</button>
         </div>
         <p class="rg-small keys">Keys: arrows or WASD</p>
       </section>
@@ -290,15 +312,21 @@ onBeforeUnmount(() => {
 .rg-block { width: 100%; display: grid; place-items: center; font-size: 26px; font-weight: 900; background: #3b4a63; border-radius: 8px 8px 0 0; }
 .rg-step.p1 .rg-block { height: 88px; background: #d4a72c; } .rg-step.p2 .rg-block { height: 62px; background: #9aa4b2; } .rg-step.p3 .rg-block { height: 44px; background: #b0703a; }
 .rg-rest { margin: 8px 0 0; padding-left: 26px; font-size: 13px; } .rg-rest em { font: 600 12px ui-monospace, monospace; color: #ffd34d; font-style: normal; margin-left: 6px; }
-.rg-pad { flex: none; display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; flex-wrap: wrap; touch-action: none; }
-.rg-steer, .rg-pedals { display: flex; gap: 10px; }
-.rg-btn { min-width: 84px; height: 84px; border-radius: 18px; border: 2px solid #2b2233; background: #fff; font: 800 20px system-ui; color: #2b2233; touch-action: none; -webkit-tap-highlight-color: transparent; cursor: pointer; }
-.rg-btn.gas { background: #cdeed4; min-width: 104px; } .rg-btn.brake { background: #ffd2c9; }
-.rg-btn.on, .rg-btn:active { background: #ffd34d; }
-.keys { width: 100%; text-align: center; }
-@media (hover: none) { .keys { display: none; } }
+.rg-pad { position: relative; flex: none; height: 190px; touch-action: none; }
+.rg-steer { position: absolute; left: 2px; bottom: 6px; display: flex; gap: 10px; }
+.rg-pedals { position: absolute; right: 2px; bottom: 6px; width: 210px; height: 178px; }
+.rg-btn { border: 2px solid #2b2233; background: #fff; font: 800 18px system-ui; color: #2b2233; touch-action: none; -webkit-tap-highlight-color: transparent; cursor: pointer; user-select: none; box-shadow: 0 3px 0 rgba(0,0,0,.25); }
+.rg-btn.on, .rg-btn:active { background: #ffd34d; transform: translateY(2px); box-shadow: none; }
+.rg-btn.mv { width: 74px; height: 96px; border-radius: 24px; font-size: 28px; }
+.rg-btn.gas { position: absolute; right: 0; bottom: 0; width: 118px; height: 118px; border-radius: 50%; background: #cdeed4; font-size: 22px; }
+.rg-btn.brake { position: absolute; right: 122px; bottom: 6px; width: 70px; height: 70px; border-radius: 50%; background: #ffd2c9; font-size: 15px; }
+.rg-auto { position: absolute; right: 0; top: 0; border: 2px solid #2b2233; border-radius: 99px; background: #fff; font: 700 12px system-ui; padding: 6px 10px; min-height: 36px; touch-action: manipulation; cursor: pointer; }
+.rg-auto.on { background: #5be37d; }
+.keys { display: none; position: absolute; bottom: -2px; left: 0; right: 0; text-align: center; }
+@media (hover: hover) { .keys { display: block; } .rg-pad { height: 212px; } }
 @media (orientation: landscape) {
-  .rg-pad { position: absolute; left: 0; right: 0; bottom: 0; flex-wrap: nowrap; padding: 0 6px 6px; pointer-events: none; }
-  .rg-pad .rg-btn { pointer-events: auto; opacity: .7; height: 70px; } .keys { display: none; }
+  .rg-pad { position: absolute; left: 0; right: 0; bottom: 0; height: 168px; pointer-events: none; }
+  .rg-pad .rg-btn, .rg-pad .rg-auto { pointer-events: auto; } .rg-pad .rg-btn { opacity: .7; } .keys { display: none; }
 }
+@media (orientation: landscape) and (max-height: 500px) { .rg-pad { height: 140px; } .rg-btn.mv { width: 70px; height: 76px; } .rg-btn.gas { width: 96px; height: 96px; } .rg-btn.brake { right: 102px; width: 64px; height: 64px; } .rg-pedals { width: 180px; height: 140px; } }
 </style>

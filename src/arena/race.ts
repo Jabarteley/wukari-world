@@ -20,22 +20,22 @@
  */
 import { ArenaInputError, cleanArenaOptions } from './rules.ts'
 import type { Outcome, RealtimeRules } from './rules.ts'
-import { buildTrack, pointAt, project, ROAD_HALF, TRACK_IDS, WALL_HALF } from './race-track.ts'
+import { BOOST_RANGE, BOOST_WIDE, buildTrack, pointAt, project, ROAD_HALF, TRACK_IDS, WALL_HALF } from './race-track.ts'
 import type { Track, TrackId } from './race-track.ts'
 
 export const HZ = 20
 export const COUNTDOWN_TICKS = 60
-export const GRACE_TICKS = 300
+export const GRACE_TICKS = 600
 export const MAX_RACE_TICKS = 4800
 export const CAR_R = 13
 export const MAX_SEATS = 4
 export const INPUT = Object.freeze({ left: 1, right: 2, gas: 4, brake: 8 })
 export const PHASE = Object.freeze({ countdown: 0, race: 1, over: 2 })
 /** Snapshot flag bits (`fl` of a car). */
-export const FLAG = Object.freeze({ off: 1, hit: 2, out: 4, brake: 8 })
+export const FLAG = Object.freeze({ off: 1, hit: 2, out: 4, brake: 8, boost: 16 })
 
 const ACC = 0.3, DRAG = 0.0035, COAST = 0.985, BRAKE = 0.8, REV_ACC = 0.18, REV_MAX = -3
-const TURN = 0.075, GRIP = 0.78, DRIFT_GRIP = 0.93, GRASS = 0.93, WALL_KEEP = 0.5
+const BOOST_ACC = 0.5, BOOST_TICKS = 16, TURN = 0.075, GRIP = 0.78, DRIFT_GRIP = 0.93, GRASS = 0.93, WALL_KEEP = 0.5
 
 export interface RaceOptions { laps: number; track: number }
 export interface Car {
@@ -55,6 +55,8 @@ export interface Car {
   hit: number
   off: boolean
   braking: boolean
+  /** Ticks of boost left (from a pad). */
+  boost: number
 }
 export interface RaceState {
   options: RaceOptions
@@ -71,7 +73,7 @@ export interface RaceState {
   /** How the race ended: 'finish' or 'time'. */
   why: string
 }
-/** One car on the wire: x, y, heading in 1/256 turns, speed x4, progress, finish tick, flags. */
+/** One car on the wire: x, y, heading in 1/256 turns, forward speed x4 (negative reversing), progress, finish tick, flags. */
 export type CarSnap = [number, number, number, number, number, number, number]
 export interface RaceSnap { p: number; c: number; t: number; r: CarSnap[] }
 
@@ -87,7 +89,7 @@ export function newCar(track: Track, seat: number): Car {
   const arc = -(70 + seat * 60)
   const p = pointAt(track, arc, seat % 2 ? 30 : -30)
   const L = track.length
-  return { x: p.x, y: p.y, vx: 0, vy: 0, h: p.a, cur: arc, best: arc, i: Math.floor((((arc % L) + L) % L) / track.step), dist: 30, fin: 0, out: false, hit: 0, off: false, braking: false }
+  return { x: p.x, y: p.y, vx: 0, vy: 0, h: p.a, cur: arc, best: arc, i: Math.floor((((arc % L) + L) % L) / track.step), dist: 30, fin: 0, out: false, hit: 0, off: false, braking: false, boost: 0 }
 }
 
 /**
@@ -109,12 +111,22 @@ export function drive(c: Car, inp: number, track: Track): void {
   if (brake) f = f > 0.2 ? Math.max(0, f - BRAKE) : Math.max(REV_MAX, f - REV_ACC)
   else if (gas) f += ACC
   else f *= COAST
+  if (c.boost > 0) { f += BOOST_ACC; c.boost -= 1 }
   f -= f * Math.abs(f) * DRAG
   if (c.off) f *= GRASS
   l *= brake && steer && sp > 5 ? DRIFT_GRIP : GRIP
   c.braking = brake && f > 0.5
   c.vx = f * cos - l * sin; c.vy = f * sin + l * cos
   c.x += c.vx; c.y += c.vy
+  for (const o of track.obstacles) {
+    const dx = c.x - o.x, dy = c.y - o.y, min = CAR_R + o.r
+    if (dx * dx + dy * dy >= min * min) continue
+    const d = Math.sqrt(dx * dx + dy * dy) || 0.001, nx = dx / d, ny = dy / d
+    c.x = o.x + nx * min; c.y = o.y + ny * min
+    const vn = c.vx * nx + c.vy * ny
+    if (vn < 0) { c.vx -= 1.4 * vn * nx; c.vy -= 1.4 * vn * ny }
+    c.vx *= 0.8; c.vy *= 0.8; c.hit = 6
+  }
   let pr = project(track, c.x, c.y, c.i)
   if (pr.dist > WALL_HALF) {
     const nx = (c.x - pr.px) / pr.dist, ny = (c.y - pr.py) / pr.dist
@@ -127,6 +139,12 @@ export function drive(c: Car, inp: number, track: Track): void {
   }
   c.off = pr.dist > ROAD_HALF + 8
   c.dist = pr.dist
+  for (const pad of track.pads) {
+    let da = pr.arc - pad.arc
+    if (da > track.length / 2) da -= track.length
+    else if (da < -track.length / 2) da += track.length
+    if (Math.abs(da) < BOOST_RANGE && Math.abs(pr.off - pad.lat) < BOOST_WIDE && c.boost < BOOST_TICKS - 4) c.boost = BOOST_TICKS
+  }
   c.i = pr.i
   const L = track.length
   const curMod = ((c.cur % L) + L) % L
@@ -231,22 +249,27 @@ export const headingFrom256 = (a: number): number => (a / 256) * 2 * Math.PI
 
 function snapshot(s: RaceState): RaceSnap {
   const r: CarSnap[] = s.cars.map((c) => [
-    Math.round(c.x), Math.round(c.y), heading256(c.h), Math.round(Math.hypot(c.vx, c.vy) * 4), Math.round(c.best), c.fin,
-    (c.off ? FLAG.off : 0) | (c.hit > 0 ? FLAG.hit : 0) | (c.out ? FLAG.out : 0) | (c.braking ? FLAG.brake : 0),
+    Math.round(c.x), Math.round(c.y), heading256(c.h), Math.round((c.vx * Math.cos(c.h) + c.vy * Math.sin(c.h)) * 4), Math.round(c.best), c.fin,
+    (c.off ? FLAG.off : 0) | (c.hit > 0 ? FLAG.hit : 0) | (c.out ? FLAG.out : 0) | (c.braking ? FLAG.brake : 0) | (c.boost > 0 ? FLAG.boost : 0),
   ])
   // c: seconds left of the countdown (3, 2, 1), so a countdown costs a frame a second; t: whole race ticks.
   return { p: s.phase, c: s.phase === PHASE.countdown ? 3 - Math.floor(s.pt / 20) : 0, t: s.t, r }
 }
 
 /** Per-seat top speed and lane for the computer racers: seat 0 is the fastest line, the rest a little slower and wider. */
-const BOT_TOP = [8.6, 8.3, 8.0, 7.7], BOT_LANE = [-18, 30, -42, 12]
+const BOT_TOP = [8.9, 8.7, 8.5, 8.3], BOT_LANE = [-18, 30, -42, 12]
 function bot(s: RaceState, seat: number, rng: () => number): number {
   if (s.phase !== PHASE.race) return 0
   const c = s.cars[seat] as Car
   if (c.fin || c.out) return 0
   const track = trackOf(s.options)
   const sp = Math.hypot(c.vx, c.vy)
-  const lane = BOT_LANE[seat % 4] as number
+  let lane = BOT_LANE[seat % 4] as number
+  for (const o of track.obstacles) {
+    let ahead = o.arc - c.cur
+    ahead = ((ahead % track.length) + track.length) % track.length
+    if (ahead < 300 && Math.abs(lane - o.lat) < 56) lane = o.lat > 0 ? o.lat - 66 : o.lat + 66
+  }
   const near = pointAt(track, c.cur + 60 + sp * 12, lane)
   const far = pointAt(track, c.cur + 200 + sp * 16, lane)
   const diff = wrapPi(Math.atan2(near.y - c.y, near.x - c.x) - c.h)
@@ -254,7 +277,7 @@ function bot(s: RaceState, seat: number, rng: () => number): number {
   let inp = 0
   if (diff > 0.04) inp |= INPUT.right
   else if (diff < -0.04) inp |= INPUT.left
-  const want = (BOT_TOP[seat % 4] as number) * (1 - Math.min(0.5, bend * 1.1)) * (Math.abs(diff) > 0.7 ? 0.6 : 1)
+  const want = (BOT_TOP[seat % 4] as number) * (1 - Math.min(0.45, bend * 0.9)) * (Math.abs(diff) > 0.7 ? 0.6 : 1)
   if (sp > want + 2.5) inp |= INPUT.brake
   else if (sp < want && rng() > 0.01) inp |= INPUT.gas
   if (sp < 0.6 && c.dist > ROAD_HALF) inp |= INPUT.gas

@@ -195,7 +195,7 @@ test('bots can finish a full 3-lap race on both tracks, with 2 and 4 cars', () =
     const out = race.outcome(s)!
     assert.ok(out, 'a result')
     assert.equal(out.reason, 'finish')
-    assert.ok(s.cars.filter((c) => c.fin).length >= 2, `track ${track} seats ${seats}: the leaders finished`)
+    assert.ok(s.cars.every((c) => c.fin), `track ${track} seats ${seats}: every computer racer finishes inside the grace`)
     assert.equal(out.winners.length, seats)
     assert.ok(n < MAX_TICKS, 'inside the time cap: ' + n)
   }
@@ -230,4 +230,35 @@ test('road projection: signed offset and window', () => {
   const pr = project(t, p.x, p.y, Math.floor(1000 / t.step))
   assert.ok(Math.abs(pr.dist - 40) < 2 && pr.off > 0, 'right of the line is positive')
   assert.ok(Math.abs(pr.arc - 1000) < 2)
+})
+
+test('a boost pad speeds the car up for a moment; the snapshot flags it', () => {
+  const t = buildTrack('lekki')
+  const pad = t.pads[0]!
+  const mk = (lat: number) => { const c = newCar(t, 0); const p = pointAt(t, pad.arc - 60, lat); Object.assign(c, { x: p.x, y: p.y, h: p.a, cur: pad.arc - 60, best: pad.arc - 60, i: Math.floor((pad.arc - 60) / t.step) }); return c }
+  const on = mk(pad.lat), off = mk(pad.lat > 0 ? pad.lat - 70 : pad.lat + 70)
+  let flagged = false
+  for (let i = 0; i < 24; i++) { drive(on, GO, t); drive(off, GO, t); if (on.boost > 0) flagged = true }
+  assert.ok(flagged, 'the pad fired')
+  assert.ok(Math.hypot(on.vx, on.vy) > Math.hypot(off.vx, off.vy) + 1, 'faster than the car that missed it')
+  const s = toRace(begin(2)); s.cars[0]!.boost = 5
+  assert.ok(race.snapshot(s).r[0]![6] & FLAG.boost)
+})
+
+test('Third Mainland has stalled okadas and danfos: hitting one bumps and slows, lekki has none', () => {
+  assert.equal(buildTrack('lekki').obstacles.length, 0)
+  const t = buildTrack('mainland')
+  assert.ok(t.obstacles.length >= 4)
+  const o = t.obstacles[0]!
+  const c = newCar(t, 0)
+  const p = pointAt(t, o.arc - 70, o.lat); Object.assign(c, { x: p.x, y: p.y, h: p.a, cur: o.arc - 70, best: o.arc - 70, i: Math.floor((o.arc - 70) / t.step) })
+  let top = 0, hit = false
+  for (let i = 0; i < 30; i++) { drive(c, GO, t); top = Math.max(top, Math.hypot(c.vx, c.vy)); if (c.hit > 0) hit = true; assert.ok(Math.hypot(c.x - o.x, c.y - o.y) >= 13 + o.r - 0.5, 'never inside it') }
+  assert.ok(hit, 'bumped')
+})
+
+test('speed on the wire is signed: reversing is negative', () => {
+  const s = toRace(begin(2))
+  tick(s, [INPUT.brake, 0], 25)
+  assert.ok(race.snapshot(s).r[0]![3] < 0)
 })

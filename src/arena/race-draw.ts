@@ -12,8 +12,10 @@ export interface CarLook { kind: CarKind; body: string; accent: string }
 /** One car as drawn this frame: world position, heading (radians), speed, flags (race.ts FLAG), and its name. */
 export interface DrawCar { x: number; y: number; a: number; v: number; fl: number; name: string; look: CarLook; /** place 1.. or 0 */ place: number; fin: boolean }
 export interface Camera { x: number; y: number; zoom: number }
-export interface HudInfo { place: number; of: number; lap: number; laps: number; time: string; speed: number; go: number; count: number; you: boolean }
+export interface HudInfo { done: number; place: number; of: number; lap: number; laps: number; time: string; speed: number; go: number; count: number; you: boolean }
 
+/** Cars are drawn this much bigger than their physical circle so they read on a phone. */
+export const CAR_SCALE = 1.7
 const KINDS: CarKind[] = ['danfo', 'saloon', 'keke', 'coupe']
 const BODIES = ['#f6c500', '#e8553d', '#2fa56b', '#2f80ed']
 /** Default look of a seat: a danfo, a saloon, a keke and a coupe, each in its own colour so the field reads at a glance. */
@@ -66,6 +68,82 @@ function palm(ctx: CanvasRenderingContext2D, x: number, y: number, s: number, k:
   ctx.fillStyle = '#7a4a22'; ctx.beginPath(); ctx.arc(x, y, 4 * s, 0, 7); ctx.fill()
 }
 
+/** Skid marks: short dark segments left by braking cars, kept in a ring so memory and drawing stay bounded. */
+export class Skids {
+  private seg: number[] = []
+  private last = new Map<number, [number, number]>()
+  private readonly max: number
+  constructor(max = 160) { this.max = max }
+  clear(): void { this.seg = []; this.last.clear() }
+  /** Call every frame per car: leaves a mark while `on`, lifts the pen otherwise. */
+  add(seat: number, x: number, y: number, a: number, on: boolean): void {
+    const prev = this.last.get(seat)
+    if (!on) { this.last.delete(seat); return }
+    const bx = x - Math.cos(a) * 14 * CAR_SCALE * 0.6, by = y - Math.sin(a) * 14 * CAR_SCALE * 0.6
+    if (prev && Math.hypot(bx - prev[0], by - prev[1]) > 4 && Math.hypot(bx - prev[0], by - prev[1]) < 60) {
+      this.seg.push(prev[0], prev[1], bx, by)
+      if (this.seg.length > this.max * 4) this.seg.splice(0, 4)
+    }
+    if (!prev || Math.hypot(bx - prev[0], by - prev[1]) > 4) this.last.set(seat, [bx, by])
+  }
+  draw(ctx: CanvasRenderingContext2D, view: { x0: number; y0: number; x1: number; y1: number }): void {
+    if (!this.seg.length) return
+    ctx.strokeStyle = 'rgba(10,10,14,.38)'; ctx.lineWidth = 3.2; ctx.lineCap = 'round'
+    ctx.beginPath()
+    for (let i = 0; i < this.seg.length; i += 4) {
+      const x0 = this.seg[i] as number, y0 = this.seg[i + 1] as number
+      if (x0 < view.x0 - 20 || x0 > view.x1 + 20 || y0 < view.y0 - 20 || y0 > view.y1 + 20) continue
+      ctx.moveTo(x0, y0); ctx.lineTo(this.seg[i + 2] as number, this.seg[i + 3] as number)
+    }
+    ctx.stroke(); ctx.lineCap = 'butt'
+  }
+}
+
+function drawPad(ctx: CanvasRenderingContext2D, x: number, y: number, a: number, phase: number): void {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a)
+  ctx.fillStyle = 'rgba(255,200,40,.22)'; roundRect(ctx, -34, -42, 68, 84, 10); ctx.fill()
+  const glow = 0.55 + 0.45 * Math.sin(phase * 0.008)
+  for (let i = 0; i < 3; i++) {
+    ctx.strokeStyle = `rgba(255,${190 + i * 20},50,${glow - i * 0.12})`; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'
+    ctx.beginPath(); ctx.moveTo(-18 + i * 17, -22); ctx.lineTo(-6 + i * 17, 0); ctx.lineTo(-18 + i * 17, 22); ctx.stroke()
+  }
+  ctx.restore()
+}
+
+function drawObstacle(ctx: CanvasRenderingContext2D, o: { x: number; y: number; a: number; kind: string }, phase: number): void {
+  ctx.save(); ctx.translate(o.x, o.y); ctx.rotate(o.a + (o.kind === 'okada' ? 0.5 : 0.12))
+  ctx.fillStyle = 'rgba(0,0,0,.3)'; roundRect(ctx, -20, -9, 44, 26, 5); ctx.fill()
+  if (o.kind === 'danfo') {
+    ctx.fillStyle = '#f2b800'; roundRect(ctx, -26, -13, 52, 26, 5); ctx.fill()
+    ctx.fillStyle = '#111'; ctx.fillRect(-24, -3, 48, 6)
+    ctx.fillStyle = '#7fb5d6'; ctx.fillRect(14, -11, 9, 22)
+    ctx.fillStyle = '#fff'; ctx.fillRect(-14, -11, 12, 4)
+    ctx.fillStyle = Math.floor(phase / 400) % 2 ? '#ff9d00' : '#5a3c00'; ctx.beginPath(); ctx.arc(-25, -10, 3, 0, 7); ctx.arc(-25, 10, 3, 0, 7); ctx.fill()
+  } else {
+    ctx.fillStyle = '#1b1b20'; roundRect(ctx, -14, -4, 28, 8, 4); ctx.fill()
+    ctx.fillStyle = '#d33'; ctx.fillRect(-14, -3, 12, 6)
+    ctx.fillStyle = '#e8b27a'; ctx.beginPath(); ctx.arc(-2, 0, 5, 0, 7); ctx.fill()
+    ctx.strokeStyle = '#111'; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(8, -7); ctx.lineTo(8, 7); ctx.stroke()
+  }
+  ctx.restore()
+}
+
+function drawFlags(ctx: CanvasRenderingContext2D, track: Track, phase: number): void {
+  const s = pointAt(track, 0)
+  for (const side of [-1, 1]) {
+    const px = s.x - Math.sin(s.a) * side * (KERB_HALF + 14), py = s.y + Math.cos(s.a) * side * (KERB_HALF + 14)
+    ctx.fillStyle = '#d9dde3'; ctx.beginPath(); ctx.arc(px, py, 5, 0, 7); ctx.fill()
+    // a waving chequered flag streaming across the road
+    ctx.save(); ctx.translate(px, py); ctx.rotate(s.a + (side > 0 ? -Math.PI / 2 : Math.PI / 2))
+    const cols = 6, cw = 8
+    for (let c = 0; c < cols; c++) {
+      const wave = Math.sin(phase * 0.006 + c * 0.9) * (3 + c * 0.8)
+      for (let r = 0; r < 3; r++) { ctx.fillStyle = (r + c) % 2 ? '#111' : '#fff'; ctx.fillRect(c * cw, wave + r * 7 - 10, cw, 7) }
+    }
+    ctx.restore()
+  }
+}
+
 /** The whole scene under the cars: scenery, road, kerbs, lane dashes, start line. `cam` is in world units; the context already has the camera transform. */
 export function drawWorld(ctx: CanvasRenderingContext2D, id: TrackId, view: { x0: number; y0: number; x1: number; y1: number }, phase: number): void {
   const layer = layerOf(id), track = layer.track, bridge = track.def.theme === 'bridge'
@@ -100,6 +178,9 @@ export function drawWorld(ctx: CanvasRenderingContext2D, id: TrackId, view: { x0
   const cols = 10, cw = (2 * ROAD_HALF) / cols
   for (let r = 0; r < 2; r++) for (let c = 0; c < cols; c++) { ctx.fillStyle = (r + c) % 2 ? '#111' : '#fff'; ctx.fillRect(-10 + r * 10, -ROAD_HALF + c * cw, 10, cw) }
   ctx.restore()
+  for (const pad of track.pads) drawPad(ctx, pad.x, pad.y, pad.a, phase)
+  for (const o of track.obstacles) drawObstacle(ctx, o, phase)
+  drawFlags(ctx, track, phase)
   // scenery
   const pad = 60
   if (bridge) {
@@ -118,7 +199,8 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
 export function drawCar(ctx: CanvasRenderingContext2D, x: number, y: number, a: number, car: DrawCar, phase: number, you: boolean): void {
   const { kind, body, accent } = car.look
   const braking = (car.fl & 8) !== 0
-  ctx.save(); ctx.translate(x, y); ctx.rotate(a)
+  ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(CAR_SCALE, CAR_SCALE)
+  if (car.fl & 16) { ctx.fillStyle = 'rgba(255,170,40,.9)'; ctx.beginPath(); ctx.moveTo(-18, -4); ctx.lineTo(-18 - 16 - Math.abs(Math.sin(phase * 0.05)) * 10, 0); ctx.lineTo(-18, 4); ctx.closePath(); ctx.fill(); ctx.fillStyle = '#fff3b0'; ctx.beginPath(); ctx.moveTo(-18, -2); ctx.lineTo(-27, 0); ctx.lineTo(-18, 2); ctx.closePath(); ctx.fill() }
   if (car.fl & 1) { ctx.fillStyle = 'rgba(150,120,70,.35)'; for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.arc(-20 - i * 7, Math.sin(phase * 0.02 + i * 2) * 6, 5 + i * 2, 0, 7); ctx.fill() } }
   const [L, W] = kind === 'danfo' ? [38, 20] : kind === 'keke' ? [24, 16] : kind === 'coupe' ? [30, 14] : [32, 16]
   ctx.fillStyle = 'rgba(0,0,0,.28)'; roundRect(ctx, -L / 2 + 3, -W / 2 + 4, L, W, 4); ctx.fill()
@@ -143,7 +225,7 @@ export function drawCar(ctx: CanvasRenderingContext2D, x: number, y: number, a: 
   ctx.fillStyle = braking ? '#ff2a2a' : '#8a1c1c'; ctx.fillRect(-L / 2, -W / 2 + 1.5, 2.4, 3.2); ctx.fillRect(-L / 2, W / 2 - 4.7, 2.4, 3.2)
   if (car.fl & 2) { ctx.strokeStyle = '#ffe14d'; ctx.lineWidth = 2; ctx.beginPath(); for (let i = 0; i < 4; i++) { const t = (i / 4) * 6.28 + phase * 0.03; ctx.moveTo(Math.cos(t) * 12, Math.sin(t) * 10); ctx.lineTo(Math.cos(t) * 20, Math.sin(t) * 16) } ctx.stroke() }
   ctx.restore()
-  if (you) { ctx.fillStyle = '#fff'; ctx.strokeStyle = '#111'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, y - 30); ctx.lineTo(x - 7, y - 42); ctx.lineTo(x + 7, y - 42); ctx.closePath(); ctx.stroke(); ctx.fill() }
+  if (you) { ctx.fillStyle = '#fff'; ctx.strokeStyle = '#111'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, y - 40); ctx.lineTo(x - 8, y - 54); ctx.lineTo(x + 8, y - 54); ctx.closePath(); ctx.stroke(); ctx.fill() }
 }
 
 function minimap(ctx: CanvasRenderingContext2D, id: TrackId, cars: readonly DrawCar[], x: number, y: number, w: number, you: number | null, follow: number, labels: boolean): void {
@@ -180,6 +262,7 @@ export interface DrawRaceOpts {
   spectator: boolean
   phase: number
   reduced?: boolean
+  skids?: Skids
   /** false: no minimap (the lobby preview). */
   mini?: boolean
 }
@@ -191,21 +274,23 @@ export function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, o:
   ctx.translate(w / 2, h / 2); ctx.scale(zoom, zoom); ctx.translate(-o.cam.x, -o.cam.y)
   const view = { x0: o.cam.x - w / 2 / zoom, y0: o.cam.y - h / 2 / zoom, x1: o.cam.x + w / 2 / zoom, y1: o.cam.y + h / 2 / zoom }
   drawWorld(ctx, o.trackId, view, o.reduced ? 0 : o.phase)
+  o.skids?.draw(ctx, view)
   // far cars first so the one being followed is on top
   const order = o.cars.map((_, i) => i).sort((a, b) => (a === o.follow ? 1 : 0) - (b === o.follow ? 1 : 0))
   for (const i of order) { const c = o.cars[i] as DrawCar; drawCar(ctx, c.x, c.y, c.a, c, o.phase, i === o.you) }
   ctx.restore()
   // names of the others, in screen space
-  ctx.font = '700 11px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'
+  ctx.font = '700 10px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic'; ctx.globalAlpha = 0.6
   o.cars.forEach((c, i) => {
     if (i === o.you) return
     const sx = w / 2 + (c.x - o.cam.x) * zoom, sy = h / 2 + (c.y - o.cam.y) * zoom
     if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) return
     const label = (c.place ? c.place + '. ' : '') + c.name
-    const tw = ctx.measureText(label).width + 10
-    ctx.fillStyle = 'rgba(8,12,24,.6)'; roundRect(ctx, sx - tw / 2, sy - 36, tw, 16, 8); ctx.fill()
-    ctx.fillStyle = '#fff'; ctx.fillText(label, sx, sy - 24)
+    const tw = ctx.measureText(label).width + 8
+    ctx.fillStyle = 'rgba(8,12,24,.55)'; roundRect(ctx, sx - tw / 2, sy - 52, tw, 14, 7); ctx.fill()
+    ctx.fillStyle = '#fff'; ctx.fillText(label, sx, sy - 42)
   })
+  ctx.globalAlpha = 1
   const mw = o.spectator ? Math.min(150, w * 0.4) : Math.min(104, w * 0.28)
   if (o.mini !== false) minimap(ctx, o.trackId, o.cars, w - mw - 10, 10, mw, o.you, o.follow, o.spectator)
   const hud = o.hud
@@ -217,6 +302,13 @@ export function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, o:
     else { ctx.font = '800 17px system-ui'; ctx.fillText('LIVE', 16, 31) }
     ctx.fillStyle = '#fff'; ctx.font = '700 13px system-ui'; ctx.fillText('Lap ' + hud.lap + '/' + hud.laps, 16, 52)
     ctx.font = '600 12px ui-monospace, monospace'; ctx.fillStyle = '#c9d2ea'; ctx.fillText(hud.time, 16, 66)
+  }
+  if (hud && hud.done > 0 && hud.you) {
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+    ctx.font = '900 40px system-ui'; ctx.lineWidth = 6; ctx.strokeStyle = 'rgba(8,12,24,.85)'; ctx.fillStyle = '#ffd34d'
+    const txt = 'FINISHED  ' + ordinal(hud.done)
+    ctx.strokeText(txt, w / 2, h * 0.3); ctx.fillText(txt, w / 2, h * 0.3)
+    ctx.textBaseline = 'alphabetic'
   }
   if (hud && hud.count > 0) {
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle'

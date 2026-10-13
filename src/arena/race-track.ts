@@ -16,7 +16,17 @@ export const WORLD_W = 2700
 export const WORLD_H = 1800
 
 export type TrackId = 'lekki' | 'mainland'
-export interface TrackDef { id: TrackId; name: string; blurb: string; theme: 'land' | 'bridge'; points: readonly (readonly [number, number])[] }
+export type ObstacleKind = 'okada' | 'danfo'
+export interface TrackDef {
+  id: TrackId; name: string; blurb: string; theme: 'land' | 'bridge'; points: readonly (readonly [number, number])[]
+  /** Boost pads: [fraction of the lap, lateral offset (+ right)]. */
+  pads: readonly (readonly [number, number])[]
+  /** Stalled vehicles in the road: [fraction of the lap, lateral offset, kind]. A car that hits one bumps. */
+  obstacles: readonly (readonly [number, number, ObstacleKind])[]
+}
+export interface Spot { arc: number; lat: number; x: number; y: number; a: number }
+export interface Obstacle extends Spot { r: number; kind: ObstacleKind }
+export const BOOST_RANGE = 30, BOOST_WIDE = 42
 
 /** Lekki: a lumpy ellipse (three bulges and a pinch, so it has a long sweeper, a chicane-like S and a tight-ish right). */
 const lekkiPoints = (): [number, number][] => Array.from({ length: 18 }, (_, k) => {
@@ -34,8 +44,9 @@ const mainlandPoints = (): [number, number][] => {
 }
 
 export const TRACK_DEFS: Readonly<Record<TrackId, TrackDef>> = Object.freeze({
-  lekki: { id: 'lekki', name: 'Lekki Loop', blurb: 'Palms, sand and bends on the Lekki peninsula.', theme: 'land', points: lekkiPoints() },
-  mainland: { id: 'mainland', name: 'Third Mainland', blurb: 'The long bridge over the lagoon. Flat out, then a hairpin.', theme: 'bridge', points: mainlandPoints() },
+  lekki: { id: 'lekki', name: 'Lekki Loop', blurb: 'Palms, sand and bends on the Lekki peninsula.', theme: 'land', points: lekkiPoints(), pads: [[0.08, -35], [0.4, 35], [0.7, 0]], obstacles: [] },
+  mainland: { id: 'mainland', name: 'Third Mainland', blurb: 'The long bridge over the lagoon. Flat out, then a hairpin.', theme: 'bridge', points: mainlandPoints(), pads: [[0.1, 0], [0.5, -40], [0.82, 40]],
+    obstacles: [[0.2, 58, 'okada'], [0.3, -55, 'danfo'], [0.44, 60, 'danfo'], [0.6, -58, 'okada'], [0.7, 55, 'danfo'], [0.9, -60, 'okada']] },
 })
 export const TRACK_IDS: readonly TrackId[] = Object.freeze(['lekki', 'mainland'] as TrackId[])
 export const isTrackId = (value: unknown): value is TrackId => typeof value === 'string' && Object.hasOwn(TRACK_DEFS, value)
@@ -53,6 +64,8 @@ export interface Track {
   a: Float64Array
   /** Smallest turning radius found along the centre line (a design check, see the tests). */
   minRadius: number
+  pads: Spot[]
+  obstacles: Obstacle[]
 }
 
 function catmull(p0: number, p1: number, p2: number, p3: number, t: number): number {
@@ -101,7 +114,10 @@ export function buildTrack(id: TrackId): Track {
     while (turn < -Math.PI) turn += 2 * Math.PI
     if (Math.abs(turn) > 1e-6) minRadius = Math.min(minRadius, (2 * step) / Math.abs(turn))
   }
-  const track: Track = { def, n, step, length: n * step, x, y, a, minRadius }
+  const track: Track = { def, n, step, length: n * step, x, y, a, minRadius, pads: [], obstacles: [] }
+  const spot = (frac: number, lat: number): Spot => { const arc = frac * track.length; return { arc, lat, ...pointAt(track, arc, lat) } }
+  track.pads = def.pads.map(([f, l]) => spot(f, l))
+  track.obstacles = def.obstacles.map(([f, l, kind]) => ({ ...spot(f, l), kind, r: kind === 'danfo' ? 19 : 10 }))
   cache.set(id, track)
   return track
 }

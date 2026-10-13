@@ -2,20 +2,17 @@
   "schemaVersion": 1,
   "queue": [
     {
-      "id": "release-d-1",
+      "id": "release-d-2",
       "appSha": "808a3ff1a0e30811ddbbcd8999171e9225e575d5",
       "driverSha": "474cffa14b7c548f58b44ec768e12ffd4d6cc7f5",
       "cities": [
-        "kabul",
-        "vienna",
-        "dhaka",
-        "nassau",
-        "belize-city",
-        "prague",
-        "copenhagen",
-        "kingston",
-        "almaty",
-        "yangon"
+        "panama-city",
+        "lisbon",
+        "paramaribo",
+        "damascus",
+        "bangkok",
+        "port-vila",
+        "sanaa"
       ],
       "roundtrip": true
     }

@@ -174,10 +174,12 @@ for (const target of table.targets) {
         row.unavailableSemanticKinds = unavailableSemanticKinds;
         if (choices.length < profile.minimumPlaces)
             row.errors.push(`only ${choices.length} eligible unique named venues (the ${profile.name} profile needs ${profile.minimumPlaces})`);
-        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre, minimumLabels: profile.minimumNeighbourhoodLabels, islandPlaces: profile.districtIslandPlaces }), names = [...districts.labels];
+        const districts = districtLabels({ pool, name, ref, normal, centre: facts.centre, minimumLabels: profile.minimumNeighbourhoodLabels, islandPlaces: profile.districtIslandPlaces, squarePlaces: profile.districtSquarePlaces ?? [] }), names = [...districts.labels];
         row.districtLabelPlaceTags = districts.placeTags;
         if (districts.areaRefs.length) row.districtLabelAreaRefs = districts.areaRefs;
-        if (districts.fallback) row.districtLabelFallback = 'fewer than the minimum suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended' + (profile.districtIslandPlaces?.length ? '; then named island|islet places (profile ' + profile.name + ')' : '') + (districts.areaRefs.length ? `; still short of five nodes, so place areas at their centre points: ${districts.areaRefs.join(', ')}` : '');
+        // Microstate last resort (profiles.json `districtSquarePlaces`): the named squares that were taken as labels, with refs and names, for the receipt and the check table.
+        if (districts.squareRefs.length) row.districtLabelSquares = districts.squareRefs.map(squareRef => ({ ref: squareRef, name: name(pool.find(el => ref(el) === squareRef)) }));
+        if (districts.fallback) row.districtLabelFallback = 'fewer than the minimum suburb|neighbourhood|quarter nodes: village|hamlet|locality|subdivision nodes appended' + (profile.districtIslandPlaces?.length ? '; then named island|islet places (profile ' + profile.name + ')' : '') + (districts.areaRefs.length ? `; still short of five nodes, so place areas at their centre points: ${districts.areaRefs.join(', ')}` : '') + (districts.squareRefs.length ? `; last resort (profile ${profile.name}): named place=square at ${districts.squareRefs.join(', ')}` : '');
         // A coast is a shore a city can stand beside, not one mis-tagged ring: Asuncion's extract holds a single closed natural=coastline way of 976 m (the creek
         // "Zanja Soro" in landlocked Paraguay), which made the recipe a sea city and sent every dry place to the wrong side of the exact-coast stage.
         const coastlineMetres = el => nearCoastlineMetres(el, boxes.play);

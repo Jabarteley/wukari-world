@@ -65,6 +65,8 @@ class ProfileCityNodeTests(unittest.TestCase):
         self.assertEqual(data['microstate']['minimumPlaces'], 12)
         self.assertEqual(data['microstate']['minimumNeighbourhoodLabels'], 3)
         self.assertEqual(data['microstate']['maximumEmptySlots'], 4)
+        self.assertEqual(data['microstate']['districtSquarePlaces'], ['square'])
+        self.assertNotIn('districtSquarePlaces', data['standard'])
 
 # Real OurAirports rows (commit 03565b61): the Boryspil row says scheduled_service=no and type large_airport; Ramallah and Monaco are heliports.
 def row(**fields):

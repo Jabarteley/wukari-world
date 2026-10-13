@@ -6,12 +6,15 @@
  * Still short (Nassau: three nodes, but its named neighbourhoods and housing estates are mapped as areas): place=neighbourhood|quarter|suburb areas,
  * then village|hamlet|locality|subdivision areas, taken at the centre point the extract records for the area (the same point every other
  * way/relation place of the factory uses), after every node, nearest to the city first.
+ * Last resort, microstate profile only (owner decision 13 Oct 2026, profiles.json `districtSquarePlaces`): when every tier above still leaves fewer than the minimum
+ * (the Holy See has two labels and three named squares), named place=square nodes, or ways/relations at their centre, are appended, wikidata first, then nearest to the city.
  * Cities that already have five primary labels therefore keep exactly their previous labels.
  * The extractor (scripts/geo/offline-extract.py PLACE_DISTRICTS / PLACE_DISTRICT_FALLBACKS) must list the same values.
  */
 export const PRIMARY_DISTRICT_PLACES = Object.freeze(['suburb', 'neighbourhood', 'quarter']);
 export const FALLBACK_DISTRICT_PLACES = Object.freeze(['village', 'hamlet', 'locality', 'subdivision']);
 export const ISLAND_PLACES = Object.freeze(['island', 'islet']);
+export const SQUARE_PLACES = Object.freeze(['square']);
 export const MINIMUM_LABELS = 5;
 export const MAXIMUM_LABELS = 18;
 
@@ -25,9 +28,11 @@ export const MAXIMUM_LABELS = 18;
  * @param islandPlaces   profile `districtIslandPlaces` (microstate: island, islet; standard: none). Named islands (nodes, or ways/relations at their centre) of the play box are used only
  *                       after every suburb|neighbourhood|quarter and village|hamlet|locality|subdivision node and still short of the minimum, nearest to the city first,
  *                       before way/relation areas of the ordinary tags. A standard city never passes them, so its labels are exactly as before.
- * @returns { labels: [{id, ref, kind:'neighbourhood'}], placeTags: { [ref]: place tag }, fallback: boolean, areaRefs: string[] }
+ * @param squarePlaces   profile `districtSquarePlaces` (microstate: square; standard: none). Named squares (nodes, or ways/relations at their centre) are used only after every tier above
+ *                       (primary, fallback tags, islands, areas) and still short of the minimum, wikidata first, then nearest to the city. A standard city never passes them.
+ * @returns { labels: [{id, ref, kind:'neighbourhood'}], placeTags: { [ref]: place tag }, fallback: boolean, areaRefs: string[], squareRefs: string[] }
  */
-export function districtLabels({ pool, name, ref, normal, centre, minimumLabels = MINIMUM_LABELS, islandPlaces = [] }) {
+export function districtLabels({ pool, name, ref, normal, centre, minimumLabels = MINIMUM_LABELS, islandPlaces = [], squarePlaces = [] }) {
     const nodes = tags => pool.filter(el => el.type === 'node' && tags.includes(el.tags.place));
     const areas = tags => pool.filter(el => el.type !== 'node' && el.center && tags.includes(el.tags.place));
     const lonLat = el => (el.type === 'node' ? el : el.center);
@@ -54,6 +59,12 @@ export function districtLabels({ pool, name, ref, normal, centre, minimumLabels 
             const more = dedupe(areas([...PRIMARY_DISTRICT_PLACES, ...FALLBACK_DISTRICT_PLACES]).sort((a, b) => areaTier(a) - areaTier(b) || wikidata(b) - wikidata(a) || distance(a) - distance(b) || ref(a).localeCompare(ref(b))), taken2);
             chosen = [...chosen, ...more].slice(0, minimumLabels);
         }
+        if (chosen.length < minimumLabels && squarePlaces.length) {
+            const taken3 = new Set(chosen.map(el => normal(name(el))));
+            const squares = dedupe(pool.filter(el => squarePlaces.includes(el.tags.place) && (el.type === 'node' || el.center))
+                .sort((a, b) => wikidata(b) - wikidata(a) || distance(a) - distance(b) || ref(a).localeCompare(ref(b))), taken3);
+            chosen = [...chosen, ...squares].slice(0, MAXIMUM_LABELS);
+        }
         fallback = chosen.length > primary.length;
     }
     return {
@@ -61,6 +72,8 @@ export function districtLabels({ pool, name, ref, normal, centre, minimumLabels 
         placeTags: Object.fromEntries(chosen.map(el => [ref(el), el.tags.place])),
         fallback,
         // way/relation places that topped the list up (empty unless the nodes were fewer than MINIMUM_LABELS): the receipt and check table show these OSM refs.
-        areaRefs: chosen.filter(el => el.type !== 'node').map(el => ref(el)),
+        areaRefs: chosen.filter(el => el.type !== 'node' && !squarePlaces.includes(el.tags.place)).map(el => ref(el)),
+        // microstate last resort: the named squares that were taken as labels (refs; the receipt adds their names).
+        squareRefs: chosen.filter(el => squarePlaces.includes(el.tags.place)).map(el => ref(el)),
     };
 }

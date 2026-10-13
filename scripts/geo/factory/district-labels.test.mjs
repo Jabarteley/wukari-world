@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { districtLabels, FALLBACK_DISTRICT_PLACES, PRIMARY_DISTRICT_PLACES, ISLAND_PLACES } from './district-labels.mjs';
+import { districtLabels, FALLBACK_DISTRICT_PLACES, PRIMARY_DISTRICT_PLACES, ISLAND_PLACES, SQUARE_PLACES } from './district-labels.mjs';
 
 const ref = el => `${el.type}/${el.id}`, name = el => el.tags.name, normal = text => text.normalize('NFKC').toLowerCase();
 const node = (id, place, extra = {}, lon = 100 + id / 1000, lat = 10) => ({ type: 'node', id, lon, lat, tags: { name: `P${id}`, place, ...extra } });
@@ -67,4 +67,45 @@ test('islands (microstate profile only): after every node tier and still short, 
   assert.deepEqual(standard.labels.map(label => label.ref), ['node/1', 'node/5'], 'no island is read without the profile list');
   const enough = districtLabels({ pool: [1, 2, 3].map(id => node(id, 'quarter')).concat(island(9, 100.001)), name, ref, normal, centre, minimumLabels: 3, islandPlaces: ISLAND_PLACES });
   assert.deepEqual(enough.labels.map(label => label.ref), ['node/1', 'node/2', 'node/3'], 'islands are not read when the ordinary tags already reach the minimum');
+});
+
+test('squares (microstate profile only): the Holy See shape, two labels and three named squares reach five; the last resort after islands and areas; never without the profile', () => {
+  // Real names and tags of the Vatican (the node ids are the real ones; the square way ids are shaped, the real refs come from the source run).
+  const vatican = [
+    { type: 'node', id: 424311883, lon: 12.4534, lat: 41.9029, tags: { name: 'Vatican City', 'name:en': 'Vatican City', place: 'suburb', capital: 'yes' } },
+    { type: 'node', id: 13020223521, lon: 12.4530, lat: 41.9033, tags: { name: 'Piazza dei Protomartiri Romani', place: 'locality' } },
+    { type: 'way', id: 900001, center: { lon: 12.4573, lat: 41.9022 }, tags: { name: 'Piazza Retta', place: 'square' } },
+    { type: 'way', id: 900002, center: { lon: 12.4540, lat: 41.9021 }, tags: { name: 'Sagrato della Basilica', place: 'square' } },
+    { type: 'way', id: 900003, center: { lon: 12.4515, lat: 41.9040 }, tags: { name: 'Largo Madonna della Guardia', place: 'square' } },
+    { type: 'node', id: 900004, lon: 12.4535, lat: 41.9030, tags: { name: 'Plot of land', place: 'plot' } },
+  ];
+  const middle = { lon: 12.4534, lat: 41.9029 };
+  const micro = districtLabels({ pool: vatican, name, ref, normal, centre: middle, minimumLabels: 3, islandPlaces: ISLAND_PLACES, squarePlaces: SQUARE_PLACES });
+  assert.deepEqual(micro.labels.map(label => label.ref), ['node/424311883', 'node/13020223521', 'way/900002', 'way/900003', 'way/900001']);
+  assert.deepEqual(micro.squareRefs, ['way/900002', 'way/900003', 'way/900001'], 'nearest first');
+  assert.deepEqual(micro.areaRefs, [], 'a square is not reported as an area label');
+  assert.equal(micro.fallback, true);
+  assert.deepEqual(micro.placeTags['way/900001'], 'square');
+  const standard = districtLabels({ pool: vatican, name, ref, normal, centre: middle, minimumLabels: 3 });
+  assert.deepEqual(standard.labels.map(label => label.ref), ['node/424311883', 'node/13020223521'], 'no square is read without the profile list');
+  assert.deepEqual(standard.squareRefs, []);
+  assert.ok(!PRIMARY_DISTRICT_PLACES.includes('square') && !FALLBACK_DISTRICT_PLACES.includes('square') && !ISLAND_PLACES.includes('square'));
+});
+
+test('squares are the very last tier: not read when nodes, islands or areas already reach the minimum; wikidata first; duplicate names and ways without a centre never qualify', () => {
+  const square = (id, lon, extra = {}) => ({ type: 'node', id, lon, lat: 10, tags: { name: `S${id}`, place: 'square', ...extra } });
+  const options = { name, ref, normal, centre, minimumLabels: 3, islandPlaces: ISLAND_PLACES, squarePlaces: SQUARE_PLACES };
+  const nodes = [1, 2, 3].map(id => node(id, 'quarter'));
+  assert.deepEqual(districtLabels({ ...options, pool: [...nodes, square(9, 100.001)] }).labels.map(label => label.ref), ['node/1', 'node/2', 'node/3']);
+  const island = { type: 'node', id: 20, lon: 100.2, lat: 10, tags: { name: 'I20', place: 'island' } };
+  assert.deepEqual(districtLabels({ ...options, pool: [node(1, 'quarter'), node(2, 'village'), island, square(9, 100.001)] }).labels.map(label => label.ref), ['node/1', 'node/2', 'node/20'], 'an island fills the third label first');
+  const area = { type: 'way', id: 30, center: { lon: 100.3, lat: 10 }, tags: { name: 'A30', place: 'neighbourhood' } };
+  const withArea = districtLabels({ ...options, pool: [node(1, 'quarter'), node(2, 'village'), area, square(9, 100.001)] });
+  assert.deepEqual(withArea.labels.map(label => label.ref), ['node/1', 'node/2', 'way/30']);
+  assert.deepEqual(withArea.squareRefs, []);
+  const far = square(10, 100.5), near = square(11, 100.01), famous = square(12, 100.9, { wikidata: 'Q1' }), duplicate = square(13, 100.02, { name: 'S11' });
+  const noCentre = { type: 'way', id: 14, tags: { name: 'W14', place: 'square' } };
+  const { labels, squareRefs } = districtLabels({ ...options, pool: [node(1, 'quarter'), far, near, famous, duplicate, noCentre] });
+  assert.deepEqual(labels.map(label => label.ref), ['node/1', 'node/12', 'node/11', 'node/10']);
+  assert.deepEqual(squareRefs, ['node/12', 'node/11', 'node/10']);
 });

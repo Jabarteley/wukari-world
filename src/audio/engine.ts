@@ -51,6 +51,11 @@ export function seenOf(state: LifeState, view: PanelView): Seen {
 const PRESS = 'button,[role=button],[role=tab],[role=switch],[role=menuitem],a[href],summary,.ui-row,input[type=checkbox],select'
 const TOLD = 'Sound is on · tap the speaker to mute'
 
+/** Installed once after the first gesture, including when that gesture finds sound muted. */
+export function onSoundEnabled(wake: () => void): void {
+  onSoundChange(() => { if (getSound().on) wake() })
+}
+
 export function createEngine(): Engine | null {
   const win = window
   const Context = globalThis.AudioContext ?? (globalThis as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext

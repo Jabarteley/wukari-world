@@ -119,6 +119,8 @@ async function dismiss(b: Browser, waitMs = 12000): Promise<void> {
 const gameShown = (b: Browser): Promise<void> => b.waitFor(`!!document.querySelector('.hud-cash') && !document.querySelector('[data-cr-root]')`, 60000, 'the game screen');
 async function chooseIkeja(b: Browser): Promise<void> {
   for (let t = 0; t < 4; t++) {
+    // The capped area list hides Ikeja (display:none, so it is in the DOM but not visible): press Show all when it is offered. No-op on older apps.
+    await b.click('[data-key="area:all"]', undefined, 3000).catch(() => undefined);
     await b.click('[data-key="area:ikeja"]', undefined, 30000);
     if (await b.waitFor(`(() => { const n = document.querySelector('[data-key="primary"], [data-key="next"]'); return !!n && !n.disabled; })()`, 4000, 'Next').catch(() => false)) return;
   }

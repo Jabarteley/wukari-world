@@ -85,7 +85,7 @@ import { housesFor } from '../game/cities/housingRuntime.ts';
 import { cachedCityContent } from '../game/cities/registry.ts';
 import type { HomePalette } from '../types/content.ts';
 import { HOUSE_DESIGNS, HOUSE_STYLE } from '../game/content/world.ts';
-import { footprint, windowSlot, doorSlot, plotOf } from '../game/home-layout.ts';
+import { footprint, windowSlot, doorSlot, plotOf, zonesOf } from '../game/home-layout.ts';
 import type { Plot } from '../game/home-layout.ts';
 import { planOf, wallsOf, bumpsOf, railsOf, flightAt, stairwellOf, routeOf, slabOf, finishAt, nearestFree } from '../game/home-plan.ts';
 import type { HousePlan, PlanStairs, PlanWall } from '../game/home-plan.ts';
@@ -345,10 +345,6 @@ const SHAPES: { fallback: Shape; [shape: string]: Shape | undefined } = {
 /** Shapes that stand on a round footprint, and those that lie flat on the floor (a shadow under them would only show as a halo). */
 const ROUND_SHAPES = new Set(['plant', 'lantern', 'floorlamp', 'drum', 'beanbag', 'mic', 'bucket', 'basin', 'cage', 'stove', 'radio', 'toilet']);
 const FLAT_SHAPES = new Set(['rug', 'mat', 'gymmat']);
-/** Zones of a single-room home, as [x, y, w, h] in tiles, by tier: the kitchen corner at the back right, the sleeping corner at the front right, the entry strip by the door. */
-const zonesOf = (grid: number) => grid <= 6 ? { kitchen: [4, 0, 2, 2], bed: [4, 3, 2, 3], hall: [0, grid - 3, 2, 3] } as const
-  : grid <= 9 ? { kitchen: [grid - 3, 0, 3, 3], bed: [grid - 4, grid - 4, 4, 4], hall: [0, grid - 3, 2, 3] } as const
-  : { kitchen: [grid - 4, 0, 4, 4], bed: [grid - 4, grid - 4, 4, 4], hall: [0, grid - 3, 2, 3] } as const;
 const within = (zone: readonly number[], tx: number, ty: number) => tx >= zone[0]! && ty >= zone[1]! && tx < zone[0]! + zone[2]! && ty < zone[1]! + zone[3]!;
 const TRIM = '#8c7a62', RAIL = '#4a4038', PAINT = '#efe7d4', CURTAIN = '#b5654a', BARS = '#26282c';
 /** Curtain colours a home may have, and how its walls lean: a tint towards a harmonious colour, picked by home (deterministic). */

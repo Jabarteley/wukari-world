@@ -24,7 +24,15 @@ const LAYOUTS: Record<number, [string, number, number, number][]> = {
     ['potted-plant', 5, 8, 0], ['potted-plant', 4, 4, 0], ['wall-art', 2, 0, 0], ['wall-fan', 7, 0, 0]],
 };
 const owned = params.get('owned') === '1';
-const items = (LAYOUTS[grid] ?? LAYOUTS[6]!).map(([itemId, x, y, rot], i) => ({ id: `i${i}`, itemId, x, y, rot }));
+let items: { id: string; itemId: string; x: number; y: number; rot: number }[] = (LAYOUTS[grid] ?? LAYOUTS[6]!).map(([itemId, x, y, rot], i) => ({ id: `i${i}`, itemId, x, y, rot }));
+// ?buy=a,b,c: a fresh home (the starter layout) where each listed piece is bought in turn and lands where the real default placement (suggestSpot) puts it.
+const buy = params.get('buy');
+if (buy) {
+  const { FURNITURE } = await import('../game/content/furniture.ts');
+  const { starterLayout, suggestSpot } = await import('../game/home-layout.ts');
+  items = starterLayout(grid) as typeof items;
+  for (const itemId of buy.split(',')) { const def = FURNITURE[itemId]; const at = def && suggestSpot(grid, items as never, def, 0); if (at) items.push({ id: `b${items.length}`, itemId, ...at }); }
+}
 const kit = createKit(), { THREE } = kit;
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
@@ -34,7 +42,7 @@ const camera = new THREE.PerspectiveCamera(48, 1, 0.1, 360);
 const lights = createHostLights(THREE, scene);
 const sky = createSky(THREE);
 scene.background = sky.texture;
-const home = buildHomeScene(kit, { visit: { grid, owned, style: { shape: 0, wall: 0, roof: 0, door: 0, windows: 0, fence: 0, yard: 0, sign: 0 }, items } });
+const home = buildHomeScene(kit, { visit: { grid, owned, style: { shape: 0, wall: 0, roof: 0, door: 0, windows: 0, fence: 0, yard: 0, sign: 0 }, items: items as never } });
 home.update({ t: Date.UTC(2026, 0, 5, time === 'day' ? 12 : time === 'dusk' ? 17 : 21) } as never);
 scene.add(home.group);
 const az = Number(params.get('az') ?? 0.7), up = Number(params.get('up') ?? 21), reach = Number(params.get('reach') ?? 21);

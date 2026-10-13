@@ -75,6 +75,18 @@ export function hudNotice(view: Pick<PanelView, 'connected' | 'link' | 'storage'
 export function cashDelta(change: number, newest: { amount: number; reason: string } | undefined, money: (value: number) => string): string {
   return `${change > 0 ? '+' : '−'}${money(Math.abs(change))}${newest && newest.amount === change ? ` · ${newest.reason}` : ''}`
 }
+/** The balance a count-up shows `progress` (0–1) of the way from `from` to `to`: eased out, whole naira, exact at the end. */
+export function tweenCash(from: number, to: number, progress: number): number {
+  if (!(progress < 1)) return to
+  const eased = 1 - (1 - Math.max(0, progress)) ** 3
+  return Math.round(from + (to - from) * eased)
+}
+/** How long the balance takes to count to its new value. */
+export const COUNT_MS = 650
+/** The pill's text: the exact balance, or the short form once it is too long for the bar (₦12.3m). */
+export function cashText(cash: number, exact: (value: number) => string, short: (value: number) => string): string {
+  return Math.abs(cash) >= 10_000_000 ? short(cash) : exact(cash)
+}
 /** A gain, or a sharp drop, of a need is highlighted once; the slow decay is not. */
 export function needFlash(before: number | undefined, value: number): 'up' | 'down' | null {
   if (before === undefined) return null

@@ -23,6 +23,7 @@ import { linkWords } from '../../../ui/link.ts'
 // Loaded when the wallet opens, not with it: it only matters while money is short.
 const ReliefLink = defineAsyncComponent(() => import('../relief/ReliefLink.vue'))
 import { billsLine, loanReasons, loanRule, rentStanding } from './bankLines.ts'
+import { dayTotals, groupLedger, percentOf, weekFlow } from './ledgerModel.ts'
 
 defineProps<{ params?: unknown }>()
 
@@ -41,7 +42,11 @@ const loan = computed(() => economy.value.loan)
 const standing = computed(() => (rent.value ? rentStanding(rent.value) : null))
 const rentBlocked = computed(() => offline.value || rent.value?.payBlocked || null)
 const reasons = computed(() => (loan.value ? loanReasons(loan.value, offline.value) : []))
-const repaid = computed(() => Math.round((loan.value?.progress ?? 0) * 100))
+const repaid = computed(() => (loan.value ? percentOf(loan.value.paid, loan.value.total) : 0))
+// "Now" for the day headings: the server clock, or the newest line if that is later.
+const nowMs = computed(() => Math.max(game.serverNow(), ledger.value[0]?.at ?? 0))
+const week = computed(() => weekFlow(ledger.value, nowMs.value))
+const days = computed(() => groupLedger(ledger.value, nowMs.value))
 
 /** Which payment is on its way to the server. One at a time: the server refuses a second as 'busy'. */
 const paying = ref<'rent' | 'week' | 'all' | null>(null)
@@ -59,15 +64,23 @@ async function pay(which: 'rent' | 'week' | 'all'): Promise<void> {
 <template>
   <div class="bank">
     <ReliefLink />
-    <section class="bank-wallet" aria-label="Your game wallet"><div class="bank-wallet-top"><span>Your game wallet</span><AppArtwork app="bank" /></div><strong>{{ money(state.cash) }}</strong><div class="bank-wallet-note">
-      <template v-if="bills.due">
-        Usual weekly bills: <b>{{ money(economy.weeklyBills) }}</b> · next billing date {{ economy.nextDueLabel }}.
-        <template v-if="loan && loan.prepaid > 0 && !loan.cleared"> {{ loan.nextCollection }}</template>
-        <template v-if="bills.tail === 'pay'"> Your job pays up to {{ money(career.weeklyPay) }} a week.</template>
-        <template v-else-if="bills.tail === 'no-job'"> You have no job yet — open Jobs to start earning.</template>
-      </template>
-      <template v-else>No weekly bills yet.</template>
-    </div></section>
+    <section class="bank-wallet" aria-label="Your game wallet">
+      <div class="bank-wallet-top"><span>Your game wallet</span><AppArtwork app="bank" /></div>
+      <strong>{{ money(state.cash) }}</strong>
+      <dl class="bank-week" aria-label="Last 7 days">
+        <div><dt>In, last 7 days</dt><dd class="is-in">+{{ money(week.in) }}</dd></div>
+        <div><dt>Out, last 7 days</dt><dd class="is-out">−{{ money(week.out) }}</dd></div>
+      </dl>
+      <div class="bank-wallet-note">
+        <template v-if="bills.due">
+          <b>Next bills {{ economy.nextDueLabel }}:</b> {{ money(economy.weeklyBills) }}.
+          <template v-if="loan && loan.prepaid > 0 && !loan.cleared"> {{ loan.nextCollection }}</template>
+          <template v-if="bills.tail === 'pay'"> Your job pays up to {{ money(career.weeklyPay) }} a week.</template>
+          <template v-else-if="bills.tail === 'no-job'"> You have no job yet. Open Jobs to start earning.</template>
+        </template>
+        <template v-else>No weekly bills yet.</template>
+      </div>
+    </section>
     <p class="ui-note">Game money only. Real store earnings are shown in My Store.</p>
     <div v-if="offline" class="bank-why" role="status">{{ offline }}</div>
 
@@ -123,19 +136,24 @@ async function pay(which: 'rent' | 'week' | 'all'): Promise<void> {
     </div>
 
     <ListRows>
-      <ListRow as="button" title="Savings" sub="Fixed deposits pay a small, capped interest (beta)" @click="shell.open('invest')">
+      <ListRow as="button" title="Savings" sub="Earn fixed interest" @click="shell.open('invest')">
         <template #icon><RowMark><GameIcon name="lock" /></RowMark></template>
         <template #end><span class="bank-locked">{{ money(economy.savings.locked) }}<small>locked</small></span><GameIcon name="chevron" :size="16" /></template>
       </ListRow>
     </ListRows>
 
     <SectionTitle :note="ledger.length ? `last ${ledger.length}, newest first` : ''">Recent transactions</SectionTitle>
-    <ListRows v-if="ledger.length" class="bank-ledger" as="ul" label="Recent transactions">
-      <ListRow v-for="(entry, index) in ledger" :key="`${entry.at}:${index}`" as="li" :title="entry.reason" :sub="`${formatClock(entry.at)} · balance ${money(entry.balance)}`">
-        <template #icon><RowMark round :tone="entry.amount < 0 ? 'out' : 'in'"><GameIcon :name="entry.amount < 0 ? 'spend' : 'earn'" /></RowMark></template>
-        <template #end><span :class="entry.amount < 0 ? 'bank-out' : 'bank-in'">{{ signedMoney(entry.amount) }}</span></template>
-      </ListRow>
-    </ListRows>
+    <template v-if="ledger.length">
+      <section v-for="day in days" :key="day.day" class="bank-day" :aria-label="day.label">
+        <h4><span>{{ day.label }}</span><small>{{ dayTotals(day) }}</small></h4>
+        <ListRows class="bank-ledger" as="ul" :label="`Transactions, ${day.label}`">
+          <ListRow v-for="(entry, index) in day.lines" :key="`${entry.at}:${index}`" as="li" :title="entry.reason" :sub="`${formatClock(entry.at)} · balance ${money(entry.balance)}`">
+            <template #icon><RowMark round :tone="entry.amount < 0 ? 'out' : 'in'"><GameIcon :name="entry.icon" /></RowMark></template>
+            <template #end><span :class="entry.amount < 0 ? 'bank-out' : 'bank-in'">{{ signedMoney(entry.amount) }}</span></template>
+          </ListRow>
+        </ListRows>
+      </section>
+    </template>
     <EmptyState v-else compact icon="statement" title="No transactions yet" text="Every fare, purchase, wage and payment will be listed here with its reason." />
   </div>
 </template>
@@ -145,6 +163,15 @@ async function pay(which: 'rent' | 'week' | 'all'): Promise<void> {
 .bank-wallet-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 14px; font-weight: 600; color: #d6eee7; }
 .bank-wallet-top :deep(.ph-icon) { width: 46px; height: 46px; box-shadow: none; border-radius: 11px; }
 .bank-wallet > strong { display: block; margin: 14px 0 16px; font-size: 36px; line-height: 1.1; letter-spacing: -.025em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.bank-week { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 14px; }
+.bank-week > div { padding: 8px 10px; border-radius: 12px; background: #ffffff1c; }
+.bank-week dt { font-size: 11px; font-weight: 600; color: #d6eee7; }
+.bank-week dd { margin: 2px 0 0; font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.bank-week .is-in { color: #9be3b5; }
+.bank-week .is-out { color: #ffc2a8; }
+.bank-day { margin: 0 0 var(--s-3); }
+.bank-day h4 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 2px var(--s-1); font-size: 12px; font-weight: 700; color: var(--c-ink-2); }
+.bank-day h4 small { font-size: 11px; font-weight: 600; color: var(--c-muted); font-variant-numeric: tabular-nums; }
 .bank-wallet-note { font-size: 13px; line-height: 1.5; color: #d6eee7; border-top: 1px solid #3e626c; padding-top: 12px; }
 
 .bank { overflow-wrap: anywhere; }
@@ -169,7 +196,8 @@ async function pay(which: 'rent' | 'week' | 'all'): Promise<void> {
 .bank-why { margin: 4px 0 var(--s-2); color: var(--c-red); font-size: 12px; line-height: 1.4; }
 .bank-card .bank-why { margin-bottom: 0; }
 .bank-bar { height: 8px; margin: var(--s-2) 0; border-radius: 8px; background: var(--c-fill-2); overflow: hidden; }
-.bank-bar i { display: block; height: 100%; border-radius: 8px; background: var(--c-green); }
+.bank-bar i { display: block; height: 100%; border-radius: 8px; background: var(--c-green); transition: width .4s ease-out; }
+@media (prefers-reduced-motion: reduce) { .bank-bar i { transition: none; } }
 .bank-locked { display: block; }
 .bank-locked small { display: block; font-size: 11px; font-weight: 500; color: var(--c-muted); }
 .bank-in { color: var(--c-green-dark); }

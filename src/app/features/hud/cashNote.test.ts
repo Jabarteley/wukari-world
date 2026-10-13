@@ -22,3 +22,15 @@ test('the top bar arms the expiry on each change and drops the note with it', ()
   assert.match(source, /expiry\.arm\(\)/)
   assert.ok(DELTA_MS >= 3400, 'longer than the animation')
 })
+
+test('the balance counts to its new value, eased, exact at the end, and goes short only when long', async () => {
+  const { tweenCash, cashText } = await import('./hudModel.ts')
+  assert.equal(tweenCash(1000, 2000, 0), 1000)
+  assert.equal(tweenCash(1000, 2000, 1), 2000)
+  assert.equal(tweenCash(1000, 2000, 5), 2000)
+  assert.ok(tweenCash(1000, 2000, 0.5) > 1500, 'eased out: more than half way at half time')
+  assert.equal(tweenCash(2000, 1000, 1), 1000)
+  const exact = (v: number): string => `E${v}`, short = (v: number): string => `S${v}`
+  assert.equal(cashText(9_999_999, exact, short), 'E9999999')
+  assert.equal(cashText(10_000_000, exact, short), 'S10000000')
+})

@@ -6,8 +6,8 @@
 import { computed, defineAsyncComponent, h, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useApp } from '../../state/app.ts'
 import GameIcon from '../../ui/GameIcon.vue'
-import { money } from '../../ui/format.ts'
-import { cashDelta, moodOf, noteExpiry, savedPill } from './hudModel.ts'
+import { compactMoney, money } from '../../ui/format.ts'
+import { COUNT_MS, cashDelta, cashText, moodOf, noteExpiry, savedPill, tweenCash } from './hudModel.ts'
 import InviteButton from '../growth/InviteButton.vue'
 import OnlinePill from './OnlinePill.vue'
 import AccountHud from './AccountHud.vue'
@@ -20,7 +20,23 @@ const view = game.view
 const state = game.state
 const mood = computed(() => moodOf(view.value))
 const saved = computed(() => savedPill(view.value, game.saving.value))
+/** The balance as drawn: it counts to a new value (a short run, skipped for people who ask for less motion) instead of jumping. */
+const shownCash = ref(state.value.cash)
 const cash = computed(() => money(state.value.cash))
+const cashLabel = computed(() => cashText(shownCash.value, money, compactMoney))
+let countFrame = 0
+const stopCount = (): void => { if (countFrame) cancelAnimationFrame(countFrame); countFrame = 0 }
+watch(() => state.value.cash, (to, from) => {
+  stopCount()
+  if (typeof requestAnimationFrame !== 'function' || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches || Math.abs(to - from) < 2) { shownCash.value = to; return }
+  const began = performance.now(), start = shownCash.value
+  const step = (now: number): void => {
+    shownCash.value = tweenCash(start, to, (now - began) / COUNT_MS)
+    countFrame = shownCash.value === to ? 0 : requestAnimationFrame(step)
+  }
+  countFrame = requestAnimationFrame(step)
+})
+onBeforeUnmount(stopCount)
 /** Signed in: the account chip carries the name, so the plain name button steps aside (its sheet is one tap further, from the account sheet). */
 const account = useAccountLite()
 const chip = computed(() => game.connected.value && account.state.loaded && account.state.enabled && account.state.account !== null)
@@ -92,7 +108,7 @@ function onSaved(): void {
       </span>
     </span>
     <InviteButton />
-    <button class="hud-cash" :class="cashFlash" type="button" @animationend="cashFlash = null" :aria-label="`Wallet ${cash}. Open the bank and your transactions`" @click="shell.open('bank')">{{ cash }}</button>
+    <button class="hud-cash" :class="cashFlash" type="button" @animationend="cashFlash = null" :aria-label="`Wallet ${cash}. Open the bank and your transactions`" @click="shell.open('bank')">{{ cashLabel }}</button>
     <span v-if="delta" :key="delta.run" class="hud-delta" :class="delta.up ? 'is-up' : 'is-down'" aria-hidden="true">{{ delta.text }}</span>
   </section>
 </template>

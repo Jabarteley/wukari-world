@@ -15,7 +15,7 @@ export const WALL_HALF = 175
 export const WORLD_W = 2700
 export const WORLD_H = 1800
 
-export type TrackId = 'lekki' | 'mainland'
+export type TrackId = 'lekki' | 'mainland' | 'ikoyi'
 export type ObstacleKind = 'okada' | 'danfo'
 export interface TrackDef {
   id: TrackId; name: string; blurb: string; theme: 'land' | 'bridge'; points: readonly (readonly [number, number])[]
@@ -33,6 +33,12 @@ const lekkiPoints = (): [number, number][] => Array.from({ length: 18 }, (_, k) 
   const t = (2 * Math.PI * k) / 18, f = 1 + 0.1 * Math.sin(3 * t + 0.6) + 0.06 * Math.sin(2 * t + 2)
   return [Math.round(1350 + 1000 * f * Math.cos(t)), Math.round(900 + 560 * f * Math.sin(t))]
 })
+/** Ikoyi / Falomo: a short, technical rounded-rectangle circuit with a kink on the back straight. */
+const ikoyiPoints = (): [number, number][] => Array.from({ length: 20 }, (_, k) => {
+  const t = (2 * Math.PI * k) / 20, c = Math.cos(t), sn = Math.sin(t), n = 2.7
+  const r = Math.pow(Math.abs(c) ** n + Math.abs(sn) ** n, -1 / n), dent = 1 - 0.14 * Math.exp(-((t - 4.7) ** 2) / 0.35)
+  return [Math.round(1350 + 830 * r * c), Math.round(900 + 480 * r * sn * dent)]
+})
 /** Third Mainland: a long straight bridge out, a hairpin, a wavy way back, a hairpin. */
 const mainlandPoints = (): [number, number][] => {
   const out: [number, number][] = []
@@ -47,8 +53,9 @@ export const TRACK_DEFS: Readonly<Record<TrackId, TrackDef>> = Object.freeze({
   lekki: { id: 'lekki', name: 'Lekki Loop', blurb: 'Palms, sand and bends on the Lekki peninsula.', theme: 'land', points: lekkiPoints(), pads: [[0.08, -35], [0.4, 35], [0.7, 0]], obstacles: [] },
   mainland: { id: 'mainland', name: 'Third Mainland', blurb: 'The long bridge over the lagoon. Flat out, then a hairpin.', theme: 'bridge', points: mainlandPoints(), pads: [[0.1, 0], [0.5, -40], [0.82, 40]],
     obstacles: [[0.2, 58, 'okada'], [0.3, -55, 'danfo'], [0.44, 60, 'danfo'], [0.6, -58, 'okada'], [0.7, 55, 'danfo'], [0.9, -60, 'okada']] },
+  ikoyi: { id: 'ikoyi', name: 'Ikoyi Falomo', blurb: 'Short and technical: tight corners round the Falomo roundabouts.', theme: 'land', points: ikoyiPoints(), pads: [[0.15, 0], [0.62, -30]], obstacles: [] },
 })
-export const TRACK_IDS: readonly TrackId[] = Object.freeze(['lekki', 'mainland'] as TrackId[])
+export const TRACK_IDS: readonly TrackId[] = Object.freeze(['lekki', 'mainland', 'ikoyi'] as TrackId[])
 export const isTrackId = (value: unknown): value is TrackId => typeof value === 'string' && Object.hasOwn(TRACK_DEFS, value)
 
 export interface Track {

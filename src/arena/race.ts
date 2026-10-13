@@ -19,7 +19,7 @@
  * ends when everyone has finished, 15 s after the first finisher, or at the time cap; cars still running are ranked by progress.
  */
 import { ArenaInputError, cleanArenaOptions } from './rules.ts'
-import type { Outcome, RealtimeRules } from './rules.ts'
+import type { ArenaOutcome, RealtimeRules } from './rules.ts'
 import { BOOST_RANGE, BOOST_WIDE, buildTrack, pointAt, project, ROAD_HALF, TRACK_IDS, WALL_HALF } from './race-track.ts'
 import type { Track, TrackId } from './race-track.ts'
 
@@ -29,10 +29,12 @@ export const GRACE_TICKS = 600
 export const MAX_RACE_TICKS = 4800
 export const CAR_R = 13
 export const MAX_SEATS = 4
+/** Ticks off the road (2 s) or pressing gas without moving (2.5 s) before the car is put back on the road. */
+export const OFF_RESET_TICKS = 40, STUCK_RESET_TICKS = 50
 export const INPUT = Object.freeze({ left: 1, right: 2, gas: 4, brake: 8 })
 export const PHASE = Object.freeze({ countdown: 0, race: 1, over: 2 })
 /** Snapshot flag bits (`fl` of a car). */
-export const FLAG = Object.freeze({ off: 1, hit: 2, out: 4, brake: 8, boost: 16 })
+export const FLAG = Object.freeze({ off: 1, hit: 2, out: 4, brake: 8, boost: 16, spawn: 32 })
 
 const ACC = 0.3, DRAG = 0.0035, COAST = 0.985, BRAKE = 0.8, REV_ACC = 0.18, REV_MAX = -3
 const BOOST_ACC = 0.5, BOOST_TICKS = 16, TURN = 0.075, GRIP = 0.78, DRIFT_GRIP = 0.93, GRASS = 0.93, WALL_KEEP = 0.5
@@ -57,6 +59,8 @@ export interface Car {
   braking: boolean
   /** Ticks of boost left (from a pad). */
   boost: number
+  /** Ticks off the road / stuck in a row, the last place on the road, and ticks of "just put back" left. */
+  offT: number; stuckT: number; safe: number; spawn: number
 }
 export interface RaceState {
   options: RaceOptions
@@ -89,7 +93,7 @@ export function newCar(track: Track, seat: number): Car {
   const arc = -(70 + seat * 60)
   const p = pointAt(track, arc, seat % 2 ? 30 : -30)
   const L = track.length
-  return { x: p.x, y: p.y, vx: 0, vy: 0, h: p.a, cur: arc, best: arc, i: Math.floor((((arc % L) + L) % L) / track.step), dist: 30, fin: 0, out: false, hit: 0, off: false, braking: false, boost: 0 }
+  return { x: p.x, y: p.y, vx: 0, vy: 0, h: p.a, cur: arc, best: arc, i: Math.floor((((arc % L) + L) % L) / track.step), dist: 30, fin: 0, out: false, hit: 0, off: false, braking: false, boost: 0, offT: 0, stuckT: 0, safe: arc, spawn: 0 }
 }
 
 /**
@@ -153,6 +157,18 @@ export function drive(c: Car, inp: number, track: Track): void {
   else if (delta < -L / 2) delta += L
   c.cur += delta
   if (c.cur > c.best) c.best = c.cur
+  // Put the car back: off the road for 2 s, or stuck with the pedal down, returns it to the last place it was on the road.
+  if (c.spawn > 0) c.spawn -= 1
+  if (c.off) c.offT += 1
+  else { c.offT = 0; if (c.dist < ROAD_HALF - 15) c.safe = c.cur }
+  c.stuckT = gas && !brake && Math.hypot(c.vx, c.vy) < 0.4 ? c.stuckT + 1 : 0
+  if (c.offT >= OFF_RESET_TICKS || c.stuckT >= STUCK_RESET_TICKS) respawn(c, track)
+}
+
+/** Back on the centre line a little behind where the car was last on the road, facing the way round, standing. */
+export function respawn(c: Car, track: Track): void {
+  const arc = c.safe - 15, p = pointAt(track, arc, 0), L = track.length
+  Object.assign(c, { x: p.x, y: p.y, vx: 0, vy: 0, h: p.a, cur: arc, i: Math.floor((((arc % L) + L) % L) / track.step), dist: 0, off: false, offT: 0, stuckT: 0, hit: 0, boost: 0, spawn: 20 })
 }
 
 function bump(cars: Car[]): void {
@@ -232,16 +248,24 @@ function step(s: RaceState, inputs: readonly number[]): RaceState {
   return s
 }
 
-function outcome(s: RaceState): Outcome | null {
+/**
+ * `winners` lists the cars that FINISHED, first to last; `places` has every seat's place, 0 for a car that did not finish
+ * (never ranked: a DNF has no place, whatever its distance). `scores` is the same place list.
+ */
+function outcome(s: RaceState): ArenaOutcome | null {
   const live = s.cars.filter((c) => !c.out)
   if (s.phase !== PHASE.over && live.length > 0) return null
   const ranked = order(s)
-  const scores: number[] = []
-  ranked.forEach((seat, place) => { scores[seat] = place + 1 })
   const fin = ranked.filter((seat) => (s.cars[seat] as Car).fin)
-  if (!fin.length) return { winners: ranked, draw: false, reason: s.why || 'abandoned', text: 'Nobody finished the race.', scores }
-  const rest = ranked.slice(1).map((seat) => '{' + seat + '}').join(', ')
-  return { winners: ranked, draw: false, reason: s.why || 'finish', text: '{' + ranked[0] + '} wins the race!' + (rest ? ' Then ' + rest + '.' : ''), scores }
+  const places: number[] = s.cars.map(() => 0)
+  fin.forEach((seat, place) => { places[seat] = place + 1 })
+  if (!fin.length) return { winners: [], draw: true, reason: s.why || 'abandoned', text: 'Nobody finished the race.', scores: places, places }
+  const rest = fin.slice(1).map((seat) => '{' + seat + '}').join(', ')
+  const dnf = ranked.filter((seat) => !places[seat]).map((seat) => '{' + seat + '}').join(', ')
+  return {
+    winners: fin, draw: false, reason: s.why || 'finish', scores: places, places,
+    text: '{' + fin[0] + '} wins the race!' + (rest ? ' Then ' + rest + '.' : '') + (dnf ? ' Did not finish: ' + dnf + '.' : ''),
+  }
 }
 
 const heading256 = (h: number): number => (((Math.round((h / (2 * Math.PI)) * 256) % 256) + 256) % 256)
@@ -250,7 +274,7 @@ export const headingFrom256 = (a: number): number => (a / 256) * 2 * Math.PI
 function snapshot(s: RaceState): RaceSnap {
   const r: CarSnap[] = s.cars.map((c) => [
     Math.round(c.x), Math.round(c.y), heading256(c.h), Math.round((c.vx * Math.cos(c.h) + c.vy * Math.sin(c.h)) * 4), Math.round(c.best), c.fin,
-    (c.off ? FLAG.off : 0) | (c.hit > 0 ? FLAG.hit : 0) | (c.out ? FLAG.out : 0) | (c.braking ? FLAG.brake : 0) | (c.boost > 0 ? FLAG.boost : 0),
+    (c.off ? FLAG.off : 0) | (c.hit > 0 ? FLAG.hit : 0) | (c.out ? FLAG.out : 0) | (c.braking ? FLAG.brake : 0) | (c.boost > 0 ? FLAG.boost : 0) | (c.spawn > 0 ? FLAG.spawn : 0),
   ])
   // c: seconds left of the countdown (3, 2, 1), so a countdown costs a frame a second; t: whole race ticks.
   return { p: s.phase, c: s.phase === PHASE.countdown ? 3 - Math.floor(s.pt / 20) : 0, t: s.t, r }
@@ -297,7 +321,7 @@ const rules: RealtimeRules<RaceState, number, RaceSnap> = {
   seats: { min: 2, max: MAX_SEATS },
   options: {
     laps: { label: 'Laps', values: [1, 3, 5], default: 3, names: ['1 lap', '3 laps', '5 laps'] },
-    track: { label: 'Track', values: [0, 1], default: 0, names: ['Lekki Loop', 'Third Mainland'] },
+    track: { label: 'Track', values: [0, 1, 2], default: 0, names: ['Lekki Loop', 'Third Mainland', 'Ikoyi Falomo'] },
   },
   start: (seats, rng, options) => start(seats, rng, options),
   parseInput,

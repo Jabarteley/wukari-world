@@ -16,7 +16,7 @@ import ArenaStage from './ArenaStage.vue'
 import { drive, headingFrom256, INPUT, lapOf, standings } from '../../../arena/race.ts'
 import type { Car, CarSnap, RaceSnap } from '../../../arena/race.ts'
 import { buildTrack, nearestIndex, TRACK_IDS, WORLD_H, WORLD_W } from '../../../arena/race-track.ts'
-import { defaultLook, drawRace, Skids } from '../../../arena/race-draw.ts'
+import { Confetti, defaultLook, drawRace, Skids } from '../../../arena/race-draw.ts'
 import { createRaceSound } from '../../../arena/race-sound.ts'
 import type { Camera, DrawCar, HudInfo } from '../../../arena/race-draw.ts'
 import type { ArenaLook } from '../../../types/arena.ts'
@@ -41,11 +41,13 @@ const accentOf = (seat: number): string | undefined => {
 // ---- the room ------------------------------------------------------------------------------------------
 const sound = createRaceSound()
 const skids = new Skids()
+const confetti = new Confetti()
+let anyFin = false
 let fxSeen = { count: 0, hit: false, boost: false, fin: false }
 let own: { at: number; car: CarSnap; base: Car | null; p: number } | null = null
 const room = useArenaRoom<RaceSnap>({
   game: 'race', intent: props.intent, hz: HZ, look: ownLook, toast: (text, kind) => game.toast(text, kind), close: () => emit('close'),
-  onMatch: () => { own = null; disp = null; follow.value = -1; skids.clear(); fxSeen = { count: 0, hit: false, boost: false, fin: false } },
+  onMatch: () => { own = null; disp = null; follow.value = -1; skids.clear(); confetti.clear(); anyFin = false; fxSeen = { count: 0, hit: false, boost: false, fin: false } },
   onSnap: (_k, snap) => {
     const you = room.state.value?.you
     if (you == null) return
@@ -147,7 +149,7 @@ function frame(now: number): void {
   if (you != null && own && own.p === 1 && cars[you]) {
     if (!own.base) {
       const c = own.car, h = headingFrom256(c[2]), v = c[3] / 4
-      own.base = { x: c[0], y: c[1], vx: v * Math.cos(h), vy: v * Math.sin(h), h, cur: c[4], best: c[4], i: nearestIndex(track, c[0], c[1]), dist: 0, fin: c[5], out: false, hit: 0, off: (c[5] === 0) && (c[6] & 1) !== 0, braking: false, boost: (c[6] & 16) !== 0 ? 8 : 0 }
+      own.base = { x: c[0], y: c[1], vx: v * Math.cos(h), vy: v * Math.sin(h), h, cur: c[4], best: c[4], i: nearestIndex(track, c[0], c[1]), dist: 0, fin: c[5], out: false, hit: 0, off: (c[5] === 0) && (c[6] & 1) !== 0, braking: false, boost: (c[6] & 16) !== 0 ? 8 : 0, offT: 0, stuckT: 0, safe: c[4], spawn: 0 }
     }
     const age = (now - own.at) / (1000 / HZ) + 2
     const steps = Math.max(0, Math.min(10, Math.floor(age)))
@@ -182,14 +184,15 @@ function frame(now: number): void {
   sound.engine(tc.v / 9, you != null && (eff() & INPUT.gas) !== 0, b.p === 1 && !(fc[5] > 0), you != null ? 1 : 0.5)
   if (b.p === 0 && b.c !== fxSeen.count) { fxSeen.count = b.c; if (b.c > 0) sound.beep(false) }
   if (b.p === 1 && fxSeen.count !== -1) { fxSeen.count = -1; sound.beep(true) }
+  if (you == null && !anyFin && b.r.some((c) => c[5] > 0)) { anyFin = true; confetti.burst(width); sound.finish() }
   if (mine) {
     const hit = (mine[6] & 2) !== 0, boost = (mine[6] & 16) !== 0, fin = mine[5] > 0
     if (hit && !fxSeen.hit) sound.bump()
     if (boost && !fxSeen.boost) sound.boost()
-    if (fin && !fxSeen.fin) sound.finish()
+    if (fin && !fxSeen.fin) { sound.finish(); confetti.burst(width) }
     fxSeen.hit = hit; fxSeen.boost = boost; fxSeen.fin = fin
   }
-  drawRace(ctx, width, height, { trackId: trackId.value, cars, cam, you, follow: target, hud, spectator: you == null, phase: now, reduced, skids })
+  drawRace(ctx, width, height, { trackId: trackId.value, cars, cam, you, follow: target, hud, spectator: you == null, phase: now, reduced, skids, confetti, dtMs: dt })
   if (now - lastBoard > 200) { lastBoard = now; board.value = buildBoard(b) }
 }
 
@@ -199,16 +202,19 @@ function watchSeat(seat: number): void { if (spectator.value) follow.value = fol
 
 const playing = computed(() => status.value === 'playing')
 const podium = computed(() => {
-  const st = state.value, r = st?.result
-  if (!st || st.status !== 'over' || !r) return null
+  const st = state.value
+  if (!st || st.status !== 'over' || !st.result) return null
   const snap = (room.latest ?? st.snap) as RaceSnap | null
-  const row = (seat: number | undefined, place: number): { seat: number; place: number; name: string; time: string; color: string; you: boolean } | null => {
-    if (seat == null) return null
-    const c = snap?.r[seat]
-    return { seat, place, name: st.seats[seat]?.name ?? 'Racer', time: c && c[5] ? timeText(c[5]) : c && (c[6] & 4) ? 'left' : 'DNF', color: defaultLook(seat).body, you: seat === st.you }
+  if (!snap) return null
+  // Only cars that crossed the line are ranked; the rest are listed as DNF (or "left") and never get a place.
+  const order = standings(snap.r.map((c) => c[4]), snap.r.map((c) => c[5]), snap.r.map((c) => (c[6] & 4) !== 0))
+  const row = (seat: number, place: number) => {
+    const c = snap.r[seat] as CarSnap
+    return { seat, place, name: st.seats[seat]?.name ?? 'Racer', time: c[5] ? timeText(c[5]) : (c[6] & 4) ? 'left' : 'DNF', color: defaultLook(seat).body, you: seat === st.you }
   }
-  const w = r.winners
-  return { top: [row(w[1], 2), row(w[0], 1), row(w[2], 3)].filter((x) => x != null), rest: w.slice(3).map((seat, i) => row(seat, i + 4)).filter((x) => x != null) }
+  const fin = order.filter((seat) => (snap.r[seat] as CarSnap)[5] > 0)
+  const top = [fin[1], fin[0], fin[2]].map((seat, i) => (seat == null ? null : row(seat, i === 1 ? 1 : i === 0 ? 2 : 3))).filter((x) => x != null)
+  return { top, rest: fin.slice(3).map((seat, i) => row(seat, i + 4)), dnf: order.filter((seat) => !(snap.r[seat] as CarSnap)[5]).map((seat) => row(seat, 0)) }
 })
 
 onMounted(() => {
@@ -264,6 +270,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <ol v-if="podium.rest.length" class="rg-rest" start="4"><li v-for="p in podium.rest" :key="p!.seat">{{ p!.name }} <em>{{ p!.time }}</em></li></ol>
+        <ul v-if="podium.dnf.length" class="rg-dnf" data-testid="race-dnf"><li v-for="p in podium.dnf" :key="p!.seat">{{ p!.name }}<small v-if="p!.you"> (you)</small> <em>{{ p!.time }}</em></li></ul>
       </section>
 
       <ol v-if="board.length && spectator && playing" class="rg-board" :class="{ spec: spectator }" data-testid="race-board" aria-label="Leaderboard">
@@ -311,6 +318,7 @@ onBeforeUnmount(() => {
 .rg-dot { width: 28px; height: 28px; border-radius: 8px; border: 2px solid #fff; }
 .rg-block { width: 100%; display: grid; place-items: center; font-size: 26px; font-weight: 900; background: #3b4a63; border-radius: 8px 8px 0 0; }
 .rg-step.p1 .rg-block { height: 88px; background: #d4a72c; } .rg-step.p2 .rg-block { height: 62px; background: #9aa4b2; } .rg-step.p3 .rg-block { height: 44px; background: #b0703a; }
+.rg-dnf { list-style: none; margin: 8px 0 0; padding: 0; font-size: 13px; color: #c9d2ea; } .rg-dnf em { font: 600 12px ui-monospace, monospace; color: #ff9d8a; font-style: normal; margin-left: 6px; }
 .rg-rest { margin: 8px 0 0; padding-left: 26px; font-size: 13px; } .rg-rest em { font: 600 12px ui-monospace, monospace; color: #ffd34d; font-style: normal; margin-left: 6px; }
 .rg-pad { position: relative; flex: none; height: 190px; touch-action: none; }
 .rg-steer { position: absolute; left: 2px; bottom: 6px; display: flex; gap: 10px; }

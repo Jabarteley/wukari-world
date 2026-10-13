@@ -83,11 +83,12 @@ test('a race room seats four, starts when the host starts it, and a late spectat
   h.send(cy, 'arena-input', { room, i: INPUT.gas });
   await h.until(() => ada.state.status === 'over' && bola.state.status === 'over' && cy.state.status === 'over', 'the race to end', 30000);
   const r = cy.state.result!;
-  assert.deepEqual([...r.winners].sort(), [0, 1, 2, 3]);
+  assert.ok(r.winners.length >= 1 && r.winners.every((w) => (r.places![w] ?? 0) > 0), 'winners finished');
+  assert.equal(r.places!.filter((p) => p > 0).length, r.winners.length);
   assert.deepEqual(ada.state.result, r); assert.deepEqual(bola.state.result, r);
   assert.match(r.text, /wins the race!/);
   assert.equal(r.draw, false);
-  assert.equal(r.scores.length, 4);
+  assert.equal(r.scores.length, 4); assert.equal(r.places!.length, 4);
   // Everyone saw the countdown, and a finish time in the last snapshot for the winner.
   const last = cy.snaps.at(-1)!.s;
   assert.equal(last.p, 2);
@@ -121,7 +122,7 @@ test('practice fills the grid with three computer racers and finishes without a 
   assert.equal(ada.state.seats.filter((s) => s.bot).length, 3);
   assert.equal(ada.state.practice, true);
   await h.until(() => ada.state.status === 'over', 'the practice race to end', 40000);
-  assert.deepEqual([...ada.state.result!.winners].sort(), [0, 1, 2, 3]);
+  assert.ok(ada.state.result!.winners.length >= 1);
   assert.ok(ada.state.result!.winners[0] !== 0, 'a parked human does not win');
 });
 

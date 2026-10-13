@@ -33,7 +33,7 @@ function layerOf(id: TrackId): Layer {
   for (let i = 0; i <= track.n; i++) { const j = i % track.n; if (i) path.lineTo(track.x[j] as number, track.y[j] as number); else path.moveTo(track.x[j] as number, track.y[j] as number) }
   path.closePath()
   // Scenery from a tiny deterministic generator so both screens show the same trees.
-  let seed = id === 'lekki' ? 7 : 19
+  let seed = id === 'lekki' ? 7 : id === 'ikoyi' ? 31 : 19
   const rnd = (): number => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296 }
   const trees: Scenery[] = [], lamps: [number, number][] = []
   for (let arc = 0; arc < track.length; arc += 70) {
@@ -144,6 +144,35 @@ function drawFlags(ctx: CanvasRenderingContext2D, track: Track, phase: number): 
   }
 }
 
+/** Finish confetti in screen space: a burst of coloured flakes that fall for a few seconds. Bounded (90 flakes), no allocation per frame. */
+export class Confetti {
+  private p: number[] = []
+  private age = 0
+  active(): boolean { return this.p.length > 0 }
+  clear(): void { this.p = []; this.age = 0 }
+  burst(w: number, rnd: () => number = Math.random): void {
+    this.age = 0; this.p = []
+    for (let i = 0; i < 90; i++) this.p.push(rnd() * w, -10 - rnd() * 120, (rnd() - 0.5) * 2.2, 1.6 + rnd() * 2.4, rnd() * 6.28, (rnd() - 0.5) * 0.3, Math.floor(rnd() * 6))
+  }
+  draw(ctx: CanvasRenderingContext2D, h: number, dtMs: number): void {
+    if (!this.p.length) return
+    const k = Math.min(3, dtMs / 16.7)
+    this.age += dtMs
+    const cols = ['#ffd34d', '#ff5a5f', '#4cc9f0', '#5be37d', '#c77dff', '#ffffff']
+    let alive = 0
+    for (let i = 0; i < this.p.length; i += 7) {
+      const p = this.p
+      p[i] = (p[i] ?? 0) + (p[i + 2] ?? 0) * k; p[i + 1] = (p[i + 1] ?? 0) + (p[i + 3] ?? 0) * k; p[i + 4] = (p[i + 4] ?? 0) + (p[i + 5] ?? 0) * k
+      const y = this.p[i + 1] as number
+      if (y > h + 10) continue
+      alive++
+      ctx.save(); ctx.translate(this.p[i] as number, y); ctx.rotate(this.p[i + 4] as number)
+      ctx.fillStyle = cols[this.p[i + 6] as number] as string; ctx.fillRect(-3, -2, 6, 4); ctx.restore()
+    }
+    if (!alive || this.age > 6000) this.p = []
+  }
+}
+
 /** The whole scene under the cars: scenery, road, kerbs, lane dashes, start line. `cam` is in world units; the context already has the camera transform. */
 export function drawWorld(ctx: CanvasRenderingContext2D, id: TrackId, view: { x0: number; y0: number; x1: number; y1: number }, phase: number): void {
   const layer = layerOf(id), track = layer.track, bridge = track.def.theme === 'bridge'
@@ -199,6 +228,7 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
 export function drawCar(ctx: CanvasRenderingContext2D, x: number, y: number, a: number, car: DrawCar, phase: number, you: boolean): void {
   const { kind, body, accent } = car.look
   const braking = (car.fl & 8) !== 0
+  if (car.fl & 32) ctx.globalAlpha = 0.45 + 0.35 * Math.sin(phase * 0.03)
   ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.scale(CAR_SCALE, CAR_SCALE)
   if (car.fl & 16) { ctx.fillStyle = 'rgba(255,170,40,.9)'; ctx.beginPath(); ctx.moveTo(-18, -4); ctx.lineTo(-18 - 16 - Math.abs(Math.sin(phase * 0.05)) * 10, 0); ctx.lineTo(-18, 4); ctx.closePath(); ctx.fill(); ctx.fillStyle = '#fff3b0'; ctx.beginPath(); ctx.moveTo(-18, -2); ctx.lineTo(-27, 0); ctx.lineTo(-18, 2); ctx.closePath(); ctx.fill() }
   if (car.fl & 1) { ctx.fillStyle = 'rgba(150,120,70,.35)'; for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.arc(-20 - i * 7, Math.sin(phase * 0.02 + i * 2) * 6, 5 + i * 2, 0, 7); ctx.fill() } }
@@ -225,6 +255,7 @@ export function drawCar(ctx: CanvasRenderingContext2D, x: number, y: number, a: 
   ctx.fillStyle = braking ? '#ff2a2a' : '#8a1c1c'; ctx.fillRect(-L / 2, -W / 2 + 1.5, 2.4, 3.2); ctx.fillRect(-L / 2, W / 2 - 4.7, 2.4, 3.2)
   if (car.fl & 2) { ctx.strokeStyle = '#ffe14d'; ctx.lineWidth = 2; ctx.beginPath(); for (let i = 0; i < 4; i++) { const t = (i / 4) * 6.28 + phase * 0.03; ctx.moveTo(Math.cos(t) * 12, Math.sin(t) * 10); ctx.lineTo(Math.cos(t) * 20, Math.sin(t) * 16) } ctx.stroke() }
   ctx.restore()
+  ctx.globalAlpha = 1
   if (you) { ctx.fillStyle = '#fff'; ctx.strokeStyle = '#111'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, y - 40); ctx.lineTo(x - 8, y - 54); ctx.lineTo(x + 8, y - 54); ctx.closePath(); ctx.stroke(); ctx.fill() }
 }
 
@@ -263,6 +294,8 @@ export interface DrawRaceOpts {
   phase: number
   reduced?: boolean
   skids?: Skids
+  confetti?: Confetti
+  dtMs?: number
   /** false: no minimap (the lobby preview). */
   mini?: boolean
 }
@@ -303,6 +336,7 @@ export function drawRace(ctx: CanvasRenderingContext2D, w: number, h: number, o:
     ctx.fillStyle = '#fff'; ctx.font = '700 13px system-ui'; ctx.fillText('Lap ' + hud.lap + '/' + hud.laps, 16, 52)
     ctx.font = '600 12px ui-monospace, monospace'; ctx.fillStyle = '#c9d2ea'; ctx.fillText(hud.time, 16, 66)
   }
+  o.confetti?.draw(ctx, h, o.dtMs ?? 16)
   if (hud && hud.done > 0 && hud.you) {
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
     ctx.font = '900 40px system-ui'; ctx.lineWidth = 6; ctx.strokeStyle = 'rgba(8,12,24,.85)'; ctx.fillStyle = '#ffd34d'

@@ -77,7 +77,7 @@ test('a car accelerates to a top speed, brakes, reverses, slows on the grass', (
   const road = newCar(t, 0), grass = newCar(t, 0)
   const p = pointAt(t, 600, 130); Object.assign(grass, { x: p.x, y: p.y, h: p.a, cur: 600, best: 600, i: Math.floor(600 / t.step) })
   const q = pointAt(t, 600, 0); Object.assign(road, { x: q.x, y: q.y, h: q.a, cur: 600, best: 600, i: Math.floor(600 / t.step) })
-  for (let i = 0; i < 60; i++) { drive(grass, GO, t); drive(road, GO, t) }
+  for (let i = 0; i < 30; i++) { drive(grass, GO, t); drive(road, GO, t) } // (past 2 s on the grass the car is put back)
   assert.ok(grass.off, 'off the road')
   assert.ok(Math.hypot(grass.vx, grass.vy) < Math.hypot(road.vx, road.vy) * 0.7, 'grass slows the car')
   // Reverse once stopped.
@@ -100,8 +100,9 @@ test('steering turns the car, and braking while steering hard slides it (drift)'
 test('the wall keeps cars on the road band: you cannot leave it or cut across', () => {
   const t = buildTrack('lekki')
   const c = newCar(t, 0)
-  for (let i = 0; i < 400; i++) { drive(c, GO | INPUT.right, t); assert.ok(c.dist <= WALL_HALF + 1, 'dist ' + c.dist) }
-  assert.ok(c.hit > 0 || c.dist > ROAD_HALF, 'it scraped')
+  let scraped = false
+  for (let i = 0; i < 400; i++) { drive(c, GO | INPUT.right, t); assert.ok(c.dist <= WALL_HALF + 1, 'dist ' + c.dist); if (c.hit > 0 || c.dist > ROAD_HALF) scraped = true }
+  assert.ok(scraped, 'it scraped')
 })
 
 test('cars bump: they do not overlap and both feel it', () => {
@@ -171,9 +172,10 @@ test('driving a whole lap by the book finishes the race, in order, with a result
   assert.ok(s.cars[0]!.fin > 0 && s.cars[1]!.fin === 0)
   assert.ok(s.cars[0]!.best >= t.length)
   const out = race.outcome(s)!
-  assert.deepEqual(out.winners, [0, 1])
-  assert.deepEqual(out.scores, [1, 2])
-  assert.match(out.text, /^\{0\} wins the race! Then \{1\}\.$/)
+  assert.deepEqual(out.winners, [0], 'only a car that finished is a winner')
+  assert.deepEqual(out.places, [1, 0], 'the car that did not finish has no place')
+  assert.deepEqual(out.scores, [1, 0])
+  assert.match(out.text, /^\{0\} wins the race! Did not finish: \{1\}\.$/)
   assert.equal(out.draw, false)
 })
 
@@ -187,7 +189,7 @@ test('standings: finished by tick, then distance; ties by seat; leavers last', (
 })
 
 test('bots can finish a full 3-lap race on both tracks, with 2 and 4 cars', () => {
-  for (const track of [0, 1]) for (const seats of [2, 4]) {
+  for (const track of [0, 1, 2]) for (const seats of [2, 4]) {
     const rng = makeRng('bots' + track + seats)
     const s = begin(seats, { track })
     let n = 0
@@ -197,6 +199,7 @@ test('bots can finish a full 3-lap race on both tracks, with 2 and 4 cars', () =
     assert.equal(out.reason, 'finish')
     assert.ok(s.cars.every((c) => c.fin), `track ${track} seats ${seats}: every computer racer finishes inside the grace`)
     assert.equal(out.winners.length, seats)
+    assert.deepEqual([...out.places!].sort(), Array.from({ length: seats }, (_, i) => i + 1).map(String).sort().map(Number))
     assert.ok(n < MAX_TICKS, 'inside the time cap: ' + n)
   }
 })
@@ -261,4 +264,44 @@ test('speed on the wire is signed: reversing is negative', () => {
   const s = toRace(begin(2))
   tick(s, [INPUT.brake, 0], 25)
   assert.ok(race.snapshot(s).r[0]![3] < 0)
+})
+
+test('result mapping: places count finishers only; a DNF is 0 and never appears in winners', () => {
+  const s = toRace(begin(4, { laps: 1 }))
+  const total = trackOf(s.options).length
+  // Seats 2 and 0 cross the line (2 first), seat 1 is close behind but short, seat 3 left.
+  Object.assign(s.cars[2]!, { best: total + 5, fin: 700 }); Object.assign(s.cars[0]!, { best: total + 1, fin: 720 })
+  s.cars[1]!.best = total - 40; s.cars[3]!.best = 100
+  race.forfeit(s, 3)
+  s.phase = PHASE.over; s.why = 'finish'
+  const out = race.outcome(s)!
+  assert.deepEqual(out.winners, [2, 0])
+  assert.deepEqual(out.places, [2, 0, 1, 0])
+  assert.ok(out.places!.every((p, seat) => (p > 0) === out.winners.includes(seat)), 'a place exactly when a winner')
+  assert.match(out.text, /^\{2\} wins the race! Then \{0\}\. Did not finish: \{1\}, \{3\}\.$/)
+  // Nobody across the line: no winner, no places at all.
+  const none = toRace(begin(2, { laps: 1 })); none.phase = PHASE.over; none.why = 'time'
+  const o2 = race.outcome(none)!
+  assert.deepEqual(o2.winners, []); assert.deepEqual(o2.places, [0, 0]); assert.equal(o2.draw, true)
+})
+
+test('a car off the road for 2 s, or stuck with the pedal down, is put back on the road', () => {
+  const t = buildTrack('lekki')
+  const c = newCar(t, 0)
+  for (let i = 0; i < 60; i++) drive(c, GO, t)
+  const safe = c.safe
+  const p = pointAt(t, c.cur, 150); Object.assign(c, { x: p.x, y: p.y, vx: 0, vy: 0 })
+  let reset = -1
+  for (let i = 0; i < 60 && reset < 0; i++) { drive(c, INPUT.brake, t); if (c.spawn > 0) reset = i }
+  assert.ok(reset >= 0 && reset <= 41, 'back on the road within 2 s: tick ' + reset)
+  assert.ok(c.dist < 5 && !c.off, 'on the centre line')
+  assert.ok(Math.abs(c.cur - (safe - 15)) < 40)
+  assert.ok(race.snapshot(Object.assign(toRace(begin(2)), { cars: [c, newCar(t, 1)] })).r[0]![6] & FLAG.spawn)
+  // Stuck against the wall with the gas down for 2.5 s.
+  const w = newCar(t, 0)
+  for (let i = 0; i < 30; i++) drive(w, GO, t)
+  const q = pointAt(t, w.cur, 172); Object.assign(w, { x: q.x, y: q.y, vx: 0, vy: 0, h: q.a + 1.5 })
+  let back = false
+  for (let i = 0; i < 120 && !back; i++) { drive(w, GO, t); back = w.spawn > 0 }
+  assert.ok(back, 'a stuck car is reset')
 })

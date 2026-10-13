@@ -1,7 +1,7 @@
 import type { CityModuleRules } from '../../../types/content.ts'
 import { destinationHubIds, destinationVenueIds, validateDestinationFacts } from './types.ts'
 import type { DestinationFacts } from './types.ts'
-import { generatedAirFare, greatCircleKm } from '../generatedLinks.ts'
+import { OUTPOST_LINKS, charterFare, generatedAirFare, greatCircleKm, shipFare } from '../generatedLinks.ts'
 import { timedLink } from '../../content/travel.ts'
 
 type DestinationRules = CityModuleRules<string, string, 'centre', 'centre-home', string>
@@ -16,9 +16,19 @@ export function buildDestinationRules(facts: DestinationFacts): DestinationRules
   const locationLabel = valid.state.name === valid.name ? valid.country.name : valid.state.name
   const area = valid.names?.area ?? 'Starter play zone', unit = valid.names?.unit ?? 'starter play zone', roadHub = valid.names?.roadHub ?? 'City transit stop (game venue)'
   const airKm = Math.round(greatCircleKm(valid.centre, { lon: 3.4, lat: 6.45 }))
-  // A beta game connection, not a claim about commercial routes or schedules.
+  // A beta game connection, not a claim about commercial routes or schedules. An outpost reached by sea or by land keeps it as a
+  // connecting flight, so its air hub (`<id>-air`) stays bookable from Lagos at the normal fare.
+  const connecting = valid.gateway !== undefined && valid.gateway.mode !== 'air'
   const flight = timedLink({ a: 'lagos', b: valid.id, mode: 'air', beta: true,
-    label: `Flight between Lagos and ${valid.name}`, icon: '✈️', km: airKm, fare: generatedAirFare(airKm) })
+    label: `${connecting ? 'Connecting flight' : 'Flight'} between Lagos and ${valid.name}`, icon: '✈️', km: airKm, fare: generatedAirFare(airKm) })
+  // Authored outpost links (generatedLinkPolicy 'authored-only'): the outpost fare rule in generatedLinks.ts; a ship or an overland trip is a road link.
+  const authored = (valid.links ?? []).map(link => link.kind === 'charter'
+    ? timedLink({ a: link.to, b: valid.id, mode: 'air' as const, beta: true, label: `Charter flight between ${link.name} and ${valid.name}`, icon: '🛩️', km: link.km, fare: charterFare(link.km) })
+    : timedLink({ a: link.to, b: valid.id, mode: 'road' as const, beta: true, label: `${link.kind === 'ship' ? 'Ship' : 'Overland'} between ${link.name} and ${valid.name}`, icon: link.kind === 'ship' ? '🚢' : '🚙', km: link.km, fare: shipFare(link.km) }))
+  // One surface leg the feeder allowance can pay keeps a homeward quote to every home under the ticket cap (generatedLinks.ts OUTPOST_LINKS).
+  if (valid.links && !authored.some(link => link.mode === 'road' && link.fare <= OUTPOST_LINKS.surfaceFeederFare)) {
+    throw new TypeError(`${valid.id}: an authored-only destination needs a ship or overland link of at most ₦${OUTPOST_LINKS.surfaceFeederFare} so every home stays reachable under the ticket cap`)
+  }
   const units: DestinationRules['units'] = [
     { id: 'centre', name: area, zone: 'mainland', land: 55_000, beta: true, districts: ['centre-home'] },
   ]
@@ -43,7 +53,8 @@ export function buildDestinationRules(facts: DestinationFacts): DestinationRules
     defaultRentedHome: homeId,
     careerIds: Object.freeze(['community-helper', 'tech']),
     hubs: Object.freeze(cityHubs),
-    links: Object.freeze([flight]),
+    ...(valid.generatedLinkPolicy ? { generatedLinkPolicy: valid.generatedLinkPolicy } : {}),
+    links: Object.freeze([flight, ...authored]),
     seaPlots: false,
     legacyLgaChoice: true,
     districts: Object.freeze([{ id: 'centre-home', name: area, localUnitId: 'centre' }] satisfies DestinationRules['districts']),

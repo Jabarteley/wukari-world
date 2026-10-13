@@ -116,7 +116,9 @@ export function buildDestinationContent(facts: DestinationFacts, places: readonl
     {
       id: ids.airport, name: valid.airport.name, district: valid.names?.area ?? 'Starter play zone', kind: 'airport', category: 'civic', icon: 'airport',
       point: { lon: valid.airport.lon, lat: valid.airport.lat }, description: `Arrive at ${valid.airport.name}.`, ambient: [], beta: true,
-      note: `${valid.sourceLabel}; airport location: ${valid.airport.sourceUrl}. ${valid.licence}.`,
+      note: valid.gateway
+        ? `${valid.sourceLabel}; ${valid.gateway.mode} gateway: OpenStreetMap ${valid.gateway.osmRef} (${valid.airport.sourceUrl}). ${valid.licence}.`
+        : `${valid.sourceLabel}; airport location: ${valid.airport.sourceUrl}. ${valid.licence}.`,
       spots: [spot('arrival', 'Visitor information', activity(`${valid.id}-arrival-info`, 'Read visitor information', '🧭', ['travel'], { effects: { fun: 2 }, beta: true, note: betaNote }))],
     },
     {

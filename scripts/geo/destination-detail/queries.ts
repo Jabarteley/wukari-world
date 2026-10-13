@@ -37,3 +37,42 @@ export const lakeWaterQuery = (bbox: string, lake: string): string => `[out:json
 
 /** Water of a coastal city: the coastline ways that touch the box (land on the left), then lakes, river banks and estuaries as areas. */
 export const coastWaterQuery = (bbox: string): string => `[out:json][timeout:180];way["natural"="coastline"](${bbox});out geom;(relation["natural"="water"]["water"~"${INLAND}"](${bbox});way["natural"="water"]["water"~"${INLAND}"](${bbox});relation["waterway"="riverbank"](${bbox});way["waterway"="riverbank"](${bbox}););out geom;`;
+
+/**
+ * OUTPOST AND WILDERNESS QUERIES (factory profiles `outpost` and `wilderness`, OUTPOST-PLAN 13 Oct 2026). They mirror the profile-only
+ * extraction rules of scripts/geo/offline-extract.py (`profileExtraction`): the queries above, plus named extra places, the road ladder
+ * down to tracks, and never a military or aviation feature (military=*, landuse=military, aeroway=*). Every other city keeps the
+ * queries above unchanged.
+ */
+export type ProfilePlaceFilter = 'post_office' | 'hut' | 'research' | 'historic' | 'ferry' | 'natural'
+export const PROFILE_PLACE_FILTERS: Readonly<Record<ProfilePlaceFilter, readonly string[]>> = Object.freeze({
+  post_office: ['["amenity"="post_office"]["name"]'],
+  hut: ['["tourism"~"^(wilderness_hut|alpine_hut)$"]["name"]'],
+  research: ['["office"="research"]["name"]', '["amenity"="research_institute"]["name"]'],
+  historic: ['["historic"]["name"]'],
+  ferry: ['["amenity"="ferry_terminal"]["name"]'],
+  natural: ['["natural"~"^(peak|saddle|glacier|ridge|valley|volcano|cape|bay|reef|beach)$"]["name"]', '["mountain_pass"="yes"]["name"]'],
+})
+/** Road classes an outpost may draw below primary, in ladder order (offline-extract.py ROAD_LADDER). */
+export const ROAD_LADDER = Object.freeze(['secondary', 'tertiary', 'unclassified', 'residential', 'service', 'track'] as const)
+/** Appended to every outpost filter: no military or aviation feature is ever selected, labelled or drawn. */
+export const NOT_SENSITIVE = '[!"military"][!"aeroway"]["landuse"!="military"]'
+
+const filtersOf = (query: string): string[] => [...query.matchAll(/^nwr(.+);$/gmu)].map((match) => match[1]!)
+
+/** The places query of an outpost: every placesQuery filter and the profile's extra named places, none of them sensitive. */
+export function profilePlacesQuery(bbox: string, extra: readonly ProfilePlaceFilter[]): string {
+  const filters = [...filtersOf(placesQuery(bbox)), ...extra.flatMap((key) => PROFILE_PLACE_FILTERS[key])]
+  return `[out:json][timeout:180][bbox:${bbox}];(\n${filters.map((filter) => `nwr${filter}${NOT_SENSITIVE};`).join('\n')}\n);out center tags;`
+}
+
+/** The extras query of an outpost: extrasQuery without sensitive features. */
+export function profileExtrasQuery(bbox: string): string {
+  return `[out:json][timeout:180][bbox:${bbox}];(\n${filtersOf(extrasQuery(bbox)).map((filter) => `nwr${filter}${NOT_SENSITIVE};`).join('\n')}\n);out center tags;`
+}
+
+/** The land use of an outpost: landuseQuery without landuse=military. */
+export const civilLanduseQuery = (bbox: string): string => `[out:json][timeout:240][bbox:${bbox}];(way["landuse"~"^(residential|commercial|industrial|retail|institutional|education|cemetery|religious)$"];relation["landuse"~"^(residential|commercial|industrial|retail)$"];);out geom qt;`
+
+/** The roads of an outpost: motorway, trunk and primary and the whole ladder down to tracks over the play box; none is required. `core` is unused. */
+export const ladderRoadsQuery = (bbox: string, _core?: string): string => `[out:json][timeout:120];way["highway"~"^(motorway|trunk|primary|${ROAD_LADDER.join('|')})$"][!"military"][!"aeroway"](${bbox});out geom tags;`

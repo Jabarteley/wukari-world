@@ -1,0 +1,16 @@
+{
+  "street-far.glb": {
+    "bytes": 25696,
+    "meshes": 18,
+    "materials": 3,
+    "triangles": 160,
+    "textures": 0
+  },
+  "street-near.glb": {
+    "bytes": 2251632,
+    "meshes": 444,
+    "materials": 13,
+    "triangles": 14297,
+    "textures": 6
+  }
+}

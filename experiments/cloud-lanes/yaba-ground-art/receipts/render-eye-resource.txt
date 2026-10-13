@@ -1,0 +1,473 @@
+Blender 4.3.2
+Read blend: "/workspace/yaba-ground-art/experiments/cloud-lanes/yaba-ground-art/artifacts/yaba-street-v1.blend"
+Fra:1 Mem:51.43M (Peak 52.01M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Road crown • 7.0m carriageway
+Fra:1 Mem:51.45M (Peak 52.01M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | West drain invert
+Fra:1 Mem:51.45M (Peak 52.01M) | Time:00:00.04 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Drain retaining wall
+Fra:1 Mem:53.50M (Peak 53.50M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Drain retaining wall.001
+Fra:1 Mem:53.52M (Peak 53.52M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Silt on drain floor
+Fra:1 Mem:53.53M (Peak 53.53M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 00
+Fra:1 Mem:53.56M (Peak 53.56M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 01
+Fra:1 Mem:53.60M (Peak 53.60M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 02
+Fra:1 Mem:53.67M (Peak 53.67M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.059
+Fra:1 Mem:53.67M (Peak 53.67M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.058
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.057
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.056
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.055
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.054
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.053
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.052
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.051
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.050
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.049
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.048
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.047
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.046
+Fra:1 Mem:53.68M (Peak 53.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.045
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.044
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.043
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.042
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.041
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.040
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.039
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.038
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.037
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.036
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.035
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.034
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.033
+Fra:1 Mem:53.69M (Peak 53.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.032
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.031
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.030
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.029
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.028
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.027
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.026
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.025
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.024
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.023
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.022
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.021
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.020
+Fra:1 Mem:53.70M (Peak 53.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.019
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.018
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.017
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.016
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.015
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.014
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.013
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.012
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.011
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.010
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.009
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.008
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.007
+Fra:1 Mem:53.71M (Peak 53.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.006
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.005
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.004
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.003
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.002
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate.001
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Loose aggregate
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.065
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.064
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.063
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.062
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.061
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.060
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.059
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.058
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.057
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.056
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.055
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.054
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.053
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.052
+Fra:1 Mem:53.70M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.051
+Fra:1 Mem:53.70M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.050
+Fra:1 Mem:53.70M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 03
+Fra:1 Mem:53.70M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.049
+Fra:1 Mem:53.70M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.048
+Fra:1 Mem:53.72M (Peak 53.72M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.047
+Fra:1 Mem:53.73M (Peak 53.73M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.046
+Fra:1 Mem:53.74M (Peak 53.74M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.045
+Fra:1 Mem:53.72M (Peak 53.74M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.044
+Fra:1 Mem:53.73M (Peak 53.74M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.043
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.042
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.041
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.040
+Fra:1 Mem:53.75M (Peak 53.75M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.039
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.038
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.037
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.036
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.035
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.034
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.033
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.032
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.031
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.030
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.029
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.028
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.027
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.026
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.025
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.024
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.023
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.022
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.021
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.020
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.019
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.018
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.017
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.016
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.015
+Fra:1 Mem:53.76M (Peak 53.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.014
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.013
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.012
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.011
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.010
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.009
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.008
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.007
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.006
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.005
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.004
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.003
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.002
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint.001
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Weathered centre paint
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Branch in repaired crack.002
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Meandering tar repair.002
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Branch in repaired crack.001
+Fra:1 Mem:53.77M (Peak 53.77M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Meandering tar repair.001
+Fra:1 Mem:53.78M (Peak 53.78M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Branch in repaired crack
+Fra:1 Mem:53.78M (Peak 53.78M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Meandering tar repair
+Fra:1 Mem:53.78M (Peak 53.78M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Patch sealed perimeter
+Fra:1 Mem:53.78M (Peak 53.78M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Irregular utility trench patch
+Fra:1 Mem:53.78M (Peak 53.78M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lid recessed lifting slot.001
+Fra:1 Mem:53.77M (Peak 53.78M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Lid recessed lifting slot
+Fra:1 Mem:53.79M (Peak 53.79M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 04
+Fra:1 Mem:53.82M (Peak 53.82M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Utility lid cement insert
+Fra:1 Mem:53.85M (Peak 53.85M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Utility lid outer seat
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.017
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.016
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.015
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.014
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.013
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.012
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.011
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.010
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.009
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.008
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.007
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.006
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.005
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.004
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.003
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.002
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove.001
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway broom groove
+Fra:1 Mem:53.86M (Peak 53.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Driveway reinforced drain bridge
+Fra:1 Mem:53.89M (Peak 53.89M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Recessed fastener.007
+Fra:1 Mem:53.90M (Peak 53.90M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Recessed fastener.006
+Fra:1 Mem:53.91M (Peak 53.91M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Recessed fastener.005
+Fra:1 Mem:53.92M (Peak 53.92M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Recessed fastener.004
+Fra:1 Mem:53.94M (Peak 53.94M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.019
+Fra:1 Mem:53.95M (Peak 53.95M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.018
+Fra:1 Mem:53.96M (Peak 53.96M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.017
+Fra:1 Mem:53.98M (Peak 53.98M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.016
+Fra:1 Mem:54.00M (Peak 54.00M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.015
+Fra:1 Mem:54.01M (Peak 54.01M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 05
+Fra:1 Mem:54.00M (Peak 54.01M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.014
+Fra:1 Mem:54.03M (Peak 54.03M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.013
+Fra:1 Mem:54.05M (Peak 54.05M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.012
+Fra:1 Mem:54.06M (Peak 54.06M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.011
+Fra:1 Mem:54.07M (Peak 54.07M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.010
+Fra:1 Mem:54.09M (Peak 54.09M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grate cross frame.003
+Fra:1 Mem:54.11M (Peak 54.11M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grate cross frame.002
+Fra:1 Mem:54.14M (Peak 54.14M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grate rim.003
+Fra:1 Mem:54.15M (Peak 54.15M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grate rim.002
+Fra:1 Mem:54.16M (Peak 54.16M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 06
+Fra:1 Mem:54.14M (Peak 54.16M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Recessed fastener.003
+Fra:1 Mem:54.20M (Peak 54.20M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Recessed fastener.002
+Fra:1 Mem:54.22M (Peak 54.22M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Recessed fastener.001
+Fra:1 Mem:54.23M (Peak 54.23M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 07
+Fra:1 Mem:54.22M (Peak 54.23M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Recessed fastener
+Fra:1 Mem:54.27M (Peak 54.27M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.009
+Fra:1 Mem:54.29M (Peak 54.29M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.008
+Fra:1 Mem:54.29M (Peak 54.29M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 08
+Fra:1 Mem:54.31M (Peak 54.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.007
+Fra:1 Mem:54.35M (Peak 54.35M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.006
+Fra:1 Mem:54.36M (Peak 54.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.005
+Fra:1 Mem:54.36M (Peak 54.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 09
+Fra:1 Mem:54.38M (Peak 54.38M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.004
+Fra:1 Mem:54.42M (Peak 54.42M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.003
+Fra:1 Mem:54.41M (Peak 54.42M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.002
+Fra:1 Mem:54.43M (Peak 54.43M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 10
+Fra:1 Mem:54.44M (Peak 54.44M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar.001
+Fra:1 Mem:54.49M (Peak 54.49M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Cast iron drain bar
+Fra:1 Mem:54.48M (Peak 54.49M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 11
+Fra:1 Mem:54.48M (Peak 54.49M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grate cross frame.001
+Fra:1 Mem:54.52M (Peak 54.52M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grate cross frame
+Fra:1 Mem:54.56M (Peak 54.56M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grate rim.001
+Fra:1 Mem:54.56M (Peak 54.56M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 12
+Fra:1 Mem:54.59M (Peak 54.59M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Grate rim
+Fra:1 Mem:54.62M (Peak 54.62M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Unfinished frontage shoulder.001
+Fra:1 Mem:54.62M (Peak 54.62M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 31.2
+Fra:1 Mem:54.63M (Peak 54.63M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 13
+Fra:1 Mem:54.66M (Peak 54.66M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 31.1
+Fra:1 Mem:54.69M (Peak 54.69M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 14
+Fra:1 Mem:54.71M (Peak 54.71M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 31.0
+Fra:1 Mem:54.73M (Peak 54.73M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 30.2
+Fra:1 Mem:54.76M (Peak 54.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 30.1
+Fra:1 Mem:54.76M (Peak 54.76M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 15
+Fra:1 Mem:54.80M (Peak 54.80M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 30.0
+Fra:1 Mem:54.83M (Peak 54.83M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 29.2
+Fra:1 Mem:54.86M (Peak 54.86M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 29.1
+Fra:1 Mem:54.87M (Peak 54.87M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 16
+Fra:1 Mem:54.86M (Peak 54.87M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 29.0
+Fra:1 Mem:54.93M (Peak 54.93M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 28.2
+Fra:1 Mem:54.92M (Peak 54.93M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 17
+Fra:1 Mem:54.92M (Peak 54.93M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 28.1
+Fra:1 Mem:54.97M (Peak 54.97M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 28.0
+Fra:1 Mem:55.00M (Peak 55.00M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 18
+Fra:1 Mem:55.02M (Peak 55.02M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 27.2
+Fra:1 Mem:55.07M (Peak 55.07M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 27.1
+Fra:1 Mem:55.06M (Peak 55.07M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 19
+Fra:1 Mem:55.08M (Peak 55.08M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 27.0
+Fra:1 Mem:55.12M (Peak 55.12M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 26.2
+Fra:1 Mem:55.13M (Peak 55.13M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 20
+Fra:1 Mem:55.17M (Peak 55.17M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 26.1
+Fra:1 Mem:55.18M (Peak 55.18M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 26.0
+Fra:1 Mem:55.19M (Peak 55.19M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 25.2
+Fra:1 Mem:55.19M (Peak 55.19M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 25.1
+Fra:1 Mem:55.23M (Peak 55.23M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 25.0
+Fra:1 Mem:55.22M (Peak 55.23M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 21
+Fra:1 Mem:55.27M (Peak 55.27M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 24.2
+Fra:1 Mem:55.30M (Peak 55.30M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 24.1
+Fra:1 Mem:55.30M (Peak 55.30M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 22
+Fra:1 Mem:55.31M (Peak 55.31M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 24.0
+Fra:1 Mem:55.36M (Peak 55.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 23.2
+Fra:1 Mem:55.36M (Peak 55.36M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb W 23
+Fra:1 Mem:55.40M (Peak 55.40M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 23.1
+Fra:1 Mem:55.43M (Peak 55.43M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 00.0
+Fra:1 Mem:55.43M (Peak 55.43M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 23.0
+Fra:1 Mem:55.47M (Peak 55.47M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 22.2
+Fra:1 Mem:55.46M (Peak 55.47M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 00.1
+Fra:1 Mem:55.48M (Peak 55.48M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 22.1
+Fra:1 Mem:55.50M (Peak 55.50M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 22.0
+Fra:1 Mem:55.49M (Peak 55.50M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 00.2
+Fra:1 Mem:55.54M (Peak 55.54M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 01.0
+Fra:1 Mem:55.54M (Peak 55.54M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 21.2
+Fra:1 Mem:55.57M (Peak 55.57M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 21.1
+Fra:1 Mem:55.57M (Peak 55.57M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 01.1
+Fra:1 Mem:55.61M (Peak 55.61M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 01.2
+Fra:1 Mem:55.60M (Peak 55.61M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 21.0
+Fra:1 Mem:55.65M (Peak 55.65M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 02.0
+Fra:1 Mem:55.65M (Peak 55.65M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 20.2
+Fra:1 Mem:55.68M (Peak 55.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 02.1
+Fra:1 Mem:55.68M (Peak 55.68M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 20.1
+Fra:1 Mem:55.70M (Peak 55.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 02.2
+Fra:1 Mem:55.70M (Peak 55.70M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 20.0
+Fra:1 Mem:55.74M (Peak 55.74M) | Time:00:00.05 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 19.2
+Fra:1 Mem:55.74M (Peak 55.74M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 03.0
+Fra:1 Mem:55.75M (Peak 55.75M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 19.1
+Fra:1 Mem:55.77M (Peak 55.77M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 19.0
+Fra:1 Mem:55.77M (Peak 55.77M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 03.1
+Fra:1 Mem:55.81M (Peak 55.81M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 18.2
+Fra:1 Mem:55.80M (Peak 55.81M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 03.2
+Fra:1 Mem:55.84M (Peak 55.84M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 04.0
+Fra:1 Mem:55.84M (Peak 55.84M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 18.1
+Fra:1 Mem:55.87M (Peak 55.87M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 04.1
+Fra:1 Mem:55.87M (Peak 55.87M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 18.0
+Fra:1 Mem:55.89M (Peak 55.89M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 04.2
+Fra:1 Mem:55.88M (Peak 55.89M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 17.2
+Fra:1 Mem:55.92M (Peak 55.92M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 05.0
+Fra:1 Mem:55.92M (Peak 55.92M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 17.1
+Fra:1 Mem:55.97M (Peak 55.97M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 17.0
+Fra:1 Mem:55.97M (Peak 55.97M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 05.1
+Fra:1 Mem:55.99M (Peak 55.99M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 16.2
+Fra:1 Mem:56.00M (Peak 56.00M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 05.2
+Fra:1 Mem:56.03M (Peak 56.03M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 16.1
+Fra:1 Mem:56.02M (Peak 56.03M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 06.0
+Fra:1 Mem:56.08M (Peak 56.08M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 16.0
+Fra:1 Mem:56.06M (Peak 56.08M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 06.1
+Fra:1 Mem:56.10M (Peak 56.10M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 15.2
+Fra:1 Mem:56.12M (Peak 56.12M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 15.1
+Fra:1 Mem:56.14M (Peak 56.14M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 06.2
+Fra:1 Mem:56.13M (Peak 56.14M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 15.0
+Fra:1 Mem:56.15M (Peak 56.15M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 14.2
+Fra:1 Mem:56.19M (Peak 56.19M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 14.1
+Fra:1 Mem:56.19M (Peak 56.19M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 07.0
+Fra:1 Mem:56.21M (Peak 56.21M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 07.1
+Fra:1 Mem:56.21M (Peak 56.21M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 14.0
+Fra:1 Mem:56.25M (Peak 56.25M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 07.2
+Fra:1 Mem:56.24M (Peak 56.25M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 13.2
+Fra:1 Mem:56.28M (Peak 56.28M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 08.0
+Fra:1 Mem:56.30M (Peak 56.30M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 13.1
+Fra:1 Mem:56.29M (Peak 56.30M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 08.1
+Fra:1 Mem:56.31M (Peak 56.31M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 08.2
+Fra:1 Mem:56.35M (Peak 56.35M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 13.0
+Fra:1 Mem:56.36M (Peak 56.36M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 09.0
+Fra:1 Mem:56.36M (Peak 56.36M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 12.2
+Fra:1 Mem:56.38M (Peak 56.38M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 09.1
+Fra:1 Mem:56.37M (Peak 56.38M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 12.1
+Fra:1 Mem:56.41M (Peak 56.41M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 09.2
+Fra:1 Mem:56.40M (Peak 56.41M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 12.0
+Fra:1 Mem:56.45M (Peak 56.45M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 11.2
+Fra:1 Mem:56.46M (Peak 56.46M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 10.0
+Fra:1 Mem:56.46M (Peak 56.46M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 11.1
+Fra:1 Mem:56.48M (Peak 56.48M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 10.1
+Fra:1 Mem:56.51M (Peak 56.51M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 11.0
+Fra:1 Mem:56.52M (Peak 56.52M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 10.2
+Fra:1 Mem:56.53M (Peak 56.53M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 10.2
+Fra:1 Mem:56.56M (Peak 56.56M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 10.1
+Fra:1 Mem:56.56M (Peak 56.56M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 11.0
+Fra:1 Mem:56.58M (Peak 56.58M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 10.0
+Fra:1 Mem:56.61M (Peak 56.61M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 09.2
+Fra:1 Mem:56.61M (Peak 56.61M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 11.1
+Fra:1 Mem:56.63M (Peak 56.63M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 09.1
+Fra:1 Mem:56.64M (Peak 56.64M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 11.2
+Fra:1 Mem:56.66M (Peak 56.66M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 09.0
+Fra:1 Mem:56.67M (Peak 56.67M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 12.0
+Fra:1 Mem:56.69M (Peak 56.69M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 08.2
+Fra:1 Mem:56.68M (Peak 56.69M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 12.1
+Fra:1 Mem:56.73M (Peak 56.73M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 08.1
+Fra:1 Mem:56.72M (Peak 56.73M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 12.2
+Fra:1 Mem:56.76M (Peak 56.76M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 08.0
+Fra:1 Mem:56.75M (Peak 56.76M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 13.0
+Fra:1 Mem:56.79M (Peak 56.79M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 13.1
+Fra:1 Mem:56.78M (Peak 56.79M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 07.2
+Fra:1 Mem:56.82M (Peak 56.82M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 13.2
+Fra:1 Mem:56.81M (Peak 56.82M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 07.1
+Fra:1 Mem:56.85M (Peak 56.85M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 07.0
+Fra:1 Mem:56.85M (Peak 56.85M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 14.0
+Fra:1 Mem:56.88M (Peak 56.88M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 14.1
+Fra:1 Mem:56.87M (Peak 56.88M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 06.2
+Fra:1 Mem:56.91M (Peak 56.91M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 14.2
+Fra:1 Mem:56.93M (Peak 56.93M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 06.1
+Fra:1 Mem:56.91M (Peak 56.93M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 15.0
+Fra:1 Mem:56.96M (Peak 56.96M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 06.0
+Fra:1 Mem:56.96M (Peak 56.96M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 15.1
+Fra:1 Mem:56.98M (Peak 56.98M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 05.2
+Fra:1 Mem:56.99M (Peak 56.99M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 15.2
+Fra:1 Mem:57.01M (Peak 57.01M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 05.1
+Fra:1 Mem:57.01M (Peak 57.01M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 16.0
+Fra:1 Mem:57.03M (Peak 57.03M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 05.0
+Fra:1 Mem:57.03M (Peak 57.03M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 16.1
+Fra:1 Mem:57.06M (Peak 57.06M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 04.2
+Fra:1 Mem:57.07M (Peak 57.07M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 04.1
+Fra:1 Mem:57.06M (Peak 57.07M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 16.2
+Fra:1 Mem:57.12M (Peak 57.12M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 04.0
+Fra:1 Mem:57.15M (Peak 57.15M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 17.0
+Fra:1 Mem:57.15M (Peak 57.15M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 03.2
+Fra:1 Mem:57.17M (Peak 57.17M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 17.1
+Fra:1 Mem:57.17M (Peak 57.17M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 03.1
+Fra:1 Mem:57.20M (Peak 57.20M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 17.2
+Fra:1 Mem:57.22M (Peak 57.22M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 03.0
+Fra:1 Mem:57.24M (Peak 57.24M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 18.0
+Fra:1 Mem:57.24M (Peak 57.24M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 02.2
+Fra:1 Mem:57.27M (Peak 57.27M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 02.1
+Fra:1 Mem:57.27M (Peak 57.27M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 18.1
+Fra:1 Mem:57.32M (Peak 57.32M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 02.0
+Fra:1 Mem:57.31M (Peak 57.32M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 18.2
+Fra:1 Mem:57.34M (Peak 57.34M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 01.2
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 01.1
+Fra:1 Mem:57.35M (Peak 57.35M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 19.0
+Fra:1 Mem:57.37M (Peak 57.37M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 01.0
+Fra:1 Mem:57.38M (Peak 57.38M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 19.1
+Fra:1 Mem:57.42M (Peak 57.42M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 19.2
+Fra:1 Mem:57.40M (Peak 57.42M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 00.2
+Fra:1 Mem:57.44M (Peak 57.44M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 00.1
+Fra:1 Mem:57.44M (Peak 57.44M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 20.0
+Fra:1 Mem:57.45M (Peak 57.45M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving E 00.0
+Fra:1 Mem:57.49M (Peak 57.49M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 20.1
+Fra:1 Mem:57.47M (Peak 57.49M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 23
+Fra:1 Mem:57.54M (Peak 57.54M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 22
+Fra:1 Mem:57.53M (Peak 57.54M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 20.2
+Fra:1 Mem:57.60M (Peak 57.60M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 21.0
+Fra:1 Mem:57.59M (Peak 57.60M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 21
+Fra:1 Mem:57.66M (Peak 57.66M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 21.1
+Fra:1 Mem:57.67M (Peak 57.67M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 21.2
+Fra:1 Mem:57.68M (Peak 57.68M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 22.0
+Fra:1 Mem:57.69M (Peak 57.69M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 20
+Fra:1 Mem:57.68M (Peak 57.69M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 22.1
+Fra:1 Mem:57.73M (Peak 57.73M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 22.2
+Fra:1 Mem:57.76M (Peak 57.76M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 19
+Fra:1 Mem:57.74M (Peak 57.76M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 23.0
+Fra:1 Mem:57.80M (Peak 57.80M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 23.1
+Fra:1 Mem:57.80M (Peak 57.80M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 23.2
+Fra:1 Mem:57.80M (Peak 57.80M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 18
+Fra:1 Mem:57.86M (Peak 57.86M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 24.0
+Fra:1 Mem:57.86M (Peak 57.86M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 24.1
+Fra:1 Mem:57.86M (Peak 57.86M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 17
+Fra:1 Mem:57.92M (Peak 57.92M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 16
+Fra:1 Mem:57.95M (Peak 57.95M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 15
+Fra:1 Mem:57.99M (Peak 57.99M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 14
+Fra:1 Mem:57.98M (Peak 57.99M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 24.2
+Fra:1 Mem:58.02M (Peak 58.02M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 25.0
+Fra:1 Mem:58.02M (Peak 58.02M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 13
+Fra:1 Mem:58.10M (Peak 58.10M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 25.1
+Fra:1 Mem:58.09M (Peak 58.10M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 12
+Fra:1 Mem:58.13M (Peak 58.13M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 25.2
+Fra:1 Mem:58.17M (Peak 58.17M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 11
+Fra:1 Mem:58.20M (Peak 58.20M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 10
+Fra:1 Mem:58.21M (Peak 58.21M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 09
+Fra:1 Mem:58.22M (Peak 58.22M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 26.0
+Fra:1 Mem:58.29M (Peak 58.29M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 26.1
+Fra:1 Mem:58.27M (Peak 58.29M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 08
+Fra:1 Mem:58.27M (Peak 58.29M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 26.2
+Fra:1 Mem:58.35M (Peak 58.35M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 27.0
+Fra:1 Mem:58.34M (Peak 58.35M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 07
+Fra:1 Mem:58.41M (Peak 58.41M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 27.1
+Fra:1 Mem:58.40M (Peak 58.41M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 06
+Fra:1 Mem:58.39M (Peak 58.41M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 27.2
+Fra:1 Mem:58.47M (Peak 58.47M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 28.0
+Fra:1 Mem:58.49M (Peak 58.49M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 28.1
+Fra:1 Mem:58.48M (Peak 58.49M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 05
+Fra:1 Mem:58.51M (Peak 58.51M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 28.2
+Fra:1 Mem:58.54M (Peak 58.54M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 29.0
+Fra:1 Mem:58.55M (Peak 58.55M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 04
+Fra:1 Mem:58.53M (Peak 58.55M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 29.1
+Fra:1 Mem:58.59M (Peak 58.59M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 29.2
+Fra:1 Mem:58.62M (Peak 58.62M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 30.0
+Fra:1 Mem:58.61M (Peak 58.62M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 03
+Fra:1 Mem:58.65M (Peak 58.65M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 30.1
+Fra:1 Mem:58.66M (Peak 58.66M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 02
+Fra:1 Mem:58.66M (Peak 58.66M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 30.2
+Fra:1 Mem:58.72M (Peak 58.72M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 01
+Fra:1 Mem:58.73M (Peak 58.73M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 31.0
+Fra:1 Mem:58.76M (Peak 58.76M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Kerb E 00
+Fra:1 Mem:58.79M (Peak 58.79M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 31.1
+Fra:1 Mem:58.82M (Peak 58.82M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Paving W 31.2
+Fra:1 Mem:58.81M (Peak 58.82M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Silt on drain floor.001
+Fra:1 Mem:58.83M (Peak 58.83M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Drain retaining wall.003
+Fra:1 Mem:58.85M (Peak 58.85M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Unfinished frontage shoulder
+Fra:1 Mem:58.86M (Peak 58.86M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | East drain invert
+Fra:1 Mem:58.84M (Peak 58.86M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Drain retaining wall.002
+Fra:1 Mem:58.86M (Peak 58.86M) | Time:00:00.06 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:52.71M (Peak 58.86M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading silt-normal.png
+Fra:1 Mem:52.71M (Peak 58.86M) | Time:00:00.07 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading asphalt-color.jpg
+Fra:1 Mem:53.98M (Peak 58.86M) | Time:00:00.07 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading asphalt-normal.png
+Fra:1 Mem:54.98M (Peak 58.86M) | Time:00:00.07 | Mem:1.25M, Peak:1.25M | Scene, ViewLayer | Updating Images | Loading silt-color.jpg
+Fra:1 Mem:55.23M (Peak 58.86M) | Time:00:00.07 | Mem:1.50M, Peak:1.50M | Scene, ViewLayer | Updating Images | Loading cement-normal.png
+Fra:1 Mem:55.48M (Peak 58.86M) | Time:00:00.08 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Images | Loading cement-color.jpg
+Fra:1 Mem:43.15M (Peak 58.86M) | Time:00:00.09 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Waiting for render to start
+Failed to denoise, build has no OpenImageDenoise support
+Fra:1 Mem:43.15M (Peak 58.86M) | Time:00:00.09 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:43.15M (Peak 58.86M) | Time:00:00.09 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:43.15M (Peak 58.86M) | Time:00:00.09 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:43.25M (Peak 58.86M) | Time:00:00.09 | Mem:3.01M, Peak:3.01M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:43.25M (Peak 58.86M) | Time:00:00.09 | Mem:3.01M, Peak:3.01M | Scene, ViewLayer | Failed to denoise, build has no OpenImageDenoise support
+Traceback (most recent call last):
+  File "/workspace/yaba-ground-art/experiments/cloud-lanes/yaba-ground-art/render_blender.py", line 16, in <module>
+    bpy.ops.render.render(write_still=True)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/usr/share/blender/scripts/modules/bpy/ops.py", line 109, in __call__
+    ret = _op_call(self.idname_py(), kw)
+RuntimeError: Error: Failed to denoise, build has no OpenImageDenoise support
+Error: Failed to denoise, build has no OpenImageDenoise support
+
+Error: Failed to denoise, build has no OpenImageDenoise support
+Error: Failed to denoise, build has no OpenImageDenoise support
+
+Blender quit

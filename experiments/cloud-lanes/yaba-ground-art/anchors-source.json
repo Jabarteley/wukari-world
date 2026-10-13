@@ -1,0 +1,56 @@
+{
+  "blenderAxes": "X east, Y north, Z up; metres",
+  "gltfAxes": "X east, Y up, Z south",
+  "anchors": {
+    "pivot": [
+      0,
+      -12,
+      0
+    ],
+    "south_crown": [
+      0,
+      -12,
+      0.065
+    ],
+    "north_crown": [
+      0,
+      12,
+      0.209
+    ],
+    "south_east_kerb": [
+      4.08,
+      -12,
+      0.175
+    ],
+    "north_east_kerb": [
+      4.08,
+      12,
+      0.319
+    ],
+    "south_west_kerb": [
+      -4.08,
+      -12,
+      0.175
+    ],
+    "north_west_kerb": [
+      -4.08,
+      12,
+      0.319
+    ],
+    "driveway_threshold": [
+      6.38,
+      5,
+      0.1685
+    ],
+    "drain_invert_south": [
+      3.79,
+      -12,
+      -0.2
+    ],
+    "drain_invert_north": [
+      3.79,
+      12,
+      -0.056
+    ]
+  }
+}

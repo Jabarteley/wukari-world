@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "integrationCommit": "caaee5e1b91afc7f3cd3f2124df3547dc7f492ec",
+  "packet": {
+    "bytes": 14085,
+    "path": "packets/9c15f10e6c82bbf31aa74e9dbcf2c9d3e4aef67ef3789d255c7c2e608623e7cb.json",
+    "schema": "allworld-cloud-packet-lock-v1",
+    "sha256": "9c15f10e6c82bbf31aa74e9dbcf2c9d3e4aef67ef3789d255c7c2e608623e7cb"
+  },
+  "verifiedInputFiles": 155,
+  "verifiedInputBytes": 2746358,
+  "integrationSourcesVerified": 4,
+  "method": "SHA-256 and byte comparison of packet, input-index files and integration sources; full executable seal unavailable because root three dependency absent",
+  "humanContract": "71d6b5ad391754b0f30fc5364e993208299640ed",
+  "newHumanMeshCheckpoint": null
+}
